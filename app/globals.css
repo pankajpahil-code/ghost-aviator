@@ -6,6 +6,41 @@
   margin: 0;
 }
 
+@keyframes floatSkull {
+  0%,100% { transform: translateY(0px) rotate(-1deg); }
+  50%      { transform: translateY(-18px) rotate(1deg); }
+}
+@keyframes lightning {
+  0%,95%,100% { opacity: 0; }
+  96%,98%     { opacity: 1; }
+  97%,99%     { opacity: 0.3; }
+}
+@keyframes fireFlicker {
+  0%,100% { transform: scaleY(1) scaleX(1); opacity:0.9; }
+  25%     { transform: scaleY(1.05) scaleX(0.97); opacity:1; }
+  75%     { transform: scaleY(0.97) scaleX(1.03); opacity:0.85; }
+}
+@keyframes nebulaPulse {
+  0%,100% { opacity: 0.6; transform: scale(1); }
+  50%     { opacity: 0.9; transform: scale(1.04); }
+}
+@keyframes scanLine {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+@keyframes glitch {
+  0%,100% { clip-path: none; transform: none; }
+  92%     { clip-path: none; transform: none; }
+  93%     { clip-path: inset(20% 0 60% 0); transform: translate(-4px,0); }
+  94%     { clip-path: inset(50% 0 30% 0); transform: translate(4px,0); }
+  95%     { clip-path: none; transform: none; }
+}
+@keyframes borderGlow {
+  0%,100% { box-shadow: 0 0 20px rgba(255,0,0,0.3), 0 0 40px rgba(124,58,237,0.2); }
+  50%     { box-shadow: 0 0 40px rgba(255,0,0,0.6), 0 0 80px rgba(124,58,237,0.4); }
+}
+@keyframes spin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+
 html, body {
   max-width: 100vw;
   overflow-x: hidden;
