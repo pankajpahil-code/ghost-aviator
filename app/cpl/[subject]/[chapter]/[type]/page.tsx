@@ -128,6 +128,9 @@ export default async function Page({
       "air-regulations/ar-1": "U-3qsvPNXSQ",
       "air-regulations/ar-2": "3clEEVEFjhs",
       "air-regulations/ar-3": "49Pb_y2Jy4Y",
+      "air-regulations/ar-4": "-wNK3jt0_Vc",
+      "air-regulations/ar-5": "gSiElA8OTKY",
+      "air-regulations/ar-6": "yEk9FYgRTho",
     };
     const youtubeId = YOUTUBE_IDS[`${subject.id}/${chapter.id}`];
     if (youtubeId) {
