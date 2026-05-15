@@ -127,6 +127,7 @@ export default async function Page({
     const YOUTUBE_IDS: Record<string, string> = {
       "air-regulations/ar-1": "U-3qsvPNXSQ",
       "air-regulations/ar-2": "3clEEVEFjhs",
+      "air-regulations/ar-3": "49Pb_y2Jy4Y",
     };
     const youtubeId = YOUTUBE_IDS[`${subject.id}/${chapter.id}`];
     if (youtubeId) {
