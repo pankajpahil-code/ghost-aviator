@@ -1,0 +1,2158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aeronautical Information Services – DGCA Study Notes | Capt. Pankaj Pahil</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ===================== PRINT & PAGE ===================== */
+  @page {
+    size: A4;
+    margin: 18mm 15mm 18mm 15mm;
+  }
+  @media print {
+    body::before { position: fixed !important; }
+    .no-print { display: none; }
+    section { page-break-before: auto; }
+  }
+
+  /* ===================== WATERMARK ===================== */
+  body::before {
+    content: "Capt. Pankaj Pahil";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 72px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    color: #1a3a5c;
+    opacity: 0.07;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    letter-spacing: 6px;
+  }
+
+  /* ===================== RESET & BASE ===================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; scroll-behavior: smooth; }
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: #f4f1eb;
+    color: #1c1c2e;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  /* ===================== CSS VARIABLES ===================== */
+  :root {
+    --navy:    #0d2b4e;
+    --sky:     #1a6fa8;
+    --sky-lt:  #d6eaf8;
+    --teal:    #0e7c7b;
+    --teal-lt: #d0f0ee;
+    --amber:   #b85c00;
+    --amber-lt:#fdebd0;
+    --red:     #9b1c1c;
+    --red-lt:  #fde8e8;
+    --green:   #155724;
+    --green-lt:#d4edda;
+    --purple:  #4a235a;
+    --purple-lt:#ede0f5;
+    --gold:    #c8952a;
+    --paper:   #fdf8f0;
+    --ink:     #1c1c2e;
+    --border:  #c5bfb0;
+    --rule:    #0d2b4e;
+  }
+
+  /* ===================== COVER PAGE ===================== */
+  .cover {
+    background: linear-gradient(160deg, #0d2b4e 0%, #1a6fa8 55%, #0e7c7b 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 30px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 60px,
+      rgba(255,255,255,0.03) 60px,
+      rgba(255,255,255,0.03) 61px
+    );
+  }
+  .cover-badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    padding: 6px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-chapter {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-subtitle {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin-bottom: 36px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-rule {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #c8952a, #ffd97d);
+    border-radius: 2px;
+    margin: 0 auto 36px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-refs {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-ref {
+    background: rgba(200,149,42,0.25);
+    border: 1px solid rgba(200,149,42,0.5);
+    border-radius: 3px;
+    padding: 4px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #ffd97d;
+    letter-spacing: 1px;
+  }
+  .cover-author {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    color: #ffd97d;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-wings {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===================== LAYOUT ===================== */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===================== TABLE OF CONTENTS ===================== */
+  .toc-page {
+    background: var(--paper);
+    border-left: 6px solid var(--navy);
+    padding: 36px 32px;
+    margin: 0;
+    page-break-after: always;
+  }
+  .toc-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    color: var(--navy);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 10px;
+  }
+  .toc-list { list-style: none; }
+  .toc-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+  .toc-num {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    color: var(--sky);
+    min-width: 28px;
+  }
+  .toc-dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--border);
+    margin: 0 8px;
+    position: relative;
+    top: -4px;
+  }
+  .toc-pg {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--amber);
+    font-weight: 600;
+  }
+  .toc-sub { padding-left: 24px; font-size: 0.88rem; color: #555; }
+
+  /* ===================== SECTION HEADERS ===================== */
+  .section-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--sky) 100%);
+    color: #fff;
+    padding: 22px 28px;
+    margin: 40px 0 0 0;
+    border-radius: 6px 6px 0 0;
+    page-break-inside: avoid;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    opacity: 0.7;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.15;
+  }
+  .section-body {
+    background: var(--paper);
+    border: 2px solid var(--navy);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    padding: 28px;
+    margin-bottom: 36px;
+  }
+
+  /* ===================== SUBSECTION ===================== */
+  h2.sub {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.25rem;
+    color: var(--sky);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-left: 4px solid var(--sky);
+    padding-left: 12px;
+    margin: 28px 0 14px;
+    page-break-after: avoid;
+  }
+  h3.sub2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.05rem;
+    color: var(--teal);
+    letter-spacing: 0.5px;
+    margin: 20px 0 10px;
+    page-break-after: avoid;
+  }
+
+  /* ===================== COLORED BOXES ===================== */
+  .box {
+    border-radius: 5px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    page-break-inside: avoid;
+    border-left: 5px solid;
+  }
+  .box-def {
+    background: var(--sky-lt);
+    border-color: var(--sky);
+  }
+  .box-def .box-head {
+    color: var(--sky);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .box-warn {
+    background: var(--red-lt);
+    border-color: var(--red);
+  }
+  .box-warn .box-head {
+    color: var(--red);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .box-sop {
+    background: var(--green-lt);
+    border-color: var(--green);
+  }
+  .box-sop .box-head {
+    color: var(--green);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .box-note {
+    background: var(--amber-lt);
+    border-color: var(--amber);
+  }
+  .box-note .box-head {
+    color: var(--amber);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .box-purple {
+    background: var(--purple-lt);
+    border-color: var(--purple);
+  }
+  .box-purple .box-head {
+    color: var(--purple);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .box-teal {
+    background: var(--teal-lt);
+    border-color: var(--teal);
+  }
+  .box-teal .box-head {
+    color: var(--teal);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .box p { margin: 4px 0; }
+
+  /* ===================== TABLES ===================== */
+  .tbl-wrap {
+    overflow-x: auto;
+    margin: 18px 0;
+    page-break-inside: avoid;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    background: #fff;
+  }
+  thead th {
+    background: var(--navy);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+  }
+  tbody tr:nth-child(even) { background: #f0f4f8; }
+  tbody tr:nth-child(odd) { background: #fff; }
+  tbody td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #dde4ec;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  td.val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--red);
+    font-size: 0.9rem;
+  }
+  td.label {
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* ===================== LISTS ===================== */
+  ul.regs, ol.regs {
+    padding-left: 22px;
+    margin: 10px 0 10px 0;
+  }
+  ul.regs li, ol.regs li {
+    margin-bottom: 7px;
+    line-height: 1.6;
+  }
+  ul.regs li::marker { color: var(--sky); }
+  ol.regs li::marker {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--sky);
+    font-size: 0.85rem;
+  }
+
+  /* ===================== SVG DIAGRAMS ===================== */
+  .diagram-wrap {
+    margin: 20px 0;
+    page-break-inside: avoid;
+    text-align: center;
+  }
+  .diagram-wrap svg {
+    max-width: 100%;
+    height: auto;
+  }
+  .diagram-caption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: #888;
+    text-align: center;
+    margin-top: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ===================== HIGHLIGHT PILLS ===================== */
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin: 2px 3px;
+    vertical-align: middle;
+  }
+  .pill-red   { background: var(--red-lt);   color: var(--red);    border: 1px solid #f5c6cb; }
+  .pill-blue  { background: var(--sky-lt);   color: var(--navy);   border: 1px solid #bee5eb; }
+  .pill-green { background: var(--green-lt); color: var(--green);  border: 1px solid #c3e6cb; }
+  .pill-amber { background: var(--amber-lt); color: var(--amber);  border: 1px solid #ffeeba; }
+  .pill-teal  { background: var(--teal-lt);  color: var(--teal);   border: 1px solid #b8e0df; }
+
+  /* ===================== KEY METRIC CARDS ===================== */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+  }
+  .metric-card {
+    background: #fff;
+    border-radius: 6px;
+    padding: 16px 14px;
+    text-align: center;
+    border-top: 4px solid var(--sky);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    page-break-inside: avoid;
+  }
+  .metric-card .m-val {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .metric-card .m-label {
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.3;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .metric-card.green { border-top-color: var(--green); }
+  .metric-card.green .m-val { color: var(--green); }
+  .metric-card.amber { border-top-color: var(--amber); }
+  .metric-card.amber .m-val { color: var(--amber); }
+  .metric-card.purple { border-top-color: var(--purple); }
+  .metric-card.purple .m-val { color: var(--purple); }
+  .metric-card.teal { border-top-color: var(--teal); }
+  .metric-card.teal .m-val { color: var(--teal); }
+
+  /* ===================== Q&A SECTION ===================== */
+  .qa-grid { display: flex; flex-direction: column; gap: 16px; margin: 16px 0; }
+  .qa-item {
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .qa-q {
+    background: var(--navy);
+    color: #fff;
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+  .qa-q .qnum {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--gold);
+    margin-right: 8px;
+  }
+  .qa-opts { padding: 10px 16px 4px; }
+  .qa-opt {
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    font-size: 0.88rem;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+  }
+  .qa-opt.correct {
+    background: var(--green-lt);
+    border-color: var(--green);
+    font-weight: 600;
+    color: var(--green);
+  }
+  .qa-opt.correct::after { content: " ✓"; }
+  .qa-ans {
+    padding: 8px 16px 12px;
+    font-size: 0.83rem;
+    color: #555;
+    font-style: italic;
+    border-top: 1px solid #eee;
+    background: #fafafa;
+  }
+
+  /* ===================== FOOTER / PAGE FOOTER ===================== */
+  .page-footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 20px;
+    border-top: 2px solid var(--navy);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: #999;
+    letter-spacing: 1px;
+  }
+
+  /* ===================== NOTAM SERIES BADGES ===================== */
+  .notam-series {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .ns-card {
+    border-radius: 6px;
+    padding: 14px;
+    page-break-inside: avoid;
+  }
+  .ns-card .ns-letter {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .ns-card .ns-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .ns-a { background:#e8f4fd; border:2px solid #1a6fa8; }
+  .ns-a .ns-letter, .ns-a .ns-name { color:#0d2b4e; }
+  .ns-b { background:#e8f8f5; border:2px solid #0e7c7b; }
+  .ns-b .ns-letter, .ns-b .ns-name { color:#0e7c7b; }
+  .ns-c { background:#fef9e7; border:2px solid #c8952a; }
+  .ns-c .ns-letter, .ns-c .ns-name { color:#b85c00; }
+  .ns-d { background:#f4ecf7; border:2px solid #8e44ad; }
+  .ns-d .ns-letter, .ns-d .ns-name { color:#6c3483; }
+  .ns-g { background:#fdedec; border:2px solid #e74c3c; }
+  .ns-g .ns-letter, .ns-g .ns-name { color:#9b1c1c; }
+
+  /* ===================== MNEMONIC BOX ===================== */
+  .mnemonic {
+    background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-left: 5px solid #e17055;
+    page-break-inside: avoid;
+  }
+  .mnemonic .mn-head {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #e17055;
+    margin-bottom: 6px;
+  }
+  .mnemonic .mn-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2d3436;
+    letter-spacing: 1px;
+  }
+  .mnemonic .mn-sub { font-size: 0.85rem; color: #555; margin-top: 4px; }
+
+  /* ===================== TIMELINE ===================== */
+  .timeline { margin: 18px 0; position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--sky);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 18px;
+    page-break-inside: avoid;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -26px; top: 5px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--sky);
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px var(--sky);
+  }
+  .tl-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .tl-desc { font-size: 0.9rem; }
+
+  p { margin-bottom: 10px; }
+  strong { color: var(--navy); }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    background: #e8ecf1;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.85em;
+    color: var(--red);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     COVER PAGE
+     ============================================================ -->
+<div class="cover">
+  <div class="cover-wings">✈</div>
+  <div class="cover-badge">DGCA CPL / ATPL Ground School</div>
+  <div class="cover-chapter">Chapter 10</div>
+  <div class="cover-title">Aeronautical<br>Information Services</div>
+  <div class="cover-rule"></div>
+  <p class="cover-subtitle">Comprehensive Study Notes — ICAO Annex 15 · PANS-AIM (Doc 10066) · AIP India · CAR Section 9 Series 'I' Part I Issue II</p>
+  <div class="cover-refs">
+    <span class="cover-ref">ICAO Annex 15</span>
+    <span class="cover-ref">PANS-AIM Doc 10066</span>
+    <span class="cover-ref">CAR Sec-9 'I' Pt-I</span>
+    <span class="cover-ref">AIP India</span>
+    <span class="cover-ref">AAI / DGCA</span>
+  </div>
+  <div class="cover-author">Capt. Pankaj Pahil</div>
+</div>
+
+
+<!-- ============================================================
+     TABLE OF CONTENTS
+     ============================================================ -->
+<div class="container">
+<div class="toc-page">
+  <div class="toc-title">📋 Table of Contents</div>
+  <ul class="toc-list">
+    <li><span class="toc-num">01</span> General — AIS Overview &amp; Responsibilities<span class="toc-dots"></span><span class="toc-pg">§1</span></li>
+    <li><span class="toc-num">02</span> Aeronautical Information Publications (AIP)<span class="toc-dots"></span><span class="toc-pg">§2</span></li>
+    <li class="toc-sub"><span class="toc-num">↳</span> AIP Contents, General Specs &amp; Amendments<span class="toc-dots"></span><span class="toc-pg">§2.1</span></li>
+    <li class="toc-sub"><span class="toc-num">↳</span> AIP Supplements &amp; Electronic AIP (eAIP)<span class="toc-dots"></span><span class="toc-pg">§2.2</span></li>
+    <li><span class="toc-num">03</span> NOTAM<span class="toc-dots"></span><span class="toc-pg">§3</span></li>
+    <li class="toc-sub"><span class="toc-num">↳</span> Types: N, R, C · Trigger NOTAM<span class="toc-dots"></span><span class="toc-pg">§3.1</span></li>
+    <li class="toc-sub"><span class="toc-num">↳</span> Origination Rules &amp; What NOT to NOTAM<span class="toc-dots"></span><span class="toc-pg">§3.2</span></li>
+    <li class="toc-sub"><span class="toc-num">↳</span> SNOWTAM · RWYCC · General Specs · Distribution<span class="toc-dots"></span><span class="toc-pg">§3.3</span></li>
+    <li><span class="toc-num">04</span> AIRAC (Aeronautical Information Regulation &amp; Control)<span class="toc-dots"></span><span class="toc-pg">§4</span></li>
+    <li class="toc-sub"><span class="toc-num">↳</span> AIRAC Parts 1 &amp; 2 · Paper Copy Provisions<span class="toc-dots"></span><span class="toc-pg">§4.1</span></li>
+    <li><span class="toc-num">05</span> Aeronautical Information Circulars (AIC)<span class="toc-dots"></span><span class="toc-pg">§5</span></li>
+    <li><span class="toc-num">06</span> Aeronautical Charts<span class="toc-dots"></span><span class="toc-pg">§6</span></li>
+    <li><span class="toc-num">07</span> Pre-flight &amp; Post-flight Information / PIB<span class="toc-dots"></span><span class="toc-pg">§7</span></li>
+    <li><span class="toc-num">08</span> Telecommunication Requirements &amp; Digital Data Sets<span class="toc-dots"></span><span class="toc-pg">§8</span></li>
+    <li><span class="toc-num">09</span> National Provisions — India (AAI, NOF, NOTAM Series)<span class="toc-dots"></span><span class="toc-pg">§9</span></li>
+    <li class="toc-sub"><span class="toc-num">↳</span> AIP Parts GEN / ENR / AD — India<span class="toc-dots"></span><span class="toc-pg">§9.2</span></li>
+    <li><span class="toc-num">10</span> Integrated Aeronautical Information Package (IAIP)<span class="toc-dots"></span><span class="toc-pg">§10</span></li>
+    <li><span class="toc-num">Q&amp;A</span> DGCA Practice Questions — All 30 with Answers &amp; Explanations<span class="toc-dots"></span><span class="toc-pg">§Q</span></li>
+  </ul>
+</div>
+</div>
+
+
+<!-- ============================================================
+     SECTION 1 — GENERAL
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="s1">
+  <div class="section-num">Section 01</div>
+  <div class="section-title">General — AIS Overview &amp; Responsibilities</div>
+</div>
+<div class="section-body">
+
+  <h2 class="sub">1.1 What is AIS?</h2>
+  <div class="box box-def">
+    <div class="box-head">📖 Definition</div>
+    <p>The <strong>Aeronautical Information Service (AIS)</strong> is the body responsible for ensuring the continuous flow of <strong>aeronautical data and aeronautical information</strong> that is necessary for the safety, regularity, economy, and efficiency of global <strong>Air Traffic Management (ATM)</strong> — in an environmentally sustainable manner.</p>
+  </div>
+
+  <h2 class="sub">1.2 Why Has AIS Become More Critical?</h2>
+  <p>The role and importance of aeronautical data changed significantly with the implementation of modern navigation technologies:</p>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;width:100%">
+      <rect width="700" height="180" rx="8" fill="#f0f4f8"/>
+      <!-- boxes -->
+      <g>
+        <rect x="10" y="30" width="90" height="50" rx="5" fill="#1a6fa8"/>
+        <text x="55" y="52" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">RNAV</text>
+        <text x="55" y="67" text-anchor="middle" fill="white" font-size="8" font-family="Source Serif 4,serif">Area Navigation</text>
+      </g>
+      <g>
+        <rect x="115" y="30" width="90" height="50" rx="5" fill="#0e7c7b"/>
+        <text x="160" y="52" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">PBN</text>
+        <text x="160" y="67" text-anchor="middle" fill="white" font-size="7" font-family="Source Serif 4,serif">Perf-Based Nav</text>
+      </g>
+      <g>
+        <rect x="220" y="30" width="90" height="50" rx="5" fill="#4a235a"/>
+        <text x="265" y="52" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">PBC</text>
+        <text x="265" y="67" text-anchor="middle" fill="white" font-size="7" font-family="Source Serif 4,serif">Perf-Based Comm</text>
+      </g>
+      <g>
+        <rect x="325" y="30" width="90" height="50" rx="5" fill="#b85c00"/>
+        <text x="370" y="52" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">PBS</text>
+        <text x="370" y="67" text-anchor="middle" fill="white" font-size="7" font-family="Source Serif 4,serif">Perf-Based Surv.</text>
+      </g>
+      <g>
+        <rect x="430" y="30" width="95" height="50" rx="5" fill="#9b1c1c"/>
+        <text x="477" y="52" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">SATVOICE</text>
+        <text x="477" y="67" text-anchor="middle" fill="white" font-size="7" font-family="Source Serif 4,serif">Satellite Voice Comm</text>
+      </g>
+      <g>
+        <rect x="540" y="30" width="150" height="50" rx="5" fill="#0d2b4e"/>
+        <text x="615" y="50" text-anchor="middle" fill="white" font-size="8.5" font-family="Oswald,sans-serif" font-weight="700">Airborne Computer</text>
+        <text x="615" y="65" text-anchor="middle" fill="white" font-size="8" font-family="Source Serif 4,serif">Nav Systems</text>
+      </g>
+      <!-- arrow pointing down to AIS -->
+      <polygon points="345,95 355,95 350,110" fill="#c8952a"/>
+      <rect x="250" y="115" width="200" height="40" rx="6" fill="#c8952a"/>
+      <text x="350" y="131" text-anchor="middle" fill="white" font-size="10" font-family="Oswald,sans-serif" font-weight="700">AIS is the DATA BACKBONE</text>
+      <text x="350" y="148" text-anchor="middle" fill="white" font-size="9" font-family="Source Serif 4,serif">for all these systems</text>
+      <text x="350" y="168" text-anchor="middle" fill="#555" font-size="8" font-family="JetBrains Mono,monospace">TECHNOLOGIES DRIVING AIS IMPORTANCE</text>
+    </svg>
+  </div>
+
+  <h2 class="sub">1.3 What Does AIS Publish?</h2>
+  <p>Aeronautical information shall be provided in a <strong>standardized presentation</strong> and shall include:</p>
+  <div class="box box-sop">
+    <div class="box-head">📦 The AIS Product Suite</div>
+    <ul class="regs">
+      <li><strong>AIP</strong> — Aeronautical Information Publication</li>
+      <li><strong>AIP Amendments</strong></li>
+      <li><strong>AIP Supplements</strong></li>
+      <li><strong>AIC</strong> — Aeronautical Information Circulars</li>
+      <li><strong>NOTAM</strong> — Notice to Airmen</li>
+      <li><strong>Aeronautical Charts</strong></li>
+    </ul>
+  </div>
+
+  <h2 class="sub">1.4 Responsibilities in India</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Publication / Service</th><th>Responsible Authority</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">AIS (all publications except AIC)</td>
+          <td><strong>Airports Authority of India (AAI)</strong></td>
+        </tr>
+        <tr>
+          <td class="label">Aeronautical Information Circulars (AIC)</td>
+          <td><strong>DGCA</strong> (Directorate General of Civil Aviation)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box box-warn">
+    <div class="box-head">⚠️ Exam Alert</div>
+    <p><strong>AAI</strong> provides all AIS <em>except</em> AIC. <strong>AIC is published by DGCA</strong>. This distinction is a common exam question!</p>
+  </div>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     SECTION 2 — AIP
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="s2">
+  <div class="section-num">Section 02</div>
+  <div class="section-title">Aeronautical Information Publications (AIP)</div>
+</div>
+<div class="section-body">
+
+  <div class="box box-def">
+    <div class="box-head">📖 AIP Definition</div>
+    <p>AIP is intended primarily to satisfy <strong>international requirements</strong> for the exchange of aeronautical information of a <strong>lasting character essential to air navigation</strong>. When practicable, the form of presentation is designed to facilitate their use in flight.</p>
+    <p>AIP constitutes the <strong>basic information source</strong> for <strong>permanent information</strong> and <strong>long-duration temporary changes</strong>.</p>
+  </div>
+
+  <h2 class="sub">2.1 AIP Contents</h2>
+  <p>An AIP shall contain information in <strong>three parts</strong>, with sections and subsections uniformly referenced to allow for standardized electronic data storage and retrieval, arranged under subjects enumerated in Annex 15.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>AIP Part</th><th>Code</th><th>Contents</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Part 1 — General</td>
+          <td class="val">GEN</td>
+          <td>National regulations, tables &amp; codes, services, ATS, comms, met, SAR, charges</td>
+        </tr>
+        <tr>
+          <td class="label">Part 2 — En-Route</td>
+          <td class="val">ENR</td>
+          <td>General rules, FIR/CTA/TMA, radio nav aids, navigation warnings, en-route charts</td>
+        </tr>
+        <tr>
+          <td class="label">Part 3 — Aerodromes</td>
+          <td class="val">AD</td>
+          <td>Aerodromes/heliports, rescue &amp; firefighting, licensing, aerodrome details</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sub">2.2 AIP General Specifications</h2>
+  <ul class="regs">
+    <li>A <strong>checklist</strong> giving the current date of each page shall be reissued frequently. The page number/chart title and date of the checklist shall appear on the checklist itself.</li>
+    <li>Operationally significant changes shall be published in accordance with <strong>AIRAC procedures</strong> and clearly identified by the acronym <strong>AIRAC</strong>.</li>
+    <li>AIP shall be amended or reissued at regular intervals to keep them up to date. The normal method of amendment shall be by means of <strong>replacement sheets</strong>.</li>
+    <li>Recourse to hand amendments or annotations shall be kept to the <strong>minimum</strong>.</li>
+    <li>The regular interval shall be specified in the <strong>AIP Part 1 — GEN</strong>.</li>
+  </ul>
+
+  <h2 class="sub">2.3 Specifications for AIP Amendments</h2>
+  <div class="box box-sop">
+    <div class="box-head">✅ AIP Amendment Rules</div>
+    <ul class="regs">
+      <li><strong>Permanent changes</strong> to the AIP shall be published as AIP Amendments.</li>
+      <li>Each AIP Amendment shall be allocated a <strong>serial number</strong> which shall be consecutive.</li>
+      <li>Each AIRAC AIP Amendment page (including the cover sheet) shall display an <strong>effective date</strong>.</li>
+      <li>When an AIP Amendment will not be published at the established interval or publication date, a <strong>NIL notification</strong> shall be originated and distributed by the monthly printed plain-language list of valid NOTAM.</li>
+    </ul>
+  </div>
+
+  <h2 class="sub">2.4 Specifications for AIP Supplements</h2>
+  <div class="box box-def">
+    <div class="box-head">📖 What goes into an AIP Supplement?</div>
+    <p><strong>Temporary changes of long duration (three months or longer)</strong> AND information of short duration which contains <strong>extensive text and/or graphics</strong> shall be published as AIP Supplements.</p>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="m-val">3</div>
+      <div class="m-label">months or longer = "Long Duration"</div>
+    </div>
+    <div class="metric-card amber">
+      <div class="m-val">≤1 mo</div>
+      <div class="m-label">Checklist of valid AIP SUPs issued interval</div>
+    </div>
+    <div class="metric-card green">
+      <div class="m-val">Yellow</div>
+      <div class="m-label">Preferred page color for AIP SUPs</div>
+    </div>
+  </div>
+  <ul class="regs">
+    <li>Each AIP Supplement shall be allocated a <strong>serial number</strong> which shall be consecutive and based on the <strong>calendar year</strong>.</li>
+    <li>AIP Supplement pages shall be kept in the AIP as long as all or some of their contents remain valid.</li>
+    <li>When an AIP Supplement is sent in replacement of a NOTAM, it shall include a reference to the <strong>serial number of the NOTAM</strong>.</li>
+    <li>A checklist of valid AIP Supplements shall be issued at intervals of <strong>not more than one month</strong>. This information shall be issued through the monthly printed plain language list of valid NOTAM.</li>
+    <li>AIP Supplement pages shall be <strong>coloured</strong> in order to be conspicuous, preferably in <strong>yellow</strong>.</li>
+    <li>AIP Supplement pages shall be kept as the <strong>first item</strong> in the AIP parts.</li>
+    <li>When an error occurs in an AIP Supplement or when the period of validity is changed, a <strong>new AIP Supplement</strong> shall be published as a replacement.</li>
+  </ul>
+  <div class="box box-note">
+    <div class="box-head">📝 Regulatory Note</div>
+    <p>The requirements for NOTAM apply when <strong>time constraints do not allow sufficient time</strong> for the distribution of an AIP Supplement.</p>
+  </div>
+
+  <h2 class="sub">2.5 Electronic AIP (eAIP)</h2>
+  <p>The AIP, AIP Amendment, AIP Supplement, and AIC should also be published in a format that allows for:</p>
+  <ul class="regs">
+    <li>Displaying on a computer screen</li>
+    <li>Printing on paper</li>
+  </ul>
+  <div class="box box-teal">
+    <div class="box-head">ℹ️ Note on eAIP</div>
+    <p>This composite electronic document is named <strong>"Electronic AIP" (eAIP)</strong> and may be based on a format that allows for <strong>digital data exchange</strong>.</p>
+  </div>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     SECTION 3 — NOTAM
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="s3">
+  <div class="section-num">Section 03</div>
+  <div class="section-title">NOTAM — Notice to Airmen</div>
+</div>
+<div class="section-body">
+
+  <div class="box box-def">
+    <div class="box-head">📖 Definition</div>
+    <p>A <strong>NOTAM</strong> is a notice distributed by means of telecommunication containing information concerning the establishment, condition or change in any <strong>aeronautical facility, service, procedure or hazard</strong>, the timely knowledge of which is essential to personnel concerned with flight operations.</p>
+  </div>
+
+  <h2 class="sub">3.1 NOTAM Types</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Type</th><th>Suffix</th><th>Meaning</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="label">NOTAM (N)</td><td><span class="pill pill-green">N</span></td><td>NOTAM <strong>New</strong> — Original issuance of a new NOTAM</td></tr>
+        <tr><td class="label">NOTAM (R)</td><td><span class="pill pill-amber">R</span></td><td>NOTAM <strong>Replacement</strong> — Replaces a previously issued NOTAM</td></tr>
+        <tr><td class="label">NOTAM (C)</td><td><span class="pill pill-red">C</span></td><td>NOTAM <strong>Cancellation</strong> — Cancels a previously issued NOTAM</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sub">3.2 Trigger NOTAM</h2>
+  <div class="box box-teal">
+    <div class="box-head">🔔 What is a Trigger NOTAM?</div>
+    <p>The intent of a <strong>Trigger NOTAM</strong> is to serve as a <strong>reminder in the pre-flight information bulletin (PIB)</strong> for the forthcoming operationally significant change in the AIP (via AIP Supplement), if applicable.</p>
+  </div>
+  <p>When an AIP Supplement is published in accordance with AIRAC procedures, a trigger NOTAM must be originated giving:</p>
+  <ul class="regs">
+    <li>A <strong>brief description</strong> of the contents</li>
+    <li>The <strong>effective date/time</strong></li>
+    <li>The <strong>serial number</strong> of the AIP Supplement</li>
+  </ul>
+  <div class="box box-warn">
+    <div class="box-head">⚠️ Critical Rule</div>
+    <p>The Trigger NOTAM <strong>must come into force on the same date</strong> as the supplement to which it refers. It is included in the PIB to ensure pilots and operators are reminded that changes will take place as of a given effective date.</p>
+  </div>
+
+  <h2 class="sub">3.3 NOTAM Origination Rules</h2>
+  <div class="box box-sop">
+    <div class="box-head">✅ When SHALL a NOTAM be Originated?</div>
+    <ul class="regs">
+      <li>Information is of a <strong>temporary nature</strong> and of <strong>short duration</strong>, OR</li>
+      <li><strong>Operationally significant permanent changes</strong>, OR</li>
+      <li><strong>Temporary changes of long duration</strong> made at <strong>short notice</strong>, except for extensive text and/or graphics.</li>
+    </ul>
+  </div>
+  <p>The need for origination shall be considered in any circumstance which may affect the operations of aircraft.</p>
+
+  <h2 class="sub">3.4 Information NOT Notified by NOTAM (9 Exceptions)</h2>
+  <div class="box box-warn">
+    <div class="box-head">🚫 The Following SHALL NOT Be Notified by NOTAM</div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Situation / Condition</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="val">a)</td><td>Routine maintenance work on aprons and taxiways which does <strong>not affect</strong> the safe movement of aircraft</td></tr>
+        <tr><td class="val">b)</td><td>Runway marking work, when aircraft operations can safely be conducted on other available runways, or the equipment used can be removed when necessary</td></tr>
+        <tr><td class="val">c)</td><td>Temporary obstructions in the vicinity of aerodromes/heliports that do <strong>not affect</strong> the safe operation of aircraft</td></tr>
+        <tr><td class="val">d)</td><td>Partial failure of aerodrome/heliport lighting facilities where such failure does <strong>not directly affect</strong> aircraft operations</td></tr>
+        <tr><td class="val">e)</td><td>Partial temporary failure of air-ground communications when <strong>suitable alternative frequencies are known to be available and operative</strong></td></tr>
+        <tr><td class="val">f)</td><td>The lack of apron marshalling services and road traffic control</td></tr>
+        <tr><td class="val">g)</td><td>The unserviceability of location, destination or other instruction signs on the aerodrome movement area</td></tr>
+        <tr><td class="val">h)</td><td>Parachuting when in uncontrolled airspace under VFR, when controlled at promulgated sites, or within danger or prohibited areas</td></tr>
+        <tr><td class="val">i)</td><td>Other information of a similar temporary nature</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mnemonic">
+    <div class="mn-head">🧠 Memory Aid — 9 No-NOTAM Situations</div>
+    <div class="mn-text">"R-M-T-L-C-M-S-P-O"</div>
+    <div class="mn-sub">Runway marking · Maintenance (aprons) · Temporary obstructions (safe) · Lighting (partial) · Communications (partial, alt. available) · Marshalling absent · Signs unserviceable · Parachuting (VFR uncontrolled) · Other similar</div>
+  </div>
+
+  <h2 class="sub">3.5 Advance Notice Requirements</h2>
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="m-val">7 days</div>
+      <div class="m-label">Min. advance notice for activation of danger/restricted/prohibited areas or temporary airspace restrictions (non-emergency)</div>
+    </div>
+    <div class="metric-card amber">
+      <div class="m-val">24 hrs</div>
+      <div class="m-label">Desirable advance notice whenever possible for airspace utilization planning</div>
+    </div>
+  </div>
+  <p>NOTAM notifying unserviceability of aids to air navigation, facilities, or communication services shall give an <strong>estimate of the period of unserviceability</strong> or the time at which restoration of service is expected.</p>
+
+  <h2 class="sub">3.6 SNOWTAM</h2>
+  <div class="box box-def">
+    <div class="box-head">❄️ SNOWTAM Definition</div>
+    <p>A <strong>SNOWTAM</strong> is a special series NOTAM given in a standard format providing a <strong>surface condition report</strong> notifying the presence or cessation of hazardous conditions due to:</p>
+    <ul class="regs">
+      <li>Snow, ice, slush, frost</li>
+      <li>Standing water</li>
+      <li>Water associated with snow, slush, ice or frost on the movement area</li>
+    </ul>
+  </div>
+
+  <h2 class="sub">3.7 Runway Condition Code (RWYCC)</h2>
+  <div class="box box-teal">
+    <div class="box-head">🛬 RWYCC — Surface Condition Assessment and Reporting</div>
+    <p>The <strong>Runway Condition Code (RWYCC)</strong> is used for reporting assessed runway information.</p>
+    <ul class="regs">
+      <li>The <strong>aerodrome operator</strong> assesses the runway surface conditions whenever <strong>water, snow, slush, ice or frost</strong> are present on an operational runway.</li>
+      <li>From this assessment, a RWYCC and a description of the runway surface are reported which can be used by the flight crew for <strong>aeroplane performance calculations</strong>.</li>
+      <li>This format, based on the type, depth, and coverage of contaminants, is the best assessment of the runway surface condition by the aerodrome operator.</li>
+      <li>Changes in conditions shall be reported <strong>without delay</strong>.</li>
+      <li>The RWYCC shall be reported for each <strong>one third of the runway</strong> to be assessed.</li>
+    </ul>
+  </div>
+  <div class="box box-note">
+    <div class="box-head">📝 Reference Documents for RWYCC</div>
+    <p>For details refer <strong>Doc 9981 PANS-Aerodrome</strong> and <strong>Doc 10066 PANS-AIM</strong>.</p>
+  </div>
+
+  <h2 class="sub">3.8 ASHTAM</h2>
+  <div class="box box-def">
+    <div class="box-head">🌋 ASHTAM — Volcanic Activity NOTAM</div>
+    <p>Information concerning an operationally significant change in volcanic activity, a <strong>volcanic eruption and/or volcanic ash cloud</strong> shall, when reported by means of an ASHTAM, contain the information in the order shown in the <strong>ASHTAM Format</strong>.</p>
+  </div>
+
+  <h2 class="sub">3.9 NOTAM General Specifications</h2>
+  <ul class="regs">
+    <li>The NOTAM originator shall allocate to each NOTAM a <strong>series identified by a letter</strong> and a <strong>four-digit number</strong> followed by a stroke and a <strong>two-digit number for the year</strong>. The four-digit number shall be consecutive and based on the <strong>calendar year</strong>.<br>
+    <em>Example: <code>A0047/26</code> = Series A, NOTAM #0047 of year 2026</em></li>
+    <li>Each NOTAM shall deal with <strong>only one subject and one condition</strong> of the subject.</li>
+    <li>A checklist of valid NOTAM shall be issued as a NOTAM over the <strong>Aeronautical Fixed Service (AFS)</strong> at intervals of <strong>not more than one month</strong> using the NOTAM Format specified. <strong>One NOTAM shall be issued for each series.</strong></li>
+    <li>A checklist of NOTAM shall refer to the latest AIP Amendments, AIP Supplements, and at least the internationally distributed AIC.</li>
+    <li>A monthly printed plain-language list of valid NOTAM (including indications of the latest AIP Amendments, AIC issued and a checklist of AIP Supplements) shall be prepared with a minimum of delay and forwarded by the most expeditious means to recipients of the Integrated Aeronautical Information Package.</li>
+  </ul>
+
+  <h2 class="sub">3.10 NOTAM Distribution</h2>
+  <ul class="regs">
+    <li>The originator shall select the NOTAM that are to be given <strong>international distribution</strong>.</li>
+    <li><strong>Selective distribution lists</strong> should be used when practicable.</li>
+  </ul>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     SECTION 4 — AIRAC
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="s4">
+  <div class="section-num">Section 04</div>
+  <div class="section-title">AIRAC — Aeronautical Information Regulation and Control</div>
+</div>
+<div class="section-body">
+
+  <div class="box box-def">
+    <div class="box-head">📖 AIRAC Definition</div>
+    <p><strong>AIRAC (Aeronautical Information Regulation and Control)</strong> is a system aimed at advance notification based on <strong>common effective dates</strong>, of circumstances necessitating significant changes in operating procedures. It uses a 28-day amendment cycle.</p>
+  </div>
+
+  <h2 class="sub">4.1 AIRAC General Specifications</h2>
+  <div class="box box-sop">
+    <div class="box-head">✅ AIRAC Cycle Rules</div>
+    <ul class="regs">
+      <li>Information concerning establishment, withdrawal or significant changes upon a series of <strong>common effective dates at intervals of 28 days</strong>, including 29 January 1998.</li>
+      <li>The information notified therein shall not be changed further for at least <strong>another 28 days after the effective date</strong>, unless the circumstance notified is of a temporary nature and would not persist for the full period.</li>
+      <li>The regulated system (AIRAC) shall also be used for the provision of information relating to the establishment and withdrawal of, and <strong>premeditated significant changes</strong>.</li>
+    </ul>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="m-val">28</div>
+      <div class="m-label">Day AIRAC Cycle (standard interval)</div>
+    </div>
+    <div class="metric-card amber">
+      <div class="m-val">42 days</div>
+      <div class="m-label">Min. distribution lead time by AIS unit (paper copy)</div>
+    </div>
+    <div class="metric-card green">
+      <div class="m-val">28 days</div>
+      <div class="m-label">Objective — recipients receive info before effective date</div>
+    </div>
+    <div class="metric-card purple">
+      <div class="m-val">56 days</div>
+      <div class="m-label">For MAJOR changes — distribution by AIS unit in advance</div>
+    </div>
+  </div>
+
+  <h2 class="sub">4.2 Information to be Notified by AIRAC</h2>
+
+  <h3 class="sub2">PART 1 — Establishment, Withdrawal, and Premeditated Significant Changes to:</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Category</th><th>Specifics</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Limits &amp; Procedures for Airspace</td>
+          <td>
+            <span class="pill pill-blue">a) Flight Information Regions</span>
+            <span class="pill pill-blue">b) Control Areas</span>
+            <span class="pill pill-blue">c) Control Zones</span>
+            <span class="pill pill-blue">d) Advisory Areas</span>
+            <span class="pill pill-blue">e) ATS Routes</span>
+            <span class="pill pill-red">f) Permanent Danger/Prohibited/Restricted Areas &amp; ADIZ</span>
+            <span class="pill pill-amber">g) Areas/Routes where interception is possible</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">Radio Navigation &amp; Comms</td>
+          <td>Positions, frequencies, call signs, known irregularities and maintenance periods of radio navigation aids and communication facilities</td>
+        </tr>
+        <tr>
+          <td class="label">Procedures</td>
+          <td>Holding and approach procedures, arrival and departure procedures, noise abatement procedures and any other pertinent ATS procedures</td>
+        </tr>
+        <tr>
+          <td class="label">Met &amp; Infrastructure</td>
+          <td>Meteorological facilities (including broadcasts) and procedures · Runways and stopways</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub2">PART 2 — Establishment and Withdrawal, and Premeditated Significant Changes to:</h3>
+  <ul class="regs">
+    <li>Position, height and lighting of <strong>navigational obstacles</strong></li>
+    <li>Taxiways and aprons</li>
+    <li>Hours of service: aerodromes, facilities and services</li>
+    <li>Customs, immigration and health services</li>
+    <li>Temporary danger, prohibited and restricted areas and navigational hazards, military exercises and mass movements of aircraft</li>
+    <li>Temporary areas or routes or portions thereof where the possibility of interception exists</li>
+  </ul>
+
+  <h2 class="sub">4.3 Provision of Information in Paper Copy Form</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">56 days before</div>
+      <div class="tl-desc">For <strong>major changes</strong> where advance notice is desirable and practicable — information in paper copy should be distributed by the AIS unit.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">42 days before</div>
+      <div class="tl-desc">For <strong>all AIRAC information</strong> in all instances — must be distributed by AIS unit to achieve 28-day recipient receipt objective.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">28 days before</div>
+      <div class="tl-desc">The <strong>objective for recipients</strong> to have received paper copy before the effective date.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Effective Date</div>
+      <div class="tl-desc">AIRAC change <strong>comes into force</strong>. No further change for at least 28 days unless temporary and non-persistent.</div>
+    </div>
+  </div>
+  <div class="box box-warn">
+    <div class="box-head">⚠️ Key Numbers to Memorize</div>
+    <p>AIRAC Cycle = <span class="pill pill-red">28 days</span> &nbsp;|&nbsp; AIS distributes paper copy at least <span class="pill pill-red">42 days</span> ahead &nbsp;|&nbsp; Recipients to receive <span class="pill pill-red">28 days</span> ahead &nbsp;|&nbsp; Major changes: AIS distributes <span class="pill pill-red">56 days</span> ahead</p>
+  </div>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     SECTION 5 — AIC
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="s5">
+  <div class="section-num">Section 05</div>
+  <div class="section-title">Aeronautical Information Circulars (AIC)</div>
+</div>
+<div class="section-body">
+
+  <div class="box box-def">
+    <div class="box-head">📖 AIC — When is it Originated?</div>
+    <p>An AIC shall be originated when it is <strong>necessary to promulgate aeronautical information</strong> which does not qualify for inclusion in an AIP <em>or</em> for the origination of a NOTAM.</p>
+  </div>
+
+  <h2 class="sub">5.1 AIC Origination Criteria</h2>
+  <p>An AIC shall be originated whenever it is desirable to promulgate:</p>
+  <ul class="regs">
+    <li>A <strong>long-term forecast</strong> of any major change in legislation, regulations, procedures or facilities</li>
+    <li>Information of a <strong>purely explanatory or advisory nature</strong> liable to affect flight safety</li>
+    <li>Information or notification of an explanatory or advisory nature concerning <strong>technical, legislative or purely administrative matters</strong></li>
+  </ul>
+
+  <h2 class="sub">5.2 AIC General Specifications</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Specification</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="label">Format</td><td>AIC shall be issued in <strong>printed form</strong>. Both text and diagrams may be included.</td></tr>
+        <tr><td class="label">Numbering</td><td>Each AIC shall be allocated a <strong>serial number</strong> which shall be consecutive and based on the <strong>calendar year</strong>.</td></tr>
+        <tr><td class="label">Multiple Series</td><td>When AIC are distributed in more than one series, each series shall be separately identified by a <strong>letter</strong>.</td></tr>
+        <tr><td class="label">International Distribution</td><td>Originator shall select the AIC that are to be given international distribution.</td></tr>
+        <tr><td class="label">Checklist</td><td>A checklist of AIC currently in force shall be issued at least <strong>once a year</strong>, with distribution as for the AIC.</td></tr>
+        <tr><td class="label">Distribution Rule</td><td>AIC selected for international distribution shall be the <strong>same as for the AIP</strong>.</td></tr>
+        <tr><td class="label">India Responsibility</td><td>Published by <strong>DGCA</strong> (not AAI)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     SECTION 6 — AERONAUTICAL CHARTS
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="s6">
+  <div class="section-num">Section 06</div>
+  <div class="section-title">Aeronautical Charts</div>
+</div>
+<div class="section-body">
+
+  <ul class="regs">
+    <li>Aeronautical charts shall, when available for designated international aerodromes/heliports, <strong>form part of the AIP</strong>, or be provided separately to recipients of the AIP.</li>
+    <li>Electronic aeronautical charts should be provided based on <strong>digital databases and the use of geographic information systems</strong>.</li>
+    <li>The chart resolution of aeronautical data shall be that as specified for a particular chart.</li>
+  </ul>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     SECTION 7 — PRE-FLIGHT & POST-FLIGHT INFORMATION
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="s7">
+  <div class="section-num">Section 07</div>
+  <div class="section-title">Pre-Flight &amp; Post-Flight Information / PIB</div>
+</div>
+<div class="section-body">
+
+  <h2 class="sub">7.1 Pre-Flight Information Requirements</h2>
+  <div class="box box-sop">
+    <div class="box-head">✅ At International Aerodromes</div>
+    <p>At any aerodrome/heliport normally used for international air operations, aeronautical information essential for the <strong>safety, regularity and efficiency</strong> of air navigation and relative to the route stages originating at the aerodrome/heliport shall be made available to:</p>
+    <ul class="regs">
+      <li>Flight operations personnel</li>
+      <li>Flight crews</li>
+      <li>Services responsible for pre-flight information</li>
+    </ul>
+  </div>
+  <p>Aeronautical information provided for pre-flight planning purposes at the aerodromes/heliports shall include relevant:</p>
+  <ul class="regs">
+    <li>Elements of the <strong>Integrated Aeronautical Information Package</strong></li>
+    <li><strong>Maps and charts</strong></li>
+  </ul>
+  <p>The documentation may be limited to national publications and when practicable, those of immediately adjacent States, provided a <strong>complete library</strong> of aeronautical information is available at a central location and means of <strong>direct communications</strong> are available between the aerodrome AIS unit and that library.</p>
+
+  <h2 class="sub">7.2 Pre-Flight Information Bulletin (PIB)</h2>
+  <div class="box box-def">
+    <div class="box-head">📖 PIB Definition</div>
+    <p>A <strong>recapitulation of current NOTAM and other information of urgent character</strong> shall be made available to flight crews in the form of <strong>plain-language pre-flight information bulletins (PIB)</strong>.</p>
+  </div>
+  <h3 class="sub2">PIB Availability in India (Four Locations)</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Aerodrome</th></tr></thead>
+      <tbody>
+        <tr><td class="val">1</td><td><strong>Kolkata</strong></td></tr>
+        <tr><td class="val">2</td><td><strong>Chennai</strong></td></tr>
+        <tr><td class="val">3</td><td><strong>Delhi</strong></td></tr>
+        <tr><td class="val">4</td><td><strong>Mumbai</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The information provided at each aerodrome includes: information on departure aerodrome, elements of the Integrated Aeronautical Information Package and maps and charts.</p>
+
+  <h2 class="sub">7.3 Automatic Self Briefing System (ASBS)</h2>
+  <div class="box box-teal">
+    <div class="box-head">💻 ASBS</div>
+    <p>The <strong>Automatic Self Briefing System (ASBS)</strong> provides an automatic method of receiving, storing and retrieving the data essentially required for pilot's pre-flight briefing. It has the capability to include information pertaining to the stations and routes concerned.</p>
+  </div>
+
+  <h2 class="sub">7.4 Post-Flight Information</h2>
+  <div class="box box-note">
+    <div class="box-head">🛬 Post-Flight Information Purpose</div>
+    <p>The purpose of post-flight information is to ensure that:</p>
+    <ul class="regs">
+      <li>Malfunctioning/unserviceability of <strong>visual or non-visual aids</strong> or any other facility essential to the safety of flight operations, <strong>observed by the Pilot during the flight</strong>, are reported without delay to the authorities responsible for those facilities.</li>
+      <li>Presence of <strong>birds and wildlife hazards</strong> on or around the airport constituting a potential hazard to aircraft operations, observed by a Pilot, should be reported without delay.</li>
+    </ul>
+    <p><em>This ensures information is made available for distribution as circumstances necessitate.</em></p>
+  </div>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     SECTION 8 — TELECOMMUNICATION REQUIREMENTS
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="s8">
+  <div class="section-num">Section 08</div>
+  <div class="section-title">Telecommunication Requirements &amp; Digital Data Sets</div>
+</div>
+<div class="section-body">
+
+  <h2 class="sub">8.1 Telecom Requirements</h2>
+  <ul class="regs">
+    <li>NOTAM offices shall be connected to the <strong>Aeronautical Fixed Service (AFS)</strong>.</li>
+    <li>The connections shall provide for <strong>printed communications</strong>.</li>
+    <li>Each NOTAM office shall be connected, through the AFS, to the following points within the territory for which it provides service:
+      <ul class="regs">
+        <li>Area control centres and flight information centres</li>
+        <li>Aerodromes/heliports at which an information service is established</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2 class="sub">8.2 Digital Data Sets</h2>
+  <p>Digital data shall be in the form of the following data sets:</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Data Set</th></tr></thead>
+      <tbody>
+        <tr><td class="val">a)</td><td><strong>AIP data set</strong></td></tr>
+        <tr><td class="val">b)</td><td><strong>Terrain data sets</strong></td></tr>
+        <tr><td class="val">c)</td><td><strong>Obstacle data sets</strong></td></tr>
+        <tr><td class="val">d)</td><td><strong>Aerodrome mapping data sets</strong></td></tr>
+        <tr><td class="val">e)</td><td><strong>Instrument flight procedure data sets</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sub">8.3 Aeronautical Information Products</h2>
+  <div class="box box-def">
+    <div class="box-head">📦 AIS Products</div>
+    <p>Aeronautical data and aeronautical information provided either as <strong>digital data sets</strong> or as a <strong>standardized presentation in paper or electronic media</strong>. Products include:</p>
+    <ul class="regs">
+      <li>AIP, AIC, NOTAMS</li>
+      <li>Aeronautical charts</li>
+      <li>Digital data sets</li>
+    </ul>
+    <p>These products are intended primarily to satisfy <strong>international requirements</strong> for the exchange of aeronautical information.</p>
+  </div>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     SECTION 9 — NATIONAL PROVISIONS (INDIA)
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="s9">
+  <div class="section-num">Section 09</div>
+  <div class="section-title">National Provisions — India (AAI, NOF, NOTAM Series)</div>
+</div>
+<div class="section-body">
+
+  <h2 class="sub">9.1 AIS Infrastructure in India</h2>
+  <p>The <strong>Aeronautical Information Service</strong> which forms part of the <strong>Airports Authority of India (AAI)</strong> ensures the flow of information necessary for the safety, regularity and efficiency of International and National Air Navigation within the areas of its responsibility. It consists of:</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Component</th><th>Location / Detail</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="label">AIS Headquarters (AIS HQ)</td>
+          <td><strong>Safdarjung Airport, New Delhi – 110 003</strong></td>
+        </tr>
+        <tr>
+          <td class="label">International NOTAM Office (NOF)</td>
+          <td>4 offices: <strong>Mumbai, Calcutta (Kolkata), Delhi, Chennai</strong></td>
+        </tr>
+        <tr>
+          <td class="label">AIS Units</td>
+          <td>At various aerodromes throughout India</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box-warn">
+    <div class="box-head">⚠️ Exam Trap: NOF = International NOTAM Office</div>
+    <p><strong>NOF = International NOTAM Office</strong>. Four NOFs established at <strong>Mumbai, Kolkata, Delhi, and Chennai ONLY</strong> — NOT at all major aerodromes, NOT at all international airports.</p>
+  </div>
+
+  <h2 class="sub">9.2 Area of Responsibility</h2>
+  <p>The Aeronautical Information Service is responsible for the collection and dissemination of information for:</p>
+  <ul class="regs">
+    <li>The <strong>entire territory of India</strong></li>
+    <li>Airspace over the <strong>high seas under the jurisdiction of India</strong> for air traffic control purposes</li>
+  </ul>
+
+  <h2 class="sub">9.3 NOTAM Series in India</h2>
+  <p>NOTAMs are originated by the International NOTAM Offices at Mumbai, Kolkata, Delhi and Chennai. NOTAMs are distributed in <strong>five series</strong> identified by letters <strong>A, B, C, D and G</strong>:</p>
+
+  <div class="notam-series">
+    <div class="ns-card ns-a">
+      <div class="ns-letter">A</div>
+      <div class="ns-name">International — Long</div>
+      <p style="font-size:0.82rem">Changes/unserviceability of aeronautical facilities likely to last <strong>more than 2 hours</strong> in respect of locations of direct importance to <strong>international aircraft operations</strong>, requiring <strong>General International Distribution</strong>.</p>
+    </div>
+    <div class="ns-card ns-b">
+      <div class="ns-letter">B</div>
+      <div class="ns-name">International — Short</div>
+      <p style="font-size:0.82rem">Changes/unserviceability likely to last <strong>more than 30 minutes but less than 2 hours</strong> for international locations, requiring <strong>limited distribution to adjacent stations only</strong>.</p>
+    </div>
+    <div class="ns-card ns-c">
+      <div class="ns-letter">C</div>
+      <div class="ns-name">Domestic Only</div>
+      <p style="font-size:0.82rem">Changes/unserviceability at locations used by <strong>domestic flights only</strong> for which no separate Series A International Distribution is given.</p>
+    </div>
+    <div class="ns-card ns-d">
+      <div class="ns-letter">D</div>
+      <div class="ns-name">Military Airfields</div>
+      <p style="font-size:0.82rem">Changes/unserviceability at <strong>military controlled airfields</strong> used by domestic flights. Issued by <strong>AHQ through a VVO broadcast</strong>.</p>
+    </div>
+    <div class="ns-card ns-g">
+      <div class="ns-letter">G</div>
+      <div class="ns-name">General (Lasting)</div>
+      <p style="font-size:0.82rem">Information of <strong>general and lasting character</strong> affecting aircraft operations in general. Operated <strong>only by the International NOTAM Office, Delhi</strong>.</p>
+    </div>
+  </div>
+
+  <div class="box box-note">
+    <div class="box-head">📅 NOTAM Series Numbering</div>
+    <p>NOTAM of each series are allocated a serial number by the respective NOTAM offices, commencing with <strong>No. 0001</strong> preceded by the designated letter of series A, B, C, D &amp; G as the case may be, at <strong>0000 UTC on 1st January</strong> every year.</p>
+  </div>
+
+  <h2 class="sub">9.4 Checklist and Summary of NOTAM</h2>
+  <ul class="regs">
+    <li>A checklist of all NOTAM current on the <strong>1st of each month</strong> is originated by the respective NOTAM office and transmitted over the AFTN to all addresses on the distribution list.</li>
+    <li>In addition, a monthly checklist and summary of NOTAM in force at the <strong>end of the month</strong> is compiled and posted.</li>
+    <li>The <strong>complete summary</strong> is prepared once a year on the <strong>1st January</strong>.</li>
+    <li>Subsequent monthly summaries contain the text of <strong>only those NOTAMs promulgated during the month of issue</strong> and remaining current on the date of compilation.</li>
+  </ul>
+
+  <h2 class="sub">9.5 AIP India — Structure</h2>
+  <p>AIP India has been published in <strong>two volumes</strong>:</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Volume</th><th>Contents</th><th>Parts</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="label">Volume I</td>
+          <td>Part 1 — General (GEN) &amp; Part 2 — En-route (ENR)</td>
+          <td><span class="pill pill-blue">GEN</span> <span class="pill pill-teal">ENR</span></td>
+        </tr>
+        <tr>
+          <td class="label">Volume II</td>
+          <td>Part 3 — Aerodromes (AD)</td>
+          <td><span class="pill pill-amber">AD</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The AIP is published in <strong>loose leaf form in English</strong> for use in International and Domestic Operations.</p>
+
+  <h3 class="sub2">India — Amendment and Supplement Schedule</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Document</th><th>India Schedule</th></tr></thead>
+      <tbody>
+        <tr><td class="label">AIP Amendment (AMDT)</td><td>Made by means of <strong>replacement sheets, once a year in the month of April</strong></td></tr>
+        <tr><td class="label">AIP Supplement (SUP)</td><td>Checklist of AIP Supplements currently in force issued in the <strong>month of January</strong> of each year</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     SECTION 10 — AIP CONTENT DETAIL (GEN / ENR / AD)
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="s10">
+  <div class="section-num">Section 10</div>
+  <div class="section-title">AIP Content Detail — GEN / ENR / AD (India)</div>
+</div>
+<div class="section-body">
+
+  <h2 class="sub">10.1 PART 1 — GENERAL (GEN)</h2>
+
+  <h3 class="sub2">National Regulation and Requirements</h3>
+  <ul class="regs">
+    <li>Designated authorities</li>
+    <li>Entry, transit and departure of aircraft; passengers and crew; cargo</li>
+    <li>Aircraft instruments, equipment and flight documents</li>
+    <li>Summaries of Indian Regulations and International Agreements/Conventions</li>
+    <li>Differences from ICAO Standards, Recommended Practices and Procedures</li>
+  </ul>
+
+  <h3 class="sub2">Tables and Codes</h3>
+  <ul class="regs">
+    <li>Measuring systems, aircraft marking, holidays, units of measurement, time system, geodetic reference</li>
+    <li>Aircraft nationality and registration, public holidays</li>
+    <li>Abbreviation used in AIS publication, chart symbols, location indicators</li>
+    <li>List of radio navigation aids, conversion tables, sunrise/sunset tables</li>
+  </ul>
+
+  <h3 class="sub2">Services</h3>
+  <ul class="regs">
+    <li>Aeronautical information services: responsible services, area of responsibility, aeronautical publication, AIRAC system, pre-flight information service at aerodromes</li>
+    <li>Aeronautical charts: responsible service(s), maintenance of charts, purchase arrangements, chart series available, list of aeronautical charts available</li>
+  </ul>
+
+  <h3 class="sub2">Air Traffic Services</h3>
+  <ul class="regs">
+    <li>Responsible service, area of responsibility, types of services, minimum flight altitude, ATS units address</li>
+  </ul>
+
+  <h3 class="sub2">Communication Services</h3>
+  <ul class="regs">
+    <li>Responsible service, area of responsibility, types of service, requirements and conditions</li>
+  </ul>
+
+  <h3 class="sub2">Meteorological Services</h3>
+  <ul class="regs">
+    <li>Responsible service, area of responsibility, meteorological observations and reports, types of services</li>
+    <li>Notification required from operators, aircraft reports, VOLMET service, <strong>SIGMET service</strong>, other automated meteorological services</li>
+  </ul>
+
+  <h3 class="sub2">Search and Rescue</h3>
+  <ul class="regs">
+    <li>Responsible service(s), area of responsibility, types of services, SAR agreements, conditions of availability, procedures and signals</li>
+  </ul>
+
+  <h3 class="sub2">Charges</h3>
+  <ul class="regs">
+    <li>Aerodrome/Heliport Charges, Air Navigation Services Charges</li>
+  </ul>
+  <div class="box box-note">
+    <div class="box-head">📝 Exam Point</div>
+    <p>Charges for aerodromes/heliports and Air Navigation Services are in <strong>Part 1 — GEN</strong>.</p>
+    <p>Location indicators list is in <strong>Part 1 — GEN</strong>.</p>
+    <p>SIGMET service information is in <strong>Part 1 — GEN (Meteorological services subsection)</strong>.</p>
+  </div>
+
+  <h2 class="sub">10.2 PART 2 — EN-ROUTE (ENR)</h2>
+
+  <h3 class="sub2">General Rules and Procedures</h3>
+  <ul class="regs">
+    <li>Visual Flight Rules (VFR), Instrument Flight Rules (IFR)</li>
+    <li>ATS Airspace Classification</li>
+    <li>Approach and Departure Procedures</li>
+    <li>ATS Surveillance Services, Altimeter Setting</li>
+    <li>Regional Supplementary Procedures, Air Traffic Flow and Capacity Management Service</li>
+    <li>Flight Plans (PLN), Addressing of Flight Plan Messages</li>
+    <li>Interception of Civil Aircraft Procedures, Unlawful Interference, Air Traffic Incidents</li>
+  </ul>
+
+  <h3 class="sub2">FIR / CTA / TMA, Other Regulated Airspace</h3>
+  <ul class="regs">
+    <li>ATS Routes, RNAV Routes, Helicopter Routes, Other Routes, EN-ROUTE Holding</li>
+  </ul>
+
+  <h3 class="sub2">Radio Navigation Aids/systems</h3>
+  <ul class="regs">
+    <li>Radio Navigation Aids &amp; Systems</li>
+    <li>Special Navigation Systems</li>
+    <li>Global Navigation Satellite System (GNSS)</li>
+  </ul>
+
+  <h3 class="sub2">Navigation Warnings</h3>
+  <ul class="regs">
+    <li><strong>Prohibited, Restricted and Danger Areas</strong></li>
+    <li>Military Exercise and Training Areas</li>
+    <li>Other Activities of Dangerous Nature</li>
+    <li>Air Navigation Obstacles Enroute</li>
+    <li>Aerial Sporting and Recreational Activities</li>
+  </ul>
+  <div class="box box-note">
+    <div class="box-head">📝 Exam Point</div>
+    <p>Prohibited, restricted, and dangerous areas are in <strong>Part 2 — ENR</strong> (Navigation Warnings subsection). Holding, approach and departure procedures are in <strong>Part 2 — ENR</strong>.</p>
+  </div>
+
+  <h2 class="sub">10.3 PART 3 — AERODROME (AD)</h2>
+  <ul class="regs">
+    <li>Aerodromes / Heliports — Introduction</li>
+    <li>Aerodrome / Heliport Availability</li>
+    <li>Rescue and Fire Fighting Services and Snow Plan</li>
+    <li>List of Aerodromes, Heliports, Water Aerodromes</li>
+    <li>Grouping of Aerodromes / Heliports</li>
+    <li>Status of Aerodrome Licensing</li>
+    <li>Aerodromes (individual aerodrome entries)</li>
+  </ul>
+  <div class="box box-note">
+    <div class="box-head">📝 Exam Point</div>
+    <p>Refuelling facilities and limitations on refuelling services are in <strong>Part 3 — AD</strong>. Detailed meteorological information at the aerodrome and which meteorological office is responsible is in <strong>Part 3 — AD</strong>.</p>
+  </div>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     SECTION 11 — INTEGRATED AERONAUTICAL INFORMATION PACKAGE
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="s11">
+  <div class="section-num">Section 11</div>
+  <div class="section-title">Integrated Aeronautical Information Package (IAIP)</div>
+</div>
+<div class="section-body">
+
+  <div class="box box-def">
+    <div class="box-head">📦 IAIP Elements (India)</div>
+    <p>The Aeronautical Information is provided in the form of the <strong>Integrated Aeronautical Information Package</strong> consisting of the following elements:</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Element</th><th>Code</th><th>Distribution Method (India)</th></tr></thead>
+      <tbody>
+        <tr><td class="val">a.</td><td class="label">Aeronautical Information Publication</td><td><code>AIP</code></td><td>Distributed by mail</td></tr>
+        <tr><td class="val">b.</td><td class="label">Amendment service to the AIP</td><td><code>AIP AMDT</code></td><td>Distributed by mail</td></tr>
+        <tr><td class="val">c.</td><td class="label">Supplement to the AIP</td><td><code>AIP SUP</code></td><td>Distributed by mail</td></tr>
+        <tr><td class="val">d.</td><td class="label">NOTAM and pre-flight information bulletins</td><td><code>NOTAM / PIB</code></td><td>NOTAMS via AFS; PIB at ATS Reporting Office</td></tr>
+        <tr><td class="val">e.</td><td class="label">Aeronautical information circulars</td><td><code>AIC</code></td><td>Distributed by mail</td></tr>
+        <tr><td class="val">f.</td><td class="label">Checklists and summaries</td><td>—</td><td>NOTAMS via AFS</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box-sop">
+    <div class="box-head">✅ Complete IAIP = Answer to Q4 / Q24</div>
+    <p>The correct answer for "elements of the Integrated Aeronautical Information Package" is: <strong>AIP (including amendment service) + supplements to AIP + NOTAM and pre-flight information bulletins (PIB) + AIC + checklists and summaries</strong> — i.e., Option B in the exam questions.</p>
+  </div>
+
+  <!-- AIS FLOWCHART -->
+  <h2 class="sub">11.1 AIS Products Flowchart</h2>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" style="max-width:720px;width:100%;background:#f8f9fa;border-radius:8px;padding:4px">
+      <!-- Title -->
+      <text x="360" y="28" text-anchor="middle" font-family="Oswald,sans-serif" font-size="14" font-weight="700" fill="#0d2b4e">AERONAUTICAL INFORMATION PRODUCTS — SELECTION FLOWCHART</text>
+      <!-- AIS Source box -->
+      <rect x="280" y="45" width="160" height="40" rx="6" fill="#0d2b4e"/>
+      <text x="360" y="61" text-anchor="middle" fill="white" font-size="10" font-family="Oswald,sans-serif" font-weight="700">IS THE INFORMATION</text>
+      <text x="360" y="78" text-anchor="middle" fill="white" font-size="10" font-family="Oswald,sans-serif">PERMANENT OR TEMPORARY?</text>
+      <!-- Arrow down -->
+      <line x1="360" y1="85" x2="360" y2="105" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Decision diamond -->
+      <polygon points="360,105 430,140 360,175 290,140" fill="#1a6fa8"/>
+      <text x="360" y="135" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">PERMANENT</text>
+      <text x="360" y="150" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">CHANGE?</text>
+      <!-- Yes to right — AIP Amendment -->
+      <line x1="430" y1="140" x2="530" y2="140" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="480" y="133" text-anchor="middle" fill="#155724" font-size="9" font-family="JetBrains Mono,monospace" font-weight="700">YES</text>
+      <rect x="530" y="120" width="120" height="40" rx="5" fill="#155724"/>
+      <text x="590" y="138" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">AIP AMENDMENT</text>
+      <text x="590" y="152" text-anchor="middle" fill="#a8e6cf" font-size="8" font-family="Source Serif 4,serif">Via AIRAC (AMDT)</text>
+      <!-- No down — temporary -->
+      <line x1="360" y1="175" x2="360" y2="205" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="367" y="193" fill="#9b1c1c" font-size="9" font-family="JetBrains Mono,monospace" font-weight="700">NO (TEMP)</text>
+      <!-- Duration decision -->
+      <polygon points="360,205 440,245 360,285 280,245" fill="#0e7c7b"/>
+      <text x="360" y="238" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">DURATION ≥ 3 MONTHS</text>
+      <text x="360" y="253" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">OR EXTENSIVE TEXT?</text>
+      <!-- Yes to right — AIP Supplement -->
+      <line x1="440" y1="245" x2="530" y2="245" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="483" y="238" text-anchor="middle" fill="#155724" font-size="9" font-family="JetBrains Mono,monospace" font-weight="700">YES</text>
+      <rect x="530" y="225" width="120" height="40" rx="5" fill="#c8952a"/>
+      <text x="590" y="243" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">AIP SUPPLEMENT</text>
+      <text x="590" y="257" text-anchor="middle" fill="#fff3cd" font-size="8" font-family="Source Serif 4,serif">Yellow pages</text>
+      <!-- No down — Short temp change -->
+      <line x1="360" y1="285" x2="360" y2="315" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="367" y="303" fill="#9b1c1c" font-size="9" font-family="JetBrains Mono,monospace" font-weight="700">NO</text>
+      <!-- NOTAM -->
+      <rect x="280" y="315" width="160" height="40" rx="5" fill="#9b1c1c"/>
+      <text x="360" y="333" text-anchor="middle" fill="white" font-size="10" font-family="Oswald,sans-serif" font-weight="700">NOTAM</text>
+      <text x="360" y="348" text-anchor="middle" fill="#f5c6cb" font-size="8" font-family="Source Serif 4,serif">Short-duration temporary info</text>
+      <!-- Does not qualify for AIP/NOTAM? -->
+      <line x1="360" y1="355" x2="360" y2="380" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="390" y="370" fill="#555" font-size="8" font-family="JetBrains Mono,monospace">Advisory/Admin?</text>
+      <rect x="280" y="380" width="160" height="40" rx="5" fill="#4a235a"/>
+      <text x="360" y="398" text-anchor="middle" fill="white" font-size="10" font-family="Oswald,sans-serif" font-weight="700">AIC</text>
+      <text x="360" y="412" text-anchor="middle" fill="#dab8f0" font-size="8" font-family="Source Serif 4,serif">Advisory / Explanatory</text>
+      <!-- Legend -->
+      <rect x="10" y="400" width="12" height="12" fill="#0d2b4e"/>
+      <text x="26" y="411" font-size="8" font-family="JetBrains Mono,monospace" fill="#333">Decision Point</text>
+      <rect x="10" y="420" width="12" height="12" fill="#155724"/>
+      <text x="26" y="431" font-size="8" font-family="JetBrains Mono,monospace" fill="#333">Permanent Change</text>
+      <rect x="10" y="440" width="12" height="12" fill="#9b1c1c"/>
+      <text x="26" y="451" font-size="8" font-family="JetBrains Mono,monospace" fill="#333">Temporary Notice</text>
+      <rect x="10" y="460" width="12" height="12" fill="#4a235a"/>
+      <text x="26" y="471" font-size="8" font-family="JetBrains Mono,monospace" fill="#333">Advisory / Admin</text>
+      <!-- Arrow marker definition -->
+      <defs>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#555"/>
+        </marker>
+      </defs>
+    </svg>
+    <div class="diagram-caption">Figure 11.1 — AIS Publication Selection Flowchart</div>
+  </div>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     SECTION Q — QUESTIONS & ANSWERS
+     ============================================================ -->
+<div class="container">
+<div class="section-header" id="sQ">
+  <div class="section-num">Section Q&amp;A</div>
+  <div class="section-title">DGCA Practice Questions — All 30 with Answers &amp; Explanations</div>
+</div>
+<div class="section-body">
+
+  <div class="qa-grid">
+
+    <!-- Q1 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.01</span> Detailed description of meteorological information provided at the aerodrome and an indication of which meteorological office is responsible, is in the following part of the AIP:</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) AD</div>
+        <div class="qa-opt">B) RAC</div>
+        <div class="qa-opt">C) MET</div>
+      </div>
+      <div class="qa-ans">✏️ The AD (Aerodromes) section of the AIP contains aerodrome-specific information including the meteorological office responsible at that aerodrome. Note: "MET" and "RAC" are not AIP part designations in the ICAO/India system. AD = Part 3.</div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.02</span> A checklist of AIP supplements currently in force shall be issued at intervals of:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) Not more than 2 months</div>
+        <div class="qa-opt">B) Not more than 28 days</div>
+        <div class="qa-opt correct">C) Not more than one month</div>
+      </div>
+      <div class="qa-ans">✏️ Regulations specify: checklist of valid AIP Supplements shall be issued at intervals of not more than ONE MONTH. This is issued through the monthly printed plain language list of valid NOTAM.</div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.03</span> Which of the following is information that is NOT given in AIP approach and landing charts?</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) OCH or OCA</div>
+        <div class="qa-opt correct">B) Visibility minima</div>
+        <div class="qa-opt">C) DME-frequencies</div>
+      </div>
+      <div class="qa-ans">✏️ AIP approach charts show OCH/OCA and DME frequencies. Visibility minima as such are typically in operational minima tables, not on the standard approach chart itself. This is a standard exam discrimination question.</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.04</span> An integrated aeronautical information package consists of the following elements:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) AIP, supplements to AIP; NOTAM and PIB, AIC and checklist summaries</div>
+        <div class="qa-opt correct">B) AIP, including amendment service; supplements to AIP, NOTAM and pre-flight information bulletin (PIB), AIC, checklists and summaries</div>
+        <div class="qa-opt">C) AIP, including amendment service; supplements to AIP, NOTAM, AIC and checklist summaries</div>
+      </div>
+      <div class="qa-ans">✏️ Option B is the COMPLETE and correct list. Key difference from C: Option B correctly includes "pre-flight information bulletin (PIB)" as a distinct element along with NOTAM. Option A lacks "amendment service" as a distinct component.</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.05</span> Temporary changes on specifications for AIP supplements of long duration and information of short duration which contains extensive text and/or graphics shall be published as AIP supplements. It is considered a long duration:</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) Three months or longer</div>
+        <div class="qa-opt">B) Two months or longer</div>
+        <div class="qa-opt">C) One year or longer</div>
+      </div>
+      <div class="qa-ans">✏️ Per regulations: "Temporary changes of long duration (THREE MONTHS OR LONGER)" shall be published as AIP Supplements.</div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.06</span> Operationally significant changes to the AIP shall be published in accordance with:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) AIC procedures and identified by the acronym AIC followed by a number</div>
+        <div class="qa-opt">B) NOTAM procedures and identified by acronym NOTAM followed by a number</div>
+        <div class="qa-opt correct">C) AIRAC procedures and identified by the acronym AIRAC</div>
+      </div>
+      <div class="qa-ans">✏️ Operationally significant changes to the AIP shall be published in accordance with AIRAC procedures and shall be clearly identified by the acronym — AIRAC. This is directly from the AIP General Specifications.</div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.07</span> A checklist of NOTAM currently in force shall be issued at the AFTN at intervals of:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) Not more than 28 days</div>
+        <div class="qa-opt correct">B) Not more than one month</div>
+        <div class="qa-opt">C) Not more than 10 days</div>
+      </div>
+      <div class="qa-ans">✏️ A checklist of valid NOTAM shall be issued over the Aeronautical Fixed Service (AFS) at intervals of not more than ONE MONTH using the NOTAM Format specified. One NOTAM shall be issued for each series.</div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.08</span> Change in frequency or location of navigational aids on short notice is notified through:</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) NOTAMs</div>
+        <div class="qa-opt">B) AIRAC</div>
+        <div class="qa-opt">C) AIP</div>
+      </div>
+      <div class="qa-ans">✏️ Short-notice temporary or permanent operationally significant changes (like nav aid frequency/location changes on short notice) are notified by NOTAM. AIRAC is for pre-planned changes; AIP is for permanent/long-term information.</div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.09</span> The contents of Aeronautical Information Publication (AIP) are:</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) GEN, ENR (en-route) and AD (aerodromes)</div>
+        <div class="qa-opt">B) GEN, ENR, RAC, AD</div>
+        <div class="qa-opt">C) GEN, AGA, COM, ENR, FAL</div>
+      </div>
+      <div class="qa-ans">✏️ The AIP has exactly THREE parts: GEN (General), ENR (En-Route), and AD (Aerodromes). "RAC", "AGA", "COM", "FAL" are older ICAO Annex designations no longer used as AIP part codes in the current Annex 15 structure.</div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.10</span> The SIGMET service, is in the AIP, in the following part:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) AGA</div>
+        <div class="qa-opt correct">B) GEN</div>
+        <div class="qa-opt">C) MET</div>
+      </div>
+      <div class="qa-ans">✏️ Meteorological services including SIGMET service details are found in Part 1 — GEN under the "Meteorological services" subsection. "MET" is not an AIP part designation.</div>
+    </div>
+
+    <!-- Q11 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.11</span> In which chapter of the AIP can you find a list with "location indicators"?</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) AGA</div>
+        <div class="qa-opt correct">B) GEN</div>
+        <div class="qa-opt">C) ENR</div>
+      </div>
+      <div class="qa-ans">✏️ Location indicators are listed in the Tables and Codes subsection of Part 1 — GEN. This includes location indicators (ICAO four-letter aerodrome codes), abbreviations, conversion tables, etc.</div>
+    </div>
+
+    <!-- Q12 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.12</span> The informations on holding, approach and departure procedures, are found in the following part of the AIP:</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) ENR</div>
+        <div class="qa-opt">B) MAP</div>
+        <div class="qa-opt">C) AD</div>
+      </div>
+      <div class="qa-ans">✏️ ENR Part 2 includes General Rules and Procedures covering approach and departure procedures, ATS airspace classification, etc. Holding procedures are also in ENR. "MAP" is not an AIP part.</div>
+    </div>
+
+    <!-- Q13 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.13</span> The closure of a runway for a year, because of maintenance, will be published:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) Only in AIP</div>
+        <div class="qa-opt correct">B) In NOTAM and AIP, inclusive Supplement</div>
+        <div class="qa-opt">C) Only in NOTAM</div>
+      </div>
+      <div class="qa-ans">✏️ A year-long runway closure is a long-duration temporary change (≥3 months), so it requires an AIP Supplement. It would also initially be NOTAMed. Both NOTAM and AIP (Supplement) are used. "Only AIP" is wrong as only permanent changes go directly to AIP Amendment.</div>
+    </div>
+
+    <!-- Q14 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.14</span> An AIRAC is:</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) An acronym for a system aimed at advance notification based on common effective dates, of circumstances necessitating significant changes in operating procedures</div>
+        <div class="qa-opt">B) A notice distributed by means of telecommunication containing information concerning establishment, condition or change in any aeronautical facility…</div>
+        <div class="qa-opt">C) A package which consists of AIP, supplements to the AIP, NOTAM, AIC, checklists and summaries</div>
+      </div>
+      <div class="qa-ans">✏️ A is the correct definition of AIRAC. B describes a NOTAM. C describes the Integrated Aeronautical Information Package (IAIP).</div>
+    </div>
+
+    <!-- Q15 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.15</span> Select the acronym corresponding to the following definition: a special NOTAM series notifying, by means of a specific format, an important change for the aircraft operations, due to a volcano activity, a volcano eruption or a volcanic ash cloud.</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) GVATAM</div>
+        <div class="qa-opt correct">B) ASHTAM</div>
+        <div class="qa-opt">C) NAVTAM</div>
+      </div>
+      <div class="qa-ans">✏️ ASHTAM = Volcanic Ash NOTAM. It is a special series NOTAM in a specific format for volcanic activity, eruptions, and ash clouds. GVATAM and NAVTAM are distractors.</div>
+    </div>
+
+    <!-- Q16 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.16</span> The system notifying in advance the circumstances requiring important changes in the methods of operation, based on common effective dates, is identified by the acronym:</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) AIRAC</div>
+        <div class="qa-opt">B) EATCHIP</div>
+        <div class="qa-opt">C) IFPS</div>
+      </div>
+      <div class="qa-ans">✏️ AIRAC = Aeronautical Information Regulation And Control. It uses common effective dates in 28-day cycles for advance notification of significant operational changes.</div>
+    </div>
+
+    <!-- Q17 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.17</span> The temporary, long-term modification (3 months or more) and the short-term extensive or graphical information are published as follows:</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) AIP Supplements</div>
+        <div class="qa-opt">B) Trigger NOTAM</div>
+        <div class="qa-opt">C) NOTAM</div>
+      </div>
+      <div class="qa-ans">✏️ AIP Supplements are published for: (1) temporary changes of long duration (3 months or more) AND (2) short-duration information with extensive text/graphics. Trigger NOTAMs merely remind about upcoming AIP Supplement changes.</div>
+    </div>
+
+    <!-- Q18 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.18</span> The informations concerning charges for aerodromes/heliports and Air Navigation Services are on the following part of the AIP:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) AD</div>
+        <div class="qa-opt correct">B) GEN</div>
+        <div class="qa-opt">C) FAL</div>
+      </div>
+      <div class="qa-ans">✏️ Charges for Aerodromes/Heliports and Air Navigation Services are contained in Part 1 — GEN under "Charges for Aerodromes/heliports and Air Navigation Services." FAL is not an AIP part in current Annex 15 structure.</div>
+    </div>
+
+    <!-- Q19 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.19</span> A notice providing information on Rules of the Air, Traffic Services and Air Navigation Procedures and distributed in advance of its effective date is:</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) An AIRAC</div>
+        <div class="qa-opt">B) An ATS NOTAM</div>
+        <div class="qa-opt">C) An Advisory NOTAM</div>
+      </div>
+      <div class="qa-ans">✏️ AIRAC provides advance notification of changes to Rules of the Air, ATS procedures, navigation procedures, etc. distributed in advance of common effective dates. It is the advance-notification system specifically for significant procedural changes.</div>
+    </div>
+
+    <!-- Q20 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.20</span> A notice containing information concerning flight safety, air navigation, technical, administration or legislative matters and originated at the AIS of a state is called:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) NOTAM</div>
+        <div class="qa-opt">B) AIRAC</div>
+        <div class="qa-opt correct">C) Aeronautical Information Circular (AIC)</div>
+      </div>
+      <div class="qa-ans">✏️ AIC is originated when it is necessary to promulgate aeronautical information of a purely explanatory or advisory nature concerning technical, legislative or purely administrative matters. This is the hallmark of an AIC — advisory, explanatory, administrative or legislative in nature.</div>
+    </div>
+
+    <!-- Q21 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.21</span> In which section of AIP are contained information elements relating to prohibited, restricted and dangerous areas?</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) AGA</div>
+        <div class="qa-opt correct">B) ENR</div>
+        <div class="qa-opt">C) GEN</div>
+      </div>
+      <div class="qa-ans">✏️ ENR Part 2 contains "Navigation Warnings" which includes Prohibited, Restricted and Danger Areas, Military Exercise and Training Areas, and other activities of a dangerous nature.</div>
+    </div>
+
+    <!-- Q22 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.22</span> In which section of AIP are contained information elements to refueling facilities and limitations on refuelling services?</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) AD</div>
+        <div class="qa-opt">B) GEN</div>
+        <div class="qa-opt">C) SAR</div>
+      </div>
+      <div class="qa-ans">✏️ Aerodrome-specific services such as refueling facilities and limitations are found in Part 3 — AD (Aerodromes). Each aerodrome entry in the AD section contains its specific ground services including fuel availability.</div>
+    </div>
+
+    <!-- Q23 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.23</span> In which section of the AIP are contained information elements relating to areas and/or routes for which meteorological service is provided?</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) MET</div>
+        <div class="qa-opt correct">B) GEN</div>
+        <div class="qa-opt">C) RAC</div>
+      </div>
+      <div class="qa-ans">✏️ The GEN part of the AIP contains meteorological services information under "Meteorological services" subsection which covers area of responsibility and routes for which met service is provided. "MET" is not an AIP part designation.</div>
+    </div>
+
+    <!-- Q24 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.24</span> Each contracting state shall provide an AIS in its territory and shall include the preparation and origination of:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) Only AIP and NOTAM's</div>
+        <div class="qa-opt">B) AIP, NOTAM's, Circular and AIRAC</div>
+        <div class="qa-opt correct">C) Integrated Aeronautical Information Package</div>
+      </div>
+      <div class="qa-ans">✏️ Each contracting state's AIS obligation is to prepare and originate the complete Integrated Aeronautical Information Package (IAIP), not just individual components.</div>
+    </div>
+
+    <!-- Q25 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.25</span> The identification of each prohibited, restricted and danger area shall be composed by:</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) The nationality letters for location indicators assigned to the state or territory, followed by the letters P, R and D and figures</div>
+        <div class="qa-opt">B) The letters P (Prohibited), R (Restricted) and D (Dangerous) for the area concerned and figures</div>
+        <div class="qa-opt">C) The letters P (Prohibited), R (Restricted) and D (Dangerous) followed by figures</div>
+      </div>
+      <div class="qa-ans">✏️ Identification = Nationality letters (e.g., "VI" for India) + type letter (P/R/D) + figures. Example: VIP123 = India Prohibited Area 123. This uses the country's nationality letters, not just P/R/D alone.</div>
+    </div>
+
+    <!-- Q26 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.26</span> NOF in India are established at:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) All major aerodromes</div>
+        <div class="qa-opt">B) All international airports</div>
+        <div class="qa-opt correct">C) International Airports at Delhi, Mumbai, Kolkatta and Chennai only</div>
+      </div>
+      <div class="qa-ans">✏️ Only FOUR International NOTAM Offices (NOF) in India: Mumbai, Calcutta (Kolkata), Delhi, and Chennai. Not at all major aerodromes. Not at all international airports — specifically only these four.</div>
+    </div>
+
+    <!-- Q27 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.27</span> Runway Condition Report (RCR) is prepared by ______ for use by ______.</div>
+      <div class="qa-opts">
+        <div class="qa-opt correct">A) Aerodrome Operator, Flight Crew</div>
+        <div class="qa-opt">B) Flight Crew, DGCA</div>
+        <div class="qa-opt">C) Flight Crew, Aircraft Operator</div>
+      </div>
+      <div class="qa-ans">✏️ The aerodrome operator assesses runway surface conditions and prepares the RWYCC/RCR. This information is then used by the flight crew for aeroplane performance calculations. Aerodrome Operator prepares → Flight Crew uses.</div>
+    </div>
+
+    <!-- Q28 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.28</span> Runway Condition Code (RWYCC) is reported for:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) The runway to indicate unusable portion of the operational runway</div>
+        <div class="qa-opt correct">B) For each one third portion of the operational runway to indicate the presence of water, snow, ice, slush or frost</div>
+        <div class="qa-opt">C) For non operational runway to denote its status</div>
+      </div>
+      <div class="qa-ans">✏️ RWYCC shall be reported for each ONE THIRD of the runway to be assessed. The runway is divided into three equal sections and each gets its own code. It is for OPERATIONAL runways, not non-operational ones.</div>
+    </div>
+
+    <!-- Q29 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.29</span> Standing water on runway is notified through a:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) Notam W</div>
+        <div class="qa-opt correct">B) Snowtam</div>
+        <div class="qa-opt">C) AIRRAC</div>
+      </div>
+      <div class="qa-ans">✏️ SNOWTAM covers: snow, ice, slush, frost, STANDING WATER, and water associated with snow/slush/ice/frost on the movement area. All these hazardous surface conditions are notified via SNOWTAM.</div>
+    </div>
+
+    <!-- Q30 -->
+    <div class="qa-item">
+      <div class="qa-q"><span class="qnum">Q.30</span> NOF stands for:</div>
+      <div class="qa-opts">
+        <div class="qa-opt">A) Notam Office</div>
+        <div class="qa-opt">B) Notam for Flight</div>
+        <div class="qa-opt correct">C) International Notam Office</div>
+      </div>
+      <div class="qa-ans">✏️ NOF = International NOTAM Office (Not just "NOTAM Office"). The word "International" is key — these offices handle international distribution of NOTAMs. India has 4 NOFs at the major international airports.</div>
+    </div>
+
+  </div><!-- /qa-grid -->
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- ============================================================
+     QUICK REFERENCE SUMMARY
+     ============================================================ -->
+<div class="container">
+<div class="section-header">
+  <div class="section-num">Quick Reference</div>
+  <div class="section-title">Critical Numbers &amp; Facts at a Glance</div>
+</div>
+<div class="section-body">
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Topic</th><th>Critical Value / Fact</th></tr></thead>
+      <tbody>
+        <tr><td class="label">AIP Supplement — Long Duration</td><td class="val">≥ 3 months</td></tr>
+        <tr><td class="label">AIP SUP Checklist Interval</td><td class="val">≤ 1 month</td></tr>
+        <tr><td class="label">AIP SUP Page Colour</td><td class="val">Yellow (preferred)</td></tr>
+        <tr><td class="label">AIRAC Cycle</td><td class="val">28 days</td></tr>
+        <tr><td class="label">AIRAC — AIS distributes paper copy by</td><td class="val">42 days before effective date</td></tr>
+        <tr><td class="label">AIRAC — Recipients should receive by</td><td class="val">28 days before effective date</td></tr>
+        <tr><td class="label">AIRAC — Major changes advance distribution</td><td class="val">56 days before effective date</td></tr>
+        <tr><td class="label">NOTAM Checklist Interval (AFS)</td><td class="val">≤ 1 month (one per series)</td></tr>
+        <tr><td class="label">NOTAM Series in India</td><td class="val">A, B, C, D, G</td></tr>
+        <tr><td class="label">Series A duration</td><td class="val">&gt; 2 hours, international importance</td></tr>
+        <tr><td class="label">Series B duration</td><td class="val">&gt; 30 min but &lt; 2 hours</td></tr>
+        <tr><td class="label">Series G operator (India)</td><td class="val">International NOTAM Office Delhi ONLY</td></tr>
+        <tr><td class="label">AIS HQ India</td><td class="val">Safdarjung Airport, New Delhi – 110 003</td></tr>
+        <tr><td class="label">NOF in India</td><td class="val">Mumbai, Kolkata, Delhi, Chennai (4 only)</td></tr>
+        <tr><td class="label">AIC published by (India)</td><td class="val">DGCA (NOT AAI)</td></tr>
+        <tr><td class="label">AIS published by (India)</td><td class="val">AAI (Airports Authority of India)</td></tr>
+        <tr><td class="label">AIC Checklist Interval</td><td class="val">At least once a year</td></tr>
+        <tr><td class="label">RWYCC assessed per</td><td class="val">Each 1/3 of the runway</td></tr>
+        <tr><td class="label">Advance notice for danger/restricted area activation</td><td class="val">≥ 7 days</td></tr>
+        <tr><td class="label">Desirable advance notice (general)</td><td class="val">24 hours</td></tr>
+        <tr><td class="label">PIB available at (India)</td><td class="val">Kolkata, Chennai, Delhi, Mumbai</td></tr>
+        <tr><td class="label">AIP India — annual amendment month</td><td class="val">April</td></tr>
+        <tr><td class="label">AIP India — SUP checklist month</td><td class="val">January</td></tr>
+        <tr><td class="label">NOTAM numbering restarts</td><td class="val">0001 at 0000 UTC on 1st January each year</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /section-body -->
+</div><!-- /container -->
+
+
+<!-- FOOTER -->
+<div class="page-footer">
+  ✈ &nbsp; AIS Study Notes — Chapter 10 &nbsp; | &nbsp; Capt. Pankaj Pahil &nbsp; | &nbsp; DGCA CPL/ATPL Ground School &nbsp; | &nbsp; Based on ICAO Annex 15, PANS-AIM Doc 10066 &amp; AIP India &nbsp; ✈
+</div>
+
+</body>
+</html>

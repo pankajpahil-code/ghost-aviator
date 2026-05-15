@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 5 – Air Traffic Services | DGCA CPL/ATPL Study Notes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  @page {
+    size: A4;
+    margin: 18mm 15mm 18mm 15mm;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #0d2137;
+    --sky:     #1a6fa8;
+    --sky-lt:  #e8f4fd;
+    --teal:    #0e8a7a;
+    --teal-lt: #e4f7f5;
+    --amber:   #b45309;
+    --amber-lt:#fff7e6;
+    --red:     #b91c1c;
+    --red-lt:  #fef2f2;
+    --purple:  #6d28d9;
+    --purple-lt:#f5f3ff;
+    --green:   #166534;
+    --green-lt:#f0fdf4;
+    --gray-50: #f8fafc;
+    --gray-100:#f1f5f9;
+    --gray-200:#e2e8f0;
+    --gray-700:#374151;
+    --gray-900:#111827;
+    --accent:  #f59e0b;
+  }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.6;
+    color: var(--gray-900);
+    background: #fff;
+    position: relative;
+  }
+
+  /* ── WATERMARK ── */
+  body::before {
+    content: "Capt. Pankaj Pahil";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: rgba(13, 33, 55, 0.07);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    letter-spacing: 4px;
+  }
+
+  .page-wrapper {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 20px 24px 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 60%, var(--sky) 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 40px 36px 36px;
+    margin-bottom: 32px;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .cover .chapter-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 9pt;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32pt;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .cover .subtitle {
+    font-size: 11pt;
+    opacity: 0.8;
+    margin-bottom: 20px;
+  }
+  .cover .ref-line {
+    font-size: 8.5pt;
+    opacity: 0.6;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 12px;
+    margin-top: 16px;
+  }
+  .cover .author-tag {
+    position: absolute;
+    bottom: 20px; right: 28px;
+    font-family: 'Playfair Display', serif;
+    font-size: 10pt;
+    opacity: 0.5;
+    font-style: italic;
+  }
+
+  /* ── SECTION HEADINGS ── */
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18pt;
+    font-weight: 700;
+    color: var(--navy);
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 6px;
+    margin: 32px 0 16px;
+    page-break-after: avoid;
+  }
+  h3.sub-title {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12pt;
+    font-weight: 700;
+    color: var(--sky);
+    margin: 20px 0 8px;
+    padding-left: 10px;
+    border-left: 4px solid var(--sky);
+    page-break-after: avoid;
+  }
+  h4.mini-title {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 14px 0 6px;
+    page-break-after: avoid;
+  }
+
+  /* ── COLORED INFO BOXES ── */
+  .box {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .box-def {
+    background: var(--sky-lt);
+    border-left: 5px solid var(--sky);
+  }
+  .box-def .box-label {
+    color: var(--sky);
+    font-weight: 700;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+  }
+  .box-warn {
+    background: var(--red-lt);
+    border-left: 5px solid var(--red);
+  }
+  .box-warn .box-label {
+    color: var(--red);
+    font-weight: 700;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+  }
+  .box-proc {
+    background: var(--green-lt);
+    border-left: 5px solid var(--teal);
+  }
+  .box-proc .box-label {
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+  }
+  .box-note {
+    background: var(--amber-lt);
+    border-left: 5px solid var(--amber);
+  }
+  .box-note .box-label {
+    color: var(--amber);
+    font-weight: 700;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+  }
+  .box-purple {
+    background: var(--purple-lt);
+    border-left: 5px solid var(--purple);
+  }
+  .box-purple .box-label {
+    color: var(--purple);
+    font-weight: 700;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+  }
+
+  /* ── LISTS ── */
+  ul.reg-list, ol.reg-list {
+    padding-left: 22px;
+    margin: 8px 0;
+  }
+  ul.reg-list li, ol.reg-list li {
+    margin-bottom: 5px;
+    line-height: 1.55;
+  }
+  ul.reg-list li::marker { color: var(--sky); font-weight: 700; }
+
+  /* ── TABLES ── */
+  .tbl-wrapper {
+    overflow-x: auto;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  table.reg-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    page-break-inside: avoid;
+  }
+  table.reg-table th {
+    background: var(--navy);
+    color: #fff;
+    padding: 8px 10px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  table.reg-table td {
+    padding: 7px 10px;
+    border: 1px solid var(--gray-200);
+    vertical-align: middle;
+    text-align: center;
+  }
+  table.reg-table tr:nth-child(even) td { background: var(--gray-50); }
+  table.reg-table tr:hover td { background: var(--sky-lt); }
+  .td-ifr { background: #dbeafe !important; font-weight: 600; }
+  .td-vfr { background: #dcfce7 !important; font-weight: 600; }
+  .td-class { background: var(--navy) !important; color: #fff !important; font-weight: 700; font-size: 11pt; }
+
+  /* ── PHASE CARDS ── */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+    page-break-inside: avoid;
+  }
+  .phase-card {
+    border-radius: 8px;
+    padding: 14px;
+    page-break-inside: avoid;
+  }
+  .phase-incerfa { background: #fef9c3; border: 2px solid #ca8a04; }
+  .phase-alerfa  { background: #fed7aa; border: 2px solid #c2410c; }
+  .phase-detresfa{ background: #fecaca; border: 2px solid #dc2626; }
+  .phase-card .phase-name {
+    font-weight: 700;
+    font-size: 11pt;
+    margin-bottom: 4px;
+  }
+  .phase-card .phase-meaning {
+    font-size: 8pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    opacity: 0.7;
+  }
+  .phase-card ul { padding-left: 16px; font-size: 9pt; }
+  .phase-card ul li { margin-bottom: 4px; }
+
+  /* ── CODE TAGS ── */
+  code.inline {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 9pt;
+    color: var(--purple);
+  }
+
+  /* ── HIGHLIGHT ── */
+  .hl-red   { color: var(--red);   font-weight: 700; }
+  .hl-sky   { color: var(--sky);   font-weight: 700; }
+  .hl-green { color: var(--green); font-weight: 700; }
+  .hl-amber { color: var(--amber); font-weight: 700; }
+
+  /* ── SVG DIAGRAM WRAPPER ── */
+  .diagram-wrapper {
+    margin: 16px 0;
+    page-break-inside: avoid;
+    text-align: center;
+  }
+  .diagram-caption {
+    font-size: 8.5pt;
+    color: #6b7280;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* ── MCQ SECTION ── */
+  .mcq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .mcq-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 12px 14px;
+    page-break-inside: avoid;
+  }
+  .mcq-card .mcq-q {
+    font-weight: 600;
+    font-size: 10pt;
+    margin-bottom: 8px;
+    color: var(--navy);
+  }
+  .mcq-card .mcq-q span.qnum {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 8pt;
+    font-weight: 700;
+    margin-right: 8px;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+  .mcq-options { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+  .mcq-options li {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 9.5pt;
+    border: 1px solid var(--gray-200);
+    background: var(--gray-50);
+  }
+  .mcq-options li.correct {
+    background: var(--green-lt);
+    border-color: #16a34a;
+    color: var(--green);
+    font-weight: 700;
+  }
+  .mcq-options li.correct::before {
+    content: "✓ ";
+  }
+
+  /* ── INDICATOR GRID ── */
+  .indicator-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .indicator-card {
+    border-radius: 7px;
+    padding: 10px 14px;
+    border: 1px solid var(--gray-200);
+    page-break-inside: avoid;
+  }
+  .indicator-card .ind-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12pt;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .indicator-card .ind-letters {
+    font-size: 8.5pt;
+    color: var(--sky);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .indicator-card p { font-size: 9pt; color: var(--gray-700); }
+
+  /* ── FIR TABLE ── */
+  .fir-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .fir-card {
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .fir-code { font-family: 'JetBrains Mono', monospace; font-size: 14pt; font-weight: 700; margin-bottom: 4px; }
+  .fir-name { font-size: 8pt; font-weight: 600; margin-bottom: 3px; }
+  .fir-area { font-size: 7.5pt; opacity: 0.75; }
+  .fir-delhi    { background: #dbeafe; border: 2px solid #3b82f6; color: #1d4ed8; }
+  .fir-mumbai   { background: #fce7f3; border: 2px solid #ec4899; color: #9d174d; }
+  .fir-kolkata  { background: #dcfce7; border: 2px solid #22c55e; color: #166534; }
+  .fir-chennai  { background: #fef3c7; border: 2px solid #f59e0b; color: #92400e; }
+  .fir-guwahati { background: #ede9fe; border: 2px solid #8b5cf6; color: #5b21b6; }
+
+  /* ── TSA/TRA RANGE TABLE ── */
+  .range-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 12px 0;
+    page-break-inside: avoid;
+  }
+  .range-card {
+    border-radius: 7px;
+    padding: 10px 14px;
+    border-left: 4px solid;
+    page-break-inside: avoid;
+  }
+  .range-card .rc-fir { font-weight: 700; font-size: 10pt; margin-bottom: 2px; }
+  .range-card .rc-range { font-family: 'JetBrains Mono', monospace; font-size: 11pt; font-weight: 700; }
+
+  /* Print overrides */
+  @media print {
+    body::before { position: fixed; }
+    .cover { page-break-after: always; }
+    h2.section-title { page-break-before: auto; }
+    .page-wrapper { padding: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<!-- ══════════════════════════════════════════════════════════════
+     COVER
+══════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="chapter-badge">Chapter 5 · Air Regulations</div>
+  <h1>Air Traffic<br>Services</h1>
+  <p class="subtitle">Comprehensive CPL / ATPL Study Notes — DGCA India</p>
+  <p class="ref-line">
+    Reference: Annex 11 · Doc 4444 · AIP India · CAR Section 9 – Air Space &amp; Air Navigation Services Standards<br>
+    Series 'E', Part I Issue II · Revision dated 9th November 2018
+  </p>
+  <div class="author-tag">Capt. Pankaj Pahil</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     1. OBJECTIVES
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">1. Objectives of Air Traffic Services</h2>
+<div class="box box-def">
+  <div class="box-label">Core Definition</div>
+  The primary purpose of ATS is to maintain safe, orderly, and efficient air traffic operations across all phases of flight. Five objectives are prescribed under ICAO Annex 11.
+</div>
+
+<ol class="reg-list">
+  <li><strong>Prevent collisions between aircraft.</strong></li>
+  <li><strong>Prevent collisions between aircraft on the manoeuvring area and obstructions on that area.</strong></li>
+  <li><strong>Expedite and maintain an orderly flow of air traffic.</strong></li>
+  <li><strong>Provide advice and information useful for the safe and efficient conduct of flights.</strong></li>
+  <li><strong>Notify appropriate organisations regarding aircraft in need of search and rescue aid, and assist such organisations as required.</strong></li>
+</ol>
+
+<div class="box box-note">
+  <div class="box-label">Memory Aid</div>
+  <strong>"2 Prevent + 1 Expedite + 1 Advise + 1 Notify"</strong> — objectives a, b, c are served by ATC; d by Flight Information Service; e by Alerting Service.
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     2. DIVISIONS OF ATS
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">2. Divisions of Air Traffic Services</h2>
+<p>ATS comprises <strong>three services</strong>:</p>
+
+<!-- SVG: Three-service diagram -->
+<div class="diagram-wrapper">
+<svg viewBox="0 0 720 170" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1a6fa8"/>
+    </marker>
+  </defs>
+  <!-- ATS box -->
+  <rect x="280" y="10" width="160" height="50" rx="8" fill="#0d2137" />
+  <text x="360" y="30" text-anchor="middle" fill="#fff" font-family="Source Sans 3,sans-serif" font-size="12" font-weight="700">AIR TRAFFIC</text>
+  <text x="360" y="48" text-anchor="middle" fill="#f59e0b" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">SERVICES (ATS)</text>
+  <!-- Lines -->
+  <line x1="200" y1="60" x2="100" y2="100" stroke="#1a6fa8" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="360" y1="60" x2="360" y2="100" stroke="#1a6fa8" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="520" y1="60" x2="620" y2="100" stroke="#1a6fa8" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- ATC box -->
+  <rect x="20" y="100" width="180" height="60" rx="8" fill="#1a6fa8"/>
+  <text x="110" y="120" text-anchor="middle" fill="#fff" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">Air Traffic Control</text>
+  <text x="110" y="134" text-anchor="middle" fill="#dbeafe" font-family="Source Sans 3,sans-serif" font-size="9">Obj. a, b, c</text>
+  <text x="110" y="148" text-anchor="middle" fill="#fef9c3" font-family="Source Sans 3,sans-serif" font-size="8">Area · Approach · Aerodrome</text>
+  <!-- FIS box -->
+  <rect x="270" y="100" width="180" height="60" rx="8" fill="#0e8a7a"/>
+  <text x="360" y="120" text-anchor="middle" fill="#fff" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">Flight Information</text>
+  <text x="360" y="134" text-anchor="middle" fill="#fff" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">Service</text>
+  <text x="360" y="150" text-anchor="middle" fill="#fef9c3" font-family="Source Sans 3,sans-serif" font-size="9">Obj. d</text>
+  <!-- Alerting box -->
+  <rect x="520" y="100" width="180" height="60" rx="8" fill="#b91c1c"/>
+  <text x="610" y="120" text-anchor="middle" fill="#fff" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">Alerting Service</text>
+  <text x="610" y="148" text-anchor="middle" fill="#fef9c3" font-family="Source Sans 3,sans-serif" font-size="9">Obj. e</text>
+</svg>
+<div class="diagram-caption">Fig 1 – The three divisions of Air Traffic Services and their objectives</div>
+</div>
+
+<h3 class="sub-title">2.1 Air Traffic Control Service (ATC)</h3>
+<p>ATC accomplishes <strong>objectives a, b, and c</strong>. It is divided into three parts:</p>
+
+<div class="box box-def">
+  <div class="box-label">a) Area Control Service</div>
+  Provision of ATC service for <strong>controlled flights</strong>, except for those parts described in approach and aerodrome control service. Accomplishes objectives <strong>a and c</strong>.<br>
+  <em>Provided by: Area Control Centre (ACC), or by the Approach Control unit where no ACC is established.</em>
+</div>
+<div class="box box-def">
+  <div class="box-label">b) Approach Control Service</div>
+  Provision of ATC service for <strong>controlled flights associated with arrival or departure</strong>. Accomplishes objectives <strong>a and c</strong>.<br>
+  <em>Provided by: Aerodrome Control Tower / ACC (combined), or by a separate Approach Control Unit.</em>
+</div>
+<div class="box box-def">
+  <div class="box-label">c) Aerodrome Control Service</div>
+  Provision of ATC service for <strong>aerodrome traffic</strong>, except parts covered by Approach Control. Accomplishes objectives <strong>a, b, and c</strong>.<br>
+  <em>Provided by: Aerodrome Control Tower (ACT).</em>
+</div>
+
+<h3 class="sub-title">2.2 Flight Information Service (FIS)</h3>
+<p>Provided to accomplish <strong>objective d</strong> — advice and information for safe and efficient flight conduct.</p>
+
+<h3 class="sub-title">2.3 Alerting Service</h3>
+<p>Provided to accomplish <strong>objective e</strong> — notifying SAR organisations and assisting them.</p>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     3. AIP INDIA – PROVISIONS OF CONTROL SERVICE
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">3. Provisions of Control Service – AIP India</h2>
+
+<h3 class="sub-title">3.1 Radio Communication Establishment</h3>
+<div class="box box-proc">
+  <div class="box-label">Procedure</div>
+  Radio communication shall be established with the appropriate <strong>Aerodrome / Approach Control Unit</strong>:
+  <ul class="reg-list">
+    <li><strong>Prior to taxiing for departure;</strong> or</li>
+    <li><strong>When intending to operate in a Class C and D airspace.</strong></li>
+  </ul>
+</div>
+
+<div class="box box-warn">
+  <div class="box-label">Critical Rule – Communication</div>
+  While operating in Class C and D airspace, <strong>only direct controller-pilot communication is permitted</strong>. RTF communication through an interpreter <span class="hl-red">shall NOT be permitted</span>.
+</div>
+
+<h3 class="sub-title">3.2 Equipment Requirements – Class C &amp; D</h3>
+<div class="box box-note">
+  <div class="box-label">Equipment Required</div>
+  For IFR or VFR operation in Class C and D airspace, aircraft shall be equipped with:
+  <ul class="reg-list">
+    <li><strong>Appropriate two-way VHF radio apparatus</strong></li>
+    <li><strong>A radio compass</strong></li>
+  </ul>
+</div>
+
+<h3 class="sub-title">3.3 Entering a CTR or ATZ</h3>
+<div class="box box-proc">
+  <div class="box-label">Procedure</div>
+  A pilot-in-command under IFR or VFR intending to <strong>enter, cross, or operate within a CTR or ATZ</strong> shall request a Clearance from the Aerodrome/Approach Control on the appropriate radio frequency.<br><br>
+  The pilot shall:
+  <ul class="reg-list">
+    <li>Pass the aircraft's <strong>position, level, track and estimated time of crossing</strong> the airspace.</li>
+    <li><strong>Maintain a continuous listening watch</strong> on that frequency while the aircraft is within the airspace.</li>
+    <li><strong>Carry out any instructions</strong> received from Aerodrome/Approach Control.</li>
+  </ul>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     4. CLASSIFICATION AND DESIGNATION OF ATS AIRSPACE IN INDIA
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">4. Classification &amp; Designation of ATS Airspace in India</h2>
+
+<h3 class="sub-title">4.1 Designation of Airspace Portions</h3>
+
+<div class="box box-def">
+  <div class="box-label">Flight Information Regions (FIR)</div>
+  Portions where <strong>Flight Information Service and Alerting Service</strong> will be provided are designated as <strong>Flight Information Regions</strong>.
+</div>
+<div class="box box-def">
+  <div class="box-label">Control Areas &amp; Control Zones</div>
+  Portions where <strong>ATC service will be provided to IFR flights</strong> are designated as <strong>Control Areas or Control Zones</strong>. Where ATC is also provided to VFR flights, these are designated as <strong>Class B, C, or D airspace</strong>.
+</div>
+<div class="box box-def">
+  <div class="box-label">Controlled Aerodromes</div>
+  Aerodromes where ATC service will be provided to aerodrome traffic are designated as <strong>Controlled Aerodromes</strong>.
+</div>
+
+<h3 class="sub-title">4.2 Airspace Classes in India</h3>
+
+<div class="box box-warn">
+  <div class="box-label">Implementation Status</div>
+  <strong>Class A* and Class B*</strong> — Implementation under consideration. Not yet fully implemented in India.
+</div>
+
+<!-- Airspace class descriptions -->
+<div class="box box-def">
+  <div class="box-label">Class A*</div>
+  Applicable to designated airspaces in <strong>TCA, CTA, and CTZ</strong>. <strong>IFR flights only</strong> are permitted. All flights provided with ATC service and <strong>separated from each other</strong>.
+</div>
+
+<div class="box box-def">
+  <div class="box-label">Class B*</div>
+  Applicable to designated airspaces in <strong>TCA, CTA, and CTZ</strong>. <strong>IFR and VFR</strong> flights permitted. All flights provided with ATC service and <strong>separated from each other</strong>.
+</div>
+
+<div class="box box-def">
+  <div class="box-label">Class C</div>
+  IFR and VFR flights permitted. All flights provided with ATC service. <strong>IFR separated from IFR and from VFR</strong>. VFR separated from IFR; VFR receives <strong>traffic information in respect of other VFR flights</strong>.
+</div>
+
+<div class="box box-def">
+  <div class="box-label">Class D</div>
+  IFR and VFR flights permitted. All flights provided with ATC service. <strong>IFR separated from IFR only</strong>; IFR receives traffic info about VFR. <strong>VFR receives traffic information on all other flights</strong> (no separation from VFR).
+</div>
+
+<div class="box box-def">
+  <div class="box-label">Class E</div>
+  Airspace within <strong>ATS Route segment outside controlled airspace</strong>. IFR and VFR flights permitted. IFR separated from IFR. All flights receive traffic info as far as practical. <span class="hl-red">Class E shall NOT be used for Control Zones.</span>
+</div>
+
+<div class="box box-def">
+  <div class="box-label">Class F</div>
+  Airspace within <strong>ATS Route segment outside controlled airspace</strong>. IFR and VFR flights permitted. Participating IFR flights receive <strong>Air Traffic Advisory Service</strong>. All flights receive <strong>Flight Information Service if requested</strong>.
+</div>
+
+<div class="box box-def">
+  <div class="box-label">Class G</div>
+  Airspace <strong>outside ATS route segment and outside controlled airspace</strong>. IFR and VFR flights permitted. Flights receive <strong>Flight Information Service if requested</strong>. No separation provided.
+</div>
+
+<div class="box box-note">
+  <div class="box-label">Boundary Note – Vertical Adjacency</div>
+  Where ATS airspaces adjoin vertically (one above the other), flights at a common level comply with requirements of <strong>the less restrictive class of airspace</strong>. Order: <strong>A (most restrictive) → B → C → D → E → F → G (least restrictive)</strong>.
+</div>
+
+<!-- Full ATS Airspace Table -->
+<h3 class="sub-title">4.3 ATS Airspace Classes – Complete Reference Table</h3>
+<div class="tbl-wrapper">
+<table class="reg-table">
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Flight Type</th>
+      <th>Separation Provided</th>
+      <th>Service Provided</th>
+      <th>Speed Limit**</th>
+      <th>Radio Comm.</th>
+      <th>ATC Clearance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="td-class" rowspan="1">A*</td>
+      <td class="td-ifr">IFR only</td>
+      <td>All aircraft</td>
+      <td>Air Traffic Control Service</td>
+      <td>Not applicable</td>
+      <td>Continuous two-way</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td class="td-class" rowspan="2">B*</td>
+      <td class="td-ifr">IFR</td>
+      <td>All aircraft</td>
+      <td>Air Traffic Control Service</td>
+      <td>Not applicable</td>
+      <td>Continuous two-way</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td class="td-vfr">VFR</td>
+      <td>All aircraft</td>
+      <td>Air Traffic Control Service</td>
+      <td>Not applicable</td>
+      <td>Continuous two-way</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td class="td-class" rowspan="2">C</td>
+      <td class="td-ifr">IFR</td>
+      <td>IFR from IFR; IFR from VFR</td>
+      <td>Air Traffic Control Service</td>
+      <td>Not applicable</td>
+      <td>Continuous two-way</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td class="td-vfr">VFR</td>
+      <td>VFR from IFR</td>
+      <td>1. ATC for separation from IFR; 2. VFR/VFR traffic info (avoidance advice on request)</td>
+      <td><span class="hl-red">250 kt IAS</span> below 3050m (10,000 ft) AMSL</td>
+      <td>Continuous two-way</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td class="td-class" rowspan="2">D</td>
+      <td class="td-ifr">IFR</td>
+      <td>IFR from IFR</td>
+      <td>ATC incl. traffic info about VFR (avoidance advice on request)</td>
+      <td><span class="hl-red">250 kt IAS</span> below 3050m (10,000 ft) AMSL</td>
+      <td>Continuous two-way</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td class="td-vfr">VFR</td>
+      <td>Nil</td>
+      <td>IFR/VFR &amp; VFR/VFR traffic info (avoidance advice on request)</td>
+      <td><span class="hl-red">250 kt IAS</span> below 3050m (10,000 ft) AMSL</td>
+      <td>Continuous two-way</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td class="td-class" rowspan="2">E</td>
+      <td class="td-ifr">IFR</td>
+      <td>IFR from IFR</td>
+      <td>ATC and, as far as practical, traffic info about VFR flights</td>
+      <td><span class="hl-red">250 kt IAS</span> below 3050m (10,000 ft) AMSL</td>
+      <td>Continuous two-way</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td class="td-vfr">VFR</td>
+      <td>Nil</td>
+      <td>Traffic information as far as practical</td>
+      <td>250 kt IAS below 3050m (10,000 ft) AMSL</td>
+      <td><span class="hl-red">No</span></td>
+      <td><span class="hl-red">No</span></td>
+    </tr>
+    <tr>
+      <td class="td-class" rowspan="2">F</td>
+      <td class="td-ifr">IFR</td>
+      <td>IFR from IFR (as far as practicable)</td>
+      <td>Air Traffic Advisory Service; Flight Information Service</td>
+      <td>250 kt IAS below 3050m (10,000 ft) AMSL</td>
+      <td>Continuous two-way</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td class="td-vfr">VFR</td>
+      <td>Nil</td>
+      <td>Flight Information Service</td>
+      <td>250 kt IAS below 3050m (10,000 ft) AMSL</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td class="td-class" rowspan="2">G</td>
+      <td class="td-ifr">IFR</td>
+      <td>Nil</td>
+      <td>Flight Information Service</td>
+      <td>250 kt IAS below 3050m (10,000 ft) AMSL</td>
+      <td>Continuous two-way</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td class="td-vfr">VFR</td>
+      <td>Nil</td>
+      <td>Flight Information Service</td>
+      <td>250 kt IAS below 3050m (10,000 ft) AMSL</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p style="font-size:8pt;color:#6b7280;margin-top:4px;">** When transition altitude is lower than 3600m (10,000 ft) AMSL, FL 100 should be used in lieu of 10,000 ft. * Implementation of Class A &amp; Class B under consideration.</p>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     5. PROCEDURES IN CLASS C AIRSPACE
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">5. Procedures in Class C Airspace (India-Specific)</h2>
+
+<div class="box box-note">
+  <div class="box-label">Designation Criteria</div>
+  Airports with runway handling capacity of <strong>&gt;20 aircraft/hour</strong> AND equipped with <strong>primary and secondary radars</strong> are designated Class C. Class C extends from <span class="hl-red">4000 ft to FL 285</span>. Airspace up to <span class="hl-red">30 NM</span> around these airports = <strong>Class D</strong>. Airspace above FL 285 = proposed <strong>Class A</strong>.
+</div>
+
+<ul class="reg-list">
+  <li>VFR flights must ensure they can meet Class C requirements <strong>(MET/COM/SPEED)</strong>.</li>
+  <li><strong>Pre-departure clearance</strong> from appropriate ATC shall be obtained by all VFR flights intending to enter Class C.</li>
+  <li>Aircraft on SID/STAR shall follow <strong>published speed restrictions</strong>.</li>
+  <li>All aircraft shall follow any <strong>additional speed restrictions when instructed by ATC</strong>.</li>
+  <li>Responsibility of <strong>terrain clearance remains with the flight crew of VFR flights at all times</strong>.</li>
+  <li>VFR flights unable to adhere to ATC clearance shall <strong>obtain alternate clearance</strong>.</li>
+</ul>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     6. FIRs AND LOCATION INDICATORS
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">6. FIRs and Location Indicators</h2>
+
+<h3 class="sub-title">6.1 Flight Information Regions (FIRs)</h3>
+<p>Flight Information Centres are established to provide FIS and Alerting Service <strong>outside controlled airspaces</strong>. FIRs are delineated to cover the <strong>whole air route structure</strong> to be served.</p>
+
+<div class="box box-note">
+  <div class="box-label">Key Rule</div>
+  A FIR includes <strong>all airspace within its lateral limits</strong>, except as limited by an Upper FIR (UIR).
+</div>
+
+<h3 class="sub-title">6.2 ICAO Location Indicators – Structure</h3>
+<div class="box box-def">
+  <div class="box-label">4-Letter Location Indicator</div>
+  ICAO has divided the world into <strong>22 non-overlapping AFSRAs</strong>. Each AFSRA has a unique identifying letter.<br><br>
+  <strong>Structure of a 4-letter indicator:</strong><br>
+  <code class="inline">1st letter</code> → Identifies the <strong>AFSRA</strong><br>
+  <code class="inline">2nd letter</code> → Identifies the <strong>State/Country</strong><br>
+  <code class="inline">3rd &amp; 4th letters</code> → Identify the <strong>Place/Station</strong>
+</div>
+
+<p><strong>India's AFSRA letter = V. The 2nd alphabets assigned to India are: I, E, A, O.</strong></p>
+
+<!-- FIR cards -->
+<div class="fir-grid">
+  <div class="fir-card fir-delhi">
+    <div class="fir-code">VIDP</div>
+    <div class="fir-name">Delhi FIR</div>
+    <div class="fir-area">Northern India<br>2nd letter "I"</div>
+  </div>
+  <div class="fir-card fir-mumbai">
+    <div class="fir-code">VABB</div>
+    <div class="fir-name">Bombay FIR</div>
+    <div class="fir-area">Western India<br>2nd letter "A"</div>
+  </div>
+  <div class="fir-card fir-kolkata">
+    <div class="fir-code">VECF</div>
+    <div class="fir-name">Calcutta FIR</div>
+    <div class="fir-area">Eastern India<br>2nd letter "E"</div>
+  </div>
+  <div class="fir-card fir-chennai">
+    <div class="fir-code">VOMM</div>
+    <div class="fir-name">Madras FIR</div>
+    <div class="fir-area">Southern India<br>2nd letter "O"</div>
+  </div>
+  <div class="fir-card fir-guwahati">
+    <div class="fir-code">VEG</div>
+    <div class="fir-name">Guwahati sub-FIR</div>
+    <div class="fir-area">Eastern India<br>2nd letter "E"</div>
+  </div>
+</div>
+
+<div class="box box-note">
+  <div class="box-label">Examples from Text</div>
+  <code class="inline">VIDP</code> → V=AFSRA, I=India, DP=Delhi<br>
+  <code class="inline">OPCL</code> → O=AFSRA, P=Pakistan, KC=Karachi<br>
+  <code class="inline">OAKB</code> → O=AFSRA, A=Afghanistan, KB=Kabul
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     7. AERONAUTICAL CHART INDICATORS
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">7. Aeronautical Chart Indicators</h2>
+
+<div class="indicator-grid">
+  <div class="indicator-card">
+    <div class="ind-type">NDB</div>
+    <div class="ind-letters">2 (sometimes 3) capital letters</div>
+    <p>Examples: <code class="inline">SP</code> = Sarsawa NDB, <code class="inline">JG</code> = Dehradun NDB, <code class="inline">DBR</code> = Dibrugarh NDB</p>
+  </div>
+  <div class="indicator-card">
+    <div class="ind-type">VOR</div>
+    <div class="ind-letters">3 capital letters</div>
+    <p>Examples: <code class="inline">AAT</code> = Agartala VOR, <code class="inline">BBB</code> = Mumbai VOR</p>
+  </div>
+  <div class="indicator-card">
+    <div class="ind-type">ILS</div>
+    <div class="ind-letters">4 capital letters, starting with "I"</div>
+    <p>Examples: <code class="inline">IGHT</code> = Guwahati ILS RW 02, <code class="inline">ILUC</code> = Lucknow ILS 27</p>
+  </div>
+  <div class="indicator-card">
+    <div class="ind-type">Aerodrome</div>
+    <div class="ind-letters">4 capital letters — India: V + FIR letter + 2 letters</div>
+    <p>Examples: <code class="inline">VABB</code> = Mumbai, <code class="inline">VOMM</code> = Madras. Amsterdam = <code class="inline">EHAM</code>, Lisbon = <code class="inline">LPPT</code></p>
+  </div>
+  <div class="indicator-card">
+    <div class="ind-type">Significant Point</div>
+    <div class="ind-letters">5 capital letters with 2 vowels</div>
+    <p>Examples: <code class="inline">GOLEM</code>, <code class="inline">IDOLA</code></p>
+  </div>
+  <div class="indicator-card">
+    <div class="ind-type">ATS Routes</div>
+    <div class="ind-letters">≥1 alphabet + number 1–999</div>
+    <p>Examples: <code class="inline">A791</code>, <code class="inline">B209</code>. Domestic India routes start with <code class="inline">W</code> (e.g. W49). Route designators A,B,G,R,W = Amber, Blue, Green, Red, White.</p>
+  </div>
+  <div class="indicator-card">
+    <div class="ind-type">SIDs &amp; STARs</div>
+    <div class="ind-letters">NDB/VOR/Significant Point + number [+ alphabet suffix]</div>
+    <p>Examples: <code class="inline">LETPU 1D</code> = Departure, <code class="inline">SSB 1A</code> = Arrival</p>
+  </div>
+</div>
+
+<h3 class="sub-title">7.1 ATS Route Designator Letters – Selection</h3>
+<div class="tbl-wrapper">
+<table class="reg-table">
+  <thead><tr><th>Letter Group</th><th>Route Type</th></tr></thead>
+  <tbody>
+    <tr><td><code class="inline">A, B, G, R</code></td><td>Routes forming part of <strong>regional networks of ATS routes</strong> — NOT area navigation routes</td></tr>
+    <tr><td><code class="inline">L, M, N, P</code></td><td>Area navigation routes forming part of <strong>regional networks</strong></td></tr>
+    <tr><td><code class="inline">H, J, V, W</code></td><td>Routes NOT forming part of regional networks — NOT area navigation routes</td></tr>
+    <tr><td><code class="inline">Q, T, Y, Z</code></td><td>Area navigation routes NOT forming part of regional networks</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 class="sub-title">7.2 Supplementary Prefix Letters</h3>
+<div class="box box-note">
+  <div class="box-label">Prefix Rules</div>
+  <ul class="reg-list">
+    <li><code class="inline">K</code> — Low-level route established primarily for <strong>helicopters</strong></li>
+    <li><code class="inline">U</code> — Route established in the <strong>upper airspace</strong></li>
+    <li><code class="inline">S</code> — Route established exclusively for <strong>supersonic aircraft</strong> during acceleration, deceleration, and supersonic flight</li>
+  </ul>
+  Total characters in designator: <strong>SHALL NOT exceed 6</strong>; should be kept to <strong>maximum 5</strong> where possible.
+</div>
+
+<h3 class="sub-title">7.3 Supplementary Suffix Letters</h3>
+<div class="box box-note">
+  <div class="box-label">Suffix Rules</div>
+  <ul class="reg-list">
+    <li><code class="inline">F</code> — <strong>Advisory service only</strong> provided on that route/portion</li>
+    <li><code class="inline">G</code> — <strong>Flight information service only</strong> provided on that route/portion</li>
+  </ul>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     8. SPECIAL AIRSPACE AREAS
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">8. Special Airspace Areas – P, R, D, TSA, TRA</h2>
+
+<h3 class="sub-title">8.1 Identification System for P, R, D Areas</h3>
+<p>Identification = <strong>Nationality letters</strong> + <strong>P/R/D</strong> + <strong>Unduplicated number</strong></p>
+
+<div class="tbl-wrapper">
+<table class="reg-table">
+  <thead><tr><th>Type</th><th>Letter</th><th>Definition</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr>
+      <td style="font-weight:700;color:#b91c1c">Prohibited Area</td>
+      <td><code class="inline">P</code></td>
+      <td>Airspace above land/territorial waters of India within which flights are <strong>NOT permitted at any time under any circumstances</strong></td>
+      <td><code class="inline">VA(P)-2</code> = Prohibited Area No. 2 in Mumbai FIR</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;color:#b45309">Restricted Area</td>
+      <td><code class="inline">R</code></td>
+      <td>Airspace above land/territorial waters of India within which flight of aircraft <strong>is restricted</strong></td>
+      <td><code class="inline">VO(R)-81</code> = Restricted Area No. 81 in Chennai FIR</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;color:#1a6fa8">Danger Area</td>
+      <td><code class="inline">D</code></td>
+      <td>Airspace within which activities <strong>dangerous to flight</strong> exist at specified times (notified by NOTAMs)</td>
+      <td><code class="inline">VE(D)-72</code> = Danger Area No. 72 in Calcutta FIR</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 class="sub-title">8.2 Military Exercise and Training Areas</h3>
+
+<div class="box box-def">
+  <div class="box-label">TSA – Temporary Segregated Area</div>
+  Airspace <strong>temporarily segregated and allocated for the exclusive use of a particular user</strong> during a determined period. <span class="hl-red">Other traffic will NOT be allowed to transit.</span><br><br>
+  <strong>Identifier:</strong> <code class="inline">TSA</code> + number (501–999) + space + [place name in square brackets].<br>
+  For multiple sub-areas: number followed by capital letter in round brackets.<br>
+  <strong>Example:</strong> <code class="inline">TSA801(A) [Thanjavur]</code>
+</div>
+
+<div class="box box-def">
+  <div class="box-label">TRA – Temporary Reserved Area</div>
+  Airspace <strong>temporarily reserved for specific use</strong>, but through which <strong>other traffic may be allowed to transit under ATC clearance</strong>.<br><br>
+  <strong>Identifier:</strong> <code class="inline">TRA</code> + number (501–999) + space + [place name in square brackets].<br>
+  <strong>Example:</strong> <code class="inline">TRA601(A) [Panagarh]</code>
+</div>
+
+<div class="box box-warn">
+  <div class="box-label">Number Allocation – TSA/TRA</div>
+  A <strong>single series (501–999)</strong> is used for both TSA and TRA regardless of type. A number is <strong>NOT duplicated</strong> in any type.
+</div>
+
+<div class="range-grid">
+  <div class="range-card" style="border-color:#3b82f6">
+    <div class="rc-fir">Mumbai FIR</div>
+    <div class="rc-range">501 – 600</div>
+  </div>
+  <div class="range-card" style="border-color:#22c55e">
+    <div class="rc-fir">Kolkata FIR</div>
+    <div class="rc-range">601 – 700</div>
+  </div>
+  <div class="range-card" style="border-color:#f59e0b">
+    <div class="rc-fir">Delhi FIR</div>
+    <div class="rc-range">701 – 800</div>
+  </div>
+  <div class="range-card" style="border-color:#8b5cf6">
+    <div class="rc-fir">Chennai FIR</div>
+    <div class="rc-range">801 – 900</div>
+  </div>
+  <div class="range-card" style="border-color:#6b7280">
+    <div class="rc-fir">Reserved for Future Use</div>
+    <div class="rc-range">901 – 999</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     9. CONTROL AREAS AND CONTROL ZONES
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">9. Control Areas and Control Zones</h2>
+
+<h3 class="sub-title">9.1 Control Areas (CTA)</h3>
+<p>Control areas (including airways and terminal control areas) shall be delineated to encompass sufficient airspace to contain flight paths of IFR flights.</p>
+
+<div class="box box-warn">
+  <div class="box-label">Lower Limit of Control Area</div>
+  A lower limit of a Control Area shall be established at a height above the ground or water of <strong>not less than 200 m (700 ft)</strong>.
+</div>
+
+<h3 class="sub-title">9.2 Control Zones (CTR)</h3>
+<p>Control zone lateral limits encompass portions of airspace <strong>not within control areas</strong>, containing paths of IFR flights arriving at and departing from aerodromes under IMC.</p>
+
+<div class="box box-warn">
+  <div class="box-label">Lateral Limit of CTR</div>
+  Shall extend to at least <strong>9.3 km (5 NM)</strong> from the centre of the aerodrome(s) in the directions from which approaches may be made.
+</div>
+
+<div class="box box-note">
+  <div class="box-label">Notes</div>
+  <ul class="reg-list">
+    <li>Aircraft holding in the vicinity of aerodromes are considered as <strong>arriving aircraft</strong>.</li>
+    <li>A control zone may include <strong>two or more aerodromes situated close together</strong>.</li>
+  </ul>
+</div>
+
+<h3 class="sub-title">9.3 Local / Training Flights</h3>
+<div class="box box-proc">
+  <div class="box-label">Procedure</div>
+  <ul class="reg-list">
+    <li>For local training/test flights by scheduled/non-scheduled operators: <strong>flight plan submitted as for non-scheduled flights</strong>.</li>
+    <li>For training flights by flying clubs within ATZ: <strong>flight plan may be submitted by Fax or telephone</strong>.</li>
+    <li>If no ATZ established and no reserved airspace: an area of <strong>5 NM radius from ARP, up to 3000 ft AGL</strong> = vicinity of aerodrome for VFR.</li>
+    <li>For cross-country flights from airfields with no ATS reporting office: flight plan submitted to FIC by Fax. Must include <strong>accumulated elapsed times to FIR boundary points</strong> and <strong>contact tel/mobile of PIC in Field 18</strong>.</li>
+  </ul>
+</div>
+
+<h3 class="sub-title">9.4 Identification of ATS Units and Airspaces</h3>
+<ul class="reg-list">
+  <li>An <strong>Area Control Centre or FIC</strong> → identified by name of a <strong>nearby town/city or geographic feature</strong>.</li>
+  <li>An <strong>Aerodrome Control Tower or Approach Control Unit</strong> → identified by <strong>name of the aerodrome</strong>.</li>
+  <li>A <strong>Control Zone, CTA, or FIR</strong> → identified by <strong>name of the unit having jurisdiction</strong> over that airspace.</li>
+</ul>
+
+<h3 class="sub-title">9.5 Upper Airspace FIRs / Control Areas</h3>
+<p>To limit the number of FIRs or CTAs through which high-flying aircraft operate, a FIR or CTA may be delineated to include <strong>upper airspace within the lateral limits of a number of lower FIRs or CTAs</strong>.</p>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     10. AIR TRAFFIC CONTROL SERVICE
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">10. Air Traffic Control Service</h2>
+
+<h3 class="sub-title">10.1 Application – Where ATC is Provided</h3>
+<ul class="reg-list">
+  <li>To <strong>all IFR flights</strong> in airspace Classes A, B, C, D and E.</li>
+  <li>To <strong>all VFR flights</strong> in airspace Classes B, C and D.</li>
+  <li>To <strong>all special VFR flights</strong>.</li>
+  <li>To <strong>all aerodrome traffic at controlled aerodromes</strong>.</li>
+</ul>
+
+<h3 class="sub-title">10.2 Separation Provided by ATC Clearances</h3>
+<p>Clearances shall provide separation:</p>
+<ul class="reg-list">
+  <li>Between <strong>all flights</strong> in airspace Classes <strong>A and B</strong>.</li>
+  <li>Between <strong>IFR flights</strong> in airspace Classes <strong>C, D and E</strong>.</li>
+  <li>Between <strong>IFR and VFR flights</strong> in airspace Class <strong>C</strong>.</li>
+  <li>Between <strong>IFR and Special VFR flights</strong>.</li>
+  <li>Between <strong>Special VFR flights</strong> when so prescribed by the appropriate ATS authority.</li>
+</ul>
+
+<div class="box box-note">
+  <div class="box-label">Separation Minima</div>
+  Selection of separation minima within a given airspace shall be as per provisions of <strong>PANS-ATM</strong> and <strong>Regional Supplementary Procedures</strong>.
+</div>
+
+<h3 class="sub-title">10.3 Read-back of Clearances and Safety-Related Information</h3>
+<div class="box box-proc">
+  <div class="box-label">Mandatory Read-back Items</div>
+  The flight crew shall read back safety-related parts of ATC clearances/instructions. The following shall <strong>ALWAYS</strong> be read back:
+  <ol class="reg-list">
+    <li><strong>ATC route clearances</strong></li>
+    <li>Clearances and instructions to <strong>enter, land on, take off from, hold short of, cross and backtrack</strong> on any runway</li>
+    <li><strong>Runway-in-use, altimeter settings, SSR codes, level instructions, heading and speed instructions</strong>, and whether issued by the controller or contained in ATIS broadcasts, <strong>transition levels</strong></li>
+  </ol>
+</div>
+
+<div class="box box-note">
+  <div class="box-label">Controller Obligation</div>
+  The controller shall listen to the read-back to ascertain that the clearance has been correctly acknowledged and shall take <strong>immediate action to correct any discrepancies</strong>. Voice read-back of CPDLC messages shall <strong>NOT be required</strong>.
+</div>
+
+<h3 class="sub-title">10.4 Service to Aircraft in Emergency</h3>
+<div class="box box-warn">
+  <div class="box-label">Emergency Priority</div>
+  An aircraft known or believed to be in a state of emergency, including being subjected to <strong>unlawful interference</strong>, shall be given <strong>maximum consideration, assistance and priority over other aircraft</strong>.
+</div>
+
+<div class="tbl-wrapper">
+<table class="reg-table">
+  <thead><tr><th>Transponder Code</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td><code class="inline">Mode A, 7700</code></td><td><strong>General Emergency</strong></td></tr>
+    <tr><td><code class="inline">Mode A, 7500</code></td><td><strong>Unlawful Interference (Hijack)</strong></td></tr>
+    <tr><td colspan="2">Also: activate ADS emergency/urgency capability OR transmit emergency message via CPDLC</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 class="sub-title">10.5 Air Traffic Flow Management (ATFM)</h3>
+<p>ATFM is primarily meant to <strong>balance demand against capacity</strong> to achieve optimum utilisation of major resources — Airport, Airspace, and Aircraft — at every Indian airport where there is a capacity constraint.</p>
+<div class="box box-note">
+  <div class="box-label">India's C-ATFM System</div>
+  AAI has established a <strong>Central Air Traffic Flow Management (C-ATFM)</strong> system consisting of:
+  <ul class="reg-list">
+    <li><strong>Central Command Center (CCC)</strong> at Delhi</li>
+    <li><strong>Flow Management Positions (FMPs)</strong> at major ACCs and ATC towers</li>
+    <li>Phase I: FMPs at <strong>Delhi, Mumbai, Bengaluru, Chennai, Kolkata, Hyderabad</strong> (handle 60% of Indian air traffic)</li>
+    <li>Phase II: FMPs at additional 30 airports (phased manner)</li>
+  </ul>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     11. FLIGHT INFORMATION SERVICE
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">11. Flight Information Service (FIS)</h2>
+
+<h3 class="sub-title">11.1 Application</h3>
+<p>FIS shall be provided to all aircraft which are likely to be affected by the information and which are:</p>
+<ul class="reg-list">
+  <li>Provided with air traffic control service; or</li>
+  <li>Otherwise known to the relevant ATS units.</li>
+</ul>
+
+<h3 class="sub-title">11.2 Scope of FIS – Information Included</h3>
+<div class="box box-proc">
+  <div class="box-label">FIS Includes</div>
+  <ul class="reg-list">
+    <li><strong>SIGMET</strong> and AIRMET information (<em>Note: AIRMET is NOT provided in India</em>).</li>
+    <li>Information on <strong>pre-eruption volcanic activity, eruptions, volcanic ash clouds</strong>.</li>
+    <li>Information on <strong>release of radioactive materials or toxic chemicals</strong> into atmosphere.</li>
+    <li>Changes in <strong>serviceability of navigation aids</strong>.</li>
+    <li>Changes in condition of <strong>aerodromes and associated facilities</strong> (including state of movement areas affected by snow, ice, or significant depth of water).</li>
+    <li>Information on <strong>unmanned free balloons</strong> and any other information likely to affect safety.</li>
+  </ul>
+</div>
+
+<h3 class="sub-title">11.3 FIS Provided to Flights</h3>
+<ul class="reg-list">
+  <li><strong>Weather conditions</strong> at departure, destination and alternate aerodromes.</li>
+  <li><strong>Collision hazards</strong> for aircraft operating in airspace Classes <strong>C, D, E, F and G</strong>.</li>
+  <li>For flights over water: radio call sign, position, track, speed of <strong>surface vessels</strong> (if requested and practicable).</li>
+</ul>
+
+<h3 class="sub-title">11.4 FIS to VFR Flights</h3>
+<p>FIS provided to VFR flights shall include <strong>traffic and weather conditions along the route likely to make operation under visual flight rules impracticable</strong>.</p>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     12. ATIS
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">12. Automatic Terminal Information Service (ATIS)</h2>
+
+<h3 class="sub-title">12.1 Voice-ATIS Broadcasts</h3>
+<div class="box box-def">
+  <div class="box-label">Purpose</div>
+  Provided at aerodromes where there is a requirement to <strong>reduce the communication load on the ATS VHF air-ground communication channels</strong>.
+</div>
+<div class="box box-warn">
+  <div class="box-label">Critical Rules – Voice-ATIS</div>
+  <ul class="reg-list">
+    <li>A <strong>discrete VHF frequency</strong> shall, whenever practicable, be used.</li>
+    <li>If discrete freq unavailable, may use VOR voice channel — but <strong>NOT on ILS voice channel</strong>.</li>
+    <li>Broadcast shall be <strong>continuous and repetitive</strong>.</li>
+    <li>Message should, whenever practicable, <strong>NOT exceed 30 seconds</strong>.</li>
+  </ul>
+</div>
+
+<h3 class="sub-title">12.2 D-ATIS (Data Link ATIS)</h3>
+<p>Where D-ATIS supplements Voice-ATIS, the information shall be <strong>identical in both content and format</strong> to the Voice-ATIS broadcast.</p>
+
+<h3 class="sub-title">12.3 ATIS Operational Rules</h3>
+<div class="box box-proc">
+  <div class="box-label">When ATIS is Provided:</div>
+  <ul class="reg-list">
+    <li>Information relates to a <strong>single aerodrome</strong>.</li>
+    <li>Updated <strong>immediately a significant change occurs</strong>.</li>
+    <li>Preparation and dissemination is the responsibility of <strong>Air Traffic Services</strong>.</li>
+    <li>Each message identified by a <strong>letter of the ICAO spelling alphabet</strong> (designators in alphabetical order).</li>
+    <li>Aircraft shall acknowledge receipt upon establishing communication with the ATS unit.</li>
+    <li>ATS unit provides aircraft with <strong>current altimeter setting</strong> upon reply.</li>
+    <li>Meteorological information extracted from the <strong>local met routine or special report</strong>.</li>
+    <li>If rapidly changing conditions, ATIS shall indicate that <strong>relevant weather info will be given on initial contact</strong>.</li>
+    <li>Information in a current ATIS (acknowledged by aircraft) need not be re-transmitted, <strong>except the altimeter setting</strong>.</li>
+  </ul>
+</div>
+
+<h3 class="sub-title">12.4 ATIS Message Contents (Arriving and Departing)</h3>
+<div class="tbl-wrapper">
+<table class="reg-table">
+  <thead><tr><th>Item</th><th>Content</th></tr></thead>
+  <tbody>
+    <tr><td>a</td><td>Name of aerodrome</td></tr>
+    <tr><td>b</td><td>Arrival and/or departure indicator</td></tr>
+    <tr><td>c</td><td>Contract type (if D-ATIS)</td></tr>
+    <tr><td>d</td><td>Designator (ICAO alphabet letter)</td></tr>
+    <tr><td>e</td><td>Time of observation (if appropriate)</td></tr>
+    <tr><td>f</td><td>Type of approach(es) to be expected</td></tr>
+    <tr><td>g</td><td>Runway(s) in use; status of arresting system (if any)</td></tr>
+    <tr><td>h</td><td>Significant runway surface conditions; braking action</td></tr>
+    <tr><td>i</td><td>Holding delay (if appropriate)</td></tr>
+    <tr><td>j</td><td>Transition level (if applicable)</td></tr>
+    <tr><td>k</td><td>Other essential operational information</td></tr>
+    <tr><td>l</td><td>Surface wind direction and speed (incl. significant variations)</td></tr>
+    <tr><td>*m</td><td>Visibility and, when applicable, RVR</td></tr>
+    <tr><td>*n</td><td>Present weather</td></tr>
+    <tr><td>*o</td><td>Cloud below 1500m (5000 ft) or below highest MSA (whichever greater); cumulonimbus; vertical visibility if sky obscured</td></tr>
+    <tr><td>p</td><td>Air temperature</td></tr>
+    <tr><td>q</td><td>Dew point temperature</td></tr>
+    <tr><td>r</td><td>Altimeter setting(s)</td></tr>
+    <tr><td>s</td><td>Significant meteorological phenomena in approach/climb-out areas; wind shear; recent weather</td></tr>
+    <tr><td>t</td><td>Trend forecast (when available)</td></tr>
+    <tr><td>u</td><td>Specific ATIS instructions</td></tr>
+  </tbody>
+</table>
+</div>
+<p style="font-size:8.5pt;color:#6b7280;margin-top:4px;">* Items m, n, o are replaced by <strong>"CAVOK"</strong> whenever visibility, cloud and present weather are better than prescribed values.</p>
+
+<h3 class="sub-title">12.5 Runway Surface Condition Reporting Terms</h3>
+<div class="box box-note">
+  <div class="box-label">Effective November 2021</div>
+  Standardised terms for runway surface conditions affecting braking:
+  <ul class="reg-list" style="column-count:2;column-gap:20px;">
+    <li>COMPACTED SNOW</li><li>DRY</li><li>DRY SNOW</li>
+    <li>DRY SNOW ON TOP OF COMPACTED SNOW</li><li>DRY SNOW ON TOP OF ICE</li>
+    <li>FROST</li><li>ICE</li><li>SLUSH</li>
+    <li>STANDING WATER</li><li>WATER ON TOP OF COMPACTED SNOW</li>
+    <li>WET</li><li>WET ICE</li><li>WET SNOW</li>
+    <li>WET SNOW ON TOP OF COMPACTED SNOW</li><li>WET SNOW ON TOP OF ICE</li>
+  </ul>
+  Friction measuring devices shall correlate in a manner acceptable to <strong>DGCA</strong>.
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     13. ALERTING SERVICE
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">13. Alerting Service</h2>
+
+<h3 class="sub-title">13.1 Application</h3>
+<p>Alerting service shall be provided:</p>
+<ul class="reg-list">
+  <li>For <strong>all aircraft provided with ATC service</strong>.</li>
+  <li>As far as practicable, to <strong>all aircraft having filed a flight plan or otherwise known to ATS</strong>.</li>
+  <li>To <strong>any aircraft known or believed to be subject of unlawful interference</strong>.</li>
+</ul>
+
+<div class="box box-note">
+  <div class="box-label">Central Point for Emergency Info</div>
+  Flight Information Centres or Area Control Centres serve as the <strong>central point for collecting all information relevant to a state of emergency</strong> and forwarding to the appropriate Rescue Coordination Centre.
+</div>
+
+<h3 class="sub-title">13.2 The Three Emergency Phases</h3>
+
+<div class="phase-grid">
+  <div class="phase-card phase-incerfa">
+    <div class="phase-name">INCERFA</div>
+    <div class="phase-meaning">Uncertainty Phase</div>
+    <ul>
+      <li>No communication for <strong>30 minutes</strong> after it was due, or from time of unsuccessful attempt</li>
+      <li>Aircraft fails to arrive within <strong>30 minutes</strong> of ETA (last notified/estimated), if no doubt about safety</li>
+    </ul>
+  </div>
+  <div class="phase-card phase-alerfa">
+    <div class="phase-name">ALERFA</div>
+    <div class="phase-meaning">Alert Phase</div>
+    <ul>
+      <li>Following INCERFA, further attempts to contact aircraft and inquiries have <strong>failed</strong></li>
+      <li>Aircraft cleared to land, <strong>fails to land within 5 minutes</strong> of ETA, comm not re-established</li>
+      <li>Operating efficiency impaired but <strong>forced landing NOT likely</strong></li>
+      <li>Aircraft known/believed subject of <strong>unlawful interference</strong></li>
+    </ul>
+  </div>
+  <div class="phase-card phase-detresfa">
+    <div class="phase-name">DETRESFA</div>
+    <div class="phase-meaning">Distress Phase</div>
+    <ul>
+      <li>Following ALERFA, further attempts indicate aircraft <strong>probably in distress</strong></li>
+      <li>Fuel on board considered <strong>exhausted</strong> or insufficient to reach safety</li>
+      <li>Operating efficiency impaired to extent that <strong>forced landing is likely</strong></li>
+      <li>Information received that forced landing <strong>is about to be or has been made</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Emergency phases flowchart SVG -->
+<div class="diagram-wrapper">
+<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <marker id="arr2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#374151"/>
+    </marker>
+  </defs>
+  <!-- Start -->
+  <rect x="20" y="80" width="100" height="40" rx="6" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+  <text x="70" y="95" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="#065f46">NORMAL</text>
+  <text x="70" y="110" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#065f46">OPERATIONS</text>
+  <!-- Arrow 1 -->
+  <line x1="120" y1="100" x2="180" y2="100" stroke="#374151" stroke-width="2" marker-end="url(#arr2)"/>
+  <text x="150" y="92" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="8" fill="#6b7280">30 min</text>
+  <!-- INCERFA -->
+  <rect x="180" y="68" width="140" height="64" rx="6" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+  <text x="250" y="84" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700" fill="#92400e">INCERFA</text>
+  <text x="250" y="99" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#92400e">Uncertainty Phase</text>
+  <text x="250" y="113" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#92400e">No comms / late arrival</text>
+  <text x="250" y="126" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="8" fill="#92400e">30 min overdue</text>
+  <!-- Arrow 2 -->
+  <line x1="320" y1="100" x2="380" y2="100" stroke="#374151" stroke-width="2" marker-end="url(#arr2)"/>
+  <text x="350" y="92" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="8" fill="#6b7280">Persists</text>
+  <!-- ALERFA -->
+  <rect x="380" y="68" width="140" height="64" rx="6" fill="#fed7aa" stroke="#c2410c" stroke-width="2"/>
+  <text x="450" y="84" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700" fill="#7c2d12">ALERFA</text>
+  <text x="450" y="99" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7c2d12">Alert Phase</text>
+  <text x="450" y="113" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7c2d12">Cleared, fails to land</text>
+  <text x="450" y="126" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="8" fill="#7c2d12">within 5 min / unlawful</text>
+  <!-- Arrow 3 -->
+  <line x1="520" y1="100" x2="575" y2="100" stroke="#374151" stroke-width="2" marker-end="url(#arr2)"/>
+  <text x="547" y="92" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="8" fill="#6b7280">Escalates</text>
+  <!-- DETRESFA -->
+  <rect x="575" y="68" width="110" height="64" rx="6" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+  <text x="630" y="84" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="#7f1d1d">DETRESFA</text>
+  <text x="630" y="99" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7f1d1d">Distress Phase</text>
+  <text x="630" y="113" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="8" fill="#7f1d1d">Fuel exhausted /</text>
+  <text x="630" y="126" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="8" fill="#7f1d1d">Forced landing likely</text>
+</svg>
+<div class="diagram-caption">Fig 2 – Emergency Phase Escalation: INCERFA → ALERFA → DETRESFA</div>
+</div>
+
+<h3 class="sub-title">13.3 Emergency Information to Other Aircraft</h3>
+<div class="box box-warn">
+  <div class="box-label">Unlawful Interference – Special Rule</div>
+  When ATS believes an aircraft is being subjected to unlawful interference, <strong>no reference shall be made in ATS air-ground communications to the nature of the emergency</strong> unless it has first been referred to in communications from the aircraft and it is certain such reference will NOT aggravate the situation.
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     14. ATS ROUTES IN INDIA
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">14. ATS Routes in India – Rules and Requirements</h2>
+
+<div class="box box-warn">
+  <div class="box-label">ATC Clearance Requirements</div>
+  <ul class="reg-list">
+    <li>Aircraft shall obtain ATC clearance from appropriate ATS unit at least <strong>10 minutes prior to entering controlled airspace</strong>.</li>
+    <li>Aircraft shall NOT join or cross ATS routes without prior approval/ATC clearance:
+      <ul>
+        <li>At least <strong>10 minutes prior</strong> if in direct VHF contact.</li>
+        <li>At least <strong>20 minutes prior</strong> if contact is through en-route radio frequency.</li>
+      </ul>
+    </li>
+    <li>All aircraft transiting from one FIR to another shall forward <strong>estimates for FIR boundary (including FL)</strong> to the ATS unit of the FIR to be entered, at least <strong>10 minutes prior</strong>. <em>(Does NOT apply between Indian FIRs — only entering Indian FIR from a foreign FIR.)</em></li>
+  </ul>
+</div>
+
+<div class="box box-proc">
+  <div class="box-label">Crossing ATS Routes</div>
+  <ul class="reg-list">
+    <li>Aircraft will join or cross ATS routes at or close to a <strong>designated reporting point</strong>.</li>
+    <li>Crossing shall be done at <strong>90° to the direction of the route</strong> and at a level appropriate to the magnetic track.</li>
+    <li>VFR flights to cross ATS routes outside controlled airspace shall only cross at an appropriate VFR level at <strong>right angle to the direction</strong> of the ATS route.</li>
+  </ul>
+</div>
+
+<div class="box box-note">
+  <div class="box-label">Position Reporting</div>
+  <ul class="reg-list">
+    <li>On routes defined by <strong>significant points</strong>: report as soon as possible after passing each designated reporting point.</li>
+    <li>On routes <strong>NOT defined by significant points</strong>: report after the <strong>first half hour</strong> of flight and at <strong>hourly intervals</strong> thereafter. Additional reports at shorter intervals may be requested by ATC.</li>
+  </ul>
+</div>
+
+<div class="box box-warn">
+  <div class="box-label">International Border Rule</div>
+  All aircraft are <strong>forbidden to operate within 15 NM of the international border of India</strong> unless specifically permitted, following an ATS route, or operating to/from an aerodrome situated within 15 NM of the border.
+</div>
+
+<div class="box box-warn">
+  <div class="box-label">MFA Obstacle Clearance</div>
+  Minimum flight altitude on ATS routes is determined to ensure at least <strong>1000 ft (300 m) vertical clearance above the highest obstacle within 10 KM on each side of the centre line</strong> of the route.
+</div>
+
+<div class="box box-note">
+  <div class="box-label">Flying Outside ATS Routes</div>
+  Flying outside of ATS routes is <strong>prohibited within Indian FIRs</strong>, unless otherwise authorised by ATC. Scheduled international flights are permitted to flight plan using <strong>domestic ATS route segments</strong> to/from destination, departure and approved alternate airports not connected by international ATS Routes.
+</div>
+
+<h3 class="sub-title">14.1 ATS Route Description in AIP (With effect 4/11/2021)</h3>
+<div class="tbl-wrapper">
+<table class="reg-table">
+  <thead><tr><th>AIP Section</th><th>Old Description</th><th>New Description</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ENR 3.1</strong></td><td>Lower ATS Routes</td><td><strong>Conventional Navigation Routes</strong></td></tr>
+    <tr><td><strong>ENR 3.2</strong></td><td>Upper ATS Routes</td><td><strong>Air Navigation Routes</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 class="sub-title">14.2 Types of Services (at Civil Aerodromes)</h3>
+<div class="box box-def">
+  <div class="box-label">Services Provided (except at Military Bases)</div>
+  <ol class="reg-list">
+    <li>Air Traffic Control Service</li>
+    <li>Air Traffic Advisory Services</li>
+    <li>Flight Information Service and Alerting Service</li>
+    <li>Surveillance Services</li>
+  </ol>
+  <strong>Note:</strong> There is <strong>no distinction between upper and lower controlled airspace</strong> in India.
+</div>
+
+<h3 class="sub-title">14.3 Strayed Aircraft</h3>
+<div class="box box-def">
+  <div class="box-label">Definition</div>
+  An aircraft that has <strong>deviated significantly from its intended track or reports that it is lost</strong>. An aircraft may be considered "strayed" by one unit and "unidentified" by another. ATS takes all necessary steps to assist and safeguard its flight.
+</div>
+
+<h3 class="sub-title">14.4 Air Traffic Advisory Service</h3>
+<p>Provided to aircraft operating <strong>outside controlled airspace on ATS routes classified "F"</strong>.</p>
+<div class="box box-note">
+  <div class="box-label">Advisory Service vs ATC</div>
+  IFR flights using advisory service in Class F comply with same procedures as controlled flights <strong>except</strong> that the flight plan and changes are <strong>NOT subject to clearance</strong>. The unit only provides advice on essential traffic and suggests possible courses of action.
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     15. PRACTICE QUESTIONS AND ANSWERS
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">15. Practice Questions with Answers</h2>
+<p style="margin-bottom:14px;">All 78 questions from the textbook with correct answers highlighted in <span style="color:var(--green);font-weight:700;">green</span>. Use for self-assessment.</p>
+
+<div class="mcq-grid">
+
+  <!-- Q1 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">1</span>A lower limit of a Control Area shall be established at a height above the ground level or water of not less than:</div>
+    <ul class="mcq-options">
+      <li>A) 150 metres</li>
+      <li class="correct">B) 200 metres</li>
+      <li>C) 300 metres</li>
+    </ul>
+  </div>
+
+  <!-- Q2 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">2</span>The Approach Control Service is an air traffic control service:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) provided for the arriving and departing controlled flights</li>
+      <li>B) for IFR flights arriving and departing</li>
+      <li>C) provided for IFR traffic within a Control Zone</li>
+    </ul>
+  </div>
+
+  <!-- Q3 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">3</span>The units providing Air Traffic Services are:</div>
+    <ul class="mcq-options">
+      <li>A) Area Control Center – Advisory Center – FIC – Approach Control Office and Tower</li>
+      <li class="correct">B) Area Control Center – FIC – Approach Control Office – Aerodrome Control Tower and ATS reporting office</li>
+      <li>C) Area Control Center – Approach Control Office and Aerodrome Control Tower only</li>
+    </ul>
+  </div>
+
+  <!-- Q4 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">4</span>Air traffic control service is provided for the purpose of:</div>
+    <ul class="mcq-options">
+      <li>A) Avoiding collisions between all aircraft and maintaining an orderly flow of air traffic</li>
+      <li class="correct">B) Preventing collisions between aircraft, between aircraft and obstacles on the manoeuvring area and expediting and maintaining an orderly flow of air traffic</li>
+      <li>C) Preventing collisions between controlled air traffic and expediting and maintaining an orderly flow of air traffic</li>
+    </ul>
+  </div>
+
+  <!-- Q5 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">5</span>To perform a VFR flight in airspace classification E:</div>
+    <ul class="mcq-options">
+      <li>A) a clearance and/or two-way radio communication is required</li>
+      <li>B) a clearance is required</li>
+      <li class="correct">C) two-way radio communication is not required</li>
+    </ul>
+  </div>
+
+  <!-- Q6 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">6</span>Which statement is correct?</div>
+    <ul class="mcq-options">
+      <li>A) The lower limit of a UIR may coincide with an IFR cruising level</li>
+      <li class="correct">B) The lower limit of a TMA shall be established at a height of at least 700ft AGL</li>
+      <li>C) The upper limit of a CTR shall be established at a height of at least 3000ft AMSL</li>
+    </ul>
+  </div>
+
+  <!-- Q7 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">7</span>What is the speed limit (IAS) in an airspace class E?</div>
+    <ul class="mcq-options">
+      <li>A) 250kt VFR and IFR, all levels</li>
+      <li class="correct">B) 250kt for IFR and VFR up to FL 100</li>
+      <li>C) 250 kt only for IFR up to FL 100</li>
+    </ul>
+  </div>
+
+  <!-- Q8 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">8</span>The speed limitation for IFR flights inside ATS airspace classified as C, when flying below 3050m (1000ft) AMSL, is:</div>
+    <ul class="mcq-options">
+      <li>A) 250kt IAS</li>
+      <li class="correct">B) Not applicable</li>
+      <li>C) 250kt TAS</li>
+    </ul>
+  </div>
+
+  <!-- Q9 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">9</span>RCP 10 means:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) 10 is the number of seconds it takes for an instruction to travel from the ground to aircraft and acknowledgment back to the ground</li>
+      <li>B) 10 is the maximum number of minutes it takes for an instruction to be executed by an aircraft</li>
+      <li>C) Aircraft must communicate with ATC every 10 minutes</li>
+    </ul>
+  </div>
+
+  <!-- Q10 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">10</span>An ATS airspace where IFR and VFR flights are permitted, all flights are subject to air traffic control service and are separated from each other is classified as:</div>
+    <ul class="mcq-options">
+      <li>A) Airspace C</li>
+      <li class="correct">B) Airspace B</li>
+      <li>C) Airspace D</li>
+    </ul>
+  </div>
+
+  <!-- Q11 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">11</span>The speed limitation for both IFR flights and VFR flights inside ATS airspace classified as B, when flying below 3050m (10000ft) AMLS, is:</div>
+    <ul class="mcq-options">
+      <li>A) 260kt IAS</li>
+      <li class="correct">B) Not applicable</li>
+      <li>C) 250kt IAS</li>
+    </ul>
+  </div>
+
+  <!-- Q12 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">12</span>Air traffic services unit clocks and other time recording devices shall be checked as necessary to ensure correct time within plus or minus:</div>
+    <ul class="mcq-options">
+      <li>A) 1 minute of UTC at all times</li>
+      <li>B) 15 seconds of UTC at all times</li>
+      <li class="correct">C) 30 seconds of UTC at all times</li>
+    </ul>
+  </div>
+
+  <!-- Q13 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">13</span>The following airspace falls under Kolkata FIR?</div>
+    <ul class="mcq-options">
+      <li class="correct">A) VED</li>
+      <li>B) VEB</li>
+      <li>C) VOR</li>
+    </ul>
+  </div>
+
+  <!-- Q14 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">14</span>The VMC minima for a VFR flight inside an ATS airspace classified as B, is:</div>
+    <ul class="mcq-options">
+      <li>A) 8km visibility when at or above 3050m (10000ft) AMSL and clear of clouds</li>
+      <li class="correct">B) 8km visibility when at or above 3050m (10000ft) AMSL, and 1500m horizontal and 300m vertical from clouds</li>
+      <li>C) 5NM visibility when below 3050m (10000ft) AMSL, 1500m horizontal and 300m vertical from cloud</li>
+    </ul>
+  </div>
+
+  <!-- Q15 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">15</span>A VFR flight when flying inside an ATS airspace classified as B has to maintain the following minima of flight visibility and distance from clouds:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) 5km visibility, 1500m horizontal and 300m vertical from clouds</li>
+      <li>B) 8km below 3050m (10000ft) AMSL, 1500m horizontal and 300m vertical from clouds</li>
+      <li>C) 5km below 3050m (10000ft) AMSL and clear of clouds</li>
+    </ul>
+  </div>
+
+  <!-- Q16 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">16</span>An ATS airspace where IFR and VFR flights are permitted, all flights are subject to ATC service and IFR flights are separated from other IFR flights and from VFR flights; VFR flights are separated from IFR flights and receive traffic information in respect of other VFR flights, is classified as:</div>
+    <ul class="mcq-options">
+      <li>A) Airspace B</li>
+      <li>B) Airspace E</li>
+      <li class="correct">C) Airspace C</li>
+    </ul>
+  </div>
+
+  <!-- Q17 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">17</span>Which condition is requested so that an aerodrome may be considered controlled?</div>
+    <ul class="mcq-options">
+      <li class="correct">A) The aerodrome shall be provided with a Control Tower</li>
+      <li>B) The aerodrome shall be located within a CTR and provided with a Control Tower</li>
+      <li>C) The aerodrome shall be located within a Control Zone</li>
+    </ul>
+  </div>
+
+  <!-- Q18 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">18</span>An ATS airspace where IFR and VFR flights are permitted and all flights are subject to ATC service. IFR flights are separated from other IFR flights and receive traffic information in respect of VFR flights. VFR flights receive traffic information in respect of all other flights, is classified as:</div>
+    <ul class="mcq-options">
+      <li>A) Airspace B</li>
+      <li class="correct">B) Airspace D</li>
+      <li>C) Airspace A</li>
+    </ul>
+  </div>
+
+  <!-- Q19 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">19</span>An ATS airspace where IFR and VFR flights are permitted are subject to ATC Service and are separated from other IFR flights. All flights receive traffic information as far as practical, is classified as:</div>
+    <ul class="mcq-options">
+      <li>A) Airspace D</li>
+      <li>B) Airspace A</li>
+      <li class="correct">C) Airspace E</li>
+    </ul>
+  </div>
+
+  <!-- Q20 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">20</span>An ATS airspace where IFR and VFR flights are permitted, all participating IFR flights receive an air traffic advisory service and all flights receive flight information service if requested, is classified:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) Airspace F</li>
+      <li>B) Airspace E</li>
+      <li>C) Airspace D</li>
+    </ul>
+  </div>
+
+  <!-- Q21 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">21</span>Which statement regarding approach control service is correct?</div>
+    <ul class="mcq-options">
+      <li>A) Approach control have to advise aircraft operators about substantial delays in departure when expected to exceed 45 minutes</li>
+      <li>B) During a visual approach an aircraft is maintaining its own separation</li>
+      <li class="correct">C) If it is anticipated that an aircraft has to hold for 30 minutes or more, an Expected Approach Time will be transmitted by the most expeditious means to the aircraft</li>
+    </ul>
+  </div>
+
+  <!-- Q22 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">22</span>Which statement regarding aerodrome control service is correct?</div>
+    <ul class="mcq-options">
+      <li class="correct">A) An aircraft entering the traffic circuit without permission of ATC, will be cleared to land if this is desirable</li>
+      <li>B) Suspension of VFR operations cannot be initiated by the aerodrome controller</li>
+      <li>C) ATC permission is required for entering the apron with a vehicle</li>
+    </ul>
+  </div>
+
+  <!-- Q23 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">23</span>In ATS route designator UA1Y what does U mean:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) Upper</li>
+      <li>B) Undirectional</li>
+      <li>C) Uniform</li>
+    </ul>
+  </div>
+
+  <!-- Q24 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">24</span>Special VFR flights may be authorized to operate locally within a control zone when the ground visibility is not less than 1500 metres, even when the aircraft is not equipped with a functioning radio receiver within class:</div>
+    <ul class="mcq-options">
+      <li>A) D airspace</li>
+      <li>B) D and E airspace</li>
+      <li class="correct">C) E airspace</li>
+    </ul>
+  </div>
+
+  <!-- Q25 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">25</span>Flight information service shall be provided to all aircraft which are likely to be affected by the information and which are:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) Provided with the air traffic control services and otherwise known to the relevant air traffic service units</li>
+      <li>B) Known to the relevant air traffic services units by a filed flight plan</li>
+      <li>C) Provided with air traffic control services, only</li>
+    </ul>
+  </div>
+
+  <!-- Q26 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">26</span>Alerting service shall be provided:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) For all controlled flight, to any aircraft known or believed to be subject of unlawful interference, and in so far as practicable to all aircraft having filed a flight plan or otherwise known to the ATS</li>
+      <li>B) For all aircraft provided with air traffic control services, only</li>
+      <li>C) To any aircraft known or believed to be subject of unlawful interference, only</li>
+    </ul>
+  </div>
+
+  <!-- Q27 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">27</span>The speed limitation for IFR flights inside ATS airspace classified as E, when flying below 3050m (10000ft) AMSL, is:</div>
+    <ul class="mcq-options">
+      <li>A) 250kt TAS</li>
+      <li class="correct">B) 250kt IAS</li>
+      <li>C) Not applicable</li>
+    </ul>
+  </div>
+
+  <!-- Q28 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">28</span>Air Traffic Service unit means:</div>
+    <ul class="mcq-options">
+      <li>A) Air Traffic Control units and Air Services reporting offices</li>
+      <li>B) Flight Information Centers and Air Services reporting offices</li>
+      <li class="correct">C) Air Traffic Control units, Flight Information Centers or Air Services reporting offices</li>
+    </ul>
+  </div>
+
+  <!-- Q29 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">29</span>A controlled airspace extending upwards from a specified limit above the earth is:</div>
+    <ul class="mcq-options">
+      <li>A) Advisory airspace</li>
+      <li class="correct">B) Control area</li>
+      <li>C) Flight Information Region</li>
+    </ul>
+  </div>
+
+  <!-- Q30 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">30</span>Tirupati aerodrome designator is?</div>
+    <ul class="mcq-options">
+      <li>A) VATP</li>
+      <li class="correct">B) VOTP</li>
+      <li>C) VITP</li>
+    </ul>
+  </div>
+
+  <!-- Q31 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">31</span>Aerodrome traffic is:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) All traffic on the manoeuvring area and flying in the vicinity of an aerodrome</li>
+      <li>B) All traffic in the aerodrome circuit</li>
+      <li>C) All traffic on the manoeuvring area</li>
+    </ul>
+  </div>
+
+  <!-- Q32 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">32</span>Which of the following Annexes to the Chicago convention contains international standards and recommended practices for air traffic services (ATS)?</div>
+    <ul class="mcq-options">
+      <li>A) Annex 6</li>
+      <li>B) Annex 14</li>
+      <li class="correct">C) Annex 11</li>
+    </ul>
+  </div>
+
+  <!-- Q33 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">33</span>An information issued by a meteorological watch office concerning the occurrence or expected occurrence of specified en-route weather phenomena which may affect safety of low-level aircraft operations is:</div>
+    <ul class="mcq-options">
+      <li>A) An En-Route Met Report</li>
+      <li>B) A NOTAM</li>
+      <li class="correct">C) An AIRMET information</li>
+    </ul>
+  </div>
+
+  <!-- Q34 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">34</span>Regarding Aerodrome Flight Information (AFIS):</div>
+    <ul class="mcq-options">
+      <li>A) Its purpose is to supply ATC services but it is not a state organisation</li>
+      <li class="correct">B) It can only supply limited services to the users and under no circumstances may it supply ATC services</li>
+      <li>C) It has the same privileges as an ATC organisation but its activity is neither continuous nor regular</li>
+    </ul>
+  </div>
+
+  <!-- Q35 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">35</span>Air Traffic Control service shall be provided to:</div>
+    <ul class="mcq-options">
+      <li>A) All IFR flights in class A, B, C, D, E and F airspaces</li>
+      <li>B) All VFR flights in class B, C, D and E airspaces</li>
+      <li class="correct">C) To all aerodrome traffic at controlled aerodromes</li>
+    </ul>
+  </div>
+
+  <!-- Q36 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">36</span>Flight Information Region (FIR) is an airspace within which the following services are provided:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) Flight Information Service and Alerting Service</li>
+      <li>B) Flight Information Service and Advisory Service</li>
+      <li>C) Flight Information Service, Alerting Service and Advisory Service</li>
+    </ul>
+  </div>
+
+  <!-- Q37 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">37</span>Control Area (CTA) is defined as follows:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) A controlled airspace extending upwards from a specified limit above the earth</li>
+      <li>B) A controlled airspace extending upwards from the surface of the earth to a specified limit</li>
+      <li>C) A controlled airspace extending upwards from a height of 900ft above the earth</li>
+    </ul>
+  </div>
+
+  <!-- Q38 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">38</span>Aerodrome local flying area is to be considered, if ATZ is not notified:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) Within 5 NM of ARP up to 3000 feet</li>
+      <li>B) Within 25 NM of ARP up to 10,000 feet</li>
+      <li>C) Within 10 NM of ARP up to 5000 feet</li>
+    </ul>
+  </div>
+
+  <!-- Q39 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">39</span>An air traffic control unit:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) May ask an aircraft to temporarily change its callsign for safety reasons when there is a risk of confusion between two or more similar callsigns</li>
+      <li>B) May not ask an aircraft to change its callsign after accepting the flight plan</li>
+      <li>C) Must not ask an aircraft to change its callsign</li>
+    </ul>
+  </div>
+
+  <!-- Q40 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">40</span>Required Navigation Performance (RNP) shall be prescribed:</div>
+    <ul class="mcq-options">
+      <li>A) By regional air navigation agreements</li>
+      <li>B) By states but not on the basis of regional air agreements</li>
+      <li class="correct">C) By states on the basis of regional air navigation agreements</li>
+    </ul>
+  </div>
+
+  <!-- Q41 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">41</span>A Control Zone shall extend laterally to at least:</div>
+    <ul class="mcq-options">
+      <li>A) 10 miles from the centre of the aerodrome in the direction from which approaches may be made</li>
+      <li class="correct">B) 5 nautical miles from the centre of the aerodrome in the direction from which approaches may be made</li>
+      <li>C) 20 miles from the centre of the aerodrome in the direction from which approaches may be made</li>
+    </ul>
+  </div>
+
+  <!-- Q42 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">42</span>G245ZF is a designator for:</div>
+    <ul class="mcq-options">
+      <li>A) a SID</li>
+      <li>B) a STAR</li>
+      <li class="correct">C) an ATS Route</li>
+    </ul>
+  </div>
+
+  <!-- Q43 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">43</span>An ATS airspace where IFR and VFR are permitted and receive flight information service if requested, is classified as:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) Airspace G</li>
+      <li>B) Airspace E</li>
+      <li>C) Airspace C</li>
+    </ul>
+  </div>
+
+  <!-- Q44 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">44</span>Concerning RNP types, the indication RNP 4 represents a navigation accuracy of:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) Plus or minus 4 NM on a 95% containment basis</li>
+      <li>B) Plus or minus 4 NM on a 98% containment basis</li>
+      <li>C) Plus or minus 4 NM on a 90% containment basis</li>
+    </ul>
+  </div>
+
+  <!-- Q45 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">45</span>Area Control Centers issue clearances for the purpose of:</div>
+    <ul class="mcq-options">
+      <li>A) Achieving separation between IFR flights</li>
+      <li class="correct">B) Achieving separation between controlled flights</li>
+      <li>C) Providing flight information Service</li>
+    </ul>
+  </div>
+
+  <!-- Q46 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">46</span>Clearances will be issued by an ATC unit for the purpose of:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) Achieving separation between controlled flights</li>
+      <li>B) Providing alerting services</li>
+      <li>C) Providing advisory services</li>
+    </ul>
+  </div>
+
+  <!-- Q47 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">47</span>You receive an IFR enroute clearance starting: Clearance expires at 0920. What does it mean?</div>
+    <ul class="mcq-options">
+      <li class="correct">A) If not airborne until 0920, a new clearance has to be issued</li>
+      <li>B) The take off clearance is expected at 0920</li>
+      <li>C) After 0920 return to the ramp and file a new flight plan</li>
+    </ul>
+  </div>
+
+  <!-- Q48 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">48</span>ATIS broadcast:</div>
+    <ul class="mcq-options">
+      <li>A) Shall only be transmitted on a discrete VHF frequency</li>
+      <li class="correct">B) Shall not be transmitted on the voice channel of an ILS</li>
+      <li>C) Shall not be transmitted on the voice of VOR</li>
+    </ul>
+  </div>
+
+  <!-- Q49 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">49</span>Whenever ATIS is provided, the preparation and dissemination of the ATIS message shall be the responsibility of:</div>
+    <ul class="mcq-options">
+      <li>A) Both air traffic services and the meteorological office</li>
+      <li>B) The meteorological office serving the aerodromes</li>
+      <li class="correct">C) The air traffic services</li>
+    </ul>
+  </div>
+
+  <!-- Q50 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">50</span>Whenever ATIS is provided, the broadcast information shall be updated:</div>
+    <ul class="mcq-options">
+      <li>A) As prescribed by the meteorological office</li>
+      <li class="correct">B) Immediately a significant change occurs</li>
+      <li>C) As prescribed by the state</li>
+    </ul>
+  </div>
+
+  <!-- Q51 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">51</span>The ATIS broadcast message should, whenever practicable, not exceed:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) 30 seconds</li>
+      <li>B) 1 minute</li>
+      <li>C) 2 minutes</li>
+    </ul>
+  </div>
+
+  <!-- Q52 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">52</span>ATIS broadcast messages containing departure and arrival information should include cloud cover, when the clouds are:</div>
+    <ul class="mcq-options">
+      <li>A) Below 900m (3000ft) or below the highest minimum sector altitude, whichever is the greater</li>
+      <li>B) Below 2000m (600ft) or below the highest minimum sector altitude, whichever is the greater</li>
+      <li class="correct">C) Below 1500m (5000ft) or below the highest minimum sector altitude, whichever is the greater</li>
+    </ul>
+  </div>
+
+  <!-- Q53 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">53</span>When are ATIS broadcasts updated?</div>
+    <ul class="mcq-options">
+      <li class="correct">A) Upon receipt of any official weather, regardless of content change or reported values</li>
+      <li>B) Every 30 minutes if weather conditions are below those for VFR; otherwise hourly</li>
+      <li>C) Only when the ceiling and/or visibility changes by a reportable value</li>
+    </ul>
+  </div>
+
+  <!-- Q54 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">54</span>Flight Information Service shall be provided to aircraft in order to avoid collision hazards when operating in airspace classes:</div>
+    <ul class="mcq-options">
+      <li>A) F and G only</li>
+      <li class="correct">B) C, D, E, F and G</li>
+      <li>C) A, B, C, D, E, F and G</li>
+    </ul>
+  </div>
+
+  <!-- Q55 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">55</span>The lateral limit of CTR shall extend to at least ___ NMs from the center of aerodrome in directions from where approaches may be made:</div>
+    <ul class="mcq-options">
+      <li>A) 25</li>
+      <li>B) 10</li>
+      <li class="correct">C) 5</li>
+    </ul>
+  </div>
+
+  <!-- Q56 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">56</span>At radio communications, "Distress" differs from "Urgency" because in the first case:</div>
+    <ul class="mcq-options">
+      <li>A) The aeroplane has suffered damages which impair its fitness to fly</li>
+      <li class="correct">B) There is a serious and imminent danger requiring immediate assistance</li>
+      <li>C) The aeroplane will not be able to reach a suitable aerodrome</li>
+    </ul>
+  </div>
+
+  <!-- Q57 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">57</span>The Alerting Service is provided by:</div>
+    <ul class="mcq-options">
+      <li>A) The Area Control Centers</li>
+      <li class="correct">B) The ATS unit responsible for the aircraft at that moment</li>
+      <li>C) Only by ATC units</li>
+    </ul>
+  </div>
+
+  <!-- Q58 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">58</span>The phases related to an aircraft in emergency or believed in emergency are:</div>
+    <ul class="mcq-options">
+      <li>A) Uncertainty phase, distress phase, urgency phase</li>
+      <li class="correct">B) Uncertainty phase, alert phase, distress phase</li>
+      <li>C) Uncertainty phase, urgency phase, distress phase</li>
+    </ul>
+  </div>
+
+  <!-- Q59 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">59</span>When an aircraft is experiencing difficulties, triggering of the alert phase is the responsibility of:</div>
+    <ul class="mcq-options">
+      <li>A) Search and rescue coordination centers</li>
+      <li>B) Control centers only</li>
+      <li class="correct">C) Air traffic control and flight information centers</li>
+    </ul>
+  </div>
+
+  <!-- Q60 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">60</span>What type of flight is allowed in class A airspace?</div>
+    <ul class="mcq-options">
+      <li class="correct">A) IFR only</li>
+      <li>B) IFR and VFR</li>
+      <li>C) IFR and special VFR</li>
+    </ul>
+  </div>
+
+  <!-- Q61 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">61</span>Alert phase is defined as follows:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) A situation where an apprehension exists as to the safety of an aircraft and its occupants</li>
+      <li>B) An emergency event in which an aircraft and its occupants are considered to be threatened by a danger</li>
+      <li>C) A situation related to an aircraft and its occupants are considered to be in a state of emergency</li>
+    </ul>
+  </div>
+
+  <!-- Q62 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">62</span>A situation in which apprehension exists as to the safety of an aircraft. To which emergency phase does this situation correspond?</div>
+    <ul class="mcq-options">
+      <li class="correct">A) ALERFA</li>
+      <li>B) INCERFA</li>
+      <li>C) DETRESFA</li>
+    </ul>
+  </div>
+
+  <!-- Q63 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">63</span>Which of the following signals is a distress signal?</div>
+    <ul class="mcq-options">
+      <li>A) In radiotelephony the spoken words PAN, PAN</li>
+      <li class="correct">B) A parachute flare showing a red light</li>
+      <li>C) The repeated switching on and off of the navigation lights</li>
+    </ul>
+  </div>
+
+  <!-- Q64 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">64</span>An aircraft is in emergency when:</div>
+    <ul class="mcq-options">
+      <li>A) It is threatened by grave danger</li>
+      <li class="correct">B) It is threatened by grave danger and requires immediate assistance</li>
+      <li>C) It is forced to land</li>
+    </ul>
+  </div>
+
+  <!-- Q65 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">65</span>The different emergency phases (in correct order) are:</div>
+    <ul class="mcq-options">
+      <li>A) INCERFA, ALERTFA and DISTRESFA</li>
+      <li class="correct">B) INCERFA, ALERFA, DETRESFA</li>
+      <li>C) ALERTFA, DISTRESFA, RESCUEFA</li>
+    </ul>
+  </div>
+
+  <!-- Q66 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">66</span>Which of the following statements describes the Alert Phase (ALERFA)?</div>
+    <ul class="mcq-options">
+      <li>A) An aircraft fails to arrive within 30 minutes of the ETA which was last notified to ATC</li>
+      <li>B) An aircraft declares that the fuel remaining is insufficient to reach safety</li>
+      <li class="correct">C) An aircraft which has been cleared to land fails to land within 5 minutes of the ETA and communication has not been re-established</li>
+    </ul>
+  </div>
+
+  <!-- Q67 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">67</span>DETRESFA is where:</div>
+    <ul class="mcq-options">
+      <li>A) An aircraft fails to land within 5 minutes of being cleared to land</li>
+      <li>B) All answers are correct</li>
+      <li class="correct">C) The fuel on board is considered to be exhausted</li>
+    </ul>
+  </div>
+
+  <!-- Q68 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">68</span>RSP 180 indicates:</div>
+    <ul class="mcq-options">
+      <li>A) Time in seconds taken by a pilot to receive surveillance instructions from the controller</li>
+      <li class="correct">B) Time in seconds between flight crew/HMI and controller/HMI</li>
+      <li>C) Distance in NMs between two way points in defined RSP airspace</li>
+    </ul>
+  </div>
+
+  <!-- Q69 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">69</span>A strayed aircraft is an aircraft:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) that has deviated significantly from its intended track or reports that it is lost</li>
+      <li>B) that has been observed or is reported to be operating in a given area but whose identity has not been established</li>
+      <li>C) only that aircraft which has deviated significantly its intended track</li>
+    </ul>
+  </div>
+
+  <!-- Q70 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">70</span>Having filed a flight plan to a particular destination and having landed at another destination, you should notify ATC:</div>
+    <ul class="mcq-options">
+      <li>A) within 60 minutes after landing at the alternate destination</li>
+      <li>B) within 30 minutes after landing at the alternate destination</li>
+      <li class="correct">C) within 30 minutes of your intended ETA at your original destination</li>
+    </ul>
+  </div>
+
+  <!-- Q71 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">71</span>Designated airspace within controlled airspace in India is classified as Class:</div>
+    <ul class="mcq-options">
+      <li>A) C</li>
+      <li>B) D</li>
+      <li class="correct">C) C and D</li>
+    </ul>
+  </div>
+
+  <!-- Q72 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">72</span>TSA801(A) is an airspace:</div>
+    <ul class="mcq-options">
+      <li>A) temporarily segregated and allocated in Delhi FIR</li>
+      <li class="correct">B) temporarily segregated and allocated in Chennai FIR</li>
+      <li>C) denoting an area navigation route in India</li>
+    </ul>
+  </div>
+
+  <!-- Q73 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">73</span>Temporary Reserved Area (TRA) is an airspace temporarily reserved and allocated:</div>
+    <ul class="mcq-options">
+      <li>A) through which other traffic may be allowed to transit in VMC only</li>
+      <li>B) through which other traffic is not allowed to transit without proper equipment</li>
+      <li class="correct">C) through which other traffic may be allowed to transit under ATC clearance</li>
+    </ul>
+  </div>
+
+  <!-- Q74 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">74</span>MFA published in AIP ensures at least 1000 feet vertical clearance from obstacles within ___ of center line?</div>
+    <ul class="mcq-options">
+      <li class="correct">A) 10 Kms</li>
+      <li>B) 10 NMs</li>
+      <li>C) 20 NMs</li>
+    </ul>
+  </div>
+
+  <!-- Q75 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">75</span>Class C airspaces in India extend from ___ to ___.</div>
+    <ul class="mcq-options">
+      <li>A) Ground level, FL 150</li>
+      <li class="correct">B) 4000 feet, FL 285</li>
+      <li>C) FL 150, FL 290</li>
+    </ul>
+  </div>
+
+  <!-- Q76 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">76</span>After rain Controller reports that runway is WET. That indicates to a pilot that:</div>
+    <ul class="mcq-options">
+      <li class="correct">A) the surface is soaked but there is no standing water</li>
+      <li>B) there is no standing water with a depth of more than 3 cms on one third of the runway</li>
+      <li>C) the runway is closed due water logging and pilot should divert</li>
+    </ul>
+  </div>
+
+  <!-- Q77 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">77</span>In AIP, Enroute 3.1, ATS routes are described as:</div>
+    <ul class="mcq-options">
+      <li>A) Lower ATS Routes</li>
+      <li class="correct">B) Conventional Navigation Routes</li>
+      <li>C) RNP routes</li>
+    </ul>
+  </div>
+
+  <!-- Q78 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><span class="qnum">78</span>In AIP, Enroute 3.2, ATS routes are described as:</div>
+    <ul class="mcq-options">
+      <li>A) Upper ATS Routes</li>
+      <li class="correct">B) Air Navigation Routes</li>
+      <li>C) Non RNP routes</li>
+    </ul>
+  </div>
+
+</div><!-- end mcq-grid -->
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     QUICK REFERENCE SUMMARY
+══════════════════════════════════════════════════════════════ -->
+<h2 class="section-title">16. Quick Reference – Key Numbers &amp; Facts</h2>
+
+<div class="tbl-wrapper">
+<table class="reg-table">
+  <thead><tr><th>Parameter</th><th>Value / Rule</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td>Lower limit of CTA</td><td><strong>≥ 200 m (700 ft) AGL</strong></td><td>ICAO Annex 11</td></tr>
+    <tr><td>Lateral limit of CTR</td><td><strong>≥ 9.3 km (5 NM)</strong> from aerodrome centre in approach directions</td><td>ICAO Annex 11</td></tr>
+    <tr><td>Class C airspace extent in India</td><td><strong>4000 ft to FL 285</strong></td><td>AIP India</td></tr>
+    <tr><td>Class D airspace extent (India)</td><td>Up to <strong>30 NM</strong> around major airports (below Class C)</td><td>AIP India</td></tr>
+    <tr><td>Speed limit (all classes with limit)</td><td><strong>250 kt IAS</strong> below 3050m (10,000 ft) AMSL</td><td>ICAO Annex 11</td></tr>
+    <tr><td>Aerodrome vicinity (no ATZ)</td><td><strong>5 NM radius, up to 3000 ft AGL</strong></td><td>AIP India</td></tr>
+    <tr><td>INCERFA trigger time (no comms)</td><td><strong>30 minutes</strong></td><td>ICAO Annex 11</td></tr>
+    <tr><td>INCERFA trigger (late arrival)</td><td><strong>30 minutes</strong> after last notified ETA</td><td>ICAO Annex 11</td></tr>
+    <tr><td>ALERFA trigger (cleared, no land)</td><td><strong>5 minutes</strong> after ETA + no comms</td><td>ICAO Annex 11</td></tr>
+    <tr><td>ATIS max duration</td><td><strong>30 seconds</strong> (whenever practicable)</td><td>ICAO Annex 11</td></tr>
+    <tr><td>ATC clearance before controlled airspace</td><td>At least <strong>10 minutes</strong> prior (direct VHF)</td><td>AIP India</td></tr>
+    <tr><td>ATC clearance before ATS route entry (en-route radio)</td><td>At least <strong>20 minutes</strong> prior</td><td>AIP India</td></tr>
+    <tr><td>FIR boundary estimate</td><td>At least <strong>10 minutes</strong> prior to entry</td><td>AIP India</td></tr>
+    <tr><td>MFA obstacle clearance</td><td><strong>1000 ft (300 m)</strong> above highest obstacle within <strong>10 km</strong> each side of route centre line</td><td>AIP India</td></tr>
+    <tr><td>International border buffer</td><td><strong>15 NM</strong> — no operations unless specifically permitted</td><td>AIP India</td></tr>
+    <tr><td>ATC clearance crossing ATS route angle</td><td><strong>90°</strong> to direction of route</td><td>AIP India</td></tr>
+    <tr><td>Transponder – General Emergency</td><td><strong>Mode A, 7700</strong></td><td>ICAO Annex 10</td></tr>
+    <tr><td>Transponder – Unlawful Interference</td><td><strong>Mode A, 7500</strong></td><td>ICAO Annex 10</td></tr>
+    <tr><td>TSA/TRA number series</td><td><strong>501–999</strong> (single series)</td><td>AIP India</td></tr>
+    <tr><td>Delhi FIR TSA/TRA numbers</td><td><strong>701–800</strong></td><td>AIP India</td></tr>
+    <tr><td>Mumbai FIR TSA/TRA numbers</td><td><strong>501–600</strong></td><td>AIP India</td></tr>
+    <tr><td>Kolkata FIR TSA/TRA numbers</td><td><strong>601–700</strong></td><td>AIP India</td></tr>
+    <tr><td>Chennai FIR TSA/TRA numbers</td><td><strong>801–900</strong></td><td>AIP India</td></tr>
+    <tr><td>ATIS update trigger</td><td><strong>Immediately</strong> a significant change occurs</td><td>ICAO Annex 11</td></tr>
+    <tr><td>ATIS acknowledgement — exception</td><td>Altimeter setting <strong>must always</strong> be re-transmitted</td><td>ICAO Annex 11</td></tr>
+    <tr><td>Annex for ATS standards</td><td><strong>Annex 11</strong> to Chicago Convention</td><td>ICAO</td></tr>
+    <tr><td>Number of world AFSRAs</td><td><strong>22</strong> non-overlapping</td><td>ICAO Doc 7910</td></tr>
+    <tr><td>ATC clocks accuracy</td><td><strong>± 30 seconds</strong> UTC</td><td>ICAO Annex 11</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<div style="margin-top:40px;padding-top:16px;border-top:2px solid var(--gray-200);text-align:center;font-size:8.5pt;color:#9ca3af;">
+  <strong style="color:var(--navy);">Chapter 5 – Air Traffic Services</strong> &nbsp;|&nbsp; DGCA CPL/ATPL Study Notes &nbsp;|&nbsp;
+  Prepared by <em>Capt. Pankaj Pahil</em> &nbsp;|&nbsp;
+  Reference: Annex 11 · Doc 4444 · AIP India · CAR Section 9 Series E Part I Issue II (Rev. 9 Nov 2018) &nbsp;|&nbsp;
+  For examination preparation purposes only — always refer to the latest regulatory publications.
+</div>
+
+</div><!-- end page-wrapper -->
+</body>
+</html>

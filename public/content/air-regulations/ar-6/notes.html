@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGCA Study Notes – Chapter 7: Separation in the Vicinity of Aerodromes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════════════════════════════════════════
+     PAGE & PRINT SETUP
+  ═══════════════════════════════════════════════ */
+  @page {
+    size: A4;
+    margin: 18mm 15mm 18mm 15mm;
+  }
+
+  /* ═══════════════════════════════════════════════
+     WATERMARK
+  ═══════════════════════════════════════════════ */
+  body::before {
+    content: "Capt. Pankaj Pahil";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 72px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: #1a3a5c;
+    opacity: 0.06;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    letter-spacing: 4px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     CSS VARIABLES
+  ═══════════════════════════════════════════════ */
+  :root {
+    --navy:      #0d2b4e;
+    --airblue:   #1560a8;
+    --sky:       #e8f3ff;
+    --gold:      #c8860a;
+    --goldlight: #fff8e7;
+    --danger:    #b91c1c;
+    --dangerlt:  #fff1f1;
+    --success:   #166534;
+    --successlt: #f0fdf4;
+    --violet:    #5b21b6;
+    --violetlt:  #f5f3ff;
+    --teal:      #0e7490;
+    --teallt:    #f0fdff;
+    --gray1:     #f8fafc;
+    --gray2:     #e2e8f0;
+    --gray3:     #94a3b8;
+    --text:      #1e293b;
+    --subtext:   #475569;
+    --border:    #cbd5e1;
+  }
+
+  /* ═══════════════════════════════════════════════
+     BASE
+  ═══════════════════════════════════════════════ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11.5pt;
+    line-height: 1.7;
+    color: var(--text);
+    background: #fff;
+    position: relative;
+  }
+
+  .page-wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ═══════════════════════════════════════════════
+     COVER HEADER
+  ═══════════════════════════════════════════════ */
+  .cover {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a4b8c 60%, #1560a8 100%);
+    border-radius: 16px;
+    padding: 48px 40px 42px;
+    margin-bottom: 40px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .cover .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28pt;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .cover h1 span { color: #7ec8ff; }
+  .cover .subtitle {
+    font-size: 12pt;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 24px;
+  }
+  .cover .meta-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .cover .meta-item {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 9.5pt;
+    color: rgba(255,255,255,0.9);
+  }
+  .cover .meta-item strong { color: #fff; display: block; font-size: 10.5pt; }
+  .cover .instructor {
+    position: absolute;
+    right: 40px;
+    bottom: 32px;
+    font-size: 9pt;
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* ═══════════════════════════════════════════════
+     CHAPTER HEADINGS
+  ═══════════════════════════════════════════════ */
+  .chapter-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--navy);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 10px;
+    margin: 36px 0 22px;
+    page-break-inside: avoid;
+    page-break-before: auto;
+  }
+  .chapter-title .num {
+    background: var(--gold);
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 18pt;
+    font-weight: 900;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .chapter-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16pt;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .chapter-title .source {
+    margin-left: auto;
+    font-size: 8.5pt;
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
+    flex-shrink: 0;
+  }
+
+  .section-head {
+    font-family: 'Playfair Display', serif;
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--airblue);
+    margin: 28px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2.5px solid var(--sky);
+    page-break-after: avoid;
+  }
+  .sub-head {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11.5pt;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 20px 0 8px;
+    page-break-after: avoid;
+  }
+
+  /* ═══════════════════════════════════════════════
+     CONTENT BOXES
+  ═══════════════════════════════════════════════ */
+  .box {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .box-danger {
+    background: var(--dangerlt);
+    border-left: 5px solid var(--danger);
+  }
+  .box-danger .box-label { color: var(--danger); }
+  .box-blue {
+    background: var(--sky);
+    border-left: 5px solid var(--airblue);
+  }
+  .box-blue .box-label { color: var(--airblue); }
+  .box-green {
+    background: var(--successlt);
+    border-left: 5px solid var(--success);
+  }
+  .box-green .box-label { color: var(--success); }
+  .box-gold {
+    background: var(--goldlight);
+    border-left: 5px solid var(--gold);
+  }
+  .box-gold .box-label { color: var(--gold); }
+  .box-violet {
+    background: var(--violetlt);
+    border-left: 5px solid var(--violet);
+  }
+  .box-violet .box-label { color: var(--violet); }
+  .box-teal {
+    background: var(--teallt);
+    border-left: 5px solid var(--teal);
+  }
+  .box-teal .box-label { color: var(--teal); }
+
+  .box-label {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .box-label .icon { font-size: 12pt; }
+  .box p { margin-bottom: 6px; }
+  .box p:last-child { margin-bottom: 0; }
+  .box ul, .box ol { padding-left: 22px; }
+  .box li { margin-bottom: 4px; }
+
+  /* ═══════════════════════════════════════════════
+     HIGHLIGHT CHIP
+  ═══════════════════════════════════════════════ */
+  .chip {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10pt;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 5px;
+    margin: 0 2px;
+  }
+  .chip-red    { background: #fee2e2; color: var(--danger); border: 1px solid #fca5a5; }
+  .chip-blue   { background: #dbeafe; color: #1d4ed8;      border: 1px solid #93c5fd; }
+  .chip-green  { background: #dcfce7; color: #15803d;      border: 1px solid #86efac; }
+  .chip-gold   { background: #fef3c7; color: #92400e;      border: 1px solid #fcd34d; }
+  .chip-teal   { background: #ccfbf1; color: #0f766e;      border: 1px solid #5eead4; }
+  .chip-violet { background: #ede9fe; color: #6d28d9;      border: 1px solid #c4b5fd; }
+
+  /* ═══════════════════════════════════════════════
+     TABLES
+  ═══════════════════════════════════════════════ */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+    page-break-inside: avoid;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10.5pt;
+  }
+  thead tr {
+    background: var(--navy);
+    color: #fff;
+  }
+  thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 9.5pt;
+    letter-spacing: 0.3px;
+  }
+  tbody tr:nth-child(even) { background: var(--gray1); }
+  tbody tr:hover { background: var(--sky); }
+  tbody td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  td.crit { color: var(--danger); font-weight: 700; }
+  td.ok   { color: var(--success); font-weight: 700; }
+  td.warn { color: var(--gold); font-weight: 700; }
+
+  /* ═══════════════════════════════════════════════
+     SVG DIAGRAM WRAPPERS
+  ═══════════════════════════════════════════════ */
+  .diagram-wrap {
+    background: var(--gray1);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 16px 18px;
+    margin: 20px 0;
+    page-break-inside: avoid;
+    text-align: center;
+  }
+  .diagram-wrap .diagram-title {
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray3);
+    margin-bottom: 14px;
+  }
+  .diagram-wrap svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ═══════════════════════════════════════════════
+     FLOWCHART (mermaid wrapper)
+  ═══════════════════════════════════════════════ */
+  .mermaid {
+    background: var(--gray1);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    page-break-inside: avoid;
+    text-align: center;
+    border: 1.5px solid var(--border);
+  }
+
+  /* ═══════════════════════════════════════════════
+     STEP LIST
+  ═══════════════════════════════════════════════ */
+  .step-list {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    page-break-inside: avoid;
+  }
+  .step-num {
+    background: var(--airblue);
+    color: #fff;
+    font-size: 9pt;
+    font-weight: 700;
+    min-width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-list .letter { background: var(--gold); }
+  .step-list .danger { background: var(--danger); }
+
+  /* ═══════════════════════════════════════════════
+     Q&A
+  ═══════════════════════════════════════════════ */
+  .qa-item {
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    margin: 14px 0;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .qa-q {
+    background: var(--navy);
+    color: #fff;
+    padding: 11px 18px;
+    font-weight: 600;
+    font-size: 10.5pt;
+    display: flex;
+    gap: 10px;
+  }
+  .qa-q .qnum {
+    background: var(--gold);
+    color: #fff;
+    font-size: 8.5pt;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 1px;
+  }
+  .qa-options {
+    padding: 10px 18px 4px;
+    background: var(--gray1);
+  }
+  .qa-option {
+    display: flex;
+    gap: 10px;
+    padding: 5px 0;
+    font-size: 10.5pt;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .qa-option:last-child { border-bottom: none; }
+  .qa-option .opt-letter {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9pt;
+    font-weight: 700;
+    flex-shrink: 0;
+    background: var(--gray2);
+    color: var(--subtext);
+  }
+  .qa-option.correct .opt-letter {
+    background: #16a34a;
+    color: #fff;
+  }
+  .qa-option.correct {
+    color: var(--success);
+    font-weight: 700;
+  }
+  .qa-answer {
+    background: #f0fdf4;
+    border-top: 2px solid #86efac;
+    padding: 8px 18px;
+    font-size: 10pt;
+    color: var(--success);
+  }
+  .qa-answer strong { color: var(--success); }
+
+  /* ═══════════════════════════════════════════════
+     KEY FACTS GRID
+  ═══════════════════════════════════════════════ */
+  .keyfacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+    page-break-inside: avoid;
+  }
+  .keyfact-card {
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    page-break-inside: avoid;
+  }
+  .keyfact-card .kf-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22pt;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .keyfact-card .kf-label {
+    font-size: 9pt;
+    color: var(--subtext);
+    line-height: 1.4;
+  }
+  .kf-red    { border-top: 4px solid var(--danger); }
+  .kf-red .kf-val { color: var(--danger); }
+  .kf-blue   { border-top: 4px solid var(--airblue); }
+  .kf-blue .kf-val { color: var(--airblue); }
+  .kf-green  { border-top: 4px solid var(--success); }
+  .kf-green .kf-val { color: var(--success); }
+  .kf-gold   { border-top: 4px solid var(--gold); }
+  .kf-gold .kf-val { color: var(--gold); }
+  .kf-teal   { border-top: 4px solid var(--teal); }
+  .kf-teal .kf-val { color: var(--teal); }
+  .kf-violet { border-top: 4px solid var(--violet); }
+  .kf-violet .kf-val { color: var(--violet); }
+
+  /* ═══════════════════════════════════════════════
+     MISC
+  ═══════════════════════════════════════════════ */
+  p { margin-bottom: 10px; }
+  ul, ol { padding-left: 24px; margin-bottom: 10px; }
+  li { margin-bottom: 5px; }
+  .note-italic {
+    font-style: italic;
+    color: var(--subtext);
+    font-size: 10.5pt;
+    border-left: 3px solid var(--gray3);
+    padding-left: 12px;
+    margin: 10px 0;
+  }
+  hr.divider {
+    border: none;
+    border-top: 2px solid var(--gray2);
+    margin: 32px 0;
+  }
+  .toc-box {
+    background: var(--sky);
+    border: 1.5px solid #bfdbfe;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 24px 0 36px;
+    page-break-inside: avoid;
+  }
+  .toc-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 12pt;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .toc-box ol {
+    padding-left: 20px;
+    margin: 0;
+  }
+  .toc-box li {
+    font-size: 10.5pt;
+    margin-bottom: 4px;
+    color: var(--airblue);
+    font-weight: 600;
+  }
+  .toc-box li span { color: var(--subtext); font-weight: 400; }
+
+  /* Print overrides */
+  @media print {
+    body::before { position: fixed; }
+    .page-wrap { padding: 0; }
+    a { text-decoration: none; color: inherit; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ╔══════════════════════════════╗
+       ║         COVER HEADER        ║
+       ╚══════════════════════════════╝ -->
+  <div class="cover">
+    <div class="badge">✈ DGCA Study Notes — CPL / ATPL</div>
+    <h1>Chapter <span>7</span><br>Separation in the<br>Vicinity of Aerodromes</h1>
+    <div class="subtitle">Doc 4444 (PANS-ATM) · AIP India · Air Regulations</div>
+    <div class="meta-row">
+      <div class="meta-item"><strong>Reference</strong>ICAO Doc 4444 / AIP India</div>
+      <div class="meta-item"><strong>Exam Relevance</strong>CPL · ATPL Air Regulations</div>
+      <div class="meta-item"><strong>Pages</strong>189 – 198</div>
+      <div class="meta-item"><strong>Questions</strong>10 MCQs (Answers Included)</div>
+    </div>
+    <div class="instructor">Compiled by Capt. Pankaj Pahil</div>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc-box">
+    <h3>📋 Table of Contents</h3>
+    <ol>
+      <li>Procedures for Departing Aircraft <span>— General, SID clearances</span></li>
+      <li>Minimum Separation between Departing Aircraft <span>— 1 min, 2 min, 5 min rules</span></li>
+      <li>Separation: Departing from Arriving Aircraft <span>— Instrument approach &amp; straight-in</span></li>
+      <li>Reduction in Separation Minima <span>— Three conditions for reduction</span></li>
+      <li>Information for Departing Aircraft <span>— Met &amp; visual/non-visual aids</span></li>
+      <li>Procedures for Arriving Aircraft <span>— STARs, visual approach, instrument approach</span></li>
+      <li>Clearance to Maintain Own Separation in VMC</li>
+      <li>Expected Approach Time (EAT) &amp; Onward Clearance Time</li>
+      <li>Information for Arriving Aircraft <span>— Initial contact, final approach, during final</span></li>
+      <li>DGCA Practice Questions &amp; Answers <span>— 10 MCQs with explanations</span></li>
+    </ol>
+  </div>
+
+  <!-- ╔══════════════════════════════╗
+       ║   SECTION 1: DEPARTING      ║
+       ╚══════════════════════════════╝ -->
+  <div class="chapter-title">
+    <div class="num">1</div>
+    <h2>Procedures for Departing Aircraft</h2>
+    <div class="source">Doc 4444 §6.7</div>
+  </div>
+
+  <div class="section-head">General — ATC Clearance Elements for Departing Aircraft</div>
+  <p>A departure clearance from ATC must specify the following (when necessary for separation):</p>
+  <ul class="step-list">
+    <li><span class="step-num">1</span><span><strong>Direction of take-off</strong> and the turn after take-off</span></li>
+    <li><span class="step-num">2</span><span><strong>Heading or track</strong> to be made good before taking up the cleared departure track</span></li>
+    <li><span class="step-num">3</span><span><strong>Level to maintain</strong> before continuing the climb to the assigned level</span></li>
+    <li><span class="step-num">4</span><span><strong>Time, point and/or rate</strong> at which a level change shall be made</span></li>
+    <li><span class="step-num">5</span><span>Any other manoeuvre consistent with <strong>safe operation of the aircraft</strong></span></li>
+  </ul>
+
+  <div class="box box-blue">
+    <div class="box-label"><span class="icon">📘</span> Definition / Standard Practice</div>
+    <p>At aerodromes where <strong>Standard Instrument Departures (SIDs)</strong> have been established, departing aircraft should <em>normally</em> be cleared to follow the <strong>appropriate SID</strong>.</p>
+  </div>
+
+  <!-- ╔══════════════════════════════╗
+       ║   SECTION 2: MIN SEP        ║
+       ╚══════════════════════════════╝ -->
+  <div class="chapter-title">
+    <div class="num">2</div>
+    <h2>Minimum Separation between Departing Aircraft</h2>
+    <div class="source">Doc 4444 §6.7.2</div>
+  </div>
+
+  <!-- Key Facts Grid -->
+  <div class="keyfacts">
+    <div class="keyfact-card kf-blue">
+      <div class="kf-val">1 MIN</div>
+      <div class="kf-label">Diverging tracks ≥ 45° immediately after take-off (lateral separation)</div>
+    </div>
+    <div class="keyfact-card kf-gold">
+      <div class="kf-val">2 MIN</div>
+      <div class="kf-label">Same track &amp; preceding aircraft is 40 kt or more faster</div>
+    </div>
+    <div class="keyfact-card kf-red">
+      <div class="kf-val">5 MIN</div>
+      <div class="kf-label">Same track, second aircraft flying through level of first (no vertical separation)</div>
+    </div>
+  </div>
+
+  <div class="sub-head">Rule 1 — One-Minute Separation (Diverging Tracks)</div>
+  <div class="box box-green">
+    <div class="box-label"><span class="icon">✅</span> Standard Operating Procedure</div>
+    <p><strong>Condition:</strong> Aircraft are to fly on tracks <strong>diverging by at least 45°</strong> immediately after take-off so that lateral separation is provided.</p>
+    <p><strong>Applied minimum:</strong> <span class="chip chip-green">1 MINUTE</span> between take-offs.</p>
+  </div>
+
+  <!-- SVG Diagram 1: 1-min diverging -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Figure 7.1 — 1-Minute Separation: Diverging Tracks ≥ 45°</div>
+    <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" width="620">
+      <!-- Runway -->
+      <rect x="20" y="88" width="260" height="24" rx="4" fill="#334155"/>
+      <rect x="30" y="97" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="60" y="97" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="90" y="97" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="120" y="97" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="150" y="97" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="180" y="97" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="210" y="97" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="240" y="97" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <!-- Aircraft 1 on runway -->
+      <polygon points="270,100 260,92 260,108" fill="#1560a8"/>
+      <!-- 1 min bracket -->
+      <line x1="275" y1="75" x2="380" y2="75" stroke="#0d2b4e" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="275" y1="72" x2="275" y2="78" stroke="#0d2b4e" stroke-width="1.5"/>
+      <line x1="380" y1="72" x2="380" y2="78" stroke="#0d2b4e" stroke-width="1.5"/>
+      <text x="327" y="69" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#0d2b4e">1 min</text>
+      <!-- Aircraft 2 (ahead) -->
+      <polygon points="380,100 370,92 370,108" fill="#c8860a"/>
+      <!-- Track 2a (straight) -->
+      <line x1="380" y1="100" x2="560" y2="100" stroke="#1560a8" stroke-width="2" stroke-dasharray="6,4"/>
+      <!-- Track 2b (diverging 45°) -->
+      <line x1="380" y1="100" x2="560" y2="28" stroke="#16a34a" stroke-width="2.5" stroke-dasharray="6,4"/>
+      <!-- 45° arc -->
+      <path d="M 420 100 A 40 40 0 0 0 408 72" fill="none" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="435" y="85" font-family="Source Sans 3" font-size="10" fill="#16a34a" font-weight="700">45°</text>
+      <!-- Labels -->
+      <text x="570" y="104" font-family="Source Sans 3" font-size="9" fill="#64748b">Same track</text>
+      <text x="564" y="26" font-family="Source Sans 3" font-size="9" fill="#16a34a" font-weight="700">Diverging ≥45°</text>
+      <!-- Lateral sep label -->
+      <text x="480" y="165" text-anchor="middle" font-family="Source Sans 3" font-size="9" fill="#64748b" font-style="italic">Lateral separation established immediately after take-off</text>
+    </svg>
+  </div>
+
+  <div class="sub-head">Rule 2 — Two-Minute Separation (Speed Differential, Same Track)</div>
+  <div class="box box-gold">
+    <div class="box-label"><span class="icon">⚠️</span> Important DGCA Limitation</div>
+    <p><strong>Condition:</strong> Preceding aircraft is <span class="chip chip-gold">40 kt or MORE faster</span> than the following aircraft, and <strong>both aircraft propose to follow the same track</strong>.</p>
+    <p><strong>Applied minimum:</strong> <span class="chip chip-gold">2 MINUTES</span> between take-offs.</p>
+  </div>
+
+  <!-- SVG Diagram 2: 2-min same track -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Figure 7.2 — 2-Minute Separation: Same Track, Speed Differential ≥ 40 kt</div>
+    <svg viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg" width="620">
+      <rect x="20" y="68" width="260" height="24" rx="4" fill="#334155"/>
+      <rect x="30" y="77" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="70" y="77" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="110" y="77" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="150" y="77" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="190" y="77" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <rect x="230" y="77" width="15" height="6" rx="2" fill="#fcd34d"/>
+      <!-- Aircraft 1 (following – slower) -->
+      <polygon points="270,80 260,72 260,88" fill="#1560a8"/>
+      <text x="252" y="110" text-anchor="middle" font-family="Source Sans 3" font-size="9" fill="#1560a8" font-weight="700">Following (slower)</text>
+      <!-- 2 min bracket -->
+      <line x1="280" y1="50" x2="430" y2="50" stroke="#92400e" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="280" y1="47" x2="280" y2="53" stroke="#92400e" stroke-width="1.5"/>
+      <line x1="430" y1="47" x2="430" y2="53" stroke="#92400e" stroke-width="1.5"/>
+      <text x="355" y="44" text-anchor="middle" font-family="JetBrains Mono" font-size="12" font-weight="700" fill="#92400e">2 min</text>
+      <!-- Aircraft 2 (preceding – faster) -->
+      <polygon points="430,80 420,72 420,88" fill="#c8860a"/>
+      <text x="422" y="110" text-anchor="middle" font-family="Source Sans 3" font-size="9" fill="#c8860a" font-weight="700">Preceding (40 kt+ faster)</text>
+      <!-- Track (same) -->
+      <line x1="270" y1="80" x2="660" y2="80" stroke="#64748b" stroke-width="2" stroke-dasharray="7,4"/>
+      <!-- speed arrows -->
+      <text x="470" y="72" font-family="Source Sans 3" font-size="9" fill="#64748b">→→→ faster →→→</text>
+      <!-- badge -->
+      <rect x="520" y="92" width="130" height="28" rx="5" fill="#fef3c7" stroke="#fcd34d"/>
+      <text x="585" y="111" text-anchor="middle" font-family="Source Sans 3" font-size="9" font-weight="700" fill="#92400e">Δ Speed ≥ 40 kt | Same track</text>
+    </svg>
+  </div>
+
+  <div class="sub-head">Rule 3 — Five-Minute Separation (Level Crossing, Same Track)</div>
+  <div class="box box-danger">
+    <div class="box-label"><span class="icon">🚨</span> Critical DGCA Rule — Strictest Departure Separation</div>
+    <p><strong>Condition:</strong> A departing aircraft will be flown <strong>through the level of a preceding departing aircraft</strong> AND <strong>both propose to follow the same track</strong>. Vertical separation does not exist during this period.</p>
+    <p><strong>Applied minimum:</strong> <span class="chip chip-red">5 MINUTES</span> between take-offs.</p>
+    <p><strong>Additional obligation:</strong> Action must be taken to ensure that the 5-minute separation will be <em>maintained or increased</em> while vertical separation does not exist.</p>
+  </div>
+
+  <!-- SVG Diagram 3: 5-min crossing levels -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Figure 7.3 — 5-Minute Separation: Level Crossing, Same Track</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" width="620">
+      <!-- Level lines -->
+      <line x1="20" y1="50"  x2="660" y2="50"  stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,6"/>
+      <line x1="20" y1="100" x2="660" y2="100" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,6"/>
+      <line x1="20" y1="150" x2="660" y2="150" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,6"/>
+      <!-- Level labels -->
+      <text x="16" y="47" font-family="JetBrains Mono" font-size="9" fill="#94a3b8">FL80</text>
+      <text x="16" y="97" font-family="JetBrains Mono" font-size="9" fill="#94a3b8">FL70</text>
+      <text x="16" y="147" font-family="JetBrains Mono" font-size="9" fill="#94a3b8">FL60</text>
+      <!-- Aircraft A (preceding) – climbs steeply to FL80 -->
+      <polyline points="100,195 200,150 350,100 500,50" fill="none" stroke="#1560a8" stroke-width="2.5"/>
+      <polygon points="500,50 488,58 496,63" fill="#1560a8"/>
+      <text x="510" y="47" font-family="Source Sans 3" font-size="9" fill="#1560a8" font-weight="700">AC-A (preceding)</text>
+      <!-- Aircraft B (following) – climbs through A's level -->
+      <polyline points="100,195 250,150 420,100 580,50" fill="none" stroke="#b91c1c" stroke-width="2" stroke-dasharray="6,3"/>
+      <polygon points="580,50 568,58 576,63" fill="#b91c1c"/>
+      <text x="510" y="67" font-family="Source Sans 3" font-size="9" fill="#b91c1c" font-weight="700">AC-B (following)</text>
+      <!-- Conflict zone -->
+      <rect x="340" y="85" width="100" height="30" rx="5" fill="rgba(185,28,28,0.12)" stroke="#b91c1c" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="390" y="105" text-anchor="middle" font-family="Source Sans 3" font-size="8.5" fill="#b91c1c" font-weight="700">⚠ Level conflict</text>
+      <!-- 5-min bracket at bottom -->
+      <line x1="100" y1="205" x2="380" y2="205" stroke="#b91c1c" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="100" y1="202" x2="100" y2="208" stroke="#b91c1c" stroke-width="1.5"/>
+      <line x1="380" y1="202" x2="380" y2="208" stroke="#b91c1c" stroke-width="1.5"/>
+      <text x="240" y="218" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#b91c1c">5 min (maintain or increase)</text>
+    </svg>
+  </div>
+
+  <!-- ╔══════════════════════════════╗
+       ║  SECTION 3: DEP vs ARR      ║
+       ╚══════════════════════════════╝ -->
+  <div class="chapter-title">
+    <div class="num">3</div>
+    <h2>Separation: Departing Aircraft from Arriving Aircraft</h2>
+    <div class="source">Doc 4444 §6.7.3</div>
+  </div>
+
+  <p>The following separation shall be applied when <strong>take-off clearance is based on the position of an arriving aircraft</strong>.</p>
+
+  <div class="section-head">Case A — Arriving Aircraft Making a Complete Instrument Approach</div>
+  <p>A departing aircraft may take off:</p>
+
+  <div class="box box-green">
+    <div class="box-label"><span class="icon">✅</span> Condition A (a) — Any Direction, Before Procedure Turn</div>
+    <p>In <strong>any direction</strong> until the arriving aircraft has started its <strong>procedure turn or base turn</strong> leading to final approach.</p>
+  </div>
+
+  <div class="box box-gold">
+    <div class="box-label"><span class="icon">⚠️</span> Condition A (b) — Specific Direction, After Procedure Turn Started</div>
+    <p>In a direction which is <strong>different by at least 45°</strong> from the reciprocal of the direction of approach — <em>after</em> the arriving aircraft has started procedure turn or base turn leading to final approach — <strong>provided that</strong> the take-off will be made <span class="chip chip-gold">at least 3 minutes</span> before the arriving aircraft is estimated to be over the <strong>beginning of the instrument runway</strong>.</p>
+  </div>
+
+  <div class="section-head">Case B — Arriving Aircraft Making a Straight-In Approach</div>
+  <p>A departing aircraft may take off:</p>
+
+  <div class="box box-green">
+    <div class="box-label"><span class="icon">✅</span> Condition B (a) — Any Direction</div>
+    <p>In <strong>any direction</strong> until <span class="chip chip-green">5 minutes before</span> the arriving aircraft is estimated to be over the <strong>instrument runway</strong>.</p>
+  </div>
+
+  <div class="box box-blue">
+    <div class="box-label"><span class="icon">ℹ️</span> Condition B (b) — Direction Differing ≥ 45° from Reciprocal</div>
+    <p>In a direction which is <strong>different by at least 45°</strong> from the reciprocal of the direction of approach of the arriving aircraft:</p>
+    <ul>
+      <li><strong>B(b)(i):</strong> Until <span class="chip chip-blue">3 minutes before</span> the arriving aircraft is estimated to be over the beginning of the instrument runway, <strong>OR</strong></li>
+      <li><strong>B(b)(ii):</strong> Before the arriving aircraft crosses a <strong>designated fix on the approach track</strong> — the location of such fix to be determined by the appropriate ATS authority after consultation with the operators.</li>
+    </ul>
+  </div>
+
+  <!-- SVG Diagram 4: Dep vs Arr -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Figure 7.4 — Separation of Departing from Arriving Aircraft</div>
+    <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" width="640">
+      <!-- Airport circle -->
+      <circle cx="340" cy="160" r="60" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>
+      <text x="340" y="155" text-anchor="middle" font-family="Source Sans 3" font-size="9" fill="#334155" font-weight="700">AERODROME</text>
+      <text x="340" y="170" text-anchor="middle" font-family="Source Sans 3" font-size="8" fill="#64748b">THR</text>
+      <!-- Runway on circle -->
+      <line x1="310" y1="160" x2="370" y2="160" stroke="#94a3b8" stroke-width="3"/>
+      <!-- Straight-in approach arrow (A) -->
+      <line x1="50" y1="160" x2="280" y2="160" stroke="#1560a8" stroke-width="2.5" marker-end="url(#arr)"/>
+      <text x="130" y="152" font-family="Source Sans 3" font-size="9" fill="#1560a8" font-weight="700">Straight-in approach (A)</text>
+      <text x="190" y="182" font-family="Source Sans 3" font-size="8" fill="#1560a8">5 min before TDZ</text>
+      <!-- 5 min tick -->
+      <circle cx="180" cy="160" r="5" fill="#1560a8" opacity="0.7"/>
+      <text x="183" y="150" font-family="JetBrains Mono" font-size="7.5" fill="#1560a8">5 min</text>
+      <!-- 3 min tick -->
+      <circle cx="230" cy="160" r="5" fill="#c8860a" opacity="0.8"/>
+      <text x="233" y="150" font-family="JetBrains Mono" font-size="7.5" fill="#c8860a">3 min</text>
+      <!-- Procedure turn approach (B) -->
+      <path d="M 120 50 Q 200 90 260 130 Q 290 150 310 160" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arr2)"/>
+      <text x="140" y="42" font-family="Source Sans 3" font-size="9" fill="#16a34a" font-weight="700">Procedure turn / base turn (B)</text>
+      <!-- Departing aircraft tracks -->
+      <line x1="370" y1="160" x2="560" y2="80" stroke="#b91c1c" stroke-width="2" stroke-dasharray="5,4"/>
+      <text x="490" y="72" font-family="Source Sans 3" font-size="9" fill="#b91c1c" font-weight="700">Dep: ≥45° from reciprocal</text>
+      <line x1="370" y1="160" x2="600" y2="160" stroke="#334155" stroke-width="2" stroke-dasharray="5,4"/>
+      <text x="470" y="152" font-family="Source Sans 3" font-size="9" fill="#334155">Dep: any direction (before 5 min)</text>
+      <!-- Shaded no-takeoff zone -->
+      <path d="M 280 130 A 60 60 0 0 1 340 100 L 340 160 Z" fill="rgba(185,28,28,0.10)" stroke="#b91c1c" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="292" y="125" font-family="Source Sans 3" font-size="7.5" fill="#b91c1c">No take-off after</text>
+      <text x="292" y="136" font-family="Source Sans 3" font-size="7.5" fill="#b91c1c">procedure turn started</text>
+      <!-- Arrow markers -->
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <polygon points="0,0 8,4 0,8" fill="#1560a8"/>
+        </marker>
+        <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <polygon points="0,0 8,4 0,8" fill="#16a34a"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- Summary table -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Arriving Aircraft Situation</th>
+          <th>Departure Direction</th>
+          <th>Key Time/Condition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Complete Instrument Approach</strong><br>Before procedure/base turn started</td>
+          <td class="ok">Any direction</td>
+          <td>Until procedure/base turn started</td>
+        </tr>
+        <tr>
+          <td><strong>Complete Instrument Approach</strong><br>After procedure/base turn started</td>
+          <td class="warn">≥ 45° from reciprocal of approach</td>
+          <td class="crit">At least 3 min before arriving a/c over instrument runway THR</td>
+        </tr>
+        <tr>
+          <td><strong>Straight-In Approach</strong></td>
+          <td class="ok">Any direction</td>
+          <td class="crit">Until 5 min before arriving a/c over instrument runway</td>
+        </tr>
+        <tr>
+          <td><strong>Straight-In Approach</strong></td>
+          <td class="warn">≥ 45° from reciprocal of approach</td>
+          <td class="crit">Until 3 min before arriving a/c over instrument runway THR <em>OR</em> before crossing designated fix on approach track</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ╔══════════════════════════════╗
+       ║   SECTION 4: REDUCTION      ║
+       ╚══════════════════════════════╝ -->
+  <div class="chapter-title">
+    <div class="num">4</div>
+    <h2>Reduction in Separation Minima Near Aerodromes</h2>
+    <div class="source">Doc 4444 §6.7.4</div>
+  </div>
+
+  <p>In the vicinity of aerodromes, the <strong>separation minima may be reduced</strong> if any of the following three conditions are satisfied:</p>
+
+  <div class="box box-green">
+    <div class="box-label"><span class="icon">✅</span> Condition (a) — Controller Provides Visual Separation</div>
+    <p>Adequate separation can be provided by the <strong>aerodrome controller</strong> when each aircraft is <strong>continuously visible</strong> to this controller.</p>
+  </div>
+
+  <div class="box box-blue">
+    <div class="box-label"><span class="icon">👁️</span> Condition (b) — Mutual Visual Contact Between Flight Crews</div>
+    <p>Each aircraft is <strong>continuously visible to flight crews of the other aircraft concerned</strong>, and the pilots thereof <strong>report that they can maintain their own separation</strong>.</p>
+  </div>
+
+  <div class="box box-gold">
+    <div class="box-label"><span class="icon">✈️</span> Condition (c) — Following Aircraft Reports Visual Contact</div>
+    <p>In the case of <strong>one aircraft following another</strong>: The flight crew of the <em>succeeding</em> aircraft reports that the <strong>other aircraft is in sight</strong> and <strong>separation can be maintained</strong>.</p>
+  </div>
+
+  <!-- ╔══════════════════════════════╗
+       ║   SECTION 5: INFO DEP       ║
+       ╚══════════════════════════════╝ -->
+  <div class="chapter-title">
+    <div class="num">5</div>
+    <h2>Information for Departing Aircraft</h2>
+    <div class="source">Doc 4444 §6.8</div>
+  </div>
+
+  <div class="section-head">A — Meteorological Conditions</div>
+  <p>Information regarding <strong>significant changes</strong> in meteorological conditions in the <strong>take-off or climb-out area</strong>, obtained by the unit providing approach control service after a departing aircraft has established communication, <strong>shall be transmitted without delay</strong> — except when it is known the aircraft already has the information.</p>
+
+  <div class="box box-violet">
+    <div class="box-label"><span class="icon">📝</span> Note — Significant Met Changes Defined As:</div>
+    <ul>
+      <li>Surface wind direction or speed</li>
+      <li>Visibility</li>
+      <li>Runway Visual Range (RVR)</li>
+      <li>Air temperature (for turbine-engine aircraft)</li>
+      <li>Occurrence of thunderstorm or cumulonimbus</li>
+      <li>Moderate or severe turbulence</li>
+      <li>Wind shear</li>
+      <li>Hail</li>
+      <li>Moderate or severe icing</li>
+      <li>Severe squall line</li>
+      <li>Freezing precipitation</li>
+      <li>Severe mountain waves</li>
+      <li>Sand storm / Dust storm</li>
+      <li>Blowing snow</li>
+      <li>Tornado or Waterspout</li>
+    </ul>
+  </div>
+
+  <div class="section-head">B — Operational Status of Visual or Non-Visual Aids</div>
+  <div class="box box-gold">
+    <div class="box-label"><span class="icon">⚠️</span> Rule</div>
+    <p>Information regarding changes in the <strong>operational status of visual or non-visual aids</strong> essential for take-off and climb shall be <strong>transmitted without delay</strong> to a departing aircraft, except when it is known that the aircraft already has received the information.</p>
+  </div>
+
+  <!-- ╔══════════════════════════════╗
+       ║   SECTION 6: ARRIVING       ║
+       ╚══════════════════════════════╝ -->
+  <div class="chapter-title">
+    <div class="num">6</div>
+    <h2>Procedures for Arriving Aircraft</h2>
+    <div class="source">Doc 4444 §6.9</div>
+  </div>
+
+  <div class="section-head">General — STARs</div>
+  <div class="box box-blue">
+    <div class="box-label"><span class="icon">📘</span> Definition</div>
+    <p>At aerodromes where <strong>Standard Instrument Arrivals (STARs)</strong> have been established, arriving aircraft should normally be cleared to follow the appropriate STAR.</p>
+    <p>The aircraft shall be informed of the <strong>type of approach to expect</strong> and <strong>runway-in-use</strong> as early as possible.</p>
+    <p>After coordination with the approach control unit, the <strong>ACC may clear the first arriving aircraft for approach</strong> rather than to a holding fix.</p>
+  </div>
+
+  <div class="section-head">Visual Approach — Definition</div>
+  <div class="box box-blue">
+    <div class="box-label"><span class="icon">📘</span> Definition — Visual Approach</div>
+    <p>A <strong>visual approach</strong> is an approach by an <strong>IFR flight</strong> when either part or all of an instrument approach procedure is not completed and the <strong>approach is executed in visual reference to terrain</strong>.</p>
+  </div>
+
+  <div class="sub-head">Who Can Initiate a Visual Approach?</div>
+  <ul>
+    <li>Clearance for visual approach may be <strong>requested by the pilot</strong>, or</li>
+    <li>May be <strong>initiated by the controller</strong>.</li>
+  </ul>
+
+  <div class="box box-danger">
+    <div class="box-label"><span class="icon">🚨</span> Restriction — When Controller Cannot Initiate Visual Approach</div>
+    <p>The controller shall <strong>NOT</strong> initiate a visual approach when there is reason to believe that the <strong>flight crew is not familiar with the aerodrome and its surrounding terrain</strong>.</p>
+    <p>Controller should take into consideration <strong>prevailing traffic and meteorological conditions</strong> before initiating a visual approach.</p>
+  </div>
+
+  <div class="sub-head">Direct Base / Final Leg Clearance</div>
+  <div class="box box-green">
+    <div class="box-label"><span class="icon">✅</span> Permitted — Direct Base / Final</div>
+    <p>Aircraft may be cleared for <strong>direct base leg / final</strong>, if there is reasonable assurance that visual approach and landing can be completed.</p>
+  </div>
+
+  <div class="box box-gold">
+    <div class="box-label"><span class="icon">⚠️</span> Pilot Responsibility</div>
+    <p>When clearance to execute visual approach has been issued, it shall be the <strong>responsibility of the pilot</strong> to maintain <strong>terrain clearance</strong>.</p>
+    <p>Separation shall be provided between an aircraft cleared for visual approach and other arriving and departing aircraft.</p>
+  </div>
+
+  <div class="section-head">Visual Approach — Flight Crew Conditions</div>
+  <p>A flight crew <strong>may request</strong> visual approach if they have runway in sight and can maintain visual reference to terrain, subject to the following conditions:</p>
+
+  <!-- Conditions table -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Condition</th>
+          <th>Requirement</th>
+          <th>Aircraft Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>(a) Ground Visibility</strong></td>
+          <td class="crit">Not below higher of aerodrome operating minima of associated non-precision approach or minimum visibility/RVR</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Min visibility/RVR = <span class="chip chip-blue">2800 m</span></td>
+          <td><strong>Category A/B</strong> aeroplanes</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Min visibility/RVR = <span class="chip chip-gold">3200 m</span></td>
+          <td><strong>Category C</strong> aeroplanes</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Min visibility/RVR = <span class="chip chip-red">3600 m</span></td>
+          <td><strong>Category D</strong> aeroplanes</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="crit">Ground visibility ≥ <span class="chip chip-red">5 km</span> if only a circling approach is available for that runway</td>
+          <td>All categories</td>
+        </tr>
+        <tr>
+          <td><strong>(b) Ceiling</strong></td>
+          <td>Reported ceiling is at or above the level of the <strong>beginning of the initial approach segment</strong></td>
+          <td>All</td>
+        </tr>
+        <tr>
+          <td><strong>(c) Pilot's Own Report</strong></td>
+          <td>Pilot reports at initial approach segment level or during instrument approach that conditions are such that visual approach and landing can be completed with reasonable assurance</td>
+          <td>All</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-head">Pilot's Obligations During Visual Approach</div>
+  <p>The pilot shall <strong>advise the controller immediately</strong> when:</p>
+  <ul class="step-list">
+    <li><span class="step-num danger">a</span><span>Weather has <strong>deteriorated</strong> and unable to keep the terrain in sight</span></li>
+    <li><span class="step-num danger">b</span><span>Unable to <strong>continue flight following the preceding aircraft</strong></span></li>
+    <li><span class="step-num danger">c</span><span><strong>Additional spacing</strong> is required from the preceding aircraft</span></li>
+  </ul>
+  <p>The pilot at the time of requesting visual approach should also give a <strong>position report</strong>.</p>
+
+  <div class="section-head">Instrument Approach</div>
+  <div class="box box-blue">
+    <div class="box-label"><span class="icon">📘</span> Rule</div>
+    <p>The <strong>approach control unit shall specify</strong> the instrument approach procedure to be used by arriving aircraft. A flight crew may <strong>request an alternative procedure</strong> and, if circumstances permit, should be <strong>cleared accordingly</strong>.</p>
+  </div>
+
+  <!-- ╔══════════════════════════════╗
+       ║   SECTION 7: VMC OWN SEP    ║
+       ╚══════════════════════════════╝ -->
+  <div class="chapter-title">
+    <div class="num">7</div>
+    <h2>Clearance to Fly Maintaining Own Separation While in VMC</h2>
+    <div class="source">Doc 4444 §6.10</div>
+  </div>
+
+  <p>When so requested by an aircraft <strong>and</strong> provided it is agreed by the pilot of the other aircraft <strong>and</strong> so authorised by the appropriate ATS authority, an ATC unit may clear a controlled flight — including departing and arriving flights — operating in <strong>Airspace Classes D and E</strong> in VMC during the hours of daylight to fly subject to maintaining own separation to one other aircraft and remaining in VMC.</p>
+
+  <div class="box box-danger">
+    <div class="box-label"><span class="icon">🚨</span> DGCA Limits — All Three Conditions Must Be Met Simultaneously</div>
+    <ol>
+      <li>Must be <strong>requested by the aircraft</strong></li>
+      <li>Must be <strong>agreed by the pilot of the other aircraft</strong></li>
+      <li>Must be <strong>authorised by the appropriate ATS authority</strong></li>
+    </ol>
+  </div>
+
+  <p>When a controlled flight is so cleared, the following shall apply:</p>
+
+  <div class="box box-gold">
+    <div class="box-label"><span class="icon">⚠️</span> Condition (a) — Altitude Restriction</div>
+    <p>The clearance shall be for a specified portion of the flight <strong>at or below 3050 m (10,000 ft)</strong>, during climb or descent, and subject to further restrictions as and when prescribed on the basis of regional air navigation agreements.</p>
+  </div>
+
+  <div class="box box-blue">
+    <div class="box-label"><span class="icon">ℹ️</span> Condition (b) — Alternative Instructions Required</div>
+    <p>If there is a possibility that flight under VMC may become <strong>impracticable</strong>, an IFR flight shall be provided with <strong>alternative instructions</strong> to be complied with in the event that flight in VMC cannot be maintained for the term of the clearance.</p>
+  </div>
+
+  <div class="box box-green">
+    <div class="box-label"><span class="icon">✅</span> Condition (c) — Pilot's Action on Deteriorating Conditions</div>
+    <p>The pilot of an IFR flight, on observing that conditions are deteriorating and considering that operation in VMC will become impossible, <strong>shall inform ATC before entering IMC</strong> and shall proceed in accordance with the alternative instructions given.</p>
+    <p>Essential traffic information shall be given to controlled flights concerned whenever they constitute essential traffic to each other.</p>
+  </div>
+
+  <!-- ╔══════════════════════════════╗
+       ║   SECTION 8: EAT / OCT      ║
+       ╚══════════════════════════════╝ -->
+  <div class="chapter-title">
+    <div class="num">8</div>
+    <h2>Expected Approach Time (EAT) &amp; Onward Clearance Time</h2>
+    <div class="source">Doc 4444 §6.11–6.12</div>
+  </div>
+
+  <div class="section-head">Expected Approach Time (EAT)</div>
+  <div class="box box-blue">
+    <div class="box-label"><span class="icon">📘</span> Definition — EAT</div>
+    <p>An Expected Approach Time (EAT) is the time at which ATC expects that an arriving aircraft, following a delay, will be <strong>cleared to commence its approach</strong> from the holding fix.</p>
+  </div>
+
+  <div class="keyfacts">
+    <div class="keyfact-card kf-red">
+      <div class="kf-val">10 MIN</div>
+      <div class="kf-label">Minimum delay threshold — EAT shall be determined when expected delay is <strong>10 minutes or more</strong></div>
+    </div>
+    <div class="keyfact-card kf-gold">
+      <div class="kf-val">5 MIN</div>
+      <div class="kf-label">Revision trigger — revised EAT transmitted when it differs from previous by <strong>5 minutes or more</strong></div>
+    </div>
+    <div class="keyfact-card kf-blue">
+      <div class="kf-val">30 MIN</div>
+      <div class="kf-label">EAT transmitted by most expeditious means when holding expected to be <strong>30 minutes or more</strong></div>
+    </div>
+  </div>
+
+  <p>EAT should be transmitted to the aircraft <strong>as soon as practicable</strong> and preferably <em>not later than at the commencement of its initial descent from cruising level</em>.</p>
+
+  <div class="box box-gold">
+    <div class="box-label"><span class="icon">⚠️</span> Revision of EAT</div>
+    <p>A revised EAT shall be transmitted to the aircraft <strong>without delay</strong> whenever it differs from that previously transmitted by <span class="chip chip-gold">5 minutes or more</span>, or such lesser period of time as agreed between the ATS units concerned.</p>
+  </div>
+
+  <div class="box box-teal">
+    <div class="box-label"><span class="icon">ℹ️</span> Identification of Holding Fix</div>
+    <p>The <strong>holding fix to which an EAT relates shall be identified</strong> together with the EAT whenever circumstances are such that this would not otherwise be evident to the pilot.</p>
+  </div>
+
+  <div class="section-head">Onward Clearance Time (OCT)</div>
+  <div class="box box-blue">
+    <div class="box-label"><span class="icon">📘</span> Definition — Onward Clearance Time</div>
+    <p><em>"Onward clearance time"</em> is <strong>the time at which an aircraft can expect to leave the fix at which it is being held.</strong></p>
+    <p>In the event an aircraft is held en route or at a location or aid <strong>other than the initial approach fix</strong>, the aircraft concerned shall, as soon as practicable, be given an expected onward clearance time from the holding fix. The aircraft shall also be advised if <strong>further holding at subsequent holding fixes</strong> is expected.</p>
+  </div>
+
+  <!-- ╔══════════════════════════════╗
+       ║   SECTION 9: INFO ARR       ║
+       ╚══════════════════════════════╝ -->
+  <div class="chapter-title">
+    <div class="num">9</div>
+    <h2>Information for Arriving Aircraft</h2>
+    <div class="source">Doc 4444 §6.13</div>
+  </div>
+
+  <div class="section-head">A — On First Communication with Approach Control Unit</div>
+  <p>As early as practicable after an aircraft has established communication with the unit providing approach control service, the following elements of information, <strong>in the order listed</strong>, shall be transmitted to the aircraft (except what the aircraft is already known to have received):</p>
+
+  <ol class="step-list">
+    <li><span class="step-num letter">a</span><span><strong>Type of approach</strong> and runway-in-use</span></li>
+    <li><span class="step-num letter">b</span><span><strong>Meteorological information</strong>, as follows:</span></li>
+    <li><span class="step-num letter">c</span><span><strong>Current runway surface conditions</strong>, in case of precipitants or other temporary hazards</span></li>
+    <li><span class="step-num letter">d</span><span>Changes in the <strong>operational status of visual and non-visual aids</strong> essential for approach and landing</span></li>
+  </ol>
+
+  <div class="box box-teal">
+    <div class="box-label"><span class="icon">ℹ️</span> Route Change During Approach</div>
+    <p>If it becomes necessary or operationally desirable that an arriving aircraft follow an instrument approach procedure or use a <strong>runway other than that initially stated</strong>, the flight crew shall be advised <strong>without delay</strong>.</p>
+  </div>
+
+  <div class="section-head">B — At Commencement of Final Approach</div>
+  <p>The following information shall be transmitted to aircraft at the commencement of final approach:</p>
+
+  <ul class="step-list">
+    <li><span class="step-num letter">a</span><span><strong>Significant changes</strong> in the mean surface wind direction and speed</span></li>
+    <li><span class="step-num letter">b</span><span>Latest information, if any, on <strong>wind shear and/or turbulence</strong> in the final approach area</span></li>
+    <li><span class="step-num letter">c</span><span>Current <strong>visibility</strong> representative of the direction of approach and landing, or the current RVR value(s) and trend (supplemented by slant visual range, if provided)</span></li>
+  </ul>
+
+  <div class="box box-violet">
+    <div class="box-label"><span class="icon">📝</span> Note — Significant Wind Component Changes (When Controller Has Component Form)</div>
+    <div class="table-wrap" style="margin:0;">
+      <table>
+        <thead><tr><th>Wind Component</th><th>Significant Change Threshold</th></tr></thead>
+        <tbody>
+          <tr><td>Mean <strong>Head-wind</strong> component</td><td class="crit"><span class="chip chip-red">10 kt</span></td></tr>
+          <tr><td>Mean <strong>Tail-wind</strong> component</td><td class="warn"><span class="chip chip-gold">2 kt</span></td></tr>
+          <tr><td>Mean <strong>Cross-wind</strong> component</td><td class="ok"><span class="chip chip-green">5 kt</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-head">C — During Final Approach (Transmitted Without Delay)</div>
+  <p>During final approach, the following information shall be transmitted <strong>without delay</strong>:</p>
+
+  <ul class="step-list">
+    <li><span class="step-num danger">a</span><span>The <strong>sudden occurrence of hazards</strong> (e.g., unauthorized traffic on the runway)</span></li>
+    <li><span class="step-num danger">b</span><span><strong>Significant variations</strong> in the current surface wind, expressed in terms of <strong>minimum and maximum values</strong></span></li>
+    <li><span class="step-num danger">c</span><span><strong>Significant changes</strong> in runway surface conditions</span></li>
+    <li><span class="step-num danger">d</span><span>Changes in the <strong>operational status of required visual or non-visual aids</strong></span></li>
+    <li><span class="step-num danger">e</span><span>Changes in <strong>observed RVR value(s)</strong> in accordance with the reported scale in use, or changes in the <strong>visibility</strong> representative of the direction of approach and landing</span></li>
+  </ul>
+
+  <!-- ╔══════════════════════════════╗
+       ║   SECTION 10: Q & A         ║
+       ╚══════════════════════════════╝ -->
+  <div class="chapter-title">
+    <div class="num">10</div>
+    <h2>DGCA Practice Questions &amp; Answers</h2>
+    <div class="source">Air Regulations — pp. 196–198</div>
+  </div>
+
+  <div class="box box-violet" style="margin-bottom:22px;">
+    <div class="box-label"><span class="icon">🎯</span> Answer Key</div>
+    <p style="font-family:'JetBrains Mono',monospace; font-size:11pt;">
+      1-A &nbsp; 2-B &nbsp; 3-C &nbsp; 4-A &nbsp; 5-C &nbsp; 6-B &nbsp; 7-B &nbsp; 8-C &nbsp; 9-A &nbsp; 10-C
+    </p>
+  </div>
+
+  <!-- Q1 -->
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">Q1</div>If an arriving aircraft is making a straight-in approach, a departing aircraft may take off in <em>any direction</em>:</div>
+    <div class="qa-options">
+      <div class="qa-option correct"><div class="opt-letter">A</div>Until five minutes before the arriving aircraft is estimated to be over the instrument runway</div>
+      <div class="qa-option"><div class="opt-letter">B</div>Until ten minutes before the arriving aircraft is estimated to be over the instrument runway</div>
+      <div class="qa-option"><div class="opt-letter">C</div>Until two minutes before the arriving aircraft is estimated to be over the instrument runway</div>
+    </div>
+    <div class="qa-answer">✅ <strong>Answer: A</strong> — For straight-in approach, any-direction take-off is permitted until <strong>5 minutes before</strong> estimated arrival over the instrument runway. [Ref: p.190]</div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">Q2</div>For controlled traffic in the vicinity of an airport, separation minima may be reduced:</div>
+    <div class="qa-options">
+      <div class="qa-option"><div class="opt-letter">A</div>At the discretion of the air traffic controller</div>
+      <div class="qa-option correct"><div class="opt-letter">B</div>When the commander in the following aircraft has the preceding aircraft in sight and is able to maintain own separation</div>
+      <div class="qa-option"><div class="opt-letter">C</div>If the commander of the involved aircraft so requests</div>
+    </div>
+    <div class="qa-answer">✅ <strong>Answer: B</strong> — Reduction is permitted when the succeeding aircraft's crew has the preceding aircraft in sight and reports they can maintain own separation. [Ref: p.191]</div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">Q3</div>At the commencement of final approach, if the controller possesses wind information in the form of components, significant changes in mean surface wind direction and speed shall be transmitted. The mean tail-wind component significant change is:</div>
+    <div class="qa-options">
+      <div class="qa-option"><div class="opt-letter">A</div>3 kt</div>
+      <div class="qa-option"><div class="opt-letter">B</div>4 kt</div>
+      <div class="qa-option correct"><div class="opt-letter">C</div>2 kt</div>
+    </div>
+    <div class="qa-answer">✅ <strong>Answer: C</strong> — The significant change threshold for mean tail-wind component is <strong>2 kt</strong>. (Head-wind = 10 kt; Cross-wind = 5 kt) [Ref: p.195]</div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">Q4</div>The EAT has to be transmitted to the pilot as soon as possible, in case the expected delay is:</div>
+    <div class="qa-options">
+      <div class="qa-option correct"><div class="opt-letter">A</div>5 minutes or more</div>
+      <div class="qa-option"><div class="opt-letter">B</div>15 minutes or more</div>
+      <div class="qa-option"><div class="opt-letter">C</div>20 minutes</div>
+    </div>
+    <div class="qa-answer">✅ <strong>Answer: A</strong> — An EAT shall be determined for an arriving aircraft that will be subjected to a delay of <strong>10 minutes or more</strong>. The book answer given is A (the question wording differs slightly from the regulation — the rule is 10 min, not 5 min, but per the answer key provided in the document, A is correct). [Ref: p.194]</div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">Q5</div>A so-called "Visual Approach" can be performed:</div>
+    <div class="qa-options">
+      <div class="qa-option"><div class="opt-letter">A</div>During VFR flight, there should be a visibility of 5 km or more</div>
+      <div class="qa-option"><div class="opt-letter">B</div>During IFR flights, if the cloudbase is 1000 ft more than the appropriate DA or MDA for that procedure</div>
+      <div class="qa-option correct"><div class="opt-letter">C</div>During IFR flights, if there is permanent sight on the movement area and the underlying ground</div>
+    </div>
+    <div class="qa-answer">✅ <strong>Answer: C</strong> — Visual approach is defined specifically for <strong>IFR flights</strong> when the approach is executed in visual reference to terrain. [Ref: p.192]</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">Q6</div>"Time Approach Procedure" is used as necessary to expedite the approach of a number of arriving aircraft. This will be obtained requesting aircraft:</div>
+    <div class="qa-options">
+      <div class="qa-option"><div class="opt-letter">A</div>To maintain a specified speed during the approach procedure</div>
+      <div class="qa-option correct"><div class="opt-letter">B</div>To pass the specified point inbound at the previously notified time</div>
+      <div class="qa-option"><div class="opt-letter">C</div>To apply a step-down descent between aircraft in the approach sequence</div>
+    </div>
+    <div class="qa-answer">✅ <strong>Answer: B</strong> — The "Time Approach Procedure" requires aircraft to pass the specified inbound point at the <strong>previously notified time</strong> to establish time-based sequencing. [Ref: p.197]</div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">Q7</div>During an arrival procedure under an IFR flight plan in VMC conditions, traffic avoidance is the responsibility of:</div>
+    <div class="qa-options">
+      <div class="qa-option"><div class="opt-letter">A</div>The radar controller</div>
+      <div class="qa-option correct"><div class="opt-letter">B</div>The pilot in command</div>
+      <div class="qa-option"><div class="opt-letter">C</div>The approach controller</div>
+    </div>
+    <div class="qa-answer">✅ <strong>Answer: B</strong> — When cleared to maintain own separation in VMC, the <strong>pilot in command</strong> is responsible for traffic avoidance and maintaining own separation. [Ref: p.194]</div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">Q8</div>If the crew on an arriving aircraft approaching a controlled aerodrome reports "field in sight", a clearance for "visual approach" may be given under certain conditions:</div>
+    <div class="qa-options">
+      <div class="qa-option"><div class="opt-letter">A</div>The meteorological visibility must not be less than 8 km</div>
+      <div class="qa-option"><div class="opt-letter">B</div>The approach must be passing the FAF</div>
+      <div class="qa-option correct"><div class="opt-letter">C</div>The air traffic controller will provide separation to other controlled traffic</div>
+    </div>
+    <div class="qa-answer">✅ <strong>Answer: C</strong> — Separation shall be provided between an aircraft cleared for visual approach and other arriving and departing aircraft. This remains the ATC's responsibility. [Ref: p.192–193]</div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">Q9</div>Which statement is correct? During a "visual approach" in controlled airspace (Class C):</div>
+    <div class="qa-options">
+      <div class="qa-option correct"><div class="opt-letter">A</div>ATC will apply separation with other traffic</div>
+      <div class="qa-option"><div class="opt-letter">B</div>The pilot has to apply separation with other traffic</div>
+      <div class="qa-option"><div class="opt-letter">C</div>ATC will apply separation with other arriving traffic</div>
+    </div>
+    <div class="qa-answer">✅ <strong>Answer: A</strong> — In Class C airspace, ATC shall provide separation between the visual approach aircraft and <strong>all other controlled traffic</strong> (both arriving and departing). [Ref: p.192]</div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="qa-item">
+    <div class="qa-q"><div class="qnum">Q10</div>One-minute separation may be used between departing aircraft if they are to fly on tracks diverging by at least:</div>
+    <div class="qa-options">
+      <div class="qa-option"><div class="opt-letter">A</div>30° immediately after take-off</div>
+      <div class="qa-option"><div class="opt-letter">B</div>15° immediately after take-off</div>
+      <div class="qa-option correct"><div class="opt-letter">C</div>45° immediately after take-off</div>
+    </div>
+    <div class="qa-answer">✅ <strong>Answer: C</strong> — The tracks must diverge by <strong>at least 45°</strong> immediately after take-off to provide lateral separation with only 1 minute between take-offs. [Ref: p.189]</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- QUICK REFERENCE SUMMARY -->
+  <div class="chapter-title" style="background: linear-gradient(90deg,#166534,#16a34a);">
+    <div class="num" style="background:#fcd34d;color:#166534;">★</div>
+    <h2>Quick-Reference Summary — Key Numbers</h2>
+    <div class="source" style="color:rgba(255,255,255,0.6);">Exam Critical Values</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Rule / Scenario</th>
+          <th>Separation / Value</th>
+          <th>Condition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Departing a/c — diverging tracks</td>
+          <td class="ok">1 minute</td>
+          <td>Tracks diverge ≥ 45° immediately after T/O</td>
+        </tr>
+        <tr>
+          <td>Departing a/c — same track, speed diff</td>
+          <td class="warn">2 minutes</td>
+          <td>Preceding a/c ≥ 40 kt faster, same track</td>
+        </tr>
+        <tr>
+          <td>Departing a/c — level crossing</td>
+          <td class="crit">5 minutes</td>
+          <td>Second a/c flies through level of first, same track</td>
+        </tr>
+        <tr>
+          <td>Dep vs Arr — any direction (instrument approach)</td>
+          <td class="ok">Before procedure turn</td>
+          <td>Until arriving a/c starts procedure/base turn</td>
+        </tr>
+        <tr>
+          <td>Dep vs Arr — ≥45° off reciprocal (instrument approach)</td>
+          <td class="crit">3 min before THR</td>
+          <td>After arriving a/c starts procedure turn</td>
+        </tr>
+        <tr>
+          <td>Dep vs Arr — any direction (straight-in)</td>
+          <td class="crit">5 min before THR</td>
+          <td>Until 5 min before arriving a/c over instrument runway</td>
+        </tr>
+        <tr>
+          <td>Dep vs Arr — ≥45° off reciprocal (straight-in)</td>
+          <td class="crit">3 min before THR or designated fix</td>
+          <td>Straight-in approach, specific direction</td>
+        </tr>
+        <tr>
+          <td>VMC own-separation clearance — max altitude</td>
+          <td class="warn">3050 m / 10,000 ft</td>
+          <td>Classes D &amp; E, daylight only</td>
+        </tr>
+        <tr>
+          <td>EAT — delay trigger</td>
+          <td class="crit">10 min delay</td>
+          <td>EAT to be determined and transmitted</td>
+        </tr>
+        <tr>
+          <td>EAT — revision trigger</td>
+          <td class="warn">Differs by ≥ 5 min</td>
+          <td>Revised EAT transmitted without delay</td>
+        </tr>
+        <tr>
+          <td>EAT — expeditious transmission trigger</td>
+          <td class="crit">≥ 30 min hold</td>
+          <td>By most expeditious means</td>
+        </tr>
+        <tr>
+          <td>Wind — significant headwind change</td>
+          <td class="crit">10 kt</td>
+          <td>Final approach, component form</td>
+        </tr>
+        <tr>
+          <td>Wind — significant tailwind change</td>
+          <td class="ok">2 kt</td>
+          <td>Final approach, component form</td>
+        </tr>
+        <tr>
+          <td>Wind — significant crosswind change</td>
+          <td class="warn">5 kt</td>
+          <td>Final approach, component form</td>
+        </tr>
+        <tr>
+          <td>Visual approach min visibility — Cat A/B</td>
+          <td class="ok">2800 m</td>
+          <td>Minimum visibility/RVR</td>
+        </tr>
+        <tr>
+          <td>Visual approach min visibility — Cat C</td>
+          <td class="warn">3200 m</td>
+          <td>Minimum visibility/RVR</td>
+        </tr>
+        <tr>
+          <td>Visual approach min visibility — Cat D</td>
+          <td class="crit">3600 m</td>
+          <td>Minimum visibility/RVR</td>
+        </tr>
+        <tr>
+          <td>Visual approach — circling-only runway</td>
+          <td class="crit">5 km</td>
+          <td>Ground visibility must not be less than 5 km</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div style="margin-top:50px;padding:20px 24px;background:var(--navy);border-radius:10px;color:rgba(255,255,255,0.6);font-size:9pt;display:flex;justify-content:space-between;align-items:center;page-break-inside:avoid;">
+    <span>📘 DGCA Air Regulations — Chapter 7 | Doc 4444, AIP India</span>
+    <span style="color:rgba(255,255,255,0.4);font-style:italic;font-family:'Playfair Display',serif;">Capt. Pankaj Pahil</span>
+    <span>CPL / ATPL Study Notes | Pages 189–198</span>
+  </div>
+
+</div><!-- /page-wrap -->
+</body>
+</html>

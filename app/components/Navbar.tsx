@@ -36,17 +36,22 @@ export default function Navbar() {
                 CPL <ChevronDown className="w-3 h-3"/>
               </Link>
               {drop === "cpl" && (
-                <div className="absolute top-full left-0 mt-1 w-56 rounded-xl overflow-hidden z-50"
+                <div className="absolute top-full left-0 mt-1 w-64 rounded-xl overflow-hidden z-50"
                      style={{ background:"rgba(15,8,30,0.98)", border:"1px solid rgba(124,58,237,0.35)", boxShadow:"0 20px 40px rgba(0,0,0,0.5)" }}>
-                  {["Air Regulations","Aviation Meteorology","Air Navigation","Technical General","Radio Aids & Instruments","Performance"].map((s,i) => {
-                    const slugs = ["air-regulations","meteorology","air-navigation","technical-general","radio-aids","performance"];
-                    return (
-                      <Link key={s} href={`/cpl/${slugs[i]}`} className="block px-4 py-2.5 text-sm no-underline hover:bg-purple-900/20 transition-colors"
-                            style={{ color:"#94a3b8", borderBottom: i<5 ? "1px solid rgba(255,255,255,0.04)" : undefined }}>
-                        {s}
-                      </Link>
-                    );
-                  })}
+                  {[
+                    ["Air Navigation",          "air-navigation"],
+                    ["Aviation Meteorology",    "meteorology"],
+                    ["Air Regulations",         "air-regulations"],
+                    ["Technical General",       "technical-general"],
+                    ["Technical Specific",      "technical-specific"],
+                    ["Technical Performance",   "technical-performance"],
+                    ["Radio Telephony",         "radio-telephony"],
+                  ].map(([label, slug], i, arr) => (
+                    <Link key={slug} href={`/cpl/${slug}`} className="block px-4 py-2.5 text-sm no-underline hover:bg-purple-900/20 transition-colors"
+                          style={{ color:"#94a3b8", borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.04)" : undefined }}>
+                      {label}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>

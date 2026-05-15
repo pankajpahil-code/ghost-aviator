@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGCA Chapter 8 – Procedures for Aerodrome Control Service | Study Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+/* ===== PAGE SETUP ===== */
+@page {
+  size: A4;
+  margin: 20mm 18mm 20mm 18mm;
+}
+
+/* ===== WATERMARK ===== */
+body::before {
+  content: "Capt. Pankaj Pahil";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 72px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  color: #1a2e5a;
+  opacity: 0.07;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 9999;
+  letter-spacing: 4px;
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 400;
+  font-size: 10.5pt;
+  line-height: 1.65;
+  color: #1c1c2e;
+  background: #f4f6fb;
+  padding: 0;
+}
+
+/* ===== COVER PAGE ===== */
+.cover-page {
+  background: linear-gradient(155deg, #0a1628 0%, #1a2e5a 45%, #0d3b7a 75%, #1a4f8a 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+}
+
+.cover-page::after {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 400px; height: 400px;
+  border: 2px solid rgba(212,175,55,0.15);
+  border-radius: 50%;
+}
+.cover-page::before {
+  content: "Capt. Pankaj Pahil";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 72px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  color: rgba(255,255,255,0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cover-circle {
+  width: 120px; height: 120px;
+  border: 3px solid #d4af37;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 30px;
+  position: relative; z-index: 1;
+}
+
+.cover-icon-svg { width: 70px; height: 70px; }
+
+.cover-badge {
+  background: #d4af37;
+  color: #0a1628;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 9pt;
+  letter-spacing: 3px;
+  padding: 6px 20px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  position: relative; z-index: 1;
+}
+
+.cover-chapter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11pt;
+  color: rgba(212,175,55,0.7);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  position: relative; z-index: 1;
+}
+
+.cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36pt;
+  font-weight: 900;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.15;
+  margin-bottom: 8px;
+  position: relative; z-index: 1;
+}
+
+.cover-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 20pt;
+  font-weight: 700;
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative; z-index: 1;
+}
+
+.cover-divider {
+  width: 80px; height: 3px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 0 auto 30px;
+  position: relative; z-index: 1;
+}
+
+.cover-meta {
+  display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;
+  position: relative; z-index: 1; margin-bottom: 40px;
+}
+
+.cover-meta-item {
+  text-align: center;
+  border: 1px solid rgba(212,175,55,0.3);
+  padding: 14px 24px; border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+}
+.cover-meta-item .label {
+  font-size: 7.5pt; letter-spacing: 2px; color: #d4af37;
+  text-transform: uppercase; font-family: 'JetBrains Mono', monospace;
+  display: block; margin-bottom: 4px;
+}
+.cover-meta-item .val {
+  font-size: 11pt; font-weight: 700; color: #fff;
+}
+
+.cover-footer {
+  position: absolute; bottom: 30px;
+  font-size: 8pt; color: rgba(212,175,55,0.5);
+  letter-spacing: 2px; font-family: 'JetBrains Mono', monospace;
+  z-index: 1;
+}
+
+/* ===== MAIN CONTENT WRAPPER ===== */
+.content-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 28px;
+}
+
+/* ===== SECTION HEADING ===== */
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 22pt;
+  font-weight: 900;
+  color: #0a1628;
+  border-bottom: 3px solid #d4af37;
+  padding-bottom: 8px;
+  margin: 40px 0 18px;
+  page-break-after: avoid;
+}
+
+.sub-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 14pt;
+  font-weight: 700;
+  color: #1a2e5a;
+  border-left: 4px solid #1a7abf;
+  padding-left: 12px;
+  margin: 28px 0 12px;
+  page-break-after: avoid;
+}
+
+.sub-sub-heading {
+  font-size: 11pt;
+  font-weight: 700;
+  color: #1a2e5a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 18px 0 8px;
+  page-break-after: avoid;
+}
+
+/* ===== COLORED INFO BOXES ===== */
+.box {
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin: 16px 0;
+  page-break-inside: avoid;
+  border-left-width: 5px;
+  border-left-style: solid;
+}
+
+/* DEFINITION BOX – Blue */
+.box-def {
+  background: #e8f3fc;
+  border-left-color: #1a7abf;
+  color: #0d2a45;
+}
+.box-def .box-title {
+  font-weight: 700; color: #1a7abf;
+  font-size: 8.5pt; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* WARNING / REGULATORY LIMIT BOX – Red */
+.box-warn {
+  background: #fdecea;
+  border-left-color: #c0392b;
+  color: #4a0f0a;
+}
+.box-warn .box-title {
+  font-weight: 700; color: #c0392b;
+  font-size: 8.5pt; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* SOP / PROCEDURE BOX – Green */
+.box-sop {
+  background: #e9f7ef;
+  border-left-color: #1e8449;
+  color: #0d3320;
+}
+.box-sop .box-title {
+  font-weight: 700; color: #1e8449;
+  font-size: 8.5pt; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* NOTE BOX – Amber */
+.box-note {
+  background: #fef9e7;
+  border-left-color: #d4ac0d;
+  color: #4a3800;
+}
+.box-note .box-title {
+  font-weight: 700; color: #b7950b;
+  font-size: 8.5pt; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* PRIORITY BOX – Purple */
+.box-priority {
+  background: #f5eef8;
+  border-left-color: #7d3c98;
+  color: #2e0a3a;
+}
+.box-priority .box-title {
+  font-weight: 700; color: #7d3c98;
+  font-size: 8.5pt; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ===== REGULATION LIST ===== */
+ul.reg-list, ol.reg-list {
+  padding-left: 22px;
+  margin: 8px 0;
+}
+ul.reg-list li, ol.reg-list li {
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+ul.reg-list li::marker { color: #d4af37; font-weight: 700; }
+ol.reg-list li::marker { color: #1a7abf; font-weight: 700; }
+
+/* ===== TABLES ===== */
+.reg-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 10pt;
+  page-break-inside: avoid;
+}
+.reg-table thead tr {
+  background: #1a2e5a;
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5pt;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.reg-table thead th {
+  padding: 10px 14px;
+  text-align: left;
+  border: none;
+}
+.reg-table tbody tr:nth-child(even) { background: #eef2f9; }
+.reg-table tbody tr:nth-child(odd) { background: #ffffff; }
+.reg-table tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid #d0d8ea;
+  vertical-align: middle;
+}
+.reg-table tbody tr:hover { background: #dceeff; }
+
+/* friction color codes */
+.friction-good { background: #d5f5e3 !important; color: #145a32; font-weight: 700; }
+.friction-med-good { background: #d6eaf8 !important; color: #154360; font-weight: 700; }
+.friction-med { background: #fef9e7 !important; color: #7d6608; font-weight: 700; }
+.friction-med-poor { background: #fdebd0 !important; color: #7e5109; font-weight: 700; }
+.friction-poor { background: #fadbd8 !important; color: #7b241c; font-weight: 700; }
+
+/* ===== SVG DIAGRAMS ===== */
+.diagram-container {
+  background: #fff;
+  border: 1px solid #c8d6e8;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  page-break-inside: avoid;
+  text-align: center;
+}
+.diagram-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a2e5a;
+  margin-bottom: 12px;
+  border-bottom: 1px dashed #c8d6e8;
+  padding-bottom: 8px;
+}
+
+/* ===== FLOWCHART STEPS ===== */
+.flow-step {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin: 10px 0; padding: 12px 14px;
+  background: #fff; border-radius: 6px;
+  border: 1px solid #c8d6e8;
+  page-break-inside: avoid;
+}
+.flow-num {
+  background: #1a2e5a; color: #d4af37;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700; font-size: 11pt;
+  width: 32px; height: 32px;
+  border-radius: 50%; display: flex;
+  align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.flow-content { flex: 1; }
+.flow-content strong { color: #1a2e5a; }
+
+/* ===== PRIORITY CARDS ===== */
+.priority-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 14px 0;
+  page-break-inside: avoid;
+}
+.priority-card {
+  border-radius: 5px;
+  padding: 10px 14px;
+  display: flex; gap: 10px; align-items: flex-start;
+  border: 1px solid rgba(0,0,0,0.08);
+  page-break-inside: avoid;
+}
+.priority-rank {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700; font-size: 12pt;
+  color: #fff;
+  background: #7d3c98;
+  width: 28px; height: 28px;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ===== QA SECTION ===== */
+.qa-block {
+  background: #fff;
+  border: 1px solid #c8d6e8;
+  border-radius: 6px;
+  margin: 12px 0;
+  overflow: hidden;
+  page-break-inside: avoid;
+}
+.qa-question {
+  background: #1a2e5a;
+  color: #fff;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.qa-question span.qnum {
+  background: #d4af37; color: #0a1628;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700; font-size: 9pt;
+  padding: 2px 8px; border-radius: 3px;
+  margin-right: 10px;
+}
+.qa-options { padding: 10px 16px; }
+.qa-option {
+  padding: 6px 10px; margin: 4px 0;
+  border-radius: 4px; border: 1px solid #e0e8f0;
+  font-size: 9.5pt;
+  cursor: default;
+}
+.qa-option.correct {
+  background: #e9f7ef; border-color: #1e8449;
+  color: #0d3320; font-weight: 700;
+}
+.qa-option.correct::before { content: "✓ "; color: #1e8449; }
+.qa-option.wrong { background: #f9f9f9; color: #666; }
+
+/* ===== CHIP / BADGE ===== */
+.chip {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8pt;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 2px;
+}
+.chip-red { background: #fadbd8; color: #922b21; border: 1px solid #e6b0aa; }
+.chip-blue { background: #d6eaf8; color: #154360; border: 1px solid #aed6f1; }
+.chip-green { background: #d5f5e3; color: #1e5631; border: 1px solid #a9dfbf; }
+.chip-gold { background: #fef9e7; color: #7d6608; border: 1px solid #f9e79f; }
+
+/* ===== TABLE OF CONTENTS ===== */
+.toc {
+  background: #fff;
+  border: 1px solid #c8d6e8;
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin: 20px 0 40px;
+  page-break-after: always;
+  page-break-inside: avoid;
+}
+.toc-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18pt; font-weight: 900;
+  color: #1a2e5a; margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #d4af37;
+}
+.toc-item {
+  display: flex; justify-content: space-between;
+  padding: 6px 0; border-bottom: 1px dotted #c8d6e8;
+  font-size: 10pt;
+}
+.toc-item:last-child { border-bottom: none; }
+.toc-item a { text-decoration: none; color: #1a2e5a; font-weight: 600; }
+.toc-item a:hover { color: #d4af37; }
+.toc-page { color: #888; font-family: 'JetBrains Mono', monospace; font-size: 9pt; }
+
+.toc-section {
+  font-family: 'Playfair Display', serif;
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: #1a7abf;
+  margin: 10px 0 2px;
+}
+.toc-sub { padding-left: 20px; font-size: 9.5pt; color: #444; }
+
+/* ===== PAGE BREAK HELPERS ===== */
+.page-break { page-break-after: always; }
+.no-break { page-break-inside: avoid; }
+
+/* ===== INLINE CODE ===== */
+code {
+  font-family: 'JetBrains Mono', monospace;
+  background: #eef2f9;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 9pt;
+  color: #1a2e5a;
+}
+
+/* ===== SECTION BAND ===== */
+.section-band {
+  background: linear-gradient(90deg, #0a1628, #1a2e5a);
+  color: #d4af37;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8pt;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  padding: 6px 20px;
+  margin: 36px -28px 0;
+  page-break-after: avoid;
+}
+
+p { margin-bottom: 8px; }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!--                        COVER PAGE                           -->
+<!-- ============================================================ -->
+<div class="cover-page">
+  <div class="cover-badge">CPL / ATPL Study Notes</div>
+
+  <div class="cover-circle">
+    <svg class="cover-icon-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Control Tower SVG icon -->
+      <rect x="44" y="10" width="12" height="45" fill="#d4af37" rx="2"/>
+      <rect x="30" y="52" width="40" height="8" fill="#d4af37" rx="2"/>
+      <rect x="36" y="60" width="8" height="28" fill="#d4af37"/>
+      <rect x="56" y="60" width="8" height="28" fill="#d4af37"/>
+      <ellipse cx="50" cy="10" rx="18" ry="8" fill="none" stroke="#d4af37" stroke-width="2.5"/>
+      <circle cx="50" cy="10" r="4" fill="#d4af37"/>
+      <!-- radar sweep -->
+      <circle cx="50" cy="10" rx="14" rx="14" r="14" fill="none" stroke="rgba(212,175,55,0.35)" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <div class="cover-chapter">Chapter 8 · Air Regulations</div>
+  <div class="cover-title">Procedures for<br>Aerodrome Control</div>
+  <div class="cover-subtitle">Service</div>
+  <div class="cover-divider"></div>
+
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <span class="label">Authority</span>
+      <span class="val">DGCA India</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="label">Reference</span>
+      <span class="val">Doc 4444 · AIP India</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="label">Pages</span>
+      <span class="val">199 – 214</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="label">Instructor</span>
+      <span class="val">Capt. Pankaj Pahil</span>
+    </div>
+  </div>
+
+  <div class="cover-footer">DGCA AIR REGULATIONS · AERODROME CONTROL SERVICE · STUDY NOTES</div>
+</div>
+
+<!-- ============================================================ -->
+<!--                    CONTENT WRAPPER                          -->
+<!-- ============================================================ -->
+<div class="content-wrapper">
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <div class="toc-title">📋 Table of Contents</div>
+
+  <div class="toc-section">Section 1 — Functions &amp; Organisation</div>
+  <div class="toc-item toc-sub"><a href="#s1">Functions of Aerodrome Control Towers</a><span class="toc-page">§1</span></div>
+  <div class="toc-item toc-sub"><a href="#s1b">Alerting Service</a><span class="toc-page">§2</span></div>
+
+  <div class="toc-section">Section 2 — Departure Procedures</div>
+  <div class="toc-item toc-sub"><a href="#s2">Start-Up &amp; Flight Level Assignment</a><span class="toc-page">§3</span></div>
+  <div class="toc-item toc-sub"><a href="#s2b">Take-Off &amp; Landing Procedures</a><span class="toc-page">§4</span></div>
+
+  <div class="toc-section">Section 3 — Control of Aerodrome Traffic</div>
+  <div class="toc-item toc-sub"><a href="#s3">Traffic &amp; Taxi Circuits</a><span class="toc-page">§5</span></div>
+  <div class="toc-item toc-sub"><a href="#s3b">Taxi Clearance</a><span class="toc-page">§6</span></div>
+  <div class="toc-item toc-sub"><a href="#s3c">Taxiing on Runway-in-Use</a><span class="toc-page">§7</span></div>
+  <div class="toc-item toc-sub"><a href="#s3d">Runway-Holding Positions</a><span class="toc-page">§8</span></div>
+
+  <div class="toc-section">Section 4 — Information to Aircraft</div>
+  <div class="toc-item toc-sub"><a href="#s4">Pre-Taxi Met Information</a><span class="toc-page">§9</span></div>
+  <div class="toc-item toc-sub"><a href="#s4b">Pre-Take-Off Information</a><span class="toc-page">§10</span></div>
+  <div class="toc-item toc-sub"><a href="#s4c">Runway Incursion / Obstruction</a><span class="toc-page">§11</span></div>
+  <div class="toc-item toc-sub"><a href="#s4d">Uncertainty of Position</a><span class="toc-page">§12</span></div>
+  <div class="toc-item toc-sub"><a href="#s4e">Wake Turbulence &amp; Jet Blast</a><span class="toc-page">§13</span></div>
+  <div class="toc-item toc-sub"><a href="#s4f">Movement Area Conditions</a><span class="toc-page">§14</span></div>
+
+  <div class="toc-section">Section 5 — Priority &amp; Special Traffic</div>
+  <div class="toc-item toc-sub"><a href="#s5">Other-Than-Aircraft Traffic</a><span class="toc-page">§15</span></div>
+  <div class="toc-item toc-sub"><a href="#s5b">Priority Rules (a–j)</a><span class="toc-page">§16</span></div>
+  <div class="toc-item toc-sub"><a href="#s5c">Suspension of VFR Operations</a><span class="toc-page">§17</span></div>
+
+  <div class="toc-section">Section 6 — Traffic Circuit &amp; Clearances</div>
+  <div class="toc-item toc-sub"><a href="#s6">Entry of Traffic Circuit</a><span class="toc-page">§18</span></div>
+  <div class="toc-item toc-sub"><a href="#s6b">Order of Priority – Arriving &amp; Departing</a><span class="toc-page">§19</span></div>
+  <div class="toc-item toc-sub"><a href="#s6c">Control of Departing Aircraft</a><span class="toc-page">§20</span></div>
+  <div class="toc-item toc-sub"><a href="#s6d">Control of Arriving Aircraft</a><span class="toc-page">§21</span></div>
+
+  <div class="toc-section">Section 7 — Low Visibility, Lighting &amp; Wind Shear</div>
+  <div class="toc-item toc-sub"><a href="#s7">Low Visibility Operations</a><span class="toc-page">§22</span></div>
+  <div class="toc-item toc-sub"><a href="#s7b">Aeronautical Ground Lights</a><span class="toc-page">§23</span></div>
+  <div class="toc-item toc-sub"><a href="#s7c">Wind Shear Advisories</a><span class="toc-page">§24</span></div>
+  <div class="toc-item toc-sub"><a href="#s7d">Coefficient of Friction</a><span class="toc-page">§25</span></div>
+
+  <div class="toc-section">Section 8 — Questions &amp; Answers</div>
+  <div class="toc-item toc-sub"><a href="#qa">12 Exam Questions with Explained Answers</a><span class="toc-page">§26</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: FUNCTIONS OF AERODROME CONTROL TOWERS            -->
+<!-- ============================================================ -->
+<div class="section-band">Section 1 · Functions &amp; Organisation</div>
+<h1 class="section-heading" id="s1">§1 · Functions of Aerodrome Control Towers</h1>
+
+<div class="box box-def no-break">
+  <div class="box-title">📖 Core Purpose (Regulatory Statement)</div>
+  Aerodrome control towers shall issue <strong>information and clearances</strong> to aircraft under their control to achieve a <strong>safe, orderly and expeditious flow of air traffic</strong> on and in the vicinity of an aerodrome with the object of <strong>preventing collision(s)</strong>.
+</div>
+
+<div class="sub-heading">Collisions to be Prevented — Five Categories</div>
+
+<div class="no-break">
+<table class="reg-table">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="chip chip-blue">a</span></td>
+      <td>Aircraft flying within the <strong>designated area of responsibility</strong> of the control tower, including the <strong>aerodrome traffic circuits</strong></td>
+    </tr>
+    <tr>
+      <td><span class="chip chip-blue">b</span></td>
+      <td>Aircraft operating on the <strong>manoeuvring area</strong></td>
+    </tr>
+    <tr>
+      <td><span class="chip chip-blue">c</span></td>
+      <td>Aircraft <strong>landing and taking off</strong></td>
+    </tr>
+    <tr>
+      <td><span class="chip chip-blue">d</span></td>
+      <td><strong>Aircraft and vehicles</strong> operating on the manoeuvring area</td>
+    </tr>
+    <tr>
+      <td><span class="chip chip-blue">e</span></td>
+      <td>Aircraft on the manoeuvring area and <strong>obstructions on that area</strong></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box box-sop no-break">
+  <div class="box-title">🟢 Continuous Watch Obligation</div>
+  Aerodrome controllers shall maintain a <strong>continuous watch</strong> on all flight operations on and in the vicinity of an aerodrome as well as vehicles and personnel on the manoeuvring area.
+  <ul class="reg-list" style="margin-top:8px;">
+    <li>Watch maintained by <strong>visual observation</strong></li>
+    <li>In low visibility — augmented by an <strong>ATS surveillance system</strong> (when available)</li>
+    <li>Traffic controlled in accordance with procedures herein <strong>and all applicable TLIs</strong> (Temporary Local Instructions) of the concerned airport</li>
+    <li>If other aerodromes exist within a control zone — <strong>traffic circuits must be coordinated</strong> to avoid conflict</li>
+  </ul>
+</div>
+
+<div class="sub-heading">Working Positions within an Aerodrome Control Tower</div>
+
+<div class="no-break">
+<table class="reg-table">
+  <thead>
+    <tr><th>Position</th><th>Primary Responsibility</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Aerodrome Controller</strong></td>
+      <td>Operations on the <strong>runway</strong> and aircraft flying within the area of responsibility of the aerodrome control tower</td>
+    </tr>
+    <tr>
+      <td><strong>Ground Controller</strong></td>
+      <td>Traffic on the <strong>manoeuvring area — excluding runways</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Clearance Delivery Position</strong></td>
+      <td>Delivery of <strong>start-up and ATC clearance</strong> to departing <strong>IFR flights</strong></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box box-note no-break">
+  <div class="box-title">💡 Parallel Runway Operations</div>
+  Where <strong>parallel or near-parallel runways</strong> are used for simultaneous operations, individual aerodrome controllers should be responsible for operations on <strong>each of the runways</strong>.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 1B: ALERTING SERVICE                                 -->
+<!-- ============================================================ -->
+<h2 class="sub-heading" id="s1b" style="margin-top:32px;">§2 · Alerting Service Provided by Aerodrome Control Towers</h2>
+
+<p>Aerodrome control towers are responsible for alerting the <strong>rescue and fire fighting services</strong> whenever:</p>
+
+<div class="no-break">
+<div class="flow-step">
+  <div class="flow-num">a</div>
+  <div class="flow-content">An <strong>aircraft accident</strong> has occurred on or in the vicinity of the aerodrome</div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">b</div>
+  <div class="flow-content">Information is received that the <strong>safety of an aircraft</strong> which is or will come under the jurisdiction of the aerodrome control tower <strong>may have or has been impaired</strong></div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">c</div>
+  <div class="flow-content"><strong>Requested by the flight crew</strong></div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">d</div>
+  <div class="flow-content">When otherwise <strong>deemed necessary or desirable</strong></div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: START-UP PROCEDURES                              -->
+<!-- ============================================================ -->
+<div class="section-band">Section 2 · Departure Procedures</div>
+<h1 class="section-heading" id="s2">§3 · Procedure for Start-Up &amp; Assignment of Flight Level to Departing Aircraft</h1>
+
+<div class="sub-sub-heading">Pre-Clearance Obligations on the Pilot</div>
+
+<div class="flow-step no-break">
+  <div class="flow-num">1</div>
+  <div class="flow-content"><strong>Before</strong> asking for startup or push-back clearance — pilot must ensure the <strong>step ladder / Aerobridge has been removed</strong> and <strong>doors are closed</strong>.</div>
+</div>
+<div class="flow-step no-break">
+  <div class="flow-num">2</div>
+  <div class="flow-content">Pilot shall intimate <strong>total number of persons on board</strong> (including crew) and <strong>security check completed</strong> to aerodrome control tower when requesting start-up clearance.</div>
+</div>
+<div class="flow-step no-break">
+  <div class="flow-num">3</div>
+  <div class="flow-content"><strong>Sequence of departure</strong> determined &amp; intimated based on taxiing sequence and sequence at holding point — except where deviation is made to facilitate a <strong>VIP aircraft</strong> or change of order for <strong>traffic reasons</strong>.</div>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Regulatory Delays — Know These!</div>
+  <ul class="reg-list">
+    <li><strong>Delays may be expected</strong> for the second aircraft to push-back when it is parked adjacent to another aircraft being pushed-back.</li>
+    <li>Delay in take-off due to <strong>restrictions in the ATC clearance</strong> and over-flights or the appropriate ATS authority.</li>
+    <li>Delay when proceeding on the <strong>same track/level</strong>, or climbing through the level, or to climb at a <strong>higher rate of climb</strong> behind a preceding traffic to establish the prescribed separation.</li>
+    <li>A departing aircraft requesting the <strong>same cruising level as an over-flying aircraft</strong> may have to accept an <strong>alternate level</strong> or delay its departure to establish prescribed separation.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2B: TAKE OFF AND LANDING                            -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s2b">§4 · Take-Off and Landing</h1>
+
+<div class="box box-warn no-break">
+  <div class="box-title">🚨 Absolute Rules — No Exceptions</div>
+  <ul class="reg-list">
+    <li>The <strong>pilot-in-command shall not take-off or land</strong> without a clearance from the appropriate <strong>ATC unit</strong>.</li>
+    <li>The pilot-in-command shall <strong>not run-up on the runway in use</strong> unless <strong>authorised by Aerodrome Control</strong>.</li>
+  </ul>
+</div>
+
+<div class="box box-sop no-break">
+  <div class="box-title">🟢 Engine Run-Ups — Where They Can Be Done</div>
+  Engine run-ups in the <strong>holding pan</strong> or <strong>runway holding position</strong> clear of the runway in use may be carried out — subject to <strong>approval by Aerodrome Control</strong>.
+</div>
+
+<div class="sub-heading">Minimum Runway Occupancy Procedures</div>
+<p>To increase runway capacity it is essential to <strong>minimise the runway occupancy time</strong>. Follow these procedures:</p>
+
+<div class="no-break">
+<div class="flow-step">
+  <div class="flow-num">1</div>
+  <div class="flow-content"><strong>Cockpit checks should be completed prior to lineup.</strong> Any checks requiring completion on the runway should be kept to the <strong>minimum required</strong>.</div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">2</div>
+  <div class="flow-content">Pilots must be able to <strong>commence the take-off run immediately</strong> after take-off clearance is issued.</div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">3</div>
+  <div class="flow-content">Pilots <strong>not able to comply</strong> must <strong>notify ATC prior to commencement of taxi</strong>.</div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">4</div>
+  <div class="flow-content">Pilots of arriving aircraft are reminded that <strong>rapid exits from the landing runway</strong> enable ATC to apply minimum spacing on final approach — achieving <strong>maximum runway utilisation</strong>.</div>
+</div>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">🚨 Indian Airspace-Specific Prohibitions</div>
+  <ul class="reg-list">
+    <li><strong>Cruise Climb is NOT permitted</strong> in Indian Flight Information Regions.</li>
+    <li><strong>Transonic and Supersonic phases of flight are NOT permitted</strong> over Indian airspace.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: CONTROL OF AERODROME TRAFFIC                     -->
+<!-- ============================================================ -->
+<div class="section-band">Section 3 · Control of Aerodrome Traffic</div>
+<h1 class="section-heading" id="s3">§5 · Designated Positions in the Aerodrome Traffic &amp; Taxi Circuits</h1>
+
+<p>The positions of aircraft in the traffic and taxi circuits are the positions where the aircraft normally receive aerodrome control tower clearances. Where practicable, <strong>all clearances should be issued without waiting for the aircraft to initiate the call</strong>.</p>
+
+<!-- VISUAL CIRCUIT SVG DIAGRAM -->
+<div class="diagram-container no-break">
+  <div class="diagram-title">📐 Visual Traffic Circuit Diagram (Doc 4444 / AIP India)</div>
+  <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;">
+    <!-- Background -->
+    <rect width="700" height="360" fill="#0f1e38" rx="8"/>
+
+    <!-- Runway -->
+    <rect x="220" y="200" width="260" height="24" fill="#4a4a5a" rx="2"/>
+    <!-- Runway centre line dashes -->
+    <line x1="230" y1="212" x2="280" y2="212" stroke="#fff" stroke-width="2" stroke-dasharray="14,10"/>
+    <line x1="300" y1="212" x2="360" y2="212" stroke="#fff" stroke-width="2" stroke-dasharray="14,10"/>
+    <line x1="380" y1="212" x2="440" y2="212" stroke="#fff" stroke-width="2" stroke-dasharray="14,10"/>
+    <!-- Runway label -->
+    <text x="320" y="218" fill="#d4af37" font-size="12" font-family="JetBrains Mono" font-weight="700" text-anchor="middle" dominant-baseline="middle">RUNWAY</text>
+
+    <!-- Threshold arrow -->
+    <polygon points="220,212 230,206 230,218" fill="#d4af37"/>
+
+    <!-- CIRCUIT PATH -->
+    <!-- Upwind leg (right side, going up) -->
+    <line x1="480" y1="212" x2="480" y2="100" stroke="#00e5ff" stroke-width="2.5" stroke-dasharray="none"/>
+    <!-- Arrow upwind -->
+    <polygon points="480,100 474,114 486,114" fill="#00e5ff"/>
+
+    <!-- Crosswind leg (top, going left) -->
+    <line x1="480" y1="100" x2="320" y2="100" stroke="#00e5ff" stroke-width="2.5"/>
+    <polygon points="320,100 334,94 334,106" fill="#00e5ff"/>
+
+    <!-- Downwind leg (going further left, top) -->
+    <line x1="320" y1="100" x2="140" y2="100" stroke="#00e5ff" stroke-width="2.5" stroke-dasharray="8,4"/>
+    <polygon points="140,100 154,94 154,106" fill="#00e5ff"/>
+
+    <!-- Base leg (left side, going down) -->
+    <line x1="140" y1="100" x2="140" y2="212" stroke="#00e5ff" stroke-width="2.5"/>
+    <polygon points="140,212 134,198 146,198" fill="#00e5ff"/>
+
+    <!-- Final (coming right, to runway) -->
+    <line x1="140" y1="212" x2="220" y2="212" stroke="#00e5ff" stroke-width="2.5"/>
+    <!-- Long Final extended -->
+    <line x1="30" y1="212" x2="140" y2="212" stroke="#00e5ff" stroke-width="2" stroke-dasharray="6,4"/>
+    <polygon points="140,212 126,206 126,218" fill="#00e5ff"/>
+
+    <!-- LABELS -->
+    <text x="490" y="158" fill="#00e5ff" font-size="11" font-family="JetBrains Mono" font-weight="700">UPWIND</text>
+
+    <text x="310" y="87" fill="#00e5ff" font-size="11" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">DOWNWIND</text>
+
+    <text x="128" y="160" fill="#00e5ff" font-size="11" font-family="JetBrains Mono" font-weight="700" text-anchor="end">BASE LEG</text>
+
+    <text x="180" y="235" fill="#00e5ff" font-size="11" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">FINAL</text>
+
+    <text x="66" y="235" fill="#ffd700" font-size="10" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">LONG</text>
+    <text x="66" y="247" fill="#ffd700" font-size="10" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">FINAL</text>
+
+    <!-- Crosswind label -->
+    <text x="400" y="87" fill="#00e5ff" font-size="10" font-family="JetBrains Mono" text-anchor="middle">CROSSWIND</text>
+
+    <!-- Wind direction arrow -->
+    <line x1="320" y1="145" x2="420" y2="145" stroke="#ff6b35" stroke-width="2"/>
+    <polygon points="420,145 408,139 408,151" fill="#ff6b35"/>
+    <text x="365" y="140" fill="#ff6b35" font-size="10" font-family="JetBrains Mono" text-anchor="middle">WIND</text>
+
+    <!-- Distances -->
+    <!-- 4NM bracket -->
+    <line x1="80" y1="268" x2="220" y2="268" stroke="#d4af37" stroke-width="1.5"/>
+    <line x1="80" y1="262" x2="80" y2="274" stroke="#d4af37" stroke-width="1.5"/>
+    <line x1="220" y1="262" x2="220" y2="274" stroke="#d4af37" stroke-width="1.5"/>
+    <text x="150" y="285" fill="#d4af37" font-size="11" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">← 4 NM →</text>
+    <text x="150" y="298" fill="#aaa" font-size="9" font-family="JetBrains Mono" text-anchor="middle">(Final)</text>
+
+    <!-- Beyond 4NM bracket -->
+    <line x1="30" y1="308" x2="220" y2="308" stroke="#ffd700" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <line x1="30" y1="302" x2="30" y2="314" stroke="#ffd700" stroke-width="1.5"/>
+    <line x1="220" y1="302" x2="220" y2="314" stroke="#ffd700" stroke-width="1.5"/>
+    <text x="125" y="328" fill="#ffd700" font-size="10" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">Beyond 4 NM, up to 8 NM</text>
+    <text x="125" y="342" fill="#ffd700" font-size="9" font-family="JetBrains Mono" text-anchor="middle">(Long Final)</text>
+
+    <!-- Legend -->
+    <rect x="520" y="280" width="160" height="64" fill="rgba(0,0,0,0.4)" rx="4"/>
+    <line x1="530" y1="296" x2="560" y2="296" stroke="#00e5ff" stroke-width="2"/>
+    <text x="568" y="300" fill="#00e5ff" font-size="9" font-family="JetBrains Mono">Visual Circuit</text>
+    <line x1="530" y1="316" x2="560" y2="316" stroke="#00e5ff" stroke-width="2" stroke-dasharray="6,4"/>
+    <text x="568" y="320" fill="#00e5ff" font-size="9" font-family="JetBrains Mono">Extended (Long)</text>
+    <line x1="530" y1="336" x2="560" y2="336" stroke="#ff6b35" stroke-width="2"/>
+    <text x="568" y="340" fill="#ff6b35" font-size="9" font-family="JetBrains Mono">Wind Direction</text>
+  </svg>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3B: TAXI CLEARANCE                                   -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s3b">§6 · Taxi Clearance</h1>
+
+<div class="box box-sop no-break">
+  <div class="box-title">🟢 What Taxi Clearances Must Contain</div>
+  <ol class="reg-list" type="a">
+    <li>Concise instructions and adequate information to assist the flight crew to follow the <strong>correct taxi routes</strong></li>
+    <li>To <strong>avoid collision</strong> with other aircraft or objects</li>
+    <li>To minimise the potential for the aircraft <strong>inadvertently entering an active runway</strong></li>
+  </ol>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Runway Crossing Rule</div>
+  When a taxi clearance contains a <strong>taxi limit beyond a runway</strong>, it shall contain an <strong>explicit clearance to cross</strong> or an <strong>instruction to hold short</strong> of that runway.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3C: TAXIING ON RUNWAY-IN-USE                         -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s3c">§7 · Taxiing on a Runway-in-Use</h1>
+
+<div class="no-break">
+<div class="flow-step">
+  <div class="flow-num">a</div>
+  <div class="flow-content">Aircraft may be permitted to taxi on the runway-in-use for the purpose of <strong>expediting air traffic</strong>, provided <strong>no delay or risk</strong> to other aircraft will result.</div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">b</div>
+  <div class="flow-content">If the control tower is unable to determine (visually or via ATS surveillance) that a vacating/crossing aircraft has cleared the runway — aircraft shall be <strong>requested to report when it has vacated</strong>. Report made when the <strong>entire aircraft is beyond the relevant runway-holding position</strong>.</div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">c</div>
+  <div class="flow-content">Pilot who requires to <strong>back-track the runway for departure</strong> must notify ATC <strong>prior to commencement of taxi</strong>.</div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">d</div>
+  <div class="flow-content">Unless prior permission has been obtained from ATC, the <strong>Pilot-in-Command shall not hold on the runway-in-use</strong>.</div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">e</div>
+  <div class="flow-content"><strong>Only one aircraft</strong> will be cleared to land on the runway-in-use at any one time — <strong>except formation flight by military aircraft</strong>.</div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3D: RUNWAY HOLDING POSITIONS                         -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s3d">§8 · Use of Runway-Holding Positions</h1>
+
+<div class="no-break">
+<div class="box box-warn">
+  <div class="box-title">⚠️ Holding Distance Rules</div>
+  <ol class="reg-list" type="a">
+    <li>Except as provided in (b) below, aircraft shall not be held <strong>closer to a runway-in-use than at a runway-holding position</strong>.</li>
+    <li>Aircraft shall <strong>NOT be permitted to line up and hold on the approach end</strong> of a runway-in-use whenever another aircraft is effecting a landing — until the landing aircraft has <strong>passed the point of intended holding</strong>.</li>
+  </ol>
+</div>
+</div>
+
+<!-- Runway Holding Position SVG -->
+<div class="diagram-container no-break">
+  <div class="diagram-title">📐 Runway Holding Position — Minimum Distances</div>
+  <svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:660px;">
+    <rect width="680" height="300" fill="#0f1e38" rx="8"/>
+
+    <!-- Runway In Use -->
+    <rect x="0" y="100" width="680" height="40" fill="#4a4a5a"/>
+    <!-- Centre line dashes -->
+    <line x1="20" y1="120" x2="80" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="110" y1="120" x2="170" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="200" y1="120" x2="260" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="290" y1="120" x2="350" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="380" y1="120" x2="440" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="470" y1="120" x2="530" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="560" y1="120" x2="620" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+
+    <text x="340" y="126" fill="#d4af37" font-size="13" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">RUNWAY IN USE</text>
+
+    <!-- Landing Aircraft approach arrow -->
+    <polygon points="640,120 600,110 600,130" fill="#00e5ff"/>
+    <line x1="640" y1="120" x2="600" y2="120" stroke="#00e5ff" stroke-width="3"/>
+    <text x="590" y="95" fill="#00e5ff" font-size="10" font-family="JetBrains Mono" text-anchor="middle">LANDING</text>
+    <text x="590" y="107" fill="#00e5ff" font-size="10" font-family="JetBrains Mono" text-anchor="middle">AIRCRAFT ➤</text>
+
+    <!-- Holding position line (taxiway) -->
+    <!-- Yellow holding bar -->
+    <line x1="200" y1="140" x2="200" y2="230" stroke="#ffd700" stroke-width="3" stroke-dasharray="10,6"/>
+    <text x="200" y="250" fill="#ffd700" font-size="9" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">HOLDING</text>
+    <text x="200" y="262" fill="#ffd700" font-size="9" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">POSITION</text>
+
+    <!-- Holding aircraft (simplified) -->
+    <!-- Body -->
+    <ellipse cx="200" cy="195" rx="28" ry="9" fill="#ff6b35"/>
+    <!-- Wings -->
+    <ellipse cx="200" cy="195" rx="8" ry="22" fill="#ff6b35"/>
+    <!-- Nose -->
+    <polygon points="228,195 240,192 240,198" fill="#ff6b35"/>
+
+    <text x="200" y="286" fill="#ff6b35" font-size="9" font-family="JetBrains Mono" text-anchor="middle">HOLDING AIRCRAFT</text>
+
+    <!-- Distance arrows for RWY >= 900m -->
+    <!-- Edge of runway -->
+    <line x1="0" y1="140" x2="680" y2="140" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+    <!-- 50m label box -->
+    <rect x="380" y="148" width="260" height="54" fill="rgba(212,175,55,0.12)" rx="4" stroke="#d4af37" stroke-width="1"/>
+    <text x="390" y="164" fill="#d4af37" font-size="10" font-family="JetBrains Mono" font-weight="700">At RWY Holding Position, OR:</text>
+    <text x="390" y="180" fill="#d4af37" font-size="10" font-family="JetBrains Mono">▸ 50 m from RWY edge — if RWY ≥ 900 m</text>
+    <text x="390" y="196" fill="#d4af37" font-size="10" font-family="JetBrains Mono">▸ 30 m from RWY edge — if RWY &lt; 900 m</text>
+  </svg>
+</div>
+
+<div class="no-break">
+<table class="reg-table" style="margin-top:0;">
+  <thead>
+    <tr><th>Runway Length</th><th>Minimum Distance from Runway Edge</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="chip chip-blue">≥ 900 m</span></td>
+      <td><strong>50 metres</strong> from runway edge</td>
+    </tr>
+    <tr>
+      <td><span class="chip chip-red">&lt; 900 m</span></td>
+      <td><strong>30 metres</strong> from runway edge</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: INFORMATION TO AIRCRAFT                           -->
+<!-- ============================================================ -->
+<div class="section-band">Section 4 · Information to Aircraft by Aerodrome Control Towers</div>
+<h1 class="section-heading" id="s4">§9 · Aerodrome &amp; Meteorological Information (Pre-Taxi)</h1>
+
+<div class="box box-def no-break">
+  <div class="box-title">📖 When Is This Information Provided?</div>
+  Prior to <strong>taxiing for take-off</strong>, aircraft shall be advised of the following elements of information — in the order listed — with the exception of elements already known to the aircraft.
+</div>
+
+<div class="no-break">
+<table class="reg-table">
+  <thead>
+    <tr><th>#</th><th>Element of Information</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>a</strong></td><td>The <strong>runway to be used</strong></td></tr>
+    <tr><td><strong>b</strong></td><td>The <strong>surface wind direction and speed</strong>, including significant variations</td></tr>
+    <tr><td><strong>c</strong></td><td>The <strong>QNH altimeter setting</strong> and, either on a regular basis or if requested — the <strong>QFE</strong> altimeter setting</td></tr>
+    <tr><td><strong>d</strong></td><td>The <strong>air temperature for the runway</strong> — in the case of <strong>turbine-engine aircraft</strong></td></tr>
+    <tr><td><strong>e</strong></td><td>The <strong>visibility</strong> representative of the direction of take-off and initial climb, if less than <strong>10 km</strong>, or — when applicable — the <strong>RVR value(s)</strong> for the runway to be used</td></tr>
+    <tr><td><strong>f</strong></td><td>The <strong>correct time</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4B: PRE-TAKE-OFF INFO                               -->
+<!-- ============================================================ -->
+<h2 class="sub-heading" id="s4b">§10 · Information Prior to Take-Off</h2>
+
+<p>Prior to take-off, aircraft shall be advised of:</p>
+
+<div class="no-break">
+<div class="flow-step">
+  <div class="flow-num">a</div>
+  <div class="flow-content">Any <strong>significant changes</strong> in the surface wind direction and speed, the air temperature, and the visibility or RVR value(s)</div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">b</div>
+  <div class="flow-content"><strong>Significant meteorological conditions</strong> in the take-off and climb-out area — except when it is known the aircraft has already received the information</div>
+</div>
+</div>
+
+<div class="box box-note no-break">
+  <div class="box-title">📝 Note — Significant Met Conditions Include:</div>
+  Cumulonimbus or thunderstorm, moderate or severe turbulence, wind shear, hail, moderate or severe icing, severe squall line, freezing precipitation, severe mountain waves, sand storm, dust storm, blowing snow, tornado or waterspout — in the take-off and climb-out area.
+</div>
+
+<div class="sub-sub-heading">Pre-Traffic-Circuit / Approach Information</div>
+<p>Prior to entering the traffic circuit or commencing approach to land, aircraft shall be provided:</p>
+
+<div class="no-break">
+<table class="reg-table">
+  <thead><tr><th>#</th><th>Element</th></tr></thead>
+  <tbody>
+    <tr><td>a</td><td>Runway to be used</td></tr>
+    <tr><td>b</td><td>Surface wind direction and speed, including significant variations</td></tr>
+    <tr><td>c</td><td>QNH altimeter setting and, if requested, QFE altimeter setting</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4C: RUNWAY INCURSION                                 -->
+<!-- ============================================================ -->
+<h2 class="sub-heading" id="s4c">§11 · Runway Incursion or Obstructed Runway</h2>
+
+<p>If the aerodrome controller observes — after a take-off or landing clearance has been issued — any obstruction on the runway likely to impair safety (runway incursion by aircraft/vehicle, animals, birds), the following actions shall be taken:</p>
+
+<div class="no-break">
+<div class="flow-step">
+  <div class="flow-num">a</div>
+  <div class="flow-content"><strong>In ALL cases:</strong> Inform the aircraft concerned of the obstruction and its <strong>location on the runway</strong></div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">b</div>
+  <div class="flow-content"><strong>Cancel the take-off clearance</strong> for an aircraft which has <strong>not started to roll</strong></div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">c</div>
+  <div class="flow-content"><strong>Instruct a landing aircraft to go around</strong></div>
+</div>
+</div>
+
+<div class="box box-def no-break">
+  <div class="box-title">📖 Essential Local Traffic Information</div>
+  Essential local traffic shall be considered to consist of any <strong>aircraft, vehicle or personnel on or near the manoeuvring area</strong> or traffic operating in the vicinity of the aerodrome, which <strong>may constitute a hazard</strong> to the aircraft concerned.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4D: UNCERTAINTY OF POSITION                         -->
+<!-- ============================================================ -->
+<h2 class="sub-heading" id="s4d">§12 · Uncertainty of Position on the Manoeuvring Area</h2>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Pilot Action — Position Uncertainty (NOT on Runway)</div>
+  A pilot in doubt as to the position of the aircraft with respect to the manoeuvring area shall immediately:
+  <ol class="reg-list" type="a" style="margin-top:8px;">
+    <li><strong>Stop the aircraft</strong></li>
+    <li>Simultaneously <strong>notify the appropriate ATS unit</strong> of the circumstances (including the last known position)</li>
+  </ol>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Pilot Action — Recognises Aircraft is on a Runway</div>
+  If a pilot recognises the aircraft is on a runway (while uncertain of position), the pilot shall immediately:
+  <ol class="reg-list" type="a" style="margin-top:8px;">
+    <li><strong>Notify the appropriate ATS unit</strong> of circumstances (including last known position)</li>
+    <li>If able to locate a nearby suitable taxiway — <strong>vacate the runway as expeditiously as possible</strong>, unless otherwise instructed by the ATS unit</li>
+    <li><strong>Stop the aircraft</strong></li>
+  </ol>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Vehicle Driver — Position Uncertainty</div>
+  A vehicle driver in doubt as to position on the manoeuvring area shall immediately:
+  <ol class="reg-list" type="a" style="margin-top:8px;">
+    <li><strong>Notify the appropriate ATS unit</strong> of circumstances (including last known position)</li>
+    <li>Unless otherwise instructed — <strong>vacate the landing area, taxiway, or other part of the manoeuvring area</strong> to a safe distance as expeditiously as possible</li>
+    <li><strong>Stop the vehicle</strong></li>
+  </ol>
+</div>
+
+<div class="box box-sop no-break">
+  <div class="box-title">🟢 Controller Action — Lost/Uncertain Aircraft or Vehicle</div>
+  In the event the aerodrome controller becomes aware of an aircraft or vehicle that is lost or uncertain of its position, appropriate action shall be taken <strong>immediately</strong> to safeguard operations and assist the aircraft or vehicle to determine its position.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4E: WAKE TURBULENCE                                  -->
+<!-- ============================================================ -->
+<h2 class="sub-heading" id="s4e">§13 · Wake Turbulence and Jet Blast Hazard</h2>
+
+<div class="box box-sop no-break">
+  <div class="box-title">🟢 Controller Obligations</div>
+  <ul class="reg-list">
+    <li>Aerodrome controllers shall, when applicable, <strong>apply the wake turbulence separation minima specified</strong>.</li>
+    <li>Whenever the responsibility for wake turbulence avoidance rests with the pilot-in-command — aerodrome controllers shall, to the extent practicable, <strong>advise aircraft of the expected occurrence of hazards</strong> caused by turbulent wake.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4F: MOVEMENT AREA CONDITIONS                         -->
+<!-- ============================================================ -->
+<h2 class="sub-heading" id="s4f">§14 · Condition of the Movement Area and Related Facilities</h2>
+
+<p>Information on the condition of the movement area and operational status of related facilities shall be provided to arriving and departing aircraft particularly in respect of:</p>
+
+<div class="no-break">
+<table class="reg-table">
+  <thead><tr><th>#</th><th>Condition Type</th></tr></thead>
+  <tbody>
+    <tr><td>a</td><td>Construction or maintenance work on, or immediately adjacent to the movement area</td></tr>
+    <tr><td>b</td><td>Rough or broken surfaces on a runway, taxiway or apron — whether marked or not</td></tr>
+    <tr><td>c</td><td>Water, snow, slush, ice or frost on a runway, taxiway or apron</td></tr>
+    <tr><td>d</td><td>Anti-icing or de-icing liquid chemicals or other contaminant on a runway, taxiway or apron</td></tr>
+    <tr><td>e</td><td>Snow banks or drifts adjacent to a runway, taxiway or apron</td></tr>
+    <tr><td>f</td><td>Other temporary hazards — including parked aircraft</td></tr>
+    <tr><td>g</td><td>Failure or irregular operation of part or all of the aerodrome visual aids</td></tr>
+    <tr><td>h</td><td>Failure of normal or secondary power supply</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: CONTROL OF OTHER-THAN-AIRCRAFT TRAFFIC            -->
+<!-- ============================================================ -->
+<div class="section-band">Section 5 · Priority &amp; Special Traffic</div>
+<h1 class="section-heading" id="s5">§15 · Control of Other Than Aircraft Traffic</h1>
+
+<div class="sub-heading">Entry to the Manoeuvring Area</div>
+
+<div class="box box-def no-break">
+  <div class="box-title">📖 Authority</div>
+  The movement of persons or vehicles (including towed aircraft) on the manoeuvring area of an aerodrome shall be <strong>controlled by the aerodrome control tower</strong> as necessary to avoid hazard to them or to aircraft landing, taxiing or taking off.
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Low Visibility Procedures — Restrictions on Manoeuvring Area</div>
+  <ol class="reg-list" type="a">
+    <li>Persons and vehicles operating on the manoeuvring area shall be <strong>restricted to the essential minimum</strong>, and particular regard shall be given to the requirements to <strong>protect the ILS sensitive area(s)</strong> when Category II or Category IIIA precision instrument operations are in progress.</li>
+    <li>Vehicles shall remain at <strong>safe distance from taxiing aircraft</strong>.</li>
+  </ol>
+</div>
+
+<div class="sub-heading">Priority on the Manoeuvring Area</div>
+
+<div class="box box-priority no-break">
+  <div class="box-title">🟣 Emergency Priority</div>
+  <strong>Emergency vehicles proceeding to the assistance of an aircraft in distress</strong> shall be afforded <strong>priority over all other surface movement traffic</strong>.
+</div>
+
+<div class="box box-note no-break">
+  <div class="box-title">💡 Light Signal — Emergency / No Radio Conditions</div>
+  In emergency conditions or if radio signals are not observed, the signal given hereunder shall be used for runways or taxiways equipped with a lighting system:
+  <br><br>
+  <strong>Flashing runway lights</strong> → Meaning: <strong>Vacate the runway or taxiway and observe the tower for light signal</strong>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5B: PRIORITY RULES                                   -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s5b">§16 · Priority Rules for Aircraft Operations</h1>
+
+<p>The following general rules determine the <strong>order of priority of aircraft operations</strong>:</p>
+
+<div class="priority-grid no-break">
+  <div class="priority-card" style="background:#fff0f0;">
+    <div class="priority-rank" style="background:#c0392b;">1</div>
+    <div>
+      <strong>Emergency Landing (Compelling)</strong><br>
+      <small>Aircraft known/believed to be in emergency compelling it to land without delay — e.g. engine failure, acute fuel shortage, total communication failure</small>
+    </div>
+  </div>
+  <div class="priority-card" style="background:#fff5f0;">
+    <div class="priority-rank" style="background:#d35400;">2</div>
+    <div>
+      <strong>Military Fighter Flights</strong><br>
+      <small>Invariably experience fuel shortage if not per planned ops. Ground time limitations — departures accommodated without delay</small>
+    </div>
+  </div>
+  <div class="priority-card" style="background:#fff9f0;">
+    <div class="priority-rank" style="background:#e67e22;">3</div>
+    <div>
+      <strong>Live Scramble</strong><br>
+      <small>An aircraft engaged in a live scramble</small>
+    </div>
+  </div>
+  <div class="priority-card" style="background:#fffdf0;">
+    <div class="priority-rank" style="background:#d4ac0d;">4</div>
+    <div>
+      <strong>Medical / MEDEVAC</strong><br>
+      <small>Aircraft carrying sick/injured persons requiring urgent medical attention or carrying out approved medical evacuation</small>
+    </div>
+  </div>
+  <div class="priority-card" style="background:#f0fff4;">
+    <div class="priority-rank" style="background:#1e8449;">5</div>
+    <div>
+      <strong>VVIP Aircraft</strong><br>
+      <small>Aircraft carrying VVIP as laid down in procedures for their handling</small>
+    </div>
+  </div>
+  <div class="priority-card" style="background:#f0f8ff;">
+    <div class="priority-rank" style="background:#1a7abf;">6</div>
+    <div>
+      <strong>Search &amp; Rescue</strong><br>
+      <small>Aircraft proceeding on Search and Rescue missions</small>
+    </div>
+  </div>
+  <div class="priority-card" style="background:#f5f0ff;">
+    <div class="priority-rank" style="background:#7d3c98;">7</div>
+    <div>
+      <strong>Military Large Formation</strong><br>
+      <small>Military flight carrying out large integrated formations in military exercises</small>
+    </div>
+  </div>
+  <div class="priority-card" style="background:#f0f4ff;">
+    <div class="priority-rank" style="background:#2980b9;">8</div>
+    <div>
+      <strong>Urgent Military Ops (RPA)</strong><br>
+      <small>Aircraft/RPA in approved urgent operational military commitment coordinated with appropriate ATC Centres</small>
+    </div>
+  </div>
+  <div class="priority-card" style="background:#f5f5f5;">
+    <div class="priority-rank" style="background:#555;">9</div>
+    <div>
+      <strong>Large Scale Weather Deviations</strong><br>
+      <small>Aircraft on large scale weather deviations</small>
+    </div>
+  </div>
+  <div class="priority-card" style="background:#f0f0f0;">
+    <div class="priority-rank" style="background:#777;">10</div>
+    <div>
+      <strong>Adverse Condition Diversions</strong><br>
+      <small>Aircraft landing at alternate aerodromes after diversion due adverse operational or weather conditions at intended destination</small>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5C: SUSPENSION OF VFR OPERATIONS                    -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s5c">§17 · Suspension of Visual Flight Rules Operations</h1>
+
+<div class="box box-def no-break">
+  <div class="box-title">📖 Who Can Suspend VFR?</div>
+  Any or all VFR operations on and in the vicinity of an aerodrome may be suspended by any of the following — whenever safety requires such action:
+  <ol class="reg-list" type="a" style="margin-top:8px;">
+    <li>The <strong>approach control unit or the appropriate ACC</strong></li>
+    <li>The <strong>aerodrome control tower</strong></li>
+    <li>The <strong>appropriate ATS authority</strong></li>
+  </ol>
+  All such suspensions of VFR operations shall be accomplished through or notified to the <strong>aerodrome control tower</strong>.
+</div>
+
+<div class="sub-sub-heading">Procedures When VFR Operations Are Suspended</div>
+<p>The following procedures shall be observed by the aerodrome control tower:</p>
+
+<div class="no-break">
+<div class="flow-step">
+  <div class="flow-num">a</div>
+  <div class="flow-content"><strong>Hold all VFR departures</strong></div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">b</div>
+  <div class="flow-content"><strong>Recall all local flights</strong> operating under VFR or obtain approval for <strong>special VFR operations</strong></div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">c</div>
+  <div class="flow-content"><strong>Notify the approach control unit or ACC</strong> as appropriate of the action taken</div>
+</div>
+<div class="flow-step">
+  <div class="flow-num">d</div>
+  <div class="flow-content"><strong>Notify all operators</strong> or their designated representatives of the reason for taking such action — if necessary or requested</div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: TRAFFIC CIRCUIT & CLEARANCES                     -->
+<!-- ============================================================ -->
+<div class="section-band">Section 6 · Traffic Circuit &amp; Clearances</div>
+<h1 class="section-heading" id="s6">§18 · Control of Traffic in the Traffic Circuit</h1>
+
+<div class="sub-heading">Entry of Traffic Circuit</div>
+
+<div class="box box-sop no-break">
+  <div class="box-title">🟢 When is Entry Clearance Issued?</div>
+  The clearance to enter the traffic circuit should be issued to an aircraft whenever it is desired that the aircraft approach the landing area in accordance with current traffic circuits but traffic conditions do <strong>not yet allow a landing clearance to be issued</strong>.
+  <br><br>
+  Depending on circumstances and traffic conditions, an aircraft may be cleared to <strong>join at any position</strong> in the traffic circuit.
+  <br><br>
+  An arriving aircraft executing an <strong>instrument approach</strong> shall normally be cleared to <strong>land straight in</strong> unless visual manoeuvring to the landing runway is required.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6B: ORDER OF PRIORITY                                -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s6b">§19 · Order of Priority for Arriving and Departing Aircraft</h1>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Fundamental Priority Rule</div>
+  An aircraft <strong>landing or in the final stages of an approach to land</strong> shall normally have <strong>priority</strong> over an aircraft intending to depart from the same or an intersecting runway.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6C: CONTROL OF DEPARTING AIRCRAFT                    -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s6c">§20 · Control of Departing Aircraft</h1>
+
+<div class="sub-heading">Departure Sequence</div>
+<div class="box box-sop no-break">
+  <div class="box-title">🟢 Departure Sequencing Rule</div>
+  Departures shall normally be cleared in the <strong>order in which they are ready for take-off</strong>, except that deviations may be made from this order to <strong>facilitate the maximum number of departures with the least average delay</strong>.
+</div>
+
+<div class="sub-heading">Separation of Departing Aircraft</div>
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ When May Next Departure Commence?</div>
+  A departing aircraft will <strong>not normally</strong> be permitted to commence take-off until:
+  <ul class="reg-list" style="margin-top:8px;">
+    <li>The <strong>preceding departing aircraft has crossed the end of the runway-in-use</strong>, OR</li>
+    <li>The preceding departing aircraft has <strong>started a turn</strong>, OR</li>
+    <li>All <strong>preceding landing aircraft are clear of the runway-in-use</strong></li>
+  </ul>
+</div>
+
+<div class="sub-heading">Take-Off Clearance</div>
+
+<div class="no-break">
+<div class="box box-sop">
+  <div class="box-title">🟢 When Can Take-Off Clearance Be Issued?</div>
+  Take-off clearance may be issued to an aircraft when there is <strong>reasonable assurance that the separation will exist</strong> when the aircraft commences take-off.
+</div>
+</div>
+
+<div class="no-break">
+<div class="box box-note">
+  <div class="box-title">💡 Immediate Take-Off Clearance</div>
+  In the interest of expediting traffic, a clearance for <strong>immediate take-off</strong> may be issued to an aircraft <strong>before it enters the runway</strong>. On acceptance of such clearance — the aircraft shall <strong>taxi out to the runway and take off in one continuous movement</strong>.
+</div>
+</div>
+
+<div class="box box-note no-break">
+  <div class="box-title">💡 Take-Off Clearance — Runway Designator</div>
+  To reduce the potential for misunderstanding — the take-off clearance <strong>shall include the designator of the departure runway</strong>.
+</div>
+
+<!-- Diagram of departure positions -->
+<div class="diagram-container no-break">
+  <div class="diagram-title">📐 Departure / Arrival Separation — Position Limits (Doc 4444)</div>
+  <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:660px;">
+    <rect width="680" height="220" fill="#0f1e38" rx="8"/>
+
+    <!-- Runway in Use (horizontal, centre) -->
+    <rect x="0" y="90" width="680" height="30" fill="#4a4a5a"/>
+    <text x="340" y="111" fill="#d4af37" font-size="12" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">RUNWAY IN USE</text>
+
+    <!-- Centre dashes -->
+    <line x1="40" y1="105" x2="100" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
+    <line x1="130" y1="105" x2="200" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
+    <line x1="230" y1="105" x2="300" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
+    <line x1="330" y1="105" x2="400" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
+    <line x1="430" y1="105" x2="500" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
+    <line x1="530" y1="105" x2="600" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
+
+    <!-- Intersecting taxiway -->
+    <rect x="298" y="0" width="24" height="90" fill="#3a3a4a"/>
+    <rect x="298" y="120" width="24" height="100" fill="#3a3a4a"/>
+
+    <!-- Aircraft A (landed, on taxiway exiting) -->
+    <!-- Body -->
+    <ellipse cx="310" cy="160" rx="10" ry="28" fill="#ff6b35"/>
+    <ellipse cx="310" cy="160" rx="24" ry="8" fill="#ff6b35"/>
+    <polygon points="310,134 305,128 315,128" fill="#ff6b35"/>
+    <text x="310" y="195" fill="#ff6b35" font-size="10" font-family="JetBrains Mono" text-anchor="middle" font-weight="700">A</text>
+    <text x="310" y="207" fill="#ff6b35" font-size="8" font-family="JetBrains Mono" text-anchor="middle">(Landed)</text>
+
+    <!-- Aircraft B (departing, just cleared end left) -->
+    <ellipse cx="80" cy="60" rx="28" ry="9" fill="#00e5ff"/>
+    <ellipse cx="80" cy="60" rx="8" ry="20" fill="#00e5ff"/>
+    <polygon points="80,40 74,28 86,28" fill="#00e5ff"/>
+    <line x1="80" y1="20" x2="80" y2="60" stroke="rgba(0,229,255,0.3)" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="80" y="78" fill="#00e5ff" font-size="10" font-family="JetBrains Mono" text-anchor="middle" font-weight="700">B</text>
+    <text x="80" y="89" fill="#00e5ff" font-size="8" font-family="JetBrains Mono" text-anchor="middle">(Started turn)</text>
+
+    <!-- Aircraft C (arriving from right) -->
+    <ellipse cx="600" cy="60" rx="28" ry="9" fill="#a8ff78"/>
+    <ellipse cx="600" cy="60" rx="8" ry="20" fill="#a8ff78"/>
+    <polygon points="580,60 594,55 594,65" fill="#a8ff78"/>
+    <line x1="640" y1="60" x2="600" y2="60" stroke="rgba(168,255,120,0.4)" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="600" y="78" fill="#a8ff78" font-size="10" font-family="JetBrains Mono" text-anchor="middle" font-weight="700">C</text>
+    <text x="600" y="89" fill="#a8ff78" font-size="8" font-family="JetBrains Mono" text-anchor="middle">(Arriving)</text>
+
+    <!-- Legend box -->
+    <rect x="400" y="128" width="265" height="78" fill="rgba(0,0,0,0.4)" rx="4"/>
+    <text x="410" y="144" fill="#fff" font-size="9" font-family="JetBrains Mono">B or C must pass position limits</text>
+    <text x="410" y="157" fill="#fff" font-size="9" font-family="JetBrains Mono">before arriving aircraft crosses</text>
+    <text x="410" y="170" fill="#fff" font-size="9" font-family="JetBrains Mono">runway threshold, OR before</text>
+    <text x="410" y="183" fill="#fff" font-size="9" font-family="JetBrains Mono">departing aircraft may take off.</text>
+    <text x="410" y="198" fill="#d4af37" font-size="8" font-family="JetBrains Mono">(Unless otherwise by ATS authority)</text>
+  </svg>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6D: CONTROL OF ARRIVING AIRCRAFT                     -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s6d">§21 · Control of Arriving Aircraft</h1>
+
+<div class="sub-heading">Separation on the Same Runway</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ When May Landing Aircraft Cross Threshold?</div>
+  A landing aircraft will <strong>not normally be permitted to cross the runway threshold</strong> on its final approach until:
+  <ul class="reg-list" style="margin-top:8px;">
+    <li>The <strong>preceding departing aircraft has crossed the end of the runway-in-use</strong>, OR</li>
+    <li>Has <strong>started a turn</strong>, OR</li>
+    <li>All <strong>preceding landing aircraft are clear of the runway-in-use</strong></li>
+  </ul>
+</div>
+
+<div class="sub-heading">Clearance to Land</div>
+
+<div class="box box-sop no-break">
+  <div class="box-title">🟢 When Is Landing Clearance Issued?</div>
+  <ul class="reg-list">
+    <li>An aircraft may be cleared to land when there is <strong>reasonable assurance that the separation will exist</strong> when the aircraft crosses the runway threshold.</li>
+    <li>A clearance to land shall <strong>not be issued</strong> until a preceding landing aircraft has <strong>crossed the runway threshold</strong>.</li>
+    <li>The landing clearance shall include the <strong>designator of the landing runway</strong> — to reduce the potential for misunderstanding.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: LOW VISIBILITY / LIGHTS / WIND SHEAR             -->
+<!-- ============================================================ -->
+<div class="section-band">Section 7 · Low Visibility, Lighting &amp; Wind Shear</div>
+<h1 class="section-heading" id="s7">§22 · Procedures for Low Visibility Operations</h1>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Control of Surface Traffic in Low Visibility</div>
+  In conditions where <strong>low visibility procedures are in operation</strong>:
+  <ul class="reg-list" style="margin-top:8px;">
+    <li>Persons and vehicles operating on the manoeuvring area shall be <strong>restricted to the essential minimum</strong></li>
+    <li>Particular regard shall be given to protecting the <strong>ILS sensitive area(s)</strong> when <strong>Category II or Category IIIA</strong> precision instrument operations are in progress</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7B: AERONAUTICAL GROUND LIGHTS                       -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s7b">§23 · Aeronautical Ground Lights</h1>
+
+<div class="box box-def no-break">
+  <div class="box-title">📖 What is Runway Lighting?</div>
+  Runway lighting includes: <strong>edge lights, threshold lights, centre line lights, end lights, touchdown zone lights, and wing bar lights</strong>.
+</div>
+
+<div class="sub-heading">When Aeronautical Ground Lights Shall Be Operated</div>
+
+<div class="no-break">
+<table class="reg-table">
+  <thead><tr><th>#</th><th>Condition</th></tr></thead>
+  <tbody>
+    <tr><td>a</td><td>During the time from <strong>sunset to sunrise</strong></td></tr>
+    <tr><td>b</td><td>From sunrise to sunset when <strong>visibility is 5,000 m or less in India</strong></td></tr>
+    <tr><td>c</td><td>When <strong>requested by pilot</strong></td></tr>
+    <tr><td>d</td><td>At any other time when their use — based on meteorological conditions — is considered <strong>desirable for the safety of air traffic</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box box-note no-break">
+  <div class="box-title">💡 Lights May Be Turned Off — When?</div>
+  Lights on and in the vicinity of aerodromes not intended for en-route navigation purposes may be turned off, if:
+  <ul class="reg-list" style="margin-top:6px;">
+    <li>No likelihood of either <strong>regular or emergency operation</strong> exists, AND</li>
+    <li>They can be <strong>again brought into operation at least one hour before</strong> the expected arrival of an aircraft</li>
+  </ul>
+</div>
+
+<div class="sub-sub-heading">Variable Intensity Lights</div>
+<p>At aerodromes equipped with lights of variable intensity — a <strong>table of intensity settings</strong> based on conditions of visibility and ambient light should be provided for ATC guidance. When requested by an aircraft, further adjustment of intensity <strong>shall be made whenever possible</strong>.</p>
+
+<div class="box box-note no-break">
+  <div class="box-title">💡 Visual Approach Slope Indicator (VASI) Lights</div>
+  The lights of a visual approach slope indicator system shall be operated during the <strong>hours of daylight as well as of darkness and irrespective of the visibility conditions</strong> when the associated runway is being used.
+</div>
+
+<div class="sub-heading">Runway Lighting Rules</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Runway Lighting Shall NOT Be Operated Unless:</div>
+  Runway lighting shall not be operated if that runway is <strong>not in use for landing, take-off or taxiing purposes</strong>, unless required for <strong>runway inspections or maintenance</strong>.
+</div>
+
+<div class="sub-sub-heading">Lighting After Take-Off — Not Operated Continuously</div>
+
+<div class="no-break">
+<table class="reg-table">
+  <thead><tr><th>Aerodrome Type</th><th>Rule</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>With ATC service + centrally controlled lights</strong></td>
+      <td>Lights of <strong>one runway</strong> shall remain lighted after take-off as long as considered necessary for the <strong>return of the aircraft due to an emergency occurring during or immediately after take-off</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Without ATC service OR without centrally controlled lights</strong></td>
+      <td>Lights of <strong>one runway</strong> shall remain lighted until such time as would normally be required to reactivate the lights in likelihood of the departing aircraft returning for an emergency landing, and in any case <strong>not less than fifteen minutes after take-off</strong></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7C: WIND SHEAR ADVISORIES                           -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s7c">§24 · Wind Shear Advisories</h1>
+
+<div class="box box-def no-break">
+  <div class="box-title">📖 Definition of Wind Shear</div>
+  Wind shear is a <strong>sustained change in the wind velocity along the aircraft flight path</strong>, which occurs significantly faster than the aircraft can accelerate or decelerate. It can occur at any level, but it is <strong>'low level wind shear'</strong> occurring from the surface to a height of approximately <strong>1,500 feet</strong>, which can cause problems of sufficient magnitude to affect the control of aircraft in <strong>departure or final approach phases of flight</strong>.
+</div>
+
+<div class="box box-sop no-break">
+  <div class="box-title">🟢 Wind Shear Reporting Procedure</div>
+  <ul class="reg-list">
+    <li>Whenever a pilot reports wind shear conditions to ATC — the information shall be <strong>passed to subsequent arriving and departing aircraft</strong> until either:
+      <ul class="reg-list" style="margin-top:4px;">
+        <li>Confirmation is received that the condition <strong>no longer exists</strong>, OR</li>
+        <li>Wind shear information has been <strong>included in ATIS</strong> and the flight crew reports receipt of the appropriate ATIS designator</li>
+      </ul>
+    </li>
+    <li>Reports on wind shear from aircraft should be <strong>passed to the Meteorological office</strong>.</li>
+  </ul>
+</div>
+
+<div class="sub-heading">Designation of Hot Spot</div>
+<div class="box box-note no-break">
+  <div class="box-title">💡 Hot Spot</div>
+  The aerodrome operator shall whenever necessary designate a <strong>location or several locations on the movement area</strong> of the aerodrome as <strong>hot spot(s)</strong>. The hot spot(s) shall be charted in accordance with <strong>Annex 4</strong>.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7D: COEFFICIENT OF FRICTION                         -->
+<!-- ============================================================ -->
+<h1 class="section-heading" id="s7d">§25 · Coefficient of Friction</h1>
+
+<div class="box box-note no-break">
+  <div class="box-title">💡 Context</div>
+  The table below was developed from friction data collected only in <strong>compacted snow and ice</strong> — and should not be taken as absolute values applicable in all conditions. Surface condition information (including estimated surface friction) must be provided for <strong>each third of a runway</strong>. The "first part" always means the <strong>first third of the runway as seen in the direction of landing</strong>.
+</div>
+
+<div class="no-break">
+<table class="reg-table">
+  <thead>
+    <tr>
+      <th>Measured Coefficient (μ)</th>
+      <th>Estimated Surface Friction</th>
+      <th>Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="friction-good">
+      <td><strong>0.40 and above</strong></td>
+      <td>GOOD</td>
+      <td><span class="chip chip-green">5</span></td>
+    </tr>
+    <tr class="friction-med-good">
+      <td><strong>0.39 to 0.36</strong></td>
+      <td>MEDIUM TO GOOD</td>
+      <td><span class="chip chip-blue">4</span></td>
+    </tr>
+    <tr class="friction-med">
+      <td><strong>0.35 to 0.30</strong></td>
+      <td>MEDIUM</td>
+      <td><span class="chip chip-gold">3</span></td>
+    </tr>
+    <tr class="friction-med-poor">
+      <td><strong>0.29 to 0.26</strong></td>
+      <td>MEDIUM TO POOR</td>
+      <td><span class="chip chip-red" style="background:#fdebd0;color:#7e5109;border-color:#f0b27a;">2</span></td>
+    </tr>
+    <tr class="friction-poor">
+      <td><strong>0.25 and below</strong></td>
+      <td>POOR</td>
+      <td><span class="chip chip-red">1</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Key Exam Point — Runway Segments</div>
+  The runway is divided into <strong>thirds (1/3 segments)</strong> for reporting surface condition. When giving landing information, sections are referred to as <strong>first, second, or third part of the runway</strong>. The <strong>first part always means the first third of the runway as seen in the direction of landing</strong>.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: QUESTIONS & ANSWERS                               -->
+<!-- ============================================================ -->
+<div class="section-band">Section 8 · Exam Questions &amp; Answers</div>
+<h1 class="section-heading" id="qa">§26 · DGCA Exam Questions — Chapter 8</h1>
+
+<div class="box box-def no-break">
+  <div class="box-title">📖 About This Section</div>
+  These 12 questions are taken directly from the DGCA examination bank for this chapter. Correct answers are highlighted in green with detailed regulatory explanations.
+</div>
+
+<!-- Q1 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q1</span> When instructed by ATC to hold short of Runway, pilot should stop:</div>
+  <div class="qa-options">
+    <div class="qa-option wrong">A) With nose gear on hold line</div>
+    <div class="qa-option correct">B) So that no part of the A/c extends beyond hold line</div>
+    <div class="qa-option wrong">C) So that the Flt Deck Area of A/c is even with the hold line</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>When instructed to hold short, the <strong>entire aircraft</strong> must remain clear — no part should extend beyond the hold line. The nose gear being on the hold line or the flight deck being level with it would mean parts of the aircraft are beyond it.</div>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q2</span> The following aircraft will be given priority to land:</div>
+  <div class="qa-options">
+    <div class="qa-option wrong">A) An aircraft with VVIP on board</div>
+    <div class="qa-option correct">B) An aircraft with critical shortage of fuel</div>
+    <div class="qa-option wrong">C) A scheduled aircraft</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>An aircraft with a <strong>critical shortage of fuel</strong> is in a compelling emergency — this is Priority 1 in the priority rules. A VVIP aircraft is Priority 5. A scheduled aircraft has no special priority.</div>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q3</span> Apron is an area on aerodrome where following activities take place:</div>
+  <div class="qa-options">
+    <div class="qa-option wrong">A) Loading/unloading of passengers, mail and cargo only</div>
+    <div class="qa-option wrong">B) Parking of aircraft only</div>
+    <div class="qa-option correct">C) Loading/unloading of passengers, mail and cargo, fueling, parking or maintenance</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>The apron is a defined area where aircraft stand for purposes of loading/unloading passengers, mail, cargo, fuelling, parking, or maintenance — i.e. all ground handling activities.</div>
+  </div>
+</div>
+
+<!-- Q4 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q4</span> For safety reasons, a person should remain away from a jet engine by at least:</div>
+  <div class="qa-options">
+    <div class="qa-option wrong">A) 100'</div>
+    <div class="qa-option correct">B) 200'</div>
+    <div class="qa-option wrong">C) 300'</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>The jet blast hazard zone — persons should remain at least <strong>200 feet</strong> away from operating jet engines for safety. This relates to the wake turbulence and jet blast hazard provisions.</div>
+  </div>
+</div>
+
+<!-- Q5 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q5</span> Movement area of an aerodrome constitutes the following:</div>
+  <div class="qa-options">
+    <div class="qa-option wrong">A) Area including runways/taxiways excluding apron</div>
+    <div class="qa-option wrong">B) Area excluding taxiways but including runways and apron</div>
+    <div class="qa-option correct">C) Area including runways / taxiways / aprons</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>The <strong>Movement Area</strong> = Manoeuvring area (runways + taxiways) + Apron. It is the total area used for aircraft surface movements.</div>
+  </div>
+</div>
+
+<!-- Q6 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q6</span> The manoeuvring area of an airport is that area:</div>
+  <div class="qa-options">
+    <div class="qa-option wrong">A) Normally referred to as the ramp or apron</div>
+    <div class="qa-option correct">B) Used for taxiing, taking off and landing</div>
+    <div class="qa-option wrong">C) Used when taxiing to and from the parking area</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>The <strong>Manoeuvring Area</strong> = Runways + Taxiways (excluding apron). It is the portion of an aerodrome used for take-off, landing and taxiing — but NOT the apron/ramp.</div>
+  </div>
+</div>
+
+<!-- Q7 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q7</span> An Aircraft shall report "long final" when it is at _____ from the approach end of the rwy:</div>
+  <div class="qa-options">
+    <div class="qa-option correct">A) 8 NMs</div>
+    <div class="qa-option wrong">B) 4 NMs</div>
+    <div class="qa-option wrong">C) 1 NMs</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>As per the visual circuit diagram in this chapter — <strong>Long Final</strong> is defined as the position <strong>beyond 4 NM, up to 8 NM</strong> from the approach end of the runway. An aircraft at 8 NMs would report "long final".</div>
+  </div>
+</div>
+
+<!-- Q8 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q8</span> What defines a controlled aerodrome?</div>
+  <div class="qa-options">
+    <div class="qa-option wrong">A) It must be located within a CTR</div>
+    <div class="qa-option correct">B) It must have a control tower giving an ATC service</div>
+    <div class="qa-option wrong">C) It must have a control tower and be in a CTR</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>A controlled aerodrome is one where an ATC service is provided to aerodrome traffic — which requires a <strong>control tower providing ATC service</strong>. It does not necessarily have to be located within a CTR.</div>
+  </div>
+</div>
+
+<!-- Q9 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q9</span> Aerodrome traffic is considered to be:</div>
+  <div class="qa-options">
+    <div class="qa-option correct">A) Aircraft on the movement area and flying in the vicinity</div>
+    <div class="qa-option wrong">B) Aircraft on the manoeuvring area and flying in the vicinity</div>
+    <div class="qa-option wrong">C) Aircraft on the movement area only</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>Aerodrome traffic includes all aircraft on the <strong>movement area</strong> (runways + taxiways + apron) AND aircraft <strong>flying in the vicinity</strong> of the aerodrome (including traffic circuits).</div>
+  </div>
+</div>
+
+<!-- Q10 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q10</span> Aircraft shall not be held closer to a runway-in-use:</div>
+  <div class="qa-options">
+    <div class="qa-option correct">A) Than at a runway-holding position</div>
+    <div class="qa-option wrong">B) Than at runway edge</div>
+    <div class="qa-option wrong">C) Than at 40 m from the runway edge</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>Aircraft shall not be held closer to a runway-in-use than at a <strong>runway-holding position</strong>. The distances (50m or 30m) are from the runway edge to the holding position, not the holding limit itself.</div>
+  </div>
+</div>
+
+<!-- Q11 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q11</span> Friction Co-efficient due to snow — in how many segments is runway divided based on friction level?</div>
+  <div class="qa-options">
+    <div class="qa-option wrong">A) 1/2</div>
+    <div class="qa-option correct">B) 1/3</div>
+    <div class="qa-option wrong">C) 1/4</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>The runway is divided into <strong>thirds (1/3 segments)</strong> for surface condition reporting. Information is provided for each third — referred to as first, second, or third part of the runway.</div>
+  </div>
+</div>
+
+<!-- Q12 -->
+<div class="qa-block no-break">
+  <div class="qa-question"><span class="qnum">Q12</span> Runway friction coefficient 0.20 means estimated surface friction:</div>
+  <div class="qa-options">
+    <div class="qa-option wrong">A) Good</div>
+    <div class="qa-option wrong">B) Medium to Good</div>
+    <div class="qa-option correct">C) Poor</div>
+    <div class="box-note box" style="margin:8px 0 0;"><div class="box-title">📝 Explanation</div>A coefficient of <strong>0.25 and below = POOR (Code 1)</strong>. Since 0.20 is below 0.25, it is in the <strong>POOR</strong> category. This is the most dangerous friction level — extreme braking degradation on contaminated runways.</div>
+  </div>
+</div>
+
+<!-- ANSWER KEY -->
+<div class="no-break" style="margin-top:32px;">
+<div class="sub-heading">Quick Answer Key</div>
+<table class="reg-table">
+  <thead>
+    <tr>
+      <th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th>
+      <th>Q7</th><th>Q8</th><th>Q9</th><th>Q10</th><th>Q11</th><th>Q12</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:center;"><strong style="color:#1e8449;">B</strong></td>
+      <td style="text-align:center;"><strong style="color:#1e8449;">B</strong></td>
+      <td style="text-align:center;"><strong style="color:#1e8449;">C</strong></td>
+      <td style="text-align:center;"><strong style="color:#1e8449;">B</strong></td>
+      <td style="text-align:center;"><strong style="color:#1e8449;">C</strong></td>
+      <td style="text-align:center;"><strong style="color:#1e8449;">B</strong></td>
+      <td style="text-align:center;"><strong style="color:#1e8449;">A</strong></td>
+      <td style="text-align:center;"><strong style="color:#1e8449;">B</strong></td>
+      <td style="text-align:center;"><strong style="color:#1e8449;">A</strong></td>
+      <td style="text-align:center;"><strong style="color:#1e8449;">A</strong></td>
+      <td style="text-align:center;"><strong style="color:#1e8449;">B</strong></td>
+      <td style="text-align:center;"><strong style="color:#1e8449;">C</strong></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<div style="margin-top:48px;padding:20px;background:#0a1628;border-radius:8px;text-align:center;page-break-inside:avoid;">
+  <div style="font-family:'Playfair Display',serif;font-size:16pt;font-weight:900;color:#d4af37;margin-bottom:6px;">Capt. Pankaj Pahil</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:8pt;color:rgba(212,175,55,0.6);letter-spacing:3px;text-transform:uppercase;">DGCA Ground Instructor · CPL / ATPL Study Notes</div>
+  <div style="height:1px;background:rgba(212,175,55,0.2);margin:12px auto;width:200px;"></div>
+  <div style="font-size:8pt;color:rgba(255,255,255,0.4);font-family:'Source Sans 3',sans-serif;">
+    Chapter 8 · Procedures for Aerodrome Control Service · Doc 4444, AIP India · Pages 199–214<br>
+    For educational purposes only. Always refer to current DGCA AIPs and official publications.
+  </div>
+</div>
+
+</div><!-- end content-wrapper -->
+</body>
+</html>

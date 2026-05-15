@@ -22,11 +22,10 @@ export default function CPLPage() {
           </h1>
           <p className="text-xl font-semibold mb-2" style={{ color:"#c080ff" }}>Commercial Pilot Licence — Written Examinations</p>
           <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
-            6 DGCA papers. Every chapter covered with notes, slides, videos, audio, questions, and tests.
-            Structured exactly as per the official DGCA CPL syllabus.
+            7 DGCA papers as per CAR Section 7 Series B Part IV. Every chapter mapped directly to the official DGCA CPL syllabus appendices with notes, slides, videos, audio, questions, and tests.
           </p>
           <div className="flex flex-wrap gap-4">
-            {[["6","Written Papers"],["60+","Chapters"],["6,000+","Questions"],["70%","Pass Mark"]].map(([v,l]) => (
+            {[["7","Written Papers"],["76+","Chapters"],["7,000+","Questions"],["70%","Pass Mark"]].map(([v,l]) => (
               <div key={l} className="px-5 py-3 rounded-xl text-center" style={{ background:"rgba(124,58,237,0.15)", border:"1px solid rgba(124,58,237,0.3)" }}>
                 <div className="text-2xl font-black text-white">{v}</div>
                 <div className="text-xs" style={{ color:"#7c3aed" }}>{l}</div>
@@ -38,7 +37,7 @@ export default function CPLPage() {
 
       {/* Subjects */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-2xl font-black text-white mb-8">All 6 CPL Subjects</h2>
+        <h2 className="text-2xl font-black text-white mb-8">All 7 CPL Papers</h2>
         <div className="flex flex-col gap-5">
           {CPL_SUBJECTS.map((subject, idx) => (
             <Link key={subject.id} href={`/cpl/${subject.id}`}

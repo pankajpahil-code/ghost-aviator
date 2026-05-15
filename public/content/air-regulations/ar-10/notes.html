@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search & Rescue – DGCA Study Notes | Capt. Pankaj Pahil</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --navy:       #0B1F3A;
+  --navy-mid:   #142D52;
+  --navy-light: #1E3F6F;
+  --gold:       #D4A017;
+  --gold-light: #F0C040;
+  --sky:        #2E86C1;
+  --sky-light:  #AED6F1;
+  --sky-pale:   #EBF5FB;
+  --red:        #C0392B;
+  --red-light:  #FADBD8;
+  --red-pale:   #FEF9F9;
+  --green:      #1E8449;
+  --green-light:#A9DFBF;
+  --green-pale: #EAFAF1;
+  --amber:      #D35400;
+  --amber-light:#FAD7A0;
+  --amber-pale: #FEF9F0;
+  --purple:     #6C3483;
+  --purple-light:#D7BDE2;
+  --purple-pale: #F9F0FF;
+  --white:      #FFFFFF;
+  --offwhite:   #F7F9FC;
+  --gray-100:   #EEF1F5;
+  --gray-200:   #D5DCE7;
+  --gray-400:   #8A9BBD;
+  --gray-700:   #344563;
+  --text:       #1A2540;
+  --text-light: #4A5C7A;
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--offwhite);
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 15px;
+}
+
+/* ===== PRINT SETTINGS ===== */
+@page {
+  size: A4;
+  margin: 18mm 16mm 18mm 16mm;
+}
+@media print {
+  body { background: white; font-size: 13px; }
+  .no-print { display: none; }
+  .page-section { page-break-before: always; }
+  .page-section:first-of-type { page-break-before: avoid; }
+}
+
+/* ===== WATERMARK (fixed div, last in body) ===== */
+#watermark {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 80px;
+  font-weight: 900;
+  font-family: 'Barlow Condensed', sans-serif;
+  color: rgba(0,0,0,0.12);
+  white-space: nowrap;
+  letter-spacing: 4px;
+  user-select: none;
+}
+
+/* ===== HEADER ===== */
+.doc-header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, var(--sky) 100%);
+  color: white;
+  padding: 52px 48px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.doc-header::after {
+  content: '';
+  position: absolute;
+  right: -40px; top: -40px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: rgba(212,160,23,0.12);
+}
+.doc-header::before {
+  content: '';
+  position: absolute;
+  left: 30%; bottom: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+.header-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+.doc-header h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: white;
+  margin-bottom: 10px;
+}
+.doc-header h1 span { color: var(--gold-light); }
+.doc-header .subtitle {
+  font-size: 16px;
+  color: var(--sky-light);
+  font-style: italic;
+  margin-bottom: 28px;
+  font-family: 'Source Serif 4', serif;
+}
+.header-meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.meta-chip {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.9);
+}
+
+/* ===== TABLE OF CONTENTS ===== */
+.toc-wrap {
+  background: var(--navy);
+  color: white;
+  padding: 36px 48px;
+}
+.toc-wrap h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 40px;
+}
+.toc-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 13px;
+}
+.toc-num {
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ===== MAIN CONTENT AREA ===== */
+.content-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 32px;
+}
+
+/* ===== SECTION HEADERS ===== */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  margin-top: 52px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--navy);
+}
+.section-header:first-child { margin-top: 0; }
+.section-num {
+  background: var(--navy);
+  color: var(--gold);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  width: 48px; height: 48px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.section-header h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  line-height: 1.1;
+}
+.section-header .reg-ref {
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--gray-400);
+  margin-top: 3px;
+}
+
+/* ===== SUB-SECTION ===== */
+.sub-header {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy-light);
+  margin: 28px 0 12px;
+  padding-left: 12px;
+  border-left: 4px solid var(--gold);
+  letter-spacing: 0.3px;
+}
+
+/* ===== COLORED INFO BOXES ===== */
+.box {
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  page-break-inside: avoid;
+  position: relative;
+}
+.box-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.box-icon { font-size: 16px; }
+
+/* Definition – Blue */
+.box-def {
+  background: var(--sky-pale);
+  border: 1.5px solid var(--sky-light);
+  border-left: 5px solid var(--sky);
+}
+.box-def .box-title { color: var(--sky); }
+
+/* Warning / Regulation – Red */
+.box-warn {
+  background: var(--red-pale);
+  border: 1.5px solid #F1948A;
+  border-left: 5px solid var(--red);
+}
+.box-warn .box-title { color: var(--red); }
+
+/* Procedure – Green */
+.box-proc {
+  background: var(--green-pale);
+  border: 1.5px solid var(--green-light);
+  border-left: 5px solid var(--green);
+}
+.box-proc .box-title { color: var(--green); }
+
+/* Important Note – Amber */
+.box-note {
+  background: var(--amber-pale);
+  border: 1.5px solid var(--amber-light);
+  border-left: 5px solid var(--amber);
+}
+.box-note .box-title { color: var(--amber); }
+
+/* Fact / Key Info – Purple */
+.box-fact {
+  background: var(--purple-pale);
+  border: 1.5px solid var(--purple-light);
+  border-left: 5px solid var(--purple);
+}
+.box-fact .box-title { color: var(--purple); }
+
+/* ===== REGULATION CARD ===== */
+.reg-card {
+  background: var(--navy);
+  color: white;
+  border-radius: 10px;
+  padding: 22px 26px;
+  margin: 20px 0;
+  page-break-inside: avoid;
+}
+.reg-card .card-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.reg-card p { color: rgba(255,255,255,0.9); font-size: 14px; line-height: 1.7; }
+
+/* ===== TABLES ===== */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+  page-break-inside: avoid;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.styled-table thead tr {
+  background: var(--navy);
+  color: white;
+}
+.styled-table thead th {
+  padding: 13px 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+.styled-table tbody tr { border-bottom: 1px solid var(--gray-200); }
+.styled-table tbody tr:nth-child(even) { background: var(--gray-100); }
+.styled-table tbody tr:hover { background: var(--sky-pale); }
+.styled-table tbody td {
+  padding: 12px 16px;
+  vertical-align: middle;
+}
+.styled-table .gold-cell {
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* ===== STEP LIST ===== */
+.step-list { list-style: none; margin: 12px 0; padding: 0; }
+.step-list li {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+.step-badge {
+  background: var(--navy);
+  color: var(--gold);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  min-width: 28px; height: 28px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.step-badge.alpha { background: var(--green); color: white; }
+.step-badge.warn  { background: var(--red);   color: white; }
+
+/* ===== BULLET LIST ===== */
+.info-list { margin: 10px 0 10px 8px; padding: 0; list-style: none; }
+.info-list li {
+  padding: 4px 0 4px 22px;
+  position: relative;
+  line-height: 1.65;
+}
+.info-list li::before {
+  content: '▸';
+  position: absolute; left: 0;
+  color: var(--gold);
+  font-size: 12px;
+  top: 6px;
+}
+
+/* ===== SIGNAL CODE BOX ===== */
+.signal-symbol {
+  font-family: 'Barlow Condensed', monospace;
+  font-size: 28px;
+  font-weight: 900;
+  background: var(--navy);
+  color: var(--gold-light);
+  width: 60px; height: 60px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* ===== Q&A SECTION ===== */
+.qa-item {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  page-break-inside: avoid;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.qa-question {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.qa-qnum {
+  background: var(--navy);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Barlow Condensed', sans-serif;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+.qa-options { list-style: none; padding: 0; }
+.qa-options li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.qa-options li:last-child { border-bottom: none; }
+.opt-letter {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+  border: 2px solid var(--gray-200);
+  color: var(--text-light);
+  margin-top: 1px;
+}
+.opt-letter.correct {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+.qa-answer-tag {
+  display: inline-block;
+  margin-top: 10px;
+  background: var(--green-pale);
+  border: 1.5px solid var(--green-light);
+  color: var(--green);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+.qa-explanation {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--text-light);
+  font-style: italic;
+  background: var(--sky-pale);
+  border-radius: 6px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--sky);
+}
+
+/* ===== SVG DIAGRAMS CONTAINER ===== */
+.diagram-wrap {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 24px;
+  margin: 24px 0;
+  page-break-inside: avoid;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow-x: auto;
+}
+.diagram-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* ===== FREQUENCY BADGE ===== */
+.freq-badge {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--gold-light);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin: 2px 4px;
+}
+
+/* ===== HIGHLIGHT STAT ===== */
+.stat-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.stat-card {
+  flex: 1;
+  min-width: 160px;
+  background: var(--navy);
+  border-radius: 10px;
+  padding: 18px 20px;
+  text-align: center;
+  page-break-inside: avoid;
+}
+.stat-card .stat-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--gold-light);
+  line-height: 1;
+}
+.stat-card .stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* ===== TWO-COL LAYOUT ===== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+@media (max-width: 700px) {
+  .two-col { grid-template-columns: 1fr; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .doc-header h1 { font-size: 36px; }
+  .stat-row { flex-direction: column; }
+}
+
+/* ===== SIGNAL GRID ===== */
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+.signal-card {
+  background: white;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  page-break-inside: avoid;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.signal-card .sig-info .sig-code {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--navy);
+}
+.signal-card .sig-info .sig-meaning {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  border: none;
+  border-top: 2px dashed var(--gray-200);
+  margin: 36px 0;
+}
+
+/* ===== PAGE BREAK ===== */
+.page-break { page-break-before: always; }
+
+/* ===== FOOTER ===== */
+.doc-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  padding: 24px;
+  font-size: 12px;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 1px;
+}
+.doc-footer span { color: var(--gold); }
+
+p { margin-bottom: 10px; }
+strong { color: var(--navy); }
+</style>
+</head>
+<body>
+
+<!-- ===== DOCUMENT HEADER ===== -->
+<div class="doc-header">
+  <div class="header-tag">DGCA Ground School — Air Regulations</div>
+  <h1>Search &<br><span>Rescue</span></h1>
+  <p class="subtitle">Chapter 11 — Annex 12 · AIP India · CAR Section 9 Air Space & Navigation Standards · Series 'S', Part I Issue II</p>
+  <div class="header-meta">
+    <div class="meta-chip">📚 CPL / ATPL Examination</div>
+    <div class="meta-chip">✈️ Air Regulations</div>
+    <div class="meta-chip">🇮🇳 DGCA India</div>
+    <div class="meta-chip">📋 17 Q&A Included</div>
+  </div>
+</div>
+
+<!-- ===== TABLE OF CONTENTS ===== -->
+<div class="toc-wrap">
+  <h2>📑 Table of Contents</h2>
+  <div class="toc-grid">
+    <div class="toc-item"><div class="toc-num">1</div> SAR Services — International Obligations</div>
+    <div class="toc-item"><div class="toc-num">2</div> Search & Rescue Regions (SRR)</div>
+    <div class="toc-item"><div class="toc-num">3</div> RCCs and Rescue Sub Centres</div>
+    <div class="toc-item"><div class="toc-num">4</div> National Provisions — India</div>
+    <div class="toc-item"><div class="toc-num">5</div> SAR Equipment Requirements</div>
+    <div class="toc-item"><div class="toc-num">6</div> Operating Procedures — Pilot-in-Command</div>
+    <div class="toc-item"><div class="toc-num">7</div> Search & Rescue Signals</div>
+    <div class="toc-item"><div class="toc-num">8</div> Ground-Air Visual Signal Codes</div>
+    <div class="toc-item"><div class="toc-num">9</div> Air-to-Ground Signals</div>
+    <div class="toc-item"><div class="toc-num">10</div> Satellite-Aided SAR (COSPAS-SARSAT)</div>
+    <div class="toc-item"><div class="toc-num">11</div> SAR Agreements</div>
+    <div class="toc-item"><div class="toc-num">12</div> MCQ Practice Questions & Answers</div>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="content-wrap">
+
+<!-- ============================================================ -->
+<!-- SECTION 1: SAR SERVICES -->
+<!-- ============================================================ -->
+<div class="section-header">
+  <div class="section-num">1</div>
+  <div>
+    <h2>SAR Services — International Obligations</h2>
+    <div class="reg-ref">Annex 12, ICAO · AIP India Chapter 11</div>
+  </div>
+</div>
+
+<div class="reg-card">
+  <div class="card-label">📜 Core Regulatory Obligation — Contracting States</div>
+  <p>Contracting States shall, individually or in cooperation with other States, <strong style="color:var(--gold-light)">arrange for the establishment and prompt provision</strong> of search and rescue services within their territories to ensure that <strong style="color:var(--gold-light)">assistance is rendered to persons in distress</strong>. Such services shall be provided on a <strong style="color:var(--gold-light)">24-hour basis</strong>.</p>
+</div>
+
+<div class="box box-note">
+  <div class="box-title"><span class="box-icon">🌊</span> High Seas / Undetermined Sovereignty Areas</div>
+  <p>Those portions of the <strong>high seas or areas of undetermined sovereignty</strong> for which SAR services will be established shall be determined on the basis of <strong>Regional Air Navigation Agreements</strong>.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card">
+    <div class="stat-val">24</div>
+    <div class="stat-label">Hour SAR Service Coverage</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val">365</div>
+    <div class="stat-label">Days Per Year — No Exceptions</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val">ICAO</div>
+    <div class="stat-label">Annex 12 Authority</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: SAR REGIONS -->
+<!-- ============================================================ -->
+<div class="section-header">
+  <div class="section-num">2</div>
+  <div>
+    <h2>Search & Rescue Regions (SRR)</h2>
+    <div class="reg-ref">Annex 12 · National Provisions</div>
+  </div>
+</div>
+
+<div class="box box-def">
+  <div class="box-title"><span class="box-icon">🗺️</span> Definition — Search & Rescue Region (SRR)</div>
+  <p>An area of defined dimensions associated with a Rescue Coordination Centre within which SAR services are provided.</p>
+</div>
+
+<div class="box box-warn">
+  <div class="box-title"><span class="box-icon">⚠️</span> Strict Rules for SAR Regions</div>
+  <ul class="info-list">
+    <li>Contracting States <strong>shall delineate</strong> the search and rescue regions within which they will provide services.</li>
+    <li>SAR regions <strong>shall NOT overlap</strong>.</li>
+    <li>Neighboring SAR regions <strong>shall be contiguous</strong> (no gaps allowed).</li>
+  </ul>
+</div>
+
+<div class="box box-fact">
+  <div class="box-title"><span class="box-icon">🇮🇳</span> India's SAR Region (SRR) — Key Fact</div>
+  <p>The boundary of the <strong>Indian Aeronautical SRR coincides with the Indian FIR boundary</strong>, <em>excluding</em> the portion of FIR over the sovereign territory of the <strong>Kingdom of Bhutan</strong>.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: RCCs AND RSCs -->
+<!-- ============================================================ -->
+<div class="section-header">
+  <div class="section-num">3</div>
+  <div>
+    <h2>Rescue Coordination Centres & Sub-Centres</h2>
+    <div class="reg-ref">Annex 12 · Chapter 11</div>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="box box-def" style="margin:0;">
+    <div class="box-title"><span class="box-icon">🏢</span> Rescue Coordination Centre (RCC)</div>
+    <p>A unit responsible for <strong>promoting efficient organization</strong> of search and rescue services and for <strong>coordinating the conduct of SAR operations</strong> within a SAR region.</p>
+  </div>
+  <div class="box box-def" style="margin:0;">
+    <div class="box-title"><span class="box-icon">📡</span> Rescue Sub-Centre (RSC)</div>
+    <p>A unit subordinate to an RCC, established to <strong>complement the latter</strong> according to particular needs of the SAR authority.</p>
+  </div>
+</div>
+
+<div class="box box-fact">
+  <div class="box-title"><span class="box-icon">✈️</span> India's Four Aeronautical RCCs (AAI)</div>
+  <p>Airports Authority of India (AAI) coordinates SAR services through <strong>four Rescue Coordination Centres</strong> established at:</p>
+  <div class="stat-row" style="margin-top:14px;">
+    <div class="stat-card" style="background:var(--sky);"><div class="stat-val" style="font-size:22px;">Delhi</div><div class="stat-label">Delhi FIR</div></div>
+    <div class="stat-card" style="background:var(--sky);"><div class="stat-val" style="font-size:22px;">Mumbai</div><div class="stat-label">Mumbai FIR</div></div>
+    <div class="stat-card" style="background:var(--sky);"><div class="stat-val" style="font-size:22px;">Kolkata</div><div class="stat-label">Kolkata FIR</div></div>
+    <div class="stat-card" style="background:var(--sky);"><div class="stat-val" style="font-size:22px;">Chennai</div><div class="stat-label">Chennai FIR</div></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: NATIONAL PROVISIONS — INDIA -->
+<!-- ============================================================ -->
+<div class="section-header page-break" style="margin-top:0 !important;">
+  <div class="section-num">4</div>
+  <div>
+    <h2>National Provisions — India</h2>
+    <div class="reg-ref">AIP India · CAR Section 9 · Series 'S', Part I Issue II</div>
+  </div>
+</div>
+
+<div class="reg-card">
+  <div class="card-label">🇮🇳 Government of India — SAR Responsibility</div>
+  <p>Indian Government has assumed the responsibility of providing <strong style="color:var(--gold-light)">Search and Rescue (SAR) cover in Indian Search & Rescue Regions (SRR)</strong>.</p>
+</div>
+
+<!-- India SAR Org Chart (SVG) -->
+<div class="diagram-wrap">
+  <div class="diagram-title">🗂️ Indian SAR Organizational Structure</div>
+  <svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;display:block;margin:0 auto;">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#0B1F3A"/>
+      </marker>
+    </defs>
+    <!-- Top: Indian Government -->
+    <rect x="280" y="10" width="300" height="52" rx="8" fill="#0B1F3A"/>
+    <text x="430" y="32" text-anchor="middle" fill="#D4A017" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700">GOVERNMENT OF INDIA</text>
+    <text x="430" y="50" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Barlow Condensed,sans-serif" font-size="11">Overall SAR Responsibility</text>
+    <!-- Arrow down left -->
+    <line x1="370" y1="62" x2="210" y2="130" stroke="#0B1F3A" stroke-width="2" marker-end="url(#arrow)"/>
+    <!-- Arrow down right -->
+    <line x1="490" y1="62" x2="650" y2="130" stroke="#0B1F3A" stroke-width="2" marker-end="url(#arrow)"/>
+    <!-- NASARCC -->
+    <rect x="50" y="130" width="310" height="68" rx="8" fill="#1E3F6F"/>
+    <text x="205" y="152" text-anchor="middle" fill="#F0C040" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700">NASARCC</text>
+    <text x="205" y="168" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Barlow Condensed,sans-serif" font-size="11">National Aeronautical Search &amp; Rescue</text>
+    <text x="205" y="183" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Barlow Condensed,sans-serif" font-size="11">Coordination Committee</text>
+    <text x="205" y="198" text-anchor="middle" fill="#AED6F1" font-family="Barlow Condensed,sans-serif" font-size="10">Chairman: Secy, Ministry of Civil Aviation · LAND AREAS</text>
+    <!-- NMSARB -->
+    <rect x="500" y="130" width="310" height="68" rx="8" fill="#1E3F6F"/>
+    <text x="655" y="152" text-anchor="middle" fill="#F0C040" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700">NMSARB</text>
+    <text x="655" y="168" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Barlow Condensed,sans-serif" font-size="11">National Maritime SAR Board</text>
+    <text x="655" y="183" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Barlow Condensed,sans-serif" font-size="11">&nbsp;</text>
+    <text x="655" y="198" text-anchor="middle" fill="#AED6F1" font-family="Barlow Condensed,sans-serif" font-size="10">Chairman: DG, Indian Coast Guard · OCEANIC AREAS</text>
+    <!-- Arrow NASARCC down -->
+    <line x1="205" y1="198" x2="205" y2="268" stroke="#0B1F3A" stroke-width="2" marker-end="url(#arrow)"/>
+    <!-- Arrow NMSARB down -->
+    <line x1="655" y1="198" x2="655" y2="268" stroke="#0B1F3A" stroke-width="2" marker-end="url(#arrow)"/>
+    <!-- AAI Box -->
+    <rect x="50" y="268" width="310" height="56" rx="8" fill="#2E86C1"/>
+    <text x="205" y="290" text-anchor="middle" fill="white" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700">Airports Authority of India (AAI)</text>
+    <text x="205" y="308" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Barlow Condensed,sans-serif" font-size="11">4 RCCs: Delhi · Mumbai · Kolkata · Chennai</text>
+    <text x="205" y="322" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Barlow Condensed,sans-serif" font-size="10">(Coordinates SAR excl. oceanic areas)</text>
+    <!-- Coast Guard Box -->
+    <rect x="500" y="268" width="310" height="56" rx="8" fill="#2E86C1"/>
+    <text x="655" y="290" text-anchor="middle" fill="white" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700">Indian Coast Guard</text>
+    <text x="655" y="308" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Barlow Condensed,sans-serif" font-size="11">3 MRCCs: Mumbai · Chennai · Port Blair</text>
+    <text x="655" y="322" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Barlow Condensed,sans-serif" font-size="10">(Maritime areas — high seas)</text>
+    <!-- Labels -->
+    <text x="205" y="360" text-anchor="middle" fill="#1E8449" font-family="Barlow Condensed,sans-serif" font-size="12" font-weight="700">🟢 AERONAUTICAL SAR</text>
+    <text x="655" y="360" text-anchor="middle" fill="#1E8449" font-family="Barlow Condensed,sans-serif" font-size="12" font-weight="700">🔵 MARITIME SAR</text>
+    <text x="430" y="400" text-anchor="middle" fill="#8A9BBD" font-family="Barlow Condensed,sans-serif" font-size="11">Oceanic areas of Kolkata, Mumbai &amp; Chennai FIR provided by Indian Coast Guard</text>
+  </svg>
+</div>
+
+<div class="box box-note">
+  <div class="box-title"><span class="box-icon">🤝</span> Additional SAR Resources Available</div>
+  <p>The following departments and organisations are also available for SAR missions when required:</p>
+  <ul class="info-list">
+    <li>Railways, Post &amp; Telegraph, All India Radio</li>
+    <li>Police and District Collectors / Magistrates</li>
+    <li>Municipal and Local bodies</li>
+    <li>Airline operators, Flying clubs, Professional Pilots</li>
+    <li>Mercantile Marine, Port Trust</li>
+    <li><strong>Armed Forces</strong></li>
+  </ul>
+</div>
+
+<div class="box box-warn">
+  <div class="box-title"><span class="box-icon">🗂️</span> SAR Coverage — Territorial Extent</div>
+  <ul class="info-list">
+    <li>SAR services cover the entire <strong>Indian Territory including territorial waters</strong>.</li>
+    <li>Also covers portions of high seas / areas of undetermined sovereignty where responsibility has been <strong>delegated to India</strong>.</li>
+    <li>Indian Aeronautical SRR boundary <strong>= Indian FIR boundary</strong>, EXCLUDING sovereign territory of Kingdom of Bhutan.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: SAR EQUIPMENT -->
+<!-- ============================================================ -->
+<div class="section-header page-break" style="margin-top:0 !important;">
+  <div class="section-num">5</div>
+  <div>
+    <h2>SAR Equipment Requirements</h2>
+    <div class="reg-ref">Annex 12 · Chapter 11</div>
+  </div>
+</div>
+
+<div class="box box-proc">
+  <div class="box-title"><span class="box-icon">🔧</span> Equipment — SAR Units</div>
+  <p>Search and rescue units shall be provided with equipment for:</p>
+  <ul class="info-list">
+    <li><strong>Locating promptly</strong> the scene of an accident</li>
+    <li><strong>Providing adequate assistance</strong> at the scene of an accident</li>
+  </ul>
+</div>
+
+<div class="sub-header">SAR Aircraft Equipment Requirements</div>
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Requirement</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Communications</strong></td>
+      <td>Equipped to communicate on the <strong>aeronautical distress</strong> and <strong>on-scene frequencies</strong>, and on such other frequencies as may be prescribed.</td>
+    </tr>
+    <tr>
+      <td><strong>Homing Device</strong></td>
+      <td>Equipped with a device for <strong>homing on distress frequencies</strong>.</td>
+    </tr>
+    <tr>
+      <td><strong>Maritime Communication</strong></td>
+      <td>When used over maritime areas — equipped to <strong>communicate with vessels</strong>.</td>
+    </tr>
+    <tr>
+      <td><strong>International Code of Signals</strong></td>
+      <td>When used over maritime areas — must carry a <strong>copy of the International Code of Signals</strong> to overcome language difficulties with ships.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box box-note">
+  <div class="box-title"><span class="box-icon">📡</span> Vessel Communication Frequencies</div>
+  <p>Many vessels can communicate with aircraft on:</p>
+  <div style="margin-top:10px;">
+    <span class="freq-badge">2182 kHz</span>
+    <span class="freq-badge">4125 kHz</span>
+    <span class="freq-badge">121.5 MHz</span>
+  </div>
+  <p style="margin-top:12px; color:var(--amber);"><strong>⚠️ NOTE:</strong> These frequencies, and in particular <strong>121.5 MHz</strong>, may <strong>NOT be routinely monitored</strong> by vessels.</p>
+</div>
+
+<div class="box box-fact">
+  <div class="box-title"><span class="box-icon">🎁</span> Survival Equipment — Colour Code for Dropped Containers</div>
+  <p>Survival equipment dropped by SAR containing <strong>food and water</strong> will be packed in containers and indicated by streamers of <strong>Blue colour</strong>.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: OPERATING PROCEDURES -->
+<!-- ============================================================ -->
+<div class="section-header page-break" style="margin-top:0 !important;">
+  <div class="section-num">6</div>
+  <div>
+    <h2>Operating Procedures — Pilot-in-Command</h2>
+    <div class="reg-ref">Annex 12 · Operating Procedures</div>
+  </div>
+</div>
+
+<div class="sub-header">6.1 — PIC at the Scene of an Accident</div>
+
+<div class="box box-proc">
+  <div class="box-title"><span class="box-icon">✅</span> When PIC observes another aircraft or surface craft in distress — shall if possible and unless unreasonable/unnecessary:</div>
+  <ul class="step-list">
+    <li><div class="step-badge alpha">a</div><div>Keep the craft in distress <strong>in sight</strong> until compelled to leave the scene or advised by the RCC that it is no longer necessary.</div></li>
+    <li><div class="step-badge alpha">b</div><div><strong>Determine the position</strong> of the craft in distress.</div></li>
+    <li><div class="step-badge alpha">c</div><div>As appropriate, <strong>report to the RCC or ATS unit</strong> as much information as possible.</div></li>
+  </ul>
+</div>
+
+<div class="box box-warn">
+  <div class="box-title"><span class="box-icon">⚠️</span> Command Responsibility — Non-SAR Aircraft First on Scene</div>
+  <p>If the <strong>first aircraft to reach the scene of an accident is NOT a search and rescue aircraft</strong>, it shall <strong>take charge of on-scene activities</strong> of all other aircraft subsequently arriving until the <strong>first SAR aircraft reaches the scene</strong> of the accident.</p>
+</div>
+
+<!-- Flowchart: Command at Accident Scene -->
+<div class="diagram-wrap">
+  <div class="diagram-title">📊 On-Scene Command — Who's In Charge?</div>
+  <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:0 auto;">
+    <defs>
+      <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#344563"/>
+      </marker>
+    </defs>
+    <!-- Diamond: Is first aircraft SAR? -->
+    <polygon points="350,30 500,100 350,170 200,100" fill="#0B1F3A" stroke="#D4A017" stroke-width="2"/>
+    <text x="350" y="90" text-anchor="middle" fill="#F0C040" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700">First aircraft to</text>
+    <text x="350" y="108" text-anchor="middle" fill="#F0C040" font-family="Barlow Condensed,sans-serif" font-size="13" font-weight="700">reach scene = SAR?</text>
+    <!-- YES path — right -->
+    <line x1="500" y1="100" x2="610" y2="100" stroke="#344563" stroke-width="2" marker-end="url(#arr2)"/>
+    <text x="548" y="92" text-anchor="middle" fill="#1E8449" font-family="Barlow Condensed,sans-serif" font-size="12" font-weight="700">YES</text>
+    <rect x="610" y="72" width="80" height="56" rx="8" fill="#1E8449"/>
+    <text x="650" y="95" text-anchor="middle" fill="white" font-family="Barlow Condensed,sans-serif" font-size="11" font-weight="700">SAR aircraft</text>
+    <text x="650" y="111" text-anchor="middle" fill="white" font-family="Barlow Condensed,sans-serif" font-size="11">takes command</text>
+    <!-- NO path — left -->
+    <line x1="200" y1="100" x2="90" y2="100" stroke="#344563" stroke-width="2" marker-end="url(#arr2)"/>
+    <text x="142" y="92" text-anchor="middle" fill="#C0392B" font-family="Barlow Condensed,sans-serif" font-size="12" font-weight="700">NO</text>
+    <rect x="10" y="72" width="80" height="56" rx="8" fill="#C0392B"/>
+    <text x="50" y="95" text-anchor="middle" fill="white" font-family="Barlow Condensed,sans-serif" font-size="11" font-weight="700">First non-SAR</text>
+    <text x="50" y="111" text-anchor="middle" fill="white" font-family="Barlow Condensed,sans-serif" font-size="11">takes command</text>
+    <!-- Arrow down from NO box -->
+    <line x1="50" y1="128" x2="50" y2="200" stroke="#344563" stroke-width="2" marker-end="url(#arr2)"/>
+    <rect x="0" y="200" width="100" height="70" rx="8" fill="#142D52"/>
+    <text x="50" y="220" text-anchor="middle" fill="#AED6F1" font-family="Barlow Condensed,sans-serif" font-size="10">Commands ALL</text>
+    <text x="50" y="234" text-anchor="middle" fill="#AED6F1" font-family="Barlow Condensed,sans-serif" font-size="10">subsequent aircraft</text>
+    <text x="50" y="252" text-anchor="middle" fill="#F0C040" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700">UNTIL 1st SAR a/c</text>
+    <text x="50" y="266" text-anchor="middle" fill="#F0C040" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700">arrives</text>
+    <!-- Arrow: SAR arrives, takes over -->
+    <line x1="100" y1="255" x2="160" y2="255" stroke="#344563" stroke-width="2" marker-end="url(#arr2)"/>
+    <line x1="160" y1="255" x2="160" y2="128" stroke="#344563" stroke-width="2"/>
+    <line x1="160" y1="128" x2="350" y2="128" stroke="#344563" stroke-width="2" marker-end="url(#arr2)"/>
+    <text x="240" y="120" text-anchor="middle" fill="#2E86C1" font-family="Barlow Condensed,sans-serif" font-size="11">SAR a/c arrives → takes over</text>
+  </svg>
+</div>
+
+<div class="sub-header">6.2 — PIC Intercepting a Distress Transmission</div>
+
+<div class="box box-proc">
+  <div class="box-title"><span class="box-icon">📻</span> Whenever a distress transmission is intercepted — PIC shall if feasible:</div>
+  <ul class="step-list">
+    <li><div class="step-badge alpha">a</div><div><strong>Acknowledge</strong> the distress transmission.</div></li>
+    <li><div class="step-badge alpha">b</div><div><strong>Record the position</strong> of the craft in distress <em>if given</em>.</div></li>
+    <li><div class="step-badge alpha">c</div><div><strong>Take a bearing</strong> on the transmission.</div></li>
+    <li><div class="step-badge alpha">d</div><div><strong>Inform the appropriate RCC or ATS unit</strong> of the distress transmission, giving all available information.</div></li>
+    <li><div class="step-badge alpha">e</div><div>At the pilot's discretion, while awaiting instructions, <strong>proceed to the position given in the transmission</strong>.</div></li>
+  </ul>
+</div>
+
+<div class="box box-note">
+  <div class="box-title"><span class="box-icon">💡</span> Exam Tip — Distress Transmission Steps</div>
+  <p>Remember the mnemonic: <strong>A-R-B-I-P</strong> — Acknowledge · Record position · Bearing · Inform RCC · Proceed (at discretion).</p>
+  <p style="margin-top:8px;">The key qualifier is <em>"if feasible"</em> — the pilot must do <strong>all five actions if feasible</strong>, but is not obligated if they genuinely cannot.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: SAR SIGNALS — SURFACE CRAFT -->
+<!-- ============================================================ -->
+<div class="section-header page-break" style="margin-top:0 !important;">
+  <div class="section-num">7</div>
+  <div>
+    <h2>SAR Signals — Aircraft to Surface Craft</h2>
+    <div class="reg-ref">Annex 12 · Search and Rescue Signals</div>
+  </div>
+</div>
+
+<div class="sub-header">7.1 — Aircraft Directing Surface Craft to a Distress Location</div>
+
+<div class="reg-card">
+  <div class="card-label">📋 Signal Sequence — Meaning: "Follow Me to distress location"</div>
+  <p>The following manoeuvres performed <strong style="color:var(--gold-light)">in sequence</strong> by an aircraft mean that it wishes to direct a surface craft towards an aircraft or a surface craft in distress:</p>
+</div>
+
+<ul class="step-list" style="margin-top:16px;">
+  <li>
+    <div class="step-badge">a</div>
+    <div><strong>Circling</strong> the surface craft at least once.</div>
+  </li>
+  <li>
+    <div class="step-badge">b</div>
+    <div><strong>Crossing the projected course</strong> of the surface craft close ahead at <em>low altitude</em>, and one of:
+      <ul class="info-list" style="margin-top:8px;">
+        <li><strong>(1) Rocking the wings</strong> — primary visual signal</li>
+        <li><strong>(2) Opening and closing the throttle</strong> — sound signal (alternative)</li>
+        <li><strong>(3) Changing the propeller pitch</strong> — sound signal (alternative)</li>
+      </ul>
+    </div>
+  </li>
+  <li>
+    <div class="step-badge">c</div>
+    <div><strong>Heading in the direction</strong> in which the surface craft is to be directed.</div>
+  </li>
+</ul>
+
+<div class="box box-note">
+  <div class="box-title"><span class="box-icon">🔔</span> Important Note on Sound Signals</div>
+  <p>Due to high noise levels on board surface craft, the sound signals in (2) and (3) may be <strong>less effective</strong> than the visual signal in (1) and are regarded as <strong>alternative means of attracting attention</strong>.</p>
+  <p style="margin-top:8px;"><strong>Repetition of such manoeuvres has the same meaning.</strong></p>
+</div>
+
+<div class="sub-header">7.2 — Aircraft Signal: "Assistance No Longer Required"</div>
+
+<div class="box box-proc">
+  <div class="box-title"><span class="box-icon">✅</span> Signal meaning assistance is NO LONGER REQUIRED:</div>
+  <p><strong>Crossing the wake of the surface craft close astern at a low altitude</strong>, and one of:</p>
+  <ul class="info-list" style="margin-top:8px;">
+    <li>Rocking the wings</li>
+    <li>Opening and closing the throttle</li>
+    <li>Changing the propeller pitch</li>
+  </ul>
+</div>
+
+<div class="sub-header">7.3 — Surface Craft Replies to Aircraft Signals</div>
+
+<table class="styled-table">
+  <thead>
+    <tr><th colspan="2">For Acknowledging Receipt of Signals (Meaning Understood)</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1</strong></td>
+      <td>Hoisting the <strong>"code pennant"</strong> (vertical <span style="color:red;font-weight:bold;">red</span> and <span style="color:white;background:#888;padding:0 4px;font-weight:bold;">white</span> stripes) <strong>close up</strong> — meaning: understood</td>
+    </tr>
+    <tr>
+      <td><strong>2</strong></td>
+      <td>Flashing a succession of <strong>"T's"</strong> by signal lamp in <strong>Morse code</strong></td>
+    </tr>
+    <tr>
+      <td><strong>3</strong></td>
+      <td><strong>Changing heading to follow</strong> the aircraft</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="styled-table" style="margin-top:16px;">
+  <thead>
+    <tr><th colspan="2">For Indicating Inability to Comply</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1</strong></td>
+      <td>Hoisting the international flag <strong>"N"</strong> (a <span style="color:blue;font-weight:bold;">blue</span> and <span style="color:white;background:#888;padding:0 4px;font-weight:bold;">white</span> checkered square)</td>
+    </tr>
+    <tr>
+      <td><strong>2</strong></td>
+      <td>Flashing a succession of <strong>"N's"</strong> in Morse code</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: GROUND-AIR VISUAL SIGNAL CODES -->
+<!-- ============================================================ -->
+<div class="section-header page-break" style="margin-top:0 !important;">
+  <div class="section-num">8</div>
+  <div>
+    <h2>Ground-Air Visual Signal Codes</h2>
+    <div class="reg-ref">Annex 12 · SAR Signals</div>
+  </div>
+</div>
+
+<div class="sub-header">8.1 — Code for Use by SURVIVORS</div>
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width:60px;">No.</th>
+      <th>Message</th>
+      <th style="width:120px; text-align:center;">Code Symbol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1</strong></td>
+      <td>Require Assistance</td>
+      <td class="gold-cell">V</td>
+    </tr>
+    <tr>
+      <td><strong>2</strong></td>
+      <td>Require Medical Assistance</td>
+      <td class="gold-cell">X</td>
+    </tr>
+    <tr>
+      <td><strong>3</strong></td>
+      <td>No or Negative</td>
+      <td class="gold-cell">N</td>
+    </tr>
+    <tr>
+      <td><strong>4</strong></td>
+      <td>Yes or Affirmative</td>
+      <td class="gold-cell">Y</td>
+    </tr>
+    <tr>
+      <td><strong>5</strong></td>
+      <td>Proceeding in This Direction</td>
+      <td class="gold-cell">↑</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box box-warn">
+  <div class="box-title"><span class="box-icon">📐</span> Symbol Size Requirement</div>
+  <p>Symbols shall be at least <strong>2.5 metres (8 feet) long</strong> and shall be made as conspicuous as possible. Provide as much colour contrast as possible between signals and background.</p>
+</div>
+
+<div class="box box-note">
+  <div class="box-title"><span class="box-icon">🛠️</span> How Symbols May Be Formed</div>
+  <ul class="info-list">
+    <li>Strips of fabric, parachute material, pieces of wood, stones or similar material</li>
+    <li>Marking the surface by trampling or staining with oil</li>
+    <li>Attention may also be attracted by: <strong>radio, flares, smoke, and reflected light</strong></li>
+  </ul>
+</div>
+
+<div class="sub-header">8.2 — Code for Use by RESCUE UNITS</div>
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width:60px;">No.</th>
+      <th>Message</th>
+      <th style="width:120px; text-align:center;">Code Symbol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1</strong></td>
+      <td>Operation Completed</td>
+      <td class="gold-cell" style="font-size:16px;">LLL</td>
+    </tr>
+    <tr>
+      <td><strong>2</strong></td>
+      <td>We have found ALL personnel</td>
+      <td class="gold-cell" style="font-size:16px; text-decoration:underline;">LL</td>
+    </tr>
+    <tr>
+      <td><strong>3</strong></td>
+      <td>We have found ONLY SOME personnel</td>
+      <td class="gold-cell" style="font-size:16px;">++</td>
+    </tr>
+    <tr>
+      <td><strong>4</strong></td>
+      <td>We are not able to continue. Returning to base.</td>
+      <td class="gold-cell" style="font-size:16px;">XX</td>
+    </tr>
+    <tr>
+      <td><strong>5</strong></td>
+      <td>Have divided into two groups. Each proceeding in direction indicated.</td>
+      <td class="gold-cell" style="font-size:16px;">⇄</td>
+    </tr>
+    <tr>
+      <td><strong>6</strong></td>
+      <td>Information received that aircraft is in this direction.</td>
+      <td class="gold-cell" style="font-size:16px;">→ →</td>
+    </tr>
+    <tr>
+      <td><strong>7</strong></td>
+      <td>Nothing found. Will continue to search.</td>
+      <td class="gold-cell" style="font-size:16px;">NN</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box box-fact">
+  <div class="box-title"><span class="box-icon">🧠</span> Memory Aid — Rescue Unit Symbols</div>
+  <p><strong>LLL</strong> = All done (3 letters = Complete) · <strong>LL</strong> = Found ALL (2 = complete set) · <strong>++</strong> = Partial (plus signs = something, but not all) · <strong>XX</strong> = Cannot continue (X = wrong/stopped) · <strong>NN</strong> = Nothing found, keep going</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 9: AIR-TO-GROUND SIGNALS -->
+<!-- ============================================================ -->
+<div class="section-header">
+  <div class="section-num">9</div>
+  <div>
+    <h2>Air-to-Ground Signals</h2>
+    <div class="reg-ref">Annex 12 · SAR Signals</div>
+  </div>
+</div>
+
+<div class="reg-card">
+  <div class="card-label">✈️ Aircraft Acknowledging Ground Signals</div>
+  <p>The following signals by aircraft mean that the <strong style="color:var(--gold-light)">ground signals have been understood</strong>:</p>
+</div>
+
+<div class="two-col">
+  <div class="box box-proc" style="margin:0;">
+    <div class="box-title"><span class="box-icon">☀️</span> During DAYLIGHT Hours</div>
+    <p><strong>Rocking the aircraft's wings</strong></p>
+    <p style="font-size:13px;color:var(--text-light);margin-top:6px;">A clear, visible acknowledgement that ground signals are understood.</p>
+  </div>
+  <div class="box box-proc" style="margin:0;">
+    <div class="box-title"><span class="box-icon">🌙</span> During DARKNESS Hours</div>
+    <p><strong>Flashing on and off TWICE</strong> the aircraft's landing lights, or if not so equipped, by <strong>switching on and off TWICE</strong> its navigation lights.</p>
+  </div>
+</div>
+
+<div class="box box-warn">
+  <div class="box-title"><span class="box-icon">⚠️</span> Lack of Signal = Not Understood</div>
+  <p><strong>Lack of the above signals</strong> indicates that the <strong>ground signal is NOT understood</strong>.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 10: SATELLITE-AIDED SAR -->
+<!-- ============================================================ -->
+<div class="section-header page-break" style="margin-top:0 !important;">
+  <div class="section-num">10</div>
+  <div>
+    <h2>Satellite-Aided SAR — COSPAS-SARSAT</h2>
+    <div class="reg-ref">AIP India · Chapter 11 · Satellite-aided SAR</div>
+  </div>
+</div>
+
+<div class="box box-def">
+  <div class="box-title"><span class="box-icon">🛰️</span> What is COSPAS-SARSAT?</div>
+  <p>India has evolved a <strong>Satellite-aided Search and Rescue programme</strong> by participating in the <strong>COSPAS/SARSAT system</strong>. It is a <strong>SAR satellite-aided tracking system</strong> that helps locate distress beacons.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card">
+    <div class="stat-val">406</div>
+    <div class="stat-label">MHz — Operating Frequency</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val">5 km</div>
+    <div class="stat-label">Normal Location Accuracy</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val">2</div>
+    <div class="stat-label">Local User Terminals (LUTs)</div>
+  </div>
+</div>
+
+<div class="box box-fact">
+  <div class="box-title"><span class="box-icon">📡</span> COSPAS-SARSAT Infrastructure in India</div>
+  <ul class="info-list">
+    <li><strong>2 Local User Terminals (LUTs)</strong> established at: <strong>Bangalore</strong> and <strong>Lucknow</strong></li>
+    <li><strong>Indian Mission Control Centre (INMCC)</strong> located at <strong>Bangalore</strong></li>
+    <li>INMCC is responsible for coordination with RCCs and other International Mission Control Centres</li>
+    <li>INMCC at Bangalore is connected with RCCs at <strong>Mumbai, Delhi, Kolkata and Chennai</strong> through <strong>AFS network</strong></li>
+    <li>Any distress alert received from covered areas is <strong>automatically transmitted</strong> to the RCC</li>
+  </ul>
+</div>
+
+<div class="box box-note">
+  <div class="box-title"><span class="box-icon">🌍</span> Countries Covered by Indian COSPAS-SARSAT Detection</div>
+  <p>The system detects transmissions throughout the Indian SRR and also SRR of:</p>
+  <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:6px;">
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Bangladesh</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Myanmar</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Bhutan</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Indonesia</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Kenya</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Malaysia</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Maldives</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Mauritius</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Nepal</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Seychelles</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Singapore</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Somalia</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Sri Lanka</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Thailand</span>
+    <span style="background:var(--sky-pale);border:1px solid var(--sky-light);padding:3px 10px;border-radius:12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--navy);">Tanzania</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 11: SAR AGREEMENTS -->
+<!-- ============================================================ -->
+<div class="section-header">
+  <div class="section-num">11</div>
+  <div>
+    <h2>SAR Agreements</h2>
+    <div class="reg-ref">AIP India · Chapter 11</div>
+  </div>
+</div>
+
+<div class="box box-fact">
+  <div class="box-title"><span class="box-icon">🤝</span> India's SAR Arrangement</div>
+  <ul class="info-list">
+    <li>India currently has SAR Arrangement with <strong>Royal Government of Bhutan</strong>.</li>
+    <li>India can seek SAR assistance from adjoining RCCs of other nations in accordance with <strong>bi-lateral agreement</strong>.</li>
+    <li>For the purpose of SAR, authorities of other States who wish their SAR units to enter the territory of India shall <strong>transmit a request, giving full details of the projected missions and the need for it</strong>.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 12: MCQ Q&A -->
+<!-- ============================================================ -->
+<div class="section-header page-break" style="margin-top:0 !important;">
+  <div class="section-num">12</div>
+  <div>
+    <h2>MCQ Practice Questions & Answers</h2>
+    <div class="reg-ref">DGCA Examination Style Questions</div>
+  </div>
+</div>
+
+<div class="box box-note" style="margin-bottom:28px;">
+  <div class="box-title"><span class="box-icon">📝</span> Instructions</div>
+  <p>The following 17 questions are sourced directly from the textbook. Correct answers are highlighted in <strong style="color:var(--green);">green</strong>. Explanations drawn from the regulatory text are provided below each question.</p>
+</div>
+
+<!-- Q1 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q1</span> The units responsible for promoting efficient organization of search and rescue service are:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> Area control centre, flight information centre and rescue coordination centre</li>
+    <li><div class="opt-letter correct">B</div> Rescue coordination centre and rescue sub-centres</li>
+    <li><div class="opt-letter">C</div> Alerting centre and rescue coordination centre</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: B</div>
+  <div class="qa-explanation">The RCC and RSC are specifically responsible for promoting efficient organization of SAR services and coordinating operations. ACCs and FICs serve ATS functions, not SAR management.</div>
+</div>
+
+<!-- Q2 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q2</span> Three aircraft (1), (2) and (3) arrive successively at ten minute intervals overhead the scene of a recent aircraft accident. Aircraft (1) is unable to establish contact with the SAR Centre. Aircraft (2) is able to contact the SAR Centre. Aircraft (3) is a SAR helicopter. The command of the situation is the responsibility of:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter correct">A</div> (1), then by mutual consent (2) and then (3)</li>
+    <li><div class="opt-letter">B</div> (1), and then by mutual consent to (3)</li>
+    <li><div class="opt-letter">C</div> (1), then by mutual consent (2) until the completion of operations</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: A</div>
+  <div class="qa-explanation">The first aircraft on scene (1) takes command. When (2) arrives, command may pass by mutual consent. When the SAR helicopter (3) arrives, it should eventually take command as the designated SAR asset — command passes by mutual consent to (3).</div>
+</div>
+
+<!-- Q3 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q3</span> What is the meaning of the symbol "V" in the ground-air visual signal code for use by survivors?</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> Landing here impossible</li>
+    <li><div class="opt-letter correct">B</div> Require assistance</li>
+    <li><div class="opt-letter">C</div> Require medical assistance</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: B</div>
+  <div class="qa-explanation">V = Require Assistance (general help). X = Require Medical Assistance. "Landing here impossible" is not part of the survivor's ground-air code.</div>
+</div>
+
+<!-- Q4 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q4</span> What is the meaning of the symbol "LLL" in the ground-air visual signal code for use by rescue units?</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter correct">A</div> Operation completed</li>
+    <li><div class="opt-letter">B</div> We are returning to base</li>
+    <li><div class="opt-letter">C</div> We have found all personnel</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: A</div>
+  <div class="qa-explanation">LLL = Operation Completed. LL = We have found ALL personnel. XX = Cannot continue / returning to base.</div>
+</div>
+
+<!-- Q5 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q5</span> Which of the following is NOT an international distress frequency?</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> 243.0 MHz</li>
+    <li><div class="opt-letter">B</div> 2182 KHz</li>
+    <li><div class="opt-letter correct">C</div> 2430 KHz</div></li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: C</div>
+  <div class="qa-explanation">Recognised international distress frequencies include 121.5 MHz (civil), 243.0 MHz (military), 2182 kHz (maritime), and 406 MHz (COSPAS-SARSAT). 2430 kHz is NOT an internationally designated distress frequency.</div>
+</div>
+
+<!-- Q6 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q6</span> An aircraft is flying over a mountainous region in which a search is being carried out to find the survivors of an aircraft accident. The pilot sees a ground signal in the form of an "X". This indicates:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> "All occupants alive"</li>
+    <li><div class="opt-letter">B</div> "Need mechanical assistance"</li>
+    <li><div class="opt-letter correct">C</div> "Need medical assistance"</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: C</div>
+  <div class="qa-explanation">X = Require Medical Assistance — this is one of the five survivor ground-air visual signal codes. V = Require Assistance (general).</div>
+</div>
+
+<!-- Q7 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q7</span> At night an aircraft observes a luminous signal requesting help. To indicate that he has received these ground signals, the pilot must:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> Make at least one complete turn over the group of people in difficulty</li>
+    <li><div class="opt-letter">B</div> Transmit, by luminous Morse signal, a series of the letter "R" using his navigational lights</li>
+    <li><div class="opt-letter correct">C</div> Switch his landing lights on and off twice or, if he is not so equipped, his navigation lights twice</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: C</div>
+  <div class="qa-explanation">The air-to-ground signal at night confirming ground signals understood = flashing landing lights (or nav lights) ON and OFF TWICE.</div>
+</div>
+
+<!-- Q8 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q8</span> The color identification of the contents of droppable containers and packages containing survival equipment should take the form of coloured streamers according to the following code:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> Red for medical supplies and first aid equipment</li>
+    <li><div class="opt-letter">B</div> Black for food and water</li>
+    <li><div class="opt-letter correct">C</div> Blue for blankets and protective clothing</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: C</div>
+  <div class="qa-explanation">The text specifies that survival equipment dropped by SAR containing food and water will be in containers indicated by <strong>Blue streamers</strong>. Blankets/protective clothing are also identified by blue in the full international colour code.</div>
+</div>
+
+<!-- Q9 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q9</span> COSPAS-SARSAT is:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> A communication system linking all aircraft</li>
+    <li><div class="opt-letter">B</div> A space system for the search of vessels in distress</li>
+    <li><div class="opt-letter correct">C</div> A SAR satellite-aided tracking system</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: C</div>
+  <div class="qa-explanation">COSPAS-SARSAT is a SAR satellite-aided tracking system operating on 406 MHz. India participates through INMCC Bangalore, LUTs at Bangalore and Lucknow.</div>
+</div>
+
+<!-- Q10 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q10</span> You are flying in Mumbai FIR when you intercept a distress call. You record the message and tell Mumbai FIC. The radio operator at Mumbai tells you to standby. What should you consider doing whilst awaiting instructions?</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> Make a general call on 121.5 asking other airplanes to assist</li>
+    <li><div class="opt-letter">B</div> Descend to low level and carry out a surface search for ships</li>
+    <li><div class="opt-letter correct">C</div> Proceed to the position given in the distress message</div></li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: C</div>
+  <div class="qa-explanation">Per the procedure for intercepting a distress transmission (step e): "At the pilot's discretion, while awaiting instructions, proceed to the position given in the transmission."</div>
+</div>
+
+<!-- Q11 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q11</span> Search and Rescue services within the territory of ICAO contracting states are provided:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter correct">A</div> On a 24-hour basis</li>
+    <li><div class="opt-letter">B</div> When the authority of the contracting state decides to do so</li>
+    <li><div class="opt-letter">C</div> From sunset to sunrise</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: A</div>
+  <div class="qa-explanation">Contracting states are obligated to provide SAR services on a 24-hour basis — no exceptions, no authority discretion required.</div>
+</div>
+
+<!-- Q12 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q12</span> Contracting States shall establish a rescue co-ordination centre:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> At every ATS facility</li>
+    <li><div class="opt-letter correct">B</div> In each search and rescue region</li>
+    <li><div class="opt-letter">C</div> If they are adjacent to the sea</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: B</div>
+  <div class="qa-explanation">One RCC per Search and Rescue Region. In India, four RCCs correspond to four FIRs: Delhi, Mumbai, Kolkata, Chennai.</div>
+</div>
+
+<!-- Q13 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q13</span> A Rescue Unit is:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> A unit assisting a RCC in SAR duties</li>
+    <li><div class="opt-letter correct">B</div> A unit composed of trained personnel and provided with equipment suitable for the expeditious conduct of SAR</li>
+    <li><div class="opt-letter">C</div> A unit responsible for SAR service in co-operation with a RCC</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: B</div>
+  <div class="qa-explanation">A Rescue Unit is defined as a unit composed of trained personnel, provided with equipment suitable for the expeditious conduct of SAR operations.</div>
+</div>
+
+<!-- Q14 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q14</span> Which of the following statements regarding Alerting service is correct?</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> Aircraft in the vicinity of an aircraft known or believed to be the subject of unlawful interference, shall be informed about this</li>
+    <li><div class="opt-letter">B</div> The Alert phase is established when no communication has been received from an aircraft within a period of thirty minutes after the time a communication should have been received</li>
+    <li><div class="opt-letter correct">C</div> Alerting Service and Flight Information Service are often provided by the same ATS unit</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: C</div>
+  <div class="qa-explanation">Alerting Service and FIS are frequently collocated and provided by the same ATS unit (typically a FIC). The Alert phase (ALERFA) is established after 30 minutes of no communication — but the Alert phase is triggered when an aircraft is overdue, not simply when no communication was received in 30 minutes from when it should have been received (that is closer to the Uncertainty phase).</div>
+</div>
+
+<!-- Q15 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q15</span> Whenever a distress signal and/or message or equivalent transmission is intercepted by the PIC of an aircraft, he shall:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter correct">A</div> Record the position of the craft in distress if given and if possible take a bearing on the transmission</li>
+    <li><div class="opt-letter">B</div> If possible take a bearing on the transmission</li>
+    <li><div class="opt-letter">C</div> Record the position of the craft in distress if given</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: A</div>
+  <div class="qa-explanation">Both recording the position AND taking a bearing are required actions (if feasible). Answer A correctly combines both obligations. Neither B nor C alone is the complete requirement.</div>
+</div>
+
+<!-- Q16 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q16</span> What is the meaning of SAR signal "N" when used by survivors on the ground:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter correct">A</div> Negative</li>
+    <li><div class="opt-letter">B</div> Require medical assistance</li>
+    <li><div class="opt-letter">C</div> Require assistance</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: A</div>
+  <div class="qa-explanation">In the survivor ground-air visual code: N = No / Negative. X = Require Medical Assistance. V = Require Assistance.</div>
+</div>
+
+<!-- Q17 -->
+<div class="qa-item">
+  <div class="qa-question"><span class="qa-qnum">Q17</span> Survival equipment, dropped by SAR and containing food and water will be packed in containers and indicated by streamers of following colour:</div>
+  <ul class="qa-options">
+    <li><div class="opt-letter">A</div> Green</li>
+    <li><div class="opt-letter correct">B</div> Blue</li>
+    <li><div class="opt-letter">C</div> Yellow</li>
+  </ul>
+  <div class="qa-answer-tag">✅ ANSWER: B</div>
+  <div class="qa-explanation">Directly from the text: "Survival equipment, dropped by SAR and containing food and water will be packed in containers and indicated by streamers of Blue colour."</div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== QUICK REFERENCE SUMMARY ===== -->
+<div class="section-header">
+  <div class="section-num">★</div>
+  <div>
+    <h2>Quick Reference — Key Facts Summary</h2>
+    <div class="reg-ref">Examination Ready Recall Sheet</div>
+  </div>
+</div>
+
+<table class="styled-table">
+  <thead>
+    <tr><th>Topic</th><th>Key Fact</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>SAR Service Hours</td><td><strong>24 hours</strong> — no exception</td></tr>
+    <tr><td>SAR Regions</td><td>Must NOT overlap · Must be contiguous</td></tr>
+    <tr><td>India Aeronautical RCCs</td><td>Delhi · Mumbai · Kolkata · Chennai (4 total — AAI)</td></tr>
+    <tr><td>India Maritime MRCCs</td><td>Mumbai · Chennai · Port Blair (3 total — Indian Coast Guard)</td></tr>
+    <tr><td>Indian Aeronautical SRR</td><td>Coincides with Indian FIR boundary (excluding Bhutan)</td></tr>
+    <tr><td>Land SAR Authority</td><td>NASARCC — Secy, Ministry of Civil Aviation as Chairman</td></tr>
+    <tr><td>Maritime SAR Authority</td><td>NMSARB — DG, Indian Coast Guard as Chairman</td></tr>
+    <tr><td>COSPAS-SARSAT Frequency</td><td><strong>406 MHz</strong></td></tr>
+    <tr><td>COSPAS-SARSAT Accuracy</td><td>Normally within <strong>5 km</strong></td></tr>
+    <tr><td>LUTs (Local User Terminals)</td><td>Bangalore and Lucknow</td></tr>
+    <tr><td>INMCC Location</td><td>Bangalore</td></tr>
+    <tr><td>SAR Dropped Container Colour</td><td><strong>Blue</strong> streamers — food and water</td></tr>
+    <tr><td>Survivor "V"</td><td>Require Assistance</td></tr>
+    <tr><td>Survivor "X"</td><td>Require Medical Assistance</td></tr>
+    <tr><td>Survivor "N"</td><td>No / Negative</td></tr>
+    <tr><td>Survivor "Y"</td><td>Yes / Affirmative</td></tr>
+    <tr><td>Rescue Unit "LLL"</td><td>Operation Completed</td></tr>
+    <tr><td>Rescue Unit "LL"</td><td>Found ALL personnel</td></tr>
+    <tr><td>Rescue Unit "++"</td><td>Found ONLY SOME personnel</td></tr>
+    <tr><td>Rescue Unit "XX"</td><td>Cannot continue — returning to base</td></tr>
+    <tr><td>Rescue Unit "NN"</td><td>Nothing found — will continue to search</td></tr>
+    <tr><td>Air-to-Ground (Day)</td><td>Rock wings = ground signal understood</td></tr>
+    <tr><td>Air-to-Ground (Night)</td><td>Flash landing/nav lights TWICE = understood</td></tr>
+    <tr><td>Symbol Minimum Size</td><td><strong>2.5 metres (8 feet) long</strong></td></tr>
+    <tr><td>SAR Agreement</td><td>India has arrangement with Royal Government of Bhutan</td></tr>
+    <tr><td>Vessel Comms Frequencies</td><td>2182 kHz · 4125 kHz · 121.5 MHz</td></tr>
+  </tbody>
+</table>
+
+</div><!-- end content-wrap -->
+
+<!-- ===== FOOTER ===== -->
+<div class="doc-footer">
+  Study Notes compiled for <span>CPL / ATPL Examinations</span> · Chapter 11: Search &amp; Rescue · AIP India / CAR Section 9 · <span>© Capt. Pankaj Pahil</span> — All Rights Reserved · For Study Use Only
+</div>
+
+<!-- ===== WATERMARK (MUST BE LAST ELEMENT IN BODY) ===== -->
+<div id="watermark">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

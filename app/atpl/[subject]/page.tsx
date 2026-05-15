@@ -1,23 +1,24 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
-import { FileText, BarChart3, Video, Headphones, HelpCircle, ClipboardList, Lock, ArrowRight, Clock, ChevronRight } from "lucide-react";
+import { FileText, BarChart3, Video, Headphones, HelpCircle, ClipboardList, ListChecks, Lock, ArrowRight, Clock, ChevronRight } from "lucide-react";
 
 const CONTENT_ICONS: Record<string, React.ElementType> = {
   notes: FileText, slides: BarChart3, video: Video,
-  audio: Headphones, questions: HelpCircle, "mock-test": ClipboardList,
+  audio: Headphones, questions: HelpCircle, "mock-test": ClipboardList, "chapter-quiz": ListChecks,
 };
 const CONTENT_COLORS: Record<string, string> = {
   notes: "#7c3aed", slides: "#0ea5e9", video: "#ef4444",
-  audio: "#f59e0b", questions: "#10b981", "mock-test": "#c080ff",
+  audio: "#f59e0b", questions: "#10b981", "mock-test": "#c080ff", "chapter-quiz": "#f97316",
 };
 
 export function generateStaticParams() {
   return ATPL_SUBJECTS.map(s => ({ subject: s.id }));
 }
 
-export default function ATPLSubjectPage({ params }: { params: { subject: string } }) {
-  const subject = ATPL_SUBJECTS.find(s => s.id === params.subject);
+export default async function ATPLSubjectPage({ params }: { params: Promise<{ subject: string }> }) {
+  const { subject: subjectId } = await params;
+  const subject = ATPL_SUBJECTS.find(s => s.id === subjectId);
   if (!subject) notFound();
 
   const midpoint = Math.ceil(subject.chapters.length / 2);
@@ -61,13 +62,13 @@ export default function ATPLSubjectPage({ params }: { params: { subject: string 
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-wrap gap-3 mb-10">
-          {["notes","slides","video","audio","questions","mock-test"].map(type => {
+          {["notes","slides","video","audio","chapter-quiz"].map(type => {
             const Icon = CONTENT_ICONS[type];
             const color = CONTENT_COLORS[type];
             return (
               <div key={type} className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full"
                    style={{ background:`${color}12`, border:`1px solid ${color}30`, color }}>
-                <Icon className="w-3 h-3"/> {type === "mock-test" ? "Chapter Test" : type.charAt(0).toUpperCase() + type.slice(1)}
+                <Icon className="w-3 h-3"/> {type === "mock-test" ? "Chapter Test" : type === "chapter-quiz" ? "Chapter Quiz" : type.charAt(0).toUpperCase() + type.slice(1)}
               </div>
             );
           })}

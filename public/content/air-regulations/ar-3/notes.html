@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGCA Rules of the Air – CPL/ATPL Study Notes | Capt. Pankaj Pahil</title>
+<style>
+  /* ===================== PRINT & PAGE SETUP ===================== */
+  @page {
+    size: A4;
+    margin: 20mm 15mm 20mm 15mm;
+  }
+  @media print {
+    .no-print { display: none; }
+    body { font-size: 10pt; }
+    h1 { font-size: 18pt; }
+    h2 { font-size: 14pt; }
+    h3 { font-size: 12pt; }
+    .toc { display: none; }
+    .page-break { page-break-before: always; }
+    table, .info-box, .warn-box, .def-box, .sop-box, .tip-box, .formula-box, svg, .signal-card, .nav-light-diagram {
+      page-break-inside: avoid;
+    }
+  }
+
+  /* ===================== WATERMARK ===================== */
+  body::before {
+    content: "Capt. Pankaj Pahil";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 72px;
+    font-weight: 900;
+    color: rgba(30, 80, 160, 0.08);
+    white-space: nowrap;
+    z-index: -1;
+    pointer-events: none;
+    letter-spacing: 4px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  /* ===================== GLOBAL STYLES ===================== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.65;
+    color: #1a1a2e;
+    background: #f8f9fc;
+    padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ===================== HEADER ===================== */
+  .master-header {
+    background: linear-gradient(135deg, #0d1b4b 0%, #1a3a7a 50%, #0a5c8c 100%);
+    color: white;
+    padding: 36px 40px;
+    border-radius: 14px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .master-header::after {
+    content: '✈';
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 120px;
+    opacity: 0.07;
+  }
+  .master-header h1 {
+    font-size: 28pt;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .master-header .subtitle {
+    font-size: 12pt;
+    opacity: 0.88;
+    margin-bottom: 6px;
+  }
+  .master-header .ref-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .author-tag {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    background: rgba(255,215,0,0.25);
+    border: 1px solid rgba(255,215,0,0.55);
+    color: #ffd700;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 9.5pt;
+    font-weight: 700;
+  }
+
+  /* ===================== TABLE OF CONTENTS ===================== */
+  .toc {
+    background: white;
+    border: 2px solid #1a3a7a;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 30px;
+    page-break-inside: avoid;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .toc h2 {
+    color: #0d1b4b;
+    font-size: 14pt;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #1a3a7a;
+    padding-bottom: 8px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 30px;
+  }
+  .toc a {
+    color: #1a3a7a;
+    text-decoration: none;
+    font-size: 10pt;
+    padding: 3px 0;
+    display: block;
+    border-bottom: 1px dotted #cdd5e0;
+  }
+  .toc a:hover { color: #c0392b; text-decoration: underline; }
+  .toc-num {
+    font-weight: 700;
+    color: #c0392b;
+    margin-right: 6px;
+  }
+
+  /* ===================== SECTION HEADERS ===================== */
+  .section-header {
+    background: linear-gradient(90deg, #0d1b4b, #1a3a7a);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 10px 10px 0 0;
+    margin-top: 36px;
+    margin-bottom: 0;
+    font-size: 15pt;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    page-break-after: avoid;
+  }
+  .section-header .icon { font-size: 20pt; }
+  .section-body {
+    background: white;
+    border: 2px solid #1a3a7a;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 22px 24px;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  }
+  .sub-header {
+    color: #0d1b4b;
+    font-size: 12.5pt;
+    font-weight: 700;
+    margin: 20px 0 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 2.5px solid #3498db;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sub-header2 {
+    color: #1a5276;
+    font-size: 11pt;
+    font-weight: 700;
+    margin: 14px 0 8px 0;
+    padding-left: 12px;
+    border-left: 4px solid #3498db;
+  }
+
+  /* ===================== INFO BOXES ===================== */
+  .warn-box {
+    background: #fff5f5;
+    border-left: 6px solid #c0392b;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .warn-box .box-title {
+    color: #c0392b;
+    font-weight: 800;
+    font-size: 10.5pt;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .def-box {
+    background: #eff7ff;
+    border-left: 6px solid #2980b9;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .def-box .box-title {
+    color: #1a5276;
+    font-weight: 800;
+    font-size: 10.5pt;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sop-box {
+    background: #f0fff4;
+    border-left: 6px solid #27ae60;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .sop-box .box-title {
+    color: #1e8449;
+    font-weight: 800;
+    font-size: 10.5pt;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tip-box {
+    background: #fffbee;
+    border-left: 6px solid #f39c12;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .tip-box .box-title {
+    color: #b7770d;
+    font-weight: 800;
+    font-size: 10.5pt;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .formula-box {
+    background: #f3eeff;
+    border: 2px dashed #7d3c98;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .formula-box .box-title {
+    color: #6c3483;
+    font-weight: 800;
+    font-size: 10.5pt;
+    margin-bottom: 6px;
+  }
+  .note-box {
+    background: #f9f9f9;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-style: italic;
+    font-size: 10pt;
+    color: #555;
+    page-break-inside: avoid;
+  }
+  .note-box strong { color: #333; font-style: normal; }
+
+  /* ===================== LISTS ===================== */
+  ul, ol { padding-left: 22px; margin: 8px 0; }
+  li { margin: 5px 0; }
+  li::marker { color: #1a3a7a; font-weight: 700; }
+  ul.checklist { list-style: none; padding-left: 0; }
+  ul.checklist li::before { content: "✓ "; color: #27ae60; font-weight: 700; }
+  ul.cross-list { list-style: none; padding-left: 0; }
+  ul.cross-list li::before { content: "✗ "; color: #c0392b; font-weight: 700; }
+
+  /* ===================== TABLES ===================== */
+  .table-container { overflow-x: auto; margin: 16px 0; page-break-inside: avoid; }
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; }
+  th {
+    background: #0d1b4b;
+    color: white;
+    padding: 10px 13px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 9.5pt;
+    letter-spacing: 0.3px;
+  }
+  td { padding: 9px 13px; border: 1px solid #d5dce8; vertical-align: top; }
+  tr:nth-child(even) { background: #f2f5fb; }
+  tr:hover { background: #e8eef8; }
+  .highlight-row { background: #fff3cd !important; font-weight: 700; }
+  .danger-row { background: #fde8e8 !important; }
+  .safe-row { background: #e8f5e9 !important; }
+
+  /* ===================== SIGNAL CARDS ===================== */
+  .signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .signal-card {
+    border: 2px solid #2c3e50;
+    border-radius: 10px;
+    overflow: hidden;
+    page-break-inside: avoid;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
+  .signal-card .card-head {
+    padding: 10px 14px;
+    font-weight: 800;
+    font-size: 10pt;
+    color: white;
+  }
+  .signal-card .card-body { padding: 12px 14px; font-size: 10pt; background: white; }
+  .sc-green .card-head { background: #1e8449; }
+  .sc-red .card-head { background: #c0392b; }
+  .sc-white .card-head { background: #7f8c8d; }
+  .sc-amber .card-head { background: #b7770d; }
+
+  .marshalling-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0; }
+  .marsh-card {
+    border: 1.5px solid #7f8c8d;
+    border-radius: 8px;
+    padding: 12px;
+    background: white;
+    page-break-inside: avoid;
+    text-align: center;
+  }
+  .marsh-num {
+    display: inline-block;
+    background: #0d1b4b;
+    color: white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    font-weight: 800;
+    font-size: 10pt;
+    margin-bottom: 8px;
+  }
+  .marsh-title { font-weight: 700; color: #1a3a7a; font-size: 10pt; margin-bottom: 5px; }
+  .marsh-desc { font-size: 9pt; color: #555; }
+
+  /* ===================== SVG DIAGRAMS ===================== */
+  .diagram-container {
+    margin: 18px 0;
+    page-break-inside: avoid;
+    background: white;
+    border: 2px solid #d5dce8;
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+  }
+  .diagram-title {
+    text-align: center;
+    font-weight: 800;
+    color: #0d1b4b;
+    font-size: 11pt;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #3498db;
+  }
+  svg text { font-family: 'Segoe UI', Arial, sans-serif; }
+
+  /* ===================== CRUISING LEVEL TABLE ===================== */
+  .cruising-table th { background: #1a5276; font-size: 8.5pt; text-align: center; }
+  .cruising-table td { text-align: center; font-size: 9pt; padding: 5px 8px; }
+  .cr-ifr { background: #d6eaf8; }
+  .cr-vfr { background: #d5f5e3; }
+
+  /* ===================== HIGHLIGHT TAGS ===================== */
+  .tag {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 2px 9px;
+    font-size: 9pt;
+    font-weight: 700;
+    margin: 2px;
+  }
+  .tag-red { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .tag-green { background: #e8f5e9; color: #1e8449; border: 1px solid #1e8449; }
+  .tag-blue { background: #d6eaf8; color: #1a5276; border: 1px solid #2980b9; }
+  .tag-gold { background: #fef9e7; color: #b7770d; border: 1px solid #f39c12; }
+  .tag-purple { background: #f3eeff; color: #6c3483; border: 1px solid #7d3c98; }
+
+  /* ===================== MCQ SECTION ===================== */
+  .mcq-container { margin: 12px 0; }
+  .mcq-q {
+    background: #f0f4ff;
+    border-left: 5px solid #2980b9;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 4px;
+    font-weight: 700;
+    color: #0d1b4b;
+    font-size: 10pt;
+  }
+  .mcq-options { padding-left: 16px; margin-bottom: 12px; }
+  .mcq-options li { font-size: 10pt; padding: 2px 0; }
+  .correct-ans { color: #1e8449; font-weight: 700; }
+
+  /* ===================== PAGE BREAK ===================== */
+  .page-break { page-break-before: always; margin-top: 40px; }
+
+  /* ===================== FOOTER ===================== */
+  .footer {
+    background: #0d1b4b;
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+    padding: 16px;
+    border-radius: 10px;
+    margin-top: 40px;
+    font-size: 9.5pt;
+  }
+  .footer strong { color: #ffd700; }
+
+  /* ===================== QUICK REFERENCE PILLS ===================== */
+  .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
+  .pill {
+    background: white;
+    border: 2px solid #1a3a7a;
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 10pt;
+    font-weight: 600;
+    color: #0d1b4b;
+    page-break-inside: avoid;
+  }
+  .pill-val { color: #c0392b; font-weight: 800; }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .toc-grid { grid-template-columns: 1fr; }
+    .signal-grid { grid-template-columns: 1fr; }
+    .marshalling-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================================================================ HEADER -->
+<div class="master-header">
+  <div class="author-tag">✈ Capt. Pankaj Pahil</div>
+  <h1>📖 Rules of the Air</h1>
+  <div class="subtitle">Chapter 4 — Comprehensive CPL / ATPL Study Notes</div>
+  <div class="subtitle" style="opacity:0.7; font-size:10pt;">Ref.: ICAO Annex 2 &nbsp;|&nbsp; AIP India &nbsp;|&nbsp; CAR Section 9 – Air Space and Air Navigation Services Standards Series 'C' Part I Issue II &nbsp;|&nbsp; Revision dated 12th November, 2018</div>
+  <div class="ref-badges">
+    <span class="badge">📘 ICAO Annex 2</span>
+    <span class="badge">🇮🇳 AIP India</span>
+    <span class="badge">📋 CAR Section 9</span>
+    <span class="badge">✈ CPL / ATPL</span>
+    <span class="badge">🔄 Rev. Nov 2018</span>
+  </div>
+</div>
+
+<!-- ================================================================ TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>📋 Table of Contents</h2>
+  <div class="toc-grid">
+    <a href="#s1"><span class="toc-num">01</span>Applicability &amp; Territorial Application</a>
+    <a href="#s2"><span class="toc-num">02</span>Compliance, PIC Authority &amp; Responsibilities</a>
+    <a href="#s3"><span class="toc-num">03</span>General Rules – Protection of Persons &amp; Property</a>
+    <a href="#s4"><span class="toc-num">04</span>Minimum Safe Heights</a>
+    <a href="#s5"><span class="toc-num">05</span>Cruising Levels</a>
+    <a href="#s6"><span class="toc-num">06</span>Dropping, Towing, Parachutes, Acrobatics</a>
+    <a href="#s7"><span class="toc-num">07</span>Formation Flights</a>
+    <a href="#s8"><span class="toc-num">08</span>Avoidance of Collisions &amp; Right-of-Way Rules</a>
+    <a href="#s9"><span class="toc-num">09</span>Surface Movement of Aircraft</a>
+    <a href="#s10"><span class="toc-num">10</span>Lights to be Displayed</a>
+    <a href="#s11"><span class="toc-num">11</span>Simulated Instrument Flights</a>
+    <a href="#s12"><span class="toc-num">12</span>Operation in the Vicinity of an Aerodrome</a>
+    <a href="#s13"><span class="toc-num">13</span>Flight Plans</a>
+    <a href="#s14"><span class="toc-num">14</span>Time (UTC)</a>
+    <a href="#s15"><span class="toc-num">15</span>Air Traffic Control Service</a>
+    <a href="#s16"><span class="toc-num">16</span>Position Reports &amp; Communications</a>
+    <a href="#s17"><span class="toc-num">17</span>Radio Communication Failure (RCF) Procedures</a>
+    <a href="#s18"><span class="toc-num">18</span>VMC Minima Table</a>
+    <a href="#s19"><span class="toc-num">19</span>Visual Flight Rules (VFR)</a>
+    <a href="#s20"><span class="toc-num">20</span>Special VFR Flights</a>
+    <a href="#s21"><span class="toc-num">21</span>Instrument Flight Rules (IFR)</a>
+    <a href="#s22"><span class="toc-num">22</span>Distress, Urgency &amp; Interception Signals</a>
+    <a href="#s23"><span class="toc-num">23</span>ADIZ &amp; Air Defense Clearance</a>
+    <a href="#s24"><span class="toc-num">24</span>Aerodrome Light &amp; Pyrotechnic Signals</a>
+    <a href="#s25"><span class="toc-num">25</span>Visual Ground Signals</a>
+    <a href="#s26"><span class="toc-num">26</span>Marshalling &amp; Emergency Hand Signals</a>
+    <a href="#s27"><span class="toc-num">27</span>Table of Cruising Levels (RVSM &amp; NON-RVSM)</a>
+    <a href="#s28"><span class="toc-num">28</span>Navigation Lights &amp; Right of Way at Night</a>
+    <a href="#s29"><span class="toc-num">29</span>Unlawful Interference</a>
+    <a href="#s30"><span class="toc-num">30</span>Practice Questions &amp; Answer Key</a>
+  </div>
+</div>
+
+<!-- ================================================================ SECTION 1 -->
+<div id="s1">
+<div class="section-header"><span class="icon">🌏</span> 1. Applicability &amp; Territorial Application of Rules of the Air</div>
+<div class="section-body">
+
+  <div class="def-box">
+    <div class="box-title">📘 APPLICABILITY — WHO &amp; WHERE?</div>
+    <p>These rules apply to:</p>
+    <ul>
+      <li>All aircraft flying over <strong>Indian Territory</strong></li>
+      <li>Aircraft bearing <strong>Indian nationality and registration marks</strong>, wherever they may be — to the extent that they do not conflict with rules published by the State having jurisdiction over the territory overflown.</li>
+    </ul>
+    <p style="margin-top:8px;">For flights over the <strong>high seas</strong> where a Contracting State has accepted responsibility for providing ATS (pursuant to a regional air navigation agreement), the "appropriate ATS authority" is the authority designated by that State.</p>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ COMPLIANCE WITH RULES OF THE AIR</div>
+    <p>The operation of an aircraft — either <strong>in flight</strong> or on the <strong>movement area of an aerodrome</strong> — shall be in compliance with:</p>
+    <ul>
+      <li>The <strong>General Rules</strong>, and in addition when in flight, either:</li>
+      <li>a) The <strong>Visual Flight Rules (VFR)</strong>, or</li>
+      <li>b) The <strong>Instrument Flight Rules (IFR)</strong>.</li>
+    </ul>
+    <div class="note-box">
+      <strong>Note (DGCA):</strong> Local flights as may be exempted by ATC and training flights of Flying Club aircraft cleared by ATC may be operated during night in Visual Meteorological Conditions. A <em>local flight</em> is a flight wholly conducted in the immediate vicinity of an aerodrome.
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 2 -->
+<div id="s2">
+<div class="section-header"><span class="icon">👨‍✈️</span> 2. PIC Authority, Responsibilities &amp; Psychoactive Substances</div>
+<div class="section-body">
+
+  <div class="def-box">
+    <div class="box-title">📘 RESPONSIBILITY FOR COMPLIANCE — PIC</div>
+    <p>The <strong>Pilot-in-Command (PIC)</strong> of an aircraft shall, whether manipulating the controls or not, be <strong>responsible</strong> for the operation of the aircraft in accordance with the rules of the air.</p>
+    <p style="margin-top:8px;"><strong>Exception:</strong> The PIC may <em>depart</em> from these rules in circumstances that render such departure <strong>absolutely necessary in the interests of safety.</strong></p>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ PRE-FLIGHT ACTION</div>
+    <p>Before beginning a flight, the PIC shall <strong>become familiar with all available information appropriate to the intended operation.</strong></p>
+    <p style="margin-top:8px;">For flights <strong>away from the vicinity of an aerodrome</strong>, and for <strong>all IFR flights</strong>, pre-flight action shall include:</p>
+    <ul>
+      <li>A careful study of available <strong>current weather reports and forecasts</strong></li>
+      <li>Taking into consideration <strong>fuel requirements</strong></li>
+      <li>An <strong>alternative course of action</strong> if the flight cannot be completed as planned</li>
+    </ul>
+  </div>
+
+  <div class="def-box">
+    <div class="box-title">📘 AUTHORITY OF PIC</div>
+    <p>The PIC of an aircraft shall have <strong>final authority</strong> as to the disposition of the aircraft <strong>while in command.</strong></p>
+  </div>
+
+  <div class="warn-box">
+    <div class="box-title">⛔ PSYCHOACTIVE SUBSTANCES — STRICT PROHIBITION</div>
+    <p>No person whose function is <strong>critical to the safety of aviation (safety-sensitive personnel)</strong> shall undertake that function while <strong>under the influence of any psychoactive substance</strong>, by reason of which human performance is impaired.</p>
+    <p style="margin-top:8px;">No such person shall engage in <strong>any kind of problematic use of substances.</strong></p>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 3 -->
+<div id="s3">
+<div class="section-header"><span class="icon">🛡️</span> 3. General Rules — Protection of Persons &amp; Property</div>
+<div class="section-body">
+
+  <div class="warn-box">
+    <div class="box-title">⛔ NEGLIGENT OR RECKLESS OPERATION</div>
+    <p>An aircraft shall <strong>NOT</strong> be operated in a negligent or reckless manner so as to <strong>endanger life or property of others.</strong></p>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 4 -->
+<div id="s4">
+<div class="section-header"><span class="icon">📏</span> 4. Minimum Safe Heights</div>
+<div class="section-body">
+
+  <div class="warn-box">
+    <div class="box-title">⛔ MINIMUM SAFE HEIGHT — GENERAL RULE</div>
+    <p>Except when necessary for take-off or landing, or except by permission from the <strong>Director General</strong>, aircraft shall <strong>NOT</strong> be flown over:</p>
+    <ul>
+      <li>The <strong>congested areas</strong> of cities, towns or settlements</li>
+      <li>Over an <strong>open-air assembly</strong> of persons</li>
+    </ul>
+    <p style="margin-top:8px;">…unless at such a height as will permit, in the event of an emergency arising, a landing to be made without undue hazard to persons or property on the surface.</p>
+  </div>
+
+  <div class="note-box">
+    <strong>Note:</strong> The Director-General may, by order in writing, permit — subject to conditions and restrictions — aircraft engaged in <strong>aerial spraying, crop dusting, or mining exploration</strong> to fly at or above such height as specified in the order.
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ VFR MINIMUM SAFE HEIGHT VALUES (CAR Section 9)</div>
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>Area</th>
+          <th>Minimum Height AGL</th>
+        </tr>
+        <tr>
+          <td>Over congested areas / cities / towns or open-air assembly — within 600m radius of aircraft</td>
+          <td class="tag-red" style="font-weight:800;">300 m (1,000 ft) above the highest obstacle</td>
+        </tr>
+        <tr>
+          <td>Elsewhere (outside congested areas)</td>
+          <td class="tag-red" style="font-weight:800;">150 m (500 ft) above ground or water</td>
+        </tr>
+      </table>
+    </div>
+    <div class="note-box" style="margin-top:8px;"><strong>Note:</strong> These minimums do NOT apply during take-off or landing, or with explicit DG permission.</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 5 -->
+<div id="s5">
+<div class="section-header"><span class="icon">📐</span> 5. Cruising Levels</div>
+<div class="section-body">
+
+  <div class="def-box">
+    <div class="box-title">📘 DEFINITION — CRUISING LEVELS</div>
+    <p>The cruising levels at which a flight or a portion of a flight is to be conducted shall be in terms of:</p>
+    <ul>
+      <li>a) <strong>Flight levels</strong> — for flights at or above the lowest usable flight level or, where applicable, above the transition altitude</li>
+      <li>b) <strong>Altitudes</strong> — for flights below the lowest usable flight level or, where applicable, at or below the transition altitude</li>
+    </ul>
+  </div>
+
+  <div class="tip-box">
+    <div class="box-title">💡 STUDENT TIP</div>
+    <p>Simply put: above transition altitude = use <strong>Flight Levels (QNE)</strong>. At or below transition altitude = use <strong>Altitude (QNH)</strong>. The Semicircular Rule determines which FL/altitude to select based on your magnetic track. See Section 27 for the full Cruising Levels table.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 6 -->
+<div id="s6">
+<div class="section-header"><span class="icon">🪂</span> 6. Dropping / Spraying / Towing / Parachutes / Acrobatic Flight</div>
+<div class="section-body">
+
+  <div class="warn-box">
+    <div class="box-title">⛔ DROPPING OR SPRAYING</div>
+    <p>Nothing shall be dropped or sprayed from an aircraft in flight <strong>except</strong> under conditions prescribed in <strong>Rule 26 of the Aircraft Rules, 1937</strong> and as indicated by relevant information, advice and/or clearance from the appropriate ATS unit.</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="box-title">⛔ TOWING — INDIA SPECIFIC</div>
+    <p>No aircraft shall be towed by another aircraft.</p>
+    <p style="margin-top:6px;">Objects other than aircraft shall be towed by an aircraft, in accordance with requirements prescribed by the Director General and as indicated by relevant ATS information/clearance.</p>
+    <p style="margin-top:6px;"><strong class="tag tag-red">⚠ Towing of Aircraft is NOT permitted in India.</strong></p>
+  </div>
+
+  <div class="warn-box">
+    <div class="box-title">⛔ PARACHUTE DESCENTS</div>
+    <p>No person shall, <strong>except in an emergency</strong>, descend by means of a parachute from an aircraft, and no person shall drop or cause to be dropped from an aircraft in flight any article, whether attached to a parachute or not, unless:</p>
+    <ul>
+      <li>The descent/drop is made in accordance with conditions or limitations in general or special order of the <strong>Central Government in writing</strong> (Rule 26 of Aircraft Rules, 1937).</li>
+    </ul>
+    <p style="margin-top:8px;"><strong class="tag tag-red">⚠ Parachute descent NOT allowed in normal conditions in India.</strong></p>
+  </div>
+
+  <div class="section-body" style="border:2px solid #2980b9; border-radius:10px; margin-top:16px; padding:18px;">
+    <div class="sub-header">✈ Acrobatic Flight — Conditions &amp; Prohibitions</div>
+
+    <div class="sop-box">
+      <div class="box-title">✅ WHEN CAN AN AIRCRAFT BE USED FOR AEROBATICS?</div>
+      <ul>
+        <li>a) It shall be flown by a <strong>licensed pilot</strong>, or if by a person qualifying for a licence, they must be <strong>accompanied by a licensed pilot instructor</strong></li>
+        <li>b) If passengers are carried, their <strong>previous consent in writing</strong> must be obtained</li>
+        <li>c) The pilot must satisfy himself that every person carried is <strong>properly secured by safety belts</strong></li>
+        <li>d) Aerobatics shall be commenced at such a height to permit completion of the manoeuvre at a height of <strong>not less than 600 metres (2,000 ft)</strong> above the ground, or such higher height as specified in the Certificate of Airworthiness for aircraft in the aerobatic category.</li>
+      </ul>
+    </div>
+
+    <div class="warn-box">
+      <div class="box-title">⛔ NO PERSON SHALL FLY ACROBATICALLY:</div>
+      <ul class="cross-list">
+        <li>So as to <strong>constitute a hazard to air traffic</strong></li>
+        <li>In the vicinity of an aerodrome at a distance of <strong>less than 2 NM</strong> from the nearest point of the perimeter, unless flown at a height greater than <strong>1,800 m (6,000 ft)</strong></li>
+        <li>When flying over any <strong>city, town, village, populous area</strong>, or over any meeting/games/sports/public assembly — <em>except where a written request has been made to the Director General by the promoters of such meeting.</em></li>
+      </ul>
+    </div>
+
+    <div class="pill-row">
+      <div class="pill">Min. completion height: <span class="pill-val">600 m / 2,000 ft AGL</span></div>
+      <div class="pill">Near aerodrome: <span class="pill-val">&lt; 2 NM radius prohibited</span> (unless &gt; 1800m / 6000ft)</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 7 -->
+<div id="s7">
+<div class="section-header"><span class="icon">✈✈</span> 7. Formation Flights</div>
+<div class="section-body">
+
+  <div class="warn-box">
+    <div class="box-title">⛔ INDIA-SPECIFIC RULE</div>
+    <p><strong>No civil aircraft shall be flown in formation in India.</strong></p>
+  </div>
+
+  <div class="def-box">
+    <div class="box-title">📘 ICAO ANNEX 2 — FORMATION FLIGHT PROVISIONS (For Reference)</div>
+    <p>Aircraft shall not be flown in formation except by <strong>pre-arrangement among pilots-in-command</strong>. For formation flight in controlled airspace, it must be in accordance with conditions prescribed by the appropriate ATS authority, which shall include:</p>
+    <ul>
+      <li>a) The formation operates as a <strong>single aircraft</strong> with regard to navigation and position reporting</li>
+      <li>b) Separation between aircraft is the <strong>responsibility of the flight leader</strong> and other PICs, including during transition when aircraft are manoeuvring, join-up, and breakaway</li>
+      <li>c) Each aircraft shall maintain a distance <strong>not exceeding 1 km (0.5 NM) laterally and longitudinally</strong> and <strong>30 m (100 ft) vertically</strong> from the flight leader</li>
+    </ul>
+  </div>
+
+  <div class="note-box">
+    <strong>RPA Formation:</strong> A remotely piloted aircraft shall be operated so as to minimize hazards to persons, property or other aircraft and in accordance with conditions specified in Appendix 4 of Annex 2.
+  </div>
+
+  <div class="pill-row">
+    <div class="pill">Lateral/Longitudinal separation: <span class="pill-val">≤ 1 km (0.5 NM)</span></div>
+    <div class="pill">Vertical separation: <span class="pill-val">≤ 30 m (100 ft)</span></div>
+    <div class="pill">India civil formation: <span class="pill-val">PROHIBITED</span></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 8 -->
+<div id="s8">
+<div class="section-header"><span class="icon">⚠️</span> 8. Avoidance of Collisions &amp; Right-of-Way Rules</div>
+<div class="section-body">
+
+  <div class="warn-box">
+    <div class="box-title">⛔ AVOIDANCE OF COLLISIONS — ABSOLUTE RESPONSIBILITY</div>
+    <p>Nothing in these rules shall relieve the PIC of an aircraft from the responsibility of taking such action, <strong>including collision avoidance manoeuvres based on Resolution Advisories (RA) provided by ACAS equipment</strong>, as well as to avert collision.</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="box-title">⛔ PROXIMITY</div>
+    <p>An aircraft shall <strong>NOT</strong> be operated in such proximity to other aircraft as to <strong>create a collision hazard.</strong></p>
+  </div>
+
+  <div class="sub-header">🔄 RIGHT-OF-WAY RULES (In Flight)</div>
+  <div class="def-box">
+    <div class="box-title">📘 GENERAL PRINCIPLE</div>
+    <p>The aircraft that has the <strong>right-of-way shall maintain its heading and speed.</strong></p>
+    <p style="margin-top:8px;">An aircraft obliged to keep out of the way shall <strong>avoid passing over, under or in front</strong> of the other, unless it passes well clear and takes into account the effect of <strong>aircraft wake turbulence.</strong></p>
+  </div>
+
+  <div class="diagram-container">
+    <div class="diagram-title">🔄 RIGHT-OF-WAY PRIORITY PYRAMID (Give Way ↓ Has Priority ↑)</div>
+    <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;display:block;margin:auto;">
+      <!-- Pyramid tiers -->
+      <polygon points="300,30 560,270 40,270" fill="#f2f5fb" stroke="#1a3a7a" stroke-width="2"/>
+      <!-- Tier labels -->
+      <!-- Tier 1 - Balloon (top, highest priority, smallest) -->
+      <polygon points="300,40 350,120 250,120" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="300" y="90" text-anchor="middle" font-size="12" font-weight="800" fill="#c0392b">BALLOON</text>
+      <text x="300" y="108" text-anchor="middle" font-size="9" fill="#c0392b">HIGHEST PRIORITY</text>
+
+      <!-- Tier 2 - Glider -->
+      <polygon points="250,120 350,120 390,190 210,190" fill="#fff3cd" stroke="#b7770d" stroke-width="1.5"/>
+      <text x="300" y="162" text-anchor="middle" font-size="12" font-weight="800" fill="#b7770d">GLIDER</text>
+
+      <!-- Tier 3 - Airship -->
+      <polygon points="210,190 390,190 430,260 170,260" fill="#d5f5e3" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="300" y="232" text-anchor="middle" font-size="12" font-weight="800" fill="#1e8449">AIRSHIP</text>
+
+      <!-- Tier 4 - Power-driven at base (give way to all) -->
+      <polygon points="170,260 430,260 560,270 40,270" fill="#d6eaf8" stroke="#2980b9" stroke-width="1.5"/>
+      <text x="300" y="270" text-anchor="middle" font-size="11" font-weight="800" fill="#1a5276">POWER-DRIVEN AIRCRAFT (gives way to above)</text>
+
+      <!-- Special note -->
+      <text x="300" y="295" text-anchor="middle" font-size="9" fill="#555" font-style="italic">Aircraft towing objects also have priority over power-driven aircraft</text>
+    </svg>
+    <p style="text-align:center; font-size:9pt; color:#555; margin-top:8px;">At top = highest priority; power-driven heavier-than-air aircraft gives way to airships, gliders &amp; balloons</p>
+  </div>
+
+  <div class="table-container" style="margin-top:16px;">
+    <table>
+      <tr>
+        <th style="background:#0d1b4b;">Situation</th>
+        <th style="background:#0d1b4b;">Rule</th>
+        <th style="background:#0d1b4b;">Key Point</th>
+      </tr>
+      <tr>
+        <td><strong>Approaching Head-On</strong></td>
+        <td>Each shall <strong>alter heading to the RIGHT</strong></td>
+        <td>Both aircraft turn right simultaneously</td>
+      </tr>
+      <tr>
+        <td><strong>Converging (same level)</strong></td>
+        <td>Aircraft that has the other on its <strong>RIGHT shall give way</strong></td>
+        <td>Except: Power-driven gives way to airships/gliders/balloons; Airships give way to gliders/balloons; Gliders give way to balloons; Power-driven gives way to aircraft towing objects</td>
+      </tr>
+      <tr class="highlight-row">
+        <td><strong>Overtaking</strong></td>
+        <td>Overtaking aircraft keeps out of way by <strong>altering heading to the RIGHT</strong></td>
+        <td>Overtaking aircraft = approaches from rear at angle &lt;70° to plane of symmetry. Being overtaken = RIGHT OF WAY regardless of climbing, descending or level flight</td>
+      </tr>
+      <tr>
+        <td><strong>Landing (general)</strong></td>
+        <td>Aircraft in flight or on ground/water <strong>gives way to aircraft landing or in final approach</strong></td>
+        <td>When two aircraft approaching to land — lower one has priority. But lower one cannot cut in front of another in final approach</td>
+      </tr>
+      <tr>
+        <td><strong>Landing (multiple aircraft)</strong></td>
+        <td>Aircraft at <strong>higher level gives way</strong> to aircraft at lower level</td>
+        <td>Power-driven heavier-than-air gives way to gliders; lower aircraft cannot abuse this rule</td>
+      </tr>
+      <tr class="danger-row">
+        <td><strong>Emergency Landing</strong></td>
+        <td>An aircraft aware that another is <strong>compelled to land shall give way</strong> to that aircraft</td>
+        <td>Absolute priority in emergencies</td>
+      </tr>
+      <tr>
+        <td><strong>Taking Off</strong></td>
+        <td>Aircraft taxiing gives way to aircraft <strong>taking off or about to take off</strong></td>
+        <td>Taxiing aircraft yields to aircraft on takeoff roll</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <div class="box-title">💡 STUDENT TIP — OVERTAKING DEFINITION</div>
+    <p>An <strong>overtaking aircraft</strong> is one approaching another from the <strong>rear on a line forming an angle of less than 70°</strong> with the plane of symmetry of the latter — i.e., positioned such that at night it cannot see either the port (left) OR starboard (right) navigation lights of the other aircraft.</p>
+    <p style="margin-top:6px;">Once overtaking, <strong>no subsequent change in relative positions absolves the overtaking aircraft</strong> from this obligation until it is entirely past and clear.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 9 -->
+<div id="s9">
+<div class="section-header"><span class="icon">🛞</span> 9. Surface Movement of Aircraft</div>
+<div class="section-body">
+
+  <div class="def-box">
+    <div class="box-title">📘 GROUND COLLISION AVOIDANCE — TAXIING RULES</div>
+    <p>In case of danger of collision between two aircraft taxiing on the movement area of an aerodrome:</p>
+    <ul>
+      <li>a) <strong>Head-on approach:</strong> Each shall stop or, where practicable, alter course to the <strong>RIGHT</strong> so as to keep well clear</li>
+      <li>b) <strong>Converging course:</strong> The one which has the other on its <strong>right shall give way</strong></li>
+      <li>c) <strong>Overtaking:</strong> Aircraft being overtaken has <strong>right-of-way</strong>; overtaking aircraft shall keep well clear</li>
+    </ul>
+  </div>
+
+  <div class="warn-box">
+    <div class="box-title">⛔ RUNWAY HOLDING POSITION</div>
+    <p>An aircraft taxiing on the manoeuvring area shall <strong>STOP AND HOLD at all runway holding positions</strong> unless otherwise authorised by the aerodrome control tower.</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="box-title">⛔ LIGHTED STOP BARS</div>
+    <p>An aircraft taxiing on the manoeuvring area shall <strong>STOP AND HOLD at all lighted stop bars</strong> and may proceed further <strong>ONLY when the lights are switched off.</strong></p>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 10 -->
+<div id="s10">
+<div class="section-header"><span class="icon">💡</span> 10. Lights to be Displayed by Aircraft</div>
+<div class="section-body">
+
+  <div class="sop-box">
+    <div class="box-title">✅ LIGHTS IN FLIGHT — MANDATORY DISPLAY PERIOD</div>
+    <p><strong>From sunset to sunrise</strong> (or during any other period prescribed by the Director General), <strong>all aircraft in flight</strong> shall display:</p>
+    <ul>
+      <li>a) <strong>Anti-collision lights</strong> — intended to attract attention to the aircraft</li>
+      <li>b) <strong>Navigation lights</strong> — intended to indicate the relative path of the aircraft to an observer</li>
+    </ul>
+    <p style="margin-top:8px;">Other lights shall NOT be displayed if they are likely to be <strong>mistaken for navigation lights.</strong></p>
+  </div>
+
+  <div class="note-box"><strong>Note:</strong> Lights fitted for other purposes (landing lights, airframe floodlights) may be used in addition to anti-collision lights as specified in the Airworthiness Technical Manual (Doc 9051) to enhance aircraft conspicuity.</div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ LIGHTS ON GROUND (Movement Area) — From Sunset to Sunrise</div>
+    <ul>
+      <li>a) All aircraft moving on the movement area shall display <strong>navigation lights</strong></li>
+      <li>b) Unless stationary and otherwise adequately illuminated, all aircraft on the movement area shall display lights indicating the <strong>extremities of their structure</strong></li>
+      <li>c) All aircraft operating on the movement area shall display lights to attract <strong>attention</strong></li>
+      <li>d) All aircraft on the movement area whose engines are running shall display lights which <strong>indicate that fact</strong></li>
+    </ul>
+  </div>
+
+  <div class="def-box">
+    <div class="box-title">📘 ANTI-COLLISION LIGHTS — ALWAYS ON</div>
+    <ul>
+      <li>All aircraft in flight and fitted with anti-collision lights shall display such lights <strong>also outside the period</strong> specified (sunset to sunrise)</li>
+      <li>All aircraft operating on the movement area of an aerodrome and fitted with anti-collision lights shall also display such lights outside the specified period</li>
+    </ul>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ WHEN MAY FLASHING LIGHTS BE SWITCHED OFF?</div>
+    <p>A pilot shall be permitted to <strong>switch off or reduce the intensity</strong> of any flashing lights if they:</p>
+    <ul>
+      <li>a) <strong>Adversely affect the satisfactory performance of duties</strong>, or</li>
+      <li>b) <strong>Subject an outside observer to harmful dazzle</strong></li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 11 -->
+<div id="s11">
+<div class="section-header"><span class="icon">🥽</span> 11. Simulated Instrument Flights</div>
+<div class="section-body">
+
+  <div class="warn-box">
+    <div class="box-title">⛔ SIMULATED INSTRUMENT CONDITIONS — CONDITIONS REQUIRED</div>
+    <p>An aircraft shall <strong>NOT</strong> be flown under simulated instrument flight conditions <strong>UNLESS:</strong></p>
+    <ul>
+      <li>a) <strong>Fully functioning dual controls</strong> are installed in the aircraft, AND</li>
+      <li>b) A <strong>qualified pilot occupies a control seat</strong> to act as <strong>safety pilot</strong> for the person flying under simulated instrument conditions.</li>
+    </ul>
+    <p style="margin-top:8px;">The safety pilot shall have <strong>adequate vision forward and to each side</strong> of the aircraft, OR a <strong>competent observer in communication with the safety pilot</strong> shall occupy a position from which the observer's field of vision adequately supplements that of the safety pilot.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 12 -->
+<div id="s12">
+<div class="section-header"><span class="icon">🏢</span> 12. Operation On and In the Vicinity of an Aerodrome</div>
+<div class="section-body">
+
+  <div class="sop-box">
+    <div class="box-title">✅ DUTIES OF EVERY AIRCRAFT NEAR AN AERODROME</div>
+    <p>An aircraft operated on or in the vicinity of an aerodrome shall, whether or not within an aerodrome traffic zone:</p>
+    <ul>
+      <li>a) <strong>Observe other aerodrome traffic</strong> for the purpose of avoiding collision</li>
+      <li>b) <strong>Conform with or avoid the pattern of traffic</strong> formed by other aircraft in operation</li>
+      <li>c) Make all turns to the <strong>LEFT</strong> when approaching for a landing and after taking off, <strong>unless otherwise instructed</strong></li>
+      <li>d) <strong>Land and take off into the wind</strong> unless safety, runway configuration, or air traffic considerations determine a different direction is preferable</li>
+    </ul>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ WHEN AERODROME CONTROL TOWER IS IN OPERATION — ADDITIONAL DUTIES</div>
+    <p>The PIC shall also:</p>
+    <ul>
+      <li>a) Maintain a <strong>continuous listening watch</strong> on the appropriate radio frequency of the aerodrome control tower (unless under approach control service or not possible, in which case keep a watch for <strong>visual signals</strong>)</li>
+      <li>b) Obtain either by <strong>radio or visual signals prior authorisation</strong> for any manoeuvre preparatory to or associated with taxiing, landing, or take-off</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 13 -->
+<div id="s13">
+<div class="section-header"><span class="icon">📄</span> 13. Flight Plans</div>
+<div class="section-body">
+
+  <div class="warn-box">
+    <div class="box-title">⛔ WHEN IS A FLIGHT PLAN MANDATORY?</div>
+    <p>A flight plan shall be submitted prior to operating (exceptions for nano/micro RPA below 50 ft/200 ft AGL in uncontrolled airspace/enclosed premises):</p>
+    <ul>
+      <li>a) Any flight or portion thereof to be provided with <strong>air traffic control service</strong></li>
+      <li>b) Any <strong>IFR flight</strong> within advisory airspace</li>
+      <li>c) Any flight within or into <strong>designated areas or along designated routes</strong> when required by the ATS authority for flight information, alerting, and search &amp; rescue services</li>
+      <li>d) Any flight within or into designated areas or along designated routes requiring <strong>co-ordination with military units or ATS units in adjacent States</strong> (to avoid interception)</li>
+      <li>e) Any flight <strong>across International borders</strong></li>
+    </ul>
+  </div>
+
+  <div class="formula-box">
+    <div class="box-title">⏱ FLIGHT PLAN SUBMISSION TIMES</div>
+    <div class="table-container">
+      <table>
+        <tr><th>Type</th><th>Submission Time</th></tr>
+        <tr><td>Standard intended flights</td><td><strong>At least 3 hours (180 minutes) before EOBT</strong>, but not earlier than <strong>120 hours (5 days) before EOBT</strong></td></tr>
+        <tr><td>RPA (Remotely Piloted Aircraft)</td><td><strong>At least 24 hours before estimated time of departure</strong></td></tr>
+        <tr><td>Delay of 15 minutes or more (previously filed FP)</td><td>PIC or representative must <strong>notify ATC of revised ETD</strong>; amend FP or file new FP and cancel old one</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="def-box">
+    <div class="box-title">📘 COMPLETION OF A FLIGHT PLAN</div>
+    <p>Whatever the purpose for which it is submitted, a flight plan shall contain information as applicable on relevant items up to and including <strong>"Alternate aerodrome(s)"</strong> regarding the whole route or the portion thereof for which the flight plan is submitted.</p>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ RNP/RVSM/RCP/RSP REQUIREMENT</div>
+    <p>An operator shall, prior to departure, ensure that where the flight is intended to operate on a route or in an area where an <strong>RNP/RVSM/RCP/RSP type specification is prescribed</strong>, the aircraft has an appropriate approval and that all conditions applying to that approval will be satisfied.</p>
+  </div>
+
+  <div class="sub-header">📝 Changes to a Flight Plan</div>
+  <div class="table-container">
+    <table>
+      <tr><th>Flight Type</th><th>When to Report Changes</th></tr>
+      <tr><td>IFR flight OR VFR flight operated as controlled flight</td><td>As soon as practicable to the appropriate ATS unit</td></tr>
+      <tr><td>Other VFR flights</td><td>Significant changes shall be reported as soon as practicable</td></tr>
+      <tr><td>Fuel endurance or number of persons on board (if incorrect at departure)</td><td>Constitutes a significant change — must be reported</td></tr>
+    </table>
+  </div>
+
+  <div class="sub-header">📝 Closing a Flight Plan</div>
+  <div class="sop-box">
+    <div class="box-title">✅ ARRIVAL REPORT</div>
+    <p>Unless otherwise prescribed by the appropriate ATS authority, a <strong>report of arrival</strong> shall be made in person, by radiotelephony or via data link at the <strong>earliest possible moment</strong> after landing, to the appropriate ATS unit at the arrival aerodrome, by any flight for which a flight plan has been submitted covering the <strong>entire flight</strong> or the <strong>remaining portion</strong> of a flight to the destination aerodrome.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 14 -->
+<div id="s14">
+<div class="section-header"><span class="icon">🕐</span> 14. Time (UTC)</div>
+<div class="section-body">
+
+  <div class="def-box">
+    <div class="box-title">📘 TIME STANDARD</div>
+    <ul>
+      <li><strong>Co-ordinated Universal Time (UTC)</strong> shall be used and expressed in hours and minutes (and when required, seconds) of the <strong>24-hour day beginning at midnight</strong></li>
+      <li>A <strong>time check</strong> shall be obtained prior to operating a controlled flight and at such other times during the flight as may be necessary</li>
+      <li>ATS unit clocks and time-recording devices shall be checked to ensure correct time to within <strong>±30 seconds of UTC</strong></li>
+      <li>Wherever time is utilised in the application of <strong>data link communications</strong>, it shall be accurate to within <strong>1 second of UTC</strong></li>
+    </ul>
+  </div>
+
+  <div class="pill-row">
+    <div class="pill">ATS clock accuracy: <span class="pill-val">±30 sec of UTC</span></div>
+    <div class="pill">Data link time accuracy: <span class="pill-val">±1 sec of UTC</span></div>
+    <div class="pill">Time format: <span class="pill-val">24-hour UTC</span></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 15 -->
+<div id="s15">
+<div class="section-header"><span class="icon">📡</span> 15. Air Traffic Control Service</div>
+<div class="section-body">
+
+  <div class="sop-box">
+    <div class="box-title">✅ ATC CLEARANCE</div>
+    <p>An <strong>ATC clearance shall be obtained prior to operating a controlled flight</strong>, or a portion of a flight as a controlled flight. Such clearance shall be requested through the <strong>submission of a flight plan</strong> to an ATC unit.</p>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ ADHERENCE TO FLIGHT PLAN</div>
+    <p>An aircraft shall adhere to the <strong>current flight plan</strong> or the applicable portion unless a request for a change has been made and <strong>clearance obtained</strong> from the appropriate ATC unit.</p>
+  </div>
+
+  <div class="sub-header">⚠️ Deviations from the Current Flight Plan</div>
+  <div class="table-container">
+    <table>
+      <tr><th>Deviation Type</th><th>Required Action</th></tr>
+      <tr><td><strong>Deviation from Track</strong></td><td>Take action forthwith to <strong>adjust heading to regain track as soon as practicable</strong></td></tr>
+      <tr><td><strong>Deviation from ATC assigned Mach number/indicated airspeed</strong></td><td>Inform appropriate ATS unit <strong>immediately</strong></td></tr>
+      <tr class="highlight-row"><td><strong>Deviation from Mach number / true airspeed</strong> — varies by ± Mach 0.02 or more, or ± 19 km/h (10 kt) TAS or more</td><td>Inform appropriate ATS unit</td></tr>
+      <tr><td><strong>Change in Time Estimate</strong> — exceeds 2 minutes from notified time</td><td>Notify ATS unit as soon as possible (unless ADS-C is activated and serviceable in airspace where ADS-C services are provided)</td></tr>
+    </table>
+  </div>
+
+  <div class="def-box">
+    <div class="box-title">📘 ADS-C AUTOMATIC REPORTING</div>
+    <p>When ADS-C services are provided and ADS-C is activated, the ATSU shall be informed <strong>automatically via data link</strong> whenever changes occur beyond the threshold values stipulated by the <strong>ADS event contract.</strong></p>
+  </div>
+
+  <div class="sub-header">📝 Change Requests — Required Information</div>
+  <div class="table-container">
+    <table>
+      <tr><th>Type of Change</th><th>Information to Include in Request</th></tr>
+      <tr><td><strong>Change of cruising level</strong></td><td>Aircraft identification; requested new cruising level and Mach/TAS at this level; revised time estimates at subsequent reporting points or FIR boundaries</td></tr>
+      <tr><td><strong>Change of Mach/TAS</strong></td><td>Aircraft identification; requested Mach/TAS</td></tr>
+      <tr><td><strong>Change of route (destination unchanged)</strong></td><td>Aircraft identification; flight rules; description of new route including related FP data beginning with position from which change is to commence; revised time estimates; any other pertinent info</td></tr>
+      <tr><td><strong>Change of route (destination changed)</strong></td><td>Aircraft identification; flight rules; description of revised route to revised destination including related FP data; alternate aerodrome(s); any other pertinent info</td></tr>
+    </table>
+  </div>
+
+  <div class="sub-header">⛅ Weather Deterioration Below VMC (VFR Controlled Flight)</div>
+  <div class="sop-box">
+    <div class="box-title">✅ OPTIONS WHEN VMC CANNOT BE MAINTAINED (VFR Controlled Flight)</div>
+    <ul>
+      <li>a) Request an <strong>amended clearance to continue in VMC</strong> to destination or alternate, or to leave the airspace requiring ATC clearance</li>
+      <li>b) If no clearance can be obtained, <strong>continue in VMC and notify ATC</strong> of the action being taken either to leave the airspace or to land at the nearest suitable aerodrome</li>
+      <li>c) If operated within a control zone, request authorisation to operate as a <strong>Special VFR flight</strong></li>
+      <li>d) Request clearance to operate in accordance with <strong>IFR</strong></li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 16 -->
+<div id="s16">
+<div class="section-header"><span class="icon">📻</span> 16. Position Reports &amp; Communications</div>
+<div class="section-body">
+
+  <div class="sop-box">
+    <div class="box-title">✅ POSITION REPORTS — CONTROLLED FLIGHTS</div>
+    <p>Unless exempted, a controlled flight shall report to the ATS unit, as soon as possible, the <strong>time and level</strong> of passing each <strong>designated compulsory reporting point</strong>, together with any other required information. Position reports shall also be made in relation to additional points when requested.</p>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ COMMUNICATIONS — CONTROLLED FLIGHTS</div>
+    <p>An aircraft operated as a controlled flight shall maintain <strong>continuous air-ground voice communication watch</strong> on the appropriate channel and establish <strong>two-way communication</strong> as necessary with the appropriate ATC unit.</p>
+    <p style="margin-top:8px;"><strong>SELCAL</strong> or similar automatic signalling devices satisfy the requirement to maintain an air-ground voice communication watch.</p>
+    <p style="margin-top:8px;">The requirement for air-ground voice communication watch <strong>remains in effect after CPDLC has been established.</strong></p>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 17 -->
+<div id="s17">
+<div class="section-header"><span class="icon">📵</span> 17. Radio Communication Failure (RCF) Procedures</div>
+<div class="section-body">
+
+  <div class="diagram-container">
+    <div class="diagram-title">📵 RCF DECISION FLOWCHART</div>
+    <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:auto;">
+      <!-- Start -->
+      <rect x="250" y="10" width="200" height="40" rx="20" fill="#c0392b" stroke="#922b21" stroke-width="2"/>
+      <text x="350" y="35" text-anchor="middle" font-size="12" font-weight="800" fill="white">COMMS FAILURE</text>
+
+      <!-- Arrow down -->
+      <line x1="350" y1="50" x2="350" y2="80" stroke="#2c3e50" stroke-width="2" marker-end="url(#arr)"/>
+
+      <!-- VMC or IMC decision diamond -->
+      <polygon points="350,80 480,120 350,160 220,120" fill="#f9ebea" stroke="#c0392b" stroke-width="2"/>
+      <text x="350" y="115" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">VMC or IMC</text>
+      <text x="350" y="130" text-anchor="middle" font-size="10" fill="#c0392b">conditions?</text>
+
+      <!-- VMC branch -->
+      <line x1="220" y1="120" x2="80" y2="120" stroke="#27ae60" stroke-width="2" marker-end="url(#arr2)"/>
+      <text x="150" y="113" text-anchor="middle" font-size="10" font-weight="700" fill="#27ae60">VMC</text>
+      <rect x="10" y="130" width="140" height="60" rx="8" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
+      <text x="80" y="153" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e8449">Continue VMC</text>
+      <text x="80" y="168" text-anchor="middle" font-size="9" fill="#1e8449">Land at nearest</text>
+      <text x="80" y="181" text-anchor="middle" font-size="9" fill="#1e8449">suitable aerodrome</text>
+
+      <!-- IMC branch -->
+      <line x1="480" y1="120" x2="620" y2="120" stroke="#c0392b" stroke-width="2" marker-end="url(#arr3)"/>
+      <text x="550" y="113" text-anchor="middle" font-size="10" font-weight="700" fill="#c0392b">IMC / IFR</text>
+      <rect x="555" y="130" width="135" height="100" rx="8" fill="#fde8e8" stroke="#c0392b" stroke-width="2"/>
+      <text x="622" y="152" text-anchor="middle" font-size="9" font-weight="700" fill="#c0392b">SSR → 7600</text>
+      <text x="622" y="167" text-anchor="middle" font-size="9" fill="#c0392b">Maintain last</text>
+      <text x="622" y="180" text-anchor="middle" font-size="9" fill="#c0392b">assigned level</text>
+      <text x="622" y="193" text-anchor="middle" font-size="9" fill="#c0392b">(see table below)</text>
+      <text x="622" y="208" text-anchor="middle" font-size="9" fill="#c0392b">Proceed per</text>
+      <text x="622" y="222" text-anchor="middle" font-size="9" fill="#c0392b">flight plan</text>
+
+      <!-- Arrow from VMC box -->
+      <line x1="80" y1="190" x2="80" y2="240" stroke="#27ae60" stroke-width="2" marker-end="url(#arr2)"/>
+      <rect x="25" y="240" width="110" height="40" rx="8" fill="#1e8449" stroke="#155724" stroke-width="1.5"/>
+      <text x="80" y="257" text-anchor="middle" font-size="9" font-weight="700" fill="white">Report arrival</text>
+      <text x="80" y="271" text-anchor="middle" font-size="9" fill="white">to ATS unit</text>
+
+      <!-- Squawk note -->
+      <rect x="240" y="250" width="230" height="50" rx="8" fill="#fff3cd" stroke="#f39c12" stroke-width="2"/>
+      <text x="355" y="272" text-anchor="middle" font-size="10" font-weight="700" fill="#b7770d">SSR Transponder Code</text>
+      <text x="355" y="290" text-anchor="middle" font-size="11" font-weight="800" fill="#c0392b">7600 = Radio Failure</text>
+
+      <!-- Markers -->
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#2c3e50"/>
+        </marker>
+        <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#27ae60"/>
+        </marker>
+        <marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#c0392b"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ IF IN VMC (Radio Failure) — Actions</div>
+    <ul>
+      <li>a) <strong>Continue to fly in VMC</strong>, land at the nearest suitable aerodrome, and report arrival by the most expeditious means to the appropriate ATC unit</li>
+      <li>b) If considered advisable, complete an <strong>IFR flight in accordance with the provisions below</strong></li>
+    </ul>
+  </div>
+
+  <div class="warn-box">
+    <div class="box-title">⛔ IF IN IMC (or IFR PIC considers inadvisable to complete VMC provisions) — Detailed Procedure</div>
+    <div class="table-container">
+      <table>
+        <tr><th>Step</th><th>Airspace</th><th>Action Required</th></tr>
+        <tr><td><strong>a)</strong></td><td><strong>Non-radar airspace</strong></td><td>Unless otherwise prescribed (regional air navigation agreement) — maintain <strong>last assigned speed and level, or minimum flight altitude if higher, for 20 minutes</strong> following the aircraft's failure to report over a compulsory reporting point, then adjust level and speed per filed flight plan</td></tr>
+        <tr class="highlight-row"><td><strong>b)</strong></td><td><strong>Radar-provided airspace</strong></td><td>Maintain last assigned speed and level, or minimum flight altitude if higher, for <strong>7 minutes</strong> following: (1) time last assigned level/min altitude reached; OR (2) time transponder set to Code 7600; OR (3) aircraft's failure to report over compulsory reporting point — whichever is later. Then adjust per filed flight plan.</td></tr>
+        <tr><td><strong>c)</strong></td><td>Radar vectored / RNAV offset</td><td>Rejoin current flight plan route no later than the <strong>next significant point</strong>, taking into account applicable minimum flight altitude</td></tr>
+        <tr><td><strong>d)</strong></td><td>En-route</td><td>Proceed per current FP route to the <strong>appropriate designated navigation aid or fix serving the destination aerodrome</strong>, and hold over this aid until commencement of descent</td></tr>
+        <tr><td><strong>e)</strong></td><td>Approach</td><td>Commence descent from the nav aid/fix at <strong>expected approach time last received and acknowledged</strong>, or if no EAT received, at the <strong>estimated time of arrival from the current FP</strong></td></tr>
+        <tr><td><strong>f)</strong></td><td>Approach</td><td>Complete a <strong>normal instrument approach procedure</strong> as specified for the designated nav aid or fix</td></tr>
+        <tr class="danger-row"><td><strong>g)</strong></td><td>Landing</td><td>Land, if possible, within <strong>30 minutes after the ETA</strong> specified in step (e) or the last acknowledged EAT, whichever is later</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <div class="box-title">🔑 KEY RCF TIME VALUES TO MEMORISE</div>
+    <div class="pill-row">
+      <div class="pill">Non-Radar: maintain for <span class="pill-val">20 minutes</span></div>
+      <div class="pill">Radar: maintain for <span class="pill-val">7 minutes</span></div>
+      <div class="pill">Land within <span class="pill-val">30 min</span> of ETA/EAT</div>
+      <div class="pill">Squawk: <span class="pill-val">7600</span></div>
+    </div>
+  </div>
+
+  <div class="note-box"><strong>Note:</strong> The provision of ATC service to other flights operating in the airspace concerned will be based on the premise that an aircraft experiencing communication failure will comply with these rules.</div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 18 -->
+<div id="s18">
+<div class="section-header"><span class="icon">🌤️</span> 18. VMC Visibility and Distance from Cloud Minima (Table 3-1)</div>
+<div class="section-body">
+
+  <div class="table-container">
+    <table class="cruising-table">
+      <tr>
+        <th rowspan="2">Altitude Band</th>
+        <th rowspan="2">Airspace Class</th>
+        <th rowspan="2">Flight Visibility</th>
+        <th colspan="2">Distance from Cloud</th>
+      </tr>
+      <tr>
+        <th>Horizontal</th>
+        <th>Vertical</th>
+      </tr>
+      <tr>
+        <td><strong>At and above 3,050 m (10,000 ft) AMSL</strong></td>
+        <td>A*** / BCDEFG</td>
+        <td class="tag-red" style="font-weight:800;">8 km</td>
+        <td>1,500 m</td>
+        <td>300 m (1,000 ft)</td>
+      </tr>
+      <tr>
+        <td><strong>Below 3,050 m (10,000 ft) AMSL and above 900 m (3,000 ft) AMSL, or above 300 m (1,000 ft) above terrain, whichever is higher</strong></td>
+        <td>A*** / BCDEFG</td>
+        <td class="tag-red" style="font-weight:800;">5 km</td>
+        <td>1,500 m</td>
+        <td>300 m (1,000 ft)</td>
+      </tr>
+      <tr>
+        <td rowspan="2"><strong>At and below 900 m (3,000 ft) AMSL, or 300 m (1,000 ft) above terrain, whichever is higher</strong></td>
+        <td>A***BCDE</td>
+        <td class="tag-red" style="font-weight:800;">5 km</td>
+        <td>1,500 m</td>
+        <td>300 m (1,000 ft)</td>
+      </tr>
+      <tr class="safe-row">
+        <td><strong>F, G</strong></td>
+        <td><strong>5 km**</strong></td>
+        <td colspan="2"><strong>Clear of cloud and with the surface in sight</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <strong>* Note on Transition Altitude:</strong> When the height of the transition altitude is lower than 3,050 m (10,000 ft) AMSL, <strong>FL 100 should be used in lieu of 10,000 ft.</strong>
+  </div>
+  <div class="note-box">
+    <strong>** Special Provisions for Airspace F &amp; G (India — at/below 900m/3000ft AMSL or 300m/1000ft AGL):</strong>
+    <ul>
+      <li>Flight visibilities reduced to not less than <strong>3,000 m</strong> may be permitted for flights operating: (1) at speeds giving adequate opportunity to observe other traffic/obstacles, or (2) in areas where encounter probability with other traffic is normally low</li>
+      <li><strong>Helicopters</strong> may be permitted to operate up to <strong>1,500 m flight visibility</strong> at a speed giving adequate opportunity to observe other traffic/obstacles</li>
+      <li>When so prescribed by the appropriate ATS authority: helicopters may operate up to <strong>1,000 m flight visibility</strong></li>
+    </ul>
+  </div>
+  <div class="note-box">
+    <strong>*** Class A Airspace:</strong> VMC minima in Class A airspace are included for guidance to pilots and <strong>do not imply acceptance of VFR flights in Class A airspace.</strong>
+  </div>
+
+  <div class="formula-box">
+    <div class="box-title">🔑 MEMORY AID — VMC MINIMA</div>
+    <div class="pill-row">
+      <div class="pill">Above 10,000 ft AMSL: <span class="pill-val">8 km vis | 1500m H | 1000ft V</span></div>
+      <div class="pill">3000–10,000 ft AMSL: <span class="pill-val">5 km vis | 1500m H | 1000ft V</span></div>
+      <div class="pill">Below 3000 ft (Class A-E): <span class="pill-val">5 km | 1500m H | 1000ft V</span></div>
+      <div class="pill">Below 3000 ft (Class F/G): <span class="pill-val">5 km | Clear of cloud | Surface in sight</span></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 19 -->
+<div id="s19">
+<div class="section-header"><span class="icon">☀️</span> 19. Visual Flight Rules (VFR)</div>
+<div class="section-body">
+
+  <div class="def-box">
+    <div class="box-title">📘 VFR FLYING CONDITIONS</div>
+    <p>Except when operating as a <strong>Special VFR</strong> flight, VFR flights shall be conducted so that the aircraft is flown in conditions of <strong>visibility and distance from clouds equal to or greater than those specified in the VMC Table.</strong></p>
+  </div>
+
+  <div class="warn-box">
+    <div class="box-title">⛔ VFR — CONTROL ZONE ENTRY/DEPARTURE RESTRICTIONS</div>
+    <p>Except when a clearance is obtained from an ATC unit, VFR flights shall <strong>NOT</strong> take off or land at an aerodrome within a control zone, or enter the aerodrome traffic zone or traffic pattern:</p>
+    <ul>
+      <li>a) When the <strong>ceiling is less than 450 m (1,500 ft)</strong>, or</li>
+      <li>b) When the <strong>ground visibility is less than 5 km</strong></li>
+    </ul>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ VFR OPERATING HOURS</div>
+    <p>VFR flights shall be operated during the period from <strong>20 minutes before sunrise to 20 minutes after sunset</strong>, except when exempted by ATC for local flights and training flights of flying club aircraft cleared by ATC.</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="box-title">⛔ VFR ALTITUDE / AIRSPACE RESTRICTIONS (Unless ATS Authority Authorizes)</div>
+    <ul class="cross-list">
+      <li>VFR flights shall <strong>NOT</strong> operate <strong>above FL 150</strong></li>
+      <li>VFR flights shall <strong>NOT</strong> operate at <strong>transonic and supersonic speeds</strong></li>
+      <li>VFR flights shall <strong>NOT</strong> operate more than <strong>100 NM seaward</strong> from the shoreline within controlled airspace</li>
+    </ul>
+    <p style="margin-top:8px;"><strong>Authorization for VFR flights to operate above FL 290</strong> shall NOT be granted in areas where a vertical separation minimum of <strong>300 m (1,000 ft) is applied above FL 290.</strong></p>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ WHEN VFR FLIGHTS COMPLY WITH ATC PROVISIONS</div>
+    <ul>
+      <li>a) When operated within <strong>Class B, C, and D airspace</strong></li>
+      <li>b) When forming part of aerodrome traffic at <strong>controlled aerodromes</strong></li>
+      <li>c) When operated as <strong>Special VFR flights</strong></li>
+    </ul>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ CHANGE FROM VFR TO IFR</div>
+    <p>An aircraft operating VFR that wishes to change to IFR compliance shall:</p>
+    <ul>
+      <li>a) If a FP was submitted, <strong>communicate the necessary changes</strong> to be effected to its current flight plan, or</li>
+      <li>b) When required, submit a FP to the appropriate ATS unit and <strong>obtain a clearance prior to proceeding IFR</strong> when in controlled airspace.</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 20 -->
+<div id="s20">
+<div class="section-header"><span class="icon">🌫️</span> 20. Special VFR Flights</div>
+<div class="section-body">
+
+  <div class="def-box">
+    <div class="box-title">📘 WHAT IS A SPECIAL VFR FLIGHT?</div>
+    <p>A VFR flight cleared by ATC to operate within a <strong>control zone in meteorological conditions below VMC</strong>, but following certain special provisions.</p>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ CONDITIONS FOR SPECIAL VFR AUTHORISATION</div>
+    <ul>
+      <li>a) When traffic conditions permit, Special VFR flights may be authorised subject to approval from the unit providing <strong>approach control service</strong></li>
+      <li>b) Requests shall be handled <strong>individually</strong></li>
+      <li>c) When ground visibility is <strong>not less than 1,500 metres</strong>, Special VFR flights may be authorised to enter a CTR for landing, take-off, depart, cross, or operate locally within a CTR</li>
+      <li>d) Performance Class I and Class II helicopters may be authorised when ground visibility is <strong>not less than 1,000 metres</strong></li>
+      <li>e) Pilot is responsible for meeting criteria for performance class helicopters and shall state this in Field 18 of the flight plan and report on RTF to ATC</li>
+      <li>f) <strong>Special VFR flights shall be operated ONLY by pilots holding:</strong>
+        <ul>
+          <li>Instrument Rating (IR), or</li>
+          <li>Assistant Flight Instructor (AFI) rating, or</li>
+          <li>Flight Instructor (FI) rating</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="pill-row">
+    <div class="pill">Fixed-wing min visibility: <span class="pill-val">1,500 m</span></div>
+    <div class="pill">Helicopter min visibility: <span class="pill-val">1,000 m</span></div>
+    <div class="pill">Required rating: <span class="pill-val">IR / AFI / FI</span></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 21 -->
+<div id="s21">
+<div class="section-header"><span class="icon">🛩️</span> 21. Instrument Flight Rules (IFR)</div>
+<div class="section-body">
+
+  <div class="sop-box">
+    <div class="box-title">✅ IFR AIRCRAFT EQUIPMENT</div>
+    <p>Aircraft shall be equipped with <strong>suitable instruments and with navigation equipment appropriate to the route to be flown.</strong></p>
+  </div>
+
+  <div class="warn-box">
+    <div class="box-title">⛔ IFR MINIMUM LEVELS (Where No State Minimum Has Been Established)</div>
+    <div class="table-container">
+      <table>
+        <tr><th>Terrain Type</th><th>Minimum IFR Level</th><th>Obstacle Clearance Reference</th></tr>
+        <tr>
+          <td>High terrain or mountainous areas</td>
+          <td class="tag-red" style="font-weight:800;">600 m (2,000 ft) above highest obstacle</td>
+          <td>Within <strong>8 km</strong> of estimated position</td>
+        </tr>
+        <tr>
+          <td>All other areas</td>
+          <td class="tag-red" style="font-weight:800;">300 m (1,000 ft) above highest obstacle</td>
+          <td>Within <strong>8 km</strong> of estimated position</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="pill-row">
+    <div class="pill">Mountains: <span class="pill-val">600m (2000ft)</span> above highest obstacle within 8km</div>
+    <div class="pill">Elsewhere: <span class="pill-val">300m (1000ft)</span> above highest obstacle within 8km</div>
+  </div>
+
+  <div class="sub-header">✈ IFR — Rules Applicable to Controlled Airspace</div>
+  <div class="sop-box">
+    <div class="box-title">✅ CRUISING LEVELS IN CONTROLLED AIRSPACE</div>
+    <p>An IFR flight in cruising flight in controlled airspace shall be flown at a cruising level, or if authorised for cruise climb, between two levels or above a level, selected from:</p>
+    <ul>
+      <li>a) The <strong>Tables of cruising levels</strong>, or</li>
+      <li>b) A modified table for flight above <strong>FL 410</strong>, except that the correlation of levels to track shall not apply whenever otherwise indicated in ATC clearances or specified by ATS authority in AIPs.</li>
+    </ul>
+  </div>
+
+  <div class="sub-header">✈ IFR — Rules Applicable Outside Controlled Airspace</div>
+  <div class="sop-box">
+    <div class="box-title">✅ CRUISING LEVELS OUTSIDE CONTROLLED AIRSPACE</div>
+    <p>An IFR flight operating in level cruising outside controlled airspace shall be flown at a cruising level appropriate to its track per:</p>
+    <ul>
+      <li>a) Tables of cruising levels, except when otherwise specified by appropriate ATS authority for flight at or below 900 m (3,000 ft) AMSL</li>
+      <li>b) Modified table for flight above FL 410</li>
+    </ul>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ COMMUNICATIONS — IFR OUTSIDE CONTROLLED AIRSPACE</div>
+    <p>An IFR flight operating outside controlled airspace but within or into areas or along routes designated by ATS authority shall maintain <strong>air-ground voice communication watch</strong> and establish two-way communication with the air traffic services unit providing flight information service.</p>
+  </div>
+
+  <div class="sub-header">🔄 Change from IFR to VFR</div>
+  <div class="def-box">
+    <div class="box-title">📘 IFR → VFR CANCELLATION</div>
+    <p>An aircraft electing to change from IFR to VFR compliance shall, if a FP was submitted, <strong>notify the appropriate ATS unit specifically that the IFR flight is cancelled</strong> and communicate thereto the changes to be made to the current FP.</p>
+    <p style="margin-top:8px;">When an aircraft operating IFR encounters VMC, it shall <strong>NOT cancel its IFR flight unless it is anticipated, and intended, that the flight will be continued for a reasonable period of time in uninterrupted VMC.</strong></p>
+  </div>
+
+  <div class="sub-header">🌙 Flight by Night (Definition)</div>
+  <div class="def-box">
+    <div class="box-title">📘 NIGHT DEFINITION</div>
+    <p>A flight performed between <strong>half an hour after sunset</strong> and <strong>half an hour before sunrise.</strong></p>
+    <div class="tip-box" style="margin-top:8px;">
+      <div class="box-title">💡 Contrast with VFR Day Operations</div>
+      <p>VFR flights are operated <strong>20 minutes before sunrise to 20 minutes after sunset.</strong><br>
+      <strong>Night definition for IFR/general purposes:</strong> 30 min after sunset to 30 min before sunrise.</p>
+    </div>
+  </div>
+
+  <div class="sub-header">📝 IFR — Position Reports Outside Controlled Airspace</div>
+  <div class="sop-box">
+    <div class="box-title">✅ IFR POSITION REPORTS (Advisory Airspace Users)</div>
+    <p>Aircraft electing to use the air traffic advisory service whilst operating IFR within specified advisory airspace are expected to comply with these provisions, <strong>except that flight plan changes are not subjected to clearances</strong> and that two-way communication will be maintained with the unit providing the air traffic advisory service.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 22 -->
+<div id="s22">
+<div class="section-header"><span class="icon">🆘</span> 22. Distress, Urgency &amp; Interception Signals</div>
+<div class="section-body">
+
+  <div class="warn-box">
+    <div class="box-title">⛔ DISTRESS SIGNALS — MAYDAY (Grave and Imminent Danger)</div>
+    <p>The following signals, used <strong>either together or separately</strong>, mean that <strong>grave and imminent danger threatens, and immediate assistance is requested:</strong></p>
+    <ul>
+      <li>a) Radiotelegraphy: <strong>SOS (· · · — — — · · ·)</strong> in Morse Code</li>
+      <li>b) Radiotelephony: spoken word <strong>MAYDAY</strong></li>
+      <li>c) Distress message via <strong>data link</strong> transmitting intent of word MAYDAY</li>
+      <li>d) <strong>Rockets or shells</strong> throwing red lights, fired one at a time at short intervals</li>
+      <li>e) A <strong>parachute flare showing a red light</strong></li>
+    </ul>
+  </div>
+
+  <div class="tip-box">
+    <div class="box-title">⚡ URGENCY SIGNALS — PAN PAN (Difficulties compelling landing, no immediate assistance)</div>
+    <p><strong>Type 1 — Aircraft has difficulties compelling it to land without requiring immediate assistance:</strong></p>
+    <ul>
+      <li>a) Repeated switching on and off of the <strong>landing lights</strong></li>
+      <li>b) Repeated switching on and off of the <strong>navigation lights</strong> in such manner as to be distinct from flashing nav lights</li>
+    </ul>
+    <p style="margin-top:8px;"><strong>Type 2 — Aircraft has a very urgent message concerning safety of a ship, aircraft, vehicle or person:</strong></p>
+    <ul>
+      <li>a) Radiotelegraphy: <strong>XXX (— · · — — · · — — · · —)</strong></li>
+      <li>b) Radiotelephony: spoken words <strong>PAN, PAN</strong></li>
+      <li>c) Urgency message via <strong>data link</strong> transmitting intent of words PAN, PAN</li>
+    </ul>
+  </div>
+
+  <div class="formula-box">
+    <div class="box-title">🔑 DISTRESS vs URGENCY — KEY DISTINCTION</div>
+    <div class="table-container">
+      <table>
+        <tr><th>Signal</th><th>Words Used</th><th>Morse</th><th>Meaning</th></tr>
+        <tr class="danger-row"><td><strong>DISTRESS</strong></td><td>MAYDAY MAYDAY MAYDAY</td><td>SOS · · · — — — · · ·</td><td>Grave &amp; imminent danger; immediate assistance needed</td></tr>
+        <tr class="highlight-row"><td><strong>URGENCY</strong></td><td>PAN PAN PAN PAN</td><td>XXX — · · — — · · — — · · —</td><td>Very urgent message / difficulties compelling land</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="sub-header">🛡️ Interception — Actions of the Intercepted Aircraft</div>
+  <div class="sop-box">
+    <div class="box-title">✅ WHEN YOUR AIRCRAFT IS INTERCEPTED — IMMEDIATE ACTIONS</div>
+    <ul>
+      <li>a) Attempt to establish two-way communication via any available means, including <strong>emergency radio frequency 121.5 MHz</strong> (and if practicable, also on <strong>243 MHz</strong>)</li>
+      <li>b) If equipped with SSR transponder: select <strong>Mode A, Code 7700</strong> (unless otherwise instructed by ATS unit)</li>
+      <li>c) If equipped with ADS-B or ADS-C: select the <strong>appropriate emergency functionality</strong>, if available</li>
+    </ul>
+    <div class="note-box">
+      <strong>Conflict of Instructions:</strong> If any instructions received by radio from any sources <strong>conflict</strong> with those given by the intercepting aircraft by visual signals, the intercepted aircraft shall <strong>request immediate clarification while continuing to comply with the visual instructions</strong> given by the intercepting aircraft. If instructions by radio conflict with those from intercepting aircraft by radio, request clarification while complying with <strong>radio instructions from the intercepting aircraft.</strong>
+    </div>
+  </div>
+
+  <div class="def-box">
+    <div class="box-title">📘 INTERCEPTION COMMUNICATION PHRASEOLOGY</div>
+    <div class="table-container">
+      <table>
+        <tr><th colspan="3" style="background:#1a3a7a;">PHRASES FOR USE BY INTERCEPTING AIRCRAFT</th><th colspan="3" style="background:#27ae60;">PHRASES FOR USE BY INTERCEPTED AIRCRAFT</th></tr>
+        <tr><th>Phrase</th><th>Pronunciation</th><th>Meaning</th><th>Phrase</th><th>Pronunciation</th><th>Meaning</th></tr>
+        <tr><td>CALL SIGN</td><td>KOL SA-IN</td><td>What is your call sign</td><td>CALL SIGN</td><td>KOL SA-IN</td><td>My call sign is ...</td></tr>
+        <tr><td>FOLLOW</td><td>FOL-LO</td><td>Follow me</td><td>WILCO</td><td>VILL-KO</td><td>Understood, will comply</td></tr>
+        <tr><td>DESCEND</td><td>DEE-SEND</td><td>Descend for landing</td><td>CAN NOT</td><td>KANN NOTT</td><td>Unable to comply</td></tr>
+        <tr><td>YOU LAND</td><td>YOU LAAND</td><td>Land at this aerodrome</td><td>REPEAT</td><td>REE-PEET</td><td>Repeat your instruction</td></tr>
+        <tr><td>PROCEED</td><td>PRO-SEED</td><td>You may proceed</td><td>AM LOST</td><td>AM LOSST</td><td>Position unknown</td></tr>
+        <tr><td></td><td></td><td></td><td>MAYDAY</td><td>MAYDAY</td><td>I am in distress</td></tr>
+        <tr><td></td><td></td><td></td><td>HIJACK</td><td>HI-JACK</td><td>I have been hijacked</td></tr>
+        <tr><td></td><td></td><td></td><td>LAND (place)</td><td>LAAND</td><td>I request to land at (place)</td></tr>
+        <tr><td></td><td></td><td></td><td>DESCEND</td><td>DEE-SEND</td><td>I require descent</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="sub-header">📡 Visual Signals — Interception Sequences</div>
+  <div class="table-container">
+    <table>
+      <tr><th>Series</th><th>Intercepting Aircraft Signal</th><th>Meaning</th><th>Intercepted Aircraft Response</th><th>Meaning</th></tr>
+      <tr>
+        <td><strong>1</strong></td>
+        <td>DAY/NIGHT — Rocking aircraft + flashing nav lights at irregular intervals from position slightly above and ahead of, to the left of intercepted aircraft (or right if helicopter); slow level turn to left on desired heading</td>
+        <td>You have been intercepted. Follow me.</td>
+        <td>DAY/NIGHT — Rocking aircraft + flashing nav lights at irregular intervals, and following</td>
+        <td>Understood, will comply</td>
+      </tr>
+      <tr>
+        <td><strong>2</strong></td>
+        <td>DAY/NIGHT — Abrupt breakaway climb of 90° or more without crossing the line of flight of intercepted aircraft</td>
+        <td>You may proceed.</td>
+        <td>DAY/NIGHT — Rocking the aircraft</td>
+        <td>Understood, will comply</td>
+      </tr>
+      <tr>
+        <td><strong>3</strong></td>
+        <td>DAY/NIGHT — Lowering landing gear + showing steady landing lights + overflying runway in use</td>
+        <td>Land at this aerodrome.</td>
+        <td>DAY/NIGHT — Lowering landing gear + steady landing lights + following and landing if safe</td>
+        <td>Understood, will comply</td>
+      </tr>
+      <tr>
+        <td><strong>4</strong></td>
+        <td><em>(Response to Series 4 from intercepted aircraft)</em> Raises landing gear + Series 1 signals = follow to alternate aerodrome; or Series 2 signals = release intercepted aircraft</td>
+        <td></td>
+        <td>DAY/NIGHT — Raising landing gear + flashing landing lights while passing over runway at 300–600m, continuing to circle runway</td>
+        <td>Aerodrome you have designated is inadequate</td>
+      </tr>
+      <tr>
+        <td><strong>5</strong></td>
+        <td>Use Series 2 signals</td>
+        <td>Understood</td>
+        <td>DAY/NIGHT — Regular switching on/off all available lights but distinct from flashing lights</td>
+        <td>Cannot comply</td>
+      </tr>
+      <tr>
+        <td><strong>6</strong></td>
+        <td>Use Series 2 signals</td>
+        <td>Understood</td>
+        <td>DAY/NIGHT — Irregular flashing of all available lights</td>
+        <td>In distress</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="warn-box">
+    <div class="box-title">⛔ VISUAL SIGNAL — WARNING: RESTRICTED/PROHIBITED/DANGER AREA</div>
+    <p>By day and by night: a series of <strong>projectiles discharged from the ground at intervals of 10 seconds</strong>, each showing on bursting <strong>red and green lights or stars</strong>, indicate to an unauthorised aircraft that it is flying in or about to enter a restricted, prohibited, or danger area, and that it is to take such remedial action as may be necessary.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 23 -->
+<div id="s23">
+<div class="section-header"><span class="icon">🛡️</span> 23. ADIZ (Air Defense Identification Zone) &amp; Air Defense Clearance (ADC)</div>
+<div class="section-body">
+
+  <div class="def-box">
+    <div class="box-title">📘 ADIZ ZONES IN INDIA</div>
+    <p>Air Defense Identification Zones (ADIZ) have been established for air defense clearance:</p>
+    <ul>
+      <li><strong>ADIZ North, South, East, West, Central, and Sub-ADIZ South East</strong></li>
+    </ul>
+  </div>
+
+  <div class="sop-box">
+    <div class="box-title">✅ WHEN IS ADC REQUIRED?</div>
+    <p>Except local flights within <strong>5 NM radius</strong> centred at ARP and vertical limits of <strong>1,000 ft AGL</strong> of an aerodrome: aircraft operating to, through, or within the ADIZ shall obtain <strong>Air Defense Clearance (ADC) before take-off</strong>, through the ATC concerned.</p>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <tr><th>ADC Rule</th><th>Details</th></tr>
+      <tr><td>ADC validity — Scheduled/RPL/FPL</td><td><strong>(-) 15 minutes to (+) 45 minutes of EOBT</strong></td></tr>
+      <tr class="highlight-row"><td>ADC validity — Non-scheduled domestic</td><td><strong>(-) 15 minutes to (+) 3 hours of EOBT</strong></td></tr>
+      <tr><td>ADC route validity</td><td>Valid for the <strong>entire route, irrespective of intermediate halts</strong> for flights originating in one ADIZ/FIR and transiting through other ADIZ/FIR</td></tr>
+      <tr><td>All flights entering Indian airspace</td><td>Shall obtain ADC before entering ADIZ from respective FIC, <strong>ten minutes prior to entering Indian airspace</strong></td></tr>
+      <tr><td>Communication difficulty at departure</td><td>Aircraft with radio may take off with instructions to obtain ADC immediately after airborne from FIC concerned</td></tr>
+      <tr><td>Flying Club aircraft (no ATC at aerodrome)</td><td>May obtain ADC from nearest IAF ATC Unit; IAF ATC will advise FIC concerned</td></tr>
+      <tr><td>Same-day return flight</td><td>ADC can be issued for return flight also; however, a <strong>fresh ADC is required if delay exceeds 30 minutes</strong> from estimated departure time</td></tr>
+    </table>
+  </div>
+
+  <div class="pill-row">
+    <div class="pill">Exemption radius: <span class="pill-val">5 NM / 1000 ft AGL</span></div>
+    <div class="pill">Scheduled ADC validity: <span class="pill-val">-15 to +45 min EOBT</span></div>
+    <div class="pill">Non-scheduled ADC validity: <span class="pill-val">-15 min to +3 hr EOBT</span></div>
+    <div class="pill">Entry timing: <span class="pill-val">10 min before entering Indian airspace</span></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 24 -->
+<div id="s24">
+<div class="section-header"><span class="icon">🚦</span> 24. Aerodrome Light and Pyrotechnic Signals (Tower to Aircraft)</div>
+<div class="section-body">
+
+  <div class="diagram-container">
+    <div class="diagram-title">💡 LIGHT GUN SIGNALS — Tower to Aircraft (Table)</div>
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>Light Signal</th>
+          <th>Aircraft IN FLIGHT</th>
+          <th>Aircraft ON GROUND</th>
+        </tr>
+        <tr class="safe-row">
+          <td><strong>🟢 Steady GREEN</strong></td>
+          <td><strong>Cleared to LAND</strong></td>
+          <td><strong>Cleared for TAKEOFF</strong></td>
+        </tr>
+        <tr class="danger-row">
+          <td><strong>🔴 Steady RED</strong></td>
+          <td>Give way to other aircraft and continue circling</td>
+          <td><strong>STOP</strong></td>
+        </tr>
+        <tr>
+          <td><strong>🟢 Series of GREEN flashes</strong></td>
+          <td>Return for landing* (clearances will be given in due course)</td>
+          <td>Cleared to TAXI</td>
+        </tr>
+        <tr class="danger-row">
+          <td><strong>🔴 Series of RED flashes</strong></td>
+          <td>Aerodrome unsafe — <strong>DO NOT LAND</strong></td>
+          <td>Taxi clear of landing area in use</td>
+        </tr>
+        <tr>
+          <td><strong>⬜ Series of WHITE flashes</strong></td>
+          <td>Land at this aerodrome and proceed to apron* (clearances will be given in due course)</td>
+          <td>Return to starting point on the aerodrome</td>
+        </tr>
+        <tr class="danger-row">
+          <td><strong>🔴 Red PYROTECHNIC</strong></td>
+          <td>Notwithstanding any previous instructions — <strong>DO NOT LAND for the time being</strong></td>
+          <td>—</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="sub-header">✋ Aircraft Acknowledgement of Light Signals</div>
+  <div class="sop-box">
+    <div class="box-title">✅ HOW AN AIRCRAFT ACKNOWLEDGES LIGHT SIGNALS</div>
+    <div class="table-container">
+      <table>
+        <tr><th>Aircraft State</th><th>Daylight</th><th>Hours of Darkness</th></tr>
+        <tr><td>In flight</td><td>Rock the wings</td><td>Flash on/off landing lights twice OR switch nav lights on/off twice</td></tr>
+        <tr><td>On the ground</td><td>Move ailerons or rudder</td><td>Flash on/off landing lights twice OR switch nav lights on/off twice</td></tr>
+      </table>
+    </div>
+    <div class="note-box"><strong>Note:</strong> Wing rocking signal should NOT be expected on the base and final legs of the approach.</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 25 -->
+<div id="s25">
+<div class="section-header"><span class="icon">🏁</span> 25. Visual Ground Signals</div>
+<div class="section-body">
+
+  <div class="signal-grid">
+    <div class="signal-card sc-red">
+      <div class="card-head">🔴 PROHIBITION OF LANDING</div>
+      <div class="card-body">
+        <p><strong>Signal:</strong> Horizontal RED square panel with YELLOW diagonals (X pattern)</p>
+        <p style="margin-top:6px;"><strong>Meaning:</strong> Landings are prohibited and the prohibition is liable to be prolonged</p>
+      </div>
+    </div>
+    <div class="signal-card sc-amber">
+      <div class="card-head">🟡 SPECIAL PRECAUTIONS WHILE LANDING</div>
+      <div class="card-body">
+        <p><strong>Signal:</strong> Horizontal RED square panel with ONE yellow diagonal</p>
+        <p style="margin-top:6px;"><strong>Meaning:</strong> Owing to bad state of the manoeuvring area or for any other reason, special precautions must be observed in approaching to land or in landing</p>
+      </div>
+    </div>
+    <div class="signal-card sc-white">
+      <div class="card-head">⬜ USE RUNWAYS AND TAXIWAYS ONLY</div>
+      <div class="card-body">
+        <p><strong>Signal:</strong> Horizontal WHITE DUMBBELL</p>
+        <p style="margin-top:6px;"><strong>Meaning:</strong> Aircraft are required to land, take off, and taxi on runways and taxiways only</p>
+      </div>
+    </div>
+    <div class="signal-card sc-white">
+      <div class="card-head">⬜ RUNWAYS ONLY (Other manoeuvres not confined)</div>
+      <div class="card-body">
+        <p><strong>Signal:</strong> White dumbbell with a BLACK BAR perpendicular to shaft across each circular portion</p>
+        <p style="margin-top:6px;"><strong>Meaning:</strong> Aircraft required to land and take off on runways only, but other manoeuvres need not be confined to runways and taxiways</p>
+      </div>
+    </div>
+    <div class="signal-card sc-red">
+      <div class="card-head">🔴 CLOSED RUNWAYS OR TAXIWAYS</div>
+      <div class="card-body">
+        <p><strong>Signal:</strong> Crosses of a single contrasting colour — WHITE or YELLOW — displayed horizontally on runways and taxiways</p>
+        <p style="margin-top:6px;"><strong>Meaning:</strong> Area unfit for movement of aircraft</p>
+      </div>
+    </div>
+    <div class="signal-card sc-amber">
+      <div class="card-head">🟠 DIRECTION FOR LANDING/TAKEOFF</div>
+      <div class="card-body">
+        <p><strong>Signal:</strong> Horizontal white or orange landing "T"</p>
+        <p style="margin-top:6px;"><strong>Meaning:</strong> Indicates direction to be used by aircraft for landing and take-off (parallel to shaft, towards cross arm). At night: illuminated or outlined in white lights.</p>
+      </div>
+    </div>
+    <div class="signal-card sc-amber">
+      <div class="card-head">🟡 DIRECTION FOR TAKEOFF (Digits)</div>
+      <div class="card-body">
+        <p><strong>Signal:</strong> A set of two digits displayed vertically at/near aerodrome control tower — Yellow background</p>
+        <p style="margin-top:6px;"><strong>Meaning:</strong> Indicates direction for takeoff, expressed in units of 10 degrees to the nearest 10 degrees of the magnetic compass</p>
+        <p style="margin-top:6px;"><em>Example: "12" = 120° magnetic</em></p>
+      </div>
+    </div>
+    <div class="signal-card sc-white">
+      <div class="card-head">➡️ RIGHT HAND TRAFFIC</div>
+      <div class="card-body">
+        <p><strong>Signal:</strong> Right-hand arrow of conspicuous colour displayed in signal area or horizontally at end of runway/strip in use</p>
+        <p style="margin-top:6px;"><strong>Meaning:</strong> Turns are to be made to the RIGHT before landing and after take-off</p>
+      </div>
+    </div>
+    <div class="signal-card sc-amber">
+      <div class="card-head">🟡 ATS REPORTING OFFICE</div>
+      <div class="card-body">
+        <p><strong>Signal:</strong> Letter "C" displayed vertically in BLACK against a YELLOW background</p>
+        <p style="margin-top:6px;"><strong>Meaning:</strong> Indicates the location of the air traffic services reporting office</p>
+      </div>
+    </div>
+    <div class="signal-card sc-white">
+      <div class="card-head">✚ GLIDER FLIGHTS IN OPERATION</div>
+      <div class="card-body">
+        <p><strong>Signal:</strong> Double white cross displayed horizontally in the signal area</p>
+        <p style="margin-top:6px;"><strong>Meaning:</strong> Aerodrome is being used by gliders and glider flights are being performed</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 26 -->
+<div id="s26">
+<div class="section-header"><span class="icon">🦺</span> 26. Marshalling Signals &amp; Emergency Hand Signals</div>
+<div class="section-body">
+
+  <div class="def-box">
+    <div class="box-title">📘 SIGNALMAN RULES (DGCA)</div>
+    <ul>
+      <li>No person shall guide an aircraft unless <strong>trained, qualified and approved by DGCA</strong> to carry out the functions of a signalman</li>
+      <li>The signalman shall wear a <strong>distinctive fluorescent identification vest</strong></li>
+      <li><strong>Daylight:</strong> Fluorescent-coloured wands, table-tennis bats, or gloves shall be used</li>
+      <li><strong>Night / Low Visibility:</strong> Illuminated wands shall be used</li>
+      <li>Engines are numbered from right to left from the signalman facing the aircraft (No. 1 = port outer engine)</li>
+      <li>Signals marked (*) are designed for hovering helicopters</li>
+    </ul>
+  </div>
+
+  <div class="marshalling-grid">
+    <div class="marsh-card"><div class="marsh-num">1</div><div class="marsh-title">Wingwalker / Guide</div><div class="marsh-desc">Right hand up with wand pointing up; left hand wand pointing down toward body</div></div>
+    <div class="marsh-card"><div class="marsh-num">2</div><div class="marsh-title">Identify Gate</div><div class="marsh-desc">Raise fully extended arms straight above head with wands pointing up</div></div>
+    <div class="marsh-card"><div class="marsh-num">3</div><div class="marsh-title">Proceed to Next Signalman / Tower</div><div class="marsh-desc">Point both arms upward; move and extend arms outward to side of body; point with wands to direction of next signalman or taxi area</div></div>
+    <div class="marsh-card"><div class="marsh-num">4</div><div class="marsh-title">Straight Ahead</div><div class="marsh-desc">Bend extended arms at elbows and move wands up and down from chest height to head</div></div>
+    <div class="marsh-card"><div class="marsh-num">5a</div><div class="marsh-title">Turn Left (Pilot's POV)</div><div class="marsh-desc">Right arm/wand extended at 90°; make "come ahead" signal with left hand. Rate of signal = rate of turn</div></div>
+    <div class="marsh-card"><div class="marsh-num">5b</div><div class="marsh-title">Turn Right (Pilot's POV)</div><div class="marsh-desc">Left arm/wand extended at 90°; make "come ahead" signal with right hand. Rate of signal = rate of turn</div></div>
+    <div class="marsh-card"><div class="marsh-num">6a</div><div class="marsh-title">Normal Stop</div><div class="marsh-desc">Fully extend arms and wands at 90° to sides; slowly move above head until wands cross</div></div>
+    <div class="marsh-card"><div class="marsh-num">6b</div><div class="marsh-title">Emergency Stop</div><div class="marsh-desc">Abruptly extend arms and wands to top of head, crossing wands</div></div>
+    <div class="marsh-card"><div class="marsh-num">7a</div><div class="marsh-title">Set Brakes</div><div class="marsh-desc">Raise hand just above shoulder height with open palm, ensuring eye contact with flight crew, close hand into a fist. Do not move until "thumbs up" acknowledgment received.</div></div>
+    <div class="marsh-card"><div class="marsh-num">7b</div><div class="marsh-title">Release Brakes</div><div class="marsh-desc">Raise hand just above shoulder height with closed fist; open palm. Do not move until "thumbs up" acknowledgment received.</div></div>
+    <div class="marsh-card"><div class="marsh-num">8a</div><div class="marsh-title">Chocks Inserted</div><div class="marsh-desc">Arms and wands fully extended above head; move wands inward in a jabbing motion until wands touch. Ensure acknowledgment received from flight crew.</div></div>
+    <div class="marsh-card"><div class="marsh-num">8b</div><div class="marsh-title">Chocks Removed</div><div class="marsh-desc">Arms and wands fully extended above head; move wands outward in a jabbing motion. Do not remove chocks until authorised by flight crew.</div></div>
+    <div class="marsh-card"><div class="marsh-num">9</div><div class="marsh-title">Start Engine(s)</div><div class="marsh-desc">Raise right arm to head level with wand pointing up; start circular motion with hand. At same time with left arm raised above head, point to engine to be started.</div></div>
+    <div class="marsh-card"><div class="marsh-num">10</div><div class="marsh-title">Cut Engines</div><div class="marsh-desc">Extend arm with wand forward of body at shoulder level; move hand and wand to top of left shoulder and draw wand to top of right shoulder in a slicing motion across throat.</div></div>
+    <div class="marsh-card"><div class="marsh-num">11</div><div class="marsh-title">Slow Down</div><div class="marsh-desc">Move extended arms downwards in a "patting" gesture; move wands up and down from waist to knees.</div></div>
+    <div class="marsh-card"><div class="marsh-num">12</div><div class="marsh-title">Slow Down Engine(s) on Indicated Side</div><div class="marsh-desc">Arms down, wands toward ground; wave either right or left wand up and down indicating which engine(s) should be slowed down.</div></div>
+    <div class="marsh-card"><div class="marsh-num">13</div><div class="marsh-title">Move Back</div><div class="marsh-desc">Arms in front of body at waist height; rotate arms in a forward motion. To stop rearward movement, use Signals 6a or 6b.</div></div>
+    <div class="marsh-card"><div class="marsh-num">14a</div><div class="marsh-title">Turn While Backing (Tail to Starboard)</div><div class="marsh-desc">Point left arm with wand down; bring right arm from overhead vertical position to horizontal forward position, repeating right-arm movement.</div></div>
+    <div class="marsh-card"><div class="marsh-num">14b</div><div class="marsh-title">Turn While Backing (Tail to Port)</div><div class="marsh-desc">Point right arm with wand down; bring left arm from overhead vertical position to horizontal forward position, repeating left-arm movement.</div></div>
+    <div class="marsh-card"><div class="marsh-num">15</div><div class="marsh-title">Affirmative / All Clear</div><div class="marsh-desc">Raise right arm to head level with wand pointing up OR display hand with "thumbs up"; left arm remains at side by knee. Also used as a technical/servicing communication signal.</div></div>
+    <div class="marsh-card"><div class="marsh-num">*16</div><div class="marsh-title">Hover (Helicopter)</div><div class="marsh-desc">Fully extend arms and wands at a 90° angle to sides.</div></div>
+    <div class="marsh-card"><div class="marsh-num">*17</div><div class="marsh-title">Move Upwards (Helicopter)</div><div class="marsh-desc">Fully extend arms and wands at 90° to sides with palms turned up; move hands upwards. Speed of movement indicates rate of ascent.</div></div>
+    <div class="marsh-card"><div class="marsh-num">*18</div><div class="marsh-title">Move Downwards (Helicopter)</div><div class="marsh-desc">Fully extend arms and wands at 90° to sides with palms turned down; move hands downwards. Speed of movement indicates rate of descent.</div></div>
+    <div class="marsh-card"><div class="marsh-num">*19a</div><div class="marsh-title">Move Left (Pilot's POV) (Helicopter)</div><div class="marsh-desc">Extend arm horizontally at 90° to right side; move other arm in same direction in a sweeping motion.</div></div>
+    <div class="marsh-card"><div class="marsh-num">*19b</div><div class="marsh-title">Move Right (Pilot's POV) (Helicopter)</div><div class="marsh-desc">Extend arm horizontally at 90° to left side; move other arm in same direction in a sweeping motion.</div></div>
+    <div class="marsh-card"><div class="marsh-num">*20</div><div class="marsh-title">Land (Helicopter)</div><div class="marsh-desc">Cross arms with wands downwards and in front of body.</div></div>
+    <div class="marsh-card"><div class="marsh-num">21</div><div class="marsh-title">Hold Position / Stand-by</div><div class="marsh-desc">Fully extend arms and wands downwards at a 45° angle to sides. Hold position until aircraft is clear for next manoeuvre.</div></div>
+    <div class="marsh-card"><div class="marsh-num">22</div><div class="marsh-title">Dispatch Aircraft</div><div class="marsh-desc">Perform a standard salute with right hand and/or wand. Maintain eye contact with flight crew until aircraft has begun to taxi.</div></div>
+    <div class="marsh-card"><div class="marsh-num">23</div><div class="marsh-title">Do Not Touch Controls (Technical)</div><div class="marsh-desc">Extend right arm fully above head and close fist or hold wand in horizontal position; left arm remains at side by knee.</div></div>
+    <div class="marsh-card"><div class="marsh-num">24</div><div class="marsh-title">Connect Ground Power (Technical)</div><div class="marsh-desc">Hold arms fully extended above head; open left hand horizontally and move finger tips of right hand into and touch the open palm of left hand (forming a "T"). At night, illuminated wands can also be used.</div></div>
+    <div class="marsh-card"><div class="marsh-num">25</div><div class="marsh-title">Disconnect Power (Technical)</div><div class="marsh-desc">Hold arms fully extended above head with finger tips of right hand touching open horizontal palm of left (forming "T"), then move right hand away from left. Do not disconnect power until authorised by flight crew.</div></div>
+    <div class="marsh-card"><div class="marsh-num">26</div><div class="marsh-title">Negative (Technical)</div><div class="marsh-desc">Hold right arm straight out at 90° from shoulder; point wand to ground or display hand with "thumbs down"; left hand remains at side by knee.</div></div>
+    <div class="marsh-card"><div class="marsh-num">27</div><div class="marsh-title">Establish Interphone (Technical)</div><div class="marsh-desc">Extend both arms at 90° from body and move hands to cup both ears.</div></div>
+    <div class="marsh-card"><div class="marsh-num">28</div><div class="marsh-title">Open/Close Stairs (Technical)</div><div class="marsh-desc">Right arm at side; left arm raised above head at 45°; move right arm in a sweeping motion towards top of left shoulder. Intended mainly for aircraft with integral stairs at the front.</div></div>
+  </div>
+
+  <div class="sub-header">🚒 Standard Emergency Hand Signals (ARFF to Cockpit/Cabin)</div>
+  <div class="def-box">
+    <div class="box-title">📘 ARFF EMERGENCY SIGNALS</div>
+    <p>These are the minimum required signals for emergency communication between the <strong>ARFF incident commander/firefighters</strong> and the cockpit and/or cabin crews of the incident aircraft. Given from the <strong>left front side of the aircraft for the cockpit crew.</strong></p>
+  </div>
+  <div class="marshalling-grid">
+    <div class="marsh-card"><div class="marsh-num">E1</div><div class="marsh-title">Recommend Evacuation</div><div class="marsh-desc">Arm extended from body and held horizontal with hand upraised at eye level. Execute beckoning arm motion angled backward. Non-beckoning arm held against body. Night: same with wands.</div></div>
+    <div class="marsh-card"><div class="marsh-num">E2</div><div class="marsh-title">Recommended Stop (Stop Evacuation)</div><div class="marsh-desc">Arms in front of head — crossed at wrists. Night: same with wands.</div></div>
+    <div class="marsh-card"><div class="marsh-num">E3</div><div class="marsh-title">Emergency Contained ("All Clear")</div><div class="marsh-desc">Arms extended outward and down at 45°; arms moved inward below waistline simultaneously until wrists crossed, then extended outward (umpire's "safe" signal). Night: same with wands.</div></div>
+    <div class="marsh-card"><div class="marsh-num">E4</div><div class="marsh-title">Fire</div><div class="marsh-desc">Move right hand wand in a "fanning" motion from shoulder to knee, while at same time pointing with left-hand wand to area of fire.</div></div>
+  </div>
+
+  <div class="sub-header">🧑‍✈️ From Pilot to Signalman Signals</div>
+  <div class="signal-grid">
+    <div class="signal-card sc-green">
+      <div class="card-head">Brakes</div>
+      <div class="card-body">
+        <p><strong>Brakes Engaged:</strong> Raise arm and hand, with fingers extended, horizontally in front of face, then <strong>clench fist.</strong></p>
+        <p style="margin-top:6px;"><strong>Brakes Released:</strong> Raise arm, with fist clenched, horizontally in front of face, then <strong>extend fingers.</strong></p>
+      </div>
+    </div>
+    <div class="signal-card sc-amber">
+      <div class="card-head">Chocks</div>
+      <div class="card-body">
+        <p><strong>Insert Chocks:</strong> Arms extended, palms outwards, move hands <strong>inwards</strong> to cross in front of face.</p>
+        <p style="margin-top:6px;"><strong>Remove Chocks:</strong> Hands crossed in front of face, palms outwards, move arms <strong>outwards.</strong></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 27 -->
+<div id="s27">
+<div class="section-header"><span class="icon">🔢</span> 27. Table of Cruising Levels (RVSM &amp; NON-RVSM)</div>
+<div class="section-body">
+
+  <div class="def-box">
+    <div class="box-title">📘 CVSM vs RVSM</div>
+    <ul>
+      <li><strong>CVSM (Conventional VSM) / Non-RVSM:</strong> General vertical separation minimum applied everywhere. Separation = 2,000 ft (same direction below FL290)</li>
+      <li><strong>RVSM (Reduced VSM):</strong> 300 m (1,000 ft) applied between <strong>FL 290 and FL 410 inclusive</strong>. RVSM is applied in <strong>Indian airspace</strong> per the table.</li>
+      <li>In RVSM airspace (FL290–FL410): VFR flights are <strong>NOT allowed.</strong></li>
+      <li>Above RVSM airspace (&gt;FL410): Separation doubles again.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container">
+    <div class="diagram-title">📐 SEMI-CIRCULAR RULE — CRUISING LEVELS (MNEMONIC DIAGRAM)</div>
+    <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:auto;">
+      <!-- Background -->
+      <rect x="0" y="0" width="680" height="320" fill="#f8f9fc" rx="10"/>
+
+      <!-- Title row -->
+      <text x="340" y="25" text-anchor="middle" font-size="13" font-weight="800" fill="#0d1b4b">BELOW FL290 — CVSM (Non-RVSM Airspace)</text>
+
+      <!-- Compass circle left half (000–179 = Odd/Even IFR) -->
+      <circle cx="170" cy="175" r="120" fill="white" stroke="#1a3a7a" stroke-width="2"/>
+      <!-- Left semi -->
+      <path d="M170,55 A120,120 0 0,0 170,295" fill="#d6eaf8" stroke="none"/>
+      <!-- Right semi -->
+      <path d="M170,55 A120,120 0 0,1 170,295" fill="#d5f5e3" stroke="none"/>
+      <!-- Dividing line -->
+      <line x1="170" y1="55" x2="170" y2="295" stroke="#0d1b4b" stroke-width="2" stroke-dasharray="6,3"/>
+
+      <!-- Labels inside circle -->
+      <text x="100" y="160" text-anchor="middle" font-size="10" font-weight="700" fill="#1a5276">000°–179°</text>
+      <text x="100" y="173" text-anchor="middle" font-size="9" fill="#1a5276">IFR: ODD</text>
+      <text x="100" y="186" text-anchor="middle" font-size="9" fill="#1a5276">(010,030...)</text>
+      <text x="100" y="202" text-anchor="middle" font-size="9" fill="#c0392b">VFR: ODD+500'</text>
+
+      <text x="240" y="160" text-anchor="middle" font-size="10" font-weight="700" fill="#1e8449">180°–359°</text>
+      <text x="240" y="173" text-anchor="middle" font-size="9" fill="#1e8449">IFR: EVEN</text>
+      <text x="240" y="186" text-anchor="middle" font-size="9" fill="#1e8449">(020,040...)</text>
+      <text x="240" y="202" text-anchor="middle" font-size="9" fill="#c0392b">VFR: EVEN+500'</text>
+
+      <!-- North/South labels -->
+      <text x="170" y="48" text-anchor="middle" font-size="11" font-weight="800" fill="#0d1b4b">000° / 359°</text>
+      <text x="170" y="310" text-anchor="middle" font-size="11" font-weight="800" fill="#0d1b4b">180° / 179°</text>
+
+      <!-- RVSM explanation right side -->
+      <rect x="360" y="50" width="300" height="240" rx="10" fill="white" stroke="#c0392b" stroke-width="2"/>
+      <text x="510" y="72" text-anchor="middle" font-size="12" font-weight="800" fill="#c0392b">AT &amp; ABOVE FL290 — RVSM</text>
+      <text x="510" y="88" text-anchor="middle" font-size="10" fill="#555">(FL290 to FL410 — India)</text>
+
+      <!-- RVSM table inside -->
+      <text x="375" y="112" font-size="10" font-weight="700" fill="#0d1b4b">Track 000°–179°</text>
+      <text x="375" y="128" font-size="9" fill="#1a5276">IFR: ODD (up to FL400)</text>
+      <text x="375" y="143" font-size="9" fill="#1a5276">Then: 430, 470 etc.</text>
+      <text x="375" y="158" font-size="9" fill="#c0392b">VFR: NOT ALLOWED</text>
+
+      <text x="510" y="112" font-size="10" font-weight="700" fill="#0d1b4b">Track 180°–359°</text>
+      <text x="510" y="128" font-size="9" fill="#1e8449">IFR: EVEN (up to FL410)</text>
+      <text x="510" y="143" font-size="9" fill="#1e8449">Then: 450, 490 etc.</text>
+      <text x="510" y="158" font-size="9" fill="#c0392b">VFR: NOT ALLOWED</text>
+
+      <line x1="375" y1="170" x2="645" y2="170" stroke="#ccc" stroke-width="1"/>
+
+      <text x="510" y="190" text-anchor="middle" font-size="10" font-weight="700" fill="#6c3483">SEPARATION RULES</text>
+      <text x="375" y="208" font-size="9.5" fill="#0d1b4b">Below FL290: Same direction = 2000'</text>
+      <text x="375" y="224" font-size="9.5" fill="#0d1b4b">Below FL290: Reciprocal = 1000'</text>
+      <text x="375" y="240" font-size="9.5" fill="#0d1b4b">IFR–VFR (both ways) = 500'</text>
+      <text x="375" y="258" font-size="9" fill="#c0392b">RVSM: Same dir = 2000' | Recip = 1000'</text>
+      <text x="375" y="274" font-size="9" fill="#c0392b">Above RVSM: doubles</text>
+    </svg>
+  </div>
+
+  <div class="formula-box">
+    <div class="box-title">🔑 SEMI-CIRCULAR RULE — MEMORY TABLE</div>
+    <div class="table-container">
+      <table>
+        <tr><th>Airspace</th><th>Flight Level</th><th>Magnetic Track 000°–179°</th><th>Magnetic Track 180°–359°</th></tr>
+        <tr class="cr-ifr"><td>CVSM (Non-RVSM)</td><td>Below FL290</td><td><strong>IFR:</strong> Odd (FL010, 030, 050...FL280)<br><strong>VFR:</strong> Odd + 500 ft (FL045, 065, 085...FL275)</td><td><strong>IFR:</strong> Even (FL020, 040, 060...FL290-)<br><strong>VFR:</strong> Even + 500 ft (FL035, 055, 075...FL285)</td></tr>
+        <tr class="cr-ifr"><td>RVSM (India)</td><td>FL290 to FL410</td><td><strong>IFR:</strong> Odd up to FL400, then FL430, 470... <br><strong>VFR:</strong> N/A</td><td><strong>IFR:</strong> Even up to FL410, then FL450, 490... <br><strong>VFR:</strong> N/A</td></tr>
+        <tr class="danger-row"><td>CVSM Above RVSM</td><td>Above FL410</td><td>IFR: Odd(290, 330, 390, 430 etc.)<br>VFR: Alternate Even</td><td>IFR: Odd(290, 330, 370, 410 etc.)<br>VFR: Alternate Even</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>RVSM separation note:</strong> Minimum separation in airspaces below FL290 between IFR flights in the same direction is <strong>2,000 ft</strong> and in reciprocal direction <strong>1,000 ft</strong>. Minimum separation between IFR and VFR both ways is <strong>500 ft</strong>. Above FL290 in RVSM, separation is <strong>2,000 ft same direction and 1,000 ft reciprocal direction</strong>. Above RVSM airspace it doubles.
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 28 -->
+<div id="s28">
+<div class="section-header"><span class="icon">🔦</span> 28. Navigation Lights &amp; Right of Way at Night</div>
+<div class="section-body">
+
+  <div class="diagram-container">
+    <div class="diagram-title">💡 AEROPLANE NAVIGATION LIGHT GEOMETRY</div>
+    <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;display:block;margin:auto;">
+      <!-- Aircraft body -->
+      <ellipse cx="300" cy="200" rx="18" ry="60" fill="#2c3e50" />
+      <!-- Wings -->
+      <polygon points="300,210 100,240 100,250 300,235" fill="#7f8c8d" />
+      <polygon points="300,210 500,240 500,250 300,235" fill="#7f8c8d" />
+      <!-- Tail -->
+      <polygon points="290,140 310,140 305,175 295,175" fill="#7f8c8d" />
+
+      <!-- Red light arc - PORT (left wing) -->
+      <path d="M300,200 L100,60 A220,220 0 0,1 100,340 Z" fill="rgba(220,50,50,0.15)" stroke="none"/>
+      <!-- Green light arc - STARBOARD (right wing) -->
+      <path d="M300,200 L500,60 A220,220 0 0,0 500,340 Z" fill="rgba(40,180,50,0.15)" stroke="none"/>
+      <!-- White light arc - REAR -->
+      <path d="M300,140 L100,200 A150,150 0 1,0 500,200 Z" fill="rgba(255,255,255,0.12)" stroke="none"/>
+
+      <!-- Light indicators -->
+      <circle cx="105" cy="235" r="15" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+      <text x="105" y="240" text-anchor="middle" font-size="9" font-weight="700" fill="white">RED</text>
+
+      <circle cx="495" cy="235" r="15" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+      <text x="495" y="240" text-anchor="middle" font-size="9" font-weight="700" fill="white">GRN</text>
+
+      <circle cx="300" cy="130" r="15" fill="white" stroke="#bdc3c7" stroke-width="2"/>
+      <text x="300" y="135" text-anchor="middle" font-size="8" font-weight="700" fill="#555">WHT</text>
+
+      <!-- Angle labels -->
+      <text x="55" y="100" font-size="10" font-weight="700" fill="#c0392b">PORT (Left)</text>
+      <text x="55" y="114" font-size="10" fill="#c0392b">110° coverage</text>
+
+      <text x="450" y="100" font-size="10" font-weight="700" fill="#27ae60">STBD (Right)</text>
+      <text x="450" y="114" font-size="10" fill="#27ae60">110° coverage</text>
+
+      <text x="260" y="55" font-size="10" font-weight="700" fill="#555">WHITE (Rear)</text>
+      <text x="255" y="69" font-size="10" fill="#555">140° coverage</text>
+
+      <!-- Memory aid boxes -->
+      <rect x="30" y="275" width="180" height="38" rx="6" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="120" y="292" text-anchor="middle" font-size="9.5" font-weight="700" fill="#c0392b">See RED → Give way</text>
+      <text x="120" y="306" text-anchor="middle" font-size="9" fill="#555">(other's starboard side)</text>
+
+      <rect x="395" y="275" width="180" height="38" rx="6" fill="#d5f5e3" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="485" y="292" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e8449">See GREEN → Safe</text>
+      <text x="485" y="306" text-anchor="middle" font-size="9" fill="#555">(other's port side)</text>
+    </svg>
+  </div>
+
+  <div class="table-container" style="margin-top:14px;">
+    <table>
+      <tr><th>Navigation Light</th><th>Coverage Angle</th><th>Position</th><th>Night Right-of-Way Rule</th></tr>
+      <tr><td><strong>🔴 Red</strong></td><td>110° projected L + R of horizontal plane</td><td>Port (left) wing</td><td rowspan="3">If the light is <strong>NOT moving relative</strong> to you = risk of collision</td></tr>
+      <tr><td><strong>🟢 Green</strong></td><td>110° projected L + R of horizontal plane</td><td>Starboard (right) wing</td></tr>
+      <tr><td><strong>⬜ White</strong></td><td>140° rearward (70° each side)</td><td>Tail</td></tr>
+    </table>
+  </div>
+
+  <div class="sub-header">🌙 Right of Way at Night — What You See</div>
+  <div class="table-container">
+    <table>
+      <tr><th>What You See (Not Moving)</th><th>Other Aircraft Position</th><th>Action Required</th></tr>
+      <tr class="danger-row"><td><strong>RED + GREEN together</strong></td><td>Coming directly HEAD-ON at you</td><td>⚠️ BOTH alter heading RIGHT</td></tr>
+      <tr><td><strong>RED + WHITE</strong></td><td>Moving from right to left (you see their port side)</td><td>Give way (you are on their right — converging rule)</td></tr>
+      <tr class="safe-row"><td><strong>GREEN + WHITE</strong></td><td>Moving from left to right (you see their starboard side)</td><td>YOU HAVE RIGHT OF WAY</td></tr>
+      <tr><td><strong>WHITE only</strong></td><td>Flying away from you</td><td>Monitor; you may be overtaking</td></tr>
+      <tr class="safe-row"><td><strong>GREEN to GREEN</strong></td><td>Passing port to port (safe)</td><td>Safe passage</td></tr>
+      <tr class="safe-row"><td><strong>RED to RED</strong></td><td>Passing starboard to starboard (safe)</td><td>Safe passage</td></tr>
+      <tr class="danger-row"><td><strong>GREEN to RED</strong></td><td>Crossing paths — unsafe</td><td>⚠️ Collision risk — take action</td></tr>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <div class="box-title">💡 STUDENT TIP — RED/GREEN MEMORY AID</div>
+    <p><strong>"If you see RED — you could be DEAD"</strong> — The red light is on the other aircraft's port (left) side. This means the other aircraft is crossing from your right to your left. Under converging rules, the one with the other on its RIGHT gives way — so that's <strong>YOU</strong>. Give way!</p>
+    <p style="margin-top:6px;"><strong>Navigation lights CANNOT be seen from the rear</strong> — white only means the aircraft is ahead of or flying away from you.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 29 -->
+<div id="s29">
+<div class="section-header"><span class="icon">⛔</span> 29. Unlawful Interference</div>
+<div class="section-body">
+
+  <div class="sop-box">
+    <div class="box-title">✅ WHEN UNABLE TO PROCEED PER RULES (HIJACKING/UNLAWFUL INTERFERENCE)</div>
+    <p>If the PIC cannot proceed to an aerodrome in accordance with the rules, he/she should attempt to continue flying on the <strong>assigned track</strong> and at the <strong>assigned cruising level</strong> at least until able to notify an ATS unit or until within radar or ADS-B coverage.</p>
+    <p style="margin-top:8px;">When an aircraft subjected to unlawful interference must depart from its assigned track or level <strong>without being able to make radiotelephony contact with ATS</strong>, the PIC should, whenever possible:</p>
+    <ul>
+      <li>a) Attempt to broadcast warnings on the <strong>VHF channel in use or the VHF emergency frequency</strong>, and other appropriate channels; use transponders and data links when advantageous</li>
+      <li>b) Proceed in accordance with applicable <strong>special procedures for in-flight contingencies</strong> (Doc 7030 Regional Supplementary Procedures)</li>
+      <li>c) If no regional procedures, proceed at a level which differs from the cruising levels normally used for IFR flight by:
+        <ul>
+          <li>1) <strong>150 m (500 ft)</strong> in an area where a vertical separation minimum of 300 m (1,000 ft) is applied</li>
+          <li>2) <strong>300 m (1,000 ft)</strong> in an area where a vertical separation minimum of 600 m (2,000 ft) is applied</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="pill-row">
+    <div class="pill">In RVSM area: depart cruising level by <span class="pill-val">±500 ft (150m)</span></div>
+    <div class="pill">In CVSM area: depart cruising level by <span class="pill-val">±1000 ft (300m)</span></div>
+    <div class="pill">Squawk: <span class="pill-val">7500 (Hijack)</span></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ SECTION 30 -->
+<div id="s30" class="page-break">
+<div class="section-header"><span class="icon">📝</span> 30. Practice Questions &amp; Answer Key</div>
+<div class="section-body">
+
+  <div class="tip-box">
+    <div class="box-title">💡 EXAM TIPS FROM CAPT. PANKAJ PAHIL</div>
+    <ul>
+      <li>High-frequency exam topics: VMC minima table, cruising levels, RCF procedures, light gun signals, interception signals, right-of-way rules</li>
+      <li>Numbers to memorise: acrobatics min height (600m/2000ft), RVSM range (FL290–FL410), RCF non-radar time (20 min), RCF radar time (7 min), special VFR min visibility (1500m fixed, 1000m helicopters)</li>
+      <li>Watch for trick questions on VFR ceiling/visibility in control zones: ceiling &lt;450m (1500ft) OR visibility &lt;5km</li>
+    </ul>
+  </div>
+
+  <div class="mcq-container">
+    <div class="mcq-q">Q1. Where State has not established minimum IFR altitudes, the minimum height of an aircraft above the highest obstacle over high terrain or mountainous areas shall be:</div>
+    <ol class="mcq-options" type="A">
+      <li class="correct-ans">✓ A) At least 2,000 ft within 8 km of the estimated position</li>
+      <li>B) At least 1,000 ft within 8 km of the estimated position</li>
+      <li>C) At least 2,000 ft within 5 km of the estimated position</li>
+    </ol>
+
+    <div class="mcq-q">Q2. Aircraft wishing to conduct IFR flight within advisory airspace, but not electing to use the air traffic advisory service:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) Need to file a flight plan</li>
+      <li>B) Shall nevertheless submit a flight plan but changes thereto are not necessary to be notified</li>
+      <li class="correct-ans">✓ C) Shall nevertheless submit a FP and notify changes to the ATS unit providing that service</li>
+    </ol>
+
+    <div class="mcq-q">Q3. The white dumb-bell with black perpendicular bar indicates that:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) Taxiing need not be confined to the taxiways</li>
+      <li>B) Glider flying is performed outside the landing area</li>
+      <li class="correct-ans">✓ C) Landing, take-off and taxiing is allowed on runway and/or taxiway only</li>
+    </ol>
+
+    <div class="mcq-q">Q4. Your aircraft is intercepted by a military aircraft. The signals given by this aircraft conflict with ATC instructions. You should:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) Select code 7500 on your transponder</li>
+      <li>B) Follow ATC instructions</li>
+      <li class="correct-ans">✓ C) Follow the instructions of the intercepting aircraft</li>
+    </ol>
+
+    <div class="mcq-q">Q5. An aircraft subjected to unlawful interference forced to deviate from the cleared track/level without radio contact shall try to:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) Fly the emergency triangle</li>
+      <li class="correct-ans">✓ B) Continue at an altitude that differs from the semicircular rule with 1,000 ft when above FL 290 and 500 ft when lower than FL 290</li>
+      <li>C) Commence emergency descent</li>
+    </ol>
+
+    <div class="mcq-q">Q6. An aircraft manoeuvring in an airport's circuit receives a series of red flashes from the control tower. This signifies that the aircraft must:</div>
+    <ol class="mcq-options" type="A">
+      <li class="correct-ans">✓ A) Not land for the moment regardless of previous instructions</li>
+      <li>B) Return to land and clearance to land will be communicated in due course</li>
+      <li>C) Not land because the airport is not available for landing</li>
+    </ol>
+
+    <div class="mcq-q">Q7. Whilst flying in an aerodrome's traffic circuit, an aircraft receives a series of green flashes from the tower. The aircraft:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) Is cleared to land</li>
+      <li>B) Must land immediately and clear the landing area</li>
+      <li class="correct-ans">✓ C) Must come back to land and the landing clearance will be sent in due time</li>
+    </ol>
+
+    <div class="mcq-q">Q8. Except when a clearance is obtained from an ATC unit, a VFR flight CANNOT enter or leave a control zone when ceiling is less than:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) 2,000 ft or visibility less than 5 km</li>
+      <li>B) 1,000 ft or visibility less than 5 km</li>
+      <li class="correct-ans">✓ C) 1,500 ft (450m) or visibility less than 5 km</li>
+    </ol>
+
+    <div class="mcq-q">Q9. Which of the following flights has the greatest priority to land?</div>
+    <ol class="mcq-options" type="A">
+      <li class="correct-ans">✓ A) Emergency aircraft</li>
+      <li>B) Military aircraft</li>
+      <li>C) VIP (Head of State) aircraft</li>
+    </ol>
+
+    <div class="mcq-q">Q10. An aircraft flying above the sea between 4,500 ft MSL and 9,000 ft MSL outside controlled airspace under VFR must remain at least:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) 1,500m horizontally, 1,000 ft vertically from clouds; 8 km visibility</li>
+      <li>B) Clear of clouds and in sight of the surface; 8 km visibility</li>
+      <li class="correct-ans">✓ C) 1,500m horizontally, 1,000 ft vertically from clouds; 5 km visibility</li>
+    </ol>
+
+    <div class="mcq-q">Q11. The VMC minima for airspace classified as "B" above 10,000 ft MSL are:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) 2,000m horizontally, 1,000ft vertically from clouds; 8km visibility</li>
+      <li class="correct-ans">✓ B) 1,500m horizontally, 1,000ft vertically from clouds; 8km visibility</li>
+      <li>C) 1 NM horizontally and 1,000 ft vertically from clouds; 8 km visibility</li>
+    </ol>
+
+    <div class="mcq-q">Q12. The VMC minima for airspace classified as "G" above 10,000 ft MSL are:</div>
+    <ol class="mcq-options" type="A">
+      <li class="correct-ans">✓ A) 1,500m horizontally, 1,000ft vertically from clouds; 8km visibility</li>
+      <li>B) 1 NM horizontally and 1,000 ft vertically from clouds; 8 km visibility</li>
+      <li>C) 1 NM horizontally and 1,000 ft vertically from clouds; 5 km visibility</li>
+    </ol>
+
+    <div class="mcq-q">Q15. Which of the following actions shall be taken in case of a controlled flight deviates from the track?</div>
+    <ol class="mcq-options" type="A">
+      <li class="correct-ans">✓ A) Adjust the heading of the aircraft to regain track as soon as possible</li>
+      <li>B) If VMC, maintain this condition, waiting for ATC instructions</li>
+      <li>C) Notify ATC of the new track immediately and comply with instructions</li>
+    </ol>
+
+    <div class="mcq-q">Q18. An aircraft intercepted by another aircraft shall immediately attempt to establish radio communication with the intercepting aircraft on:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) 121.5 MHz – 282.8 MHz</li>
+      <li>B) 121.5 MHz – 125.5 MHz</li>
+      <li class="correct-ans">✓ C) 121.5 MHz – 243 MHz</li>
+    </ol>
+
+    <div class="mcq-q">Q26. An aircraft is considered to overtake another if it approaches the other from the rear on a line forming an angle of less than:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) 50 degrees with the plane of symmetry of the latter</li>
+      <li class="correct-ans">✓ B) 70 degrees with the plane of symmetry of the latter</li>
+      <li>C) 60 degrees with the plane of symmetry of the latter</li>
+    </ol>
+
+    <div class="mcq-q">Q65. While flying at night, another aircraft reports that you are on his 100 degrees relative bearing. In that case you should see his:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) Red navigation light</li>
+      <li class="correct-ans">✓ B) Green navigation light</li>
+      <li>C) Green and white navigation lights</li>
+    </ol>
+
+    <div class="mcq-q">Q106. ADC validity for non-scheduled domestic flights is:</div>
+    <ol class="mcq-options" type="A">
+      <li>A) (-) 15 minutes to (+) 45 minutes of EOBT in RPL/FPL</li>
+      <li>B) (+) 60 minutes of EOBT in RPL/FPL</li>
+      <li class="correct-ans">✓ C) (-) 15 minutes to (+) 3 hours of EOBT</li>
+    </ol>
+  </div>
+
+  <div class="formula-box" style="margin-top:20px;">
+    <div class="box-title">📋 ANSWER KEY (All 106 Questions from the PDF)</div>
+    <div class="table-container">
+      <table>
+        <tr><td><strong>1-A</strong></td><td><strong>2-C</strong></td><td><strong>3-A</strong></td><td><strong>4-C</strong></td><td><strong>5-B</strong></td><td><strong>6-C</strong></td><td><strong>7-C</strong></td><td><strong>8-C</strong></td><td><strong>9-A</strong></td><td><strong>10-C</strong></td><td><strong>11-B</strong></td><td><strong>12-A</strong></td><td><strong>13-A</strong></td><td><strong>14-A</strong></td></tr>
+        <tr><td>15-A</td><td>16-B</td><td>17-A</td><td>18-C</td><td>19-B</td><td>20-B</td><td>21-C</td><td>22-B</td><td>23-B</td><td>24-B</td><td>25-C</td><td>26-B</td><td>27-A</td><td>28-A</td></tr>
+        <tr><td>29-A</td><td>30-C</td><td>31-C</td><td>32-B</td><td>33-C</td><td>34-C</td><td>35-A</td><td>36-A</td><td>37-B</td><td>38-B</td><td>39-B</td><td>40-A</td><td>41-B</td><td>42-B</td></tr>
+        <tr><td>43-B</td><td>44-B</td><td>45-B</td><td>46-C</td><td>47-B</td><td>48-C</td><td>49-C</td><td>50-B</td><td>51-A</td><td>52-C</td><td>53-B</td><td>54-A</td><td>55-B</td><td>56-A</td></tr>
+        <tr><td>57-B</td><td>58-B</td><td>59-C</td><td>60-A</td><td>61-A</td><td>62-B</td><td>63-A</td><td>64-A</td><td>65-B</td><td>66-C</td><td>67-C</td><td>68-B</td><td>69-B</td><td>70-A</td></tr>
+        <tr><td>71-C</td><td>72-A</td><td>73-B</td><td>74-A</td><td>75-B</td><td>76-C</td><td>77-B</td><td>78-B</td><td>79-B</td><td>80-A</td><td>81-C</td><td>82-C</td><td>83-B</td><td>84-A</td></tr>
+        <tr><td>85-B</td><td>86-A</td><td>87-A</td><td>88-B</td><td>89-B</td><td>90-C</td><td>91-A</td><td>92-A</td><td>93-C</td><td>94-B</td><td>95-A</td><td>96-B</td><td>97-C</td><td>98-C</td></tr>
+        <tr><td>99-B</td><td>100-A</td><td>101-A</td><td>102-B</td><td>103-C</td><td>104-B</td><td>105-A</td><td>106-C</td><td colspan="6"></td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================================================================ QUICK REFERENCE CARD -->
+<div class="section-header" style="margin-top:36px;"><span class="icon">⚡</span> QUICK REFERENCE CARD — Critical Numbers to Memorise</div>
+<div class="section-body">
+  <div class="pill-row">
+    <div class="pill">Acrobatics min height: <span class="pill-val">600m / 2000ft AGL</span></div>
+    <div class="pill">Acrobatics near aerodrome: <span class="pill-val">&lt;2NM prohibited (unless &gt;1800m/6000ft)</span></div>
+    <div class="pill">Formation lateral: <span class="pill-val">≤1km / 0.5NM</span></div>
+    <div class="pill">Formation vertical: <span class="pill-val">≤30m / 100ft</span></div>
+    <div class="pill">VFR ceiling for CTR entry: <span class="pill-val">≥450m / 1500ft</span></div>
+    <div class="pill">VFR visibility for CTR entry: <span class="pill-val">≥5km</span></div>
+    <div class="pill">VFR max altitude: <span class="pill-val">FL150</span></div>
+    <div class="pill">VFR operating hours: <span class="pill-val">-20min SR to +20min SS</span></div>
+    <div class="pill">Night definition: <span class="pill-val">+30min SS to -30min SR</span></div>
+    <div class="pill">VMC visibility above 10,000ft: <span class="pill-val">8km</span></div>
+    <div class="pill">VMC visibility below 10,000ft: <span class="pill-val">5km</span></div>
+    <div class="pill">VMC horizontal cloud distance: <span class="pill-val">1,500m</span></div>
+    <div class="pill">VMC vertical cloud distance: <span class="pill-val">300m / 1,000ft</span></div>
+    <div class="pill">Special VFR fixed-wing: <span class="pill-val">≥1500m vis</span></div>
+    <div class="pill">Special VFR helicopter: <span class="pill-val">≥1000m vis</span></div>
+    <div class="pill">IFR mountains: <span class="pill-val">600m / 2000ft within 8km</span></div>
+    <div class="pill">IFR elsewhere: <span class="pill-val">300m / 1000ft within 8km</span></div>
+    <div class="pill">FP submission: <span class="pill-val">180 min before EOBT</span></div>
+    <div class="pill">FP earliest: <span class="pill-val">120hr before EOBT</span></div>
+    <div class="pill">RPA FP: <span class="pill-val">24hr before ETD</span></div>
+    <div class="pill">FP delay report: <span class="pill-val">≥15min delay → notify ATC</span></div>
+    <div class="pill">UTC clock accuracy: <span class="pill-val">±30 sec</span></div>
+    <div class="pill">Data link time: <span class="pill-val">±1 sec UTC</span></div>
+    <div class="pill">Mach deviation notify: <span class="pill-val">±Mach 0.02 or ±10kt TAS</span></div>
+    <div class="pill">ETA deviation notify: <span class="pill-val">&gt;2 min</span></div>
+    <div class="pill">RCF non-radar hold: <span class="pill-val">20 minutes</span></div>
+    <div class="pill">RCF radar hold: <span class="pill-val">7 minutes</span></div>
+    <div class="pill">RCF land within: <span class="pill-val">30 min of ETA/EAT</span></div>
+    <div class="pill">Squawk RCF: <span class="pill-val">7600</span></div>
+    <div class="pill">Squawk hijack: <span class="pill-val">7500</span></div>
+    <div class="pill">Squawk emergency: <span class="pill-val">7700</span></div>
+    <div class="pill">Emergency frequency: <span class="pill-val">121.5 MHz / 243 MHz</span></div>
+    <div class="pill">RVSM range: <span class="pill-val">FL290–FL410</span></div>
+    <div class="pill">RVSM separation: <span class="pill-val">1000ft same dir, 2000ft recip</span></div>
+    <div class="pill">ADC scheduled: <span class="pill-val">-15 to +45 min EOBT</span></div>
+    <div class="pill">ADC non-scheduled: <span class="pill-val">-15 min to +3hr EOBT</span></div>
+    <div class="pill">ADIZ exemption: <span class="pill-val">5NM / 1000ft AGL</span></div>
+    <div class="pill">Overtaking angle: <span class="pill-val">&lt;70° plane of symmetry</span></div>
+    <div class="pill">Nav lights: PORT RED 110° | STBD GREEN 110° | TAIL WHITE 140°</div>
+    <div class="pill">VFR congested area: <span class="pill-val">≥300m / 1000ft above highest obstacle</span></div>
+    <div class="pill">VFR elsewhere: <span class="pill-val">≥150m / 500ft AGL</span></div>
+  </div>
+</div>
+
+<!-- ================================================================ FOOTER -->
+<div class="footer">
+  <p>📖 <strong>DGCA Rules of the Air — Comprehensive Study Notes</strong></p>
+  <p>Prepared by: <strong>Capt. Pankaj Pahil</strong> | Reference: ICAO Annex 2 | AIP India | CAR Section 9 Series 'C' Part I Issue II | Revision: 12th November 2018</p>
+  <p style="margin-top:6px; font-size:8.5pt;">These notes are for educational purposes for CPL/ATPL examination preparation. Always refer to the original DGCA/ICAO documents for official regulatory guidance.</p>
+</div>
+
+</body>
+</html>

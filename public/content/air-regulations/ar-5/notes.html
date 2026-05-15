@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 6 – Separation Methods & Minima | DGCA CPL/ATPL Study Notes</title>
+<style>
+  /* ===== GOOGLE FONTS ===== */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  /* ===== PAGE / PRINT ===== */
+  @page {
+    size: A4;
+    margin: 18mm 15mm 18mm 15mm;
+  }
+
+  /* ===== CSS VARIABLES ===== */
+  :root {
+    --navy:     #0d1b2a;
+    --navy-mid: #1b2d42;
+    --navy-lt:  #243654;
+    --gold:     #c9a84c;
+    --gold-lt:  #e8c97a;
+    --sky:      #4a9eca;
+    --sky-lt:   #d0eaf7;
+    --mint:     #2e9e6e;
+    --mint-lt:  #d4f5e9;
+    --rose:     #c94a4a;
+    --rose-lt:  #fde8e8;
+    --amber:    #d4860b;
+    --amber-lt: #fff3d4;
+    --purple:   #7b5ea7;
+    --purple-lt:#ede8f5;
+    --text:     #1a2332;
+    --text-lt:  #4a5568;
+    --border:   #c8d8e8;
+    --white:    #ffffff;
+    --off-white:#f4f7fb;
+  }
+
+  /* ===== WATERMARK ===== */
+  body::before {
+    content: "Capt. Pankaj Pahil";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 72px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: var(--navy);
+    opacity: 0.05;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    letter-spacing: 4px;
+  }
+
+  /* ===== BASE ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 400;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--off-white);
+  }
+
+  .page-wrap {
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 10mm 12mm;
+    background: var(--white);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== COVER ===== */
+  .cover {
+    background: linear-gradient(145deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-lt) 100%);
+    border-radius: 12px;
+    padding: 50px 40px 40px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .cover::after {
+    content: "✈";
+    position: absolute;
+    bottom: -20px; right: 20px;
+    font-size: 160px;
+    opacity: 0.06;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .cover .chapter-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .cover h1 span { color: var(--gold-lt); }
+  .cover .subtitle {
+    color: #8aaec8;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .cover .meta-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .cover .meta-pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    padding: 6px 14px;
+    color: #c8daea;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 36px 0 20px;
+    page-break-after: avoid;
+  }
+  .section-header .number {
+    background: var(--navy);
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    border-bottom: 3px solid var(--gold);
+    padding-bottom: 6px;
+    flex: 1;
+  }
+
+  .sub-header {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy-mid);
+    border-left: 4px solid var(--sky);
+    padding-left: 12px;
+    margin: 22px 0 10px;
+    page-break-after: avoid;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .sub-sub-header {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--navy-lt);
+    margin: 16px 0 8px;
+    padding-left: 4px;
+    page-break-after: avoid;
+  }
+
+  /* ===== INFO BOXES ===== */
+  .box {
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+    border-left: 5px solid;
+  }
+  .box-def   { background: var(--sky-lt);    border-color: var(--sky);    }
+  .box-warn  { background: var(--rose-lt);   border-color: var(--rose);   }
+  .box-proc  { background: var(--mint-lt);   border-color: var(--mint);   }
+  .box-note  { background: var(--amber-lt);  border-color: var(--amber);  }
+  .box-purple{ background: var(--purple-lt); border-color: var(--purple); }
+
+  .box .box-title {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .box-def   .box-title { color: var(--sky);    }
+  .box-warn  .box-title { color: var(--rose);   }
+  .box-proc  .box-title { color: var(--mint);   }
+  .box-note  .box-title { color: var(--amber);  }
+  .box-purple .box-title{ color: var(--purple); }
+
+  .box p, .box li { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+  .box ul, .box ol { padding-left: 18px; margin-top: 6px; }
+  .box li { margin-bottom: 2px; }
+
+  .highlight { font-weight: 700; }
+  .val { 
+    font-family: 'JetBrains Mono', monospace; 
+    font-weight: 600;
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12.5px;
+  }
+
+  /* ===== TABLES ===== */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+    page-break-inside: avoid;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(13,27,42,0.08);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    background: var(--white);
+  }
+  thead tr {
+    background: var(--navy);
+    color: var(--white);
+  }
+  thead th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11.5px;
+    letter-spacing: 0.3px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  thead th:last-child { border-right: none; }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:nth-child(even) { background: #f6f9fd; }
+  tbody tr:hover { background: #e8f0fa; }
+  tbody td {
+    padding: 9px 12px;
+    vertical-align: top;
+    border-right: 1px solid var(--border);
+  }
+  tbody td:last-child { border-right: none; }
+  .tbl-gold { background: #fef9e8 !important; font-weight: 700; }
+  .tbl-red  { background: #fef0f0 !important; color: var(--rose); font-weight: 700; }
+  .tbl-grn  { background: #f0faf5 !important; color: var(--mint); font-weight: 700; }
+  .tbl-blue { background: #f0f5ff !important; color: var(--sky); font-weight: 700; }
+
+  /* ===== SVG DIAGRAMS ===== */
+  .diagram-wrap {
+    margin: 18px 0;
+    page-break-inside: avoid;
+    text-align: center;
+  }
+  .diagram-wrap svg {
+    max-width: 100%;
+    height: auto;
+  }
+  .diagram-caption {
+    font-size: 11.5px;
+    color: var(--text-lt);
+    font-style: italic;
+    text-align: center;
+    margin-top: 8px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  /* ===== LIST STYLING ===== */
+  .styled-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  .styled-list li {
+    padding: 6px 0 6px 26px;
+    position: relative;
+    border-bottom: 1px dashed var(--border);
+    font-size: 13px;
+  }
+  .styled-list li:last-child { border-bottom: none; }
+  .styled-list li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 14px;
+    top: 5px;
+  }
+
+  /* ===== MINIMA CARDS ===== */
+  .minima-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .minima-card {
+    border-radius: 10px;
+    padding: 16px 14px;
+    text-align: center;
+    border: 2px solid transparent;
+    page-break-inside: avoid;
+  }
+  .minima-card .val-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .minima-card .label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .minima-card .condition {
+    font-size: 10.5px;
+    line-height: 1.4;
+    opacity: 0.8;
+  }
+  .mc-navy  { background: var(--navy);    color: var(--gold-lt); border-color: var(--gold); }
+  .mc-sky   { background: var(--sky-lt);  color: var(--sky); border-color: var(--sky); }
+  .mc-mint  { background: var(--mint-lt); color: var(--mint); border-color: var(--mint); }
+  .mc-amber { background: var(--amber-lt);color: var(--amber); border-color: var(--amber); }
+  .mc-rose  { background: var(--rose-lt); color: var(--rose); border-color: var(--rose); }
+  .mc-purple{ background: var(--purple-lt);color: var(--purple); border-color: var(--purple); }
+
+  /* ===== QnA SECTION ===== */
+  .qa-block {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 10px 0;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .qa-q {
+    background: var(--navy-mid);
+    color: var(--white);
+    padding: 10px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+  .qa-q .qnum {
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .qa-opts {
+    padding: 10px 14px;
+    background: var(--off-white);
+  }
+  .qa-opt {
+    padding: 4px 0;
+    font-size: 12.5px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .qa-opt .opt-letter {
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    border: 2px solid var(--border);
+    color: var(--text-lt);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .qa-opt.correct .opt-letter {
+    background: var(--mint);
+    border-color: var(--mint);
+    color: white;
+  }
+  .qa-opt.correct { font-weight: 600; color: var(--mint); }
+  .qa-answer {
+    border-top: 1px solid var(--border);
+    background: #f0faf5;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--mint);
+    font-weight: 600;
+  }
+
+  /* ===== SUMMARY STRIP ===== */
+  .summary-strip {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-lt) 100%);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 22px 0;
+    page-break-inside: avoid;
+  }
+  .summary-strip h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--gold-lt);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .summary-strip table { background: transparent; }
+  .summary-strip thead tr { background: rgba(255,255,255,0.15); }
+  .summary-strip thead th { color: var(--gold-lt); font-size: 11px; padding: 8px 10px; }
+  .summary-strip tbody tr { border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .summary-strip tbody tr:nth-child(even) { background: rgba(255,255,255,0.05); }
+  .summary-strip tbody tr:hover { background: rgba(255,255,255,0.1); }
+  .summary-strip tbody td { color: #c8daea; font-size: 12px; padding: 7px 10px; border-right: 1px solid rgba(255,255,255,0.1); }
+  .summary-strip tbody td strong { color: var(--gold-lt); }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    border: none;
+    border-top: 2px solid var(--border);
+    margin: 28px 0;
+  }
+  .divider-gold {
+    border-color: var(--gold);
+    opacity: 0.4;
+  }
+
+  /* ===== PRINT RULES ===== */
+  @media print {
+    body { background: white; }
+    .page-wrap { padding: 0; box-shadow: none; }
+    .section-header { page-break-after: avoid; }
+    .sub-header { page-break-after: avoid; }
+    .box { page-break-inside: avoid; }
+    .table-wrap { page-break-inside: avoid; }
+    .minima-grid { page-break-inside: avoid; }
+    .qa-block { page-break-inside: avoid; }
+    .diagram-wrap { page-break-inside: avoid; }
+    .cover { page-break-after: always; }
+    .section-header { margin-top: 18px; }
+  }
+
+  p { margin-bottom: 8px; font-size: 13px; }
+  strong { font-weight: 700; }
+  em { font-style: italic; color: var(--text-lt); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  .inline-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    background: var(--navy);
+    color: var(--gold-lt);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin: 0 2px;
+  }
+  .tag-red    { background: var(--rose);   color: white; }
+  .tag-green  { background: var(--mint);   color: white; }
+  .tag-blue   { background: var(--sky);    color: white; }
+  .tag-gold   { background: var(--gold);   color: var(--navy); }
+  .tag-purple { background: var(--purple); color: white; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ══════════════════ COVER ══════════════════ -->
+<div class="cover">
+  <div class="chapter-badge">📋 DGCA Air Regulations · Chapter 6</div>
+  <h1>Separation <span>Methods</span><br>& Minima</h1>
+  <p class="subtitle">PANS ATM Doc 4444 · AIP India · CPL / ATPL Ground Study Notes</p>
+  <div class="meta-row">
+    <span class="meta-pill">✍ Capt. Pankaj Pahil</span>
+    <span class="meta-pill">📖 Pages 165 – 188</span>
+    <span class="meta-pill">⚖️ PANS ATM Doc 4444</span>
+    <span class="meta-pill">🇮🇳 AIP India</span>
+  </div>
+</div>
+
+<!-- ══════════════════ SECTION 1: GENERAL PROVISIONS ══════════════════ -->
+<div class="section-header">
+  <div class="number">1</div>
+  <h2>General Provisions – Separation of Controlled Traffic</h2>
+</div>
+
+<p>Vertical or horizontal separation shall be provided in the following situations:</p>
+
+<ul class="styled-list">
+  <li><strong>Between all flights</strong> in <span class="val">Class A</span> and <span class="val">Class B</span> airspaces</li>
+  <li><strong>Between IFR flights</strong> in <span class="val">Class C</span>, <span class="val">D</span> and <span class="val">E</span> airspaces</li>
+  <li><strong>Between IFR and VFR flights</strong> in <span class="val">Class C</span> airspace</li>
+  <li><strong>Between IFR and Special VFR flights</strong></li>
+  <li><strong>Between Special VFR flights</strong> — when prescribed by the appropriate ATS authority — <em>except</em> for IFR flights in Class D &amp; E, during daylight when flights have been cleared to climb/descend maintaining own separation and remaining in VMC</li>
+</ul>
+
+<div class="box box-def">
+  <div class="box-title">📘 Definition — Composite Separation</div>
+  <p>A combination of <strong>vertical separation</strong> and <strong>horizontal separation</strong>, using minima for each which may be <strong>lower than, but not less than half of</strong>, those used for each element when applied individually.</p>
+  <p class="highlight">⚠️ Composite separation shall only be applied on the basis of <strong>regional air navigation agreements</strong>.</p>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════ SECTION 2: VERTICAL SEPARATION ══════════════════ -->
+<div class="section-header">
+  <div class="number">2</div>
+  <h2>Vertical Separation</h2>
+</div>
+
+<div class="sub-header">2.1 Vertical Separation Minima</div>
+
+<div class="two-col">
+  <div class="box box-warn">
+    <div class="box-title">⚠️ Standard — Below FL 290</div>
+    <p>Nominal <span class="val">1 000 ft</span> below FL 290</p>
+    <p>Nominal <span class="val">2 000 ft</span> at or above FL 290</p>
+    <p><em>(except as per RVSM rules)</em></p>
+  </div>
+  <div class="box box-proc">
+    <div class="box-title">✅ RVSM — Reduced Vertical</div>
+    <p>Nominal <span class="val">1 000 ft</span> when:</p>
+    <ul>
+      <li>Both aircraft are <strong>RVSM compliant</strong>, AND</li>
+      <li>Operating within <strong>designated RVSM airspace</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="box box-warn">
+  <div class="box-title">🚫 Cruise Climb — India Specific</div>
+  <p><strong>Cruise climb is NOT permitted in Indian FIRs.</strong></p>
+</div>
+
+<div class="sub-header">2.2 Vertical Separation during Climb & Descent</div>
+
+<div class="box box-note">
+  <div class="box-title">📋 General Rule</div>
+  <p>An aircraft <strong>may</strong> be cleared to a level previously occupied by another aircraft <em>after the latter has reported vacating it</em>, <strong>EXCEPT when:</strong></p>
+  <ol style="padding-left:18px; margin-top:8px;">
+    <li>Severe turbulence is known to exist; OR</li>
+    <li>The aircraft concerned are established at the <strong>same holding pattern</strong>; OR</li>
+    <li>The difference in aircraft performance is such that <strong>less than the applicable separation minimum may result</strong> — in which case clearance shall be withheld until the vacating aircraft has reported at or passing another level separated by the required minimum.</li>
+  </ol>
+</div>
+
+<div class="box box-proc">
+  <div class="box-title">✅ Pilot–Pilot Communication</div>
+  <p>Pilots in direct communication with each other may, with their concurrence, be cleared to <strong>maintain a specified vertical separation between their aircraft during ascent or descent</strong>.</p>
+</div>
+
+<div class="sub-header">2.3 VMC Climb and Descents</div>
+
+<div class="box box-def">
+  <div class="box-title">📘 VMC Own Separation — Conditions</div>
+  <p>When requested by an aircraft <strong>and</strong> agreed by the pilot of the other aircraft, an ATC unit may clear a controlled flight (including departing/arriving) operating in <span class="val">Class D</span> or <span class="val">Class E</span> airspace in <strong>VMC during daylight hours</strong> to fly subject to:</p>
+  <ul>
+    <li>Maintaining <strong>own separation</strong> to one other aircraft, AND</li>
+    <li>Remaining in <strong>VMC</strong></li>
+  </ul>
+</div>
+
+<p><strong>When so cleared, the following shall apply:</strong></p>
+
+<ul class="styled-list">
+  <li>Clearances shall be for a specified portion of the flight at or below <span class="val">10,000 ft</span> during climb and descent</li>
+  <li><strong>Essential traffic information</strong> shall be passed</li>
+  <li>If VMC may become impracticable, an <strong>IFR flight shall be provided alternative instructions</strong> to be complied with in the event VMC cannot be maintained</li>
+</ul>
+
+<hr class="divider">
+
+<!-- ══════════════════ SECTION 3: HORIZONTAL SEPARATION ══════════════════ -->
+<div class="section-header">
+  <div class="number">3</div>
+  <h2>Horizontal Separation</h2>
+</div>
+
+<div class="box box-def">
+  <div class="box-title">📘 Three Types of Horizontal Separation</div>
+  <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+    <span class="tag tag-blue">a) Lateral Separation</span>
+    <span class="tag tag-green">b) Longitudinal Separation</span>
+    <span class="tag tag-gold">c) ATS Surveillance-Based</span>
+  </div>
+</div>
+
+<!-- ===== LATERAL SEPARATION ===== -->
+<div class="sub-header">3.1 Lateral Separation</div>
+
+<p>Lateral separation may be applied by the following means:</p>
+
+<div class="sub-sub-header">3.1.1 By Geographic Location (Position Reports)</div>
+<div class="box box-def">
+  <div class="box-title">📘 Geographic Separation</div>
+  <p>By position reports which positively indicate the aircraft are over <strong>different geographic locations</strong> as determined visually or by reference to a navigation aid.</p>
+</div>
+
+<!-- SVG: Geographic Separation -->
+<div class="diagram-wrap">
+<svg viewBox="0 0 520 160" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;">
+  <rect width="520" height="160" fill="#f4f7fb" rx="10"/>
+  <!-- Track 1 (horizontal) -->
+  <line x1="50" y1="60" x2="470" y2="60" stroke="#1b2d42" stroke-width="2.5"/>
+  <!-- VOR 1 -->
+  <circle cx="120" cy="60" r="9" fill="none" stroke="#c9a84c" stroke-width="2.5"/>
+  <circle cx="120" cy="60" r="3" fill="#c9a84c"/>
+  <!-- Aircraft 1 -->
+  <text x="240" y="55" font-size="20" text-anchor="middle" fill="#1b2d42">✈</text>
+  <!-- Dashed diverge -->
+  <line x1="290" y1="60" x2="470" y2="60" stroke="#1b2d42" stroke-width="2" stroke-dasharray="8,4"/>
+  <!-- Track 2 diagonal -->
+  <line x1="290" y1="60" x2="450" y2="130" stroke="#4a9eca" stroke-width="2.5"/>
+  <!-- VOR 2 -->
+  <circle cx="340" cy="90" r="9" fill="none" stroke="#c9a84c" stroke-width="2.5"/>
+  <circle cx="340" cy="90" r="3" fill="#c9a84c"/>
+  <!-- Aircraft 2 -->
+  <text x="420" y="130" font-size="20" text-anchor="middle" fill="#4a9eca" transform="rotate(30,420,130)">✈</text>
+  <!-- Labels -->
+  <text x="120" y="46" text-anchor="middle" font-size="10" fill="#c9a84c" font-weight="bold">NAV AID</text>
+  <text x="344" y="108" text-anchor="middle" font-size="10" fill="#c9a84c" font-weight="bold">NAV AID</text>
+  <text x="260" y="30" text-anchor="middle" font-size="11" fill="#1b2d42" font-weight="bold">AIRCRAFT 1 – TRACK A</text>
+  <text x="400" y="148" text-anchor="middle" font-size="11" fill="#4a9eca" font-weight="bold">AIRCRAFT 2 – TRACK B</text>
+  <text x="260" y="152" text-anchor="middle" font-size="10" fill="#7b5ea7" font-style="italic">Aircraft on DIFFERENT geographic tracks → Laterally Separated</text>
+</svg>
+<div class="diagram-caption">Fig 3.1 — Lateral Separation by Different Geographic Locations</div>
+</div>
+
+<div class="sub-sub-header">3.1.2 By Use of NDB, VOR or GNSS on Intersecting Tracks / ATS Routes</div>
+<p>Aircraft are required to fly on specified tracks separated by a minimum amount appropriate to the navigation aid employed.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Nav Aid</th>
+      <th>Angular Divergence Requirement</th>
+      <th>Distance Condition</th>
+      <th>Additional Rule</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>VOR</strong></td>
+      <td>Radials diverging by at least <span class="val">15°</span></td>
+      <td>At least one aircraft is <span class="val">15 NM</span> or more from the facility</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td><strong>NDB</strong></td>
+      <td>Tracks diverging by at least <span class="val">30°</span></td>
+      <td>At least one aircraft is <span class="val">15 NM</span> or more from the facility</td>
+      <td>Track of second aircraft must be at least <span class="val">20°</span> from the radial of the first aircraft</td>
+    </tr>
+    <tr>
+      <td><strong>GNSS / GNSS</strong></td>
+      <td>Zero offset between two waypoints on track</td>
+      <td>At least one aircraft at minimum distance from common point (see table below)</td>
+      <td>Controller must confirm GNSS navigation and no lateral offsets</td>
+    </tr>
+    <tr>
+      <td><strong>VOR / GNSS</strong></td>
+      <td>VOR aircraft on radial; GNSS aircraft zero-offset between waypoints</td>
+      <td>At least one aircraft at minimum distance from common point (see table below)</td>
+      <td>Same as GNSS/GNSS</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- VOR diagram -->
+<div class="diagram-wrap">
+<svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;">
+  <rect width="520" height="200" fill="#f4f7fb" rx="10"/>
+  <!-- VOR -->
+  <circle cx="80" cy="120" r="16" fill="none" stroke="#c9a84c" stroke-width="3"/>
+  <circle cx="80" cy="120" r="6" fill="#c9a84c"/>
+  <text x="80" y="148" text-anchor="middle" font-size="11" fill="#c9a84c" font-weight="bold">VOR</text>
+  <!-- Upper radial -->
+  <line x1="80" y1="120" x2="470" y2="80" stroke="#1b2d42" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <!-- Lower radial (15° diverging) -->
+  <line x1="80" y1="120" x2="420" y2="185" stroke="#4a9eca" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <!-- Aircraft 1 -->
+  <text x="390" y="75" font-size="22" text-anchor="middle" fill="#1b2d42">✈</text>
+  <!-- Aircraft 2 -->
+  <text x="370" y="185" font-size="22" text-anchor="middle" fill="#4a9eca" transform="rotate(8,370,185)">✈</text>
+  <!-- 15 NM arrow -->
+  <line x1="80" y1="105" x2="290" y2="80" stroke="#c9a84c" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="290" y1="80" x2="80" y2="105" stroke="#c9a84c" stroke-width="1.5" marker-start="url(#ar)"/>
+  <text x="175" y="82" text-anchor="middle" font-size="10.5" fill="#c9a84c" font-weight="bold">15 NM (28 km)</text>
+  <!-- Angle arc -->
+  <path d="M 155,120 A 75,75 0 0,1 148,100" fill="none" stroke="#2e9e6e" stroke-width="2"/>
+  <text x="170" y="110" font-size="12" fill="#2e9e6e" font-weight="bold">15°</text>
+  <!-- Defs for arrowhead -->
+  <defs>
+    <marker id="ar" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#c9a84c"/>
+    </marker>
+  </defs>
+  <text x="260" y="20" text-anchor="middle" font-size="12" fill="#1b2d42" font-weight="bold">VOR Lateral Separation</text>
+  <text x="260" y="38" text-anchor="middle" font-size="10.5" fill="#7b5ea7" font-style="italic">Both a/c on radials diverging ≥15°; at least one a/c ≥15 NM from VOR</text>
+</svg>
+<div class="diagram-caption">Fig 3.2 — VOR Lateral Separation (15° divergence, 15 NM)</div>
+</div>
+
+<div class="sub-sub-header">3.1.3 GNSS / VOR-GNSS Distance Table</div>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Angular Difference at Common Point (°)</th>
+      <th>Aircraft: VOR or GNSS + GNSS · FL 010–FL 190 · Distance from common point</th>
+      <th>Aircraft: VOR or GNSS + GNSS · FL 200–FL 600 · Distance from common point</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="tbl-gold">
+      <td><strong>15 – 135°</strong></td>
+      <td><span class="val">27.8 km (15 NM)</span></td>
+      <td><span class="val">43 km (23 NM)</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="box box-note">
+  <div class="box-title">📝 Important Note</div>
+  <p>The distances in the table are <strong>ground distances</strong>. States must account for <strong>slant range</strong> from DME source to receiving antenna when DME is used for range information.</p>
+</div>
+
+<div class="box box-warn">
+  <div class="box-title">⚠️ GNSS Track Separation — Controller Checklist</div>
+  <p>Before applying GNSS-based track separation, the controller <strong>shall confirm</strong>:</p>
+  <ul>
+    <li>The aircraft is navigating using <strong>GNSS</strong>, AND</li>
+    <li>In airspace where strategic lateral offsets are authorized, a <strong>lateral offset is NOT being applied</strong></li>
+  </ul>
+  <p style="margin-top:8px;"><strong>GNSS-based track separation shall NOT be applied in cases of pilot-reported RAIM outages.</strong></p>
+</div>
+
+<div class="sub-sub-header">3.1.4 Different Navigation Aids or Methods</div>
+<div class="box box-def">
+  <div class="box-title">📘 Mixed Nav Aid Lateral Separation</div>
+  <p>Lateral separation between aircraft using different navigation aids (or when one aircraft uses RNAV equipment) shall be established by ensuring the <strong>derived protected airspaces for the navigation aid(s) or RNP do not overlap</strong>.</p>
+</div>
+
+<!-- ===== LONGITUDINAL SEPARATION ===== -->
+<div class="sub-header">3.2 Longitudinal Separation</div>
+
+<div class="box box-def">
+  <div class="box-title">📘 Principle</div>
+  <p>Longitudinal separation shall be applied so that the spacing between the <strong>estimated positions</strong> of the aircraft being separated is <strong>never less than a prescribed minimum</strong>.</p>
+</div>
+
+<div class="sub-sub-header">3.2.1 Track Definitions (Critical for Exam)</div>
+
+<div class="two-col">
+  <div class="box box-def">
+    <div class="box-title">📘 A) Same Track</div>
+    <p>Same direction tracks and intersecting tracks or portions thereof, the angular difference of which is <strong>less than 45° or more than 315°</strong>, and whose protection areas overlap.</p>
+  </div>
+  <div class="box box-def">
+    <div class="box-title">📘 B) Reciprocal Tracks</div>
+    <p>Opposite tracks and intersecting tracks or portions thereof, the angular difference of which is <strong>more than 135° but less than 225°</strong>, and whose protection areas overlap.</p>
+  </div>
+</div>
+<div class="box box-def" style="max-width:60%">
+  <div class="box-title">📘 C) Crossing Tracks</div>
+  <p>Intersecting tracks or portions thereof <strong>other than</strong> those specified in Same Track (a) and Reciprocal Tracks (b) above — i.e. angular difference <strong>45° to 135°</strong> or <strong>225° to 315°</strong>.</p>
+</div>
+
+<!-- Track SVG Diagram -->
+<div class="diagram-wrap">
+<svg viewBox="0 0 580 280" xmlns="http://www.w3.org/2000/svg" style="max-width:580px;">
+  <rect width="580" height="280" fill="#f4f7fb" rx="10"/>
+  <text x="290" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d1b2a">Track Classification Diagram</text>
+
+  <!-- SAME TRACK diagram (left) -->
+  <g transform="translate(30,40)">
+    <rect width="155" height="210" rx="8" fill="#d0eaf7" stroke="#4a9eca" stroke-width="1.5"/>
+    <text x="77" y="20" text-anchor="middle" font-size="11" font-weight="bold" fill="#1b2d42">SAME TRACK</text>
+    <text x="77" y="35" text-anchor="middle" font-size="9.5" fill="#4a9eca">&lt;45° or &gt;315°</text>
+    <!-- Circle -->
+    <circle cx="77" cy="130" r="60" fill="rgba(74,158,202,0.15)" stroke="#4a9eca" stroke-width="1.5"/>
+    <!-- Main track horizontal -->
+    <line x1="10" y1="130" x2="144" y2="130" stroke="#1b2d42" stroke-width="2.5" marker-end="url(#arr1)"/>
+    <!-- Aircraft on track -->
+    <text x="110" y="126" font-size="14" fill="#1b2d42">✈</text>
+    <!-- Converging track (less than 45) -->
+    <line x1="10" y1="158" x2="144" y2="135" stroke="#4a9eca" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr2)"/>
+    <text x="110" y="152" font-size="14" fill="#4a9eca" transform="rotate(-8,110,148)">✈</text>
+    <!-- Angle label -->
+    <text x="40" y="145" font-size="9" fill="#2e9e6e" font-weight="bold">&lt;45°</text>
+    <text x="77" y="208" text-anchor="middle" font-size="9.5" fill="#1b2d42" font-style="italic">Same level → 15 min</text>
+  </g>
+
+  <!-- RECIPROCAL TRACK diagram (middle) -->
+  <g transform="translate(210,40)">
+    <rect width="155" height="210" rx="8" fill="#fde8e8" stroke="#c94a4a" stroke-width="1.5"/>
+    <text x="77" y="20" text-anchor="middle" font-size="11" font-weight="bold" fill="#1b2d42">RECIPROCAL</text>
+    <text x="77" y="35" text-anchor="middle" font-size="9.5" fill="#c94a4a">135° – 225°</text>
+    <!-- Circle -->
+    <circle cx="77" cy="130" r="60" fill="rgba(201,74,74,0.1)" stroke="#c94a4a" stroke-width="1.5"/>
+    <!-- Aircraft going right -->
+    <line x1="10" y1="120" x2="144" y2="120" stroke="#1b2d42" stroke-width="2.5" marker-end="url(#arr3)"/>
+    <text x="100" y="116" font-size="14" fill="#1b2d42">✈</text>
+    <!-- Aircraft going left (opposite) -->
+    <line x1="144" y1="140" x2="10" y2="140" stroke="#c94a4a" stroke-width="2.5" marker-end="url(#arr4)"/>
+    <text x="50" y="155" font-size="14" fill="#c94a4a" transform="rotate(180,50,147)">✈</text>
+    <!-- Angle label -->
+    <text x="55" y="115" font-size="9" fill="#2e9e6e" font-weight="bold">180°</text>
+    <text x="77" y="208" text-anchor="middle" font-size="9.5" fill="#1b2d42" font-style="italic">10 min before/after</text>
+  </g>
+
+  <!-- CROSSING TRACK diagram (right) -->
+  <g transform="translate(390,40)">
+    <rect width="155" height="210" rx="8" fill="#f0faf5" stroke="#2e9e6e" stroke-width="1.5"/>
+    <text x="77" y="20" text-anchor="middle" font-size="11" font-weight="bold" fill="#1b2d42">CROSSING</text>
+    <text x="77" y="35" text-anchor="middle" font-size="9.5" fill="#2e9e6e">45° – 135°, 225°–315°</text>
+    <!-- Circle -->
+    <circle cx="77" cy="130" r="60" fill="rgba(46,158,110,0.1)" stroke="#2e9e6e" stroke-width="1.5"/>
+    <!-- Track 1 horizontal -->
+    <line x1="10" y1="130" x2="144" y2="130" stroke="#1b2d42" stroke-width="2.5" marker-end="url(#arr5)"/>
+    <text x="100" y="126" font-size="14" fill="#1b2d42">✈</text>
+    <!-- Track 2 vertical/diagonal -->
+    <line x1="77" y1="70" x2="77" y2="190" stroke="#2e9e6e" stroke-width="2.5" marker-end="url(#arr6)"/>
+    <text x="73" y="88" font-size="14" fill="#2e9e6e" transform="rotate(90,73,88)">✈</text>
+    <!-- Angle label -->
+    <text x="95" y="125" font-size="9" fill="#2e9e6e" font-weight="bold">90°</text>
+    <text x="77" y="208" text-anchor="middle" font-size="9.5" fill="#1b2d42" font-style="italic">15 min same level</text>
+  </g>
+
+  <defs>
+    <marker id="arr1" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#1b2d42"/></marker>
+    <marker id="arr2" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#4a9eca"/></marker>
+    <marker id="arr3" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#1b2d42"/></marker>
+    <marker id="arr4" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#c94a4a"/></marker>
+    <marker id="arr5" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#1b2d42"/></marker>
+    <marker id="arr6" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#2e9e6e"/></marker>
+  </defs>
+</svg>
+<div class="diagram-caption">Fig 3.3 — Three Types of Track Relationships (Same / Reciprocal / Crossing)</div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════ SECTION 4: LONGITUDINAL SEP – TIME BASED ══════════════════ -->
+<div class="section-header">
+  <div class="number">4</div>
+  <h2>Longitudinal Separation Minima — Time Based</h2>
+</div>
+
+<div class="box box-note">
+  <div class="box-title">📋 Cross-Check Requirement</div>
+  <p>Separation requirements must be <strong>cross-checked</strong> to ensure the integrity of calculations. The cross-check validates the initial calculation and confirms it is consistent with the traffic disposition.</p>
+</div>
+
+<div class="sub-header">4.1 Aircraft at the Same Cruising Level</div>
+<div class="sub-sub-header">Aircraft flying on the SAME TRACK</div>
+
+<div class="minima-grid">
+  <div class="minima-card mc-navy">
+    <span class="val-big">15</span>
+    <span class="label">Minutes</span>
+    <span class="condition">Standard — when nav aids do NOT permit frequent position/speed determination</span>
+  </div>
+  <div class="minima-card mc-sky">
+    <span class="val-big">10</span>
+    <span class="label">Minutes</span>
+    <span class="condition">When nav aids PERMIT frequent determination of position and speed</span>
+  </div>
+  <div class="minima-card mc-mint">
+    <span class="val-big">5</span>
+    <span class="label">Minutes</span>
+    <span class="condition">Preceding a/c ≥37 kmph (20 kt) FASTER. Requires: same aerodrome departure, OR same exact significant point, OR 5-min guaranteed at route join</span>
+  </div>
+  <div class="minima-card mc-amber">
+    <span class="val-big">3</span>
+    <span class="label">Minutes</span>
+    <span class="condition">Preceding a/c ≥74 kmph (40 kt) FASTER. Same conditions as 5-minute cases</span>
+  </div>
+</div>
+
+<div class="box box-proc">
+  <div class="box-title">✅ 5-Minute Separation — Three Qualifying Cases</div>
+  <ol style="padding-left:18px;">
+    <li>Between aircraft that have <strong>departed from the same aerodrome</strong></li>
+    <li>Between en-route aircraft that have <strong>reported over the same exact significant point</strong></li>
+    <li>Between departing and en-route aircraft after the en-route aircraft has reported over a fix so located as to ensure 5-min separation can be established at the <strong>point the departing aircraft will join the route</strong></li>
+  </ol>
+</div>
+
+<div class="box box-warn">
+  <div class="box-title">⚠️ 3-Minute Separation — Condition</div>
+  <p>Same three cases as for 5-minute separation, BUT the preceding aircraft must be maintaining a true airspeed faster than the succeeding aircraft of <strong>74 kmph (40 knots) or more</strong>.</p>
+</div>
+
+<div class="sub-sub-header">Aircraft flying on CROSSING TRACKS — Same Level</div>
+<div class="minima-grid">
+  <div class="minima-card mc-navy">
+    <span class="val-big">15</span>
+    <span class="label">Minutes</span>
+    <span class="condition">Standard — no frequent position/speed determination</span>
+  </div>
+  <div class="minima-card mc-sky">
+    <span class="val-big">10</span>
+    <span class="label">Minutes</span>
+    <span class="condition">Nav aids permit frequent position/speed determination</span>
+  </div>
+  <div class="minima-card mc-mint">
+    <span class="val-big">10</span>
+    <span class="label">Minutes</span>
+    <span class="condition">While vertical separation does NOT exist, with navigation aids permitting frequent position/speed determination</span>
+  </div>
+  <div class="minima-card mc-amber">
+    <span class="val-big">5</span>
+    <span class="label">Minutes</span>
+    <span class="condition">While vertical sep does not exist, level change commenced within 10 min of second a/c reporting over exact reporting point</span>
+  </div>
+</div>
+
+<div class="sub-header">4.2 Aircraft Climbing or Descending — Same Track</div>
+<div class="box box-def">
+  <div class="box-title">📘 Rule: Passing Through Another Aircraft's Level (Same Track)</div>
+  <p>When an aircraft will <strong>pass through the level</strong> of another aircraft on the same track, the following minimum longitudinal separation shall be provided:</p>
+  <ul>
+    <li><span class="val">15 minutes</span> while vertical separation does not exist</li>
+  </ul>
+</div>
+
+<div class="sub-header">4.3 Aircraft Climbing or Descending — Crossing Tracks</div>
+<p>Least 10 minutes prior to and after the time the aircraft are estimated to pass:</p>
+<div class="minima-grid">
+  <div class="minima-card mc-navy">
+    <span class="val-big">15</span>
+    <span class="label">Minutes</span>
+    <span class="condition">While vertical separation does not exist (standard)</span>
+  </div>
+  <div class="minima-card mc-sky">
+    <span class="val-big">10</span>
+    <span class="label">Minutes</span>
+    <span class="condition">While vertical sep does not exist — only where ground-based nav aids or GNSS permit frequent position/speed determination</span>
+  </div>
+  <div class="minima-card mc-mint">
+    <span class="val-big">5</span>
+    <span class="label">Minutes</span>
+    <span class="condition">While vert sep does not exist, provided: level change within 10 min of second a/c reporting over common point AND CPDLC restriction added if applicable</span>
+  </div>
+</div>
+
+<div class="sub-header">4.4 Traffic on Reciprocal Tracks — Climbing or Descending</div>
+<div class="box box-warn">
+  <div class="box-title">⚠️ Reciprocal Track Rule</div>
+  <p>Where lateral separation is NOT provided, <strong>vertical separation shall be provided for at least 10 minutes prior to and after the time the aircraft are estimated to pass, or are estimated to have passed</strong>.</p>
+</div>
+
+<!-- SVG: Reciprocal 10 min -->
+<div class="diagram-wrap">
+<svg viewBox="0 0 520 140" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;">
+  <rect width="520" height="140" fill="#f4f7fb" rx="10"/>
+  <!-- Tracks -->
+  <line x1="30" y1="55" x2="490" y2="55" stroke="#1b2d42" stroke-width="2.5" marker-end="url(#a1)"/>
+  <line x1="490" y1="85" x2="30" y2="85" stroke="#c94a4a" stroke-width="2.5" marker-end="url(#a2)"/>
+  <!-- Crossing point -->
+  <line x1="260" y1="40" x2="260" y2="100" stroke="#c9a84c" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- 10 min brackets -->
+  <line x1="140" y1="45" x2="260" y2="45" stroke="#2e9e6e" stroke-width="1.5" marker-start="url(#a3)" marker-end="url(#a4)"/>
+  <text x="200" y="38" text-anchor="middle" font-size="10" fill="#2e9e6e" font-weight="bold">10 min</text>
+  <line x1="260" y1="45" x2="380" y2="45" stroke="#2e9e6e" stroke-width="1.5" marker-start="url(#a3)" marker-end="url(#a4)"/>
+  <text x="320" y="38" text-anchor="middle" font-size="10" fill="#2e9e6e" font-weight="bold">10 min</text>
+  <!-- Aircraft -->
+  <text x="400" y="51" font-size="16" fill="#1b2d42">✈</text>
+  <text x="110" y="100" font-size="16" fill="#c94a4a" transform="rotate(180,110,93)">✈</text>
+  <!-- Labels -->
+  <text x="260" y="118" text-anchor="middle" font-size="10" fill="#c9a84c" font-weight="bold">Estimated Crossing Point</text>
+  <text x="260" y="132" text-anchor="middle" font-size="10" fill="#7b5ea7" font-style="italic">Vertical separation maintained 10 min BEFORE & AFTER estimated crossing</text>
+  <defs>
+    <marker id="a1" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#1b2d42"/></marker>
+    <marker id="a2" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#c94a4a"/></marker>
+    <marker id="a3" markerWidth="6" markerHeight="5" refX="0" refY="2.5" orient="auto"><polygon points="6 0,0 2.5,6 5" fill="#2e9e6e"/></marker>
+    <marker id="a4" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#2e9e6e"/></marker>
+  </defs>
+</svg>
+<div class="diagram-caption">Fig 4.1 — 10-Minute Separation on Reciprocal Tracks</div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════ SECTION 5: LONGITUDINAL SEP – DME/GNSS ══════════════════ -->
+<div class="section-header">
+  <div class="number">5</div>
+  <h2>Longitudinal Separation — Distance Based (DME / GNSS)</h2>
+</div>
+
+<div class="box box-def">
+  <div class="box-title">📘 Applicability</div>
+  <p>Separation shall be established by maintaining not less than specified distances between aircraft positions as reported by reference to <strong>DME in conjunction with other nav aids and/or GNSS</strong>. Applied between:</p>
+  <ul>
+    <li>Two aircraft using <strong>DME</strong></li>
+    <li>Two aircraft using <strong>GNSS</strong></li>
+    <li>One aircraft using <strong>DME</strong> + one using <strong>GNSS</strong></li>
+  </ul>
+  <p style="margin-top:8px;"><strong>Direct controller-pilot VHF voice communication shall be maintained while this separation is used.</strong></p>
+</div>
+
+<div class="box box-note">
+  <div class="box-title">📝 GNSS Note</div>
+  <p>For GNSS-based separation minimum, a distance derived from an <strong>integrated navigation system incorporating GNSS input is regarded as equivalent to GNSS distance</strong>.</p>
+  <p>All distance reports must be made with reference to the <strong>same DME station</strong>.</p>
+  <p>When applying these minima to any aircraft with area navigation capability, controllers shall specifically <strong>request GNSS derived distance</strong>.</p>
+</div>
+
+<div class="box box-warn">
+  <div class="box-title">⚠️ When Lateral Separation is NOT Provided</div>
+  <p>Vertical separation shall be provided for inadequate onboard equipment, on GNSS input into an integrated navigation system, or a <strong>loss of GNSS integrity</strong>.</p>
+  <p><em>Note: Traffic on reciprocal tracks may make it impossible for a pilot to provide GNSS distance information.</em></p>
+</div>
+
+<div class="sub-header">5.1 Aircraft at Same Cruising Level — Same Track</div>
+
+<div class="two-col">
+  <div class="box box-warn">
+    <div class="box-title">⚠️ A) 20 NM — Baseline</div>
+    <p>Provided each aircraft utilizes:</p>
+    <ul>
+      <li>Same <strong>"on track" DME station</strong> (both on DME), OR</li>
+      <li>"On track" DME + <strong>collocated waypoint</strong> (one DME, one GNSS), OR</li>
+      <li>Same <strong>waypoint</strong> (both GNSS)</li>
+    </ul>
+    <p style="margin-top:8px;">AND separation is checked by obtaining <strong>simultaneous DME/GNSS readings</strong> at frequent intervals.</p>
+  </div>
+  <div class="box box-proc">
+    <div class="box-title">✅ B) 10 NM — Reduced (Speed Condition)</div>
+    <p>Same reference requirements as 20 NM, PLUS:</p>
+    <p>The <strong>leading aircraft</strong> maintains a true airspeed of <span class="val">20 kt or more faster</span> than the succeeding aircraft.</p>
+    <p style="margin-top:8px;">Separation checked simultaneously at frequent intervals.</p>
+  </div>
+</div>
+
+<div class="sub-header">5.2 Aircraft at Same Level — Crossing Tracks</div>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Minimum</th>
+      <th>Conditions</th>
+      <th>Speed Condition</th>
+      <th>Angle Condition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="tbl-gold">
+      <td><strong>20 NM</strong></td>
+      <td>Each a/c reports distance from DME/collocated waypoint/same waypoint at crossing point</td>
+      <td>None required</td>
+      <td>Relative angle between tracks <span class="val">&lt;90°</span></td>
+    </tr>
+    <tr class="tbl-grn">
+      <td><strong>10 NM</strong></td>
+      <td>Same reference + simultaneous DME/GNSS checks</td>
+      <td>Leading a/c <span class="val">≥20 kt faster</span></td>
+      <td>Relative angle <span class="val">&lt;90°</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub-header">5.3 Aircraft Climbing or Descending — Same Track</div>
+<div class="box box-def">
+  <div class="box-title">📘 10 NM while Vertical Separation Does Not Exist, Provided:</div>
+  <ul>
+    <li>Each aircraft utilizes the same "on track" DME / collocated waypoint / same waypoint</li>
+    <li>One aircraft <strong>maintains a level</strong> while vertical separation does not exist</li>
+    <li>Separation established by obtaining <strong>simultaneous DME/GNSS readings</strong></li>
+  </ul>
+</div>
+
+<div class="sub-header">5.4 Aircraft on Reciprocal Tracks — DME/GNSS</div>
+<div class="box box-proc">
+  <div class="box-title">✅ Reciprocal Tracks — Climb/Descent</div>
+  <p>Aircraft utilizing on-track DME and/or collocated waypoint or same waypoint may be cleared to climb or descend to or through levels occupied by other aircraft utilizing same references, <strong>provided it has been positively established that the aircraft have passed each other and are at least <span class="val">10 NM</span> apart.</strong></p>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════ SECTION 6: ATS SURVEILLANCE ══════════════════ -->
+<div class="section-header">
+  <div class="number">6</div>
+  <h2>Separation Minima — ATS Surveillance Systems (Radar / ADS-B / MLAT)</h2>
+</div>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>System</th>
+      <th>Range / Condition</th>
+      <th>Horizontal Separation Minimum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Radar</strong></td>
+      <td>Up to <span class="val">60 NM</span> from radar head</td>
+      <td class="tbl-grn">5 NM</td>
+    </tr>
+    <tr>
+      <td><strong>Radar</strong></td>
+      <td>Beyond <span class="val">60 NM</span> from radar head</td>
+      <td class="tbl-gold">10 NM</td>
+    </tr>
+    <tr>
+      <td><strong>ADS-B only</strong> (non-radar)</td>
+      <td>Within <span class="val">60 NM</span> of ADS-B ground station</td>
+      <td class="tbl-grn">5 NM</td>
+    </tr>
+    <tr>
+      <td><strong>ADS-B only</strong> (non-radar)</td>
+      <td>Beyond <span class="val">60 NM</span> of ADS-B ground station</td>
+      <td class="tbl-gold">10 NM</td>
+    </tr>
+    <tr class="tbl-red">
+      <td><strong>Radar</strong> (Special Authorization)</td>
+      <td>Specifically authorized conditions</td>
+      <td>3 NM</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════ SECTION 7: SUMMARY TABLES ══════════════════ -->
+<div class="section-header">
+  <div class="number">7</div>
+  <h2>Master Summary — Longitudinal Separation</h2>
+</div>
+
+<div class="summary-strip">
+  <h3>⏱️ Time-Based Longitudinal Separation Summary</h3>
+  <div class="table-wrap" style="border-radius:6px; margin:0;">
+  <table>
+    <thead>
+      <tr>
+        <th>Separation</th>
+        <th>Nav Aid Condition</th>
+        <th>Track Type</th>
+        <th>Phase</th>
+        <th>Speed Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>15 min</strong></td>
+        <td>Nav aids do NOT permit frequent pos/speed determination</td>
+        <td>Same track, Crossing track</td>
+        <td>Same level, Climb/Descend</td>
+        <td>None</td>
+      </tr>
+      <tr>
+        <td><strong>10 min</strong></td>
+        <td>Nav aids permit frequent pos/speed determination</td>
+        <td>Same track, Crossing track</td>
+        <td>Same level, Climb/Descend</td>
+        <td>None</td>
+      </tr>
+      <tr>
+        <td><strong>10 min</strong></td>
+        <td>Any</td>
+        <td>Reciprocal</td>
+        <td>10 min before &amp; after crossing</td>
+        <td>None</td>
+      </tr>
+      <tr>
+        <td><strong>5 min</strong></td>
+        <td>Common reference point</td>
+        <td>Same track</td>
+        <td>Same level, Climb/Descend</td>
+        <td>Preceding a/c ≥20 kt faster</td>
+      </tr>
+      <tr>
+        <td><strong>5 min</strong></td>
+        <td>Common ref (GNSS/ground)</td>
+        <td>Crossing</td>
+        <td>Climb/Descend (level change within 10 min)</td>
+        <td>None</td>
+      </tr>
+      <tr>
+        <td><strong>3 min</strong></td>
+        <td>Common reference point</td>
+        <td>Same track</td>
+        <td>Same level</td>
+        <td>Preceding a/c ≥40 kt faster</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="summary-strip" style="margin-top:16px;">
+  <h3>📏 DME/GNSS Distance-Based Separation Summary</h3>
+  <div class="table-wrap" style="border-radius:6px; margin:0;">
+  <table>
+    <thead>
+      <tr>
+        <th>Minimum</th>
+        <th>Track Type</th>
+        <th>Phase</th>
+        <th>Speed Condition</th>
+        <th>Angle Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>20 NM</strong></td>
+        <td>Same track</td>
+        <td>Same level</td>
+        <td>None</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>20 NM</strong></td>
+        <td>Crossing</td>
+        <td>Same level</td>
+        <td>None</td>
+        <td>&lt;90°</td>
+      </tr>
+      <tr>
+        <td><strong>10 NM</strong></td>
+        <td>Same track</td>
+        <td>Same level</td>
+        <td>Leading a/c ≥20 kt faster</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>10 NM</strong></td>
+        <td>Crossing</td>
+        <td>Same level</td>
+        <td>Leading a/c ≥20 kt faster</td>
+        <td>&lt;90°</td>
+      </tr>
+      <tr>
+        <td><strong>10 NM</strong></td>
+        <td>Same track</td>
+        <td>Climbing/Descending (one a/c maintains level)</td>
+        <td>None</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>10 NM</strong></td>
+        <td>Reciprocal</td>
+        <td>Climb/Descend after confirmed passing</td>
+        <td>None</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════ SECTION 8: MACH NUMBER TECHNIQUE ══════════════════ -->
+<div class="section-header">
+  <div class="number">8</div>
+  <h2>Longitudinal Separation — Mach Number Technique</h2>
+</div>
+
+<div class="box box-def">
+  <div class="box-title">📘 When Mach Number Technique is Applied</div>
+  <p>Minimum longitudinal separation between turbojet aircraft on the <strong>same track</strong>, whether in level, climbing or descending flight, shall be:</p>
+  <ul>
+    <li><span class="val">10 minutes</span>, OR</li>
+    <li>The prescribed minima based on application of <strong>differential Mach number</strong> on prescribed ATS routes</li>
+  </ul>
+</div>
+
+<div class="box box-proc">
+  <div class="box-title">✅ RNAV Distance Separation with Mach Technique</div>
+  <ul>
+    <li>RNAV distance-based separation may be applied between <strong>RNAV-equipped aircraft</strong> on designated RNAV routes or ATS routes defined by VOR</li>
+    <li>A <span class="val">150 km (80 NM)</span> RNAV distance-based separation minimum with Mach number technique may be used on same-direction tracks <strong>in lieu of a 10-minute longitudinal separation minimum</strong></li>
+  </ul>
+</div>
+
+<div class="sub-header">8.1 Performance-Based Concepts (Definitions)</div>
+
+<div class="two-col">
+  <div class="box box-def">
+    <div class="box-title">📘 RNP — Required Navigation Performance</div>
+    <p>A statement of navigation performance necessary for operation within a defined airspace. For en-route phase: <span class="val">RNP 1, 4, 10, 12.6 and 20</span>.</p>
+  </div>
+  <div class="box box-def">
+    <div class="box-title">📘 PBN — Performance-Based Navigation</div>
+    <p>The prescribed navigation specification shall be appropriate to the level of communications, navigation and ATS provided in the airspace. (Refer Doc 9613)</p>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="box box-note">
+    <div class="box-title">📝 RCP — Required Communication Performance</div>
+    <p>A set of requirements for ATS provision, aircraft capability, and operations to support performance-based communication. RCP number = <strong>seconds for instruction to travel ground→aircraft→ground</strong>. Examples: <span class="val">RCP 10, 60, 120, 240, 400</span>.</p>
+  </div>
+  <div class="box box-note">
+    <div class="box-title">📝 RSP — Required Surveillance Performance</div>
+    <p>Number of seconds for surveillance data from the CSP interface to arrive at the ATSU flight data processing system. <span class="val">RSP 180, 240, 400</span> indicate time in seconds between flight crew/HMI and controller/HMI. HMI = Human Machine Interaction.</p>
+  </div>
+</div>
+
+<div class="box box-purple">
+  <div class="box-title">🟣 PBS — Performance-Based Surveillance</div>
+  <p>ATS surveillance services and capability based on performance requirements for ATS provision, aircraft flight operations along an ATS route, on an instrument approach procedure, or in a designated airspace.</p>
+</div>
+
+<div class="sub-header">8.2 Performance-Based Longitudinal Separation Minima (Table)</div>
+<p>For aircraft cruising, climbing or descending on the <strong>same track</strong> OR crossing tracks (relative angle <span class="val">&lt;90°</span>):</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Separation Minima</th>
+      <th>RNP</th>
+      <th>RCP</th>
+      <th>RSP</th>
+      <th>Max ADS-C Periodic Reporting Interval</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2"><strong>93 km (50 NM)</strong></td>
+      <td>10</td>
+      <td>240</td>
+      <td>180</td>
+      <td>27 minutes</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>240</td>
+      <td>180</td>
+      <td>32 minutes</td>
+    </tr>
+    <tr class="tbl-gold">
+      <td><strong>55.5 km (30 NM)</strong></td>
+      <td>2 or 4</td>
+      <td>240</td>
+      <td>180</td>
+      <td>12 minutes</td>
+    </tr>
+    <tr class="tbl-grn">
+      <td><strong>5 minutes</strong></td>
+      <td>2 or 4 or 10</td>
+      <td>240</td>
+      <td>180</td>
+      <td>14 minutes</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box box-note">
+  <div class="box-title">📝 FMS/RNAV in Conventional Procedures</div>
+  <p>When authorised in the <strong>Aircraft Flight Manual (AFM)</strong>, FMS/RNAV may be used to fly conventional procedures provided the procedures are monitored using basic display associated with these procedures and <strong>tolerances for using raw data on the basic display are complied with</strong>.</p>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════ SECTION 9: ESSENTIAL TRAFFIC ══════════════════ -->
+<div class="section-header">
+  <div class="number">9</div>
+  <h2>Essential Traffic Information</h2>
+</div>
+
+<div class="box box-warn">
+  <div class="box-title">⚠️ Definition — Essential Traffic</div>
+  <p>Essential traffic is that <strong>controlled traffic to which the provision of separation by ATC is applicable</strong>, but which, in relation to a particular controlled flight, is <strong>not, or will not be, separated from other controlled traffic by the appropriate separation minimum</strong>.</p>
+  <p style="margin-top:8px;"><strong>Essential traffic information shall be given to controlled flights concerned whenever they constitute essential traffic to each other.</strong></p>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════ SECTION 10: EXAM QUESTIONS ══════════════════ -->
+<div class="section-header">
+  <div class="number">10</div>
+  <h2>DGCA Exam Practice Questions with Explanations</h2>
+</div>
+
+<!-- Q1 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">1</span>An aircraft is maintaining FL 150 within airspace class D. Another aircraft below at FL 140 is receiving a clearance to descend to FL 70. There is severe turbulence in the area. When is the earliest that a clearance to descend to FL 140 or below can be expected?</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>When the other aircraft has reported that it has left FL 140.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>When the other aircraft has reported that it has reached FL 70.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">C</span><span>When the other aircraft has reported that it has descended through FL 130.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: C — In severe turbulence, normal "vacating" rules are suspended. Clearance shall be withheld until the vacating aircraft has reported at or passing another level separated by the required minimum (1000 ft). So the other a/c must report passing FL 130 (which is 1000 ft below FL 140).</div>
+</div>
+
+<!-- Q2 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">2</span>The longitudinal separation minima between aircraft departed from the same aerodrome and following the same track, and the preceding aircraft is maintaining a true airspeed of 20kt or more faster than the succeeding aircraft, is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>5 minutes.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>3 minutes.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>2 minutes.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — Same aerodrome, same track, preceding a/c 20 kt (37 kmph) faster = 5-minute longitudinal separation.</div>
+</div>
+
+<!-- Q3 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">3</span>The longitudinal separation minima based on time between aircraft at same cruising level where navigation aids permit frequent determination of position and speed and the preceding aircraft is maintaining a true airspeed of 40kt or more faster than the succeeding aircraft, is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>5 minutes.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">B</span><span>3 minutes.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>10 minutes.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: B — Nav aids permit frequent position/speed determination + preceding a/c ≥40 kt faster = 3 minutes (the additional speed condition reduces from 5 min to 3 min).</div>
+</div>
+
+<!-- Q4 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">4</span>The longitudinal separation minima based on time between aircraft at same cruising level where navigation aids permit frequent determination of position and speed and the preceding aircraft is maintaining a true airspeed of 20kt or more faster than the succeeding aircraft, is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>15 minutes</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>10 minutes</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">C</span><span>5 minutes</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: C — Nav aids OK + preceding a/c ≥20 kt (37 kmph) faster = 5 minutes.</div>
+</div>
+
+<!-- Q5 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">5</span>The longitudinal separation minima based on time between aircraft at same cruising level where navigation aids permit frequent determination of position and speed, is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>10 minutes.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>3 minutes.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>15 minutes.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — Same cruising level, nav aids permit frequent determination, no speed advantage stated = 10 minutes baseline.</div>
+</div>
+
+<!-- Q6 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">6</span>The longitudinal separation minima between aircraft departed from the same aerodrome and following the same track, and the preceding aircraft is maintaining a true airspeed of 40kt or more faster than the succeeding aircraft, is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>10 minutes.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>8 minutes.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">C</span><span>3 minutes.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: C — Same aerodrome, same track, preceding a/c ≥40 kt (74 kmph) faster = 3 minutes.</div>
+</div>
+
+<!-- Q7 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">7</span>The longitudinal separation minima based on distance using DME, and each aircraft "on track" uses DME stations, is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>10NM</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">B</span><span>20NM</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>5NM</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: B — Baseline DME longitudinal separation on same track, same cruising level = 20 NM.</div>
+</div>
+
+<!-- Q8 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">8</span>When an aircraft will pass through the level of another aircraft on the same track, the following minimum longitudinal separation shall be provided:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>5 minutes at the time the level is crossed.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">B</span><span>15 minutes while vertical separation does not exist.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>10 minutes at the time the level is crossed.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: B — Aircraft climbing/descending through the level of another on same track = 15 minutes while vertical separation does not exist.</div>
+</div>
+
+<!-- Q9 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">9</span>"Essential Traffic" is that controlled flight to which the provision of separation by ATC is applicable, but which, in relation to a particular controlled flight is not separated therefore by the appropriate separation minima. The following flights are considered essential traffic one to each other:</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>All IFR flights in controlled airspace and controlled VFR.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>Only controlled IFR flights.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>Controlled VFR flights and VFR flights.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — Essential traffic applies to all controlled traffic: IFR and controlled VFR flights in controlled airspace.</div>
+</div>
+
+<!-- Q10 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">10</span>Above FL 290 the vertical flight separation between aircraft on the same direction is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>2000ft.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">B</span><span>2000ft (but 1000ft in RVSM).</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>3000ft.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A/B — Above FL 290, nominal 2000 ft, EXCEPT in RVSM airspace where both aircraft are RVSM compliant, in which case 1000 ft applies. Correct DGCA answer per answer key = B (2000ft).</div>
+</div>
+
+<!-- Q11 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">11</span>Track separation between aircraft using the same NDB shall be applied requiring the aircraft to fly:</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>At least 30° separated at a distance of 15NM or more from the facility.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>At least 45° separated at a distance of 15NM or more from the facility.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>At least 30° separated at a distance of 15 miles or more from the facility.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — NDB lateral separation: tracks diverging ≥30° with at least one aircraft ≥15 NM (nautical miles, not statute miles) from the facility.</div>
+</div>
+
+<!-- Q12 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">12</span>Two aircraft flying at FL 170 using GNSS are confirmed to be established on tracks separated by 120 degrees with zero offset between two waypoints. At least one aircraft is to be at a minimum distance _____ NMs from a common point for separation.</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>5</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>10</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">C</span><span>15</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: C — FL 170 falls in the FL 010–FL 190 bracket. Angular difference 120° is in the 15–135° range. Distance from common point = 27.8 km (15 NM).</div>
+</div>
+
+<!-- Q13 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">13</span>If an ATC clearance is not suitable to the pilot in command of an aircraft:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>He may request another clearance and the ATC concerned has to accept the pilot request.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">B</span><span>He may request and, if practicable, obtain an amended clearance.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>The pilot has to accept the ATC clearance because it has been based on the flightplan filed with ATC.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: B — The pilot may request an amended clearance; ATC will issue one if practicable. ATC is not obligated to accept the pilot's request verbatim, but must consider it.</div>
+</div>
+
+<!-- Q14 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">14</span>The "VMC and own separation" ATC clearance is used for a controlled flight to cross the level of another controlled flight when:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>Requested by the pilot in airspace classes A and B and authorised by ATC.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">B</span><span>Requested by the pilot, during the day light and authorized by the state overflown.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>Requested by the pilot and authorized by the state overflown.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: B — VMC own separation applies in Class D and E airspace, requested by pilot, during daylight hours, and authorized by the appropriate ATS authority (state overflown).</div>
+</div>
+
+<!-- Q15 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">15</span>A/c on same level converging track has separation:</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>15min</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>10min</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>5min</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — Crossing tracks (which includes converging tracks) at same level = 15 minutes standard separation (when nav aids do not permit frequent determination).</div>
+</div>
+
+<!-- Q16 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">16</span>What are the controlled IFR separation methods applied by ATC?</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>Vertical, horizontal and composite separation.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>Time separation and track separation.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>Composite separation.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — ATC applies vertical separation, horizontal separation (lateral + longitudinal + surveillance-based), and composite separation.</div>
+</div>
+
+<!-- Q17 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">17</span>The vertical IFR separation minimum being applied by ATC within a controlled airspace below FL 290 is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>500ft (150m).</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>2000ft (600m).</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">C</span><span>1000ft (300m).</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: C — Below FL 290, nominal vertical separation minimum = 1000 ft (approximately 300 m).</div>
+</div>
+
+<!-- Q18 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">18</span>The vertical IFR separation minimum being applied by ATC within a controlled airspace above FL 290 is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>500ft (150m).</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">B</span><span>2000ft (600m).</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>1000ft (300m).</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: B — Above FL 290 (non-RVSM), nominal vertical separation = 2000 ft (approximately 600 m).</div>
+</div>
+
+<!-- Q19 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">19</span>Longitudinal separation minima based on distance using DME for aircraft at the same cruising level and track, provided that each aircraft utilizes "on Track" DME stations and separation is checked by obtaining simultaneous DME readings, is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>20NM</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>25NM</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>40NM</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — Same cruising level, same track, both using "on track" DME = 20 NM baseline separation.</div>
+</div>
+
+<!-- Q20 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">20</span>A "RNAV" distance based separation minimum may be used at the time the level is crossed, provided that each aircraft reports its distance to or from the same "on track" way-point. This minimum is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>20NM</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">B</span><span>80NM</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>60NM</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: B — RNAV distance-based separation with Mach number technique = 150 km / 80 NM on same direction tracks (in lieu of 10-minute longitudinal separation).</div>
+</div>
+
+<!-- Q21 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">21</span>A VFR flight constitutes essential traffic to other VFR flights, when operating in controlled airspace classified as:</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>B</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>B, C, D and E</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>B and C</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — In Class B airspace, separation is provided between ALL flights (including VFR-VFR), so VFR flights constitute essential traffic to each other there.</div>
+</div>
+
+<!-- Q22 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">22</span>RCP 120 is the number of:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>Transmissions loaded on aircraft FMS for data link exchange.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>Minutes required to divert to a suitable aerodrome under ETOP conditions.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">C</span><span>Seconds it takes for an instruction to travel from the ground to aircraft and acknowledgment back to the ground.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: C — RCP is classified based on transaction time in seconds. RCP 120 = the total round-trip communication takes 120 seconds.</div>
+</div>
+
+<!-- Q23 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">23</span>Vertical or horizontal separation shall be provided between:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>All flights in class A, B and C airspaces.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">B</span><span>All flights in class A and B airspaces.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>All flights in class B, C and D airspaces.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: B — Between ALL flights in Class A and B airspaces; in C, D, E it is only between IFR-IFR (and IFR-VFR in Class C).</div>
+</div>
+
+<!-- Q24 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">24</span>The separation method whereby the vertical and horizontal separation may be reduced till a maximum of half the standard criteria is called:</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>Composite separation.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>Reduced separation.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>Combined separation.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — Composite separation uses minima that may be lower than, but not less than half of, those used individually for vertical or horizontal separation.</div>
+</div>
+
+<!-- Q25 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">25</span>ADS-B ground station is more than 110 NMs from two aircraft at same level. Only ADS-B is being used for separation in non radar environment. The minimum safe distance between these aircraft is _____ NMs.</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>10</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>5</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>3</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — Beyond 60 NM of ADS-B ground station in non-radar environment = 10 NM separation (110 NM is beyond 60 NM threshold).</div>
+</div>
+
+<!-- Q26 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">26</span>Cruising level IFR during cruise within controlled airspace shall be given as flight level (FL):</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>Above the transition altitude when applicable.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>Only in airspace class A.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>If the obstacle clearance is more than 2000ft.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — Cruising levels are expressed as flight levels (FL) above the transition altitude. Below transition altitude, altitudes (QNH) are used.</div>
+</div>
+
+<!-- Q27 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">27</span>Aircraft flying along the same track may be separated by DME-distances from the same DME and it is confirmed that the aircraft have passed each other. Specify the shortest difference in DME-distance to make it possible for one aircraft to climb or descend:</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>10NM</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>12NM</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>15NM</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — Aircraft on reciprocal tracks using on-track DME may climb/descend after it is positively established they have passed each other and are at least 10 NM apart.</div>
+</div>
+
+<!-- Q28 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">28</span>Track separation between aircraft using the same VOR shall be applied requiring the aircraft to fly:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>At least 15° separated at a distance of 15 miles or more from the facility.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">B</span><span>At least 15° separated at a distance of 15NM or more from the facility.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>At least 30° separated at a distance of 15NM or more from the facility.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: B — VOR lateral separation: radials diverging ≥15° with at least one aircraft ≥15 NM (nautical miles) from the VOR. Note: miles vs NM is a common trap!</div>
+</div>
+
+<!-- Q29 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">29</span>ATC clearances are solely issued for:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>Alerting pilots about other aircraft in close vicinity.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>Making pilots follow laid down procedures.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">C</span><span>Expediting and separating air traffic.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: C — ATC clearances are solely issued for the purpose of expediting and separating air traffic.</div>
+</div>
+
+<!-- Q30 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">30</span>The longitudinal separation minima based on DME, and each aircraft "on track" uses DME stations, is:</div>
+  <div class="qa-opts">
+    <div class="qa-opt"><span class="opt-letter">A</span><span>10NM provided that the leading aircraft maintains a true airspeed of 40kt or more faster than the succeeding aircraft.</span></div>
+    <div class="qa-opt correct"><span class="opt-letter">B</span><span>10NM provided that the leading aircraft maintains a true airspeed of 20kt or more faster than the succeeding aircraft.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>20NM provided that the leading aircraft maintains a true airspeed of 10kt or more faster than the succeeding aircraft.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: B — DME separation can be reduced from 20 NM to 10 NM when the leading aircraft is at least 20 kt faster.</div>
+</div>
+
+<!-- Q31 -->
+<div class="qa-block">
+  <div class="qa-q"><span class="qnum">31</span>FMS/RNAV:</div>
+  <div class="qa-opts">
+    <div class="qa-opt correct"><span class="opt-letter">A</span><span>Can be used for conventional procedures only if AFM permits.</span></div>
+    <div class="qa-opt"><span class="opt-letter">B</span><span>Cannot be used for conventional procedures.</span></div>
+    <div class="qa-opt"><span class="opt-letter">C</span><span>Can be used for conventional procedures if permitted by DGCA.</span></div>
+  </div>
+  <div class="qa-answer">✅ Answer: A — FMS/RNAV may be used for conventional procedures only when authorised in the Aircraft Flight Manual (AFM), with basic display monitoring and raw data tolerance compliance.</div>
+</div>
+
+<hr class="divider divider-gold">
+
+<!-- ══════════════════ QUICK REFERENCE CARD ══════════════════ -->
+<div class="summary-strip">
+  <h3>🃏 Quick Reference Card — All Key Values at a Glance</h3>
+  <div class="table-wrap" style="margin:0; border-radius:6px;">
+  <table>
+    <thead>
+      <tr><th>Parameter</th><th>Value</th><th>Condition / Note</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Vertical Sep below FL 290</td><td><strong>1 000 ft</strong></td><td>Standard non-RVSM</td></tr>
+      <tr><td>Vertical Sep at/above FL 290</td><td><strong>2 000 ft</strong></td><td>Standard non-RVSM</td></tr>
+      <tr><td>Vertical Sep (RVSM)</td><td><strong>1 000 ft</strong></td><td>Both a/c RVSM compliant, in RVSM airspace</td></tr>
+      <tr><td>Cruise Climb</td><td><strong>NOT permitted</strong></td><td>Indian FIRs</td></tr>
+      <tr><td>VOR Lateral Sep</td><td><strong>15°, 15 NM</strong></td><td>Radials ≥15° diverging; at least one a/c ≥15 NM</td></tr>
+      <tr><td>NDB Lateral Sep</td><td><strong>30°, 15 NM</strong></td><td>Tracks ≥30° diverging; at least one a/c ≥15 NM; 2nd track ≥20° from first radial</td></tr>
+      <tr><td>GNSS/GNSS distance (FL 010–190)</td><td><strong>15 NM (27.8 km)</strong></td><td>Angular diff 15–135°</td></tr>
+      <tr><td>GNSS/GNSS distance (FL 200–600)</td><td><strong>23 NM (43 km)</strong></td><td>Angular diff 15–135°</td></tr>
+      <tr><td>Same Track (standard)</td><td><strong>15 min</strong></td><td>Angular diff &lt;45° or &gt;315°</td></tr>
+      <tr><td>Reciprocal Tracks</td><td><strong>135°–225°</strong></td><td>10 min before/after crossing</td></tr>
+      <tr><td>Crossing Tracks</td><td><strong>45°–135° or 225°–315°</strong></td><td>15 min standard</td></tr>
+      <tr><td>Long Sep with 20 kt speed adv</td><td><strong>5 min</strong></td><td>Same aerodrome/point; 37 kmph faster</td></tr>
+      <tr><td>Long Sep with 40 kt speed adv</td><td><strong>3 min</strong></td><td>Same aerodrome/point; 74 kmph faster</td></tr>
+      <tr><td>DME baseline (same track)</td><td><strong>20 NM</strong></td><td>Same level</td></tr>
+      <tr><td>DME reduced (20 kt faster)</td><td><strong>10 NM</strong></td><td>Leading a/c ≥20 kt faster</td></tr>
+      <tr><td>DME climbing/descending</td><td><strong>10 NM</strong></td><td>Same track; one a/c maintains level</td></tr>
+      <tr><td>Radar Sep ≤60 NM</td><td><strong>5 NM</strong></td><td>From radar head</td></tr>
+      <tr><td>Radar Sep >60 NM</td><td><strong>10 NM</strong></td><td>From radar head</td></tr>
+      <tr><td>Radar Sep (special auth)</td><td><strong>3 NM</strong></td><td>Specifically authorised only</td></tr>
+      <tr><td>ADS-B only ≤60 NM</td><td><strong>5 NM</strong></td><td>Non-radar environment</td></tr>
+      <tr><td>ADS-B only >60 NM</td><td><strong>10 NM</strong></td><td>Non-radar environment</td></tr>
+      <tr><td>RNAV/Mach technique</td><td><strong>80 NM (150 km)</strong></td><td>Same direction; lieu of 10-min sep</td></tr>
+      <tr><td>VMC own sep — altitude limit</td><td><strong>10 000 ft</strong></td><td>During climb/descent in Class D/E, daylight</td></tr>
+      <tr><td>RCP transaction time</td><td><strong>seconds (ground↔a/c)</strong></td><td>RCP 10/60/120/240/400</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="margin-top:30px; padding:16px; background:var(--off-white); border-radius:8px; text-align:center; border-top: 3px solid var(--gold);">
+  <p style="font-family:'Playfair Display',serif; font-size:15px; color:var(--navy); font-weight:700; margin-bottom:4px;">Capt. Pankaj Pahil — DGCA Ground Study Notes</p>
+  <p style="font-size:11px; color:var(--text-lt); margin:0;">Chapter 6: Separation Methods & Minima · PANS ATM Doc 4444 · AIP India · Pages 165–188</p>
+  <p style="font-size:10px; color:var(--text-lt); margin-top:4px;">For CPL/ATPL examination preparation. All values as per DGCA regulations.</p>
+</div>
+
+</div><!-- /page-wrap -->
+</body>
+</html>

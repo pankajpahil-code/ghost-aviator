@@ -85,7 +85,7 @@ export default function Home() {
               </div>
 
               <div className="grid grid-cols-4 gap-3">
-                {[["10K+","Questions"],["14","Subjects"],["70%","Pass Mark"],["FREE","Start"]].map(([v,l]) => (
+                {[["10K+","Questions"],["15","Subjects"],["70%","Pass Mark"],["FREE","Start"]].map(([v,l]) => (
                   <div key={l} className="text-center p-3 rounded-xl"
                        style={{ background:"rgba(20,10,40,0.9)", border:"1px solid rgba(180,100,255,0.2)" }}>
                     <div className="text-xl font-black" style={{ color:"#c080ff" }}>{v}</div>
@@ -144,7 +144,7 @@ export default function Home() {
                 <div className="text-6xl opacity-80">🛩️</div>
               </div>
               <div className="grid grid-cols-3 gap-3 mb-8">
-                {[["6","Subjects"],["60+","Chapters"],["6,000+","Questions"]].map(([v,l]) => (
+                {[["7","Subjects"],["76","Chapters"],["6,000+","Questions"]].map(([v,l]) => (
                   <div key={l} className="p-3 rounded-xl text-center" style={{ background:"rgba(124,58,237,0.15)", border:"1px solid rgba(124,58,237,0.25)" }}>
                     <div className="text-xl font-black text-white">{v}</div>
                     <div className="text-xs" style={{ color:"#7c3aed" }}>{l}</div>
@@ -231,7 +231,7 @@ export default function Home() {
             {[
               { label:"Chapter Study",   icon:"📚", color:"#7c3aed" },
               { label:"→",              icon:"",   color:"#475569" },
-              { label:"Chapter Test",   icon:"📝", color:"#0ea5e9" },
+              { label:"Chapter Quiz",   icon:"✅", color:"#f97316" },
               { label:"→",              icon:"",   color:"#475569" },
               { label:"Mid-Subject Test",icon:"🎯", color:"#f59e0b" },
               { label:"→",              icon:"",   color:"#475569" },

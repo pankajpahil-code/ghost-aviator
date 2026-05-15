@@ -1,0 +1,112 @@
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { ATPL_SUBJECTS } from "@/lib/subjects";
+import { getQuestionsForChapter } from "@/lib/questions";
+import NotesPage       from "@/app/components/content/NotesPage";
+import QuestionsPage   from "@/app/components/content/QuestionsPage";
+import ChapterTestPage from "@/app/components/content/ChapterTestPage";
+import ChapterQuizPage from "@/app/components/content/ChapterQuizPage";
+import ComingSoonPage  from "@/app/components/content/ComingSoonPage";
+
+const VALID_TYPES = ["notes", "slides", "video", "audio", "questions", "mock-test", "chapter-quiz"] as const;
+
+export function generateStaticParams() {
+  return ATPL_SUBJECTS.flatMap(s =>
+    s.chapters.flatMap(ch =>
+      VALID_TYPES.map(type => ({ subject: s.id, chapter: ch.id, type })),
+    ),
+  );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ subject: string; chapter: string; type: string }>;
+}): Promise<Metadata> {
+  const { subject: subjectId, chapter: chapterId, type } = await params;
+  const subject = ATPL_SUBJECTS.find(s => s.id === subjectId);
+  const chapter = subject?.chapters.find(c => c.id === chapterId);
+  if (!subject || !chapter) return {};
+  const label = type === "mock-test" ? "Chapter Test"
+    : type.charAt(0).toUpperCase() + type.slice(1);
+  return {
+    title: `Ch.${chapter.number} ${chapter.title} — ${label} | ${subject.shortName} ATPL | Ghost Aviator`,
+    description: chapter.description,
+  };
+}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ subject: string; chapter: string; type: string }>;
+}) {
+  const { subject: subjectId, chapter: chapterId, type } = await params;
+
+  if (!VALID_TYPES.includes(type as typeof VALID_TYPES[number])) notFound();
+
+  const subject = ATPL_SUBJECTS.find(s => s.id === subjectId);
+  if (!subject) notFound();
+
+  const chapterIdx = subject.chapters.findIndex(c => c.id === chapterId);
+  if (chapterIdx === -1) notFound();
+
+  const chapter     = subject.chapters[chapterIdx];
+  const prevChapter = chapterIdx > 0 ? subject.chapters[chapterIdx - 1] : null;
+  const nextChapter = chapterIdx < subject.chapters.length - 1 ? subject.chapters[chapterIdx + 1] : null;
+
+  const questions = getQuestionsForChapter(subject.id, chapter.id);
+
+  if (type === "notes") {
+    return (
+      <NotesPage
+        track="atpl"
+        subject={subject}
+        chapter={chapter}
+        prevChapter={prevChapter}
+        nextChapter={nextChapter}
+      />
+    );
+  }
+
+  if (type === "questions") {
+    return (
+      <QuestionsPage
+        track="atpl"
+        subject={subject}
+        chapter={chapter}
+        questions={questions}
+      />
+    );
+  }
+
+  if (type === "mock-test") {
+    return (
+      <ChapterTestPage
+        track="atpl"
+        subject={subject}
+        chapter={chapter}
+        questions={questions}
+      />
+    );
+  }
+
+  if (type === "chapter-quiz") {
+    return (
+      <ChapterQuizPage
+        track="atpl"
+        subject={subject}
+        chapter={chapter}
+        questions={questions}
+      />
+    );
+  }
+
+  return (
+    <ComingSoonPage
+      track="atpl"
+      subject={subject}
+      chapter={chapter}
+      type={type}
+    />
+  );
+}

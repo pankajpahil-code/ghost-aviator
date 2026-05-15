@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Ghost, Send } from "lucide-react";
+import { Ghost, Send, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -16,33 +16,52 @@ export default function Footer() {
               India&apos;s most comprehensive DGCA exam preparation platform. Built by pilots, for pilots.
               Free for students from rural areas and underprivileged backgrounds.
             </p>
-            <a href="https://t.me/ghostaviator" target="_blank" rel="noreferrer"
-               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium no-underline"
-               style={{ background: "rgba(0,212,255,0.1)", color: "#00d4ff", border: "1px solid rgba(0,212,255,0.2)" }}>
-              <Send className="w-4 h-4" /> Join Telegram Community
-            </a>
+            <div className="flex flex-wrap gap-3">
+              <a href="https://t.me/+tgLMJithc1gzOWJl" target="_blank" rel="noreferrer"
+                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium no-underline"
+                 style={{ background: "rgba(0,212,255,0.1)", color: "#00d4ff", border: "1px solid rgba(0,212,255,0.2)" }}>
+                <Send className="w-4 h-4" /> Join Telegram Community
+              </a>
+              <a href="tel:+919990226607"
+                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium no-underline"
+                 style={{ background: "rgba(0,212,255,0.05)", color: "#94a3b8", border: "1px solid rgba(0,212,255,0.15)" }}>
+                <Phone className="w-4 h-4" /> +91 99902 26607
+              </a>
+            </div>
           </div>
 
           {/* Study */}
           <div>
             <h4 className="text-sm font-semibold mb-4" style={{ color: "#00d4ff" }}>Study</h4>
             <ul className="flex flex-col gap-2">
-              {["Question Bank","Mock Tests","Notes","Video Lectures","Previous Papers"].map(item => (
+              {[
+                ["Question Bank",   "/question-bank"],
+                ["Mock Tests",      "/mock-test"],
+                ["Notes",           "/notes"],
+                ["CPL Prep",        "/cpl"],
+                ["ATPL Prep",       "/atpl"],
+              ].map(([item, href]) => (
                 <li key={item}>
-                  <Link href="#" className="text-sm no-underline" style={{ color: "#64748b" }}>{item}</Link>
+                  <Link href={href} className="text-sm no-underline" style={{ color: "#64748b" }}>{item}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Subjects */}
+          {/* CPL Subjects */}
           <div>
-            <h4 className="text-sm font-semibold mb-4" style={{ color: "#00d4ff" }}>Subjects</h4>
+            <h4 className="text-sm font-semibold mb-4" style={{ color: "#00d4ff" }}>CPL Subjects</h4>
             <ul className="flex flex-col gap-2">
-              {["Air Regulations","Meteorology","Navigation","Technical General","Radio Aids","Performance"].map(item => (
+              {[
+                ["Air Regulations",     "/cpl/air-regulations"],
+                ["Meteorology",         "/cpl/meteorology"],
+                ["Air Navigation",      "/cpl/air-navigation"],
+                ["Technical General",   "/cpl/technical-general"],
+                ["Radio Telephony",     "/cpl/radio-telephony"],
+                ["Tech. Performance",   "/cpl/technical-performance"],
+              ].map(([item, href]) => (
                 <li key={item}>
-                  <Link href={`/subjects/${item.toLowerCase().replace(/ /g,"-")}`}
-                        className="text-sm no-underline" style={{ color: "#64748b" }}>{item}</Link>
+                  <Link href={href} className="text-sm no-underline" style={{ color: "#64748b" }}>{item}</Link>
                 </li>
               ))}
             </ul>

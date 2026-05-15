@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 9 – Use of ATS Surveillance System | DGCA CPL/ATPL Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════
+   PRINT & PAGE SETUP
+═══════════════════════════════════════════════════════ */
+@page {
+  size: A4;
+  margin: 18mm 15mm 18mm 15mm;
+}
+
+@media print {
+  body::before { position: fixed !important; }
+  .no-break { page-break-inside: avoid; }
+  .page-break { page-break-before: always; }
+  nav, .toc-btn { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   CSS VARIABLES – COLOUR PALETTE
+═══════════════════════════════════════════════════════ */
+:root {
+  --navy:       #0d1b2a;
+  --navy-mid:   #1b3358;
+  --sky:        #1a6fa8;
+  --sky-light:  #e8f4fd;
+  --sky-border: #a8d4f0;
+  --gold:       #c8961e;
+  --gold-light: #fff8e7;
+  --gold-border:#e8c96a;
+  --red-dark:   #8b1a1a;
+  --red-bg:     #fff0f0;
+  --red-border: #f5b8b8;
+  --green-dark: #1a5c2a;
+  --green-bg:   #f0fff4;
+  --green-border:#9de0b0;
+  --purple-dark:#4a1a6b;
+  --purple-bg:  #f8f0ff;
+  --purple-border:#c9a8e8;
+  --orange-dark:#7a3500;
+  --orange-bg:  #fff5ee;
+  --orange-border:#f5c89a;
+  --text:       #1a1a2e;
+  --text-light: #4a5568;
+  --bg:         #f7f9fc;
+  --white:      #ffffff;
+  --border:     #d4dde8;
+}
+
+/* ═══════════════════════════════════════════════════════
+   WATERMARK
+═══════════════════════════════════════════════════════ */
+body::before {
+  content: "Capt. Pankaj Pahil";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: #0d1b2a;
+  opacity: 0.07;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 9999;
+  letter-spacing: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BASE STYLES
+═══════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+  padding: 0;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   MASTHEAD / COVER
+═══════════════════════════════════════════════════════ */
+.masthead {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1a3f6b 100%);
+  color: var(--white);
+  padding: 60px 40px 50px;
+  position: relative;
+  overflow: hidden;
+  page-break-inside: avoid;
+}
+.masthead::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; right: -40px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+}
+.masthead::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: -30px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(200,150,30,0.12);
+}
+.badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 3px;
+  margin-bottom: 18px;
+}
+.masthead h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  position: relative;
+}
+.masthead h1 span { color: var(--gold); }
+.masthead .sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.72);
+  font-weight: 300;
+  margin-bottom: 28px;
+}
+.masthead-meta {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.meta-item .label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.meta-item .value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+}
+.chapter-num {
+  position: absolute;
+  top: 30px; right: 50px;
+  font-family: 'Playfair Display', serif;
+  font-size: 120px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.05);
+  line-height: 1;
+}
+
+/* ═══════════════════════════════════════════════════════
+   TABLE OF CONTENTS
+═══════════════════════════════════════════════════════ */
+.toc {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 30px;
+  margin: 30px 0;
+  page-break-inside: avoid;
+}
+.toc h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--navy);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--gold);
+}
+.toc ol {
+  list-style: none;
+  counter-reset: toc-counter;
+}
+.toc ol li {
+  counter-increment: toc-counter;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.toc ol li::before {
+  content: counter(toc-counter, decimal-leading-zero);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 700;
+  min-width: 28px;
+}
+.toc ol li a {
+  color: var(--navy-mid);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.toc ol li a:hover { color: var(--sky); }
+
+/* ═══════════════════════════════════════════════════════
+   SECTION HEADINGS
+═══════════════════════════════════════════════════════ */
+.section-header {
+  margin: 40px 0 20px;
+  page-break-inside: avoid;
+  page-break-after: avoid;
+}
+.section-header .section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.2;
+  border-left: 5px solid var(--gold);
+  padding-left: 16px;
+}
+.sub-header {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy-mid);
+  margin: 28px 0 12px;
+  padding: 8px 0 8px 14px;
+  border-left: 3px solid var(--sky);
+  page-break-after: avoid;
+}
+.sub-sub-header {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--sky);
+  margin: 18px 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  page-break-after: avoid;
+}
+
+/* ═══════════════════════════════════════════════════════
+   INFO BOXES
+═══════════════════════════════════════════════════════ */
+.box {
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0;
+  page-break-inside: avoid;
+  position: relative;
+}
+.box-icon {
+  display: inline-block;
+  font-size: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.box-title {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.box p, .box ul, .box ol { font-size: 14.5px; }
+.box ul, .box ol { padding-left: 20px; }
+.box ul li, .box ol li { margin-bottom: 5px; }
+
+/* Blue = Definition */
+.box-def {
+  background: var(--sky-light);
+  border: 1px solid var(--sky-border);
+  border-left: 5px solid var(--sky);
+}
+.box-def .box-title { color: var(--sky); }
+
+/* Red = Warning / Strict Limit */
+.box-warn {
+  background: var(--red-bg);
+  border: 1px solid var(--red-border);
+  border-left: 5px solid var(--red-dark);
+}
+.box-warn .box-title { color: var(--red-dark); }
+
+/* Green = SOP / Procedure */
+.box-sop {
+  background: var(--green-bg);
+  border: 1px solid var(--green-border);
+  border-left: 5px solid var(--green-dark);
+}
+.box-sop .box-title { color: var(--green-dark); }
+
+/* Gold = Key Rule / Exam Tip */
+.box-key {
+  background: var(--gold-light);
+  border: 1px solid var(--gold-border);
+  border-left: 5px solid var(--gold);
+}
+.box-key .box-title { color: #7a5800; }
+
+/* Purple = Memory Aid */
+.box-mem {
+  background: var(--purple-bg);
+  border: 1px solid var(--purple-border);
+  border-left: 5px solid var(--purple-dark);
+}
+.box-mem .box-title { color: var(--purple-dark); }
+
+/* Orange = Phraseology */
+.box-phrase {
+  background: var(--orange-bg);
+  border: 1px solid var(--orange-border);
+  border-left: 5px solid var(--orange-dark);
+}
+.box-phrase .box-title { color: var(--orange-dark); }
+.phrase-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--orange-dark);
+  background: rgba(122,53,0,0.08);
+  padding: 8px 14px;
+  border-radius: 5px;
+  display: block;
+  margin-top: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   TABLES
+═══════════════════════════════════════════════════════ */
+.table-wrap {
+  overflow-x: auto;
+  margin: 18px 0;
+  page-break-inside: avoid;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+thead tr {
+  background: var(--navy);
+  color: var(--white);
+}
+thead th {
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+tbody tr { border-bottom: 1px solid var(--border); }
+tbody tr:nth-child(even) { background: #f5f7fb; }
+tbody td {
+  padding: 11px 14px;
+  vertical-align: top;
+}
+.val {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--red-dark);
+  font-size: 13.5px;
+}
+.val-green {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--green-dark);
+  font-size: 13.5px;
+}
+.val-blue {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--sky);
+  font-size: 13.5px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   COMPARISON GRID
+═══════════════════════════════════════════════════════ */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 18px 0;
+  page-break-inside: avoid;
+}
+.compare-card {
+  border-radius: 8px;
+  padding: 18px 20px;
+  border: 1.5px solid var(--border);
+}
+.compare-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid;
+}
+.compare-card ul { padding-left: 18px; font-size: 14px; }
+.compare-card ul li { margin-bottom: 6px; }
+.cc-blue { background: var(--sky-light); border-color: var(--sky-border); }
+.cc-blue h4 { color: var(--sky); border-color: var(--sky); }
+.cc-green { background: var(--green-bg); border-color: var(--green-border); }
+.cc-green h4 { color: var(--green-dark); border-color: var(--green-dark); }
+.cc-red { background: var(--red-bg); border-color: var(--red-border); }
+.cc-red h4 { color: var(--red-dark); border-color: var(--red-dark); }
+.cc-gold { background: var(--gold-light); border-color: var(--gold-border); }
+.cc-gold h4 { color: #7a5800; border-color: var(--gold); }
+
+/* ═══════════════════════════════════════════════════════
+   STEP LIST / PROCEDURE LIST
+═══════════════════════════════════════════════════════ */
+.step-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+  page-break-inside: avoid;
+}
+.step-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.step-num {
+  width: 28px; height: 28px;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.step-content { font-size: 14.5px; }
+.step-content strong { color: var(--navy-mid); }
+
+/* ═══════════════════════════════════════════════════════
+   SVG / DIAGRAM WRAPPER
+═══════════════════════════════════════════════════════ */
+.diagram-wrap {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  margin: 20px 0;
+  page-break-inside: avoid;
+  text-align: center;
+}
+.diagram-wrap figcaption {
+  font-size: 12.5px;
+  color: var(--text-light);
+  margin-top: 12px;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   QUESTION BANK
+═══════════════════════════════════════════════════════ */
+.qbank {
+  margin: 10px 0;
+  page-break-inside: avoid;
+}
+.q-item {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  page-break-inside: avoid;
+}
+.q-header {
+  background: var(--navy-mid);
+  color: var(--white);
+  padding: 12px 18px;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.q-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 2px 7px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.q-options {
+  padding: 14px 18px;
+  list-style: none;
+}
+.q-options li {
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  display: flex;
+  gap: 10px;
+}
+.q-options li .opt-letter {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text-light);
+  min-width: 18px;
+}
+.q-options li.correct {
+  background: var(--green-bg);
+  border-color: var(--green-border);
+}
+.q-options li.correct .opt-letter { color: var(--green-dark); }
+.q-answer {
+  padding: 8px 18px 14px;
+  font-size: 13px;
+  color: var(--green-dark);
+  font-weight: 600;
+  border-top: 1px solid var(--border);
+}
+
+/* ═══════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════ */
+.doc-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  padding: 24px;
+  font-size: 12px;
+  margin-top: 60px;
+}
+.doc-footer strong { color: var(--gold); }
+
+/* ═══════════════════════════════════════════════════════
+   UTILITY
+═══════════════════════════════════════════════════════ */
+p { margin-bottom: 12px; }
+.highlight { background: #fff176; padding: 1px 4px; border-radius: 3px; font-weight: 700; }
+.mono { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; }
+.divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  margin: 36px 0;
+}
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-right: 6px;
+}
+.tag-dgca { background: #1a6fa8; color: white; }
+.tag-icao { background: #1a5c2a; color: white; }
+.tag-aip  { background: #7a3500; color: white; }
+
+/* Breadcrumb trail */
+.breadcrumb {
+  font-size: 12px;
+  color: var(--text-light);
+  margin: 20px 0 0;
+  letter-spacing: 0.5px;
+}
+.breadcrumb span { color: var(--gold); margin: 0 6px; }
+
+/* ═══════════════════════════════════════════════════════
+   RADAR SERVICE CARDS
+═══════════════════════════════════════════════════════ */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 18px 0;
+  page-break-inside: avoid;
+}
+.service-card {
+  border-radius: 8px;
+  padding: 18px 16px;
+  text-align: center;
+  border: 2px solid;
+}
+.service-card .icon { font-size: 32px; margin-bottom: 10px; }
+.service-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.service-card p { font-size: 13px; line-height: 1.5; }
+.sc-1 { background: var(--sky-light); border-color: var(--sky); }
+.sc-1 h4 { color: var(--sky); }
+.sc-2 { background: var(--orange-bg); border-color: #d4820a; }
+.sc-2 h4 { color: #7a4500; }
+.sc-3 { background: var(--purple-bg); border-color: #8a4ab8; }
+.sc-3 h4 { color: var(--purple-dark); }
+
+/* ═══════════════════════════════════════════════════════
+   MINIMA VISUAL RULER
+═══════════════════════════════════════════════════════ */
+.sep-ruler {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin: 18px 0;
+  page-break-inside: avoid;
+}
+.sep-ruler h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--navy);
+  margin-bottom: 18px;
+}
+.ruler-bar {
+  position: relative;
+  height: 40px;
+  background: linear-gradient(to right, #e53e3e 0%, #ed8936 40%, #38a169 70%, #2b6cb0 100%);
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.ruler-mark {
+  position: absolute;
+  top: -6px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ruler-mark .tick {
+  width: 2px;
+  height: 52px;
+  background: var(--navy);
+  opacity: 0.7;
+}
+.ruler-mark .label {
+  position: absolute;
+  top: 52px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--navy);
+}
+</style>
+</head>
+<body>
+
+<!-- ████████████████████  MASTHEAD  ████████████████████ -->
+<div class="masthead">
+  <div class="chapter-num">9</div>
+  <div class="badge">DGCA CPL / ATPL Ground School</div>
+  <h1>Use of Air Traffic Services<br><span>Surveillance System</span></h1>
+  <p class="sub">Doc 4444 (PANS-ATM) &amp; AIP India — Complete Study Notes</p>
+  <div class="masthead-meta">
+    <div class="meta-item">
+      <span class="label">Prepared by</span>
+      <span class="value">Capt. Pankaj Pahil</span>
+    </div>
+    <div class="meta-item">
+      <span class="label">Subject</span>
+      <span class="value">Air Regulations</span>
+    </div>
+    <div class="meta-item">
+      <span class="label">Reference</span>
+      <span class="value">Doc 4444 / AIP India</span>
+    </div>
+    <div class="meta-item">
+      <span class="label">Chapter</span>
+      <span class="value">9 — Pages 215–226</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<p class="breadcrumb">Air Regulations <span>›</span> Chapter 9 <span>›</span> ATS Surveillance System</p>
+
+<!-- ████████████████████  TABLE OF CONTENTS  ████████████████████ -->
+<div class="toc">
+  <h2>📋 Table of Contents</h2>
+  <ol>
+    <li><a href="#intro">Introduction — ATS Surveillance Overview</a></li>
+    <li><a href="#adsb">ADS-B (Automatic Dependent Surveillance — Broadcast)</a></li>
+    <li><a href="#adsc">ADS-C (Automatic Dependent Surveillance — Contract)</a></li>
+    <li><a href="#adsb-adv">Advantages of ADS-B</a></li>
+    <li><a href="#mlat">MLAT (Multilateration) Applications</a></li>
+    <li><a href="#radar">Radar Applications</a></li>
+    <li><a href="#ats-use">Use of ATS Surveillance in ATC Service</a></li>
+    <li><a href="#identification">ATS Identification Procedures</a></li>
+    <li><a href="#psr-id">PSR Identification Procedures</a></li>
+    <li><a href="#sep">Separation Minima (ICAO &amp; India)</a></li>
+    <li><a href="#speed">Speed Control Procedures</a></li>
+    <li><a href="#termination">Termination of ATS Surveillance Service</a></li>
+    <li><a href="#transponder">SSR Transponder Operating Procedures</a></li>
+    <li><a href="#modec">Mode C / ADS-B Altitude Verification</a></li>
+    <li><a href="#questions">Practice Questions &amp; Answers</a></li>
+  </ol>
+</div>
+
+<!-- ████████████████████  SECTION 1: INTRODUCTION  ████████████████████ -->
+<div id="intro" class="section-header">
+  <span class="section-num">§ 01</span>
+  <h2>Introduction — ATS Surveillance Systems</h2>
+</div>
+
+<div class="box box-def no-break">
+  <div class="box-title">📡 What is an ATS Surveillance System?</div>
+  <p><strong>ATS Surveillance System</strong> is a <em>generic term</em> covering any ground-based system that enables the identification of aircraft to provide Air Traffic Services. It encompasses:</p>
+  <ul>
+    <li><strong>ADS-B</strong> — Automatic Dependent Surveillance – Broadcast</li>
+    <li><strong>PSR</strong> — Primary Surveillance Radar</li>
+    <li><strong>SSR</strong> — Secondary Surveillance Radar</li>
+    <li><strong>MLAT</strong> — Multilateration</li>
+    <li>Any comparable <strong>ground-based</strong> system enabling aircraft identification</li>
+  </ul>
+</div>
+
+<!-- System overview SVG -->
+<div class="diagram-wrap no-break">
+  <svg viewBox="0 0 820 320" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', sans-serif">
+    <!-- Background -->
+    <rect width="820" height="320" fill="#f7f9fc" rx="8"/>
+    <!-- Title -->
+    <text x="410" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1b2a">ATS Surveillance System Family</text>
+    <!-- Central node -->
+    <ellipse cx="410" cy="160" rx="80" ry="38" fill="#0d1b2a"/>
+    <text x="410" y="155" text-anchor="middle" font-size="13" font-weight="700" fill="white">ATS</text>
+    <text x="410" y="171" text-anchor="middle" font-size="11" fill="#c8961e">Surveillance</text>
+    <!-- PSR node -->
+    <rect x="50" y="100" width="130" height="60" rx="8" fill="#e8f4fd" stroke="#1a6fa8" stroke-width="2"/>
+    <text x="115" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#1a6fa8">PSR</text>
+    <text x="115" y="143" text-anchor="middle" font-size="11" fill="#0d1b2a">Primary Surveillance</text>
+    <text x="115" y="157" text-anchor="middle" font-size="11" fill="#0d1b2a">Radar</text>
+    <line x1="180" y1="130" x2="330" y2="152" stroke="#1a6fa8" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- SSR node -->
+    <rect x="50" y="200" width="130" height="60" rx="8" fill="#f0fff4" stroke="#1a5c2a" stroke-width="2"/>
+    <text x="115" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#1a5c2a">SSR</text>
+    <text x="115" y="243" text-anchor="middle" font-size="11" fill="#0d1b2a">Secondary Surveillance</text>
+    <text x="115" y="257" text-anchor="middle" font-size="11" fill="#0d1b2a">Radar</text>
+    <line x1="180" y1="230" x2="330" y2="168" stroke="#1a5c2a" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- ADS-B node -->
+    <rect x="630" y="100" width="140" height="60" rx="8" fill="#fff8e7" stroke="#c8961e" stroke-width="2"/>
+    <text x="700" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#7a5800">ADS-B</text>
+    <text x="700" y="143" text-anchor="middle" font-size="11" fill="#0d1b2a">Auto Dependent</text>
+    <text x="700" y="157" text-anchor="middle" font-size="11" fill="#0d1b2a">Surveillance — Broadcast</text>
+    <line x1="630" y1="130" x2="490" y2="152" stroke="#c8961e" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- MLAT node -->
+    <rect x="630" y="200" width="140" height="60" rx="8" fill="#f8f0ff" stroke="#4a1a6b" stroke-width="2"/>
+    <text x="700" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#4a1a6b">MLAT</text>
+    <text x="700" y="243" text-anchor="middle" font-size="11" fill="#0d1b2a">Multilateration</text>
+    <text x="700" y="257" text-anchor="middle" font-size="11" fill="#0d1b2a">TDOA-based</text>
+    <line x1="630" y1="230" x2="490" y2="168" stroke="#4a1a6b" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- ADS-C note bottom -->
+    <rect x="290" y="260" width="240" height="42" rx="6" fill="#fff0f0" stroke="#f5b8b8" stroke-width="1.5"/>
+    <text x="410" y="278" text-anchor="middle" font-size="12" font-weight="700" fill="#8b1a1a">⚠ ADS-C is DIFFERENT from ADS-B</text>
+    <text x="410" y="294" text-anchor="middle" font-size="11" fill="#8b1a1a">ADS-C is point-to-point (not broadcast)</text>
+  </svg>
+  <figcaption>Fig 1.1 — The ATS Surveillance System family and their key distinctions</figcaption>
+</div>
+
+<h3 class="sub-header">When is PSR Used?</h3>
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ PSR Usage Rule</div>
+  <p><strong>PSR systems should be used</strong> in circumstances where <em>other</em> ATS surveillance systems <strong>alone</strong> would <strong>not meet</strong> the air traffic services requirements.</p>
+  <p style="margin-top:8px; font-style:italic; font-size:13px; color: #8b1a1a;">PSR is the supplementary backstop — not the primary tool in modern ATC.</p>
+</div>
+
+<h3 class="sub-header">When Can SSR Be Used Alone?</h3>
+<div class="box box-sop no-break">
+  <div class="box-title">✅ SSR Alone — Conditions for Separation</div>
+  <p>SSR systems (especially those with <strong>monopulse techniques</strong> or <strong>Mode S capability</strong>), or <strong>MLAT</strong>, may be used alone — including for <strong>separation between aircraft</strong> — provided <em>both</em> conditions are met:</p>
+  <ul>
+    <li>✔ The carriage of SSR transponders is <strong>mandatory</strong> within the area</li>
+    <li>✔ Identification is <strong>established and maintained</strong></li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 2: ADS-B  ████████████████████ -->
+<div id="adsb" class="section-header">
+  <span class="section-num">§ 02</span>
+  <h2>ADS-B — Automatic Dependent Surveillance – Broadcast</h2>
+</div>
+
+<div class="box box-def no-break">
+  <div class="box-title">📡 Definition — ADS-B</div>
+  <p><strong>ADS-B</strong>, like PSR and SSR, is an <strong>ATS surveillance system</strong>. It allows ATC to <strong>automatically and repeatedly access data</strong> from all suitably equipped aircraft and both <em>use</em> and <em>re-broadcast</em> it to suitably equipped other aircraft within range.</p>
+</div>
+
+<div class="box box-key no-break">
+  <div class="box-title">🔑 Key Points — ADS-B</div>
+  <ul>
+    <li><strong>Dependent:</strong> Relies on the aircraft's own navigation systems (GPS/GNSS)</li>
+    <li><strong>Automatic:</strong> No pilot input required — broadcasts continuously</li>
+    <li><strong>Surveillance:</strong> Provides traffic picture to ATC and other aircraft</li>
+    <li><strong>Broadcast:</strong> Signal goes to ALL receivers in range (unlike ADS-C which is point-to-point)</li>
+    <li>Moves from <strong>ground radar</strong> and navigational aids to <strong>precise satellite-based tracking</strong></li>
+    <li>Forms the <strong>foundation for NextGen</strong> (Next Generation Air Transportation System)</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 3: ADS-C  ████████████████████ -->
+<div id="adsc" class="section-header">
+  <span class="section-num">§ 03</span>
+  <h2>ADS-C — Automatic Dependent Surveillance – Contract</h2>
+</div>
+
+<div class="box box-def no-break">
+  <div class="box-title">📋 Definition — ADS-C</div>
+  <p>ADS-C uses the <strong>same on-board systems</strong> as ADS-B to transmit similar information (position, altitude, speed, navigational intent, meteorological data) — but <em>only</em> to <strong>one or more specific</strong> Air Traffic Services Units (ATSU) or Aeronautical Operational Control (AOC) facilities — for <strong>surveillance and/or route conformance monitoring.</strong></p>
+</div>
+
+<div class="compare-grid no-break">
+  <div class="compare-card cc-blue">
+    <h4>ADS-B (Broadcast)</h4>
+    <ul>
+      <li>Signal goes to <strong>ALL</strong> receivers within range</li>
+      <li>Used by ATC <em>and</em> other aircraft (TCAS/traffic display)</li>
+      <li>No specific "contract" required</li>
+      <li>Suitable for busy, high-density airspace</li>
+      <li>Ground stations re-broadcast to other aircraft</li>
+    </ul>
+  </div>
+  <div class="compare-card cc-gold">
+    <h4>ADS-C (Contract)</h4>
+    <ul>
+      <li>Signal goes to <strong>specific</strong> ATSUs / AOC only</li>
+      <li>Based on an <strong>ADS contract</strong> between aircraft &amp; ground</li>
+      <li>Contract defines <em>type of data</em> and <em>reporting conditions</em></li>
+      <li>Used for oceanic / remote area surveillance</li>
+      <li>Aircraft can also send <em>unsolicited</em> emergency reports</li>
+    </ul>
+  </div>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Critical Exam Distinction</div>
+  <p>Although the names are similar, <strong class="highlight">ADS-C and ADS-B are two different applications.</strong></p>
+  <p>Data provision under ADS-C is <em>only</em> generated in response to a <strong>request within the terms of an ADS contract</strong> held by the ground system. The contract identifies the types of information and the conditions under which reports are sent.</p>
+  <p>Some information types are included in <em>every</em> report; others are provided <em>only if specified</em> in the contract.</p>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 4: ADS-B ADVANTAGES  ████████████████████ -->
+<div id="adsb-adv" class="section-header">
+  <span class="section-num">§ 04</span>
+  <h2>Advantages of ADS-B</h2>
+</div>
+
+<div class="box box-sop no-break">
+  <div class="box-title">✅ Advantages — ADS-B (The Full List)</div>
+  <ul>
+    <li>🌿 <strong>Environmentally friendly technology</strong> — enhances safety and efficiency</li>
+    <li>👨‍✈️ <strong>Pilots see what controllers see:</strong> displays showing other aircraft in the sky (first time in aviation history)</li>
+    <li>🌩️ <strong>Cockpit displays</strong> also pinpoint <strong>hazardous weather and terrain</strong>, and give important flight information such as temporary flight restrictions</li>
+    <li>🛬 <strong>Reduces runway incursions:</strong> cockpit and controller displays show the location of aircraft <em>and equipped ground vehicles</em> on airport surfaces — even at night or in heavy rainfall</li>
+    <li>🚨 <strong>Collision alerts:</strong> ADS-B applications give pilots indications or alerts of potential collisions</li>
+    <li>🗺️ <strong>Greater coverage:</strong> ground stations are much easier to place than radar — remote areas without radar coverage now have surveillance with ADS-B</li>
+    <li>📡 <strong>Satellite-based routing:</strong> aircraft fly more directly from Point A to Point B, saving time, money, and reducing fuel burn and emissions</li>
+    <li>⬇️ <strong>Reduces separation minima:</strong> improved accuracy of satellite signals over radar allows controllers to eventually reduce minimum separation and increase airspace capacity</li>
+    <li>🏗️ <strong>Foundation for NextGen:</strong> moves from ground radar and navigational aids to precise tracking using satellite signals</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 5: MLAT  ████████████████████ -->
+<div id="mlat" class="section-header">
+  <span class="section-num">§ 05</span>
+  <h2>MLAT — Multilateration Applications</h2>
+</div>
+
+<div class="box box-def no-break">
+  <div class="box-title">📡 Definition — MLAT</div>
+  <p><strong>Multilateration (MLAT)</strong> is a technology to accurately locate aircraft using <strong>Time Difference of Arrival (TDOA)</strong>. It employs a number of <strong>ground stations</strong> placed in strategic locations around an airport.</p>
+</div>
+
+<!-- MLAT SVG -->
+<div class="diagram-wrap no-break">
+  <svg viewBox="0 0 700 280" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', sans-serif">
+    <rect width="700" height="280" fill="#f7f9fc" rx="8"/>
+    <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1b2a">How MLAT Works — Time Difference of Arrival (TDOA)</text>
+    <!-- Aircraft -->
+    <polygon points="350,70 335,100 365,100" fill="#0d1b2a"/>
+    <text x="350" y="120" text-anchor="middle" font-size="12" fill="#0d1b2a" font-weight="700">Aircraft</text>
+    <!-- Ground station 1 -->
+    <rect x="60" y="160" width="100" height="40" rx="6" fill="#e8f4fd" stroke="#1a6fa8" stroke-width="2"/>
+    <text x="110" y="177" text-anchor="middle" font-size="11" font-weight="700" fill="#1a6fa8">Station 1</text>
+    <text x="110" y="192" text-anchor="middle" font-size="10" fill="#1a6fa8">Receives at T₁</text>
+    <!-- Ground station 2 -->
+    <rect x="290" y="200" width="120" height="40" rx="6" fill="#f0fff4" stroke="#1a5c2a" stroke-width="2"/>
+    <text x="350" y="217" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c2a">Station 2</text>
+    <text x="350" y="232" text-anchor="middle" font-size="10" fill="#1a5c2a">Receives at T₂</text>
+    <!-- Ground station 3 -->
+    <rect x="540" y="160" width="100" height="40" rx="6" fill="#fff8e7" stroke="#c8961e" stroke-width="2"/>
+    <text x="590" y="177" text-anchor="middle" font-size="11" font-weight="700" fill="#7a5800">Station 3</text>
+    <text x="590" y="192" text-anchor="middle" font-size="10" fill="#7a5800">Receives at T₃</text>
+    <!-- Signal lines -->
+    <line x1="340" y1="98" x2="160" y2="162" stroke="#1a6fa8" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <line x1="350" y1="100" x2="350" y2="202" stroke="#1a5c2a" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <line x1="360" y1="98" x2="542" y2="162" stroke="#c8961e" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <!-- Central processor -->
+    <rect x="265" y="250" width="170" height="24" rx="5" fill="#0d1b2a"/>
+    <text x="350" y="266" text-anchor="middle" font-size="11" font-weight="700" fill="#c8961e">Central Processor → Calculates Position</text>
+    <line x1="110" y1="200" x2="265" y2="258" stroke="#0d1b2a" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="350" y1="240" x2="350" y2="250" stroke="#0d1b2a" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="590" y1="200" x2="435" y2="258" stroke="#0d1b2a" stroke-width="1" stroke-dasharray="3,2"/>
+  </svg>
+  <figcaption>Fig 5.1 — MLAT calculates aircraft position by measuring Time Difference of Arrival at multiple ground stations</figcaption>
+</div>
+
+<div class="box box-key no-break">
+  <div class="box-title">🔑 MLAT Key Points</div>
+  <ul>
+    <li><strong>No additional avionics required</strong> — uses replies from <strong>Mode A, C and S transponders</strong>, as well as <strong>military IFF</strong> and <strong>ADS-B transponders</strong></li>
+    <li>Individual aircraft will be at <strong>different distances</strong> from each ground station — their replies are received at <strong>fractionally different times</strong></li>
+    <li>Advanced computer processing techniques use these individual time differences to <strong>precisely calculate</strong> aircraft position</li>
+    <li>MLAT is particularly useful in <strong>surface movement</strong> (airport ground) and <strong>terminal area</strong> applications</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 6: RADAR APPLICATIONS  ████████████████████ -->
+<div id="radar" class="section-header">
+  <span class="section-num">§ 06</span>
+  <h2>Radar Applications</h2>
+</div>
+
+<div class="box box-key no-break">
+  <div class="box-title">🔑 Radar Vectors — Headings</div>
+  <p><strong>Radar vectors</strong> given to an aircraft will be related to <strong class="highlight">magnetic headings only.</strong></p>
+  <p>Radar control procedures will be used by ATC <em>in preference</em> to non-radar control procedures whenever ATS or the aircraft served will gain <strong>operational advantage.</strong></p>
+</div>
+
+<h3 class="sub-header">Types of Radar Services</h3>
+
+<div class="service-grid no-break">
+  <div class="service-card sc-1">
+    <div class="icon">🎯</div>
+    <h4>(i) Radar Control Service</h4>
+    <p>For aircraft operating within <strong>controlled airspaces</strong></p>
+  </div>
+  <div class="service-card sc-2">
+    <div class="icon">💡</div>
+    <h4>(ii) Radar Advisory Service</h4>
+    <p>For aircraft operating within <strong>Class F airspace</strong></p>
+  </div>
+  <div class="service-card sc-3">
+    <div class="icon">ℹ️</div>
+    <h4>(iii) Radar Flight Information Service</h4>
+    <p>For <strong>identified</strong> aircraft operating in <strong>any part of FIR</strong></p>
+  </div>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Two-Way Communication Requirement</div>
+  <p>The provision of any of the above types of radar service requires that aircraft remain in <strong>direct two-way communication</strong> with the unit providing the service.</p>
+  <p style="margin-top:8px;"><strong>Exception:</strong> Radar separation may be provided between two radar-identified aircraft even when <em>only one</em> of the aircraft is in direct communication with the radar unit.</p>
+</div>
+
+<h3 class="sub-header">Radar in Approach Control Service</h3>
+<div class="box box-sop no-break">
+  <div class="box-title">✅ Approach Control — Radar Uses</div>
+  <p>Surveillance Radar is extensively used in approach control to:</p>
+  <ul>
+    <li>Sequence the traffic</li>
+    <li>Vector aircraft to position for pilot-interpreted approach aids</li>
+    <li>Conduct <strong>surveillance radar approaches</strong></li>
+  </ul>
+</div>
+
+<h3 class="sub-header">Radar in Aerodrome Control Service</h3>
+<div class="box box-sop no-break">
+  <div class="box-title">✅ Aerodrome Control — Radar Uses</div>
+  <ul>
+    <li>Surveillance radar is used as an <strong>approach monitor aid</strong></li>
+    <li><strong>Surface Movement Radar (SMR)</strong> is used to control traffic on the ground in the movement area</li>
+  </ul>
+</div>
+
+<h3 class="sub-header">Position Indication Display Formats</h3>
+<div class="box box-def no-break">
+  <div class="box-title">📺 How Position May Be Displayed</div>
+  <p>Position indications may be displayed as:</p>
+  <ul>
+    <li><strong>(a)</strong> Individual position symbols — e.g. PSR, SSR, ADS-B or MLAT symbols, or combined symbols</li>
+    <li><strong>(b)</strong> PSR blips</li>
+    <li><strong>(c)</strong> SSR responses</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 7: ATS IN ATC SERVICE  ████████████████████ -->
+<div id="ats-use" class="section-header">
+  <span class="section-num">§ 07</span>
+  <h2>Use of ATS Surveillance Service in Air Traffic Control Service</h2>
+</div>
+
+<div class="box box-sop no-break">
+  <div class="box-title">✅ Primary Purposes of ATS Surveillance Service</div>
+  <p><strong>Provide radar service to:</strong></p>
+  <ul>
+    <li>(i) Improve airspace utilisation &nbsp;|&nbsp; (ii) Reduce delays &nbsp;|&nbsp; (iii) Enhance safety</li>
+  </ul>
+  <br>
+  <p><strong>Provide radar vectoring to:</strong></p>
+  <ul>
+    <li>(i) Departing aircraft for expeditious and efficient departure flow and expediting climb to cruising level</li>
+    <li>(ii) Arriving aircraft for expediting descent from cruising level and establishing an expeditious and efficient approach sequence</li>
+    <li>(iii) Aircraft for the purpose of resolving potential conflict</li>
+    <li>(iv) Assist pilot in their navigation</li>
+  </ul>
+  <br>
+  <p><strong>Provide separation and maintain normal flow</strong> when an aircraft experiencing <strong>communication failure</strong> is within area of ATS surveillance service coverage.</p>
+  <br>
+  <p><strong>Monitor the progress of air traffic</strong> in order to:</p>
+  <ul>
+    <li>(i) Obtain improved position information regarding aircraft under control</li>
+    <li>(ii) Obtain supplementary information regarding other traffic</li>
+    <li>(iii) Detect significant deviations by aircraft from their assigned routings or level</li>
+  </ul>
+</div>
+
+<h3 class="sub-header">Use of SSR Without Primary Radar</h3>
+<div class="box box-def no-break">
+  <div class="box-title">📡 SSR Alone — Separation Provision</div>
+  <p>SSR information may be used <strong>alone</strong> in the provision of <strong>separation between aircraft</strong> provided:</p>
+  <ul>
+    <li>Aircraft identification is <strong>established and maintained</strong> by use of <strong>discrete SSR codes</strong></li>
+  </ul>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Non-Transponder Aircraft — Non-Radar Separation</div>
+  <p><strong>Non-radar separation will be applied</strong> between:</p>
+  <ul>
+    <li>A transponder-equipped aircraft, AND</li>
+    <li>An aircraft <em>without</em> SSR transponder, OR an aircraft with a <strong>non-functioning</strong> SSR transponder</li>
+  </ul>
+</div>
+
+<div class="box box-sop no-break">
+  <div class="box-title">✅ Transponder Failure Procedures</div>
+  <ol>
+    <li><strong>Failure detected during flight:</strong> The aircraft (for whom carriage of transponder is mandatory) will <em>normally be permitted to continue to operate to the next point of landing.</em></li>
+    <li><strong>Failure detected before departure:</strong> The aircraft may be specifically <em>authorised by ATC</em> to operate without a serviceable transponder — provided a <strong>request is included in the flight plan.</strong></li>
+  </ol>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 8: IDENTIFICATION PROCEDURES  ████████████████████ -->
+<div id="identification" class="section-header">
+  <span class="section-num">§ 08</span>
+  <h2>ATS Surveillance Service Identification Procedures</h2>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Mandatory Rule — Identification Before Service</div>
+  <p>Before providing ATS surveillance service to an aircraft, <strong>radar identification shall be established</strong> by one of the methods in <em>Doc 4444-PANS-ATM</em>, and the <strong>pilot so informed.</strong></p>
+  <p style="margin-top:8px;">If identification is subsequently <em>lost</em>, the pilot shall be <strong>informed accordingly</strong> and instructions will be issued so as to restore <strong>non-ATS surveillance service separation.</strong></p>
+</div>
+
+<h3 class="sub-header">ADS-B Identification Procedures</h3>
+<p>Where ADS-B is used for identification, aircraft may be identified by:</p>
+<div class="box box-def no-break">
+  <div class="box-title">📡 ADS-B — Identification Methods (3 Methods)</div>
+  <ul>
+    <li><strong>(a)</strong> Direct recognition of the aircraft identification in an <strong>ADS-B label</strong></li>
+    <li><strong>(b)</strong> Transfer of ADS-B identification</li>
+    <li><strong>(c)</strong> Observation of compliance with an instruction to <strong>TRANSMIT ADS-B IDENT</strong></li>
+  </ul>
+</div>
+
+<h3 class="sub-header">SSR and/or MLAT Identification Procedures</h3>
+<p>Where SSR and/or MLAT is used for identification, aircraft may be identified by:</p>
+<div class="box box-def no-break">
+  <div class="box-title">📡 SSR/MLAT — Identification Methods (6 Methods)</div>
+  <ul>
+    <li><strong>(a)</strong> Recognition of the aircraft identification in a SSR and/or MLAT label</li>
+    <li><strong>(b)</strong> Recognition of an <strong>assigned discrete code</strong>, the setting of which has been verified, in a SSR and/or MLAT label</li>
+    <li><strong>(c)</strong> Direct recognition of the aircraft identification of a <strong>Mode S-equipped</strong> aircraft in a SSR and/or MLAT label</li>
+    <li><strong>(d)</strong> By <strong>transfer</strong> of identification</li>
+    <li><strong>(e)</strong> Observation of compliance with an instruction to <strong>set a specific code</strong></li>
+    <li><strong>(f)</strong> Observation of compliance with an instruction to <strong>squawk IDENT</strong></li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 9: PSR IDENTIFICATION  ████████████████████ -->
+<div id="psr-id" class="section-header">
+  <span class="section-num">§ 09</span>
+  <h2>PSR Identification Procedures</h2>
+</div>
+
+<p>When SSR is not available, PSR identification may be achieved by the following methods:</p>
+
+<h3 class="sub-header">Method 1 — Position Report Method</h3>
+<div class="box box-sop no-break">
+  <div class="box-title">✅ Position Report Method</div>
+  <p>By <strong>correlating</strong> a particular radar position indication with an aircraft reporting:</p>
+  <ul>
+    <li>Its position <strong>over</strong> or as <strong>bearing and distance from</strong> a point shown on the situation display; <strong>AND</strong></li>
+    <li>By <strong>ascertaining</strong> that the track of the particular radar position is consistent with the aircraft path or reported heading</li>
+  </ul>
+</div>
+
+<h3 class="sub-header">Method 2 — Departing Aircraft Method</h3>
+<div class="box box-sop no-break">
+  <div class="box-title">✅ Departing Aircraft Method</div>
+  <p>By correlating an observed radar position indication with an aircraft <strong>known to have just departed</strong>, provided that:</p>
+  <ul>
+    <li>Identification is established <strong>within <span class="highlight">1 NM from the end of the runway used</span></strong></li>
+    <li>Particular care should be taken to avoid confusion with aircraft:</li>
+    <ul>
+      <li>Holding over or overflying the aerodrome</li>
+      <li>Departing from or making a missed approach over <em>adjacent runways</em></li>
+    </ul>
+  </ul>
+</div>
+
+<h3 class="sub-header">Method 3 — The Turn Method</h3>
+<div class="box box-sop no-break">
+  <div class="box-title">✅ The Turn Method</div>
+  <p><strong>(a)</strong> An aircraft may be identified by ascertaining the aircraft heading, if circumstances require, and following a period of track observation by:</p>
+  <ul>
+    <li>▶ Instructing the pilot to execute <strong>one or more changes of heading of <span class="highlight">30 degrees or more</span></strong> and correlating the movements of one particular radar position indication with the aircraft's acknowledged execution of the instructions given; <strong>OR</strong></li>
+    <li>▶ Correlating the movements of a particular radar position indication with manoeuvres currently executed by an aircraft having so reported</li>
+  </ul>
+  <p><strong>(b)</strong> When using these methods, the radar controller shall:</p>
+  <ul>
+    <li>(i) Verify that the movements of <strong>not more than one</strong> radar position indication correspond with those of the aircraft</li>
+    <li>(ii) Ensure that the manoeuvre(s) will <strong>not carry the aircraft outside</strong> the coverage of the radar or the situation display</li>
+  </ul>
+</div>
+
+<!-- PSR Methods Summary Table -->
+<div class="table-wrap no-break">
+  <table>
+    <thead>
+      <tr>
+        <th>PSR ID Method</th>
+        <th>Key Requirement</th>
+        <th>Critical Limit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Position Report</strong></td>
+        <td>Aircraft reports position over / bearing &amp; distance from a known point</td>
+        <td>Track must be consistent with reported heading/path</td>
+      </tr>
+      <tr>
+        <td><strong>Departing Aircraft</strong></td>
+        <td>Aircraft known to have just departed a runway</td>
+        <td class="val">Within 1 NM from end of runway used</td>
+      </tr>
+      <tr>
+        <td><strong>Turn Method</strong></td>
+        <td>Aircraft executes an instructed heading change</td>
+        <td class="val">30° or more heading change</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 10: SEPARATION MINIMA  ████████████████████ -->
+<div id="sep" class="section-header">
+  <span class="section-num">§ 10</span>
+  <h2>Separation Minima</h2>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Separation Minima — Core Rule</div>
+  <p>The separation minima specified shall <strong>only be applied</strong> between <em>identified aircraft</em> when there is <strong>reasonable assurance that identification will be maintained.</strong></p>
+</div>
+
+<h3 class="sub-header">When is Procedural (Non-Radar) Separation Applied?</h3>
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Procedural Separation Minima Will Be Applied In:</div>
+  <ul>
+    <li><strong>(i)</strong> In the event of <strong>ATS surveillance service failure</strong></li>
+    <li><strong>(ii)</strong> In the area <strong>outside</strong> the ATS surveillance service coverage</li>
+    <li><strong>(iii)</strong> To aircraft <strong>leaving</strong> ATS surveillance service coverage or entering an <strong>adjacent FIR</strong> — except where ATS surveillance service transfer is effected</li>
+  </ul>
+</div>
+
+<h3 class="sub-header">ICAO Separation Minima — Radar / ADS-B / MLAT</h3>
+
+<div class="sep-ruler no-break">
+  <h4>📐 Horizontal Separation Minima — Visual Scale</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Condition</th>
+          <th>Separation Minimum</th>
+          <th>Authority</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Standard (Default)</strong> — Radar / ADS-B / MLAT</td>
+          <td class="val">9.3 km (5.0 NM)</td>
+          <td><span class="tag tag-icao">ICAO</span></td>
+          <td>Unless otherwise prescribed</td>
+        </tr>
+        <tr>
+          <td><strong>Reduced</strong> — where capabilities at a given location so permit</td>
+          <td class="val">5.6 km (3.0 NM)</td>
+          <td><span class="tag tag-icao">ICAO</span></td>
+          <td>May be reduced but <em>not below</em> this minimum (unless category (b) applies)</td>
+        </tr>
+        <tr>
+          <td><strong>Further Reduced</strong> — Succeeding aircraft on same final approach track within 18.5 km (10 NM) of runway end threshold</td>
+          <td class="val">4.6 km (2.5 NM)</td>
+          <td><span class="tag tag-icao">ICAO</span></td>
+          <td>Provided local factors permit such reduction</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SVG Separation Ruler -->
+<div class="diagram-wrap no-break">
+  <svg viewBox="0 0 720 160" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', sans-serif">
+    <rect width="720" height="160" fill="#f7f9fc" rx="8"/>
+    <text x="360" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#0d1b2a">Horizontal Radar Separation Minima — ICAO Visual Scale</text>
+    <!-- Track -->
+    <line x1="60" y1="80" x2="660" y2="80" stroke="#d4dde8" stroke-width="2"/>
+    <!-- Aircraft 1 -->
+    <polygon points="60,72 48,90 72,90" fill="#0d1b2a"/>
+    <text x="60" y="106" text-anchor="middle" font-size="10" fill="#0d1b2a">A/C 1</text>
+    <!-- 2.5 NM mark -->
+    <line x1="230" y1="65" x2="230" y2="95" stroke="#e53e3e" stroke-width="2"/>
+    <text x="230" y="58" text-anchor="middle" font-size="10" font-weight="700" fill="#e53e3e">2.5 NM</text>
+    <text x="230" y="110" text-anchor="middle" font-size="10" fill="#8b1a1a">4.6 km</text>
+    <text x="230" y="124" text-anchor="middle" font-size="9" fill="#8b1a1a">(Final Approach)</text>
+    <!-- 3.0 NM mark -->
+    <line x1="370" y1="65" x2="370" y2="95" stroke="#ed8936" stroke-width="2"/>
+    <text x="370" y="58" text-anchor="middle" font-size="10" font-weight="700" fill="#ed8936">3.0 NM</text>
+    <text x="370" y="110" text-anchor="middle" font-size="10" fill="#7a4500">5.6 km</text>
+    <text x="370" y="124" text-anchor="middle" font-size="9" fill="#7a4500">(Reduced Min.)</text>
+    <!-- 5.0 NM mark -->
+    <line x1="560" y1="65" x2="560" y2="95" stroke="#38a169" stroke-width="2"/>
+    <text x="560" y="58" text-anchor="middle" font-size="10" font-weight="700" fill="#38a169">5.0 NM</text>
+    <text x="560" y="110" text-anchor="middle" font-size="10" fill="#1a5c2a">9.3 km</text>
+    <text x="560" y="124" text-anchor="middle" font-size="9" fill="#1a5c2a">(Standard Min.)</text>
+    <!-- Bracket from 60 to 230 -->
+    <path d="M60,140 L230,140" stroke="#e53e3e" stroke-width="2" fill="none" marker-start="url(#a)" marker-end="url(#b)"/>
+    <text x="145" y="155" text-anchor="middle" font-size="9" fill="#e53e3e">Minimum gap possible</text>
+    <!-- Bracket 60 to 560 -->
+    <path d="M60,75 Q60,30 560,30" stroke="#38a169" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+  </svg>
+  <figcaption>Fig 10.1 — ICAO Horizontal Radar Separation Minima (Note: values decrease from standard to final approach minimum)</figcaption>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Critical Exam Values — Memorise These</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Minimum</th><th>NM</th><th>km</th><th>Condition</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Standard Horizontal</td>
+          <td class="val">5.0 NM</td>
+          <td class="val">9.3 km</td>
+          <td>Default — Radar / ADS-B / MLAT</td>
+        </tr>
+        <tr>
+          <td>Reduced</td>
+          <td class="val">3.0 NM</td>
+          <td class="val">5.6 km</td>
+          <td>Where ATS authority permits; local capabilities</td>
+        </tr>
+        <tr>
+          <td>Final Approach (same track)</td>
+          <td class="val">2.5 NM</td>
+          <td class="val">4.6 km</td>
+          <td>Within 10 NM (18.5 km) of runway threshold; local factors permit</td>
+        </tr>
+        <tr>
+          <td>Departing Aircraft ID</td>
+          <td class="val">1 NM</td>
+          <td>—</td>
+          <td>PSR ID must be established within 1 NM of runway end</td>
+        </tr>
+        <tr>
+          <td>Turn Method heading change</td>
+          <td>—</td>
+          <td>—</td>
+          <td class="val">30° or more</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3 class="sub-header">India — Separation Minima</h3>
+<div class="box box-key no-break">
+  <div class="box-title">🇮🇳 DGCA / AIP India — Separation Minima</div>
+  <p><span class="tag tag-dgca">DGCA</span> For separation minima based on ATS surveillance systems in <strong>India</strong>, please refer to <strong>Chapter Six</strong> of the Air Regulations text.</p>
+  <p style="margin-top:8px;">The ICAO standard of <strong>5.0 NM / 9.3 km</strong> applies unless otherwise prescribed by the appropriate ATS authority.</p>
+</div>
+
+<h3 class="sub-header">MLAT and PSR Blip Separation Application</h3>
+<div class="box box-sop no-break">
+  <div class="box-title">✅ Separation Using MLAT Symbols / PSR Blips</div>
+  <p>Separation based on the use of MLAT position symbols and PSR blips shall be applied so that:</p>
+  <p>The distance between the <strong>centres</strong> of the position symbols and PSR blips, representing the positions of the aircraft concerned, is <strong>never less than a prescribed minimum.</strong></p>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 11: SPEED CONTROL  ████████████████████ -->
+<div id="speed" class="section-header">
+  <span class="section-num">§ 11</span>
+  <h2>Speed Control Procedures</h2>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Speed Control — Mandatory Limits (AIP India)</div>
+  <ul>
+    <li>All aircraft (including arrivals and departures) operating <strong>below 10,000 ft</strong> shall fly at IAS not greater than <span class="val">250 KT</span></li>
+    <li>All arriving aircraft operating <strong>below 10,000 ft within 15 NM radius</strong> of VOR/DME serving the aerodrome shall fly at IAS not greater than <span class="val">220 KT</span></li>
+    <li>Additional speed control restrictions may be imposed for arriving and en-route aircraft by ATC whenever traffic conditions so require</li>
+  </ul>
+</div>
+
+<!-- Speed control SVG -->
+<div class="diagram-wrap no-break">
+  <svg viewBox="0 0 700 200" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', sans-serif">
+    <rect width="700" height="200" fill="#f7f9fc" rx="8"/>
+    <text x="350" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#0d1b2a">Speed Control — Below 10,000 ft (AIP India)</text>
+    <!-- Outer ring label -->
+    <ellipse cx="350" cy="120" rx="280" ry="60" fill="none" stroke="#d4dde8" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="350" y="185" text-anchor="middle" font-size="11" fill="#1a6fa8" font-weight="700">Below 10,000 ft — All A/C → MAX 250 KT IAS</text>
+    <!-- Inner ring label -->
+    <ellipse cx="350" cy="120" rx="160" ry="38" fill="#fff0f0" stroke="#e53e3e" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="350" y="110" text-anchor="middle" font-size="10" fill="#8b1a1a" font-weight="700">Within 15 NM of VOR/DME</text>
+    <text x="350" y="126" text-anchor="middle" font-size="10" fill="#8b1a1a">Below 10,000 ft</text>
+    <text x="350" y="142" text-anchor="middle" font-size="12" fill="#8b1a1a" font-weight="700">Arrivals → MAX 220 KT IAS</text>
+    <!-- Aerodrome -->
+    <rect x="320" y="106" width="60" height="28" rx="4" fill="#0d1b2a" opacity="0.0"/>
+    <text x="350" y="120" text-anchor="middle" font-size="18">🛬</text>
+  </svg>
+  <figcaption>Fig 11.1 — Speed control zones below 10,000 ft per AIP India</figcaption>
+</div>
+
+<div class="box box-sop no-break">
+  <div class="box-title">✅ ATC Suspension of Speed Control</div>
+  <p>ATC may suspend speed control by using the phrase:</p>
+  <span class="phrase-text">"NO SPEED RESTRICTION"</span>
+  <p style="margin-top:10px;">This suspension applies when traffic conditions permit.</p>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 12: TERMINATION  ████████████████████ -->
+<div id="termination" class="section-header">
+  <span class="section-num">§ 12</span>
+  <h2>Termination of ATS Surveillance Service</h2>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Termination — Mandatory Notification</div>
+  <p>An aircraft that has been informed it is provided with ATS surveillance service <strong>should be informed immediately</strong> when for any reason ATS surveillance service is <strong>interrupted or terminated.</strong></p>
+</div>
+
+<div class="box box-sop no-break">
+  <div class="box-title">✅ Automatic Termination — Arriving Aircraft</div>
+  <p>ATS surveillance service is <strong>automatically terminated</strong> when an arriving aircraft receiving ATS surveillance service has been <strong>instructed to contact tower frequency.</strong></p>
+  <p style="margin-top:8px;"><strong>Important:</strong> Position of aircraft from <em>touchdown</em> should be given to the aircraft <strong>before</strong> changing over the aircraft to tower.</p>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 13: TRANSPONDER OPS  ████████████████████ -->
+<div id="transponder" class="section-header">
+  <span class="section-num">§ 13</span>
+  <h2>SSR Transponder — Operating Procedures (India)</h2>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Transponder Operation — Mandatory Rule (India)</div>
+  <p><span class="tag tag-dgca">DGCA</span> All aircraft carrying a serviceable transponder shall <strong>operate the transponder at all times during flight</strong> within <strong>Chennai, Delhi, Guwahati, Kolkata and Mumbai FIR</strong> — regardless of whether the aircraft is within or outside airspace where SSR is used for ATS.</p>
+</div>
+
+<h3 class="sub-header">Operating Procedures — Pilots</h3>
+<div class="box box-sop no-break">
+  <div class="box-title">✅ Transponder Mode & Code Procedures</div>
+  <ul class="step-list">
+    <li>
+      <div class="step-num">i</div>
+      <div class="step-content"><strong>Departing aircraft</strong> from aerodromes in Chennai, Delhi, Guwahati, Kolkata and Mumbai FIR shall be assigned an <em>appropriate SSR code on departure</em>. This SSR code setting shall continue <strong>unless instructed otherwise.</strong></div>
+    </li>
+    <li>
+      <div class="step-num">ii</div>
+      <div class="step-content"><strong>International flights entering</strong> Chennai, Delhi, Guwahati, Kolkata and Mumbai FIR shall <em>continue to maintain the SSR code</em> being squawked in the adjacent FIR.</div>
+    </li>
+    <li>
+      <div class="step-num">iii</div>
+      <div class="step-content"><strong>Domestic flights</strong> shall operate the transponder on the <em>last assigned code.</em></div>
+    </li>
+    <li>
+      <div class="step-num">iv</div>
+      <div class="step-content"><strong>Aircraft not assigned a SSR code</strong> shall operate transponder on <em>Mode A3 code <span class="highlight">2000</span></em> before entry into Chennai, Delhi, Guwahati, Kolkata and Mumbai FIR and maintain that code setting until otherwise instructed.</div>
+    </li>
+    <li>
+      <div class="step-num">v</div>
+      <div class="step-content">To <strong>avoid interference on radar display</strong>, the pilot shall <em>NOT operate the transponder when the aircraft is on ground</em> except:
+        <ul>
+          <li>When <strong>entering the runway for take-off</strong>, OR</li>
+          <li>Until <strong>vacating the runway after landing</strong></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="box box-key no-break">
+  <div class="box-title">🔑 Emergency / Special Transponder Codes — Memorise</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Code</th><th>Condition</th><th>Meaning</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">7700</td>
+          <td><strong>Emergency</strong></td>
+          <td>General Emergency (distress)</td>
+        </tr>
+        <tr>
+          <td class="mono">7600</td>
+          <td><strong>Communication Failure (Radio Failure)</strong></td>
+          <td>NORDO — Lost communication</td>
+        </tr>
+        <tr>
+          <td class="mono">7500</td>
+          <td><strong>Unlawful Interference</strong></td>
+          <td>Hijack / Unlawful seizure of aircraft</td>
+        </tr>
+        <tr>
+          <td class="mono">2000</td>
+          <td><strong>No SSR code assigned</strong></td>
+          <td>Default code before entry into Indian FIR</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="box box-mem no-break">
+  <div class="box-title">🧠 Memory Aid — Emergency Codes</div>
+  <p><strong>"7700 — Sevens, SAVE ME (Distress)"</strong><br>
+  <strong>"7600 — SIXES, SILENT (Radio Failure)"</strong><br>
+  <strong>"7500 — FIVE, HIJACK ALIVE (Unlawful Interference)"</strong></p>
+  <p style="margin-top:8px; font-size:13px; color: var(--purple-dark);">Or remember: <em>7700 ➜ Emergency | 7600 ➜ Comms fail | 7500 ➜ Hijack</em></p>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  SECTION 14: MODE C VERIFICATION  ████████████████████ -->
+<div id="modec" class="section-header">
+  <span class="section-num">§ 14</span>
+  <h2>Mode C / ADS-B Altitude Verification</h2>
+</div>
+
+<div class="box box-warn no-break">
+  <div class="box-title">⚠️ Altitude Tolerance Values — Exact DGCA/ICAO Values</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Airspace Type</th><th>Tolerance (metres)</th><th>Tolerance (feet)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>RVSM Airspace</strong></td>
+          <td class="val">±60 m</td>
+          <td class="val">±200 ft</td>
+        </tr>
+        <tr>
+          <td><strong>Other (non-RVSM) Airspace</strong></td>
+          <td class="val">±90 m</td>
+          <td class="val">±300 ft</td>
+        </tr>
+        <tr>
+          <td><strong>ATS Authority may specify smaller criterion</strong></td>
+          <td colspan="2">But <strong>not less than</strong> <span class="val">±60 m (±200 ft)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="box box-key no-break">
+  <div class="box-title">🔑 Geometric Height — Separation Rule</div>
+  <p><strong class="highlight">Geometric height information shall NOT be used for separation.</strong></p>
+  <p>Only pressure-altitude-derived level information and Mode C / ADS-B altitude data transmission are used for verification and separation.</p>
+</div>
+
+<h3 class="sub-header">Verification Procedure — Step by Step</h3>
+
+<div class="box box-sop no-break">
+  <div class="box-title">✅ Mode C / ADS-B Altitude Verification Procedure</div>
+  <ul class="step-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">All aircraft must <strong>report the level/altitude maintaining/passing</strong> on <em>first contact</em> with a radar unit — to facilitate verification of Mode C altitude information / ADS-B altitude data transmission.</div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">Verification shall be effected <strong>at least once</strong> by each suitably equipped ATC unit on <em>initial contact</em> with the aircraft — or as soon as possible thereafter. Verification is by <strong>simultaneous comparison</strong> with <em>altimeter derived level information</em> received from the aircraft by radio telephony.</div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">If Mode C / ADS-B altitude data transmission is <strong>within the approved tolerance</strong> → pilot is <strong>NOT</strong> advised of verification.</div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">If the displayed information is <strong>NOT within approved tolerance</strong>, or if a discrepancy <em>in excess</em> of the approved tolerance is detected subsequently: Pilot is <strong>advised and requested to check his pressure setting and confirm his level.</strong></div>
+    </li>
+    <li>
+      <div class="step-num">5</div>
+      <div class="step-content">If, following confirmation of level and correct pressure setting, the <strong>discrepancy continues</strong>: Controller may request the pilot to <strong>stop his Mode C transmission.</strong></div>
+    </li>
+  </ul>
+</div>
+
+<div class="box box-phrase no-break">
+  <div class="box-title">📻 ATC Phraseology — Stop Mode C</div>
+  <p>If the Mode C discrepancy continues after confirmation:</p>
+  <span class="phrase-text">"STOP SQUAWK CHARLIE. WRONG INDICATION"</span>
+  <span class="phrase-text">"STOP ADS-B ALTITUDE DATA TRANSMISSION (WRONG)"</span>
+</div>
+
+<!-- ████████████████████  IDENTIFICATION FLOWCHART  ████████████████████ -->
+<div class="page-break"></div>
+
+<div class="section-header">
+  <span class="section-num">DIAGRAM</span>
+  <h2>ATS Identification — Decision Flowchart</h2>
+</div>
+
+<div class="diagram-wrap no-break">
+  <svg viewBox="0 0 740 540" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', sans-serif">
+    <rect width="740" height="540" fill="#f7f9fc" rx="8"/>
+    <text x="370" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1b2a">ATS Surveillance Service — Identification Method Selection</text>
+
+    <!-- START -->
+    <ellipse cx="370" cy="60" rx="100" ry="26" fill="#0d1b2a"/>
+    <text x="370" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="white">ATS Service Required</text>
+
+    <!-- Arrow down -->
+    <line x1="370" y1="86" x2="370" y2="116" stroke="#0d1b2a" stroke-width="2" marker-end="url(#arr)"/>
+
+    <!-- Decision: ADS-B? -->
+    <polygon points="370,118 500,148 370,178 240,148" fill="#fff8e7" stroke="#c8961e" stroke-width="2"/>
+    <text x="370" y="145" text-anchor="middle" font-size="12" font-weight="700" fill="#7a5800">ADS-B Available?</text>
+    <text x="370" y="161" text-anchor="middle" font-size="11" fill="#7a5800">Is ADS-B equipped?</text>
+
+    <!-- YES branch ADS-B -->
+    <line x1="500" y1="148" x2="620" y2="148" stroke="#38a169" stroke-width="1.5" marker-end="url(#arr2)"/>
+    <text x="555" y="140" text-anchor="middle" font-size="11" font-weight="700" fill="#38a169">YES</text>
+    <rect x="620" y="120" width="110" height="56" rx="6" fill="#f0fff4" stroke="#1a5c2a" stroke-width="2"/>
+    <text x="675" y="143" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c2a">ADS-B ID</text>
+    <text x="675" y="158" text-anchor="middle" font-size="10" fill="#1a5c2a">a) ADS-B label</text>
+    <text x="675" y="170" text-anchor="middle" font-size="10" fill="#1a5c2a">b) Transfer c) IDENT</text>
+
+    <!-- NO branch -->
+    <line x1="370" y1="178" x2="370" y2="208" stroke="#e53e3e" stroke-width="1.5" marker-end="url(#arr3)"/>
+    <text x="380" y="198" text-anchor="middle" font-size="11" font-weight="700" fill="#e53e3e">NO</text>
+
+    <!-- Decision: SSR/MLAT? -->
+    <polygon points="370,210 500,240 370,270 240,240" fill="#e8f4fd" stroke="#1a6fa8" stroke-width="2"/>
+    <text x="370" y="237" text-anchor="middle" font-size="12" font-weight="700" fill="#1a6fa8">SSR / MLAT?</text>
+    <text x="370" y="253" text-anchor="middle" font-size="11" fill="#1a6fa8">Transponder equipped?</text>
+
+    <!-- YES branch SSR -->
+    <line x1="500" y1="240" x2="620" y2="240" stroke="#38a169" stroke-width="1.5" marker-end="url(#arr2)"/>
+    <text x="555" y="232" text-anchor="middle" font-size="11" font-weight="700" fill="#38a169">YES</text>
+    <rect x="620" y="210" width="110" height="60" rx="6" fill="#e8f4fd" stroke="#1a6fa8" stroke-width="2"/>
+    <text x="675" y="228" text-anchor="middle" font-size="11" font-weight="700" fill="#1a6fa8">SSR/MLAT ID</text>
+    <text x="675" y="242" text-anchor="middle" font-size="10" fill="#1a6fa8">a–f: Code, IDENT,</text>
+    <text x="675" y="254" text-anchor="middle" font-size="10" fill="#1a6fa8">Mode S, Transfer...</text>
+    <text x="675" y="266" text-anchor="middle" font-size="10" fill="#1a6fa8">(6 methods)</text>
+
+    <!-- NO — PSR -->
+    <line x1="370" y1="270" x2="370" y2="300" stroke="#e53e3e" stroke-width="1.5" marker-end="url(#arr3)"/>
+    <text x="380" y="290" text-anchor="middle" font-size="11" font-weight="700" fill="#e53e3e">NO</text>
+
+    <!-- PSR box -->
+    <rect x="270" y="302" width="200" height="36" rx="6" fill="#f8f0ff" stroke="#4a1a6b" stroke-width="2"/>
+    <text x="370" y="325" text-anchor="middle" font-size="12" font-weight="700" fill="#4a1a6b">PSR Identification Required</text>
+
+    <!-- PSR 3 methods -->
+    <line x1="370" y1="338" x2="370" y2="358" stroke="#4a1a6b" stroke-width="1.5" marker-end="url(#arr)"/>
+    <rect x="80" y="360" width="160" height="60" rx="6" fill="#e8f4fd" stroke="#1a6fa8" stroke-width="2"/>
+    <text x="160" y="382" text-anchor="middle" font-size="11" font-weight="700" fill="#1a6fa8">① Position Report</text>
+    <text x="160" y="397" text-anchor="middle" font-size="10" fill="#1a6fa8">Report over/bearing</text>
+    <text x="160" y="411" text-anchor="middle" font-size="10" fill="#1a6fa8">from a known point</text>
+    <line x1="270" y1="360" x2="240" y2="360" stroke="#1a6fa8" stroke-width="1.5"/>
+
+    <rect x="285" y="360" width="170" height="60" rx="6" fill="#f0fff4" stroke="#1a5c2a" stroke-width="2"/>
+    <text x="370" y="382" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c2a">② Departing A/C</text>
+    <text x="370" y="397" text-anchor="middle" font-size="10" fill="#1a5c2a">Within 1 NM of</text>
+    <text x="370" y="411" text-anchor="middle" font-size="10" fill="#1a5c2a">runway end</text>
+
+    <rect x="470" y="360" width="190" height="60" rx="6" fill="#fff8e7" stroke="#c8961e" stroke-width="2"/>
+    <text x="565" y="382" text-anchor="middle" font-size="11" font-weight="700" fill="#7a5800">③ Turn Method</text>
+    <text x="565" y="397" text-anchor="middle" font-size="10" fill="#7a5800">30° or more heading</text>
+    <text x="565" y="411" text-anchor="middle" font-size="10" fill="#7a5800">change instruction</text>
+    <line x1="455" y1="360" x2="470" y2="360" stroke="#c8961e" stroke-width="1.5"/>
+
+    <!-- Pilot informed box -->
+    <line x1="370" y1="422" x2="370" y2="456" stroke="#0d1b2a" stroke-width="1.5" marker-end="url(#arr)"/>
+    <rect x="220" y="458" width="300" height="36" rx="6" fill="#0d1b2a"/>
+    <text x="370" y="481" text-anchor="middle" font-size="12" font-weight="700" fill="#c8961e">PILOT INFORMED → Service Provided</text>
+
+    <!-- Arrow markers -->
+    <defs>
+      <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#0d1b2a"/>
+      </marker>
+      <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#38a169"/>
+      </marker>
+      <marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#e53e3e"/>
+      </marker>
+    </defs>
+  </svg>
+  <figcaption>Fig — ATS Surveillance Identification Method Decision Flow</figcaption>
+</div>
+
+<hr class="divider">
+
+<!-- ████████████████████  QUESTIONS  ████████████████████ -->
+<div id="questions" class="section-header page-break">
+  <span class="section-num">§ 15</span>
+  <h2>Practice Questions &amp; Detailed Answers</h2>
+</div>
+
+<div class="box box-key no-break" style="margin-bottom:24px;">
+  <div class="box-title">📝 Exam Practice — All 21 Questions from Chapter 9</div>
+  <p>All questions are drawn directly from the DGCA/Doc 4444 question bank. Green-highlighted options are correct answers. Review the regulatory basis after each answer.</p>
+</div>
+
+<div class="qbank">
+
+  <!-- Q1 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.01</span>The minimum radar separation to be provided to aircraft established on the localizer course shall be:</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> 2.0 NM between aircraft on adjacent localizer course</li>
+      <li class="correct"><span class="opt-letter">B</span> 2.5 NM between aircraft on the same localizer course</li>
+      <li><span class="opt-letter">C</span> 5.0 NM between aircraft on the same localizer course</li>
+    </ul>
+    <div class="q-answer">✅ Answer: B — 2.5 NM (4.6 km) is the minimum radar separation on the same final approach / localizer track within 10 NM of the runway threshold. This is the reduced minimum permitted when local factors allow.</div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.02</span>Unless otherwise prescribed by the appropriate ATS authority, the horizontal radar separation minimum prescribed by ICAO shall be:</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> 3.5 NM</li>
+      <li><span class="opt-letter">B</span> 8 NM</li>
+      <li class="correct"><span class="opt-letter">C</span> 5.0 NM</li>
+    </ul>
+    <div class="q-answer">✅ Answer: C — Unless otherwise prescribed, the horizontal separation minimum based on radar and/or ADS-B and/or MLAT systems shall be <strong>9.3 km (5.0 NM)</strong> per ICAO Doc 4444.</div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.03</span>Where ADS-B is used for identification, aircraft may be identified by the following procedure:</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> Asking him to squawk assigned Mode A code C</li>
+      <li class="correct"><span class="opt-letter">B</span> Direct recognition of the aircraft identification in an ADS-B label</li>
+      <li><span class="opt-letter">C</span> Recognition of an assigned discrete code, the setting of which has been verified</li>
+    </ul>
+    <div class="q-answer">✅ Answer: B — Option C is an SSR/MLAT identification procedure, not ADS-B. ADS-B identification uses: (a) direct recognition in ADS-B label, (b) transfer of ADS-B identification, (c) TRANSMIT ADS-B IDENT compliance.</div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.04</span>An aircraft is considered to be maintaining its assigned level as long as the SSR mode C derived level information indicated that it is within:</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> +/- 500 ft of the assigned level in non-RVSM airspace</li>
+      <li><span class="opt-letter">B</span> +/- 200 ft of the assigned level in RVSM airspace</li>
+      <li class="correct"><span class="opt-letter">C</span> +/- 300 ft of the assigned level in RVSM airspace</li>
+    </ul>
+    <div class="q-answer">✅ Answer: B — RVSM airspace tolerance is ±60 m (±200 ft). Non-RVSM is ±90 m (±300 ft). Note: Option B states 200 ft for RVSM which is correct per the text (±200 ft). ⚠️ Some interpretations use ±300 ft for non-RVSM. Per the source document: RVSM = ±200 ft; Other = ±300 ft.</div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.05</span>An aircraft in climb or descent is considered to have crossed a level when the SSR mode C derived level information indicates that it has passed this level in the required direction by:</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> +/- 300 ft</li>
+      <li><span class="opt-letter">B</span> More than 300 ft</li>
+      <li class="correct"><span class="opt-letter">C</span> 300 ft</li>
+    </ul>
+    <div class="q-answer">✅ Answer: B — The aircraft is considered to have crossed a level when SSR Mode C indicates it has passed through in the required direction by <strong>more than 300 ft</strong> (which aligns with the non-RVSM tolerance of ±300 ft / 90 m).</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.06</span>Secondary Surveillance Radar (SSR) information may be used alone in the provision of separation between aircraft provided:</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> Instructions to pilot are acknowledged by him by making specific maneuver(s)</li>
+      <li class="correct"><span class="opt-letter">B</span> Aircraft identification is established and maintained by use of discrete SSR codes</li>
+      <li><span class="opt-letter">C</span> It cannot be used for providing separation</li>
+    </ul>
+    <div class="q-answer">✅ Answer: B — SSR alone can be used for separation provided aircraft identification is established and maintained by use of discrete SSR codes.</div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.07</span>Radar identification of a departing aircraft can be achieved if a radar blip is observed within a certain distance from the end of the runway. Identification has to be achieved within:</div>
+    <ul class="q-options">
+      <li class="correct"><span class="opt-letter">A</span> 1 NM</li>
+      <li><span class="opt-letter">B</span> 3 NM</li>
+      <li><span class="opt-letter">C</span> 5 NM</li>
+    </ul>
+    <div class="q-answer">✅ Answer: A — PSR identification using the departing aircraft method must be established <strong>within 1 NM from the end of the runway used.</strong></div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.08</span>Separation based on the use of MLAT position symbols and PSR blips shall be applied so that:</div>
+    <ul class="q-options">
+      <li class="correct"><span class="opt-letter">A</span> The distance between the centres of the position symbols and PSR blips, representing the positions of the aircraft concerned, is never less than a prescribed minimum</li>
+      <li><span class="opt-letter">B</span> The distance between the edges of the position symbols and PSR blips... is never less than a prescribed minimum</li>
+      <li><span class="opt-letter">C</span> The distance between the furthest edges... is never more than a prescribed minimum</li>
+    </ul>
+    <div class="q-answer">✅ Answer: A — Separation is measured between the <strong>centres</strong> of the position symbols and PSR blips. The distance between centres must never be less than the prescribed minimum.</div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.09</span>The air traffic control unit has reported "radar contact". What does that mean to the pilot?</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> The aircraft is subject to positive control</li>
+      <li><span class="opt-letter">B</span> Position reports may be omitted</li>
+      <li class="correct"><span class="opt-letter">C</span> The radar identity of the aircraft has been established</li>
+    </ul>
+    <div class="q-answer">✅ Answer: C — "Radar contact" means the radar identity of the aircraft has been established. Further services are then provided based on this identification. Position reports may be omitted only when ATC specifically advises this.</div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.10</span>When a RADAR operator says the following to an aircraft: "fly heading 030°", the pilot must fly heading:</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> 030° magnetic in still air conditions (thereby flying the magnetic track)</li>
+      <li class="correct"><span class="opt-letter">B</span> 030° compass in still air conditions (thereby flying the compass heading)</li>
+      <li><span class="opt-letter">C</span> 030° true, in still air conditions (thereby flying the true track)</li>
+    </ul>
+    <div class="q-answer">✅ Answer: B — Radar vectors are related to <strong>magnetic headings only.</strong> The pilot flies the magnetic heading as indicated on the compass. In still air (no wind), the magnetic heading equals the magnetic track.</div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.11</span>Which code shall be used on Mode "A" to provide recognition of an aircraft subjected to unlawful interference?</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> Code 7700</li>
+      <li><span class="opt-letter">B</span> Code 7600</li>
+      <li class="correct"><span class="opt-letter">C</span> Code 7500</li>
+    </ul>
+    <div class="q-answer">✅ Answer: C — <strong>7500 = Unlawful Interference (Hijack)</strong>. 7700 = Emergency. 7600 = Radio/Communication Failure.</div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.12</span>Upon intercepting the assigned radial, the controller advises you that you are on the airway and to "resume own navigation". This phrase means that:</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> Radar services are terminated and you will be responsible for position reports</li>
+      <li class="correct"><span class="opt-letter">B</span> You are to assume responsibility for your own navigation</li>
+      <li><span class="opt-letter">C</span> You are to contact the center at the next reporting point</li>
+    </ul>
+    <div class="q-answer">✅ Answer: B — "Resume own navigation" means you assume responsibility for your own navigation (self-navigate using your instruments/FMS). Radar service itself may continue, but you navigate independently using the assigned route.</div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.13</span>What does the ATC term "radar contact" signify?</div>
+    <ul class="q-options">
+      <li class="correct"><span class="opt-letter">A</span> Your aircraft has been identified on the radar display and radar flight instructions will be provided until radar identification is terminated</li>
+      <li><span class="opt-letter">B</span> You will be given traffic advisories until advised that the service has been terminated or that radar contact has been lost</li>
+      <li><span class="opt-letter">C</span> ATC is receiving your transponder and will furnish vectors and traffic advisories until you are advised that contact has been lost</li>
+    </ul>
+    <div class="q-answer">✅ Answer: A — "Radar contact" = aircraft identified on radar display. Radar flight instructions (which may include vectors and traffic advisories) will be provided until radar identification is terminated.</div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.14</span>Where a "Secondary Surveillance Radar" (SSR) is not available, radar identification may be achieved by one of the following procedures:</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> To instruct the pilot to execute one or more changes of 10°</li>
+      <li><span class="opt-letter">B</span> To instruct the pilot to execute one or more changes of 45°</li>
+      <li class="correct"><span class="opt-letter">C</span> To instruct the pilot to execute one or more changes of 30° or more</li>
+    </ul>
+    <div class="q-answer">✅ Answer: C — The Turn Method (PSR only) requires <strong>30° or more</strong> heading change(s) to correlate the radar position with the specific aircraft.</div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.15</span>When "Secondary Radar" is used, an aircraft may be identified by one of the following procedures:</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> To request pilot to set transponder on position "OFF"</li>
+      <li><span class="opt-letter">B</span> To request pilot to switch from "ON" to "STBY"</li>
+      <li class="correct"><span class="opt-letter">C</span> Observation of compliance with an instruction to operate transponder from "ON" to "STBY" and back to "ON"</li>
+    </ul>
+    <div class="q-answer">✅ Answer: C — SSR identification by switching from ON → STBY → ON is equivalent to "squawk IDENT" type compliance verification. This correlates the radar response disappearance and reappearance with the specific aircraft.</div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.16</span>The Air Traffic Control Service: do not prevent collisions with terrain.</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> Wrong, they do prevent collisions with terrain</li>
+      <li><span class="opt-letter">B</span> Except when an aircraft is flying IFR in IMC</li>
+      <li class="correct"><span class="opt-letter">C</span> Correct, except when an IFR flight is vectored by radar</li>
+    </ul>
+    <div class="q-answer">✅ Answer: C — ATC does not generally prevent terrain collisions. However, when <strong>an IFR flight is being vectored by radar</strong>, the controller is responsible for providing terrain clearance, as the pilot is following ATC instructions rather than the published procedures that guarantee terrain clearance.</div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.17</span>Which code shall be used on mode "A" to provide recognition of an emergency aircraft?</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> Code 7600</li>
+      <li><span class="opt-letter">B</span> Code 7500</li>
+      <li class="correct"><span class="opt-letter">C</span> Code 7700</li>
+    </ul>
+    <div class="q-answer">✅ Answer: C — <strong>7700 = Emergency (Distress / Urgency)</strong>. This is the universal emergency transponder code recognised worldwide.</div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.18</span>One of the functions ensured by a radar control unit for the provision of approach control service is:</div>
+    <ul class="q-options">
+      <li class="correct"><span class="opt-letter">A</span> To conduct surveillance radar approaches</li>
+      <li><span class="opt-letter">B</span> To apply a horizontal separation less than 5 NM</li>
+      <li><span class="opt-letter">C</span> To provide instructions in order to reduce separations minima, if accepted by the pilots</li>
+    </ul>
+    <div class="q-answer">✅ Answer: A — Surveillance radar is extensively used in approach control to conduct surveillance radar approaches (SRA), sequence traffic, and vector aircraft to position for approaches.</div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.19</span>The primary duty provided by a radar unit is:</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> To assist aircraft on the location of storms</li>
+      <li class="correct"><span class="opt-letter">B</span> To provide radar separation</li>
+      <li><span class="opt-letter">C</span> To assist aircraft where navigation appears unsatisfactory</li>
+    </ul>
+    <div class="q-answer">✅ Answer: B — The primary duty of a radar unit is to provide radar separation between identified aircraft — this is the core safety function of ATS surveillance service in ATC.</div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.20</span>What is meant when departure control instructs you to "resume own navigation" after you have been vectored to an airway?</div>
+    <ul class="q-options">
+      <li><span class="opt-letter">A</span> Advisories will no longer be issued by ATC</li>
+      <li><span class="opt-letter">B</span> You are still in radar contact, but must make position reports</li>
+      <li class="correct"><span class="opt-letter">C</span> You should maintain that airway by use of your navigation equipment</li>
+    </ul>
+    <div class="q-answer">✅ Answer: C — "Resume own navigation" after being vectored to an airway means you should now maintain the airway using your own navigation equipment (VOR, FMS, GPS etc). You are responsible for staying on track.</div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-item no-break">
+    <div class="q-header"><span class="q-num">Q.21</span>All aircraft carrying serviceable transponder shall operate the transponder:</div>
+    <ul class="q-options">
+      <li class="correct"><span class="opt-letter">A</span> At all times during flight, regardless of whether the aircraft is within or outside airspace where SSR is used for ATS purposes</li>
+      <li><span class="opt-letter">B</span> Only when the aircraft is flying within airspace where SSR is used for ATS purposes</li>
+      <li><span class="opt-letter">C</span> As and when required by the pilot</li>
+    </ul>
+    <div class="q-answer">✅ Answer: A — Per DGCA / AIP India: All aircraft carrying a serviceable transponder shall operate the transponder at <strong>all times during flight</strong> within Chennai, Delhi, Guwahati, Kolkata and Mumbai FIR — regardless of whether SSR is used for ATS in that specific area.</div>
+  </div>
+
+</div><!-- end qbank -->
+
+<!-- ████████████████████  QUICK REFERENCE SUMMARY  ████████████████████ -->
+<div class="section-header page-break">
+  <span class="section-num">SUMMARY</span>
+  <h2>Quick Reference — All Critical Values</h2>
+</div>
+
+<div class="table-wrap no-break">
+  <table>
+    <thead>
+      <tr><th>Parameter</th><th>Value</th><th>Condition / Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Standard Horizontal Separation (ICAO)</td>
+        <td class="val">5.0 NM / 9.3 km</td>
+        <td>Radar / ADS-B / MLAT — default</td>
+      </tr>
+      <tr>
+        <td>Reduced Horizontal Separation</td>
+        <td class="val">3.0 NM / 5.6 km</td>
+        <td>Where ATS authority permits; local capability</td>
+      </tr>
+      <tr>
+        <td>Final Approach Separation (same track)</td>
+        <td class="val">2.5 NM / 4.6 km</td>
+        <td>Within 10 NM (18.5 km) of runway threshold; local factors permit</td>
+      </tr>
+      <tr>
+        <td>Departing Aircraft PSR ID — limit</td>
+        <td class="val">1 NM</td>
+        <td>Must identify within 1 NM from end of runway</td>
+      </tr>
+      <tr>
+        <td>Turn Method — minimum heading change</td>
+        <td class="val">30° or more</td>
+        <td>For PSR identification when SSR unavailable</td>
+      </tr>
+      <tr>
+        <td>RVSM altitude tolerance (Mode C / ADS-B)</td>
+        <td class="val">±200 ft / ±60 m</td>
+        <td>RVSM airspace — hard limit</td>
+      </tr>
+      <tr>
+        <td>Non-RVSM altitude tolerance (Mode C / ADS-B)</td>
+        <td class="val">±300 ft / ±90 m</td>
+        <td>Non-RVSM airspace; ATS may specify smaller</td>
+      </tr>
+      <tr>
+        <td>Speed limit — below 10,000 ft (all flights)</td>
+        <td class="val">250 KT IAS</td>
+        <td>AIP India — arrivals and departures</td>
+      </tr>
+      <tr>
+        <td>Speed limit — arrivals within 15 NM of VOR/DME</td>
+        <td class="val">220 KT IAS</td>
+        <td>AIP India — below 10,000 ft</td>
+      </tr>
+      <tr>
+        <td>Emergency transponder code</td>
+        <td class="val">7700</td>
+        <td>Distress / General Emergency</td>
+      </tr>
+      <tr>
+        <td>Radio failure transponder code</td>
+        <td class="val">7600</td>
+        <td>Communication failure (NORDO)</td>
+      </tr>
+      <tr>
+        <td>Unlawful interference transponder code</td>
+        <td class="val">7500</td>
+        <td>Hijack / Unlawful seizure</td>
+      </tr>
+      <tr>
+        <td>Default code (no SSR assigned) — India</td>
+        <td class="val">Mode A3 — 2000</td>
+        <td>Before entry into Chennai/Delhi/Guwahati/Kolkata/Mumbai FIR</td>
+      </tr>
+      <tr>
+        <td>Transponder on ground — when to operate?</td>
+        <td class="val">Only on/off runway</td>
+        <td>Enter runway for T/O; till vacating after landing</td>
+      </tr>
+      <tr>
+        <td>Radar vectors — heading reference</td>
+        <td class="val">Magnetic only</td>
+        <td>All radar vectoring uses magnetic headings</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div><!-- end container -->
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <p><strong>Capt. Pankaj Pahil</strong> — DGCA CPL/ATPL Ground School Study Notes</p>
+  <p style="margin-top:6px;">Chapter 9: Use of Air Traffic Services Surveillance System | Reference: Doc 4444 (PANS-ATM) &amp; AIP India</p>
+  <p style="margin-top:6px; font-size:11px; opacity:0.6;">These notes are for educational purposes. Always verify against the latest DGCA/ICAO publications before examinations and actual operations.</p>
+</div>
+
+</body>
+</html>
