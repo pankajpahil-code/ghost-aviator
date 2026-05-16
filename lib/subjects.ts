@@ -315,7 +315,15 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "ar-10", number: 10, title: "Search and Rescue",
         description: "ICAO Annex 12: SAR organisation, RCC/RSC, emergency phases (uncertainty/alert/distress), SAR procedures for PIC, ground/air visual signals, SARSAT/COSPAS, survivor behaviour, SAR signals.",
-        duration: "2 hrs", questionCount: 45, content: makeContent(true),
+        duration: "2 hrs", questionCount: 45,
+        content: [
+          { type: "notes",        label: "Notes",          icon: "📄", available: true  },
+          { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
+          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
+          { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
+          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
+          { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
+        ],
       },
       {
         id: "ar-11", number: 11, title: "Visual Aids for Navigation",
