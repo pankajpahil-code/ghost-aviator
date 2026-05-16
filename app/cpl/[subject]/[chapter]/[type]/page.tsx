@@ -134,6 +134,7 @@ export default async function Page({
       "air-regulations/ar-7": "wvN_ol_zXPo",
       "air-regulations/ar-8": "urz6tppqass",
       "air-regulations/ar-9": "a1Zda_GDGSs",
+      "air-regulations/ar-10": "cncICehqRws",
     };
     const youtubeId = YOUTUBE_IDS[`${subject.id}/${chapter.id}`];
     if (youtubeId) {
@@ -161,6 +162,7 @@ export default async function Page({
       "air-regulations/ar-7": "DGCA Procedures for Aerodrome Control Service",
       "air-regulations/ar-8": "ATS Surveillance Systems and Separation Standards",
       "air-regulations/ar-9": "Aeronautical Information Services Exam Essentials",
+      "air-regulations/ar-10": "Global Aviation Search and Rescue Protocols",
     };
     const audioPath = `/content/${subject.id}/${chapter.id}/audio.m4a`;
     return (
