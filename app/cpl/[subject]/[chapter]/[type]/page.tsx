@@ -131,6 +131,7 @@ export default async function Page({
       "air-regulations/ar-4": "-wNK3jt0_Vc",
       "air-regulations/ar-5": "gSiElA8OTKY",
       "air-regulations/ar-6": "yEk9FYgRTho",
+      "air-regulations/ar-7": "wvN_ol_zXPo",
     };
     const youtubeId = YOUTUBE_IDS[`${subject.id}/${chapter.id}`];
     if (youtubeId) {
@@ -155,6 +156,7 @@ export default async function Page({
       "air-regulations/ar-4": "Indian Airspace Classifications and ATC Protocols",
       "air-regulations/ar-5": "DGCA Aircraft Separation Methods and Minima",
       "air-regulations/ar-6": "DGCA Separation Rules and Visual Minima",
+      "air-regulations/ar-7": "DGCA Procedures for Aerodrome Control Service",
     };
     const audioPath = `/content/${subject.id}/${chapter.id}/audio.m4a`;
     return (
