@@ -306,9 +306,9 @@ export const CPL_SUBJECTS: Subject[] = [
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-          { type: "slides",       label: "Slides",         icon: "📊", available: false },
-          { type: "video",        label: "Video Lecture",  icon: "🎥", available: false },
-          { type: "audio",        label: "Audio Overview", icon: "🎧", available: false },
+          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
+          { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
+          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
           { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
         ],
       },

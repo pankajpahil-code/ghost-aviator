@@ -133,6 +133,7 @@ export default async function Page({
       "air-regulations/ar-6": "yEk9FYgRTho",
       "air-regulations/ar-7": "wvN_ol_zXPo",
       "air-regulations/ar-8": "urz6tppqass",
+      "air-regulations/ar-9": "a1Zda_GDGSs",
     };
     const youtubeId = YOUTUBE_IDS[`${subject.id}/${chapter.id}`];
     if (youtubeId) {
@@ -159,6 +160,7 @@ export default async function Page({
       "air-regulations/ar-6": "DGCA Separation Rules and Visual Minima",
       "air-regulations/ar-7": "DGCA Procedures for Aerodrome Control Service",
       "air-regulations/ar-8": "ATS Surveillance Systems and Separation Standards",
+      "air-regulations/ar-9": "Aeronautical Information Services Exam Essentials",
     };
     const audioPath = `/content/${subject.id}/${chapter.id}/audio.m4a`;
     return (
