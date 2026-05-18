@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airworthiness of Aircraft (ICAO Annex 8) — DGCA Study Notes | Capt. Pankaj Pahil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    securityLevel: 'loose',
+    flowchart: { curve: 'basis', useMaxWidth: true, padding: 14 },
+    themeVariables: {
+      fontFamily: 'Bricolage Grotesque, sans-serif',
+      fontSize: '15px',
+      primaryColor: '#e8f1fa',
+      primaryTextColor: '#11324f',
+      primaryBorderColor: '#1a5a8a',
+      lineColor: '#1a5a8a',
+      secondaryColor: '#fbf6e7',
+      tertiaryColor: '#e9f5ec',
+      clusterBkg: '#f7f4ec',
+      clusterBorder: '#c8901f'
+    }
+  });
+</script>
+<style>
+  /* ============ PAGE / PRINT SETUP ============ */
+  @page { size: A4; margin: 20mm; }
+
+  :root {
+    --navy:        #0d2540;
+    --navy-2:      #11324f;
+    --avi-blue:    #1a5a8a;
+    --avi-blue-lt: #3a7bb5;
+    --gold:        #c8901f;
+    --gold-dk:     #9a6c10;
+    --paper:       #f7f4ec;
+    --ink:         #1d2733;
+    --ink-soft:    #41505f;
+
+    --red-bg:      #fdecec;
+    --red-bd:      #d64545;
+    --red-tx:      #9c2626;
+    --blue-bg:     #e8f1fa;
+    --blue-bd:     #3a7bb5;
+    --blue-tx:     #1c4e76;
+    --green-bg:    #e9f5ec;
+    --green-bd:    #4a9a5e;
+    --green-tx:    #256437;
+    --amber-bg:    #fbf3df;
+    --amber-bd:    #c8901f;
+    --amber-tx:    #80590c;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Spectral', Georgia, serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 12% 8%, rgba(26,90,138,0.05), transparent 38%),
+      radial-gradient(circle at 88% 92%, rgba(200,144,31,0.06), transparent 40%),
+      var(--paper);
+    line-height: 1.62;
+    font-size: 16px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 34px 30px 70px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ============ TYPOGRAPHY ============ */
+  h1, h2, h3, h4 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    line-height: 1.18;
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  p { margin: 0 0 12px; }
+
+  .lead { font-size: 17px; color: var(--ink-soft); }
+
+  /* ============ MASTHEAD ============ */
+  .masthead {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 55%, var(--avi-blue) 130%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 34px 38px 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 14px 34px rgba(13,37,64,0.32);
+  }
+  .masthead::after {
+    content: "";
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 240px; height: 240px;
+    border: 2px solid rgba(200,144,31,0.35);
+    border-radius: 50%;
+  }
+  .masthead::before {
+    content: "";
+    position: absolute;
+    right: -10px; bottom: -90px;
+    width: 200px; height: 200px;
+    border: 2px solid rgba(255,255,255,0.10);
+    border-radius: 50%;
+  }
+  .kicker {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .26em;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .masthead h1 {
+    color: #fff;
+    font-size: 39px;
+    font-weight: 800;
+    margin: 0 0 6px;
+    letter-spacing: -0.5px;
+  }
+  .masthead .sub {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 15px;
+    color: #bcd3e6;
+    font-weight: 500;
+  }
+  .chip-row { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 9px; }
+  .chip {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #eaf2f8;
+    padding: 6px 13px;
+    border-radius: 30px;
+  }
+  .chip strong { color: var(--gold); }
+
+  .byline {
+    margin-top: 18px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 12.5px;
+    color: #93afc6;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    padding-top: 12px;
+  }
+
+  /* ============ FACT STRIP ============ */
+  .fact-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 22px 0 8px;
+  }
+  .fact {
+    background: #fff;
+    border: 1px solid #e3dcc7;
+    border-top: 4px solid var(--avi-blue);
+    border-radius: 10px;
+    padding: 14px 14px 12px;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .fact .num {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+    color: var(--navy);
+  }
+  .fact .lbl {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--ink-soft);
+    margin-top: 3px;
+  }
+
+  /* ============ SECTION ============ */
+  section { margin-top: 34px; }
+
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    border-bottom: 2.5px solid var(--navy);
+    padding-bottom: 9px;
+  }
+  .sec-num {
+    flex: 0 0 auto;
+    width: 44px; height: 44px;
+    background: linear-gradient(140deg, var(--avi-blue), var(--navy));
+    color: #fff;
+    border-radius: 10px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 10px rgba(13,37,64,0.25);
+  }
+  .sec-head h2 { font-size: 24px; margin: 0; }
+
+  h3 {
+    font-size: 18px;
+    margin: 24px 0 8px;
+    color: var(--avi-blue);
+    display: flex; align-items: baseline; gap: 9px;
+  }
+  h3::before {
+    content: "";
+    width: 9px; height: 9px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex: 0 0 auto;
+  }
+
+  /* ============ COLOUR-CODED BOXES ============ */
+  .box {
+    border-radius: 10px;
+    padding: 14px 18px 12px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+    border: 1px solid;
+    position: relative;
+  }
+  .box .box-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .box .box-title .ico {
+    font-size: 15px;
+    width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 6px;
+  }
+  .box p:last-child, .box ul:last-child, .box ol:last-child { margin-bottom: 0; }
+  .box ul, .box ol { margin: 6px 0; padding-left: 22px; }
+  .box li { margin-bottom: 4px; }
+
+  /* RED — limitations / warnings / prohibitions */
+  .box.red    { background: var(--red-bg);   border-color: var(--red-bd);   }
+  .box.red    .box-title { color: var(--red-tx); }
+  .box.red    .ico { background: var(--red-bd); color:#fff; }
+
+  /* BLUE — definitions / concepts */
+  .box.blue   { background: var(--blue-bg);  border-color: var(--blue-bd);  }
+  .box.blue   .box-title { color: var(--blue-tx); }
+  .box.blue   .ico { background: var(--blue-bd); color:#fff; }
+
+  /* GREEN — SOPs / allowances / procedures */
+  .box.green  { background: var(--green-bg); border-color: var(--green-bd); }
+  .box.green  .box-title { color: var(--green-tx); }
+  .box.green  .ico { background: var(--green-bd); color:#fff; }
+
+  /* AMBER — instructor / exam tips */
+  .box.amber  { background: var(--amber-bg); border-color: var(--amber-bd); }
+  .box.amber  .box-title { color: var(--amber-tx); }
+  .box.amber  .ico { background: var(--amber-bd); color:#fff; }
+
+  /* ============ HIGHLIGHT ============ */
+  .hl {
+    background: linear-gradient(transparent 58%, #ffe27a 58%);
+    font-weight: 600;
+    padding: 0 2px;
+  }
+  .hl-blue {
+    background: #d3e6f5;
+    font-weight: 600;
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+  strong { color: var(--navy-2); }
+  em.term { font-style: normal; font-weight: 700; color: var(--avi-blue); }
+
+  /* ============ TABLES ============ */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 14.5px;
+    page-break-inside: avoid;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(13,37,64,0.08);
+  }
+  thead th {
+    background: var(--navy);
+    color: #fff;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 13.5px;
+  }
+  tbody td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #e7e0cd;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: #faf8f1; }
+  tbody tr:last-child td { border-bottom: none; }
+  table .center { text-align: center; }
+
+  /* ============ MERMAID / DIAGRAM WRAP ============ */
+  .diagram {
+    background: #fff;
+    border: 1px solid #e3dcc7;
+    border-radius: 12px;
+    padding: 18px 14px 8px;
+    margin: 16px 0;
+    page-break-inside: avoid;
+    text-align: center;
+  }
+  .diagram .cap {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--avi-blue);
+    margin-bottom: 4px;
+  }
+  pre.mermaid {
+    background: transparent;
+    margin: 0;
+    border: none;
+  }
+
+  /* ============ TIMELINE (SVG-style flow) ============ */
+  .flowline {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 16px 0;
+    page-break-inside: avoid;
+    flex-wrap: wrap;
+  }
+  .flowstep {
+    flex: 1;
+    min-width: 150px;
+    background: #fff;
+    border: 1px solid #e3dcc7;
+    border-left: 5px solid var(--avi-blue);
+    border-radius: 8px;
+    padding: 11px 13px;
+    margin: 4px;
+    position: relative;
+  }
+  .flowstep .st-n {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gold-dk);
+    letter-spacing: .08em;
+  }
+  .flowstep .st-t {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 14px;
+    margin: 2px 0 3px;
+  }
+  .flowstep .st-d { font-size: 13px; color: var(--ink-soft); }
+
+  /* ============ QUESTION BANK ============ */
+  .qcard {
+    background: #fff;
+    border: 1px solid #e3dcc7;
+    border-radius: 10px;
+    padding: 15px 18px 13px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .qcard .qnum {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+    font-size: 12.5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 7px;
+  }
+  .qcard .qtext {
+    font-weight: 600;
+    color: var(--navy-2);
+    margin-bottom: 9px;
+  }
+  .opt {
+    padding: 6px 12px;
+    margin: 5px 0;
+    border: 1px solid #e1dac6;
+    border-radius: 7px;
+    font-size: 14.5px;
+    background: #faf8f1;
+  }
+  .opt.correct {
+    background: var(--green-bg);
+    border-color: var(--green-bd);
+    font-weight: 600;
+  }
+  .opt .tag {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    margin-right: 7px;
+    color: var(--avi-blue);
+  }
+  .opt.correct .tag { color: var(--green-tx); }
+  .opt.correct::after {
+    content: " ✔ Correct";
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 11.5px;
+    color: var(--green-tx);
+    font-weight: 700;
+  }
+  .qexp {
+    margin-top: 9px;
+    background: var(--blue-bg);
+    border-left: 4px solid var(--blue-bd);
+    padding: 9px 13px;
+    border-radius: 0 7px 7px 0;
+    font-size: 14px;
+    color: var(--blue-tx);
+  }
+  .qexp b { color: var(--navy); }
+
+  /* ============ MISC ============ */
+  .toc {
+    background: #fff;
+    border: 1px solid #e3dcc7;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-top: 22px;
+    page-break-inside: avoid;
+  }
+  .toc h3 { margin-top: 0; }
+  .toc ol {
+    columns: 2;
+    column-gap: 34px;
+    margin: 6px 0 0;
+    padding-left: 20px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 14px;
+  }
+  .toc li { margin-bottom: 5px; break-inside: avoid; }
+  .toc a { color: var(--avi-blue); text-decoration: none; font-weight: 500; }
+
+  .pill {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    padding: 2px 9px;
+    border-radius: 20px;
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  .footer {
+    margin-top: 46px;
+    border-top: 2px solid var(--navy);
+    padding-top: 14px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  .footer strong { color: var(--navy); }
+
+  ul.clean { padding-left: 20px; }
+  ul.clean li { margin-bottom: 6px; }
+
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) {
+    .fact-strip { grid-template-columns: repeat(2, 1fr); }
+    .twocol { grid-template-columns: 1fr; }
+    .toc ol { columns: 1; }
+    .masthead h1 { font-size: 30px; }
+  }
+
+  /* ============ WATERMARK ============ */
+  .watermark {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(0,0,0,0.12);
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ===================== MASTHEAD ===================== -->
+  <header class="masthead">
+    <div class="kicker">DGCA Ground Training &nbsp;•&nbsp; Air Regulations</div>
+    <h1>Airworthiness of Aircraft</h1>
+    <div class="sub">Chapter 16 &nbsp;|&nbsp; ICAO Annex 8 &amp; National Provisions (Indian Aircraft Rules)</div>
+    <div class="chip-row">
+      <span class="chip">ICAO <strong>ANNEX 8</strong></span>
+      <span class="chip">Guidance: <strong>Doc 9760</strong></span>
+      <span class="chip">Threshold: <strong>5 700 kg</strong></span>
+      <span class="chip"><strong>4 Parts</strong> in Annex 8</span>
+      <span class="chip">For <strong>CPL / ATPL</strong> Students</span>
+    </div>
+    <div class="byline">Study Notes prepared for CPL / ATPL examination preparation &nbsp;—&nbsp; Capt. Pankaj Pahil, DGCA Ground Instructor</div>
+  </header>
+
+  <!-- ===================== FACT STRIP ===================== -->
+  <div class="fact-strip">
+    <div class="fact"><div class="num">8</div><div class="lbl">ICAO Annex — Airworthiness</div></div>
+    <div class="fact"><div class="num">6&nbsp;<small>(I)</small></div><div class="lbl">Complementary Annex</div></div>
+    <div class="fact"><div class="num">5 700 kg</div><div class="lbl">MCTOM Applicability</div></div>
+    <div class="fact"><div class="num">4</div><div class="lbl">Parts of Annex 8</div></div>
+  </div>
+
+  <p class="lead" style="margin-top:18px;">These notes break down every clause of the chapter into plain instructional language for student pilots — while keeping <strong>every exact regulatory value, limit and rule</strong> unchanged. Colour-coded boxes are used throughout: <span style="color:var(--blue-tx);font-weight:700;">Blue = definitions/concepts</span>, <span style="color:var(--green-tx);font-weight:700;">Green = procedures &amp; allowances</span>, <span style="color:var(--red-tx);font-weight:700;">Red = strict limitations &amp; prohibitions</span>, <span style="color:var(--amber-tx);font-weight:700;">Amber = instructor &amp; exam tips</span>.</p>
+
+  <!-- ===================== TOC ===================== -->
+  <div class="toc">
+    <h3>What This Chapter Covers</h3>
+    <ol>
+      <li><a href="#s1">Introduction — Airworthiness &amp; C of A</a></li>
+      <li><a href="#s2">Compatibility — Annex 8 vs Annex 6</a></li>
+      <li><a href="#s3">International Obligations &amp; Recognition</a></li>
+      <li><a href="#s4">National Codes vs ICAO Standards</a></li>
+      <li><a href="#s5">Scope of Annex 8 &amp; Doc 9760</a></li>
+      <li><a href="#s6">Type Certificate</a></li>
+      <li><a href="#s7">Applicability &amp; Structure of Annex 8</a></li>
+      <li><a href="#s8">Special Security Features</a></li>
+      <li><a href="#s9">National Provisions (DGCA / Aircraft Rules)</a></li>
+      <li><a href="#s10">Question Bank with Explanations</a></li>
+      <li><a href="#s11">Rapid Revision Snapshot</a></li>
+    </ol>
+  </div>
+
+  <!-- ===================== SECTION 1 ===================== -->
+  <section id="s1">
+    <div class="sec-head"><div class="sec-num">1</div><h2>Introduction — Airworthiness &amp; the Certificate of Airworthiness</h2></div>
+
+    <p>The whole chapter sits on a single safety idea: an aircraft is only allowed to fly if it has been <strong>designed, constructed and operated</strong> in line with the proper airworthiness requirements. The authority that sets and enforces those requirements for a particular aircraft is the <em class="term">State of Registry</em> of that aircraft.</p>
+
+    <div class="box blue">
+      <div class="box-title"><span class="ico">i</span>Key Definitions</div>
+      <ul>
+        <li><strong>Airworthiness</strong> — the condition of an aircraft being suitable and fit to fly safely.</li>
+        <li><strong>Certificate of Airworthiness (C of A)</strong> — the document issued to an aircraft <span class="hl">declaring that the aircraft is fit to fly</span>. It is the formal "fitness certificate" of the machine.</li>
+        <li><strong>State of Registry</strong> — the State on whose register the aircraft is entered; it owns the responsibility for that aircraft's airworthiness requirements.</li>
+      </ul>
+    </div>
+
+    <p>In simple terms: <strong>compliance with airworthiness requirements ⟶ the aircraft earns a C of A ⟶ the C of A declares it fit to fly.</strong> Without that declaration, the machine is not permitted in the air.</p>
+
+    <div class="box amber">
+      <div class="box-title"><span class="ico">★</span>Instructor's Tip</div>
+      <p>Remember the logic chain — <em>Design &amp; Build correctly → Operate per requirements → Issue C of A → "Fit to fly".</em> The C of A is about the <strong>individual aircraft</strong>; keep it separate in your mind from the <strong>Type Certificate</strong> (covered in Section 6), which is about the <strong>design of the whole type</strong>.</p>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 2 ===================== -->
+  <section id="s2">
+    <div class="sec-head"><div class="sec-num">2</div><h2>Compatibility — Annex 8 vs Annex 6, Part I</h2></div>
+
+    <p>Airworthiness does not live in isolation. The Standards of <span class="hl-blue">Annex 6, Part I</span> — which deal with <strong>aeroplane performance operating limitations</strong> — are described as <strong>complementary</strong> to the airworthiness Standards of <span class="hl-blue">Annex 8</span>. Both Annexes state <strong>broad objectives</strong>, but they look at the aircraft from two different angles.</p>
+
+    <div class="box blue">
+      <div class="box-title"><span class="ico">i</span>Two Angles on the Same Aircraft</div>
+      <p><strong>Annex 8</strong> deals with airworthiness from the <span class="hl">engineering point of view</span>. <strong>Annex 6 (Part I)</strong> covers the subject from the <span class="hl">operational and safety point of view</span>. Together they form one complete picture.</p>
+    </div>
+
+    <table>
+      <thead><tr><th style="width:24%">Aspect</th><th>ICAO Annex 8</th><th>ICAO Annex 6, Part I</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Subject</strong></td><td>Airworthiness of Aircraft</td><td>Operation of Aircraft (International Commercial Air Transport — Aeroplanes)</td></tr>
+        <tr><td><strong>Point of view</strong></td><td>Engineering point of view</td><td>Operational &amp; safety point of view</td></tr>
+        <tr><td><strong>Core content</strong></td><td>Airworthiness design &amp; construction Standards</td><td>Aeroplane performance operating limitations</td></tr>
+        <tr><td><strong>Nature</strong></td><td colspan="2" class="center">Both state <strong>broad objectives</strong> &nbsp;•&nbsp; the two are <strong>complementary</strong> to each other</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===================== SECTION 3 ===================== -->
+  <section id="s3">
+    <div class="sec-head"><div class="sec-num">3</div><h2>International Obligations &amp; Recognition of a C of A</h2></div>
+
+    <h3>Protecting Visiting Aeroplanes</h3>
+    <p>The ICAO <strong>Council has urged Contracting States</strong> not to impose on <strong>visiting aeroplanes</strong> operational requirements other than those established by the <em class="term">State of Registry</em> — <span class="hl">provided</span> those State-of-Registry requirements are <span class="hl">not lower than the Standards of Annex 6, Part I</span>.</p>
+
+    <div class="box green">
+      <div class="box-title"><span class="ico">✓</span>What This Means in Practice</div>
+      <p>A foreign aeroplane visiting another State should be judged by <strong>its own State of Registry's rules</strong> — not by a fresh set of local rules — as long as the State of Registry's rules at least meet the Annex 6, Part I floor. This avoids burdening international operations with duplicate requirements.</p>
+    </div>
+
+    <h3>Recognising a Foreign Airworthiness Certificate</h3>
+    <p>To make it easy to <strong>import, export, lease, charter or interchange</strong> aircraft and to support international air navigation, ICAO places a duty on the <strong>State of Registry to recognise and render valid</strong> an airworthiness certificate issued by another Contracting State.</p>
+
+    <div class="box red">
+      <div class="box-title"><span class="ico">!</span>The Strict Condition for Recognition</div>
+      <p>A foreign C of A is recognised <strong>only on the condition</strong> that the airworthiness requirements under which it was issued or rendered valid are <span class="hl">equal to or above the minimum standards</span> that ICAO may establish from time to time. If the standards fall <strong>below</strong> the ICAO minimum, recognition does not follow automatically.</p>
+    </div>
+
+    <div class="diagram">
+      <div class="cap">Figure 3.1 — Recognition of a Foreign Certificate of Airworthiness</div>
+      <pre class="mermaid">
+flowchart LR
+    A["Aircraft holds a C of A<br/>issued by another<br/>Contracting State"] --> B{"State of Registry checks:<br/>Are the airworthiness requirements<br/>EQUAL TO or ABOVE the ICAO<br/>minimum Standards?"}
+    B -- "Yes" --> C["State of Registry<br/>RECOGNISES &amp; RENDERS<br/>VALID the certificate"]
+    B -- "No" --> D["Certificate NOT<br/>automatically rendered valid"]
+      </pre>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 4 ===================== -->
+  <section id="s4">
+    <div class="sec-head"><div class="sec-num">4</div><h2>National Codes vs ICAO Standards</h2></div>
+
+    <p>ICAO is realistic about its own limits. It is <strong>recognised that ICAO Standards would not replace national regulations.</strong> ICAO Standards set the broad framework; the fine, detailed work of certifying individual aircraft needs a fuller, more detailed national code.</p>
+
+    <div class="box blue">
+      <div class="box-title"><span class="ico">i</span>Why National Codes Are Needed</div>
+      <p>National codes of airworthiness — containing the <strong>full scope and extent of detail</strong> that an individual State considers necessary — are required as the <span class="hl">basis for the certification of individual aircraft</span>. ICAO's broad Standards alone are not detailed enough to certify a specific machine.</p>
+    </div>
+
+    <div class="box green">
+      <div class="box-title"><span class="ico">✓</span>Each State's Freedom of Choice</div>
+      <p>Every State is free to either —</p>
+      <ol>
+        <li><strong>Develop</strong> its own comprehensive and detailed code of airworthiness; <strong>or</strong></li>
+        <li><strong>Select, adopt or accept</strong> a comprehensive and detailed code already established by another Contracting State.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 5 ===================== -->
+  <section id="s5">
+    <div class="sec-head"><div class="sec-num">5</div><h2>Scope of Annex 8 &amp; the Airworthiness Technical Manual</h2></div>
+
+    <p>Annex 8 includes <strong>broad Standards</strong> which define — for application by the <strong>national airworthiness authorities</strong> — the <strong>minimum basis</strong> for the recognition by States of Certificates of Airworthiness, so that aircraft of other States can fly <strong>into and over their territories</strong>.</p>
+
+    <div class="box blue">
+      <div class="box-title"><span class="ico">i</span>Purpose of Annex 8 Standards</div>
+      <p>By setting that minimum basis, the Standards achieve — among other things — the <span class="hl">protection of other aircraft, third parties and property</span>.</p>
+    </div>
+
+    <div class="box green">
+      <div class="box-title"><span class="ico">✓</span>Where the Detailed Guidance Lives</div>
+      <p>The <strong>level of airworthiness</strong> to be maintained by a national code is indicated by the broad Standards of Annex 8, <strong>supplemented where necessary</strong> by guidance material in ICAO's <span class="hl">Airworthiness Technical Manual — Doc 9760</span>.</p>
+    </div>
+
+    <div class="box amber">
+      <div class="box-title"><span class="ico">★</span>Exam Tip — Lock the Numbers</div>
+      <p>Two reference labels are frequently tested: <strong>Annex 8</strong> = Airworthiness of Aircraft, and <strong>Doc 9760</strong> = Airworthiness Technical Manual. Memorise the document number exactly.</p>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 6 ===================== -->
+  <section id="s6">
+    <div class="sec-head"><div class="sec-num">6</div><h2>Type Certificate</h2></div>
+
+    <p>While the C of A applies to an individual aircraft, the <em class="term">Type Certificate</em> applies to the <strong>design of a whole type</strong> — and it is issued by a different authority.</p>
+
+    <div class="box blue">
+      <div class="box-title"><span class="ico">i</span>Type Certificate — Definition &amp; Issuing Authority</div>
+      <p>The <span class="hl">State of Design</span>, upon receipt of <strong>satisfactory evidence</strong> that the aircraft type (or <strong>engine type</strong> or <strong>propeller type</strong>, if certificated separately) complies with the design aspects of the appropriate airworthiness requirements, shall issue a <strong>Type Certificate</strong>. The Type Certificate:</p>
+      <ul>
+        <li><strong>Defines the type design</strong>, and</li>
+        <li><strong>Signifies its approval.</strong></li>
+      </ul>
+    </div>
+
+    <table>
+      <thead><tr><th style="width:30%">Certificate</th><th style="width:28%">Issued / Acted on by</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Type Certificate</strong></td><td>State of Design</td><td>Defines the type design of the aircraft / engine / propeller and signifies its approval — applies to the <strong>design of the type</strong>.</td></tr>
+        <tr><td><strong>Certificate of Airworthiness</strong></td><td>State of Registry (Director-General)</td><td>Declares an <strong>individual aircraft</strong> fit to fly / in a condition for safe operation.</td></tr>
+        <tr><td><strong>Special Flight Permit</strong></td><td>Director-General</td><td>May be issued, on application, to permit a flight while the C of A is suspended (see Section 9).</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box amber">
+      <div class="box-title"><span class="ico">★</span>Instructor's Tip — Don't Confuse the "States"</div>
+      <p><strong>State of Design</strong> ⟶ issues the <strong>Type Certificate</strong>. &nbsp; <strong>State of Registry</strong> ⟶ responsible for the <strong>C of A</strong> and continuing airworthiness. A common exam trap is swapping these two.</p>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 7 ===================== -->
+  <section id="s7">
+    <div class="sec-head"><div class="sec-num">7</div><h2>Applicability &amp; Structure of Annex 8</h2></div>
+
+    <h3>Applicability of the Technical Standards</h3>
+    <div class="box red">
+      <div class="box-title"><span class="ico">!</span>Strict Applicability Limit — Memorise Exactly</div>
+      <p>At present, the technical Standards dealing with the <strong>certification of aeroplanes</strong> are <strong>limited</strong> to:</p>
+      <p style="margin-top:6px;"><span class="hl">Multi-engined aeroplanes of OVER 5 700 kg maximum certificated take-off mass.</span></p>
+      <p>Note the precise wording: <strong>"over"</strong> 5 700 kg (not "up to"), <strong>"multi-engined"</strong>, and the mass is the <strong>maximum certificated take-off mass</strong>.</p>
+    </div>
+
+    <p>These technical Standards include requirements relating to:</p>
+    <ul class="clean">
+      <li><strong>Performance</strong> and <strong>flying qualities</strong></li>
+      <li><strong>Structural design and construction</strong></li>
+      <li><strong>Engine and propeller design and installation</strong></li>
+      <li><strong>Systems and equipment design and installation</strong>, and operating requirements</li>
+    </ul>
+
+    <h3>The Four Parts of Annex 8</h3>
+    <p>Annex 8 is divided into <strong>four parts</strong>:</p>
+
+    <table>
+      <thead><tr><th style="width:16%">Part</th><th>Content</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Part I</strong></td><td>Definitions</td></tr>
+        <tr><td><strong>Part II</strong></td><td>Procedures for <strong>certification</strong> and <strong>continuing airworthiness</strong> of aircraft</td></tr>
+        <tr><td><strong>Part III</strong></td><td>Technical requirements for the certification of <strong>new large aeroplane designs</strong></td></tr>
+        <tr><td><strong>Part IV</strong></td><td>Helicopters</td></tr>
+      </tbody>
+    </table>
+
+    <div class="diagram">
+      <div class="cap">Figure 7.1 — Structure of ICAO Annex 8</div>
+      <pre class="mermaid">
+flowchart TD
+    X["ICAO ANNEX 8<br/>Airworthiness of Aircraft"]
+    X --> P1["PART I<br/>Definitions"]
+    X --> P2["PART II<br/>Procedures for Certification<br/>&amp; Continuing Airworthiness"]
+    X --> P3["PART III<br/>Technical Requirements —<br/>Certification of New Large<br/>Aeroplane Designs"]
+    X --> P4["PART IV<br/>Helicopters"]
+      </pre>
+    </div>
+
+    <div class="box amber">
+      <div class="box-title"><span class="ico">★</span>Memory Hook</div>
+      <p><strong>"Def — Cert — Design — Heli"</strong> &nbsp;⟶&nbsp; Part&nbsp;I Definitions, Part&nbsp;II Certification &amp; continuing airworthiness procedures, Part&nbsp;III new large aeroplane Designs, Part&nbsp;IV Helicopters.</p>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 8 ===================== -->
+  <section id="s8">
+    <div class="sec-head"><div class="sec-num">8</div><h2>Special Security Features</h2></div>
+
+    <p>Following the events of <strong>hijacking and terrorist acts</strong> on board aircraft, <strong>special security features</strong> have been built into aircraft design to improve the protection of the aircraft.</p>
+
+    <div class="box green">
+      <div class="box-title"><span class="ico">✓</span>Security Features Built Into Design</div>
+      <p>These features include:</p>
+      <ul>
+        <li>Special features in <strong>aircraft systems</strong>;</li>
+        <li>Identification of a <span class="hl">least-risk bomb location</span> on the aircraft;</li>
+        <li><strong>Strengthening of the cockpit door</strong>, and of the <strong>ceilings and floors</strong> of the cabin crew compartment.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 9 ===================== -->
+  <section id="s9">
+    <div class="sec-head"><div class="sec-num">9</div><h2>National Provisions (DGCA / Indian Aircraft Rules)</h2></div>
+
+    <p>This part of the chapter moves from the <strong>international</strong> ICAO framework to the <strong>national</strong> rules administered by the <em class="term">Director-General</em> (DGCA). It covers how a C of A is issued, modified, suspended, cancelled and revalidated.</p>
+
+    <!-- 9.1 -->
+    <h3>9.1 &nbsp;Issue of C of A / Special C of A / Airworthiness Review Certificate</h3>
+    <div class="box green">
+      <div class="box-title"><span class="ico">✓</span>Who Applies, and to Whom</div>
+      <p>The <strong>owner or operator</strong> of an aircraft may apply to the <strong>Director-General</strong> for —</p>
+      <ul>
+        <li>the issue of a <strong>certificate of airworthiness</strong> or a <strong>special certificate of airworthiness</strong> for the aircraft; <strong>or</strong></li>
+        <li>the <strong>validation</strong> of a certificate of airworthiness issued <strong>elsewhere</strong> for that aircraft.</li>
+      </ul>
+    </div>
+
+    <div class="box blue">
+      <div class="box-title"><span class="ico">i</span>The Two Conditions for Issue</div>
+      <p>The Director-General may issue a C of A or special C of A in respect of an aircraft <strong>when</strong>:</p>
+      <ul>
+        <li><strong>(a)</strong> the applicant <strong>furnishes the documents or other evidence</strong> relating to the airworthiness of the aircraft, <strong>as may be specified by the Director-General</strong>; <strong>and</strong></li>
+        <li><strong>(b)</strong> the Director-General is <strong>satisfied</strong> that the aircraft is <span class="hl">airworthy or in a condition for safe operation</span>.</li>
+      </ul>
+      <p style="margin-top:6px;"><strong>Both</strong> conditions (a) <em>and</em> (b) must be met — they are joined by "and", not "or".</p>
+    </div>
+
+    <div class="diagram">
+      <div class="cap">Figure 9.1 — Process for Issue of a Certificate of Airworthiness</div>
+      <pre class="mermaid">
+flowchart TD
+    A["Owner / Operator of the aircraft"] -->|"Applies"| B["Director-General (DGCA)"]
+    B --> C{"Both conditions checked"}
+    C --> D["Condition (a)<br/>Applicant furnishes documents /<br/>evidence of airworthiness<br/>as specified by the DG"]
+    C --> E["Condition (b)<br/>DG satisfied the aircraft is<br/>airworthy OR in a condition<br/>for safe operation"]
+    D --> F{"Conditions (a) AND (b)<br/>both satisfied?"}
+    E --> F
+    F -- "Yes" --> G["C of A / Special C of A<br/>ISSUED"]
+    F -- "No" --> H["Certificate NOT issued"]
+      </pre>
+    </div>
+
+    <!-- 9.2 -->
+    <h3>9.2 &nbsp;Modification and Repairs</h3>
+    <div class="box red">
+      <div class="box-title"><span class="ico">!</span>Prohibition — Modification / Repair Affecting Safety</div>
+      <p>A person <strong>shall NOT carry out any modification or repair affecting the safety</strong> of any aircraft that holds a valid certificate of airworthiness — <strong>unless</strong>:</p>
+      <ul>
+        <li>he has been <strong>required to do so</strong> in pursuance of these rules; <strong>or</strong></li>
+        <li>he has obtained the <span class="hl">prior approval of the Director-General</span>.</li>
+      </ul>
+    </div>
+
+    <div class="box amber">
+      <div class="box-title"><span class="ico">★</span>Instructor's Tip</div>
+      <p>The key trigger phrase is <strong>"affecting safety"</strong>. Such a modification or repair is permitted in only two situations — when the rules <em>require</em> it, or when the DG has given <em>prior</em> approval. "Prior" means <strong>before</strong> the work, not after.</p>
+    </div>
+
+    <!-- 9.3 -->
+    <h3>9.3 &nbsp;Suspension or Cancellation — When a C of A is "Deemed Suspended"</h3>
+    <p>A C of A or special C of A is <strong>deemed to be suspended</strong> automatically when an aircraft falls into any one of the following four situations:</p>
+
+    <div class="box red">
+      <div class="box-title"><span class="ico">!</span>Four Grounds for Deemed Suspension</div>
+      <ul>
+        <li><strong>(a)</strong> <strong>Ceases or fails to conform</strong> with the requirement of the rules — in respect of <strong>operation, maintenance, modification, repair, replacement, overhaul, process or inspection</strong> applicable to that aircraft; <strong>or</strong></li>
+        <li><strong>(b)</strong> Is <strong>modified or repaired otherwise than in accordance</strong> with the provisions of the rules; <strong>or</strong></li>
+        <li><strong>(c)</strong> <strong>Suffers major damage</strong>; <strong>or</strong></li>
+        <li><strong>(d)</strong> <strong>Develops a major defect</strong> which would affect the safety of the aircraft or its occupants in <strong>subsequent flights</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="diagram">
+      <div class="cap">Figure 9.2 — Four Grounds on Which a C of A is Deemed Suspended</div>
+      <pre class="mermaid">
+flowchart TD
+    S["C of A is DEEMED SUSPENDED<br/>when the aircraft..."]
+    S --> A["(a) Ceases / fails to conform<br/>with the rules — operation,<br/>maintenance, modification, repair,<br/>replacement, overhaul,<br/>process or inspection"]
+    S --> B["(b) Is modified or repaired<br/>OTHERWISE THAN per<br/>the provisions of the rules"]
+    S --> C["(c) Suffers<br/>MAJOR DAMAGE"]
+    S --> D["(d) Develops a MAJOR DEFECT<br/>affecting safety of the aircraft<br/>/ occupants in subsequent flights"]
+      </pre>
+    </div>
+
+    <!-- 9.4 -->
+    <h3>9.4 &nbsp;Director-General's Powers on "Reasonable Doubt"</h3>
+    <p>If, <strong>at any time</strong>, the Director-General is satisfied that <strong>reasonable doubt exists</strong> as to the safety of an aircraft, or as to the safety of the <strong>type</strong> to which that aircraft belongs, he may take either of the following actions:</p>
+
+    <div class="box green">
+      <div class="box-title"><span class="ico">✓</span>The DG's Two Options</div>
+      <ul>
+        <li><strong>(a)</strong> <strong>Suspend or cancel</strong> the C of A or special C of A in respect of the aircraft; <strong>or</strong></li>
+        <li><strong>(b)</strong> <strong>Require</strong> the aircraft, an aircraft component, or an item of equipment to undergo <strong>modification, repair, replacement, overhaul, inspection</strong> — including <strong>flight tests and examination</strong> — under the supervision of an <span class="hl">approved person</span> as the DG may specify, as a <strong>condition of the C of A remaining in force</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="diagram">
+      <div class="cap">Figure 9.3 — DG's Action on Reasonable Doubt &amp; the Special Flight Permit</div>
+      <pre class="mermaid">
+flowchart TD
+    R["Director-General is satisfied<br/>REASONABLE DOUBT exists<br/>about safety of the aircraft<br/>or of its type"]
+    R --> O1["Option (a)<br/>SUSPEND or CANCEL<br/>the C of A / Special C of A"]
+    R --> O2["Option (b)<br/>REQUIRE modification, repair,<br/>replacement, overhaul, inspection<br/>(incl. flight tests &amp; examination)<br/>under an approved person"]
+    O2 --> Y["Compliance becomes a CONDITION<br/>of the C of A remaining in force"]
+    O1 --> Z["Aircraft must NOT be flown<br/>while the C of A is suspended"]
+    Z --> SFP["On application by owner / operator,<br/>the DG MAY issue a<br/>SPECIAL FLIGHT PERMIT"]
+      </pre>
+    </div>
+
+    <!-- 9.5 -->
+    <h3>9.5 &nbsp;Prohibition on Flying &amp; the Special Flight Permit</h3>
+    <div class="box red">
+      <div class="box-title"><span class="ico">!</span>Absolute Prohibition</div>
+      <p>An aircraft <strong>shall NOT be flown</strong> during any period for which its C of A or special C of A is <strong>suspended or deemed to be suspended</strong>.</p>
+    </div>
+
+    <div class="box green">
+      <div class="box-title"><span class="ico">✓</span>The Exception — Special Flight Permit</div>
+      <p>Where the C of A or special C of A is suspended (or deemed suspended), the Director-General <strong>may</strong>, <strong>upon an application by the owner or operator</strong>, issue a <span class="hl">special flight permit</span>. This is the lawful route to move/fly the aircraft despite the suspension.</p>
+    </div>
+
+    <div class="box amber">
+      <div class="box-title"><span class="ico">★</span>Exam Tip — "May" vs "Shall"</div>
+      <p>The aircraft <strong>"shall not be flown"</strong> — that is absolute. But the DG <strong>"may"</strong> issue a special flight permit — that is discretionary, and only on the owner/operator's <strong>application</strong>. Watch these modal words carefully in exam questions.</p>
+    </div>
+
+    <!-- 9.6 -->
+    <h3>9.6 &nbsp;Flight Manual</h3>
+    <div class="box blue">
+      <div class="box-title"><span class="ico">i</span>Endorsement of the C of A</div>
+      <p>Where a <strong>flight manual</strong> is required to be kept for an aircraft in accordance with the provisions of these rules, the <strong>Director-General shall endorse</strong> the certificate of airworthiness of the aircraft <strong>accordingly</strong>.</p>
+    </div>
+
+    <!-- 9.7 -->
+    <h3>9.7 &nbsp;Instruments and Equipment</h3>
+    <div class="box blue">
+      <div class="box-title"><span class="ico">i</span>Fitment Requirement</div>
+      <p>Every aircraft <strong>shall be fitted and equipped</strong> with the <strong>instruments and equipment</strong> — <strong>including radio apparatus and special equipment</strong> — as may be specified <strong>according to the use and the circumstances</strong> under which the flight is to be conducted.</p>
+    </div>
+
+    <div class="box amber">
+      <div class="box-title"><span class="ico">★</span>Instructor's Tip</div>
+      <p>Note that the required instruments/equipment are <strong>not fixed</strong> — they depend on the <strong>type of operation</strong> and the <strong>circumstances of the flight</strong> (e.g. day/night, VFR/IFR). The fitment list scales with how and where the aircraft is used.</p>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 10 — QUESTION BANK ===================== -->
+  <section id="s10">
+    <div class="sec-head"><div class="sec-num">10</div><h2>Question Bank — With Worked Explanations</h2></div>
+    <p style="margin-bottom:4px;"><span class="pill">Self-Test</span> &nbsp; All five chapter questions, the correct option, and the reasoning behind each answer.</p>
+
+    <div class="qcard">
+      <span class="qnum">Question 1</span>
+      <div class="qtext">The continuing airworthiness of an aircraft, according to ICAO Annex 8, shall be determined by:</div>
+      <div class="opt"><span class="tag">A</span>ICAO</div>
+      <div class="opt"><span class="tag">B</span>The operator's state</div>
+      <div class="opt correct"><span class="tag">C</span>The state of registry</div>
+      <div class="qexp"><b>Why C:</b> Responsibility for an aircraft's airworthiness — including its <b>continuing airworthiness</b> — rests with the <b>State of Registry</b> (the State on whose register the aircraft is entered). ICAO only sets broad Standards; it does not itself determine the airworthiness of an individual aircraft.</div>
+    </div>
+
+    <div class="qcard">
+      <span class="qnum">Question 2</span>
+      <div class="qtext">According to ICAO Annex 8, a certificate of airworthiness shall be renewed or shall remain valid subject to the:</div>
+      <div class="opt"><span class="tag">A</span>Laws of the state of registry and operation</div>
+      <div class="opt correct"><span class="tag">B</span>Laws of the state of registry</div>
+      <div class="opt"><span class="tag">C</span>Requirements laid down by ICAO</div>
+      <div class="qexp"><b>Why B:</b> The C of A is tied to the <b>State of Registry</b>. Its renewal and continued validity are governed by the <b>laws of the State of Registry</b> — the same State that is responsible for the aircraft's airworthiness requirements. The State of operation does not control the C of A's validity.</div>
+    </div>
+
+    <div class="qcard">
+      <span class="qnum">Question 3</span>
+      <div class="qtext">The technical standards dealing with certification of aeroplanes are at present limited to multi-engine aircraft of:</div>
+      <div class="opt"><span class="tag">A</span>Up to 5700 Kg maximum certificated take-off and landing mass</div>
+      <div class="opt correct"><span class="tag">B</span>Over 5700 Kg maximum certificated take-off mass</div>
+      <div class="opt"><span class="tag">C</span>Up to 5700 Kg maximum certificated take-off mass</div>
+      <div class="qexp"><b>Why B:</b> The technical Standards apply to <b>multi-engined aeroplanes of OVER 5 700 kg maximum certificated take-off mass</b>. The trap options use "up to" instead of "over", and one adds "and landing mass" — the rule speaks only of <b>take-off mass</b>.</div>
+    </div>
+
+    <div class="qcard">
+      <span class="qnum">Question 4</span>
+      <div class="qtext">When an aircraft has sustained damage, the aircraft shall be allowed to resume its flight, if:</div>
+      <div class="opt"><span class="tag">A</span>The state of registry, the state of design and the state of manufacture consider that the aircraft is still airworthy</div>
+      <div class="opt"><span class="tag">B</span>The state of manufacture informs the state of registry that the damage sustained is of a nature such that the aircraft is still airworthy</div>
+      <div class="opt correct"><span class="tag">C</span>The state of registry considers that the damage sustained is of a nature such that the aircraft is still airworthy</div>
+      <div class="qexp"><b>Why C:</b> Airworthiness decisions for an aircraft are made by its <b>State of Registry</b>. After damage, it is the <b>State of Registry</b> that judges whether the damage is of a nature that leaves the aircraft still airworthy — and only then may the flight resume. Options needing the State of Design or State of Manufacture to also decide are incorrect.</div>
+    </div>
+
+    <div class="qcard">
+      <span class="qnum">Question 5</span>
+      <div class="qtext">Jet Airways flight is to take off from London to Bosnia. C of A will be as per the rules of:</div>
+      <div class="opt"><span class="tag">A</span>UK</div>
+      <div class="opt correct"><span class="tag">B</span>India</div>
+      <div class="opt"><span class="tag">C</span>Bosnia</div>
+      <div class="qexp"><b>Why B:</b> The C of A always follows the <b>State of Registry</b>, not the departure or destination State. Jet Airways is an Indian operator with aircraft registered in <b>India</b>, so the C of A is governed by <b>India's</b> rules — even though the flight operates between London (UK) and Bosnia.</div>
+    </div>
+
+    <table style="margin-top:18px;">
+      <thead><tr><th class="center">Q1</th><th class="center">Q2</th><th class="center">Q3</th><th class="center">Q4</th><th class="center">Q5</th></tr></thead>
+      <tbody><tr>
+        <td class="center"><strong>C</strong></td><td class="center"><strong>B</strong></td><td class="center"><strong>B</strong></td><td class="center"><strong>C</strong></td><td class="center"><strong>B</strong></td>
+      </tr></tbody>
+    </table>
+  </section>
+
+  <!-- ===================== SECTION 11 — REVISION ===================== -->
+  <section id="s11">
+    <div class="sec-head"><div class="sec-num">11</div><h2>Rapid Revision Snapshot</h2></div>
+
+    <div class="twocol">
+      <div class="box blue">
+        <div class="box-title"><span class="ico">i</span>Numbers &amp; Labels to Memorise</div>
+        <ul>
+          <li><strong>Annex 8</strong> — Airworthiness of Aircraft</li>
+          <li><strong>Annex 6, Part I</strong> — complementary; operating limitations</li>
+          <li><strong>Doc 9760</strong> — Airworthiness Technical Manual</li>
+          <li><strong>5 700 kg</strong> — "over" this MCTOM, multi-engined aeroplanes</li>
+          <li><strong>4 Parts</strong> — Definitions / Certification &amp; Continuing Airworthiness / New Large Aeroplane Designs / Helicopters</li>
+        </ul>
+      </div>
+      <div class="box green">
+        <div class="box-title"><span class="ico">✓</span>Who Does What</div>
+        <ul>
+          <li><strong>State of Design</strong> → issues the <strong>Type Certificate</strong></li>
+          <li><strong>State of Registry</strong> → C of A &amp; continuing airworthiness</li>
+          <li><strong>Owner / Operator</strong> → applies for C of A / special C of A / validation / special flight permit</li>
+          <li><strong>Director-General</strong> → issues, endorses, suspends, cancels; may issue a special flight permit</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box red">
+      <div class="box-title"><span class="ico">!</span>Hard Limits &amp; Prohibitions — Never Forget</div>
+      <ul>
+        <li>No modification/repair <strong>affecting safety</strong> on a C of A aircraft — unless <strong>required by rules</strong> or with <strong>prior DG approval</strong>.</li>
+        <li>Aircraft <strong>shall NOT be flown</strong> while its C of A is suspended or deemed suspended.</li>
+        <li>Foreign C of A recognised <strong>only if</strong> standards are <strong>equal to or above</strong> the ICAO minimum.</li>
+        <li>C of A <strong>deemed suspended</strong> on 4 grounds: non-conformity • improper modification/repair • <strong>major damage</strong> • <strong>major defect</strong> affecting subsequent flights.</li>
+      </ul>
+    </div>
+
+    <div class="diagram">
+      <div class="cap">Figure 11.1 — The Life-Cycle Logic of a Certificate of Airworthiness</div>
+      <pre class="mermaid">
+flowchart LR
+    A["Design &amp; build per<br/>airworthiness requirements"] --> B["Type Certificate<br/>(State of Design)"]
+    B --> C["Owner/Operator applies<br/>to the Director-General"]
+    C --> D["C of A ISSUED —<br/>aircraft 'fit to fly'"]
+    D --> E{"Aircraft stays<br/>in compliance?"}
+    E -- "Yes" --> F["C of A remains valid<br/>(continuing airworthiness)"]
+    E -- "No / damage / defect / doubt" --> G["C of A suspended,<br/>deemed suspended<br/>or cancelled"]
+    G --> H["Aircraft must not fly —<br/>DG may issue a<br/>Special Flight Permit"]
+      </pre>
+    </div>
+  </section>
+
+  <div class="footer">
+    <strong>Airworthiness of Aircraft — ICAO Annex 8 &amp; National Provisions</strong> &nbsp;|&nbsp; DGCA CPL / ATPL Ground Training Notes<br>
+    Prepared by Capt. Pankaj Pahil &nbsp;•&nbsp; For instructional use &nbsp;•&nbsp; Always refer to the current ICAO Annex 8 and the latest Aircraft Rules for authoritative regulatory text.
+  </div>
+
+</div>
+
+<!-- ===================== DIAGONAL WATERMARK (last element in body) ===================== -->
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+</body>
+</html>
