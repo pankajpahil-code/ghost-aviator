@@ -85,6 +85,7 @@ export default async function Page({
       "air-regulations/ar-9":  true,
       "air-regulations/ar-10": true,
       "air-regulations/ar-11": true,
+      "air-regulations/ar-14": true,
     };
     if (HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]) {
       return (

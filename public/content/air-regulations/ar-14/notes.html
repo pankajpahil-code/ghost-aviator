@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGCA Personnel Licensing — Study Notes | Capt. Pankaj Pahil</title>
+
+<!-- Mermaid.js for flowcharts, timelines & diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      primaryColor: '#e8f0fe',
+      primaryTextColor: '#0b2545',
+      primaryBorderColor: '#1d4e89',
+      lineColor: '#1d4e89',
+      secondaryColor: '#fdecea',
+      tertiaryColor: '#e7f6ec',
+      fontFamily: 'Georgia, serif',
+      fontSize: '15px'
+    },
+    flowchart: { curve: 'basis', useMaxWidth: true }
+  });
+</script>
+
+<style>
+/* ============================================================
+   DGCA PERSONNEL LICENSING — STUDY NOTES
+   Author / Instructor: Capt. Pankaj Pahil
+   ============================================================ */
+
+/* ---------- PRINT SETUP ---------- */
+@page {
+  size: A4;
+  margin: 20mm;
+}
+
+/* ---------- FONTS & ROOT ---------- */
+:root {
+  --navy:        #0b2545;
+  --navy-soft:   #1d4e89;
+  --sky:         #1d4e89;
+  --ink:         #1c2230;
+  --paper:       #fbfaf6;
+  --paper-2:     #ffffff;
+
+  --red-bg:      #fdecea;
+  --red-br:      #d6453b;
+  --red-tx:      #8a1f17;
+
+  --blue-bg:     #e8f0fe;
+  --blue-br:     #1d4e89;
+  --blue-tx:     #0b2545;
+
+  --green-bg:    #e7f6ec;
+  --green-br:    #2f8f4e;
+  --green-tx:    #1c5c33;
+
+  --amber-bg:    #fff6e0;
+  --amber-br:    #c98a17;
+  --amber-tx:    #7a520a;
+
+  --grey-bg:     #eef0f3;
+  --grey-br:     #9aa3af;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #d7dce3;
+}
+
+body {
+  font-family: 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* ---------- WATERMARK (dedicated div, last element in body) ---------- */
+#wm {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 80px;
+  font-weight: 900;
+  color: rgba(11, 37, 69, 0.10);
+  white-space: nowrap;
+  letter-spacing: 2px;
+  font-family: 'Arial Black', Arial, sans-serif;
+}
+
+/* ---------- PAGE CONTAINER ---------- */
+.sheet {
+  max-width: 880px;
+  margin: 24px auto;
+  background: var(--paper);
+  padding: 46px 54px;
+  box-shadow: 0 6px 26px rgba(0,0,0,0.18);
+  border-top: 6px solid var(--navy);
+}
+
+/* ---------- COVER ---------- */
+.cover {
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(29,78,137,0.10), transparent 60%),
+    var(--paper);
+  padding: 60px 54px 70px;
+  border-top: 10px solid var(--navy);
+}
+.cover .chapno {
+  display: inline-block;
+  background: var(--navy);
+  color: #fff;
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: 30px;
+  padding: 8px 22px;
+  border-radius: 6px;
+  letter-spacing: 3px;
+}
+.cover h1 {
+  font-size: 44px;
+  color: var(--navy);
+  margin: 22px 0 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.cover .sub {
+  font-size: 17px;
+  color: var(--navy-soft);
+  font-style: italic;
+  max-width: 620px;
+  margin: 10px auto 0;
+  line-height: 1.5;
+}
+.cover .ribbon {
+  margin: 30px auto 0;
+  display: inline-block;
+  background: var(--amber-bg);
+  border: 1px solid var(--amber-br);
+  color: var(--amber-tx);
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.cover .credit {
+  margin-top: 34px;
+  font-size: 15px;
+  color: var(--ink);
+}
+.cover .credit b { color: var(--navy); font-size: 18px; }
+.cover .scope {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #5a6472;
+}
+
+/* ---------- HEADINGS ---------- */
+h2.section {
+  font-size: 27px;
+  color: #fff;
+  background: linear-gradient(100deg, var(--navy), var(--navy-soft));
+  padding: 12px 20px;
+  border-radius: 5px;
+  margin: 46px 0 22px;
+  letter-spacing: 0.5px;
+  page-break-after: avoid;
+}
+h2.section .tag {
+  float: right;
+  font-size: 13px;
+  background: rgba(255,255,255,0.18);
+  padding: 3px 12px;
+  border-radius: 14px;
+  font-weight: normal;
+  font-family: Arial, sans-serif;
+}
+h3.topic {
+  font-size: 21px;
+  color: var(--navy);
+  border-bottom: 3px solid var(--amber-br);
+  padding-bottom: 5px;
+  margin: 34px 0 14px;
+  page-break-after: avoid;
+}
+h4.sub {
+  font-size: 17px;
+  color: var(--navy-soft);
+  margin: 20px 0 8px;
+  page-break-after: avoid;
+}
+h4.sub::before {
+  content: "▸ ";
+  color: var(--amber-br);
+}
+
+p { margin: 9px 0; }
+
+/* ---------- COLOR-CODED BOXES ---------- */
+.box {
+  border-radius: 6px;
+  padding: 14px 18px 14px 46px;
+  margin: 16px 0;
+  position: relative;
+  page-break-inside: avoid;
+  font-size: 15.5px;
+}
+.box .icon {
+  position: absolute;
+  left: 13px;
+  top: 13px;
+  font-size: 20px;
+}
+.box .lbl {
+  display: block;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.box.red    { background: var(--red-bg);   border-left: 6px solid var(--red-br); }
+.box.red .lbl, .box.red .icon { color: var(--red-tx); }
+.box.blue   { background: var(--blue-bg);  border-left: 6px solid var(--blue-br); }
+.box.blue .lbl, .box.blue .icon { color: var(--blue-tx); }
+.box.green  { background: var(--green-bg); border-left: 6px solid var(--green-br); }
+.box.green .lbl, .box.green .icon { color: var(--green-tx); }
+.box.amber  { background: var(--amber-bg); border-left: 6px solid var(--amber-br); }
+.box.amber .lbl, .box.amber .icon { color: var(--amber-tx); }
+
+/* value highlight */
+.val {
+  background: #fff3bf;
+  color: #6b4a00;
+  font-weight: bold;
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid #e0c252;
+  white-space: nowrap;
+}
+
+/* ---------- LISTS ---------- */
+ul.clean, ol.clean { margin: 10px 0 10px 4px; padding-left: 24px; }
+ul.clean li, ol.clean li { margin: 7px 0; }
+ul.clean li::marker { color: var(--navy-soft); }
+ol.clean li::marker { color: var(--navy-soft); font-weight: bold; }
+
+/* ---------- TABLES ---------- */
+table.dgca {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  font-size: 14.5px;
+  page-break-inside: avoid;
+  background: var(--paper-2);
+}
+table.dgca caption {
+  caption-side: top;
+  font-weight: bold;
+  color: var(--navy);
+  text-align: left;
+  padding: 6px 2px;
+  font-size: 15px;
+}
+table.dgca th {
+  background: var(--navy);
+  color: #fff;
+  padding: 9px 11px;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+}
+table.dgca td {
+  padding: 8px 11px;
+  border: 1px solid #cdd3dc;
+  vertical-align: top;
+}
+table.dgca tr:nth-child(even) td { background: #f1f3f7; }
+table.dgca tr.accept td { background: #e7f6ec; }
+table.dgca tr.reject td { background: #fdecea; }
+
+/* ---------- DIAGRAM WRAPPER ---------- */
+.diagram {
+  background: var(--paper-2);
+  border: 1px solid #cdd3dc;
+  border-radius: 6px;
+  padding: 18px;
+  margin: 20px 0;
+  page-break-inside: avoid;
+  text-align: center;
+}
+.diagram .cap {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--navy-soft);
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+pre.mermaid { background: transparent; margin: 0; }
+
+/* ---------- MEMORY / EXAM CALLOUTS ---------- */
+.examtip {
+  background: #fff;
+  border: 2px dashed var(--amber-br);
+  border-radius: 6px;
+  padding: 12px 16px 12px 44px;
+  margin: 16px 0;
+  position: relative;
+  page-break-inside: avoid;
+  font-size: 15px;
+}
+.examtip::before {
+  content: "✈";
+  position: absolute;
+  left: 14px; top: 11px;
+  font-size: 19px;
+  color: var(--amber-br);
+}
+.examtip b { color: var(--amber-tx); }
+
+/* ---------- TOC ---------- */
+.toc {
+  background: var(--paper-2);
+  border: 1px solid #cdd3dc;
+  border-radius: 6px;
+  padding: 18px 26px;
+  page-break-inside: avoid;
+}
+.toc h3 { margin-top: 6px; }
+.toc ol { columns: 2; column-gap: 34px; font-size: 15px; }
+.toc ol li { margin: 6px 0; break-inside: avoid; }
+.toc a { color: var(--navy-soft); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+/* ---------- QUIZ ---------- */
+.quiz-q {
+  page-break-inside: avoid;
+  margin: 16px 0;
+  border-left: 4px solid var(--navy-soft);
+  background: var(--paper-2);
+  padding: 10px 16px;
+}
+.quiz-q .qn { font-weight: bold; color: var(--navy); }
+.quiz-q .opt { margin: 4px 0 4px 16px; }
+.quiz-q .ans {
+  margin-top: 6px;
+  font-size: 14px;
+  background: var(--green-bg);
+  border: 1px solid var(--green-br);
+  color: var(--green-tx);
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* ---------- FOOTER ---------- */
+.foot {
+  margin-top: 40px;
+  border-top: 2px solid var(--navy);
+  padding-top: 12px;
+  font-size: 12.5px;
+  color: #5a6472;
+  text-align: center;
+}
+
+/* ---------- PRINT TWEAKS ---------- */
+@media print {
+  html, body { background: #fff; }
+  .sheet, .cover {
+    box-shadow: none;
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+    border-top: none;
+  }
+  .cover { padding-top: 20mm; }
+  h2.section, h3.topic, h4.sub { page-break-after: avoid; }
+  .box, table.dgca, .diagram, .examtip, .quiz-q, .toc { page-break-inside: avoid; }
+  #wm { color: rgba(11,37,69,0.12); }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<section class="cover">
+  <span class="chapno">15</span>
+  <h1>Personnel Licensing</h1>
+  <p class="sub">Comprehensive Ground-Study Notes for CPL &amp; ATPL Student Pilots —
+  derived from ICAO Annex 1, the Aircraft Rules 1937, and CAR Section 7
+  (Flight Crew Standards, Training &amp; Licensing), Series C, Part I, Issue II,
+  effective 05/04/2021.</p>
+
+  <span class="ribbon">DGCA AIR REGULATIONS · EXAM-FOCUSED REVISION PACK</span>
+
+  <p class="credit">Prepared &amp; instructed by<br><b>Capt. Pankaj Pahil</b><br>
+  DGCA Ground Instructor — Air Regulations</p>
+  <p class="scope">Every clause, limit, exception &amp; regulatory value reproduced
+  verbatim · Print-to-PDF ready (A4)</p>
+</section>
+
+<!-- ================= TABLE OF CONTENTS ================= -->
+<section class="sheet">
+  <div class="toc">
+    <h3 class="topic" style="border:none;margin-bottom:6px;">How to Use These Notes</h3>
+    <p style="font-size:14.5px;">Colour tells you what kind of information you are
+    reading — learn the code and your revision speeds up dramatically:</p>
+    <div class="box blue" style="padding-left:46px;">
+      <span class="icon">📘</span>
+      <span class="lbl">Soft Blue — Definitions &amp; Concepts</span>
+      What a term <i>means</i>. Learn these first; everything else builds on them.
+    </div>
+    <div class="box red" style="padding-left:46px;">
+      <span class="icon">⛔</span>
+      <span class="lbl">Soft Red — Strict Limitations / Warnings / Penalties</span>
+      Hard regulatory limits. Breaking these invalidates a licence or grounds a pilot.
+    </div>
+    <div class="box green" style="padding-left:46px;">
+      <span class="icon">✅</span>
+      <span class="lbl">Soft Green — SOPs &amp; Allowances</span>
+      What you <i>are</i> permitted to do, and the standard procedure to do it.
+    </div>
+    <div class="examtip"><b>Exam Tip box</b> — flags the exact figure or fact the
+    DGCA paper loves to test. <span class="val">Highlighted values</span> are
+    must-memorise numbers.</div>
+
+    <h3 class="topic">Contents</h3>
+    <ol class="clean">
+      <li><a href="#s1">Introduction &amp; ICAO Background</a></li>
+      <li><a href="#s2">National Provisions — General Rules</a></li>
+      <li><a href="#s3">Validity of Medical Fitness</a></li>
+      <li><a href="#s4">Invalidity, Licence Validity &amp; Age Limits</a></li>
+      <li><a href="#s5">Student Pilot's Licence (SPL)</a></li>
+      <li><a href="#s6">Private Pilot's Licence (PPL — Aeroplanes)</a></li>
+      <li><a href="#s7">Commercial Pilot's Licence (CPL — Aeroplanes)</a></li>
+      <li><a href="#s8">CPL (Aeroplanes) with Instrument Rating</a></li>
+      <li><a href="#s9">Airline Transport Pilot's Licence (ATPL)</a></li>
+      <li><a href="#s10">Instrument Rating (Aeroplanes)</a></li>
+      <li><a href="#s11">Quick-Revision Comparison Charts</a></li>
+      <li><a href="#s12">Practice Question Bank (25 MCQs + Answers)</a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= SECTION 1 ================= -->
+<section class="sheet">
+  <h2 class="section" id="s1">1 · Introduction &amp; ICAO Background
+    <span class="tag">Page 421</span></h2>
+
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">What is "Personnel Licensing"?</span>
+    Personnel Licensing is the body of <b>Standards and Recommended Practices (SARPs)</b>
+    for licensing aviation personnel. It ensures that everyone with safety-critical
+    duties is trained, tested and certified to a common world standard.
+  </div>
+
+  <h4 class="sub">Who is covered by Annex 1?</h4>
+  <p>The SARPs for the licensing of the following personnel are provided by
+  <b>Annex 1</b> to the Convention on International Civil Aviation (the Chicago
+  Convention):</p>
+  <ul class="clean">
+    <li><b>Flight crew members</b> — pilots, flight engineers and flight navigators</li>
+    <li>Air traffic controllers</li>
+    <li>Aeronautical station operators</li>
+    <li>Aircraft maintenance technicians</li>
+    <li>Flight dispatchers (flight operations officers)</li>
+  </ul>
+
+  <h4 class="sub">Role of the Training Manuals</h4>
+  <p>Related ICAO training manuals guide States on the <b>scope and depth</b> of
+  training curricula, so that the confidence in safe air navigation intended by
+  the Convention and Annex 1 is maintained. These manuals also guide the training
+  of other aviation personnel such as <b>aerodrome emergency crews, flight
+  operations officers and radio operators</b>.</p>
+
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Purpose of the Medical Standards</span>
+    The medical standards of the Annex require <b>periodic health examinations</b>.
+    They serve as an <b>early warning</b> for possible incapacitating medical
+    conditions and contribute to the general health of flight crews and controllers.
+  </div>
+
+  <div class="examtip"><b>Remember:</b> the ICAO Annex that contains the Standards
+  and Recommended Practices for <b>Personnel Licensing is Annex&nbsp;1</b>. This is
+  the single most repeated fact from this chapter (it answers two separate
+  questions in the DGCA bank).</div>
+</section>
+
+<!-- ================= SECTION 2 ================= -->
+<section class="sheet">
+  <h2 class="section" id="s2">2 · National Provisions — General Rules
+    <span class="tag">Pages 421–422</span></h2>
+
+  <h3 class="topic">2.1 Licensing Authority</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Who issues your licence?</span>
+    The authority by which licences and ratings may be <b>granted, renewed or
+    varied</b> shall be the <b>Central Government</b>.
+  </div>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Discretionary power</span>
+    The Central Government <b>may withhold</b> the grant or renewal of a licence or
+    a rating <b>if for any reason it considers it desirable to do so</b>. There is
+    no automatic entitlement to a licence.
+  </div>
+
+  <h3 class="topic">2.2 Educational Qualification</h3>
+  <p>The minimum schooling required depends on the category of licence applied for.
+  DGCA splits this into two groups:</p>
+
+  <table class="dgca">
+    <caption>Table 2.1 — Minimum Educational Qualification by Licence</caption>
+    <thead>
+      <tr><th style="width:34%;">Minimum Qualification</th><th>Licences Requiring It</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="val">Pass in Class&nbsp;10</span><br>from a recognised Board
+        (or equivalent examination)</td>
+        <td>Student Pilot's Licence (Aeroplanes / Helicopters / Gliders / Balloons /
+        Microlight aircraft); Private Pilot's Licence (Aeroplanes); Private Pilot's
+        Licence (Helicopters); Pilot's Licence (Gliders / Balloons / Microlight
+        aircraft); Flight Radio Telephone Operator's Licence.</td>
+      </tr>
+      <tr>
+        <td><span class="val">Pass in Class&nbsp;10 + 2</span><br>with
+        <b>Physics &amp; Mathematics</b>, from a recognised Board / University
+        (or equivalent)</td>
+        <td>Commercial Pilot's Licence (Aeroplanes); Commercial Pilot's Licence
+        (Helicopters); Airline Transport Pilot's Licence (Aeroplanes); Airline
+        Transport Pilot's Licence (Helicopters); Student Navigator's Licence;
+        Flight Navigator's Licence; Student Flight Engineer's Licence; Flight
+        Engineer's Licence; and Flight Radio Telephone Operator's Licence.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="examtip"><b>Exam Tip:</b> For a <b>CPL/ATPL</b> you must have
+  <b>10+2 with Physics &amp; Maths</b>. For an <b>SPL or PPL</b>, a simple
+  <b>Class 10 pass</b> is enough. The FRTOL appears in <i>both</i> lists.</div>
+
+  <h3 class="topic">2.3 Cross-Country Flight — Definitions</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Definition (a) — General</span>
+    A cross-country flight, unless otherwise stated, means a flight to a point
+    <b>beyond a radius of <span class="val">100 nautical miles</span></b> from the
+    aerodrome of departure, <b>whether over land or sea</b>.
+  </div>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Definition (b) — PPL &amp; Microlight</span>
+    For the purpose of the <b>PPL and Pilot Licence (Microlight)</b>, a
+    cross-country flight means a flight to a point <b>beyond a radius of
+    <span class="val">50 nautical miles</span></b> from the aerodrome of departure.
+  </div>
+
+  <div class="diagram">
+    <div class="cap">Figure 2.1 — Cross-Country Radius at a Glance</div>
+    <pre class="mermaid">
+flowchart LR
+    A["Aerodrome of<br/>Departure"] -->|"Beyond 100 NM radius"| B["Cross-Country<br/>(General / CPL / ATPL)"]
+    A -->|"Beyond 50 NM radius"| C["Cross-Country<br/>(PPL &amp; Microlight only)"]
+    </pre>
+  </div>
+
+  <h3 class="topic">2.4 Language Proficiency</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">The English requirement</span>
+    An applicant for the <b>PPL, CPL, ATPL, Flight Navigator, Flight Engineer, ATC
+    and Aeronautical Station Operator's</b> licences shall have the ability to
+    <b>speak and understand the English language</b> used for radiotelephony
+    communications, to the level of proficiency specified by the Director General.
+  </div>
+
+  <table class="dgca">
+    <caption>Table 2.2 — ICAO English Language Proficiency Levels &amp; Re-evaluation</caption>
+    <thead>
+      <tr><th>Level</th><th>Description</th><th>Acceptable?</th><th>Re-evaluation Period</th></tr>
+    </thead>
+    <tbody>
+      <tr class="accept"><td><b>6</b></td><td>Expert</td><td>Yes</td><td><span class="val">Re-evaluation NOT required</span></td></tr>
+      <tr class="accept"><td><b>5</b></td><td>Extended</td><td>Yes</td><td>Every <span class="val">6 years</span></td></tr>
+      <tr class="accept"><td><b>4</b></td><td>Operational</td><td>Yes</td><td>Every <span class="val">3 years</span></td></tr>
+      <tr class="reject"><td><b>3</b></td><td>Pre-operational</td><td>No</td><td rowspan="3" style="vertical-align:middle;"><b>Further training required</b></td></tr>
+      <tr class="reject"><td><b>2</b></td><td>Elementary</td><td>No</td></tr>
+      <tr class="reject"><td><b>1</b></td><td>Pre-elementary</td><td>No</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Critical limit</span>
+    Levels <b>1, 2 and 3 are NOT acceptable</b> — the holder must undergo further
+    training. Only <b>Levels 4, 5 and 6</b> permit operation, and only Level 6
+    escapes periodic re-evaluation.
+  </div>
+
+  <div class="examtip"><b>Memory hook —</b> "<b>6 = forever, 5 = six, 4 = three</b>":
+  Level 6 needs no re-evaluation, Level 5 every 6 years, Level 4 every 3 years.</div>
+</section>
+
+<!-- ================= SECTION 3 ================= -->
+<section class="sheet">
+  <h2 class="section" id="s3">3 · Validity of Medical Fitness
+    <span class="tag">Pages 422–423</span></h2>
+
+  <p>DGCA medical assessments come in <b>three classes</b>. The class you need
+  depends on the licence you hold or apply for.</p>
+
+  <h3 class="topic">3.1 Which Class for Which Licence?</h3>
+
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Class 1 Medical Assessment — required for applicants &amp; holders of:</span>
+    <ol class="clean" style="margin-top:6px;">
+      <li>Commercial Pilot's Licence (Aeroplane &amp; Helicopter)</li>
+      <li>Airline Transport Pilot's Licence (Aeroplane &amp; Helicopter)</li>
+      <li>Private Pilot's Licence (Aeroplane &amp; Helicopter) <b>where Instrument
+      Rating (Aeroplane &amp; Helicopter) privileges are required</b></li>
+    </ol>
+  </div>
+
+  <div class="box amber">
+    <span class="icon">📗</span>
+    <span class="lbl">Class 2 Medical Assessment — required for applicants &amp; holders of:</span>
+    <ol class="clean" style="margin-top:6px;">
+      <li>Private Pilot's Licence (Aeroplane &amp; Helicopter)</li>
+      <li>Pilot's Licence (Microlight)</li>
+      <li>Student Pilot's Licence (Aeroplane)</li>
+      <li>Student Pilot's Licence (Helicopter)</li>
+      <li>Student Pilot's Licence (Glider)</li>
+      <li>Student Pilot's Licence (Balloons)</li>
+      <li>Student Pilot's Licence (Microlight)</li>
+      <li>Flight Radio Telephone Operator's Licence (Restricted)</li>
+    </ol>
+  </div>
+
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Class 3 Medical Assessment — required for applicants &amp; holders of:</span>
+    <ol class="clean" style="margin-top:6px;">
+      <li>Student ATCO Licence</li>
+      <li>ATCO Licence</li>
+    </ol>
+  </div>
+
+  <div class="examtip"><b>Exam Tip:</b> A normal <b>PPL needs Class 2</b> — but the
+  moment <b>Instrument Rating privileges</b> are wanted, the PPL holder must move up
+  to a <b>Class 1</b> medical. Class 3 is exclusively for <b>ATCOs</b>.</div>
+
+  <h3 class="topic">3.2 Validity of the Medical Assessment</h3>
+
+  <table class="dgca">
+    <caption>Table 3.1 — Medical Validity Periods (verbatim DGCA figures)</caption>
+    <thead>
+      <tr><th style="width:18%;">Class</th><th>Validity</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Class 1</b></td>
+        <td><span class="val">One year</span> up to the age of 60 years;
+        <span class="val">six-monthly</span> thereafter.<br>
+        <b>For single-crew operations</b>, validity is <span class="val">six months
+        above 40 years of age</span>.</td>
+      </tr>
+      <tr>
+        <td><b>Class 2</b></td>
+        <td><span class="val">2 years</span> up to the age of 50 years;
+        <span class="val">One year</span> thereafter.</td>
+      </tr>
+      <tr>
+        <td><b>Class 3</b></td>
+        <td>Up to 40 years — <span class="val">4 years</span>;<br>
+        Above 40 years up to 50 years — <span class="val">2 years</span>;<br>
+        Above 50 years — <span class="val">One year</span>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="diagram">
+    <div class="cap">Figure 3.1 — Medical Validity Timeline by Age</div>
+    <pre class="mermaid">
+flowchart TD
+    subgraph C1["CLASS 1 — CPL / ATPL / PPL+IR"]
+        A1["Up to 60 yrs: 1 year"] --> A2["Above 60 yrs: 6 months"]
+        A3["Single-crew &amp; above 40 yrs: 6 months"]
+    end
+    subgraph C2["CLASS 2 — PPL / SPL / Microlight / FRTOL(R)"]
+        B1["Up to 50 yrs: 2 years"] --> B2["Above 50 yrs: 1 year"]
+    end
+    subgraph C3["CLASS 3 — Student ATCO / ATCO"]
+        D1["Up to 40 yrs: 4 years"] --> D2["40–50 yrs: 2 years"] --> D3["Above 50 yrs: 1 year"]
+    end
+    </pre>
+  </div>
+
+  <div class="examtip"><b>Single-crew trap:</b> A CPL holder flying a
+  <b>single-pilot helicopter (e.g. charters) above 40 years of age</b> gets only a
+  <b>6-month</b> medical validity — <i>not</i> 12 months. This is the answer to
+  Q25 in the bank.</div>
+
+  <h3 class="topic">3.3 Conditions Under Which a Licence is Deemed Invalid</h3>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">No flying without a fresh "fit" declaration</span>
+    The holder of a licence <b>shall not exercise the privileges of his licence</b>
+    without being declared fit after a <b>fresh medical examination</b> in the event
+    of his having:
+    <ol class="clean" style="margin-top:6px;">
+      <li>a <b>sickness or injury involving incapacity</b> for a period of
+      <span class="val">15 days or more</span> for the work for which he is
+      licensed; <b>or</b></li>
+      <li>an <b>injury sustained in any accident</b> occurring during the exercise
+      of the privileges of his licence or otherwise, which is likely to cause
+      incapacity or impair his efficiency in the discharge of his duties.</li>
+    </ol>
+  </div>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Reporting procedure &amp; further conditions</span>
+    <ul class="clean" style="margin-top:6px;">
+      <li>The licence holder <b>or his employer</b> shall <b>immediately notify</b>
+      all relevant details of the sickness or injury to the
+      <b>Director-General</b>.</li>
+      <li>The licence of a person <b>disqualified</b> shall be deemed to be invalid
+      <b>until the holder passes a fresh medical examination</b>.</li>
+      <li>The holder shall <b>not exercise the privileges</b> of his licence during
+      any period when he is aware that his <b>physical condition has deteriorated
+      below the standard</b> required for that category of licence.</li>
+    </ul>
+  </div>
+
+  <div class="examtip"><b>Exam Tip:</b> The threshold for informing the Authority of
+  an illness causing incapacity is <span class="val">15 days</span> or more — this
+  is directly tested (Q2 in the bank).</div>
+</section>
+
+<!-- ================= SECTION 4 ================= -->
+<section class="sheet">
+  <h2 class="section" id="s4">4 · Licence Validity, Special Medical Exam &amp; Age Limits
+    <span class="tag">Page 424</span></h2>
+
+  <h3 class="topic">4.1 Validity of Licences</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Standard validity &amp; renewal procedure</span>
+    <ul class="clean" style="margin-top:6px;">
+      <li>All licences are valid for <span class="val">10 years</span> since
+      <b>10 Oct 2023</b>.</li>
+      <li>Licences are valid <b>from the date of issue</b>.</li>
+      <li><b>Renewal</b> will be done <b>from the date of expiry</b>, provided the
+      application is made <span class="val">within one month prior</span> to the
+      date of expiry.</li>
+    </ul>
+  </div>
+
+  <h3 class="topic">4.2 Special Medical Examination</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">When a "Special" medical applies</span>
+    A Special Medical Examination is for <b>medical ailments resulting in unfitness
+    for flying for 15 days or more, but less than or equal to
+    <span class="val">60 days</span></b>.
+  </div>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Who conducts it &amp; reporting of incapacitation</span>
+    <ul class="clean" style="margin-top:6px;">
+      <li>It will be undertaken by a <b>DGCA-empanelled Class 1 Medical
+      Examiner</b>, on a <b>case-to-case basis</b>, only as decided by
+      <b>DGCA (Medical Directorate)</b>.</li>
+      <li>All cases of <b>in-flight incapacitation</b> of aircrew shall be reported
+      by the <b>concerned operator</b> to DGCA <b>at the earliest</b>.</li>
+    </ul>
+  </div>
+
+  <h3 class="topic">4.3 Minimum Age</h3>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Sole control of an aircraft in motion</span>
+    No person <b>under 16 years of age</b> shall have <b>sole control</b> of an
+    aircraft in motion, and no person shall cause or permit any other person to
+    have sole control of an aircraft in motion unless he knows, or has reasonable
+    cause to believe, that the other person has attained the age of 16 years.
+  </div>
+
+  <table class="dgca">
+    <caption>Table 4.1 — Minimum Age for Each Licence</caption>
+    <thead>
+      <tr><th>Licence</th><th>Minimum Age</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Student Pilot's Licence (SPL)</td><td><span class="val">16 years</span></td></tr>
+      <tr><td>Private Pilot's Licence (PPL)</td><td><span class="val">17 years</span></td></tr>
+      <tr><td>Commercial Pilot's Licence (CPL)</td><td><span class="val">18 years</span></td></tr>
+      <tr><td>Airline Transport Pilot's Licence (ATPL)</td><td><span class="val">21 years</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="topic">4.4 Maximum Age Limit for Professional Pilots</h3>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Rule (1) — The hard ceiling</span>
+    No person holding a pilot's licence, having attained the age of
+    <span class="val">sixty-five (65) years</span>, shall act as <b>Pilot-in-Command
+    or Co-pilot</b> of an aircraft engaged in <b>commercial air transport
+    operations</b>.
+  </div>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Rule (2) — The 60-year multi-crew rule</span>
+    No person holding a pilot's licence, having attained the age of
+    <span class="val">sixty (60) years</span>, shall act as Pilot-in-Command or
+    Co-pilot of an aircraft engaged in commercial air transport operations
+    <b>unless it is operated in a multi-crew environment and the other pilot is
+    less than sixty years of age</b>.
+  </div>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Exception to Rule (2)</span>
+    The provisions of sub-rule (2) shall <b>not apply</b> in respect of aircraft
+    <b>certified for single-pilot operations and not exceeding an all-up weight of
+    <span class="val">5700 kg</span></b>, engaged in commercial air transport
+    operations within the territory of India, and while operating in a
+    <b>multi-crew environment</b>.
+  </div>
+
+  <div class="diagram">
+    <div class="cap">Figure 4.1 — Professional Pilot Age Ladder</div>
+    <pre class="mermaid">
+flowchart TD
+    A["Age &lt; 60"] -->|"Full PIC / Co-pilot privileges"| OK1["Commercial ops permitted"]
+    B["Age 60 to under 65"] --> C{"Multi-crew &amp; other pilot &lt; 60 ?"}
+    C -->|"Yes"| OK2["Commercial ops permitted"]
+    C -->|"No"| STOP1["Not permitted"]
+    B --> EXC["Exception: single-pilot-certified aircraft &le; 5700 kg, in India, multi-crew env"]
+    D["Age 65 and above"] --> STOP2["NO commercial PIC / Co-pilot — absolute ceiling"]
+    </pre>
+  </div>
+
+  <div class="examtip"><b>Exam Tip:</b> With an ATPL, the operating window for a
+  public-transport flight is <b>minimum 21 years — maximum 65 years</b>
+  (answers Q21).</div>
+</section>
+
+<!-- ================= SECTION 5 — SPL ================= -->
+<section class="sheet">
+  <h2 class="section" id="s5">5 · Student Pilot's Licence (SPL)
+    <span class="tag">Page 425 · Aeroplanes / Helicopters / Gliders</span></h2>
+
+  <h3 class="topic">5.1 Knowledge</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Examinations required</span>
+    The applicant shall pass an <b>oral examination</b> in <b>Air Regulations, Air
+    Navigation, Aviation Meteorology, and Aircraft &amp; Engines</b>, as per the
+    syllabus prescribed by the Director-General — <b>unless</b> he previously held a
+    pilot's licence of a higher category, or is able to produce evidence (in the
+    prescribed manner) that he is well-versed with the aforesaid subjects.
+  </div>
+
+  <h3 class="topic">5.2 Security Clearance</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Procedure</span>
+    Security clearance for the Student Pilot / Pilot will be obtained from the
+    concerned <b>State Police authorities</b> by the <b>Flying Club / Government
+    Flying Training School</b>, <b>before the commencement of flying training</b>,
+    and furnished to the Director-General.
+  </div>
+
+  <h3 class="topic">5.3 Renewal</h3>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">SPL renewal limits</span>
+    The licence may be renewed for a period <b>not exceeding
+    <span class="val">twelve (12) months</span></b> from the date of fresh medical
+    examination, <b>subject to the total validity of the licence not exceeding
+    <span class="val">twenty-four (24) months</span></b> from the date of issue.
+  </div>
+
+  <h3 class="topic">5.4 Aircraft Rating</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">What the rating shows</span>
+    The licence shall indicate the <b>class and the types</b> of aeroplanes,
+    helicopters or gliders the holder is entitled to fly. <b>Only those types</b> of
+    aircraft may be entered in the licence in respect of which the candidate has
+    <b>passed the examination in Aircraft &amp; Engines</b>.
+  </div>
+
+  <h3 class="topic">5.5 Privileges</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">What an SPL holder may do</span>
+    The privileges are to fly <b>within Indian territory only</b>, as
+    <b>Pilot-in-Command</b> of any aeroplane, helicopter or glider entered in the
+    aircraft rating of his licence — <b>provided that</b>:
+  </div>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">The four conditions (a)–(d) on SPL privileges</span>
+    <ol class="clean" style="margin-top:6px;" type="a">
+      <li>he shall fly <b>at all times under the authority and supervision</b> of a
+      Flight Instructor or an Approved Examiner;</li>
+      <li>he shall fly under <b>Visual Flight Rules (VFR) only</b>;</li>
+      <li>he shall <b>not carry passengers, animals or goods</b>, nor fly for
+      <b>hire, reward or remuneration</b> of any kind;</li>
+      <li>he shall <b>not undertake cross-country flights</b> unless he has a
+      minimum of <span class="val">ten (10) hours of solo flight time</span> and
+      has passed the examinations in <b>Air Navigation and Aviation
+      Meteorology</b>.</li>
+    </ol>
+  </div>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Issuing body</span>
+    The Student Pilot's Licence shall be issued by a <b>Flying Club / Government
+    Flying Training School</b> specifically authorised in this regard, and subject
+    to the conditions laid down by the Director-General.
+  </div>
+
+  <div class="examtip"><b>Memory hook for SPL:</b> "<b>VFR · Supervised · No pax/cargo
+  · 10 hrs solo before XC</b>." Renewal: <b>12-month steps, 24-month total cap</b>.</div>
+</section>
+
+<!-- ================= SECTION 6 — PPL ================= -->
+<section class="sheet">
+  <h2 class="section" id="s6">6 · Private Pilot's Licence — PPL (Aeroplanes)
+    <span class="tag">Pages 426–428</span></h2>
+
+  <h3 class="topic">6.1 Knowledge</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Written examination</span>
+    The applicant shall pass a <b>written examination</b> in <b>Air Regulations,
+    Air Navigation, Aviation Meteorology, and Aircraft &amp; Engines</b>, as per the
+    syllabus prescribed by the Director-General.
+  </div>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Concession for helicopter-licence holders</span>
+    An applicant in possession of a valid <b>PPL (Helicopters)</b> or a
+    <b>Commercial / Airline Transport Pilot's Licence (Helicopters)</b> shall pass
+    an examination in <b>Aircraft &amp; Engines only</b>.
+  </div>
+
+  <h3 class="topic">6.2 Experience</h3>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Minimum flying experience for a PPL(A)</span>
+    The applicant shall produce evidence of having satisfactorily completed, as a
+    pilot of an aeroplane, <b>not less than <span class="val">40 hours</span> of
+    flight time</b>, which shall include:
+    <ol class="clean" style="margin-top:6px;">
+      <li>not less than <span class="val">20 hours of solo flight time</span>;</li>
+      <li>not less than <span class="val">5 hours of cross-country flight time</span>
+      as the <b>sole occupant</b> of an aeroplane, including a flight of <b>not
+      less than <span class="val">150 nautical miles</span></b> in the course of
+      which <b>full-stop landings at two different aerodromes</b> shall have been
+      made;</li>
+      <li>not less than <span class="val">10 hours of solo flight time</span>
+      completed within a period of <b>twelve months</b> immediately preceding the
+      date of application for the issue of the licence;</li>
+      <li><b>50% of solo flying experience on microlight aircraft</b> acquired
+      during the preceding 24 months may be credited towards the total experience,
+      <b>subject to a maximum of <span class="val">10 hours</span></b>;</li>
+      <li><b>50% of solo gliding experience</b> shall count towards total flying
+      experience, <b>subject to a maximum of <span class="val">10 hours</span></b>
+      towards total flight time.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">6.3 Flying Training &amp; Skill</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Flying Training</span>
+    The applicant shall have completed flying training in accordance with the
+    syllabus prescribed by the Director-General.
+  </div>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Skill test</span>
+    The applicant shall have demonstrated his competency to perform as a
+    Pilot-in-Command or a Co-pilot of an aeroplane — the procedures and manoeuvres
+    prescribed in the syllabus — to the satisfaction of an Examiner, on the type of
+    aeroplane to which the application relates, <b>within a period of
+    <span class="val">six months</span></b> immediately preceding the date of
+    application.
+  </div>
+
+  <h3 class="topic">6.4 Renewal</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Evidence required for PPL renewal</span>
+    The licence may be renewed on receipt of satisfactory evidence of the applicant:
+    <ol class="clean" style="margin-top:6px;" type="a">
+      <li>having undergone a <b>medical examination</b>; <b>and</b></li>
+      <li>having satisfactorily completed <b>not less than
+      <span class="val">5 hours</span> of flight time as Pilot-in-Command</b> of an
+      aeroplane within a period of <b>twelve months</b> immediately preceding the
+      date of application for renewal — <b>or, in lieu thereof</b>, having
+      satisfactorily completed the <b>flying test within a period of six
+      months</b> immediately preceding the date of application.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">6.5 Ratings on a PPL</h3>
+
+  <h4 class="sub">(a) Aircraft Rating &amp; the "Open Rating"</h4>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Open Rating — PPL</span>
+    The licence indicates the class and types of aeroplanes the holder may fly.
+    An <b>open rating</b> for <b>all single-piston-engine types</b> of aeroplanes
+    having an all-up weight <b>not exceeding <span class="val">1500 kg</span></b>
+    may be granted if the holder has completed <b>not less than
+    <span class="val">250 hours as Pilot-in-Command</span></b> and has at least
+    <b>4 different types</b> of aeroplanes entered in the aircraft rating.
+  </div>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Condition on the open rating</span>
+    Open-rating privileges are exercised <b>only after</b> a <b>ground and flight
+    familiarisation</b> with a Flight Instructor or an Approved Examiner for the
+    type of aircraft, and a <b>certificate to this effect</b> shall be recorded by
+    the Instructor / Examiner in the Pilot's <b>Log Book</b> before the pilot is
+    released to exercise the open-rating privileges.
+  </div>
+
+  <h4 class="sub">(b) Night Rating</h4>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">What it allows</span>
+    A Night Rating entitles the holder of the licence to <b>carry passengers at
+    night</b>.
+  </div>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Conditions for issue of a Night Rating</span>
+    <ol class="clean" style="margin-top:6px;">
+      <li>He must have completed <b>not less than <span class="val">50 hours</span>
+      of flight time as Pilot-in-Command</b> and as <b>sole manipulator</b> of the
+      controls, including <b>not less than <span class="val">5 hours by
+      night</span></b>, which must include a minimum of <b>5 take-offs and 5
+      landings</b> carried out within the preceding 6 months of the date of
+      application;</li>
+      <li>He must have completed a <b>dual cross-country flight by night of at
+      least <span class="val">100 nautical miles</span></b> before he can be
+      permitted to undertake <b>sole cross-country flights by night</b>;</li>
+      <li>He must have completed <b>not less than <span class="val">5 hours of dual
+      instruction in instrument flying</span></b>, which may include
+      <b>not more than <span class="val">2½ hours</span> on an approved synthetic
+      flight trainer</b>.</li>
+    </ol>
+  </div>
+
+  <h4 class="sub">(c) Instrument Rating</h4>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">What it allows</span>
+    An Instrument Rating entitles the holder of the licence to fly <b>under the
+    Instrument Flight Rules (IFR)</b>.
+  </div>
+
+  <h3 class="topic">6.6 Extension of Aircraft Rating</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Evidence required to add a new type</span>
+    For extension of the Aircraft Rating to include an additional type of
+    aeroplane, the applicant shall produce evidence of —
+    <ol class="clean" style="margin-top:6px;" type="a">
+      <li>having passed the <b>written examination in Aircraft &amp; Engines</b>;</li>
+      <li>having undergone adequate <b>dual instruction and solo flying</b> to gain
+      competency on the type;</li>
+      <li>having satisfactorily completed the <b>flight test on the type</b> within
+      a period of <b>six months</b> immediately preceding the date of application
+      for the extension of the Aircraft Rating.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">6.7 Privileges of a PPL</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Core privilege</span>
+    The privileges of a PPL holder are to act, <b>but not for remuneration</b>, as
+    <b>Pilot-in-Command or Co-pilot</b> of any aeroplane entered in the Aircraft
+    Rating of his licence, and to <b>carry passengers</b> therein.
+  </div>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">The three "provided that" conditions</span>
+    <ol class="clean" style="margin-top:6px;">
+      <li><b>No flight</b> is undertaken for <b>hire or remuneration</b> of any kind
+      whatsoever;</li>
+      <li>Passengers are carried <b>by night only</b> when the holder is in
+      possession of a <b>valid Night Rating</b> and has carried out <b>not less
+      than 5 take-offs and 5 landings by night as Pilot-in-Command</b> within a
+      period of 6 months immediately preceding the date of the intended flight;</li>
+      <li><b>No flight</b> shall be undertaken under the <b>Instrument Flight
+      Rules</b> without being in possession of a <b>valid Instrument Rating</b>.</li>
+    </ol>
+  </div>
+
+  <div class="examtip"><b>Exam Tip:</b> A PPL holder may carry passengers
+  <b>without remuneration</b> — never for hire/reward (answers Q24). The headline
+  PPL number is <span class="val">40 hours total</span>, of which
+  <span class="val">20 hours</span> solo.</div>
+</section>
+
+<!-- ================= SECTION 7 — CPL ================= -->
+<section class="sheet">
+  <h2 class="section" id="s7">7 · Commercial Pilot's Licence — CPL (Aeroplanes)
+    <span class="tag">Pages 429–432</span></h2>
+
+  <h3 class="topic">7.1 Knowledge</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Examinations required</span>
+    The applicant shall pass a <b>written examination</b> in <b>Air Regulations,
+    Air Navigation, Meteorology, and Aircraft &amp; Engines</b>, and a
+    <b>Signals (practical) examination</b> for the interpretation of
+    <b>aural and visual signals</b>, as per the syllabus prescribed by the
+    Director-General.
+  </div>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Concession for CPL(H) holders</span>
+    The holder of a current <b>Commercial Pilot's Licence (Helicopters)</b> shall
+    be required to pass an examination in <b>Aircraft &amp; Engines only</b>.
+  </div>
+
+  <h3 class="topic">7.2 Experience</h3>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Minimum experience for a CPL(A)</span>
+    The applicant shall produce evidence of having satisfactorily completed, as a
+    pilot of an aeroplane, on the date of application, <b>not less than
+    <span class="val">200 hours</span> of flight time</b>, which shall include:
+    <ol class="clean" style="margin-top:6px;">
+      <li>not less than <span class="val">100 hours as Pilot-in-Command</span>, of
+      which not less than <b>15 hours</b> shall have been completed within a period
+      of <b>six months</b> immediately preceding the date of application;</li>
+      <li>not less than <span class="val">20 hours of cross-country flight time as
+      Pilot-in-Command</span>, including a cross-country flight of <b>not less than
+      <span class="val">300 nautical miles</span></b> in the course of which
+      <b>full-stop landings at two different aerodromes</b> shall be made;</li>
+      <li>not less than <span class="val">10 hours of instrument time</span>, of
+      which <b>not more than 5 hours</b> may be on an <b>approved simulator</b>;
+      and</li>
+      <li>not less than <span class="val">5 hours of flight time by night</span>,
+      including a minimum of <b>10 take-offs and 10 landings as Pilot-in-Command</b>
+      (sole manipulator of controls) carried out within six months immediately
+      preceding the date of application.</li>
+    </ol>
+  </div>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Reduced requirement for experienced helicopter pilots</span>
+    For an applicant who holds a <b>CPL(H) / ATPL(H)</b> and has satisfactorily
+    completed <b>not less than 1000 hours of flight time as Pilot-in-Command of a
+    helicopter</b>, the requirement of 200 hours as pilot of an aeroplane is
+    <b>reduced to <span class="val">100 hours</span></b>, which shall include —
+    <ol class="clean" style="margin-top:6px;">
+      <li>not less than <b>75 hours as Pilot-in-Command</b>, including a minimum of
+      <b>25 hours cross-country</b> and <b>10 hours instrument time</b> (of which
+      not less than 5 hours may be on an approved simulator);</li>
+      <li>not less than <b>5 hours by night</b>, including <b>10 take-offs and
+      landing patterns</b>; and</li>
+      <li>not less than <b>10 hours on an aeroplane</b> within a period of six
+      months immediately preceding the date of application.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">7.3 Flying Training &amp; Other Requirements</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Flying Training</span>
+    Completed in accordance with the syllabus prescribed by the Director-General.
+  </div>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Other Requirement — FRTOL</span>
+    The applicant shall be in possession of a <b>current Flight Radio Telephone
+    Operator's Licence</b> for the operation of radio-telephone apparatus on board
+    an aircraft, issued by the Director-General.
+  </div>
+
+  <h3 class="topic">7.4 Skill</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Demonstration of competency</span>
+    The applicant shall demonstrate competency within <b>six months</b> immediately
+    preceding the date of application. The Director-General may, however, allow the
+    Skill Test (or part thereof) to be carried out on an aircraft / approved
+    <b>Zero Flight Time Training (ZFTT) simulator Level&nbsp;'D'</b> for the type.
+    Competency shall be demonstrated in:
+    <ol class="clean" style="margin-top:6px;" type="i">
+      <li>general flying test <b>by day</b>;</li>
+      <li>general flying test <b>by night</b>;</li>
+      <li>a <b>cross-country flight test by day</b> consisting of a flight of <b>not
+      less than <span class="val">250 nautical miles</span></b>, in the course of
+      which <b>at least one full-stop landing</b> at an aerodrome other than the
+      aerodrome of departure shall be made; and</li>
+      <li>a <b>cross-country flying test by night</b> consisting of a flight of
+      <b>not less than <span class="val">120 nautical miles</span></b>, returning
+      to the place of departure <b>without landing elsewhere</b>.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">7.5 Renewal</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Evidence required for CPL renewal</span>
+    <ol class="clean" style="margin-top:6px;" type="a">
+      <li>having undergone a <b>medical examination</b>;</li>
+      <li>having satisfactorily completed <b>not less than
+      <span class="val">10 hours of flight time as Pilot-in-Command</span></b>
+      (<b>50% of flight time as Co-pilot may be counted</b> towards the PIC
+      requirement) within a period of <b>six months</b> immediately preceding the
+      date of application for renewal — or, in lieu thereof, having completed the
+      <b>general flying test by day and night</b> within the same period;</li>
+      <li>having a <b>current Flight Radio Telephone Operator's Licence</b> for
+      operation of radio-telephone apparatus on board an aircraft, issued by the
+      Director-General.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">7.6 Aircraft Rating</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Open Rating — CPL</span>
+    The licence indicates the types of aeroplane the holder may fly. An
+    <b>open rating</b> for all <b>single-piston-engine</b> types of aeroplane
+    having an all-up weight <b>not exceeding <span class="val">1500 kg</span></b>
+    may be granted if he has completed <b>not less than
+    <span class="val">1000 hours of flight time</span> on such types</b>, including
+    <b>not less than <span class="val">500 hours as Pilot-in-Command</span></b>,
+    and has at least <b>4 different types</b> entered in the aircraft rating.
+    The open rating is exercised only after ground &amp; flight familiarisation,
+    with a certificate recorded in the pilot's log book.
+  </div>
+  <ul class="clean">
+    <li><b>Instructor's Rating</b> — entitles the holder to <b>impart flying
+    instructions</b>.</li>
+    <li><b>Instrument Rating</b> — entitles the holder to fly <b>under the
+    Instrument Flight Rules</b>.</li>
+  </ul>
+
+  <h3 class="topic">7.7 Extension of Aircraft Rating</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Requirements to add a type</span>
+    <ol class="clean" style="margin-top:6px;" type="i">
+      <li>Having <b>passed a written examination in Aircraft &amp; Engines</b> and
+      having gained, under appropriate supervision, experience in flying the
+      aircraft of such type (or on an approved flight simulator) in respect of:
+        <ul class="clean">
+          <li>(a) normal flight procedures and manoeuvres during all phases of
+          flight;</li>
+          <li>(b) abnormal and emergency procedures and manoeuvres in the event of
+          failures and malfunctions of equipment such as power plant, systems and
+          airframe;</li>
+          <li>(c) where applicable, instrument procedures — including instrument
+          approach, missed approach and landing procedures under normal, abnormal
+          and emergency conditions, including simulated engine failure;</li>
+          <li>(d) procedures for crew incapacitation and crew coordination,
+          including allocation of pilot tasks, crew cooperation and use of
+          checklists; and</li>
+        </ul>
+      </li>
+      <li>having satisfactorily completed the <b>general flying tests by day and
+      night</b> in respect of the type, within a period of <b>six months</b>
+      immediately preceding the date of application.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">7.8 Proficiency Check</h3>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">When a Proficiency Check is mandatory</span>
+    To act as a <b>co-pilot of transport aeroplanes having an all-up weight
+    exceeding <span class="val">5700 kg</span></b>, the licence holder shall undergo
+    an appropriate proficiency check as specified by the Director-General, in
+    respect of the type to be flown.
+  </div>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Validity &amp; renewal of the Proficiency Check</span>
+    <ul class="clean" style="margin-top:6px;">
+      <li>The proficiency check is valid for <span class="val">six months</span>
+      from the date of the check, and is renewed for a further period of
+      <b>six months</b> at a time.</li>
+      <li>On renewal, the period of validity shall <b>commence from the date of
+      expiry</b> of the previous validity, provided the check has been carried out
+      <b>within two months preceding</b> the date of expiry.</li>
+    </ul>
+  </div>
+
+  <h3 class="topic">7.9 Privileges of a CPL</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">What a CPL holder may do</span>
+    <ol class="clean" style="margin-top:6px;" type="a">
+      <li>to exercise <b>all the privileges of a Private Pilot's Licence</b>;</li>
+      <li>to act as <b>Pilot-in-Command of any aeroplane having an all-up weight
+      not exceeding <span class="val">5700 kg</span></b> which is entered in the
+      aircraft rating — provided that, when passengers are carried at night, he
+      shall have carried out <b>not less than 10 take-offs and 10 landings by night
+      as Pilot-in-Command</b> within a period of six months immediately preceding
+      the intended flight;</li>
+      <li>to act as <b>Co-pilot</b> of any aeroplane where a Co-pilot is required
+      and which is entered in the aircraft rating — provided that, for all flights
+      under the Instrument Flight Rules (as PIC or Co-pilot), he shall have a
+      <b>current Instrument Rating</b>.</li>
+    </ol>
+  </div>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Age restriction on CPL privileges</span>
+    On attainment of the age of <span class="val">sixty-five (65) years</span>,
+    such privileges shall be <b>restricted to that of a Private Pilot's Licence
+    (Aeroplanes)</b>.
+  </div>
+
+  <div class="examtip"><b>Exam Tip:</b> CPL headline figures —
+  <span class="val">200 hrs total</span>, <span class="val">100 hrs PIC</span>,
+  XC flight <span class="val">300 NM</span> with two full-stop landings. A CPL
+  holder is PIC of aircraft <b>up to 5700 kg</b> (answers Q6, Q13, Q18).</div>
+</section>
+
+<!-- ================= SECTION 8 — CPL with IR ================= -->
+<section class="sheet">
+  <h2 class="section" id="s8">8 · CPL (Aeroplanes) with Instrument Rating
+    <span class="tag">Pages 433–436</span></h2>
+
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">What makes this licence different</span>
+    This is a Commercial Pilot's Licence in which the privileges of an Instrument
+    Rating are <b>built in</b> — there is <b>no separate Instrument Rating</b>
+    issued. The experience requirements (especially instrument time) are
+    correspondingly higher.
+  </div>
+
+  <h3 class="topic">8.1 Knowledge</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Examinations required</span>
+    A <b>written examination</b> in <b>Air Regulations, Air Navigation, Meteorology,
+    and Aircraft &amp; Engines</b>, and a <b>Signals (practical)</b> examination for
+    interpretation of aural and visual signals, as per the prescribed syllabus.
+    A holder of a current <b>CPL(H)</b> shall pass an examination in <b>Aircraft
+    &amp; Engines and Instrument Rating only</b>.
+  </div>
+
+  <h3 class="topic">8.2 Experience</h3>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Minimum experience — CPL(A) with IR</span>
+    Within a period of <b>five years</b> immediately preceding the date of
+    application, the applicant shall have completed, as a pilot of an aeroplane,
+    <b>not less than <span class="val">200 hours</span> of flight time</b>, which
+    shall include:
+    <ol class="clean" style="margin-top:6px;" type="i">
+      <li>not less than <span class="val">100 hours as Pilot-in-Command</span>, out
+      of which not less than <b>30 hours as Student Pilot-in-Command</b> — which
+      shall include <b>not more than 20 hours of cross-country</b> and <b>not more
+      than 10 hours circuits-and-landings with a minimum of 10 landings</b>;</li>
+      <li>not less than <span class="val">15 hours as Pilot-in-Command</span> within
+      a period of <b>six months</b> immediately preceding the date of
+      application;</li>
+      <li>not less than <span class="val">50 hours of cross-country flight time as
+      Pilot-in-Command</span>, including a cross-country flight of <b>not less than
+      <span class="val">300 nautical miles</span></b> with full-stop landings at
+      two different aerodromes;</li>
+      <li>not less than <span class="val">50 hours of instrument time</span>, of
+      which <b>not more than 20 hours</b> may be on an approved simulator, and out
+      of which a <b>minimum of 5 hours</b> shall have been completed within six
+      months immediately preceding the date of application for the Instrument
+      Rating; and</li>
+      <li>not less than <span class="val">5 hours by night</span>, including a
+      minimum of <b>10 take-offs and 10 landings as Pilot-in-Command</b> (sole
+      manipulator of controls) carried out within six months immediately preceding
+      the date of application.</li>
+    </ol>
+  </div>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Reduction for experienced helicopter pilots</span>
+    For an applicant in possession of a <b>CPL (Helicopters)</b> who has
+    satisfactorily completed <b>not less than 1000 hours as Pilot-in-Command of a
+    helicopter</b>, the requirement of 200 hours as pilot of an aeroplane is
+    <b>reduced to 100 hours</b>.
+  </div>
+  <div class="examtip"><b>Important Note on logging:</b> The
+  <b>Student-Pilot-in-Command flight time shall NOT be logged by the instructor</b>
+  in his own log book. The student log book shall indicate Student-Pilot-in-Command
+  flight time in the <b>remarks column as "SPIC"</b>, with the name of the
+  instructor.</div>
+
+  <h3 class="topic">8.3 Flying Training, Other Requirements &amp; Skill</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Flying Training &amp; FRTOL</span>
+    Flying training completed per the prescribed syllabus. The applicant shall be
+    in possession of a <b>current Flight Radio Telephone Operator's Licence</b>.
+  </div>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Skill — demonstrated within six months</span>
+    Competency shall be demonstrated in:
+    <ol class="clean" style="margin-top:6px;" type="i">
+      <li>general flying test <b>by day</b>;</li>
+      <li>general flying test <b>by night</b>;</li>
+      <li>a <b>cross-country flight test by day</b> of <b>not less than
+      <span class="val">250 NM</span></b>, with at least one full-stop landing at
+      an aerodrome other than the aerodrome of departure;</li>
+      <li>a <b>cross-country flying test by night</b> of <b>not less than
+      <span class="val">120 NM</span></b>, returning to the place of departure
+      without landing elsewhere; and</li>
+      <li><b>ability to fly an aeroplane solely with the aid of instruments</b>, by
+      undergoing an <b>instrument flying test</b> within six months immediately
+      preceding the date of application for the rating. The Director-General may
+      allow such tests (or part) on an approved simulator for the type.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">8.4 Renewal</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Evidence required</span>
+    <ol class="clean" style="margin-top:6px;" type="a">
+      <li>having undergone a <b>medical examination</b>;</li>
+      <li>having satisfactorily completed <b>not less than 10 hours as
+      Pilot-in-Command</b> (50% of Co-pilot flight time may be counted) within
+      <b>six months</b> immediately preceding the date of application for renewal,
+      or in lieu thereof the <b>general flying test by day and night</b> within the
+      same period; and</li>
+      <li>having a <b>current Flight Radio Telephone Operator's Licence</b>.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">8.5 Rating</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Open Rating &amp; the built-in Instrument Rating</span>
+    <ul class="clean" style="margin-top:6px;">
+      <li><b>Open Rating</b> — for all single-piston-engine types not exceeding
+      <span class="val">1500 kg</span>, granted on <b>not less than 1000 hours</b>
+      including <b>not less than 500 hours as PIC</b> and at least <b>4 different
+      types</b> entered in the rating (exercised only after ground &amp; flight
+      familiarisation, certificate in the log book).</li>
+      <li><b>Instructor's Rating</b> — entitles the holder to impart flying
+      instructions.</li>
+      <li><b>Instrument Rating</b> — <b>No separate Instrument Rating is provided</b>
+      in the licence. The privileges of the instrument rating are
+      <b>included in the privileges of this licence</b>, provided the instrument
+      rating flying tests have been carried out as per the conditions laid down by
+      the Director-General.</li>
+    </ul>
+  </div>
+
+  <h3 class="topic">8.6 Extension of Aircraft Rating &amp; Proficiency Check</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Extension of Aircraft Rating</span>
+    To add a type, the applicant shall produce evidence of having <b>passed a
+    written examination in Aircraft &amp; Engines</b> and of having gained, under
+    appropriate supervision, experience in flying the type (or on an approved flight
+    simulator) covering: (a) normal flight procedures and manoeuvres; (b) abnormal
+    and emergency procedures and manoeuvres; (c) where applicable, instrument
+    procedures including instrument approach, missed approach and landing under
+    normal, abnormal and emergency conditions, including simulated engine failure;
+    and (d) procedures for crew incapacitation and crew coordination — followed by
+    satisfactorily completed <b>general flying tests by day and night</b> within
+    <b>six months</b> immediately preceding the date of application.
+  </div>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Proficiency Check</span>
+    To act as a co-pilot of transport aeroplanes exceeding
+    <span class="val">5700 kg</span>, the holder shall undergo a proficiency check.
+    It is <b>valid for six months</b> and renewed for a further six months at a
+    time; on renewal, validity <b>commences from the date of expiry</b> of the
+    previous validity, provided the check is carried out <b>within two months
+    preceding</b> the date of expiry.
+  </div>
+
+  <h3 class="topic">8.7 Privileges</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Privileges of a CPL(A) with IR</span>
+    <ol class="clean" style="margin-top:6px;" type="a">
+      <li>to exercise <b>all the privileges of a Private Pilot's Licence
+      (Aeroplanes)</b>;</li>
+      <li>to act as <b>Pilot-in-Command of any aeroplane having an all-up weight
+      not exceeding <span class="val">5700 kg</span></b> entered in the aircraft
+      rating — provided that, when passengers are carried at night, he shall have
+      carried out <b>not less than 10 take-offs and 10 landings by night as
+      Pilot-in-Command</b> within six months immediately preceding the intended
+      flight;</li>
+      <li>to act as <b>Co-pilot</b> of any aeroplane where a Co-pilot is required
+      and which is entered in the aircraft rating — provided that, for all flights
+      under the Instrument Flight Rules (as PIC or Co-pilot), he shall have
+      <b>demonstrated his competency</b>.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= SECTION 9 — ATPL ================= -->
+<section class="sheet">
+  <h2 class="section" id="s9">9 · Airline Transport Pilot's Licence — ATPL (Aeroplanes)
+    <span class="tag">Pages 437–440</span></h2>
+
+  <h3 class="topic">9.1 Knowledge</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Examinations required</span>
+    The applicant shall pass a <b>written and oral examination</b> in <b>Air
+    Regulations, Air Navigation, Avionics (Radio Aids &amp; Instruments), Aviation
+    Meteorology, and Aircraft &amp; Engines</b>, and a <b>Signals (practical)</b>
+    examination for interpretation of aural and visual signals, as per the
+    prescribed syllabus.
+  </div>
+  <div class="examtip"><b>Important Note:</b> A holder of a <b>current Commercial
+  Pilot's Licence</b> shall <b>not be required to pass the examination in Air
+  Regulations</b>; and a holder of a <b>Senior Commercial Pilot's Licence</b> shall
+  <b>not be required to pass any of the examinations</b>.</div>
+
+  <h3 class="topic">9.2 Experience</h3>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Minimum experience for an ATPL(A)</span>
+    The applicant shall produce evidence of having satisfactorily completed, as a
+    pilot of an aeroplane, <b>not less than <span class="val">1500 hours</span> of
+    flight time</b>, and his total flying experience shall include:
+    <ol class="clean" style="margin-top:6px;" type="i">
+      <li>not less than <span class="val">250 hours as Pilot-in-Command</span>
+      <b>or as Co-pilot</b> performing, under the supervision of a pilot who
+      fulfils the flying-experience requirements of a check pilot, the duties and
+      functions of a pilot-in-command — provided that <b>at least 100 hours</b> out
+      of these shall be <b>cross-country</b> flight time, including <b>not less
+      than 50 hours of flight time by night</b>;</li>
+      <li>not less than <span class="val">500 hours of total cross-country flight
+      time</span>;</li>
+      <li>not less than <span class="val">75 hours of flight time by night</span>;</li>
+      <li>not less than <span class="val">100 hours of instrument time</span> under
+      actual or simulated instrument conditions, of which <b>not less than 50 hours
+      shall be in actual flight</b>; and</li>
+      <li>not less than <span class="val">20 hours of flight time</span> completed
+      within a period of <b>six months</b> immediately preceding the date of
+      application for the licence.</li>
+    </ol>
+  </div>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Note — Co-pilot flight-time credit</span>
+    Where an aeroplane is required to be operated with a co-pilot in accordance with
+    the provisions of the Flight Manual of the aeroplane: <b>not more than 50%</b>
+    of the co-pilot flight time shall be credited towards the <b>total flight
+    time</b> required for the issue of the licence; <b>but not more than 50%</b> of
+    the co-pilot flight time under supervision shall be credited towards
+    <b>pilot-in-command flight experience</b>; and <b>full credit</b> for such
+    flight time shall be given towards the <b>total flight time</b> required.
+  </div>
+
+  <h3 class="topic">9.3 Other Requirements</h3>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Three prerequisites</span>
+    <ol class="clean" style="margin-top:6px;" type="i">
+      <li>He shall be the holder of a <b>Commercial or a Senior Commercial Pilot's
+      Licence</b>. However, this will <b>not be applicable</b> for the issue of an
+      ATPL to a pilot from the <b>Armed Forces</b> who otherwise meets the
+      requirements;</li>
+      <li>He shall have a <b>current Instrument Rating on multi-engine
+      aircraft</b>;</li>
+      <li>He shall be in possession of a <b>current Flight Radio Telephone
+      Operator's Licence</b>.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">9.4 Skill</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Demonstration of competency</span>
+    The applicant shall have demonstrated competency, <b>by day and by night</b>,
+    on the type of <b>multi-engine aeroplane</b> to which the application relates,
+    within a period of <b>six months</b> immediately preceding the date of
+    application. The Director-General may allow skill tests (or part) on an
+    aircraft / approved <b>ZFTT simulator Level&nbsp;'D'</b> for the type.
+  </div>
+  <div class="examtip"><b>Note:</b> A holder of a current <b>CPL(A) / Senior CPL(A)</b>
+  issued by the Director-General shall <b>not be required to undergo general flying
+  tests</b> for the issue of an ATPL(A), provided the licence is issued on the
+  multi-engine type(s) included in the aircraft rating of the CPL/SCPL <b>and</b> the
+  pilot possesses <b>10 hours as Pilot-in-Command or 20 hours as Co-pilot</b> on at
+  least one such multi-engine type within the preceding six months.</div>
+
+  <h3 class="topic">9.5 Renewal</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Evidence required for ATPL renewal</span>
+    <ol class="clean" style="margin-top:6px;" type="a">
+      <li>having undergone a <b>medical examination</b>;</li>
+      <li>having satisfactorily completed <b>not less than 10 hours as
+      Pilot-in-Command</b> (50% of Co-pilot flight time may be counted) within
+      <b>six months</b> immediately preceding the date of application for renewal,
+      or in lieu thereof having completed the <b>flying tests by day and by
+      night</b>;</li>
+      <li>having a <b>current Flight Radio Telephone Operator's Licence</b>;</li>
+      <li>having a <b>current Instrument Rating on a multi-engine aircraft</b>.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">9.6 Ratings</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">ATPL Aircraft Rating &amp; Open Rating</span>
+    The licence indicates the class and types of aeroplanes the holder may fly.
+    An <b>open rating</b> for <b>all types of aeroplanes</b> having an all-up weight
+    <b>not exceeding <span class="val">5700 kg</span></b> may be granted if he has
+    completed <b>not less than <span class="val">1000 hours as Pilot-in-Command</span>
+    on any aeroplane having an all-up weight of <span class="val">14000 kg or
+    above</span></b>.
+  </div>
+  <ul class="clean">
+    <li><b>Instructor's Rating</b> — entitles the holder to impart flying
+    instructions.</li>
+    <li><b>Instrument Rating</b> — <b>No separate Instrument Rating is provided</b>
+    in the licence; the privileges of the instrument rating are <b>included</b>,
+    provided the instrument rating flying tests have been carried out as per the
+    conditions laid down by the Director-General.</li>
+  </ul>
+
+  <h3 class="topic">9.7 Extension of Aircraft Rating &amp; Proficiency Check</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Extension of Aircraft Rating</span>
+    To add a type, the applicant shall have <b>passed a written examination in
+    Aircraft &amp; Engines</b> and shall have acquired, under appropriate
+    supervision, experience in flying the type (or on an approved flight simulator)
+    in accordance with the syllabus prescribed by the Director-General, followed by
+    a <b>skill test</b> as laid down by the Director-General.
+  </div>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Proficiency Check</span>
+    To act as a <b>Pilot-in-Command or Co-pilot</b> of transport aeroplanes
+    exceeding <span class="val">5700 kg</span>, the holder shall undergo a
+    proficiency check. It is <b>valid for six months</b> and renewed for a further
+    six months at a time; on renewal, validity <b>commences from the date of
+    expiry</b> of the previous validity, provided the check is carried out
+    <b>within two months preceding</b> the date of expiry.
+  </div>
+
+  <h3 class="topic">9.8 Privileges of an ATPL</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">What an ATPL holder may do</span>
+    <ol class="clean" style="margin-top:6px;" type="a">
+      <li>to exercise the privileges of a <b>Private and a Commercial Pilot's
+      Licence</b>;</li>
+      <li>to act as <b>Pilot-in-Command of an aeroplane having an all-up weight
+      exceeding <span class="val">5700 kg</span></b> entered in the aircraft rating,
+      subject to compliance with the conditions below.</li>
+    </ol>
+  </div>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Conditions (i)–(iii) for PIC of &gt; 5700 kg aircraft</span>
+    <ol class="clean" style="margin-top:6px;" type="i">
+      <li>He shall have completed, on that type of aeroplane, <b>not less than
+      <span class="val">100 hours of flight time as a Co-pilot</span></b>, followed
+      by <b>10 consecutive satisfactory route checks</b>, of which <b>not less than
+      5 shall be by night</b>, under the supervision of a <b>Check Pilot</b>
+      performing the duties and responsibilities of a Pilot-in-Command, and
+      demonstrated his competency to fly as a Pilot-in-Command to the satisfaction
+      of the Director-General.
+      <div class="box amber" style="margin-top:8px;">
+        <span class="icon">📗</span>
+        <span class="lbl">Concession</span>
+        For a pilot having previous experience of <b>at least 100 hours as
+        Pilot-in-Command of transport aeroplanes exceeding 5700 kg</b>, the required
+        number of route checks may be <b>reduced to 6</b>, of which <b>at least 3
+        shall be by night</b>.
+      </div>
+      </li>
+      <li>He shall have undergone satisfactorily, within the preceding <b>six
+      months</b> of the intended flight, appropriate <b>proficiency checks</b> in
+      respect of that type of aircraft as required by the Director-General;</li>
+      <li>He shall be in possession of a <b>current Instrument Rating</b> before
+      operating any IFR flight.</li>
+    </ol>
+  </div>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Age restriction on ATPL privileges</span>
+    On attainment of the age of <span class="val">sixty-five (65) years</span>,
+    such privileges shall be <b>restricted to that of a Private Pilot's Licence
+    (Aeroplanes)</b>.
+  </div>
+
+  <div class="examtip"><b>Exam Tip:</b> ATPL headline figures —
+  <span class="val">1500 hrs total</span>, <span class="val">500 hrs total
+  cross-country</span>, <span class="val">75 hrs night</span>,
+  <span class="val">100 hrs instrument</span> (≥50 hrs in actual flight),
+  and <b>250 hrs cross-country with 50 hrs night</b> within the PIC/supervised
+  block (answers Q1, Q11, Q17).</div>
+</section>
+
+<!-- ================= SECTION 10 — Instrument Rating ================= -->
+<section class="sheet">
+  <h2 class="section" id="s10">10 · Instrument Rating (Aeroplanes)
+    <span class="tag">Pages 441–443</span></h2>
+
+  <h3 class="topic">10.1 Knowledge</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Examinations required</span>
+    The applicant shall pass a <b>written and oral examination</b> in <b>Air
+    Regulations, Air Navigation, Aviation Meteorology and Instrument Rating</b>, as
+    per the syllabus prescribed by the Director-General for the issue of a
+    Commercial Pilot's Licence. He shall also pass a <b>practical test on the
+    interpretation of aural and visual signals</b> as per the prescribed syllabus.
+  </div>
+
+  <h3 class="topic">10.2 Experience</h3>
+  <div class="box red">
+    <span class="icon">⛔</span>
+    <span class="lbl">Minimum experience for an Instrument Rating(A)</span>
+    The applicant shall produce evidence of having satisfactorily completed, as a
+    pilot of an aeroplane —
+    <ol class="clean" style="margin-top:6px;" type="i">
+      <li>not less than <span class="val">100 hours of flight time as
+      Pilot-in-Command</span>, including <b>not less than
+      <span class="val">50 hours of cross-country</span></b> flight time;</li>
+      <li>not less than <span class="val">40 hours of instrument time</span>, of
+      which <b>not more than <span class="val">20 hours</span> shall be instrument
+      ground time</b>. A minimum of <b>5 hours of instrument time</b> shall have
+      been completed within a period of <b>six months</b> immediately preceding the
+      date of application for the Instrument Rating.</li>
+    </ol>
+  </div>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Concession for IR(Helicopters) holders</span>
+    In the case of a pilot who holds a current <b>Instrument Rating
+    (Helicopters)</b>, he shall have <b>not less than 100 hours as Pilot-in-Command
+    of an aeroplane</b>, including not less than <b>25 hours of cross-country</b>
+    flight time and not less than <b>20 hours of instrument time</b>, of which
+    <b>not more than 10 hours</b> may be on an approved simulator.
+  </div>
+
+  <h3 class="topic">10.3 Other Requirements, Flying Training &amp; Skill</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Other Requirements</span>
+    The applicant shall be —
+    <ol class="clean" style="margin-top:6px;" type="i">
+      <li>holder of a <b>current Pilot's Licence (Aeroplanes)</b>;</li>
+      <li>holder of a <b>current Flight Radio Telephone Operator's Licence</b> for
+      the operation of radio-telephone apparatus on board an aircraft, issued by the
+      Director-General.</li>
+    </ol>
+  </div>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Flying Training &amp; Skill</span>
+    Flying training shall be completed in accordance with the prescribed syllabus.
+    For the <b>Skill</b>, the applicant shall demonstrate, to the satisfaction of
+    the Examiner, his competency to fly an aeroplane <b>solely with the aid of
+    instruments</b>, by undergoing an <b>instrument flying test</b> within a period
+    of <b>six months</b> immediately preceding the date of application for the
+    rating. The Director-General may allow such tests (or part) to be carried out
+    on an <b>approved simulator</b> for the type.
+  </div>
+
+  <h3 class="topic">10.4 Validity</h3>
+  <div class="box amber">
+    <span class="icon">📗</span>
+    <span class="lbl">Validity of the Instrument Rating</span>
+    <ol class="clean" style="margin-top:6px;" type="a">
+      <li>The rating shall be valid for a period of <span class="val">twelve
+      months</span> from the date of the instrument rating flying test;</li>
+      <li>It shall be renewed for a further period of <span class="val">twelve
+      months</span> at a time from the date of expiry, provided the instrument
+      rating flying test has been carried out <b>within two months preceding</b>
+      the date of expiry and all other requirements for renewal are met;</li>
+      <li>In other cases, the validity of the renewal of the rating shall
+      <b>commence from the date of the test</b>.</li>
+    </ol>
+  </div>
+
+  <h3 class="topic">10.5 Renewal &amp; Extension</h3>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Renewal</span>
+    The Instrument Rating may be renewed on receipt of satisfactory evidence of the
+    applicant: (a) having satisfactorily completed the <b>Instrument Rating Flight
+    Test</b>; and (b) having a <b>valid Flight Radio Telephone Operator's
+    Licence</b> issued by the Director-General for the operation of radio-telephone
+    apparatus on board an aircraft.
+  </div>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">Extension of Instrument Rating</span>
+    To include an additional type of aeroplane, the applicant shall produce
+    evidence of having satisfactorily completed the <b>flight test</b> (in
+    accordance with the skill requirement) in respect of the type for which the
+    extension is desired, within a period of <b>six months</b> immediately
+    preceding the date of application for the extension.
+  </div>
+
+  <h3 class="topic">10.6 Privileges</h3>
+  <div class="box blue">
+    <span class="icon">📘</span>
+    <span class="lbl">Core privilege</span>
+    Subject to the validity of the Instrument Rating, the privileges of the holder
+    shall be to fly under the <b>Instrument Flight Rules</b>, on the types of
+    aeroplanes on which he has demonstrated his competency.
+  </div>
+  <div class="box green">
+    <span class="icon">✅</span>
+    <span class="lbl">How the privilege scales by aircraft category</span>
+    <ul class="clean" style="margin-top:6px;">
+      <li>A pilot who demonstrated competency by an IR Flight Test on a
+      <b>single-engine</b> aeroplane <b>not exceeding 5700 kg</b> shall exercise
+      the privileges on <b>all single-engine aeroplanes</b> within that weight
+      category.</li>
+      <li>A pilot who demonstrated competency by an IR Flight Test on a
+      <b>multi-engine</b> aeroplane <b>not exceeding 5700 kg</b> shall exercise the
+      privileges on <b>all multi-engine aeroplanes</b> within that weight
+      category.</li>
+      <li>The holder of an IR on any <b>transport aeroplane</b> shall exercise the
+      privileges <b>only on the type</b> on which the IR Flight Test was
+      satisfactorily carried out.</li>
+      <li>The holder of an IR on aeroplanes <b>exceeding 5700 kg</b> shall exercise
+      the privileges <b>only on the type</b> on which the IR Flight Test was
+      satisfactorily carried out.</li>
+      <li>Notwithstanding the above, the holder of an IR on any <b>multi-engine</b>
+      aeroplane <b>may exercise</b> the privileges of the Instrument Rating on
+      <b>any single-engine aeroplane</b> entered in the aircraft rating of his
+      licence.</li>
+    </ul>
+  </div>
+
+  <div class="examtip"><b>Exam Tip:</b> The Instrument Rating is valid
+  <span class="val">12 months</span>; for an IR an applicant needs
+  <span class="val">50 hours of cross-country as PIC</span> within the 100-hr PIC
+  block (answers Q10, Q16).</div>
+</section>
+
+<!-- ================= SECTION 11 — Comparison Charts ================= -->
+<section class="sheet">
+  <h2 class="section" id="s11">11 · Quick-Revision Comparison Charts
+    <span class="tag">Synthesised from Pages 421–443</span></h2>
+
+  <table class="dgca">
+    <caption>Table 11.1 — Licence Snapshot: Age, Schooling, Medical &amp; Headline Hours</caption>
+    <thead>
+      <tr><th>Licence</th><th>Min. Age</th><th>Education</th><th>Medical Class</th><th>Headline Experience</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>SPL</b></td><td>16 yrs</td><td>Class 10</td><td>Class 2</td><td>10 hrs solo before cross-country</td></tr>
+      <tr><td><b>PPL(A)</b></td><td>17 yrs</td><td>Class 10</td><td>Class 2 (Class 1 if IR privileges)</td><td>40 hrs total, incl. 20 hrs solo</td></tr>
+      <tr><td><b>CPL(A)</b></td><td>18 yrs</td><td>10+2 Physics &amp; Maths</td><td>Class 1</td><td>200 hrs total, incl. 100 hrs PIC</td></tr>
+      <tr><td><b>CPL(A) + IR</b></td><td>18 yrs</td><td>10+2 Physics &amp; Maths</td><td>Class 1</td><td>200 hrs total, incl. 50 hrs instrument</td></tr>
+      <tr><td><b>ATPL(A)</b></td><td>21 yrs</td><td>10+2 Physics &amp; Maths</td><td>Class 1</td><td>1500 hrs total, incl. 500 hrs XC</td></tr>
+      <tr><td><b>Instrument Rating(A)</b></td><td>—</td><td>—</td><td>Class 1</td><td>100 hrs PIC + 40 hrs instrument</td></tr>
+    </tbody>
+  </table>
+
+  <table class="dgca">
+    <caption>Table 11.2 — Renewal at a Glance</caption>
+    <thead>
+      <tr><th>Licence / Rating</th><th>Renewal Requirement (key figures)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>SPL</b></td><td>Renewed in 12-month steps from fresh medical; total validity capped at 24 months from issue.</td></tr>
+      <tr><td><b>PPL(A)</b></td><td>Medical + 5 hrs PIC in preceding 12 months, or flying test in preceding 6 months.</td></tr>
+      <tr><td><b>CPL(A) / CPL+IR / ATPL(A)</b></td><td>Medical + 10 hrs PIC in preceding 6 months (50% co-pilot time counts), or flying test by day &amp; night + current FRTOL (ATPL also needs current multi-engine IR).</td></tr>
+      <tr><td><b>Instrument Rating</b></td><td>Valid 12 months; renewed 12 months at a time if flight test done within 2 months before expiry.</td></tr>
+      <tr><td><b>Proficiency Check (&gt;5700 kg)</b></td><td>Valid 6 months; renewed 6 months at a time if check done within 2 months before expiry.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="diagram">
+    <div class="cap">Figure 11.1 — The Pilot Licensing Career Ladder</div>
+    <pre class="mermaid">
+flowchart TD
+    SPL["SPL (16 yrs)<br/>Class 10 · Class 2 medical<br/>VFR · supervised · no pax"]
+    PPL["PPL Aeroplanes (17 yrs)<br/>40 hrs total · carry pax, no remuneration"]
+    CPL["CPL Aeroplanes (18 yrs)<br/>200 hrs total · PIC up to 5700 kg"]
+    CPLIR["CPL + Instrument Rating<br/>IR privileges built in"]
+    ATPL["ATPL Aeroplanes (21 yrs)<br/>1500 hrs total · PIC above 5700 kg"]
+    SPL --> PPL --> CPL --> CPLIR --> ATPL
+    IR["Instrument Rating (Aeroplanes)<br/>Valid 12 months · fly under IFR"]
+    PPL -.add-on.-> IR
+    CPL -.add-on.-> IR
+    </pre>
+  </div>
+
+  <div class="diagram">
+    <div class="cap">Figure 11.2 — Cross-Country Test Distances (memory aid)</div>
+    <pre class="mermaid">
+flowchart LR
+    P["PPL Experience<br/>XC flight: 150 NM<br/>2 full-stop landings"]
+    C["CPL Experience<br/>XC flight: 300 NM<br/>2 full-stop landings"]
+    CD["CPL Skill — XC by Day<br/>250 NM · 1 full-stop landing"]
+    CN["CPL Skill — XC by Night<br/>120 NM · return, no landing elsewhere"]
+    </pre>
+  </div>
+
+  <div class="examtip"><b>High-yield numbers to lock in:</b>
+  XC radius <span class="val">100 NM</span> (general) /
+  <span class="val">50 NM</span> (PPL &amp; Microlight) ·
+  PPL <span class="val">40/20</span> hrs · CPL <span class="val">200/100</span> hrs ·
+  ATPL <span class="val">1500/500/75/100</span> hrs ·
+  Weight divider <span class="val">5700 kg</span> (CPL below / ATPL above) ·
+  Age ladder <span class="val">16-17-18-21</span> and ceiling
+  <span class="val">60/65</span>.</div>
+</section>
+
+<!-- ================= SECTION 12 — Question Bank ================= -->
+<section class="sheet">
+  <h2 class="section" id="s12">12 · Practice Question Bank
+    <span class="tag">Pages 444–448 · 25 MCQs</span></h2>
+
+  <p>The following 25 multiple-choice questions are reproduced from the chapter,
+  with the correct answer flagged below each. Cover the answer line and self-test.</p>
+
+  <div class="quiz-q">
+    <p class="qn">1. An applicant for an Airline Transport Pilot Licence shall have completed in aeroplanes not less than:</p>
+    <p class="opt">A) 100 hours of instrument time, of which not more than 50 hours may be instrument ground time</p>
+    <p class="opt">B) 150 hours of instrument time, of which not more than 75 hours may be instrument ground time</p>
+    <p class="opt">C) 100 hours of instrument time, of which not more than 30 hours may be instrument ground time</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">2. The holder of a pilot's licence should inform the Authority of any illness which they are suffering which involves incapacity to undertake those functions to which the licence relates throughout a period of a certain number of days or more. The number of days is:</p>
+    <p class="opt">A) 15 &nbsp;&nbsp; B) 20 &nbsp;&nbsp; C) 30</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">3. The International Civil Aviation Convention Annex containing standards and recommended practices for Personnel Licensing is:</p>
+    <p class="opt">A) Annex 1 &nbsp;&nbsp; B) Annex 2 &nbsp;&nbsp; C) Annex 11</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">4. The holder of a commercial pilot licence, when acting as copilot of an aircraft required to be operated with a copilot, shall be entitled to be credited with not more than:</p>
+    <p class="opt">A) 40% of the copilot flight time towards the total flight time required for a higher grade of a pilot licence</p>
+    <p class="opt">B) 50% of the copilot flight time towards the total flight time required for renewal of a commercial pilot licence</p>
+    <p class="opt">C) 100 hours of flying time required for a higher grade of a pilot licence</p>
+    <span class="ans">Correct Answer: B</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">5. The minimum age of obtaining a PPL is:</p>
+    <p class="opt">A) 18 years &nbsp;&nbsp; B) 17 years &nbsp;&nbsp; C) 21 years</p>
+    <span class="ans">Correct Answer: B</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">6. The privileges of the holder of a Commercial Pilot Licence — aeroplane shall be:</p>
+    <p class="opt">A) to act as pilot-in-command in any aeroplane engaged in commercial air transportation</p>
+    <p class="opt">B) to act as pilot-in-command in any aeroplane certificate for single pilot operation other than in commercial air transportation</p>
+    <p class="opt">C) to act as Pilot-in-Command of any aeroplane having an all-up-weight not exceeding 5700 kg and which is entered in the aircraft rating of his licence</p>
+    <span class="ans">Correct Answer: C</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">7. The duration of the period of currency of a medical assessment shall begin on the date:</p>
+    <p class="opt">A) the license is issued or renewed</p>
+    <p class="opt">B) reckoned from the date of medical examination</p>
+    <p class="opt">C) the license is delivered to the pilot</p>
+    <span class="ans">Correct Answer: B</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">8. Type ratings shall be established:</p>
+    <p class="opt">A) for any type of aircraft whenever considered necessary by the authority</p>
+    <p class="opt">B) all the answers are correct</p>
+    <p class="opt">C) only aircraft certificated for operation with a minimum crew of at least two pilots</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">9. The holder of a commercial pilot licence when as Co-Pilot performing under the supervision of a pilot who fulfils the flying experience requirements of a check pilot, the duties and functions of a pilot-in-command shall be entitled to be credited:</p>
+    <p class="opt">A) in full with his flight time but not more than 300 hours towards the total time required for a higher grade of pilot licence</p>
+    <p class="opt">B) 50% of the flight time towards the total time required for higher grade of pilot licence in accordance with the requirements of the licensing authority</p>
+    <p class="opt">C) in full with his flight time towards the total time required for higher grade of pilot licence</p>
+    <span class="ans">Correct Answer: C</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">10. An applicant holding a private or commercial pilot license aeroplane for the issue of an instrument rating shall have completed …… hours of cross-country flight time as pilot-in-command of aircraft in categories acceptable to the licensing Authority:</p>
+    <p class="opt">A) 20 hours &nbsp;&nbsp; B) 40 hours &nbsp;&nbsp; C) 50 hours</p>
+    <span class="ans">Correct Answer: C</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">11. An applicant for an Airline Transport Pilot Licence shall have completed in aeroplanes not less than:</p>
+    <p class="opt">A) 75 hours of night flight as pilot-in-command or as copilot</p>
+    <p class="opt">B) 100 hours of night flight as pilot-in-command or as copilot</p>
+    <p class="opt">C) 100 hours of night flight only as pilot-in-command</p>
+    <span class="ans">Correct Answer: B</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">12. For Commercial Pilot Licence aeroplane the applicant shall have completed in aeroplanes not less than ….. if the privileges of the licence are to be expected at:</p>
+    <p class="opt">A) 5 hours of night flight time including 3 take-offs and 3 landings as pilot-in-command</p>
+    <p class="opt">B) 5 hours of night flight time including 5 take-offs and 5 landings as pilot-in-command</p>
+    <p class="opt">C) 5 hours of night flight time including 10 take-offs and 10 landings as pilot-in-command</p>
+    <span class="ans">Correct Answer: C</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">13. An applicant for a Commercial Pilot License aeroplane shall have completed in aeroplanes not less than:</p>
+    <p class="opt">A) 150 hours of flight time and 100 hours as pilot-in-command</p>
+    <p class="opt">B) 200 hours of flight time and 70 hours as pilot-in-command</p>
+    <p class="opt">C) 200 hours of flight time and 100 hours as pilot-in-command</p>
+    <span class="ans">Correct Answer: C</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">14. An applicant for a Commercial Pilot Licence shall have completed in aeroplanes not less than:</p>
+    <p class="opt">A) 20 hours of instrument instruction time of which not more than 10 hours may be instrument ground time</p>
+    <p class="opt">B) 20 hours of instrument instruction time of which not more than 5 hours may be instrument ground time</p>
+    <p class="opt">C) not less than ten hours of instrument time of which not more than five hours may be on an approved simulator</p>
+    <span class="ans">Correct Answer: C</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">15. When the holders of aircraft transport pilot licenses aeroplane and helicopter have passed their 40th birthday the medical examination shall be reduced to:</p>
+    <p class="opt">A) 6 months for single crew commercial operations</p>
+    <p class="opt">B) 6 months for all commercial operations</p>
+    <p class="opt">C) 6 months for all operations</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">16. The applicant to exercise the functions of an Instrumental Flight Rating in ____ aeroplanes shall prove, according to ANNEX 1, PERSONNEL LICENSING, his/her capability to pilot such aircraft only by instrumental rules and an engine ____.</p>
+    <p class="opt">A) Multi-engine / inoperative or simulated inoperative</p>
+    <p class="opt">B) Land / inactive</p>
+    <p class="opt">C) Amphibious / inactive or simulated inactive</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">17. The applicant for an Airline Transport Pilot License shall have completed in aeroplanes not less than …. hours of cross-country flight time, including not less than …. hours of flight time by night as Pilot-in-Command or as Co-Pilot performing, under the supervision of a pilot who fulfils the flying experience requirements of a check pilot, the duties and functions of a pilot-in-command.</p>
+    <p class="opt">A) 200 hours and 50 hours</p>
+    <p class="opt">B) 250 hours and 50 hours</p>
+    <p class="opt">C) 200 hours and 75 hours</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">18. An applicant for a Commercial Pilot Licence — aeroplane shall have completed not less than …. hours of cross country flight time as pilot-in-command including a cross country flight totaling not less than …. km (…. NM), in the course of which full stop landings at two different aerodromes shall be made. The hours and distance referred are:</p>
+    <p class="opt">A) 15 hours and 540 km (300 NM)</p>
+    <p class="opt">B) 20 hours and 540 km (300 NM)</p>
+    <p class="opt">C) 10 hours and 270 km (150 NM)</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">19. An applicant for a Commercial Pilot Licence shall hold a current:</p>
+    <p class="opt">A) class 1 medical assessment</p>
+    <p class="opt">B) class 3 medical assessment</p>
+    <p class="opt">C) class medical assessment as prescribed by the state issuing the licence</p>
+    <span class="ans">Correct Answer: B</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">20. The age of an applicant for a Commercial Pilot Licence shall not be less than:</p>
+    <p class="opt">A) 17 years of age &nbsp;&nbsp; B) 18 years of age &nbsp;&nbsp; C) 16 years of age</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">21. To be able to execute a public transport flight, the minimum and maximum age (with ATPL) is:</p>
+    <p class="opt">A) 21 and 65 years &nbsp;&nbsp; B) 16 and 60 years &nbsp;&nbsp; C) 18 and 60 years</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">22. Which of the following Annexes to the Chicago convention contains minimum specifications for a crew licence to have international validity?</p>
+    <p class="opt">A) Annex 1 &nbsp;&nbsp; B) Annex 3 &nbsp;&nbsp; C) Annex 4</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">23. An applicant for the ____ licences shall have the ability to speak and understand the English language used for radiotelephony communications to the level of proficiency specified by the Director General.</p>
+    <p class="opt">A) PPL, CPL, ATPL, Flt Navigator and Flt Engg</p>
+    <p class="opt">B) PPL, CPL, ATPL only</p>
+    <p class="opt">C) PPL only</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">24. The privileges of the holder of a Private Pilot's Licence shall be to act as:</p>
+    <p class="opt">A) Pilot-in-command or as Co-pilot of any aeroplane provided no passengers are carried</p>
+    <p class="opt">B) Pilot-in-command or as Co-pilot of any aeroplane and carry passengers therein without remunerations</p>
+    <p class="opt">C) Pilot-in-command or as Co-pilot of any aeroplane employed on aerial work for remuneration</p>
+    <span class="ans">Correct Answer: B</span>
+  </div>
+
+  <div class="quiz-q">
+    <p class="qn">25. If the age of a CPL holder flying a single pilot helicopter for charters is more than 40 years the validity of medical is for ____.</p>
+    <p class="opt">A) 6 months</p>
+    <p class="opt">B) 12 months</p>
+    <p class="opt">C) 12 months if he is not carrying VIPs</p>
+    <span class="ans">Correct Answer: A</span>
+  </div>
+
+  <table class="dgca">
+    <caption>Table 12.1 — Master Answer Key</caption>
+    <thead>
+      <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>Ans</b></td><td>A</td><td>A</td><td>A</td><td>B</td><td>B</td><td>C</td><td>B</td><td>A</td><td>C</td><td>C</td><td>B</td><td>C</td><td>C</td></tr>
+    </tbody>
+  </table>
+  <table class="dgca">
+    <thead>
+      <tr><th>Q</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>Ans</b></td><td>C</td><td>A</td><td>A</td><td>A</td><td>A</td><td>B</td><td>A</td><td>A</td><td>A</td><td>A</td><td>B</td><td>A</td></tr>
+    </tbody>
+  </table>
+
+  <div class="foot">
+    DGCA Personnel Licensing — Study Notes &nbsp;|&nbsp; Chapter 15, Air Regulations
+    &nbsp;|&nbsp; CAR Section 7, Series C, Part I, Issue II (effective 05/04/2021)<br>
+    Prepared for CPL / ATPL ground study by <b>Capt. Pankaj Pahil</b> ·
+    For instructional use — verify all figures against the current DGCA CAR before
+    examination or operational use.
+  </div>
+</section>
+
+<!-- ================= WATERMARK (LAST ELEMENT IN BODY) ================= -->
+<div id="wm">Capt. Pankaj Pahil</div>
+
+</body>
+</html>
