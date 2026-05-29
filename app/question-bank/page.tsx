@@ -73,13 +73,13 @@ export default function QuestionBankPage() {
         <div className="glass-card p-4 mb-6 flex flex-col sm:flex-row gap-3">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "#475569" }} />
-            <input value={search} onChange={e => { setSearch(e.target.value); setShown(PAGE_SIZE); }}
+            <input value={search} onChange={e => { setSearch(e.target.value); setShown(PAGE_SIZE); setRevealed({}); }}
                    placeholder="Search questions or options..."
                    className="w-full pl-9 pr-4 py-2 rounded-lg text-sm outline-none"
                    style={{ background: "rgba(5,5,16,0.8)", border: "1px solid rgba(0,212,255,0.2)", color: "#fff" }} />
           </div>
           <div className="relative">
-            <select value={filter} onChange={e => { setFilter(e.target.value); setShown(PAGE_SIZE); }}
+            <select value={filter} onChange={e => { setFilter(e.target.value); setShown(PAGE_SIZE); setRevealed({}); }}
                     className="appearance-none pl-4 pr-9 py-2 rounded-lg text-sm outline-none"
                     style={{ background: "rgba(5,5,16,0.8)", border: "1px solid rgba(0,212,255,0.2)", color: "#fff", cursor: "pointer" }}>
               {SUBJECT_FILTERS.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}

@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { DemoQuestion } from "@/lib/demo-questions";
+import { recordResult } from "@/lib/progress";
 
 type Phase = "setup" | "quiz" | "result";
 const PASS_MARK = 70;
@@ -23,6 +24,15 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
   const score  = answers.filter((a, i) => a === questions[i]?.ans).length;
   const pct    = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
   const passed = pct >= PASS_MARK;
+
+  // Save the result once when the quiz finishes (best score is kept).
+  const recorded = useRef(false);
+  useEffect(() => {
+    if (phase === "result" && !recorded.current && questions.length > 0) {
+      recorded.current = true;
+      recordResult("quiz", track, subject.id, chapter.id, pct);
+    }
+  }, [phase, pct, track, subject.id, chapter.id, questions.length]);
 
   function selectAnswer(oi: number) {
     if (answers[current] !== null) return;
@@ -44,6 +54,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
     setPhase("setup");
     setCurrent(0);
     setAnswers(Array(questions.length).fill(null));
+    recorded.current = false;
     window.scrollTo(0, 0);
   }
 

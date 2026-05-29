@@ -61,6 +61,12 @@ const ATPL_AR_CHAPTER_MAP: Record<string, string> = {
   "aar-8": "ar-8",   // Security & Threats         → SAR/Security/Accident
 };
 
+// All questions belonging to a subject (across every chapter). Used to build
+// subject-wide mock tests (mid / full / sample).
+export function getSubjectQuestionPool(subjectId: string): DemoQuestion[] {
+  return ALL_QUESTIONS.filter(q => q.subjectIds.includes(subjectId));
+}
+
 export function getQuestionsForChapter(
   subjectId: string,
   chapterId: string,

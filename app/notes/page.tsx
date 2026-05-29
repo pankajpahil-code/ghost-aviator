@@ -2,6 +2,9 @@ import Link from "next/link";
 import { ArrowRight, FileText } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 
+const CPL_CHAPTER_COUNT  = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
+const ATPL_CHAPTER_COUNT = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
+
 export default function NotesPage() {
   return (
     <div style={{ background: "#06040e" }} className="min-h-screen">
@@ -33,7 +36,7 @@ export default function NotesPage() {
             <h2 className="text-2xl font-black text-white">CPL Subjects</h2>
             <span className="text-xs px-3 py-1 rounded-full font-bold"
                   style={{ background: "rgba(124,58,237,0.12)", border: "1px solid rgba(124,58,237,0.3)", color: "#c080ff" }}>
-              7 Subjects · 76 Chapters
+              {CPL_SUBJECTS.length} Subjects · {CPL_CHAPTER_COUNT} Chapters
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -68,7 +71,7 @@ export default function NotesPage() {
             <h2 className="text-2xl font-black text-white">ATPL Subjects</h2>
             <span className="text-xs px-3 py-1 rounded-full font-bold"
                   style={{ background: "rgba(0,180,255,0.1)", border: "1px solid rgba(0,180,255,0.25)", color: "#00d4ff" }}>
-              8 Subjects · 47 Chapters
+              {ATPL_SUBJECTS.length} Subjects · {ATPL_CHAPTER_COUNT} Chapters
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

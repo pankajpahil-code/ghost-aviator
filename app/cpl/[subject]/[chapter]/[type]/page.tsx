@@ -61,6 +61,11 @@ export default async function Page({
 
   const questions = getQuestionsForChapter(subject.id, chapter.id);
 
+  // Whether a given content type is actually published for this chapter.
+  // Mirrors the `available` flags shown on the subject index, so direct
+  // navigation (or prev/next inside a viewer) can't land on broken media.
+  const isAvailable = (t: string) => chapter.content.find(c => c.type === t)?.available ?? false;
+
   if (type === "notes") {
     if (subject.id === "air-regulations" && chapter.id === "ar-1") {
       return (
@@ -114,6 +119,9 @@ export default async function Page({
   }
 
   if (type === "slides") {
+    if (!isAvailable("slides")) {
+      return <ComingSoonPage track="cpl" subject={subject} chapter={chapter} type={type} />;
+    }
     const slidesPath = `/content/${subject.id}/${chapter.id}/slides.pdf`;
     return (
       <SlidesPage
@@ -127,7 +135,7 @@ export default async function Page({
     );
   }
 
-  if (type === "video") {
+  if (type === "video" && isAvailable("video")) {
     const YOUTUBE_IDS: Record<string, string> = {
       "air-regulations/ar-1": "U-3qsvPNXSQ",
       "air-regulations/ar-2": "3clEEVEFjhs",
@@ -156,6 +164,9 @@ export default async function Page({
   }
 
   if (type === "audio") {
+    if (!isAvailable("audio")) {
+      return <ComingSoonPage track="cpl" subject={subject} chapter={chapter} type={type} />;
+    }
     const AUDIO_TITLES: Record<string, string> = {
       "air-regulations/ar-1": "Aasman Ke Kanoon Aur Hawai Niyam",
       "air-regulations/ar-2": "The Secret Logic of Aircraft Tail Numbers",

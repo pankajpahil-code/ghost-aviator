@@ -1,9 +1,10 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { Clock, CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { DemoQuestion } from "@/lib/demo-questions";
+import { recordResult } from "@/lib/progress";
 
 type Phase = "setup" | "test" | "result";
 
@@ -41,6 +42,15 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
   const passed  = pct >= subject.passMark;
   const urgent  = timeLeft < 120;
 
+  // Save the result once when the test finishes (best score is kept).
+  const recorded = useRef(false);
+  useEffect(() => {
+    if (phase === "result" && !recorded.current && questions.length > 0) {
+      recorded.current = true;
+      recordResult("test", track, subject.id, chapter.id, pct);
+    }
+  }, [phase, pct, track, subject.id, chapter.id, questions.length]);
+
   function selectAnswer(oi: number) {
     if (answers[current] !== null) return;
     const next = [...answers];
@@ -61,6 +71,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
     setTimeLeft(duration);
     setAnswers(Array(questions.length).fill(null));
     setRevealed(false);
+    recorded.current = false;
     window.scrollTo(0, 0);
   }
 
