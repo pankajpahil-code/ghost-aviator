@@ -71,7 +71,7 @@ export default function Footer() {
         <div className="mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
              style={{ borderTop: "1px solid rgba(0,212,255,0.1)" }}>
           <p className="text-xs" style={{ color: "#475569" }}>
-            © 2025 Ghost Aviator. Made with ❤️ for Indian aviation students.
+            © {new Date().getFullYear()} Ghost Aviator. Made with ❤️ for Indian aviation students.
           </p>
           <p className="text-xs" style={{ color: "#475569" }}>
             Free access for students from villages &amp; underprivileged sections — always.

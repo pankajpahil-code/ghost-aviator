@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { FileText, BarChart3, Video, Headphones, HelpCircle, ClipboardList, ListChecks, Lock, ArrowRight, Clock, ChevronRight } from "lucide-react";
+import SubjectProgressBar from "@/app/components/SubjectProgressBar";
+import ChapterProgressBadge from "@/app/components/ChapterProgressBadge";
 
 const CONTENT_ICONS: Record<string, React.ElementType> = {
   notes: FileText, slides: BarChart3, video: Video,
@@ -79,6 +81,15 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
           })}
         </div>
 
+        {/* Progress */}
+        <SubjectProgressBar
+          track="cpl"
+          subjectId={subject.id}
+          chapterIds={subject.chapters.map(c => c.id)}
+          passMark={subject.passMark}
+          color={subject.color}
+        />
+
         {/* Chapters */}
         <h2 className="text-xl font-black text-white mb-5">Chapters</h2>
         <div className="flex flex-col gap-3 mb-8">
@@ -93,7 +104,10 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
                     {ch.number}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-white mb-0.5">{ch.title}</h3>
+                    <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+                      <h3 className="font-bold text-white">{ch.title}</h3>
+                      <ChapterProgressBadge track="cpl" subjectId={subject.id} chapterId={ch.id} passMark={subject.passMark} />
+                    </div>
                     <p className="text-xs mb-3" style={{ color:"#475569" }}>{ch.description}</p>
                     <div className="flex items-center gap-3 mb-4">
                       <span className="text-xs" style={{ color:"#334155" }}>⏱ {ch.duration}</span>

@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Headphones, BarChart3, Zap } from "lucide-react";
+import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+
+const CPL_CHAPTERS  = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
+const ATPL_CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
 
 const services = [
   { icon: FileText,      label: "Notes",           desc: "Concise, exam-focused chapter notes" },
@@ -144,7 +148,7 @@ export default function Home() {
                 <div className="text-6xl opacity-80">🛩️</div>
               </div>
               <div className="grid grid-cols-3 gap-3 mb-8">
-                {[["7","Subjects"],["76","Chapters"],["6,000+","Questions"]].map(([v,l]) => (
+                {[[`${CPL_SUBJECTS.length}`,"Subjects"],[`${CPL_CHAPTERS}`,"Chapters"],["6,000+","Questions"]].map(([v,l]) => (
                   <div key={l} className="p-3 rounded-xl text-center" style={{ background:"rgba(124,58,237,0.15)", border:"1px solid rgba(124,58,237,0.25)" }}>
                     <div className="text-xl font-black text-white">{v}</div>
                     <div className="text-xs" style={{ color:"#7c3aed" }}>{l}</div>
@@ -179,7 +183,7 @@ export default function Home() {
                 <div className="text-6xl opacity-80">✈️</div>
               </div>
               <div className="grid grid-cols-3 gap-3 mb-8">
-                {[["8","Subjects"],["50+","Chapters"],["5,000+","Questions"]].map(([v,l]) => (
+                {[[`${ATPL_SUBJECTS.length}`,"Subjects"],[`${ATPL_CHAPTERS}`,"Chapters"],["5,000+","Questions"]].map(([v,l]) => (
                   <div key={l} className="p-3 rounded-xl text-center" style={{ background:"rgba(0,180,255,0.1)", border:"1px solid rgba(0,180,255,0.2)" }}>
                     <div className="text-xl font-black text-white">{v}</div>
                     <div className="text-xs" style={{ color:"#00d4ff" }}>{l}</div>
