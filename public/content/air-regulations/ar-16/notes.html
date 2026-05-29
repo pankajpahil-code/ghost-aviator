@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGCA Air Regulations — Chapter 17: Operational Procedures | Study Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      fontFamily: 'IBM Plex Sans, sans-serif',
+      primaryColor: '#e8f1fb',
+      primaryTextColor: '#0d2a4a',
+      primaryBorderColor: '#1f5fa8',
+      lineColor: '#0d2a4a',
+      secondaryColor: '#fdecec',
+      tertiaryColor: '#e9f6ec'
+    }
+  });
+</script>
+<style>
+  /* ============ PRINT SETUP ============ */
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+
+  :root {
+    --navy: #0d2a4a;
+    --navy-soft: #1f3b5c;
+    --accent: #c8962f;
+    --accent-deep: #9a6f12;
+    --ink: #1c2530;
+    --paper: #ffffff;
+    --rule-red: #c0392b;
+    --rule-red-bg: #fdecec;
+    --def-blue: #1f5fa8;
+    --def-blue-bg: #e8f1fb;
+    --sop-green: #1e7d34;
+    --sop-green-bg: #e9f6ec;
+    --tip-amber: #b9791a;
+    --tip-amber-bg: #fdf3e0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: #e6e9ee;
+    line-height: 1.62;
+    font-size: 15px;
+  }
+
+  /* ============ PAGE CONTAINER ============ */
+  .sheet {
+    max-width: 880px;
+    margin: 24px auto;
+    background: var(--paper);
+    padding: 46px 56px 60px;
+    box-shadow: 0 4px 24px rgba(13,42,74,0.16);
+    position: relative;
+  }
+
+  /* ============ TYPOGRAPHY ============ */
+  h1, h2, h3, h4 {
+    font-family: 'Spectral', Georgia, serif;
+    color: var(--navy);
+    line-height: 1.22;
+    margin: 0;
+  }
+
+  .section {
+    margin-top: 46px;
+    padding-top: 8px;
+  }
+
+  .section-num {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--accent-deep);
+    background: var(--tip-amber-bg);
+    border: 1px solid #e6cf9d;
+    padding: 3px 11px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  h2.section-title {
+    font-size: 27px;
+    font-weight: 800;
+    border-bottom: 3px solid var(--navy);
+    padding-bottom: 10px;
+    margin-bottom: 6px;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 28px;
+    margin-bottom: 8px;
+    padding-left: 12px;
+    border-left: 5px solid var(--accent);
+  }
+
+  h4 {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--navy-soft);
+    margin-top: 18px;
+    margin-bottom: 4px;
+  }
+
+  p { margin: 8px 0; }
+
+  ul, ol { margin: 8px 0 8px 4px; padding-left: 22px; }
+  li { margin: 5px 0; }
+
+  strong { color: var(--navy); font-weight: 600; }
+
+  /* ============ VALUE HIGHLIGHT ============ */
+  .val {
+    background: linear-gradient(transparent 55%, #ffe39a 55%);
+    font-weight: 700;
+    color: #5a3d04;
+    padding: 0 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.94em;
+    white-space: nowrap;
+  }
+
+  .term {
+    font-weight: 700;
+    color: var(--def-blue);
+  }
+
+  /* ============ COLOUR-CODED BOXES ============ */
+  .box {
+    border-radius: 8px;
+    padding: 14px 18px 14px 20px;
+    margin: 16px 0;
+    page-break-inside: avoid;
+    border-left: 7px solid;
+    position: relative;
+  }
+  .box .box-label {
+    display: block;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .box p:first-of-type { margin-top: 2px; }
+  .box p:last-child, .box ul:last-child, .box ol:last-child { margin-bottom: 0; }
+
+  .limitation {
+    background: var(--rule-red-bg);
+    border-left-color: var(--rule-red);
+  }
+  .limitation .box-label { color: var(--rule-red); }
+
+  .definition {
+    background: var(--def-blue-bg);
+    border-left-color: var(--def-blue);
+  }
+  .definition .box-label { color: var(--def-blue); }
+
+  .sop {
+    background: var(--sop-green-bg);
+    border-left-color: var(--sop-green);
+  }
+  .sop .box-label { color: var(--sop-green); }
+
+  .tip {
+    background: var(--tip-amber-bg);
+    border-left-color: var(--tip-amber);
+  }
+  .tip .box-label { color: var(--tip-amber); }
+
+  /* ============ TABLES ============ */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+    page-break-inside: avoid;
+  }
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-weight: 700;
+    color: var(--navy);
+    font-family: 'Spectral', serif;
+    font-size: 15.5px;
+    margin-bottom: 6px;
+  }
+  th {
+    background: var(--navy);
+    color: #fff;
+    font-weight: 600;
+    padding: 9px 12px;
+    text-align: left;
+    border: 1px solid var(--navy);
+  }
+  td {
+    padding: 8px 12px;
+    border: 1px solid #c9d2dd;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: #f1f5fa; }
+  td.c, th.c { text-align: center; }
+  .data-table td.hl { background: #fff4d6 !important; font-weight: 700; }
+
+  /* ============ DIAGRAM / MERMAID ============ */
+  .diagram {
+    background: #f6f8fb;
+    border: 1px solid #d2dbe6;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 18px 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .diagram .dgm-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 10px;
+  }
+  pre.mermaid { background: transparent; margin: 0; }
+
+  /* ============ COVER ============ */
+  .cover {
+    text-align: center;
+    padding: 30px 0 14px;
+    border-bottom: 4px double var(--navy);
+    margin-bottom: 8px;
+  }
+  .cover .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 4px;
+    font-size: 13px;
+    color: var(--accent-deep);
+    text-transform: uppercase;
+  }
+  .cover .ch-no {
+    font-family: 'Spectral', serif;
+    font-size: 78px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+    margin: 8px 0 2px;
+  }
+  .cover h1 {
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .cover .subtitle {
+    font-family: 'Spectral', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--navy-soft);
+    margin-top: 8px;
+  }
+  .cover .sources {
+    font-size: 12px;
+    color: #5d6b7d;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+  .cover .audience {
+    display: inline-block;
+    margin-top: 14px;
+    background: var(--navy);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  /* ============ TOC ============ */
+  .toc {
+    background: #f6f8fb;
+    border: 1px solid #d2dbe6;
+    border-radius: 10px;
+    padding: 20px 26px;
+    margin: 26px 0 10px;
+    page-break-inside: avoid;
+  }
+  .toc h2 {
+    font-size: 21px;
+    margin-bottom: 10px;
+    color: var(--navy);
+  }
+  .toc ol { columns: 2; column-gap: 34px; padding-left: 20px; }
+  .toc li { margin: 4px 0; font-size: 13.6px; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  .toc a:hover { color: var(--accent-deep); }
+
+  /* ============ MISC ============ */
+  .lead {
+    font-family: 'Spectral', serif;
+    font-size: 16.5px;
+    font-style: italic;
+    color: var(--navy-soft);
+    border-left: 4px solid var(--accent);
+    padding-left: 14px;
+    margin: 10px 0 16px;
+  }
+  hr.soft {
+    border: none;
+    border-top: 1px dashed #c2cdd9;
+    margin: 24px 0;
+  }
+  .footer {
+    margin-top: 50px;
+    border-top: 2px solid var(--navy);
+    padding-top: 12px;
+    font-size: 12px;
+    color: #5d6b7d;
+    text-align: center;
+  }
+  .pill {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    background: var(--navy);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ============ QUIZ ============ */
+  .quiz-q {
+    margin: 14px 0;
+    padding: 12px 16px;
+    background: #f6f8fb;
+    border: 1px solid #d2dbe6;
+    border-radius: 8px;
+    page-break-inside: avoid;
+  }
+  .quiz-q .qn {
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .quiz-q ul { list-style: none; padding-left: 6px; margin: 6px 0 0; }
+  .quiz-q ul li { margin: 3px 0; }
+  .quiz-q .opt { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: var(--accent-deep); }
+  .answer-key td.c { font-family: 'IBM Plex Mono', monospace; font-weight: 700; }
+
+  /* ============ WATERMARK ============ */
+  #pp-watermark {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(-45deg);
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(0,0,0,0.12);
+    white-space: nowrap;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  @media print {
+    body { background: #fff; font-size: 12.4px; }
+    .sheet {
+      box-shadow: none;
+      margin: 0;
+      max-width: 100%;
+      padding: 0;
+    }
+    .section { margin-top: 30px; }
+    h3 { margin-top: 20px; }
+    .box, table, .diagram, .toc, .quiz-q { page-break-inside: avoid; }
+    h2.section-title, h3, h4 { page-break-after: avoid; }
+    #pp-watermark { color: rgba(0,0,0,0.10); }
+    a { color: var(--ink); text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ============ COVER ============ -->
+  <div class="cover">
+    <div class="kicker">DGCA &nbsp;•&nbsp; Air Regulations &nbsp;•&nbsp; Ground Subject</div>
+    <div class="ch-no">17</div>
+    <h1>Operational Procedures</h1>
+    <div class="subtitle">Complete Instructional Study Notes for the Student Pilot</div>
+    <div class="sources">
+      Based on: ICAO Annex 6 (Parts I, II &amp; III) &nbsp;|&nbsp; CAR Section 2, Airworthiness Series 'X', Part VII<br>
+      CAR Section 8 — Aircraft Operations Series 'C' Part I, Series 'O' Parts II &amp; III<br>
+      CAR Section 7 — Flight Crew Standards, Training &amp; Licensing Series 'J', Part III, Issue III<br>
+      Rule 42A of the Aircraft Rules, 1937 &nbsp;|&nbsp; FDTL / CAR Series J Part III Issue III, Rev 2 dated 26 Mar 2024
+    </div>
+    <div class="audience">For CPL &amp; ATPL Student Pilots</div>
+  </div>
+
+  <!-- ============ TABLE OF CONTENTS ============ -->
+  <div class="toc">
+    <h2>What This Chapter Covers</h2>
+    <ol>
+      <li><a href="#s1">ICAO Annex 6 &amp; Applicability</a></li>
+      <li><a href="#s2">General Requirements &amp; Carriage of Persons</a></li>
+      <li><a href="#s3">Documents to be Carried on Board</a></li>
+      <li><a href="#s4">Information Retained on Ground &amp; Power to Inspect</a></li>
+      <li><a href="#s5">Operator Certification (AOC)</a></li>
+      <li><a href="#s6">Aerodrome Operating Minima &amp; Approach Ban</a></li>
+      <li><a href="#s7">Instrument &amp; Safety Equipment</a></li>
+      <li><a href="#s8">Flight Recorders</a></li>
+      <li><a href="#s9">Oxygen Supply &amp; Protective Breathing Equipment</a></li>
+      <li><a href="#s10">Emergency &amp; Survival Equipment</a></li>
+      <li><a href="#s11">Communication &amp; Navigation Equipment</a></li>
+      <li><a href="#s12">Minimum Fuel Requirements</a></li>
+      <li><a href="#s13">Flight Crew &amp; Flight Duty Time Limitations (FDTL)</a></li>
+      <li><a href="#s14">Practice Questions &amp; Answer Key</a></li>
+    </ol>
+  </div>
+
+  <p class="lead">This chapter explains how an airline operation is run safely and legally — who may sit where, what paperwork must fly with you, how much fuel and oxygen you must carry, what survival gear is mandatory, and how long a crew may legally work before fatigue makes them unsafe. Every number here is examinable: learn the exact figures.</p>
+
+  <!-- ============ SECTION 1 ============ -->
+  <div class="section" id="s1">
+    <span class="section-num">Section 01</span>
+    <h2 class="section-title">ICAO Annex 6 &amp; Applicability</h2>
+
+    <p>ICAO <strong>Annex 6</strong> is titled <em>"Operation of Aircraft"</em>. It contains the international <strong>Standards and Recommended Practices (SARPs)</strong> that tell operators how aircraft must be flown safely. It is split into three Parts, and each Part became applicable on a different date.</p>
+
+    <div class="box definition">
+      <span class="box-label">Definition — The Three Parts of Annex 6</span>
+      <ul>
+        <li><strong>Part I — International Commercial Air Transport — Aeroplanes.</strong> Applies to the operation of aeroplanes by operators authorised to conduct <strong>international commercial air transport operations</strong>.</li>
+        <li><strong>Part II — International General Aviation — Aeroplanes.</strong> Deals exclusively with international general aviation. Became applicable in <span class="val">September 1969</span>.</li>
+        <li><strong>Part III — International Operations — Helicopters.</strong> Deals with all international helicopter operations. Became applicable in <span class="val">November 1986</span>.</li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <span class="box-label">Memory Aid</span>
+      <p>Think <strong>"1-6-9 / 8-6"</strong> — General Aviation Part came in <strong>'69</strong>, Helicopters in <strong>'86</strong>. Part I (the big airline part) is the original core. Helicopters were added <em>last</em> because the rules for them matured later.</p>
+    </div>
+
+    <div class="diagram">
+      <div class="dgm-title">Structure of ICAO Annex 6</div>
+      <pre class="mermaid">
+graph TD
+    A["ICAO ANNEX 6<br/>Operation of Aircraft"] --> B["PART I<br/>International Commercial<br/>Air Transport — Aeroplanes"]
+    A --> C["PART II<br/>International General<br/>Aviation — Aeroplanes<br/>(applicable Sep 1969)"]
+    A --> D["PART III<br/>International Operations —<br/>Helicopters<br/>(applicable Nov 1986)"]
+    style A fill:#0d2a4a,color:#fff,stroke:#0d2a4a
+    style B fill:#e8f1fb,stroke:#1f5fa8,color:#0d2a4a
+    style C fill:#e9f6ec,stroke:#1e7d34,color:#0d2a4a
+    style D fill:#fdf3e0,stroke:#b9791a,color:#0d2a4a
+      </pre>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 2 ============ -->
+  <div class="section" id="s2">
+    <span class="section-num">Section 02</span>
+    <h2 class="section-title">General Requirements &amp; Carriage of Persons</h2>
+
+    <h3>2.1 &nbsp;Quality System</h3>
+    <p>Every operator must run a structured, self-checking organisation rather than relying on chance.</p>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>An operator shall establish <strong>one quality system</strong> and designate <strong>one quality manager</strong> to monitor compliance with — and the adequacy of — procedures required to ensure safe operational practices and airworthy aeroplanes.</p>
+      <p>Compliance monitoring must include a <strong>feed-back system to the accountable manager</strong> to ensure corrective action is taken as necessary.</p>
+    </div>
+    <div class="tip">
+      <span class="box-label">In Plain Language</span>
+      <p>"One system, one manager, one feedback loop." The quality manager <em>watches</em> the operation; the accountable manager has the <em>authority and money</em> to fix what the quality manager finds. Without the feedback loop, problems would never reach the person who can correct them.</p>
+    </div>
+
+    <h3>2.2 &nbsp;Methods of Carriage of Persons</h3>
+    <p>People must not be carried in unsafe parts of the aircraft.</p>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation</span>
+      <p>An operator shall take all reasonable measures to ensure that <strong>no person is in any part of an aeroplane in flight which is not designed for the accommodation of persons</strong>, <em>unless temporary access has been granted by the commander</em> to any part of the aeroplane in the following cases:</p>
+      <ul>
+        <li>For the purpose of taking action necessary for the <strong>safety</strong> of the aeroplane, or of any person, animal or goods therein; <strong>or</strong></li>
+        <li>A part in which <strong>cargo or stores are carried</strong>, being a part designed to enable a person to have access thereto while the aeroplane is in flight.</li>
+      </ul>
+    </div>
+
+    <h3>2.3 &nbsp;Admission to the Flight Deck</h3>
+    <p>The flight deck is a restricted area. Only specific categories of person may be admitted.</p>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation — Flight Deck Access</span>
+      <p>An operator must ensure that <strong>no person, other than a flight crew member assigned to a flight</strong>, is admitted to or carried in the flight deck unless that person is:</p>
+      <ul>
+        <li>An <strong>operating crew member</strong>;</li>
+        <li>A <strong>representative of the Authority</strong> responsible for certification, licensing or inspection, if this is required for the performance of his official duties; <strong>or</strong></li>
+        <li>Permitted by, and carried in accordance with, instructions contained in the <strong>Operations Manual</strong>.</li>
+      </ul>
+    </div>
+    <div class="box sop">
+      <span class="box-label">Standard Procedure — Who Decides</span>
+      <p>The <strong>final decision</strong> regarding admission to the flight deck shall be the responsibility of the <strong>commander</strong>.</p>
+    </div>
+
+    <h3>2.4 &nbsp;Unauthorized Carriage</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation</span>
+      <p>An operator shall take all reasonable measures to ensure that <strong>no person secretes himself, or secretes cargo, on board an aeroplane</strong> (i.e. stowaways and hidden/undeclared cargo are prohibited).</p>
+    </div>
+
+    <h3>2.5 &nbsp;Portable Electronic Devices (PEDs)</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation</span>
+      <p>An operator shall <strong>not permit any person to use</strong>, and shall take all reasonable measures to ensure that no person does use, on board an aeroplane, a <strong>portable electronic device that can adversely affect the performance of the aeroplane's systems and equipment</strong>.</p>
+    </div>
+    <div class="tip">
+      <span class="box-label">Why It Matters</span>
+      <p>The rule does not ban every device outright — it bans devices that <em>can adversely affect</em> aircraft systems. The concern is electromagnetic interference with navigation and communication equipment, especially during critical phases of flight.</p>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 3 ============ -->
+  <div class="section" id="s3">
+    <span class="section-num">Section 03</span>
+    <h2 class="section-title">Documents to be Carried on Board</h2>
+
+    <p class="lead">No person in charge of any aircraft shall allow that aircraft to be flown unless the following valid documents — as applicable — are carried on board, in <strong>original or attested copies</strong>.</p>
+
+    <div class="box definition">
+      <span class="box-label">Definition — The Mandatory Document Set</span>
+      <ol>
+        <li><strong>Certificate of Registration</strong></li>
+        <li><strong>Certificate of Airworthiness (C of A)</strong></li>
+        <li><strong>Airworthiness Review Certificate (ARC)</strong></li>
+        <li>A document attesting <strong>Noise Certification</strong> of the aeroplane / helicopter</li>
+        <li><strong>Air Operator's Permit (AOP)</strong></li>
+        <li><strong>Appropriate Licences</strong> for each member of the flight crew</li>
+        <li><strong>Aeromobile Radio operation Licence</strong> for the Radio Communication apparatus</li>
+        <li><strong>Journey Log Book</strong> or equivalent documents approved by the DGCA</li>
+        <li><strong>Operations Manual</strong></li>
+        <li><strong>Minimum Equipment List (MEL)</strong></li>
+        <li><strong>Flight Manual</strong></li>
+        <li><strong>Cabin Crew Manual</strong></li>
+        <li><strong>Cockpit and Emergency Check List</strong> — unless these form part of the Flight Manual carried on board</li>
+        <li><strong>Aeroplane / Helicopter search procedure checklist</strong></li>
+        <li><strong>Maintenance Release / Certificate to Release to Service (CRS)</strong></li>
+        <li><strong>LOPA</strong> — Layout of Passenger Arrangement</li>
+        <li><strong>Emergency and Safety Equipment Layout</strong></li>
+        <li><strong>Route guides</strong></li>
+        <li><strong>Current and suitable navigation charts / maps</strong> for the planned route and all other routes along which the flight may reasonably be expected to be diverted</li>
+        <li><strong>Weight Schedule</strong></li>
+        <li><strong>Load and Trim Sheet</strong></li>
+        <li>If carrying passengers — a <strong>list of passenger names</strong> and their places of embarkation and destination</li>
+        <li>If carrying cargo — a <strong>cargo manifest</strong> and detailed declarations of the cargo</li>
+        <li>If carrying dangerous goods — a <strong>list of such goods</strong> (this list must be specifically brought to the notice of the Pilot-in-Command before the flight)</li>
+        <li><strong>Current comprehensive insurance policy</strong> covering passengers and their baggage, crew, third party risks and hull loss</li>
+      </ol>
+    </div>
+
+    <div class="box sop">
+      <span class="box-label">Standard Procedure — Checklist Display</span>
+      <p>Checklists for the <strong>take-off, cruise and landing phases</strong> shall be <strong>displayed in the cockpit</strong>, unless the lists form a part of the Flight Manual carried on board.</p>
+    </div>
+
+    <div class="box sop">
+      <span class="box-label">Standard Procedure — Passenger Safety Briefing Card</span>
+      <p>All operators of passenger aircraft shall provide a <strong>passenger safety information briefing card at every passenger seat location</strong>. Such a card shall make use of <strong>symbology</strong> to convey the instructions in a clear and concise manner.</p>
+    </div>
+
+    <div class="tip">
+      <span class="box-label">Exam Focus</span>
+      <p>Two favourite exam traps: (1) the <strong>dangerous goods list</strong> must be <em>personally shown to the PIC before flight</em> — not merely carried; (2) the Flight Manual is carried by <strong>all aircraft</strong> only <em>if the C of A states so</em> — the C of A determines the requirement.</p>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 4 ============ -->
+  <div class="section" id="s4">
+    <span class="section-num">Section 04</span>
+    <h2 class="section-title">Information Retained on Ground &amp; Power to Inspect</h2>
+
+    <h3>4.1 &nbsp;Information Retained on Ground</h3>
+    <p>So that an investigation is always possible, key flight information must be safely preserved off the aircraft.</p>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>An operator shall ensure that — <strong>at least for the duration of each flight or series of flights</strong>:</p>
+      <ul>
+        <li>Information relevant to the flight and appropriate for the type of operation is <strong>preserved on the ground</strong>; and</li>
+        <li>The information is <strong>retained until it has been duplicated</strong> at the place at which it will be stored in accordance with the rules; <strong>or</strong>, if this is impracticable,</li>
+        <li>The same information is carried in a <strong>fireproof container</strong> in the aeroplane.</li>
+      </ul>
+    </div>
+    <div class="tip">
+      <span class="box-label">In Plain Language</span>
+      <p>The aircraft can be lost — so a ground copy must exist. Until that ground copy is safely duplicated at the storage location, you must keep a protected copy. If keeping a ground copy is genuinely impracticable, the on-board copy must be inside a <strong>fireproof container</strong> so it can survive an accident.</p>
+    </div>
+
+    <h3>4.2 &nbsp;Power to Inspect</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>An operator shall ensure that any person <strong>authorised by the Authority</strong> is permitted <strong>at any time</strong> to board and fly in any aeroplane operated under an AOC issued by that Authority, and to <strong>enter and remain on the flight deck</strong>.</p>
+    </div>
+    <div class="box limitation">
+      <span class="box-label">The Commander's Override</span>
+      <p>The commander <strong>may refuse access to the flight deck</strong> if, in his opinion, the safety of the aeroplane would thereby be endangered. Safety always outranks the inspection right.</p>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 5 ============ -->
+  <div class="section" id="s5">
+    <span class="section-num">Section 05</span>
+    <h2 class="section-title">Operator Certification (AOC)</h2>
+
+    <p>Before an airline may sell tickets, it must prove to the State that it is capable of operating safely. That proof is the <strong>Air Operator Certificate</strong>.</p>
+
+    <div class="box definition">
+      <span class="box-label">Definition — Air Operator Permit / Certificate (AOC)</span>
+      <p>A <strong>Permit / Certificate authorising an operator to carry out specified commercial air transport operations</strong>.</p>
+    </div>
+
+    <div class="box definition">
+      <span class="box-label">Definition — State of the Operator</span>
+      <p>The State in which the operator's <strong>principal place of business</strong> is located or, if there is no such place of business, the operator's <strong>permanent residence</strong>.</p>
+    </div>
+
+    <h3>5.1 &nbsp;Mutual Recognition</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>Contracting States shall <strong>recognise as valid an AOC issued by another Contracting State</strong>, provided that the requirements under which the certificate was issued are <strong>at least equal to the applicable Standards specified in Annex 6</strong>.</p>
+    </div>
+
+    <h3>5.2 &nbsp;Issue of an AOC</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement — Conditions of Issue</span>
+      <p>The issuance of an AOC is <strong>dependent upon the operator demonstrating</strong> to the State that the following are <strong>adequate</strong> for the nature and extent of operations to be conducted:</p>
+      <ul>
+        <li>Its <strong>organisation</strong>;</li>
+        <li>Its <strong>training policy and programmes</strong>;</li>
+        <li>Its <strong>flight operations</strong>;</li>
+        <li>Its <strong>ground handling</strong> arrangements; and</li>
+        <li>Its <strong>maintenance</strong> arrangements.</li>
+      </ul>
+      <p>The certification process involves the State's evaluation of each operator and a determination that the operator is capable of conducting <strong>safe operations</strong> before initial issue of an AOC, or before the addition of any subsequent authorizations to an AOC.</p>
+    </div>
+
+    <h3>5.3 &nbsp;Validity of an AOC</h3>
+    <div class="box limitation">
+      <span class="box-label">Continuing Obligation</span>
+      <p>The validity of an AOC shall depend upon the operator <strong>maintaining the original certification standards</strong> under the supervision of the State of the Operator. This supervision requires that a system of <strong>continued surveillance</strong> be established to ensure the required standards of operations are maintained.</p>
+    </div>
+
+    <div class="diagram">
+      <div class="dgm-title">AOC — From Application to Continued Validity</div>
+      <pre class="mermaid">
+graph LR
+    A["Operator applies"] --> B["Demonstrate adequacy:<br/>Organisation • Training •<br/>Flight Ops • Ground Handling •<br/>Maintenance"]
+    B --> C["State evaluates &amp;<br/>determines capability<br/>for safe operations"]
+    C --> D["AOC ISSUED"]
+    D --> E["Operator maintains<br/>original standards"]
+    E --> F["State conducts<br/>continued surveillance"]
+    F --> G["AOC remains VALID"]
+    style A fill:#e8f1fb,stroke:#1f5fa8,color:#0d2a4a
+    style D fill:#1e7d34,color:#fff,stroke:#1e7d34
+    style G fill:#0d2a4a,color:#fff,stroke:#0d2a4a
+    style B fill:#fdf3e0,stroke:#b9791a,color:#0d2a4a
+    style F fill:#fdecec,stroke:#c0392b,color:#0d2a4a
+      </pre>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 6 ============ -->
+  <div class="section" id="s6">
+    <span class="section-num">Section 06</span>
+    <h2 class="section-title">Aerodrome Operating Minima &amp; Approach Ban</h2>
+
+    <h3>6.1 &nbsp;Restricted Aerodrome Operating Minima (AOM)</h3>
+    <p>When an aerodrome's normal minima are made stricter, "additives" are applied to the published Normal AOM.</p>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation — The Additive Formula</span>
+      <p>Restricted Aerodrome Operating Minima shall be based on additives applied to the Normal AOM as below:</p>
+      <p style="text-align:center; font-size:15px; margin:10px 0;">
+        <strong>Restricted AOM</strong> = Normal AOM DA(H)/MDA(H) <span class="val">+ 100 ft</span>
+        &nbsp;&nbsp;<strong>AND</strong>&nbsp;&nbsp;
+        Normal AOM Visibility/RVR <span class="val">+ 400 m</span>
+      </p>
+    </div>
+    <div class="tip">
+      <span class="box-label">Memory Aid</span>
+      <p>"<strong>One hundred up, four hundred out.</strong>" Add <strong>100 ft</strong> to the decision/minimum descent height and <strong>400 m</strong> to the required visibility/RVR. Both additives apply together.</p>
+    </div>
+
+    <h3>6.2 &nbsp;Commencement &amp; Continuation of Approach — The "Approach Ban Policy"</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation — Commencing an Approach</span>
+      <p>The PIC shall <strong>not commence an instrument approach</strong> if the reported RVR/Visibility is <strong>below the applicable minimum</strong>.</p>
+    </div>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation — Discontinuing an Approach</span>
+      <p>If, <em>after commencing</em> an instrument approach, the reported RVR/Visibility falls below the applicable minimum, the approach <strong>shall not be continued</strong>:</p>
+      <ul>
+        <li>(a) below <span class="val">1 000 ft</span> above the aerodrome; <strong>or</strong></li>
+        <li>(b) into the <strong>final approach segment (FAS)</strong>.</li>
+      </ul>
+    </div>
+    <div class="box sop">
+      <span class="box-label">Standard Procedure — Once Past the Gate</span>
+      <p>Where RVR is not available, RVR values may be derived by <strong>converting the reported visibility</strong>.</p>
+      <p>If, <strong>after entering the final approach segment</strong> or descending below <strong>1 000 ft</strong> above aerodrome elevation, the reported RVR/visibility falls below the applicable minimum — the approach <strong>may be continued to DA/H or MDA/H</strong>.</p>
+      <p>The approach may be continued <strong>below DA/H or MDA/H</strong>, and the landing may be completed, <strong>provided that the required visual reference is established at the DA/H or MDA/H and is maintained</strong>.</p>
+    </div>
+
+    <div class="diagram">
+      <div class="dgm-title">Approach Ban Decision Logic</div>
+      <pre class="mermaid">
+graph TD
+    A["Reported RVR/Vis<br/>BELOW minimum?"] -->|"Yes — before<br/>commencing"| B["DO NOT commence<br/>the approach"]
+    A -->|"No"| C["Commence approach"]
+    C --> D{"RVR/Vis drops below<br/>minimum during approach"}
+    D -->|"Before 1000 ft AGL<br/>OR before FAS"| E["Approach must<br/>NOT be continued"]
+    D -->|"After entering FAS or<br/>below 1000 ft AGL"| F["May continue to<br/>DA/H or MDA/H"]
+    F --> G{"Required visual<br/>reference at DA/H-MDA/H?"}
+    G -->|"Established &amp; maintained"| H["May continue below<br/>minima &amp; LAND"]
+    G -->|"Not established"| I["Go-around /<br/>Missed approach"]
+    style B fill:#fdecec,stroke:#c0392b,color:#0d2a4a
+    style E fill:#fdecec,stroke:#c0392b,color:#0d2a4a
+    style I fill:#fdecec,stroke:#c0392b,color:#0d2a4a
+    style H fill:#1e7d34,color:#fff,stroke:#1e7d34
+    style F fill:#e9f6ec,stroke:#1e7d34,color:#0d2a4a
+      </pre>
+    </div>
+
+    <h3>6.3 &nbsp;Controlling RVR — Touch-down, Mid-point &amp; Stop-end</h3>
+    <div class="box definition">
+      <span class="box-label">Definition — Which RVR Controls?</span>
+      <p>The <strong>touch-down zone (TDZ) RVR is always controlling.</strong> If reported and relevant, the <strong>mid-point and stop-end RVR are also controlling</strong>.</p>
+    </div>
+    <table class="data-table">
+      <caption>Table 6.1 — Minimum RVR Values by Runway Segment</caption>
+      <thead>
+        <tr><th>Runway Segment</th><th>Minimum RVR Value</th><th>Special Case</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Touch-down zone (TDZ)</strong></td><td class="hl">Always controlling</td><td>The primary reference</td></tr>
+        <tr><td><strong>Mid-point</strong></td><td class="hl">125 m</td><td>...or the RVR required for the TDZ if that is less. With a stop-end (roll-out) guidance or control system, the mid-point minimum is <strong>50 m</strong>.</td></tr>
+        <tr><td><strong>Stop-end</strong></td><td class="hl">50 m</td><td>Controlling when reported and relevant</td></tr>
+      </tbody>
+    </table>
+    <div class="box definition">
+      <span class="box-label">Definition — "Relevant"</span>
+      <p>In this context, <strong>"relevant"</strong> means that part of the runway used during the <strong>high-speed phase of the landing down to a speed of approximately 60 knots</strong>.</p>
+    </div>
+    <div class="tip">
+      <span class="box-label">Worked Example</span>
+      <p>Filed minima 300 m; TDZ RVR 400 m; mid-point RVR 100 m; stop-end RVR 300 m. The mid-point reads only 100 m, which is <em>below the 125 m minimum</em> — so the runway is <strong>below minima</strong>. A single segment failing the minimum makes the whole runway unusable.</p>
+    </div>
+
+    <h3>6.4 &nbsp;VFR Operating Minima</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation</span>
+      <p>An operator is to ensure that VFR flights are conducted in accordance with the <strong>Visual Flight Rules and in VMC</strong>. <strong>Special VFR flights are NOT permitted</strong> for commercial air transport aeroplanes.</p>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 7 ============ -->
+  <div class="section" id="s7">
+    <span class="section-num">Section 07</span>
+    <h2 class="section-title">Instrument &amp; Safety Equipment</h2>
+
+    <h3>7.1 &nbsp;Circuit Protection Devices</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation — Spare Fuses</span>
+      <p>An operator shall not operate an aeroplane in which <strong>fuses are used</strong> unless spare fuses are available for use in flight equal to <strong>at least 10% of the number of fuses of each rating</strong>, <strong>OR three of each rating — whichever is the greater</strong>.</p>
+    </div>
+    <div class="tip">
+      <span class="box-label">Memory Aid</span>
+      <p>"<strong>10% or 3 — take the bigger.</strong>" If 10% of a rating works out to less than 3, you must still carry 3 of that rating.</p>
+    </div>
+
+    <h3>7.2 &nbsp;Windshield Wipers</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation</span>
+      <p>An operator shall not operate an aeroplane with a maximum certificated take-off mass of <strong>more than <span class="val">5,700 kg</span></strong> unless it is equipped at <strong>each pilot station</strong> with a windshield wiper or equivalent means to maintain a clear portion of the windshield during precipitation.</p>
+    </div>
+
+    <h3>7.3 &nbsp;Airborne Weather Radar Equipment</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p><strong>Pressurised aeroplanes carrying passengers</strong> should be equipped with <strong>operative weather radar</strong> whenever such aeroplanes are operated in areas where thunderstorms or other potentially hazardous weather conditions — regarded as detectable with airborne weather radar — may be expected to exist along the route, either <strong>at night</strong> or under <strong>Instrument Meteorological Conditions (IMC)</strong>.</p>
+    </div>
+
+    <h3>7.4 &nbsp;Pressure Altitude Data Source</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>All aeroplanes shall be equipped with a data source that provides <strong>pressure altitude information with a resolution of <span class="val">7.62 m (25 ft)</span> or better</strong>.</p>
+    </div>
+
+    <h3>7.5 &nbsp;Microphones</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Procedure</span>
+      <p>All flight crew members required to be on flight deck duty shall communicate through <strong>boom or throat microphones below the transition level / altitude</strong>.</p>
+    </div>
+
+    <h3>7.6 &nbsp;Wind Shear Warning System &amp; GPWS (Turbo-jet Aeroplanes)</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>All <strong>turbo-jet aeroplanes</strong> of a maximum certificated take-off mass <strong>in excess of <span class="val">5,700 kg</span></strong>, <strong>OR authorized to carry more than <span class="val">9 passengers</span></strong>, should be equipped with:</p>
+      <ul>
+        <li>A <strong>forward-looking wind shear warning system</strong>; and</li>
+        <li>A <strong>Ground Proximity Warning System (GPWS)</strong> which has a forward-looking terrain avoidance function.</li>
+      </ul>
+    </div>
+
+    <h3>7.7 &nbsp;ACAS II</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>All <strong>turbine-engined aeroplanes</strong> of a maximum certificated take-off mass <strong>in excess of <span class="val">5,700 kg</span></strong>, <strong>OR authorized to carry more than <span class="val">19 passengers</span></strong>, shall be equipped with an <strong>Airborne Collision Avoidance System (ACAS II)</strong>.</p>
+    </div>
+    <div class="tip">
+      <span class="box-label">Exam Trap — Don't Confuse the Two</span>
+      <p>Both thresholds use <strong>5,700 kg</strong> — but the passenger figure differs. <strong>Wind shear/GPWS</strong> = turbo-jet, &gt;<strong>9</strong> pax. <strong>ACAS II</strong> = turbine-engined, &gt;<strong>19</strong> pax. Remember: <em>collision avoidance needs more seats (19) before it bites.</em></p>
+    </div>
+
+    <h3>7.8 &nbsp;Security of the Flight Crew Compartment</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>All <strong>passenger-carrying aeroplanes</strong> of a maximum certificated take-off mass <strong>in excess of <span class="val">45,500 kg</span></strong>, <strong>OR with a passenger seating capacity greater than <span class="val">60</span></strong>, shall be equipped with an approved <strong>flight crew compartment door</strong> that is designed to:</p>
+      <ul>
+        <li>Resist penetration by <strong>small arms fire and grenade shrapnel</strong>; and</li>
+        <li>Resist <strong>forcible intrusions</strong> by unauthorized persons.</li>
+      </ul>
+      <p>This door shall be capable of being <strong>locked and unlocked from either pilot's station</strong>.</p>
+    </div>
+
+    <h3>7.9 &nbsp;First Aid Kits</h3>
+    <p>First-aid kits are carried for use by <strong>cabin crew</strong> in managing incidents of ill health. The number required scales with passengers carried.</p>
+    <table class="data-table">
+      <caption>Table 7.1 — First Aid Kits Required</caption>
+      <thead>
+        <tr><th class="c">Passengers</th><th class="c">First Aid Kits</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="c">0 – 100</td><td class="c hl">1</td></tr>
+        <tr><td class="c">101 – 199</td><td class="c hl">2</td></tr>
+        <tr><td class="c">200 – 299</td><td class="c hl">3</td></tr>
+        <tr><td class="c">300 or more</td><td class="c hl">4</td></tr>
+      </tbody>
+    </table>
+    <div class="tip">
+      <span class="box-label">Exam Trap</span>
+      <p>An aircraft carrying <strong>250 passengers</strong> falls in the 200–299 band — answer is <strong>3 kits</strong>. Watch the band boundaries carefully.</p>
+    </div>
+
+    <h3>7.10 &nbsp;Emergency Medical Kit</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement — Medical Supplies</span>
+      <p><strong>Universal Precaution Kit:</strong> For aeroplanes required to carry cabin crew as part of the operating crew — <strong>one universal precaution kit</strong> (<strong>two</strong> for aeroplanes authorized to carry more than <span class="val">250 passengers</span>) for use by cabin crew in managing incidents of ill health associated with a suspected communicable disease, or illness involving contact with body fluids.</p>
+      <p><strong>Medical Kit:</strong> For aeroplanes authorized to carry <strong>more than <span class="val">100 passengers</span></strong>, on a <strong>sector length of more than <span class="val">2 hours</span></strong> — a medical kit for use by medical doctors or other qualified persons in treating in-flight medical emergencies.</p>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 8 ============ -->
+  <div class="section" id="s8">
+    <span class="section-num">Section 08</span>
+    <h2 class="section-title">Flight Recorders</h2>
+
+    <p class="lead">Flight recorders capture what the aircraft and crew did. They fall into two families — <strong>crash-protected</strong> recorders (heavy, survivable) and <strong>lightweight</strong> recorders.</p>
+
+    <div class="box definition">
+      <span class="box-label">Definition — Crash-Protected Flight Recorders</span>
+      <p>Comprise <strong>one or more</strong> of the following systems:</p>
+      <ul>
+        <li><strong>FDR</strong> — Flight Data Recorder</li>
+        <li><strong>CVR</strong> — Cockpit Voice Recorder</li>
+        <li><strong>AIR</strong> — Airborne Image Recorder</li>
+        <li><strong>DLR</strong> — Data Link Recorder</li>
+      </ul>
+      <p>Image and data link information may be recorded on <strong>either the CVR or the FDR</strong>.</p>
+    </div>
+
+    <div class="box definition">
+      <span class="box-label">Definition — Lightweight Flight Recorders</span>
+      <p>Comprise <strong>one or more</strong> of the following systems:</p>
+      <ul>
+        <li><strong>ADRS</strong> — Aircraft Data Recording System</li>
+        <li><strong>CARS</strong> — Cockpit Audio Recording System</li>
+        <li><strong>AIRS</strong> — Airborne Image Recording System</li>
+        <li><strong>DLRS</strong> — Data Link Recording System</li>
+      </ul>
+      <p>Image and data link information may be recorded on <strong>either the CARS or the ADRS</strong>.</p>
+    </div>
+
+    <h3>8.1 &nbsp;Combination Recorders</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>All aeroplanes of a maximum certificated take-off mass of <strong>over <span class="val">15,000 kg</span></strong>, which are required to be equipped with <strong>both a CVR and an FDR</strong>, shall be equipped with <strong>two combination recorders (FDR/CVR)</strong>.</p>
+      <p>One recorder shall be located <strong>as close to the cockpit as practicable</strong>, and the other recorder located <strong>as far aft as practicable</strong>.</p>
+    </div>
+    <div class="tip">
+      <span class="box-label">Why Two, Far Apart?</span>
+      <p>Putting one recorder forward and one aft maximises the chance that at least one survives an accident — a fire or impact that destroys one location may spare the other.</p>
+    </div>
+
+    <h3>8.2 &nbsp;Recording Duration Requirements</h3>
+    <table class="data-table">
+      <caption>Table 8.1 — Minimum Recording Retention Periods</caption>
+      <thead>
+        <tr><th>Recorder</th><th>Minimum Retention</th><th>Applicability</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>FDR</strong> (all)</td><td class="hl">Last 25 hours</td><td>All FDRs</td></tr>
+        <tr><td><strong>CVR</strong> &amp; <strong>Data Link Recorders</strong></td><td class="hl">Last 2 hours</td><td>General requirement</td></tr>
+        <tr><td><strong>CVRs / CARS</strong></td><td class="hl">Last 2 hours</td><td>All CVRs/CARS retain at least last 2 hours</td></tr>
+        <tr><td><strong>CVR</strong> (large new aircraft)</td><td class="hl">Last 25 hours</td><td>Aeroplanes of MCTOM <strong>over 27,000 kg</strong> for which the individual C of A is first issued <strong>on or after 1 January 2022</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="box sop">
+      <span class="box-label">Standard Procedure — CVR / CARS Operation</span>
+      <p>The CVR or a Cockpit Audio Recording System (CARS) shall <strong>start recording before the aircraft moves under its own power</strong>, and shall <strong>continuously record until the aircraft is no longer capable of moving under its own power</strong>.</p>
+      <p>CVR/CARS shall <strong>NOT use magnetic tape or wire</strong> for recording.</p>
+    </div>
+
+    <div class="tip">
+      <span class="box-label">Exam Focus — The 25 / 2 / 25 Pattern</span>
+      <p>FDR = <strong>25 h</strong>. Standard CVR &amp; data link = <strong>2 h</strong>. But a new CVR on a heavy aircraft (&gt;27,000 kg, C of A on/after 1 Jan 2022) = <strong>25 h</strong>. A common question pairs "FDR 25, CVR 2, data link 2" — that is the correct combination.</p>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 9 ============ -->
+  <div class="section" id="s9">
+    <span class="section-num">Section 09</span>
+    <h2 class="section-title">Oxygen Supply &amp; Protective Breathing Equipment</h2>
+
+    <p>As an aeroplane climbs, the air thins. Oxygen rules are written around <strong>absolute pressure values</strong>, which correspond to standard-atmosphere altitudes.</p>
+
+    <table class="data-table">
+      <caption>Table 9.1 — Pressure / Altitude Equivalents (Standard Atmosphere)</caption>
+      <thead>
+        <tr><th class="c">Absolute Pressure</th><th class="c">Metres</th><th class="c">Feet</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="c hl">700 hPa</td><td class="c">3 000 m</td><td class="c">10 000 ft</td></tr>
+        <tr><td class="c hl">620 hPa</td><td class="c">4 000 m</td><td class="c">13 000 ft</td></tr>
+        <tr><td class="c hl">376 hPa</td><td class="c">7 600 m</td><td class="c">25 000 ft</td></tr>
+      </tbody>
+    </table>
+
+    <h3>9.1 &nbsp;Oxygen Supply — Flights at Altitude</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation — Pressure Below 700 hPa</span>
+      <p>A flight to be operated at a flight altitude at which the atmospheric pressure in personnel compartments will be <strong>less than 700 hPa</strong> shall <strong>not be commenced</strong> unless sufficient stored breathing oxygen is carried to supply:</p>
+      <ul>
+        <li><strong>(a)</strong> <strong>All crew members and 10% of passengers</strong> — for any period in excess of <span class="val">30 minutes</span> that the pressure in the compartment occupied by them will be <strong>between 700 hPa and 620 hPa</strong>; and</li>
+        <li><strong>(b)</strong> <strong>The crew and passengers</strong> — for any period that the atmospheric pressure in compartments occupied by them will be <strong>less than 620 hPa</strong>.</li>
+      </ul>
+    </div>
+
+    <h3>9.2 &nbsp;Oxygen Supply — Pressurised Aeroplanes</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation — Loss of Pressurisation</span>
+      <p>A flight to be operated with a <strong>pressurised aeroplane</strong> shall <strong>not be commenced</strong> unless a sufficient quantity of stored breathing oxygen is carried to supply all crew members and passengers — as appropriate to the circumstances of the flight — in the event of <strong>loss of pressurisation</strong>, for any period that the atmospheric pressure in any compartment occupied by them would be <strong>less than 700 hPa</strong>.</p>
+      <p>In addition, when an aeroplane is operated at flight altitudes at which the atmospheric pressure is <strong>less than 376 hPa</strong> — OR which, if operated at altitudes where the pressure is more than 376 hPa, <strong>cannot descend safely within 4 minutes</strong> to a flight altitude where the atmospheric pressure equals 620 hPa — there shall be <strong>no less than a 10-minute supply</strong> for the occupants of the passenger compartment.</p>
+    </div>
+
+    <div class="box sop">
+      <span class="box-label">Standard Requirement — Pressurisation Warning Device</span>
+      <p>Pressurised aeroplanes intended to be operated at flight altitudes where the atmospheric pressure would be <strong>less than 376 hPa</strong> shall be equipped with a device to provide <strong>positive warning to the flight crew of any dangerous loss of pressurisation</strong>.</p>
+    </div>
+
+    <h3>9.3 &nbsp;Crew Protective Breathing Equipment (PBE)</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>An operator shall not operate a <strong>pressurised aeroplane</strong>, OR an <strong>unpressurised aeroplane with a MCTOM exceeding <span class="val">5,700 kg</span> or having a maximum approved seating configuration of more than <span class="val">19 seats</span></strong>, unless:</p>
+      <ol>
+        <li>It has equipment to protect the <strong>eyes, nose and mouth</strong> of each flight crew member while on flight deck duty, and to provide oxygen for a period of <strong>not less than <span class="val">15 minutes</span></strong>. The supply for PBE may be provided by the supplemental oxygen required. In addition, when the flight crew is <strong>more than one and a cabin crew member is not carried</strong>, portable PBE must be carried to protect the eyes, nose and mouth of <strong>one member of the flight crew</strong> and to provide breathing gas for not less than <span class="val">15 minutes</span>; <strong>and</strong></li>
+        <li>It has <strong>sufficient portable PBE</strong> to protect the eyes, nose and mouth of <strong>all required cabin crew members</strong> and to provide breathing gas for a period of <strong>not less than <span class="val">15 minutes</span></strong>.</li>
+      </ol>
+    </div>
+    <div class="tip">
+      <span class="box-label">Memory Aid</span>
+      <p>PBE protects the "<strong>three openings</strong>" — eyes, nose, mouth — for at least <strong>15 minutes</strong>. The 15-minute figure applies to <em>both</em> flight crew and cabin crew PBE.</p>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 10 ============ -->
+  <div class="section" id="s10">
+    <span class="section-num">Section 10</span>
+    <h2 class="section-title">Emergency &amp; Survival Equipment</h2>
+
+    <h3>10.1 &nbsp;Hand Fire Extinguishers</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>Portable fire extinguishers provided shall be of a type which, when discharged, <strong>will not cause dangerous contamination of the air</strong> within the aeroplane. At least one shall be located in:</p>
+      <ul>
+        <li>The <strong>pilot's compartment</strong>; and</li>
+        <li><strong>Each passenger compartment</strong> that is separate from the pilot's compartment and that is not readily accessible to the flight crew.</li>
+      </ul>
+      <p>Any portable fire extinguisher fitted in accordance with the Certificate of Airworthiness of the aeroplane may count as one prescribed.</p>
+    </div>
+
+    <h3>10.2 &nbsp;Crash Axes and Crowbars</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>An operator shall not operate an aeroplane with a MCTOM <strong>exceeding <span class="val">5,700 kg</span></strong>, OR having a maximum approved passenger seating configuration of <strong>more than <span class="val">9 seats</span></strong>, unless it is equipped with <strong>at least one crash axe or crowbar located on the flight deck</strong>.</p>
+      <p>If the maximum approved passenger seating configuration is <strong>more than <span class="val">200</span></strong>, an <strong>additional</strong> crash axe or crowbar must be carried and located in or near the <strong>most rearward galley area</strong>.</p>
+    </div>
+
+    <h3>10.3 &nbsp;Marking of Break-in Points</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>Areas of the fuselage suitable for break-in by rescue crews in an emergency are marked on an aeroplane. The colour of the markings shall be <strong>red or yellow</strong>, and if necessary they shall be <strong>outlined in white</strong> to contrast with the background.</p>
+    </div>
+
+    <h3>10.4 &nbsp;Means for Emergency Evacuation</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>An operator shall, <strong>for each type of aeroplane</strong>, assign to all flight crew members the necessary functions they are to perform in an emergency or in a situation requiring emergency evacuation. <strong>Annual training</strong> in accomplishing these functions shall be contained in the operator's training programme and shall include instruction in the use of all emergency and lifesaving equipment required to be carried, and drills in the emergency evacuation of the aeroplane.</p>
+    </div>
+
+    <h3>10.5 &nbsp;Megaphones</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>An operator shall not operate an aeroplane with a maximum approved passenger seating configuration of <strong>more than 60</strong> and carrying one or more passengers, unless it is equipped with portable battery-powered megaphones readily accessible for use by crew members during an emergency evacuation, to the following scales:</p>
+    </div>
+    <table class="data-table">
+      <caption>Table 10.1 — Megaphones Required</caption>
+      <thead>
+        <tr><th class="c">Passenger Seating Configuration</th><th class="c">Number of Megaphones Required</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="c">61 to 99</td><td class="c hl">1</td></tr>
+        <tr><td class="c">100 or more</td><td class="c hl">2</td></tr>
+      </tbody>
+    </table>
+
+    <h3>10.6 &nbsp;Emergency Lighting</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>An operator shall not operate a passenger-carrying aeroplane which has a maximum approved passenger seating configuration of <strong>more than <span class="val">9</span></strong> unless it is provided with an <strong>emergency lighting system having an independent power supply</strong> to facilitate the evacuation of the aeroplane.</p>
+    </div>
+
+    <h3>10.7 &nbsp;Automatic Emergency Locator Transmitter (ELT)</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p><strong>All aeroplanes</strong> shall carry an <strong>automatic ELT</strong>.</p>
+      <p>All aeroplanes authorized to carry <strong>more than <span class="val">19 passengers</span></strong> shall be equipped with <strong>at least two ELTs</strong>, <strong>one of which shall be automatic</strong>.</p>
+    </div>
+
+    <h3>10.8 &nbsp;Life Jackets — Passenger Familiarisation</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>An operator shall ensure that passengers are made <strong>familiar with the location and use of</strong>:</p>
+      <ul>
+        <li><strong>Seat belts</strong>;</li>
+        <li><strong>Emergency exits</strong>;</li>
+        <li><strong>Life jackets</strong>, if the carriage of life jackets is prescribed;</li>
+        <li><strong>Oxygen dispensing equipment</strong>, if the provision of oxygen for passengers is prescribed; and</li>
+        <li>Other emergency equipment provided for individual use, including the <strong>passenger emergency briefing card</strong>.</li>
+      </ul>
+    </div>
+
+    <h3>10.9 &nbsp;Life Rafts &amp; Survival ELTs for Extended Over-Water Flights</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>On over-water flights, an operator shall not operate an aeroplane at a distance away from land suitable for making an emergency landing without <strong>sufficient life-rafts to carry all persons on board</strong>.</p>
+      <p>Unless excess rafts of enough capacity are provided, the buoyancy and seating capacity beyond the rated capacity of the rafts must accommodate <strong>all occupants of the aeroplane in the event of a loss of one raft of the largest rated capacity</strong>. The life-rafts shall be equipped with:</p>
+      <ul>
+        <li>A <strong>survivor locator light</strong>; and</li>
+        <li><strong>Life-saving equipment</strong>, including means of sustaining life as appropriate to the flight, and <strong>at least two survival Emergency Locator Transmitters [ELT(S)]</strong> capable of transmitting on the distress frequencies.</li>
+      </ul>
+    </div>
+
+    <h3>10.10 &nbsp;Survival Equipment — Information for Rescue Coordination Centres</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>Operators shall at all times have available for <strong>immediate communication to rescue coordination centres</strong> lists containing information on the emergency and survival equipment carried on board any of their aeroplanes engaged in international air navigation. The information shall include, as applicable:</p>
+      <ul>
+        <li>The <strong>number, colour and type</strong> of life rafts and pyrotechnics;</li>
+        <li>Details of <strong>emergency medical supplies</strong> and <strong>water supplies</strong>; and</li>
+        <li>The <strong>type and frequencies</strong> of the emergency portable radio equipment.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 11 ============ -->
+  <div class="section" id="s11">
+    <span class="section-num">Section 11</span>
+    <h2 class="section-title">Communication &amp; Navigation Equipment</h2>
+
+    <h3>11.1 &nbsp;Communication Equipment</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>An aeroplane shall be provided with <strong>radio communication equipment capable of</strong>:</p>
+      <ul>
+        <li>Conducting <strong>two-way communication for aerodrome control</strong> purposes;</li>
+        <li><strong>Receiving meteorological information</strong> at any time during flight; and</li>
+        <li>Conducting <strong>two-way communication at any time during flight</strong> with at least one aeronautical station, and with such other aeronautical stations and on such frequencies as may be prescribed by the appropriate authority.</li>
+      </ul>
+      <p>The radio communication equipment shall provide for communications on the <strong>aeronautical emergency frequency <span class="val">121.5 MHz</span></strong>.</p>
+    </div>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement — RCP-Type Airspace</span>
+      <p>For flights in defined portions of airspace, or on routes where an <strong>RCP (Required Communication Performance) type</strong> has been prescribed, an aeroplane shall:</p>
+      <ul>
+        <li>Be provided with communication equipment which will enable it to operate in accordance with the prescribed RCP type(s); and</li>
+        <li>Be <strong>authorized by the State of the Operator</strong> for operations in such airspace.</li>
+      </ul>
+    </div>
+
+    <h3>11.2 &nbsp;Navigation Equipment</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>An aeroplane shall be provided with navigation equipment which will enable it to proceed:</p>
+      <ul>
+        <li>In accordance with its <strong>operational flight plan</strong>; and</li>
+        <li>In accordance with the <strong>requirements of air traffic services</strong> — except when navigation for flights under the visual flight rules is accomplished by visual reference to landmarks.</li>
+      </ul>
+    </div>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement — PBN Operations</span>
+      <p>For operations where a <strong>navigation specification for PBN (Performance-Based Navigation)</strong> has been prescribed, an aeroplane shall:</p>
+      <ul>
+        <li>Be provided with navigation equipment which will enable it to operate in accordance with the prescribed navigation specification(s); and</li>
+        <li>Be <strong>authorized by DGCA</strong> for such operations.</li>
+      </ul>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — NAT HLA (formerly MNPSA)</span>
+      <p>The airspace formerly known as the <strong>"North Atlantic Minimum Navigational Specifications Airspace" (MNPSA)</strong> — <strong>FL285–420 inclusive</strong> — is re-designated as the <strong>"North Atlantic High Level Airspace" (NAT HLA)</strong>. The re-designation from MNPS to HLA is in keeping with the transition from capability-based navigation (MNPS) to <strong>Performance-Based Navigation (PBN)</strong> in this segment of the NAT airspace.</p>
+    </div>
+
+    <h3>11.3 &nbsp;Radio Equipment (Survival Radio)</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>An aeroplane operated across land areas designated by AAI as areas in which search and rescue would be especially difficult shall be equipped with at least <strong>one survival radio equipment</strong>, stowed so as to facilitate its ready use in an emergency, which:</p>
+      <ul>
+        <li>Operates on <strong>VHF</strong>;</li>
+        <li>Is <strong>portable</strong>;</li>
+        <li>Is <strong>not dependent for operation upon the aircraft power supply</strong>; and</li>
+        <li>Is <strong>capable of being operated by unskilled persons</strong>.</li>
+      </ul>
+      <p>The aeroplane shall also be equipped with such <strong>signaling devices and life-saving equipment</strong> (including means of sustaining life) as may be appropriate to the area overflown.</p>
+    </div>
+
+    <h3>11.4 &nbsp;Audio Selector Panel</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>An operator shall not operate an aeroplane <strong>under IFR</strong> unless it is equipped with an <strong>audio selector panel accessible to each required flight crew member</strong>.</p>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 12 ============ -->
+  <div class="section" id="s12">
+    <span class="section-num">Section 12</span>
+    <h2 class="section-title">Minimum Fuel Requirements</h2>
+
+    <p class="lead">For all aeroplanes (except helicopters), fuel planning is built up from defined "blocks". You must understand each block and the exact rules attached to it.</p>
+
+    <h3>12.1 &nbsp;Basis of Fuel Calculation</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <p>The amount of usable fuel carried shall, as a minimum, be based on:</p>
+      <ul>
+        <li>Current aeroplane-specific data derived from a <strong>fuel consumption monitoring system</strong>, if available; or, if not available, data provided by the <strong>aeroplane manufacturer</strong>; and</li>
+        <li>The <strong>operating conditions</strong> for the planned flight — including anticipated aeroplane mass, NOTAMs, current meteorological reports/forecasts, ATS procedures, restrictions and anticipated delays, and the effects of deferred maintenance items and/or configuration deviations.</li>
+      </ul>
+    </div>
+
+    <h3>12.2 &nbsp;The Fuel Blocks</h3>
+    <div class="box definition">
+      <span class="box-label">Definition — (a) Taxi Fuel</span>
+      <p>The amount of fuel expected to be consumed <strong>before take-off</strong>, taking into account local conditions at the departure aerodrome and <strong>APU fuel consumption</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — (b) Trip Fuel</span>
+      <p>The amount of fuel required to enable the aeroplane to fly from take-off (or the point of in-flight re-planning) <strong>until landing at the destination aerodrome</strong>, taking into account the operating conditions.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — (c) Contingency Fuel</span>
+      <p>The amount of fuel required to <strong>compensate for unforeseen factors</strong>. It shall be <strong>5% of the planned trip fuel</strong> (or of the fuel required from the point of in-flight re-planning, based on the consumption rate used to plan the trip fuel) — but in <strong>no case</strong> shall it be lower than the amount required to fly for <strong>5 minutes at holding speed at <span class="val">450 m (1 500 ft)</span> above the destination aerodrome in standard conditions</strong>.</p>
+    </div>
+    <div class="tip">
+      <span class="box-label">Note — Unforeseen Factors</span>
+      <p>"Unforeseen factors" are those which could influence fuel consumption to the destination — deviations of an individual aeroplane from expected fuel data, deviations from forecast weather, extended delays, and deviations from planned routings and/or cruising levels.</p>
+    </div>
+
+    <h4>(d) Destination Alternate Fuel</h4>
+    <div class="box definition">
+      <span class="box-label">Definition — (d) Destination Alternate Fuel</span>
+      <p><strong>1) Where a destination alternate aerodrome is required</strong> — the amount of fuel required to enable the aeroplane to:</p>
+      <ul>
+        <li>i) perform a <strong>missed approach</strong> at the destination aerodrome;</li>
+        <li>ii) <strong>climb</strong> to the expected cruising altitude;</li>
+        <li>iii) <strong>fly</strong> the expected routing;</li>
+        <li>iv) <strong>descend</strong> to the point where the expected approach is initiated; and</li>
+        <li>v) conduct the <strong>approach and landing</strong> at the destination alternate aerodrome.</li>
+      </ul>
+      <p><strong>2) Where two destination alternate aerodromes are required</strong> — the amount of fuel required to enable the aeroplane to proceed to the destination alternate aerodrome which requires the <strong>greater amount of alternate fuel</strong>.</p>
+      <p><strong>3) Where a flight is operated without a destination alternate aerodrome</strong> — the amount of fuel required to fly for <strong>15 minutes at holding speed at 450 m (1 500 ft)</strong> above destination aerodrome elevation in standard conditions.</p>
+      <p><strong>4) Where the aerodrome of intended landing is an isolated aerodrome</strong>:</p>
+      <ul>
+        <li>vi) for a <strong>reciprocating engine aeroplane</strong> — fuel to fly for <strong>45 minutes plus 15% of the flight time</strong> planned to be spent at cruising level (including final reserve fuel), <strong>or two hours, whichever is less</strong>;</li>
+        <li>vii) for a <strong>turbine-engine aeroplane</strong> — fuel to fly for <strong>two hours at normal cruise consumption</strong> above the destination aerodrome (including final reserve fuel).</li>
+      </ul>
+    </div>
+
+    <h4>(e) Final Reserve Fuel</h4>
+    <div class="box definition">
+      <span class="box-label">Definition — (e) Final Reserve Fuel</span>
+      <p>The amount of fuel calculated using the estimated mass on arrival at the destination alternate aerodrome (or the destination aerodrome when no destination alternate is required):</p>
+      <ul>
+        <li>For a <strong>reciprocating engine aeroplane</strong> — fuel to fly for <strong>45 minutes</strong>, under speed and altitude conditions specified by the State of the Operator;</li>
+        <li>For a <strong>turbine-engine aeroplane</strong> — fuel to fly for <strong>30 minutes at holding speed at 450 m (1 500 ft)</strong> above aerodrome elevation in standard conditions.</li>
+      </ul>
+    </div>
+
+    <h4>(f) Additional Fuel</h4>
+    <div class="box definition">
+      <span class="box-label">Definition — (f) Additional Fuel</span>
+      <p>The supplementary amount of fuel required if the minimum fuel calculated is not sufficient to:</p>
+      <ul>
+        <li>Allow the aeroplane to descend as necessary and proceed to an alternate aerodrome in the event of <strong>engine failure or loss of pressurisation</strong> — whichever requires the greater amount of fuel — based on the assumption that such a failure occurs at the <strong>most critical point along the route</strong>; then</li>
+        <li>Fly for <strong>15 minutes at holding speed at 450 m (1 500 ft)</strong> above aerodrome elevation in standard conditions; and</li>
+        <li>Make an approach and landing.</li>
+      </ul>
+      <p>It must also allow an aeroplane engaged in <strong>EDTO</strong> to comply with the EDTO critical fuel scenario as established by the State of the Operator, and meet additional requirements not covered above.</p>
+    </div>
+
+    <div class="box definition">
+      <span class="box-label">Definition — Extended Diversion Time Operations (EDTO)</span>
+      <p>Any operation by an aeroplane with <strong>two or more turbine engines</strong> where the diversion time to an en-route alternate aerodrome is <strong>greater than the threshold time</strong> established by the State of the Operator.</p>
+    </div>
+
+    <h4>(g) Discretionary Fuel</h4>
+    <div class="box definition">
+      <span class="box-label">Definition — (g) Discretionary Fuel</span>
+      <p>The <strong>extra amount of fuel</strong> to be carried <strong>at the discretion of the pilot-in-command</strong>.</p>
+    </div>
+
+    <div class="diagram">
+      <div class="dgm-title">Build-Up of Usable Fuel Required</div>
+      <pre class="mermaid">
+graph TD
+    A["TAXI FUEL<br/>before take-off + APU"] --> B["TRIP FUEL<br/>take-off to destination"]
+    B --> C["CONTINGENCY FUEL<br/>5% of trip fuel — min 5 min<br/>holding at 1500 ft"]
+    C --> D["DESTINATION ALTERNATE FUEL<br/>missed approach + climb + cruise<br/>+ descent + approach &amp; land"]
+    D --> E["FINAL RESERVE FUEL<br/>Turbine: 30 min holding at 1500 ft<br/>Recip: 45 min"]
+    E --> F["ADDITIONAL FUEL<br/>engine-out / depressurisation<br/>+ EDTO critical scenario"]
+    F --> G["DISCRETIONARY FUEL<br/>extra — PIC's discretion"]
+    style A fill:#e8f1fb,stroke:#1f5fa8,color:#0d2a4a
+    style C fill:#fdecec,stroke:#c0392b,color:#0d2a4a
+    style E fill:#fdecec,stroke:#c0392b,color:#0d2a4a
+    style G fill:#1e7d34,color:#fff,stroke:#1e7d34
+      </pre>
+    </div>
+
+    <div class="tip">
+      <span class="box-label">Exam Focus — Key Fuel Numbers</span>
+      <p>Contingency = <strong>5%</strong> of trip fuel (floor: 5 min holding). Final reserve — <strong>turbine 30 min</strong>, <strong>recip 45 min</strong>. No-alternate destination fuel = <strong>15 min holding</strong>. Holding height in every case = <strong>450 m / 1 500 ft</strong>.</p>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 13 ============ -->
+  <div class="section" id="s13">
+    <span class="section-num">Section 13</span>
+    <h2 class="section-title">Flight Crew &amp; Flight Duty Time Limitations (FDTL)</h2>
+
+    <p class="lead">Fatigue is a flight-safety hazard. FDTL rules set the maximum a crew may legally work and the minimum rest they must receive. Every figure below is examinable.</p>
+
+    <h3>13.1 &nbsp;The Governing Regulation</h3>
+    <div class="box definition">
+      <span class="box-label">Definition — CAR Section 7, Series J</span>
+      <p>Civil Aviation Requirement <strong>Section 7 — Flight Crew Standards, Training and Licensing, Series J</strong> (in three parts) prescribes the <strong>maximum limits of Flight Time, Flight Duty Period, Duty Period</strong> and the <strong>minimum Rest Period</strong> applicable to all flight crew and cabin crew of <strong>Scheduled, Non-Scheduled, General Aviation and Scheduled Commuter</strong> Air Transport Services.</p>
+    </div>
+    <div class="box sop">
+      <span class="box-label">Rule 42A of the Aircraft Rules, 1937 — Fatigue Management</span>
+      <ol>
+        <li>Taking into account the likely impact of fatigue on alertness, the <strong>maximum limits of flight time, flight duty period and duty period</strong> of flight and cabin crew, and the <strong>minimum rest periods</strong>, <strong>may be specified by the Director-General</strong>.</li>
+        <li><strong>No flight or cabin crew member</strong> of a flying machine registered in India, or wet-leased by an Indian operator, <strong>shall contravene the limitations stipulated by the Director-General</strong>.</li>
+        <li>Every Indian operator shall establish a scheme of flight and duty time limitations and minimum rest periods in accordance with the stipulations made by the Director-General, submit it for approval, and — after approval — such scheme shall form part of the <strong>Operations Manual</strong> of the operator.</li>
+      </ol>
+    </div>
+    <div class="tip">
+      <span class="box-label">Reference Note</span>
+      <p>The figures that follow are highlights of <strong>CAR Series J, Part III, Issue III, Rev 2, dated 26 Mar 2024</strong>, for flight crew engaged in Scheduled Air Transport Operations. For other operations, refer to Series J Parts I, II and IV.</p>
+    </div>
+
+    <h3>13.2 &nbsp;Crew Member Categories</h3>
+    <div class="box definition">
+      <span class="box-label">Definition — Cabin Crew Member</span>
+      <p>Crew who perform duties in the interest of the safety of passengers, and duties assigned by the operator and the pilot-in-command — but who <strong>shall not act as a flight crew member</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Flight Crew Member</span>
+      <p>A <strong>licensed</strong> crew member charged with duties <strong>essential to the operation of an aircraft</strong> during a flight duty period.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Scheduled Commuter Operators</span>
+      <p>Operators permitted to operate aircraft weighing <strong>up to <span class="val">40,000 kg</span></strong>. They are permitted to operate commercial flights between two or more local destinations, <strong>except the Category I cities</strong>, which include: Mumbai Int'l, Kolkata Int'l, Delhi Int'l, Bangalore Int'l, Hyderabad Int'l, Thiruvananthapuram and Chennai.</p>
+    </div>
+
+    <h3>13.3 &nbsp;FDTL Definitions — Essential Vocabulary</h3>
+    <div class="box definition">
+      <span class="box-label">Definition — Acclimatized</span>
+      <p>A state in which a crew member's <strong>circadian biological clock is synchronised</strong> to the time zone where the crew member is. A crew member is considered acclimatized to a <strong>3-hour-wide time zone</strong> surrounding the local time at the point of departure. When the local time at the place where a flight duty commences differs by <strong>more than 3 hours</strong> from the local time where the next duty starts, the crew member — for calculating the maximum daily FDP — is considered acclimatized to the <strong>departure time zone for the first 48 hours</strong>. After 48 hours, the crew member is considered acclimatized to the local time where they start the next duty.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Accommodation</span>
+      <p>For the purpose of standby and split duty — a <strong>quiet and comfortable place not open to the public</strong>, with the ability to control light and temperature, equipped with adequate furniture providing a crew member with the possibility to sleep, with enough capacity to accommodate all crew members present, and with access to food and drink.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Suitable Accommodation</span>
+      <p>For the purpose of standby, split duty and rest — a <strong>separate room for each crew member</strong> located in a quiet environment, equipped with a <strong>bed</strong>, sufficiently ventilated, with a device for regulating temperature and light intensity, and with access to food and drink.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Augmented Flight Crew</span>
+      <p>A flight crew which comprises <strong>more than the minimum number required</strong> to operate the aircraft, allowing each flight crew member to leave the assigned post for the purpose of <strong>in-flight rest</strong> and to be replaced by another flight crew member of <strong>equal or higher qualification</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Duty</span>
+      <p>Any task that flight crew members are required by the operator to perform — including flight duty, administrative work, training, positioning and standby when it is likely to induce fatigue.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Duty Period</span>
+      <p>A period which <strong>starts when a flight crew member is required by an operator to report for, or to commence, a duty</strong> and <strong>ends when that person is free from all duties</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Flight Duty Period (FDP)</span>
+      <p>A period intended to cover a continuous period of duty that <strong>always includes a flight or series of flights</strong>. It <strong>commences when a flight crew member is required to report for duty</strong> and <strong>finishes at engine(s) off at the end of the last flight</strong> on which he/she is a flight crew member.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Flight Time</span>
+      <p>The total time from the moment an aeroplane <strong>first moves for the purpose of taking off</strong> until the moment it <strong>finally comes to rest at the end of the flight</strong>. <em>Note:</em> "Flight time" is synonymous with <strong>"block-to-block"</strong> or <strong>"chocks-to-chocks"</strong> time.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Mixed Duty</span>
+      <p>When a crew member is required to report for a duty <strong>in advance of the stipulated reporting time</strong>, for a scheduled flight or series of flights, to carry out a duty at the behest of the operator — the time spent on that duty shall be <strong>part of the subsequent FDP</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Fatigue</span>
+      <p>A <strong>physiological state of reduced mental or physical performance capability</strong> resulting from sleep loss or extended wakefulness, circadian phase, or workload, that can impair a crew member's alertness and ability to safely operate an aircraft or perform safety-related duties.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Home Base</span>
+      <p>The location nominated by the operator, having a <strong>high degree of permanence</strong>, from which the crew member normally starts and ends a flight duty or a series of flight duty periods.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Temporary Home Base</span>
+      <p>The place of posting by the operator where the crew operates and starts a series of Duty Cycles, and which is <strong>not the same as Home Base</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Local Day</span>
+      <p>A <strong>24-hour period</strong> commencing at <strong>00:00 local time</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Local Night</span>
+      <p>A period of <strong>8 hours</strong> falling between <strong>2200 hours and 0800 hours</strong> local time.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Night Duty</span>
+      <p>Any Duty Period encroaching upon any portion of the time period between <strong>0000 hrs and 0600 hrs</strong> in the time zone to which the crew is acclimatized.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Operating Crew Member</span>
+      <p>A crew member <strong>carrying out duties in an aircraft during a sector</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Positioning</span>
+      <p>The transferring of a <strong>non-operating</strong> flight crew member from place to place at the behest of the operator. <em>Note:</em> "Positioning" is synonymous with <strong>"Deadheading"</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Reporting Time</span>
+      <p>The time at which a flight crew member is required by an operator to <strong>report for duty</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Rest Period</span>
+      <p>A <strong>continuous, uninterrupted and defined period of time</strong>, subsequent to or prior to duty, during which a flight crew member is <strong>free from all duties, standby and reserve</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Rest Facility</span>
+      <p>A <strong>bunk or seat with leg and foot support</strong> suitable for crew members' sleeping on board an aircraft.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Roster</span>
+      <p>A list provided by an operator of the times when a flight crew member is required to undertake duties. <em>Note:</em> "Roster" is synonymous with <strong>"Schedule", "Line of Time", "Pattern"</strong> and <strong>"Rotation"</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Standby</span>
+      <p>A defined period of time during which a flight crew member is required by the operator to be <strong>available to receive an assignment</strong> for a specific duty <strong>without an intervening rest period</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Sector</span>
+      <p>The segment of a Flight Duty Period between an aircraft <strong>first moving for the purpose of taking off until it comes to rest after landing</strong> on the designated parking position.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Time Zone</span>
+      <p>A defined region of the earth with a uniform local time which differs by <strong>one hour, or part of one hour</strong>, from the uniform local time of an adjoining region — irrespective of season.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Training Flights</span>
+      <p>Flights for the purpose of <strong>Base Training, Familiarization, and Conducting Aircraft Training and Checks</strong> (Skill Test / IR / PPC).</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Unforeseen Operational Circumstance</span>
+      <p>An <strong>unplanned event</strong> — such as unforeseen weather, natural calamity, medical emergency, national requirement for relief and rescue operations (mission oriented), equipment malfunction, runway closure, passenger or aircraft security, etc. — that is <strong>beyond the control of the operator</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Ultra Long Range (ULR) Operations</span>
+      <p>Continuous non-stop flights between a specific city pair, involving any sector having a <strong>flight time of over 14 hours</strong> — and flight duty periods of up to <strong>22 hours</strong> — at any time during a calendar year, taking into account the mean and seasonal wind changes. ULR operations apply to <strong>both sectors</strong> of a city pair.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — In-flight Rest Period</span>
+      <p>A period of time within a flight duty time which is given to a crew member to <strong>rest before recommencing duty</strong>.</p>
+    </div>
+    <div class="box definition">
+      <span class="box-label">Definition — Window of Circadian Low (WOCL)</span>
+      <p>A period between <strong>0200h and 0600h</strong> in the time zone to which a crew member is acclimatized. This window is calculated from scientific data on the circadian low of performance, alertness (peak fatigue) and body temperature.</p>
+    </div>
+
+    <h3>13.4 &nbsp;Operator's Responsibility</h3>
+    <div class="box sop">
+      <span class="box-label">Standard Requirement</span>
+      <ul>
+        <li>Every operator shall establish a <strong>scheme</strong> for complying with the limitations for Flight Time, FDP, Duty Periods and Rest Periods specified in the CAR.</li>
+        <li>Each operator shall prepare the Flight Crew <strong>Roster sufficiently in advance</strong>. The roster should be published <strong>at least for a 7-day period</strong>, and the <strong>weekly rest shall be printed</strong> on the published roster.</li>
+        <li>Every operator shall assign a <strong>Home Base / Temporary Home Base</strong> to each flight crew member — <strong>minimum duration 7 days, maximum recommended 28 days</strong>.</li>
+      </ul>
+    </div>
+
+    <h3>13.5 &nbsp;Responsibility of the Flight Crew Member</h3>
+    <div class="box limitation">
+      <span class="box-label">Crew Member's Duty</span>
+      <ul>
+        <li>No flight crew member may <strong>accept an assignment which exceeds the prescribed limitation</strong>.</li>
+        <li>Flight crew members shall make best use of the facilities and opportunities provided for <strong>rest and meals</strong>, and shall plan and use rest periods to ensure they are fully rested.</li>
+        <li>A flight crew member <strong>shall not perform flight crew duties</strong> on a flight if it is known or suspected that the crew member is <strong>fatigued to the extent that the safety of flight may be adversely affected</strong>.</li>
+      </ul>
+    </div>
+
+    <h3>13.6 &nbsp;Flight Time &amp; FDP Limits — Two-Pilot Operation</h3>
+    <p>The maximum flight time and maximum flight duty period during any 24 hours for a two-pilot crew:</p>
+    <table class="data-table">
+      <caption>Table 13.1 — FT &amp; FDP Limits: Two-Pilot Operation</caption>
+      <thead>
+        <tr><th class="c">Maximum Flight Time</th><th class="c">Maximum Flight Duty Period (Hours)</th><th class="c">Maximum Number of Landings</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="c hl" rowspan="4">8 Hrs</td><td class="c">11:00</td><td class="c">6</td></tr>
+        <tr><td class="c">11:30</td><td class="c">5</td></tr>
+        <tr><td class="c">12:00</td><td class="c">4</td></tr>
+        <tr><td class="c">12:30</td><td class="c">3</td></tr>
+        <tr><td class="c hl">9 Hrs</td><td class="c">13:00</td><td class="c">2</td></tr>
+        <tr><td class="c hl">10 Hrs</td><td class="c">13:00</td><td class="c">1</td></tr>
+        <tr><td class="c" colspan="3" style="background:#fdecec;font-weight:700;">For Operations Encroaching Upon Night</td></tr>
+        <tr><td class="c hl">8 Hrs</td><td class="c">10:00</td><td class="c">2</td></tr>
+      </tbody>
+    </table>
+    <div class="tip">
+      <span class="box-label">Reading the Table</span>
+      <p>For a 2-crew international scheduled flight, the basic entry is <strong>FDP 11:00 hrs, Flight Time 8 hrs, 6 landings</strong>. As you trade FDP for more flying, landings drop — more flying hours allowed means fewer landings permitted. Operations encroaching on night are stricter: FDP capped at <strong>10:00 hrs</strong> with only <strong>2 landings</strong>.</p>
+    </div>
+
+    <h3>13.7 &nbsp;Flight Time &amp; FDP Limits — Augmented Crew</h3>
+    <p>An augmented crew carries extra pilots so each can take in-flight rest. This permits longer limits:</p>
+    <table class="data-table">
+      <caption>Table 13.2 — FT &amp; FDP Limits: Augmented Crew (any 24 hrs)</caption>
+      <thead>
+        <tr><th>Crew</th><th class="c">Max Flight Time</th><th class="c">Max FDP — Bunk</th><th class="c">Max FDP — Isolated Rest Seat</th><th class="c">Max FDP — Basic Rest Seat</th><th class="c">Max Landings</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>3 Crew Operations</strong></td><td class="c hl">12 Hrs</td><td class="c">16 Hrs</td><td class="c">15 Hrs</td><td class="c">14 Hrs</td><td class="c">2</td></tr>
+        <tr><td><strong>4 Crew Operations</strong></td><td class="c hl">14 Hrs</td><td class="c">18 Hrs</td><td class="c">16 Hrs</td><td class="c">NA</td><td class="c">1</td></tr>
+        <tr><td><strong>Above 14 hrs (ULR) — 4 Crew Operations</strong></td><td class="c hl">17 Hrs</td><td class="c">21 Hrs</td><td class="c">NA</td><td class="c">NA</td><td class="c">1</td></tr>
+      </tbody>
+    </table>
+    <div class="tip">
+      <span class="box-label">Memory Aid</span>
+      <p>Better rest facility = longer FDP allowed. A <strong>Bunk</strong> (lie-flat) always permits the highest FDP; an <strong>Isolated Rest Seat</strong> is next; a <strong>Basic Rest Seat</strong> the least — and is <strong>not available (NA)</strong> for 4-crew or ULR operations.</p>
+    </div>
+
+    <h3>13.8 &nbsp;Maximum Cumulative Flight Time &amp; Duty Period Limitations</h3>
+    <table class="data-table">
+      <caption>Table 13.3 — Cumulative FT &amp; Duty Period Limits</caption>
+      <thead>
+        <tr><th>Period</th><th class="c">Maximum Flight Time (Hours)</th><th class="c">Maximum Cumulative Duty Period</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>In <strong>7</strong> consecutive days</td><td class="c hl">35</td><td class="c">60</td></tr>
+        <tr><td>In <strong>14</strong> consecutive days</td><td class="c hl">65</td><td class="c">100</td></tr>
+        <tr><td>In <strong>28</strong> consecutive days</td><td class="c hl">100</td><td class="c">190</td></tr>
+        <tr><td>In <strong>90</strong> consecutive days</td><td class="c hl">300</td><td class="c">600</td></tr>
+        <tr><td>In <strong>365</strong> consecutive days</td><td class="c hl">1000</td><td class="c">1800</td></tr>
+      </tbody>
+    </table>
+    <div class="tip">
+      <span class="box-label">Exam Focus — Lock These In</span>
+      <p>Flight Time: <strong>7 days → 35 h</strong>, <strong>28 days → 100 h</strong>, <strong>90 days → 300 h</strong>, <strong>365 days → 1000 h</strong>. A pilot can fly <strong>100 hrs in 28 consecutive days</strong> and <strong>1000 hrs in 365 consecutive days</strong> — both are classic MCQ answers.</p>
+    </div>
+
+    <h3>13.9 &nbsp;Unforeseen Operational Circumstances — Extensions</h3>
+    <p>"Flight Time", "Flight Duty Period", "Landing" and "Consecutive Night" may be extended due to unforeseen operational circumstances as follows:</p>
+    <div class="box limitation">
+      <span class="box-label">Strict Limitation — Permitted Extensions</span>
+      <ul>
+        <li><strong>(a)</strong> Flight Time — by a maximum of <span class="val">01 hour</span>.</li>
+        <li><strong>(b)</strong> FDP — by a maximum of <span class="val">02 hours</span>.</li>
+        <li><strong>(c)</strong> Only <strong>one extra landing</strong> may be carried out in the event of a diversion to complete the flight, including a consecutive night for completion of the flight.</li>
+        <li><strong>(d)</strong> The above is subject to a cumulative limit of maximum <span class="val">04 hours</span> (Flight Time) and maximum <span class="val">08 hours</span> (FDP) during any period of <strong>28 consecutive days</strong>.</li>
+        <li><strong>(e)</strong> In the event of FDP extension up to 01 hour, OR Flight Time extension up to 30 minutes — the <strong>rest shall increase by 02 hours</strong>.</li>
+        <li><strong>(f)</strong> In the event of FDP extension beyond 01 hour, OR Flight Time extension beyond 30 minutes — the <strong>rest shall increase by 04 hours</strong>.</li>
+        <li><strong>(g)</strong> Extension of the maximum basic FDP <strong>shall not be combined with split duty</strong> in the same duty period.</li>
+        <li><strong>(h)</strong> If no flight time is utilized after commencement of FDP (reporting), the crew can be utilized after a minimum of <strong>twice the time period spent after reporting</strong>, subject to a minimum limit of <strong>12 hours of rest</strong>.</li>
+      </ul>
+    </div>
+    <div class="box sop">
+      <span class="box-label">Standard Procedure — Consent &amp; Reporting</span>
+      <p>The PIC, in consultation with the other flight crew members, will convey their willingness or consent to the Head of Operations for operating the flight. The Head of Operations will submit a <strong>quarterly report to the DGCA</strong> on all extensions granted. Cumulative Flight Time and Duty Time Limitations can be increased — as per (a) and (b) above — for the 7, 14, 28 and 90 consecutive-day maximums specified.</p>
+    </div>
+
+    <h3>13.10 &nbsp;Records</h3>
+    <div class="box limitation">
+      <span class="box-label">Strict Requirement</span>
+      <p>Records shall be kept for <strong>18 months</strong> of the duties performed and the rest periods provided, so as to facilitate inspection by the operator's authorized personnel and surveillance/audit by DGCA officers. The records may be made available to flight crew on request.</p>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 14 ============ -->
+  <div class="section" id="s14">
+    <span class="section-num">Section 14</span>
+    <h2 class="section-title">Practice Questions &amp; Answer Key</h2>
+
+    <p class="lead">Attempt each question before checking the answer key. These are the exact questions from the chapter — use them to confirm you have retained the regulatory numbers.</p>
+
+    <div class="quiz-q">
+      <p class="qn">1. Flight Duty Period and Flight Time Limit for a 2-crew international scheduled flight is ______ hrs, ______ hrs and ______ landings.</p>
+      <ul>
+        <li><span class="opt">A)</span> 11, 8 and 6.</li>
+        <li><span class="opt">B)</span> 12, 8 and 5.</li>
+        <li><span class="opt">C)</span> 13, 8 and 4.</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">2. Route guides are required to be carried in</p>
+      <ul>
+        <li><span class="opt">A)</span> All aircraft</li>
+        <li><span class="opt">B)</span> All private aircraft</li>
+        <li><span class="opt">C)</span> Aircraft involved in scheduled transport services</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">3. The duty time of the trainee pilot:</p>
+      <ul>
+        <li><span class="opt">A)</span> Is calculated as per the Flight Time and Flight Duty Period Limit</li>
+        <li><span class="opt">B)</span> Is not affected by the Flight Duty Period and Flight Time Limit</li>
+        <li><span class="opt">C)</span> Is the time calculated from take-off to landing</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">4. A pilot can fly in 28 consecutive days</p>
+      <ul>
+        <li><span class="opt">A)</span> 100 hrs PIC &amp; 50 hrs as Co-pilot</li>
+        <li><span class="opt">B)</span> 100 hrs</li>
+        <li><span class="opt">C)</span> 120 hrs</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">5. Flight Manual is to be carried by</p>
+      <ul>
+        <li><span class="opt">A)</span> All aircraft</li>
+        <li><span class="opt">B)</span> Scheduled aircraft only</li>
+        <li><span class="opt">C)</span> If C of A states so</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">6. A pvt. aircraft from Chennai to Colombo is required to carry on board.</p>
+      <ul>
+        <li><span class="opt">A)</span> Journey log book.</li>
+        <li><span class="opt">B)</span> Route Guide</li>
+        <li><span class="opt">C)</span> All of the above</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">7. The maximum duty time limit per day extension for a scheduled flight is</p>
+      <ul>
+        <li><span class="opt">A)</span> 1.5 hrs</li>
+        <li><span class="opt">B)</span> 2 hrs</li>
+        <li><span class="opt">C)</span> 3 hrs</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">8. Max flying hours for a flight crew in 90 consecutive days is:</p>
+      <ul>
+        <li><span class="opt">A)</span> 200 hrs.</li>
+        <li><span class="opt">B)</span> 300 hrs</li>
+        <li><span class="opt">C)</span> 330 hrs</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">9. With regard to flight time limitations, "flight time" means:</p>
+      <ul>
+        <li><span class="opt">A)</span> The total time from when an aircraft first moves under its own power for the purpose of taking off until it comes to rest after the flight</li>
+        <li><span class="opt">B)</span> The time between take-off and landing</li>
+        <li><span class="opt">C)</span> The time between an aircraft starting to move and coming to a complete stop plus one and a half hours</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">10. The maximum permitted flight time for flight crew is:</p>
+      <ul>
+        <li><span class="opt">A)</span> 81 hours in the 27 days prior to the flight</li>
+        <li><span class="opt">B)</span> 120 hours in the 27 days before the current flight</li>
+        <li><span class="opt">C)</span> 1000 hours in 365 consecutive days</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">11. A flight to be operated with a pressurized aeroplane will not be commenced unless a sufficient quantity of stored breathing oxygen is carried to supply:</p>
+      <ul>
+        <li><span class="opt">A)</span> All crew members</li>
+        <li><span class="opt">B)</span> All crew members and passengers</li>
+        <li><span class="opt">C)</span> All crew members and passengers, when the atmospheric pressure in any compartment occupied by them is less than 700 hPa</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">12. Emergency and cockpit check list is to be carried by</p>
+      <ul>
+        <li><span class="opt">A)</span> All a/c</li>
+        <li><span class="opt">B)</span> Scheduled a/c</li>
+        <li><span class="opt">C)</span> Non-scheduled a/c</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">13. Number of first aid kits to be carried on board an aircraft carrying 250 passengers is:</p>
+      <ul>
+        <li><span class="opt">A)</span> 1</li>
+        <li><span class="opt">B)</span> 2</li>
+        <li><span class="opt">C)</span> 3</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">14. No person, other than a flight crew member assigned to a flight, is admitted to, or carried in, the flight deck unless that person is:</p>
+      <ul>
+        <li><span class="opt">A)</span> A security staff</li>
+        <li><span class="opt">B)</span> An operating crew member</li>
+        <li><span class="opt">C)</span> Representative of the Operator</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">15. Low Visibility Procedures (LVP) are applied at an aerodrome for the purpose of ensuring safe operations during</p>
+      <ul>
+        <li><span class="opt">A)</span> Category I, Category II and III approaches</li>
+        <li><span class="opt">B)</span> Low Visibility Take-offs</li>
+        <li><span class="opt">C)</span> Severe thunder showers</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">16. For an unplanned event, such as unforecast weather, equipment malfunction, or air traffic delay that is beyond the control of the operator, 'Flight Time' and 'Flight Duty Period' for scheduled operations may be extended as follows:</p>
+      <ul>
+        <li><span class="opt">A)</span> Flight Time by max 2 hours and FDP by max 4 hours, subject to a cumulative limit of max 8 hours and max 16 hours respectively in 30 consecutive days.</li>
+        <li><span class="opt">B)</span> Flight Time by max 4 hours and FDP by max 8 hours.</li>
+        <li><span class="opt">C)</span> Flight Time by max 1 hour and FDP by max 2 hours</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">17. Minimum trip fuel required shall be the amount of fuel required to enable the aeroplane to fly from take-off or the point of in-flight re-planning,</p>
+      <ul>
+        <li><span class="opt">A)</span> until landing at the destination aerodrome taking into account the operating conditions.</li>
+        <li><span class="opt">B)</span> until overhead the destination aerodrome taking into account the operating conditions.</li>
+        <li><span class="opt">C)</span> until overhead the destination aerodrome taking into account the fuel required to go to a diversion.</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">18. Scheduled operators may be authorized LVTO minima of up to:</p>
+      <ul>
+        <li><span class="opt">A)</span> 400 m</li>
+        <li><span class="opt">B)</span> 200 m</li>
+        <li><span class="opt">C)</span> 125 m</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">19. If, after commencing an instrument approach, the reported RVR/Visibility falls below the applicable minimum, the approach shall not be continued:</p>
+      <ul>
+        <li><span class="opt">A)</span> below MDA/DA, as applicable</li>
+        <li><span class="opt">B)</span> below AOM published for the aerodrome.</li>
+        <li><span class="opt">C)</span> below 1 000 ft above the aerodrome.</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">20. All FDRs shall be capable of retaining the information recorded during at least the last ____ hours of their operation. CVRs at least ____ hrs and Data link recorders shall be capable of retaining the information recorded during at least the last ____ hours of their operation.</p>
+      <ul>
+        <li><span class="opt">A)</span> 24, 2, 4</li>
+        <li><span class="opt">B)</span> 25, 2, 2</li>
+        <li><span class="opt">C)</span> 25, 3, 2</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">21. Filed minima is 300 m. Touch down zone RVR is 400 m. Relevant mid-point RVR is 100 m and stop-end RVR 300 m. The runway is:</p>
+      <ul>
+        <li><span class="opt">A)</span> Below minima</li>
+        <li><span class="opt">B)</span> Within minima</li>
+        <li><span class="opt">C)</span> Equal to minima.</li>
+      </ul>
+    </div>
+
+    <div class="quiz-q">
+      <p class="qn">22. CARS is a:</p>
+      <ul>
+        <li><span class="opt">A)</span> Light weight voice recorder.</li>
+        <li><span class="opt">B)</span> Heavy weight flight recorder.</li>
+        <li><span class="opt">C)</span> Crash protected flight recorder.</li>
+      </ul>
+    </div>
+
+    <h3>Answer Key</h3>
+    <table class="answer-key data-table">
+      <caption>Table 14.1 — Answers (Questions 1–14)</caption>
+      <thead>
+        <tr><th class="c">1</th><th class="c">2</th><th class="c">3</th><th class="c">4</th><th class="c">5</th><th class="c">6</th><th class="c">7</th><th class="c">8</th><th class="c">9</th><th class="c">10</th><th class="c">11</th><th class="c">12</th><th class="c">13</th><th class="c">14</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="c">A</td><td class="c">A</td><td class="c">A</td><td class="c">B</td><td class="c">A</td><td class="c">C</td><td class="c">B</td><td class="c">B</td><td class="c">A</td><td class="c">C</td><td class="c">C</td><td class="c">A</td><td class="c">C</td><td class="c">B</td></tr>
+      </tbody>
+    </table>
+    <table class="answer-key data-table">
+      <caption>Table 14.2 — Answers (Questions 15–22)</caption>
+      <thead>
+        <tr><th class="c">15</th><th class="c">16</th><th class="c">17</th><th class="c">18</th><th class="c">19</th><th class="c">20</th><th class="c">21</th><th class="c">22</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="c">B</td><td class="c">C</td><td class="c">A</td><td class="c">C</td><td class="c">C</td><td class="c">B</td><td class="c">A</td><td class="c">A</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tip">
+      <span class="box-label">Reasoning Behind Tricky Answers</span>
+      <p><strong>Q1 (A):</strong> Basic 2-crew FDP entry — 11 hrs FDP, 8 hrs FT, 6 landings. &nbsp; <strong>Q7 / Q16 (C):</strong> Unforeseen circumstances allow FT +1 hr, FDP +2 hrs. &nbsp; <strong>Q13 (C):</strong> 250 pax sits in the 200–299 band → 3 kits. &nbsp; <strong>Q20 (B):</strong> FDR 25 h, CVR 2 h, data link 2 h. &nbsp; <strong>Q21 (A):</strong> mid-point 100 m is below the 125 m minimum → runway below minima. &nbsp; <strong>Q22 (A):</strong> CARS = Cockpit Audio Recording System, a <em>lightweight</em> recorder.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p><span class="pill">DGCA Air Regulations</span> &nbsp; Chapter 17 — Operational Procedures &nbsp;|&nbsp; Complete Study Notes</p>
+    <p>Prepared as instructional material for CPL / ATPL student pilots. Always cross-reference the current CARs and ICAO Annex 6 for the latest amendments before examination.</p>
+  </div>
+
+</div>
+<div id="pp-watermark">Capt. Pankaj Pahil</div>
+</body>
+</html>
