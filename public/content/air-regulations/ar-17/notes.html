@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGCA Study Notes — Special Operational Procedures &amp; Hazards | Capt. Pankaj Pahil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    securityLevel: 'loose',
+    themeVariables: {
+      fontFamily: 'Archivo, sans-serif',
+      primaryColor: '#e8f0fb',
+      primaryTextColor: '#10243e',
+      primaryBorderColor: '#2f6db0',
+      lineColor: '#2f6db0',
+      secondaryColor: '#fdecea',
+      tertiaryColor: '#eaf6ee'
+    },
+    flowchart: { curve: 'basis', useMaxWidth: true },
+    timeline: { useMaxWidth: true }
+  });
+</script>
+<style>
+  /* ================= PRINT SETUP ================= */
+  @page { size: A4; margin: 20mm; }
+
+  :root{
+    --navy:#10243e;
+    --navy-2:#1c3a5e;
+    --steel:#2f6db0;
+    --sky:#5b9bd5;
+    --ink:#26323d;
+    --paper:#fbfaf7;
+    --gold:#c8961e;
+    /* informational box tones */
+    --red-bg:#fdecea;     --red-bd:#d9534f;  --red-tx:#7d211d;
+    --blue-bg:#e8f0fb;    --blue-bd:#2f6db0; --blue-tx:#16365c;
+    --green-bg:#eaf6ee;   --green-bd:#3c9a5a;--green-tx:#1f5232;
+    --amber-bg:#fdf3e0;   --amber-bd:#c8961e;--amber-tx:#7a5708;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{ margin:0; padding:0; }
+
+  body{
+    font-family:'Lora', Georgia, serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.62;
+    font-size:16px;
+    position:relative;
+  }
+
+  /* ============ DIAGONAL WATERMARK (every screen + every printed page) ============ */
+  body::before{
+    content:"Capt. Pankaj Pahil";
+    position:fixed;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%) rotate(-45deg);
+    font-family:'Archivo', sans-serif;
+    font-weight:900;
+    font-size:84px;
+    letter-spacing:2px;
+    color:#10243e;
+    opacity:0.10;
+    white-space:nowrap;
+    z-index:9999;
+    pointer-events:none;
+    user-select:none;
+  }
+
+  /* ================= LAYOUT ================= */
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:34px 30px 80px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ================= COVER ================= */
+  .cover{
+    background:
+      radial-gradient(900px 420px at 80% -10%, rgba(91,155,213,.35), transparent 60%),
+      linear-gradient(155deg, var(--navy) 0%, var(--navy-2) 55%, #244a73 100%);
+    color:#f4f7fb;
+    border-radius:18px;
+    padding:50px 46px 44px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 18px 40px -22px rgba(16,36,62,.7);
+  }
+  .cover::after{
+    content:"";
+    position:absolute; right:-60px; top:-60px;
+    width:260px; height:260px; border-radius:50%;
+    border:2px dashed rgba(255,255,255,.18);
+  }
+  .cover .badge{
+    display:inline-block;
+    font-family:'Archivo',sans-serif;
+    font-weight:700; font-size:12.5px; letter-spacing:3px;
+    text-transform:uppercase;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    padding:7px 15px; border-radius:30px;
+  }
+  .cover .chno{
+    font-family:'Archivo',sans-serif;
+    font-weight:900; font-size:15px; letter-spacing:4px;
+    color:var(--sky); margin:26px 0 4px;
+  }
+  .cover h1{
+    font-family:'Archivo',sans-serif;
+    font-weight:900; font-size:43px; line-height:1.07;
+    margin:6px 0 10px; letter-spacing:.5px;
+  }
+  .cover .sub{
+    font-size:17px; opacity:.92; max-width:640px; font-style:italic;
+  }
+  .cover .meta{
+    margin-top:30px; display:flex; flex-wrap:wrap; gap:10px 26px;
+    font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.5px;
+  }
+  .cover .meta span{ opacity:.85; }
+  .cover .meta b{ color:var(--sky); font-weight:700; }
+
+  /* ================= SECTION HEADINGS ================= */
+  h2.sec{
+    font-family:'Archivo',sans-serif;
+    font-weight:800; font-size:25px; color:var(--navy);
+    margin:54px 0 4px; padding-bottom:8px;
+    border-bottom:3px solid var(--steel);
+    display:flex; align-items:center; gap:14px;
+  }
+  h2.sec .num{
+    background:var(--navy); color:#fff;
+    font-size:15px; font-weight:900;
+    width:38px; height:38px; min-width:38px;
+    border-radius:9px; display:flex; align-items:center; justify-content:center;
+  }
+  h3.sub{
+    font-family:'Archivo',sans-serif;
+    font-weight:700; font-size:18.5px; color:var(--navy-2);
+    margin:30px 0 8px;
+    border-left:5px solid var(--gold); padding-left:12px;
+  }
+  h4.mini{
+    font-family:'Archivo',sans-serif;
+    font-weight:700; font-size:15px; color:var(--steel);
+    text-transform:uppercase; letter-spacing:1.2px;
+    margin:20px 0 6px;
+  }
+  p{ margin:9px 0; }
+  a{ color:var(--steel); }
+
+  ul,ol{ margin:9px 0 9px 4px; padding-left:24px; }
+  li{ margin:5px 0; }
+
+  strong{ color:var(--navy); }
+  em{ color:var(--navy-2); }
+
+  /* exact regulatory value highlight */
+  .val{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600; font-size:.93em;
+    background:#fff3cf;
+    border-bottom:2px solid var(--gold);
+    padding:1px 5px; border-radius:3px;
+    color:#5e4406; white-space:nowrap;
+  }
+
+  /* ================= INFO BOXES ================= */
+  .box{
+    border-radius:11px;
+    padding:15px 18px 15px 20px;
+    margin:16px 0;
+    page-break-inside:avoid;
+    position:relative;
+    border:1px solid;
+  }
+  .box .tag{
+    font-family:'Archivo',sans-serif;
+    font-weight:800; font-size:12px; letter-spacing:1.5px;
+    text-transform:uppercase;
+    display:inline-flex; align-items:center; gap:7px;
+    margin-bottom:4px;
+  }
+  .box p:last-child, .box ul:last-child, .box ol:last-child{ margin-bottom:0; }
+  .box p:first-of-type{ margin-top:2px; }
+
+  .box.red{ background:var(--red-bg); border-color:var(--red-bd); }
+  .box.red .tag{ color:var(--red-tx); }
+  .box.red strong{ color:var(--red-tx); }
+
+  .box.blue{ background:var(--blue-bg); border-color:var(--blue-bd); }
+  .box.blue .tag{ color:var(--blue-tx); }
+  .box.blue strong{ color:var(--blue-tx); }
+
+  .box.green{ background:var(--green-bg); border-color:var(--green-bd); }
+  .box.green .tag{ color:var(--green-tx); }
+  .box.green strong{ color:var(--green-tx); }
+
+  .box.amber{ background:var(--amber-bg); border-color:var(--amber-bd); }
+  .box.amber .tag{ color:var(--amber-tx); }
+  .box.amber strong{ color:var(--amber-tx); }
+
+  /* memory aid / exam-tip box */
+  .examtip{
+    background:linear-gradient(180deg,#fffaf0,#fff5e2);
+    border:1px dashed var(--gold);
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:13px 16px; margin:16px 0;
+    page-break-inside:avoid;
+  }
+  .examtip .tag{
+    font-family:'Archivo',sans-serif; font-weight:800;
+    font-size:12px; letter-spacing:1.5px; color:var(--amber-tx);
+    text-transform:uppercase;
+  }
+
+  /* ================= TABLES ================= */
+  table{
+    width:100%; border-collapse:collapse;
+    margin:16px 0; font-size:14.3px;
+    page-break-inside:avoid;
+    background:#fff;
+    border-radius:8px; overflow:hidden;
+    box-shadow:0 4px 14px -10px rgba(16,36,62,.5);
+  }
+  caption{
+    caption-side:top; text-align:left;
+    font-family:'Archivo',sans-serif; font-weight:700;
+    font-size:13.5px; color:var(--navy-2);
+    padding:4px 2px 8px;
+  }
+  thead th{
+    background:var(--navy); color:#fff;
+    font-family:'Archivo',sans-serif; font-weight:700;
+    font-size:12.6px; letter-spacing:.4px;
+    padding:9px 11px; text-align:left;
+    text-transform:uppercase;
+  }
+  tbody td, tbody th{
+    padding:8px 11px;
+    border-bottom:1px solid #e3e0d8;
+    vertical-align:top;
+  }
+  tbody tr:nth-child(even){ background:#f4f2ec; }
+  tbody tr:last-child td, tbody tr:last-child th{ border-bottom:none; }
+  tbody th{ font-family:'Archivo',sans-serif; font-weight:700; color:var(--navy); text-align:left; }
+  td .val, th .val{ font-size:.86em; }
+
+  /* ================= DIAGRAM FRAME ================= */
+  .figure{
+    background:#fff;
+    border:1px solid #e0ddd3;
+    border-radius:12px;
+    padding:18px 16px 12px;
+    margin:18px 0;
+    page-break-inside:avoid;
+    text-align:center;
+  }
+  .figure .cap{
+    font-family:'Archivo',sans-serif; font-weight:700;
+    font-size:12.5px; letter-spacing:1px; text-transform:uppercase;
+    color:var(--steel); margin-bottom:10px;
+  }
+  pre.mermaid{
+    page-break-inside:avoid;
+    margin:0 auto; background:transparent;
+  }
+  svg.diagram{ max-width:100%; height:auto; }
+
+  /* key-fact strip */
+  .keyfacts{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin:16px 0; page-break-inside:avoid;
+  }
+  .keyfacts .kf{
+    flex:1 1 150px;
+    background:#fff; border:1px solid #e0ddd3;
+    border-top:4px solid var(--steel);
+    border-radius:9px; padding:11px 13px;
+  }
+  .keyfacts .kf .n{
+    font-family:'JetBrains Mono',monospace; font-weight:600;
+    font-size:18px; color:var(--navy);
+  }
+  .keyfacts .kf .l{
+    font-family:'Archivo',sans-serif; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.6px; color:#6b6b63;
+    margin-top:2px;
+  }
+
+  /* table of contents */
+  .toc{
+    background:#fff; border:1px solid #e0ddd3;
+    border-radius:12px; padding:22px 26px; margin:30px 0 10px;
+    page-break-inside:avoid;
+  }
+  .toc h2{
+    font-family:'Archivo',sans-serif; font-weight:800;
+    font-size:18px; color:var(--navy); margin:0 0 12px;
+    letter-spacing:.5px;
+  }
+  .toc ol{
+    columns:2; column-gap:34px;
+    font-family:'Archivo',sans-serif; font-size:13.6px;
+    list-style:none; padding:0; margin:0;
+    counter-reset:toc;
+  }
+  .toc ol li{
+    counter-increment:toc;
+    padding:4px 0; break-inside:avoid;
+    border-bottom:1px dotted #d8d5cc;
+  }
+  .toc ol li::before{
+    content:counter(toc,decimal-leading-zero);
+    color:var(--steel); font-weight:800; margin-right:9px;
+  }
+  .toc ol li a{ text-decoration:none; color:var(--ink); }
+
+  /* divider */
+  .leadin{
+    font-style:italic; color:var(--navy-2);
+    border-left:3px solid var(--sky);
+    padding:2px 0 2px 14px; margin:14px 0;
+  }
+
+  /* SVG colour tokens used inline */
+  .svg-fuel{ fill:#d9534f; }
+  .svg-oxy{ fill:#2f6db0; }
+  .svg-heat{ fill:#c8961e; }
+
+  /* MCQ */
+  .mcq{
+    background:#fff; border:1px solid #e0ddd3;
+    border-radius:9px; padding:12px 15px; margin:11px 0;
+    page-break-inside:avoid;
+  }
+  .mcq .q{
+    font-family:'Archivo',sans-serif; font-weight:600;
+    font-size:14.3px; color:var(--navy);
+  }
+  .mcq .q .qn{
+    background:var(--navy); color:#fff; font-weight:800;
+    font-size:11.5px; padding:2px 7px; border-radius:5px; margin-right:8px;
+  }
+  .mcq ul{ list-style:none; padding-left:0; margin:8px 0 0; }
+  .mcq ul li{
+    font-size:13.7px; padding:4px 9px; margin:3px 0;
+    border-radius:6px; border:1px solid transparent;
+  }
+  .mcq ul li.correct{
+    background:var(--green-bg); border-color:var(--green-bd);
+    font-weight:600;
+  }
+  .mcq ul li.correct::after{
+    content:" ✓ Correct"; color:var(--green-tx);
+    font-family:'Archivo',sans-serif; font-weight:800; font-size:11px;
+  }
+  .mcq ul li .opt{
+    font-family:'Archivo',sans-serif; font-weight:800;
+    color:var(--steel); margin-right:7px;
+  }
+  .mcq .why{
+    margin-top:7px; font-size:12.8px; font-style:italic;
+    color:var(--navy-2); border-top:1px dotted #ddd9cf; padding-top:6px;
+  }
+  .mcq .why b{ font-style:normal; }
+
+  .footer{
+    margin-top:60px; padding-top:18px;
+    border-top:2px solid var(--steel);
+    font-family:'Archivo',sans-serif; font-size:12px;
+    color:#6b6b63; text-align:center; letter-spacing:.4px;
+  }
+
+  @media print{
+    body{ font-size:11.6pt; background:#fff; }
+    .wrap{ padding:0; max-width:100%; }
+    body::before{ font-size:78px; opacity:0.12; }
+    .cover{ box-shadow:none; }
+    table, .figure, .box, .examtip, .keyfacts, .mcq, .toc{ page-break-inside:avoid; }
+    h2.sec{ page-break-after:avoid; }
+    h3.sub, h4.mini{ page-break-after:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===================== COVER ===================== -->
+  <header class="cover">
+    <span class="badge">DGCA Ground School &mdash; Air Regulations</span>
+    <div class="chno">CHAPTER 18</div>
+    <h1>Special Operational Procedures &amp; Hazards</h1>
+    <p class="sub">General Aspects &mdash; A complete, exam-focused study companion for CPL &amp; ATPL student pilots, covering equipment lists, icing, fire, decompression, wind shear, wake turbulence, security and runway hazards.</p>
+    <div class="meta">
+      <span>Prepared by &nbsp;<b>Capt. Pankaj Pahil</b></span>
+      <span>Subject&nbsp;&mdash;&nbsp;<b>Air Regulations</b></span>
+      <span>Target&nbsp;&mdash;&nbsp;<b>CPL / ATPL</b></span>
+      <span>Format&nbsp;&mdash;&nbsp;<b>Notes + 109 MCQ Bank</b></span>
+    </div>
+  </header>
+
+  <!-- ===================== HOW TO USE ===================== -->
+  <div class="box blue" style="margin-top:26px;">
+    <span class="tag">&#9432; How To Use These Notes</span>
+    <p>Every box is colour-coded so your eye learns the rule before your brain does:</p>
+    <ul>
+      <li><strong style="color:var(--blue-tx)">Blue boxes</strong> &mdash; Definitions &amp; core concepts. Learn the language first.</li>
+      <li><strong style="color:var(--green-tx)">Green boxes</strong> &mdash; Standard Operating Procedures &amp; allowances. What you are permitted / expected to do.</li>
+      <li><strong style="color:var(--red-tx)">Red boxes</strong> &mdash; Strict limitations, warnings &amp; prohibitions. Cross these and you bust a regulation.</li>
+      <li><strong style="color:var(--amber-tx)">Amber / dashed boxes</strong> &mdash; Memory aids &amp; exam traps.</li>
+    </ul>
+    <p>Every exact DGCA figure is shown like this &mdash; <span class="val">240 m (800 ft)</span> &mdash; so the precise value is never lost. Examiners test the number, not the paraphrase.</p>
+  </div>
+
+  <!-- ===================== TABLE OF CONTENTS ===================== -->
+  <nav class="toc">
+    <h2>Contents of This Chapter</h2>
+    <ol>
+      <li><a href="#s1">Minimum Equipment List (MEL &amp; MMEL)</a></li>
+      <li><a href="#s2">Aeroplane Flight Manual (AFM)</a></li>
+      <li><a href="#s3">Ground De-icing &amp; Aircraft Icing</a></li>
+      <li><a href="#s4">Bird Strike Risk &amp; Avoidance</a></li>
+      <li><a href="#s5">Noise Abatement &mdash; Departure &amp; Approach</a></li>
+      <li><a href="#s6">Fire &amp; Smoke</a></li>
+      <li><a href="#s7">Overheated Brakes</a></li>
+      <li><a href="#s8">Decompression of a Pressurised Cabin</a></li>
+      <li><a href="#s9">Wind Shear &amp; Microburst</a></li>
+      <li><a href="#s10">Wake Turbulence</a></li>
+      <li><a href="#s11">Security &mdash; Unlawful Interference</a></li>
+      <li><a href="#s12">Emergency &amp; Precautionary Landings, Ditching</a></li>
+      <li><a href="#s13">Fuel Jettisoning</a></li>
+      <li><a href="#s14">Transport of Dangerous Goods</a></li>
+      <li><a href="#s15">Contaminated Runways &amp; Hydroplaning</a></li>
+      <li><a href="#s16">Practice Question Bank &mdash; 109 MCQs + Answer Key</a></li>
+    </ol>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 1 — MEL / MMEL -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s1"><span class="num">1</span> Minimum Equipment List (MEL &amp; MMEL)</h2>
+  <p class="leadin">Aircraft are certified with a great deal of redundant equipment. The MEL is the document that tells the crew whether the aeroplane may legally and safely fly with a particular item unserviceable &mdash; turning a "go / no-go" judgement into a documented decision.</p>
+
+  <div class="box blue">
+    <span class="tag">&#9432; Definition &mdash; MEL</span>
+    <p>The operator <strong>shall include in the Operations Manual a Minimum Equipment List (MEL)</strong>, approved by the DGCA, which enables the <strong>pilot-in-command</strong> to determine whether a flight may be <strong>commenced or continued from any intermediate stop</strong> should any instrument, equipment or system become inoperative.</p>
+  </div>
+
+  <div class="box blue">
+    <span class="tag">&#9432; Definition &mdash; MMEL</span>
+    <p>The <strong>Master Minimum Equipment List (MMEL)</strong> defines the equipment on which certain in-flight failures can be allowed, and the conditions under which this allowance can be accepted. The <strong>MMEL is drawn up by the manufacturer and approved by the DGCA</strong>.</p>
+  </div>
+
+  <p>The relationship is a chain of authority. The manufacturer writes the master list (MMEL); the operator tailors it into its own MEL for its specific fleet and operations; and the DGCA approves both. The MEL can never be <em>less</em> restrictive than the MMEL.</p>
+
+  <h3 class="sub">Who Does What &mdash; The Approval Chain</h3>
+  <div class="figure">
+    <div class="cap">Flowchart &mdash; From MMEL to the Crew's Go/No-Go Decision</div>
+    <pre class="mermaid">
+flowchart TD
+    A["MANUFACTURER<br/>drafts the MMEL<br/>(Master Minimum Equipment List)"]:::mfr
+    B{"DGCA<br/>approves MMEL"}:::reg
+    C["OPERATOR<br/>creates its own MEL<br/>(placed in the Operations Manual)"]:::op
+    D{"DGCA<br/>approves the MEL"}:::reg
+    E["PILOT-IN-COMMAND<br/>uses MEL to decide:<br/>may the flight be commenced<br/>or continued?"]:::crew
+    A --> B --> C --> D --> E
+    classDef mfr fill:#e8f0fb,stroke:#2f6db0,color:#16365c;
+    classDef reg fill:#fdf3e0,stroke:#c8961e,color:#7a5708;
+    classDef op fill:#eaf6ee,stroke:#3c9a5a,color:#1f5232;
+    classDef crew fill:#fdecea,stroke:#d9534f,color:#7d211d;
+    </pre>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; SOP &mdash; Day/Night &amp; IMC Tailoring</span>
+    <p>The DGCA may require an operator's approved MEL to <strong>specify the operating equipment required for night and/or IMC operations, and separately for day/VMC operations</strong>. The same aircraft may therefore be despatchable for a day VMC sector but grounded for a night IMC sector with the identical defect.</p>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Exam Trap</span>
+    <p><strong>MMEL = Manufacturer.</strong> <strong>MEL = found in the Operations Manual.</strong> The reference document a crew opens first when equipment fails while still parked is the <strong>MEL</strong> &mdash; not the Flight Manual, and not the "Abnormal &amp; Emergency Procedures" chapter.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 2 — AFM -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s2"><span class="num">2</span> Aeroplane Flight Manual (AFM)</h2>
+
+  <div class="box blue">
+    <span class="tag">&#9432; Core Rule</span>
+    <p>Aeroplanes <strong>shall be operated in accordance with the provisions of the Flight Manual approved by the State of Design</strong>.</p>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; Limitation</span>
+    <p>An aeroplane <strong>shall be operated in compliance with the terms of its Certificate of Airworthiness</strong> and <strong>within the approved operating limitations contained in its Flight Manual</strong>. The AFM limitations are not advisory &mdash; they are legally binding boundaries.</p>
+  </div>
+
+  <h3 class="sub">Factors That Must Be Accounted For</h3>
+  <p>When applying AFM performance data, the crew/operator <strong>shall take account of all factors that significantly affect the performance of the aeroplane</strong>, including but not limited to:</p>
+  <div class="box green">
+    <span class="tag">&#10003; Performance Factors</span>
+    <ul>
+      <li>The <strong>mass</strong> of the aeroplane;</li>
+      <li>The <strong>operating procedures</strong>;</li>
+      <li>The <strong>pressure-altitude</strong> appropriate to the elevation of the aerodrome;</li>
+      <li>The <strong>ambient temperature</strong>;</li>
+      <li>The <strong>wind</strong>;</li>
+      <li>The <strong>runway slope</strong>; and</li>
+      <li>The <strong>surface condition of the runway</strong> &mdash; i.e. presence of snow, slush, water and/or ice for landplanes; water surface condition for seaplanes.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 3 — DE-ICING / ICING -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s3"><span class="num">3</span> Ground De-icing &amp; Aircraft Icing</h2>
+  <p class="leadin">Ice is the silent destroyer of lift. This section covers when an aircraft may take off, how contamination is detected, the two distinct fluid procedures, and why even an invisible film of ice matters.</p>
+
+  <h3 class="sub">3.1 &nbsp;The Ground De-icing Rule</h3>
+  <div class="box red">
+    <span class="tag">&#9888; Strict Limitation</span>
+    <p>A flight to be planned or expected to operate in <strong>suspected or known ground icing conditions shall NOT take off</strong> unless the aeroplane has been <strong>inspected for icing</strong> and, if necessary, has been given appropriate <strong>de-icing / anti-icing treatment</strong>. Accumulation of ice or other naturally occurring contaminants <strong>shall be removed</strong> so that the aeroplane is kept in an <strong>airworthy condition prior to take-off</strong>.</p>
+  </div>
+
+  <h3 class="sub">3.2 &nbsp;Definition &amp; Recognition &mdash; On Ground / In-Flight</h3>
+  <div class="box red">
+    <span class="tag">&#9888; Operating Prohibitions</span>
+    <p><strong>(a)</strong> An operator <strong>shall not operate an aeroplane in expected or actual icing conditions unless it is certificated and equipped to operate in icing conditions</strong>.</p>
+    <p><strong>(b)</strong> An operator <strong>shall not operate an aeroplane in expected or actual icing conditions at night</strong> unless it is equipped with a means to <strong>illuminate or detect the formation of ice</strong>. Any illumination used must be of a type that <strong>will not cause glare or reflection</strong> that would handicap crew members in the performance of their duties.</p>
+  </div>
+
+  <h3 class="sub">3.3 &nbsp;De-icing, Anti-icing &amp; Types of Fluid</h3>
+  <p>The two most common techniques for protecting an aircraft's critical surfaces are <strong>de-icing</strong> and <strong>anti-icing</strong> &mdash; they sound similar but do opposite jobs.</p>
+
+  <table>
+    <caption>Table 3.1 &mdash; De-icing vs. Anti-icing</caption>
+    <thead>
+      <tr><th style="width:18%">Aspect</th><th>De-icing</th><th>Anti-icing</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Purpose</th>
+        <td>Procedure by which existing frozen contamination (<strong>frost, ice, snow or slush</strong>) is <strong>removed</strong> from the aircraft.</td>
+        <td>Procedure that <strong>protects a clean surface</strong> against the accumulation of frozen contaminants for a limited period.</td>
+      </tr>
+      <tr>
+        <th>Fluid used</th>
+        <td>Heated <strong>Aircraft Deicing Fluid (ADF)</strong> &mdash; provides clean surfaces.</td>
+        <td><strong>Aircraft Anti-Icing Fluid (AAF)</strong> &mdash; applied to a surface already free of frozen contaminants.</td>
+      </tr>
+      <tr>
+        <th>Surface state before</th>
+        <td>Surface is contaminated.</td>
+        <td>Surface is already free of frozen contamination.</td>
+      </tr>
+      <tr>
+        <th>Effect</th>
+        <td>Restores a clean surface.</td>
+        <td>Buys a limited "holdover" period of protection.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box blue">
+    <span class="tag">&#9432; Concept &mdash; When Are Fluids Needed?</span>
+    <p>De/anti-icing fluids are <strong>only required until the aircraft becomes airborne</strong>, after which the on-board de/anti-icing system then operates. The ground fluids are a bridge to get you safely into the air; the airframe system takes over thereafter.</p>
+  </div>
+
+  <h3 class="sub">3.4 &nbsp;Performance Deterioration &mdash; On Ground / In-Flight</h3>
+  <div class="box red">
+    <span class="tag">&#9888; The Critical Number</span>
+    <p>A very small amount of roughness &mdash; in thickness as low as <span class="val">0.40 mm (1/64 in)</span> &mdash; caused by ice, snow or frost, <strong>disrupts the airflow</strong> over the lift and control surfaces. The consequence is <strong>severe lift loss, increased drag and impaired manoeuvrability</strong>, particularly during the take-off and initial climb phases.</p>
+  </div>
+
+  <div class="box amber">
+    <span class="tag">&#9888; What Ice Does To The Aircraft</span>
+    <ul>
+      <li><strong>Interferes with movement</strong> of control surfaces.</li>
+      <li><strong>Adds significantly to aircraft weight.</strong></li>
+      <li><strong>Severely affects instruments</strong> by blocking static and pitot vents, or angle-of-attack vanes.</li>
+      <li><strong>Obscures wind screens</strong>; obstructs the undercarriage; forms skin friction.</li>
+    </ul>
+    <p style="margin-top:8px;"><strong>Remember the instructor's rule: "There is no such thing as an insignificant amount of ice."</strong></p>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Aerodynamic Effect</span>
+    <p>Accumulation of snow or ice on an aircraft <strong>in flight</strong> causes an <strong>increase in the stalling speed</strong>. It does <em>not</em> raise the stall angle of attack &mdash; in fact contamination makes the wing stall <em>earlier</em> (at a lower angle).</p>
+  </div>
+
+  <h3 class="sub">3.5 &nbsp;Cold-Soaking &amp; Clear Ice</h3>
+  <div class="box blue">
+    <span class="tag">&#9432; Definition &mdash; Cold-Soaking</span>
+    <p>Ice can form <strong>even when the Outside Air Temperature (OAT) is well above 0&deg;C (32&deg;F)</strong>. An aircraft with wing fuel tanks may carry fuel cold enough to lower the wing-skin temperature <strong>below freezing</strong>. This is <strong>cold-soaking</strong>. It also occurs after cruising at high altitude for a period followed by a quick descent into a humid environment &mdash; liquid water contacting the below-freezing wing then freezes onto it.</p>
+  </div>
+
+  <p>Cold-soaking can also be caused by <strong>fuelling an aircraft with cold fuel</strong>. With rain or high humidity present, ice can form on the cold-soaked wing and accumulate over time. This ice can be <strong>invisible to the eye</strong> and is often referred to as <strong>clear ice</strong>.</p>
+
+  <div class="box green">
+    <span class="tag">&#10003; Detecting Clear Ice</span>
+    <p>Because clear ice is hard to see, it is detected by:</p>
+    <ul>
+      <li>Performing a <strong>tactile (hands-on) inspection</strong>; or</li>
+      <li>Using specially designed ice-detecting systems such as a <strong>Ground Ice Detection System (GIDS)</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; Why Clear Ice Is Dangerous</span>
+    <p>Sheets of clear ice dislodged from the wing or fuselage during take-off or climb can be <strong>ingested by aft-fuselage-mounted engines</strong>, causing a <strong>flameout or damage</strong>. Dislodged sheets can also cause <strong>impact damage to critical surfaces</strong> such as the horizontal stabiliser.</p>
+  </div>
+
+  <h3 class="sub">3.6 &nbsp;Planning a Flight in Icing Conditions</h3>
+  <div class="figure">
+    <div class="cap">Decision Flow &mdash; Pre-Take-off in Suspected/Known Icing</div>
+    <pre class="mermaid">
+flowchart TD
+    S["Flight expected in suspected /<br/>known ground icing conditions"]:::st
+    Q1{"Aircraft certificated &amp;<br/>equipped for icing?"}:::dec
+    Q2{"Operation at NIGHT?"}:::dec
+    N["Means to illuminate / detect<br/>ice formation required<br/>(no handicapping glare)"]:::warn
+    I["Inspect aircraft for icing"]:::ok
+    Q3{"Contamination present?"}:::dec
+    T["Apply appropriate<br/>de-icing / anti-icing treatment"]:::ok
+    G["Aircraft in airworthy<br/>condition &rarr; CLEARED to take off"]:::go
+    X["Do NOT operate"]:::stop
+    S --> Q1
+    Q1 -- No --> X
+    Q1 -- Yes --> Q2
+    Q2 -- Yes --> N --> I
+    Q2 -- No --> I
+    I --> Q3
+    Q3 -- Yes --> T --> G
+    Q3 -- No --> G
+    classDef st fill:#e8f0fb,stroke:#2f6db0,color:#16365c;
+    classDef dec fill:#fdf3e0,stroke:#c8961e,color:#7a5708;
+    classDef ok fill:#eaf6ee,stroke:#3c9a5a,color:#1f5232;
+    classDef go fill:#3c9a5a,stroke:#1f5232,color:#fff;
+    classDef stop fill:#d9534f,stroke:#7d211d,color:#fff;
+    classDef warn fill:#fdecea,stroke:#d9534f,color:#7d211d;
+    </pre>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4 — BIRD STRIKE -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s4"><span class="num">4</span> Bird Strike Risk &amp; Avoidance</h2>
+
+  <div class="box blue">
+    <span class="tag">&#9432; Core Concept</span>
+    <p>There is <strong>no direct way to influence bird activity aloft</strong>. Therefore the only chance to minimise bird-strike risk in the air is to <strong>avoid flying through high bird concentrations</strong>. Away from the airfield, bird-strike prevention is most effectively conducted by <strong>warning procedures</strong>.</p>
+  </div>
+
+  <p>Hazardous bird concentrations are well known during <strong>migration periods</strong> on a large temporal and spatial scale, but also occur occasionally throughout the year on a local or regional scale, <strong>mainly governed by the diurnal cycle</strong>. The major aspects of handling the problem are <strong>monitoring, modelling, warning, predicting and forecasting</strong> &mdash; producing advice passed to the aviation community.</p>
+
+  <div class="keyfacts">
+    <div class="kf"><div class="n">Shell crackers</div><div class="l">Most effective method for scaring birds</div></div>
+    <div class="kf"><div class="n">90%</div><div class="l">of bird strikes occur under 500 m</div></div>
+    <div class="kf"><div class="n">135 kts</div><div class="l">Avg. take-off speed in the study</div></div>
+    <div class="kf"><div class="n">~2 seconds</div><div class="l">Birds fly away beforehand</div></div>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; Key Findings</span>
+    <ul>
+      <li>The <strong>most effective method for scaring birds is shell crackers</strong>.</li>
+      <li><strong>90% of bird strikes occur under 500 m.</strong></li>
+      <li>Studies of birds on the ground ahead of an aircraft that has reached an average speed of <span class="val">135 kts</span> show that <strong>birds fly away about two seconds beforehand</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Crew Action</span>
+    <p>If, after take-off, you (as captain) notice a flock of birds presenting a strike hazard, you must <strong>immediately inform the appropriate ground station</strong> &mdash; not merely file a report on arrival, and not "within a reasonable period."</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 5 — NOISE ABATEMENT -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s5"><span class="num">5</span> Noise Abatement &mdash; Departure Climb &amp; Approach</h2>
+  <p class="leadin">Noise abatement balances community quiet against flight safety. The golden principle: <strong>safety always overrides noise.</strong> Responsibility for establishing operating procedures for noise abatement during instrument flight (in compliance with ICAO PANS-OPS) rests with the <strong>operator</strong> &mdash; and the procedure specified for any one aeroplane type should be the same for all aerodromes.</p>
+
+  <h3 class="sub">5.1 &nbsp;Departure Climb</h3>
+  <p>Operating procedures for the departure climb must ensure flight safety is maintained while minimising noise exposure on the ground. The following requirements must be satisfied:</p>
+  <div class="box red">
+    <span class="tag">&#9888; Departure Climb Limitations</span>
+    <ul>
+      <li>Noise-abatement procedures <strong>shall not be executed below a height of <span class="val">240 m (800 ft)</span> above aerodrome elevation</strong>.</li>
+      <li>The noise-abatement procedure specified by an operator for any one aeroplane type <strong>should be the same for all aerodromes</strong>.</li>
+      <li>Noise-abatement climb procedures are <strong>not to be used where wind-shear warnings exist</strong>, or where wind shear / downburst activity is suspected.</li>
+      <li>The <strong>maximum acceptable body angle</strong> specified for an aeroplane type <strong>shall not be exceeded</strong>.</li>
+    </ul>
+  </div>
+
+  <h3 class="sub">5.2 &nbsp;Aeroplane Operating Procedures &mdash; Approach</h3>
+  <div class="box green">
+    <span class="tag">&#10003; Approach Noise Procedures</span>
+    <ul>
+      <li>Subject to safety requirements, the use of <strong>reverse thrust over reverse idle may be prohibited</strong> during a specified period, especially during night hours.</li>
+      <li>During a noise-abatement approach, the aeroplane is to be in the <strong>final landing configuration</strong> at any point <strong>after passing the outer marker</strong>, or at a point <span class="val">5 NM</span> from the threshold of the landing runway &mdash; <strong>whichever is earlier</strong>.</li>
+      <li><strong>Noise preferential routes</strong> are established so departing and arriving aeroplanes avoid over-flying noise-sensitive areas near the aerodrome as far as practicable.</li>
+      <li>In establishing noise preferential routes, <strong>no turns should be required coincident with a reduction of power</strong> associated with a noise-abatement procedure.</li>
+    </ul>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; When Noise Abatement Must NOT Decide the Runway</span>
+    <p>Noise abatement <strong>shall not be the determining factor</strong> in the designation of a runway under the following circumstances:</p>
+    <ul>
+      <li>(a) when the <strong>crosswind component, including gust, exceeds <span class="val">15 kt</span></strong>;</li>
+      <li>(b) when the <strong>tailwind component, including gust, exceeds <span class="val">5 kt</span></strong>;</li>
+      <li>(c) when the <strong>runway is not clear or dry</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="box blue">
+    <span class="tag">&#9432; ILS &amp; Visual Guidance</span>
+    <p><strong>No ILS or visual guidance</strong> precludes a runway being used for noise-abatement procedures <strong>if landing in VMC</strong>. In other words, the absence of ILS/visual aids is what rules a runway out for noise abatement when landing visually.</p>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Memory Hook</span>
+    <p><strong>"15 &ndash; 5 &ndash; Dry."</strong> Crosswind 15 kt, tailwind 5 kt, runway not dry &mdash; any one of these and noise abatement loses its vote on runway selection.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 6 — FIRE & SMOKE -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s6"><span class="num">6</span> Fire &amp; Smoke</h2>
+  <p class="leadin">Fire-fighting strategy flows directly from one idea: a fire needs three things at once. Take any one away and the fire dies.</p>
+
+  <h3 class="sub">6.1 &nbsp;The Fire Triangle</h3>
+  <div class="box blue">
+    <span class="tag">&#9432; Definition &mdash; Combustion</span>
+    <p>Combustion consists of <strong>three elements: oxygen, heat and fuel</strong>. Together these create a chemical chain reaction and result in a fire. The goal of fire-fighting is to <strong>eliminate at least one element</strong> from the fire in order to extinguish it.</p>
+  </div>
+
+  <div class="figure">
+    <div class="cap">The Fire Triangle &mdash; Remove Any One Side To Extinguish</div>
+    <svg class="diagram" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fire triangle showing oxygen, heat and fuel">
+      <polygon points="210,30 380,270 40,270" fill="none" stroke="#10243e" stroke-width="3"/>
+      <polygon points="210,30 295,150 125,150" class="svg-fuel" opacity="0.18"/>
+      <line x1="210" y1="30" x2="210" y2="270" stroke="#bbb" stroke-width="1" stroke-dasharray="4 4"/>
+      <text x="120" y="120" font-family="Archivo,sans-serif" font-weight="800" font-size="22" fill="#2f6db0">OXYGEN</text>
+      <text x="248" y="120" font-family="Archivo,sans-serif" font-weight="800" font-size="22" fill="#c8961e">HEAT</text>
+      <text x="178" y="255" font-family="Archivo,sans-serif" font-weight="800" font-size="22" fill="#d9534f">FUEL</text>
+      <text x="210" y="160" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="13" fill="#10243e">CHAIN</text>
+      <text x="210" y="176" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="13" fill="#10243e">REACTION</text>
+    </svg>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; A Fire Will Continue, UNLESS:</span>
+    <ul>
+      <li>The <strong>fuel supply has been cut off</strong>; or</li>
+      <li>There is <strong>no more oxygen available</strong>; or</li>
+      <li>The <strong>temperature has been cooled below the flammability temperature</strong>.</li>
+    </ul>
+  </div>
+
+  <h3 class="sub">6.2 &nbsp;Classes of Fire &amp; Their Smoke</h3>
+  <table>
+    <caption>Table 6.1 &mdash; Fire Classes, Materials, Extinguishing &amp; Smoke Signature</caption>
+    <thead>
+      <tr><th style="width:9%">Class</th><th style="width:27%">Materials Involved</th><th>How To Extinguish</th><th style="width:26%">Smoke Characteristics</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Class A</th>
+        <td>Wood, paper, cloth or plastic &mdash; solids, generally of organic nature.</td>
+        <td>Fires need to be <strong>cooled</strong>. Water extinguisher, or liquid with a large percentage of water (coffee, tea, juice) works. <strong>Water/glycol extinguishers are the most effective</strong> for Class A. <strong>Do NOT use liquid containing alcohol.</strong></td>
+        <td>Usually <strong>gray/brown</strong>; can be quite thick depending on quantity of fuel.</td>
+      </tr>
+      <tr>
+        <th>Class B</th>
+        <td>Flammable liquid, hydraulic fluid, oil, tar or aircraft fuel &mdash; liquid or liquefiable solid.</td>
+        <td><strong>Cannot be extinguished with water.</strong> Use <strong>Foam or Halon</strong> extinguishers.</td>
+        <td>Usually <strong>black</strong>; very thick, with a distinct oil/petrol-like odour.</td>
+      </tr>
+      <tr>
+        <th>Class C</th>
+        <td>Electrical equipment.</td>
+        <td>Must be extinguished with a <strong>non-conducting mixture</strong> to avoid electrocution and damage to circuitry. <strong>Halon</strong> extinguishers are effective.</td>
+        <td>Usually <strong>light grey or white</strong>, with a bluish tinge; very fine, disperses rapidly; distinct acrid odour.</td>
+      </tr>
+      <tr>
+        <th>Class D</th>
+        <td>Flammable metals &mdash; sodium, magnesium, lithium, potassium.</td>
+        <td><strong>Special powder extinguishers</strong> only (avoids dangerous chemical reaction). <strong>Never use Halon on Class D.</strong></td>
+        <td>&mdash;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box red">
+    <span class="tag">&#9888; Hard Rules &mdash; Fire Classes</span>
+    <ul>
+      <li><strong>Never use Halon fire extinguishers on Class D fires.</strong></li>
+      <li><strong>Do not use liquid containing alcohol on Class A fires.</strong></li>
+      <li><strong>Class A and C fires are the most commonly encountered fires onboard aircraft.</strong></li>
+    </ul>
+  </div>
+
+  <h3 class="sub">6.3 &nbsp;Fire Extinguishers</h3>
+  <div class="box blue">
+    <span class="tag">&#9432; Discharge Time</span>
+    <p>Hand-held fire extinguishers discharge an extinguishing agent for <span class="val">8 to 25 seconds</span>, depending on type and capacity. Because of this short period, it is <strong>essential to select and use the appropriate extinguisher immediately</strong>.</p>
+  </div>
+
+  <table>
+    <caption>Table 6.2 &mdash; Extinguisher Types, Colour Codes &amp; Suitable Fire Classes</caption>
+    <thead>
+      <tr><th>Extinguisher Type</th><th>Colour Code</th><th>Suitable For</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Halon / BCF</strong> (bromochlorodifluoromethane)</td><td>Green</td><td>Class <strong>A, B and C</strong> fires</td></tr>
+      <tr><td><strong>Carbon dioxide (CO&#8322;)</strong></td><td>Black</td><td>Class <strong>B and C</strong> fires</td></tr>
+      <tr><td><strong>Dry powder (DP)</strong></td><td>Blue</td><td>Class <strong>D</strong> fires</td></tr>
+      <tr><td><strong>Dry chemicals</strong></td><td>Blue</td><td>Class <strong>A, B and C</strong> fires</td></tr>
+      <tr><td><strong>Water solution (H&#8322;O)</strong></td><td>Red</td><td>Class <strong>A</strong> fires</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box green">
+    <span class="tag">&#10003; Halon Facts &amp; Precautions</span>
+    <ul>
+      <li>A Halon extinguisher is <strong>three times as effective as a CO&#8322; extinguisher</strong> containing the same amount of agent.</li>
+      <li>When a Halon extinguisher has been used on a <strong>Class A fire</strong>, the fire and surrounding area <strong>must be cooled down with a non-alcoholic liquid</strong>.</li>
+      <li>When Halon is used in <strong>crew compartments or confined areas</strong>, <strong>Portable Breathing Equipment (PBE) should be used</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; Extinguisher Location &amp; Supporting Equipment</span>
+    <p>At least one <strong>Halon 1211 type extinguisher</strong> should be located on the <strong>flight deck</strong>. Galleys, personnel and cargo compartments should be equipped with proper extinguishers. Beneath fire extinguishers, the supporting fire-fighting equipment carried on board includes <strong>crash axes or crowbars</strong>.</p>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; Halon Environmental Phase-Out</span>
+    <p>ICAO Standards mandate the use of an <strong>alternative agent to Halon</strong> due to its impact on the environment &mdash; it <strong>depletes the ozone layer</strong>. As of now, Halon use is <strong>permitted only in cargo compartments till <span class="val">28 Nov 2024</span></strong>.</p>
+  </div>
+
+  <h3 class="sub">6.4 &nbsp;Hand Fire Extinguisher Requirements by Seating</h3>
+  <table>
+    <caption>Table 6.3 &mdash; Hand Fire Extinguishers Required in the Passenger Compartment</caption>
+    <thead>
+      <tr><th>Maximum Approved Passenger Seating Configuration</th><th>Hand Extinguishers Required</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>61 to 200 passengers</td><td><strong>3</strong> conveniently located in the passenger compartment</td></tr>
+      <tr><td>401 to 500 passengers</td><td><strong>6</strong> conveniently located in the passenger compartment</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box green">
+    <span class="tag">&#10003; Onboard Fire-Fighting SOPs</span>
+    <ul>
+      <li><strong>Engine nozzle / jet-pipe fire on the ground:</strong> carry out a <strong>dry cranking (dry motoring) cycle</strong>.</li>
+      <li><strong>Engine fire warning:</strong> switches on the relevant fire shut-off handle; the warning is switched off <strong>when the fire is no longer detected</strong>.</li>
+      <li><strong>Fire in an air-conditioned cargo hold:</strong> <strong>turn off the cargo-hold ventilation and extinguish the fire</strong>.</li>
+      <li><strong>Belly compartment fire:</strong> the system generally switched off is the <strong>ventilation of the cargo compartment</strong>.</li>
+      <li><strong>Smoke in the air conditioning:</strong> first action &mdash; <strong>put on the mask and goggles</strong>.</li>
+      <li><strong>Fire-fighting in toilets:</strong> use <strong>all available extinguishers simultaneously</strong>.</li>
+      <li><strong>Burning cargo in cargo aircraft:</strong> usually extinguished using <strong>carbon dioxide</strong>.</li>
+      <li><strong>Wheel fire</strong> (heated brakes): the safest extinguishant is <strong>dry powder</strong>; fight a brake-heat fire with a dry-powder extinguisher and a water-spray atomiser.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 7 — OVERHEATED BRAKES -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s7"><span class="num">7</span> Overheated Brakes &mdash; After Aborted Take-off &amp; Landing</h2>
+  <p class="leadin">The kinetic energy lost in slowing an aircraft is converted by friction into heat. After a rejected take-off or a heavy landing, that heat is concentrated in the brakes and tyres &mdash; and it bites.</p>
+
+  <div class="box red">
+    <span class="tag">&#9888; Consequences of Overheated Brakes</span>
+    <p>Overheated brakes can result in:</p>
+    <ul>
+      <li><strong>Loss of braking performance</strong>;</li>
+      <li><strong>Fire</strong>;</li>
+      <li><strong>Tyre deflation / tyre burst</strong>.</li>
+    </ul>
+    <p>Brake failure &mdash; with subsequent poor directional control and deceleration &mdash; could in turn result in <strong>runway excursion</strong>, <strong>uncommanded ground movements / taxiway excursion</strong>, and <strong>collision with objects on the ground or other aircraft</strong>.</p>
+  </div>
+
+  <div class="box amber">
+    <span class="tag">&#9888; Practical Problems Following Brake Issues</span>
+    <ul>
+      <li><strong>High level of stress &amp; increased workload</strong> &mdash; caused by directional-control and deceleration problems from brake failure during landing or a high-speed rejected take-off (RTO).</li>
+      <li><strong>Lack of awareness</strong> &mdash; the crew might not be aware of fire, tyre burst or deflation that could result from heavy braking on landing, RTO, or from smoke from the undercarriage.</li>
+    </ul>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; Crew Actions</span>
+    <ul>
+      <li><strong>Request fire and rescue services</strong> &mdash; hot-brake incidents may be considered by the crew a reason to request attendance of fire and rescue.</li>
+      <li><strong>Decision for emergency evacuation</strong> &mdash; the cockpit crew could take the decision for emergency evacuation if fire is detected following a high-energy brake application.</li>
+    </ul>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; How Fireguards Must Approach Hot Wheels</span>
+    <p>After a landing in overweight / overspeed conditions, with tyres and brakes extremely hot, the fireguards <strong>should approach the landing-gear tyres ONLY from front or rear side</strong> &mdash; <strong>never from the sides</strong>. A tyre that bursts releases its energy <em>sideways</em>; standing fore or aft keeps personnel out of the burst line. (Likewise: release the parking brake and approach the wheels either from aft or fore.)</p>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Exam Hook</span>
+    <p>Following a <strong>heavy-mass landing on a short runway</strong>, the first thing you should check is the <strong>temperature of the brakes</strong>.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 8 — DECOMPRESSION -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s8"><span class="num">8</span> Decompression of a Pressurised Cabin</h2>
+  <p class="leadin">Pressurisation keeps a survivable atmosphere around the cabin at cruising altitude. Losing it is one of the most time-critical emergencies in aviation &mdash; because the real enemy is hypoxia.</p>
+
+  <div class="box blue">
+    <span class="tag">&#9432; Definition</span>
+    <p><strong>Cabin pressurisation</strong> is the pumping of compressed air into an aircraft cabin to maintain a safe and comfortable environment for crew and passengers when flying at altitude. <strong>Loss of pressurisation is a serious emergency</strong> in an aircraft flying at the high cruising altitudes typical of passenger aircraft.</p>
+  </div>
+
+  <h3 class="sub">8.1 &nbsp;Causes of Decompression</h3>
+  <div class="box amber">
+    <span class="tag">&#9888; Three Causes</span>
+    <ul>
+      <li><strong>Structural Failure</strong> &mdash; failure of a window, door or pressure bulkhead, or an in-flight explosion (which may be due to a system failure, dangerous cargo, or a malicious act such as an explosive device carried on board by a terrorist).</li>
+      <li><strong>Pressurisation system failure</strong> &mdash; failure of some part of the pressurisation system, such as an outflow valve.</li>
+      <li><strong>Deliberate Act</strong> &mdash; a drastic measure an aircraft captain might consider, for example as a way of clearing the cabin of smoke.</li>
+    </ul>
+  </div>
+
+  <h3 class="sub">8.2 &nbsp;Rapid / Explosive vs. Slow Decompression</h3>
+  <div class="box red">
+    <span class="tag">&#9888; Rapid / Explosive Decompression</span>
+    <p>Decompression occurring rapidly &mdash; at a rate <strong>greater than the rate the lungs can decompress</strong> &mdash; will cause <strong>lung damage</strong>. The likelihood of reaching a lung-damaging level, for any given pressure-hull breach size, is <strong>increased by the size of the pressure hull overall</strong>.</p>
+    <p>A decompression taking <strong>less than <span class="val">0.5 seconds</span></strong> is considered by most authorities to be <strong>"explosive."</strong> The cabin air may fill with <strong>dust and debris</strong>, and <strong>fog</strong> forms from the associated drop in temperature and change in relative humidity. The crew may be momentarily dazed or shocked &mdash; especially if unexpected &mdash; and may therefore be slow to fit oxygen masks.</p>
+  </div>
+
+  <div class="box blue">
+    <span class="tag">&#9432; Slow Decompression</span>
+    <p>Slow decompression is <strong>similar to rapid decompression</strong>. The only difference is in <strong>severity and availability of reaction time</strong>. In <strong>both cases the actions by the crew remain the same</strong>. A slow decompression may be caused by a <strong>cracked window</strong>, a <strong>bad-functioning pressurisation system</strong>, or a <strong>minor leak in the fuselage</strong> &mdash; not by the loss of a whole door or window.</p>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Recognition Cues</span>
+    <p><strong>Fast decompression</strong> is recognised by: mist in the cabin, a blast towards the exterior of the aircraft, and expansion of body gases. <strong>"Mist in the cabin, pressure and temperature drop"</strong> characterise a <strong>fast depressurisation</strong>. During a slow depressurisation at cruise, the cabin rate-of-climb indicator shows <strong>a rate of climb</strong>.</p>
+  </div>
+
+  <h3 class="sub">8.3 &nbsp;Crew &amp; Passenger Incapacitation</h3>
+  <div class="box red">
+    <span class="tag">&#9888; The Real Danger &mdash; Hypoxia</span>
+    <p>The great danger of depressurisation is <strong>crew incapacitation due to hypoxia</strong>. Depending on aircraft altitude when depressurisation occurs, loss of pressurisation can <strong>very quickly incapacitate</strong> crew and passengers unless they receive supplementary oxygen. The <strong>Time of Useful Consciousness is reduced by the explosive nature</strong> of the decompression.</p>
+  </div>
+
+  <h3 class="sub">8.4 &nbsp;Cabin Altitude Trigger Points</h3>
+  <table>
+    <caption>Table 8.1 &mdash; Decompression Warning &amp; Oxygen Mask Deployment</caption>
+    <thead>
+      <tr><th>Event</th><th>Cabin Altitude Trigger</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Depressurization <strong>warning</strong> is required</td><td>When cabin altitude <strong>exceeds <span class="val">10,000 ft</span></strong></td></tr>
+      <tr><td>Passenger oxygen masks <strong>drop</strong></td><td>When cabin altitude rises to between <span class="val">13,200 ft</span> and <span class="val">14,000 ft</span> &mdash; but <strong>no higher than <span class="val">15,000 ft</span></strong></td></tr>
+      <tr><td>Supplemental oxygen for <strong>pilots</strong> after emergency descent</td><td>Available for the entire flight time the cabin pressure altitude exceeds a minimum of <span class="val">13,000 ft</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">8.5 &nbsp;Crew Actions</h3>
+  <div class="box green">
+    <span class="tag">&#10003; Actions on Loss of Pressurisation</span>
+    <ul>
+      <li><strong>Oxygen</strong> &mdash; the crew must don oxygen equipment <strong>as soon as possible</strong>. In the case of a <strong>deliberate de-pressurisation</strong>, the crew should be <strong>on oxygen before the de-pressurisation commences</strong>.</li>
+      <li><strong>Emergency Descent</strong> &mdash; in an emergency depressurisation the crew will want to <strong>descend immediately</strong> to an altitude at which they and the passengers can breathe without supplementary oxygen &mdash; conventionally <span class="val">10,000 ft</span>.</li>
+    </ul>
+  </div>
+
+  <div class="box amber">
+    <span class="tag">&#9888; Structural-Failure Hazard</span>
+    <p>If the decompression is caused by structural failure (e.g. failure of a window), there is a risk of crew or passengers being <strong>buffeted by strong winds, hit by debris, exposed to extreme cold</strong>, or even <strong>being sucked out of the aircraft</strong> &mdash; another reason for <strong>wearing a seat belt or harness when seated</strong>.</p>
+  </div>
+
+  <div class="figure">
+    <div class="cap">Flowchart &mdash; Crew Response to Explosive Decompression</div>
+    <pre class="mermaid">
+flowchart TD
+    A["Explosive decompression detected<br/>(e.g. at 31,000 ft)"]:::ev
+    B["1. Don oxygen masks<br/>(crew oxygen FIRST)"]:::act
+    C["2. Initiate immediate<br/>EMERGENCY DESCENT"]:::act
+    D["Descend to an altitude where<br/>breathing without supplemental O2<br/>is possible &mdash; approx 10,000 ft"]:::act
+    E["Pilots remain on O2 while cabin<br/>pressure altitude exceeds 13,000 ft"]:::note
+    A --> B --> C --> D --> E
+    classDef ev fill:#fdecea,stroke:#d9534f,color:#7d211d;
+    classDef act fill:#eaf6ee,stroke:#3c9a5a,color:#1f5232;
+    classDef note fill:#e8f0fb,stroke:#2f6db0,color:#16365c;
+    </pre>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Exam Hook</span>
+    <p>On an <strong>explosive decompression at 31,000 ft</strong>, the <strong>initial action</strong> of the operating crew is <strong>to put on oxygen masks</strong> &mdash; before seatbelt signs and before the MAYDAY call. Note also: using the <strong>passenger oxygen system in severe cabin smoke is useless</strong>, because the drop-down masks are not sealed &mdash; the <strong>toxic cabin smoke mixes with the breathing oxygen</strong>. Supplemental oxygen's defined purpose is to <strong>provide people on board with oxygen during a cabin depressurisation</strong>.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 9 — WIND SHEAR & MICROBURST -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s9"><span class="num">9</span> Wind Shear &amp; Microburst</h2>
+  <p class="leadin">Wind shear is a sudden change in wind &mdash; and because lift depends on airspeed, a sudden change in wind is a sudden change in performance. Close to the ground, in the approach, landing or take-off phase, that is a hazard with very little margin to recover.</p>
+
+  <h3 class="sub">9.1 &nbsp;Wind Shear &amp; Crew Reporting</h3>
+  <div class="box blue">
+    <span class="tag">&#9432; Definition</span>
+    <p>Wind shear may be described as a <strong>change in wind direction and/or speed in space</strong>, including up-draughts and down-draughts. Intense down-draughts &mdash; typically associated with <strong>thunderstorms</strong> &mdash; produce strong vertical and horizontal wind-shear components hazardous to aircraft in the approach, landing or take-off phase. One of its main characteristics is that it <strong>can occur at any altitude, in both the vertical and horizontal planes</strong>.</p>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; How To Report Wind Shear</span>
+    <ul>
+      <li>Aircrew capable of reporting wind and altitude <strong>above and below the shear layer</strong> from the <strong>Flight Management System (FMS)</strong> are to do so.</li>
+      <li>Pilots <strong>without this equipment</strong> should report wind shear by stating the <strong>loss or gain of airspeed and the altitude</strong> at which it was encountered.</li>
+      <li>Pilots <strong>unable to report in these specific terms</strong> should report it in terms of its <strong>general effect on the aircraft</strong>.</li>
+    </ul>
+  </div>
+
+  <h3 class="sub">9.2 &nbsp;Significant Non-Convective Wind Shear &mdash; Thresholds</h3>
+  <table>
+    <caption>Table 9.1 &mdash; Guidelines To Establish Significant Non-Convective Wind Shear</caption>
+    <thead>
+      <tr><th>Criterion</th><th>Threshold</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Vector magnitude</td><td>Exceeding <span class="val">25 kts</span> within <span class="val">500 ft AGL</span></td></tr>
+      <tr><td>Vector magnitude</td><td>Exceeding <span class="val">40 kts</span> within <span class="val">1 000 ft AGL</span></td></tr>
+      <tr><td>Vector magnitude</td><td>Exceeding <span class="val">50 kts</span> within <span class="val">1 500 ft AGL</span></td></tr>
+      <tr><td>Pilot report of IAS loss or gain</td><td><span class="val">20 kts</span> or more within <span class="val">1 500 ft AGL</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">9.3 &nbsp;Microburst</h3>
+  <div class="box blue">
+    <span class="tag">&#9432; Definition</span>
+    <p>A microburst is a <strong>small-scale, intense downdraft</strong> which, on reaching the surface, <strong>spreads outward from the down-flow centre</strong>. This causes both vertical and horizontal wind shear that can be <strong>extremely hazardous to all types and categories of aircraft</strong>, particularly within <span class="val">1 000 ft AGL</span> during approach to landing and in the take-off phases.</p>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; The Take-off Trap</span>
+    <p>On take-off through a microburst, the aircraft first encounters a <strong>headwind (performance increasing)</strong>, followed by a <strong>downdraft</strong>, then a <strong>tailwind (both performance decreasing)</strong>. The initial headwind can fool the crew into a false sense of climb performance &mdash; moments before the tailwind/downdraft robs it.</p>
+  </div>
+
+  <div class="figure">
+    <div class="cap">Microburst Encounter &mdash; Headwind, Downdraft, Tailwind</div>
+    <svg class="diagram" viewBox="0 0 620 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Microburst diagram">
+      <defs>
+        <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#2f6db0"/>
+        </marker>
+      </defs>
+      <rect x="0" y="220" width="620" height="40" fill="#eae6da"/>
+      <text x="310" y="245" text-anchor="middle" font-family="Archivo,sans-serif" font-size="11" font-weight="700" fill="#6b6b63">RUNWAY / GROUND</text>
+      <!-- downdraft -->
+      <line x1="310" y1="30" x2="310" y2="200" stroke="#d9534f" stroke-width="6" marker-end="url(#ar)"/>
+      <text x="320" y="110" font-family="Archivo,sans-serif" font-size="13" font-weight="800" fill="#d9534f">DOWNDRAFT</text>
+      <!-- outflow -->
+      <line x1="300" y1="205" x2="120" y2="205" stroke="#2f6db0" stroke-width="4" marker-end="url(#ar)"/>
+      <line x1="320" y1="205" x2="500" y2="205" stroke="#2f6db0" stroke-width="4" marker-end="url(#ar)"/>
+      <text x="150" y="195" font-family="Archivo,sans-serif" font-size="12" font-weight="800" fill="#2f6db0">HEADWIND</text>
+      <text x="150" y="180" font-family="Archivo,sans-serif" font-size="10" fill="#1f5232">performance &#8593;</text>
+      <text x="408" y="195" font-family="Archivo,sans-serif" font-size="12" font-weight="800" fill="#2f6db0">TAILWIND</text>
+      <text x="408" y="180" font-family="Archivo,sans-serif" font-size="10" fill="#7d211d">performance &#8595;</text>
+      <!-- aircraft path -->
+      <path d="M70,170 Q260,120 310,160 Q380,205 560,150" fill="none" stroke="#10243e" stroke-width="2" stroke-dasharray="6 5"/>
+      <text x="70" y="155" font-family="Archivo,sans-serif" font-size="11" font-weight="700" fill="#10243e">(1) climb</text>
+      <text x="500" y="135" font-family="Archivo,sans-serif" font-size="11" font-weight="700" fill="#7d211d">(3) sink / crash path</text>
+    </svg>
+  </div>
+
+  <h3 class="sub">9.4 &nbsp;Characteristics of Microbursts</h3>
+  <div class="keyfacts">
+    <div class="kf"><div class="n">~1 NM</div><div class="l">Diameter at 2 000 ft AGL (2&ndash;2&frac12; NM at surface)</div></div>
+    <div class="kf"><div class="n">6 000 ft/min</div><div class="l">Vertical winds; horizontal up to 45 KT (90 KT shear)</div></div>
+    <div class="kf"><div class="n">&lt; 15 min</div><div class="l">Life-cycle; peak winds last ~2&ndash;4 min</div></div>
+    <div class="kf"><div class="n">Up to 1 hr</div><div class="l">If concentrated into a line structure</div></div>
+  </div>
+
+  <table>
+    <caption>Table 9.2 &mdash; Microburst Characteristics</caption>
+    <thead><tr><th style="width:16%">Characteristic</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><th>Size</th><td>Approximately <span class="val">1 NM</span> in diameter at <span class="val">2 000 ft AGL</span>, with a horizontal extent at the surface of approximately <span class="val">2 to 2&frac12; NM</span>.</td></tr>
+      <tr><th>Intensity</th><td>Vertical winds as high as <span class="val">6 000 ft/min</span>. Horizontal winds giving as much as <span class="val">45 KT</span> at the surface (i.e. <span class="val">90 KT</span> shear).</td></tr>
+      <tr><th>Types</th><td>Normally accompanied by heavy rain in humid areas. In drier areas, falling raindrops may evaporate before reaching the ground &mdash; this is known as <strong>VIRGA</strong>.</td></tr>
+      <tr><th>Duration</th><td>Life-cycle seldom longer than <span class="val">15 minutes</span>; maximum-intensity winds last approximately <span class="val">2&ndash;4 minutes</span>. Concentrated into a line structure, activity may continue for as long as <span class="val">1 hour</span>.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box amber">
+    <span class="tag">&#9888; Multiple Microbursts</span>
+    <p>Once microburst activity starts, <strong>multiple microbursts in the same general area are common and should be expected</strong>. An aircraft entering the centre with a <strong>40 kt headwind</strong> may, on crossing through, face a windshear of <strong>80 kt</strong> (the headwind reverses into an equal tailwind).</p>
+  </div>
+
+  <h3 class="sub">9.5 &nbsp;Actions To Counter Wind Shear</h3>
+  <div class="box green">
+    <span class="tag">&#10003; Recovery Procedure</span>
+    <p>The <strong>best defence against wind shear is to avoid it altogether</strong> &mdash; it could be beyond your or your aircraft's capabilities. However, should you recognise a wind-shear encounter, <strong>prompt action is required</strong>. In all aircraft the recovery could require:</p>
+    <ul>
+      <li><strong>Full power</strong> (set maximum take-off thrust);</li>
+      <li>A <strong>pitch attitude consistent with the maximum angle of attack</strong> for your aircraft &mdash; increase pitch-up to the limit, actuating the stick shaker;</li>
+      <li><strong>Keep the aeroplane's current configuration</strong> (do not change gear/flap);</li>
+      <li><strong>Warn others as soon as possible.</strong></li>
+    </ul>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Exam Hooks</span>
+    <p>When <strong>penetrating wind shear</strong>, the first magnitude to change value is <strong>Indicated Airspeed (IAS)</strong>. During a landing approach with an <strong>increasing tailwind</strong> and no pilot action, the aircraft <strong>flies below the glide path</strong> and has a <strong>decreasing true airspeed</strong>. The amount of control action required to counter wind shear is <strong>substantial</strong>.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 10 — WAKE TURBULENCE -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s10"><span class="num">10</span> Wake Turbulence</h2>
+  <p class="leadin">Every wing that produces lift also produces a wake. Behind a large aircraft, that wake is a pair of powerful, invisible "horizontal tornadoes" &mdash; and the separation tables exist to keep you out of them.</p>
+
+  <h3 class="sub">10.1 &nbsp;How Wake Turbulence Forms</h3>
+  <div class="box blue">
+    <span class="tag">&#9432; Concept</span>
+    <p>All airfoils produce a wake when producing lift. The <strong>higher-pressure air under the wing flows around the wingtip</strong> and tries to displace the <strong>lower-pressure (lower-energy) air on top</strong>. The greater the pressure differential, the stronger the flow around the wingtip. The air curling up around the wingtip forms a <strong>horizontal tornado</strong> that trails behind the airplane and tends to <strong>sink somewhat below the producing aircraft's flight path</strong> (in level flight).</p>
+  </div>
+
+  <div class="box blue">
+    <span class="tag">&#9432; Vortex Behaviour</span>
+    <ul>
+      <li>The vortex from the <strong>left wing rotates clockwise</strong>; the one from the <strong>right wing rotates counterclockwise</strong> (seen from behind).</li>
+      <li><strong>Larger airplanes produce stronger vortices</strong> &mdash; the wings produce more lift to support more weight.</li>
+      <li>The vortices settle behind the aircraft to an altitude about <span class="val">1 000 ft</span> below the flight path, where they tend to remain.</li>
+      <li>Vortices spread laterally from the rear of the aircraft and can persist <strong>up to 5 miles</strong> behind, sinking <strong>500&ndash;900 feet</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; Wake Turbulence Is Greatest When&hellip;</span>
+    <p>Wake turbulence is created <strong>only when an airplane develops lift</strong>. It is <strong>greatest when the generating airplane is HEAVY, CLEAN and SLOW</strong>. In wake turbulence, the circulation of the vortex is <strong>outward, upward and around each wingtip</strong>.</p>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Memory Hook</span>
+    <p><strong>"Heavy, Clean, Slow"</strong> &mdash; the three words that mean maximum wake. The most dangerous wind while landing or taking off behind a large aircraft is a <strong>light quartering tailwind</strong>.</p>
+  </div>
+
+  <h3 class="sub">10.2 &nbsp;Aircraft Wake Turbulence Categories</h3>
+  <table>
+    <caption>Table 10.1 &mdash; Wake Turbulence Categories by MCTOW</caption>
+    <thead>
+      <tr><th style="width:18%">Category</th><th style="width:30%">MCTOW Criterion</th><th>Examples</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Super Heavy (S)</th><td>Separate designation &mdash; currently <strong>only the Airbus A380-800</strong>, MCTOW <span class="val">5,60,000 kg</span>.</td><td>A380-800</td></tr>
+      <tr><th>Heavy (H)</th><td><strong>136,000 kg MCTOW or more.</strong></td><td>B777, B767, B747, B787, A300, A310, A330, A340, A350, DC-8, DC-10, MD-11, IL-86, IL-96, AN-225, L-1011</td></tr>
+      <tr><th>Medium (M)</th><td><strong>More than 7,000 kg and less than 136,000 kg</strong> MCTOW.</td><td>B727, B737, B757, A320, A321, Global Express, Challenger, CRJ, Fokker Friendship, Metro 4, BAe-146, Dash 8, ATR-72, Hercules, DC-3, Saab 340</td></tr>
+      <tr><th>Light (L)</th><td><strong>Less than 7,000 kg</strong> MCTOW.</td><td>Bandeirante, Metro 3, Cessna 402 &amp; 421, Islander, Nomad, Piper Navajo, King Air Beech 99</td></tr>
+    </tbody>
+  </table>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Flight Plan Box</span>
+    <p>The letter <strong>"L"</strong> is written in the wake-turbulence box of a flight-plan form when MCTOW is <strong>less than or equal to <span class="val">7,000 kg</span></strong>.</p>
+  </div>
+
+  <h3 class="sub">10.3 &nbsp;Time-Based Longitudinal Separation Minima</h3>
+
+  <table>
+    <caption>Table 10.2 &mdash; ARRIVING Aircraft (Time-Based)</caption>
+    <thead>
+      <tr><th>S.No.</th><th>Leading Aircraft</th><th>Following Aircraft</th><th>Separation Minima</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>A380-800</td><td>MEDIUM</td><td><span class="val">3 Minutes</span></td></tr>
+      <tr><td>2</td><td>A380-800</td><td>LIGHT</td><td><span class="val">4 Minutes</span></td></tr>
+      <tr><td>3</td><td>HEAVY</td><td>MEDIUM</td><td><span class="val">2 Minutes</span></td></tr>
+      <tr><td>4</td><td>HEAVY or MEDIUM</td><td>LIGHT</td><td><span class="val">3 Minutes</span></td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption>Table 10.3 &mdash; DEPARTING Aircraft (same runway / parallel &lt; 760 m / specified crossing runways)</caption>
+    <thead>
+      <tr><th>S.No.</th><th>Leading Aircraft</th><th>Following Aircraft</th><th>Separation Minima</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>A380-800</td><td>Non A380-800 HEAVY</td><td><span class="val">2 Minutes</span></td></tr>
+      <tr><td>2</td><td>A380-800</td><td>MEDIUM or LIGHT</td><td><span class="val">3 Minutes</span></td></tr>
+      <tr><td>3</td><td>HEAVY</td><td>LIGHT or MEDIUM</td><td><span class="val">2 Minutes</span></td></tr>
+      <tr><td>4</td><td>MEDIUM</td><td>LIGHT</td><td><span class="val">2 Minutes</span></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13.5px;">Departing-aircraft minima apply when aircraft use: (a) the same runway; (b) parallel runways separated by less than <span class="val">760 m (2500 ft)</span>; (c) crossing runways if the projected flight path of the second aircraft will cross that of the first at the same altitude or less than <span class="val">1000 ft</span> below; (d) parallel runways separated by <span class="val">760 m (2500 ft)</span> or more, if the second aircraft's projected flight path will cross the first's at the same altitude or less than 1000 ft below.</p>
+
+  <table>
+    <caption>Table 10.4 &mdash; DEPARTING from an INTERMEDIATE part of the same runway / parallel &lt; 760 m</caption>
+    <thead>
+      <tr><th>S.No.</th><th>Leading Aircraft</th><th>Following Aircraft</th><th>Separation Minima</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>A380-800</td><td>MEDIUM or LIGHT</td><td><span class="val">4 Minutes</span></td></tr>
+      <tr><td>2</td><td>HEAVY</td><td>MEDIUM or LIGHT</td><td><span class="val">3 Minutes</span></td></tr>
+      <tr><td>3</td><td>MEDIUM</td><td>LIGHT</td><td><span class="val">3 Minutes</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">10.4 &nbsp;Displaced Landing Threshold Separation</h3>
+  <table>
+    <caption>Table 10.5 &mdash; Separation on a Runway With a Displaced Landing Threshold</caption>
+    <thead>
+      <tr><th>S.No.</th><th>Leading Aircraft</th><th>Following Aircraft</th><th>Separation Minima</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>A380-800 Arrival</td><td>LIGHT or MEDIUM</td><td><span class="val">3 Minutes</span></td></tr>
+      <tr><td>2</td><td>A380-800 Departure</td><td>LIGHT or MEDIUM</td><td><span class="val">3 Minutes</span></td></tr>
+      <tr><td>3</td><td>HEAVY Arrival</td><td>LIGHT or MEDIUM Departure</td><td><span class="val">2 Minutes</span></td></tr>
+      <tr><td>4</td><td>MEDIUM Arrival</td><td>LIGHT Departure</td><td><span class="val">2 Minutes</span></td></tr>
+      <tr><td>5</td><td>HEAVY Departure</td><td>LIGHT or MEDIUM Arrival</td><td><span class="val">2 Minutes</span></td></tr>
+      <tr><td>6</td><td>MEDIUM Departure</td><td>LIGHT Arrival</td><td><span class="val">2 Minutes</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">10.5 &nbsp;Distance-Based Wake Turbulence Separation Minima</h3>
+  <p>Distance-based minima apply to aircraft provided with an ATS surveillance service in the approach and departure phases, where: (i) an aircraft is operating directly behind another at the same altitude or less than 1000 ft below; (ii) both use the same runway, or parallel runways separated by less than 760 m; or (iii) an aircraft is crossing behind another at the same altitude or less than 1000 ft below.</p>
+
+  <table>
+    <caption>Table 10.6 &mdash; Distance-Based Wake Turbulence Separation Minima</caption>
+    <thead>
+      <tr><th>Preceding Aircraft</th><th>Succeeding Aircraft</th><th>Distance-Based Separation Minima</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A380-800 / Non A380-800 HEAVY</td><td>A380-800</td><td>Not required +</td></tr>
+      <tr><td rowspan="3">A380-800</td><td>Non A380-800 HEAVY</td><td><span class="val">6 NM</span> *</td></tr>
+      <tr><td>MEDIUM</td><td><span class="val">7 NM</span> *</td></tr>
+      <tr><td>LIGHT</td><td><span class="val">8 NM</span> *</td></tr>
+      <tr><td rowspan="3">HEAVY</td><td>HEAVY</td><td><span class="val">5 NM</span> *</td></tr>
+      <tr><td>MEDIUM</td><td><span class="val">5 NM</span> *</td></tr>
+      <tr><td>LIGHT</td><td><span class="val">6 NM</span> *</td></tr>
+      <tr><td rowspan="3">MEDIUM</td><td>HEAVY</td><td>Not required +</td></tr>
+      <tr><td>MEDIUM</td><td>Not required +</td></tr>
+      <tr><td>LIGHT</td><td><span class="val">5 NM</span> *</td></tr>
+      <tr><td rowspan="3">LIGHT</td><td>HEAVY</td><td>Not required +</td></tr>
+      <tr><td>MEDIUM</td><td>Not required +</td></tr>
+      <tr><td>LIGHT</td><td>Not required +</td></tr>
+    </tbody>
+  </table>
+  <div class="box blue">
+    <span class="tag">&#9432; Reading The Symbols</span>
+    <p><strong>+</strong> &mdash; When a wake-turbulence restriction is not required, separation <strong>reverts to the prescribed radar separation minimum</strong>.<br>
+    <strong>*</strong> &mdash; Where the prescribed radar separation minimum is <strong>more than</strong> the applicable wake-turbulence minimum, the <strong>prescribed radar separation minimum has precedence</strong>.</p>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Exam Hooks &mdash; Separation</span>
+    <ul style="margin:4px 0;">
+      <li>Shortest distance for a <strong>HEAVY preceding a LIGHT</strong> (landing sequence): <span class="val">6 NM</span>.</li>
+      <li>MEDIUM taking off behind a HEAVY, same runway, wake criteria: <span class="val">2 minutes</span>.</li>
+      <li>LIGHT taking off behind a MEDIUM, same runway: <span class="val">2 minutes</span>.</li>
+      <li>Arriving aircraft, timed approaches &mdash; MEDIUM behind HEAVY: <span class="val">2 minutes</span>; MEDIUM behind MEDIUM: <span class="val">2 minutes</span>.</li>
+    </ul>
+  </div>
+
+  <h3 class="sub">10.6 &nbsp;Opposite-Direction Runway Separation</h3>
+  <div class="box green">
+    <span class="tag">&#10003; Low / Missed Approach Cases</span>
+    <p>A separation minimum applies between a LIGHT or MEDIUM and a HEAVY aircraft, and between a LIGHT and a MEDIUM aircraft, when the heavier aircraft is making a <strong>low or missed approach</strong> and the lighter aircraft is landing on the same runway in the opposite direction (or on a parallel opposite-direction runway) separated by <strong>less than <span class="val">760 m</span></strong>.</p>
+    <p>Where the lighter aircraft is instead <strong>utilising an opposite-direction runway for take-off</strong>, this minimum is <span class="val">2 minutes</span>.</p>
+  </div>
+
+  <h3 class="sub">10.7 &nbsp;Dealing With Wake Turbulence</h3>
+  <div class="box green">
+    <span class="tag">&#10003; Handling Wake Turbulence &mdash; Practical Rules</span>
+    <ul>
+      <li><strong>Fly upwind</strong> rather than downwind of the flight path of a large aircraft.</li>
+      <li>The most dangerous wind while landing/taking off behind a large aircraft is a <strong>light quartering tailwind</strong>.</li>
+      <li>When <strong>taking off behind a larger aircraft</strong>, lift off <strong>before the larger aircraft's lift-off point</strong> and climb <strong>above its climb path</strong>.</li>
+      <li>When <strong>landing behind a larger aircraft</strong>, touch down <strong>past its touchdown point</strong>.</li>
+      <li>Vortices stay on the runway longer in <strong>light or calm winds</strong>.</li>
+      <li>In <strong>light crosswinds</strong>, the upwind vortex tends to drift onto and remain on the runway.</li>
+      <li>Vortices from a large aircraft landing on a <strong>parallel runway</strong> can be blown onto your runway by a strong crosswind.</li>
+      <li>When flying or crossing behind a larger aircraft, maintain your flight path <strong>above</strong> the large aircraft's path rather than below.</li>
+      <li>When approaching behind a larger aircraft on an <strong>ILS</strong>, stay <strong>at or above the glide slope</strong> to avoid wake encounters.</li>
+    </ul>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; When Is Wake Turbulence Risk Highest?</span>
+    <p>Risk is highest when a <strong>heavy aircraft has just performed a take-off at a closely situated parallel runway with a light crosswind</strong> &mdash; the crosswind drifts the heavy's vortices onto your path.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 11 — SECURITY -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s11"><span class="num">11</span> Security &mdash; Acts of Unlawful Interference</h2>
+
+  <div class="box green">
+    <span class="tag">&#10003; Reporting Unlawful Interference</span>
+    <p>Following an act of unlawful interference on board an aeroplane, the <strong>commander</strong> &mdash; or in his absence the <strong>operator</strong> &mdash; shall submit, <strong>without delay</strong>, a report of such an act to the <strong>designated local authority</strong> AND the <strong>Authority in the State of the operator</strong>.</p>
+  </div>
+
+  <div class="box blue">
+    <span class="tag">&#9432; Notification After Landing</span>
+    <p>In addition to informing each State whose citizens are known to be on board, the State of the country in which an aircraft has landed after an act of unlawful interference must <strong>immediately notify</strong>: the <strong>State of Registry of the aircraft, the State of the operator, and ICAO</strong>.</p>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; Responsibility for Passenger &amp; Crew Safety</span>
+    <p>The <strong>Contracting State in which the unlawful interference occurs</strong> has the responsibility to take adequate measures for the safety of passengers and crew of an aircraft subjected to an act of unlawful interference, until their journey can be continued.</p>
+  </div>
+
+  <h3 class="sub">11.1 &nbsp;Flight Deck Door</h3>
+  <div class="box red">
+    <span class="tag">&#9888; Flight Crew Compartment Door</span>
+    <p>When a commercial transport passenger airplane is equipped with a flight-crew compartment door, that door <strong>must include a locking system to prevent any unauthorized access</strong>. The flight-deck door should be capable of being <strong>locked from within the compartment</strong>.</p>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Critical Code</span>
+    <p>In case of a <strong>hi-jack</strong>, the transponder squawk code is <strong><span class="val">7500</span></strong>. When flight crew members are at their duty stations, they must <strong>keep the seat belts fastened</strong>.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 12 — EMERGENCY / PRECAUTIONARY LANDINGS -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s12"><span class="num">12</span> Emergency &amp; Precautionary Landings, Ditching</h2>
+
+  <table>
+    <caption>Table 12.1 &mdash; Types of Non-Routine Landing</caption>
+    <thead><tr><th style="width:24%">Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><th>Forced Landing</th><td>An <strong>immediate landing</strong>, on or off an airport, necessitated by the <strong>inability to continue further flight</strong>. Typical example &mdash; an airplane forced to land due to engine failure.</td></tr>
+      <tr><th>Precautionary Landing</th><td>A <strong>premeditated landing</strong>, on or off the airport, when <strong>further flight is possible but inadvisable</strong>. Examples &mdash; deteriorating weather, being lost, fuel shortage, gradually developing engine trouble.</td></tr>
+      <tr><th>Ditching</th><td>A <strong>forced or precautionary landing on water</strong>.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box green">
+    <span class="tag">&#10003; Responsibility &amp; Ditching Conduct</span>
+    <ul>
+      <li>In the event of a <strong>precautionary landing</strong> (a premeditated landing with time in hand), <strong>ATC</strong> is responsible for alerting the emergency services.</li>
+      <li><strong>If ditching is inevitable:</strong> the use of life jackets is to be <strong>reiterated before the ditching</strong>.</li>
+      <li><strong>In case of ditching, cabin attendants will:</strong> have the passengers <strong>embark directly into the life rafts</strong>; <strong>prevent passenger movements</strong> which may impede the airplane's flotation ability; and <strong>ensure complete evacuation</strong> of the airplane.</li>
+    </ul>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; Life Jackets</span>
+    <p>Life jackets should <strong>NOT be inflated inside the aircraft</strong> &mdash; an inflated jacket can trap an occupant against the ceiling of a flooding cabin and block escape. They are inflated only on leaving the aeroplane.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 13 — FUEL JETTISONING -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s13"><span class="num">13</span> Fuel Jettisoning</h2>
+  <p class="leadin">An aircraft that must land far heavier than its maximum landing weight may dump fuel to get down to a safe landing mass. It is a controlled, coordinated procedure &mdash; not a panic action.</p>
+
+  <div class="box blue">
+    <span class="tag">&#9432; General &amp; Purpose</span>
+    <p>An aircraft in an <strong>emergency or other urgent situation</strong> may need to <strong>dump fuel so as to reduce to maximum landing weight</strong>, in order to effect a safe landing.</p>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; ATC Coordination</span>
+    <p>When an aircraft within controlled airspace requires to dump fuel, the flight crew <strong>shall advise ATC</strong>. The ATC unit should then coordinate with the flight crew:</p>
+    <ul>
+      <li>(a) The <strong>route to be flown</strong> &mdash; if possible clear of cities and towns, preferably over water, and away from areas where thunderstorms have been reported or are expected;</li>
+      <li>(b) The <strong>level to be used</strong> &mdash; which should be <strong>not less than <span class="val">1800 m (6000 ft)</span></strong>;</li>
+      <li>(c) The <strong>duration</strong> of the fuel dumping.</li>
+    </ul>
+  </div>
+
+  <h3 class="sub">13.1 &nbsp;Separation From Other Traffic</h3>
+  <div class="box red">
+    <span class="tag">&#9888; Separation From an Aircraft Dumping Fuel</span>
+    <p>Other known traffic should be separated from the aircraft dumping fuel by:</p>
+    <ul>
+      <li>(a) At least <span class="val">19 km (10 NM)</span> horizontally &mdash; but <strong>not behind</strong> the aircraft dumping fuel;</li>
+      <li>(b) <strong>Vertical separation</strong> if behind the aircraft dumping fuel within <span class="val">15 minutes</span> flying time or a distance of <span class="val">93 km (50 NM)</span> by:
+        <ul>
+          <li>(i) at least <span class="val">300 m (1000 ft)</span> if <strong>above</strong> the aircraft dumping fuel; and</li>
+          <li>(ii) at least <span class="val">900 m (3000 ft)</span> if <strong>below</strong> the aircraft dumping fuel.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="figure">
+    <div class="cap">Fuel Jettison Protected Area &amp; Vertical Separation</div>
+    <svg class="diagram" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fuel jettison separation diagram">
+      <line x1="40" y1="110" x2="600" y2="110" stroke="#10243e" stroke-width="2" stroke-dasharray="6 4"/>
+      <polygon points="320,100 340,110 320,120" fill="#d9534f"/>
+      <text x="270" y="96" font-family="Archivo,sans-serif" font-size="11" font-weight="800" fill="#d9534f">AIRCRAFT DUMPING FUEL</text>
+      <!-- 10NM ahead -->
+      <line x1="320" y1="135" x2="200" y2="135" stroke="#2f6db0" stroke-width="2"/>
+      <text x="205" y="152" font-family="Archivo,sans-serif" font-size="10" fill="#16365c">19 km / 10 NM ahead</text>
+      <!-- 50NM behind -->
+      <line x1="340" y1="135" x2="560" y2="135" stroke="#2f6db0" stroke-width="2"/>
+      <text x="380" y="152" font-family="Archivo,sans-serif" font-size="10" fill="#16365c">93 km / 50 NM (or 15 min) behind</text>
+      <!-- above -->
+      <line x1="470" y1="110" x2="470" y2="60" stroke="#3c9a5a" stroke-width="2"/>
+      <text x="478" y="80" font-family="Archivo,sans-serif" font-size="10" fill="#1f5232">&#8805; 300 m (1000 ft) ABOVE</text>
+      <!-- below -->
+      <line x1="470" y1="110" x2="470" y2="180" stroke="#d9534f" stroke-width="2"/>
+      <text x="478" y="165" font-family="Archivo,sans-serif" font-size="10" fill="#7d211d">&#8805; 900 m (3000 ft) BELOW</text>
+      <text x="50" y="200" font-family="Archivo,sans-serif" font-size="9.5" fill="#6b6b63">Horizontal protected boundary extends 19 km (10 NM) either side of the track flown.</text>
+    </svg>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; Communications &amp; Test Requirements</span>
+    <p>If the aircraft will maintain <strong>radio silence</strong> during fuel dumping, the frequency to be monitored and the time when radio silence will terminate should be <strong>agreed</strong>.</p>
+    <p><strong>Requirements that must be shown to exist during fuel-jettisoning tests:</strong></p>
+    <ul>
+      <li>The fuel-jettisoning system and its operation are <strong>free from fire hazard</strong>;</li>
+      <li>The <strong>fuel discharges clear of any part of the aeroplane</strong>;</li>
+      <li><strong>Fuel fumes do not enter any part of the aeroplane</strong>;</li>
+      <li>The jettison operation <strong>does not adversely affect the controllability of the aeroplane</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Exam Hook</span>
+    <p>Fuel jettison should normally be carried out <strong>above <span class="val">6,000 ft AGL</span></strong> &mdash; but it may be done <strong>anywhere if unavoidable</strong>.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 14 — DANGEROUS GOODS -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s14"><span class="num">14</span> Transport of Dangerous Goods</h2>
+
+  <div class="box blue">
+    <span class="tag">&#9432; Context</span>
+    <p>More than half of the cargo carried by all modes of transport in the world is <strong>dangerous cargo</strong> &mdash; explosive, corrosive, flammable, toxic and even radioactive. These goods are essential for industrial, commercial, medical and research processes, and a great deal is carried by aircraft.</p>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; Goods Forbidden for Air Transport (Unless Exempted)</span>
+    <p>The following shall be <strong>forbidden on aircraft unless exempted</strong> by the States concerned:</p>
+    <ul>
+      <li>(a) Articles and substances <strong>identified in the Technical Instructions as forbidden for transport in normal circumstances</strong>; and</li>
+      <li>(b) <strong>Infected live animals.</strong></li>
+    </ul>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; Documents &amp; Definitions</span>
+    <ul>
+      <li>A list of dangerous goods which may not be transported by air is found in the <strong>Technical Instructions for the Safe Transport of Dangerous Goods by Air</strong>.</li>
+      <li>Products/materials are considered dangerous goods if defined as such by the <strong>ICAO document "Technical Instructions for the safe transportation of dangerous goods by air."</strong></li>
+      <li><strong>ICAO Annex / Appendix 18</strong> deals with the <strong>safety of the air transport of hazardous materials</strong>.</li>
+      <li>To carry hazardous materials on board a public transport airplane (per CAR-OPS), they must be accompanied by a <strong>transport document for hazardous materials</strong>, which &mdash; if required &mdash; shall be <strong>drawn up by the shipper</strong>.</li>
+      <li>General information, instructions and recommendations on transporting hazardous materials are specified in the <strong>Operation Manual</strong>.</li>
+      <li>Dangerous goods <strong>may be carried in the passenger cabin or on the flight deck &mdash; but only goods specified in the Technical Instructions</strong>.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 15 — CONTAMINATED RUNWAYS -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s15"><span class="num">15</span> Contaminated Runways &amp; Hydroplaning</h2>
+  <p class="leadin">When the runway is wet or contaminated, the friction available to stop the aircraft drops &mdash; and so does your safety margin. Knowing the exact definitions and the landing-distance factor is essential.</p>
+
+  <h3 class="sub">15.1 &nbsp;Braking Action &amp; Brake Coefficient</h3>
+  <div class="box blue">
+    <span class="tag">&#9432; Concept</span>
+    <p>Runway surface friction is <strong>directly relevant to the braking action</strong> available to an aircraft decelerating after touchdown or after a decision to reject a take-off. Aircraft braking coefficient depends on the surface friction between the runway and the aircraft tyres &mdash; <strong>less friction means less braking coefficient and less braking</strong>.</p>
+    <p>For most multi-crew aircraft, <strong>anti-skid braking systems</strong> are fitted &mdash; these prevent wheel locking and allow more aggressive brake input on wet/slippery runways <strong>without inducing dynamic or viscous aquaplaning</strong>.</p>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; Reporting Braking Efficiency</span>
+    <p>Braking efficiency is information presented as a <strong>combination of the terms: poor, medium, good</strong>.</p>
+  </div>
+
+  <h3 class="sub">15.2 &nbsp;Runway Surface State &mdash; Exact Definitions</h3>
+  <table>
+    <caption>Table 15.1 &mdash; Runway Surface Conditions</caption>
+    <thead><tr><th style="width:20%">Condition</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><th>Damp</th><td>The surface is <strong>not dry</strong>, and surface moisture <strong>does not give a shiny appearance</strong>.</td></tr>
+      <tr><th>Wet</th><td>Covered with water (or loose/slushy snow) <strong>less than or equal to the equivalent of 3 mm of water</strong>; OR surface moisture is sufficient to make it <strong>reflective but does not create large stagnant sheets of water</strong>.</td></tr>
+      <tr><th>Contaminated</th><td>A runway covered with <span class="val">4 mm</span> thick water is said to be <strong>contaminated</strong>.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box red">
+    <span class="tag">&#9888; Wet Runway Landing Distance</span>
+    <p>An operator shall ensure that when weather reports/forecasts indicate the runway may be <strong>wet</strong> at the estimated time of arrival, the <strong>landing distance available is at least <span class="val">115%</span> of the required landing distance</strong>. Equivalently &mdash; if the flight manual gives no specific wet-runway data, the required landing distance on a dry runway must be <strong>increased by <span class="val">15%</span></strong>.</p>
+  </div>
+
+  <h3 class="sub">15.3 &nbsp;Dynamic Hydroplaning (Aquaplaning)</h3>
+  <div class="box blue">
+    <span class="tag">&#9432; Definition</span>
+    <p><strong>Aquaplaning</strong> (also known as <strong>hydroplaning</strong>) is a condition that exists when landing on a surface with <strong>standing water deeper than the tread depth of the tyres</strong>. When the brakes are applied, the brake may lock up and the tyre rides on the surface of the water, much like a water ski.</p>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; Why Hydroplaning Is Dangerous</span>
+    <p>When the tyres are hydroplaning, <strong>directional control and braking action are virtually impossible</strong>. An effective <strong>anti-skid system can minimize the effects</strong> of hydroplaning.</p>
+  </div>
+
+  <table>
+    <caption>Table 15.2 &mdash; Types of Hydroplaning</caption>
+    <thead><tr><th style="width:30%">Type</th><th>Primary Cause</th></tr></thead>
+    <tbody>
+      <tr><th>Dynamic hydroplaning</th><td>Depends primarily on the <strong>depth of the standing water</strong> on the runway (and aeroplane speed along the runway lifting the tyre).</td></tr>
+      <tr><th>Viscous hydroplaning</th><td>Caused by a <strong>smooth and dirty runway surface</strong>.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Exam Hook</span>
+    <p>The effect whereby a tyre is <strong>lifted from the runway due to aeroplane speed</strong> along the runway is known as <strong>hydroplaning</strong>.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 16 — MCQ BANK -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s16"><span class="num">16</span> Practice Question Bank &mdash; 109 MCQs</h2>
+  <div class="box blue">
+    <span class="tag">&#9432; How To Use This Bank</span>
+    <p>All <strong>109 questions</strong> from the chapter are reproduced below. The <strong style="color:var(--green-tx)">correct option is highlighted green and marked &#10003;</strong>, with a one-line rationale. Cover the green boxes with a card to self-test, then reveal. A consolidated <strong>answer key grid</strong> follows at the very end.</p>
+  </div>
+
+  <h3 class="sub">A &nbsp;Equipment Lists, Flight Manual &amp; Icing &nbsp;(Q1&ndash;7)</h3>
+
+  <div class="mcq"><p class="q"><span class="qn">1</span>MMEL is drawn up by:</p><ul>
+    <li><span class="opt">A</span>The operator and approved by the certification authority</li>
+    <li class="correct"><span class="opt">B</span>The manufacturer and approved by the DGCA</li>
+    <li><span class="opt">C</span>The operator from a main list drawn up by the manufacturer</li></ul>
+    <p class="why"><b>Why:</b> The manufacturer drafts the Master MEL; the DGCA approves it.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">2</span>The Minimum Equipment List (MEL) is established by:</p><ul>
+    <li class="correct"><span class="opt">A</span>The airline operator</li>
+    <li><span class="opt">B</span>The aeronautical authority the airline operator depends on</li>
+    <li><span class="opt">C</span>The manufacturer</li></ul>
+    <p class="why"><b>Why:</b> The operator tailors the MMEL into its own MEL (DGCA-approved).</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">3</span>A piece of equipment fails while still parked. The reference document used first to decide the procedure is:</p><ul>
+    <li class="correct"><span class="opt">A</span>The minimum equipment list</li>
+    <li><span class="opt">B</span>The flight manual</li>
+    <li><span class="opt">C</span>The operation manual's chapter "Abnormal and Emergency Procedures"</li></ul>
+    <p class="why"><b>Why:</b> The MEL gives the go/no-go despatch decision for unserviceable items.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">4</span>The minimum equipment list of a public transport airplane is to be found in the:</p><ul>
+    <li><span class="opt">A</span>Flight manual</li>
+    <li class="correct"><span class="opt">B</span>Operation manual</li>
+    <li><span class="opt">C</span>CAR OPS</li></ul>
+    <p class="why"><b>Why:</b> The operator includes the MEL in the Operations Manual.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">5</span>In public transport, prior to take-off in icing conditions, the captain must check that:</p><ul>
+    <li class="correct"><span class="opt">A</span>External surfaces are free from any ice accretion which may impede performance and manoeuvrability, except within the limits specified by the flight manual</li>
+    <li><span class="opt">B</span>External surfaces are free from any ice accretion greater than 5 mm</li>
+    <li><span class="opt">C</span>Possible ice accretions do not cause weight and balance limits to be exceeded</li></ul>
+    <p class="why"><b>Why:</b> Surfaces must be clean except for amounts the AFM specifically permits.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">6</span>Accumulation of snow or ice on an aircraft in flight induces an increase in the:</p><ul>
+    <li><span class="opt">A</span>Value of the stall angle of attack</li>
+    <li><span class="opt">B</span>Roll rate</li>
+    <li class="correct"><span class="opt">C</span>Stalling speed</li></ul>
+    <p class="why"><b>Why:</b> Contamination destroys lift, so the wing stalls at a higher speed.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">7</span>Which requirement should be met when planning a flight with icing conditions:</p><ul>
+    <li><span class="opt">A</span>Flight planned so a change of cruising level can be initiated rapidly</li>
+    <li><span class="opt">B</span>The aircraft shall be sprayed with anti-icing fluid before flight</li>
+    <li class="correct"><span class="opt">C</span>The aircraft shall be equipped with approved ice-protection systems</li></ul>
+    <p class="why"><b>Why:</b> The aircraft must be certificated and equipped for icing conditions.</p></div>
+
+  <h3 class="sub">B &nbsp;Bird Strike &amp; Noise Abatement &nbsp;(Q8&ndash;17)</h3>
+
+  <div class="mcq"><p class="q"><span class="qn">8</span>As captain, after take-off you notice a flock of birds which may present a bird strike hazard. You must:</p><ul>
+    <li class="correct"><span class="opt">A</span>Immediately inform the appropriate ground station</li>
+    <li><span class="opt">B</span>Draft a bird strike hazard report upon arrival within at most 48 hours</li>
+    <li><span class="opt">C</span>Inform the appropriate ground station within a reasonable period of time</li></ul>
+    <p class="why"><b>Why:</b> Warning following traffic immediately is the only effective defence.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">9</span>What is the most effective method for scaring birds?</p><ul>
+    <li><span class="opt">A</span>Land rover with loudspeaker</li>
+    <li class="correct"><span class="opt">B</span>Shell crackers</li>
+    <li><span class="opt">C</span>Making movement</li></ul>
+    <p class="why"><b>Why:</b> Shell crackers are stated as the most effective scaring method.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">10</span>90% of bird strikes occur:</p><ul>
+    <li class="correct"><span class="opt">A</span>Under 500 m</li>
+    <li><span class="opt">B</span>Between 500 and 1 500 m</li>
+    <li><span class="opt">C</span>Above 1 000 m</li></ul>
+    <p class="why"><b>Why:</b> The vast majority of strikes happen low, near the airfield.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">11</span>Birds on the ground ahead of an aircraft that has reached an average speed of 135 kt fly away:</p><ul>
+    <li><span class="opt">A</span>From the beginning of the takeoff roll</li>
+    <li><span class="opt">B</span>About ten seconds beforehand</li>
+    <li class="correct"><span class="opt">C</span>About two seconds beforehand</li></ul>
+    <p class="why"><b>Why:</b> Studies show birds clear roughly two seconds before the aircraft.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">12</span>Who is responsible for establishing operating procedures for noise abatement during instrument flight in compliance with ICAO PANS-OPS?</p><ul>
+    <li class="correct"><span class="opt">A</span>Operator</li>
+    <li><span class="opt">B</span>State in which the aeroplane is operating</li>
+    <li><span class="opt">C</span>Commander</li></ul>
+    <p class="why"><b>Why:</b> The operator specifies the noise-abatement procedure for each aeroplane type.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">13</span>About procedures for noise attenuation during landing:</p><ul>
+    <li class="correct"><span class="opt">A</span>Such procedures will not involve the prohibition of using reverse thrust</li>
+    <li><span class="opt">B</span>Such procedures do not exist</li>
+    <li><span class="opt">C</span>They prohibit the use of reverse thrust</li></ul>
+    <p class="why"><b>Why:</b> Only reverse thrust <em>above reverse idle</em> may be restricted &mdash; idle reverse is never fully prohibited.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">14</span>Noise abatement shall not be the determining factor in runway designation when: (1) crosswind incl. gust &gt;15 kt; (2) tailwind incl. gust &gt;5 kt; (3) runway not clear or dry. Correct combination:</p><ul>
+    <li><span class="opt">A</span>1, 3</li>
+    <li><span class="opt">B</span>2, 3</li>
+    <li class="correct"><span class="opt">C</span>1, 2, 3</li></ul>
+    <p class="why"><b>Why:</b> Any one of the three conditions removes noise abatement's say.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">15</span>In establishing noise preferential routes:</p><ul>
+    <li class="correct"><span class="opt">A</span>No turns should be required coincident with a reduction of power associated with a noise-abatement procedure</li>
+    <li><span class="opt">B</span>Turns during take-off/climb not required unless bank angle limited to 28&deg; (climbing at V2 + 10 to 20 kt)</li>
+    <li><span class="opt">C</span>Turns during take-off/climb not required unless the aeroplane has reached and can maintain a height of no less than 100 m above terrain and obstacles</li></ul>
+    <p class="why"><b>Why:</b> Turning while reducing power compounds workload &mdash; it is avoided.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">16</span>What precludes a runway being used for noise abatement procedures if landing in VMC?</p><ul>
+    <li><span class="opt">A</span>Tailwind up to 3 kts</li>
+    <li class="correct"><span class="opt">B</span>No ILS or visual guidance</li>
+    <li><span class="opt">C</span>Crosswind including gusts of 10 kts</li></ul>
+    <p class="why"><b>Why:</b> Absence of ILS/visual guidance rules a runway out for VMC noise abatement.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">17</span>During a noise-abatement approach, the aeroplane is to be in the final landing configuration after passing the ___ or at a point ___ from the threshold, whichever is earlier:</p><ul>
+    <li><span class="opt">A</span>Final marker, 6 NM</li>
+    <li><span class="opt">B</span>Middle marker, 5 NM</li>
+    <li class="correct"><span class="opt">C</span>Outer marker, 5 NM</li></ul>
+    <p class="why"><b>Why:</b> Stabilised by the outer marker or 5 NM &mdash; whichever comes first.</p></div>
+
+  <h3 class="sub">C &nbsp;Fire, Smoke &amp; Brakes &nbsp;(Q18&ndash;53)</h3>
+
+  <div class="mcq"><p class="q"><span class="qn">18</span>In case of an engine nozzle fire while on ground you:</p><ul>
+    <li><span class="opt">A</span>Pull the fire shut-off handle and trigger the engine's fire-extinguisher</li>
+    <li class="correct"><span class="opt">B</span>Carry out a dry cranking</li>
+    <li><span class="opt">C</span>Carry out a damp cranking</li></ul>
+    <p class="why"><b>Why:</b> Dry motoring blows out a residual fuel/nozzle fire on the ground.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">19</span>To extinguish a fire in the cockpit you use: (1) water; (2) powder/chemical; (3) halon; (4) CO&#8322;. Correct combination:</p><ul>
+    <li><span class="opt">A</span>2, 3, 4</li>
+    <li><span class="opt">B</span>1, 2</li>
+    <li class="correct"><span class="opt">C</span>3, 4</li></ul>
+    <p class="why"><b>Why:</b> Halon and CO&#8322; are non-conducting and clean &mdash; safe around electrics.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">20</span>You will use a CO&#8322; fire-extinguisher for: (1) paper; (2) plastic; (3) hydrocarbon; (4) electrical. Correct combination:</p><ul>
+    <li><span class="opt">A</span>3, 4</li>
+    <li><span class="opt">B</span>1, 2, 3</li>
+    <li class="correct"><span class="opt">C</span>1, 2, 3, 4</li></ul>
+    <p class="why"><b>Why:</b> Per the bank, CO&#8322; is credited against all four fire types listed.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">21</span>You will use a dry chemical powder fire-extinguisher for: (1) paper; (2) plastic; (3) hydrocarbon; (4) electrical. Correct combination:</p><ul>
+    <li><span class="opt">A</span>1, 4</li>
+    <li><span class="opt">B</span>1, 2, 3</li>
+    <li class="correct"><span class="opt">C</span>1, 2, 3, 4</li></ul>
+    <p class="why"><b>Why:</b> Dry chemicals cover Class A, B and C fires.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">22</span>CO&#8322; type extinguishers are fit to fight: (1) Class A; (2) Class B; (3) electrical source; (4) special fires (metals, gas, chemical). Correct combination:</p><ul>
+    <li class="correct"><span class="opt">A</span>1, 2, 3</li>
+    <li><span class="opt">B</span>1, 3, 4</li>
+    <li><span class="opt">C</span>2, 3, 4</li></ul>
+    <p class="why"><b>Why:</b> CO&#8322; is unsuitable for special metal/chemical (Class D) fires.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">23</span>To fight a fire in an air-conditioned cargo hold:</p><ul>
+    <li class="correct"><span class="opt">A</span>You turn off the cargo-hold ventilation and extinguish the fire</li>
+    <li><span class="opt">B</span>Extinguish fire only</li>
+    <li><span class="opt">C</span>Fire-fighting is not necessary, since combustible goods in an air-conditioned hold are forbidden</li></ul>
+    <p class="why"><b>Why:</b> Killing ventilation starves the fire of oxygen.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">24</span>In case of a fire due to heating of the brakes, you fight the fire using: (1) dry powder; (2) water spray atomizer; (3) water extinguisher; (4) CO&#8322; to the maximum. Correct combination:</p><ul>
+    <li class="correct"><span class="opt">A</span>1, 2</li>
+    <li><span class="opt">B</span>1, 4</li>
+    <li><span class="opt">C</span>3, 4</li></ul>
+    <p class="why"><b>Why:</b> Dry powder plus a water-spray atomizer cool a brake fire safely.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">25</span>A Class A fire is a fire of:</p><ul>
+    <li><span class="opt">A</span>Electrical origin</li>
+    <li class="correct"><span class="opt">B</span>Solid material, generally of organic nature</li>
+    <li><span class="opt">C</span>Liquid or liquefiable solid</li></ul>
+    <p class="why"><b>Why:</b> Class A = wood, paper, cloth, plastic &mdash; ordinary solids.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">26</span>After landing, in case of high temperature of the brakes you:</p><ul>
+    <li><span class="opt">A</span>Release the parking brake and approach the wheels sidewards</li>
+    <li class="correct"><span class="opt">B</span>Release the parking brake and approach the wheels either from aft or fore</li>
+    <li><span class="opt">C</span>Apply the parking brake and approach the wheels sidewards</li></ul>
+    <p class="why"><b>Why:</b> A bursting tyre throws energy sideways &mdash; stay fore/aft.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">27</span>H&#8322;O extinguishers are fit to fight:</p><ul>
+    <li class="correct"><span class="opt">A</span>Class A fires</li>
+    <li><span class="opt">B</span>Electrical source fires</li>
+    <li><span class="opt">C</span>Class B fires</li></ul>
+    <p class="why"><b>Why:</b> Water cools Class A fires; it is dangerous on B and C.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">28</span>Fire-extinguisher types which may be used on Class B fires: (1) H&#8322;O; (2) CO&#8322;; (3) Dry-chemical; (4) Halogen. Correct combination:</p><ul>
+    <li><span class="opt">A</span>3, 4</li>
+    <li><span class="opt">B</span>1, 2, 3, 4</li>
+    <li class="correct"><span class="opt">C</span>2, 3, 4</li></ul>
+    <p class="why"><b>Why:</b> Class B (flammable liquid) cannot be fought with water.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">29</span>Fire-extinguisher types which may be used on Class A fires: (1) H&#8322;O; (2) CO&#8322;; (3) Dry-chemical; (4) Halogen. Correct combination:</p><ul>
+    <li><span class="opt">A</span>3, 4</li>
+    <li class="correct"><span class="opt">B</span>1, 2, 3, 4</li>
+    <li><span class="opt">C</span>2, 3, 4</li></ul>
+    <p class="why"><b>Why:</b> All four agents are credited against Class A fires.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">30</span>A dry-chemical type fire extinguisher is fit to fight: (1) Class A; (2) Class B; (3) electrical source; (4) special fires (metals, gas, chemicals). Correct combination:</p><ul>
+    <li class="correct"><span class="opt">A</span>1, 2, 3, 4</li>
+    <li><span class="opt">B</span>3, 4</li>
+    <li><span class="opt">C</span>1, 2, 3</li></ul>
+    <p class="why"><b>Why:</b> Per the bank, dry chemical is credited against all four.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">31</span>A fire occurs in a wheel and immediate action is required. The safest extinguishant to use is:</p><ul>
+    <li><span class="opt">A</span>CO&#8322; (carbon dioxide)</li>
+    <li><span class="opt">B</span>Foam</li>
+    <li class="correct"><span class="opt">C</span>Dry powder</li></ul>
+    <p class="why"><b>Why:</b> Dry powder avoids thermal shock to the hot wheel/brake assembly.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">32</span>To use passengers' oxygen in case of severe cabin smoke is:</p><ul>
+    <li><span class="opt">A</span>Useless because breathing oxygen would explode under smoke conditions</li>
+    <li class="correct"><span class="opt">B</span>Useless because the toxic cabin smoke is mixed with the breathing oxygen</li>
+    <li><span class="opt">C</span>Possible and recommended</li></ul>
+    <p class="why"><b>Why:</b> Drop-down passenger masks are not sealed &mdash; they draw in cabin smoke.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">33</span>Following a heavy-mass landing on a short runway, you should check the:</p><ul>
+    <li class="correct"><span class="opt">A</span>Temperature of the brakes</li>
+    <li><span class="opt">B</span>Pressure of the hydraulic fluid</li>
+    <li><span class="opt">C</span>Pressure of the pneumatic tyres</li></ul>
+    <p class="why"><b>Why:</b> A heavy stop dumps huge kinetic energy as heat into the brakes.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">34</span>The correct statement about extinguishing agents on board aeroplanes is:</p><ul>
+    <li><span class="opt">A</span>Water may only be used for minor fires</li>
+    <li><span class="opt">B</span>Burning cargo in cargo-aeroplanes is usually extinguished by carbon dioxide</li>
+    <li class="correct"><span class="opt">C</span>Halon is an effective extinguishing agent for use in aeroplanes</li></ul>
+    <p class="why"><b>Why:</b> Halon is highly effective &mdash; three times CO&#8322; for the same quantity.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">35</span>If smoke appears in the air conditioning, the first action to take is to:</p><ul>
+    <li><span class="opt">A</span>Determine which system is causing the smoke</li>
+    <li><span class="opt">B</span>Begin an emergency descent</li>
+    <li class="correct"><span class="opt">C</span>Put on the mask and goggles</li></ul>
+    <p class="why"><b>Why:</b> Protect the crew first &mdash; then diagnose and act.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">36</span>Beneath fire extinguishers, the following equipment for fire fighting is on board:</p><ul>
+    <li><span class="opt">A</span>A hydraulic winch and a big box of tools</li>
+    <li><span class="opt">B</span>A big bunch of fire-extinguishing blankets</li>
+    <li class="correct"><span class="opt">C</span>Crash axes or crowbars</li></ul>
+    <p class="why"><b>Why:</b> Crash axes/crowbars allow access to hidden fires behind panels.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">37</span>A Class B fire is a fire of:</p><ul>
+    <li class="correct"><span class="opt">A</span>Liquid or liquefiable solid</li>
+    <li><span class="opt">B</span>Solid material usually of organic nature</li>
+    <li><span class="opt">C</span>Special fire: metal, gas, chemical product</li></ul>
+    <p class="why"><b>Why:</b> Class B = flammable liquids, oil, fuel, hydraulic fluid.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">38</span>Fire fighting in the toilets must be performed with:</p><ul>
+    <li class="correct"><span class="opt">A</span>All available extinguishers simultaneously</li>
+    <li><span class="opt">B</span>All available extinguishers in sequence</li>
+    <li><span class="opt">C</span>All available liquids</li></ul>
+    <p class="why"><b>Why:</b> A concealed lavatory fire demands maximum, immediate suppression.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">39</span>The system which must be switched off in case of a belly compartment fire is generally the:</p><ul>
+    <li class="correct"><span class="opt">A</span>Ventilation of the cargo compartment</li>
+    <li><span class="opt">B</span>Trim air</li>
+    <li><span class="opt">C</span>Pressurization</li></ul>
+    <p class="why"><b>Why:</b> Cutting ventilation deprives the cargo fire of oxygen.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">40</span>You will use a water fire-extinguisher (straight jet) on a fire of: (1) solid (fabric, carpet); (2) liquids (ether, gasoline); (3) gas; (4) metals (sodium). Correct combination:</p><ul>
+    <li><span class="opt">A</span>3</li>
+    <li class="correct"><span class="opt">B</span>1</li>
+    <li><span class="opt">C</span>2</li></ul>
+    <p class="why"><b>Why:</b> A straight water jet suits only Class A solids.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">41</span>You will use a halon extinguisher for a fire of: (1) solids; (2) liquids; (3) gas; (4) metals. Correct combination:</p><ul>
+    <li><span class="opt">A</span>1, 2, 4</li>
+    <li><span class="opt">B</span>1, 2, 3, 4</li>
+    <li class="correct"><span class="opt">C</span>1, 2, 3</li></ul>
+    <p class="why"><b>Why:</b> Halon covers A, B and C &mdash; never use it on metals (Class D).</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">42</span>An engine fire warning will switch on the relevant fire shut-off handle. The fire shut-off handle will be switched off when:</p><ul>
+    <li class="correct"><span class="opt">A</span>Fire is no longer detected</li>
+    <li><span class="opt">B</span>The fire-extinguisher has been triggered</li>
+    <li><span class="opt">C</span>The fire shut-off handle has been pulled</li></ul>
+    <p class="why"><b>Why:</b> The warning extinguishes only once the fire detection clears.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">43</span>A 1211 halon fire-extinguisher can be used for: (1) paper; (2) fabric; (3) electric; (4) wood; (5) hydrocarbon. Correct combination:</p><ul>
+    <li><span class="opt">A</span>2, 4, 5</li>
+    <li><span class="opt">B</span>2, 3, 4</li>
+    <li class="correct"><span class="opt">C</span>1, 2, 3, 4, 5</li></ul>
+    <p class="why"><b>Why:</b> BCF/Halon 1211 is effective across Class A, B and C.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">44</span>A CO&#8322; fire extinguisher can be used for: (1) paper; (2) hydrocarbon; (3) fabric; (4) electrical; (5) wood. Correct combination:</p><ul>
+    <li><span class="opt">A</span>2, 4, 5</li>
+    <li class="correct"><span class="opt">B</span>1, 2, 3, 4, 5</li>
+    <li><span class="opt">C</span>1, 3, 5</li></ul>
+    <p class="why"><b>Why:</b> Per the bank, CO&#8322; is credited against all five listed items.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">45</span>A water fire-extinguisher can be used without restriction for: (1) paper; (2) hydrocarbon; (3) fabric; (4) electrical; (5) wood. Correct combination:</p><ul>
+    <li><span class="opt">A</span>2, 3, 4</li>
+    <li><span class="opt">B</span>1, 2, 3, 4, 5</li>
+    <li class="correct"><span class="opt">C</span>1, 3, 5</li></ul>
+    <p class="why"><b>Why:</b> Paper, fabric and wood are Class A &mdash; water's safe domain.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">46</span>After a landing with overweight and over-speed conditions, the fireguards should approach the landing-gear tyres:</p><ul>
+    <li><span class="opt">A</span>Only from left or right sides</li>
+    <li><span class="opt">B</span>From any side</li>
+    <li class="correct"><span class="opt">C</span>Only from front or rear side</li></ul>
+    <p class="why"><b>Why:</b> A tyre burst releases energy sideways &mdash; approach fore/aft.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">47</span>For a flight deck fire, which do you use? (1) BCF; (2) Halon; (3) Dry Powder; (4) Water.</p><ul>
+    <li><span class="opt">A</span>1, 2 &amp; 3</li>
+    <li><span class="opt">B</span>1, 2, 3 &amp; 4</li>
+    <li class="correct"><span class="opt">C</span>1 &amp; 2</li></ul>
+    <p class="why"><b>Why:</b> BCF/Halon are clean, non-conducting agents safe on the flight deck.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">48</span>An aircraft is configured for seating 61 to 200 passengers. The requirement for hand-held fire extinguishers is:</p><ul>
+    <li><span class="opt">A</span>4 conveniently located in the passenger compartment</li>
+    <li><span class="opt">B</span>2 conveniently located in the passenger compartment</li>
+    <li class="correct"><span class="opt">C</span>3 conveniently located in the passenger compartment</li></ul>
+    <p class="why"><b>Why:</b> 61&ndash;200 seats requires three conveniently located extinguishers.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">49</span>The number of hand fire extinguishers in the passenger compartment when seating configuration is between 401 and 500 is:</p><ul>
+    <li><span class="opt">A</span>3</li>
+    <li class="correct"><span class="opt">B</span>6</li>
+    <li><span class="opt">C</span>5</li></ul>
+    <p class="why"><b>Why:</b> 401&ndash;500 seats requires six conveniently located extinguishers.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">50</span>A water fire extinguisher with a directed spray can be used on which fires?</p><ul>
+    <li><span class="opt">A</span>Gas fires</li>
+    <li><span class="opt">B</span>Liquid fires</li>
+    <li class="correct"><span class="opt">C</span>Solid fires</li></ul>
+    <p class="why"><b>Why:</b> Water targets Class A solids only.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">51</span>You will use a Halon extinguisher for a fire of: (1) solids; (2) liquids; (3) gas; (4) metals. Correct combination:</p><ul>
+    <li><span class="opt">A</span>2, 3, 4</li>
+    <li><span class="opt">B</span>1, 2, 4</li>
+    <li class="correct"><span class="opt">C</span>1, 2, 3</li></ul>
+    <p class="why"><b>Why:</b> Halon = Class A, B, C &mdash; never on metals (Class D).</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">52</span>Fire extinguishers should be located in the pilots' compartment and&hellip;</p><ul>
+    <li class="correct"><span class="opt">A</span>At each passenger compartment that is separate from the pilots' compartment and not readily accessible to the flight crew</li>
+    <li><span class="opt">B</span>In the passenger cabin</li>
+    <li><span class="opt">C</span>At each door</li></ul>
+    <p class="why"><b>Why:</b> Each separate passenger compartment needs its own extinguisher.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">53</span>In case of an engine jet-pipe fire while on the ground you:</p><ul>
+    <li><span class="opt">A</span>Carry out a wet motoring cycle</li>
+    <li class="correct"><span class="opt">B</span>Carry out a dry motoring cycle</li>
+    <li><span class="opt">C</span>Pull the fire shut-off handle and trigger the engine fire extinguishers</li></ul>
+    <p class="why"><b>Why:</b> Dry motoring blows the fire out without introducing more fuel.</p></div>
+
+  <h3 class="sub">D &nbsp;Decompression &amp; Oxygen &nbsp;(Q54&ndash;62)</h3>
+
+  <div class="mcq"><p class="q"><span class="qn">54</span>If cabin altitude increases during level flight, the differential pressure:</p><ul>
+    <li class="correct"><span class="opt">A</span>Decreases</li>
+    <li><span class="opt">B</span>Remains constant</li>
+    <li><span class="opt">C</span>Increases</li></ul>
+    <p class="why"><b>Why:</b> Higher cabin altitude = lower cabin pressure = smaller differential.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">55</span>Minimum requirements for supplemental oxygen during/following an emergency descent: for pilots it shall be available for the entire flight time the cabin pressure altitude exceeds a minimum of X feet. X is:</p><ul>
+    <li class="correct"><span class="opt">A</span>13000 ft</li>
+    <li><span class="opt">B</span>14000 ft</li>
+    <li><span class="opt">C</span>15000 ft</li></ul>
+    <p class="why"><b>Why:</b> Pilots remain on oxygen whenever cabin altitude exceeds 13,000 ft.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">56</span>A slow decompression may be caused by:</p><ul>
+    <li><span class="opt">A</span>Loss of a cabin window</li>
+    <li class="correct"><span class="opt">B</span>A leak in a door seal during normal pressurised flight</li>
+    <li><span class="opt">C</span>Loss of a door</li></ul>
+    <p class="why"><b>Why:</b> A small seal leak bleeds pressure slowly; a lost door is sudden.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">57</span>At FL290 in straight &amp; level flight, a small leak causes a slow depressurisation. The cabin rate-of-climb indicator will show:</p><ul>
+    <li class="correct"><span class="opt">A</span>A rate of climb</li>
+    <li><span class="opt">B</span>Zero</li>
+    <li><span class="opt">C</span>A rate of descent of approximately 300 fpm</li></ul>
+    <p class="why"><b>Why:</b> Falling cabin pressure reads as a rising (climbing) cabin altitude.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">58</span>An aeroplane suffers explosive decompression at 31000 ft. The initial action by the operating crew is:</p><ul>
+    <li><span class="opt">A</span>Place the seat belt signs to ON</li>
+    <li class="correct"><span class="opt">B</span>To put on oxygen masks</li>
+    <li><span class="opt">C</span>Transmit a MAYDAY message</li></ul>
+    <p class="why"><b>Why:</b> Crew oxygen first &mdash; hypoxia incapacitates within seconds at altitude.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">59</span>A slow decompression may be caused by: (1) cracked window; (2) bad functioning of pressurization; (3) minor leak in fuselage; (4) loss of a door. Correct combination:</p><ul>
+    <li><span class="opt">A</span>1, 2</li>
+    <li><span class="opt">B</span>3, 4</li>
+    <li class="correct"><span class="opt">C</span>1, 2, 3</li></ul>
+    <p class="why"><b>Why:</b> Loss of a door is rapid/explosive, not slow.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">60</span>A fast decompression is recognizable by: (1) mist in the cabin; (2) blast towards the exterior; (3) expansion of body gases; (4) blast of air released violently from the lungs. Correct combination:</p><ul>
+    <li><span class="opt">A</span>1, 4</li>
+    <li class="correct"><span class="opt">B</span>1, 2, 3, 4</li>
+    <li><span class="opt">C</span>1, 2, 3</li></ul>
+    <p class="why"><b>Why:</b> All four are recognised signatures of a fast decompression.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">61</span>Supplemental oxygen is used to:</p><ul>
+    <li class="correct"><span class="opt">A</span>Provide people on board with oxygen during a cabin depressurisation</li>
+    <li><span class="opt">B</span>Protect a crew who fights a fire</li>
+    <li><span class="opt">C</span>Assist a passenger with breathing disorders</li></ul>
+    <p class="why"><b>Why:</b> Its purpose is preventing hypoxia during loss of pressurisation.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">62</span>Oxygen should be used after rapid decompression in an emergency descent until what altitude?</p><ul>
+    <li><span class="opt">A</span>14000 ft</li>
+    <li><span class="opt">B</span>13000 ft</li>
+    <li class="correct"><span class="opt">C</span>10000 ft</li></ul>
+    <p class="why"><b>Why:</b> 10,000 ft is the altitude at which oxygen is no longer required.</p></div>
+
+  <h3 class="sub">E &nbsp;Wind Shear &amp; Microburst &nbsp;(Q63&ndash;70)</h3>
+
+  <div class="mcq"><p class="q"><span class="qn">63</span>In case of an unexpected encounter with windshear, you will: (1) set maximum take-off thrust; (2) increase pitch-up to the limit actuating the stick shaker; (3) pull in the drag devices (gear/flaps); (4) keep the airplane's current configuration; (5) reach maximum lift-to-drag ratio. Correct combination:</p><ul>
+    <li class="correct"><span class="opt">A</span>1, 2, 4</li>
+    <li><span class="opt">B</span>1, 3, 5</li>
+    <li><span class="opt">C</span>3, 5</li></ul>
+    <p class="why"><b>Why:</b> Full power, max safe pitch, configuration unchanged &mdash; do not retract gear/flap.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">64</span>If you encounter a microburst just after taking off, at the beginning you will have: (1) head wind; (2) strong rear wind; (3) better climb performance; (4) diminution of climb gradient; (5) important thrust drop. Correct combination:</p><ul>
+    <li><span class="opt">A</span>1, 4</li>
+    <li class="correct"><span class="opt">B</span>1, 3</li>
+    <li><span class="opt">C</span>4, 5</li></ul>
+    <p class="why"><b>Why:</b> The initial headwind momentarily improves climb performance.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">65</span>During a landing approach, the aircraft is subjected to windshear with an increasing tailwind. In the absence of pilot action, the aircraft: (1) flies above glide path; (2) flies below glide path; (3) increasing TAS; (4) decreasing TAS. Correct combination:</p><ul>
+    <li><span class="opt">A</span>2, 3</li>
+    <li><span class="opt">B</span>1, 4</li>
+    <li class="correct"><span class="opt">C</span>2, 4</li></ul>
+    <p class="why"><b>Why:</b> Increasing tailwind robs airspeed &mdash; aircraft sinks below the glide path.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">66</span>To counter the effects of windshear, the amount of control action required is:</p><ul>
+    <li class="correct"><span class="opt">A</span>Substantial</li>
+    <li><span class="opt">B</span>Medium</li>
+    <li><span class="opt">C</span>Null</li></ul>
+    <p class="why"><b>Why:</b> Recovery may need full power and a near-stall pitch attitude.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">67</span>While approaching the outer marker, the tower informs you of a microburst. You will expect to encounter:</p><ul>
+    <li><span class="opt">A</span>Convection motion of air mass</li>
+    <li><span class="opt">B</span>Supercooled water</li>
+    <li class="correct"><span class="opt">C</span>Windshear (vertical and horizontal)</li></ul>
+    <p class="why"><b>Why:</b> A microburst produces both vertical and horizontal wind shear.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">68</span>One of the main characteristics of windshear is that it:</p><ul>
+    <li><span class="opt">A</span>Occurs only at low altitude (2000 ft) and never in the horizontal plane</li>
+    <li class="correct"><span class="opt">B</span>Can occur at any altitude in both the vertical and horizontal planes</li>
+    <li><span class="opt">C</span>Can occur at any altitude and only in the horizontal plane</li></ul>
+    <p class="why"><b>Why:</b> Wind shear is not altitude- or plane-restricted.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">69</span>Which magnitude will be the first to change its value when penetrating a wind shear?</p><ul>
+    <li class="correct"><span class="opt">A</span>Indicated airspeed</li>
+    <li><span class="opt">B</span>Groundspeed</li>
+    <li><span class="opt">C</span>Vertical speed</li></ul>
+    <p class="why"><b>Why:</b> A sudden wind change is felt first as an IAS change.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">70</span>An aircraft with a 40 kt headwind heading towards the centre of a microburst may expect, on crossing it, a windshear of:</p><ul>
+    <li><span class="opt">A</span>40 kt</li>
+    <li class="correct"><span class="opt">B</span>80 kt</li>
+    <li><span class="opt">C</span>20 kt</li></ul>
+    <p class="why"><b>Why:</b> A 40 kt headwind reverses into a 40 kt tailwind &mdash; an 80 kt shear.</p></div>
+
+  <h3 class="sub">F &nbsp;Security &amp; Unlawful Interference &nbsp;(Q71&ndash;78)</h3>
+
+  <div class="mcq"><p class="q"><span class="qn">71</span>When a commercial transport passenger airplane is equipped with a door in the flight-crew compartment area, this door must include:</p><ul>
+    <li class="correct"><span class="opt">A</span>A locking system to prevent any unauthorized access</li>
+    <li><span class="opt">B</span>A sealing system allowing maintenance of cockpit pressure during a depressurization</li>
+    <li><span class="opt">C</span>Distinctive red or yellow coloured markings indicating the access area</li></ul>
+    <p class="why"><b>Why:</b> The flight-deck door must lock out unauthorised access.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">72</span>The State in which an aircraft has landed after an act of unlawful interference must immediately notify the:</p><ul>
+    <li class="correct"><span class="opt">A</span>State of Registry of the aircraft, the State of the operator and ICAO</li>
+    <li><span class="opt">B</span>State of Registry of the aircraft and the State of the operator only</li>
+    <li><span class="opt">C</span>State of Registry of the aircraft and the DGCA</li></ul>
+    <p class="why"><b>Why:</b> Registry State, operator State and ICAO must all be informed.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">73</span>In case of a hi-jack, the squawk code is:</p><ul>
+    <li><span class="opt">A</span>2000</li>
+    <li class="correct"><span class="opt">B</span>7500</li>
+    <li><span class="opt">C</span>7700</li></ul>
+    <p class="why"><b>Why:</b> 7500 = unlawful interference; 7700 = general emergency; 7600 = radio failure.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">74</span>The flight deck door should be capable of being:</p><ul>
+    <li><span class="opt">A</span>Remotely locked from either inside or outside the compartment</li>
+    <li><span class="opt">B</span>Remotely locked by cabin crew operation from outside the compartment</li>
+    <li class="correct"><span class="opt">C</span>Locked from within the compartment</li></ul>
+    <p class="why"><b>Why:</b> Control of the lock stays with the flight crew, from inside.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">75</span>Who is responsible for adequate measures for the safety of passengers and crew of an aircraft subjected to unlawful interference until the journey can be continued?</p><ul>
+    <li class="correct"><span class="opt">A</span>Contracting State in which the unlawful interference occurs</li>
+    <li><span class="opt">B</span>Commander of the aircraft</li>
+    <li><span class="opt">C</span>DGCA</li></ul>
+    <p class="why"><b>Why:</b> The State where the act occurs carries this responsibility.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">76</span>Following an act of unlawful interference, to whom should the commander submit a report?</p><ul>
+    <li class="correct"><span class="opt">A</span>Both the local authority and the Authority of the State of the operator</li>
+    <li><span class="opt">B</span>The local Authority only</li>
+    <li><span class="opt">C</span>The Authority of the State within which the aeroplane is operating at the time</li></ul>
+    <p class="why"><b>Why:</b> Report goes to the local authority AND the operator's State authority.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">77</span>When flight crew members are at their duty stations they must:</p><ul>
+    <li><span class="opt">A</span>Wear a communications head set</li>
+    <li class="correct"><span class="opt">B</span>Keep the seat belts fastened</li>
+    <li><span class="opt">C</span>Fully raise the seat</li></ul>
+    <p class="why"><b>Why:</b> Seat belts must stay fastened at the duty station.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">78</span>The State where an aircraft has landed after an act of unlawful interference must immediately notify the:</p><ul>
+    <li class="correct"><span class="opt">A</span>State of Registry of the aircraft, the State of the operator and ICAO</li>
+    <li><span class="opt">B</span>State of Registry of the aircraft and the State of the operator only</li>
+    <li><span class="opt">C</span>State of the operator, the J.A.A. and ICAO</li></ul>
+    <p class="why"><b>Why:</b> Registry State, operator State and ICAO &mdash; the same trio as Q72.</p></div>
+
+  <h3 class="sub">G &nbsp;Emergency Landings, Ditching &amp; Fuel Jettison &nbsp;(Q79&ndash;85)</h3>
+
+  <div class="mcq"><p class="q"><span class="qn">79</span>In case of ditching, the cabin attendants will: (1) evacuate women and children first; (2) have the passengers embark directly into the life rafts; (3) prevent passenger movements which may impede flotation; (4) ensure complete evacuation. Correct combination:</p><ul>
+    <li><span class="opt">A</span>1, 4</li>
+    <li class="correct"><span class="opt">B</span>2, 3, 4</li>
+    <li><span class="opt">C</span>2, 3</li></ul>
+    <p class="why"><b>Why:</b> Direct raft embarkation, controlled movement, and full evacuation.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">80</span>Mist in the cabin, pressure and temperature drop characterize:</p><ul>
+    <li class="correct"><span class="opt">A</span>A fast depressurization</li>
+    <li><span class="opt">B</span>A plastic fire</li>
+    <li><span class="opt">C</span>A slow depressurization</li></ul>
+    <p class="why"><b>Why:</b> Sudden fog plus temperature drop are fast-decompression signatures.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">81</span>In the event of a precautionary landing, who is responsible for alerting the emergency services?</p><ul>
+    <li><span class="opt">A</span>The operations dispatcher</li>
+    <li><span class="opt">B</span>The commander</li>
+    <li class="correct"><span class="opt">C</span>ATC</li></ul>
+    <p class="why"><b>Why:</b> A precautionary landing is premeditated &mdash; ATC alerts the emergency services.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">82</span>If ditching is inevitable:</p><ul>
+    <li><span class="opt">A</span>Passengers should be briefed that even if they evacuate, some will inevitably drown</li>
+    <li class="correct"><span class="opt">B</span>The use of life jackets is to be reiterated before the ditching</li>
+    <li><span class="opt">C</span>Life jackets are to be inflated before leaving the aeroplane</li></ul>
+    <p class="why"><b>Why:</b> Brief life-jacket use beforehand; never inflate them inside the cabin.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">83</span>Requirements that must be shown to exist during fuel-jettisoning tests: (1) system free from fire hazard; (2) fuel discharges clear of any part of the aeroplane; (3) fuel fumes do not enter any part; (4) the jettison operation does not adversely affect controllability. Correct combination:</p><ul>
+    <li><span class="opt">A</span>1, 4</li>
+    <li class="correct"><span class="opt">B</span>1, 2, 3, 4</li>
+    <li><span class="opt">C</span>2, 3</li></ul>
+    <p class="why"><b>Why:</b> All four conditions must be demonstrated during jettison tests.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">84</span>Fuel jettison should be carried out:</p><ul>
+    <li><span class="opt">A</span>Anywhere if unavoidable</li>
+    <li><span class="opt">B</span>Above 6,000 ft AGL</li>
+    <li class="correct"><span class="opt">C</span>All answers are correct</li></ul>
+    <p class="why"><b>Why:</b> Normally above 6,000 ft AGL &mdash; but anywhere if genuinely unavoidable.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">85</span>Fuel Jettison:</p><ul>
+    <li><span class="opt">A</span>May be ordered by ATC to reduce aeroplane mass in an emergency situation</li>
+    <li class="correct"><span class="opt">B</span>Is a procedure to reduce mass in an emergency only</li>
+    <li><span class="opt">C</span>Is a procedure that may be employed to reduce mass where an overweight landing may damage the aeroplane</li></ul>
+    <p class="why"><b>Why:</b> Per the bank, fuel jettison is treated as an emergency-only mass reduction.</p></div>
+
+  <h3 class="sub">H &nbsp;Transport of Dangerous Goods &nbsp;(Q86&ndash;92)</h3>
+
+  <div class="mcq"><p class="q"><span class="qn">86</span>A list of dangerous goods which may not be transported by air can be found in:</p><ul>
+    <li><span class="opt">A</span>The shipper's declaration for dangerous goods</li>
+    <li class="correct"><span class="opt">B</span>The Technical Instructions for the Safe Transport of Dangerous Goods by Air</li>
+    <li><span class="opt">C</span>Annex 18 to the Chicago convention</li></ul>
+    <p class="why"><b>Why:</b> The Technical Instructions list goods forbidden in normal circumstances.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">87</span>To carry hazardous materials on board a public transport airplane (per CAR-OPS), they must be accompanied with a:</p><ul>
+    <li><span class="opt">A</span>Representative of the company owning the materials</li>
+    <li><span class="opt">B</span>Specialized handling employee</li>
+    <li class="correct"><span class="opt">C</span>Transport document for hazardous materials</li></ul>
+    <p class="why"><b>Why:</b> A hazardous-materials transport document must accompany the cargo.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">88</span>General information, instructions and recommendations on transport of hazardous materials are specified in the:</p><ul>
+    <li><span class="opt">A</span>AIP (Aeronautical Information Publication)</li>
+    <li class="correct"><span class="opt">B</span>Operation manual</li>
+    <li><span class="opt">C</span>Flight manual</li></ul>
+    <p class="why"><b>Why:</b> The Operations Manual carries these instructions for the crew.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">89</span>Products are considered dangerous goods if defined as such by:</p><ul>
+    <li><span class="opt">A</span>The IATA document "Regulations governing the transportation of dangerous goods by air"</li>
+    <li><span class="opt">B</span>The directive of the Community Union</li>
+    <li class="correct"><span class="opt">C</span>The ICAO document "Technical Instructions for the safe transportation of dangerous goods by air"</li></ul>
+    <p class="why"><b>Why:</b> The ICAO Technical Instructions are the defining reference.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">90</span>ICAO Appendix 18 is a document dealing with:</p><ul>
+    <li><span class="opt">A</span>The air transport of live animals</li>
+    <li class="correct"><span class="opt">B</span>The safety of the air transport of hazardous materials</li>
+    <li><span class="opt">C</span>The noise pollution of aircraft</li></ul>
+    <p class="why"><b>Why:</b> Annex/Appendix 18 governs the safe transport of dangerous goods.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">91</span>The dangerous goods transport document, if required, shall be drawn up by:</p><ul>
+    <li class="correct"><span class="opt">A</span>The shipper</li>
+    <li><span class="opt">B</span>The handling agent</li>
+    <li><span class="opt">C</span>The captain</li></ul>
+    <p class="why"><b>Why:</b> The shipper is responsible for the transport document.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">92</span>Can dangerous goods be carried in the passenger cabin or on the flight deck?</p><ul>
+    <li><span class="opt">A</span>Yes, provided they are non toxic</li>
+    <li><span class="opt">B</span>Yes, if authorised by the authority</li>
+    <li class="correct"><span class="opt">C</span>Yes, but only goods specified in the Technical Instructions</li></ul>
+    <p class="why"><b>Why:</b> Only goods the Technical Instructions specifically permit.</p></div>
+
+  <h3 class="sub">I &nbsp;Contaminated Runways &amp; Hydroplaning &nbsp;(Q93&ndash;101)</h3>
+
+  <div class="mcq"><p class="q"><span class="qn">93</span>The flight manual has no specific wet-runway data and reports indicate the runway may be wet. The required landing distance on a dry runway must be increased by:</p><ul>
+    <li class="correct"><span class="opt">A</span>15%</li>
+    <li><span class="opt">B</span>18%</li>
+    <li><span class="opt">C</span>17.6%</li></ul>
+    <p class="why"><b>Why:</b> A wet runway requires at least 115% of the dry landing distance.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">94</span>A runway is considered damp when:</p><ul>
+    <li class="correct"><span class="opt">A</span>Its surface is not dry, and surface moisture does not give a shiny appearance</li>
+    <li><span class="opt">B</span>It is covered with a film of water of less than 3 mm</li>
+    <li><span class="opt">C</span>Surface moisture gives it a shiny appearance</li></ul>
+    <p class="why"><b>Why:</b> Damp = not dry but no shine.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">95</span>A runway is considered wet when: (1) covered with water/loose-slushy snow &le; 3 mm equivalent; (2) moisture modifies colour but not shiny; (3) moisture makes it reflective but no large stagnant sheets; (4) bears stagnant sheets of water. Correct combination:</p><ul>
+    <li><span class="opt">A</span>1, 2</li>
+    <li><span class="opt">B</span>1, 2, 3</li>
+    <li class="correct"><span class="opt">C</span>1, 3</li></ul>
+    <p class="why"><b>Why:</b> Wet = up to 3 mm or reflective &mdash; stagnant sheets mean flooded/contaminated.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">96</span>The presence of dynamic hydroplaning depends primarily on the:</p><ul>
+    <li><span class="opt">A</span>Strength of the headwind</li>
+    <li><span class="opt">B</span>Aircraft's weight</li>
+    <li class="correct"><span class="opt">C</span>Depth of the standing water of the runway</li></ul>
+    <p class="why"><b>Why:</b> Standing water deeper than tread depth triggers dynamic hydroplaning.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">97</span>The braking efficiency is a piece of information presenting itself in the form of a:</p><ul>
+    <li><span class="opt">A</span>Letter falling between A and E</li>
+    <li class="correct"><span class="opt">B</span>Combination of the terms: poor, medium, good</li>
+    <li><span class="opt">C</span>Zero followed by two decimals</li></ul>
+    <p class="why"><b>Why:</b> Braking action is reported as poor / medium / good.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">98</span>A runway covered with 4 mm thick water is said to be:</p><ul>
+    <li class="correct"><span class="opt">A</span>Contaminated</li>
+    <li><span class="opt">B</span>Flooded</li>
+    <li><span class="opt">C</span>Damp</li></ul>
+    <p class="why"><b>Why:</b> More than 3 mm of water makes the runway contaminated.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">99</span>A runway is considered damp when:</p><ul>
+    <li><span class="opt">A</span>It is covered with a film of water of less than 1 mm</li>
+    <li class="correct"><span class="opt">B</span>Its surface is not dry, and surface moisture does not give it a shiny appearance</li>
+    <li><span class="opt">C</span>It is covered with a film of water of less than 3 mm</li></ul>
+    <p class="why"><b>Why:</b> Damp is defined by the absence of shine, not a water depth.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">100</span>The effect whereby a tyre is lifted from the runway due to aeroplane speed along the runway is known as:</p><ul>
+    <li><span class="opt">A</span>Surface tension</li>
+    <li class="correct"><span class="opt">B</span>Hydroplaning</li>
+    <li><span class="opt">C</span>Aqua-skimming</li></ul>
+    <p class="why"><b>Why:</b> Hydroplaning lifts the tyre onto a film of water.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">101</span>Viscous hydroplaning is caused by:</p><ul>
+    <li class="correct"><span class="opt">A</span>A smooth and dirty runway surface</li>
+    <li><span class="opt">B</span>Bald tyres</li>
+    <li><span class="opt">C</span>A rough runway surface</li></ul>
+    <p class="why"><b>Why:</b> A thin film on a smooth, dirty surface causes viscous hydroplaning.</p></div>
+
+  <h3 class="sub">J &nbsp;Wake Turbulence Separation &nbsp;(Q102&ndash;109)</h3>
+
+  <div class="mcq"><p class="q"><span class="qn">102</span>What is the shortest distance in a sequence for landing between a "Heavy" aircraft preceding a "Light" aircraft?</p><ul>
+    <li><span class="opt">A</span>3 NM</li>
+    <li class="correct"><span class="opt">B</span>6 NM</li>
+    <li><span class="opt">C</span>2 km</li></ul>
+    <p class="why"><b>Why:</b> Distance-based minimum for Heavy followed by Light is 6 NM.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">103</span>A separation minimum applies between a LIGHT/MEDIUM and a HEAVY (and between LIGHT and MEDIUM) when the heavier aircraft makes a low/missed approach and the lighter lands opposite-direction on the same or a parallel runway separated by:</p><ul>
+    <li><span class="opt">A</span>Less than 730 m</li>
+    <li class="correct"><span class="opt">B</span>Less than 760 m</li>
+    <li><span class="opt">C</span>730 m</li></ul>
+    <p class="why"><b>Why:</b> The trigger spacing is parallel runways less than 760 m apart.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">104</span>Same scenario, but the lighter aircraft is utilising an opposite-direction runway for take-off. This minimum is:</p><ul>
+    <li class="correct"><span class="opt">A</span>2 minutes</li>
+    <li><span class="opt">B</span>3 minutes</li>
+    <li><span class="opt">C</span>1 minute</li></ul>
+    <p class="why"><b>Why:</b> A 2-minute minimum applies for the opposite-direction take-off case.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">105</span>To meet wake turbulence criteria, what minimum separation applies when a MEDIUM aircraft takes off behind a HEAVY aircraft, both using the same runway?</p><ul>
+    <li><span class="opt">A</span>1 minute</li>
+    <li><span class="opt">B</span>3 minutes</li>
+    <li class="correct"><span class="opt">C</span>2 minutes</li></ul>
+    <p class="why"><b>Why:</b> Heavy leading, Medium following, same runway = 2 minutes.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">106</span>For arriving aircraft using timed approaches, what minima apply to an aircraft landing behind a heavy or medium aircraft?</p><ul>
+    <li><span class="opt">A</span>Medium behind other medium &mdash; 2 minutes</li>
+    <li><span class="opt">B</span>Medium behind heavy &mdash; 3 minutes</li>
+    <li class="correct"><span class="opt">C</span>Medium behind heavy &mdash; 2 minutes</li></ul>
+    <p class="why"><b>Why:</b> Arriving Heavy followed by Medium is 2 minutes (time-based table).</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">107</span>What is the minimum wake turbulence separation when a LIGHT aircraft takes off behind a MEDIUM aircraft, both using the same runway?</p><ul>
+    <li><span class="opt">A</span>1 minute</li>
+    <li><span class="opt">B</span>3 minutes</li>
+    <li class="correct"><span class="opt">C</span>2 minutes</li></ul>
+    <p class="why"><b>Why:</b> Medium leading, Light following, same runway = 2 minutes.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">108</span>The letter "L" is written in the wake-turbulence box of a flight-plan form when the MCTOW of an aircraft is less than or equal to:</p><ul>
+    <li><span class="opt">A</span>14000 kg</li>
+    <li><span class="opt">B</span>20000 kg</li>
+    <li class="correct"><span class="opt">C</span>7000 kg</li></ul>
+    <p class="why"><b>Why:</b> Light category = MCTOW of 7,000 kg or less.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">109</span>Wake turbulence risk is highest:</p><ul>
+    <li><span class="opt">A</span>If, just before landing, a much lighter aircraft has landed on the same runway with heavy crosswind</li>
+    <li class="correct"><span class="opt">B</span>When a heavy aircraft has just performed a take-off at a closely situated parallel runway with a light crosswind</li>
+    <li><span class="opt">C</span>When a preceding aircraft has briefly applied take-off thrust just prior to take off</li></ul>
+    <p class="why"><b>Why:</b> A light crosswind drifts a heavy aircraft's vortices onto the parallel runway.</p></div>
+
+  <!-- ===================== ANSWER KEY GRID ===================== -->
+  <h3 class="sub">Consolidated Answer Key &mdash; All 109 Questions</h3>
+  <table>
+    <caption>Quick-Reference Answer Grid</caption>
+    <thead><tr>
+      <th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th>
+      <th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>1</td><td>B</td><td>17</td><td>C</td><td>33</td><td>A</td><td>49</td><td>B</td><td>65</td><td>C</td><td>81</td><td>C</td><td>97</td><td>B</td></tr>
+      <tr><td>2</td><td>A</td><td>18</td><td>B</td><td>34</td><td>C</td><td>50</td><td>C</td><td>66</td><td>A</td><td>82</td><td>B</td><td>98</td><td>A</td></tr>
+      <tr><td>3</td><td>A</td><td>19</td><td>C</td><td>35</td><td>C</td><td>51</td><td>C</td><td>67</td><td>C</td><td>83</td><td>B</td><td>99</td><td>B</td></tr>
+      <tr><td>4</td><td>B</td><td>20</td><td>C</td><td>36</td><td>C</td><td>52</td><td>A</td><td>68</td><td>B</td><td>84</td><td>C</td><td>100</td><td>B</td></tr>
+      <tr><td>5</td><td>A</td><td>21</td><td>C</td><td>37</td><td>A</td><td>53</td><td>B</td><td>69</td><td>A</td><td>85</td><td>B</td><td>101</td><td>A</td></tr>
+      <tr><td>6</td><td>C</td><td>22</td><td>A</td><td>38</td><td>A</td><td>54</td><td>A</td><td>70</td><td>B</td><td>86</td><td>B</td><td>102</td><td>B</td></tr>
+      <tr><td>7</td><td>C</td><td>23</td><td>A</td><td>39</td><td>A</td><td>55</td><td>A</td><td>71</td><td>A</td><td>87</td><td>C</td><td>103</td><td>B</td></tr>
+      <tr><td>8</td><td>A</td><td>24</td><td>A</td><td>40</td><td>B</td><td>56</td><td>B</td><td>72</td><td>A</td><td>88</td><td>B</td><td>104</td><td>A</td></tr>
+      <tr><td>9</td><td>B</td><td>25</td><td>B</td><td>41</td><td>C</td><td>57</td><td>A</td><td>73</td><td>B</td><td>89</td><td>C</td><td>105</td><td>C</td></tr>
+      <tr><td>10</td><td>A</td><td>26</td><td>B</td><td>42</td><td>A</td><td>58</td><td>B</td><td>74</td><td>C</td><td>90</td><td>B</td><td>106</td><td>C</td></tr>
+      <tr><td>11</td><td>C</td><td>27</td><td>A</td><td>43</td><td>C</td><td>59</td><td>C</td><td>75</td><td>A</td><td>91</td><td>A</td><td>107</td><td>C</td></tr>
+      <tr><td>12</td><td>A</td><td>28</td><td>C</td><td>44</td><td>B</td><td>60</td><td>B</td><td>76</td><td>A</td><td>92</td><td>C</td><td>108</td><td>C</td></tr>
+      <tr><td>13</td><td>A</td><td>29</td><td>B</td><td>45</td><td>C</td><td>61</td><td>A</td><td>77</td><td>B</td><td>93</td><td>A</td><td>109</td><td>B</td></tr>
+      <tr><td>14</td><td>C</td><td>30</td><td>A</td><td>46</td><td>C</td><td>62</td><td>C</td><td>78</td><td>A</td><td>94</td><td>A</td><td>&mdash;</td><td>&mdash;</td></tr>
+      <tr><td>15</td><td>A</td><td>31</td><td>C</td><td>47</td><td>C</td><td>63</td><td>A</td><td>79</td><td>B</td><td>95</td><td>C</td><td>&mdash;</td><td>&mdash;</td></tr>
+      <tr><td>16</td><td>B</td><td>32</td><td>B</td><td>48</td><td>C</td><td>64</td><td>B</td><td>80</td><td>A</td><td>96</td><td>C</td><td>&mdash;</td><td>&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    DGCA Ground School &mdash; Air Regulations &bull; Chapter 18: Special Operational Procedures &amp; Hazards (General Aspects)<br>
+    Study notes prepared by <strong>Capt. Pankaj Pahil</strong> for CPL / ATPL examinees &bull; Retain exact DGCA values verbatim &bull; For instructional use.
+  </div>
+
+</div><!-- /wrap -->
+</body>
+</html>
