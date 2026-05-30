@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 11 — Precipitation | DGCA Met Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; color: #222; font-size: 15px; line-height: 1.6; }
+  h1 { color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 8px; }
+  h2 { color: #283593; border-left: 5px solid #283593; padding-left: 10px; margin-top: 30px; }
+  h3 { color: #3949ab; margin-top: 20px; }
+  .cover { text-align:center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 10px; margin-bottom: 30px; page-break-after: always; }
+  .cover h1 { font-size: 2em; border: none; }
+  .toc { background: #f5f5f5; padding: 20px; border-radius: 8px; page-break-after: always; }
+  .toc a { display: block; color: #1a237e; text-decoration: none; padding: 3px 0; }
+  .blue-box { background:#e8f1fb; border-left:5px solid #2c5aa0; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .red-box { background:#fdecea; border-left:5px solid #c0392b; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .green-box { background:#e8f5e9; border-left:5px solid #2e7d32; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .amber-box { background:#fff8e1; border-left:5px solid #f57c00; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .reg-value { background:#fff3cd; font-weight:bold; padding:1px 4px; border-radius:3px; }
+  table { width:100%; border-collapse:collapse; margin:15px 0; page-break-inside:avoid; }
+  th { background:#1a237e; color:white; padding:8px; text-align:left; }
+  td { padding:7px 8px; border:1px solid #ddd; }
+  tr:nth-child(even) { background:#f5f7ff; }
+  .qa-block { border:1px solid #ddd; border-radius:8px; margin:15px 0; page-break-inside:avoid; overflow:hidden; }
+  .qa-q { background:#e8f1fb; padding:12px 15px; font-weight:bold; }
+  .qa-a { background:#e8f5e9; padding:12px 15px; border-top:1px solid #ddd; }
+  .qa-exp { padding:12px 15px; border-top:1px solid #ddd; }
+  .qa-dist { background:#fdecea; padding:12px 15px; border-top:1px solid #ddd; }
+  .qa-tip { background:#fff8e1; padding:12px 15px; border-top:1px solid #ddd; }
+  pre.mermaid { background:transparent; }
+  @page { size: A4; margin: 20mm; }
+  @media print { .page-break { page-break-before: always; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Chapter 11<br>Precipitation</h1>
+  <p style="font-size:1.3em; color:#1a237e; font-weight:bold;">DGCA CPL/ATPL Study Notes — Aviation Meteorology</p>
+  <p>Compiled by <strong>Capt. Pankaj Pahil</strong></p>
+  <p>Source: IC Joshi — Aviation Meteorology</p>
+</div>
+
+<div class="toc">
+  <h2 style="border:none; color:#1a237e;">Table of Contents</h2>
+  <a href="#types">1. Types of Precipitation</a>
+  <a href="#theories">2. Theories of Precipitation Formation</a>
+  <a href="#cloud-precip">3. Clouds and Their Precipitation Types</a>
+  <a href="#snowsleet">4. Snow and Sleet</a>
+  <a href="#cloudburst">5. Cloud Burst and Flash Floods</a>
+  <a href="#rainy-day">6. Rainy Day</a>
+  <a href="#diurnal">7. Diurnal and Seasonal Variation</a>
+  <a href="#cloudseeding">8. Artificial Rain Making / Cloud Seeding</a>
+  <a href="#classification">9. Classification of Rainfall</a>
+  <a href="#qa">10. Practice Q&A</a>
+  <a href="#ref">11. Master Reference Tables</a>
+</div>
+
+<!-- ============ SECTION 1 ============ -->
+<h2 id="types">1. Types of Precipitation</h2>
+
+<div class="blue-box">
+  <strong>Precipitation:</strong> Liquid water drops or solid water particles falling from clouds to the ground.
+</div>
+
+<table>
+  <tr><th>Type</th><th>Code</th><th>Size / Description</th></tr>
+  <tr><td><strong>Drizzle</strong></td><td>DZ</td><td>Very small size, Dia <span class="reg-value">0.2–0.5 mm</span></td></tr>
+  <tr><td><strong>Rain</strong></td><td>RA</td><td>Dia <span class="reg-value">0.5–5 mm</span></td></tr>
+  <tr><td><strong>Shower</strong></td><td>SH</td><td>Solid or liquid drops of Ice, Dia <span class="reg-value">0.5 mm</span></td></tr>
+  <tr><td><strong>Hail</strong></td><td>GR</td><td>Solid balls or pieces of ice (hailstones) with diameters <span class="reg-value">5–50 mm or more</span>. 1 kg hail has also been reported.</td></tr>
+  <tr><td><strong>Snow</strong></td><td>SN</td><td>Assembly of ice crystals, wet or dry snow</td></tr>
+  <tr><td><strong>Snow Grain</strong></td><td>SG</td><td>Sleet is wet snow and ice pellets</td></tr>
+  <tr><td><strong>Ice Pellets</strong></td><td>PL</td><td>Small transparent ice particles, spherical/irregular, about less than <span class="reg-value">5 mm dia</span></td></tr>
+  <tr><td><strong>Ice Crystals</strong></td><td>IC</td><td>Also constitute precipitation</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Mnemonic for precipitation codes:</strong> <strong>DR SH GR SN SG PL IC</strong> = <strong>D</strong>rizzle <strong>R</strong>ain <strong>SH</strong>ower (rai<strong>N</strong>) <strong>GR</strong>aupel/Hail <strong>SN</strong>ow <strong>SG</strong> (snow grain) <strong>PL</strong> (ice pellets) <strong>IC</strong> (ice crystals)
+</div>
+
+<!-- ============ SECTION 2 ============ -->
+<h2 id="theories">2. Theories of Precipitation Formation</h2>
+
+<div class="blue-box">
+  For precipitation to occur, cloud particles must grow large enough to overcome vertical currents inside the clouds. The exact process is not yet fully known. Three theories:
+</div>
+
+<h3>Bergeron Ice Crystal Theory (Cold Cloud Process)</h3>
+<div class="blue-box">
+  In <strong>Cold clouds</strong> (tops extend well above freezing level), super cooled water and ice particles co-exist. Saturation vapour pressure is more over water drops than over ice crystals → water drops evaporate and sublimate (direct conversion to ice without going through liquid phase) over the ice crystals → ice crystals grow at expense of water drops → while falling, bigger ice crystals encounter supercooled water drops which continually freeze onto them → ice crystals grow to large sizes and fall out of cloud base as snow or rain.
+</div>
+
+<h3>Coalescence Theory (Warm Cloud Process)</h3>
+<div class="blue-box">
+  The above Bergeron theory is unable to explain rainfall from <strong>Warm clouds</strong> (do not reach freezing level). In tropical areas, showers occur from clouds which do not extend much above the freezing level and sometimes not even up to the freezing level. The coalescence theory: large drops initially form by collision and coalescence of the smaller droplets in the cloud. Coalescence increases markedly due to vertical currents → drops become larger → as large drops fall, pressure falls in their wake → smaller drops sucked in and get attached to falling drops → during fall a large drop collides with the smaller drops on its path and also get attached. Ultimately number of large drops form.
+</div>
+
+<h3>Giant Nucleus Theory</h3>
+<div class="blue-box">
+  In maritime areas, clouds with lesser vertical development can give rain due to presence of <strong>large number of salt particles</strong> from salt spray. These giant hygroscopic nuclei are carried up to the cloud in vertical currents. They absorb water vapour and form large water drops and initiate the chain reaction of coalescence.
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    A[Precipitation Formation] --> B[Cold Cloud\nBergeron Theory]
+    A --> C[Warm Cloud\nCoalescence Theory]
+    A --> D[Maritime\nGiant Nucleus Theory]
+    B --> E[Ice crystals grow\nat expense of water drops\n→ fall as snow/rain]
+    C --> F[Large drops form by\ncollision and coalescence\n→ rain without reaching 0°C]
+    D --> G[Salt nuclei absorb WV\n→ large drops\n→ coalescence chain]
+</pre>
+
+<!-- ============ SECTION 3 ============ -->
+<h2 id="cloud-precip">3. Cloud Types and Precipitation</h2>
+
+<table>
+  <tr><th>Type of Cloud</th><th>Precipitation Type</th></tr>
+  <tr><td>Stratus (ST)</td><td>Drizzle</td></tr>
+  <tr><td>Altostratus (AS)</td><td>Rain and Snow</td></tr>
+  <tr><td>Nimbostratus (NS)</td><td>Continuous precipitation (rain/snow)</td></tr>
+  <tr><td>Towering Cumulus (TCU) and Cumulonimbus (CB)</td><td>Rain, Showers, Hail and Snow</td></tr>
+  <tr><td>Cumulus (CU) of slight vertical development (fair weather), Altocumulus (AC) and high clouds (CI, CC)</td><td>No precipitation</td></tr>
+  <tr><td>Thick Cirrostratus (CS)</td><td>Snow at high to medium levels</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Quick Cloud-Precip Table:</strong><br>
+  ST → Drizzle | AS → Rain + Snow | NS → Continuous | CB/TCU → RA SH GR SN | CS → Snow (high level) | CU (fair wx)/AC/CI/CC → None
+</div>
+
+<!-- ============ SECTION 4 ============ -->
+<h2 id="snowsleet">4. Snow and Sleet</h2>
+
+<div class="blue-box">
+  <strong>Snow and Sleet Conditions:</strong><br>
+  When surface temperature is less than about <span class="reg-value">4°C</span> AND mean temperature between the base of cloud and the surface level is less than <span class="reg-value">0°C</span> → precipitation may be in the form of snow or sleet.<br>
+  <strong>Snowfall</strong> is usually in the form of flakes = mixtures of various shapes of minute ice-crystals.<br>
+  <strong>Sleet</strong> = mixture of rain and snow.
+</div>
+
+<!-- ============ SECTION 5 ============ -->
+<h2 id="cloudburst">5. Cloud Burst and Flash Floods</h2>
+
+<div class="blue-box">
+  <strong>Cloud Burst:</strong> Very heavy showers or rain over an area in a short period. A sudden rise in the level of rivers or streams causing floods is called <strong>Flash Floods</strong>.
+</div>
+
+<div class="red-box">
+  <strong>Aviation Warning:</strong> Cloud burst associated with intense CB activity. Flash floods may affect low-lying aerodromes and approach paths. Extreme downdrafts and microbursts associated with intense convective systems.
+</div>
+
+<!-- ============ SECTION 6 ============ -->
+<h2 id="rainy-day">6. Rainy Day</h2>
+
+<div class="blue-box">
+  <strong>Rainy Day:</strong> When the rainfall amount in a day is <span class="reg-value">2.5 mm or more</span>, it is called a Rainy Day. Terms used to describe spatial distribution of rainfall are at Appendix D.
+</div>
+
+<!-- ============ SECTION 7 ============ -->
+<h2 id="diurnal">7. Diurnal and Seasonal Variation of Rainfall</h2>
+
+<h3>Tropical Regions</h3>
+<p>In the tropics, clouds form mainly due to <strong>convection</strong>, most vigorous in the afternoon. Precipitation most common in the <strong>afternoons</strong>. In coastal areas (sea breeze effect) and in valleys/NE India (due to Katabatic/Anabatic effect), maximum rain occurs at <strong>night or during early morning hours</strong>, elsewhere mostly in <strong>afternoon and early night</strong>.</p>
+
+<h3>Temperate Latitudes</h3>
+<p>Clouds form due to <strong>convergence caused by depressions or fronts</strong>, frequent in winters. Therefore, rain or snow is maximum in <strong>winters</strong>. India partially follows this pattern — WDs (which are occluded fronts) give high precipitation in winters.</p>
+
+<h3>Seasonal Pattern in India</h3>
+<table>
+  <tr><th>Region/Effect</th><th>Maximum Rainfall Time</th></tr>
+  <tr><td>Tropics (convection)</td><td>Afternoons</td></tr>
+  <tr><td>Coastal areas (sea breeze)</td><td>Night or early morning</td></tr>
+  <tr><td>NE India (Katabatic/Anabatic)</td><td>Night or early morning</td></tr>
+  <tr><td>J&amp;K and Western Himalayas</td><td>Winter (due to WDs)</td></tr>
+  <tr><td>Temperate latitudes</td><td>Winters (frontal systems)</td></tr>
+  <tr><td>Post-monsoon/coastal India</td><td>After summer</td></tr>
+</table>
+
+<!-- ============ SECTION 8 ============ -->
+<h2 id="cloudseeding">8. Artificial Rain Making / Cloud Seeding</h2>
+
+<div class="blue-box">
+  <strong>Cloud Seeding:</strong> An attempt to stimulate precipitation by injecting nucleating agents into the clouds: silver iodide, common salt, solid carbon dioxide etc. Spraying of Potassium Chloride in small clouds has shown encouraging results — either clouds grow rapidly or cause rain in <span class="reg-value">15–20 minutes</span>.
+</div>
+
+<p>The particles sprayed act like ice forming nuclei to initiate Bergeron process. Mixture of potassium chloride and sodium chloride act the same way. However, the rain so created may deprive some other area of rainfall where it would have occurred naturally.</p>
+
+<h3>Uses of Cloud Seeding</h3>
+<ul style="margin:10px 0;">
+  <li>Fighting fires</li>
+  <li>Ending drought</li>
+  <li>Promoting harvests</li>
+  <li>Draining clouds</li>
+  <li><strong>Fog dispersal</strong> — Fog can also be cleared for a short period either by increasing air temperature or by seeding the fog as above, especially to enable aircraft to land and take off</li>
+</ul>
+
+<div class="amber-box">
+  <strong>Q: Is artificial rain making (cloud seeding) also termed as Simulation?</strong> Yes — it is also termed as Simulation, Cloud Seeding, or Nucleation. Textbook Q16 answer = (c) Nucleation.
+</div>
+
+<!-- ============ SECTION 9 ============ -->
+<h2 id="classification">9. Classification of Rainfall</h2>
+
+<table>
+  <tr><th>Classification</th><th>Rainfall (mm/day)</th></tr>
+  <tr><td>Light</td><td><span class="reg-value">&lt; 7.5 mm</span></td></tr>
+  <tr><td>Moderate</td><td><span class="reg-value">7–35.5 mm</span></td></tr>
+  <tr><td>Rather Heavy</td><td><span class="reg-value">35.6–64 mm</span></td></tr>
+  <tr><td>Heavy</td><td><span class="reg-value">64.5 mm</span> (approx)</td></tr>
+  <tr><td>Very Heavy</td><td><span class="reg-value">85 mm or more</span></td></tr>
+  <tr><td>Extremely Heavy</td><td><span class="reg-value">&gt; 250 mm</span></td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>Fog Dispersal by Cloud Seeding:</strong> Fog can be dispersed for a short period either by increasing air temperature or by seeding the fog above — especially to enable aircraft to land and take off.
+</div>
+
+<!-- ============ SECTION 10 ============ -->
+<h2 id="qa" class="page-break">10. Practice Q&amp;A</h2>
+
+<div class="qa-block">
+  <div class="qa-q">Q1. When super cooled water drops and ice particles co-exist, the ice crystals grow at the expense of the water drops because (a) Saturation vapour pressure over ice crystals is less than over water drops (b) Saturation vapour pressure over the ice crystals is less than over the water drops (c) The ice crystals convert into water drops</div>
+  <div class="qa-a">✅ Answer: (a) Saturation vapour pressure over ice crystals is less than over water drops</div>
+  <div class="qa-exp">SVP over water &gt; SVP over ice. Water evaporates (higher SVP) and ice crystals grow by sublimation (absorbing WV). This is the basis of the Bergeron Ice Crystal Theory.</div>
+  <div class="qa-tip">🎯 SVP water &gt; SVP ice → water evaporates → ice grows. Key to Bergeron theory.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q2. The clouds whose tops extend to the freezing level are called (a) Warm Clouds (b) Cold Clouds (c) Moderate Clouds</div>
+  <div class="qa-a">✅ Answer: (b) Cold Clouds</div>
+  <div class="qa-exp">Cold clouds have tops extending well above the freezing level — super cooled water and ice co-exist. Warm clouds do not reach the freezing level.</div>
+  <div class="qa-dist">Warm clouds = tropical clouds with tops below freezing → only coalescence theory applies.</div>
+  <div class="qa-tip">🎯 Cold cloud = Bergeron. Warm cloud = Coalescence. Maritime = Giant Nucleus.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q3. The clouds whose tops do not extend to the freezing level are called (a) Warm Clouds (b) Cold Clouds (c) Moderate Clouds</div>
+  <div class="qa-a">✅ Answer: (a) Warm Clouds</div>
+  <div class="qa-exp">Warm clouds don't reach freezing level. Rain explained by Coalescence theory — large drops by collision of droplets.</div>
+  <div class="qa-tip">🎯 Warm cloud = no ice = coalescence only. Common in tropics/maritime areas.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q4. Coalescence Theory explains occurrence of rainfall from (a) Warm Clouds (b) Cold Clouds (c) Both types of Clouds</div>
+  <div class="qa-a">✅ Answer: (a) Warm Clouds</div>
+  <div class="qa-exp">Coalescence theory was advanced specifically to explain rainfall from warm clouds (below freezing level) in tropical areas where Bergeron theory fails.</div>
+  <div class="qa-tip">🎯 Coalescence = Warm Cloud (tropical showers). Bergeron = Cold Cloud (frontal/orographic rain).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q5. Ice crystal Theory explains occurrence of rainfall from (a) Warm Clouds (b) Cold Clouds (c) Both types of Clouds</div>
+  <div class="qa-a">✅ Answer: (b) Cold Clouds</div>
+  <div class="qa-exp">Bergeron Ice Crystal Theory (cold cloud process) applies to clouds with tops above the freezing level where ice and supercooled water co-exist.</div>
+  <div class="qa-tip">🎯 Ice Crystal = Cold Cloud. Bergeron / Cold Process = the same thing.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q6. Giant Nucleus Theory explains occurrence of rainfall over (a) Maritime areas (b) Inland areas (c) Hilly areas</div>
+  <div class="qa-a">✅ Answer: (a) Maritime areas</div>
+  <div class="qa-exp">Giant Nucleus Theory applies to maritime (ocean/coastal) areas where sea salt provides large hygroscopic nuclei that initiate coalescence even in clouds with lesser vertical development.</div>
+  <div class="qa-tip">🎯 Giant Nucleus = Salt from sea = Maritime. Explains coastal rain from relatively small clouds.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q7. Very heavy precipitation as showers over an area above the mountain range is called (a) Maritime areas (b) Inland areas (c) Orographic Rain</div>
+  <div class="qa-a">✅ Answer: (c) Orographic Rain</div>
+  <div class="qa-exp">Orographic rain = caused by mountains forcing air upward on windward side. The leeward side (rain shadow area) gets less rain.</div>
+  <div class="qa-tip">🎯 Orographic = mountain-caused. Heavy rain on windward side; dry on leeward (rain shadow).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q8. Rain shadow area is on the ......... of the mountain range (a) Top (b) Windward side (c) Leeward side</div>
+  <div class="qa-a">✅ Answer: (c) Leeward side</div>
+  <div class="qa-exp">The leeward (downwind) side of a mountain range receives much less rainfall — called the rain shadow area. Air descends on leeward → warms → dries out.</div>
+  <div class="qa-tip">🎯 Rain shadow = LEEWARD. Wind = WARD (windward) → rain. LEE → dry shadow.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q9. Sleet is a mixture of (a) Hail &amp; Snow (b) Rain &amp; Snow (c) Frozen Rain</div>
+  <div class="qa-a">✅ Answer: (b) Rain &amp; Snow</div>
+  <div class="qa-exp">Sleet = mixture of rain and snow. Occurs when surface temperature is less than about 4°C and mean temperature cloud base to surface is less than 0°C.</div>
+  <div class="qa-tip">🎯 Sleet = Rain + Snow mixed. Occurs in near-freezing surface temperatures.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q10. Rainfall in the tropics is more in (a) Winters (b) Summers (c) Post monsoon</div>
+  <div class="qa-a">✅ Answer: (b) Summers / Afternoons</div>
+  <div class="qa-exp">In tropics, convection (thermal) is most vigorous in summers, particularly in afternoons. Maximum tropical rainfall in afternoon.</div>
+  <div class="qa-tip">🎯 Tropics = Convection = Afternoon rain. Temperate = Frontal = Winter rain.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q11. Rainfall in the tropics is more in the (a) Morning (b) Afternoon (c) Night</div>
+  <div class="qa-a">✅ Answer: (b) Afternoon</div>
+  <div class="qa-exp">Thermal convection peaks in afternoon in tropics → maximum cloud development → maximum rainfall in afternoon. (Coastal areas: night/early morning due to sea breeze circulation.)</div>
+  <div class="qa-tip">🎯 Tropical inland = afternoon rain. Coastal areas = night/early morning rain.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q12. Rainfall in the temperate latitudes is more in (a) Winters (b) Summers (c) Spring</div>
+  <div class="qa-a">✅ Answer: (a) Winters</div>
+  <div class="qa-exp">In temperate latitudes, frontal/convergence systems are frequent in winters → maximum rain/snow in winters.</div>
+  <div class="qa-tip">🎯 Temperate = Frontal = Winter maximum. Tropical = Convection = Summer/afternoon maximum.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q13. Over J&amp;K and western Himalayas Rainfall is more in (a) Winters (b) Summers (c) Post monsoon</div>
+  <div class="qa-a">✅ Answer: (a) Winters</div>
+  <div class="qa-exp">J&amp;K and western Himalayas get maximum rainfall in winters due to Western Disturbances (WDs) — which are occluded frontal systems from the Mediterranean region.</div>
+  <div class="qa-tip">🎯 J&amp;K + Winters + WDs = important for Indian pilots. WDs bring western Himalayan snowfall/rain.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q14. Rainfall over coastal areas is more in (a) Evening (b) Night &amp; early morning (c) Afternoon</div>
+  <div class="qa-a">✅ Answer: (b) Night &amp; early morning</div>
+  <div class="qa-exp">At coastal areas, sea breeze creates offshore convergence at night/early morning → maximum rain at night/early morning. During day, sea breeze pushes clouds inland.</div>
+  <div class="qa-tip">🎯 Coastal areas: max rain at night/early morning due to sea breeze circulation reversal.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q15. Areas to the ......... of Western Ghats of India are rain shadow areas (a) W (b) S (c) E</div>
+  <div class="qa-a">✅ Answer: (c) E</div>
+  <div class="qa-exp">Western Ghats force SW monsoon air upward on the western (windward) slopes → heavy rainfall. Eastern side = leeward = rain shadow (Deccan Plateau is drier).</div>
+  <div class="qa-tip">🎯 Western Ghats: West = heavy rain (windward). East = rain shadow. Classic Indian exam question.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q16. A sudden rise in the level of rivers or streams causing floods is called (a) Cloud Burst (b) Catchments flooding (c) Flash Floods</div>
+  <div class="qa-a">✅ Answer: (c) Flash Floods</div>
+  <div class="qa-exp">Cloud Burst = very heavy rain in short period. Flash Floods = sudden rise in river/stream levels caused by cloud burst.</div>
+  <div class="qa-tip">🎯 Cloud Burst → causes → Flash Floods. Different terms for related phenomena.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q17. Artificial rain making is also termed as (a) Simulation (b) Cloud seeding (c) Nucleation</div>
+  <div class="qa-a">✅ Answer: (c) Nucleation (textbook answer)</div>
+  <div class="qa-exp">The process of injecting nucleating agents into clouds to stimulate precipitation is called Cloud Seeding or Nucleation. All three options have validity but textbook answer = (c) Nucleation.</div>
+  <div class="qa-tip">🎯 Cloud Seeding = Nucleation (primary DGCA answer). Agents: Silver Iodide, KCl, CO2 (dry ice).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q18. Fog can also be dispersed for a short period by artificial stimulation (a) True (b) False</div>
+  <div class="qa-a">✅ Answer: (a) True</div>
+  <div class="qa-exp">Cloud seeding techniques can disperse fog temporarily, either by heating or seeding — to enable aircraft to land and take off. This is used at some airports for CAT III operations improvement.</div>
+  <div class="qa-tip">🎯 FIDO (Fog Investigation and Dispersal Operation) is a real-world application of fog dispersal.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q19. Showery precipitation occurs from (a) NS (b) AC (c) CB</div>
+  <div class="qa-a">✅ Answer: (c) CB</div>
+  <div class="qa-exp">Showers (SH) = intermittent, heavy precipitation from CB. NS gives continuous rain, not showers. AC generally gives no precipitation.</div>
+  <div class="qa-tip">🎯 SHowers = CB. Continuous = NS. Drizzle = ST.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q20. A day is called Rainy day when rainfall in 24 hr is ......... mm or more (a) 1.5 (b) 2 (c) 2.5</div>
+  <div class="qa-a">✅ Answer: (c) 2.5</div>
+  <div class="qa-exp">A Rainy Day = rainfall ≥ 2.5 mm in 24 hours. This is the standard meteorological definition used in India.</div>
+  <div class="qa-tip">🎯 Rainy Day threshold = 2.5 mm/day. DGCA exam staple.</div>
+</div>
+
+<!-- ============ SECTION 11 ============ -->
+<h2 id="ref" class="page-break">11. Master Reference Tables</h2>
+
+<h3>All Numerical Values</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Drizzle diameter</td><td><span class="reg-value">0.2–0.5 mm</span></td></tr>
+  <tr><td>Rain drop diameter</td><td><span class="reg-value">0.5–5 mm</span></td></tr>
+  <tr><td>Hailstone diameter</td><td><span class="reg-value">5–50 mm or more</span></td></tr>
+  <tr><td>Ice pellets (PL) diameter</td><td><span class="reg-value">&lt;5 mm</span></td></tr>
+  <tr><td>Maximum reported hail weight</td><td><span class="reg-value">1 kg</span></td></tr>
+  <tr><td>Surface temp for snow/sleet</td><td><span class="reg-value">&lt;4°C</span></td></tr>
+  <tr><td>Mean temp cloud-surface for snow</td><td><span class="reg-value">&lt;0°C</span></td></tr>
+  <tr><td>Rainy Day threshold</td><td><span class="reg-value">2.5 mm in 24 hours</span></td></tr>
+  <tr><td>Cloud seeding effect (KCl)</td><td><span class="reg-value">rain in 15–20 minutes</span></td></tr>
+  <tr><td>Light rainfall</td><td><span class="reg-value">&lt;7.5 mm</span></td></tr>
+  <tr><td>Very Heavy rainfall</td><td><span class="reg-value">85 mm or more</span></td></tr>
+  <tr><td>Extremely Heavy rainfall</td><td><span class="reg-value">&gt;250 mm</span></td></tr>
+</table>
+
+<h3>Precipitation Theory Comparison</h3>
+<table>
+  <tr><th>Theory</th><th>Applies to</th><th>Mechanism</th><th>Key Condition</th></tr>
+  <tr><td>Bergeron (Ice Crystal)</td><td>Cold clouds (above 0°C level)</td><td>SVP difference: water evaporates onto ice → ice grows → falls</td><td>Supercooled water + ice co-existing</td></tr>
+  <tr><td>Coalescence</td><td>Warm clouds (below 0°C level)</td><td>Large drops fall, smaller drops coalesce onto them</td><td>Vertical currents + wide drop size spectrum</td></tr>
+  <tr><td>Giant Nucleus</td><td>Maritime (coastal) areas</td><td>Sea salt hygroscopic nuclei absorb WV → large drops → coalescence</td><td>Salt spray from ocean; hygroscopic nuclei</td></tr>
+</table>
+
+<h3>Answer Key — Textbook Q&amp;A</h3>
+<table>
+  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>
+  <tr><td><strong>A</strong></td><td>a</td><td>b</td><td>a</td><td>a</td><td>b</td><td>a</td><td>c</td><td>c</td><td>b</td><td>b</td><td>b</td><td>a</td><td>a</td><td>b</td><td>c</td><td>c</td><td>c</td><td>a</td><td>c</td><td>c</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 11:</strong><br>
+  • Precipitation types: DZ (0.2–0.5 mm), RA (0.5–5 mm), SH, GR (5–50mm), SN, SG, PL (&lt;5mm), IC<br>
+  • Bergeron = Cold cloud (ice+water coexist, ice grows, SVP difference)<br>
+  • Coalescence = Warm cloud (tropical, large drops by collision)<br>
+  • Giant Nucleus = Maritime (sea salt hygroscopic nuclei)<br>
+  • ST→Drizzle | AS→Rain+Snow | NS→Continuous | CB/TCU→RA SH GR SN | CS→Snow(high)<br>
+  • Snow when surface T &lt;4°C and mean T cloud–surface &lt;0°C. Sleet = Rain+Snow<br>
+  • Cloud Burst = very heavy rain; Flash Floods = river rise due to cloud burst<br>
+  • Rainy Day = ≥2.5 mm/24 hr<br>
+  • Cloud seeding agents: Silver Iodide, KCl, CO2 (dry ice). Rain in 15–20 min.<br>
+  • Rain shadow = leeward side. Western Ghats: W=rain, E=rain shadow.<br>
+  • Tropics: afternoon rain (convection). Coastal: night/early morning. Temperate: winter.
+</div>
+
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+</body>
+</html>

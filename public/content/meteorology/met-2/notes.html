@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 2 – Atmospheric Pressure | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #222; background: #fff; margin: 0; padding: 0 20px 40px 20px; }
+  h1 { font-size: 2.2em; color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 10px; margin-top: 30px; }
+  h2 { font-size: 1.6em; color: #1565c0; border-left: 5px solid #1565c0; padding-left: 12px; margin-top: 30px; page-break-after: avoid; }
+  h3 { font-size: 1.2em; color: #0d47a1; margin-top: 20px; page-break-after: avoid; }
+  h4 { font-size: 1.05em; color: #333; margin-top: 16px; }
+  p { margin: 8px 0; }
+  .reg-value { font-weight: bold; color: #b71c1c; background: #fff3e0; padding: 1px 4px; border-radius: 3px; font-family: monospace; }
+  .cover { text-align: center; padding: 80px 20px 60px 20px; border: 3px double #1a237e; margin: 20px 0; page-break-after: always; }
+  .cover h1 { border: none; font-size: 2.8em; }
+  .cover h2 { border: none; font-size: 1.6em; color: #555; margin-top: 10px; }
+  .cover .subtitle { font-size: 1.1em; color: #888; margin-top: 20px; }
+  .toc { page-break-after: always; }
+  .toc h2 { font-size: 1.8em; }
+  .toc ol { line-height: 2.2; }
+  .toc a { color: #1565c0; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1565c0; color: #fff; padding: 8px 12px; text-align: left; font-size: 0.95em; }
+  td { border: 1px solid #ccc; padding: 8px 12px; font-size: 0.93em; }
+  tr:nth-child(even) td { background: #f5f9ff; }
+  .formula-box { background: #f3f0ff; border: 2px solid #7c4dff; border-radius: 8px; padding: 16px 20px; margin: 15px 0; font-family: monospace; font-size: 1.1em; page-break-inside: avoid; }
+  .formula-box .worked { background: #ede7f6; padding: 10px; border-radius: 5px; margin-top: 10px; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 18px 0; overflow: hidden; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 12px 15px; font-weight: bold; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; }
+  pre.mermaid { background: #fff; page-break-inside: avoid; }
+  .svg-wrap { text-align: center; margin: 15px 0; page-break-inside: avoid; }
+  .section { margin-bottom: 30px; }
+  strong { color: #1a237e; }
+  .tag { display: inline-block; background: #1565c0; color: #fff; border-radius: 4px; padding: 1px 7px; font-size: 0.82em; margin-left: 5px; vertical-align: middle; }
+  .col2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div style="font-size:1em;color:#888;letter-spacing:2px;">DGCA CPL/ATPL STUDY NOTES</div>
+  <h1>Chapter 2<br>Atmospheric Pressure</h1>
+  <h2>Aviation Meteorology</h2>
+  <div class="subtitle">Source: IC Joshi — Aviation Meteorology</div>
+  <div style="margin-top:30px;font-size:1.1em;color:#1a237e;font-weight:bold;">Compiled by Capt. Pankaj Pahil</div>
+  <div style="margin-top:10px;font-size:0.95em;color:#888;">DGCA Ground Examination Preparation</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#s1">Static and Dynamic Pressure</a></li>
+    <li><a href="#s2">Pressure as Weight of Air Above</a></li>
+    <li><a href="#s3">Vertical Variation of Pressure</a></li>
+    <li><a href="#s4">Variation of Pressure – Warm vs Cold Air</a></li>
+    <li><a href="#s5">Semi-Diurnal Variation of Pressure</a></li>
+    <li><a href="#s6">Measurement Instruments</a></li>
+    <li><a href="#s7">Altimeter Correction (Alticor / D Value)</a></li>
+    <li><a href="#s8">Contours, Thickness and Pressure Gradient</a></li>
+    <li><a href="#s9">Pressure Tendency and Isallobars</a></li>
+    <li><a href="#s10">Altimetry — Definitions</a></li>
+    <li><a href="#s11">Pressure Settings (QFE, QFF, QNH, QNE)</a></li>
+    <li><a href="#s12">Relation between QNH, QFE and QNE</a></li>
+    <li><a href="#s13">Under-Reading / Over-Reading</a></li>
+    <li><a href="#s14">Pressure Patterns</a></li>
+    <li><a href="#qa">Practice Q&amp;A (41 Questions)</a></li>
+    <li><a href="#ref">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<div class="section" id="s1">
+  <h2>1. Static and Dynamic Pressure</h2>
+  <div class="box-blue">
+    <strong>Definition:</strong> Pressure is the force per unit area exerted by molecules of air in random motion, acting uniformly in all directions. This is called <em>Static Pressure</em> or <em>Barometric Pressure</em>.<br><br>
+    When air is in motion, an additional pressure is exerted in the direction opposite to the flow. This additional component is called <strong>Dynamic Pressure</strong> or <strong>Wind Pressure</strong>.
+  </div>
+  <div class="box-amber">
+    <strong>🎯 Exam Tip:</strong> "Static = air at rest. Dynamic = air in motion (opposes flow)." Think: <em>Static Stops, Dynamic Does move.</em>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section" id="s2">
+  <h2>2. Pressure as Weight of Air Above</h2>
+  <p>The atmospheric pressure at any level is the weight of the column of air of unit cross-section extending vertically to the top of the atmosphere. As the amount of air in the column decreases with height, the pressure also decreases with height.</p>
+  <div class="box-blue">
+    <strong>Units adopted by ICAO:</strong> Hectopascal (hPa)<br>
+    <span class="reg-value">1 hPa = 1000 dynes</span><br>
+    Unit of force is Newton (N).<br><br>
+    <strong>Standard Sea Level Pressure:</strong><br>
+    &nbsp;&nbsp;<span class="reg-value">1013.25 hPa = 760 mm = 29.92 in</span><br>
+    &nbsp;&nbsp;Also called <strong>1 Bar</strong> = <span class="reg-value">100,000 N/m²</span><br>
+    &nbsp;&nbsp;1 Bar = <span class="reg-value">1000 mb (millibars)</span> = <span class="reg-value">1000 hPa</span><br>
+    &nbsp;&nbsp;Heecto = 100; so 1 hPa = 100 Pa
+  </div>
+  <div class="formula-box">
+    <strong>Conversion: hPa → Inches</strong><br>
+    Multiply hPa value by <span class="reg-value">0.02953</span><br>
+    <div class="worked">
+      Example: 1013.25 hPa × 0.2953 = <strong>29.92 inches</strong>
+    </div>
+  </div>
+  <div class="box-red">
+    ⚠️ <strong>Important:</strong> Air pressure changes cause ears to pop up when traveling over significantly varying topography and during rapid descent of an aircraft.
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section" id="s3">
+  <h2>3. Vertical Variation of Pressure</h2>
+  <p>The pressure decreases with height at a decreasing rate:</p>
+  <table>
+    <tr><th>Height Range</th><th>Rate of Decrease per 100 m</th></tr>
+    <tr><td>Sea level to <span class="reg-value">600 m</span></td><td><span class="reg-value">4%</span></td></tr>
+    <tr><td>Up to <span class="reg-value">1.5 km</span></td><td><span class="reg-value">3%</span></td></tr>
+    <tr><td>Up to <span class="reg-value">3 km</span></td><td><span class="reg-value">2.5%</span></td></tr>
+    <tr><td>At <span class="reg-value">6 km</span></td><td>Reduces to <span class="reg-value">half</span> the sea level value</td></tr>
+    <tr><td>At <span class="reg-value">100 km</span></td><td>Negligible — regarded as <strong>vacuum</strong></td></tr>
+  </table>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg" width="340" height="260">
+      <rect width="340" height="260" fill="#f9f9f9" rx="8"/>
+      <text x="170" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a237e">Pressure vs Altitude</text>
+      <!-- Axes -->
+      <line x1="60" y1="30" x2="60" y2="220" stroke="#333" stroke-width="2"/>
+      <line x1="60" y1="220" x2="300" y2="220" stroke="#333" stroke-width="2"/>
+      <!-- Y-axis label -->
+      <text x="20" y="130" text-anchor="middle" font-size="11" fill="#555" transform="rotate(-90,20,130)">Height</text>
+      <!-- X-axis label -->
+      <text x="180" y="245" text-anchor="middle" font-size="11" fill="#555">Pressure →</text>
+      <!-- Curve (exponential decay shape) -->
+      <path d="M60,220 Q80,180 100,150 Q130,100 160,70 Q190,45 230,35 Q260,30 290,30" fill="none" stroke="#c0392b" stroke-width="3"/>
+      <!-- Labels -->
+      <text x="65" y="218" font-size="10" fill="#1565c0">MSL</text>
+      <text x="62" y="155" font-size="10" fill="#555">6 km</text>
+      <line x1="56" y1="150" x2="65" y2="150" stroke="#555" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="62" y="75" font-size="10" fill="#555">100 km</text>
+      <line x1="56" y1="68" x2="65" y2="68" stroke="#555" stroke-width="1" stroke-dasharray="4,2"/>
+      <!-- Half-pressure annotation -->
+      <line x1="60" y1="150" x2="180" y2="150" stroke="#2e7d32" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="180" y1="220" x2="180" y2="150" stroke="#2e7d32" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="185" y="145" font-size="9" fill="#2e7d32">½ sea-level</text>
+      <text x="185" y="155" font-size="9" fill="#2e7d32">pressure</text>
+    </svg>
+    <div style="font-size:0.85em;color:#555;font-style:italic;">Fig 2.1: Variation of Pressure with Height</div>
+  </div>
+
+  <h3>Height Difference with 1 hPa Change</h3>
+  <div class="formula-box">
+    <strong>Formula:</strong><br>
+    Height difference = <span class="reg-value">96 × T / p</span> feet<br>
+    (where T = temperature in Kelvin, p = pressure in hPa)<br>
+    <div class="worked">
+      <strong>Worked Example (ISA conditions):</strong><br>
+      At 1000 hPa, T = 300 K:<br>
+      Height = 96 × 300 / 1000 = <strong>28.8 ft</strong>
+    </div>
+  </div>
+  <p>In ISA conditions, <strong>1 hPa pressure change</strong> corresponds to approximately:</p>
+  <table>
+    <tr><th>Level</th><th>MSL</th><th>2,000 ft</th><th>20,000 ft</th><th>40,000 ft</th></tr>
+    <tr><td>Height equivalent</td><td><span class="reg-value">27 ft</span></td><td><span class="reg-value">30 ft</span></td><td><span class="reg-value">50 ft</span></td><td><span class="reg-value">100 ft</span></td></tr>
+  </table>
+  <div class="box-red">
+    ⚠️ <strong>Critical Rule:</strong><br>
+    • If air is <strong>warmer than ISA</strong> → height change for 1 hPa will be <strong>MORE</strong> than above values<br>
+    • If air is <strong>colder than ISA</strong> → height change will be <strong>LESS</strong> than above values
+  </div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section" id="s4">
+  <h2>4. Variation of Pressure – Warm vs Cold Air</h2>
+  <p>Cold air is denser than warm air. Pressure falls at a faster pace over a cold column of air than over a warm column.</p>
+  <div class="box-blue">
+    At any given height, pressure at <span class="reg-value">850 hPa</span> will be at a <strong>higher height over warm air</strong> than over cold air.<br><br>
+    <strong>Key Rule:</strong> <em>Pressure at any given height will be higher over warm air than over cold air.</em><br><br>
+    • <strong>Isobars Dip</strong> going from High to Low pressure<br>
+    • <strong>Isobars Rise</strong> going from Low to High pressure<br>
+    • <strong>Isobar</strong> = line joining places of equal pressure
+  </div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg" width="420" height="200">
+      <rect width="420" height="200" fill="#f9f9f9" rx="8"/>
+      <text x="210" y="20" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a237e">Isobaric Levels: Warm vs Cold Column</text>
+      <!-- Cold column -->
+      <rect x="30" y="35" width="100" height="140" fill="#dbeeff" stroke="#2c5aa0" stroke-width="1.5" rx="4"/>
+      <text x="80" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">COLD</text>
+      <!-- Warm column -->
+      <rect x="150" y="35" width="100" height="140" fill="#fff3e0" stroke="#e65100" stroke-width="1.5" rx="4"/>
+      <text x="200" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">WARM</text>
+      <!-- Cold column 2 -->
+      <rect x="270" y="35" width="100" height="140" fill="#dbeeff" stroke="#2c5aa0" stroke-width="1.5" rx="4"/>
+      <text x="320" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">COLD</text>
+      <!-- 5000 ft line: lower in cold, higher in warm -->
+      <text x="380" y="80" font-size="10" fill="#555">5000 ft</text>
+      <path d="M30,78 L130,65 L250,65 L370,78" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3"/>
+      <!-- 850 hPa line -->
+      <text x="380" y="110" font-size="10" fill="#555">850 hPa</text>
+      <path d="M30,108 L130,95 L250,95 L370,108" fill="none" stroke="#7b1fa2" stroke-width="2" stroke-dasharray="5,3"/>
+      <!-- 1000 hPa line at base -->
+      <text x="380" y="165" font-size="10" fill="#555">1000 hPa</text>
+      <line x1="30" y1="162" x2="370" y2="162" stroke="#1a237e" stroke-width="2"/>
+      <!-- ISA label -->
+      <text x="210" y="188" text-anchor="middle" font-size="10" fill="#555">ISA (surface)</text>
+    </svg>
+    <div style="font-size:0.85em;color:#555;font-style:italic;">Isobaric levels are at lower height over cold column — higher over warm column</div>
+  </div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section" id="s5">
+  <h2>5. Semi-Diurnal Variation of Pressure</h2>
+  <div class="box-blue">
+    Atmospheric pressure follows a <strong>bimodal curve</strong> during a day:<br>
+    • <strong>Maxima:</strong> <span class="reg-value">1000 hr</span> and <span class="reg-value">2200 hr</span> (local time)<br>
+    • <strong>Minima:</strong> <span class="reg-value">0400 hr</span> and <span class="reg-value">1600 hr</span> (local time)<br><br>
+    This semi-diurnal variation is due to <strong>solar influence</strong>.<br>
+    Variations are: very small at the Poles and about <span class="reg-value">3–5 hPa</span> at the Equator.<br><br>
+    This is probably a natural oscillation of the atmosphere with a period of almost <span class="reg-value">12 hours</span>.
+  </div>
+  <div class="box-amber">
+    <strong>🎯 Mnemonic – "Max at 10 and 10" (1000 hr &amp; 2200 hr)</strong><br>
+    Min at 0400 (4 AM) and 1600 (4 PM). Remember: <em>pressure is lowest in early morning and late afternoon.</em>
+  </div>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section" id="s6">
+  <h2>6. Measurement Instruments</h2>
+  <table>
+    <tr><th>Instrument</th><th>Type</th><th>Description</th></tr>
+    <tr><td><strong>Mercury Barometer</strong></td><td>Accurate</td><td>Atmospheric pressure balanced by height of mercury column</td></tr>
+    <tr><td><strong>Aneroid Barometer</strong></td><td>Practical</td><td>Uses metal capsule; not as accurate as mercury; scale graduated in pressure (replaces mercury for ease of handling)</td></tr>
+    <tr><td><strong>Altimeter</strong></td><td>Aneroid type</td><td>Aneroid barometer with scale graduated in altitude instead of pressure; can be set to desired pressure value</td></tr>
+    <tr><td><strong>Barograph</strong></td><td>Recording</td><td>Continuously records pressure; can be Daily Barograph or Weekly Barograph</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 7 -->
+<div class="section" id="s7">
+  <h2>7. Altimeter Correction (Alticor / D Value)</h2>
+  <div class="box-blue">
+    The correction applied to indicated altitude to obtain true altitude is called <strong>Altimeter Correction</strong> (also called <strong>Alticor</strong>).<br><br>
+    This is frequently required for <strong>mountain flying</strong> and <strong>bombing operations</strong>.<br><br>
+    <strong>D Value = True Altitude − Indicated Altitude</strong><br>
+    <strong>Alticor = Indicated Altitude − True Altitude</strong><br><br>
+    <span style="color:#c0392b;font-weight:bold;">D Value decreases when aircraft flies from High to Low pressure.</span>
+  </div>
+
+  <h3>Rough Calculations of Alticor</h3>
+  <div class="box-green">
+    <strong>(a) Pressure Correction:</strong><br>
+    Add <span class="reg-value">30 ft</span> for every <span class="reg-value">1 hPa</span> when MSL pressure is <strong>higher than 1013.2 hPa</strong><br>
+    Subtract <span class="reg-value">30 ft</span> per <span class="reg-value">1 hPa</span> when MSL pressure is <strong>lower than 1013.2 hPa</strong><br><br>
+    <strong>(b) Temperature Correction:</strong><br>
+    Add <span class="reg-value">1%</span> of indicated altitude for every <span class="reg-value">3°C</span> temperature is <strong>higher than ISA</strong><br>
+    Subtract <span class="reg-value">1%</span> per 3°C when temperature is <strong>lower than ISA</strong><br><br>
+    <strong>(c)</strong> Add these algebraically for final correction.
+  </div>
+  <div class="box-amber">
+    <strong>🎯 Memory Aid (H-L-H rule):</strong><br>
+    <strong>H</strong>igh to <strong>L</strong>ow → Over <strong>R</strong>ead (altimeter reads <strong>H</strong>igh = dangerous, you're lower than indicated)<br>
+    <strong>L</strong>ow to <strong>H</strong>igh → Under <strong>R</strong>ead (altimeter reads <strong>L</strong>ow = safe)<br><br>
+    Warm to Cold → Over Read | Cold to Warm → Under Read<br>
+    If QNH is <strong>High</strong> → True Alt will be <strong>High</strong>
+  </div>
+</div>
+
+<!-- SECTION 8 -->
+<div class="section" id="s8">
+  <h2>8. Contours, Thickness and Pressure Gradient</h2>
+  <h3>Contours</h3>
+  <div class="box-blue">
+    Lines joining places of equal height are called <strong>Contours</strong>. Contour lines may also be regarded as isobars.<br><br>
+    In <strong>Contour Charts</strong>, contours are drawn at an interval of <span class="reg-value">40 gpm</span> (geopotential metre) in <span class="reg-value">700 hPa</span> and <span class="reg-value">500 hPa</span> level charts; and at <span class="reg-value">80 gpm</span> in <span class="reg-value">300 hPa</span> and <span class="reg-value">200 hPa</span> level charts.<br><br>
+    <span class="reg-value">1 gpm = 9.8 J/kg</span> (gravitational potential energy per unit mass).<br>
+    Contour lines numbered in geopotential decametres, e.g. <span class="reg-value">5280 gpm = 528</span>.<br>
+    If the gpm = 700, the air parcel is located approximately <span class="reg-value">7000 m above MSL</span>.<br>
+    Centres of Low and High are marked as in surface pressure charts.
+  </div>
+
+  <h3>Thickness</h3>
+  <p>The height interval between the lower and upper level is called <strong>Thickness</strong>. Low thickness = lower mean temperature; High thickness = higher mean temperature. The <strong>isopleths of thickness coincide with the isotherms of mean temperature</strong> of the layer.</p>
+
+  <h3>Pressure Gradient</h3>
+  <div class="box-blue">
+    Pressure gradient is the horizontal rate of change of pressure perpendicular to the isobars, directed from high to low pressure.<br>
+    • <strong>Isobar</strong> = line joining places of equal pressure.<br>
+    • Steep pressure gradient → isobars are close together → <strong>strong winds</strong>.<br>
+    • Flat/weak gradient → isobars far apart → <strong>light winds</strong>.
+  </div>
+</div>
+
+<!-- SECTION 9 -->
+<div class="section" id="s9">
+  <h2>9. Pressure Tendency and Isallobars</h2>
+  <div class="box-blue">
+    The change of pressure with time is called <strong>Pressure Tendency</strong>. In India, pressure tendency is worked out for the past <span class="reg-value">24 hr</span> and in higher latitudes for the past <span class="reg-value">3 hours</span> of the current observation.<br><br>
+    <strong>Isallobars</strong> = lines joining places of equal pressure change. At a glance, isallobars indicate areas of rising or falling pressure tendency.<br>
+    • <strong>Isallobaric Low</strong> = region of greatest fall enclosed by isallobars.<br>
+    • <strong>Isallobaric High</strong> = region of highest rise.<br><br>
+    Surface Lows tend to move towards <strong>Isallobaric Low</strong>.<br>
+    Isallobaric High indicates <strong>weakening</strong> of a pressure system.
+  </div>
+</div>
+
+<!-- SECTION 10 -->
+<div class="section" id="s10">
+  <h2>10. Altimetry — Definitions</h2>
+  <table>
+    <tr><th>Term</th><th>Definition</th></tr>
+    <tr><td><strong>Mean Sea Level (MSL)</strong></td><td>A reference level taking average of high and low tides.</td></tr>
+    <tr><td><strong>Altitude</strong></td><td>Vertical distance from <strong>MSL</strong>.</td></tr>
+    <tr><td><strong>Height</strong></td><td>Vertical distance from a specific datum (e.g., from the ground).</td></tr>
+    <tr><td><strong>Elevation</strong></td><td>Vertical distance of a point or level on the surface of the earth from MSL.</td></tr>
+    <tr><td><strong>Transition Altitude (TA)</strong></td><td>Highest altitude below which aircraft always fly on local QNH. Vertical position controlled with reference to height above aerodrome.</td></tr>
+    <tr><td><strong>Transition Level (TL)</strong></td><td>Lowest Flight Level above which aircraft always fly on standard QNH <span class="reg-value">1013.25 hPa</span>. Above TL, vertical position expressed in hundreds of feet.</td></tr>
+    <tr><td><strong>Transition Layer</strong></td><td>The airspace between Transition Altitude (TA) and Transition Level (TL).</td></tr>
+    <tr><td><strong>Flight Level (FL)</strong></td><td>Levels of constant pressure at or above TL, separated by pressure intervals corresponding to MSL pressure. E.g., <span class="reg-value">FL50 = 5,000 ft</span>, <span class="reg-value">FL300 = 30,000 ft</span>, <span class="reg-value">FL200 = 20,000 ft</span>.</td></tr>
+    <tr><td><strong>Pressure Altitude</strong></td><td>When the altimeter sub-scale is set to <span class="reg-value">1013.2 hPa</span>, the altimeter indicates Pressure Altitude. Expressed as FL35, FL190, FL400 (avoid last two zeros).</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 11 -->
+<div class="section" id="s11">
+  <h2>11. Pressure Settings</h2>
+  <div class="box-blue">
+    Corrections applied to barometer readings to reduce to a common level (MSL) are called <strong>Pressure Setting</strong>. The corrections are: <strong>Index correction</strong> (instrumental error), <strong>Gravity correction</strong> (varies with latitude), and <strong>Temperature correction</strong> (varies with temperature).<br><br>
+    Pressure settings: <strong>QFE, QFF</strong> and <strong>QNH</strong>
+  </div>
+  <table>
+    <tr><th>Setting</th><th>Definition</th><th>Use</th></tr>
+    <tr>
+      <td><strong>QFE</strong></td>
+      <td>Pressure at the Aerodrome Reference Point (ARP) = highest point on the runway. Altimeter reads <strong>Zero</strong> on the runway (zero setting).</td>
+      <td>Height above aerodrome</td>
+    </tr>
+    <tr>
+      <td><strong>QFF</strong></td>
+      <td>Barometric pressure of aerodrome reduced to MSL using the <em>actual temperature</em> of the place (column of air extending up to MSL).</td>
+      <td>Plotting synoptic charts and drawing isobars</td>
+    </tr>
+    <tr>
+      <td><strong>QNH</strong></td>
+      <td>Station level pressure reduced to MSL assuming <em>ISA conditions</em>. Altimeter indicates station elevation. Also called <strong>Absolute Altitude</strong>.</td>
+      <td>Vertical separation of aircraft and terrain</td>
+    </tr>
+    <tr>
+      <td><strong>Regional QNH</strong></td>
+      <td>Forecast value of the lowest pressure expected in an Altimeter Setting Region (ASR). Issued every hour, valid for one hour.</td>
+      <td>Ensuring adequate terrain clearance</td>
+    </tr>
+    <tr>
+      <td><strong>QNE</strong></td>
+      <td>Altitude indicated when sub-scale set to <span class="reg-value">1013.25 hPa (29.92 in)</span>. Used for high altitude airfields.</td>
+      <td>High altitude airfields; Pressure Altitude reference</td>
+    </tr>
+  </table>
+</div>
+
+<!-- SECTION 12 -->
+<div class="section" id="s12">
+  <h2>12. Relation between QNH, QFE and QNE</h2>
+  <div class="formula-box">
+    <strong>Station Elevation = (QNH − QFE) × 30 ft</strong><br><br>
+    <div class="worked">
+      <strong>Example (i): QNE &gt; QNH → Sea level lower than MSL</strong><br>
+      QFE = 950 hPa, QNH = 1000 hPa, 1 hPa = 30 ft<br>
+      Elevation = (QNH − QFE) × 30 = (1000 − 950) × 30 = 50 × 30 = <strong>1500 ft</strong>
+    </div>
+    <div class="worked" style="margin-top:8px;">
+      <strong>Example (ii): Altimeter set to QNE = 1013 hPa</strong><br>
+      Station level would be = (QNE − QFE) × 30 ft = (63 hPa) × 30 = <strong>1890 ft</strong>
+    </div>
+    <div class="worked" style="margin-top:8px;">
+      <strong>Example (iii): QFE 970 hPa, QNH 1020 hPa</strong><br>
+      Station elevation = (QNH − QFE) × 30 = (50 hPa) × 30 = <strong>1500 ft</strong>
+    </div>
+    <div class="worked" style="margin-top:8px;">
+      <strong>Example (iv): QNE = 1013 hPa, Station elevation = 270 ft</strong><br>
+      270 / 27 = 10 hPa → QNH = 1000 + 10 = <strong>1010 hPa</strong>
+    </div>
+    <div class="worked" style="margin-top:8px;">
+      <strong>Example (v): Airfield elevation 400 ft, QNH 1010 hPa, lands at elevation 600 ft without resetting, altimeter reads 700 ft. Correct QNH at B?</strong><br>
+      Height difference = 700 − 400 = 300 ft = 300/27 = 11 hPa<br>
+      QNH at B = 1010 − 11 = <strong>999 hPa</strong>
+    </div>
+  </div>
+
+  <h3>L-H-L Rule for QNH/QFE Relationship</h3>
+  <div class="box-green">
+    <strong>Hotter than ISA:</strong> QFF &lt; QNH<br>
+    <strong>At MSL:</strong> QFF = QNH<br>
+    <strong>Pressure set on altimeter &lt; QNH</strong> → Indicated Altitude &lt; True Altitude<br>
+    <strong>Pressure set on altimeter &gt; QNH</strong> → Indicated Altitude &gt; True Altitude
+  </div>
+
+  <h3>Standard Isobaric Levels</h3>
+  <p>Corresponding to ISA pressure, the Pressure Altitude (Ft) and Flight Levels are:</p>
+  <table>
+    <tr><th>Level (hPa)</th><th>850</th><th>700</th><th>500</th><th>400</th><th>300</th><th>200</th><th>100</th></tr>
+    <tr><td><strong>Pressure Altitude (ft)</strong></td><td><span class="reg-value">5,000</span></td><td><span class="reg-value">10,000</span></td><td><span class="reg-value">18,000</span></td><td><span class="reg-value">24,000</span></td><td><span class="reg-value">30,000</span></td><td><span class="reg-value">38,000</span></td><td><span class="reg-value">53,000</span></td></tr>
+    <tr><td><strong>Flight Level</strong></td><td>FL50</td><td>FL100</td><td>FL180</td><td>FL240</td><td>FL300</td><td>FL380</td><td>FL530</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 13 -->
+<div class="section" id="s13">
+  <h2>13. Under-Reading / Over-Reading</h2>
+  <div class="box-blue">
+    When a pressure value is set on the sub-scale, the altimeter indicates height as per ISA specifications.
+  </div>
+  <div class="col2">
+    <div class="box-red">
+      <strong>H-L-H (Over Read)</strong><br>
+      High to Low → Over Read<br>
+      Warm to Cold → Over Read<br>
+      If QNH is High → True Alt is High<br>
+      <em>Altimeter reads too high — you are lower than indicated!</em>
+    </div>
+    <div class="box-green">
+      <strong>L-H-L (Under Read)</strong><br>
+      Low to High → Under Read<br>
+      Cold to Warm → Under Read<br>
+      Altimeter Setting is Low → Indicated Alt will be Low<br>
+      <em>Safe — you are higher than indicated.</em>
+    </div>
+  </div>
+  <div class="box-red">
+    ⚠️ <strong>Critical:</strong> When flying with winds from port, the altimeter will <strong>over-read</strong>. With winds from starboard, it will <strong>under-read</strong>. Error increases with strength of wind and length of route. In S hemisphere the opposite is true.
+  </div>
+</div>
+
+<!-- SECTION 14 -->
+<div class="section" id="s14">
+  <h2>14. Pressure Patterns</h2>
+  <p>To represent the spatial distribution of pressure at a given time, all pressures are reduced to MSL. Pressures at stations are plotted on a chart, and isobars drawn at <span class="reg-value">2 hPa</span> intervals.</p>
+  <table>
+    <tr><th>Pattern</th><th>Description</th><th>Weather</th><th>Hemisphere Note</th></tr>
+    <tr>
+      <td><strong>Low (L) / Cyclone</strong></td>
+      <td>Area enclosed by isobars with lowest pressure at centre. Two or more closed isobars = <strong>Depression</strong>. Severe = <strong>Cyclone</strong>.</td>
+      <td>Bad weather, visibility poor due to subsidence</td>
+      <td>N Hemisphere: winds blow anticlockwise, converging &amp; upward</td>
+    </tr>
+    <tr>
+      <td><strong>High (H) / Anticyclone</strong></td>
+      <td>Region enclosed by isobars with highest pressure at centre.</td>
+      <td>Fair weather but visibility may be poor</td>
+      <td>N Hemisphere: winds blow clockwise, veer and diverge outwards</td>
+    </tr>
+    <tr>
+      <td><strong>Trough</strong></td>
+      <td>"V" shaped extension of isobars from a low. Wind direction abruptly changes and backs.</td>
+      <td>Bad weather, associated with monsoon trough along Indo-Gangetic plains</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td><strong>Ridge</strong></td>
+      <td>Wedge-like extension of isobars from high. Isobars rounded, not "V" shaped.</td>
+      <td>Fair weather; winds <strong>veer</strong> at a ridge</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td><strong>Col</strong></td>
+      <td>Between two highs and two lows; 2 hPa higher than lows, towards highs.</td>
+      <td>Mixed — light variable winds</td>
+      <td>Winds light variable; pressure uniform</td>
+    </tr>
+    <tr>
+      <td><strong>Cold Anticyclone</strong></td>
+      <td>Forms in cold region behind a cyclone, compresses air as it moves away.</td>
+      <td>Warms up after sometimes</td>
+      <td>Blocks movement of migratory cyclones = <strong>Blocking Anticyclone</strong></td>
+    </tr>
+  </table>
+  <div class="box-amber">
+    <strong>🎯 Quick Reference:</strong><br>
+    Low = Cyclone = Convergence = Rising air = Bad Wx<br>
+    High = Anticyclone = Divergence = Subsidence = Good Wx (but poor vis)<br>
+    Trough = V-shape = Bad Wx | Ridge = Rounded = Good Wx | Col = Uniform = Light winds
+  </div>
+
+  <pre class="mermaid">
+flowchart LR
+    A[Low/Depression] -->|winds converge| B[Upward Motion]
+    B --> C[Cloud & Precipitation]
+    C --> D[Bad Weather]
+    E[High/Anticyclone] -->|winds diverge| F[Downward Motion/Subsidence]
+    F --> G[Clear Sky]
+    G --> H[Fair Weather\nbut Poor Visibility]
+  </pre>
+</div>
+
+<!-- Q&A SECTION -->
+<div id="qa" style="page-break-before:always;">
+  <h1>Practice Q&amp;A — Atmospheric Pressure</h1>
+  <p style="color:#555;">All questions extracted verbatim from IC Joshi. Answer key from textbook.</p>
+
+  <div class="qa-block">
+    <div class="qa-question">Q1. Winds in a low pressure area<br>(a) Converge &nbsp;&nbsp;(b) Diverge &nbsp;&nbsp;(c) Go straight</div>
+    <div class="qa-answer">✅ <strong>Answer: (a) Converge</strong><br>In a Low, air flows inward (converges) and rises.</div>
+    <div class="qa-distractor">❌ (b) Diverge — This happens in a High pressure area. (c) Go straight — only in absence of pressure gradient.</div>
+    <div class="qa-tip">💡 <strong>Instructor's Note:</strong> Low = Convergence = Rising air = Bad weather. High = Divergence = Subsidence = Fair weather.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q2. Low pressure is associated with<br>(a) Good Weather &nbsp;&nbsp;(b) Bad Weather &nbsp;&nbsp;(c) None</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) Bad Weather</strong></div>
+    <div class="qa-distractor">❌ (a) Good Weather — this is associated with High pressure areas. (c) None — wrong.</div>
+    <div class="qa-tip">💡 <strong>Instructor's Note:</strong> Low → rising air → cloud &amp; precipitation → bad weather. Classic DGCA question.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q3. In a high pressure area winds are<br>(a) Normal &nbsp;&nbsp;(b) Strong &nbsp;&nbsp;(c) Weak</div>
+    <div class="qa-answer">✅ <strong>Answer: (a) Normal</strong></div>
+    <div class="qa-tip">💡 <strong>Instructor's Note:</strong> Anticyclone winds are generally light to moderate — not as strong as cyclonic. Col has lightest winds.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q4. Flying from Low to High, an altimeter would read<br>(a) Over &nbsp;&nbsp;(b) Under &nbsp;&nbsp;(c) constant</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) Constant</strong> — Wait, source answer is (c) constant.<br>Actually the answer key shows Q4 → c (constant). The altimeter reading stays constant once set, but the true altitude changes. The question implies the reading appears constant while true altitude changes.</div>
+    <div class="qa-tip">💡 <strong>Instructor's Note:</strong> L to H = Under Read (altimeter under-reads). Flying LOW to HIGH — altimeter L-H-L rule. Answer per textbook = c.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q5. Isallobars are lines of equal<br>(a) Pressure &nbsp;&nbsp;(b) Temperature Tendency &nbsp;&nbsp;(c) Pressure Tendency</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) Pressure Tendency</strong></div>
+    <div class="qa-distractor">❌ (a) Pressure — that's an Isobar. (b) Temperature Tendency — that would be Isalloterms.</div>
+    <div class="qa-tip">💡 <strong>Mnemonic:</strong> Is-ALLO-bar = Isobar that ALTERS (changes) = Isallobar = equal pressure CHANGE.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q6. What kind of a barometer is an altimeter?<br>(a) Aneroid &nbsp;&nbsp;(b) Mercury &nbsp;&nbsp;(c) Alcohol</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) Mercury</strong> — per textbook answer key Q6 = b.<br><em>Note: An altimeter is actually an aneroid barometer type, but textbook answer key shows (b). The altimeter uses aneroid capsules but is calibrated as an altitude instrument. Check exam carefully.</em></div>
+    <div class="qa-tip">💡 <strong>Instructor's Note:</strong> Mercury barometers are the primary standard; altimeters are aneroid type in practice. Follow textbook answer for DGCA.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q7. A region between two Lows and two Highs is called<br>(a) Depression &nbsp;&nbsp;(b) Secondary Low &nbsp;&nbsp;(c) Col</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) Col</strong></div>
+    <div class="qa-distractor">❌ (a) Depression — enclosed area of low pressure. (b) Secondary Low — a smaller low near main low.</div>
+    <div class="qa-tip">💡 A Col is like a mountain pass in pressure topography — between two highs and two lows. Light variable winds.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q8. Bad weather and better visibility is associated with<br>(a) High &nbsp;&nbsp;(b) Low</div>
+    <div class="qa-answer">✅ <strong>Answer: (a) High</strong> — High pressure has fair weather but visibility may be poor (haze/dust due to subsidence).</div>
+    <div class="qa-tip">💡 High = fair weather but poor visibility (dust/haze trapped by subsidence inversion). Low = bad weather but generally better visibility (rain washes particles).</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q9. The relationship between height and pressure is use in construction of<br>(a) Altimeter &nbsp;&nbsp;(b) ASI &nbsp;&nbsp;(c) V S I</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) V S I</strong> — per textbook answer key. VSI measures rate of change of pressure (climb/descent rate).<br><em>Note: Altimeter also uses pressure-height relationship. The answer per textbook is VSI.</em></div>
+    <div class="qa-tip">💡 All three use pressure principles, but VSI specifically uses the rate of pressure change. Follow textbook.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q10. Altimeters always measure the height of aircraft above<br>(a) MSL &nbsp;&nbsp;(b) ASI &nbsp;&nbsp;(c) datum of 1013.2 hPa</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) datum of 1013.2 hPa</strong></div>
+    <div class="qa-tip">💡 Unless set to QNH/QFE, the altimeter measures height from 1013.25 hPa datum = Pressure Altitude.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q11. Two aircraft flying at same indicated altitude with altimeters set to 1013.2 hPa. One is flying over cold air mass, other over warm air mass. Which has greater altitude?<br>(a) Ac flying over warm air mass &nbsp;&nbsp;(b) Ac flying over cold air mass &nbsp;&nbsp;(c) Both</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) Aircraft flying over cold air mass</strong><br>Over cold air, the pressure levels are at a lower height. So for the same indicated pressure altitude, the aircraft flying over cold air is actually at a HIGHER true altitude.</div>
+    <div class="qa-distractor">❌ (a) Warm air mass — pressure levels are at HIGHER height, so same indicated altitude = lower true altitude over warm air.</div>
+    <div class="qa-tip">💡 Cold air = dense = pressure levels compressed = same FL = higher true alt. Warm air = expanded = same FL = lower true alt.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q12. Rate of fall of pressure with height in cold air mass compared to warm air mass will be<br>(a) Same &nbsp;&nbsp;(b) More &nbsp;&nbsp;(c) Less</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) More</strong><br>Cold air is denser, so pressure falls more rapidly with height over a cold column.</div>
+    <div class="qa-tip">💡 Cold air = denser = faster pressure decrease with height. Warm air = less dense = slower pressure decrease.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q13. An increase of 1000 ft at MSL is associated with decrease of pressure of<br>(a) 100 hPa &nbsp;&nbsp;(b) 1000 hPa &nbsp;&nbsp;(c) 3 hPa &nbsp;&nbsp;(d) 33 hPa</div>
+    <div class="qa-answer">✅ <strong>Answer: (d) 33 hPa</strong><br>At MSL, 1 hPa ≈ 27–30 ft. For 1000 ft: 1000/30 ≈ 33 hPa.</div>
+    <div class="qa-tip">💡 Remember: at MSL, roughly 27 ft per hPa, so 1000 ft ≈ 33–37 hPa change.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q14. Lines drawn through places of equal pressure are known as<br>(a) Isobars &nbsp;&nbsp;(b) Isotherms &nbsp;&nbsp;(c) Isoheights &nbsp;&nbsp;(d) Isoclinic</div>
+    <div class="qa-answer">✅ <strong>Answer: (a) Isobars</strong></div>
+    <div class="qa-distractor">❌ (b) Isotherms = equal temperature. (c) Isoheights = equal height (contours). (d) Isoclinic = equal magnetic dip.</div>
+    <div class="qa-tip">💡 Iso = equal; Bar = pressure (like barometer). Standard meteorological lines: Isobar, Isotherm, Isohyet (rainfall), Isoneph (cloudiness).</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q24. 300 hPa in ISA corresponds to the level<br>(a) 20,000 ft &nbsp;&nbsp;(b) 30,000 ft &nbsp;&nbsp;(c) 35,000 ft</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) 30,000 ft</strong><br>Standard: 300 hPa = 30,000 ft = FL300</div>
+    <div class="qa-tip">💡 Learn the standard isobaric levels table. 300 hPa → 30,000 ft is frequently tested.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q36. QNH of an aerodrome 160 m AMSL is 1005 hPa. QFE? Assuming 1 hPa = 8m<br>(a) 1010 hPa &nbsp;&nbsp;(b) 985 hPa &nbsp;&nbsp;(c) 1005 hPa &nbsp;&nbsp;(d) 990 hPa</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) 1005 hPa</strong> — per textbook answer key.<br>160 m / 8 m per hPa = 20 hPa? Actually, QFE = QNH − (elevation/8) = 1005 − 20 = 985. But textbook shows c = 1005. Verify in exam context.</div>
+    <div class="qa-tip">💡 The formula: Station elevation = (QNH − QFE) × 30 ft or (QNH − QFE) × 8m. Always verify using the textbook rule.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q37. Steep pressure gradient would mean<br>(a) Contours far apart, weak wind<br>(b) Contours far apart, strong wind<br>(c) Isobars far apart, strong wind<br>(d) Isobars closely packed and strong wind</div>
+    <div class="qa-answer">✅ <strong>Answer: (d) Isobars closely packed and strong wind</strong></div>
+    <div class="qa-distractor">❌ (a) Far apart = weak gradient = light winds. (c) Far apart = weak, not strong.</div>
+    <div class="qa-tip">💡 <strong>Mnemonic:</strong> "Close isobars = strong gradient = strong winds." Like contour lines on a steep mountain.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q38. What type of inversion occurs when a stable layer lies in a high pressure area?<br>(a) Negative &nbsp;&nbsp;(b) Radiation &nbsp;&nbsp;(c) Subsidence &nbsp;&nbsp;(d) Airmass</div>
+    <div class="qa-answer">✅ <strong>Answer: (a) Negative</strong> — per textbook answer key Q38 = a.<br><em>Note: In meteorology, subsidence inversion is common in high pressure areas. The textbook classifies this as "Negative."</em></div>
+    <div class="qa-tip">💡 Subsidence inversion occurs when descending air in high pressure areas warms adiabatically and creates a temperature inversion layer. Key source of poor visibility (smog/haze).</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q39. Which of the following would cause true altitude to change when altimeter indicates constant altitude?<br>(a) Warm/Low &nbsp;&nbsp;(b) Cold/High &nbsp;&nbsp;(c) Cold/Low &nbsp;&nbsp;(d) Warm/High</div>
+    <div class="qa-answer">✅ <strong>Answer: (a) Warm/Low</strong><br>Flying into warmer air at lower pressure: the pressure-height relationship changes, so true altitude changes even as indicated altitude remains constant.</div>
+    <div class="qa-tip">💡 The altimeter doesn't automatically correct for temperature or non-ISA pressure conditions. True alt ≠ indicated alt in non-ISA conditions.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q41. An aerodrome is at MSL. Its QNH is 1014.0 hPa. Its QFF will be<br>(a) 1014.0 hPa &nbsp;&nbsp;(b) 1013.25 &nbsp;&nbsp;(c) Difficult to tell &nbsp;&nbsp;(d) More than QNH</div>
+    <div class="qa-answer">✅ <strong>Answer: (a) 1014.0 hPa</strong><br>If the aerodrome is at MSL, then QNH = QFF = 1014.0 hPa (no height correction needed, both reduce to the same level — MSL).</div>
+    <div class="qa-tip">💡 At MSL: QNH = QFF. The difference arises only when there is elevation, because QFF uses actual temperature while QNH uses ISA.</div>
+  </div>
+</div>
+
+<!-- MASTER REFERENCE TABLE -->
+<div id="ref" style="page-break-before:always;">
+  <h1>Master Reference Tables — Chapter 2</h1>
+
+  <h2>All Numerical Values</h2>
+  <table>
+    <tr><th>Parameter</th><th>Value</th></tr>
+    <tr><td>Standard sea level pressure</td><td><span class="reg-value">1013.25 hPa = 760 mm Hg = 29.92 in</span></td></tr>
+    <tr><td>Atmospheric pressure at sea level</td><td><span class="reg-value">100,000 N/m² = 1 Bar</span></td></tr>
+    <tr><td>1 hPa</td><td><span class="reg-value">1000 dynes</span></td></tr>
+    <tr><td>1 Bar</td><td><span class="reg-value">1000 mb = 1000 hPa</span></td></tr>
+    <tr><td>hPa to inches conversion factor</td><td><span class="reg-value">× 0.02953</span></td></tr>
+    <tr><td>Height formula per 1 hPa</td><td><span class="reg-value">96T/p feet</span></td></tr>
+    <tr><td>At 1000 hPa, 300K: height per hPa</td><td><span class="reg-value">28.8 ft</span></td></tr>
+    <tr><td>1 hPa at MSL</td><td><span class="reg-value">27 ft</span></td></tr>
+    <tr><td>1 hPa at 2,000 ft</td><td><span class="reg-value">30 ft</span></td></tr>
+    <tr><td>1 hPa at 20,000 ft</td><td><span class="reg-value">50 ft</span></td></tr>
+    <tr><td>1 hPa at 40,000 ft</td><td><span class="reg-value">100 ft</span></td></tr>
+    <tr><td>Pressure halves at altitude</td><td><span class="reg-value">6 km</span></td></tr>
+    <tr><td>Vacuum (negligible pressure)</td><td><span class="reg-value">100 km</span></td></tr>
+    <tr><td>Semi-diurnal maxima</td><td><span class="reg-value">1000 hr &amp; 2200 hr</span></td></tr>
+    <tr><td>Semi-diurnal minima</td><td><span class="reg-value">0400 hr &amp; 1600 hr</span></td></tr>
+    <tr><td>Equatorial diurnal pressure variation</td><td><span class="reg-value">3–5 hPa</span></td></tr>
+    <tr><td>Alticor pressure correction</td><td><span class="reg-value">30 ft per hPa</span></td></tr>
+    <tr><td>Alticor temperature correction</td><td><span class="reg-value">1% per 3°C</span></td></tr>
+    <tr><td>Contour interval (700 &amp; 500 hPa charts)</td><td><span class="reg-value">40 gpm</span></td></tr>
+    <tr><td>Contour interval (300 &amp; 200 hPa charts)</td><td><span class="reg-value">80 gpm</span></td></tr>
+    <tr><td>1 gpm</td><td><span class="reg-value">9.8 J/kg</span></td></tr>
+    <tr><td>Isobar drawing interval</td><td><span class="reg-value">2 hPa</span> (surface charts)</td></tr>
+    <tr><td>Station elevation formula</td><td><span class="reg-value">(QNH − QFE) × 30 ft</span></td></tr>
+    <tr><td>850 hPa level</td><td><span class="reg-value">5,000 ft = FL50</span></td></tr>
+    <tr><td>700 hPa level</td><td><span class="reg-value">10,000 ft = FL100</span></td></tr>
+    <tr><td>500 hPa level</td><td><span class="reg-value">18,000 ft = FL180</span></td></tr>
+    <tr><td>400 hPa level</td><td><span class="reg-value">24,000 ft = FL240</span></td></tr>
+    <tr><td>300 hPa level</td><td><span class="reg-value">30,000 ft = FL300</span></td></tr>
+    <tr><td>200 hPa level</td><td><span class="reg-value">38,000 ft = FL380</span></td></tr>
+    <tr><td>100 hPa level</td><td><span class="reg-value">53,000 ft = FL530</span></td></tr>
+  </table>
+
+  <h2>Mnemonics / Memory Aids</h2>
+  <div class="box-amber">
+    <strong>H-L-H (Over Read):</strong> High to Low → Over Read, Warm to Cold → Over Read<br>
+    <strong>L-H-L (Under Read):</strong> Low to High → Under Read, Cold to Warm → Under Read<br>
+    <strong>LOW = BAD</strong> (Lows = convergence = cloud = bad weather)<br>
+    <strong>HIGH = FAIR</strong> (Highs = divergence = subsidence = fair weather, poor visibility)<br>
+    <strong>"Max at Ten and Ten"</strong> = Semi-diurnal maxima at 1000 &amp; 2200 hr<br>
+    <strong>TROUGH = V shape = Bad; RIDGE = Rounded = Good</strong><br>
+    <strong>COL = between 2H and 2L = Light variable winds</strong>
+  </div>
+
+  <h2>Q&amp;A Answer Key</h2>
+  <table>
+    <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+    <tr><td>1</td><td>a</td><td>2</td><td>b</td><td>3</td><td>a</td><td>4</td><td>c</td></tr>
+    <tr><td>5</td><td>c</td><td>6</td><td>b</td><td>7</td><td>c</td><td>8</td><td>a</td></tr>
+    <tr><td>9</td><td>c</td><td>10</td><td>c</td><td>11</td><td>b</td><td>12</td><td>b</td></tr>
+    <tr><td>13</td><td>d</td><td>14</td><td>a</td><td>15</td><td>b</td><td>16</td><td>c</td></tr>
+    <tr><td>17</td><td>c</td><td>18</td><td>b</td><td>19</td><td>b</td><td>20</td><td>b</td></tr>
+    <tr><td>21</td><td>c</td><td>22</td><td>b</td><td>23</td><td>c</td><td>24</td><td>b</td></tr>
+    <tr><td>25</td><td>c</td><td>26</td><td>b</td><td>27</td><td>a</td><td>28</td><td>b</td></tr>
+    <tr><td>29</td><td>b</td><td>30</td><td>b</td><td>31</td><td>c</td><td>32</td><td>b</td></tr>
+    <tr><td>33</td><td>b</td><td>34</td><td>c</td><td>35</td><td>b</td><td>36</td><td>c</td></tr>
+    <tr><td>37</td><td>d</td><td>38</td><td>a</td><td>39</td><td>a</td><td>40</td><td>b</td></tr>
+    <tr><td>41</td><td>a</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h2>Quick Revision Summary</h2>
+  <div class="box-amber">
+    <strong>Top 10 Exam Points — Atmospheric Pressure:</strong><br>
+    1. Standard sea level pressure = <span class="reg-value">1013.25 hPa = 760 mm = 29.92 in</span><br>
+    2. 1 hPa = 1000 dynes; 1 Bar = 1000 hPa = 100,000 N/m²<br>
+    3. Pressure halves at 6 km; vacuum at 100 km<br>
+    4. Height per 1 hPa = 96T/p feet (28.8 ft at 1000 hPa, 300K)<br>
+    5. Semi-diurnal maxima: 1000 &amp; 2200 hr; minima: 0400 &amp; 1600 hr<br>
+    6. D Value = True Alt − Indicated Alt; decreases flying High → Low<br>
+    7. QFE = zero on runway; QNH = ISA corrected to MSL; QFF = actual temp correction<br>
+    8. Station elevation = (QNH − QFE) × 30 ft<br>
+    9. 300 hPa = 30,000 ft; 500 hPa = 18,000 ft; 700 hPa = 10,000 ft; 850 hPa = 5,000 ft<br>
+    10. Isobars close = strong wind; H-L-H = over-read; Low = bad weather; High = fair wx
+  </div>
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 8 — Vertical Motion and Clouds | DGCA Met Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; color: #222; font-size: 15px; line-height: 1.6; }
+  h1 { color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 8px; }
+  h2 { color: #283593; border-left: 5px solid #283593; padding-left: 10px; margin-top: 30px; }
+  h3 { color: #3949ab; margin-top: 20px; }
+  .cover { text-align:center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 10px; margin-bottom: 30px; page-break-after: always; }
+  .cover h1 { font-size: 2em; border: none; }
+  .cover p { font-size: 1.1em; color: #555; }
+  .toc { background: #f5f5f5; padding: 20px; border-radius: 8px; page-break-after: always; }
+  .toc a { display: block; color: #1a237e; text-decoration: none; padding: 3px 0; }
+  .toc a:hover { text-decoration: underline; }
+  .blue-box { background:#e8f1fb; border-left:5px solid #2c5aa0; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .red-box { background:#fdecea; border-left:5px solid #c0392b; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .green-box { background:#e8f5e9; border-left:5px solid #2e7d32; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .amber-box { background:#fff8e1; border-left:5px solid #f57c00; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .reg-value { background:#fff3cd; font-weight:bold; padding:1px 4px; border-radius:3px; }
+  table { width:100%; border-collapse:collapse; margin:15px 0; page-break-inside:avoid; }
+  th { background:#1a237e; color:white; padding:8px; text-align:left; }
+  td { padding:7px 8px; border:1px solid #ddd; }
+  tr:nth-child(even) { background:#f5f7ff; }
+  .qa-block { border:1px solid #ddd; border-radius:8px; margin:15px 0; page-break-inside:avoid; overflow:hidden; }
+  .qa-q { background:#e8f1fb; padding:12px 15px; font-weight:bold; }
+  .qa-a { background:#e8f5e9; padding:12px 15px; border-top:1px solid #ddd; }
+  .qa-exp { padding:12px 15px; border-top:1px solid #ddd; }
+  .qa-dist { background:#fdecea; padding:12px 15px; border-top:1px solid #ddd; }
+  .qa-tip { background:#fff8e1; padding:12px 15px; border-top:1px solid #ddd; }
+  .worked-example { background:#f3f3f3; border:1px solid #bbb; padding:15px; border-radius:6px; margin:12px 0; font-family:monospace; }
+  pre.mermaid { background:transparent; }
+  @page { size: A4; margin: 20mm; }
+  @media print { .page-break { page-break-before: always; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Chapter 8<br>Vertical Motion and Clouds</h1>
+  <p style="font-size:1.3em; color:#1a237e; font-weight:bold;">DGCA CPL/ATPL Study Notes — Aviation Meteorology</p>
+  <p>Compiled by <strong>Capt. Pankaj Pahil</strong></p>
+  <p>Source: IC Joshi — Aviation Meteorology</p>
+</div>
+
+<div class="toc">
+  <h2 style="border:none; color:#1a237e;">Table of Contents</h2>
+  <a href="#causes">1. Causes of Vertical Motion</a>
+  <a href="#convergence">2. Convergence and Divergence</a>
+  <a href="#clouds">3. Clouds — Classification & Types</a>
+  <a href="#high-clouds">4. High Clouds</a>
+  <a href="#medium-clouds">5. Medium Clouds</a>
+  <a href="#low-clouds">6. Low Clouds</a>
+  <a href="#vertical-dev">7. Clouds with Vertical Development</a>
+  <a href="#very-high">8. Very High Level Clouds</a>
+  <a href="#cloud-base">9. Cloud Base & Amount</a>
+  <a href="#species">10. Cloud Species</a>
+  <a href="#contrails">11. Condensation Trails</a>
+  <a href="#mintra">12. Mintra, Drytra & Maxtra Levels</a>
+  <a href="#flying">13. Flying in Clouds</a>
+  <a href="#qa">14. Practice Q&A</a>
+  <a href="#ref">15. Master Reference Tables</a>
+</div>
+
+<!-- ============ SECTION 1 ============ -->
+<h2 id="causes">1. Causes of Vertical Motion</h2>
+
+<div class="blue-box">
+  <strong>Definition:</strong> Vertical motion in the atmosphere — either upward (ascent) or downward (subsidence) — is driven by several mechanisms. Rising air leads to cooling, condensation and cloud/precipitation formation; sinking air produces warming and clear skies.
+</div>
+
+<h3>Five Main Causes</h3>
+
+<table>
+  <tr><th>Cause</th><th>Mechanism</th><th>Effect</th></tr>
+  <tr><td><strong>Terrain (Orographic)</strong></td><td>Air forced up windward slope; eddies/instability on leeward. Mountain waves on leeward with strong winds.</td><td>Nacreous Clouds form due to mountain waves transporting WV to upper stratosphere</td></tr>
+  <tr><td><strong>Convection</strong></td><td>Surface heating → air rises as thermals. Gliders use thermals.</td><td>CU and CB form; strong up/down draughts</td></tr>
+  <tr><td><strong>Pressure Systems</strong></td><td>Low/Cyclone → convergence → ascent; High/Anticyclone → divergence → subsidence</td><td>Lows = bad wx; Highs = fine wx</td></tr>
+  <tr><td><strong>Frontal Zones</strong></td><td>Warm front: gradual ascent over wide area; Cold front: sharp/abrupt uplift</td><td>WF: steady rain; CF: convection, TS, squally wx</td></tr>
+  <tr><td><strong>Wind Shear</strong></td><td>Vertical wind shear creates strong eddies. CAT at jet stream amplified by mountain waves.</td><td>Turbulence, CAT</td></tr>
+</table>
+
+<pre class="mermaid">
+flowchart TD
+    A[Causes of Vertical Motion] --> B[Terrain/Orographic]
+    A --> C[Convection/Thermals]
+    A --> D[Pressure Systems]
+    A --> E[Frontal Zones]
+    A --> F[Wind Shear]
+    B --> G[Mountain Waves → Nacreous Clouds]
+    C --> H[CU & CB formation]
+    D --> I[Low → Ascent; High → Subsidence]
+    E --> J[WF: Gradual; CF: Abrupt uplift]
+    F --> K[CAT amplified near Jet Stream]
+</pre>
+
+<!-- ============ SECTION 2 ============ -->
+<h2 id="convergence">2. Convergence and Divergence</h2>
+
+<div class="blue-box">
+  <strong>Convergence:</strong> Net horizontal <em>inflow</em> of air into a region. Air accumulates → ascent in lower levels → possible subsidence above tropopause (stratosphere acts as stable barrier). Lows, cyclones, depressions and troughs → convergence → bad weather, but better visibility except in precipitation.
+</div>
+
+<div class="blue-box">
+  <strong>Divergence:</strong> Net horizontal <em>outflow</em> of air from a region. Example: wind to W is <span class="reg-value">Wly 10 kt</span> and to E is <span class="reg-value">Wly 20 kt</span> → more outflow than inflow = divergence. Anticyclones and ridges → subsidence → fine weather but poor visibility conditions.
+</div>
+
+<table>
+  <tr><th>Parameter</th><th>Convergence</th><th>Divergence</th></tr>
+  <tr><td>Air flow</td><td>Inflow</td><td>Outflow</td></tr>
+  <tr><td>Vertical motion (low level)</td><td>Ascent (Convection)</td><td>Subsidence</td></tr>
+  <tr><td>Pressure systems</td><td>Lows, Cyclones, Depressions, Troughs</td><td>Highs, Anticyclones, Ridges</td></tr>
+  <tr><td>Weather</td><td>Bad weather</td><td>Fine weather</td></tr>
+  <tr><td>Visibility</td><td>Better (except in precip)</td><td>Poor</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Mnemonic:</strong> <strong>CONvergence = CONdensation</strong> (bad wx). <strong>DIVergence = DIVe (air dives down)</strong> = Subsidence = Fine wx, hazy.
+</div>
+
+<!-- ============ SECTION 3 ============ -->
+<h2 id="clouds">3. Clouds — Classification</h2>
+
+<div class="blue-box">
+  <strong>Cloud:</strong> An aggregate of visible water droplets or ice particles. Clouds form by <em>adiabatic lifting and cooling</em> until air saturates. The level at which this occurs is the <strong>Lifting Condensation Level (LCL)</strong>. <strong>Deposition</strong> = process by which water vapour directly changes into ice particles.
+</div>
+
+<p>There are <strong>10 major genera</strong> classified by <strong>Form</strong> (Stratiform, Cumuliform, Cirriform) and <strong>Height</strong> (High, Medium, Low).</p>
+
+<h3>Cloud Height by Region</h3>
+<table>
+  <tr><th>Level</th><th>Polar Region</th><th>Temperate Region</th><th>Tropical Region</th></tr>
+  <tr><td><strong>High</strong></td><td><span class="reg-value">10,000–25,000 ft (3–8 km)</span></td><td><span class="reg-value">16,000–45,000 ft (5–13 km)</span></td><td><span class="reg-value">20,000–60,000 ft (6–18 km)</span></td></tr>
+  <tr><td><strong>Medium</strong></td><td><span class="reg-value">6,500–13,000 ft (2–4 km)</span></td><td><span class="reg-value">6,500–23,000 ft (2–7 km)</span></td><td><span class="reg-value">6,500–25,000 ft (2–8 km)</span></td></tr>
+  <tr><td><strong>Low</strong></td><td><span class="reg-value">up to 6,500 ft (2 km)</span></td><td><span class="reg-value">up to 6,500 ft (2 km)</span></td><td><span class="reg-value">up to 6,500 ft (2 km)</span></td></tr>
+</table>
+
+<!-- ============ SECTION 4 ============ -->
+<h2 id="high-clouds">4. High Clouds</h2>
+
+<div class="blue-box">High clouds in tropics occur at <span class="reg-value">6–18 km</span>, consist of <strong>ice crystals</strong>, some may cause precipitation confined to high/medium levels only. Give advance indication of impending weather.</div>
+
+<h3>Cirrus (CI)</h3>
+<p>White and fibrous, delicate filaments or patches, narrow bands. Composed of <strong>ice crystals</strong>. Do <strong>not</strong> cause precipitation or ice accretion.</p>
+
+<h3>Cirrostratus (CS)</h3>
+<p>Thin whitish veil of fibrous or smooth appearance. Covers almost whole sky. Produces <strong>Halo</strong> — a coloured circular ring around sun or moon with violet colour inside. When thick may cause any ice fall, remaining confined to high/medium levels. Hardly any ice accretion.</p>
+
+<h3>Cirrocumulus (CC)</h3>
+<p>Thin, white, wave-like very small puffs. Composed of ice crystals. Sky visible in between puffs. Do <strong>not</strong> cause precipitation; hardly any ice accretion.</p>
+
+<div class="amber-box">
+  <strong>Memory Aid — High Clouds (3 Cirro):</strong> <strong>CI CS CC</strong> = all ice crystals, no serious precip or icing. CS = produces HALO. CC = mackerel sky.
+</div>
+
+<!-- ============ SECTION 5 ============ -->
+<h2 id="medium-clouds">5. Medium Clouds</h2>
+<div class="blue-box">In tropics at <span class="reg-value">2–8 km</span>. Contain water droplets and ice. Can cause snow and rain.</div>
+
+<h3>Altocumulus (AC)</h3>
+<p>White-grey clouds, patches, puffs, rounded masses, rolls, etc. Round masses generally well arranged in long waves, rows or lanes. Sky visible between puffs. <strong>Altocumulus Lenticularis</strong> = lens-shaped clouds at crests of mountain waves on leeward side of high mountains. <strong>No precipitation; may cause ice accretion.</strong></p>
+
+<h3>Altostratus (AS)</h3>
+<p>Uniformly greyish or whitish cloud sheets/layers of fibrous appearance. Totally or partly cover the sky. If thin → see sun through it like <em>ground glass</em>. Optical phenomenon <strong>Corona</strong> occurs in AS. <strong>Thick AS: continuous rain or snow. Ice accretion possible below freezing temperatures.</strong></p>
+
+<div class="red-box">
+  <strong>Warning:</strong> Thick Altostratus causes continuous rain or snow. Ice accretion is possible below freezing temperatures in AS.
+</div>
+
+<!-- ============ SECTION 6 ============ -->
+<h2 id="low-clouds">6. Low Clouds</h2>
+<div class="blue-box">In tropics below <span class="reg-value">2 km</span>. Consist of water droplets or ice crystals.</div>
+
+<h3>Stratus (ST)</h3>
+<p>Grey cloud layer with uniform base. May stretch horizon to horizon. May give <strong>drizzle</strong>, ice prisms or snow grains. ST touching ground = fog. Ragged/patchy ST = <strong>Fracto Stratus</strong>.</p>
+
+<h3>Stratocumulus (SC)</h3>
+<p>Low clouds of large, irregular puffs or rolls, gray or whitish. Regularly arranged. <strong>No serious precipitation.</strong></p>
+
+<h3>Nimbostratus (NS)</h3>
+<p>Dark and grey thick cloud layer. Causes <strong>continuous rain or snow</strong>. Thick enough to blot out the sun. Extends both medium and lower levels. <strong>Ice accretion possible below freezing. Ice Pallets</strong> fall from thick NS clouds especially in Warm Fronts. Ice pallets are transparent ice particles, spherical/irregular, about less than <span class="reg-value">5 mm dia</span>.</p>
+
+<div class="red-box">
+  <strong>Aviation Warning:</strong> NS = continuous rain/snow + ice accretion risk below freezing = avoid or be aware during approach/departure.
+</div>
+
+<!-- ============ SECTION 7 ============ -->
+<h2 id="vertical-dev">7. Clouds with Vertical Development</h2>
+
+<h3>Cumulus (CU)</h3>
+<p>Detached clouds, dense with sharp outlines. Base dark, nearly horizontal. Develop vertically as rising mounds, domes or towers. Bulging upper part resembles a cauliflower. Sunlit parts brilliant white. Base sometimes ragged = <strong>Fracto Cumulus</strong>. A well-developed CU with great vertical extent = <strong>Towering Cumulus (TCU)</strong>.</p>
+
+<h3>Fair Weather Cumulus</h3>
+<p>Limited vertical extent. Caused by thermal currents due to surface heating. Occur during daytime only, develop in forenoon, reach max in afternoon, dissipate in evening. <strong>Do not cause precipitation.</strong></p>
+
+<h3>Cumulonimbus (CB)</h3>
+<p>Heavy and dense cloud of large vertical extent, like mountains or huge towers. Upper portion mostly smooth, fibrous and nearly flattened — spreads out like an <strong>anvil</strong>. Base often very dark. Low ragged cumulus fracto or stratus fractus sometimes present below. <strong>Virga</strong> = shaft of rain or snow falling from distant cloud which vapourises before reaching the ground.</p>
+
+<div class="red-box">
+  <strong>CB causes ALL types of precipitation: RA, SH, GR, SN.</strong><br>
+  Hail may be experienced under the anvil of a CB.<br>
+  <strong>CB is the most hazardous cloud for aviation and should be avoided.</strong><br>
+  Flying through active CB cloud should be avoided during TS. Severe turbulence, icing, lightning, hail possible 20–30 nm around a CB.
+</div>
+
+<pre class="mermaid">
+flowchart LR
+    CU[Cumulus CU] -->|grows| TCU[Towering Cumulus TCU]
+    TCU -->|further development| CB[Cumulonimbus CB]
+    CB --> P1[Rain RA]
+    CB --> P2[Showers SH]
+    CB --> P3[Hail GR]
+    CB --> P4[Snow SN]
+    CB --> P5[Virga]
+    CB --> P6[Anvil Top]
+</pre>
+
+<!-- ============ SECTION 8 ============ -->
+<h2 id="very-high">8. Very High Level Clouds</h2>
+
+<h3>Nacreous Clouds (Mother of Pearl Clouds)</h3>
+<p>Infrequent. Mainly from Scotland and Scandinavia. Resemble Cirrus or Altocumulus Lenticularis. Show very strong irisation (rainbow coloured patches). May be composed of <strong>ice crystals or supercooled water droplets</strong>. Form in the upper <strong>Mesosphere</strong>.</p>
+
+<h3>Noctilucent Clouds</h3>
+<p>Resemble Cirrus but have bluish, silvery or orange/red colour. Occur in upper Mesosphere between <span class="reg-value">80–85 km</span>. Visible soon after sunset or before sunrise between <span class="reg-value">72°N and 45°N</span>, mostly around <span class="reg-value">55°N</span>, in summers (late May–mid August). Thought to consist of <strong>ice particles</strong> (not meteoric dust, as originally believed).</p>
+
+<!-- ============ SECTION 9 ============ -->
+<h2 id="cloud-base">9. Cloud Base, Amount & Ceiling</h2>
+
+<h3>Reporting Cloud Base</h3>
+<div class="blue-box">
+  In METAR, SPECI, TAF and Local Forecast: cloud base reported <strong>from Above Ground Level (AGL)</strong>.<br>
+  In Area Forecast Charts: cloud base from <strong>Above Mean Sea Level (AMSL)</strong>.
+</div>
+
+<h3>Cloud Amount (Oktas)</h3>
+<table>
+  <tr><th>Oktas</th><th>1–2</th><th>3–4</th><th>5–7</th><th>8/8</th><th>Nil</th><th>Sky not visible</th></tr>
+  <tr><td><strong>Term</strong></td><td>FEW</td><td>SCT (Scattered)</td><td>BKN (Broken)</td><td>OVC (Overcast)</td><td>SKC (Sky clear)</td><td>Sky Obscured</td></tr>
+  <tr><td><strong>Sky Condition</strong></td><td>Fine</td><td>Fair</td><td>Partly cloudy</td><td>Cloudy</td><td>Fine</td><td>Sky Obscured</td></tr>
+</table>
+
+<h3>Cloud Ceiling</h3>
+<div class="blue-box">
+  <strong>Cloud Ceiling:</strong> Height, above ground or water surface, of the lowest layer of cloud below <span class="reg-value">6000 m (20,000 ft)</span> covering more than half the sky (<span class="reg-value">5/8 or more</span>).
+</div>
+
+<h3>Cloud Amount in Imaginary Oktas</h3>
+<p>For expressing cloud amount, the sky is divided into <strong>eight imaginary parts</strong>. Each part is called one <strong>Okta</strong>.</p>
+
+<div class="red-box">
+  <strong>Operational Significance:</strong> A cloud with a base below <span class="reg-value">1500 m (5000 ft)</span> or at or below the highest minimum sector altitude, whichever is greater, is of operational significance.
+</div>
+
+<!-- ============ SECTION 10 ============ -->
+<h2 id="species">10. Cloud Species</h2>
+<table>
+  <tr><th>Species</th><th>Description</th><th>Applicable Cloud Types</th></tr>
+  <tr><td>Fibrous</td><td>Filament form without tufts or hooks</td><td>Ci, CS, CC</td></tr>
+  <tr><td>Lenticularis</td><td>Elongated lens-shaped</td><td>AC, SC or CC</td></tr>
+  <tr><td>Castellaneous</td><td>Cumuliform protuberances connected by common base, arranged in lines</td><td>CI, CC, AC or CU</td></tr>
+  <tr><td>Fractus</td><td>Ragged</td><td>ST or CU</td></tr>
+  <tr><td>Congestus</td><td>Strong sprouting/great vertical development, bulging resembles cauliflower</td><td>CU</td></tr>
+  <tr><td>Calves</td><td>Cirrus at top, some protuberances begin to change to fibrous</td><td>CB (without distinct anvil)</td></tr>
+  <tr><td>Capillatus</td><td>Distinct anvil. Accompanied by SH, TS, SQ and GR. Produces well defined Virga.</td><td>CB</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Exam Tip:</strong> CB Capillatus = distinct anvil = all precipitation types. CB Calves = developing CB, no distinct anvil yet.
+</div>
+
+<!-- ============ SECTION 11 ============ -->
+<h2 id="contrails">11. Condensation Trails (Contrails)</h2>
+<div class="blue-box">Condensation trails = visible streaks of condensed water vapour formed in the wake of a moving aircraft.</div>
+
+<table>
+  <tr><th>Type</th><th>Description</th></tr>
+  <tr><td><strong>Wing Tip Trails</strong></td><td>Thin, transient, short-lived. Form near wing tips and propeller edges due to aerodynamic reduction of pressure, expansion and consequent adiabatic cooling and condensation.</td></tr>
+  <tr><td><strong>Exhaust Trails</strong></td><td>Form from condensation of moisture from aircraft exhaust at about <span class="reg-value">9 km and above</span>. Long, persistent, visible. Reveal position and track of aircraft.</td></tr>
+  <tr><td><strong>Distrails (Dissipation Trails)</strong></td><td>Passage of aircraft through a cloud marked by clear lanes. The heat released by aircraft exhaust is sufficient to evaporate the cloud in its wake.</td></tr>
+</table>
+
+<!-- ============ SECTION 12 ============ -->
+<h2 id="mintra">12. Mintra, Drytra and Maxtra Levels</h2>
+
+<div class="blue-box">
+  <strong>Mintra (Minimum Trail) Level (ML):</strong> Below this level, no condensation trails form. The flight level at which temperature is about <span class="reg-value">–45°C</span> gives a good estimate of ML at <span class="reg-value">100% RH</span> for jet aircraft.
+</div>
+
+<div class="blue-box">
+  <strong>Drytra Level:</strong> When temperatures are very low, contrails form even when RH is <span class="reg-value">0%</span>. It is usually about <span class="reg-value">2 km above the Mintra level</span>. This is because moisture from the exhaust is sufficient to produce saturation.
+</div>
+
+<div class="blue-box">
+  <strong>Maxtra Level:</strong> This level lies in the <strong>stratosphere</strong>, above which no contrails form.
+</div>
+
+<div class="amber-box">
+  <strong>Contrail Layer Summary (bottom to top):</strong><br>
+  No contrails → Contrails Possible → Contrails Certain (Mintra Level → Drytra Level) → Contrails Possible → No contrails (Maxtra/Sea Level equivalent in stratosphere)
+</div>
+
+<!-- ============ SECTION 13 ============ -->
+<h2 id="flying">13. Flying in Clouds — Operational Significance</h2>
+
+<h3>Stratiform Clouds (ST, AS)</h3>
+<p>Flying is generally smooth. In NS clouds during monsoon with thick AS and NS layers, visibility is reduced due to continuous precipitation. ST clouds reduce visibility and cause difficulty identifying the runway during landings. Ice accretion also occurs in AS and NS clouds above freezing levels.</p>
+
+<h3>Cumuliform Clouds (CU, CB)</h3>
+<p>CC and AC may cause bumpiness. Well developed CU, TCU and CB can cause severe turbulence, downdrafts, gusts, ice accretion, lightning, hail and strong up/down draughts. Flying through CB should be avoided during TS. Hail may be experienced in clear air below the anvil of a CB.</p>
+
+<div class="red-box">
+  <strong>CB Avoidance Rules:</strong><br>
+  • Avoid flying through active CB<br>
+  • Avoid flying under CB anvil — hail in clear air possible<br>
+  • CB causes ALL: RA, SH, GR, SN, TS, severe turbulence, severe icing, lightning<br>
+  • Operations should be avoided during TS
+</div>
+
+<!-- ============ SECTION 14 ============ -->
+<h2 id="qa" class="page-break">14. Practice Q&amp;A</h2>
+
+<div class="qa-block">
+  <div class="qa-q">Q1. Drizzle occurs from (a) CS (b) ST (c) NS (d) CU</div>
+  <div class="qa-a">✅ Answer: (b) ST</div>
+  <div class="qa-exp"><strong>Explanation:</strong> Stratus (ST) gives drizzle, ice prisms or snow grains. It does not give rain.</div>
+  <div class="qa-dist"><strong>Distractors:</strong> CS (high cloud, no precip); NS (continuous rain, not drizzle specifically); CU (showers, not drizzle).</div>
+  <div class="qa-tip">🎯 <strong>Instructor's Note:</strong> Drizzle = ST. Continuous rain = NS. Showers = CB/TCU.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q2. Altostratus (AS) is (a) Low cloud of sheet type (b) A medium cloud of sheet type (c) A high cloud of large vertical growth</div>
+  <div class="qa-a">✅ Answer: (b) A medium cloud of sheet type</div>
+  <div class="qa-exp">AS is a medium-level stratiform cloud. It is a uniformly grey/whitish sheet. In tropics: 2–8 km.</div>
+  <div class="qa-dist">Low cloud = ST/SC/NS. High cloud with vertical growth = CB.</div>
+  <div class="qa-tip">🎯 Alto = medium level prefix. Stratus = sheet. Therefore AS = medium sheet cloud.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q3. Showers occurs from (a) CU (b) CB (c) AS (d) AC</div>
+  <div class="qa-a">✅ Answer: (b) CB</div>
+  <div class="qa-exp">Showers (SH) are produced by Cumulonimbus (CB). CB produces RA, SH, GR, SN.</div>
+  <div class="qa-dist">CU: Fair weather, no precip; AS: continuous rain; AC: no precip (or light precip).</div>
+  <div class="qa-tip">🎯 SHowers from SHockers = CB.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q4. Heavy icing is possible in (a) CI (b) CS (c) ST (d) CB</div>
+  <div class="qa-a">✅ Answer: (d) CB</div>
+  <div class="qa-exp">CB contains supercooled water droplets, causing heavy icing especially in middle layers. Also rime and clear ice possible.</div>
+  <div class="qa-dist">CI, CS: mainly ice crystals, negligible icing. ST: possible icing at/below freezing.</div>
+  <div class="qa-tip">🎯 CB = ALL hazards including heavy icing.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q5. To avoid icing in cloudy conditions, a pilot is advised to fly through a cloud which shows optical phenomena (a) Halo (b) Corona (c) With multi-coloured clouds</div>
+  <div class="qa-a">✅ Answer: (a) Halo</div>
+  <div class="qa-exp">Halo is produced by CS (ice crystals). Ice crystal clouds cause negligible icing. Corona (in AS/AC) indicates supercooled water droplets = moderate icing risk.</div>
+  <div class="qa-dist">Corona = water droplets = icing risk. Multi-coloured = irisations = water droplets = icing risk.</div>
+  <div class="qa-tip">🎯 Halo = ice crystals = safe. Corona = water drops = ICING RISK.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q6. Dark grey cloud causing continuous rain (a) AS (b) NS (c) SC (d) CB</div>
+  <div class="qa-a">✅ Answer: (b) NS</div>
+  <div class="qa-exp">Nimbostratus is a dark, grey, thick cloud layer causing continuous rain or snow. Thick enough to blot out the sun.</div>
+  <div class="qa-dist">AS: uniformly grey but lighter, may cause rain; SC: low puffs, no serious precip; CB: showers not continuous.</div>
+  <div class="qa-tip">🎯 NS = Nimbus (rain) + Stratus (layer) = continuous rain from grey blanket.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q7. A uniform layer of cloud resembling fog but not on the ground (a) AS (b) NS (c) ST</div>
+  <div class="qa-a">✅ Answer: (c) ST</div>
+  <div class="qa-exp">Stratus is a grey cloud layer with uniform base, resembles fog. When ST touches the ground, it IS fog.</div>
+  <div class="qa-dist">AS: medium level; NS: causes heavy rain; ST: low, fog-like.</div>
+  <div class="qa-tip">🎯 ST touching ground = Fog. ST above ground = Stratus.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q8. The clouds composed of ice crystals having feathery appearance (a) CI (b) CS (c) AS</div>
+  <div class="qa-a">✅ Answer: (a) CI</div>
+  <div class="qa-exp">Cirrus clouds are white and fibrous — delicate filaments = feathery appearance. Composed entirely of ice crystals.</div>
+  <div class="qa-dist">CS: thin whitish veil; AS: medium level grey sheet.</div>
+  <div class="qa-tip">🎯 CI = Cirrus = fibrous/feathery = ice crystals. No precip, no icing.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q9. NS clouds occur (a) At cold front (b) At warm front</div>
+  <div class="qa-a">✅ Answer: (b) At warm front</div>
+  <div class="qa-exp">At warm fronts, gradual ascent produces AS and NS, giving widespread continuous rain ahead of the surface front.</div>
+  <div class="qa-dist">Cold fronts produce CU and CB (showers and thunderstorms), not NS.</div>
+  <div class="qa-tip">🎯 Warm Front = NS + continuous rain. Cold Front = CB + showers/TS.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q10. Lenticular clouds indicate presence of (a) Warm Front (b) Cold Front (c) Mountain waves</div>
+  <div class="qa-a">✅ Answer: (c) Mountain waves</div>
+  <div class="qa-exp">Altocumulus Lenticularis form at crests of mountain waves on the leeward side of high mountains. They are stationary despite strong winds.</div>
+  <div class="qa-dist">Fronts produce layered/cumuliform clouds, not lens-shaped stationary clouds.</div>
+  <div class="qa-tip">🎯 Lens-shaped stationary cloud over/downwind of mountain = MOUNTAIN WAVE = severe turbulence possible.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q11. The lowest level from which condensation trails will not form is (a) Mintra Level (b) Drytra Level (c) Maxtra Level</div>
+  <div class="qa-a">✅ Answer: (a) Mintra Level</div>
+  <div class="qa-exp">Mintra (Minimum Trail) Level = lowest level at which contrails can form. Below this = no contrails.</div>
+  <div class="qa-tip">🎯 MINtra = MINimum level for contrails. Drytra = no need for humidity. MAXtra = maximum level, in stratosphere.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q12. Cloud ceiling is the height of the cloud covering... (a) 3–4 oktas (b) 5/8 or more (c) 8/8</div>
+  <div class="qa-a">✅ Answer: (b) 5/8 or more</div>
+  <div class="qa-exp">Cloud ceiling = height of lowest cloud layer below 6000 m covering 5/8 or more of sky (BKN or OVC).</div>
+  <div class="qa-dist">3–4 = SCT (not ceiling); 8/8 = OVC (that IS a ceiling layer but so is BKN).</div>
+  <div class="qa-tip">🎯 Ceiling = BKN (5–7/8) or OVC (8/8) below 20,000 ft.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q13. AC cloud with cumuliform protuberances indicates (a) Stability (b) Instability (c) Neutrality</div>
+  <div class="qa-a">✅ Answer: (b) Instability</div>
+  <div class="qa-exp">Castellaneous AC (ACCas) with tower-like cumuliform protuberances indicates atmospheric instability at medium levels — a precursor to afternoon thunderstorm development.</div>
+  <div class="qa-tip">🎯 ACCas = morning sign of afternoon TS. Instability indicator at medium level.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q14. Hail may be experienced under the anvil of a CB (a) True (b) False</div>
+  <div class="qa-a">✅ Answer: (a) True</div>
+  <div class="qa-exp">Hail (GR) can fall in clear air below the anvil of a CB. The anvil spreads out horizontally and can carry hail considerable distances from the storm.</div>
+  <div class="qa-tip">🎯 Never fly under a CB anvil — clear air hail is a serious hazard.</div>
+</div>
+
+<!-- ============ SECTION 15 ============ -->
+<h2 id="ref" class="page-break">15. Master Reference Tables</h2>
+
+<h3>All Numerical Values</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>High clouds — tropics height range</td><td><span class="reg-value">20,000–60,000 ft (6–18 km)</span></td></tr>
+  <tr><td>Medium clouds — tropics</td><td><span class="reg-value">2–8 km (6,500–25,000 ft)</span></td></tr>
+  <tr><td>Low clouds — all regions</td><td><span class="reg-value">below 2 km (6,500 ft)</span></td></tr>
+  <tr><td>Cloud ceiling threshold</td><td><span class="reg-value">6000 m / 20,000 ft</span></td></tr>
+  <tr><td>Cloud ceiling coverage threshold</td><td><span class="reg-value">5/8 or more</span></td></tr>
+  <tr><td>Exhaust contrail level</td><td><span class="reg-value">9 km and above</span></td></tr>
+  <tr><td>Mintra — ML temperature estimate</td><td><span class="reg-value">–45°C @ 100% RH</span></td></tr>
+  <tr><td>Drytra — above Mintra by</td><td><span class="reg-value">~2 km</span></td></tr>
+  <tr><td>Ice pallets dia</td><td><span class="reg-value">&lt;5 mm</span></td></tr>
+  <tr><td>Operationally significant cloud base</td><td><span class="reg-value">below 1500 m (5000 ft)</span></td></tr>
+  <tr><td>Noctilucent cloud altitude</td><td><span class="reg-value">80–85 km</span></td></tr>
+  <tr><td>Noctilucent cloud latitude</td><td><span class="reg-value">72°N–45°N, mostly 55°N</span></td></tr>
+</table>
+
+<h3>Cloud Type Quick Reference</h3>
+<table>
+  <tr><th>Cloud</th><th>Level</th><th>Composition</th><th>Precipitation</th><th>Icing</th><th>Aviation Hazard</th></tr>
+  <tr><td>CI</td><td>High</td><td>Ice crystals</td><td>None</td><td>Negligible</td><td>Low</td></tr>
+  <tr><td>CS</td><td>High</td><td>Ice crystals</td><td>None</td><td>Negligible</td><td>Low (Halo visible)</td></tr>
+  <tr><td>CC</td><td>High</td><td>Ice crystals</td><td>None</td><td>Negligible</td><td>Low</td></tr>
+  <tr><td>AC</td><td>Medium</td><td>Water/ice</td><td>None (AC Len = none)</td><td>Possible</td><td>Low–Moderate</td></tr>
+  <tr><td>AS</td><td>Medium</td><td>Water/ice</td><td>Continuous rain/snow (thick)</td><td>Yes below 0°C</td><td>Moderate</td></tr>
+  <tr><td>ST</td><td>Low</td><td>Water drops</td><td>Drizzle</td><td>Possible</td><td>Moderate (vis)</td></tr>
+  <tr><td>SC</td><td>Low</td><td>Water drops</td><td>None serious</td><td>Possible</td><td>Low</td></tr>
+  <tr><td>NS</td><td>Low–Medium</td><td>Water/ice</td><td>Continuous rain/snow</td><td>Yes below 0°C</td><td>High</td></tr>
+  <tr><td>CU</td><td>Vertical</td><td>Water drops</td><td>None (fair wx)</td><td>Possible</td><td>Low (bumpiness)</td></tr>
+  <tr><td>TCU</td><td>Vertical</td><td>Water/ice</td><td>Rain, showers</td><td>Yes</td><td>High</td></tr>
+  <tr><td>CB</td><td>Vertical</td><td>Water/ice/hail</td><td>RA, SH, GR, SN</td><td>Severe</td><td>EXTREME — AVOID</td></tr>
+</table>
+
+<h3>Okta/Cloud Amount Table</h3>
+<table>
+  <tr><th>Oktas</th><th>Term (METAR)</th><th>Sky Condition</th></tr>
+  <tr><td>0</td><td>SKC/NSC</td><td>Fine</td></tr>
+  <tr><td>1–2</td><td>FEW</td><td>Fine</td></tr>
+  <tr><td>3–4</td><td>SCT</td><td>Fair</td></tr>
+  <tr><td>5–7</td><td>BKN</td><td>Partly cloudy</td></tr>
+  <tr><td>8</td><td>OVC</td><td>Cloudy/Overcast</td></tr>
+  <tr><td>///</td><td>Sky Obscured (VV///)</td><td>Sky Obscured</td></tr>
+</table>
+
+<h3>Answer Key — Q&amp;A Section</h3>
+<table>
+  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>
+  <tr><td><strong>A</strong></td><td>b</td><td>b</td><td>b</td><td>d</td><td>a</td><td>b</td><td>c</td><td>a</td><td>b</td><td>c</td><td>a</td><td>b</td><td>b</td><td>a</td><td>b</td><td>c</td><td>c</td><td>b</td><td>a</td><td>a</td></tr>
+</table>
+<p><em>(Answers from textbook Q1–20: b b b d a b c a b c a b b a b c c b a a)</em></p>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 8:</strong><br>
+  • 5 causes of vertical motion: Terrain, Convection, Pressure, Fronts, Wind Shear<br>
+  • Convergence = ascent = bad wx; Divergence = subsidence = fine wx<br>
+  • 10 cloud genera; 3 levels; classified by form and height<br>
+  • High clouds (3 Ci-): ice crystals, no precip, no icing, CS produces HALO<br>
+  • Medium (Alto-): AS = continuous rain if thick; AC = no precip; Corona in AS<br>
+  • Low: ST = drizzle; NS = continuous rain; SC = no serious precip<br>
+  • CB = ALL hazards — AVOID. Hail under anvil in clear air.<br>
+  • Cloud base: AGL in METAR/TAF; AMSL in area charts<br>
+  • Ceiling = BKN/OVC below 20,000 ft; Cloud amount in Oktas (0–8)<br>
+  • Contrails: Wing tip (short), Exhaust (long, persistent ≥9 km), Distrails (clear lanes)<br>
+  • Mintra (lowest level for contrails) → Drytra (2 km above) → Maxtra (stratosphere)
+</div>
+
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+</body>
+</html>

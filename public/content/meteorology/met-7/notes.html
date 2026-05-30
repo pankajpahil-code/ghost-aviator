@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 7: Visibility and Fog — DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #222; background: #fff; padding: 20px; }
+  h1 { font-size: 2em; color: #1a237e; text-align: center; margin-bottom: 8px; }
+  h2 { font-size: 1.5em; color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 6px; margin: 30px 0 15px; page-break-after: avoid; }
+  h3 { font-size: 1.15em; color: #283593; margin: 18px 0 8px; page-break-after: avoid; }
+  h4 { font-size: 1em; color: #37474f; margin: 14px 0 6px; font-weight: 700; }
+  p { margin-bottom: 10px; }
+  ul, ol { margin: 8px 0 12px 22px; }
+  li { margin-bottom: 5px; }
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 12px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin: 10px 0; }
+  .cover .author { font-size: 1.1em; color: #1a237e; font-weight: 700; margin-top: 20px; }
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; margin: 0; padding: 0; }
+  .toc li { padding: 5px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; }
+  .toc a:hover { text-decoration: underline; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 9px 12px; text-align: left; }
+  td { padding: 8px 12px; border: 1px solid #ccc; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7fa; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 18px 0; page-break-inside: avoid; overflow: hidden; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 12px 15px; font-weight: 700; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  svg { max-width: 100%; }
+  @page { size: A4; margin: 20mm; }
+  @media print { body { padding: 0; } }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 7: Visibility and Fog</h1>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="subtitle">Based on IC Joshi Aviation Meteorology Textbook</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#s1">1. Definition of Visibility</a></li>
+    <li><a href="#s2">2. Visibility Reports &amp; RVR</a></li>
+    <li><a href="#s3">3. Causes of Poor Visibility</a></li>
+    <li><a href="#s4">4. Vertical and Slant Visibility</a></li>
+    <li><a href="#s5">5. Instruments for Measuring Visibility</a></li>
+    <li><a href="#s6">6. Types of Fog</a></li>
+    <li><a href="#s7">7. Fog Dispersal</a></li>
+    <li><a href="#qa">Practice Q&amp;A (20 Questions)</a></li>
+    <li><a href="#ref">Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- ==================== SECTION 1 ==================== -->
+<h2 id="s1">1. Definition of Visibility</h2>
+
+<div class="box-blue">
+  <strong>Visibility (Aeronautical Definition):</strong> The greatest distance at which a <strong>black object of suitable dimensions</strong>, situated near the ground, can be seen and recognised when observed against the bright background.
+  <br><br>
+  <strong>Night Definition:</strong> The greatest distance at which lights in the vicinity of <strong>1,000 candela</strong> can be seen and identified against an unlit background.
+  <br><br>
+  In simple terms: <strong>The distance up to which prominent objects can be seen by naked eye and recognized as such under natural light.</strong>
+</div>
+
+<p>Visibility on the ground and from the air are of great importance to a pilot for landing and take-off. The pilot needs to see various land marks, targets, obstructions, beacon lights, other aircraft, runways etc., while in flight and during approach and landing. Poor visibility is a serious aviation hazard. Even at airfields where ILS is installed, a pilot would prefer better visibility conditions for safe landing and take-offs.</p>
+
+<!-- ==================== SECTION 2 ==================== -->
+<h2 id="s2">2. Visibility Reports &amp; RVR</h2>
+
+<h3>Visibility Reports</h3>
+<ul>
+  <li>The visibility reported by a Met Office is the <strong>lowest horizontal visibility</strong> at an airfield</li>
+  <li>It may be different in different directions due to varying amounts of atmospheric obscurities</li>
+  <li>This visibility may also differ from <strong>vertical and slant visibilities</strong> as estimated by an aircraft while in-flight</li>
+</ul>
+
+<table>
+  <tr><th>Method</th><th>Daytime</th><th>Night-time</th></tr>
+  <tr><td>Estimation Method</td><td>Seeing runway markings and objects at pre-measured distances along the runway, within and around the airfield</td><td>From existing lights at known distances in and around the airport — called <strong>Visibility Land Marks</strong></td></tr>
+</table>
+
+<h3>Runway Visual Range (RVR)</h3>
+<div class="box-blue">
+  <strong>Definition:</strong> The range over which the pilot of an aircraft on the centre line of the runway can see the runway markings or the lights delineating the runway or identifying its centre line.
+</div>
+<ul>
+  <li>RVR equipment installed along various runways, close to the take-off and landing areas</li>
+  <li>RVR is reported when the visibility is <strong>less than <span class="reg-value">1500 m</span></strong></li>
+  <li>RVR <span class="reg-value">2000</span> and <span class="reg-value">1500</span> are included in METAR as supplementary information</li>
+  <li>RVR 2000 and 1500 are <strong>NOT</strong> disseminated internationally</li>
+</ul>
+
+<div class="box-amber">
+  <strong>💡 Exam Tip:</strong> RVR reported when visibility &lt; 1500m. METAR includes RVR 2000 and 1500 as supplementary — but these are NOT disseminated internationally. The instrument is called <strong>Scopograph or Transmissometer</strong>.
+</div>
+
+<!-- ==================== SECTION 3 ==================== -->
+<h2 id="s3">3. Causes of Poor Visibility</h2>
+
+<div class="box-blue">
+  The surface visibility is reduced by atmospheric obscurities, such as smoke particles, sea spray, dust, industrial particles, vehicular emission, volcanic ash, etc.
+</div>
+
+<table>
+  <tr><th>Obscurity</th><th>Definition</th><th>Visibility</th><th>Special Notes</th></tr>
+  <tr><td><strong>Haze</strong></td><td>Suspension of very small particles of smoke, dust, water, etc. Gives a milky appearance</td><td><span class="reg-value">≤5000 m</span></td><td>—</td></tr>
+  <tr><td><strong>Dust Haze</strong></td><td>Dust kicked up by strong winds, especially in desert/semi-arid areas; suspended in air; causes Dust Haze. Summer hazard. Thicker during day.</td><td>Widely reduced; diversionary hazard</td><td>Extends from Rajasthan to Punjab, Haryana, UP, Bihar; vertically may extend <span class="reg-value">6–8 km</span></td></tr>
+  <tr><td><strong>Smoke Haze</strong></td><td>From industrial/domestic sources; spreads as haze layer, especially when wind is calm or very light and strong ground inversion</td><td>Widely reduced</td><td>—</td></tr>
+  <tr><td><strong>Mist</strong></td><td>Suspension of water droplets in atmosphere</td><td><span class="reg-value">≥1000 m but ≤5000 m</span></td><td>RH is almost 100%</td></tr>
+  <tr><td><strong>Fog</strong></td><td>Suspension of water droplets or ice crystals; RH ~100%</td><td><span class="reg-value">&lt;1000 m</span></td><td>Classified as: Thick, Moderate, Light. <strong>Fog is the cloud sitting on ground.</strong></td></tr>
+  <tr><td><strong>Smog</strong></td><td>When fog and smoke co-exist</td><td>Very poor</td><td>Severely limits visibility; health hazard</td></tr>
+  <tr><td><strong>Dust Storm</strong></td><td>—</td><td><span class="reg-value">≤5000 m</span></td><td>If followed by rain visibility improves fast</td></tr>
+  <tr><td><strong>Sea Spray</strong></td><td>Under favourable wind conditions, salt particles sprayed from wave crests; water drops form; thin layer at low level and on wind screen</td><td>Considerable reduction</td><td>In rare cases reduces forward visibility to almost zero on wind screen; also during monsoons and cyclones</td></tr>
+  <tr><td><strong>Volcanic Ash (VA)</strong></td><td>Solid matter from volcanoes; carried by winds; suspended for long time</td><td><span class="reg-value">Surface and in-flight: almost nil</span></td><td>Severely damages engine and other aircraft parts. Indian Volcano: <strong>Barren Island (12.16N 93.51E)</strong> — first erupted <span class="reg-value">1787</span>, most recent <span class="reg-value">2020</span>. <strong>Baratang Island</strong> lies <span class="reg-value">150 km</span> N of Port Blair.</td></tr>
+  <tr><td><strong>Precipitation</strong></td><td>Rain, showers, drizzle, snowfall</td><td>Variable (see table below)</td><td>—</td></tr>
+</table>
+
+<h3>Visibility in Precipitation</h3>
+<table>
+  <tr><th>Precipitation Type</th><th>Intensity</th><th>Visibility</th></tr>
+  <tr><td>Rain</td><td>Moderate</td><td><span class="reg-value">1–3 km</span></td></tr>
+  <tr><td>Rain/Showers</td><td>Heavy</td><td><span class="reg-value">&lt;1000 m</span></td></tr>
+  <tr><td>Drizzle</td><td>Any</td><td><span class="reg-value">&lt;1000 m</span></td></tr>
+  <tr><td>Snow</td><td>Any</td><td><span class="reg-value">may fall &lt;1000 m</span></td></tr>
+</table>
+
+<div class="box-red">
+  <strong>⚠ Volcanic Ash — Aviation Warning:</strong> VA reduces surface and in-flight visibility to almost nil. It severely damages engines and other aircraft parts. Volcanoes are active in Japan, Philippines, Indonesia, America, Mexico, Iceland, Russia, etc. If VA is encountered, pilots must exit the area immediately.
+  <br><strong>Indian context:</strong> Barren Island (12.16N 93.51E) — first erupted 1787, most recent 2020. Baratang Island (mud volcano) is 150 km N of Port Blair.
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    PV["CAUSES OF POOR VISIBILITY"] --> H["Haze ≤5000m\n(smoke/dust/water)"]
+    PV --> DH["Dust Haze\n(desert storms, summer)"]
+    PV --> SH["Smoke Haze\n(industrial, inversion)"]
+    PV --> M["Mist 1000-5000m\nRH~100%"]
+    PV --> F["FOG &lt;1000m\nRH~100%"]
+    PV --> DS["Dust Storm ≤5000m"]
+    PV --> SS["Sea Spray\n(coastal, thin layer)"]
+    PV --> VA["Volcanic Ash\n(almost nil, engine damage)"]
+    PV --> P["Precipitation\n(1-3km mod rain,\n&lt;1km heavy/drizzle/snow)"]
+    F --> RF["Radiation Fog"]
+    F --> AF["Advection Fog"]
+    F --> STF["Steaming Fog"]
+    F --> FF["Frontal Fog"]
+    F --> UF["Upslope Fog"]
+    F --> IF["Inversion Fog"]
+</pre>
+
+<!-- ==================== SECTION 4 ==================== -->
+<h2 id="s4">4. Vertical and Slant Visibility</h2>
+
+<div class="box-blue">
+  Haze and fog layers are generally confined to a few thousand feet above ground level. In a shallow layer of haze or fog, the <strong>horizontal visibility is poor</strong>. A pilot flying above such a layer may see the airfield clearly through a vertically thinner layer of fog, but on approach for landing, as he has to see through an elongated layer of fog, he may lose sight of the runway. In such a case:
+  <ul>
+    <li><strong>Vertical Visibility</strong> may be good</li>
+    <li><strong>Slant Visibility</strong> is poor</li>
+  </ul>
+</div>
+
+<p>As one goes higher and higher, the transparency of the atmosphere increases considerably, except in cloud and precipitation. <strong>Visibility is lower looking towards the sun</strong> due to reflection of the moon light (also applies to looking towards the sun during daytime).</p>
+
+<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="margin:15px 0;max-width:100%;border:1px solid #ddd;border-radius:6px;">
+  <rect width="500" height="200" fill="#f8f9fa"/>
+  <!-- Ground -->
+  <rect x="0" y="160" width="500" height="40" fill="#8d6e63"/>
+  <text x="250" y="180" text-anchor="middle" fill="white" font-size="12">AERODROME</text>
+  <!-- Fog layer -->
+  <rect x="0" y="100" width="500" height="60" fill="rgba(180,200,220,0.6)" stroke="#90a4ae" stroke-width="1"/>
+  <text x="10" y="125" fill="#37474f" font-size="11">Fog/Haze layer</text>
+  <!-- Aircraft -->
+  <text x="420" y="60" font-size="20">✈</text>
+  <text x="380" y="45" fill="#1a237e" font-size="11">Aircraft descending</text>
+  <!-- Vertical arrow (good) -->
+  <line x1="350" y1="65" x2="350" y2="155" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="355" y="90" fill="#2e7d32" font-size="10">Vertical viz</text>
+  <text x="355" y="102" fill="#2e7d32" font-size="10">(GOOD)</text>
+  <!-- Slant arrow (poor) -->
+  <line x1="420" y1="65" x2="200" y2="158" stroke="#c0392b" stroke-width="2"/>
+  <text x="290" y="100" fill="#c0392b" font-size="10">Slant viz (POOR)</text>
+  <!-- Aerodrome clearly visible label -->
+  <text x="50" y="75" fill="#555" font-size="10">Aerodrome clearly visible</text>
+  <text x="50" y="88" fill="#555" font-size="10">from directly above</text>
+  <!-- Thick fog base label -->
+  <text x="10" y="155" fill="#37474f" font-size="10">Thick fog base</text>
+</svg>
+
+<!-- ==================== SECTION 5 ==================== -->
+<h2 id="s5">5. Instruments for Measuring Visibility</h2>
+
+<div class="box-blue">
+  <strong>Scopograph or Transmissometer:</strong> Used for measuring visibility along the different runways on an aerodrome. RVR equipment installed along various runways close to take-off and landing areas. Consists of a light source and a photoelectric receiver; equipment generates electric current according to the obscurities present between the receiver and the source. Current generated gives a measure of RVR. Display units located in the Met Office and ATC Tower.
+</div>
+<ul>
+  <li>At some Indian Met Offices: <strong>Automatic Visual Range Assessor (AVRA)</strong> is used for measuring RVR</li>
+</ul>
+
+<!-- ==================== SECTION 6 ==================== -->
+<h2 id="s6">6. Types of Fog</h2>
+
+<h3>6.1 Radiation Fog</h3>
+<div class="box-blue">
+  <strong>Formation:</strong> Radiation fog forms due to <strong>nocturnal cooling</strong> of the ground and the adjacent air layers. It is essential that the cooling should lower the temperature below the dew-point. If the wind is light, there is no turbulent mixing. The cooling of the ground is unable to extend upwards at sufficient rate — moisture close to the ground settles down as dew. If wind is strong, it may prevent cooling or cool too thick a layer — fog forms. The temperature may not fall sufficiently for fog formation. In such cases <strong>stratus cloud</strong> may form at the top of the layer of turbulence.
+</div>
+
+<h4>Favourable Conditions for Radiation Fog Formation</h4>
+<table>
+  <tr><th>Condition</th><th>Reason</th></tr>
+  <tr><td><strong>(a) High Relative Humidity</strong></td><td>Little cooling needed to reach dew-point; condensation of water vapour can occur</td></tr>
+  <tr><td><strong>(b) Clear Sky</strong></td><td>Clear skies permit maximum nocturnal cooling of ground and adjacent air layers</td></tr>
+  <tr><td><strong>(c) Light Wind: <span class="reg-value">3–7 kt</span></strong></td><td>Enables turbulent mixing and cooling of layers close to ground; brings their temperature to dew-point</td></tr>
+  <tr><td><strong>(d) Stability</strong></td><td>Generally stable atmosphere, so mixing and cooling are confined to a shallow layer</td></tr>
+</table>
+
+<div class="box-red">
+  <strong>⚠ Why Calm Wind Can Prevent Radiation Fog:</strong> If the wind is too light (calm), there is no turbulent mixing. The cooling of the ground is unable to extend upwards fast enough — moisture close to ground merely settles down as <strong>dew</strong>, NOT fog.
+  <br><br>
+  <strong>Why Strong Wind Can Prevent Radiation Fog:</strong> Turbulence prevents cooling any one layer enough; cooling spreads over too thick a layer and temperature doesn't fall to dew point.
+</div>
+
+<h4>Characteristics of Radiation Fog</h4>
+<ul>
+  <li>Forms in <strong>anticyclones, ridges, and ground inversions</strong> — wind is light, skies are clear, atmosphere stable</li>
+  <li>Fog would form even when RH is less than 100% due to hygroscopic condensation nuclei</li>
+  <li>Minimum temperature usually occurs just after sunrise</li>
+  <li><strong>Most frequent at about sunrise or it thickens at that time</strong></li>
+  <li>Radiation fog dissipates about <span class="reg-value">2–3 hours</span> after sunrise due to heating</li>
+  <li>If deep, sun's heat takes longer to penetrate ground; fog may persist to <span class="reg-value">midday</span></li>
+  <li>Usually lifts into low stratus clouds before finally dissipating</li>
+</ul>
+
+<h4>Radiation Fog in India</h4>
+<div class="box-red">
+  <strong>⚠ Radiation Fog — Indian Aviation Hazard (Winter):</strong>
+  <ul>
+    <li>A <strong>winter hazard</strong> in India</li>
+    <li>Usually forms after the passage of a <strong>Western Disturbance (WD)</strong> which caused rain and then sky cleared</li>
+    <li>Almost a daily feature in winters in the valley of the <strong>Brahmaputra river</strong> where adequate moisture is present</li>
+    <li>Katabatic flow provides the required turbulence and additional cooling</li>
+    <li>Most susceptible areas: <strong>NW India, UP, Bihar, Jharkhand, Chhattisgarh, Bengal and Assam</strong> (particularly Southern banks of Brahmaputra river)</li>
+    <li><strong>Vertical extent:</strong> Few hundred feet to <span class="reg-value">1500 ft</span>, maximum <span class="reg-value">1 km</span></li>
+    <li>Upper surface of vertical radiation fog is sharp with clear air above</li>
+    <li><strong>Pressure system:</strong> A High or Col with weak pressure gradient is favourable; fog does NOT form when pressure gradient is steep and low level winds are strong</li>
+  </ul>
+</div>
+
+<h3>6.2 Advection Fog</h3>
+<div class="box-blue">
+  <strong>Formation:</strong> Forms when <strong>warm moist air from elsewhere is transported over a cold surface</strong> (ground or water) where the surface temperature is less than the dew point of the advected air. Advection fog forms both over land and sea.
+</div>
+<ul>
+  <li>Coastal fogs of Bengal and Orissa in winters are due to a combined effect of advection and radiation</li>
+  <li>Advection fog forms any time of day and night</li>
+  <li>More persistent than radiation fog and more extensive</li>
+  <li>Common over sea in spring when warm air moves over cooler sea water</li>
+</ul>
+
+<div class="box-amber">
+  <strong>💡 Key Distinction:</strong> Radiation Fog = nocturnal cooling of ground (stationary process). Advection Fog = horizontal transport of warm moist air over cold surface (dynamic process). Advection fog can form DAY or NIGHT; Radiation fog mainly at night.
+</div>
+
+<h3>6.3 Steaming Fog (Sea Smoke)</h3>
+<div class="box-blue">
+  <strong>Formation:</strong> Occurs at high latitudes when cold air mass flows over a warm sea surface. The water vapour from the warm sea condenses as it lifts into the cold air. Looks like steam coming out of the sea surface. Hence called <strong>Sea Smoke</strong>.
+</div>
+<ul>
+  <li>Common in Icelandic and Norwegian regions</li>
+  <li>Over sea, often referred to as sea smoke</li>
+</ul>
+
+<h3>6.4 Frontal Fog</h3>
+<div class="box-blue">
+  <strong>Formation:</strong> Occurs on the sloping boundary between two contrasting air masses due to the saturation of the air near the surface in the area of continuous rain ahead of a front. Also forms due to the lowering of cloud to the surface with the passage of a front.
+</div>
+
+<h3>6.5 Upslope Fog</h3>
+<div class="box-blue">
+  <strong>Formation:</strong> Forms due to lifting of moist air along a sloping hill or plains — due to adiabatic cooling.
+</div>
+
+<h3>6.6 Inversion Fog</h3>
+<div class="box-blue">
+  <strong>Formation:</strong> Occurs in an anticyclonic area when cold air, due to subsidence, comes in contact with a warm water body.
+</div>
+
+<h3>Fog Types — Comparison Table</h3>
+<table>
+  <tr><th>Fog Type</th><th>Cause</th><th>Time</th><th>Location</th><th>Key Characteristic</th></tr>
+  <tr><td><strong>Radiation</strong></td><td>Nocturnal cooling; radiation loss</td><td>Night → morning</td><td>Land; valleys, depressions</td><td>Clear sky + light 3-7kt wind required; dissipates 2-3hr after sunrise</td></tr>
+  <tr><td><strong>Advection</strong></td><td>Warm moist air over cold surface</td><td>Day or Night</td><td>Land and sea coasts</td><td>More persistent; can be thick; Bengal/Orissa coastal fogs in winter</td></tr>
+  <tr><td><strong>Steaming (Sea Smoke)</strong></td><td>Cold air over warm sea</td><td>Any time</td><td>High latitude seas</td><td>Looks like steam; Iceland/Norway</td></tr>
+  <tr><td><strong>Frontal</strong></td><td>Rain ahead of front saturates air; cloud lowers to surface</td><td>With frontal passage</td><td>Frontal zones</td><td>Associated with Western Disturbances; common with Cold Fronts</td></tr>
+  <tr><td><strong>Upslope</strong></td><td>Moist air lifts along slope; adiabatic cooling</td><td>Any</td><td>Hill slopes, plains</td><td>—</td></tr>
+  <tr><td><strong>Inversion</strong></td><td>Subsiding cold air meets warm water body</td><td>Any</td><td>Anticyclonic areas; coasts</td><td>In anticyclone with temperature inversion</td></tr>
+</table>
+
+<pre class="mermaid">
+flowchart LR
+    subgraph Formation
+    A["Clear night\n+ High RH\n+ 3-7kt wind\n+ Stable air"] --> RF["RADIATION FOG\n(most common in India)"]
+    B["Warm moist air\ntransported over\ncold surface"] --> AF["ADVECTION FOG\n(land + sea, day/night)"]
+    C["Cold air over\nwarm sea"] --> STF["STEAMING FOG\n(Sea Smoke)"]
+    D["Rain ahead of front\nor cloud lowering"] --> FF["FRONTAL FOG"]
+    E["Moist air lifted\nalong slope"] --> UF["UPSLOPE FOG\n(Adiabatic cooling)"]
+    F["Subsiding cold air\n+ warm water body"] --> IF["INVERSION FOG\n(Anticyclone)"]
+    end
+</pre>
+
+<!-- ==================== SECTION 7 ==================== -->
+<h2 id="s7">7. Fog Dispersal</h2>
+
+<h3>Thermal Method</h3>
+<p>When air is heated to temperature above the dew point, fog or clouds will dissipate. During the Second World War, heaters, burners, fires were used to disperse fog but the method involved large expenditures and was discontinued.</p>
+
+<h3>Use of Hygroscopic Nuclei</h3>
+<p>When hygroscopic particles are injected into fog water drops form. This lowers the RH of the air, leading to dissipation of fog. <strong>Seeding</strong> with dry ice or silver iodide or propane gas produces freezing and precipitation.</p>
+
+<div class="box-amber">
+  <strong>💡 Fog Dispersal Methods:</strong><br>
+  1. <strong>Thermal Method</strong> — heat air above dew point (expensive, discontinued after WWII)<br>
+  2. <strong>Hygroscopic Nuclei / Cloud Seeding</strong> — dry ice, silver iodide, propane gas → freezing and precipitation → lowers RH → fog dissipates
+</div>
+
+<!-- ==================== Q&A SECTION ==================== -->
+<h2 id="qa" style="page-break-before: always;">Practice Q&amp;A — Chapter 7: Visibility and Fog</h2>
+
+<div class="qa-block">
+  <div class="qa-question">Q1. Fog is reported when visibility is reduced to<br>(a) Less than 1000m &nbsp;&nbsp;(b) 1000m &nbsp;&nbsp;(c) 1000 to 2000</div>
+  <div class="qa-answer">✅ Answer: (a) Less than 1000m — Fog is defined as visibility reduced to LESS than 1000m, with RH nearly 100%.</div>
+  <div class="qa-distractor">❌ (b) 1000m exactly: At exactly 1000m it is still Mist (≥1000m ≤5000m).<br>❌ (c) 1000-2000m: This is the Mist range.</div>
+  <div class="qa-tip">💡 Mnemonic: "Fog &lt; 1000m. Mist = 1000–5000m." RH ~100% in both cases.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q2. RVR is reported in visibility falls below<br>(a) 500m &nbsp;&nbsp;(b) 1000m &nbsp;&nbsp;(c) 1500m &nbsp;&nbsp;(d) 2000m</div>
+  <div class="qa-answer">✅ Answer: (c) 1500m — RVR is reported when visibility is less than 1500m.</div>
+  <div class="qa-distractor">❌ Others: Only c is correct per the text — "RVR is reported when visibility is less than 1500m."</div>
+  <div class="qa-tip">💡 "RVR = 1500m trigger point." RVR 2000 and 1500 included in METAR as supplementary but NOT disseminated internationally.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q3. Radiation fog occurs:<br>(a) Over land &nbsp;&nbsp;(b) Over sea &nbsp;&nbsp;(c) During day</div>
+  <div class="qa-answer">✅ Answer: (a) Over land — Radiation fog requires nocturnal cooling of the GROUND surface. It forms over land, particularly in valleys and depressions.</div>
+  <div class="qa-distractor">❌ (b) Over sea: Radiation fog does not typically form over sea as sea temperature varies very little diurnally.<br>❌ (c) During day: Radiation fog forms at night and persists until morning; daytime heating dissipates it.</div>
+  <div class="qa-tip">💡 "Radiation Fog = Land + Night + Clear sky + 3-7kt wind."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q4. If visibility reduces between 5000m and 1000m and RH is almost 100%, it is<br>(a) Mist &nbsp;&nbsp;(b) Haze &nbsp;&nbsp;(c) Fog</div>
+  <div class="qa-answer">✅ Answer: (a) Mist — Mist: visibility ≥1000m but ≤5000m, RH almost 100%. Composed of water droplets.</div>
+  <div class="qa-distractor">❌ (b) Haze: Haze visibility ≤5000m but it's composed of dry particles (smoke, dust, water), RH not necessarily ~100%.<br>❌ (c) Fog: Fog is visibility &lt;1000m.</div>
+  <div class="qa-tip">💡 "Mist = 1000-5000m, wet (water droplets), RH~100%. Haze = ≤5000m, dry particles, milky appearance."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q5. Radiation Fog forms over N India during:<br>(a) May to June &nbsp;&nbsp;(b) Dec to Feb &nbsp;&nbsp;(c) Oct to Nov</div>
+  <div class="qa-answer">✅ Answer: (b) Dec to Feb — Radiation fog in India is a winter hazard, typically December to February, especially after passage of Western Disturbances.</div>
+  <div class="qa-distractor">❌ (a) May to June: This is pre-monsoon / summer season — too warm for radiation fog.<br>❌ (c) Oct to Nov: Transition season; not the primary radiation fog season.</div>
+  <div class="qa-tip">💡 "India Radiation Fog = Winter (Dec-Feb) after WD." The Brahmaputra valley is particularly affected — almost daily in winters.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q6. Warm and moist air moving over a cold surface causes:<br>(a) Thunder clouds &nbsp;&nbsp;(b) Fog and stratus &nbsp;&nbsp;(c) Frontal clouds</div>
+  <div class="qa-answer">✅ Answer: (b) Fog and stratus — Warm moist air moving over cold surface = Advection Fog. The surface chills the air from below, leading to fog or stratus.</div>
+  <div class="qa-distractor">❌ (a) Thunder clouds: Thunderclouds require strong instability and rising motion — not created by cold surface.<br>❌ (c) Frontal clouds: These require frontal lifting.</div>
+  <div class="qa-tip">💡 "Advection Fog = Warm air + Cold surface = Fog + Stratus." Classic coastal fog mechanism.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q7. The radiation fog activity increases after the passage of a ………<br>(a) WD &nbsp;&nbsp;(b) Depression &nbsp;&nbsp;(c) Col</div>
+  <div class="qa-answer">✅ Answer: (a) WD (Western Disturbance) — Radiation fog in India usually forms after the passage of a WD which caused rain and then sky cleared, leaving adequate moisture in the air.</div>
+  <div class="qa-distractor">❌ (b) Depression: Generally brings cloud cover and rain — not favourable after depression.<br>❌ (c) Col: Col can be favourable but WD is specifically mentioned in the text as the trigger.</div>
+  <div class="qa-tip">💡 WD sequence: WD arrives → rain → sky clears → moisture left → radiation fog forms. Classic NW India winter pattern.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q8. The radiation fog forms due to<br>(a) Heating of the earth during day<br>(b) Radiational cooling of earth at night<br>(c) Advection of cold air</div>
+  <div class="qa-answer">✅ Answer: (b) Radiational cooling of earth at night — The ground radiates heat at night, cooling the adjacent air layers below the dew point, forming radiation fog.</div>
+  <div class="qa-distractor">❌ (a) Daytime heating: Daytime heating promotes convection and dissipates fog.<br>❌ (c) Advection of cold air: That is Advection Fog mechanism (warm moist air over cold surface).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q9. Radiation fog is essentially a ………phenomena<br>(a) Nocturnal &nbsp;&nbsp;(b) Dusk &nbsp;&nbsp;(c) Day</div>
+  <div class="qa-answer">✅ Answer: (a) Nocturnal — Radiation fog forms at night (nocturnal) due to radiative cooling of the earth's surface.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q10. Radiation fog forms over ……<br>(a) Water &nbsp;&nbsp;(b) Land &nbsp;&nbsp;(c) Both</div>
+  <div class="qa-answer">✅ Answer: (b) Land — Radiation fog requires significant diurnal temperature variation, which occurs over land. Sea temperature is nearly constant.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q11. The ……… fog forms due to horizontal movement of warm moist air over cold surface<br>(a) Radiation &nbsp;&nbsp;(b) Advection &nbsp;&nbsp;(c) Frontal</div>
+  <div class="qa-answer">✅ Answer: (b) Advection — Advection Fog = horizontal transport (advection) of warm moist air over a cold surface.</div>
+  <div class="qa-distractor">❌ (a) Radiation: Radiation fog = vertical (radiative) cooling of stationary air.<br>❌ (c) Frontal: Frontal fog = saturation from rain ahead of front or cloud lowering.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q12. The ……… fog forms due to horizontal movement of warm moist air over cold surface<br>(a) Radiation &nbsp;&nbsp;(b) Advection &nbsp;&nbsp;(c) Frontal</div>
+  <div class="qa-answer">✅ Answer: (b) Advection — Same as Q11.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q13. Advection fog forms during:<br>(a) Night only &nbsp;&nbsp;(b) Day time only &nbsp;&nbsp;(c) Any time of day and night</div>
+  <div class="qa-answer">✅ Answer: (c) Any time of day and night — Advection fog can form at any time because it depends on the horizontal transport of warm moist air, not on day/night cycle.</div>
+  <div class="qa-distractor">❌ (a) Night only: That's a characteristic of radiation fog.<br>❌ (b) Daytime only: No fog type is daytime-only.</div>
+  <div class="qa-tip">💡 "Radiation fog = NIGHT process. Advection fog = ANY TIME." Key exam distinction.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q14. For the formation of Radiation fog<br>(a) There should be sufficient moisture in atmosphere, cloudy sky, nil wind<br>(b) There should be sufficient moisture in atmosphere, clear sky, light wind<br>(c) There should be sufficient moisture in atmosphere, cloudy sky, strong wind</div>
+  <div class="qa-answer">✅ Answer: (b) Sufficient moisture, clear sky, light wind (3-7kt) — The three essential conditions: high RH, clear sky for nocturnal cooling, and light winds for turbulent mixing down to the surface.</div>
+  <div class="qa-distractor">❌ (a) Cloudy sky, nil wind: Cloudy sky prevents radiation cooling. Nil/calm wind → dew forms, not fog.<br>❌ (c) Cloudy sky, strong wind: Cloudy sky prevents cooling; strong wind mixes fog away or too thick a layer cooled.</div>
+  <div class="qa-tip">💡 "Radiation Fog conditions: HIGH RH + CLEAR SKY + LIGHT 3-7kt WIND + STABLE AIR." All four must be present.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q15. Instrument used for measuring visibility is called<br>(a) Viscometer &nbsp;&nbsp;(b) Transmissometer &nbsp;&nbsp;(c) Ceilometer</div>
+  <div class="qa-answer">✅ Answer: (b) Transmissometer — Also called Scopograph. Measures visibility along runways. Uses light source and photoelectric receiver.</div>
+  <div class="qa-distractor">❌ (a) Viscometer: Measures viscosity of fluids — unrelated.<br>❌ (c) Ceilometer: Measures cloud base height, not visibility.</div>
+  <div class="qa-tip">💡 "Transmissometer = visibility. Ceilometer = cloud base. Barometer = pressure."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q16. Advection fog forms:<br>(a) Over sea &nbsp;&nbsp;(b) Over land &nbsp;&nbsp;(c) Both over land and sea</div>
+  <div class="qa-answer">✅ Answer: (c) Both over land and sea — Advection fog forms wherever warm moist air is transported over a colder surface, which can be land or sea.</div>
+  <div class="qa-tip">💡 Classic example: Coastal fogs of Bengal/Orissa in winters (advection + radiation combination). San Francisco Bay Area fog is classic sea advection fog.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q17. Fog is ……… cloud on ground<br>(a) Stratus &nbsp;&nbsp;(b) Strato cumulus &nbsp;&nbsp;(c) Nimbostratus</div>
+  <div class="qa-answer">✅ Answer: (a) Stratus — Fog is essentially stratus cloud sitting on the ground. The textbook states: "Fog is the cloud sitting on ground."</div>
+  <div class="qa-distractor">❌ (b) Stratocumulus: Has patchy, lumpy structure — not the flat fog layer.<br>❌ (c) Nimbostratus: Rain-bearing grey layer cloud at significant height.</div>
+  <div class="qa-tip">💡 "Fog = Stratus at ground level." As radiation fog lifts with morning heating, it becomes stratus clouds.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q18. Frontal fog is more common with a:<br>(a) Western Disturbance &nbsp;&nbsp;(b) Cyclone &nbsp;&nbsp;(c) Cold Front</div>
+  <div class="qa-answer">✅ Answer: (c) Cold Front — Frontal fog is most common with Cold Fronts (heavy rain ahead, sharp temperature contrast). Also mentioned with Western Disturbances.</div>
+  <div class="qa-distractor">❌ (b) Cyclone: Cyclones bring widespread rain and cloud, but specific frontal fog mechanism is different.</div>
+  <div class="qa-tip">💡 Book states: "Frontal Fog is more common with a Cold Front." WD also mentioned as triggering radiation fog after it passes.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q19. The favourable pressure system for formation of fog is:<br>(a) Lows and Cols &nbsp;&nbsp;(b) High and Trough &nbsp;&nbsp;(c) Highs and Ridges</div>
+  <div class="qa-answer">✅ Answer: (c) Highs (Anticyclones) and Ridges — In anticyclones, ridges, and cols the wind is light, there is subsidence and stability, and the skies are clear — all favourable for radiation fog formation. "Lows and Ridges" and "Highs and Cols" could be partially correct but the textbook specifically mentions anticyclones, ridges, and cols.</div>
+  <div class="qa-tip">💡 "Fog = Anticyclone/Ridge/Col" — think clear skies, light winds, stable air. Steep PGF (lows) = windy = no fog.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q20. Thermal processes / temperature distribution which favours formation of fog is:<br>(a) Isothermal &nbsp;&nbsp;(b) Adiabatic &nbsp;&nbsp;(c) Inversion &nbsp;&nbsp;(d) SALR</div>
+  <div class="qa-answer">✅ Answer: (c) Inversion — A temperature inversion traps moisture and prevents mixing. Fog commonly forms at the top of an inversion layer, or underneath an inversion where cool moist air is trapped. Radiative cooling creates a surface inversion which is the typical radiation fog environment.</div>
+  <div class="qa-distractor">❌ (a) Isothermal: Temperature constant with height — less conducive to fog than inversion.<br>❌ (b) Adiabatic: Adiabatic process relates to rising/sinking air — upslope fog only.<br>❌ (d) SALR: Saturated adiabatic lapse rate is about in-cloud processes.</div>
+  <div class="qa-tip">💡 "Fog loves inversions" — temperature inversion = stable = no mixing = fog can persist. Radiation fog itself CREATES a surface inversion.</div>
+</div>
+
+<!-- ==================== MASTER REFERENCE ==================== -->
+<h2 id="ref" style="page-break-before: always;">Master Reference Tables — Chapter 7: Visibility and Fog</h2>
+
+<h3>Key Numerical Values</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Fog: visibility threshold</td><td><span class="reg-value">&lt;1000 m</span></td></tr>
+  <tr><td>Mist: visibility range</td><td><span class="reg-value">≥1000 m but ≤5000 m</span></td></tr>
+  <tr><td>Haze: visibility</td><td><span class="reg-value">≤5000 m</span></td></tr>
+  <tr><td>Dust Storm visibility</td><td><span class="reg-value">≤5000 m</span></td></tr>
+  <tr><td>RVR reporting trigger</td><td><span class="reg-value">&lt;1500 m</span></td></tr>
+  <tr><td>RVR in METAR (supplementary)</td><td><span class="reg-value">2000 and 1500 m</span> (not disseminated internationally)</td></tr>
+  <tr><td>Mist: RH</td><td><span class="reg-value">~100%</span></td></tr>
+  <tr><td>Fog: RH</td><td><span class="reg-value">~100%</span></td></tr>
+  <tr><td>Favourable wind for radiation fog</td><td><span class="reg-value">3–7 kt</span></td></tr>
+  <tr><td>Radiation fog dissipation after sunrise</td><td><span class="reg-value">~2–3 hours</span></td></tr>
+  <tr><td>Radiation fog vertical extent</td><td><span class="reg-value">few hundred feet to 1500 ft (max 1 km)</span></td></tr>
+  <tr><td>Dust Haze vertical extent</td><td><span class="reg-value">6–8 km</span></td></tr>
+  <tr><td>Visibility in moderate rain</td><td><span class="reg-value">1–3 km</span></td></tr>
+  <tr><td>Visibility in heavy rain/drizzle/snow</td><td><span class="reg-value">&lt;1000 m</span></td></tr>
+  <tr><td>Barren Island (Indian volcano) position</td><td><span class="reg-value">12.16N 93.51E</span></td></tr>
+  <tr><td>Barren Island first eruption</td><td><span class="reg-value">1787</span></td></tr>
+  <tr><td>Barren Island most recent eruption</td><td><span class="reg-value">2020</span></td></tr>
+  <tr><td>Baratang Island distance from Port Blair</td><td><span class="reg-value">150 km N</span></td></tr>
+</table>
+
+<h3>Fog Formation Conditions Summary</h3>
+<table>
+  <tr><th>Fog Type</th><th>Key Conditions</th><th>Time</th><th>Indian Context</th></tr>
+  <tr><td>Radiation</td><td>High RH + Clear sky + 3-7kt wind + Stability + Anticyclone/Ridge</td><td>Night → AM</td><td>NW India, UP, Bihar, Jharkhand, Chhattisgarh, Bengal, Assam; after WD; Dec-Feb</td></tr>
+  <tr><td>Advection</td><td>Warm moist air + Cold surface (land or sea)</td><td>Any</td><td>Bengal/Orissa coastal (advection + radiation)</td></tr>
+  <tr><td>Steaming</td><td>Cold air over warm sea</td><td>Any</td><td>Not common; high latitude seas</td></tr>
+  <tr><td>Frontal</td><td>Continuous rain ahead of front; cloud lowers to surface</td><td>With front</td><td>With Cold Fronts and WD</td></tr>
+  <tr><td>Upslope</td><td>Moist air + slope + lifting + adiabatic cooling</td><td>Any</td><td>Hill stations, plains adjacent to hills</td></tr>
+  <tr><td>Inversion</td><td>Anticyclonic subsidence + warm water body + cold air</td><td>Any</td><td>Coastal anticyclonic areas</td></tr>
+</table>
+
+<h3>Visibility Obscurity Classification</h3>
+<table>
+  <tr><th>Obscurity</th><th>Visibility</th><th>Composition</th><th>RH</th></tr>
+  <tr><td>Haze</td><td>≤5000m</td><td>Smoke, dust, water particles</td><td>Variable; milky appearance</td></tr>
+  <tr><td>Dust Haze</td><td>Widely reduced; diversionary</td><td>Dust from desert/semi-arid</td><td>Variable; summer</td></tr>
+  <tr><td>Smoke Haze</td><td>Widely reduced</td><td>Industrial/domestic smoke</td><td>Variable; stable/inversion</td></tr>
+  <tr><td>Mist</td><td>≥1000m, ≤5000m</td><td>Water droplets</td><td>~100%</td></tr>
+  <tr><td>Fog</td><td>&lt;1000m</td><td>Water droplets or ice crystals</td><td>~100%</td></tr>
+  <tr><td>Smog</td><td>Very poor</td><td>Fog + smoke</td><td>~100% + pollutants</td></tr>
+  <tr><td>Dust Storm</td><td>≤5000m</td><td>Dust particles</td><td>Low</td></tr>
+  <tr><td>Sea Spray</td><td>Variable; almost nil at windscreen</td><td>Salt particles, water drops</td><td>High</td></tr>
+  <tr><td>Volcanic Ash</td><td>Almost nil</td><td>Solid volcanic particles</td><td>Variable</td></tr>
+</table>
+
+<h3>Q&amp;A Answer Key</h3>
+<table>
+  <tr>
+    <td>Q1=a</td><td>Q2=c</td><td>Q3=a</td><td>Q4=a</td><td>Q5=b</td><td>Q6=b</td><td>Q7=a</td><td>Q8=b</td><td>Q9=a</td><td>Q10=b</td>
+  </tr>
+  <tr>
+    <td>Q11=b</td><td>Q12=b</td><td>Q13=c</td><td>Q14=b</td><td>Q15=b</td><td>Q16=c</td><td>Q17=a</td><td>Q18=c</td><td>Q19=c</td><td>Q20=c</td>
+  </tr>
+</table>
+
+<h3>Quick Revision Summary — Chapter 7</h3>
+<div class="box-amber">
+  <strong>Chapter 7 — Visibility &amp; Fog: 60-Second Revision</strong><br><br>
+  <strong>Definitions:</strong> Fog &lt;1000m; Mist 1000–5000m; Haze ≤5000m (all RH); Smog = fog+smoke<br>
+  <strong>RVR:</strong> Reported when viz &lt;1500m. Instrument = Transmissometer/Scopograph. AVRA at some Indian Met Offices.<br>
+  <strong>Radiation Fog:</strong> Night cooling + Clear sky + 3-7kt wind + High RH + Stability → land only; After WD in India; NW India/UP/Bihar/Jharkhand/Chattisgarh/Bengal/Assam; Lifts 2-3hr after sunrise; Top sharp; Ext: few 100ft to 1500ft max 1km<br>
+  <strong>Advection Fog:</strong> Warm moist air over cold surface; land + sea; day or night; Bengal/Orissa coastal (advection+radiation)<br>
+  <strong>Steaming Fog:</strong> Cold air over warm sea; Iceland/Norway<br>
+  <strong>Frontal Fog:</strong> Cold Front rain saturation / cloud lowers to surface<br>
+  <strong>Upslope:</strong> Adiabatic cooling on slope<br>
+  <strong>Inversion:</strong> Anticyclone + cold air + warm water<br>
+  <strong>Dispersal:</strong> Thermal (discontinued, expensive) or Seeding (dry ice, AgI, propane)<br>
+  <strong>VA:</strong> Barren Island (12.16N 93.51E); first erupted 1787; last 2020; Baratang = 150km N Port Blair
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

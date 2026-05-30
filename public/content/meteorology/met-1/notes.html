@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 01 – Atmosphere | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px 40px; }
+  h1 { font-size: 2.2em; color: #1a237e; text-align: center; }
+  h2 { font-size: 1.5em; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; page-break-after: avoid; }
+  h3 { font-size: 1.15em; color: #283593; margin-top: 20px; page-break-after: avoid; }
+  h4 { font-size: 1em; color: #37474f; margin-top: 14px; page-break-after: avoid; }
+  p { margin: 8px 0; }
+
+  .cover { text-align: center; padding: 80px 40px; border: 3px solid #1a237e; border-radius: 12px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { font-size: 2.8em; margin-bottom: 10px; }
+  .cover .subtitle { font-size: 1.3em; color: #555; margin: 8px 0; }
+  .cover .author { font-size: 1.1em; color: #1a237e; font-weight: bold; margin-top: 20px; }
+  .cover .chapter-badge { display: inline-block; background: #1a237e; color: #fff; padding: 8px 24px; border-radius: 20px; font-size: 1.1em; margin-top: 16px; }
+
+  .toc { page-break-after: always; }
+  .toc h2 { font-size: 1.8em; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { padding: 6px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* Info boxes */
+  .box-blue   { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red    { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green  { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber  { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+
+  .box-blue h4, .box-red h4, .box-green h4, .box-amber h4 { margin-top: 0; }
+
+  .reg-value { font-weight: bold; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; font-family: monospace; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 9px 12px; text-align: left; }
+  td { padding: 8px 12px; border-bottom: 1px solid #ddd; }
+  tr:nth-child(even) td { background: #f5f7ff; }
+
+  .qa-block { border: 1px solid #ccc; border-radius: 8px; margin: 18px 0; padding: 0; page-break-inside: avoid; overflow: hidden; }
+  .qa-q { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 12px 16px; font-weight: bold; }
+  .qa-a { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 16px; }
+  .qa-explain { padding: 10px 16px; background: #fafafa; }
+  .qa-distract { background: #fdecea; border-left: 5px solid #c0392b; padding: 10px 16px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 10px 16px; font-style: italic; }
+  .qa-block .label { font-weight: bold; font-size: 0.85em; text-transform: uppercase; color: #666; display: block; margin-bottom: 4px; }
+
+  pre.mermaid { text-align: center; page-break-inside: avoid; }
+
+  .formula-box { background: #f3e5f5; border-left: 5px solid #7b1fa2; padding: 15px; border-radius: 6px; margin: 15px 0; font-family: monospace; page-break-inside: avoid; }
+  .formula-box h4 { color: #7b1fa2; margin-top: 0; font-family: Arial; }
+
+  .quick-rev { background: #fff8e1; border: 2px solid #f57c00; border-radius: 8px; padding: 16px; margin: 20px 0; page-break-inside: avoid; }
+  .quick-rev h3 { color: #f57c00; margin-top: 0; }
+
+  .qa-section { page-break-before: always; }
+
+  svg { max-width: 100%; height: auto; page-break-inside: avoid; }
+
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="chapter-badge">Chapter 01</div>
+  <h1>ATMOSPHERE</h1>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="subtitle">Based on: IC Joshi Aviation Meteorology</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+  <p style="margin-top:30px; color:#888;">Topics: Composition · Structure · Layers · ISA · JSA · Green House Gases · Ozone</p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#composition">1. Composition and Structure of the Atmosphere</a></li>
+    <li><a href="#constituents">2. Constituents — Major Gases</a></li>
+    <li><a href="#variable">3. Variable Gases, Greenhouse Gases &amp; Dry/Saturated Air</a></li>
+    <li><a href="#co2">4. Carbon Dioxide (CO₂) &amp; Ozone (O₃)</a></li>
+    <li><a href="#vertical-dist">5. Vertical Distribution of Air Mass</a></li>
+    <li><a href="#thermal">6. Thermal Structure of the Atmosphere</a></li>
+    <li><a href="#layers">7. Atmospheric Layers in Detail</a></li>
+    <li><a href="#isa">8. International Standard Atmosphere (ISA)</a></li>
+    <li><a href="#jsa">9. Jet Standard Atmosphere (JSA)</a></li>
+    <li><a href="#quick-rev">10. Quick Revision Summary</a></li>
+    <li><a href="#qa">11. Practice Questions &amp; Answers (Q1–Q45)</a></li>
+    <li><a href="#ref-tables">12. Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="composition">1. Composition and Structure of the Atmosphere</h2>
+
+<div class="box-blue">
+  <h4>📘 Definition — Atmosphere</h4>
+  <p>The atmosphere of the earth is an <strong>envelope of homogeneous mixture of gases</strong>, called <strong>Air</strong>. It surrounds the earth and is attached to it due to gravitation. It moves with the earth at the same speed and direction.</p>
+  <ul>
+    <li>Total thickness: approximately <span class="reg-value">480 km</span></li>
+    <li><span class="reg-value">80%</span> of the atmosphere is within <span class="reg-value">16 km</span></li>
+    <li>No exact upper boundary — gradually merges with outer space</li>
+  </ul>
+</div>
+
+<h3>Characteristics of the Atmosphere</h3>
+<table>
+  <tr><th>Property</th><th>Detail</th></tr>
+  <tr><td>Weight</td><td>Has weight and hence exerts pressure</td></tr>
+  <tr><td>Compressibility</td><td>Compressible and expandable</td></tr>
+  <tr><td>Shape</td><td>Occupies space, has no definite shape</td></tr>
+  <tr><td>Mobility</td><td>Mobile — allows transfer of heat and moisture</td></tr>
+  <tr><td>Conductivity</td><td><strong>Poor conductor of heat and electricity</strong></td></tr>
+</table>
+
+<!-- SECTION 2 -->
+<h2 id="constituents">2. Constituents — Major Gases</h2>
+
+<table>
+  <tr><th>Gas</th><th>Symbol</th><th>% by Volume</th></tr>
+  <tr><td>Nitrogen</td><td>N₂</td><td><span class="reg-value">78.09%</span></td></tr>
+  <tr><td>Oxygen</td><td>O₂</td><td><span class="reg-value">20.95%</span></td></tr>
+  <tr><td>Argon</td><td>Ar</td><td><span class="reg-value">0.93%</span></td></tr>
+  <tr><td>Carbon Dioxide</td><td>CO₂</td><td><span class="reg-value">0.035%</span></td></tr>
+</table>
+
+<h3>Trace Gases</h3>
+<p>Neon, Helium, Methane, Krypton, Xenon, Nitrous Oxide, Iodine, H₂, O₃ (<span class="reg-value">0.000007%</span>), Ammonia, Carbon Monoxide, CO₂, SO, Nitrogen Dioxide. The atmosphere also contains water vapour (WV) and solid particles.</p>
+
+<div class="box-amber">
+  <h4>⭐ N₂ : O₂ Ratio — Exam Favourite</h4>
+  <p><strong>By Volume:</strong> N₂ : O₂ = <span class="reg-value">4 : 1</span></p>
+  <p><strong>By Weight:</strong> N₂ : O₂ = <span class="reg-value">3 : 1</span></p>
+  <p>Mnemonic: <em>"Volume 4, Weight 3 — N before O"</em></p>
+</div>
+
+<div class="box-red">
+  <h4>⚠️ Supplementary Oxygen Required</h4>
+  <p>Due to rapid reduction of gases with height, <strong>supplementary oxygen is needed above <span class="reg-value">10,000 ft</span></strong>.</p>
+</div>
+
+<h3>Homosphere vs Heterosphere</h3>
+<table>
+  <tr><th>Layer</th><th>Height</th><th>Characteristic</th></tr>
+  <tr><td><strong>Homosphere</strong></td><td>Up to <span class="reg-value">~80 km</span></td><td>Nearly uniform composition; well-mixed</td></tr>
+  <tr><td><strong>Heterosphere</strong></td><td>Above <span class="reg-value">80 km</span></td><td>Gases separate by molecular weight; composition varies</td></tr>
+</table>
+
+<!-- SECTION 3 -->
+<h2 id="variable">3. Variable Gases, Greenhouse Gases &amp; Dry/Saturated Air</h2>
+
+<h3>Variable Gases</h3>
+<p>The gases like Water Vapour (WV), Carbon Mono Oxide, Sulphur di Oxide, Nitrogen di Oxide, and Methane <strong>vary in amount from place to place</strong>, being concentrated more in industrial areas, cities and water bodies, than in open areas. Though very small in quantity, these gases are very significant for weather and life.</p>
+
+<h3>Greenhouse Gases</h3>
+<div class="box-blue">
+  <h4>📘 Greenhouse Effect</h4>
+  <p>Water vapour, CO₂, O₃, Methane and some other gases are <strong>transparent to solar (Short Wave) radiation</strong> but <strong>partially absorb terrestrial (Long Wave) radiation</strong>, and re-radiate it. This keeps the earth warmer than it would have otherwise been.</p>
+  <p>Greenhouse gases: <strong>H₂O, CO₂, O₃, CH₄ (Methane)</strong></p>
+</div>
+<div class="box-red">
+  <h4>⚠️ Global Warming Warning</h4>
+  <p>Excessive amount of greenhouse gases is causing <strong>Global Warming, which is a serious threat to our life and needs to be limited.</strong></p>
+</div>
+
+<h3>Dry Air vs Saturated Air</h3>
+<p>Water in the atmosphere can exist in three states:</p>
+<ul>
+  <li><strong>Solid:</strong> Snow, Ice, Hail</li>
+  <li><strong>Liquid:</strong> Drizzle, Rain, Shower</li>
+  <li><strong>Gas:</strong> Water Vapour (WV)</li>
+</ul>
+
+<table>
+  <tr><th>Concept</th><th>Detail</th></tr>
+  <tr><td>WV concentration</td><td>Rapidly <strong>decreases with height</strong></td></tr>
+  <tr><td>Warmer air</td><td>Can hold <strong>greater amount</strong> of WV</td></tr>
+  <tr><td>Tropics (<span class="reg-value">23½°N to 23½°S</span>)</td><td>Air can hold up to <span class="reg-value">4%</span> WV by volume</td></tr>
+  <tr><td>Above <span class="reg-value">30,000 ft</span></td><td>Very low WV due to very low temperatures</td></tr>
+  <tr><td>Saturated Air</td><td>Air with <span class="reg-value">4%</span> WV → <span class="reg-value">100%</span> Relative Humidity (RH)</td></tr>
+  <tr><td>Dry Air</td><td>RH &lt; 100% → Unsaturated</td></tr>
+</table>
+
+<!-- SECTION 4 -->
+<h2 id="co2">4. Carbon Dioxide (CO₂) &amp; Ozone (O₃)</h2>
+
+<h3>Carbon Dioxide (CO₂)</h3>
+<div class="box-blue">
+  <ul>
+    <li>Produced by burning of fuel, wood etc.</li>
+    <li>Concentration substantial in <strong>industrial areas</strong>; negligible in Polar regions and higher altitudes</li>
+    <li>Large amount of CO₂ is dissolved in the oceans</li>
+    <li>Plants absorb CO₂, use its carbon as food and release O₂ into atmosphere</li>
+  </ul>
+</div>
+
+<h3>Ozone (O₃)</h3>
+<div class="box-blue">
+  <h4>📘 Ozone Properties</h4>
+  <ul>
+    <li>Forms in the <strong>upper atmosphere</strong></li>
+    <li>Absorbs <strong>Ultra Violet (UV) radiation</strong> from the Sun → raises temperature</li>
+    <li>O₃ molecules become heavier → sink → accumulate in lower levels</li>
+    <li>Maximum O₃ concentration: <span class="reg-value">20–25 km</span></li>
+    <li>O₃ found between <span class="reg-value">10–50 km</span></li>
+  </ul>
+</div>
+<div class="box-green">
+  <h4>✅ Why Ozone Matters for Aviation &amp; Life</h4>
+  <p><strong>Ozone protects us from the ill effects (like skin cancer, sunburn and cataracts) of UV radiation.</strong></p>
+</div>
+
+<h3>Ozone Hole</h3>
+<div class="box-red">
+  <h4>⚠️ Ozone Depletion</h4>
+  <p>In recent times the O₃ layer has <strong>thinned</strong> and large holes have developed mainly over the Polar and other latitudes due to:</p>
+  <ul>
+    <li>Atmospheric pollution</li>
+    <li>Excessive use of <strong>halocarbon refrigerants, solvents, chlorofluoro carbons</strong></li>
+    <li>On reaching Stratosphere they release halogen atoms through <strong>photodissociation</strong> → breaks down O₃ into O₂</li>
+  </ul>
+</div>
+
+<h3>Solid Particles (Aerosols)</h3>
+<p>Particles such as salt from evaporating sea water, dust from arid regions, industrial particles:</p>
+<ul>
+  <li>Obscure solar radiation and affect visibility and temperature</li>
+  <li>Act as <strong>condensation nuclei</strong> → promote condensation of WV prematurely</li>
+  <li>In larger cities/industrial areas: frequent <strong>fog and smog</strong> (mixture of fog and smoke) due to high concentration of particles</li>
+</ul>
+
+<!-- SECTION 5 -->
+<h2 id="vertical-dist">5. Vertical Distribution of Air Mass</h2>
+
+<table>
+  <tr><th>Height</th><th>Fraction of Atmosphere Contained Below</th></tr>
+  <tr><td><span class="reg-value">6 km</span></td><td><span class="reg-value">1/2</span> (50%)</td></tr>
+  <tr><td><span class="reg-value">10 km</span></td><td><span class="reg-value">3/4</span> (75%)</td></tr>
+  <tr><td><span class="reg-value">35 km</span></td><td><span class="reg-value">99%</span></td></tr>
+</table>
+
+<div class="box-amber">
+  <h4>⭐ Memory Aid</h4>
+  <p>"<strong>6–10–35 = Half–3/4–All</strong>"</p>
+  <p>Half the atmosphere below 6 km; ¾ below 10 km; 99% below 35 km.</p>
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="thermal">6. Thermal Structure of the Atmosphere</h2>
+
+<div class="box-blue">
+  <h4>📘 How the Atmosphere is Heated</h4>
+  <p>Solar radiation heats the earth and the earth in turn heats up the atmosphere by <strong>conduction, convection, radiation</strong> and release of latent heat by condensation of water vapour. Hence <strong>temperature falls with height</strong>, up to a certain height. <strong>The atmosphere is thus heated from below and not from above.</strong></p>
+</div>
+
+<h3>Heat Flow from Earth's Surface</h3>
+<table>
+  <tr><th>Type of Heat</th><th>Mechanism</th><th>Percentage</th></tr>
+  <tr><td><strong>Sensible Heat</strong></td><td>Conduction, Convection, Radiation</td><td><span class="reg-value">23%</span></td></tr>
+  <tr><td><strong>Latent Heat</strong></td><td>Evaporation, Condensation, Sublimation</td><td><span class="reg-value">77%</span></td></tr>
+</table>
+
+<div class="box-amber">
+  <h4>⭐ Exam Tip</h4>
+  <p>Latent heat transfer is <strong>dominant</strong> at 77%. Sensible heat = 23%. Mnemonic: <em>"Latent is Larger (77)"</em></p>
+</div>
+
+<!-- Atmospheric Layers SVG -->
+<h3>Thermal Structure — Visual Diagram</h3>
+<svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #ccc; border-radius:8px; background:#f9fbff;">
+  <!-- Background gradient layers -->
+  <rect x="60" y="20" width="480" height="460" fill="#f0f4ff" rx="4"/>
+  <!-- Troposphere -->
+  <rect x="60" y="380" width="480" height="100" fill="#cce5ff" rx="2"/>
+  <text x="70" y="440" font-size="13" fill="#1565c0" font-weight="bold">TROPOSPHERE (0–18 km)</text>
+  <text x="70" y="458" font-size="11" fill="#1565c0">Temp ↓ with height; lapse rate ~6.5°C/km</text>
+  <!-- Stratosphere -->
+  <rect x="60" y="260" width="480" height="120" fill="#d4edda" rx="2"/>
+  <text x="70" y="310" font-size="13" fill="#2e7d32" font-weight="bold">STRATOSPHERE (18–50 km)</text>
+  <text x="70" y="328" font-size="11" fill="#2e7d32">Isothermal lower zone; temp ↑ upper zone</text>
+  <text x="70" y="346" font-size="11" fill="#2e7d32">Ozone layer ~25 km | Nacreous Clouds</text>
+  <!-- Mesosphere -->
+  <rect x="60" y="160" width="480" height="100" fill="#fff3cd" rx="2"/>
+  <text x="70" y="200" font-size="13" fill="#e65100" font-weight="bold">MESOSPHERE (50–80 km)</text>
+  <text x="70" y="218" font-size="11" fill="#e65100">Temp ↓ with height; Noctilucent Clouds</text>
+  <text x="70" y="236" font-size="11" fill="#e65100">Coldest point: –100°C at 80 km (173.15 K)</text>
+  <!-- Thermosphere -->
+  <rect x="60" y="60" width="480" height="100" fill="#f8d7da" rx="2"/>
+  <text x="70" y="100" font-size="13" fill="#c62828" font-weight="bold">THERMOSPHERE / IONOSPHERE (80 km+)</text>
+  <text x="70" y="118" font-size="11" fill="#c62828">Temp ↑ with height; Radio wave propagation</text>
+  <!-- Temperature curve -->
+  <polyline points="300,390 270,340 310,300 270,260 320,180 270,110 330,65"
+            stroke="#7b1fa2" stroke-width="3" fill="none" stroke-dasharray="6,3"/>
+  <!-- Boundary lines -->
+  <line x1="60" y1="380" x2="540" y2="380" stroke="#1565c0" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="60" y1="260" x2="540" y2="260" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="60" y1="160" x2="540" y2="160" stroke="#e65100" stroke-width="2" stroke-dasharray="5,3"/>
+  <!-- Pause labels -->
+  <text x="430" y="377" font-size="10" fill="#333" font-weight="bold">TROPOPAUSE</text>
+  <text x="430" y="257" font-size="10" fill="#333" font-weight="bold">STRATOPAUSE</text>
+  <text x="430" y="157" font-size="10" fill="#333" font-weight="bold">MESOPAUSE</text>
+  <!-- Title -->
+  <text x="300" y="35" font-size="16" fill="#1a237e" font-weight="bold" text-anchor="middle">Thermal Structure of Atmosphere</text>
+  <!-- Ozone band -->
+  <rect x="400" y="285" width="12" height="60" fill="#66bb6a" opacity="0.7" rx="2"/>
+  <text x="415" y="320" font-size="9" fill="#2e7d32">O₃</text>
+</svg>
+
+<!-- SECTION 7 -->
+<h2 id="layers">7. Atmospheric Layers in Detail</h2>
+
+<h3>A. Troposphere</h3>
+<div class="box-blue">
+  <h4>📘 Troposphere</h4>
+  <ul>
+    <li>Lowest portion of the atmosphere</li>
+    <li>Extends from surface to <span class="reg-value">16–18 km</span> at equator and <span class="reg-value">8–10 km</span> at poles</li>
+    <li>Higher height at equator due to <strong>rising hot air convection currents</strong></li>
+    <li>Temperature falls at <span class="reg-value">~6.5°C/km</span> — called the <strong>Lapse Rate</strong></li>
+    <li>All kinds of weather occur here; turbulent mixing</li>
+    <li>Contains <span class="reg-value">75%</span> of atmospheric mass and <span class="reg-value">99%</span> of water vapour and aerosols</li>
+  </ul>
+</div>
+
+<table>
+  <tr><th>Sub-Layer</th><th>Height Range</th></tr>
+  <tr><td>Lower Troposphere</td><td>Surface to <span class="reg-value">2.1 km</span></td></tr>
+  <tr><td>Mid Troposphere</td><td><span class="reg-value">2.1 km</span> to <span class="reg-value">7.6 km</span></td></tr>
+  <tr><td>Upper Troposphere</td><td><span class="reg-value">7.6 km</span> to Tropopause</td></tr>
+</table>
+
+<h3>B. Tropopause</h3>
+<div class="box-blue">
+  <h4>📘 Tropopause</h4>
+  <ul>
+    <li>Top of the troposphere; marks boundary between Troposphere and Stratosphere</li>
+    <li>At tropopause: lapse rate reduces to <span class="reg-value">1–2°C/km</span> or temperature stops falling</li>
+    <li>Controlled by: Surface Temperature, Latitude, Season, Land-Sea distribution, Synoptic Situation</li>
+    <li>Temperature at equator: <span class="reg-value">–70° to –75°C</span></li>
+    <li>Temperature at poles: <span class="reg-value">–40° to –45°C</span></li>
+    <li>At lower height in <strong>Winters</strong> than Summers</li>
+    <li><strong>Warmer the surface → Higher the tropopause</strong></li>
+  </ul>
+</div>
+
+<div class="box-amber">
+  <h4>⭐ Tropopause Breaks/Folds</h4>
+  <p>There are two regions where tropopause <strong>abruptly changes height</strong>, called <strong>breaks/folds</strong>:</p>
+  <ul>
+    <li>At about <span class="reg-value">40°</span> Lat and <span class="reg-value">60°</span> Lat</li>
+    <li>Break at <span class="reg-value">40°</span>Lat is more prominent</li>
+    <li><strong>Jet streams occur at these breaks</strong></li>
+  </ul>
+</div>
+
+<table>
+  <tr><th>Type</th><th>Pressure Level</th><th>Latitude Range</th><th>Height (India)</th><th>Temp (India)</th><th>Associated Jet</th></tr>
+  <tr><td><strong>Polar Tropopause</strong></td><td><span class="reg-value">~300 hPa</span></td><td>Lat. 45°–60° polewards</td><td>–</td><td>–</td><td>Polar Front Jet (southern end)</td></tr>
+  <tr><td><strong>Middle Tropopause</strong></td><td><span class="reg-value">~200 hPa</span></td><td>Between Polar &amp; Tropical</td><td>~11.5 km (winters ~23°N)</td><td>–45°C</td><td>–</td></tr>
+  <tr><td><strong>Tropical Tropopause</strong></td><td><span class="reg-value">~100 hPa</span></td><td>Lat. 35°–40°</td><td>~11.5 km (winters ~23°N)</td><td>–45°C</td><td>Subtropical Jet (STJ) at southern end</td></tr>
+</table>
+
+<div class="box-green">
+  <h4>✅ Importance of Tropopause for Pilots</h4>
+  <ul>
+    <li>Maximum height clouds can reach</li>
+    <li>Jet streams and maximum wind speeds occur <strong>just below it</strong></li>
+    <li><strong>Clear Air Turbulence (CAT)</strong> occurs just below it</li>
+  </ul>
+</div>
+
+<h3>C. Stratosphere</h3>
+<div class="box-blue">
+  <h4>📘 Stratosphere (Tropopause to ~50 km)</h4>
+  <ul>
+    <li>Initially (8–10 km above tropopause) <strong>isothermal</strong></li>
+    <li>Temperature then increases slowly and towards the top sharply</li>
+    <li><strong>Inversion produced by absorption of UV radiation from sun by ozone</strong></li>
+    <li>Ozone layer found at height of <span class="reg-value">~25 km</span></li>
+    <li>Very <strong>dry and stable</strong> region — low humidity, no weather</li>
+    <li>Above stormy weather; steady, strong, horizontal winds</li>
+    <li><strong>Nacreous Clouds</strong> (Mother of Pearl Clouds) sometimes seen in higher latitudes in winters</li>
+  </ul>
+</div>
+
+<p><strong>Stratopause:</strong> Upper boundary of the Stratosphere.</p>
+
+<h3>D. Mesosphere</h3>
+<div class="box-blue">
+  <h4>📘 Mesosphere (Stratopause to ~80 km)</h4>
+  <ul>
+    <li>Extends <span class="reg-value">50–80 km</span> from Stratopause</li>
+    <li>Lack of solar radiation absorption + weak vertical mixing → temperatures <strong>fall with height</strong></li>
+    <li><strong>Noctilucent Clouds</strong> seen occasionally in Polar regions</li>
+  </ul>
+</div>
+
+<p><strong>Mesopause:</strong> Top of Mesosphere. Temperatures stop falling. Coldest area of atmosphere. Temperature at 80 km = <span class="reg-value">–100°C</span> (<span class="reg-value">173.15 K</span>). Meteors burn up in this layer.</p>
+
+<h3>E. Thermosphere</h3>
+<div class="box-blue">
+  <h4>📘 Thermosphere / Ionosphere (80 km+)</h4>
+  <ul>
+    <li>From Mesopause to end of atmosphere</li>
+    <li>Temperatures <strong>increase with height</strong></li>
+    <li>Above <span class="reg-value">60 km</span> also called <strong>Ionosphere</strong></li>
+    <li>Important for <strong>radio wave propagation</strong></li>
+    <li>Serious interference in radio propagation during solar disturbances</li>
+  </ul>
+</div>
+
+<h3>F. Exosphere</h3>
+<div class="box-blue">
+  <h4>📘 Exosphere (outermost layer)</h4>
+  <ul>
+    <li>Outermost layer extending up to <span class="reg-value">10,000 km</span> from top of Thermosphere</li>
+    <li>Molecules, ozone and atoms escape into space</li>
+    <li>Air is very thin — few particles; very active with very high temperature but far apart → very little heat present in this layer</li>
+  </ul>
+</div>
+
+<!-- Mermaid flowchart of atmosphere layers -->
+<h3>Atmospheric Layers — Process Flowchart</h3>
+<pre class="mermaid">
+flowchart TD
+    A["🌍 Earth's Surface\n(0 km)"] --> B["TROPOSPHERE\n0–18 km (equator), 8–10 km (poles)\nTemp ↓ at 6.5°C/km\nAll weather here | 75% mass | 99% WV"]
+    B --> C{"TROPOPAUSE\nTemp stops falling\nJet streams & CAT below it"}
+    C --> D["STRATOSPHERE\n~18–50 km\nOzone at 25 km absorbs UV\nTemp ↑ (inversion)\nStable, dry, no weather"]
+    D --> E{"STRATOPAUSE"}
+    E --> F["MESOSPHERE\n~50–80 km\nTemp ↓ with height\nNoctilucent clouds (polar)\nMeteors burn here"]
+    F --> G{"MESOPAUSE\n–100°C / 173 K\nColdest point"}
+    G --> H["THERMOSPHERE / IONOSPHERE\n80 km+\nTemp ↑ with height\nRadio wave propagation"]
+    H --> I["EXOSPHERE\nTo 10,000 km\nMolecules escape to space"]
+    style A fill:#90caf9
+    style B fill:#64b5f6
+    style C fill:#fff9c4
+    style D fill:#a5d6a7
+    style E fill:#fff9c4
+    style F fill:#ffcc80
+    style G fill:#fff9c4
+    style H fill:#ef9a9a
+    style I fill:#ce93d8
+</pre>
+
+<!-- SECTION 8 -->
+<h2 id="isa">8. International Standard Atmosphere (ISA)</h2>
+
+<div class="box-blue">
+  <h4>📘 What is ISA?</h4>
+  <p>A standard average atmosphere specified for various purposes like design and testing of aircraft, evaluation of aircraft performance, calibration of altimeters. The most widely used is the <strong>ICAO ISA (International Standard Atmosphere)</strong>.</p>
+</div>
+
+<h3>ISA Specifications</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Air Condition</td><td><span class="reg-value">Dry</span></td></tr>
+  <tr><td>Temperature at MSL</td><td><span class="reg-value">15°C (288.15 K)</span></td></tr>
+  <tr><td>Pressure at MSL</td><td><span class="reg-value">1013.25 hPa</span></td></tr>
+  <tr><td>Density at MSL</td><td><span class="reg-value">1225 g/m³</span></td></tr>
+  <tr><td>Acceleration due to gravity</td><td><span class="reg-value">980.665 cm/s²</span></td></tr>
+  <tr><td>Lapse Rate (up to 11 km / 36,090 ft)</td><td><span class="reg-value">6.5°C/km (1.98°C/1000 ft ≈ 2°C/1000 ft)</span></td></tr>
+  <tr><td>Temperature 11–20 km (up to 65,617 ft)</td><td><span class="reg-value">–56.5°C</span> (constant / isothermal)</td></tr>
+  <tr><td>Temperature 20–30 km</td><td>Rises at <span class="reg-value">1°C/km</span> with temp <span class="reg-value">–44.5°C</span> at 32 km (104,987 ft)</td></tr>
+</table>
+
+<div class="formula-box">
+  <h4>ISA Deviation Formula</h4>
+  <p><strong>ISA Deviation = Actual Temperature − ISA Temperature</strong></p>
+  <p><strong>Worked Example 1:</strong><br>
+  Actual temp at 2 km = 05°C<br>
+  ISA temp at 2 km = 15 – (6.5 × 2) = 15 – 13 = 2°C<br>
+  ISA Deviation = 05 – 02 = <strong>+03°C</strong></p>
+  <p><strong>Worked Example 2:</strong><br>
+  Pressure at MSL = 1002.25 hPa<br>
+  ISA Pressure at MSL = 1013.25 hPa<br>
+  ISA Deviation = 1002.25 – 1013.25 = <strong>–11 hPa</strong></p>
+  <p><strong>Worked Example 3:</strong><br>
+  Actual temp at 19 km = –60°C<br>
+  ISA temp at 19 km = –56.5°C (constant 11–20 km)<br>
+  ISA Deviation = –60 – (–56.5) = <strong>–3.5°C</strong> → answer –03.5°C</p>
+</div>
+
+<div class="box-amber">
+  <h4>⭐ Key ISA Numbers to Remember</h4>
+  <p><strong>15-25-56.5-36090</strong></p>
+  <p>MSL Temp = 15°C | MSL Pressure = 1013.25 hPa | Isothermal at –56.5°C | Isothermal starts at 36,090 ft (11 km)</p>
+</div>
+
+<!-- SECTION 9 -->
+<h2 id="jsa">9. Jet Standard Atmosphere (JSA)</h2>
+
+<div class="box-blue">
+  <h4>📘 Why JSA?</h4>
+  <p>ISA values are satisfactory for aircraft operating below <span class="reg-value">30,000 ft</span>, but NOT above. For space flights and very high altitude flying and engine manufacturing, additional specific values are required. JSA was introduced to meet these requirements.</p>
+</div>
+
+<table>
+  <tr><th>Parameter</th><th>ISA</th><th>JSA</th></tr>
+  <tr><td>MSL Temperature</td><td><span class="reg-value">15°C (288.15 K)</span></td><td><span class="reg-value">15°C (288.15 K)</span></td></tr>
+  <tr><td>Lapse Rate</td><td><span class="reg-value">6.5°C/km (1.98°C/1000 ft)</span></td><td><span class="reg-value">2°C/1000 ft</span></td></tr>
+  <tr><td>Tropopause</td><td>Yes (at 11 km)</td><td><strong>No Tropopause</strong></td></tr>
+</table>
+
+<!-- QUICK REVISION -->
+<div class="quick-rev" id="quick-rev">
+  <h3>🚀 Quick Revision Summary — Chapter 1: Atmosphere</h3>
+  <table>
+    <tr><th>Key Fact</th><th>Value</th></tr>
+    <tr><td>Total atmosphere thickness</td><td>~480 km</td></tr>
+    <tr><td>80% atmosphere within</td><td>16 km</td></tr>
+    <tr><td>N₂ : O₂ by Volume</td><td>4:1 | By Weight: 3:1</td></tr>
+    <tr><td>Supplementary O₂ above</td><td>10,000 ft</td></tr>
+    <tr><td>Homosphere up to</td><td>~80 km</td></tr>
+    <tr><td>Max WV (tropics)</td><td>4% by volume</td></tr>
+    <tr><td>Saturated Air RH</td><td>100%</td></tr>
+    <tr><td>Ozone max concentration</td><td>20–25 km</td></tr>
+    <tr><td>Ozone range</td><td>10–50 km</td></tr>
+    <tr><td>Sensible heat</td><td>23%</td></tr>
+    <tr><td>Latent heat</td><td>77%</td></tr>
+    <tr><td>Troposphere height (equator)</td><td>16–18 km</td></tr>
+    <tr><td>Troposphere height (poles)</td><td>8–10 km</td></tr>
+    <tr><td>Lapse rate</td><td>~6.5°C/km</td></tr>
+    <tr><td>WV + aerosols in troposphere</td><td>99%</td></tr>
+    <tr><td>Atmospheric mass in troposphere</td><td>75%</td></tr>
+    <tr><td>Tropopause temp (equator)</td><td>–70° to –75°C</td></tr>
+    <tr><td>Tropopause temp (poles)</td><td>–40° to –45°C</td></tr>
+    <tr><td>Stratosphere to</td><td>~50 km</td></tr>
+    <tr><td>Ozone layer height</td><td>~25 km</td></tr>
+    <tr><td>Mesosphere range</td><td>50–80 km</td></tr>
+    <tr><td>Mesopause temperature</td><td>–100°C (173.15 K)</td></tr>
+    <tr><td>Ionosphere above</td><td>60 km</td></tr>
+    <tr><td>Exosphere up to</td><td>10,000 km</td></tr>
+    <tr><td>ISA MSL Temp</td><td>15°C (288.15 K)</td></tr>
+    <tr><td>ISA MSL Pressure</td><td>1013.25 hPa</td></tr>
+    <tr><td>ISA MSL Density</td><td>1225 g/m³</td></tr>
+    <tr><td>ISA Lapse Rate</td><td>6.5°C/km up to 11 km</td></tr>
+    <tr><td>ISA Isothermal zone</td><td>–56.5°C, 11–20 km</td></tr>
+    <tr><td>JSA Lapse Rate</td><td>2°C/1000 ft (no tropopause)</td></tr>
+  </table>
+</div>
+
+<!-- Q&A SECTION -->
+<div class="qa-section" id="qa">
+<h2>Practice Questions &amp; Answers</h2>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q1</span>Lowest layer of atmosphere is ……… (a) Troposphere (b) Tropopause (c) Stratosphere</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) Troposphere</span></div>
+  <div class="qa-explain">The Troposphere is the lowest layer, starting at earth's surface and extending to the tropopause. All weather occurs here.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) Tropopause is a boundary, not a layer. (c) Stratosphere is above the Troposphere.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Remember the order: <strong>T-S-M-T-E</strong> = Troposphere, Stratosphere, Mesosphere, Thermosphere, Exosphere from bottom to top.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q2</span>Height of Tropopause at equator is ……… (a) 8–10 km (b) 16–18 km (c) 14 km</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (b) 16–18 km</span></div>
+  <div class="qa-explain">At the equator, rising hot air due to convection pushes the tropopause higher — up to 16–18 km.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) 8–10 km is the tropopause height at the poles. (c) 14 km is intermediate but incorrect.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Equator = Hot = Higher tropopause. Poles = Cold = Lower tropopause. "Hotter higher, colder lower."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q3</span>Height of Tropopause at Poles is ……… (a) 12 km (b) 13 km (c) 08 km</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) 08 km</span></div>
+  <div class="qa-explain">At the poles, the atmosphere is colder; therefore convective activity is minimal and the tropopause is lower, around 8–10 km.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) and (b) are too high for polar regions.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Polar tropopause ~300 hPa; Tropical tropopause ~100 hPa (lower pressure = higher altitude).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q4</span>Higher the surface temperature ……… would be the tropopause. (a) Higher (b) Lower (c) Same</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) Higher</span></div>
+  <div class="qa-explain">Warmer surfaces generate more convective activity, pushing the tropopause to a greater height.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) Lower — incorrect; this is the effect at colder surfaces/poles. (c) Same — temperature definitely affects tropopause height.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>"Warmer surface = Higher tropopause" — think of hot air balloons rising higher when it's warmer.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q5</span>Height of tropopause ……… (a) Is constant (b) Varies with altitude (c) Varies with Latitude</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) Varies with Latitude</span></div>
+  <div class="qa-explain">Tropopause height depends on latitude (equator ~16–18 km; poles ~8 km) and also on season, surface temperature, synoptic situation.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Is constant — definitely not; it varies significantly. (b) Varies with altitude — altitude is not the controlling factor.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Tropopause height is controlled by: Surface Temp, Latitude, Season, Land-Sea distribution, Synoptic situation.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q6</span>Above 8 km the lower temperatures are over ……… (a) Equator (b) Mid Latitudes (c) Poles</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) Poles</span></div>
+  <div class="qa-explain">Above 8 km, polar tropopause is at a lower height. Above the tropopause (stratosphere), temperatures invert. Since polar tropopause is lower (~8 km), above 8 km at poles we are already in the lower stratosphere where temperature reversal occurs, making it warmer — but the question refers to lower temperatures in the troposphere above 8 km. Actually, since poles have reversal above 8 km (into stratosphere), this is a nuanced answer. The text states "there is reversal of temperature and density above 8 km" at poles.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Equator tropopause is at 16–18 km, so above 8 km equator is still in troposphere getting colder with height. (c) Poles — above 8 km at poles, we are in stratosphere where temp starts rising.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Key: Tropopause temp at poles (–40 to –45°C) is warmer than at equator (–70 to –75°C). Equator has colder tropopause despite being hotter at surface.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q7</span>Atmosphere is heated by ……… (a) Solar Radiation (b) Heat from earth surface (c) From above</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (b) Heat from earth surface</span></div>
+  <div class="qa-explain">The atmosphere is heated from below by the earth's surface (via conduction, convection, radiation and latent heat). The atmosphere is a poor absorber of direct solar radiation.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Solar radiation heats the EARTH, not directly the lower atmosphere. (c) From above is incorrect — atmosphere is heated from below.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Remember: <strong>Temperature falls with height</strong> in troposphere BECAUSE heating is from below.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q8</span>The temperature at 80 km is ……… (a) 173 K (b) 100 K (c) –137°C</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) 173 K (= –100°C)</span></div>
+  <div class="qa-explain">The text explicitly states: "The temperature at 80 km is about –100°C (173.15 K)." 173 K ≈ –100°C. This is the Mesopause, the coldest point in the atmosphere.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) 100 K = –173°C, far too cold. (c) –137°C = 136 K, not matching the textbook value.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Mesopause = –100°C = 173.15 K. Mnemonic: "80 km → 173 K → Meteors burn".</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q9</span>CO₂ and H₂O are also called ……… (a) Green House Gases (b) Rare Earth Gases (c) [other]</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) Green House Gases</span></div>
+  <div class="qa-explain">CO₂ and H₂O (water vapour) along with O₃ and Methane are greenhouse gases — they are transparent to shortwave solar radiation but absorb longwave terrestrial radiation.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) Rare Earth Gases (Noble gases like Argon, Neon, Helium) are a different category entirely.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Greenhouse gases: <strong>W-C-O-M</strong> = Water vapour, CO₂, O₃, Methane.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q10</span>Troposphere is generally ……… (a) Stable (b) Unstable (c) Neutral</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (b) Unstable</span></div>
+  <div class="qa-explain">The Troposphere has a lapse rate of ~6.5°C/km. With turbulent mixing, convective activity and all weather occurring here, it is generally unstable.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Stable — that's the Stratosphere. (c) Neutral — not the defining characteristic.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span><strong>Troposphere = Unstable; Stratosphere = Stable</strong>. Easy contrast for exams.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q11</span>Stratosphere is ……… (a) Unstable (b) Neutral (c) Stable</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) Stable</span></div>
+  <div class="qa-explain">The Stratosphere has a temperature inversion (temperature increases with height due to ozone absorbing UV), making it very stable with no convective weather.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Unstable — that's the Troposphere. (b) Neutral — not the dominant characteristic.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Stratosphere = "Stratified" = Layered = Stable. Also: no weather, steady winds.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q12</span>Tropopause is discontinuous at about ……… (a) 30°lat (b) 40°lat (c) 80°lat</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (b) 40°lat</span></div>
+  <div class="qa-explain">The breaks/folds in the tropopause occur at ~40° and ~60° latitude, with the break at 40°lat being more prominent. Jet streams occur at these breaks.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) 30°lat — not a significant break. (c) 80°lat — too poleward, not where the prominent break is.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>"Break at 40, Fold at 60." Jet streams at these breaks — important for upper-level wind planning.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q13</span>Most of atmospheric mass is contained in ……… (a) Troposphere (b) Stratosphere (c) Heterosphere</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) Troposphere</span></div>
+  <div class="qa-explain">The Troposphere contains 75% of the atmospheric mass and 99% of water vapour and aerosols.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) Stratosphere is relatively thin in mass. (c) Heterosphere is the outer part with very low density.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Troposphere = <strong>75% mass, 99% WV &amp; aerosols</strong>. Two key numbers.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q14</span>Stratosphere extends from Tropopause to ……… (a) 50 km (b) 60 km (c) 40 km</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) 50 km</span></div>
+  <div class="qa-explain">The Stratosphere extends up to ~50 km from the earth's surface (approximately 30–32 km above the tropopause at equator).</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) 60 km is too high — enters Mesosphere region. (c) 40 km is not the correct upper boundary.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Layer tops: Tropo ~18, Strato ~50, Meso ~80. Easy: <strong>18–50–80</strong>.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q15</span>The middle atmosphere layer with temperature inversion and stability is ……… (a) Troposphere (b) Tropopause (c) Stratosphere</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) Stratosphere</span></div>
+  <div class="qa-explain">The Stratosphere has a temperature inversion (UV absorption by ozone warms upper layers) making it very stable. It lies between the Tropopause and Stratopause.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Troposphere is unstable with a normal lapse rate. (b) Tropopause is a boundary, not a layer.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Stratosphere = Stable + Inversion = Ozone = UV absorption. All linked.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q16</span>Mother of Pearl clouds occur in ……… (a) Mesosphere (b) Thermosphere (c) Stratosphere</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) Stratosphere</span></div>
+  <div class="qa-explain">Nacreous Clouds (Mother of Pearl Clouds) are sometimes seen in the Stratosphere in higher latitudes in winters.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Mesosphere — Noctilucent clouds occur here. (b) Thermosphere — no clouds form here.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Nacreous = Stratosphere | Noctilucent = Mesosphere. "Na-Stra, Noc-Meso".</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q17</span>The temperature in ISA at 17 km is ……… (a) –56.5°C (b) –65.5°C (c) –35.5°C</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) –56.5°C</span></div>
+  <div class="qa-explain">In ISA, from 11 km to 20 km (65,617 ft), temperature is assumed constant at <strong>–56.5°C</strong>. 17 km falls within this isothermal zone.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) –65.5°C and (c) –35.5°C are both incorrect — no lapse rate change occurs in this zone.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>ISA isothermal zone: 11 km to 20 km = –56.5°C throughout. Any question with height 11–20 km → answer is –56.5°C.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q18</span>By weight, approximate ratio of O₂ to N₂ in the atmosphere is ……… (a) 1:3 (b) 1:4 (c) 1:5</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) 1:3 (i.e., O₂ : N₂ = 1:3 by weight)</span></div>
+  <div class="qa-explain">N₂ : O₂ by weight = 3:1, so O₂ : N₂ by weight = 1:3.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) 1:4 — that is the VOLUME ratio (O₂:N₂ = 1:4). Don't confuse weight and volume ratios.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span><strong>Volume: 4:1 | Weight: 3:1</strong> (N₂:O₂). Volume ratio is larger because N₂ is less dense per unit volume.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q19</span>By volume, the approximate ratio of O₂ to N₂ in the atmosphere is ……… (a) 1:3 (b) 1:4 (c) 1:5</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (b) 1:4 (O₂ : N₂ = 1:4 by volume)</span></div>
+  <div class="qa-explain">N₂ : O₂ by volume = 4:1, therefore O₂ : N₂ = 1:4. N₂ = 78.09%, O₂ = 20.95% — ratio is almost 4:1.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) 1:3 is the weight ratio. (c) 1:5 is incorrect.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Volume ratio is 4:1 (larger). Weight ratio is 3:1 (smaller). "Volume is Vast (4)."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q20</span>By volume, the proportion of CO₂ in the atmosphere is ……… (a) 3% (b) 0.3% (c) 0.03%</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) 0.03% (0.035%)</span></div>
+  <div class="qa-explain">CO₂ constitutes approximately 0.035% by volume in the atmosphere.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) 3% — vastly overstated. (b) 0.3% — 10 times too high.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>CO₂ = 0.035% ≈ 0.03% — tiny amount but significant for greenhouse effect.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q21</span>In ISA, the mean sea level temperature is ……… (a) 15°C (b) 10°C (c) 25°C</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) 15°C</span></div>
+  <div class="qa-explain">ISA MSL temperature = 15°C (288.15 K). This is a fundamental ISA value.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) 10°C — incorrect. (c) 25°C — too warm, not ISA standard.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>ISA MSL: Temp = <strong>15°C</strong>, Pressure = <strong>1013.25 hPa</strong>, Density = <strong>1225 g/m³</strong>. Memorise all three together.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q22</span>Maximum concentration of ozone is at a height of ……… (a) 10–15 km (b) 20–25 km (c) 30–35 km</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (b) 20–25 km</span></div>
+  <div class="qa-explain">Ozone is found between 10–50 km with maximum concentration at 20–25 km in the lower Stratosphere.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) 10–15 km — lower end of ozone range, not maximum. (c) 30–35 km — past the maximum.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Ozone range: 10–50 km | Max: 20–25 km | Ozone layer: ~25 km. "20-25 is Ozone's favourite zone."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q23</span>Additional oxygen is needed while flying above ……… (a) 5000 ft (b) 7000 ft (c) 10000 ft</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) 10000 ft</span></div>
+  <div class="qa-explain">Due to rapid reduction of gases with height, supplementary oxygen is needed above <strong>10,000 ft</strong>.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) 5000 ft and (b) 7000 ft — below the threshold requiring supplemental oxygen.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>10,000 ft = critical altitude for supplemental O₂. Also relevant for cabin pressurization regulations.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q24</span>CO₂ and H₂O keep the atmosphere ……… (a) Warm (b) Cold (c) Have no effect</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) Warm</span></div>
+  <div class="qa-explain">CO₂ and H₂O are greenhouse gases that absorb terrestrial longwave radiation and re-radiate it, keeping the earth warmer than it would otherwise be.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) Cold — incorrect, they trap heat. (c) Have no effect — incorrect, they are the primary drivers of the greenhouse effect.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Think of greenhouse gases as a "blanket" around the earth, trapping warmth.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q25</span>Noctilucent clouds occur in ……… (a) Thermosphere (b) Mesosphere (c) Stratosphere</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (b) Mesosphere</span></div>
+  <div class="qa-explain">Noctilucent Clouds are seen on rare occasions in the upper Mesosphere, in Polar regions.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Thermosphere — no clouds form there. (c) Stratosphere — Nacreous/Mother of Pearl clouds occur here, not Noctilucent.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span><strong>Noctilucent = Mesosphere (Polar) | Nacreous = Stratosphere (higher latitudes, winters)</strong>. Know both!</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q26</span>Temperature at 2 km is 05°C. What is ISA deviation? Hint: (Actual – ISA) (a) –05°C (b) –02°C (c) 03°C</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) 03°C (i.e. +03°C)</span></div>
+  <div class="qa-explain">ISA temp at 2 km = 15 – (6.5 × 2) = 15 – 13 = 2°C. ISA Deviation = 5 – 2 = <strong>+3°C</strong>.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) –5°C wrong sign and magnitude. (b) –2°C — wrong direction entirely.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>ISA Deviation = Actual – ISA. Positive deviation = warmer than ISA. Always compute ISA temp first using lapse rate.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q27</span>Pressure at MSL is 1002.25 hPa. Find the ISA deviation. Hint: (Actual – ISA) (a) –11 hPa (b) 10 hPa (c) 12 hPa</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) –11 hPa</span></div>
+  <div class="qa-explain">ISA MSL Pressure = 1013.25 hPa. Deviation = 1002.25 – 1013.25 = –11 hPa. Negative means pressure is lower than ISA standard.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) 10 hPa and (c) 12 hPa — wrong sign and magnitude.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Same formula applies for pressure deviation as temperature deviation. ISA MSL Pressure = 1013.25 hPa.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q28</span>In actual atmosphere temp. at 19 km is –60°C. Find the ISA deviation. Hint: (Actual – ISA) (a) –4.5°C (b) –05.5°C (c) –03.5°C</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) –03.5°C</span></div>
+  <div class="qa-explain">ISA temp at 19 km = –56.5°C (isothermal zone 11–20 km). Deviation = –60 – (–56.5) = –60 + 56.5 = <strong>–3.5°C</strong>.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) –4.5°C and (b) –5.5°C are arithmetic errors — make sure signs are handled correctly.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>For any altitude between 11–20 km: ISA temp is always –56.5°C. Don't try to apply lapse rate in this zone.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q29</span>Nacreous clouds occur in ……… (a) Thermosphere (b) Mesosphere (c) Upper Stratosphere</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) Upper Stratosphere (Stratosphere)</span></div>
+  <div class="qa-explain">Nacreous Clouds (Mother of Pearl Clouds) are sometimes seen in the Stratosphere in higher latitudes in winters.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Thermosphere — no clouds. (b) Mesosphere — Noctilucent clouds.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Nacreous clouds are iridescent and beautiful — found in the stratosphere over polar regions in winter.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q30</span>The atmosphere up to 80 km has a nearly similar composition and is called the Homosphere. Its uniform composition is due to ……… (a) Pressure (b) Gravitation of earth (c) Mixing due to turbulence</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) Mixing due to turbulence</span></div>
+  <div class="qa-explain">The atmosphere is generally well mixed up to ~80 km due to turbulent mixing, maintaining a nearly uniform composition.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Pressure alone doesn't cause uniform mixing. (b) Gravitation causes vertical stratification, not uniform mixing.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Homosphere = uniform mixing by turbulence. Heterosphere = no mixing = separation by molecular weight.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q31</span>Half of the atmospheric air mass is contained ……… below (a) 20,000 ft (b) 15,000 ft (c) 10,000 ft</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (b) 15,000 ft (~6 km ≈ 19,685 ft; closest is ~18,000 ft; textbook states 6 km)</span></div>
+  <div class="qa-explain">The textbook states half the atmospheric mass is below 6 km. 6 km ≈ 19,685 ft. The closest answer would be approximately 18,000–20,000 ft. Option (a) 20,000 ft is the closest match.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>The question is about 6 km = ~20,000 ft, so (a) 20,000 ft is correct. 10,000 ft = ~3 km (too low); 15,000 ft = ~4.6 km (too low).</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>6 km = ~20,000 ft = half the atmosphere below this level. Key for pressurisation and O₂ planning.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q32</span>In jet standard atmosphere the Lapse Rate is ……… (a) 2°C/1000 ft (b) 2°C/km (c) 5°C/km</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) 2°C/1000 ft</span></div>
+  <div class="qa-explain">The Jet Standard Atmosphere specifies a lapse rate of 2°C/1000 ft (with no tropopause).</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) 2°C/km is the ISA lapse rate in the stratospheric rise zone (20–30 km) — 1°C/km actually. (c) 5°C/km is not a standard rate.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>JSA: 2°C/1000 ft, no tropopause. ISA: 6.5°C/km (≈2°C/1000 ft below 11 km, then isothermal).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q33</span>The rate of fall of temperatures with height, called ……… (a) Isothermal rate (b) Inversion Rate (c) Lapse Rate</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) Lapse Rate</span></div>
+  <div class="qa-explain">Lapse rate is the rate at which temperature decreases with increasing altitude, approximately 6.5°C/km in the ISA troposphere.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Isothermal rate — temperature does NOT change with height (isothermal). (b) Inversion Rate — temperature INCREASES with height (inverse of normal).</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Lapse Rate = normal fall of temperature with height. Inversion = temperature rise with height. Isothermal = constant temperature.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q34</span>In actual atmosphere the lapse rate could ……… (a) Assume any value (b) Fall up to 8 km. (c) Rise up to 50 km</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) Assume any value</span></div>
+  <div class="qa-explain">In the actual (real) atmosphere — unlike ISA — the lapse rate can assume any value; it can be positive, zero (isothermal), or negative (inversion) depending on atmospheric conditions.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) and (c) describe fixed behaviours. The actual atmosphere is highly variable.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>ISA lapse rate = fixed at 6.5°C/km. ACTUAL lapse rate = variable, can be anything. This distinction is key for stability analysis.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q35</span>Tropical Tropopause extends from the equator to Lat. 35°–40°. Over India it is at ……… (a) 20–21 km (b) 14–15 km (c) 16–16.5 km</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) 16–16.5 km (or option b 14–15 km per textbook)</span></div>
+  <div class="qa-explain">Over India, the Tropical Tropopause is at approximately 11.5 km (temperature –45°C) per the textbook. In winters it may be at 23°N. The Tropical Tropopause extends to Lat. 35°–40° and at 100 hPa level, which is approximately 16–16.5 km at equatorial latitudes.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>The question specifies "over India" — India is in tropical latitudes (8°N–37°N); the tropical tropopause over India varies with season.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Tropical Tropopause: ~100 hPa level | Over India: ~11.5 km at 23°N in winters. India experiences both tropical and subtropical tropopause influences.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q36</span>Lapse rate in the troposphere is produced by ……… and in the stratosphere by ……… (a) Evaporation; condensation (b) Condensation; solar radiation (c) Terrestrial radiation; solar radiation (d) Solar radiation; convection</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) Terrestrial radiation; solar radiation</span></div>
+  <div class="qa-explain">In the Troposphere: cooling with height is due to terrestrial radiation heating from below. In Stratosphere: temperature inversion is due to solar radiation (UV) being absorbed by ozone — causing warming with height.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>Other combinations mix up the mechanisms. Condensation releases latent heat but is not the primary cause of the lapse rate.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Troposphere heated from Earth (below) → cools upward. Stratosphere heated by ozone absorbing UV (from Sun above) → warms upward.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q37</span>Most of the water vapour in the atmosphere is confined up to ……… (a) stratosphere (b) 30,000 ft (c) Mid troposphere (d) lower troposphere</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (d) lower troposphere</span></div>
+  <div class="qa-explain">Water vapour concentration rapidly decreases with height. Most WV is concentrated in the lower troposphere where temperatures are highest. Above 30,000 ft, WV is very low.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Stratosphere — very little WV. (b) 30,000 ft — WV is minimal at this height. (c) Mid troposphere — less than lower troposphere.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>99% WV and aerosols in troposphere; most concentrated in lower troposphere. This is why most weather and cloud formation occurs there.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q38</span>Negative lapse rate of temperature is ……… (a) Isothermal rate (b) Temperature rise with lowering height (c) Temperature rise with height (d) Temperature fall with height</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) Temperature rise with height</span></div>
+  <div class="qa-explain">A "negative lapse rate" means temperature increases with altitude — this is called an <strong>inversion</strong>. This occurs in the Stratosphere and in inversions within the Troposphere.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Isothermal = zero lapse rate (no temperature change). (d) Temperature fall with height = positive lapse rate (normal). (b) is phrased incorrectly.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Positive lapse rate = temp falls with height (normal). Zero lapse rate = isothermal. Negative lapse rate = inversion (temp rises with height).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q39</span>In ICAO ISA the atmosphere is assumed to be isothermal ……… (a) in stratosphere (b) 11 to 16 km (c) 11 to 20 km (d) 11 to 32 km</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (c) 11 to 20 km</span></div>
+  <div class="qa-explain">In ICAO ISA, temperature is assumed constant at –56.5°C from 11 km (36,090 ft) to 20 km (65,617 ft). This is the isothermal (stratospheric) zone.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) 11–16 km — too narrow. (d) 11–32 km — too wide; from 20 km temperature starts rising again. (a) "in stratosphere" is vague and incorrect if taken to mean the whole stratosphere.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>ISA Isothermal: 11–20 km at –56.5°C. After 20 km temp rises. After 32 km another zone begins.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q40</span>One of the characteristics of our atmosphere is ……… (a) Poor conductor of heat and electricity (b) Equator is warmer than poles above 10 km (c) Lapse rate is positive in stratosphere (d) Density is constant above 8 km</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) Poor conductor of heat and electricity</span></div>
+  <div class="qa-explain">The atmosphere is a poor conductor of heat and electricity — one of its key characteristics listed at the beginning of the chapter.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) Above 10 km, poles are actually warmer than equator at the tropopause (poles –40 to –45°C vs equator –70 to –75°C). (c) Lapse rate in stratosphere is negative (inversion). (d) Density is NOT constant above 8 km.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Atmosphere = poor conductor. Counterintuitively, tropopause at POLES is warmer (–40°C) than EQUATOR (–75°C) — despite surface being opposite!</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q41</span>Heat transfer in the atmosphere is maximum due to ……… (a) convection (b) radiation (c) sensible heat (d) latent heat</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (d) latent heat</span></div>
+  <div class="qa-explain">Latent Heat (Evaporation, Condensation, Sublimation) accounts for 77% of heat transfer from earth to atmosphere — much more than sensible heat at 23%.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Convection is a mechanism within sensible heat, not the maximum overall. (b) Radiation contributes but is part of the 23%. (c) Sensible heat is only 23%.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Latent heat = 77% (dominant!). Sensible heat = 23%. "Latent is Larger at 77%."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q42</span>The knowledge of the height of tropopause is important for a pilot because ……… (a) weather is mainly confined up to this level (b) clouds rarely reach up to this height due to jetstream (c) stratosphere starts at this height where all solar radiation is absorbed</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) weather is mainly confined up to this level</span></div>
+  <div class="qa-explain">The tropopause is the maximum height clouds can reach. All weather, turbulence, cloud formations are below it. Knowing its height helps pilots plan for weather-free cruising altitudes.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) Clouds do grow to just below tropopause — not because of jet streams. (c) Solar radiation is absorbed by ozone in the stratosphere, not at the tropopause itself.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Tropopause = weather ceiling. Above it = stable, clear, steady stratospheric winds. CAT and Jet streams just BELOW it.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q43</span>In ISA atmosphere the tropopause occurs at a height of ……… (a) 8–10 km (b) 11 km (c) 16–18 km</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (b) 11 km</span></div>
+  <div class="qa-explain">In ICAO ISA, the tropopause is fixed at <strong>11 km (36,090 ft)</strong>, where the lapse rate stops and isothermal zone begins (–56.5°C).</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) 8–10 km = actual polar tropopause. (c) 16–18 km = actual equatorial tropopause. ISA is a standard — fixed at 11 km.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>ISA tropopause = <strong>11 km = 36,090 ft</strong>. This is a fixed constant in ISA, unlike the actual variable tropopause.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q44</span>Most of the transfer of heat in the atmosphere is due to ……… (a) conduction (b) convection (c) Both A and B (d) latent heat</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (d) latent heat</span></div>
+  <div class="qa-explain">As stated in the chapter: Latent Heat transfer = 77% (dominant). Sensible heat (including conduction, convection, radiation) = 23%.</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Conduction — atmosphere is a poor conductor. (b) Convection — important but part of 23%. (c) Both — only 23% combined.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>This question is almost identical to Q41. Reinforce: Latent heat dominates atmospheric heat transfer.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><span class="label">Q45</span>There is reversal of temperature at poles and becomes negative at ……… (a) 8 km (b) 12 km (c) 20 km (d) 30 km</div>
+  <div class="qa-a"><span class="label">✅ Correct Answer: (a) 8 km</span></div>
+  <div class="qa-explain">Since the polar tropopause is at ~8–10 km, above 8 km at the poles we enter the stratosphere where temperature reverses (starts rising). The text states: "since in troposphere temperatures fall with height up to tropopause, above 8 km the poles start warming up and become warmer than the equator."</div>
+  <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) 12 km and higher — the reversal starts at the polar tropopause (~8 km), not higher.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Above 8 km at poles: temperature reversal → poles become warmer than equator (at that level). This is why jet streams form at tropopause breaks.</div>
+</div>
+
+</div><!-- end qa-section -->
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="ref-tables">Master Reference Tables</h2>
+
+<h3>1. All Numerical Values — Chapter 1</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th><th>Source</th></tr>
+  <tr><td>Atmosphere total thickness</td><td>~480 km</td><td>Composition</td></tr>
+  <tr><td>80% atmosphere below</td><td>16 km</td><td>Composition</td></tr>
+  <tr><td>N₂ by volume</td><td>78.09%</td><td>Constituents</td></tr>
+  <tr><td>O₂ by volume</td><td>20.95%</td><td>Constituents</td></tr>
+  <tr><td>Argon by volume</td><td>0.93%</td><td>Constituents</td></tr>
+  <tr><td>CO₂ by volume</td><td>0.035%</td><td>Constituents</td></tr>
+  <tr><td>O₃ trace concentration</td><td>0.000007%</td><td>Constituents</td></tr>
+  <tr><td>N₂:O₂ by Volume</td><td>4:1</td><td>Ratios</td></tr>
+  <tr><td>N₂:O₂ by Weight</td><td>3:1</td><td>Ratios</td></tr>
+  <tr><td>Supplemental O₂ required above</td><td>10,000 ft</td><td>Physiology</td></tr>
+  <tr><td>Homosphere up to</td><td>~80 km</td><td>Structure</td></tr>
+  <tr><td>Max WV (tropics)</td><td>4% by volume</td><td>WV</td></tr>
+  <tr><td>WV minimal above</td><td>30,000 ft</td><td>WV</td></tr>
+  <tr><td>Tropics latitude band</td><td>23½°N to 23½°S</td><td>WV</td></tr>
+  <tr><td>Ozone range</td><td>10–50 km</td><td>Ozone</td></tr>
+  <tr><td>Ozone max concentration</td><td>20–25 km</td><td>Ozone</td></tr>
+  <tr><td>Ozone layer (Stratosphere)</td><td>~25 km</td><td>Ozone</td></tr>
+  <tr><td>Airmass below 6 km</td><td>1/2 (50%)</td><td>Vertical dist.</td></tr>
+  <tr><td>Airmass below 10 km</td><td>3/4 (75%)</td><td>Vertical dist.</td></tr>
+  <tr><td>Airmass below 35 km</td><td>99%</td><td>Vertical dist.</td></tr>
+  <tr><td>Sensible heat transfer</td><td>23%</td><td>Thermal</td></tr>
+  <tr><td>Latent heat transfer</td><td>77%</td><td>Thermal</td></tr>
+  <tr><td>Troposphere height (equator)</td><td>16–18 km</td><td>Layers</td></tr>
+  <tr><td>Troposphere height (poles)</td><td>8–10 km</td><td>Layers</td></tr>
+  <tr><td>ISA Lapse rate</td><td>6.5°C/km (≈1.98°C/1000 ft)</td><td>Layers</td></tr>
+  <tr><td>Atmospheric mass in troposphere</td><td>75%</td><td>Layers</td></tr>
+  <tr><td>WV+aerosols in troposphere</td><td>99%</td><td>Layers</td></tr>
+  <tr><td>Lower Troposphere</td><td>Surface – 2.1 km</td><td>Layers</td></tr>
+  <tr><td>Mid Troposphere</td><td>2.1 – 7.6 km</td><td>Layers</td></tr>
+  <tr><td>Upper Troposphere</td><td>7.6 km – Tropopause</td><td>Layers</td></tr>
+  <tr><td>Tropopause lapse rate</td><td>1–2°C/km</td><td>Tropopause</td></tr>
+  <tr><td>Tropopause temp (equator)</td><td>–70° to –75°C</td><td>Tropopause</td></tr>
+  <tr><td>Tropopause temp (poles)</td><td>–40° to –45°C</td><td>Tropopause</td></tr>
+  <tr><td>Tropopause breaks at</td><td>~40° and ~60° Lat</td><td>Tropopause</td></tr>
+  <tr><td>Polar Tropopause pressure</td><td>~300 hPa</td><td>Tropopause</td></tr>
+  <tr><td>Tropical Tropopause pressure</td><td>~100 hPa</td><td>Tropopause</td></tr>
+  <tr><td>Middle Tropopause pressure</td><td>~200 hPa</td><td>Tropopause</td></tr>
+  <tr><td>Stratosphere extent</td><td>~18–50 km</td><td>Layers</td></tr>
+  <tr><td>Mesosphere extent</td><td>50–80 km</td><td>Layers</td></tr>
+  <tr><td>Mesopause temperature</td><td>–100°C (173.15 K)</td><td>Layers</td></tr>
+  <tr><td>Ionosphere above</td><td>60 km</td><td>Layers</td></tr>
+  <tr><td>Exosphere extent</td><td>Up to 10,000 km</td><td>Layers</td></tr>
+  <tr><td>ISA MSL Temperature</td><td>15°C (288.15 K)</td><td>ISA</td></tr>
+  <tr><td>ISA MSL Pressure</td><td>1013.25 hPa</td><td>ISA</td></tr>
+  <tr><td>ISA MSL Density</td><td>1225 g/m³</td><td>ISA</td></tr>
+  <tr><td>ISA gravity</td><td>980.665 cm/s²</td><td>ISA</td></tr>
+  <tr><td>ISA isothermal zone</td><td>11–20 km at –56.5°C</td><td>ISA</td></tr>
+  <tr><td>ISA isothermal start</td><td>11 km = 36,090 ft</td><td>ISA</td></tr>
+  <tr><td>ISA isothermal end</td><td>20 km = 65,617 ft</td><td>ISA</td></tr>
+  <tr><td>ISA temp rise zone (20–30 km)</td><td>1°C/km, –44.5°C at 32 km</td><td>ISA</td></tr>
+  <tr><td>JSA Lapse rate</td><td>2°C/1000 ft</td><td>JSA</td></tr>
+  <tr><td>JSA valid below</td><td>30,000 ft (ISA ok); JSA for above</td><td>JSA</td></tr>
+</table>
+
+<h3>2. Mnemonics Summary</h3>
+<div class="box-amber">
+  <table>
+    <tr><th>Mnemonic</th><th>What it Helps Remember</th></tr>
+    <tr><td><strong>T-S-M-T-E</strong></td><td>Atmospheric layers bottom to top: Troposphere, Stratosphere, Mesosphere, Thermosphere, Exosphere</td></tr>
+    <tr><td><strong>Volume 4, Weight 3</strong></td><td>N₂:O₂ ratio by Volume=4:1, by Weight=3:1</td></tr>
+    <tr><td><strong>Latent is Larger (77%)</strong></td><td>Latent heat transfer = 77%, Sensible = 23%</td></tr>
+    <tr><td><strong>6–10–35 = Half–3/4–All</strong></td><td>Vertical air mass distribution</td></tr>
+    <tr><td><strong>Hotter = Higher (Tropopause)</strong></td><td>Warmer surface → higher tropopause</td></tr>
+    <tr><td><strong>15–1013.25–1225</strong></td><td>ISA MSL: Temp, Pressure, Density</td></tr>
+    <tr><td><strong>11 km = 36,090 ft = –56.5°C</strong></td><td>ISA tropopause and isothermal start</td></tr>
+    <tr><td><strong>Na-Stra, Noc-Meso</strong></td><td>Nacreous clouds = Stratosphere; Noctilucent = Mesosphere</td></tr>
+    <tr><td><strong>W-C-O-M</strong></td><td>Greenhouse gases: Water vapour, CO₂, O₃, Methane</td></tr>
+    <tr><td><strong>20–25 is Ozone's zone</strong></td><td>Maximum ozone concentration at 20–25 km</td></tr>
+    <tr><td><strong>ISA Dev = Actual – ISA</strong></td><td>Formula for ISA deviation (positive = warmer than standard)</td></tr>
+    <tr><td><strong>Break at 40, Fold at 60</strong></td><td>Tropopause discontinuities at ~40° and ~60° latitude</td></tr>
+  </table>
+</div>
+
+<h3>3. Formula Sheet</h3>
+<div class="formula-box">
+  <h4>Key Formulae — Chapter 1</h4>
+  <p><strong>ISA Temperature at altitude h (km), for h ≤ 11 km:</strong><br>
+  T(h) = 15 – 6.5 × h  [°C]<br>
+  Example: h = 5 km → T = 15 – 32.5 = –17.5°C</p>
+  <p><strong>ISA Deviation:</strong><br>
+  ISA Deviation = T_actual – T_ISA<br>
+  Positive = warmer than ISA | Negative = colder than ISA</p>
+  <p><strong>ISA Isothermal zone (11–20 km):</strong><br>
+  T = –56.5°C (constant; no lapse rate applies)</p>
+  <p><strong>Kelvin–Celsius conversion:</strong><br>
+  K = °C + 273.15<br>
+  –56.5°C = 216.65 K | –100°C = 173.15 K | 15°C = 288.15 K</p>
+</div>
+
+<h3>4. Answer Key — Chapter 1 Questions (Q1–Q45)</h3>
+<table>
+  <tr><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th></tr>
+  <tr><td>1</td><td>a</td><td>2</td><td>b</td><td>3</td><td>c</td><td>4</td><td>a</td><td>5</td><td>c</td></tr>
+  <tr><td>6</td><td>c</td><td>7</td><td>b</td><td>8</td><td>a</td><td>9</td><td>a</td><td>10</td><td>b</td></tr>
+  <tr><td>11</td><td>c</td><td>12</td><td>b</td><td>13</td><td>a</td><td>14</td><td>a</td><td>15</td><td>c</td></tr>
+  <tr><td>16</td><td>c</td><td>17</td><td>a</td><td>18</td><td>a</td><td>19</td><td>b</td><td>20</td><td>c</td></tr>
+  <tr><td>21</td><td>a</td><td>22</td><td>b</td><td>23</td><td>c</td><td>24</td><td>a</td><td>25</td><td>b</td></tr>
+  <tr><td>26</td><td>c</td><td>27</td><td>a</td><td>28</td><td>c</td><td>29</td><td>c</td><td>30</td><td>c</td></tr>
+  <tr><td>31</td><td>a</td><td>32</td><td>a</td><td>33</td><td>c</td><td>34</td><td>a</td><td>35</td><td>c</td></tr>
+  <tr><td>36</td><td>c</td><td>37</td><td>d</td><td>38</td><td>c</td><td>39</td><td>c</td><td>40</td><td>a</td></tr>
+  <tr><td>41</td><td>d</td><td>42</td><td>a</td><td>43</td><td>b</td><td>44</td><td>d</td><td>45</td><td>a</td></tr>
+</table>
+
+<!-- WATERMARK -->
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+</body>
+</html>
