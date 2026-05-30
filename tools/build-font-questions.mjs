@@ -31,12 +31,14 @@ const MANIFEST = [
     input: "Share Met QB ic Joshi.pdf",
     subjectIds: ["meteorology", "atpl-meteorology"],
     exportName: "ICJOSHI_MET",
-    // IC Joshi topic number → app met chapter (reviewable by domain expert)
+    // IC Joshi topic number → app met chapter (now a clean 1:1 — the website's
+    // met chapters follow the IC Joshi book's 29-chapter order).
     topicMap: {
-      1: "met-1",  2: "met-1",  3: "met-1",  4: "met-1",  5: "met-4",
-      6: "met-3",  7: "met-4",  8: "met-4",  9: "met-1",  10: "met-9",
-      11: "met-5", 12: "met-9", 13: "met-9", 14: "met-6", 15: "met-3",
-      17: "met-9", 18: "met-7", 19: "met-8", 20: "met-3", 21: "met-10",
+      1: "met-1",   2: "met-2",   3: "met-3",   4: "met-4",   5: "met-5",
+      6: "met-6",   7: "met-7",   8: "met-8",   9: "met-9",   10: "met-10",
+      11: "met-11", 12: "met-12", 13: "met-13", 14: "met-14", 15: "met-15",
+      16: "met-16", 17: "met-17", 18: "met-18", 19: "met-19", 20: "met-20",
+      21: "met-21",
     },
   },
 ];
