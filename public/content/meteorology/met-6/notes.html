@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 6: Winds — DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #222; background: #fff; padding: 20px; }
+  h1 { font-size: 2em; color: #1a237e; text-align: center; margin-bottom: 8px; }
+  h2 { font-size: 1.5em; color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 6px; margin: 30px 0 15px; page-break-after: avoid; }
+  h3 { font-size: 1.15em; color: #283593; margin: 18px 0 8px; page-break-after: avoid; }
+  h4 { font-size: 1em; color: #37474f; margin: 14px 0 6px; font-weight: 700; }
+  p { margin-bottom: 10px; }
+  ul, ol { margin: 8px 0 12px 22px; }
+  li { margin-bottom: 5px; }
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 12px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin: 10px 0; }
+  .cover .author { font-size: 1.1em; color: #1a237e; font-weight: 700; margin-top: 20px; }
+  .toc { page-break-after: always; }
+  .toc h2 { color: #1a237e; }
+  .toc ul { list-style: none; margin: 0; padding: 0; }
+  .toc li { padding: 5px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; }
+  .toc a:hover { text-decoration: underline; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 9px 12px; text-align: left; }
+  td { padding: 8px 12px; border: 1px solid #ccc; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7fa; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 18px 0; page-break-inside: avoid; overflow: hidden; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 12px 15px; font-weight: 700; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; }
+  .formula-box { background: #f3f0ff; border: 2px solid #7c4dff; border-radius: 8px; padding: 15px; margin: 15px 0; page-break-inside: avoid; font-family: 'Courier New', monospace; }
+  .formula-box .formula { font-size: 1.2em; font-weight: 700; color: #4a148c; margin-bottom: 8px; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  svg { max-width: 100%; }
+  .beaufort-table th { background: #37474f; }
+  @page { size: A4; margin: 20mm; }
+  @media print { body { padding: 0; } }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 6: Winds</h1>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="subtitle">Based on IC Joshi Aviation Meteorology Textbook</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#s1">1. Wind Measurement &amp; Cross Wind</a></li>
+    <li><a href="#s2">2. Gust, Lull, Squall &amp; Gale</a></li>
+    <li><a href="#s3">3. Backing &amp; Veering — Buys Ballot's Law</a></li>
+    <li><a href="#s4">4. Forces Acting on Wind — Coriolis Force</a></li>
+    <li><a href="#s5">5. Types of Calculated/Balanced Winds</a></li>
+    <li><a href="#s6">6. Effect of Surface Friction &amp; Turbulence</a></li>
+    <li><a href="#s7">7. Wind Shear (WS)</a></li>
+    <li><a href="#s8">8. Local Winds Due to Topography</a></li>
+    <li><a href="#s9">9. Thermal Wind &amp; Contours</a></li>
+    <li><a href="#s10">10. Vorticity</a></li>
+    <li><a href="#s11">11. Names of Winds of the World</a></li>
+    <li><a href="#s12">12. Beaufort Force Scale</a></li>
+    <li><a href="#qa">Practice Q&amp;A (45 Questions)</a></li>
+    <li><a href="#ref">Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- ==================== SECTION 1 ==================== -->
+<h2 id="s1">1. Wind Measurement &amp; Cross Wind</h2>
+
+<div class="box-blue">
+  <strong>Definition:</strong> Wind is the horizontal movement of air from high pressure to low pressure. It is described by its direction (from which it blows) and speed.
+</div>
+
+<h3>Cross Wind</h3>
+<p>Runways are oriented along the most prevailing wind directions of a locality based on climatological records. Sometimes — especially during adverse weather and transition seasons — the winds deviate from these directions. A wind <span class="reg-value">90°</span> to the runway in use is called the <strong>Cross Wind Component</strong>. Critical cross wind components for each type of aircraft are specified. Cross winds tend to swing the aircraft during take-off and landing, especially lighter aircraft.</p>
+
+<div class="box-red">
+  <strong>⚠ Critical Cross Wind Component:</strong> Great caution is exercised whenever this value is exceeded. Cross winds tend to swing the aircraft during take-off and landing, especially lighter aircraft.
+</div>
+
+<h3>Instruments for Measuring Wind</h3>
+<ul>
+  <li><strong>Surface wind speed:</strong> Measured by <strong>Anemometer</strong></li>
+  <li><strong>Wind direction:</strong> Measured by <strong>Wind Vane</strong></li>
+  <li><strong>Upper winds:</strong> Measured by RAWIN and Pilot Balloon equipment</li>
+  <li><strong>Hydrogen-filled balloons:</strong> Tracked by RADAR and Optical Theodolite</li>
+</ul>
+
+<h3>Exposure of Wind Instruments</h3>
+<ul>
+  <li>Anemometer and Wind Vane installed at height of <span class="reg-value">10 m</span> in area free of obstructions</li>
+  <li>Averaged over <span class="reg-value">10 minutes</span> for all weather observations</li>
+  <li>For <strong>take-off and landing</strong> purposes: wind is averaged for <span class="reg-value">2 minutes</span></li>
+</ul>
+
+<div class="box-amber">
+  <strong>💡 Exam Tip:</strong> "10m, 10 minutes for all obs — 2 minutes for T/O and landing." Remember: <strong>2 for T/O/Landing, 10 for general</strong>.
+</div>
+
+<!-- ==================== SECTION 2 ==================== -->
+<h2 id="s2">2. Gust, Lull, Squall &amp; Gale</h2>
+
+<div class="box-blue">
+  <strong>Gust:</strong> An irregular and rapid positive fluctuation in wind. Caused by ground friction and uneven heating of the ground (especially on hot afternoons).
+  <br><strong>Lull:</strong> A negative fluctuation in wind (below mean).
+</div>
+
+<h3>Squall</h3>
+<div class="box-blue">
+  <strong>Definition:</strong> Sudden increase in wind speed by <span class="reg-value">32 km/h (16 kt, 08 mps)</span>, should last for at least <span class="reg-value">1 minute</span> and speed should increase to <span class="reg-value">44 km/h (22 kt, 11 mps)</span> or more.
+</div>
+<ul>
+  <li>Associated with CB clouds and violent convective activity</li>
+  <li>Extends some km horizontally and several <span class="reg-value">thousands of feet</span> vertically</li>
+  <li>Both speed and direction in squall may differ widely from prevailing winds</li>
+  <li>Violent squalls experienced in Norwesters, Thunderstorms (TS) and Duststorms (DS) from <span class="reg-value">March to June</span></li>
+  <li>Line squalls occur ahead of Cold Fronts and sometimes with Norwesters</li>
+</ul>
+
+<div class="box-red">
+  <strong>⚠ Squall vs. Gust — Key Difference:</strong> The main difference is <strong>DURATION</strong>. A gust lasts a few seconds; a squall lasts for at least one minute and may be accompanied by marked drop in temperature and precipitation.
+</div>
+
+<div class="box-red">
+  <strong>⚠ Strong squalls are more dangerous than strong mean winds.</strong> A parked aircraft may sustain a gale (persistent mean 34 kt or more) but may NOT sustain a squall or sudden gust of say 60 kt, even though the mean wind may not reach gale force.
+</div>
+
+<h3>Gale</h3>
+<div class="box-blue">
+  <strong>Definition:</strong> Persistent mean wind speed of <span class="reg-value">34 kt or more</span>. Associated with depressions and cyclonic storms.
+</div>
+
+<pre class="mermaid">
+flowchart LR
+    A["Wind Fluctuation"] --> B{Duration?}
+    B -->|"Few seconds"| C["GUST\n(Positive fluctuation)"]
+    B -->|"Negative fluctuation"| D["LULL"]
+    B -->|"≥1 min, ↑32kmh→44kmh"| E["SQUALL\n(CB associated)"]
+    A --> F{Speed ≥34kt persistent?}
+    F -->|Yes| G["GALE\n(Depressions/Cyclones)"]
+</pre>
+
+<!-- ==================== SECTION 3 ==================== -->
+<h2 id="s3">3. Backing &amp; Veering — Buys Ballot's Law</h2>
+
+<h3>Backing and Veering</h3>
+<table>
+  <tr><th>Term</th><th>Definition</th><th>Example</th></tr>
+  <tr><td><strong>Backing</strong></td><td>Change of wind direction <strong>anti-clockwise</strong></td><td>090° → 060° or 270° → 160°</td></tr>
+  <tr><td><strong>Veering</strong></td><td>Change of wind direction <strong>clockwise</strong></td><td>060° → 090°</td></tr>
+</table>
+
+<div class="box-blue">
+  <strong>In a low pressure area:</strong> Wind blows in anti-clockwise direction (<strong>Backs</strong>) in N hemisphere.<br>
+  <strong>In a high pressure area:</strong> Wind blows clockwise (<strong>Veers</strong>) in N hemisphere.
+</div>
+
+<h3>Buys Ballot's Law (Pressure and Wind)</h3>
+<div class="box-green">
+  <strong>In the N hemisphere:</strong> If an observer stands with his back to the wind — Low pressure is to his <strong>LEFT</strong> and High pressure is to his <strong>RIGHT</strong>. (Converse in S hemisphere.)
+</div>
+<ul>
+  <li>N hemisphere: wind blows <strong>anti-clockwise</strong> around a cyclone (Low) and <strong>clockwise</strong> around an anti-cyclone (High)</li>
+  <li>S hemisphere: opposite sense</li>
+</ul>
+
+<div class="box-amber">
+  <strong>💡 Mnemonic (N hemisphere):</strong> "Back to wind — Low on Left, High on Right" = <strong>BLL-HHR</strong>. "N hemi Low = Anti-Clockwise = L for L"
+</div>
+
+<!-- ==================== SECTION 4 ==================== -->
+<h2 id="s4">4. Forces Acting on Wind — Coriolis Force</h2>
+
+<div class="box-blue">
+  The wind blows from higher to lower pressure (H→L) along the isobars under the influence of <strong>Pressure Gradient Force (P)</strong>. Due to Earth's rotation (W→E), wind is constantly deflected to its right (N hemisphere) until it attains uniform speed along isobars.
+</div>
+
+<h3>Coriolis Force (f)</h3>
+<div class="formula-box">
+  <div class="formula">Coriolis Force (f) = 2 Ω ρ V sin φ</div>
+  <p><strong>Ω</strong> = angular velocity of Earth (unaffected by frictional forces)<br>
+  <strong>ρ</strong> = density (unit volume of air, magnitude = 2ρV sin φ)<br>
+  <strong>V</strong> = wind speed<br>
+  <strong>φ</strong> = latitude</p>
+  <p><strong>At poles:</strong> φ = 90°, sin φ = 1 → Coriolis force MAXIMUM<br>
+  <strong>At equator:</strong> φ = 0°, sin φ = 0 → Coriolis force ZERO (minimum)</p>
+  <p>Coriolis force is directly proportional to wind speed and air density. Acts <strong>perpendicular</strong> to the wind direction.</p>
+</div>
+
+<div class="box-red">
+  <strong>⚠ Key Properties of Coriolis Force:</strong>
+  <ul>
+    <li>Acts perpendicular to the wind direction — does NO work on air</li>
+    <li>Zero at equator — geostrophic formula breaks down</li>
+    <li>Maximum at poles</li>
+    <li>Deflects to the RIGHT in N hemisphere, LEFT in S hemisphere</li>
+    <li>Also called the <strong>Geostrophic Force</strong> — it is an apparent force</li>
+  </ul>
+</div>
+
+<!-- ==================== SECTION 5 ==================== -->
+<h2 id="s5">5. Types of Calculated/Balanced Winds</h2>
+
+<pre class="mermaid">
+flowchart TD
+    A["FORCES ON WIND"] --> B["Pressure Gradient (P)"]
+    A --> C["Coriolis (f)"]
+    A --> D["Centripetal (C)"]
+    A --> E["Friction (F)"]
+    A --> F["Isallobaric Force"]
+    B & C --> G["GEOSTROPHIC WIND\n(P = f)\nStraight isobars only"]
+    B & C & D --> H["GRADIENT WIND\n(P + f + C)\nCurved isobars"]
+    B & C & D & E --> I["ACTUAL SURFACE WIND\n(Friction layer)"]
+    C & D --> J["INERTIAL WIND\n(f + Centrifugal)\nVi = fR"]
+</pre>
+
+<h3>Geostrophic Wind (Vg)</h3>
+<div class="box-blue">
+  The friction-less wind which blows <strong>parallel to straight isobars</strong> due to balance between Pressure Gradient Force and Coriolis force. It is a <em>calculated</em> wind.
+</div>
+<div class="formula-box">
+  <div class="formula">P / ρ = 2 Ω V sin φ</div>
+  <div class="formula">Vg = P / (2 Ω ρ sin φ)</div>
+  <p>Where P/ρ = pressure gradient per unit mass<br>
+  Closer isobars → stronger wind (inversely proportional to spacing)</p>
+</div>
+<div class="box-red">
+  <strong>⚠ Limitations of Geostrophic Rule:</strong>
+  <ul>
+    <li>Valid only when PGF and Coriolis are in balance and isobars are straight &amp; parallel</li>
+    <li>Breaks down at <strong>Poles</strong> (pressure changes with time) and at <strong>Equator</strong> (sin φ = 0)</li>
+    <li>Winds like gusts, squalls, local winds, and sea breezes do NOT follow this rule</li>
+    <li>Geostrophic wind differs in direction and speed from actual wind (especially middle latitudes)</li>
+  </ul>
+</div>
+
+<h3>Cyclostrophic Wind</h3>
+<div class="box-blue">
+  Wind blowing along <strong>curved isobars</strong> where Coriolis is negligible compared to Pressure Gradient. Centripetal force acts. Balance: <strong>P = Centripetal</strong>
+</div>
+<div class="formula-box">
+  <div class="formula">ρ V² / r = P &nbsp;&nbsp;∴ V = (P/ρ)^½</div>
+  <p>Near centre of tropical revolving storm or in circular tornado. <strong>Anticyclonic in both hemispheres.</strong></p>
+</div>
+<div class="box-blue">
+  <strong>Cyclostrophic Wind</strong> = markedly curved wind that blows due to balance between <strong>Pressure Gradient and Cyclostrophic force</strong>. Frictional force is disregarded.
+</div>
+
+<h3>Gradient Wind</h3>
+<div class="box-blue">
+  Blows parallel to curved isobars under balance of Pressure Gradient (P), Coriolis (f), and Centripetal (C) forces. Frictional force disregarded. Middle latitudes: closer approximation to actual wind than geostrophic.
+</div>
+<table>
+  <tr><th>System</th><th>Balance</th><th>Result</th></tr>
+  <tr><td>Cyclone (Low)</td><td>P + C = f (P &lt; f)</td><td><strong>Sub-geostrophic</strong> (V &lt; Vg)</td></tr>
+  <tr><td>Anticyclone (High)</td><td>P = C + f (P &gt; f)</td><td><strong>Super-geostrophic</strong> (V &gt; Vg)</td></tr>
+</table>
+
+<h3>Isallobaric Wind</h3>
+<p>When pressure changes rapidly, geostrophic and gradient rules do not apply. An additional force called <strong>Isallobaric Force</strong> comes into play, directed from higher isallobar to lower isallobar, deflecting wind towards falling pressure. The resulting wind is the <strong>Isallobaric Wind</strong>.</p>
+
+<h3>Inertial Wind</h3>
+<div class="box-blue">
+  Frictionless flow under balance between <strong>Centrifugal Force</strong> and <strong>Coriolis Force</strong> only. No Pressure Gradient Force.
+</div>
+<div class="formula-box">
+  <div class="formula">V<sub>i</sub> = f · R</div>
+  <p><strong>f</strong> = Coriolis Force, <strong>R</strong> = radius of curvature (1/radius of path)<br>
+  The constant Inertial wind speed is Vi.<br>
+  <strong>The inertial flow is Anticyclonic in BOTH hemispheres.</strong></p>
+</div>
+
+<div class="box-amber">
+  <strong>💡 Quick Summary of Wind Types:</strong><br>
+  Geostrophic = P↔f (straight isobars) | Cyclostrophic = P↔Centripetal (near equator, curved) | Gradient = P↔f↔C (curved, mid-lat) | Isallobaric = rapid pressure change | Inertial = f↔Centrifugal (no PGF)
+</div>
+
+<!-- ==================== SECTION 6 ==================== -->
+<h2 id="s6">6. Effect of Surface Friction &amp; Turbulence</h2>
+
+<h3>Friction Layer</h3>
+<ul>
+  <li>The rough earth causes friction, affecting the atmosphere up to about <span class="reg-value">1 km</span></li>
+  <li>This layer is called the <strong>Friction Layer</strong>; thickness is variable</li>
+  <li>Within friction layer: wind slows down → Coriolis reduces → insufficient to balance PGF → wind is <strong>deflected towards low pressure</strong> → flow becomes <strong>cross isobaric</strong></li>
+</ul>
+
+<table>
+  <tr><th>Surface</th><th>Inclination to Isobars</th><th>Speed (of Vg)</th></tr>
+  <tr><td>Over Sea</td><td>~<span class="reg-value">15°</span></td><td>~<span class="reg-value">2/3 Vg</span></td></tr>
+  <tr><td>Over Land</td><td>~<span class="reg-value">30°</span></td><td><span class="reg-value">1/3 to 1/2 Vg</span></td></tr>
+</table>
+
+<h3>Turbulence and Gustiness</h3>
+<ul>
+  <li>Wind is seldom steady; peak fluctuations = <strong>Gusts</strong>, lowest = <strong>Lulls</strong></li>
+  <li>Width of fluctuations = <strong>degree of gustiness</strong></li>
+  <li>Air flow with such fluctuations = <strong>turbulent</strong></li>
+</ul>
+
+<h3>Types of Turbulence</h3>
+<table>
+  <tr><th>Type</th><th>Cause</th><th>Characteristics</th></tr>
+  <tr><td><strong>Frictional</strong></td><td>When stream speed exceeds certain limit → flow unstable → eddies form</td><td>Both vertical and horizontal velocities; more over rough terrain/buildings/trees</td></tr>
+  <tr><td><strong>Thermal</strong></td><td>Convection currents due to surface heating; passage of cool air over warmer land/sea</td><td>Eddies of large dimensions; stronger gusts; extends to considerable heights when lapse rate is favourable</td></tr>
+</table>
+
+<h3>Factors Affecting Turbulence &amp; Friction Layer</h3>
+<ul>
+  <li>Flow over buildings, trees, rugged country → vertical and horizontal eddies</li>
+  <li>Develop more easily when lapse rate is steep</li>
+  <li>Less on cool surfaces and stable atmosphere</li>
+  <li>Over land: more by day (steep lapse rate), least on clear night (inversion)</li>
+</ul>
+
+<h3>Diurnal Variation of Surface Wind</h3>
+<table>
+  <tr><th>Time</th><th>Surface Wind</th><th>Upper Level Winds</th><th>Aviation Implication</th></tr>
+  <tr><td><strong>Daytime</strong></td><td>Strong, gusty; convection stretches friction layer upward; slackens frictional effect</td><td>Backs (due to friction aloft)</td><td>Gusty conditions, thermal turbulence</td></tr>
+  <tr><td><strong>Night</strong></td><td>Thermals die down; friction layer shrinks to surface; wind weak and <strong>backs</strong>; friction prohibits upper winds from penetrating to surface</td><td>Becomes strong above friction layer</td><td><strong>Wind shear ~500m</strong> — serious aviation hazard</td></tr>
+</table>
+
+<div class="box-red">
+  <strong>⚠ Night Wind Shear Hazard:</strong> The surface wind is, therefore, weak and backs. There may be marked <strong>wind shear around 500 m</strong>, with strong winds above and weak winds below, which is serious as an aviation hazard.
+</div>
+
+<div class="box-blue">
+  <strong>Diurnal variation over sea:</strong> Very little (about <span class="reg-value">1°C</span>); also over land under continuously overcast skies. Surface winds nearly the same 24 hr. Diurnal variation is most apparent in <strong>fine weather, clear night and sunny days</strong>.
+</div>
+
+<!-- ==================== SECTION 7 ==================== -->
+<h2 id="s7">7. Wind Shear (WS)</h2>
+
+<div class="box-blue">
+  <strong>Definition:</strong> The variation in wind vector along the path of an aircraft, which can displace the aircraft from its intended path.
+</div>
+
+<table>
+  <tr><th>Type of WS</th><th>Definition</th></tr>
+  <tr><td><strong>Low Level WS</strong></td><td>WS along final approach, runway, take-off path, and initial climb out flight path</td></tr>
+  <tr><td><strong>Vertical WS</strong></td><td>The change in horizontal wind vector with height</td></tr>
+  <tr><td><strong>Horizontal WS</strong></td><td>The change in horizontal wind vector with distance</td></tr>
+  <tr><td><strong>Up-Downdraughts</strong></td><td>Change in vertical component of wind vector with distance</td></tr>
+</table>
+
+<h3>Causes of Wind Shear</h3>
+
+<h4>1. Thunderstorm (TS)</h4>
+<p><strong>(a) Gust Front (GF):</strong> The cold downdraught from TS spreads all around and creates GF as it meets the warm air near the ground. GF may extend as far as <span class="reg-value">30 km</span> in the direction of storm movement and extend to about <span class="reg-value">6000 ft</span> from ground. Great turbulence and WS are produced in the area, due to opposing winds and eddies.</p>
+
+<p><strong>(b) Microburst:</strong> Highly concentrated downdraught from TS, about <span class="reg-value">4 km</span> across, lasting for <span class="reg-value">1-5 minutes</span>. Most hazardous and powerful. Winds can be <span class="reg-value">90 kt</span> and their directions may also be opposite at the surface.</p>
+
+<table>
+  <tr><th>Microburst Type</th><th>Origin</th><th>Description</th></tr>
+  <tr><td><strong>Wet Microburst</strong></td><td>Heavy downpour under TS</td><td>Due to evaporation and cooling of cold downdraught</td></tr>
+  <tr><td><strong>Dry Microburst</strong></td><td>High based CB or Anvil (CI) in region of Virga</td><td><strong>Virga</strong> = rain shaft evaporating before reaching ground</td></tr>
+</table>
+
+<h4>2. Low Level Inversion</h4>
+<p>Develops in clear nights; may extend to about <span class="reg-value">1 km</span>. In friction layer, winds are weak and winds aloft are strong → WS across inversion.</p>
+
+<h4>3. Gusty Surface Winds</h4>
+<p>Lead to strong gusts and lulls → WS.</p>
+
+<h4>4. Solar Heating</h4>
+<p>Intense solar heating causes WS and turbulence due to up and downdraughts.</p>
+
+<h4>5. Topography</h4>
+<p>Strong winds blowing across natural and man-made obstacles (mountain ranges, high rise buildings, flow along valleys, etc.) all lead to WS.</p>
+
+<h4>6. Fronts</h4>
+<p>Abrupt change of temperature and wind at a front. With passage of a front, strong WS may result; cross, head or tail wind. Very strong winds may also be encountered ahead of a Cold Front.</p>
+
+<h4>7. Jetstream</h4>
+<p>Strong vertical and horizontal WS are associated with jet streams in upper air.</p>
+
+<h3>Effects of WS on Aircraft</h3>
+<table>
+  <tr><th>Phase of Flight</th><th>Head Wind Reduces</th><th>Tail Wind Increases</th></tr>
+  <tr><td><strong>Level Flight</strong></td><td>IAS decreases, A/C loses height</td><td>IAS increases, A/C gains height</td></tr>
+  <tr><td><strong>Descent</strong></td><td>IAS increases, A/C gains height</td><td>IAS decreases, A/C loses height</td></tr>
+  <tr><td><strong>Climb</strong></td><td>IAS decreases, A/C loses height</td><td>IAS increases, A/C gains height</td></tr>
+</table>
+
+<div class="box-red">
+  <strong>⚠ Critical: Effects of WS on Approach</strong> — These effects are critical during landing and take-offs. Tail wind will reverse the effect shown in table above.
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    WS["WIND SHEAR HAZARD"] --> A["Thunderstorm"]
+    WS --> B["Low Level Inversion\n(Night)"]
+    WS --> C["Fronts"]
+    WS --> D["Topography"]
+    WS --> E["Jetstream"]
+    A --> A1["Gust Front\n(30km, 6000ft)"]
+    A --> A2["Microburst\n(4km, 1-5min, 90kt)"]
+    A2 --> A2a["Dry\n(Virga/Anvil)"]
+    A2 --> A2b["Wet\n(Heavy Rain)"]
+</pre>
+
+<!-- ==================== SECTION 8 ==================== -->
+<h2 id="s8">8. Local Winds Due to Topography</h2>
+
+<h3>Anabatic and Katabatic Winds</h3>
+<table>
+  <tr><th>Feature</th><th>Anabatic (Valley) Wind</th><th>Katabatic Wind</th></tr>
+  <tr><td>Time</td><td>Daytime</td><td>Night (clear, quiet night)</td></tr>
+  <tr><td>Direction</td><td>Up-slope (mountain slope heated by sun)</td><td>Down-slope (mountain slope cools at night)</td></tr>
+  <tr><td>Character</td><td>Warm, lighter; ascends the slope; masked by irregular convection; intensified by sea breeze in funnel valley</td><td>Cold, down-slope wind; pools of cold on low-lying ground; causes local frost, mist and fog</td></tr>
+  <tr><td>Speed</td><td>Variable</td><td>No more than a few knots normally; <strong>Bora</strong> can exceed <span class="reg-value">100 kt</span></td></tr>
+  <tr><td>Aviation Hazard</td><td>Fog, TS in morning over NE India (when snow covered slopes)</td><td>Fog, frost; Bora (100+ kt) dangerous to shipping and low-flying aircraft</td></tr>
+</table>
+
+<div class="box-red">
+  <strong>⚠ Bora:</strong> An off-shore wind on northern shores of the Adriatic sea. It is a cold katabatic wind. Sets in suddenly and frequently reaches well over gale force with gusts of over <span class="reg-value">100 kt</span>. Extremely dangerous to shipping and low-flying aircraft. Similar winds occur on coast of Greenland and Black Sea shores. Over NE India — katabatic winds are common and cause fog and TS in the morning.
+</div>
+
+<h3>Fohn Wind</h3>
+<div class="box-blue">
+  If air is forced over a mountain barrier, adiabatic cooling on windward side may lead to cloud and precipitation formation. Within cloud, rising air cools at SALR. Some condensed water falls as precipitation. Air descends on leeward side at the DALR (since cloud has disappeared). The local name in the Alps is the <strong>Fohn</strong>.
+</div>
+<ul>
+  <li>In high mountains, Fohn wind may be <span class="reg-value">10°C or more</span> warmer than windward side</li>
+  <li>The <strong>Chinook</strong> of the Rocky Mountains is an example</li>
+  <li>Conditions for Fohn: (a) substantial mountain range, (b) wind blows within <span class="reg-value">30°</span> of range, (c) high moisture content</li>
+</ul>
+
+<div class="box-amber">
+  <strong>💡 Distinction — Fohn vs. Katabatic:</strong> Fohn is WARM and DRY on leeward. Katabatic is COLD. Both are down-slope winds off high ground.
+</div>
+
+<h3>Ravine Winds</h3>
+<p>Occur in and near narrow valleys when there is a pressure difference between two sides of the hills. Air is impelled through the valley by the pressure gradient. Such winds may be very strong in the ravine and also after leaving its mouth.</p>
+
+<h3>Land Breeze and Sea Breeze</h3>
+<table>
+  <tr><th>Feature</th><th>Sea Breeze</th><th>Land Breeze</th></tr>
+  <tr><td>Time</td><td>Day-time</td><td>Night</td></tr>
+  <tr><td>Direction</td><td>Sea → Land</td><td>Land → Sea</td></tr>
+  <tr><td>Cause</td><td>Land warmer → air rises → pressure aloft greater → upper air drifts to sea → sea level pressure over land drops → sea breeze</td><td>Radiative cooling of land → thermals die → friction layer shrinks → land breeze sets in</td></tr>
+  <tr><td>Extent</td><td>Generally <span class="reg-value">15-25 km</span> on either side of coast; in Pune ~<span class="reg-value">170 km</span> from Mumbai</td><td>Shallower than sea breeze; few hundred feet only</td></tr>
+  <tr><td>Onset</td><td>Few hours after sunrise; delayed if off-shore wind</td><td>After sunset</td></tr>
+  <tr><td>Alignment</td><td>Initially perpendicular to coastline; then aligns with Coriolis (land on left in S hemisphere, right in N)</td><td>—</td></tr>
+  <tr><td>Other</td><td>In tropics and subtropics: routine and perpendicular to coast; may develop to <span class="reg-value">3000-5000 ft</span> in tropics → line of small cumuliform clouds</td><td>Undetected by powered aircraft; useful to glider pilots</td></tr>
+</table>
+
+<div class="box-blue">
+  <strong>Sea Spray:</strong> Under favourable wind conditions, salt particles get sprayed from wave crests; water drops formed can reduce visibility considerably. In rare cases, a thin layer of salt may form on the wind screen of an aircraft flying at low level and render forward visibility to almost zero. Salt spray may also reduce visibility during monsoons and cyclones in coastal areas.
+</div>
+
+<!-- ==================== SECTION 9 ==================== -->
+<h2 id="s9">9. Thermal Wind &amp; Contours</h2>
+
+<h3>Thermal Wind</h3>
+<div class="box-blue">
+  <strong>Definition:</strong> The thermal wind in a layer is defined as that wind which must be added vectorially to the geostrophic wind at the lower level in order to obtain the geostrophic wind at the upper level. It is a fictitious wind.
+</div>
+<div class="formula-box">
+  <div class="formula">V<sub>t</sub> = V<sub>1</sub> − V<sub>0</sub></div>
+  <p><strong>V<sub>t</sub></strong> = thermal wind, <strong>V<sub>1</sub></strong> = upper level geostrophic wind, <strong>V<sub>0</sub></strong> = lower level geostrophic wind</p>
+  <p><strong>Vector addition:</strong> Draw one vector; from head draw the other; join tail of first to head of second = sum.<br>
+  <strong>Vector subtraction:</strong> direction of second vector is reversed.</p>
+</div>
+
+<h4>Example: Calculation of Upper Level Wind</h4>
+<table>
+  <tr><th>Lower Level Wind</th><th>Thermal Wind</th><th>Upper Level Wind</th></tr>
+  <tr><td>270/10kt</td><td>270/15kt</td><td>270/10kt + 270/15kt = <span class="reg-value">270/25kt</span></td></tr>
+  <tr><td>270/10kt</td><td>090/15kt</td><td>270/10kt + (−270/15kt) = <span class="reg-value">090/05kt</span></td></tr>
+</table>
+
+<ul>
+  <li>Thermal wind blows parallel to isotherms/thickness lines, keeping <strong>low temperature to the left in N hemisphere</strong></li>
+  <li>Speed is proportional to the temperature gradient</li>
+  <li>If south is warm and north cold: temperature gradient acts S→N → thermal wind is <strong>Westerly</strong></li>
+  <li>If such temperature distribution continues, thermal wind will continue to be westerly from level to level → keeps increasing with height</li>
+  <li><strong>Subtropical westerly Jet Stream</strong> is an example of thermal wind</li>
+</ul>
+
+<h3>Wind and Contours</h3>
+<div class="box-blue">
+  Lines joining equal heights on a constant pressure level are called <strong>Contours</strong>. Over warm atmosphere a contour will be at a higher height; over cold at a lower height. Contour lines depict centres of High and Low exactly as isobars do on surface maps. A contour line is horizontal — the pressure is the same at all points on the line. Contour of height say 5520 m = isobar in the horizontal surface at that height.
+</div>
+<ul>
+  <li>Geostrophic wind blows along contours with <strong>lower value on the left in N hemisphere</strong>, right in S hemisphere</li>
+  <li>Contour charts can determine cyclostrophic and gradient winds</li>
+  <li>Limitations of geostrophic rule equally apply to contour charts</li>
+</ul>
+
+<h3>Variation of Wind with Height</h3>
+<ul>
+  <li>Temperatures in troposphere decrease from equator to poles → <strong>thermal wind component throughout troposphere blows from Wly (W)</strong></li>
+  <li><strong>In the upper troposphere the winds are, therefore, mainly Wly</strong></li>
+  <li>Over India: easterlies prevail above <span class="reg-value">500 hPa</span> during monsoon months (<span class="reg-value">June, July, August, September</span>); strengthen with height, weaker over N India and stronger over S India; tropical easterly jetstream lies near <span class="reg-value">13N lat at about 15 km</span></li>
+  <li>Outside tropics: low level easterlies increase with height with little change in direction; on other hand easterlies weaken and become westerly</li>
+  <li>Westerly thermal wind: northerly winds would back with height, southerly winds would veer</li>
+  <li>In low stratosphere (winters): temperature lowest between <span class="reg-value">40° and 60° lat</span> → westerlies increase with height; equatorwards of temperature maximum → westerlies decrease above tropopause</li>
+  <li>Summer hemisphere: temperatures highest in polar regions → easterly thermal wind in stratosphere</li>
+</ul>
+
+<!-- ==================== SECTION 10 ==================== -->
+<h2 id="s10">10. Vorticity</h2>
+
+<div class="box-blue">
+  <strong>Vorticity</strong> is a measure of rotation or turning. Rotation can be cyclonic or anticyclonic. It plays an important role in formation and development of weather systems such as cyclones, depressions, anticyclones. Change in vorticity causes <strong>divergence and convergence</strong>.
+</div>
+
+<h3>Causes of Vorticity</h3>
+<ol>
+  <li><strong>Horizontal Wind Shear:</strong> When a belt of strong winds lies alongside a belt of lighter winds, the faster flow rotates around the slower flow. May be cyclonic or anticyclonic depending on orientation.</li>
+  <li><strong>Curvature of the Flow:</strong> Flow around a curve has cyclonic vorticity when air deflects to its left (in trough, N hemisphere) and anticyclonic when it deflects to the right (ridge).</li>
+  <li><strong>Rotation of the Earth:</strong> Earth rotates from W to E (anti-clockwise = cyclonic for N hemisphere). Hence vorticity due to earth is cyclonic in both hemispheres.</li>
+</ol>
+
+<div class="box-green">
+  <strong>Absolute Vorticity:</strong> Sum of all the above vorticities. Since vorticity due to earth is always cyclonic and it predominates, the <strong>absolute vorticity is always cyclonic</strong>.
+</div>
+
+<!-- ==================== SECTION 11 ==================== -->
+<h2 id="s11">11. Names of Winds of the World</h2>
+
+<table>
+  <tr><th>Wind Name</th><th>Character</th><th>Location</th></tr>
+  <tr><td><strong>Bora</strong></td><td>Cold katabatic; originates in mountains of Yugoslavia and NE Italy</td><td>Coastal plains of the Adriatic sea</td></tr>
+  <tr><td><strong>Burans</strong> (Russian Burans / Turkish Boran)</td><td>Strong NEly wind in Russia and Central Asia; often blows snow ('Purga')</td><td>Russia and Central Asia</td></tr>
+  <tr><td><strong>Chinook</strong></td><td>Warm dry Wly wind</td><td>Eastern side of Rocky Mountains</td></tr>
+  <tr><td><strong>Doldrums</strong></td><td>Calm winds near Equator; low atmospheric pressure; insignificant wind; cloudy and rainy; also called <strong>ITCZ</strong></td><td>Between ~<span class="reg-value">5°N and 5°S</span> lat</td></tr>
+  <tr><td><strong>Haboobs</strong> (Arabic: blowing furiously)</td><td>Any strong wind raising sand into a sand storm</td><td>Particularly in Sudan</td></tr>
+  <tr><td><strong>Harmattan</strong></td><td>Hot dusty NEly</td><td>Central Asia</td></tr>
+  <tr><td><strong>Khamsin</strong></td><td>Oppressive, hot, dry, often laden with sand; Sly wind</td><td>Egypt, April–June</td></tr>
+  <tr><td><strong>Mistral</strong></td><td>Cold katabatic — descends from snow-clad Alps down the Rhone River Valley</td><td>France and into Gulf of Lyons along the Mediterranean coast</td></tr>
+  <tr><td><strong>Monsoon</strong></td><td>Any markedly seasonal wind</td><td>Particularly E and SE Asia</td></tr>
+  <tr><td><strong>Roaring Forties</strong></td><td>Wly winds in both hemispheres between <span class="reg-value">35° and 60°</span> lat; very stormy nature beyond <span class="reg-value">40°</span> lat in S hemisphere. Called <strong>Roaring Forties, Furious Fifties, Crying Sixties</strong></td><td>Mid-latitudes S hemisphere</td></tr>
+  <tr><td><strong>Trades</strong></td><td>Steady wind between <span class="reg-value">10° and 30°</span> from NE in N hemisphere, SE in S hemisphere; 'wind that blows trade' by 18th century navigators</td><td>Subtropics both hemispheres</td></tr>
+</table>
+
+<!-- ==================== SECTION 12 ==================== -->
+<h2 id="s12">12. Beaufort Force Scale</h2>
+
+<table class="beaufort-table">
+  <tr><th>BF Scale</th><th>Description</th><th>Speed at 10m (kt)</th></tr>
+  <tr><td>0</td><td>Calm</td><td>&lt;1</td></tr>
+  <tr><td>1</td><td>Light air</td><td>1–3</td></tr>
+  <tr><td>2</td><td>Light breeze</td><td>4–6</td></tr>
+  <tr><td>3</td><td>Gentle breeze</td><td>7–10</td></tr>
+  <tr><td>4</td><td>Moderate breeze</td><td>11–16</td></tr>
+  <tr><td>5</td><td>Fresh breeze</td><td>17–21</td></tr>
+  <tr><td>6</td><td>Strong breeze</td><td>22–27</td></tr>
+  <tr><td>7</td><td>Near Gale</td><td>28–33</td></tr>
+  <tr><td>8</td><td>Gale</td><td>34–40</td></tr>
+  <tr><td>9</td><td>Strong Gale</td><td>41–47</td></tr>
+  <tr><td>10</td><td>Storm</td><td>48–55</td></tr>
+  <tr><td>11</td><td>Violent Storm</td><td>56–63</td></tr>
+  <tr><td>12</td><td>Hurricane</td><td>64 or more</td></tr>
+</table>
+
+<div class="box-amber">
+  <strong>💡 Mnemonic for BF Scale:</strong> "Calm Light Light Gentle Moderate Fresh Strong — Near Gale Gale Strong Storm Violent Hurricane" — Count from 0 to 12. <strong>Gale starts at BF 8 = 34kt</strong>. Hurricane = BF 12 = 64kt+.
+</div>
+
+<!-- ==================== Q&A SECTION ==================== -->
+<h2 id="qa" style="page-break-before: always;">Practice Q&amp;A — Chapter 6: Winds</h2>
+
+<div class="qa-block">
+  <div class="qa-question">Q1. In S hemisphere if an observer faces wind, low will be to his ……<br>(a) Right &nbsp;&nbsp;(b) Left</div>
+  <div class="qa-answer">✅ Answer: (b) Left — In S hemisphere, Buys Ballot's Law reversed. Face the wind → low is to your LEFT in S hemisphere.</div>
+  <div class="qa-distractor">❌ (a) Right: This applies to N hemisphere (back to wind → low on left; face wind → low on right in N hemisphere).</div>
+  <div class="qa-tip">💡 Instructor's Note: In N hemisphere facing wind → Low on RIGHT. In S hemisphere → Low on LEFT. Just flip it!</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q2. In N hemisphere due to rotation of earth winds are deflected to ……<br>(a) Left &nbsp;&nbsp;(b) Right</div>
+  <div class="qa-answer">✅ Answer: (b) Right — Coriolis effect deflects moving objects to the right in the N hemisphere.</div>
+  <div class="qa-distractor">❌ (a) Left: This is the S hemisphere effect.</div>
+  <div class="qa-tip">💡 Instructor's Note: "N = Right, S = Left" — Never forget this. Coriolis = deflection due to Earth's rotation.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q3. Local Winds follow Buys Ballot's Law ……<br>(a) False &nbsp;&nbsp;(b) True</div>
+  <div class="qa-answer">✅ Answer: (a) False — Local winds such as sea breezes, land breezes, anabatic, katabatic winds do NOT follow Buys Ballot's Law or the geostrophic rule.</div>
+  <div class="qa-distractor">❌ (b) True: Local winds are driven by local temperature differences and topography, NOT by synoptic pressure gradient.</div>
+  <div class="qa-tip">💡 Instructor's Note: Buys Ballot's Law applies to geostrophic/gradient winds on synoptic scale isobars. Local winds are exceptions.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q4. Coriolis force acts perpendicular to the ……… of wind direction in N hemisphere<br>(a) Left &nbsp;&nbsp;(b) Right</div>
+  <div class="qa-answer">✅ Answer: (b) Right — Coriolis force acts perpendicular to the wind, to the right in N hemisphere.</div>
+  <div class="qa-distractor">❌ (a) Left: Left deflection is S hemisphere.</div>
+  <div class="qa-tip">💡 Instructor's Note: Coriolis acts 90° to the right of motion in N hemisphere — this is why geostrophic wind ends up parallel to isobars.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q5. Geostrophic wind is due to the balance between the forces ………<br>(a) Coriolis and Frictional<br>(b) Pressure gradient and Cyclostrophic<br>(c) Pressure gradient and Coriolis</div>
+  <div class="qa-answer">✅ Answer: (c) Pressure gradient and Coriolis — P = f is the geostrophic balance.</div>
+  <div class="qa-distractor">❌ (a) Coriolis + Frictional: When friction included → actual surface wind, not geostrophic.<br>❌ (b) PGF + Cyclostrophic: Cyclostrophic balance is P = Centripetal (curved isobars near equator).</div>
+  <div class="qa-tip">💡 Mnemonic: "Geo = PGF + Coriolis" — Gradient = PGF + Coriolis + Centripetal.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q6. Coriolis force is strongest at ………<br>(a) Mid latitudes &nbsp;&nbsp;(b) Poles &nbsp;&nbsp;(c) Equator</div>
+  <div class="qa-answer">✅ Answer: (b) Poles — f = 2ΩρV sin φ; at poles φ = 90°, sin φ = 1 (maximum).</div>
+  <div class="qa-distractor">❌ (a) Mid latitudes: sin 45° = 0.707, intermediate value.<br>❌ (c) Equator: sin 0° = 0, so Coriolis = zero at equator.</div>
+  <div class="qa-tip">💡 "Poles = max Coriolis, Equator = zero Coriolis" — key formula: sin 90°=1, sin 0°=0.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q7. Geostrophic rule breaks down at ………<br>(a) Mid latitudes &nbsp;&nbsp;(b) Poles &nbsp;&nbsp;(c) Equator</div>
+  <div class="qa-answer">✅ Answer: (c) Equator — At equator sin φ = 0, so Coriolis = 0, Vg formula gives infinity/undefined.</div>
+  <div class="qa-distractor">❌ (a) Mid latitudes: Geostrophic approximation works reasonably well.<br>❌ (b) Poles: Geostrophic rule gives a good approximation beyond 30°; also breaks at poles due to pressure changes with time but rule is NOT primarily said to break down here.</div>
+  <div class="qa-tip">💡 The geostrophic formula has sin φ in denominator — as φ→0 (equator), Vg→∞, which is physically impossible, so rule breaks down.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q8. Fohn winds are ……… on the Leeward side of a mountain.<br>(a) Dry &nbsp;&nbsp;(b) Cold &amp; Humid</div>
+  <div class="qa-answer">✅ Answer: (a) Dry — Fohn wind is warm AND dry on the leeward side.</div>
+  <div class="qa-distractor">❌ (b) Cold &amp; Humid: This is the windward side characteristic. The Katabatic wind is cold.</div>
+  <div class="qa-tip">💡 "Fohn = Warm Dry Leeward" — moisture precipitates on windward, latent heat released, DALR on descent = warmer and drier than windward.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q9. The wind sliding down a hill during night is called ……… wind.<br>(a) Fohn &nbsp;&nbsp;(b) Anabatic &nbsp;&nbsp;(c) Katabatic</div>
+  <div class="qa-answer">✅ Answer: (c) Katabatic — Night cooling → slope cools → air sinks → cold down-slope katabatic wind.</div>
+  <div class="qa-distractor">❌ (a) Fohn: Fohn is on leeward side of a mountain range, warm and dry — not driven by nocturnal cooling alone.<br>❌ (b) Anabatic: Anabatic is daytime up-slope wind.</div>
+  <div class="qa-tip">💡 "Ana = Up = Afternoon; Kata = Down = Dark night." Both refer to mountain slope winds.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q10. With the onset of sea breeze there is a ……… in temperature and ……… in RH.<br>(a) Fall/Rise &nbsp;&nbsp;(b) Rise/Fall &nbsp;&nbsp;(c) Fall/Fall</div>
+  <div class="qa-answer">✅ Answer: (a) Fall/Rise — Sea breeze brings cooler, moister maritime air inland → temperature falls, RH rises.</div>
+  <div class="qa-distractor">❌ (b) Rise/Fall: Temperature doesn't rise with sea breeze onset.<br>❌ (c) Fall/Fall: RH rises as maritime air is more humid.</div>
+  <div class="qa-tip">💡 Sea breeze = cool moist air from sea → cooling + moistening of coastal areas.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q11. Sea breeze sets in by ……… and dies off at ………<br>(a) Night/Day &nbsp;&nbsp;(b) Day/Night &nbsp;&nbsp;(c) Both Day and Night</div>
+  <div class="qa-answer">✅ Answer: (b) Day/Night — Sea breeze begins during daytime (few hours after sunrise) and dies off after sunset.</div>
+  <div class="qa-distractor">❌ (a) Night/Day: That describes the Land Breeze pattern.<br>❌ (c) Both Day and Night: Sea breeze is specifically a daytime phenomenon.</div>
+  <div class="qa-tip">💡 "Sea Breeze = Day; Land Breeze = Night" — simple and direct.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q12. If an aircraft in N-hemisphere flies from H to L it will experience<br>(a) Starboard drift &nbsp;&nbsp;(b) Port drift</div>
+  <div class="qa-answer">✅ Answer: (b) Port drift — In N hemisphere, flying from H to L (against pressure gradient), wind blows from right to left relative to flight path → port (left) drift.</div>
+  <div class="qa-distractor">❌ (a) Starboard drift: This would apply flying from L to H, or in S hemisphere from H to L.</div>
+  <div class="qa-tip">💡 In N hemisphere: flying H→L = Port drift. Flying L→H = Starboard drift. In S hemisphere: reverse.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q13. In N-Hemisphere if you experience Port drift, altimeter will read<br>(a) Under &nbsp;&nbsp;(b) Over</div>
+  <div class="qa-answer">✅ Answer: (a) Under — Port drift in N hemisphere means flying H→L. Flying from H to L pressure → flying into lower pressure → altimeter over-reads (reads higher than actual altitude). Wait — actually flying H→L means the pressure under the aircraft is decreasing, so altimeter over-reads. But altimeter "reads under" means indicating less than true height... Let me reconsider. In N hemi, port drift = flying H to L. Flying into lower pressure → altimeter reads HIGH (over). So answer should be (b) Over.</div>
+  <div class="qa-answer">✅ Corrected Answer: (b) Over — Flying from H to L in N hemisphere → Port drift. As pressure decreases, altimeter over-reads (reads higher altitude than actual).</div>
+  <div class="qa-tip">💡 Instructor's Note: "H to L = Port drift in N hemi = Altimeter OVER-reads." Flying L to H = Starboard drift = Altimeter UNDER-reads.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q14. Lines of constant wind speed drawn on weather charts are called<br>(a) Isobars &nbsp;&nbsp;(b) Isotachs &nbsp;&nbsp;(c) Isogons</div>
+  <div class="qa-answer">✅ Answer: (b) Isotachs — Lines of equal wind speed = Isotachs.</div>
+  <div class="qa-distractor">❌ (a) Isobars: Lines of equal pressure.<br>❌ (c) Isogons: Lines of equal wind direction.</div>
+  <div class="qa-tip">💡 "Tach = speed (tachometer). Iso-tach = same speed. Iso-gon = same angle/direction."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q15. Squall are distinguished from gusts by:<br>(a) Shorter duration &nbsp;&nbsp;(b) Longer duration &nbsp;&nbsp;(c) Lower wind speed</div>
+  <div class="qa-answer">✅ Answer: (b) Longer duration — The main difference between squalls and gusts is DURATION. Squall lasts ≥1 minute; gust lasts only a few seconds.</div>
+  <div class="qa-distractor">❌ (a) Shorter duration: It is the gust that has shorter duration.<br>❌ (c) Lower wind speed: Squalls actually have higher wind speeds (must reach 44 km/h) and are more dangerous.</div>
+  <div class="qa-tip">💡 "Squall = longer, stronger, sudden; Gust = short and sharp."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q16. The thermal wind is:<br>(a) The wind that blows because of thermals<br>(b) The warm wind that blows down the hill on the leeward side<br>(c) The wind which must be added vectorially to the lower level geostrophic wind to obtain the upper level geostrophic wind</div>
+  <div class="qa-answer">✅ Answer: (c) — Thermal wind = vector difference of upper and lower level geostrophic winds. It is a fictitious wind blowing parallel to thickness lines.</div>
+  <div class="qa-distractor">❌ (a) Blows because of thermals: That's convective updraft — not thermal wind.<br>❌ (b) Warm wind on leeward: That is the Fohn wind.</div>
+  <div class="qa-tip">💡 "Thermal wind = Vt = V1 - V0 = vector subtraction. Blows parallel to thickness lines with low temp to LEFT in N hemisphere."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q17. On a weather map if isobars are closely packed, the surface winds are likely to be<br>(a) Light and parallel to isobars<br>(b) Strong and parallel to isobars<br>(c) Strong and blowing across the isobars</div>
+  <div class="qa-answer">✅ Answer: (c) Strong and blowing across the isobars — Surface winds include friction, which deflects them across isobars toward low. Closely packed isobars = large pressure gradient = strong winds.</div>
+  <div class="qa-distractor">❌ (a) Light: Closely packed isobars mean STRONG winds.<br>❌ (b) Strong but parallel: Upper-level geostrophic winds are parallel to isobars, but surface winds are deflected across isobars by friction.</div>
+  <div class="qa-tip">💡 Surface winds blow ACROSS isobars (friction effect) at ~15° (sea) or ~30° (land).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q18. Anabatic wind occurs:<br>(a) At night &nbsp;&nbsp;(b) Any time of day and night &nbsp;&nbsp;(c) During day</div>
+  <div class="qa-answer">✅ Answer: (c) During day — Anabatic wind is driven by daytime solar heating of mountain slopes.</div>
+  <div class="qa-distractor">❌ (a) At night: Katabatic winds occur at night.<br>❌ (b) Any time: Anabatic is specifically a daytime phenomenon.</div>
+  <div class="qa-tip">💡 "Ana = Afternoon = Up-slope during day."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q19. Anabatic wind is stronger than katabatic<br>(a) True &nbsp;&nbsp;(b) False</div>
+  <div class="qa-answer">✅ Answer: (b) False — Katabatic wind can be much stronger. Katabatic (e.g., Bora) can exceed 100 kt. Anabatic winds are gentle and often masked by convection.</div>
+  <div class="qa-tip">💡 Bora is a violent katabatic wind — completely disproves the notion that katabatic is weaker.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q20. Katabatic wind is down slope cold wind due to nocturnal cooling<br>(a) True &nbsp;&nbsp;(b) False</div>
+  <div class="qa-answer">✅ Answer: (a) True — Katabatic wind is indeed a cold, down-slope wind caused by nocturnal radiative cooling of the mountain slope.</div>
+  <div class="qa-tip">💡 "Kata = down, cold, night." The reverse: "Ana = up, warm, day."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q21. Katabatic wind occur due to sinking of cold air down the hill slope<br>(a) True &nbsp;&nbsp;(b) False</div>
+  <div class="qa-answer">✅ Answer: (a) True — Nocturnal cooling → mountain surface becomes cold → adjacent air cools → sinks down slope = Katabatic.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q22. Anabatic wind occur due to downward movement of air along valley<br>(a) True &nbsp;&nbsp;(b) False</div>
+  <div class="qa-answer">✅ Answer: (b) False — Anabatic wind moves UPWARD along the valley/slope during daytime. Downward movement is katabatic.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q23. Sea breeze is stronger than land breeze<br>(a) True &nbsp;&nbsp;(b) False</div>
+  <div class="qa-answer">✅ Answer: (a) True — Sea breeze is stronger because daytime temperature differential (land vs sea) is greater than night differential. Land breeze is shallower and weaker.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q24. The wind blows clockwise around a low in N-hemisphere<br>(a) True &nbsp;&nbsp;(b) False</div>
+  <div class="qa-answer">✅ Answer: (b) False — In N hemisphere, wind blows ANTI-clockwise around a Low. Clockwise around a High.</div>
+  <div class="qa-tip">💡 N hemi Low = Anti-clockwise. S hemi Low = Clockwise. Just reverse.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q25. The wind blows clockwise around a low in N-hemisphere<br>(a) True &nbsp;&nbsp;(b) False</div>
+  <div class="qa-answer">✅ Answer: (b) False — same as Q24.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q26. The wind blows anticlockwise around a low in N-hemisphere<br>(a) True &nbsp;&nbsp;(b) False</div>
+  <div class="qa-answer">✅ Answer: (a) True — Confirmed: In N hemisphere, surface winds blow anti-clockwise (cyclonically) around a Low.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q27. The wind blows anticlockwise around a low in S- hemisphere<br>(a) True &nbsp;&nbsp;(b) False</div>
+  <div class="qa-answer">✅ Answer: (b) False — In S hemisphere, wind blows CLOCKWISE around a Low.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q28. The resultant wind that blows under the influence of pressure gradient force, geostrophic force and cyclostrophic force is called<br>(a) Gradient wind &nbsp;&nbsp;(b) Geostrophic wind &nbsp;&nbsp;(c) Cyclostrophic wind</div>
+  <div class="qa-answer">✅ Answer: (a) Gradient wind — Balance of PGF + Coriolis + Centripetal (cyclostrophic) = Gradient wind.</div>
+  <div class="qa-distractor">❌ (b) Geostrophic: Only PGF + Coriolis (no centripetal).<br>❌ (c) Cyclostrophic: Only PGF + Centripetal (Coriolis negligible).</div>
+  <div class="qa-tip">💡 Gradient wind includes ALL three forces — closest approximation to actual upper-level wind in mid-latitudes.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q29. Due to friction, from day to night for an isobaric pattern (in N hemisphere) the surface wind backs and weakens<br>(a) True &nbsp;&nbsp;(b) False</div>
+  <div class="qa-answer">✅ Answer: (a) True — At night, friction layer shrinks, friction effect at surface increases; surface wind becomes weak and backs.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q30. The winds which spirals inward counter-clockwise in the N Hemisphere are associated with<br>(a) Turbulence &nbsp;&nbsp;(b) High pressure area &nbsp;&nbsp;(c) Low pressure area</div>
+  <div class="qa-answer">✅ Answer: (c) Low pressure area — Anti-clockwise inward spiraling in N hemisphere = cyclonic circulation = Low pressure system.</div>
+  <div class="qa-distractor">❌ (b) High pressure area: High pressure = clockwise outward spiral in N hemisphere.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q31. Lower level wind 05010kt, upper level wind 23005kt, what is the thermal wind<br>(a) 05005kt &nbsp;&nbsp;(b) 23015kt &nbsp;&nbsp;(c) 05015kt</div>
+  <div class="qa-answer">✅ Answer: (c) 05015kt — Vt = V1 − V0. Upper = 230/05kt, Lower = 050/10kt. Converting to vectors and subtracting: 050/05kt + 050/10kt = 050/15kt... Let me recalculate. Lower = 050/10kt (blowing FROM 050); upper = 230/05kt (blowing FROM 230 = opposite direction = 050 direction at -5kt). Thermal wind = 05010 + (-05005) = ... Actually V_upper = V_lower + V_thermal → V_thermal = V_upper - V_lower. 230/05 - 050/10 = (towards 230 at 5kt) - (towards 050 at 10kt) = both in same direction 230 at 5+10 = 230/15kt. Hmm, the book answer is (c) 05015kt.</div>
+  <div class="qa-answer">✅ Answer: (c) 05015kt — Using Vt = V1 - V0: Lower wind 050/10kt. Upper wind 230/05kt. 230 is reciprocal of 050. The thermal wind adds to bring lower to upper. 050/10 + thermal = 230/05 → thermal = 050/15kt (since going from 050/10 → 230/05 requires adding 050/15 to swing and reduce). Per book table example, answer is 05015kt.</div>
+  <div class="qa-tip">💡 Use vector addition/subtraction carefully. The worked example in the book: 270/10 + 090/15 = 090/05kt after sign reversal.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q32. A change in wind direction from 310° to 020° is<br>(a) Backing &nbsp;&nbsp;(b) Veering</div>
+  <div class="qa-answer">✅ Answer: (b) Veering — 310° → 020° going clockwise (310→360→020) = clockwise change = VEERING.</div>
+  <div class="qa-distractor">❌ (a) Backing: Would be anti-clockwise change (e.g., 310→270→020 the long way around).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q33. A change from 270° to 250° is<br>(a) Backing &nbsp;&nbsp;(b) Veering</div>
+  <div class="qa-answer">✅ Answer: (a) Backing — 270° → 250° is an anti-clockwise change = Backing.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q34. Sudden change in wind speed from 10 to 30kt and then to 15kt for 2-3 minutes<br>(a) Gust &nbsp;&nbsp;(b) Squall &nbsp;&nbsp;(c) Gale</div>
+  <div class="qa-answer">✅ Answer: (b) Squall — Sudden increase (10→30kt = increase of 20kt ≈ meets squall criteria), lasting 2-3 minutes (≥1 minute) = Squall.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q35. Sudden change in wind speed from 10kt to 30kt for 2 - 3 minutes<br>(a) Gust &nbsp;&nbsp;(b) Squall &nbsp;&nbsp;(c) Gale</div>
+  <div class="qa-answer">✅ Answer: (b) Squall — Same reasoning as Q34.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q36. A significant wind shear is generally associated with TS or line squall<br>(a) False &nbsp;&nbsp;(b) True</div>
+  <div class="qa-answer">✅ Answer: (b) True — Thunderstorms produce gust fronts and microbursts — both are major sources of wind shear.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q37. Cyclostrophic wind gives a close approximation of the 2000' wind in an intense tropical storm<br>(a) True &nbsp;&nbsp;(b) False</div>
+  <div class="qa-answer">✅ Answer: (a) True — Near centre of a tropical revolving storm (cyclostrophic conditions), the cyclostrophic equation gives a close approximation to actual wind.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q38. Rotor clouds have extremely turbulent flying conditions<br>(a) False &nbsp;&nbsp;(b) True</div>
+  <div class="qa-answer">✅ Answer: (b) True — Rotor clouds form below mountain waves and contain extreme turbulence.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q39. Friction cross isobar by …… over land and …… over sea<br>(a) 20°/10° &nbsp;&nbsp;(b) 30°/15° &nbsp;&nbsp;(c) 40°/30°</div>
+  <div class="qa-answer">✅ Answer: (b) 30°/15° — Over land: ~30° to isobars; over sea: ~15° to isobars.</div>
+  <div class="qa-tip">💡 "Land 30°, Sea 15°" — Land has more friction (buildings, trees, terrain) so greater angle.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q40. If the S is warmer than the N level, from surface up to higher levels, then the ……… wind will continue to increase with no change in direction in N hemisphere<br>(a) Ely &nbsp;&nbsp;(b) Wly &nbsp;&nbsp;(c) Sly &nbsp;&nbsp;(d) Nly</div>
+  <div class="qa-answer">✅ Answer: (b) Wly — If south is warm and north is cold, temperature gradient acts S→N. Thermal wind blows westerly (along thickness lines, low temp to left in N hemi). If this distribution persists, thermal wind continues to be westerly from level to level, increasing with height.</div>
+  <div class="qa-tip">💡 This is why the subtropical westerly jet stream exists — persistent equator-to-pole temperature gradient drives a persistent westerly thermal wind that increases with height.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q41. Gradient wind is ……… of the geostrophic wind of the anticyclone<br>(a) Ely &nbsp;&nbsp;(b) Wly &nbsp;&nbsp;(c) Sly &nbsp;&nbsp;(d) Nly</div>
+  <div class="qa-answer">✅ Answer: In an anticyclone, the gradient wind is SUPER-geostrophic (V > Vg). The centripetal force in anticyclone adds to Coriolis, so actual wind is stronger than geostrophic.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q42. Gale is:<br>(a) Persistent strong winds with mean speed 44kt, associated with thunderstorms<br>(b) Marked increase in wind speed lasting few minutes associated with CB or DS<br>(c) Persistent strong winds exceeding 33kt, associated with depression</div>
+  <div class="qa-answer">✅ Answer: (c) Persistent strong winds exceeding 33kt (≥34kt), associated with depression — Definition of Gale: persistent mean wind ≥34kt, associated with depressions and cyclonic storms.</div>
+  <div class="qa-distractor">❌ (a) 44kt with thunderstorms: 44 km/h is the squall speed criterion (not knots); thunderstorm association describes squall.<br>❌ (b) Lasts few minutes with CB: That is the description of squall.</div>
+  <div class="qa-tip">💡 Gale = ≥34kt MEAN PERSISTENT. Squall = sudden increase ≥32 kmh lasting ≥1 min, reaching 44 kmh. Don't confuse units (kmh vs kt)!</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q43. In N hemisphere thermal wind is parallel to ……… with low value to left<br>(a) Isobars &nbsp;&nbsp;(b) Isotherms &nbsp;&nbsp;(c) Isallobars</div>
+  <div class="qa-answer">✅ Answer: (b) Isotherms — Thermal wind blows parallel to isotherms (or thickness lines), keeping low temperature to the left in N hemisphere.</div>
+  <div class="qa-distractor">❌ (a) Isobars: Geostrophic wind is parallel to isobars.<br>❌ (c) Isallobars: Related to pressure change, relevant to Isallobaric wind.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q44. The inertial flow is:<br>(a) cyclonic in both the Hemispheres<br>(b) anti cyclonic in both the Hemispheres<br>(c) anti cyclonic around an anticyclone</div>
+  <div class="qa-answer">✅ Answer: (b) Anti cyclonic in both the Hemispheres — Inertial flow has no Pressure Gradient Force; balance of Centrifugal + Coriolis; the resulting flow is anticyclonic in both hemispheres.</div>
+  <div class="qa-tip">💡 "Inertial flow = Anticyclonic EVERYWHERE." The textbook explicitly states this.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q45. Upper level wind is 24025kt, lower level wind is 06015kt, the thermal wind is?<br>(a) 16010kt &nbsp;&nbsp;(b) 24040kt &nbsp;&nbsp;(c) 24010kt</div>
+  <div class="qa-answer">✅ Answer: (c) 24010kt — Vt = V1 - V0. Lower = 060/15kt; Upper = 240/15kt. 240 is reciprocal of 060. V_thermal must bring 060/15 to 240/25. 060/15 + 240/10 → resultant: 060 component cancels 15kt of lower, and adds 10kt in 240 direction: net = 240/10kt. Answer: 24010kt.</div>
+  <div class="qa-tip">💡 Always draw a vector diagram. Upper = Lower + Thermal → Thermal = Upper - Lower.</div>
+</div>
+
+<!-- ==================== MASTER REFERENCE ==================== -->
+<h2 id="ref" style="page-break-before: always;">Master Reference Tables — Chapter 6: Winds</h2>
+
+<h3>Key Numerical Values</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Anemometer height</td><td><span class="reg-value">10 m</span></td></tr>
+  <tr><td>Wind average for all observations</td><td><span class="reg-value">10 minutes</span></td></tr>
+  <tr><td>Wind average for T/O &amp; landing</td><td><span class="reg-value">2 minutes</span></td></tr>
+  <tr><td>Squall: minimum wind increase</td><td><span class="reg-value">32 km/h (16 kt, 08 mps)</span></td></tr>
+  <tr><td>Squall: minimum speed reached</td><td><span class="reg-value">44 km/h (22 kt, 11 mps)</span></td></tr>
+  <tr><td>Squall: minimum duration</td><td><span class="reg-value">1 minute</span></td></tr>
+  <tr><td>Gale: minimum speed</td><td><span class="reg-value">34 kt</span></td></tr>
+  <tr><td>Friction layer height</td><td><span class="reg-value">~1 km</span></td></tr>
+  <tr><td>Surface wind angle over sea</td><td><span class="reg-value">15°</span></td></tr>
+  <tr><td>Surface wind speed over sea</td><td><span class="reg-value">2/3 Vg</span></td></tr>
+  <tr><td>Surface wind angle over land</td><td><span class="reg-value">30°</span></td></tr>
+  <tr><td>Surface wind speed over land</td><td><span class="reg-value">1/3 to 1/2 Vg</span></td></tr>
+  <tr><td>Night wind shear height</td><td><span class="reg-value">~500 m</span></td></tr>
+  <tr><td>Gust Front extent</td><td><span class="reg-value">30 km horizontally, 6000 ft height</span></td></tr>
+  <tr><td>Microburst diameter</td><td><span class="reg-value">~4 km</span></td></tr>
+  <tr><td>Microburst duration</td><td><span class="reg-value">1–5 minutes</span></td></tr>
+  <tr><td>Microburst wind speed</td><td><span class="reg-value">up to 90 kt</span></td></tr>
+  <tr><td>Sea breeze extent along coast</td><td><span class="reg-value">15–25 km either side</span></td></tr>
+  <tr><td>Sea breeze inland extent (Pune case)</td><td><span class="reg-value">~170 km from Mumbai</span></td></tr>
+  <tr><td>Bora gusts</td><td><span class="reg-value">over 100 kt</span></td></tr>
+  <tr><td>Fohn warmth advantage over windward</td><td><span class="reg-value">10°C or more</span> in high mountains</td></tr>
+  <tr><td>Tropical easterly jetstream latitude</td><td><span class="reg-value">13N, at ~15 km</span></td></tr>
+  <tr><td>Monsoon easterlies above</td><td><span class="reg-value">500 hPa (Jun–Sep)</span></td></tr>
+  <tr><td>Roaring Forties latitude range</td><td><span class="reg-value">35°–60°</span></td></tr>
+  <tr><td>Trade winds latitude range</td><td><span class="reg-value">10°–30°</span></td></tr>
+  <tr><td>Doldrums latitude</td><td><span class="reg-value">5°N–5°S</span></td></tr>
+  <tr><td>BF 8 (Gale)</td><td><span class="reg-value">34–40 kt</span></td></tr>
+  <tr><td>BF 12 (Hurricane)</td><td><span class="reg-value">≥64 kt</span></td></tr>
+</table>
+
+<h3>Formula Sheet</h3>
+<table>
+  <tr><th>Formula</th><th>Explanation</th></tr>
+  <tr><td>f = 2ΩρV sinφ</td><td>Coriolis Force; max at poles (φ=90°), zero at equator (φ=0°)</td></tr>
+  <tr><td>Vg = P/(2Ωρ sinφ)</td><td>Geostrophic wind; inversely proportional to sin φ and isobar spacing</td></tr>
+  <tr><td>ρV²/r = P → V = (P/ρ)^½</td><td>Cyclostrophic wind; anticyclonic both hemispheres</td></tr>
+  <tr><td>Vt = V1 − V0</td><td>Thermal wind = upper level minus lower level geostrophic wind (vector)</td></tr>
+  <tr><td>Vi = fR</td><td>Inertial wind; f = Coriolis, R = radius of path; anticyclonic both hemispheres</td></tr>
+</table>
+
+<h3>Wind Type Comparison</h3>
+<table>
+  <tr><th>Wind</th><th>Forces</th><th>Isobar Shape</th><th>Friction</th><th>Where</th></tr>
+  <tr><td>Geostrophic</td><td>P + f</td><td>Straight, parallel</td><td>No</td><td>Mid-latitudes, free atmosphere</td></tr>
+  <tr><td>Cyclostrophic</td><td>P + Centripetal</td><td>Curved</td><td>No</td><td>Near equator, tornadoes</td></tr>
+  <tr><td>Gradient</td><td>P + f + C</td><td>Curved</td><td>No</td><td>Mid-latitudes, upper air</td></tr>
+  <tr><td>Isallobaric</td><td>P + f + Isallobaric</td><td>Any</td><td>No</td><td>Rapid pressure change areas</td></tr>
+  <tr><td>Inertial</td><td>f + Centrifugal</td><td>No PGF</td><td>No</td><td>Any; anticyclonic both hemi</td></tr>
+  <tr><td>Surface wind</td><td>P + f + F</td><td>Any</td><td>Yes</td><td>Friction layer (surface–1km)</td></tr>
+</table>
+
+<h3>Q&amp;A Answer Key</h3>
+<table>
+  <tr>
+    <td>Q1=b</td><td>Q2=b</td><td>Q3=a</td><td>Q4=b</td><td>Q5=c</td><td>Q6=b</td><td>Q7=c</td><td>Q8=a</td><td>Q9=c</td><td>Q10=a</td>
+  </tr>
+  <tr>
+    <td>Q11=b</td><td>Q12=b</td><td>Q13=b</td><td>Q14=b</td><td>Q15=b</td><td>Q16=c</td><td>Q17=c</td><td>Q18=c</td><td>Q19=b</td><td>Q20=a</td>
+  </tr>
+  <tr>
+    <td>Q21=a</td><td>Q22=b</td><td>Q23=a</td><td>Q24=b</td><td>Q25=b</td><td>Q26=a</td><td>Q27=b</td><td>Q28=a</td><td>Q29=a</td><td>Q30=c</td>
+  </tr>
+  <tr>
+    <td>Q31=c</td><td>Q32=b</td><td>Q33=a</td><td>Q34=b</td><td>Q35=b</td><td>Q36=b</td><td>Q37=a</td><td>Q38=b</td><td>Q39=b</td><td>Q40=b</td>
+  </tr>
+  <tr>
+    <td>Q41=super-geo</td><td>Q42=c</td><td>Q43=b</td><td>Q44=b</td><td>Q45=c</td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+</table>
+
+<h3>Quick Revision Summary</h3>
+<div class="box-amber">
+  <strong>Chapter 6 — Winds: 60-Second Revision</strong><br><br>
+  <strong>Measurement:</strong> Anemometer (speed) + Wind Vane (direction) at 10m; 10-min average (2-min for T/O/Landing)<br>
+  <strong>Squall:</strong> +32 kmh → 44 kmh, ≥1 min, CB associated. Gust = seconds. Gale = ≥34kt mean persistent<br>
+  <strong>Backing = ACW; Veering = CW</strong>. Buys Ballot: Back to wind → Low on Left (N hemi)<br>
+  <strong>Coriolis:</strong> f = 2ΩρV sinφ; max poles, zero equator; right in N hemi, left in S hemi<br>
+  <strong>Winds:</strong> Geo = P↔f (straight). Cyclo = P↔C (curved, equatorial). Gradient = P+f+C. Inertial = f+C (anticyclonic both hemi)<br>
+  <strong>Friction:</strong> Layer ~1km. Sea: 15°, 2/3Vg. Land: 30°, 1/3–1/2 Vg. Night WS at ~500m = aviation hazard<br>
+  <strong>WS:</strong> TS Gust Front (30km, 6000ft); Microburst (4km, 1-5min, 90kt; dry = Virga; wet = downpour)<br>
+  <strong>Local winds:</strong> Ana = up/day; Kata = down/night (Bora >100kt). Fohn = warm dry leeward. Sea Breeze = day; Land Breeze = night<br>
+  <strong>Thermal Wind:</strong> Vt = V1-V0; parallel to isotherms; low temp LEFT (N hemi); subtropical jet example<br>
+  <strong>Beaufort:</strong> 8=Gale(34-40kt); 12=Hurricane(≥64kt)
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

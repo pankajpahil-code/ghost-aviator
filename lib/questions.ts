@@ -7,6 +7,7 @@ import { AIR_REGS_CH1_QUESTIONS } from "./air-regs-ch1-questions";
 import { SAR_QUESTIONS } from "./sar-questions";
 import { ECQB_061_NAVIGATION } from "./generated/ecqb-061-navigation";
 import { ICJOSHI_MET } from "./generated/icjoshi-met";
+import { ICJOSHI_NOTES_MET } from "./generated/icjoshi-notes-met";
 
 export type { DemoQuestion };
 
@@ -19,8 +20,9 @@ const RAW_QUESTIONS: DemoQuestion[] = [
   ...RK_BALI_REGULATIONS_QUESTIONS,
   ...AIR_REGS_CH1_QUESTIONS,
   ...SAR_QUESTIONS,
+  ...ICJOSHI_NOTES_MET,   // rich HTML-notes Q&A (met-1..11) — wins de-dup
   ...ECQB_061_NAVIGATION,
-  ...ICJOSHI_MET,
+  ...ICJOSHI_MET,         // font-extracted met bank (dupes of the above are dropped)
 ];
 
 // Global de-dupe by normalised question text — keeps the first (highest-priority)

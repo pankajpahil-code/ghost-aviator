@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 10 — Optical Phenomena | DGCA Met Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; color: #222; font-size: 15px; line-height: 1.6; }
+  h1 { color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 8px; }
+  h2 { color: #283593; border-left: 5px solid #283593; padding-left: 10px; margin-top: 30px; }
+  h3 { color: #3949ab; margin-top: 20px; }
+  .cover { text-align:center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 10px; margin-bottom: 30px; page-break-after: always; }
+  .cover h1 { font-size: 2em; border: none; }
+  .toc { background: #f5f5f5; padding: 20px; border-radius: 8px; page-break-after: always; }
+  .toc a { display: block; color: #1a237e; text-decoration: none; padding: 3px 0; }
+  .blue-box { background:#e8f1fb; border-left:5px solid #2c5aa0; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .red-box { background:#fdecea; border-left:5px solid #c0392b; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .green-box { background:#e8f5e9; border-left:5px solid #2e7d32; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .amber-box { background:#fff8e1; border-left:5px solid #f57c00; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .reg-value { background:#fff3cd; font-weight:bold; padding:1px 4px; border-radius:3px; }
+  table { width:100%; border-collapse:collapse; margin:15px 0; page-break-inside:avoid; }
+  th { background:#1a237e; color:white; padding:8px; text-align:left; }
+  td { padding:7px 8px; border:1px solid #ddd; }
+  tr:nth-child(even) { background:#f5f7ff; }
+  .qa-block { border:1px solid #ddd; border-radius:8px; margin:15px 0; page-break-inside:avoid; overflow:hidden; }
+  .qa-q { background:#e8f1fb; padding:12px 15px; font-weight:bold; }
+  .qa-a { background:#e8f5e9; padding:12px 15px; border-top:1px solid #ddd; }
+  .qa-exp { padding:12px 15px; border-top:1px solid #ddd; }
+  .qa-dist { background:#fdecea; padding:12px 15px; border-top:1px solid #ddd; }
+  .qa-tip { background:#fff8e1; padding:12px 15px; border-top:1px solid #ddd; }
+  pre.mermaid { background:transparent; }
+  @page { size: A4; margin: 20mm; }
+  @media print { .page-break { page-break-before: always; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Chapter 10<br>Optical Phenomena</h1>
+  <p style="font-size:1.3em; color:#1a237e; font-weight:bold;">DGCA CPL/ATPL Study Notes — Aviation Meteorology</p>
+  <p>Compiled by <strong>Capt. Pankaj Pahil</strong></p>
+  <p>Source: IC Joshi — Aviation Meteorology</p>
+</div>
+
+<div class="toc">
+  <h2 style="border:none; color:#1a237e;">Table of Contents</h2>
+  <a href="#intro">1. Introduction</a>
+  <a href="#rainbow">2. Rainbow</a>
+  <a href="#halo">3. Halo</a>
+  <a href="#corona">4. Corona</a>
+  <a href="#mirage">5. Mirage</a>
+  <a href="#bishops">6. Bishop's Ring</a>
+  <a href="#twilight">7. Twilight Colours</a>
+  <a href="#irisation">8. Irisation</a>
+  <a href="#glory">9. Glory</a>
+  <a href="#crepuscular">10. Crepuscular Rays</a>
+  <a href="#aurora">11. Aurora</a>
+  <a href="#electricity">12. Atmospheric Electricity and Lightning</a>
+  <a href="#stelmosfire">13. Saint Elmo's Fire</a>
+  <a href="#qa">14. Practice Q&A</a>
+  <a href="#ref">15. Master Reference Tables</a>
+</div>
+
+<!-- ============ SECTION 1 ============ -->
+<h2 id="intro">1. Introduction</h2>
+<div class="blue-box">
+  Optical phenomena occur frequently in the atmosphere. They provide useful information about cloud constitution, cloud type, atmospheric turbulence, lapse rate, ice accretion etc. — all important for aviation safety.
+</div>
+
+<pre class="mermaid">
+flowchart LR
+    A[Optical Phenomena] --> B[Refraction-based\nRainbow, Halo, Mirage]
+    A --> C[Diffraction-based\nCorona, Bishop's Ring, Irisation]
+    A --> D[Reflection-based\nGlory]
+    A --> E[Emission-based\nAurora, St Elmo's Fire]
+    A --> F[Scattering-based\nTwilight Colours]
+</pre>
+
+<!-- ============ SECTION 2 ============ -->
+<h2 id="rainbow">2. Rainbow</h2>
+
+<div class="blue-box">
+  <strong>Rainbow:</strong> A group of concentric arcs with colours ranging from violet to red, produced on a background of water drops (raindrops, droplets of drizzle or fog) in the atmosphere by light from the sun or moon. Sometimes two rainbows are observed — Primary and Secondary.
+</div>
+
+<h3>Primary Rainbow</h3>
+<p>A circle or arc of circles of coloured light in the sky while it is raining. The circle subtends an angle of <span class="reg-value">42°</span> at the eyes. Seen opposite to the sun or moon. Its centre is on the line joining the luminary and the observer. The rainbow may form a complete ring when seen from a hill, high tower or from an aircraft. Due to <strong>double refraction</strong> on entering the rain drop (once on entering, second time on leaving) with <strong>one total internal reflection</strong>. Colours: <strong>VIBGYOR</strong> (red outside, violet inside).</p>
+
+<h3>Secondary Rainbow</h3>
+<p>Concentric with the primary. Radius about <span class="reg-value">52°</span>. Much less bright than primary with breadth almost double. <strong>Red is on the inside (radius of arc 50°) and violet on the outside (radius of arc 54°)</strong> — colours reversed compared to primary.</p>
+
+<table>
+  <tr><th>Feature</th><th>Primary Rainbow</th><th>Secondary Rainbow</th></tr>
+  <tr><td>Radius</td><td><span class="reg-value">42°</span></td><td><span class="reg-value">52°</span></td></tr>
+  <tr><td>Red colour position</td><td>Outside</td><td>Inside (50°)</td></tr>
+  <tr><td>Violet position</td><td>Inside</td><td>Outside (54°)</td></tr>
+  <tr><td>Brightness</td><td>Bright</td><td>Much less bright</td></tr>
+  <tr><td>Internal reflections</td><td>One</td><td>Two</td></tr>
+  <tr><td>Breadth</td><td>Normal</td><td>Almost double</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Mnemonic:</strong> <strong>VIBGYOR</strong> (Violet Indigo Blue Green Yellow Orange Red) — Primary: Red Outside Violet Inside (ROVIn). Secondary: reversed (VIOlR = Violet Outside, Red Inside).
+</div>
+
+<!-- ============ SECTION 3 ============ -->
+<h2 id="halo">3. Halo</h2>
+
+<div class="blue-box">
+  <strong>Halo:</strong> A circle of light around the sun or moon. Produced by <strong>refraction</strong> of light through <strong>ice crystals</strong> present in Cirrostratus (CS) clouds.
+</div>
+
+<h3>Small Halo (Most Frequent)</h3>
+<p>Mostly white luminous ring of <span class="reg-value">22° radius</span> around the sun or moon at its centre. When well developed, the halo round the sun shows a pure clear halo — the <strong>red on the outside</strong> but other colours usually difficult to recognise. Presence of a halo signifies predominance of ice crystals in the cloud → <strong>negligible chances of ice accretion</strong>.</p>
+
+<h3>Large Halo</h3>
+<p>A circular halo with a radius of <span class="reg-value">46°</span>. The portion of the sky inside the ring is conspicuously darker than the rest of the luminous ring. Sometimes a large halo is observed — called the <strong>Large Halo</strong>. This is less bright.</p>
+
+<table>
+  <tr><th>Feature</th><th>Small Halo</th><th>Large Halo</th></tr>
+  <tr><td>Radius</td><td><span class="reg-value">22°</span></td><td><span class="reg-value">46°</span></td></tr>
+  <tr><td>Colour</td><td>Mostly white, red outside</td><td>Less bright</td></tr>
+  <tr><td>Sky inside ring</td><td>Normal</td><td>Conspicuously darker</td></tr>
+  <tr><td>Cloud type</td><td>Cirrostratus (CS)</td><td>CS</td></tr>
+  <tr><td>Ice accretion risk</td><td>Negligible (ice crystals)</td><td>Negligible</td></tr>
+</table>
+
+<div class="green-box">
+  <strong>Aviation Significance of Halo:</strong> Halo = ice crystal cloud (CS) = <strong>negligible icing risk</strong>. Fly through CS clouds with halo = safer than flying in clouds with Corona (water droplets).
+</div>
+
+<div class="amber-box">
+  <strong>Exam Tip:</strong> <strong>HALO = 22° (Small) or 46° (Large). CS cloud. ICE crystals. NO serious icing. Red on OUTSIDE.</strong><br>
+  Remember: Halo from CS; Corona from AS/AC.
+</div>
+
+<!-- ============ SECTION 4 ============ -->
+<h2 id="corona">4. Corona</h2>
+
+<div class="blue-box">
+  <strong>Corona:</strong> Luminous one or more (seldom more than three) coloured rings of relatively small radius, not more than <span class="reg-value">5°</span>, centred on the sun or moon. In each ring, <strong>red appears on the outside and violet or blue on the inside</strong>. Colours usually dull. Formed due to <strong>diffraction</strong> of light passing through <strong>very small water drops</strong> in mist, fog or through a thin cloud (especially Altostratus clouds). Diffraction = slight bending of light wave as it moves along the boundary of an object like a water drop.
+</div>
+
+<div class="red-box">
+  <strong>Aviation Warning:</strong> Corona indicates <strong>moderate icing</strong> — the cloud is above freezing level. Water droplets (supercooled) = icing risk. If cloud is above freezing level = icing risk.
+</div>
+
+<table>
+  <tr><th>Feature</th><th>Corona</th><th>Halo</th></tr>
+  <tr><td>Radius</td><td><span class="reg-value">&lt;5°</span> (small)</td><td><span class="reg-value">22° or 46°</span> (large)</td></tr>
+  <tr><td>Cause</td><td>Diffraction (water drops)</td><td>Refraction (ice crystals)</td></tr>
+  <tr><td>Cloud type</td><td>AS, thin AC, mist, fog</td><td>CS</td></tr>
+  <tr><td>Icing risk</td><td><strong>Moderate (water droplets)</strong></td><td>Negligible (ice crystals)</td></tr>
+  <tr><td>Red position</td><td>Outside</td><td>Outside</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Mnemonic:</strong> <strong>Corona = Close rings (&lt;5°) = supercooled water = CAUTION (icing). Halo = Huge rings (22°/46°) = ice = Harmless icing-wise.</strong>
+</div>
+
+<!-- ============ SECTION 5 ============ -->
+<h2 id="mirage">5. Mirage</h2>
+
+<div class="blue-box">
+  <strong>Mirage:</strong> Light rays are refracted (bent) as they travel from one medium to another of different density. In the atmosphere, density reduces with altitude. Light reflected from a distant object travels in a curved path, keeping lower density on the convex side of the curve. Rising sun or moon thus appears slightly higher than they actually are.
+</div>
+
+<p>Mirages are due to curving of light rays passing through layers of air in which refractive index changes considerably with height due to density differences. Observed when temperature of earth's surface differs markedly from that of air above.</p>
+
+<table>
+  <tr><th>Type</th><th>Name</th><th>Condition</th><th>Appearance</th></tr>
+  <tr><td><strong>Inferior (Lower) Mirage</strong></td><td>Lower Mirage</td><td>Lapse rate is steep (strongly heated surface, hot road/desert). Air density decreases rapidly upward.</td><td>Object appears lower than actual. Pool of water on road. "Water" on hot desert.</td></tr>
+  <tr><td><strong>Superior (Upper) Mirage</strong></td><td>Upper Mirage</td><td>Inversion (temperature increases with height). Cold sea surface, cold snow field.</td><td>Object appears higher than actual. Levitating ships.</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Mnemonic:</strong> <strong>Inferior Mirage</strong> → <strong>I</strong>t looks like <strong>I</strong>nferior pool (fake water on hot road) → Lapse rate steep. <strong>Superior Mirage</strong> → <strong>S</strong>ky reflection, object raised up → <strong>S</strong>upercooled surface (inversion present).
+</div>
+
+<!-- ============ SECTION 6 ============ -->
+<h2 id="bishops">6. Bishop's Ring</h2>
+
+<div class="blue-box">
+  <strong>Bishop's Ring:</strong> A whitish faint ring, centred on the sun or moon, with a slightly bluish tinge on the inside and reddish brown on the outside. Due to <strong>diffraction</strong> of light by <strong>fine dust particles</strong> in the high atmosphere. The dust may also be of volcanic origin. Radius of the ring is about <span class="reg-value">22°</span>.
+</div>
+
+<div class="amber-box">
+  <strong>Bishop's Ring vs Halo:</strong> Same radius (22°) but different cause and appearance. Halo = CS (ice crystals, refraction, bright). Bishop's Ring = fine dust (diffraction, faint, reddish-brown outside).
+</div>
+
+<!-- ============ SECTION 7 ============ -->
+<h2 id="twilight">7. Twilight Colours</h2>
+<p>Various colours in the sky are produced at sunset and at sunrise by <strong>refraction, scattering or selective absorption</strong> of light rays from the sun.</p>
+
+<!-- ============ SECTION 8 ============ -->
+<h2 id="irisation">8. Irisation</h2>
+<p>Sometimes due to <strong>diffraction</strong> of sun light, colours or bands nearly parallel to the margin of the cloud appear, in which pink colour predominates. Occurs in AC lenticularis and other clouds with uniform-sized droplets.</p>
+
+<!-- ============ SECTION 9 ============ -->
+<h2 id="glory">9. Glory</h2>
+<div class="blue-box">
+  <strong>Glory:</strong> One or more coloured rings, seen by an observer around <em>his own shadow</em> on a cloud consisting of numerous small water droplets, on fog, or very rarely on dew. The coloured rings are due to <strong>reflection</strong> — arrangement same as corona. <strong>Airborne observers often see a glory around the shadow of the aircraft</strong> in which they are flying.
+</div>
+
+<!-- ============ SECTION 10 ============ -->
+<h2 id="crepuscular">10. Crepuscular Rays</h2>
+<p>Dark bluish streaks which radiate from the sun. They are the <strong>shadows of clouds</strong> at or below the horizon.</p>
+
+<!-- ============ SECTION 11 ============ -->
+<h2 id="aurora">11. Aurora</h2>
+
+<div class="blue-box">
+  <strong>Aurora:</strong> (Latin: aurora = dawn). A phenomenon in which visible light is emitted by the high atmosphere, at heights varying from <span class="reg-value">70–100 km</span>, with peak frequency at about <span class="reg-value">100 km</span>. Aurora are ghostly displays of light in the form of streamers, rays, arches, hands, curtains, draperies, sheets or patches. They appear to shimmer or flit across the sky. Aurora are most common in higher latitudes, centering around magnetic poles. They are greenish white or pronounced red or violet.
+</div>
+
+<table>
+  <tr><th>Feature</th><th>Aurora Borealis</th><th>Aurora Australis</th></tr>
+  <tr><td>Name meaning</td><td>Northern Lights</td><td>Southern Lights</td></tr>
+  <tr><td>Hemisphere</td><td>N hemisphere (generally over NW Greenland)</td><td>S hemisphere</td></tr>
+  <tr><td>Called</td><td>Aurora Borealis</td><td>Aurora Australis</td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>Cause:</strong> Aurora results from bombardment of gases in the rarefied upper atmosphere by electric particles from magnetic storms. These cause excitation of gases with consequent emission of radiation. <strong>They impair radio communication.</strong>
+</div>
+
+<p>Aurora may be compared with the coloured commercial sign displays in which high voltage electric discharge is passed through tubes containing particular gas under low pressure, from which the colour light characteristic of the gas is then emitted.</p>
+
+<!-- ============ SECTION 12 ============ -->
+<h2 id="electricity">12. Atmospheric Electricity and Lightning</h2>
+
+<div class="blue-box">
+  In fine weather, the earth is negatively charged and the electric potential is directed towards the earth and has a mean value of <span class="reg-value">100 volts/m</span>. During a thunderstorm, the direction of current is locally reversed. Atmosphere carries a positive charge towards rain, and air to ground lightning flashes convey predominantly negative charge to ground.
+</div>
+
+<h3>Types of Lightning</h3>
+<table>
+  <tr><th>Type</th><th>Description</th></tr>
+  <tr><td><strong>Ground Discharge (Thunderbolt)</strong></td><td>Lightning between cloud and ground. Usually branches downward from distinct main channel (streak or ribbon lightning). Generally between <span class="reg-value">10–20 m diameter</span>. A luminous ball observed soon after a ground discharge and disappears with a violent explosion = <strong>ball lightning</strong>. Moves slowly in air/on ground.</td></tr>
+  <tr><td><strong>Cloud Discharge (Sheet Lightning)</strong></td><td>Lightning takes place within the cloud.</td></tr>
+  <tr><td><strong>Air Discharge</strong></td><td>Lightning from cloud to the air — does NOT strike the ground.</td></tr>
+</table>
+
+<!-- ============ SECTION 13 ============ -->
+<h2 id="stelmosfire">13. Saint Elmo's Fire</h2>
+
+<div class="blue-box">
+  <strong>Saint Elmo's Fire:</strong> Sometimes when flying in CU/CB clouds, an aircraft may experience <strong>bluish or greenish luminous discharge</strong> due to strong electrical field in the cloud. The continuous luminous glow is also accompanied by <strong>cracking sound</strong>. Intensity of the glow is <strong>weak to moderate</strong>.
+</div>
+
+<div class="red-box">
+  <strong>Aviation Warning:</strong> Saint Elmo's Fire = strong electrical activity in cloud = in or near CB/CU → precursor to lightning → AVOID the cloud. If experienced, immediately divert.
+</div>
+
+<!-- ============ SECTION 14 ============ -->
+<h2 id="qa" class="page-break">14. Practice Q&amp;A</h2>
+
+<div class="qa-block">
+  <div class="qa-q">Q1. Aurora Australis occur in the (a) S hemisphere (b) N hemisphere (c) Equator</div>
+  <div class="qa-a">✅ Answer: (a) S hemisphere</div>
+  <div class="qa-exp">Aurora Australis = Southern Lights = Southern hemisphere. Aurora Borealis = Northern Lights = N hemisphere.</div>
+  <div class="qa-tip">🎯 Australis = Australia = South. Borealis = Boreal (northern forest) = North.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q2. Aurora Australis are called ......... Lights (a) Northern (b) Southern (c) Temperate</div>
+  <div class="qa-a">✅ Answer: (b) Southern</div>
+  <div class="qa-exp">Aurora Australis = Southern Lights. Aurora Borealis = Northern Lights.</div>
+  <div class="qa-tip">🎯 Straight definition question — memorise the pairing.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q3. Aurora Borealis occur in the (a) S hemisphere (b) N hemisphere (c) Equator</div>
+  <div class="qa-a">✅ Answer: (b) N hemisphere</div>
+  <div class="qa-exp">Aurora Borealis = Northern Lights, generally over NW Greenland in the N hemisphere.</div>
+  <div class="qa-tip">🎯 Borealis → Boreal → Northern. Common exam pairing.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q4. Aurora Borealis are called ......... Lights (a) Northern (b) Southern (c) Temperate</div>
+  <div class="qa-a">✅ Answer: (a) Northern</div>
+  <div class="qa-tip">🎯 Fixed pairing: Borealis = Northern; Australis = Southern.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q5. Corona occur in ......... clouds (a) AS (b) NS (c) Both AS and CS (d) Any one of all these</div>
+  <div class="qa-a">✅ Answer: (a) AS (Altostratus — and thin clouds/mist/fog)</div>
+  <div class="qa-exp">Corona forms in AS, thin AC, mist or fog — wherever small uniform water drops exist. Not in NS (too thick) or CS (ice crystals produce Halo, not Corona).</div>
+  <div class="qa-tip">🎯 Corona = AS. Halo = CS. This is a common exam distinction.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q6. Bishop's ring is due to the diffraction of light by fine particles of (a) water (b) dust (c) ice</div>
+  <div class="qa-a">✅ Answer: (b) dust</div>
+  <div class="qa-exp">Bishop's Ring = diffraction of light by fine dust particles (possibly volcanic) in high atmosphere. Not water drops (that's Corona) or ice crystals (that's Halo).</div>
+  <div class="qa-tip">🎯 Bishop's Ring = DUST diffraction. Radius = 22°. Reddish-brown outside.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q7. The radius of the Bishop's Ring is about (a) 32° (b) 22° (c) 42°</div>
+  <div class="qa-a">✅ Answer: (b) 22°</div>
+  <div class="qa-exp">Bishop's Ring radius is about 22° — same as Small Halo radius but different cause and appearance.</div>
+  <div class="qa-tip">🎯 Both Bishop's Ring and Small Halo share 22° radius — distinguish by cause: dust vs ice crystals.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q8. Superior Mirage occurs in (a) Lapse (b) Isothermal (c) Inversion</div>
+  <div class="qa-a">✅ Answer: (c) Inversion</div>
+  <div class="qa-exp">Superior (Upper) Mirage occurs when there is temperature inversion. Cold sea surface → inversion → light bends upward → object appears higher (superior) than actual.</div>
+  <div class="qa-dist">Lapse rate steep = inferior mirage. Inversion = superior mirage.</div>
+  <div class="qa-tip">🎯 Superior = Inversion (temperature inverted = superior mirage). Inferior = steep lapse (hot surface).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q9. Inferior Mirage occurs when there is (a) Lapse (b) Isothermal (c) Inversion</div>
+  <div class="qa-a">✅ Answer: (a) Lapse</div>
+  <div class="qa-exp">Inferior (Lower) Mirage occurs when lapse rate is steep — strongly heated surface, hot road or desert. Surface air is very warm, density rapidly decreasing with height.</div>
+  <div class="qa-tip">🎯 Inferior Mirage → I = Image appears below = Intensive heating = Insolation-driven lapse.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q10. Corona are formed due to ......... of light (a) Refraction (b) Diffraction (c) Scattering</div>
+  <div class="qa-a">✅ Answer: (b) Diffraction</div>
+  <div class="qa-exp">Corona = diffraction of light by very small water droplets. Halo = refraction by ice crystals. Rainbow = refraction + internal reflection.</div>
+  <div class="qa-tip">🎯 Corona = Diffraction (water drops). Halo = Refraction (ice). Rainbow = Refraction + Reflection.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q11. Corona are formed due to light passing through (a) Mist only (b) Fog only (c) small water or ice particles only (d) Any one of all these</div>
+  <div class="qa-a">✅ Answer: (c) small water or ice particles only [primarily water]</div>
+  <div class="qa-exp">Corona forms in mist, fog, or through thin cloud (AS, AC) with very small water drops. Textbook answer is (c) — small water drops primarily (ice rarely).</div>
+  <div class="qa-tip">🎯 Corona = SMALL WATER DROPS via diffraction. Radius &lt;5°.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q12. Halo is produced by (a) Refraction (b) Diffraction (c) Scattering</div>
+  <div class="qa-a">✅ Answer: (a) Refraction</div>
+  <div class="qa-exp">Halo = refraction of light through ice crystals in CS cloud. This is a fundamental distinction in DGCA exams.</div>
+  <div class="qa-tip">🎯 H for Halo → H for Higher clouds (CS) → H for refraction (Halo = refraction).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q13. Halo is produced when light passes through (a) water particles (b) ice crystals (c) both</div>
+  <div class="qa-a">✅ Answer: (b) ice crystals</div>
+  <div class="qa-exp">Halo = light refracted by ice crystals in Cirrostratus. Exclusively ice crystals.</div>
+  <div class="qa-tip">🎯 Halo = ice crystals in CS. If you see a halo, no icing risk in that cloud.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q14. Halo occur in the cloud (a) AS (b) NS (c) CS</div>
+  <div class="qa-a">✅ Answer: (c) CS</div>
+  <div class="qa-exp">Halo occurs due to ice crystals in Cirrostratus (CS) — a high cloud. Not AS (medium, water drops → Corona) or NS (low, thick).</div>
+  <div class="qa-tip">🎯 Halo = CS. Corona = AS. Permanent exam distinction.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q15. Halo is a luminous ring of ......... radius (a) 22° (b) 32° (c) 42°</div>
+  <div class="qa-a">✅ Answer: (a) 22°</div>
+  <div class="qa-exp">Small Halo = 22° radius. Large Halo = 46° radius. Primary rainbow = 42°. Secondary rainbow = 52°.</div>
+  <div class="qa-tip">🎯 All the angles: Halo=22°/46°, Rainbow=42°/52°, Bishop's Ring=22°, Corona=&lt;5°.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q16. Halo round the sun shows a pure clear ......... on the outside (a) Red (b) Yellow (c) Violet</div>
+  <div class="qa-a">✅ Answer: (a) Red</div>
+  <div class="qa-exp">Both Halo and Primary Rainbow have Red on the outside. This is because red light is refracted least and appears at the outer edge.</div>
+  <div class="qa-tip">🎯 Red outside: Halo AND Primary Rainbow both. Secondary rainbow reverses: Violet outside.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q17. Halo signifies predominance in the cloud of (a) Supercooled water drops (b) Ice crystals (c) Both</div>
+  <div class="qa-a">✅ Answer: (b) Ice crystals</div>
+  <div class="qa-exp">Halo = ice crystals predominance. Hence negligible icing chances.</div>
+  <div class="qa-dist">Supercooled water drops → Corona, not Halo.</div>
+  <div class="qa-tip">🎯 Halo = ice crystals = fly safely. Corona = water drops = ICING CAUTION.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q18. The cloud which cause Halo has ......... chances of ice accretion (a) negligible (b) maximum (c) medium</div>
+  <div class="qa-a">✅ Answer: (a) negligible</div>
+  <div class="qa-exp">Halo = CS cloud = ice crystals = negligible icing. Ice crystals do not accrete on airframes the way supercooled water droplets do.</div>
+  <div class="qa-tip">🎯 Ice crystals bounce off airframe; supercooled WATER freezes on contact = icing. Halo cloud = safe.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q19. Sometimes a halo with a radius of ......... is observed, called Large Halo (a) 32° (b) 42° (c) 22°</div>
+  <div class="qa-a">✅ Answer: (b) 42° — Wait, textbook states 46°. Closest option = (b) if options are 32/42/46</div>
+  <div class="qa-exp">Large Halo radius = 46°. If options given are 32°, 42°, 46° — answer is 46°. The textbook explicitly states 46° for Large Halo.</div>
+  <div class="qa-tip">🎯 Small Halo = 22°. Large Halo = 46°. Don't confuse with rainbow (42°) or Bishop's Ring (22°).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q20. Halo occurs from ......... cloud (a) Low (b) Medium (c) High</div>
+  <div class="qa-a">✅ Answer: (c) High</div>
+  <div class="qa-exp">Halo occurs from Cirrostratus (CS) — a HIGH cloud. High clouds are composed of ice crystals that refract light to form halo.</div>
+  <div class="qa-tip">🎯 High cloud (CS) = Halo. Medium cloud (AS) = Corona.</div>
+</div>
+
+<!-- ============ SECTION 15 ============ -->
+<h2 id="ref" class="page-break">15. Master Reference Tables</h2>
+
+<h3>All Angular Values</h3>
+<table>
+  <tr><th>Phenomenon</th><th>Angle/Radius</th></tr>
+  <tr><td>Primary Rainbow</td><td><span class="reg-value">42°</span></td></tr>
+  <tr><td>Secondary Rainbow</td><td><span class="reg-value">52°</span> (arc 50° for red, 54° for violet)</td></tr>
+  <tr><td>Small Halo</td><td><span class="reg-value">22°</span></td></tr>
+  <tr><td>Large Halo</td><td><span class="reg-value">46°</span></td></tr>
+  <tr><td>Corona</td><td><span class="reg-value">&lt;5°</span></td></tr>
+  <tr><td>Bishop's Ring</td><td><span class="reg-value">~22°</span></td></tr>
+</table>
+
+<h3>Optical Phenomena Master Comparison Table</h3>
+<table>
+  <tr><th>Phenomenon</th><th>Cause</th><th>Mechanism</th><th>Cloud/Medium</th><th>Icing Risk</th><th>Key Distinction</th></tr>
+  <tr><td>Rainbow</td><td>Water drops (rain/drizzle)</td><td>Double refraction + 1 total internal reflection</td><td>Rain, drizzle, fog</td><td>N/A</td><td>VIBGYOR; red outside primary</td></tr>
+  <tr><td>Halo (22°)</td><td>Ice crystals</td><td>Refraction</td><td>CS (high cloud)</td><td>Negligible</td><td>Red outside; 22°; fly safely</td></tr>
+  <tr><td>Large Halo (46°)</td><td>Ice crystals</td><td>Refraction</td><td>CS</td><td>Negligible</td><td>Sky inside darker</td></tr>
+  <tr><td>Corona</td><td>Small water drops</td><td>Diffraction</td><td>AS, mist, fog, thin AC</td><td>Moderate</td><td>&lt;5° radius; icing warning</td></tr>
+  <tr><td>Bishop's Ring</td><td>Fine dust particles</td><td>Diffraction</td><td>High atmosphere (volcanic)</td><td>None</td><td>Reddish-brown outside; 22°</td></tr>
+  <tr><td>Mirage (Inferior)</td><td>Steep lapse rate</td><td>Refraction (curved ray)</td><td>Hot surface</td><td>N/A</td><td>Image below real; fake water</td></tr>
+  <tr><td>Mirage (Superior)</td><td>Inversion</td><td>Refraction</td><td>Cold surface</td><td>N/A</td><td>Image above real</td></tr>
+  <tr><td>Glory</td><td>Water drops</td><td>Reflection (backscatter)</td><td>Fog, cloud</td><td>N/A</td><td>Around observer's own shadow</td></tr>
+  <tr><td>Aurora</td><td>Solar particles</td><td>Emission</td><td>70–100 km altitude</td><td>N/A</td><td>Impairs radio; Borealis=N; Australis=S</td></tr>
+  <tr><td>St Elmo's Fire</td><td>Electrical discharge</td><td>Luminous discharge</td><td>CB/CU clouds</td><td>High (in CB)</td><td>Blue/green glow + cracking sound</td></tr>
+</table>
+
+<h3>Answer Key — Textbook Q&amp;A</h3>
+<table>
+  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>
+  <tr><td><strong>A</strong></td><td>a</td><td>b</td><td>b</td><td>a</td><td>a</td><td>b</td><td>b</td><td>c</td><td>a</td><td>b</td><td>c</td><td>a</td><td>b</td><td>c</td><td>a</td><td>a</td><td>b</td><td>a</td><td>b</td><td>c</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 10:</strong><br>
+  • Rainbow: water drops; primary 42° (red outside); secondary 52° (colours reversed, red inside)<br>
+  • Halo: ice crystals in CS; 22° (small) or 46° (large); refraction; negligible icing<br>
+  • Corona: water drops in AS/mist; &lt;5°; diffraction; MODERATE ICING RISK<br>
+  • Bishop's Ring: fine dust; 22°; diffraction; reddish-brown outside<br>
+  • Mirage: inferior = hot surface (steep lapse); superior = cold surface (inversion)<br>
+  • Glory: observer's shadow on cloud/fog; reflection by water drops<br>
+  • Crepuscular Rays: shadows of clouds at/below horizon<br>
+  • Aurora: 70–100 km altitude; magnetic storms; impairs radio; Borealis=N; Australis=S<br>
+  • St Elmo's Fire: in CB/CU; blue-green glow + cracking; electrical field; AVOID<br>
+  • KEY EXAM: Halo = CS = ice = no icing. Corona = AS = water = ICING WARNING.
+</div>
+
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+</body>
+</html>

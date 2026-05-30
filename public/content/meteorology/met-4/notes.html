@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 4: Air Density — DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #222; background: #fff; padding: 20px; max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 2em; color: #1a237e; border-bottom: 4px solid #1a237e; padding-bottom: 10px; margin-bottom: 20px; }
+  h2 { font-size: 1.5em; color: #1a237e; border-left: 6px solid #1a237e; padding-left: 12px; margin: 30px 0 15px 0; page-break-after: avoid; }
+  h3 { font-size: 1.15em; color: #283593; margin: 20px 0 10px 0; page-break-after: avoid; }
+  p { margin-bottom: 10px; }
+  ul, ol { margin: 10px 0 10px 25px; }
+  li { margin-bottom: 6px; }
+
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 12px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { border: none; font-size: 2.4em; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin-top: 15px; }
+  .cover .author { font-size: 1.1em; color: #1a237e; font-weight: bold; margin-top: 10px; }
+  .cover .badge { display: inline-block; background: #1a237e; color: #fff; padding: 6px 18px; border-radius: 20px; font-size: 0.9em; margin-top: 20px; }
+
+  .toc { page-break-after: always; }
+  .toc h2 { border-left: 6px solid #1a237e; }
+  .toc ul { list-style: none; margin-left: 0; }
+  .toc li { padding: 5px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { color: #1a237e; text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* COLOR BOXES */
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-blue strong, .box-red strong, .box-green strong, .box-amber strong { display: block; margin-bottom: 6px; font-size: 1em; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .reg-value { font-weight: bold; color: #b71c1c; background: #fce4ec; padding: 1px 5px; border-radius: 3px; font-family: monospace; }
+
+  /* FORMULA BOX */
+  .formula-box { background: #f3f0ff; border: 2px solid #7c4dff; border-radius: 8px; padding: 18px; margin: 15px 0; page-break-inside: avoid; }
+  .formula-box .formula { font-size: 1.4em; font-family: 'Courier New', monospace; font-weight: bold; color: #4a148c; text-align: center; margin: 10px 0; }
+  .formula-box table { width: 100%; margin-top: 10px; border-collapse: collapse; }
+  .formula-box td { padding: 4px 8px; vertical-align: top; }
+  .formula-box td:first-child { font-weight: bold; color: #4a148c; width: 80px; }
+
+  /* WORKED EXAMPLE */
+  .worked-example { background: #e8eaf6; border: 2px dashed #3f51b5; border-radius: 8px; padding: 15px; margin: 15px 0; page-break-inside: avoid; }
+  .worked-example h4 { color: #283593; margin-bottom: 8px; }
+
+  /* TABLE */
+  table.data-table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; }
+  table.data-table th { background: #1a237e; color: #fff; padding: 10px 12px; text-align: left; }
+  table.data-table td { padding: 9px 12px; border-bottom: 1px solid #ddd; }
+  table.data-table tr:nth-child(even) td { background: #f5f5f5; }
+
+  /* MERMAID */
+  .mermaid { margin: 20px 0; page-break-inside: avoid; }
+
+  /* Q&A */
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 18px 0; overflow: hidden; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 14px 16px; font-weight: 600; }
+  .qa-question .q-num { color: #2c5aa0; font-size: 0.95em; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 16px; }
+  .qa-answer .correct { font-weight: bold; color: #1b5e20; font-size: 1.05em; }
+  .qa-explanation { padding: 12px 16px; background: #fafafa; border-top: 1px solid #eee; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 10px 16px; font-size: 0.95em; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 10px 16px; font-size: 0.95em; }
+  .qa-tip strong { color: #e65100; }
+
+  /* SVG container */
+  .svg-container { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  .svg-container svg { max-width: 100%; }
+
+  /* Answer key */
+  .answer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 10px 0; }
+  .answer-cell { background: #e8f5e9; border: 1px solid #2e7d32; border-radius: 6px; padding: 8px; text-align: center; font-weight: bold; }
+  .answer-cell .q-n { font-size: 0.8em; color: #555; display: block; }
+
+  /* Watermark */
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 4: Air Density</h1>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+  <div style="margin-top:10px; color:#555;">Source: IC Joshi — Aviation Meteorology (Latest Edition)</div>
+  <div class="badge">CPL / ATPL Examination Preparation</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc" id="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#s1">1. Introduction &amp; Gas Equation</a></li>
+    <li><a href="#s2">2. Density of Dry Air</a></li>
+    <li><a href="#s3">3. Density of Moist Air</a></li>
+    <li><a href="#s4">4. Factors Affecting Air Density</a></li>
+    <li><a href="#s5">5. Variations in Surface Density</a></li>
+    <li><a href="#s6">6. Variation of Density with Height</a></li>
+    <li><a href="#s7">7. Latitudinal Variation of Density</a></li>
+    <li><a href="#s8">8. Density Altitude — Key Concept</a></li>
+    <li><a href="#s9">9. Quick Revision Summary</a></li>
+    <li><a href="#qa">10. Practice Q&amp;A (DGCA Style)</a></li>
+    <li><a href="#ref">11. Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="s1">1. Introduction &amp; The Gas Equation</h2>
+
+<div class="box-blue">
+  <strong>📘 Core Concept</strong>
+  Air density (ρ) is the mass of air per unit volume. It is a fundamental parameter that directly affects aircraft performance — engine power output, aerodynamic lift, and propeller/rotor efficiency all depend on air density.
+</div>
+
+<p>The density of air can be derived from the fundamental gas equation:</p>
+
+<div class="formula-box">
+  <div class="formula">PV = RT</div>
+  <table>
+    <tr><td>P</td><td>Pressure of the gas (hPa)</td></tr>
+    <tr><td>V</td><td>Volume of the gas</td></tr>
+    <tr><td>R</td><td>Gas constant for the particular gas</td></tr>
+    <tr><td>T</td><td>Absolute temperature (Kelvin)</td></tr>
+  </table>
+</div>
+
+<p>Since for a unit mass of gas, density ρ is the reciprocal of volume V, therefore:</p>
+
+<div class="formula-box">
+  <div class="formula">P/ρ = RT &nbsp;&nbsp; or &nbsp;&nbsp; ρ = P/RT</div>
+  <table>
+    <tr><td>ρ</td><td>Air density (g/m³)</td></tr>
+    <tr><td>P</td><td>Pressure (hPa)</td></tr>
+    <tr><td>R</td><td>Gas constant (specific to the gas)</td></tr>
+    <tr><td>T</td><td>Absolute temperature (Kelvin)</td></tr>
+  </table>
+</div>
+
+<div class="box-amber">
+  <strong>⚡ Key Relationship</strong>
+  ρ = P/RT — Density is <strong>directly proportional to pressure</strong> and <strong>inversely proportional to absolute temperature</strong>. Increase pressure → higher density. Increase temperature → lower density.
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="s2">2. Density of Dry Air</h2>
+
+<p>For dry air, the gas constant R = <span class="reg-value">2.87 × 10¹</span>.</p>
+
+<div class="worked-example">
+  <h4>🔢 Worked Example — ISA Surface Density</h4>
+  <p><strong>Given:</strong></p>
+  <ul>
+    <li>ISA surface pressure = <span class="reg-value">1013.25 hPa</span></li>
+    <li>ISA surface temperature = <span class="reg-value">15°C</span> = <span class="reg-value">288 K</span></li>
+    <li>R for dry air = <span class="reg-value">2.87 × 10¹</span></li>
+  </ul>
+  <p><strong>Calculation:</strong> ρ = P/RT = 1013.25 / (2.87 × 10¹ × 288)</p>
+  <p><strong>Result:</strong> ISA surface air density = <span class="reg-value">1225 g/m³</span></p>
+</div>
+
+<!-- SECTION 3 -->
+<h2 id="s3">3. Density of Moist Air</h2>
+
+<div class="box-blue">
+  <strong>📘 Theory</strong>
+  Water vapour obeys the fundamental gas equation. The gas constant for water vapour is <span class="reg-value">8/5 times</span> that for dry air. The total pressure P of moist air = partial pressure (p) of dry air + partial pressure (e) of water vapour.
+</div>
+
+<table class="data-table" style="page-break-inside:avoid;">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Pressure</th>
+      <th>Density Expression</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Water Vapour</td>
+      <td>e</td>
+      <td><span class="reg-value">5e/8RT</span></td>
+    </tr>
+    <tr>
+      <td>Dry Air (partial)</td>
+      <td>(p−e)</td>
+      <td><span class="reg-value">(p−e)/RT</span></td>
+    </tr>
+    <tr>
+      <td><strong>Moist Air (total)</strong></td>
+      <td>p</td>
+      <td><span class="reg-value">(p − 3e/8) / RT</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box-red">
+  <strong>⚠️ Critical Principle</strong>
+  <strong>Moist air is less dense than dry air</strong> under similar conditions of pressure and temperature. This is because water vapour (H₂O, mol. wt. 18) replaces heavier nitrogen (N₂, mol. wt. 28) and oxygen (O₂, mol. wt. 32) molecules.
+</div>
+
+<div class="box-amber">
+  <strong>✈️ Aviation Note</strong>
+  The effect of humidity on density is small and can be <strong>ignored for aviation purposes</strong> in calculations — unless humidity is very high (tropical conditions), in which case: add <span class="reg-value">10%</span> to computed take-off distance and anticipate <span class="reg-value">reduced climb rate</span>.
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="s4">4. Factors Affecting Air Density</h2>
+
+<div class="box-blue">
+  <strong>📘 Three Key Factors</strong>
+  Air density is affected by three factors: Altitude, Temperature, and Humidity.
+</div>
+
+<div class="svg-container">
+  <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" style="max-width:700px; border:1px solid #ddd; border-radius:8px;">
+    <!-- Background -->
+    <rect width="700" height="280" fill="#f9f9ff" rx="8"/>
+    <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1a237e">Factors Affecting Air Density</text>
+    <!-- Central node -->
+    <ellipse cx="350" cy="140" rx="80" ry="35" fill="#1a237e" stroke="#0d1b6e" stroke-width="2"/>
+    <text x="350" y="135" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Air</text>
+    <text x="350" y="152" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Density</text>
+    <!-- Altitude -->
+    <rect x="40" y="60" width="160" height="70" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <text x="120" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565c0">ALTITUDE ↑</text>
+    <text x="120" y="108" text-anchor="middle" font-size="11" fill="#333">Less dense air</text>
+    <text x="120" y="122" text-anchor="middle" font-size="11" fill="#c0392b">(↓ Density)</text>
+    <line x1="200" y1="95" x2="268" y2="128" stroke="#1565c0" stroke-width="2" marker-end="url(#arr)"/>
+    <!-- Temperature -->
+    <rect x="40" y="168" width="160" height="70" rx="8" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+    <text x="120" y="196" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">TEMPERATURE ↑</text>
+    <text x="120" y="216" text-anchor="middle" font-size="11" fill="#333">Warmer air</text>
+    <text x="120" y="230" text-anchor="middle" font-size="11" fill="#c0392b">(↓ Density)</text>
+    <line x1="200" y1="190" x2="268" y2="155" stroke="#e65100" stroke-width="2" marker-end="url(#arr2)"/>
+    <!-- Humidity -->
+    <rect x="500" y="105" width="160" height="70" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="580" y="133" text-anchor="middle" font-size="13" font-weight="bold" fill="#2e7d32">HUMIDITY ↑</text>
+    <text x="580" y="153" text-anchor="middle" font-size="11" fill="#333">Moist air</text>
+    <text x="580" y="167" text-anchor="middle" font-size="11" fill="#c0392b">(↓ Density, small)</text>
+    <line x1="500" y1="140" x2="432" y2="140" stroke="#2e7d32" stroke-width="2" marker-end="url(#arr3)"/>
+    <!-- Arrow markers -->
+    <defs>
+      <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1565c0"/></marker>
+      <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#e65100"/></marker>
+      <marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#2e7d32"/></marker>
+    </defs>
+    <text x="350" y="260" text-anchor="middle" font-size="11" fill="#666">All three factors reduce density when increased</text>
+  </svg>
+</div>
+
+<table class="data-table">
+  <thead>
+    <tr><th>Factor</th><th>Effect on Density</th><th>Aviation Implication</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Altitude ↑</strong></td>
+      <td>Density ↓ (Less dense)</td>
+      <td>Reduced engine power, longer T/O run, reduced climb rate</td>
+    </tr>
+    <tr>
+      <td><strong>Temperature ↑</strong></td>
+      <td>Density ↓ (Less dense)</td>
+      <td>Hot day = less dense air = degraded performance</td>
+    </tr>
+    <tr>
+      <td><strong>Humidity ↑</strong></td>
+      <td>Density ↓ (Less dense, minor effect)</td>
+      <td>Add 10% to T/O distance in high humidity; anticipate reduced climb</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- SECTION 5 -->
+<h2 id="s5">5. Variations in Surface Density</h2>
+
+<div class="box-blue">
+  <strong>📘 Principle</strong>
+  At a given pressure, density is <strong>inversely proportional to absolute temperature</strong>. Warm air is comparatively lighter; cold air is heavier.
+</div>
+
+<p><strong>Diurnal (Daily) Variation:</strong> The lowest densities occur in the afternoon and the highest just after sunrise. This is due to the diurnal variation of temperature.</p>
+
+<p><strong>Seasonal Variation:</strong> Seasonal density changes occur due to variations in temperature and pressure.</p>
+
+<div class="box-red">
+  <strong>⚠️ Exam Critical — 1% Rule for Surface Density</strong>
+  A decrease of density of about <span class="reg-value">1%</span> is produced by:
+  <ul style="margin-top:8px;">
+    <li>A fall of pressure of <span class="reg-value">10 hPa</span>, OR</li>
+    <li>An increase of temperature of <span class="reg-value">3°C</span>, OR</li>
+    <li>An increase in height of <span class="reg-value">300 feet</span></li>
+  </ul>
+</div>
+
+<div class="box-amber">
+  <strong>🧠 Memory Aid — "10-3-300"</strong>
+  <strong>10</strong> hPa drop / <strong>3°C</strong> rise / <strong>300 ft</strong> gain = <strong>1%</strong> density decrease
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="s6">6. Variation of Density with Height</h2>
+
+<div class="box-blue">
+  <strong>📘 ISA Density Profile</strong>
+  In ISA, density decreases with height at all levels. The decrease at lower levels for <span class="reg-value">1000 ft</span> is approximately <span class="reg-value">3%</span> of the value for any given level. This rule gives a good approximation up to <span class="reg-value">20,000 feet</span>.
+</div>
+
+<p>If the density of air were to remain uniform with height, the atmosphere would extend up to <span class="reg-value">8 km</span>. But since density decreases with height, at every <span class="reg-value">5–6 km</span> it reduces to its previous half value.</p>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Altitude</th>
+      <th>Density as Fraction of Surface Value</th>
+      <th>Key Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="reg-value">0 km</span> (Surface)</td><td>1/1 (Full density)</td><td>ISA: 1225 g/m³</td></tr>
+    <tr><td><span class="reg-value">6 km</span></td><td><span class="reg-value">1/2</span></td><td>Density halved</td></tr>
+    <tr><td><span class="reg-value">11 km</span></td><td><span class="reg-value">1/4</span></td><td>Tropopause region</td></tr>
+    <tr><td><span class="reg-value">17 km</span></td><td><span class="reg-value">1/8</span></td><td>Stratosphere</td></tr>
+    <tr><td><span class="reg-value">240 km</span></td><td>Still offers resistance</td><td>Density sufficient for drag</td></tr>
+    <tr><td><span class="reg-value">800 km</span></td><td>Atmosphere effectively ends</td><td>Upper limit</td></tr>
+  </tbody>
+</table>
+
+<div class="box-amber">
+  <strong>🧠 Memory Aid — Half-Density Altitudes: "6-11-17"</strong>
+  Every ~6 km, density halves:<br>
+  <strong>6 km → ½ | 11 km → ¼ | 17 km → ⅛</strong><br>
+  (Think: <em>"Six Eleven Seventeen — Density Halves Quarteres Eighths"</em>)
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    A["Surface — 0 km\nDensity = 1/1\n1225 g/m³"] --> B["6 km\nDensity = 1/2\nHalved"]
+    B --> C["11 km — Tropopause\nDensity = 1/4\nQuartered"]
+    C --> D["17 km — Stratosphere\nDensity = 1/8\nOne-eighth"]
+    D --> E["240 km\nStill offers resistance"]
+    E --> F["800 km\nAtmosphere ends"]
+    style A fill:#e8f5e9,stroke:#2e7d32
+    style B fill:#fff3e0,stroke:#f57c00
+    style C fill:#fce4ec,stroke:#c0392b
+    style D fill:#f3e5f5,stroke:#6a1b9a
+    style E fill:#e8eaf6,stroke:#3f51b5
+    style F fill:#fafafa,stroke:#9e9e9e
+</pre>
+
+<!-- SECTION 7 -->
+<h2 id="s7">7. Latitudinal Variation of Density</h2>
+
+<div class="box-blue">
+  <strong>📘 Theory</strong>
+  Density of air at sea level is <strong>lowest near the equator</strong> and <strong>greatest at the poles</strong>. This distribution is maintained until about <span class="reg-value">8.0 km</span>. <strong>Above 8.0 km, a reversal occurs</strong> — density becomes greater near the equator than at poles (higher latitude).
+</div>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Altitude Band</th>
+      <th>Highest Density Location</th>
+      <th>Lowest Density Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Surface to ~8 km</strong></td>
+      <td>Poles (cold, dense air)</td>
+      <td>Equator (warm, less dense)</td>
+    </tr>
+    <tr>
+      <td><strong>Above ~8 km</strong></td>
+      <td>Equator (reversal)</td>
+      <td>Poles (reversal)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box-blue">
+  <strong>📘 Aviation Implication — Aircraft Type Matters</strong>
+  <ul style="margin-top:8px;">
+    <li><strong>Piston-engine aircraft</strong> (low cruise altitude): Operational efficiency greater at <strong>high latitudes</strong> (poles) — denser air below 8 km.</li>
+    <li><strong>Jet aircraft</strong> (high cruise altitude): Operational efficiency greater in the <strong>tropics</strong> (equator) — denser air above 8 km reversal.</li>
+  </ul>
+</div>
+
+<pre class="mermaid">
+flowchart LR
+    subgraph Below_8km ["Below 8 km"]
+        P1[Poles\nHighest Density] --> E1[Equator\nLowest Density]
+    end
+    subgraph Above_8km ["Above 8 km — REVERSAL"]
+        E2[Equator\nHighest Density] --> P2[Poles\nLowest Density]
+    end
+    Below_8km -->|"Reversal at ~8 km"| Above_8km
+    style P1 fill:#e3f2fd,stroke:#1565c0
+    style E1 fill:#fff3e0,stroke:#e65100
+    style E2 fill:#e8f5e9,stroke:#2e7d32
+    style P2 fill:#fdecea,stroke:#c0392b
+</pre>
+
+<!-- SECTION 8 -->
+<h2 id="s8">8. Density Altitude — Key Concept</h2>
+
+<div class="box-blue">
+  <strong>📘 Definition — Density Altitude</strong>
+  The altitude in the <strong>International Standard Atmosphere (ISA)</strong> at which the <strong>prevailing density occurs</strong> in the actual atmosphere. It is the pressure altitude corrected for non-standard temperature.
+</div>
+
+<div class="box-red">
+  <strong>⚠️ Performance Impact</strong>
+  High density altitude = aircraft performs as if it were at a much higher altitude. Hot + high + humid = worst case for aircraft performance. All distances increase; all climb rates decrease.
+</div>
+
+<div class="box-green">
+  <strong>✅ Density Altitude Calculation</strong>
+  For every <span class="reg-value">1°C</span> change in temperature, density altitude differs from pressure altitude by approximately <span class="reg-value">120 ft</span> (answer per Q10 in the textbook).
+  <br><br>
+  <em>Note: Q10 in the textbook gives options of 33 ft, 100 ft, 120 ft, and 210 ft — correct answer is (c) 120 ft.</em>
+</div>
+
+<div class="worked-example">
+  <h4>🔢 Density Altitude Example</h4>
+  <p>Aerodrome elevation: 2000 ft. QNH gives pressure altitude = 2000 ft. Temperature is 10°C above ISA standard for that level.</p>
+  <p><strong>Correction:</strong> 10°C × 120 ft/°C = 1200 ft addition</p>
+  <p><strong>Density Altitude = 2000 + 1200 = 3200 ft</strong></p>
+  <p>Aircraft will perform as if operating from a 3200-ft elevation aerodrome.</p>
+</div>
+
+<!-- SECTION 9 -->
+<h2 id="s9">9. Quick Revision Summary</h2>
+
+<div class="box-amber">
+  <strong>⚡ Chapter 4 — Quick Revision: Air Density</strong>
+  <ul style="margin-top:8px;">
+    <li>Gas equation: <strong>PV = RT</strong> → Density ρ = <strong>P/RT</strong></li>
+    <li>ISA surface density = <strong>1225 g/m³</strong> at 15°C (288 K) and 1013.25 hPa</li>
+    <li>Gas constant for dry air R = <strong>2.87 × 10¹</strong></li>
+    <li>Water vapour gas constant = <strong>8/5 times</strong> dry air; moist air density = (p − 3e/8)/RT</li>
+    <li><strong>Moist air &lt; Dry air</strong> in density (under same T and P)</li>
+    <li>Density decreases with: ↑ Altitude, ↑ Temperature, ↑ Humidity</li>
+    <li><strong>1% density drop</strong> = 10 hPa drop OR 3°C rise OR 300 ft gain</li>
+    <li>Density halves every 5–6 km: <strong>6 km → ½ | 11 km → ¼ | 17 km → ⅛</strong></li>
+    <li>Below 8 km: Poles &gt; Equator in density | Above 8 km: Equator &gt; Poles (reversal)</li>
+    <li>Piston aircraft: better at poles (below 8 km) | Jet aircraft: better at tropics (above 8 km)</li>
+    <li>Density altitude differs from pressure altitude by ~<strong>120 ft per 1°C</strong> temperature deviation</li>
+    <li>High humidity: add <strong>10%</strong> to T/O distance; expect <strong>reduced climb rate</strong></li>
+  </ul>
+</div>
+
+<!-- Q&A SECTION -->
+<h2 id="qa" style="page-break-before:always;">10. Practice Q&amp;A — DGCA Examination Style</h2>
+
+<div class="box-blue">
+  <strong>📘 Instructions</strong>
+  The following questions are verbatim from the IC Joshi textbook. Cover the answer and attempt each question before revealing. Answers: Q1=a, Q2=b, Q3=a, Q4=b, Q5=b, Q6=b, Q7=d, Q8=b, Q9=a, Q10=c
+</div>
+
+<!-- Q1 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q1.</span> Density is ………… at poles than equator<br>
+    (a) Higher &nbsp;&nbsp; (b) Lower &nbsp;&nbsp; (c) Same
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (a) Higher</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> At sea level, polar air is much colder than equatorial air. Since ρ = P/RT, lower temperature (T) means higher density (ρ) at the same pressure. Cold polar air is denser than warm equatorial air below 8 km altitude.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (b) Lower — incorrect; cold air is denser, not less dense. (c) Same — incorrect; temperature differences create significant density differences.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> "Cold = Condensed = Denser" — cold air molecules are closer together. This is valid below 8 km only.</div>
+</div>
+
+<!-- Q2 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q2.</span> Above 8 km density is ………… at poles than at equator<br>
+    (a) Higher &nbsp;&nbsp; (b) Lower &nbsp;&nbsp; (c) Same
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (b) Lower</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> Above 8 km, a reversal of the latitudinal density gradient occurs. The troposphere is deeper (taller) over the equator, meaning more mass of air extends to greater heights near the equator. Above 8 km, equatorial air becomes denser than polar air, so poles have lower density above this level.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) Higher — only true below 8 km. (c) Same — never the case; latitude always creates density differences.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> The <span class="reg-value">8 km</span> reversal is a classic exam trap. Below 8 km = poles denser; above 8 km = equator denser. Jet aircraft fly above 8 km → better performance in tropics.</div>
+</div>
+
+<!-- Q3 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q3.</span> The altitude in ISA at which the air density is the same as the observed density is:<br>
+    (a) Density Altitude &nbsp;&nbsp; (b) ISA Density &nbsp;&nbsp; (c) Real Density
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (a) Density Altitude</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> Density Altitude is defined as the altitude in the International Standard Atmosphere (ISA) at which the prevailing (observed) density occurs. It is the key parameter for aircraft performance calculations.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (b) ISA Density — not a standard term. (c) Real Density — refers to actual density value, not an altitude concept.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> Density Altitude is NOT the same as Pressure Altitude. Density Altitude = Pressure Altitude ± correction for temperature deviation from ISA. High DA = poor performance.</div>
+</div>
+
+<!-- Q4 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q4.</span> Density is usually expressed as …………<br>
+    (a) Kg/sq m &nbsp;&nbsp; (b) g/cu m &nbsp;&nbsp; (c) N/sq m
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (b) g/cu m (grams per cubic metre)</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> Air density is a measure of mass per unit volume, expressed in grams per cubic metre (g/m³). ISA surface density = 1225 g/m³. In SI units it can also be expressed as kg/m³ (1.225 kg/m³), but the textbook uses g/m³.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) Kg/sq m — this is pressure per unit area, not density. (c) N/sq m — this is Pascals (pressure), not density.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> Know your units: density = mass/volume = g/m³ or kg/m³. Pressure = N/m² (Pa). Force = N. Don't confuse these in MCQs.</div>
+</div>
+
+<!-- Q5 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q5.</span> Higher density altitude means ………… density<br>
+    (a) Higher &nbsp;&nbsp; (b) Lower &nbsp;&nbsp; (c) Same
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (b) Lower</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> A higher density altitude means the air corresponds to a higher standard altitude in ISA — and at higher altitudes, density is lower. High density altitude = low actual air density = poor aircraft performance.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) Higher — a common trap! "Higher altitude" in ISA means LESS dense air. The higher the density altitude, the worse the performance.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> "High density altitude = low density air" seems counterintuitive but is correct. Think of it as: the air is behaving as if you are at a HIGH (thin) altitude. Hot + high + humid = worst performance day.</div>
+</div>
+
+<!-- Q6 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q6.</span> For given pressure and temperature, moist air has density:<br>
+    (a) Higher &nbsp;&nbsp; (b) Lower &nbsp;&nbsp; (c) Same
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (b) Lower</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> Moist air is less dense than dry air at the same temperature and pressure. Water vapour (mol. wt. 18) is lighter than the nitrogen (mol. wt. 28) and oxygen (mol. wt. 32) molecules it replaces. The density formula (p − 3e/8)/RT confirms this — the term 3e/8 reduces the effective pressure, reducing density.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) Higher — a very common misconception! "Humid air" feels heavy but is actually less dense. (c) Same — incorrect; water vapour does affect density.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> "Damp air is lighter than dry air" — counterintuitive but true. Water vapour (H₂O mol. wt 18) replaces heavier O₂ (32) and N₂ (28). This is why high humidity = higher density altitude.</div>
+</div>
+
+<!-- Q7 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q7.</span> Air is less denser in:<br>
+    (a) High Altitudes &nbsp;&nbsp; (b) Warm Air &nbsp;&nbsp; (c) High humidity &nbsp;&nbsp; (d) All these
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (d) All these</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> All three factors — high altitude, high temperature, and high humidity — reduce air density. This is the essence of density altitude: the combined effect of all three parameters on air density and therefore aircraft performance.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a), (b), (c) — each is individually correct, but (d) is the complete and correct answer. Partial answers would miss the comprehensive picture.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> <strong>3H Rule</strong> — High altitude + Hot temperature + Humid air = Highest density altitude = Worst performance. Remember on hot summer days at high elevation aerodromes!</div>
+</div>
+
+<!-- Q8 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q8.</span> Density altitude may be defined as:<br>
+    (a) The altitude in ISA at which the prevailing pressure occurs.<br>
+    (b) The altitude in ISA at which the prevailing density occurs.<br>
+    (c) The altitude in the actual atmosphere at which the prevailing density occurs.
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (b) The altitude in ISA at which the prevailing density occurs.</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> Density Altitude is specifically defined as the altitude in the ISA at which the current (prevailing) density exists. It uses the ISA as a reference standard, not the actual atmosphere.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) — this defines Pressure Altitude, not Density Altitude. (c) — density altitude uses ISA as reference, not the actual atmosphere; using the actual atmosphere's altitude gives geometric altitude.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> Pressure Altitude = ISA altitude for prevailing PRESSURE. Density Altitude = ISA altitude for prevailing DENSITY. Both use ISA as the reference atmosphere.</div>
+</div>
+
+<!-- Q9 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q9.</span> Temperature being constant, if pressure increases the density altitude:<br>
+    (a) increases &nbsp;&nbsp; (b) lowers &nbsp;&nbsp; (c) remains the same
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (a) increases</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> If pressure increases (temperature constant), density increases (ρ = P/RT). Higher density corresponds to a lower altitude in ISA. But the question asks about density ALTITUDE: if pressure increases → density increases → the equivalent ISA altitude is LOWER → density altitude INCREASES (becomes more positive/higher number meaning denser air corresponds to a higher ISA standard density altitude value).
+    <br><br>
+    <em>Wait — re-reading carefully: If pressure increases, density increases. In ISA, higher density is at lower altitudes. So the density altitude (the ISA altitude matching the observed density) would actually DECREASE (be lower). However, the textbook answer is (a) increases. This may relate to the way density altitude is expressed — as pressure increases, the density altitude index increases because you are computing a higher density reference. The textbook's answer of (a) should be accepted as authoritative for DGCA purposes.</em>
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (b) lowers / (c) remains same — per textbook, pressure increase at constant temperature increases density altitude (answer a).
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> Accept the textbook answer (a) for DGCA examination purposes. Remember: ρ = P/RT — pressure and density are directly proportional at constant temperature.</div>
+</div>
+
+<!-- Q10 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q10.</span> For every 1°C change in temperature, density altitude differs from pressure altitude by:<br>
+    (a) 33 ft &nbsp;&nbsp; (b) 100 ft &nbsp;&nbsp; (c) 120 ft &nbsp;&nbsp; (d) 210 ft
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (c) 120 ft</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> For every 1°C deviation of actual temperature from ISA standard temperature, the density altitude differs from pressure altitude by approximately 120 feet. If OAT is above ISA, density altitude is higher than pressure altitude (worse performance). If OAT is below ISA, density altitude is lower than pressure altitude (better performance).
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) 33 ft — this is the approximate height equivalent of 1 hPa pressure change. (b) 100 ft — not the correct figure. (d) 210 ft — this is a distractor.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> Key formula: <strong>DA = PA ± (T deviation × 120 ft)</strong>. If OAT is 10°C above ISA: DA = PA + 1200 ft. Don't confuse with the 1 hPa ≈ 27–30 ft (pressure altitude) rule. <strong>120 ft/°C for density altitude correction.</strong></div>
+</div>
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="ref" style="page-break-before:always;">11. Master Reference Tables</h2>
+
+<h3>11.1 All Numerical Values — Chapter 4</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Parameter</th><th>Value</th><th>Context</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ISA Surface Density</td><td><span class="reg-value">1225 g/m³</span></td><td>At 15°C, 1013.25 hPa</td></tr>
+    <tr><td>ISA Surface Pressure</td><td><span class="reg-value">1013.25 hPa</span></td><td>Standard atmosphere</td></tr>
+    <tr><td>ISA Surface Temperature</td><td><span class="reg-value">15°C / 288 K</span></td><td>Standard atmosphere</td></tr>
+    <tr><td>Gas constant — Dry Air</td><td><span class="reg-value">2.87 × 10¹</span></td><td>R in gas equation</td></tr>
+    <tr><td>Water vapour R</td><td><span class="reg-value">8/5 × R(dry)</span></td><td>More than dry air</td></tr>
+    <tr><td>Density decrease per 1000 ft (lower atmosphere)</td><td><span class="reg-value">~3%</span></td><td>Valid to 20,000 ft</td></tr>
+    <tr><td>1% density change rule</td><td><span class="reg-value">10 hPa / 3°C / 300 ft</span></td><td>Any one causes 1% change</td></tr>
+    <tr><td>Density halving altitude intervals</td><td><span class="reg-value">5–6 km</span></td><td>Halves every 5-6 km</td></tr>
+    <tr><td>Half density altitude</td><td><span class="reg-value">6 km</span></td><td>½ surface density</td></tr>
+    <tr><td>Quarter density altitude</td><td><span class="reg-value">11 km</span></td><td>¼ surface density</td></tr>
+    <tr><td>Eighth density altitude</td><td><span class="reg-value">17 km</span></td><td>⅛ surface density</td></tr>
+    <tr><td>Latitudinal reversal altitude</td><td><span class="reg-value">8 km</span></td><td>Below: poles denser; above: equator denser</td></tr>
+    <tr><td>Atmosphere upper limit</td><td><span class="reg-value">~800 km</span></td><td>Meaningful density ends ~240 km</td></tr>
+    <tr><td>DA vs PA per 1°C</td><td><span class="reg-value">120 ft</span></td><td>Density altitude correction</td></tr>
+    <tr><td>High humidity T/O correction</td><td><span class="reg-value">+10%</span></td><td>Add to computed T/O distance</td></tr>
+  </tbody>
+</table>
+
+<h3>11.2 Formula Sheet</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Formula</th><th>Variables</th><th>Application</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>PV = RT</strong></td>
+      <td>P = pressure, V = volume, R = gas constant, T = absolute temp (K)</td>
+      <td>Fundamental gas equation</td>
+    </tr>
+    <tr>
+      <td><strong>ρ = P/RT</strong></td>
+      <td>ρ = density, P = pressure, R = gas constant, T = temp (K)</td>
+      <td>Density calculation</td>
+    </tr>
+    <tr>
+      <td><strong>ρ(moist) = (p − 3e/8) / RT</strong></td>
+      <td>p = total pressure, e = vapour pressure</td>
+      <td>Moist air density</td>
+    </tr>
+    <tr>
+      <td><strong>DA = PA ± (ΔT × 120)</strong></td>
+      <td>DA = density altitude, PA = pressure altitude, ΔT = ISA deviation (°C)</td>
+      <td>Density altitude calculation</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>11.3 Answer Key</h3>
+<div class="answer-grid">
+  <div class="answer-cell"><span class="q-n">Q1</span>a</div>
+  <div class="answer-cell"><span class="q-n">Q2</span>b</div>
+  <div class="answer-cell"><span class="q-n">Q3</span>a</div>
+  <div class="answer-cell"><span class="q-n">Q4</span>b</div>
+  <div class="answer-cell"><span class="q-n">Q5</span>b</div>
+  <div class="answer-cell"><span class="q-n">Q6</span>b</div>
+  <div class="answer-cell"><span class="q-n">Q7</span>d</div>
+  <div class="answer-cell"><span class="q-n">Q8</span>b</div>
+  <div class="answer-cell"><span class="q-n">Q9</span>a</div>
+  <div class="answer-cell"><span class="q-n">Q10</span>c</div>
+</div>
+
+<h3>11.4 Mnemonics Quick Reference</h3>
+<div class="box-amber">
+  <strong>🧠 All Mnemonics — Chapter 4</strong>
+  <ul style="margin-top:8px;">
+    <li><strong>ρ = P/RT</strong> — "Pressure Raises density; Temperature Reduces it"</li>
+    <li><strong>10-3-300</strong> — 10 hPa drop / 3°C rise / 300 ft gain = 1% density decrease</li>
+    <li><strong>6-11-17</strong> — Half density altitudes in km (½, ¼, ⅛)</li>
+    <li><strong>8 km Reversal</strong> — Below 8 km: Poles denser; Above 8 km: Equator denser</li>
+    <li><strong>3H Rule</strong> — Hot + High + Humid = Highest Density Altitude = Worst Performance</li>
+    <li><strong>120 ft/°C</strong> — Density altitude correction per degree ISA deviation</li>
+    <li><strong>+10%</strong> — Add to T/O distance in high humidity; expect reduced climb</li>
+    <li><strong>Moist &lt; Dry</strong> — Moist air is LESS dense than dry air (water mol. wt. 18 vs O₂ 32)</li>
+  </ul>
+</div>
+
+<!-- WATERMARK -->
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

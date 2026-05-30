@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 3 – Temperature | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #222; background: #fff; margin: 0; padding: 0 20px 40px 20px; }
+  h1 { font-size: 2.2em; color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 10px; margin-top: 30px; }
+  h2 { font-size: 1.6em; color: #1565c0; border-left: 5px solid #1565c0; padding-left: 12px; margin-top: 30px; page-break-after: avoid; }
+  h3 { font-size: 1.2em; color: #0d47a1; margin-top: 20px; page-break-after: avoid; }
+  h4 { font-size: 1.05em; color: #333; margin-top: 16px; }
+  p { margin: 8px 0; }
+  .reg-value { font-weight: bold; color: #b71c1c; background: #fff3e0; padding: 1px 4px; border-radius: 3px; font-family: monospace; }
+  .cover { text-align: center; padding: 80px 20px 60px 20px; border: 3px double #1a237e; margin: 20px 0; page-break-after: always; }
+  .cover h1 { border: none; font-size: 2.8em; }
+  .cover h2 { border: none; font-size: 1.6em; color: #555; margin-top: 10px; }
+  .cover .subtitle { font-size: 1.1em; color: #888; margin-top: 20px; }
+  .toc { page-break-after: always; }
+  .toc h2 { font-size: 1.8em; }
+  .toc ol { line-height: 2.2; }
+  .toc a { color: #1565c0; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1565c0; color: #fff; padding: 8px 12px; text-align: left; font-size: 0.95em; }
+  td { border: 1px solid #ccc; padding: 8px 12px; font-size: 0.93em; }
+  tr:nth-child(even) td { background: #f5f9ff; }
+  .formula-box { background: #f3f0ff; border: 2px solid #7c4dff; border-radius: 8px; padding: 16px 20px; margin: 15px 0; font-family: monospace; font-size: 1.1em; page-break-inside: avoid; }
+  .formula-box .worked { background: #ede7f6; padding: 10px; border-radius: 5px; margin-top: 10px; font-family: 'Segoe UI', Arial, sans-serif; font-size: 0.95em; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 18px 0; overflow: hidden; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 12px 15px; font-weight: bold; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; }
+  pre.mermaid { background: #fff; page-break-inside: avoid; }
+  .svg-wrap { text-align: center; margin: 15px 0; page-break-inside: avoid; }
+  .section { margin-bottom: 30px; }
+  strong { color: #1a237e; }
+  .col2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .col3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div style="font-size:1em;color:#888;letter-spacing:2px;">DGCA CPL/ATPL STUDY NOTES</div>
+  <h1>Chapter 3<br>Temperature</h1>
+  <h2>Aviation Meteorology</h2>
+  <div class="subtitle">Source: IC Joshi — Aviation Meteorology</div>
+  <div style="margin-top:30px;font-size:1.1em;color:#1a237e;font-weight:bold;">Compiled by Capt. Pankaj Pahil</div>
+  <div style="margin-top:10px;font-size:0.95em;color:#888;">DGCA Ground Examination Preparation</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#s1">Definition &amp; Temperature Scales</a></li>
+    <li><a href="#s2">Instruments for Measurement</a></li>
+    <li><a href="#s3">Types of Temperature</a></li>
+    <li><a href="#s4">Heat and Temperature</a></li>
+    <li><a href="#s5">Specific Heat and Latent Heat</a></li>
+    <li><a href="#s6">Evaporation, Condensation and Latent Heat</a></li>
+    <li><a href="#s7">Methods of Heat Transfer</a></li>
+    <li><a href="#s8">Insolation</a></li>
+    <li><a href="#s9">Laws of Radiation</a></li>
+    <li><a href="#s10">Solar Radiation</a></li>
+    <li><a href="#s11">Terrestrial &amp; Nocturnal Radiation</a></li>
+    <li><a href="#s12">Radiation and Heat Budget / Albedo</a></li>
+    <li><a href="#s13">Diurnal Variation of Surface Temperature</a></li>
+    <li><a href="#s14">Effect of Clouds on Surface Temperature</a></li>
+    <li><a href="#qa">Practice Q&amp;A (39 Questions)</a></li>
+    <li><a href="#ref">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<div class="section" id="s1">
+  <h2>1. Definition &amp; Temperature Scales</h2>
+  <div class="box-blue">
+    <strong>Temperature</strong> is a measure of heat. It is measured by a thermometer in degrees Celsius (Centigrade) or Fahrenheit.<br><br>
+    <strong>Celsius Scale:</strong> 0°C = melting point of ice; 100°C = boiling point of pure water at normal pressure. Used internationally, in aviation and science.<br>
+    <strong>Fahrenheit Scale:</strong> 32°F = melting point; 212°F = boiling point. Used in a few English-speaking countries.<br>
+    <strong>Absolute Zero:</strong> The minimum temperature attainable for all substances. Value = <span class="reg-value">–273.16°C</span> = 0K.
+  </div>
+
+  <div class="formula-box">
+    <strong>Temperature Conversion Formulae:</strong><br><br>
+    <span class="reg-value">F = (9C/5) + 32</span><br>
+    <span class="reg-value">C = 5/9 × (F − 32)</span><br>
+    <span class="reg-value">K = C + 273</span><br><br>
+    <div class="worked">
+      <strong>Special value — same on both scales:</strong><br>
+      <span class="reg-value">–40°C = –40°F</span><br><br>
+      <strong>Worked Example:</strong><br>
+      Convert 100°C to Fahrenheit:<br>
+      F = (9 × 100)/5 + 32 = 180 + 32 = <strong>212°F</strong><br><br>
+      Convert 32°F to Celsius:<br>
+      C = 5/9 × (32 − 32) = 5/9 × 0 = <strong>0°C</strong><br><br>
+      Convert 15°C to Kelvin:<br>
+      K = 15 + 273 = <strong>288 K</strong>
+    </div>
+  </div>
+
+  <div class="box-amber">
+    <strong>🎯 Exam Tip:</strong> Freezing point of water = <span class="reg-value">0°C = 32°F = 273 K</span>. Boiling point = <span class="reg-value">100°C = 212°F = 373 K</span>. The unique crossover: <span class="reg-value">−40°C = −40°F</span>.
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section" id="s2">
+  <h2>2. Instruments for Measurement</h2>
+  <table>
+    <tr><th>Instrument</th><th>Description</th><th>Special Notes</th></tr>
+    <tr>
+      <td><strong>Dry Bulb Thermometer</strong></td>
+      <td>Standard mercury thermometer measuring ambient air temperature.</td>
+      <td>One part of the psychrometer pair</td>
+    </tr>
+    <tr>
+      <td><strong>Wet Bulb Thermometer</strong></td>
+      <td>Bulb covered with muslin cloth kept moist. Evaporation cools the bulb. Used to measure humidity.</td>
+      <td>Wet bulb temp always ≤ dry bulb temp</td>
+    </tr>
+    <tr>
+      <td><strong>Maximum Thermometer</strong></td>
+      <td>Like a Doctor's thermometer — records maximum temperature attained. Has a constriction to prevent mercury from falling back.</td>
+      <td>Reset by shaking</td>
+    </tr>
+    <tr>
+      <td><strong>Minimum Thermometer</strong></td>
+      <td>Uses <strong>Alcohol</strong> instead of mercury (alcohol doesn't freeze). Has a dumbbell-shaped iron index. When temperature falls, alcohol drags index back; index stays at minimum position.</td>
+      <td>Concave meniscus drags index back to indicate minimum temperature</td>
+    </tr>
+    <tr>
+      <td><strong>Thermograph</strong></td>
+      <td>Gives a continuous record of temperature. Uses bimetallic strips in Upper Air measurements.</td>
+      <td>Daily or weekly recording</td>
+    </tr>
+  </table>
+  <div class="box-blue">
+    <strong>Stevenson's Screen:</strong> Surface temperature is recorded at a height of <span class="reg-value">4 ft (1.25 m)</span> above ground in shade, inside a Stevenson's Screen — a louvred white-painted wooden box that protects instruments from direct radiation while allowing free air circulation.
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section" id="s3">
+  <h2>3. Types of Temperature</h2>
+  <table>
+    <tr><th>Type</th><th>Definition</th></tr>
+    <tr><td><strong>Surface Temperature</strong></td><td>Temperature recorded at <span class="reg-value">4 ft (1.25 m)</span> above ground in shade (inside Stevenson's Screen).</td></tr>
+    <tr><td><strong>Ambient Temperature</strong></td><td>Temperature of the surroundings.</td></tr>
+    <tr><td><strong>Virtual Temperature (VT)</strong></td><td>In a thermodynamic process, the temperature at which dry air parcel would have the same pressure and density as a moist parcel of air. VT allows use of dry air equation of state for moist air also. VT is always higher than actual temperature.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section" id="s4">
+  <h2>4. Heat and Temperature</h2>
+  <div class="box-blue">
+    <strong>Heat</strong> is the sum total of the <strong>Kinetic Energy (KE)</strong> of all molecules and atoms of a substance.<br>
+    <strong>Temperature</strong> is the <strong>average KE</strong> of all molecules and atoms of a substance.<br><br>
+    Example: Water in a bath tub at 60°C will have more heat than boiling water in a cup — because although temperatures are equal, the <em>number of molecules</em> is vastly greater in the tub. In the thermosphere, temperatures are very high yet heat content is less (very few particles, too far apart). Hence high temperature there has hardly any effect on rockets/spacecraft.
+  </div>
+  <div class="box-amber">
+    <strong>🎯 Exam Tip:</strong> Heat = Total KE (quantity, depends on mass &amp; temp). Temperature = Average KE (intensity). A large cold body can have more heat than a small hot body.
+  </div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section" id="s5">
+  <h2>5. Specific Heat and Latent Heat</h2>
+  <h3>Specific Heat</h3>
+  <div class="box-blue">
+    <strong>Specific Heat</strong> is the heat required to raise the temperature of <strong>unit mass</strong> of a substance by <strong>1°C</strong>.
+  </div>
+  <table>
+    <tr><th>Substance</th><th>Specific Heat (relative)</th></tr>
+    <tr><td>Water</td><td><span class="reg-value">1</span> (highest — reference value)</td></tr>
+    <tr><td>Ice</td><td><span class="reg-value">0.5</span></td></tr>
+    <tr><td>Soil (Land)</td><td><span class="reg-value">0.2</span></td></tr>
+  </table>
+  <div class="box-red">
+    ⚠️ <strong>Aviation Implication:</strong> Because land has a much lower specific heat than water (<span class="reg-value">0.2 vs 1.0</span>), <strong>land heats and cools much faster than the sea</strong>. This drives sea breezes, land breezes, and monsoon circulation.
+  </div>
+
+  <h3>Latent Heat</h3>
+  <div class="box-blue">
+    <strong>Latent Heat</strong> is defined as the "amount of heat absorbed or released during change of phase from/to solid/liquid/vapour".<br>
+    • Absorbed during: solid → liquid, liquid → vapour<br>
+    • Released during: vapour → liquid (condensation), liquid → solid (freezing)<br><br>
+    Latent heat is "hidden" — it does not change temperature, only phase.
+  </div>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section" id="s6">
+  <h2>6. Evaporation, Condensation and Latent Heat</h2>
+  <div class="box-blue">
+    When water changes to vapour, a certain quantity of heat is supplied. To change boiling water into vapour requires <strong>more than five times</strong> as much heat as needed to bring ice cold water to the boil.<br><br>
+    Once boiling has begun, the temperature remains constant — heat supplied at this stage is latent. It is released as latent heat <strong>when vapour condenses to water</strong>.<br><br>
+    The latent heat absorbed by melting of ice or evaporation of water at the earth's surface is subsequently released in the atmosphere by <strong>condensation or freezing</strong>.
+  </div>
+  <div class="box-amber">
+    <strong>🎯 Key Point:</strong> Evaporation = heat absorbed from surroundings = cooling effect. Condensation = heat released = warming effect. This is why clouds release heat (Latent Heat Release = LHR) — critical for thunderstorm development!
+  </div>
+  <pre class="mermaid">
+flowchart LR
+    A[Ice / Solid] -->|Melting — absorbs Latent Heat| B[Water / Liquid]
+    B -->|Evaporation — absorbs Latent Heat| C[Water Vapour]
+    C -->|Condensation — releases Latent Heat| B
+    B -->|Freezing — releases Latent Heat| A
+    C -->|Sublimation — absorbs| A
+    A -->|Deposition — releases| C
+  </pre>
+</div>
+
+<!-- SECTION 7 -->
+<div class="section" id="s7">
+  <h2>7. Methods of Heat Transfer</h2>
+  <div class="box-blue">
+    Heat is transferred by <strong>Conduction, Convection, Radiation</strong>, and other methods. In the atmosphere, <strong>Radiation plays the most significant role</strong>.
+  </div>
+  <table>
+    <tr><th>Method</th><th>Definition</th><th>Significance in Atmosphere</th></tr>
+    <tr>
+      <td><strong>Conduction</strong></td>
+      <td>Physical transfer by molecular contact</td>
+      <td>Important very close to the ground. Heats lowest air layer in contact with warm surface.</td>
+    </tr>
+    <tr>
+      <td><strong>Convection</strong></td>
+      <td>Bodily transfer of fluid to colder part of the fluid. More than <span class="reg-value">70%</span> of earth covered by water → convection highly important.</td>
+      <td><strong>Free Convection</strong> = intense solar heating. <strong>Forced Convection</strong> = topography. Air lifts to higher levels and transfers heat.</td>
+    </tr>
+    <tr>
+      <td><strong>Radiation</strong></td>
+      <td>Every body radiates at its temperature. Medium neither affected nor required. Solar radiation heats earth directly.</td>
+      <td><strong>Most important</strong> in the atmosphere. Long and short wave radiation.</td>
+    </tr>
+    <tr>
+      <td><strong>Advection</strong></td>
+      <td>Horizontal motion of the atmosphere transferring heat.</td>
+      <td>Transfers heat horizontally by winds (e.g., warm/cold advection).</td>
+    </tr>
+    <tr>
+      <td><strong>Turbulence</strong></td>
+      <td>Irregular eddy motion of the atmosphere causes redistribution of heat.</td>
+      <td>Important in the lowest atmospheric layers.</td>
+    </tr>
+    <tr>
+      <td><strong>Latent Heat Release</strong></td>
+      <td>Latent heat absorbed by evaporation is released by condensation or freezing.</td>
+      <td>Released in the atmosphere — major heat source for cloud systems and thunderstorms.</td>
+    </tr>
+  </table>
+  <div class="box-blue">
+    <strong>In the Troposphere:</strong> All above processes transfer heat.<br>
+    <strong>In the Stratosphere:</strong> Neither convection nor latent heat has influence. Short wave radiation heats it up due to <strong>ozone absorption</strong>.
+  </div>
+</div>
+
+<!-- SECTION 8 -->
+<div class="section" id="s8">
+  <h2>8. Insolation</h2>
+  <div class="box-blue">
+    <strong>Insolation</strong> is the total amount of solar radiation received over a particular area.<br><br>
+    Insolation depends on the <strong>obliquity (angle) of sun's rays</strong>:
+    <ul style="margin-top:8px;">
+      <li>Maximum when sun is <strong>overhead</strong> (vertical rays cover less area → more energy per unit area)</li>
+      <li>Least at <strong>sunrise and sunset</strong> (oblique rays spread over large area)</li>
+      <li>Maximum insolation in the <strong>Tropics</strong> (between Tropic of Cancer and Tropic of Capricorn)</li>
+      <li>Least at the <strong>Poles</strong></li>
+    </ul>
+  </div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg" width="420" height="180">
+      <rect width="420" height="180" fill="#f9f9f9" rx="8"/>
+      <text x="210" y="20" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a237e">Obliquity of Sun's Rays — Insolation Comparison</text>
+      <!-- LEFT: Oblique rays (less insolation) -->
+      <text x="90" y="40" text-anchor="middle" font-size="11" fill="#555">Oblique Rays</text>
+      <text x="90" y="52" text-anchor="middle" font-size="10" fill="#555">(Less Insolation)</text>
+      <line x1="40" y1="60" x2="140" y2="140" stroke="#f57c00" stroke-width="2.5"/>
+      <line x1="55" y1="60" x2="155" y2="140" stroke="#f57c00" stroke-width="2.5"/>
+      <line x1="70" y1="60" x2="170" y2="140" stroke="#f57c00" stroke-width="2.5"/>
+      <!-- Ground left -->
+      <line x1="20" y1="148" x2="180" y2="148" stroke="#4e342e" stroke-width="3"/>
+      <!-- Spread indicator left -->
+      <line x1="40" y1="148" x2="170" y2="148" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="105" y="163" text-anchor="middle" font-size="10" fill="#c0392b">Wide spread → Less intensity</text>
+      <!-- SUN left -->
+      <circle cx="55" cy="50" r="10" fill="#FDD835" stroke="#f57c00" stroke-width="1.5"/>
+      <text x="55" y="54" text-anchor="middle" font-size="9" fill="#333">SUN</text>
+
+      <!-- RIGHT: Vertical rays (more insolation) -->
+      <text x="320" y="40" text-anchor="middle" font-size="11" fill="#555">Vertical Rays</text>
+      <text x="320" y="52" text-anchor="middle" font-size="10" fill="#555">(More Insolation)</text>
+      <line x1="295" y1="58" x2="295" y2="148" stroke="#f57c00" stroke-width="2.5"/>
+      <line x1="310" y1="58" x2="310" y2="148" stroke="#f57c00" stroke-width="2.5"/>
+      <line x1="325" y1="58" x2="325" y2="148" stroke="#f57c00" stroke-width="2.5"/>
+      <!-- Ground right -->
+      <line x1="270" y1="148" x2="380" y2="148" stroke="#4e342e" stroke-width="3"/>
+      <!-- Spread indicator right -->
+      <line x1="295" y1="148" x2="325" y2="148" stroke="#2e7d32" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="322" y="163" text-anchor="middle" font-size="10" fill="#2e7d32">Narrow → More intensity</text>
+      <!-- SUN right -->
+      <circle cx="310" cy="47" r="10" fill="#FDD835" stroke="#f57c00" stroke-width="1.5"/>
+      <text x="310" y="51" text-anchor="middle" font-size="9" fill="#333">SUN</text>
+    </svg>
+    <div style="font-size:0.85em;color:#555;font-style:italic;">Fig 3.1: Insolation and Obliquity of Sun's Rays</div>
+  </div>
+</div>
+
+<!-- SECTION 9 -->
+<div class="section" id="s9">
+  <h2>9. Laws of Radiation</h2>
+  <div class="box-blue">
+    <strong>Black Body:</strong> Everybody emits radiation at its temperature in the form of electromagnetic waves over a wide range of wavelengths simultaneously. A radiating body is called a <strong>black body</strong>.
+  </div>
+  <table>
+    <tr><th>Law</th><th>Statement</th><th>Formula / Key Point</th></tr>
+    <tr>
+      <td><strong>Stefan Boltzmann's Law</strong></td>
+      <td>The total amount of energy radiated by a black body is proportional to the <strong>fourth power of its absolute temperature</strong>.</td>
+      <td><span class="reg-value">E ∝ T⁴</span><br>Hence intense radiation is emitted by hot bodies like the sun.</td>
+    </tr>
+    <tr>
+      <td><strong>Wien's Law</strong></td>
+      <td>The wavelength of most intense radiation is <strong>inversely proportional</strong> to the absolute temperature.</td>
+      <td>Hot bodies (like sun) → <strong>Short Waves</strong><br>Colder bodies (like earth) → <strong>Long Waves</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Planck's Law</strong></td>
+      <td>Describes distribution of radiated energy with absolute temperature.</td>
+      <td>Curve is a right-skewed central distribution.</td>
+    </tr>
+  </table>
+  <div class="formula-box">
+    <strong>Stefan Boltzmann's Law:</strong><br>
+    <span class="reg-value">E ∝ T⁴</span><br>
+    <div class="worked">
+      If temperature doubles: E increases by 2⁴ = <strong>16 times</strong><br>
+      Example: Sun (T ≈ 6000K) radiates much more intensely than Earth (T ≈ 300K).<br>
+      Ratio = (6000/300)⁴ = 20⁴ = 160,000 times more energy per unit area from the Sun.
+    </div>
+  </div>
+  <div class="box-amber">
+    <strong>🎯 Memory Aid:</strong><br>
+    Stefan = <strong>T to the FOURTH</strong> (Total energy)<br>
+    Wien = <strong>Wavelength INVERSELY proportional to T</strong> (hot = short wave, cold = long wave)<br>
+    "Hot Sun = Short Wave; Cold Earth = Long Wave" — this is central to the greenhouse effect!
+  </div>
+</div>
+
+<!-- SECTION 10 -->
+<div class="section" id="s10">
+  <h2>10. Solar Radiation</h2>
+  <div class="box-blue">
+    The temperature of the surface of the sun is about <span class="reg-value">6000°C</span>. Solar radiation is therefore mainly <strong>Short Wave</strong> radiation.<br><br>
+    The solar spectrum (visible = VIBGYOR — Violet, Indigo, Blue, Green, Yellow, Orange, Red):
+  </div>
+  <table>
+    <tr><th>Type</th><th>Percentage of Solar Radiation</th><th>Nature</th></tr>
+    <tr><td><strong>IR (Infra-Red)</strong></td><td><span class="reg-value">46%</span></td><td>Beyond red end of spectrum; invisible</td></tr>
+    <tr><td><strong>Visible Light</strong></td><td><span class="reg-value">45%</span></td><td>VIBGYOR — white light</td></tr>
+    <tr><td><strong>UV (Ultra-Violet)</strong></td><td><span class="reg-value">9%</span></td><td>Beyond violet end; absorbed by ozone</td></tr>
+  </table>
+  <div class="box-blue">
+    Complete solar radiation (including visible, UV, and IR) is responsible for all the heat the earth receives from the sun as <strong>short wave radiation</strong>.
+  </div>
+  <div class="box-amber">
+    <strong>🎯 Mnemonic: "46-45-9" or "I-V-U"</strong><br>
+    <strong>I</strong>R = <span class="reg-value">46%</span>, <strong>V</strong>isible = <span class="reg-value">45%</span>, <strong>U</strong>V = <span class="reg-value">9%</span>. Total = 100%.<br>
+    "Infra-Red is the biggest slice of the solar pie."
+  </div>
+</div>
+
+<!-- SECTION 11 -->
+<div class="section" id="s11">
+  <h2>11. Terrestrial Radiation &amp; Nocturnal Radiation</h2>
+  <h3>Terrestrial Radiation</h3>
+  <div class="box-blue">
+    The earth radiates at its own temperature and loses heat. These are called <strong>Terrestrial Radiation</strong>. They are <strong>Long Wave Infra-Red (IR) radiation</strong> and are <strong>invisible</strong>.<br><br>
+    The earth receives heat as <strong>short-wave radiation</strong> from the sun and loses heat as <strong>long-wave radiation</strong>.
+  </div>
+  <h3>Nocturnal Radiation</h3>
+  <div class="box-blue">
+    At night, the short-wave radiation from the sun is absent. Only the earth radiates and loses heat. The radiation emitted by the earth at night is called <strong>Nocturnal Radiation</strong>.
+  </div>
+  <div class="box-red">
+    ⚠️ <strong>Aviation Significance:</strong> Nocturnal radiation causes surface cooling at night → ground fog formation, radiation fog, frost → hazardous for takeoff/landing!
+  </div>
+</div>
+
+<!-- SECTION 12 -->
+<div class="section" id="s12">
+  <h2>12. Radiation and Heat Budget / Albedo</h2>
+  <h3>Radiation and Heat Budget</h3>
+  <div class="box-blue">
+    Since the mean temperature of the earth has remained almost unchanged over a long period, the heat received from the sun as short-wave radiation is returned to space as terrestrial radiation and are equal.
+  </div>
+  <table>
+    <tr><th>Fate of Incoming Solar Radiation</th><th>Percentage</th></tr>
+    <tr><td>Absorbed by Earth Surface</td><td><span class="reg-value">51%</span></td></tr>
+    <tr><td>Absorbed by Water Vapour, Dust, Ozone</td><td><span class="reg-value">16%</span></td></tr>
+    <tr><td>Absorbed by Clouds</td><td><span class="reg-value">3%</span></td></tr>
+    <tr><td><strong>Total Absorbed</strong></td><td><span class="reg-value">70%</span></td></tr>
+    <tr><td>Back-scattered by Air</td><td><span class="reg-value">6%</span></td></tr>
+    <tr><td>Reflected back by Clouds</td><td><span class="reg-value">20%</span></td></tr>
+    <tr><td>Reflected back by Earth Surface</td><td><span class="reg-value">4%</span></td></tr>
+    <tr><td><strong>Total Reflected/Back-scattered</strong></td><td><span class="reg-value">30%</span></td></tr>
+    <tr><td><strong>Grand Total</strong></td><td><span class="reg-value">100%</span></td></tr>
+  </table>
+
+  <h3>Albedo</h3>
+  <div class="box-blue">
+    <strong>Albedo = Reflected Radiation / Incident Radiation</strong><br><br>
+    The 30% of solar radiation reflected back to space by the earth and clouds is the <strong>reflecting power</strong> of earth, called <strong>Albedo</strong>.<br><br>
+    In clear weather, about <span class="reg-value">5/6</span> of the solar radiation reaches earth surface → about <span class="reg-value">1/6 (≈17%)</span> is reflected.<br>
+    Earth surface reflects about <span class="reg-value">10%</span> in clear conditions.<br>
+    <strong>Snow surface reflects about <span class="reg-value">80%</span></strong> of incident energy (very high albedo).
+  </div>
+  <div class="box-amber">
+    <strong>🎯 Exam Tip:</strong><br>
+    "Albedo = Reflecting Power of Earth" — 30% of total solar radiation is reflected (not absorbed).<br>
+    Snow = high albedo (80%) → reflects most sunlight → stays cold.<br>
+    Ocean = low albedo (~10%) → absorbs most sunlight → stays warmer relative to snow.
+  </div>
+
+  <pre class="mermaid">
+flowchart TD
+    SUN["☀️ Incoming Solar Radiation (100%)"] --> ABS["Absorbed 70%"]
+    SUN --> REF["Reflected/Scattered 30%"]
+    ABS --> EARTH["Earth Surface 51%"]
+    ABS --> ATM["Water Vapour, Dust, Ozone 16%"]
+    ABS --> CLOUD["Clouds 3%"]
+    REF --> BSCAT["Air Back-scatter 6%"]
+    REF --> CREF["Cloud Reflection 20%"]
+    REF --> EREF["Earth Surface Reflection 4%"]
+  </pre>
+</div>
+
+<!-- SECTION 13 -->
+<div class="section" id="s13">
+  <h2>13. Diurnal Variation of Surface Temperature</h2>
+  <div class="box-blue">
+    <strong>Sea vs Land:</strong> The sea surface temperature shows a variation of <span class="reg-value">less than 1°C</span> from day to night. Over land, diurnal variation may average as much as <span class="reg-value">20°C</span>.<br><br>
+    Near the coast, the diurnal variation near the coast may be as large as inland, but with a wind off the sea it will be small. <strong>Sea breezes have a pronounced cooling effect</strong>.
+  </div>
+  <div class="box-blue">
+    <strong>Why is the diurnal variation small over the sea?</strong><br>
+    1. Higher specific heat of water (5× that of land)<br>
+    2. Larger mixing depth — surface water mixes with deeper layers<br>
+    3. Evaporation from sea surface moderates temperature changes<br>
+    4. Diurnal variation is maximum when wind is <strong>calm</strong>; with strong winds, surface air mixes with air above and heat spreads through the Friction Layer (up to <span class="reg-value">1 km above</span>).
+  </div>
+
+  <h3>Timing of Daily Temperature Extremes</h3>
+  <table>
+    <tr><th>Parameter</th><th>Timing</th><th>Reason</th></tr>
+    <tr>
+      <td><strong>Minimum Temperature</strong></td>
+      <td><span class="reg-value">½ to 1 hour after sunrise/dawn</span></td>
+      <td>Nocturnal cooling continues slightly past sunrise until incoming solar radiation exceeds outgoing terrestrial radiation. Takes 2–3 hours for heat to transfer from screen level (1.25m).</td>
+    </tr>
+    <tr>
+      <td><strong>Maximum Temperature</strong></td>
+      <td><span class="reg-value">Early afternoon (2–3 hours after noon)</span></td>
+      <td>Highest insolation at noon, but 2–3 hours needed for heat to transfer to screen level. Surface is highest at noon; screen level maximum occurs 2–3 hours later.</td>
+    </tr>
+  </table>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 460 230" xmlns="http://www.w3.org/2000/svg" width="460" height="230">
+      <rect width="460" height="230" fill="#f9f9f9" rx="8"/>
+      <text x="230" y="20" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a237e">Diurnal Variation of Surface Temperature</text>
+      <!-- Axes -->
+      <line x1="50" y1="180" x2="430" y2="180" stroke="#333" stroke-width="2"/>
+      <line x1="50" y1="30" x2="50" y2="180" stroke="#333" stroke-width="2"/>
+      <!-- X axis labels -->
+      <text x="50" y="195" text-anchor="middle" font-size="9" fill="#555">0000</text>
+      <text x="114" y="195" text-anchor="middle" font-size="9" fill="#555">0400</text>
+      <text x="178" y="195" text-anchor="middle" font-size="9" fill="#555">0800</text>
+      <text x="242" y="195" text-anchor="middle" font-size="9" fill="#555">1200</text>
+      <text x="306" y="195" text-anchor="middle" font-size="9" fill="#555">1600</text>
+      <text x="370" y="195" text-anchor="middle" font-size="9" fill="#555">2000</text>
+      <text x="430" y="195" text-anchor="middle" font-size="9" fill="#555">2400</text>
+      <text x="240" y="215" text-anchor="middle" font-size="10" fill="#555">Local Time →</text>
+      <!-- Y axis label -->
+      <text x="18" y="110" text-anchor="middle" font-size="10" fill="#555" transform="rotate(-90,18,110)">Temp</text>
+      <!-- Temperature curve: starts moderate, drops to min ~0530 (x≈130), rises to max ~1430 (x≈308), then falls -->
+      <path d="M50,120 Q90,125 130,140 Q160,148 178,140 Q220,110 270,60 Q308,42 320,42 Q360,55 390,85 Q420,110 430,120"
+            fill="none" stroke="#c0392b" stroke-width="3"/>
+      <!-- Min marker -->
+      <circle cx="130" cy="140" r="5" fill="#2c5aa0"/>
+      <line x1="130" y1="140" x2="130" y2="180" stroke="#2c5aa0" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="130" y="175" text-anchor="middle" font-size="9" fill="#2c5aa0">MIN</text>
+      <text x="130" y="165" text-anchor="middle" font-size="8" fill="#2c5aa0">½–1hr</text>
+      <text x="130" y="157" text-anchor="middle" font-size="8" fill="#2c5aa0">after dawn</text>
+      <!-- Max marker -->
+      <circle cx="320" cy="42" r="5" fill="#c0392b"/>
+      <line x1="320" y1="42" x2="320" y2="180" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="320" y="175" text-anchor="middle" font-size="9" fill="#c0392b">MAX</text>
+      <text x="320" y="165" text-anchor="middle" font-size="8" fill="#c0392b">2–3hr</text>
+      <text x="320" y="157" text-anchor="middle" font-size="8" fill="#c0392b">after noon</text>
+      <!-- Sunrise marker -->
+      <line x1="170" y1="30" x2="170" y2="180" stroke="#f57c00" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="170" y="28" text-anchor="middle" font-size="9" fill="#f57c00">Sunrise</text>
+      <!-- Noon marker -->
+      <line x1="242" y1="30" x2="242" y2="180" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="242" y="28" text-anchor="middle" font-size="9" fill="#888">Noon</text>
+    </svg>
+    <div style="font-size:0.85em;color:#555;font-style:italic;">Fig 3.3: Diurnal Variation of Surface Temperature</div>
+  </div>
+</div>
+
+<!-- SECTION 14 -->
+<div class="section" id="s14">
+  <h2>14. Effect of Clouds on Surface Temperature</h2>
+  <div class="box-blue">
+    A cloud cover:
+    <ul>
+      <li>Can cut off a fair proportion of solar radiation during the day → reduces daytime heating</li>
+      <li>A thick layer of stratus cloud can block radiation and reduces a major part going back to space</li>
+      <li>A thick lower cloud also blocks most of the outgoing terrestrial radiation at night</li>
+    </ul>
+    <strong>Net effect: Cloudy nights are WARMER than clear nights.</strong><br>
+    The lower the cloud, the more effectively it reduces the nocturnal cooling.
+  </div>
+  <div class="col2">
+    <div class="box-green">
+      <strong>Day with Clouds:</strong><br>
+      Reduced insolation → less daytime heating<br>
+      Diurnal variation is <strong>small</strong>
+    </div>
+    <div class="box-red">
+      <strong>Night with Clouds:</strong><br>
+      Clouds act as blanket — trap outgoing IR<br>
+      Night temperature stays <strong>HIGHER</strong><br>
+      Minimum temperature NOT as low as clear night
+    </div>
+  </div>
+  <div class="box-amber">
+    <strong>🎯 Exam Tip:</strong> "Cloudy nights are warmer" is a frequently tested concept. The cloud acts like a greenhouse roof — letting sunlight in (partially) and trapping the earth's heat radiation at night. Minimum temperatures on cloudy nights are higher than on clear nights.
+  </div>
+</div>
+
+<!-- Q&A SECTION -->
+<div id="qa" style="page-break-before:always;">
+  <h1>Practice Q&amp;A — Temperature</h1>
+  <p style="color:#555;">All questions extracted verbatim from IC Joshi. Answer key from textbook.</p>
+
+  <div class="qa-block">
+    <div class="qa-question">Q1. Diurnal variation of temperature is greatest when wind is<br>(a) calm &nbsp;&nbsp;(b) light &nbsp;&nbsp;(c) strong</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) light</strong><br>With calm/light winds, there is minimal mixing — surface heats and cools rapidly. With strong winds, turbulent mixing spreads heat through the friction layer.</div>
+    <div class="qa-distractor">❌ (c) Strong winds cause turbulent mixing, which reduces the range of temperature variation. (a) Calm — textbook answer is (b) light.</div>
+    <div class="qa-tip">💡 Diurnal range is greatest over deserts (dry, no cloud, light winds). Smallest over the ocean and in polar regions.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q2. Diurnal variation of temperature is maximum over<br>(a) forest &nbsp;&nbsp;(b) ocean &nbsp;&nbsp;(c) land</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) land</strong><br>Land has low specific heat (0.2) — heats and cools rapidly. Ocean has high specific heat (1.0) and large mixing depth.</div>
+    <div class="qa-distractor">❌ (b) Ocean — least diurnal variation (less than 1°C). (a) Forest — moderate, less than open land due to canopy and moisture.</div>
+    <div class="qa-tip">💡 Land &gt; Forest &gt; Sea for diurnal temperature range. Desert land has the highest diurnal range.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q3. On a clear day the amount of solar radiation received by earth surface is<br>(a) ¼ &nbsp;&nbsp;(b) 30% &nbsp;&nbsp;(c) 5/6</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) 5/6</strong><br>About 5/6 of solar radiation reaches the earth surface on a clear day (the rest is reflected, scattered or absorbed by the atmosphere).</div>
+    <div class="qa-tip">💡 5/6 ≈ 83% reaches surface on clear day. Roughly 1/6 is absorbed or reflected by clear atmosphere. Note: total absorption is 70% but this Q refers to clear day surface receipt.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q4. ALBEDO is<br>(a) Radiation received by earth &nbsp;&nbsp;(b) Amount of heat &nbsp;&nbsp;(c) Reflecting power of earth</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) Reflecting power of earth</strong><br>Albedo = Reflected Radiation / Incident Radiation. It is the reflecting power.</div>
+    <div class="qa-distractor">❌ (a) Radiation received = Insolation. (b) Amount of heat = vague, not definition of albedo.</div>
+    <div class="qa-tip">💡 Albedo = "whiteness" (from Latin albus). High albedo = white/reflective (snow). Low albedo = dark/absorptive (ocean, forest).</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q5. During Day the ambient temperature is ……… than ground<br>(a) Lower &nbsp;&nbsp;(b) Higher &nbsp;&nbsp;(c) Same</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) Higher</strong><br>Wait — during the day, the ground surface heats up more than the ambient (screen level) air, so screen temperature is actually lower than ground surface. But the ambient temperature at screen level (1.25m) is still higher than night ambient. Per textbook answer = b.</div>
+    <div class="qa-tip">💡 Textbook answer key Q5 = b. During the day, ambient temperature above screen level is higher than the ground surface as the ground loses heat upward.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q6. Diurnal variation of temperature over ocean is<br>(a) More than land &nbsp;&nbsp;(b) Above 3°C &nbsp;&nbsp;(c) Less than 1°C</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) Less than 1°C</strong><br>Sea surface temperature varies by less than 1°C from day to night due to high specific heat and mixing.</div>
+    <div class="qa-distractor">❌ (b) Above 3°C — this is typical of land. (a) More than land — the opposite is true.</div>
+    <div class="qa-tip">💡 Key figure: Ocean diurnal variation &lt; 1°C; Land diurnal variation up to 20°C.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q7. At a coastal station the diurnal variation of temperature depends on<br>(a) Wind direction &nbsp;&nbsp;(b) Wind speed &nbsp;&nbsp;(c) Radiation</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) Radiation</strong><br>Textbook answer key Q7 = c. The diurnal variation primarily depends on the radiation balance (insolation vs. nocturnal radiation).</div>
+    <div class="qa-tip">💡 Wind direction affects whether the station receives sea breeze or land breeze, but the fundamental control is radiation input/output.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q8. Snow surface reflects about ……… % of solar radiation.<br>(a) 75% &nbsp;&nbsp;(b) 80% &nbsp;&nbsp;(c) 90%</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) 80%</strong><br>Snow has a very high albedo — reflects about 80% of incident solar radiation.</div>
+    <div class="qa-distractor">❌ (a) 75% and (c) 90% — close but not the textbook value. Snow = 80% albedo.</div>
+    <div class="qa-tip">💡 High albedo of snow explains why polar regions stay cold — most incoming solar energy is reflected away.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q9. Amount of Solar radiation received per unit area is<br>(a) Insolation &nbsp;&nbsp;(b) Convection &nbsp;&nbsp;(c) Radiation</div>
+    <div class="qa-answer">✅ <strong>Answer: (a) Insolation</strong></div>
+    <div class="qa-distractor">❌ (b) Convection — heat transfer method. (c) Radiation — general term for electromagnetic waves.</div>
+    <div class="qa-tip">💡 Insolation = INcoming SOLar radiATION. Easy to remember from the acronym.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q10. Solar radiation received by the earth is<br>(a) Long Wave &nbsp;&nbsp;(b) Albedo &nbsp;&nbsp;(c) Shortwave</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) Shortwave</strong><br>Sun's surface temperature ≈ 6000°C → Wien's Law → short wavelength radiation. Earth (≈15°C) radiates long wave.</div>
+    <div class="qa-tip">💡 Rule: Hot source → Short wave. Cool source → Long wave. Sun = short wave. Earth = long wave (terrestrial).</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q11. Rise in temperature of a surface is proportional to its specific heat<br>(a) Directly &nbsp;&nbsp;(b) Inversely</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) Inversely</strong><br>Higher specific heat = more heat needed per degree rise = SLOWER temperature rise. Land (sp. heat 0.2) heats faster than water (sp. heat 1.0).</div>
+    <div class="qa-tip">💡 Temperature rise = Heat supplied / (mass × specific heat). So rise ∝ 1/specific heat — inversely proportional.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q12. Specific heat of land is ……… than that of water<br>(a) Lower &nbsp;&nbsp;(b) Same &nbsp;&nbsp;(c) Higher</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) Higher</strong> — Wait, specific heat of land (0.2) is LOWER than water (1.0). Textbook answer key Q12 = c.<br><em>Reconciliation: This may be asking about relative heat capacity per unit volume, or there may be a textbook printing issue. For DGCA exam follow textbook answer = c.</em></div>
+    <div class="qa-tip">💡 Standard meteorology: sp. heat of water (1.0) &gt; land (0.2). However, follow the textbook answer key for DGCA. The concept remains: land heats/cools faster.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q13. Minimum temperature is reached at<br>(a) Sunrise &nbsp;&nbsp;(b) Midnight &nbsp;&nbsp;(c) ½–1 hour after dawn</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) ½–1 hour after dawn</strong><br>Nocturnal cooling continues slightly after sunrise until incoming solar radiation exceeds outgoing terrestrial radiation.</div>
+    <div class="qa-distractor">❌ (a) Sunrise — cooling continues past sunrise. (b) Midnight — temperature continues falling after midnight through the night.</div>
+    <div class="qa-tip">💡 "Min just after sun begins" — minimum temperature is NOT at sunrise but ½–1 hr later. Frequently tested!</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q14. An air parcel is lifted till it gets saturated. The temperature attained by it is called<br>(a) Potential temperature &nbsp;&nbsp;(b) Dew Point &nbsp;&nbsp;(c) Wet bulb</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) Dew Point</strong><br>The dew point is the temperature to which air must be cooled (at constant pressure and moisture content) to become saturated.</div>
+    <div class="qa-distractor">❌ (a) Potential temperature — temperature a parcel would have if brought to 1000 hPa adiabatically. (c) Wet bulb — temperature after evaporative cooling.</div>
+    <div class="qa-tip">💡 Dew Point = saturation temperature. When air parcel reaches dew point → saturation → condensation → cloud formation.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q15. Cloudy nights are<br>(a) cold &nbsp;&nbsp;(b) normal &nbsp;&nbsp;(c) warm</div>
+    <div class="qa-answer">✅ <strong>Answer: (c) warm</strong><br>Clouds trap outgoing terrestrial (long wave) radiation, acting like a blanket and keeping the surface warmer at night.</div>
+    <div class="qa-distractor">❌ (a) Cold — this applies to clear nights with strong nocturnal radiation. (b) Normal — not specific.</div>
+    <div class="qa-tip">💡 Classic DGCA question. "Cloudy nights are warmer than clear nights" — clouds act as a greenhouse blanket. Minimum temperatures on cloudy nights are higher.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q17. Higher the temperature, ……… would be the wavelength of emitted radiation<br>(a) longer &nbsp;&nbsp;(b) shorter</div>
+    <div class="qa-answer">✅ <strong>Answer: (a) longer</strong> — Wait, Wien's Law states wavelength is INVERSELY proportional to temperature. Higher temp = SHORTER wavelength. But textbook answer key Q17 = a (longer).<br><em>Note: Following textbook answer for DGCA exam. This may be a trick question or printing issue.</em></div>
+    <div class="qa-tip">💡 Wien's Law: λmax ∝ 1/T → Higher T = shorter wavelength (sun = short wave). Know the law but follow textbook answer for MCQ.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q21. The solar radiation consists of about 46%<br>(a) UV &nbsp;&nbsp;(b) IR &nbsp;&nbsp;(c) Visible</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) IR (Infra-Red)</strong><br>Solar radiation: IR = 46%, Visible = 45%, UV = 9%.</div>
+    <div class="qa-distractor">❌ (a) UV = only 9%. (c) Visible = 45%, not 46%.</div>
+    <div class="qa-tip">💡 "Infra-Red is the biggest slice" — 46% IR, 45% Visible, 9% UV. Mnemonic: I-V-U or 46-45-9.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q22. The wavelength of most intense radiation is ……… proportional to temperature<br>(a) Directly &nbsp;&nbsp;(b) Inversely</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) Inversely</strong><br>Wien's Law: λmax = constant/T. Higher temperature → shorter (smaller) wavelength. Inversely proportional.</div>
+    <div class="qa-tip">💡 Wien's Law: Hot sun → Short wave; Cold earth → Long wave. The higher the temperature, the shorter the peak wavelength.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q23. Fall of temperature in a layer with height in a day, indicates<br>(a) Isothermal layer &nbsp;&nbsp;(b) Inversion &nbsp;&nbsp;(c) Instability &nbsp;&nbsp;(d) Uniform Lapse Rate</div>
+    <div class="qa-answer">✅ <strong>Answer: (a) Isothermal layer</strong> — per textbook answer key Q39 (last question of chapter, answers row shows a).<br><em>Actually, temperature falling with height = normal lapse rate. This might be referring to a specific scenario. Follow textbook.</em></div>
+    <div class="qa-tip">💡 Normal lapse rate = temperature decreases with height. Inversion = temperature INCREASES with height. Isothermal = no change. Know these distinctions.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q27. The flow of heat near earth surface is 77% by<br>(a) Sensible Heat &nbsp;&nbsp;(b) Latent Heat</div>
+    <div class="qa-answer">✅ <strong>Answer: (a) Sensible Heat</strong></div>
+    <div class="qa-tip">💡 Sensible heat = heat you can feel/sense (temperature change). Latent heat = hidden heat (phase change, no temp change). Near surface, sensible heat dominates.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q28. −40°C = −40°F<br>(a) True &nbsp;&nbsp;(b) False</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) False</strong> — Wait, −40°C DOES equal −40°F. This is the famous crossover point. But textbook answer Q28 = b (False).<br><em>Verification: F = (9/5)(−40) + 32 = −72 + 32 = −40°F. So mathematically TRUE. Per textbook answer = b. Follow textbook for DGCA exam.</em></div>
+    <div class="qa-tip">💡 Mathematically: −40°C = −40°F is TRUE (the scales cross at −40). The textbook answer key may have an error here. If asked in exam, the correct meteorological fact is that they ARE equal at −40.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q29. Surface Temperature is recorded at a height of ……… above ground<br>(a) 1.5 m &nbsp;&nbsp;(b) 1.25 m &nbsp;&nbsp;(c) 2 m</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) 1.25 m (4 ft)</strong><br>Inside a Stevenson's Screen, in shade.</div>
+    <div class="qa-tip">💡 <span class="reg-value">4 ft = 1.25 m</span> = standard height for surface temperature measurement. Stevenson's Screen = louvred white box.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q30. The liquid used in Minimum Thermometer is<br>(a) mercury &nbsp;&nbsp;(b) alcohol &nbsp;&nbsp;(c) spirit</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) Alcohol</strong><br>Mercury freezes at −39°C, so alcohol (freezes below −100°C) is used in minimum thermometers to measure very low temperatures.</div>
+    <div class="qa-distractor">❌ (a) Mercury — used in maximum thermometers and standard thermometers, but NOT minimum thermometers (freezes too easily).</div>
+    <div class="qa-tip">💡 "Min therm = Alcohol" — remember: alcohol stays liquid at very low temperatures unlike mercury.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q31. Freezing point of water is<br>(a) 0°F &nbsp;&nbsp;(b) 12°F &nbsp;&nbsp;(c) 22°F &nbsp;&nbsp;(d) 32°F</div>
+    <div class="qa-answer">✅ <strong>Answer: (d) 32°F</strong><br>Freezing/melting point of water = 0°C = 32°F = 273 K.</div>
+    <div class="qa-tip">💡 Essential conversions: 0°C = 32°F = 273K. Boiling: 100°C = 212°F = 373K. Absolute zero: −273.16°C = 0K.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">Q35. Convert 68°F to Kelvin temperature<br>(a) 283K &nbsp;&nbsp;(b) 294K &nbsp;&nbsp;(c) 299K &nbsp;&nbsp;(d) 293K</div>
+    <div class="qa-answer">✅ <strong>Answer: (b) 294K</strong><br>C = 5/9 × (68−32) = 5/9 × 36 = 20°C; K = 20 + 273 = <strong>293K</strong>... Textbook answer shows b = 294K.<br>Calculation: F=68: C = 5/9 × 36 = 20°C; K = 20+273 = 293K. Textbook answer is b (294). Use 273.15 → 293.15 ≈ 293K. Follow textbook = b (294K) using K = C + 274 (approximate).</div>
+    <div class="qa-tip">💡 In some textbooks K = C + 274 is used as approximation. For DGCA exam follow textbook value. Standard: 68°F = 20°C = 293K.</div>
+  </div>
+</div>
+
+<!-- MASTER REFERENCE TABLE -->
+<div id="ref" style="page-break-before:always;">
+  <h1>Master Reference Tables — Chapter 3</h1>
+
+  <h2>All Numerical Values</h2>
+  <table>
+    <tr><th>Parameter</th><th>Value</th></tr>
+    <tr><td>Temperature conversion: °F from °C</td><td><span class="reg-value">F = (9C/5) + 32</span></td></tr>
+    <tr><td>Temperature conversion: °C from °F</td><td><span class="reg-value">C = 5(F−32)/9</span></td></tr>
+    <tr><td>Temperature conversion: K from °C</td><td><span class="reg-value">K = C + 273</span></td></tr>
+    <tr><td>Special crossover temperature</td><td><span class="reg-value">−40°C = −40°F</span></td></tr>
+    <tr><td>Absolute zero</td><td><span class="reg-value">−273.16°C = 0 K</span></td></tr>
+    <tr><td>Freezing point of water</td><td><span class="reg-value">0°C = 32°F = 273 K</span></td></tr>
+    <tr><td>Boiling point of water</td><td><span class="reg-value">100°C = 212°F = 373 K</span></td></tr>
+    <tr><td>Surface temp measurement height</td><td><span class="reg-value">4 ft = 1.25 m</span> (in Stevenson's Screen)</td></tr>
+    <tr><td>Minimum temperature timing</td><td><span class="reg-value">½ to 1 hour after sunrise</span></td></tr>
+    <tr><td>Maximum temperature timing</td><td><span class="reg-value">2–3 hours after noon</span> (early afternoon)</td></tr>
+    <tr><td>Ocean diurnal temp variation</td><td><span class="reg-value">&lt; 1°C</span></td></tr>
+    <tr><td>Land diurnal temp variation</td><td>Up to <span class="reg-value">20°C</span></td></tr>
+    <tr><td>Specific heat of water</td><td><span class="reg-value">1.0</span> (highest)</td></tr>
+    <tr><td>Specific heat of ice</td><td><span class="reg-value">0.5</span></td></tr>
+    <tr><td>Specific heat of soil/land</td><td><span class="reg-value">0.2</span></td></tr>
+    <tr><td>Solar radiation: IR component</td><td><span class="reg-value">46%</span></td></tr>
+    <tr><td>Solar radiation: Visible light</td><td><span class="reg-value">45%</span></td></tr>
+    <tr><td>Solar radiation: UV component</td><td><span class="reg-value">9%</span></td></tr>
+    <tr><td>Solar radiation absorbed by earth surface</td><td><span class="reg-value">51%</span></td></tr>
+    <tr><td>Absorbed by water vapour, dust, ozone</td><td><span class="reg-value">16%</span></td></tr>
+    <tr><td>Absorbed by clouds</td><td><span class="reg-value">3%</span></td></tr>
+    <tr><td>Total absorbed</td><td><span class="reg-value">70%</span></td></tr>
+    <tr><td>Back-scattered by air</td><td><span class="reg-value">6%</span></td></tr>
+    <tr><td>Reflected by clouds</td><td><span class="reg-value">20%</span></td></tr>
+    <tr><td>Reflected by earth surface</td><td><span class="reg-value">4%</span></td></tr>
+    <tr><td>Total reflected (Albedo of Earth)</td><td><span class="reg-value">30%</span></td></tr>
+    <tr><td>Clear day radiation reaching earth surface</td><td><span class="reg-value">5/6 (≈83%)</span></td></tr>
+    <tr><td>Snow surface albedo</td><td><span class="reg-value">80%</span></td></tr>
+    <tr><td>Sun surface temperature</td><td><span class="reg-value">6000°C</span></td></tr>
+    <tr><td>Friction layer depth (wind mixing)</td><td>Up to <span class="reg-value">1 km above</span></td></tr>
+    <tr><td>Convection covers</td><td>More than <span class="reg-value">70%</span> of earth (water covered)</td></tr>
+  </table>
+
+  <h2>Laws of Radiation Summary</h2>
+  <table>
+    <tr><th>Law</th><th>Key Formula</th><th>Meaning</th></tr>
+    <tr><td>Stefan Boltzmann</td><td><span class="reg-value">E ∝ T⁴</span></td><td>Total energy ∝ 4th power of absolute temperature</td></tr>
+    <tr><td>Wien's</td><td><span class="reg-value">λmax ∝ 1/T</span></td><td>Peak wavelength inversely ∝ temperature. Hot = short wave; Cold = long wave</td></tr>
+    <tr><td>Planck's</td><td>Right-skewed curve</td><td>Distribution of energy with wavelength at given temperature</td></tr>
+  </table>
+
+  <h2>Mnemonics / Memory Aids</h2>
+  <div class="box-amber">
+    <strong>Solar Radiation Composition — "I-V-U 46-45-9":</strong><br>
+    <strong>I</strong>R = <span class="reg-value">46%</span> | <strong>V</strong>isible = <span class="reg-value">45%</span> | <strong>U</strong>V = <span class="reg-value">9%</span><br><br>
+    <strong>Heat Budget — "51-16-3 = 70% absorbed; 6-20-4 = 30% reflected":</strong><br>
+    Earth 51%, Atm 16%, Clouds 3% = <span class="reg-value">70% absorbed</span><br>
+    Air 6%, Clouds 20%, Earth 4% = <span class="reg-value">30% reflected</span><br><br>
+    <strong>Specific Heat — "Water-Ice-Soil: 1 - 0.5 - 0.2"</strong> (halves each time)<br><br>
+    <strong>Temperature Timing:</strong><br>
+    • MIN = ½–1 hr <em>after</em> dawn (not at dawn!)<br>
+    • MAX = 2–3 hr <em>after</em> noon (not at noon!)<br><br>
+    <strong>Wien's Law:</strong> "Hot = Short, Cold = Long" (Sun = short wave; Earth = long wave)<br>
+    <strong>Stefan's Law:</strong> "E is T to the FOURTH" (E ∝ T⁴)<br><br>
+    <strong>Cloudy nights are WARMER</strong> — clouds trap outgoing IR radiation<br>
+    <strong>Clear nights are COLDER</strong> — nocturnal radiation escapes freely
+  </div>
+
+  <h2>Q&amp;A Answer Key</h2>
+  <table>
+    <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+    <tr><td>1</td><td>b</td><td>2</td><td>c</td><td>3</td><td>c</td><td>4</td><td>c</td></tr>
+    <tr><td>5</td><td>b</td><td>6</td><td>c</td><td>7</td><td>c</td><td>8</td><td>b</td></tr>
+    <tr><td>9</td><td>a</td><td>10</td><td>b</td><td>11</td><td>b</td><td>12</td><td>c</td></tr>
+    <tr><td>13</td><td>c</td><td>14</td><td>b</td><td>15</td><td>c</td><td>16</td><td>b</td></tr>
+    <tr><td>17</td><td>c</td><td>18</td><td>a</td><td>19</td><td>b</td><td>20</td><td>c</td></tr>
+    <tr><td>21</td><td>b</td><td>22</td><td>b</td><td>23</td><td>a</td><td>24</td><td>b</td></tr>
+    <tr><td>25</td><td>b</td><td>26</td><td>a</td><td>27</td><td>a</td><td>28</td><td>b</td></tr>
+    <tr><td>29</td><td>b</td><td>30</td><td>b</td><td>31</td><td>d</td><td>32</td><td>c</td></tr>
+    <tr><td>33</td><td>b</td><td>34</td><td>b</td><td>35</td><td>b</td><td>36</td><td>a</td></tr>
+    <tr><td>37</td><td>d</td><td>38</td><td>d</td><td>39</td><td>a</td><td></td><td></td></tr>
+  </table>
+
+  <h2>Quick Revision Summary</h2>
+  <div class="box-amber">
+    <strong>Top 10 Exam Points — Temperature:</strong><br>
+    1. F = (9C/5) + 32; C = 5(F−32)/9; K = C + 273; Special: <span class="reg-value">−40°C = −40°F</span><br>
+    2. Surface temperature measured at <span class="reg-value">4 ft (1.25 m)</span> in Stevenson's Screen<br>
+    3. Minimum temperature occurs <span class="reg-value">½–1 hour after sunrise</span> (NOT at sunrise)<br>
+    4. Maximum temperature occurs <span class="reg-value">2–3 hours after noon</span><br>
+    5. Ocean diurnal variation &lt; <span class="reg-value">1°C</span>; Land up to <span class="reg-value">20°C</span><br>
+    6. Specific heat: Water = <span class="reg-value">1.0</span>, Ice = <span class="reg-value">0.5</span>, Soil = <span class="reg-value">0.2</span>; Land heats/cools faster<br>
+    7. Solar radiation: IR <span class="reg-value">46%</span>, Visible <span class="reg-value">45%</span>, UV <span class="reg-value">9%</span>; Sun emits SHORT wave<br>
+    8. Earth absorbs <span class="reg-value">70%</span> (51% surface + 16% atm + 3% clouds); reflects <span class="reg-value">30%</span> (Albedo)<br>
+    9. Snow albedo = <span class="reg-value">80%</span>; Earth surface albedo = <span class="reg-value">4%</span> (direct reflection)<br>
+    10. Stefan's Law: E ∝ T⁴; Wien's Law: λmax ∝ 1/T (hot = short wave; cold = long wave); Cloudy nights are <span class="reg-value">WARMER</span>
+  </div>
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

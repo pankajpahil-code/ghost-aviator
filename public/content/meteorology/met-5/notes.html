@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 5: Humidity — DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #222; background: #fff; padding: 20px; max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 2em; color: #1a237e; border-bottom: 4px solid #1a237e; padding-bottom: 10px; margin-bottom: 20px; }
+  h2 { font-size: 1.5em; color: #1a237e; border-left: 6px solid #1a237e; padding-left: 12px; margin: 30px 0 15px 0; page-break-after: avoid; }
+  h3 { font-size: 1.15em; color: #283593; margin: 20px 0 10px 0; page-break-after: avoid; }
+  p { margin-bottom: 10px; }
+  ul, ol { margin: 10px 0 10px 25px; }
+  li { margin-bottom: 6px; }
+
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 12px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { border: none; font-size: 2.4em; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin-top: 15px; }
+  .cover .author { font-size: 1.1em; color: #1a237e; font-weight: bold; margin-top: 10px; }
+  .cover .badge { display: inline-block; background: #1a237e; color: #fff; padding: 6px 18px; border-radius: 20px; font-size: 0.9em; margin-top: 20px; }
+
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; margin-left: 0; }
+  .toc li { padding: 5px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { color: #1a237e; text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-blue strong, .box-red strong, .box-green strong, .box-amber strong { display: block; margin-bottom: 6px; }
+
+  .reg-value { font-weight: bold; color: #b71c1c; background: #fce4ec; padding: 1px 5px; border-radius: 3px; font-family: monospace; }
+
+  .formula-box { background: #f3f0ff; border: 2px solid #7c4dff; border-radius: 8px; padding: 18px; margin: 15px 0; page-break-inside: avoid; }
+  .formula-box .formula { font-size: 1.3em; font-family: 'Courier New', monospace; font-weight: bold; color: #4a148c; text-align: center; margin: 8px 0; }
+  .formula-box table { width: 100%; margin-top: 10px; border-collapse: collapse; }
+  .formula-box td { padding: 4px 8px; vertical-align: top; }
+  .formula-box td:first-child { font-weight: bold; color: #4a148c; width: 120px; }
+
+  .worked-example { background: #e8eaf6; border: 2px dashed #3f51b5; border-radius: 8px; padding: 15px; margin: 15px 0; page-break-inside: avoid; }
+  .worked-example h4 { color: #283593; margin-bottom: 8px; }
+
+  table.data-table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; }
+  table.data-table th { background: #1a237e; color: #fff; padding: 10px 12px; text-align: left; }
+  table.data-table td { padding: 9px 12px; border-bottom: 1px solid #ddd; }
+  table.data-table tr:nth-child(even) td { background: #f5f5f5; }
+
+  .mermaid { margin: 20px 0; page-break-inside: avoid; }
+
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 18px 0; overflow: hidden; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 14px 16px; font-weight: 600; }
+  .qa-question .q-num { color: #2c5aa0; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 16px; }
+  .qa-answer .correct { font-weight: bold; color: #1b5e20; font-size: 1.05em; }
+  .qa-explanation { padding: 12px 16px; background: #fafafa; border-top: 1px solid #eee; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 10px 16px; font-size: 0.95em; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 10px 16px; font-size: 0.95em; }
+  .qa-tip strong { color: #e65100; }
+
+  .svg-container { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+
+  .answer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 10px 0; }
+  .answer-cell { background: #e8f5e9; border: 1px solid #2e7d32; border-radius: 6px; padding: 8px; text-align: center; font-weight: bold; }
+  .answer-cell .q-n { font-size: 0.8em; color: #555; display: block; }
+
+  .temp-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0; }
+  .temp-card { padding: 12px; border-radius: 8px; text-align: center; }
+
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 5: Humidity</h1>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+  <div style="margin-top:10px; color:#555;">Source: IC Joshi — Aviation Meteorology (Latest Edition)</div>
+  <div class="badge">CPL / ATPL Examination Preparation</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc" id="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#s1">1. Introduction — Water Vapour &amp; Water Cycle</a></li>
+    <li><a href="#s2">2. Three Phases of Water</a></li>
+    <li><a href="#s3">3. Key Humidity Terms &amp; Definitions</a></li>
+    <li><a href="#s4">4. Relative Humidity (RH)</a></li>
+    <li><a href="#s5">5. Temperature Parameters — Wet Bulb, Dew Point, Frost Point</a></li>
+    <li><a href="#s6">6. Cloud Base Calculation</a></li>
+    <li><a href="#s7">7. SVP over Water vs Ice — Sub-zero Behaviour</a></li>
+    <li><a href="#s8">8. Temperature Relationships — Saturated vs Unsaturated Air</a></li>
+    <li><a href="#s9">9. Quick Revision Summary</a></li>
+    <li><a href="#qa">10. Practice Q&amp;A (DGCA Style)</a></li>
+    <li><a href="#ref">11. Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="s1">1. Introduction — Water Vapour &amp; The Water Cycle</h2>
+
+<div class="box-blue">
+  <strong>📘 Core Concept</strong>
+  Water vapour is always present in the air to a greater or lesser extent, in the troposphere. This water vapour plays a very important role in all the atmospheric processes.
+</div>
+
+<p>Water evaporates into the air from oceans, lakes, rivers, and vegetation. It ascends and forms clouds which cause precipitation. This is the <strong>water cycle</strong>.</p>
+
+<pre class="mermaid">
+flowchart LR
+    A[Oceans / Lakes\nRivers / Vegetation] -->|Evaporation| B[Water Vapour\nin Atmosphere]
+    B -->|Ascending air\nCooling| C[Cloud Formation\nCondensation]
+    C -->|Precipitation| D[Rain / Snow / Hail]
+    D -->|Runoff| A
+    style A fill:#e3f2fd,stroke:#1565c0
+    style B fill:#e8f5e9,stroke:#2e7d32
+    style C fill:#f3e5f5,stroke:#6a1b9a
+    style D fill:#fff3e0,stroke:#e65100
+</pre>
+
+<div class="box-amber">
+  <strong>⚡ Key Principle</strong>
+  The capacity of dry air to hold water vapour depends largely on <strong>temperature</strong> (higher temperature = higher capacity) and to some extent on <strong>pressure</strong>. Higher the temperature, higher the capacity of air to hold water vapour.
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="s2">2. Three Phases of Water</h2>
+
+<table class="data-table">
+  <thead>
+    <tr><th>Phase</th><th>State</th><th>Examples</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Gas</strong></td>
+      <td>Water Vapour</td>
+      <td>Invisible moisture in the atmosphere</td>
+    </tr>
+    <tr>
+      <td><strong>Liquid</strong></td>
+      <td>Water</td>
+      <td>Rain, drizzle, shower, super-cooled water droplets</td>
+    </tr>
+    <tr>
+      <td><strong>Solid</strong></td>
+      <td>Ice</td>
+      <td>Snow, hail, ice crystals, hoar frost</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- SECTION 3 -->
+<h2 id="s3">3. Key Humidity Terms &amp; Definitions</h2>
+
+<div class="box-blue">
+  <strong>📘 Dry Air</strong>
+  Air that contains no water vapour is called <strong>dry air</strong>. Such an air may exist in the upper troposphere or stratosphere.
+</div>
+
+<div class="box-blue">
+  <strong>📘 Moist Air</strong>
+  The normal air that we breathe is the moist air. It is also called <strong>unsaturated</strong> or dry air at the existing temperature and pressure.
+</div>
+
+<div class="box-blue">
+  <strong>📘 Saturated Air</strong>
+  Air is like a sponge which can absorb certain amount of water and no more. When the air holds maximum water vapour, it is called <strong>saturated air</strong>.
+</div>
+
+<div class="box-blue">
+  <strong>📘 Vapour Pressure (VP)</strong>
+  The partial pressure exerted by the water vapour in the air is called vapour pressure. If <em>p</em> is the total pressure of air and <em>e</em> is the vapour pressure, then <strong>(p − e)</strong> is the pressure of dry air.
+</div>
+
+<div class="box-blue">
+  <strong>📘 Saturation Vapour Pressure (SVP)</strong>
+  It is the pressure exerted by water vapour when air is saturated.
+</div>
+
+<div class="box-blue">
+  <strong>📘 Absolute Humidity</strong>
+  It is defined as the actual amount of water vapour contained in a given volume of air at a given temperature. It is expressed in <span class="reg-value">g/m³</span>.
+</div>
+
+<div class="box-blue">
+  <strong>📘 Humidity Mixing Ratio (HMR)</strong>
+  It is defined as the mass of water vapour contained in a given mass of air. It is expressed as <span class="reg-value">g/kg</span>.
+</div>
+
+<div class="box-blue">
+  <strong>📘 HMR for Saturated Air</strong>
+  The maximum mass of water vapour that can be contained in a given mass of dry air at a particular temperature and pressure. Also expressed as g/kg of dry air. The saturation humidity mixing ratio <strong>increases with temperature</strong>.
+</div>
+
+<table class="data-table">
+  <thead>
+    <tr><th>Term</th><th>Definition</th><th>Unit</th><th>Key Note</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Absolute Humidity</strong></td><td>Water vapour per unit VOLUME</td><td><span class="reg-value">g/m³</span></td><td>Changes with T and P</td></tr>
+    <tr><td><strong>HMR</strong></td><td>Water vapour per unit MASS of air</td><td><span class="reg-value">g/kg</span></td><td>Constant if no moisture added/removed</td></tr>
+    <tr><td><strong>Vapour Pressure (VP)</strong></td><td>Partial pressure of water vapour</td><td>hPa</td><td>e in gas equations</td></tr>
+    <tr><td><strong>SVP</strong></td><td>VP when air is saturated</td><td>hPa</td><td>Increases with temperature</td></tr>
+  </tbody>
+</table>
+
+<div class="box-red">
+  <strong>⚠️ Critical — HMR During Adiabatic Lifting</strong>
+  If there is <strong>no addition or removal of water vapour</strong>, the HMR remains <strong>constant when air is lifted adiabatically</strong>. The mixing ratio is a conservative property during adiabatic processes.
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="s4">4. Relative Humidity (RH)</h2>
+
+<div class="box-blue">
+  <strong>📘 Definition</strong>
+  Relative Humidity is defined as the ratio, in percentage, of the <strong>actual water vapour</strong> in the air to the <strong>maximum it can contain</strong> at the same temperature and pressure.
+</div>
+
+<div class="formula-box">
+  <div class="formula">RH (%) = (HMR × 100) / (HMR for Saturated Air)</div>
+  <div style="text-align:center; margin:5px 0; color:#555;">OR equivalently:</div>
+  <div class="formula">RH (%) = (VP of Air × 100) / (SVP of Air)</div>
+  <table>
+    <tr><td>HMR</td><td>Humidity Mixing Ratio of actual air</td></tr>
+    <tr><td>HMR(sat)</td><td>HMR for saturated air at same temperature</td></tr>
+    <tr><td>VP</td><td>Actual Vapour Pressure</td></tr>
+    <tr><td>SVP</td><td>Saturation Vapour Pressure at same temperature</td></tr>
+  </table>
+</div>
+
+<div class="box-amber">
+  <strong>⚡ RH Measurement</strong>
+  Humidity is measured by the instruments <strong>Psychrometer</strong> and <strong>Hygrometer</strong>, and is recorded by <strong>Hygrograph</strong>.
+</div>
+
+<div class="box-red">
+  <strong>⚠️ RH vs Dew Point — Key Distinction</strong>
+  <ul style="margin-top:8px;">
+    <li><strong>RH</strong> is affected by change in <em>both</em> water content AND temperature</li>
+    <li><strong>Dew Point (DP)</strong> is only affected by change in water content</li>
+    <li>By cooling or warming the air, <strong>RH changes but DP does not change</strong></li>
+    <li><strong>DP is higher</strong> if air contains more water vapour</li>
+  </ul>
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    A[Air Sample] --> B{Change made?}
+    B -->|Temperature changes\nwater content same| C[RH changes\nDP unchanged]
+    B -->|Water content changes\ntemperature same| D[Both RH and DP change]
+    B -->|Air lifted adiabatically\nno water added/removed| E[HMR unchanged\nRH increases as T drops]
+    style C fill:#fff8e1,stroke:#f57c00
+    style D fill:#fdecea,stroke:#c0392b
+    style E fill:#e8f1fb,stroke:#2c5aa0
+</pre>
+
+<!-- SECTION 5 -->
+<h2 id="s5">5. Temperature Parameters — Wet Bulb, Dew Point &amp; Frost Point</h2>
+
+<div class="box-blue">
+  <strong>📘 Wet Bulb Temperature (Tw)</strong>
+  It is the lowest temperature which air would attain by <strong>evaporating water into it to saturate it</strong>. Desert coolers work on this principle. The drier the air, the more effective would be the cooling.
+</div>
+
+<div class="box-blue">
+  <strong>📘 Dew Point Temperature (TdTd or Td)</strong>
+  It is the lowest temperature to which air should be cooled at <strong>constant pressure</strong> to <strong>saturate it with respect to water</strong>. Cooling below Dew Point (DP) causes condensation.
+</div>
+
+<div class="box-blue">
+  <strong>📘 Frost Point</strong>
+  It is the temperature to which air must be cooled to reach <strong>saturation with respect to ice</strong>. Cooling below the frost point causes formation of <strong>hoar frost</strong>.
+</div>
+
+<div class="svg-container">
+  <svg viewBox="0 0 750 260" xmlns="http://www.w3.org/2000/svg" style="max-width:750px; border:1px solid #ddd; border-radius:8px;">
+    <rect width="750" height="260" fill="#f9f9ff" rx="8"/>
+    <text x="375" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a237e">Temperature Hierarchy in Unsaturated Air</text>
+
+    <!-- Temperature scale bar -->
+    <rect x="80" y="55" width="590" height="30" rx="5" fill="url(#tempGrad)"/>
+    <defs>
+      <linearGradient id="tempGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#b3e5fc"/>
+        <stop offset="50%" style="stop-color:#81c784"/>
+        <stop offset="100%" style="stop-color:#ef9a9a"/>
+      </linearGradient>
+    </defs>
+    <text x="80" y="48" text-anchor="middle" font-size="11" fill="#1565c0">COLD</text>
+    <text x="670" y="48" text-anchor="middle" font-size="11" fill="#c0392b">WARM</text>
+
+    <!-- Frost Point -->
+    <line x1="155" y1="85" x2="155" y2="145" stroke="#6a1b9a" stroke-width="2" stroke-dasharray="4"/>
+    <rect x="90" y="148" width="130" height="55" rx="6" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2"/>
+    <text x="155" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="#6a1b9a">Frost Point</text>
+    <text x="155" y="182" text-anchor="middle" font-size="10" fill="#555">Saturation wrt ICE</text>
+    <text x="155" y="196" text-anchor="middle" font-size="10" fill="#555">Below → Hoar Frost</text>
+
+    <!-- Dew Point -->
+    <line x1="310" y1="85" x2="310" y2="145" stroke="#1565c0" stroke-width="2" stroke-dasharray="4"/>
+    <rect x="240" y="148" width="140" height="55" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <text x="310" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">Dew Point (Td)</text>
+    <text x="310" y="182" text-anchor="middle" font-size="10" fill="#555">Saturation wrt WATER</text>
+    <text x="310" y="196" text-anchor="middle" font-size="10" fill="#555">Below → Condensation</text>
+
+    <!-- Wet Bulb -->
+    <line x1="480" y1="85" x2="480" y2="145" stroke="#2e7d32" stroke-width="2" stroke-dasharray="4"/>
+    <rect x="410" y="148" width="140" height="55" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="480" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">Wet Bulb (Tw)</text>
+    <text x="480" y="182" text-anchor="middle" font-size="10" fill="#555">Evaporative cooling</text>
+    <text x="480" y="196" text-anchor="middle" font-size="10" fill="#555">Desert cooler principle</text>
+
+    <!-- Air Temp -->
+    <line x1="620" y1="85" x2="620" y2="145" stroke="#c0392b" stroke-width="2" stroke-dasharray="4"/>
+    <rect x="560" y="148" width="120" height="55" rx="6" fill="#fdecea" stroke="#c0392b" stroke-width="2"/>
+    <text x="620" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="#c0392b">Air Temp (TT)</text>
+    <text x="620" y="182" text-anchor="middle" font-size="10" fill="#555">Actual temp</text>
+    <text x="620" y="196" text-anchor="middle" font-size="10" fill="#555">Dry bulb reading</text>
+
+    <!-- Relationship label -->
+    <text x="375" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a237e">Unsaturated Air: Frost Pt &lt; Td &lt; Tw &lt; TT</text>
+    <text x="375" y="250" text-anchor="middle" font-size="12" fill="#2e7d32">Saturated Air (Fog/Rain): TT = Tw = Td</text>
+  </svg>
+</div>
+
+<table class="data-table">
+  <thead>
+    <tr><th>Temperature</th><th>Symbol</th><th>Definition</th><th>Below This →</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Air Temperature</strong></td>
+      <td>TT</td>
+      <td>Actual ambient air temperature (dry bulb)</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td><strong>Wet Bulb Temp</strong></td>
+      <td>Tw</td>
+      <td>Lowest T by evaporating water to saturate the air</td>
+      <td>Not applicable (evaporative limit)</td>
+    </tr>
+    <tr>
+      <td><strong>Dew Point</strong></td>
+      <td>TdTd / Td</td>
+      <td>T at which air saturates with respect to water at constant pressure</td>
+      <td>Condensation (dew, fog)</td>
+    </tr>
+    <tr>
+      <td><strong>Frost Point</strong></td>
+      <td>—</td>
+      <td>T at which air saturates with respect to ice</td>
+      <td>Hoar frost formation</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box-amber">
+  <strong>🧠 Key Relationship — Unsaturated Air</strong>
+  <div style="font-size:1.15em; text-align:center; padding:10px; font-weight:bold; font-family:monospace;">
+    TT &gt; Tw &gt; Td (Unsaturated Air)
+  </div>
+  <div style="font-size:1.1em; text-align:center; padding:8px; font-weight:bold; font-family:monospace; color:#1b5e20;">
+    TT = Tw = Td (Saturated Air — Fog, During Rain)
+  </div>
+  When RH = 100%, all three temperatures converge.
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="s6">6. Cloud Base Calculation</h2>
+
+<div class="box-blue">
+  <strong>📘 Empirical Cloud Base Formula</strong>
+  The theoretical height of the base of cloud can be determined using surface temperatures by the empirical formula:
+</div>
+
+<div class="formula-box">
+  <div class="formula">Cloud Base Height = (TT − Td) × 400 ft</div>
+  <table>
+    <tr><td>TT</td><td>Surface Air Temperature (°C)</td></tr>
+    <tr><td>Td</td><td>Surface Dew Point Temperature (°C)</td></tr>
+    <tr><td>(TT − Td)</td><td>Dew Point Spread or Depression</td></tr>
+    <tr><td>400 ft</td><td>Empirical constant per °C spread</td></tr>
+  </table>
+</div>
+
+<div class="worked-example">
+  <h4>🔢 Worked Example — Cloud Base</h4>
+  <p><strong>Given:</strong> Surface temperature TT = 25°C, Dew Point Td = 15°C</p>
+  <p><strong>DP Spread:</strong> 25 − 15 = 10°C</p>
+  <p><strong>Cloud Base = 10 × 400 = 4,000 ft AGL</strong></p>
+  <p><em>Note: Smaller the spread between TT and Td, lower the cloud base. When spread = 0, cloud is at surface (fog).</em></p>
+</div>
+
+<div class="box-red">
+  <strong>⚠️ Important</strong>
+  When TT = Td (spread = zero), the cloud base is at the surface — this is <strong>fog</strong> (or very low stratus). The smaller the dew point depression, the closer the air is to saturation.
+</div>
+
+<div class="box-amber">
+  <strong>🧠 Memory Aid</strong>
+  "4-0-0 feet per degree of spread" — if the spread is 5°C, cloud base = 2000 ft. If 10°C, cloud base = 4000 ft. The cooler and moister the air, the lower the cloud base.
+</div>
+
+<!-- SECTION 7 -->
+<h2 id="s7">7. SVP over Water vs Ice — Sub-Zero Behaviour</h2>
+
+<div class="box-blue">
+  <strong>📘 Important Sub-Zero Principle</strong>
+  At sub-zero temperatures, water molecules have more energy and a greater degree of freedom than ice. Consequently, the <strong>saturation vapour pressure over water is more than that over ice particles</strong>.
+</div>
+
+<div class="box-red">
+  <strong>⚠️ Bergeron-Findeisen Process — Exam Important</strong>
+  If <strong>water drops and ice particles co-exist</strong> in a cloud:
+  <ul style="margin-top:8px;">
+    <li>SVP over water &gt; SVP over ice at the same temperature</li>
+    <li>Water drops evaporate and condense on the ice particles</li>
+    <li>Ice particles grow at the expense of water droplets</li>
+    <li>This explains <strong>rainfall from clouds which extend above 0°C level</strong> in the atmosphere — mixed-phase clouds produce rain via the Bergeron-Findeisen process</li>
+    <li>Both super-cooled water drops and ice crystals can co-exist in this mixed zone</li>
+  </ul>
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    A["Mixed-phase Cloud\n(Water drops + Ice crystals\nat same sub-zero temperature)"] --> B{"SVP over Water\nvs SVP over Ice"}
+    B -->|"SVP(water) > SVP(ice)"| C[Water drops evaporate]
+    C --> D[Water vapour condenses\non ice crystals]
+    D --> E[Ice crystals grow\nwater drops shrink]
+    E --> F[Ice crystals become heavy\nand fall as precipitation]
+    F --> G["Melts below 0°C level\n→ RAIN at surface"]
+    style A fill:#e3f2fd,stroke:#1565c0
+    style B fill:#fff8e1,stroke:#f57c00
+    style G fill:#e8f5e9,stroke:#2e7d32
+</pre>
+
+<div class="box-red">
+  <strong>⚠️ Super-Cooled Water Droplets — Critical for Aviation Icing</strong>
+  Small water droplets can exist in a <strong>super-cooled</strong> (liquid below 0°C) state:
+  <ul style="margin-top:8px;">
+    <li>In normal clouds: up to <span class="reg-value">−40°C</span></li>
+    <li>In Cumulonimbus (CB) clouds: up to <span class="reg-value">−45°C</span></li>
+    <li>These super-cooled droplets freeze <strong>on contact</strong> with aircraft surfaces → severe icing hazard</li>
+  </ul>
+</div>
+
+<!-- SECTION 8 -->
+<h2 id="s8">8. Temperature Relationships — Saturated vs Unsaturated Air</h2>
+
+<div class="box-green">
+  <strong>✅ Saturated Air (Fog, During Rain)</strong>
+  <div style="font-size:1.2em; text-align:center; padding:10px; font-family:monospace; font-weight:bold;">
+    Air Temperature (TT) = Wet Bulb (Tw) = Dew Point (Td)
+  </div>
+  When RH = 100%, the air is saturated and all three temperature readings are identical.
+</div>
+
+<div class="box-amber">
+  <strong>⚡ Unsaturated Air</strong>
+  <div style="font-size:1.2em; text-align:center; padding:10px; font-family:monospace; font-weight:bold;">
+    TT &gt; Tw &gt; Td
+  </div>
+  In normal (unsaturated) air, air temperature is highest, wet bulb is intermediate, and dew point is lowest.
+</div>
+
+<table class="data-table">
+  <thead>
+    <tr><th>Condition</th><th>TT vs Tw vs Td</th><th>RH</th><th>DP Spread</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Saturated air (fog, heavy rain)</td>
+      <td><strong>TT = Tw = Td</strong></td>
+      <td><span class="reg-value">100%</span></td>
+      <td><span class="reg-value">0°C</span></td>
+    </tr>
+    <tr>
+      <td>Unsaturated air (normal)</td>
+      <td><strong>TT &gt; Tw &gt; Td</strong></td>
+      <td>&lt; 100%</td>
+      <td>&gt; 0°C</td>
+    </tr>
+    <tr>
+      <td>Very dry air (desert)</td>
+      <td>TT &gt;&gt; Tw &gt; Td</td>
+      <td>Very low</td>
+      <td>Large spread</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- SECTION 9 -->
+<h2 id="s9">9. Quick Revision Summary</h2>
+
+<div class="box-amber">
+  <strong>⚡ Chapter 5 — Quick Revision: Humidity</strong>
+  <ul style="margin-top:8px;">
+    <li>Capacity to hold water vapour ∝ temperature — higher T = more capacity</li>
+    <li><strong>Absolute Humidity</strong>: g/m³ (per volume) | <strong>HMR</strong>: g/kg (per mass)</li>
+    <li><strong>RH</strong> = (VP/SVP) × 100% = (HMR/HMR-sat) × 100%</li>
+    <li>Measured by Psychrometer/Hygrometer; recorded by Hygrograph</li>
+    <li><strong>HMR is constant</strong> when air lifted adiabatically (no moisture added/removed)</li>
+    <li>Saturation HMR increases with temperature</li>
+    <li><strong>Dew Point</strong>: cooling at constant pressure → saturation wrt water → condensation</li>
+    <li><strong>Wet Bulb</strong>: evaporation cools air to saturation; TT &gt; Tw &gt; Td (unsaturated)</li>
+    <li><strong>Frost Point</strong>: cooling to saturation wrt ice → hoar frost below</li>
+    <li>Saturated air: TT = Tw = Td (RH = 100%)</li>
+    <li>Cooling/warming changes RH but NOT dew point</li>
+    <li>DP higher if more water vapour is present</li>
+    <li><strong>Cloud Base = (TT − Td) × 400 ft</strong></li>
+    <li>SVP over water &gt; SVP over ice (sub-zero) → Bergeron-Findeisen process</li>
+    <li>Super-cooled droplets: up to <strong>−40°C</strong> in clouds, up to <strong>−45°C</strong> in CB</li>
+  </ul>
+</div>
+
+<!-- Q&A SECTION -->
+<h2 id="qa" style="page-break-before:always;">10. Practice Q&amp;A — DGCA Examination Style</h2>
+
+<div class="box-blue">
+  <strong>📘 Answer Key</strong>
+  Q1=b, Q2=c, Q3=b, Q4=b, Q5=b, Q6=a, Q7=b, Q8=a, Q9=c, Q10=a
+</div>
+
+<!-- Q1 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q1.</span> The ratio in % between the amount of water vapour present in the air to the amount of water vapour that it can hold at the same temperature is:<br>
+    (a) Humidity &nbsp;&nbsp; (b) Relative humidity &nbsp;&nbsp; (c) Dew point
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (b) Relative Humidity</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> Relative Humidity is precisely defined as the ratio (in %) of the actual water vapour content to the maximum water vapour the air can hold at the same temperature and pressure. It is "relative" because it compares actual moisture to maximum possible moisture.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) Humidity — too vague; humidity is the general term for water vapour content. (c) Dew Point — a temperature, not a ratio.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> RH = (VP/SVP) × 100 = (HMR/HMR-sat) × 100. When RH = 100%, air is saturated. RH depends on BOTH water content AND temperature.</div>
+</div>
+
+<!-- Q2 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q2.</span> The temperature to which air be cooled at constant pressure to become saturated is called:<br>
+    (a) Wet bulb temperature &nbsp;&nbsp; (b) Dry bulb temperature &nbsp;&nbsp; (c) Dew point &nbsp;&nbsp; (d) Humidity
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (c) Dew Point</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> The Dew Point Temperature is defined as the lowest temperature to which air must be cooled at constant pressure to become saturated with respect to water. Below this temperature, condensation occurs.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) Wet Bulb — this is the temperature attained by evaporating water INTO the air, not by cooling it. The process is different. (b) Dry bulb — this is just the ordinary air temperature. (d) Humidity — a measure of moisture content, not a temperature.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> Key distinction — Dew Point is achieved by COOLING at constant pressure. Wet Bulb is achieved by EVAPORATION into the air. Both result in saturation but by different processes.</div>
+</div>
+
+<!-- Q3 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q3.</span> Free air temperature, Wet bulb temperature and Dew point temperature are equal when:<br>
+    (a) Air temperature is 0°C<br>
+    (b) Relative humidity is 100%<br>
+    (c) Air temperature is not below 0°C
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (b) Relative humidity is 100%</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> When RH = 100%, the air is fully saturated. There is no difference between actual moisture content and maximum possible moisture content, so TT = Tw = Td. This condition exists in fog, during heavy rain, or in saturated cloud.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) 0°C is not a condition for equality — it could be 0°C with any RH. (c) Temperature above 0°C has no special significance for this relationship.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> "Fog = TT = Tw = Td" — when you see fog or are in cloud, assume these three temperatures are equal. This is frequently tested. RH = 100% is the ONLY condition that makes all three equal.</div>
+</div>
+
+<!-- Q4 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q4.</span> On a rainy day compared to sunny day the length of runway required is:<br>
+    (a) More &nbsp;&nbsp; (b) Less &nbsp;&nbsp; (c) Same
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (b) Less</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> On a rainy day, the air temperature is typically cooler than on a sunny day, and the air is closer to saturation. Cooler, denser air means better aerodynamic performance — more lift, better engine efficiency — so a shorter runway is needed. Additionally, cooler and moister conditions reduce density altitude.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) More — on a rainy day, if water contamination on the runway is ignored and we focus purely on atmospheric density, performance is better. (Runway contamination is a separate consideration not addressed here.) (c) Same — temperature and density differences always affect performance.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> This question is about atmospheric effects on performance. Rainy day = cooler + denser air = better aircraft performance = less runway needed. Separate question from wet/contaminated runway effects.</div>
+</div>
+
+<!-- Q5 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q5.</span> The spread (difference) between Free air temperature and Dew point temperature is ………… when air is saturated:<br>
+    (a) Large &nbsp;&nbsp; (b) Least &nbsp;&nbsp; (c) Same
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (b) Least (approaches zero)</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> When air is saturated (RH = 100%), TT = Td. The spread between them is zero — the minimum possible. The spread (TT − Td) is also called the "dew point depression." Zero spread means the air is at saturation.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) Large — the spread is largest in very dry air (desert conditions). (c) Same — the spread changes constantly with temperature and moisture content.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> DP Spread / DP Depression = TT − Td. Spread = 0 → fog/saturation. Spread large → dry air, high cloud bases. Cloud Base = Spread × 400 ft.</div>
+</div>
+
+<!-- Q6 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q6.</span> The saturation vapour pressure over water is ………… than the ice:<br>
+    (a) More &nbsp;&nbsp; (b) Less &nbsp;&nbsp; (c) Same
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (a) More</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> At sub-zero temperatures, water molecules in the liquid state have more kinetic energy (greater degree of freedom) than in the solid (ice) state. Therefore, the saturation vapour pressure over liquid water exceeds that over ice at the same temperature. This SVP difference drives the Bergeron-Findeisen process of precipitation formation.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (b) Less — incorrect; the higher molecular energy of liquid water means higher SVP. (c) Same — there is always a difference at sub-zero temperatures; SVP over water and ice are only equal at exactly 0°C.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> SVP(water) &gt; SVP(ice) at sub-zero → ice grows, water drops shrink → Bergeron process → rainfall. This is why clouds with both water drops AND ice crystals produce efficient precipitation.</div>
+</div>
+
+<!-- Q7 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q7.</span> As the temperature of the air increases, the amount of water vapour required to saturate it:<br>
+    (a) decreases &nbsp;&nbsp; (b) increases &nbsp;&nbsp; (c) remains same
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (b) increases</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> Warmer air has a greater capacity to hold water vapour. The saturation humidity mixing ratio (HMR-sat) and the saturation vapour pressure (SVP) both increase with temperature. This is why warm tropical air can hold much more moisture than cold polar air.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (a) decreases — opposite is true. (c) remains same — capacity changes significantly with temperature.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> "Warm air = bigger sponge." The SVP curve rises steeply with temperature. This is why tropical air is so humid — warm air can hold more moisture before becoming saturated.</div>
+</div>
+
+<!-- Q8 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q8.</span> The actual amount of water vapour contained in a given volume of air at a given temperature is termed as:<br>
+    (a) Relative Humidity &nbsp;&nbsp; (b) Specific Humidity &nbsp;&nbsp; (c) Absolute Humidity
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer per textbook: (a) Relative Humidity</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> The textbook answer is (a). However, note that by standard meteorological definition, the "actual amount of water vapour in a given volume" is Absolute Humidity (g/m³). Relative Humidity is a ratio (%). This question may contain an error in the textbook — the physically correct answer is Absolute Humidity. Accept (a) for examination purposes as it is the textbook answer.
+  </div>
+  <div class="qa-distractor">
+    <strong>⚠️ Note on this Question:</strong> There is a likely error here. Absolute Humidity = water vapour per unit volume (g/m³). Specific Humidity = water vapour per unit mass of moist air (g/kg). Relative Humidity = ratio of actual to saturation vapour pressure (%). For DGCA exam, use textbook answer (a).
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> Study all three definitions carefully: Absolute Humidity (per volume, g/m³), HMR/Specific Humidity (per mass, g/kg), Relative Humidity (ratio, %). This question has a textbook discrepancy — learn the correct meteorological definitions independently.</div>
+</div>
+
+<!-- Q9 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q9.</span> Humidity Mixing Ratio ………… when air is lifted adiabatically:<br>
+    (a) Relative Humidity &nbsp;&nbsp; (b) remains constant &nbsp;&nbsp; (c) increases
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer per textbook: (c) increases</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation per textbook:</strong> The textbook answer is (c). However, the standard meteorological principle states that HMR remains constant during adiabatic lifting (no water added or removed). What INCREASES during adiabatic ascent is Relative Humidity (as temperature drops, SVP decreases, so RH = VP/SVP rises toward 100%).
+    <br><br>It is possible the question intended to ask about Relative Humidity, not HMR. Option (a) reads "Relative Humidity" which may be part of the intended answer ("Relative Humidity increases when air is lifted adiabatically"). Accept textbook answer (c) for exam purposes.
+  </div>
+  <div class="qa-distractor">
+    <strong>⚠️ Important Distinction:</strong> HMR = constant during adiabatic ascent (no moisture added/removed). RH = INCREASES during adiabatic ascent (temperature falls, SVP drops, so the same amount of water represents a higher % of saturation). Learn both correctly.
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> During adiabatic lifting: HMR = constant BUT RH increases (reaches 100% at the LCL = Lifting Condensation Level = cloud base). Above the LCL, condensation begins and the now-saturated parcel follows a different (saturated adiabatic) lapse rate.</div>
+</div>
+
+<!-- Q10 -->
+<div class="qa-block">
+  <div class="qa-question"><span class="q-num">Q10.</span> It is the lowest temperature which air would attain by evaporating water into it to saturate it:<br>
+    (a) Wet bulb temp &nbsp;&nbsp; (b) Dry bulb temp &nbsp;&nbsp; (c) Dew point
+  </div>
+  <div class="qa-answer"><span class="correct">✅ Correct Answer: (a) Wet Bulb Temperature</span></div>
+  <div class="qa-explanation">
+    <strong>Explanation:</strong> Wet Bulb Temperature (Tw) is precisely defined as the lowest temperature which air would attain by evaporating water into it until it is saturated. The evaporative cooling process lowers the temperature to the wet bulb value. Desert coolers work on this same principle — drier the air, more the cooling effect.
+  </div>
+  <div class="qa-distractor">
+    <strong>❌ Distractors:</strong> (b) Dry bulb — this is simply the ordinary air temperature measured by an unmodified thermometer. (c) Dew point — cooling the air without adding moisture until it saturates; different process (temperature-lowering vs. moisture-adding).
+  </div>
+  <div class="qa-tip"><strong>📌 Instructor's Note:</strong> Two routes to saturation: (1) ADD MOISTURE → reach Wet Bulb temperature. (2) REMOVE HEAT (cool) → reach Dew Point. Both achieve saturation but by opposite processes. Wet bulb &gt; Dew point in unsaturated air.</div>
+</div>
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="ref" style="page-break-before:always;">11. Master Reference Tables</h2>
+
+<h3>11.1 All Numerical Values — Chapter 5</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Parameter</th><th>Value</th><th>Context</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Absolute Humidity unit</td><td><span class="reg-value">g/m³</span></td><td>Water vapour per unit volume</td></tr>
+    <tr><td>HMR unit</td><td><span class="reg-value">g/kg</span></td><td>Water vapour per unit mass of air</td></tr>
+    <tr><td>Cloud base constant</td><td><span class="reg-value">400 ft/°C</span></td><td>Cloud Base = (TT − Td) × 400 ft</td></tr>
+    <tr><td>Super-cooled droplets (normal clouds)</td><td><span class="reg-value">up to −40°C</span></td><td>Icing hazard</td></tr>
+    <tr><td>Super-cooled droplets (CB clouds)</td><td><span class="reg-value">up to −45°C</span></td><td>Severe icing in CB</td></tr>
+    <tr><td>RH at saturation</td><td><span class="reg-value">100%</span></td><td>TT = Tw = Td condition</td></tr>
+    <tr><td>Dew point spread at saturation</td><td><span class="reg-value">0°C</span></td><td>Fog / in-cloud condition</td></tr>
+  </tbody>
+</table>
+
+<h3>11.2 Formula Sheet</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>Formula</th><th>Variables</th><th>Application</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>RH (%) = (HMR/HMR-sat) × 100</strong></td>
+      <td>HMR = actual mixing ratio; HMR-sat = saturation mixing ratio</td>
+      <td>Relative Humidity calculation</td>
+    </tr>
+    <tr>
+      <td><strong>RH (%) = (VP/SVP) × 100</strong></td>
+      <td>VP = actual vapour pressure; SVP = saturation vapour pressure</td>
+      <td>Alternative RH formula</td>
+    </tr>
+    <tr>
+      <td><strong>Cloud Base = (TT − Td) × 400 ft</strong></td>
+      <td>TT = air temp, Td = dew point (°C)</td>
+      <td>Estimating cloud base height AGL</td>
+    </tr>
+    <tr>
+      <td><strong>Dry air pressure = p − e</strong></td>
+      <td>p = total pressure; e = vapour pressure</td>
+      <td>Pressure partitioning</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>11.3 Key Distinctions — Humidity Terms</h3>
+<table class="data-table">
+  <thead>
+    <tr><th>What Changes?</th><th>Effect on RH</th><th>Effect on DP</th><th>Effect on HMR</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Temperature increases only</td><td>RH decreases</td><td>No change</td><td>No change</td></tr>
+    <tr><td>Temperature decreases only</td><td>RH increases</td><td>No change</td><td>No change</td></tr>
+    <tr><td>Water content increases</td><td>RH increases</td><td>DP increases</td><td>HMR increases</td></tr>
+    <tr><td>Air lifted adiabatically</td><td>RH increases</td><td>No change</td><td>No change (constant)</td></tr>
+  </tbody>
+</table>
+
+<h3>11.4 Answer Key</h3>
+<div class="answer-grid">
+  <div class="answer-cell"><span class="q-n">Q1</span>b</div>
+  <div class="answer-cell"><span class="q-n">Q2</span>c</div>
+  <div class="answer-cell"><span class="q-n">Q3</span>b</div>
+  <div class="answer-cell"><span class="q-n">Q4</span>b</div>
+  <div class="answer-cell"><span class="q-n">Q5</span>b</div>
+  <div class="answer-cell"><span class="q-n">Q6</span>a</div>
+  <div class="answer-cell"><span class="q-n">Q7</span>b</div>
+  <div class="answer-cell"><span class="q-n">Q8</span>a*</div>
+  <div class="answer-cell"><span class="q-n">Q9</span>c*</div>
+  <div class="answer-cell"><span class="q-n">Q10</span>a</div>
+</div>
+<p style="font-size:0.85em; color:#666; margin-top:8px;">* Q8 and Q9 may contain textbook discrepancies — see detailed explanations above. Learn the standard meteorological definitions independently.</p>
+
+<h3>11.5 Mnemonics Quick Reference</h3>
+<div class="box-amber">
+  <strong>🧠 All Mnemonics — Chapter 5</strong>
+  <ul style="margin-top:8px;">
+    <li><strong>Absolute = Volume (g/m³) | HMR = Mass (g/kg)</strong></li>
+    <li><strong>RH = VP/SVP × 100</strong> — "Vapour over Saturation times 100"</li>
+    <li><strong>TT &gt; Tw &gt; Td</strong> — "Temperature Takes Talent" (decreasing order in unsaturated air)</li>
+    <li><strong>TT = Tw = Td</strong> — in FOG (Saturated Air, RH = 100%)</li>
+    <li><strong>Cloud Base = Spread × 400</strong> — "(T minus DP) times 400 feet"</li>
+    <li><strong>Cooling → RH changes, DP doesn't</strong> — "Cool Changes RH, not DP"</li>
+    <li><strong>HMR constant adiabatically</strong> — "Mixing Ratio Doesn't Mix when lifted"</li>
+    <li><strong>SVP(water) &gt; SVP(ice)</strong> — "Water beats Ice" → Bergeron process</li>
+    <li><strong>−40°C / −45°C</strong> — Super-cooled droplet limits in clouds/CB</li>
+    <li><strong>Desert Cooler = Wet Bulb principle</strong></li>
+    <li><strong>Hoar Frost = below Frost Point</strong> (ice saturation temperature)</li>
+  </ul>
+</div>
+
+<!-- WATERMARK -->
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

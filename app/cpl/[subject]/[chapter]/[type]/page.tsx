@@ -94,6 +94,18 @@ export default async function Page({
       "air-regulations/ar-15": true,
       "air-regulations/ar-16": true,
       "air-regulations/ar-17": true,
+      // IC Joshi Meteorology study notes (Ch.1–11)
+      "meteorology/met-1":  true,
+      "meteorology/met-2":  true,
+      "meteorology/met-3":  true,
+      "meteorology/met-4":  true,
+      "meteorology/met-5":  true,
+      "meteorology/met-6":  true,
+      "meteorology/met-7":  true,
+      "meteorology/met-8":  true,
+      "meteorology/met-9":  true,
+      "meteorology/met-10": true,
+      "meteorology/met-11": true,
     };
     if (HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]) {
       return (
