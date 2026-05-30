@@ -1,6 +1,9 @@
 export type DemoQuestion = {
   subjectIds: string[];
   chapterId?: string;
+  subtopic?: string;                       // e.g. "The Solar System" (from source syllabus)
+  difficulty?: "easy" | "medium" | "hard"; // optional, for difficulty-based practice
+  source?: string;                         // provenance, e.g. "ECQB 061 General Navigation"
   q: string;
   opts: string[];
   ans: number;

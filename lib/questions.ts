@@ -5,17 +5,40 @@ import { OXFORD_NAV_QUESTIONS } from "./oxford-nav-questions";
 import { RK_BALI_REGULATIONS_QUESTIONS } from "./rk-bali-regulations-questions";
 import { AIR_REGS_CH1_QUESTIONS } from "./air-regs-ch1-questions";
 import { SAR_QUESTIONS } from "./sar-questions";
+import { ECQB_061_NAVIGATION } from "./generated/ecqb-061-navigation";
+import { ICJOSHI_MET } from "./generated/icjoshi-met";
 
 export type { DemoQuestion };
 
-export const ALL_QUESTIONS: DemoQuestion[] = [
+// Curated sources first (hand-written explanations win on duplicates),
+// auto-generated banks last.
+const RAW_QUESTIONS: DemoQuestion[] = [
   ...DEMO_QUESTIONS,
   ...NAV_QUESTIONS,
   ...OXFORD_NAV_QUESTIONS,
   ...RK_BALI_REGULATIONS_QUESTIONS,
   ...AIR_REGS_CH1_QUESTIONS,
   ...SAR_QUESTIONS,
+  ...ECQB_061_NAVIGATION,
+  ...ICJOSHI_MET,
 ];
+
+// Global de-dupe by normalised question text — keeps the first (highest-priority)
+// copy so we never ship the same question twice across sources.
+const dedupeKey = (q: DemoQuestion) =>
+  q.q.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 100);
+
+export const ALL_QUESTIONS: DemoQuestion[] = (() => {
+  const seen = new Set<string>();
+  const out: DemoQuestion[] = [];
+  for (const q of RAW_QUESTIONS) {
+    const k = dedupeKey(q);
+    if (k.length < 10 || seen.has(k)) continue;
+    seen.add(k);
+    out.push(q);
+  }
+  return out;
+})();
 
 // CPL air-regulations chapters were restructured from 13 → 26 chapters.
 // The RK Bali question bank uses the old ar-1…ar-13 IDs. This map routes
