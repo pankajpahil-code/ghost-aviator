@@ -38,6 +38,7 @@ export default function Footer() {
                 ["Question Bank",   "/question-bank"],
                 ["Mock Tests",      "/mock-test"],
                 ["Notes",           "/notes"],
+                ["DGCA Resources",  "/resources"],
                 ["CPL Prep",        "/cpl"],
                 ["ATPL Prep",       "/atpl"],
               ].map(([item, href]) => (

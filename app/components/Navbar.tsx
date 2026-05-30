@@ -81,6 +81,7 @@ export default function Navbar() {
             <Link href="/mock-test" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Mock Test</Link>
             <Link href="/notes"     className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Notes</Link>
             <Link href="/question-bank" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
+            <Link href="/resources" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>
           </div>
 
           {/* CTA */}
@@ -105,6 +106,7 @@ export default function Navbar() {
           <Link href="/mock-test"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Mock Test</Link>
           <Link href="/notes"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Notes</Link>
           <Link href="/question-bank" onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
+          <Link href="/resources"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>
           <Link href="/signup" onClick={() => setOpen(false)}
                 className="mt-2 py-3 px-4 rounded-xl text-sm font-black text-center no-underline"
                 style={{ background:"linear-gradient(135deg,#9020ff,#ff2060)", color:"#fff" }}>
