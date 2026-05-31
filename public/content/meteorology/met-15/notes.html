@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch15 – Jet Streams | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #1a1a1a; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 2em; color: #1a237e; text-align: center; margin-bottom: 5px; }
+  h2 { font-size: 1.5em; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; page-break-after: avoid; }
+  h3 { font-size: 1.15em; color: #283593; margin-top: 20px; page-break-after: avoid; }
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 12px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; }
+  .cover .sub { font-size: 1.1em; color: #555; margin-top: 10px; }
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { padding: 4px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: center; }
+  td { border: 1px solid #bbb; padding: 8px 12px; text-align: left; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 18px 0; padding: 15px; page-break-inside: avoid; }
+  .qa-q { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 10px 15px; border-radius: 4px; font-weight: bold; margin-bottom: 10px; }
+  .qa-a { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 10px 15px; border-radius: 4px; margin-bottom: 8px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 10px 15px; border-radius: 4px; font-size: 0.92em; margin-bottom: 8px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 10px 15px; border-radius: 4px; font-size: 0.92em; }
+  pre.mermaid { page-break-inside: avoid; }
+  ul li, ol li { margin-bottom: 5px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 15<br>Jet Streams</h1>
+  <div class="sub">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="sub">IC Joshi Textbook | Compiled by Capt. Pankaj Pahil</div>
+  <div class="sub" style="margin-top:20px; font-size:0.95em; color:#888;">For Examination Use Only — All Rights Reserved</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#definition">1. Definition &amp; Basic Properties</a></li>
+    <li><a href="#types">2. Types of Jet Streams</a></li>
+    <li><a href="#stj-india">3. Sub-tropical Jet Stream (STJ) over India</a></li>
+    <li><a href="#temp-dist">4. Temperature Distribution &amp; Wind Shear</a></li>
+    <li><a href="#stj-weather">5. STJ and Weather</a></li>
+    <li><a href="#tj">6. Tropical Jet Stream (TJ)</a></li>
+    <li><a href="#llj">7. Low Level Jets (LLJ)</a></li>
+    <li><a href="#cause-clouds">8. Cause, Clouds &amp; CAT associated with Jetstream</a></li>
+    <li><a href="#quick-revision">9. Quick Revision Summary</a></li>
+    <li><a href="#qa">10. Practice Q&amp;A</a></li>
+    <li><a href="#ref-tables">11. Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="definition">1. Definition &amp; Basic Properties</h2>
+
+<div class="blue-box">
+  <strong>Jet Stream:</strong> A strong narrow current of winds along a semi-horizontal axis in the upper troposphere. Jet streams are present in both hemispheres all year round. The path of a jet stream is zigzag wavy like a serpentine.
+  <ul>
+    <li>Length: thousands of km</li>
+    <li>Width: hundreds of km</li>
+    <li>Depth: some km (often less than <span class="reg-value">5 km</span>)</li>
+    <li><strong>Vertical Wind Shear: about <span class="reg-value">5 m/s per km</span></strong></li>
+    <li><strong>Arbitrary lower limit of jet core velocity: <span class="reg-value">30 m/sec (60 kt)</span></strong></li>
+  </ul>
+</div>
+
+<div class="blue-box">
+  <strong>Jet Streaks (Wind Maxima):</strong> Along the axis of a jet stream there are centres of high speed winds called <strong>Jet Streaks</strong> — wind maxima. Weaker winds lie in between. Jet streaks retain their strength but move slower (by up to <span class="reg-value">25 kt</span>) than the jet stream itself. In a wavy jet they are located over or near the <strong>ridge</strong>.<br><br>
+  Wind speed along the axis is <strong>NOT always uniform</strong>. At certain places the wind speed reduces below 60 kt → constituting breaks in the jet stream. Sometimes jet streams split into two or more parts, combine, or flow in different directions.
+</div>
+
+<div class="amber-box">
+  🧠 <strong>Path of maximum speed = the CORE (axis) of the jet stream.</strong><br>
+  Jet Streaks = centres of high wind speed along the axis, located over/near ridges in wavy jets.
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="types">2. Types of Jet Streams</h2>
+
+<div class="blue-box">
+  There are <strong>four types</strong> of jet streams in the troposphere:
+</div>
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Symbol</th>
+    <th>Direction</th>
+    <th>Height / Pressure</th>
+    <th>Key Features</th>
+  </tr>
+  <tr>
+    <td><strong>Arctic Jet Stream</strong></td>
+    <td>AJ</td>
+    <td>Westerly</td>
+    <td><span class="reg-value">7–8 km</span>, near polar tropopause</td>
+    <td>Over Arctic region, close to polar tropopause</td>
+  </tr>
+  <tr>
+    <td><strong>Polar Front Jet</strong></td>
+    <td>PFJ</td>
+    <td>Westerly (mainly); NWly or SWly on occasions</td>
+    <td>~<span class="reg-value">250 hPa</span>, <span class="reg-value">9–12 km</span> (30,000–39,000 ft)</td>
+    <td>Also called mid-latitude jet. N America, Europe, Asia; SH = circles Antarctica. Migrates: winter → <span class="reg-value">30°N</span>; summer → <span class="reg-value">60°N</span>. Normal speed: <span class="reg-value">80–100 kt</span> in winters.</td>
+  </tr>
+  <tr>
+    <td><strong>Sub-tropical Jet</strong></td>
+    <td>STJ</td>
+    <td><strong>Westerly</strong></td>
+    <td><span class="reg-value">10–16 km</span>, near mid-latitude tropopause break</td>
+    <td>Above subtropical high pressure belt. Winter position: S of <span class="reg-value">22°N</span>; Summer: N of <span class="reg-value">35°N</span> (weakens). Affects India: <span class="reg-value">Oct–May</span>. Speed: <span class="reg-value">100–215 kt</span> (up to 398 km/h).</td>
+  </tr>
+  <tr>
+    <td><strong>Tropical Jet Stream</strong></td>
+    <td>TJ</td>
+    <td><strong>Easterly</strong></td>
+    <td>~<span class="reg-value">15–16 km</span>, ~<span class="reg-value">150 hPa</span></td>
+    <td>Also called Easterly Jet Stream. Prominent during monsoons, weak in winters. Speed: <span class="reg-value">60–80 kt</span> avg; max <span class="reg-value">150 kt</span>. Axis at <span class="reg-value">13°N</span> (Chennai lat.) over India in Jul–Aug. <strong>Only over Asia and Africa.</strong> NOT over Atlantic and Pacific.</td>
+  </tr>
+  <tr>
+    <td><strong>Stratospheric Jet</strong></td>
+    <td>SJ</td>
+    <td>Westerly (winter) / Easterly (summer)</td>
+    <td>Above <span class="reg-value">20 km</span></td>
+    <td>In Arctic and Antarctic regions. Westerlies in winter; easterlies in summer.</td>
+  </tr>
+</table>
+
+<pre class="mermaid">
+flowchart TB
+  JS[JET STREAMS\nUpper Troposphere]
+  JS --> AJ[Arctic Jet AJ\n7-8 km\nWesterly\nPolar regions]
+  JS --> PFJ[Polar Front Jet PFJ\n9-12 km / 250 hPa\nWesterly\n30N winter → 60N summer\n80-100 kt]
+  JS --> STJ[Sub-tropical Jet STJ\n10-16 km\nWESTERLY\n22N winter → 35N summer\n100-215 kt\nAffects India Oct-May]
+  JS --> TJ[Tropical Jet TJ\n15-16 km / 150 hPa\nEASTERLY\nAxis 13N over India\nJun-Aug\nOnly Asia+Africa]
+  JS --> SJ[Stratospheric Jet SJ\nAbove 20 km\nArctic/Antarctic regions]
+</pre>
+
+<!-- SECTION 3 -->
+<h2 id="stj-india">3. Sub-tropical Jet Stream (STJ) over India</h2>
+
+<div class="blue-box">
+  <strong>STJ seasonal movement over India:</strong>
+  <ul>
+    <li>Appears over N India in <strong>October</strong> after withdrawal of monsoon</li>
+    <li>Progressively shifts southwards as winter progresses</li>
+    <li>Mean position: roughly at <span class="reg-value">27°N</span> at height of <span class="reg-value">12 km</span></li>
+    <li>Reaches southernmost position at <span class="reg-value">22°N</span> in <strong>February</strong></li>
+    <li>Prevails over Indian subcontinent for about <span class="reg-value">8 months</span> (Oct to May)</li>
+    <li>After May: shifts northwards and moves out of Indian subcontinent</li>
+  </ul>
+</div>
+
+<div class="blue-box">
+  <strong>STJ wind speeds over India:</strong>
+  <ul>
+    <li>Mean wind speed: <span class="reg-value">100 kt</span></li>
+    <li>Maximum: <span class="reg-value">200 kt</span></li>
+    <li>Lowest (Oct and May): <span class="reg-value">60–70 kt</span></li>
+    <li>Highest (January): <span class="reg-value">100–120 kt</span>; on occasions core reaches <span class="reg-value">200 kt</span></li>
+    <li>Higher speeds more common in January and February than December</li>
+    <li>Level of maximum wind: a <strong>few km below the tropopause</strong></li>
+  </ul>
+</div>
+
+<div class="blue-box">
+  <strong>STJ structure:</strong>
+  <ul>
+    <li>STJ splits due to Himalayas → one branch south, one north of Himalayas → recombine over China</li>
+    <li>STJ has a <strong>layered structure</strong>: often two layers of maximum wind <strong>to the S of the jet core</strong></li>
+    <li>Jet stream strengthens by <span class="reg-value">10–15 kt</span> downstream, along axis from <strong>Jodhpur to Guwahati</strong></li>
+    <li>STJ located <span class="reg-value">3–4 km</span> below the tropopause in region where there is a break in tropical and middle tropopause at <span class="reg-value">300–200 hPa</span></li>
+  </ul>
+</div>
+
+<div class="amber-box">
+  🧠 <strong>STJ positions at a glance:</strong><br>
+  Oct (arrival, 27°N, 12 km) → Feb (southernmost, 22°N) → May (exit northwards) → ABSENT Jun–Sep (monsoon season, TJ takes over)
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="temp-dist">4. Temperature Distribution &amp; Wind Shear</h2>
+
+<div class="blue-box">
+  <strong>STJ is caused by a concentration of horizontal temperature gradient below the jet and reversal above it.</strong>
+  <ul>
+    <li>Surface to 300 hPa: horizontal temperature gradient from S to N (particularly at 500 and 300 hPa) → thermal wind builds up → jet maxima reached at <span class="reg-value">200 hPa</span></li>
+    <li>At 200 hPa: thermal gradient is slack and thereafter reverses</li>
+    <li><strong>Lapse rates more to the S of the jetstream than to the N and above and below.</strong></li>
+    <li>Near the STJ: temperature gradient is <strong>very small or negligible</strong></li>
+  </ul>
+</div>
+
+<div class="blue-box">
+  <strong>Vertical Shear:</strong> Strong vertical WS is often concentrated just above and below the jet core. It is <strong>greater above the core than below it</strong>.
+</div>
+
+<div class="blue-box">
+  <strong>Horizontal Shear:</strong> In STJ, horizontal shear is more to the <strong>north</strong> than to the south of the jet core.
+  <ul>
+    <li>At core level: winds weaken by about <span class="reg-value">35 kt/100 NM</span> to the south</li>
+    <li>North side of front is steeper: about <span class="reg-value">100 kt/100 NM</span></li>
+    <li>Shear is more below the core and to the north (left looking downstream)</li>
+  </ul>
+</div>
+
+<!-- SECTION 5 -->
+<h2 id="stj-weather">5. STJ and Weather</h2>
+
+<div class="blue-box">
+  With the passage of a WD, STJ strengthens (<span class="reg-value">130–150 kt</span>) and moves south. Divergence in the left entrance and right exit of the jet core in combination with south → a low level system (low pressure) enhances its activity → may cause <strong>severe TS</strong>.
+</div>
+
+<pre class="mermaid">
+flowchart LR
+  A[WD passes] --> B[STJ strengthens\n130-150 kt]
+  B --> C[STJ moves south]
+  C --> D[Divergence in left entrance\n+ right exit of jet core]
+  D --> E[Low level system\nlow pressure enhanced]
+  E --> F[SEVERE TS possible]
+</pre>
+
+<!-- SECTION 6 -->
+<h2 id="tj">6. Tropical Jet Stream (TJ)</h2>
+
+<div class="blue-box">
+  <strong>Also called: Easterly Jet Stream.</strong>
+  <ul>
+    <li>Strong Easterlies blow to the S of <span class="reg-value">25°N</span> at <span class="reg-value">100 hPa</span> during monsoon</li>
+    <li><strong>Found only over Asia and Africa; NOT over Atlantic and Pacific</strong></li>
+    <li>During monsoon: <span class="reg-value">10–20 kt</span> Ely winds at 300 hPa, S of 27°N and Wly to N</li>
+    <li>Prominent during monsoons; becomes very weak in winters</li>
+    <li>Average core speed: <span class="reg-value">60–80 kt</span>; maximum: <span class="reg-value">150 kt</span></li>
+    <li>TJ seen over India: <strong>June to August</strong>; disappears by <strong>September</strong></li>
+    <li>Axis: <span class="reg-value">13°N</span> (near Chennai/Madras latitude), at <span class="reg-value">150 hPa</span>, <span class="reg-value">15–16 km</span> height</li>
+    <li>Level of maximum wind: <strong>just below the tropopause</strong></li>
+    <li>Wind shears in TJ much <strong>less than STJ</strong></li>
+  </ul>
+</div>
+
+<div class="blue-box">
+  <strong>Cause of TJ:</strong> Due to sun being N of 20°N in summer → southward decrease of temperature throughout the troposphere → affects the 20°N Tibetan Plateau. The Tibetan Plateau (being south in summers) causes lower level westerlies to change to easterlies above <span class="reg-value">500 hPa</span>. Easterlies strengthen with height up to <span class="reg-value">16 km</span>.
+</div>
+
+<div class="amber-box">
+  🧠 <strong>TJ vs STJ:</strong><br>
+  STJ = Westerly = Oct–May = 22–27°N = 12 km = 100–200 kt (strong)<br>
+  TJ = Easterly = Jun–Aug = 13°N = 15–16 km = 60–150 kt (monsoon jet)<br>
+  TJ = only Asia + Africa. STJ = global.
+</div>
+
+<!-- SECTION 7 -->
+<h2 id="llj">7. Low Level Jets (LLJ)</h2>
+
+<div class="blue-box">
+  Very strong winds appear in the lower levels, between <span class="reg-value">1 km and 3 km</span> at many places in the sub-tropics. These are called <strong>Low Level Jets (LLJ)</strong>.<br><br>
+  A prominent LLJ is noticed over the Indian Peninsula during SW monsoon when low level winds become very strong. This LLJ is probably a continuation of the jet stream off the <strong>Somalia Coast in Africa</strong>. The LLJ <strong>enhances the monsoon activity</strong> over the Indian Peninsula.
+</div>
+
+<!-- SECTION 8 -->
+<h2 id="cause-clouds">8. Cause, Clouds &amp; CAT associated with Jetstream</h2>
+
+<h3>Cause</h3>
+<div class="blue-box">
+  Jetstream is caused by the <strong>large horizontal temperature gradient</strong>. The larger the temperature difference between two air masses, the stronger is the jet stream.
+</div>
+
+<h3>Clouds Associated with Jetstream</h3>
+<div class="blue-box">
+  <ul>
+    <li>Extensive sheets of high clouds on the <strong>warm side</strong>, with sharply defined edges parallel to the jet axis</li>
+    <li><strong>Ci clouds</strong> more common on the <strong>cold side</strong></li>
+    <li>CC clouds on the cold side — tops invariably just below the tropopause</li>
+    <li>Warm side cloud tops: a few thousand feet below the tropopause</li>
+    <li>Roll type of Ci or CS may be seen along the length</li>
+    <li>Where moisture is less: thin layer of haze on the warm side; clear on the cold side</li>
+  </ul>
+</div>
+
+<h3>Clear Air Turbulence (CAT)</h3>
+<div class="red-box">
+  <strong>CAT occurs around boundaries of Jetstream</strong> due to large vertical and horizontal wind shear. Also more in a developing and rapidly moving jet.
+</div>
+
+<div class="red-box">
+  <strong>⚠️ Strongest CAT occurs near or just below the axis on the COLDER (low pressure) side, with a secondary maxima above the Jetstream.</strong><br><br>
+  Looking downstream: CAT is to the <strong>LEFT in the Northern Hemisphere</strong>; to the right in Southern Hemisphere.
+</div>
+
+<div class="red-box">
+  <strong>CAT in a jetstream is most severe in:</strong>
+  <ol>
+    <li>Strong Winds</li>
+    <li>Curved Jets — the sharper the curve, the stronger the turbulence</li>
+    <li>On the leeward side and above mountain ranges</li>
+  </ol>
+</div>
+
+<div class="amber-box">
+  🧠 <strong>CAT location mnemonic:</strong> "Left of jet = Worst CAT" (Northern Hemisphere, looking downstream = cold/low pressure side). Pilot tip: if encountering CAT near jet, move to the RIGHT (warm side) when looking downstream.
+</div>
+
+<!-- QUICK REVISION -->
+<h2 id="quick-revision">9. Quick Revision Summary</h2>
+
+<div class="amber-box">
+  <strong>⚡ AMBER Quick Revision — Jet Streams</strong>
+  <ul>
+    <li><strong>Jet stream lower limit:</strong> <span class="reg-value">30 m/sec = 60 kt</span> (WMO arbitrary lower limit)</li>
+    <li><strong>Vertical WS:</strong> <span class="reg-value">5 m/s per km</span> | Depth often &lt;5 km</li>
+    <li><strong>Jet Streaks:</strong> centres of high wind along axis; located over/near RIDGE in wavy jet; move slower than jet by up to 25 kt</li>
+    <li><strong>Path of maximum speed = CORE (Axis)</strong></li>
+    <li><strong>5 types:</strong> Arctic (AJ), Polar Front (PFJ), Sub-tropical (STJ), Tropical (TJ), Stratospheric (SJ)</li>
+    <li><strong>STJ = Westerly; TJ = Easterly</strong> (key distinction)</li>
+    <li><strong>STJ over India:</strong> Oct (27°N, 12 km) → Feb (22°N, southernmost) → May exit | Mean 100 kt, Max 200 kt | Splits at Himalayas</li>
+    <li><strong>STJ structure:</strong> Two layers of max wind to the S of jet core | Strengthens 10–15 kt downstream (Jodhpur → Guwahati)</li>
+    <li><strong>STJ + WD:</strong> STJ strengthens to 130–150 kt + moves south → severe TS possible</li>
+    <li><strong>TJ:</strong> Easterly; Jun–Aug; 13°N (Chennai lat.); 15–16 km; 150 hPa; 60–80 kt (max 150 kt); only Asia + Africa; disappears by September</li>
+    <li><strong>LLJ:</strong> 1–3 km; SW monsoon; Somalia Coast origin; enhances monsoon over India</li>
+    <li><strong>CAT strongest:</strong> below axis on COLD side (left in NH); in strong winds, curved jets, leeward of mountains</li>
+    <li><strong>Vertical shear:</strong> Greater ABOVE the jet core than below</li>
+    <li><strong>Horizontal shear:</strong> More to the NORTH (left) of the jet</li>
+    <li><strong>Clouds:</strong> High clouds on WARM side; Ci more on COLD side</li>
+  </ul>
+</div>
+
+<!-- Q&A -->
+<h2 id="qa" style="page-break-before: always;">10. Practice Q&amp;A</h2>
+
+<div class="qa-block">
+  <div class="qa-q">Q1. The arbitrary lower limit of jet core velocity has been assigned by WMO as:<br>(a) 60 kt &nbsp; (b) 60 m/s &nbsp; (c) 70 m/s</div>
+  <div class="qa-a">✅ <strong>Answer: (a) 60 kt (= 30 m/sec)</strong> — The text clearly states: "The arbitrary lower limit of jet core velocity has been assigned as 30m/sec (60 kt)." Note: Answer key in the textbook gives (b), which appears to be a printing error. The correct answer per the text content is <span class="reg-value">30 m/sec = 60 kt</span>.</div>
+  <div class="qa-distractor">❌ (b) 60 m/s = approximately 117 kt — far too high for a lower threshold. ❌ (c) 70 m/s — even higher, incorrect.</div>
+  <div class="qa-tip">💡 WMO lower limit = <span class="reg-value">30 m/sec = 60 kt</span>. This is the minimum speed to qualify as a jet stream. Answer key says (b) but text says (a). Use 30 m/sec / 60 kt for DGCA.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q2. Jet stream has:<br>(a) one maxima &nbsp; (b) one or more maxima &nbsp; (c) only two maxima</div>
+  <div class="qa-a">✅ <strong>Answer: (b) one or more maxima</strong> — There are distinct maxima (Jet Streaks) along the jet axis — could be one or several. The wind speed along the axis is not uniform.</div>
+  <div class="qa-distractor">❌ (a) One maxima: too restrictive — multiple maxima (jet streaks) are common. ❌ (c) Only two: also too restrictive.</div>
+  <div class="qa-tip">💡 Jet streaks = centres of high speed wind along jet axis = "one or more maxima."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q3. The vertical wind shear in a jet stream is:<br>(a) 5 m/sec/km &nbsp; (b) 6 m/sec/km &nbsp; (c) 4 m/sec/km</div>
+  <div class="qa-a">✅ <strong>Answer: (a) 5 m/sec/km</strong> — The text states: "The vertical WS is about 5 m/s per km." This is the key defining vertical wind shear value for jet streams.</div>
+  <div class="qa-distractor">❌ (b) 6 m/sec/km — not the stated value. ❌ (c) 4 m/sec/km — not the stated value.</div>
+  <div class="qa-tip">💡 Jet stream vertical WS = <span class="reg-value">5 m/s per km</span>. Memorise this for DGCA.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q4. Compared to horizontal wind shear, the vertical wind shear in a jet stream is:<br>(a) Same &nbsp; (b) None &nbsp; (c) Less</div>
+  <div class="qa-a">✅ <strong>Answer: Vertical WS is much LESS than horizontal WS</strong> — In a jet stream, the horizontal wind shear (lateral change in wind speed) is very large, while the vertical wind shear is significant but comparatively smaller. Answer key gives (b).</div>
+  <div class="qa-distractor">Horizontal shear (side-to-side) can be very large (100 kt/100 NM on the north side). Vertical shear (5 m/s per km) is large for aviation but less than horizontal shear.</div>
+  <div class="qa-tip">💡 Both shears are important for aviation safety, but horizontal shear in a jet is generally larger than vertical shear.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q5. In a jet stream, the path of maximum speed is known as:<br>(a) Core &nbsp; (b) Axis &nbsp; (c) Jet streak</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Core</strong> — The text states: "The path of maximum speed is called the axis and the tubular volume immediately surrounding it is the core." So the axis and core are used together; the path of maximum speed = the core/axis. Answer key = (a).</div>
+  <div class="qa-distractor">❌ (c) Jet streak: a centre of locally highest speed ALONG the axis, not the entire path of maximum speed.</div>
+  <div class="qa-tip">💡 Core = the tubular volume of maximum wind surrounding the axis. Jet streak = a local maximum of wind speed along the core.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q6. Wind speed along the axis of a jet stream is always:<br>(a) same &nbsp; (b) uniform &nbsp; (c) not uniform</div>
+  <div class="qa-a">✅ <strong>Answer: (c) not uniform</strong> — The text explicitly states: "The wind speed along the axis is not always uniform. There are distinct maxima along the axis."</div>
+  <div class="qa-distractor">❌ (a)(b) Uniform/same — incorrect; jet streaks create distinct speed maxima along the axis.</div>
+  <div class="qa-tip">💡 Jet speed = NOT uniform along the axis. Jet streaks create local maxima. Breaks occur where speed falls below 60 kt.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q7. Along the axis of a jet stream there are centres of high speed winds, these are called:<br>(a) Ridge &nbsp; (b) Jet streaks &nbsp; (c) Between Trough and Ridge</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Jet streaks</strong> — Centres of high speed wind along the jet axis = Jet Streaks (wind maxima). In a wavy jet, these are located over or near the ridge.</div>
+  <div class="qa-distractor">❌ (a) Ridge: the location of jet streaks in a wavy jet, not the name of the centres. ❌ (c) Not the correct terminology.</div>
+  <div class="qa-tip">💡 Jet Streaks = wind maxima along jet axis. Located over/near ridges in wavy jets.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q8. Sub-tropical Jet Stream (STJ) is:<br>(a) Westerly &nbsp; (b) Easterly &nbsp; (c) Southerly</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Westerly</strong> — The STJ is explicitly described as "a Wly jet stream" in the text. The TROPICAL Jet Stream (TJ) is easterly. Answer key gives (b) for this Q but text clearly says STJ = Westerly.</div>
+  <div class="qa-distractor">❌ (b) Easterly: this describes the Tropical Jet Stream (TJ), NOT the STJ.</div>
+  <div class="qa-tip">💡 STJ = WESTERLY. TJ = EASTERLY. This is a critical distinction. If Q asks about "Tropical Jet" answer is Easterly; for "Sub-tropical Jet" answer is Westerly.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q9. Sub-tropical Jet Stream is located between:<br>(a) Westerly &nbsp; (b) Easterly &nbsp; (c) Between Trough and Ridge</div>
+  <div class="qa-a">✅ <strong>Answer: (b) — Above subtropical high pressure belt</strong> — STJ is located above the subtropical high pressure belt at 10–16 km altitude. Its lateral location in pressure pattern: between trough and ridge.</div>
+  <div class="qa-distractor">The STJ lies between the subtropical high pressure belt and the mid-latitude tropopause break.</div>
+  <div class="qa-tip">💡 STJ location: above subtropical high pressure belt. In pressure wave terms: between trough and ridge (or near ridges).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q10. The normal position of Sub-tropical Jet Stream is:<br>(a) 22°N &nbsp; (b) 37°N &nbsp; (c) 17°N</div>
+  <div class="qa-a">✅ <strong>Answer: ~27°N (normal/mean position over India)</strong> — Mean position of STJ over India is roughly at <span class="reg-value">27°N</span> at height of 12 km. Southernmost position = 22°N in February. Answer key gives (c) for this question — check actual options carefully.</div>
+  <div class="qa-distractor">Normal (mean) position = 27°N. Southernmost = 22°N. Northernmost (summer) = N of 35°N.</div>
+  <div class="qa-tip">💡 Key STJ latitudes: Mean = 27°N, Southernmost (Feb) = 22°N, Summer = N of 35°N.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q11. The southern most position of STJ is in February:<br>(a) 22°N &nbsp; (b) 13°N &nbsp; (c) 17°N</div>
+  <div class="qa-a">✅ <strong>Answer: (a) 22°N</strong> — The text states: "It reaches its southern most position of 22°N in February."</div>
+  <div class="qa-distractor">❌ (b) 13°N: this is the latitude of the Tropical Jet Stream axis, not the STJ. ❌ (c) 17°N: not the stated value.</div>
+  <div class="qa-tip">💡 STJ southernmost = <span class="reg-value">22°N in February</span>. TJ axis = <span class="reg-value">13°N (Chennai)</span>. Don't mix these up!</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q12. The STJ affects India from:<br>(a) Oct to May &nbsp; (b) Sep to Oct &nbsp; (c) Jun to Sep</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Oct to May</strong> — STJ prevails over the Indian subcontinent for about 8 months from October to May. After May it shifts northwards and exits the Indian subcontinent.</div>
+  <div class="qa-distractor">❌ (b) Sep–Oct: too short; STJ arrives in October and stays till May. ❌ (c) Jun–Sep: this is the monsoon period when TJ (Easterly jet) prevails — STJ is absent then.</div>
+  <div class="qa-tip">💡 STJ = Oct to May (8 months, non-monsoon). TJ = Jun to Aug (monsoon). When one is present, the other is absent over India.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q13. STJ has a layered structure. There are often two layers of max wind to the … of jet core:<br>(a) S &nbsp; (b) N &nbsp; (c) SW</div>
+  <div class="qa-a">✅ <strong>Answer: (a) S</strong> — The text states: "There are often two layers of maximum wind, to the S of the jet core." This is the layered structure of the STJ.</div>
+  <div class="qa-distractor">❌ (b) N: horizontal shear is more to the N, but the two layers of max wind are to the S. ❌ (c) SW: not the stated direction.</div>
+  <div class="qa-tip">💡 Two layers of max wind in STJ = <span class="reg-value">to the SOUTH of jet core</span>. Horizontal shear strongest = to the NORTH of jet core.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q14. The STJ strengthens:<br>(a) Northwards &nbsp; (b) Upstream &nbsp; (c) Downstream</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Downstream</strong> — "The jet stream strengthens by 10–15 kt downstream, along the axis from Jodhpur to Guwahati."</div>
+  <div class="qa-distractor">❌ (a) Northwards: lateral direction, not along jet axis. ❌ (b) Upstream: opposite of the text — weakens upstream, strengthens downstream.</div>
+  <div class="qa-tip">💡 STJ strengthens DOWNSTREAM (W to E): Jodhpur → Guwahati, by <span class="reg-value">10–15 kt</span>. This helps forecasters — stronger STJ = more active weather over E India.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q15. At and near the STJ the temperature gradient is very:<br>(a) Small &nbsp; (b) Large &nbsp; (c) Moderate</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Small</strong> — "Near the STJ the temperature gradient is very small or negligible." The strong gradient exists BELOW the jet (up to 300 hPa); it weakens at the jet level and reverses above.</div>
+  <div class="qa-distractor">❌ (b) Large: the large gradient is BELOW the jet (causes the jet), not AT the jet level. ❌ (c) Moderate: the text says "very small or negligible."</div>
+  <div class="qa-tip">💡 Temperature gradient: large BELOW jet (causes it) → very small/negligible AT jet level → reverses ABOVE jet. This is key to understanding jet stream physics.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q16. Vertical wind shear in STJ is greater:<br>(a) below &nbsp; (b) above &nbsp; (c) same above and below</div>
+  <div class="qa-a">✅ <strong>Answer: (b) above (the jet core)</strong> — "It is greater above the core than below it." Vertical WS is concentrated just above and below the jet core, with the maximum above.</div>
+  <div class="qa-distractor">❌ (a) Below: less vertical shear below the jet core. ❌ (c) Same: not equal — greater above.</div>
+  <div class="qa-tip">💡 Vertical WS = greater ABOVE jet core. So aircraft penetrating the jet from above face more severe CAT than those entering from below.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q17. TJ prevails over Indian Peninsula from:<br>(a) May to Jun &nbsp; (b) Jun to Aug &nbsp; (c) Sep to Oct</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Jun to Aug</strong> — The TJ (Easterly Jet Stream) is seen over India from June to August and disappears by September.</div>
+  <div class="qa-distractor">❌ (a) May–Jun: too early; TJ develops with monsoon onset in June. ❌ (c) Sep–Oct: TJ disappears by September; STJ returns in October.</div>
+  <div class="qa-tip">💡 TJ = Jun → Aug → disappears Sep. STJ returns Oct. Perfect seasonal exchange over India.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q18. TJ is located over India approximately at a height of:<br>(a) 11–12 km &nbsp; (b) 15–16 km &nbsp; (c) 8–10 km</div>
+  <div class="qa-a">✅ <strong>Answer: (b) 15–16 km</strong> — The text states: "It is at a mean height of about 15 to 16 km... The axis in July-August is near latitude 13°N (Chennai Lat.), at 150 hPa, over India."</div>
+  <div class="qa-distractor">❌ (a) 11–12 km: this is the height of the STJ (Sub-tropical Jet, at ~12 km). ❌ (c) 8–10 km: too low for a jet stream; PFJ is at 9–12 km.</div>
+  <div class="qa-tip">💡 TJ height = <span class="reg-value">15–16 km at 150 hPa</span>. STJ height = <span class="reg-value">~12 km</span>. Don't mix heights!</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q19. TJ is located over India approximately at a height of 15–16 km. It is in:<br>(a) July–Aug &nbsp; (b) Sep–Oct &nbsp; (c) Jun</div>
+  <div class="qa-a">✅ <strong>Answer: (a) July–August</strong> — "The axis in July-August is near latitude 13°N (Chennai Lat.), at 150 hPa." The TJ is active June–August but at maximum strength in July–August.</div>
+  <div class="qa-distractor">❌ (b) Sep–Oct: TJ disappears by Sep; STJ returns Oct. ❌ (c) Jun only: TJ starts in June but the axis specification is for Jul–Aug.</div>
+  <div class="qa-tip">💡 TJ axis position (13°N, 15–16 km) is specified for July–August — peak monsoon period.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q20. In the TJ the wind shears are much less than the STJ:<br>(a) True &nbsp; (b) False</div>
+  <div class="qa-a">✅ <strong>Answer: (a) True</strong> — The text states: "In the TJ the wind shears are much less than the STJ." The STJ has much stronger associated wind shears (and therefore stronger CAT potential) than the TJ.</div>
+  <div class="qa-distractor">❌ False: the text explicitly confirms TJ wind shears are less than STJ.</div>
+  <div class="qa-tip">💡 TJ wind shear &lt; STJ wind shear → Less CAT in TJ than STJ. The STJ is the more hazardous jet for aviation turbulence.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q21. A jet stream can be recognised by:<br>(a) High level dart &nbsp; (b) High Pressure (c) Streaks of Ci Lenticular clouds</div>
+  <div class="qa-a">✅ <strong>Answer: (a) per answer key</strong> — Jet streams can be recognised by extensive sheets of high clouds (Ci type) on the warm side with sharply defined edges. Also by a distinct band of high cloud parallel to the jet axis visible on satellite imagery.</div>
+  <div class="qa-distractor">The warm side shows high cloud sheets; the cold side shows Ci clouds; the cloud edge is sharp and parallel to the jet.</div>
+  <div class="qa-tip">💡 Jet stream cloud signature: band of Ci on cold side + high cloud sheets with sharp edges on warm side. Recognisable from satellite as a bright band parallel to the jet axis.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q22. Flying at and near the STJ the aircraft will experience:<br>(a) Wind from right &nbsp; (b) Increasing tailwind &nbsp; (c) — (answer: b)</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Increasing tail wind</strong> — When flying along or near the STJ (eastward), the aircraft benefits from the strong westerly jet stream as a tail wind component, which can significantly increase ground speed.</div>
+  <div class="qa-distractor">The key operational benefit of flying with the jet stream is the strong tailwind that reduces fuel burn and flight time.</div>
+  <div class="qa-tip">💡 Flying with STJ (eastbound) = strong tailwind = fuel saving. Flying against STJ (westbound) = strong headwind = more fuel, longer flight time.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q23. Strongest CAT occurs near the jetstream on the:<br>(a) Warm side &nbsp; (b) Cold side (low pressure side) &nbsp; (c) On the jet axis itself</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Cold side (low pressure side)</strong> — "Strongest CAT occurs near or just below the axis on colder (low pressure) side with a secondary maxima above the Jetstream." In the NH, this is to the LEFT looking downstream.</div>
+  <div class="qa-distractor">❌ (a) Warm side: some CAT but less severe. ❌ (c) On axis: maximum wind but not necessarily maximum CAT; shear zones are above/below and to the cold side.</div>
+  <div class="qa-tip">💡 Strongest CAT = just below axis on COLD/LEFT side (NH). Secondary maximum = above the jet. Safest approach = from the warm/right side.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q24. When tropical jet stream occurs:<br>(a) All year along along &nbsp; (b) High level dart &nbsp; (c) —</div>
+  <div class="qa-a">✅ <strong>Answer: During monsoon season (June to August)</strong> — The Tropical Jet Stream is prominent during monsoons and becomes very weak in winters. It is seen over India from June to August.</div>
+  <div class="qa-distractor">TJ is a seasonal phenomenon driven by the Tibetan Plateau heating and ITCZ shift during NH summer/monsoon.</div>
+  <div class="qa-tip">💡 TJ = monsoon jet = seasonal (Jun–Aug). STJ = non-monsoon jet = Oct–May. Perfectly alternating over India.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q25. When and where tropical jet stream occurs:<br>(a) All year along along India &nbsp; (b) High level dart &nbsp; (c) In summers over SE Asia and Central Africa &nbsp; (d) —</div>
+  <div class="qa-a">✅ <strong>Answer: (c) / Summers over Asia and Africa</strong> — TJ occurs during the NH summer/monsoon (Jun–Aug); found ONLY over Asia and Africa, NOT over Atlantic and Pacific.</div>
+  <div class="qa-distractor">❌ All year: not correct — TJ is seasonal (Jun–Aug). Not over Atlantic/Pacific — a critical limitation of TJ.</div>
+  <div class="qa-tip">💡 TJ = Summers + Asia + Africa ONLY. "Asia-Africa Easterly Jet" — this geographic restriction is frequently tested.</div>
+</div>
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="ref-tables" style="page-break-before: always;">11. Master Reference Tables</h2>
+
+<h3>All Numerical Values — Chapter 15</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>WMO lower limit of jet stream velocity</td><td><span class="reg-value">30 m/sec = 60 kt</span></td></tr>
+  <tr><td>Jet stream vertical WS</td><td><span class="reg-value">5 m/s per km</span></td></tr>
+  <tr><td>Jet stream depth</td><td>Often less than <span class="reg-value">5 km</span></td></tr>
+  <tr><td>Jet streak moves slower than jet by</td><td>Up to <span class="reg-value">25 kt</span></td></tr>
+  <tr><td>PFJ height/pressure</td><td><span class="reg-value">~250 hPa, 9–12 km (30,000–39,000 ft)</span></td></tr>
+  <tr><td>PFJ normal speeds in winter</td><td><span class="reg-value">80–100 kt</span></td></tr>
+  <tr><td>PFJ winter migration</td><td><span class="reg-value">30°N</span></td></tr>
+  <tr><td>PFJ summer migration</td><td><span class="reg-value">60°N</span></td></tr>
+  <tr><td>STJ height</td><td><span class="reg-value">10–16 km</span></td></tr>
+  <tr><td>STJ mean position over India</td><td><span class="reg-value">27°N, 12 km</span></td></tr>
+  <tr><td>STJ southernmost position</td><td><span class="reg-value">22°N in February</span></td></tr>
+  <tr><td>STJ northward exit (summer)</td><td>North of <span class="reg-value">35°N</span></td></tr>
+  <tr><td>STJ affects India (duration)</td><td><span class="reg-value">8 months: Oct to May</span></td></tr>
+  <tr><td>STJ mean wind speed over India</td><td><span class="reg-value">100 kt</span></td></tr>
+  <tr><td>STJ maximum wind speed</td><td><span class="reg-value">200 kt</span></td></tr>
+  <tr><td>STJ lowest speeds (Oct and May)</td><td><span class="reg-value">60–70 kt</span></td></tr>
+  <tr><td>STJ highest speeds (January)</td><td><span class="reg-value">100–120 kt</span></td></tr>
+  <tr><td>STJ speed range overall</td><td><span class="reg-value">100 to over 215 kt (398 km/h)</span></td></tr>
+  <tr><td>STJ level in tropopause region</td><td><span class="reg-value">3–4 km</span> below tropopause; <span class="reg-value">300–200 hPa</span></td></tr>
+  <tr><td>STJ strengthens downstream by</td><td><span class="reg-value">10–15 kt</span> (Jodhpur to Guwahati)</td></tr>
+  <tr><td>STJ strengthens with WD to</td><td><span class="reg-value">130–150 kt</span></td></tr>
+  <tr><td>STJ horizontal shear (north side)</td><td>About <span class="reg-value">100 kt/100 NM</span></td></tr>
+  <tr><td>STJ horizontal shear (south side)</td><td>About <span class="reg-value">35 kt/100 NM</span></td></tr>
+  <tr><td>TJ height over India</td><td><span class="reg-value">15–16 km</span></td></tr>
+  <tr><td>TJ pressure level</td><td><span class="reg-value">150 hPa</span></td></tr>
+  <tr><td>TJ axis latitude over India (Jul–Aug)</td><td><span class="reg-value">13°N (Chennai latitude)</span></td></tr>
+  <tr><td>TJ average core speed</td><td><span class="reg-value">60–80 kt</span></td></tr>
+  <tr><td>TJ maximum speed</td><td><span class="reg-value">150 kt</span></td></tr>
+  <tr><td>TJ active period over India</td><td><span class="reg-value">June to August</span></td></tr>
+  <tr><td>TJ disappears by</td><td><span class="reg-value">September</span></td></tr>
+  <tr><td>LLJ height</td><td><span class="reg-value">1–3 km</span></td></tr>
+  <tr><td>Breaks in jet stream (speed falls below)</td><td><span class="reg-value">60 kt</span></td></tr>
+  <tr><td>AJ height</td><td><span class="reg-value">7–8 km</span></td></tr>
+  <tr><td>SJ height</td><td>Above <span class="reg-value">20 km</span></td></tr>
+</table>
+
+<h3>Answer Key — Chapter 15</h3>
+<table>
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>b*</td><td>2</td><td>a</td><td>3</td><td>b*</td><td>4</td><td>b</td></tr>
+  <tr><td>5</td><td>a</td><td>6</td><td>c</td><td>7</td><td>b</td><td>8</td><td>b*</td></tr>
+  <tr><td>9</td><td>b</td><td>10</td><td>c</td><td>11</td><td>a</td><td>12</td><td>b</td></tr>
+  <tr><td>13</td><td>a</td><td>14</td><td>c</td><td>15</td><td>a</td><td>16</td><td>c</td></tr>
+  <tr><td>17</td><td>b</td><td>18</td><td>a*</td><td>19</td><td>a</td><td>20</td><td>a</td></tr>
+  <tr><td>21</td><td>a</td><td>22</td><td>b</td><td>23</td><td>b</td><td>24</td><td>c</td><td></td></tr>
+  <tr><td>25</td><td>d</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<div class="red-box">* Items marked with * have apparent discrepancies between the answer key and the textbook content. Rely on the textbook explanation in the Q&amp;A blocks above for conceptual understanding.</div>
+
+<h3>Mnemonics</h3>
+<div class="amber-box">
+  <ul>
+    <li><strong>Jet stream lower limit:</strong> "Thirty metres per second = Sixty knots = JET"</li>
+    <li><strong>STJ = W(esterly) / TJ = E(asterly)</strong> — "Sub-tropical jets WEST, Tropical jets EAST"</li>
+    <li><strong>STJ over India:</strong> "OCT-27N → FEB-22N → MAY-exit" (shifts south in winter)</li>
+    <li><strong>TJ = JAJA:</strong> June–August, Asia–Africa only</li>
+    <li><strong>STJ 8 months</strong> (Oct–May) vs <strong>TJ 3 months</strong> (Jun–Aug)</li>
+    <li><strong>Jet streaks:</strong> Over RIDGES in wavy jet; move slower than jet by up to 25 kt</li>
+    <li><strong>Strongest CAT = Cold side (LEFT in NH) just below jet axis</strong></li>
+    <li><strong>Vertical WS:</strong> Greater ABOVE jet core than below</li>
+    <li><strong>STJ + WD = 130–150 kt + South shift → Severe TS</strong></li>
+    <li><strong>LLJ = 1–3 km + Somalia origin + Enhances monsoon</strong></li>
+    <li><strong>TJ axis over India = 13°N (Chennai) = 15–16 km = 150 hPa</strong></li>
+    <li><strong>STJ axis over India = 27°N (mean) → 22°N (Feb southernmost) = 12 km</strong></li>
+    <li><strong>CAT worst in: Strong winds + Curved jet + Leeward side of mountains</strong></li>
+  </ul>
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

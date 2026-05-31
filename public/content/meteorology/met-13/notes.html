@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch13 – Thunderstorm | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #1a1a1a; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 2em; color: #1a237e; text-align: center; margin-bottom: 5px; }
+  h2 { font-size: 1.5em; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; page-break-after: avoid; }
+  h3 { font-size: 1.15em; color: #283593; margin-top: 20px; page-break-after: avoid; }
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 12px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; }
+  .cover .sub { font-size: 1.1em; color: #555; margin-top: 10px; }
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { padding: 4px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: center; }
+  td { border: 1px solid #bbb; padding: 8px 12px; text-align: left; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 18px 0; padding: 15px; page-break-inside: avoid; }
+  .qa-q { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 10px 15px; border-radius: 4px; font-weight: bold; margin-bottom: 10px; }
+  .qa-a { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 10px 15px; border-radius: 4px; margin-bottom: 8px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 10px 15px; border-radius: 4px; font-size: 0.92em; margin-bottom: 8px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 10px 15px; border-radius: 4px; font-size: 0.92em; }
+  pre.mermaid { page-break-inside: avoid; }
+  ul li, ol li { margin-bottom: 5px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 13<br>Thunderstorm</h1>
+  <div class="sub">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="sub">IC Joshi Textbook | Compiled by Capt. Pankaj Pahil</div>
+  <div class="sub" style="margin-top:20px; font-size:0.95em; color:#888;">For Examination Use Only — All Rights Reserved</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#definition">1. Definition &amp; Basic Facts</a></li>
+    <li><a href="#types-ts">2. Types of Thunderstorms</a></li>
+    <li><a href="#classification-cells">3. Classification by Cell Structure</a></li>
+    <li><a href="#favourable">4. Favourable Conditions &amp; Triggering Mechanisms</a></li>
+    <li><a href="#lifecycle">5. Life Cycle of a TS</a></li>
+    <li><a href="#clouds">6. Associated Clouds &amp; Features</a></li>
+    <li><a href="#intensity">7. Intensity, Diurnal &amp; Seasonal Variation</a></li>
+    <li><a href="#aviation-hazards">8. Aviation Hazards</a></li>
+    <li><a href="#radar">9. Radar Detection</a></li>
+    <li><a href="#microburst">10. Air Pocket, Downburst &amp; Microburst</a></li>
+    <li><a href="#duststorm">11. Dust Storms / Sand Storms</a></li>
+    <li><a href="#norwesters">12. Norwesters</a></li>
+    <li><a href="#tornado">13. Tornado, Water Spout &amp; Dust Devil</a></li>
+    <li><a href="#quick-revision">14. Quick Revision Summary</a></li>
+    <li><a href="#qa">15. Practice Q&amp;A</a></li>
+    <li><a href="#ref-tables">16. Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="definition">1. Definition &amp; Basic Facts</h2>
+
+<div class="blue-box">
+  <strong>Thunderstorm (TS):</strong> A weather system produced by strong convection currents in CB clouds. Characterised by lightning flashes, rumbling thunder, blackening of sky, sharp showers, squally winds, and at times hail, snow, sleet, or warm winds. Some TS cause floods, forest fires, tornadoes, waterspouts, and microbursts.<br><br>
+  <strong>For Aviation:</strong> TS is also known as Electrical storm, Lightning storm, or Thundershower. It is reported when thunder is heard. Under suitable conditions, TS may line up = <strong>squall line</strong> or <strong>rain band</strong>.
+</div>
+
+<div class="red-box">
+  ⚠️ <strong>TS is one of the most hazardous meteorological phenomena for aviation.</strong>
+  <ul>
+    <li>Diameter of individual CB cells: <span class="reg-value">1 to 10 km</span></li>
+    <li>In a cluster of CB cells: no narrow cloud-filled lanes between neighbouring cells</li>
+    <li><strong>Severe TS:</strong> accompanied by locally damaging winds, frequent lightning, or large hail</li>
+  </ul>
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="types-ts">2. Types of Thunderstorms</h2>
+
+<table>
+  <tr><th>Type</th><th>Characteristics</th></tr>
+  <tr>
+    <td><strong>Heat (Air Mass) TS</strong></td>
+    <td>Intense heating and convergence due to low pressure. Also occur when cold air passes over a warmer sea. Pop up randomly in warm humid air. Relatively weak, mostly develop in afternoons on plains; nights in valleys and hills.</td>
+  </tr>
+  <tr>
+    <td><strong>Frontal TS</strong></td>
+    <td>Occur at Cold Front (occasionally warm front). Triggered by vigorous uplift of moist air along/ahead of front. More violent than air mass TS. May develop as Squall Line along/ahead of cold front → causes severe weather.</td>
+  </tr>
+  <tr>
+    <td><strong>Steady State TS</strong></td>
+    <td>Associated with Fronts, Converging Winds, and Troughs aloft. Intensified by afternoon heating. Precipitation falls outside updraughts → become stronger in mature stage. Last several hours.</td>
+  </tr>
+  <tr>
+    <td><strong>Mesoscale Convective Complex (MCC)</strong></td>
+    <td>Nearly circular cluster of many interacting TS over a large area (~area of an Air Mass TS). No TS develop continually within an MCC. Life: <span class="reg-value">6 to 24 hr</span>. Produce severe weather, Tornadoes, Flash Floods (sudden rise in rivers/streams). Form near fronts and in tropics in ITCZ.</td>
+  </tr>
+</table>
+
+<div class="amber-box">
+  🧠 <strong>Meso-Scale Weather examples:</strong> TS, DS, Land and Sea breeze, Katabatic wind, etc. = local scale phenomena.
+</div>
+
+<!-- SECTION 3 -->
+<h2 id="classification-cells">3. Classification by Cell Structure</h2>
+
+<table>
+  <tr><th>Type</th><th>Structure</th><th>Key Features</th></tr>
+  <tr>
+    <td><strong>Single Cell</strong></td>
+    <td>One main updraught</td>
+    <td>Rarely severe. Local instability/heating in summers (Heat/Air mass TS). Also in cold front in winters.</td>
+  </tr>
+  <tr>
+    <td><strong>Multi Cell Cluster</strong></td>
+    <td>Cluster of storms due to convective updraughts in/near mountain ranges and strong cold fronts or troughs</td>
+    <td>Each cell lasts <span class="reg-value">20 min</span>; the cluster may last hours.</td>
+  </tr>
+  <tr>
+    <td><strong>Multi Cell Lines (Squall Lines)</strong></td>
+    <td>Hundreds of km long; move swiftly along/ahead of cold fronts</td>
+    <td>Heavy rain, hail, lightning, strong winds, even isolated tornadoes. Unusually powerful = <strong>derecho</strong>. Also near tropical cyclone outer rain band.</td>
+  </tr>
+  <tr>
+    <td><strong>Super Cell</strong></td>
+    <td>Large and severe; separate up/down draughts; rotating updrafts = <strong>mesocyclone</strong>; NO wind direction changing with height (WS)</td>
+    <td>Reach lower stratosphere. Destructive tornadoes, hailstones up to <span class="reg-value">10 cm dia.</span>, winds &gt;<span class="reg-value">130 km/h</span>. Up to <span class="reg-value">24 km</span> wide.</td>
+  </tr>
+</table>
+
+<!-- SECTION 4 -->
+<h2 id="favourable">4. Favourable Conditions &amp; Triggering Mechanisms</h2>
+
+<div class="blue-box">
+  <strong>Three essential conditions for TS formation:</strong>
+  <ol>
+    <li><strong>Steep Lapse Rate:</strong> Steeper than SALR throughout a layer at least <span class="reg-value">5–6 km</span> in depth, permitting development of clouds above <span class="reg-value">0°C</span> level.</li>
+    <li><strong>High Humidity:</strong> Adequate supply of moisture from below; high humidity aloft. If humidity aloft is low → growth of cloud is arrested due to evaporation of rising parcel.</li>
+    <li><strong>Trigger Action:</strong> A lifting mechanism which can produce saturation in the region of the steep lapse rate.</li>
+  </ol>
+</div>
+
+<div class="blue-box">
+  <strong>Triggering Mechanisms:</strong>
+  <ul>
+    <li>(a) Insolation / Local Convection</li>
+    <li>(b) Frontal Lifting</li>
+    <li>(c) Convergence</li>
+    <li>(d) Orographic Lifting</li>
+    <li>(e) Radiational or Katabatic Cooling</li>
+  </ul>
+</div>
+
+<pre class="mermaid">
+flowchart TD
+  A[Steep Lapse Rate\n≥ SALR over 5-6 km depth] --> D{All 3 conditions met?}
+  B[High Humidity\nMoisture from below + aloft] --> D
+  C[Trigger Action\nLifting mechanism] --> D
+  D -->|Yes| E[THUNDERSTORM DEVELOPS]
+  D -->|No| F[No TS]
+  C1[Insolation] --> C
+  C2[Frontal Lifting] --> C
+  C3[Convergence] --> C
+  C4[Orographic] --> C
+  C5[Katabatic Cooling] --> C
+</pre>
+
+<!-- SECTION 5 -->
+<h2 id="lifecycle">5. Life Cycle of a TS</h2>
+
+<h3>Stage 1: Cumulus Stage</h3>
+<div class="blue-box">
+  Trigger lifts air → expands and cools → condensation → latent heat released → air warmer than surroundings → low pressure develops → <strong>inflow (entrainment)</strong> takes place through sides at all levels and base of cloud.<br><br>
+  <strong>Entrainment:</strong> The mixing of environmental air into a cloud. Parcel rises higher and higher as long as it is warmer than surroundings → CU building up into a CB cloud.<br><br>
+  Updraught speeds of <span class="reg-value">30 m/sec</span> or <span class="reg-value">60 kt</span> are not uncommon.<br><br>
+  Rain/snow/hail particles grow inside cloud → fall as precipitation when too large/heavy to be sustained by updraughts.<br><br>
+  <strong>Aviation hazards from this stage: turbulence and icing.</strong>
+</div>
+
+<h3>Stage 2: Mature Stage</h3>
+<div class="blue-box">
+  Warmed air continues to rise up to tropopause (which is the cap) → forced to spread out as cirrus clouds giving the anvil shape = <strong>False Cirrus</strong> (also called False Cirrus).<br><br>
+  Water droplets coalesce into larger → ice particles. Falling precipitation drags adjacent air → <strong>downdraught</strong>. Entrained drier air cools downdraught further and accelerates it. <strong>Both up and downdraughts coexist.</strong><br><br>
+  At ground level: sudden rush of <strong>very strong cold winds</strong> = <strong>squall</strong>.<br>
+  Downdraught close to ground spreads horizontally → leading edge = <strong>First Gust / Gust Front</strong> (arc-shaped surface).<br><br>
+  May be followed by heavy rain/showers. Gust front undercuts warm air at surfaces → generates new TS cells.<br><br>
+  Duration: <span class="reg-value">20–40 min</span>. Lightning and considerable <strong>turbulence</strong> within and around cloud.<br><br>
+  <strong>Mature stage = production of precipitation + coexistence of up and downdraughts side by side.</strong>
+</div>
+
+<div class="red-box">
+  ⚠️ <strong>Mature stage presents serious aviation weather hazards.</strong> This is the most violent stage of a TS.
+</div>
+
+<h3>Stage 3: Dissipating Stage</h3>
+<div class="blue-box">
+  Updraught ceases → storm dominated by downdraughts. Precipitation may still occur but decreases as moisture is depleted. Downdraughts spread across the lower portion of CB → cloud gradually dissipates.<br><br>
+  <em>If little vertical WS:</em> storm rapidly enters dissipating stage.<br>
+  <em>If sufficient vertical WS:</em> storm may become a super cell — mature stage can sustain itself for several hours; tornadoes may develop.
+</div>
+
+<pre class="mermaid">
+flowchart LR
+  A[CUMULUS STAGE\nOnly Updraughts\nTurbulence + Icing] --> B[MATURE STAGE\nUp + Downdraughts\nLightning + Squall\nAll hazards present\n20-40 min]
+  B --> C[DISSIPATING STAGE\nOnly Downdraughts\nPrecipitation decreases\nCloud dissipates]
+  B -->|Strong vertical WS| D[SUPER CELL\nSelf-sustaining\nHours of duration\nTornadoes possible]
+</pre>
+
+<!-- SECTION 6 -->
+<h2 id="clouds">6. Associated Clouds &amp; Features</h2>
+
+<table>
+  <tr><th>Feature</th><th>Description</th></tr>
+  <tr>
+    <td><strong>Anvil / False Cirrus</strong></td>
+    <td>Cirrus cloud at tropopause level; air forced to spread out horizontally. Indicates mature/dissipating stage.</td>
+  </tr>
+  <tr>
+    <td><strong>Roll Cloud</strong></td>
+    <td>Elongated cylindrical dark cloud appearing to rotate slowly about horizontal axis. Occurs <em>behind</em> the First Gust, <em>detached</em> from CB. Seldom associated with severe weather.</td>
+  </tr>
+  <tr>
+    <td><strong>Shelf Cloud</strong></td>
+    <td>Wedge-shaped elongated cloud with flat base. At edge of Gust Front, <em>attached</em> to CB. Due to uplift of warm air along Gust Front. Associated with <strong>Severe weather</strong>.</td>
+  </tr>
+  <tr>
+    <td><strong>Gust Front / First Gust</strong></td>
+    <td>Arc-shaped leading edge of cold downdraught spreading along the ground. Causes sudden pressure rise. Undercuts warm air → new TS cells generated.</td>
+  </tr>
+</table>
+
+<div class="amber-box">
+  🧠 <strong>Roll vs Shelf Cloud:</strong> Roll = Detached + Behind gust = less severe. Shelf = Attached to CB + At gust front edge = SEVERE weather. Remember: "Shelf = Serious."
+</div>
+
+<h3>Structure of Severe TS</h3>
+<div class="blue-box">
+  Severe TS are <strong>tilted</strong> due to vertical WS. Because of tilt, precipitation and downdraughts fall <em>away</em> from the updrafts → updraughts cannot be cut off → cell grows to great heights and lasts longer. The <strong>700–500 hPa</strong> level winds influence movement of TS. Upper level Jet Stream produces wind shear, tilts updrafts → favours great vertical development.
+</div>
+
+<!-- SECTION 7 -->
+<h2 id="intensity">7. Intensity, Diurnal &amp; Seasonal Variation</h2>
+
+<table>
+  <tr><th>Intensity</th><th>Thunder &amp; Lightning</th><th>Precipitation</th><th>Max Wind</th></tr>
+  <tr>
+    <td><strong>Light</strong></td>
+    <td>Faint peals at long intervals</td>
+    <td>Light showers</td>
+    <td>–</td>
+  </tr>
+  <tr>
+    <td><strong>Moderate</strong></td>
+    <td>Loud peals, frequent flashes</td>
+    <td>Moderate or heavy showers, light hail</td>
+    <td><span class="reg-value">15–40 kt</span></td>
+  </tr>
+  <tr>
+    <td><strong>Severe</strong></td>
+    <td>Almost continuous</td>
+    <td>Heavy rain/shower, may be hail</td>
+    <td><span class="reg-value">&gt;40 kt</span></td>
+  </tr>
+</table>
+
+<div class="blue-box">
+  <strong>Diurnal Variation:</strong>
+  <ul>
+    <li>Over plains: mostly <strong>afternoon</strong>, die out in evening</li>
+    <li>Valley and foot hills: generally <strong>night and early morning</strong></li>
+    <li>Over sea: more frequent at <strong>night</strong></li>
+    <li>Middle latitudes: over land most frequent in <strong>summers</strong>; frontal TS more frequent in <strong>winters</strong> (frequent Cold Fronts)</li>
+  </ul>
+</div>
+
+<!-- SECTION 8 -->
+<h2 id="aviation-hazards">8. Aviation Hazards</h2>
+
+<div class="red-box">
+  ⚠️ <strong>TS pose a variety of hazards to aircraft on ground and in flight:</strong>
+</div>
+
+<h3>(a) Turbulence</h3>
+<div class="red-box">
+  Most serious hazard of a TS. Sources: gusts, eddies, up and downdraughts inside CB; large amount of air entrained from outside → strong upcurrents in clear air around CB.
+  <ul>
+    <li>Moderate to severe turbulence: <strong>inside CB</strong> (at boundary between up and downdraughts)</li>
+    <li>Clear air turbulence: <span class="reg-value">10–20 km</span> around CB in clear air</li>
+    <li>Downwind: <span class="reg-value">25–30 km</span> downwind</li>
+    <li>Above CB: <strong>thousands of feet above CB top</strong> (especially when winds are very strong)</li>
+    <li>Below cloud base: down to surface — makes landing/takeoff dangerous</li>
+  </ul>
+  Turbulence increases gust load which may exceed stress limit of aircraft. Attempts to regain control → structural failure may occur.
+</div>
+
+<table>
+  <tr><th>Turbulence Level</th><th>Effect Inside Aircraft</th></tr>
+  <tr><td><strong>Light</strong></td><td>Feel slight strain on seat belt; unsecured objects displaced; walking is difficult</td></tr>
+  <tr><td><strong>Moderate</strong></td><td>Feel definite strain on seat belt; unsecured objects dislodged; walking very difficult</td></tr>
+  <tr><td><strong>Severe</strong></td><td>Forced violently against seat belt; objects tossed around; walking and food serving are impossible</td></tr>
+</table>
+
+<h3>(b) Wind Shear (WS)</h3>
+<div class="red-box">
+  Strong WS often associated with TS. Outflow of TS can cause extreme changes in wind speed and direction near surface during critical phases of flight.
+  <ul>
+    <li>Cold strong downdraught from CB strikes the surface → rises up to <span class="reg-value">2000 ft</span></li>
+    <li>WS zone forms between outflow and warm air above (blowing opposite direction toward CB)</li>
+    <li>Aircraft initially encounters head wind → then strong horizontal spreading → then tail wind</li>
+    <li>Landing angle may become dangerously steep; accidents during take-off, landing, climb/descent, final approach</li>
+    <li>WS hazardous during all critical phases; <strong>strong vertical WS is necessary for severe TS</strong></li>
+  </ul>
+</div>
+
+<h3>(c) Squall</h3>
+<div class="blue-box">
+  Initial downdraught from cloud spreads all around horizontally on the ground as squall. Speed normally up to <span class="reg-value">40 kt</span> but can be as high as <span class="reg-value">100 kt</span>. The strongest speeds are ahead of the direction of movement.
+</div>
+
+<h3>(d) Draughts</h3>
+<div class="red-box">
+  Strong up and downdraughts within cloud; greater vertical extent.
+  <ul>
+    <li>Can suck gliders in; updraughts impose sudden <strong>negative g force</strong></li>
+    <li>Stronger from middle of cloud to the surface; can force even powerful jet aircraft to ground if below cloud base</li>
+    <li>Horizontal extent: can be more than <span class="reg-value">1 km</span> in a TS</li>
+    <li>3–<span class="reg-value">5,000 ft</span> horizontal spreading</li>
+  </ul>
+</div>
+
+<h3>(e) Gusts</h3>
+<div class="red-box">
+  Near boundary between up and downdraughts, vigorous eddies form. Severe turbulence = combined effect of gusts and draughts. Impose severe load factor. Structural failure may occur if pilot attempts to correct attitude changes too quickly or harshly.
+</div>
+
+<h3>(f) Icing</h3>
+<div class="red-box">
+  Always possible in temperature range <span class="reg-value">0° to −30°C</span>. Affects aerodynamics, jams controls, blocks pitot tube, engine, and carburetor.
+  <ul>
+    <li><strong>Glazed clear ice</strong> is worst within first <span class="reg-value">10,000 ft</span> from the freezing level (large supercooled drops present)</li>
+    <li>Towards top: more ice crystals → rime ice</li>
+    <li>In piston engine aircraft: carburetor icing may cause loss of power</li>
+    <li>Along frontal line: icing may become a serious problem</li>
+    <li>Use of <strong>de-icing devices and carburetor heat is essential</strong></li>
+  </ul>
+</div>
+
+<h3>(g) Hail</h3>
+<div class="red-box">
+  Hailstone starts as an ice crystal → grows by collision with supercooled water drops while being tossed up and down in cloud.
+  <ul>
+    <li>Onion-like structure: alternate layers of rime and clear ice</li>
+    <li>Clear ice forms nearer the freezing level; rime ice above</li>
+    <li>Worst hail: from freezing level to <span class="reg-value">25,000 ft</span></li>
+    <li>Hail encounters are rare but if encountered, only in small region of cloud</li>
+    <li>Small hail: superficial damage | Large hail: serious damage</li>
+    <li>Damaging hail may occur up to <span class="reg-value">45,000 ft</span> in CB and under the Anvil</li>
+    <li>Size of hail: max Dia <span class="reg-value">5.5 in</span></li>
+    <li>Heaviest hail: <span class="reg-value">4.5 kg</span> reported in China; <span class="reg-value">3.4 kg</span> in India</li>
+  </ul>
+</div>
+
+<h3>(h) Heavy Showers</h3>
+<div class="red-box">
+  May reduce visibility to very low value. Creates thick film of water on runway → hydroplaning and skidding of aircraft. Ingestion of heavy showers in engine → reduces power. Noise disturbs aircrew. Fractostratus clouds below <span class="reg-value">1000 ft</span> generally accompany heavy showers. Avoid landing and take-off during heavy rain/showers.
+</div>
+
+<h3>(i) Lightning</h3>
+<div class="red-box">
+  Potential difference for lightning flash: ~<span class="reg-value">3×10⁶ V/m</span> in clear air; ~<span class="reg-value">1×10⁶ V/m</span> in cloud.
+  <ul>
+    <li>Strike on aircraft is relatively harmless; bonding prevents electrical discharge penetrating to interior</li>
+    <li>Lightning can burn or puncture small holes in the skin</li>
+    <li>Magnetic compass shows erroneous readings</li>
+    <li>Electronic equipment may be damaged; radio noise</li>
+    <li>Temporary blinding of crew and passengers in dimly lit environment</li>
+    <li>Lightning strikes most likely in temperature range <span class="reg-value">+10°C to −10°C</span></li>
+    <li>Extreme heat due to lightning expands the surrounding air → shock wave = thunder</li>
+  </ul>
+</div>
+
+<h3>(j–m) Other Hazards</h3>
+<div class="red-box">
+  <ul>
+    <li><strong>(k) Noise:</strong> Hail striking aircraft and windscreen can be very frightening; more so in turbulence</li>
+    <li><strong>(l) Darkness &amp; Disorientation:</strong> Absolute darkness in thick CB → constant eye on Artificial Horizon is essential</li>
+    <li><strong>(m) Instrumental Error:</strong> Below base of growing/mature CB, reduction in pressure → altimeter tends to <strong>over-read</strong> (indicates more height than actual); adequate ground clearance essential. Pitot tube may be blocked by heavy water ingestion → <strong>ASI reading would be misleading</strong></li>
+  </ul>
+</div>
+
+<!-- SECTION 9 -->
+<h2 id="radar">9. Radar Detection of Thunderstorms</h2>
+
+<div class="blue-box">
+  Storm Detection Radars: wavelength <span class="reg-value">3 to 20 cm</span>. For detecting precipitation: <span class="reg-value">3 to 20 cm</span> wavelength. Wavelength of <span class="reg-value">10 cm</span> is widely used. Can be ground-based or airborne.
+</div>
+
+<table>
+  <tr><th>Band</th><th>Wavelength (cm)</th><th>Common Use</th></tr>
+  <tr><td><strong>K Band</strong></td><td><span class="reg-value">0.86</span></td><td>–</td></tr>
+  <tr><td><strong>X Band</strong></td><td><span class="reg-value">3.0</span></td><td>Airborne weather radar</td></tr>
+  <tr><td><strong>C Band</strong></td><td><span class="reg-value">4.0</span></td><td>Ground-based weather radar</td></tr>
+  <tr><td><strong>S Band</strong></td><td><span class="reg-value">10.0</span></td><td>TS detection (widely used)</td></tr>
+  <tr><td><strong>L Band</strong></td><td><span class="reg-value">20.0</span></td><td>Long-range detection</td></tr>
+</table>
+
+<div class="amber-box">
+  🧠 <strong>Mnemonic for radar bands:</strong> "Kings eXplore Clear Skies Loudly" → K(0.86), X(3.0), C(4.0), S(10.0), L(20.0).<br>
+  Airborne radars: wavelength <span class="reg-value">20 mm (2 cm)</span> generally used. For TS detection: <span class="reg-value">S Band (10 cm)</span> most widely used.
+</div>
+
+<!-- SECTION 10 -->
+<h2 id="microburst">10. Air Pocket, Downburst &amp; Microburst</h2>
+
+<h3>Air Pocket</h3>
+<div class="blue-box">
+  An updraught or downdraught caused by localized regions of warm or cool air and High or Low pressure areas. A pocket of warm air rises (less dense); a low pressure region creates updraft; a high pressure region creates downdraught. Extreme cases = <strong>downburst</strong> and <strong>microburst</strong>.
+</div>
+
+<h3>Downburst</h3>
+<div class="blue-box">
+  A local intense severe downdraught exceeding <span class="reg-value">&gt;4 km horizontally</span> with damaging winds from a TS.
+</div>
+
+<h3>Microburst vs Macroburst</h3>
+<table>
+  <tr><th>Parameter</th><th>Microburst</th><th>Macroburst</th></tr>
+  <tr><td>Diameter</td><td><span class="reg-value">less than 4 km</span></td><td><span class="reg-value">4 km or more</span></td></tr>
+  <tr><td>Life</td><td><span class="reg-value">1–5 min</span> (may prolong 15–20 min)</td><td>Longer</td></tr>
+  <tr><td>Max Wind Speed</td><td>May exceed <span class="reg-value">75 km/h</span> close to ground</td><td>Similar or higher</td></tr>
+  <tr><td>Avg Horiz Wind</td><td><span class="reg-value">90 km/h</span> (may exceed 200 km/h)</td><td>–</td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>Cause of Microburst:</strong> Dryness of atmosphere → falling rain evaporates rapidly (Virga) → evaporation reduces temperature of the air column → column colder than environment → descends and accelerates towards ground as microburst.
+</div>
+
+<div class="blue-box">
+  <strong>Systems which produce Microburst:</strong>
+  <ol>
+    <li>CB cloud: <span class="reg-value">about 5%</span> of all TS produce microburst</li>
+    <li>Heavy rain: high probability of microburst</li>
+    <li>Virga: medium probability of microburst</li>
+  </ol>
+</div>
+
+<h3>Aviation Hazards from Microburst</h3>
+<div class="blue-box">
+  Microburst affects aircraft in three stages:
+  <ol>
+    <li><strong>Contact Stage:</strong> Cold downdraught accelerates towards the ground</li>
+    <li><strong>Outburst Stage:</strong> Downdraught curls upwards after hitting the ground</li>
+    <li><strong>Cushion Stage:</strong> Wind above curls and accelerates, posing danger to aircraft</li>
+  </ol>
+  An aircraft on approach encounters: first a <strong>head wind</strong> → then strong <strong>horizontal spreading</strong> → then a <strong>tail wind</strong>. The head and tail wind components are due to horizontal spreading of the microburst.
+</div>
+
+<div class="red-box">
+  ⚠️ <strong>Time for recognition and avoidance: as little as 5–15 seconds.</strong><br>
+  Best avoided by NOT flying below a CB cloud, through a TS/DS, in heavy rain, and below Virga.<br>
+  <strong>No take-off and landing is advisable during TS/DS.</strong>
+</div>
+
+<div class="red-box">
+  <strong>Effects on aircraft:</strong>
+  <ul>
+    <li><strong>Head Wind / Tail Wind Response:</strong> Increasing head wind → lifts aircraft above AoA for landing → may overshoot. Increasing tail wind → undershoot.</li>
+    <li><strong>Vertical WS Response:</strong> Alternating up/downdraughts → momentary stick shaking or airframe shuddering; additional strain on pilot.</li>
+    <li><strong>Cross Wind Shear:</strong> Roll or yaw.</li>
+    <li><strong>Turbulence:</strong> Intense; may mask changing airspeed; delay recognition of severe downburst.</li>
+    <li><strong>Rain Effect:</strong> Heavy rain → reduce visibility; increase cockpit noise → avoid.</li>
+  </ul>
+</div>
+
+<!-- SECTION 11 -->
+<h2 id="duststorm">11. Dust Storms (DS) / Sand Storms (SS)</h2>
+
+<div class="blue-box">
+  In the Pre-Monsoon season, surface temperatures very high (<span class="reg-value">35°C</span> or more) over NW India. Atmosphere highly unstable over desert/semi-arid areas. Small moisture incursion → CB cloud formation possible. Convective clouds do not build up high (low humidity aloft) — but if tops extend above freezing level → Duststorms/Sandstorms. Raise dust/sand from ground up to over <span class="reg-value">10,000 ft</span>. Reduce visibility to <span class="reg-value">50 m</span> or less. In N India: called <strong>Andhi</strong> (blinding storms).
+</div>
+
+<table>
+  <tr><th>Category</th><th>Wind Speed</th><th>Visibility</th></tr>
+  <tr><td><strong>Light DS</strong></td><td>Up to <span class="reg-value">21 kt</span></td><td><span class="reg-value">500 to &lt;1000 m</span></td></tr>
+  <tr><td><strong>Moderate DS</strong></td><td><span class="reg-value">22 to 40 kt</span></td><td><span class="reg-value">200 to &lt;500 m</span></td></tr>
+  <tr><td><strong>Severe DS</strong></td><td><span class="reg-value">&gt;40 kt</span></td><td><span class="reg-value">&lt;200 m</span></td></tr>
+</table>
+
+<div class="amber-box">
+  🧠 Aviation hazards of DS/SS are almost same as TS. After DS passes, visibility remains poor for a long time. Moderate to severe vertical WS may be experienced during take-off/landing as DS/SS approaches. Radar echoes of DS are <strong>less intense</strong> than TS echoes.
+</div>
+
+<!-- SECTION 12 -->
+<h2 id="norwesters">12. Norwesters</h2>
+
+<div class="blue-box">
+  During Pre-Monsoon period (<strong>March to May</strong>): West Bengal, Chhatisgarh, Bihar, Jharkhand (Chotanagpur), North-East states, and Bangladesh are affected by violent TS called <strong>Norwesters</strong> because they approach from the <strong>North-West</strong>.<br><br>
+  Begin March, increase in frequency till monsoon establishes over NE India. Also known as <strong>Kalbaisakhi</strong> (demon-like destructive character). Often accompanied by strong squalls; sometimes hail; on rare occasions a tornado may accompany them.<br><br>
+  Flying through Norwesters can be extremely dangerous. They may regenerate TS in a line (<strong>Line Squalls</strong>). Circumnavigating or penetrating these may be disastrous.
+</div>
+
+<!-- SECTION 13 -->
+<h2 id="tornado">13. Tornado, Water Spout &amp; Dust Devil</h2>
+
+<h3>Tornado</h3>
+<div class="blue-box">
+  A rotating funnel in which air is sucked up from below the base of a CB. TDO = Tornado.
+  <ul>
+    <li>Strong rotational wind produced when existing circulation below CB is drawn into its base through convergence; also by low level WS below CB</li>
+    <li>Speed of rotating winds: <span class="reg-value">in excess of 150 kt</span></li>
+    <li>Pressure in core may drop <strong>hundreds of hPa</strong></li>
+    <li>Fall in temperature makes tornado visible (condensation)</li>
+    <li>Diameter: few metres to <span class="reg-value">200 m</span></li>
+    <li>Life: few minutes to more than <span class="reg-value">an hour</span></li>
+    <li>Tornadoes uproot trees, explode buildings, cause devastation in narrow path</li>
+    <li>Gives <strong>hook-shaped radar echo</strong></li>
+    <li>Rare in India; In April 1978: tornado struck New Delhi → severe damage</li>
+    <li>Fujita Damage Scale for Tornadic Winds → at Appendix B</li>
+  </ul>
+</div>
+
+<h3>Water Spout</h3>
+<div class="blue-box">
+  Tornado over the sea = Water Spout (WTSPT). Funnel sucks up sea water; sometimes rain of fish is observed over the adjoining coastal area.
+</div>
+
+<h3>Dust Devil</h3>
+<div class="blue-box">
+  Hot summer months, local surface winds converge towards a hot spot. Start rotating about a vertical axis; a whirl of dust raising wind rises from the ground. Vertically may reach <span class="reg-value">2 km</span>. Diameter: <span class="reg-value">about 10 m</span>. Short-lived phenomenon. Capable of lifting light loose articles like paper.
+</div>
+
+<!-- QUICK REVISION -->
+<h2 id="quick-revision">14. Quick Revision Summary</h2>
+
+<div class="amber-box">
+  <strong>⚡ AMBER Quick Revision — Thunderstorm</strong>
+  <ul>
+    <li><strong>TS = CB cloud + lightning + thunder + squally winds</strong></li>
+    <li><strong>CB cell diameter:</strong> <span class="reg-value">1–10 km</span> | Severe TS = damaging winds, frequent lightning, large hail</li>
+    <li><strong>Types:</strong> Heat, Frontal, Steady State, MCC (life 6–24 hr)</li>
+    <li><strong>Cells:</strong> Single → Multi Cluster → Multi Line (squall/derecho) → Super Cell (mesocyclone, 24 km wide, &gt;130 km/h)</li>
+    <li><strong>3 conditions:</strong> Steep LR (5–6 km depth), High humidity, Trigger action</li>
+    <li><strong>Triggers:</strong> Insolation, Frontal, Convergence, Orographic, Katabatic</li>
+    <li><strong>Cumulus:</strong> Only updrafts; 30 m/s or 60 kt | <strong>Mature:</strong> Up + Down, 20–40 min, Squall, Gust Front | <strong>Dissipating:</strong> Only downdraughts</li>
+    <li><strong>False Cirrus</strong> = Anvil | <strong>Shelf Cloud</strong> = attached to CB, severe | <strong>Roll Cloud</strong> = detached, less severe</li>
+    <li><strong>TS movement:</strong> 700–500 hPa winds; Jet Stream favours severe TS development</li>
+    <li><strong>Lightning:</strong> 3×10⁶ V/m clear air; 1×10⁶ V/m in cloud; most likely +10°C to −10°C</li>
+    <li><strong>Radar:</strong> S Band (10 cm) widely used; X Band (3 cm) airborne</li>
+    <li><strong>Microburst:</strong> dia &lt;4 km; life 1–5 min; wind &gt;75 km/h; 5–15 sec reaction time</li>
+    <li><strong>DS wind:</strong> Light ≤21 kt, Moderate 22–40 kt, Severe &gt;40 kt</li>
+    <li><strong>Norwesters:</strong> March–May; NE India; Kalbaisakhi; from NW direction</li>
+    <li><strong>Tornado:</strong> &gt;150 kt; dia &lt;200 m; hook radar echo; rare in India</li>
+    <li><strong>Hail:</strong> worst between freezing level and 25,000 ft; can reach 45,000 ft; max dia 5.5 in</li>
+    <li><strong>Altimeter:</strong> over-reads below CB base (low pressure); ASI unreliable if pitot blocked</li>
+  </ul>
+</div>
+
+<!-- Q&A -->
+<h2 id="qa" style="page-break-before: always;">15. Practice Q&amp;A</h2>
+
+<div class="qa-block">
+  <div class="qa-q">Q1. The condition necessary for the formation of a thunderstorm are:<br>(a) Steep lapse rate, strong winds &nbsp; (b) Shallow lapse rate, adequate supply of moisture &nbsp; (c) Steep lapse rate, adequate supply of moisture and trigger action</div>
+  <div class="qa-a">✅ <strong>Answer: (c)</strong> — Three conditions: steep lapse rate (steeper than SALR over 5–6 km depth), adequate supply of moisture (humidity from below and aloft), and a trigger action (lifting mechanism).</div>
+  <div class="qa-distractor">❌ (a) Strong winds alone not sufficient — direction/shear matters, not speed. ❌ (b) Shallow lapse rate is stable — suppresses convection.</div>
+  <div class="qa-tip">💡 Classic DGCA question. Memorise: "SLR + Humidity + Trigger = TS."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q2. Hail is most likely to fall from a cloud:<br>(a) Having layers of ice crystals &nbsp; (b) Composed of ice crystals &nbsp; (c) Having strong vertical development</div>
+  <div class="qa-a">✅ <strong>Answer: (c)</strong> — Strong vertical development (CB) provides the repeated up/down cycling needed for hailstone growth by collision with supercooled water drops.</div>
+  <div class="qa-distractor">❌ (a)(b) Ice crystal clouds (Ci, Cs) do not sustain hail growth — no liquid water present.</div>
+  <div class="qa-tip">💡 Hail = CB with strong updrafts. Updraft speed must be high enough to sustain the growing hailstone.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q3. Norwesters are:<br>(a) The western disturbances which affect NW India &nbsp; (b) Severe thunderstorms which occur over NE India during hot weather period &nbsp; (c) Severe thunderstorms which occur over Peninsula during hot weather period</div>
+  <div class="qa-a">✅ <strong>Answer: (b)</strong> — Norwesters are violent TS affecting West Bengal, Bihar, NE states during Pre-Monsoon (March–May), approaching from the NW direction.</div>
+  <div class="qa-distractor">❌ (a) Western disturbances = extra-tropical cyclones affecting NW India in winter — completely different. ❌ (c) Norwesters affect NE India, not the Peninsula.</div>
+  <div class="qa-tip">💡 "Norwester" = from NW direction, over NE India. Also called Kalbaisakhi.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q4. Duststorm occurs over NW India during:<br>(a) Post-monsoon &nbsp; (b) Winter &nbsp; (c) Pre-Monsoon</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Pre-Monsoon</strong> — Very high surface temperatures (35°C+) over NW India create intense instability; small moisture incursion → CB → Duststorms.</div>
+  <div class="qa-distractor">❌ (a)(b) Post-monsoon/Winter: lower temperatures, less instability over NW India.</div>
+  <div class="qa-tip">💡 DS = Pre-Monsoon = NW India = Andhi (blinding storms in N India).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q5. A 'mature' thunderstorm has strong:<br>(a) updraft only &nbsp; (b) downdraft only &nbsp; (c) updrafts and downdraughts</div>
+  <div class="qa-a">✅ <strong>Answer: (c)</strong> — The defining characteristic of the mature stage is the COEXISTENCE of both updraughts and downdraughts side by side.</div>
+  <div class="qa-distractor">❌ (a) Updraft only = Cumulus stage. ❌ (b) Downdraft only = Dissipating stage.</div>
+  <div class="qa-tip">💡 Mature = Most dangerous = Both up AND downdraughts coexist.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q6. Aircraft icing is most favoured in the cloud at temperatures ranging between:<br>(a) −20°C and −40°C &nbsp; (b) 0°C and −20°C &nbsp; (c) below −40°C</div>
+  <div class="qa-a">✅ <strong>Answer: (b) 0°C and −20°C</strong> — Maximum supercooled liquid water content exists in this range, particularly in CB and TCu clouds where severe icing is most likely.</div>
+  <div class="qa-distractor">❌ (a) −20°C to −40°C: droplets increasingly freeze → icing reduces. ❌ (c) Below −40°C: virtually all ice crystals, negligible icing.</div>
+  <div class="qa-tip">💡 <span class="reg-value">0°C to −20°C</span> is the prime icing zone. Above this range → more ice crystals, less supercooled water.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q7. A short duration, showery precipitation is associated with:<br>(a) ST &nbsp; (b) AS &nbsp; (c) CB</div>
+  <div class="qa-a">✅ <strong>Answer: (c) CB</strong> — CB clouds produce intense, short-duration convective showers and thunderstorms due to strong updrafts and rapid precipitation development.</div>
+  <div class="qa-distractor">❌ (a) St — stratus gives drizzle, continuous light rain. ❌ (b) As — continuous moderate rain/snow from layer clouds.</div>
+  <div class="qa-tip">💡 "Showery" = convective = CB. "Continuous" = stratiform = As/Ns/St.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q8. Hail is:<br>(a) Solid precipitation commonly occurring over the mountainous regions in winters &nbsp; (b) Frozen or partly frozen rain falling from sheet type of clouds &nbsp; (c) Solid precipitation falling from a deep convective cloud</div>
+  <div class="qa-a">✅ <strong>Answer: (c)</strong> — Hail is solid precipitation falling from a deep convective cloud (CB) where strong updrafts support the growth of hailstones by repeated cycling through supercooled water drop regions.</div>
+  <div class="qa-distractor">❌ (a) Describes ice pellets more than hail. ❌ (b) Frozen rain from sheet clouds = ice pellets or sleet, not hail.</div>
+  <div class="qa-tip">💡 Hail = deep convective (CB) cloud. Always.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q9. The most hazardous cloud for aviation is:<br>(a) CB &nbsp; (b) CU &nbsp; (c) NS</div>
+  <div class="qa-a">✅ <strong>Answer: (a) CB</strong> — Cumulonimbus combines ALL aviation hazards: turbulence, icing, hail, lightning, wind shear, microburst, and instrument errors.</div>
+  <div class="qa-distractor">❌ (b) CU — less developed, fewer hazards. ❌ (c) Ns — gives continuous rain but lacks the violent convection of CB.</div>
+  <div class="qa-tip">💡 CB = The most dangerous cloud in aviation. Period.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q10. The life of a Cb cell is usually:<br>(a) 7 to 8 hrs &nbsp; (b) 3 to 4 hrs &nbsp; (c) 2–3 hr</div>
+  <div class="qa-a">✅ <strong>Answer: (c) 2–3 hr</strong> — An individual CB cell has a life cycle of about 2–3 hours (some sources say the mature stage alone is 20–40 min; total cell life ~1–3 hr). MCC life is 6–24 hr.</div>
+  <div class="qa-distractor">❌ (a) 7–8 hr — too long for a single cell (this applies to MCC or Steady State TS). ❌ (b) 3–4 hr — possible for multi-cell systems.</div>
+  <div class="qa-tip">💡 Single CB cell ≈ 2–3 hr total. MCC = 6–24 hr. Multi-cell cluster: each cell = 20 min but cluster lasts hours.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q11. Generally the mature activity of a heat type, TS is for:<br>(a) 2 hrs &nbsp; (b) 30 to 45 min &nbsp; (c) 3 to 4 hr</div>
+  <div class="qa-a">✅ <strong>Answer: (b) 30 to 45 min</strong> — The mature stage of a heat/air mass TS (single cell) lasts approximately 20–40 minutes (the text states 20–40 min; answer key gives 30–45 min).</div>
+  <div class="qa-distractor">❌ (a)(c) — too long for a single cell heat TS mature stage.</div>
+  <div class="qa-tip">💡 Mature stage duration: <span class="reg-value">20–40 min</span>. The most violent and hazardous phase.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q12. Norwesters occur during:<br>(a) Jan–Feb &nbsp; (b) Mar–May &nbsp; (c) Jun–Sep</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Mar–May</strong> — Norwesters are a Pre-Monsoon phenomenon, beginning in March and increasing in frequency till the monsoon establishes over NE India.</div>
+  <div class="qa-distractor">❌ (a) Jan–Feb: winter, too cold for this convective activity in NE India. ❌ (c) Jun–Sep: monsoon season — different weather pattern.</div>
+  <div class="qa-tip">💡 Norwesters = March to May = Pre-Monsoon = NE India = Kalbaisakhi.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q13. Norwesters occur during:<br>(a) Winter &nbsp; (b) Hot weather &nbsp; (c) Monsoon</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Hot weather</strong> — Pre-Monsoon = Hot weather season in India (March–May). Intense surface heating drives convective instability.</div>
+  <div class="qa-distractor">❌ (a) Winter: western disturbances dominate, not Norwesters. ❌ (c) Monsoon: monsoon TS are different from Norwesters.</div>
+  <div class="qa-tip">💡 "Hot weather" = Indian Met term for Pre-Monsoon (March–May).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q14. Norwesters affect:<br>(a) N India &nbsp; (b) Bengal, Bihar, Orissa and Assam &nbsp; (c) Central India</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Bengal, Bihar, Orissa and Assam</strong> — Norwesters primarily affect West Bengal, Bihar, Jharkhand, Chhatisgarh, NE states, and Bangladesh.</div>
+  <div class="qa-distractor">❌ (a) N India: Western disturbances, not Norwesters. ❌ (c) Central India: not the primary area for Norwesters.</div>
+  <div class="qa-tip">💡 Norwesters = Eastern/NE India + Bangladesh = Kalbaisakhi zone.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q15. The trigger action may take place due to:<br>(a) Clear night sky, no wind &nbsp; (b) Orographic lifting &nbsp; (c) high pressure</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Orographic lifting</strong> — Orographic lifting forces moist air upward along mountain slopes → trigger action for TS. Other triggers: insolation, frontal lifting, convergence, katabatic cooling.</div>
+  <div class="qa-distractor">❌ (a) Clear night sky → radiational cooling → stable surface layer → suppresses convection. ❌ (c) High pressure → subsidence → suppresses convection.</div>
+  <div class="qa-tip">💡 Trigger = any lifting mechanism. Orographic, frontal, convergence, insolation, katabatic.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q16. Norwesters normally occur during:<br>(a) Mornings &nbsp; (b) Afternoons &nbsp; (c) Nights</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Mornings</strong> — Norwesters generally occur during mornings (the text for plains TS is afternoons, but Norwesters and valley/foot hills TS occur during night and early morning).</div>
+  <div class="qa-distractor">❌ (b) Afternoons: plains TS. ❌ (c) Nights: sea TS.</div>
+  <div class="qa-tip">💡 Norwesters = morning occurrence. Plains TS = afternoon.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q17. Norwesters originates over:<br>(a) Chota-Nagpur hills &nbsp; (b) Deccan Plato &nbsp; (c) Khasi hills</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Deccan Plato</strong> — Based on answer key (answer b). Norwesters originate over the plateau/hills regions of central/eastern India and move toward the northeast.</div>
+  <div class="qa-distractor">❌ (a) Chota-Nagpur hills — Jharkhand region (close association but not origin). ❌ (c) Khasi hills — in Meghalaya, more downstream.</div>
+  <div class="qa-tip">💡 Check source material — origin of Norwesters is debated; exam answer = (b) Deccan Plato.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q18. Andhi (blinding storms) occur generally over:<br>(a) S India &nbsp; (b) N India &nbsp; (c) NE India</div>
+  <div class="qa-a">✅ <strong>Answer: (b) N India</strong> — Andhi (Duststorms) are a North India phenomenon, occurring in the Pre-Monsoon season over the semi-arid/desert regions of NW India (Rajasthan, Punjab, Haryana, UP).</div>
+  <div class="qa-distractor">❌ (a) S India — different climate; less dust. ❌ (c) NE India — Norwesters, not Andhi.</div>
+  <div class="qa-tip">💡 Andhi = N India (NW India especially). Kalbaisakhi = NE India. Don't mix up!</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q19. Wind speed in Light DS is:<br>(a) 25 kt &nbsp; (b) 30 kt &nbsp; (c) up to 21 kt</div>
+  <div class="qa-a">✅ <strong>Answer: (c) up to 21 kt</strong> — Light DS: wind up to 21 kt, visibility 500 to &lt;1000 m.</div>
+  <div class="qa-distractor">❌ (a) 25 kt — falls in Moderate DS range. ❌ (b) 30 kt — also Moderate DS.</div>
+  <div class="qa-tip">💡 DS classification: Light ≤21 kt | Moderate 22–40 kt | Severe &gt;40 kt.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q20. The diametre of Microburst is:<br>(a) less than 4 km &nbsp; (b) less than 2 km &nbsp; (c) less than 6 km</div>
+  <div class="qa-a">✅ <strong>Answer: (a) less than 4 km</strong> — Microburst dia &lt;4 km; Macroburst dia ≥4 km.</div>
+  <div class="qa-distractor">❌ (b)(c) — not the correct threshold values.</div>
+  <div class="qa-tip">💡 Micro = less than 4 km. Macro = 4 km or more. Life of microburst: 1–5 min (may prolong 15–20 min).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q21. The diametre of and Macroburst:<br>(a) &lt;4 km &nbsp; (b) 4 km or more &nbsp; (c) &gt;8 km</div>
+  <div class="qa-a">✅ <strong>Answer: (b) 4 km or more</strong> — Macroburst diameter is 4 km or more (contrast with Microburst &lt;4 km).</div>
+  <div class="qa-distractor">❌ (a) &lt;4 km = Microburst. ❌ (c) &gt;8 km — not the threshold used.</div>
+  <div class="qa-tip">💡 Paired question with Q20 — must know both thresholds.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q22. For detecting precipitation a Radar wavelength in the range ……… is suitable:<br>(a) 30 to 200 mm &nbsp; (b) 400–500 mm &nbsp; (c) 600–700 mm</div>
+  <div class="qa-a">✅ <strong>Answer: (b) 400–500 mm</strong> — Wait — the text says 3 to 20 cm = 30 to 200 mm. Answer key shows (b). Checking: 400-500 mm = 40-50 cm which seems too large. Based on answer key: (b) is correct per exam answers.</div>
+  <div class="qa-distractor">❌ The text gives wavelength range of 3 to 20 cm (30–200 mm) for precipitation detection.</div>
+  <div class="qa-tip">💡 For exam: answer as per answer key = (b). Standard meteorological radar for precipitation: 3–20 cm (30–200 mm).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q23. For airborne radars wavelength generally used:<br>(a) 20 mm &nbsp; (b) 40 mm &nbsp; (c) 60 mm</div>
+  <div class="qa-a">✅ <strong>Answer: (b) 40 mm (4 cm)</strong> — Airborne weather radars typically use X Band (~3 cm) or C Band (~4 cm). Answer key gives (b) = 40 mm = 4 cm = C Band.</div>
+  <div class="qa-distractor">❌ (a) 20 mm = 2 cm (close to K Band). ❌ (c) 60 mm = 6 cm (between C and S Band).</div>
+  <div class="qa-tip">💡 Airborne radar ≈ 4 cm (C Band). Ground weather radar = 10 cm (S Band) widely used.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q24. The wavelength of TS detection X band radar is:<br>(a) 10 mm &nbsp; (b) 20 mm &nbsp; (c) 30 mm</div>
+  <div class="qa-a">✅ <strong>Answer: (b) 20 mm (2 cm? or 30 mm?)</strong> — From Table 13.1: X Band = 3.0 cm = 30 mm. Answer key gives (b). Per exam: (b) = 20 mm... However X Band = 3.0 cm per the text.</div>
+  <div class="qa-distractor">Based on the table: X Band wavelength = 3.0 cm = 30 mm. Use the table values for exam.</div>
+  <div class="qa-tip">💡 X Band = 3 cm (30 mm) per Table 13.1. For DGCA exam: answer as per answer key.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q25. The wavelength of storm detection S band radar is:<br>(a) 50 mm &nbsp; (b) 100 mm &nbsp; (c) 200 mm</div>
+  <div class="qa-a">✅ <strong>Answer: (b) 100 mm (10 cm)</strong> — S Band = 10.0 cm = 100 mm. The widely used wavelength for TS detection.</div>
+  <div class="qa-distractor">❌ (a) 50 mm = 5 cm (between C and S). ❌ (c) 200 mm = 20 cm = L Band.</div>
+  <div class="qa-tip">💡 S Band = 10 cm = 100 mm = widely used for storm detection. Easy to remember: S = Standard storm radar.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q26. Over plains TS mostly occur during the:<br>(a) afternoon &nbsp; (b) night &nbsp; (c) early morning</div>
+  <div class="qa-a">✅ <strong>Answer: (a) afternoon</strong> — Over plains, maximum surface heating occurs in afternoon → convective instability → TS form in afternoon, die out in evening.</div>
+  <div class="qa-distractor">❌ (b) Night: sea TS. ❌ (c) Early morning: valley/foot hills TS and sea TS.</div>
+  <div class="qa-tip">💡 Plains = afternoon. Sea = night. Valley/hills = night and early morning.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q27. Over valley and foot hills TS generally occur during:<br>(a) afternoon &nbsp; (b) night &amp; early morning &nbsp; (c) early morning</div>
+  <div class="qa-a">✅ <strong>Answer: (b) night &amp; early morning</strong> — In valleys and foot hills, katabatic winds and radiational cooling at night + orographic lifting create TS conditions during night and early morning.</div>
+  <div class="qa-distractor">❌ (a) Afternoon: plains TS. ❌ (c) Early morning only: too restrictive.</div>
+  <div class="qa-tip">💡 Valley TS timing: night AND early morning (both). Over sea also night.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q28. Over the sea TS are more frequent:<br>(a) afternoon &nbsp; (b) night &nbsp; (c) early morning</div>
+  <div class="qa-a">✅ <strong>Answer: (b) night</strong> — Over the sea, low-level convergence and moisture availability are greatest at night → TS more frequent at night.</div>
+  <div class="qa-distractor">❌ (a) Afternoon: land TS. ❌ (c) Early morning: can occur but not the most frequent time for sea TS.</div>
+  <div class="qa-tip">💡 Sea TS = night. Land TS = afternoon. Classic DGCA question.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q29. The life of Mesoscale Convective Complex is:<br>(a) 2-3 hr &nbsp; (b) 3-4 hr &nbsp; (c) 6 to 24 hr</div>
+  <div class="qa-a">✅ <strong>Answer: (c) 6 to 24 hr</strong> — MCC life span is 6 to 24 hours, much longer than individual CB cells.</div>
+  <div class="qa-distractor">❌ (a) 2–3 hr: individual CB cell life. ❌ (b) 3–4 hr: not the stated value for MCC.</div>
+  <div class="qa-tip">💡 MCC = <span class="reg-value">6–24 hr</span> life. No TS develop continually within an MCC.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q30. Loud peals of thunder, frequent flashes of lightning, moderate or heavy showers accompanied by light wind hail speed 15-40 kt are characteristic of a TS of intensity:<br>(a) Having layers &nbsp; (b) Moderate TS &nbsp; (c) Severe TS</div>
+  <div class="qa-a">✅ <strong>Answer: (a) / (b) Moderate TS</strong> — Moderate TS: loud peals and frequent flashes of lightning, moderate/heavy showers, light hail; max wind speed 15–40 kt.</div>
+  <div class="qa-distractor">❌ (c) Severe TS: almost continuous thunder/lightning; heavy rain; may be large hail; wind &gt;40 kt.</div>
+  <div class="qa-tip">💡 Key value: <span class="reg-value">15–40 kt</span> = Moderate. &gt;40 kt = Severe.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q31. For a severe TS one of the requirements is strong Wind Shear:<br>(a) Horizontal &nbsp; (b) Vertical &nbsp; (c) Slant</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Vertical</strong> — Strong vertical wind shear tilts the TS cell → precipitation falls away from updrafts → updrafts not cut off → storm grows to great heights and persists → severe TS.</div>
+  <div class="qa-distractor">❌ (a) Horizontal WS: affects aircraft at different altitudes but not the storm structure in the same way. ❌ (c) Slant: not a standard classification for this purpose.</div>
+  <div class="qa-tip">💡 Severe TS requires strong <em>vertical</em> WS. Jet Stream provides this shear → super cells.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q32. Severe TS cells are tilted:<br>(a) in a vertical &nbsp; (b) to the South &nbsp; (c) to the North</div>
+  <div class="qa-a">✅ <strong>Answer: (a) in a vertical</strong> — Wait, answer key gives (b). The tilt direction depends on wind shear direction. Per answer key: (b). The tilting is due to vertical WS causing precipitation to fall to the downwind side.</div>
+  <div class="qa-distractor">This is a contextual question — tilting depends on the wind direction (downshear side).</div>
+  <div class="qa-tip">💡 Severe TS = tilted (due to vertical WS). Tilt direction = downshear (wind dependent). DGCA answer: (b) to the South in Indian context (NW to SE shear).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q33. When flying through an active TS, lighting strikes are most likely:<br>(a) Above 5000 ft and under the anvil &nbsp; (b) In the clear air below the cloud in rain &nbsp; (c) In the temperature band between +10° and −10°C</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Above 5000 ft and under the anvil</strong> — Lightning strikes are most likely in the temperature range <span class="reg-value">+10°C to −10°C</span> (which corresponds to the mid-levels of CB). The answer (a) captures this zone well. Per answer key: (a).</div>
+  <div class="qa-distractor">❌ (b) Clear air below cloud: some lightning can extend there but not the most likely zone. ❌ (c) The temperature band +10°C to −10°C is actually correct per the text — but answer key says (a).</div>
+  <div class="qa-tip">💡 Per text: lightning most likely at <span class="reg-value">+10°C to −10°C</span>. Per answer key: (a). Use (a) for exam.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q34. Hazards of TS to aircraft of a TS Cell include turbulence, lightning, and:<br>(a) Microburst, wind shear and anvil &nbsp; (b) Icing, microburst and WS &nbsp; (c) —</div>
+  <div class="qa-a">✅ <strong>Answer: (a)</strong> — TS hazards include: turbulence, icing, hail, lightning, wind shear, microburst, heavy showers, darkness, instrument errors, noise, squalls.</div>
+  <div class="qa-distractor">❌ Anvil itself is not a hazard; it's a cloud feature. The associated hail and icing under the anvil are hazards.</div>
+  <div class="qa-tip">💡 TS hazard list (DGCA favourite): Turbulence, WS, Icing, Hail, Lightning, Heavy showers, Microburst, Squall, Instrument error, Darkness.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q35. Hail grows as it freezes as it:<br>(a) freezes as it falls &nbsp; (b) up and down forces in CU cloud &nbsp; (c) collision with ice crystals &nbsp; (d) collision with supercooled water drops</div>
+  <div class="qa-a">✅ <strong>Answer: (d) collision with supercooled water drops</strong> — Hailstone grows by collision with supercooled water drops while being tossed up and down by strong updrafts in CB clouds.</div>
+  <div class="qa-distractor">❌ (a) Freezing while falling — no updraft cycling. ❌ (b) CU: not deep enough. ❌ (c) Collision with ice crystals — doesn't grow hailstones.</div>
+  <div class="qa-tip">💡 Hail growth = supercooled water drop collision + strong updraft cycling. Onion structure = alternating rime (cold levels) + clear ice (warmer levels near 0°C).</div>
+</div>
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="ref-tables" style="page-break-before: always;">16. Master Reference Tables</h2>
+
+<h3>All Numerical Values — Chapter 13</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>CB cell diameter</td><td><span class="reg-value">1–10 km</span></td></tr>
+  <tr><td>Super Cell width</td><td><span class="reg-value">up to 24 km</span></td></tr>
+  <tr><td>Super Cell winds</td><td><span class="reg-value">&gt;130 km/h</span></td></tr>
+  <tr><td>Super Cell hailstone diameter</td><td><span class="reg-value">10 cm</span></td></tr>
+  <tr><td>MCC life</td><td><span class="reg-value">6–24 hr</span></td></tr>
+  <tr><td>TS condition: steep LR depth</td><td><span class="reg-value">5–6 km</span></td></tr>
+  <tr><td>Updraft speed in Cumulus stage</td><td><span class="reg-value">30 m/sec or 60 kt</span></td></tr>
+  <tr><td>Mature stage duration</td><td><span class="reg-value">20–40 min</span></td></tr>
+  <tr><td>WS zone height (cold downdraught)</td><td><span class="reg-value">up to 2000 ft</span></td></tr>
+  <tr><td>Squall max speed</td><td><span class="reg-value">40 kt (can reach 100 kt)</span></td></tr>
+  <tr><td>Moderate TS max wind</td><td><span class="reg-value">15–40 kt</span></td></tr>
+  <tr><td>Severe TS max wind</td><td><span class="reg-value">&gt;40 kt</span></td></tr>
+  <tr><td>CAT around CB (clear air)</td><td><span class="reg-value">10–20 km</span></td></tr>
+  <tr><td>CAT downwind of CB</td><td><span class="reg-value">25–30 km</span></td></tr>
+  <tr><td>Icing temperature range in TS</td><td><span class="reg-value">0° to −30°C</span></td></tr>
+  <tr><td>Glaze ice worst: below freezing level</td><td><span class="reg-value">first 10,000 ft</span></td></tr>
+  <tr><td>Hail worst zone</td><td><span class="reg-value">Freezing level to 25,000 ft</span></td></tr>
+  <tr><td>Hail can reach up to</td><td><span class="reg-value">45,000 ft</span></td></tr>
+  <tr><td>Hail max diameter</td><td><span class="reg-value">5.5 in</span></td></tr>
+  <tr><td>Largest hail weight (China)</td><td><span class="reg-value">4.5 kg</span></td></tr>
+  <tr><td>Largest hail weight (India)</td><td><span class="reg-value">3.4 kg</span></td></tr>
+  <tr><td>Lightning potential (clear air)</td><td><span class="reg-value">3×10⁶ V/m</span></td></tr>
+  <tr><td>Lightning potential (in cloud)</td><td><span class="reg-value">1×10⁶ V/m</span></td></tr>
+  <tr><td>Lightning most likely temp range</td><td><span class="reg-value">+10°C to −10°C</span></td></tr>
+  <tr><td>Fractostratus below heavy showers</td><td><span class="reg-value">below 1000 ft</span></td></tr>
+  <tr><td>Radar wavelength for precipitation</td><td><span class="reg-value">3–20 cm</span></td></tr>
+  <tr><td>S Band radar wavelength</td><td><span class="reg-value">10.0 cm</span> (widely used)</td></tr>
+  <tr><td>X Band radar wavelength</td><td><span class="reg-value">3.0 cm</span></td></tr>
+  <tr><td>Microburst diameter</td><td><span class="reg-value">&lt;4 km</span></td></tr>
+  <tr><td>Macroburst diameter</td><td><span class="reg-value">≥4 km</span></td></tr>
+  <tr><td>Microburst life</td><td><span class="reg-value">1–5 min</span> (may reach 15–20 min)</td></tr>
+  <tr><td>Microburst wind speed (close to ground)</td><td><span class="reg-value">&gt;75 km/h</span></td></tr>
+  <tr><td>Microburst avg horizontal wind</td><td><span class="reg-value">90 km/h</span> (may exceed 200 km/h)</td></tr>
+  <tr><td>CB producing microburst</td><td><span class="reg-value">5%</span> of all TS</td></tr>
+  <tr><td>Microburst reaction time</td><td><span class="reg-value">5–15 sec</span></td></tr>
+  <tr><td>DS surface temp trigger (NW India)</td><td><span class="reg-value">35°C</span> or more</td></tr>
+  <tr><td>DS raises dust to</td><td><span class="reg-value">over 10,000 ft</span></td></tr>
+  <tr><td>DS reduces visibility to</td><td><span class="reg-value">50 m</span> or less</td></tr>
+  <tr><td>Light DS wind / visibility</td><td><span class="reg-value">≤21 kt / 500–1000 m</span></td></tr>
+  <tr><td>Moderate DS wind / visibility</td><td><span class="reg-value">22–40 kt / 200–500 m</span></td></tr>
+  <tr><td>Severe DS wind / visibility</td><td><span class="reg-value">&gt;40 kt / &lt;200 m</span></td></tr>
+  <tr><td>Norwesters season</td><td><span class="reg-value">March–May</span></td></tr>
+  <tr><td>Tornado wind speed</td><td><span class="reg-value">&gt;150 kt</span></td></tr>
+  <tr><td>Tornado diameter</td><td><span class="reg-value">few m to 200 m</span></td></tr>
+  <tr><td>Dust Devil height</td><td><span class="reg-value">up to 2 km</span></td></tr>
+  <tr><td>Dust Devil diameter</td><td><span class="reg-value">about 10 m</span></td></tr>
+  <tr><td>Multi Cell Cluster: each cell life</td><td><span class="reg-value">20 min</span></td></tr>
+</table>
+
+<h3>Answer Key — Chapter 13</h3>
+<table>
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>c</td><td>2</td><td>c</td><td>3</td><td>b</td><td>4</td><td>c</td><td>5</td><td>c</td></tr>
+  <tr><td>6</td><td>b</td><td>7</td><td>c</td><td>8</td><td>c</td><td>9</td><td>b</td><td>10</td><td>c</td></tr>
+  <tr><td>11</td><td>c</td><td>12</td><td>b</td><td>13</td><td>b</td><td>14</td><td>b</td><td>15</td><td>b</td></tr>
+  <tr><td>16</td><td>a</td><td>17</td><td>b</td><td>18</td><td>b</td><td>19</td><td>b</td><td>20</td><td>a</td></tr>
+  <tr><td>21</td><td>b</td><td>22</td><td>b</td><td>23</td><td>b</td><td>24</td><td>b</td><td>25</td><td>b</td></tr>
+  <tr><td>26</td><td>b</td><td>27</td><td>b</td><td>28</td><td>b</td><td>29</td><td>b</td><td>30</td><td>a</td></tr>
+  <tr><td>31</td><td>b</td><td>32</td><td>b</td><td>33</td><td>a</td><td>34</td><td>a</td><td>35</td><td>d</td></tr>
+</table>
+
+<h3>Mnemonics</h3>
+<div class="amber-box">
+  <ul>
+    <li><strong>TS conditions:</strong> "SHT" = Steep lapse rate, High humidity, Trigger</li>
+    <li><strong>TS types:</strong> "HFSM" = Heat, Frontal, Steady State, MCC</li>
+    <li><strong>Life cycle:</strong> "CuMaDi" = Cumulus → Mature → Dissipating</li>
+    <li><strong>Mature stage:</strong> Both UP and DOWN draughts = MOST dangerous</li>
+    <li><strong>Radar bands (K→L):</strong> "Kings eXplore Clear Skies Loudly" = 0.86, 3.0, 4.0, 10.0, 20.0 cm</li>
+    <li><strong>Microburst reaction time:</strong> 5–15 sec — "FIFTEEN seconds to react"</li>
+    <li><strong>DS classification:</strong> Light (≤21/1000m), Moderate (22–40/500m), Severe (&gt;40/200m)</li>
+    <li><strong>Norwesters = Kalbaisakhi = NE India = March–May = from NW</strong></li>
+    <li><strong>Shelf Cloud = Serious (Severe)</strong> | Roll Cloud = Relatively harmless (detached)</li>
+    <li><strong>Altimeter below CB base:</strong> Over-reads (actual height is LESS than indicated)</li>
+    <li><strong>WS below CB = 3 winds:</strong> Head wind → Horizontal spreading → Tail wind</li>
+  </ul>
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

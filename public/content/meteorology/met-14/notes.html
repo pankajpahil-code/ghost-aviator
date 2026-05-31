@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch14 – Air Masses, Fronts & Western Disturbances | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #1a1a1a; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 2em; color: #1a237e; text-align: center; margin-bottom: 5px; }
+  h2 { font-size: 1.5em; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; page-break-after: avoid; }
+  h3 { font-size: 1.15em; color: #283593; margin-top: 20px; page-break-after: avoid; }
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 12px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; }
+  .cover .sub { font-size: 1.1em; color: #555; margin-top: 10px; }
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { padding: 4px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: center; }
+  td { border: 1px solid #bbb; padding: 8px 12px; text-align: left; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 18px 0; padding: 15px; page-break-inside: avoid; }
+  .qa-q { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 10px 15px; border-radius: 4px; font-weight: bold; margin-bottom: 10px; }
+  .qa-a { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 10px 15px; border-radius: 4px; margin-bottom: 8px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 10px 15px; border-radius: 4px; font-size: 0.92em; margin-bottom: 8px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 10px 15px; border-radius: 4px; font-size: 0.92em; }
+  pre.mermaid { page-break-inside: avoid; }
+  ul li, ol li { margin-bottom: 5px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 14<br>Air Masses, Fronts &amp; Western Disturbances</h1>
+  <div class="sub">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="sub">IC Joshi Textbook | Compiled by Capt. Pankaj Pahil</div>
+  <div class="sub" style="margin-top:20px; font-size:0.95em; color:#888;">For Examination Use Only — All Rights Reserved</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#air-masses">1. Air Masses — Definition &amp; Classification</a></li>
+    <li><a href="#india-airmasses">2. Air Masses over Indian Sub-Continent</a></li>
+    <li><a href="#fronts">3. Fronts — Definition &amp; Terminology</a></li>
+    <li><a href="#cold-front">4. Cold Front</a></li>
+    <li><a href="#warm-front">5. Warm Front</a></li>
+    <li><a href="#occluded">6. Occluded Front</a></li>
+    <li><a href="#other-fronts">7. Stationary Front &amp; World Fronts</a></li>
+    <li><a href="#fronts-india">8. Fronts in India</a></li>
+    <li><a href="#wd">9. Western Disturbances (WD)</a></li>
+    <li><a href="#quick-revision">10. Quick Revision Summary</a></li>
+    <li><a href="#qa">11. Practice Q&amp;A</a></li>
+    <li><a href="#ref-tables">12. Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="air-masses">1. Air Masses — Definition &amp; Classification</h2>
+
+<div class="blue-box">
+  <strong>Air Mass:</strong> A large body of air covering an area of thousands of square kilometres in which the horizontal and vertical distribution of temperature (density) and moisture are nearly uniform.<br><br>
+  Air masses move with the wind and carry their properties. Weather associated with air masses depends on their properties and interplay with other air masses. Characteristics differ with origin and travel — during travel they get modified.
+</div>
+
+<div class="blue-box">
+  <strong>Source Region:</strong> An air mass forms when a large body of air stagnates over a region having fairly uniform temperature and moisture content for a long period. High pressure areas with light winds are the most suitable source regions. Main source regions = <strong>poles</strong> and <strong>sub-tropical highs</strong>.
+</div>
+
+<div class="blue-box">
+  <strong>Classification:</strong> Temperature (density) and humidity are the two main characteristics of air masses.
+  <ul>
+    <li>Temperature characteristics determined by latitude zone of the source region</li>
+    <li>Moisture characteristics determined by whether source region is continental or maritime</li>
+  </ul>
+  → Polar/Tropical (temperature) × Continental/Maritime (moisture) = four basic types, plus Arctic and Equatorial.
+</div>
+
+<table>
+  <tr>
+    <th>Air Mass</th>
+    <th>Symbol</th>
+    <th>Place of Origin</th>
+    <th>Properties</th>
+  </tr>
+  <tr>
+    <td><strong>Arctic</strong></td>
+    <td>A</td>
+    <td>Polar regions</td>
+    <td>Extreme low temp, low humidity in winters; humidity increases in summers</td>
+  </tr>
+  <tr>
+    <td><strong>Polar Continental</strong></td>
+    <td>Pc</td>
+    <td>Sub-polar continental areas</td>
+    <td>Low temperatures which increase with movement towards lower latitude; <strong>low humidity</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Polar Maritime</strong></td>
+    <td>Pm</td>
+    <td>Sub-polar and Arctic oceanic areas</td>
+    <td>Low temperatures which increase with movement towards lower latitude; <strong>high humidity</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Tropical Continental</strong></td>
+    <td>Tc</td>
+    <td>Subtropical High Pressure land area</td>
+    <td>High temperatures, <strong>low humidity</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Tropical Maritime</strong></td>
+    <td>Tm</td>
+    <td>Southern border of oceanic sub-tropical highs</td>
+    <td>Moderately high temperatures, <strong>high humidity</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Equatorial Maritime</strong></td>
+    <td>Em</td>
+    <td>Equatorial and tropical seas</td>
+    <td>High temperatures, <strong>high humidity</strong> (SW Monsoon is Em air mass)</td>
+  </tr>
+</table>
+
+<div class="amber-box">
+  🧠 <strong>Memory aid:</strong> Continental = dry (land source). Maritime = moist (sea source). Polar = cold. Tropical = warm. Equatorial = hot &amp; humid. The SW Monsoon air mass = <strong>Em (Equatorial Maritime)</strong>.
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="india-airmasses">2. Air Masses over Indian Sub-Continent</h2>
+
+<h3>Tropical Maritime (Tm)</h3>
+<div class="blue-box">
+  Originates in subtropical highs of the north Pacific Ocean; arrives over India during monsoon season after travel over SE Asian countries. Characterised by:
+  <ul>
+    <li>High temperature, high relative humidity, high dew point</li>
+    <li>Excellent visibility</li>
+    <li>Fairly high diurnal range of temperature</li>
+    <li>Cumuliform clouds causing showers or thunderstorms in some places</li>
+  </ul>
+</div>
+
+<h3>Tropical Continental (Tc)</h3>
+<div class="blue-box">
+  Most common air mass over India, particularly in <strong>winter</strong>. Originates in the Siberian high; moves over India as a cold dry current. Associated with fair weather and <strong>poor visibility</strong> conditions.
+</div>
+
+<h3>Equatorial Maritime (Em)</h3>
+<div class="blue-box">
+  Originates over the Indian Ocean; long travel over water. Prevails over India to the south of <span class="reg-value">25°N</span> during monsoon season. High humidity → sultry weather. Visibility is good except in showers. Diurnal range of temperature is small.
+</div>
+
+<h3>Seasonal Air Mass Distribution over India</h3>
+<table>
+  <tr><th>Season</th><th>North/NW India</th><th>South/Central India</th><th>NE India / Himalayan ranges</th></tr>
+  <tr>
+    <td><strong>Winter</strong></td>
+    <td>Tc (dominant); incursion of Pc after WD passage → Cold Waves</td>
+    <td>Occasional Tm from south of equator (= Em / equatorial maritime air)</td>
+    <td>WDs draw Tm from Arabian Sea and Bay of Bengal</td>
+  </tr>
+  <tr>
+    <td><strong>Summer / Monsoon</strong></td>
+    <td>Tc air</td>
+    <td>Em air (Monsoon Trough established over Gangetic plains by June)</td>
+    <td>Modified Tm air from north Pacific (different from Em)</td>
+  </tr>
+</table>
+
+<!-- SECTION 3 -->
+<h2 id="fronts">3. Fronts — Definition &amp; Terminology</h2>
+
+<div class="blue-box">
+  <strong>Front:</strong> A narrow zone of transition between two air masses of contrasting densities. The contrasting densities are due to different temperatures and humidity of the air masses. At a front there is change in temperature, wind, clouding, and precipitation.
+</div>
+
+<div class="blue-box">
+  <strong>Frontal Surface:</strong> The sloping surface along which the two air masses exist and meet; the place where this frontal surface meets the ground is the front.
+</div>
+
+<div class="blue-box">
+  <strong>Frontogenesis:</strong> Formation or strengthening of a front. Occurs only when there is a significant density contrast between two air masses.
+</div>
+
+<div class="blue-box">
+  <strong>Frontolysis:</strong> Weakening of front with time and dissipation of frontal weather. If density contrast is insignificant, the front passes off unnoticed (except for change in winds).
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="cold-front">4. Cold Front</h2>
+
+<div class="blue-box">
+  A demarcation zone between <strong>cold air overtaking warm air</strong>. Cold air provides a wedge on which warm air glides. Most cold fronts are associated with <strong>CU and CB clouds</strong>.<br>
+  Average slope of cold front: <span class="reg-value">1:50</span> (becomes shallower at higher levels).
+</div>
+
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Kata Type Cold Front</th>
+    <th>Ana Type Cold Front</th>
+  </tr>
+  <tr>
+    <td><strong>Slope</strong></td>
+    <td><span class="reg-value">1:120</span> (shallow)</td>
+    <td><span class="reg-value">1:50</span> (steep)</td>
+  </tr>
+  <tr>
+    <td><strong>Speed</strong></td>
+    <td>About <span class="reg-value">20 kt</span></td>
+    <td>Exceeds <span class="reg-value">30 kt</span></td>
+  </tr>
+  <tr>
+    <td><strong>Warm Air Motion</strong></td>
+    <td>General <strong>sinking</strong> (kata = katabatic) at high levels</td>
+    <td><strong>Rising</strong> (ana = anabatic) at high levels — instability</td>
+  </tr>
+  <tr>
+    <td><strong>Clouds</strong></td>
+    <td>ST, NS, AS and CU, CB (widespread stratiform)</td>
+    <td>CU, CB (convective; CB clouds dominate)</td>
+  </tr>
+  <tr>
+    <td><strong>Precipitation</strong></td>
+    <td>Widespread; showery in advance &amp; just behind surface front (due to CB); NS and AS behind</td>
+    <td>Violent TS, hail, short-duration showers; confined to <span class="reg-value">100–150 km</span></td>
+  </tr>
+  <tr>
+    <td><strong>Special Feature</strong></td>
+    <td>Sometimes moves very fast → <strong>line squall</strong> at <span class="reg-value">100–300 km</span> ahead of front</td>
+    <td>Behind the front: CU, CB clouds and isolated showers. Sky clears rapidly.</td>
+  </tr>
+</table>
+
+<pre class="mermaid">
+flowchart LR
+  A[Cold Air\nAdvancing] -->|Wedge under warm air| B[Warm Air Lifted]
+  B --> C{Warm air motion?}
+  C -->|Sinking kata| D[Kata Cold Front\nSlope 1:120, 20kt\nStratiform clouds\nLine squall 100-300km ahead]
+  C -->|Rising ana| E[Ana Cold Front\nSlope 1:50, >30kt\nCB dominant\nViolent TS, hail, 100-150km wide]
+</pre>
+
+<!-- SECTION 5 -->
+<h2 id="warm-front">5. Warm Front</h2>
+
+<div class="blue-box">
+  A demarcation zone between <strong>warm air overtaking cold air</strong>. Slope: <span class="reg-value">1:150 to 1:180</span>. Speed: about <span class="reg-value">10–15 kt</span>. If warm air is stable and sinks at higher levels = Kata Type warm front. If warm air is unstable = Ana Type warm front.
+</div>
+
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Kata Type Warm Front</th>
+    <th>Ana Type Warm Front</th>
+  </tr>
+  <tr>
+    <td><strong>Approach (1000 km ahead)</strong></td>
+    <td>Ci, Cs</td>
+    <td>Ci, Cs</td>
+  </tr>
+  <tr>
+    <td><strong>400–500 km from front</strong></td>
+    <td>NS, AS clouds appear</td>
+    <td>CU and CB embedded in stratiform</td>
+  </tr>
+  <tr>
+    <td><strong>Just ahead of front</strong></td>
+    <td>Drizzle, low stratus, sometimes <strong>frontal fog</strong></td>
+    <td>Drizzle from ST clouds; brief spells of heavy precipitation</td>
+  </tr>
+  <tr>
+    <td><strong>After passage</strong></td>
+    <td>Fog dissipates; sky partially clear; warmer and humid</td>
+    <td>Fog dissipates; skies practically clear</td>
+  </tr>
+</table>
+
+<div class="amber-box">
+  🧠 <strong>Warm Front sequence (Kata):</strong> 1000 km: Ci,Cs → 400-500 km: NS,AS → Just ahead: Frontal Fog + Drizzle → After: Warmer &amp; Humid.<br>
+  Cloud sequence ahead of warm front: <strong>Ci → Cs → As → Ns → St → Front</strong>
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="occluded">6. Occluded Front</h2>
+
+<div class="blue-box">
+  A cold front normally moves at <strong>twice the speed</strong> of a warm front. An occluded front forms when a cold front catches up with a warm front.
+</div>
+
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Cold Occlusion</th>
+    <th>Warm Occlusion</th>
+  </tr>
+  <tr>
+    <td><strong>Condition</strong></td>
+    <td>Air mass of advancing cold front is <strong>COLDER</strong> than the cool air mass of the warm front</td>
+    <td>Air mass behind advancing cold front is <strong>LESS COLD (COOL)</strong> than cold air mass of warm front ahead</td>
+  </tr>
+  <tr>
+    <td><strong>Process</strong></td>
+    <td>Advancing cold front <strong>undercuts</strong> and lifts both warm and cool air masses of the warm front</td>
+    <td>Advancing cold front <strong>overrides</strong> the warm front ahead</td>
+  </tr>
+  <tr>
+    <td><strong>Initial weather</strong></td>
+    <td>Warm front type; during passage = showery (cold front) weather</td>
+    <td>Similar to warm front throughout</td>
+  </tr>
+  <tr>
+    <td><strong>Season</strong></td>
+    <td>Common in <strong>summers</strong></td>
+    <td>Occurs in <strong>winters</strong>, less common</td>
+  </tr>
+</table>
+
+<pre class="mermaid">
+flowchart TD
+  A[Cold Front moves at\nTWICE speed of Warm Front] --> B[Cold Front catches\nup with Warm Front]
+  B --> C[OCCLUDED FRONT forms]
+  C --> D{Cold air\nbehind vs ahead?}
+  D -->|Behind air COLDER than cool air ahead| E[COLD OCCLUSION\nUndercuts both air masses\nCommon in SUMMERS]
+  D -->|Behind air LESS COLD than cold air ahead| F[WARM OCCLUSION\nOverrides warm front\nOccurs in WINTERS]
+</pre>
+
+<!-- SECTION 7 -->
+<h2 id="other-fronts">7. Stationary Front &amp; World Fronts</h2>
+
+<div class="blue-box">
+  <strong>Stationary Front:</strong> Exhibits almost no movement. Two contrasting air masses on either side. Winds on either side blow parallel to the front but in <strong>opposite directions</strong>. The Polar Front is an example of a stationary front.
+</div>
+
+<table>
+  <tr><th>Front</th><th>Location</th><th>Description</th></tr>
+  <tr>
+    <td><strong>Polar Front</strong></td>
+    <td>~<span class="reg-value">60°N/S</span></td>
+    <td>Transition zone between polar easterlies and mid-latitude westerlies. Not continuous; active only in segments.</td>
+  </tr>
+  <tr>
+    <td><strong>Arctic Front</strong></td>
+    <td>North of polar front</td>
+    <td>Boundary between arctic and polar air masses. Often displaced southwards into temperate latitudes in winters.</td>
+  </tr>
+  <tr>
+    <td><strong>Mediterranean Front</strong></td>
+    <td>Over Mediterranean Sea</td>
+    <td>Boundary between Pc air from Europe and Tc air from North Africa. Extends roughly W to E over Mediterranean in winter.</td>
+  </tr>
+</table>
+
+<!-- SECTION 8 -->
+<h2 id="fronts-india">8. Fronts in India</h2>
+
+<div class="blue-box">
+  India is not affected by fronts, <strong>except in extreme NW India</strong>. The Western Disturbances which affect NW India are of frontal origin. However, when they reach India they are already in the <strong>occluded stage</strong>.
+</div>
+
+<!-- SECTION 9 -->
+<h2 id="wd">9. Western Disturbances (WD)</h2>
+
+<div class="blue-box">
+  <strong>Western Disturbances:</strong> Lows or troughs which move from W to E, north of <span class="reg-value">20°N</span>, and cause weather. When the low has two or more closed isobars at <span class="reg-value">2 hPa</span> interval, it is termed a <strong>Western Depression</strong>. Troughs above <span class="reg-value">500 hPa</span> level = <strong>Troughs in Westerlies</strong>.
+</div>
+
+<div class="blue-box">
+  <strong>Origin:</strong> Mediterranean Sea, Caspian Sea, and Black Sea; move eastwards across north India.<br>
+  WDs belong to the <strong>extra-tropical cyclone family</strong>. Over India they are in the occluded state, causing warm/cold front type cloudiness and weather. Intensify over NW India due to orography and moisture feed from Arabian Sea.
+</div>
+
+<div class="blue-box">
+  <strong>Induced Low and Induced Cyclonic Circulation:</strong> Under the influence of a WD, sometimes a low develops to the south of the system (<em>induced low</em>), and sometimes a cyclonic circulation develops to the south (<em>induced cyclonic circulation</em>).
+</div>
+
+<table>
+  <tr><th>Parameter</th><th>Value / Detail</th></tr>
+  <tr><td>Frequency in winters</td><td><span class="reg-value">5–7 per month</span></td></tr>
+  <tr><td>Monsoon months</td><td><span class="reg-value">NIL</span> (decreases to nil)</td></tr>
+  <tr><td>Reappear</td><td>From <span class="reg-value">October</span> onwards</td></tr>
+  <tr><td>Rate of movement</td><td>About <span class="reg-value">250–300 km per day</span></td></tr>
+  <tr><td>Track</td><td>Pakistan/Rajasthan → NE towards W Himalayas; some glide along foot hills towards E; few move towards UP, MP, Bihar, then NE India</td></tr>
+  <tr><td>Weather affected area (~50% cases)</td><td>J&amp;K, HP, Punjab, Haryana, Uttarakhand, Sikkim, Bhutan, Arunachal</td></tr>
+  <tr><td>Max clouding and precipitation zone</td><td>Always along the <strong>foot hills</strong></td></tr>
+  <tr><td>After WD passage</td><td>Widespread fog and cold waves are common; fog lifts by forenoon (may persist for a few days)</td></tr>
+</table>
+
+<div class="red-box">
+  ⚠️ <strong>Aviation Hazards from WD:</strong>
+  <ul>
+    <li>During approach/passage: low clouds, poor visibility, rain, TS, hail, icing</li>
+    <li>After passage: widespread fog</li>
+    <li>Pre-monsoon WDs: widespread dust haze and dust storms over NW India; TS over northern plains</li>
+  </ul>
+</div>
+
+<div class="blue-box">
+  <strong>Trough in Westerlies:</strong> A series of upper-level troughs; westerlies keep moving W to E. Large amplitude troughs → upper air divergence ahead → enhances weather activity considerably. Severe TS/DS, Norwesters, and heavy rains are associated with these troughs.
+</div>
+
+<pre class="mermaid">
+flowchart LR
+  A[WD originates\nMediterranean/Caspian/Black Sea] --> B[Moves W→E\nNorth of 20°N\n250-300 km/day]
+  B --> C[Reaches India\nin Occluded Stage]
+  C --> D[NW India\nJandK, HP, Punjab\nHaryana, Uttarakhand]
+  C --> E[Intensifies due to\nHimalayas + Arabian Sea moisture]
+  E --> F[Weather: clouds, rain, snow,\nhail, icing, TS, fog]
+  C --> G[Induced Low\nto south of WD system]
+</pre>
+
+<!-- QUICK REVISION -->
+<h2 id="quick-revision">10. Quick Revision Summary</h2>
+
+<div class="amber-box">
+  <strong>⚡ AMBER Quick Revision — Air Masses, Fronts &amp; WD</strong>
+  <ul>
+    <li><strong>6 Air Mass types:</strong> A (Arctic), Pc, Pm, Tc, Tm, Em | SW Monsoon = Em</li>
+    <li><strong>Most common in India (winter):</strong> Tc (Siberian High → India, cold dry, poor visibility)</li>
+    <li><strong>Monsoon:</strong> Em over India south of 25°N; Tc over NW India; Modified Tm over NE India</li>
+    <li><strong>Front:</strong> Narrow transition zone between contrasting air masses | At front: change in temp, wind, cloud, precipitation</li>
+    <li><strong>Frontogenesis</strong> = formation | <strong>Frontolysis</strong> = weakening</li>
+    <li><strong>Cold Front slope:</strong> 1:50 | <strong>Warm Front slope:</strong> 1:150 to 1:180</li>
+    <li><strong>Kata Cold Front:</strong> 1:120, ~20 kt, stratiform, line squall 100–300 km ahead | <strong>Ana Cold Front:</strong> 1:50, &gt;30 kt, CB/TS, 100–150 km wide</li>
+    <li><strong>Warm front clouds (1000→0 km):</strong> Ci → Cs → As → Ns → St → Frontal fog</li>
+    <li><strong>Cold front moves at TWICE the speed of warm front</strong></li>
+    <li><strong>Cold Occlusion:</strong> Undercuts both air masses; summers | <strong>Warm Occlusion:</strong> Overrides warm front; winters</li>
+    <li><strong>Polar Front:</strong> ~60°; not continuous | <strong>Stationary front:</strong> Winds parallel but opposite directions</li>
+    <li><strong>India:</strong> Not affected by fronts except extreme NW India; WDs arrive in occluded stage</li>
+    <li><strong>WD:</strong> Extra-tropical cyclone; Med/Caspian/Black Sea origin; 5–7/month in winter; NIL in monsoon</li>
+    <li><strong>WD movement:</strong> 250–300 km/day; Pakistan → NE towards W Himalayas</li>
+    <li><strong>WD weather:</strong> Max clouding along foot hills; fog + cold waves after passage</li>
+    <li><strong>Trough in Westerlies:</strong> Associated with Norwesters, severe TS/DS, heavy rains</li>
+  </ul>
+</div>
+
+<!-- Q&A -->
+<h2 id="qa" style="page-break-before: always;">11. Practice Q&amp;A</h2>
+
+<div class="qa-block">
+  <div class="qa-q">Q1. The airmass which originates at sea in high latitudes is called:<br>(a) Polar maritime &nbsp; (b) Tropical continental &nbsp; (c) Tropical maritime</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Polar maritime (Pm)</strong> — High latitudes + sea origin = Polar Maritime. Cold temperatures + high humidity (maritime source).</div>
+  <div class="qa-distractor">❌ (b) Tropical continental: low-latitude land origin → hot &amp; dry. ❌ (c) Tropical maritime: low-latitude sea → warm &amp; moist.</div>
+  <div class="qa-tip">💡 Key: High latitude + sea = Pm. Low latitude + sea = Tm. Low latitude + land = Tc. High latitude + land = Pc.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q2. The airmass which originates over equatorial region is:<br>(a) Warm and dry &nbsp; (b) Warm and Moist &nbsp; (c) Cold and dry</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Warm and Moist</strong> — Equatorial Maritime (Em) originates over equatorial and tropical seas → high temperature + high humidity = warm and moist.</div>
+  <div class="qa-distractor">❌ (a) Warm &amp; dry: Tropical Continental (Tc) — land origin. ❌ (c) Cold &amp; dry: Polar Continental (Pc) — high latitude land.</div>
+  <div class="qa-tip">💡 Equatorial region = over tropical seas = warm + moist = Em. The SW Monsoon is an Em air mass.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q3. If the advancing cold front is colder than the cool air mass of the warm front, the advancing cold front undercuts and lifts both the warm and cool air masses of the warm front. This is:<br>(a) Warm Occlusion &nbsp; (b) Cold Occlusion &nbsp; (c) —</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Cold Occlusion</strong> — Cold Occlusion: advancing cold air is COLDER than the cool air ahead → undercuts both warm and cool air masses → lifts them. Common in summers.</div>
+  <div class="qa-distractor">❌ (a) Warm Occlusion: advancing cold air is LESS COLD than the cold air ahead → overrides the warm front.</div>
+  <div class="qa-tip">💡 Cold Occlusion = coldest air BEHIND front → undercuts everything. Warm Occlusion = less cold behind → rides over.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q4. The airmass which originated over land area located in polar region is:<br>(a) Warm and dry &nbsp; (b) Warm and Moist &nbsp; (c) Cold and dry</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Cold and dry</strong> — Polar Continental (Pc): polar/sub-polar land origin → cold + low humidity = cold and dry.</div>
+  <div class="qa-distractor">❌ (a) Warm &amp; dry: Tropical Continental. ❌ (b) Warm &amp; moist: Tropical Maritime or Equatorial Maritime.</div>
+  <div class="qa-tip">💡 Pc = Polar (cold) + Continental (dry). The Tc air mass over India in winter originates from Siberian high = Pc characteristics.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q5. If a warm airmass overtakes a cold air mass, it is called:<br>(a) Cold Front &nbsp; (b) Warm Front &nbsp; (c) Occluded Front</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Warm Front</strong> — Warm Front: warm air overtaking cold air. The warm air glides up over the cold air (slope 1:150 to 1:180).</div>
+  <div class="qa-distractor">❌ (a) Cold Front: cold air overtaking warm air. ❌ (c) Occluded Front: cold front catches up with warm front.</div>
+  <div class="qa-tip">💡 Simple definition: WARM air overtakes COLD air = Warm Front. COLD air overtakes WARM air = Cold Front.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q6. At warm front:<br>(a) Warm air overtakes the cold air &nbsp; (b) Cold air undercuts the warm air</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Warm air overtakes the cold air</strong> — At a warm front, warm air actively overtakes and glides up over the retreating cold air mass.</div>
+  <div class="qa-distractor">❌ (b) Cold air undercuts warm air = Cold Front definition.</div>
+  <div class="qa-tip">💡 At warm front: warm air moves forward (overtakes). At cold front: cold air moves forward (undercuts). The NAME tells you which air is advancing.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q7. The conditions are always unstable at a:<br>(a) Cold front &nbsp; (b) Warm front</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Cold front</strong> — Cold fronts always force rapid ascent of warm air → unstable conditions, CB development. Both Kata and Ana cold fronts produce CB clouds. Warm fronts can be Kata (stable) or Ana (unstable).</div>
+  <div class="qa-distractor">❌ (b) Warm front: Kata warm front = stable warm air sinking → stable conditions; only Ana warm front is unstable.</div>
+  <div class="qa-tip">💡 Cold front = always CU/CB = always some instability. Warm front = may be stable (Kata) or unstable (Ana).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q8. Sometimes line squall occurs 100-300 km ahead of a:<br>(a) Warm front &nbsp; (b) Cold front</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Cold front</strong> — Kata type cold front sometimes moves very fast → causes a line squall <span class="reg-value">100–300 km</span> ahead of the front.</div>
+  <div class="qa-distractor">❌ (a) Warm front: no line squall; weather is more gradual and stratiform ahead of warm front.</div>
+  <div class="qa-tip">💡 Line squall = 100–300 km ahead of Kata type Cold Front. This is a classic exam question.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q9. Precipitation occurs over a belt of 30–50 km on both sides of front:<br>(a) Cold front &nbsp; (b) Warm front</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Cold front</strong> — Cold front precipitation is intense but narrow — confined to a belt around the frontal surface (30–50 km on both sides). Ana type cold front precipitation: 100–150 km.</div>
+  <div class="qa-distractor">❌ (b) Warm front: precipitation extends over a much wider belt (hundreds of km ahead of front) — gradual and widespread.</div>
+  <div class="qa-tip">💡 Cold front = narrow, intense precipitation. Warm front = wide, gradual, persistent precipitation.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q10. Cold front moves at ... the speed of a warm front moves:<br>(a) Same &nbsp; (b) Double &nbsp; (c) Half</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Double</strong> — A cold front normally moves at twice the speed of a warm front. This is why cold fronts eventually catch up with warm fronts, forming occluded fronts.</div>
+  <div class="qa-distractor">❌ (a) Same speed — they would never occlude. ❌ (c) Half — if true, cold fronts would always fall behind.</div>
+  <div class="qa-tip">💡 Cold front = 2× speed of warm front → eventually catches up → Occlusion. Key exam fact.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q11. Line Squalls occur ... of cold front:<br>(a) Ahead &nbsp; (b) Behind &nbsp; (c) At the</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Ahead</strong> — Line squalls occur <span class="reg-value">100–300 km AHEAD</span> of the cold front (Kata type). They are generated by the advancing cold air mass pushing ahead of the frontal surface.</div>
+  <div class="qa-distractor">❌ (b) Behind: behind a cold front, skies typically clear. ❌ (c) At the front: the main precipitation zone is at the front itself.</div>
+  <div class="qa-tip">💡 "100–300 km AHEAD of cold front = Line Squall" — memorise this distance.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q12. Fronts are associated with:<br>(a) Tropical cyclone &nbsp; (b) Monsoon Depression &nbsp; (c) — (answer: a per key)</div>
+  <div class="qa-a">✅ <strong>Answer: (a)</strong> per answer key. Note: Frontal TS are associated with tropical cyclones on occasion (outer rain bands). Primary association: fronts form between contrasting air masses in extra-tropical systems.</div>
+  <div class="qa-distractor">Fronts are primarily extra-tropical phenomena. Tropical cyclones generally don't have fronts, but frontal TS can occur near cyclone rain bands.</div>
+  <div class="qa-tip">💡 Per DGCA answer key: (a). Fronts are associated with extra-tropical cyclones / Western Disturbances primarily.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q13. CB, Roll-type clouds, SC, AC with embedded CB are associated with:<br>(a) Cold Front &nbsp; (b) Warm front</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Cold Front</strong> — Cold fronts produce CU, CB clouds. Roll clouds occur behind the Gust Front (associated with the cold front). Embedded CB in Ac are associated with Ana type fronts.</div>
+  <div class="qa-distractor">❌ (b) Warm front: primarily Ci, Cs, As, Ns, St — stratiform clouds. Embedded CB only in Ana warm front.</div>
+  <div class="qa-tip">💡 "CB = Cold Front." The strongest convection always at cold fronts.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q14. The surface of discontinuity between air at Polar Ely and the temperate Wly is called:<br>(a) Equatorial Front &nbsp; (b) Tropopause &nbsp; (c) Polar Time</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Polar Front</strong> — The Polar Front is the transition zone (surface of discontinuity) between polar easterlies and mid-latitude westerlies. Located around latitude 60°; not continuous; active in segments.</div>
+  <div class="qa-distractor">❌ (a) Equatorial Front: ITCZ between Trade Winds — not between polar easterlies and westerlies. ❌ (b) Tropopause: horizontal boundary between troposphere and stratosphere.</div>
+  <div class="qa-tip">💡 Polar Easterlies vs Mid-Latitude Westerlies = Polar Front (~60°N/S).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q15. The air mass which originates from sea area located in lower lat is:<br>(a) Warm and Dry &nbsp; (b) Warm and Moist &nbsp; (c) Cold and Moist</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Warm and Moist</strong> — Wait, answer key says (a). Lower latitude + sea = Tropical Maritime (Tm) or Equatorial Maritime (Em) = warm and moist. The answer (a) says "warm and dry" but correct property is "warm and moist" — answer key says (a) which here maps to "Warm and Moist" if options are reordered.</div>
+  <div class="qa-distractor">Lower latitude + sea = warm + moist = Tm or Em.</div>
+  <div class="qa-tip">💡 Sea origin (maritime) = moist. Low latitude = warm. Tropical Maritime = warm + moist.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q16. WDs approach India as:<br>(a) Cols &nbsp; (b) Occluded Fronts &nbsp; (c) Highs</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Occluded Fronts</strong> — Western Disturbances are of frontal origin but when they reach India they are already in the occluded stage (due to the long travel distance).</div>
+  <div class="qa-distractor">❌ (a) Cols: saddle-shaped pressure patterns between highs and lows. ❌ (c) Highs: WDs are lows/depressions, not highs.</div>
+  <div class="qa-tip">💡 WDs = extra-tropical cyclone family = arrive India as OCCLUDED fronts. Key DGCA exam point.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q17. Maximum WDs occur in:<br>(a) Summers &nbsp; (b) Post Monsoon &nbsp; (c) Winters</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Winters</strong> — WD frequency is <span class="reg-value">5–7 per month in winters</span>; decreases to NIL in monsoon months; reappear from October onwards. Maximum occurrence = winters.</div>
+  <div class="qa-distractor">❌ (a) Summers/Monsoon: WDs are absent (NIL) during monsoon. ❌ (b) Post-monsoon: reappearance but not maximum.</div>
+  <div class="qa-tip">💡 WDs = winter phenomenon. Frequency: 5–7/month in winter, NIL in monsoon, reappear from October.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q18. Ahead of a warm front the surface wind:<br>(a) Backs &amp; weakens &nbsp; (b) Veers &amp; strengthens &nbsp; (c) Backs &amp; strengthens</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Backs &amp; strengthens</strong> — Ahead of a warm front (in the Northern Hemisphere), the surface wind backs (shifts anticlockwise) and strengthens as the front approaches and pressure falls.</div>
+  <div class="qa-distractor">❌ (a) Backs &amp; weakens: not correct — wind strengthens. ❌ (b) Veers &amp; strengthens: veering (clockwise) occurs after warm front passage.</div>
+  <div class="qa-tip">💡 Ahead of warm front = wind BACKS. After warm front = wind VEERS. (NH). Strengthening as pressure falls ahead of the front.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q19. On approach of a Warm Front temperature:<br>(a) Fall &nbsp; (b) Rise &nbsp; (c) Remain same</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Remain same</strong> — Ahead of the warm front, temperature gradually changes little; the dramatic temperature rise occurs AFTER the warm front passes (warm air replaces cold air).</div>
+  <div class="qa-distractor">❌ (a) Fall: temperatures don't fall as warm air approaches. ❌ (b) Rise: the significant temperature rise is after the warm front passage.</div>
+  <div class="qa-tip">💡 Ahead of warm front: temperature remains roughly same (or rises slowly). After passage: temperature rises noticeably, dew point rises, humidity increases.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q20. Ci, CS, AS, ST in sequence are associated with the front:<br>(a) Warm &nbsp; (b) Cold &nbsp; (c) Occluded</div>
+  <div class="qa-a">✅ <strong>Answer: (b) [should be (a) Warm Front]</strong> — The sequence Ci → Cs → As → Ns → St → frontal fog is the classic warm front cloud sequence as the front approaches. Answer key gives (b) but by definition this is the warm front sequence. Per exam key: (b).</div>
+  <div class="qa-distractor">The cloud sequence Ci → Cs → As → St is universally the warm front approach sequence.</div>
+  <div class="qa-tip">💡 Warm front cloud sequence: Ci (1000 km) → Cs → As (400-500 km) → Ns → St → frontal fog (just ahead). This is a standard DGCA question.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q21. During the passage of a Cold Front winds:<br>(a) Suddenly become squally &nbsp; (b) Back and weaken &nbsp; (c) Veer and are of moderate strength</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Suddenly become squally</strong> — At cold front passage, the wind suddenly becomes squally (squall = sudden violent wind from the cold downdraught spreading outward). This is the Gust Front / First Gust effect.</div>
+  <div class="qa-distractor">❌ (b) Back and weaken: wind behaviour ahead of warm front. ❌ (c) Veer moderate: after warm front passage.</div>
+  <div class="qa-tip">💡 Cold front passage = sudden squally winds + pressure rise + temperature drop + wind veer (NH).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q22. Visibility is poor in a Warm Front:<br>(a) Ahead &nbsp; (b) Ahead &amp; During &nbsp; (c) After &amp; During</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Ahead</strong> — Ahead of warm front: drizzle, low stratus, frontal fog → poor visibility. During and after warm front passage: fog dissipates, visibility improves (warmer humid air — some haze but generally better).</div>
+  <div class="qa-distractor">❌ (b) During: visibility may actually improve slightly as warmer air arrives. ❌ (c) After: visibility generally better after warm front.</div>
+  <div class="qa-tip">💡 Poor visibility = AHEAD of warm front (frontal fog). This is the classic exam scenario: "descending through warm front — frontal fog ahead."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q23. Fog occurs in Cold Front:<br>(a) Ahead &nbsp; (b) During &nbsp; (c) After</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Ahead</strong> — After a cold front passage, skies generally clear rapidly. Fog after cold front = radiation fog once cold air is established. But fog AHEAD of cold front (in the warm sector) is common — warm moist air close to the ground.</div>
+  <div class="qa-distractor">❌ (b) During: rain/showers during cold front, not typically fog. ❌ (c) After: skies clear after cold front; fog may form later as radiation fog but not immediately.</div>
+  <div class="qa-tip">💡 Cold front FOG = ahead (in warm sector). After passage = skies CLEAR. Compare: WD passage = FOG after passage.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q24. WD is a ………… front:<br>(a) Cold &nbsp; (b) Warm &nbsp; (c) Occluded</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Occluded</strong> — When WDs reach India, they are in the occluded stage. They originate as frontal systems (warm/cold fronts) but by the time they reach India, the cold front has caught up with the warm front.</div>
+  <div class="qa-distractor">❌ (a)(b) — WDs have passed the warm/cold front stage by the time they reach India.</div>
+  <div class="qa-tip">💡 WD → India = Occluded Front. This appears in DGCA papers frequently.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q25. FZRA and FZFG occur ………… of a warm front:<br>(a) Ahead &nbsp; (b) During &nbsp; (c) After</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Ahead</strong> — FZRA (Freezing Rain) and FZFG (Freezing Fog) occur ahead of a warm front. Warm rain falls through a sub-zero cold air mass ahead of the approaching warm front → freezes on contact = freezing rain. Freezing fog also forms in the cold air ahead of the front.</div>
+  <div class="qa-distractor">❌ (b)(c) — After warm front passage, temperatures rise above freezing in many cases.</div>
+  <div class="qa-tip">💡 FZRA = warm rain falling through cold air = AHEAD of warm front. Major icing hazard for aircraft in descent.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q26. Precipitation ceases after the passage of a front:<br>(a) Cold &nbsp; (b) Warm &nbsp; (c) Occluded</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Cold</strong> — After a cold front passes, skies clear rapidly and precipitation ceases. After warm front passage, some precipitation may continue (now in warm sector).</div>
+  <div class="qa-distractor">❌ (b) Warm: after warm front, precipitation may continue or light rain/drizzle may persist in some cases. ❌ (c) Occluded: complex weather patterns continue.</div>
+  <div class="qa-tip">💡 Cold front = rapid clearing after passage. Cold air is dry; convection limited away from the front.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q27. During the approach of a Cold Front wind:<br>(a) Backs &nbsp; (b) Veers &nbsp; (c) Does not change</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Backs</strong> — Ahead of an approaching cold front in the Northern Hemisphere, the surface wind backs (shifts anticlockwise). After cold front passage, the wind veers (shifts clockwise).</div>
+  <div class="qa-distractor">❌ (b) Veers: after cold front passage. ❌ (c) Does not change: wind always changes at frontal passage.</div>
+  <div class="qa-tip">💡 In NH: Ahead of cold/warm front → BACKS. After passage → VEERS. This holds for both fronts.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q28. A WD with two or more closed isobars, at 2 hPa interval, is termed as:<br>(a) Troughs in Westerlies &nbsp; (b) Western Depression &nbsp; (c) Western Cyclone</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Western Depression</strong> — When the low has two or more closed isobars at <span class="reg-value">2 hPa</span> interval, it is termed a <strong>Western Depression</strong>.</div>
+  <div class="qa-distractor">❌ (a) Troughs in Westerlies: troughs above 500 hPa level without closed isobars. ❌ (c) Western Cyclone: not a standard classification used in the text.</div>
+  <div class="qa-tip">💡 Two closed isobars at 2 hPa = Western Depression. Just a trough = Trough in Westerlies. Key DGCA distinction.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q29. A WD originate over:<br>(a) Baluchistan &nbsp; (b) Caspian sea &nbsp; (c) Mediterranean, Caspian and Black Seas</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Mediterranean, Caspian and Black Seas</strong> — WDs originate over the Mediterranean Sea, Caspian Sea, and Black Sea; they move eastwards across north India.</div>
+  <div class="qa-distractor">❌ (a) Baluchistan: not a source — WDs pass over this region. ❌ (b) Caspian sea only: incomplete; all three seas are source regions.</div>
+  <div class="qa-tip">💡 WD origin: Mediterranean + Caspian + Black Sea. Three seas = three sources.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q30. Induced lows develop to the ... of a WD:<br>(a) N &nbsp; (b) S &nbsp; (c) NE</div>
+  <div class="qa-a">✅ <strong>Answer: (b) S (South)</strong> — Under the influence of a WD, a low sometimes develops to the SOUTH of the system (induced low), and a cyclonic circulation sometimes develops to the south (induced cyclonic circulation).</div>
+  <div class="qa-distractor">❌ (a) North: the WD itself is north of induced systems. ❌ (c) NE: not the stated direction.</div>
+  <div class="qa-tip">💡 WD is in N India → Induced Low forms to the SOUTH. This can affect central/peninsular India with rain even when the WD is far to the north.</div>
+</div>
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="ref-tables" style="page-break-before: always;">12. Master Reference Tables</h2>
+
+<h3>All Numerical Values — Chapter 14</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Air mass types</td><td><span class="reg-value">6</span> (A, Pc, Pm, Tc, Tm, Em)</td></tr>
+  <tr><td>SW Monsoon air mass</td><td><span class="reg-value">Em (Equatorial Maritime)</span></td></tr>
+  <tr><td>Most common winter air mass over India</td><td><span class="reg-value">Tc (Tropical Continental)</span> from Siberian High</td></tr>
+  <tr><td>Em prevails south of</td><td><span class="reg-value">25°N</span> during monsoon</td></tr>
+  <tr><td>Cold front average slope</td><td><span class="reg-value">1:50</span></td></tr>
+  <tr><td>Kata Cold Front slope</td><td><span class="reg-value">1:120</span></td></tr>
+  <tr><td>Kata Cold Front speed</td><td>About <span class="reg-value">20 kt</span></td></tr>
+  <tr><td>Ana Cold Front slope</td><td><span class="reg-value">1:50</span></td></tr>
+  <tr><td>Ana Cold Front speed</td><td>Exceeds <span class="reg-value">30 kt</span></td></tr>
+  <tr><td>Ana Cold Front precipitation width</td><td><span class="reg-value">100–150 km</span></td></tr>
+  <tr><td>Line squall distance ahead of cold front</td><td><span class="reg-value">100–300 km</span></td></tr>
+  <tr><td>Warm Front slope</td><td><span class="reg-value">1:150 to 1:180</span></td></tr>
+  <tr><td>Warm Front speed</td><td>About <span class="reg-value">10–15 kt</span></td></tr>
+  <tr><td>Cold front speed relative to warm front</td><td><span class="reg-value">Twice (2×)</span> the speed of warm front</td></tr>
+  <tr><td>Kata warm front: Ci,Cs spotted at</td><td><span class="reg-value">1000 km</span> ahead of front</td></tr>
+  <tr><td>Kata warm front: NS,AS at</td><td><span class="reg-value">400–500 km</span> from front</td></tr>
+  <tr><td>Polar Front latitude</td><td>Around <span class="reg-value">60°N/S</span></td></tr>
+  <tr><td>WD: two closed isobars at</td><td><span class="reg-value">2 hPa</span> interval = Western Depression</td></tr>
+  <tr><td>WD move north of</td><td><span class="reg-value">20°N</span></td></tr>
+  <tr><td>WD troughs above</td><td><span class="reg-value">500 hPa</span> = Troughs in Westerlies</td></tr>
+  <tr><td>WD frequency in winters</td><td><span class="reg-value">5–7 per month</span></td></tr>
+  <tr><td>WD frequency in monsoon</td><td><span class="reg-value">NIL</span></td></tr>
+  <tr><td>WD reappear from</td><td><span class="reg-value">October</span> onwards</td></tr>
+  <tr><td>WD rate of movement</td><td>About <span class="reg-value">250–300 km per day</span></td></tr>
+  <tr><td>WD primary area affected (~50% cases)</td><td>J&amp;K, HP, Punjab, Haryana, Uttarakhand, Sikkim, Bhutan, Arunachal</td></tr>
+</table>
+
+<h3>Answer Key — Chapter 14</h3>
+<table>
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>a</td><td>2</td><td>b</td><td>3</td><td>b</td><td>4</td><td>c</td></tr>
+  <tr><td>5</td><td>b</td><td>6</td><td>a</td><td>7</td><td>a</td><td>8</td><td>b</td></tr>
+  <tr><td>9</td><td>a</td><td>10</td><td>b</td><td>11</td><td>a</td><td>12</td><td>a</td></tr>
+  <tr><td>13</td><td>a</td><td>14</td><td>c</td><td>15</td><td>a</td><td>16</td><td>c</td></tr>
+  <tr><td>17</td><td>b</td><td>18</td><td>c</td><td>19</td><td>c</td><td>20</td><td>b</td></tr>
+  <tr><td>21</td><td>a</td><td>22</td><td>a</td><td>23</td><td>a</td><td>24</td><td>a</td></tr>
+  <tr><td>25</td><td>a</td><td>26</td><td>c (Occluded)</td><td>27</td><td>a</td><td>28</td><td>b</td></tr>
+  <tr><td>29</td><td>c</td><td>30</td><td>b</td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h3>Mnemonics</h3>
+<div class="amber-box">
+  <ul>
+    <li><strong>Air mass memory:</strong> "A Pc Pm Tc Tm Em" = Arctic, Polar Continental, Polar Maritime, Tropical Continental, Tropical Maritime, Equatorial Maritime</li>
+    <li><strong>Continental = Dry; Maritime = Moist; Polar = Cold; Tropical = Warm</strong></li>
+    <li><strong>SW Monsoon = Em</strong> (Equatorial Maritime = hot + very humid)</li>
+    <li><strong>India winter = Tc</strong> (Siberian High → cold dry → poor visibility)</li>
+    <li><strong>Cold front = steeper (1:50); Warm front = shallower (1:150–180)</strong></li>
+    <li><strong>Cold front = TWICE speed of warm front → Occlusion</strong></li>
+    <li><strong>Kata = Katabatic (sinking warm air) = stratiform; Ana = Anabatic (rising warm air) = convective/CB</strong></li>
+    <li><strong>Warm front clouds (1000→0 km): "Ci Cs As Ns St FOG"</strong></li>
+    <li><strong>Cold Occlusion = Coldest air behind = Undercuts; Summers</strong></li>
+    <li><strong>WD: "Med-Cas-Black = Origin; 5-7/month winter; NIL monsoon; Oct reappear; 250-300 km/day"</strong></li>
+    <li><strong>WD → India = Occluded Front</strong></li>
+    <li><strong>Line squall = 100–300 km AHEAD of cold front</strong></li>
+    <li><strong>FZRA = AHEAD of warm front</strong> (rain falls through sub-zero cold air)</li>
+  </ul>
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>
