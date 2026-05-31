@@ -31,6 +31,10 @@ const CHAPTERS = [
   ["Ch09_Stability_and_Instability_of_Atmosphere.html",  "met-9",  "Stability and Instability"],
   ["Ch10_Optical_Phenomena.html",                        "met-10", "Optical Phenomena"],
   ["Ch11_Precipitation.html",                            "met-11", "Precipitation"],
+  ["Ch12_Ice_Accretion.html",                            "met-12", "Ice Accretion"],
+  ["Ch13_Thunderstorm.html",                             "met-13", "Thunderstorm"],
+  ["Ch14_Air_Masses_Fronts_Western_Disturbances.html",   "met-14", "Air Masses, Fronts & Western Disturbances"],
+  ["Ch15_Jet_Streams.html",                              "met-15", "Jet Streams"],
 ];
 
 const SUBJECT_IDS = ["meteorology", "atpl-meteorology"];
@@ -93,10 +97,14 @@ function parseBlock(block, ctx) {
   const ans = am[1].toLowerCase().charCodeAt(0) - 97;
   if (ans >= cleanOpts.length) return null;
 
-  // Build a rich explanation from explanation + tip (trimmed).
+  // Build a rich explanation. Some templates have a separate explanation div;
+  // others embed the explanation in the answer block after "Answer: (x) ...".
   const expHtml = firstClass(block, "qa-explanation", "qa-exp");
   const tipHtml = firstClass(block, "qa-tip");
-  let exp = [expHtml && htmlToText(expHtml), tipHtml && htmlToText(tipHtml)]
+  const body = expHtml
+    ? htmlToText(expHtml)
+    : ansText.replace(/^Answer[^:]*:\s*\(\s*[a-d]\s*\)\s*/i, "");
+  let exp = [body, tipHtml && htmlToText(tipHtml)]
     .filter(Boolean).join(" ").replace(/^Explanation:\s*/i, "").trim();
   if (exp.length > 600) exp = exp.slice(0, 597).trimEnd() + "…";
   if (!exp) exp = `Correct answer: ${"ABCD"[ans]}.`;

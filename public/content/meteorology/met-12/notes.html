@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch12 – Ice Accretion | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #1a1a1a; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 2em; color: #1a237e; text-align: center; margin-bottom: 5px; }
+  h2 { font-size: 1.5em; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; page-break-after: avoid; }
+  h3 { font-size: 1.15em; color: #283593; margin-top: 20px; page-break-after: avoid; }
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 12px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; }
+  .cover .sub { font-size: 1.1em; color: #555; margin-top: 10px; }
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { padding: 4px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: center; }
+  td { border: 1px solid #bbb; padding: 8px 12px; text-align: center; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 18px 0; padding: 15px; page-break-inside: avoid; }
+  .qa-q { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 10px 15px; border-radius: 4px; font-weight: bold; margin-bottom: 10px; }
+  .qa-a { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 10px 15px; border-radius: 4px; margin-bottom: 8px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 10px 15px; border-radius: 4px; font-size: 0.92em; margin-bottom: 8px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 10px 15px; border-radius: 4px; font-size: 0.92em; }
+  pre.mermaid { page-break-inside: avoid; }
+  .formula-box { background: #f3e5f5; border-left: 5px solid #7b1fa2; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; font-family: 'Courier New', monospace; }
+  .worked-example { background: #e0f7fa; border-left: 5px solid #00838f; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  ul li, ol li { margin-bottom: 5px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 12<br>Ice Accretion</h1>
+  <div class="sub">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="sub">IC Joshi Textbook | Compiled by Capt. Pankaj Pahil</div>
+  <div class="sub" style="margin-top:20px; font-size:0.95em; color:#888;">For Examination Use Only — All Rights Reserved</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#types-of-ice">1. Types of Airframe Ice</a></li>
+    <li><a href="#temp-range">2. Temperature Range for Airframe Icing</a></li>
+    <li><a href="#cloud-forms">3. Airframe Icing in Relation to Cloud Forms</a></li>
+    <li><a href="#effects">4. Effects of Airframe Icing</a></li>
+    <li><a href="#engine-icing">5. Engine Icing</a></li>
+    <li><a href="#freezing-level">6. Height of Freezing Level in India</a></li>
+    <li><a href="#quick-revision">7. Quick Revision Summary</a></li>
+    <li><a href="#qa">8. Practice Q&A</a></li>
+    <li><a href="#ref-tables">9. Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="types-of-ice">1. Types of Airframe Ice</h2>
+
+<div class="blue-box">
+  <strong>Definition — Ice Accretion:</strong> The accumulation of ice on airframe surfaces, engine intakes, and instruments due to contact with supercooled water droplets or water vapour in sub-freezing conditions.
+</div>
+
+<h3>Rime Ice</h3>
+<div class="blue-box">
+  Rime ice forms by the <strong>instantaneous freezing</strong> of small supercooled water droplets on impact. Air is trapped between droplets → <em>opaque, milky-white, rough</em> appearance. It is <strong>light and porous</strong> and builds up on leading edges and into the airstream. Less structurally dangerous than glaze but disrupts airflow significantly.
+</div>
+
+<h3>Glaze Ice (Clear Ice / Translucent Rime)</h3>
+<div class="blue-box">
+  Also called <strong>clear ice</strong> because of its glassy appearance. Forms from <strong>large supercooled water droplets</strong> that spread backwards after impact before freezing. Very little air is trapped → <em>clear, hard, dense, heavy</em>. Deposits on leading edges, struts, and propeller blades. Initial deposit may have flat surface; subsequent deposits build up in lumps.
+</div>
+
+<div class="red-box">
+  ⚠️ <strong>Most hazardous type of icing.</strong> Glaze ice:
+  <ul>
+    <li>Is <strong>sticky</strong> — cannot be easily shaken off; if it breaks it comes away in dangerous lumps.</li>
+    <li>Alters aerodynamics and is <strong>heavy</strong> — poses serious aviation hazard.</li>
+    <li>May set up <strong>vibrations</strong> due to unequal loading of wings, struts, and propeller blades.</li>
+    <li>Comparable to ice cubes in a refrigerator — smooth, hard, transparent.</li>
+  </ul>
+</div>
+
+<h3>Hoar Frost</h3>
+<div class="blue-box">
+  Occurs in <strong>moist, cloudless air</strong> when aircraft surface temperature falls below <strong>0°C</strong> due to <strong>sublimation of water vapour</strong> onto feathery ice crystals. Also forms when a cold-soaked aircraft descends into warmer moist air. It gives a white crystalline coating and is generally less hazardous in flight but can be dangerous on takeoff (disrupts laminar flow).
+</div>
+
+<pre class="mermaid">
+flowchart TD
+  A[Supercooled Water Droplets in Cloud] -->|Small drops, instant freeze| B[RIME ICE\nOpaque, rough, light, porous]
+  A -->|Large drops, spread before freezing| C[GLAZE / CLEAR ICE\nTransparent, hard, heavy, dangerous]
+  D[Water Vapour below 0°C, no cloud] -->|Sublimation| E[HOAR FROST\nFeathery crystals on surface]
+  B -->|In mixed cloud 0° to -40°C| F[MIXED ICE\nCombination of Rime + Glaze]
+</pre>
+
+<!-- SECTION 2 -->
+<h2 id="temp-range">2. Temperature Range for Airframe Icing</h2>
+
+<div class="blue-box">
+  The optimum temperature range for cumulonimbus clouds in which different degrees of icing are likely are:
+</div>
+
+<table>
+  <tr>
+    <th>Severity</th>
+    <th>Temperature Range</th>
+  </tr>
+  <tr>
+    <td><strong>Severe</strong></td>
+    <td><span class="reg-value">0°C to −7°C</span></td>
+  </tr>
+  <tr>
+    <td><strong>Moderate</strong></td>
+    <td><span class="reg-value">−7°C to −12°C</span></td>
+  </tr>
+  <tr>
+    <td><strong>Light</strong></td>
+    <td><span class="reg-value">−12°C to −20°C</span></td>
+  </tr>
+  <tr>
+    <td><strong>Very Light</strong></td>
+    <td><span class="reg-value">−20°C to −40°C</span></td>
+  </tr>
+</table>
+
+<div class="amber-box">
+  🧠 <strong>Mnemonic — "Severe Mild Lite Very":</strong> 0 → −7 → −12 → −20 → −40. The warmer the temperature (closer to 0°C), the more liquid water content and thus more severe icing. Below <span class="reg-value">−40°C</span>, droplets are almost entirely ice crystals — icing is negligible.
+</div>
+
+<!-- SECTION 3 -->
+<h2 id="cloud-forms">3. Airframe Icing in Relation to Cloud Forms</h2>
+
+<div class="blue-box">
+  Ice accretion is dependent primarily on the <strong>size</strong> and <strong>number</strong> of drops in a cloud.
+</div>
+
+<table>
+  <tr>
+    <th>Cloud Type</th>
+    <th>Icing Risk</th>
+    <th>Remarks</th>
+  </tr>
+  <tr>
+    <td><strong>Ci, Cs, Cc</strong></td>
+    <td style="background:#e8f5e9; color:#1b5e20;">Negligible</td>
+    <td>Consist mostly of ice crystals</td>
+  </tr>
+  <tr>
+    <td><strong>As, Ns</strong></td>
+    <td style="background:#fff8e1; color:#e65100;">Light to Moderate</td>
+    <td>Supercooled water drops + ice crystals in varying proportions</td>
+  </tr>
+  <tr>
+    <td><strong>Ac</strong></td>
+    <td style="background:#fff8e1; color:#e65100;">Light to Moderate</td>
+    <td>Severe icing possible in mountainous areas</td>
+  </tr>
+  <tr>
+    <td><strong>TCu</strong></td>
+    <td style="background:#fdecea; color:#b71c1c;">Light to Severe</td>
+    <td>May range from light to severe type up to <span class="reg-value">−20°C</span> level</td>
+  </tr>
+  <tr>
+    <td><strong>Cb</strong></td>
+    <td style="background:#fdecea; color:#b71c1c;">Light to Severe (up to −20°C)</td>
+    <td>Below <span class="reg-value">−20°C</span> level, temperature severe icing is not significant</td>
+  </tr>
+  <tr>
+    <td><strong>St, Sc, Ac, Cu, Ns</strong></td>
+    <td style="background:#fdecea; color:#b71c1c;">Rime / Glazed</td>
+    <td>Occur at <span class="reg-value">−10°C to −40°C</span></td>
+  </tr>
+</table>
+
+<!-- SECTION 4 -->
+<h2 id="effects">4. Effects of Airframe Icing</h2>
+
+<div class="red-box">
+  <strong>⚠️ Airframe icing affects flying characteristics in multiple ways:</strong>
+  <ol>
+    <li>Alters <strong>aerodynamics</strong>, increases weight, and <strong>decreases lift</strong></li>
+    <li>Increases the <strong>stalling speed</strong> appreciably</li>
+    <li><strong>Increases drag</strong></li>
+    <li>Unequal loading on propeller blades → <strong>decreases efficiency</strong> and effective power → vibrations</li>
+    <li>Hinges of ailerons, elevator and trimming tabs may get <strong>jammed</strong></li>
+    <li><strong>ASI</strong> may give erroneous readings due to icing of pitot tube</li>
+    <li>Icing on aerials may render <strong>communication difficult</strong></li>
+  </ol>
+</div>
+
+<pre class="mermaid">
+flowchart LR
+  ICE[Ice Accretion] --> A[↑ Weight\n↓ Lift]
+  ICE --> B[↑ Stall Speed]
+  ICE --> C[↑ Drag]
+  ICE --> D[Propeller Vibration\n↓ Effective Power]
+  ICE --> E[Control Surface Jam\nAilerons / Elevator / Tabs]
+  ICE --> F[ASI Error\nPitot Icing]
+  ICE --> G[Comms Degraded\nAerial Icing]
+</pre>
+
+<!-- SECTION 5 -->
+<h2 id="engine-icing">5. Engine Icing</h2>
+
+<h3>Impact Icing</h3>
+<div class="blue-box">
+  Occurs due to the <strong>impact of supercooled water drops on the air intake</strong>. Icing restricts air inflow, which reduces engine power.
+</div>
+
+<h3>Carburetor Icing</h3>
+<div class="blue-box">
+  When air passes through the carburetor choke and past the throttle butterfly, pressure falls → <strong>adiabatic cooling</strong> drops temperature to a very low value. This cooling is <strong>further enhanced by evaporation of fuel</strong>. Types:
+  <ul>
+    <li>Can occur in clear air at ambient temperature of <span class="reg-value">+30°C</span> if humidity is high (due to evaporative cooling).</li>
+    <li>Below <span class="reg-value">−10°C</span>: this type of icing is <strong>negligible</strong> unless liquid water is present.</li>
+    <li>Carburetor icing is <strong>unlikely</strong> when relative humidity is less than <span class="reg-value">60%</span>.</li>
+  </ul>
+</div>
+
+<div class="amber-box">
+  🧠 <strong>Exam Tip:</strong> Carburetor icing can occur at ambient temperatures as high as <span class="reg-value">+30°C</span> — a common exam trap. It is NOT only a cold-weather phenomenon. The key is <em>high humidity + venturi cooling + fuel evaporation</em>.
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="freezing-level">6. Height of Freezing Level in India</h2>
+
+<div class="blue-box">
+  In the North, Central, and Southern parts of India the Freezing Level occurs approximately at the pressure levels in various seasons:
+</div>
+
+<table>
+  <tr>
+    <th>Season</th>
+    <th>North</th>
+    <th>Central</th>
+    <th>South</th>
+  </tr>
+  <tr>
+    <td><strong>NE Monsoon</strong></td>
+    <td><span class="reg-value">700 hPa</span></td>
+    <td><span class="reg-value">600 hPa</span></td>
+    <td><span class="reg-value">600 hPa</span></td>
+  </tr>
+  <tr>
+    <td><strong>Pre-Monsoon</strong></td>
+    <td><span class="reg-value">650 hPa</span></td>
+    <td><span class="reg-value">600 hPa</span></td>
+    <td><span class="reg-value">550 hPa</span></td>
+  </tr>
+  <tr>
+    <td><strong>SW Monsoon</strong></td>
+    <td><span class="reg-value">550 hPa</span></td>
+    <td><span class="reg-value">500 hPa</span></td>
+    <td><span class="reg-value">500 hPa</span></td>
+  </tr>
+  <tr>
+    <td><strong>Post Monsoon</strong></td>
+    <td><span class="reg-value">550 hPa</span></td>
+    <td><span class="reg-value">600 hPa</span></td>
+    <td><span class="reg-value">650 hPa</span></td>
+  </tr>
+</table>
+
+<div class="amber-box">
+  🧠 <strong>Key pattern:</strong> During SW Monsoon the freezing level is <em>highest</em> (lowest pressure = highest altitude) — especially in Central and South India at <span class="reg-value">500 hPa</span>. During NE Monsoon the freezing level is <em>lowest</em> in the North at <span class="reg-value">700 hPa</span> (lowest altitude, most likely to affect lower-level operations).
+</div>
+
+<!-- QUICK REVISION -->
+<h2 id="quick-revision">7. Quick Revision Summary</h2>
+
+<div class="amber-box">
+  <strong>⚡ AMBER Quick Revision — Ice Accretion</strong>
+  <ul>
+    <li><strong>Rime Ice:</strong> Small drops, instant freeze, opaque, rough, porous, light — forms in stratiform clouds</li>
+    <li><strong>Glaze/Clear Ice:</strong> Large drops, spreads then freezes, transparent, hard, heavy, MOST HAZARDOUS</li>
+    <li><strong>Hoar Frost:</strong> Sublimation below 0°C in cloudless air — feathery crystals</li>
+    <li><strong>Severe icing:</strong> <span class="reg-value">0°C to −7°C</span> | Moderate: <span class="reg-value">−7°C to −12°C</span> | Light: <span class="reg-value">−12°C to −20°C</span> | Very Light: <span class="reg-value">−20°C to −40°C</span></li>
+    <li><strong>Ci, Cs, Cc:</strong> Negligible icing | <strong>As, Ns:</strong> Light–Moderate | <strong>Cb/TCu:</strong> Light–Severe (up to −20°C)</li>
+    <li><strong>Carburetor icing:</strong> Can occur at <span class="reg-value">+30°C</span> OAT; negligible below <span class="reg-value">−10°C</span>; unlikely if RH &lt;<span class="reg-value">60%</span></li>
+    <li><strong>ASI error</strong> from pitot icing | <strong>Stall speed increases</strong> with icing</li>
+    <li><strong>SW Monsoon:</strong> Freezing level highest (500 hPa Central/South) | NE Monsoon: Lowest in North (700 hPa)</li>
+  </ul>
+</div>
+
+<!-- Q&A -->
+<h2 id="qa" style="page-break-before: always;">8. Practice Q&A</h2>
+
+<div class="qa-block">
+  <div class="qa-q">Q1. Hoar frost occurs on airframe in clear air when the temperature of airframe is:<br>(a) below the frost point &nbsp; (b) frost point &nbsp; (c) just above the frost point</div>
+  <div class="qa-a">✅ <strong>Answer: (a) below the frost point</strong><br>Hoar frost forms by sublimation — water vapour deposits directly as ice when surface temperature is BELOW the frost point (dew point in sub-freezing conditions).</div>
+  <div class="qa-distractor">❌ (b) At the frost point — would just be at threshold, deposition is active below it. ❌ (c) Just above — no sublimation occurs above the frost point.</div>
+  <div class="qa-tip">💡 Instructor's Note: Frost point = dew point at sub-zero temperatures. Surface must be colder than the surrounding air — classic for cold-soaked aircraft descending into humid layers.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q2. In clouds at temperatures below 0°C an aircraft may encounter icing of the type:<br>(a) only Glazed &nbsp; (b) only Rime &nbsp; (c) intermediate between these two</div>
+  <div class="qa-a">✅ <strong>Answer: (c) intermediate between these two</strong><br>In clouds below 0°C, a mix of supercooled water drop sizes and temperatures produces mixed ice — a combination of rime and glaze characteristics.</div>
+  <div class="qa-distractor">❌ (a) Only glazed — requires large supercooled drops specifically. ❌ (b) Only rime — requires small drops and very fast freezing.</div>
+  <div class="qa-tip">💡 DGCA frequently asks about mixed icing in clouds — answer is nearly always "intermediate" or "mixture."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q3. Opaque Rime ice is:<br>(a) Light porous &nbsp; (b) Solid &nbsp; (c) Mixture of porous and solid</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Light porous</strong><br>Rime ice traps air between small droplets during instantaneous freezing → opaque, rough, light, and porous structure.</div>
+  <div class="qa-distractor">❌ (b) Solid — describes glaze/clear ice. ❌ (c) Mixture — describes mixed ice.</div>
+  <div class="qa-tip">💡 Rime = Rough, Milky, Light/porous. Glaze = Glossy, Hard, Heavy.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q4. Rime is formed by freezing of ……… supercooled water droplets on airframe when aircraft is flying through clouds:<br>(a) Small &nbsp; (b) Large &nbsp; (c) Medium</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Small</strong><br>Small droplets freeze instantly on contact → rime ice. Large droplets spread before freezing → glaze ice.</div>
+  <div class="qa-distractor">❌ (b) Large — produces glaze/clear ice. ❌ (c) Medium — produces intermediate/mixed ice.</div>
+  <div class="qa-tip">💡 Drop size is the KEY differentiator: Small → Rime; Large → Glaze. This appears repeatedly in DGCA exams.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q5. Glazed ice is formed by freezing of ……… supercooled water droplets on airframe when aircraft is flying through clouds:<br>(a) Small &nbsp; (b) Large &nbsp; (c) Medium</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Large</strong><br>Large supercooled drops spread over the surface before freezing → clear/glaze ice.</div>
+  <div class="qa-distractor">❌ (a) Small → rime. ❌ (c) Medium → mixed.</div>
+  <div class="qa-tip">💡 Paired with Q4 — remember the contrast.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q6. The ……… ice poses serious aviation hazard:<br>(a) Rime &nbsp; (b) Hoar Frost &nbsp; (c) Glazed</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Glazed</strong><br>Glaze/clear ice is the most hazardous — heavy, hard, alters aerodynamics, hard to remove, can break into dangerous lumps.</div>
+  <div class="qa-distractor">❌ (a) Rime — less hazardous, lighter, rough but less structurally damaging. ❌ (b) Hoar frost — mostly a takeoff/ground hazard.</div>
+  <div class="qa-tip">💡 Exam favourite: "Most hazardous = Glaze/Clear ice."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q7. Airframe icing occurs below 0°C. Its probability of occurrence decreases progressively below −20°C as at lower temperatures the proportion of supercooled water drops in a cloud:<br>(a) Increases &nbsp; (b) Decreases &nbsp; (c) Does not change</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Decreases</strong><br>Below −20°C, supercooled liquid water content drops sharply as more droplets spontaneously freeze into ice crystals → less liquid water → less icing.</div>
+  <div class="qa-distractor">❌ (a) Increases — opposite is true. ❌ (c) Does not change — incorrect.</div>
+  <div class="qa-tip">💡 Below −40°C: virtually ALL water is ice crystals → negligible icing risk.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q8. Ci, Cs and CC clouds consist mostly of ice crystals. Icing hazard is therefore:<br>(a) Maximum &nbsp; (b) Medium &nbsp; (c) Negligible</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Negligible</strong><br>High cloud types (Ci, Cs, Cc) are composed of ice crystals, not supercooled water drops → icing hazard is negligible.</div>
+  <div class="qa-distractor">❌ (a)(b) — incorrect; ice crystals don't adhere like supercooled droplets.</div>
+  <div class="qa-tip">💡 No liquid water = no significant icing. Ice crystals simply bounce off the airframe.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q9. As, NS consist of supercooled water drops and ice crystals in varying proportion ……… icing is possible:<br>(a) Maximum &nbsp; (b) Light or moderate &nbsp; (c) Negligible</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Light or moderate</strong><br>Mixed-phase clouds (As, Ns) have both supercooled drops and ice crystals → light to moderate icing.</div>
+  <div class="qa-distractor">❌ (a) Maximum — reserved for CB/TCu near 0°C. ❌ (c) Negligible — not accurate as liquid water is present.</div>
+  <div class="qa-tip">💡 As and Ns are associated with warm front / widespread precipitation — light to moderate icing over large areas.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q10. In AC clouds ……… icing is possible in mountainous areas:<br>(a) Light &nbsp; (b) Moderate &nbsp; (c) Severe</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Severe</strong><br>In mountainous areas, Ac clouds can develop strong updrafts and large supercooled water content → severe icing possible.</div>
+  <div class="qa-distractor">❌ (a)(b) — correct for flat terrain, but mountains enhance the icing severity.</div>
+  <div class="qa-tip">💡 Mountains amplify icing in Ac. This is an exam trap — the standard answer for AC is "light to moderate" but "mountainous areas" → severe.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q11. In TCU icing may range from light to severe type at least up to ……… level:<br>(a) −40°C level &nbsp; (b) −30°C level &nbsp; (c) −20°C level</div>
+  <div class="qa-a">✅ <strong>Answer: (c) −20°C level</strong><br>In TCu clouds, significant icing (light to severe) occurs up to the <span class="reg-value">−20°C</span> level. Above this, supercooled water content decreases.</div>
+  <div class="qa-distractor">❌ (a) −40°C — too deep; icing severity has already reduced significantly. ❌ (b) −30°C — not the correct threshold stated in the text.</div>
+  <div class="qa-tip">💡 −20°C is the key threshold for icing severity in TCu and Cb. Memorise: <span class="reg-value">−20°C</span>.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q12. In CB icing may range from light to severe type up to −20°C level. Below this temperature severe icing is:<br>(a) not significant &nbsp; (b) significant &nbsp; (c) maximum</div>
+  <div class="qa-a">✅ <strong>Answer: (a) not significant</strong><br>Below −20°C in Cb, liquid water content is much reduced → severe icing is not significant.</div>
+  <div class="qa-distractor">❌ (b)(c) — incorrect; supercooled drops are fewer below −20°C.</div>
+  <div class="qa-tip">💡 Cb is dangerous for icing between 0°C and −20°C — the zone of maximum supercooled water content.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q13. Liquid water content is an important factor in icing. As the maximum water concentration is around ……… maximum ice formation in clouds may also be expected around that level:<br>(a) −25°C level &nbsp; (b) −20°C level &nbsp; (c) −15°C level</div>
+  <div class="qa-a">✅ <strong>Answer: (a) −25°C level</strong><br>Maximum supercooled water concentration in clouds peaks around <span class="reg-value">−25°C</span>.</div>
+  <div class="qa-distractor">❌ (b) −20°C — close but not peak. ❌ (c) −15°C — warmer than peak.</div>
+  <div class="qa-tip">💡 Tricky! Peak liquid water content ≈ −25°C; icing hazard peaks here despite being "colder" than you'd expect.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q14. Carburetor icing occurs when air from intake passes through a ventury (choke) and causes expansional cooling and vaporization of fuel. Serious icing can occur at extreme temperatures:<br>(a) 13°C &nbsp; (b) 30°C to −10°C &nbsp; (c) 20°C</div>
+  <div class="qa-a">✅ <strong>Answer: (b) 30°C to −10°C</strong><br>Carburetor icing can occur across a wide temperature range — from as warm as <span class="reg-value">+30°C</span> (with high humidity) to as cold as <span class="reg-value">−10°C</span> (below which it becomes negligible without liquid water).</div>
+  <div class="qa-distractor">❌ (a)(c) — single temperature values don't represent the range.</div>
+  <div class="qa-tip">💡 <span class="reg-value">+30°C to −10°C</span> is the carburetor icing danger range. This is a classic DGCA question.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q15. ……… occurs in a moist cloudless air on an aircraft surface having temp. below 0°C, due to sublimation of water vapour onto feathery ice crystals:<br>(a) Rime &nbsp; (b) Glazed &nbsp; (c) Hoar Frost</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Hoar Frost</strong><br>Hoar frost = sublimation of water vapour directly onto the cold surface as feathery ice crystals in clear air below 0°C.</div>
+  <div class="qa-distractor">❌ (a) Rime — forms in cloud, not cloudless air. ❌ (b) Glaze — requires liquid drops.</div>
+  <div class="qa-tip">💡 Key phrase: "cloudless air + sublimation" = Hoar Frost.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q16. ……… occurs in St, Sc, Ac, Cu, Ns at temperature −10 to −40°C and in Cb at temperature −20 to −40°C:<br>(a) Rime &nbsp; (b) Glazed &nbsp; (c) Hoar Frost</div>
+  <div class="qa-a">✅ <strong>Answer: (a) Rime</strong><br>Rime ice is associated with these cloud types in the temperature range <span class="reg-value">−10°C to −40°C</span> (St, Sc, Ac, Cu, Ns) and <span class="reg-value">−20°C to −40°C</span> (Cb).</div>
+  <div class="qa-distractor">❌ (b) Glaze — found closer to 0°C with large drops. ❌ (c) Hoar Frost — requires cloudless air.</div>
+  <div class="qa-tip">💡 Rime dominates in the colder part of the icing range where drops are small and freeze instantly.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q17. In clouds ……… occurs when a wide range of water drop sizes are present at temperatures between 0°C and −40°C:<br>(a) Rime &nbsp; (b) Glazed and clear ice &nbsp; (c) Mixture of rime and clear ice</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Mixture of rime and clear ice</strong><br>When both large and small supercooled drops coexist (wide size range) between 0°C and −40°C, both rime and glaze/clear ice form simultaneously — mixed icing.</div>
+  <div class="qa-distractor">❌ (a) Rime only — requires exclusively small drops. ❌ (b) Glazed only — requires exclusively large drops.</div>
+  <div class="qa-tip">💡 "Wide range of drop sizes" → Mixed icing. This tests understanding that rime and glaze don't always occur in isolation.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q18. ……… occurs in AS, NS, AC and towering CU or CB between 0°C and −20°C, in warm front below 0°C, if the aircraft has rapidly descended from a colder region:<br>(a) Glazed &nbsp; (b) Rime &nbsp; (c) Mixture of Rime and Clear ice</div>
+  <div class="qa-a">✅ <strong>Answer: (c) Mixture of Rime and Clear ice</strong><br>In As, Ns, Ac, TCu, Cb between 0°C and −20°C — mixed drop sizes → mixed icing. Also in warm front scenarios where a cold-soaked aircraft descends into warmer moist air.</div>
+  <div class="qa-distractor">❌ (a) Glazed only — not exclusively. ❌ (b) Rime only — not exclusively.</div>
+  <div class="qa-tip">💡 As/Ns/warm front conditions → Mixed ice. Temperature range <span class="reg-value">0°C to −20°C</span>.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q19. When fog freezes on parked aircraft it produces ………:<br>(a) Hoar Frost &nbsp; (b) Rime &nbsp; (c) Clear ice</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Rime</strong><br>Fog consists of small supercooled/freezing water droplets. When these freeze on a parked aircraft surface, they form rime ice (instantaneous freezing of small drops).</div>
+  <div class="qa-distractor">❌ (a) Hoar Frost — from water vapour sublimation, not liquid fog droplets. ❌ (c) Clear ice — requires large drops and spreading before freezing.</div>
+  <div class="qa-tip">💡 Freezing fog → Rime on parked aircraft. Common de-icing scenario at cold airports.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q">Q20. Icing ……… the stalling speed appreciably:<br>(a) Decreases &nbsp; (b) Increases &nbsp; (c) Does not increase/decrease</div>
+  <div class="qa-a">✅ <strong>Answer: (b) Increases</strong><br>Ice deposits on wings alter the aerofoil shape, reduce lift generation, and increase the minimum speed needed to maintain lift — thus stall speed increases.</div>
+  <div class="qa-distractor">❌ (a) Decreases — opposite; icing degrades aerodynamic efficiency. ❌ (c) No effect — incorrect; icing always degrades performance.</div>
+  <div class="qa-tip">💡 Key safety point: With icing, approach speeds must be INCREASED to maintain margin above the higher stall speed.</div>
+</div>
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="ref-tables" style="page-break-before: always;">9. Master Reference Tables</h2>
+
+<h3>All Numerical Values</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Severe icing temperature range</td><td><span class="reg-value">0°C to −7°C</span></td></tr>
+  <tr><td>Moderate icing temperature range</td><td><span class="reg-value">−7°C to −12°C</span></td></tr>
+  <tr><td>Light icing temperature range</td><td><span class="reg-value">−12°C to −20°C</span></td></tr>
+  <tr><td>Very light icing temperature range</td><td><span class="reg-value">−20°C to −40°C</span></td></tr>
+  <tr><td>Peak supercooled water concentration</td><td><span class="reg-value">−25°C</span></td></tr>
+  <tr><td>TCu/Cb icing (light to severe) up to</td><td><span class="reg-value">−20°C</span></td></tr>
+  <tr><td>Carburetor icing can occur up to</td><td><span class="reg-value">+30°C</span> OAT</td></tr>
+  <tr><td>Carburetor icing negligible below</td><td><span class="reg-value">−10°C</span></td></tr>
+  <tr><td>Carburetor icing unlikely if RH below</td><td><span class="reg-value">60%</span></td></tr>
+  <tr><td>NE Monsoon freezing level North</td><td><span class="reg-value">700 hPa</span></td></tr>
+  <tr><td>SW Monsoon freezing level Central/South</td><td><span class="reg-value">500 hPa</span></td></tr>
+  <tr><td>Rime in St/Sc/Ac/Cu/Ns (temp range)</td><td><span class="reg-value">−10°C to −40°C</span></td></tr>
+  <tr><td>Rime in Cb (temp range)</td><td><span class="reg-value">−20°C to −40°C</span></td></tr>
+  <tr><td>CB icing zone (0°C to −20°C level)</td><td>Light to Severe</td></tr>
+</table>
+
+<h3>Answer Key</h3>
+<table>
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>a</td><td>2</td><td>c</td><td>3</td><td>a</td><td>4</td><td>a</td></tr>
+  <tr><td>5</td><td>b</td><td>6</td><td>c</td><td>7</td><td>b</td><td>8</td><td>c</td></tr>
+  <tr><td>9</td><td>b</td><td>10</td><td>c</td><td>11</td><td>c</td><td>12</td><td>a</td></tr>
+  <tr><td>13</td><td>a</td><td>14</td><td>b</td><td>15</td><td>c</td><td>16</td><td>a</td></tr>
+  <tr><td>17</td><td>c</td><td>18</td><td>c</td><td>19</td><td>b</td><td>20</td><td>b</td></tr>
+</table>
+
+<h3>Mnemonics</h3>
+<div class="amber-box">
+  <ul>
+    <li><strong>RIME</strong> = Rough, Instant, Milky/opaque, Easy to form (small drops)</li>
+    <li><strong>GLAZE</strong> = Glossy, Large drops, Alters aerodynamics severely, Zones of spreading, Extra hazardous</li>
+    <li><strong>Severity order</strong> (warmest → coldest): Severe (0 to −7) → Moderate (−7 to −12) → Light (−12 to −20) → Very Light (−20 to −40)</li>
+    <li><strong>Carb icing range</strong>: "+30 to −10" — thirty to minus ten</li>
+    <li><strong>Ci, Cs, Cc</strong> = Ice crystals = negligible icing ("HIGH = harmless")</li>
+    <li><strong>SW Monsoon</strong> = Highest freezing level (500 hPa = highest altitude)</li>
+  </ul>
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>
