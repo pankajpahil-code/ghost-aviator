@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ChevronRight, ChevronLeft, BookOpen, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
+import Watermark from "@/app/components/Watermark";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -19,6 +20,7 @@ export default function AudioPage({ track, subject, chapter, prevChapter, nextCh
 
   return (
     <div style={{ background: "#06040e" }} className="min-h-screen">
+      <Watermark />
 
       {/* Header */}
       <div className="relative" style={{ borderBottom: `1px solid ${subject.color}25` }}>

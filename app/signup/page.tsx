@@ -1,57 +1,89 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
-import type { Metadata } from "next";
-import { Ghost, Send, CheckCircle, ArrowRight } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "Get Started Free — Ghost Aviator",
-  description: "Free DGCA CPL/ATPL exam prep — start studying immediately, no signup required.",
-};
+import { useRouter } from "next/navigation";
+import { Ghost, ArrowRight, CheckCircle } from "lucide-react";
+import { getSupabase, SUPABASE_ENABLED, captureLead } from "@/lib/supabase";
+import EmailCapture from "@/app/components/EmailCapture";
 
 export default function SignupPage() {
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const [msg, setMsg] = useState("");
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    const sb = getSupabase();
+    if (!sb) return;
+    if (password.length < 6) { setState("error"); setMsg("Password must be at least 6 characters."); return; }
+    setState("loading");
+    const { error } = await sb.auth.signUp({ email: email.trim().toLowerCase(), password, options: { data: { name: name.trim() } } });
+    await captureLead(name.trim(), email.trim().toLowerCase(), "signup");
+    if (error) { setState("error"); setMsg(error.message); return; }
+    setState("done");
+    setMsg("Account created! Check your email to confirm, then log in.");
+  }
+
   return (
     <div style={{ background: "#06040e" }} className="min-h-screen flex items-center justify-center px-4 py-16">
-      <div className="max-w-lg w-full rounded-3xl p-10 text-center"
+      <div className="max-w-lg w-full rounded-3xl p-10"
            style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(180,100,255,0.3)" }}>
-        <Ghost className="w-12 h-12 mx-auto mb-4" style={{ color: "#c080ff" }} />
-        <h1 className="text-3xl font-black text-white mb-3">It&apos;s Already Free</h1>
-        <p className="text-base mb-8" style={{ color: "#94a3b8" }}>
-          Ghost Aviator is fully free for Indian aviation students — no signup or payment required to start studying.
-          Open any chapter, take a quiz, or attempt the mock test directly.
-        </p>
-
-        <div className="rounded-2xl p-5 mb-8 text-left"
-             style={{ background: "rgba(180,100,255,0.08)", border: "1px solid rgba(180,100,255,0.25)" }}>
-          <div className="text-xs font-bold tracking-widest mb-2" style={{ color: "#c080ff", letterSpacing: "0.18em" }}>
-            FREE COUPON
-          </div>
-          <div className="text-2xl font-black mb-1" style={{ color: "#c080ff" }}>FREEPILOT</div>
-          <p className="text-xs" style={{ color: "#64748b" }}>
-            Reserved for rural and underprivileged students when accounts launch.
+        <div className="text-center">
+          <Ghost className="w-12 h-12 mx-auto mb-4" style={{ color: "#c080ff" }} />
+          <h1 className="text-3xl font-black text-white mb-2">Create Your Free Account</h1>
+          <p className="text-sm mb-7" style={{ color: "#94a3b8" }}>
+            100% free for Indian aviation students. Save your progress across devices.
           </p>
         </div>
 
-        <div className="flex flex-col gap-3 mb-6">
-          <Link href="/cpl" className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold no-underline"
-                style={{ background: "linear-gradient(135deg,#9020ff,#ff2060)", color: "#fff" }}>
-            Start CPL Prep <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link href="/atpl" className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold no-underline"
-                style={{ border: "1px solid rgba(0,212,255,0.4)", color: "#00d4ff", background: "rgba(0,212,255,0.06)" }}>
-            Start ATPL Prep <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-
-        <div className="flex items-center justify-center gap-2 text-xs mb-6" style={{ color: "#64748b" }}>
-          <CheckCircle className="w-3.5 h-3.5" style={{ color: "#22c55e" }} />
-          <span>Accounts &amp; progress sync coming soon</span>
-        </div>
-
-        <a href="https://t.me/+tgLMJithc1gzOWJl" target="_blank" rel="noreferrer"
-           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium no-underline"
-           style={{ background: "rgba(0,212,255,0.1)", color: "#00d4ff", border: "1px solid rgba(0,212,255,0.2)" }}>
-          <Send className="w-4 h-4" /> Join Telegram for updates
-        </a>
+        {SUPABASE_ENABLED ? (
+          state === "done" ? (
+            <div className="text-center py-6">
+              <CheckCircle className="w-12 h-12 mx-auto mb-3" style={{ color: "#22c55e" }} />
+              <p className="text-sm" style={{ color: "#94a3b8" }}>{msg}</p>
+              <Link href="/login" className="inline-block mt-5 text-sm font-bold no-underline" style={{ color: "#c080ff" }}>Go to Log In →</Link>
+            </div>
+          ) : (
+            <form onSubmit={submit} className="flex flex-col gap-3">
+              <input value={name} onChange={e => setName(e.target.value)} placeholder="Full name" required
+                     className="px-4 py-3 rounded-xl text-sm outline-none" style={inp} />
+              <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email address" type="email" required
+                     className="px-4 py-3 rounded-xl text-sm outline-none" style={inp} />
+              <input value={password} onChange={e => setPassword(e.target.value)} placeholder="Password (min 6 characters)" type="password" required
+                     className="px-4 py-3 rounded-xl text-sm outline-none" style={inp} />
+              {state === "error" && <p className="text-xs" style={{ color: "#ef4444" }}>{msg}</p>}
+              <button type="submit" disabled={state === "loading"}
+                      className="py-3 rounded-xl text-sm font-black disabled:opacity-60"
+                      style={{ background: "linear-gradient(135deg,#9020ff,#ff2060)", color: "#fff" }}>
+                {state === "loading" ? "Creating..." : "Create Free Account"}
+              </button>
+              <p className="text-xs text-center" style={{ color: "#64748b" }}>
+                Already have an account? <Link href="/login" className="no-underline" style={{ color: "#c080ff" }}>Log in</Link>
+              </p>
+            </form>
+          )
+        ) : (
+          // Accounts not switched on yet → collect interest for launch + marketing.
+          <>
+            <EmailCapture heading="Be first to get an account" sub="Accounts & cross-device progress launch soon. Drop your details and we'll notify you." source="signup" />
+            <div className="flex flex-col gap-3 mt-6">
+              <Link href="/cpl" className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold no-underline"
+                    style={{ background: "linear-gradient(135deg,#9020ff,#ff2060)", color: "#fff" }}>
+                Start CPL Prep (free, no login) <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/atpl" className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold no-underline"
+                    style={{ border: "1px solid rgba(0,212,255,0.4)", color: "#00d4ff", background: "rgba(0,212,255,0.06)" }}>
+                Start ATPL Prep <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
 }
+
+const inp: React.CSSProperties = { background: "rgba(5,5,16,0.8)", border: "1px solid rgba(180,100,255,0.3)", color: "#fff" };

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronRight, ChevronLeft, Clock, BookOpen, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
+import Watermark from "@/app/components/Watermark";
 
 function parseDescription(desc: string): Array<{ heading: string; topics: string[] }> {
   const sentences = desc.split(/\.\s+/).filter(Boolean);
@@ -40,6 +41,7 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
 
   return (
     <div style={{ background: "#06040e" }} className="min-h-screen">
+      <Watermark />
 
       {/* Header */}
       <div className="relative" style={{ borderBottom: `1px solid ${subject.color}25` }}>

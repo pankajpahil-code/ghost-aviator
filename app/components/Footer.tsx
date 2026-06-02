@@ -1,10 +1,20 @@
 import Link from "next/link";
 import { Ghost, Send, Phone } from "lucide-react";
+import EmailCapture from "./EmailCapture";
 
 export default function Footer() {
   return (
     <footer style={{ background: "#0d0d1a", borderTop: "1px solid rgba(0,212,255,0.15)" }} className="mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Newsletter / lead capture */}
+        <div className="mb-10 pb-10" style={{ borderBottom: "1px solid rgba(0,212,255,0.1)" }}>
+          <EmailCapture
+            heading="Get new chapters & DGCA exam updates"
+            sub="Join our mailing list — we'll email you when new notes, questions and mock tests go live."
+            source="footer"
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
