@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ChevronRight, ChevronLeft, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
+import Watermark from "@/app/components/Watermark";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -16,6 +17,7 @@ type Props = {
 export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, src }: Props) {
   return (
     <div style={{ background: "#06040e" }} className="min-h-screen flex flex-col">
+      <Watermark />
 
       {/* Header */}
       <div className="relative flex-shrink-0" style={{ borderBottom: `1px solid ${subject.color}25` }}>
