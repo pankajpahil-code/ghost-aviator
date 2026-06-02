@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronRight, ChevronLeft, Download, BookOpen, ListChecks } from "lucide-react";
+import { ChevronRight, ChevronLeft, BookOpen, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 
 type Props = {
@@ -80,6 +80,8 @@ export default function AudioPage({ track, subject, chapter, prevChapter, nextCh
           {/* Native audio player */}
           <audio
             controls
+            controlsList="nodownload noplaybackrate noremoteplayback"
+            onContextMenu={(e) => e.preventDefault()}
             className="w-full"
             style={{ borderRadius: "12px", outline: "none" }}
             preload="metadata"
@@ -88,15 +90,6 @@ export default function AudioPage({ track, subject, chapter, prevChapter, nextCh
             <source src={src} type="audio/x-m4a" />
             Your browser does not support the audio element.
           </audio>
-
-          {/* Download */}
-          <div className="mt-5 flex justify-end">
-            <a href={src} download
-               className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg no-underline"
-               style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#64748b" }}>
-              <Download className="w-3.5 h-3.5" /> Download Audio
-            </a>
-          </div>
         </div>
 
         {/* Listening tips */}

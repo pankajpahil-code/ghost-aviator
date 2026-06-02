@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronRight, ChevronLeft, Maximize2, Download, ListChecks } from "lucide-react";
+import { ChevronRight, ChevronLeft, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 
 type Props = {
@@ -56,16 +56,6 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
                     style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)", color: "#f97316" }}>
                 <ListChecks className="w-3.5 h-3.5" /> Chapter Quiz
               </Link>
-              <a href={src} target="_blank" rel="noopener noreferrer"
-                 className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg no-underline"
-                 style={{ background: `${subject.color}18`, border: `1px solid ${subject.color}35`, color: subject.color }}>
-                <Maximize2 className="w-3.5 h-3.5" /> Full Page
-              </a>
-              <a href={src} download
-                 className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg no-underline"
-                 style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#94a3b8" }}>
-                <Download className="w-3.5 h-3.5" /> Download
-              </a>
             </div>
           </div>
         </div>

@@ -51,6 +51,36 @@ html, body {
   font-family: system-ui, -apple-system, sans-serif;
 }
 
+/* ── Content protection ─────────────────────────────────────────────────── */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+/* keep form fields usable */
+input, textarea, [contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+img, svg, video, audio {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+/* block printing the site */
+@media print {
+  body * { visibility: hidden !important; }
+  body::after {
+    content: "Printing is disabled — © Ghost Aviator · Capt. Pankaj Pahil";
+    visibility: visible;
+    position: fixed; top: 40%; left: 0; right: 0; text-align: center;
+    color: #000; font-size: 18px; font-weight: bold;
+  }
+}
+
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #050510; }
 ::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 3px; }

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronRight, ChevronLeft, Download, Maximize2 } from "lucide-react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 
 type Props = {
@@ -48,19 +48,6 @@ export default function SlidesPage({ track, subject, chapter, prevChapter, nextC
                 <h1 className="text-xl font-black text-white">{chapter.title}</h1>
               </div>
             </div>
-
-            <div className="flex items-center gap-2">
-              <a href={src} target="_blank" rel="noopener noreferrer"
-                 className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg no-underline"
-                 style={{ background: `${subject.color}18`, border: `1px solid ${subject.color}35`, color: subject.color }}>
-                <Maximize2 className="w-3.5 h-3.5" /> Full Screen
-              </a>
-              <a href={src} download
-                 className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg no-underline"
-                 style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#94a3b8" }}>
-                <Download className="w-3.5 h-3.5" /> Download
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -70,25 +57,12 @@ export default function SlidesPage({ track, subject, chapter, prevChapter, nextC
         <div className="rounded-2xl overflow-hidden flex-1"
              style={{ border: `1px solid ${subject.color}25`, minHeight: "75vh" }}>
           <iframe
-            src={`${src}#toolbar=1&navpanes=1&scrollbar=1`}
+            src={`${src}#toolbar=0&navpanes=0&scrollbar=0`}
             className="w-full h-full"
             style={{ minHeight: "75vh", background: "#1a1a2e" }}
             title={`${chapter.title} — Slides`}
           />
         </div>
-
-        {/* Fallback for browsers that block inline PDF */}
-        <p className="text-xs text-center" style={{ color: "#475569" }}>
-          If the slides don&apos;t load,{" "}
-          <a href={src} target="_blank" rel="noopener noreferrer"
-             className="no-underline" style={{ color: subject.color }}>
-            open them in a new tab
-          </a>{" "}
-          or{" "}
-          <a href={src} download className="no-underline" style={{ color: subject.color }}>
-            download the PDF
-          </a>.
-        </p>
 
         {/* Chapter navigation */}
         <div className="flex items-center justify-between gap-4 mt-2">
