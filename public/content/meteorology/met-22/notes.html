@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 22 — Weather Radar and Met Satellites | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #222; margin: 0; padding: 0; }
+  h1, h2, h3, h4 { color: #1a237e; }
+  h2 { font-size: 1.5em; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; margin-top: 20px; }
+  .cover { text-align: center; padding: 80px 40px; page-break-after: always; border-bottom: 3px solid #1a237e; }
+  .cover h1 { font-size: 2.4em; color: #1a237e; }
+  .cover h2 { font-size: 1.3em; color: #444; border: none; }
+  .toc { page-break-after: always; padding: 30px 40px; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { padding: 4px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; }
+  .content { padding: 20px 40px; max-width: 900px; margin: auto; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #b71c1c; background: #fce4ec; padding: 1px 4px; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 10px; text-align: left; }
+  td { padding: 7px 10px; border: 1px solid #bbb; }
+  tr:nth-child(even) td { background: #f0f4ff; }
+  .qa-block { border: 1px solid #ccc; border-radius: 8px; margin: 20px 0; padding: 16px; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 10px; border-radius: 4px; font-weight: bold; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 10px; border-radius: 4px; margin-top: 8px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 10px; border-radius: 4px; margin-top: 8px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 10px; border-radius: 4px; margin-top: 8px; }
+  pre.mermaid { background: #f8f8f8; padding: 10px; border-radius: 6px; page-break-inside: avoid; }
+  .radar-color-red { background: #ffcccc; border-left: 6px solid #cc0000; padding: 10px; border-radius: 4px; margin: 6px 0; font-weight: bold; }
+  .radar-color-yellow { background: #fffacc; border-left: 6px solid #ccaa00; padding: 10px; border-radius: 4px; margin: 6px 0; font-weight: bold; }
+  .radar-color-green { background: #ccffcc; border-left: 6px solid #006600; padding: 10px; border-radius: 4px; margin: 6px 0; font-weight: bold; }
+  @page { size: A4; margin: 20mm; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Chapter 22<br>Weather Radar and Met Satellites</h1>
+  <h2>DGCA CPL/ATPL Study Notes — Aviation Meteorology</h2>
+  <p>Source: IC Joshi — Aviation Meteorology (Latest Edition)</p>
+  <p><strong>Compiled by Capt. Pankaj Pahil</strong></p>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#intro">1. Weather Radar — Introduction</a></li>
+    <li><a href="#scopes">2. Radar Scopes (PPI and RHI)</a></li>
+    <li><a href="#wavelengths">3. Radar Wavelengths and Bands</a></li>
+    <li><a href="#types">4. Types of Weather Radars</a></li>
+    <li><a href="#dwr">5. Doppler Weather Radar (DWR)</a></li>
+    <li><a href="#echoes">6. Cloud Echoes and Echo Characteristics</a></li>
+    <li><a href="#severe">7. Echoes Associated with Severe Storms</a></li>
+    <li><a href="#airborne">8. Airborne Weather Radar</a></li>
+    <li><a href="#satellites">9. Meteorological Satellites</a></li>
+    <li><a href="#indian-sats">10. Indian Meteorological Satellites</a></li>
+    <li><a href="#satellite-imagery">11. Cloud Characteristics in Satellite Imagery</a></li>
+    <li><a href="#qa">Practice Q&amp;A</a></li>
+    <li><a href="#reference">Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<div class="content">
+
+<h2 id="intro">1. Weather Radar — Introduction</h2>
+<div class="blue-box">
+  <strong>Weather Radar</strong> (Radio Detection and Ranging): An important tool for detection of rain-bearing clouds, especially CU and CB, their speed, direction of movement, and vertical extent. Used for issuing timely weather warnings so that precautionary measures are initiated for parked and moored aircraft. Radars along the coast line of India detect storms and enable issuing of storm warnings.
+  <ul>
+    <li>IMD has used X-Band weather-cum-wind finding Multi Met Radars and Radiosonde system since <span class="reg-value">1975</span>.</li>
+    <li>Good network of S-band cyclone detection radars covering the Indian coast line.</li>
+    <li>Operational network of digital X-band radars, including Doppler Weather Radars (DWR) for wind finding, storm detection, and dual capability — planned to be replaced by state-of-the-art DWR in a phased manner.</li>
+  </ul>
+</div>
+
+<div class="blue-box">
+  <strong>Range:</strong> Limited by attenuation of radar waves by rain and earth curvature effect.
+  <ul>
+    <li>Weather radars can detect up to a range of <span class="reg-value">500 km</span>, but resolution is better up to a range of <span class="reg-value">250 km</span>.</li>
+    <li>Normally echoes from range within <span class="reg-value">25 NM</span> are displayed.</li>
+    <li>Echoes at long range up to <span class="reg-value">75 NM</span> are also used.</li>
+  </ul>
+</div>
+
+<h2 id="scopes">2. Radar Scopes</h2>
+<table>
+  <tr><th>Scope</th><th>Full Name</th><th>Function</th></tr>
+  <tr><td><strong>PPI</strong></td><td>Plan-Position Indicator</td><td>Presents a plan view of the echoes; provides the bearing and range of the echo</td></tr>
+  <tr><td><strong>RHI</strong></td><td>Range-Height Indicator</td><td>Enables direct reading of the altitudes of CB cells</td></tr>
+</table>
+
+<h2 id="wavelengths">3. Radar Wavelengths and Bands</h2>
+<table>
+  <tr><th>Wavelength</th><th>0.75–2.5 cm</th><th>2.5–4 cm</th><th>4–8 cm</th><th>8–15 cm</th><th>15–30 cm</th></tr>
+  <tr><td><strong>Band</strong></td><td>K Band</td><td>X Band</td><td>C Band</td><td>S Band</td><td>L Band</td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>Band Uses:</strong>
+  <ul>
+    <li><strong>K and X Band:</strong> Used for detection of clouds.</li>
+    <li><strong>X Band:</strong> Used for storm detection.</li>
+    <li><strong>S Band:</strong> Used for rain, precipitation, cyclones, and depressions. Also called <strong>Cyclone Detection (and tracking) Radar</strong>.</li>
+  </ul>
+</div>
+
+<h2 id="types">4. Types of Weather Radars</h2>
+<table>
+  <tr><th>Type</th><th>Wavelength</th><th>Purpose</th></tr>
+  <tr><td><strong>Quantitative Radar</strong></td><td><span class="reg-value">10.0 cm</span></td><td>Quantitative measurement of rate of precipitation, total precipitation, intensity of precipitation, and snowfall measurements</td></tr>
+  <tr><td><strong>Ultra Sensitive Radar</strong></td><td>—</td><td>Detecting convection before and after cloud development; study CAT, gravity waves, and lee waves</td></tr>
+  <tr><td><strong>Doppler Weather Radar (DWR)</strong></td><td>—</td><td>State-of-art; Doppler Effect; wind finding, storm detection, dual capability</td></tr>
+</table>
+
+<h2 id="dwr">5. Doppler Weather Radar (DWR)</h2>
+<div class="blue-box">
+  <strong>DWR</strong> is a state-of-art Radar that works on the principle of <strong>Doppler Effect</strong> and measures change of frequency of the return signal to determine if targets are moving towards or away from the radar station. It is a coherent radar; detects the pulse difference between outgoing and return pulses.
+  <ul>
+    <li>A radar beam's reflectivity depends on the diameter of the target and its capacity to reflect.</li>
+    <li>Snowflakes are large but weakly reflective; rain drops are small but highly reflective.</li>
+    <li>When snow falls through a layer above freezing temperature, it melts; snowflakes become coated with water and radar sees them as very large droplets — can be mistaken for stronger precipitation. On PPI: shows up as an intense ring of precipitation — <strong>Bright Band</strong> at the altitude where the beam crosses the melting level.</li>
+    <li>Drizzle does not show up on radar — radar returns are proportional to the <strong>sixth power of droplet diameter</strong>.</li>
+  </ul>
+</div>
+
+<div class="blue-box">
+  <strong>DWR is used for the following:</strong>
+  <ul>
+    <li><strong>(a) Prediction of:</strong> TS/DS/SS, Hailstorm and Tornadoes, HVY rainfall and floods</li>
+    <li><strong>(b) Tracking of:</strong> Cyclones and TS, and estimation of associated winds</li>
+    <li><strong>(c) Study of structure of:</strong> Clouds, Cyclones, TS, Hailstorm, Tornadoes</li>
+    <li><strong>(d) Detection of:</strong> Wind Shear and Turbulence, CAT, Gust Front, Microburst, Downburst and Tornadoes</li>
+    <li><strong>(e) Genesis of:</strong> Tornadoes</li>
+    <li><strong>(f) Determination of:</strong> Vertical Wind field and Horizontal Divergence field</li>
+  </ul>
+</div>
+
+<div class="amber-box">
+  <strong>Additional Radar Facts:</strong>
+  <ul>
+    <li>Most modern weather radars utilise a <strong>pulse-Doppler technique</strong> for estimating precipitation rate, droplet motion with respect to the radar, and radial wind speeds.</li>
+    <li>More recently, <strong>dual polarized weather radars</strong> have been developed that enable more accurate determination of precipitation types and sizes.</li>
+  </ul>
+</div>
+
+<h2 id="echoes">6. Cloud Echoes and Echo Characteristics</h2>
+
+<h3>Stratiform Cloud Echoes</h3>
+<div class="blue-box">
+  <ul>
+    <li>Echoes from Stratiform clouds and steady rainfall are <strong>diffused and ill-defined</strong>; generally of <strong>uniform intensity</strong>.</li>
+    <li><strong>Bright Band:</strong> Appears in the RHI at <strong>freezing level</strong>; due to strong reflection of radio waves by ice crystals (snowflakes in initial stage of melting); seen only when updraughts are uniform and weak; band disappears with increasing convection. Bright Band is an indicator of <strong>weak storm</strong>; a few hundred metres thick; seen just below the freezing level in stratiform precipitation.</li>
+  </ul>
+</div>
+
+<h3>Convective Cloud Echoes</h3>
+<div class="blue-box">
+  <ul>
+    <li>Clearly defined <strong>sharp edges</strong>.</li>
+    <li><strong>Blurring of edges</strong> = first sign of decay.</li>
+    <li>In RHI: consists of one or more sharp-edged vertical levels.</li>
+    <li>Developing shower areas distinctly visible in the echo.</li>
+    <li>Squall lines depicted by <strong>line of echoes</strong>.</li>
+    <li>If echo is exceptionally intense OR top extends to about <span class="reg-value">−40°C</span> temperature level = <strong>CB cloud</strong>.</li>
+  </ul>
+</div>
+
+<h2 id="severe">7. Echoes Associated with Severe Storms</h2>
+
+<table>
+  <tr><th>Echo Type</th><th>Significance</th></tr>
+  <tr><td><strong>Intense and Sharp Echoes</strong></td><td>Updraughts strong; large number of precipitation particles; developing storm = sharp boundary near top; Anvils = fuzzy echoes near the top</td></tr>
+  <tr><td><strong>Hooks, Appendages and Protuberances</strong></td><td>Severe storms with hail; echo of figure <span class="reg-value">'6'</span> = indication of a tornado</td></tr>
+  <tr><td><strong>Rapidly Moving Echoes</strong></td><td>Strong winds associated with severe storms</td></tr>
+  <tr><td><strong>Wind Shear</strong></td><td>Showers seen as separate columns of rain; slant vertical columns represent vertical wind shear</td></tr>
+  <tr><td><strong>Dry Holes</strong></td><td>Echo-free areas embedded in very extensive and bright echo = severe storms with strong winds and heavy rain</td></tr>
+  <tr><td><strong>Rapidly Developing Echoes</strong></td><td>Indicate a vigorous storm</td></tr>
+  <tr><td><strong>Large Horizontal Echoes</strong></td><td>Large size strong echo = severe storm</td></tr>
+  <tr><td><strong>Converging Echoes</strong></td><td>Number of echoes appearing to converge = severe storm</td></tr>
+  <tr><td><strong>Bright Band</strong></td><td>A few hundred metres thick; indicator of <strong>WEAK</strong> storm; just below freezing level; in stratiform precipitation</td></tr>
+  <tr><td><strong>Spiral Bands</strong></td><td>Indicate tropical cyclones; last for a long time</td></tr>
+</table>
+
+<div class="red-box">
+  <strong>Critical Distinction — Bright Band:</strong> Bright Band = WEAK storm indicator. This is counter-intuitive! It appears at the freezing level in stratiform (not convective) precipitation. It disappears with increasing convection. A Bright Band means the storm is NOT intense.
+</div>
+
+<h2 id="airborne">8. Airborne Weather Radar</h2>
+
+<div class="blue-box">
+  <ul>
+    <li>Light weight, generally <strong>X-Band</strong>, multi mode, digital with Alpha Numeric.</li>
+    <li>Operate on super high frequency band; wavelength between X and S bands.</li>
+    <li>Designed for: Weather detection and analysis, Ground mapping, Transponder beacon interrogation and reception.</li>
+    <li>Radar beam: conical, approximately <span class="reg-value">3 degrees</span> wide, moving in azimuth <span class="reg-value">15 degrees</span> up and down.</li>
+    <li>Radar screen covers <span class="reg-value">70 degrees</span> either side of aircraft heading.</li>
+    <li>Large drops and hail adequately reflect at <span class="reg-value">3 cm</span> wavelength.</li>
+    <li><strong>Four colors:</strong> Green, Yellow, Red, Magenta (bright crimson).</li>
+    <li>Colors show progressively stronger echoes; provision to flash red areas on and off every <span class="reg-value">½ sec</span> to emphasise areas of heavy precipitation.</li>
+  </ul>
+</div>
+
+<div class="radar-color-red">🔴 RED / MAGENTA: Heavy precipitation, TS, hail, strong winds, tornadoes and severe turbulence. Aircraft should ALWAYS AVOID. Rainfall: <span class="reg-value">≥12 mm</span></div>
+<div class="radar-color-yellow">🟡 YELLOW: Moderate precipitation, very low visibility, moderate turbulence, uncomfortable ride for passengers. Aircraft should AVOID going through. Rainfall: <span class="reg-value">4–12 mm</span></div>
+<div class="radar-color-green">🟢 GREEN: Light precipitation, little to no turbulence, reduced visibility. Rainfall: <span class="reg-value">1–4 mm</span></div>
+
+<h3>Rainfall Intensity Table</h3>
+<table>
+  <tr><th>Colour</th><th>Storm Intensity</th><th>Rainfall in mm</th></tr>
+  <tr><td style="color:#cc0000;font-weight:bold;">Red (Magenta)</td><td>Severe (Very strong signal)</td><td><span class="reg-value">≥12</span></td></tr>
+  <tr><td style="color:#aa8800;font-weight:bold;">Yellow</td><td>Less severe (Mod intensity signal)</td><td><span class="reg-value">4–12</span></td></tr>
+  <tr><td style="color:#006600;font-weight:bold;">Green</td><td>Moderate (Low intensity signal)</td><td><span class="reg-value">1–4</span></td></tr>
+</table>
+
+<h2 id="satellites">9. Meteorological Satellites</h2>
+
+<pre class="mermaid">
+flowchart LR
+    S["Met Satellites"] --> P["(a) Polar Orbiting\nAlt: 650–1500 km\nCovers earth twice in 24 hr\nSame place every 12 hr\nExample: NOAA"]
+    S --> G["(b) Geostationary\nAlt: ~36,000 km\nEarth's equatorial plane\nEarth synchronized\nSame spot always\n5 cover entire globe\nRound-the-clock weather\nExample: METEOSAT, INSAT"]
+</pre>
+
+<table>
+  <tr><th>Parameter</th><th>Polar Orbiting</th><th>Geostationary</th></tr>
+  <tr><td>Altitude</td><td><span class="reg-value">650–1500 km</span></td><td><span class="reg-value">~36,000 km</span></td></tr>
+  <tr><td>Earth coverage</td><td>Complete earth <span class="reg-value">twice in 24 hr</span></td><td>Same spot always</td></tr>
+  <tr><td>Same point revisit</td><td>Every <span class="reg-value">12 hr</span></td><td>Continuous</td></tr>
+  <tr><td>Number for global coverage</td><td>Multiple</td><td><span class="reg-value">5</span> satellites</td></tr>
+  <tr><td>Weather info</td><td>Periodic</td><td>Round the clock</td></tr>
+  <tr><td>Examples</td><td>NOAA</td><td>METEOSAT, INSAT</td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>Frequency of Satellite Imagery:</strong> Interval of observations = <span class="reg-value">30 min</span>; however due to licensing and other restrictions, these satellites provide <strong>three hourly</strong> pictures.
+</div>
+
+<h2 id="indian-sats">10. Indian Meteorological Satellites</h2>
+
+<table>
+  <tr><th>Satellite</th><th>Launch Date</th><th>Position</th><th>Key Features</th></tr>
+  <tr><td><strong>Kalpana-1</strong></td><td><span class="reg-value">12 September 2002</span></td><td><span class="reg-value">74°E</span></td><td>3 channel VHRR: VIS (0.55–0.75 μm), IR (10.5–12.5 μm), WV (5.7–7.1 μm); VIS res 2×2 km; ~48 images/day; 5 times during daytime only</td></tr>
+  <tr><td><strong>INSAT-3A</strong></td><td><span class="reg-value">10 April 2003</span></td><td><span class="reg-value">93.5°E</span></td><td>3 channel VHRR + CCD payload for VIS/Near IR/Short Wave IR; Resolution 1×1 km; 9 images/day; hydrometeorological data collection; Indian Area coverage 44.4°N to 10.3°S, 105.6E to 46.4E</td></tr>
+  <tr><td><strong>INSAT-2E</strong></td><td>—</td><td>—</td><td>Cloud imagery in panchromatic VIS band; 2×2 km WV map; TIR images; BV and IR 8×8 km; CCD board</td></tr>
+  <tr><td><strong>METSAT</strong></td><td>—</td><td>—</td><td>Satellite pictures every 3 hours commencing 0300 UTC; processed by SDUC in ~40 min; received at ~0415Z; In cyclones — hourly observations provided</td></tr>
+  <tr><td><strong>INSAT-3D</strong></td><td><span class="reg-value">25 July 2013</span></td><td><span class="reg-value">82°E</span></td><td>Advanced weather satellite of ISRO; launched from French Guiana Space Centre; 1 km MIR and Thermal IR; 4 km SWIR; 8 km WV; storm warning system; vertical profiles of temp/humidity</td></tr>
+  <tr><td><strong>INSAT-3DR</strong></td><td><span class="reg-value">08 September 2016</span></td><td><span class="reg-value">74°E</span></td><td>Operational Met satellite; images in VIS/IR/WV; resolution 1km, 4km, 8km</td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>INSAT-3D &amp; INSAT-3DR (together):</strong>
+  <ul>
+    <li>Two operational Met satellites; image earth in VIS, IR, and WV bands.</li>
+    <li>Resolution: <span class="reg-value">1 km</span> VIS, <span class="reg-value">4 km</span> IR, <span class="reg-value">8 km</span> WV.</li>
+    <li>Located at 74°E; provide <span class="reg-value">48 passes</span> daily.</li>
+    <li>After every <span class="reg-value">15 minutes</span> a new set of images/products available to forecasters.</li>
+    <li>Scan <strong>Indian land region every hour</strong>; scan <strong>Indian Ocean region every 90 minutes</strong>.</li>
+    <li>Inter-change their scan areas after every <span class="reg-value">3-hour</span> interval to get temperature and humidity profiles.</li>
+    <li>Processed data: Sea Surface Temperature (SST), Outgoing Long Wave Radiation, Rainfall Estimation, Cloud Motion Vectors, Water Vapour Vector, Upper Tropospheric Humidity.</li>
+  </ul>
+</div>
+
+<div class="blue-box">
+  <strong>METSAT:</strong> Receives and processes satellite pictures every <span class="reg-value">3 hours</span>, commencing <span class="reg-value">0300 UTC</span>. Processed by SDUC in about <span class="reg-value">40 min</span>. Imagery received after <span class="reg-value">1 hr 15 min</span> (i.e. 0300Z picture received by 0415Z). In event of cyclones: <strong>hourly observations are provided</strong>. Animation of hourly and 3-hourly satellite pictures also available on the website.
+</div>
+
+<div class="blue-box">
+  <strong>OCEANSAT-2</strong> (ISRO): Data utilised for Tropical Cyclone genesis and NWP models.
+</div>
+
+<h3>Foreign Satellites</h3>
+<table>
+  <tr><th>Satellite</th><th>Country/Org</th><th>Type</th><th>Key Info</th></tr>
+  <tr><td>NOAA (K, L, M)</td><td>USA / NOAA</td><td>Polar (POES)</td><td>Daily global coverage of clouds, storm location, temperature, heat balance; 3 ground processing systems at IMD New Delhi, RMC Chennai, RMC Guwahati</td></tr>
+  <tr><td>METEOSAT</td><td>EUMETSAT</td><td>Geostationary</td><td>Near 0° meridian; operated by EUMETSAT on behalf of European Met Agencies</td></tr>
+  <tr><td>GMS</td><td>Japan</td><td>Geostationary</td><td>At 130°E</td></tr>
+  <tr><td>INSAT</td><td>India</td><td>Geostationary</td><td>At 83° and 93°</td></tr>
+  <tr><td>GOES</td><td>USA</td><td>Geostationary (GOES)</td><td>2 satellites (East and West coast); provides temp data every hour; interval ~30 min</td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>Computer-generated output from Indian Satellites:</strong>
+  <ul>
+    <li>(a) Vertical temperature and humidity profile</li>
+    <li>(b) Cloud top and SST (Sea Surface Temperature)</li>
+    <li>(c) Upper winds</li>
+    <li>(d) Convective clouds and Mesoscale systems</li>
+  </ul>
+  <strong>Quantitative Satellite Products:</strong> SST, Outgoing LW Radiation, Quantitative Precipitation Estimates, Cloud Motion Vectors, Water Vapour Winds, Land Surface Emissivity, Atmospheric moisture profile, Fog detection; Vertical profile of temp/humidity, Cloud top temp, Upper winds, Convective clouds and meso-scale systems.
+</div>
+
+<h2 id="satellite-imagery">11. Cloud Characteristics in Satellite Imagery</h2>
+
+<table>
+  <tr><th>Feature</th><th>Appearance in Satellite Imagery</th></tr>
+  <tr><td>Clouds (general)</td><td>White and gray; cast dark shadows on ground; thicker clouds and water clouds are <strong>brighter than ice clouds</strong></td></tr>
+  <tr><td>High clouds (detectable)</td><td>Detectable only by the shadow they cast</td></tr>
+  <tr><td>CU clouds</td><td>Great variety, organized into small regular lines or bands</td></tr>
+  <tr><td>Jet stream clouds</td><td>Very long streaks; high cirrus clouds</td></tr>
+  <tr><td>Smoke</td><td>Brown to grey; from oil fires = black</td></tr>
+  <tr><td>Haze</td><td>Featureless and pale gray or whitish</td></tr>
+  <tr><td>Dust</td><td>Slightly tan (like soil); can be white, red, dark brown, even black (due to mineral content)</td></tr>
+  <tr><td>Volcanic plumes</td><td>Steam and gas = white; ash = brown</td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>In IR Imagery:</strong>
+  <ul>
+    <li><strong>Lowest temperatures = Whitest</strong> (high cold cloud tops appear bright white)</li>
+    <li><strong>Warmest = Dark grey or black</strong> (warm surface, clear areas)</li>
+  </ul>
+</div>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Radar</strong>
+  <ul>
+    <li>PPI = plan view (bearing/range); RHI = height view (CB altitude)</li>
+    <li>Bands: K(0.75–2.5cm), X(2.5–4cm), C(4–8cm), S(8–15cm), L(15–30cm)</li>
+    <li>K+X = clouds; X = storms; S = cyclone detection/tracking; Quantitative radar = 10 cm</li>
+    <li>DWR = Doppler; measures frequency change; coherent radar</li>
+    <li>Radar range: detect 500 km, best resolution 250 km, display 25 NM, long range 75 NM</li>
+    <li>Bright Band = WEAK storm; at freezing level; stratiform only; disappears with convection</li>
+    <li>Figure '6' echo = tornado; Spiral bands = tropical cyclone</li>
+    <li>Dry Holes = severe storms (strong winds + heavy rain)</li>
+    <li>Airborne: X-Band, 3° beam, 15° up/down, 70° coverage, 3cm wavelength, ½ sec flash</li>
+    <li>Colors: Green=light(1–4mm), Yellow=moderate(4–12mm), Red/Magenta=severe(≥12mm)</li>
+    <li>Drizzle NOT shown on radar (returns ∝ 6th power of droplet diameter)</li>
+  </ul>
+  <strong>Quick Revision Summary — Satellites</strong>
+  <ul>
+    <li>Polar: 650–1500 km; covers earth 2×/day; same spot every 12 hr; e.g. NOAA</li>
+    <li>Geostationary: ~36,000 km; earth-synchronized; 5 cover globe; round-the-clock; e.g. INSAT, METEOSAT</li>
+    <li>Satellite imagery interval: 30 min; but pictures provided: 3 hourly</li>
+    <li>Kalpana-1: launched 12 Sep 2002 at 74°E; 48 images/day (daytime only)</li>
+    <li>INSAT-3A: launched 10 Apr 2003 at 93.5°E; 1×1 km resolution</li>
+    <li>INSAT-3D: launched 25 Jul 2013 at 82°E; INSAT-3DR: 08 Sep 2016 at 74°E</li>
+    <li>INSAT-3D/3DR: 48 passes/day; new image every 15 min; land scan every 1 hr; ocean every 90 min</li>
+    <li>METSAT: pictures every 3 hr from 0300 UTC; in cyclones: hourly</li>
+    <li>IR imagery: coldest = whitest; warmest = darkest</li>
+  </ul>
+</div>
+
+<!-- Q&A -->
+<h2 id="qa" style="page-break-before:always;">Practice Q&amp;A</h2>
+
+<div class="qa-block">
+  <div class="qa-question">Q1. PPI scope provides:<br>(a) Plan view of echoes — bearing and range &nbsp; (b) Height of echoes &nbsp; (c) Intensity of echoes</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (a) Plan view of echoes — bearing and range</strong><br>The Plan-Position Indicator (PPI) presents a plan (top-down) view of echoes and provides the bearing and range of the echo.</div>
+  <div class="qa-distractor">❌ (b) Height of echoes: This is the function of the RHI (Range-Height Indicator) scope. ❌ (c) Intensity: While colour-coded intensity may be shown, the defining feature of PPI is plan view with bearing/range.</div>
+  <div class="qa-tip">🎓 PPI = Plan (horizontal) = Position = Bearing/Range. RHI = Range-Height = Altitude of CB cells. Easy: "RHI reads Height."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q2. RHI scope enables direct reading of:<br>(a) Speed of echoes &nbsp; (b) Range of echoes &nbsp; (c) Altitude of CB cells</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (c) Altitude of CB cells</strong><br>The Range-Height Indicator (RHI) enables direct reading of the altitudes of CB cells — essential for aviation weather avoidance decisions.</div>
+  <div class="qa-tip">🎓 RHI = Range-Height Indicator. Direct reading of CB cell altitude = pilots can decide if they can overfly the CB or need to deviate.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q3. S band radar is used for:<br>(a) Detection of clouds &nbsp; (b) Storm detection &nbsp; (c) Cyclone detection and tracking (rain, precipitation, cyclones)</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (c) Cyclone detection and tracking</strong><br>S band (8–15 cm wavelength) is used for rain, precipitation, cyclones, and depressions. It is also called the Cyclone Detection (and tracking) Radar.</div>
+  <div class="qa-distractor">❌ (a) K and X Band = cloud detection. ❌ (b) X Band = storm detection. S Band is specifically the cyclone band.</div>
+  <div class="qa-tip">🎓 "S for Sea/Storm/Cyclone" — S band covers the longest range for weather, best for cyclone tracking. IMD's cyclone detection network uses S-band radars along the coast.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q4. Quantitative Radar measures rate of precipitation using wavelength:<br>(a) 5.0 cm &nbsp; (b) 10.0 cm &nbsp; (c) 3.2 cm</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) 10.0 cm</strong><br>Quantitative Radar (10.0 cm wavelength) is used for quantitative measurement of rate of precipitation, total precipitation, intensity, and snowfall.</div>
+  <div class="qa-tip">🎓 Quantitative Radar = 10 cm. Remember: 10 cm is in the S-Band range (8–15 cm). Airborne weather radar = 3 cm (X-Band).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q5. DWR detects if targets are moving towards or away by measuring:<br>(a) Amplitude of return signal &nbsp; (b) Change of frequency of return signal &nbsp; (c) Time delay of return signal</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Change of frequency of return signal</strong><br>DWR works on the principle of the Doppler Effect — measuring the change of frequency of the return signal to determine if targets (precipitation, wind, etc.) are moving towards or away from the radar station.</div>
+  <div class="qa-tip">🎓 Doppler Effect = frequency change. Moving towards radar = higher frequency (blue shift). Moving away = lower frequency (red shift). This principle also used in airborne weather radar for wind shear detection.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q6. Bright Band is an indicator of:<br>(a) Strong/severe storm &nbsp; (b) CB cloud &nbsp; (c) Weak storm</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (c) Weak storm</strong><br>Bright Band is an indicator of a WEAK storm. It appears at the freezing level in stratiform precipitation (not convective). It disappears with increasing convection.</div>
+  <div class="qa-distractor">❌ (a) Strong/severe storm: This is the OPPOSITE — Bright Band = weak storm. ❌ (b) CB cloud: CB echoes have sharp edges and may extend to −40°C — no Bright Band. Bright Band = stratiform (flat, weak) precipitation.</div>
+  <div class="qa-tip">🎓 <strong>Counter-intuitive DGCA trap!</strong> Bright Band = WEAK storm. Formed by melting snowflakes at the freezing level in stratiform rain. Disappears when convection (strong storm) develops.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q7. A figure '6' echo is an indication of:<br>(a) Hailstorm &nbsp; (b) Tornado &nbsp; (c) Severe turbulence</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Tornado</strong><br>A radar echo of the figure '6' shape is an indication of a tornado. Hooks, Appendages and Protuberances indicate severe storms with hail.</div>
+  <div class="qa-tip">🎓 Figure '6' = Tornado on radar. This is because the hook-echo structure (associated with tornado supercells) resembles the number 6. Classic DGCA question.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q8. Spiral bands on radar indicate:<br>(a) Severe TS &nbsp; (b) Tropical Cyclone &nbsp; (c) Hailstorm</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Tropical Cyclone</strong><br>Spiral bands on radar indicate tropical cyclones and last for a long time.</div>
+  <div class="qa-tip">🎓 Spiral bands = TC signature. The spiral arms of precipitation are the classic visual structure of a tropical cyclone on radar imagery.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q9. On airborne weather radar, Red/Magenta colour indicates:<br>(a) Light precipitation &nbsp; (b) Moderate precipitation &nbsp; (c) Heavy precipitation, TS, severe turbulence — AVOID</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (c) Heavy precipitation, TS, severe turbulence — aircraft should ALWAYS AVOID</strong><br>Red/Magenta on airborne radar = heavy precipitation, TS, hail, strong winds, tornadoes, severe turbulence. Aircraft must always avoid these areas.</div>
+  <div class="qa-tip">🎓 Color code: Green=Go (light, 1–4mm), Yellow=Caution (moderate, 4–12mm), Red/Magenta=STOP/AVOID (severe, ≥12mm). Never penetrate Red/Magenta areas.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q10. Geostationary satellites are placed at an altitude of approximately:<br>(a) 650–1500 km &nbsp; (b) 36,000 km &nbsp; (c) 500 km</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) 36,000 km</strong><br>Geostationary satellites are placed in near circular orbit at about 36,000 km in the plane of the earth's equator. They are earth synchronized with same period of rotation as earth.</div>
+  <div class="qa-distractor">❌ (a) 650–1500 km: This is the altitude range for Polar Orbiting satellites. ❌ (c) 500 km: Too low — this would be LEO (Low Earth Orbit).</div>
+  <div class="qa-tip">🎓 Geostationary = 36,000 km; 5 cover the globe; earth-synchronized. Polar = 650–1500 km; covers earth twice/day; same spot every 12 hr.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q11. How many geostationary satellites are needed to cover the entire globe?<br>(a) 3 &nbsp; (b) 4 &nbsp; (c) 5</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (c) 5</strong><br>Five geostationary satellites are capable of covering the entire globe. METEOSAT, INSAT, GMS, and GOES (2) together provide global geostationary coverage.</div>
+  <div class="qa-tip">🎓 5 geostationary satellites = global coverage. NOAA provides polar (LEO) global coverage with fewer satellites but periodic, not continuous, coverage.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q12. Kalpana-1 satellite is located at:<br>(a) 74°E &nbsp; (b) 93.5°E &nbsp; (c) 82°E</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (a) 74°E</strong><br>Kalpana-1 was launched on 12 September 2002 and is located at 74°E. INSAT-3A is at 93.5°E. INSAT-3D is at 82°E.</div>
+  <div class="qa-tip">🎓 Satellite positions: Kalpana-1 = 74°E; INSAT-3A = 93.5°E; INSAT-3D = 82°E; INSAT-3DR = 74°E (same as Kalpana-1). GMS (Japan) = 130°E.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q13. In IR satellite imagery, the lowest temperatures appear:<br>(a) Black &nbsp; (b) Dark grey &nbsp; (c) White (brightest)</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (c) White (brightest)</strong><br>In IR images, the lowest temperatures (highest, coldest cloud tops) are the whitest (brightest). The warmest areas appear dark grey or black.</div>
+  <div class="qa-tip">🎓 IR imagery rule: COLD = WHITE = High clouds. WARM = BLACK/DARK = Surface/warm areas. Useful for identifying deep convection (appears bright white in IR).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q14. Drizzle does not show up on radar because radar returns are proportional to:<br>(a) Square of droplet diameter &nbsp; (b) Fourth power of droplet diameter &nbsp; (c) Sixth power of droplet diameter</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (c) Sixth power of droplet diameter</strong><br>Radar returns are proportional to the sixth power of droplet diameter. Since drizzle droplets are very small, their sixth power is tiny — making them virtually invisible to radar.</div>
+  <div class="qa-tip">🎓 Z = D⁶ (Z is radar reflectivity, D is droplet diameter). Sixth power means a tiny change in size = massive change in reflectivity. Drizzle droplets too small = near zero radar return.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q15. INSAT-3D was launched from:<br>(a) Sriharikota &nbsp; (b) Baikonur &nbsp; (c) French Guiana Space Centre</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (c) French Guiana Space Centre</strong><br>INSAT-3D was launched on 25 July 2013 from French Guiana Space Centre (Ariane launch site). It is an advanced weather satellite for operational, environmental and storm warning.</div>
+  <div class="qa-tip">🎓 INSAT-3D = French Guiana Space Centre, 25 Jul 2013, at 82°E. INSAT-3DR = launched 08 Sep 2016 at 74°E. Both are operational Met satellites.</div>
+</div>
+
+<!-- MASTER REFERENCE -->
+<h2 id="reference" style="page-break-before:always;">Master Reference Tables</h2>
+
+<h3>Radar Band Summary</h3>
+<table>
+  <tr><th>Band</th><th>Wavelength</th><th>Use</th></tr>
+  <tr><td>K Band</td><td><span class="reg-value">0.75–2.5 cm</span></td><td>Cloud detection</td></tr>
+  <tr><td>X Band</td><td><span class="reg-value">2.5–4 cm</span></td><td>Storm detection; airborne WXR (~3 cm)</td></tr>
+  <tr><td>C Band</td><td><span class="reg-value">4–8 cm</span></td><td>—</td></tr>
+  <tr><td>S Band</td><td><span class="reg-value">8–15 cm</span></td><td>Rain, precipitation, cyclones, depressions; Quantitative radar ~10 cm</td></tr>
+  <tr><td>L Band</td><td><span class="reg-value">15–30 cm</span></td><td>Long range</td></tr>
+</table>
+
+<h3>Radar Echo Significance</h3>
+<table>
+  <tr><th>Echo Type</th><th>Significance</th></tr>
+  <tr><td>Bright Band</td><td>WEAK storm; freezing level; stratiform; a few hundred metres thick</td></tr>
+  <tr><td>Figure '6' echo</td><td>TORNADO</td></tr>
+  <tr><td>Spiral bands</td><td>Tropical Cyclone</td></tr>
+  <tr><td>Hook/Protuberance</td><td>Severe storm with hail</td></tr>
+  <tr><td>Dry Holes</td><td>Severe storm — strong winds + heavy rain</td></tr>
+  <tr><td>Converging echoes</td><td>Severe storm</td></tr>
+  <tr><td>CB echo (top at −40°C)</td><td>Cumulonimbus</td></tr>
+  <tr><td>Slant vertical columns</td><td>Vertical wind shear</td></tr>
+  <tr><td>Separate rain columns</td><td>Wind shear in TS</td></tr>
+</table>
+
+<h3>Indian Satellite Summary</h3>
+<table>
+  <tr><th>Satellite</th><th>Launch</th><th>Position</th><th>Resolution (VIS/IR/WV)</th></tr>
+  <tr><td>Kalpana-1</td><td>12 Sep 2002</td><td>74°E</td><td>2×2 km / — / 8×8 km</td></tr>
+  <tr><td>INSAT-3A</td><td>10 Apr 2003</td><td>93.5°E</td><td>1×1 km (CCD)</td></tr>
+  <tr><td>INSAT-3D</td><td>25 Jul 2013</td><td>82°E</td><td>1 km / 4 km / 8 km</td></tr>
+  <tr><td>INSAT-3DR</td><td>08 Sep 2016</td><td>74°E</td><td>1 km / 4 km / 8 km</td></tr>
+</table>
+
+<h3>Mnemonics</h3>
+<table>
+  <tr><th>Mnemonic</th><th>Meaning</th></tr>
+  <tr><td><strong>"PPI = Plan, RHI = Height"</strong></td><td>PPI gives plan view; RHI gives altitude of CB cells</td></tr>
+  <tr><td><strong>"S = Sea/Cyclone, X = Storm, K = Clouds"</strong></td><td>Radar band applications</td></tr>
+  <tr><td><strong>"Bright Band = Weak"</strong></td><td>Counter-intuitive — Bright Band = weak/stratiform storm</td></tr>
+  <tr><td><strong>"6 = Tornado"</strong></td><td>Figure '6' radar echo = tornado indication</td></tr>
+  <tr><td><strong>"Green Go, Yellow Caution, Red/Magenta STOP"</strong></td><td>Airborne radar color action rule</td></tr>
+  <tr><td><strong>"Cold = White (IR)"</strong></td><td>In IR imagery, coldest (highest) clouds appear whitest</td></tr>
+  <tr><td><strong>"5 Geosats cover globe"</strong></td><td>Five geostationary satellites = global coverage</td></tr>
+  <tr><td><strong>"36,000 km Geo, 650–1500 Polar"</strong></td><td>Satellite altitude quick reference</td></tr>
+</table>
+
+</div>
+
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

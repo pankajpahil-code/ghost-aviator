@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 19 – Climatology of India | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #222; max-width: 900px; margin: 0 auto; padding: 20px; }
+  h1 { font-size: 2em; color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 8px; }
+  h2 { font-size: 1.5em; color: #283593; border-left: 5px solid #3949ab; padding-left: 10px; margin-top: 30px; }
+  h3 { font-size: 1.2em; color: #37474f; margin-top: 20px; }
+  .cover { text-align: center; padding: 60px 20px; border: 2px solid #1a237e; border-radius: 10px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { font-size: 2.5em; border: none; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 10px; }
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { margin: 8px 0; }
+  .toc a { color: #1a237e; text-decoration: none; font-size: 1em; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: white; padding: 10px; text-align: left; }
+  td { border: 1px solid #ccc; padding: 8px 10px; }
+  tr:nth-child(even) { background: #f5f5f5; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 20px 0; padding: 20px; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 12px; border-radius: 4px; font-weight: bold; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px; border-radius: 4px; margin-top: 10px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px; border-radius: 4px; margin-top: 10px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px; border-radius: 4px; margin-top: 10px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  svg { max-width: 100%; page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 19<br>Climatology of India</h1>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="subtitle" style="margin-top:20px; font-size:1.3em; font-weight:bold;">Compiled by Capt. Pankaj Pahil</div>
+  <div class="subtitle" style="margin-top:10px;">Source: IC Joshi — Aviation Meteorology</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#intro">1. Introduction — Indian Climate</a></li>
+    <li><a href="#seasons">2. Six Seasons (Ritu) &amp; IMD Four Seasons</a></li>
+    <li><a href="#winter">3. Winter Season / Cold Weather Season (Jan–Feb)</a></li>
+    <li><a href="#premonsoon">4. Pre-Monsoon / Hot Weather / TS Season (Mar–May)</a></li>
+    <li><a href="#swmonsoon">5. SW Monsoon / Rainy Season (Jun–Sep)</a></li>
+    <li><a href="#postmonsoon">6. Post Monsoon / NE Monsoon / Cool Season (Oct–Nov)</a></li>
+    <li><a href="#route">7. Route Winds</a></li>
+    <li><a href="#forecasting">8. Present System of Forecasting SW Monsoon</a></li>
+    <li><a href="#quick-rev">9. Quick Revision Summary</a></li>
+    <li><a href="#qa">10. Practice Q&amp;A</a></li>
+    <li><a href="#ref">11. Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="intro">1. Introduction — Indian Climate</h2>
+
+<div class="box-blue">
+  India has variety of climate: Tropical in the South, Temperate and Alpine in the Himalayan North. The Himalayas receive sustained winter snowfall. Indian climate is strongly influenced by the Himalayas and the Thar Desert. The Himalayas act as a barrier to cold winds flowing down from Central Asia — this keeps most of the Indian subcontinent warmer compared to similar latitudes. The coastal regions are warmer and the rains are more frequent.
+
+  India is influenced by <strong>two seasons of rains</strong> accompanied by seasonal reversal of winds from January to July. During winters, dry and cold NWly winds blow from the north. In summer the Indian land mass becomes hot → draws moist winds from the Arabian Sea and Bay of Bengal → causes reversal of winds → called the <strong>SW Monsoon</strong> — the most important feature controlling the Indian climate.
+
+  About <span class="reg-value">75%</span> of the annual rainfall is received during the short span of four months (<strong>June to September</strong>). There is large variation — W Rajasthan receives less than <span class="reg-value">13 cm</span>, Mawsynram in Meghalaya gets as much as <span class="reg-value">1187.3 cm (467.4 in)</span>; Cherrapunji gets <span class="reg-value">1177.7 cm (463.7 in)</span>.
+
+  The word <strong>Monsoon</strong> is derived from Arabic <em>"Mausim"</em> — it is the <strong>seasonal reversal of winds and the rainfall</strong>.
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="seasons">2. Six Seasons (Ritu) &amp; IMD Four Climatological Seasons</h2>
+
+<table>
+  <tr><th>#</th><th>Ritu (Sanskrit)</th><th>Months</th><th>Characteristics</th></tr>
+  <tr><td>1</td><td>Vasant (Spring)</td><td>Chaitra &amp; Vaisakh (Mar–Apr)</td><td>Temps around 20–30°C; Vernal Equinox in mid-season</td></tr>
+  <tr><td>2</td><td>Grishm (Summer)</td><td>Jyeshtha &amp; Asadha (May–Jun)</td><td>Very hot; around 40–50°C; Summer Solstice</td></tr>
+  <tr><td>3</td><td>Varsha (Monsoon)</td><td>Sravana &amp; Bhadrapad (Jul–Aug)</td><td>Very hot, humid, heavy monsoon rains</td></tr>
+  <tr><td>4</td><td>Sharad (Autumn)</td><td>Ashwina, Asauj, Kartika (Sep–Oct–mid Nov)</td><td>19–25°C; autumnal equinox in mid-season</td></tr>
+  <tr><td>5</td><td>Hemanta (Fall)</td><td>Margashirsha, Agahan, Pausha (late Nov–Dec)</td><td>Very pleasant 19–25°C; ends with winter solstice</td></tr>
+  <tr><td>6</td><td>Shishira (Winter)</td><td>Magha &amp; Phalguna (Jan–Feb)</td><td>Cold, below 10°C; pleasant with occasional sunshine</td></tr>
+</table>
+
+<div class="box-amber">
+  N India mostly conforms to the marked change of Ritus; Southern India (close to Equator) less so.
+</div>
+
+<h3>IMD Four Climatological Seasons</h3>
+<table>
+  <tr><th>Season</th><th>Months</th></tr>
+  <tr><td>Winter Season / Cold Weather Season</td><td>January–February (Dec–Feb for NW India)</td></tr>
+  <tr><td>Summer / Pre-Monsoon Season</td><td>March to May</td></tr>
+  <tr><td>SW Monsoon (Rainy Season)</td><td>June to September</td></tr>
+  <tr><td>Post / NE Monsoon (Cool Season)</td><td>October–November</td></tr>
+</table>
+
+<!-- SECTION 3 -->
+<h2 id="winter">3. Winter Season / Cold Weather Season</h2>
+
+<div class="box-blue">
+  <strong>Months: January–February (December–February for NW India)</strong>
+</div>
+
+<h3>Pressure Distribution</h3>
+<div class="box-blue">
+  An extensive belt of high pressure from Sahara to Siberia. High is centered at <span class="reg-value">45° N and 105°E</span>. India is at the southern periphery of this high. High pressure over the Indian ocean (on surface isobaric chart, about <span class="reg-value">four isobars: 1012–1018 hPa</span>, at 2 hPa interval). The <span class="reg-value">1012 hPa</span> isobar extends from Arabian Sea islands to Kerala to Gujarat along the West Coast. The <span class="reg-value">1018 hPa</span> isobar over Pakistan and J&amp;K. A shallow trough extends from Kerala to Gujarat along West Coast and a shallow ridge over adjoining Myanmar. NWly winds prevail over N India; NEly winds over S India. Under this pressure distribution, NWly winds prevail over N India and NEly over S India.
+</div>
+
+<h3>Surface Temperatures</h3>
+<div class="box-blue">
+  December and January are coldest months. Mean daily minimum temperatures range from <span class="reg-value">22°C</span> in extreme south to <span class="reg-value">10°C</span> in northern plains to <span class="reg-value">6°C</span> in Punjab. Diurnal range of temperature is about <span class="reg-value">13°C</span>; about <span class="reg-value">10°C</span> over coastal areas; <span class="reg-value">5°C</span> over coastal Tamil Nadu.
+</div>
+
+<h3>Surface &amp; Upper Winds</h3>
+<div class="box-blue">
+  <strong>Surface:</strong> Light, mainly NEly south of <span class="reg-value">25°N</span>; NWly over N India; Ely over Assam.
+  <strong>Upper Winds:</strong> Up to <span class="reg-value">10,000 ft</span> NWly over N and Central India; NEly over S India. Thereafter Wly winds prevail aloft, strengthening with height (spreading S to tip of Peninsula). Sub Tropical Jet Stream (STJ) prevails over N India at height of about <span class="reg-value">12 km</span> and <span class="reg-value">27° N</span>, with strong Westerly winds of <span class="reg-value">80–100 kt</span>, maximum being <span class="reg-value">200 kt</span>.
+</div>
+
+<h3>Synoptic Systems</h3>
+<div class="box-blue">
+  N India is affected by STJ and <span class="reg-value">5–7 WDs per month</span>. A few CS and Easterly waves affect S India.
+</div>
+
+<h3>Weather</h3>
+<div class="box-blue">
+  In N India: clear skies, poor visibility, dry weather, low humidity and low temperatures are normal features. Dry spells are broken by passage of WDs (mostly Occluded Fronts of extra tropical origin) → they initially cause Warm Front type weather. Weather sequence: backing of winds from NWly to SWly/SEly → rise in temperature, fall in pressure, appearance of CI clouds → thickening and lowering of clouds to AS, NS, ST and DZ. RA may occur → followed by Cold Front type weather (appearance of CU and CB, rise in pressure and occurrence of TS). As WD passes off, skies become clear and cold dry continental N–NWly winds set in. Widespread Radiation Fog and <strong>Cold Waves</strong> (temperature <span class="reg-value">≥4.0°C below minimum normal</span>) follow. Cold wave conditions may last for <span class="reg-value">2–3 days</span>. When maximum temperature is <span class="reg-value">≤16°C</span> in plains, it is declared a <strong>Cold Day</strong>.
+</div>
+
+<div class="box-red">
+  <strong>Cold Wave:</strong> Temperature ≥ <span class="reg-value">4.0°C below minimum normal</span>. Common in Jan–Feb in W India N of 20°N, J&amp;K, Rajasthan, W MP, Gujarat are most affected. Punjab receives comparatively lesser number of severe cold waves.
+</div>
+
+<div class="box-red">
+  <strong>Aviation Hazards — Winter:</strong>
+  <ul>
+    <li><strong>Poor visibility</strong> is the main aviation weather hazard during winter, specially over N India. Fog, mist and haze are all common all over the country in morning and evening.</li>
+    <li>Smoke from industries and automobiles reduces visibility. Low level inversion favours reduction in visibility. Conditions most favourable for <strong>Radiation Fog after passage of a WD</strong> — over NW India, UP, Bihar, Central India, N Bengal and Assam (particularly S banks of Brahmaputra river). Sometimes fog prolongs, disrupting air traffic adversely, especially over polluted airfields like Palam (Delhi). On such occasions, there may be little improvement in visibility to <span class="reg-value">1000–2000 m</span> during noon, but may again deteriorate in evening and night. Such conditions may last for a few days.</li>
+    <li><strong>Advection Fog</strong> occurs over coastal areas and where large water bodies are present. Generally lifts by <span class="reg-value">1000–1100 hr IST</span>.</li>
+    <li><strong>CAT</strong> is experienced over NE India and in the vicinity of STJ. Mountain waves are also common over high terrain over N and E India.</li>
+    <li><strong>Icing</strong> — freezing level lowers in winter. Hence ice accretion may be experienced at lower levels.</li>
+  </ul>
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="premonsoon">4. Pre-Monsoon / Hot Weather / TS Season (Mar–Apr–May)</h2>
+
+<h3>Pressure Distribution</h3>
+<div class="box-blue">
+  Transition season — winter pattern changes over to monsoon pattern. Continuous rise in temperature and fall in pressure over the country. Weak pressure gradient — only two isobars (1006 and 1008 hPa) cover entire country. These run parallel almost along Indian coast line — trough along Peninsula with axis along <span class="reg-value">78°E</span> longitude. In May the trough shifts to <span class="reg-value">79°E</span> along Chennai coast. A weak low over NW Pakistan (upper Sindh) and a weak trough over E UP and Bihar. A low lies over Myanmar and a closed high over E Central Bay, W of Bay Islands.
+</div>
+
+<h3>Surface Temperatures</h3>
+<div class="box-blue">
+  Due to N wards march of sun, land progressively gets heated after January. Temperatures are of the order of <span class="reg-value">30–35°C</span> over central peninsula. Day temps highest in May in Andamans; in Rajasthan and Kashmir in June and July. Maximum temp highest in April in Saurashtra and in Rajasthan and Kashmir in July. Maximum diurnal range of wave conditions (<span class="reg-value">≥4°C above normal maximum</span>) → <strong>Heat Wave declared</strong>. Along coasts about <span class="reg-value">6°C</span>. Sometimes heat wave maximum temperature is <span class="reg-value">5°C</span> or more — heat wave conditions.
+</div>
+
+<h3>Surface Winds</h3>
+<div class="box-blue">
+  In March N–NWly up to E India; April they are N–NWly, they shift to E of India. In May SWly prevail over Rajasthan and Ely from E UP to NE India. Over Orissa, WB, Bihar, Jharkhand and Chhattisgarh, they are Sly. In rest of country NWly to SWly winds prevail. In June winds are Sly and are W–SWly <span class="reg-value">10–15 kt</span> over rest of country. On certain occasions winds become gusty and dust laden over Gangetic plains. <strong>Dust Raising Winds (DRW)</strong> mostly start at about <span class="reg-value">0900 hr</span> and continue up to <span class="reg-value">1700 hr</span>. Thereafter they weaken. Visibility on such occasions reduces considerably over a large area.
+</div>
+
+<h3>Upper Winds (Mar–May)</h3>
+<div class="box-blue">
+  April: Wly strengthen with height over N India and Peninsula. At <span class="reg-value">300 hPa</span> max speeds are <span class="reg-value">40 kt</span> and at <span class="reg-value">200 hPa</span>, <span class="reg-value">60 kt</span> N of <span class="reg-value">22°N</span>. Wind weakens slowly. In May Wly belt shifts to <span class="reg-value">30°N</span>; Ely 15–20 kt aloft S of 25°N. In June winds are Wly up to <span class="reg-value">700 hPa</span> and Ely aloft S of <span class="reg-value">25°N</span>, which strengthen with height to <span class="reg-value">50 kt</span> at <span class="reg-value">100 hPa</span>.
+</div>
+
+<h3>Synoptic Systems &amp; Weather</h3>
+<div class="box-blue">
+  Characterised by widespread dust haze and extremely high temperatures over N India. Dust storms over N India and Kalbaisakhi (Norwesters) over E and NE India. Triggered by WDs. A few tropical cyclones strike Bengal coast and move NW. STJ weakens and moves northwards. This is the most hazardous season for flying.
+</div>
+
+<div class="box-red">
+  <strong>Aviation Weather Hazards — Pre-Monsoon (Most Hazardous Season for Flying):</strong>
+  <ol>
+    <li><strong>TS and DS Activity:</strong> Violent TS are common over Rajasthan and NW India with all attendant hazards. Line squall type of development is most common over Rajasthan and NW India. <strong>Norwesters</strong> affect Eastern parts — line squall type of development is also reported by the aircrew. Poor visibility due to widespread dust haze is experienced over entire N India. Dust haze may extend to <span class="reg-value">7–8 km aloft</span>.</li>
+    <li><strong>Dust Raising Winds:</strong> Strong surface winds of <span class="reg-value">30–50 kt</span> between <span class="reg-value">0900 and 1700 hr</span>. Visibility may reduce to a few hundred metres.</li>
+  </ol>
+</div>
+
+<!-- SECTION 5 -->
+<h2 id="swmonsoon">5. SW Monsoon / Rainy Season (June–September)</h2>
+
+<div class="box-blue">
+  <strong>The most important feature of Indian climate.</strong> Spread over four months (<strong>June to September</strong>). Actual period varies from less than 75 days over SW Rajasthan regions to more than 120 days over the SW regions.
+
+  <strong>Onset of SW Monsoon:</strong>
+  <ul>
+    <li>South Andaman Sea: <span class="reg-value">20 May</span></li>
+    <li>Kerala: <span class="reg-value">01 June</span></li>
+    <li>Mumbai: <span class="reg-value">15 June</span></li>
+    <li>New Delhi: <span class="reg-value">01 July</span></li>
+    <li>Covers whole country by: <span class="reg-value">08 July</span></li>
+  </ul>
+</div>
+
+<div class="box-blue">
+  <strong>Normal date of Withdrawal:</strong> SW monsoon generally starts withdrawing from Rajasthan by <span class="reg-value">01 Sept</span> and from NW parts of India by <span class="reg-value">15 Sept</span>. It withdraws from almost all parts by <span class="reg-value">15 Oct</span> and is replaced by a northerly continental airflow called <strong>North-East Monsoon</strong>.
+</div>
+
+<h3>Pressure Pattern — SW Monsoon</h3>
+<div class="box-blue">
+  Low pressure area lies over Baluchistan (<span class="reg-value">994 hPa</span>). A trough — <strong>Monsoon Trough (MT)</strong> — lies over the Gangetic plains with its axis extending from Sriganganagar to the Head Bay, through Allahabad. A high pressure is over S Hemisphere. Seven isobars at 2 hPa interval (<span class="reg-value">994 hPa</span> over Baluchistan and <span class="reg-value">1008 hPa</span> over Tenasserim Coast and S Hemisphere). Pressure gradient steep along west coast.
+</div>
+
+<h3>Surface Temperature — SW Monsoon</h3>
+<div class="box-blue">
+  Temperatures over S parts are about <span class="reg-value">26°C</span> and over Rajasthan <span class="reg-value">31°C</span>. Spatial range is <span class="reg-value">9°C</span>. Temperatures rise during break monsoon. Diurnal range is about <span class="reg-value">4 to 9°C</span>.
+</div>
+
+<h3>Surface Winds — SW Monsoon</h3>
+<div class="box-blue">
+  Ely to SEly prevail to the N of the MT and SW to Wly elsewhere. NWly winds prevail over Malabar coast. Wind speed is about <span class="reg-value">5–10 kt</span> over land and over seas <span class="reg-value">15 kt</span>. Strength of monsoon depends on strength of these winds.
+</div>
+
+<h3>Advance of Monsoon — Two Branches</h3>
+<div class="box-blue">
+  The SW monsoon current advances in <strong>two distinct branches</strong>:
+  <ol>
+    <li><strong>Arabian Sea branch</strong> — moves to Kerala</li>
+    <li><strong>Bay of Bengal branch</strong> — moves to Bangla Desh and Bengal</li>
+  </ol>
+</div>
+
+<h3>Upper Winds — SW Monsoon</h3>
+<div class="box-blue">
+  Up to about <span class="reg-value">10,000 ft</span> winds are W–SWly to the S of MT and to the N. At <span class="reg-value">200 hPa</span> upwards Ely winds prevail over almost entire India. At <span class="reg-value">200 hPa</span> and aloft an anticyclone lies over Tibet and another over Baluchistan. The winds are SWly From 500 hPa upwards and Ely jet stream (<strong>Tropical Jet Stream</strong>) prevails at <span class="reg-value">15–16 km</span> with max speed of <span class="reg-value">70–100 kt</span> (max. <span class="reg-value">150 kt</span>) roughly along <span class="reg-value">13°N</span>.
+</div>
+
+<h3>Monsoon Trough (MT)</h3>
+<div class="box-blue">
+  Normal position on sea level chart passes through Ganganagar–Allahabad–Kolkata to Head Bay. The trough fluctuates N–S of its normal position and accordingly governs the rainfall. To the N of this trough lies the Bay branch. And to the S, the Arabian Sea branch. This trough more or less coincides with ITCZ. At <span class="reg-value">10,000 ft (700 hPa)</span>, it is almost parallel to 22°N; from Gujarat to Orissa and at <span class="reg-value">500 hPa</span> it can be seen around 10–15°N across S Peninsula. Above that it is not traceable.
+</div>
+
+<h3>Break Monsoon</h3>
+<div class="box-blue">
+  Monsoon Trough shifts northwards, running close to foot hills of Himalayas → drastic reduction in rainfall over the country outside the foot hills. During this period pressure rises over the country. Heavy rains occur over foot hills of Himalayas, particularly over Sub Himalayan West Bengal, Nepal and Bhutan → resulting in floods over NE India and Bihar. Also experienced over East UP, Bihar and adjoining states. During this phase the weather is of Pre-Monsoon type with widespread dust haze of moderate intensity.
+</div>
+
+<h3>Subtropical (Mid-Tropospheric) Cyclone</h3>
+<div class="box-blue">
+  Sometimes during SW monsoon a cyclonic circulation establishes at Lat/Long <span class="reg-value">60–80°E and 18–28°N</span>, between levels <span class="reg-value">500 and 700 hPa</span>, and a trough at the surface. Heavy rainfall in W India and NE Arabian Sea are mostly attributed to this system. Particularly MP, Maharashtra, especially Mumbai received very heavy, unprecedented rainfall in year 2005. The heavy rainfall is due to thick stratiform clouds in which CB clouds are embedded. Such heavy build-up and rainfall occurs mainly to W and SW of the subtropical cyclone centre.
+</div>
+
+<h3>Weather — SW Monsoon</h3>
+<div class="box-blue">
+  Rainfall oscillates between active spells of widespread rains and breaks. Heavy rainfall in mountains; uncomfortable weather due to high humidity and temperatures — the feature associated with the Breaks. Monsoon Depressions form in northern part of the Bay at frequency of about <span class="reg-value">2–3 per month</span> moving Nly/Wly direction bringing well-distributed rainfall over central and northern parts.
+</div>
+
+<h3>Strength of Monsoon (Table 19.1)</h3>
+<table>
+  <tr><th>Strength</th><th>Wind Speed Over Sea</th><th>Rainfall Over Land</th></tr>
+  <tr><td>Weak Monsoon</td><td>Up to 12 kt</td><td>&lt;1½ times the normal</td></tr>
+  <tr><td>Moderate Monsoon</td><td>13–22 kt</td><td>1½ to 2 times the normal</td></tr>
+  <tr><td>Strong Monsoon</td><td>23–32 kt</td><td>1½ to 4 times the normal</td></tr>
+  <tr><td>Vigorous Monsoon</td><td>&gt;32 kt</td><td>&gt;4 times the normal</td></tr>
+</table>
+
+<h3>El Niño and ENSO</h3>
+<div class="box-blue">
+  <strong>El Niño</strong> = unusual warming of surface waters in eastern tropical Pacific Ocean = "warm phase" of El Niño-Southern Oscillation (ENSO). <strong>La Niña</strong> = "cool phase" = cold Sea Surface Temperature (SST) = High in W Pacific and L in E Pacific. El Niño occurs irregularly at <span class="reg-value">two to seven year intervals</span>. ENSO cycle affects global climate. During El Niño: SE Trades become weak → weak SW Monsoon. During La Niña: SE trades are strong → active monsoon. Now evident that severe droughts occur in India in El Niño years, though opposite is not true. Trade winds push warm water to western Pacific; cooler waters rise up (upwelling) toward surface on coasts of Ecuador, Peru, Chile.
+</div>
+
+<div class="box-red">
+  <strong>Aviation Hazards — SW Monsoon:</strong>
+  <ol>
+    <li><strong>Low Clouds:</strong> Very low clouds (150–200 m agl) and strong surface winds are common during strong monsoon conditions and passage of Monsoon Depressions.</li>
+    <li><strong>Poor Visibility:</strong> Generally good, but may deteriorate during precipitation. Dust haze in north; monsoon haze along west coast reduces visibility to a certain extent.</li>
+    <li><strong>CAT:</strong> CAT is likely in the vicinity of TJ.</li>
+    <li><strong>TS Activity:</strong> At onset of monsoon TS activity of longer duration is a common feature. During Break and then during revival of monsoon also TS are experienced.</li>
+  </ol>
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="postmonsoon">6. Post Monsoon / NE Monsoon Season (Oct–Nov)</h2>
+
+<div class="box-blue">
+  Also called <strong>Retreating SW Monsoon Season</strong>. Transition season — establishment of NEly wind regime over Indian subcontinent. <strong>This is the major period of rainfall activity over coastal AP, Rayalaseema and TN-Pondicherry.</strong> For TN this is the main rainy season, accounting to about <span class="reg-value">49% of annual rainfall</span>. Rainfall mostly occurs between <span class="reg-value">2100 and 0300 hr</span> in spells of 3 to 4 days duration.
+</div>
+
+<h3>Pressure Pattern</h3>
+<div class="box-blue">
+  Summer pressure and wind patterns undergo slow but steady modification to finally change to winter pattern. One isobar (<span class="reg-value">1010 hPa</span>) surrounds the entire country including Bay Islands, Pakistan and parts of Myanmar. Monsoon trough shifts to Bay of Bengal with its axis along <span class="reg-value">13°N</span>. Pressure field is flat over the country. A weak low (<span class="reg-value">1008 hPa</span>) lies off Chennai coast and another over Baluchistan.
+</div>
+
+<h3>Surface Temperature &amp; Winds</h3>
+<div class="box-blue">
+  Temperatures are nearly uniform, <span class="reg-value">18°C</span>, over the country. Diurnal range is <span class="reg-value">6–7°C</span>. Start falling sharply all over country. Mean temps over NW India show decline from about <span class="reg-value">38°C</span> in Oct to <span class="reg-value">28°C</span> in Nov. With withdrawal of monsoon from N and Central India and N Peninsula by first half of Oct, the lower level wind rapidly changes from SWly to NE to SW and get diagonally NE to SW, cross diagonally Bay of Bengal before reaching Cape Comorin and rest of TN. Due to this TN and some parts of Kerala get significant rainfall. Parts of West Bengal, Orissa, Andhra Pradesh, Karnataka and Mumbai also receive minor precipitation. Due to flat pressure distribution, surface winds are light and variable. Sea breeze pronounced along coasts up to 160 km inland.
+</div>
+
+<h3>Upper Winds</h3>
+<div class="box-blue">
+  Gradually Wly winds start establishing at all levels and pattern changes to that of winters. STJ reappears over J&amp;K. Above 500 hPa level Ely remain confined to extreme S of country, which weaken to <span class="reg-value">20 kt</span>.
+</div>
+
+<h3>Weather</h3>
+<div class="box-blue">
+  A few (1–2 per month) WDs affect N parts. They cause clouding and precipitation over J&amp;K and Punjab. <strong>This is the best period for flying except over southern India.</strong> Good visibility and clear skies are the main features. A few tropical storms form over Arabian sea and Arabian Sea and cause weather over coastal areas. Retreating monsoon winds cause occasional showers along the east coast of TN. In Tamil Nadu this is the main rainy season — accounts for nearly <span class="reg-value">60%</span> of annual rainfall in coastal districts.
+</div>
+
+<h3>Maximum Cyclonic Storms</h3>
+<div class="box-blue">
+  Maximum Cyclonic Storms occur in Oct over Bay of Bengal and in Nov over the Arabian sea. SCS are more in Nov than Oct. They usually form near Andaman Seas and move towards TN, AP and Orissa. Some move N and strike W Bengal or Bangla Desh. A few after crossing over peninsula, revive, recurve and strike Maharashtra or Gujarat coasts.
+</div>
+
+<div class="box-red">
+  <strong>Aviation Hazards — Post Monsoon:</strong>
+  <ol>
+    <li><strong>Poor Visibility:</strong> Generally good. May deteriorate near industrial areas during dawn and dusk. After passage of WD the S poor visibility is during precipitation. In S, CS over S India.</li>
+    <li><strong>Low Clouds:</strong> Low clouds, very strong winds, heavy rain and TS activity is experienced during passage of a CS over S India.</li>
+    <li><strong>CAT:</strong> CAT may be experienced due to STJ in the north.</li>
+  </ol>
+  <em>Note: January and July Upper Wind Maps are in later pages.</em>
+</div>
+
+<!-- SECTION 7 -->
+<h2 id="route">7. Route Winds</h2>
+
+<div class="box-blue">
+  <strong>The general pattern of winds over various routes in India is summarised below:</strong>
+</div>
+
+<h3>October to May (8 months)</h3>
+<table>
+  <tr><th>Level</th><th>Wind</th></tr>
+  <tr><td><strong>Above 3 km</strong></td><td>Winds all over India are Wly. They become stronger with height. STJ (Wly/80–150 kt) over DLH–CAL Route at 12 km.</td></tr>
+  <tr><td><strong>Below 3 km</strong></td><td>NW–Wly over N India and NEly over S India</td></tr>
+</table>
+
+<h3>June to September (4 months)</h3>
+<table>
+  <tr><th>Level</th><th>Wind</th></tr>
+  <tr><td><strong>Above 6 km</strong></td><td>Ely becoming stronger with height. TJ (Ely/60–100 kt) over MDS (Chennai) lat at 15 km.</td></tr>
+  <tr><td><strong>Below 6 km</strong></td><td>W–SWly over S India and SEly over N India</td></tr>
+</table>
+
+<!-- SECTION 8 -->
+<h2 id="forecasting">8. Present System of Forecasting SW Monsoon</h2>
+
+<div class="box-blue">
+  Since 2007, forecast for SW Monsoon (Jun–Sep) rainfall over India is issued in two stages:
+  <ul>
+    <li>First stage forecast is issued in <strong>April</strong></li>
+    <li>Second stage (update forecast) is issued in <strong>June</strong></li>
+    <li>Along with update, forecast for seasonal rainfall over four broad geographical regions (NW India, Central India, South Peninsula, NE India) and July rainfall over the country as a whole are also issued.</li>
+  </ul>
+</div>
+
+<h3>8 Predictors for Forecasting (Table 19.2)</h3>
+<table>
+  <tr><th>S. No</th><th>Predictor (Period)</th><th>Used for F/C in</th></tr>
+  <tr><td>1</td><td>N Atlantic Sea Surface Temp (SST)(Dec+Jan)</td><td>April and June</td></tr>
+  <tr><td>2</td><td>Equatorial SE Indian Ocean SST (Feb+Mar)</td><td>April and June</td></tr>
+  <tr><td>3</td><td>East Asia MSL Pressure (Feb+Mar)</td><td>April and June</td></tr>
+  <tr><td>4</td><td>NW Europe Land Surface Air Temp. (Jan)</td><td>April</td></tr>
+  <tr><td>5</td><td>Equatorial Pacific warm Water Volume (Feb+Mar)</td><td>April</td></tr>
+  <tr><td>6</td><td>Central Pacific (Nino 3.4) SST Tendency (Mar Apr May–Dec Jan Feb)</td><td>June</td></tr>
+  <tr><td>7</td><td>N Atlantic MSLP (May)</td><td>June</td></tr>
+  <tr><td>8</td><td>North Central Pacific Wind at 1.5 Km ASL (May)</td><td>June</td></tr>
+</table>
+
+<div class="box-blue">
+  Model error of April forecast system is <span class="reg-value">5%</span> and of June forecast system is <span class="reg-value">4%</span>.
+
+  <strong>For forecasting July rainfall over the country,</strong> a statistical model is used with 6 predictors (error of the model is 5%): (a) N Atlantic SST, (b) NNO 3.4 SST (May+Jun), (c) N Pacific MSL pressure (Mar), (d) E Asia MSL pressure (Feb+Mar), (e) N Atlantic MSL pressure (May), (f) Equatorial Indian Ocean MSL pressure (Nov of previous year).
+
+  For forecasting seasonal rainfall over four broad geographical regions, multiple regression (MR) models based on separate set of predictors. All four multiple linear regression models have model errors of <span class="reg-value">8%</span>.
+
+  Since 2005, National Climate Centre also prepares an extended range forecast of onset of SW Monsoon over Kerala. Forecast is issued based on a statistical model with <span class="reg-value">6 predictors</span> (accuracy is a few days, plus minus). IMD also prepares operational long range forecasts for Winter Precipitation (Jan–Mar over NW India) and NE Monsoon rainfall (Oct to Dec) over S Peninsula. Separate statistical models have been developed.
+</div>
+
+<!-- SECTION 9 -->
+<h2 id="quick-rev">9. Quick Revision Summary</h2>
+
+<div class="box-amber">
+  <strong>Quick Revision — Chapter 19: Climatology of India</strong>
+  <ul>
+    <li>75% annual rainfall in just 4 months: <span class="reg-value">June–September</span></li>
+    <li>Wettest place: Mawsynram <span class="reg-value">1187.3 cm</span>; Cherrapunji <span class="reg-value">1177.7 cm</span></li>
+    <li>Driest: W Rajasthan &lt;<span class="reg-value">13 cm</span></li>
+    <li>"Monsoon" from Arabic "Mausim" = seasonal reversal of winds + rainfall</li>
+    <li>STJ in winter: <span class="reg-value">12 km, 27°N, 80–100 kt (max 200 kt)</span></li>
+    <li>WDs in winter: <span class="reg-value">5–7 per month</span> affect N India</li>
+    <li>Cold Day: max temp <span class="reg-value">≤16°C</span> in plains; Cold Wave: <span class="reg-value">≥4°C below min normal</span></li>
+    <li>SW Monsoon onset: Andaman <span class="reg-value">20 May</span> → Kerala <span class="reg-value">01 Jun</span> → Mumbai <span class="reg-value">15 Jun</span> → Delhi <span class="reg-value">01 Jul</span> → Full India <span class="reg-value">08 Jul</span></li>
+    <li>SW Monsoon withdrawal: Rajasthan <span class="reg-value">01 Sep</span>, NW India <span class="reg-value">15 Sep</span>, all India <span class="reg-value">15 Oct</span></li>
+    <li>Two branches: Arabian Sea (→ Kerala) and Bay of Bengal (→ Bengal/Bangladesh)</li>
+    <li>MT (Monsoon Trough): Ganganagar–Allahabad–Kolkata–Head Bay</li>
+    <li>TJ (Tropical Jet): <span class="reg-value">15–16 km, ~13°N, 70–100 kt (max 150 kt)</span></li>
+    <li>Subtropical cyclone: <span class="reg-value">60–80°E, 18–28°N, 500–700 hPa</span></li>
+    <li>Monsoon Dep frequency: <span class="reg-value">2–3 per month</span> in Bay</li>
+    <li>Post monsoon: best flying except S India; TN gets <span class="reg-value">49%</span> annual rainfall</li>
+    <li>Most hazardous season: <strong>Pre-Monsoon (Mar–May)</strong></li>
+    <li>El Niño = weak SW Monsoon; La Niña = active SW Monsoon</li>
+    <li>SW Monsoon forecast: April (1st stage) + June (2nd stage update); model errors <span class="reg-value">5%</span> and <span class="reg-value">4%</span></li>
+  </ul>
+</div>
+
+<!-- Q&A SECTION -->
+<h2 id="qa" style="page-break-before:always;">10. Practice Q&amp;A</h2>
+
+<div class="qa-block">
+  <div class="qa-question">Q1. During winters the activity of radiation fog increases after the passage of a WD over N India. Which of the following is correct?<br>
+    (a) Advection fog occurs over northern &amp; central parts of India<br>
+    (b) Radiation fog occurs over southern parts of India<br>
+    (c) Activity of Radiation fog increases after the passage of a WD over N India</div>
+  <div class="qa-answer">✅ Correct Answer: (c) Radiation fog increases after the passage of a WD over N India</div>
+  <div class="qa-distractor">❌ Distractors: (a) Advection fog is coastal/water body area phenomena. (b) Radiation fog is predominantly N India phenomenon, not S India.</div>
+  <div class="qa-tip">💡 WD passes → sky clears → radiational cooling → Radiation Fog. This sequence is a classic DGCA question.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q2. Low Temperatures and low humidity is the characteristic of:<br>
+    (a) Pre Monsoon &nbsp; (b) Summer &nbsp; (c) Monsoon &nbsp; (d) Winter</div>
+  <div class="qa-answer">✅ Correct Answer: (d) Winter — low temps and low humidity are winter characteristics in N India</div>
+  <div class="qa-distractor">❌ Distractors: (a) Pre-monsoon has high temps and low humidity. (b) Summer same as pre-monsoon. (c) Monsoon has high humidity and moderate temps.</div>
+  <div class="qa-tip">💡 Winter = Cold + Dry (low humidity). Monsoon = Warm + Wet (high humidity). Pre-monsoon = Hot + Dry (dust haze).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q3. The Summer Season period is:<br>
+    (a) Jan–Feb &nbsp; (b) Mar–May &nbsp; (c) Jul–Sept &nbsp; (d) Oct–Dec</div>
+  <div class="qa-answer">✅ Correct Answer: (b) Mar–May — Pre-Monsoon/Hot Weather/TS Season</div>
+  <div class="qa-distractor">❌ Distractors: (a) Jan–Feb = Winter. (c) Jul–Sep = SW Monsoon. (d) Oct–Dec = Post Monsoon + onset of winter.</div>
+  <div class="qa-tip">💡 IMD Seasons: Jan–Feb (Winter), Mar–May (Summer/Pre-Monsoon), Jun–Sep (SW Monsoon), Oct–Nov (Post Monsoon).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q4. During Summer season, the WDs cause TS activity over Punjab &amp; Rajasthan and track of WD is:<br>
+    (a) No WD &nbsp; (b) NE Part &nbsp; (c) Northern most part of country &nbsp; (d) Southern most part of country</div>
+  <div class="qa-answer">✅ Correct Answer: (c) Track of WD is southern most (in summer WDs track further south over N India)</div>
+  <div class="qa-distractor">❌ Distractors: In summer WDs are less frequent and track further south than in winter. Not NE or Southern most of country.</div>
+  <div class="qa-tip">💡 WDs = extra tropical depressions from W. In summer they track further south → trigger Norwesters (Kalbaisakhi) over NE India.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q5. The monsoon current over the West Coast of India is:<br>
+    (a) SWly &nbsp; (b) SEly &nbsp; (c) NEly &nbsp; (d) NWly</div>
+  <div class="qa-answer">✅ Correct Answer: (a) SWly — the SW Monsoon current comes from SW direction and is called SW Monsoon</div>
+  <div class="qa-distractor">❌ Distractors: NWly winds prevail over Malabar coast at lower levels, but the monsoon current itself is SWly.</div>
+  <div class="qa-tip">💡 "SW Monsoon" = winds from SW direction. The name tells you the direction!</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q6. Monsoon period is:<br>
+    (a) Jan to Feb &nbsp; (b) March to May &nbsp; (c) Jun to Sep &nbsp; (d) Oct to Dec</div>
+  <div class="qa-answer">✅ Correct Answer: (c) June to September</div>
+  <div class="qa-distractor">❌ All other options are other seasons. Monsoon = Jun–Sep = 4 months delivering 75% of India's annual rainfall.</div>
+  <div class="qa-tip">💡 "JJAS" = June July August September = SW Monsoon. Easy to remember as 4 consecutive months.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q7. The monsoon advances with Bay of Bengal current only.<br>
+    (a) Bay of Bengal current only &nbsp; (b) Arabian Sea current only &nbsp; (c) Arabian Sea current only</div>
+  <div class="qa-answer">✅ Correct Answer: The monsoon advances with BOTH branches — Arabian Sea and Bay of Bengal. (Option not well-formed in the text; answer = two distinct branches)</div>
+  <div class="qa-distractor">❌ Neither branch alone is correct. The SW Monsoon has two distinct branches: Arabian Sea (moves to Kerala) and Bay of Bengal (moves to Bengal/Bangladesh).</div>
+  <div class="qa-tip">💡 "Two branches of SW Monsoon" is a classic exam topic. Always mention both: Arabian Sea branch AND Bay of Bengal branch.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q8. The rainfall over India during monsoon depends on:<br>
+    (a) Low over Pakistan &nbsp; (b) Depression over Bay of Bengal &nbsp; (c) The position of the axis of Monsoon Trough</div>
+  <div class="qa-answer">✅ Correct Answer: (c) Position of the axis of Monsoon Trough — the MT position controls rainfall distribution</div>
+  <div class="qa-distractor">❌ Distractors: (a) Low over Pakistan affects N India but doesn't control all India rainfall. (b) Depressions enhance rainfall but the MT position is the overarching control.</div>
+  <div class="qa-tip">💡 MT normal position = Ganganagar–Allahabad–Kolkata–Head Bay. MT moves N = Break Monsoon. MT normal = Active Monsoon.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q9. Rainfall occurs all over the country during monsoon when the axis of MT is along the:<br>
+    (a) Axis of MT is in its normal position along Gangetic plains &nbsp; (b) Foot hills of Himalayas &nbsp; (c) Depression formed over Bay of Bengal</div>
+  <div class="qa-answer">✅ Correct Answer: (a) MT in normal position along Gangetic plains = widespread rainfall all over India</div>
+  <div class="qa-distractor">❌ Distractors: (b) MT at foot hills = Break Monsoon = heavy rain only in foothills; dry elsewhere. (c) Depression enhances but doesn't replace MT effect.</div>
+  <div class="qa-tip">💡 MT position = rainfall switch: Normal position → active monsoon everywhere. Northward shift → Break Monsoon (only foothills get rain).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q10. Break in monsoon occurs when the axis of the monsoon trough is along the:<br>
+    (a) Gangetic plains &nbsp; (b) Foot hills of Himalayas &nbsp; (c) Bay of Bengal</div>
+  <div class="qa-answer">✅ Correct Answer: (b) Foot hills of Himalayas — MT shifts northward → Break Monsoon</div>
+  <div class="qa-distractor">❌ Distractors: (a) MT along Gangetic plains = active/normal monsoon. (c) Bay of Bengal position is also active for Bay area.</div>
+  <div class="qa-tip">💡 "Break = MT goes to the Hills." The trough retreats northward to the Himalayan foothills during a Break.</div>
+</div>
+
+<!-- MASTER REFERENCE -->
+<h2 id="ref">11. Master Reference Tables</h2>
+
+<h3>IMD Four Seasons</h3>
+<table>
+  <tr><th>Season</th><th>Months</th><th>Key Feature</th></tr>
+  <tr><td>Winter / Cold Weather</td><td>Jan–Feb (Dec–Feb NW India)</td><td>STJ, WDs, fog, cold waves</td></tr>
+  <tr><td>Pre-Monsoon / Hot Weather</td><td>Mar–May</td><td>Dust haze, Norwesters, TS — most hazardous flying</td></tr>
+  <tr><td>SW Monsoon / Rainy</td><td>Jun–Sep</td><td>75% rainfall; two branches; MT governs distribution</td></tr>
+  <tr><td>Post Monsoon / NE Monsoon</td><td>Oct–Nov</td><td>Best flying (except S India); TN main rainy season</td></tr>
+</table>
+
+<h3>SW Monsoon Onset Dates</h3>
+<table>
+  <tr><th>Location</th><th>Normal Onset Date</th></tr>
+  <tr><td>South Andaman Sea</td><td><span class="reg-value">20 May</span></td></tr>
+  <tr><td>Kerala</td><td><span class="reg-value">01 June</span></td></tr>
+  <tr><td>Mumbai</td><td><span class="reg-value">15 June</span></td></tr>
+  <tr><td>New Delhi</td><td><span class="reg-value">01 July</span></td></tr>
+  <tr><td>Entire India</td><td><span class="reg-value">08 July</span></td></tr>
+</table>
+
+<h3>SW Monsoon Withdrawal Dates</h3>
+<table>
+  <tr><th>Region</th><th>Normal Withdrawal Date</th></tr>
+  <tr><td>Rajasthan</td><td><span class="reg-value">01 September</span></td></tr>
+  <tr><td>NW India</td><td><span class="reg-value">15 September</span></td></tr>
+  <tr><td>Almost all India</td><td><span class="reg-value">15 October</span></td></tr>
+</table>
+
+<h3>All Key Numerical Values</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Annual rainfall % in Jun–Sep</td><td><span class="reg-value">75%</span></td></tr>
+  <tr><td>Min annual rainfall (W Rajasthan)</td><td><span class="reg-value">&lt;13 cm</span></td></tr>
+  <tr><td>Max rainfall (Mawsynram)</td><td><span class="reg-value">1187.3 cm (467.4 in)</span></td></tr>
+  <tr><td>Max rainfall (Cherrapunji)</td><td><span class="reg-value">1177.7 cm (463.7 in)</span></td></tr>
+  <tr><td>STJ height &amp; latitude</td><td><span class="reg-value">~12 km, 27°N</span></td></tr>
+  <tr><td>STJ speed</td><td><span class="reg-value">80–100 kt (max 200 kt)</span></td></tr>
+  <tr><td>WDs per month in winter</td><td><span class="reg-value">5–7</span></td></tr>
+  <tr><td>Cold Day threshold</td><td>Max temp <span class="reg-value">≤16°C</span> in plains</td></tr>
+  <tr><td>Cold Wave threshold</td><td>Temp <span class="reg-value">≥4.0°C below minimum normal</span></td></tr>
+  <tr><td>Cold Wave duration</td><td><span class="reg-value">2–3 days</span></td></tr>
+  <tr><td>TJ height &amp; latitude</td><td><span class="reg-value">15–16 km, ~13°N</span></td></tr>
+  <tr><td>TJ speed</td><td><span class="reg-value">70–100 kt (max 150 kt)</span></td></tr>
+  <tr><td>Monsoon Trough — 700 hPa</td><td>Parallel to <span class="reg-value">22°N</span>, Gujarat to Orissa</td></tr>
+  <tr><td>Monsoon Trough — 500 hPa</td><td>Around <span class="reg-value">10–15°N</span> across S Peninsula</td></tr>
+  <tr><td>Subtropical cyclone location</td><td><span class="reg-value">60–80°E, 18–28°N, 500–700 hPa</span></td></tr>
+  <tr><td>Monsoon Dep frequency</td><td><span class="reg-value">2–3 per month</span></td></tr>
+  <tr><td>TN rainfall (post monsoon)</td><td><span class="reg-value">~49%</span> annual rainfall; <span class="reg-value">60%</span> coastal TN</td></tr>
+  <tr><td>Advection fog lifts by</td><td><span class="reg-value">1000–1100 hr IST</span></td></tr>
+  <tr><td>SW Monsoon forecast — April model error</td><td><span class="reg-value">5%</span></td></tr>
+  <tr><td>SW Monsoon forecast — June model error</td><td><span class="reg-value">4%</span></td></tr>
+  <tr><td>Regional model error</td><td><span class="reg-value">8%</span></td></tr>
+  <tr><td>DRW active hours</td><td><span class="reg-value">0900–1700 hr</span></td></tr>
+  <tr><td>Fog improvement timing (noon)</td><td><span class="reg-value">1000–2000 m</span> visibility during noon</td></tr>
+</table>
+
+<h3>Strength of Monsoon (Table 19.1)</h3>
+<table>
+  <tr><th>Strength</th><th>Wind Speed Over Sea</th><th>Rainfall Over Land</th></tr>
+  <tr><td>Weak Monsoon</td><td><span class="reg-value">Up to 12 kt</span></td><td>&lt;1½ times normal</td></tr>
+  <tr><td>Moderate Monsoon</td><td><span class="reg-value">13–22 kt</span></td><td>1½ to 2 times normal</td></tr>
+  <tr><td>Strong Monsoon</td><td><span class="reg-value">23–32 kt</span></td><td>1½ to 4 times normal</td></tr>
+  <tr><td>Vigorous Monsoon</td><td><span class="reg-value">&gt;32 kt</span></td><td>&gt;4 times normal</td></tr>
+</table>
+
+<h3>Textbook Answer Key</h3>
+<table>
+  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th></tr>
+  <tr><td>A</td><td>c</td><td>d</td><td>b</td><td>a</td><td>d</td><td>b</td><td>a</td><td>c</td><td>a</td><td>b</td><td>a</td><td>b</td><td>c</td></tr>
+</table>
+<table>
+  <tr><th>Q</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th></tr>
+  <tr><td>A</td><td>a</td><td>d</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>c</td><td>a</td><td>b</td><td>a</td><td>a</td><td>a</td></tr>
+</table>
+<table>
+  <tr><th>Q</th><th>27</th><th>28</th><th>29</th><th>30</th><th>31</th><th>32</th></tr>
+  <tr><td>A</td><td>a</td><td>c</td><td>d</td><td>a</td><td>d</td><td>a</td></tr>
+</table>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

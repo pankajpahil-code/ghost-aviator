@@ -35,6 +35,14 @@ const CHAPTERS = [
   ["Ch13_Thunderstorm.html",                             "met-13", "Thunderstorm"],
   ["Ch14_Air_Masses_Fronts_Western_Disturbances.html",   "met-14", "Air Masses, Fronts & Western Disturbances"],
   ["Ch15_Jet_Streams.html",                              "met-15", "Jet Streams"],
+  ["Ch16_Clear_Air_Turbulence.html",                     "met-16", "Clear Air Turbulence"],
+  ["Ch17_Mountain_Waves.html",                           "met-17", "Mountain Waves"],
+  ["Ch18_Tropical_Systems.html",                         "met-18", "Tropical Systems"],
+  ["Ch19_Climatology_of_India.html",                     "met-19", "Climatology of India"],
+  ["Ch20_General_Circulation.html",                      "met-20", "General Circulation"],
+  ["Ch21_Meteorological_Services_for_Aviation.html",     "met-21", "Meteorological Services for Aviation"],
+  ["Ch22_Weather_Radar_and_Met_Satellites.html",         "met-22", "Weather Radar & Met Satellites"],
+  ["Ch23_Met_Instruments.html",                          "met-23", "Met Instruments"],
 ];
 
 const SUBJECT_IDS = ["meteorology", "atpl-meteorology"];

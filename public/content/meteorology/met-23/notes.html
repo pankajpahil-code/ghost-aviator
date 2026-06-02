@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 23 — Met Instruments | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #222; margin: 0; padding: 0; }
+  h1, h2, h3, h4 { color: #1a237e; }
+  h2 { font-size: 1.5em; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; margin-top: 20px; }
+  .cover { text-align: center; padding: 80px 40px; page-break-after: always; border-bottom: 3px solid #1a237e; }
+  .cover h1 { font-size: 2.4em; color: #1a237e; }
+  .cover h2 { font-size: 1.3em; color: #444; border: none; }
+  .content { padding: 20px 40px; max-width: 900px; margin: auto; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #b71c1c; background: #fce4ec; padding: 1px 4px; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 10px; text-align: left; }
+  td { padding: 7px 10px; border: 1px solid #bbb; vertical-align: top; }
+  tr:nth-child(even) td { background: #f0f4ff; }
+  .qa-block { border: 1px solid #ccc; border-radius: 8px; margin: 20px 0; padding: 16px; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 10px; border-radius: 4px; font-weight: bold; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 10px; border-radius: 4px; margin-top: 8px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 10px; border-radius: 4px; margin-top: 8px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 10px; border-radius: 4px; margin-top: 8px; }
+  pre.mermaid { background: #f8f8f8; padding: 10px; border-radius: 6px; page-break-inside: avoid; }
+  @page { size: A4; margin: 20mm; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Chapter 23<br>Met Instruments</h1>
+  <h2>DGCA CPL/ATPL Study Notes — Aviation Meteorology</h2>
+  <p>Source: IC Joshi — Aviation Meteorology (Latest Edition)</p>
+  <p><strong>Compiled by Capt. Pankaj Pahil</strong></p>
+</div>
+
+<div class="content">
+
+<h2 id="intro">Met Instruments — Master Table (Table 23.1)</h2>
+
+<div class="blue-box">
+  This chapter is a concise but critical reference chapter for DGCA examination. The entire chapter is presented as Table 23.1 — a complete summary of meteorological elements, the instruments used to measure them, and their units of measurement. <strong>Every row is examinable.</strong>
+</div>
+
+<table>
+  <tr>
+    <th>S.No</th>
+    <th>Element</th>
+    <th>Instruments Used</th>
+    <th>Unit of Measure</th>
+  </tr>
+  <tr>
+    <td><strong>1</strong></td>
+    <td><strong>Pressure</strong></td>
+    <td>
+      a. Mercury barometer<br>
+      b. Aneroid barometer<br>
+      c. Barograph (Self-recording)
+    </td>
+    <td>
+      <span class="reg-value">Hectopascal (hPa)</span> or<br>
+      <span class="reg-value">Millibar (mb)</span> or<br>
+      <span class="reg-value">Inches (in) of mercury</span>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>2</strong></td>
+    <td><strong>Air Temperature (TT)</strong></td>
+    <td>
+      Dry, Max (Mercury) thermometer<br>
+      Min (Alcohol) thermometer
+    </td>
+    <td><span class="reg-value">Degree Celsius (°C)</span></td>
+  </tr>
+  <tr>
+    <td><strong>3</strong></td>
+    <td><strong>Dew Point Temperature (TdTd)</strong></td>
+    <td>Dry &amp; Wet bulb (Mercury) thermometers</td>
+    <td><span class="reg-value">Degree Celsius (°C)</span></td>
+  </tr>
+  <tr>
+    <td><strong>4</strong></td>
+    <td><strong>Relative Humidity (RH)</strong></td>
+    <td>
+      a. Dry &amp; Wet bulb thermometer<br>
+      b. Hygrometers<br>
+      c. Hygrograph (Self-recording)<br>
+      d. Psychrometer
+    </td>
+    <td><span class="reg-value">Percentage (%)</span></td>
+  </tr>
+  <tr>
+    <td><strong>5</strong></td>
+    <td><strong>Humidity Mixing Ratio (HMR)</strong></td>
+    <td>Hygrograph</td>
+    <td><span class="reg-value">gm/kg</span></td>
+  </tr>
+  <tr>
+    <td><strong>6</strong></td>
+    <td><strong>Precipitation<br>(Rain, Snow)</strong></td>
+    <td>
+      a. Raingauge<br>
+      b. Self-recording rain-gauge<br>
+      c. Hyetograph<br>
+      d. Snowgauge
+    </td>
+    <td>
+      <span class="reg-value">mm or cm</span> (depth)<br>
+      Amount (by melting for snow)
+    </td>
+  </tr>
+  <tr>
+    <td><strong>7</strong></td>
+    <td><strong>Surface Wind<br>(Direction &amp; Speed)</strong></td>
+    <td>
+      a. Wind Vane (for Direction)<br>
+      b. Anemometer<br>
+      c. Anemograph (Self-recording)
+    </td>
+    <td>
+      Direction: <span class="reg-value">Degrees from True North</span> in clockwise direction<br>
+      Speed: <span class="reg-value">Knots (KT)</span>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>8</strong></td>
+    <td><strong>Cloud Base</strong></td>
+    <td>
+      a. Search light / Laser beam<br>
+      b. Ceilometer / Ceilograph<br>
+      c. Ceiling Balloon<br>
+      d. Nephroscope (direction of movement)<br>
+      e. Alidade
+    </td>
+    <td>
+      <span class="reg-value">Feet (ft) or m</span><br>
+      <span class="reg-value">8 points of compass</span>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>9</strong></td>
+    <td><strong>Visibility / RVR</strong></td>
+    <td>
+      AVRA<br>
+      Transmissometer or Scopograph<br>
+      Forward Scatterometer<br>
+      Manually — Visibility Landmarks
+    </td>
+    <td><span class="reg-value">m or km</span></td>
+  </tr>
+  <tr>
+    <td><strong>10</strong></td>
+    <td><strong>Upper Winds</strong></td>
+    <td>
+      a. Optical Theodolite<br>
+      b. Hydrogen filled Pilot Balloon<br>
+      c. Radar Wind (RAWIN)
+    </td>
+    <td>
+      Direction: <span class="reg-value">in degrees</span><br>
+      Speed: <span class="reg-value">Knots (KT)</span> or <span class="reg-value">km/hr (KMH)</span> or <span class="reg-value">m per sec (MPS)</span>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>11</strong></td>
+    <td><strong>Upper Air Pressure, Temperature and Humidity</strong></td>
+    <td>
+      Radio Sonde<br>
+      Dropsonde (used in cyclones)
+    </td>
+    <td>
+      <span class="reg-value">Hectopascal (hPa)</span><br>
+      <span class="reg-value">Degree Centigrade (°C)</span><br>
+      <span class="reg-value">% (Relative Humidity)</span>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>12</strong></td>
+    <td><strong>Clouds</strong></td>
+    <td>
+      Weather Satellites<br>
+      RADAR
+    </td>
+    <td>—</td>
+  </tr>
+</table>
+
+<h2>Instrument Classification by Category</h2>
+
+<h3>Self-Recording / Automatic Instruments</h3>
+<div class="blue-box">
+  <ul>
+    <li><strong>Barograph</strong> — Pressure (self-recording)</li>
+    <li><strong>Hygrograph</strong> — Humidity mixing ratio (self-recording)</li>
+    <li><strong>Self-recording rain-gauge</strong> — Precipitation</li>
+    <li><strong>Anemograph</strong> — Surface wind speed (self-recording)</li>
+    <li><strong>Ceilograph</strong> — Cloud base (automated)</li>
+    <li><strong>AVRA</strong> — Automated Visibility and RVR</li>
+    <li><strong>Transmissometer / Scopograph</strong> — Visibility / RVR</li>
+  </ul>
+</div>
+
+<h3>Upper Air Instruments</h3>
+<div class="blue-box">
+  <ul>
+    <li><strong>Radiosonde</strong> — Measures upper air pressure, temperature, humidity (balloon-borne)</li>
+    <li><strong>Dropsonde</strong> — Like Radiosonde but <em>dropped from aircraft into cyclones</em> to gather upper air data</li>
+    <li><strong>Optical Theodolite</strong> — Tracks pilot balloon to determine upper wind direction and speed</li>
+    <li><strong>Hydrogen filled Pilot Balloon (PIBAL)</strong> — Tracked optically for upper winds</li>
+    <li><strong>RAWIN (Radar Wind)</strong> — Radar tracking of balloon for upper winds</li>
+  </ul>
+</div>
+
+<h3>Cloud Base / Ceiling Instruments</h3>
+<div class="blue-box">
+  <ul>
+    <li><strong>Search light / Laser beam:</strong> Projects beam upward to measure cloud base height</li>
+    <li><strong>Ceilometer / Ceilograph:</strong> Automated instrument for cloud base measurement</li>
+    <li><strong>Ceiling Balloon:</strong> Balloon released and timed until it disappears into cloud base</li>
+    <li><strong>Nephroscope:</strong> Determines direction of cloud movement — <span class="reg-value">8 points of compass</span></li>
+    <li><strong>Alidade:</strong> Sighting instrument for angle/direction of cloud features</li>
+  </ul>
+</div>
+
+<h3>Humidity Instruments</h3>
+<div class="blue-box">
+  <ul>
+    <li><strong>Psychrometer:</strong> Dry and wet bulb thermometers — measures relative humidity</li>
+    <li><strong>Hygrometer:</strong> Measures relative humidity (%)</li>
+    <li><strong>Hygrograph:</strong> Self-recording hygrometer; also gives Humidity Mixing Ratio (gm/kg)</li>
+  </ul>
+</div>
+
+<h3>Pressure Instruments</h3>
+<div class="blue-box">
+  <ul>
+    <li><strong>Mercury barometer:</strong> Standard; measures atmospheric pressure in hPa or inches of mercury</li>
+    <li><strong>Aneroid barometer:</strong> Uses a sealed metal capsule (no liquid); portable</li>
+    <li><strong>Barograph:</strong> Self-recording aneroid barometer — continuous pressure trace</li>
+  </ul>
+</div>
+
+<h3>Temperature Instruments</h3>
+<div class="blue-box">
+  <ul>
+    <li><strong>Dry thermometer:</strong> Measures ambient (dry bulb) temperature — Mercury type</li>
+    <li><strong>Max thermometer:</strong> Records maximum temperature — Mercury (has constriction to retain maximum)</li>
+    <li><strong>Min thermometer:</strong> Records minimum temperature — Alcohol (freezing point much lower)</li>
+    <li><strong>Wet bulb thermometer:</strong> Wet wick around bulb; combined with dry bulb to find dew point and RH</li>
+  </ul>
+</div>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary</strong>
+  <ul>
+    <li>Pressure: Mercury/Aneroid barometer, Barograph → <span class="reg-value">hPa / mb / inches Hg</span></li>
+    <li>Temperature: Mercury (max), Alcohol (min) thermometers → <span class="reg-value">°C</span></li>
+    <li>Dew Point: Dry + Wet bulb thermometers → <span class="reg-value">°C</span></li>
+    <li>Relative Humidity: Psychrometer, Hygrometer, Hygrograph → <span class="reg-value">%</span></li>
+    <li>Humidity Mixing Ratio: Hygrograph → <span class="reg-value">gm/kg</span></li>
+    <li>Precipitation: Raingauge, Hyetograph, Snowgauge → <span class="reg-value">mm or cm</span></li>
+    <li>Surface Wind: Wind Vane (direction), Anemometer (speed), Anemograph → <span class="reg-value">Degrees (True N, CW) / Knots</span></li>
+    <li>Cloud Base: Ceilometer, Search light, Ceiling Balloon, Nephroscope → <span class="reg-value">ft or m / 8 compass points</span></li>
+    <li>Visibility/RVR: AVRA, Transmissometer, Scopograph, Forward Scatterometer → <span class="reg-value">m or km</span></li>
+    <li>Upper Winds: Theodolite, Pilot Balloon, RAWIN → <span class="reg-value">degrees / KT or KMH or MPS</span></li>
+    <li>Upper Air P/T/RH: Radiosonde (balloon), Dropsonde (cyclone aircraft) → <span class="reg-value">hPa / °C / %</span></li>
+    <li>Clouds: Weather Satellites, RADAR</li>
+    <li><strong>Min thermometer = Alcohol</strong> (Mercury freezes at −39°C, Alcohol remains liquid at much lower temps)</li>
+    <li><strong>Dropsonde</strong> = used in cyclones (dropped from aircraft — no balloon)</li>
+  </ul>
+</div>
+
+<!-- Q&A -->
+<h2 id="qa" style="page-break-before:always;">Practice Q&amp;A</h2>
+
+<div class="qa-block">
+  <div class="qa-question">Q1. Pressure is measured in units of:<br>(a) Knots &nbsp; (b) Hectopascal (hPa) or Millibar (mb) &nbsp; (c) Percentage (%)</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Hectopascal (hPa) or Millibar (mb)</strong><br>Atmospheric pressure is measured in Hectopascals (hPa), Millibars (mb), or inches of mercury. Note: 1 hPa = 1 mb.</div>
+  <div class="qa-tip">🎓 Standard sea level pressure = 1013.25 hPa = 1013.25 mb = 29.92 inches Hg. The DGCA uses hPa in QNH and altimeter settings.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q2. Minimum temperature is measured by:<br>(a) Mercury thermometer &nbsp; (b) Alcohol thermometer &nbsp; (c) Aneroid thermometer</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Alcohol thermometer</strong><br>The minimum thermometer uses alcohol (not mercury) because alcohol has a much lower freezing point (~−114°C) than mercury (−39°C), allowing measurement of very low temperatures.</div>
+  <div class="qa-distractor">❌ (a) Mercury thermometer: Used for Max temperature and Dry/Wet bulb (air temp and dew point). Mercury freezes at −39°C and cannot measure Arctic/polar minimum temperatures. ❌ (c) Aneroid thermometer: Does not exist — aneroid refers to pressure instruments (barometer).</div>
+  <div class="qa-tip">🎓 Min = Alcohol; Max = Mercury. Remember: "A for Alcohol = A for Arctic cold." Alcohol remains liquid at extremely low temperatures.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q3. Relative Humidity is measured by:<br>(a) Barograph &nbsp; (b) Hygrometer / Psychrometer &nbsp; (c) Anemometer</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Hygrometer / Psychrometer</strong><br>Relative Humidity (%) is measured by Hygrometers, Hygrograph (self-recording), Psychrometer (dry and wet bulb combination), and Dry &amp; Wet bulb thermometers.</div>
+  <div class="qa-tip">🎓 Hygrometer = Humidity. Psychrometer = Dry + Wet bulb thermometers = RH. Hygrograph = self-recording hygrometer = also gives Mixing Ratio in gm/kg.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q4. Cloud base is measured by:<br>(a) Hygrograph &nbsp; (b) Ceilometer / Ceilograph / Ceiling Balloon &nbsp; (c) Anemograph</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Ceilometer / Ceilograph / Ceiling Balloon</strong><br>Cloud base instruments include: Search light/Laser beam, Ceilometer/Ceilograph, Ceiling Balloon, Nephroscope (direction of movement), and Alidade. Units: feet or metres; 8 points of compass (for direction).</div>
+  <div class="qa-tip">🎓 Cloud base = Ceilometer or Ceiling Balloon. For METAR reporting, cloud base is given in hundreds of feet AGL (e.g., BKN030 = broken cloud at 3000 ft).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q5. Upper air pressure, temperature and humidity are measured by:<br>(a) Optical Theodolite &nbsp; (b) Radiosonde / Dropsonde &nbsp; (c) AVRA</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Radiosonde / Dropsonde</strong><br>Radiosonde (balloon-borne) measures upper air pressure, temperature, and humidity. Dropsonde is the same but dropped from aircraft — specifically used in cyclones where balloon launching is not practical.</div>
+  <div class="qa-distractor">❌ (a) Optical Theodolite: Used to track pilot balloons for upper WIND measurement (direction and speed only). ❌ (c) AVRA: Used for Visibility / RVR measurement at surface level.</div>
+  <div class="qa-tip">🎓 Radiosonde = upper air P/T/RH (all three parameters). Dropsonde = same as Radiosonde but dropped from aircraft into cyclones. Theodolite/RAWIN = upper WINDS only.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q6. Upper winds are measured by:<br>(a) Radiosonde &nbsp; (b) Radar Wind (RAWIN) / Optical Theodolite / Pilot Balloon &nbsp; (c) Ceilometer</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Radar Wind (RAWIN) / Optical Theodolite / Pilot Balloon</strong><br>Upper winds are measured by: Optical Theodolite (tracks pilot balloon), Hydrogen-filled Pilot Balloon, and Radar Wind (RAWIN) — radar tracking of balloon. Units: degrees, Knots (KT), km/hr (KMH), or m/sec (MPS).</div>
+  <div class="qa-tip">🎓 Upper winds: RAWIN, Theodolite, PIBAL. Upper air P/T/RH: Radiosonde/Dropsonde. Don't confuse them! The balloon gives you both — but separate instruments are used for each measurement.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q7. Visibility / RVR is measured by:<br>(a) Wind Vane &nbsp; (b) Transmissometer / Scopograph / Forward Scatterometer &nbsp; (c) Nephroscope</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Transmissometer / Scopograph / Forward Scatterometer</strong><br>Visibility and RVR are measured by AVRA, Transmissometer or Scopograph, Forward Scatterometer, or manually using Visibility Landmarks. Units: metres (m) or km.</div>
+  <div class="qa-distractor">❌ (a) Wind Vane: Measures wind direction at the surface. ❌ (c) Nephroscope: Measures direction of cloud movement (8 compass points).</div>
+  <div class="qa-tip">🎓 Transmissometer = measures transmission of light through atmosphere = gives RVR. Forward Scatterometer = scatters laser forward into a detector = visibility measurement. Both used at major airports.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q8. Surface wind direction is reported from True North in which direction?<br>(a) Anticlockwise &nbsp; (b) Clockwise &nbsp; (c) From South</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Clockwise</strong><br>Wind direction is reported in degrees from True North in the clockwise direction. For example, 090° = East, 180° = South, 270° = West.</div>
+  <div class="qa-tip">🎓 Wind direction convention: From True North, measured clockwise. Used in METAR (e.g., "27015KT" = wind from 270° True at 15 knots). This is same as compass bearing convention.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q9. Humidity Mixing Ratio is measured in:<br>(a) % &nbsp; (b) gm/kg &nbsp; (c) hPa</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) gm/kg</strong><br>Humidity Mixing Ratio (HMR) is measured in grams per kilogram (gm/kg) of dry air. It is measured using the Hygrograph. Note: Relative Humidity is measured in % (different parameter).</div>
+  <div class="qa-tip">🎓 Key distinction: Relative Humidity = % ; Mixing Ratio = gm/kg. Both are measures of humidity but in different units and with different meanings. Mixing Ratio does not change with temperature changes alone.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q10. Dropsonde is used in:<br>(a) Mountain areas &nbsp; (b) Cyclones (dropped from aircraft) &nbsp; (c) Upper atmosphere research</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Cyclones (dropped from aircraft)</strong><br>Dropsonde is a Radiosonde-equivalent instrument that is DROPPED from reconnaissance aircraft into cyclones to gather upper air pressure, temperature, and humidity data where balloon launching is not feasible.</div>
+  <div class="qa-tip">🎓 Radiosonde goes UP (balloon); Dropsonde goes DOWN (aircraft drop). Both measure upper air P/T/RH. Dropsonde specifically used in cyclone reconnaissance missions.</div>
+</div>
+
+<!-- MASTER REFERENCE -->
+<h2 id="reference" style="page-break-before:always;">Master Reference Table — Full Instrument Summary</h2>
+
+<table>
+  <tr><th>Element</th><th>Primary Instruments</th><th>Self-Recording Version</th><th>Unit</th></tr>
+  <tr><td>Pressure</td><td>Mercury barometer, Aneroid barometer</td><td>Barograph</td><td><span class="reg-value">hPa / mb / in Hg</span></td></tr>
+  <tr><td>Air Temperature</td><td>Mercury thermometer (Dry), Mercury (Max), Alcohol (Min)</td><td>Thermograph</td><td><span class="reg-value">°C</span></td></tr>
+  <tr><td>Dew Point (TdTd)</td><td>Dry + Wet bulb (Mercury) thermometers</td><td>—</td><td><span class="reg-value">°C</span></td></tr>
+  <tr><td>Relative Humidity</td><td>Psychrometer, Dry + Wet bulb, Hygrometer</td><td>Hygrograph</td><td><span class="reg-value">%</span></td></tr>
+  <tr><td>Humidity Mixing Ratio</td><td>—</td><td>Hygrograph</td><td><span class="reg-value">gm/kg</span></td></tr>
+  <tr><td>Precipitation</td><td>Raingauge, Snowgauge</td><td>Self-recording rain-gauge, Hyetograph</td><td><span class="reg-value">mm or cm</span></td></tr>
+  <tr><td>Surface Wind Direction</td><td>Wind Vane</td><td>Anemograph</td><td><span class="reg-value">Degrees (True N, CW)</span></td></tr>
+  <tr><td>Surface Wind Speed</td><td>Anemometer</td><td>Anemograph</td><td><span class="reg-value">Knots (KT)</span></td></tr>
+  <tr><td>Cloud Base</td><td>Ceilometer, Search light, Ceiling Balloon, Alidade, Nephroscope</td><td>Ceilograph</td><td><span class="reg-value">ft or m / 8 points compass</span></td></tr>
+  <tr><td>Visibility / RVR</td><td>AVRA, Transmissometer, Scopograph, Forward Scatterometer</td><td>—</td><td><span class="reg-value">m or km</span></td></tr>
+  <tr><td>Upper Winds</td><td>Optical Theodolite, Pilot Balloon (PIBAL), RAWIN</td><td>—</td><td><span class="reg-value">Degrees / KT or KMH or MPS</span></td></tr>
+  <tr><td>Upper Air P/T/RH</td><td>Radiosonde (balloon), Dropsonde (cyclone)</td><td>—</td><td><span class="reg-value">hPa / °C / %</span></td></tr>
+  <tr><td>Clouds</td><td>Weather Satellites, RADAR</td><td>—</td><td>—</td></tr>
+</table>
+
+<h3>Mnemonics</h3>
+<table>
+  <tr><th>Mnemonic</th><th>Meaning</th></tr>
+  <tr><td><strong>"Min = Alcohol (A for Arctic)"</strong></td><td>Minimum thermometer uses Alcohol (low freezing point)</td></tr>
+  <tr><td><strong>"Radiosonde Up, Dropsonde Down"</strong></td><td>Radiosonde = balloon; Dropsonde = dropped from aircraft (cyclones)</td></tr>
+  <tr><td><strong>"RAWIN = Radar Wind"</strong></td><td>Upper wind measurement by radar tracking of balloon</td></tr>
+  <tr><td><strong>"Hygrograph = HMR (gm/kg)"</strong></td><td>Hygrograph gives Humidity Mixing Ratio in gm/kg</td></tr>
+  <tr><td><strong>"Psychrometer = Dry + Wet = RH%"</strong></td><td>Psychrometer uses wet and dry bulb thermometers to find RH</td></tr>
+  <tr><td><strong>"Transmissometer = Visibility"</strong></td><td>Measures transmission of light = visibility/RVR</td></tr>
+  <tr><td><strong>"Nephroscope = Cloud Direction"</strong></td><td>Nephroscope measures direction of cloud movement (8 compass points)</td></tr>
+  <tr><td><strong>"Barograph = Pressure graph"</strong></td><td>Self-recording pressure trace; aneroid based</td></tr>
+</table>
+
+</div>
+
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

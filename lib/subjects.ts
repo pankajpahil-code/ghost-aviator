@@ -208,7 +208,7 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "met-16", number: 16, title: "Clear Air Turbulence",
         description: "Definition and causes of CAT, association with jet streams and wind shear, detection, reporting and avoidance.",
-        duration: "1 hr", questionCount: 40, content: makeContent(),
+        duration: "1 hr", questionCount: 40, content: makeContent(true),
       },
       {
         id: "met-17", number: 17, title: "Mountain Waves",
@@ -238,12 +238,12 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "met-22", number: 22, title: "Weather Radar and Met Satellites",
         description: "Principles of weather radar, interpretation of returns, geostationary and polar-orbiting satellites, satellite imagery (visible and IR) and its use in weather analysis.",
-        duration: "1 hr", questionCount: 40, content: makeContent(),
+        duration: "1 hr", questionCount: 40, content: makeContent(true),
       },
       {
         id: "met-23", number: 23, title: "Met Instruments",
         description: "Thermometers, barometers (mercury and aneroid), barograph, hygrometer, anemometer, wind vane, rain gauge and sunshine recorder and their exposure.",
-        duration: "1 hr", questionCount: 40, content: makeContent(),
+        duration: "1 hr", questionCount: 40, content: makeContent(true),
       },
       {
         id: "met-24", number: 24, title: "Station Model",
