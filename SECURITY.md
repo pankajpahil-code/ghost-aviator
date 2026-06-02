@@ -44,6 +44,15 @@ is the only thing protecting your data.** Without it, a stranger can run
 Run this in the Supabase SQL editor **before** setting the env vars in Vercel:
 
 ```sql
+-- Create the leads table first if it doesn't exist yet (matches captureLead()).
+create table if not exists public.leads (
+  id         uuid primary key default gen_random_uuid(),
+  name       text,
+  email      text not null,
+  source     text default 'site',
+  created_at timestamptz default now()
+);
+
 -- LEADS: allow anonymous INSERT (the email-capture form) but NOBODY can read the list.
 alter table public.leads enable row level security;
 
