@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 20 — General Circulation | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #222; margin: 0; padding: 0; background: #fff; }
+  h1, h2, h3, h4 { color: #1a237e; }
+  h1 { font-size: 2em; text-align: center; }
+  h2 { font-size: 1.5em; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; margin-top: 20px; }
+  .cover { text-align: center; padding: 80px 40px; page-break-after: always; border-bottom: 3px solid #1a237e; }
+  .cover h1 { font-size: 2.4em; color: #1a237e; }
+  .cover h2 { font-size: 1.3em; color: #444; border: none; }
+  .cover p { color: #555; font-size: 1em; }
+  .toc { page-break-after: always; padding: 30px 40px; }
+  .toc h2 { text-align: center; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { padding: 4px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; }
+  .content { padding: 20px 40px; max-width: 900px; margin: auto; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #b71c1c; background: #fce4ec; padding: 1px 4px; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 10px; text-align: left; }
+  td { padding: 7px 10px; border: 1px solid #bbb; }
+  tr:nth-child(even) td { background: #f0f4ff; }
+  .qa-block { border: 1px solid #ccc; border-radius: 8px; margin: 20px 0; padding: 16px; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 10px; border-radius: 4px; font-weight: bold; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 10px; border-radius: 4px; margin-top: 8px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 10px; border-radius: 4px; margin-top: 8px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 10px; border-radius: 4px; margin-top: 8px; }
+  .worked-example { background: #f3e5f5; border-left: 5px solid #6a1b9a; padding: 15px; border-radius: 6px; margin: 15px 0; font-family: monospace; page-break-inside: avoid; }
+  pre.mermaid { background: #f8f8f8; padding: 10px; border-radius: 6px; page-break-inside: avoid; }
+  svg { max-width: 100%; page-break-inside: avoid; }
+  @page { size: A4; margin: 20mm; }
+  @media print { body { font-size: 12px; } .cover { padding: 40px 20px; } }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 20<br>General Circulation</h1>
+  <h2>DGCA CPL/ATPL Study Notes — Aviation Meteorology</h2>
+  <p>Source: IC Joshi — Aviation Meteorology (Latest Edition)</p>
+  <p><strong>Compiled by Capt. Pankaj Pahil</strong></p>
+  <p>For DGCA CPL / ATPL Ground Examination Preparation</p>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#three-cell">1. Three Cell Model of General Circulation</a></li>
+    <li><a href="#hadley">2. Hadley Cell</a></li>
+    <li><a href="#ferrel">3. Ferrel Cell</a></li>
+    <li><a href="#polar">4. Polar Cell</a></li>
+    <li><a href="#three-cell-features">5. Surface Characteristics of the Three Cell Model</a></li>
+    <li><a href="#standing-waves">6. Standing Waves (Stationary Waves / Standing Eddies)</a></li>
+    <li><a href="#rossby">7. Rossby Waves (Planetary Waves)</a></li>
+    <li><a href="#tropical-lower-strat">8. General Circulation of the Tropical Lower Stratosphere</a></li>
+    <li><a href="#qa">Practice Q&amp;A</a></li>
+    <li><a href="#reference">Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<h2 id="three-cell">1. Three Cell Model of General Circulation</h2>
+<div class="blue-box">
+  <strong>Definition:</strong> The Three Cell Model describes the average circulation of the atmosphere and the atmospheric energy transport. The energy balance over the globe is described in terms of three cells: <strong>Hadley Cell, Ferrel Cell, and Polar Cell</strong>.
+</div>
+
+<pre class="mermaid">
+flowchart LR
+    A["Equatorial Heating\n(ITCZ)"] --> B["Air rises at Equator\n(Hadley Cell)"]
+    B --> C["Moves poleward\nat upper levels"]
+    C --> D["Sinks at 30°N/S\nSubtropical High"]
+    D --> E["Trade Winds\n(surface flow back to equator)"]
+    E --> A
+    D --> F["Poleward flow\nat surface (Ferrel Cell)"]
+    F --> G["Meets Polar Air at 60°N/S\nPolar Front"]
+    G --> H["Air rises\nat Polar Front"]
+    H --> I["Polar Cell:\nAir sinks at poles\nPolar Easterlies"]
+</pre>
+
+<h2 id="hadley">2. Hadley Cell</h2>
+<div class="blue-box">
+  <strong>Hadley Cell</strong> operates between the equator and approximately <span class="reg-value">30°N/S</span>.
+</div>
+<ul>
+  <li>Intense solar radiation at the equatorial region heats the surface and causes air to rise.</li>
+  <li>Rising air forms convective clouds and heavy precipitation — this region is known as the <strong>Inter-Tropical Convergence Zone (ITCZ)</strong>.</li>
+  <li>In this zone, NE Trades from the N hemisphere and SE Trades from the S hemisphere converge, hence the name ITCZ.</li>
+  <li>ITCZ moves north and south following the sun during the year.</li>
+  <li>Due to solar heating, rising air reaches about <span class="reg-value">30°N</span> and becomes a westerly wind due to the Coriolis force — these are <strong>Zonal Westerlies</strong>.</li>
+  <li>The westerly winds keep strengthening with height and establish a <strong>Subtropical Jet</strong> just below the tropopause.</li>
+  <li>Poleward-moving air piles up in the subtropical regions and forms a high pressure belt at the surface — <strong>Subtropical High</strong>.</li>
+  <li>Subsidence inhibits cloud formation — this is why large deserts occur near <span class="reg-value">30°N</span> and <span class="reg-value">30°S</span>.</li>
+</ul>
+
+<div class="amber-box">
+  <strong>Mnemonic:</strong> <em>"Heat Rises At ITCZ, Trades Return"</em> — Hadley Cell: equatorial heating → ITCZ rise → subtropical sink → Trade Winds return.
+</div>
+
+<h2 id="ferrel">3. Ferrel Cell</h2>
+<div class="blue-box">
+  <strong>Ferrel Cell</strong> operates between approximately <span class="reg-value">30°N/S</span> and <span class="reg-value">60°N/S</span>.
+</div>
+<ul>
+  <li>Some of the diverging air at the surface near <span class="reg-value">30°N</span> moves polewards and is deflected to the right by the Coriolis force.</li>
+  <li>At about <span class="reg-value">60°N</span> the Coriolis-deflected air rises, cools, and condenses — forms clouds.</li>
+  <li>This rising air returns equatorwards at upper levels.</li>
+  <li>This is the general region of the <strong>polar front</strong>.</li>
+</ul>
+
+<h2 id="polar">4. Polar Cell</h2>
+<div class="blue-box">
+  <strong>Polar Cell</strong> operates between <span class="reg-value">60°N/S</span> and the poles (<span class="reg-value">90°N/S</span>).
+</div>
+<ul>
+  <li>Sinking air at the poles warms and results in high pressure over the poles.</li>
+  <li>At the surface, poleward-moving air gets pulled to the right by the Coriolis force (in the northern hemisphere), forming the <strong>polar easterly winds</strong>.</li>
+  <li>The warm subtropical air meets the cold polar air and forms the boundary known as the <strong>polar front</strong>.</li>
+  <li>The large temperature contrast at the polar front causes the <strong>polar front jet stream</strong> to occur in the vicinity of the polar cell.</li>
+</ul>
+
+<h2 id="three-cell-features">5. Surface Characteristics — Three Cell Model</h2>
+<table>
+  <tr><th>Feature</th><th>Description</th><th>Location</th></tr>
+  <tr><td><strong>Equatorial Doldrums</strong></td><td>Rising air creates calms or doldrums</td><td>Equatorial region</td></tr>
+  <tr><td><strong>ITCZ</strong></td><td>Along the equator — rising air zone of convection</td><td>Near equator (moves N/S seasonally)</td></tr>
+  <tr><td><strong>Trade Winds</strong></td><td>Steady NE winds in N hemisphere; SE winds in S hemisphere</td><td><span class="reg-value">0°–30°</span> N/S</td></tr>
+  <tr><td><strong>Horse Latitudes</strong></td><td>Descending branch of Hadley cell — calm winds, high pressure</td><td><span class="reg-value">Lat 30–40°</span></td></tr>
+  <tr><td><strong>Roaring Forties</strong></td><td>Westerlies blow between <span class="reg-value">35°</span> and <span class="reg-value">60°</span> lat</td><td>Both hemispheres</td></tr>
+  <tr><td><strong>Furious Fifties</strong></td><td>Very strong Westerlies — mid latitude flow</td><td>Around <span class="reg-value">50°</span> lat</td></tr>
+  <tr><td><strong>Crying Sixties</strong></td><td>Very noisy Westerlies (35° to 60°)</td><td>Around <span class="reg-value">60°</span> lat</td></tr>
+  <tr><td><strong>Polar Front</strong></td><td>Boundary between cold polar air moving equatorwards and warm subtropical air moving polewards</td><td>Near <span class="reg-value">60°</span> lat</td></tr>
+  <tr><td><strong>Polar Easterly Winds</strong></td><td>Cold polar air moving southwest meets prevailing westerlies to form polar front</td><td>Polar regions</td></tr>
+</table>
+
+<div class="red-box">
+  <strong>Important:</strong> In the <strong>equatorial regions</strong>, the upper tropospheric winds are <strong>Easterlies</strong>. In a narrow belt near the equator, the winds in the upper troposphere are westerly, known as <strong>Zonal Westerlies</strong>.
+</div>
+
+<div class="blue-box">
+  <strong>Upper Tropospheric Winds:</strong>
+  <ul>
+    <li>The zonal flows in the upper troposphere govern the movement of disturbances in the pressure and wind patterns.</li>
+    <li>Disturbances of <strong>middle latitudes move from west to east</strong> in the westerly current.</li>
+    <li>Tropical disturbances form in the equatorial low pressure belt and move in a <strong>westerly direction</strong>, steered by the high level easterly flow.</li>
+    <li>Tropical disturbances reaching the zone of transition in the upper level flow change course (or recurve) and begin to move in an opposite direction.</li>
+  </ul>
+</div>
+
+<h2 id="standing-waves">6. Standing Waves (Stationary Waves / Standing Eddies)</h2>
+<div class="blue-box">
+  <strong>Standing Wave</strong> (also called Stationary Wave and Standing Eddies): A combination of two waves moving in opposite directions, each having the same amplitude and frequency. Due to interference, the waves are superimposed and their energies are either added or cancelled.
+</div>
+<ul>
+  <li>Atmospheric Standing Waves are <strong>Zonally time averaged General Circulation</strong>.</li>
+  <li>Time period for averaging is over a month to a season.</li>
+  <li>These waves arise due to mountains, continents, oceans, and different sea surface temperatures.</li>
+  <li>N/S winds due to these waves transport cold and warm air which affect the overall climate.</li>
+  <li>They advect moisture over the continents.</li>
+  <li><strong>Stationary waves are capable of altering the storm tracks.</strong></li>
+</ul>
+
+<h2 id="rossby">7. Rossby Waves (Planetary Waves)</h2>
+<div class="blue-box">
+  <strong>Rossby Waves</strong> (also known as Planetary Waves): A type of inertial waves that naturally occur in rotating atmosphere and oceans. They are giant longitudinal curves (troughs and ridges) in high-altitude winds.
+</div>
+<ul>
+  <li>Associated with pressure systems and jet streams, and have a major influence on weather.</li>
+  <li>The meandering jet streams are Rossby waves.</li>
+  <li>Oceanic Rossby waves move along the boundary between the warm upper layer and the cold part of the ocean.</li>
+  <li>The Atmospheric Rossby waves are big, having wavelengths ranging from <strong>m and km (gravity waves)</strong> to thousands of km (planetary waves).</li>
+  <li>Named after the discoverer <strong>Carl Rossby in 1930s</strong>.</li>
+</ul>
+
+<div class="amber-box">
+  <strong>Exam Tip:</strong> Rossby waves = Planetary waves. The jet streams meander as Rossby waves. These influence storm tracks and weather systems in the mid-latitudes.
+</div>
+
+<h2 id="tropical-lower-strat">8. General Circulation of the Tropical Lower Stratosphere</h2>
+<div class="blue-box">
+  The circulation in the lower stratosphere comprises large-scale vertical waves forced by the westward propagating Rossby waves — a phenomenon called <strong>Rossby-wave pumping</strong>.
+</div>
+<ul>
+  <li>These waves have a period of a few weeks to a few months.</li>
+  <li>The circulation affects surface climate through <strong>radiative changes</strong>.</li>
+  <li>Circulation remains confined to the lower stratosphere only.</li>
+</ul>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary</strong>
+  <ul>
+    <li>Three cells: <strong>Hadley</strong> (equator–30°), <strong>Ferrel</strong> (30°–60°), <strong>Polar</strong> (60°–poles)</li>
+    <li>ITCZ = convergence of NE and SE Trade Winds near equator; moves seasonally</li>
+    <li>Subtropical High formed by subsidence at <span class="reg-value">30°</span> — causes deserts</li>
+    <li>Polar front jet near <span class="reg-value">60°</span> lat; Subtropical jet near <span class="reg-value">30°</span> lat</li>
+    <li>Horse Latitudes at <span class="reg-value">30–40°</span>; Roaring Forties/Furious Fifties/Crying Sixties between <span class="reg-value">35°–60°</span></li>
+    <li>Middle latitude disturbances move W→E; Tropical disturbances move E→W (recurve later)</li>
+    <li>Rossby/Planetary waves: meander of jet stream; named Carl Rossby, <span class="reg-value">1930s</span></li>
+    <li>Upper equatorial troposphere = Easterlies; narrow belt near equator = Zonal Westerlies</li>
+  </ul>
+</div>
+
+<!-- Q&A SECTION -->
+<h2 id="qa" style="page-break-before:always;">Practice Q&amp;A</h2>
+
+<div class="qa-block">
+  <div class="qa-question">Q1. The polewards moving air piles up in the subtropical regions and forms high pressure belt at the surface, it is called:<br>(a) Subtropical high &nbsp; (b) Polar High &nbsp; (c) Equatorial high</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (a) Subtropical high</strong><br>At ~30°N/S, the poleward-moving Hadley cell air sinks, forming the Subtropical High pressure belt at the surface.</div>
+  <div class="qa-distractor">❌ (b) Polar High: This forms at the poles due to cold sinking air — not at 30°. ❌ (c) Equatorial high: The equator is a region of low pressure and rising air (ITCZ) — not high pressure.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> Subtropical High = 30°N/S sinking air. Remember: "Sink at 30° = Subtropical High = Deserts = Horse Latitudes."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q2. ________ occurs over subtropical high.<br>(a) advection &nbsp; (b) convection &nbsp; (c) subsidence</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (c) subsidence</strong><br>Subtropical Highs are characterised by descending/sinking air (subsidence), which inhibits cloud formation and causes clear skies and deserts below.</div>
+  <div class="qa-distractor">❌ (a) Advection: Horizontal movement of air — not the defining characteristic here. ❌ (b) Convection: Rising air — this happens at the ITCZ/equator, opposite of what happens at subtropical highs.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> Subsidence = sinking = subtropical high = desert belt. Convection = rising = ITCZ = clouds/rain.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q3. The occurrence of large deserts near 30N and 30S are due to large scale:<br>(a) advection &nbsp; (b) convection &nbsp; (c) subsidence</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (c) subsidence</strong><br>Large-scale subsidence at the subtropical highs (~30°N/S) suppresses cloud formation and precipitation, creating desert regions (Sahara, Arabian Desert, etc.).</div>
+  <div class="qa-distractor">❌ (a)(b): Same reasoning as Q2 — only subsidence inhibits cloud formation.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> Deserts at 30°N/S = Subtropical high = Subsidence. Classic DGCA link between synoptic-scale subsidence and desert climatology.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q4. A part of the sinking air over the subtropical highs flows towards the equator, turning west (in the northern hemisphere) due to the Coriolis force. This surface air is called:<br>(a) Trade winds &nbsp; (b) Westerlies &nbsp; (c) Doldrums</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (a) Trade winds</strong><br>The surface return flow from subtropical highs towards the ITCZ is deflected westward by the Coriolis force, creating the NE Trade Winds (NH) and SE Trade Winds (SH).</div>
+  <div class="qa-distractor">❌ (b) Westerlies: These blow in the mid-latitudes poleward of 30°. ❌ (c) Doldrums: These are the calm areas at the ITCZ, not a wind system from the subtropical high.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> Trade Winds blow from subtropical high TOWARD equator — NE in NH, SE in SH. They are the surface branch of the Hadley Cell.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q5. The huge vertical circulations, one between the equator and 30N and another between equator and 30S, are called:<br>(a) Hadley Cells &nbsp; (b) Ferrel Cells &nbsp; (c) Polar cells</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (a) Hadley Cells</strong><br>Hadley Cells are the large convective cells between the equator and ~30°N/S, driven by solar heating at the ITCZ and sinking at the subtropical highs.</div>
+  <div class="qa-distractor">❌ (b) Ferrel Cells: These are in the mid-latitudes (30°–60°). ❌ (c) Polar Cells: These are between 60° and the poles.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> Hadley=equator-30°, Ferrel=30°-60°, Polar=60°-90°. Use "HFP" — Hat, Ferrel, Pole!</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q6. Descending branch of the Hadley cell marked by calm winds and high pressure at the surface are called:<br>(a) Tropical Latitudes &nbsp; (b) Middle latitudes &nbsp; (c) Horse Latitudes</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (c) Horse Latitudes</strong><br>Horse Latitudes (approximately 30–40°) are characterised by calm winds, subsidence, and high pressure — the descending branch of the Hadley cell.</div>
+  <div class="qa-distractor">❌ (a) Tropical Latitudes: These are near the equator/ITCZ region, not at 30–40°. ❌ (b) Middle latitudes: These span 30°–60° and include the Ferrel cell — broader term, not specifically calm.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> "Horse Latitudes" — historically ships got stuck in calms here and threw horses overboard to save water. Located at ~30–40°N/S.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q7. The winds in the upper troposphere in the equatorial regions are:<br>(a) Westerlies &nbsp; (b) Easterlies &nbsp; (c) Zonal Westerlies</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Easterlies</strong><br>In the equatorial regions, the upper tropospheric winds are Easterlies. (Note: a narrow belt near the equator has Zonal Westerlies, but the general equatorial upper troposphere is dominated by Easterlies.)</div>
+  <div class="qa-distractor">❌ (a) Westerlies: These occur in mid-latitudes in the upper troposphere. ❌ (c) Zonal Westerlies: Only in a narrow belt near the equator.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> DGCA exam: Upper equatorial troposphere = Easterlies. This steers tropical disturbances from east to west.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q8. The disturbances of middle latitudes move from:<br>(a) Easterly direction &nbsp; (b) Westerly direction &nbsp; (c) Southerly direction</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Westerly direction</strong><br>Middle latitude disturbances move from west to east in the westerly current (the Ferrel Cell/Roaring Forties region). This is steered by the upper westerlies.</div>
+  <div class="qa-distractor">❌ (a) Easterly: Tropical disturbances move in an easterly (westward) direction. ❌ (c) Southerly: Not a primary direction for mid-latitude systems.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> Mid-lat disturbances = W to E. Tropical disturbances = E to W (recurve later). Key for tropical meteorology questions!</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q9. The tropical disturbance which form in the equatorial low pressure belt move in a:<br>(a) Easterly direction &nbsp; (b) Westerly direction &nbsp; (c) Northerly direction</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (b) Westerly direction</strong><br>Tropical disturbances form in the equatorial low pressure belt and move westward, steered by the high-level easterly flow.</div>
+  <div class="qa-distractor">❌ (a) Easterly direction: This refers to the wind direction from east — but the movement is towards the west (westerly direction of movement). ❌ (c) Northerly: Not applicable for initial movement.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> "Westerly direction" = moving westward. Tropical disturbances are steered westward by upper-level easterlies until they recurve poleward when they reach mid-latitudes.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q10. Latitudinally, on the average there is radiation ………… in the tropics than in the polar regions.<br>(a) surplus &nbsp; (b) deficit &nbsp; (c) balance</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (a) surplus</strong><br>The tropics receive more solar radiation than they emit (radiation surplus). The poles emit more than they receive (radiation deficit). This imbalance drives the general circulation.</div>
+  <div class="qa-distractor">❌ (b) Deficit: This applies to polar regions. ❌ (c) Balance: There is no balance latitudinally — this imbalance is the DRIVER of general circulation.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> Tropics = radiation SURPLUS → drives Hadley cell. Poles = radiation DEFICIT. The general circulation transfers energy from surplus to deficit regions.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q11. The systems like highs, lows, cyclonic and anticyclonic circulations etc. are associated with distinct types of weather. A study of the behaviour of these systems, known as:<br>(a) Synoptic Meteorology &nbsp; (b) Climatology &nbsp; (c) Physical Meteorology</div>
+  <div class="qa-answer">✅ <strong>Correct Answer: (a) Synoptic Meteorology</strong><br>Synoptic Meteorology is the study of weather systems (highs, lows, fronts, cyclones) and their associated weather, using synoptic-scale charts and observations.</div>
+  <div class="qa-distractor">❌ (b) Climatology: The study of long-term average weather patterns over a region. ❌ (c) Physical Meteorology: Deals with physical properties of the atmosphere — radiation, optics, thermodynamics.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> Synoptic = weather maps and systems. Physical = properties of atmosphere. Climatology = long-term averages. Know all three branches for DGCA.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q12. Rising air creates calms or doldrums in equatorial region. Q13. Steady NE winds in the N hemisphere and SE winds in the S hemisphere are called:<br>(a) Easterly winds &nbsp; (b) Trade Winds &nbsp; (c) Tropical Winds</div>
+  <div class="qa-answer">✅ <strong>Correct Answers:</strong><br>Q12: Rising air → Doldrums at equatorial region. ✅<br>Q13: (b) Trade Winds — NE in NH, SE in SH, surface return flow of Hadley Cell.</div>
+  <div class="qa-distractor">❌ (a) Easterly winds: Generic term. ❌ (c) Tropical Winds: Not a specific technical term used in meteorology.</div>
+  <div class="qa-tip">🎓 <strong>Instructor's Note:</strong> Trade Winds are steady and reliable — historically used by traders for sailing. NE Trades in NH, SE Trades in SH.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q14. (Answer key question) Q14 Answer: a (ITCZ — Rising air creates calms or doldrums), Q15 Answer: b (Trade Winds)</div>
+  <div class="qa-answer">✅ As per answer key: Q1-a, Q2-c, Q3-c, Q4-a, Q5-a, Q6-c, Q7-b, Q8-b, Q9-b, Q10-a, Q11-a, Q12-b, Q13-b (Trade Winds), Q14-a, Q15-b</div>
+  <div class="qa-tip">🎓 Study the answer key pattern: all subsidence-related questions → (c), all disturbance direction questions → (b) Westerly.</div>
+</div>
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="reference" style="page-break-before:always;">Master Reference Tables</h2>
+
+<h3>Numerical Values & Key Latitudes</h3>
+<table>
+  <tr><th>Feature</th><th>Latitude</th><th>Notes</th></tr>
+  <tr><td>ITCZ / Doldrums</td><td><span class="reg-value">~0° (equator)</span></td><td>Moves N/S seasonally with sun</td></tr>
+  <tr><td>Subtropical High / Horse Latitudes</td><td><span class="reg-value">30–40°</span></td><td>Descending Hadley branch; deserts below</td></tr>
+  <tr><td>Subtropical Jet Stream</td><td><span class="reg-value">~30°</span></td><td>Just below tropopause</td></tr>
+  <tr><td>Roaring Forties / Ferrel Cell</td><td><span class="reg-value">35°–60°</span></td><td>Furious Fifties, Crying Sixties in SH</td></tr>
+  <tr><td>Polar Front / Polar Front Jet</td><td><span class="reg-value">~60°</span></td><td>Boundary between Ferrel and Polar cells</td></tr>
+  <tr><td>Polar Easterlies</td><td><span class="reg-value">60°–90°</span></td><td>Cold air from poles</td></tr>
+  <tr><td>Rossby waves named</td><td>—</td><td>Carl Rossby, <span class="reg-value">1930s</span></td></tr>
+</table>
+
+<h3>Cell Characteristics Summary</h3>
+<table>
+  <tr><th>Cell</th><th>Latitude Band</th><th>Surface Wind</th><th>Jet Stream</th></tr>
+  <tr><td>Hadley</td><td><span class="reg-value">0°–30°</span></td><td>Trade Winds (NE/SE)</td><td>Subtropical Jet</td></tr>
+  <tr><td>Ferrel</td><td><span class="reg-value">30°–60°</span></td><td>Westerlies</td><td>Polar Front Jet</td></tr>
+  <tr><td>Polar</td><td><span class="reg-value">60°–90°</span></td><td>Polar Easterlies</td><td>Polar Jet</td></tr>
+</table>
+
+<h3>Answer Key</h3>
+<table>
+  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+  <tr><td><strong>A</strong></td><td>a</td><td>c</td><td>c</td><td>a</td><td>a</td><td>c</td><td>b</td><td>b</td><td>b</td><td>a</td><td>a</td><td>b</td><td>b</td><td>a</td><td>b</td></tr>
+</table>
+
+<h3>Mnemonics</h3>
+<table>
+  <tr><th>Mnemonic</th><th>Meaning</th></tr>
+  <tr><td><strong>HFP</strong></td><td>Hadley-Ferrel-Polar (equator to pole)</td></tr>
+  <tr><td><strong>"Sink at 30 = Desert"</strong></td><td>Subtropical subsidence → Horse Latitudes → Deserts</td></tr>
+  <tr><td><strong>"Tropics = Surplus"</strong></td><td>Radiation surplus drives Hadley cell</td></tr>
+  <tr><td><strong>"Mid-lat W→E, Tropical E→W"</strong></td><td>Direction of disturbance movement</td></tr>
+  <tr><td><strong>"Rossby = Planetary = Jet meanders"</strong></td><td>Carl Rossby 1930s; wavelengths m to 1000s km</td></tr>
+</table>
+
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>

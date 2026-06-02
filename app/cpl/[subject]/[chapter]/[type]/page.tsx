@@ -110,6 +110,14 @@ export default async function Page({
       "meteorology/met-13": true,
       "meteorology/met-14": true,
       "meteorology/met-15": true,
+      "meteorology/met-16": true,
+      "meteorology/met-17": true,
+      "meteorology/met-18": true,
+      "meteorology/met-19": true,
+      "meteorology/met-20": true,
+      "meteorology/met-21": true,
+      "meteorology/met-22": true,
+      "meteorology/met-23": true,
     };
     if (HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]) {
       return (

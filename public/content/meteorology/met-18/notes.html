@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 18 – Tropical Systems | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #222; max-width: 900px; margin: 0 auto; padding: 20px; }
+  h1 { font-size: 2em; color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 8px; }
+  h2 { font-size: 1.5em; color: #283593; border-left: 5px solid #3949ab; padding-left: 10px; margin-top: 30px; }
+  h3 { font-size: 1.2em; color: #37474f; margin-top: 20px; }
+  .cover { text-align: center; padding: 60px 20px; border: 2px solid #1a237e; border-radius: 10px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { font-size: 2.5em; border: none; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 10px; }
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { margin: 8px 0; }
+  .toc a { color: #1a237e; text-decoration: none; font-size: 1em; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: white; padding: 10px; text-align: left; }
+  td { border: 1px solid #ccc; padding: 8px 10px; }
+  tr:nth-child(even) { background: #f5f5f5; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 20px 0; padding: 20px; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 12px; border-radius: 4px; font-weight: bold; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px; border-radius: 4px; margin-top: 10px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px; border-radius: 4px; margin-top: 10px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px; border-radius: 4px; margin-top: 10px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  svg { max-width: 100%; page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 18<br>Tropical Systems</h1>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="subtitle" style="margin-top:20px; font-size:1.3em; font-weight:bold;">Compiled by Capt. Pankaj Pahil</div>
+  <div class="subtitle" style="margin-top:10px;">Source: IC Joshi — Aviation Meteorology</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#itcz">1. Tropical Discontinuities — ITCZ</a></li>
+    <li><a href="#easterly">2. Easterly Waves</a></li>
+    <li><a href="#pd">3. Peninsular Discontinuity (PD)</a></li>
+    <li><a href="#surge">4. Surge</a></li>
+    <li><a href="#shear">5. Shear Lines</a></li>
+    <li><a href="#lps">6. Low Pressure Systems Classification</a></li>
+    <li><a href="#depression">7. Monsoon Depressions</a></li>
+    <li><a href="#tc">8. Tropical Cyclones (TRS)</a></li>
+    <li><a href="#freq">9. Frequency of Cyclones</a></li>
+    <li><a href="#frontal">10. Frontal Depressions</a></li>
+    <li><a href="#flying">11. Flying Hazards in Tropical Cyclones</a></li>
+    <li><a href="#quick-rev">12. Quick Revision Summary</a></li>
+    <li><a href="#qa">13. Practice Q&amp;A</a></li>
+    <li><a href="#ref">14. Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="itcz">1. Tropical Discontinuities — ITCZ</h2>
+
+<div class="box-blue">
+  <strong>Tropical Discontinuities / Convergence Zones:</strong> In the tropics, the temperature (or density) contrast between two air masses is not as discernible as in higher latitudes. Hence fronts cannot be marked. However, a line of discontinuity can be drawn in the wind field in upper air charts and by inspection of the cloud pattern — called <strong>Tropical Discontinuities</strong> or <strong>Convergence Zones</strong>.
+</div>
+
+<div class="box-blue">
+  <strong>Inter Tropical Convergence Zone (ITCZ):</strong> A narrow zone along which Tm or Te air from the N meets the Tm or Em air from the S. Air masses within the tropics converge — hence the name ITCZ. ITCZ usually lies along the Equatorial Trough (ET). In summers it migrates up to <span class="reg-value">20° N</span> and in winters up to <span class="reg-value">Australia</span>. ITCZ is active in certain portions, about <span class="reg-value">75–150 km</span> length, where heavy showers occur and CB clouds predominate. On rare occasions it may be pushed up to S Bay of Bengal in winters and may initiate formation of cyclonic storms during the rainy season — ITCZ/ET coincides with Monsoon Trough.
+</div>
+
+<div class="box-blue">
+  <strong>Equatorial Front:</strong> Alternative term for ITCZ.
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="easterly">2. Easterly Waves</h2>
+
+<div class="box-blue">
+  <strong>Easterly Waves:</strong> Troughs in tropical easterly winds forming on the ITCZ with fairly high frequency. They originate at sea at the boundary of Tm and Em air masses. A minor surge of Em air may distort the ITCZ and start the Easterly Wave. It moves in a more or less east-west direction.
+  <ul>
+    <li>Weak at surface; better developed at <span class="reg-value">500 hPa</span> level and above.</li>
+    <li>Wavelength: about <span class="reg-value">1500 km</span>.</li>
+    <li>Move from <strong>W to E</strong> with speed <span class="reg-value">20–25 kmh</span> along the ITCZ.</li>
+    <li>Most weather occurs in <strong>rear of the wave trough</strong>.</li>
+  </ul>
+</div>
+
+<h3>Easterly Waves in India</h3>
+<div class="box-blue">
+  In winters, first noticed in Andaman Sea as shallow lows with troughs in upper air. Move westwards across south peninsula and emerge into Arabian Sea at about <span class="reg-value">15 kt</span> over sea, about <span class="reg-value">10 kt</span> over peninsula. Further progression westwards beyond Arabian Sea cannot be easily traced, but also affect Africa. In winters ITCZ is south of equator — on rare occasions these waves move into extreme south Bay, possibly causing disturbed weather for 3–4 days over Bay Islands, Tamil Nadu, Kerala and Arabian Sea Islands.
+
+  During pre-monsoon season, ITCZ advances further north — frequency of easterly waves over India increases, helping formation of premonsoon cyclonic storms over Indian seas. During monsoon, easterly waves from Pacific Ocean move across SE Asia and reach head of Bay of Bengal. Some move further WNW; others develop into depressions, move NW and weaken gradually. Very infrequently, an easterly wave may develop into a depression over north Arabian Sea.
+</div>
+
+<!-- SECTION 3 -->
+<h2 id="pd">3. Peninsular Discontinuity (PD) / Dry Line</h2>
+
+<div class="box-blue">
+  <strong>Peninsular Discontinuity (PD):</strong> A discontinuity forming over peninsular India (south of Lat. <span class="reg-value">23° N</span>) in April and May. Also called <strong>Dry Line</strong>. It separates hot and dry Tc air from the northern India from the comparatively cooler and moist air from the Bay of Bengal.
+
+  This discontinuity gives rise to afternoon thunderstorms, at times with hail, strong northwesterly squalls and heavy showers. It remains more or less stationary for <span class="reg-value">3–4 days</span> before dissipating.
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="surge">4. Surge</h2>
+
+<div class="box-blue">
+  <strong>Surge / Pulse:</strong> Sudden strengthening of an air current in the same air mass. At a surge the air arrives faster than it is removed → accumulation of air at the surge line → <strong>velocity convergence</strong>. This is a common and strong disturbance in the monsoon season over the Arabian Sea.
+  <ul>
+    <li>To the <strong>west</strong> of the surge line, wind may be about <span class="reg-value">40 kt</span> ahead of it; to the <strong>east</strong>, only about <span class="reg-value">10–15 kt</span>.</li>
+    <li>Vertical ascent at a surge line causes growth of CU clouds, showers and gusts or squalls.</li>
+    <li>Surge line moves in the <strong>direction of the wind</strong>. It ultimately reaches over the head of the Bay of Bengal.</li>
+    <li>When a surge arrives, sky becomes overcast with very frequent and sharp showers, and strong gusty or squally winds.</li>
+    <li>The surge line <strong>activates ITCZ</strong> and favours formation of depressions or cyclones on the ITCZ.</li>
+  </ul>
+</div>
+
+<!-- SECTION 5 -->
+<h2 id="shear">5. Shear Lines</h2>
+
+<div class="box-blue">
+  <strong>Shear Lines:</strong> Created when in the same air mass the wind speed decreases markedly from south to north or vice versa. Common over Arabian Sea during monsoon season. At a shear line, friction between air moving at different velocities causes a small-scale ascent. If shear extends vertically, ascent reaches to higher levels — stratiform layer clouds (ST, AS, NS) form, extending to about <span class="reg-value">500 km</span> across. When a fresh surge arrives, large CU and CB clouds get embedded at the leading edge, which are at right angles to the shear line. <strong>Surge and Shear Lines are a characteristic feature of vigorous monsoon.</strong>
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="lps">6. Low Pressure Systems Classification</h2>
+
+<div class="box-blue">
+  <strong>Classification of Low Pressure Systems</strong> (based on wind speed over sea at 900 m; over land at 900 m — considered same):
+</div>
+
+<table>
+  <tr>
+    <th>System</th>
+    <th>Wind Speed Over Sea</th>
+  </tr>
+  <tr><td>Low Pressure</td><td>&lt; 17 kt</td></tr>
+  <tr><td>Depression</td><td>17–27 kt</td></tr>
+  <tr><td>Deep Depression</td><td>28–33 kt</td></tr>
+  <tr><td>Cyclonic Storm</td><td>34–47 kt</td></tr>
+  <tr><td>Severe Cyclonic Storm</td><td>48–63 kt</td></tr>
+  <tr><td>Very Severe Cyclonic Storm</td><td>64–&lt;120 kt</td></tr>
+  <tr><td>Super Cyclone</td><td>120 kt or more</td></tr>
+</table>
+
+<div class="box-amber">
+  <strong>Memory Aid:</strong> 17 / 27 / 33 / 47 / 63 / 120 kt — progression of thresholds. The DGCA exam frequently tests the 34–47 kt range for Cyclonic Storm and 48–63 kt for Severe Cyclonic Storm.
+</div>
+
+<!-- SECTION 7 -->
+<h2 id="depression">7. Monsoon Depressions</h2>
+
+<div class="box-blue">
+  <strong>Monsoon Depression:</strong> A low-pressure area with two or more closed isobars at 2 hPa interval. In India they form over NE India during monsoon and are termed <strong>Monsoon Depressions</strong>. Surface winds are <span class="reg-value">17–33 kt</span>. Also form over Arabian Sea and land too. Land depressions mostly form over NE India. In June, July and August depressions form over head Bay of Bengal (N of 18 N). In September they form around 14 N. In Arabian Sea they originate <span class="reg-value">5° off coast</span>, N of 12 N and move N/NW.
+</div>
+
+<div class="box-blue">
+  <strong>Average life of a monsoon depression: <span class="reg-value">3–5 days</span></strong>
+</div>
+
+<div class="box-red">
+  <strong>Weather in Monsoon Depression:</strong>
+  <ul>
+    <li>Worst weather occurs in the <strong>SW sector</strong> — rainfall is steady and heavy in a belt of about <span class="reg-value">400 km</span> width. Elsewhere it is scanty.</li>
+    <li>At time of re-curvature, rain belt shifts to <strong>N–NE sector</strong>. Showery precipitation occurs in rear of depression when winds are strong S–SWly.</li>
+    <li>Associated upper air cyclonic circulation extends up to about <span class="reg-value">300 hPa</span>.</li>
+    <li>Monsoon depression slope SWwards with height. E.g., if surface system is over Kolkata, it would be over Visakhapatnam at 300 hPa (9 km).</li>
+    <li><strong>Fair weather over Assam during monsoon indicates intensification or formation of a depression over head Bay or vice versa.</strong></li>
+  </ul>
+</div>
+
+<!-- SECTION 8 -->
+<h2 id="tc">8. Tropical Cyclones (TRS)</h2>
+
+<div class="box-blue">
+  <strong>Tropical Cyclone (TC) / Tropical Revolving Storm (TRS):</strong> Non-frontal low-pressure system with numerous TS, strong winds and heavy rain. Form over warm tropical waters (temperature <span class="reg-value">&gt;26°C</span>), between Lat <span class="reg-value">5–25°</span>. Below <span class="reg-value">5°</span> there is no Coriolis force → TC cannot form. Above <span class="reg-value">25°</span> it is cold.
+
+  <strong>Maximum sustained wind</strong> in a TC is <span class="reg-value">34 kt or more</span>. As per IMD it is the <strong>highest 3 min (some countries 1 and 10 min) averaged surface wind</strong> within the circulation at <span class="reg-value">10 m height</span>.
+</div>
+
+<div class="box-blue">
+  <strong>Names by Region:</strong> Depending on location and strength — Hurricane (Atlantic), Typhoon (NW Pacific), Tropical Storm, Cyclonic Storm, Tropical Revolving Storm, simply Cyclone.
+</div>
+
+<h3>Necessary Conditions for TC Formation</h3>
+<ol>
+  <li><strong>Warm sea</strong> (&gt;26°C) to a depth of <span class="reg-value">60 m</span> to provide abundant evaporation.</li>
+  <li><strong>High RH</strong> above 7000 m to facilitate condensation of water vapours into drops and release latent heat.</li>
+  <li><strong>Instability</strong> for vertical development, and <strong>Coriolis Force</strong> to spiral wind inward.</li>
+  <li><strong>Very little Wind Shear</strong>. WS preferably below <span class="reg-value">20 kt</span> from 850 to 200 hPa. WS will distribute latent heat and intensification will suffer.</li>
+</ol>
+
+<h3>Characteristics — Mature Phase (4 Parts)</h3>
+
+<table>
+  <tr>
+    <th>Zone</th>
+    <th>Size</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><strong>Eye</strong></td>
+    <td>Mostly <span class="reg-value">30–65 km</span> diameter</td>
+    <td>Light winds, often clear skies; warmest (warmer by 0–2°C at surface, up to 10°C at 12 km). Inversion from 1 to 3 km. Surrounded by eyewall — ring of towering CB clouds.</td>
+  </tr>
+  <tr>
+    <td><strong>Inner Storm Area (Hurricane Core)</strong></td>
+    <td><span class="reg-value">50–150 km</span></td>
+    <td>Winds &gt;64 kt, violent squalls, torrential rains; thick dark CB clouds called <strong>Eye Wall / Wall Clouds</strong>. Most hazardous part. Pressure gradient very steep. TC exhibit concentric eye walls.</td>
+  </tr>
+  <tr>
+    <td><strong>Outer Storm Area</strong></td>
+    <td>About <span class="reg-value">400 km</span></td>
+    <td>Gale force winds (34 kt+) and occasional squalls. Winds decrease outwards. Spiral bands of clouds.</td>
+  </tr>
+  <tr>
+    <td><strong>Edge of Storm</strong></td>
+    <td>Beyond outer area</td>
+    <td>Winds are weak and clouding diminishes.</td>
+  </tr>
+</table>
+
+<h3>Extent and Movement</h3>
+<div class="box-blue">
+  <ul>
+    <li>TC is a vast violent whirl of <span class="reg-value">150 to 800 km</span>, spiraling around a centre.</li>
+    <li>Moves over sea at <span class="reg-value">300 to 500 km/day</span> at <span class="reg-value">15–20 kmh</span>. Generally TC move westwards up to <span class="reg-value">25° N/S</span> then recurve and move E.</li>
+  </ul>
+</div>
+
+<h3>Pressure</h3>
+<div class="box-blue">
+  <ul>
+    <li>Central pressure in TC: between <span class="reg-value">1000–900 hPa</span>. On average the central pressure is <span class="reg-value">5–6 hPa</span> below surface. In extreme cases may be about <span class="reg-value">70 hPa</span> less.</li>
+    <li>Pressure gradient very steep up to a radius of <span class="reg-value">100 km</span>.</li>
+  </ul>
+</div>
+
+<div class="box-red">
+  <strong>Worst Weather Sector:</strong>
+  <ul>
+    <li>In the <strong>N hemisphere</strong> → worst weather in the <strong>right forward sector</strong>.</li>
+    <li>In the <strong>S hemisphere</strong> → worst weather in the <strong>left forward sector</strong>.</li>
+  </ul>
+</div>
+
+<h3>Upper Air Circulation</h3>
+<div class="box-blue">
+  Cyclonic circulation in a TC may extend to <span class="reg-value">40,000 ft</span>. Axis of circulation is almost vertical. In the inner storm area, winds of hurricane force persist up to about <span class="reg-value">7000 ft</span>. Thereafter, winds weaken. Wind speeds at surface and upper air are stronger in the <strong>right half</strong> in N hemisphere.
+</div>
+
+<!-- Tropical Storms Over India -->
+<h3>Tropical Storms Over India</h3>
+<div class="box-blue">
+  <ul>
+    <li>Size varies from <span class="reg-value">50–2000 km radius</span>, average <span class="reg-value">300–600 km</span>.</li>
+    <li>Form over Bay of Bengal and Arabian Sea → move inland.</li>
+    <li>Damage mainly due to very strong winds, torrential rain and inundation — <strong>storm wave and high tides</strong>.</li>
+    <li>Indian cyclones have very small life span (<span class="reg-value">3–5 days</span>, max 6–7 days, even for recurring ones).</li>
+    <li>Average life of Indian cyclones: <span class="reg-value">3–5 days</span>.</li>
+    <li>Notable recent storms: VSCS <strong>Phailin</strong> (2013, Odisha, max wind 220 kmh), <strong>Hudhud</strong> (2014, AP, max wind 205 kmh, CP 960 hPa), <strong>Varda</strong> (2016, Andaman/Chennai, 155 kmh), <strong>Nilofar</strong> (2014, Arabian Sea, max wind 215 kmh), <strong>Biparjoy</strong> (Jun 2023, Arabian Sea, extremely severe cyclonic storm — peaked 15 June, made landfall 16 June near Naliya, Gujarat).</li>
+  </ul>
+</div>
+
+<h3>Flying Conditions in TC</h3>
+<div class="box-red">
+  <strong>Flying Conditions — Tropical Cyclone:</strong>
+  <ul>
+    <li>Clouds in spiraling bands — unbroken cloud mass or reach <span class="reg-value">18–20 km</span>; severe turbulence in CB towers.</li>
+    <li>Frictional turbulence in lowest layers due to strong winds.</li>
+    <li>Strong up and downdraughts throughout storm.</li>
+    <li>Rain in central area and lowest layers — torrential; winds very strong.</li>
+  </ul>
+</div>
+
+<!-- SECTION 9 -->
+<h2 id="freq">9. Frequency of Cyclones</h2>
+
+<div class="box-blue">
+  <ul>
+    <li>Frequency in Bay of Bengal and Arabian Sea is almost nil in <strong>February and March</strong>. Frequent in <strong>May, June, October and November</strong>. <strong>Maximum frequency in October and November</strong>.</li>
+    <li>TC do <strong>not</strong> form in S Atlantic Ocean — ITCZ never moves S of 5° S in S Atlantic.</li>
+    <li>In NW Pacific, TC occur throughout the year.</li>
+    <li>Annual frequency of TC in Bay of Bengal is <span class="reg-value">4.5</span> and in Arabian Sea is <span class="reg-value">1.1</span>.</li>
+  </ul>
+</div>
+
+<div class="box-amber">
+  <strong>Avoidance of Tropical Cyclone in Flight:</strong> On whatever compass course the cyclone is approached, <strong>strong winds from the port indicate that the centre lies somewhere ahead</strong>. To avoid the cyclone, alter the course until the wind is from starboard and is weakening.
+</div>
+
+<!-- SECTION 10 -->
+<h2 id="frontal">10. Frontal Depressions</h2>
+
+<div class="box-blue">
+  <strong>Formation of a Frontal Depression / Cyclone:</strong> A stationary or quasi-stationary polar front, in the N hemisphere, has warm tropical air to the south and colder polar air to the north. When warm air penetrates into a stationary polar front, a wave is generated. If this wave is stable, it moves eastwards along the front without intensification. If unstable, it intensifies. Pressure falls in the region where the bulge has occurred — cyclonic circulation develops into a depression. Ahead = cold air displaces warm air (<strong>cold front</strong>). These fronts are carried rear of the cyclonic centre cold air replaces warm air along with winds as the depression moves with the warm front preceding the cold front.
+</div>
+
+<div class="box-blue">
+  These depressions of middle latitudes are called <strong>extra-tropical depressions</strong>. Generally move towards E or ENE, being steered by the westerly currents in these latitudes. When a depression on the polar front occludes, the unoccluded portion trails at a lower latitude. Conditions then become favourable for secondary depressions — this may repeat at a still lower latitude → <strong>family of 3 or 4 depressions</strong> → <strong>Cyclone Families</strong>. They sometimes move eastwards together.
+
+  <strong>Saffir-Simpson Scale of CS and T Classification and for Cyclones is at Appendix B.</strong>
+</div>
+
+<!-- SECTION 11 -->
+<h2 id="flying">11. Flying Hazards in Tropical Cyclones</h2>
+
+<pre class="mermaid">
+flowchart TD
+    A[Flying Hazards - Tropical Cyclone] --> B[Structural]
+    A --> C[Navigation]
+    A --> D[Weather]
+    B --> B1[Severe turbulence in CB\nViolent up/downdraughts\ng-load risk to airframe]
+    C --> C1[Altimeter unreliable\nrapid pressure changes]
+    C --> C2[Instrument disorientation]
+    D --> D1[Torrential rain\nZero visibility in wall clouds]
+    D --> D2[Severe icing\nin CB towers]
+    D --> D3[Lightning\nSt Elmo's Fire]
+</pre>
+
+<div class="box-red">
+  <strong>Never fly through the Eye Wall.</strong> The eye may appear calm but transitioning through the eye wall in either direction means traversing the most violent zone of the storm.
+</div>
+
+<!-- SECTION 12 -->
+<h2 id="quick-rev">12. Quick Revision Summary</h2>
+
+<div class="box-amber">
+  <strong>Quick Revision — Chapter 18: Tropical Systems</strong>
+  <ul>
+    <li>ITCZ = narrow zone where Tm/Te air from N meets Tm/Em from S; migrates to <span class="reg-value">20° N</span> (summer), Australia (winter)</li>
+    <li>Easterly waves: wavelength <span class="reg-value">1500 km</span>; speed <span class="reg-value">20–25 kmh</span>; weather in rear of trough</li>
+    <li>PD (Dry Line) = peninsular India (S of <span class="reg-value">23°N</span>); April–May; stationary <span class="reg-value">3–4 days</span></li>
+    <li>Surge = sudden wind strengthening in same air mass; activates ITCZ; west = <span class="reg-value">40 kt</span>, east = <span class="reg-value">10–15 kt</span></li>
+    <li>LPS classification: Low &lt;17 kt → Depression 17–27 → Deep Dep 28–33 → CS 34–47 → SCS 48–63 → VSCS 64–120 → Super &gt;120 kt</li>
+    <li>Monsoon depression: <span class="reg-value">3–5 days</span> life; worst weather SW sector; upper circulation to <span class="reg-value">300 hPa</span></li>
+    <li>TC forms: SST <span class="reg-value">&gt;26°C</span>, depth <span class="reg-value">60 m</span>, Lat <span class="reg-value">5–25°</span>, low shear (&lt;20 kt), high instability</li>
+    <li>TC eye: <span class="reg-value">30–65 km</span>; Inner storm: <span class="reg-value">50–150 km</span>; Outer storm: <span class="reg-value">~400 km</span></li>
+    <li>Worst sector: N hemisphere = <strong>right forward</strong>; S hemisphere = <strong>left forward</strong></li>
+    <li>TC India frequency: max <strong>Oct–Nov</strong>; BoB annual avg <span class="reg-value">4.5</span>, Arabian Sea <span class="reg-value">1.1</span></li>
+    <li>Avoidance: port winds → centre ahead → alter till starboard winds weakening</li>
+    <li>Central pressure: <span class="reg-value">900–1000 hPa</span>; steep gradient to <span class="reg-value">100 km</span> radius</li>
+  </ul>
+</div>
+
+<!-- Q&A SECTION -->
+<h2 id="qa" style="page-break-before:always;">13. Practice Q&amp;A</h2>
+
+<div class="qa-block">
+  <div class="qa-question">Q1. Wind speed in a tropical severe cyclone is:<br>
+    (a) 27–33 kt &nbsp; (b) 48–63 kt &nbsp; (c) 17–27 kt</div>
+  <div class="qa-answer">✅ Correct Answer: (b) 48–63 kt — Severe Cyclonic Storm category</div>
+  <div class="qa-distractor">❌ Distractors: (a) 28–33 kt = Deep Depression. (c) 17–27 kt = Depression. Candidates often confuse categories — use the table.</div>
+  <div class="qa-tip">💡 Mnemonic table: 17/27/33/47/63/120. Severe CS = 48–63 kt. "48 to 63 = Severe".</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q2. Fronts are characteristic of:<br>
+    (a) Tropical cyclone &nbsp; (b) Monsoon depressions &nbsp; (c) Both</div>
+  <div class="qa-answer">✅ Correct Answer: (c) Both — well, actually neither. But in context, Tropical Cyclones are NON-FRONTAL. Fronts are characteristic of extra-tropical depressions.</div>
+  <div class="qa-distractor">❌ Distractors: Tropical cyclones are explicitly described as NON-frontal. Monsoon depressions also do not have fronts. Only frontal/extra-tropical depressions have fronts.</div>
+  <div class="qa-tip">💡 TC = NON-frontal. Remember: "Tropical = No Front". Fronts exist in mid-latitudes/extra-tropical systems.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q3. In a mature tropical cyclone, the eye area is characterised by:<br>
+    (a) Moderate weather &nbsp; (b) Stormy weather &nbsp; (c) Calm wind, little clouding and practically no rainfall</div>
+  <div class="qa-answer">✅ Correct Answer: (c) Calm wind, little clouding and practically no rainfall — the eye is the calm centre</div>
+  <div class="qa-distractor">❌ Distractors: (a) Moderate weather understates it — the eye is actually calm. (b) Stormy weather = eye wall, not eye.</div>
+  <div class="qa-tip">💡 EYE = calm, clear, warm. EYE WALL = most violent. Don't confuse them in exam questions!</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q4. Cyclonic storm cross Tamil Nadu coast during:<br>
+    (a) Dec–Nov &nbsp; (b) Jul–Aug &nbsp; (c) Feb–May</div>
+  <div class="qa-answer">✅ Correct Answer: (a) Dec–Nov (Oct–Nov is max frequency; TN coast receives post-monsoon cyclones from Bay of Bengal)</div>
+  <div class="qa-distractor">❌ Distractors: (b) Jul–Aug = monsoon season, cyclones are less frequent. (c) Feb–May = low frequency period.</div>
+  <div class="qa-tip">💡 TN coast = NE monsoon season cyclones = Oct–Dec. Bay of Bengal cyclones are most common Oct–Nov.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q5. Cyclonic storms form over Indian seas during:<br>
+    (a) SW monsoon &nbsp; (b) Winter Season &nbsp; (c) Pre-Monsoon &amp; Post Monsoon</div>
+  <div class="qa-answer">✅ Correct Answer: (c) Pre-Monsoon (May–Jun) &amp; Post Monsoon (Oct–Nov) — peak cyclone seasons</div>
+  <div class="qa-distractor">❌ Distractors: (a) During SW Monsoon, vertical wind shear is high → inhibits TC development. (b) Winter = near nil frequency (Feb–Mar).</div>
+  <div class="qa-tip">💡 "Cyclones sandwich the monsoon" — they peak before (May–Jun) and after (Oct–Nov) the SW monsoon.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q6. TRS occurs over Indian seas in:<br>
+    (a) Equatorial Region &nbsp; (b) 5–15° N &nbsp; (c) 0–5° N</div>
+  <div class="qa-answer">✅ Correct Answer: (b) 5–15° N — TC form between 5° and 25°; Indian seas primarily 5–15°N</div>
+  <div class="qa-distractor">❌ Distractors: (a) Equatorial region has insufficient Coriolis force. (c) 0–5° N has practically no Coriolis — TC cannot form below 5°.</div>
+  <div class="qa-tip">💡 TC: Below 5° = NO. Between 5–25° = YES. Above 25° = cold sea, weakens.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q7. During the months of July, August, Monsoon Depression form over:<br>
+    (a) Over Head Bay &nbsp; (b) Central Bay &nbsp; (c) South Bay</div>
+  <div class="qa-answer">✅ Correct Answer: (a) Over Head Bay — N of 18°N during June, July, August</div>
+  <div class="qa-distractor">❌ Distractors: (b) Central Bay = later in season. (c) South Bay = different systems.</div>
+  <div class="qa-tip">💡 "Jul–Aug = Head Bay depressions" — this is a direct factual question. Memorise: Head Bay = Jul–Aug.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q8. In a monsoon depression maximum weather occurs in:<br>
+    (a) SE sector &nbsp; (b) NW sector &nbsp; (c) SW sector</div>
+  <div class="qa-answer">✅ Correct Answer: (c) SW sector — worst weather (steady heavy rainfall in ~400 km belt)</div>
+  <div class="qa-distractor">❌ Distractors: (a) SE sector = relatively fair. (b) NW sector = also relatively clear. SW sector = convergence zone with heaviest rainfall.</div>
+  <div class="qa-tip">💡 Monsoon Depression SW sector = worst. At recurvature it shifts to N–NE. "South-Worst".</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q9. During re-curvature maximum weather in a monsoon depression occurs in:<br>
+    (a) SE sector &nbsp; (b) NW sector &nbsp; (c) SW sector &nbsp; (d) NE sector</div>
+  <div class="qa-answer">✅ Correct Answer: (d) NE sector — at time of re-curvature the rain belt shifts to N–NE sector</div>
+  <div class="qa-distractor">❌ Distractors: (c) SW sector = before re-curvature. At re-curvature the track changes and the rain belt migrates to N–NE.</div>
+  <div class="qa-tip">💡 Straight track = SW worst. Re-curvature = NE worst. This is a two-part factual combination frequently tested.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q10. On whatever compass course the cyclone is approached, strong winds from the port indicate that the centre lies somewhere:<br>
+    (a) Ahead &nbsp; (b) Behind &nbsp; (c) Port &nbsp; (d) Starboard</div>
+  <div class="qa-answer">✅ Correct Answer: (a) Ahead — port winds = centre ahead; alter course till wind from starboard and weakening</div>
+  <div class="qa-distractor">❌ Distractors: (b) Behind would mean you've passed it. (c) Port side = direction of wind, not centre. (d) Starboard = the direction to aim for to escape.</div>
+  <div class="qa-tip">💡 Avoidance rule: "PORT wind = centre AHEAD → turn until STARBOARD wind is WEAKENING = escaping the cyclone."</div>
+</div>
+
+<!-- MASTER REFERENCE -->
+<h2 id="ref">14. Master Reference Tables</h2>
+
+<h3>Low Pressure System Classification</h3>
+<table>
+  <tr><th>System</th><th>Wind Speed (kt)</th></tr>
+  <tr><td>Low Pressure</td><td><span class="reg-value">&lt; 17 kt</span></td></tr>
+  <tr><td>Depression</td><td><span class="reg-value">17–27 kt</span></td></tr>
+  <tr><td>Deep Depression</td><td><span class="reg-value">28–33 kt</span></td></tr>
+  <tr><td>Cyclonic Storm</td><td><span class="reg-value">34–47 kt</span></td></tr>
+  <tr><td>Severe Cyclonic Storm</td><td><span class="reg-value">48–63 kt</span></td></tr>
+  <tr><td>Very Severe Cyclonic Storm</td><td><span class="reg-value">64–&lt;120 kt</span></td></tr>
+  <tr><td>Super Cyclone</td><td><span class="reg-value">≥ 120 kt</span></td></tr>
+</table>
+
+<h3>TC Structure Summary</h3>
+<table>
+  <tr><th>Zone</th><th>Radius</th><th>Key Feature</th></tr>
+  <tr><td>Eye</td><td><span class="reg-value">30–65 km dia</span></td><td>Calm, clear, warm (+0–2°C surface, +10°C at 12 km)</td></tr>
+  <tr><td>Eye Wall / Hurricane Core</td><td><span class="reg-value">50–150 km</span></td><td>Winds &gt;64 kt; worst turbulence; wall clouds</td></tr>
+  <tr><td>Outer Storm</td><td><span class="reg-value">~400 km</span></td><td>Gale force; spiral cloud bands</td></tr>
+  <tr><td>Edge of Storm</td><td>Beyond 400 km</td><td>Weak winds; clouding diminishes</td></tr>
+</table>
+
+<h3>All Numerical Values</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>ITCZ active portion length</td><td><span class="reg-value">75–150 km</span></td></tr>
+  <tr><td>ITCZ summer migration</td><td><span class="reg-value">Up to 20°N</span></td></tr>
+  <tr><td>Easterly wave wavelength</td><td><span class="reg-value">~1500 km</span></td></tr>
+  <tr><td>Easterly wave speed</td><td><span class="reg-value">20–25 kmh</span></td></tr>
+  <tr><td>Easterly wave altitude best development</td><td><span class="reg-value">500 hPa</span></td></tr>
+  <tr><td>Surge west of surge line</td><td><span class="reg-value">~40 kt</span></td></tr>
+  <tr><td>Surge east of surge line</td><td><span class="reg-value">10–15 kt</span></td></tr>
+  <tr><td>TC SST requirement</td><td><span class="reg-value">&gt;26°C</span> to depth of 60 m</td></tr>
+  <tr><td>TC latitude range</td><td><span class="reg-value">5–25°</span></td></tr>
+  <tr><td>TC max sustained wind (IMD)</td><td><span class="reg-value">34 kt</span> or more (highest 3 min avg at 10 m)</td></tr>
+  <tr><td>TC size range</td><td><span class="reg-value">150–800 km</span></td></tr>
+  <tr><td>TC daily movement</td><td><span class="reg-value">300–500 km/day</span> at 15–20 kmh</td></tr>
+  <tr><td>TC upper circulation</td><td>To <span class="reg-value">40,000 ft</span></td></tr>
+  <tr><td>Hurricane force winds persist to</td><td><span class="reg-value">~7000 ft</span></td></tr>
+  <tr><td>TC central pressure</td><td><span class="reg-value">900–1000 hPa</span></td></tr>
+  <tr><td>TC pressure gradient radius</td><td><span class="reg-value">100 km</span></td></tr>
+  <tr><td>BoB annual TC frequency</td><td><span class="reg-value">4.5</span></td></tr>
+  <tr><td>Arabian Sea annual TC frequency</td><td><span class="reg-value">1.1</span></td></tr>
+  <tr><td>Monsoon depression life</td><td><span class="reg-value">3–5 days</span></td></tr>
+  <tr><td>Monsoon dep upper circulation</td><td>To <span class="reg-value">300 hPa</span></td></tr>
+  <tr><td>Monsoon dep heavy rain belt width</td><td><span class="reg-value">~400 km</span></td></tr>
+</table>
+
+<h3>Textbook Answer Key</h3>
+<table>
+  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>
+  <tr><td>A</td><td>b</td><td>c</td><td>b</td><td>a</td><td>c</td><td>c</td><td>b</td><td>a</td><td>c</td><td>a</td><td>b</td><td>a</td><td>a</td><td>b</td><td>a</td><td>b</td><td>a</td><td>a</td><td>c</td><td>c</td></tr>
+</table>
+<table>
+  <tr><th>Q</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th>30</th><th>31</th><th>32</th><th>33</th><th>34</th><th>35</th><th>36</th><th>37</th><th>38</th><th>39</th><th>40</th></tr>
+  <tr><td>A</td><td>a</td><td>d</td><td>a</td><td>d</td><td>a</td><td>c</td><td>b</td><td>c</td><td>a</td><td>b</td><td>a</td><td>b</td><td>b</td><td>d</td><td>a</td><td>b</td><td>c</td><td>b</td><td>a</td></tr>
+</table>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+</body>
+</html>
