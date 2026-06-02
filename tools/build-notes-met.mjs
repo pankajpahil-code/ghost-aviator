@@ -9,9 +9,10 @@
 //
 // Run from ghost-aviator dir:  node tools/build-notes-met.mjs
 // ─────────────────────────────────────────────────────────────────────────────
-import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { injectProtection } from "./_protect-snippet.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const NOTES_DIR = join(ROOT, "..", "IC Joshi", "DGCA Notes");
@@ -140,10 +141,10 @@ for (const [file, chapterId, subtopic] of CHAPTERS) {
   if (!existsSync(src)) { console.log("  (missing)", file); continue; }
   const html = readFileSync(src, "utf8");
 
-  // (1) copy note to public
+  // (1) copy note to public (with content-protection injected)
   const dest = join(PUBLIC_DIR, chapterId);
   mkdirSync(dest, { recursive: true });
-  copyFileSync(src, join(dest, "notes.html"));
+  writeFileSync(join(dest, "notes.html"), injectProtection(html), "utf8");
 
   // (2) extract questions
   const qaStart = html.search(/id="qa"/);
