@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch.2 Pitot and Static Sources — DGCA Instrumentation</title>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  :root{ --blue:#2c5aa0; --red:#c0392b; --green:#2e7d32; --amber:#f57c00; }
+  *{ box-sizing:border-box; }
+  body{ font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:14px; line-height:1.6; color:#1a202c; max-width:900px; margin:0 auto; padding:24px; background:#fff; }
+  h1,h2,h3{ font-weight:700; line-height:1.25; }
+  h1{ font-size:1.9em; }
+  h2{ font-size:1.4em; border-bottom:2px solid #e2e8f0; padding-bottom:6px; margin-top:34px; }
+  h3{ font-size:1.1em; color:var(--blue); margin-top:22px; }
+  a{ color:var(--blue); }
+  .cover{ text-align:center; padding:30px 20px; border:2px solid var(--blue); border-radius:10px; background:linear-gradient(180deg,#f8fafc,#eef2f9); }
+  .cover .sub{ color:#475569; font-size:1.05em; margin-top:6px; }
+  .cover .by{ color:var(--blue); font-weight:700; margin-top:10px; }
+  .reg-value{ font-weight:700; color:var(--blue); }
+  .box{ padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .blue{ background:#e8f1fb; border-left:5px solid var(--blue); }
+  .red{ background:#fdecea; border-left:5px solid var(--red); }
+  .green{ background:#e8f5e9; border-left:5px solid var(--green); }
+  .amber{ background:#fff8e1; border-left:5px solid var(--amber); }
+  table{ border-collapse:collapse; width:100%; margin:15px 0; page-break-inside:avoid; }
+  th,td{ border:1px solid #cbd5e1; padding:8px 10px; text-align:left; }
+  th{ background:var(--blue); color:#fff; }
+  tr:nth-child(even) td{ background:#f1f5f9; }
+  figure{ text-align:center; margin:18px 0; page-break-inside:avoid; }
+  figure img{ max-width:100%; border:1px solid #cbd5e1; border-radius:6px; background:#fff; }
+  figcaption{ font-size:0.85em; font-style:italic; color:#64748b; margin-top:6px; }
+  pre.mermaid{ text-align:center; page-break-inside:avoid; margin:18px 0; }
+  .svgwrap{ text-align:center; margin:18px 0; page-break-inside:avoid; }
+  blockquote{ font-family:Georgia,serif; font-style:italic; background:#f5f5f5; border-left:4px solid #94a3b8; padding:10px 16px; margin:14px 0; }
+  .toc{ background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:16px 22px; page-break-after:always; }
+  code,.formula{ font-family:"Courier New",monospace; background:#f1f5f9; padding:1px 5px; border-radius:3px; }
+  .qa-block{ border:2px solid var(--blue); border-radius:8px; padding:20px; margin:25px 0; page-break-inside:avoid; background:#fff; }
+  .qa-question{ background:#e8f1fb; padding:15px; border-radius:6px; margin-bottom:15px; }
+  .q-number{ font-weight:900; color:var(--blue); font-size:1.1em; margin-right:8px; }
+  .q-options{ margin-top:12px; padding-left:25px; }
+  .q-options li{ padding:4px 0; }
+  .answer-reveal{ background:#e8f5e9; border-left:5px solid var(--green); padding:12px 15px; margin:10px 0; border-radius:4px; font-size:1.05em; }
+  .answer-explanation{ background:#f5f5f5; padding:12px 15px; margin:10px 0; border-radius:4px; line-height:1.7; }
+  .distractor-analysis{ background:#fdecea; border-left:5px solid var(--red); padding:12px 15px; margin:10px 0; border-radius:4px; }
+  .distractor-analysis ul{ margin-top:8px; padding-left:20px; }
+  .instructor-note{ background:#fff8e1; border-left:5px solid var(--amber); padding:12px 15px; margin:10px 0; border-radius:4px; font-style:italic; }
+  .watermark{ position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:80px; font-weight:900; color:rgba(0,0,0,0.12); z-index:9999; pointer-events:none; white-space:nowrap; font-family:Arial,sans-serif; }
+  @page{ size:A4; margin:20mm; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Pitot and Static Sources</h1>
+  <div class="sub">DGCA CPL/ATPL Study Notes — Instrumentation, Chapter 2</div>
+  <div class="by">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<nav class="toc">
+  <h2 style="border:none;margin-top:14px;">Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction — Static, Dynamic &amp; Pitot Pressure</a></li>
+    <li><a href="#sec-2">Pitot / Static Heads</a></li>
+    <li><a href="#sec-3">Requirements of a Pitot Tube</a></li>
+    <li><a href="#sec-4">Requirements of a Static Source</a></li>
+    <li><a href="#sec-5">Position Error &amp; the Static Vent</a></li>
+    <li><a href="#sec-6">High Speed Probes</a></li>
+    <li><a href="#sec-7">Manoeuvre-induced Error</a></li>
+    <li><a href="#sec-8">Full Pitot/Static System</a></li>
+    <li><a href="#sec-9">Covers, Heaters &amp; Preflight Checks</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#master">Master Reference Tables</a></li>
+  </ol>
+</nav>
+
+<h2 id="sec-1">1. Introduction — Static, Dynamic &amp; Pitot Pressure</h2>
+<div class="box blue"><strong>What this section covers:</strong> the three pressures an aircraft experiences and the fundamental relationship the air-data instruments exploit.</div>
+<p>An aircraft at rest in still air is subject to <strong>static pressure</strong> — ambient atmospheric pressure bearing equally on all parts. In flight it remains subject to static pressure but the leading edges also encounter an <strong>additional pressure</strong> due to the air resisting the aircraft's motion. This is <strong>dynamic pressure</strong>, whose value depends on the aircraft's speed through the air and on air density. The leading edges therefore feel a <strong>total (pitot) pressure</strong> = static + dynamic.</p>
+
+<blockquote>Dynamic pressure cannot be measured directly because it cannot be separated from the associated static pressure. Instruments therefore measure total (pitot) and static pressure, and subtract static from pitot internally to derive dynamic pressure.</blockquote>
+
+<div class="box green">
+<strong>The key relationship:</strong>
+<p class="formula">PITOT = STATIC + DYNAMIC</p>
+<p class="formula">DYNAMIC = PITOT &minus; STATIC</p>
+Where PITOT (P<sub>t</sub>) = total pressure and STATIC (P<sub>s</sub>) = static pressure. Worked example: if pitot = 1080 hPa and static = 1013 hPa, then dynamic = 1080 &minus; 1013 = <span class="reg-value">67 hPa</span>, which the ASI converts to an airspeed.</div>
+
+<h3>Which instrument needs which pressure</h3>
+<table>
+  <thead><tr><th>Static only</th><th>Pitot <em>and</em> Static</th></tr></thead>
+  <tbody>
+    <tr><td>Altimeter</td><td>Airspeed Indicator (ASI)</td></tr>
+    <tr><td>Vertical Speed Indicator (VSI)</td><td>Machmeter</td></tr>
+  </tbody>
+</table>
+
+<pre class="mermaid">
+flowchart LR
+  P[Pitot source<br/>total pressure] --> ASI[ASI]
+  P --> M[Machmeter]
+  S[Static source<br/>ambient pressure] --> ASI
+  S --> M
+  S --> ALT[Altimeter]
+  S --> VSI[VSI]
+</pre>
+
+<h2 id="sec-2">2. Pitot / Static Heads</h2>
+<div class="box blue"><strong>What this section covers:</strong> how total and static pressures are physically sensed outside the aircraft.</div>
+<p>Because internal pressure/temperature differ from outside, pitot and static pressures must be sensed by devices mounted on the <strong>outside</strong> of the aircraft. An open-ended tube parallel to the longitudinal axis senses total pressure — a <strong>pitot tube</strong> in a <strong>pitot head</strong>. The open end faces the airstream; the moving air is brought to rest in the tube, generating the dynamic pressure which, with the static pressure already present, gives total (pitot) pressure.</p>
+<p>A <strong>static head</strong> is a tube with its forward end sealed but with holes or slots in the sides. The slots do not face the airflow, so in theory they sense only static pressure (in practice a slight suction makes the sensed value a little low when moving). The static and pitot sources may be combined in one <strong>pressure head</strong>, the static tube surrounding the pitot tube.</p>
+<figure><img src="figs/fig_p14_1.png" alt="Static head"><figcaption>Fig 2.1 — Separate pitot and static heads — source p.14</figcaption></figure>
+<figure><img src="figs/fig_p15_1.png" alt="Combined pitot static head"><figcaption>Fig 2.2 — Combined pitot/static pressure head — source p.15</figcaption></figure>
+
+<h2 id="sec-3">3. Requirements of a Pitot Tube</h2>
+<div class="box blue"><strong>What this section covers:</strong> positioning, anti-icing and drainage requirements of the pitot tube.</div>
+<ul>
+  <li>Must be positioned <strong>outside the boundary layer</strong> — hence a head on a strut, or a nose tube ahead of the fuselage.</li>
+  <li>Opening must be <strong>parallel to the airflow</strong> in the normal flight attitude.</li>
+  <li>Air is either brought to rest against a <strong>stagnation wall</strong> then piped to the ASI/Machmeter, or passed directly up the pitot pipelines (more usual in elementary aircraft).</li>
+</ul>
+<div class="box red"><strong>Why anti-icing is mandatory:</strong> measurement of dynamic pressure is essential to safe flight — too slow and the aircraft stalls, too fast and it is overstressed. The ASI is flight-safety-critical and must not block with ice, so an <strong>electric anti-icing heater coil</strong> is usually fitted. <strong>Drain holes</strong> are provided so any water drains before it can freeze; the small pressure loss they cause is calibrated out.</div>
+
+<h2 id="sec-4">4. Requirements of a Static Source</h2>
+<div class="box blue"><strong>What this section covers:</strong> how a static source is oriented so it senses pure static pressure.</div>
+<p>The static source — whether a simple hole or a combined probe — should have its opening at <strong>right angles to the airflow</strong>, so only static pressure is sensed with no dynamic component. Some static sensors (especially in combined probes) are electrically heated.</p>
+
+<h2 id="sec-5">5. Position Error &amp; the Static Vent</h2>
+<div class="box blue"><strong>What this section covers:</strong> the origin of position (pressure) error and how the static vent reduces it.</div>
+<p>With forward motion the sensed static pressure is slightly low due to suction; as speed increases, turbulent airflow near the heads makes the error grow. This is <strong>Position Error</strong> (also called <em>pressure error</em>). At large angles of attack (lower airspeeds) the head sits at an angle to the airstream, so position error is usually greater. Flight manuals may list different position-error values for different flap settings.</p>
+<p>Turbulence from the head itself affects the <strong>static</strong> reading more than the pitot reading, because the turbulence is downstream of the pitot opening.</p>
+<figure><img src="figs/fig_p15_2.png" alt="Turbulence affecting static pressure"><figcaption>Fig 2.3 — How turbulence affects the value of static pressure — source p.15</figcaption></figure>
+
+<h3>The static vent</h3>
+<p>To reduce this, the <strong>static vent</strong> was introduced as the static source (pitot pressure then sensed by a simple pitot head). A flat metal plate with a small circular hole is fitted where true (or nearly true) static pressure exists across the whole speed range. A matching vent on the opposite side is <strong>interconnected</strong> so errors from yawing are largely eliminated.</p>
+<figure><img src="figs/fig_p16_1.png" alt="Static vent"><figcaption>Fig 2.4 — A static vent — source p.16</figcaption></figure>
+<div class="box green"><strong>Advantages of the static vent:</strong> airflow at the vents is less turbulent so static pressure is more accurate; errors when side-slipping or yawing are reduced; and duplicating vents on each side (<strong>cross-balancing</strong>) further reduces side-slip/yaw errors.</div>
+
+<h2 id="sec-6">6. High Speed Probes</h2>
+<div class="box blue"><strong>What this section covers:</strong> why fast aircraft revert to a combined probe, and where probes/vents are located.</div>
+<p>Shock waves at high Mach numbers can cause significant errors in pressure sensed by a static vent. High-speed aircraft therefore use a more sophisticated <strong>combined pitot/static pressure head</strong> to keep position error within acceptable limits. Typical locations: ahead of a wing tip, under a wing, ahead of the vertical stabiliser tip, at the side of the fuselage nose, and ahead of the fuselage nose.</p>
+<figure><img src="figs/fig_p17_1.png" alt="High speed probe and emergency static source"><figcaption>Fig 2.5 / 2.6 — High-speed pitot/static probe and emergency static source — source p.17</figcaption></figure>
+
+<h2 id="sec-7">7. Manoeuvre-induced Error</h2>
+<div class="box blue"><strong>What this section covers:</strong> a transient error caused by manoeuvring, its timing and its danger.</div>
+<p><strong>Manoeuvre-induced error</strong> is caused by short-term pressure fluctuations at the static vents and delays in the pipelines transmitting changes to the instruments. Even servo altimeters and air-data computers suffer it, as they use the same static vents. Prime causes: changes in angle of attack and turbulence from lowering/raising flaps and landing gear.</p>
+<ul>
+  <li>Most commonly appears as a marked <strong>lag</strong> in pressure-instrument indications.</li>
+  <li>More significant during <strong>pitch</strong> changes than yaw/roll — worst at start of climb/descent and on levelling out.</li>
+  <li><strong>Go-around (overshoot)</strong> and flight in <strong>rough air</strong> are particularly vulnerable.</li>
+  <li>Errors are unpredictable in size and sense — pressure instruments cannot be relied on for accurate instantaneous values or rates during manoeuvres.</li>
+</ul>
+<div class="box red"><strong>Timing &amp; airmanship:</strong> the error may persist after control movement ceases — typically <span class="reg-value">3 seconds</span> at low altitude, increasing to <span class="reg-value">10 seconds</span> at <span class="reg-value">30 000 ft</span> (longer for VSIs). It particularly affects VSIs. Carry out in-flight manoeuvres using <strong>gyroscopic instruments</strong> as the primary reference.</div>
+
+<h2 id="sec-8">8. Full Pitot/Static System</h2>
+<div class="box blue"><strong>What this section covers:</strong> how pressures travel from probes to instruments, and the cross-coupling rules.</div>
+<p>Transmission uses <strong>pipelines</strong> in older systems and <strong>electrical wires</strong> in modern aircraft. Both pitot and static pipelines have built-in <strong>water traps</strong>. Modern systems use <strong>electronic pressure transducers</strong> at the sources with built-in error correction; the analogue measurement is converted by <strong>A/D interface units (A/D IFUs)</strong> to digital form, often carried onward by <strong>data digital buses</strong> — usually to the <strong>air data computer</strong>.</p>
+
+<table>
+  <thead><tr><th>System</th><th>Cross-coupling rule</th></tr></thead>
+  <tbody>
+    <tr><td>Pitot</td><td><strong>Not</strong> cross-coupled — left source → left instruments, right source → right instruments. Modern systems may compare outputs and warn if they differ by more than about <span class="reg-value">5 knots</span>, but do not cross-feed pitot pressure.</td></tr>
+    <tr><td>Static</td><td>Almost invariably <strong>cross-coupled</strong> — each system mixes its own left and right vents, reducing yaw/side-slip error. Large aircraft also have a standby pair of static vents for the standby ASI and altimeter (no standby VSI/Machmeter normally).</td></tr>
+  </tbody>
+</table>
+
+<h3>Alternate / emergency static source</h3>
+<figure><img src="figs/fig_p17_1.png" alt="Emergency static source selector"><figcaption>Fig 2.6 — Emergency (alternate) static source — source p.17</figcaption></figure>
+<div class="box amber"><strong>Exam Tip — alternate static source:</strong> light aircraft provide an alternate static source (cabin selector) if the vents block. It may be external or, in <strong>unpressurised</strong> aircraft only, from inside the cabin. The alternate pressure is <strong>less accurate</strong> and usually <strong>lower than ambient</strong> due to aerodynamic suction — so the altimeter tends to <strong>over-read</strong> and the ASI to <strong>over-read</strong> when on alternate static. Correction values are in the aircraft Operating Data Manual.</div>
+
+<h2 id="sec-9">9. Covers, Heaters &amp; Preflight Checks</h2>
+<div class="box blue"><strong>What this section covers:</strong> ground protection of the sensitive openings and the heater/preflight discipline.</div>
+<p>Pitot/static openings are highly sensitive — dirt, dust, sand or insects can drastically distort readings, so they are covered when the aircraft is not in use. <strong>Pitot covers</strong> are canvas/rubber tubes over the probe; <strong>static plugs</strong> are rubber, cork-shaped. Both carry a conspicuous streamer up to <span class="reg-value">a metre</span> long so they are not overlooked.</p>
+<div class="box red"><strong>Heater caution:</strong> always remove pitot covers and static plugs <strong>before</strong> switching heaters on, or you may burn/melt them. Test the pitot heater by switching it on ~<span class="reg-value">30 seconds</span> and feeling the probe for warmth (or watch for an ammeter rise / compass deflection), then switch off so it doesn't burn out.</div>
+<div class="box green"><strong>Preflight checks of the pitot/static system:</strong> all covers and plugs removed and stowed; all tubes, holes and slots free of obstructions; pitot-head heater operating. Heaters on again in pre-take-off checks; off in after-landing checks.</div>
+
+<div class="box amber"><strong>Quick Revision Summary:</strong> Pitot = static + dynamic; dynamic = pitot &minus; static. Static only → altimeter &amp; VSI; pitot+static → ASI &amp; Machmeter. Pitot opening parallel to airflow &amp; outside boundary layer; static opening at right angles. Position error ↑ with speed &amp; AoA; static vents reduce it &amp; are cross-coupled; pitot is not cross-coupled (warn &gt;5 kt). Manoeuvre-induced error = lag, worst in pitch changes, 3 s low / 10 s at 30 000 ft, worst on VSI → use gyros. Alternate static reads low → instruments over-read. Remove covers before heating.</div>
+
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+<div class="box blue">These are the <strong>8 questions from the source chapter</strong> (verbatim), with the source answer key (1-b, 2-c, 3-d, 4-a, 5-a, 6-a, 7-b, 8-c) and instructor explanations added.</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q1.</span><span class="q-text">A pitot head is used to measure:</span>
+    <ol class="q-options" type="a"><li>dynamic minus static pressure</li><li>static plus dynamic pressure</li><li>static pressure</li><li>dynamic pressure</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> static plus dynamic pressure</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The pitot head senses <em>total</em> pressure = static + dynamic (pitot pressure). See Section 1.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(a)</strong> &amp; <strong>(d)</strong> — dynamic pressure is derived inside the instrument (pitot &minus; static), not sensed directly.</li><li><strong>(c)</strong> — static alone is sensed by a static head/vent.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> "Pitot = total" is the anchor fact for the whole chapter.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q2.</span><span class="q-text">A static vent is used to measure:</span>
+    <ol class="q-options" type="a"><li>dynamic pressure minus static pressure</li><li>dynamic pressure plus static pressure</li><li>atmospheric pressure</li><li>dynamic pressure</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> atmospheric pressure</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The static vent senses ambient (static) atmospheric pressure only, with its opening at right angles to the airflow. See Section 4.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(a)</strong>/<strong>(b)</strong>/<strong>(d)</strong> — all involve dynamic pressure, which the static source must exclude.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Static pressure = atmospheric pressure at the flight level — same thing.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q3.</span><span class="q-text">A pressure head is subject to the following errors:</span>
+    <ol class="q-options" type="a"><li>position, manoeuvre-induced, temperature</li><li>position, manoeuvre-induced</li><li>position, manoeuvre-induced, density</li><li>position, manoeuvre-induced, instrument</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> position, manoeuvre-induced, instrument</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> A pressure head/instrument combination is subject to position (pressure) error, manoeuvre-induced error, and instrument error. See Sections 5 &amp; 7.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(a)</strong> &amp; <strong>(c)</strong> — temperature/density are not classed as pressure-head errors here.</li><li><strong>(b)</strong> — incomplete; omits instrument error.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Remember the trio: <em>Position, Manoeuvre, Instrument</em>.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q4.</span><span class="q-text">Given P<sub>t</sub> = total pressure, P<sub>s</sub> = static pressure, dynamic pressure is:</span>
+    <ol class="q-options" type="a"><li>Pt &ndash; Ps</li><li>(Pt &ndash; Ps) / Pt</li><li>(Pt &ndash; Ps) / Ps</li><li>Pt / Ps</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> Pt &ndash; Ps</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Dynamic = pitot &minus; static = P<sub>t</sub> &minus; P<sub>s</sub>. See Section 1.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(b)</strong> &amp; <strong>(c)</strong> — ratios are used for Mach number, not dynamic pressure.</li><li><strong>(d)</strong> — a pressure ratio, not a difference.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Contrast with the Machmeter, which works on the <em>ratio</em> (Pt &minus; Ps)/Ps.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q5.</span><span class="q-text">Manoeuvre-induced error:</span>
+    <ol class="q-options" type="a"><li>is caused by pressure changes at static probes or vents</li><li>is likely to be greatest when yawing after engine failure</li><li>is combined with instrument and position error on a correction card</li><li>lasts for only a short time at high altitude</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> is caused by pressure changes at static probes or vents</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> It arises from short-term pressure fluctuations at the static vents plus pipeline delays. See Section 7.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(b)</strong> — it is worst in <em>pitch</em> changes, not yaw.</li><li><strong>(c)</strong> — it is transient/unpredictable, not tabulated on a correction card.</li><li><strong>(d)</strong> — it lasts <em>longer</em> at high altitude (≈10 s at 30 000 ft).</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> "Longer up high, worst on the VSI" — and fly on the gyros during the manoeuvre.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q6.</span><span class="q-text">Position error:</span>
+    <ol class="q-options" type="a"><li>may be reduced by the fitting of static vents</li><li>will usually decrease with an increase in altitude</li><li>will depend solely on the attitude of the aircraft</li><li>will usually decrease as the aircraft approaches the speed of sound</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> may be reduced by the fitting of static vents</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Static vents sit in less turbulent airflow and can be cross-balanced, reducing position error. See Section 5.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(b)</strong> — position error does not simply decrease with altitude.</li><li><strong>(c)</strong> — it depends on head position, airspeed <em>and</em> attitude, not attitude alone.</li><li><strong>(d)</strong> — shock waves near the speed of sound tend to <em>increase</em> error.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Position error depends on head position + airspeed + attitude.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q7.</span><span class="q-text">Fitting static vents to both sides of the aircraft fuselage will:</span>
+    <ol class="q-options" type="a"><li>reduce the position error</li><li>balance out errors caused by side-slipping or yawing</li><li>require a calibration card for each static vent</li><li>enable a greater number of instruments to be fitted</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> balance out errors caused by side-slipping or yawing</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Interconnected vents on opposite sides (cross-balancing) cancel the asymmetry produced by side-slip/yaw. See Section 5.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(a)</strong> — that is the role of vent <em>location</em>; dual vents specifically address yaw/side-slip.</li><li><strong>(c)</strong> — they are interconnected, not separately calibrated.</li><li><strong>(d)</strong> — number of instruments is unrelated.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Two vents = symmetry against yaw; this is "cross-balancing".</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q8.</span><span class="q-text">Where an alternate static source is fitted, use of this source usually leads to:</span>
+    <ol class="q-options" type="a"><li>a temporary increase in lag error</li><li>a lower pressure error than with normal sources</li><li>an increase in position error</li><li>no change in position error</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> an increase in position error</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The alternate source is not in the optimum position and reads lower than ambient due to suction, so position error increases. See Section 8.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(a)</strong> — the change is in static <em>pressure level</em>, not primarily lag.</li><li><strong>(b)</strong> — the alternate source is <em>less</em> accurate, not more.</li><li><strong>(d)</strong> — there is a definite change; correction values are published.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Lower static → altimeter and ASI tend to over-read on alternate static; apply ODM corrections.</div>
+  </div>
+</div>
+
+<h2 id="master">Master Reference Tables</h2>
+
+<h3>All numerical values in this chapter</h3>
+<table>
+  <thead><tr><th>Value</th><th>Meaning</th><th>Section</th></tr></thead>
+  <tbody>
+    <tr><td>Pitot = Static + Dynamic</td><td>Fundamental pressure relationship</td><td>1</td></tr>
+    <tr><td>Dynamic = Pitot &minus; Static (Pt &minus; Ps)</td><td>Derived dynamic pressure</td><td>1</td></tr>
+    <tr><td>&gt; 5 knots</td><td>Pitot discrepancy that triggers a comparator warning</td><td>8</td></tr>
+    <tr><td>3 s (low) → 10 s (30 000 ft)</td><td>Manoeuvre-induced error persistence (longer for VSI)</td><td>7</td></tr>
+    <tr><td>~30 seconds</td><td>Pitot-heater functional test duration</td><td>9</td></tr>
+    <tr><td>up to 1 metre</td><td>Length of cover/plug warning streamer</td><td>9</td></tr>
+  </tbody>
+</table>
+
+<h3>Mnemonics &amp; memory aids</h3>
+<div class="box amber">"<strong>P S D</strong>": <strong>P</strong>itot = <strong>S</strong>tatic + <strong>D</strong>ynamic. Sensors: <strong>pitot parallel</strong> to airflow, <strong>static at right angles</strong>. Cross-coupling: <strong>S</strong>tatic = <strong>S</strong>hared; <strong>P</strong>itot = <strong>P</strong>rivate (not cross-fed).</div>
+
+<h3>Answer key</h3>
+<table>
+  <thead><tr><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th><th>Q8</th></tr></thead>
+  <tbody><tr><td>b</td><td>c</td><td>d</td><td>a</td><td>a</td><td>a</td><td>b</td><td>c</td></tr></tbody>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+</body>
+</html>

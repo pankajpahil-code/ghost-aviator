@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch.1 Characteristics and General Definitions — DGCA Instrumentation</title>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  :root{ --blue:#2c5aa0; --red:#c0392b; --green:#2e7d32; --amber:#f57c00; }
+  *{ box-sizing:border-box; }
+  body{ font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:14px; line-height:1.6; color:#1a202c; max-width:900px; margin:0 auto; padding:24px; background:#fff; }
+  h1,h2,h3{ font-weight:700; line-height:1.25; }
+  h1{ font-size:1.9em; }
+  h2{ font-size:1.4em; border-bottom:2px solid #e2e8f0; padding-bottom:6px; margin-top:34px; }
+  h3{ font-size:1.1em; color:var(--blue); margin-top:22px; }
+  a{ color:var(--blue); }
+  .cover{ text-align:center; padding:30px 20px; border:2px solid var(--blue); border-radius:10px; background:linear-gradient(180deg,#f8fafc,#eef2f9); }
+  .cover .sub{ color:#475569; font-size:1.05em; margin-top:6px; }
+  .cover .by{ color:var(--blue); font-weight:700; margin-top:10px; }
+  .reg-value{ font-weight:700; color:var(--blue); }
+  .box{ padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .blue{ background:#e8f1fb; border-left:5px solid var(--blue); }
+  .red{ background:#fdecea; border-left:5px solid var(--red); }
+  .green{ background:#e8f5e9; border-left:5px solid var(--green); }
+  .amber{ background:#fff8e1; border-left:5px solid var(--amber); }
+  table{ border-collapse:collapse; width:100%; margin:15px 0; page-break-inside:avoid; }
+  th,td{ border:1px solid #cbd5e1; padding:8px 10px; text-align:left; }
+  th{ background:var(--blue); color:#fff; }
+  tr:nth-child(even) td{ background:#f1f5f9; }
+  figure{ text-align:center; margin:18px 0; page-break-inside:avoid; }
+  figure img{ max-width:100%; border:1px solid #cbd5e1; border-radius:6px; background:#fff; }
+  figcaption{ font-size:0.85em; font-style:italic; color:#64748b; margin-top:6px; }
+  pre.mermaid{ text-align:center; page-break-inside:avoid; margin:18px 0; }
+  .svgwrap{ text-align:center; margin:18px 0; page-break-inside:avoid; }
+  blockquote{ font-family:Georgia,serif; font-style:italic; background:#f5f5f5; border-left:4px solid #94a3b8; padding:10px 16px; margin:14px 0; }
+  .toc{ background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:16px 22px; page-break-after:always; }
+  .toc ol{ margin:6px 0; }
+  code,.formula{ font-family:"Courier New",monospace; background:#f1f5f9; padding:1px 5px; border-radius:3px; }
+  .qa-block{ border:2px solid var(--blue); border-radius:8px; padding:20px; margin:25px 0; page-break-inside:avoid; background:#fff; }
+  .qa-question{ background:#e8f1fb; padding:15px; border-radius:6px; margin-bottom:15px; }
+  .q-number{ font-weight:900; color:var(--blue); font-size:1.1em; margin-right:8px; }
+  .q-options{ margin-top:12px; padding-left:25px; }
+  .q-options li{ padding:4px 0; }
+  .answer-reveal{ background:#e8f5e9; border-left:5px solid var(--green); padding:12px 15px; margin:10px 0; border-radius:4px; font-size:1.05em; }
+  .answer-explanation{ background:#f5f5f5; padding:12px 15px; margin:10px 0; border-radius:4px; line-height:1.7; }
+  .distractor-analysis{ background:#fdecea; border-left:5px solid var(--red); padding:12px 15px; margin:10px 0; border-radius:4px; }
+  .distractor-analysis ul{ margin-top:8px; padding-left:20px; }
+  .instructor-note{ background:#fff8e1; border-left:5px solid var(--amber); padding:12px 15px; margin:10px 0; border-radius:4px; font-style:italic; }
+  .watermark{ position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:80px; font-weight:900; color:rgba(0,0,0,0.12); z-index:9999; pointer-events:none; white-space:nowrap; font-family:Arial,sans-serif; }
+  @page{ size:A4; margin:20mm; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Characteristics &amp; General Definitions</h1>
+  <div class="sub">DGCA CPL/ATPL Study Notes — Instrumentation, Chapter 1</div>
+  <div class="by">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<nav class="toc">
+  <h2 style="border:none;margin-top:14px;">Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Units &amp; Standard Conversions</a></li>
+    <li><a href="#sec-2">Introduction — Common Instrument Problems</a></li>
+    <li><a href="#sec-3">Measuring Range versus Accuracy</a></li>
+    <li><a href="#sec-4">High Range / Long Scale Displays</a></li>
+    <li><a href="#sec-5">Ergonomy &amp; Standard Panel Layouts</a></li>
+    <li><a href="#sec-6">Analogue versus Digital Presentation</a></li>
+    <li><a href="#sec-7">Electronic (Glass) Displays</a></li>
+    <li><a href="#sec-8">Readability &amp; Parallax</a></li>
+    <li><a href="#sec-9">Coloured Arcs &amp; Colour Standardization</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#master">Master Reference Tables</a></li>
+  </ol>
+</nav>
+
+<h2 id="sec-1">1. Units &amp; Standard Conversions</h2>
+<div class="box blue"><strong>What this section covers:</strong> the measurement units used throughout instrumentation, and the exact conversion values you are expected to know verbatim for the DGCA exam.</div>
+
+<p>Pilots must move fluently between metric, imperial and aviation-specific units. The values below are quoted exactly from the source and must be memorised — examiners test the precise figures.</p>
+
+<table>
+  <thead><tr><th>Quantity</th><th>Units</th><th>Key conversions (verbatim)</th></tr></thead>
+  <tbody>
+    <tr><td>Distance</td><td>Metres, kilometres, feet, nautical &amp; statute miles</td><td>1 NM = <span class="reg-value">6080 ft</span> or <span class="reg-value">1852 m</span>; 1 statute mile = <span class="reg-value">5280 ft</span> or <span class="reg-value">1609 m</span></td></tr>
+    <tr><td>Speed</td><td>Knots, mph, km/h</td><td>1 knot = 1 NM per hour</td></tr>
+    <tr><td>Mass</td><td>Kilogram, pound</td><td>—</td></tr>
+    <tr><td>Pressure</td><td>hPa/mb, inHg, mmHg, psi</td><td>1 Atmos = <span class="reg-value">1013.25 hPa</span> = <span class="reg-value">1013.25 mb</span> = <span class="reg-value">29.92 inHg</span> = <span class="reg-value">760 mmHg</span> = <span class="reg-value">14.7 psi</span></td></tr>
+    <tr><td>Temperature</td><td>Celsius, Kelvin (Absolute), Fahrenheit</td><td>MSL = <span class="reg-value">+15&deg;C</span> = <span class="reg-value">+288 K</span> = <span class="reg-value">+59&deg;F</span></td></tr>
+    <tr><td>Volume</td><td>Litres, pints, gallons (Imp &amp; US)</td><td>1 Imp gallon = <span class="reg-value">1.2 US gallon</span></td></tr>
+    <tr><td>Angles / Position</td><td>Degrees, minutes, seconds</td><td>Latitude &amp; longitude shown in Deg Min Sec</td></tr>
+  </tbody>
+</table>
+
+<div class="box amber"><strong>Exam Tip:</strong> The two most-tested values are <span class="reg-value">1 NM = 6080 ft</span> (note: the ICAO/SI nautical mile is 1852 m) and the standard atmosphere set <span class="reg-value">1013.25 hPa / 29.92 inHg / +15&deg;C</span>. Learn the whole standard-atmosphere line as one block.</div>
+
+<h2 id="sec-2">2. Introduction — Common Instrument Problems</h2>
+<div class="box blue"><strong>What this section covers:</strong> why all instrumentation — from a simple dial to a glass cockpit — shares the same four design challenges.</div>
+<p>Pilots receive information about the aircraft's state — speed, altitude, position and attitude — through instruments and displays. Regardless of vintage, every instrumentation system must contend with four general characteristics:</p>
+<ul>
+  <li><strong>Range</strong> — the span of values it can display.</li>
+  <li><strong>Resolution</strong> — the smallest change it can show.</li>
+  <li><strong>Accuracy</strong> — how closely the indication matches truth.</li>
+  <li><strong>Reliability</strong> — consistency of correct indication over time.</li>
+</ul>
+
+<h2 id="sec-3">3. Measuring Range versus Accuracy</h2>
+<div class="box blue"><strong>What this section covers:</strong> the fundamental design trade-off between showing a wide range and reading it accurately, and how scale shape (linear vs non-linear) is used to manage it.</div>
+<p>It is often necessary to show a large operating range yet still indicate accurately across the whole range. For example, an airliner limited to a maximum permitted airspeed of <span class="reg-value">350 knots</span> might use an instrument designed to display up to <span class="reg-value">380</span> or <span class="reg-value">400 knots</span>. But safety-critical speeds must be read to the nearest knot. If the entire range is squeezed onto a single revolution, each one-knot division becomes too small to read accurately — that is the range-versus-accuracy conflict.</p>
+
+<h3>Circular scale — linear</h3>
+<p>A simple indicator showing values over a range of 0 to 30 units uses evenly spaced graduations; the required accuracy governs the spacing.</p>
+<figure><img src="figs/fig_p3_1.png" alt="Circular linear and non-linear scales"><figcaption>Fig 1.1 / 1.2 — Circular scale, linear (left) and non-linear/logarithmic (right) — source p.3</figcaption></figure>
+
+<h3>Circular scale — non-linear</h3>
+<p>Some instruments must show changes more accurately at certain parts of the scale. A rate-of-climb indicator uses a <strong>logarithmic scale</strong> so that low rates of climb/descent are spread out and easily read, while high rates are compressed.</p>
+
+<h2 id="sec-4">4. High Range / Long Scale Displays</h2>
+<div class="box blue"><strong>What this section covers:</strong> four design solutions used when 360&deg; of pointer travel cannot cover the required range with adequate accuracy.</div>
+
+<table>
+  <thead><tr><th>Solution</th><th>How it works</th><th>Example reading</th></tr></thead>
+  <tbody>
+    <tr><td>Single pointer, multiple revolutions</td><td>Pointer makes &gt;1 revolution to cover range — can cause confusion</td><td>ASI showing <span class="reg-value">300 kt</span> (Fig 1.3)</td></tr>
+    <tr><td>Moving pointer + moving scale</td><td>Pointer over fixed scale (tens), inset moving scale shows hundreds</td><td>ASI showing <span class="reg-value">33 kt</span> (Fig 1.4)</td></tr>
+    <tr><td>Two concentric pointers</td><td>Small needle/inner scale reads tens; large needle/outer scale reads units</td><td>Rev counter showing <span class="reg-value">25&frac12; % rpm</span> (Fig 1.5)</td></tr>
+    <tr><td>Clock-style (three pointer)</td><td>Like hours/minutes/seconds — used on many altimeters</td><td>Altimeter showing <span class="reg-value">25 950 ft</span> (Fig 1.6)</td></tr>
+  </tbody>
+</table>
+
+<figure><img src="figs/fig_p4_1.png" alt="Single pointer airspeed indicator"><figcaption>Fig 1.3 — Single-pointer airspeed indicator — source p.4</figcaption></figure>
+<figure><img src="figs/fig_p4_2.png" alt="Airspeed indicator with inset scale"><figcaption>Fig 1.4 / 1.5 — Inset moving-scale indicator / revolution counter — source p.4</figcaption></figure>
+<figure><img src="figs/fig_p4_3.png" alt="Concentric pointer indicator"><figcaption>Fig 1.5 / 1.6 — Concentric / three-pointer style display — source p.4</figcaption></figure>
+
+<div class="box amber"><strong>Exam Tip — three-pointer altimeter:</strong> long pointer = <span class="reg-value">100 ft</span> per division (1000 ft/rev); middle pointer = <span class="reg-value">1000 ft</span> per division (10 000 ft/rev); smallest pointer = <span class="reg-value">10 000 ft</span> per division (100 000 ft/rev). The three-pointer altimeter has historically caused misreading accidents — this is why digital/counter displays were introduced.</div>
+
+<h2 id="sec-5">5. Ergonomy &amp; Standard Panel Layouts</h2>
+<div class="box blue"><strong>What this section covers:</strong> human engineering of instruments, and the evolution from the "basic six" to the "basic T" layout.</div>
+<p><strong>Ergonomy</strong> (human engineering) is the science of the relationship between people and machines. For instruments it means designing displays unlikely to be misread and arranging them so interpretation is easy and correct.</p>
+
+<h3>From the "basic six" to the "basic T"</h3>
+<p>The flying instruments were first arranged as the <strong>basic six</strong>; other instruments were scattered to suit the manufacturer. Developments then led to the standard <strong>basic T</strong>.</p>
+
+<figure><img src="figs/fig_p5_1.png" alt="Basic six layout"><figcaption>Fig 1.7 — The "basic six" instrument layout — source p.5</figcaption></figure>
+<figure><img src="figs/fig_p5_3.png" alt="Basic T and Seneca panel"><figcaption>Fig 1.8 / 1.9 — The "basic T" layout / PA-34 Seneca basic panel — source p.5</figcaption></figure>
+
+<div class="svgwrap">
+<svg viewBox="0 0 420 200" width="420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Basic T layout">
+  <style>.g{fill:#e8f1fb;stroke:#2c5aa0;stroke-width:2}.t{font:11px sans-serif;text-anchor:middle;fill:#1a202c}</style>
+  <rect x="10" y="10" width="400" height="180" fill="#f8fafc" stroke="#cbd5e1"/>
+  <rect class="g" x="60" y="30" width="80" height="55"/><text class="t" x="100" y="62">ASI</text>
+  <rect class="g" x="170" y="30" width="80" height="55"/><text class="t" x="210" y="55">Attitude</text><text class="t" x="210" y="70">Indicator</text>
+  <rect class="g" x="280" y="30" width="80" height="55"/><text class="t" x="320" y="62">Altimeter</text>
+  <rect class="g" x="170" y="110" width="80" height="55"/><text class="t" x="210" y="135">Heading</text><text class="t" x="210" y="150">Indicator</text>
+  <text class="t" x="210" y="185" style="font-size:10px;fill:#64748b">The four primary instruments form the "T"</text>
+</svg>
+</div>
+
+<h2 id="sec-6">6. Analogue versus Digital Presentation</h2>
+<div class="box blue"><strong>What this section covers:</strong> the strengths of each presentation type, and why even "digital" altimeters retain a pointer.</div>
+<p>Presentation can be <strong>analogue</strong> (a pointer on a dial) or <strong>digital</strong> (a row of numbers). With a 3-pointer analogue altimeter, an altitude such as <span class="reg-value">24 020 ft</span> is harder to absorb at a glance than a digital readout. Digital numbers are easier to read accurately.</p>
+<figure><img src="figs/fig_p7_1.png" alt="Analogue and combined digital-analogue altimeters"><figcaption>Fig 1.10 / 1.11 — Analogue altimeter vs combined digital/analogue altimeter — source p.7</figcaption></figure>
+<div class="box green"><strong>Why a pointer survives on digital displays:</strong> the human eye and brain cannot easily interpret <em>rate</em> information from moving numbers. Pilots pick up secondary rate-of-change information from the angular rate of a moving pointer, so a pointer is retained even on mainly-digital altimeters.</div>
+
+<h2 id="sec-7">7. Electronic (Glass) Displays</h2>
+<div class="box blue"><strong>What this section covers:</strong> the architecture of modern electronic flight decks and where the computing hardware physically lives.</div>
+<p>Traditionally instruments lived on the instrument panel. With modern electronic displays, the displays remain on the flight deck where the crew can see and operate them, but the computing and power units are located remotely — usually in a separate compartment called the <strong>Avionics Bay</strong> or the <strong>Electrics and Electronics (E&amp;E) Bay</strong>.</p>
+<pre class="mermaid">
+flowchart LR
+  S[Sensors / Probes] --> C[Computing units<br/>in Avionics / E&E Bay]
+  P[Power units] --> C
+  C --> D[Flight-deck displays<br/>CRT / LCD glass screens]
+  D --> Crew([Flight Crew])
+</pre>
+
+<h2 id="sec-8">8. Readability &amp; Parallax</h2>
+<div class="box blue"><strong>What this section covers:</strong> the eye reference point and the parallax error that arises when it is not respected.</div>
+<p>A readable instrument is designed around an <strong>eye reference point</strong> — the anticipated position of the pilot's eye in normal viewing. Where an index/reference mark sits in front of a scale, the eye, index and scale must all be in line.</p>
+<div class="box red"><strong>Parallax error:</strong> viewing an instrument from slightly to one side instead of from the front causes the index to appear against the wrong part of the scale. This is a reading error, not an instrument fault, and is avoided by viewing from the design eye reference point.</div>
+
+<h2 id="sec-9">9. Coloured Arcs &amp; Colour Standardization</h2>
+<div class="box blue"><strong>What this section covers:</strong> the standard colour codes for conventional instruments and the extended CS-25 colour set for electronic displays.</div>
+
+<h3>Conventional (non-electronic) instruments</h3>
+<table>
+  <thead><tr><th>Colour</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td style="color:var(--green);font-weight:700">Green</td><td>Normal operating range</td></tr>
+    <tr><td style="color:var(--amber);font-weight:700">Yellow / Amber</td><td>Cautionary range</td></tr>
+    <tr><td style="color:var(--red);font-weight:700">Red</td><td>Warning, or unsafe operating range</td></tr>
+  </tbody>
+</table>
+
+<h3>Electronic displays — CS-25 standardization</h3>
+<table>
+  <thead><tr><th>Colour</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td style="font-weight:700">White</td><td>Present status</td></tr>
+    <tr><td style="color:#1d4ed8;font-weight:700">Blue</td><td>Temporary situation</td></tr>
+    <tr><td style="color:var(--green);font-weight:700">Green</td><td>Normal operating range</td></tr>
+    <tr><td style="color:var(--amber);font-weight:700">Yellow / Amber</td><td>Cautionary range</td></tr>
+    <tr><td style="color:var(--red);font-weight:700">Red</td><td>Warning, or unsafe operating range</td></tr>
+  </tbody>
+</table>
+
+<div class="box amber"><strong>Quick Revision Summary:</strong> Four instrument problems = range, resolution, accuracy, reliability. Standard atmosphere = <span class="reg-value">1013.25 hPa / 29.92 inHg / 760 mmHg / 14.7 psi / +15&deg;C / +288 K / +59&deg;F</span>. 1 NM = <span class="reg-value">6080 ft</span>. Three-pointer altimeter: 100 / 1000 / 10 000 ft per division. Pointer kept on digital displays for <em>rate</em> sensing. Parallax = off-axis viewing error. Conventional colours: green/amber/red; CS-25 adds white &amp; blue.</div>
+
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+<div class="box blue">Chapter 1 of the source is descriptive and contains no question bank, so the questions below are <strong>instructor-generated</strong> in the DGCA style, tied directly to the section content above. Attempt each before revealing the answer.</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q1.</span><span class="q-text">In the ICAO standard atmosphere at mean sea level, the pressure is:</span>
+    <ol class="q-options" type="a"><li>1000 hPa / 28.00 inHg</li><li>1013.25 hPa / 29.92 inHg</li><li>1025 hPa / 30.12 inHg</li><li>1013.25 inHg / 760 hPa</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 1013.25 hPa / 29.92 inHg</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The standard MSL pressure set is <span class="reg-value">1013.25 hPa = 29.92 inHg = 760 mmHg = 14.7 psi</span>. See Section 1 above.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(a)</strong> — 1000 hPa / 28.00 inHg are not the standard values.</li><li><strong>(c)</strong> — high-pressure values, not standard.</li><li><strong>(d)</strong> — units transposed (inHg and hPa swapped).</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Memorise the full standard-atmosphere line as a single block; it recurs in altimetry and air-data questions.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q2.</span><span class="q-text">One nautical mile is equal to:</span>
+    <ol class="q-options" type="a"><li>5280 ft</li><li>1609 m</li><li>6080 ft</li><li>1000 m</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> 6080 ft (also 1852 m)</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Per Section 1, 1 NM = <span class="reg-value">6080 ft</span> or <span class="reg-value">1852 m</span>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(a)</strong> &amp; <strong>(b)</strong> — 5280 ft / 1609 m define the <em>statute</em> mile.</li><li><strong>(d)</strong> — 1000 m is one kilometre.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Don't confuse the nautical mile (6080 ft) with the statute mile (5280 ft).</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q3.</span><span class="q-text">A pointer is retained on an otherwise digital altimeter primarily because:</span>
+    <ol class="q-options" type="a"><li>it is cheaper to manufacture</li><li>the eye cannot easily read rate information from moving numbers</li><li>regulations forbid fully digital altimeters</li><li>it improves the instrument's accuracy</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> the eye cannot easily read rate information from moving numbers</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Section 6 — pilots pick up rate-of-change information from the angular rate of a moving pointer, which digits cannot convey at a glance.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(a)</strong> — cost is not the stated reason.</li><li><strong>(c)</strong> — no such prohibition.</li><li><strong>(d)</strong> — the pointer aids rate sensing, not accuracy of the value.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Same logic underlies the "trend vector" on modern tape displays.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q4.</span><span class="q-text">Viewing an instrument from slightly off to one side produces:</span>
+    <ol class="q-options" type="a"><li>position error</li><li>parallax error</li><li>hysteresis</li><li>lag error</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> parallax error</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Section 8 — parallax is the reading error from not viewing along the eye reference point/index/scale line.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(a)</strong> — position error is a pitot/static pressure error (Ch.2).</li><li><strong>(c)</strong> &amp; <strong>(d)</strong> — hysteresis and lag are mechanical/dynamic errors, not viewing-angle errors.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Parallax is a <em>reading</em> error — the instrument itself is correct.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q5.</span><span class="q-text">On a conventional instrument, an amber (yellow) arc indicates:</span>
+    <ol class="q-options" type="a"><li>normal operating range</li><li>cautionary range</li><li>warning / unsafe range</li><li>present status</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> cautionary range</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Section 9 — green = normal, yellow/amber = caution, red = warning/unsafe.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(a)</strong> — green.</li><li><strong>(c)</strong> — red.</li><li><strong>(d)</strong> — "present status" is white, and only in the CS-25 electronic set.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> White and blue appear only in the CS-25 electronic-display colour set.</div>
+  </div>
+</div>
+
+<h2 id="master">Master Reference Tables</h2>
+
+<h3>All numerical values in this chapter</h3>
+<table>
+  <thead><tr><th>Value</th><th>Meaning</th><th>Section</th></tr></thead>
+  <tbody>
+    <tr><td>1 NM = 6080 ft = 1852 m</td><td>Nautical mile</td><td>1</td></tr>
+    <tr><td>1 statute mile = 5280 ft = 1609 m</td><td>Statute mile</td><td>1</td></tr>
+    <tr><td>1 Imp gal = 1.2 US gal</td><td>Volume conversion</td><td>1</td></tr>
+    <tr><td>1013.25 hPa / mb</td><td>Std MSL pressure</td><td>1</td></tr>
+    <tr><td>29.92 inHg / 760 mmHg / 14.7 psi</td><td>Std MSL pressure (other units)</td><td>1</td></tr>
+    <tr><td>+15&deg;C / +288 K / +59&deg;F</td><td>Std MSL temperature</td><td>1</td></tr>
+    <tr><td>350 / 380–400 kt</td><td>Example Vmax vs scale design</td><td>3</td></tr>
+    <tr><td>100 / 1000 / 10 000 ft per division</td><td>Three-pointer altimeter</td><td>4</td></tr>
+  </tbody>
+</table>
+
+<h3>Memory aids</h3>
+<div class="box amber">"<strong>4 R's</strong>" of instrument problems: <strong>R</strong>ange, <strong>R</strong>esolution, accu<strong>R</strong>acy, <strong>R</strong>eliability. Colour order (conventional): <strong>G</strong>reen–<strong>A</strong>mber–<strong>R</strong>ed = Go / Attention / Risk.</div>
+
+<h3>Answer key</h3>
+<table>
+  <thead><tr><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th></tr></thead>
+  <tbody><tr><td>b</td><td>c</td><td>b</td><td>b</td><td>b</td></tr></tbody>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+</body>
+</html>

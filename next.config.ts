@@ -12,8 +12,9 @@ import type { NextConfig } from "next";
 // CSP-nonce XSS advisory, so a static allow-list is the safer choice here.
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
+  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://cdn.jsdelivr.net",
   "style-src 'self' 'unsafe-inline'",
+  "worker-src 'self' blob:",
   "img-src 'self' data: https:",
   "font-src 'self' data:",
   "media-src 'self'",
@@ -52,9 +53,4 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         headers: securityHeaders,
-      },
-    ];
-  },
-};
-
-export default nextConfig;
+   
