@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import fs from "node:fs";
+import path from "node:path";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter } from "@/lib/questions";
 import NotesPage              from "@/app/components/content/NotesPage";
@@ -79,6 +81,29 @@ export default async function Page({
       );
     }
     const notesHtmlPath = `/content/${subject.id}/${chapter.id}/notes.html`;
+
+    // Instrumentation: auto-serve HTML notes whenever the chapter's notes.html
+    // has been published to public/content/ (the daily notes task drops files
+    // there), so newly added chapters appear without editing this allow-list.
+    if (subject.id === "instrumentation") {
+      const notesFile = path.join(process.cwd(), "public", "content", subject.id, chapter.id, "notes.html");
+      if (fs.existsSync(notesFile)) {
+        return (
+          <HtmlNotesPage
+            track="cpl"
+            subject={subject}
+            chapter={chapter}
+            prevChapter={prevChapter}
+            nextChapter={nextChapter}
+            src={notesHtmlPath}
+          />
+        );
+      }
+      return (
+        <ComingSoonPage track="cpl" subject={subject} chapter={chapter} type={type} />
+      );
+    }
+
     // serve HTML notes for any chapter that has a notes.html in public/content/
     const HTML_NOTES_CHAPTERS: Record<string, boolean> = {
       "air-regulations/ar-3":  true,

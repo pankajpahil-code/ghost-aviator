@@ -248,17 +248,17 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "met-24", number: 24, title: "Station Model",
         description: "Plotting and decoding the synoptic station model — symbols for cloud, weather, wind, pressure and pressure tendency.",
-        duration: "1 hr", questionCount: 35, content: makeContent(),
+        duration: "1 hr", questionCount: 35, content: makeContent(true),
       },
       {
         id: "met-25", number: 25, title: "Aerodrome Met Reports — METAR, SPECI & TREND",
         description: "Decoding and encoding METAR, SPECI and TREND forecasts — groups for wind, visibility, RVR, weather, cloud, temperature, QNH and significant changes.",
-        duration: "2 hrs", questionCount: 60, content: makeContent(),
+        duration: "2 hrs", questionCount: 60, content: makeContent(true),
       },
       {
         id: "met-26", number: 26, title: "Aviation Weather Forecasts — TAF, ARFOR & ROFOR",
         description: "Decoding TAF, area forecasts (ARFOR) and route forecasts (ROFOR), validity periods, change groups and probability groups.",
-        duration: "2 hrs", questionCount: 50, content: makeContent(),
+        duration: "2 hrs", questionCount: 50, content: makeContent(true),
       },
       {
         id: "met-27", number: 27, title: "Radar Report, SIGMET & Satellite Bulletin",
@@ -739,6 +739,221 @@ export const CPL_SUBJECTS: Subject[] = [
         id: "rtf-7", number: 7, title: "VHF Propagation & Frequency Allocation",
         description: "General principles of VHF propagation, line-of-sight range, frequency band allocation for aviation communications, SELCAL, HF communications basics.",
         duration: "2 hrs", questionCount: 50, content: makeContent(),
+      },
+    ],
+  },
+
+  // ── INSTRUMENTATION (Oxford ATPL Book 5) ─────────────────────────────────
+  {
+    id: "instrumentation",
+    name: "Navigation — Instrumentation",
+    shortName: "Instrumentation",
+    icon: "🧭",
+    color: "#f59e0b",
+    description: "Flight instruments, gyroscopics, compasses, air data, INS/IRS, FMS, EFIS, automatic flight control, warning & recording systems, and powerplant instrumentation. Chapter-wise notes from the Oxford ATPL Instrumentation manual.",
+    examDuration: 60,
+    totalQuestions: 50,
+    passMark: 70,
+    chapters: [
+      {
+        id: "inst-1", number: 1, title: "Characteristics and General Definitions",
+        description: "Oxford ATPL Instrumentation, Chapter 1: Characteristics and General Definitions. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-2", number: 2, title: "Pitot and Static Sources",
+        description: "Oxford ATPL Instrumentation, Chapter 2: Pitot and Static Sources. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-3", number: 3, title: "Air Temperature Measurement",
+        description: "Oxford ATPL Instrumentation, Chapter 3: Air Temperature Measurement. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-4", number: 4, title: "The Airspeed Indicator (ASI)",
+        description: "Oxford ATPL Instrumentation, Chapter 4: The Airspeed Indicator (ASI). DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-5", number: 5, title: "The Pressure Altimeter",
+        description: "Oxford ATPL Instrumentation, Chapter 5: The Pressure Altimeter. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-6", number: 6, title: "The Vertical Speed Indicator",
+        description: "Oxford ATPL Instrumentation, Chapter 6: The Vertical Speed Indicator. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-7", number: 7, title: "The Machmeter",
+        description: "Oxford ATPL Instrumentation, Chapter 7: The Machmeter. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-8", number: 8, title: "Air Data Computer",
+        description: "Oxford ATPL Instrumentation, Chapter 8: Air Data Computer. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-9", number: 9, title: "Terrestrial Magnetism",
+        description: "Oxford ATPL Instrumentation, Chapter 9: Terrestrial Magnetism. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-10", number: 10, title: "The Direct Indicating Compass",
+        description: "Oxford ATPL Instrumentation, Chapter 10: The Direct Indicating Compass. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-11", number: 11, title: "Gyroscopes",
+        description: "Oxford ATPL Instrumentation, Chapter 11: Gyroscopes. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-12", number: 12, title: "Directional Gyro Indicator (DGI)",
+        description: "Oxford ATPL Instrumentation, Chapter 12: Directional Gyro Indicator (DGI). DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-13", number: 13, title: "The Artificial Horizon",
+        description: "Oxford ATPL Instrumentation, Chapter 13: The Artificial Horizon. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-14", number: 14, title: "The Turn and Slip Indicator",
+        description: "Oxford ATPL Instrumentation, Chapter 14: The Turn and Slip Indicator. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-15", number: 15, title: "The Turn Co-ordinator",
+        description: "Oxford ATPL Instrumentation, Chapter 15: The Turn Co-ordinator. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-16", number: 16, title: "Aircraft Magnetism",
+        description: "Oxford ATPL Instrumentation, Chapter 16: Aircraft Magnetism. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-17", number: 17, title: "Remote Indicating Magnetic Compass",
+        description: "Oxford ATPL Instrumentation, Chapter 17: Remote Indicating Magnetic Compass. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-18", number: 18, title: "Inertial Navigation Systems",
+        description: "Oxford ATPL Instrumentation, Chapter 18: Inertial Navigation Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-19", number: 19, title: "Inertial Reference System",
+        description: "Oxford ATPL Instrumentation, Chapter 19: Inertial Reference System. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-20", number: 20, title: "Radio Altimeter",
+        description: "Oxford ATPL Instrumentation, Chapter 20: Radio Altimeter. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-21", number: 21, title: "Flight Management System",
+        description: "Oxford ATPL Instrumentation, Chapter 21: Flight Management System. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-22", number: 22, title: "Electronic Flight Information Systems",
+        description: "Oxford ATPL Instrumentation, Chapter 22: Electronic Flight Information Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-23", number: 23, title: "Basic Computers",
+        description: "Oxford ATPL Instrumentation, Chapter 23: Basic Computers. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-24", number: 24, title: "Future Air Navigation Systems (FANS)",
+        description: "Oxford ATPL Instrumentation, Chapter 24: Future Air Navigation Systems (FANS). DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-25", number: 25, title: "Flight Director Systems",
+        description: "Oxford ATPL Instrumentation, Chapter 25: Flight Director Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-26", number: 26, title: "Autopilot",
+        description: "Oxford ATPL Instrumentation, Chapter 26: Autopilot. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-27", number: 27, title: "Autoland",
+        description: "Oxford ATPL Instrumentation, Chapter 27: Autoland. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-28", number: 28, title: "Autothrottle",
+        description: "Oxford ATPL Instrumentation, Chapter 28: Autothrottle. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-29", number: 29, title: "Yaw Dampers",
+        description: "Oxford ATPL Instrumentation, Chapter 29: Yaw Dampers. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-30", number: 30, title: "Control Laws",
+        description: "Oxford ATPL Instrumentation, Chapter 30: Control Laws. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-31", number: 31, title: "AFCS Revision Questions",
+        description: "Oxford ATPL Instrumentation, Chapter 31: AFCS Revision Questions. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-32", number: 32, title: "Flight Warning Systems",
+        description: "Oxford ATPL Instrumentation, Chapter 32: Flight Warning Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-33", number: 33, title: "Aerodynamic Warnings",
+        description: "Oxford ATPL Instrumentation, Chapter 33: Aerodynamic Warnings. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-34", number: 34, title: "Ground Proximity Warning System",
+        description: "Oxford ATPL Instrumentation, Chapter 34: Ground Proximity Warning System. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-35", number: 35, title: "Airborne Collision and Avoidance System",
+        description: "Oxford ATPL Instrumentation, Chapter 35: Airborne Collision and Avoidance System. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-36", number: 36, title: "Flight Data Recorder",
+        description: "Oxford ATPL Instrumentation, Chapter 36: Flight Data Recorder. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-37", number: 37, title: "Cockpit Voice Recorder",
+        description: "Oxford ATPL Instrumentation, Chapter 37: Cockpit Voice Recorder. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-38", number: 38, title: "Engine Instrumentation",
+        description: "Oxford ATPL Instrumentation, Chapter 38: Engine Instrumentation. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-39", number: 39, title: "Electronic Instrumentation",
+        description: "Oxford ATPL Instrumentation, Chapter 39: Electronic Instrumentation. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "inst-40", number: 40, title: "Revision Questions",
+        description: "Oxford ATPL Instrumentation, Chapter 40: Revision Questions. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
     ],
   },
