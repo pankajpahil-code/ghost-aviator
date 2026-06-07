@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 27 – Radar Report, SIGMET & Satellite Bulletin | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #222; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 28px; color: #1a237e; text-align: center; }
+  h2 { font-size: 20px; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; page-break-after: avoid; }
+  h3 { font-size: 16px; color: #283593; margin-top: 20px; page-break-after: avoid; }
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 10px; margin-bottom: 40px; page-break-after: always; }
+  .cover .subtitle { font-size: 18px; color: #555; margin: 10px 0; }
+  .cover .author { font-size: 16px; color: #1a237e; font-weight: bold; margin-top: 20px; }
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { padding: 4px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; font-size: 13px; }
+  th { background: #1a237e; color: #fff; padding: 8px 6px; text-align: left; }
+  td { border: 1px solid #ccc; padding: 6px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  .code-box { background: #1e1e2e; color: #cdd6f4; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 13px; margin: 15px 0; white-space: pre-wrap; page-break-inside: avoid; }
+  pre.mermaid { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 27</h1>
+  <div class="subtitle">RADAR REPORT (RAREP), SIGMET MESSAGE<br>&amp; SATELLITE BULLETIN</div>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div style="margin: 20px 0; font-size: 48px;">📡</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+  <div style="color:#888; margin-top:10px;">Source: IC Joshi — Aviation Meteorology</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#rarep">1. Radar Report (RAREP) — Introduction &amp; Code</a></li>
+    <li><a href="#rarep-terms">2. RAREP — Character of Echoes &amp; Intensity Terms</a></li>
+    <li><a href="#rarep-notes">3. RAREP — Important Notes</a></li>
+    <li><a href="#rarep-examples">4. RAREP Decoded Examples</a></li>
+    <li><a href="#sigmet">5. SIGMET Message</a></li>
+    <li><a href="#sigmet-content">6. SIGMET Content &amp; Structure</a></li>
+    <li><a href="#sigmet-examples">7. SIGMET Examples</a></li>
+    <li><a href="#sat">8. Satellite Bulletin</a></li>
+    <li><a href="#sat-example">9. Satellite Bulletin Decoded Example</a></li>
+    <li><a href="#ref">10. Master Reference &amp; Quick Revision</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="rarep">1. Radar Report (RAREP) — Introduction &amp; Code</h2>
+
+<div class="blue-box">
+  <strong>RAREP</strong> = Radar Report. Reports the location, intensity, movement, and height of radar echoes (precipitation areas, thunderstorms) from a ground-based weather radar station.<br>
+  RAREP is normally reported only at <strong>synoptic hours</strong>. In case of any break in observations or rapid development, additional messages are transmitted as necessary.
+</div>
+
+<h3>RAREP Code Form</h3>
+<div class="code-box">RAREP  FEBB              liiiii         YYGGg
+CHARACTER  (b.b.b.b.b.f.t.t)  b.b.b.h.h./f.t.t.
+Intensity Tendency:   d.d.f.f.    ALTD    (bbb/H.H/rrr)</div>
+
+<h3>Code Elements Explained</h3>
+<table>
+  <tr><th>Code</th><th>Meaning</th></tr>
+  <tr><td>RAREP</td><td>Radar Report identifier</td></tr>
+  <tr><td>FEBB</td><td>Station Index number</td></tr>
+  <tr><td>YYGGg</td><td>Date and time of RAREP</td></tr>
+  <tr><td>liiiii</td><td>Station Index number</td></tr>
+  <tr><td>bbb</td><td>Azimuth in three digit degrees of points on the periphery of an echo area</td></tr>
+  <tr><td>rrr</td><td>Range: three digit in kilometres</td></tr>
+  <tr><td>ALTD</td><td>Indicator of Echo Height Information</td></tr>
+  <tr><td>H.H.</td><td>Height of Top of Echo amsl in km (may be repeated as required)</td></tr>
+  <tr><td>d.d.</td><td>Direction in tens of degrees in which echo is moving</td></tr>
+  <tr><td>f.f.</td><td>Speed in km per hour of the echoes</td></tr>
+</table>
+
+<!-- SECTION 2 -->
+<h2 id="rarep-terms">2. RAREP — Character of Echoes &amp; Intensity Terms</h2>
+
+<h3>Character of Echoes</h3>
+<table>
+  <tr><th>Code</th><th>Character</th><th>Description</th></tr>
+  <tr><td>EYE</td><td>Eye</td><td>An echo of eye wall of a tropical cyclone</td></tr>
+  <tr><td>SPRL BAND</td><td>Spiral Band</td><td>A continuous or broken curved line of echoes of spiral band associated with a cyclone</td></tr>
+  <tr><td>SQL LN</td><td>Squall Line</td><td>Having length 60 km or more and length to width ratio about <span class="reg-value">10 to 1</span></td></tr>
+  <tr><td>BRKN LN</td><td>Broken Line</td><td>Broken line of echoes</td></tr>
+  <tr><td>SLD</td><td>Solid</td><td>An area fully covered with echoes</td></tr>
+  <tr><td>BRKN</td><td>Broken</td><td>An area <span class="reg-value">4/8 to 7/8</span> covered with echoes</td></tr>
+  <tr><td>SCT</td><td>Scattered</td><td>An area <span class="reg-value">1/8 to 4/8</span> covered with echoes</td></tr>
+  <tr><td>WDLY SCT</td><td>Widely Scattered</td><td>An area <span class="reg-value">less than 1/8</span> covered with echoes</td></tr>
+  <tr><td>ISLTD</td><td>Isolated</td><td>Isolated solid mass of echo</td></tr>
+  <tr><td>ECHO ALOFT</td><td>Echo Aloft</td><td>Echoes seen only at elevations higher than the beamwidth</td></tr>
+</table>
+
+<h3>Intensity Tendency</h3>
+<table>
+  <tr><th>Code</th><th>Meaning</th></tr>
+  <tr><td>INCG</td><td>Increasing</td></tr>
+  <tr><td>DEC</td><td>Decreasing</td></tr>
+  <tr><td>NO CHG</td><td>No Change</td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>Bright Band &amp; Anomalous Propagation (AP)</strong> are reported in <strong>plain language</strong>.<br>
+  <strong>Bright Band</strong> = A radar echo caused by enhanced reflectivity of partially melted snowflakes — occurs at the melting level.<br>
+  <strong>AP (Anomalous Propagation)</strong> = False echoes caused by abnormal bending of radar beam near the ground (temperature inversions etc.)
+</div>
+
+<!-- SECTION 3 -->
+<h2 id="rarep-notes">3. RAREP — Important Notes</h2>
+<div class="red-box">
+  <ol>
+    <li>Groups within brackets () are repeated as many times as necessary.</li>
+    <li>To define the shape of <strong>line echoes</strong>, spiral bands and eye wall: as many bbb/rrr points as necessary are used. Points given along the line in <strong>anticlockwise direction</strong>.</li>
+    <li>To define the shape of <strong>areas</strong>: as many bbb/rrr points as necessary. Points given in <strong>anticlockwise order</strong> starting from the northernmost point. The first point is repeated as the last point to indicate it is a closed area.</li>
+    <li>If an echo system with a distinct characteristic is partly or wholly embedded in another, the two systems are reported in <strong>separate groups</strong>.</li>
+    <li>Reports of heights are restricted to a maximum range of <span class="reg-value">200 km</span> from the station.</li>
+  </ol>
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="rarep-examples">4. RAREP Decoded Examples</h2>
+
+<h3>Example 1</h3>
+<div class="code-box">RAREP 42375 15030 270/050 300/060 350/025 280/ 010 SLD INCG 1525 ALTD
+270/09 050 340/10/060 280/12/ 010 =</div>
+<div class="green-box">
+  <strong>Radar Report for 42375</strong> (International Identification No.) (say) Palam Date 15th at 0300<br>
+  UTC Area of Solid echo from and 270 deg 50, 300 deg 60 km, 350 deg 25 km, 280 deg 10 UTC<br>
+  Area of Solid echo Moving in 150 direction with speed of 25 KMH<br>
+  Altitude of echoes in 270 direction 9 km at 50 km<br>
+  In 340 direction 10 km at 60 km; in 280 direction 12 km at 10 km = Intensity: <strong>INCREASING</strong>
+</div>
+
+<h3>Example 2</h3>
+<div class="code-box">RAREP 43003 10143 270 / 030 / 330 / 040 050 / 020 MDT INCG RPD NW / 012 ALTD
+260/ 15 / 030 BRIGHT BAND 280 / 30 AP 300/ 330 /150 Angles between the Azimuth
+270° to 340° Range 15 to 20 nm (AP – Anomalous Propagation)</div>
+<div class="green-box">
+  Station 43003, Date 10th at 14:30 UTC<br>
+  Echo area defined by azimuths 270°/030 km, 330°/040 km, 050°/020 km (anticlockwise from northernmost)<br>
+  MDT INCG RPD NW/012 → Moderate intensity, Increasing Rapidly, Moving NW at 012 km/h<br>
+  ALTD 260/15/030 → Echo height: At azimuth 260°, top at 15 km, at 030 km range<br>
+  BRIGHT BAND 280/30 → Bright Band at 280° azimuth, 30 km range<br>
+  AP 300/330/150 → Anomalous Propagation between azimuth 270° to 340°, Range 15–20 nm
+</div>
+
+<!-- SECTION 5 -->
+<h2 id="sigmet">5. SIGMET Message</h2>
+
+<div class="blue-box">
+  <strong>SIGMET</strong> = Significant Meteorological Information<br>
+  Prepared in <strong>abbreviated plain language</strong> using ICAO approved abbreviations. Contains information about significant en-route weather hazards.
+</div>
+
+<div class="amber-box">
+  <strong>SIGMET for subsonic aircraft</strong> is identified as <strong>SIGMET SST</strong>.<br>
+  <strong>SIGMET for supersonic aircraft</strong> is identified as <strong>SIGMET SST</strong> (separate series of sequence numbers).<br>
+  SIGMET information is disseminated to all forecasting offices in India and also transmitted on AFTN under D/D priority to MWOs in neighbouring countries within a distance of <span class="reg-value">1100 NM</span> from the boundaries of local FIRs.
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="sigmet-content">6. SIGMET Content &amp; Structure</h2>
+
+<pre class="mermaid">
+flowchart TD
+    A[SIGMET Message Contains] --> B[Identification of MWO\neg. VECC]
+    A --> C[Message ID and Sequence No.\neg. SIGMET 2 = 2nd SIGMET]
+    A --> D[Date-Time Group\nValidity Period in UTC\neg. VALID 221215/221600]
+    A --> E[Description of Phenomenon\neg. SEV FRQ]
+    A --> F[Phenomenon for which issued\neg. TURB, TS]
+    A --> G[Observed or Forecast + expected\ncontinue time\neg. OBS AT 1150 UTC, FCST AT 1000 UTC]
+    A --> H[Location\nLat/Lon or geographic feature\neg. FCST TOPS FL390 S OF 54 DEG N\nor OVER KOLKATA AT FL250]
+    A --> I[Movement\neg. MOVE E 25 KT]
+    A --> J[Change in intensity\neg. INTSF, WKN or NC]
+    A --> K[Volcanic ash outlook\nbeyond validity period\neg. VABB SIGMET 3 VALID 221600/222000]
+</pre>
+
+<table>
+  <tr><th>SIGMET Element</th><th>Abbreviation</th><th>Meaning</th></tr>
+  <tr><td>Sequence</td><td>SIGMET 2</td><td>2nd SIGMET = 2nd SIGMET in series</td></tr>
+  <tr><td>Validity</td><td>VALID 221215/221600</td><td>Valid from 22nd 1215 UTC to 22nd 1600 UTC</td></tr>
+  <tr><td>Severity</td><td>SEV</td><td>Severe</td></tr>
+  <tr><td>Frequency</td><td>FRQ</td><td>Frequent</td></tr>
+  <tr><td>Observed/Forecast</td><td>OBS / FCST</td><td>Observed at time / Forecast at time</td></tr>
+  <tr><td>FL</td><td>FL250, FL390</td><td>Flight Level (×100 ft)</td></tr>
+  <tr><td>Tops</td><td>TOPS FL390</td><td>Cloud/echo tops at FL390</td></tr>
+  <tr><td>Intensity change</td><td>INTSF / WKN / NC</td><td>Intensifying / Weakening / No Change</td></tr>
+  <tr><td>Movement</td><td>MOVE E 25 KT</td><td>Moving East at 25 knots</td></tr>
+  <tr><td>No CB</td><td>OT LK</td><td>Outside cloud tops? (no CB)</td></tr>
+</table>
+
+<!-- SECTION 7 -->
+<h2 id="sigmet-examples">7. SIGMET Examples</h2>
+
+<h3>TS SIGMET Examples</h3>
+<div class="code-box">VECC SIGMET 4 VALID 161200/101600 TC OBS 20.2N 89.2E AT 1130 UTC FRQ
+TS TOPS FL350 W 150NM OF CENTRE MOV NW 10 KT OTLK TC CENTRE
+110300 21N 87.9E 111200 21.5N 86.4E.
+
+VABB SIGMET 3 VALID 151600/152200 SEV TS TOPS FL400 W 150NM OF CENTRE
+MOV NW 10 KT NC.
+
+VECC SIGMET 3 VALID 151600/152000 TC FCST 20.2N 89.2E AT 1200 UTC FRQ
+TS TOPS FL500 W 150NM OF CENTRE MOV NW 10 KT NC OTLK TC CENTRE
+160300 21N 87.9E 161200 21.5N 86.4E.
+
+1603001 21N 87.9E 16200 21.5N 86.4E.</div>
+
+<div class="green-box">
+  <strong>Decoded (first SIGMET):</strong><br>
+  VECC SIGMET 4 → Met Watch Office Kolkata, SIGMET number 4<br>
+  VALID 161200/101600 → Valid from 16th 1200 UTC to 16th 1600 UTC<br>
+  TC OBS 20.2N 89.2E AT 1130 UTC → Tropical Cyclone Observed at 20.2N 89.2E at 1130 UTC<br>
+  FRQ TS → Frequent Thunderstorm<br>
+  TOPS FL350 → Cloud tops at FL350 (35,000 ft)<br>
+  W 150NM OF CENTRE → Within 150 NM west of cyclone centre<br>
+  MOV NW 10 KT → Moving NW at 10 KT<br>
+  OTLK TC CENTRE 110300 21N 87.9E → Outlook: TC centre forecast at 0300 UTC on 11th at 21N 87.9E<br>
+  111200 21.5N 86.4E → At 1200 UTC on 11th at 21.5N 86.4E
+</div>
+
+<div class="red-box">
+  <strong>SIGMET Sub-types — Key Phenomena:</strong>
+  <table>
+    <tr><th>Phenomenon</th><th>Code in SIGMET</th></tr>
+    <tr><td>Thunderstorm</td><td>TS</td></tr>
+    <tr><td>Severe Turbulence</td><td>SEV TURB</td></tr>
+    <tr><td>Severe Icing</td><td>SEV ICE</td></tr>
+    <tr><td>Tropical Cyclone</td><td>TC</td></tr>
+    <tr><td>Volcanic Ash</td><td>VA</td></tr>
+    <tr><td>Severe Mountain Wave</td><td>SEV MTW</td></tr>
+    <tr><td>Widespread Sand/Dust Storm</td><td>DS, SS</td></tr>
+    <tr><td>Marked Mountain Wave</td><td>MTW</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 8 -->
+<h2 id="sat">8. Satellite Bulletin</h2>
+
+<div class="blue-box">
+  Satellite imageries are analysed and supplied as <strong>Bulletins in abbreviated form</strong>.<br>
+  Format: <span class="reg-value">SAT BLTN BASED ON METSAT PIC OF YYGGgg UTC</span>
+</div>
+
+<h3>Satellite Bulletin Abbreviations</h3>
+<table>
+  <tr><th>Abbreviation</th><th>Meaning</th></tr>
+  <tr><td>CONVTE</td><td>Convective</td></tr>
+  <tr><td>CLDS</td><td>Clouds</td></tr>
+  <tr><td>EMBDD</td><td>Embedded</td></tr>
+  <tr><td>MOD</td><td>Moderate</td></tr>
+  <tr><td>INT CONVTN</td><td>Intense Convection</td></tr>
+  <tr><td>SKM</td><td>Srikakulam</td></tr>
+  <tr><td>EC BAY</td><td>East Coast Bay (of Bengal)</td></tr>
+  <tr><td>AFSN PAK</td><td>Afghanistan Pakistan</td></tr>
+  <tr><td>RPT</td><td>Repeat</td></tr>
+  <tr><td>IDS</td><td>Islands</td></tr>
+  <tr><td>COT</td><td>Coast</td></tr>
+  <tr><td>ADJ</td><td>Adjoining</td></tr>
+  <tr><td>EXT</td><td>Extending</td></tr>
+  <tr><td>S AREA</td><td>Sea Area</td></tr>
+  <tr><td>BET LAT</td><td>Between Latitude</td></tr>
+  <tr><td>LONG</td><td>Longitude</td></tr>
+  <tr><td>W COT</td><td>West Coast</td></tr>
+  <tr><td>SB</td><td>Scattered to Broken (cloud coverage)</td></tr>
+</table>
+
+<!-- SECTION 9 -->
+<h2 id="sat-example">9. Satellite Bulletin Decoded Example</h2>
+
+<h3>Original Satellite Bulletin (coded)</h3>
+<div class="code-box">SAT BLTN BASED ON METSAT PIC OF 271200 UTC.
+
+THE CONVTE CLOUDS CURVED BANDS OF VORTEX OVER EC BAY HAS REDUCED NOW
+CENTERED OVER 16.5N/91.0E RPT 16.5N/91.0E(.) INTENSITY T REDUCED MOV
+1.5 RPT T 1.5 (.) ASSTD BKN LOW MED CLOUDS EMBDD SCT MOD TO INT CONVTN
+(AT10.5N TO 14.0N LONG 85.5E TO 91.5E AND LAT 14.0N TO 18.5N EAST OF
+LONG 87.5E ARAKAN COT AND S MYANMAR(.) SCT M/LAYERED CLOUDS OVER NW JK
+AND AREA BET LAT 37.0N TO 16.0N LONG 60.0E TO 100.0E(.) SCT LOW /MED
+CLOUDS OVER SKM NE STATES BAY IDS KER(.) SCT MED/HIGHCLOUDS OVER AFSN
+PAK REST JK HP UTRCL PJB AND NW GUI(.) SCT TO BKN LOW/MED CLOUDS EMBDD,
+MOD TO INT CONVTN OVER S AREA BET LAT 5.0N TO 14.8N LONG 60.0E TO 68.0E
+SE ARSEA ADJ INDIAN OCEAN BET LAT 2.0N TO 8.0N LONG 69.0E TO 76.0E S
+SRILANKA GULF OF MARTABAN SUMATTRA ADJ W COT BORNEO JAVA IDS AND SEA
+EXT. N MADAGASCAR(.)=</div>
+
+<h3>Interpretation (Plain Language)</h3>
+<div class="green-box">
+  <strong>Satellite Bulletin based on METSAT picture of 27th day at 1200 UTC:</strong><br><br>
+  The convective clouds — curved bands of vortex over <strong>East Central Bay</strong> (of Bengal) — has reduced. It is now centred over <span class="reg-value">16.5N/91.0E</span>. Repeat 16.5N/91.0E. Intensity <span class="reg-value">1.5</span>. Associated broken low and medium clouds embedded, scattered to moderate to intense convection at 10.5N to 14.0N long 85.5E to 91.5E and lat 14.0N to 18.5N east of long 87.5E — Arakan coast and S Myanmar.<br><br>
+  Scattered medium layered clouds over <strong>NW J&amp;K</strong> and area bet lat 37.0N to 16.0N long 60.0E to 100.0E. Scattered low/medium clouds over <strong>Sikkim, NE states, Bay Islands, Kerala</strong>. Scattered med/high clouds over <strong>Afghanistan, Pakistan, rest J&amp;K, HP, Uttaranchal, Punjab and NW Gujarat</strong>.<br><br>
+  Scattered to broken low/medium clouds embedded, moderate to intense convection over sea areas between lat 5.0N to 14.8N long 60.0E to 68.0E, <strong>Arabian Sea</strong>, adjoining Indian Ocean between lat 2.0N to 8.0N long 69.0E to 76.0E, <strong>S Sri Lanka, Gulf of Martban, Sumatra</strong>, adjoining west coast of <strong>Borneo, Java, islands</strong> and sea extending N of <strong>Madagascar</strong>.
+</div>
+
+<!-- SECTION 10 — MASTER REFERENCE -->
+<h2 id="ref" style="page-break-before:always;">10. Master Reference &amp; Quick Revision</h2>
+
+<h3>RAREP Key Reference</h3>
+<table>
+  <tr><th>Parameter</th><th>Key Value</th></tr>
+  <tr><td>SQL LN length</td><td>≥ <span class="reg-value">60 km</span>, length:width ratio ≈ <span class="reg-value">10:1</span></td></tr>
+  <tr><td>SLD echo coverage</td><td><span class="reg-value">Fully covered</span></td></tr>
+  <tr><td>BRKN echo coverage</td><td><span class="reg-value">4/8 to 7/8</span></td></tr>
+  <tr><td>SCT echo coverage</td><td><span class="reg-value">1/8 to 4/8</span></td></tr>
+  <tr><td>WDLY SCT coverage</td><td>Less than <span class="reg-value">1/8</span></td></tr>
+  <tr><td>Max RAREP height range</td><td><span class="reg-value">200 km</span> from station</td></tr>
+  <tr><td>Area shape direction</td><td><span class="reg-value">Anticlockwise</span> from northernmost point</td></tr>
+  <tr><td>Line shape direction</td><td><span class="reg-value">Anticlockwise</span> direction</td></tr>
+  <tr><td>Intensity INCG / DEC / NO CHG</td><td>Increasing / Decreasing / No Change</td></tr>
+  <tr><td>Bright Band / AP</td><td>Reported in <span class="reg-value">plain language</span></td></tr>
+</table>
+
+<h3>SIGMET Key Reference</h3>
+<table>
+  <tr><th>Parameter</th><th>Key Value</th></tr>
+  <tr><td>SIGMET for subsonic aircraft</td><td>SIGMET (plain) or <span class="reg-value">SIGMET SST</span></td></tr>
+  <tr><td>SIGMET for supersonic aircraft</td><td>Identified as <span class="reg-value">SIGMET SST</span></td></tr>
+  <tr><td>SIGMET dissemination to neighbours</td><td>Within <span class="reg-value">1100 NM</span> of FIR boundaries</td></tr>
+  <tr><td>SIGMET transmission priority</td><td><span class="reg-value">D/D priority</span> on AFTN</td></tr>
+  <tr><td>Intensity codes</td><td>INTSF (intensifying) / WKN (weakening) / NC (no change)</td></tr>
+  <tr><td>Observed vs Forecast</td><td>OBS AT time / FCST AT time</td></tr>
+</table>
+
+<h3>SIGMET Phenomena Quick Reference</h3>
+<table>
+  <tr><th>Phenomenon</th><th>SIGMET Code</th><th>Significance</th></tr>
+  <tr><td>Thunderstorm</td><td>TS (FRQ/EMBD/SEV)</td><td>Major icing, turbulence, lightning hazard</td></tr>
+  <tr><td>Tropical Cyclone</td><td>TC</td><td>Extreme winds, rain, turbulence</td></tr>
+  <tr><td>Severe Turbulence</td><td>SEV TURB</td><td>Structural damage risk</td></tr>
+  <tr><td>Severe Icing</td><td>SEV ICE (non-FZ or FZRA)</td><td>Control surface icing</td></tr>
+  <tr><td>Volcanic Ash</td><td>VA</td><td>Engine damage, windshield abrasion</td></tr>
+  <tr><td>Mountain Wave</td><td>SEV MTW</td><td>Extreme turbulence &amp; downdrafts</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Quick Revision — Chapter 27:</strong><br><br>
+  <strong>RAREP:</strong> Radar Report at synoptic hours; echoes plotted anticlockwise; max height reports within 200 km; AP and Bright Band in plain language.<br><br>
+  <strong>SIGMET:</strong> En-route hazard information; in abbreviated plain language; SIGMET SST for supersonic; disseminated to MWOs within 1100 NM; INTSF/WKN/NC for intensity change.<br><br>
+  <strong>SAT Bulletin:</strong> Based on Metsat pictures; abbreviated form; describes cloud coverage, convective activity, vortex positions; identifies geographic areas using standard abbreviations.<br><br>
+  <strong>RAREP Echo Coverage Mnemonic: "Widely-Scattered-Broken-Solid"</strong><br>
+  WDLY SCT &lt;1/8 → SCT 1–4/8 → BRKN 4–7/8 → SLD 8/8 (full coverage)
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

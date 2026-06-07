@@ -53,4 +53,9 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         headers: securityHeaders,
-   
+      },
+    ];
+  },
+};
+
+export default nextConfig;

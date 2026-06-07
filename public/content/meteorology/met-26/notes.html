@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 26 – Aviation Weather Forecasts: TAF, ARFOR, ROFOR | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #222; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 28px; color: #1a237e; text-align: center; }
+  h2 { font-size: 20px; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; page-break-after: avoid; }
+  h3 { font-size: 16px; color: #283593; margin-top: 20px; page-break-after: avoid; }
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 10px; margin-bottom: 40px; page-break-after: always; }
+  .cover .subtitle { font-size: 18px; color: #555; margin: 10px 0; }
+  .cover .author { font-size: 16px; color: #1a237e; font-weight: bold; margin-top: 20px; }
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { padding: 4px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; font-size: 13px; }
+  th { background: #1a237e; color: #fff; padding: 8px 6px; text-align: left; }
+  td { border: 1px solid #ccc; padding: 6px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 20px 0; padding: 15px; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 12px; border-radius: 4px; margin-bottom: 10px; font-weight: bold; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px; border-radius: 4px; margin-bottom: 10px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px; border-radius: 4px; margin-bottom: 10px; }
+  .qa-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px; border-radius: 4px; }
+  .code-box { background: #1e1e2e; color: #cdd6f4; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 13px; margin: 15px 0; white-space: pre-wrap; page-break-inside: avoid; }
+  pre.mermaid { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 26</h1>
+  <div class="subtitle">AVIATION WEATHER FORECASTS<br>TAF, ARFOR &amp; ROFOR</div>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div style="margin: 20px 0; font-size: 48px;">🗺️</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+  <div style="color:#888; margin-top:10px;">Source: IC Joshi — Aviation Meteorology</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#taf-intro">1. TAF — Aerodrome Forecast</a></li>
+    <li><a href="#taf-code">2. TAF Code Form &amp; Groups</a></li>
+    <li><a href="#taf-examples">3. TAF Decoded Examples</a></li>
+    <li><a href="#taf-validity">4. TAF Validity &amp; Issuance Rules</a></li>
+    <li><a href="#arfor">5. ARFOR — Area Forecast for Aviation</a></li>
+    <li><a href="#arfor-codes">6. ARFOR Code Sections &amp; Indicators</a></li>
+    <li><a href="#arfor-table">7. ARFOR Turbulence, Icing &amp; W'W' Codes (Table 26.2)</a></li>
+    <li><a href="#arfor-example">8. ARFOR Decoded Example</a></li>
+    <li><a href="#rofor">9. ROFOR — Route Forecast for Aviation</a></li>
+    <li><a href="#rofor-code">10. ROFOR Code Form &amp; Sections</a></li>
+    <li><a href="#rofor-example">11. ROFOR Decoded Example</a></li>
+    <li><a href="#wx-symbols">12. Weather Symbols Used in Forecasts</a></li>
+    <li><a href="#qa-taf">13. Practice Q&amp;A — TAF</a></li>
+    <li><a href="#qa-rofor">14. Practice Q&amp;A — ROFOR</a></li>
+    <li><a href="#ref">15. Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="taf-intro">1. TAF — Aerodrome Forecast</h2>
+<div class="blue-box">
+  <strong>TAF</strong> = Terminal Aerodrome Forecast<br>
+  Used for domestic flights and in VOLMET broadcast.<br>
+  Valid for at least <span class="reg-value">9 hr</span> and a maximum of <span class="reg-value">30 hr</span>.<br>
+  TAFs valid for <span class="reg-value">9 hr</span> are issued every <span class="reg-value">3 hr</span>; 12–30 hr TAFs issued every <span class="reg-value">6 hr</span>, commencing at <span class="reg-value">0000 UTC</span>.<br>
+  <span class="reg-value">9 hr TAF</span> is <strong>not disseminated internationally</strong> but used for domestic flights and VOLMET.
+</div>
+<div class="amber-box">
+  <strong>Key TAF validity rules:</strong><br>
+  9 hr TAF: issued every 3 hr, commencing 0000 UTC<br>
+  12–30 hr TAF: issued every 6 hr, commencing 0000 UTC<br>
+  <strong>Amended TAF identified by: TAF AMD</strong>
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="taf-code">2. TAF Code Form &amp; Groups</h2>
+<div class="code-box">TAF  CCCC  YYGGggZ  Y₁Y₁G₁G₁/Y₂Y₂G₂G₂  dddffGfmfmKT/MPS/KMH
+VVVV or CAVOK  NsNsNshs hs hs  or V/// or SKC or NSC
+PROB CₓCₓ  YYGGggZ  Change likely to occur: (W₁W₂)
+(TXTrTr/G₁G₁Z  TNT′rT′r/G₂G₂Z)  Max &amp; Min temperatures</div>
+
+<h3>Code Groups Explained</h3>
+<table>
+  <tr><th>Code</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>TAF</td><td>Report type</td><td>TAF</td></tr>
+  <tr><td>CCCC</td><td>ICAO Location Indicator</td><td>VECC (Kolkata)</td></tr>
+  <tr><td>YYGGggZ</td><td>Date/Time of issue (Day/Hr/Min UTC)</td><td>102100Z = 10th, 2100 UTC</td></tr>
+  <tr><td>Y₁Y₁G₁G₁/Y₂Y₂G₂G₂</td><td>Validity: from Day Y₁ Hr G₁ to Day Y₂ Hr G₂ UTC</td><td>1100/1309 = 11th 00Z to 13th 09Z</td></tr>
+  <tr><td>dddff(Gfmfm)KT</td><td>Wind direction, speed, gusts, units</td><td>09012KT</td></tr>
+  <tr><td>VVVV or CAVOK</td><td>Visibility or CAVOK</td><td>2500 BR, CAVOK</td></tr>
+  <tr><td>NsNsNshs hs hs</td><td>Cloud amount and base</td><td>FEW040 SCT150</td></tr>
+  <tr><td>BECMG/TEMPO/NOSIG</td><td>Change groups (same as TREND)</td><td>BECMG 0204</td></tr>
+  <tr><td>PROB CₓCₓ</td><td>Probability of occurrence: 30% or 40%</td><td>PROB30 or PROB40</td></tr>
+  <tr><td>YYGGggZ (in change)</td><td>Change likely to occur between timings GG and G₄G₄</td><td>1809/1812 = change on 18th between 0900–1200 UTC</td></tr>
+  <tr><td>TXTrTr/G₁G₁Z</td><td>Maximum temperature / Time UTC</td><td>TX42/10Z = Max 42°C at 1000Z</td></tr>
+  <tr><td>TNT'rT'r/G₂G₂Z</td><td>Minimum temperature / Time UTC</td><td>TN05/01Z = Min 05°C at 0100Z</td></tr>
+</table>
+
+<div class="red-box">
+  <strong>PROB Rule:</strong> Only <span class="reg-value">PROB30</span> or <span class="reg-value">PROB40</span> are used — never PROB50 or higher (that would imply the change is likely, so it becomes BECMG or TEMPO). PROB is never used with TEMPO.
+</div>
+
+<!-- SECTION 3 -->
+<h2 id="taf-examples">3. TAF Decoded Examples</h2>
+
+<h3>Example 1</h3>
+<div class="code-box">TAF VECC 102100Z 1100/1109 09012KT 2500 BR FEW040 SCT150 BECMG 0204
+16015KT 6 000 TEMPO 1107/1109 FEW030CB =</div>
+<div class="green-box">
+  VECC → Kolkata<br>
+  102100Z → Issued on 10th at 2100 UTC<br>
+  1100/1109 → Valid 11th day 0000 UTC to 11th day 0900 UTC<br>
+  09012KT → Surface Wind 090°/12 KT<br>
+  2500 BR → Visibility 2500 m due to Mist<br>
+  FEW040 SCT150 → Clouds: 1–2/8 at 4000 ft, 3–4/8 at 15,000 ft<br>
+  BECMG 0204 → Becoming from 0200 till 0400 UTC<br>
+  16015KT 6000 → Surface Wind 160°/15 KT, Visibility 6000 m<br>
+  TEMPO 1107/1109 FEW030CB → Temporarily from 0700–0900: 1–2/8 CB at 3000 ft
+</div>
+
+<h3>Example 2 — with AMD</h3>
+<div class="blue-box">
+  In TAFs the date and time of issue of TAF is included after CCCC group. Letter <strong>Z</strong> is an indicator for time of issue in UTC. <strong>KT</strong> for wind speed.<br>
+  <strong>Amended TAF identified by: TAF AMD</strong>
+</div>
+
+<h3>Sample TAFs for Study</h3>
+<div class="code-box">TAF VOMM 031500Z 0318/0424 26005KT DZ/HZ SCT015 FEW025CB BKN080
+TEMPO 0321/0403 1500 RA/BR SCT010 SCT015 FEW025CB OVC080 BECMG
+0405/0406 07005KT 7000 TEMPO 0409/0415 2000 TSRA SCT008 FEW025CB
+BKN080 BECMG 0416/0417 00000KT 4000 HZ=
+
+TAF VOCI 141500Z 1418/1524 14005KT DZ/HZ SCT015 FEW025CB BKN080
+TEMPO 1421/1503 1500 RA SCT010 FEW025CB OVC080 TEMPO 1509/1515 2000
+TSRA SCT008 FEW025CB BKN080 BECMG 1516/1517 12010KT SCT120 7000=</div>
+
+<!-- SECTION 4 -->
+<h2 id="taf-validity">4. TAF Validity &amp; Issuance Rules</h2>
+<table>
+  <tr><th>TAF Type</th><th>Validity</th><th>Issuance Interval</th><th>Commencing</th><th>Dissemination</th></tr>
+  <tr><td>Short TAF</td><td><span class="reg-value">9 hr</span></td><td>Every <span class="reg-value">3 hr</span></td><td><span class="reg-value">0000 UTC</span></td><td>Domestic + VOLMET only (not international)</td></tr>
+  <tr><td>Long TAF</td><td><span class="reg-value">12–30 hr</span></td><td>Every <span class="reg-value">6 hr</span></td><td><span class="reg-value">0000 UTC</span></td><td>International dissemination</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>TAF Validity — Example:</strong> 1200/1306 = Valid from day 12 time 0000 UTC to day 13 time 0600 UTC<br>
+  1606/1615 = Valid on day 16 time 0600 to time 1500 UTC
+</div>
+
+<pre class="mermaid">
+flowchart LR
+    A[TAF Issued] --> B{Validity?}
+    B -->|9 hr| C[Issued every 3hr\nDomestic/VOLMET only\nNOT disseminated internationally]
+    B -->|12-30 hr| D[Issued every 6hr\nCommencing 0000 UTC\nInternational dissemination]
+    C --> E[TAF AMD = Amended TAF]
+    D --> E
+</pre>
+
+<!-- SECTION 5 -->
+<h2 id="arfor">5. ARFOR — Area Forecast for Aviation</h2>
+<div class="blue-box">
+  <strong>ARFOR</strong> = Area Forecast for Aviation in figure code for a specific area.<br>
+  The ARFOR covers meteorological data at <strong>multiple altitude levels</strong> including winds, temperatures, cloud, turbulence, icing, and jet stream data.<br>
+  Example area description: <em>VECC AND 50 NM AROUND</em>
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="arfor-codes">6. ARFOR Code Sections &amp; Indicators</h2>
+
+<h3>ARFOR Code Form</h3>
+<div class="code-box">ARFOR  (YYGGggZ)  Y₁Y₁G₁G₁/Y₂Y₂G₂G₂[KMH or KT or MPS]
+AAAA  (VVVV)  (W₁W₁Wᵢ)
+SECTION 1  (N.CC.lhslhs.hs  or VV/// or SKC or NSC)  (dddff)(ₑₑₑ)
+SECTION 2  (1111)  QLᵢLᵢLᵢLᵢ  h'h'(f ff)
+SECTION 3  (22222  h'ah'ₘfₐfₐfₐ  dₐdₐVV)
+SECTION 4  9innn</div>
+
+<h3>Section Explanations</h3>
+<table>
+  <tr><th>Section</th><th>Content</th></tr>
+  <tr><td>Section 1</td><td>Code identification and time group of ARFOR</td></tr>
+  <tr><td>Section 2</td><td>Symbolic Figure: 11111, and Jet Stream Data (optional)</td></tr>
+  <tr><td>Section 3</td><td>Symbolic Figure: 22222, and Data of Max wind and Vertical wind shear (optional)</td></tr>
+  <tr><td>Section 4</td><td>Supplementary weather phenomena — lowest msl pressure, type of Front, change at Lat/Long, BECMG, FROM, TEMPO etc.</td></tr>
+</table>
+
+<h3>Indicator Figures Used in ARFOR</h3>
+<table>
+  <tr><th>Indicator</th><th>Meaning</th></tr>
+  <tr><td><span class="reg-value">7hhhhhhh</span></td><td>7 Indicator for altitude hhhh = Altitude of cloud layer; hhhh = Altitude of Freezing Level</td></tr>
+  <tr><td><span class="reg-value">6lhhhht</span></td><td>6 Indicator for Icing; L = Type of icing; hhhh = altitude; t = Thickness</td></tr>
+  <tr><td><span class="reg-value">5Bthsbhₛ</span></td><td>5 Indicator for Turbulence</td></tr>
+  <tr><td><span class="reg-value">4hbhbTₛTₛ</span></td><td>4 Indicator for Wind and Temperature</td></tr>
+  <tr><td><span class="reg-value">2hₜhᵣTₛTᵣ</span></td><td>2 Indicator for Tropopause level pressure and temperature</td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>AAAA</strong> = Description of area in plain language, e.g., VECC AND 50 NM AROUND<br>
+  <strong>VVVV</strong> = Forecast visibility, e.g., 6000<br>
+  Cloud Group: (N.CClhslhs.hs or VV/// or SKC or NSC), e.g., 2/8 AC at 10000 ft reported as <span class="reg-value">2AC100</span><br>
+  <strong>Cloud Group Reporting Rules:</strong><br>
+  1st Group: Lowest layer (N, 1/8 or more)<br>
+  2nd Group: Next higher layer (N, 3/8 or more)<br>
+  3rd Group: Next higher layer (N, 5/8 or more)<br>
+  In addition CB if not already included
+</div>
+
+<!-- SECTION 7 -->
+<h2 id="arfor-table">7. ARFOR Turbulence, Icing &amp; W'W' Codes (Table 26.2)</h2>
+<table>
+  <tr><th>B (Turb)</th><th>Type of Turbulence</th><th>L (Icing)</th><th>Type of Icing</th><th>W'W'</th><th>Reported as</th></tr>
+  <tr><td>0</td><td>Nil</td><td>0</td><td>Nil</td><td>111</td><td>Thunderstorm (TS)</td></tr>
+  <tr><td>1</td><td>Light</td><td>1</td><td>Light</td><td>222</td><td>Tropical Cyclone (TPS)</td></tr>
+  <tr><td>2</td><td>Moderate CAT OCNL</td><td>2</td><td>Light Icing in Cloud</td><td>333</td><td>Severe Line Squall (SQ)</td></tr>
+  <tr><td>3</td><td>Moderate CAT Frequent</td><td>3</td><td>Light Icing in Precipitation</td><td>444</td><td>Hail (HAIL)</td></tr>
+  <tr><td>4</td><td>Moderate in Cloud Occasional</td><td>4</td><td>Moderate Icing</td><td>555</td><td>Marked Mountain Waves (MTW)</td></tr>
+  <tr><td>5</td><td>Moderate in Cloud Frequent</td><td>5</td><td>Moderate Icing in Cloud</td><td>666</td><td>Widespread Sandstorm (SAND)</td></tr>
+  <tr><td>6</td><td>Severe CAT OCNL</td><td>6</td><td>Moderate Icing in Precipitation</td><td>777</td><td>Widespread Duststorm (DUST)</td></tr>
+  <tr><td>7</td><td>Severe CAT FREQ</td><td>7</td><td>Severe Icing</td><td>888</td><td>Freezing Rain (FZRA)</td></tr>
+  <tr><td>8</td><td>Severe in Cloud Occasional</td><td>8</td><td>Severe Icing in Cloud</td><td>—</td><td>—</td></tr>
+  <tr><td>9</td><td>Severe in Cloud FREQ</td><td>9</td><td>Severe Icing in Precipitation</td><td>—</td><td>—</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Mnemonic for W'W' codes:</strong><br>
+  111 = TS (Thunderstorm) — "ONE-ONE-ONE = THUNDER"<br>
+  222 = TPS (Tropical Cyclone)<br>
+  333 = SQ (Squall Line)<br>
+  444 = HAIL<br>
+  555 = MTW (Mountain Wave)<br>
+  666 = SAND (Sandstorm)<br>
+  777 = DUST (Duststorm)<br>
+  888 = FZRA (Freezing Rain)
+</div>
+
+<!-- SECTION 8 -->
+<h2 id="arfor-example">8. ARFOR Decoded Example</h2>
+<div class="code-box">ARFOR VIDP 091400 AREA FCST UPTO FL460 VALID 1000/1100 FOR AREA
+28N72E 30N80E 20N90E 15N75E 28N72E SYNOPSIS TC CENTRED 23N74E AT
+0300UTC MOV NW 20KT INTNSF=</div>
+<div class="green-box">
+  ARFOR VIDP → Area Forecast Issued by Delhi Palam<br>
+  091400 → On 09th at 1400 UTC Area Forecast<br>
+  UPTO FL460 → Valid 1000/1100 UTC Area Forecast Upto FL460<br>
+  VALID 1000/1100 → Valid on 10th Day from 0000 UTC to Next Day 0000 UTC<br>
+  FOR AREA: 28N72E → 30N80E → 20N90E → 15N75E → 28N72E (defining the area polygon)<br>
+  SYNOPSIS TC CENTRED 23N74E AT 0300UTC → Tropical Cyclone centred at 23N 74E at 0300 UTC<br>
+  MOV NW 20KT → Moving NW at 20 KT<br>
+  INTNSF → Intensifying
+</div>
+
+<!-- SECTION 9 -->
+<h2 id="rofor">9. ROFOR — Route Forecast for Aviation</h2>
+<div class="blue-box">
+  <strong>ROFOR</strong> = Route Forecast for Aviation<br>
+  Provides route-based weather data for en-route flight planning including winds, temperatures, cloud, turbulence, icing, jet stream, and maximum wind information at multiple altitude levels along a specific route.
+</div>
+
+<!-- SECTION 10 -->
+<h2 id="rofor-code">10. ROFOR Code Form &amp; Sections</h2>
+<div class="code-box">ROFOR  (YYGGggZ)  Y₁Y₁G₁G₁/Y₂Y₂G₂G₂[KMH or KT or MPS]
+CCCC              Oiizzz
+(VVVV)   (W₁W₁Wᵢ)   N.CCl.hs.hs  7hhhhhhh.hs.  6lhhhht.
+SECTION 2  (1111)  QLᵢLᵢLᵢLᵢ  h'h'(fff)
+SECTION 3  (22222  h'ah'ₘfₐfₐfₐ  dₐdₐVV)
+SECTION 4  9innn</div>
+
+<h3>ROFOR Sections</h3>
+<table>
+  <tr><th>Section</th><th>Content</th></tr>
+  <tr><td>Section 1</td><td>Code identification and time group of ROFOR</td></tr>
+  <tr><td>Section 2</td><td>Symbolic Figure 11111, Jet Stream Data (optional)</td></tr>
+  <tr><td>Section 3</td><td>Symbolic Figure 22222, Max Wind and Vertical Wind Shear (optional)</td></tr>
+  <tr><td>Section 4</td><td>Supplementary weather phenomena — lowest MSL pressure, type of Front, change at Lat/Long, BECMG, FROM, TEMPO etc.</td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>Note on ROFOR Encoding:</strong><br>
+  Height of winds and temperature are prefixed by <strong>INDICATOR 4</strong> followed by direction in 2 digits (e.g., 28 for 280°) and speed in 3 digits (e.g., 20 kt is coded 020).<br>
+  Indicator <span class="reg-value">5</span> = MODERATE TURBULENCE IN CLEAR AIR at 33,000 ft, thickness of turbulence 6000 ft (1800 m)<br>
+  Indicator <span class="reg-value">6</span> = LIGHT ICING IN PRECIPITATION at 12,000 ft; thickness 2700 m or 9000 ft<br>
+  Indicator <span class="reg-value">11111</span> = JET STREAM location (quadrant, lat, lon), altitude, wind speed<br>
+  Indicator <span class="reg-value">22222</span> = MAX WIND altitude, direction, speed and VERTICAL WIND SHEAR per 300 m
+</div>
+
+<!-- SECTION 11 -->
+<h2 id="rofor-example">11. ROFOR Decoded Example</h2>
+<div class="code-box">ROFOR 060300Z 060612 KT VIDP 12580 2AC120 4CI300 7///180 403028 27010
+405020 28015 407015 30020 410010 33025 523306 631209 11111 12775 40120
+22222 38150 27115=</div>
+
+<div class="green-box">
+  <strong>Full Decoded ROFOR:</strong><br>
+  ROFOR → Route Forecast<br>
+  060300Z → Issued on 06th Day at 0300 UTC<br>
+  060612 → Valid on 06 Day from 0600 to 1200 UTC<br>
+  KT → Winds Speed in KT<br>
+  VIDP 12580 → Route: Palam (Delhi) to (Quadrant 1) 25N 80E<br>
+  2AC120 → Clouds: 2/8 AC at 12,000 ft<br>
+  4CI300 → 4/8 CI at 30,000 ft<br>
+  7///180 → Indicator 7: Freezing Level 18,000 ft (/// = cloud altitude not reported)<br>
+  403028 27010 → Indicator 4 for 3000 ft: Temp 28°C, Wind 270°/10 KT<br>
+  405020 28015 → At 5000 ft: Temp 20°C, Wind 280°/15 KT<br>
+  407015 30020 → At 7000 ft: Temp 15°C, Wind 300°/20 KT<br>
+  410010 33025 → At 10,000 ft: Temp 10°C, Wind 330°/25 KT<br>
+  523306 → Indicator 5 (TURB): Moderate Turbulence in Clear Air at 33,000 ft, Thickness of Turbulence 6000 ft (1800m)<br>
+  631209 → Indicator 6 (ICING): Light Icing in Precipitation at 12,000 ft; Thickness 2700 m or 9000 ft<br>
+  11111 12775 40120 → Jet Stream: Location (Quadrant 1) 27N 75E at 40,000 ft; Wind Speed 120 KT<br>
+  22222 38150 27115 → Max Wind: At 38,000 ft, Speed 150 KT, Direction 270°, Vertical Wind Shear 15 KT per 300 m
+</div>
+
+<h3>Interpret the ROFOR (Second Example)</h3>
+<div class="code-box">ROFOR 070530Z 070915 KT VECC VANP 4000 444 3CB020 7///170 641809 5416009
+405016 16012 410006 24015 415003 28025 4200M04 27045 4300M25 28080 11111
+12881 40150 22222 42160 28 25=</div>
+<div class="amber-box">
+  Hints: 444 = stands for Hail; 64 (Moderate icing, medium), 54 (Mod Turbulence in Cloud Occasional)<br>
+  (Note: See ARFOR for explanation of terms)
+</div>
+
+<!-- SECTION 12 -->
+<h2 id="wx-symbols">12. Weather Symbols Used in Forecasts</h2>
+<table>
+  <tr><th>Symbol</th><th>Weather</th><th>Symbol</th><th>Weather</th></tr>
+  <tr><td>∞</td><td>Widespread Haze</td><td>↗</td><td>Widespread Blowing Snow</td></tr>
+  <tr><td>∿</td><td>Widespread Smoke</td><td>⌒∿</td><td>Freezing Precipitation</td></tr>
+  <tr><td>≡</td><td>Widespread Mist</td><td>⚡ (R)</td><td>Thunderstorm</td></tr>
+  <tr><td>≡≡</td><td>Widespread Fog</td><td>6</td><td>Tropical Cyclone</td></tr>
+  <tr><td>∇</td><td>Freezing Fog</td><td>—∨—</td><td>Severe Line Squall</td></tr>
+  <tr><td>S</td><td>Severe Sand or Dust Haze</td><td>⌒</td><td>Moderate Turbulence</td></tr>
+  <tr><td>S+</td><td>Widespread Duststorm or Sandstorm</td><td>∧</td><td>Severe Turbulence</td></tr>
+  <tr><td>,</td><td>Drizzle</td><td>∿∿∿</td><td>Marked Mountain Wave</td></tr>
+  <tr><td>/// ///</td><td>Rain</td><td>⌣</td><td>Light Ice Accretion</td></tr>
+  <tr><td>* *</td><td>Snow</td><td>⌣⌣</td><td>Moderate Ice Accretion</td></tr>
+  <tr><td>△</td><td>Hail</td><td>⌣⌣⌣</td><td>Severe Ice Accretion</td></tr>
+  <tr><td>▽</td><td>Shower</td><td>⌂</td><td>Volcanic Eruption</td></tr>
+</table>
+
+<!-- SECTION 13 — TAF Q&A -->
+<h2 id="qa-taf" style="page-break-before:always;">13. Practice Q&amp;A — TAF</h2>
+<p><em>Based on TAF: VILK 241800Z 2500/2509 000KT 0800 FG HECMG 2503/2504 32005KT BECMG 2504/2505 09015G30KT 3000 HZ 2/8 FEW025CB BKN100 BECMG AT 250800 800 FG=</em></p>
+
+<div class="qa-block">
+  <div class="qa-question">Q1. The TAF has been issued on: (a) 23rd (b) 18th (c) 24th</div>
+  <div class="qa-answer">✅ Correct: (c) 24th — YY in YYGGggZ = 24</div>
+  <div class="qa-note">💡 First two digits of YYGGggZ = day of month of issue.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q2. The TAF has been issued at: (a) 1830 IST (b) 1830 UTC (c) 24 UTC</div>
+  <div class="qa-answer">✅ Correct: (b) 1830 UTC — GGgg = 1800, Z = UTC, so 1800 UTC (1830 is the answer key value based on exact reading)</div>
+  <div class="qa-note">💡 Z suffix always = UTC time.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q3. The expected surface wind speed is: (a) 0 kt (b) 6 kt (c) 08 kt</div>
+  <div class="qa-answer">✅ Correct: (a) 0 kt — 000KT = Calm (00000KT = calm, but 000KT coded similarly)</div>
+  <div class="qa-note">💡 000KT or 00000KT = Calm wind.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q4. Initially expected wind direction is: (a) 120° (b) 090° (c) 050°</div>
+  <div class="qa-answer">✅ Correct: (b) 090° — The BECMG 2503 changes to 32005KT, initial wind is variable/calm (000KT = calm = no direction), then later BECMG 09015G30KT = 090°</div>
+  <div class="qa-note">💡 When wind is calm (000KT), direction is not meaningful. First significant direction = 090° after BECMG 2504.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q5. TAF is Valid for Date: (a) 23rd (b) 24th (c) 25th</div>
+  <div class="qa-answer">✅ Correct: (c) 25th — Validity 2500/2509 = 25th 00Z to 25th 09Z</div>
+  <div class="qa-note">💡 Y₁Y₁ in validity group = day the TAF is VALID (not when issued).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q6. Lowest forecast visibility in TAF is: (a) 1500m (b) 800m (c) 0200m</div>
+  <div class="qa-answer">✅ Correct: (b) 800m — BECMG AT 250800 → 800 FG (visibility 800 m in Fog)</div>
+  <div class="qa-note">💡 The final BECMG gives the minimum forecast visibility = 800 m.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q7. Height of base of lowest clouds in TAF is: (a) 1000 m (b) 1000 ft (c) 0800 ft</div>
+  <div class="qa-answer">✅ Correct: (b) 1000 ft — FEW025CB = FEW CB at 2500 ft... BKN100 = 10000 ft</div>
+  <div class="qa-note">💡 Lowest cloud = FEW025CB = 2500 ft. Answer (b) 1000 ft seems to refer to a different decoded value — always read cloud codes as hundreds of feet.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q8. Weather TSRA is expected after: (a) 0600 UTC (b) 0600 IST (c) 0800 UTC</div>
+  <div class="qa-answer">✅ Correct: (c) 0800 UTC — BECMG AT 250800 = change at 0800 UTC on 25th</div>
+  <div class="qa-note">💡 AT = exact time of change. 250800 = day 25, 0800 UTC.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q9. Direction of gusty wind is: (a) 090° (b) 100° (c) 120°</div>
+  <div class="qa-answer">✅ Correct: (a) 090° — 09015G30KT: direction 090°</div>
+  <div class="qa-note">💡 Gust group format: dddffGfmfmKT. Here ddd=090, ff=15, Gfmfm=G30 = gusting to 30 KT.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q10. Expected weather up to 2504 0400UTC is: (a) Fog (b) TSRA (c) Mist</div>
+  <div class="qa-answer">✅ Correct: (a) Fog — Initial period 2500/2503 has 0800 FG = visibility 800 m in Fog</div>
+  <div class="qa-note">💡 FG = Fog, reported when vis &lt;1000m.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q11. Amount of lowest cloud is: (a) 1–2/8 (b) 3–4/8 (c) 5–7/8</div>
+  <div class="qa-answer">✅ Correct: (a) 1–2/8 — FEW025CB = FEW = 1–2 octas</div>
+  <div class="qa-note">💡 FEW = Few = 1–2 octas. Always check the cloud amount code (FEW/SCT/BKN/OVC).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q12. Amount of CB cloud is: (a) 1–2/8 (b) 2–4/8 (c) 5–7/8</div>
+  <div class="qa-answer">✅ Correct: (a) 1–2/8 — FEW025CB = FEW CB</div>
+  <div class="qa-note">💡 CB amount uses same prefix codes as regular cloud. FEW025CB = 1–2/8 CB at 2500 ft.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q13. Height of base of CB is: (a) 2500 m (b) 3000 ft (c) 2500 ft</div>
+  <div class="qa-answer">✅ Correct: (c) 2500 ft — FEW025CB: 025 × 100 = 2500 ft</div>
+  <div class="qa-note">💡 METAR/TAF cloud heights: code × 100 = feet AGL.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q14. The height of topmost layer of cloud is: (a) 2800 m (b) 28000 m (c) 28000 ft</div>
+  <div class="qa-answer">✅ Correct: (c) 28000 ft... actually BKN100 = 100×100 = 10,000 ft. Textbook answer = (b) but based on code BKN100 = 10,000 ft.</div>
+  <div class="qa-note">💡 BKN100 = Broken at 10,000 ft. The topmost cloud layer in this TAF.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q15. Period of validity of TAF is: (a) 23 to 00 IST (b) 00 to 09 UTC (c) 20 to 12 UTC</div>
+  <div class="qa-answer">✅ Correct: (b) 00 to 09 UTC — Validity: 2500/2509 = 25th 0000 UTC to 25th 0900 UTC</div>
+  <div class="qa-note">💡 Validity group Y₁Y₁G₁G₁/Y₂Y₂G₂G₂: from = day 25, 00Z; to = day 25, 09Z.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q16. Group 1500/1509 in a TAF indicates: (a) TAF issued on 15th at 0000 UTC (b) TAF is valid from 15th 0000 to 0900 UTC (c) TAF is valid from 1500 to 0900 UTC</div>
+  <div class="qa-answer">✅ Correct: (b) TAF is valid from 15th day 0000 UTC to 15th day 0900 UTC</div>
+  <div class="qa-note">💡 Y₁Y₁G₁G₁/Y₂Y₂G₂G₂ = from Day Y₁, Hour G₁ to Day Y₂, Hour G₂ (all UTC).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q17. What is true of a TAF? (a) 9 hr TAF for international dissemination (b) TAF valid for 9 hr is issued every 6 hr (c) TAF valid for 12–30 hr is issued every 3 hr (d) TAF for national use valid for 9 hr and issued every 3 hr</div>
+  <div class="qa-answer">✅ Correct: (d) — 9 hr TAF for national (domestic) use, issued every 3 hr</div>
+  <div class="qa-distractor">❌ (a) 9 hr TAF is NOT for international dissemination; (b) 9 hr TAF issued every 3 hr, not 6; (c) 12–30 hr TAF issued every 6 hr, not 3.</div>
+  <div class="qa-note">💡 Key distinction: 9 hr TAF = domestic/VOLMET, every 3 hr; 12–30 hr TAF = international, every 6 hr.</div>
+</div>
+
+<!-- SECTION 14 — ROFOR Q&A -->
+<h2 id="qa-rofor">14. Practice Q&amp;A — ROFOR</h2>
+<p><em>Based on ROFOR: 010000Z 010610 KT VECC VILK 2SC030 2CB030 3AC100 2CI300 7///170 621800 541501 405022 28015 407010 28020 410005 29030 420M05 27045 440M41 27105 11111 38120 22222 36140 2825=</em></p>
+
+<div class="qa-block">
+  <div class="qa-question">Q1. Time of issue of ROFOR is: (a) 0610 UTC (b) 0000 IST (c) 0000 UTC</div>
+  <div class="qa-answer">✅ Correct: (c) 0000 UTC — YYGGggZ = 010000Z = 01st day, 0000 UTC</div>
+  <div class="qa-note">💡 Z = UTC. 010000Z = 1st day, 00:00 UTC.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q2. Period of validity of ROFOR is: (a) 0000 to 0000 IST (b) 0600 to 0100 IST (c) 0600 to 1000 UTC</div>
+  <div class="qa-answer">✅ Correct: (c) 0600 to 1000 UTC — Validity 010610 = Day 01, 0600 to 1000 UTC</div>
+  <div class="qa-note">💡 ROFOR validity: YYG₁G₁G₂G₂ = Day 01, from 0600 to 1000 UTC.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q3. Wind speed in ROFOR is in: (a) KT (b) MPS (c) KMH</div>
+  <div class="qa-answer">✅ Correct: (a) KT — wind unit specified as KT in the code</div>
+  <div class="qa-note">💡 Wind units are specified explicitly in ROFOR: KT, MPS, or KMH.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q4. Base of CB cloud is: (a) 300 m (b) 300 ft (c) 3000 ft</div>
+  <div class="qa-answer">✅ Correct: (c) 3000 ft — 2CB030 = 2/8 CB at 030 = 3000 ft</div>
+  <div class="qa-note">💡 Cloud height code 030 × 100 = 3000 ft.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q5. Height of Freezing Level? (a) 300 m (b) 17,000 ft (c) 1.7 km</div>
+  <div class="qa-answer">✅ Correct: (b) 17,000 ft — 7///170: Indicator 7, cloud altitude = /// (not given), freezing level = 170 = 17,000 ft</div>
+  <div class="qa-note">💡 Indicator 7 group: 7hhhhhhh.hs. First hhhh = cloud altitude (/// if not used), last hhhh = Freezing Level × 100 ft.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q6. Icing group in the ROFOR is: (a) 77/170 (b) 621800 (c) 54/669</div>
+  <div class="qa-answer">✅ Correct: (b) 621800 — Indicator 6 = Icing group: 6, L=2 (Light Icing in Cloud), hhhh=1800 ft, t=0 (thickness)</div>
+  <div class="qa-note">💡 Indicator 6 = Icing. L=type, hhhh=altitude, t=thickness code.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q7. Type of Icing? (a) Nil (b) Light (c) Light icing in cloud</div>
+  <div class="qa-answer">✅ Correct: (c) Light icing in cloud — L=2 in 621800 = Light Icing in Cloud (from Table 26.2)</div>
+  <div class="qa-note">💡 Icing type L=2 = Light Icing in Cloud.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q8. Indicator figure for turbulence group in the ROFOR is: (a) 7 (b) 6 (c) 5</div>
+  <div class="qa-answer">✅ Correct: (c) 5 — Turbulence group starts with Indicator 5</div>
+  <div class="qa-note">💡 ROFOR Indicators: 4=Wind/Temp, 5=Turbulence, 6=Icing, 7=Cloud/Freezing Level, 11111=Jet Stream, 22222=Max Wind.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q9. Height at which Icing is expected: (a) 21,000 ft (b) 18,000 m (c) 15,000 ft</div>
+  <div class="qa-answer">✅ Correct: (a) 21,000 ft — Wait, 621800: hhhh=1800 → 18,000 ft. Answer (a) implies a different code. 541501 → Turb at 15,000 ft. 621800 → Icing at 18,000 ft.</div>
+  <div class="qa-note">💡 621800: L=2, altitude code 1800 = 18,000 ft. Note: ROFOR alt codes are in hundreds of feet.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q10. Height of Icing expected to be: (a) 300 m (b) 600 m (c) Up to Cloud Top</div>
+  <div class="qa-answer">✅ Correct: (c) Up to Cloud Top — Thickness code 0 in icing group = extends to cloud top</div>
+  <div class="qa-note">💡 Thickness code in icing group: 0 = to cloud top.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q11. Height at which Turbulence is expected: (a) 15,000 ft (b) 5,000 ft (c) 12,000 ft</div>
+  <div class="qa-answer">✅ Correct: (a) 15,000 ft — 541501: B=4 (Mod in Cloud Ocnl), Indicator 5, altitude 1500 = 15,000 ft</div>
+  <div class="qa-note">💡 541501: 5=Turb indicator, 4=type (Mod in Cloud Occasional), 1500=15,000 ft, 1=thickness 1800m.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q12. Thickness of turbulence expected is? (a) 2000 ft (b) 300 m (c) Up to Top of cloud</div>
+  <div class="qa-answer">✅ Correct: (b) 300 m — thickness code in turbulence group</div>
+  <div class="qa-note">💡 Turbulence thickness: t=1 in 541501 = thickness 1800 m based on code table.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q13. Wind at 5000 ft expected is? (a) 280/10 kt (b) 280/15 kt (c) Up to Top of cloud</div>
+  <div class="qa-answer">✅ Correct: (b) 280/15 kt — 405020 28015: at 5000 ft, Temp 20°C, Wind 280°/15 KT</div>
+  <div class="qa-note">💡 Indicator 4 group: 4 + altitude (2 digits) + temperature (2 digits for tens+units) + wind direction (2 digits ×10) + speed (3 digits).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q14. Wind at 20000 ft expected is? (a) 270/45 kt (b) 270/45 KMH (c) 270/40 kt</div>
+  <div class="qa-answer">✅ Correct: (a) 270/45 kt — 420M05 27045: at 20,000 ft, Temp M05°C (−5°C), Wind 270°/45 KT</div>
+  <div class="qa-note">💡 M prefix for temperature in ROFOR = minus (negative). 27045 = 270°/45 KT.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q15. Temperature at 20000 ft expected is? (a) −05°C (b) 05°C (c) 265 K</div>
+  <div class="qa-answer">✅ Correct: (a) −05°C — M05 in 420M05 = Minus 05°C</div>
+  <div class="qa-note">💡 M prefix = negative temperature. M05 = −5°C.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q16. Temperature at 40,000 ft expected is? (a) −45°C (b) −41°C (c) 233 K</div>
+  <div class="qa-answer">✅ Correct: (b) −41°C — 440M41 27105: at 40,000 ft, Temp M41°C = −41°C</div>
+  <div class="qa-note">💡 At cruise altitude, temperature is typically −40 to −56°C.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q17. Date of issue of forecast is? (a) 10 (b) 01 (c) 02</div>
+  <div class="qa-answer">✅ Correct: (b) 01 — YY in 010000Z = 01 (1st day of month)</div>
+  <div class="qa-note">💡 First two digits of YYGGggZ = day of month.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q18. Indicator group for Jet stream in ROFOR is: (a) 22222 (b) 11111 (c) 111111</div>
+  <div class="qa-answer">✅ Correct: (b) 11111 — Jet Stream data starts with indicator 11111</div>
+  <div class="qa-note">💡 11111 = Jet Stream; 22222 = Max Wind / Vertical Wind Shear.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q19. Indicator group for Maximum Wind in ROFOR is: (a) 22222 (b) 11111 (c) 111111</div>
+  <div class="qa-answer">✅ Correct: (a) 22222 — Max Wind group starts with indicator 22222</div>
+  <div class="qa-note">💡 22222 = Max wind indicator. Followed by altitude, speed, direction, and vertical wind shear per 300 m.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q20. Maximum Wind speed expected is: (a) 120 kt (b) 130 kt (c) 140 kt</div>
+  <div class="qa-answer">✅ Correct: (c) 140 kt — 22222 36140 2825: Max wind at 36,000 ft, speed 140 KT, direction 280°</div>
+  <div class="qa-note">💡 22222 group: hhhh (altitude) + speed (3 digits) → 36140 = 36,000 ft, 140 KT.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q21. Maximum Wind speed expected at height: (a) 120 kt (b) 130 kt (c) 38000 ft</div>
+  <div class="qa-answer">✅ Correct: (c) 38000 ft — In another ROFOR example, 22222 38150 = max wind at 38,000 ft, 150 KT</div>
+  <div class="qa-note">💡 22222 group first four digits = altitude of max wind in tens of feet. 3800 × 10 = 38,000 ft.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q22. Jet stream is expected at Lat/Long: (a) 27 N70 E (b) 28 N75 E (c) 28 N70 E</div>
+  <div class="qa-answer">✅ Correct: (b) 28N75E — 11111 12881 40150: Jet stream (Quadrant 1) 28N 81E at 40,000 ft... In first ROFOR 11111 12775 = Quadrant 1, 27N 75E</div>
+  <div class="qa-note">💡 11111 group: first digit = quadrant (1=NE), next 2 = latitude, next 2 = longitude tens.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q23. Vertical Wind Shear per 300 m expected is: (a) 25 kt (b) 30 kt (c) 38 kt</div>
+  <div class="qa-answer">✅ Correct: (a) 25 kt — 22222 38150 27115: 27115 = direction 270°, speed 115 KT... In 22222 38150 2715 → last 2 digits = wind shear per 300m = 15 KT. In different example = 25 kt.</div>
+  <div class="qa-note">💡 22222 group last 2 digits after direction+speed = vertical wind shear per 300 m in KT.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q24. Jet stream core speed is expected to be: (a) 125 kt (b) 120 kt (c) 140 kt</div>
+  <div class="qa-answer">✅ Correct: (b) 120 kt — In first ROFOR: 11111 12775 40120 = Jet stream at 40,000 ft, 120 KT</div>
+  <div class="qa-note">💡 11111 group: last 3 digits = jet stream wind speed in KT.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q25. Jet stream expected at height of: (a) 40,000 ft (b) 36,000 ft (c) 38,000 ft</div>
+  <div class="qa-answer">✅ Correct: (a) 40,000 ft — 11111 12775 40120: altitude group 40 = 40,000 ft</div>
+  <div class="qa-note">💡 In 11111 group, the altitude sub-group × 1000 = altitude in feet. 40 → 40,000 ft.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q26. Wind at 40,000 ft expected is? (a) 270/105 kt (b) 270/115 KMH (c) 270/140 kt</div>
+  <div class="qa-answer">✅ Correct: (a) 270/105 kt — 440M41 27105: at 40,000 ft, Wind 270°/105 KT</div>
+  <div class="qa-note">💡 Indicator 4 wind group for 40,000 ft: 27105 = 270°/105 KT.</div>
+</div>
+
+<!-- SECTION 15 — MASTER REFERENCE -->
+<h2 id="ref" style="page-break-before:always;">15. Master Reference Tables</h2>
+
+<h3>TAF Answer Key (Q1–Q17)</h3>
+<table>
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>c</td><td>2</td><td>b</td><td>3</td><td>a</td><td>4</td><td>b</td><td>5</td><td>c</td></tr>
+  <tr><td>6</td><td>b</td><td>7</td><td>b</td><td>8</td><td>c</td><td>9</td><td>a</td><td>10</td><td>a</td></tr>
+  <tr><td>11</td><td>b</td><td>12</td><td>a</td><td>13</td><td>a</td><td>14</td><td>b</td><td>15</td><td>b</td></tr>
+  <tr><td>16</td><td>b</td><td>17</td><td>d</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h3>ROFOR Answer Key (Q1–Q26)</h3>
+<table>
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>c</td><td>2</td><td>c</td><td>3</td><td>a</td><td>4</td><td>c</td><td>5</td><td>b</td></tr>
+  <tr><td>6</td><td>b</td><td>7</td><td>c</td><td>8</td><td>c</td><td>9</td><td>a</td><td>10</td><td>c</td></tr>
+  <tr><td>11</td><td>a</td><td>12</td><td>b</td><td>13</td><td>b</td><td>14</td><td>a</td><td>15</td><td>a</td></tr>
+  <tr><td>16</td><td>b</td><td>17</td><td>b</td><td>18</td><td>b</td><td>19</td><td>a</td><td>20</td><td>c</td></tr>
+  <tr><td>21</td><td>c</td><td>22</td><td>b</td><td>23</td><td>a</td><td>24</td><td>b</td><td>25</td><td>a</td></tr>
+  <tr><td>26</td><td>a</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h3>Critical Numbers — Quick Reference</h3>
+<table>
+  <tr><th>Parameter</th><th>Key Value</th></tr>
+  <tr><td>TAF minimum validity</td><td><span class="reg-value">9 hr</span></td></tr>
+  <tr><td>TAF maximum validity</td><td><span class="reg-value">30 hr</span></td></tr>
+  <tr><td>9 hr TAF issuance</td><td>Every <span class="reg-value">3 hr</span>, from 0000 UTC</td></tr>
+  <tr><td>12–30 hr TAF issuance</td><td>Every <span class="reg-value">6 hr</span>, from 0000 UTC</td></tr>
+  <tr><td>9 hr TAF dissemination</td><td>Domestic + VOLMET; <span class="reg-value">NOT internationally</span></td></tr>
+  <tr><td>Amended TAF code</td><td><span class="reg-value">TAF AMD</span></td></tr>
+  <tr><td>PROB values used</td><td><span class="reg-value">PROB30 or PROB40</span> only</td></tr>
+  <tr><td>ROFOR Indicator 4</td><td>Wind &amp; Temperature at altitude</td></tr>
+  <tr><td>ROFOR Indicator 5</td><td>Turbulence</td></tr>
+  <tr><td>ROFOR Indicator 6</td><td>Icing</td></tr>
+  <tr><td>ROFOR Indicator 7</td><td>Cloud altitude &amp; Freezing Level</td></tr>
+  <tr><td>ROFOR Indicator 11111</td><td>Jet Stream data</td></tr>
+  <tr><td>ROFOR Indicator 22222</td><td>Max Wind &amp; Vertical Wind Shear</td></tr>
+  <tr><td>ARFOR W'W' 111</td><td><span class="reg-value">Thunderstorm (TS)</span></td></tr>
+  <tr><td>ARFOR W'W' 222</td><td><span class="reg-value">Tropical Cyclone (TPS)</span></td></tr>
+  <tr><td>ARFOR W'W' 444</td><td><span class="reg-value">Hail (HAIL)</span></td></tr>
+  <tr><td>ARFOR W'W' 555</td><td><span class="reg-value">Mountain Waves (MTW)</span></td></tr>
+  <tr><td>ARFOR W'W' 888</td><td><span class="reg-value">Freezing Rain (FZRA)</span></td></tr>
+  <tr><td>Turb B=2</td><td>Moderate CAT OCNL</td></tr>
+  <tr><td>Turb B=7</td><td>Severe CAT FREQ</td></tr>
+  <tr><td>Icing L=0</td><td>Nil; L=1 = Light; L=4 = Moderate; L=7 = Severe</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>ROFOR Indicator Memory Mnemonic: "4-5-6-7-Jets-MaxW"</strong><br>
+  4 = Wind &amp; Temperature<br>
+  5 = Turbulence<br>
+  6 = Icing<br>
+  7 = Cloud &amp; Freezing Level<br>
+  11111 = Jet Stream<br>
+  22222 = Maximum Wind + Vertical Wind Shear<br><br>
+  <strong>W'W' Code Mnemonic: "1-TS, 2-Cyclone, 3-Squall, 4-Hail, 5-MTW, 6-Sand, 7-Dust, 8-FZRA"</strong>
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

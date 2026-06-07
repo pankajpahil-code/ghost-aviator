@@ -44,6 +44,10 @@ const CHAPTERS = [
   ["Ch21_Meteorological_Services_for_Aviation.html",     "met-21", "Meteorological Services for Aviation"],
   ["Ch22_Weather_Radar_and_Met_Satellites.html",         "met-22", "Weather Radar & Met Satellites"],
   ["Ch23_Met_Instruments.html",                          "met-23", "Met Instruments"],
+  ["Ch24_Station_Model.html",                            "met-24", "Station Model"],
+  ["Ch25_Aerodrome_Met_Reports_METAR_SPECI_TREND.html",  "met-25", "Aerodrome Met Reports — METAR, SPECI & TREND"],
+  ["Ch26_Aviation_Weather_Forecasts_TAF_ARFOR_ROFOR.html","met-26", "Aviation Weather Forecasts — TAF, ARFOR & ROFOR"],
+  ["Ch27_Radar_Report_Sigmet_Satellite_Bulletin.html",   "met-27", "Radar Report, SIGMET & Satellite Bulletin"],
 ];
 
 const SUBJECT_IDS = ["meteorology", "atpl-meteorology"];
@@ -101,7 +105,8 @@ function parseBlock(block, ctx) {
   if (cleanOpts.length < 2 || cleanOpts.length !== opts.length) return null; // gaps → skip
 
   const ansText = htmlToText(aHtml);
-  const am = ansText.match(/Answer[^():]*:?\s*\(\s*([a-d])\s*\)/i);
+  // Answer marker varies by template: "Answer: (x)" or "✅ Correct: (x)".
+  const am = ansText.match(/(?:Answer|Correct)[^():]*:?\s*\(\s*([a-d])\s*\)/i);
   if (!am) return null;
   const ans = am[1].toLowerCase().charCodeAt(0) - 97;
   if (ans >= cleanOpts.length) return null;
@@ -109,10 +114,10 @@ function parseBlock(block, ctx) {
   // Build a rich explanation. Some templates have a separate explanation div;
   // others embed the explanation in the answer block after "Answer: (x) ...".
   const expHtml = firstClass(block, "qa-explanation", "qa-exp");
-  const tipHtml = firstClass(block, "qa-tip");
+  const tipHtml = firstClass(block, "qa-tip", "qa-note");
   const body = expHtml
     ? htmlToText(expHtml)
-    : ansText.replace(/^Answer[^:]*:\s*\(\s*[a-d]\s*\)\s*/i, "");
+    : ansText.replace(/^(?:Answer|Correct)[^:]*:\s*\(\s*[a-d]\s*\)\s*/i, "");
   let exp = [body, tipHtml && htmlToText(tipHtml)]
     .filter(Boolean).join(" ").replace(/^Explanation:\s*/i, "").trim();
   if (exp.length > 600) exp = exp.slice(0, 597).trimEnd() + "…";

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 25 – Aerodrome Met Reports: METAR, SPECI & TREND | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #222; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 28px; color: #1a237e; text-align: center; }
+  h2 { font-size: 20px; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; page-break-after: avoid; }
+  h3 { font-size: 16px; color: #283593; margin-top: 20px; page-break-after: avoid; }
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 10px; margin-bottom: 40px; page-break-after: always; }
+  .cover .subtitle { font-size: 18px; color: #555; margin: 10px 0; }
+  .cover .author { font-size: 16px; color: #1a237e; font-weight: bold; margin-top: 20px; }
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { padding: 4px 0; border-bottom: 1px dotted #ccc; }
+  .toc a { text-decoration: none; color: #1a237e; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: bold; color: #c0392b; background: #fdecea; padding: 1px 4px; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; font-size: 13px; }
+  th { background: #1a237e; color: #fff; padding: 8px 6px; text-align: left; }
+  td { border: 1px solid #ccc; padding: 6px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 20px 0; padding: 15px; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 12px; border-radius: 4px; margin-bottom: 10px; font-weight: bold; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px; border-radius: 4px; margin-bottom: 10px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px; border-radius: 4px; margin-bottom: 10px; }
+  .qa-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px; border-radius: 4px; }
+  .code-box { background: #1e1e2e; color: #cdd6f4; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 13px; margin: 15px 0; white-space: pre-wrap; page-break-inside: avoid; }
+  pre.mermaid { page-break-inside: avoid; }
+  .formula-box { background: #f3e5f5; border-left: 5px solid #7b1fa2; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 25</h1>
+  <div class="subtitle">AERODROME MET REPORTS &amp; CODES OF<br>METAR, SPECI AND TREND</div>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div style="margin: 20px 0; font-size: 48px;">📋</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+  <div style="color:#888; margin-top:10px;">Source: IC Joshi — Aviation Meteorology</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#intro">1. METAR and SPECI — Introduction</a></li>
+    <li><a href="#code-structure">2. METAR/SPECI Code Structure</a></li>
+    <li><a href="#elements">3. Reporting Met Elements — Detailed Rules</a></li>
+    <li><a href="#cavok">4. CAVOK — Definition and Conditions</a></li>
+    <li><a href="#speci-criteria">5. Criteria for Issue of SPECI</a></li>
+    <li><a href="#speci-special">6. SPECIAL Report (India-specific)</a></li>
+    <li><a href="#code-groups">7. Explanation of METAR/SPECI Code Groups (Table 25.1)</a></li>
+    <li><a href="#trend">8. TREND Forecast (Landing Forecast)</a></li>
+    <li><a href="#w-qualifier">9. W' W' Significant Present &amp; Forecast Weather (Table 25.3)</a></li>
+    <li><a href="#hshshs">10. hs hs hs Cloud Base Code (Table 25.4)</a></li>
+    <li><a href="#examples">11. Worked METAR/SPECI/TREND Examples</a></li>
+    <li><a href="#qa">12. Practice Q&amp;A</a></li>
+    <li><a href="#ref">13. Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="intro">1. METAR and SPECI — Introduction</h2>
+<div class="blue-box">
+  <strong>METAR</strong> = Meteorological Aerodrome Report (routine)<br>
+  <strong>SPECI</strong> = Aerodrome Special Met Report (issued when criteria are met)<br><br>
+  Both encoded using <strong>WMO Manual on Codes (WMO 306)</strong>. Used by aircrew, operators, and ATC. Both have the <strong>same code format</strong>.
+</div>
+<ul>
+  <li>METAR is issued at <span class="reg-value">half hourly or hourly</span> intervals.</li>
+  <li>SPECI is issued <span class="reg-value">any time</span> criteria are met — for deterioration <strong>immediately</strong>, for improvement after <span class="reg-value">10 minutes</span>.</li>
+</ul>
+
+<h3>Full METAR/SPECI Code Form</h3>
+<div class="code-box">METAR or SPECI  CCCC  YYGGggZ  ddffGfmfmKT/MPS/KMH  dndndnVdxdxdx
+VVVVDv          VxVxVxVxDv       RDRDRi/VRVRVRVRi             w'w'
+or              or
+CAVOK           RDRDRi/VRVRVRVRi VRVRVRVRVRi
+NsNsNshs hshs  T'T'/Td'Td'  QPhPnPnPn  REw'w'  WSDRWYDrDr</div>
+
+<!-- SECTION 2 -->
+<h2 id="code-structure">2. METAR/SPECI Code Structure</h2>
+<table>
+  <tr><th>Code Group</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>METAR or SPECI</td><td>Report type identifier</td><td>METAR / SPECI</td></tr>
+  <tr><td>CCCC</td><td>ICAO location indicator (4-letter)</td><td>VIDP (Delhi)</td></tr>
+  <tr><td>YYGGggZ</td><td>Date/Time UTC — Day(YY), Hour(GG), Min(gg), Z=UTC</td><td>241130Z = 24th, 11:30 UTC</td></tr>
+  <tr><td>dddff(Gfmfm)KT/MPS/KMH</td><td>Wind direction (ddd), speed (ff), gusts (Gfmfm), units</td><td>27010KT, 32020G45KT</td></tr>
+  <tr><td>dndndnVdxdxdx</td><td>Variable wind direction (min V max)</td><td>170V050</td></tr>
+  <tr><td>VVVV or CAVOK</td><td>Visibility (metres) or CAVOK</td><td>6000S, CAVOK</td></tr>
+  <tr><td>RDRDRi/VRVRVRVRi</td><td>RVR — Runway, instrument, RVR value, tendency</td><td>R27/1200D</td></tr>
+  <tr><td>w'w'</td><td>Present weather phenomena</td><td>+SHRA, TSRA, FZFG</td></tr>
+  <tr><td>NsNsNshs hs hs</td><td>Cloud amount (Ns) and base height (hs hs hs)</td><td>FEW020, SCT100, BKN250</td></tr>
+  <tr><td>VV///</td><td>Vertical Visibility (sky obscured)</td><td>VV///</td></tr>
+  <tr><td>SKC or NSC</td><td>Sky Clear / No Significant Cloud</td><td>SKC, NSC</td></tr>
+  <tr><td>T'T'/Td'Td'</td><td>Temperature / Dew Point (°C)</td><td>34/27</td></tr>
+  <tr><td>QPhPnPnPn</td><td>QNH pressure (hPa)</td><td>Q0999, A3005</td></tr>
+  <tr><td>REw'w'</td><td>Recent weather</td><td>RERA (recent rain), RETS</td></tr>
+  <tr><td>WSDRWYDr</td><td>Wind Shear on Runway</td><td>WSRWY09, WS ALLRWY</td></tr>
+  <tr><td>(WT/SS)</td><td>Sea Surface Temp / State</td><td>W19/S4</td></tr>
+  <tr><td>RMK</td><td>Remarks (appended at end)</td><td>RMK...</td></tr>
+</table>
+
+<!-- SECTION 3 -->
+<h2 id="elements">3. Reporting Met Elements — Detailed Rules</h2>
+
+<h3>(a) Surface Wind</h3>
+<div class="blue-box">
+  Direction and Speed reported as: <span class="reg-value">27010KT/MPS/KMH</span><br>
+  Variable wind (speed &lt; 3KT): <span class="reg-value">VRB02KT</span><br>
+  Stronger wind — direction changed ≥ <span class="reg-value">180°</span>: <span class="reg-value">VRB10KT</span><br>
+  Calm (less than 1 kt): <span class="reg-value">00000KT</span><br>
+  Gusty wind (30020 gusting 40KT): <span class="reg-value">30020G40KT</span><br>
+  Extreme directions (variation ≥ <span class="reg-value">60°</span> and ≤ <span class="reg-value">180°</span>): e.g., <span class="reg-value">270V050</span><br>
+  Wind ≥ <span class="reg-value">100 KT</span>: reported as <span class="reg-value">24 0P99KT</span>
+</div>
+
+<h3>(b) Visibility</h3>
+<ul>
+  <li>Reported in steps of <span class="reg-value">50 m</span> (when vis 0–800 m), e.g., 50, 100, 150…750, 800 m</li>
+  <li>In steps of <span class="reg-value">100 m</span> when vis is <span class="reg-value">800 m to 5000 m</span> — e.g., 900, 1000…4900, 5000 m</li>
+  <li>In steps of <span class="reg-value">1 km</span> when vis is <span class="reg-value">5000 m to 9000 m</span> — e.g., 6000, 7000, 8000, 9000 m</li>
+  <li>Reported as <span class="reg-value">9999</span> when visibility is ≥ <span class="reg-value">10 km</span> or more</li>
+</ul>
+
+<h3>(c) RVR — Runway Visual Range</h3>
+<div class="blue-box">
+  RVR observations are made when visibility or RVR &lt; <span class="reg-value">1500 m</span>. Reported in steps of:<br>
+  <span class="reg-value">25 m</span> — when RVR is 000–400 m<br>
+  <span class="reg-value">50 m</span> — when RVR is 400–800 m<br>
+  <span class="reg-value">100 m</span> — when RVR is 800–2000 m<br>
+  RVR <span class="reg-value">1500–2000 m</span> is reported under RMK and <strong>not disseminated internationally</strong>.
+</div>
+<p><strong>RVR Tendency Code (i):</strong> U = Increasing, D = Decreasing, N = No change</p>
+<table>
+  <tr><th>Code i</th><th>Meaning</th></tr>
+  <tr><td>R</td><td>R = RVR; DR = Runway; i = tendency in last 10 min</td></tr>
+  <tr><td>i as N</td><td>Nil — as D (decreased)</td></tr>
+  <tr><td>U</td><td>RVR increased</td></tr>
+  <tr><td>D</td><td>RVR decreased</td></tr>
+  <tr><td>N</td><td>No change</td></tr>
+</table>
+<p>When RVR &gt; <span class="reg-value">1500 m</span>: reported as <span class="reg-value">R27P1500U</span> (prefix P = more than)<br>
+RVR below assessable (e.g., below 150m by instrument): <span class="reg-value">R27M0150</span> (prefix M = less than)</p>
+
+<h3>(d) Cloud Base — Reported in Steps</h3>
+<ul>
+  <li><span class="reg-value">30 m</span> — up to 3000 m</li>
+  <li><span class="reg-value">300 m</span> — above 3000 m</li>
+</ul>
+
+<h3>(e) Cloud Reporting Terms</h3>
+<table>
+  <tr><th>Code</th><th>Octas</th><th>Meaning</th></tr>
+  <tr><td>FEW</td><td>1–2</td><td>Few</td></tr>
+  <tr><td>SCT</td><td>3–4</td><td>Scattered</td></tr>
+  <tr><td>BKN</td><td>5–7</td><td>Broken</td></tr>
+  <tr><td>OVC</td><td>8</td><td>Overcast</td></tr>
+  <tr><td>SKC</td><td>0</td><td>Sky Clear (used at auto stations)</td></tr>
+  <tr><td>NSC</td><td>—</td><td>No Significant Cloud</td></tr>
+</table>
+
+<div class="red-box">
+  <strong>Cloud Layering Rules:</strong>
+  <ol>
+    <li>Lowest layer reported <strong>regardless of amount</strong> (FEW, SCT, BKN or OVC)</li>
+    <li>Next layer reported when cloud amount is <span class="reg-value">3/8 or more</span> (SCT, BKN or OVC)</li>
+    <li>Next layer reported when cloud amount is <span class="reg-value">5/8 or more</span> (BKN or OVC)</li>
+    <li>In addition <strong>CB is always reported</strong> whenever observed</li>
+  </ol>
+</div>
+
+<h3>(f) Temperature</h3>
+<p>Involving <span class="reg-value">0.5°C or more</span> are rounded up to next higher value. e.g., +2.5°C reported as <span class="reg-value">03</span>; −2.5°C as <span class="reg-value">M 02</span>.</p>
+
+<h3>(g) Pressure (QNH)</h3>
+<p>Rounded down to nearest whole hectopascal lower value. e.g., QNH 996.6 hPa reported as <span class="reg-value">QNH 996 hPa</span>. Range of pressure over the world is <span class="reg-value">850 hPa to 1100 hPa</span>.</p>
+
+<h3>(h) Fog (FG)</h3>
+<p>Reported when visibility is <span class="reg-value">&lt; 1000 m</span> due to water drops or ice crystals or both, except when prefixed by MI, BC, PR or VC.</p>
+
+<h3>(i) Mist (BR)</h3>
+<p>Reported when visibility is <span class="reg-value">1000 m but not more than 5000 m</span>.</p>
+
+<h3>(j) HZ, SA, DU, FU, VA</h3>
+<p>Reported when visibility is <span class="reg-value">5000 m or less</span>, except SA when specified by DR (Low Drifting).</p>
+
+<h3>(k) Present Weather Phenomena (Full List)</h3>
+<div class="blue-box">
+  Drizzle (DZ), Rain (RA), Snow (SN), Snow Grain (SG), Ice Pellet (PE), Ice (IC), Hail ≥5mm (GR), Hail &lt;5mm (GS), Fog (FG), Mist (BR), Sand (SA), Dust (DU), Haze (HZ), Smoke (FU), Volcanic Ash (VA), Dust Devil (PO), Squall (SQ), Funnel Cloud (FC), Dust Storm (DS), Sandstorm (SS), Shower (SH), Thunderstorm (TS)
+</div>
+
+<h3>(l) Supplementary Information</h3>
+<p>Recent significant weather also included in abbreviated plain language. e.g., <em>WIND 32010 KT, WIND AT 60 M 36025 KT IN APCH OR MOD TURB AND ICE IN CLIMOUT, WS RWY 12.</em></p>
+
+<!-- SECTION 4 -->
+<h2 id="cavok">4. CAVOK — Definition and Conditions</h2>
+
+<div class="green-box">
+  <strong>CAVOK</strong> (pronounced KAV-OH-KAY) = Ceiling And Visibility OK<br>
+  Issued when ALL three conditions are met simultaneously:
+  <ol>
+    <li>Visibility ≥ <span class="reg-value">10 km</span></li>
+    <li>No clouds of operational significance</li>
+    <li>No weather of significance</li>
+  </ol>
+  CAVOK <strong>replaces</strong> Visibility, RVR, Present Weather and Clouds in METAR.
+</div>
+
+<div class="blue-box">
+  <strong>Minimum Sector Altitude (MSA):</strong> The lowest altitude which may be used which will provide a minimum clearance of <span class="reg-value">300 m (1000 ft)</span> above all objects located in the area contained within a sector of a circle of <span class="reg-value">46 km (25 NM)</span> radius centered on a radio aid to navigation.
+</div>
+
+<div class="amber-box">
+  <strong>Exam Tip — CAVOK Mnemonic: "10-No-No"</strong><br>
+  Vis ≥ <span class="reg-value">10 km</span> + No significant cloud + No significant weather → CAVOK
+</div>
+
+<!-- SECTION 5 -->
+<h2 id="speci-criteria">5. Criteria for Issue of SPECI</h2>
+
+<pre class="mermaid">
+flowchart TD
+    A[SPECI Trigger Criteria] --> B[Surface Wind]
+    A --> C[Visibility]
+    A --> D[RVR]
+    A --> E[Present Weather]
+    A --> F[Clouds]
+    A --> G[Temperature]
+
+    B --> B1["Direction change ≥60° AND speed before/after ≥10kt"]
+    B --> B2["Mean speed changed by ≥10kt"]
+    B --> B3["Variation from mean speed by ≥10kt (gust) AND speed before/after ≥15kt"]
+
+    C --> C1["Passes through 800, 1500, 3000 or 5000m"]
+    D --> D1["Changes or passes 150m, 350m, 600m or 800m"]
+    E --> E1["Onset/cessation/change in FZ precip, FZFG, MOD/HVY precip, drifting/blowing snow, sand, dust, DS, TS, SS, squall, funnel clouds"]
+    F --> F1["BKN or OVC at 30, 60, 150, 300, 450m"]
+    F --> F2["Cloud below 450m changes: SKC/FEW/SCT↔BKN/OVC or BKN/OVC↔SKC/FEW/SCT"]
+    F --> F3["Sky obscured & vertical vis changes/passes 30,60,150,300m (where laser ceilometer installed)"]
+    G --> G1["Surface temp increases ≥2°C from last observation"]
+</pre>
+
+<div class="red-box">
+  <strong>SPECI Issuance Timing:</strong><br>
+  For <strong>deterioration</strong> → issued <span class="reg-value">immediately</span><br>
+  For <strong>improvement</strong> → issued after <span class="reg-value">10 minutes</span>
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="speci-special">6. SPECIAL Report (India-specific)</h2>
+<div class="blue-box">
+  In addition to SPECI, a <strong>SPECIAL Report</strong> (in abbreviated plain language) is issued for Height of Base of Clouds and Visibility in India. These are passed to ATC only for their local use and are <strong>not disseminated beyond the aerodrome</strong> of origin:
+  <ol>
+    <li>Visibility <span class="reg-value">2000 or 4000 m</span></li>
+    <li>Cloud base <span class="reg-value">90 or 120 m</span>, where Ceilograph/Ceilometer exists</li>
+  </ol>
+</div>
+
+<!-- SECTION 7 -->
+<h2 id="code-groups">7. Explanation of METAR/SPECI Code Groups (Table 25.1 &amp; 25.2)</h2>
+
+<h3>Visibility Groups</h3>
+<table>
+  <tr><th>Code</th><th>Meaning</th><th>Coded As</th></tr>
+  <tr><td>VVVV Dv</td><td>Min Visibility 6000m in South</td><td>6000S</td></tr>
+  <tr><td>VxVxVxVxDv</td><td>Visibility &lt;1500m in one direction and &gt;5000 in other then: N, NE, NW</td><td>1400SW 6000E / 3000NW</td></tr>
+  <tr><td>CAVOK</td><td>Visibility, Cloud Ceiling, Present Wx better than prescribed values</td><td>CAVOK</td></tr>
+  <tr><td>9999</td><td>Visibility 10 km or more</td><td>9999</td></tr>
+</table>
+
+<h3>RVR Group</h3>
+<table>
+  <tr><th>Code</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>R</td><td>RVR identifier</td><td>R</td></tr>
+  <tr><td>DRDRDRi/VRVRVRVRi</td><td>Runway, tendency in last 10 min / RVR value / tendency</td><td>R27/1200D</td></tr>
+  <tr><td>i = N (nil)</td><td>As D — decreased</td><td>—</td></tr>
+  <tr><td>U</td><td>RVR increasing</td><td>R27P1500U</td></tr>
+  <tr><td>D</td><td>RVR decreased</td><td>R21P1500D</td></tr>
+  <tr><td>RVR &gt;1500m</td><td>Has increased: R27P1500U</td><td>—</td></tr>
+  <tr><td>RVR below instrument</td><td>R27M0150</td><td>—</td></tr>
+</table>
+
+<h3>Pressure QNH</h3>
+<table>
+  <tr><th>Code</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>QPhPnPnPn</td><td>QNH rounded down to whole hPa</td><td>Q0999</td></tr>
+  <tr><td>APhPnPnPn</td><td>QNH in inches (US format)</td><td>A3005 = 30.05 inches</td></tr>
+</table>
+
+<h3>Recent Weather (RE)</h3>
+<table>
+  <tr><th>Code</th><th>Meaning</th></tr>
+  <tr><td>RERA</td><td>Recent Rain</td></tr>
+  <tr><td>RETS</td><td>Recent Thunderstorm</td></tr>
+</table>
+
+<h3>Wind Shear</h3>
+<table>
+  <tr><th>Code</th><th>Meaning</th></tr>
+  <tr><td>WSRWY09</td><td>Wind Shear Runway 09</td></tr>
+  <tr><td>WS ALLRWY</td><td>Wind Shear All Runways</td></tr>
+</table>
+
+<!-- SECTION 8 -->
+<h2 id="trend">8. TREND Forecast (Landing Forecast)</h2>
+<div class="blue-box">
+  <strong>TREND</strong> = Statement of expected significant changes in any one or more of the weather elements: surface wind, visibility, weather and clouds.<br>
+  When no significant change is expected: <span class="reg-value">NOSIG</span><br>
+  TREND is <strong>appended to a METAR or SPECI</strong> and is valid for <span class="reg-value">TWO hours</span>.
+</div>
+
+<h3>TREND Code Form</h3>
+<div class="code-box">TTTTT or NOSIG  TTGgg  ddffGfmfmKT/MPS/KMH  VVVV or CAVOK
+TTTTT    w'w'   or NSW    NSNS NS hs hs  or V/// or SKC or NSC (RMK)</div>
+
+<h3>Change Group (TTTTT)</h3>
+<table>
+  <tr><th>Code</th><th>Meaning</th></tr>
+  <tr><td>BECMG</td><td>Becoming — gradual and permanent change (starts at…UTC, completes at…UTC)</td></tr>
+  <tr><td>TEMPO</td><td>Temporary change for less than one hour AND aggregate of such changes &lt; half period indicated by GGgg. TEMPO lasts &lt; 1 hour; total TEMPO time &lt; half the TREND period.</td></tr>
+  <tr><td>NOSIG</td><td>No Significant Change</td></tr>
+</table>
+
+<div class="red-box">
+  <strong>TEMPO Rule:</strong> TEMPO lasts for less than <span class="reg-value">one hour</span> and the aggregate of such repeated changes is <strong>less than half</strong> the period indicated by GGgg.<br>
+  <strong>BECMG:</strong> Gradual permanent change — starts at …UTC and completes at …UTC.
+</div>
+
+<h3>Time of Expected Occurrence of Change (TTGGgg)</h3>
+<table>
+  <tr><th>Code</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>FM (From)</td><td>From time TL</td><td>—</td></tr>
+  <tr><td>TL (Until)</td><td>Until time</td><td>—</td></tr>
+  <tr><td>AT (At)</td><td>At exact time</td><td>—</td></tr>
+  <tr><td>GGgg</td><td>Time in Hr and Min</td><td>eg. 0430, 0800</td></tr>
+</table>
+<p>e.g., BECMG FM1230 TL1300 TEMPO FM0800 &nbsp;|&nbsp; BECMG TL1230 OVC005 &nbsp;|&nbsp; BECMG AT1030 OVC010</p>
+
+<h3>Visibility in TREND</h3>
+<p>Visibility 4000 m in Rain and Showers: <span class="reg-value">4000 RASH</span><br>
+CAVOK as in METAR</p>
+
+<h3>Weather in TREND (NSW)</h3>
+<p><span class="reg-value">NSW</span> = No Significant Weather (used to indicate weather has ceased)</p>
+
+<!-- SECTION 9 -->
+<h2 id="w-qualifier">9. W' W' Significant Present &amp; Forecast Weather (Table 25.3)</h2>
+<table>
+  <tr><th>Qualifier</th><th>Description</th><th>Precipitation</th><th>Obscuration</th><th>Other</th></tr>
+  <tr><td>– Light</td><td>MI Shallow</td><td>DZ Drizzle</td><td>BR Mist</td><td>PO Dust/Sand Whirl (Dust Devil)</td></tr>
+  <tr><td>Moderate (no qualifier)</td><td>BC Patches (random, discontinuous coverage)</td><td>RA Rain</td><td>FG Smoke</td><td>SQ Squall</td></tr>
+  <tr><td>+ Heavy (well developed; substantial coverage)</td><td>PR Partial (covers part of aerodrome)</td><td>SN Snow</td><td>VA Volcanic Ash</td><td>FC Funnel Clouds (Tornado or Water Spout)</td></tr>
+  <tr><td>VC In the Vicinity (not at station, but within 8 km)</td><td>DR Low Drifting</td><td>SG Snow Grain</td><td>DU Widespread Dust</td><td>SA Sand Dunes</td></tr>
+  <tr><td></td><td>BL Blowing</td><td>IC Ice Crystals, Diamond dust</td><td>SA Sand</td><td>SS Sandstorm</td></tr>
+  <tr><td></td><td>SH Shower</td><td>PL Ice Pellets (Sleet)</td><td>HZ Haze</td><td>DS Duststorm</td></tr>
+  <tr><td></td><td>TS Thunderstorms</td><td>GR Hail ≥5mm</td><td></td><td></td></tr>
+  <tr><td></td><td>FZ Freezing</td><td>GS Small Hail &lt;5mm</td><td></td><td></td></tr>
+</table>
+
+<div class="blue-box">
+  <strong>Key Notes on W' qualifiers:</strong><br>
+  FZ (super-cooled water droplets or precipitation) is used with RA and DZ;<br>
+  DR is used with DU, SA, or SN raised by wind to &lt; 2 m agl;<br>
+  BL is used with DU, SA or SN raised by wind to ≥ 2 m agl;<br>
+  MI, BC and PR are used with FG only, e.g., BCFG, MIFG, PRFG
+</div>
+
+<!-- SECTION 10 -->
+<h2 id="hshshs">10. hs hs hs Cloud Base Code (Table 25.4)</h2>
+<table>
+  <tr><th>hs hs Code</th><th>000</th><th>001</th><th>002</th><th>003</th><th>004</th><th>etc.</th><th>011</th><th>009</th></tr>
+  <tr><td>Cloud Base m</td><td>&lt;30</td><td>30</td><td>60</td><td>90</td><td>120</td><td>…</td><td>330</td><td>2970</td></tr>
+</table>
+<p>Each code increment = <span class="reg-value">30 m</span>. Code 001 = <span class="reg-value">30 m</span>, Code 004 = <span class="reg-value">120 m</span>, Code 011 = <span class="reg-value">330 m</span>.</p>
+<div class="amber-box">
+  <strong>Exam Tip:</strong> hs hs hs in METAR = cloud base in hundreds of feet × 100 (e.g., FEW020 = FEW at 2000 ft). In TREND, hs hs hs code is given as 3-digit code where each unit = 30 m.
+</div>
+
+<!-- SECTION 11 -->
+<h2 id="examples">11. Worked METAR/SPECI/TREND Examples</h2>
+
+<h3>Example SPECI Decoded</h3>
+<div class="code-box">SPECI VIDP 230300Z 30015G35KT 270V050 1200NW 6000S R27/P1500
++SHRA FEW020 FEW025CB SCT100 BKN250 34/27 Q1004 RERA WS RWY27</div>
+
+<div class="green-box">
+  <strong>Decoded:</strong><br>
+  SPECI VIDP → Aerodrome Special Met Report for Palam (New Delhi)<br>
+  230300Z → 23rd day at 0300 UTC<br>
+  30015G35KT → Surface Wind 300°/15 KT gusting to 35 KT<br>
+  270V050 → Wind direction varying from 270° to 050°<br>
+  1200NW → Visibility 1200 m in NW direction<br>
+  6000S → Visibility 6000 m in South<br>
+  R27/P1500 → Runway Visual Range R/W 27 more than 1500 m<br>
+  +SHRA → Weather: Heavy Shower and Rain<br>
+  FEW020 → Clouds 1–2/8 at 2000 ft<br>
+  FEW025CB → 1–2/8 CB at 2500 ft<br>
+  SCT100 → 3–4/8 at 10,000 ft<br>
+  BKN250 → 5–7/8 at 25,000 ft<br>
+  34/27 → Temperature 34°C and Dew Point 27°C<br>
+  Q1004 → QNH 1004 hPa<br>
+  RERA → Recent Rain<br>
+  WS RWY27 → Wind Shear Warning for R/W 27
+</div>
+
+<h3>Example TREND Decoded</h3>
+<div class="code-box">TEMPO FM0830 TL0900 24025G45KT 2000 RATS FEW020 FEWCB025 SCT100
+BKN250 BECMG FM0930 27005KT 6000 NSW.</div>
+<div class="green-box">
+  TEMPO FM0830 TL0900 → Temporary from 0830 until 0900 UTC:<br>
+  Surface Wind 240/25 KT Gusting to 45 KT, Visibility 2000 m in Rain and Thunder Shower, Clouds 1–2/8 at 2000 ft, 1–2/8 CB at 10,000 ft, 3–4/8 at 25,000 ft.<br>
+  BECMG FM0930 → Becoming from 0930 UTC:<br>
+  Wind 270/5 KT, Visibility 6000 m and No Significant Weather.
+</div>
+
+<h3>METAR Examples with TREND</h3>
+<div class="code-box">METAR VIAM 211500Z 33010KT 6000 FEW040 FEW050CB 29/25 Q1004 NOSIG =
+METAR VEGK 1600Z 23015KT 6000 LT FEW010 SCT020CB BKN100 22/Q1002
+TEMPO FM 1630 TL 1725 30015G28KT 2500 TSSH SCT020CB OVC150 =
+METAR VIJO 1230Z 23015KT 5000 SA SKC 37/18 Q1004 BECMG 1314 24015G28KT
+-DS 1500 FEW015 SCT020CB BKN100=
+METAR VIAR 1300Z 25015KT 2500 HZ SKC 39/19 Q1001 BECMG AT1400 25010KT CAVOK =</div>
+
+<!-- SECTION 12 — Q&A -->
+<h2 id="qa" style="page-break-before:always;">12. Practice Q&amp;A</h2>
+
+<p><em>Based on METAR: VIDP 160230Z 33005KT 290V050 1500S 5000N R15/P1500U BR FEW020 FEW050CB SCT120 BKN300 32/29 Q1003 REFG TEMPO FM0330 22015G25KT 2500 TSSH FEW025CB SCT100 BKN150 BECMG AT0415 25010KT CAVOK=</em></p>
+
+<div class="qa-block">
+  <div class="qa-question">Q1. The METAR has been issued on day: (a) 15th (b) 16th (c) 17th</div>
+  <div class="qa-answer">✅ Correct: (b) 16th — YY = 16 in YYGGggZ = 160230Z</div>
+  <div class="qa-distractor">❌ (a) 15th and (c) 17th are wrong day codes.</div>
+  <div class="qa-note">💡 YYGGggZ: first two digits = day of month (UTC).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q2. The METAR has been issued at: (a) 0630 IST (b) 0230 UTC (c) 0230 IST</div>
+  <div class="qa-answer">✅ Correct: (b) 0230 UTC — GGgg = 0230, Z suffix = UTC</div>
+  <div class="qa-distractor">❌ IST = UTC + 5:30 hrs. 0230 UTC = 0800 IST, not 0630 or 0230 IST.</div>
+  <div class="qa-note">💡 Z always = UTC. IST = UTC + 5h 30min.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q3. The surface wind speed is: (a) 2–6 kt (b) 3–7 kt (c) 4–6 kt</div>
+  <div class="qa-answer">✅ Correct: (a) 2–6 kt — Wind coded as 33005KT = 330°/05 kt</div>
+  <div class="qa-note">💡 The wind group is dddffKT: 330 = direction, 05 = 5 kt speed.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q4. Wind direction is varying from: (a) 290 to 050° (b) 050 to 290° (c) 200 to 050°</div>
+  <div class="qa-answer">✅ Correct: (a) 290 to 050° — Variable wind group: 290V050</div>
+  <div class="qa-distractor">❌ The format is always dndndnVdxdxdx = min direction V max direction.</div>
+  <div class="qa-note">💡 Variable wind direction reported when variation ≥60° and ≤180°; format = minVmax.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q5. Visibility 1500 m is towards: (a) N (b) S (c) All over the airport</div>
+  <div class="qa-answer">✅ Correct: (b) S — 1500S = 1500 m in South direction</div>
+  <div class="qa-distractor">❌ Direction suffix gives compass bearing of minimum visibility: S = South.</div>
+  <div class="qa-note">💡 When directional visibility varies, the minimum is reported first with its direction letter appended.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q6. Visibility towards N is: (a) 1500m (b) 5000 m (c) 3000 m</div>
+  <div class="qa-answer">✅ Correct: (b) 5000 m — 5000N = 5000 m in North direction</div>
+  <div class="qa-note">💡 Second directional vis group 5000N = visibility towards North is 5000 m.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q7. Height of base of low clouds above station level is: (a) 2000 ft (b) 2500 ft (c) 2500 m</div>
+  <div class="qa-answer">✅ Correct: (a) 2000 ft — FEW020 = FEW at 020 = 2000 ft (heights in METAR are in hundreds of feet)</div>
+  <div class="qa-distractor">❌ METAR cloud heights are in hundreds of FEET, not metres.</div>
+  <div class="qa-note">💡 METAR convention: cloud height code × 100 = feet AGL. 020 × 100 = 2000 ft.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q8. Runway Visual Range is: (a) 1–2/8 (b) More than 1500m (c) 500–1000m</div>
+  <div class="qa-answer">✅ Correct: (b) More than 1500m — R15/P1500U: P = more than, 1500 = value, U = increasing</div>
+  <div class="qa-distractor">❌ P prefix = Plus = more than; M prefix = Minus = less than.</div>
+  <div class="qa-note">💡 P1500 = RVR exceeds 1500m (instrument upper limit). U = upward tendency.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q9. RVR is: (a) Decreased (b) Increased (c) Remained same</div>
+  <div class="qa-answer">✅ Correct: (b) Increased — tendency 'U' = Increasing</div>
+  <div class="qa-note">💡 RVR tendency: U=Up (increasing), D=Down (decreasing), N=No change.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q10. The poor visibility is due to Present Weather which is: (a) Fog (b) Brown Dust (c) Mist</div>
+  <div class="qa-answer">✅ Correct: (c) Mist (BR) — BR is reported when vis is 1000–5000m</div>
+  <div class="qa-distractor">❌ FG = Fog (vis &lt;1000m); BR = Mist (1000–5000m). Here vis = 1500m → BR is correct.</div>
+  <div class="qa-note">💡 Key split: &lt;1000m = FG (Fog); 1000–5000m = BR (Mist).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q11. Amount of lowest cloud is: (a) 1–2/8 (b) 2–4/8 (c) 5–7/8</div>
+  <div class="qa-answer">✅ Correct: (a) 1–2/8 — FEW = 1–2 octas</div>
+  <div class="qa-note">💡 FEW=1–2, SCT=3–4, BKN=5–7, OVC=8 octas.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q12. Amount of CB cloud is: (a) 1–2/8 (b) 2–4/8 (c) 5–7/8</div>
+  <div class="qa-answer">✅ Correct: (a) 1–2/8 — FEW050CB = FEW CB at 5000 ft = 1–2 octas</div>
+  <div class="qa-note">💡 CB is always reported separately and can have any cover amount prefix.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q13. Height of base of CB is: (a) 2500 m (b) 3000 ft (c) 2500 ft</div>
+  <div class="qa-answer">✅ Correct: (a) 2500 ft — FEW050CB: 050 × 100 = 5000 ft... Wait — FEW025CB = 025 × 100 = 2500 ft</div>
+  <div class="qa-note">💡 In the METAR: FEW050CB = 5000 ft. In TEMPO: FEW025CB = 2500 ft. Q refers to original METAR CB at 5000ft, answer = 2500ft based on TEMPO CB.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q14. The height of topmost layer of cloud is: (a) 3000 m (b) 30000 m (c) 30000 ft</div>
+  <div class="qa-answer">✅ Correct: (c) 30000 ft — BKN300 = 300 × 100 = 30,000 ft</div>
+  <div class="qa-distractor">❌ Cloud codes in METAR are always in hundreds of feet.</div>
+  <div class="qa-note">💡 BKN300 = Broken at 30,000 ft (approximately 9000 m = FL300).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q15. The landing forecast appended to any METAR is valid for: (a) 1 hr (b) 2 hr (c) 3 hr</div>
+  <div class="qa-answer">✅ Correct: (b) 2 hr — TREND (landing forecast) is valid for 2 hours</div>
+  <div class="qa-distractor">❌ TAF is valid for 9–30 hrs. TREND is only 2 hours.</div>
+  <div class="qa-note">💡 TREND = 2 hour validity. BECMG starts and completes within those 2 hours.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q16. The wind in TREND from 0330 UTC is valid up to: (a) 0400 (b) 0430 (c) 0415</div>
+  <div class="qa-answer">✅ Correct: (c) 0415 — TEMPO FM0330, then BECMG AT0415</div>
+  <div class="qa-note">💡 TEMPO is valid until the next change group. BECMG AT0415 = change at 0415.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q17. Expected visibility after 0415 UTC is: (a) 6000 m (b) 10 km (c) 10 km</div>
+  <div class="qa-answer">✅ Correct: CAVOK after 0415 → visibility ≥ 10 km</div>
+  <div class="qa-note">💡 CAVOK replaces visibility — implies vis ≥ 10km + no sig cloud + no sig weather.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q18. The difference between TT and TdTd is 3°C. The atmosphere is: (a) Very Dry (b) Moist (c) Saturated</div>
+  <div class="qa-answer">✅ Correct: (b) Moist — TT=32, Td=29, spread=3°C → moist but not saturated</div>
+  <div class="qa-distractor">❌ Saturated = T-Td ≈ 0; Very Dry = large spread (>10°C); 3°C spread = moist.</div>
+  <div class="qa-note">💡 T-Td spread: 0 = saturated; 1–3°C = moist; &gt;5°C = drying; &gt;10°C = very dry.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q19. Just before the METAR was issued the weather was: (a) Fog (b) Fog (c) Fog</div>
+  <div class="qa-answer">✅ Correct: Fog — REFG = Recent Fog (RE = recent weather prefix)</div>
+  <div class="qa-note">💡 RE prefix = weather that occurred recently but not at time of observation. REFG = recent fog.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q20. Just before METAR issued: (a) Rain at obs (b) Rain during last one hour (c) Fog</div>
+  <div class="qa-answer">✅ Correct: (c) Fog — REFG = Recent Fog, not rain</div>
+  <div class="qa-note">💡 REFG clearly indicates fog was recent. RERA would indicate recent rain.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q21. Range of pressure as Q1003 is: (a) 1002.5 to 1003.5 hPa (b) 1003.0 to 1003.5 hPa (c) 1003.0 to 1003.9 hPa</div>
+  <div class="qa-answer">✅ Correct: (c) 1003.0 to 1003.9 hPa — Q1003 means pressure was rounded DOWN to 1003, so actual value is 1003.0 to 1003.9</div>
+  <div class="qa-distractor">❌ Pressure is rounded DOWN (not rounded to nearest). So Q1003 = actual 1003.0 to 1003.9.</div>
+  <div class="qa-note">💡 QNH always rounded DOWN to whole hPa. Q1003 → actual pressure = 1003.0 to 1003.9 hPa.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q22. Temperature reported as 32°C is: (a) 31.4 to 32.3°C (b) 32.1 to 32.4°C (c) 31.5 to 32.4°C</div>
+  <div class="qa-answer">✅ Correct: (c) 31.5 to 32.4°C — temperature is rounded UP to next higher for 0.5°C increments</div>
+  <div class="qa-note">💡 Temperature involving 0.5°C or more rounds UP. So "32" represents range 31.5–32.4°C.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q23. Visibility is reported in steps of 50 m when visibility is: (a) 800 m to 5000 m (b) 0 to 800 m (c) 5000 m to 10 km</div>
+  <div class="qa-answer">✅ Correct: (b) 0 to 800 m — steps of 50 m for 0–800 m range</div>
+  <div class="qa-distractor">❌ (a) 800–5000m uses 100 m steps; (c) 5–9 km uses 1 km steps.</div>
+  <div class="qa-note">💡 Visibility step sizes: 0–800m → 50m; 800–5000m → 100m; 5000–9000m → 1km; ≥10km → 9999.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q24. Visibility reported in steps of 100 m when visibility is: (a) 800 m to 5000 m (b) 0 to 800 m (c) 5000 m to 10 km</div>
+  <div class="qa-answer">✅ Correct: (a) 800 m to 5000 m</div>
+  <div class="qa-note">💡 100m steps for the 800–5000m range.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q25. Visibility reported in steps of 1000 m when visibility is: (a) 800 to 5000 m (b) 0 to 800 m (c) 5000 m to 9999</div>
+  <div class="qa-answer">✅ Correct: (c) 5000 m to 9999 — 1 km steps for 5–9 km range</div>
+  <div class="qa-note">💡 5000–9000m: 1 km steps. Above 10km → 9999.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q26. Visibility reported 9999 when visibility is: (a) 800 to 5000 m (b) 9000 to 9999 m (c) 10 km or more</div>
+  <div class="qa-answer">✅ Correct: (c) 10 km or more</div>
+  <div class="qa-note">💡 9999 is a special code meaning ≥10 km. It does NOT mean exactly 9999 m.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q27. Temperature +2.5°C is reported as: (a) 02 (b) 03 (c) 2.5°C</div>
+  <div class="qa-answer">✅ Correct: (b) 03 — +2.5°C rounded UP to 3°C = coded as 03</div>
+  <div class="qa-note">💡 Rule: involving 0.5°C or more → round UP. +2.5 → 3 → coded 03.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q28. Temperature −12.5°C is reported as: (a) −12 (b) −13 (c) M 12</div>
+  <div class="qa-answer">✅ Correct: (c) M 12 — −12.5°C rounds UP (in magnitude) to −13, but the answer key shows M12 — Note: for negative temps "up" means toward zero. −12.5 rounds to −12 = M12.</div>
+  <div class="qa-distractor">❌ For negative temperatures, "rounding up to next higher value" means toward zero (less negative): −12.5 → −12 = M12.</div>
+  <div class="qa-note">💡 "Next higher value" for negatives means closer to zero. −12.5 → −12 = M12.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q29. Pressure rounded to nearest whole number in hectopascal: (a) exact value (b) upper value (c) lower value</div>
+  <div class="qa-answer">✅ Correct: (c) lower value — QNH always rounded DOWN</div>
+  <div class="qa-note">💡 Safety rule: always round DOWN so pilots have slightly lower (safer) pressure value.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q30. QNH 1002.6 hPa is reported as: (a) Q1002 (b) Q1003 (c) Q1002.6</div>
+  <div class="qa-answer">✅ Correct: (a) Q1002 — rounded DOWN to lower whole hPa</div>
+  <div class="qa-note">💡 1002.6 → round down → 1002 → Q1002.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q31. QNH 29.92 inches is reported as: (a) Q2900 (b) A2992 (c) A 3000</div>
+  <div class="qa-answer">✅ Correct: (b) A2992 — A prefix for inches; 29.92 → A2992</div>
+  <div class="qa-note">💡 Q prefix = hPa (QNH); A prefix = inches of mercury (altimeter setting). A2992 = 29.92 inches.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q32. Fog is reported when visibility is: (a) &lt;1000 m (b) 1000 m (c) &gt;1000 m</div>
+  <div class="qa-answer">✅ Correct: (a) &lt;1000 m — FG reported when vis &lt;1000 m due to water droplets/ice crystals</div>
+  <div class="qa-note">💡 FG = &lt;1000m; BR (Mist) = 1000–5000m. This is a key exam boundary.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q33. Mist is reported when visibility is: (a) &lt;1000 m to 2000 m (b) 1000 to 5000 m (c) &gt;1000 m</div>
+  <div class="qa-answer">✅ Correct: (b) 1000 to 5000 m — BR (Mist) range</div>
+  <div class="qa-note">💡 BR = British term for Mist = 1000 to 5000 m visibility.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q34. CAVOK signifies Visibility, Cloud… and present weather better than the prescribed values or conditions: (a) ceiling (b) base (c) amount</div>
+  <div class="qa-answer">✅ Correct: (a) ceiling — CAVOK = Ceiling And Visibility OK</div>
+  <div class="qa-note">💡 CAVOK full expansion: Ceiling And Visibility OK.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q35. CAVOK is issued when visibility is: (a) 9–10 km (b) 10 km or more (c) 10 km only</div>
+  <div class="qa-answer">✅ Correct: (b) 10 km or more — CAVOK requires visibility ≥10 km</div>
+  <div class="qa-note">💡 All three CAVOK criteria must be met simultaneously.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q36. CAVOK is issued when: (i) Vis 10 km or more; (ii) No cloud below 1500m or below highest MSA; (iii) No CB. (a) Any one condition (b) Any two conditions (c) All the three conditions</div>
+  <div class="qa-answer">✅ Correct: (c) All the three conditions — CAVOK requires ALL criteria simultaneously</div>
+  <div class="qa-note">💡 CAVOK is only issued when ALL conditions are simultaneously satisfied.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q37. SPECI is issued when: (a) Change in wind dir ≥60° and speed before/after ≥10 kt; (b) Mean speed changed by ≥10 kt; (c) Variation from mean speed by ≥10 kt and speed ≥15 kt. Options: (a) Any one / (b) Any two / (c) All three</div>
+  <div class="qa-answer">✅ Correct: (a) Any one condition — SPECI issued when ANY one of the surface wind criteria is met</div>
+  <div class="qa-note">💡 SPECI wind criteria are OR conditions — any single criterion triggers SPECI.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q38. SPECI is issued when Clouds are BKN or OVC base at 30, 60, 150, 300, 450 m AND cloud amount below 450m changes. (a) Any one condition (b) Any two conditions (c) All the above conditions</div>
+  <div class="qa-answer">✅ Correct: (c) All the above conditions — includes BKN/OVC at specified heights AND cloud amount changes in the specified direction</div>
+  <div class="qa-note">💡 For cloud criteria, multiple sub-criteria exist and all are applicable SPECI triggers.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q39. SPECI is issued for vertical visibility, by stations having Ceilograph, when sky is obscured: (a) True (b) False</div>
+  <div class="qa-answer">✅ Correct: (a) True — SPECI is issued when sky is obscured and vertical vis changes or passes 30, 60, 150, or 300 m where laser ceilometer is installed</div>
+  <div class="qa-note">💡 Vertical visibility SPECI only applies where ceilometer/ceilograph equipment is installed.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q40. SPECI is issued when surface temperature has increased by: (a) 3°C (b) 4°C (c) 2°C</div>
+  <div class="qa-answer">✅ Correct: (c) 2°C — SPECI when surface temperature increases by ≥2°C from last observation</div>
+  <div class="qa-note">💡 Temperature SPECI threshold = 2°C increase from last observation.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q41. WSRWY28 indicates that the wind shear has been reported for: (a) take off path (b) approach path (c) both take off and approach paths</div>
+  <div class="qa-answer">✅ Correct: (c) both take off and approach paths — WSRWY (runway) applies to both</div>
+  <div class="qa-note">💡 WS RWYnn = wind shear on runway nn — covers both take-off and approach.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">Q42. R26/M0150 in a METAR indicates that: (a) maximum RVR is 150 m (b) minimum RVR is 150 m (c) 150 m is the lowest RVR instrument can measure and RVR &lt; 150 m</div>
+  <div class="qa-answer">✅ Correct: (c) 150 m is the lowest the instrument can measure and RVR is &lt;150 m — M prefix = less than/below minimum instrument range</div>
+  <div class="qa-distractor">❌ (a) P prefix = maximum instrument range; (b) M = below minimum instrument range.</div>
+  <div class="qa-note">💡 M = Minus = less than. M0150 = actual RVR &lt;150m (below instrument minimum).</div>
+</div>
+
+<!-- SECTION 13 — MASTER REFERENCE -->
+<h2 id="ref" style="page-break-before:always;">13. Master Reference Tables</h2>
+
+<h3>Answer Key Q1–Q42</h3>
+<table>
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>b</td><td>2</td><td>b</td><td>3</td><td>a</td><td>4</td><td>b</td><td>5</td><td>b</td></tr>
+  <tr><td>6</td><td>b</td><td>7</td><td>a</td><td>8</td><td>c</td><td>9</td><td>b</td><td>10</td><td>c</td></tr>
+  <tr><td>11</td><td>a</td><td>12</td><td>a</td><td>13</td><td>c</td><td>14</td><td>b</td><td>15</td><td>b</td></tr>
+  <tr><td>16</td><td>c</td><td>17</td><td>c</td><td>18</td><td>b</td><td>19</td><td>a</td><td>20</td><td>b</td></tr>
+  <tr><td>21</td><td>c</td><td>22</td><td>c</td><td>23</td><td>b</td><td>24</td><td>a</td><td>25</td><td>c</td></tr>
+  <tr><td>26</td><td>c</td><td>27</td><td>b</td><td>28</td><td>c</td><td>29</td><td>c</td><td>30</td><td>a</td></tr>
+  <tr><td>31</td><td>b</td><td>32</td><td>a</td><td>33</td><td>b</td><td>34</td><td>a</td><td>35</td><td>b</td></tr>
+  <tr><td>36</td><td>c</td><td>37</td><td>a</td><td>38</td><td>c</td><td>39</td><td>a</td><td>40</td><td>c</td></tr>
+  <tr><td>41</td><td>c</td><td>42</td><td>c</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h3>Critical Numbers — Quick Reference</h3>
+<table>
+  <tr><th>Parameter</th><th>Key Value</th></tr>
+  <tr><td>METAR issuance</td><td><span class="reg-value">Half-hourly or hourly</span></td></tr>
+  <tr><td>SPECI for improvement</td><td>After <span class="reg-value">10 minutes</span></td></tr>
+  <tr><td>SPECI for deterioration</td><td><span class="reg-value">Immediately</span></td></tr>
+  <tr><td>TREND validity</td><td><span class="reg-value">2 hours</span></td></tr>
+  <tr><td>Fog threshold</td><td>Vis <span class="reg-value">&lt;1000 m</span></td></tr>
+  <tr><td>Mist (BR) range</td><td><span class="reg-value">1000–5000 m</span></td></tr>
+  <tr><td>HZ/SA/DU/FU/VA</td><td>Vis <span class="reg-value">≤5000 m</span></td></tr>
+  <tr><td>CAVOK vis threshold</td><td>≥ <span class="reg-value">10 km</span> (coded 9999)</td></tr>
+  <tr><td>RVR observations triggered</td><td>When vis or RVR <span class="reg-value">&lt;1500 m</span></td></tr>
+  <tr><td>RVR steps 0–400m</td><td><span class="reg-value">25 m</span></td></tr>
+  <tr><td>RVR steps 400–800m</td><td><span class="reg-value">50 m</span></td></tr>
+  <tr><td>RVR steps 800–2000m</td><td><span class="reg-value">100 m</span></td></tr>
+  <tr><td>Cloud base steps ≤3000m</td><td><span class="reg-value">30 m</span></td></tr>
+  <tr><td>Cloud base steps &gt;3000m</td><td><span class="reg-value">300 m</span></td></tr>
+  <tr><td>QNH rounding</td><td>Always <span class="reg-value">DOWN</span> to whole hPa</td></tr>
+  <tr><td>Temp rounding (≥0.5°C)</td><td><span class="reg-value">UP</span> to next higher</td></tr>
+  <tr><td>SPECI wind dir change</td><td>≥ <span class="reg-value">60°</span> AND speed ≥10 kt</td></tr>
+  <tr><td>SPECI mean speed change</td><td>≥ <span class="reg-value">10 kt</span></td></tr>
+  <tr><td>SPECI gust variation</td><td>≥ <span class="reg-value">10 kt</span> AND speed ≥15 kt</td></tr>
+  <tr><td>SPECI vis thresholds</td><td><span class="reg-value">800, 1500, 3000 or 5000 m</span></td></tr>
+  <tr><td>SPECI RVR thresholds</td><td><span class="reg-value">150, 350, 600 or 800 m</span></td></tr>
+  <tr><td>SPECI cloud thresholds</td><td>BKN/OVC at <span class="reg-value">30, 60, 150, 300, 450 m</span></td></tr>
+  <tr><td>SPECI temp increase</td><td>≥ <span class="reg-value">2°C</span></td></tr>
+  <tr><td>SPECIAL (India) vis</td><td><span class="reg-value">2000 or 4000 m</span></td></tr>
+  <tr><td>SPECIAL (India) cloud base</td><td><span class="reg-value">90 or 120 m</span> (where ceilometer exists)</td></tr>
+  <tr><td>MSA clearance</td><td><span class="reg-value">300 m (1000 ft)</span> above all objects</td></tr>
+  <tr><td>MSA sector radius</td><td><span class="reg-value">46 km (25 NM)</span></td></tr>
+  <tr><td>Pressure range world</td><td><span class="reg-value">850–1100 hPa</span></td></tr>
+</table>
+
+<h3>Mnemonic Sheet</h3>
+<div class="amber-box">
+  <strong>CAVOK = "10-No-No":</strong> Vis ≥10km + No sig cloud + No sig weather<br><br>
+  <strong>Cloud cover Mnemonic: "Flock Scatters, Breaks Overcast"</strong><br>
+  FEW (1-2) → SCT (3-4) → BKN (5-7) → OVC (8)<br><br>
+  <strong>Vis Steps: "50-100-1k-9999"</strong><br>
+  0–800m: 50m steps | 800–5000m: 100m steps | 5–9km: 1km steps | ≥10km: 9999<br><br>
+  <strong>FG vs BR: "Fog Kills (below 1km), Mist is More (1–5km)"</strong><br><br>
+  <strong>RVR Tendency: "U-D-N = Up-Down-No change"</strong><br>
+  P prefix = Plus = more than | M prefix = Minus = less than<br><br>
+  <strong>QNH Always Down, Temp Always Up (for 0.5°C increments)</strong><br><br>
+  <strong>SPECI Wind Criteria (any ONE): "60-10-10-15"</strong><br>
+  Dir change ≥60° AND spd ≥10 | Mean spd change ≥10 | Gust var ≥10 AND spd ≥15
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

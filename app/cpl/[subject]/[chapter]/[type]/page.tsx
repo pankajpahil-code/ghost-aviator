@@ -143,6 +143,10 @@ export default async function Page({
       "meteorology/met-21": true,
       "meteorology/met-22": true,
       "meteorology/met-23": true,
+      "meteorology/met-24": true,
+      "meteorology/met-25": true,
+      "meteorology/met-26": true,
+      "meteorology/met-27": true,
     };
     if (HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]) {
       return (
