@@ -85,7 +85,7 @@ export default async function Page({
     // Instrumentation: auto-serve HTML notes whenever the chapter's notes.html
     // has been published to public/content/ (the daily notes task drops files
     // there), so newly added chapters appear without editing this allow-list.
-    if (subject.id === "instrumentation") {
+    if (subject.id === "instrumentation" || subject.id === "radio-navigation") {
       const notesFile = path.join(process.cwd(), "public", "content", subject.id, chapter.id, "notes.html");
       if (fs.existsSync(notesFile)) {
         return (

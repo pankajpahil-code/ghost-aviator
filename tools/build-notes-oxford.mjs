@@ -40,6 +40,24 @@ const CONFIGS = [
       `inst-${i + 1}/notes.html`, `inst-${i + 1}`, `Instrumentation Ch.${i + 1}`,
     ]),
   },
+  {
+    name: "OXFORD_RADIO_NAV",
+    out: "oxford-radio-nav.ts",
+    subjectIds: ["radio-navigation"],
+    source: "Oxford ATPL — Radio Navigation",
+    srcBase: join("C:", "Users", "Admin", "Downloads", "radio navigation antigravity"),
+    chapters: [
+      ["Chapter_01_Properties_of_Radio_Waves.html", "rnav-1", "Properties of Radio Waves"],
+      ["Chapter_02_Radio_Propagation_Theory.html",  "rnav-2", "Radio Propagation Theory"],
+      ["Chapter_03_Modulation.html",                "rnav-3", "Modulation"],
+      ["Chapter_04_Antennae.html",                  "rnav-4", "Antennae"],
+      ["Chapter_05_Doppler_Radar_Systems.html",     "rnav-5", "Doppler Radar Systems"],
+      ["Chapter_06_VDF.html",                       "rnav-6", "VHF Direction Finder (VDF)"],
+      ["Chapter_07_ADF.html",                       "rnav-7", "ADF"],
+      ["Chapter_08_VOR.html",                       "rnav-8", "VOR"],
+      ["Chapter_09_ILS.html",                       "rnav-9", "ILS"],
+    ],
+  },
 ];
 
 // ── HTML helpers ─────────────────────────────────────────────────────────────
@@ -118,6 +136,43 @@ function parseBlock(block, ctx) {
   return { subjectIds: ctx.subjectIds, chapterId: ctx.chapterId, subtopic: ctx.subtopic, source: ctx.source, q: stem, opts, ans, exp };
 }
 
+// ── Parse the alternate "show-answer" template ───────────────────────────────
+//   <div class="q">Q1. …</div>
+//   <div class="opts"><div class="opt"><b>(a)</b> …</div>…</div>
+//   <div class="answer">…<b>Answer: (b)</b><br>explanation</div>
+function parseBlockV2(block, ctx) {
+  const qm = block.match(/<div class="q">([\s\S]*?)<\/div>/i);
+  if (!qm) return null;
+  const stem = htmlToText(qm[1]).replace(/^Q\.?\s*\d+\.?\s*/i, "").trim();
+  if (stem.length < 8) return null;
+
+  const opts = [];
+  for (const m of block.matchAll(/<div class="opt">([\s\S]*?)<\/div>/gi)) {
+    const txt = htmlToText(m[1]);
+    const lm = txt.match(/^\(?\s*([a-e])\s*\)?[.)]?\s*(.*)$/i);
+    if (!lm) continue;
+    opts[lm[1].toLowerCase().charCodeAt(0) - 97] = lm[2].trim();
+  }
+  const clean = opts.filter(Boolean);
+  if (clean.length < 2 || clean.length !== opts.length) return null;
+
+  const an = block.match(/<div class="answer"[^>]*>([\s\S]*?)<\/div>/i);
+  if (!an) return null;
+  const ansText = htmlToText(an[1]);
+  const am = ansText.match(/Answer[:\s]*\(\s*([a-e])\s*\)/i)
+          ?? ansText.match(/\(\s*([a-e])\s*\)/i)
+          ?? ansText.match(/Answer[:\s]*([a-e])\b/i);
+  if (!am) return null;
+  const ans = am[1].toLowerCase().charCodeAt(0) - 97;
+  if (ans < 0 || ans >= clean.length) return null;
+
+  let exp = ansText.replace(/^.*?Answer[:\s]*\(?\s*[a-e]\s*\)?\s*/i, "").trim();
+  if (exp.length > 600) exp = exp.slice(0, 597).trimEnd() + "…";
+  if (!exp) exp = `Correct answer: ${"ABCDE"[ans]}.`;
+
+  return { subjectIds: ctx.subjectIds, chapterId: ctx.chapterId, subtopic: ctx.subtopic, source: ctx.source, q: stem, opts: clean, ans, exp };
+}
+
 // ── Build each config ────────────────────────────────────────────────────────
 const tsStr = s => "`" + String(s).replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${") + "`";
 
@@ -133,10 +188,11 @@ for (const cfg of CONFIGS) {
     const html = readFileSync(src, "utf8");
     const i = html.indexOf('id="qa-section"');
     const region = i === -1 ? html : html.slice(i);
-    const blocks = region.split(/<div class="qa-block">/).slice(1);
+    const blocks = region.split(/<div class="qa-block[^"]*"[^>]*>/).slice(1);
     let n = 0;
     for (const b of blocks) {
-      const q = parseBlock(b, { ...cfg, chapterId, subtopic });
+      const q = parseBlock(b, { ...cfg, chapterId, subtopic })
+             ?? parseBlockV2(b, { ...cfg, chapterId, subtopic });
       if (!q) continue;
       const k = key(q.q);
       if (k.length < 8 || seen.has(k)) continue;

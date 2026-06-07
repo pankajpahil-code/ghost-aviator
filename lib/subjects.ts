@@ -957,6 +957,64 @@ export const CPL_SUBJECTS: Subject[] = [
       },
     ],
   },
+  {
+    id: "radio-navigation",
+    name: "Radio Navigation",
+    shortName: "Radio Nav",
+    icon: "📡",
+    color: "#06b6d4",
+    description: "Radio wave properties and propagation, modulation and antennae, and the ground/airborne radio navigation aids — Doppler, VDF, ADF/NDB, VOR and ILS. Chapter-wise notes from the Oxford ATPL Radio Navigation manual with practice Q&A.",
+    examDuration: 60,
+    totalQuestions: 50,
+    passMark: 70,
+    chapters: [
+      {
+        id: "rnav-1", number: 1, title: "Properties of Radio Waves",
+        description: "The electromagnetic spectrum, wavelength/frequency/velocity, phase and polarisation — the physical basis of all radio navigation.",
+        duration: "2 hrs", questionCount: 12, content: makeContent(true),
+      },
+      {
+        id: "rnav-2", number: 2, title: "Radio Propagation Theory",
+        description: "Ground, sky and space waves, surface attenuation, ionospheric refraction, critical angle, skip distance, fading and the factors affecting range.",
+        duration: "2 hrs", questionCount: 8, content: makeContent(true),
+      },
+      {
+        id: "rnav-3", number: 3, title: "Modulation",
+        description: "Amplitude and frequency modulation, sidebands, bandwidth, keying and the carrier/intelligence relationship used by nav aids.",
+        duration: "1 hr", questionCount: 3, content: makeContent(true),
+      },
+      {
+        id: "rnav-4", number: 4, title: "Antennae",
+        description: "Antenna principles, dipoles and directional arrays, polar diagrams, gain and the aerials used by ground and airborne equipment.",
+        duration: "1 hr", questionCount: 4, content: makeContent(true),
+      },
+      {
+        id: "rnav-5", number: 5, title: "Doppler Radar Systems",
+        description: "The Doppler shift principle, beam geometry, drift and groundspeed measurement, and Doppler navigation system operation.",
+        duration: "1 hr", questionCount: 3, content: makeContent(true),
+      },
+      {
+        id: "rnav-6", number: 6, title: "VHF Direction Finder (VDF)",
+        description: "VDF principles, QDM/QDR/QTE/QUJ bearings, classes of bearing accuracy, range and operational use.",
+        duration: "1 hr", questionCount: 6, content: makeContent(true),
+      },
+      {
+        id: "rnav-7", number: 7, title: "ADF / NDB",
+        description: "NDB and ADF principles, the loop and sense aerials, relative/magnetic bearings, RMI, errors and factors affecting accuracy and range.",
+        duration: "2 hrs", questionCount: 19, content: makeContent(true),
+      },
+      {
+        id: "rnav-8", number: 8, title: "VOR",
+        description: "VOR principle of operation, reference and variable phases, radials, Doppler VOR, cockpit display/CDI, errors, coverage and designated operational range.",
+        duration: "2 hrs", questionCount: 33, content: makeContent(true),
+      },
+      {
+        id: "rnav-9", number: 9, title: "ILS",
+        description: "Instrument Landing System — localiser, glidepath, marker beacons, categories, coverage, false glidepaths and ILS errors and limitations.",
+        duration: "2 hrs", questionCount: 14, content: makeContent(true),
+      },
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────
