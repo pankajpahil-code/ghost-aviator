@@ -147,6 +147,8 @@ export default async function Page({
       "meteorology/met-25": true,
       "meteorology/met-26": true,
       "meteorology/met-27": true,
+      "meteorology/met-28": true,
+      "meteorology/met-29": true,
     };
     if (HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]) {
       return (

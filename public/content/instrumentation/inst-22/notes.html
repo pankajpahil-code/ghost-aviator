@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 22 – EFIS | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a3a6b; border-bottom: 3px solid #1a3a6b; padding-bottom: 8px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a3a6b; margin-top: 30px; border-left: 5px solid #1a3a6b; padding-left: 10px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #2c5aa0; margin-top: 20px; }
+  p { margin: 8px 0 12px 0; }
+  .cover { text-align: center; padding: 40px 20px; border: 3px solid #1a3a6b; border-radius: 10px; margin-bottom: 30px; }
+  .cover h1 { border: none; font-size: 2.2em; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 8px; }
+  .cover .author { font-size: 1em; color: #333; margin-top: 6px; font-weight: 600; }
+  .toc { background: #f5f8ff; border: 1px solid #b0c4e8; border-radius: 8px; padding: 20px 30px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { border: none; margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: #2c5aa0; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a3a6b; color: #fff; padding: 8px 12px; text-align: left; font-weight: 700; }
+  td { border: 1px solid #ccc; padding: 7px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  figure { text-align: center; margin: 20px auto; max-width: 100%; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #555; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Instrumentation</div>
+  <h1>Chapter 22<br>Electronic Flight Information Systems (EFIS)</h1>
+  <div class="subtitle">Oxford Aviation Academy — Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">System Overview and Components</a></li>
+    <li><a href="#sec-2">Symbol Generators and Display Units</a></li>
+    <li><a href="#sec-3">Colour Display System</a></li>
+    <li><a href="#sec-4">EADI — Control Panel and Display</a></li>
+    <li><a href="#sec-5">Decision Height on EFIS</a></li>
+    <li><a href="#sec-6">EHSI — Control Panel and Display Modes</a></li>
+    <li><a href="#sec-7">EHSI Display Modes — VOR, ILS, MAP, PLAN</a></li>
+    <li><a href="#sec-8">Navigation Display Symbols</a></li>
+    <li><a href="#sec-9">Failure Annunciation</a></li>
+    <li><a href="#sec-10">Data Source Selection</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<h1 id="sec-1">1. System Overview and Components</h1>
+
+<p>EFIS presents attitude and navigation information on <strong>two electronic display units</strong> in a format easier to read and less likely to be misinterpreted than older mechanical instruments. It uses colour CRT or LCD displays.</p>
+
+<div class="box-blue">
+<strong>A complete EFIS installation (left or right system):</strong>
+<ul>
+  <li><strong>EADI</strong> — Electronic Attitude Director Indicator (or PFD — Primary Flight Display)</li>
+  <li><strong>EHSI</strong> — Electronic Horizontal Situation Indicator (or ND — Navigation Display)</li>
+  <li><strong>Control Panel</strong></li>
+  <li><strong>Symbol Generator (SG)</strong></li>
+  <li><strong>Remote Light Sensor Unit</strong></li>
+</ul>
+A <strong>third (centre) Symbol Generator</strong> is incorporated so its drive signals can be switched to either the left or right display units in case of SG failure. Signal switching uses electromechanical relays powered from aircraft DC supply via pilot-controlled switches.
+</div>
+
+<figure>
+  <img src="figs/fig_p283_0.png" alt="EFIS multi-crew units and signal interfacing">
+  <figcaption>Fig 22.1 — Multi-crew EFIS units and signal interfacing. Source p.283</figcaption>
+</figure>
+
+<!-- SECTION 2 -->
+<h1 id="sec-2">2. Symbol Generators and Display Units</h1>
+
+<p><strong>Symbol Generators (SGs)</strong> provide the analogue, discrete, and digital signal interfaces between aircraft systems, display units and control panel. They perform symbol generation, monitoring, power control, and main EFIS control functions.</p>
+
+<p><strong>Display units</strong> may be CRTs or LCDs. LCDs are smaller and generate less heat (less cooling needed). The PFD and ND are usually <strong>identical units for spares commonality</strong> — often interchangeable with systems display units (EICAS or ECAM).</p>
+
+<!-- SECTION 3 -->
+<h1 id="sec-3">3. Colour Display System</h1>
+
+<p>There is <strong>no set colour standard</strong> — colours may vary slightly between aircraft types. Typical colour assignments:</p>
+
+<table>
+  <tr><th>Colour</th><th>Use</th></tr>
+  <tr><td style="background:#e8e8e8"><strong>WHITE</strong></td><td>Present situation information</td></tr>
+  <tr><td style="background:#c8e6c9"><strong>GREEN</strong></td><td>Present situation (where contrast with white needed); lower priority than white; <strong>engaged autoflight modes</strong></td></tr>
+  <tr><td style="background:#e1bee7"><strong>MAGENTA</strong> (pink)</td><td>All "fly-to" information: flight director commands, deviation pointers, <strong>active flight path lines</strong></td></tr>
+  <tr><td style="background:#b3e5fc"><strong>CYAN</strong> (blue)</td><td>Sky shading on EADI; low-priority info such as <strong>non-active flight plan map data</strong></td></tr>
+  <tr><td style="background:#fff9c4"><strong>YELLOW</strong></td><td>Ground shading on EADI; caution information — failure warning flags, limit and alert annunciators, fault messages</td></tr>
+  <tr><td style="background:#ffcdd2"><strong>RED</strong></td><td>Heaviest precipitation levels on weather radar (WXR)</td></tr>
+</table>
+
+<div class="box-amber">
+<strong>Summary colour code for Navigation Displays:</strong>
+<ul>
+  <li>GREEN = engaged flight mode, dynamic conditions</li>
+  <li>WHITE = present status, scales, armed flight mode displays</li>
+  <li>MAGENTA = command information, pointers, fly-to condition</li>
+  <li>CYAN = non-active and background information</li>
+  <li>RED = warning</li>
+  <li>AMBER = cautionary information, faults, flags</li>
+  <li>BLACK = blank areas, display "off"</li>
+</ul>
+</div>
+
+<h3>Remote Light Sensor</h3>
+<p>A photodiode that responds to ambient light on the flight deck and <strong>automatically adjusts CRT display brightness</strong> to an acceptable level.</p>
+
+<!-- SECTION 4 -->
+<h1 id="sec-4">4. EADI — Control Panel and Display</h1>
+
+<figure>
+  <img src="figs/fig_p283_2.png" alt="EFIS control panel">
+  <figcaption>Fig 22.2 — An EFIS control panel. Source p.283</figcaption>
+</figure>
+
+<h3>EADI Section of Control Panel</h3>
+<table>
+  <tr><th>Control</th><th>Function</th></tr>
+  <tr><td>BRT (Brightness)</td><td>Adjusts brightness of the ADI display</td></tr>
+  <tr><td>DH SEL (Decision Height Selector)</td><td>Selects desired decision height for DH alerting</td></tr>
+  <tr><td>DH RST (DH Reset)</td><td>Resets a DH alert on the associated ADI; changes RA display from yellow back to white</td></tr>
+  <tr><td>DH REF</td><td>Displays the selected decision height on both the controller and the EADI</td></tr>
+</table>
+
+<h3>EADI Display Presentations</h3>
+<div class="box-blue">
+The EADI displays:
+<ul>
+  <li>Normal pitch and roll attitude from IRS</li>
+  <li>Flight director commands</li>
+  <li>Localizer and glide slope deviation</li>
+  <li>Ground speed</li>
+  <li>Radio altitude</li>
+  <li>Decision height</li>
+  <li>AFCS and Autothrottle modes</li>
+  <li>Speed error scale (commanded vs. actual speed)</li>
+</ul>
+</div>
+
+<figure>
+  <img src="figs/fig_p286_0.png" alt="Boeing EADI">
+  <figcaption>Fig 22.3 — A Boeing EADI showing all display elements. Source p.286</figcaption>
+</figure>
+
+<!-- SECTION 5 -->
+<h1 id="sec-5">5. Decision Height on EFIS</h1>
+
+<div class="box-blue">
+<strong>DH and Radio Altitude presentation (Boeing-style):</strong>
+<ul>
+  <li><strong>2500–1000 ft AGL:</strong> RA shown as a digital read-out only</li>
+  <li><strong>Below 1000 ft:</strong> Display changes to a circular scale (calibrated in 100 ft increments); selected DH shown as a <strong>magenta marker</strong> on the outer scale; RA digital read-out inside the scale; scale segments are erased anticlockwise as aircraft descends</li>
+  <li><strong>At DH + ~50 ft:</strong> Aural alert chime sounds at increasing rate until DH is reached</li>
+  <li><strong>At DH:</strong> Marker and scale <strong>flash and change from magenta to amber/yellow</strong></li>
+  <li><strong>DH RST pressed:</strong> Cancels alert chime, stops flashing, changes DH display back to normal colour (magenta)</li>
+</ul>
+</div>
+
+<figure>
+  <img src="figs/fig_p286_1.png" alt="DH and radio altitude below 1000 ft">
+  <figcaption>Fig 22.4 — Radio altitude and DH presentation below 1000 ft and at decision height. Source p.286</figcaption>
+</figure>
+
+<div class="box-amber">
+<strong>Localizer / Glide slope exceedance:</strong> Deviation beyond normal ILS limits causes the scales to change colour to <strong>amber</strong> and the pointer to <strong>flash</strong>. Flashing ceases when the aircraft returns within limits.
+</div>
+
+<div class="box-blue">
+<strong>Airbus/A300 style:</strong>
+<ul>
+  <li>RA shown at the base of the PFD centre display as digital numbers</li>
+  <li>Above DH: <strong>green numbers</strong></li>
+  <li>Below DH: <strong>amber, slightly bigger numbers</strong></li>
+  <li>Enhanced by a voice warning system with manufacturer/airline-agreed height callouts</li>
+</ul>
+</div>
+
+<!-- SECTION 6 -->
+<h1 id="sec-6">6. EHSI — Control Panel</h1>
+
+<table>
+  <tr><th>Control</th><th>Function</th></tr>
+  <tr><td>RANGE</td><td>Selects range for displayed navigation data and WXR</td></tr>
+  <tr><td>MODE SELECTOR</td><td>Selects display mode: VOR, ILS, MAP, PLAN</td></tr>
+  <tr><td>BRT (outer knob)</td><td>Main display brightness</td></tr>
+  <tr><td>BRT (inner knob)</td><td>WXR display brightness</td></tr>
+  <tr><td>MAP switches</td><td>In MAP mode: NAV AID, ARPT, RTE DATA, WPT overlays</td></tr>
+  <tr><td>EXP ARC</td><td>Selects VOR or ILS mode to show an expanded arc display</td></tr>
+  <tr><td>WXR</td><td>Enables weather radar data display in all modes except PLAN or full compass VOR/ILS</td></tr>
+</table>
+
+<!-- SECTION 7 -->
+<h1 id="sec-7">7. EHSI Display Modes</h1>
+
+<div class="box-blue">
+<strong>Four principal display modes:</strong> VOR, ILS, MAP, PLAN. VOR and ILS can be either <strong>Full</strong> (full compass rose) or <strong>Expanded</strong> (arc — ~90° of compass rose).
+</div>
+
+<h3>Full VOR Mode</h3>
+<figure>
+  <img src="figs/fig_p289_0.png" alt="Full VOR mode">
+  <figcaption>Fig 22.6 — Full VOR Mode on EHSI. Source p.289</figcaption>
+</figure>
+<ul>
+  <li>Full compass rose; VOR source lower left, frequency lower right</li>
+  <li>Magenta course needle pointing to selected course (150°)</li>
+  <li>Deviation bar on ±2-dot scale</li>
+  <li>TO/FROM pointer and annunciation</li>
+  <li>DME distance top left; current heading in window; current track as white triangle on inside compass rose edge; selected heading as magenta "bug"</li>
+  <li><strong>Weather radar NOT available</strong> in full VOR mode</li>
+</ul>
+
+<h3>Expanded VOR Mode</h3>
+<figure>
+  <img src="figs/fig_p290_0.png" alt="Expanded VOR mode">
+  <figcaption>Fig 22.7 — Expanded VOR Mode. Source p.290</figcaption>
+</figure>
+<ul>
+  <li>~90° compass arc; white triangle at bottom = aircraft symbol</li>
+  <li>Current track = white line from aircraft symbol tip to compass arc</li>
+  <li><strong>Weather radar AVAILABLE</strong>; when on, range arcs visible</li>
+  <li>WXR shows: green (least turbulence), yellow, red (worst); magenta = turbulence mode if available</li>
+  <li>Half-scale range displayed (e.g., selected 20 NM → displays 10 NM)</li>
+</ul>
+
+<h3>Full ILS Mode</h3>
+<figure>
+  <img src="figs/fig_p291_0.png" alt="Full ILS mode">
+  <figcaption>Fig 22.8 — Full ILS Mode. Source p.291</figcaption>
+</figure>
+<ul>
+  <li>Full compass rose; ILS source lower left, frequency lower right</li>
+  <li>Magenta course needle = localizer course; localizer deviation bar on <strong>exponential</strong> ±2-dot scale</li>
+  <li>Glide slope deviation = magenta triangle moving on right-side scale</li>
+  <li><strong>Weather radar NOT available</strong> in full ILS mode</li>
+</ul>
+
+<h3>Expanded ILS Mode</h3>
+<figure>
+  <img src="figs/fig_p292_0.png" alt="Expanded ILS mode">
+  <figcaption>Fig 22.9 — Expanded ILS Mode. Source p.292</figcaption>
+</figure>
+<ul>
+  <li>~90° compass arc; localizer and glide slope deviations shown</li>
+  <li><strong>Weather radar AVAILABLE</strong></li>
+</ul>
+
+<h3>Map Mode</h3>
+<figure>
+  <img src="figs/fig_p293_0.png" alt="Map mode">
+  <figcaption>Fig 22.10 — Map Mode on EHSI. Source p.293</figcaption>
+</figure>
+<div class="box-blue">
+<strong>MAP mode — the normal operating mode:</strong>
+<ul>
+  <li>Moving map background with all elements to a common scale</li>
+  <li>Aircraft symbol at <strong>lower part</strong> of display; compass arc ±45° of instantaneous track at top</li>
+  <li>Compass rose referenced to <strong>magnetic north between 73°N and 65°S</strong>; true north above these latitudes (or when TRUE selector used)</li>
+  <li>Active route = <strong>magenta continuous line</strong> joining waypoints</li>
+  <li>Active waypoint = <strong>magenta star</strong>; inactive waypoints = <strong>white star</strong></li>
+  <li>Distance and time to next waypoint shown at top</li>
+  <li>WXR available; range arcs visible</li>
+  <li>Curved trend vector (white, during turns) or altitude range arc (green, climb/descent)</li>
+  <li>Off-route waypoints, airports, navaids shown in relative position</li>
+</ul>
+</div>
+
+<h3>Plan Mode</h3>
+<figure>
+  <img src="figs/fig_p294_0.png" alt="Plan mode">
+  <figcaption>Fig 22.11 — Plan Mode on EHSI. Source p.294</figcaption>
+</figure>
+<div class="box-amber">
+<strong>PLAN mode:</strong>
+<ul>
+  <li>Static map background oriented to <strong>True North</strong></li>
+  <li>Used to review/check planned route changes before entering into FMC</li>
+  <li>Arc at top = real-time (heading-up); planning section below = north-oriented</li>
+  <li><strong>Weather radar INHIBITED</strong></li>
+  <li>No wind speed/direction shown</li>
+</ul>
+</div>
+
+<h3>WXR Summary — Mode Availability</h3>
+<table>
+  <tr><th>Mode</th><th>WXR Available?</th></tr>
+  <tr><td>MAP</td><td>✅ Yes</td></tr>
+  <tr><td>Expanded VOR</td><td>✅ Yes</td></tr>
+  <tr><td>Expanded ILS</td><td>✅ Yes</td></tr>
+  <tr><td>Full VOR</td><td>❌ No</td></tr>
+  <tr><td>Full ILS</td><td>❌ No</td></tr>
+  <tr><td>PLAN</td><td>❌ Inhibited</td></tr>
+</table>
+
+<!-- SECTION 8 -->
+<h1 id="sec-8">8. Navigation Display Symbols</h1>
+
+<table>
+  <tr><th>Symbol</th><th>Colour</th><th>Meaning</th></tr>
+  <tr><td>Active Waypoint (star/name)</td><td>Magenta</td><td>Waypoint aircraft is currently navigating to</td></tr>
+  <tr><td>Inactive Waypoint (star/name)</td><td>White</td><td>Navigation point in active route (not current)</td></tr>
+  <tr><td>Off-Route Waypoint</td><td>Cyan</td><td>Waypoint not in active route</td></tr>
+  <tr><td>Airport</td><td>Cyan</td><td>Airport symbol</td></tr>
+  <tr><td>Tuned Navaid</td><td>Green</td><td>Currently tuned navigation aid</td></tr>
+  <tr><td>Unused Navaid</td><td>Cyan</td><td>Navigation aid not currently tuned</td></tr>
+  <tr><td>Wind direction/speed</td><td>White</td><td>Wind with respect to map orientation</td></tr>
+  <tr><td>Selected heading marker</td><td>Magenta</td><td>Heading set in MCP</td></tr>
+  <tr><td>Active route line</td><td>Magenta (solid)</td><td>Active route between waypoints</td></tr>
+  <tr><td>Active route modifications</td><td>White (dashed short)</td><td>Modified route pending activation</td></tr>
+  <tr><td>Inactive route</td><td>Cyan (dashed long)</td><td>Non-active stored route</td></tr>
+  <tr><td>T/C, T/D, S/C markers</td><td>Green</td><td>FMC-calculated Top of Climb, Top of Descent, Step Climb</td></tr>
+  <tr><td>North Pointer</td><td>Green</td><td>PLAN mode — confirms true north orientation</td></tr>
+  <tr><td>Altitude Range Arc</td><td>Green</td><td>MAP mode — predicts where reference altitude will be reached</td></tr>
+  <tr><td>WXR heavy precip</td><td>Red</td><td>Most intense radar returns</td></tr>
+  <tr><td>WXR medium precip</td><td>Amber/Yellow</td><td>Medium intensity returns</td></tr>
+  <tr><td>WXR light precip</td><td>Green</td><td>Lowest intensity radar returns</td></tr>
+  <tr><td>Turbulence mode</td><td>Magenta</td><td>Area of greatest activity in cloud (if turbulence mode available)</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p295_0.png" alt="Failure Indications EFIS">
+  <figcaption>Fig 22.12 — EFIS Failure Indications. Source p.295</figcaption>
+</figure>
+
+<!-- SECTION 9 -->
+<h1 id="sec-9">9. Failure Annunciation</h1>
+
+<p>Failure of data signals (ILS, radio altimeter, etc.) is displayed on each EADI and EHSI as <strong>yellow flags "painted" at specific matrix locations</strong> on the CRT screens.</p>
+
+<p>Fault messages may also appear: e.g., <strong>"WXR/MAP RANGE DISAGREE"</strong> if the flight management computer and weather radar range disagree with the control panel range data.</p>
+
+<!-- SECTION 10 -->
+<h1 id="sec-10">10. Data Source Selection</h1>
+
+<p>Pilots can independently connect their display units to alternate input data sources via a <strong>data source switch panel</strong>:</p>
+<ul>
+  <li>Left or right <strong>Air Data Computer (ADC)</strong></li>
+  <li><strong>Flight Management Computers (FMC)</strong></li>
+  <li><strong>Flight Control Computers (FCC)</strong></li>
+  <li><strong>Standby Inertial Reference Systems (IRS)</strong></li>
+</ul>
+
+<!-- Q&A -->
+<div class="qa-section">
+<h1 id="qa-section">Practice Questions &amp; Detailed Answers</h1>
+<p><em>Source: Oxford Aviation Academy Instrumentation — Chapter 22. DGCA CPL/ATPL.</em></p>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span> The displays marked A, B, C, and D (refer to Annex A) are respectively:
+    <ol class="q-options" type="a">
+      <li>Plan, Map, ILS, VOR</li>
+      <li>VOR, ILS, Expanded ILS, Plan</li>
+      <li>Map, VOR, ILS, Plan</li>
+      <li>Map, ILS, Expanded VOR, Plan</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>D</strong></div>
+  <div class="answer-explanation">Map mode has a moving map with aircraft at the bottom and compass arc at top. ILS full mode has a full compass rose with glide slope scale. Expanded VOR shows ~90° arc. Plan mode is static true-north orientated.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span> Refer to display E (expanded ILS). The correct statement is:
+    <ol class="q-options" type="a">
+      <li>The aircraft is closing the localizer from the right, heading 130°M and is approaching the glide path from above</li>
+      <li>When established on the localizer the inbound heading will be 165°M</li>
+      <li>The aircraft's track is 165°M</li>
+      <li>The localizer centre line is 133°M</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>A</strong></div>
+  <div class="answer-explanation">In expanded ILS mode, the heading shown in the window is 130°M. The localizer deviation bar being displaced indicates the aircraft is closing the localizer from the right. Glide slope triangle position above centre indicates the aircraft is above the glidepath.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span> On display D (Plan mode) the track from ZAPPO to BANTU is:
+    <ol class="q-options" type="a">
+      <li>310°M</li>
+      <li>130°T</li>
+      <li>360°M</li>
+      <li>180°T</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>D</strong></div>
+  <div class="answer-explanation">PLAN mode is always referenced to True North (not magnetic). The track from ZAPPO southward to BANTU in the plan view oriented to true north is 180°T (due south). The question of magnetic vs. true is resolved by the fact that PLAN mode is always True North oriented — heading references become tracks in °T.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span> On display C (expanded VOR/ILS) the centre of the weather returns is:
+    <ol class="q-options" type="a">
+      <li>106° relative, 18 NM</li>
+      <li>332° relative, 13 NM</li>
+      <li>100°M, 130 NM</li>
+      <li>30 NM left of track, 15 NM ahead</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>B</strong></div>
+  <div class="answer-explanation">In expanded mode, weather returns position is read relative to the aircraft symbol at the bottom centre of the display. The centre of the WXR returns is positioned at approximately 332° relative (slightly to the left of the heading reference line) at approximately 13 NM range (based on the selected range scale).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span> The drawing shows the (i)... displaying (ii)... and (iii)...
+    <br>(i) EADI / PFD / ND / EHSI  &nbsp; (ii) 600 ft RA / 600 kt / 600 ft  &nbsp; (iii) 200 ft DH / 200 ft AGL
+    <ol class="q-options" type="a">
+      <li>Primary Flight Display — 600 kt TAS — 200 ft RA</li>
+      <li>Navigation Display — 600 ft RA — 200 ft DH</li>
+      <li>EADI — 600 ft Radio Altitude — 200 ft Decision Height</li>
+      <li>EHSI — 600 kt GS — 200 ft AGL</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>C</strong></div>
+  <div class="answer-explanation">The drawing shows an EADI (PFD/attitude indicator). At 600 ft the circular RA scale with digital read-out is displayed (below 1000 ft). 200 ft is the DH marker (magenta) on the RA scale. EADI = same as PFD in modern terminology.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span> The yellow "RA" symbol appears in place of the normal radio altitude display when:
+    <ol class="q-options" type="a">
+      <li>The selected radio altitude has been reached</li>
+      <li>The radio altitude needs re-setting on the EHSI</li>
+      <li>There is a failure of the radio altimeter</li>
+      <li>The aircraft descends below 1000 ft AGL</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>C</strong></div>
+  <div class="answer-explanation">Yellow flags/text on EFIS indicate faults or failure. A yellow "RA" flag means the radio altimeter data signal has failed — the RA display has been replaced by a yellow failure flag annunciation.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q7.</span> Symbols A, C, and E (in the symbol diagram) are best described respectively as:
+    <ol class="q-options" type="a">
+      <li>Off-route waypoint, airport, navigation aid</li>
+      <li>Next waypoint, navigation aid, airport</li>
+      <li>Off-route waypoint, navigation aid, a navigation point making up selected route</li>
+      <li>Active waypoint aircraft currently navigating to, navigation aid, off route waypoint</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>D</strong></div>
+  <div class="answer-explanation">Symbol A = magenta starred symbol = active waypoint (aircraft currently navigating to). Symbol C = navaid symbol (tuned navaid in green, unused navaid in cyan). Symbol E = cyan symbol not on active route = off-route waypoint.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q8.</span> When using EHSI, weather radar may be displayed on the following settings:
+    <ol class="q-options" type="a">
+      <li>Map, VOR/ILS</li>
+      <li>VOR/ILS, Map, Expanded Plan</li>
+      <li>Expanded Map, VOR/ILS, Plan</li>
+      <li>Map, Expanded VOR/ILS</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>D</strong></div>
+  <div class="answer-explanation">WXR is available on: MAP mode and EXPANDED VOR/ILS modes. WXR is NOT available on: Full VOR, Full ILS (full compass rose), or PLAN mode (inhibited). The key rule: WXR requires the expanded arc presentation or map mode — not the full compass rose or plan.</div>
+  <div class="instructor-note">Memory tip: "Full compass = no weather." In full VOR/ILS mode the full compass rose takes up all the space. WXR data only overlays on the expanded arc or map background.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q9.</span> WXR display is controlled from:
+    <ol class="q-options" type="a">
+      <li>Captain's EHSI control only</li>
+      <li>Co-pilot's EHSI control only</li>
+      <li>A special control panel</li>
+      <li>Both captain's and co-pilot's EHSI control panels</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>D</strong></div>
+  <div class="answer-explanation">EFIS is a two-sided system — Captain and First Officer each have their own EHSI control panel. WXR can be selected on/off from either pilot's EHSI control panel independently. Both CRTs can display weather radar simultaneously.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q10.</span> Decision height is adjusted and set on the:
+    <ol class="q-options" type="a">
+      <li>Flight management computer</li>
+      <li>HSI section of the EFIS control panel</li>
+      <li>ADI section of the EFIS control panel</li>
+      <li>ADI or HSI</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>C</strong></div>
+  <div class="answer-explanation">Decision Height is displayed on the EADI (ADI) — the attitude indicator — not the HSI/EHSI (navigation display). Therefore the DH SEL (Decision Height Selector) is on the ADI/EADI section of the EFIS control panel.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q11.</span> Weather may be displayed, with modern EFIS, on:
+    <ol class="q-options" type="a">
+      <li>The captain's CRT only</li>
+      <li>The co-pilot's CRT only</li>
+      <li>A special screen</li>
+      <li>On both the captain's and co-pilot's CRTs</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>D</strong></div>
+  <div class="answer-explanation">Both the captain's and co-pilot's EHSI control panels have a WXR switch. Weather radar data can be displayed on both EHSI (ND) displays simultaneously. No special dedicated WXR screen is needed.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q12.</span> Airspeed is shown:
+    <ol class="q-options" type="a">
+      <li>Only on the captain's EHSI</li>
+      <li>On both EADIs</li>
+      <li>On both EHSIs</li>
+      <li>Only on the flight management CRT</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>B</strong></div>
+  <div class="answer-explanation">Airspeed (as part of speed error scale and ground speed) is displayed on the EADI (attitude indicator / PFD) — not on the EHSI (navigation display). Both captain's and first officer's EADIs display airspeed-related information.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q13.</span> With EFIS using IRS guidance, reference north can be:
+    <ol class="q-options" type="a">
+      <li>Magnetic north only</li>
+      <li>Magnetic north between 73°N and 65°S, and true north above these latitudes</li>
+      <li>Magnetic north between 65°N and 73°S and true north above these latitudes</li>
+      <li>Magnetic north between 75°N and 75°S and true north above these latitudes</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>B</strong></div>
+  <div class="answer-explanation">The compass rose automatically references to magnetic north when between latitudes <strong>73°N and 65°S</strong>, and switches to true north above these latitudes (where magnetic variation becomes extreme and unreliable). The crew may also manually select TRUE at any latitude.</div>
+  <div class="instructor-note">Note the asymmetry: 73°N but only 65°S. This reflects real magnetic variation geography — the magnetic anomaly is more severe in the northern polar regions.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q14.</span> Modes available for EFIS HSI on some units are:
+    <ol class="q-options" type="a">
+      <li>Airspeed and Mach</li>
+      <li>MAP and PLAN</li>
+      <li>VOR, ILS, MAP and AUTO TRIM</li>
+      <li>Only from manometric sources</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>B</strong></div>
+  <div class="answer-explanation">The four modes of the EHSI are VOR, ILS, MAP and PLAN. The question asks specifically about "some units" — MAP and PLAN are the two modes that require FMS data and are available only on equipped systems. VOR, ILS, MAP, and PLAN are the four standard modes. Answer B (MAP and PLAN) is what distinguishes this EHSI from a basic HSI.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q15.</span> The EFIS symbols for a navaid and en route waypoint are: (choose C)
+    <ol class="q-options" type="a">
+      <li>Option A</li>
+      <li>Option B</li>
+      <li>Navaid = circle/diamond shape (green when tuned, cyan when untuned); Waypoint = star shape (magenta when active, white when inactive)</li>
+      <li>Option D</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>C</strong></div>
+  <div class="answer-explanation">Navaids use a circle or diamond symbol (green when tuned, cyan when unused). Waypoints use a star/asterisk symbol (magenta = active/current waypoint the aircraft is navigating to; white = inactive waypoint on active route; cyan = off-route waypoint).</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q16.</span> An EFIS installation as well as having a control panel, symbol generators and a remote light sensor also has:
+    <ol class="q-options" type="a">
+      <li>EADIs and EHSIs</li>
+      <li>EHSIs and altitude indicator</li>
+      <li>EADIs and EICAs</li>
+      <li>EADI and WXR display tubes</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>A</strong></div>
+  <div class="answer-explanation">The five components of each EFIS system are: EADI (or PFD), EHSI (or ND), control panel, symbol generator, and remote light sensor. Therefore if you're given control panel + SG + remote light sensor, the missing components are EADI and EHSI.</div>
+</div>
+
+</div><!-- qa-section -->
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

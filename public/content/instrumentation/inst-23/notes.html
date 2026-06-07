@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 23 – Basic Computers | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a3a6b; border-bottom: 3px solid #1a3a6b; padding-bottom: 8px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a3a6b; margin-top: 30px; border-left: 5px solid #1a3a6b; padding-left: 10px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #2c5aa0; margin-top: 20px; }
+  p { margin: 8px 0 12px 0; }
+  .cover { text-align: center; padding: 40px 20px; border: 3px solid #1a3a6b; border-radius: 10px; margin-bottom: 30px; }
+  .cover h1 { border: none; font-size: 2.2em; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 8px; }
+  .cover .author { font-size: 1em; color: #333; margin-top: 6px; font-weight: 600; }
+  .toc { background: #f5f8ff; border: 1px solid #b0c4e8; border-radius: 8px; padding: 20px 30px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { border: none; margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: #2c5aa0; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a3a6b; color: #fff; padding: 8px 12px; text-align: left; font-weight: 700; }
+  td { border: 1px solid #ccc; padding: 7px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  figure { text-align: center; margin: 20px auto; max-width: 100%; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #555; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Instrumentation</div>
+  <h1>Chapter 23<br>Basic Computers</h1>
+  <div class="subtitle">Oxford Aviation Academy — Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Types of Computers — Analogue vs. Digital</a></li>
+    <li><a href="#sec-2">Digital Computer Components (Hardware)</a></li>
+    <li><a href="#sec-3">CPU — Internal Structure</a></li>
+    <li><a href="#sec-4">Input and Output Devices</a></li>
+    <li><a href="#sec-5">Memory — Volatile and Non-Volatile</a></li>
+    <li><a href="#sec-6">Software — Languages</a></li>
+    <li><a href="#sec-7">EUROCAE ED12B — Software Safety Levels</a></li>
+    <li><a href="#sec-8">Aircraft Computer Systems</a></li>
+    <li><a href="#sec-9">Analogue-to-Digital and Digital-to-Analogue Conversion</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<h1 id="sec-1">1. Types of Computers</h1>
+
+<p>A computer may be defined as: <em>"A device or set of devices that can store data and a program that operates on the data."</em></p>
+
+<p>The first fully operational general-purpose computer was the <strong>Z3</strong>, built by <strong>Konrad Zuse</strong> in Germany in 1941 — electromechanical, using binary digits.</p>
+
+<table>
+  <tr><th>Type</th><th>Description</th><th>Status</th></tr>
+  <tr><td><strong>Analogue</strong></td><td>Uses continuous physical variables (voltage, pressure) to represent measurements. Used as electronic models of mechanical systems where experiments on the real system would be costly or dangerous (e.g., bridge/aircraft wing design).</td><td>Less common now — digital computers can simulate their function</td></tr>
+  <tr><td><strong>Digital</strong></td><td>Uses digital (binary) data — only two voltage levels: ON or OFF. Binary (base-2) number system. By far the most common type today.</td><td>Dominant — used in virtually all modern avionics</td></tr>
+</table>
+
+<!-- SECTION 2 -->
+<h1 id="sec-2">2. Digital Computer Components (Hardware)</h1>
+
+<pre class="mermaid">
+graph TD
+  A["Input Devices<br>(keyboard, mouse, sensors)"] --> B["CPU<br>Central Processing Unit"]
+  B --> C["Output Devices<br>(monitor, printer, display)"]
+  D["Memory<br>(ROM / RAM)"] <--> B
+</pre>
+
+<figure>
+  <img src="figs/fig_p309_0.png" alt="Basic digital computer block diagram">
+  <figcaption>Fig 23.1 — A basic digital computer: input → CPU ↔ Memory → output. Source p.309</figcaption>
+</figure>
+
+<div class="box-blue">
+<strong>Basic computer components:</strong>
+<ol>
+  <li>Input peripherals (devices)</li>
+  <li>Central Processing Unit (CPU)</li>
+  <li>Memory</li>
+  <li>Output peripherals (devices)</li>
+</ol>
+Note: "Inertial unit" and "auto brightness control" are NOT computer components.
+</div>
+
+<!-- SECTION 3 -->
+<h1 id="sec-3">3. CPU — Internal Structure</h1>
+
+<div class="box-blue">
+<strong>The CPU = the "brain" of the computer.</strong> It performs, organises and controls all operations. Three components:
+<ol>
+  <li><strong>Arithmetic Logic Unit (ALU)</strong> — performs arithmetic calculations and logical operations in the <em>binary number system</em></li>
+  <li><strong>Shift Registers</strong> — temporary stores; one of them, called the <strong>accumulator</strong>, contains the data actually being processed</li>
+  <li><strong>Control Unit</strong> — contains the computer's clock (crystal-controlled oscillator at typically <strong>120–45 MHz</strong>); synchronises all computer operations</li>
+</ol>
+</div>
+
+<div class="box-amber">
+<strong>CPU does NOT include:</strong> input devices, output devices, hard disk, or BIOS. These are external to the CPU itself.
+</div>
+
+<!-- SECTION 4 -->
+<h1 id="sec-4">4. Input and Output Devices</h1>
+
+<table>
+  <tr><th>Type</th><th>Examples (PC)</th><th>Examples (Aircraft)</th></tr>
+  <tr><td><strong>Input peripherals</strong></td><td>Keyboard, mouse, modem</td><td>Rad Alt, Baro Alt, TAS sensor, fuel flow sensor</td></tr>
+  <tr><td><strong>Output peripherals</strong></td><td>Monitor (VDU), printer</td><td>EFIS Symbol Generator, FMS CDU display</td></tr>
+</table>
+
+<p><strong>BIOS (Basic Input Output System)</strong> — converts input signals to a form the computer can work with, and converts outputs to a form the operator or another aircraft system can understand.</p>
+
+<div class="box-green">
+<strong>Classification rules:</strong>
+<ul>
+  <li>Keyboard = INPUT</li>
+  <li>Mouse = INPUT</li>
+  <li>Modem = INPUT (and output, but classified as input peripheral here)</li>
+  <li>Screen/monitor = OUTPUT</li>
+  <li>Printer = OUTPUT</li>
+  <li>Hard disk / floppy disk = STORAGE (both read and write — classified as memory, not strictly input or output)</li>
+</ul>
+</div>
+
+<!-- SECTION 5 -->
+<h1 id="sec-5">5. Memory — Volatile and Non-Volatile</h1>
+
+<table>
+  <tr><th>Memory Type</th><th>Description</th><th>Volatile?</th></tr>
+  <tr><td><strong>ROM</strong> — Read Only Memory</td><td>Programmed by manufacturer; cannot be altered by user. Used for fixed programs.</td><td>Non-volatile</td></tr>
+  <tr><td><strong>PROM</strong> — Programmable ROM</td><td>User can program it once</td><td>Non-volatile</td></tr>
+  <tr><td><strong>EPROM</strong> — Erasable PROM</td><td>Can be erased (UV light) and reprogrammed</td><td>Non-volatile</td></tr>
+  <tr><td><strong>EEPROM</strong> — Electrically Erasable PROM</td><td>Can be erased electronically and reprogrammed</td><td>Non-volatile</td></tr>
+  <tr><td><strong>RAM</strong> — Random Access Memory</td><td>Read and write at will; used for data currently being processed; contents lost when power removed</td><td><strong>Volatile</strong></td></tr>
+</table>
+
+<div class="box-red">
+<strong>Volatile vs. Non-volatile:</strong>
+<ul>
+  <li><strong>Volatile memory</strong> = loses data when power is removed (e.g., RAM)</li>
+  <li><strong>Non-volatile memory</strong> = retains data when power is removed (e.g., ROM, EPROM, Flash memory)</li>
+</ul>
+RAM is normally volatile — if power fails, all data in RAM is lost.
+</div>
+
+<h3>Permanent Storage (Long-Term)</h3>
+<table>
+  <tr><th>Type</th><th>Details</th><th>Re-writable?</th></tr>
+  <tr><td><strong>Flash Memory</strong> (electronic chip)</td><td>Solid-state; very fast access</td><td>Yes — indefinitely</td></tr>
+  <tr><td><strong>Optical Disk</strong> (CD)</td><td>Read with laser; read-only or re-writable</td><td>Limited rewrites only</td></tr>
+  <tr><td><strong>Magnetic Disk</strong> (HDD)</td><td>Internal, external, or removable; "floppy disks" now obsolete</td><td>Yes — indefinitely</td></tr>
+</table>
+
+<!-- SECTION 6 -->
+<h1 id="sec-6">6. Software — Programming Languages</h1>
+
+<table>
+  <tr><th>Level</th><th>Type</th><th>Description</th></tr>
+  <tr><td>Low</td><td><strong>Assembly Language</strong></td><td>Symbolic representation of machine codes. Defined by the hardware manufacturer. Close to machine language (binary/hex).</td></tr>
+  <tr><td>High</td><td><strong>High Level Language</strong></td><td>Not limited to a specific computer or job. Easier to understand. Examples: <strong>FORTRAN, ALGOL, BASIC, C++</strong>.</td></tr>
+  <tr><td>—</td><td><strong>Scripting Language</strong></td><td>Controls one or more applications. Written in a different language (similar to BASIC). Created or modified by end-user. Applies to a specific program only.</td></tr>
+</table>
+
+<!-- SECTION 7 -->
+<h1 id="sec-7">7. EUROCAE ED12B — Aircraft Software Safety Levels</h1>
+
+<p>All aircraft-related software must comply with <strong>EUROCAE ED12B</strong> (also known as DO-178B/C). Five software levels:</p>
+
+<table>
+  <tr><th>Level</th><th>Failure Condition</th><th>Aviation Context</th><th>Example</th></tr>
+  <tr><td><strong>A</strong></td><td>Catastrophic</td><td>Prevents continued safe flight or landing</td><td>Flight Control Computer</td></tr>
+  <tr><td><strong>B</strong></td><td>Hazardous / Severe-Major</td><td>Potential fatal injuries to a small number of occupants</td><td>Flight Management Computer</td></tr>
+  <tr><td><strong>C</strong></td><td>Major</td><td>Impairs crew efficiency; discomfort or possible injury to occupants</td><td>Navigation displays</td></tr>
+  <tr><td><strong>D</strong></td><td>Minor</td><td>Reduced safety margins but well within crew capabilities</td><td>Cabin systems</td></tr>
+  <tr><td><strong>E</strong></td><td>No Effect</td><td>Does not affect safety of the aircraft at all</td><td>Galley oven controller</td></tr>
+</table>
+
+<div class="box-amber">
+<strong>Key principle:</strong> The required software rigour level depends on what happens if that software fails. The galley oven can have a major failure without endangering the aircraft (Level E), whereas a Flight Control Computer failure could be catastrophic (Level A).
+</div>
+
+<!-- SECTION 8 -->
+<h1 id="sec-8">8. Aircraft Computer Systems</h1>
+
+<div class="box-blue">
+<strong>Current computer-controlled aircraft systems:</strong>
+<ul>
+  <li>Flight Management System (FMS)</li>
+  <li>Digital Flight Guidance System (DFGS)</li>
+  <li>Ground Proximity Warning System (GPWS)</li>
+  <li>Traffic Alert Collision Avoidance System (TCAS)</li>
+  <li>Fly-by-wire flight control (entire flight envelope)</li>
+</ul>
+</div>
+
+<p><strong>Current design:</strong> Dedicated computers for each separate system.</p>
+
+<p><strong>Future trend:</strong> <strong>Integrated Hazard Warning System (IHWS)</strong> — a powerful central processor handling inputs from stall warning, windshear detection, GPWS, TCAS, and weather radar; processes and prioritises warnings to crew.</p>
+
+<!-- SECTION 9 -->
+<h1 id="sec-9">9. Analogue-to-Digital and Digital-to-Analogue Conversion</h1>
+
+<pre class="mermaid">
+graph LR
+  A["Aircraft sensor<br>(analogue: voltage, pressure, temp)"] -->|"A/D Converter"| B["Digital Computer<br>(binary data)"]
+  B -->|"D/A Converter"| C["Analogue display<br>or analogue device"]
+</pre>
+
+<div class="box-blue">
+<ul>
+  <li><strong>A/D Converter (Analogue to Digital):</strong> Many aircraft sensors produce analogue information (varying voltages, pressures, temperatures). The A/D converter is required in the interface between the sensor and the digital computer input device.</li>
+  <li><strong>D/A Converter (Digital to Analogue):</strong> When a digital computer must pass information to an analogue device (e.g., older analogue instruments), the process is reversed.</li>
+</ul>
+</div>
+
+<!-- Q&A -->
+<div class="qa-section">
+<h1 id="qa-section">Practice Questions &amp; Detailed Answers</h1>
+<p><em>Source: Oxford Aviation Academy Instrumentation — Chapter 23. DGCA CPL/ATPL.</em></p>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span> A basic digital computer consists of: (1) input peripherals (2) CPU (3) inertial unit (4) memory (5) auto brightness control (6) output peripherals
+    <ol class="q-options" type="a">
+      <li>1, 2, 3, 4 and 6</li>
+      <li>1, 2, 4 and 6</li>
+      <li>1, 4, 6 only</li>
+      <li>2, 3, 4 and 6</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>B</strong></div>
+  <div class="answer-explanation">The four basic components of a digital computer are: (1) input peripherals, (2) CPU, (4) memory, and (6) output peripherals. Items (3) inertial unit and (5) auto brightness control are NOT computer components — they are aircraft-specific or display-specific hardware unrelated to the computer architecture.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span> The Central Processing Unit (CPU) consists of: (1) input device (2) output device (3) ALU (4) shift registers (5) control unit (6) hard disk
+    <ol class="q-options" type="a">
+      <li>1, 2, 3 and 5</li>
+      <li>3, 4, and 6</li>
+      <li>1, 2, 5, and 6</li>
+      <li>3, 4 and 5</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>D</strong></div>
+  <div class="answer-explanation">The CPU consists of: (3) ALU, (4) shift registers (including accumulator), and (5) control unit (with clock). Input devices, output devices, and hard disk are EXTERNAL to the CPU. The CPU is just the processing core.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span> In computer terminology an input peripheral device would be:
+    <ol class="q-options" type="a">
+      <li>A hard disk</li>
+      <li>A floppy disk</li>
+      <li>A keyboard</li>
+      <li>A screen display unit</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>C</strong></div>
+  <div class="answer-explanation">A keyboard is a classic input peripheral — it sends data INTO the computer. Hard disk and floppy disk are storage devices (not strictly input or output). A screen display unit is an OUTPUT peripheral.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span> In computer terminology an output peripheral device would be:
+    <ol class="q-options" type="a">
+      <li>A floppy disk</li>
+      <li>A hard disk</li>
+      <li>A screen display unit</li>
+      <li>A keyboard</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>C</strong></div>
+  <div class="answer-explanation">A screen display unit (monitor/VDU) is an output peripheral — the computer sends processed data OUT to the screen for the user to see. Keyboard = input. Disks = storage. In an aircraft, the EFIS symbol generator output and the FMS CDU display are output devices.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span> In computer terminology a memory which loses its data when power is removed is called:
+    <ol class="q-options" type="a">
+      <li>Non-volatile</li>
+      <li>Non-permanent</li>
+      <li>Non-retentive</li>
+      <li>Volatile</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>D</strong></div>
+  <div class="answer-explanation">Volatile memory loses its data when power is removed. RAM is the primary example of volatile memory. The word "volatile" means easily evaporated/lost — exactly what happens to RAM data when power goes. "Non-volatile" = retains data without power.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span> In computer terminology a memory which retains its data when power is removed is called:
+    <ol class="q-options" type="a">
+      <li>Non-volatile</li>
+      <li>Volatile</li>
+      <li>RAM</li>
+      <li>ROM</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>A</strong></div>
+  <div class="answer-explanation">Non-volatile memory retains data when power is removed. Examples: ROM, EPROM, EEPROM, Flash memory, hard disks, optical disks. Note that ROM is one specific type of non-volatile memory, but the general term is "non-volatile." Choosing ROM (D) would be too specific when the question asks for the general terminology.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q7.</span> Examples of input peripheral devices are: (1) mouse (2) modem (3) printer (4) screen display unit (5) keyboard
+    <ol class="q-options" type="a">
+      <li>2, 3, 4 and 5</li>
+      <li>1, 2 and 5</li>
+      <li>1 and 5</li>
+      <li>1, 2, 3</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>B</strong></div>
+  <div class="answer-explanation">Input peripherals: (1) mouse, (2) modem, (5) keyboard — these all send data INTO the computer. Printer (3) and screen display unit (4) are OUTPUT devices — they receive data FROM the computer to display or print.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q8.</span> In computer terminology "software" refers to:
+    <ol class="q-options" type="a">
+      <li>The memory system — floppy disks, hard disks, etc.</li>
+      <li>The RAM and ROM capacity</li>
+      <li>The programme of instructions</li>
+      <li>The BIOS</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>C</strong></div>
+  <div class="answer-explanation">Software = the programme of instructions. This is the fundamental distinction: Hardware = physical components; Software = the programs/code that run on the hardware. BIOS is itself software (a specific type of software), but the general definition of software is the programme of instructions.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q9.</span> In computer terminology "hardware" refers to:
+    <ol class="q-options" type="a">
+      <li>The digital computer components — keyboard, monitor, CPU, etc.</li>
+      <li>The permanent memory system and its capacity</li>
+      <li>The RAM capacity</li>
+      <li>The programme of instructions</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>A</strong></div>
+  <div class="answer-explanation">Hardware = all the physical components of the computer system: keyboard, monitor, CPU, memory chips, disk drives, etc. The chapter title is "Digital Computer Components (Hardware)" — confirming that hardware = the physical components.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q10.</span> The permanent memory of a digital computer usually takes the form of:
+    <ol class="q-options" type="a">
+      <li>Integrated circuits rated in megabytes</li>
+      <li>Shift registers whose capacity is rated in mega or gigabytes</li>
+      <li>Floppy or hard disks whose capacity is measured in mega or gigabytes</li>
+      <li>Central Processing Unit</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>C</strong></div>
+  <div class="answer-explanation">Permanent (long-term) storage takes the form of magnetic disks (hard disks, floppy disks — though floppies are now obsolete), optical disks, or flash memory chips — all measured in mega or gigabytes. Shift registers are temporary stores within the CPU (volatile). The CPU itself is not a storage medium. Note: flash memory is an electronic chip but the book specifically mentions floppy/hard disks for "permanent storage."</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q11.</span> The purpose of the Arithmetic Logic Unit within the CPU is to:
+    <ol class="q-options" type="a">
+      <li>Act as a temporary store for information being processed</li>
+      <li>Perform calculations in the binary number system</li>
+      <li>Perform calculations in the binary, octal or hexadecimal system</li>
+      <li>Perform all clock functions based on the computer clock frequency</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>B</strong></div>
+  <div class="answer-explanation">The ALU performs arithmetic calculations and logical operations in the binary number system. The shift registers (including accumulator) act as temporary stores — not the ALU. The Control Unit handles the clock functions.</div>
+  <div class="distractor-analysis"><strong>Why the others are wrong:</strong>
+    <ul>
+      <li><strong>A:</strong> Temporary storage = function of shift registers / accumulator.</li>
+      <li><strong>C:</strong> The book says "binary number system" specifically — not binary, octal and hexadecimal.</li>
+      <li><strong>D:</strong> Clock functions = Control Unit (which contains the crystal oscillator clock).</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q12.</span> Within the CPU, the temporary stores and accumulator which handle data during processing are called:
+    <ol class="q-options" type="a">
+      <li>Arithmetic Logic Unit (ALU)</li>
+      <li>Shift registers</li>
+      <li>Control unit</li>
+      <li>BIOS</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>B</strong></div>
+  <div class="answer-explanation">Shift registers are the temporary stores within the CPU. One of the shift registers, specifically called the accumulator, contains the data actually being processed at any given moment. ALU does the calculations; Control Unit provides timing; BIOS is the input/output conversion system external to the CPU.</div>
+</div>
+
+</div><!-- qa-section -->
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

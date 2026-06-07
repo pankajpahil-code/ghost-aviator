@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 4 – The Airspeed Indicator (ASI) | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+@page{size:A4;margin:20mm;}
+*{box-sizing:border-box;}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:14px;line-height:1.6;color:#222;margin:0;padding:20px;background:#fff;}
+h1{font-size:2em;font-weight:700;color:#1a237e;margin-bottom:4px;}
+h2{font-size:1.4em;font-weight:700;color:#1a237e;border-bottom:2px solid #1a237e;padding-bottom:4px;margin-top:30px;page-break-after:avoid;}
+h3{font-size:1.15em;font-weight:700;color:#283593;margin-top:20px;page-break-after:avoid;}
+h4{font-size:1em;font-weight:700;color:#333;page-break-after:avoid;}
+p{margin:10px 0;}
+.cover{text-align:center;padding:60px 20px 40px;border-bottom:3px solid #1a237e;margin-bottom:30px;page-break-after:always;}
+.cover h1{font-size:2.4em;}
+.cover .subtitle{font-size:1.1em;color:#555;margin-top:10px;}
+.cover .author{font-size:1em;color:#1a237e;margin-top:8px;font-weight:700;}
+.toc{page-break-after:always;}
+.toc ol{line-height:2;}
+.toc a{color:#1a237e;text-decoration:none;}
+.blue-box{background:#e8f1fb;border-left:5px solid #2c5aa0;padding:15px;border-radius:6px;margin:15px 0;page-break-inside:avoid;}
+.red-box{background:#fdecea;border-left:5px solid #c0392b;padding:15px;border-radius:6px;margin:15px 0;page-break-inside:avoid;}
+.green-box{background:#e8f5e9;border-left:5px solid #2e7d32;padding:15px;border-radius:6px;margin:15px 0;page-break-inside:avoid;}
+.amber-box{background:#fff8e1;border-left:5px solid #f57c00;padding:15px;border-radius:6px;margin:15px 0;page-break-inside:avoid;}
+.reg-value{font-weight:700;color:#c0392b;}
+blockquote{font-family:Georgia,serif;font-style:italic;border-left:4px solid #aaa;background:#f9f9f9;margin:15px 0;padding:12px 20px;border-radius:4px;}
+code,.formula{font-family:"Courier New",monospace;background:#f4f4f4;padding:2px 6px;border-radius:3px;}
+.formula-block{font-family:"Courier New",monospace;background:#f4f4f4;padding:12px;border-radius:4px;margin:12px 0;display:block;font-size:1.05em;}
+.worked-example{background:#f0f4ff;border:1px solid #90a4d4;border-radius:6px;padding:15px;margin:15px 0;page-break-inside:avoid;}
+.worked-example h4{margin-top:0;color:#1a237e;}
+table{border-collapse:collapse;width:100%;margin:15px 0;page-break-inside:avoid;font-size:13px;}
+th{background:#1a237e;color:#fff;padding:8px 12px;text-align:left;}
+td{padding:8px 12px;border:1px solid #ccc;}
+tr:nth-child(even) td{background:#f5f5f5;}
+figure{text-align:center;margin:20px 0;page-break-inside:avoid;}
+figure img{max-width:100%;border:1px solid #ddd;border-radius:4px;}
+figcaption{font-style:italic;color:#555;font-size:12px;margin-top:6px;}
+pre.mermaid{page-break-inside:avoid;margin:15px 0;background:transparent;border:none;}
+.qa-block{border:2px solid #2c5aa0;border-radius:8px;padding:20px;margin:25px 0;page-break-inside:avoid;background:#fff;}
+.qa-question{background:#e8f1fb;padding:15px;border-radius:6px;margin-bottom:15px;}
+.q-number{font-weight:900;color:#2c5aa0;font-size:1.1em;margin-right:8px;}
+.q-options{margin-top:12px;padding-left:25px;}
+.q-options li{padding:4px 0;}
+.answer-reveal{background:#e8f5e9;border-left:5px solid #2e7d32;padding:12px 15px;margin:10px 0;border-radius:4px;font-size:1.05em;}
+.answer-explanation{background:#f5f5f5;padding:12px 15px;margin:10px 0;border-radius:4px;line-height:1.7;}
+.distractor-analysis{background:#fdecea;border-left:5px solid #c0392b;padding:12px 15px;margin:10px 0;border-radius:4px;}
+.distractor-analysis ul{margin-top:8px;padding-left:20px;}
+.instructor-note{background:#fff8e1;border-left:5px solid #f57c00;padding:12px 15px;margin:10px 0;border-radius:4px;font-style:italic;}
+.watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;}
+ul,ol{margin:8px 0;padding-left:22px;}
+li{margin:3px 0;}
+.arc-key{display:inline-block;width:18px;height:12px;border-radius:2px;margin-right:6px;vertical-align:middle;}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Chapter 4</h1>
+  <h1>The Airspeed Indicator (ASI)</h1>
+  <p class="subtitle">DGCA CPL/ATPL Study Notes &mdash; Instrumentation</p>
+  <p class="author">Compiled by Capt. Pankaj Pahil</p>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Principle of Operation</a></li>
+    <li><a href="#sec-2">Construction</a></li>
+    <li><a href="#sec-3">Calibration</a></li>
+    <li><a href="#sec-4">ASI Errors &amp; Airspeed Definitions</a></li>
+    <li><a href="#sec-5">Airspeed Correction Sequence &mdash; IAS to TAS</a></li>
+    <li><a href="#sec-6">Limiting Speeds &amp; ASI Colour Coding</a></li>
+    <li><a href="#sec-7">Pitot and Static Blockages</a></li>
+    <li><a href="#sec-8">Pitot and Static Leaks</a></li>
+    <li><a href="#sec-9">Serviceability Checks</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Principle of Operation</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The physical principle behind the ASI &mdash; measurement of dynamic pressure to indicate airspeed.</div>
+
+<p>An aircraft on the ground in still air experiences only <strong>static (atmospheric) pressure</strong>. In flight, the leading edges of the aircraft are subject to an additional <strong>dynamic pressure</strong> due to relative motion through the air. The pitot head senses the total (pitot) pressure; the static vent senses static pressure only.</p>
+
+<div class="formula-block">Pitot Pressure = Dynamic Pressure + Static Pressure</div>
+<div class="formula-block">Dynamic Pressure = Pitot &minus; Static = &frac12; &rho; V&sup2;</div>
+
+<p>Where: &rho; = air density; V = True Airspeed (TAS).</p>
+
+<p>The ASI is a <strong>differential pressure gauge</strong> that measures the difference between pitot and static pressures (i.e. dynamic pressure), displaying the result in knots on a calibrated scale. (1 knot = 1 nautical mile per hour.)</p>
+
+<div class="amber-box"><strong>Exam Tip:</strong> The ASI measures <em>dynamic pressure</em>, not speed directly. Dynamic pressure = &frac12;&rho;V&sup2;. Because density &rho; varies with altitude and temperature, the ASI does not directly indicate True Airspeed except at ISA MSL conditions.</div>
+
+<h2 id="sec-2">2. Construction</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The mechanical layout of the ASI and how it isolates dynamic pressure.</div>
+
+<p>Static pressure is fed into a <strong>hermetically-sealed instrument case</strong>. Pitot pressure is piped to a thin metal <strong>capsule</strong> inside the case capable of expansion and contraction.</p>
+
+<figure>
+  <img src="figs/fig_p42_0.png" alt="Functional ASI layout">
+  <figcaption>Functional ASI &mdash; pitot pressure to capsule, static pressure fills the case. Source p.42.</figcaption>
+</figure>
+
+<p>Static pressure acts on both the <em>inside</em> of the case and the <em>outside</em> of the capsule walls, so it cancels. The pressure differential across the capsule wall is therefore:</p>
+<div class="formula-block">(Dynamic + Static) &minus; Static = Dynamic only</div>
+<p>Capsule expansion/contraction is proportional to changes in dynamic pressure (= changes in airspeed). The movements are transmitted via a <strong>temperature-compensated magnifying linkage</strong> to the pointer on the ASI face.</p>
+
+<figure>
+  <img src="figs/fig_p42_1.png" alt="ASI capsule detail">
+  <figcaption>ASI capsule detail. Source p.42.</figcaption>
+</figure>
+
+<h2 id="sec-3">3. Calibration</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The calibration standard for the ASI and why this creates errors at all other conditions.</div>
+
+<p>Dynamic pressure depends on <em>both</em> speed and air density. Density varies with temperature and pressure, and therefore with altitude. The ASI is calibrated to read <strong>True Airspeed for the ISA MSL conditions only</strong>:</p>
+
+<table>
+  <tr><th>Calibration Condition</th><th>Value</th></tr>
+  <tr><td>Air density</td><td><span class="reg-value">1225 g/m&sup3;</span></td></tr>
+  <tr><td>Pressure</td><td><span class="reg-value">1013.25 hPa</span></td></tr>
+  <tr><td>Temperature</td><td><span class="reg-value">+15&deg;C</span></td></tr>
+  <tr><td>Humidity</td><td>Dry air</td></tr>
+</table>
+
+<p>No allowance is made for the change in density with altitude. Flight at any condition other than ISA MSL therefore introduces errors. The ASI accuracy tolerance (CS-25) is <span class="reg-value">&plusmn; 3% or 5 kt, whichever is greater</span>.</p>
+
+<h2 id="sec-4">4. ASI Errors &amp; Airspeed Definitions</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Every source of error in the ASI, and the corresponding corrected airspeed definitions &mdash; IAS, CAS, EAS, TAS.</div>
+
+<h3>4.1 Indicated Airspeed (IAS)</h3>
+<p>The reading directly off the instrument face. Affected by all errors below.</p>
+
+<h3>4.2 Instrument Error</h3>
+<p>Manufacturing imperfections and wear cause small errors determined under laboratory conditions using a datum instrument. A <strong>correction card</strong> is produced for the speed range of the instrument and placed near the ASI in the cockpit.</p>
+
+<h3>4.3 Position Error (Pressure Error)</h3>
+<p>Arises mainly from sensing <em>incorrect static pressure</em> due to the probe&rsquo;s location on the aircraft. Position errors vary across the speed range and are determined during the manufacturer&rsquo;s flight test programme. In practice, a <strong>combined Instrument + Position Error correction card</strong> is used.</p>
+
+<h3>4.4 Manoeuvre-Induced Error</h3>
+<p>Associated with changes in angle of attack, producing transient errors and lag in airspeed indication. Primarily affects rapidly changing flight conditions.</p>
+
+<h3>4.5 Calibrated Airspeed (CAS)</h3>
+<div class="green-box"><strong>CAS = IAS corrected for Instrument Error and Position (Pressure) Error.</strong></div>
+<p>Also historically known as <strong>Rectified Airspeed (RAS)</strong> (no longer in general use, but may appear on the Pooley CRP-5).</p>
+<p>Example: If combined correction is +2 kt and pilot wants 100 kt CAS, fly at <span class="reg-value">98 kt IAS</span>.</p>
+<p><strong>Why CAS matters:</strong> Aircraft stress limits and stall speeds are functions of dynamic pressure. Because the ASI is calibrated in &ldquo;knots&rdquo; (true only at ISA MSL), CAS provides a consistent measure of dynamic pressure regardless of altitude and density. Stall and structural limit speeds are expressed as CAS/IAS values.</p>
+
+<h3>4.6 Density Error</h3>
+<p>At altitudes above MSL, air density is less than <span class="reg-value">1225 g/m&sup3;</span> (the calibration density). Less dense air produces less dynamic pressure for the same TAS. The capsule expands less, and the ASI <strong>under-reads</strong> the true speed. If density is greater than ISA at MSL, the ASI over-reads.</p>
+<div class="formula-block">EAS + Density Correction = TAS</div>
+
+<h3>4.7 Compressibility Error</h3>
+<p>Air is compressible; at speed the pressure in the pitot tube is higher than for an ideal incompressible fluid (for which dynamic pressure = &frac12;&rho;V&sup2;). The ASI is calibrated for compressible flow at ISA MSL density. At lower densities (higher altitude), the standard compressibility correction becomes incorrect and the instrument <strong>over-reads</strong> (IAS and CAS too high). A subtractive compressibility correction must be applied.</p>
+<div class="red-box"><strong>Threshold:</strong> If TAS is <span class="reg-value">less than 300 knots</span>, compressibility error is small enough to be ignored in the IAS-to-TAS calculation.</div>
+
+<h3>4.8 Equivalent Airspeed (EAS)</h3>
+<div class="green-box"><strong>EAS = CAS corrected for Compressibility Error only.</strong><br>EAS is the most accurate measure of dynamic pressure over the wing. All structural limit speeds are calculated from EAS; errors are then re-introduced to display them as IAS. At constant weight, an aircraft always lifts off at a constant EAS regardless of altitude.</div>
+<p>In practice the difference between EAS and CAS is not large unless altitude is significant. However, at high-elevation airports with high-performance aircraft, CAS (and IAS) will be higher than EAS for the same dynamic pressure condition.</p>
+
+<h3>4.9 True Airspeed (TAS)</h3>
+<div class="green-box"><strong>TAS = EAS corrected for Density Error.</strong><br>TAS is the actual speed of the aircraft relative to the surrounding air mass. It is the speed used for navigation and flight planning.</div>
+<p>Density must be calculated from pressure (altitude) and temperature together &mdash; there is no direct density instrument. The navigational computer combines altitude and temperature to derive the density correction. The major factor is the pressure value.</p>
+
+<div class="amber-box"><strong>Note:</strong> Calculation of airspeed errors using a navigation computer is NOT required for the Instrumentation EASA/DGCA exam. Full details are in Oxford ATPL Book 10 (General Navigation, Chapter 6).</div>
+
+<h2 id="sec-5">5. Airspeed Correction Sequence &mdash; IAS to TAS</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The step-by-step correction chain from raw instrument reading to True Airspeed.</div>
+
+<pre class="mermaid">
+flowchart LR
+    A["IAS\n(Indicated Airspeed)\nRaw instrument reading"] -->|"+ Instrument Error\n+ Position Error"| B["CAS\n(Calibrated Airspeed)"]
+    B -->|"+ Compressibility\nCorrection"| C["EAS\n(Equivalent Airspeed)"]
+    C -->|"+ Density\nCorrection"| D["TAS\n(True Airspeed)"]
+    style A fill:#e8f1fb
+    style B fill:#e8f1fb
+    style C fill:#e8f5e9
+    style D fill:#e8f5e9
+</pre>
+
+<div class="amber-box">
+  <strong>Practical Sequence (Exam Rule):</strong>
+  <ol>
+    <li>Apply Density Error correction first &rarr; gives TAS.</li>
+    <li>If TAS &le; <span class="reg-value">300 kt</span>: no compressibility correction needed. STOP.</li>
+    <li>If TAS &gt; <span class="reg-value">300 kt</span>: apply Compressibility Error correction as well.</li>
+  </ol>
+</div>
+
+<h2 id="sec-6">6. Limiting Speeds &amp; ASI Colour Coding</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The standard speed definitions shown on and around the ASI, and the colour arc/line coding system.</div>
+
+<h3>6.1 Limiting Speed Definitions</h3>
+<table>
+  <tr><th>Symbol</th><th>Name</th><th>Shown on ASI</th><th>Description</th></tr>
+  <tr><td>V<sub>NE</sub></td><td>Never Exceed Speed</td><td>Yes &mdash; Red radial line</td><td>Absolute maximum; exceeding causes structural failure risk</td></tr>
+  <tr><td>V<sub>NO</sub></td><td>Maximum Normal Operating Speed</td><td>Yes &mdash; Top of green arc</td><td>Must not be exceeded except in smooth air</td></tr>
+  <tr><td>V<sub>FE</sub></td><td>Maximum Flap Extension Speed</td><td>Yes &mdash; Top of white arc</td><td>Maximum speed with flaps extended</td></tr>
+  <tr><td>V<sub>S0</sub></td><td>Stall Speed (landing config)</td><td>Yes &mdash; Bottom of white arc</td><td>Stall with full flap, gear down, max AUW</td></tr>
+  <tr><td>V<sub>S1</sub></td><td>Stall Speed (specified config)</td><td>Yes &mdash; Bottom of green arc</td><td>Stall with flaps up, max AUW</td></tr>
+  <tr><td>V<sub>YSE</sub></td><td>Best Rate of Climb (one engine)</td><td>Optional &mdash; Blue radial line (piston twins)</td><td>Best rate of climb with one engine inoperative, max weight, MSL</td></tr>
+  <tr><td>V<sub>LO</sub></td><td>Max Gear Operation Speed</td><td>Not on ASI</td><td>Max speed for extending or retracting gear</td></tr>
+  <tr><td>V<sub>LE</sub></td><td>Max Speed with Gear Extended</td><td>Not on ASI</td><td>Max speed with gear down and locked</td></tr>
+</table>
+
+<h3>6.2 Colour Arc Coding</h3>
+<figure>
+  <img src="figs/fig_p46_0.png" alt="Coloured arcs on ASI">
+  <figcaption>Coloured range markings on the ASI dial. Source p.46.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Colour</th><th>Range</th><th>Meaning</th></tr>
+  <tr><td>White Arc</td><td>V<sub>S0</sub> to V<sub>FE</sub></td><td>Flap operating range. Safe to extend flaps within this arc.</td></tr>
+  <tr><td>Green Arc</td><td>V<sub>S1</sub> to V<sub>NO</sub></td><td>Normal operating range. Safe in all conditions including turbulence.</td></tr>
+  <tr><td>Yellow Arc</td><td>V<sub>NO</sub> to V<sub>NE</sub></td><td>Caution range. Operate in smooth air only.</td></tr>
+  <tr><td>Red Radial Line</td><td>V<sub>NE</sub></td><td>Never exceed speed &mdash; absolute limit.</td></tr>
+  <tr><td>Blue Radial Line</td><td>V<sub>YSE</sub></td><td>Optional. Best single-engine rate-of-climb speed (piston twins).</td></tr>
+</table>
+
+<div class="red-box"><strong>Caution Range (Yellow Arc):</strong> Operations in the yellow arc must be conducted in smooth air only. Turbulence encountered at yellow arc speeds could cause structural damage.</div>
+
+<h2 id="sec-7">7. Pitot and Static Blockages</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The effect of pitot head blockage and static vent blockage on ASI indications, with the PUDSOD mnemonic.</div>
+
+<h3>7.1 Pitot Head Blockage</h3>
+<p>If the pitot head becomes blocked (typically by ice or insects), the pressure locked inside the capsule remains constant.</p>
+<ul>
+  <li><strong>Level flight:</strong> Any change in airspeed will not be registered &mdash; the ASI freezes at its last reading.</li>
+  <li><strong>Climb with blocked pitot:</strong> Static pressure around the capsule <em>decreases</em> (as altitude increases). With pitot locked, (pitot &minus; static) increases &rarr; ASI <strong>over-reads</strong>. IAS increases during a climb.</li>
+  <li><strong>Descent with blocked pitot:</strong> Static pressure <em>increases</em>. With pitot locked, (pitot &minus; static) decreases &rarr; ASI <strong>under-reads</strong>. IAS decreases during a descent.</li>
+</ul>
+<div class="red-box"><strong>Blocked Pitot: Under-reads in Descent (PUDSOD &mdash; Pitot Under-reads in Descent)</strong></div>
+
+<p>Special case: If both the ram air input AND the drain hole are blocked (static port open), the locked pitot pressure causes the ASI to <strong>react like an altimeter</strong> &mdash; reading increases during a climb and decreases during a descent.</p>
+
+<h3>7.2 Static Head/Vent Blockage</h3>
+<p>A blocked static source freezes the static pressure at the value existing when the blockage occurred.</p>
+<ul>
+  <li><strong>Descent with blocked static:</strong> True external static pressure is <em>higher</em> than the frozen value. The capsule experiences (pitot &minus; locked lower static) &rarr; larger differential &rarr; ASI <strong>over-reads</strong>. Dangerous: aircraft is closer to stall than indicated.</li>
+  <li><strong>Climb with blocked static:</strong> True external static pressure is <em>lower</em> than the frozen value. ASI <strong>under-reads</strong>.</li>
+</ul>
+<div class="red-box"><strong>Blocked Static: Over-reads in Descent (SOD &mdash; Static Over-reads in Descent)</strong></div>
+
+<p>If the alternative static source is selected, an error due to position error may occur. Turbulence effects usually result in higher static pressure at the alternate source, causing an under-reading. This error is documented in the Flight Manual.</p>
+
+<div class="green-box">
+  <strong>PUDSOD Mnemonic:</strong><br>
+  <strong>P</strong>itot blocked: <strong>U</strong>nder-reads in <strong>D</strong>escent<br>
+  <strong>S</strong>tatic blocked: <strong>O</strong>ver-reads in <strong>D</strong>escent
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    A["Blockage\nDetected?"] -->|Pitot| B["During Climb?\nASI over-reads\n(IAS rises)"]
+    A -->|Pitot| C["During Descent?\nASI under-reads\n(IAS falls) &#x26A0;"]
+    A -->|Static| D["During Climb?\nASI under-reads\n(IAS falls)"]
+    A -->|Static| E["During Descent?\nASI over-reads\n(IAS rises) &#x26A0; DANGER"]
+    style E fill:#fdecea
+    style C fill:#fff8e1
+</pre>
+
+<h2 id="sec-8">8. Pitot and Static Leaks</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The effect of leaks (as distinct from blockages) in the pitot and static lines.</div>
+
+<h3>8.1 Pitot Leak</h3>
+<p>A leak in the pitot line causes <strong>loss of dynamic pressure</strong> &rarr; ASI <strong>under-reads</strong>.</p>
+
+<h3>8.2 Static Leak &mdash; Unpressurised Aircraft</h3>
+<p>In an unpressurised aircraft, if the static leak occurs where the outside pressure is lower than the sensed static pressure (almost always the case aerodynamically), a false <em>lower</em> pressure is sensed around the capsule. The differential (pitot &minus; leaked static) increases &rarr; ASI <strong>over-reads</strong> (usually not significantly).</p>
+
+<h3>8.3 Static Leak &mdash; Pressurised Aircraft</h3>
+<div class="red-box"><strong>Hazard:</strong> If the static leak occurs within the pressure compartment of a pressurised aircraft, the (higher) <em>cabin pressure</em> is sensed as static pressure. This usually renders the ASI useless, as cabin altitude is significantly different from aircraft altitude.</div>
+
+<h2 id="sec-9">9. Serviceability Checks</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Pre-flight checks for the ASI and associated pressure systems.</div>
+
+<div class="green-box">
+  <strong>Pre-Flight ASI Checks:</strong>
+  <ul>
+    <li>Pressure head cover(s) and static vent plug(s) removed and stowed aboard.</li>
+    <li>Pitot tube(s), holes/slots in static head(s) and static vent(s) checked free from obvious obstructions (insects, debris).</li>
+    <li>Pitot head heater operative (if fitted).</li>
+    <li>Dial glass clean and undamaged.</li>
+    <li>Instrument should indicate airspeed in the correct sense shortly after starting the take-off run.</li>
+  </ul>
+</div>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary &mdash; Chapter 4:</strong>
+  <ul>
+    <li>ASI measures dynamic pressure = &frac12;&rho;V&sup2; = pitot &minus; static. Calibrated for ISA MSL: <span class="reg-value">1225 g/m&sup3;</span>, <span class="reg-value">1013.25 hPa</span>, <span class="reg-value">+15&deg;C</span>.</li>
+    <li>ASI accuracy tolerance (CS-25): <span class="reg-value">&plusmn;3% or 5 kt, whichever is greater</span>.</li>
+    <li>Correction chain: IAS &rarr; (instrument + position error) &rarr; CAS &rarr; (compressibility) &rarr; EAS &rarr; (density) &rarr; TAS.</li>
+    <li>If TAS &le; <span class="reg-value">300 kt</span>: compressibility correction not needed.</li>
+    <li>Stall/stress limits are functions of dynamic pressure &rarr; expressed as CAS/IAS values.</li>
+    <li>At constant weight, aircraft always lifts off at constant EAS regardless of altitude.</li>
+    <li>Colour arcs: White = flap range (V<sub>S0</sub>&ndash;V<sub>FE</sub>); Green = normal ops (V<sub>S1</sub>&ndash;V<sub>NO</sub>); Yellow = caution (V<sub>NO</sub>&ndash;V<sub>NE</sub>); Red line = V<sub>NE</sub>; Blue line = V<sub>YSE</sub> (piston twins).</li>
+    <li>PUDSOD: Pitot blocked &rarr; Under-reads in Descent; Static blocked &rarr; Over-reads in Descent.</li>
+    <li>Pitot leak &rarr; under-reads. Static leak (unpressurised) &rarr; over-reads. Static leak (pressurised) &rarr; ASI useless.</li>
+  </ul>
+</div>
+
+<h2 id="qa-section" style="page-break-before:always;">Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box">9 questions reproduced verbatim from Oxford Instrumentation Chapter 4. Source answer key: 1-d, 2-c, 3-a, 4-c, 5-b, 6-a, 7-d, 8-c, 9-b.</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">A leak in the pitot total pressure line of a non-pressurized aircraft to an airspeed indicator would cause it to:</span>
+    <ol class="q-options" type="a">
+      <li>Over-read in a climb and under-read in a descent</li>
+      <li>Over-read</li>
+      <li>Under-read in a climb and over-read in a descent</li>
+      <li>Under-read</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d) Under-read</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> A leak in the pitot line causes loss of dynamic pressure reaching the capsule. With lower pressure on the inside of the capsule, the differential (pitot &minus; static) is reduced. The capsule expands less &rarr; ASI under-reads regardless of flight phase. See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a) and (c)</strong> These describe effects of blockages, not leaks. A leak consistently reduces dynamic pressure; it does not alternate with flight phase.</li>
+        <li><strong>(b)</strong> Over-reading occurs with a static leak in an unpressurised aircraft, not a pitot leak.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Distinction: Pitot BLOCKAGE &rarr; no change in level flight, under-reads in descent. Pitot LEAK &rarr; always under-reads.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">A pitot blockage of both the ram air input and the drain hole with the static port open causes the airspeed indicator to:</span>
+    <ol class="q-options" type="a">
+      <li>Read a little low</li>
+      <li>Read a little high</li>
+      <li>React like an altimeter</li>
+      <li>Freeze at zero</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) React like an altimeter</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> If both the ram air input AND the drain hole are blocked, pitot pressure is completely trapped (no air in or out of the pitot side). The capsule has fixed pitot pressure on one side and variable static pressure on the other. As altitude changes, only the static pressure changes &mdash; exactly as in an altimeter. The ASI needle rises in a climb and falls in a descent. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a) and (b)</strong> These would apply to a partial pitot blockage. Complete blockage of both input and drain hole seals the system.</li>
+        <li><strong>(d)</strong> The ASI would not freeze at zero; it would continue to respond to changes in static pressure.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> The key is that both the input AND the drain hole are blocked. If only the ram air input is blocked but the drain hole is open, pressure in the pitot side gradually equalises to static, and the ASI would tend towards zero over time.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">If the static line to the ASI becomes blocked during a long descent, a dangerous situation could arise due to the ASI:</span>
+    <ol class="q-options" type="a">
+      <li>Over-reading, this indicated speed falsely showing the aircraft to be further from the stalling speed than it actually is</li>
+      <li>Under-reading, this indicated speed falsely showing the aircraft to be closer to the stalling speed than it actually is</li>
+      <li>Under-reading, this indicated speed possibly leading to the operation of flaps and/or landing gear at speeds in excess of safety speeds</li>
+      <li>Over-reading, this indicated speed possibly leading to the operation of flaps and/or landing gear at speeds in excess of safety speeds</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) Over-reading, this indicated speed falsely showing the aircraft to be further from the stalling speed than it actually is</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> With a blocked static during a descent, the frozen static pressure (from a higher altitude) is lower than the actual external static pressure. The differential (pitot &minus; frozen lower static) is larger than reality &rarr; ASI over-reads. The pilot sees a higher speed than actual &rarr; believes they are safely above stall when they may not be. This is the &ldquo;Static Over-reads in Descent&rdquo; part of PUDSOD. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b) and (c)</strong> Under-reading occurs with a <em>blocked pitot</em> in a descent, or a blocked static during a <em>climb</em>.</li>
+        <li><strong>(d)</strong> Over-reading is correct but the consequence described is wrong. Over-reading during approach means the aircraft is <em>closer to stall</em> than shown, not that flap speed limits are at risk (that would be from an under-reading).</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> PUDSOD: Pitot Under-reads in Descent; Static Over-reads in Descent. Over-reading ASI on approach is the most dangerous scenario &mdash; the pilot may fly too slowly.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">An aircraft maintaining a constant CAS and altitude is flying from a cold airmass into warmer air. The effect of the change of temperature on the speed will be:</span>
+    <ol class="q-options" type="a">
+      <li>CAS will decrease</li>
+      <li>EAS will increase</li>
+      <li>TAS will increase</li>
+      <li>TAS will decrease</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) TAS will increase</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> At constant altitude and CAS, the dynamic pressure is constant. Moving into warmer air at the same pressure altitude reduces air density (warm air is less dense). Since TAS = EAS &times; (density correction), and density has decreased, a higher TAS is needed to maintain the same dynamic pressure and therefore the same CAS. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> CAS is held constant by the question premise.</li>
+        <li><strong>(b)</strong> EAS is essentially equal to CAS at moderate speeds; it also stays approximately constant if CAS is constant.</li>
+        <li><strong>(d)</strong> TAS decreases if density increases (cold air). Warmer air &rarr; lower density &rarr; higher TAS, not lower.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Rule: Constant CAS + higher temperature (lower density) = higher TAS. Warm air = less dense = faster true speed for same dynamic pressure.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">The airspeed indicator is calibrated to:</span>
+    <ol class="q-options" type="a">
+      <li>Conditions of the International Standard Atmosphere at all heights</li>
+      <li>Conditions of the International Standard Atmosphere at MSL</li>
+      <li>An air density of 1013.25 g/m&sup3;</li>
+      <li>Indicate correctly in any atmosphere</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) Conditions of the International Standard Atmosphere at MSL</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The ASI is calibrated to read true airspeed only at ISA MSL conditions: density <span class="reg-value">1225 g/m&sup3;</span>, pressure <span class="reg-value">1013.25 hPa</span>, temperature <span class="reg-value">+15&deg;C</span>. No allowance is made for density change with altitude. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> ISA at all heights would require the ASI to correct for density at every altitude &mdash; it does not.</li>
+        <li><strong>(c)</strong> 1013.25 is the pressure in hPa, not the calibration density. The density is <span class="reg-value">1225 g/m&sup3;</span>.</li>
+        <li><strong>(d)</strong> The ASI cannot indicate correctly in any atmosphere &mdash; density error means it under-reads above ISA MSL conditions.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Common trap: confusing 1013.25 (the pressure in hPa) with the calibration density (1225 g/m&sup3;). These are completely different values.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">Dynamic pressure is equal to:</span>
+    <ol class="q-options" type="a">
+      <li>&frac12; &rho;V&sup2;</li>
+      <li>&frac12; V&rho;&sup2;</li>
+      <li>(&frac12; &rho;V)&sup2;</li>
+      <li>&frac12; (&rho;V)&sup2;</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) &frac12; &rho;V&sup2;</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Dynamic pressure Q = &frac12;&rho;V&sup2;, where &rho; is air density and V is True Airspeed. This is the fundamental formula from fluid mechanics. Only V is squared, not &rho;. See <a href="#sec-1">Section 1</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> Squares &rho; instead of V &mdash; incorrect formula.</li>
+        <li><strong>(c)</strong> Squares the product (&frac12;&rho;V) &mdash; incorrect.</li>
+        <li><strong>(d)</strong> Squares the product (&rho;V) &mdash; incorrect.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Only V is squared. The factor &frac12; and the squaring of V are both essential parts of the formula. Many candidates incorrectly square &rho; or the entire expression.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q7.</span><span class="q-text">Excluding blockages, the full list of errors of the ASI is:</span>
+    <ol class="q-options" type="a">
+      <li>Instrument error, position error, density error, manoeuvre induced error</li>
+      <li>Instrument error, position error, temperature error, compressibility error, manoeuvre induced error</li>
+      <li>Instrument error, position error, barometric error, temperature error, lag, manoeuvre induced error</li>
+      <li>Instrument error, position error, density error, compressibility error, manoeuvre induced error</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d) Instrument error, position error, density error, compressibility error, manoeuvre induced error</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The five ASI errors are: instrument error (manufacturing), position/pressure error (static sensing), density error (altitude effect on density), compressibility error (air compressibility at speed), and manoeuvre-induced error (pitch changes). See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Omits compressibility error, which is significant above 300 kt TAS.</li>
+        <li><strong>(b)</strong> &ldquo;Temperature error&rdquo; is not a separate ASI error &mdash; it is subsumed within density error (density is a function of both pressure and temperature).</li>
+        <li><strong>(c)</strong> Barometric error and lag apply to the altimeter, not the ASI.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> 5 ASI errors: I-P-D-C-M &mdash; Instrument, Position, Density, Compressibility, Manoeuvre-induced.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q8.</span><span class="q-text">Some ASIs have coloured arcs and lines marked on their dials. A yellow arc and a white arc indicate:</span>
+    <ol class="q-options" type="a">
+      <li>Cautionary range and normal operating range</li>
+      <li>Flap operating speed range and normal operating range</li>
+      <li>Cautionary range and flap operating speed range</li>
+      <li>Flap operating speed range and cautionary range</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) Cautionary range and flap operating speed range</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Yellow arc = caution range (V<sub>NO</sub> to V<sub>NE</sub>); White arc = flap operating range (V<sub>S0</sub> to V<sub>FE</sub>). Green arc is the normal operating range. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Yellow = caution is correct; but the second part says &ldquo;normal operating range&rdquo; which is the GREEN arc, not white.</li>
+        <li><strong>(b)</strong> Reverses the two &mdash; flap range is white, not yellow.</li>
+        <li><strong>(d)</strong> Reverses the order; question asks yellow THEN white, answer (d) states flap range (white) first, then caution (yellow).</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Arc colour memory aid: White = Wings (flaps are wing devices); Green = Go (safe normal ops); Yellow = Yield (caution); Red = Stop (never exceed).</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q9.</span><span class="q-text">If the static line to the ASI becomes blocked during a climb, the ASI reading will:</span>
+    <ol class="q-options" type="a">
+      <li>Increase, no matter what the actual airspeed is</li>
+      <li>Progressively under indicate the value of airspeed</li>
+      <li>Progressively over indicate the value of airspeed</li>
+      <li>Stick at the airspeed showing at the moment of blockage</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) Progressively under indicate the value of airspeed</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> During a climb, outside static pressure decreases with altitude. With a blocked static line, the frozen static pressure (from the lower altitude at blockage) is higher than the actual external pressure. The differential (pitot &minus; frozen higher static) is less than actual dynamic pressure &rarr; ASI under-reads. The further the climb continues, the greater the error becomes (progressively). See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> The ASI increasing regardless of airspeed would be the behaviour of a blocked pitot in a climb (not blocked static).</li>
+        <li><strong>(c)</strong> Over-reading with blocked static occurs in a <em>descent</em>, not a climb (PUDSOD: SOD = Static Over-reads in Descent).</li>
+        <li><strong>(d)</strong> The reading does not stick &mdash; it diverges progressively from actual as altitude changes.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> PUDSOD covers descent effects. For climb: Pitot blocked &rarr; over-reads; Static blocked &rarr; under-reads. Both effects worsen progressively as the aircraft moves further from the blockage altitude.</div>
+  </div>
+</div>
+
+<h2 style="page-break-before:always;">Master Reference Tables &mdash; Chapter 4</h2>
+
+<h3>Numerical Values</h3>
+<table>
+  <tr><th>Value</th><th>Parameter</th><th>Section</th></tr>
+  <tr><td><span class="reg-value">1225 g/m&sup3;</span></td><td>ASI calibration density (ISA MSL)</td><td>3</td></tr>
+  <tr><td><span class="reg-value">1013.25 hPa</span></td><td>ASI calibration pressure (ISA MSL)</td><td>3</td></tr>
+  <tr><td><span class="reg-value">+15&deg;C</span></td><td>ASI calibration temperature (ISA MSL)</td><td>3</td></tr>
+  <tr><td><span class="reg-value">&plusmn;3% or 5 kt</span></td><td>ASI accuracy tolerance (CS-25) &mdash; whichever is greater</td><td>3</td></tr>
+  <tr><td><span class="reg-value">300 kt TAS</span></td><td>Threshold below which compressibility error can be ignored</td><td>4</td></tr>
+  <tr><td><span class="reg-value">&gt;20 kt</span></td><td>Maximum compressibility correction near speed of sound</td><td>4</td></tr>
+</table>
+
+<h3>Airspeed Definitions Summary</h3>
+<table>
+  <tr><th>Term</th><th>Definition</th><th>Use</th></tr>
+  <tr><td>IAS</td><td>Raw instrument reading</td><td>Initial reading</td></tr>
+  <tr><td>CAS (= RAS)</td><td>IAS &plusmn; instrument &amp; position error</td><td>Stall &amp; structural limits; flying the aircraft safely</td></tr>
+  <tr><td>EAS</td><td>CAS &minus; compressibility error</td><td>Most accurate dynamic pressure; structural limit calculations</td></tr>
+  <tr><td>TAS</td><td>EAS &plusmn; density correction</td><td>Navigation, flight planning</td></tr>
+</table>
+
+<h3>PUDSOD Reference</h3>
+<table>
+  <tr><th>Blockage</th><th>Climb</th><th>Descent</th></tr>
+  <tr><td>Pitot</td><td>Over-reads</td><td><strong>Under-reads</strong> (PUDSOD &mdash; PUD)</td></tr>
+  <tr><td>Static</td><td>Under-reads</td><td><strong>Over-reads</strong> (PUDSOD &mdash; SOD)</td></tr>
+</table>
+
+<h3>Colour Arc Summary</h3>
+<table>
+  <tr><th>Colour</th><th>Speed Range</th><th>Meaning</th></tr>
+  <tr><td>White Arc</td><td>V<sub>S0</sub> to V<sub>FE</sub></td><td>Flap operating range</td></tr>
+  <tr><td>Green Arc</td><td>V<sub>S1</sub> to V<sub>NO</sub></td><td>Normal operating range (safe in turbulence)</td></tr>
+  <tr><td>Yellow Arc</td><td>V<sub>NO</sub> to V<sub>NE</sub></td><td>Caution (smooth air only)</td></tr>
+  <tr><td>Red Radial Line</td><td>V<sub>NE</sub></td><td>Never exceed</td></tr>
+  <tr><td>Blue Radial Line</td><td>V<sub>YSE</sub></td><td>Best single-engine ROC (piston twins, optional)</td></tr>
+</table>
+
+<h3>Source Answer Key</h3>
+<table>
+  <tr><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th><th>Q8</th><th>Q9</th></tr>
+  <tr><td>d</td><td>c</td><td>a</td><td>c</td><td>b</td><td>a</td><td>d</td><td>c</td><td>b</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 13 – The Artificial Horizon | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a3a6b; border-bottom: 3px solid #1a3a6b; padding-bottom: 8px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a3a6b; margin-top: 30px; border-left: 5px solid #1a3a6b; padding-left: 10px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #2c5aa0; margin-top: 20px; }
+  p { margin: 8px 0 12px 0; }
+  .cover { text-align: center; padding: 40px 20px; border: 3px solid #1a3a6b; border-radius: 10px; margin-bottom: 30px; }
+  .cover h1 { border: none; font-size: 2.2em; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 8px; }
+  .cover .author { font-size: 1em; color: #333; margin-top: 6px; font-weight: 600; }
+  .toc { background: #f5f8ff; border: 1px solid #b0c4e8; border-radius: 8px; padding: 20px 30px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { border: none; margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: #2c5aa0; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a3a6b; color: #fff; padding: 8px 12px; text-align: left; font-weight: 700; }
+  td { border: 1px solid #ccc; padding: 7px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  figure { text-align: center; margin: 20px auto; max-width: 100%; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #555; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Instrumentation</div>
+  <h1>Chapter 13<br>The Artificial Horizon</h1>
+  <div class="subtitle">Oxford Aviation Academy — Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction</a></li>
+    <li><a href="#sec-2">Construction</a></li>
+    <li><a href="#sec-3">Artificial Horizon Indications (Pitch and Roll)</a></li>
+    <li><a href="#sec-4">Limitations</a></li>
+    <li><a href="#sec-5">Control Systems Overview</a></li>
+    <li><a href="#sec-6">The Air Driven Artificial Horizon</a></li>
+    <li><a href="#sec-7">Acceleration Errors — Air Driven AH</a></li>
+    <li><a href="#sec-8">Turning Errors — Air Driven AH</a></li>
+    <li><a href="#sec-9">Rigidity and Serviceability Checks</a></li>
+    <li><a href="#sec-10">The Electric Artificial Horizon</a></li>
+    <li><a href="#sec-11">Electric AH Control System</a></li>
+    <li><a href="#sec-12">Acceleration Errors — Electric AH</a></li>
+    <li><a href="#sec-13">Fast Erection System</a></li>
+    <li><a href="#sec-14">Adjustable Aeroplane Datum</a></li>
+    <li><a href="#sec-15">Vertical Gyro Unit</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#master-ref">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Purpose of the artificial horizon, what it displays, and alternative names.
+</div>
+<p>The <strong>Artificial Horizon (AH)</strong>, also called the <em>gyro horizon</em> or <em>attitude indicator</em>, provides the pilot with information about the aircraft's attitude in both <strong>pitch and roll</strong>. It is a <strong>primary instrument</strong>, replacing the natural horizon in poor visibility (IMC).</p>
+<p>The attitude display consists of a miniature aircraft shape or 'gull-wing' (tail view) fixed to the instrument case (and thus to the actual aircraft), behind which is a gyro-stabilized <strong>horizon bar</strong> that remains parallel to the true horizon.</p>
+
+<h2 id="sec-2">2. Construction</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The type of gyro used and its axis orientation.
+</div>
+<p>The artificial horizon uses an <strong>earth gyro</strong> in which the spin axis is maintained in, or tied to, the <strong>vertical</strong> by earth's gravity. The plane of rotor rotation is therefore horizontal, providing stable lateral and longitudinal references.</p>
+<figure>
+  <img src="figs/fig_p170_0.png" alt="Artificial horizon — three axes of gyro">
+  <figcaption>Fig 13.1 — Artificial horizon showing three gyro axes XX (spin/vertical), YY (lateral/horizontal), ZZ (longitudinal). Source p.170</figcaption>
+</figure>
+
+<h2 id="sec-3">3. Artificial Horizon Indications</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How pitch and roll are displayed; gimbal arrangement.
+</div>
+<h3>Pitch</h3>
+<p>In Figure 13.1 the level-flight attitude is shown. In a nose-up attitude (Figure 13.2), the pitch-up movement rotates the case together with the attached outer gimbal ring about the lateral axis YY. A guide pin from the stabilized inner gimbal forces the horizon bar arm down. The horizon bar is now <strong>below</strong> the gull-wing → <strong>nose-up indication</strong>.</p>
+<figure>
+  <img src="figs/fig_p171_0.png" alt="Nose-up attitude indication">
+  <figcaption>Fig 13.2 — Nose-up attitude (10°): horizon bar moves below gull-wing. Source p.171</figcaption>
+</figure>
+<p>In a nose-down attitude (Figure 13.3), the horizon bar appears above the gull-wing.</p>
+<figure>
+  <img src="figs/fig_p172_0.png" alt="Nose-down attitude indication">
+  <figcaption>Fig 13.3 — Nose-down attitude: horizon bar above gull-wing. Source p.172</figcaption>
+</figure>
+<h3>Roll</h3>
+<p>As the aircraft rolls about the longitudinal axis (ZZ), the instrument case and gull-wing rotate about the stabilized gyro rotor/gimbal system. Gyroscopic rigidity holds the horizon bar in the rolling plane, displaying the amount and direction of bank of the gull-wing relative to the horizon bar. A pointer attached to the outer gimbal shows bank angle on a scale on the instrument face.</p>
+<figure>
+  <img src="figs/fig_p172_1.png" alt="Various artificial horizon display attitudes">
+  <figcaption>Fig 13.4 — Various artificial horizon displays showing different aircraft attitudes. Source p.172</figcaption>
+</figure>
+
+<h2 id="sec-4">4. Limitations</h2>
+<div class="box-red">
+  <strong>LIMITATIONS — Toppling:</strong>
+  <table>
+    <tr><th>Instrument Type</th><th>Pitch Limit</th><th>Roll Limit</th></tr>
+    <tr><td>Older designs</td><td><span class="reg-value">±60°</span></td><td><span class="reg-value">±110°</span></td></tr>
+    <tr><td>Modern instruments</td><td><span class="reg-value">±85°</span></td><td><span class="reg-value">360° (complete freedom)</span></td></tr>
+  </table>
+  <p>If limits are exceeded, the gyro <strong>topples</strong>, giving violent and erratic movements of the horizon bar. Without a fast erection system, accurate indications will not be obtained until the gyro re-erects itself over a period of <span class="reg-value">10 to 15 minutes</span>.</p>
+</div>
+
+<h2 id="sec-5">5. Control Systems Overview</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The two main types of erection system and how they maintain the rotor axis vertical.
+</div>
+<p>The rotor assembly is made <strong>very slightly bottom-heavy</strong> to keep down the time for initial erection when first started up. The erection system then maintains the rotor axis vertical in flight.</p>
+<table>
+  <tr><th>AH Type</th><th>Erection Method</th><th>Rotor Speed</th></tr>
+  <tr><td>Air Driven (Suction)</td><td>Four pendulous vanes + four slots</td><td>Up to <span class="reg-value">15,000 rpm</span></td></tr>
+  <tr><td>Electric</td><td>Mercury/levelling switches + torque motors</td><td>Typically <span class="reg-value">22,500 rpm</span></td></tr>
+</table>
+
+<h2 id="sec-6">6. The Air Driven Artificial Horizon</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Suction system, pendulous vanes operation, and how erection is achieved.
+</div>
+<p>An engine-driven suction pump (or venturi tube in some light aircraft) creates a suction of about <span class="reg-value">4 inches of mercury</span> in the instrument case. Replacement air drawn in via a filter is ducted through the outer and inner gimbals to enter the rotor case as a jet which spins the rotor at up to <span class="reg-value">15,000 rpm</span>.</p>
+<h3>Control System — Pendulous Vanes</h3>
+<p>Four slots and four pendulous (hanging) vanes are at the base of the rotor housing. When the rotor axis is vertical, each slot is half covered by its vane, producing four equal jets fore, aft, left and right. Equal and opposite jets produce no net force → no precession → rotor remains vertical.</p>
+<figure>
+  <img src="figs/fig_p173_0.png" alt="Air driven AH control system — equilibrium">
+  <figcaption>Fig 13.6 — Equilibrium: four equal jets, no net force on gyro. Source p.173</figcaption>
+</figure>
+<p>The opposing vanes are fixed to a <strong>common spindle</strong> operating as two pairs. If the rotor axis wanders from the vertical, one vane hangs clear of its slot (fully open) while the opposite slot is completely obstructed. The resulting unbalanced airflow jet produces a reaction that is precessed through 90° in the direction of rotor spin, correcting the tilt and returning the gyro axis to the vertical.</p>
+<figure>
+  <img src="figs/fig_p174_0.png" alt="Rotor axis displaced — erection in progress">
+  <figcaption>Fig 13.7 — Rotor axis displaced: vane D open, vane B closed. Reaction R precessed to P restoring vertical. Source p.174</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p174_1.png" alt="Air driven artificial horizon — detailed view">
+  <figcaption>Fig 13.5 — The air driven artificial horizon (detailed construction). Source p.173</figcaption>
+</figure>
+
+<h2 id="sec-7">7. Acceleration Errors — Air Driven AH</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Pitch and roll errors caused by linear acceleration (take-off run) and their direction.
+</div>
+<p>The control system depends on gravity acting on the pendulous vanes. Any acceleration (not just gravity) will affect the vanes, causing false indications.</p>
+<div class="box-red">
+  <strong>ACCELERATION ERROR (linear — take-off run):</strong> A false <strong>nose-up, right wing down</strong> (climbing right hand turn) indication results when the aircraft accelerates in a level attitude.
+</div>
+<h3>Pitch Error During Acceleration</h3>
+<p>During acceleration, the lateral vanes lag (swing back towards the pilot), opening the starboard slot and closing the port slot. The resulting reaction R acts to port. By the rule of precession, this is precessed 90° in the direction of rotor spin (anticlockwise when viewed from above), causing the gyro base to move backwards. The horizon bar drops below the gull-wing → <strong>false nose-up indication</strong>.</p>
+<figure>
+  <img src="figs/fig_p175_0.png" alt="Pitch error due to acceleration">
+  <figcaption>Fig 13.8 — Pitch error due to acceleration: false nose-up indication. Source p.175</figcaption>
+</figure>
+<h3>Roll Error During Acceleration</h3>
+<p>Due to inertia, the weighted (bottom-heavy) base of the rotor housing tries to lag during acceleration. This force is precessed, resulting in the base of the rotor housing moving to starboard and the gyro axis precessing out of vertical → <strong>false right wing down indication</strong>.</p>
+<figure>
+  <img src="figs/fig_p176_0.png" alt="Roll error due to acceleration">
+  <figcaption>Fig 13.9 — Roll error due to acceleration: false right wing down indication. Source p.176</figcaption>
+</figure>
+<div class="box-amber">
+  <strong>Key Rule for Acceleration Errors:</strong>
+  <ul>
+    <li><strong>Acceleration</strong> → false nose-UP, right wing DOWN (British/anticlockwise rotor).</li>
+    <li><strong>Deceleration</strong> → opposite: false nose-DOWN, left wing LOW.</li>
+    <li>American air-driven / most electric horizons rotate clockwise → give <em>opposite</em> errors.</li>
+  </ul>
+</div>
+
+<h2 id="sec-8">8. Turning Errors — Air Driven AH</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How centripetal acceleration during turns causes pitch and roll errors; compensation.
+</div>
+<p>During turns, centripetal acceleration acts on the pendulous vanes (erection error) and the weighted base of the rotor housing (pendulosity error). The errors are complex and change as the turn progresses, cancelling out after a <span class="reg-value">360°</span> turn.</p>
+<div class="box-red">
+  <strong>TURNING ERRORS (Uncorrected Air-Driven, Anticlockwise Rotor):</strong>
+  <table>
+    <tr><th>Turn Completed</th><th>Bank Indication</th><th>Pitch Indication</th></tr>
+    <tr><td>90°</td><td>Under-reads bank angle</td><td>Indicating a climb</td></tr>
+    <tr><td>180°</td><td>Bank angle correct</td><td>Indicating a climb</td></tr>
+    <tr><td>270°</td><td>Over-reads bank angle</td><td>Indicating a climb</td></tr>
+    <tr><td>360°</td><td>Bank angle correct</td><td>Pitch angle correct</td></tr>
+  </table>
+</div>
+<p>Compensation is applied by tilting the top of the rotor axis slightly forward (for erection error) and slightly to the left (for pendulosity error) — tilts of the order of <span class="reg-value">2°</span>. The horizon bar setting is similarly modified.</p>
+
+<h2 id="sec-9">9. Rigidity and Serviceability Checks</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Rotor speeds, rigidity, and pre-flight serviceability checks.
+</div>
+<table>
+  <tr><th>AH Type</th><th>Rotor Speed</th><th>Gyroscopic Inertia</th></tr>
+  <tr><td>Suction AH</td><td>Up to <span class="reg-value">15,000 rpm</span></td><td>High</td></tr>
+  <tr><td>Electric AH</td><td>Typically <span class="reg-value">22,500 rpm</span></td><td>Even greater</td></tr>
+</table>
+<div class="box-green">
+  <strong>Before Flight Serviceability Checks:</strong>
+  <ul>
+    <li>Check that the horizon bar takes up a laterally level position with the correct pitch indication for the aircraft type.</li>
+    <li>Confirm indication is maintained when taxiing.</li>
+    <li>If a caging device is fitted, uncage at least <span class="reg-value">5 minutes</span> before take-off to ensure the rotor axis has reached alignment with the true vertical.</li>
+  </ul>
+  <strong>In Flight:</strong> The artificial horizon should give an immediate and correct indication of any change in pitch or roll attitude.
+</div>
+
+<h2 id="sec-10">10. The Electric Artificial Horizon</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Advantages of the electric AH over the air-driven type.
+</div>
+<p>The main advantage of the electric artificial horizon is its <strong>greater rigidity</strong> due to its faster spin rate (<span class="reg-value">22,500 rpm</span> typical vs. <span class="reg-value">15,000 rpm</span> for suction). This results in increased accuracy due to reduced errors. The basic principle (earth gyro, tied to vertical) is the same as the air-driven horizon.</p>
+<p>The vertical gyro is tied to the vertical by <strong>mercury / levelling switches</strong> and <strong>torque motors</strong> rather than the pendulous vanes of the air-driven horizon.</p>
+
+<h2 id="sec-11">11. Electric AH Control System</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Mercury/levelling switch operation; torque motor placement for pitch and roll correction.
+</div>
+<p>The gravity-operated control system uses mercury / levelling switches fixed to the base of the rotor and electric torque motors. If a levelling switch is not level, the mercury liquid ball moves from its central position and closes the circuit to drive its torque motor. The torque motor force is precessed to return the gyro axis to the vertical.</p>
+<p>There are <strong>two levelling switches</strong> — one sensing pitch, one sensing roll — activating their respective torque motors.</p>
+<figure>
+  <img src="figs/fig_p178_0.png" alt="Electric horizon control system">
+  <figcaption>Fig 13.10 — The electric horizon control system (mercury switches + torque motors). Source p.178</figcaption>
+</figure>
+<p>Due to the 90° precession rule:</p>
+<ul>
+  <li>Torque motor on the side of the <strong>inner gimbal</strong> corrects wander in the <em>rolling plane</em>.</li>
+  <li>Torque motor on the <strong>outer (longitudinal) gimbal</strong> corrects wander in the <em>pitch plane</em>.</li>
+</ul>
+<div class="box-amber">
+  <strong>Exam Tip:</strong> The torque motor is on the perpendicular axis to the correction needed — because gyroscopic precession shifts the effect 90° from the applied force.
+</div>
+
+<h2 id="sec-12">12. Acceleration Errors — Electric AH</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Why electric AHs have minimal acceleration errors; pitch and roll cut-out switches.
+</div>
+<div class="box-green">
+  <strong>Why Electric AH Has Minimal Acceleration Errors:</strong>
+  <ul>
+    <li><strong>High rotor speed</strong> → very high gyro rigidity → very low precession rates → less tendency for gyro to move out of vertical.</li>
+    <li><strong>Less bottom-heavy rotor housing</strong> → reduced roll error during acceleration.</li>
+    <li><strong>Pitch cut-out switch:</strong> Activates at acceleration of <span class="reg-value">0.18g or greater</span> — disconnects the pitch levelling switch circuit to prevent false precession.</li>
+    <li><strong>Roll cut-out switch:</strong> Activates at <span class="reg-value">10° angle of bank</span> — prevents the roll mercury switch from falsely activating the roll torque motor during turns.</li>
+  </ul>
+</div>
+
+<h2 id="sec-13">13. Fast Erection System</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How fast erection works, typical erection rates, and when it can/cannot be used.
+</div>
+<p>Many electric horizons include a fast erect system for rapid initial erection and quick re-erection after toppling. The fast erection knob increases voltage to the erection torque motors:</p>
+<table>
+  <tr><th>Mode</th><th>Erection Rate</th></tr>
+  <tr><td>Normal</td><td><span class="reg-value">4° per minute</span></td></tr>
+  <tr><td>Fast erect (knob pushed)</td><td><span class="reg-value">120° per minute</span></td></tr>
+</table>
+<div class="box-red">
+  <strong>CAUTION — Fast Erection:</strong> When airborne, the fast erection knob can <strong>only be used successfully in level flight with no acceleration</strong>. During acceleration or a turn, the liquid level switches would be 'off-centre', and operation of the fast erection system would align the rotor axis with a <em>false vertical</em>.
+</div>
+<div class="box-green">
+  <strong>Benefit of Fast Erection:</strong> The pendulosity (bottom-heaviness) of the gyro can be reduced, decreasing turning and acceleration errors.
+</div>
+
+<h2 id="sec-14">14. Adjustable Aeroplane Datum</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The adjustable datum refinement, its use limitations, and EASA requirements.
+</div>
+<p>Found on some American artificial horizons, this refinement allows the 'aeroplane' datum to be adjusted to lie on the horizon if the aircraft has a pitch-up trimmed attitude in level flight.</p>
+<div class="box-red">
+  <strong>EASA REQUIREMENT:</strong> EASA requires that movable datums be <strong>removed or otherwise rendered inoperative</strong> on aircraft having a maximum all-up weight in excess of <span class="reg-value">6,000 pounds (2,727 kg)</span>. (Reference: AIC 14/1969.) In light aircraft, the datum should be set before flight and left alone — adjusting it in flight during IMC could result in a misleading datum.
+</div>
+
+<h2 id="sec-15">15. Vertical Gyro Unit</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The remote vertical gyro unit and its role in FMS/EFIS.
+</div>
+<p>The <strong>Vertical Gyro Unit (VGU)</strong>, also called the remote vertical gyro or vertically axised data generation unit, performs the same function as the gyro horizon — it establishes a stabilized reference about the pitch and roll axes. However, instead of providing attitude displays directly to a dial, it operates an electrical transmission system to a steering computer, which displays the output on a combined attitude indicator and flight director display.</p>
+<figure>
+  <img src="figs/fig_p180_0.png" alt="Vertical gyro unit">
+  <figcaption>Fig 13.11 — Vertical gyro unit. Source p.180</figcaption>
+</figure>
+<pre class="mermaid">
+flowchart LR
+    VGU["Vertical Gyro Unit\n(remote gyro)"] --> SC["Steering Computer"] --> EADI["Combined Attitude &\nFlight Director Display"]
+    DI["Direct AH\n(conventional)"] --> Pilot["Pilot's Instrument Panel\n(direct reading)"]
+</pre>
+
+<div class="box-amber">
+  <strong>Quick Revision Summary — Chapter 13:</strong>
+  <ul>
+    <li>AH = earth gyro, spin axis tied to vertical. Primary attitude instrument.</li>
+    <li>Air-driven: suction ≈4 inHg; rotor to 15,000 rpm; 4 pendulous vanes.</li>
+    <li>Electric: mercury switches + torque motors; rotor ≈22,500 rpm; greater rigidity.</li>
+    <li>Acceleration error (air-driven, anticlockwise rotor): Nose-UP + Right wing DOWN.</li>
+    <li>Deceleration: opposite — nose-down + left wing low.</li>
+    <li>Turning errors: cancel after 360°; compensated by ≈2° tilt of rotor axis.</li>
+    <li>Electric AH: pitch cut-out at 0.18g; roll cut-out at 10° bank.</li>
+    <li>Fast erect: normal 4°/min → fast 120°/min. Only use in level, unaccelerated flight.</li>
+    <li>Older AH limits: ±60° pitch, ±110° roll. Modern: ±85° pitch, 360° roll.</li>
+    <li>Re-erection without fast erect: 10–15 minutes.</li>
+    <li>Uncage caging device: ≥5 minutes before take-off.</li>
+    <li>EASA: adjustable datum inoperative above 6,000 lb MTOW.</li>
+  </ul>
+</div>
+
+<div class="qa-section">
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+<div class="box-blue">
+  Source questions reproduced verbatim. Answer key from source: 1-d, 2-c, 3-d, 4-b, 5-d, 6-a, 7-a, 8-b, 9-a.
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">An artificial horizon utilizes (i)............ to show (ii)........ in (iii)....... and (iv).............</span>
+    <ol class="q-options" type="a">
+      <li>(i) an earth gyro — (ii) position — (iii) latitude — (iv) longitude</li>
+      <li>(i) a space gyro — (ii) attitude — (iii) degrees — (iv) minutes</li>
+      <li>(i) an earth gyro — (ii) latitude — (iii) pitch — (iv) roll</li>
+      <li>(i) an earth gyro — (ii) attitude — (iii) pitch — (iv) roll</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d) an earth gyro — attitude — pitch — roll</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The AH uses an earth gyro (spin axis tied to the earth's vertical by gravity). It shows attitude (not position or latitude) in both pitch and roll. See <a href="#sec-1">Section 1</a> and <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — "Position," "latitude," and "longitude" describe a navigation instrument, not an attitude indicator.</li>
+        <li><strong>(b)</strong> — A "space gyro" is a free gyro fixed in space — the AH uses an earth gyro tied to the vertical by gravity.</li>
+        <li><strong>(c)</strong> — Correct gyro type but "latitude" is wrong; it shows attitude in pitch and roll.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> "Earth gyro" = spin axis tied to earth's vertical by gravity. "Space gyro" = spin axis fixed relative to inertial space. The AH is an earth gyro.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">During the take-off run an air driven artificial horizon will usually indicate:</span>
+    <ol class="q-options" type="a">
+      <li>nose up and incorrect left bank</li>
+      <li>a false descending turn to the right</li>
+      <li>increased nose-up attitude and right wing low</li>
+      <li>a false climbing turn to the left</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) increased nose-up attitude and right wing low</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> During the take-off run (linear acceleration), a British air-driven AH (anticlockwise rotor spin) shows a false nose-UP and right wing DOWN indication. Pitch error: lateral vanes lag → port slot opens → reaction precessed → nose-up. Roll error: bottom-heavy rotor housing lags → precessed → base moves starboard → right wing down. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — "Left bank" is incorrect; acceleration gives right wing down (starboard bank) error.</li>
+        <li><strong>(b)</strong> — "Descending" and "to the right" are both wrong; the indication is climbing (nose up) and right wing down, but not a turn.</li>
+        <li><strong>(d)</strong> — "Left" is incorrect; the bank error is to the right.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The question specifies "air driven" and implies British-style (anticlockwise rotor). The mnemonics: "ACCELERATION = Nose-Up + Right-Wing-Down."</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">The indication on the right shows: [image shows 30° bank to port, horizon bar above gull-wing]</span>
+    <ol class="q-options" type="a">
+      <li>a climbing turn to the right</li>
+      <li>nose up and left wing down</li>
+      <li>30° starboard bank, nose up</li>
+      <li>30° port bank, nose below horizon</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d) 30° port bank, nose below horizon</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> On an AH display, when the gull-wing (aircraft symbol) tilts to the right relative to the horizon bar, the aircraft is banked to port (left). When the horizon bar is above the gull-wing (nose), the aircraft is nose-down. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — "Climbing" and "right" — pitch and bank are both opposite.</li>
+        <li><strong>(b)</strong> — "Left wing down" would mean starboard bank; the display shows port bank.</li>
+        <li><strong>(c)</strong> — "Starboard" is incorrect; gull-wing tilts right = port bank.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Remember — on the AH, the gull-wing follows the aircraft. If the left wing appears lower (gull-wing left side down), the aircraft's left wing is down = port bank.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">False nose-up attitude displayed on air driven artificial horizon during the take-off run is caused by:</span>
+    <ol class="q-options" type="a">
+      <li>the high pendulosity of the rotor</li>
+      <li>the lag of the lateral pendulous vanes</li>
+      <li>the linear acceleration cut-out</li>
+      <li>incorrect rotor speed</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) the lag of the lateral pendulous vanes</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> During acceleration, the lateral pendulous vanes lag backwards (due to inertia). This uncovers the starboard slot and covers the port slot, creating an unbalanced reaction that is precessed to produce a false nose-up indication. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — High pendulosity of the rotor housing causes the roll error (right wing down), not the pitch error.</li>
+        <li><strong>(c)</strong> — The linear acceleration cut-out is a feature of the electric AH, not the air-driven type, and it would reduce errors, not cause them.</li>
+        <li><strong>(d)</strong> — Incorrect rotor speed affects rigidity and precession rate but is not the cause of the specific acceleration pitch error.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Pitch error = lateral vanes lag. Roll error = pendulous (bottom-heavy) rotor housing lags. Two distinct mechanisms for two distinct errors.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">The rotor axis of an electrical horizon is tied to the earth's vertical by:</span>
+    <ol class="q-options" type="a">
+      <li>four pendulous vanes</li>
+      <li>the roll cut-out</li>
+      <li>the low centre of gravity of the rotor housing</li>
+      <li>two mercury level switches and two torque motors</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d) two mercury level switches and two torque motors</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The electric AH uses mercury / levelling switches (one for pitch, one for roll) and torque motors to tie the rotor axis to the earth's vertical. See <a href="#sec-11">Section 11</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — Four pendulous vanes are the erection method of the air-driven AH, not the electric.</li>
+        <li><strong>(b)</strong> — The roll cut-out is a safety feature to prevent false erection during turns, not the erection system itself.</li>
+        <li><strong>(c)</strong> — The low centre of gravity (bottom-heaviness) assists initial erection but is not the erection control system.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Air-driven = pendulous vanes. Electric = mercury switches + torque motors. A clean distinction that is frequently tested.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">False right wing low attitude shown on an air driven artificial horizon during an acceleration is caused by:</span>
+    <ol class="q-options" type="a">
+      <li>the lag of the base of the rotor housing</li>
+      <li>the longitudinal pendulous vanes</li>
+      <li>the roll cut-out</li>
+      <li>high rotor speed</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) the lag of the base of the rotor housing</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The rotor housing is bottom-heavy (pendulous). During acceleration, inertia causes the weighted base to try to lag behind. This force is precessed (90° in direction of rotor spin), moving the base to starboard → gyro axis tilts → right wing down indication. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> — The longitudinal pendulous vanes cause the pitch error (nose-up), not the roll error.</li>
+        <li><strong>(c)</strong> — The roll cut-out is an electric AH feature and reduces (not causes) errors.</li>
+        <li><strong>(d)</strong> — High rotor speed increases rigidity and reduces errors; it does not cause roll error.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Pitch error (Q4) = lateral vanes. Roll error (this Q) = heavy base of rotor housing. Learn to distinguish the two mechanisms.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q7.</span><span class="q-text">Inside an artificial horizon:</span>
+    <ol class="q-options" type="a">
+      <li>the inner gimbal ring is pivoted laterally inside the outer gimbal ring and the outer gimbal ring is pivoted longitudinally inside the case</li>
+      <li>the inner gimbal ring is tied to the vertical by a control system</li>
+      <li>the rotor axis is kept level by a calibrated spring attached to the outer gimbal ring and the instrument case</li>
+      <li>there is only one gimbal ring</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) inner gimbal ring pivoted laterally inside outer gimbal ring; outer gimbal ring pivoted longitudinally inside the case</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> This describes the correct gimbal arrangement for the AH. The inner gimbal pivots laterally (about the lateral/pitch axis YY), the outer gimbal pivots longitudinally (about the longitudinal/roll axis ZZ inside the case). See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> — It is the rotor axis (via gimbals) that is tied to the vertical by the control system, not the inner gimbal ring directly.</li>
+        <li><strong>(c)</strong> — Springs are used in the rate gyro (turn indicator), not the AH erection system.</li>
+        <li><strong>(d)</strong> — The AH has two gimbal rings (inner and outer), not one.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> In the AH, the gimbal arrangement allows complete freedom in pitch and roll. The rotor axis stays vertical while the instrument case (attached to aircraft) moves around it.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q8.</span><span class="q-text">When an adjustable aircraft datum is fitted to an artificial horizon in light aircraft:</span>
+    <ol class="q-options" type="a">
+      <li>it should be checked at regular intervals</li>
+      <li>it should be set to the central position and left there</li>
+      <li>it should be rendered inoperative</li>
+      <li>it should be set to 15°</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) it should be set to the central position and left there</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> In light aircraft, AIC 14/1969 strongly recommends that the datum be set before flight and thereafter left alone. For aircraft over 6,000 lb MTOW, EASA requires it be rendered inoperative. Note: option (c) applies to heavier aircraft. See <a href="#sec-14">Section 14</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — Regular in-flight checking/adjusting is the risk — it should be set before flight and not touched again.</li>
+        <li><strong>(c)</strong> — This applies to aircraft over 6,000 lb MTOW (EASA requirement), not to light aircraft specifically. The question specifies light aircraft.</li>
+        <li><strong>(d)</strong> — 15° has no relevance to the datum setting procedure.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The question specifically says "light aircraft." For heavy aircraft (&gt;6,000 lb), render inoperative. For light aircraft — set before flight, leave it alone.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q9.</span><span class="q-text">An electrically driven artificial horizon has less errors during the take-off run because:</span>
+    <ol class="q-options" type="a">
+      <li>it is less pendulous, has a higher rotor speed and a linear acceleration cut-out</li>
+      <li>the mercury level switches are more sensitive than the pendulous vanes fitted to air driven types</li>
+      <li>the roll cut-out speed is activated</li>
+      <li>it is less aperiodic than the air driven types</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) it is less pendulous, has a higher rotor speed, and a linear acceleration cut-out</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Three factors reduce acceleration errors in the electric AH: (1) less bottom-heaviness (less pendulous rotor housing) reduces roll error; (2) higher rotor speed increases rigidity reducing all precession; (3) linear acceleration (pitch) cut-out at 0.18g prevents false erection. See <a href="#sec-12">Section 12</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> — Greater sensitivity of mercury switches would worsen acceleration errors, not reduce them. The cut-outs are needed specifically because the switches can be too sensitive.</li>
+        <li><strong>(c)</strong> — The roll cut-out activates at 10° bank (during turns), not during the take-off run (linear acceleration).</li>
+        <li><strong>(d)</strong> — "Aperiodicity" is a compass term (damping ratio). Not applicable here.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> All three factors in (a) work together. The cut-out prevents false erection; less pendulosity reduces the mechanical cause of roll error; higher speed reduces the effect of any residual error.</div>
+  </div>
+</div>
+
+</div><!-- end qa-section -->
+
+<h2 id="master-ref">Master Reference Tables</h2>
+<table>
+  <tr><th>Parameter</th><th>Air-Driven AH</th><th>Electric AH</th></tr>
+  <tr><td>Erection method</td><td>4 pendulous vanes + slots</td><td>Mercury switches + torque motors</td></tr>
+  <tr><td>Rotor speed</td><td><span class="reg-value">Up to 15,000 rpm</span></td><td><span class="reg-value">≈ 22,500 rpm</span></td></tr>
+  <tr><td>Pitch limit (older)</td><td>±60°</td><td>±85° (modern)</td></tr>
+  <tr><td>Roll limit (older)</td><td>±110°</td><td>360° (modern)</td></tr>
+  <tr><td>Pitch cut-out</td><td>None</td><td><span class="reg-value">0.18g</span></td></tr>
+  <tr><td>Roll cut-out</td><td>None</td><td><span class="reg-value">10° bank</span></td></tr>
+  <tr><td>Normal erection rate</td><td>Slow</td><td><span class="reg-value">4°/min</span></td></tr>
+  <tr><td>Fast erection rate</td><td>N/A (cage)</td><td><span class="reg-value">120°/min</span></td></tr>
+  <tr><td>Re-erection time (no fast)</td><td><span class="reg-value">10–15 min</span></td><td><span class="reg-value">10–15 min</span></td></tr>
+  <tr><td>Suction (air-driven)</td><td><span class="reg-value">≈4 inHg</span></td><td>N/A</td></tr>
+</table>
+
+<h3>Acceleration Error Summary</h3>
+<table>
+  <tr><th>Event</th><th>British Air-Driven (CCW rotor)</th><th>American/Electric (CW rotor)</th></tr>
+  <tr><td>Acceleration (take-off)</td><td>Nose-UP + Right wing DOWN</td><td>Nose-UP + Left wing DOWN</td></tr>
+  <tr><td>Deceleration</td><td>Nose-DOWN + Left wing LOW</td><td>Nose-DOWN + Right wing LOW</td></tr>
+</table>
+
+<h3>Answer Key Summary</h3>
+<table>
+  <tr><th>Q</th><th>Answer</th><th>Key Topic</th></tr>
+  <tr><td>1</td><td>d</td><td>Earth gyro; shows attitude in pitch and roll</td></tr>
+  <tr><td>2</td><td>c</td><td>Acceleration → nose-up + right wing down</td></tr>
+  <tr><td>3</td><td>d</td><td>30° port bank, nose below horizon</td></tr>
+  <tr><td>4</td><td>b</td><td>Pitch error = lag of lateral pendulous vanes</td></tr>
+  <tr><td>5</td><td>d</td><td>Electric: 2 mercury switches + 2 torque motors</td></tr>
+  <tr><td>6</td><td>a</td><td>Roll error = lag of bottom-heavy rotor housing base</td></tr>
+  <tr><td>7</td><td>a</td><td>Inner gimbal lateral; outer gimbal longitudinal</td></tr>
+  <tr><td>8</td><td>b</td><td>Light aircraft: set before flight, leave alone</td></tr>
+  <tr><td>9</td><td>a</td><td>Less pendulous + higher RPM + pitch cut-out</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

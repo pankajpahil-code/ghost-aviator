@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 17 – Remote Indicating Magnetic Compass | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a3a6b; border-bottom: 3px solid #1a3a6b; padding-bottom: 8px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a3a6b; margin-top: 30px; border-left: 5px solid #1a3a6b; padding-left: 10px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #2c5aa0; margin-top: 20px; }
+  p { margin: 8px 0 12px 0; }
+  .cover { text-align: center; padding: 40px 20px; border: 3px solid #1a3a6b; border-radius: 10px; margin-bottom: 30px; }
+  .cover h1 { border: none; font-size: 2.2em; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 8px; }
+  .cover .author { font-size: 1em; color: #333; margin-top: 6px; font-weight: 600; }
+  .toc { background: #f5f8ff; border: 1px solid #b0c4e8; border-radius: 8px; padding: 20px 30px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { border: none; margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: #2c5aa0; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a3a6b; color: #fff; padding: 8px 12px; text-align: left; font-weight: 700; }
+  td { border: 1px solid #ccc; padding: 7px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  blockquote { border-left: 4px solid #aaa; background: #f9f9f9; margin: 15px 0; padding: 10px 15px; font-family: Georgia,serif; font-style: italic; page-break-inside: avoid; }
+  figure { text-align: center; margin: 20px auto; max-width: 100%; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #555; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Instrumentation</div>
+  <h1>Chapter 17<br>Remote Indicating Magnetic Compass</h1>
+  <div class="subtitle">Oxford Aviation Academy — Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Limitations of the DRMC and DGI</a></li>
+    <li><a href="#sec-2">Requirement for the Gyro-magnetic Compass</a></li>
+    <li><a href="#sec-3">Basic System Description and Components</a></li>
+    <li><a href="#sec-4">Operation with Steady Heading — Gyro Drift Correction</a></li>
+    <li><a href="#sec-5">Operation in a Turn — Gyro Drift Small Over Period of Turn</a></li>
+    <li><a href="#sec-6">Rapid Synchronization</a></li>
+    <li><a href="#sec-7">Detector Unit — The Flux Valve</a></li>
+    <li><a href="#sec-8">Flux Valve — How It Works (Faraday's Law)</a></li>
+    <li><a href="#sec-9">Error Signal Comparison — Rotor-Stator</a></li>
+    <li><a href="#sec-10">Heading Indicator</a></li>
+    <li><a href="#sec-11">Operation as a DGI — FREE Mode vs. SLAVED Mode</a></li>
+    <li><a href="#sec-12">Annunciator</a></li>
+    <li><a href="#sec-13">Keeping the Gyro Axis Horizontal</a></li>
+    <li><a href="#sec-14">Transmitting Heading Output — Selsyn Unit</a></li>
+    <li><a href="#sec-15">Summary</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#master-ref">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Limitations of the DRMC and DGI</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Why the Direct Reading Compass and DGI each fail alone, and what the gyro-magnetic compass solves.
+</div>
+<h3>Direct Reading Magnetic Compass (DRMC) Limitations</h3>
+<ul>
+  <li>Turning and acceleration errors — cannot be read accurately during a turn.</li>
+  <li>Magnetic sensing element is within the instrument, close to the pilot — hence close to deviation sources (lights, motors, ferrous metal in the cockpit).</li>
+  <li>Self-contained — cannot feed heading information to other equipment.</li>
+</ul>
+<h3>Directional Gyro Indicator (DGI) Limitations</h3>
+<ul>
+  <li>No magnetic element — if the gyro drifts, there is no correction except by the pilot manually synchronizing to the DRMC at regular intervals.</li>
+  <li>Turning and acceleration errors are eliminated, and output can be taken to other equipment — but long-term heading accuracy suffers from drift.</li>
+</ul>
+
+<h2 id="sec-2">2. Requirement for the Gyro-magnetic Compass</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The combined system concept; alternative names.
+</div>
+<p>The ideal system combines the <strong>short-term rigidity of the gyro</strong> (overcoming turning and acceleration errors) with the <strong>long-term magnetic monitoring</strong> of the earth's field (correcting gyro drift via a servo/slaving system). This is the <strong>gyro-magnetic compass</strong>.</p>
+<div class="box-green">
+  <strong>Alternative Names (all mean the same thing):</strong>
+  <ul>
+    <li>Gyro-magnetic Compass</li>
+    <li>Remote Indicating Compass (RIMC)</li>
+    <li>Slaved Gyro Compass</li>
+  </ul>
+</div>
+
+<h2 id="sec-3">3. Basic System Description and Components</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The five major components of the gyro-magnetic compass system.
+</div>
+<table>
+  <tr><th>Component</th><th>Alternative Name</th><th>Function</th></tr>
+  <tr><td>Magnetic Detector Unit</td><td>Flux valve / Flux detector</td><td>Senses direction of earth's magnetic field</td></tr>
+  <tr><td>Heading Indicator</td><td>Compass (HI)</td><td>Displays heading to pilot; driven by direct drive shaft from gyro</td></tr>
+  <tr><td>Precession Amplifier</td><td>Slaving amplifier</td><td>Amplifies, phase-detects, and rectifies the AC error signal to DC</td></tr>
+  <tr><td>Precession Motor</td><td>Slaving/synchronizing motor</td><td>Driven by DC error signal to turn the gyro</td></tr>
+  <tr><td>Horizontal Gyro</td><td>—</td><td>Provides short-term stability; directly connected to compass card via direct drive shaft and bevel gear</td></tr>
+</table>
+<pre class="mermaid">
+flowchart LR
+    FV["Flux Valve\n(Detector Unit)"] --"AC Error Signal"--> AMP["Precession Amplifier\n(Amplify, Phase-detect,\nRectify to DC)"]
+    AMP --"DC Signal"--> PM["Precession Motor"]
+    PM --"Corrects"--> GY["Horizontal Gyro"]
+    GY --"Direct Drive\nShaft (bevel gear)"--> HI["Heading Indicator\n(Compass Card)"]
+    HI --"Rotor-Stator\nComparison"--> FV
+    HI --"Heading Output\n(Selsyn)"--> OTH["Other Instruments\n(ADI, RMI, FMS...)"]
+</pre>
+<figure>
+  <img src="figs/fig_p213_0.png" alt="RIMC simple signal routing diagram">
+  <figcaption>Fig 17.1 — Simple signal routing in the gyro-magnetic compass system. Source p.213</figcaption>
+</figure>
+
+<h2 id="sec-4">4. Operation with Steady Heading — Gyro Drift Correction</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Step-by-step correction cycle when the gyro drifts while the heading is steady.
+</div>
+<ol>
+  <li>The <strong>flux valve</strong> senses the earth's magnetic field and reproduces it within the compass unit, where it is compared with the position of the gyro drive shaft.</li>
+  <li>If the two are aligned → no error signal → compass reads correctly. No action needed.</li>
+  <li>If the gyro drifts → drive shaft misaligns with flux valve field → an <strong>AC error signal</strong> is generated and passed to the precession amplifier.</li>
+  <li>The amplifier <strong>amplifies, phase-detects, and rectifies</strong> the AC error signal to DC.</li>
+  <li>The <strong>DC signal drives the precession motor</strong>, which turns the gyro.</li>
+  <li>The gyro output is fed via the direct drive shaft to the heading indicator for comparison with the flux valve signal.</li>
+  <li>When aligned → compass synchronized → no further action.</li>
+</ol>
+<div class="box-amber">
+  <strong>Key Parameter:</strong> Normal correction rate of the precession motor = approximately <span class="reg-value">3° per minute</span>. This slow rate prevents the system from over-reacting to transient disturbances (turns, accelerations).
+</div>
+
+<h2 id="sec-5">5. Operation in a Turn — Gyro Drift Small Over Period of Turn</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Why the compass remains synchronized during turns without generating spurious error signals.
+</div>
+<p>During a turn, the aircraft turns but the gyro (having rigidity) does not. The relative rotation between the horizontal gyro and the instrument case operates the bevel gear on the direct drive shaft, changing the heading indication on the compass card. At the same time, the heading sensed by the flux valve is also changing at the same rate. Therefore, <strong>no error signal is generated</strong> and the compass remains synchronized during the turn.</p>
+<p>If there is some gyro drift during the turn, on completion of the turn a small error signal will appear and be corrected at the normal rate of ≈3°/min.</p>
+<div class="box-green">
+  <strong>Why the gyro is not bypassed entirely:</strong> Without the gyro, the flux valve field could be compared directly with the compass card. However, such a system would be overly responsive to flux valve fluctuations and would suffer significantly from turning and acceleration errors. The gyro provides stability — corrections are applied only at ≈3°/minute.
+</div>
+
+<h2 id="sec-6">6. Rapid Synchronization</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The problem of initial random gyro alignment; two methods of rapid synchronization.
+</div>
+<p>On initial switch-on, the gyro adopts a random alignment unlikely to be synchronized with the earth's magnetic field. At the normal rate of ≈3°/minute, a 90° misalignment would take <span class="reg-value">30 minutes</span> to correct — unacceptable.</p>
+<div class="box-green">
+  <strong>Rapid Synchronization Methods:</strong>
+  <ul>
+    <li><strong>Mechanical clutch</strong> — operated by the pilot (similar to the DGI caging device).</li>
+    <li><strong>High gain mode</strong> for the precession amplifier — a 2-position switch, spring-loaded to normal, held against the spring for rapid alignment. Increases precession motor correction rate so synchronization takes <span class="reg-value">only a few seconds</span>.</li>
+  </ul>
+</div>
+
+<h2 id="sec-7">7. Detector Unit — The Flux Valve</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Physical location, construction, and mounting of the flux valve.
+</div>
+<p>The detector unit is positioned in a part of the aircraft <strong>least affected by on-board electrical fields</strong> — usually the <strong>wing tip or tail fin</strong>, where aircraft-generated magnetic disturbances are at a minimum.</p>
+<p>Its function is to sense the direction of the earth's magnetic field. It contains a <strong>pendulous magnetic detecting element</strong> mounted on a <strong>Hooke's Joint</strong> which enables the detector to swing within limits of <span class="reg-value">25°</span> about the pitch and roll axes, but allows <strong>no rotation in azimuth</strong>. The unit is contained in a sealed case partially filled with oil to dampen oscillations.</p>
+<figure>
+  <img src="figs/fig_p215_0.png" alt="Magnetic detector unit (flux valve) — overall view">
+  <figcaption>Fig 17.2 — A magnetic detector unit mounted in the wing tip. Source p.215</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p215_1.png" alt="Flux valve components — three spoked device">
+  <figcaption>Fig 17.3 — Flux valve components: 3-spoked device, fixed in azimuth, with 'rams horns' at leg ends. Source p.215</figcaption>
+</figure>
+<p>The primary component is the <strong>flux valve</strong> — a <strong>3-spoked device</strong>, fixed in azimuth but with some freedom in the vertical to align with the plane of the earth's magnetic field. The curved 'rams horns' at the end of each leg improve magnetic flux gathering efficiency.</p>
+
+<h2 id="sec-8">8. Flux Valve — How It Works (Faraday's Law)</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The electromagnetic principle of the flux valve; why 3 legs are needed; output characteristics.
+</div>
+<figure>
+  <img src="figs/fig_p216_0.png" alt="Three flux valve legs assembled">
+  <figcaption>Fig 17.4 — Three flux valve legs assembled, showing secondary windings (red). Source p.216</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p216_1.png" alt="Single leg of flux valve — simplified diagram">
+  <figcaption>Fig 17.5 — A single leg of a flux valve: AC fed to centre post; produces anti-phase fields in top and bottom legs A and B. Source p.216</figcaption>
+</figure>
+<h3>Single Leg Operation</h3>
+<p>AC is fed to the coil wound around the centre post, producing fields of opposite sign (anti-phase) in the top and bottom legs of the flux valve leg. Without the earth's background field, these two fields cancel → resultant flux = zero → no current in the pick-off coil.</p>
+<figure>
+  <img src="figs/fig_p217_0.png" alt="Flux fields at A and B and resultant — no earth field">
+  <figcaption>Fig 17.6 — Flux fields at A (red) and B (blue) in anti-phase: resultant (green) = zero. Source p.217</figcaption>
+</figure>
+<p>When the earth's magnetic field is present as a background, the positive and negative flux start from a non-zero baseline. The physical characteristics of the flux valve metal are such that it <strong>magnetically saturates</strong> at a certain level — it will not magnetize further beyond the saturation level.</p>
+<figure>
+  <img src="figs/fig_p217_1.png" alt="Flux fields with earth background magnetism">
+  <figcaption>Fig 17.7 — Effect of earth's background magnetism: saturation causes the summed (green) flux to show a dip, which induces an EMF. Source p.217</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p217_2.png" alt="Flux density curve showing saturation">
+  <figcaption>Fig 17.8 — Flux density: saturation limiting gives a resultant flux with dips from which EMF is induced. Source p.217</figcaption>
+</figure>
+<blockquote>
+  <strong>Faraday's Law of Electromagnetic Induction:</strong> "If the number of lines of force threading a circuit is changing, an induced electromotive force (EMF) will be set up in the circuit, the magnitude of the EMF being proportional to the rate of change in the number of lines of force threading the circuit."
+</blockquote>
+<p>The secondary winding picks up the change in magnetic flux density (the dips in the resultant flux) as an EMF, detected as an AC signal.</p>
+<figure>
+  <img src="figs/fig_p218_0.png" alt="Effect of earth's field on different directions of flux valve leg">
+  <figcaption>Fig 17.9 — EMF induced varies as the cosine of the magnetic direction of the flux valve leg. Maximum when leg is aligned with the earth's field; zero when at right angles. Source p.218</figcaption>
+</figure>
+<h3>Why 3 Legs Are Needed</h3>
+<p>The EMF varies as the cosine of the angle between the flux valve leg and the earth's field — but for any given voltage, there are two possible heading values (cos is not a unique function from 0–360°). A single leg cannot unambiguously determine heading.</p>
+<p>The <strong>3-leg system</strong> solves this: the output from each leg is fed to one of 3 legs of a stator, recreating the earth's field relative to the flux valve direction around the direct drive shaft from the gyro to the heading indicator compass card. The 3-phase output uniquely determines the field direction.</p>
+<figure>
+  <img src="figs/fig_p218_1.png" alt="Connection of flux valve to stator legs">
+  <figcaption>Fig 17.10 — Three-leg flux valve outputs connected to stator: field recreated around the drive shaft. Source p.218</figcaption>
+</figure>
+
+<h2 id="sec-9">9. Error Signal Comparison — Rotor-Stator</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How the error signal is generated, amplified, phase-detected, and rectified to drive the precession motor in the correct direction.
+</div>
+<p>A wound coil (the <strong>rotor</strong>) is mounted on the gyro drive shaft. If the coil is in line with the AC field generated by the stators, a secondary AC voltage is induced (maximum voltage). If the rotor is at 90° to the AC field (<strong>null position</strong>), no secondary voltage is induced. At any other position, some voltage is induced.</p>
+<p>This secondary voltage = the error signal. It is passed to the precession amplifier where it is:</p>
+<table>
+  <tr><th>Step</th><th>Process</th><th>Reason</th></tr>
+  <tr><td>1</td><td><strong>Amplified</strong></td><td>Un-amplified error signal is not powerful enough to drive the precession motor.</td></tr>
+  <tr><td>2</td><td><strong>Phase Detected</strong></td><td>Determines the sense (direction) of the error — so the motor turns the shortest way (e.g., 2° anticlockwise, not 358° clockwise), preventing continuous rotation.</td></tr>
+  <tr><td>3</td><td><strong>Rectified to DC</strong></td><td>The precession motor is an electromagnetic solenoid acting on a permanent magnet, which requires DC. The DC direction (+ or −) drives the shaft clockwise or anticlockwise.</td></tr>
+</table>
+<figure>
+  <img src="figs/fig_p219_0.png" alt="Heading indicator — typical compass card with lubber line, heading bug">
+  <figcaption>Fig 17.11 — Typical heading indicator: lubber line, heading selector bug, heading warning flag. Source p.219</figcaption>
+</figure>
+
+<h2 id="sec-10">10. Heading Indicator</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The compass card display; heading bug; warning flag.
+</div>
+<p>The heading indicator dial (compass card) is directly driven by the shaft from the gyro. The compass card rotates as heading changes and the heading is read against the index line in the 12 o'clock position (the <strong>lubber line</strong>).</p>
+<p>A <strong>heading bug</strong> (heading select marker) can be set by the pilot to indicate a desired heading. If the magnetic input from the flux valve fails, a <strong>heading warning flag</strong> appears.</p>
+
+<h2 id="sec-11">11. Operation as a DGI — FREE Mode vs. SLAVED Mode</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> FREE vs. SLAVED modes; when FREE mode is used; how the pilot synchronizes in FREE mode.
+</div>
+<table>
+  <tr><th>Mode</th><th>Description</th><th>When Used</th></tr>
+  <tr><td><strong>SLAVED</strong></td><td>Normal operation: gyro slaved (long-term) to flux valve input. Error correction at ≈3°/min.</td><td>Normal operations where flux valve is reliable</td></tr>
+  <tr><td><strong>FREE</strong></td><td>Flux valve input disconnected. Rotor/stator comparison ceases. Gyro operates as a free gyro (DGI). No magnetic monitoring.</td><td>Flux valve fails, or near magnetic poles where flux valve is unreliable</td></tr>
+</table>
+<div class="box-red">
+  <strong>In FREE mode:</strong> The compass acts as a DGI — it will drift and must be re-set periodically to a directional reference (standby compass or other source). The pilot adjusts the indicated heading using the CCW/CW (counter-clockwise/clockwise) control switch, which is spring-loaded to the central position.
+</div>
+<figure>
+  <img src="figs/fig_p220_0.png" alt="Compass control panel — FREE/SLAVE switch and annunciator">
+  <figcaption>Fig 17.12 — Compass control panel: FREE/SLAVE switch, CCW/CW sync switch, and annunciator. Source p.220</figcaption>
+</figure>
+
+<h2 id="sec-12">12. Annunciator</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> What the annunciator is; its two purposes for the pilot.
+</div>
+<p>The <strong>annunciator</strong> is an indicator positioned in the error signal path between the precession amplifier and the precession motor. During normal flight in SLAVED mode, continuous slight oscillations of heading mean the rotor/stator comparison continuously generates very small error signals. This continuous 'hunting' is normal and by design.</p>
+<figure>
+  <img src="figs/fig_p220_1.png" alt="Annunciator in circuit — signal path">
+  <figcaption>Fig 17.13 — Annunciator in circuit: error signal passes through annunciator on way from amplifier to precession motor. Source p.220</figcaption>
+</figure>
+<div class="box-green">
+  <strong>Annunciator Purposes:</strong>
+  <ul>
+    <li><strong>1st purpose:</strong> Confirms that magnetic monitoring of the gyro is taking place — the compass is 'synchronized' and working normally.</li>
+    <li><strong>2nd purpose:</strong> On systems where the pilot must synchronize manually, it indicates which way to turn the compass for synchronization.</li>
+  </ul>
+</div>
+
+<h2 id="sec-13">13. Keeping the Gyro Axis Horizontal</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How topple (not drift) is prevented; two methods; importance of slow precession rate.
+</div>
+<p>Gyro wander takes two forms: <strong>drift</strong> (azimuth wander — handled by the slaving system) and <strong>topple</strong> (vertical wander — must be corrected separately).</p>
+<p>The gyro must be tied either to the <strong>aircraft yaw axis</strong> or to <strong>gravity</strong> to stay horizontal. Both methods use a levelling switch and a torque motor:</p>
+<ul>
+  <li><strong>Yaw axis method</strong>: Inner and outer gimbals maintained at 90° to each other by a system of commutators, insulating strips, and brushes.</li>
+  <li><strong>Gravity method</strong>: Mercury gravity switches used.</li>
+</ul>
+<p>Either way, correcting signals are passed to a <strong>torque motor</strong> which applies rotational force to the gyro in the yaw axis. The resulting precession returns the gyro to the horizontal — but at a <strong>slow precession rate</strong> so it does not react wildly to temporary departures (turns, accelerations, climbs, descents).</p>
+
+<h2 id="sec-14">14. Transmitting Heading Output — Selsyn Unit</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How heading information is transmitted to other instruments using a Selsyn (synchro) unit.
+</div>
+<p>Heading information is picked off from the drive shaft between the gyro and the compass card and transmitted to other instruments using a <strong>Selsyn Unit</strong> (synchro transmitter-receiver pair).</p>
+<figure>
+  <img src="figs/fig_p221_0.png" alt="Selsyn unit — transmitter and repeater">
+  <figcaption>Fig 17.14 — Selsyn unit: transmitter rotor on heading drive shaft; stators connected by 3-strand wire to repeater stators. Source p.221</figcaption>
+</figure>
+<p><strong>How it works:</strong></p>
+<ol>
+  <li>The <strong>transmitter rotor</strong> is attached to the heading drive shaft and rotates with it. It is supplied with a constant primary AC voltage, which induces a field in the stators.</li>
+  <li>The stators are directly connected by <strong>3-strand wire</strong> to the 3 stator arms of the <strong>repeater</strong>, reproducing an identical field there.</li>
+  <li>If the repeater rotor is not perpendicular to the repeater stator field, an AC voltage is induced in the repeater rotor, passed to an amplifier and then a motor to turn the repeater shaft until no further voltage is detected.</li>
+  <li>The <strong>repeater shaft therefore follows any heading changes</strong> in the main gyro drive shaft — driving displays in other instruments (RMI, EHSI, autopilot, FMS, etc.).</li>
+</ol>
+
+<h2 id="sec-15">15. Summary</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How the gyro-magnetic compass overcomes the weaknesses of both the DRMC and DGI.
+</div>
+<table>
+  <tr><th>Weakness</th><th>DRMC</th><th>DGI</th><th>Gyro-Magnetic Compass</th></tr>
+  <tr><td>Turning &amp; acceleration errors</td><td>Yes (major problem)</td><td>Eliminated</td><td>Eliminated (gyro stability)</td></tr>
+  <tr><td>Magnetic element close to deviation sources</td><td>Yes (in cockpit)</td><td>No element at all</td><td>Detector in wing/tail — away from sources</td></tr>
+  <tr><td>Can feed other equipment</td><td>No</td><td>Yes</td><td>Yes (Selsyn output)</td></tr>
+  <tr><td>Long-term heading accuracy</td><td>Good (north-seeking)</td><td>Poor (drift)</td><td>Good (slaved to flux valve)</td></tr>
+</table>
+<div class="box-green">
+  <strong>The gyro-magnetic compass combines:</strong>
+  <ul>
+    <li><strong>Short-term stability</strong> of a gyroscope (overcoming turning/acceleration errors).</li>
+    <li><strong>Long-term directional stability</strong> of the earth's magnetism (correcting gyro drift via the flux valve).</li>
+  </ul>
+</div>
+
+<div class="box-amber">
+  <strong>Quick Revision Summary — Chapter 17:</strong>
+  <ul>
+    <li>Gyro-magnetic compass = RIMC = slaved gyro compass. All the same thing.</li>
+    <li>5 components: Flux valve + Heading Indicator + Precession Amplifier + Precession Motor + Horizontal Gyro.</li>
+    <li>Normal correction rate: <span class="reg-value">≈3°/min</span>.</li>
+    <li>Rapid sync: <span class="reg-value">a few seconds</span> (high gain mode or mechanical clutch).</li>
+    <li>Flux valve: 3-spoked device; position = wing tip or tail fin; freedom ±25° pitch/roll; fixed in azimuth.</li>
+    <li>Flux valve principle: Faraday's Law; magnetic saturation of core; earth field creates dips in resultant flux → EMF induced in secondary winding.</li>
+    <li>EMF varies as cosine of flux valve leg orientation relative to earth field.</li>
+    <li>Error signal: amplified → phase detected → rectified to DC → precession motor.</li>
+    <li>Phase detection: ensures motor turns the SHORT WAY to correct the error.</li>
+    <li>SLAVED mode: gyro slaved to flux valve. FREE mode: acts as DGI — must be re-set manually.</li>
+    <li>Annunciator: indicates synchronization in progress; shows which way to correct in manual sync.</li>
+    <li>Gyro topple correction: slow torque motor (yaw axis). Drift correction: slaving to flux valve.</li>
+    <li>Heading output to other instruments: Selsyn unit (3-strand wire transmitter-repeater).</li>
+    <li>Heading indicator: lubber line at 12 o'clock; heading bug; warning flag on flux valve failure.</li>
+  </ul>
+</div>
+
+<div class="qa-section">
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+<div class="box-blue">
+  Source questions reproduced verbatim from Chapter 17. Answer key from source: 1-b, 2-c, 3-a, 4-a, 5-b, 6-a (combination 2, 3 and 5). Note: Q6 source answer confirmed as (a) = statements 2, 3, and 5.
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">A gyro-magnetic compass or magnetic heading reference unit is an assembly which always consists of:</span>
+    <p>1 - a directional gyro &nbsp; 2 - a vertical axis gyro &nbsp; 3 - an earth's magnetic field detector &nbsp; 4 - an azimuth control &nbsp; 5 - a synchronizing control</p>
+    <p>The combination of correct statements is:</p>
+    <ol class="q-options" type="a">
+      <li>2 and 5</li>
+      <li>1, 3 and 5</li>
+      <li>2, 3 and 5</li>
+      <li>1 and 4</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) 1, 3, and 5</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The gyro-magnetic compass always requires: (1) a directional gyro (horizontal gyro) — provides short-term stability; (3) an earth's magnetic field detector (flux valve) — provides long-term magnetic reference; (5) a synchronizing control (rapid synchronization facility). Statement 2 (vertical axis gyro) is wrong — the gyro in the RIMC is a horizontal gyro (like a DGI), not a vertical axis gyro. Statement 4 (azimuth control) is not a standard separate component — the precession motor performs azimuth correction, but it is not called an "azimuth control" as a named element. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a) 2 and 5</strong> — Statement 2 (vertical axis gyro) is wrong; the RIMC uses a horizontal gyro.</li>
+        <li><strong>(c) 2, 3 and 5</strong> — Again, statement 2 is wrong.</li>
+        <li><strong>(d) 1 and 4</strong> — Incomplete; the flux valve (statement 3) is essential. Statement 4 ("azimuth control") is not a standard component name.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The gyro in the RIMC is a <em>horizontal</em> gyro (horizontal spin axis — like a DGI). The AH uses a vertical gyro. Common trap: confusing "directional gyro" (horizontal axis) with "vertical gyro" (vertical axis).</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">A slaved directional gyro derives its directional signal from:</span>
+    <ol class="q-options" type="a">
+      <li>a direct reading magnetic compass</li>
+      <li>the flight director</li>
+      <li>the flux valve</li>
+      <li>the air data computer</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) the flux valve</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The slaved directional gyro in the RIMC/gyro-magnetic compass derives its long-term directional reference from the flux valve (magnetic detector unit). The flux valve senses the earth's magnetic field and generates an error signal if the gyro drifts from alignment. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — The DRMC is a separate backup instrument. The slaved gyro uses the flux valve, not the DRMC, as its magnetic input.</li>
+        <li><strong>(b)</strong> — The flight director uses heading information from the compass, not the other way round.</li>
+        <li><strong>(d)</strong> — The air data computer provides airspeed and altitude data, not directional reference.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The flux valve is the magnetic "brain" of the system. The DRMC is a separate backup and is not the input to the RIMC's slaving system.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">The gyro-magnetic compass torque motor:</span>
+    <ol class="q-options" type="a">
+      <li>causes the directional gyro unit to precess</li>
+      <li>causes the heading indicator to precess</li>
+      <li>feeds the error detector system</li>
+      <li>is fed by the flux valve</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) causes the directional gyro unit to precess</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The precession motor (torque motor) receives the amplified, phase-detected, DC error signal and uses it to turn (precess) the horizontal gyro. The gyro's rotation is then transmitted via the direct drive shaft to the heading indicator, changing the compass card reading. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> — The heading indicator follows the gyro via the drive shaft; the motor does not act directly on the HI.</li>
+        <li><strong>(c)</strong> — The error detector system (rotor-stator comparison) generates the signal that feeds the motor, not the other way round.</li>
+        <li><strong>(d)</strong> — The motor is fed by the DC output of the precession amplifier, not directly by the flux valve. The flux valve feeds the amplifier (via the error detection process).</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Signal flow: Flux valve → Error detector → Amplifier → Precession motor → Gyro → Drive shaft → Heading indicator. The motor acts on the gyro.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">The heading information originating from the gyro-magnetic compass flux valve is sent to the:</span>
+    <ol class="q-options" type="a">
+      <li>error detector</li>
+      <li>erector system</li>
+      <li>heading indicator</li>
+      <li>amplifier</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) error detector</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The flux valve senses the earth's magnetic field and recreates it (via the 3-leg stator) around the direct drive shaft in the compass unit. This recreated field is compared with the position of the gyro drive shaft rotor (error detector / rotor-stator comparison). The comparison generates the error signal. See <a href="#sec-9">Section 9</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> — "Erector system" usually refers to the AH vertical erection system, not the RIMC.</li>
+        <li><strong>(c)</strong> — The flux valve signal is not sent directly to the heading indicator. It goes to the error detector first; the heading indicator is driven by the gyro drive shaft.</li>
+        <li><strong>(d)</strong> — The amplifier receives the error signal from the detector, not directly from the flux valve.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Flux valve → Error detector (rotor-stator) → Amplifier → Motor → Gyro → HI. Each step in order. The flux valve's first contact point is the error detector.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">The input signal of the amplifier of the gyro-magnetic compass resetting device originates from the:</span>
+    <ol class="q-options" type="a">
+      <li>directional gyro erection device</li>
+      <li>error detector</li>
+      <li>flux valve</li>
+      <li>directional gyro unit</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) error detector</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The precession amplifier's input is the AC error signal generated by the rotor-stator comparison (error detector). The amplifier then amplifies, phase-detects, and rectifies this signal before passing it to the precession motor. See <a href="#sec-9">Section 9</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — The "erection device" refers to the levelling system of the gyro (keeping it horizontal), not the azimuth correction path.</li>
+        <li><strong>(c)</strong> — The flux valve generates the magnetic field signal, but this goes to the error detector first, not directly to the amplifier.</li>
+        <li><strong>(d)</strong> — The directional gyro unit's output (drive shaft position) is one input to the error detector, but the amplifier's input is the error signal from the comparator, not the gyro directly.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The amplifier is in the middle of the chain: Error detector → Amplifier → Motor. Its INPUT is always the error signal from the detector. Its OUTPUT drives the motor.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">A flux valve senses the changes in orientation of the horizontal component of the earth's magnetic field:</span>
+    <p>1 - the flux valve is made of a pair of soft iron bars</p>
+    <p>2 - the primary coils are fed AC voltage</p>
+    <p>3 - the information can be used by a "flux gate" compass or a directional gyro</p>
+    <p>4 - the flux gate valve casing is dependent on the aircraft three inertial axis</p>
+    <p>5 - the accuracy of the value of the magnetic field indication is less than 0.5%</p>
+    <p>The combination of correct statements is:</p>
+    <ol class="q-options" type="a">
+      <li>2, 3 and 5</li>
+      <li>1, 3, 4 and 5</li>
+      <li>3 and 5</li>
+      <li>1, 4 and 5</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) 2, 3 and 5</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong>
+      <ul>
+        <li><strong>Statement 2 — CORRECT:</strong> The primary coils of the flux valve are fed AC voltage, which creates anti-phase fields in the flux valve legs. See <a href="#sec-8">Section 8</a>.</li>
+        <li><strong>Statement 3 — CORRECT:</strong> The flux valve (flux gate) output can be used by a gyro-magnetic (flux gate) compass or as an input to a DGI slaving system.</li>
+        <li><strong>Statement 5 — CORRECT:</strong> The flux valve provides high accuracy magnetic field indication (less than 0.5% error).</li>
+        <li><strong>Statement 1 — INCORRECT:</strong> The flux valve is a 3-spoked device, not a pair of soft iron bars. The legs are made of a material that saturates magnetically at a defined level.</li>
+        <li><strong>Statement 4 — INCORRECT:</strong> The flux valve casing is fixed in azimuth; it is mounted on a Hooke's Joint giving freedom only in pitch and roll (±25°), not all three inertial axes.</li>
+      </ul>
+    </div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> — Includes statements 1 and 4, both of which are incorrect.</li>
+        <li><strong>(c)</strong> — Omits statement 2, which is correct (AC feeds primary coils).</li>
+        <li><strong>(d)</strong> — Includes statements 1 and 4 (both wrong); omits 2 and 3 (both correct).</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Key flux valve facts to check: 3 spokes (not 2 bars); primary = AC; fixed in azimuth (not free in all 3 axes); freedom of ±25° in pitch and roll only; Faraday's Law; 3-phase output.</div>
+  </div>
+</div>
+
+</div><!-- end qa-section -->
+
+<h2 id="master-ref">Master Reference Tables</h2>
+<table>
+  <tr><th>Parameter</th><th>Value / Description</th><th>Section</th></tr>
+  <tr><td>Normal precession motor rate</td><td><span class="reg-value">≈3°/minute</span></td><td><a href="#sec-4">4</a></td></tr>
+  <tr><td>Rapid synchronization time</td><td><span class="reg-value">A few seconds</span></td><td><a href="#sec-6">6</a></td></tr>
+  <tr><td>Without rapid sync — 90° misalignment time</td><td><span class="reg-value">30 minutes</span></td><td><a href="#sec-6">6</a></td></tr>
+  <tr><td>Flux valve location</td><td>Wing tip or tail fin</td><td><a href="#sec-7">7</a></td></tr>
+  <tr><td>Flux valve azimuth freedom</td><td><span class="reg-value">Fixed (no azimuth rotation)</span></td><td><a href="#sec-7">7</a></td></tr>
+  <tr><td>Flux valve pitch/roll freedom</td><td><span class="reg-value">±25°</span></td><td><a href="#sec-7">7</a></td></tr>
+  <tr><td>Flux valve legs</td><td><span class="reg-value">3 spokes</span></td><td><a href="#sec-7">7</a></td></tr>
+  <tr><td>Primary coil supply</td><td><span class="reg-value">AC voltage</span></td><td><a href="#sec-8">8</a></td></tr>
+  <tr><td>EMF varies as</td><td><span class="reg-value">Cosine of angle to earth's field</span></td><td><a href="#sec-8">8</a></td></tr>
+  <tr><td>Error signal type (before amp)</td><td><span class="reg-value">AC</span></td><td><a href="#sec-9">9</a></td></tr>
+  <tr><td>Error signal type (after amp)</td><td><span class="reg-value">DC (rectified)</span></td><td><a href="#sec-9">9</a></td></tr>
+  <tr><td>Heading indicator read point</td><td>Lubber line (12 o'clock)</td><td><a href="#sec-10">10</a></td></tr>
+  <tr><td>Selsyn transmitter connection</td><td>3-strand wire to repeater stators</td><td><a href="#sec-14">14</a></td></tr>
+</table>
+
+<h3>Signal Flow Summary</h3>
+<table>
+  <tr><th>Step</th><th>From</th><th>To</th><th>Signal Type</th></tr>
+  <tr><td>1</td><td>Flux valve</td><td>Stators (error detector)</td><td>AC (3-phase recreated field)</td></tr>
+  <tr><td>2</td><td>Stators + Rotor (on drive shaft)</td><td>Error signal generated</td><td>AC (secondary induced in rotor)</td></tr>
+  <tr><td>3</td><td>Error signal</td><td>Precession amplifier</td><td>AC in</td></tr>
+  <tr><td>4</td><td>Precession amplifier</td><td>Precession motor</td><td>DC out (phase-detected, rectified)</td></tr>
+  <tr><td>5</td><td>Precession motor</td><td>Horizontal gyro</td><td>Mechanical rotation</td></tr>
+  <tr><td>6</td><td>Horizontal gyro</td><td>Compass card (via drive shaft)</td><td>Mechanical rotation → heading display</td></tr>
+  <tr><td>7</td><td>Drive shaft</td><td>Selsyn transmitter → other instruments</td><td>AC (synchro transmission)</td></tr>
+</table>
+
+<h3>Answer Key Summary</h3>
+<table>
+  <tr><th>Q</th><th>Answer</th><th>Key Topic</th></tr>
+  <tr><td>1</td><td>b</td><td>RIMC = directional gyro (1) + flux valve detector (3) + sync control (5)</td></tr>
+  <tr><td>2</td><td>c</td><td>Slaved gyro takes directional signal from flux valve</td></tr>
+  <tr><td>3</td><td>a</td><td>Torque motor precesses the directional gyro</td></tr>
+  <tr><td>4</td><td>a</td><td>Flux valve signal goes to error detector</td></tr>
+  <tr><td>5</td><td>b</td><td>Amplifier input = error signal from error detector</td></tr>
+  <tr><td>6</td><td>a</td><td>Correct statements: 2 (AC primary), 3 (feeds gyro-magnetic compass), 5 (accuracy &lt;0.5%)</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

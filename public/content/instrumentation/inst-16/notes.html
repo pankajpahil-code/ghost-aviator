@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 16 – Aircraft Magnetism | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a3a6b; border-bottom: 3px solid #1a3a6b; padding-bottom: 8px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a3a6b; margin-top: 30px; border-left: 5px solid #1a3a6b; padding-left: 10px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #2c5aa0; margin-top: 20px; }
+  p { margin: 8px 0 12px 0; }
+  .cover { text-align: center; padding: 40px 20px; border: 3px solid #1a3a6b; border-radius: 10px; margin-bottom: 30px; }
+  .cover h1 { border: none; font-size: 2.2em; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 8px; }
+  .cover .author { font-size: 1em; color: #333; margin-top: 6px; font-weight: 600; }
+  .toc { background: #f5f8ff; border: 1px solid #b0c4e8; border-radius: 8px; padding: 20px 30px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { border: none; margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: #2c5aa0; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a3a6b; color: #fff; padding: 8px 12px; text-align: left; font-weight: 700; }
+  td { border: 1px solid #ccc; padding: 7px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  figure { text-align: center; margin: 20px auto; max-width: 100%; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #555; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Instrumentation</div>
+  <h1>Chapter 16<br>Aircraft Magnetism</h1>
+  <div class="subtitle">Oxford Aviation Academy — Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Deviation — Definition and Sign Convention</a></li>
+    <li><a href="#sec-2">Compass Swing — Purpose and Procedure</a></li>
+    <li><a href="#sec-3">Hard Iron Magnetism</a></li>
+    <li><a href="#sec-4">Soft Iron Magnetism (VSI)</a></li>
+    <li><a href="#sec-5">Coefficients A, B, and C</a></li>
+    <li><a href="#sec-6">Correction of Coefficients</a></li>
+    <li><a href="#sec-7">Accuracy Limits</a></li>
+    <li><a href="#sec-8">Occasions for Swinging the Compass</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#master-ref">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Deviation — Definition and Sign Convention</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Definition of deviation; east/west naming; mnemonic for compass vs. magnetic heading.
+</div>
+<p><strong>Deviation</strong> is the angular difference measured between the direction taken up by a compass needle and the magnetic meridian, caused by the aircraft's own internal magnetism deflecting the needle.</p>
+<p>Deviation is named <strong>easterly</strong> or <strong>westerly</strong> depending on whether the north-seeking end of the compass needle lies to the east or west of the magnetic meridian.</p>
+<table>
+  <tr><th>Deviation</th><th>Compass Heading (C)</th><th>Sign</th><th>Magnetic Heading (M)</th><th>Mnemonic</th></tr>
+  <tr><td>West</td><td>095</td><td>−5</td><td>090</td><td><strong>Deviation West, Compass Best</strong></td></tr>
+  <tr><td>East</td><td>090</td><td>+5</td><td>095</td><td><strong>Deviation East, Compass Least</strong></td></tr>
+</table>
+<div class="formula-box" style="background:#f0f4ff;border:1px solid #8ab;border-radius:6px;padding:15px;margin:15px 0;font-family:'Courier New',monospace;page-break-inside:avoid;">
+  <div style="font-size:1.2em;font-weight:700;color:#1a3a6b;text-align:center;margin:8px 0;">M = C + Deviation (east positive, west negative)</div>
+  <p>Or equivalently: C = M − Deviation</p>
+</div>
+<figure>
+  <img src="figs/fig_p202_0.png" alt="Deviation compass diagram">
+  <figcaption>Fig 16.1 — Deviation illustration: compass heading vs. magnetic heading. Source p.202</figcaption>
+</figure>
+
+<h2 id="sec-2">2. Compass Swing — Purpose and Procedure</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> What a compass swing achieves; the three aims; where it is conducted.
+</div>
+<p>A <strong>compass swing</strong> is the basic method of determining deviation by comparing the aircraft's heading compass reading with magnetic heading as defined by a high quality 'land or datum' compass, carried out in an area specifically selected for this purpose.</p>
+<div class="box-green">
+  <strong>Three Aims of a Compass Swing:</strong>
+  <ol>
+    <li>To <strong>observe/determine</strong> the deviations/differences between magnetic north (landing compass) and compass north (aircraft compass) on a series of headings.</li>
+    <li>To <strong>correct/remove</strong> as much deviation as possible.</li>
+    <li>To <strong>record the residual deviation</strong> remaining after adjustment — producing a Compass Deviation Card placed near the compass.</li>
+  </ol>
+</div>
+<p>The magnetic deviation observed during a compass swing is derived from <strong>hard iron</strong> and <strong>soft iron</strong> magnetism, resolved into two combined components (coefficients B and C).</p>
+
+<h2 id="sec-3">3. Hard Iron Magnetism</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Nature and properties of hard iron magnetism.
+</div>
+<p>Hard iron magnetism consists of <strong>permanent magnets</strong> in the aircraft structure — parts that retain their magnetism independently of any external field. The total force at the compass position produced by hard iron magnetism can be resolved into three components (longitudinal, lateral, and vertical). These components are <strong>fixed for a given aircraft</strong> and do <em>not</em> change with change of heading.</p>
+<div class="box-green">
+  <strong>Key Property of Hard Iron:</strong> The magnetic components due to hard iron are constant regardless of the aircraft's heading or latitude.
+</div>
+
+<h2 id="sec-4">4. Soft Iron Magnetism (Vertical Soft Iron)</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> What soft iron magnetism is; how it varies with latitude; the role of the earth's vertical component Z.
+</div>
+<p>Soft iron magnetism is <strong>induced</strong> in parts of the aircraft structure by surrounding fields — most importantly the earth's magnetic field. Unlike hard iron, soft iron magnetism changes with the surrounding field.</p>
+<p>The earth's field has both a vertical component (Z) and a horizontal component (H). Within the examination syllabus, we consider primarily <strong>Vertical Soft Iron (VSI)</strong> magnetism, induced by component Z:</p>
+<ul>
+  <li>Z increases with latitude (as the earth's field dips more steeply) → VSI magnetism <strong>increases with latitude</strong>.</li>
+  <li>Z is zero at the equator → <strong>no VSI magnetism is induced at the equator</strong>.</li>
+  <li>VSI magnetism varies with magnetic latitude — but unlike hard iron, it is <em>not</em> fixed with heading.</li>
+</ul>
+<figure>
+  <img src="figs/fig_p203_0.png" alt="Hard and soft iron magnetism diagram">
+  <figcaption>Fig 16.2 — Hard iron and soft iron magnetic forces on the compass. Source p.203</figcaption>
+</figure>
+
+<h2 id="sec-5">5. Coefficients A, B, and C</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> What each coefficient represents and the pattern of deviation it produces.
+</div>
+<p>The deviations observed during a compass swing are resolved into three coefficients:</p>
+<table>
+  <tr><th>Coefficient</th><th>Cause</th><th>Deviation Pattern</th><th>Effect</th></tr>
+  <tr><td><strong>A</strong></td><td>Mechanical misalignment of lubber line (or compass body)</td><td>Constant on all headings</td><td>Same deviation on all headings</td></tr>
+  <tr><td><strong>B</strong></td><td>Magnetic deviating forces along the fore-aft axis (e.g. blue pole in nose or tail)</td><td><strong>Sine curve</strong>: max on E/W, zero on N/S</td><td>Blue pole in nose → max +E deviation on 090°, max W on 270°</td></tr>
+  <tr><td><strong>C</strong></td><td>Magnetic deviating forces along the lateral axis (e.g. pole to port/starboard)</td><td><strong>Cosine curve</strong>: max on N/S, zero on E/W</td><td>Force resolved to right wing → positive cosine curve</td></tr>
+</table>
+<figure>
+  <img src="figs/fig_p203_1.png" alt="Sine curve deviation — blue pole in nose">
+  <figcaption>Fig 16.4 — Blue pole in nose: deviation follows a positive sine curve (max easterly at 090°, max westerly at 270°). Source p.203–204</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p204_0.png" alt="Heading effect of blue pole in nose">
+  <figcaption>Fig 16.4 (cont.) — Effect of blue pole at various headings: 000°, 045°, 090°, 135°, 180°. Source p.204</figcaption>
+</figure>
+<div class="box-amber">
+  <strong>Exam Tip — Sine vs. Cosine:</strong>
+  <ul>
+    <li>Coefficient B (fore-aft pole) → <strong>sine curve</strong> → zero deviation on N and S; max on E and W.</li>
+    <li>Coefficient C (lateral pole) → <strong>cosine curve</strong> → zero deviation on E and W; max on N and S.</li>
+  </ul>
+</div>
+
+<h2 id="sec-6">6. Correction of Coefficients</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How each coefficient is corrected during a compass swing.
+</div>
+<div class="box-green">
+  <strong>Correction Method for Each Coefficient:</strong>
+  <ul>
+    <li><strong>Coefficient A</strong>: A mechanical problem (displaced lubber line). Corrected by loosening the bolts holding the compass body (or detector unit in RIMC) and carefully turning it to align correctly.</li>
+    <li><strong>Coefficient B</strong>: Corrected by adjusting compensating magnets on an easterly or westerly heading (where B deviation is maximum). Calculate the heading you wish the compass to read and adjust accordingly.</li>
+    <li><strong>Coefficient C</strong>: Corrected by adjusting compensating magnets on a northerly or southerly heading (where C deviation is maximum). Similar calculation and sign application as for B.</li>
+  </ul>
+</div>
+<p>After correction for B and C, a <strong>check swing</strong> is carried out using eight or twelve points of the compass to verify the work and derive the residual deviation for the <strong>Compass Deviation Card</strong>.</p>
+<figure>
+  <img src="figs/fig_p204_1.png" alt="Compass deviation card residual">
+  <figcaption>Residual deviations after compass swing — represented as a table, curve, or compass deviation card. Source p.204</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p208_0.png" alt="Compass swing deviation illustration">
+  <figcaption>Fig 16.x — Relationship between compass heading, magnetic heading, and true heading. Source p.208</figcaption>
+</figure>
+
+<h2 id="sec-7">7. Accuracy Limits</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The regulatory maximum permissible deviations after correction.
+</div>
+<div class="box-red">
+  <strong>REGULATORY LIMITS (CS OPS-1 / EU OPS-1):</strong>
+  <table>
+    <tr><th>Compass Type</th><th>Maximum Residual Deviation After Correction</th></tr>
+    <tr><td>Direct Reading Magnetic Compass (DRMC)</td><td><span class="reg-value">±10°</span></td></tr>
+    <tr><td>Remote Indicating Compass (RIMC)</td><td><span class="reg-value">±1°</span></td></tr>
+  </table>
+</div>
+
+<h2 id="sec-8">8. Occasions for Swinging the Compass</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> All regulatory occasions requiring a compass swing.
+</div>
+<div class="box-green">
+  <strong>A compass swing is required when:</strong>
+  <ul>
+    <li>Compass components are installed or replaced.</li>
+    <li>Whenever the accuracy of the compass is in doubt.</li>
+    <li>After a maintenance inspection if required by the schedule.</li>
+    <li>After a significant aircraft modification, repair or replacement involving magnetic material.</li>
+    <li>When carrying unusual ferromagnetic payloads.</li>
+    <li>When the compass has been subjected to significant shock.</li>
+    <li>If the aircraft has been struck by lightning.</li>
+    <li>After significant modification to aircraft radio/electrical systems.</li>
+    <li>After the aircraft has been given a new theatre of operations if the move involves a large change of magnetic latitude.</li>
+    <li>If the aircraft has been in long-term storage standing on one heading.</li>
+  </ul>
+</div>
+<pre class="mermaid">
+flowchart TD
+    SW[Compass Swing Required?] --> A[New/replaced\ncompass components?]
+    SW --> B[Accuracy\nin doubt?]
+    SW --> C[Maintenance\ninspection\nschedule?]
+    SW --> D[Magnetic material\nmodification/repair?]
+    SW --> E[Ferromagnetic\npayload?]
+    SW --> F[Significant\nshock or\nlightning strike?]
+    SW --> G[Radio/electrical\nsystem mods?]
+    SW --> H[New theatre:\nlarge latitude\nchange?]
+    SW --> I[Long-term storage\non one heading?]
+    A --> YES[YES → SWING]
+    B --> YES
+    C --> YES
+    D --> YES
+    E --> YES
+    F --> YES
+    G --> YES
+    H --> YES
+    I --> YES
+</pre>
+
+<div class="box-amber">
+  <strong>Quick Revision Summary — Chapter 16:</strong>
+  <ul>
+    <li>Deviation = angle between compass needle and magnetic meridian. East = positive (+); West = negative (−).</li>
+    <li>Mnemonic: "Deviation West, Compass Best" (C &gt; M). "Deviation East, Compass Least" (C &lt; M).</li>
+    <li>Compass swing done at a dedicated compass swinging area using a landing/datum compass.</li>
+    <li>Three aims: Observe → Correct → Record residual (deviation card).</li>
+    <li>Hard iron: permanent magnetism, fixed with aircraft, not affected by heading or latitude.</li>
+    <li>Soft iron (VSI): induced by earth's field, varies with latitude (max at poles, zero at equator).</li>
+    <li>Coefficient A: constant deviation, mechanical misalignment.</li>
+    <li>Coefficient B: sine curve deviation, corrected on E/W headings.</li>
+    <li>Coefficient C: cosine curve deviation, corrected on N/S headings.</li>
+    <li>DRMC accuracy limit: <span class="reg-value">±10°</span>. RIMC accuracy limit: <span class="reg-value">±1°</span>.</li>
+  </ul>
+</div>
+
+<div class="qa-section">
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+<div class="box-blue">
+  Source questions reproduced verbatim. Answer key from source: 1-a, 2-b, 3-b, 4-a, 5-c, 6-d, 7-b.
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">European regulations (EU OPS-1) state that the maximum permissible deviations after compensation are:</span>
+    <ol class="q-options" type="a">
+      <li>one degree for a remote indicating compass, and ten degrees for a direct reading magnetic compass</li>
+      <li>three degrees for a direct reading magnetic compass, and one degree for a remote indicating compass</li>
+      <li>ten degrees for a remote indicating compass, and one degree for a direct reading magnetic compass</li>
+      <li>one degree for a direct reading magnetic compass, and eleven degrees for a slaved compass</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) 1° for remote indicating compass; 10° for direct reading magnetic compass</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> CS OPS-1 / EU OPS-1 specifies: DRMC = ±10° maximum residual deviation; RIMC = ±1° maximum residual deviation. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> — Reverses the limits (3° for DRMC is wrong; it is 10°). And 1° for RIMC is correct but the DRMC value is wrong.</li>
+        <li><strong>(c)</strong> — Reverses the instrument types. 10° applies to DRMC, not RIMC.</li>
+        <li><strong>(d)</strong> — Neither figure is correct for a direct reading compass (should be 10°, not 1°), and 11° is not a regulatory value.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> RIMC = 1° (very tight, because it is a precision instrument feeding autopilots and FMS). DRMC = 10° (larger tolerance for a simpler instrument). Easy mnemonic: "Remote = 1; Direct = 10."</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">Compass swings should be carried out:</span>
+    <ol class="q-options" type="a">
+      <li>on the apron</li>
+      <li>only on the compass swinging base or site</li>
+      <li>at the holding point</li>
+      <li>on the active runway</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) only on the compass swinging base or site</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The compass swing must be conducted in an area specifically selected for this purpose — the compass swinging base or site — which is chosen to be free from magnetic interference (underground cables, reinforcing, aircraft equipment). See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — The apron has underground infrastructure (fuelling pipes, cables) that cause magnetic interference.</li>
+        <li><strong>(c)</strong> — The holding point is on or near the runway, which has metallic reinforcing in the concrete/tarmac.</li>
+        <li><strong>(d)</strong> — The runway itself is metallic reinforced concrete, highly unsuitable for compass swinging.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The compass swinging base is a specially prepared area on the airfield, away from hangars, pipelines, and other magnetic interference. The landing/datum compass used must also be calibrated and away from interference.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">Aircraft magnetism caused by vertical soft iron:</span>
+    <ol class="q-options" type="a">
+      <li>varies with magnetic heading but not with magnetic latitude</li>
+      <li>varies with magnetic latitude but not with heading</li>
+      <li>is not affected by magnetic latitude or heading</li>
+      <li>varies as the cosine of the compass heading</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) varies with magnetic latitude but not with heading</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Vertical Soft Iron (VSI) magnetism is induced by the vertical component Z of the earth's field. Z increases with latitude (zero at equator, maximum at poles). So VSI magnetism varies with magnetic latitude. However, for a given latitude, the component Z is the same regardless of which way the aircraft is pointing — so VSI magnetism does not vary with heading. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — VSI does vary with latitude (not just heading). This is the opposite of correct.</li>
+        <li><strong>(c)</strong> — VSI is absolutely affected by latitude (Z varies with latitude).</li>
+        <li><strong>(d)</strong> — VSI does not vary as cosine of heading; it is a function of latitude, not heading.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Compare with hard iron (constant regardless of heading OR latitude) and soft iron (varies with latitude). This distinction is a frequent exam topic.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">Aircraft magnetism caused by hard iron:</span>
+    <ol class="q-options" type="a">
+      <li>is not usually influenced by the earth's magnetic field</li>
+      <li>varies directly with magnetic latitude</li>
+      <li>varies indirectly with magnetic latitude</li>
+      <li>is maximum on east and west</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) is not usually influenced by the earth's magnetic field</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Hard iron magnetism is due to <em>permanent</em> magnets — parts of the aircraft that retain their magnetism independently. They are not induced by the earth's field and therefore are not influenced by changes in heading or latitude. Their magnetic force is constant and fixed with the aircraft. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b) and (c)</strong> — Varying with latitude (directly or indirectly) is a property of soft iron magnetism (specifically VSI), not hard iron.</li>
+        <li><strong>(d)</strong> — "Maximum on east and west" describes Coefficient B deviation pattern (sine curve), not the nature of hard iron itself.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Hard iron = permanent, constant, not affected by external fields. Soft iron = induced, varies with the inducing field (earth's field). Clear contrast.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">The aim of a compass swing is:</span>
+    <p>1. to find deviation on the cardinal headings and to calculate coefficients A, B and C</p>
+    <p>2. to eliminate or reduce the coefficients found</p>
+    <p>3. to record any residual deviation and to prepare a compass correction card</p>
+    <ol class="q-options" type="a">
+      <li>only answer 1 is correct</li>
+      <li>answers 1 and 3 are correct</li>
+      <li>answers 1, 2 and 3 are all correct</li>
+      <li>none of the above answers are correct</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) answers 1, 2, and 3 are all correct</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> All three statements describe the complete three-step aim of a compass swing: observe and calculate (1), correct (2), and record residual (3). All three are correct. See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — Incomplete; stops at observation only.</li>
+        <li><strong>(b)</strong> — Incomplete; omits the correction step (2), which is the central purpose.</li>
+        <li><strong>(d)</strong> — All three statements are correct.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Three steps: Observe → Correct → Record. All three are mandatory parts of a complete compass swing.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">Deviation due to coefficient A is mainly caused by:</span>
+    <ol class="q-options" type="a">
+      <li>hard iron force acting along the longitudinal axis</li>
+      <li>hard and soft iron forces acting along the lateral axis</li>
+      <li>vertical soft iron forces</li>
+      <li>a misaligned lubber line</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d) a misaligned lubber line</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Coefficient A is a constant deviation on all headings, mainly caused by a mechanical misalignment of the lubber line (or the compass body/detector unit is not correctly aligned with the fore-aft axis of the aircraft). See <a href="#sec-5">Section 5</a> and <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — Hard iron along the longitudinal axis causes Coefficient B (sine curve deviation).</li>
+        <li><strong>(b)</strong> — Lateral forces cause Coefficient C (cosine curve deviation).</li>
+        <li><strong>(c)</strong> — VSI causes deviation that varies with latitude — not a constant (Coefficient A) effect.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Coefficient A = mechanical, not magnetic. B = fore-aft magnetic (sine). C = lateral magnetic (cosine). A is corrected physically (rotate compass body), B and C magnetically (compensating magnets).</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q7.</span><span class="q-text">In the diagram below, the compass heading of the aircraft is ......., the magnetic heading ....... and the true heading .......</span>
+    <ol class="q-options" type="a">
+      <li>025° — 015° — 020°</li>
+      <li>335° — 035° — 020°</li>
+      <li>335° — 340° — 035°</li>
+      <li>025° — 015° — 340°</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) Compass 335°, Magnetic 035°, True 020°</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> From the diagram (not reproduced here but standard format), three north indicators show compass north, magnetic north, and true north. The readings of each reference line against the aircraft heading indicator give the three heading values. The source confirms: C = 335°, M = 035°, T = 020°. See <a href="#sec-1">Section 1</a> for conversion between heading types.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — The C, M, T values are all reversed or incorrect based on the diagram geometry.</li>
+        <li><strong>(c)</strong> — The compass and magnetic values are swapped.</li>
+        <li><strong>(d)</strong> — The compass value (025°) and the true value (340°) do not match the expected deviation sequence in the diagram.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> In heading diagrams, read each north reference against the aircraft's heading line. The compass north shows compass heading; magnetic north shows magnetic heading; true north shows true heading.</div>
+  </div>
+</div>
+
+</div><!-- end qa-section -->
+
+<h2 id="master-ref">Master Reference Tables</h2>
+<table>
+  <tr><th>Parameter</th><th>Value / Property</th><th>Section</th></tr>
+  <tr><td>DRMC max residual deviation</td><td><span class="reg-value">±10°</span></td><td><a href="#sec-7">7</a></td></tr>
+  <tr><td>RIMC max residual deviation</td><td><span class="reg-value">±1°</span></td><td><a href="#sec-7">7</a></td></tr>
+  <tr><td>Hard iron variation with heading</td><td>Constant (no change)</td><td><a href="#sec-3">3</a></td></tr>
+  <tr><td>Hard iron variation with latitude</td><td>Constant (no change)</td><td><a href="#sec-3">3</a></td></tr>
+  <tr><td>VSI variation with latitude</td><td>Increases (zero at equator, max at poles)</td><td><a href="#sec-4">4</a></td></tr>
+  <tr><td>VSI variation with heading</td><td>Does not vary with heading</td><td><a href="#sec-4">4</a></td></tr>
+  <tr><td>Coefficient A: cause</td><td>Misaligned lubber line / compass body</td><td><a href="#sec-5">5</a></td></tr>
+  <tr><td>Coefficient B: pattern</td><td>Sine curve; max deviation on E/W headings</td><td><a href="#sec-5">5</a></td></tr>
+  <tr><td>Coefficient C: pattern</td><td>Cosine curve; max deviation on N/S headings</td><td><a href="#sec-5">5</a></td></tr>
+  <tr><td>Coefficient B correction heading</td><td>E or W (deviation is maximum)</td><td><a href="#sec-6">6</a></td></tr>
+  <tr><td>Coefficient C correction heading</td><td>N or S (deviation is maximum)</td><td><a href="#sec-6">6</a></td></tr>
+  <tr><td>Deviation formula (E pos, W neg)</td><td>M = C + Dev</td><td><a href="#sec-1">1</a></td></tr>
+</table>
+
+<h3>Answer Key Summary</h3>
+<table>
+  <tr><th>Q</th><th>Answer</th><th>Key Topic</th></tr>
+  <tr><td>1</td><td>a</td><td>RIMC = ±1°; DRMC = ±10°</td></tr>
+  <tr><td>2</td><td>b</td><td>Compass swing only at compass swinging base/site</td></tr>
+  <tr><td>3</td><td>b</td><td>VSI varies with latitude; not with heading</td></tr>
+  <tr><td>4</td><td>a</td><td>Hard iron: not influenced by earth's field</td></tr>
+  <tr><td>5</td><td>c</td><td>All three aims of compass swing are correct</td></tr>
+  <tr><td>6</td><td>d</td><td>Coefficient A = misaligned lubber line</td></tr>
+  <tr><td>7</td><td>b</td><td>C=335°, M=035°, T=020°</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

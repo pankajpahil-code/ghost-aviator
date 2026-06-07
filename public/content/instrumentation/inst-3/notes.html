@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 3 – Air Temperature Measurement | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+@page{size:A4;margin:20mm;}
+*{box-sizing:border-box;}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:14px;line-height:1.6;color:#222;margin:0;padding:20px;background:#fff;}
+h1{font-size:2em;font-weight:700;color:#1a237e;margin-bottom:4px;}
+h2{font-size:1.4em;font-weight:700;color:#1a237e;border-bottom:2px solid #1a237e;padding-bottom:4px;margin-top:30px;page-break-after:avoid;}
+h3{font-size:1.15em;font-weight:700;color:#283593;margin-top:20px;page-break-after:avoid;}
+h4{font-size:1em;font-weight:700;color:#333;page-break-after:avoid;}
+p{margin:10px 0;}
+.cover{text-align:center;padding:60px 20px 40px;border-bottom:3px solid #1a237e;margin-bottom:30px;page-break-after:always;}
+.cover h1{font-size:2.4em;}
+.cover .subtitle{font-size:1.1em;color:#555;margin-top:10px;}
+.cover .author{font-size:1em;color:#1a237e;margin-top:8px;font-weight:700;}
+.toc{page-break-after:always;}
+.toc h2{margin-top:0;}
+.toc ol{line-height:2;}
+.toc a{color:#1a237e;text-decoration:none;}
+.blue-box{background:#e8f1fb;border-left:5px solid #2c5aa0;padding:15px;border-radius:6px;margin:15px 0;page-break-inside:avoid;}
+.red-box{background:#fdecea;border-left:5px solid #c0392b;padding:15px;border-radius:6px;margin:15px 0;page-break-inside:avoid;}
+.green-box{background:#e8f5e9;border-left:5px solid #2e7d32;padding:15px;border-radius:6px;margin:15px 0;page-break-inside:avoid;}
+.amber-box{background:#fff8e1;border-left:5px solid #f57c00;padding:15px;border-radius:6px;margin:15px 0;page-break-inside:avoid;}
+.reg-value{font-weight:700;color:#c0392b;}
+blockquote{font-family:Georgia,serif;font-style:italic;border-left:4px solid #aaa;background:#f9f9f9;margin:15px 0;padding:12px 20px;border-radius:4px;}
+code,.formula{font-family:"Courier New",monospace;background:#f4f4f4;padding:2px 6px;border-radius:3px;}
+.formula-block{font-family:"Courier New",monospace;background:#f4f4f4;padding:12px;border-radius:4px;margin:12px 0;display:block;font-size:1.05em;}
+.worked-example{background:#f0f4ff;border:1px solid #90a4d4;border-radius:6px;padding:15px;margin:15px 0;page-break-inside:avoid;}
+.worked-example h4{margin-top:0;color:#1a237e;}
+table{border-collapse:collapse;width:100%;margin:15px 0;page-break-inside:avoid;font-size:13px;}
+th{background:#1a237e;color:#fff;padding:8px 12px;text-align:left;}
+td{padding:8px 12px;border:1px solid #ccc;}
+tr:nth-child(even) td{background:#f5f5f5;}
+figure{text-align:center;margin:20px 0;page-break-inside:avoid;}
+figure img{max-width:100%;border:1px solid #ddd;border-radius:4px;}
+figcaption{font-style:italic;color:#555;font-size:12px;margin-top:6px;}
+pre.mermaid{page-break-inside:avoid;margin:15px 0;background:transparent;border:none;}
+.qa-block{border:2px solid #2c5aa0;border-radius:8px;padding:20px;margin:25px 0;page-break-inside:avoid;background:#fff;}
+.qa-question{background:#e8f1fb;padding:15px;border-radius:6px;margin-bottom:15px;}
+.q-number{font-weight:900;color:#2c5aa0;font-size:1.1em;margin-right:8px;}
+.q-options{margin-top:12px;padding-left:25px;}
+.q-options li{padding:4px 0;}
+.answer-reveal{background:#e8f5e9;border-left:5px solid #2e7d32;padding:12px 15px;margin:10px 0;border-radius:4px;font-size:1.05em;}
+.answer-explanation{background:#f5f5f5;padding:12px 15px;margin:10px 0;border-radius:4px;line-height:1.7;}
+.distractor-analysis{background:#fdecea;border-left:5px solid #c0392b;padding:12px 15px;margin:10px 0;border-radius:4px;}
+.distractor-analysis ul{margin-top:8px;padding-left:20px;}
+.instructor-note{background:#fff8e1;border-left:5px solid #f57c00;padding:12px 15px;margin:10px 0;border-radius:4px;font-style:italic;}
+.watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;}
+ul{margin:8px 0;padding-left:22px;}
+li{margin:3px 0;}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Chapter 3</h1>
+  <h1>Air Temperature Measurement</h1>
+  <p class="subtitle">DGCA CPL/ATPL Study Notes &mdash; Instrumentation</p>
+  <p class="author">Compiled by Capt. Pankaj Pahil</p>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction &mdash; Why Pilots Need Air Temperature</a></li>
+    <li><a href="#sec-2">Air Temperature Thermometers</a></li>
+    <li><a href="#sec-3">Total Air Temperature (TAT) Probe</a></li>
+    <li><a href="#sec-4">Errors</a></li>
+    <li><a href="#sec-5">Heating Error &mdash; Compression and Kinetic Heat</a></li>
+    <li><a href="#sec-6">Ram Rise and Recovery Factor &mdash; Worked Example</a></li>
+    <li><a href="#sec-7">Correction of TAT/RAT to SAT</a></li>
+    <li><a href="#sec-8">The Absolute (Kelvin) Temperature Scale &amp; Accurate Formula</a></li>
+    <li><a href="#sec-9">Calibration and the ISA</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction &mdash; Why Pilots Need Air Temperature</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The four operational reasons why accurate outside air temperature is critical for flight safety, engine performance, speed measurement, and altitude measurement.</div>
+
+<p>A pilot must know the temperature of the surrounding air for the following reasons:</p>
+
+<h3>1.1 Avoidance of Icing Conditions</h3>
+<p>Ice formation on aircraft, particularly in cloud, can be very rapid and extremely dangerous. Icing effects include:</p>
+<ul>
+  <li>Loss of lift and increase in drag &mdash; ice distorts the aerofoil shape</li>
+  <li>Increase in mass &mdash; can be as much as <span class="reg-value">ten tonnes</span> on large aircraft with thick icing</li>
+  <li>Freezing of control surfaces so they cannot be moved</li>
+  <li>Loss of engine power or total engine failure due to intake or carburettor icing</li>
+  <li>Ice shed from propellers striking the fuselage</li>
+</ul>
+<div class="red-box"><strong>Hazard:</strong> Unlike turbulence or lightning (merely unpleasant), icing degrades the aircraft&rsquo;s fundamental aerodynamic capability. Mitigation: avoid cloud, or climb/descend out of the temperature bands associated with icing &mdash; these vary by aircraft type.</div>
+
+<h3>1.2 Engine Power and Aircraft Performance</h3>
+<p>Aviation engines (jet and piston) require a correct fuel/air ratio for combustion. Dense (cold) air allows more fuel to be injected, producing more power. Less dense (warm) air reduces available power &mdash; this has significant effects on take-off performance calculations.</p>
+
+<h3>1.3 Measurement of Speed</h3>
+<p>Airspeed cannot be measured directly &mdash; dynamic pressure is measured instead. Dynamic pressure depends on both aircraft speed <em>and</em> air density. Since temperature affects density, temperature data is essential to compute True Airspeed (TAS).</p>
+
+<h3>1.4 Measurement of Altitude</h3>
+<p>The rate of pressure change with altitude varies with temperature. Altimeter indications contain a temperature error that can create potentially dangerous under-readings near high ground in cloud.</p>
+
+<div class="amber-box"><strong>Exam Tip:</strong> If asked &ldquo;why do pilots measure air temperature?&rdquo; give all four reasons: icing avoidance, engine performance, speed measurement, altitude accuracy.</div>
+
+<h2 id="sec-2">2. Air Temperature Thermometers</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The two fundamental thermometer types &mdash; Direct Reading (bimetallic helix) and Remote Reading (platinum resistance) &mdash; their construction, operating principle, and suitability.</div>
+
+<h3>2.1 Direct Reading Thermometer</h3>
+<p>Operates on <em>differential thermal expansion</em>. A bimetallic strip bonds two metals with different coefficients of expansion:</p>
+<ul>
+  <li><strong>Invar</strong> &mdash; nickel-steel alloy; uniquely <em>low</em> coefficient of thermal expansion.</li>
+  <li><strong>Brass</strong> &mdash; <em>higher</em> coefficient of thermal expansion.</li>
+</ul>
+<p>On heating, the brass expands more than the invar, causing the strip to curl. The amount of curl is proportional to temperature rise. The strip is drawn into a <strong>helix</strong> to amplify pointer movement. The probe protrudes through the windscreen or fuselage into the airstream; the dial is visible to the pilot.</p>
+
+<figure>
+  <img src="figs/fig_p27_0.png" alt="Bimetallic strip principle">
+  <figcaption>Bimetallic strip &mdash; brass expands more than Invar, causing the strip to curl. Source p.27.</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p28_0.png" alt="Bimetallic helix thermometer">
+  <figcaption>Bimetallic helix thermometer. Source p.28.</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p28_1.png" alt="Thermometer placement on PA28">
+  <figcaption>Direct-reading thermometer placement on a PA28 Warrior. Source p.28.</figcaption>
+</figure>
+
+<div class="red-box"><strong>Limitation:</strong> The direct reading type is unsuitable for larger/faster aircraft because: (1) penetrating the windscreen at high speed degrades structural integrity; (2) it produces no electrical output for sharing with other systems (air data computers, engine management, etc.).</div>
+
+<h3>2.2 Remote Reading Thermometer</h3>
+<p>Uses a sensor whose <em>electrical resistance changes with temperature</em>. The sensor is located anywhere suitable on the fuselage (away from boundary layer) and sends an electrical signal to a remote cockpit indicator and to other aircraft systems.</p>
+
+<pre class="mermaid">
+flowchart LR
+    A["Outside Air\n(TAT Probe)"] --> B["Platinum\nResistance Wire\n(sensor)"]
+    B --> C["Electrical\nSignal"]
+    C --> D["Cockpit\nIndicator"]
+    C --> E["Air Data\nComputer"]
+    C --> F["Other\nSystems"]
+</pre>
+
+<div class="amber-box"><strong>Key distinction:</strong> Direct Reading = bimetallic strip (differential expansion, mechanical). Remote Reading = platinum resistance wire (electrical resistance change with temperature).</div>
+
+<h2 id="sec-3">3. Total Air Temperature (TAT) Probe</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Construction, materials, operating features and special design elements of the TAT probe used on modern transport-category aircraft.</div>
+
+<p>The TAT probe is a small strut and air intake made of <strong>nickel-plated beryllium copper</strong> &mdash; chosen for good thermal conductivity and mechanical strength. It is fixed to the fuselage at a point that keeps it clear of the aircraft&rsquo;s boundary layer.</p>
+
+<figure>
+  <img src="figs/fig_p29_0.png" alt="Total Air Temperature Probe">
+  <figcaption>Total Air Temperature Probe &mdash; showing strut, bleed holes, right-angle airflow path and sensor element. Source p.29.</figcaption>
+</figure>
+
+<h3>3.1 Key Design Features</h3>
+<table>
+  <tr><th>Feature</th><th>Purpose</th></tr>
+  <tr><td>Right-angle airflow turn inside intake</td><td>Separates water particles from the airflow before they reach the sensing element (water cannot make the sharp turn)</td></tr>
+  <tr><td>Bleed holes in intake casing</td><td>Higher pressure inside the intake draws off boundary layer air, preventing it from contaminating the measurement</td></tr>
+  <tr><td>Pure platinum resistance wire sensor</td><td>Very high thermal conductivity; rapid response; precise and repeatable resistance-temperature relationship</td></tr>
+  <tr><td>Inbuilt heating element</td><td>Prevents ice formation. Self-compensating &mdash; as temperature rises, heater resistance increases, reducing current automatically</td></tr>
+</table>
+
+<div class="amber-box"><strong>Heater error:</strong> The inbuilt heater introduces a measurement error of <span class="reg-value">less than 1&deg;C</span> &mdash; considered insignificant in practice.</div>
+
+<h3>3.2 Ground Temperature Measurement (Aspirated Probe)</h3>
+<p>Modern aircraft use reduced take-off power to protect engines from thermal stress (e.g. <span class="reg-value">93% power</span> is a typical example, computed from runway length, weight, altitude and temperature). When stationary on the ground there is no natural airflow through the probe. An <strong>aspirator</strong> (air-to-air ejector) uses engine bleed air or APU bleed to create suction, drawing fresh outside air through the casing even when the aircraft is stationary &mdash; preventing heat-soaked stagnant air from being measured.</p>
+
+<figure>
+  <img src="figs/fig_p30_0.png" alt="Aspirated TAT probe">
+  <figcaption>Aspirated TAT probe &mdash; engine bleed air creates suction past the sensing element. Source p.30.</figcaption>
+</figure>
+
+<h2 id="sec-4">4. Errors in Air Temperature Measurement</h2>
+<div class="blue-box"><strong>What this section covers:</strong> All error sources affecting temperature gauges, with their causes and mitigations.</div>
+
+<table>
+  <tr><th>Error</th><th>Cause</th><th>Remedy</th></tr>
+  <tr><td>Instrument error</td><td>Manufacturing imperfections</td><td>Calibration; correction cards</td></tr>
+  <tr><td>Solar heating</td><td>Direct sunlight on the probe</td><td>Shielding within the probe strut</td></tr>
+  <tr><td>Ice accretion</td><td>Ice build-up on probe</td><td>Inbuilt electric heater</td></tr>
+  <tr><td><strong>Heating error</strong></td><td>Adiabatic (compression) + kinetic (friction) heating due to speed</td><td>Recovery factor &amp; correction formulae</td></tr>
+</table>
+
+<div class="red-box"><strong>Warning:</strong> The dominant error by far is <strong>heating error</strong> &mdash; the combined effects of adiabatic and kinetic heating. All other errors are minor by comparison.</div>
+
+<h2 id="sec-5">5. Heating Error &mdash; Compression and Kinetic Heat</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The physics behind heating error, the two components (kinetic and adiabatic), and all the temperature definitions that result.</div>
+
+<figure>
+  <img src="figs/fig_p31_0.png" alt="Effect of speed on measured temperature">
+  <figcaption>Effect of speed on measured temperature &mdash; measured temperature rises above SAT as TAS increases. Source p.31.</figcaption>
+</figure>
+
+<h3>5.1 Kinetic Heating</h3>
+<p>Primary contributor in <em>direct reading</em> thermometers. As aircraft speed increases, more air molecules per second impact the probe surface, generating frictional heat at the surface.</p>
+
+<h3>5.2 Adiabatic (Compression) Heating</h3>
+<p>Primary contributor in <em>remote reading (total head)</em> thermometers. The high-speed airflow (potentially several hundred knots) is brought virtually to rest inside the platinum sensing chamber very rapidly. The kinetic energy of the moving air converts to temperature rise through adiabatic compression &mdash; analogous to pumping a bicycle pump (pressure energy converts to heat with no external flame).</p>
+
+<p>The combined kinetic + adiabatic effect always totals a known quantity called the <strong>Total Ram Rise</strong>. Because no probe is perfectly efficient, the actually measured quantity is the <strong>Measured Ram Rise</strong>.</p>
+
+<h3>5.3 Temperature Definitions</h3>
+<table>
+  <tr><th>Term</th><th>Symbol</th><th>Definition</th></tr>
+  <tr><td>Static Air Temperature</td><td>SAT / T<sub>s</sub> / COAT / OAT</td><td>Temperature of undisturbed air through which the aircraft is about to fly</td></tr>
+  <tr><td>Total Air Temperature</td><td>TAT / T<sub>t</sub> / IOAT</td><td>Maximum temperature attainable when air is brought to rest adiabatically (theoretical maximum)</td></tr>
+  <tr><td>Ram Air Temperature</td><td>RAT</td><td>Temperature actually measured by the probe (less than TAT due to probe inefficiency)</td></tr>
+  <tr><td>Total Ram Rise</td><td>&mdash;</td><td>Temperature difference: TAT &minus; SAT (theoretical)</td></tr>
+  <tr><td>Measured Ram Rise</td><td>&mdash;</td><td>Temperature difference: RAT &minus; SAT (actual measured)</td></tr>
+  <tr><td>Recovery Factor</td><td>K<sub>r</sub></td><td>Fraction of Total Ram Rise actually recovered by the probe. Determined by flight test; published in aircraft operating instructions.</td></tr>
+</table>
+
+<div class="green-box">
+  <strong>Permitted Terminology Equivalences:</strong><br>
+  SAT = COAT (Corrected Outside Air Temperature) = OAT (when used alone)<br>
+  TAT = IOAT (Indicated Outside Air Temperature) &mdash; note: many gauges are labelled &ldquo;TAT&rdquo; but actually display RAT<br>
+</div>
+
+<div class="amber-box">
+  <strong>Summary Relationships:</strong><br>
+  <span class="formula-block">TAT = SAT + Total Ram Rise</span>
+  <span class="formula-block">RAT = SAT + Measured Ram Rise</span>
+  <span class="formula-block">Measured Ram Rise = Total Ram Rise &times; K<sub>r</sub></span>
+</div>
+
+<h2 id="sec-6">6. Ram Rise and Recovery Factor &mdash; Worked Example</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Quantitative application of the Recovery Factor, with a full numerical example showing the relationship between SAT, RAT, and TAT.</div>
+
+<div class="worked-example">
+  <h4>Worked Example &mdash; Recovery Factor Application (Source Example)</h4>
+  <p><strong>Given:</strong> SAT = <span class="reg-value">&minus;60&deg;C</span>, Total Ram Rise = <span class="reg-value">30&deg;C</span>, K<sub>r</sub> = <span class="reg-value">0.9</span></p>
+  <table>
+    <tr><th>Step</th><th>Parameter</th><th>Value</th><th>Calculation</th></tr>
+    <tr><td>1</td><td>SAT</td><td>&minus;60&deg;C</td><td>Given</td></tr>
+    <tr><td>2</td><td>Total Ram Rise</td><td>+30&deg;C</td><td>Given</td></tr>
+    <tr><td>3</td><td>(Theoretical) TAT</td><td>&minus;30&deg;C</td><td>SAT + Total Ram Rise = &minus;60 + 30</td></tr>
+    <tr><td>4</td><td>Recovery Factor K<sub>r</sub></td><td>0.9</td><td>Given</td></tr>
+    <tr><td>5</td><td>Measured Ram Rise</td><td>+27&deg;C</td><td>30 &times; 0.9 = 27</td></tr>
+    <tr><td>6</td><td>RAT (gauge reading)</td><td><span class="reg-value">&minus;33&deg;C</span></td><td>SAT + Measured Ram Rise = &minus;60 + 27</td></tr>
+    <tr><td>7</td><td>Correction to get SAT</td><td>&minus;27&deg;C</td><td>SAT = RAT &minus; Measured Ram Rise = &minus;33 &minus; 27 = &minus;60</td></tr>
+  </table>
+  <p><strong>Conclusion:</strong> The gauge reads <span class="reg-value">&minus;33&deg;C</span> (RAT). A correction of <span class="reg-value">&minus;27&deg;C</span> is applied to obtain the true SAT of <span class="reg-value">&minus;60&deg;C</span>.</p>
+</div>
+
+<h2 id="sec-7">7. Correction of TAT/RAT to SAT</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The five methods available to convert the indicated RAT to actual SAT, including the quick in-flight formula and the CRP-5 navigation computer.</div>
+
+<p>Methods to convert RAT to SAT (in order of exam relevance):</p>
+<ol>
+  <li><strong>Rapid formula</strong> (in-flight quick approximation &mdash; <em>not for JAA/EASA/DGCA exams</em>)</li>
+  <li><strong>CRP-5 navigation computer</strong> (blue scale &mdash; use in exams)</li>
+  <li><strong>Accurate Kelvin formula</strong> (most precise)</li>
+  <li><strong>Data Tables</strong></li>
+  <li><strong>Air Data Computer</strong> (automatic, used in modern aircraft)</li>
+</ol>
+
+<h3>7.1 Rapid Formula (In-Flight Only)</h3>
+<div class="formula-block">Ram Rise &asymp; (TAS in knots / 100)&sup2;</div>
+
+<table>
+  <tr><th>TAS (knots)</th><th>Ram Rise (Rapid Formula)</th><th>Ram Rise (CRP-5)</th></tr>
+  <tr><td>200</td><td>4&deg;C</td><td>4&deg;C</td></tr>
+  <tr><td>300</td><td>9&deg;C</td><td>9&deg;C</td></tr>
+  <tr><td>400</td><td>16&deg;C</td><td><span class="reg-value">17&deg;C</span></td></tr>
+  <tr><td>500</td><td>25&deg;C</td><td>25&deg;C</td></tr>
+</table>
+
+<div class="red-box"><strong>Exam Warning:</strong> Do NOT use the rapid formula in DGCA/EASA exams &mdash; use the CRP-5 or Kelvin formula. The CRP-5 gives <span class="reg-value">17&deg;C</span> for 400 kt (not 16&deg;C from the rapid formula).</div>
+
+<h3>7.2 CRP-5 Navigation Computer</h3>
+<p>On the slide-rule face there is a blue scale: outer ring = TAS in knots; inner ring = Ram Rise in &deg;C. Set TAS on the outer scale, read Ram Rise on the inner scale.</p>
+
+<figure>
+  <img src="figs/fig_p33_0.png" alt="CRP-5 blue scale for ram rise">
+  <figcaption>CRP-5 blue scale &mdash; use for ram rise in exams. TAS 400 kt gives Ram Rise 17&deg;C. Source p.33.</figcaption>
+</figure>
+
+<h2 id="sec-8">8. The Absolute (Kelvin) Scale &amp; Accurate Formula</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why absolute temperature is required for the accurate SAT formula, Celsius-to-Kelvin conversion, and a fully worked example of the accurate formula.</div>
+
+<p>The Celsius scale changes sign at 0&deg;C (freezing point of water), creating issues with mathematical ratios. The Kelvin (Absolute) scale starts from <strong>absolute zero</strong> &mdash; the theoretical point of no thermal energy, occurring at <span class="reg-value">&minus;273&deg;C</span>.</p>
+
+<table>
+  <tr><th>Reference Point</th><th>Celsius (&deg;C)</th><th>Kelvin (K)</th></tr>
+  <tr><td>Absolute zero</td><td>&minus;273</td><td>0</td></tr>
+  <tr><td>Freezing point of water</td><td>0</td><td>273</td></tr>
+  <tr><td>Boiling point of water</td><td>100</td><td>373</td></tr>
+</table>
+
+<p><strong>Conversion:</strong> K = &deg;C + 273 &nbsp;|&nbsp; One kelvin = one degree Celsius (same increment size, different baseline).</p>
+
+<figure>
+  <img src="figs/fig_p35_0.png" alt="Celsius to Kelvin relationship diagram">
+  <figcaption>Relationship between Celsius and Kelvin scales for TAT/SAT. Source p.35.</figcaption>
+</figure>
+
+<h3>8.1 Accurate Formula</h3>
+<div class="formula-block">SAT (K) = TAT (K) &divide; (1 + 0.2 &times; K<sub>r</sub> &times; M&sup2;)</div>
+<p>Variables: TAT = Total Air Temperature in <strong>Kelvin</strong>; K<sub>r</sub> = Recovery Factor (dimensionless, from flight test data); M = Mach Number.</p>
+
+<div class="red-box"><strong>Critical:</strong> Temperature MUST be in Kelvin for this formula. Using &deg;C will give a completely wrong answer. Always convert: K = &deg;C + 273.</div>
+
+<div class="worked-example">
+  <h4>Worked Example &mdash; Accurate SAT Formula (Source Example)</h4>
+  <p><strong>Given:</strong> Indicated TAT = <span class="reg-value">&minus;20&deg;C</span> | Mach No = <span class="reg-value">M 0.73</span> (typical B737 Long Range Cruise) | K<sub>r</sub> = <span class="reg-value">0.98</span> (typical modern TAT probe)</p>
+  <p><strong>Step 1:</strong> Convert TAT to Kelvin: &minus;20 + 273 = <span class="reg-value">253 K</span></p>
+  <p><strong>Step 2:</strong> Calculate denominator: 1 + (0.2 &times; 0.98 &times; 0.73&sup2;) = 1 + (0.2 &times; 0.98 &times; 0.5329) = 1 + 0.1044 = <span class="reg-value">1.1044</span></p>
+  <p><strong>Step 3:</strong> SAT = 253 &divide; 1.1044 = <span class="reg-value">229 K</span></p>
+  <p><strong>Step 4:</strong> Convert to Celsius: 229 &minus; 273 = <span class="reg-value">&minus;44&deg;C</span></p>
+  <p><strong>Result: SAT = &minus;44&deg;C</strong>. The probe reads &minus;20&deg;C but true static air temperature is &minus;44&deg;C.</p>
+</div>
+
+<h2 id="sec-9">9. Calibration and the International Standard Atmosphere (ISA)</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The ISA assumptions used as the calibration baseline for all air data instruments, including all numerical values for each atmospheric layer.</div>
+
+<p>Due to the variable nature of the real atmosphere, a standard calibration model is used. All air data instruments are calibrated to the <strong>International Standard Atmosphere (ISA)</strong>.</p>
+
+<figure>
+  <img src="figs/fig_p36_0.png" alt="International Standard Atmosphere chart">
+  <figcaption>The International Standard Atmosphere (ISA) &mdash; temperature profile with altitude. Source p.36.</figcaption>
+</figure>
+
+<h3>9.1 ISA Mean Sea Level (MSL) Values</h3>
+<table>
+  <tr><th>Parameter</th><th>ISA MSL Value</th></tr>
+  <tr><td>Pressure</td><td><span class="reg-value">1013.25 hPa</span></td></tr>
+  <tr><td>Temperature</td><td><span class="reg-value">+15&deg;C</span></td></tr>
+  <tr><td>Density</td><td><span class="reg-value">1225 g/m&sup3;</span></td></tr>
+</table>
+
+<h3>9.2 ISA Atmospheric Layers</h3>
+<table>
+  <tr><th>Layer</th><th>Altitude Range</th><th>Temperature Behaviour</th></tr>
+  <tr><td>Troposphere</td><td>MSL to <span class="reg-value">11 km (36 090 ft)</span></td><td>Decreases at <span class="reg-value">6.5&deg;C/km = 1.98&deg;C/1000 ft</span></td></tr>
+  <tr><td>Lower Stratosphere (Isothermal)</td><td><span class="reg-value">11 km to 20 km (36 090&ndash;65 617 ft)</span></td><td>Constant at <span class="reg-value">&minus;56.5&deg;C</span></td></tr>
+  <tr><td>Upper Stratosphere</td><td><span class="reg-value">20 km to 32 km (65 617&ndash;104 987 ft)</span></td><td>Increases at <span class="reg-value">1&deg;C/km = 0.3&deg;C/1000 ft</span></td></tr>
+</table>
+
+<p>Calibration is carried out with both increasing and decreasing readings to determine lag at calibration conditions. Any residual errors within agreed tolerances are listed as instrument errors over the operating range.</p>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary &mdash; Chapter 3:</strong>
+  <ul>
+    <li>Four reasons for temperature measurement: icing avoidance, engine performance, speed measurement, altitude accuracy.</li>
+    <li>Direct reading = bimetallic helix (differential thermal expansion). Remote reading = platinum resistance wire (electrical).</li>
+    <li>TAT probe: nickel-plated beryllium copper; right-angle airflow; bleed holes; platinum sensor; self-compensating heater (&lt;<span class="reg-value">1&deg;C</span> error).</li>
+    <li>Aspirator = ground temperature device, uses bleed air suction to bring fresh outside air to the sensor.</li>
+    <li>Dominant error = heating error (adiabatic + kinetic). Solar error remedied by shielding; icing remedied by heater.</li>
+    <li>SAT + Total Ram Rise = TAT. SAT + Measured Ram Rise = RAT. Measured Ram Rise = Total Ram Rise &times; K<sub>r</sub>.</li>
+    <li>Quick formula: Ram Rise &asymp; (TAS/100)&sup2; &mdash; NOT for exams. Use CRP-5.</li>
+    <li>Accurate formula (Kelvin ONLY): SAT = TAT &divide; (1 + 0.2 K<sub>r</sub> M&sup2;).</li>
+    <li>ISA MSL: <span class="reg-value">1013.25 hPa</span>, <span class="reg-value">+15&deg;C</span>, <span class="reg-value">1225 g/m&sup3;</span>. Lapse rate to <span class="reg-value">36 090 ft</span>: <span class="reg-value">1.98&deg;C/1000 ft</span>. Isothermal: <span class="reg-value">&minus;56.5&deg;C</span> from 36 090 ft to <span class="reg-value">65 617 ft</span>.</li>
+  </ul>
+</div>
+
+<h2 id="qa-section" style="page-break-before:always;">Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box">8 questions reproduced verbatim from Oxford Instrumentation Chapter 3. Source answer key: 1-b, 2-d, 3-b, 4-a, 5-b, 6-b, 7-a, 8-b.</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">The difference between static air temperature and total air temperature is known as:</span>
+    <ol class="q-options" type="a">
+      <li>Corrected outside air temperature</li>
+      <li>The total ram rise</li>
+      <li>The recovery factor</li>
+      <li>Hot ramp radiation</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) The total ram rise</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Total Ram Rise = TAT &minus; SAT. It is the theoretical maximum temperature increase caused by adiabatic compression when the moving air is brought to rest. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> COAT is another name for SAT itself, not the difference between SAT and TAT.</li>
+        <li><strong>(c)</strong> Recovery Factor (K<sub>r</sub>) is a dimensionless ratio (0 to 1), not a temperature difference.</li>
+        <li><strong>(d)</strong> Hot ramp radiation is not a recognised aviation temperature term.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Memorise: TAT &minus; SAT = Total Ram Rise. RAT &minus; SAT = Measured Ram Rise. K<sub>r</sub> links them: Measured = Total &times; K<sub>r</sub>.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">A direct reading aircraft thermometer usually consists of a bimetallic helix protruding into the airstream. Movement of the pointer over the temperature scale will depend upon:</span>
+    <ol class="q-options" type="a">
+      <li>Difference in electrical resistance of the two metals</li>
+      <li>Increase in pressure as airspeed increases</li>
+      <li>Increase in adiabatic cooling as airspeed increases</li>
+      <li>Different coefficients of expansion of the two metals</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d) Different coefficients of expansion of the two metals</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The bimetallic strip works because brass and invar have different coefficients of thermal expansion. On heating, brass expands more than invar, causing the strip (wound as a helix) to curl and move the pointer. See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Electrical resistance is the principle of the remote reading thermometer, not the direct reading bimetallic type.</li>
+        <li><strong>(b)</strong> The bimetallic thermometer measures temperature, not pressure; airspeed pressure drives the ASI, not the thermometer.</li>
+        <li><strong>(c)</strong> Adiabatic cooling does not apply to the bimetallic strip mechanism.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Direct Reading = bimetallic (expansion principle). Remote Reading = resistance wire (electrical principle). These are the two fundamental operating principles.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">A remote reading thermometer depends on &hellip;&hellip;&hellip;. to indicate changes in temperature:</span>
+    <ol class="q-options" type="a">
+      <li>Change of electrical resistance of the two metals</li>
+      <li>Change of electrical resistance with temperature</li>
+      <li>Change of electrical resistance with pressure</li>
+      <li>Change of electrical capacitance with temperature</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) Change of electrical resistance with temperature</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The TAT probe uses a pure platinum resistance wire. Platinum has a precise and predictable resistance-temperature relationship: resistance increases as temperature rises. This change is measured and converted to a temperature readout. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> &ldquo;Two metals&rdquo; implies a bimetallic direct-reading type. The TAT probe uses a single platinum element.</li>
+        <li><strong>(c)</strong> Resistance in the platinum sensor changes with temperature, not pressure.</li>
+        <li><strong>(d)</strong> Capacitance principles are used in some fuel gauges, not TAT probes.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Pure platinum is used because of its exceptionally linear and repeatable resistance-temperature characteristic (positive temperature coefficient).</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">Aircraft air temperature thermometers are shielded to protect them from:</span>
+    <ol class="q-options" type="a">
+      <li>Solar radiation</li>
+      <li>Accidental physical damage on the ground or hailstones in flight</li>
+      <li>Airframe icing</li>
+      <li>Kinetic heating</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) Solar radiation</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The probe strut is designed to shield the sensing element from direct solar radiation, which would heat the element above the true air temperature and cause an over-reading error. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> Physical protection from hailstones is not the purpose of shielding; the beryllium copper construction provides mechanical strength.</li>
+        <li><strong>(c)</strong> Icing is prevented by the inbuilt heater, not the shield.</li>
+        <li><strong>(d)</strong> Kinetic heating cannot be shielded against &mdash; it is an inherent consequence of speed, corrected by the recovery factor.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Error &rarr; Remedy mapping: Solar radiation &rarr; shielding; Ice accretion &rarr; heater; Kinetic/adiabatic heating &rarr; Recovery Factor correction.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">At a true airspeed of 500 knots, what is the ram rise?</span>
+    <ol class="q-options" type="a">
+      <li>50&deg;C</li>
+      <li>25&deg;C</li>
+      <li>5&deg;C</li>
+      <li>16&deg;C</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) 25&deg;C</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Using the rapid formula: Ram Rise = (TAS/100)&sup2; = (500/100)&sup2; = 5&sup2; = <span class="reg-value">25&deg;C</span>. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> 50&deg;C would result from TAS/10 &mdash; incorrect formula.</li>
+        <li><strong>(c)</strong> 5&deg;C is TAS/100 = 5, without squaring.</li>
+        <li><strong>(d)</strong> 16&deg;C corresponds to TAS = 400 kt: (400/100)&sup2; = 16.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Quick table: 200 kt = 4&deg;C; 300 kt = 9&deg;C; 400 kt = 16&deg;C; 500 kt = 25&deg;C. (All from squaring TAS/100.)</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">An air temperature probe may be aspirated in order to:</span>
+    <ol class="q-options" type="a">
+      <li>Prevent icing</li>
+      <li>Measure air temperature on the ground</li>
+      <li>Compensate for moisture level at the ramp position</li>
+      <li>Reduce the effects of solar radiation</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) Measure air temperature on the ground</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> When the aircraft is stationary, there is no natural airflow through the probe. An aspirator uses engine or APU bleed air to draw fresh outside air through the casing, preventing heat-soaked stagnant ramp air from contaminating the temperature reading. This is essential for accurate take-off performance calculations. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Icing is prevented by the probe&rsquo;s inbuilt electric heater.</li>
+        <li><strong>(c)</strong> Moisture compensation is not a function of the aspirator.</li>
+        <li><strong>(d)</strong> Solar radiation is mitigated by the probe strut&rsquo;s shielding design.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Aspirator = ground-use device. It uses bleed air suction to replace stagnant hot ramp air with fresh outside air at the sensing element.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q7.</span><span class="q-text">Total Air Temperature is:</span>
+    <ol class="q-options" type="a">
+      <li>The maximum temperature attainable by the air when brought to rest adiabatically</li>
+      <li>The temperature indicated on the air temperature thermometer plus the ram rise</li>
+      <li>The static air temperature minus the recovery factor</li>
+      <li>The recovery factor plus the ram rise</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) The maximum temperature attainable by the air when brought to rest adiabatically</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> This is the precise definition of TAT &mdash; the theoretical upper limit when all kinetic energy of the moving air is converted to heat through adiabatic compression, with no losses. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> The thermometer indicates RAT (not SAT). Adding the Measured Ram Rise to RAT gives nothing meaningful; TAT = SAT + Total Ram Rise.</li>
+        <li><strong>(c)</strong> Recovery Factor is dimensionless and cannot be subtracted from a temperature.</li>
+        <li><strong>(d)</strong> These are two different types of quantities and cannot be added to produce a temperature.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Learn the definition verbatim: &ldquo;Total Air Temperature is the maximum temperature attainable by the air when brought to rest adiabatically.&rdquo; This exact phrasing appears in exams.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q8.</span><span class="q-text">Which of these formulae gives the total temperature (T<sub>t</sub>) from the static temperature (T<sub>s</sub>):</span>
+    <ol class="q-options" type="a">
+      <li>T<sub>t</sub> = T<sub>s</sub>(1 + 0.2 M&sup2;)</li>
+      <li>T<sub>t</sub> = T<sub>s</sub>(1 + 0.2 K<sub>r</sub> M&sup2;)</li>
+      <li>T<sub>t</sub> = T<sub>s</sub> / (1 + 0.2 K<sub>r</sub> M&sup2;)</li>
+      <li>T<sub>t</sub> = T<sub>s</sub>(1 &minus; 0.2 M&sup2;)</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) T<sub>t</sub> = T<sub>s</sub>(1 + 0.2 K<sub>r</sub> M&sup2;)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The accurate formula SAT = TAT / (1 + 0.2 K<sub>r</sub> M&sup2;) rearranges to TAT = SAT &times; (1 + 0.2 K<sub>r</sub> M&sup2;). This includes Recovery Factor K<sub>r</sub>, which accounts for probe inefficiency. All temperatures must be in Kelvin. See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Omits K<sub>r</sub> &mdash; assumes a perfect probe (K<sub>r</sub> = 1.0) which does not exist in practice.</li>
+        <li><strong>(c)</strong> This is the formula for SAT from TAT (the inverse direction), not TAT from SAT.</li>
+        <li><strong>(d)</strong> A negative sign would make TAT less than SAT &mdash; physically impossible since compression always adds heat.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor&rsquo;s Note:</strong> Direction memory aid: TAT is always GREATER than SAT &mdash; so going SAT&rarr;TAT, multiply by a factor &gt;1. Going TAT&rarr;SAT, divide by that same factor.</div>
+  </div>
+</div>
+
+<h2 style="page-break-before:always;">Master Reference Tables &mdash; Chapter 3</h2>
+
+<h3>Numerical Values</h3>
+<table>
+  <tr><th>Value</th><th>Parameter</th><th>Section</th></tr>
+  <tr><td><span class="reg-value">&lt;1&deg;C</span></td><td>Maximum heater error in TAT probe</td><td>3</td></tr>
+  <tr><td><span class="reg-value">93%</span></td><td>Example reduced take-off power setting</td><td>3</td></tr>
+  <tr><td><span class="reg-value">&minus;273&deg;C = 0 K</span></td><td>Absolute zero</td><td>8</td></tr>
+  <tr><td><span class="reg-value">273 K</span></td><td>Freezing point of water (0&deg;C)</td><td>8</td></tr>
+  <tr><td><span class="reg-value">M 0.73</span></td><td>Typical cruise Mach number (B737 LRC)</td><td>8</td></tr>
+  <tr><td><span class="reg-value">0.98</span></td><td>Typical K<sub>r</sub> for a modern TAT probe</td><td>8</td></tr>
+  <tr><td><span class="reg-value">1013.25 hPa</span></td><td>ISA MSL pressure</td><td>9</td></tr>
+  <tr><td><span class="reg-value">+15&deg;C</span></td><td>ISA MSL temperature</td><td>9</td></tr>
+  <tr><td><span class="reg-value">1225 g/m&sup3;</span></td><td>ISA MSL density</td><td>9</td></tr>
+  <tr><td><span class="reg-value">36 090 ft (11 km)</span></td><td>ISA tropopause</td><td>9</td></tr>
+  <tr><td><span class="reg-value">&minus;56.5&deg;C</span></td><td>Isothermal temperature (tropopause to 65 617 ft)</td><td>9</td></tr>
+  <tr><td><span class="reg-value">65 617 ft (20 km)</span></td><td>Top of isothermal layer (ISA)</td><td>9</td></tr>
+  <tr><td><span class="reg-value">104 987 ft (32 km)</span></td><td>Top of upper stratosphere (ISA)</td><td>9</td></tr>
+  <tr><td><span class="reg-value">1.98&deg;C/1000 ft</span></td><td>ISA lapse rate (troposphere)</td><td>9</td></tr>
+  <tr><td><span class="reg-value">0.3&deg;C/1000 ft</span></td><td>ISA temperature rise rate (upper stratosphere)</td><td>9</td></tr>
+</table>
+
+<h3>Formula Sheet</h3>
+<table>
+  <tr><th>Formula</th><th>Use</th></tr>
+  <tr><td><code>TAT = SAT + Total Ram Rise</code></td><td>Basic temperature relationship</td></tr>
+  <tr><td><code>RAT = SAT + Measured Ram Rise</code></td><td>What the probe actually measures</td></tr>
+  <tr><td><code>Measured Ram Rise = Total Ram Rise &times; K<sub>r</sub></code></td><td>Apply recovery factor</td></tr>
+  <tr><td><code>Ram Rise &asymp; (TAS in kt / 100)&sup2;</code></td><td>Quick in-flight approximation ONLY</td></tr>
+  <tr><td><code>SAT (K) = TAT (K) &divide; (1 + 0.2 K<sub>r</sub> M&sup2;)</code></td><td>Accurate formula (Kelvin required)</td></tr>
+  <tr><td><code>TAT (K) = SAT (K) &times; (1 + 0.2 K<sub>r</sub> M&sup2;)</code></td><td>Rearranged accurate formula</td></tr>
+  <tr><td><code>K = &deg;C + 273</code></td><td>Celsius to Kelvin conversion</td></tr>
+</table>
+
+<h3>Mnemonics</h3>
+<table>
+  <tr><th>Mnemonic</th><th>Meaning</th></tr>
+  <tr><td>COAT = SAT</td><td>Corrected Outside Air Temperature = Static Air Temperature</td></tr>
+  <tr><td>IOAT = TAT</td><td>Indicated Outside Air Temperature = Total Air Temperature</td></tr>
+  <tr><td>TAT &gt; RAT &gt; SAT</td><td>Temperature hierarchy at speed (TAT is always highest)</td></tr>
+</table>
+
+<h3>Source Answer Key</h3>
+<table>
+  <tr><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th><th>Q8</th></tr>
+  <tr><td>b</td><td>d</td><td>b</td><td>a</td><td>b</td><td>b</td><td>a</td><td>b</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

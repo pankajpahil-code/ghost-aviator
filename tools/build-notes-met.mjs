@@ -15,7 +15,7 @@ import { fileURLToPath } from "url";
 import { injectProtection } from "./_protect-snippet.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const NOTES_DIR = join(ROOT, "..", "IC Joshi", "DGCA Notes");
+const NOTES_DIR = join(ROOT, "..", "IC Joshi met  notes claude", "DGCA Notes");
 const PUBLIC_DIR = join(ROOT, "public", "content", "meteorology");
 const OUT = join(ROOT, "lib", "generated", "icjoshi-notes-met.ts");
 
@@ -48,6 +48,8 @@ const CHAPTERS = [
   ["Ch25_Aerodrome_Met_Reports_METAR_SPECI_TREND.html",  "met-25", "Aerodrome Met Reports — METAR, SPECI & TREND"],
   ["Ch26_Aviation_Weather_Forecasts_TAF_ARFOR_ROFOR.html","met-26", "Aviation Weather Forecasts — TAF, ARFOR & ROFOR"],
   ["Ch27_Radar_Report_Sigmet_Satellite_Bulletin.html",   "met-27", "Radar Report, SIGMET & Satellite Bulletin"],
+  ["Ch28_Met_Documentation_and_Briefing.html",           "met-28", "Met Documentation and Briefing"],
+  ["Ch29_Flight_Forecast_Tabular_and_Cross_Section.html", "met-29", "Flight Forecast & Cross-Section Forecast"],
 ];
 
 const SUBJECT_IDS = ["meteorology", "atpl-meteorology"];
@@ -85,6 +87,10 @@ const firstClass = (block, ...classes) => {
 
 // ── Parse one Q&A block ──────────────────────────────────────────────────────
 function parseBlock(block, ctx) {
+  // Some chapter templates wrap a header label inside qa-q/qa-a
+  // (<div class="qa-label">Question 1</div>…). Strip those first so the
+  // non-greedy class extractor doesn't stop at the inner </div>.
+  block = block.replace(/<div class="qa-label">[\s\S]*?<\/div>/gi, " ");
   const qHtml = firstClass(block, "qa-question", "qa-q");
   const aHtml = firstClass(block, "qa-answer", "qa-a");
   if (!qHtml || !aHtml) return null;
@@ -105,8 +111,11 @@ function parseBlock(block, ctx) {
   if (cleanOpts.length < 2 || cleanOpts.length !== opts.length) return null; // gaps → skip
 
   const ansText = htmlToText(aHtml);
-  // Answer marker varies by template: "Answer: (x)" or "✅ Correct: (x)".
-  const am = ansText.match(/(?:Answer|Correct)[^():]*:?\s*\(\s*([a-d])\s*\)/i);
+  // Answer marker varies by template: "Answer: (x)", "✅ Correct: (x)", or
+  // (when the label header was a separate div we just stripped) the answer
+  // block simply starts with the chosen option "(x) …".
+  const am = ansText.match(/(?:Answer|Correct)[^():]*:?\s*\(\s*([a-d])\s*\)/i)
+          ?? ansText.match(/\(\s*([a-d])\s*\)/i);
   if (!am) return null;
   const ans = am[1].toLowerCase().charCodeAt(0) - 97;
   if (ans >= cleanOpts.length) return null;
@@ -117,7 +126,7 @@ function parseBlock(block, ctx) {
   const tipHtml = firstClass(block, "qa-tip", "qa-note");
   const body = expHtml
     ? htmlToText(expHtml)
-    : ansText.replace(/^(?:Answer|Correct)[^:]*:\s*\(\s*[a-d]\s*\)\s*/i, "");
+    : ansText.replace(/^(?:Answer|Correct)?[^:()]*:?\s*\(\s*[a-d]\s*\)\s*/i, "");
   let exp = [body, tipHtml && htmlToText(tipHtml)]
     .filter(Boolean).join(" ").replace(/^Explanation:\s*/i, "").trim();
   if (exp.length > 600) exp = exp.slice(0, 597).trimEnd() + "…";

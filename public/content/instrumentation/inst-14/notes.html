@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 14 – The Turn and Slip Indicator | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a3a6b; border-bottom: 3px solid #1a3a6b; padding-bottom: 8px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a3a6b; margin-top: 30px; border-left: 5px solid #1a3a6b; padding-left: 10px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #2c5aa0; margin-top: 20px; }
+  p { margin: 8px 0 12px 0; }
+  .cover { text-align: center; padding: 40px 20px; border: 3px solid #1a3a6b; border-radius: 10px; margin-bottom: 30px; }
+  .cover h1 { border: none; font-size: 2.2em; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 8px; }
+  .cover .author { font-size: 1em; color: #333; margin-top: 6px; font-weight: 600; }
+  .toc { background: #f5f8ff; border: 1px solid #b0c4e8; border-radius: 8px; padding: 20px 30px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { border: none; margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: #2c5aa0; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a3a6b; color: #fff; padding: 8px 12px; text-align: left; font-weight: 700; }
+  td { border: 1px solid #ccc; padding: 7px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  .formula-box { background: #f0f4ff; border: 1px solid #8ab; border-radius: 6px; padding: 15px; margin: 15px 0; font-family: "Courier New", monospace; page-break-inside: avoid; }
+  .formula-box .formula { font-size: 1.2em; font-weight: 700; color: #1a3a6b; text-align: center; margin: 8px 0; }
+  .worked-example { background: #fff9f0; border: 2px solid #f57c00; border-radius: 8px; padding: 15px; margin: 15px 0; page-break-inside: avoid; }
+  .worked-example h4 { color: #e65c00; margin-top: 0; }
+  figure { text-align: center; margin: 20px auto; max-width: 100%; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #555; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Instrumentation</div>
+  <h1>Chapter 14<br>The Turn and Slip Indicator</h1>
+  <div class="subtitle">Oxford Aviation Academy — Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Overview of the Instrument</a></li>
+    <li><a href="#sec-2">The Rate Gyro — Principle</a></li>
+    <li><a href="#sec-3">Operation — Spring and Precession Equilibrium</a></li>
+    <li><a href="#sec-4">Constructional Details and Calibration</a></li>
+    <li><a href="#sec-5">Effect of Varying Rotor Speed</a></li>
+    <li><a href="#sec-6">Errors in the Looping Plane</a></li>
+    <li><a href="#sec-7">The Slip Indicator</a></li>
+    <li><a href="#sec-8">Operating Principles of the Slip Indicator</a></li>
+    <li><a href="#sec-9">Turn and Slip Displays</a></li>
+    <li><a href="#sec-10">Rate 1 Turn Calculations</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#master-ref">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Overview of the Instrument</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> What the Turn and Slip Indicator (TBI) comprises and what each part measures.
+</div>
+<p>The <strong>Turn and Slip Indicator</strong> (also called Turn and Bank Indicator or TBI) incorporates two measuring devices, both indicating on the same instrument face:</p>
+<ul>
+  <li><strong>Rate of Turn Indicator</strong> — uses a rate gyro to measure rate of turn about the vertical axis.</li>
+  <li><strong>Slip Indicator</strong> — a simple pendulous device (ball in a curved tube) showing whether the turn is balanced (correct bank for TAS and rate of turn), or indicating slip or skid.</li>
+</ul>
+
+<h2 id="sec-2">2. The Rate Gyro — Principle</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The horizontal-axis rate gyro; one gimbal; one degree of freedom; why a low rotor speed is desirable.
+</div>
+<p>The turn indicator is based on a <strong>horizontal-axis rate gyro</strong> with only <strong>one gimbal</strong> and therefore only <strong>one degree of freedom</strong>.</p>
+<ul>
+  <li>If the aircraft <strong>banks (without turning)</strong> — the gyro axis has the freedom to remain horizontal (no effect).</li>
+  <li>If the aircraft <strong>yaws (turns)</strong> — the frame (fixed to the airframe) applies a force (primary torque) about the ZZ axis, where the gyro has no freedom. This causes a primary precession about the YY axis, tilting the gyro.</li>
+</ul>
+<p>A <strong>spring system</strong> prevents the gyro from turning all the way to the vertical. The amount of spring stretch is a measure of the rate of turn.</p>
+<figure>
+  <img src="figs/fig_p186_0.png" alt="Rate gyro principle of operation">
+  <figcaption>Figs 14.1 &amp; 14.2 — Rate gyro operation: primary torque (ZZ axis) → primary precession (YY axis) → spring tension → equilibrium. Source p.186</figcaption>
+</figure>
+<div class="box-amber">
+  <strong>Why LOW rotor speed is used:</strong> The gyroscopic property of <em>precession</em> (not rigidity) is used to measure the rate of turn. A high gyroscopic rigidity would be <em>undesirable</em> because it would require a very large torque to produce the measurable precession needed.
+</div>
+
+<h2 id="sec-3">3. Operation — Spring and Precession Equilibrium</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The chain of events from turn entry to equilibrium; how the scale is calibrated.
+</div>
+<p>When the aircraft turns:</p>
+<ol>
+  <li>Primary torque acts about the ZZ axis (the aircraft yaws).</li>
+  <li>Primary precession occurs about the YY axis → the gimbal tilts.</li>
+  <li>As the rotor tilts, the spring between gimbal and frame extends.</li>
+  <li>Spring tension applies a secondary torque about the YY axis.</li>
+  <li>This secondary torque, with precession, continues until gimbal tilt gives spring tension producing a <strong>rate of secondary precession equal to the rate of turn</strong> → equilibrium.</li>
+</ol>
+<p>The chain of events is virtually instantaneous — as the aircraft goes into a turn, the gimbal immediately takes up the appropriate angle of tilt. If the rate of turn changes, the tilt changes to re-establish the balance. The angle of tilt is thus a measure of the rate of turn.</p>
+<div class="box-green">
+  <strong>Scale Calibration:</strong>
+  <ul>
+    <li>First graduation = <strong>Rate 1</strong> turn = <span class="reg-value">3°/second</span> (360° in 2 minutes).</li>
+    <li>Second graduation = <strong>Rate 2</strong> = <span class="reg-value">6°/second</span>.</li>
+    <li>Higher rates are possible depending on instrument.</li>
+  </ul>
+</div>
+
+<h2 id="sec-4">4. Constructional Details and Calibration</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Suction and electric versions; damping; stops; calibration TAS; TAS error limits.
+</div>
+<p>Suction and electrically-driven types are available. For suction types, an engine-driven pump or venturi applies suction; replacement air enters via a filter and is directed as a jet at buckets on the rotor periphery.</p>
+<p>Rotor rpm are <strong>low</strong> compared with the DGI and AH (because precession is used, not rigidity).</p>
+<p>A <strong>damping system</strong> (piston-in-cylinder or electromagnetic device) reduces oscillation of the gimbal.</p>
+<p><strong>Stops</strong> limit gimbal movement to a tilt corresponding to a turn of about <span class="reg-value">20°/second</span>. Because there is only one gimbal, the gyro will <em>not</em> topple when it comes against the stops.</p>
+<h3>TAS Calibration and Error</h3>
+<p>Calibration of correct rate of turn (spring tension) is optimized for a design TAS. However, only a small error is introduced even for quite large departures from design TAS. One manufacturer quotes:</p>
+<table>
+  <tr><th>Specification</th><th>Value</th></tr>
+  <tr><td>Maximum TAS error over operating range</td><td><span class="reg-value">5%</span></td></tr>
+  <tr><td>TAS range quoted</td><td><span class="reg-value">85 to 350 knots</span></td></tr>
+  <tr><td>Design calibration TAS</td><td><span class="reg-value">260 knots</span></td></tr>
+</table>
+
+<h2 id="sec-5">5. Effect of Varying Rotor Speed</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> What happens when suction is inadequate (underspeeding) or excessive (overspeeding).
+</div>
+<table>
+  <tr><th>Condition</th><th>Rotor State</th><th>Rigidity</th><th>Indication</th></tr>
+  <tr><td>Inadequate suction (high altitude, choked filter, leaking tube)</td><td>Underspeeding</td><td>Lowered</td><td><strong>Under-reads</strong> rate of turn</td></tr>
+  <tr><td>Excessive suction</td><td>Overspeeding</td><td>Increased</td><td><strong>Over-reads</strong> rate of turn</td></tr>
+</table>
+<div class="box-red">
+  <strong>HAZARD — Underspeeding:</strong> If the gyro is underspeeding, the same gimbal tilt requires less spring tension, meaning the aircraft may be turning faster than indicated. Pilot may under-bank and exceed the intended track.
+</div>
+
+<h2 id="sec-6">6. Errors in the Looping Plane</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How steep turns cause additional errors via movement in the looping plane.
+</div>
+<p>In a gently banked turn, the aircraft turns mainly in the yawing plane. In a <strong>steep turn</strong> there is more movement in the looping plane. Normally this means rotation about the rotor axis with no effect. However, if the gimbal is already tilted (from a preceding yaw), movement in the looping plane causes additional precession of the rotor.</p>
+<p>In a steep turn, the usual positive movement in the looping plane will <strong>increase the gimbal tilt</strong> — causing the indicator to <strong>over-read</strong>, sometimes coming against the stops.</p>
+
+<h2 id="sec-7">7. The Slip Indicator</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Purpose, construction, and bank angle rule of thumb.
+</div>
+<p>The slip indicator indicates whether a turn is properly balanced (correct bank angle for TAS and rate of turn), or whether the aircraft is slipping in or skidding out.</p>
+<h3>Rule of Thumb for Rate 1 Bank Angle</h3>
+<div class="formula-box">
+  <div class="formula">Required Bank Angle ≈ (TAS ÷ 10) + 7 degrees</div>
+  <p>Valid for <strong>Rate 1 turns</strong> with TAS between <span class="reg-value">100 and 250 knots</span>.</p>
+  <p><strong>Example:</strong> TAS 150 kt → Bank = 15 + 7 = <strong>22°</strong></p>
+</div>
+<h3>Construction</h3>
+<p>The modern slip indicator is a <strong>'ball-in-tube inclinometer'</strong> — a solid ball in a curved tube containing liquid that damps out oscillations. Early types used a simple metal pendulum with piston-in-cylinder damping. The heavy ball behaves like a pendulum, with the centre of curvature of the tube acting as the effective suspension point.</p>
+<figure>
+  <img src="figs/fig_p188_0.png" alt="Slip indicator — ball-in-tube, level flight and balanced turn">
+  <figcaption>Figs 14.3 &amp; 14.4 — Level flight: lift balances weight; ball central. Source p.188</figcaption>
+</figure>
+
+<h2 id="sec-8">8. Operating Principles of the Slip Indicator</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The physics of the ball in level flight, balanced turns, and unbalanced turns.
+</div>
+<h3>Level Flight</h3>
+<p>Weight W of the ball acts downwards; equal and opposite reaction from the base of the tube acts upwards towards the centre of curvature. Wings level → ball lies between the two etched lines.</p>
+<h3>Balanced Turn</h3>
+<p>In a balanced turn, the ball rolls outward due to centrifugal force, taking up a new equilibrium where the reaction of the tube base balances the resultant of ball weight and centrifugal force. Because both aircraft and ball experience the same TAS and rate of turn (same centripetal acceleration), their resultant force vectors are parallel. When the ball is central, the turn is balanced — lift equals the resultant of weight and centrifugal force.</p>
+<figure>
+  <img src="figs/fig_p189_0.png" alt="Balanced turn to port — ball central">
+  <figcaption>Figs 14.5 &amp; 14.6 — Balanced turn to port: ball remains central (centrifugal force balances out). Source p.189</figcaption>
+</figure>
+<h3>Unbalanced Turns</h3>
+<figure>
+  <img src="figs/fig_p190_0.png" alt="Unbalanced turn — slipping">
+  <figcaption>Fig 14.7 — Unbalanced turn to port (slipping in): too much bank; ball moves toward the inside (left of centre). Source p.190</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p190_1.png" alt="Unbalanced turn — skidding">
+  <figcaption>Fig 14.8 — Unbalanced turn to port (skidding out): insufficient bank; ball moves toward the outside (right of centre). Source p.190</figcaption>
+</figure>
+<div class="box-green">
+  <strong>Interpreting the Ball:</strong>
+  <table>
+    <tr><th>Ball Position</th><th>Turn State</th><th>Correction</th></tr>
+    <tr><td>Central (between lines)</td><td>Balanced turn</td><td>None needed</td></tr>
+    <tr><td>Inside the turn (e.g. left in left turn)</td><td>Slipping in (too much bank; radius too small)</td><td>Reduce bank</td></tr>
+    <tr><td>Outside the turn (e.g. right in left turn)</td><td>Skidding out (insufficient bank; radius too large)</td><td>Increase bank or increase rudder</td></tr>
+  </table>
+  <p><strong>Memory aid:</strong> "Step on the ball" — apply rudder in the direction the ball has moved to correct the slip/skid.</p>
+</div>
+
+<h2 id="sec-9">9. Turn and Slip Displays</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Reading needle-and-ball displays.
+</div>
+<p>The turn indicator needle deflects in the direction of turn (left or right of centre). Rate 1 is indicated at the first marked graduation on each side. The ball shows balanced or unbalanced state as described above.</p>
+<pre class="mermaid">
+flowchart LR
+    subgraph T[Turn Indicator - Needle]
+        NL["Needle Left\n= Left Turn"]
+        NC["Needle Centre\n= Straight Ahead"]
+        NR["Needle Right\n= Right Turn"]
+    end
+    subgraph S[Slip Indicator - Ball]
+        BL["Ball Left\n= Slipping In\n(left turn - too much bank)"]
+        BC["Ball Centre\n= Balanced"]
+        BR["Ball Right\n= Skidding Out\n(left turn - too little bank)"]
+    end
+</pre>
+
+<h2 id="sec-10">10. Rate 1 Turn Calculations</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Calculating turn diameter, radius, and circumference for Rate 1 turns.
+</div>
+<div class="formula-box">
+  <div class="formula">Rate 1 = 3°/second = 360° in 2 minutes</div>
+</div>
+<div class="worked-example">
+  <h4>Worked Example — Turn Diameter at Rate 1, TAS 360 kt</h4>
+  <p><strong>Given:</strong> TAS = 360 kt, Rate 1 turn.</p>
+  <p><strong>Step 1:</strong> Rate 1 = 2 minutes for 360°. At 360 kt, distance in 2 min = 360 × (2/60) = 12 NM. This is the circumference of the turn circle.</p>
+  <p><strong>Step 2:</strong> Circumference = π × d → 12 = (22/7) × d → d = 12 × 7/22 = <strong>3.8 NM</strong></p>
+  <p><strong>Quick check rule:</strong> TAS ÷ 100 ≈ diameter in NM (rough). 360 ÷ 100 = 3.6 NM ✓ (close to 3.8).</p>
+  <p><strong>Radius:</strong> r = d/2 = <strong>1.9 NM</strong></p>
+</div>
+<div class="box-amber">
+  <strong>Exam Tip — Quick Diameter Rule:</strong>
+  <ul>
+    <li>TAS 360 kt → diameter ≈ 3.8 NM (radius ≈ 1.9 NM)</li>
+    <li>TAS 400 kt → diameter ≈ 4.2 NM</li>
+    <li>TAS 500 kt → diameter ≈ 5.3 NM</li>
+    <li>Quick rule: TAS ÷ 95 ≈ diameter NM</li>
+  </ul>
+</div>
+
+<div class="box-amber">
+  <strong>Quick Revision Summary — Chapter 14:</strong>
+  <ul>
+    <li>Rate gyro = horizontal axis, 1 gimbal, 1 DOF. Uses precession (not rigidity) → LOW rotor speed desirable.</li>
+    <li>Rate 1 = 3°/sec = 360° in 2 minutes.</li>
+    <li>Rate 2 = 6°/sec. Stops limit at ≈20°/sec.</li>
+    <li>Calibration TAS: 260 kt. Error ≤5% from 85–350 kt.</li>
+    <li>Underspeeding → under-reads turn rate. Overspeeding → over-reads.</li>
+    <li>Steep turns → looping plane movement → over-read (sometimes against stops).</li>
+    <li>Slip indicator = ball in curved tube. Central = balanced. Inside = slipping. Outside = skidding.</li>
+    <li>Bank angle rule of thumb (Rate 1): (TAS ÷ 10) + 7 degrees. Valid 100–250 kt.</li>
+    <li>Turn diameter at Rate 1 = TAS ÷ 95 (approx, in NM).</li>
+    <li>1 gimbal only → gyro CANNOT topple even at stops.</li>
+  </ul>
+</div>
+
+<div class="qa-section">
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+<div class="box-blue">
+  Source questions reproduced verbatim. Answer key from source: 1-c, 2-a, 3-a, 4-d, 5-a, 6-d.
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">The rate of turn indicator uses (i) ............... which spins (ii)...................</span>
+    <ol class="q-options" type="a">
+      <li>(i) a space gyroscope — (ii) up and away from the pilot</li>
+      <li>(i) a tied gyro — (ii) anticlockwise when viewed from above</li>
+      <li>(i) a rate gyro — (ii) up and away from the pilot</li>
+      <li>(i) an earth gyro — (ii) clockwise</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) a rate gyro — up and away from the pilot</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The turn indicator uses a <em>rate gyro</em> (one gimbal, spring restrained, measuring precession caused by yaw rate). The rotor spins "up and away from the pilot" in British instruments (anticlockwise when viewed from the front — but the question refers to the direction of spin visible from the pilot's view, which is up and away). See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — A space gyro is a free gyro fixed in inertial space, which is not what the rate gyro of the TBI is.</li>
+        <li><strong>(b)</strong> — A tied gyro is the type used in the DGI and AH, not the rate gyro of the TBI.</li>
+        <li><strong>(d)</strong> — An earth gyro refers to a gravity-tied gyro (like in the AH). Not applicable here.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Rate gyro is the key gyro type for the TBI. It has only one gimbal (unlike two in the DGI and AH), and uses precession (not rigidity) to measure rate of turn.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">The gyro in a rate of turn indicator has (i) ....................... operating speed than the gyros used in other instruments because (ii)……………........</span>
+    <ol class="q-options" type="a">
+      <li>(i) a lower — (ii) a higher rigidity is not required</li>
+      <li>(i) the same — (ii) it uses the property of rigidity</li>
+      <li>(i) a higher — (ii) a low precession rate gives a greater operating range</li>
+      <li>(i) variable — (ii) more than one rate of turn is desired</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) a lower operating speed — because a higher rigidity is not required</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The TBI rate gyro uses the property of precession (not rigidity) to measure rate of turn. High rigidity would be undesirable because a stiffer gyro requires a larger torque to precess, making the instrument less sensitive to small rates of turn. Low rotor speed = lower rigidity = easier to precess = more sensitive rate measurement. See <a href="#sec-2">Section 2</a> and <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> — The TBI does not use the property of rigidity; it uses precession.</li>
+        <li><strong>(c)</strong> — Higher speed would increase rigidity and reduce sensitivity, the opposite of what is needed.</li>
+        <li><strong>(d)</strong> — Speed does not vary; it is fixed at a lower value to ensure appropriate sensitivity.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> This is a classic exam question. Contrast with DGI and AH which require high rigidity. The TBI deliberately uses low rigidity for precession-based rate sensing.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">The TBI shown alongside indicates: [image shows needle left of centre at Rate 1, ball left of centre]</span>
+    <ol class="q-options" type="a">
+      <li>a rate of turn to the left, slipping in</li>
+      <li>an aircraft taxiing and turning starboard</li>
+      <li>that the aircraft will complete a turn in one minute</li>
+      <li>the aircraft is yawing to the right</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) a rate of turn to the left, slipping in</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Needle left of centre = turning left. Ball left of centre (inside the turn) = slipping in (too much bank for the TAS and rate of turn). See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> — The needle showing Rate 1 indicates a rate of turn of 3°/sec which is an airborne turn, not taxiing.</li>
+        <li><strong>(c)</strong> — Rate 1 (3°/sec) = 360° in 2 minutes, not 1 minute. Rate 2 would be 360° in 1 minute.</li>
+        <li><strong>(d)</strong> — Needle left = left yaw/turn. "Yawing to the right" is opposite.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Rate 1 = 2 minutes for 360°. Rate 2 = 1 minute for 360°. "Slipping in" = ball inside the turn.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">When the pointer of a rate of turn indicator shows a steady rate of turn:</span>
+    <ol class="q-options" type="a">
+      <li>the calibrated spring is exerting a force about the lateral axis equal to the rate of turn</li>
+      <li>the force produced by the spring is producing a precession equal to but opposite to the rate of turn is correctly banked</li>
+      <li>the spring is providing a force which produces a precession equal to the rate of turn (in the opposite direction)</li>
+      <li>the spring is providing a force which produces a precession equal to the rate of turn (in the correct direction)</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d) the spring is providing a force which produces a precession equal to the rate of turn (in the correct direction)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> At equilibrium, the spring tension provides a secondary torque that generates a secondary precession equal in rate to the aircraft's rate of turn. This precession is in the direction that maintains the equilibrium (it is in the same direction as the turning tendency that produced the primary precession). See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — The spring force acts about the YY axis, not the lateral axis specifically; and "equal to the rate of turn" is dimensionally incorrect — force is not equal to a rate.</li>
+        <li><strong>(b) and (c)</strong> — "Opposite direction" is incorrect. The spring precession is in the same direction as required for equilibrium with the turning rate.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The equilibrium concept: spring tension ↔ rate of turn. Greater turn rate = larger spring stretch = larger secondary torque = larger secondary precession = larger gimbal tilt = larger needle deflection.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">If the filter of the air driven rate of turn indicator becomes partially blocked:</span>
+    <ol class="q-options" type="a">
+      <li>the aircraft will turn faster than indicated</li>
+      <li>the instrument will over-read</li>
+      <li>the rate of turn indicated will be unaffected</li>
+      <li>the radius of the turn will decrease</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) the aircraft will turn faster than indicated</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> A partially blocked filter reduces suction → rotor underspeeds → reduced gyroscopic rigidity → the same rate of turn requires less spring tension → smaller gimbal tilt → instrument under-reads. The actual rate of turn is higher than the indicated rate — so the aircraft is turning faster than the indicator shows. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> — Underspeeding causes UNDER-reading, not over-reading.</li>
+        <li><strong>(c)</strong> — The indication is affected — it under-reads.</li>
+        <li><strong>(d)</strong> — Radius of the turn is determined by TAS and rate of turn, not by the indicator's reading. The actual rate of turn and radius are unchanged; only the indication is wrong.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> "Blocked filter → underreads → aircraft turns FASTER than shown." This is a safety-critical point. The pilot may think they are at Rate 1 but are actually turning faster.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">The radius of a turn at rate 1, and TAS 360 kt is:</span>
+    <ol class="q-options" type="a">
+      <li>10 NM</li>
+      <li>5 NM</li>
+      <li>7.5 NM</li>
+      <li>2 NM</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d) 2 NM (approximately)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Rate 1 = 3°/sec = 360° in 2 minutes. At 360 kt, distance in 2 min = 360 × (2/60) = 12 NM = circumference. Diameter = 12 ÷ π = 12 × 7/22 ≈ 3.8 NM. Radius = 3.8 ÷ 2 ≈ <strong>1.9 NM ≈ 2 NM</strong>. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a) 10 NM</strong> — This would be the circumference at a much slower speed or larger diameter than calculated.</li>
+        <li><strong>(b) 5 NM</strong> — This would be the diameter, not the radius.</li>
+        <li><strong>(c) 7.5 NM</strong> — Far too large for Rate 1 at 360 kt.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Radius ≈ TAS(kt) ÷ 190 (in NM). So 360 ÷ 190 ≈ 1.9 NM ≈ 2 NM. Diameter ≈ TAS ÷ 95.</div>
+  </div>
+</div>
+
+</div><!-- end qa-section -->
+
+<h2 id="master-ref">Master Reference Tables</h2>
+<table>
+  <tr><th>Parameter</th><th>Value</th><th>Section</th></tr>
+  <tr><td>Rate 1 turn rate</td><td><span class="reg-value">3°/second</span></td><td><a href="#sec-3">3</a></td></tr>
+  <tr><td>Rate 1 full circle time</td><td><span class="reg-value">2 minutes</span></td><td><a href="#sec-3">3</a></td></tr>
+  <tr><td>Rate 2 turn rate</td><td><span class="reg-value">6°/second</span></td><td><a href="#sec-3">3</a></td></tr>
+  <tr><td>Gimbal stops (max)</td><td><span class="reg-value">≈20°/second</span></td><td><a href="#sec-4">4</a></td></tr>
+  <tr><td>Calibration TAS</td><td><span class="reg-value">260 knots</span></td><td><a href="#sec-4">4</a></td></tr>
+  <tr><td>TAS error tolerance</td><td><span class="reg-value">≤5% from 85–350 kt</span></td><td><a href="#sec-4">4</a></td></tr>
+  <tr><td>Rate 1 bank angle (TAS 150 kt)</td><td><span class="reg-value">22°</span></td><td><a href="#sec-7">7</a></td></tr>
+  <tr><td>Turn diameter (Rate 1, 360 kt)</td><td><span class="reg-value">≈3.8 NM</span></td><td><a href="#sec-10">10</a></td></tr>
+  <tr><td>Turn radius (Rate 1, 360 kt)</td><td><span class="reg-value">≈1.9 NM</span></td><td><a href="#sec-10">10</a></td></tr>
+</table>
+
+<h3>Answer Key Summary</h3>
+<table>
+  <tr><th>Q</th><th>Answer</th><th>Key Topic</th></tr>
+  <tr><td>1</td><td>c</td><td>Rate gyro; spins up and away from pilot</td></tr>
+  <tr><td>2</td><td>a</td><td>Lower rotor speed — high rigidity not needed</td></tr>
+  <tr><td>3</td><td>a</td><td>Needle left + ball left = left turn, slipping in</td></tr>
+  <tr><td>4</td><td>d</td><td>Spring precession = rate of turn, correct direction</td></tr>
+  <tr><td>5</td><td>a</td><td>Blocked filter → underspeeds → under-reads → aircraft turns faster than shown</td></tr>
+  <tr><td>6</td><td>d</td><td>Rate 1, 360 kt → radius ≈ 2 NM</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 12 – Directional Gyro Indicator (DGI) | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a3a6b; border-bottom: 3px solid #1a3a6b; padding-bottom: 8px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a3a6b; margin-top: 30px; border-left: 5px solid #1a3a6b; padding-left: 10px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #2c5aa0; margin-top: 20px; }
+  h4 { font-size: 1em; font-weight: 700; color: #333; }
+  p { margin: 8px 0 12px 0; }
+  .cover { text-align: center; padding: 40px 20px; border: 3px solid #1a3a6b; border-radius: 10px; margin-bottom: 30px; }
+  .cover h1 { border: none; font-size: 2.2em; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 8px; }
+  .cover .author { font-size: 1em; color: #333; margin-top: 6px; font-weight: 600; }
+  .toc { background: #f5f8ff; border: 1px solid #b0c4e8; border-radius: 8px; padding: 20px 30px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { border: none; margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: #2c5aa0; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a3a6b; color: #fff; padding: 8px 12px; text-align: left; font-weight: 700; }
+  td { border: 1px solid #ccc; padding: 7px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  blockquote { border-left: 4px solid #aaa; background: #f9f9f9; margin: 15px 0; padding: 10px 15px; font-family: Georgia, serif; font-style: italic; page-break-inside: avoid; }
+  .formula-box { background: #f0f4ff; border: 1px solid #8ab; border-radius: 6px; padding: 15px; margin: 15px 0; font-family: "Courier New", monospace; page-break-inside: avoid; }
+  .formula-box .formula { font-size: 1.2em; font-weight: 700; color: #1a3a6b; text-align: center; margin: 8px 0; }
+  .worked-example { background: #fff9f0; border: 2px solid #f57c00; border-radius: 8px; padding: 15px; margin: 15px 0; page-break-inside: avoid; }
+  .worked-example h4 { color: #e65c00; margin-top: 0; }
+  figure { text-align: center; margin: 20px auto; max-width: 100%; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #555; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .ref-table { font-size: 0.9em; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+  @media print {
+    body { padding: 0; }
+    .watermark { position: fixed; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Instrumentation</div>
+  <h1>Chapter 12<br>Directional Gyro Indicator (DGI)</h1>
+  <div class="subtitle">Oxford Aviation Academy — Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction</a></li>
+    <li><a href="#sec-2">Principle and Construction of the DGI</a></li>
+    <li><a href="#sec-3">Control System — Suction Gyros</a></li>
+    <li><a href="#sec-4">The Caging Device</a></li>
+    <li><a href="#sec-5">DGI Limitations</a></li>
+    <li><a href="#sec-6">DGI Errors</a></li>
+    <li><a href="#sec-7">Gimballing Errors</a></li>
+    <li><a href="#sec-8">Random Wander</a></li>
+    <li><a href="#sec-9">Apparent Wander (Earth's Rotation)</a></li>
+    <li><a href="#sec-10">Latitude Nut Correction</a></li>
+    <li><a href="#sec-11">Effect of Latitude Change on Compensated DGI</a></li>
+    <li><a href="#sec-12">Errors Due to Unstable Rotor RPM</a></li>
+    <li><a href="#sec-13">Transport Wander</a></li>
+    <li><a href="#sec-14">Drift Rate Calculations</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#master-ref">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="sec-1">1. Introduction</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Purpose of the DGI, its relationship to the magnetic compass, and its key advantage of dead-beat heading indications free from magnetic turning and acceleration errors.
+</div>
+<p>The <strong>Directional Gyro Indicator (DGI)</strong>, also called the Direction Indicator (DI), provides a stable directional reference in azimuth for maintaining accurate headings and executing precise turns.</p>
+<p>There is <strong>no magnetic element</strong> in the DI, so it is <em>not north-seeking</em> and must initially be synchronized with the magnetic compass. Synchronization must be checked at regular intervals because of real and apparent gyro wander (drift). The DGI does not replace the compass — its stable, dead-beat indications are complementary to the north-seeking capability of the compass.</p>
+<p>Having no magnetic element, the DGI does not suffer from the compass turning and acceleration errors produced by the vertical component of the earth's magnetic field.</p>
+<figure>
+  <img src="figs/fig_p154_0.png" alt="Two directional gyro indicators — vertical and horizontal display">
+  <figcaption>Fig 12.1 — Two directional gyro indicators (Vertical Display: Old; Horizontal Display: Modern). Source p.154</figcaption>
+</figure>
+
+<!-- SECTION 2 -->
+<h2 id="sec-2">2. Principle and Construction of the DGI</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Gimbal arrangement, gyro type (tied), rotor axis orientation, and how heading is displayed.
+</div>
+<p>The DI employs a <strong>tied gyro</strong> — a gyro having freedom of movement in three planes mutually at right angles, but with the rotor axis maintained in the <strong>yawing plane</strong> of the aircraft. This means the rotor axis is horizontal in level flight, and gyroscopic rigidity provides the datum from which heading is measured.</p>
+<p>The rotor is mounted in the <strong>inner gimbal</strong> (on bearings in the outer gimbal), which has restricted freedom to turn. The <strong>outer gimbal</strong> can rotate through <span class="reg-value">360°</span> about the aircraft's vertical axis, on bearings in the case.</p>
+<p>Note that the rotor axis, inner gimbal axis, and outer gimbal axis are mutually at right angles.</p>
+<p>During a turn, the aircraft and instrument case turn on the vertical axis bearings of the outer gimbal whilst the gyro rotor, gimbals and indicating scale all remain fixed in azimuth because of gyroscopic rigidity. Heading is indicated on the scale by a <strong>lubber line</strong> painted on a glass window in the instrument case.</p>
+<figure>
+  <img src="figs/fig_p155_0.png" alt="Air driven directional gyro">
+  <figcaption>Fig 12.2 — An air driven directional gyro. Source p.155</figcaption>
+</figure>
+
+<!-- SECTION 3 -->
+<h2 id="sec-3">3. Control System — Suction Gyros</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How air jets and the wedge plate maintain the rotor axis in the yawing plane; two complementary erection systems.
+</div>
+<p>With earlier designs of DGI, the rotor is driven by twin jets of air applied from the outer gimbal ring. Suction is applied to the case; replacement air enters through a filter and is ducted to jets on the outer gimbal which act on 'buckets' cut in the rotor.</p>
+<p>The jets not only spin the rotor but also serve to <strong>maintain or tie the rotor axis in the yawing plane</strong>.</p>
+<h3>First Control System — Air Jet Erection</h3>
+<p>When the rotor axis is in the yawing plane, the full force <strong>X</strong> of the jets drives the rotor. If the aircraft banks, gyroscopic rigidity keeps the rotor axis fixed in space — it is no longer in the yawing plane. Force X is then resolved into:</p>
+<ul>
+  <li><strong>Component Y</strong> — in the plane of rotation, maintaining spin.</li>
+  <li><strong>Component Z</strong> — acting at 90° to the plane of rotation.</li>
+</ul>
+<p>Because this is a gyro, Component Z precesses the rotor as if it were applied 90° around the circumference in the direction of spin. The result is a force <strong>Q</strong> operating to re-erect the rotor with its axis in the yawing plane.</p>
+<figure>
+  <img src="figs/fig_p156_0.png" alt="Rotor axis in yawing plane">
+  <figcaption>Fig 12.3 — Rotor axis in yawing plane (balanced jets). Source p.156</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p156_1.png" alt="Rotor axis displaced from yawing plane">
+  <figcaption>Fig 12.4 — Rotor axis displaced from yawing plane; precession re-erects. Source p.156</figcaption>
+</figure>
+<h3>Second Control System — Wedge Plate</h3>
+<p>Air spinning the rotor flows round the rotor inside a metal case and is directed at a <strong>wedge plate</strong> fixed to the outer gimbal. When the gyro is correctly erected, the exhaust jet is divided into two equal streams producing equal reactions (R1 &amp; R2) on the outer gimbal. When the rotor axis is displaced from the yawing plane, streams become unbalanced, producing an unequal reaction that applies a torque to the outer gimbal about the vertical gyro axis. This torque is precessed to re-erect the rotor axis.</p>
+<div class="box-amber">
+  <strong>Exam Tip:</strong> <em>Jets provide coarse adjustment; the wedge plate provides fine adjustment.</em> This two-system approach is a common exam point.
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="sec-4">4. The Caging Device</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Construction and purpose of the caging knob.
+</div>
+<p>On the front of the instrument there is a <strong>caging knob</strong> which, when pushed in, moves a caging arm that locks the inner gimbal at right angles to the outer gimbal (locking the rotor axis in the yawing plane). A gear simultaneously engages with the outer gimbal so that turning the knob rotates the gyro and synchronizes the scale reading with (usually) the compass reading.</p>
+<div class="box-green">
+  <strong>Purposes of the Caging Device:</strong>
+  <ul>
+    <li>Allows synchronization of the DGI with the compass and resetting as required.</li>
+    <li>Prevents the gyro from toppling during synchronization.</li>
+    <li>Prevents toppling and possible damage before manoeuvres in which pitch and roll limits may be exceeded.</li>
+    <li>Allows instant re-erection and re-synchronization if the gyro has toppled.</li>
+  </ul>
+</div>
+
+<!-- SECTION 5 -->
+<h2 id="sec-5">5. DGI Limitations</h2>
+<div class="box-red">
+  <strong>LIMITATION — Toppling:</strong> If the aircraft exceeds the pitch or roll limits, the gyro will topple.
+  <ul>
+    <li>Air driven DGI: <span class="reg-value">55°</span> pitch / roll limit.</li>
+    <li>Modern DGI: <span class="reg-value">85°</span> pitch / roll limit.</li>
+  </ul>
+  <p>When toppled, the inner gimbal hits its stops, causing precession that makes the outer gimbal and scale spin rapidly.</p>
+</div>
+<p><strong>Exceptions to toppling:</strong></p>
+<ul>
+  <li>If the rotor axis is <em>athwartships</em> — <span class="reg-value">360°</span> of aircraft rotation in the looping plane is then possible without toppling.</li>
+  <li>If the rotor axis is <em>fore and aft</em> — <span class="reg-value">360°</span> of roll is then possible without toppling.</li>
+</ul>
+<div class="box-amber">
+  <strong>Exam Tip:</strong> "Modern DGI = 85°, Air-driven DGI = 55°" — both pitch and roll for each type. The question asks about a modern DGI's limits — the answer is 85° and 85°.
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="sec-6">6. DGI Errors — Summary</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Overview of all DGI error types.
+</div>
+<p>There are several reasons why it is virtually impossible for a DGI to remain synchronized with the compass. The most significant errors are:</p>
+<ul>
+  <li>Gimballing errors.</li>
+  <li>Random wander.</li>
+  <li>Apparent wander due to earth's rotation.</li>
+  <li>Errors resulting from varying rotor rpm.</li>
+  <li>Apparent wander due to change of aircraft position (transport wander).</li>
+</ul>
+<pre class="mermaid">
+flowchart TD
+    A[DGI Errors] --> B[Gimballing Errors\nDue to gimbal geometry\nin banked turns]
+    A --> C[Random Wander\nReal wander from\nmanufacturing imperfections]
+    A --> D[Apparent Wander\nDue to Earth's rotation\n15 × sin lat °/h]
+    A --> E[Unstable Rotor RPM\nAffects precession rate\nand latitude correction]
+    A --> F[Transport Wander\nMovement between\nnon-parallel meridians]
+</pre>
+
+<!-- SECTION 7 -->
+<h2 id="sec-7">7. Gimballing Errors</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Errors arising from gimbal geometry during banked manoeuvres.
+</div>
+<p>Gimballing errors are errors in DGI indications which occur when bank is applied. If the errors during a <span class="reg-value">360°</span> turn are plotted, an approximate <strong>double sine curve</strong> results, with zero error on four headings (90° apart) spaced between alternate positive and negative peaks (two of each).</p>
+<p>The errors are small provided deviations in attitude from level are only moderate, and they <strong>disappear as soon as level flight is resumed</strong>. They occur because of the geometry of the gimbal system — unless the instrument case (and aircraft) can rotate about one of the gyro axes, the outer gimbal itself must move (giving an error) if the rotor axis is to maintain its fixed direction.</p>
+<div class="box-amber">
+  <strong>Exam Tip:</strong> Gimballing errors disappear as soon as level flight is resumed. They are zero on four headings during a 360° turn.
+</div>
+
+<!-- SECTION 8 -->
+<h2 id="sec-8">8. Random Wander</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Real wander due to manufacturing imperfections and typical drift rates.
+</div>
+<p>The gyro rotor axis may change its direction in space (<strong>real wander</strong>) or appear to change direction (<strong>apparent wander</strong>). Random wander (or drift) is mainly due to manufacturing imperfections.</p>
+<table>
+  <tr><th>DGI Type</th><th>Rotor Speed</th><th>Drift Rate</th></tr>
+  <tr><td>Air driven (older)</td><td><span class="reg-value">10,000 rpm</span></td><td><span class="reg-value">≈ 1.6°/hour</span></td></tr>
+  <tr><td>Air driven (later)</td><td><span class="reg-value">20,000 rpm</span></td><td><span class="reg-value">≈ 1.2°/hour</span></td></tr>
+  <tr><td>Electrically driven</td><td>Higher speeds</td><td>A few °/hour</td></tr>
+  <tr><td>Inertial navigation gyros</td><td>Very high</td><td><span class="reg-value">&lt; 0.01°/hour</span></td></tr>
+</table>
+
+<!-- SECTION 9 -->
+<h2 id="sec-9">9. Apparent Wander Due to Rotation of the Earth</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The fundamental formula for apparent wander, latitude dependence, and hemisphere rules.
+</div>
+<p>An azimuth gyro at the North Pole (rotor axis horizontal) will have its reading decrease at a rate of <span class="reg-value">15°/hour</span> (at the South Pole, the reading increases at the same rate). This is the <strong>maximum apparent drift rate</strong>.</p>
+<p>At the equator, an observer and gyro aligned N/S will move with the earth through 360° in 24 hours with no change in rotor axis direction relative to the meridian — so there is <strong>zero apparent drift at the equator</strong>.</p>
+<div class="formula-box">
+  <div class="formula">Apparent Drift Rate = 15 × sin(latitude) °/hour</div>
+  <p><strong>Sign convention:</strong></p>
+  <ul>
+    <li>Northern hemisphere: DGI reading <em>decreases</em> (negative drift).</li>
+    <li>Southern hemisphere: DGI reading <em>increases</em> (positive drift).</li>
+  </ul>
+</div>
+<figure>
+  <img src="figs/fig_p159_0.png" alt="Apparent wander at the North Pole">
+  <figcaption>Fig 12.7 — Apparent wander at the North Pole (maximum 15°/hour). Source p.159</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p159_1.png" alt="Apparent wander at the Equator">
+  <figcaption>Fig 12.8 — Apparent wander at the Equator (zero drift). Source p.159</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p160_0.png" alt="Apparent wander at intermediate latitudes — northern hemisphere">
+  <figcaption>Fig 12.9 — Apparent wander at intermediate latitudes (northern hemisphere): DGI reading decreases. Source p.160</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p160_1.png" alt="Apparent wander at intermediate latitudes — southern hemisphere">
+  <figcaption>Fig 12.10 — Apparent wander at intermediate latitudes (southern hemisphere): DGI reading increases. Source p.160</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p161_0.png" alt="Rate of apparent wander on uncorrected gyro">
+  <figcaption>Fig 12.11 — Rate of apparent wander on an uncorrected gyro vs. latitude. Source p.161</figcaption>
+</figure>
+<div class="box-amber">
+  <strong>Quick Memory Aid:</strong> "<em>North — Negative. South — Positive.</em>" or "<em>NNEQ</em>": Northern = Negative; Equator = zero.
+</div>
+
+<!-- SECTION 10 -->
+<h2 id="sec-10">10. Latitude Nut Correction</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How the adjustable latitude rider nut compensates for apparent wander, its limitations, and the effect of latitude changes.
+</div>
+<p>Compensation for apparent wander due to the earth's rotation is by means of an <strong>adjustable latitude rider nut</strong> on a threaded stud fixed horizontally to the inner gimbal.</p>
+<p>In its central position, the effect of the nut is cancelled by a counter-balance weight on the opposite side of the gimbal.</p>
+<ul>
+  <li><strong>Screwed out</strong>: Applies a downward moment → anticlockwise precession (viewed from above) → DGI reading <em>increases</em>.</li>
+  <li><strong>Wound in</strong>: Clockwise precession → DGI reading <em>decreases</em>.</li>
+</ul>
+<p>This enables compensation for both increasing readings (southern hemisphere) and decreasing readings (northern hemisphere).</p>
+<figure>
+  <img src="figs/fig_p162_0.png" alt="Compensation for apparent wander — latitude nut">
+  <figcaption>Fig 12.12 — Latitude nut compensation for apparent wander. Source p.162</figcaption>
+</figure>
+<div class="box-red">
+  <strong>LIMITATION — Workshop Only:</strong> The latitude nut setting can only be changed under <strong>workshop conditions</strong> (not in the aircraft). Compensation will only be correct for the chosen latitude. If a change of operating area involves a latitude change of the order of <span class="reg-value">60°</span>, a DGI with the appropriate latitude correction would probably be substituted.
+</div>
+
+<h3>Effect of Latitude Correction on Gyro Behaviour</h3>
+<p>Figure 12.13 illustrates the effect of compensating a gyro for apparent drift of <span class="reg-value">−13°/h</span> at <span class="reg-value">60°N</span> (= 15 sin 60°). The latitude nut introduces a real drift of <span class="reg-value">+13°/h</span> so the resultant drift is zero at 60°N.</p>
+<figure>
+  <img src="figs/fig_p163_0.png" alt="Gyro corrected for 60°N — drift chart">
+  <figcaption>Fig 12.13 — Gyro corrected for 60°N: residual drift at other latitudes. Source p.163</figcaption>
+</figure>
+<div class="box-green">
+  <strong>Key Rules for Compensated DGI:</strong>
+  <ul>
+    <li>Flight <em>north</em> from the corrected latitude → DGI reading <em>decreases</em> (minus drift rate).</li>
+    <li>Flight <em>south</em> from the corrected latitude → DGI reading <em>increases</em> (plus drift rate).</li>
+    <li>Flight <em>away</em> from the corrected latitude → drift rate <em>increases</em>.</li>
+    <li>Flight <em>towards</em> the corrected latitude → drift rate <em>decreases</em>.</li>
+  </ul>
+</div>
+
+<!-- SECTION 11 -->
+<h2 id="sec-11">11. Effect of Change of Aircraft Latitude on Compensated DGI</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How apparent drift rate changes as an aircraft moves between latitudes during flight.
+</div>
+<p>The apparent drift rate varies with the <strong>sine of latitude</strong>. Consider a flight due north starting from the equator:</p>
+<ul>
+  <li>At equator: drift rate = <span class="reg-value">0°/h</span></li>
+  <li>At 30°N: drift rate = <span class="reg-value">7.5°/h</span> (decreasing)</li>
+  <li>At 60°N: drift rate = <span class="reg-value">13°/h</span> (decreasing)</li>
+  <li>At 90°N (pole): drift rate = <span class="reg-value">15°/h</span> (decreasing)</li>
+</ul>
+<p>The rate of increase of drift rate is <em>not linear</em> — it follows the sine function. The same applies to a compensated gyro moving north or south from its correction latitude.</p>
+
+<!-- SECTION 12 -->
+<h2 id="sec-12">12. Errors Due to Unstable Rotor RPM</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How rotor speed variations affect the accuracy of latitude nut compensation.
+</div>
+<p>Since the precession rate depends on rotor rpm, over which no precise control is maintained in a suction-driven DGI, latitude nut compensation is only approximate.</p>
+<table>
+  <tr><th>Condition</th><th>Effect on RPM</th><th>Effect on Rigidity</th><th>Result</th></tr>
+  <tr><td>High altitude / choked filter / leaking suction</td><td>Below design value (underspeeding)</td><td>Reduced</td><td>Latitude nut <em>over-corrects</em> apparent drift</td></tr>
+  <tr><td>RPM exceeds design figure</td><td>Above design value (overspeeding)</td><td>Increased</td><td>Latitude nut <em>under-corrects</em> apparent drift</td></tr>
+</table>
+
+<!-- SECTION 13 -->
+<h2 id="sec-13">13. Transport Wander</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Apparent drift caused by the aircraft moving between meridians.
+</div>
+<p>At any latitude other than the equator, meridians (which define local north) are not parallel. If the gyro is aligned to one meridian, then the aircraft is flown east to west, the new meridian will be inclined to the old one by an amount known as <strong>transport wander</strong>.</p>
+<div class="box-amber">
+  <strong>Exam Tip:</strong> Transport wander is zero at the equator (meridians are parallel there) and maximum at the poles. It is distinct from apparent wander due to the earth's rotation, which occurs even when the aircraft is stationary.
+</div>
+
+<!-- SECTION 14 -->
+<h2 id="sec-14">14. Drift Rate Calculations</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Worked examples applying the apparent drift formula.
+</div>
+<div class="formula-box">
+  <div class="formula">Apparent Drift Rate = 15 × sin(latitude) °/hour</div>
+  <p><strong>Variables:</strong> 15 = earth's rotation rate in °/hour; latitude = aircraft's latitude in degrees.</p>
+  <p><strong>Sign:</strong> Negative (reading decreases) in northern hemisphere; positive (reading increases) in southern hemisphere.</p>
+</div>
+<div class="worked-example">
+  <h4>Worked Example 1</h4>
+  <p><strong>Problem:</strong> An aircraft is stationary at 60°N. Calculate the hourly wander rate for an uncompensated gyro.</p>
+  <p><strong>Solution:</strong></p>
+  <p>Apparent wander = −15 × sin 60° °/h = −15 × 0.866 = <strong>−12.99°/h</strong> (reading decreases)</p>
+</div>
+<div class="worked-example">
+  <h4>Worked Example 2</h4>
+  <p><strong>Problem:</strong> A DGI is compensated for 56°N. The aircraft is now at 30°N. What is the residual drift rate?</p>
+  <p><strong>Solution:</strong></p>
+  <p>Correction applied at 56°N = +15 × sin 56° = +15 × 0.829 = +12.44°/h (real drift introduced by latitude nut)</p>
+  <p>Apparent drift at 30°N = −15 × sin 30° = −15 × 0.5 = −7.5°/h</p>
+  <p>Residual drift = +12.44 − 7.5 = <strong>+4.94°/h</strong> (reading increases — over-corrected)</p>
+</div>
+
+<div class="box-amber">
+  <strong>Quick Revision Summary — Chapter 12:</strong>
+  <ul>
+    <li>DGI = tied gyro, rotor axis in yawing plane. No magnetic element — must sync with compass.</li>
+    <li>Air jets: coarse erection. Wedge plate: fine erection.</li>
+    <li>Topple limits: <span class="reg-value">85°</span> modern / <span class="reg-value">55°</span> air-driven DGI (pitch and roll).</li>
+    <li>Apparent drift = <span class="reg-value">15 × sin lat °/h</span>. Negative in NH (decreasing), positive in SH (increasing).</li>
+    <li>Zero drift at equator; max 15°/h at poles.</li>
+    <li>Latitude nut: workshop adjustment only. Screwed out → reading increases; wound in → decreases.</li>
+    <li>Transport wander: apparent drift due to movement between non-parallel meridians.</li>
+    <li>Gimballing errors: disappear on return to level flight; double sine curve over 360° turn.</li>
+    <li>Air-driven DGI: 10,000 rpm → 1.6°/h drift; 20,000 rpm → 1.2°/h drift.</li>
+    <li>INS gyros: &lt; 0.01°/h drift.</li>
+  </ul>
+</div>
+
+<!-- PRACTICE QUESTIONS -->
+<div class="qa-section">
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+<div class="box-blue">
+  All 10 questions below are reproduced verbatim from the Oxford source. Answer key confirmed from source: 1-b, 2-d, 3-c, 4-c, 5-b, 6-c, 7-c, 8-b, 9-d, 10-a.
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">A directional gyro indicator is basically a:</span>
+    <ol class="q-options" type="a">
+      <li>horizontal axis earth gyro</li>
+      <li>horizontal axis tied gyro</li>
+      <li>vertical axis earth gyro</li>
+      <li>vertical axis tied gyro</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) horizontal axis tied gyro</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The DGI employs a <em>tied</em> gyro (not a free/earth gyro) because its rotor axis is maintained in the yawing plane of the aircraft by the erection system (air jets + wedge plate). The rotor axis is <em>horizontal</em> in level flight (not vertical). See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — An earth gyro is free to orientate itself relative to the earth's gravity — the DGI is tied, not free.</li>
+        <li><strong>(c)</strong> — The spin axis of the DGI is horizontal (in the yawing plane), not vertical. A vertical axis would describe the artificial horizon.</li>
+        <li><strong>(d)</strong> — Tied is correct but vertical axis is wrong for the same reason as (c).</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The distinction between "earth gyro" and "tied gyro" is critical. Earth gyro = spin axis free. Tied gyro = spin axis maintained in a specific plane by an erection system. The DGI ties its axis to the yawing plane; the AH ties its axis to the vertical.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">Apparent drift may be corrected in a DGI by:</span>
+    <ol class="q-options" type="a">
+      <li>causing the gyro to precess in a clockwise direction (in the northern hemisphere)</li>
+      <li>attaching a bias weight to the inner gimbal which makes the gyro precess in azimuth in the same direction as apparent wander</li>
+      <li>correcting wander by means of air jets</li>
+      <li>attaching a bias weight to the inner gimbal which makes the gyro precess in azimuth in the opposite direction to apparent wander</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d) attaching a bias weight (latitude nut) to the inner gimbal which makes the gyro precess in azimuth in the opposite direction to apparent wander</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The latitude nut (rider nut) on the inner gimbal introduces a real drift that is equal and opposite to the apparent drift at the chosen latitude. In the northern hemisphere, apparent drift causes the reading to decrease (negative), so the nut is set to produce a positive (increasing) drift to cancel it. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — In NH, apparent drift causes a decrease (anticlockwise). The correction must produce the opposite (increase/clockwise) — so "clockwise" alone is actually in the right direction but this option is incomplete and misleading, plus (d) is the precise mechanism.</li>
+        <li><strong>(b)</strong> — Precessing in the same direction as apparent wander would amplify the error, not correct it.</li>
+        <li><strong>(c)</strong> — Air jets are part of the erection system to keep the rotor in the yawing plane, not for apparent wander correction.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The latitude nut is an example of "fighting fire with fire" — introducing a controlled real drift to cancel an uncontrolled apparent drift.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">An air driven DGI is corrected for apparent wander at 56°N. If the aircraft is maintaining constant DGI readings:</span>
+    <ol class="q-options" type="a">
+      <li>when flying north from 56°N the true heading of the aircraft will decrease</li>
+      <li>when flying east from 56°N the true heading will decrease</li>
+      <li>when flying south from 56°N the true heading will decrease</li>
+      <li>when flying west from 56°N the true heading will increase</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) when flying south from 56°N the true heading will decrease</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The DGI is corrected (latitude nut set) for 56°N, meaning the nut produces a +12.9°/h real drift (to counter the apparent −12.9°/h at 56°N). When the aircraft flies south, the apparent drift rate reduces (lower latitude, lower sin value), but the latitude nut still applies its fixed +12.9°/h over-correction. The net drift is positive (reading increases on the DGI). If the DGI reading is held constant, the pilot is correcting for the increase by turning the aircraft onto a heading that is west of north. West of north means the true heading is decreasing. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — Flying north, apparent drift increases (more negative), exceeding the latitude nut correction. Net drift is negative (DGI reads lower). To maintain constant DGI, the pilot turns eastward — true heading increases, not decreases.</li>
+        <li><strong>(b)</strong> — Flying east changes longitude but not latitude significantly, so apparent drift remains approximately the same as at 56°N and the net is near zero. True heading would not drift consistently.</li>
+        <li><strong>(d)</strong> — Flying west is similar to (b) for the same reason.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> This question tests understanding of the cumulative effect of residual drift. If the DGI is over-corrected (reading increases), maintaining a constant DGI reading means the aircraft's true heading must be drifting left (decreasing).</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">The formula used to calculate apparent wander of a directional gyro in the northern hemisphere is:</span>
+    <ol class="q-options" type="a">
+      <li>+15 sine latitude in degrees for the time of running</li>
+      <li>+15 sine latitude in degrees per hour</li>
+      <li>−15 sine latitude in degrees per hour</li>
+      <li>15 sine latitude in degrees per hour increasing</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) −15 sine latitude in degrees per hour</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> In the northern hemisphere, the DGI reading decreases due to earth's rotation — hence the negative sign. The formula is: Apparent Drift Rate = −15 × sin(latitude) °/hour. See <a href="#sec-9">Section 9</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a) and (b)</strong> — Positive sign is incorrect for the northern hemisphere (positive would apply in the southern hemisphere).</li>
+        <li><strong>(d)</strong> — "Increasing" is incorrect; in the NH the DGI reading decreases (the drift is negative).</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The sign is the whole point here. Southern hemisphere = +15 sin lat (reading increases). Northern hemisphere = −15 sin lat (reading decreases).</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">Errors of the directional gyro are:</span>
+    <ol class="q-options" type="a">
+      <li>acceleration error, turning error, altitude error, transport wander, rotor speed error</li>
+      <li>gimballing error, random wander, apparent wander, rotor speed error, transport wander</li>
+      <li>gimballing error, looping error, rolling error, rotor speed error, transport wander</li>
+      <li>transport wander, apparent wander, latitude error, turning error, acceleration error</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) gimballing error, random wander, apparent wander, rotor speed error, transport wander</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> These are the five principal errors listed in the textbook. The DGI has no magnetic element, so it has no acceleration or turning errors in the compass sense. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — "Acceleration error" and "turning error" are compass errors, not DGI errors. The DGI is unaffected by the vertical component of earth's field.</li>
+        <li><strong>(c)</strong> — "Looping error" and "rolling error" are not standard DGI error categories.</li>
+        <li><strong>(d)</strong> — "Latitude error" and "turning error" are not in the standard list; "latitude error" is subsumed under apparent wander.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Memorize the 5 DGI errors: GRATRs — Gimballing, Random, Apparent, Transport, RPM (rotor speed).</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">The spin axis of a directional gyro is maintained in ....... by means of ...... in an air driven gyro and by means of a ....... in an electrically driven gyro.</span>
+    <ol class="q-options" type="a">
+      <li>the horizontal plane; air jets; wedge plate</li>
+      <li>the vertical plane; air jets; torque motor</li>
+      <li>the yawing plane; air jets; torque motor</li>
+      <li>the yawing plane; air jets; wedge plate</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) the yawing plane; air jets; torque motor</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The DGI rotor axis is maintained in the yawing plane (not simply "horizontal plane"). Air-driven DGIs use air jets (and wedge plate as fine adjustment). Electrically driven DGIs use a torque motor instead of air jets and wedge plate. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — "Horizontal plane" is too vague; "yawing plane" is the precise term. Also "wedge plate" alone is fine adjustment, not the primary method.</li>
+        <li><strong>(b)</strong> — "Vertical plane" is wrong — that would describe the AH rotor axis.</li>
+        <li><strong>(d)</strong> — "Wedge plate" is used with air-driven, but for electrical DGIs the torque motor is the correct answer, not wedge plate.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Air-driven = air jets (+ wedge plate fine adjustment). Electrical = torque motors. The yawing plane is the key term for the DGI, contrasted with the AH which uses the vertical.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q7.</span><span class="q-text">The purpose of the caging knob is:</span>
+    <ol class="q-options" type="a">
+      <li>to prevent the gyro toppling</li>
+      <li>to reset the heading</li>
+      <li>to reset the heading and to prevent toppling</li>
+      <li>to prevent apparent wander</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) to reset the heading and to prevent toppling</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The caging knob serves two purposes: (1) locking the inner gimbal to prevent toppling during synchronization or violent manoeuvres, and (2) allowing the scale to be rotated for synchronization with the compass. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — Partially correct but incomplete; it also resets heading.</li>
+        <li><strong>(b)</strong> — Partially correct but incomplete; it also prevents toppling.</li>
+        <li><strong>(d)</strong> — Apparent wander is corrected by the latitude nut, not the caging knob.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Classic "incomplete answer" trap. Both functions are needed for full credit.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q8.</span><span class="q-text">In an air driven directional gyro the air jets are attached to:</span>
+    <ol class="q-options" type="a">
+      <li>the inner gimbal</li>
+      <li>the outer gimbal</li>
+      <li>the instrument casing</li>
+      <li>the rotor axis</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) the outer gimbal</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Suction is applied to the instrument case, and replacement air is ducted to jets on the outer gimbal ring which act on 'buckets' cut in the rotor. The jets are mounted on the outer gimbal. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — The inner gimbal holds the rotor; it doesn't carry the driving jets.</li>
+        <li><strong>(c)</strong> — The casing holds the suction port (inlet side), not the jets themselves.</li>
+        <li><strong>(d)</strong> — The rotor axis is what the jets act upon (via the buckets), not where they are attached.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Think of the outer gimbal as the "frame" that carries the jets aimed at the rotor. The jets are part of the erection system, not just the drive system.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q9.</span><span class="q-text">The limits of pitch and roll for a modern directional gyro are respectively:</span>
+    <ol class="q-options" type="a">
+      <li>55° and 85°</li>
+      <li>85° and 55°</li>
+      <li>55° and 55°</li>
+      <li>85° and 85°</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d) 85° and 85°</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Modern DGIs have limits of <span class="reg-value">85°</span> in both pitch and roll. Older air-driven DGIs had limits of only <span class="reg-value">55°</span>. The question specifies "modern directional gyro" — answer is 85° for both. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a) and (b)</strong> — Mixes the old (55°) and modern (85°) limits. Neither combination is correct for a single type of instrument.</li>
+        <li><strong>(c)</strong> — 55° both ways applies to the older air-driven DGI, not the modern one.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Modern DGI = 85° (both). Old air-driven = 55° (both). Do not mix them.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q10.</span><span class="q-text">Gimballing error:</span>
+    <ol class="q-options" type="a">
+      <li>will disappear after a turn is completed</li>
+      <li>will remain until the gyro is reset</li>
+      <li>will only occur during a 360° turn</li>
+      <li>will be zero on only two headings during a 360° turn</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a) will disappear after a turn is completed</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Gimballing errors are transient — they exist because of gimbal geometry during bank, but disappear as soon as level flight is resumed. They do not accumulate. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(b)</strong> — Gimballing error is self-correcting when level flight is resumed; no gyro reset is needed.</li>
+        <li><strong>(c)</strong> — Gimballing errors occur in any banked manoeuvre, not only in 360° turns.</li>
+        <li><strong>(d)</strong> — The error is zero on <em>four</em> headings (90° apart), not two.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> "Gimballing errors disappear when level flight is resumed" — this distinguishes them from drift errors, which accumulate over time.</div>
+  </div>
+</div>
+
+</div><!-- end qa-section -->
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="master-ref">Master Reference Tables</h2>
+<h3>Numerical Values Quick Reference</h3>
+<table class="ref-table">
+  <tr><th>Parameter</th><th>Value</th><th>Section</th></tr>
+  <tr><td>Earth's rotation rate</td><td><span class="reg-value">15°/hour</span></td><td><a href="#sec-9">9</a></td></tr>
+  <tr><td>Maximum apparent drift (poles)</td><td><span class="reg-value">15°/hour</span></td><td><a href="#sec-9">9</a></td></tr>
+  <tr><td>Apparent drift at equator</td><td><span class="reg-value">0°/hour</span></td><td><a href="#sec-9">9</a></td></tr>
+  <tr><td>Apparent drift formula</td><td><span class="reg-value">15 × sin(lat) °/h</span></td><td><a href="#sec-9">9</a></td></tr>
+  <tr><td>Modern DGI topple limit (pitch &amp; roll)</td><td><span class="reg-value">85°</span></td><td><a href="#sec-5">5</a></td></tr>
+  <tr><td>Air-driven DGI topple limit</td><td><span class="reg-value">55°</span></td><td><a href="#sec-5">5</a></td></tr>
+  <tr><td>Air-driven DGI drift (10,000 rpm)</td><td><span class="reg-value">≈ 1.6°/h</span></td><td><a href="#sec-8">8</a></td></tr>
+  <tr><td>Air-driven DGI drift (20,000 rpm)</td><td><span class="reg-value">≈ 1.2°/h</span></td><td><a href="#sec-8">8</a></td></tr>
+  <tr><td>INS gyro drift</td><td><span class="reg-value">&lt; 0.01°/h</span></td><td><a href="#sec-8">8</a></td></tr>
+  <tr><td>Normal RIMC precession rate</td><td><span class="reg-value">≈ 3°/min</span></td><td>—</td></tr>
+  <tr><td>Latitude nut latitude change for substitution</td><td><span class="reg-value">≈ 60°</span></td><td><a href="#sec-10">10</a></td></tr>
+</table>
+
+<h3>Answer Key Summary</h3>
+<table class="ref-table">
+  <tr><th>Q</th><th>Answer</th><th>Key Topic</th></tr>
+  <tr><td>1</td><td>b</td><td>DGI is a horizontal axis tied gyro</td></tr>
+  <tr><td>2</td><td>d</td><td>Latitude nut precesses opposite to apparent wander</td></tr>
+  <tr><td>3</td><td>c</td><td>Flying south → DGI over-corrects → true heading decreases</td></tr>
+  <tr><td>4</td><td>c</td><td>NH drift = −15 sin lat °/h</td></tr>
+  <tr><td>5</td><td>b</td><td>5 DGI errors: Gimballing, Random, Apparent, RPM, Transport</td></tr>
+  <tr><td>6</td><td>c</td><td>Yawing plane; air jets; torque motor (electrical)</td></tr>
+  <tr><td>7</td><td>c</td><td>Caging = reset heading AND prevent toppling</td></tr>
+  <tr><td>8</td><td>b</td><td>Air jets attached to outer gimbal</td></tr>
+  <tr><td>9</td><td>d</td><td>Modern DGI: 85° pitch AND roll</td></tr>
+  <tr><td>10</td><td>a</td><td>Gimballing errors disappear on return to level flight</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

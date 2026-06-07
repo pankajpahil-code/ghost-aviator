@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 20 – Radio Altimeter | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a3a6b; border-bottom: 3px solid #1a3a6b; padding-bottom: 8px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a3a6b; margin-top: 30px; border-left: 5px solid #1a3a6b; padding-left: 10px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #2c5aa0; margin-top: 20px; }
+  p { margin: 8px 0 12px 0; }
+  .cover { text-align: center; padding: 40px 20px; border: 3px solid #1a3a6b; border-radius: 10px; margin-bottom: 30px; }
+  .cover h1 { border: none; font-size: 2.2em; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 8px; }
+  .cover .author { font-size: 1em; color: #333; margin-top: 6px; font-weight: 600; }
+  .toc { background: #f5f8ff; border: 1px solid #b0c4e8; border-radius: 8px; padding: 20px 30px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { border: none; margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: #2c5aa0; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a3a6b; color: #fff; padding: 8px 12px; text-align: left; font-weight: 700; }
+  td { border: 1px solid #ccc; padding: 7px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  figure { text-align: center; margin: 20px auto; max-width: 100%; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #555; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Instrumentation</div>
+  <h1>Chapter 20<br>Radio Altimeter</h1>
+  <div class="subtitle">Oxford Aviation Academy — Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction and Functions</a></li>
+    <li><a href="#sec-2">FMCW Principle of Operation</a></li>
+    <li><a href="#sec-3">Frequencies and Antenna</a></li>
+    <li><a href="#sec-4">Basic Indicator</a></li>
+    <li><a href="#sec-5">EFIS Indicators — Boeing and Airbus Styles</a></li>
+    <li><a href="#sec-6">Range and Accuracy</a></li>
+    <li><a href="#sec-7">Aircraft Installation Delay</a></li>
+    <li><a href="#sec-8">Key Facts Summary</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<h1 id="sec-1">1. Introduction and Functions</h1>
+
+<p>The Radio Altimeter measures <strong>height above ground level (AGL)</strong> with high accuracy. It has three important functions:</p>
+
+<div class="box-blue">
+<ol>
+  <li><strong>Flight deck display</strong> of height AGL</li>
+  <li><strong>Automatic flight system data</strong> — supplies height data for automatic landings when used with ILS/MLS</li>
+  <li><strong>GPWS</strong> — furnishes height information and rate of change of height to the Ground Proximity Warning System</li>
+</ol>
+</div>
+
+<!-- SECTION 2 -->
+<h1 id="sec-2">2. FMCW Principle of Operation</h1>
+
+<p>The radio altimeter uses <strong>Frequency Modulated Continuous Wave (FMCW)</strong> transmission in an elliptical pattern vertically below the aircraft.</p>
+
+<div class="box-blue">
+<strong>How it measures height:</strong>
+<ol>
+  <li>Transmitter continuously sweeps frequency from start level <strong>± 50 MHz, 300 times per second</strong></li>
+  <li>Radio wave travels to ground and back — during this travel time the transmitted frequency has changed</li>
+  <li>Equipment compares <strong>transmitted vs. received frequency</strong> — the difference = time of flight</li>
+  <li>From time of flight → height is calculated</li>
+</ol>
+</div>
+
+<pre class="mermaid">
+graph LR
+  A["Tx frequency<br>continuously swept<br>±50 MHz / 300 Hz"] --> B["Wave travels to<br>ground and back"]
+  B --> C["Rx frequency<br>(older, reflected signal)"]
+  A --> D["Beat frequency<br>= Tx − Rx"]
+  C --> D
+  D --> E["= Time of flight<br>= Height AGL"]
+</pre>
+
+<figure>
+  <img src="figs/fig_p264_0.png" alt="FMCW modulation cycle">
+  <figcaption>Fig 20.1 — FMCW modulation cycle / frequency sweep. Source p.264</figcaption>
+</figure>
+
+<div class="box-amber">
+<strong>Handling the frequency reversal problem:</strong> When the transmitter reverses its sweep direction, a frequency breakdown occurs. This is overcome by averaging the <strong>beat frequency over a short sampling period</strong> — the changeover points are ignored.
+</div>
+
+<!-- SECTION 3 -->
+<h1 id="sec-3">3. Frequencies and Antenna</h1>
+
+<table>
+  <tr><th>Band</th><th>Frequency Range</th><th>Status</th></tr>
+  <tr><td>SHF</td><td><span class="reg-value">4200 MHz to 4400 MHz</span></td><td><strong>Currently used</strong></td></tr>
+  <tr><td>UHF</td><td>1600 MHz to 1660 MHz</td><td>Previously used — obsolete</td></tr>
+</table>
+
+<div class="box-blue">
+<strong>Antenna characteristics:</strong>
+<ul>
+  <li>Flush-mounted horn antenna — transmits downward</li>
+  <li>Conical/elliptical beam — wide enough to allow some portion to travel vertically even at pitch angles of <strong>±30°</strong> and roll angles of <strong>±60°</strong></li>
+  <li>Height determined from the <strong>shortest path to ground</strong> — always the vertical path</li>
+  <li>Transmission is <strong>continuous</strong> → separate transmit and receive antennas are required (to avoid interference)</li>
+  <li>Radiated power: <strong>~1 watt</strong></li>
+</ul>
+</div>
+
+<!-- SECTION 4 -->
+<h1 id="sec-4">4. Basic Indicator</h1>
+
+<figure>
+  <img src="figs/fig_p265_0.png" alt="Basic radio altimeter indicator">
+  <figcaption>Fig 20.2 — Basic Radio Altimeter Indicator. Source p.265</figcaption>
+</figure>
+
+<h3>Height Scale</h3>
+<p>The scale is <strong>logarithmic</strong>: expanded from <strong>0–500 ft</strong>, then non-linear from <strong>500–2500 ft</strong>.</p>
+
+<h3>Mask</h3>
+<p>The height pointer disappears behind a mask when:</p>
+<ul>
+  <li>Altitude exceeds <strong>2500 ft</strong></li>
+  <li>Any fault in the transmitted signal</li>
+  <li>Altimeter is switched off</li>
+</ul>
+
+<h3>Failure Warning Flag</h3>
+<p>Appears when:</p>
+<ul>
+  <li>Too much radio noise (corrupts returning signal)</li>
+  <li>Local reflections received from airframe</li>
+  <li>Loss of power to the equipment</li>
+</ul>
+
+<h3>Press-to-Test Button / Height Selector (dual purpose)</h3>
+<ul>
+  <li><strong>Pressed:</strong> height pointer swings to a known pre-set altitude (confidence check)</li>
+  <li><strong>Turned:</strong> selects the reference Low Altitude Index (decision height marker)</li>
+</ul>
+
+<h3>Low Height Warning</h3>
+<p>Warning light illuminates if the aircraft flies <strong>below the pre-selected height</strong>. An alert tone sounds with increasing loudness from approximately <strong>100 ft above</strong> the decision height setting, then ceases suddenly at the DH.</p>
+
+<!-- SECTION 5 -->
+<h1 id="sec-5">5. EFIS Indicators</h1>
+
+<h3>Boeing Style — EFIS Display</h3>
+<figure>
+  <img src="figs/fig_p266_0.png" alt="EFIS Radio Altimeter Boeing style">
+  <figcaption>Fig 20.3 — EFIS Indicator, Boeing style. Source p.266</figcaption>
+</figure>
+
+<div class="box-blue">
+<strong>Boeing digital/analogue display behaviour:</strong>
+<ul>
+  <li>Above 1000 ft: digital read-out only (white)</li>
+  <li>Below 1000 ft: pictorial altimeter dial drawn alongside digital read-out; icon <strong>shrinks in size</strong> as height decreases</li>
+  <li>As DH is approached: colour changes from <strong>white → flashing amber</strong></li>
+</ul>
+Additionally, the Radio Altimeter <strong>desensitises the autopilot and flight director response to the ILS glidepath</strong> in the latter stages of an approach.
+</div>
+
+<h3>Airbus Style — EFIS Display</h3>
+<figure>
+  <img src="figs/fig_p267_0.png" alt="EFIS Radio Altimeter Airbus style">
+  <figcaption>Fig 20.4/20.5 — EFIS Indicator, Airbus style (A300). Source p.267</figcaption>
+</figure>
+
+<div class="box-blue">
+<strong>Airbus (A300 style):</strong>
+<ul>
+  <li>Height indication at the <strong>base of the EADI/PFD</strong> attitude display</li>
+  <li>Above DH: <strong>green numbers</strong></li>
+  <li>Below DH: <strong>amber, slightly bigger numbers</strong></li>
+  <li>Enhanced by a <strong>voice warning system</strong> giving aural height callouts at significant heights (as agreed by manufacturer and airline)</li>
+</ul>
+</div>
+
+<!-- SECTION 6 -->
+<h1 id="sec-6">6. Range and Accuracy</h1>
+
+<div class="box-green">
+<strong>Radio Altimeter Performance:</strong>
+<ul>
+  <li>Range: <span class="reg-value">0 to 2500 ft AGL</span></li>
+  <li>Overall accuracy: <span class="reg-value">± 3% of indicated height OR ± 1 ft</span> — whichever is the greater</li>
+  <li>Error contributors: Doppler shift, step error in digital counting circuits, height lag</li>
+</ul>
+</div>
+
+<!-- SECTION 7 -->
+<h1 id="sec-7">7. Aircraft Installation Delay (Cable Length Compensation)</h1>
+
+<p>The radio altimeter must indicate <strong>zero height AGL as the main wheels touch down</strong>. In practice, the design target is <strong>±1 ft accuracy</strong>.</p>
+
+<div class="box-amber">
+<strong>Two sources of installation offset that must be compensated:</strong>
+<ol>
+  <li><strong>Residual Height</strong> — height difference between the antennas on the fuselage and the bottom of the trailing main wheels on the approach to touchdown. Varies with aircraft weight and oleo compression.</li>
+  <li><strong>Cable run length</strong> — distance between avionics bay and antenna on the underside of the fuselage. On a B747 this may be up to 100 ft of cable; on a small corporate jet as little as 6 ft. Compensation is applied × 2 (Tx to antenna AND Rx from antenna).</li>
+</ol>
+</div>
+
+<figure>
+  <img src="figs/fig_p268_0.png" alt="Undercarriage residual height">
+  <figcaption>Fig 20.7 — Undercarriage residual height showing extended (landing) vs. compressed position. Source p.268</figcaption>
+</figure>
+
+<div class="box-red">
+<strong>Why the RA may read negative on the ground:</strong> The equipment is calibrated to read zero when the main wheels first <em>touch</em> the runway (trailing wheel attitude). When parked level on the ground, the antenna is <strong>below</strong> its calibrated position relative to the landing attitude — so the RA may show a small negative altitude. The B747, with its multi-wheel trailing assembly, typically reads <strong>−8 ft</strong> on the ground.
+</div>
+
+<!-- SECTION 8 -->
+<h1 id="sec-8">8. Key Facts Summary</h1>
+
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Modulation type</td><td>FMCW (Frequency Modulated Continuous Wave)</td></tr>
+  <tr><td>Frequency (current)</td><td>4200–4400 MHz (SHF band)</td></tr>
+  <tr><td>Frequency sweep</td><td>±50 MHz, 300 sweeps/second</td></tr>
+  <tr><td>Transmission power</td><td>~1 watt</td></tr>
+  <tr><td>Operating range</td><td>0–2500 ft AGL</td></tr>
+  <tr><td>Accuracy</td><td>±3% or ±1 ft (whichever greater)</td></tr>
+  <tr><td>Beam coverage</td><td>±30° pitch, ±60° roll</td></tr>
+  <tr><td>Mask activation</td><td>Above 2500 ft, fault, or switched off</td></tr>
+  <tr><td>Scale type</td><td>Logarithmic (0–500 ft expanded, 500–2500 ft non-linear)</td></tr>
+  <tr><td>B747 on-ground reading</td><td>Typically −8 ft</td></tr>
+  <tr><td>Key system it supports</td><td>GPWS, Autoland (ILS/MLS), EFIS</td></tr>
+</table>
+
+<div class="box-blue">
+<strong>Important connection:</strong> The Radio Altimeter is a <strong>major component of GPWS</strong>. It provides the crucial height AGL and rate-of-change-of-height inputs that GPWS needs to generate terrain proximity warnings.
+</div>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

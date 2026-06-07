@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 9 – Terrestrial Magnetism | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:14px; line-height:1.6; color:#1a1a1a; margin:0; padding:20px; background:#fff; }
+  h1 { font-size:2em; font-weight:700; color:#1a237e; margin-bottom:4px; }
+  h2 { font-size:1.4em; font-weight:700; color:#1a237e; border-bottom:2px solid #1a237e; padding-bottom:4px; margin-top:32px; page-break-after:avoid; }
+  h3 { font-size:1.15em; font-weight:700; color:#283593; margin-top:20px; page-break-after:avoid; }
+  .cover { text-align:center; padding:40px 20px 30px; border-bottom:3px solid #1a237e; margin-bottom:30px; }
+  .cover .subject { font-size:1em; color:#555; letter-spacing:2px; text-transform:uppercase; }
+  .cover .compiler { font-size:0.95em; color:#555; margin-top:8px; }
+  .toc { background:#f5f7ff; border:1px solid #c5cae9; border-radius:8px; padding:20px 30px; margin:20px 0 30px; page-break-after:always; }
+  .toc h2 { border:none; margin-top:0; }
+  .toc ol { margin:0; padding-left:20px; }
+  .toc li { padding:3px 0; }
+  .toc a { color:#1a237e; text-decoration:none; }
+  .blue-box { background:#e8f1fb; border-left:5px solid #2c5aa0; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .red-box { background:#fdecea; border-left:5px solid #c0392b; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .green-box { background:#e8f5e9; border-left:5px solid #2e7d32; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .amber-box { background:#fff8e1; border-left:5px solid #f57c00; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .reg-value { font-weight:700; color:#b71c1c; background:#fdecea; padding:1px 4px; border-radius:3px; font-family:"Courier New",monospace; }
+  table { border-collapse:collapse; width:100%; margin:15px 0; page-break-inside:avoid; }
+  th { background:#1a237e; color:#fff; padding:10px 12px; text-align:left; font-size:0.95em; }
+  td { padding:9px 12px; border:1px solid #c5cae9; vertical-align:top; }
+  tr:nth-child(even) td { background:#f5f7ff; }
+  figure { text-align:center; margin:18px 0; page-break-inside:avoid; }
+  figure img { max-width:100%; border:1px solid #ddd; border-radius:4px; }
+  figcaption { font-style:italic; color:#555; font-size:0.9em; margin-top:6px; }
+  pre.mermaid { page-break-inside:avoid; background:transparent; border:none; }
+  .formula-box { background:#f3f3f3; border:1px solid #bbb; border-radius:6px; padding:14px 18px; font-family:"Courier New",monospace; font-size:13px; margin:14px 0; page-break-inside:avoid; white-space:pre-wrap; }
+  #qa-section { page-break-before:always; }
+  .qa-block { border:2px solid #2c5aa0; border-radius:8px; padding:20px; margin:25px 0; page-break-inside:avoid; background:#fff; }
+  .qa-question { background:#e8f1fb; padding:15px; border-radius:6px; margin-bottom:15px; }
+  .q-number { font-weight:900; color:#2c5aa0; font-size:1.1em; margin-right:8px; }
+  .q-options { margin-top:12px; padding-left:25px; }
+  .q-options li { padding:4px 0; }
+  .answer-reveal { background:#e8f5e9; border-left:5px solid #2e7d32; padding:12px 15px; margin:10px 0; border-radius:4px; font-size:1.05em; }
+  .answer-explanation { background:#f5f5f5; padding:12px 15px; margin:10px 0; border-radius:4px; line-height:1.7; }
+  .distractor-analysis { background:#fdecea; border-left:5px solid #c0392b; padding:12px 15px; margin:10px 0; border-radius:4px; }
+  .distractor-analysis ul { margin-top:8px; padding-left:20px; }
+  .instructor-note { background:#fff8e1; border-left:5px solid #f57c00; padding:12px 15px; margin:10px 0; border-radius:4px; font-style:italic; }
+  .ref-table td:first-child { font-weight:700; font-family:"Courier New",monospace; background:#e8f1fb; }
+  .watermark { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:80px; font-weight:900; color:rgba(0,0,0,0.12); z-index:9999; pointer-events:none; white-space:nowrap; font-family:Arial,sans-serif; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="subject">DGCA CPL/ATPL Study Notes &nbsp;·&nbsp; Instrumentation</div>
+  <h1>Chapter 9<br>Terrestrial Magnetism</h1>
+  <div class="compiler">Compiled by Capt. Pankaj Pahil</div>
+</div>
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">The Magnet and Magnetic Field</a></li>
+    <li><a href="#sec-2">Poles of a Magnet – Red and Blue Poles</a></li>
+    <li><a href="#sec-3">Attraction and Repulsion Rules</a></li>
+    <li><a href="#sec-4">Methods of Magnetization</a></li>
+    <li><a href="#sec-5">Methods of Demagnetization</a></li>
+    <li><a href="#sec-6">Magnetic and Non-magnetic Materials – Hard and Soft Iron</a></li>
+    <li><a href="#sec-7">Terrestrial Magnetism</a></li>
+    <li><a href="#sec-8">Magnetic Variation</a></li>
+    <li><a href="#sec-9">Magnetic Dip</a></li>
+    <li><a href="#sec-10">Field Strength and Directive Force</a></li>
+    <li><a href="#sec-11">Regular Changes in Earth Magnetism</a></li>
+    <li><a href="#sec-12">Unpredictable Changes in Earth Magnetism</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#ref-tables">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. The Magnet and Magnetic Field</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Basic definitions of magnetism and the concept of a magnetic field.</div>
+<p>Magnetite — an oxide of iron — has been known for thousands of years for two properties: attracting small pieces of iron, and aligning north-south when freely suspended (the basis of the primitive compass). Modern magnets are made from ferrous metals and alloys that can be given these same properties.</p>
+<p>The <strong>magnetic field</strong> of a magnet is the space around it in which its magnetic influence is felt. Field lines (traced by iron filings on card) converge towards small areas near the ends of the magnet — the <strong>poles</strong>.</p>
+<div class="blue-box"><strong>Key Fact:</strong> A unit (single) pole cannot exist. If a magnet is cut in two, each piece becomes a complete magnet with two poles.</div>
+
+<figure>
+  <img src="figs/fig_p105_0.png" alt="Magnetic field pattern of a bar magnet with iron filings">
+  <figcaption>Fig. 9.1 – Magnetic field lines of a bar magnet — source p.105</figcaption>
+</figure>
+
+<h2 id="sec-2">2. Poles of a Magnet – Red and Blue Poles</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Pole naming conventions and line-of-force direction.</div>
+<p>A freely suspended magnet in the earth's field aligns roughly north-south:</p>
+<ul>
+  <li><strong>Red pole (north-seeking pole):</strong> The end that points towards geographic north (towards the earth's magnetic north pole).</li>
+  <li><strong>Blue pole (south-seeking pole):</strong> The opposite end.</li>
+</ul>
+<p>By convention, <strong>magnetic lines of force are directed out from the red pole and back in to the blue pole</strong>.</p>
+
+<figure>
+  <img src="figs/fig_p106_0.png" alt="Red and blue pole convention and field lines">
+  <figcaption>Fig. 9.2 – Red and blue pole convention: lines out from red, into blue — source p.106</figcaption>
+</figure>
+
+<h2 id="sec-3">3. Attraction and Repulsion Rules</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The fundamental rule governing magnetic interaction.</div>
+<div class="green-box">
+  <strong>The Rule:</strong><br>
+  <strong>Like poles REPEL</strong> each other (red-red, blue-blue)<br>
+  <strong>Unlike poles ATTRACT</strong> each other (red-blue)
+</div>
+
+<h2 id="sec-4">4. Methods of Magnetization</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The four ways magnetism can be induced in ferrous material.</div>
+
+<h3>4.1 Stroking</h3>
+<p>Repeatedly stroking the bar in the same direction with one end of a magnet. The end of the bar <strong>last touched by the red pole becomes a blue pole</strong>.</p>
+<figure>
+  <img src="figs/fig_p107_0.png" alt="Magnetization by stroking method">
+  <figcaption>Fig. 9.3 – Magnetization by stroking — source p.107</figcaption>
+</figure>
+
+<h3>4.2 Vibration or Hammering</h3>
+<p>Aligning the bar with the earth's field lines and subjecting it to vibration or hammering. Induced polarity creates continuity in the field-line pattern (lines into the blue pole, out of the red pole). This is the <strong>main cause of aircraft magnetism</strong> — agitation during manufacture in the earth's field.</p>
+<blockquote>Example: An aircraft built on a northerly heading in the earth's field acquires a permanent red pole in the nose and a blue pole in the tail.</blockquote>
+<figure>
+  <img src="figs/fig_p107_1.png" alt="Magnetization by vibrating or hammering">
+  <figcaption>Fig. 9.4 – Magnetization by vibrating/hammering: polarity maintains field continuity — source p.107</figcaption>
+</figure>
+
+<h3>4.3 Placing in a Magnetic Field</h3>
+<p>Simply placing iron within a magnetic field induces polarity (especially for soft iron). Same polarity pattern as vibration method.</p>
+
+<h3>4.4 Solenoid (Electric Current) — Most Satisfactory</h3>
+<p>Placing the specimen inside a solenoid (cylindrical coil carrying DC). The concentrated field along the coil axis produces a high degree of magnetism. Note: magnetism induction is not unlimited — at a certain level the iron becomes <strong>magnetically saturated</strong>. Reversing current reverses the induced polarity.</p>
+<figure>
+  <img src="figs/fig_p108_0.png" alt="Magnetization by solenoid">
+  <figcaption>Fig. 9.5 – Magnetization by solenoid — source p.108</figcaption>
+</figure>
+
+<h2 id="sec-5">5. Methods of Demagnetization</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The three methods of removing magnetism from a magnetized component.</div>
+<table>
+  <tr><th>Method</th><th>Procedure</th><th>Note</th></tr>
+  <tr><td><strong>Shock</strong></td><td>Place bar at right angles to earth's field and hammer</td><td>The mechanical agitation disrupts domain alignment</td></tr>
+  <tr><td><strong>Heat</strong></td><td>Heat to approximately <span class="reg-value">900°C</span></td><td>Magnetism lost permanently — does not return on cooling</td></tr>
+  <tr><td><strong>AC Electric Current</strong></td><td>Place in solenoid with AC, gradually reduce amplitude to zero</td><td>Most effective method — alternating field reverses polarity repeatedly while reducing intensity to zero</td></tr>
+</table>
+<div class="amber-box"><strong>Exam Tip:</strong> Demagnetization by AC current is the most effective method because it not only reverses polarity but also reduces intensity progressively to zero.</div>
+
+<h2 id="sec-6">6. Magnetic and Non-Magnetic Materials – Hard and Soft Iron</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Material classification and the hard/soft iron distinction — critical for understanding aircraft compass deviation.</div>
+
+<h3>6.1 Ferromagnetic vs. Non-Magnetic Materials</h3>
+<p><strong>Ferromagnetic (magnetic):</strong> Iron, steel, and alloys (nickel, cobalt, chromium, tungsten). In an aircraft these may be magnetized and cause compass deviation.</p>
+<p><strong>Non-magnetic (non-ferrous):</strong> Aluminium, duralumin, brass, copper, plastic, paint — do not affect the compass.</p>
+
+<h3>6.2 Hard Iron vs. Soft Iron</h3>
+<table>
+  <tr><th>Type</th><th>Metal Examples</th><th>Ease of Magnetization</th><th>Retention of Magnetism</th></tr>
+  <tr><td><strong>Hard Iron</strong></td><td>Cobalt steel, tungsten steel</td><td>Requires strong magnetizing field</td><td><strong>Permanent</strong> — remains magnetized indefinitely after field removed</td></tr>
+  <tr><td><strong>Soft Iron</strong></td><td>Silicon iron, pure iron</td><td>Easy — weak field sufficient</td><td><strong>Temporary (nil)</strong> — loses magnetism when field removed</td></tr>
+</table>
+<div class="blue-box"><strong>Note:</strong> "Hard" and "soft" refer to magnetic characteristics, not physical hardness of the material. Some materials (sub-permanent) behave in between — they can be magnetized but lose this partly or wholly over time.</div>
+<div class="red-box"><strong>Aircraft Magnetism:</strong> Hard iron (permanent magnets in equipment) causes fixed compass deviation that depends on aircraft heading. Soft iron (aircraft structure) causes deviation that changes with the earth's field direction relative to the aircraft.</div>
+
+<h2 id="sec-7">7. Terrestrial Magnetism</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The earth as a magnet — its poles, their locations, and their movement.</div>
+<p>The earth behaves as though a huge permanent magnet were situated near its centre, producing a field over its surface. The poles of this hypothetical earth-magnet do <strong>not</strong> coincide with the geographic (spin-axis) poles — this misalignment is the origin of <strong>magnetic variation</strong>.</p>
+
+<div class="green-box"><strong>Current Magnetic Pole Positions (2015 data):</strong>
+  <ul>
+    <li><strong>North magnetic pole:</strong> <span class="reg-value">86°N 153°W</span> (north of Alaska)</li>
+    <li><strong>South magnetic pole:</strong> <span class="reg-value">64°S 136°E</span> (south of Australia)</li>
+    <li>Magnetic poles are <strong>not stationary</strong> — moving at <span class="reg-value">6 to 25 NM per year</span></li>
+    <li>The north magnetic pole is moving <strong>faster</strong> than the south magnetic pole</li>
+  </ul>
+</div>
+
+<figure>
+  <img src="figs/fig_p110_0.png" alt="Earth's magnetic field diagram showing poles misaligned from spin axis">
+  <figcaption>Fig. 9.6 – Earth's magnetism: hypothetical internal magnet offset from spin axis — source p.110</figcaption>
+</figure>
+
+<h2 id="sec-8">8. Magnetic Variation</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Definition of variation, its naming convention, and its range.</div>
+<p>A freely suspended magnet aligns with the <strong>magnetic meridian</strong> — the direction of the horizontal component of the earth's field at that point. The <strong>magnetic meridian</strong> generally differs from the <strong>true meridian</strong> (geographic north-south).</p>
+<div class="blue-box"><strong>Magnetic Variation:</strong> The angle in the horizontal plane between the magnetic meridian and the true meridian at a point.
+  <ul>
+    <li><strong>East variation (positive):</strong> Magnetic pole lies to the east of true north</li>
+    <li><strong>West variation (negative):</strong> Magnetic pole lies to the west of true north</li>
+    <li>Range: 0° to 180°</li>
+  </ul>
+</div>
+
+<figure>
+  <img src="figs/fig_p110_1.png" alt="Magnetic variation diagram showing angle between true and magnetic meridians">
+  <figcaption>Fig. 9.7 – Magnetic variation: angle between true north and magnetic north — source p.110</figcaption>
+</figure>
+
+<div class="amber-box"><strong>Exam Tip:</strong> Variation can reach 180° on the true meridian connecting the geographic and magnetic poles. This is a limit case — do not confuse variation (earth's field vs. true north) with deviation (compass error caused by aircraft magnetism).</div>
+
+<h2 id="sec-9">9. Magnetic Dip</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Definition of dip, its value at key locations, and its relationship to the magnetic equator.</div>
+<p>Except near the magnetic equator (where field lines are parallel to the surface), a freely suspended magnet <strong>dips</strong> below horizontal towards the nearer magnetic pole:</p>
+<ul>
+  <li><strong>North of magnetic equator:</strong> Red pole (north-seeking) dips lower</li>
+  <li><strong>South of magnetic equator:</strong> Blue pole (south-seeking) dips lower</li>
+</ul>
+<div class="green-box"><strong>Dip Values at Key Locations:</strong>
+  <ul>
+    <li><strong>Magnetic equator:</strong> Dip = <span class="reg-value">0°</span> (lines of force horizontal)</li>
+    <li><strong>United Kingdom:</strong> Dip ≈ <span class="reg-value">66°</span></li>
+    <li><strong>Magnetic poles:</strong> Dip = <span class="reg-value">90°</span> (magnet vertical)</li>
+  </ul>
+</div>
+<p>The <strong>magnetic equator</strong> is the line joining all points where dip = 0°. It follows approximately within <span class="reg-value">10°</span> of latitude of the geographic equator.</p>
+
+<figure>
+  <img src="figs/fig_p111_0.png" alt="Resolution of earth's field into H and Z components">
+  <figcaption>Fig. 9.8 – Resolution of earth's field T into horizontal (H) and vertical (Z) components — source p.111</figcaption>
+</figure>
+
+<h2 id="sec-10">10. Field Strength and Directive Force</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the total field T is resolved into H and Z, and why H matters for compass operation.</div>
+
+<div class="formula-box">Resolution of total field T:
+H = T × cos(dip angle)      [horizontal component]
+Z = T × sin(dip angle)      [vertical component]
+T² = H² + Z²</div>
+
+<p>The <strong>horizontal component H</strong> is called the <strong>directive force</strong> — it is the component that aligns the compass needle with the magnetic meridian, providing the directional reference.</p>
+
+<div class="red-box"><strong>At the Magnetic Poles:</strong> Dip = 90° → H approaches zero → Z approaches T. The compass becomes useless because there is no horizontal component to align the magnet.</div>
+
+<div class="green-box"><strong>At the Magnetic Equator:</strong> Dip = 0° → H approaches T → Z approaches zero. Maximum directive force — compasses work best here.</div>
+
+<p>As latitude increases from the equator towards the poles, dip increases and H decreases. The strength of H at <span class="reg-value">60° latitude</span> is approximately <span class="reg-value">half</span> the value of H at the magnetic equator.</p>
+
+<figure>
+  <img src="figs/fig_p112_0.png" alt="Effect of latitude on H and Z components">
+  <figcaption>Fig. 9.9 – Effect of latitude on H (directive force) and Z (vertical component) — source p.112</figcaption>
+</figure>
+
+<pre class="mermaid">
+graph LR
+    A["Increasing Latitude<br/>(towards poles)"] --> B["Dip increases"]
+    B --> C["H (directive force) DECREASES"]
+    B --> D["Z (vertical component) INCREASES"]
+    C --> E["Compass becomes less reliable"]
+    D --> F["Acceleration and turning errors INCREASE"]
+</pre>
+
+<div class="amber-box"><strong>Exam Tip:</strong> H = T cos(dip). At dip 0° (equator): H = T. At dip 90° (pole): H = 0. The directive force is greatest at the magnetic equator and zero at the poles.</div>
+
+<h2 id="sec-11">11. Regular Changes in Earth Magnetism</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The periodic changes in earth's magnetic field and their significance.</div>
+
+<h3>11.1 Secular Change (most significant)</h3>
+<p>The most significant regular change is <strong>secular change</strong> — caused by the slow movement of the magnetic poles about the geographic poles. The cycle period is approximately <span class="reg-value">960 years</span>.</p>
+<div class="green-box"><strong>UK Example:</strong>
+  <ul>
+    <li>Westerly variation currently decreasing at <span class="reg-value">7 minutes per annum</span></li>
+    <li>Predicted variation in London in year <span class="reg-value">2240</span> = <span class="reg-value">zero</span></li>
+    <li>Annual rate of change shown on navigation charts next to isogonals</li>
+  </ul>
+</div>
+
+<h3>11.2 Other Regular Changes (not navigationally significant)</h3>
+<ul>
+  <li><strong>Diurnal</strong> (daily) variation</li>
+  <li><strong>Annual</strong> variation</li>
+  <li><strong>11-year cycle</strong> — apparently related to the sunspot activity cycle</li>
+</ul>
+<p>These regular changes (other than secular) are not of sufficient magnitude to affect normal navigation.</p>
+
+<h2 id="sec-12">12. Unpredictable Changes in Earth Magnetism</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Magnetic storms — their cause, duration, and operational significance.</div>
+<div class="red-box"><strong>Magnetic Storms:</strong>
+  <ul>
+    <li>Produced by unusually large <strong>sunspots</strong></li>
+    <li>Occur at <strong>irregular intervals</strong></li>
+    <li>Can last for up to <span class="reg-value">three days</span></li>
+    <li>Main effect: temporary but significant change in magnetic variation</li>
+    <li>UK: alteration unlikely to exceed <span class="reg-value">2°</span></li>
+    <li>Arctic/Antarctic: change may exceed <span class="reg-value">5°</span> and last up to <span class="reg-value">1 hour</span></li>
+    <li>Directive force H can also change — in high latitudes may fall below the minimum required for efficient compass operation</li>
+  </ul>
+</div>
+
+<div class="amber-box"><strong>Quick Revision – Chapter 9:</strong>
+  <ul>
+    <li>Magnetic field lines: out from red pole, into blue pole. Unit poles cannot exist.</li>
+    <li>Like poles repel, unlike poles attract.</li>
+    <li>Magnetization methods: stroking, vibration/hammering (main cause of aircraft magnetism), magnetic field, solenoid (best).</li>
+    <li>Demagnetization: shock, heat (900°C), AC current (best).</li>
+    <li>Hard iron = permanent magnetism (cobalt/tungsten steel). Soft iron = temporary (pure/silicon iron).</li>
+    <li>Variation = angle between true and magnetic meridians (0° to 180°, E or W).</li>
+    <li>Dip = 0° at magnetic equator, 66° in UK, 90° at poles.</li>
+    <li>H = T cos(dip) — greatest at equator, zero at poles.</li>
+    <li>Secular change: ~960 year cycle. UK variation decreasing 7 min/year → zero in 2240.</li>
+    <li>Magnetic storms: caused by sunspots, last up to 3 days, up to 2° variation change in UK, up to 5° in polar regions.</li>
+  </ul>
+</div>
+
+<div id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box">Questions 1–7 reproduced verbatim from Oxford Instrumentation Chapter 9. Answer key from source.</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q1.</span><span class="q-text">The red pole of a freely suspended magnet will point towards ....... and at latitude 60°N will point ....... at an angle known as the angle of ......</span>
+    <ol class="q-options" type="a"><li>the nose of the aircraft, downwards, deviation</li><li>the North magnetic pole, downwards, variation</li><li>the nearest pole, downwards, declination</li><li>the North magnetic pole, downwards, dip</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> the North magnetic pole, downwards, dip</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The red (north-seeking) pole of a freely suspended magnet points towards the north magnetic pole. In the northern hemisphere (60°N), it also dips downwards below the horizontal, and the angle of this dip below horizontal is called the angle of dip. See <a href="#sec-2">Section 2</a> and <a href="#sec-9">Section 9</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> The nose of the aircraft is irrelevant — the magnet points to the north magnetic pole, independent of aircraft heading. "Deviation" is an error caused by aircraft magnetism.</li><li><strong>(b)</strong> "Variation" is the angle between true north and magnetic north — not the name for the tilt angle of the magnet.</li><li><strong>(c)</strong> "Declination" is an astronomical term occasionally used synonymously with variation — not the correct term for the tilt angle, which is "dip".</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Three important angles: Variation (true vs. magnetic meridian), Deviation (magnetic meridian vs. compass needle due to aircraft magnetism), Dip (magnet axis vs. horizontal). Know which is which.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q2.</span><span class="q-text">If the total force of the earth's field at a point is T and the horizontal and vertical components H and Z, the value of H is found by the formula:</span>
+    <ol class="q-options" type="a"><li>H = T sin dip</li><li>H = Z tan dip</li><li>H = T cos dip</li><li>H = T tan dip</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> H = T cos dip</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> H is the horizontal component of T. In the right triangle formed by T, H, and Z, H is adjacent to the dip angle → H = T × cos(dip). At dip 0° (equator): H = T. At dip 90° (pole): H = 0. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> H = T sin dip gives Z, not H (Z is opposite to the dip angle).</li><li><strong>(b)</strong> H = Z tan dip is incorrect; Z = H tan dip is the correct rearrangement.</li><li><strong>(d)</strong> H = T tan dip would give values greater than T when dip > 45°, which is impossible since H ≤ T.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> H = T cos dip (H is the horizontal = adjacent = cos). Z = T sin dip (Z is vertical = opposite = sin). Draw the right triangle and label it.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q3.</span><span class="q-text">The directive force of the earth's magnetic field:</span>
+    <ol class="q-options" type="a"><li>varies with the heading of the aircraft</li><li>increases as the magnetic variation increases</li><li>increases as magnetic latitude increases</li><li>is greatest at the magnetic equator</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> is greatest at the magnetic equator</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> At the magnetic equator, dip = 0° → H = T cos 0° = T (maximum). As latitude increases towards the poles, dip increases → H decreases. Directive force H is maximum at the equator and zero at the poles. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Directive force H is a property of the earth's field at a given location — it does not depend on aircraft heading.</li><li><strong>(b)</strong> Magnetic variation and directive force are not directly related. Variation is the angle between true and magnetic north.</li><li><strong>(c)</strong> As magnetic latitude increases, dip increases and H DECREASES — the opposite of this option.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Directive force (H) and dip are inversely related. More dip = less H = worse compass. Equator = best compass. Poles = useless compass.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q4.</span><span class="q-text">The slow change in the earth's magnetic variation is known as the ....... change and is caused by ......</span>
+    <ol class="q-options" type="a"><li>annual, westerly movement of the magnetic pole</li><li>diurnal, easterly movement of the magnetic pole</li><li>secular, westerly movement of the magnetic pole</li><li>annual, sunspot activity</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> secular, westerly movement of the magnetic pole</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The most significant regular change in earth magnetism is the secular change, caused by the slow (approximately 960-year cycle) westerly movement of the north magnetic pole about the geographic pole. This is what causes the annual decrease in westerly variation in the UK. See <a href="#sec-11">Section 11.1</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> "Annual" is a periodic change but much smaller in magnitude — the secular change is the dominant long-term change.</li><li><strong>(b)</strong> "Diurnal" means daily — a very small change unrelated to the main secular drift.</li><li><strong>(d)</strong> Sunspots cause magnetic storms (unpredictable changes), not the slow secular change in variation.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Secular = slow, ~960 years, westerly pole movement. Sunspots = magnetic storms = unpredictable. These are the two main categories of change tested in DGCA.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q5.</span><span class="q-text">Soft iron is comparatively ....... to magnetize whilst hard iron is ....... to demagnetize.</span>
+    <ol class="q-options" type="a"><li>easy; difficult</li><li>easy; easy</li><li>difficult; easy</li><li>difficult; difficult</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> easy; difficult</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Soft iron is easy to magnetize (weak field sufficient) but also easy to demagnetize (loses magnetism when field removed — temporary). Hard iron is difficult to magnetize (requires strong field) and difficult to demagnetize (retains magnetism permanently). See <a href="#sec-6">Section 6.2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(b)</strong> Hard iron is not easy to demagnetize — it requires special demagnetization treatment.</li><li><strong>(c)</strong> Soft iron is not difficult to magnetize — that is the defining characteristic of hard iron.</li><li><strong>(d)</strong> Incorrectly assigns hard-iron properties to soft iron for magnetization.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Remember: Soft = Easy in, Easy out (temporary). Hard = Hard in, Hard out (permanent). The words describe magnetic characteristics, not physical hardness.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q6.</span><span class="q-text">Which of the following materials are classed as ferromagnetic:</span>
+    <ol class="q-options" type="a"><li>iron, steel, carbon-fibre</li><li>nickel, iron, steel</li><li>copper, iron, carbon steel</li><li>iron, cobalt steel, chromium steel</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> iron, cobalt steel, chromium steel</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Ferromagnetic materials are iron and steel alloys (iron alloyed with cobalt, nickel, chromium, tungsten, carbon). Cobalt steel and chromium steel are both iron-based alloys and are ferromagnetic. See <a href="#sec-6">Section 6.1</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Carbon-fibre is not ferromagnetic — it does not affect compasses.</li><li><strong>(b)</strong> Nickel is ferromagnetic, but the source specifically lists the key ferromagnetic materials as iron, steel, and its alloys with cobalt/chromium/nickel/tungsten — option (d) is the more complete and precise answer from the source text.</li><li><strong>(c)</strong> Copper is explicitly listed as non-magnetic (non-ferrous) in the source text.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Non-magnetic materials (don't affect compass): aluminium, duralumin, brass, copper, plastic, paint. Ferromagnetic: iron, steel and its alloys with Co, Ni, Cr, W, C.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q7.</span><span class="q-text">The magnetic moment of a magnet:</span>
+    <ol class="q-options" type="a"><li>is the product of pole strength and effective length</li><li>varies inversely as the square of the distance between the poles</li><li>varies directly as the square of the distance between the poles</li><li>decreases as the magnet length increases</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> is the product of pole strength and effective length</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Magnetic moment (M) = pole strength (m) × effective length (l). This is the fundamental definition. A magnet with greater pole strength and/or greater effective length has a higher magnetic moment and therefore greater ability to align itself with an external field (greater sensitivity). See <a href="#sec-1">Section 1</a> and associated magnetism theory.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(b) &amp; (c)</strong> Magnetic moment is not a function of distance between poles in this way — these describe field strength variations at a distance from a pole (inverse square law), not the moment itself.</li><li><strong>(d)</strong> Magnetic moment increases with length, not decreases — more length = larger effective arm = greater moment.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Magnetic Moment = Pole Strength × Effective Length. In compass design, increasing the magnetic moment (stronger magnets or longer effective length) increases sensitivity.</div>
+  </div>
+</div>
+</div>
+
+<h2 id="ref-tables">Master Reference Tables</h2>
+<table class="ref-table">
+  <tr><th>Parameter</th><th>Value</th><th>Note</th><th>Section</th></tr>
+  <tr><td>Dip at magnetic equator</td><td>0°</td><td>Field lines horizontal; H = T</td><td>§9</td></tr>
+  <tr><td>Dip in United Kingdom</td><td>~66°</td><td>Significant compass errors in UK</td><td>§9</td></tr>
+  <tr><td>Dip at magnetic poles</td><td>90°</td><td>Compass useless; H = 0</td><td>§9</td></tr>
+  <tr><td>Magnetic equator latitude range</td><td>Within ~10° of geographic equator</td><td>Line of zero dip</td><td>§9</td></tr>
+  <tr><td>H at 60° latitude</td><td>~½ of H at magnetic equator</td><td>Significant reduction in directive force</td><td>§10</td></tr>
+  <tr><td>H formula</td><td>H = T cos(dip)</td><td>Z = T sin(dip)</td><td>§10</td></tr>
+  <tr><td>Secular change period</td><td>~960 years</td><td>Westerly movement of N magnetic pole</td><td>§11</td></tr>
+  <tr><td>UK variation change rate</td><td>7 min/year decreasing</td><td>Predicted zero in 2240</td><td>§11</td></tr>
+  <tr><td>N magnetic pole (2015)</td><td>86°N 153°W</td><td>North of Alaska</td><td>§7</td></tr>
+  <tr><td>S magnetic pole (2015)</td><td>64°S 136°E</td><td>South of Australia</td><td>§7</td></tr>
+  <tr><td>Pole movement rate</td><td>6–25 NM/year</td><td>N pole moves faster</td><td>§7</td></tr>
+  <tr><td>Magnetic storm duration</td><td>Up to 3 days</td><td>Caused by sunspots</td><td>§12</td></tr>
+  <tr><td>Variation change in storm (UK)</td><td>Up to 2°</td><td></td><td>§12</td></tr>
+  <tr><td>Variation change in storm (polar)</td><td>May exceed 5°, up to 1 hour</td><td></td><td>§12</td></tr>
+  <tr><td>Demagnetization by heat</td><td>~900°C</td><td>Permanent loss of magnetism</td><td>§5</td></tr>
+</table>
+<div class="formula-box">KEY FORMULAS:
+H = T × cos(dip angle)    [directive force / horizontal component]
+Z = T × sin(dip angle)    [vertical component]
+T² = H² + Z²              [total field]
+Magnetic Moment = Pole Strength × Effective Length</div>
+<div class="amber-box"><strong>Mnemonics:</strong>
+  <ul>
+    <li><strong>Pole colours:</strong> "Red = North-seeking (Red → North as in Red letter day = special/N)". Blue = south.</li>
+    <li><strong>H and dip:</strong> "H is Horizontal = H-orizontal = cos (adjacent side)". Z is vertical = sin (opposite).</li>
+    <li><strong>Soft vs Hard iron:</strong> "Soft = Soft on magnetism (in and out easily). Hard = Hard to move (permanent)."</li>
+    <li><strong>Secular change cause:</strong> "S for Secular, S for Slow, S for Shift of magnetic pole."</li>
+    <li><strong>Magnetic storms:</strong> "Sun Spots = Storms" (unpredictable, up to 3 days).</li>
+  </ul>
+</div>
+<h3>Answer Key</h3>
+<table><tr><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th></tr>
+<tr><td>d</td><td>c</td><td>d</td><td>c</td><td>a</td><td>d</td><td>a</td></tr></table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

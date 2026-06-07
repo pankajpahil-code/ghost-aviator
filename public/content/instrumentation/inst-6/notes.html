@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 6 – The Vertical Speed Indicator | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:14px; line-height:1.6; color:#1a1a1a; margin:0; padding:20px; background:#fff; }
+  h1 { font-size:2em; font-weight:700; color:#1a237e; margin-bottom:4px; }
+  h2 { font-size:1.4em; font-weight:700; color:#1a237e; border-bottom:2px solid #1a237e; padding-bottom:4px; margin-top:32px; page-break-after:avoid; }
+  h3 { font-size:1.15em; font-weight:700; color:#283593; margin-top:20px; page-break-after:avoid; }
+  .cover { text-align:center; padding:40px 20px 30px; border-bottom:3px solid #1a237e; margin-bottom:30px; }
+  .cover .subject { font-size:1em; color:#555; letter-spacing:2px; text-transform:uppercase; }
+  .cover .compiler { font-size:0.95em; color:#555; margin-top:8px; }
+  .toc { background:#f5f7ff; border:1px solid #c5cae9; border-radius:8px; padding:20px 30px; margin:20px 0 30px; page-break-after:always; }
+  .toc h2 { border:none; margin-top:0; }
+  .toc ol { margin:0; padding-left:20px; }
+  .toc li { padding:3px 0; }
+  .toc a { color:#1a237e; text-decoration:none; }
+  .blue-box { background:#e8f1fb; border-left:5px solid #2c5aa0; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .red-box { background:#fdecea; border-left:5px solid #c0392b; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .green-box { background:#e8f5e9; border-left:5px solid #2e7d32; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .amber-box { background:#fff8e1; border-left:5px solid #f57c00; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .reg-value { font-weight:700; color:#b71c1c; background:#fdecea; padding:1px 4px; border-radius:3px; font-family:"Courier New",monospace; }
+  table { border-collapse:collapse; width:100%; margin:15px 0; page-break-inside:avoid; }
+  th { background:#1a237e; color:#fff; padding:10px 12px; text-align:left; font-size:0.95em; }
+  td { padding:9px 12px; border:1px solid #c5cae9; vertical-align:top; }
+  tr:nth-child(even) td { background:#f5f7ff; }
+  figure { text-align:center; margin:18px 0; page-break-inside:avoid; }
+  figure img { max-width:100%; border:1px solid #ddd; border-radius:4px; }
+  figcaption { font-style:italic; color:#555; font-size:0.9em; margin-top:6px; }
+  pre.mermaid { page-break-inside:avoid; background:transparent; border:none; }
+  #qa-section { page-break-before:always; }
+  .qa-block { border:2px solid #2c5aa0; border-radius:8px; padding:20px; margin:25px 0; page-break-inside:avoid; background:#fff; }
+  .qa-question { background:#e8f1fb; padding:15px; border-radius:6px; margin-bottom:15px; }
+  .q-number { font-weight:900; color:#2c5aa0; font-size:1.1em; margin-right:8px; }
+  .q-options { margin-top:12px; padding-left:25px; }
+  .q-options li { padding:4px 0; }
+  .answer-reveal { background:#e8f5e9; border-left:5px solid #2e7d32; padding:12px 15px; margin:10px 0; border-radius:4px; font-size:1.05em; }
+  .answer-explanation { background:#f5f5f5; padding:12px 15px; margin:10px 0; border-radius:4px; line-height:1.7; }
+  .distractor-analysis { background:#fdecea; border-left:5px solid #c0392b; padding:12px 15px; margin:10px 0; border-radius:4px; }
+  .distractor-analysis ul { margin-top:8px; padding-left:20px; }
+  .instructor-note { background:#fff8e1; border-left:5px solid #f57c00; padding:12px 15px; margin:10px 0; border-radius:4px; font-style:italic; }
+  .ref-table td:first-child { font-weight:700; font-family:"Courier New",monospace; background:#e8f1fb; }
+  .watermark { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:80px; font-weight:900; color:rgba(0,0,0,0.12); z-index:9999; pointer-events:none; white-space:nowrap; font-family:Arial,sans-serif; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="subject">DGCA CPL/ATPL Study Notes &nbsp;·&nbsp; Instrumentation</div>
+  <h1>Chapter 6<br>The Vertical Speed Indicator</h1>
+  <div class="compiler">Compiled by Capt. Pankaj Pahil</div>
+</div>
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction</a></li>
+    <li><a href="#sec-2">Principle of Operation</a></li>
+    <li><a href="#sec-3">Construction</a></li>
+    <li><a href="#sec-4">VSI Metering Unit</a></li>
+    <li><a href="#sec-5">Display</a></li>
+    <li><a href="#sec-6">Errors of the VSI</a></li>
+    <li><a href="#sec-7">The Instantaneous Vertical Speed Indicator (IVSI)</a></li>
+    <li><a href="#sec-8">Presentation – Linear and Logarithmic Scales</a></li>
+    <li><a href="#sec-9">Serviceability Checks</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#ref-tables">Master Reference Tables</a></li>
+  </ol>
+</div>
+<h2 id="sec-1">1. Introduction</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why the VSI exists, what it measures, and its alternate name.</div>
+<p>A pilot can obtain a rough indication of climb or descent rate by watching the angular movement of the altimeter pointer. However, a more accurate indication is needed for tasks such as achieving a specific height loss within a defined time on airways, or establishing a smooth rate of descent on a glide-path during an instrument approach.</p>
+<p>The <strong>Vertical Speed Indicator (VSI)</strong> displays <em>rate of climb or descent</em> directly. The instrument senses the <strong>rate of change of static pressure</strong>, comparing current static pressure with the static pressure measured <span class="reg-value">4–6 seconds</span> earlier. The VSI is also known as the <strong>Rate of Climb and Descent Indicator (RCDI)</strong>.</p>
+
+<h2 id="sec-2">2. Principle of Operation</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The fundamental physics that drives the VSI needle.</div>
+<p>When an aircraft departs from level flight, the ambient static pressure changes. The VSI measures the <strong>pressure difference across a restricted choke/metering unit</strong>.</p>
+<ul>
+  <li><strong>Level flight:</strong> Pressures on both sides of the choke are equal — needle reads zero.</li>
+  <li><strong>Climb:</strong> Capsule pressure falls quickly; choke delays the fall in the case — capsule compresses — pointer indicates climb rate.</li>
+  <li><strong>Descent:</strong> The reverse — capsule expands relative to case — pointer indicates descent rate.</li>
+</ul>
+<pre class="mermaid">
+flowchart LR
+    A["Static Port (current pressure)"] -->|direct feed| B["Capsule (responds instantly)"]
+    A -->|via choke / metering unit| C["Instrument Case (responds slowly)"]
+    B -- pressure difference --> D["Linkage & Pointer"]
+    D --> E["Rate of Climb/Descent Indication"]
+</pre>
+
+<h2 id="sec-3">3. Construction</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The physical components that implement the VSI principle.</div>
+<p>The VSI consists of a <strong>capsule within an airtight case</strong>. The capsule connects directly to static and responds immediately. The case also connects to static but through a <strong>restricted choke</strong>, so its pressure changes are delayed. The differential pressure is converted by mechanical linkage to pointer movement.</p>
+<figure>
+  <img src="figs/fig_p73_0.png" alt="VSI principle diagram">
+  <figcaption>Fig. 6.1 – VSI principle: capsule vs. case separated by metering unit — source p.73</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p73_1.png" alt="VSI during descent">
+  <figcaption>Fig. 6.2 – VSI response during descent (increasing static pressure) — source p.73</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p73_2.png" alt="VSI during climb">
+  <figcaption>Fig. 6.3 – VSI response during climb (decreasing static pressure) — source p.73</figcaption>
+</figure>
+
+<h2 id="sec-4">4. VSI Metering Unit</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why a simple hole is insufficient, and how altitude compensation is built in.</div>
+<p>The basic physics produce an output in <em>hectopascals per minute</em>, but pilots need <em>feet per minute</em>. The relationship between pressure change and altitude change varies with altitude (more ft/hPa at high altitude). The restrictor uses a <strong>combination of capillary and orifice</strong>:</p>
+<ul>
+  <li><strong>Capillary:</strong> Flow proportional to pressure difference, independent of ambient pressure.</li>
+  <li><strong>Orifice:</strong> Flow varies with ambient air density.</li>
+</ul>
+<p>The correct combination produces a near-constant feet-per-minute indication across the operational altitude range.</p>
+<div class="amber-box"><strong>Exam Tip:</strong> The altitude compensation in the VSI is provided by the <em>capillary and orifice combination</em> in the metering unit — not a bimetallic temperature sensor.</div>
+
+<h2 id="sec-5">5. Display</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The VSI face and its features.</div>
+<figure>
+  <img src="figs/fig_p74_0.png" alt="VSI display face">
+  <figcaption>Fig. 6.4 – The VSI Display face — source p.74</figcaption>
+</figure>
+<p>The VSI pointer moves clockwise for climbs and anti-clockwise for descents around a centre-zero scale calibrated in <strong>ft/min</strong>. Diaphragm overload stops may be fitted to prevent damage at extreme rates. A zeroing screw is fitted on some instruments.</p>
+
+<h2 id="sec-6">6. Errors of the VSI</h2>
+<div class="blue-box"><strong>What this section covers:</strong> All error types affecting the VSI — critical exam material.</div>
+
+<h3>6.1 Instrument Error</h3>
+<p>Due to manufacturing imperfections in the linkage and capsule.</p>
+
+<h3>6.2 Position (Pressure) Error</h3>
+<p>If the static source is subject to position error, a rapid airspeed change will cause a false static pressure change. The VSI will indicate a false climb or descent. Most noticeable during <strong>take-off acceleration</strong>.</p>
+<div class="red-box"><strong>Warning:</strong> A VSI climb indication during the take-off roll caused by position error does not mean the aircraft is climbing — do not react to it until established in the climb.</div>
+
+<h3>6.3 Manoeuvre-Induced Error</h3>
+<p>Short-term static vent pressure fluctuations during attitude changes cause false indications. Additionally, the inertia of the linkage counterbalance weight introduces delays when vertical speed changes during manoeuvres.</p>
+
+<h3>6.4 Time Lag</h3>
+<p>The pointer takes several seconds to settle while a <strong>steady pressure differential</strong> builds across the choke. Similarly, returning to zero on level-off takes time as pressures equalise. Most noticeable after a <strong>prolonged, high-rate climb or descent</strong>.</p>
+
+<div class="red-box"><strong>Static Blockage:</strong> Any blockage of the static line or vent causes the needle to <strong>return to zero</strong>. If static is blocked, the ASI, Altimeter, Machmeter, and VSI are all simultaneously affected.</div>
+
+<pre class="mermaid">
+flowchart TD
+    E[VSI Errors] --> IE[Instrument Error<br/>Manufacturing imperfections]
+    E --> PE[Position Error<br/>Worst during take-off acceleration]
+    E --> ME[Manoeuvre-Induced Error<br/>Vent fluctuations + linkage inertia]
+    E --> TL[Time Lag<br/>Worst after prolonged high-rate climb/descent]
+</pre>
+
+<div class="amber-box"><strong>Quick Revision – Section 6:</strong> Four errors: Instrument, Position (take-off), Manoeuvre-induced, Time lag (prolonged high-rate). Static blockage → needle to zero, all static instruments affected.</div>
+
+<h2 id="sec-7">7. The Instantaneous Vertical Speed Indicator (IVSI)</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the IVSI overcomes lag, and its unique errors.</div>
+<p>The IVSI incorporates a <strong>vertical acceleration pump (dashpot / dynamic vane)</strong> that responds immediately to vertical acceleration.</p>
+
+<h3>7.1 Mechanism</h3>
+<ol>
+  <li>At the start of a descent the dashpot piston <strong>rises immediately</strong>.</li>
+  <li>This temporarily <strong>increases capsule pressure</strong> → capsule expands → pointer indicates descent instantly.</li>
+  <li>As acceleration settles to a constant rate, the piston returns to its resting position; by this time the normal choke-based differential has established and maintains the correct reading.</li>
+</ol>
+<figure>
+  <img src="figs/fig_p75_0.png" alt="IVSI diagram with dashpot accelerometer">
+  <figcaption>Fig. 6.5 – The Instantaneous Vertical Speed Indicator showing dashpot assembly — source p.75</figcaption>
+</figure>
+
+<h3>7.2 IVSI-Specific Errors</h3>
+<div class="red-box">
+  <strong>Turbulence Over-Sensitivity:</strong> The highly sensitive dashpot over-reacts to turbulent bumps. Small fluctuations in turbulence should be ignored.<br><br>
+  <strong>Steep Level Turn — False Climb:</strong> Centrifugal force causes the dashpot piston to sink towards the bottom of its cylinder, reducing capsule pressure — the instrument reads a <strong>false climb</strong>.
+</div>
+<div class="amber-box"><strong>Exam Tip – IVSI in steep turn:</strong> Always shows a false <em>climb</em>. Piston sinks → capsule contracts → compass reads climb. This is a classic DGCA trap.</div>
+
+<h2 id="sec-8">8. Presentation – Linear and Logarithmic Scales</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The two dial formats and their respective advantages.</div>
+<table>
+  <tr><th>Feature</th><th>Linear Scale</th><th>Logarithmic Scale</th></tr>
+  <tr><td>Graduation spacing</td><td>Even throughout</td><td>Wide near zero, compressed at high rates</td></tr>
+  <tr><td>Low-rate readability</td><td>Small pointer movement — harder to read</td><td>Large pointer movement — easier to read</td></tr>
+  <tr><td>Range covered</td><td>Same as log type</td><td>Same as linear type</td></tr>
+  <tr><td>Preferred use</td><td>General purpose</td><td>IFR approaches, precision flying</td></tr>
+</table>
+<figure>
+  <img src="figs/fig_p76_0.png" alt="Linear and logarithmic VSI scale faces">
+  <figcaption>Fig. 6.6 &amp; 6.7 – Linear scale and Logarithmic scale faces — source p.76</figcaption>
+</figure>
+<div class="amber-box"><strong>Exam Tip:</strong> The logarithmic scale advantage is: larger pointer movement at <em>low</em> rates → easier to read. Not a greater range, not instantaneous readings, not a simpler mechanism.</div>
+
+<h2 id="sec-9">9. Serviceability Checks</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Permitted tolerances and pre-flight/in-flight checks.</div>
+<div class="green-box">
+  <strong>On the Ground:</strong>
+  <ul>
+    <li>Read zero, or within: <span class="reg-value">±200 ft/min</span> at temperatures <span class="reg-value">−20°C to +50°C</span></li>
+    <li><span class="reg-value">±300 ft/min</span> outside this temperature range</li>
+    <li>No apparent physical damage</li>
+  </ul>
+</div>
+<div class="green-box">
+  <strong>In the Air:</strong>
+  <ul>
+    <li>Cross-check accuracy against altimeter + stopwatch during steady climb/descent</li>
+    <li>Must indicate zero in straight and level flight</li>
+  </ul>
+</div>
+<div class="amber-box"><strong>Quick Revision – Chapter 6:</strong>
+  <ul>
+    <li>VSI senses static pressure rate-of-change via capsule/case/choke.</li>
+    <li>Metering unit (capillary + orifice) converts hPa/min → ft/min across all altitudes.</li>
+    <li>Four errors: Instrument, Position, Manoeuvre-induced, Time lag.</li>
+    <li>IVSI: dashpot eliminates lag; over-sensitive in turbulence; false climb in steep turns.</li>
+    <li>Logarithmic scale: better resolution at low rates.</li>
+    <li>Ground tolerance: <span class="reg-value">±200 ft/min</span> (−20 to +50°C), <span class="reg-value">±300 ft/min</span> outside.</li>
+    <li>Static blockage → needle returns to zero.</li>
+  </ul>
+</div>
+
+<div id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box">Questions 1–9 reproduced verbatim from Oxford Instrumentation Chapter 6. Answer key from source.</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q1.</span><span class="q-text">The vertical speed indicator indications may be in error for some seconds after starting or finishing a climb or descent. The error is a result of:</span>
+    <ol class="q-options" type="a"><li>a combination of time lag and manoeuvre induced errors</li><li>a combination of position error and manoeuvre induced errors</li><li>manoeuvre induced errors only</li><li>a combination of time lag and instrument error</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> a combination of time lag and manoeuvre induced errors</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> When starting or finishing a climb/descent both time lag (choke needs seconds to establish new differential) and manoeuvre-induced error (vent fluctuations + counterweight inertia during attitude change) occur simultaneously. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(b)</strong> Position error is specific to sudden airspeed change (take-off), not the general start/finish of a climb.</li><li><strong>(c)</strong> Manoeuvre-induced alone doesn't explain the prolonged lag seen when levelling off from a long climb.</li><li><strong>(d)</strong> Instrument error is static and doesn't contribute to transient manoeuvre-related lag.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> "Some seconds of error" = time lag + manoeuvre-induced. These two almost always pair together in DGCA questions.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q2.</span><span class="q-text">The advantage of having the VSI dial presentation in logarithmic spacing rather than in linear spacing is that:</span>
+    <ol class="q-options" type="a"><li>at low rates of climb or descent the pointer movement is much larger and so is more easily read</li><li>readings are instantaneous</li><li>a greater range of rates of climb and descent is shown</li><li>the internal mechanism is simplified by deletion of the calibration choke</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> at low rates of climb or descent the pointer movement is much larger and so is more easily read</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> On a logarithmic scale, graduations near zero are widely spaced, so a small rate produces a proportionally larger pointer arc — improving readability at the low rates typical of IFR approaches. See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(b)</strong> Instantaneous readings require the IVSI's dashpot — scale type has no effect on lag.</li><li><strong>(c)</strong> Both scales cover the same range; logarithmic does not extend it.</li><li><strong>(d)</strong> The choke is still essential regardless of scale presentation.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Logarithmic = better resolution at low rates, NOT greater range or simpler mechanism.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q3.</span><span class="q-text">In the IVSI, lag error:</span>
+    <ol class="q-options" type="a"><li>is overcome by feeding a sample of static pressure to the case and delaying it to the capsule</li><li>is overcome by using a special dashpot accelerometer assembly</li><li>is overcome by the use of logarithmic presentation</li><li>is only overcome when initiating a climb or descent</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> is overcome by using a special dashpot accelerometer assembly</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The dashpot (vertical acceleration pump) responds instantly to vertical acceleration, providing an immediate pressure signal before the normal choke differential develops. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Describes the standard VSI — the IVSI adds the dashpot on top of this.</li><li><strong>(c)</strong> Logarithmic scale is a display feature — no effect on pressure sensing lag.</li><li><strong>(d)</strong> IVSI overcomes lag in both initiating and stopping a climb/descent.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> "Dashpot", "accelerometer", and "dynamic vane" are synonymous IVSI terms — know all three.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q4.</span><span class="q-text">Because the VSI measures rates of change of static pressure and not actual values of static pressure, position error:</span>
+    <ol class="q-options" type="a"><li>never affects VSI indications</li><li>may cause errors in the VSI during the take-off run</li><li>may cause errors in VSI indications whenever airspeed is changed</li><li>may cause errors in VSI indications whenever airspeed is changed, even if there is no change in position error</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> may cause errors in the VSI during the take-off run</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Position error manifests most strongly when airspeed is changing rapidly. The take-off run is the most significant case of rapid acceleration. The VSI interprets the transient false static pressure as a rate of change. See <a href="#sec-6">Section 6.2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Position error does affect the VSI.</li><li><strong>(c) &amp; (d)</strong> Overstate the effect — not every airspeed change in cruise produces a significant VSI error, only rapid changes create a detectable rate-of-change effect.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The VSI is a rate instrument — position error affects it through the rate of change of position error with changing airspeed, not by its static value alone.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q5.</span><span class="q-text">When entering a steep turn, an IVSI is likely to show:</span>
+    <ol class="q-options" type="a"><li>no change in altitude</li><li>a climb</li><li>a descent</li><li>a slight descent at high airspeed only</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> a climb</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> In a steep turn, centrifugal force pushes the dashpot piston towards the bottom of its cylinder. This lowers the pressure on the capsule side, which the instrument interprets as a climb (capsule contracts as if static pressure is falling). See <a href="#sec-7">Section 7.2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> The IVSI does react — it shows a false reading, not zero.</li><li><strong>(c)</strong> A descent indication would require the piston to rise; it sinks under centrifugal force — the opposite effect.</li><li><strong>(d)</strong> The error occurs in all steep turns regardless of airspeed.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> IVSI steep turn = false CLIMB. Memorise: centrifugal → piston sinks → capsule contracts → reads climb.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q6.</span><span class="q-text">If the static vent becomes blocked during a climb:</span>
+    <ol class="q-options" type="a"><li>the VSI will stop at the rate of climb of the aircraft at the time of blockage</li><li>the VSI will indicate a decreasing rate of climb</li><li>the VSI will return to zero</li><li>the VSI will indicate an increasing rate of climb</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> the VSI will return to zero</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> With static blocked, no pressure change reaches either the capsule or the case. The existing differential across the choke equalises through the choke itself, collapsing to zero — the needle returns to zero. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> The instrument does not freeze at the current reading; the differential pressure bleeds away through the choke.</li><li><strong>(b) &amp; (d)</strong> Neither a decreasing nor increasing indication is sustained — the differential collapses completely.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> VSI blockage → zero. Unlike the altimeter (freezes) or ASI (reads take-off speed), the VSI measures differential — so both sides equalise and the reading drops to zero.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q7.</span><span class="q-text">In conditions of clear air turbulence:</span>
+    <ol class="q-options" type="a"><li>the standard VSI is more sensitive</li><li>the IVSI is more sensitive</li><li>both types will react the same</li><li>the vertical acceleration pump will not be affected</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> the IVSI is more sensitive</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The IVSI dashpot responds to every vertical acceleration, including random turbulent bumps. This makes the IVSI pointer flutter considerably in CAT, which is a known limitation. See <a href="#sec-7">Section 7.2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> The standard VSI's choke inherently damps short-duration accelerations — it is less reactive to turbulence.</li><li><strong>(c)</strong> They differ significantly in turbulence response.</li><li><strong>(d)</strong> The vertical acceleration pump is directly activated by turbulent accelerations.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> In severe turbulence, the IVSI pointer may be nearly useless. Use altimeter trend or standard VSI for reliable information.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q8.</span><span class="q-text">Change of temperature as an aircraft climbs or descends:</span>
+    <ol class="q-options" type="a"><li>will affect VSI readings whenever temperature lapse rate differs from standard conditions</li><li>is compensated at the metering unit by means of a capillary and orifice</li><li>has no effect on the VSI as only static pressure is used in this instrument</li><li>may be allowed for by use of tables or computer</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> is compensated at the metering unit by means of a capillary and orifice</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The capillary-and-orifice combination in the metering unit provides built-in compensation for the varying relationship between pressure change and altitude at different altitudes and temperatures — giving a consistent ft/min output. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> The metering unit compensates for this, so non-standard lapse rates do not significantly degrade calibrated accuracy.</li><li><strong>(c)</strong> Temperature affects air density and therefore the pressure-altitude relationship — it does matter, but is compensated internally.</li><li><strong>(d)</strong> No external tables are needed; the metering unit handles it automatically.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Metering unit = capillary + orifice = altitude (density/temperature) compensation. This is the defining design feature of the VSI.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q9.</span><span class="q-text">Permissible limits of accuracy of the VSI are ....... when ....... within a temperature range of ....... and ....... outside this range.</span>
+    <ol class="q-options" type="a"><li>±250 fpm, on the ground, −20°C to +50°C, ±300 fpm</li><li>±200 fpm, at any height, −20°C to +30°C, ±300 fpm</li><li>±250 fpm, at any height, −20°C to +50°C, ±300 fpm</li><li>±200 fpm, on the ground, −20°C to +50°C, ±300 fpm</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> ±200 fpm, on the ground, −20°C to +50°C; ±300 fpm outside this range</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The serviceability limits are <span class="reg-value">±200 ft/min</span> on the ground within the temperature range <span class="reg-value">−20°C to +50°C</span>, and <span class="reg-value">±300 ft/min</span> outside that range. See <a href="#sec-9">Section 9</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a) &amp; (c)</strong> The tolerance is ±200 fpm, not ±250 fpm — a deliberate numerical distractor.</li><li><strong>(b)</strong> The temperature range upper limit is +50°C (not +30°C), and the check is on the ground (not at any height).</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Learn this sequence: <strong>200 / ground / −20 to +50 / 300</strong>. Tested verbatim in DGCA. The +50 vs +30 confusion is the most common error.</div>
+  </div>
+</div>
+</div>
+
+<h2 id="ref-tables">Master Reference Tables</h2>
+<table class="ref-table">
+  <tr><th>Parameter</th><th>Value</th><th>Condition</th><th>Section</th></tr>
+  <tr><td>Static comparison interval</td><td>4–6 seconds</td><td>Pressure window the VSI measures across</td><td>§1</td></tr>
+  <tr><td>Ground tolerance (normal)</td><td>±200 ft/min</td><td>Temperature −20°C to +50°C</td><td>§9</td></tr>
+  <tr><td>Ground tolerance (extreme temp)</td><td>±300 ft/min</td><td>Outside −20°C to +50°C</td><td>§9</td></tr>
+  <tr><td>IVSI steep turn error</td><td>False CLIMB</td><td>Centrifugal force sinks dashpot piston</td><td>§7.2</td></tr>
+  <tr><td>Static blockage result</td><td>Needle → zero</td><td>Differential equalises through choke</td><td>§6</td></tr>
+</table>
+<div class="amber-box"><strong>Mnemonics:</strong>
+  <ul>
+    <li><strong>VSI errors:</strong> "I Put My Tutu" → Instrument, Position, Manoeuvre-induced, Time lag</li>
+    <li><strong>IVSI in steep turn:</strong> "Piston sinks → Reads Climb" (centrifugal sinks piston)</li>
+    <li><strong>Tolerances:</strong> "200 on the ground in the normal range, 300 outside"</li>
+  </ul>
+</div>
+<h3>Answer Key</h3>
+<table><tr><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th><th>Q8</th><th>Q9</th></tr>
+<tr><td>a</td><td>a</td><td>b</td><td>b</td><td>b</td><td>c</td><td>b</td><td>b</td><td>d</td></tr></table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

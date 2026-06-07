@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 8 – Air Data Computer | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:14px; line-height:1.6; color:#1a1a1a; margin:0; padding:20px; background:#fff; }
+  h1 { font-size:2em; font-weight:700; color:#1a237e; margin-bottom:4px; }
+  h2 { font-size:1.4em; font-weight:700; color:#1a237e; border-bottom:2px solid #1a237e; padding-bottom:4px; margin-top:32px; page-break-after:avoid; }
+  h3 { font-size:1.15em; font-weight:700; color:#283593; margin-top:20px; page-break-after:avoid; }
+  .cover { text-align:center; padding:40px 20px 30px; border-bottom:3px solid #1a237e; margin-bottom:30px; }
+  .cover .subject { font-size:1em; color:#555; letter-spacing:2px; text-transform:uppercase; }
+  .cover .compiler { font-size:0.95em; color:#555; margin-top:8px; }
+  .toc { background:#f5f7ff; border:1px solid #c5cae9; border-radius:8px; padding:20px 30px; margin:20px 0 30px; page-break-after:always; }
+  .toc h2 { border:none; margin-top:0; }
+  .toc ol { margin:0; padding-left:20px; }
+  .toc li { padding:3px 0; }
+  .toc a { color:#1a237e; text-decoration:none; }
+  .blue-box { background:#e8f1fb; border-left:5px solid #2c5aa0; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .red-box { background:#fdecea; border-left:5px solid #c0392b; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .green-box { background:#e8f5e9; border-left:5px solid #2e7d32; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .amber-box { background:#fff8e1; border-left:5px solid #f57c00; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .reg-value { font-weight:700; color:#b71c1c; background:#fdecea; padding:1px 4px; border-radius:3px; font-family:"Courier New",monospace; }
+  table { border-collapse:collapse; width:100%; margin:15px 0; page-break-inside:avoid; }
+  th { background:#1a237e; color:#fff; padding:10px 12px; text-align:left; font-size:0.95em; }
+  td { padding:9px 12px; border:1px solid #c5cae9; vertical-align:top; }
+  tr:nth-child(even) td { background:#f5f7ff; }
+  figure { text-align:center; margin:18px 0; page-break-inside:avoid; }
+  figure img { max-width:100%; border:1px solid #ddd; border-radius:4px; }
+  figcaption { font-style:italic; color:#555; font-size:0.9em; margin-top:6px; }
+  pre.mermaid { page-break-inside:avoid; background:transparent; border:none; }
+  #qa-section { page-break-before:always; }
+  .qa-block { border:2px solid #2c5aa0; border-radius:8px; padding:20px; margin:25px 0; page-break-inside:avoid; background:#fff; }
+  .qa-question { background:#e8f1fb; padding:15px; border-radius:6px; margin-bottom:15px; }
+  .q-number { font-weight:900; color:#2c5aa0; font-size:1.1em; margin-right:8px; }
+  .q-options { margin-top:12px; padding-left:25px; }
+  .q-options li { padding:4px 0; }
+  .answer-reveal { background:#e8f5e9; border-left:5px solid #2e7d32; padding:12px 15px; margin:10px 0; border-radius:4px; font-size:1.05em; }
+  .answer-explanation { background:#f5f5f5; padding:12px 15px; margin:10px 0; border-radius:4px; line-height:1.7; }
+  .distractor-analysis { background:#fdecea; border-left:5px solid #c0392b; padding:12px 15px; margin:10px 0; border-radius:4px; }
+  .distractor-analysis ul { margin-top:8px; padding-left:20px; }
+  .instructor-note { background:#fff8e1; border-left:5px solid #f57c00; padding:12px 15px; margin:10px 0; border-radius:4px; font-style:italic; }
+  .ref-table td:first-child { font-weight:700; font-family:"Courier New",monospace; background:#e8f1fb; }
+  .watermark { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:80px; font-weight:900; color:rgba(0,0,0,0.12); z-index:9999; pointer-events:none; white-space:nowrap; font-family:Arial,sans-serif; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="subject">DGCA CPL/ATPL Study Notes &nbsp;·&nbsp; Instrumentation</div>
+  <h1>Chapter 8<br>Air Data Computer</h1>
+  <div class="compiler">Compiled by Capt. Pankaj Pahil</div>
+</div>
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction – The Air Data System (ADS)</a></li>
+    <li><a href="#sec-2">Pitot-Static System and Redundancy</a></li>
+    <li><a href="#sec-3">Air Data Computer – Analogue and Digital Types</a></li>
+    <li><a href="#sec-4">System Redundancy</a></li>
+    <li><a href="#sec-5">Failure Warning</a></li>
+    <li><a href="#sec-6">Built-In Test Equipment (BIT/BITE)</a></li>
+    <li><a href="#sec-7">Advantages of an Air Data System</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#ref-tables">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction – The Air Data System (ADS)</h2>
+<div class="blue-box"><strong>What this section covers:</strong> What an ADS is, its components, and what it replaces.</div>
+<p>In many modern large aircraft, conventional pressure instruments (altitude, airspeed, Mach number) are replaced by indicators driven by a central computer — the <strong>Air Data Computer (ADC)</strong>. Together with sensors and displays, it forms the <strong>Air Data System (ADS)</strong>.</p>
+
+<h3>ADS Components</h3>
+<ul>
+  <li><strong>Pitot pressure</strong> sensor</li>
+  <li><strong>Static pressure</strong> sensor</li>
+  <li><strong>Total Air Temperature (TAT)</strong> probe</li>
+  <li>Power supply</li>
+  <li>The ADC unit itself</li>
+  <li>Display instruments</li>
+</ul>
+
+<h3>Standard ADS Instrument Outputs</h3>
+<div class="green-box">
+  <strong>Standard outputs:</strong> Altitude, Vertical Speed, Airspeed (CAS/IAS), Mach Number.<br>
+  <strong>Additional outputs:</strong> Total Air Temperature (TAT), Static Air Temperature (SAT), True Airspeed (TAS).
+</div>
+
+<h3>Configuration Module</h3>
+<p>Because many aircraft types may use the same basic ADC, a <strong>Configuration Module</strong> is used to integrate it into each specific aircraft. This module is <strong>calibrated for differences in probe positioning efficiency</strong> to obtain the most accurate indications possible.</p>
+
+<figure>
+  <img src="figs/fig_p97_0.png" alt="Conventional Air Data System schematic">
+  <figcaption>Fig. 8.1 – Conventional Air Data System schematic — source p.97</figcaption>
+</figure>
+
+<div class="amber-box"><strong>Note:</strong> A weight-on-wheels switch decouples the stall warning system when the aircraft is on the ground. Angle of Attack (AOA) may also be an input to the ADC for certain aircraft systems.</div>
+
+<p>The ADS outputs are <strong>essential to the AFCS (Automatic Flight Control System)</strong> and also feed: altitude transponder, flight data recorder, navigation computer, and other systems.</p>
+
+<h2 id="sec-2">2. Pitot-Static System and Redundancy</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How multiple independent systems provide redundancy.</div>
+<p>A typical aircraft has <strong>identical instrument sets</strong> on the Captain's and First Officer's panels. Each set connects to one of <strong>two independent ADCs</strong> fed from <strong>independent pitot and static sources</strong> that can be <strong>cross-connected</strong>.</p>
+
+<h3>Standby Instruments</h3>
+<p>In addition to ADC-fed instruments, there is always:</p>
+<ul>
+  <li>A <strong>standby barometric altimeter</strong> — fed directly from an independent pitot-static source</li>
+  <li>A <strong>standby airspeed indicator</strong> — fed directly from the same independent source</li>
+</ul>
+<p>Each of the three independent pitot-static systems uses <strong>cross-coupled static vents on each side of the fuselage</strong> to reduce error from sideslip or yaw.</p>
+
+<figure>
+  <img src="figs/fig_p98_0.png" alt="Analogue ADC airspeed assessment device">
+  <figcaption>Fig. 8.2 – Analogue ADC airspeed assessment device showing pitot and static pressure inputs — source p.98</figcaption>
+</figure>
+
+<h2 id="sec-3">3. Air Data Computer – Analogue and Digital Types</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The two computational methods used in ADC design.</div>
+
+<h3>3.1 Analogue ADC</h3>
+<p>Uses <strong>continuous physical variables</strong> (voltage, pressure, shaft rotation) to represent and transmit measurements. A <strong>Pressure Transducer</strong> converts the pressure inputs to shaft rotation via a 2-phase servomotor connected to a CX synchro. The analogue ADC is internally divided into modules:</p>
+<ul>
+  <li>Altitude module</li>
+  <li>Computed Airspeed (CAS) module</li>
+  <li>Mach Speed module</li>
+  <li>True Airspeed (TAS) module</li>
+  <li>Rate of Climb module (using data from altitude module)</li>
+</ul>
+
+<h3>3.2 Digital ADC</h3>
+<p>Uses <strong>digital (binary) data</strong> for assessment and transmission. <strong>Analogue-to-Digital Converters (ADCs)</strong> at the input side convert pressure, temperature, and AOA measurements from analogue to digital form for internal processing and onward transmission to flight deck displays.</p>
+
+<div class="amber-box"><strong>Key Difference:</strong> Analogue ADC uses shaft rotations and servomotors. Digital ADC uses binary data and A-D converters. Both take the same inputs (pitot, static, temperature, AOA) and produce the same outputs, but via different computational methods.</div>
+
+<pre class="mermaid">
+flowchart LR
+    A["Pitot Pressure"] --> C["ADC"]
+    B["Static Pressure"] --> C
+    T["TAT Probe"] --> C
+    AOA["AOA (some types)"] --> C
+    C --> D["Altitude"]
+    C --> E["Airspeed (CAS)"]
+    C --> F["Mach Number"]
+    C --> G["TAS"]
+    C --> H["Vertical Speed"]
+    C --> I["TAT / SAT"]
+    C --> J["AFCS / FDR / XPDR / Nav Computer"]
+</pre>
+
+<h2 id="sec-4">4. System Redundancy</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How failures are accommodated without losing air data.</div>
+<p>Redundancy is provided through:</p>
+<ul>
+  <li><strong>Change-over cocks</strong> — permit an alternative static source to connect to the computer.</li>
+  <li><strong>Electrical switching</strong> — Captain's instruments can be fed from the First Officer's ADC and vice versa.</li>
+  <li><strong>Mixed sourcing</strong> — in some aircraft, ADC outputs are mixed to both sides of the panel, reducing the risk of an undetected malfunction.</li>
+  <li><strong>Standby instruments</strong> — available for total ADC failure due to power loss.</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p99_0.png" alt="ADC redundancy switching schematic">
+  <figcaption>Fig. 8.3 – ADC redundancy: cross-connected static sources and switchable ADC feeds — source p.99</figcaption>
+</figure>
+
+<h2 id="sec-5">5. Failure Warning</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the system alerts pilots to ADC malfunctions.</div>
+<p>A <strong>comparison monitor</strong> can be incorporated to automatically compare the outputs of both ADCs and warn the pilot of malfunction. With purely mechanical instruments, comparison was done visually only.</p>
+<div class="red-box"><strong>Warning Flags:</strong> A warning flag appears on the affected ADS instrument if there is loss of valid data or an internal failure. Additionally, a light illuminates on the instrument warning panel or central warning system indicator.</div>
+
+<h2 id="sec-6">6. Built-In Test Equipment (BIT / BITE)</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The three types of BITE and their functions.</div>
+<div class="red-box"><strong>Important:</strong> There is NO provision for manual input of data into the ADC in the event of failure. BITE provides prompt indication of malfunction but cannot substitute for correct sensor inputs.</div>
+
+<table>
+  <tr><th>BITE Type</th><th>When it Runs</th><th>What it Checks</th></tr>
+  <tr><td><strong>Power Up BITE</strong></td><td>On start-up or after a power break</td><td>Microprocessor, Memory Store, Air Data functions</td></tr>
+  <tr><td><strong>Continuous BITE</strong></td><td>Throughout operation (~once per second)</td><td>Automatic check of all input and output stages</td></tr>
+  <tr><td><strong>Maintenance BITE</strong></td><td>On the ground by maintenance crew</td><td>Current failures and historical failures (via Test/History switch)</td></tr>
+</table>
+
+<h2 id="sec-7">7. Advantages of an Air Data System</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why ADS is superior to conventional mechanical instruments.</div>
+
+<h3>7.1 Improved Displays</h3>
+<p>Electrically-servoed instrumentation gives complete freedom to design unambiguous, easier-to-read displays including digital, moving tape, and combined formats.</p>
+
+<h3>7.2 Reduced Instrument and Lag Errors</h3>
+<p>Friction loss in mechanical linkages is the major source of instrument error in conventional instruments, also causing lag. Servomotors in ADS largely eliminate both problems.</p>
+
+<h3>7.3 Error Correction</h3>
+<p>Computing height, airspeed, etc. within one computer allows error corrections to be applied through specially shaped cams. For example, <strong>Position Error Correction (PEC)</strong> can be computed in the Mach channel and then applied also in the height and airspeed channels.</p>
+
+<h3>7.4 Central Source for Other Systems</h3>
+<p>The ADC provides air data in many forms required by other aircraft systems — AFCS, FDR, transponder, navigation computer, and more.</p>
+
+<h3>7.5 Clean Design</h3>
+<p>Electrically-driven instruments <strong>reduce the amount of pneumatic plumbing</strong> behind the panel to only the standby instruments' pitot-static lines. Benefits: space saving, easier maintenance, shorter pitot-static lines reduce acoustic errors.</p>
+
+<figure>
+  <img src="figs/fig_p101_0.png" alt="Combined Air Data System schematic">
+  <figcaption>Fig. 8.4 – Combined Air Data System showing dual-ADC architecture — source p.101</figcaption>
+</figure>
+
+<div class="amber-box"><strong>Quick Revision – Chapter 8:</strong>
+  <ul>
+    <li>ADS = ADC + sensors (pitot, static, TAT) + displays + power.</li>
+    <li>Standard outputs: altitude, VSI, airspeed (CAS), Mach. Additional: TAT, SAT, TAS.</li>
+    <li>Configuration module adapts same ADC to different aircraft types.</li>
+    <li>Two ADC types: Analogue (servomotors/synchros) and Digital (A-D converters/binary).</li>
+    <li>Redundancy: cross-connected sources, electrical switching, standby instruments.</li>
+    <li>Three BITE types: Power Up, Continuous (every second), Maintenance.</li>
+    <li>No manual data entry possible into ADC — BITE only gives warnings.</li>
+    <li>ADS advantages: better displays, less lag/instrument error, error correction (PEC), central source, cleaner design.</li>
+  </ul>
+</div>
+
+<div id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box">Chapter 8 of the Oxford source text does not contain a printed question set. The following questions are <strong>instructor-generated</strong> and are representative of DGCA CPL/ATPL examination style for this chapter.</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q1.</span><span class="q-text">Which of the following correctly lists the standard outputs of an Air Data System?</span>
+    <ol class="q-options" type="a"><li>TAS, SAT, TAT, fuel flow</li><li>Altitude, vertical speed, airspeed (CAS), Mach number</li><li>Altitude, heading, airspeed, Mach number</li><li>Altitude, vertical speed, TAS, Mach number</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Altitude, vertical speed, airspeed (CAS), Mach number</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The standard ADS instrument outputs are altitude, vertical speed, airspeed, and Mach number. TAS, TAT, and SAT are additional (optional) outputs. Heading is not an ADS output — it comes from gyroscopes or magnetic sensors. See <a href="#sec-1">Section 1</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Fuel flow is an engine parameter, not an ADS output.</li><li><strong>(c)</strong> Heading is not derived from pitot/static/temperature data.</li><li><strong>(d)</strong> TAS is an additional output, not a standard one — and VSI is standard, not optional.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Standard = altitude, VSI, CAS/IAS, MNo. Additional = TAS, TAT, SAT. These categories are tested directly.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q2.</span><span class="q-text">The purpose of the Configuration Module in an Air Data System is to:</span>
+    <ol class="q-options" type="a"><li>allow the ADC to be manually programmed in case of sensor failure</li><li>calibrate the ADC for differences in probe positioning specific to each aircraft type</li><li>convert analogue signals to digital format for transmission</li><li>provide redundancy when the primary ADC fails</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> calibrate the ADC for differences in probe positioning specific to each aircraft type</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Because many aircraft types use the same basic ADC, the Configuration Module adapts it by accounting for the pressure/temperature gathering efficiencies of that specific aircraft's probe positions, obtaining the most accurate indications possible. See <a href="#sec-1">Section 1</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> No provision exists for manual data input into the ADC — this is explicitly stated in the source.</li><li><strong>(c)</strong> A-D conversion is performed by Analogue-to-Digital Converters inside the ADC, not the Configuration Module.</li><li><strong>(d)</strong> Redundancy is provided by dual ADCs and cross-connection, not the Configuration Module.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The Configuration Module is an aircraft-specific calibration layer — it makes a generic ADC specific to one aircraft type's installation geometry.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q3.</span><span class="q-text">In a digital Air Data Computer, the Analogue-to-Digital Converters process inputs from:</span>
+    <ol class="q-options" type="a"><li>pitot pressure and static pressure only</li><li>pitot pressure, static pressure and total air temperature</li><li>pitot pressure, static pressure, temperature, and angle of attack</li><li>pitot pressure, static pressure and computed airspeed</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> pitot pressure, static pressure, temperature, and angle of attack</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The source text states that A-D Converters process "measurements of pressure, temperature and AOA". This includes pitot pressure, static pressure, TAT, and angle of attack (AOA). See <a href="#sec-3">Section 3.2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a) &amp; (b)</strong> Incomplete — AOA is also an input (in applicable aircraft).</li><li><strong>(d)</strong> Computed airspeed is an output, not an input to the A-D converters.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Inputs to ADC: pitot, static, TAT (and AOA in some types). Outputs include altitude, CAS, Mach, TAS, VSI, TAT, SAT.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q4.</span><span class="q-text">Which type of BITE check runs automatically approximately once every second during normal ADC operation?</span>
+    <ol class="q-options" type="a"><li>Power Up BITE</li><li>Maintenance BITE</li><li>Continuous BITE</li><li>Periodic BITE</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> Continuous BITE</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Continuous BITE is an automatic check of all input and output stages carried out throughout ADC operation, approximately once every second. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Power Up BITE runs only on start-up or after a power break.</li><li><strong>(b)</strong> Maintenance BITE is run on the ground by maintenance personnel, not automatically.</li><li><strong>(d)</strong> "Periodic BITE" is not a category used in the source text.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Three BITE types: Power Up (start-up), Continuous (every second, automatic), Maintenance (ground, manual). Know which is which.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q5.</span><span class="q-text">A major advantage of an Air Data System over conventional mechanical instruments is that:</span>
+    <ol class="q-options" type="a"><li>static pressure errors are eliminated because the static vents are heated</li><li>position error correction can be applied within the computer and shared across height and airspeed channels</li><li>the system does not require pitot or static sources</li><li>the system is immune to total electrical failure</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> position error correction can be applied within the computer and shared across height and airspeed channels</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Within the ADC, Position Error Correction (PEC) computed in the Mach number channel can be applied directly to the height and airspeed channels as well — a significant advantage over mechanical instruments where each instrument must compensate independently. See <a href="#sec-7">Section 7.3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> ADS still uses pitot-static vents and is subject to position error — the ADC corrects for it, but it is not eliminated.</li><li><strong>(c)</strong> ADS still requires pitot and static inputs — it processes them electronically rather than mechanically.</li><li><strong>(d)</strong> Electrical failure will affect ADC-driven instruments — this is why standby mechanical instruments exist.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The ADS advantage of centralized PEC is important — one computation corrects multiple outputs simultaneously. This is not possible with individual mechanical instruments.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q6.</span><span class="q-text">Cross-coupled static vents located on each side of the fuselage are used in a pitot-static system primarily to:</span>
+    <ol class="q-options" type="a"><li>provide backup static pressure in case one vent is blocked</li><li>reduce error caused by sideslip or yaw</li><li>increase the sensitivity of the static pressure measurement</li><li>prevent icing of the static vents</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> reduce error caused by sideslip or yaw</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> By averaging the static pressure from both sides of the fuselage, cross-coupled vents cancel out the pressure asymmetry caused by sideslip or yaw, producing a more accurate static reference. See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Backup static is provided by the alternate static source, not by cross-coupling of normal vents.</li><li><strong>(c)</strong> Sensitivity is a capsule property, not related to vent geometry.</li><li><strong>(d)</strong> Pitot heating prevents icing; static vents may also be heated but that is a separate function.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Cross-coupling = sideslip/yaw error reduction. Alternate static = backup for blockage. These are two different features — don't confuse them.</div>
+  </div>
+</div>
+</div>
+
+<h2 id="ref-tables">Master Reference Tables</h2>
+<table class="ref-table">
+  <tr><th>Feature</th><th>Detail</th><th>Section</th></tr>
+  <tr><td>Standard ADS outputs</td><td>Altitude, VSI, CAS/IAS, Mach number</td><td>§1</td></tr>
+  <tr><td>Additional ADS outputs</td><td>TAT, SAT, TAS</td><td>§1</td></tr>
+  <tr><td>ADC inputs</td><td>Pitot pressure, Static pressure, TAT, (AOA)</td><td>§3</td></tr>
+  <tr><td>Configuration Module</td><td>Aircraft-specific calibration for probe positioning</td><td>§1</td></tr>
+  <tr><td>Analogue ADC method</td><td>Servomotors, synchros, shaft rotation</td><td>§3.1</td></tr>
+  <tr><td>Digital ADC method</td><td>A-D converters, binary data</td><td>§3.2</td></tr>
+  <tr><td>Power Up BITE</td><td>Start-up: checks microprocessor, memory, air data functions</td><td>§6</td></tr>
+  <tr><td>Continuous BITE</td><td>Every ~1 second, automatic, all I/O stages</td><td>§6</td></tr>
+  <tr><td>Maintenance BITE</td><td>Ground only, manual, current + historical failures</td><td>§6</td></tr>
+  <tr><td>Standby instruments</td><td>Barometric altimeter + ASI, independent pitot-static</td><td>§2</td></tr>
+  <tr><td>Cross-coupled vents</td><td>Reduce sideslip/yaw error</td><td>§2</td></tr>
+  <tr><td>Manual data input</td><td>NOT possible — BITE only provides warnings</td><td>§6</td></tr>
+</table>
+<div class="amber-box"><strong>Mnemonics:</strong>
+  <ul>
+    <li><strong>ADS outputs (standard):</strong> "AVMS" → Altitude, VSI, (air)speed, Mach</li>
+    <li><strong>BITE types:</strong> "Power, Continuous, Maintenance" — PCM (like a digital audio format!)</li>
+    <li><strong>Configuration Module:</strong> "It makes a generic ADC fit a specific aircraft"</li>
+  </ul>
+</div>
+<h3>Answer Key (Instructor-Generated Questions)</h3>
+<table><tr><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th></tr>
+<tr><td>b</td><td>b</td><td>c</td><td>c</td><td>b</td><td>b</td></tr></table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

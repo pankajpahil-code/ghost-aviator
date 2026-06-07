@@ -268,7 +268,7 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "met-28", number: 28, title: "Met Documentation and Briefing",
         description: "Pre-flight meteorological documentation, flight forecast charts, significant weather and wind/temperature charts, self-briefing and met briefing.",
-        duration: "1 hr", questionCount: 40, content: makeContent(),
+        duration: "1 hr", questionCount: 40, content: makeContent(true),
       },
       {
         id: "met-29", number: 29, title: "Flight Forecast & Cross-Section Forecast of Route Conditions",
@@ -758,97 +758,97 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "inst-1", number: 1, title: "Characteristics and General Definitions",
         description: "Oxford ATPL Instrumentation, Chapter 1: Characteristics and General Definitions. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 8, content: makeContent(true),
       },
       {
         id: "inst-2", number: 2, title: "Pitot and Static Sources",
         description: "Oxford ATPL Instrumentation, Chapter 2: Pitot and Static Sources. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 8, content: makeContent(true),
       },
       {
         id: "inst-3", number: 3, title: "Air Temperature Measurement",
         description: "Oxford ATPL Instrumentation, Chapter 3: Air Temperature Measurement. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 8, content: makeContent(true),
       },
       {
         id: "inst-4", number: 4, title: "The Airspeed Indicator (ASI)",
         description: "Oxford ATPL Instrumentation, Chapter 4: The Airspeed Indicator (ASI). DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 9, content: makeContent(true),
       },
       {
         id: "inst-5", number: 5, title: "The Pressure Altimeter",
         description: "Oxford ATPL Instrumentation, Chapter 5: The Pressure Altimeter. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 7, content: makeContent(true),
       },
       {
         id: "inst-6", number: 6, title: "The Vertical Speed Indicator",
         description: "Oxford ATPL Instrumentation, Chapter 6: The Vertical Speed Indicator. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 9, content: makeContent(true),
       },
       {
         id: "inst-7", number: 7, title: "The Machmeter",
         description: "Oxford ATPL Instrumentation, Chapter 7: The Machmeter. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 9, content: makeContent(true),
       },
       {
         id: "inst-8", number: 8, title: "Air Data Computer",
         description: "Oxford ATPL Instrumentation, Chapter 8: Air Data Computer. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 6, content: makeContent(true),
       },
       {
         id: "inst-9", number: 9, title: "Terrestrial Magnetism",
         description: "Oxford ATPL Instrumentation, Chapter 9: Terrestrial Magnetism. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 7, content: makeContent(true),
       },
       {
         id: "inst-10", number: 10, title: "The Direct Indicating Compass",
         description: "Oxford ATPL Instrumentation, Chapter 10: The Direct Indicating Compass. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 9, content: makeContent(true),
       },
       {
         id: "inst-11", number: 11, title: "Gyroscopes",
         description: "Oxford ATPL Instrumentation, Chapter 11: Gyroscopes. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 9, content: makeContent(true),
       },
       {
         id: "inst-12", number: 12, title: "Directional Gyro Indicator (DGI)",
         description: "Oxford ATPL Instrumentation, Chapter 12: Directional Gyro Indicator (DGI). DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 10, content: makeContent(true),
       },
       {
         id: "inst-13", number: 13, title: "The Artificial Horizon",
         description: "Oxford ATPL Instrumentation, Chapter 13: The Artificial Horizon. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 9, content: makeContent(true),
       },
       {
         id: "inst-14", number: 14, title: "The Turn and Slip Indicator",
         description: "Oxford ATPL Instrumentation, Chapter 14: The Turn and Slip Indicator. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 6, content: makeContent(true),
       },
       {
         id: "inst-15", number: 15, title: "The Turn Co-ordinator",
         description: "Oxford ATPL Instrumentation, Chapter 15: The Turn Co-ordinator. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 3, content: makeContent(true),
       },
       {
         id: "inst-16", number: 16, title: "Aircraft Magnetism",
         description: "Oxford ATPL Instrumentation, Chapter 16: Aircraft Magnetism. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 7, content: makeContent(true),
       },
       {
         id: "inst-17", number: 17, title: "Remote Indicating Magnetic Compass",
         description: "Oxford ATPL Instrumentation, Chapter 17: Remote Indicating Magnetic Compass. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 6, content: makeContent(true),
       },
       {
         id: "inst-18", number: 18, title: "Inertial Navigation Systems",
         description: "Oxford ATPL Instrumentation, Chapter 18: Inertial Navigation Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 8, content: makeContent(true),
       },
       {
         id: "inst-19", number: 19, title: "Inertial Reference System",
         description: "Oxford ATPL Instrumentation, Chapter 19: Inertial Reference System. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 1, content: makeContent(true),
       },
       {
         id: "inst-20", number: 20, title: "Radio Altimeter",
@@ -863,12 +863,12 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "inst-22", number: 22, title: "Electronic Flight Information Systems",
         description: "Oxford ATPL Instrumentation, Chapter 22: Electronic Flight Information Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 16, content: makeContent(true),
       },
       {
         id: "inst-23", number: 23, title: "Basic Computers",
         description: "Oxford ATPL Instrumentation, Chapter 23: Basic Computers. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 12, content: makeContent(true),
       },
       {
         id: "inst-24", number: 24, title: "Future Air Navigation Systems (FANS)",

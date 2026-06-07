@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 18 – Inertial Navigation Systems | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a3a6b; border-bottom: 3px solid #1a3a6b; padding-bottom: 8px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a3a6b; margin-top: 30px; border-left: 5px solid #1a3a6b; padding-left: 10px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #2c5aa0; margin-top: 20px; }
+  p { margin: 8px 0 12px 0; }
+  .cover { text-align: center; padding: 40px 20px; border: 3px solid #1a3a6b; border-radius: 10px; margin-bottom: 30px; }
+  .cover h1 { border: none; font-size: 2.2em; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 8px; }
+  .cover .author { font-size: 1em; color: #333; margin-top: 6px; font-weight: 600; }
+  .toc { background: #f5f8ff; border: 1px solid #b0c4e8; border-radius: 8px; padding: 20px 30px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { border: none; margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: #2c5aa0; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a3a6b; color: #fff; padding: 8px 12px; text-align: left; font-weight: 700; }
+  td { border: 1px solid #ccc; padding: 7px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  blockquote { border-left: 4px solid #aaa; background: #f9f9f9; margin: 15px 0; padding: 10px 15px; font-family: Georgia,serif; font-style: italic; page-break-inside: avoid; }
+  figure { text-align: center; margin: 20px auto; max-width: 100%; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #555; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Instrumentation</div>
+  <h1>Chapter 18<br>Inertial Navigation Systems</h1>
+  <div class="subtitle">Oxford Aviation Academy — Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction</a></li>
+    <li><a href="#sec-2">Basic Principles of INS</a></li>
+    <li><a href="#sec-3">Accelerometers and Integrators</a></li>
+    <li><a href="#sec-4">Gravity Effects on Accelerometer</a></li>
+    <li><a href="#sec-5">The Integrating Gyroscope</a></li>
+    <li><a href="#sec-6">The Platform</a></li>
+    <li><a href="#sec-7">Earth Orientation and Apparent Wander</a></li>
+    <li><a href="#sec-8">Alignment of the System</a></li>
+    <li><a href="#sec-9">Schuler Period</a></li>
+    <li><a href="#sec-10">Errors of INS</a></li>
+    <li><a href="#sec-11">INS Control and Display Panels</a></li>
+    <li><a href="#sec-12">Warning Lights Summary</a></li>
+    <li><a href="#sec-13">LED Display Functions</a></li>
+    <li><a href="#sec-14">Manual and Automatic System Checks</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<h1 id="sec-1">1. Introduction</h1>
+
+<p>The fundamental element of the INS is the <strong>Inertial Sensor System (ISS)</strong> — a stable platform consisting of high-quality gyros and accelerometers plus a computer.</p>
+
+<div class="box-blue">
+<strong>What the computer does:</strong>
+<ul>
+  <li>Integrates accelerometer outputs with time → velocity</li>
+  <li>Integrates velocity with time → distance travelled</li>
+  <li>Derives pitch/roll attitude, true heading, true track, drift, present position (lat/long), ground speed, and wind</li>
+</ul>
+A further navigation computer injects and stores <strong>waypoints</strong>, then computes track angle error, distance and time-to-go. This output can drive the autopilot, flight director, or manual flying.
+</div>
+
+<p>The modern INS was the <strong>first self-contained single source</strong> of all navigation data. The INS has now been joined by the similar IRS laser-gyro system (Chapter 19).</p>
+
+<figure>
+  <img src="figs/fig_p228_0.png" alt="Data available from INS">
+  <figcaption>Fig 18.1 — Data available from INS. Source p.228</figcaption>
+</figure>
+
+<!-- SECTION 2 -->
+<h1 id="sec-2">2. Basic Principles of INS</h1>
+
+<div class="box-blue">
+<strong>Newton's Laws underpinning INS:</strong>
+<ul>
+  <li>A body continues in rest or uniform straight-line motion unless acted on by external force.</li>
+  <li>Acceleration ∝ force / mass.</li>
+  <li>Every action has an equal and opposite reaction.</li>
+</ul>
+</div>
+
+<p>Einstein (1905) pointed out that "at rest" simply means moving at the same velocity as the observer. The accelerometer — the primary measuring device — makes <strong>no distinction between rest and any fixed velocity</strong>. It does, however, distinguish between a truly fixed velocity and one that is fixed along a curved path.</p>
+
+<!-- SECTION 3 -->
+<h1 id="sec-3">3. Accelerometers and Integrators</h1>
+
+<p>Two accelerometers are mounted at the heart of the inertial system:</p>
+<ul>
+  <li>One measures acceleration in the <strong>North–South direction</strong></li>
+  <li>One measures acceleration in the <strong>East–West direction</strong></li>
+  <li>A third is often fitted for <strong>vertical acceleration</strong></li>
+</ul>
+
+<div class="box-blue">
+<strong>Accelerometer operation (pendulous device):</strong>
+<ol>
+  <li>Aircraft accelerates → pendulum swings off null due to inertia</li>
+  <li>Signal pick-off detects displacement</li>
+  <li>Signal → amplifier → torque motor → restores pendulum to null</li>
+  <li>Current into torquer = measure of acceleration</li>
+</ol>
+</div>
+
+<figure>
+  <img src="figs/fig_p229_0.png" alt="Accelerometer">
+  <figcaption>Fig 18.3 — Accelerometer schematic. Source p.229</figcaption>
+</figure>
+
+<h3>Double Integration Process</h3>
+
+<pre class="mermaid">
+graph LR
+  A["Acceleration<br>(ft/s²)"] -->|"× time<br>1st integrator"| B["Velocity<br>(ft/s)"]
+  B -->|"× time<br>2nd integrator"| C["Distance<br>(ft or NM)"]
+</pre>
+
+<figure>
+  <img src="figs/fig_p230_0.png" alt="Accelerometers and integrators">
+  <figcaption>Fig 18.5 — Accelerometers and integrators. Source p.230</figcaption>
+</figure>
+
+<figure>
+  <img src="figs/fig_p231_0.png" alt="N/S and E/W accelerometer channels">
+  <figcaption>Fig 18.7 — N/S and E/W accelerometer channels. Source p.231</figcaption>
+</figure>
+
+<div class="box-green">
+<strong>Position computation:</strong> The computer knows the take-off lat/long. It continuously adds N/S distance and E/W distance to compute <strong>present position to the nearest tenth of a minute of arc</strong>.
+</div>
+
+<figure>
+  <img src="figs/fig_p232_0.png" alt="POS present position display">
+  <figcaption>Fig 18.8 — POS (present position) display. Source p.232</figcaption>
+</figure>
+
+<!-- SECTION 4 -->
+<h1 id="sec-4">4. Gravity Effects on Accelerometer</h1>
+
+<p>If the accelerometer is tilted (not kept earth-horizontal), the pendulum is displaced by <strong>gravity</strong> even when there is no real acceleration. This would produce a <strong>false acceleration signal</strong> → false velocity → false distance.</p>
+
+<div class="box-red">
+<strong>Solution:</strong> The accelerometer must always be kept <strong>earth-horizontal</strong>. This is achieved by mounting it on a gyro-stabilised platform (gimbal assembly).
+</div>
+
+<figure>
+  <img src="figs/fig_p233_0.png" alt="Gravity effects on accelerometer">
+  <figcaption>Fig 18.9 — Gravity effects on the accelerometer. Source p.233</figcaption>
+</figure>
+
+<!-- SECTION 5 -->
+<h1 id="sec-5">5. The Integrating Gyroscope</h1>
+
+<p>The INS uses a <strong>rate-integrating gyro</strong> — a one degree-of-freedom gyro using <strong>viscous restraint</strong> (not mechanical/spring restraint as in a rate gyro).</p>
+
+<p>Construction: a can-within-a-can; the outer frame is filled with viscous fluid that supports the inner gimbal, reducing bearing torques. The inner gimbal is pivoted about its vertical axis.</p>
+
+<figure>
+  <img src="figs/fig_p234_0.png" alt="Rate-integrating gyroscope">
+  <figcaption>Fig 18.10 — Rate-integrating gyroscope. Source p.234</figcaption>
+</figure>
+
+<!-- SECTION 6 -->
+<h1 id="sec-6">6. The Platform</h1>
+
+<p>The platform is a gimbal assembly that allows the aircraft to go through any attitude change while the inner element (carrying the accelerometers and gyros) remains <strong>earth-level</strong>.</p>
+
+<div class="box-blue">
+<strong>How the platform maintains level:</strong>
+<ol>
+  <li>Platform tips → gyro spin axis stays fixed in space</li>
+  <li>Signal pick-off detects case displacement</li>
+  <li>Signal → amplifier → gimbal drive motor → restores level</li>
+</ol>
+Three integrating gyros are mounted with <strong>mutually perpendicular input axes</strong>. Three gimbal motors drive the platform about pitch, roll, and vertical axes respectively.
+</div>
+
+<figure>
+  <img src="figs/fig_p235_0.png" alt="The platform">
+  <figcaption>Fig 18.11 — The INS platform. Source p.235</figcaption>
+</figure>
+
+<!-- SECTION 7 -->
+<h1 id="sec-7">7. Earth Orientation and Apparent Wander</h1>
+
+<p>A gyro-stabilised platform remains fixed in <em>space</em> — but the aircraft operates on a <em>rotating, curved Earth</em>. Two compensations are applied by torquing the gyros:</p>
+
+<div class="box-amber">
+<strong>Earth Rate Compensation (apparent wander due to earth rotation):</strong>
+<ul>
+  <li>Compensates for the <strong>horizontal component of earth rate</strong> felt by the gyros</li>
+  <li>Varies with latitude: <strong>zero at the equator</strong>, maximum <strong>±15.04°/hr at the poles</strong></li>
+</ul>
+</div>
+
+<div class="box-amber">
+<strong>Transport Rate Compensation (wander due to aircraft movement over earth):</strong>
+<ul>
+  <li>Developed using velocity signal</li>
+  <li>Signal = aircraft velocity ÷ earth's radius</li>
+</ul>
+</div>
+
+<p>Additional compensations for <strong>Coriolis and centrifugal effects</strong> are also applied.</p>
+
+<figure>
+  <img src="figs/fig_p236_0.png" alt="Earth orientation">
+  <figcaption>Fig 18.12 — Earth orientation. Source p.236</figcaption>
+</figure>
+
+<!-- SECTION 8 -->
+<h1 id="sec-8">8. Alignment of the System</h1>
+
+<p>The stable element must be precisely aligned in <strong>azimuth</strong> and <strong>attitude</strong> before navigation. The alignment sequence is:</p>
+
+<div class="box-blue">
+<ol>
+  <li><strong>Warm-up</strong> — fluid-filled components reach operating temperature (~3–4 min)</li>
+  <li><strong>Coarse levelling</strong> — pitch and roll driven to 90° to each other; platform roughly levelled using aircraft frame or gravity switches/horizontal accelerometers</li>
+  <li><strong>Coarse azimuth alignment</strong> — platform turned until heading output agrees with best known True Heading. Platform aligned to within 1°–2° in seconds.</li>
+  <li><strong>Fine levelling</strong> — zero output from accelerometers; levels platform to within <strong>6 seconds of arc</strong> (takes up to 1–1½ min)</li>
+  <li><strong>Gyro compassing</strong> — east gyro detects earth rotation component when misaligned; resultant signal torques the azimuth gyro until table aligns to <strong>True North</strong></li>
+</ol>
+</div>
+
+<div class="box-red">
+<strong>Requirements before entering NAV mode:</strong>
+<ul>
+  <li>Accelerometers levelled (velocity set to zero)</li>
+  <li>Platform orientated to True North (gyro compassing complete)</li>
+  <li>Initial position (lat/long) entered accurately — <strong>aircraft must be stationary</strong></li>
+</ul>
+</div>
+
+<!-- SECTION 9 -->
+<h1 id="sec-9">9. Schuler Period</h1>
+
+<p>Schuler postulated an earth pendulum with length equal to the <strong>radius of the earth</strong> — its bob at earth's centre, suspension at the surface. If accelerated around the earth, the bob remains vertically below the suspension point (at earth's centre of gravity), so a platform tangent to the surface stays horizontal regardless of acceleration.</p>
+
+<div class="box-blue">
+<strong>Schuler Tuning:</strong>
+<ul>
+  <li>INS stable element maintained normal to local vertical by feeding back aircraft radial velocity (V/R) as levelling gyro signals</li>
+  <li>If the platform is displaced from horizontal, it oscillates with a period of <span class="reg-value">84.4 minutes</span> — the <strong>Schuler Period</strong></li>
+  <li>The INS is "Schuler tuned" — an analogue of the 84.4-min earth pendulum</li>
+</ul>
+</div>
+
+<figure>
+  <img src="figs/fig_p239_0.png" alt="The Schuler Period">
+  <figcaption>Fig 18.15 — The Schuler Period (oscillation cycle 84.4 min). Source p.239</figcaption>
+</figure>
+
+<!-- SECTION 10 -->
+<h1 id="sec-10">10. Errors of INS</h1>
+
+<h3>Bounded Errors</h3>
+<div class="box-green">
+Errors that build up to a maximum and return to zero within the <strong>84.4-minute Schuler cycle</strong>. Causes:
+<ul>
+  <li>Platform tilt due to initial misalignment</li>
+  <li>Inaccurate measurement of acceleration by accelerometers</li>
+  <li>Integrator errors in the <strong>first stage</strong> of integration</li>
+</ul>
+</div>
+
+<h3>Unbounded Errors</h3>
+<div class="box-red">
+Cumulative errors that grow with time. Causes:
+<ul>
+  <li><strong>Initial azimuth misalignment</strong> of the platform</li>
+  <li><strong>Wander of the azimuth gyro</strong></li>
+  <li>Wander in levelling gyros (causes Schuler oscillation but mean distance run diverges from true)</li>
+  <li>Integrator errors in the <strong>second stage</strong> of integration</li>
+</ul>
+</div>
+
+<h3>Inherent Errors</h3>
+<div class="box-amber">
+Due to the <strong>irregular shape and composition of the Earth</strong>, movement of the Earth through space, and other physical factors. These vary from system to system based on the balance between accuracy, simplicity, reliability, and cost.
+</div>
+
+<!-- SECTION 11 -->
+<h1 id="sec-11">11. INS Control and Display Panels</h1>
+
+<p>The traditional INS uses two panels:</p>
+<ul>
+  <li><strong>Mode Selector Unit (MSU)</strong> — selects operating mode</li>
+  <li><strong>Control and Display Unit (CDU)</strong> — waypoint entry and data readout</li>
+</ul>
+
+<h3>Mode Selector Unit — Modes</h3>
+<table>
+  <tr><th>Mode</th><th>Function</th></tr>
+  <tr><td>STANDBY</td><td>Power supplied to all parts. Ramp position (lat/long to nearest 0.1') entered here.</td></tr>
+  <tr><td>ALIGN</td><td>Platform levelled and gyro-compassed. READY NAV illuminates when complete.</td></tr>
+  <tr><td>NAV</td><td>Full navigation computing. Aircraft may taxi without degrading accuracy.</td></tr>
+  <tr><td>ATT REF</td><td>Computing disconnected; alignment lost. Accelerometers act as gravity switches; gyros become gravity-tied (earth gyros). Gives attitude and limited heading (DGI mode). Heading must be reset periodically to magnetic source.</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p240_0.png" alt="Mode Selector Unit">
+  <figcaption>Fig 18.16 — Mode Selector Unit. Source p.240</figcaption>
+</figure>
+
+<figure>
+  <img src="figs/fig_p241_0.png" alt="Control and Display Unit">
+  <figcaption>Fig 18.17 — Control and Display Unit (CDU). Source p.241</figcaption>
+</figure>
+
+<div class="box-amber">
+<strong>Battery Operation:</strong> If aircraft electrical supply fails, INS automatically switches to internal battery. BATT light illuminates on CDU. When battery power is nearly exhausted, BATT WARNING light on MSU illuminates. The INS <strong>cannot be re-levelled or re-aligned in flight</strong> — the aircraft must be stationary with known exact position.
+</div>
+
+<!-- SECTION 12 -->
+<h1 id="sec-12">12. Warning Lights Summary</h1>
+
+<table>
+  <tr><th>Light</th><th>Indication</th><th>Action Required</th></tr>
+  <tr><td>READY NAV (MSU) — Green</td><td>Alignment complete</td><td>Select 'NAV'</td></tr>
+  <tr><td>BATT (MSU) — Red</td><td>Battery power too low for operation</td><td>Check power supplies</td></tr>
+  <tr><td>ALERT (CDU) — Amber</td><td>Approaching (or overflying in MAN mode) a waypoint</td><td>None, unless MAN mode — initiate TK CHG</td></tr>
+  <tr><td>BATT (CDU) — Amber</td><td>INS operating on back-up power</td><td>Check power supplies</td></tr>
+  <tr><td>WARN (CDU) — Flashing Red</td><td>System malfunction</td><td>Set selector to DSR TK/STS; note action code; consult user's guide</td></tr>
+</table>
+
+<div class="box-blue">
+<strong>ALERT light behaviour:</strong>
+<ul>
+  <li><strong>AUTO mode:</strong> Illuminates steadily <strong>2 minutes before</strong> waypoint; extinguishes as track changes overhead the waypoint.</li>
+  <li><strong>MANUAL mode:</strong> Illuminates steadily 2 minutes before waypoint; flashes from <strong>30 seconds before</strong>; continues flashing until track is changed by operator.</li>
+  <li>Does NOT illuminate below a set speed (typically 100 kt or 250 kt).</li>
+</ul>
+</div>
+
+<!-- SECTION 13 -->
+<h1 id="sec-13">13. LED Display Functions (CDU Function Selector)</h1>
+
+<table>
+  <tr><th>Function</th><th>LH Window</th><th>RH Window</th></tr>
+  <tr><td>TK/GS</td><td>Track (°T) to 0.1°</td><td>Ground speed (kt)</td></tr>
+  <tr><td>HDG/DA</td><td>True heading (°T) to 0.1°</td><td>Drift angle (L/R) to 0.1°</td></tr>
+  <tr><td>XTK/TKE</td><td>Cross-track distance (L/R NM) to 0.1 NM</td><td>Track angle error (L/R) to 0.1°</td></tr>
+  <tr><td>POS</td><td>Present latitude to 0.1'</td><td>Present longitude to 0.1'</td></tr>
+  <tr><td>WPT</td><td>Waypoint latitude to 0.1'</td><td>Waypoint longitude to 0.1'</td></tr>
+  <tr><td>DIS/TIME</td><td>Distance to next WPT (NM)</td><td>Time to next WPT (to 0.1 min)</td></tr>
+  <tr><td>WIND</td><td>Wind direction (°T)</td><td>Wind speed (kt)</td></tr>
+  <tr><td>DSR TK/STS</td><td>Desired track (°T) to 0.1°</td><td>Status (blank in NAV mode)</td></tr>
+  <tr><td>TEST</td><td colspan="2">All digits illuminated for display check</td></tr>
+</table>
+
+<div class="box-blue">
+<strong>Waypoint 0:</strong> Represents the aircraft's position at the last time a track change from present position to a specified waypoint was selected. Used to fly direct to any waypoint from current position. Waypoint 0 will NOT accept operator-entered coordinates — it is reserved for the computer.
+</div>
+
+<figure>
+  <img src="figs/fig_p243_0.png" alt="TK/GS display">
+  <figcaption>Fig 18.18 — TK/GS (Track and Ground Speed). Source p.243</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p244_0.png" alt="HDG/DA display">
+  <figcaption>Fig 18.19 — HDG/DA (Heading and Drift Angle). Source p.244</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p244_2.png" alt="XTK/TKE display">
+  <figcaption>Fig 18.20 — XTK/TKE (Cross Track and Track Error). Source p.244</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p245_0.png" alt="POS display">
+  <figcaption>Fig 18.21 — POS (Present Position). Source p.245</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p245_2.png" alt="WPT display">
+  <figcaption>Fig 18.22 — WPT (Waypoint Position). Source p.245</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p246_0.png" alt="DIS/TIME display">
+  <figcaption>Fig 18.24 — DIS/TIME (Distance and Time). Source p.246</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p246_2.png" alt="WIND display">
+  <figcaption>Fig 18.25 — WIND (Wind Velocity). Source p.246</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p246_4.png" alt="DSR TK/STS display">
+  <figcaption>Fig 18.26 — DSR TK/STS (Desired Track and Status). Source p.246</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p247_0.png" alt="TEST display">
+  <figcaption>Fig 18.27 — TEST (LED test pattern). Source p.247</figcaption>
+</figure>
+
+<!-- SECTION 14 -->
+<h1 id="sec-14">14. Manual and Automatic System Checks</h1>
+
+<div class="box-blue">
+<strong>Initial position entry (ramp position):</strong>
+<ul>
+  <li>Latitude error → platform will not remain earth-horizontal in NAV mode (torque motors apply incorrect rate based on wrong latitude). Gross error detected by WARN light.</li>
+  <li>Longitude error → platform remains stable but track/distance from departure to first waypoint is wrong; all subsequent longitudes are in error by the initial input error.</li>
+</ul>
+</div>
+
+<div class="box-green">
+<strong>Two pre-flight waypoint checks:</strong>
+<ol>
+  <li>Recall each waypoint from store onto the LED and visually <strong>recheck lat/long</strong></li>
+  <li>Call up <strong>DIS/TIME</strong> and <strong>DSR TK/STS</strong> between consecutive waypoints and compare against the flight plan</li>
+</ol>
+The INS navigates very accurately between waypoints but <strong>cannot detect operator ("finger trouble") errors</strong>.
+</div>
+
+<h3>E/W Integration and Longitude Update</h3>
+<p>The E/W accelerometer output is integrated twice: first to E/W speed (kt), then to E/W distance (departure in NM). To convert departure to change of longitude:</p>
+<div class="box-amber">
+<strong>d'long (min) = departure × sec(latitude)</strong><br>
+Equivalently: departure must be <strong>multiplied by the secant of present latitude</strong> to obtain d'long.
+</div>
+
+<!-- Q&A SECTION -->
+<div class="qa-section">
+<h1 id="qa-section">Practice Questions &amp; Detailed Answers</h1>
+<p><em>Source: Oxford Aviation Academy Instrumentation — Chapter 18 Questions. DGCA CPL/ATPL.</em></p>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span> INS errors are classified as "bounded errors" and "unbounded errors". Which statement is correct?
+    <ol class="q-options" type="a">
+      <li>An "unbounded error" increases with time; example: distance gone error due to a ground speed error</li>
+      <li>An "unbounded error" increases with time; example: increasing ground speed error due to platform not being levelled correctly</li>
+      <li>A "bounded error" is subject to sudden unpredictable random changes, most notable during pitching manoeuvres</li>
+      <li>A "bounded error" is "tied" to the real wander rates of the gyros on the platform</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>A</strong></div>
+  <div class="answer-explanation">Unbounded errors are cumulative errors that grow with time. A distance gone error due to a ground speed error (e.g., from azimuth misalignment or levelling gyro wander) keeps accumulating — it never "comes back" within an 84.4-min cycle. Bounded errors are those that oscillate and return to zero within the 84.4-minute Schuler cycle.</div>
+  <div class="distractor-analysis"><strong>Why the others are wrong:</strong>
+    <ul>
+      <li><strong>B:</strong> Platform not being levelled produces a <em>bounded</em> error (platform tilt causes Schuler oscillation that reverses). Ground speed error due to this is bounded, not unbounded.</li>
+      <li><strong>C:</strong> Bounded errors are not random — they follow the 84.4-min oscillation. Random changes would be inherent errors.</li>
+      <li><strong>D:</strong> Real wander of the levelling gyros causes unbounded distance error, not a bounded one that is "tied" to them.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span> Two checks for correctly entered sequential waypoints are:
+    <ol class="q-options" type="a">
+      <li>Select DSR.TK/STS and check status &lt;4; select DIS/TIME and check time agrees with flight plan</li>
+      <li>Select DIS/TIME and check distance agrees with flight plan; then check time agrees with flight plan</li>
+      <li>Select DIS/TIME and check distance agrees with flight plan; select DSR.TK/STS and check track agrees with flight plan</li>
+      <li>Select DIS/TIME and check distance agrees with flight plan; select HDG/DA and check heading agrees</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>C</strong></div>
+  <div class="answer-explanation">The two standard cross-checks are: (1) select DIS/TIME and verify distance matches the flight plan leg distance, and (2) select DSR TK/STS and verify the desired great-circle track matches the flight plan. This confirms both the correct waypoints AND correct lat/long entries.</div>
+  <div class="distractor-analysis"><strong>Why the others are wrong:</strong>
+    <ul>
+      <li><strong>A:</strong> Status code &lt;4 is not a defined check procedure described here.</li>
+      <li><strong>B:</strong> Checking only distance and time is insufficient — two legs with same distance/time could have different tracks.</li>
+      <li><strong>D:</strong> Heading is not the same as desired track (drift exists). HDG/DA is not used for waypoint verification.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span> In an INS the E/W accelerations are converted into E/W speed at the first stage of integration, and into E/W distance (departure) at the second stage. To convert departure to d'long (min) for longitude update:
+    <ol class="q-options" type="a">
+      <li>Departure × cosine of present latitude</li>
+      <li>Direct d'long (min) without conversion</li>
+      <li>Departure × secant of present latitude</li>
+      <li>Departure × sine of present latitude</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>C</strong></div>
+  <div class="answer-explanation">Departure (NM) = d'long (min) × cos(lat). Therefore d'long (min) = departure ÷ cos(lat) = departure × sec(lat). At the equator (lat=0), cos=1 so departure = d'long exactly. At higher latitudes, the meridians converge, so more departure is needed for the same change in longitude.</div>
+  <div class="instructor-note">Memory hook: "Departure × SEC(lat) = d'long". The word "secant" has to "expand" the longitude value because degrees of longitude get shorter as you move from the equator toward the poles.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span> At the second stage of integration, E/W speed is converted into E/W distance (departure). To convert departure into change of longitude it must:
+    <ol class="q-options" type="a">
+      <li>Be divided by secant of the latitude</li>
+      <li>Be multiplied by secant of the latitude</li>
+      <li>Be divided by tangent of the latitude</li>
+      <li>Be multiplied by cosine of the latitude</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>B</strong></div>
+  <div class="answer-explanation">Same principle as Q3: d'long = departure × sec(lat). The answer here is stated directly: multiply by secant of latitude.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span> The amber ALERT light on an INS control and display unit:
+    <ol class="q-options" type="a">
+      <li>Illuminates steadily 2 minutes, in AUTO mode, before reaching the next waypoint</li>
+      <li>Starts flashing 2 minutes before reaching the next waypoint and goes out at 30 seconds to run</li>
+      <li>Illuminates if power from the aircraft bus bar has been lost and the system is on standby battery</li>
+      <li>Illuminates steadily after passing a waypoint in manual mode, until the next leg is programmed in</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>A</strong></div>
+  <div class="answer-explanation">In AUTO mode, the ALERT light illuminates <em>steadily</em> at 2 minutes before the waypoint and extinguishes as the track automatically changes overhead the waypoint. There is no flashing in AUTO mode.</div>
+  <div class="distractor-analysis"><strong>Why the others are wrong:</strong>
+    <ul>
+      <li><strong>B:</strong> Reverses the AUTO and MANUAL behaviours — it is in MANUAL mode that the light flashes (at 30 seconds to run), not AUTO.</li>
+      <li><strong>C:</strong> Battery operation is indicated by BATT light (amber), not ALERT.</li>
+      <li><strong>D:</strong> In MANUAL, the light flashes 30 seconds before the waypoint (not after passing it).</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span> With reference to INS, the functions of the integrators are:
+    <br>(i) At second stage of integration to suppress unbounded errors (NAV mode)
+    <br>(ii) At first stage of integration to convert acceleration → speed (NAV mode)
+    <br>(iii) At second stage of integration to convert speed → distance gone (NAV mode)
+    <br>(iv) To align the platform (level and align modes)
+    <ol class="q-options" type="a">
+      <li>All four statements are true</li>
+      <li>Only (ii), (iii) and (iv)</li>
+      <li>Only (i), (ii) and (iii)</li>
+      <li>Only (ii) and (iii)</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>D</strong></div>
+  <div class="answer-explanation">Statement (ii) and (iii) are correct — these are the two integration stages: acceleration→speed, and speed→distance. Statement (i) is wrong: integrators do not suppress unbounded errors — they actually propagate them (second-stage integrator errors ARE a source of unbounded errors). Statement (iv) is wrong: the platform is aligned by gyro compassing and torquing, not by integrators.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q7.</span> The computer of a north-referenced INS in flight provides compensation for:
+    <ol class="q-options" type="a">
+      <li>Aircraft manoeuvres, real wander, apparent wander, transport wander</li>
+      <li>Coriolis, real wander, apparent wander, transport wander</li>
+      <li>Earth rotation, transport wander, coriolis</li>
+      <li>Transport wander, apparent wander, coriolis, magnetic variation</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>C</strong></div>
+  <div class="answer-explanation">INS computers compensate for: (1) Earth rotation rate (apparent wander = earth rate compensation); (2) Transport wander (transport rate compensation = V/R); (3) Coriolis and centrifugal effects. "Real wander" is an imperfection of the physical gyro and cannot be compensated by the computer (it is a random inherent error). Magnetic variation is irrelevant — INS operates in True reference.</div>
+  <div class="instructor-note">Remember: INS compensates for predictable, mathematically-determinable phenomena. Real wander (from bearing imperfections) is random and unpredictable — it cannot be computed away.</div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q8.</span> During initialization of an INS the aircraft must not be moved until:
+    <ol class="q-options" type="a">
+      <li>The ramp position has been inserted and checked</li>
+      <li>The platform is levelled</li>
+      <li>The gyros and accelerometers are in the "null" position</li>
+      <li>The green "READY NAV" light has been illuminated and the mode selector switch has been set to the "NAV" position</li>
+    </ol>
+  </div>
+  <div class="answer-reveal">✅ Correct Answer: <strong>D</strong></div>
+  <div class="answer-explanation">The INS must complete the full alignment sequence — warm-up, coarse levelling, coarse azimuth, fine levelling, and gyro compassing — before the aircraft moves. READY NAV illuminates when this is complete. Once in NAV mode, the aircraft may taxi. Moving before READY NAV and NAV selection destroys the alignment and means the INS cannot be re-aligned in flight.</div>
+</div>
+
+</div><!-- qa-section -->
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

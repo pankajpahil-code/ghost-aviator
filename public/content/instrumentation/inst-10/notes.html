@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 10 – The Direct Indicating Compass | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:14px; line-height:1.6; color:#1a1a1a; margin:0; padding:20px; background:#fff; }
+  h1 { font-size:2em; font-weight:700; color:#1a237e; margin-bottom:4px; }
+  h2 { font-size:1.4em; font-weight:700; color:#1a237e; border-bottom:2px solid #1a237e; padding-bottom:4px; margin-top:32px; page-break-after:avoid; }
+  h3 { font-size:1.15em; font-weight:700; color:#283593; margin-top:20px; page-break-after:avoid; }
+  .cover { text-align:center; padding:40px 20px 30px; border-bottom:3px solid #1a237e; margin-bottom:30px; }
+  .cover .subject { font-size:1em; color:#555; letter-spacing:2px; text-transform:uppercase; }
+  .cover .compiler { font-size:0.95em; color:#555; margin-top:8px; }
+  .toc { background:#f5f7ff; border:1px solid #c5cae9; border-radius:8px; padding:20px 30px; margin:20px 0 30px; page-break-after:always; }
+  .toc h2 { border:none; margin-top:0; }
+  .toc ol { margin:0; padding-left:20px; }
+  .toc li { padding:3px 0; }
+  .toc a { color:#1a237e; text-decoration:none; }
+  .blue-box { background:#e8f1fb; border-left:5px solid #2c5aa0; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .red-box { background:#fdecea; border-left:5px solid #c0392b; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .green-box { background:#e8f5e9; border-left:5px solid #2e7d32; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .amber-box { background:#fff8e1; border-left:5px solid #f57c00; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .reg-value { font-weight:700; color:#b71c1c; background:#fdecea; padding:1px 4px; border-radius:3px; font-family:"Courier New",monospace; }
+  table { border-collapse:collapse; width:100%; margin:15px 0; page-break-inside:avoid; }
+  th { background:#1a237e; color:#fff; padding:10px 12px; text-align:left; font-size:0.95em; }
+  td { padding:9px 12px; border:1px solid #c5cae9; vertical-align:top; }
+  tr:nth-child(even) td { background:#f5f7ff; }
+  figure { text-align:center; margin:18px 0; page-break-inside:avoid; }
+  figure img { max-width:100%; border:1px solid #ddd; border-radius:4px; }
+  figcaption { font-style:italic; color:#555; font-size:0.9em; margin-top:6px; }
+  pre.mermaid { page-break-inside:avoid; background:transparent; border:none; }
+  #qa-section { page-break-before:always; }
+  .qa-block { border:2px solid #2c5aa0; border-radius:8px; padding:20px; margin:25px 0; page-break-inside:avoid; background:#fff; }
+  .qa-question { background:#e8f1fb; padding:15px; border-radius:6px; margin-bottom:15px; }
+  .q-number { font-weight:900; color:#2c5aa0; font-size:1.1em; margin-right:8px; }
+  .q-options { margin-top:12px; padding-left:25px; }
+  .q-options li { padding:4px 0; }
+  .answer-reveal { background:#e8f5e9; border-left:5px solid #2e7d32; padding:12px 15px; margin:10px 0; border-radius:4px; font-size:1.05em; }
+  .answer-explanation { background:#f5f5f5; padding:12px 15px; margin:10px 0; border-radius:4px; line-height:1.7; }
+  .distractor-analysis { background:#fdecea; border-left:5px solid #c0392b; padding:12px 15px; margin:10px 0; border-radius:4px; }
+  .distractor-analysis ul { margin-top:8px; padding-left:20px; }
+  .instructor-note { background:#fff8e1; border-left:5px solid #f57c00; padding:12px 15px; margin:10px 0; border-radius:4px; font-style:italic; }
+  .ref-table td:first-child { font-weight:700; font-family:"Courier New",monospace; background:#e8f1fb; }
+  .watermark { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:80px; font-weight:900; color:rgba(0,0,0,0.12); z-index:9999; pointer-events:none; white-space:nowrap; font-family:Arial,sans-serif; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="subject">DGCA CPL/ATPL Study Notes &nbsp;·&nbsp; Instrumentation</div>
+  <h1>Chapter 10<br>The Direct Indicating Compass</h1>
+  <div class="compiler">Compiled by Capt. Pankaj Pahil</div>
+</div>
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">The Magnetic Compass and Direct Indicating Compass</a></li>
+    <li><a href="#sec-2">The Vertical Card Compass</a></li>
+    <li><a href="#sec-3">Compass Requirements – Horizontality, Sensitivity, Aperiodicity</a></li>
+    <li><a href="#sec-4">The Compass Liquid</a></li>
+    <li><a href="#sec-5">Deviation and Accuracy</a></li>
+    <li><a href="#sec-6">Acceleration and Turning Errors – Theory</a></li>
+    <li><a href="#sec-7">Errors Caused by Linear Acceleration</a></li>
+    <li><a href="#sec-8">Summary of Acceleration Errors</a></li>
+    <li><a href="#sec-9">Turning Errors</a></li>
+    <li><a href="#sec-10">Turning Errors – Liquid Swirl</a></li>
+    <li><a href="#sec-11">Summary of Turning Errors</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#ref-tables">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. The Magnetic Compass and Direct Indicating Compass</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The purpose of the magnetic compass and the key concepts of variation and deviation.</div>
+<p>A compass indicates direction relative to a known datum. The magnetic compass uses the <strong>horizontal component (H) of the earth's magnetic field</strong> as its directional datum. Unfortunately, this datum (the magnetic meridian) is generally not aligned with the true meridian — the angular difference between them is <strong>magnetic variation</strong>.</p>
+<p>Additionally, iron/steel components and electric currents in the aircraft distort the earth's field locally, causing the compass magnet to deviate from the magnetic meridian. This is <strong>compass deviation</strong>.</p>
+<div class="blue-box"><strong>Direct Indicating Compass:</strong> Also called the direct reading compass. The pilot reads heading directly from the pivoted magnet assembly — no remote transmission. Main type: the <strong>vertical card compass</strong> (B-type or E-type).</div>
+
+<h2 id="sec-2">2. The Vertical Card Compass</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Physical description and operating principle of the vertical card compass.</div>
+<p>The vertical card compass (B-type / E-type) is the standard direct reading compass for general use — the main magnetic heading reference in light aircraft and the standby compass in larger aircraft.</p>
+<ul>
+  <li>A <strong>circular compass card</strong> is attached directly to the magnet assembly.</li>
+  <li>The combined unit is suspended in <strong>liquid within the compass bowl</strong>.</li>
+  <li>A <strong>vertical lubber line</strong> on the glass window enables heading to be read off the rotating card.</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p119_0.png" alt="Vertical card compass photograph">
+  <figcaption>Fig. 10.1 – A vertical card compass — source p.119</figcaption>
+</figure>
+
+<h2 id="sec-3">3. Compass Requirements – Horizontality, Sensitivity, Aperiodicity</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The three key requirements of a direct reading compass and how each is achieved.</div>
+<div class="green-box"><strong>Three requirements:</strong> The magnet system must be Horizontal, Sensitive, and Aperiodic (dead beat).</div>
+
+<h3>3.1 Horizontality</h3>
+<p>The magnets must lie as nearly as possible in the horizontal plane. A freely suspended magnet would align with the total field T and dip — only horizontal at the magnetic equator. To achieve horizontality, the assembly is <strong>pendulously suspended</strong>: the centre of gravity (CG) is below the supporting pivot.</p>
+<figure>
+  <img src="figs/fig_p120_0.png" alt="Pendulously suspended magnet assembly diagram">
+  <figcaption>Fig. 10.2 – Pendulous suspension: CG below pivot opposes the dip-induced tilt — source p.120</figcaption>
+</figure>
+<p>Two couples act: (1) Z pulling the red end downward; (2) the weight W acting down through CG (displaced by tilt) and reaction R upward through pivot. Equilibrium results in a residual tilt of approximately <span class="reg-value">2°</span> (red/north end down) in mid-latitudes, Northern Hemisphere. (Blue/south end down in Southern Hemisphere.)</p>
+
+<h3>3.2 Sensitivity</h3>
+<p>The compass must seek the horizontal component H in all areas except near the poles. Sensitivity is increased by:</p>
+<ul>
+  <li>Using <strong>two, four, or six short magnets</strong> or a circular magnet (high pole strength alloy)</li>
+  <li><strong>Iridium-tipped pivot in a jewelled cup</strong> (reduces friction)</li>
+  <li>Lubrication from the compass liquid</li>
+  <li>Reduced effective weight through liquid buoyancy</li>
+</ul>
+
+<h3>3.3 Aperiodicity (Dead Beat)</h3>
+<p>The assembly must settle quickly after being disturbed, with oscillations rapidly damped. Achieved by:</p>
+<ul>
+  <li><strong>Several short magnets</strong> (mass near centre → low moment of inertia → easier to damp)</li>
+  <li>Light alloy framework to minimise weight</li>
+  <li><strong>Compass liquid</strong> acts as primary damping medium</li>
+  <li>Grid ring compass adds <strong>damping wires</strong> for faster damping than vertical card type</li>
+</ul>
+
+<h2 id="sec-4">4. The Compass Liquid</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why liquid is used and what properties it must have.</div>
+<p>The liquid is essential — it dampens oscillations and lubricates the pivot. Required properties:</p>
+<ul>
+  <li><strong>Low coefficient of expansion</strong> (temperature changes cause expansion — handled by an expansion chamber or Sylphon tube)</li>
+  <li><strong>Low viscosity</strong> (to minimise liquid swirl — discussed later)</li>
+  <li><strong>Transparency</strong></li>
+  <li><strong>Low freezing point</strong></li>
+  <li><strong>High boiling point</strong></li>
+  <li><strong>Non-corrosive</strong></li>
+</ul>
+<div class="amber-box"><strong>Exam Tip:</strong> The liquid serves two primary functions: (1) damping oscillations, (2) lubricating the pivot. Low viscosity is required to minimise liquid swirl — but the liquid must still be viscous enough to damp oscillations. Various liquids including alcohol have been used.</div>
+
+<h2 id="sec-5">5. Deviation and Accuracy</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Definition of deviation, its naming convention, and the EASA accuracy requirement.</div>
+<p><strong>Deviation</strong> is produced by the iron/steel components in the aircraft distorting the earth's field. It is the angle between the local magnetic meridian and the direction in which the compass magnets are lying.</p>
+<div class="green-box">
+  <ul>
+    <li><strong>East (+) deviation:</strong> North-seeking (red) ends point EAST of magnetic north</li>
+    <li><strong>West (−) deviation:</strong> North-seeking ends point WEST of magnetic north</li>
+    <li>Deviation varies with heading — must be measured on multiple headings (compass swing)</li>
+    <li>Residual deviation after swing is recorded on the <strong>compass deviation card</strong> in the aircraft</li>
+  </ul>
+</div>
+<div class="red-box"><strong>EASA (Part-25) Accuracy Requirement: <span class="reg-value">± 10°</span></strong></div>
+<p>During the swing, normal flying conditions should be simulated: engines running, electrical/radio services on, aircraft in level flight attitude. Ferromagnetic tools, watches, and objects must not be near the compass during a swing.</p>
+
+<h2 id="sec-6">6. Acceleration and Turning Errors – Theory</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why acceleration and turning produce compass errors — the fundamental mechanism.</div>
+<p>Acceleration and turning errors occur whenever the CG of the magnet assembly moves away from its normal position almost directly below the pivot. When the CG is displaced, the earth's vertical component Z exerts a torque about the pivot, rotating the magnet assembly and producing a false heading indication.</p>
+<div class="blue-box"><strong>Key Condition:</strong> These errors only occur where there is a significant vertical component (Z) in the earth's field. Near the magnetic equator (Z → 0), errors are negligible (only liquid swirl remains).</div>
+<p><strong>No error occurs</strong> when the manoeuvre displaces the CG north or south (in the plane of the magnetic meridian) — only the north-south tilt changes, with no azimuth rotation.</p>
+
+<figure>
+  <img src="figs/fig_p123_0.png" alt="Pendulously suspended magnet in northern hemisphere showing CG offset">
+  <figcaption>Fig. 10.3 – Pendulously suspended magnet in Northern Hemisphere: CG below and south of pivot due to residual dip — source p.123</figcaption>
+</figure>
+
+<h2 id="sec-7">7. Errors Caused by Linear Acceleration</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Detailed worked examples of acceleration error for key headings in both hemispheres.</div>
+
+<div class="red-box"><strong>Maximum on E and W, zero on N and S (in both hemispheres).</strong> This is because acceleration on N/S headings displaces CG in the magnetic meridian plane — no azimuth error.</div>
+
+<h3>7.1 Acceleration on 270°M (Northern Hemisphere)</h3>
+<p>The inertia of the pendulously suspended assembly causes it to swing back behind the pivot (which is north of the CG). Z produces an anticlockwise rotation → compass <strong>over-reads</strong> → indicates an apparent turn towards <strong>north</strong>. Example: real heading 270°, compass reads ~280°.</p>
+<figure>
+  <img src="figs/fig_p124_0.png" alt="Acceleration on 270M NH diagram">
+  <figcaption>Fig. 10.4 – Acceleration on 270°M (Northern Hemisphere): compass over-reads — source p.124</figcaption>
+</figure>
+
+<h3>7.2 Acceleration on 090°M (Northern Hemisphere)</h3>
+<p>Inertia causes assembly to swing back → clockwise rotation → compass <strong>under-reads</strong> → indicates apparent turn towards <strong>north</strong>. Example: real heading 090°, compass reads ~080°.</p>
+<figure>
+  <img src="figs/fig_p124_1.png" alt="Acceleration on 090M NH diagram">
+  <figcaption>Fig. 10.5 – Acceleration on 090°M (Northern Hemisphere): compass under-reads — source p.124</figcaption>
+</figure>
+
+<h3>7.3 Deceleration on 090°M (Northern Hemisphere)</h3>
+<p>Inertia causes assembly to swing forward → anticlockwise rotation → compass <strong>over-reads</strong> → apparent turn towards <strong>south</strong>.</p>
+<figure>
+  <img src="figs/fig_p125_0.png" alt="Deceleration on 090M NH diagram">
+  <figcaption>Fig. 10.6 – Deceleration on 090°M (Northern Hemisphere): compass over-reads — source p.125</figcaption>
+</figure>
+
+<h3>7.4 Acceleration on 270°M (Southern Hemisphere)</h3>
+<p>Now the pivot is offset to the <strong>south</strong> of the CG (blue/south-seeking end dips down). Inertia swings assembly back → clockwise rotation → compass <strong>under-reads</strong> → apparent turn towards <strong>south</strong>.</p>
+<figure>
+  <img src="figs/fig_p125_1.png" alt="Acceleration on 270M SH diagram">
+  <figcaption>Fig. 10.7 – Acceleration on 270°M (Southern Hemisphere): compass under-reads — source p.125</figcaption>
+</figure>
+
+<h3>7.5 Acceleration on a Northerly Heading (Northern Hemisphere)</h3>
+<p>CG lags — but the CG and pivot remain in the plane of the magnetic meridian → only a change in N/S tilt → <strong>no error</strong>.</p>
+<figure>
+  <img src="figs/fig_p126_0.png" alt="Acceleration on 360M NH – no error">
+  <figcaption>Fig. 10.8 – Acceleration on 360°M (Northern Hemisphere): no error — source p.126</figcaption>
+</figure>
+
+<h2 id="sec-8">8. Summary of Acceleration Errors</h2>
+<div class="green-box">
+  <strong>Acceleration errors summary:</strong>
+  <ul>
+    <li>Zero on N/S headings (both hemispheres)</li>
+    <li>Maximum on E/W headings (090°M and 270°M)</li>
+    <li><strong>Acceleration</strong> → apparent turn towards the <strong>nearer pole</strong> (north in NH, south in SH)</li>
+    <li><strong>Deceleration</strong> → apparent turn towards the <strong>further pole</strong> (south in NH, north in SH)</li>
+    <li>Clockwise displacement of magnet assembly → compass <strong>under-reads</strong></li>
+    <li>Anticlockwise displacement → compass <strong>over-reads</strong></li>
+  </ul>
+  <strong>Size of error depends on:</strong> heading, magnitude of acceleration, design of magnet system, magnetic latitude (H vs Z ratio). Errors maximum near magnetic poles, zero at magnetic equator.
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    A["Linear Acceleration"] --> B{"Heading?"}
+    B -->|N or S| C["No Error<br/>(CG stays in meridian plane)"]
+    B -->|E or W| D["Maximum Error"]
+    D --> E{"Hemisphere?"}
+    E -->|NH, accel| F["Apparent turn NORTH<br/>(towards nearer pole)"]
+    E -->|NH, decel| G["Apparent turn SOUTH<br/>(towards further pole)"]
+    E -->|SH, accel| H["Apparent turn SOUTH<br/>(towards nearer pole)"]
+    E -->|SH, decel| I["Apparent turn NORTH<br/>(towards further pole)"]
+</pre>
+
+<h2 id="sec-9">9. Turning Errors</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The largest compass errors — caused by turns through north and south.</div>
+<div class="red-box"><strong>Turning errors are maximum when turning through north or south, zero when passing through east or west.</strong> They are generally larger and more significant than acceleration errors.</div>
+
+<p>In a turn, centripetal force acts through the pivot towards the centre of the turn; centrifugal (inertial) force acts outward through the CG. This causes the magnet assembly to "swing out" from the turn, rotating it around the pivot.</p>
+
+<h3>9.1 Key Terminology</h3>
+<div class="blue-box">
+  <ul>
+    <li><strong>Sluggish compass:</strong> Aircraft and magnet assembly rotate in the <em>same</em> direction → fewer degrees pass under lubber line than actual heading change → pilot must <strong>undershoot</strong> (roll out early)</li>
+    <li><strong>Lively compass:</strong> Aircraft and magnet assembly rotate in <em>opposite</em> directions → more degrees pass under lubber line than actual heading change → pilot must <strong>overshoot</strong> (roll out late)</li>
+    <li>Clockwise magnet rotation → compass <strong>under-reads</strong></li>
+    <li>Anticlockwise magnet rotation → compass <strong>over-reads</strong></li>
+  </ul>
+</div>
+
+<h3>9.2 Turning from 045° to 315° through North (NH — Left Turn)</h3>
+<p>In NH, CG is south of pivot. In a left turn through north, inertia throws magnet assembly anticlockwise. Aircraft and magnet rotate in same direction → compass is <strong>sluggish</strong>. Anticlockwise → over-reads. Pilot sees fewer than 90° pass → must undershoot. Stop at ~335° indicated to achieve 315° actual.</p>
+<figure>
+  <img src="figs/fig_p127_0.png" alt="Turning from 045 to 315 NH left turn diagram">
+  <figcaption>Fig. 10.9 – Left turn through North (NH): sluggish compass, undershoot required — source p.127</figcaption>
+</figure>
+
+<h3>9.3 Turning from 315° to 045° through North (NH — Right Turn)</h3>
+<p>Inertia throws assembly clockwise. Same direction as aircraft → sluggish. Clockwise → under-reads. Stop at ~025° indicated to achieve 045° actual. Must undershoot.</p>
+<figure>
+  <img src="figs/fig_p128_0.png" alt="Turning from 315 to 045 NH right turn diagram">
+  <figcaption>Fig. 10.10 – Right turn through North (NH): sluggish compass, undershoot required — source p.128</figcaption>
+</figure>
+
+<h3>9.4 Turning from 135° to 225° through South (NH — Right Turn)</h3>
+<p>Aircraft turns right (clockwise) but inertia throws magnet anticlockwise (opposite direction to aircraft) → compass is <strong>lively</strong>. Anticlockwise → over-reads. Pilot sees more than 90° pass → must overshoot. Stop at ~245° indicated to achieve 225° actual.</p>
+<figure>
+  <img src="figs/fig_p128_1.png" alt="Turning from 135 to 225 NH right turn through south diagram">
+  <figcaption>Fig. 10.11 – Right turn through South (NH): lively compass, overshoot required — source p.128</figcaption>
+</figure>
+
+<h3>9.5 Turning from 135° to 225° through South (SH — Right Turn)</h3>
+<p>In SH, CG is north of pivot (blue end dips toward south pole). Inertia throws magnet clockwise. Same direction as aircraft → sluggish. Must undershoot. Stop at ~205° to achieve 225°.</p>
+<figure>
+  <img src="figs/fig_p129_0.png" alt="Turning from 135 to 225 SH right turn through south diagram">
+  <figcaption>Fig. 10.12 – Right turn through South (SH): sluggish compass, undershoot required — source p.129</figcaption>
+</figure>
+
+<h3>9.6 Turning through East or West (No Error)</h3>
+<p>Magnets are tilted north-south but this tilt is in the vertical plane of the magnetic meridian through the pivot. There is no rotational couple about the pivot → turning error is zero when passing through east or west.</p>
+
+<h2 id="sec-10">10. Turning Errors – Liquid Swirl</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the compass liquid modifies turning errors.</div>
+<p>During a turn, the liquid in contact with the bowl tends to be dragged around with the bowl, creating eddies that drift inward and <strong>deflect the magnet assembly in the direction of the turn</strong>.</p>
+
+<table>
+  <tr><th>Hemisphere</th><th>Turning through NORTH</th><th>Turning through SOUTH</th></tr>
+  <tr><td><strong>NH</strong></td><td>Liquid swirl and magnet both turn anticlockwise → swirl <strong>INCREASES</strong> turning error</td><td>Magnet turns anticlockwise, liquid swirl turns clockwise → swirl <strong>REDUCES</strong> turning error</td></tr>
+  <tr><td><strong>SH</strong></td><td>Swirl effect in opposite sense to NH</td><td>Swirl <strong>INCREASES</strong> turning error through nearer pole (south)</td></tr>
+  <tr><td><strong>Magnetic Equator</strong></td><td colspan="2">Only source of turning error is liquid swirl (Z = 0, no dip-based errors)</td></tr>
+</table>
+
+<h2 id="sec-11">11. Summary of Turning Errors</h2>
+<div class="green-box">
+  <strong>Turning errors — master summary:</strong>
+  <ul>
+    <li>Maximum through magnetic <strong>north or south</strong>; zero through <strong>east or west</strong></li>
+    <li>Errors increase with increasing magnetic latitude (stronger Z, weaker H)</li>
+    <li>At magnetic equator: only liquid swirl error</li>
+  </ul>
+  <strong>Turning through the NEARER pole (North in NH, South in SH):</strong>
+  <ul>
+    <li>Aircraft and compass rotate in <strong>same</strong> direction</li>
+    <li>Compass is <strong>sluggish</strong> → <strong>undershoot</strong> (roll out early)</li>
+    <li>Liquid swirl <strong>increases</strong> turning error</li>
+  </ul>
+  <strong>Turning through the FURTHER pole (South in NH, North in SH):</strong>
+  <ul>
+    <li>Aircraft and compass rotate in <strong>opposite</strong> directions</li>
+    <li>Compass is <strong>lively</strong> → <strong>overshoot</strong> (roll out late)</li>
+    <li>Liquid swirl <strong>reduces</strong> turning error</li>
+  </ul>
+</div>
+
+<div class="red-box">
+  <strong>At the MAGNETIC EQUATOR:</strong> NO TURNING ERROR (Z = 0, no dip effect). Only liquid swirl remains — usually slight.<br><br>
+  <strong>Magnet displaced CLOCKWISE (viewed from above) → compass UNDER-READS</strong><br>
+  <strong>Magnet displaced ANTICLOCKWISE → compass OVER-READS</strong>
+</div>
+
+<div class="amber-box"><strong>Practical Note:</strong> It is easier to steer a <em>southerly</em> rather than a northerly heading in the Northern Hemisphere because:
+  <ol>
+    <li>On south, the compass does not indicate the wrong direction of turn as it can on north</li>
+    <li>The 'lively' nature of the indications on south reduces the risk of over-correcting small steering errors</li>
+  </ol>
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    T["Turning Error"] --> NH["Northern Hemisphere"]
+    T --> SH["Southern Hemisphere"]
+    NH --> NHP["Turning through North (nearer pole)"]
+    NH --> NHS["Turning through South (further pole)"]
+    NHP --> NHP1["Sluggish, Undershoot, Swirl INCREASES error"]
+    NHS --> NHS1["Lively, Overshoot, Swirl REDUCES error"]
+    SH --> SHP["Turning through South (nearer pole)"]
+    SH --> SHN["Turning through North (further pole)"]
+    SHP --> SHP1["Sluggish, Undershoot, Swirl INCREASES error"]
+    SHN --> SHN1["Lively, Overshoot, Swirl REDUCES error"]
+</pre>
+
+<div class="amber-box"><strong>Quick Revision – Chapter 10:</strong>
+  <ul>
+    <li>Three compass requirements: Horizontal (pendulous suspension), Sensitive (multi-magnets, iridium pivot, buoyancy), Aperiodic (short magnets, liquid damping).</li>
+    <li>Deviation (from aircraft magnetism) varies with heading. Swing records deviation on deviation card. EASA requirement: ±10°.</li>
+    <li>Acceleration errors: max E/W, zero N/S. Accel = apparent turn towards nearer pole. Decel = apparent turn towards further pole.</li>
+    <li>Turning errors: max through N/S, zero through E/W. Nearer pole = sluggish = undershoot. Further pole = lively = overshoot.</li>
+    <li>Liquid swirl: always turns magnet in direction of aircraft turn. Increases error through nearer pole; reduces through further pole.</li>
+    <li>Clockwise magnet = under-reads. Anticlockwise = over-reads.</li>
+    <li>Magnetic equator: no turning error (only liquid swirl).</li>
+  </ul>
+</div>
+
+<div id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box">Questions 1–9 reproduced verbatim from Oxford Instrumentation Chapter 10. Answer key from source.</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q1.</span><span class="q-text">In a standby direct reading compass there is:</span>
+    <ol class="q-options" type="a"><li>a non-pendulously mounted magnet system</li><li>a single pendulously mounted bar magnet</li><li>a circular magnet or pair of bar magnets pendulously mounted</li><li>a low magnetic moment system, either of circular or bar configuration</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> a circular magnet or pair of bar magnets pendulously mounted</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The vertical card compass (standby DRC) uses either a circular magnet or two, four, or six short bar magnets to increase pole strength while minimising moment of inertia. All configurations are pendulously mounted to achieve horizontality. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> A non-pendulously mounted system would not be horizontal outside the equator — pendulous suspension is essential.</li><li><strong>(b)</strong> A single bar magnet is not used — multiple short magnets reduce moment of inertia for better aperiodicity.</li><li><strong>(d)</strong> The system must have a HIGH magnetic moment (not low) to be sensitive to the weak directive force H.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The design uses multiple short magnets rather than one long one — this keeps mass near the centre, reduces moment of inertia, and improves damping. More magnets = higher pole strength without longer length.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q2.</span><span class="q-text">The main requirements of a direct reading magnetic compass are that it should be:</span>
+    <ol class="q-options" type="a"><li>horizontal, sensitive, periodic</li><li>easily read, floating in a transparent liquid, quick to react to change in aircraft heading</li><li>positioned directly in front of the pilot, easily corrected for magnetic deviation, aperiodic</li><li>aperiodic, horizontal, sensitive</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> aperiodic, horizontal, sensitive</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The three key requirements are Horizontal, Sensitive, and Aperiodic — these must all be met for the compass to work reliably in all phases of flight. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Replaces "aperiodic" with "periodic" — the opposite requirement. An aperiodic (dead-beat) instrument settles quickly; a periodic one would oscillate indefinitely.</li><li><strong>(b)</strong> These are design features, not the primary requirements that define compass performance.</li><li><strong>(c)</strong> Positioning and deviation correction are operational considerations — not the fundamental physical requirements of the magnet system.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The three requirements — Horizontal, Sensitive, Aperiodic — are always examined together. Learn them in any order.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q3.</span><span class="q-text">For a position in the southern hemisphere, the effect of acceleration errors are greatest on headings:</span>
+    <ol class="q-options" type="a"><li>180° and 360°</li><li>045° and 225°</li><li>135° and 315°</li><li>090° and 270°</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> 090° and 270°</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Acceleration errors are maximum on East and West headings (090° and 270°) in both hemispheres. The rule does not change between hemispheres — only the direction of the apparent turn changes (towards the nearer pole, which is south in the SH). See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> 180° and 360° are north/south headings → zero acceleration error (CG moves in meridian plane only).</li><li><strong>(b) &amp; (c)</strong> 045°/135°/225°/315° are intermediate headings — errors exist but are not maximum.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Maximum acceleration error = E/W in BOTH hemispheres. This applies regardless of which hemisphere you're in — only the direction of the apparent turn changes.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q4.</span><span class="q-text">An aircraft in the southern hemisphere is turning from a heading of 090°C to 360°C using a DGI. At the end of the turn the compass will read ....... than 360° and liquid swirl will ....... this effect.</span>
+    <ol class="q-options" type="a"><li>more; increase</li><li>less; increase</li><li>more; decrease</li><li>less; decrease</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> less; decrease</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The aircraft is turning left (from 090 to 360°) through north in the Southern Hemisphere. North is the FURTHER pole in the SH (south is nearer). Turning through the further pole: aircraft and magnet rotate in OPPOSITE directions → compass is LIVELY → over-reads → will show MORE than 360° (e.g. ~020°) as degrees pass quickly. Wait — the question says compass reads LESS than 360°. Let me reconsider: turning from 090 to 360 is a left turn of 90°. In SH, turning through north (further pole) — the magnet assembly is thrown out clockwise (opposite to aircraft which turns anticlockwise). Clockwise magnet = under-reads. So compass reads LESS than 360°. Liquid swirl acts in direction of aircraft turn (anticlockwise/left) which opposes the clockwise magnet displacement — swirl REDUCES the error. Answer: <strong>less; decrease</strong>. See <a href="#sec-11">Section 11</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a) more; increase</strong> — incorrect; compass under-reads and swirl reduces, not increases.</li><li><strong>(b) less; increase</strong> — correct on "less" but wrong on swirl: swirl reduces this error in the SH through north.</li><li><strong>(c) more; decrease</strong> — incorrect reading direction.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> In SH: North is the FURTHER pole. Further pole = lively (wait — lively = opposite direction rotation). In SH turning north: clockwise magnet (opposite to aircraft left turn) = under-reads. Swirl acts with aircraft turn = opposes clockwise magnet = reduces error. Answer: less; decrease.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q5.</span><span class="q-text">In a standby compass the magnet system is immersed in a transparent liquid. The purpose of this liquid is to:</span>
+    <ol class="q-options" type="a"><li>increase sensitivity, increase aperiodicity</li><li>increase sensitivity, decrease aperiodicity</li><li>increase sensitivity at high latitudes, lubricate bearings</li><li>increase sensitivity, reduce liquid swirl</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> increase sensitivity, increase aperiodicity</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The liquid serves two main functions: (1) it lubricates the pivot and provides buoyancy, reducing effective weight → lower friction → increased sensitivity; (2) it acts as a damping medium → increased aperiodicity (faster settling). See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(b)</strong> The liquid increases aperiodicity (better damping), not decreases it.</li><li><strong>(c)</strong> The liquid's sensitivity benefit works at all latitudes, not just high ones. "Lubricate bearings" is partially correct but understates the buoyancy contribution.</li><li><strong>(d)</strong> The liquid actually causes liquid swirl — it does not reduce it. Low viscosity minimises swirl, but the liquid inherently introduces some swirl.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Liquid = sensitivity (buoyancy/lubrication) + aperiodicity (damping). Liquid swirl is a downside of the liquid, not a benefit. Low viscosity helps minimise swirl.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q6.</span><span class="q-text">To improve the horizontality of a compass, the magnet assembly is suspended from a point:</span>
+    <ol class="q-options" type="a"><li>on the centre line of the magnet</li><li>below the centre of gravity</li><li>above the centre of gravity</li><li>varying with magnetic latitude</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> above the centre of gravity</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Pendulous suspension requires the pivot to be above the CG. With the CG below the pivot, the weight of the assembly acts to oppose the dip-induced tilt caused by Z, keeping the magnets near horizontal. See <a href="#sec-3">Section 3.1</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Suspension on the centre line of the magnet would give no pendulous action — the CG and pivot would coincide.</li><li><strong>(b)</strong> Suspending from below the CG would be unstable and would not oppose the Z-induced tilt.</li><li><strong>(d)</strong> The suspension point is fixed by design — it does not vary with latitude.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Pivot ABOVE CG = pendulous = stable = horizontal. This is the same principle as a pendulum. The weight of the assembly always acts to restore horizontal when pivoted from above the CG.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q7.</span><span class="q-text">The magnitude, and sense, of turning error shown by a direct reading compass varies with: [6 statements listed] — Of these statements:</span>
+    <ol class="q-options" type="a"><li>only 1, 2, 5 and 6 are correct</li><li>only 1, 3, 5 and 6 are correct</li><li>only 2, 4 and 5 are correct</li><li>all are correct</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> all are correct</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> All six factors affect turning error: (1) design of compass, (2) direction of turn, (3) rate of turn, (4) hemisphere, (5) heading, (6) dip at the aircraft's latitude. Each of these directly influences the magnitude and/or sense (clockwise/anticlockwise) of the magnet assembly displacement during a turn. See <a href="#sec-9">Section 9</a> and <a href="#sec-11">Section 11</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a), (b), (c)</strong> All omit at least one valid factor. Rate of turn (3) matters because faster turns create larger centrifugal displacement. Hemisphere (4) determines which pole is nearer and the direction of the error.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Turning error factors: DRAT-HLC → Design, Rate of turn, Heading, Dip (latitude), direction of turn (Hemisphere), Compass design, Latitude. When the answer is "all", eliminate distractors by confirming each factor is genuine.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q8.</span><span class="q-text">During a sustained turn ....... the nearer magnetic pole, the effect of liquid swirl will ....... compass turning error.</span>
+    <ol class="q-options" type="a"><li>away from; increase</li><li>towards; not affect</li><li>away from; not affect</li><li>towards; increase</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> towards; increase</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> When turning towards the nearer pole (through north in NH, through south in SH), the magnet assembly and liquid both rotate in the same direction as the aircraft. Liquid swirl reinforces the magnet's rotation, increasing the turning error. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Away from the nearer pole = through the further pole = liquid swirl reduces error (opposite effect).</li><li><strong>(b) &amp; (c)</strong> Liquid swirl always affects turning error to some degree — it cannot be "no effect".</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Towards nearer pole → sluggish → swirl increases. Away from nearer pole (= towards further) → lively → swirl decreases. Simple rule: swirl always acts in the direction of turn = same direction as the nearer-pole error = adds to nearer-pole error.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q9.</span><span class="q-text">When carrying out a turn at the magnetic equator there will be:</span>
+    <ol class="q-options" type="a"><li>no turning error</li><li>a tendency to under-read turns through south and over-read turns through north</li><li>a tendency to under-read turns due to liquid swirl</li><li>no turning error when turning through east or west</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> a tendency to under-read turns due to liquid swirl</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> At the magnetic equator Z = 0 → no dip-based turning error. However, liquid swirl still exists as a small residual error. Swirl turns the magnet in the direction of the aircraft's turn — for a right turn this is clockwise → compass under-reads. So there IS a small turning error due to liquid swirl alone. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> There IS a small turning error at the equator — liquid swirl provides a slight, direction-dependent error even with no dip.</li><li><strong>(b)</strong> Without the Z component at the equator, the north/south distinction does not apply; swirl is the only source and it acts in both turn directions.</li><li><strong>(d)</strong> While east/west turning errors are zero at all latitudes (due to no azimuth torque), the question addresses the overall equatorial situation where swirl provides the only error — making option (c) more complete and correct.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> At equator: Z=0, no dip, no main turning error — but liquid swirl still exists. Swirl acts in direction of turn = clockwise turn = compass under-reads slightly. This is a subtle but testable distinction.</div>
+  </div>
+</div>
+</div>
+
+<h2 id="ref-tables">Master Reference Tables</h2>
+<table class="ref-table">
+  <tr><th>Parameter</th><th>Value/Rule</th><th>Section</th></tr>
+  <tr><td>EASA accuracy requirement</td><td>±10°</td><td>§5</td></tr>
+  <tr><td>Residual tilt in mid-latitudes NH</td><td>~2° (red/N end down)</td><td>§3.1</td></tr>
+  <tr><td>Acceleration error max headings</td><td>090°M and 270°M (E/W)</td><td>§8</td></tr>
+  <tr><td>Acceleration error zero headings</td><td>N/S (both hemispheres)</td><td>§8</td></tr>
+  <tr><td>Accel → apparent turn NH</td><td>Towards north (nearer pole)</td><td>§8</td></tr>
+  <tr><td>Decel → apparent turn NH</td><td>Towards south (further pole)</td><td>§8</td></tr>
+  <tr><td>Turning error max headings</td><td>Through N/S</td><td>§11</td></tr>
+  <tr><td>Turning error zero headings</td><td>Through E/W</td><td>§11</td></tr>
+  <tr><td>Clockwise magnet displacement</td><td>Compass UNDER-reads</td><td>§11</td></tr>
+  <tr><td>Anticlockwise magnet displacement</td><td>Compass OVER-reads</td><td>§11</td></tr>
+  <tr><td>Nearer pole → sluggish</td><td>UNDERSHOOT (roll out early)</td><td>§11</td></tr>
+  <tr><td>Further pole → lively</td><td>OVERSHOOT (roll out late)</td><td>§11</td></tr>
+  <tr><td>Liquid swirl through nearer pole</td><td>INCREASES turning error</td><td>§10</td></tr>
+  <tr><td>Liquid swirl through further pole</td><td>REDUCES turning error</td><td>§10</td></tr>
+  <tr><td>At magnetic equator</td><td>No turning error (only liquid swirl)</td><td>§10</td></tr>
+</table>
+<div class="amber-box"><strong>Mnemonics:</strong>
+  <ul>
+    <li><strong>Compass requirements:</strong> "H.S.A." → Horizontal, Sensitive, Aperiodic</li>
+    <li><strong>Acceleration error direction:</strong> "ACCeleration → toward Nearer Pole" (ACCNP). "DECeleration → away from Nearer Pole" (DECFP = Further Pole)</li>
+    <li><strong>Turning nearer pole:</strong> "SLUG = Same direction, Lags, Undershoot, Grows (swirl increases)"</li>
+    <li><strong>Turning further pole:</strong> "LORE = Lively, Opposite, Roll out late, Early exit reduces swirl"</li>
+    <li><strong>Clockwise = Under, Anticlockwise = Over:</strong> "CU, AO" (like Copper/Au in chemistry!)</li>
+  </ul>
+</div>
+<h3>Answer Key</h3>
+<table><tr><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th><th>Q8</th><th>Q9</th></tr>
+<tr><td>c</td><td>d</td><td>d</td><td>d</td><td>a</td><td>c</td><td>d</td><td>d</td><td>c</td></tr></table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

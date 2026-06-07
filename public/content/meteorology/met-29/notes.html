@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch29 — Flight Forecast (Tabular & Cross Section) | DGCA CPL/ATPL Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #1a1a1a; background: #fff; padding: 20px; }
+  h1 { font-size: 28px; color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 10px; margin-bottom: 6px; }
+  h2 { font-size: 20px; color: #1a237e; border-left: 5px solid #1a237e; padding-left: 10px; margin: 28px 0 12px; }
+  h3 { font-size: 16px; color: #283593; margin: 18px 0 8px; }
+  h4 { font-size: 14px; color: #37474f; margin: 14px 0 6px; font-weight: 700; }
+  p { margin-bottom: 10px; }
+  ul, ol { margin: 8px 0 12px 24px; }
+  li { margin-bottom: 5px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; page-break-inside: avoid; font-size: 13px; }
+  th { background: #1a237e; color: #fff; padding: 9px 12px; text-align: left; }
+  td { padding: 8px 12px; border: 1px solid #c5cae9; }
+  tr:nth-child(even) td { background: #e8eaf6; }
+  .cover { text-align: center; padding: 60px 20px; border: 3px solid #1a237e; border-radius: 10px; margin-bottom: 40px; page-break-after: always; }
+  .cover h1 { border: none; font-size: 32px; margin-bottom: 10px; }
+  .cover .subtitle { font-size: 18px; color: #5c6bc0; margin: 8px 0; }
+  .cover .author { font-size: 16px; color: #37474f; margin-top: 20px; font-weight: 600; }
+  .cover .chapter-num { font-size: 48px; color: #c5cae9; font-weight: 900; margin-bottom: 0; }
+  .toc { page-break-after: always; }
+  .toc h2 { margin-top: 0; }
+  .toc ul { list-style: none; margin: 0; }
+  .toc li { padding: 5px 0; border-bottom: 1px dotted #c5cae9; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; background: #fdecea; padding: 1px 5px; border-radius: 3px; font-family: monospace; }
+  .sample-form { border: 2px solid #1a237e; border-radius: 6px; padding: 16px; margin: 16px 0; background: #f8f9ff; page-break-inside: avoid; }
+  .sample-form h4 { color: #1a237e; font-size: 15px; margin-bottom: 10px; }
+  .form-field { display: flex; gap: 12px; margin: 4px 0; }
+  .form-label { font-weight: 600; min-width: 200px; color: #37474f; }
+  .form-value { color: #1a237e; font-family: monospace; }
+  code { background: #e8eaf6; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 13px; }
+  .abbr-table td:first-child { font-weight: 700; color: #1a237e; width: 80px; }
+  .section { margin-bottom: 30px; }
+  .ref-section { page-break-before: always; }
+  .cross-section-diagram { border: 2px solid #5c6bc0; border-radius: 8px; padding: 16px; margin: 16px 0; background: #f3f0ff; page-break-inside: avoid; }
+  @page { size: A4; margin: 20mm; }
+  @media print {
+    .cover { page-break-after: always; }
+    .toc { page-break-after: always; }
+    .ref-section { page-break-before: always; }
+    h2 { page-break-after: avoid; }
+    table, .box-blue, .box-red, .box-green, .box-amber, .sample-form { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="chapter-num">29</div>
+  <h1>Flight Forecast (Tabular Form) and Cross Section Forecast of Route Conditions</h1>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Aviation Meteorology</div>
+  <div class="subtitle">IC Joshi | Chapter 29 | Pages 265–267</div>
+  <div class="subtitle" style="color:#c0392b; font-weight:700;">⭐ FINAL CHAPTER — Completion of IC Joshi Aviation Meteorology ⭐</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc" id="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#s1">1. Overview — Met T-3 vs Met T-4</a></li>
+    <li><a href="#s2">2. Met T-3: Flight Forecast Tabular Form — Annotated Sample</a></li>
+    <li><a href="#s3">3. How to Read a Met T-3</a></li>
+    <li><a href="#s4">4. Met T-4: Cross Section Route Forecast — Annotated Sample</a></li>
+    <li><a href="#s5">5. How to Read a Met T-4</a></li>
+    <li><a href="#s6">6. Cloud Amount Abbreviations</a></li>
+    <li><a href="#s7">7. Frequency Abbreviations (ISOL / OCNL / FRQ)</a></li>
+    <li><a href="#s8">8. Appendix A — Key Synoptic System Definitions</a></li>
+    <li><a href="#s9">9. Quick Revision Summary</a></li>
+    <li><a href="#ref">Master Reference Tables</a></li>
+  </ul>
+</div>
+
+<!-- SECTION 1 -->
+<div class="section" id="s1">
+  <h2>1. Overview — Met T-3 vs Met T-4</h2>
+  <div class="box-blue">
+    <strong>Met T-3 (Tabular Form):</strong> Used for flights up to <span class="reg-value">500 nm</span>. Presents weather data in tabular columns for waypoints along the route.<br><br>
+    <strong>Met T-4 (Cross Section Form):</strong> Used for flights beyond <span class="reg-value">500 nm</span>. Presents data as a vertical cross-section of the atmosphere along the route, showing weather at different flight levels.
+  </div>
+
+  <table>
+    <tr><th>Feature</th><th>Met T-3 (Tabular)</th><th>Met T-4 (Cross Section)</th></tr>
+    <tr><td>Distance covered</td><td><span class="reg-value">≤ 500 nm</span></td><td><span class="reg-value">&gt; 500 nm</span></td></tr>
+    <tr><td>Format</td><td>Table — columns per waypoint</td><td>Vertical cross-section diagram + table</td></tr>
+    <tr><td>Heights in</td><td>Feet amsl</td><td>Flight Levels</td></tr>
+    <tr><td>Cloud depiction</td><td>Text (amount, type, height)</td><td>Pictorial (cloud symbols)</td></tr>
+    <tr><td>Surface visibility</td><td>✅ Included</td><td>✅ Included (in Remarks)</td></tr>
+    <tr><td>Freezing level</td><td>✅ Height of 0° isotherm (feet)</td><td>✅ Included</td></tr>
+    <tr><td>QNH</td><td>✅ Forecast QNH (hPa)</td><td>✅ MSL pressure</td></tr>
+  </table>
+
+  <pre class="mermaid">
+flowchart LR
+    dist{"Flight Distance"} -- "≤ 500 nm" --> T3["MET T-3\nTabular Form\n(Heights in FEET)"]
+    dist -- "&gt; 500 nm" --> T4["MET T-4\nCross Section Form\n(Heights in FLIGHT LEVELS)"]
+  </pre>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section" id="s2">
+  <h2>2. Met T-3: Flight Forecast Tabular Form — Annotated Sample</h2>
+  <p>Below is an annotated breakdown of the sample Met T-3 from IC Joshi (Table 29.1), dated <strong>04 April 2023</strong>:</p>
+
+  <div class="sample-form">
+    <h4>📋 FLIGHT FORECAST (TABULAR FORM) — MET T-3 | Table 29.1</h4>
+    <div class="form-field"><span class="form-label">Route:</span><span class="form-value">VECC → VIDP via VILK (Kolkata → Delhi via Lucknow)</span></div>
+    <div class="form-field"><span class="form-label">Valid for Departure:</span><span class="form-value">0300 UTC to 0500 UTC</span></div>
+    <div class="form-field"><span class="form-label">Valid for Arrival:</span><span class="form-value">0600 UTC to 0800 UTC</span></div>
+    <div class="form-field"><span class="form-label">Special Features:</span><span class="form-value">A WD LIES OVER W RAJASTHAN WITH UPPER AIR CYCIR UP TO 20,000 FT</span></div>
+  </div>
+
+  <h3>Upper Winds and Temperatures — Sample Data</h3>
+  <table>
+    <tr><th>Height (ft amsl)</th><th>Temp (°C)</th><th>KOLKATA Wind</th><th>LUCKNOW Wind</th><th>DELHI Temp (°C)</th></tr>
+    <tr><td><span class="reg-value">30,000 ft</span></td><td>M33</td><td>300/50</td><td>270/70</td><td>M30</td></tr>
+    <tr><td><span class="reg-value">20,000 ft</span></td><td>M20</td><td>340/55</td><td>260/55</td><td>M18</td></tr>
+    <tr><td><span class="reg-value">10,000 ft</span></td><td>M12</td><td>050/15</td><td>120/25</td><td>14</td></tr>
+    <tr><td><span class="reg-value">5,000 ft</span></td><td>M22</td><td>220/05</td><td>160/15</td><td>24</td></tr>
+  </table>
+  <p><em>Wind format: Direction(°)/Speed(kt) | M = Minus (negative temperature) | LOC = Locally</em></p>
+
+  <h3>Cloud Forecast</h3>
+  <table>
+    <tr><th>Cloud Element</th><th>Details</th></tr>
+    <tr><td>Top/Base</td><td>SCT ST <span class="reg-value">1000</span> ft</td></tr>
+    <tr><td></td><td>FEW SC <span class="reg-value">2500</span> ft</td></tr>
+    <tr><td></td><td>SCT AC <span class="reg-value">12000</span> ft; ISOL EMBD CB <span class="reg-value">2000/35000</span> ft</td></tr>
+    <tr><td></td><td>BKN CS <span class="reg-value">35000</span> ft</td></tr>
+    <tr><td></td><td>3000 M IN RAIN AND [thunderstorm areas]</td></tr>
+  </table>
+
+  <h3>Other Parameters</h3>
+  <table>
+    <tr><th>Parameter</th><th>Value</th></tr>
+    <tr><td>Surface Visibility (general)</td><td><span class="reg-value">6 km</span></td></tr>
+    <tr><td>Surface Visibility (in TS)</td><td><span class="reg-value">1500 m</span> in Thunderstorm</td></tr>
+    <tr><td>Significant Weather</td><td>ISOL THUNDERSTORM; ICING, TURB IN CB <span class="reg-value">25000/15000</span> ft</td></tr>
+    <tr><td>Height of 0° Isotherm</td><td><span class="reg-value">15000</span> ft (Kolkata) | <span class="reg-value">14000</span> ft (Lucknow)</td></tr>
+    <tr><td>Forecast QNH</td><td><span class="reg-value">1006 hPa</span> (Kolkata) | <span class="reg-value">1008 hPa</span> (Lucknow)</td></tr>
+  </table>
+
+  <div class="box-red">
+    <strong>⚠ Icing and Turbulence in CB:</strong> Noted between <span class="reg-value">15,000 ft</span> (base) and <span class="reg-value">25,000 ft</span> (top). Aircraft must avoid CB areas.
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section" id="s3">
+  <h2>3. How to Read a Met T-3</h2>
+  <div class="box-blue">
+    <strong>Wind Entry Format:</strong> <code>DDD/SSS</code> = Direction in degrees / Speed in knots<br>
+    Example: <code>300/50</code> = Wind from 300° at 50 kt<br>
+    <code>M33</code> = Minus 33°C (temperature)<br>
+    <code>ISOL EMBD CB 2000/35000</code> = Isolated Embedded CB, base 2000 ft, top 35000 ft
+  </div>
+
+  <pre class="mermaid">
+flowchart TD
+    RT["Read Met T-3"] --> SP["1. Check Special Features\n(Synoptic situation, WD, etc.)"]
+    SP --> UW["2. Read Upper Winds at each waypoint\n(Direction/Speed at each altitude level)"]
+    UW --> CL["3. Note Cloud Types, Base & Top\n(SKC/FEW/SCT/BKN/OVC + CB/EMBD)"]
+    CL --> VIS["4. Surface Visibility\nGeneral + In Significant Wx"]
+    VIS --> SX["5. Significant Weather\n(ISOL/OCNL TS, Icing, CAT etc.)"]
+    SX --> FZ["6. Height of 0° Isotherm\n(Freezing level — icing risk above this)"]
+    FZ --> QN["7. QNH — for altimeter setting\nat destination/en-route"]
+  </pre>
+
+  <div class="box-green">
+    <strong>✅ Decision-Making from Met T-3:</strong>
+    <ul>
+      <li>Check Special Features first — they summarise the biggest hazard</li>
+      <li>ISOL CB with EMBD = avoid — radar/pilot deviation required</li>
+      <li>0° isotherm height = icing risk ceiling for unpressurised/piston aircraft</li>
+      <li>QNH tells you if pressure setting will differ from standard — plan altimeter corrections</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section" id="s4">
+  <h2>4. Met T-4: Cross Section Route Forecast — Annotated Sample</h2>
+  <p>The cross-section shows the atmosphere from <strong>VIDP (Delhi) → VECC (Kolkata)</strong> as a vertical slice, with cloud types depicted pictorially at their respective flight levels. (Table 29.2)</p>
+
+  <div class="cross-section-diagram">
+    <h4>Cross Section Diagram — Cloud Symbols Identified</h4>
+    <table>
+      <tr><th>Symbol</th><th>Cloud Type</th><th>Typical Level</th></tr>
+      <tr><td>CI</td><td>Cirrus</td><td>High (FL300+)</td></tr>
+      <tr><td>CS</td><td>Cirrostratus</td><td>High (FL250+)</td></tr>
+      <tr><td>AC</td><td>Altocumulus</td><td>Medium (FL100–FL250)</td></tr>
+      <tr><td>AS</td><td>Altostratus</td><td>Medium (FL100–FL250)</td></tr>
+      <tr><td>SC</td><td>Stratocumulus</td><td>Low (below FL100)</td></tr>
+      <tr><td>ST</td><td>Stratus</td><td>Low (surface to FL050)</td></tr>
+      <tr><td>CU</td><td>Cumulus</td><td>Low-Medium</td></tr>
+      <tr><td>CB</td><td>Cumulonimbus</td><td>All levels (vertical)</td></tr>
+    </table>
+    <p style="margin-top:10px;"><em>The diagram shows the route from VIDP to VECC with CB embedded near the eastern end, cirrus cloud at high levels throughout, and SC/ST near the surface.</em></p>
+  </div>
+
+  <h3>Met T-4 Data Table — Sample</h3>
+  <p><strong>Remarks:</strong> VIS <span class="reg-value">8–10 km</span>, <span class="reg-value">2000 m</span> in Scattered TS</p>
+  <p><strong>Lowest MSL Pressure:</strong> <span class="reg-value">1002 hPa</span></p>
+
+  <table>
+    <tr>
+      <th>FL</th>
+      <th>Temp (VIDP side)</th>
+      <th>Wind (VIDP)</th>
+      <th>Wind Trend</th>
+      <th>Wind (VECC)</th>
+      <th>Temp (VECC side)</th>
+    </tr>
+    <tr><td><span class="reg-value">FL400</span></td><td>M38°C</td><td>270/80KT</td><td>WEAKENING</td><td>300/60KT</td><td>M39°C</td></tr>
+    <tr><td><span class="reg-value">FL300</span></td><td>M32°C</td><td>270/45KT</td><td>VEERING</td><td>300/35KT</td><td>M35°C</td></tr>
+    <tr><td><span class="reg-value">FL200</span></td><td>M15°C</td><td>260/30KT</td><td>VEERING</td><td>300/25KT</td><td>M16°C</td></tr>
+    <tr><td><span class="reg-value">FL150</span></td><td>05°C</td><td>210/20KT</td><td>VEERING</td><td>300/15KT</td><td>08°C</td></tr>
+    <tr><td><span class="reg-value">FL100</span></td><td>18°C</td><td>140/10KT</td><td>BCKING</td><td>300/20KT</td><td>20°C</td></tr>
+  </table>
+
+  <div class="box-amber">
+    <strong>📌 Wind Trend Terms:</strong><br>
+    <strong>VEERING</strong> = Wind direction changing clockwise (e.g. 260° → 300°) — indicates warm air advection<br>
+    <strong>BCKING (Backing)</strong> = Wind direction changing anti-clockwise — indicates cold air advection<br>
+    <strong>WEAKENING</strong> = Wind speed decreasing along route
+  </div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section" id="s5">
+  <h2>5. How to Read a Met T-4</h2>
+  <div class="box-blue">
+    <strong>Cross Section Format:</strong> Vertical slice of the atmosphere along the route. X-axis = route (departure to destination). Y-axis = Flight Levels (30 to 400+). Cloud symbols drawn at their actual position and level.
+  </div>
+
+  <pre class="mermaid">
+flowchart TD
+    T4["Read Met T-4"] --> DIAG["1. Study the cross-section diagram\nIdentify cloud positions by FL and route position"]
+    DIAG --> REM["2. Read Remarks\n(Visibility + TS visibility)"]
+    REM --> MSL["3. Note Lowest MSL Pressure\n(for altimeter planning)"]
+    MSL --> WT["4. Read wind/temp table by FL\nNote VEERING / BCKING / WEAKENING"]
+    WT --> TMP["5. Track temperature at each FL\n(M = negative; find 0°C isotherm)"]
+    TMP --> CB["6. Identify CB locations on diagram\n(avoid ±20nm laterally from CB)"]
+  </pre>
+
+  <div class="box-green">
+    <strong>✅ Key Operational Tips from T-4:</strong>
+    <ul>
+      <li>VEERING winds at FL100–FL200 indicates warm front/WD approach — expect cloud build-up</li>
+      <li>BCKING at FL100 (near surface) indicates cold air — low cloud and reduced visibility possible</li>
+      <li>CB shown near VECC end — route planning: plan diversion or delay if embedded CB</li>
+      <li>MSL pressure <span class="reg-value">1002 hPa</span> is below standard (1013.25) — altimeters will read lower than actual altitude if QNH not set</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section" id="s6">
+  <h2>6. Cloud Amount Abbreviations</h2>
+  <div class="box-blue">
+    <strong>Standard ICAO cloud amount code (Oktas = eighths of sky covered)</strong>
+  </div>
+  <table class="abbr-table">
+    <tr><th>Code</th><th>Oktas</th><th>Meaning</th></tr>
+    <tr><td>SKC</td><td>0 oktas</td><td>Sky Clear</td></tr>
+    <tr><td>FEW</td><td>1–2 oktas</td><td>Few clouds</td></tr>
+    <tr><td>SCT</td><td>3–4 oktas</td><td>Scattered</td></tr>
+    <tr><td>BKN</td><td>5–8 oktas</td><td>Broken</td></tr>
+    <tr><td>OVC</td><td>8 oktas</td><td>Overcast</td></tr>
+  </table>
+
+  <div class="box-amber">
+    <strong>📌 Mnemonic — Sky From Clear to Covered:</strong><br>
+    <strong>S</strong>ome <strong>F</strong>lying <strong>S</strong>chedueled <strong>B</strong>elow <strong>O</strong>vercast<br>
+    SKC (0) → FEW (1-2) → SCT (3-4) → BKN (5-8) → OVC (8)<br>
+    <br>
+    <strong>Exam tip:</strong> BKN means sky is more than half covered (>50%), OVC = fully covered.
+  </div>
+</div>
+
+<!-- SECTION 7 -->
+<div class="section" id="s7">
+  <h2>7. Frequency Abbreviations (ISOL / OCNL / FRQ)</h2>
+  <table>
+    <tr><th>Code</th><th>Area Coverage</th><th>Meaning</th></tr>
+    <tr><td><strong>ISOL</strong></td><td><span class="reg-value">&lt; 50%</span> of area</td><td>Isolated — occasional, well-separated</td></tr>
+    <tr><td><strong>OCNL</strong></td><td><span class="reg-value">50–75%</span> of area</td><td>Occasional — more frequent but not dominant</td></tr>
+    <tr><td><strong>FRQ</strong></td><td><span class="reg-value">&gt; 75%</span> of area</td><td>Frequent — widespread, dominant hazard</td></tr>
+  </table>
+
+  <div class="box-amber">
+    <strong>📌 Memory Aid:</strong><br>
+    <strong>I</strong>SOL = <strong>I</strong>nfrequent (&lt;50%) | <strong>O</strong>CNL = <strong>O</strong>ften (50–75%) | <strong>F</strong>RQ = <strong>F</strong>requent (&gt;75%)<br>
+    <br>
+    Also: <strong>EMBD</strong> = Embedded (CB hidden within other cloud layers — most dangerous as not visible on approach)
+  </div>
+
+  <div class="box-red">
+    <strong>⚠ EMBD CB — Most Dangerous Scenario:</strong> An Embedded CB (ISOL EMBD CB) is concealed within stratiform cloud layers. It cannot be visually avoided and may not always be clearly detected on weather radar. FRQ EMBD CB = route deviation mandatory.
+  </div>
+</div>
+
+<!-- SECTION 8 — APPENDIX A -->
+<div class="section" id="s8">
+  <h2>8. Appendix A — Key Synoptic System Definitions</h2>
+  <div class="box-blue">
+    <strong>Appendix A (IC Joshi)</strong> provides concise definitions of synoptic systems relevant to aviation in India. These are high-yield for DGCA written exams.
+  </div>
+
+  <table>
+    <tr><th>Term</th><th>Definition</th></tr>
+    <tr><td><strong>Depressions and Cyclones</strong></td><td>Intense LP systems with 2 or more closed isobars at 2 hPa interval and strong winds.</td></tr>
+    <tr><td><strong>Trough in Westerlies</strong></td><td>A wave in mid latitudes, moving from W to E over the globe. Affects northern parts of India.</td></tr>
+    <tr><td><strong>Trough in Easterlies</strong></td><td>A wave in the equatorial easterlies moving from East to West.</td></tr>
+    <tr><td><strong>Western Disturbance (WD)</strong></td><td>Low pressure area on surface or cyclonic circulation/trough in mid and lower tropospheric levels, originating over Mediterranean Sea, Caspian Sea, and Black Sea, moving across N India. Systems on the surface with 2 or more closed isobars are called <strong>Western Depressions</strong>.</td></tr>
+    <tr><td><strong>Induced Low</strong></td><td>Under the influence of WD, a low develops to the South of the system. Called an <strong>Induced Low</strong>. Cyclonic circulation in the upper air developed to the south = <strong>Induced Cyclonic Circulation</strong>.</td></tr>
+    <tr><td><strong>Easterly Wave</strong></td><td>A shallow trough in the equatorial region of tropics, more evident in upper level winds than surface pressure pattern. Moves from E to W. Causes clouds and showers. Affects S peninsular India.</td></tr>
+    <tr><td><strong>High/High</strong></td><td>Area in the atmosphere where pressures are higher than surroundings at the same level. Represented on synoptic chart by at least one closed isobar.</td></tr>
+    <tr><td><strong>Shear Line</strong></td><td>A line or narrow zone across which there is an abrupt change in the horizontal wind component. It is a line of maximum horizontal wind shear.</td></tr>
+    <tr><td><strong>Wind Discontinuity</strong></td><td>A line across which there is an abrupt change in wind direction.</td></tr>
+  </table>
+
+  <div class="box-amber">
+    <strong>📌 WD Key Facts for Exam:</strong><br>
+    • Origin: <strong>Mediterranean Sea, Caspian Sea, Black Sea</strong><br>
+    • Movement: <strong>W to E</strong> across N India<br>
+    • With 2+ closed isobars = called <strong>Western Depression</strong><br>
+    • Induced Low develops to the <strong>South</strong> of WD<br>
+    • Easterly Wave moves <strong>E to W</strong> (opposite to Westerlies trough)
+  </div>
+</div>
+
+<!-- SECTION 9 — QUICK REVISION -->
+<div class="section" id="s9">
+  <h2>9. Quick Revision Summary</h2>
+  <div class="box-amber">
+    <strong>CHAPTER 29 — KEY POINTS AT A GLANCE</strong>
+    <table>
+      <tr><th>Item</th><th>Value / Fact</th></tr>
+      <tr><td>Met T-3 used for flights</td><td><span class="reg-value">≤ 500 nm</span></td></tr>
+      <tr><td>Met T-4 used for flights</td><td><span class="reg-value">&gt; 500 nm</span></td></tr>
+      <tr><td>T-3 heights in</td><td>Feet amsl</td></tr>
+      <tr><td>T-4 heights in</td><td>Flight Levels</td></tr>
+      <tr><td>T-4 cloud depiction</td><td>Pictorial (cross-section diagram)</td></tr>
+      <tr><td>SKC</td><td>0 oktas (Sky Clear)</td></tr>
+      <tr><td>FEW</td><td>1–2 oktas</td></tr>
+      <tr><td>SCT</td><td>3–4 oktas</td></tr>
+      <tr><td>BKN</td><td>5–8 oktas</td></tr>
+      <tr><td>ISOL</td><td>&lt;50% area</td></tr>
+      <tr><td>OCNL</td><td>50–75% area</td></tr>
+      <tr><td>FRQ</td><td>&gt;75% area</td></tr>
+      <tr><td>EMBD CB</td><td>Embedded CB — invisible, most dangerous</td></tr>
+      <tr><td>VEERING winds</td><td>Clockwise change → warm air advection</td></tr>
+      <tr><td>BCKING winds</td><td>Anti-clockwise change → cold air advection</td></tr>
+      <tr><td>WD origin</td><td>Mediterranean / Caspian / Black Sea</td></tr>
+      <tr><td>WD movement</td><td>W → E across N India</td></tr>
+      <tr><td>Easterly Wave movement</td><td>E → W (affects S peninsular India)</td></tr>
+      <tr><td>Induced Low location</td><td>To the South of the WD</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- MASTER REFERENCE TABLES -->
+<div class="ref-section" id="ref">
+  <h2>Master Reference Tables</h2>
+
+  <h3>Complete Cloud Amount Code Reference</h3>
+  <table>
+    <tr><th>Code</th><th>Oktas</th><th>Fraction of Sky</th></tr>
+    <tr><td>SKC</td><td>0</td><td>0/8 — No cloud</td></tr>
+    <tr><td>FEW</td><td>1–2</td><td>1/8 – 2/8 — Mostly clear</td></tr>
+    <tr><td>SCT</td><td>3–4</td><td>3/8 – 4/8 — Half covered</td></tr>
+    <tr><td>BKN</td><td>5–8</td><td>5/8 – 7/8 — More than half</td></tr>
+    <tr><td>OVC</td><td>8</td><td>8/8 — Fully overcast</td></tr>
+  </table>
+
+  <h3>Frequency Terms</h3>
+  <table>
+    <tr><th>Code</th><th>Area %</th><th>Practical Meaning</th></tr>
+    <tr><td>ISOL</td><td>&lt;50%</td><td>Isolated — route largely clear, avoid specific cells</td></tr>
+    <tr><td>OCNL</td><td>50–75%</td><td>Occasional — expect significant deviations</td></tr>
+    <tr><td>FRQ</td><td>&gt;75%</td><td>Frequent — route likely impassable without deviation</td></tr>
+  </table>
+
+  <h3>Wind Direction Change Terms</h3>
+  <table>
+    <tr><th>Term</th><th>Meaning</th><th>Meteorological Significance</th></tr>
+    <tr><td>VEERING</td><td>Clockwise change</td><td>Warm air advection, approaching warm front</td></tr>
+    <tr><td>BCKING</td><td>Anti-clockwise change</td><td>Cold air advection, cold front passage</td></tr>
+    <tr><td>WEAKENING</td><td>Speed decreasing</td><td>Jet stream or gradient wind reducing</td></tr>
+  </table>
+
+  <h3>Met T-4 Sample Data — Freeze Frame (Table 29.2)</h3>
+  <table>
+    <tr><th>FL</th><th>Temp Delhi</th><th>Wind Delhi</th><th>Trend</th><th>Wind Kolkata</th><th>Temp Kolkata</th></tr>
+    <tr><td>FL400</td><td>M38°C</td><td>270/80KT</td><td>WEAKENING</td><td>300/60KT</td><td>M39°C</td></tr>
+    <tr><td>FL300</td><td>M32°C</td><td>270/45KT</td><td>VEERING</td><td>300/35KT</td><td>M35°C</td></tr>
+    <tr><td>FL200</td><td>M15°C</td><td>260/30KT</td><td>VEERING</td><td>300/25KT</td><td>M16°C</td></tr>
+    <tr><td>FL150</td><td>05°C</td><td>210/20KT</td><td>VEERING</td><td>300/15KT</td><td>08°C</td></tr>
+    <tr><td>FL100</td><td>18°C</td><td>140/10KT</td><td>BCKING</td><td>300/20KT</td><td>20°C</td></tr>
+  </table>
+
+  <h3>Appendix A — Synoptic Systems Quick Reference</h3>
+  <table>
+    <tr><th>System</th><th>Key Feature</th></tr>
+    <tr><td>Western Disturbance (WD)</td><td>From Mediterranean/Caspian/Black Sea, moves W→E, affects N India</td></tr>
+    <tr><td>Western Depression</td><td>WD with 2+ closed isobars at surface</td></tr>
+    <tr><td>Induced Low</td><td>Forms south of WD; upper air = Induced Cyclonic Circulation</td></tr>
+    <tr><td>Trough in Westerlies</td><td>W→E wave, mid-latitudes, affects N India</td></tr>
+    <tr><td>Trough in Easterlies</td><td>E→W wave in equatorial easterlies</td></tr>
+    <tr><td>Easterly Wave</td><td>Shallow trough, tropics, E→W, affects S peninsular India</td></tr>
+    <tr><td>Shear Line</td><td>Abrupt horizontal wind component change, max wind shear line</td></tr>
+    <tr><td>Wind Discontinuity</td><td>Abrupt change in wind direction</td></tr>
+    <tr><td>High</td><td>Pressure higher than surroundings; ≥1 closed isobar on chart</td></tr>
+  </table>
+
+  <div class="box-green" style="margin-top:30px; text-align:center;">
+    <strong style="font-size:18px;">🎓 COURSE COMPLETE — IC Joshi Aviation Meteorology</strong><br><br>
+    All 29 Chapters of IC Joshi's Aviation Meteorology have been covered.<br>
+    You have completed a comprehensive review of DGCA CPL/ATPL Meteorology theory.<br><br>
+    <strong>Best of luck in your DGCA examination, Capt. Pankaj Pahil!</strong>
+  </div>
+</div>
+
+<!-- WATERMARK -->
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:80px;font-weight:900;color:rgba(0,0,0,0.12);z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;">Capt. Pankaj Pahil</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

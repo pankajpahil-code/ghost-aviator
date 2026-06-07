@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 15 – The Turn Co-ordinator | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a3a6b; border-bottom: 3px solid #1a3a6b; padding-bottom: 8px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a3a6b; margin-top: 30px; border-left: 5px solid #1a3a6b; padding-left: 10px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #2c5aa0; margin-top: 20px; }
+  p { margin: 8px 0 12px 0; }
+  .cover { text-align: center; padding: 40px 20px; border: 3px solid #1a3a6b; border-radius: 10px; margin-bottom: 30px; }
+  .cover h1 { border: none; font-size: 2.2em; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 8px; }
+  .cover .author { font-size: 1em; color: #333; margin-top: 6px; font-weight: 600; }
+  .toc { background: #f5f8ff; border: 1px solid #b0c4e8; border-radius: 8px; padding: 20px 30px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { border: none; margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: #2c5aa0; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a3a6b; color: #fff; padding: 8px 12px; text-align: left; font-weight: 700; }
+  td { border: 1px solid #ccc; padding: 7px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  figure { text-align: center; margin: 20px auto; max-width: 100%; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #555; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Instrumentation</div>
+  <h1>Chapter 15<br>The Turn Co-ordinator</h1>
+  <div class="subtitle">Oxford Aviation Academy — Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction and Comparison with TBI</a></li>
+    <li><a href="#sec-2">Gyroscope Axis Orientation — 30° Inclination</a></li>
+    <li><a href="#sec-3">Turn Co-ordinator Operation and Display</a></li>
+    <li><a href="#sec-4">Important Annotation — No Pitch Information</a></li>
+    <li><a href="#sec-5">Comparison: Turn Co-ordinator vs Turn and Slip Indicator</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#master-ref">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction and Comparison with TBI</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> What the Turn Co-ordinator is; how it differs from the Turn and Bank Indicator.
+</div>
+<p>The <strong>Turn Co-ordinator</strong> is an interesting development of the Turn and Bank Indicator (TBI). It uses the same fundamental principle — a rate gyroscope with a spring restraint — but with two key differences:</p>
+<ol>
+  <li>The <strong>precession axis of the rate gyroscope is inclined at approximately 30°</strong> with respect to the aircraft's longitudinal axis (in the TBI, the gyro axis is purely horizontal/lateral).</li>
+  <li>The <strong>display is an aircraft symbol</strong> (viewed from behind), rather than a needle, giving a more intuitive roll/turn representation.</li>
+</ol>
+
+<h2 id="sec-2">2. Gyroscope Axis Orientation — 30° Inclination</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Why the 30° inclination makes the gyroscope sensitive to both banking and turning.
+</div>
+<p>In the standard TBI, the rate gyro axis is horizontal — the gyro is sensitive to yaw (turning about the vertical axis) only. In the Turn Co-ordinator, the single gimbal ring is pivoted <strong>longitudinally</strong> but the gyro axis is tilted at <span class="reg-value">about 30°</span> from the aircraft's longitudinal axis. This inclination gives the gyroscope sensitivity to:</p>
+<ul>
+  <li><strong>Banking of the aircraft</strong> (roll input) — detected as the aircraft rolls.</li>
+  <li><strong>Turning of the aircraft</strong> (yaw input) — as in the standard TBI.</li>
+</ul>
+<p>The result is that when a turn is initiated by banking, the gyroscope precesses and moves the aircraft symbol to <strong>anticipate the resulting turn</strong> — even before the yaw rate has fully developed.</p>
+<pre class="mermaid">
+flowchart TD
+    TBI["Standard TBI\nRate Gyro (horizontal axis)\nSensitive to YAW only\n→ measures rate of turn"]
+    TC["Turn Co-ordinator\nRate Gyro (30° inclined)\nSensitive to ROLL + YAW\n→ anticipates turn from bank"]
+    TBI -->|"Key Difference"| TC
+</pre>
+<figure>
+  <img src="figs/fig_p196_0.png" alt="Turn co-ordinator instrument display">
+  <figcaption>Fig 15.1 — Turn co-ordinator display: aircraft symbol with 'No Pitch Information' annotation; ball slip indicator below. Source p.196</figcaption>
+</figure>
+
+<h2 id="sec-3">3. Turn Co-ordinator Operation and Display</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How the pilot uses the aircraft symbol for turn rate control; the role of the ball.
+</div>
+<p>When a turn is initiated by banking, the inclined gyroscope precesses and moves the miniature aircraft symbol in the direction of bank, enabling the pilot to <strong>anticipate the resulting turn</strong>.</p>
+<p>The pilot then controls the turn at the required rate by aligning the aircraft symbol with the graduations on the instrument dial. The rate of turn depends on the instrument design — typically Rate 1 (<span class="reg-value">3°/second</span>) is indicated at the standard graduation marks.</p>
+<div class="box-green">
+  <strong>The Slip Indicator (Ball):</strong> The ball operates identically to the ball in the standard TBI. The ball must remain central for a <strong>balanced rate of turn</strong>. The ball is not affected by the 30° inclination of the gyro.
+</div>
+
+<h2 id="sec-4">4. Important Annotation — No Pitch Information</h2>
+<div class="box-red">
+  <strong>CAUTION — "NO PITCH INFORMATION":</strong> The Turn Co-ordinator display resembles a miniature attitude indicator (artificial horizon), because the aircraft symbol can tilt to represent bank. The annotation <strong>"No Pitch Information"</strong> on the indicator scale is mandatory, to avoid any confusion with pitch control that might arise from the similarity in presentation to the gyro horizon. <strong>This instrument gives no indication of aircraft pitch attitude whatsoever.</strong>
+</div>
+
+<h2 id="sec-5">5. Comparison: Turn Co-ordinator vs Turn and Slip Indicator</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Side-by-side comparison of the two instruments.
+</div>
+<table>
+  <tr><th>Feature</th><th>Turn and Slip Indicator (TBI)</th><th>Turn Co-ordinator (TC)</th></tr>
+  <tr><td>Gyro type</td><td>Rate gyro</td><td>Rate gyro</td></tr>
+  <tr><td>Number of gimbals</td><td>1</td><td>1</td></tr>
+  <tr><td>Gimbal pivot axis</td><td>Lateral (horizontal)</td><td><span class="reg-value">Longitudinal</span></td></tr>
+  <tr><td>Gyro axis inclination</td><td>Purely horizontal</td><td><span class="reg-value">≈30° to longitudinal axis</span></td></tr>
+  <tr><td>Sensitive to</td><td>Yaw only</td><td>Roll AND Yaw</td></tr>
+  <tr><td>Turn anticipation</td><td>No — indicates only after yaw develops</td><td>Yes — responds to initial bank</td></tr>
+  <tr><td>Display type</td><td>Needle pointer</td><td>Aircraft symbol (miniature aircraft)</td></tr>
+  <tr><td>Slip indicator</td><td>Ball in curved tube</td><td>Ball in curved tube (same)</td></tr>
+  <tr><td>Pitch information</td><td>None</td><td>None ("No Pitch Information")</td></tr>
+  <tr><td>Can topple?</td><td>No (only 1 gimbal)</td><td>No (only 1 gimbal)</td></tr>
+</table>
+
+<div class="box-amber">
+  <strong>Quick Revision Summary — Chapter 15:</strong>
+  <ul>
+    <li>Turn Co-ordinator = development of TBI with inclined gyro axis at <span class="reg-value">≈30°</span> to the longitudinal axis.</li>
+    <li>Single gimbal ring pivoted <strong>longitudinally</strong> (vs. TBI which pivots laterally).</li>
+    <li>Sensitive to both <strong>roll</strong> and <strong>yaw</strong> — anticipates turn from initial bank.</li>
+    <li>Display: miniature aircraft symbol, not a needle.</li>
+    <li>Ball (slip indicator) functions identically to the TBI — central = balanced turn.</li>
+    <li><span class="reg-value">"No Pitch Information"</span> annotation is mandatory — the aircraft symbol gives no pitch data.</li>
+    <li>Like the TBI, the Turn Co-ordinator has only one gimbal — it cannot topple.</li>
+    <li>Rate 1 = <span class="reg-value">3°/second</span>; standard graduation = Rate 1 alignment mark.</li>
+  </ul>
+</div>
+
+<div class="qa-section">
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+<div class="box-blue">
+  Source questions reproduced verbatim. Answer key from source: 1-b, 2-c (with explanation below), 3-b.
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">The gimbal ring of a turn co-ordinator is inclined at about 30° with respect to the aircraft's longitudinal axis in order to:</span>
+    <ol class="q-options" type="a">
+      <li>make the rate of turn more accurate</li>
+      <li>make the gyro sensitive to banking of the aircraft as well as to turning</li>
+      <li>make the gyro more effective during inverted flight</li>
+      <li>have a higher rotor speed which will prolong the life of the instrument</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) make the gyro sensitive to banking of the aircraft as well as to turning</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The 30° inclination of the gyro axis with respect to the aircraft's longitudinal axis makes the rate gyroscope sensitive to both roll (banking) and yaw (turning), unlike the standard TBI which responds to yaw only. This allows the Turn Co-ordinator to anticipate the turn from the initial banking motion. See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — The 30° inclination does not improve rate of turn accuracy; it adds sensitivity to roll.</li>
+        <li><strong>(c)</strong> — The inclination has nothing to do with inverted flight.</li>
+        <li><strong>(d)</strong> — The rotor speed is determined by the power supply, not the gimbal inclination angle.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The 30° inclination is the defining physical difference between the Turn Co-ordinator and the standard TBI. Everything else (ball, spring, rate gyro principle) is the same.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">If an aircraft turns as indicated in Figure 1 [aircraft symbol aligned with left Rate 1 mark]:</span>
+    <ol class="q-options" type="a">
+      <li>the aircraft will turn through 180° in two minutes</li>
+      <li>it will take one minute to turn through 90°</li>
+      <li>the aircraft is turning left at less than 3°/second</li>
+      <li>the aircraft is turning left at 3°/second</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c) the aircraft is turning left at less than 3°/second</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The illustration shows the aircraft symbol aligned between the centre and the Rate 1 mark (left). This indicates a left turn at a rate less than Rate 1 (i.e., less than 3°/second). Rate 1 would place the symbol exactly on the Rate 1 graduation mark. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> — 180° in 2 minutes = 1.5°/second, which is less than Rate 1 (3°/sec). While numerically possible for a very slow turn, this option incorrectly implies it is on the Rate 1 mark.</li>
+        <li><strong>(b)</strong> — 90° in 1 minute = 1.5°/sec, again less than Rate 1. However, the question asks what the indication specifically means, not a calculation. If the symbol is between centre and the Rate 1 mark, it is less than Rate 1 by definition.</li>
+        <li><strong>(d)</strong> — Rate 1 (3°/sec) would be indicated by the symbol exactly on the Rate 1 graduation, not between marks.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> On the Turn Co-ordinator, the Rate 1 graduation is the standard reference mark. Symbol on the mark = Rate 1 = 3°/sec. Symbol between centre and mark = less than Rate 1.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">A turn co-ordinator has (i) ..... pivoted (ii) ........ in the case</span>
+    <ol class="q-options" type="a">
+      <li>(i) two gimbal rings — (ii) orthogonally</li>
+      <li>(i) a single gimbal ring — (ii) longitudinally</li>
+      <li>(i) one gimbal ring — (ii) laterally</li>
+      <li>(i) two gimbal rings — (ii) mutually perpendicular</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b) a single gimbal ring — pivoted longitudinally</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The Turn Co-ordinator has a <em>single gimbal ring</em> (like the TBI) but pivoted <em>longitudinally</em> in the case (unlike the TBI which pivots laterally). This longitudinal pivot, combined with the 30° gyro axis inclination, gives sensitivity to both roll and yaw. See <a href="#sec-2">Section 2</a> and comparison table in <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong>
+      <ul>
+        <li><strong>(a) and (d)</strong> — "Two gimbal rings" is incorrect. Two rings would give two degrees of freedom (like a DGI or AH). The rate gyro instruments have only one gimbal.</li>
+        <li><strong>(c)</strong> — "Laterally" describes the TBI, not the Turn Co-ordinator. The TC gimbal is pivoted longitudinally.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> TBI = single gimbal, pivoted laterally. TC = single gimbal, pivoted longitudinally. Both have only one gimbal (one degree of freedom). This is the key exam fact about the TC.</div>
+  </div>
+</div>
+
+</div><!-- end qa-section -->
+
+<h2 id="master-ref">Master Reference Tables</h2>
+<table>
+  <tr><th>Parameter</th><th>Value</th><th>Section</th></tr>
+  <tr><td>Gyro axis inclination</td><td><span class="reg-value">≈30° to longitudinal axis</span></td><td><a href="#sec-2">2</a></td></tr>
+  <tr><td>Number of gimbals</td><td><span class="reg-value">1 (single)</span></td><td><a href="#sec-2">2</a></td></tr>
+  <tr><td>Gimbal pivot direction</td><td><span class="reg-value">Longitudinal</span></td><td><a href="#sec-2">2</a></td></tr>
+  <tr><td>Rate 1 (standard graduation)</td><td><span class="reg-value">3°/second</span></td><td><a href="#sec-3">3</a></td></tr>
+  <tr><td>Sensitive to</td><td>Roll AND Yaw</td><td><a href="#sec-2">2</a></td></tr>
+  <tr><td>Can topple?</td><td>No</td><td><a href="#sec-2">2</a></td></tr>
+  <tr><td>Pitch information?</td><td><span class="reg-value">No — "No Pitch Information"</span></td><td><a href="#sec-4">4</a></td></tr>
+</table>
+
+<h3>Answer Key Summary</h3>
+<table>
+  <tr><th>Q</th><th>Answer</th><th>Key Topic</th></tr>
+  <tr><td>1</td><td>b</td><td>30° inclination → sensitive to roll AND yaw</td></tr>
+  <tr><td>2</td><td>c</td><td>Symbol between centre and Rate 1 mark = less than 3°/sec</td></tr>
+  <tr><td>3</td><td>b</td><td>Single gimbal ring, pivoted longitudinally</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

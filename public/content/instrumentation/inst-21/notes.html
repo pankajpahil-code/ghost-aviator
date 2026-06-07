@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 21 – Flight Management System | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #fff; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a3a6b; border-bottom: 3px solid #1a3a6b; padding-bottom: 8px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a3a6b; margin-top: 30px; border-left: 5px solid #1a3a6b; padding-left: 10px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #2c5aa0; margin-top: 20px; }
+  p { margin: 8px 0 12px 0; }
+  .cover { text-align: center; padding: 40px 20px; border: 3px solid #1a3a6b; border-radius: 10px; margin-bottom: 30px; }
+  .cover h1 { border: none; font-size: 2.2em; }
+  .cover .subtitle { font-size: 1.1em; color: #555; margin-top: 8px; }
+  .cover .author { font-size: 1em; color: #333; margin-top: 6px; font-weight: 600; }
+  .toc { background: #f5f8ff; border: 1px solid #b0c4e8; border-radius: 8px; padding: 20px 30px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { border: none; margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: #2c5aa0; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a3a6b; color: #fff; padding: 8px 12px; text-align: left; font-weight: 700; }
+  td { border: 1px solid #ccc; padding: 7px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  figure { text-align: center; margin: 20px auto; max-width: 100%; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #555; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { background: transparent; page-break-inside: avoid; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Instrumentation</div>
+  <h1>Chapter 21<br>Flight Management System</h1>
+  <div class="subtitle">Oxford Aviation Academy — Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Principle of Operation</a></li>
+    <li><a href="#sec-2">Control and Display Unit (CDU)</a></li>
+    <li><a href="#sec-3">FMC Data Base</a></li>
+    <li><a href="#sec-4">Initial Actions — FMC Pages</a></li>
+    <li><a href="#sec-5">VNAV — Climb</a></li>
+    <li><a href="#sec-6">LNAV — Cruise</a></li>
+    <li><a href="#sec-7">Descent</a></li>
+    <li><a href="#sec-8">CDU Key Groups</a></li>
+    <li><a href="#sec-9">CDU Annunciators</a></li>
+    <li><a href="#sec-10">Cost Index and Economy</a></li>
+    <li><a href="#sec-11">FMS Key Facts Summary</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<h1 id="sec-1">1. Principle of Operation</h1>
+
+<div class="box-blue">
+<strong>FMS purpose:</strong>
+<ul>
+  <li>Improve navigation accuracy</li>
+  <li>Aid fuel efficiency</li>
+  <li>Reduce crew workload</li>
+</ul>
+<strong>Two primary guidance modes:</strong>
+<ul>
+  <li><strong>LNAV (Lateral Navigation)</strong> — flies aircraft along complex routes on great circle tracks; can fly constant heading, track, or DME arc as required</li>
+  <li><strong>VNAV (Vertical Navigation)</strong> — calculates optimum cruise altitudes; best combination of autothrottle and speed during climb and descent</li>
+</ul>
+</div>
+
+<figure>
+  <img src="figs/fig_p272_0.png" alt="FMS schematic layout">
+  <figcaption>Fig 21.1 — Schematic layout of a typical FMS system. CDU = Control/Display Unit; FGS = Flight Guidance System; FMC = Flight Management Computer; ADC = Air Data Computer; IRS = Inertial Reference System; GPS = Global Positioning System. Source p.272</figcaption>
+</figure>
+
+<!-- SECTION 2 -->
+<h1 id="sec-2">2. Control and Display Unit (CDU)</h1>
+
+<p>The CDU is the <strong>interface between the aircraft and crew</strong>. Two CDUs are usually fitted either side of the centre console, with the <strong>left CDU normally the master</strong>. On the B747-400 a third CDU is on the centre console for engineering use.</p>
+
+<p>Each CDU has a <strong>monochrome or colour CRT/LCD display</strong> showing "pages" of selected data, plus a selector key panel.</p>
+
+<h3>FMC Operating Modes</h3>
+<table>
+  <tr><th>Mode</th><th>Description</th></tr>
+  <tr><td><strong>Dual Mode</strong> (normal)</td><td>Both FMCs independently process pilot entries and cross-check results. Same output passed to both FMCs. Provides safety cross-check.</td></tr>
+  <tr><td><strong>Single Mode</strong></td><td>One FMC has failed; the surviving FMC operates the aircraft on its own. Failed FMC may be selected out.</td></tr>
+  <tr><td><strong>Independent Mode</strong></td><td>FMCs decoupled — no safety cross-check between them. Not normal for standard flight profiles.</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p273_0.png" alt="CDU display">
+  <figcaption>Fig 21.2 — FMS CDU display and keyboard. Source p.273</figcaption>
+</figure>
+
+<!-- SECTION 3 -->
+<h1 id="sec-3">3. FMC Data Base</h1>
+
+<div class="box-blue">
+<strong>Two major sections:</strong>
+<ol>
+  <li><strong>Performance Data Base:</strong>
+    <ul>
+      <li>Aircraft drag and engine characteristics</li>
+      <li>Maximum and minimum speeds</li>
+      <li>Drag and fuel flow factors (maintenance refinable)</li>
+      <li>Replaces need to refer to Cruise Control Manual in flight</li>
+      <li>Provides data for pitch and thrust commands</li>
+    </ul>
+  </li>
+  <li><strong>Navigation Data Base:</strong>
+    <ul>
+      <li>Location of navaids, airports, runways</li>
+      <li>SIDs, STARs, approaches, company routes</li>
+      <li>All areas where the aircraft is normally flown</li>
+      <li>Updated by maintenance every <span class="reg-value">28 days</span> (matches navigation chart revision cycle)</li>
+      <li>FMC contains <strong>two sets of navigation data</strong>, each valid for 28 days — crew selects which is active during preflight</li>
+    </ul>
+  </li>
+</ol>
+</div>
+
+<!-- SECTION 4 -->
+<h1 id="sec-4">4. Initial Actions — FMC Pages (Boeing sequence)</h1>
+
+<pre class="mermaid">
+graph TD
+  A["Power ON → Self-test → IDENT page"] --> B["POS INIT page"]
+  B --> C["RTE page"]
+  C --> D["PERF INIT page"]
+</pre>
+
+<table>
+  <tr><th>Page</th><th>Content / Action</th></tr>
+  <tr><td><strong>IDENT</strong></td><td>Confirm aircraft model, operational programme ID, drag/fuel flow factors, Nav DB identifier and cycle. Shows changeover date — if out of date, prompts to change programme.</td></tr>
+  <tr><td><strong>POS INIT</strong></td><td>Check FMS clock against aircraft clock (synchronise for FDR and ETAs). Enter airfield datum or gate position for IRS alignment. Often updated at take-off point for best initial position.</td></tr>
+  <tr><td><strong>RTE</strong></td><td>Enter origin and destination ICAO codes, flight number, and select/enter standard company route.</td></tr>
+  <tr><td><strong>PERF INIT</strong></td><td>Enter fuel weight, fuel reserves, cruise altitude, Cost Index. On B747 — enter fifth engine carriage if applicable.</td></tr>
+</table>
+
+<!-- SECTION 5 -->
+<h1 id="sec-5">5. VNAV — Climb</h1>
+
+<div class="box-blue">
+<strong>Cost Index = 0:</strong> Economy speeds = maximum range cruise (minimum trip fuel). VNAV commands:
+<ol>
+  <li>Climb with <strong>climb thrust</strong>, respecting all airspeed and altitude constraints in the SID</li>
+  <li>Climb at economy speed to entered cruise altitude</li>
+  <li>Cruise at economy speed until Top of Descent (TOD)</li>
+</ol>
+If flying the climb speed profile would <strong>violate an altitude constraint</strong>, the message <strong>"UNABLE NEXT ALT"</strong> is displayed — pilot must select a different (steeper climb) speed.
+</div>
+
+<div class="box-amber">
+<strong>Cost Index relationship:</strong><br>
+Cost Index = Aircraft operating cost (£/hr) ÷ Fuel cost (£/lb or £/litre)
+<ul>
+  <li><strong>CI = 0:</strong> Minimum trip fuel (max range cruise, low speed descent)</li>
+  <li><strong>Higher CI:</strong> Higher speed → more trip fuel cost but lower time cost → when time is expensive</li>
+  <li><strong>Economy Cruise Mode</strong> gives lowest overall operating cost based on the CI entered</li>
+</ul>
+</div>
+
+<!-- SECTION 6 -->
+<h1 id="sec-6">6. LNAV — Cruise</h1>
+
+<p>LNAV guidance outputs are normally <strong>great circle tracks</strong> between waypoints. For stored procedures, the FMC can command constant heading, track, or a DME arc as needed.</p>
+
+<div class="box-blue">
+<strong>FMC position determination (in flight):</strong>
+<ul>
+  <li>Uses inputs from IRS/INS, DME, VOR, and other fitted navigation systems</li>
+  <li>FMC present position = <strong>combination (average) of all IRS/INS positions</strong></li>
+  <li>On the ground: FMC uses <strong>IRS/INS only</strong> (no DME/VOR available)</li>
+  <li>Requires position from <strong>at least one IRS/INS</strong> to function</li>
+  <li>Since inertial systems accumulate errors with time, position error builds up if on ground for extended period</li>
+  <li>If significant map error noticed after extended ground delay → <strong>realign IRS/INS and re-enter present position</strong></li>
+</ul>
+</div>
+
+<div class="box-green">
+<strong>LNAV accuracy:</strong> Radial error rates of less than <span class="reg-value">0.05 NM/hour</span> are not uncommon. GPS input will further improve performance. Operator skill and careful monitoring always remain a deciding factor.
+</div>
+
+<!-- SECTION 7 -->
+<h1 id="sec-7">7. Descent</h1>
+
+<p>When a programmed arrival is entered, the FMC calculates a <strong>descent path</strong> based on procedure airspeed/altitude constraints and the <strong>End of Descent (E/D)</strong> — a waypoint with altitude and airspeed constraint coinciding with the final approach fix or runway threshold.</p>
+
+<ul>
+  <li>For <strong>VFR and non-precision approaches</strong>: FMC path built to a point <strong>50 ft over the approach end of the runway</strong>. Crew responsible for not descending below DH without adequate visual contact.</li>
+  <li>During missed approach: <strong>LNAV guidance available</strong> to the missed approach point and altitude.</li>
+</ul>
+
+<!-- SECTION 8 -->
+<h1 id="sec-8">8. CDU Key Groups</h1>
+
+<p>CDU keys fall into three major groups:</p>
+
+<table>
+  <tr><th>Group</th><th>Function</th></tr>
+  <tr><td><strong>Alphanumeric Keys</strong></td><td>Characters appear in scratch pad for data entry</td></tr>
+  <tr><td><strong>Function and Mode Keys</strong></td><td>System initialization, flight planning, performance selection, active flight plan modification</td></tr>
+  <tr><td><strong>Line Select Keys (LSK)</strong></td><td>12 keys (6 each side of CRT) — transfer data from scratch pad into the selected data field; can also copy displayed data into scratch pad</td></tr>
+</table>
+
+<h3>Key Function and Mode Keys — Summary</h3>
+<table>
+  <tr><th>Key</th><th>Function</th></tr>
+  <tr><td>CLB</td><td>Current/alternate climb mode — speed/altitude restriction entry, cruise altitude entry</td></tr>
+  <tr><td>CRZ</td><td>Current/alternate cruise mode — optimum altitude, step-climb, turbulence N1 targets</td></tr>
+  <tr><td>DES</td><td>Current/alternate descent mode — target speed, FPA, V/S, V/B</td></tr>
+  <tr><td>INIT REF</td><td>Start-up data pages; IRS initialization; reference data and maintenance pages</td></tr>
+  <tr><td>N1 LIMIT</td><td>Active N1 limit; reduced climb N1 selection (LP turbine RPM)</td></tr>
+  <tr><td>DEP ARR</td><td>Procedure and runway selection at origin/destination</td></tr>
+  <tr><td>RTE</td><td>Flight plan data entry; primary lateral flight plan alteration</td></tr>
+  <tr><td>LEGS</td><td>Detailed data for each flight plan leg — lateral and vertical paths</td></tr>
+  <tr><td>HOLD</td><td>Planning or initiation of holding at a designated waypoint</td></tr>
+  <tr><td>DIR INTC</td><td>Proceed direct to any point, or intercept any leg in the flight plan</td></tr>
+  <tr><td>FIX</td><td>Range and bearing data from present position to an entered fix</td></tr>
+  <tr><td>PROG</td><td>Current flight status — ETA, fuel remaining at waypoint, nav radio tuning, wind, path errors</td></tr>
+  <tr><td>EXEC</td><td>Incorporates displayed data into active flight plan. Illuminated annunciator bar = valid data ready to be made active.</td></tr>
+  <tr><td>CLR</td><td>Clear last character (brief press) or clear entire scratch pad entry (hold &gt;1 sec). Also clears advisory messages.</td></tr>
+  <tr><td>DEL</td><td>Removes data from a display/flight plan after line-selection. Writes "DELETE" in scratch pad, then LSK the item to remove.</td></tr>
+  <tr><td>+/−</td><td>Changes scratch pad data between positive and negative; or inserts a hyphen</td></tr>
+  <tr><td>NEXT/PREV PAGE</td><td>Advances or backs up multi-page displays. Page access wraps around.</td></tr>
+</table>
+
+<!-- SECTION 9 -->
+<h1 id="sec-9">9. CDU Illuminated Annunciators</h1>
+
+<table>
+  <tr><th>Annunciator</th><th>Colour</th><th>Meaning</th></tr>
+  <tr><td>MSG</td><td>White</td><td>Alerting or advisory message, or pending messages</td></tr>
+  <tr><td>FAIL</td><td>Amber</td><td>FMC failure detected</td></tr>
+  <tr><td>DISPLAY</td><td>White</td><td>Page displayed is NOT related to the active flight plan leg or current operational performance mode</td></tr>
+  <tr><td>OFFSET</td><td>White</td><td>Parallel offset in use (aircraft flying parallel to, but offset from, the FMS track)</td></tr>
+</table>
+
+<!-- SECTION 10 -->
+<h1 id="sec-10">10. Cost Index and Economy</h1>
+
+<div class="box-blue">
+<strong>Time Related Cost principle:</strong>
+<ul>
+  <li>Higher speed → higher trip fuel cost + lower trip time cost</li>
+  <li>Lower speed → lower trip fuel cost + higher trip time cost</li>
+  <li><strong>Economy Cruise Mode</strong> finds the optimum balance based on the entered CI</li>
+</ul>
+<strong>CI modifications possible until passing Top of Descent (TOD):</strong> Long Range Cruise (LRC), selected speed cruise.
+</div>
+
+<!-- SECTION 11 -->
+<h1 id="sec-11">11. FMS Key Facts Summary</h1>
+
+<table>
+  <tr><th>Parameter</th><th>Value / Fact</th></tr>
+  <tr><td>Nav database update cycle</td><td>28 days (matches chart revision)</td></tr>
+  <tr><td>FMC database copies</td><td>Two (current and next 28-day cycle)</td></tr>
+  <tr><td>FMC modes</td><td>Dual (normal), Single, Independent</td></tr>
+  <tr><td>Radial error rate</td><td>&lt;0.05 NM/hr typical</td></tr>
+  <tr><td>VFR/non-precision path end</td><td>50 ft over approach end of runway</td></tr>
+  <tr><td>FMS inputs (navigation)</td><td>IRS/INS (minimum 1), DME, VOR, GPS (when fitted)</td></tr>
+  <tr><td>CI=0</td><td>Maximum range cruise (minimum fuel)</td></tr>
+  <tr><td>UNABLE NEXT ALT</td><td>Speed profile would violate altitude constraint in VNAV climb</td></tr>
+  <tr><td>Waypoint 0 (FMS)</td><td>Aircraft's present position (not operator enterable)</td></tr>
+</table>
+
+<div class="box-green">
+<strong>Master exam point:</strong> The FMC <strong>cannot detect operator errors</strong> (wrong waypoint lat/long entries). It will navigate precisely to the wrong place if given wrong data. Pre-flight cross-checking of all waypoints against the flight plan is essential.
+</div>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

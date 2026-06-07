@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 11 – Gyroscopes | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:14px; line-height:1.6; color:#1a1a1a; margin:0; padding:20px; background:#fff; }
+  h1 { font-size:2em; font-weight:700; color:#1a237e; margin-bottom:4px; }
+  h2 { font-size:1.4em; font-weight:700; color:#1a237e; border-bottom:2px solid #1a237e; padding-bottom:4px; margin-top:32px; page-break-after:avoid; }
+  h3 { font-size:1.15em; font-weight:700; color:#283593; margin-top:20px; page-break-after:avoid; }
+  .cover { text-align:center; padding:40px 20px 30px; border-bottom:3px solid #1a237e; margin-bottom:30px; }
+  .cover .subject { font-size:1em; color:#555; letter-spacing:2px; text-transform:uppercase; }
+  .cover .compiler { font-size:0.95em; color:#555; margin-top:8px; }
+  .toc { background:#f5f7ff; border:1px solid #c5cae9; border-radius:8px; padding:20px 30px; margin:20px 0 30px; page-break-after:always; }
+  .toc h2 { border:none; margin-top:0; }
+  .toc ol { margin:0; padding-left:20px; }
+  .toc li { padding:3px 0; }
+  .toc a { color:#1a237e; text-decoration:none; }
+  .blue-box { background:#e8f1fb; border-left:5px solid #2c5aa0; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .red-box { background:#fdecea; border-left:5px solid #c0392b; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .green-box { background:#e8f5e9; border-left:5px solid #2e7d32; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .amber-box { background:#fff8e1; border-left:5px solid #f57c00; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .reg-value { font-weight:700; color:#b71c1c; background:#fdecea; padding:1px 4px; border-radius:3px; font-family:"Courier New",monospace; }
+  table { border-collapse:collapse; width:100%; margin:15px 0; page-break-inside:avoid; }
+  th { background:#1a237e; color:#fff; padding:10px 12px; text-align:left; font-size:0.95em; }
+  td { padding:9px 12px; border:1px solid #c5cae9; vertical-align:top; }
+  tr:nth-child(even) td { background:#f5f7ff; }
+  figure { text-align:center; margin:18px 0; page-break-inside:avoid; }
+  figure img { max-width:100%; border:1px solid #ddd; border-radius:4px; }
+  figcaption { font-style:italic; color:#555; font-size:0.9em; margin-top:6px; }
+  pre.mermaid { page-break-inside:avoid; background:transparent; border:none; }
+  .formula-box { background:#f3f3f3; border:1px solid #bbb; border-radius:6px; padding:14px 18px; font-family:"Courier New",monospace; font-size:13px; margin:14px 0; page-break-inside:avoid; white-space:pre-wrap; }
+  #qa-section { page-break-before:always; }
+  .qa-block { border:2px solid #2c5aa0; border-radius:8px; padding:20px; margin:25px 0; page-break-inside:avoid; background:#fff; }
+  .qa-question { background:#e8f1fb; padding:15px; border-radius:6px; margin-bottom:15px; }
+  .q-number { font-weight:900; color:#2c5aa0; font-size:1.1em; margin-right:8px; }
+  .q-options { margin-top:12px; padding-left:25px; }
+  .q-options li { padding:4px 0; }
+  .answer-reveal { background:#e8f5e9; border-left:5px solid #2e7d32; padding:12px 15px; margin:10px 0; border-radius:4px; font-size:1.05em; }
+  .answer-explanation { background:#f5f5f5; padding:12px 15px; margin:10px 0; border-radius:4px; line-height:1.7; }
+  .distractor-analysis { background:#fdecea; border-left:5px solid #c0392b; padding:12px 15px; margin:10px 0; border-radius:4px; }
+  .distractor-analysis ul { margin-top:8px; padding-left:20px; }
+  .instructor-note { background:#fff8e1; border-left:5px solid #f57c00; padding:12px 15px; margin:10px 0; border-radius:4px; font-style:italic; }
+  .ref-table td:first-child { font-weight:700; font-family:"Courier New",monospace; background:#e8f1fb; }
+  .watermark { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:80px; font-weight:900; color:rgba(0,0,0,0.12); z-index:9999; pointer-events:none; white-space:nowrap; font-family:Arial,sans-serif; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="subject">DGCA CPL/ATPL Study Notes &nbsp;·&nbsp; Instrumentation</div>
+  <h1>Chapter 11<br>Gyroscopes</h1>
+  <div class="compiler">Compiled by Capt. Pankaj Pahil</div>
+</div>
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Gyroscopes – Introduction and Basic Properties</a></li>
+    <li><a href="#sec-2">Rigidity</a></li>
+    <li><a href="#sec-3">Gimbals and Degrees of Freedom</a></li>
+    <li><a href="#sec-4">Precession</a></li>
+    <li><a href="#sec-5">Relationship Between Precession and Rigidity</a></li>
+    <li><a href="#sec-6">Wander – Drift and Topple</a></li>
+    <li><a href="#sec-7">Real and Apparent Wander</a></li>
+    <li><a href="#sec-8">Earth Rate</a></li>
+    <li><a href="#sec-9">Transport Wander</a></li>
+    <li><a href="#sec-10">Types of Gyro – by Function</a></li>
+    <li><a href="#sec-11">Types of Gyro – by Construction</a></li>
+    <li><a href="#sec-12">Suction vs. Electric Power</a></li>
+    <li><a href="#sec-13">Gimbal Lock</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#ref-tables">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Gyroscopes – Introduction and Basic Properties</h2>
+<div class="blue-box"><strong>What this section covers:</strong> What a gyroscope is, its two fundamental properties, and why it matters for aviation instruments.</div>
+<p>The simplest gyroscope (gyro) is a <strong>rapidly spinning disc (rotor)</strong>. Any rapidly spinning symmetrical rotor exhibits gyroscopic properties — including the earth, spinning tops, and bicycle wheels.</p>
+<div class="green-box"><strong>Typical aircraft gyro rotor sizes:</strong> <span class="reg-value">2 to 5 cm</span> diameter, spinning at <span class="reg-value">4,000 to 55,000 rpm</span> depending on design.</div>
+<p>The shaft about which the rotor spins is the <strong>axis</strong>. Gyros are defined as <strong>horizontal or vertical</strong> by reference to the <strong>spin axis</strong> (not the rotor face).</p>
+<div class="blue-box"><strong>Two basic gyroscopic properties:</strong>
+  <ol>
+    <li><strong>Rigidity</strong> — the tendency to maintain the spin axis direction in space</li>
+    <li><strong>Precession</strong> — the response to an applied force, at 90° in the direction of rotation</li>
+  </ol>
+</div>
+
+<figure>
+  <img src="figs/fig_p137_0.png" alt="Gyro rotor, axis, spin axis, and orientation definitions">
+  <figcaption>Fig. 11.1 – Gyro parts and orientation (horizontal vs vertical defined by spin axis) — source p.137</figcaption>
+</figure>
+
+<h2 id="sec-2">2. Rigidity</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Definition, cause, and factors affecting rigidity.</div>
+<div class="blue-box"><strong>Rigidity</strong> (also called gyroscopic inertia): The gyro's property of maintaining its spin axis in a fixed direction in space unless subjected to an external force. Caused by the <strong>inertia of the spinning mass</strong>, subject to Newton's Laws of Motion.</div>
+<p>The words "fixed direction in space" are critical — the gyro points to a fixed point in the universe (e.g. a distant star), irrespective of earth rotation or aircraft motion. Over short periods this distinction from "fixed in earth terms" may not matter, but it becomes critical for long-duration precision gyros (e.g. INS).</p>
+<div class="formula-box">Rigidity increases with:
+1. Increased MASS of the rotor
+2. Increased effective RADIUS at which mass operates (moment of inertia)
+3. Increased ROTOR RPM
+
+Note: mass concentrated at the RIM gives maximum moment of inertia for minimum total mass
+      (like a bicycle wheel with spokes)</div>
+
+<h2 id="sec-3">3. Gimbals and Degrees of Freedom</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How gimbals allow the aircraft to manoeuvre without disturbing the gyro.</div>
+<p>For a gyro to maintain its direction while attached to a manoeuvring aircraft, it needs suspension devices that allow the aircraft to move around it — these are called <strong>gimbals</strong>.</p>
+
+<h3>3.1 One Gimbal (One Degree of Freedom)</h3>
+<p>One gimbal allows the aircraft to bank without disturbing the gyro's spin axis. However, yawing would force the gyro out of its original orientation.</p>
+<figure>
+  <img src="figs/fig_p137_1.png" alt="One gimbal one degree of freedom diagram">
+  <figcaption>Fig. 11.2 – One gimbal: aircraft can bank but not yaw without disturbing gyro — source p.137</figcaption>
+</figure>
+
+<h3>3.2 Two Gimbals (Two Degrees of Freedom)</h3>
+<p>Two gimbals allow the aircraft to pitch, bank, AND yaw without disturbing the gyro.</p>
+<figure>
+  <img src="figs/fig_p138_0.png" alt="Two gimbals two degrees of freedom diagram">
+  <figcaption>Fig. 11.3 – Two gimbals: aircraft free in all three axes of rotation — source p.138</figcaption>
+</figure>
+
+<div class="amber-box"><strong>EASA Convention on Degrees of Freedom:</strong> EASA does not count the spin axis as a degree of freedom, because no measurement can be made in that direction. Therefore a 2-gimbal system = 2 degrees of freedom (EASA convention).</div>
+
+<figure>
+  <img src="figs/fig_p138_1.png" alt="Two gimbals and a frame diagram showing inner outer gimbal and frame">
+  <figcaption>Fig. 11.4 – Two gimbals and a frame: inner gimbal, outer gimbal, frame (attached to aircraft) — source p.138</figcaption>
+</figure>
+
+<h2 id="sec-4">4. Precession</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How a gyro responds to an applied force — the 90° rule.</div>
+<div class="red-box"><strong>Precession Rule:</strong> A torque applied to a spinning gyro is precessed through <strong>90° in the direction of rotation</strong> of the rotor. The gyro moves as if the force had been applied at that 90° advanced position.</div>
+
+<p>Example: If the gyro rotates clockwise (viewed from above) and an upward force is applied at the 12 o'clock position of the spin axis, the effective precession acts at the 3 o'clock position — the rotor moves into the page about the vertical axis.</p>
+
+<figure>
+  <img src="figs/fig_p139_0.png" alt="Torque precessed 90 degrees in direction of rotation">
+  <figcaption>Fig. 11.5 – Torque precessed through 90° in direction of rotation — source p.139</figcaption>
+</figure>
+
+<h3>4.1 Precession in a Gimballed Gyro</h3>
+<p>When a small mass M is applied on the inner gimbal (producing a torque about the YY axis):</p>
+<ol>
+  <li>The gyro axis tilts through a small angle φ initially.</li>
+  <li>The torque is then precessed 90° — the spin axis starts rotating at constant velocity about the ZZ axis.</li>
+  <li>If the torque is withdrawn, precession ceases immediately.</li>
+  <li>While the torque continues, precession continues at constant velocity.</li>
+</ol>
+
+<figure>
+  <img src="figs/fig_p139_1.png" alt="Gyroscopic precession in gimballed gyro with mass M">
+  <figcaption>Fig. 11.6 – Gyroscopic precession: mass M on inner gimbal causes rotation about ZZ axis — source p.139</figcaption>
+</figure>
+
+<h2 id="sec-5">5. Relationship Between Precession and Rigidity</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The inverse relationship — high rigidity means low precession rate, and vice versa.</div>
+<div class="formula-box">Rate of Precession ∝ Applied Torque / (Moment of Inertia × Rotor RPM)
+
+Precession rate is:
+  - DIRECTLY proportional to applied torque
+  - INVERSELY proportional to moment of inertia
+  - INVERSELY proportional to rotor RPM</div>
+
+<div class="green-box"><strong>The key relationship:</strong> Precession and rigidity are opposite characteristics. A highly rigid gyro precesses very slowly (small precession for a given torque). A weakly rigid gyro precesses rapidly. High rigidity = low precession; low rigidity = high precession.</div>
+
+<h2 id="sec-6">6. Wander – Drift and Topple</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The classification of any departure of the gyro axis from its original orientation.</div>
+<p>Any departure of a gyro axis from its original orientation is called <strong>wander</strong>. Wander may be real or apparent, or a combination of both.</p>
+<table>
+  <tr><th>Type of Wander</th><th>Plane</th><th>Axis Type</th></tr>
+  <tr><td><strong>Drift</strong></td><td>Horizontal plane</td><td>Horizontal axis gyros can drift</td></tr>
+  <tr><td><strong>Topple</strong></td><td>Vertical plane</td><td>Both horizontal and vertical axis gyros can topple</td></tr>
+</table>
+<div class="red-box"><strong>Important:</strong> Vertical axis gyros can ONLY TOPPLE (forwards, backwards, or sideways) — they CANNOT drift.</div>
+
+<figure>
+  <img src="figs/fig_p141_0.png" alt="Horizontal wander of gyro axis - drift">
+  <figcaption>Fig. 11.7 – Horizontal wander of gyro axis = drift — source p.141</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p141_1.png" alt="Vertical wander of gyro axis - topple">
+  <figcaption>Fig. 11.8 – Vertical wander of gyro axis = topple — source p.141</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p141_2.png" alt="Vertical axis gyro - topple only, no drift">
+  <figcaption>Fig. 11.9 – Vertical axis gyro: can topple in any direction, but cannot drift — source p.141</figcaption>
+</figure>
+
+<h2 id="sec-7">7. Real and Apparent Wander</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The two fundamental types of wander and their causes.</div>
+
+<h3>7.1 Real Wander</h3>
+<p>The gyro axis moves with respect to <strong>inertial space</strong>. Caused by <strong>manufacturing imperfections</strong>: uneven rotor bearing friction, gimbal friction, imbalance of rotor mass, unbalanced gimbals. Also called <strong>random wander</strong>. Can be reduced by higher quality engineering, but at cost.</p>
+
+<h3>7.2 Apparent Wander</h3>
+<p>The gyro remains fixed in inertial space, but the <strong>observer's frame of reference changes</strong>. Two types:</p>
+<ol>
+  <li><strong>Earth Rate</strong> — caused by the rotation of the earth</li>
+  <li><strong>Transport Wander</strong> — caused by flight east or west at latitudes other than the equator</li>
+</ol>
+
+<h2 id="sec-8">8. Earth Rate</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How earth's rotation causes apparent gyro drift — the formula and hemisphere sign convention.</div>
+
+<div class="formula-box">Earth Rate = 15 × sin(latitude) °/hour
+
+Where:
+  - Earth rotates 360° in 24 hours = 15°/hour
+  - At equator (lat 0°): sin 0° = 0 → Earth Rate = 0
+  - At poles (lat 90°): sin 90° = 1 → Earth Rate = 15°/hour
+  - At 60° lat: Earth Rate = 15 × sin 60° = 15 × 0.866 = 13°/hour</div>
+
+<figure>
+  <img src="figs/fig_p142_0.png" alt="Earth rate at equator - no horizontal component">
+  <figcaption>Fig. 11.10 – At the equator: gyro axis stays aligned with local meridian as earth rotates — source p.142</figcaption>
+</figure>
+
+<figure>
+  <img src="figs/fig_p143_0.png" alt="Earth rate at pole - full 15 per hour">
+  <figcaption>Fig. 11.11 – At a pole: full earth rate of 15°/hour — gyro heading appears to decrease in NH — source p.143</figcaption>
+</figure>
+
+<div class="green-box"><strong>Earth Rate Sign Convention:</strong>
+  <ul>
+    <li><strong>Northern Hemisphere:</strong> Earth rotates anticlockwise when viewed from above N pole → gyro heading appears to <strong>decrease</strong> → <strong>Negative earth rate</strong> = −15 × sin(lat) °/hour</li>
+    <li><strong>Southern Hemisphere:</strong> Earth rotates clockwise when viewed from above S pole → gyro heading appears to <strong>increase</strong> → <strong>Positive earth rate</strong> = +15 × sin(lat) °/hour</li>
+  </ul>
+</div>
+
+<figure>
+  <img src="figs/fig_p143_1.png" alt="Earth rate at south pole showing positive drift">
+  <figcaption>Fig. 11.12 – Earth rate at South Pole: clockwise rotation → gyro heading increases (positive) — source p.143</figcaption>
+</figure>
+
+<h2 id="sec-9">9. Transport Wander</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How flight east or west causes apparent gyro drift due to meridian convergence.</div>
+<p>When an aircraft flies east or west, it moves from one meridian to another. The gyro remains fixed in space (aligned with the original meridian), but the local meridian direction (true north) changes as the aircraft's longitude changes. The difference between the gyro's orientation and local true north is <strong>transport wander</strong>.</p>
+<p>Transport wander is equivalent to the difference in meridian alignment between the departure and arrival points — in effect, the convergence of meridians.</p>
+
+<figure>
+  <img src="figs/fig_p144_0.png" alt="Transport wander diagram Los Angeles to London">
+  <figcaption>Fig. 11.13 – Transport wander: gyro stays aligned with Los Angeles meridian but London's true north is different — source p.144</figcaption>
+</figure>
+
+<div class="amber-box"><strong>Key Point:</strong> Earth rate and transport wander occur simultaneously. For simplicity they are explained separately. Their combined effect is corrected by gyro-slaving or periodic alignment in navigation systems.</div>
+
+<h2 id="sec-10">10. Types of Gyro – by Function</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Displacement vs rate gyros, and space vs tied gyros.</div>
+
+<table>
+  <tr><th>Type</th><th>Measures</th><th>Gimbals</th><th>Degrees of Freedom</th><th>Examples</th></tr>
+  <tr><td><strong>Displacement Gyro</strong></td><td>Angles (e.g. 10° pitch, 5° bank, 30° heading change)</td><td>2</td><td>2</td><td>DGI, Artificial Horizon</td></tr>
+  <tr><td><strong>Rate Gyro</strong></td><td>Angular rate (e.g. 3°/second)</td><td>1</td><td>1</td><td>Turn Rate Indicator, Yaw Dampers</td></tr>
+</table>
+
+<h3>10.1 Space Gyros vs. Tied Gyros</h3>
+<table>
+  <tr><th>Type</th><th>Reference</th><th>Wander</th><th>Use</th></tr>
+  <tr><td><strong>Space Gyro</strong></td><td>Fixed point in space (distant star)</td><td>Free to wander — nothing corrects it back; must have negligible real wander</td><td>INS (very expensive, very accurate)</td></tr>
+  <tr><td><strong>Tied Gyro</strong></td><td>External reference (magnetic north, gravity)</td><td>Corrected back to datum by external force</td><td>DGI (slaved to magnetic north), Artificial Horizon (slaved to gravity)</td></tr>
+</table>
+<div class="blue-box"><strong>Earth Gyro:</strong> A subset of tied gyros — maintained vertical or horizontal with respect to local gravity. The Artificial Horizon is an earth gyro. All earth gyros are tied gyros, but not all tied gyros are earth gyros.</div>
+
+<h2 id="sec-11">11. Types of Gyro – by Construction</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The three main construction types of gyroscopes used in aircraft.</div>
+
+<table>
+  <tr><th>Type</th><th>Principle</th><th>In Service Since</th><th>Uses</th></tr>
+  <tr><td><strong>Tuned Rotor</strong></td><td>Traditional spinning disc</td><td>Always</td><td>Elementary/intermediate training aircraft; basic DGI, AH, Turn Meter</td></tr>
+  <tr><td><strong>Ring Laser Gyro (RLG)</strong></td><td>Compares 2 light paths around a glass prism</td><td>1980s</td><td>Nearly all modern airliners</td></tr>
+  <tr><td><strong>Fibre Optic Gyro (FOG)</strong></td><td>Extension of RLG principle using optical fibre</td><td>Recently</td><td>Airbus A380 (first commercial aircraft)</td></tr>
+</table>
+<div class="green-box"><strong>RLG Advantages over tuned rotor:</strong> Greater reliability and accuracy, but more expensive.</div>
+
+<h2 id="sec-12">12. Suction vs. Electric Power</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The two power sources for tuned rotor gyros and their respective advantages and limitations.</div>
+
+<h3>12.1 Suction (Air-Driven) Gyros</h3>
+<p>An engine-driven vacuum pump (or venturi) reduces pressure in the instrument case → filtered air sucked in → air jet directed onto rotor buckets (like a water wheel).</p>
+<div class="green-box"><strong>Advantages:</strong> Independent of electric power — not affected by electrical failure.</div>
+<div class="red-box"><strong>Limitations:</strong>
+  <ul>
+    <li>Moisture, dust, oil, grit in airflow can block the filter → variable rotor RPM</li>
+    <li>At high altitude, engine manifold pressure may be insufficient to maintain rotor speed</li>
+    <li>Impurities that pass through the filter reduce bearing life and unbalance gimbals</li>
+  </ul>
+</div>
+
+<h3>12.2 Electric Gyros</h3>
+<p>Rotor is part of an electric motor — spun electrically.</p>
+<div class="red-box"><strong>Disadvantages:</strong> Generally more expensive and heavier; require power supplies.</div>
+<div class="green-box"><strong>Advantages:</strong>
+  <ul>
+    <li>Faster achievement and more accurate maintenance of rotor RPM</li>
+    <li>Higher RPM achievable → greater moment of inertia → greater rigidity</li>
+    <li>RPM can be more rapidly achieved and more accurately maintained</li>
+  </ul>
+</div>
+
+<h3>12.3 Typical Aircraft Gyro Power Arrangement</h3>
+<div class="amber-box"><strong>Typical arrangement on non-electronic training aircraft:</strong>
+  <ul>
+    <li><strong>Main gyro instruments</strong> (DGI, AH): usually <strong>electric</strong> (for greater accuracy)</li>
+    <li><strong>Standby instruments</strong>: often <strong>air driven (suction)</strong> (available after electrical failure)</li>
+  </ul>
+</div>
+<p>Both types can suffer power-source failure:</p>
+<ul>
+  <li><strong>Electric:</strong> A flag indicator alerts the pilot to select standby power.</li>
+  <li><strong>Suction:</strong> An air pressure (suction) gauge indicates vacuum pump failure. Some have a manually selected alternate power source.</li>
+</ul>
+
+<h2 id="sec-13">13. Gimbal Lock</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The phenomenon of gimbal lock and how it is avoided in complex aircraft.</div>
+<p><strong>Gimbal lock</strong> occurs if an aircraft banks to <span class="reg-value">90°</span>: the inner and outer gimbals take up the same orientation. One degree of freedom is lost. If the pilot then applies pitch input, the gyro is forced out of orientation → violent precession, usually described as <strong>toppling</strong>.</p>
+<figure>
+  <img src="figs/fig_p146_0.png" alt="Gimbal lock diagram">
+  <figcaption>Fig. 11.14 – Gimbal lock: inner and outer gimbals co-planar at 90° bank — source p.146</figcaption>
+</figure>
+<div class="red-box"><strong>Gimbal Lock Consequence:</strong> Temporary loss of gyro use until re-erected. Serious limitation for aerobatic aircraft.</div>
+<div class="green-box"><strong>Solutions to Gimbal Lock:</strong>
+  <ul>
+    <li><strong>Fourth gimbal</strong> — adds the extra degree of freedom that prevents lock.</li>
+    <li><strong>Gimbal flip mechanism</strong> — a torque motor that rapidly flips the outer gimbal by 180° when lock is approaching, restoring freedom.</li>
+  </ul>
+</div>
+
+<p>The chapter concludes by noting that the magnetic compass's susceptibility to turning and acceleration errors could be overcome using a gyroscope as a direction/attitude datum — providing a datum with <em>rigidity in space</em> and immunity to aircraft manoeuvre effects. This leads to the gyro instruments covered in subsequent chapters.</p>
+
+<div class="green-box"><strong>Gyroscope Applications in Aircraft:</strong>
+  <ul>
+    <li>Simple aircraft: DGI, Artificial Horizon, Turn and Slip Indicator / Turn Co-ordinator</li>
+    <li>Complex aircraft: Gyro-magnetic compasses, INS/IRS, Yaw dampers, Autopilots, Radar scanner stabilisation</li>
+  </ul>
+</div>
+
+<div class="amber-box"><strong>Quick Revision – Chapter 11:</strong>
+  <ul>
+    <li>Gyro = spinning disc (rotor). Properties: Rigidity + Precession.</li>
+    <li>Rigidity ↑ with: mass↑, radius↑ (moment of inertia↑), RPM↑. Mass at rim → max MI for min mass.</li>
+    <li>Precession: force precessed 90° in direction of spin. Rate ∝ torque / (MI × RPM).</li>
+    <li>Rigidity and precession are inversely related — more of one = less of the other.</li>
+    <li>Wander: drift (horizontal plane) or topple (vertical plane). Vertical axis gyros: topple only, no drift.</li>
+    <li>Real wander: caused by manufacturing imperfections. Apparent wander: earth rate + transport wander.</li>
+    <li>Earth Rate = 15 × sin(lat) °/hour. NH: negative (heading appears to decrease). SH: positive.</li>
+    <li>Transport wander: change in meridian alignment during east/west flight.</li>
+    <li>Displacement gyro: 2 gimbals, 2 DoF (DGI, AH). Rate gyro: 1 gimbal, 1 DoF (turn indicator).</li>
+    <li>Space gyro: fixed in space, free to wander (INS). Tied gyro: corrected to external reference (DGI, AH).</li>
+    <li>Construction: Tuned rotor, RLG (1980s, airliners), FOG (A380 first).</li>
+    <li>Electric: expensive, heavy, but faster/more accurate RPM. Suction: independent of electrics, but vulnerable to contamination.</li>
+    <li>Main gyros: electric. Standby: suction (survives electrical failure).</li>
+    <li>Gimbal lock at 90° bank → toppling. Solutions: 4th gimbal or gimbal flip mechanism.</li>
+    <li>Gyro rotor: 2–5 cm diameter, 4,000–55,000 rpm.</li>
+  </ul>
+</div>
+
+<div id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box">Questions 1–9 reproduced verbatim from Oxford Instrumentation Chapter 11. Answer key from source.</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q1.</span><span class="q-text">Rigidity of a gyroscope depends on:</span>
+    <ol class="q-options" type="a"><li>weight, force applied and speed of rotation</li><li>rate of precession and the force applied</li><li>weight, rate of precession and speed of rotation</li><li>mass, radius of gyration and speed of rotation</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> mass, radius of gyration and speed of rotation</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Rigidity depends on Moment of Inertia (= f(mass, radius²)) and RPM. Radius of gyration is the effective radius at which the mass operates — together with mass, it defines moment of inertia. The three factors are mass, radius of gyration (effective radius), and speed of rotation (RPM). See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> "Force applied" is not a determinant of rigidity — it is a determinant of precession rate. Rigidity is a property of the gyro itself, independent of any applied force.</li><li><strong>(b)</strong> Rate of precession and force applied relate to the precession equation, not rigidity.</li><li><strong>(c)</strong> Rate of precession does not determine rigidity — it is inversely proportional to rigidity.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Rigidity = f(Mass, Radius, RPM). "Weight" ≈ mass but in a technical context, weight is force (mass × g) — mass is the correct term. Always use "mass" not "weight" in these questions.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q2.</span><span class="q-text">A force is applied to deflect a gyroscope. If the rpm of the gyro is then doubled, the precession rate will:</span>
+    <ol class="q-options" type="a"><li>remain as before</li><li>increase</li><li>decrease</li><li>cease altogether</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> decrease</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Precession rate ∝ Torque / (MI × RPM). If RPM doubles (with the same applied torque and same moment of inertia), the denominator doubles → precession rate halves → decreases. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> The precession rate does change — it is inversely proportional to RPM.</li><li><strong>(b)</strong> Increasing RPM increases rigidity and therefore decreases precession — not the other way round.</li><li><strong>(d)</strong> Precession would only cease if RPM became infinite, or if the applied torque were removed.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Higher RPM = more rigid = harder to precess = lower precession rate for same torque. This is the fundamental trade-off in gyro design.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q3.</span><span class="q-text">In gyroscopic theory the term 'topple' is defined as:</span>
+    <ol class="q-options" type="a"><li>real wander only, in the horizontal plane</li><li>real wander only, in the vertical plane</li><li>wander, real or apparent, in the vertical plane</li><li>wander, real or apparent, in the horizontal plane</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> wander, real or apparent, in the vertical plane</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Topple is wander (whether real or apparent) in the vertical plane. It applies to both real wander (manufacturing imperfections) and apparent wander (earth rate, transport wander). Drift is wander in the horizontal plane. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a) &amp; (b)</strong> Restricting to "real wander only" is incorrect — topple includes apparent wander in the vertical plane.</li><li><strong>(d)</strong> Wander in the horizontal plane is drift, not topple.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Topple = vertical plane (both real and apparent). Drift = horizontal plane (both real and apparent). These definitions apply regardless of whether the wander is real or apparent.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q4.</span><span class="q-text">A force applied to the spinning axis of a rotor is precessed:</span>
+    <ol class="q-options" type="a"><li>through 90° in the direction of spin of the rotor</li><li>through 90° in the direction of spin of the rotor in the northern hemisphere and through 90° in the opposite direction in the southern hemisphere</li><li>through 270° in the direction of spin of the rotor</li><li>at a rate proportional to the speed of rotation of the gyro</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> through 90° in the direction of spin of the rotor</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Precession always acts 90° ahead (in the direction of spin) of the applied force — this is a universal rule of gyroscopic physics, independent of hemisphere. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(b)</strong> Precession direction does not change with hemisphere — it is always 90° in the direction of rotation, a physical law.</li><li><strong>(c)</strong> 270° in the direction of spin is the same as 90° in the opposite direction — this would be incorrect.</li><li><strong>(d)</strong> The precession rate is inversely proportional to RPM — not directly proportional. And this option describes rate, not direction.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> 90° in direction of spin — always. This is a physical law (angular momentum). No hemispheric variation. 270° in direction of spin = 90° against = wrong direction.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q5.</span><span class="q-text">Real wander of a gyro can be caused by:</span>
+    <ol class="q-options" type="a"><li>asymmetrical friction at the spinning axis</li><li>rotation of the earth</li><li>increasing the rpm of the rotor</li><li>moving the gyro north or south of its present position</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> asymmetrical friction at the spinning axis</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Real wander is caused by manufacturing imperfections — including uneven/asymmetrical friction at the spinning axis (rotor bearings), gimbal friction, imbalance in rotor mass, and unbalanced gimbals. These produce torques that cause the gyro axis to move with respect to inertial space. See <a href="#sec-7">Section 7.1</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(b)</strong> Earth rotation causes apparent wander (earth rate), not real wander.</li><li><strong>(c)</strong> Increasing RPM increases rigidity and does not cause wander — if anything, it reduces precession-induced drift.</li><li><strong>(d)</strong> Moving north/south changes transport wander (apparent), not real wander.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Real wander = manufacturing defects = internal causes. Apparent wander = external/geometric causes = earth rotation + transport. The distinction is always tested.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q6.</span><span class="q-text">A gyro with only one degree of freedom is known as a:</span>
+    <ol class="q-options" type="a"><li>tied gyro</li><li>earth gyro</li><li>space gyro</li><li>rate gyro</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> rate gyro</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> A rate gyro has one gimbal and one degree of freedom. It measures angular rate (°/second). Examples: turn rate indicator, yaw dampers. Displacement gyros have two gimbals and two degrees of freedom. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Tied gyro refers to how a gyro is maintained (tied to an external reference), not its number of degrees of freedom.</li><li><strong>(b)</strong> Earth gyro refers to the reference datum (local gravity/earth), not degrees of freedom.</li><li><strong>(c)</strong> Space gyro refers to the reference (inertial space), not degrees of freedom.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> 1 DoF = rate gyro (1 gimbal). 2 DoF = displacement gyro (2 gimbals). The function (measuring rate vs. angle) is directly tied to the number of degrees of freedom.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q7.</span><span class="q-text">A perfectly balanced space gyro at the equator has its spin axis aligned with true north. After 6 hours the axis will be aligned with:</span>
+    <ol class="q-options" type="a"><li>true east direction</li><li>true west direction</li><li>true north direction</li><li>true south direction</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> true north direction</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> At the equator, Earth Rate = 15 × sin(0°) = 0°/hour. The gyro experiences no earth rate drift. Furthermore, a space gyro at the equator with its axis pointing true north (east-west horizontal axis) — the earth's rotation is perpendicular to the gyro axis, so the gyro axis continues to point to the same fixed star, which happens to remain aligned with true north at the equator for this particular axis orientation (along the equatorial plane). The gyro axis stays fixed in space = true north. See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a), (b), (d)</strong> The space gyro at the equator with axis pointing north has zero horizontal earth rate drift. The gyro does not precess. The axis remains aligned with true north (to a distant star) which does not change direction as seen from the equator in this orientation.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Earth Rate = 15 × sin(lat). At equator, sin(0) = 0 → zero drift → gyro stays aligned with true north after 6 hours. This is why equatorial operation creates no earth rate problem.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q8.</span><span class="q-text">The main advantage of electric gyros are:</span>
+    <ol class="q-options" type="a"><li>light weight, high rpm, constant speed, inexpensive</li><li>high rpm, only require low voltage DC, constant speed, sealed casing</li><li>high rpm, high moment of inertia, rapid build-up of speed, constant RPM</li><li>sealed casing, constant speed, high precession rate, low cost</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> high rpm, high moment of inertia, rapid build-up of speed, constant RPM</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Electric gyros can spin faster (higher RPM), achieve this speed more rapidly, and maintain it more accurately — giving higher moment of inertia and therefore greater rigidity. These are the primary advantages over suction-driven gyros. See <a href="#sec-12">Section 12.2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Electric gyros are heavier and more expensive — not lighter or cheaper — than suction types.</li><li><strong>(b)</strong> "Low voltage DC only" is incorrect — electric gyros can use various power supplies. Also, "sealed casing" is not a defining advantage of electric over suction.</li><li><strong>(d)</strong> High precession rate would be a disadvantage (means low rigidity). Electric gyros have LOW precession rates (due to high rigidity), not high. Also, they are more expensive, not low cost.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Electric gyro advantages: fast spin-up, high RPM, consistent RPM, high rigidity. Disadvantages: heavier, more expensive, needs electrical power. Suction: immune to electrical failure, but vulnerable to contamination and altitude.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q9.</span><span class="q-text">Apparent wander of a gyro can be caused by:</span>
+    <ol class="q-options" type="a"><li>rotation of the earth</li><li>clear air turbulence</li><li>gimbal friction</li><li>external torque</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> rotation of the earth</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Apparent wander occurs because of changes in the observer's frame of reference. The two causes are earth rate (due to earth's rotation) and transport wander (due to eastward/westward flight). Rotation of the earth is directly responsible for earth rate. See <a href="#sec-7">Section 7.2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(b)</strong> Clear air turbulence may cause short-term disturbances but is not a source of systematic apparent wander.</li><li><strong>(c)</strong> Gimbal friction causes real wander (manufacturing imperfection), not apparent wander.</li><li><strong>(d)</strong> External torque causes precession and may cause real wander, but is not apparent wander — apparent wander results from the changing frame of reference, not from a force on the gyro.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Apparent wander: earth rotation (earth rate) + east/west flight (transport wander). Real wander: manufacturing defects. "Rotation of the earth" is always the correct answer for apparent wander cause.</div>
+  </div>
+</div>
+</div>
+
+<h2 id="ref-tables">Master Reference Tables</h2>
+<table class="ref-table">
+  <tr><th>Parameter</th><th>Value</th><th>Section</th></tr>
+  <tr><td>Gyro rotor diameter</td><td>2–5 cm</td><td>§1</td></tr>
+  <tr><td>Gyro rotor speed range</td><td>4,000–55,000 rpm</td><td>§1</td></tr>
+  <tr><td>Earth rotation rate</td><td>15°/hour (360°/24hr)</td><td>§8</td></tr>
+  <tr><td>Earth Rate formula</td><td>15 × sin(latitude) °/hour</td><td>§8</td></tr>
+  <tr><td>Earth rate at equator</td><td>0°/hour (sin 0° = 0)</td><td>§8</td></tr>
+  <tr><td>Earth rate at poles</td><td>15°/hour (sin 90° = 1)</td><td>§8</td></tr>
+  <tr><td>Earth rate sign NH</td><td>Negative (heading decreases)</td><td>§8</td></tr>
+  <tr><td>Earth rate sign SH</td><td>Positive (heading increases)</td><td>§8</td></tr>
+  <tr><td>Displacement gyro</td><td>2 gimbals, 2 DoF</td><td>§10</td></tr>
+  <tr><td>Rate gyro</td><td>1 gimbal, 1 DoF</td><td>§10</td></tr>
+  <tr><td>Gimbal lock angle</td><td>90° bank</td><td>§13</td></tr>
+  <tr><td>Precession direction</td><td>90° in direction of spin</td><td>§4</td></tr>
+  <tr><td>Vertical axis gyro wander</td><td>Topple only (no drift)</td><td>§6</td></tr>
+</table>
+<div class="formula-box">KEY FORMULAS:
+Earth Rate (°/hr) = 15 × sin(latitude)
+Precession Rate ∝ Torque / (Moment of Inertia × RPM)
+Moment of Inertia ∝ Mass × Radius²
+Rigidity ↑ with: Mass↑, Radius↑, RPM↑</div>
+<div class="amber-box"><strong>Mnemonics:</strong>
+  <ul>
+    <li><strong>Gyro properties:</strong> "R.P." → Rigidity and Precession (the two properties)</li>
+    <li><strong>Rigidity factors:</strong> "Mr. RPM" → Mass, Radius, RPM</li>
+    <li><strong>Precession rule:</strong> "Force at 12, action at 3" (for clockwise-spinning rotor viewed from above)</li>
+    <li><strong>Wander types:</strong> "D=Drift=Horizontal. T=Topple=Vertical" (D and H have similar shapes; T is tall like vertical!)</li>
+    <li><strong>Earth rate sign:</strong> "NH = Negative, SH = Positive" (NH is Northern, Negative)</li>
+    <li><strong>Real vs Apparent:</strong> "Real = physical defects. Apparent = earth moves around you."</li>
+    <li><strong>Gyro types by function:</strong> "RATE = 1 (one-gimbal). DISPLACEMENT = 2 (two-gimbal)."</li>
+    <li><strong>Space vs Tied:</strong> "Space gyro = free to drift (like INS). Tied gyro = leashed to a reference (DGI, AH)."</li>
+  </ul>
+</div>
+<h3>Answer Key</h3>
+<table><tr><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th><th>Q8</th><th>Q9</th></tr>
+<tr><td>d</td><td>c</td><td>c</td><td>a</td><td>a</td><td>d</td><td>c</td><td>c</td><td>a</td></tr></table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

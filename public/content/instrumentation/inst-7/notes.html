@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 7 – The Machmeter | DGCA Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:14px; line-height:1.6; color:#1a1a1a; margin:0; padding:20px; background:#fff; }
+  h1 { font-size:2em; font-weight:700; color:#1a237e; margin-bottom:4px; }
+  h2 { font-size:1.4em; font-weight:700; color:#1a237e; border-bottom:2px solid #1a237e; padding-bottom:4px; margin-top:32px; page-break-after:avoid; }
+  h3 { font-size:1.15em; font-weight:700; color:#283593; margin-top:20px; page-break-after:avoid; }
+  .cover { text-align:center; padding:40px 20px 30px; border-bottom:3px solid #1a237e; margin-bottom:30px; }
+  .cover .subject { font-size:1em; color:#555; letter-spacing:2px; text-transform:uppercase; }
+  .cover .compiler { font-size:0.95em; color:#555; margin-top:8px; }
+  .toc { background:#f5f7ff; border:1px solid #c5cae9; border-radius:8px; padding:20px 30px; margin:20px 0 30px; page-break-after:always; }
+  .toc h2 { border:none; margin-top:0; }
+  .toc ol { margin:0; padding-left:20px; }
+  .toc li { padding:3px 0; }
+  .toc a { color:#1a237e; text-decoration:none; }
+  .blue-box { background:#e8f1fb; border-left:5px solid #2c5aa0; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .red-box { background:#fdecea; border-left:5px solid #c0392b; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .green-box { background:#e8f5e9; border-left:5px solid #2e7d32; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .amber-box { background:#fff8e1; border-left:5px solid #f57c00; padding:15px; border-radius:6px; margin:15px 0; page-break-inside:avoid; }
+  .reg-value { font-weight:700; color:#b71c1c; background:#fdecea; padding:1px 4px; border-radius:3px; font-family:"Courier New",monospace; }
+  table { border-collapse:collapse; width:100%; margin:15px 0; page-break-inside:avoid; }
+  th { background:#1a237e; color:#fff; padding:10px 12px; text-align:left; font-size:0.95em; }
+  td { padding:9px 12px; border:1px solid #c5cae9; vertical-align:top; }
+  tr:nth-child(even) td { background:#f5f7ff; }
+  figure { text-align:center; margin:18px 0; page-break-inside:avoid; }
+  figure img { max-width:100%; border:1px solid #ddd; border-radius:4px; }
+  figcaption { font-style:italic; color:#555; font-size:0.9em; margin-top:6px; }
+  pre.mermaid { page-break-inside:avoid; background:transparent; border:none; }
+  .formula-box { background:#f3f3f3; border:1px solid #bbb; border-radius:6px; padding:14px 18px; font-family:"Courier New",monospace; font-size:13px; margin:14px 0; page-break-inside:avoid; white-space:pre-wrap; }
+  .worked-example { background:#f0f4ff; border:1px solid #7986cb; border-radius:6px; padding:14px 18px; margin:14px 0; page-break-inside:avoid; }
+  .worked-example .we-title { font-weight:700; color:#283593; margin-bottom:8px; }
+  #qa-section { page-break-before:always; }
+  .qa-block { border:2px solid #2c5aa0; border-radius:8px; padding:20px; margin:25px 0; page-break-inside:avoid; background:#fff; }
+  .qa-question { background:#e8f1fb; padding:15px; border-radius:6px; margin-bottom:15px; }
+  .q-number { font-weight:900; color:#2c5aa0; font-size:1.1em; margin-right:8px; }
+  .q-options { margin-top:12px; padding-left:25px; }
+  .q-options li { padding:4px 0; }
+  .answer-reveal { background:#e8f5e9; border-left:5px solid #2e7d32; padding:12px 15px; margin:10px 0; border-radius:4px; font-size:1.05em; }
+  .answer-explanation { background:#f5f5f5; padding:12px 15px; margin:10px 0; border-radius:4px; line-height:1.7; }
+  .distractor-analysis { background:#fdecea; border-left:5px solid #c0392b; padding:12px 15px; margin:10px 0; border-radius:4px; }
+  .distractor-analysis ul { margin-top:8px; padding-left:20px; }
+  .instructor-note { background:#fff8e1; border-left:5px solid #f57c00; padding:12px 15px; margin:10px 0; border-radius:4px; font-style:italic; }
+  .ref-table td:first-child { font-weight:700; font-family:"Courier New",monospace; background:#e8f1fb; }
+  .watermark { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:80px; font-weight:900; color:rgba(0,0,0,0.12); z-index:9999; pointer-events:none; white-space:nowrap; font-family:Arial,sans-serif; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="subject">DGCA CPL/ATPL Study Notes &nbsp;·&nbsp; Instrumentation</div>
+  <h1>Chapter 7<br>The Machmeter</h1>
+  <div class="compiler">Compiled by Capt. Pankaj Pahil</div>
+</div>
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">High Speed Flight – Why Mach Number Matters</a></li>
+    <li><a href="#sec-2">Speed of Sound</a></li>
+    <li><a href="#sec-3">Machmeter Principle of Operation</a></li>
+    <li><a href="#sec-4">Machmeter Construction</a></li>
+    <li><a href="#sec-5">Machmeter Errors</a></li>
+    <li><a href="#sec-6">Blockages</a></li>
+    <li><a href="#sec-7">Abbreviations</a></li>
+    <li><a href="#sec-8">Climb at Constant CAS – Standard Atmosphere</a></li>
+    <li><a href="#sec-9">Descent at Constant Mach Number – Standard Conditions</a></li>
+    <li><a href="#sec-10">Climb/Descent through Isothermal Layer and Inversion</a></li>
+    <li><a href="#sec-11">Climb/Descent Summary</a></li>
+    <li><a href="#sec-12">Worked Example Problems</a></li>
+    <li><a href="#sec-13">Mach/Airspeed Indicator</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#ref-tables">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. High Speed Flight – Why Mach Number Matters</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The dangers of high-speed flight and the need for a Machmeter.</div>
+<p>As an aircraft approaches the <strong>local speed of sound</strong>, airflow over parts of the fuselage or wings may be accelerated to, or beyond, the speed of sound, forming <strong>shock waves</strong>. Consequences include:</p>
+<ul>
+  <li>Increased drag</li>
+  <li>Reduced lift</li>
+  <li><strong>Mach tuck</strong> — a sudden, severe downward-pitching trim change</li>
+  <li>Buffeting</li>
+  <li>Reduction in, or loss of, control effectiveness</li>
+</ul>
+<p>A <strong>limiting Mach number (M<sub>MO</sub>)</strong> is specified for each aircraft based on flight trials. This must not be exceeded. The Machmeter displays the current Mach number so the pilot can remain below M<sub>MO</sub>.</p>
+<div class="red-box"><strong>M<sub>MO</sub> — Never Exceed Mach Number:</strong> Determined by flight trials. Exceeding it risks Mach tuck, buffet, and loss of control. The Machmeter provides the primary speed reference at altitude.</div>
+
+<h2 id="sec-2">2. Speed of Sound</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The formula for Local Speed of Sound (LSS) and how it varies with temperature and altitude.</div>
+<p>The speed of sound is <strong>not constant</strong> — it varies with <strong>air temperature</strong> only, not pressure or density directly.</p>
+<div class="formula-box">LSS = 38.95 × √T
+
+Where:
+  LSS = Local Speed of Sound (knots)
+  38.95 = constant
+  T = Absolute temperature (Kelvin)
+  (0°C = 273K; T(K) = T(°C) + 273)</div>
+
+<div class="worked-example">
+  <div class="we-title">Key Values — memorise:</div>
+  ISA MSL (+15°C = 288K): LSS = 38.95 × √288 = <strong>661 knots</strong><br>
+  FL300 (−45°C = 228K):   LSS = 38.95 × √228 = <strong>589 knots</strong><br>
+  Tropopause and above (−56.5°C = 216.5K): LSS = 38.95 × √216.5 ≈ <strong>573 knots</strong>
+</div>
+
+<div class="amber-box"><strong>Key Rule:</strong> Higher temperature → higher LSS. Temperature normally falls with altitude → LSS normally falls with altitude. Above the tropopause (ISA) temperature is constant → LSS is constant at ~573 kt.</div>
+
+<pre class="mermaid">
+graph LR
+    A["Temperature Increases"] --> B["LSS Increases"]
+    C["Altitude Increases (below tropopause)"] --> D["Temperature Decreases"] --> E["LSS Decreases"]
+    F["Above Tropopause (ISA)"] --> G["Temperature Constant −56.5°C"] --> H["LSS Constant ~573 kt"]
+</pre>
+
+<h2 id="sec-3">3. Machmeter Principle of Operation</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the Machmeter derives Mach number from pitot and static pressures.</div>
+<div class="formula-box">Mach Number (MN) = TAS / LSS
+
+Since MN ∝ √(Dynamic Pressure / Static Pressure)
+         = √((Pitot Pressure − Static Pressure) / Static Pressure)
+
+Density (ρ) cancels → MN is proportional to √(Dp / Ps)
+where Dp = dynamic pressure, Ps = static pressure</div>
+
+<p>The Machmeter uses <strong>two capsules</strong>:</p>
+<ol>
+  <li><strong>Airspeed Capsule</strong> — expands/contracts with dynamic pressure (pitot − static). Senses TAS component.</li>
+  <li><strong>Altitude (Aneroid) Capsule</strong> — expands/contracts with changes in static pressure in the instrument case. Compensates for the effect of altitude on the speed of sound.</li>
+</ol>
+<p>Their combined mechanical output via the <strong>ratio arm</strong> and <strong>ranging arm</strong> drives the pointer to display Mach number directly.</p>
+
+<figure>
+  <img src="figs/fig_p84_0.png" alt="Machmeter internal construction diagram">
+  <figcaption>Fig. 7.1 – The Machmeter: airspeed capsule, altitude capsule, ratio arm, and ranging arm — source p.84</figcaption>
+</figure>
+
+<h2 id="sec-4">4. Machmeter Construction</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the two capsules interact to produce a Mach number reading.</div>
+<ul>
+  <li><strong>Static pressure</strong> enters the instrument case (acts on the altitude capsule).</li>
+  <li><strong>Pitot pressure</strong> is fed directly into the airspeed capsule.</li>
+  <li>Expansion of the airspeed capsule is transmitted via the <strong>airspeed link and main shaft</strong> to the ratio arm.</li>
+  <li>The altitude capsule also governs the position of the ratio arm.</li>
+  <li>The <strong>spring-loaded ranging arm</strong> transmits ratio arm movement to the pointer.</li>
+</ul>
+<div class="green-box"><strong>Rule:</strong> If either or both capsules <em>expand</em> (IAS increases and/or altitude increases), the ranging arm rotates and indicated Mach number <strong>increases</strong>. Reverse for a decrease.</div>
+<p>An <strong>adjustable Mach limit index</strong> can be set via a small knob to the aircraft's M<sub>MO</sub>, providing a visual speed warning.</p>
+
+<h2 id="sec-5">5. Machmeter Errors</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Which errors affect the Machmeter and which do not — a frequent exam focus.</div>
+
+<div class="green-box"><strong>Errors the Machmeter DOES suffer:</strong>
+  <ul>
+    <li><strong>Instrument Error</strong> — manufacturing imperfections</li>
+    <li><strong>Position Error</strong> — disturbed airflow at pitot/static sources; can change sign at high Mach numbers</li>
+    <li><strong>Manoeuvre-Induced Error</strong> — unpredictable changes in static source airflow during manoeuvres</li>
+  </ul>
+</div>
+<div class="red-box"><strong>Errors the Machmeter does NOT suffer:</strong>
+  <ul>
+    <li><strong>Temperature Error</strong> — cancels out (density appears in both numerator and denominator)</li>
+    <li><strong>Density Error</strong> — same reason, density cancels</li>
+    <li><strong>Compressibility Error</strong> — the Machmeter is calibrated to the dynamic/static pressure ratio, so compressibility is inherently calibrated out</li>
+  </ul>
+</div>
+
+<h3>5.1 Position Error at High Mach Numbers</h3>
+<p>At higher Mach numbers, changes in airflow can cause position error to increase in magnitude and even <strong>change sign</strong>. If position error causes the Machmeter to under-read, this could become dangerous. The normal arrangement in modern jet transport aircraft is to bias instrument and position error so the Machmeter <strong>always over-reads</strong> — providing a safety margin.</p>
+
+<div class="amber-box"><strong>Exam Tip:</strong> The Machmeter is NOT affected by temperature or density errors. Only three errors: instrument, position, manoeuvre-induced. This contrasts with the ASI which also has density and compressibility errors.</div>
+
+<h2 id="sec-6">6. Blockages</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Effect of pitot and static blockages on Machmeter readings — note these are identical to ASI blockage effects.</div>
+
+<table>
+  <tr><th>Source Blocked</th><th>Condition</th><th>Effect on Machmeter</th></tr>
+  <tr><td>Static</td><td>Climb at constant IAS</td><td>Altitude capsule doesn't move; airspeed capsule contracts (static in pitot falls but case static frozen) → <strong>Under-reads</strong></td></tr>
+  <tr><td>Static</td><td>Descent at constant IAS</td><td>Airspeed capsule expands (pitot static rises, case static frozen) → <strong>Over-reads</strong></td></tr>
+  <tr><td>Pitot</td><td>Climb at constant IAS</td><td>Airspeed capsule expands in error (capsule static > case static) → <strong>Over-reads</strong></td></tr>
+  <tr><td>Pitot</td><td>Descent at constant IAS</td><td>Airspeed capsule contracts (capsule static < case static) → <strong>Under-reads</strong></td></tr>
+</table>
+<div class="amber-box"><strong>Exam Tip:</strong> Machmeter blockage errors are identical to ASI blockage errors. Static blocked in climb → under-reads; static blocked in descent → over-reads. Pitot blocked is the opposite.</div>
+
+<h2 id="sec-7">7. Abbreviations</h2>
+<table>
+  <tr><th>Abbreviation</th><th>Meaning</th></tr>
+  <tr><td>MMR</td><td>Machmeter Reading — the uncorrected raw reading</td></tr>
+  <tr><td>IMN</td><td>Indicated Mach Number — MMR corrected for instrument error (values quoted in Flight Manuals are normally IMN)</td></tr>
+  <tr><td>TMN</td><td>True Mach Number — IMN corrected for position error</td></tr>
+  <tr><td>MMO</td><td>Maximum Operating Mach Number — the never-exceed limit</td></tr>
+</table>
+
+<h2 id="sec-8">8. Climb at Constant CAS – Standard Atmosphere</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How TAS and Mach number change during a constant-CAS climb.</div>
+<p>Example: Climbing at <span class="reg-value">330 kt CAS</span> from sea level to <span class="reg-value">FL360</span> in ISA:</p>
+<ul>
+  <li>TAS increases from <span class="reg-value">330 kt</span> to <span class="reg-value">593 kt</span></li>
+  <li>Mach number increases from <span class="reg-value">M 0.5</span> to <span class="reg-value">M 1.05</span></li>
+</ul>
+<p>This rapid rise in Mach number is why high-performance aircraft are flown at <strong>constant CAS (or IAS)</strong> in the lower part of the climb, then transition to a <strong>constant Mach number</strong> for the remainder — to avoid inadvertently exceeding M<sub>MO</sub>.</p>
+
+<figure>
+  <img src="figs/fig_p87_0.png" alt="Constant CAS climb diagram – CAS, TAS, Mach vs altitude">
+  <figcaption>Fig. 7.2 – Constant CAS climb: CAS (blue) constant, TAS (green) increases, Mach (red) increases faster — source p.87</figcaption>
+</figure>
+
+<h2 id="sec-9">9. Descent at Constant Mach Number – Standard Conditions</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How TAS and CAS change during a constant Mach descent.</div>
+<p>During a descent in ISA, temperature <em>increases</em> → LSS increases. To maintain constant Mach number, TAS must also increase (MN = TAS/LSS). As density also increases during descent, CAS increases even more rapidly (Dynamic Pressure = ½ρV²). Example: M 0.8 descent from FL400 to MSL:</p>
+<ul>
+  <li>At <span class="reg-value">FL400</span>: TAS = <span class="reg-value">450 kt</span>, CAS = <span class="reg-value">242 kt</span></li>
+  <li>At <span class="reg-value">MSL</span>: TAS = <span class="reg-value">528 kt</span>, CAS = <span class="reg-value">528 kt</span> (would exceed V<sub>MO</sub>)</li>
+</ul>
+<p>This is why CAS is used in the descent rather than constant Mach number below a certain altitude.</p>
+
+<figure>
+  <img src="figs/fig_p87_1.png" alt="Constant Mach descent diagram">
+  <figcaption>Fig. 7.3 – Constant Mach descent: as altitude decreases, TAS and CAS both increase — source p.87</figcaption>
+</figure>
+
+<h2 id="sec-10">10. Climb/Descent through Isothermal Layer and Inversion</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How temperature anomalies affect the CAS/TAS/Mach relationship.</div>
+
+<h3>10.1 Isothermal Layer (temperature constant)</h3>
+<table>
+  <tr><th>Condition</th><th>LSS</th><th>TAS</th><th>CAS</th></tr>
+  <tr><td>Constant Mach — climbing</td><td>Constant (temp constant)</td><td>Constant (MN×LSS)</td><td>Decreases (density reduces)</td></tr>
+  <tr><td>Constant Mach — descending</td><td>Constant</td><td>Constant</td><td>Increases (density increases)</td></tr>
+  <tr><td>Constant CAS — climbing</td><td>Constant</td><td>Increases</td><td>Constant</td></tr>
+</table>
+<figure>
+  <img src="figs/fig_p88_0.png" alt="Isothermal layer climb/descent diagram">
+  <figcaption>Fig. 7.4 – Isothermal layer: TAS constant at constant Mach, CAS changes with density — source p.88</figcaption>
+</figure>
+
+<h3>10.2 Inversion (temperature increases with altitude)</h3>
+<table>
+  <tr><th>Condition</th><th>LSS</th><th>TAS</th><th>CAS</th></tr>
+  <tr><td>Constant Mach — climbing</td><td>Increases (temp rises)</td><td>Increases (MN×LSS)</td><td>Decreases (density reduces faster than TAS rises)</td></tr>
+  <tr><td>Constant Mach — descending</td><td>Decreases</td><td>Decreases</td><td>Increases</td></tr>
+  <tr><td>Constant CAS — climbing</td><td>Increases</td><td>Increases (greater rate than MN)</td><td>Constant</td></tr>
+</table>
+<figure>
+  <img src="figs/fig_p88_1.png" alt="Inversion climb/descent diagram">
+  <figcaption>Fig. 7.5 – Inversion: TAS increases at constant Mach because LSS increases with temperature — source p.88</figcaption>
+</figure>
+
+<h2 id="sec-11">11. Climb/Descent Summary</h2>
+<div class="green-box">
+  <strong>Universal Rules (apply in all conditions):</strong>
+  <ul>
+    <li>TAS <strong>always increases</strong> when climbing at a constant CAS.</li>
+    <li>Climbing at constant TAS → CAS <strong>always decreases</strong>.</li>
+    <li>Climbing at constant CAS → Mach number <strong>always increases</strong>.</li>
+    <li>Climbing at constant Mach → CAS <strong>always decreases</strong>.</li>
+  </ul>
+  <em>Reason: Pressure effect on air density dominates over temperature variation in LSS.</em>
+</div>
+<pre class="mermaid">
+flowchart TD
+    A["Climb"] --> B{"What is constant?"}
+    B -->|CAS| C["TAS increases<br/>Mach number increases"]
+    B -->|TAS| D["CAS decreases<br/>Mach number: depends on temp"]
+    B -->|Mach number| E["TAS depends on LSS<br/>CAS always decreases"]
+</pre>
+<div class="amber-box"><strong>Quick Revision – Sections 8–11:</strong> Constant CAS climb → TAS↑ Mach↑. Constant Mach climb → CAS↓ TAS depends on temp. The climb/descent diagrams (Fig 7.2 &amp; 7.3) are mirror images. In isothermal: constant Mach = constant TAS. In inversion: constant Mach = increasing TAS (climb).</div>
+
+<h2 id="sec-12">12. Worked Example Problems</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Five representative Machmeter calculation problems from the source text.</div>
+
+<div class="worked-example">
+  <div class="we-title">Problem 1: Speed of Sound at FL380 (ISA)</div>
+  FL380 is above the tropopause → Temperature = −56.5°C = 216.5K<br>
+  LSS = 38.95 × √216.5 = 38.95 × 14.71 = <strong>573 knots</strong>
+</div>
+
+<div class="worked-example">
+  <div class="we-title">Problem 2: TAS at M 0.70, JSA MSL (+15°C = 288K)</div>
+  LSS = 38.95 × √288 = 38.95 × 16.97 = 661 kt<br>
+  TAS = MN × LSS = 0.70 × 661 = <strong>463 knots</strong>
+</div>
+
+<div class="worked-example">
+  <div class="we-title">Problem 3: Altitude at which TAS 450 kt = Mach 0.80 (JSA)</div>
+  LSS = TAS / MN = 450 / 0.8 = 562.5 kt<br>
+  √T = 562.5 / 38.95 = 14.44 → T = 14.44² = 209K = −64°C<br>
+  −64°C occurs at <strong>FL395</strong> in the JSA (no tropopause in JSA).
+</div>
+
+<div class="worked-example">
+  <div class="we-title">Problem 4: LSS from Mach and TAS change</div>
+  ΔMN = 0.12, ΔTAS = 80 kt<br>
+  LSS = ΔTAS / ΔMN = 80 / 0.12 = <strong>667 knots</strong>
+</div>
+
+<div class="worked-example">
+  <div class="we-title">Problem 5: Temperature deviation analysis (isothermal layer)</div>
+  At FL360, JSA temp = −57°C. JSA +9 = −48°C.<br>
+  Same Mach (0.8) and TAS (467 kt) at FL320 → LSS unchanged → temperature unchanged = −48°C.<br>
+  JSA at FL320 = −49°C → deviation = <strong>+1°C</strong>.<br>
+  (This shows the aircraft is flying through an isothermal layer.)
+</div>
+
+<div class="amber-box"><strong>Navigation Computer Tips:</strong>
+  <ul>
+    <li>Set Mach index arrow against temperature (°C) in Airspeed window.</li>
+    <li>Read TAS against Mach number on inner scale.</li>
+    <li>M 1.0 is marked as the blue "10" on the inner scale.</li>
+  </ul>
+</div>
+
+<h2 id="sec-13">13. Mach/Airspeed Indicator</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The combined Mach/ASI instrument and its two types.</div>
+<p>Since commercial aircraft need both IAS and Mach indications, the instruments are combined. Two versions exist:</p>
+<ol>
+  <li><strong>Self-contained instrument</strong> — fed directly from pitot and static sources.</li>
+  <li><strong>ADC-fed instrument</strong> — receives computed data from the Air Data Computer.</li>
+</ol>
+
+<h3>Construction Features</h3>
+<ul>
+  <li>Airspeed pointer moves <strong>clockwise</strong> over a <strong>fixed scale</strong>.</li>
+  <li>From M 0.5, Mach number is read from the same pointer against a <strong>moving Mach scale</strong> that rotates <strong>anticlockwise</strong> as Mach increases.</li>
+  <li>A striped VMO needle may mark the maximum operating airspeed.</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p91_0.png" alt="Combined Mach/Airspeed Indicator fed from ADC">
+  <figcaption>Fig. 7.6/7.7 – Combined Mach/Airspeed Indicator (ADC-fed type) — source p.91</figcaption>
+</figure>
+
+<div class="green-box"><strong>ADC-fed combined instrument advantages:</strong>
+  <ul>
+    <li>Corrects for instrument and position errors → displays <strong>CAS</strong> instead of IAS.</li>
+    <li>Can show digital displays for both Mach and CAS.</li>
+  </ul>
+</div>
+
+<div class="red-box"><strong>Errors of the Combined Instrument:</strong> Has the errors of BOTH the Machmeter AND the ASI: instrument, position, manoeuvre-induced, density, and compressibility errors.</div>
+
+<div class="amber-box"><strong>Quick Revision – Chapter 7:</strong>
+  <ul>
+    <li>LSS = 38.95 × √T (Kelvin) in knots. At MSL ISA = 661 kt; tropopause = 573 kt.</li>
+    <li>Machmeter uses 2 capsules: airspeed + altitude (aneroid).</li>
+    <li>Errors: instrument, position, manoeuvre-induced ONLY. No temp/density/compressibility error.</li>
+    <li>Static blocked in climb → under-reads; in descent → over-reads (same as ASI).</li>
+    <li>Constant CAS climb: TAS↑ Mach↑. Constant Mach climb: CAS↓.</li>
+    <li>Isothermal: constant Mach = constant TAS. Inversion: constant Mach = increasing TAS (climb).</li>
+  </ul>
+</div>
+
+<div id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box">Questions 1–9 reproduced verbatim from Oxford Instrumentation Chapter 7. Answer key from source.</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q1.</span><span class="q-text">The local speed of sound is equal to: (K = Constant)</span>
+    <ol class="q-options" type="a"><li>K √ temperature (°F) knots</li><li>K √ temperature (K) knots</li><li>K √ temperature (°C) knots</li><li>K √ temperature (K) metres per second</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> K √ temperature (K) knots</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The formula LSS = 38.95 × √T requires T in <strong>Kelvin (absolute temperature)</strong> and gives LSS in <strong>knots</strong>. Using °C or °F would give incorrect results because negative Celsius values would make the square root imaginary. See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> °F cannot be used — the formula requires absolute temperature.</li><li><strong>(c)</strong> °C cannot be used because 0°C ≠ 0 absolute; must add 273 to convert to Kelvin.</li><li><strong>(d)</strong> The unit is knots, not m/s (a different constant would be required for m/s).</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Always convert to Kelvin: T(K) = T(°C) + 273. This is non-negotiable for all LSS calculations.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q2.</span><span class="q-text">At FL350 with a JSA deviation of −12, the true airspeed when flying at M 0.78 is:</span>
+    <ol class="q-options" type="a"><li>460 kt</li><li>436 kt</li><li>447 kt</li><li>490 kt</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 436 kt</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> JSA FL350 temperature = −70°C (JSA lapse 2°/1000ft, 35×2=70, MSL +15 −70 = −55°C... wait, let me recalculate: JSA at FL350 = 15 − (35×2) = 15 − 70 = −55°C. Deviation −12 → actual temp = −55 − 12 = −67°C = 206K. LSS = 38.95×√206 = 38.95×14.35 = 559 kt. TAS = 0.78×559 ≈ 436 kt. See <a href="#sec-2">Section 2</a> and <a href="#sec-12">Section 12</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a) 460 kt</strong> would correspond to a warmer temperature (ISA or less cold).</li><li><strong>(c) 447 kt</strong> and <strong>(d) 490 kt</strong> result from incorrect temperature calculations or wrong JSA lapse rate assumptions.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> JSA lapse rate is 2°C per 1000 ft with no tropopause (unlike ISA which stops at FL360). Always state whether you're using ISA or JSA in exam solutions.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q3.</span><span class="q-text">When climbing at a constant Mach number below the tropopause through an inversion:</span>
+    <ol class="q-options" type="a"><li>the CAS and TAS will both increase</li><li>the CAS and TAS will both decrease</li><li>the CAS will decrease and the TAS will increase</li><li>the CAS will increase and the TAS will decrease</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> the CAS will decrease and the TAS will increase</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> In an inversion, temperature rises with altitude → LSS increases. For constant Mach number, TAS = MN × LSS → TAS must increase. Despite TAS increasing, air density decreases faster during the climb, so CAS (which is density-dependent) decreases. See <a href="#sec-10">Section 10.2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> CAS cannot increase — density effect always dominates in a climb at constant Mach.</li><li><strong>(b)</strong> TAS cannot decrease — the rising LSS in an inversion forces TAS upward at constant Mach.</li><li><strong>(d)</strong> Reverses the correct answer.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Constant Mach climb: CAS ALWAYS decreases. TAS behaviour depends on the temperature profile — in an inversion it increases, in ISA it decreases, in isothermal it stays constant.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q4.</span><span class="q-text">When descending below the tropopause under normal conditions (increasing temperature) at a constant CAS:</span>
+    <ol class="q-options" type="a"><li>both TAS and Mach number will decrease</li><li>both TAS and Mach number will increase</li><li>the TAS will decrease and the Mach number will increase</li><li>the TAS will increase and the Mach number will decrease</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> both TAS and Mach number will decrease</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> This is the mirror image of constant CAS climb. In a constant CAS descent under ISA conditions, density increases → TAS decreases (TAS = CAS × density correction, lower altitude = denser air = lower TAS). LSS increases (higher temperature) but TAS falls faster → Mach number decreases. See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(b)</strong> Incorrectly suggests both increase — that would be a constant CAS climb, not descent.</li><li><strong>(c) &amp; (d)</strong> Incorrect combinations — in a constant CAS descent, the pressure/density effect dominates and both TAS and MN decrease.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Descent at constant CAS is the mirror image of climb at constant CAS. Climb: TAS↑ Mach↑. Descent: TAS↓ Mach↓.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q5.</span><span class="q-text">Cruising at FL390, M 0.84 is found to give a TAS of 499 kt. The ISA deviation at this level will be:</span>
+    <ol class="q-options" type="a"><li>−17</li><li>+17</li><li>+19</li><li>−19</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> +17</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> LSS = TAS/MN = 499/0.84 = 594 kt. √T = 594/38.95 = 15.25 → T = 15.25² = 232.6K = −40.4°C ≈ −40°C. FL390 is above the ISA tropopause (ISA temp = −56.5°C). Deviation = actual − ISA = −40 − (−56.5) = +16.5 ≈ <strong>+17</strong>. See <a href="#sec-12">Section 12</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a) −17</strong> and <strong>(d) −19</strong> would mean a colder-than-ISA temperature — but we calculated a warmer temperature.</li><li><strong>(c) +19</strong> is close but the arithmetic gives +17 when rounded correctly.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Process: TAS/MN → LSS → (LSS/38.95)² → T(K) → T(°C) → compare with ISA. Practice this sequence until automatic.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q6.</span><span class="q-text">The errors to which the Machmeter is subject are:</span>
+    <ol class="q-options" type="a"><li>instrument error, position error, compressibility error and manoeuvre induced error</li><li>instrument error, position error and manoeuvre induced error</li><li>instrument error, position error, barometric error, temperature error and manoeuvre induced error</li><li>instrument error, position error, density error and manoeuvre induced error</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> instrument error, position error and manoeuvre induced error</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The Machmeter is calibrated to the ratio of dynamic to static pressure. Density and temperature cancel from the calculation, so no density or temperature error. Compressibility is inherently calibrated out by design. Only instrument, position, and manoeuvre-induced errors remain. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Compressibility error does not apply — it's calibrated out in the Machmeter.</li><li><strong>(c)</strong> No barometric or temperature error in the Machmeter.</li><li><strong>(d)</strong> No density error — density cancels in the Mach number calculation.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The Machmeter's immunity to temperature, density, and compressibility errors is its key advantage over the ASI. This is a very common exam question.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q7.</span><span class="q-text">The relationships between TAS, Mach number (MNo) and local speed of sound (LSS) is:</span>
+    <ol class="q-options" type="a"><li>LSS = MNo/TAS</li><li>MNo = LSS/TAS</li><li>TAS = MNo × LSS</li><li>MNo = LSS × TAS</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> TAS = MNo × LSS</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> By definition, Mach Number = TAS/LSS. Rearranging: TAS = MNo × LSS. This is the fundamental Mach relationship. See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> LSS = MNo/TAS is the inverse of the correct relationship.</li><li><strong>(b)</strong> MNo = LSS/TAS inverts numerator and denominator.</li><li><strong>(d)</strong> MNo = LSS × TAS would give huge numbers — dimensionally and physically incorrect.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Start from MN = TAS/LSS and rearrange as needed. This single formula underpins all Mach calculations.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q8.</span><span class="q-text">The Machmeter gives an indication of Mach number by measuring the ratio:</span>
+    <ol class="q-options" type="a"><li>pitot pressure / static pressure</li><li>static pressure / dynamic pressure</li><li>dynamic pressure / pitot pressure</li><li>dynamic pressure / static pressure</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> dynamic pressure / static pressure</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Mach number ∝ √(Dynamic Pressure / Static Pressure) where Dynamic Pressure = Pitot − Static. The altitude capsule measures static pressure (denominator), the airspeed capsule measures dynamic pressure (numerator). See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Pitot/static gives the ratio used in ASI calculations (total pressure ratio), not pure Mach.</li><li><strong>(b)</strong> Inverted ratio — would decrease as Mach increases.</li><li><strong>(c)</strong> Dynamic/pitot is not a meaningful aerodynamic ratio.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Dynamic pressure = pitot − static. Mach ∝ √(Dp/Ps). The altitude capsule compensates for changing Ps at different altitudes.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question"><span class="q-number">Q9.</span><span class="q-text">An aircraft is flying at FL350 with a JSA deviation of +8. The Mach No. is 0.83 and the TAS 485. If the aircraft descends to FL300 and maintains the same Mach No. and TAS, the JSA deviation will now be:</span>
+    <ol class="q-options" type="a"><li>+8</li><li>−2</li><li>+2</li><li>−18</li></ol></div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> −2</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Same Mach (0.83) and same TAS (485) → LSS unchanged → temperature unchanged. From FL350 calculation: LSS = 485/0.83 = 585 kt → T = (585/38.95)² = 225K = −48°C. JSA FL350 = 15−70 = −55°C; deviation +8 → −55+8 = −47°C ≈ −48°C ✓ (consistent). At FL300: JSA = 15−60 = −45°C. Actual temp is still −48°C → deviation = −48−(−45) = <strong>−3</strong>. Nearest answer is <strong>(b) −2</strong> (rounding differences in calculation). The key insight: same Mach + same TAS = same temperature = isothermal layer, so the deviation changes as standard temperature changes with altitude. See <a href="#sec-12">Section 12, Problem 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a) +8</strong> would mean the deviation is the same — but JSA standard temperature changes between FL350 and FL300.</li><li><strong>(c) +2</strong> and <strong>(d) −18</strong> result from incorrect temperature or JSA calculations.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Same MN + same TAS at different altitude → same actual temperature → isothermal layer. The JSA deviation changes because the JSA standard temperature changes with altitude while actual temperature stays the same.</div>
+  </div>
+</div>
+</div>
+
+<h2 id="ref-tables">Master Reference Tables</h2>
+<table class="ref-table">
+  <tr><th>Parameter</th><th>Value</th><th>Condition</th><th>Section</th></tr>
+  <tr><td>LSS at MSL ISA (+15°C)</td><td>661 knots</td><td>T = 288K</td><td>§2</td></tr>
+  <tr><td>LSS at FL300 ISA (−45°C)</td><td>589 knots</td><td>T = 228K</td><td>§2</td></tr>
+  <tr><td>LSS at tropopause ISA (−56.5°C)</td><td>573 knots</td><td>T = 216.5K</td><td>§2</td></tr>
+  <tr><td>LSS formula constant</td><td>38.95</td><td>Output in knots, T in Kelvin</td><td>§2</td></tr>
+  <tr><td>JSA lapse rate</td><td>2°C/1000 ft</td><td>No tropopause in JSA</td><td>§12</td></tr>
+  <tr><td>Machmeter errors (only)</td><td>Instrument, Position, Manoeuvre-induced</td><td>No temp/density/compressibility</td><td>§5</td></tr>
+  <tr><td>Static blocked — climb</td><td>Under-reads</td><td>Constant IAS</td><td>§6</td></tr>
+  <tr><td>Static blocked — descent</td><td>Over-reads</td><td>Constant IAS</td><td>§6</td></tr>
+</table>
+<div class="formula-box">KEY FORMULAS:
+LSS (kt)    = 38.95 × √T(K)
+MN          = TAS / LSS
+TAS         = MN × LSS
+T(K)        = T(°C) + 273
+T(°C)       = T(K) − 273
+LSS → T:    T(K) = (LSS / 38.95)²</div>
+<div class="amber-box"><strong>Mnemonics:</strong>
+  <ul>
+    <li><strong>Machmeter errors:</strong> "I Put My foot down" → Instrument, Position, Manoeuvre-induced (only 3!)</li>
+    <li><strong>Static blocked climb:</strong> "STATIC CLIMB = UNDER" (same as ASI)</li>
+    <li><strong>Constant CAS climb:</strong> "Everything goes UP" → TAS↑, Mach↑, LSS↓ (exception)</li>
+    <li><strong>Constant Mach climb:</strong> "CAS always DOWN"</li>
+  </ul>
+</div>
+<h3>Answer Key</h3>
+<table><tr><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th><th>Q8</th><th>Q9</th></tr>
+<tr><td>b</td><td>b</td><td>c</td><td>a</td><td>b</td><td>b</td><td>c</td><td>d</td><td>b</td></tr></table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>
