@@ -70,6 +70,17 @@ const CONFIGS = [
     ],
   },
   {
+    name: "REGS_NOTES",
+    out: "regs-notes.ts",
+    subjectIds: ["air-regulations"],
+    source: "Air Regulations — chapter study notes",
+    srcBase: join("C:", "Users", "Admin", "Downloads", "regs"),
+    chapters: [
+      ["22/HPL_Chapter23_Human_Factors.html", "ar-22", "Human Performance and Limitations"],
+      ["23/CRM_TEM_LOFT_StudyNotes.html",     "ar-23", "CRM, TEM & LOFT"],
+    ],
+  },
+  {
     name: "OXFORD_GEN_NAV",
     out: "oxford-gen-nav.ts",
     subjectIds: ["general-navigation"],

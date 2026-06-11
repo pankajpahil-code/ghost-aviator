@@ -11,6 +11,7 @@ import { ICJOSHI_NOTES_MET } from "./generated/icjoshi-notes-met";
 import { OXFORD_INSTRUMENTATION } from "./generated/oxford-instrumentation";
 import { OXFORD_RADIO_NAV } from "./generated/oxford-radio-nav";
 import { OXFORD_GEN_NAV } from "./generated/oxford-gen-nav";
+import { REGS_NOTES } from "./generated/regs-notes";
 
 export type { DemoQuestion };
 
@@ -27,6 +28,7 @@ const RAW_QUESTIONS: DemoQuestion[] = [
   ...OXFORD_INSTRUMENTATION, // Instrumentation HTML-notes Q&A (inst-1..23)
   ...OXFORD_RADIO_NAV,       // Radio Navigation HTML-notes Q&A (rnav-1..20)
   ...OXFORD_GEN_NAV,         // General Navigation HTML-notes Q&A (gnav-*)
+  ...REGS_NOTES,             // Air Regulations HTML-notes Q&A (ar-22, ar-23)
   ...ECQB_061_NAVIGATION,
   ...ICJOSHI_MET,         // font-extracted met bank (dupes of the above are dropped)
 ];
@@ -104,6 +106,15 @@ export function getQuestionsForChapter(
 ): DemoQuestion[] {
   // CPL air-regulations: route new chapter IDs to the matching RK Bali bank IDs
   if (subjectId === "air-regulations") {
+    // Chapters ar-14+ may carry their own per-chapter banks extracted from the
+    // chapter notes — prefer those. (ar-1..13 can't use this shortcut: those IDs
+    // collide with the old RK Bali bank IDs the topical map redirects between.)
+    if (Number(chapterId.replace("ar-", "")) > 13) {
+      const own = ALL_QUESTIONS.filter(
+        q => q.chapterId === chapterId && q.subjectIds.includes("air-regulations"),
+      );
+      if (own.length > 0) return own;
+    }
     const bankId = CPL_AR_CHAPTER_MAP[chapterId] ?? chapterId;
     const qs = ALL_QUESTIONS.filter(
       q => q.chapterId === bankId && q.subjectIds.includes("air-regulations"),

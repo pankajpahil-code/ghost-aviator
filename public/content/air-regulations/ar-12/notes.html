@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 13 – PANS-OPS (DOC 8168) | CPL/ATPL Study Notes | Capt. Pankaj Pahil</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Fira+Mono:wght@400;700&display=swap');
+
+  @page { size: A4; margin: 20mm; }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #0d1b3e;
+    --blue:    #1a3a6b;
+    --sky:     #2980b9;
+    --cyan:    #e8f4fd;
+    --green:   #1a6b3a;
+    --lime:    #eafaf1;
+    --red:     #8b1a1a;
+    --blush:   #fdf0f0;
+    --amber:   #7a5800;
+    --cream:   #fffbec;
+    --purple:  #4a1a6b;
+    --lavender:#f5eeff;
+    --teal:    #0d5c63;
+    --teallight:#e8fafb;
+    --gold:    #c9a227;
+    --dark:    #1c1c1c;
+    --muted:   #5a6072;
+    --light:   #f8f9fc;
+    --border:  #dee2ec;
+  }
+
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: #ffffff;
+    padding: 0;
+  }
+
+  /* ===== COVER PAGE ===== */
+  .cover {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, var(--sky) 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 30px;
+    page-break-after: always;
+  }
+  .cover .doc-tag {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #ffffffcc;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+  }
+  .cover h1 { font-size: 46px; font-weight: 900; letter-spacing: -1px; line-height: 1.1; margin-bottom: 10px; }
+  .cover h2 { font-size: 22px; font-weight: 400; color: #b8cfe8; margin-bottom: 6px; }
+  .cover h3 { font-size: 16px; font-weight: 600; color: #ffd700; margin-bottom: 40px; }
+  .cover .divider { width: 80px; height: 4px; background: var(--gold); border-radius: 2px; margin: 20px auto; }
+  .cover .meta { font-size: 13px; color: #a0b8d0; margin-top: 10px; }
+  .cover .meta strong { color: #fff; }
+  .cover .badge-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin: 30px 0; }
+  .cover .badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #e0edff;
+  }
+  .cover .instructor {
+    margin-top: 40px;
+    background: rgba(201,162,39,0.2);
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: 14px 30px;
+    font-size: 14px;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  /* ===== TOC ===== */
+  .toc-page { padding: 50px 40px; page-break-after: always; }
+  .toc-page h2 { font-size: 26px; color: var(--navy); border-bottom: 3px solid var(--sky); padding-bottom: 10px; margin-bottom: 24px; font-weight: 900; }
+  .toc-list { list-style: none; }
+  .toc-list li { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 13.5px; }
+  .toc-list li .toc-num { font-weight: 700; color: var(--sky); width: 36px; flex-shrink: 0; }
+  .toc-list li .toc-dots { flex: 1; border-bottom: 1px dotted #ccc; margin: 0 8px; height: 1px; }
+  .toc-list li .toc-pg { font-size: 12px; color: var(--muted); font-weight: 600; }
+
+  /* ===== LAYOUT ===== */
+  .content { padding: 36px 40px; }
+  .section { margin-bottom: 50px; page-break-inside: avoid; }
+
+  /* ===== SECTION HEADERS ===== */
+  .chapter-header {
+    background: linear-gradient(90deg, var(--navy) 0%, var(--blue) 100%);
+    color: #fff;
+    padding: 18px 28px;
+    border-radius: 10px;
+    margin-bottom: 28px;
+    page-break-inside: avoid;
+  }
+  .chapter-header .ch-tag { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #90b4d4; margin-bottom: 4px; }
+  .chapter-header h2 { font-size: 24px; font-weight: 900; letter-spacing: -0.5px; }
+  .chapter-header p { font-size: 13px; color: #a8c4e0; margin-top: 4px; }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--sky);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .icon { font-size: 20px; }
+
+  .sub-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue);
+    margin: 18px 0 8px;
+    padding-left: 10px;
+    border-left: 3px solid var(--sky);
+  }
+
+  /* ===== BOXES ===== */
+  .box { border-radius: 10px; padding: 16px 20px; margin: 14px 0; page-break-inside: avoid; }
+  .box-title { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+
+  .box-def { background: var(--cyan); border-left: 4px solid var(--sky); }
+  .box-def .box-title { color: var(--blue); }
+
+  .box-limit { background: var(--blush); border-left: 4px solid #c0392b; }
+  .box-limit .box-title { color: var(--red); }
+
+  .box-sop { background: var(--lime); border-left: 4px solid #27ae60; }
+  .box-sop .box-title { color: var(--green); }
+
+  .box-note { background: var(--cream); border-left: 4px solid var(--gold); }
+  .box-note .box-title { color: var(--amber); }
+
+  .box-purple { background: var(--lavender); border-left: 4px solid #7b2fbe; }
+  .box-purple .box-title { color: var(--purple); }
+
+  .box-teal { background: var(--teallight); border-left: 4px solid var(--teal); }
+  .box-teal .box-title { color: var(--teal); }
+
+  .box-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+  .box-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 14px 0; }
+
+  /* ===== TABLES ===== */
+  .table-wrap { overflow-x: auto; margin: 16px 0; page-break-inside: avoid; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table caption { font-weight: 700; font-size: 13px; color: var(--navy); margin-bottom: 6px; text-align: left; padding: 0 2px 6px; border-bottom: 2px solid var(--navy); }
+  thead tr { background: var(--navy); color: #fff; }
+  thead th { padding: 10px 12px; text-align: left; font-size: 12px; font-weight: 700; letter-spacing: 0.3px; }
+  tbody tr:nth-child(even) { background: #f5f7fb; }
+  tbody tr:hover { background: #e8f0fb; }
+  td, tbody th { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody th { background: #eef2fa; font-weight: 700; color: var(--blue); }
+  .tbl-header-sky { background: var(--sky) !important; }
+  .tbl-highlight { background: #fff3cd !important; font-weight: 700; }
+  .tbl-red { background: #fde8e8 !important; }
+  .tbl-green { background: #eafaf1 !important; }
+
+  /* ===== SVG DIAGRAMS ===== */
+  .diagram-wrap {
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 16px 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .diagram-caption { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 12px; font-weight: 600; }
+
+  /* ===== LISTS ===== */
+  ul.checklist { list-style: none; padding-left: 0; }
+  ul.checklist li { padding: 4px 0 4px 26px; position: relative; }
+  ul.checklist li::before { content: "✈"; position: absolute; left: 0; color: var(--sky); font-size: 13px; }
+
+  ul.dash-list { list-style: none; padding-left: 0; }
+  ul.dash-list li { padding: 3px 0 3px 20px; position: relative; color: var(--dark); }
+  ul.dash-list li::before { content: "–"; position: absolute; left: 0; color: var(--sky); font-weight: 700; }
+
+  ol.styled-ol { padding-left: 20px; }
+  ol.styled-ol li { margin: 5px 0; }
+
+  /* ===== SQUAWK CODES ===== */
+  .squawk-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 10px 0; }
+  .squawk-card {
+    flex: 1; min-width: 130px;
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .squawk-card .code { font-size: 28px; font-family: 'Fira Mono', monospace; font-weight: 700; }
+  .squawk-card .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .sq-red   { background: #c0392b; color: #fff; }
+  .sq-amber { background: #e67e22; color: #fff; }
+  .sq-blue  { background: #2c6fad; color: #fff; }
+
+  /* ===== APPROACH CATEGORY CARDS ===== */
+  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0; }
+  .cat-card { border-radius: 8px; padding: 12px; text-align: center; page-break-inside: avoid; }
+  .cat-card .cat-letter { font-size: 28px; font-weight: 900; }
+  .cat-card .cat-speed { font-size: 11px; margin-top: 4px; font-weight: 600; }
+  .cat-a { background: #eafaf1; color: #1a6b3a; }
+  .cat-b { background: #e8f4fd; color: #1a3a6b; }
+  .cat-c { background: #fff8e6; color: #7a5800; }
+  .cat-d { background: #fdf0f0; color: #8b1a1a; }
+  .cat-e { background: #f5eeff; color: #4a1a6b; }
+  .cat-h { background: #e8fafb; color: #0d5c63; }
+
+  /* ===== FLOWCHART ===== */
+  .flow-step {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin: 6px 0; padding: 10px 14px;
+    background: var(--light); border-radius: 8px;
+    border: 1px solid var(--border); page-break-inside: avoid;
+  }
+  .flow-step .step-num {
+    background: var(--sky); color: #fff;
+    border-radius: 50%; width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 12px; flex-shrink: 0; margin-top: 2px;
+  }
+  .flow-arrow { text-align: center; color: var(--sky); font-size: 20px; margin: 2px 0; }
+
+  /* ===== PILL BADGES ===== */
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin: 2px; }
+  .pill-blue  { background: #dce8f7; color: var(--blue); }
+  .pill-red   { background: #fde8e8; color: var(--red); }
+  .pill-green { background: #e0f5e9; color: var(--green); }
+  .pill-gold  { background: #fdf3e3; color: var(--amber); }
+  .pill-purple { background: var(--lavender); color: var(--purple); }
+
+  /* ===== HIGHLIGHT INLINE ===== */
+  .hl { font-weight: 700; }
+  .hl-red   { color: #c0392b; font-weight: 700; }
+  .hl-blue  { color: var(--sky); font-weight: 700; }
+  .hl-green { color: #27ae60; font-weight: 700; }
+  .hl-gold  { color: #b7860b; font-weight: 700; }
+
+  /* ===== PAGE BREAKS ===== */
+  .page-break { page-break-before: always; }
+
+  /* ===== Q&A SECTION ===== */
+  .qa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .qa-item { background: var(--light); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; page-break-inside: avoid; }
+  .qa-item .q-num { font-size: 11px; font-weight: 700; color: var(--sky); text-transform: uppercase; }
+  .qa-item .q-text { font-size: 13px; font-weight: 600; margin: 4px 0; }
+  .qa-item .q-options { font-size: 12px; color: var(--muted); }
+  .qa-item .q-ans { margin-top: 8px; font-size: 12px; background: var(--lime); color: var(--green); padding: 4px 10px; border-radius: 4px; font-weight: 700; display: inline-block; }
+
+  /* ===== FOOTER ===== */
+  .footer-strip {
+    background: var(--navy);
+    color: #90a8c4;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 11px;
+    margin-top: 60px;
+  }
+  .footer-strip strong { color: var(--gold); }
+
+  /* responsive grid fallback */
+  @media (max-width: 600px) {
+    .box-grid, .box-grid-3, .cat-grid, .qa-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ COVER PAGE ═══════════════════════ -->
+<div class="cover">
+  <div class="doc-tag">✈ CPL / ATPL Ground School ✈</div>
+  <h1>PANS-OPS<br>DOC 8168 Vol I</h1>
+  <h2>Procedures for Air Navigation Services</h2>
+  <h3>Aircraft Operations — Flight Procedures</h3>
+  <div class="divider"></div>
+  <div class="badge-row">
+    <div class="badge">📖 Chapter 13</div>
+    <div class="badge">🛫 Departures &amp; SIDs</div>
+    <div class="badge">🛬 Approach Procedures</div>
+    <div class="badge">🔄 Holding</div>
+    <div class="badge">📡 Transponder &amp; ACAS</div>
+  </div>
+  <p class="meta">Reference: <strong>ICAO Doc 8168 · 16th Edition</strong> &nbsp;|&nbsp; Air Regulations — Chapter 13<br>Based on: <strong>RK-Bali Reference Text</strong></p>
+  <div class="instructor">✦ Study Notes by Capt. Pankaj Pahil ✦</div>
+</div>
+
+<!-- ═══════════════════════ TABLE OF CONTENTS ═══════════════════════ -->
+<div class="toc-page">
+  <h2>Table of Contents</h2>
+  <ul class="toc-list">
+    <li><span class="toc-num">01</span> Introduction to PANS-OPS<span class="toc-dots"></span><span class="toc-pg">§1</span></li>
+    <li><span class="toc-num">02</span> General Criteria for Departure Procedures<span class="toc-dots"></span><span class="toc-pg">§2</span></li>
+    <li><span class="toc-num">03</span> Obstacle Clearance &amp; MOC<span class="toc-dots"></span><span class="toc-pg">§3</span></li>
+    <li><span class="toc-num">04</span> Instrument Departure Procedure (IDP) — Design<span class="toc-dots"></span><span class="toc-pg">§4</span></li>
+    <li><span class="toc-num">05</span> Procedure Design Gradient (PDG)<span class="toc-dots"></span><span class="toc-pg">§5</span></li>
+    <li><span class="toc-num">06</span> Radar Vectors<span class="toc-dots"></span><span class="toc-pg">§6</span></li>
+    <li><span class="toc-num">07</span> Standard Instrument Departures (SIDs) — Straight &amp; Turning<span class="toc-dots"></span><span class="toc-pg">§7</span></li>
+    <li><span class="toc-num">08</span> Omnidirectional Departures<span class="toc-dots"></span><span class="toc-pg">§8</span></li>
+    <li><span class="toc-num">09</span> RNAV Systems — GNSS, SBAS, GBAS, PBN<span class="toc-dots"></span><span class="toc-pg">§9</span></li>
+    <li><span class="toc-num">10</span> General Criteria for Arrival &amp; Approach<span class="toc-dots"></span><span class="toc-pg">§10</span></li>
+    <li><span class="toc-num">11</span> Categories of Aeroplanes &amp; Speed Table<span class="toc-dots"></span><span class="toc-pg">§11</span></li>
+    <li><span class="toc-num">12</span> Approach Segments (IAF → MAPt)<span class="toc-dots"></span><span class="toc-pg">§12</span></li>
+    <li><span class="toc-num">13</span> Missed Approach Procedure<span class="toc-dots"></span><span class="toc-pg">§13</span></li>
+    <li><span class="toc-num">14</span> ICAO Classification of Approaches (NPA / APV / PA)<span class="toc-dots"></span><span class="toc-pg">§14</span></li>
+    <li><span class="toc-num">15</span> Visual Manoeuvring (Circling)<span class="toc-dots"></span><span class="toc-pg">§15</span></li>
+    <li><span class="toc-num">16</span> Holding Procedures<span class="toc-dots"></span><span class="toc-pg">§16</span></li>
+    <li><span class="toc-num">17</span> Simultaneous ILS — Parallel Runways<span class="toc-dots"></span><span class="toc-pg">§17</span></li>
+    <li><span class="toc-num">18</span> RNAV Arrival/Approach — VOR/DME<span class="toc-dots"></span><span class="toc-pg">§18</span></li>
+    <li><span class="toc-num">19</span> Altimeter Setting Procedures<span class="toc-dots"></span><span class="toc-pg">§19</span></li>
+    <li><span class="toc-num">20</span> Secondary Surveillance Radar (SSR) &amp; Transponder<span class="toc-dots"></span><span class="toc-pg">§20</span></li>
+    <li><span class="toc-num">21</span> ACAS — Airborne Collision Avoidance System<span class="toc-dots"></span><span class="toc-pg">§21</span></li>
+    <li><span class="toc-num">22</span> DGCA Question Bank &amp; Answer Key<span class="toc-dots"></span><span class="toc-pg">§22</span></li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════ MAIN CONTENT ═══════════════════════ -->
+<div class="content">
+
+<!-- ──────────────── §1 INTRODUCTION ──────────────── -->
+<div class="section">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 1</div>
+    <h2>Introduction to PANS-OPS (DOC 8168)</h2>
+    <p>Procedures for Air Navigation Services – Aircraft Operations</p>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 What is PANS-OPS?</div>
+    <p><strong>PANS-OPS</strong> stands for <strong>Procedures for Air Navigation Services – Aircraft Operations</strong>. It is ICAO Document 8168 and consists of two volumes:</p>
+    <ul class="dash-list" style="margin-top:8px;">
+      <li><strong>Volume I – Flight Procedures:</strong> Operational procedures recommended for flight operations personnel and flight crew. Outlines the parameters on which Volume II criteria are based.</li>
+      <li><strong>Volume II – Construction of Visual and Instrument Flight Procedures:</strong> For procedures specialists. Describes areas, obstacle clearance requirements, and guidelines for constructing instrument flight charts.</li>
+    </ul>
+  </div>
+
+  <div class="box box-note">
+    <div class="box-title">📌 Baseline Assumptions for All Calculations</div>
+    <ul class="dash-list">
+      <li>All engines operating (unless contingency procedures are being developed — that is the operator's responsibility).</li>
+      <li>All procedures depict <strong>tracks</strong>. Pilots apply corrections to heading for known wind.</li>
+      <li>Calculations are based on an altitude of <strong class="hl-red">600 m (2,000 ft) above MSL</strong> and <strong class="hl-red">ISA +15°C</strong> unless otherwise stated.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ──────────────── §2 GENERAL CRITERIA FOR DEPARTURE ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 2</div>
+    <h2>General Criteria for Departure Procedures</h2>
+  </div>
+
+  <div class="section-title"><span class="icon">🏔️</span> Obstacle Clearance — Areas</div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 Area Structure</div>
+    <p>Where track guidance is provided, each segment comprises a specified volume of airspace. The vertical cross-section is an <strong>area located symmetrically about the centre line</strong> of each segment.</p>
+    <ul class="dash-list" style="margin-top:8px;">
+      <li>Vertical cross-section = divided into <strong>Primary</strong> and <strong>Secondary</strong> areas.</li>
+      <li>Full obstacle clearances are applied over the <strong>primary area</strong>.</li>
+      <li>Clearance reduces to <strong>zero at the outer edges</strong> of the secondary areas.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-wrap" style="page-break-inside:avoid;">
+    <svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:560px;">
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#2980b9"/>
+        </marker>
+      </defs>
+      <!-- secondary left -->
+      <rect x="20" y="60" width="130" height="80" rx="4" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="85" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b">Secondary</text>
+      <text x="85" y="116" text-anchor="middle" font-size="11" fill="#c0392b">¼ of total</text>
+      <!-- primary -->
+      <rect x="150" y="40" width="260" height="100" rx="4" fill="#e8f4fd" stroke="#2980b9" stroke-width="2"/>
+      <text x="280" y="92" text-anchor="middle" font-size="14" font-weight="800" fill="#1a3a6b">Primary Area</text>
+      <text x="280" y="110" text-anchor="middle" font-size="11" fill="#2980b9">½ of total — Full MOC applied</text>
+      <!-- secondary right -->
+      <rect x="410" y="60" width="130" height="80" rx="4" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="475" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b">Secondary</text>
+      <text x="475" y="116" text-anchor="middle" font-size="11" fill="#c0392b">¼ of total</text>
+      <!-- MOC label -->
+      <line x1="280" y1="40" x2="280" y2="18" stroke="#2980b9" stroke-width="1.5" stroke-dasharray="4,2"/>
+      <text x="280" y="14" text-anchor="middle" font-size="12" fill="#2980b9" font-weight="700">MOC (Full)</text>
+      <!-- arrows -->
+      <line x1="20" y1="150" x2="540" y2="150" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="280" y="168" text-anchor="middle" font-size="11" fill="#555">Total Width</text>
+      <!-- zero labels -->
+      <text x="22" y="76" font-size="10" fill="#c0392b">MOC=0</text>
+      <text x="498" y="76" font-size="10" fill="#c0392b">MOC=0</text>
+    </svg>
+    <div class="diagram-caption">Fig 1 — Cross-section: Primary &amp; Secondary Areas with MOC distribution</div>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 Key Area Rules</div>
+    <ul class="dash-list">
+      <li>On <strong>straight segments</strong>: Primary area width = <strong class="hl-red">½ of total width</strong>. Each secondary area = <strong class="hl-red">¼ of total width</strong>.</li>
+      <li>Where <strong>no track guidance is provided</strong> during a turn: the entire total width is considered <strong>primary area</strong>.</li>
+      <li>MOC is provided at full value across the primary area. In secondary areas, MOC reduces from inner edge to <strong class="hl-red">zero at outer edge</strong>.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ──────────────── §3 OBSTACLE CLEARANCE ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 3</div>
+    <h2>Obstacle Clearance (MOC) in Departure</h2>
+  </div>
+
+  <div class="section-title"><span class="icon">📐</span> MOC Values — Departure Phase</div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 Critical MOC Values — MEMORISE</div>
+    <div class="box-grid">
+      <div>
+        <p><strong>At the Departure End of Runway (DER):</strong><br>
+        MOC = <span class="hl-red">ZERO</span></p>
+        <p style="margin-top:8px;"><strong>Increases by:</strong><br>
+        <span class="hl-red">0.8% of the horizontal distance</span> from DER (assuming max turn of 15°).</p>
+      </div>
+      <div>
+        <p><strong>In the Turn Initiation Area and Turn Area:</strong><br>
+        MOC = <span class="hl-red">90 m (295 ft)</span></p>
+        <p style="margin-top:8px;"><strong>Mountainous/precipitous terrain:</strong><br>
+        Procedures designer may <span class="hl-red">increase MOC</span>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:600px;">
+      <!-- ground -->
+      <rect x="0" y="160" width="600" height="40" fill="#c8b97a"/>
+      <!-- obstacle A -->
+      <polygon points="130,160 140,100 150,160" fill="#555"/>
+      <text x="140" y="90" text-anchor="middle" font-size="11" fill="#333" font-weight="700">Obs A</text>
+      <!-- obstacle B (higher) -->
+      <polygon points="320,160 340,60 360,160" fill="#555"/>
+      <text x="340" y="50" text-anchor="middle" font-size="11" fill="#333" font-weight="700">Obs B</text>
+      <!-- OIS line 2.5% -->
+      <line x1="60" y1="160" x2="580" y2="55" stroke="#e67e22" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="500" y="50" font-size="11" fill="#e67e22" font-weight="700">2.5% OIS</text>
+      <!-- MOC gradient 0.8% -->
+      <line x1="60" y1="162" x2="580" y2="120" stroke="#c0392b" stroke-width="2"/>
+      <text x="490" y="132" font-size="11" fill="#c0392b" font-weight="700">0.8% MOC</text>
+      <!-- PDG 3.3% -->
+      <line x1="60" y1="162" x2="580" y2="30" stroke="#27ae60" stroke-width="2.5"/>
+      <text x="495" y="28" font-size="11" fill="#27ae60" font-weight="700">3.3% PDG</text>
+      <!-- DER label -->
+      <line x1="60" y1="130" x2="60" y2="170" stroke="#1a3a6b" stroke-width="2"/>
+      <text x="60" y="125" text-anchor="middle" font-size="11" fill="#1a3a6b" font-weight="700">DER</text>
+      <!-- 5m label -->
+      <text x="62" y="158" font-size="10" fill="#555">5m (16ft)</text>
+      <!-- horizontal distance label -->
+      <line x1="60" y1="180" x2="340" y2="180" stroke="#555" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr2)"/>
+      <text x="200" y="196" text-anchor="middle" font-size="11" fill="#555">Horizontal distance (d)</text>
+      <defs>
+        <marker id="arr2" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#555"/>
+        </marker>
+      </defs>
+    </svg>
+    <div class="diagram-caption">Fig 2 — MOC increases at 0.8% of horizontal distance from DER. PDG = 3.3%. OIS = 2.5%.</div>
+  </div>
+</div>
+
+<!-- ──────────────── §4 INSTRUMENT DEPARTURE PROCEDURE DESIGN ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 4</div>
+    <h2>Instrument Departure Procedure — Design</h2>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 Design Considerations</div>
+    <ul class="dash-list">
+      <li>Design of an IDP is dictated by the <strong>terrain surrounding the aerodrome</strong>.</li>
+      <li>May also be required for <strong>ATC requirements</strong> in the case of SID routes.</li>
+      <li>These factors influence the type and siting of navaids and the departure route.</li>
+      <li>Airspace restrictions may also affect routing and siting of navaids.</li>
+    </ul>
+  </div>
+
+  <div class="box-grid">
+    <div class="box box-sop">
+      <div class="box-title">✅ Aerodrome Operating Minima</div>
+      <p>Where obstacles cannot be cleared by the appropriate margin when flown on instruments, aerodrome operating minima are established to permit <strong>visual flight clear of obstacles</strong>.</p>
+      <p style="margin-top:8px;">Wherever possible, a <strong>straight departure aligned with the runway centre line</strong> is specified.</p>
+    </div>
+    <div class="box box-limit">
+      <div class="box-title">🚨 Turning Departure Trigger</div>
+      <p>When a departure route requires a turn of more than <span class="hl-red">15°</span> to avoid an obstacle, a <strong>turning departure</strong> is constructed.</p>
+    </div>
+  </div>
+
+  <div class="sub-title">Establishment of a Departure Procedure</div>
+  <p>A departure procedure is established for each runway where instrument departures are expected. It will include procedures for the <strong>various categories of aircraft</strong>.</p>
+
+  <div class="box box-note">
+    <div class="box-title">📌 Wind Effect — Key Rule</div>
+    <ul class="dash-list">
+      <li>When <strong>radar vectored</strong>: Pilots will <span class="hl-red">NOT compensate</span> for wind effects.</li>
+      <li>When flying departure routes expressed as <strong>tracks to be made good</strong>: Pilots <span class="hl-green">WILL compensate</span> for known or estimated wind.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ──────────────── §5 PDG ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 5</div>
+    <h2>Procedure Design Gradient (PDG)</h2>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 Definition of PDG</div>
+    <p>The PDG is an aid to the procedures designer, who adjusts the route to <strong>minimise the PDG</strong> consistent with other constraints.</p>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 Standard PDG Values — CRITICAL</div>
+    <div class="box-grid">
+      <div>
+        <p>Unless otherwise published:<br>PDG = <span class="hl-red">3.3 per cent</span></p>
+        <p style="margin-top:6px;">For helicopters (Cat H):<br>PDG = <span class="hl-red">5.0 per cent</span></p>
+      </div>
+      <div>
+        <p><strong>Basis of PDG:</strong><br>
+        OIS gradient = <span class="hl-red">2.5%</span><br>
+        + Additional margin = <span class="hl-red">0.8%</span><br>
+        = PDG = <span class="hl-red">3.3%</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title">Gradient Specification — How it Works</div>
+  <div class="box box-note">
+    <div class="box-title">📌 PDG Specification Rules</div>
+    <ul class="dash-list">
+      <li>Published gradients are specified to an <strong>altitude/height after which the minimum gradient of 3.3%</strong> is considered to prevail.</li>
+      <li>The final PDG continues until obstacle clearance is ensured for the next phase (en-route, holding, or approach).</li>
+      <li>At that point, the departure procedure <strong>ends</strong> and is marked by a significant point.</li>
+    </ul>
+  </div>
+
+  <div class="sub-title">Close-In Obstacles Rule</div>
+  <div class="box box-limit">
+    <div class="box-title">🚨 Close-In Obstacle Rule</div>
+    <p>Gradients to a height of <span class="hl-red">60 m (200 ft) or less</span>, caused by close-in obstacles, are <strong>NOT specified</strong>. However, a <strong>note will be published</strong> stating that close-in obstacles exist.</p>
+  </div>
+
+  <div class="sub-title">Fixes as Aid in Obstacle Avoidance</div>
+  <div class="box box-sop">
+    <div class="box-title">✅ DME / RNAV Fixes</div>
+    <p>Where a suitably located DME exists, additional specific height/distance information for obstacle avoidance may be published. RNAV waypoints or other suitable fixes may be used to provide a means of <strong>monitoring climb performance</strong>.</p>
+  </div>
+</div>
+
+<!-- ──────────────── §6 RADAR VECTORS ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 6</div>
+    <h2>Radar Vectors during Departure</h2>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 When to Accept Radar Vectors</div>
+    <p>Pilots should <span class="hl-red">NOT accept radar vectors during departure UNLESS</span> one of the following applies:</p>
+    <ol class="styled-ol" style="margin-top:10px;">
+      <li>They are <strong>above the minimum altitudes/heights</strong> required to maintain obstacle clearance in the event of engine failure. (This relates to engine failure between V1 and minimum sector altitude, or end of contingency procedure.)</li>
+      <li>The departure route is <strong>non-critical with respect to obstacle clearance</strong>.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ──────────────── §7 SIDs ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 7</div>
+    <h2>Standard Instrument Departures (SIDs)</h2>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 SID Termination</div>
+    <p>The SID terminates at the <strong>first fix/facility/waypoint of the en-route phase</strong> following the departure procedure.</p>
+  </div>
+
+  <div class="section-title"><span class="icon">➡️</span> Straight Departures</div>
+
+  <div class="box box-sop">
+    <div class="box-title">✅ Alignment Rule</div>
+    <p>A straight departure is one in which the initial departure track is <strong>within 15° of the alignment of the runway centre line</strong>.</p>
+  </div>
+
+  <div class="box box-note">
+    <div class="box-title">📌 Straight Departure — Obstacle Rules</div>
+    <ul class="dash-list">
+      <li>If obstacles exist that affect the departure route, PDGs <strong>greater than 3.3%</strong> may be specified.</li>
+      <li>When such a gradient is specified, the altitude/height to which it extends <strong>shall be promulgated</strong>. After this point, PDG of 3.3% (Cat H: 5.0%) resumes.</li>
+      <li>Gradients to a height of <span class="hl-red">60 m (200 ft)</span> or less due to close-in obstacles are <strong>not specified</strong>; a note will be published instead.</li>
+    </ul>
+  </div>
+
+  <!-- Straight departure diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:560px;">
+      <!-- runway -->
+      <rect x="250" y="140" width="60" height="50" fill="#555" rx="2"/>
+      <text x="280" y="170" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">RWY</text>
+      <!-- DER line -->
+      <line x1="230" y1="140" x2="330" y2="140" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2"/>
+      <text x="340" y="144" font-size="11" fill="#c0392b" font-weight="700">DER</text>
+      <!-- C/L extension -->
+      <line x1="280" y1="140" x2="280" y2="10" stroke="#2980b9" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="286" y="18" font-size="10" fill="#2980b9">C/L Extended</text>
+      <!-- splay 15° left -->
+      <line x1="280" y1="140" x2="80" y2="10" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="62" y="8" font-size="10" fill="#27ae60">15°</text>
+      <!-- splay 15° right -->
+      <line x1="280" y1="140" x2="480" y2="10" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="482" y="8" font-size="10" fill="#27ae60">15°</text>
+      <!-- VOR distance markers -->
+      <circle cx="280" cy="10" r="5" fill="none" stroke="#2980b9" stroke-width="2"/>
+      <text x="292" y="14" font-size="10" fill="#2980b9">VOR/NDB</text>
+      <!-- 150m label -->
+      <line x1="250" y1="170" x2="190" y2="170" stroke="#555" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="148" y="174" font-size="10" fill="#555">150 m</text>
+      <text x="148" y="186" font-size="10" fill="#555">from C/L</text>
+      <!-- departure track -->
+      <text x="290" y="75" font-size="11" fill="#1a3a6b" font-weight="700">Departure</text>
+      <text x="290" y="88" font-size="11" fill="#1a3a6b" font-weight="700">Track</text>
+    </svg>
+    <div class="diagram-caption">Fig 3 — Straight Departure: Initial track within ±15° of runway C/L. Area splays at 7.8° (VOR) or 10.3° (NDB).</div>
+  </div>
+
+  <div class="section-title"><span class="icon">↩️</span> Turning Departures</div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 Turning Departure — Definition &amp; Altitude Rules</div>
+    <ul class="dash-list">
+      <li>Turn of <strong>more than 15°</strong> from runway C/L = <strong>Turning Departure</strong>.</li>
+      <li>Straight flight is assumed until reaching an altitude/height of at least <span class="hl-red">120 m (394 ft)</span> for fixed-wing aircraft.</li>
+      <li>For helicopters: <span class="hl-red">90 m (295 ft)</span>.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:520px;">
+      <!-- runway -->
+      <rect x="220" y="200" width="60" height="50" fill="#555" rx="2"/>
+      <text x="250" y="230" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">DER</text>
+      <!-- straight segment -->
+      <line x1="250" y1="200" x2="250" y2="110" stroke="#2980b9" stroke-width="2.5"/>
+      <!-- turn -->
+      <path d="M250,110 Q260,80 320,60 Q380,40 420,30" stroke="#27ae60" stroke-width="2.5" fill="none"/>
+      <!-- VOR/NDB -->
+      <circle cx="420" cy="30" r="7" fill="none" stroke="#e67e22" stroke-width="2"/>
+      <text x="432" y="34" font-size="11" fill="#e67e22" font-weight="700">VOR/NDB</text>
+      <!-- 15° label -->
+      <text x="258" y="105" font-size="11" fill="#c0392b" font-weight="700">Turn ≥ 15°</text>
+      <!-- 120m height -->
+      <line x1="210" y1="110" x2="240" y2="110" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="140" y="114" font-size="11" fill="#c0392b" font-weight="700">120 m (394 ft)</text>
+      <!-- splay angle -->
+      <line x1="250" y1="200" x2="150" y2="50" stroke="#e74c3c" stroke-width="1" stroke-dasharray="4,2" opacity="0.5"/>
+      <line x1="250" y1="200" x2="350" y2="50" stroke="#e74c3c" stroke-width="1" stroke-dasharray="4,2" opacity="0.5"/>
+      <text x="80" y="48" font-size="10" fill="#e74c3c">Splay 7.8°/10.3°</text>
+      <!-- 150m label -->
+      <text x="262" y="220" font-size="10" fill="#555">150 m</text>
+    </svg>
+    <div class="diagram-caption">Fig 4 — Turning Departure: Straight climb to 120 m (394 ft) before turn. Turn area splay = 7.8° VOR / 10.3° NDB.</div>
+  </div>
+</div>
+
+<!-- ──────────────── §8 OMNIDIRECTIONAL DEPARTURES ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 8</div>
+    <h2>Omnidirectional Departures</h2>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 General</div>
+    <p>Where <strong>no track guidance</strong> is provided, departure procedures are designed using the <strong>omnidirectional method</strong>.</p>
+    <p style="margin-top:8px;">Where obstacles do not permit omnidirectional procedures, one of the following is necessary:</p>
+    <ul class="dash-list" style="margin-top:6px;">
+      <li>Fly a Standard Instrument Departure (SID) route; or</li>
+      <li>Ensure ceiling and visibility permit obstacles to be avoided by visual means.</li>
+    </ul>
+  </div>
+
+  <div class="section-title"><span class="icon">🛫</span> Beginning of Departure</div>
+  <div class="box box-note">
+    <div class="box-title">📌 DER &amp; Turn Initiation Rules</div>
+    <ul class="dash-list">
+      <li>Departure procedure begins at the <strong>Departure End of Runway (DER)</strong> = end of area declared suitable for take-off.</li>
+      <li>Since point of lift-off varies, a turn at <span class="hl-red">120 m (394 ft)</span> above aerodrome elevation is <strong>not initiated sooner than 600 m from the beginning of the runway</strong>.</li>
+      <li>Procedures are normally designed/optimised for turns at <strong>600 m</strong> from the beginning of the runway.</li>
+      <li>Turns may NOT be initiated before the DER (or specified point); this will be noted on the departure chart.</li>
+      <li>For <strong>Category H</strong>: procedure turns can be initiated at <span class="hl-red">90 m (295 ft)</span> if the DER and earliest initiation point are at the beginning of the runway/FATO.</li>
+    </ul>
+  </div>
+
+  <div class="section-title"><span class="icon">📐</span> PDG for Omnidirectional Departures</div>
+  <div class="box box-limit">
+    <div class="box-title">🚨 PDG Rules</div>
+    <ul class="dash-list">
+      <li>Default PDG = <span class="hl-red">3.3%</span> (helicopters: 5%) + straight climb on extended runway C/L until <span class="hl-red">120 m (394 ft)</span> above aerodrome elevation (helicopters: 90 m).</li>
+      <li>The basic procedure ensures:<br>
+        (a) Aircraft climbs on extended C/L to <strong>120 m (394 ft)</strong> before turns can be specified.<br>
+        (b) At least <strong>90 m (295 ft)</strong> of obstacle clearance is provided before turns greater than 15° are specified.</li>
+    </ul>
+  </div>
+
+  <div class="section-title"><span class="icon">🔀</span> Four Design Options for Omnidirectional Procedures</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0;">
+    <div class="box box-sop" style="margin:0;">
+      <div class="box-title">✅ (a) Standard Case</div>
+      <p>No obstacles penetrate the <strong>2.5% OIS</strong> and 90 m (295 ft) clearance prevails. A 3.3% climb to 120 m satisfies requirements for a <strong>turn in any direction</strong>.</p>
+    </div>
+    <div class="box box-note" style="margin:0;">
+      <div class="box-title">📌 (b) Specified Turn Alt/Height</div>
+      <p>Where obstacles preclude omnidirectional turns at 120 m, the procedure specifies a <strong>3.3% climb to a higher alt/height</strong> where omnidirectional turns can be made.</p>
+    </div>
+    <div class="box box-purple" style="margin:0;">
+      <div class="box-title">🔷 (c) Specified PDG</div>
+      <p>Where obstacles exist, the procedure defines a minimum gradient <strong>more than 3.3%</strong> to a specified altitude/height before turns are permitted.</p>
+    </div>
+    <div class="box box-teal" style="margin:0;">
+      <div class="box-title">🔹 (d) Sector Departures</div>
+      <p>The procedure identifies <strong>sectors</strong> for which either a minimum gradient or minimum turn alt/height is specified. E.g., "climb straight ahead to alt X before turning east; climb to alt Y before turning west."</p>
+    </div>
+  </div>
+
+  <!-- Omnidirectional areas diagram -->
+  <div class="diagram-wrap" style="margin-top:16px;">
+    <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:500px;">
+      <!-- Area 3 - big circle -->
+      <circle cx="250" cy="150" r="130" fill="none" stroke="#2980b9" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="100" y="260" font-size="11" fill="#2980b9" font-weight="700">Area 3</text>
+      <text x="90" y="273" font-size="10" fill="#2980b9">(Omnidirectional)</text>
+      <!-- runway -->
+      <rect x="225" y="210" width="50" height="60" fill="#555" rx="2"/>
+      <text x="250" y="244" text-anchor="middle" font-size="10" fill="#fff">DER</text>
+      <!-- 600m marker -->
+      <line x1="250" y1="210" x2="250" y2="180" stroke="#333" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="256" y="198" font-size="10" fill="#555">600 m</text>
+      <!-- Area 1 (splay) -->
+      <path d="M225,210 L170,180 L170,150 L250,150 L330,150 L330,180 L275,210 Z" fill="#e8f4fd" stroke="#2980b9" stroke-width="1.5" opacity="0.7"/>
+      <text x="250" y="170" text-anchor="middle" font-size="11" fill="#1a3a6b" font-weight="700">Area 1</text>
+      <!-- Area 2 (turn init) -->
+      <path d="M200,180 L150,100 L200,80 L300,80 L350,100 L300,180 Z" fill="#eafaf1" stroke="#27ae60" stroke-width="1.5" opacity="0.7"/>
+      <text x="250" y="125" text-anchor="middle" font-size="11" fill="#1a6b3a" font-weight="700">Area 2</text>
+      <!-- distance d -->
+      <line x1="250" y1="150" x2="380" y2="150" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="4,2"/>
+      <text x="386" y="154" font-size="10" fill="#e67e22" font-weight="700">d₁</text>
+    </svg>
+    <div class="diagram-caption">Fig 5 — Areas 1, 2, 3 for omnidirectional departures. Area 3 is the circular omnidirectional zone.</div>
+  </div>
+</div>
+
+<!-- ──────────────── §9 RNAV / GNSS ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 9</div>
+    <h2>RNAV Systems — GNSS, SBAS, GBAS, PBN</h2>
+  </div>
+
+  <div class="sub-title">Key Definitions</div>
+  <div class="box-grid">
+    <div class="box box-def" style="margin:0;">
+      <div class="box-title">📘 GNSS</div>
+      <p>Global Navigation Satellite System. A worldwide position and time determination system including one or more satellite constellations, aircraft receivers, and system integrity monitoring, augmented as necessary.</p>
+    </div>
+    <div class="box box-def" style="margin:0;">
+      <div class="box-title">📘 GBAS</div>
+      <p>Ground Based Augmented System. User receives augmentation information directly from a <strong>ground-based transmitter</strong>.</p>
+    </div>
+    <div class="box box-def" style="margin:0;">
+      <div class="box-title">📘 SBAS</div>
+      <p>Satellite Based Augmentation System. User receives augmentation information from a <strong>satellite-based transmitter</strong>. (WAAS, EGNOS, GAGAN, MSAS)</p>
+    </div>
+    <div class="box box-def" style="margin:0;">
+      <div class="box-title">📘 ABAS</div>
+      <p>Aircraft Based Augmentation System. Augments and/or integrates GNSS information with information available <strong>on board the aircraft</strong>.</p>
+    </div>
+    <div class="box box-def" style="margin:0;">
+      <div class="box-title">📘 GLS</div>
+      <p>GBAS Landing System. For approach and landing using GNSS augmented by GBAS as the primary navigational reference.</p>
+    </div>
+    <div class="box box-def" style="margin:0;">
+      <div class="box-title">📘 PBN</div>
+      <p>Performance Based Navigation. Area navigation based on performance requirements for aircraft operating along an ATS route, instrument departure/approach procedure, or in designated airspace.</p>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="icon">🔄</span> Four Kinds of Turns in RNAV</div>
+  <div class="box box-purple">
+    <div class="box-title">🔷 RNAV Turn Types</div>
+    <ol class="styled-ol">
+      <li><strong>Turn at a fly-by waypoint</strong> — Turn anticipation always provided.</li>
+      <li><strong>Turn at a flyover waypoint</strong> — No turn anticipation.</li>
+      <li><strong>Turn at an altitude/height</strong> — Some systems cannot code this; must be executed manually.</li>
+      <li><strong>Fixed radius turn</strong> — Generally associated with RNP procedures.</li>
+    </ol>
+  </div>
+
+  <div class="sub-title">SBAS — Straight &amp; Turning Departures</div>
+  <div class="box box-note">
+    <div class="box-title">📌 SBAS Key Values</div>
+    <ul class="dash-list">
+      <li>From DER to turn initiation point: SBAS receiver provides nominal <strong>full-scale deflection (FSD) of 0.3 NM</strong>.</li>
+      <li>Larger FSDs may be acceptable with augmentations (e.g., autopilot).</li>
+      <li>SBAS receiver will NOT transition to en-route integrity performance until the <strong>final waypoint</strong> in the departure procedure is sequenced.</li>
+    </ul>
+  </div>
+
+  <div class="box box-teal">
+    <div class="box-title">🔹 GBAS Note</div>
+    <p>No departure criteria specifically designed for GBAS exists. Departure operations based on basic GNSS or SBAS may be flown by aircraft with a GBAS receiver using the optional GBAS positioning service.</p>
+  </div>
+</div>
+
+<!-- ──────────────── §10 ARRIVAL & APPROACH GENERAL CRITERIA ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 10</div>
+    <h2>General Criteria for Arrival &amp; Approach Procedures</h2>
+  </div>
+
+  <div class="section-title"><span class="icon">📍</span> Accuracy of Fixes</div>
+  <div class="box box-def">
+    <div class="box-title">📘 Fix Tolerance Area</div>
+    <p>Because all navigation facilities and waypoints have accuracy limitations, the geographic point identified is not precise but may be <strong>anywhere within an area called the fix tolerance area</strong> which surrounds its plotted point of intersection.</p>
+  </div>
+
+  <div class="sub-title">Fix Tolerances for Specific Navigation Systems</div>
+  <div class="table-wrap">
+    <table>
+      <caption>Fix Tolerances by Navigation System</caption>
+      <thead>
+        <tr>
+          <th>Navigation System</th>
+          <th>Fix Tolerance</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>TAR (Terminal Area Radar)</th>
+          <td class="tbl-highlight">±1.5 km (0.8 NM)</td>
+          <td>Within 37 km (20 NM)</td>
+        </tr>
+        <tr>
+          <th>RSR (En-route Surveillance Radar)</th>
+          <td class="tbl-highlight">±3.1 km (1.7 NM)</td>
+          <td>Within 74 km (40 NM)</td>
+        </tr>
+        <tr>
+          <th>DME</th>
+          <td class="tbl-highlight">±0.46 km (0.25 NM) + 1.25% of distance</td>
+          <td>To the antenna</td>
+        </tr>
+        <tr>
+          <th>75 MHz Marker Beacon</th>
+          <td>Used for ILS &amp; "z" markers</td>
+          <td>Instrument approach</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title"><span class="icon">✈️</span> Types of Approach</div>
+  <div class="box-grid">
+    <div class="box box-sop" style="margin:0;">
+      <div class="box-title">✅ Straight-in Approach</div>
+      <p>Wherever possible, a straight-in approach aligned with the runway centre line is specified.</p>
+      <p style="margin-top:6px;">For <strong>non-precision approaches</strong>, a straight-in approach is acceptable if the angle between the final approach track and runway C/L is <strong>30° or less</strong>.</p>
+    </div>
+    <div class="box box-note" style="margin:0;">
+      <div class="box-title">📌 Circling Approach</div>
+      <p>Specified when terrain or other constraints cause the final approach track alignment or descent gradient to fall outside the criteria for a straight-in approach.</p>
+      <p style="margin-top:6px;">The final approach track is in most cases aligned to pass over some portion of the <strong>usable landing surface</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────── §11 AIRCRAFT CATEGORIES ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 11</div>
+    <h2>Categories of Aeroplanes &amp; Speed Table</h2>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 Basis of Categorisation</div>
+    <p>Five categories based on the <strong>indicated airspeed at threshold (V<sub>at</sub>)</strong> which equals the stall speed V<sub>SO</sub> × 1.3 or stall speed V<sub>S1g</sub> × 1.23 (whichever is higher) in landing configuration at maximum certificated landing mass.</p>
+  </div>
+
+  <div class="cat-grid">
+    <div class="cat-card cat-a">
+      <div class="cat-letter">A</div>
+      <div class="cat-speed">V<sub>at</sub> &lt; 91 kt</div>
+    </div>
+    <div class="cat-card cat-b">
+      <div class="cat-letter">B</div>
+      <div class="cat-speed">91 – 120 kt</div>
+    </div>
+    <div class="cat-card cat-c">
+      <div class="cat-letter">C</div>
+      <div class="cat-speed">121 – 140 kt</div>
+    </div>
+    <div class="cat-card cat-d">
+      <div class="cat-letter">D</div>
+      <div class="cat-speed">141 – 165 kt</div>
+    </div>
+    <div class="cat-card cat-e">
+      <div class="cat-letter">E</div>
+      <div class="cat-speed">166 – 210 kt</div>
+    </div>
+    <div class="cat-card cat-h">
+      <div class="cat-letter">H</div>
+      <div class="cat-speed">Helicopters</div>
+    </div>
+  </div>
+
+  <div class="table-wrap" style="margin-top:16px;">
+    <table>
+      <caption>Speeds for Procedure Calculations (kt) — DOC 8168 Table 1-4-1-1</caption>
+      <thead>
+        <tr>
+          <th>Cat</th>
+          <th>V<sub>at</sub> (kt)</th>
+          <th>Initial Approach (kt)</th>
+          <th>Final Approach (kt)</th>
+          <th>Circling Max (kt)</th>
+          <th>Missed App Intermediate (kt)</th>
+          <th>Missed App Final (kt)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="tbl-header-sky" style="color:#fff">A</th>
+          <td>&lt;91</td>
+          <td>90 / 150 (110*)</td>
+          <td>70 / 100</td>
+          <td class="tbl-highlight">100</td>
+          <td>100</td>
+          <td>110</td>
+        </tr>
+        <tr>
+          <th class="tbl-header-sky" style="color:#fff">B</th>
+          <td>91–120</td>
+          <td>120 / 180 (140*)</td>
+          <td>85 / 130</td>
+          <td class="tbl-highlight">135</td>
+          <td>130</td>
+          <td>150</td>
+        </tr>
+        <tr>
+          <th class="tbl-header-sky" style="color:#fff">C</th>
+          <td>121–140</td>
+          <td>160 / 240</td>
+          <td>115 / 160</td>
+          <td class="tbl-highlight">180</td>
+          <td>160</td>
+          <td>240</td>
+        </tr>
+        <tr>
+          <th class="tbl-header-sky" style="color:#fff">D</th>
+          <td>141–165</td>
+          <td>185 / 250</td>
+          <td>130 / 185</td>
+          <td class="tbl-highlight">205</td>
+          <td>185</td>
+          <td>265</td>
+        </tr>
+        <tr>
+          <th class="tbl-header-sky" style="color:#fff">E</th>
+          <td>166–210</td>
+          <td>185 / 250</td>
+          <td>155 / 230</td>
+          <td class="tbl-highlight">240</td>
+          <td>230</td>
+          <td>275</td>
+        </tr>
+        <tr>
+          <th class="tbl-header-sky" style="color:#fff">H</th>
+          <td>N/A</td>
+          <td>70 / 120**</td>
+          <td>60 / 90***</td>
+          <td>N/A</td>
+          <td>90</td>
+          <td>90</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--muted);margin-top:6px;">* Maximum speed for reversal and racetrack procedures. ** Max speed for racetrack: ≤6000 ft = 100 kt; >6000 ft = 110 kt. *** GNSS point-in-space: 120 KIAS initial/intermediate, 90 KIAS final/MA (or 90/70 KIAS based on operational need).</p>
+  </div>
+
+  <div class="section-title"><span class="icon">📉</span> Descent Gradient (Final Approach)</div>
+  <div class="box box-limit">
+    <div class="box-title">🚨 Descent Gradient / Angle Rules — FINAL APPROACH</div>
+    <div class="box-grid">
+      <div>
+        <p><strong>Minimum/Optimum (with FAF):</strong><br>
+        <span class="hl-red">5.2% / 3.0° (52 m/km = 318 ft/NM)</span></p>
+        <p style="margin-top:8px;"><strong>Maximum for Cat A &amp; B:</strong><br>
+        <span class="hl-red">6.5% / 3.7° (65 m/km = 395 ft/NM)</span></p>
+      </div>
+      <div>
+        <p><strong>Maximum for Cat C, D, E:</strong><br>
+        <span class="hl-red">6.1% / 3.5° (61 m/km = 370 ft/NM)</span></p>
+        <p style="margin-top:8px;"><strong>Maximum for Cat H:</strong><br>
+        <span class="hl-red">10% / 5.7°</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-sop">
+    <div class="box-title">✅ CDFA — Continuous Descent Final Approach</div>
+    <ul class="dash-list">
+      <li>Requires a <strong>continuous descent without level-offs</strong>, flown with VNAV guidance or manual calculation.</li>
+      <li>Rate of descent adjusted to achieve continuous descent to a point approximately <strong>15 m (50 ft) above the landing runway threshold</strong>.</li>
+      <li>Descent shall pass at or above the minimum altitude at any stepdown fix.</li>
+      <li>CDFA with advisory VNAV = <strong>3D instrument approach operation</strong>.</li>
+      <li>CDFA with manual calculation = <strong>2D instrument approach operation</strong>.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ──────────────── §12 APPROACH SEGMENTS ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 12</div>
+    <h2>Approach Segments — IAF to MAPt</h2>
+  </div>
+
+  <!-- Approach flow diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 660 110" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:660px;">
+      <defs>
+        <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#2980b9"/>
+        </marker>
+      </defs>
+      <!-- boxes -->
+      <rect x="10"  y="35" width="90" height="40" rx="6" fill="#0d1b3e"/>
+      <text x="55"  y="59" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Arrival</text>
+      <text x="55"  y="72" text-anchor="middle" font-size="10" fill="#90b4d4">(STAR)</text>
+
+      <rect x="120" y="35" width="90" height="40" rx="6" fill="#1a3a6b"/>
+      <text x="165" y="55" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Initial</text>
+      <text x="165" y="68" text-anchor="middle" font-size="10" fill="#90b4d4">IAF → IF</text>
+
+      <rect x="230" y="35" width="100" height="40" rx="6" fill="#2980b9"/>
+      <text x="280" y="55" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Intermediate</text>
+      <text x="280" y="68" text-anchor="middle" font-size="10" fill="#dce8f7">IF → FAF/FAP</text>
+
+      <rect x="350" y="35" width="90" height="40" rx="6" fill="#16a085"/>
+      <text x="395" y="55" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Final</text>
+      <text x="395" y="68" text-anchor="middle" font-size="10" fill="#d0f0eb">FAF/FAP → MAPt</text>
+
+      <rect x="460" y="35" width="100" height="40" rx="6" fill="#c0392b"/>
+      <text x="510" y="55" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Missed</text>
+      <text x="510" y="68" text-anchor="middle" font-size="10" fill="#fce0e0">App  MAPt →</text>
+
+      <rect x="580" y="35" width="70" height="40" rx="6" fill="#27ae60"/>
+      <text x="615" y="59" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Land</text>
+
+      <!-- arrows -->
+      <line x1="100" y1="55" x2="118" y2="55" stroke="#2980b9" stroke-width="2" marker-end="url(#a1)"/>
+      <line x1="210" y1="55" x2="228" y2="55" stroke="#2980b9" stroke-width="2" marker-end="url(#a1)"/>
+      <line x1="330" y1="55" x2="348" y2="55" stroke="#2980b9" stroke-width="2" marker-end="url(#a1)"/>
+      <line x1="440" y1="55" x2="458" y2="55" stroke="#2980b9" stroke-width="2" marker-end="url(#a1)"/>
+      <line x1="560" y1="55" x2="578" y2="55" stroke="#27ae60" stroke-width="2" marker-end="url(#a1)"/>
+
+      <!-- labels top -->
+      <text x="55"  y="22" text-anchor="middle" font-size="9" fill="#555">MSA</text>
+      <text x="165" y="22" text-anchor="middle" font-size="9" fill="#555">300 m MOC</text>
+      <text x="280" y="22" text-anchor="middle" font-size="9" fill="#555">300→150 m MOC</text>
+      <text x="395" y="22" text-anchor="middle" font-size="9" fill="#555">NPA: 90/75 m</text>
+      <text x="510" y="22" text-anchor="middle" font-size="9" fill="#555">2.5% climb</text>
+    </svg>
+    <div class="diagram-caption">Fig 6 — Instrument Approach Segments: Arrival → Initial → Intermediate → Final → Missed Approach → Land</div>
+  </div>
+
+  <div class="section-title"><span class="icon">🛬</span> Arrival Segment (STAR)</div>
+  <div class="box box-def">
+    <div class="box-title">📘 STAR — Standard Terminal Arrival Route</div>
+    <p>Permits transition from the <strong>en-route phase to the approach phase</strong>. Arrival route normally ends at the IAF.</p>
+    <p style="margin-top:8px;"><strong>Protection area convergence:</strong> Begins at <span class="hl-blue">46 km (25 NM)</span> before the IAF, with a maximum convergence angle of <span class="hl-blue">30° each side</span> of the axis.</p>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 MSA / TAA — CRITICAL VALUES</div>
+    <ul class="dash-list">
+      <li><strong>MSA (Minimum Sector Altitude)</strong> provides at least <span class="hl-red">300 m (1,000 ft)</span> obstacle clearance within <span class="hl-red">46 km (25 NM)</span> of the navigation aid, IAF, or IF.</li>
+      <li><strong>TAA (Terminal Arrival Altitude)</strong>: Associated with PBN procedures based on the "T" or "Y" arrangement with three IAFs around the IF. TAAs replace the 46 km (25 NM) MSA where published.</li>
+    </ul>
+  </div>
+
+  <div class="section-title"><span class="icon">1️⃣</span> Initial Approach Segment</div>
+  <div class="box box-note">
+    <div class="box-title">📌 Initial Approach — Key Facts</div>
+    <ul class="dash-list">
+      <li>Begins at the <strong>IAF</strong> and ends at the <strong>IF</strong>.</li>
+      <li>Aircraft has left the en-route structure and is manoeuvring to enter the intermediate segment.</li>
+      <li>Speed and configuration depend on distance from aerodrome and descent required.</li>
+      <li>Max angle of interception of initial segment to IF:
+        <span class="pill pill-red">90° for Precision</span>
+        <span class="pill pill-blue">120° for Non-Precision</span>
+      </li>
+      <li>MOC: <span class="hl-red">300 m (1,000 ft)</span> in primary area, reducing to zero at outer edge of secondary area.</li>
+    </ul>
+  </div>
+
+  <div class="sub-title">Types of Manoeuvres in Initial Approach</div>
+  <div class="box box-def">
+    <div class="box-title">📘 Reversal Procedures</div>
+    <p>Used where no suitable IAF or IF is available. Entry is restricted to a specific direction or sector — a <strong>base turn or procedure turn</strong> is prescribed. Directions and timing specified must be strictly followed. A racetrack or holding manoeuvre cannot be conducted unless so specified.</p>
+    <div style="margin-top:10px;">
+      <p><strong>Three manoeuvre types:</strong></p>
+      <ol class="styled-ol" style="margin-top:6px;">
+        <li><strong>45°/225° Procedure Turn</strong> (1 to 3 minutes outbound timing)</li>
+        <li><strong>80°/260° Procedure Turn</strong> (1 to 3 minutes outbound timing)</li>
+        <li><strong>Base Turn</strong> (1, 2, or 3 minutes — end of outbound leg by radial or DME distance)</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="box box-sop">
+    <div class="box-title">✅ Racetrack Procedure</div>
+    <ul class="dash-list">
+      <li>180° turn overhead facility/fix onto outbound track for 1, 2, or 3 minutes.</li>
+      <li>Followed by a 180° turn in the same direction to return to inbound track.</li>
+      <li>Outbound leg may alternatively be limited by a <strong>DME distance or intersecting radial/bearing</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="section-title"><span class="icon">2️⃣</span> Intermediate Approach Segment</div>
+  <div class="box box-note">
+    <div class="box-title">📌 Intermediate Approach — Key Facts</div>
+    <ul class="dash-list">
+      <li>Aircraft speed and configuration adjusted to prepare for final approach. <strong>Descent gradient kept as shallow as possible</strong>.</li>
+      <li>MOC: Reduces from <span class="hl-red">300 m (984 ft)</span> to <span class="hl-red">150 m (492 ft)</span> in the primary area, reducing to zero at outer edge of secondary area.</li>
+      <li>Begins: On inbound track of procedure turn / base turn / final inbound leg of racetrack.</li>
+      <li>Ends: At the FAF or Final Approach Point (FAP).</li>
+      <li><em>Note: Where no FAF is specified, the inbound track IS the final approach segment.</em></li>
+    </ul>
+  </div>
+
+  <div class="section-title"><span class="icon">3️⃣</span> Final Approach Segment</div>
+  <div class="box box-def">
+    <div class="box-title">📘 Types of Final Approach</div>
+    <ol class="styled-ol">
+      <li><strong>NPA with FAF</strong> — Non-precision approach with final approach fix</li>
+      <li><strong>NPA without FAF</strong> — Non-precision approach; facility is both IAF and MAPt</li>
+      <li><strong>APV</strong> — Approach with vertical guidance</li>
+      <li><strong>PA</strong> — Precision approach</li>
+    </ol>
+  </div>
+
+  <div class="box-grid">
+    <div class="box box-teal" style="margin:0;">
+      <div class="box-title">🔹 NPA WITH FAF</div>
+      <ul class="dash-list">
+        <li>Begins at <strong>FAF</strong>, ends at <strong>MAPt</strong>.</li>
+        <li>FAF is sited on the final approach track.</li>
+        <li><strong>Optimum distance FAF to threshold:</strong> <span class="hl-blue">9.3 km (5.0 NM)</span></li>
+        <li><strong>Maximum length:</strong> normally not greater than <span class="hl-red">19 km (10 NM)</span></li>
+        <li>MOC: <span class="hl-red">75 m</span> with FAF</li>
+        <li>Stepdown fixes may be incorporated. Two OCA/H values published (higher for primary, lower if stepdown fix is positively identified).</li>
+      </ul>
+    </div>
+    <div class="box box-purple" style="margin:0;">
+      <div class="box-title">🔷 NPA WITHOUT FAF</div>
+      <ul class="dash-list">
+        <li>Single facility on or near aerodrome = both <strong>IAF and MAPt</strong>.</li>
+        <li>Indicates: (a) minimum alt/height for reversal/racetrack; and (b) OCA/H for final approach.</li>
+        <li>In absence of FAF, descent to MDA/H starts once established inbound on final approach track.</li>
+        <li>MOC: <span class="hl-red">90 m</span> without FAF</li>
+        <li>Final approach track <strong>cannot normally be aligned on runway C/L</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="icon">🎯</span> Precision Approach — FAP</div>
+  <div class="box box-note">
+    <div class="box-title">📌 Final Approach Point (FAP) — Precision</div>
+    <ul class="dash-list">
+      <li>FAP = point in space on final approach track where <strong>intermediate approach altitude/height intercepts the nominal glide path / MLS elevation angle</strong>.</li>
+      <li>Intermediate altitude generally intercepts glidepath at heights of <strong>300 m (1,000 ft) to 900 m (3,000 ft)</strong> above runway elevation.</li>
+      <li>For a 3° glide path, interception occurs between <strong>6 km (3 NM) and 19 km (10 NM)</strong> from the threshold.</li>
+      <li><strong>Outer Marker/DME fix</strong>: Permits verification of glidepath/altimeter relationship. Descent below fix crossing altitude should NOT be made prior to crossing the fix.</li>
+      <li><em>Note: FAF is associated with NPA; FAP is associated with PA.</em></li>
+    </ul>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 OCA/H, MDA/H, DA/H — Key Definitions</div>
+    <ul class="dash-list">
+      <li><strong>OCA (Obstacle Clearance Altitude)</strong> — Referenced to MSL.</li>
+      <li><strong>OCH (Obstacle Clearance Height)</strong> — Referenced to threshold elevation (or aerodrome elevation if threshold &gt;2 m/7 ft below aerodrome elevation).</li>
+      <li><strong>MDA (Minimum Descent Altitude)</strong> — NPA/circling: altitude below which descent must NOT be made without required visual reference. Referenced to MSL.</li>
+      <li><strong>MDH (Minimum Descent Height)</strong> — Referenced to aerodrome elevation or threshold elevation.</li>
+      <li><strong>DA (Decision Altitude)</strong> — PA/APV: altitude at which a missed approach must be initiated if required visual reference not established. Referenced to MSL.</li>
+      <li><strong>DH (Decision Height)</strong> — Referenced to threshold elevation.</li>
+    </ul>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 VSS — Visual Segment Surface</div>
+    <p>Constructed per ICAO Doc 8168/PANS-OPS Volume II. Identifies obstacles that may affect execution of an IAP (except circling). Refers to the final approach leg between MDA/DA of the procedure and the runway threshold.</p>
+  </div>
+</div>
+
+<!-- ──────────────── §13 MISSED APPROACH ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 13</div>
+    <h2>Missed Approach Segment</h2>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 Missed Approach — General</div>
+    <ul class="dash-list">
+      <li>Only <strong>one</strong> missed approach procedure per instrument approach procedure.</li>
+      <li>Three phases: <strong>Initial, Intermediate, and Final</strong>.</li>
+      <li>Specifies a point where MA begins and a point or alt/height where it ends.</li>
+      <li>MA should be initiated not lower than <strong>DA/H</strong> in precision approaches, or at the MAPt not lower than <strong>MDA/H</strong> in non-precision.</li>
+    </ul>
+  </div>
+
+  <div class="sub-title">MAPt Definition</div>
+  <div class="box-grid">
+    <div class="box box-note" style="margin:0;">
+      <div class="box-title">📌 For PA/APV</div>
+      <p>MAPt = point of intersection of the electronic glide path with the applicable DA/H.</p>
+    </div>
+    <div class="box box-note" style="margin:0;">
+      <div class="box-title">📌 For NPA</div>
+      <p>MAPt = a navigation facility, a fix, or a specified distance from the FAF. Upon reaching the MAPt if required visual reference is not established, missed approach must be initiated at once.</p>
+    </div>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 Missed Approach Gradient</div>
+    <p>Normally based on a minimum missed approach <strong>climb gradient of 2.5 per cent</strong>.</p>
+  </div>
+
+  <div class="section-title"><span class="icon">🔼</span> Three Phases of Missed Approach</div>
+
+  <div class="table-wrap">
+    <table>
+      <caption>Missed Approach Phases</caption>
+      <thead>
+        <tr>
+          <th>Phase</th>
+          <th>Begins At</th>
+          <th>Ends At</th>
+          <th>Key Characteristics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Initial</th>
+          <td>MAPt</td>
+          <td>SOC (Start of Climb)</td>
+          <td>Concentrated attention on establishing climb. Guidance equipment not extensively utilised. <span class="hl-red">No turns specified</span> in this phase.</td>
+        </tr>
+        <tr>
+          <th>Intermediate</th>
+          <td>SOC</td>
+          <td>First point where 50 m (164 ft) obstacle clearance is obtained</td>
+          <td>Climb continued straight ahead. Track may be changed by max <span class="hl-red">15°</span>. Aircraft begins track corrections.</td>
+        </tr>
+        <tr>
+          <th>Final</th>
+          <td>50 m (164 ft) clearance point [Cat H: 40 m (131 ft)]</td>
+          <td>Point where new approach/holding/en-route flight is initiated</td>
+          <td><strong>Turns may be prescribed</strong> in this phase. Airspace for turns based on <em>final missed approach speeds</em>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box-sop">
+    <div class="box-title">✅ Turning Missed Approach</div>
+    <p>Turns in a missed approach procedure are only prescribed where <strong>terrain or other factors make a turn necessary</strong>. The protected airspace for turns is based on speeds for the <em>final missed approach</em>.</p>
+  </div>
+</div>
+
+<!-- ──────────────── §14 ICAO CLASSIFICATION ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 14</div>
+    <h2>ICAO Classification of Approaches (NPA / APV / PA)</h2>
+  </div>
+
+  <!-- Classification flowchart SVG -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 660 220" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:660px;">
+      <!-- Top level -->
+      <rect x="220" y="8" width="220" height="36" rx="6" fill="#0d1b3e"/>
+      <text x="330" y="32" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">ICAO Instrument Approach Classification</text>
+      <!-- Three branches -->
+      <!-- NPA -->
+      <rect x="30" y="70" width="160" height="36" rx="6" fill="#c0392b"/>
+      <text x="110" y="92" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">NPA (2D)</text>
+      <!-- APV -->
+      <rect x="240" y="70" width="180" height="36" rx="6" fill="#e67e22"/>
+      <text x="330" y="92" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">APV (3D – Type A)</text>
+      <!-- PA -->
+      <rect x="465" y="70" width="170" height="36" rx="6" fill="#27ae60"/>
+      <text x="550" y="92" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">PA (3D – Type A/B)</text>
+      <!-- Lines from top -->
+      <line x1="330" y1="44" x2="110" y2="70" stroke="#555" stroke-width="1.5"/>
+      <line x1="330" y1="44" x2="330" y2="70" stroke="#555" stroke-width="1.5"/>
+      <line x1="330" y1="44" x2="550" y2="70" stroke="#555" stroke-width="1.5"/>
+      <!-- NPA sub -->
+      <rect x="10" y="130" width="90" height="30" rx="4" fill="#e8f4fd" stroke="#2980b9"/>
+      <text x="55" y="150" text-anchor="middle" font-size="10" fill="#1a3a6b" font-weight="700">Conv.</text>
+      <text x="55" y="161" text-anchor="middle" font-size="9" fill="#1a3a6b">VOR/NDB/LOC</text>
+      <rect x="110" y="130" width="80" height="30" rx="4" fill="#e8f4fd" stroke="#2980b9"/>
+      <text x="150" y="150" text-anchor="middle" font-size="10" fill="#1a3a6b" font-weight="700">PBN-NPA</text>
+      <text x="150" y="161" text-anchor="middle" font-size="9" fill="#1a3a6b">LNAV/NPA GPS</text>
+      <line x1="110" y1="106" x2="55" y2="130" stroke="#c0392b" stroke-width="1"/>
+      <line x1="110" y1="106" x2="150" y2="130" stroke="#c0392b" stroke-width="1"/>
+      <!-- APV sub -->
+      <rect x="245" y="130" width="80" height="30" rx="4" fill="#fdf3e3" stroke="#e67e22"/>
+      <text x="285" y="149" text-anchor="middle" font-size="10" fill="#7a5800" font-weight="700">APV BARO</text>
+      <text x="285" y="160" text-anchor="middle" font-size="9" fill="#7a5800">LNAV/VNAV</text>
+      <rect x="335" y="130" width="80" height="30" rx="4" fill="#fdf3e3" stroke="#e67e22"/>
+      <text x="375" y="149" text-anchor="middle" font-size="10" fill="#7a5800" font-weight="700">APV SBAS</text>
+      <text x="375" y="160" text-anchor="middle" font-size="9" fill="#7a5800">LPV</text>
+      <line x1="330" y1="106" x2="285" y2="130" stroke="#e67e22" stroke-width="1"/>
+      <line x1="330" y1="106" x2="375" y2="130" stroke="#e67e22" stroke-width="1"/>
+      <!-- PA sub -->
+      <rect x="465" y="130" width="80" height="30" rx="4" fill="#eafaf1" stroke="#27ae60"/>
+      <text x="505" y="148" text-anchor="middle" font-size="10" fill="#1a6b3a" font-weight="700">Conv. PA</text>
+      <text x="505" y="159" text-anchor="middle" font-size="9" fill="#1a6b3a">ILS/MLS/PAR</text>
+      <rect x="555" y="130" width="80" height="30" rx="4" fill="#eafaf1" stroke="#27ae60"/>
+      <text x="595" y="148" text-anchor="middle" font-size="10" fill="#1a6b3a" font-weight="700">PBN PA</text>
+      <text x="595" y="159" text-anchor="middle" font-size="9" fill="#1a6b3a">SBAS CAT I / GLS</text>
+      <line x1="550" y1="106" x2="505" y2="130" stroke="#27ae60" stroke-width="1"/>
+      <line x1="550" y1="106" x2="595" y2="130" stroke="#27ae60" stroke-width="1"/>
+    </svg>
+    <div class="diagram-caption">Fig 7 — ICAO Classification of Instrument Approach and Landing Operations</div>
+  </div>
+
+  <div class="section-title"><span class="icon">🏷️</span> Approach Operation Types</div>
+  <div class="box box-limit">
+    <div class="box-title">🚨 Type A vs Type B — CRITICAL FOR EXAMS</div>
+    <div class="box-grid">
+      <div>
+        <p><strong>Type A:</strong> Minimum descent height or decision height at or above <span class="hl-red">75 m (250 ft)</span>.</p>
+        <p style="margin-top:6px;"><strong>Includes:</strong> NPA, APV, PA Cat I with DH ≥75 m.</p>
+      </div>
+      <div>
+        <p><strong>Type B:</strong> Decision height <span class="hl-red">below 75 m (250 ft)</span>. Categorised as Precision Approach Runway:</p>
+        <ul class="dash-list" style="margin-top:4px;">
+          <li><strong>CAT I:</strong> DH ≥ 60 m (200 ft); RVR ≥ 800 m or visibility ≥ 550 m</li>
+          <li><strong>CAT II:</strong> DH 30–60 m (100–200 ft); RVR ≥ 300 m</li>
+          <li><strong>CAT III:</strong> DH &lt; 30 m (100 ft) OR no DH; RVR &lt; 300 m OR no RVR limitation</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:10px; color:var(--red); font-weight:700;">⚠️ CAT II and CAT III operations shall NOT be authorized unless RVR information is provided.</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <caption>Performance Requirements in Support of Instrument Approach Operations</caption>
+      <thead>
+        <tr>
+          <th>Type of Approach</th>
+          <th>Annex 10 System Performance</th>
+          <th>Annex 6 Approach Operation Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Non-Precision (NPA)</th>
+          <td>—</td>
+          <td>2D – Type A</td>
+        </tr>
+        <tr>
+          <th>APV (Vertical Guidance)</th>
+          <td>—</td>
+          <td>3D – Type A</td>
+        </tr>
+        <tr>
+          <th rowspan="4">Precision Approach (PA)</th>
+          <td>CAT I, DH ≥ 75 m (250 ft)</td>
+          <td>3D – Type A</td>
+        </tr>
+        <tr>
+          <td>CAT I, DH ≥ 60 m (200 ft) and &lt; 75 m (250 ft)</td>
+          <td class="tbl-highlight">3D – Type B — CAT I</td>
+        </tr>
+        <tr>
+          <td>Category II</td>
+          <td class="tbl-highlight">3D – Type B — CAT II</td>
+        </tr>
+        <tr>
+          <td>Category III</td>
+          <td class="tbl-red">3D – Type B — CAT III</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 Terminal Instrument Flight Procedure Types</div>
+    <ul class="dash-list">
+      <li><strong>NPA Conventional:</strong> Ground-based (VOR/DME, NDB, Localiser). Runway visibility ≥ 1,000 m.</li>
+      <li><strong>NPA PBN (RNP APCH):</strong> Uses GNSS. Charted as RNAV(GNSS) or RNAV(GPS). Types: RNP App, NPA GPS, LNAV.</li>
+      <li><strong>APV (RNP AR APCH):</strong> 3D guidance but lower performance than PA. Types: APV BaroVNAV, APV SBAS (LPV), LNAV/VNAV.</li>
+      <li><strong>PA Conventional:</strong> ILS, MLS, PAR. 3D approach ops Type A or B.</li>
+      <li><strong>PA PBN:</strong> SBAS Cat I, GLS (GBAS Landing System).</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ──────────────── §15 VISUAL MANOEUVRING (CIRCLING) ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 15</div>
+    <h2>Visual Manoeuvring (Circling)</h2>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 Definition</div>
+    <p>Visual manoeuvring (circling) is the phase of flight after an instrument approach has been completed, which brings the aircraft into position for landing on a runway that is <strong>not suitably located for straight-in approach</strong> (i.e., alignment or descent gradient criteria cannot be met).</p>
+  </div>
+
+  <div class="section-title"><span class="icon">🔵</span> The Visual Manoeuvring Area</div>
+  <div class="box box-note">
+    <div class="box-title">📌 Area Construction</div>
+    <p>Arcs centred on each runway threshold, joined by tangent lines. Radius depends on:</p>
+    <ul class="dash-list" style="margin-top:6px;">
+      <li><strong>Aircraft category</strong></li>
+      <li><strong>Speed</strong> for each category</li>
+      <li><strong>Wind speed:</strong> <span class="hl-red">46 km/h (25 kt)</span> throughout the turn</li>
+      <li><strong>Bank angle:</strong> <span class="hl-red">20° average</span> or <span class="hl-red">3° per second</span>, whichever requires less bank</li>
+    </ul>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 Descent below MDA/H Rules</div>
+    <p>Descent below MDA/H should NOT be made until ALL three of the following are met:</p>
+    <ol class="styled-ol" style="margin-top:8px;">
+      <li>Visual reference has been established and <strong>can be maintained</strong>.</li>
+      <li>The pilot has the <strong>landing threshold in sight</strong>.</li>
+      <li>The required obstacle clearance can be maintained and the aircraft is <strong>in a position to carry out a landing</strong>.</li>
+    </ol>
+  </div>
+
+  <div class="box box-sop">
+    <div class="box-title">✅ Missed Approach While Circling</div>
+    <p>If visual reference is lost while circling, the <strong>specified missed approach procedure must be followed</strong>. The pilot will make an initial climbing turn toward the landing runway and overhead the aerodrome, then establish on the missed approach track.</p>
+  </div>
+</div>
+
+<!-- ──────────────── §16 HOLDING ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 16</div>
+    <h2>Holding Procedures</h2>
+  </div>
+
+  <div class="sub-title">General Rules</div>
+  <div class="box-grid">
+    <div class="box box-limit" style="margin:0;">
+      <div class="box-title">🚨 Bank Angle / Rate of Turn</div>
+      <p>All turns to be made at a <strong>bank angle of 25°</strong> or at a <strong>rate of 3° per second</strong>, whichever requires the <span class="hl-red">lesser bank</span>.</p>
+    </div>
+    <div class="box box-sop" style="margin:0;">
+      <div class="box-title">✅ Wind Correction</div>
+      <p>Pilots should attempt to maintain the track by applying allowance for known wind — both heading and timing corrections. This applies during <strong>entry and while flying in the holding pattern</strong>.</p>
+    </div>
+    <div class="box box-note" style="margin:0;">
+      <div class="box-title">📌 Outbound Timing</div>
+      <p>Timing begins <strong>over or abeam the fix</strong>, whichever occurs later. If abeam position cannot be determined, start timing when the turn to outbound is completed.</p>
+    </div>
+    <div class="box box-note" style="margin:0;">
+      <div class="box-title">📌 DME Outbound Leg</div>
+      <p>If outbound leg is based on a DME distance, it terminates as soon as the limiting DME distance is reached.</p>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="icon">🔄</span> Holding Entry — Three Sectors</div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:440px;">
+      <!-- Sector 1 (parallel) -->
+      <path d="M220,150 L220,30 L30,30 L30,150 Z" fill="#1a3a6b" opacity="0.7"/>
+      <text x="110" y="100" text-anchor="middle" font-size="20" fill="#fff" font-weight="900">1</text>
+      <text x="110" y="120" text-anchor="middle" font-size="11" fill="#b0c8e8">Parallel Entry</text>
+      <!-- Sector 2 (offset) -->
+      <path d="M220,150 L220,270 L30,270 L30,150 Z" fill="#0d5c63" opacity="0.7"/>
+      <text x="110" y="220" text-anchor="middle" font-size="20" fill="#fff" font-weight="900">2</text>
+      <text x="110" y="240" text-anchor="middle" font-size="11" fill="#b0e0d8">Offset Entry (30°)</text>
+      <!-- Sector 3 (direct) -->
+      <path d="M220,30 L410,150 L220,270 Z" fill="#27ae60" opacity="0.6"/>
+      <text x="330" y="155" text-anchor="middle" font-size="20" fill="#fff" font-weight="900">3</text>
+      <text x="332" y="175" text-anchor="middle" font-size="11" fill="#d0f5e0">Direct Entry</text>
+      <!-- Holding fix -->
+      <circle cx="220" cy="150" r="8" fill="#c0392b"/>
+      <text x="222" y="185" font-size="11" fill="#c0392b" font-weight="700">FIX</text>
+      <!-- Holding pattern -->
+      <ellipse cx="330" cy="100" rx="60" ry="40" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="5,3"/>
+      <!-- 70° angles -->
+      <line x1="220" y1="150" x2="220" y2="30" stroke="#fff" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.7"/>
+      <line x1="220" y1="150" x2="30" y2="150" stroke="#fff" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
+      <!-- angle labels -->
+      <text x="224" y="50" font-size="11" fill="#fff" font-weight="700">70°</text>
+      <text x="224" y="255" font-size="11" fill="#fff" font-weight="700">70°</text>
+      <!-- zone of flexibility -->
+      <text x="220" y="22" text-anchor="middle" font-size="10" fill="#ffd700">Zone of flexibility: ±5°</text>
+    </svg>
+    <div class="diagram-caption">Fig 8 — Holding Pattern Entry Sectors. Sector boundaries have ±5° zone of flexibility. Standard holding = turns to the RIGHT.</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <caption>Holding Entry Procedures</caption>
+      <thead>
+        <tr><th>Sector</th><th>Entry Type</th><th>Procedure</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Sector 1</th>
+          <td><span class="pill pill-blue">Parallel Entry</span></td>
+          <td>At the fix, turn LEFT onto outbound heading for the appropriate period of time; then turn LEFT to intercept inbound track or return to fix; on second arrival, turn RIGHT to follow holding pattern.</td>
+        </tr>
+        <tr>
+          <th>Sector 2</th>
+          <td><span class="pill pill-gold">Offset Entry (30°)</span></td>
+          <td>At the fix, turn to make good a track at <strong>30°</strong> from the reciprocal of the inbound track on the holding side; fly outbound for the appropriate time; turn RIGHT to intercept inbound track; on second arrival over fix, turn RIGHT to follow holding pattern.</td>
+        </tr>
+        <tr>
+          <th>Sector 3</th>
+          <td><span class="pill pill-green">Direct Entry</span></td>
+          <td>Having reached the fix, turn RIGHT to follow the holding pattern.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box-note">
+    <div class="box-title">📌 VOR/DME Fix — Entry Track Limitations</div>
+    <ul class="dash-list">
+      <li>The entry track to a VOR/DME fix is limited to: (a) the VOR radial; (b) the DME arc; or (c) the entry radial to a VOR/DME fix at the end of the outbound leg as published.</li>
+      <li><em>Note: DME arc entry is specified only when there is a specific operational difficulty making other entry procedures impossible.</em></li>
+    </ul>
+  </div>
+
+  <div class="section-title"><span class="icon">⏱️</span> Holding Speeds</div>
+  <div class="table-wrap">
+    <table>
+      <caption>Holding Speeds — Categories A through E</caption>
+      <thead>
+        <tr>
+          <th>Level / Altitude</th>
+          <th>Normal Conditions</th>
+          <th>Turbulence Conditions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Up to 4,250 m (14,000 ft)</td>
+          <td class="tbl-highlight">425 km/h (230 kt) — Cats C,D,E<br>315 km/h (170 kt) — Cats A,B</td>
+          <td>520 km/h (280 kt) [or 0.8 Mach]<br>315 km/h (170 kt) — Cats A,B</td>
+        </tr>
+        <tr>
+          <td>4,250 m (14,000 ft) to 6,100 m (20,000 ft) inclusive</td>
+          <td class="tbl-highlight">445 km/h (240 kt)</td>
+          <td>520 km/h (280 kt) or 0.8 Mach — lesser</td>
+        </tr>
+        <tr>
+          <td>6,100 m (20,000 ft) to 10,350 m (34,000 ft) inclusive</td>
+          <td class="tbl-highlight">490 km/h (265 kt)</td>
+          <td>520 km/h (280 kt) or 0.8 Mach — lesser</td>
+        </tr>
+        <tr>
+          <td>Above 10,350 m (34,000 ft)</td>
+          <td class="tbl-highlight">0.83 Mach</td>
+          <td>0.83 Mach</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--muted);margin-top:6px;">Notes: Speed of 520 km/h (280 kt) for turbulence requires prior ATC clearance, unless publications indicate the holding area can accommodate it. 315 km/h (170 kt) applies to Cat A and B only.</p>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 DME Arc Entry — Outbound Time Limits</div>
+    <ul class="dash-list">
+      <li>At or below <strong>4,250 m (14,000 ft)</strong>: still air time for outbound entry heading must not exceed <span class="hl-red">1 minute</span>.</li>
+      <li>Above <strong>4,250 m (14,000 ft)</strong>: must not exceed <span class="hl-red">1.5 minutes</span>.</li>
+    </ul>
+  </div>
+
+  <div class="box box-sop">
+    <div class="box-title">✅ Minimum Holding Level</div>
+    <ul class="dash-list">
+      <li>Provides clearance of at least <span class="hl-green">300 m (984 ft)</span> above obstacles in the holding area.</li>
+      <li>Minimum holding altitude published shall be rounded <strong>up</strong> to the nearest 50 m or 100 ft.</li>
+      <li>Over high terrain/mountainous areas: additional clearance up to <span class="hl-green">600 m (1,969 ft)</span> is provided to accommodate turbulence, down-drafts, and altimeter errors.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ──────────────── §17 SIMULTANEOUS ILS ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 17</div>
+    <h2>Simultaneous ILS Operations on Parallel / Near-Parallel Runways</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <caption>Modes of Operation for Parallel Instrument Runways</caption>
+      <thead>
+        <tr><th>Mode</th><th>Name</th><th>Description</th><th>Runway Separation</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Mode 1</th>
+          <td>Independent Parallel Approaches</td>
+          <td>Radar separation minima between aircraft using adjacent ILS/MLS are <strong>not prescribed</strong>.</td>
+          <td class="tbl-highlight">≥ 1,035 m between C/Ls</td>
+        </tr>
+        <tr>
+          <th>Mode 2</th>
+          <td>Dependent Parallel Approaches</td>
+          <td>Radar separation minima between aircraft using adjacent ILS/MLS <strong>are prescribed</strong>.</td>
+          <td class="tbl-highlight">≥ 915 m between C/Ls</td>
+        </tr>
+        <tr>
+          <th>Mode 3</th>
+          <td>Independent Parallel Departures</td>
+          <td>Aircraft departing in same direction from parallel runways simultaneously. (Less than specified C/L distance for wake turbulence = single runway.)</td>
+          <td class="tbl-highlight">≥ 760 m between C/Ls</td>
+        </tr>
+        <tr>
+          <th>Mode 4</th>
+          <td>Segregated Parallel Ops</td>
+          <td>One runway for approaches, one for departures. Approach runway staggered ≥ 2 NM straight and level minimum. Descent point.</td>
+          <td class="tbl-highlight">≥ 760 m (reduce by 150m/30% = 300 m min)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ──────────────── §18 RNAV VOR/DME ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 18</div>
+    <h2>RNAV Arrival &amp; Approach — Based on VOR/DME</h2>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 VOR/DME RNAV Approach</div>
+    <p>Based on one reference facility composed of a <strong>VOR and collocated DME</strong>. The reference facility will be indicated. The VOR/DME RNAV approach is a <strong>non-precision approach procedure</strong>.</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <caption>RNAV VOR/DME — Key Values by Segment</caption>
+      <thead>
+        <tr><th>Segment</th><th>FTT Value</th><th>Key Rules</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>STARs (Arrival)</th>
+          <td>3.7 km (2.0 NM) until 46 km (25 NM) from IAF; 1.9 km (1.0 NM) after</td>
+          <td>Based on RNP 1 or better; or specific RNAV criteria</td>
+        </tr>
+        <tr>
+          <th>Final Approach</th>
+          <td>MOC = 75 m (246 ft) in primary area</td>
+          <td>Generally aligned with runway. FAF = fly-by waypoint. Flyover waypoint also provided at runway threshold.</td>
+        </tr>
+        <tr>
+          <th>Missed Approach</th>
+          <td>Area splays at 15° each side from earliest MAPt</td>
+          <td>MAHF (Missed Approach Holding Fix) defines end of missed approach segment.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ──────────────── §19 ALTIMETER SETTING ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 19</div>
+    <h2>Altimeter Setting Procedures</h2>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 Purpose</div>
+    <p>Provide adequate vertical separation between aircraft and adequate terrain clearance during all phases of flight. Method is based on the following basic principles:</p>
+  </div>
+
+  <div class="section-title"><span class="icon">📊</span> Core Principles</div>
+  <div class="box box-note">
+    <div class="box-title">📌 Altitude vs Flight Level</div>
+    <ul class="dash-list">
+      <li>At or below <strong>transition altitude</strong>: vertical position expressed as <strong>ALTITUDE</strong> (altimeter set to QNH).</li>
+      <li>Above <strong>transition altitude</strong>: vertical position expressed as <strong>FLIGHT LEVELS</strong> (altimeter set to 1,013.2 hPa).</li>
+      <li>Change from altitude → flight level: at <strong>transition altitude</strong> (on climb).</li>
+      <li>Change from flight level → altitude: at <strong>transition level</strong> (on descent).</li>
+      <li><strong>Transition layer</strong> = airspace between transition level and transition altitude.</li>
+    </ul>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 Transition Altitude — Critical Values</div>
+    <ul class="dash-list">
+      <li>Normally specified for each aerodrome by the State.</li>
+      <li><strong>Minimum transition altitude in India = 4,000 ft</strong></li>
+      <li>Height above aerodrome: as low as possible but <strong>normally not less than 900 m (3,000 ft)</strong>.</li>
+      <li>Calculated height rounded <strong>up</strong> to the next full 300 m (1,000 ft).</li>
+      <li>Transition level located <span class="hl-red">300 m (1,000 ft)</span> above the transition altitude (to permit concurrent use in cruising flight with vertical separation ensured).</li>
+      <li><strong>Flight Level Zero = 1,013.2 hPa</strong>. Consecutive FLs separated by a pressure interval corresponding to at least <strong>500 ft (152.4 m)</strong> in the standard atmosphere.</li>
+    </ul>
+  </div>
+
+  <div class="section-title"><span class="icon">🔧</span> Pre-Flight Altimeter Test</div>
+  <div class="box box-sop">
+    <div class="box-title">✅ QNH / QFE Setting Pre-Flight Operational Test</div>
+    <ol class="styled-ol">
+      <li>With aircraft at a known elevation on the aerodrome, set the altimeter to the current QNH/QFE setting.</li>
+      <li>Vibrate the instrument by tapping unless mechanical vibration is provided.</li>
+    </ol>
+    <p style="margin-top:10px;"><strong>A serviceable altimeter indicates the elevation/height within a tolerance of:</strong></p>
+    <ul class="dash-list" style="margin-top:6px;">
+      <li>Test range 0 to 9,000 m (0 to 30,000 ft): <span class="hl-red">±20 m or 60 ft</span></li>
+      <li>Test range 0 to 15,000 m (0 to 50,000 ft): <span class="hl-red">±25 m or 80 ft</span></li>
+    </ul>
+  </div>
+
+  <!-- Altitude / FL diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:480px;">
+      <!-- vertical axis -->
+      <line x1="60" y1="20" x2="60" y2="175" stroke="#555" stroke-width="2"/>
+      <!-- FL zone -->
+      <rect x="70" y="20" width="370" height="60" rx="4" fill="#e8f4fd" stroke="#2980b9" stroke-width="1.5"/>
+      <text x="255" y="46" text-anchor="middle" font-size="13" fill="#1a3a6b" font-weight="700">FLIGHT LEVELS (1013.2 hPa)</text>
+      <text x="255" y="62" text-anchor="middle" font-size="11" fill="#2980b9">Above transition level</text>
+      <!-- transition layer -->
+      <rect x="70" y="80" width="370" height="30" rx="4" fill="#fff3cd" stroke="#f0a500" stroke-width="1.5"/>
+      <text x="255" y="100" text-anchor="middle" font-size="12" fill="#7a5800" font-weight="700">TRANSITION LAYER</text>
+      <!-- Altitude zone -->
+      <rect x="70" y="110" width="370" height="55" rx="4" fill="#eafaf1" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="255" y="135" text-anchor="middle" font-size="13" fill="#1a6b3a" font-weight="700">ALTITUDE (QNH)</text>
+      <text x="255" y="153" text-anchor="middle" font-size="11" fill="#27ae60">At or below transition altitude</text>
+      <!-- arrows -->
+      <text x="30" y="55" text-anchor="middle" font-size="10" fill="#2980b9" font-weight="700" transform="rotate(-90,30,55)">SET 1013.2</text>
+      <text x="30" y="135" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700" transform="rotate(-90,30,135)">SET QNH</text>
+      <!-- climb descent -->
+      <text x="450" y="68" text-anchor="end" font-size="11" fill="#c0392b" font-weight="700">↑ Change at TA</text>
+      <text x="450" y="116" text-anchor="end" font-size="11" fill="#c0392b" font-weight="700">↓ Change at TL</text>
+    </svg>
+    <div class="diagram-caption">Fig 9 — Altimeter Setting. Change to 1013.2 hPa when CLIMBING through Transition Altitude. Change to QNH when DESCENDING through Transition Level.</div>
+  </div>
+</div>
+
+<!-- ──────────────── §20 SSR & TRANSPONDER ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 20</div>
+    <h2>Secondary Surveillance Radar (SSR) &amp; Transponder</h2>
+  </div>
+
+  <div class="sub-title">Key Definitions</div>
+  <div class="box-grid">
+    <div class="box box-def" style="margin:0;">
+      <div class="box-title">📘 SSR</div>
+      <p>Secondary Surveillance Radar. Uses <strong>transmitters/receivers (interrogators) and transponders</strong>.</p>
+    </div>
+    <div class="box box-def" style="margin:0;">
+      <div class="box-title">📘 ACAS (Definition)</div>
+      <p>Aircraft system based on SSR transponder signals operating <strong>independently of ground-based equipment</strong> to provide advice to the pilot on potential conflicting aircraft equipped with SSR transponders.</p>
+    </div>
+    <div class="box box-def" style="margin:0;">
+      <div class="box-title">📘 Mode A</div>
+      <p>To elicit transponder replies for <strong>identity and surveillance</strong>.</p>
+    </div>
+    <div class="box box-def" style="margin:0;">
+      <div class="box-title">📘 Mode C</div>
+      <p>To elicit transponder replies for <strong>automatic pressure-altitude transmission and surveillance</strong>.</p>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="icon">📡</span> Transponder Operating Procedures</div>
+  <div class="box box-sop">
+    <div class="box-title">✅ General Operation Rule</div>
+    <p>When an aircraft carries a serviceable transponder, the pilot shall operate it <strong>at all times during flight</strong>, regardless of whether SSR is used for ATS purposes in that airspace.</p>
+    <p style="margin-top:8px;">Squawk codes are four-digit octal numbers. Dials read 0–7 inclusive. Lowest squawk = <strong>0000</strong>. Highest = <strong>7777</strong>.</p>
+  </div>
+
+  <div class="box box-note">
+    <div class="box-title">📌 Code Selection Priority</div>
+    <ol class="styled-ol">
+      <li>Operate on Mode A codes <strong>as directed by the ATC unit</strong> with which contact is being made.</li>
+      <li>Operate on Mode A codes as prescribed by <strong>regional air navigation agreements</strong>.</li>
+      <li>In absence of any ATC directions or regional agreements: operate on <strong>Mode A Code 2000</strong>.</li>
+    </ol>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 CONFIRM SQUAWK Procedure</div>
+    <p>When ATC requests "CONFIRM SQUAWK (code)", the pilot shall:</p>
+    <ol class="styled-ol" style="margin-top:6px;">
+      <li>Verify the Mode A code setting on the transponder.</li>
+      <li>Reselect the assigned code if necessary.</li>
+      <li>Confirm to ATC the setting displayed on the transponder controls.</li>
+    </ol>
+    <p style="margin-top:8px; font-weight:700; color:var(--red);">⚠️ Pilots shall NOT SQUAWK IDENT unless requested by ATC.</p>
+  </div>
+
+  <!-- Emergency codes -->
+  <div class="section-title"><span class="icon">🆘</span> Emergency Squawk Codes</div>
+  <div class="squawk-row">
+    <div class="squawk-card sq-red">
+      <div class="code">7700</div>
+      <div class="label">GENERAL EMERGENCY</div>
+    </div>
+    <div class="squawk-card sq-amber">
+      <div class="code">7600</div>
+      <div class="label">COMMUNICATION FAILURE</div>
+    </div>
+    <div class="squawk-card sq-blue">
+      <div class="code">7500</div>
+      <div class="label">UNLAWFUL INTERFERENCE (HIJACK)</div>
+    </div>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 Emergency Transponder Rules</div>
+    <ul class="dash-list">
+      <li><strong>7700 (Emergency):</strong> Set unless ATC has previously directed to operate on a specified code. However, pilot may select 7700 whenever there is specific reason to believe it is the best course of action.</li>
+      <li><strong>7600 (Comm Failure):</strong> Set when losing two-way communications. Controller will determine extent of failure by instructing pilot to SQUAWK IDENT or change code.</li>
+      <li><strong>7500 (Unlawful Interference):</strong> If circumstances warrant, Code 7700 should be used instead. If ATC requests pilot to confirm 7500, pilot shall — according to circumstances — <strong>either confirm or not reply at all</strong>. Non-reply = confirmation that 7500 is not an inadvertent selection.</li>
+    </ul>
+  </div>
+
+  <div class="box box-note">
+    <div class="box-title">📌 Transponder Failure After Departure</div>
+    <p>ATC units shall attempt to provide for continuation of the flight to the destination aerodrome in accordance with the flight plan. Pilots may, however, expect to comply with specific restrictions.</p>
+  </div>
+</div>
+
+<!-- ──────────────── §21 ACAS ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 21</div>
+    <h2>ACAS — Airborne Collision Avoidance System</h2>
+  </div>
+
+  <div class="box box-def">
+    <div class="box-title">📘 Purpose of ACAS</div>
+    <p>ACAS indications shall be used by pilots in the avoidance of potential collisions, enhancement of situational awareness, and the active search for, and visual acquisition of, conflicting traffic. Nothing in ACAS procedures prevents pilots-in-command from exercising their best judgment and full authority in the choice of the best course of action.</p>
+  </div>
+
+  <div class="section-title"><span class="icon">📻</span> ACAS Operations — Surveillance</div>
+  <div class="box box-note">
+    <div class="box-title">📌 Surveillance Range</div>
+    <ul class="dash-list">
+      <li>Nominal surveillance range: <span class="hl-blue">26 km (14 NM)</span></li>
+      <li>Minimum guaranteed range when airborne: <span class="hl-red">8.5 km (4.5 NM)</span></li>
+      <li>Range can be reduced in geographic areas with large numbers of ground interrogators and/or ACAS-equipped aircraft.</li>
+    </ul>
+  </div>
+
+  <div class="section-title"><span class="icon">⚠️</span> TA vs RA — Critical Distinction</div>
+  <div class="box-grid">
+    <div class="box box-note" style="margin:0;">
+      <div class="box-title">📌 Traffic Advisory (TA)</div>
+      <ul class="dash-list">
+        <li>Intended to <strong>alert pilots</strong> to the possibility of an RA, to enhance situational awareness, and to assist in visual acquisition of conflicting traffic.</li>
+        <li>Pilots shall <span class="hl-red">NOT manoeuvre</span> in response to TAs only.</li>
+        <li>On receipt of a TA, use all available information to <strong>prepare for appropriate action</strong> if an RA occurs.</li>
+        <li>TAs can be issued against any Mode C transponder-equipped aircraft.</li>
+      </ul>
+    </div>
+    <div class="box box-limit" style="margin:0;">
+      <div class="box-title">🚨 Resolution Advisory (RA) — Mandatory Actions</div>
+      <ol class="styled-ol">
+        <li><strong>Respond IMMEDIATELY</strong> by following the RA as indicated, unless doing so would jeopardize safety.</li>
+        <li>Follow the RA even if there is a <strong>conflict between RA and ATC instruction</strong> to manoeuvre.</li>
+        <li><strong>Do NOT manoeuvre in the opposite sense</strong> to the RA.</li>
+        <li>As soon as possible, <strong>notify the appropriate ATC unit</strong> of the RA, including the direction of any deviation.</li>
+        <li>Promptly comply with any <strong>modified RAs</strong>.</li>
+        <li>Limit alterations to the <strong>minimum extent</strong> necessary.</li>
+        <li>Promptly return to ATC clearance when conflict is resolved.</li>
+        <li>Notify ATC when returning to the current clearance.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="box box-sop">
+    <div class="box-title">✅ ACAS Collision Avoidance — Key Rules</div>
+    <ul class="dash-list">
+      <li>TAs can be issued against any transponder-equipped aircraft responding to Mode C interrogations, even without altitude-reporting capability.</li>
+      <li>RAs can be issued <strong>only against aircraft that are reporting altitude</strong> and in the vertical plane only.</li>
+      <li>RAs against ACAS-equipped intruders are coordinated to ensure complementary RAs are issued.</li>
+      <li>Failure to respond to an RA deprives the aircraft of collision protection AND restricts the other aircraft's ACAS choices.</li>
+      <li>Manoeuvring in the opposite direction to an RA is <strong>likely to result in further reduction in separation</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="box box-limit">
+    <div class="box-title">🚨 ACAS Alert Priority Order</div>
+    <p>The following alerts take precedence over ACAS:</p>
+    <ul class="dash-list">
+      <li><strong>Stall Warning</strong></li>
+      <li><strong>Wind Shear Warning</strong></li>
+      <li><strong>Ground Proximity Warning System (GPWS) alerts</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ──────────────── §22 DGCA Q&A ──────────────── -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Section 22</div>
+    <h2>DGCA Question Bank &amp; Answer Key</h2>
+    <p>Selected questions from the RK-Bali reference text — 102 questions total</p>
+  </div>
+
+  <div class="sub-title">Key Questions — Departures &amp; PDG</div>
+  <div class="qa-grid">
+    <div class="qa-item">
+      <div class="q-num">Q1</div>
+      <div class="q-text">PANS-OPS means:</div>
+      <div class="q-options">A) Procedures for Air Navigation Services - Aircraft operations<br>B) Pilots Alternate Navigational Systems and Operational Procedures<br>C) Procedures for Air Navigation Systems - Airfield operations</div>
+      <div class="q-ans">Answer: A</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q2</div>
+      <div class="q-text">The document that specifies recommendations for instrument procedures is called...</div>
+      <div class="q-options">A) PANS OPS Doc 8168<br>B) The Convention of Chicago<br>C) The Air Navigation bulletin</div>
+      <div class="q-ans">Answer: A</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Which defines transition altitude?</div>
+      <div class="q-options">A) Altitude above which vertical position determined by local QNH<br>B) Altitude below which vertical position is determined by reference to QNH<br>C) Altitude at which 1013 hPa is set and vertical position reported as FL</div>
+      <div class="q-ans">Answer: C</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q4</div>
+      <div class="q-text">The Transition Level:</div>
+      <div class="q-options">A) Published in Section ENR of the AIP<br>B) Shall be the lowest FL available for use above the transition altitude<br>C) Is calculated and declared for an approach by the Pilot-in-command</div>
+      <div class="q-ans">Answer: B</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q5</div>
+      <div class="q-text">During flight through the transition layer the vertical position should be expressed as:</div>
+      <div class="q-options">A) Altitude above MSL during climb<br>B) Either altitude above MSL or FL during climb<br>C) Altitude above MSL during descent</div>
+      <div class="q-ans">Answer: C</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q6</div>
+      <div class="q-text">Transition from altitude to FL, and vice versa, is done:</div>
+      <div class="q-options">A) At TL during climb and TA during descent<br>B) At TA during climb and TL during descent<br>C) Only at transition altitude</div>
+      <div class="q-ans">Answer: B</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q10</div>
+      <div class="q-text">The transition altitude of an aerodrome should not be below:</div>
+      <div class="q-options">A) 4000 ft<br>B) 1000 ft<br>C) 1500 ft</div>
+      <div class="q-ans">Answer: A</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q11</div>
+      <div class="q-text">Pilot of departing aircraft under IFR shall change altimeter from QNH to 1013.25 hPa when passing:</div>
+      <div class="q-options">A) Transition layer<br>B) Level specified by ATC<br>C) Transition altitude</div>
+      <div class="q-ans">Answer: C</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q88</div>
+      <div class="q-text">What is the obstacle clearance in the intermediate approach segment?</div>
+      <div class="q-options">A) 300 m (984 ft)<br>B) 200 m (656 ft)<br>C) Reducing from 300 m to 150 m</div>
+      <div class="q-ans">Answer: C</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q91</div>
+      <div class="q-text">In relation to three entry sectors, entry into holding pattern shall be according to:</div>
+      <div class="q-options">A) Course<br>B) Track<br>C) Heading</div>
+      <div class="q-ans">Answer: C</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q92</div>
+      <div class="q-text">Zone of flexibility on either side of sector boundaries in holding entry:</div>
+      <div class="q-options">A) 5°<br>B) 20°<br>C) 10°</div>
+      <div class="q-ans">Answer: A</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q93</div>
+      <div class="q-text">What is the outbound timing in a holding pattern above FL 140?</div>
+      <div class="q-options">A) 2 minutes<br>B) 1 minute<br>C) 1 minute 30 seconds</div>
+      <div class="q-ans">Answer: C</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q94</div>
+      <div class="q-text">In a holding pattern all turns are to be made at:</div>
+      <div class="q-options">A) Rate of 3°/sec or bank angle of 25°, whichever lesser bank<br>B) Rate of 3°/sec<br>C) Rate of 3°/sec or bank angle of 20°, whichever lesser bank</div>
+      <div class="q-ans">Answer: A</div>
+    </div>
+    <div class="qa-item">
+      <div class="q-num">Q95</div>
+      <div class="q-text">In a standard holding pattern turns are made:</div>
+      <div class="q-options">A) To the left<br>B) To the right<br>C) In a direction depending on wind direction</div>
+      <div class="q-ans">Answer: B</div>
+    </div>
+  </div>
+
+  <!-- Answer Key Table -->
+  <div class="sub-title" style="margin-top:30px;">Complete Answer Key (All 102 Questions)</div>
+  <div class="table-wrap">
+    <table style="font-size:12px; font-family:'Fira Mono',monospace;">
+      <caption>RK-Bali Question Bank — Answer Key</caption>
+      <thead>
+        <tr>
+          <th>Q</th><th>Ans</th><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td class="tbl-green">A</td><td>2</td><td class="tbl-green">A</td><td>3</td><td class="tbl-green">C</td><td>4</td><td class="tbl-green">B</td><td>5</td><td class="tbl-green">C</td><td>6</td><td class="tbl-green">B</td><td>7</td><td class="tbl-green">A</td></tr>
+        <tr><td>8</td><td class="tbl-green">C</td><td>9</td><td class="tbl-green">B</td><td>10</td><td class="tbl-green">A</td><td>11</td><td class="tbl-green">C</td><td>12</td><td class="tbl-green">B</td><td>13</td><td class="tbl-green">C</td><td>14</td><td class="tbl-green">C</td></tr>
+        <tr><td>15</td><td class="tbl-green">C</td><td>16</td><td class="tbl-green">A</td><td>17</td><td class="tbl-green">C</td><td>18</td><td class="tbl-green">A</td><td>19</td><td class="tbl-green">B</td><td>20</td><td class="tbl-green">C</td><td>21</td><td class="tbl-green">B</td></tr>
+        <tr><td>22</td><td class="tbl-green">A</td><td>23</td><td class="tbl-green">A</td><td>24</td><td class="tbl-green">B</td><td>25</td><td class="tbl-green">A</td><td>26</td><td class="tbl-green">C</td><td>27</td><td class="tbl-green">A</td><td>28</td><td class="tbl-green">B</td></tr>
+        <tr><td>29</td><td class="tbl-green">C</td><td>30</td><td class="tbl-green">A</td><td>31</td><td class="tbl-green">C</td><td>32</td><td class="tbl-green">A</td><td>33</td><td class="tbl-green">B</td><td>34</td><td class="tbl-green">C</td><td>35</td><td class="tbl-green">C</td></tr>
+        <tr><td>36</td><td class="tbl-green">B</td><td>37</td><td class="tbl-green">B</td><td>38</td><td class="tbl-green">A</td><td>39</td><td class="tbl-green">C</td><td>40</td><td class="tbl-green">C</td><td>41</td><td class="tbl-green">A</td><td>42</td><td class="tbl-green">C</td></tr>
+        <tr><td>43</td><td class="tbl-green">B</td><td>44</td><td class="tbl-green">A</td><td>45</td><td class="tbl-green">B</td><td>46</td><td class="tbl-green">A</td><td>47</td><td class="tbl-green">A</td><td>48</td><td class="tbl-green">A</td><td>49</td><td class="tbl-green">B</td></tr>
+        <tr><td>50</td><td class="tbl-green">C</td><td>51</td><td class="tbl-green">C</td><td>52</td><td class="tbl-green">B</td><td>53</td><td class="tbl-green">C</td><td>54</td><td class="tbl-green">C</td><td>55</td><td class="tbl-green">C</td><td>56</td><td class="tbl-green">A</td></tr>
+        <tr><td>57</td><td class="tbl-green">C</td><td>58</td><td class="tbl-green">A</td><td>59</td><td class="tbl-green">A</td><td>60</td><td class="tbl-green">A</td><td>61</td><td class="tbl-green">B</td><td>62</td><td class="tbl-green">B</td><td>63</td><td class="tbl-green">C</td></tr>
+        <tr><td>64</td><td class="tbl-green">A</td><td>65</td><td class="tbl-green">A</td><td>66</td><td class="tbl-green">A</td><td>67</td><td class="tbl-green">C</td><td>68</td><td class="tbl-green">C</td><td>69</td><td class="tbl-green">A</td><td>70</td><td class="tbl-green">B</td></tr>
+        <tr><td>71</td><td class="tbl-green">A</td><td>72</td><td class="tbl-green">A</td><td>73</td><td class="tbl-green">C</td><td>74</td><td class="tbl-green">A</td><td>75</td><td class="tbl-green">B</td><td>76</td><td class="tbl-green">C</td><td>77</td><td class="tbl-green">B</td></tr>
+        <tr><td>78</td><td class="tbl-green">B</td><td>79</td><td class="tbl-green">A</td><td>80</td><td class="tbl-green">B</td><td>81</td><td class="tbl-green">A</td><td>82</td><td class="tbl-green">C</td><td>83</td><td class="tbl-green">B</td><td>84</td><td class="tbl-green">A</td></tr>
+        <tr><td>85</td><td class="tbl-green">C</td><td>86</td><td class="tbl-green">B</td><td>87</td><td class="tbl-green">C</td><td>88</td><td class="tbl-green">C</td><td>89</td><td class="tbl-green">C</td><td>90</td><td class="tbl-green">B</td><td>91</td><td class="tbl-green">C</td></tr>
+        <tr><td>92</td><td class="tbl-green">A</td><td>93</td><td class="tbl-green">C</td><td>94</td><td class="tbl-green">A</td><td>95</td><td class="tbl-green">B</td><td>96</td><td class="tbl-green">B</td><td>97</td><td class="tbl-green">A</td><td>98</td><td class="tbl-green">A</td></tr>
+        <tr><td>99</td><td class="tbl-green">C</td><td>100</td><td class="tbl-green">C</td><td>101</td><td class="tbl-green">A</td><td>102</td><td class="tbl-green">B</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════ QUICK REFERENCE SUMMARY ═══════════════════════ -->
+<div class="section page-break">
+  <div class="chapter-header">
+    <div class="ch-tag">Quick Reference</div>
+    <h2>Critical Numbers — Must Memorise</h2>
+    <p>All the key figures from PANS-OPS Chapter 13 in one place</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <caption>PANS-OPS Chapter 13 — Critical Numerical Values</caption>
+      <thead>
+        <tr><th>Topic</th><th>Value</th><th>Unit</th><th>Context</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Standard PDG (fixed-wing)</td><td class="tbl-highlight">3.3%</td><td>gradient</td><td>Unless otherwise published</td></tr>
+        <tr><td>Standard PDG (helicopters)</td><td class="tbl-highlight">5.0%</td><td>gradient</td><td>Cat H procedures</td></tr>
+        <tr><td>OIS gradient (basis of PDG)</td><td>2.5%</td><td>gradient</td><td>Obstacle Identification Surface</td></tr>
+        <tr><td>MOC increase rate from DER</td><td class="tbl-highlight">0.8%</td><td>of horizontal dist</td><td>Departure, max turn 15°</td></tr>
+        <tr><td>MOC in turn initiation area</td><td class="tbl-red">90 m (295 ft)</td><td>m / ft</td><td>Departure turns</td></tr>
+        <tr><td>Straight departure track alignment</td><td class="tbl-highlight">±15°</td><td>degrees</td><td>From runway C/L</td></tr>
+        <tr><td>Min altitude before turn (fixed-wing)</td><td class="tbl-red">120 m (394 ft)</td><td>m / ft</td><td>Above aerodrome elevation</td></tr>
+        <tr><td>Min altitude before turn (Cat H)</td><td class="tbl-red">90 m (295 ft)</td><td>m / ft</td><td>Helicopter turns</td></tr>
+        <tr><td>Turn initiation distance from runway start</td><td>600 m</td><td>m</td><td>Normal design optimisation</td></tr>
+        <tr><td>Close-in obstacle gradient not published</td><td class="tbl-red">≤60 m (200 ft)</td><td>m / ft</td><td>A note published instead</td></tr>
+        <tr><td>MSA / TAA obstacle clearance</td><td class="tbl-red">300 m (1,000 ft)</td><td>m / ft</td><td>Within 46 km (25 NM)</td></tr>
+        <tr><td>Initial approach MOC</td><td class="tbl-red">300 m (1,000 ft)</td><td>m / ft</td><td>Primary area</td></tr>
+        <tr><td>Intermediate approach MOC (start)</td><td>300 m (984 ft)</td><td>m / ft</td><td>Reduces to 150 m</td></tr>
+        <tr><td>Intermediate approach MOC (end)</td><td class="tbl-highlight">150 m (492 ft)</td><td>m / ft</td><td>Primary area</td></tr>
+        <tr><td>NPA MOC with FAF</td><td class="tbl-red">75 m</td><td>m</td><td>Final approach</td></tr>
+        <tr><td>NPA MOC without FAF</td><td class="tbl-red">90 m</td><td>m</td><td>Final approach</td></tr>
+        <tr><td>FAF optimal distance from threshold</td><td>9.3 km (5.0 NM)</td><td>km / NM</td><td>NPA with FAF</td></tr>
+        <tr><td>FAF maximum length from threshold</td><td class="tbl-red">19 km (10 NM)</td><td>km / NM</td><td>NPA with FAF</td></tr>
+        <tr><td>FA interception angle (precision)</td><td>90°</td><td>degrees</td><td>Max angle at IF</td></tr>
+        <tr><td>FA interception angle (non-precision)</td><td>120°</td><td>degrees</td><td>Max angle at IF</td></tr>
+        <tr><td>Straight-in approach alignment</td><td class="tbl-highlight">≤30°</td><td>degrees</td><td>NPA acceptable angle to C/L</td></tr>
+        <tr><td>Missed approach gradient (standard)</td><td class="tbl-red">2.5%</td><td>gradient</td><td>Minimum climb</td></tr>
+        <tr><td>MA intermediate phase turn</td><td>Max 15°</td><td>degrees</td><td>From initial MA track</td></tr>
+        <tr><td>MA final phase MOC (fixed-wing)</td><td>50 m (164 ft)</td><td>m / ft</td><td>Start of final MA phase</td></tr>
+        <tr><td>MA final phase MOC (Cat H)</td><td>40 m (131 ft)</td><td>m / ft</td><td>Cat H final MA</td></tr>
+        <tr><td>CAT I DH minimum</td><td class="tbl-red">60 m (200 ft)</td><td>m / ft</td><td>Precision approach</td></tr>
+        <tr><td>CAT I RVR minimum</td><td class="tbl-red">800 m</td><td>m</td><td>Or visibility 550 m</td></tr>
+        <tr><td>CAT II DH range</td><td class="tbl-red">30–60 m (100–200 ft)</td><td>m / ft</td><td>RVR ≥ 300 m</td></tr>
+        <tr><td>CAT III DH</td><td class="tbl-red">&lt;30 m (100 ft)</td><td>m / ft</td><td>Or no DH; RVR &lt; 300 m</td></tr>
+        <tr><td>Type A minimum DH/MDH</td><td class="tbl-highlight">≥75 m (250 ft)</td><td>m / ft</td><td>2D/3D Type A operations</td></tr>
+        <tr><td>Holding turn bank / rate</td><td class="tbl-red">25° or 3°/sec</td><td>°/°/sec</td><td>Whichever requires lesser bank</td></tr>
+        <tr><td>Holding entry zone of flexibility</td><td>±5°</td><td>degrees</td><td>Either side of sector boundaries</td></tr>
+        <tr><td>Holding speed ≤ 14,000 ft (Cat C,D,E)</td><td class="tbl-highlight">230 kt</td><td>kt</td><td>Normal; 280 kt turbulence</td></tr>
+        <tr><td>Holding speed ≤ 14,000 ft (Cat A,B)</td><td>170 kt</td><td>kt</td><td>Normal and turbulence</td></tr>
+        <tr><td>Holding outbound time ≤ 14,000 ft</td><td class="tbl-highlight">1 minute</td><td>min</td><td>Outbound leg timing</td></tr>
+        <tr><td>Holding outbound time &gt; 14,000 ft</td><td class="tbl-highlight">1.5 minutes</td><td>min</td><td>Above 4,250 m</td></tr>
+        <tr><td>Min holding clearance (normal)</td><td class="tbl-green">300 m (984 ft)</td><td>m / ft</td><td>Above obstacles</td></tr>
+        <tr><td>Min holding clearance (mountainous)</td><td class="tbl-highlight">600 m (1,969 ft)</td><td>m / ft</td><td>High terrain areas</td></tr>
+        <tr><td>India minimum transition altitude</td><td class="tbl-red">4,000 ft</td><td>ft</td><td>INDIA specific</td></tr>
+        <tr><td>Altimeter test tolerance (0–30,000 ft)</td><td>±20 m / 60 ft</td><td>m / ft</td><td>Pre-flight test</td></tr>
+        <tr><td>Altimeter test tolerance (0–50,000 ft)</td><td>±25 m / 80 ft</td><td>m / ft</td><td>Pre-flight test</td></tr>
+        <tr><td>ACAS nominal surveillance range</td><td>26 km (14 NM)</td><td>km / NM</td><td>Nominal</td></tr>
+        <tr><td>ACAS minimum guaranteed range</td><td class="tbl-red">8.5 km (4.5 NM)</td><td>km / NM</td><td>When airborne</td></tr>
+        <tr><td>Circling wind speed assumption</td><td>46 km/h (25 kt)</td><td>kt</td><td>Throughout the turn</td></tr>
+        <tr><td>Circling bank angle assumption</td><td>20° or 3°/sec</td><td>° / °/sec</td><td>Whichever requires less bank</td></tr>
+        <tr><td>SBAS straight departure FSD</td><td>0.3 NM</td><td>NM</td><td>From DER to turn initiation</td></tr>
+        <tr><td>Mode 1 parallel runway C/L separation</td><td>≥1,035 m</td><td>m</td><td>Independent parallel approaches</td></tr>
+        <tr><td>Mode 2 parallel runway C/L separation</td><td>≥915 m</td><td>m</td><td>Dependent parallel approaches</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- end .content -->
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<div class="footer-strip">
+  <strong>Chapter 13 — PANS-OPS (DOC 8168, Vol I) — CPL/ATPL Study Notes</strong> &nbsp;|&nbsp;
+  Prepared by <strong>Capt. Pankaj Pahil</strong> &nbsp;|&nbsp;
+  Reference: ICAO Doc 8168 · 16th Edition · RK-Bali Air Regulations &nbsp;|&nbsp;
+  For educational use only — always refer to current AIP and official publications for operational use.
+</div>
+
+<!-- ═══════════════════════ WATERMARK (MUST BE LAST ELEMENT) ═══════════════════════ -->
+<div style="position:fixed; z-index:9999; pointer-events:none; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:80px; font-weight:900; color:rgba(0,0,0,0.12); white-space:nowrap; font-family:'Inter',Arial,sans-serif; letter-spacing:2px;">Capt. Pankaj Pahil</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aviation Physiology & Human Factors – Part 12 (Q&A Bank, Q1-Q50) | Capt. Pankaj Pahil</title>
+<meta name="author" content="Capt. Pankaj Pahil">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+@page { size: A4; margin: 20mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  font-family: 'Source Serif 4', 'Georgia', serif;
+  font-size: 11.2pt; line-height: 1.6; color: #1a2332;
+  background: radial-gradient(circle at 10% 0%, #f4f7fb 0%, transparent 40%), radial-gradient(circle at 95% 100%, #fef6ec 0%, transparent 35%), #fbfaf7;
+  margin: 0 auto; padding: 24px 32px 80px; max-width: 1100px;
+}
+
+.cpp-watermark {
+  position: fixed; z-index: 9999; pointer-events: none;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-family: 'Playfair Display', serif;
+  font-size: 80px; font-weight: 900;
+  color: rgba(0, 0, 0, 0.12);
+  white-space: nowrap; letter-spacing: 2px;
+}
+@media print { .cpp-watermark { color: rgba(0,0,0,0.10); } body { padding: 0; background: #fff; } }
+
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: #0b2545; letter-spacing: -0.3px; }
+h1 { font-size: 30pt; line-height: 1.1; margin: 0 0 6px; font-weight: 900; }
+h1 .subtitle { display: block; font-family: 'Outfit', sans-serif; font-size: 11pt; font-weight: 500; color: #8b5e34; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; }
+h2 { font-size: 22pt; margin: 36px 0 14px; padding: 14px 18px 14px 22px; background: linear-gradient(90deg, #0b2545 0%, #13315c 60%, transparent 100%); color: #fff; border-left: 8px solid #d4a017; border-radius: 4px; page-break-after: avoid; }
+h2 .chip { font-family: 'JetBrains Mono', monospace; font-size: 9pt; background: #d4a017; color: #0b2545; padding: 3px 10px; border-radius: 3px; margin-right: 12px; vertical-align: middle; font-weight: 700; }
+h3 { font-size: 15pt; color: #13315c; margin: 22px 0 8px; padding-bottom: 5px; border-bottom: 2px solid #d4a017; page-break-after: avoid; }
+p { margin: 8px 0 12px; text-align: justify; hyphens: auto; }
+strong { color: #0b2545; font-weight: 700; }
+em { color: #6b3410; }
+ul, ol { margin: 8px 0 14px; padding-left: 26px; }
+li { margin-bottom: 4px; }
+
+.cover { background: linear-gradient(135deg, #0b2545 0%, #13315c 50%, #1a4480 100%); color: #fff; padding: 32px 36px; border-radius: 6px; margin-bottom: 28px; box-shadow: 0 6px 18px rgba(11, 37, 69, 0.18); position: relative; overflow: hidden; page-break-after: avoid; }
+.cover::after { content: ''; position: absolute; right: -40px; top: -40px; width: 220px; height: 220px; border: 2px solid rgba(212, 160, 23, 0.3); border-radius: 50%; }
+.cover::before { content: ''; position: absolute; right: 20px; top: 30px; width: 140px; height: 140px; border: 2px solid rgba(212, 160, 23, 0.5); border-radius: 50%; }
+.cover h1 { color: #fff; position: relative; z-index: 2; }
+.cover h1 .subtitle { color: #ffd166; }
+.cover .meta { display: flex; gap: 24px; margin-top: 16px; font-family: 'Outfit', sans-serif; font-size: 10.5pt; position: relative; z-index: 2; flex-wrap: wrap; }
+.cover .meta div { border-left: 3px solid #d4a017; padding-left: 10px; }
+.cover .meta b { color: #ffd166; display:block; font-size: 9pt; letter-spacing:1px; text-transform:uppercase; }
+
+.box { border-radius: 6px; padding: 14px 18px 14px 52px; margin: 14px 0; position: relative; page-break-inside: avoid; font-family: 'Outfit', sans-serif; font-size: 10.8pt; line-height: 1.55; border-left-width: 5px; border-left-style: solid; }
+.box .box-title { font-weight: 700; font-size: 11.2pt; margin-bottom: 4px; display: block; letter-spacing: 0.3px; }
+.box::before { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 22pt; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); }
+.box-red { background: #fcecec; border-left-color: #b91c1c; color: #5a1010; }
+.box-red::before { content: '⚠'; color: #b91c1c; }
+.box-red .box-title { color: #8a0d0d; }
+.box-blue { background: #e8f0fb; border-left-color: #1d4ed8; color: #0b2545; }
+.box-blue::before { content: 'ⓘ'; color: #1d4ed8; }
+.box-blue .box-title { color: #0b2545; }
+.box-green { background: #e9f7ee; border-left-color: #15803d; color: #14532d; }
+.box-green::before { content: '✓'; color: #15803d; }
+.box-green .box-title { color: #14532d; }
+.box-amber { background: #fff4e0; border-left-color: #b45309; color: #5c2d04; }
+.box-amber::before { content: '⚙'; color: #b45309; }
+.box-amber .box-title { color: #7a3a07; }
+
+/* QUESTION CARD STYLES */
+.qcard {
+  background: #fff; border: 1.5px solid #d4d9e1; border-radius: 8px;
+  padding: 18px 22px; margin: 16px 0;
+  font-family: 'Outfit', sans-serif;
+  page-break-inside: avoid; break-inside: avoid;
+  box-shadow: 0 2px 5px rgba(11,37,69,0.05);
+  position: relative;
+}
+.qcard .qnum {
+  position: absolute; top: -12px; left: 16px;
+  background: #0b2545; color: #fff;
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  padding: 3px 14px; border-radius: 4px; font-size: 11pt;
+}
+.qcard .qstem {
+  font-family: 'Source Serif 4', serif;
+  font-size: 11.2pt; color: #0b2545; font-weight: 600;
+  margin: 8px 0 12px;
+}
+.qcard .qopts { margin: 0; padding-left: 0; list-style: none; }
+.qcard .qopts li {
+  padding: 5px 10px; margin: 3px 0; border-radius: 4px;
+  font-size: 10.5pt;
+  border-left: 3px solid transparent;
+}
+.qcard .qopts li.correct {
+  background: #e9f7ee; border-left-color: #15803d;
+  color: #14532d; font-weight: 700;
+}
+.qcard .qopts li .lbl {
+  display: inline-block; width: 22px;
+  font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  color: #0b2545;
+}
+.qcard .qopts li.correct .lbl { color: #15803d; }
+.qcard .qopts li.correct::after {
+  content: '  ✓'; color: #15803d; font-weight: 700;
+}
+.qcard .qexpl {
+  margin-top: 12px; padding: 10px 14px;
+  background: #fff8ec; border-left: 4px solid #d4a017;
+  border-radius: 4px;
+  font-size: 10pt; line-height: 1.5;
+  color: #5c2d04;
+}
+.qcard .qexpl .ans-tag {
+  font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  background: #15803d; color: #fff;
+  padding: 2px 8px; border-radius: 3px;
+  font-size: 9.5pt; margin-right: 8px;
+}
+.qcard .qexpl .ref {
+  font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  background: #0b2545; color: #fff;
+  padding: 2px 8px; border-radius: 3px;
+  font-size: 9pt; margin-left: 6px;
+}
+.qcard .qexpl strong { color: #0b2545; }
+
+.val { display: inline-block; background: #fff4cc; color: #6b4f00; padding: 1px 7px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; border: 1px solid #e8c547; }
+.val-red { background: #fde2e2; color: #7a0d0d; border-color: #f5a3a3; }
+.val-green { background: #d8f0e0; color: #14532d; border-color: #86c79e; }
+
+.toc { background: #fff; border: 1.5px solid #d4d9e1; border-left: 6px solid #0b2545; border-radius: 4px; padding: 18px 26px; margin-bottom: 30px; page-break-inside: avoid; }
+.toc h3 { margin-top: 0; border-bottom: none; color: #0b2545; }
+.toc ul { font-family: 'Outfit', sans-serif; columns: 2; column-gap: 30px; padding-left: 22px; list-style: square; }
+.toc li { margin-bottom: 4px; font-size: 10.5pt; }
+.toc a { color: #13315c; text-decoration: none; }
+
+footer { margin-top: 60px; padding: 20px 0 0; border-top: 2px solid #d4a017; font-family: 'Outfit', sans-serif; font-size: 9.5pt; color: #6b7280; text-align: center; }
+footer b { color: #0b2545; }
+
+.divider { text-align: center; margin: 28px 0 10px; font-family: 'Playfair Display', serif; color: #d4a017; font-size: 18pt; letter-spacing: 6px; }
+
+.cluster-banner {
+  background: linear-gradient(135deg, #0b2545 0%, #13315c 100%);
+  color: #fff; padding: 12px 18px; margin: 28px 0 14px;
+  border-radius: 6px; border-left: 6px solid #d4a017;
+  font-family: 'Outfit', sans-serif; font-size: 11pt;
+  font-weight: 600;
+  page-break-after: avoid;
+}
+.cluster-banner .cl-chip {
+  background: #d4a017; color: #0b2545;
+  font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  padding: 2px 10px; border-radius: 3px; font-size: 9pt;
+  margin-right: 10px;
+}
+
+@media (max-width: 700px) {
+  body { padding: 16px; }
+  .toc ul { columns: 1; }
+  h1 { font-size: 22pt; }
+  h2 { font-size: 18pt; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <h1>
+    <span class="subtitle">CPL · ATPL · Human Performance &amp; Limitations</span>
+    Aviation Physiology &amp; Human Factors
+  </h1>
+  <p style="margin:8px 0 0; font-family:'Outfit',sans-serif; font-size:12pt; opacity:0.92;">
+    <b>Part 12 — DGCA QUESTION BANK (Q1 – Q50)</b> &nbsp;|&nbsp; Worked solutions with full DGCA-style explanations &amp; cross-reference to the relevant theory section
+  </p>
+  <div class="meta">
+    <div><b>Source</b>Chapter 26 (R.K. Bali, 16<sup>th</sup> Ed.) pp. 698–714</div>
+    <div><b>Instructor</b>Capt. Pankaj Pahil</div>
+    <div><b>Exam</b>DGCA CPL / ATPL — HPL</div>
+    <div><b>Q-Range</b>1 – 50 (of 105 total)</div>
+  </div>
+</header>
+
+<div class="box box-blue">
+<span class="box-title">How to use this Q&amp;A bank</span>
+For every question you will see: <strong>(1)</strong> the exact question stem as printed in the source, <strong>(2)</strong> the three options A/B/C with the correct one highlighted in green, <strong>(3)</strong> a "WHY THIS IS CORRECT" explanation with the underlying DGCA-quoted fact, and <strong>(4)</strong> a back-reference to the Part / Section where that fact was taught in detail. The back-references use the form <code>§N (Part X)</code> — letting you jump straight back to the right page if you got it wrong.
+<br><br>
+The DGCA examiner deliberately repeats themes — once you have nailed every fact in Parts 1–11, the question bank is largely re-statement. The worked solutions below show <em>which sentence in which part</em> answers each question.
+</div>
+
+<nav class="toc">
+<h3>Question Clusters in this part</h3>
+<ul>
+<li><a href="#cluster-A">Q1 – Q9 · Aviation Medicine Specialist · Illusions · Hypoxia · Atmosphere &amp; Pressure</a></li>
+<li><a href="#cluster-B">Q10 – Q21 · Ear &amp; Eustachian Tube · Gases · Gas Laws · CO₂ · ICAO Atmosphere · Barotrauma · Dalton's &amp; Henry's Laws</a></li>
+<li><a href="#cluster-C">Q22 – Q33 · Illusions · Gas in Gut · Hypoxia · DCS · Bends · Cabin Pressure · Circulation · Hi-Alt Cause · Diffusion · Creeps · O₂/CO₂ exchange · Diving 24-hr</a></li>
+<li><a href="#cluster-D">Q34 – Q50 · BP · DCS symptoms · Baroreceptor · Pressure curve · TUC · Hypoxia signs · DCS treatment · Definition · Blood components · Cardiac output · Haemoglobin · Coronary · Bends · DCS exclusion · 24-hr alcohol after RD</a></li>
+</ul>
+</nav>
+
+
+<!-- =================================================================================== -->
+<!-- ============ CLUSTER A: Q1-Q9 ============ -->
+<!-- =================================================================================== -->
+<div id="cluster-A" class="cluster-banner"><span class="cl-chip">Cluster A</span>Q1 – Q9 &nbsp;·&nbsp; Aviation Medicine, Illusions, Hypoxia &amp; the Atmosphere</div>
+
+<div class="qcard">
+  <span class="qnum">Q 1</span>
+  <p class="qstem">A flight crew has completed a two-day stay at a hospital. What must he/she do before flying as a crew member?</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Do his class I medical from an authorized agency.</li>
+    <li><span class="lbl">B)</span> Take clearance from DGCA before flying.</li>
+    <li class="correct"><span class="lbl">C)</span> Seek advice from the authority and Aviation Medicine Specialist.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§76 (Part 11)</span><br>
+    DGCA-quoted: "<em>pilots do not fly as part of the operating crew of an aircraft when taking drugs or medication, unless they have been cleared to do so by an <strong>Aviation Medicine Specialist</strong>.</em>" A hospital stay implies the pilot was either ill or under medication — both require specialist clearance. (A) is excessive (no need to re-do an entire Class-I medical for a two-day stay); (B) is too vague — clearance from DGCA is routed through the Aviation Medicine Specialist, not the agency directly.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 2</span>
+  <p class="qstem">Linear deceleration:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> Causes sensory illusions on the pitch axis.</li>
+    <li><span class="lbl">B)</span> Can create the illusion of being in a nose up attitude.</li>
+    <li><span class="lbl">C)</span> Application of full power during a missed instrument approach can lead to this illusion.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§54 (Part 9) Head-Down Illusion</span><br>
+    Linear <strong>DECELERATION</strong> (e.g. lowering flaps, air-brakes, throttle-back) deflects the otoliths in such a way that the pilot perceives a pitch-down attitude — i.e. a sensory illusion on the pitch axis. (B) is the wrong direction — linear <em>acceleration</em> (not deceleration) creates the nose-up illusion. (C) describes application of FULL POWER → linear <em>acceleration</em>, again the wrong direction (this is the Head-Up illusion / take-off somatogravic). The distractors are flipped on purpose; deceleration affects the pitch axis but produces a "nose-down" illusion.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 3</span>
+  <p class="qstem">High blood pressure or hypertension is:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> A major cause of unfitness in pilots.</li>
+    <li><span class="lbl">B)</span> Responsible for reduced tolerance to G forces.</li>
+    <li><span class="lbl">C)</span> May cause chokes during flight.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§15 (Part 4)</span><br>
+    Hypertension is the leading <strong>chronic cardiovascular cause of pilot medical unfitness</strong> worldwide. While it does also contribute to other problems, the question asks what hypertension <em>is</em> — and the headline answer is the unfitness it causes at the Class-1 medical. (B) "reduced G-tolerance" is not specifically listed against hypertension (the 6 G-tolerance reducers in §64 are alcohol, smoking, fatigue, heat, obesity, sickness — not hypertension explicitly). (C) "chokes" is a DCS bubble symptom (§20.2) — unrelated to BP.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 4</span>
+  <p class="qstem">Unusual fatigue and a loss of consciousness are symptoms of:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Leans</li>
+    <li><span class="lbl">B)</span> Presbyopia</li>
+    <li class="correct"><span class="lbl">C)</span> Hypoxia</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§10 (Part 3)</span><br>
+    Unusual fatigue and ultimately loss of consciousness are classic late-stage <strong>hypoxia</strong> symptoms. Hypoxia symptoms cascade: euphoria → impaired judgement → tingling/numbness → cyanosis → unusual fatigue → unconsciousness → death. (A) The "leans" is a vestibular illusion (Part 9), not a metabolic state. (B) Presbyopia is age-related loss of accommodation (§33 Part 7) — visual, not systemic.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 5</span>
+  <p class="qstem">Total Space Equivalent Zone extends outwards from 120 nm. To survive in this zone:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Good quality pressure suit is adequate.</li>
+    <li><span class="lbl">B)</span> Adequate food and water is enough.</li>
+    <li class="correct"><span class="lbl">C)</span> Adequate oxygen, pressure and heat is a must.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§5 (Part 1) Physiological Zones</span><br>
+    The <strong>Total Space-Equivalent Zone</strong> (&gt; 120 nm above Earth) is a vacuum environment — there is essentially no atmospheric pressure, no oxygen, and extreme temperature swings between sunlit and shaded sides. Survival requires <strong>all three</strong>: oxygen (no atmospheric O₂), pressure (vacuum would cause body fluids to boil — Armstrong's Line, 63,000 ft), and heat (extreme cold in shadow). A pressure suit alone (option A) addresses pressure and provides O₂, but heat must also be managed — that's why astronauts use full life-support suits, not just pressure suits.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 6</span>
+  <p class="qstem">At 8,000 ft, the standard barometric pressure is 77 kPa (574 mmHg). This means that there is:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> 57% of the oxygen available at sea level.</li>
+    <li><span class="lbl">B)</span> 65% of the oxygen available at sea level.</li>
+    <li class="correct"><span class="lbl">C)</span> 76% of the oxygen available at sea level.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§4 (Part 1) pO₂ vs altitude</span><br>
+    Although the <em>percentage</em> of oxygen in air remains ~21 % at all altitudes (Q9), the <em>partial pressure</em> of O₂ falls with total pressure (Dalton's Law). At 8,000 ft barometric pressure is ~77 kPa vs 101.3 kPa at sea level → ratio ≈ 77/101.3 ≈ <strong>76 %</strong>. The amount of usable oxygen reaching the alveoli is therefore about 76 % of sea-level value — which is why 8,000 ft is the DGCA maximum cabin altitude (§19.4) — borderline but tolerable.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 7</span>
+  <p class="qstem">The atmospheric gas pressure:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Decreases slower at lower altitudes compared with higher levels and equivalent altitude changes.</li>
+    <li><span class="lbl">B)</span> Rises with altitude.</li>
+    <li class="correct"><span class="lbl">C)</span> Drops faster at lower altitudes in comparison to the same altitude changes at higher altitudes.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§3 (Part 1) ISA &amp; pressure curve</span><br>
+    Atmospheric pressure falls <strong>exponentially</strong> with altitude — most of the air is in the lowest few kilometres. From SL to 18,000 ft pressure halves (~50 % drop in just 18,000 ft); from 18,000 to 36,000 ft it halves <em>again</em> (a further 25 %); from 36,000 to 54,000 ft another halving. So the absolute pressure drop per unit altitude is <strong>larger near the surface</strong> than at altitude. (B) is wrong — pressure decreases, doesn't rise.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 8</span>
+  <p class="qstem">The chemical composition of the earth's atmosphere approximately is:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> 78% nitrogen, 21% oxygen, 0.9% argon, 0.03% carbon dioxide.</li>
+    <li><span class="lbl">B)</span> 70% nitrogen, 28% oxygen, 1.9% argon, 0.03% carbon dioxide.</li>
+    <li><span class="lbl">C)</span> 78% nitrogen, 20% oxygen, 0.9% carbon dioxide, 1.03% argon.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§1 (Part 1) Atmosphere composition</span><br>
+    Standard atmospheric composition (by volume): <strong>N₂ ≈ 78 %, O₂ ≈ 21 %, Ar ≈ 0.93 %, CO₂ ≈ 0.03–0.04 %</strong>. Option A matches exactly. (B) has too much O₂. (C) swaps Ar and CO₂ values — note that CO₂ is the tiny trace, not Ar.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 9</span>
+  <p class="qstem">The volume percentage of oxygen in the atmosphere is 21% which:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> Is constant for all altitudes in troposphere.</li>
+    <li><span class="lbl">B)</span> Decreases with increasing altitude.</li>
+    <li><span class="lbl">C)</span> Increases with increasing altitude.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§1 (Part 1)</span><br>
+    The <strong>percentage composition</strong> of atmospheric gases is essentially <strong>constant throughout the troposphere</strong> (sea level to ~ 36,090 ft / tropopause) due to atmospheric mixing. What changes with altitude is the <strong>partial pressure</strong> of O₂ (and total pressure), <em>not</em> the volume percentage. This is the classic exam trap — students confuse "less oxygen" (true in terms of partial pressure) with "lower percentage" (false). Hypoxia at altitude is caused by reduced pO₂, not reduced O₂ percentage.
+  </div>
+</div>
+
+
+<!-- =================================================================================== -->
+<!-- ============ CLUSTER B: Q10-Q21 ============ -->
+<!-- =================================================================================== -->
+<div id="cluster-B" class="cluster-banner"><span class="cl-chip">Cluster B</span>Q10 – Q21 &nbsp;·&nbsp; Ear · Gases · Gas Laws · CO₂ · Barotrauma · Dalton's &amp; Henry's Laws</div>
+
+<div class="qcard">
+  <span class="qnum">Q 10</span>
+  <p class="qstem">Pain in the middle ear during descent may be eased by:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Increasing the rate of descent.</li>
+    <li><span class="lbl">B)</span> Sneezing deliberately with the nostrils wide open.</li>
+    <li class="correct"><span class="lbl">C)</span> Leveling off and possibly climbing.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§38 (Part 8) Eustachian tube</span><br>
+    DGCA-quoted: "<em>If the problem is not resolved, the rate of descent should be decreased or stopped at intervals... This is also known as STEP DESCENT. Pilot may resort to even CLIMB if pressure persists.</em>" Levelling off allows the Eustachian tube time to equalise; if that fails, a brief climb reduces external pressure and the differential. (A) increasing descent makes it worse. (B) deliberate sneezing is <em>not</em> the DGCA-listed technique — Valsalva (blow with nostrils <em>pinched closed</em>) is.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 11</span>
+  <p class="qstem">Gases of physiological importance to man are:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> Oxygen and carbon dioxide.</li>
+    <li><span class="lbl">B)</span> Ozone and carbon dioxide.</li>
+    <li><span class="lbl">C)</span> Oxygen and Ozone.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§8 (Part 2) Respiratory System</span><br>
+    The two gases the body actively <em>exchanges</em> are <strong>oxygen</strong> (taken in for cellular respiration) and <strong>carbon dioxide</strong> (expelled as metabolic waste). Ozone (O₃) is toxic to humans and exists at high concentrations in the stratosphere; it is a hazard to high-altitude pilots, but not a "physiologically important" gas in normal metabolism.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 12</span>
+  <p class="qstem">Oxygen, combined with hemoglobin in blood is transported by:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Platelets.</li>
+    <li><span class="lbl">B)</span> Blood plasma.</li>
+    <li class="correct"><span class="lbl">C)</span> Red blood cells.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§9 (Part 2) Circulatory System · RBC &amp; Hb</span><br>
+    Haemoglobin is contained <strong>within Red Blood Cells (RBCs/erythrocytes)</strong> — approximately 280 million Hb molecules per RBC. Each Hb binds up to 4 O₂ molecules. (A) Platelets are for clotting. (B) Plasma carries dissolved gases too but in vastly smaller quantities than Hb in RBCs — over 98 % of O₂ in blood is carried by Hb in RBCs.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 13</span>
+  <p class="qstem">An increase in the amount of carbon dioxide in the blood leads to:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Hyperventilation.</li>
+    <li><span class="lbl">B)</span> Over breathing.</li>
+    <li class="correct"><span class="lbl">C)</span> Shortness of breath.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§8 / §12 (Part 2 / Part 3)</span><br>
+    The brain's respiratory centre is primarily sensitive to <strong>CO₂ levels in the blood</strong> (not O₂ — this is the key concept). Rising CO₂ stimulates an urge to breathe more deeply / faster → subjectively felt as <strong>shortness of breath</strong> ("air hunger"). (A) Hyperventilation is the <em>opposite</em> — over-breathing that <em>removes</em> CO₂, leading to low CO₂. (B) "Over breathing" = same as hyperventilation. The trap: hyperventilation is over-breathing, and over-breathing reduces (not increases) CO₂.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 14</span>
+  <p class="qstem">According to the ICAO standard atmosphere, the temperature lapse rate of the troposphere is approximately:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> -2°C every 1,000 feet.</li>
+    <li><span class="lbl">B)</span> -10°C every 10,000 feet.</li>
+    <li><span class="lbl">C)</span> -1°C every 190 meters.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§3 (Part 1) ISA</span><br>
+    The DGCA-quoted ISA lapse rate is <strong>1.98 °C per 1,000 ft</strong> — which rounds to roughly <strong>2 °C/1,000 ft</strong>. So option A is the closest match. (B) –10°C per 10,000 ft = 1°C per 1,000 ft — too low. (C) –1°C per 190 m → ≈ 1°C/623 ft → ≈ 1.6°C per 1,000 ft — close but not the standard expression. The DGCA-preferred answer in this exam is (A) –2°C/1,000 ft.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 15</span>
+  <p class="qstem">The barometric pressure drops to 1/2 of the pressure at sea level at:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> 30,000 feet.</li>
+    <li class="correct"><span class="lbl">B)</span> 18,000 feet.</li>
+    <li><span class="lbl">C)</span> 10,000 feet.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§19.2 (Part 5)</span><br>
+    DGCA-quoted: "<em>By <strong>18,000 ft ASL (5,486 m) atmospheric pressure is HALVED</strong>.</em>" This is also the threshold above which DCS symptoms may begin to develop. (A) 30,000 ft is roughly quarter-SL pressure (a second halving from 18,000 ft to ~36,000 ft). (C) 10,000 ft pressure is ~70 % of SL — not halved.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 16</span>
+  <p class="qstem">The total pressure of a mixture of gases is equal to the sum of the partial pressures of the gases which compose the mixture corresponds to:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Charle's law.</li>
+    <li class="correct"><span class="lbl">B)</span> Dalton's law.</li>
+    <li><span class="lbl">C)</span> Henry's law</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§2 (Part 1) Five Gas Laws</span><br>
+    <strong>Dalton's Law of Partial Pressures</strong>: the total pressure of a gas mixture equals the sum of the partial pressures of each component gas. This is the basis of pO₂ calculations at altitude. (A) Charles's Law: V ∝ T at constant P. (C) Henry's Law: gas dissolved in a fluid is proportional to its partial pressure — explains DCS.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 17</span>
+  <p class="qstem">Boyle's law is directly applicable in case of:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> The transfer of gas between the alveoli and the blood.</li>
+    <li class="correct"><span class="lbl">B)</span> The expansion of trapped gases in the human body with increasing altitude.</li>
+    <li><span class="lbl">C)</span> Pressure of a mixture of gases at high altitude.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§2 (Part 1) Boyle's Law</span><br>
+    <strong>Boyle's Law:</strong> P·V = constant (at constant T). Direct in-flight application: as cabin altitude rises, ambient pressure falls → <strong>trapped gases in the body (gut, sinuses, middle ear, dental cavities) EXPAND</strong>. This drives sinus block (§71), barodontalgia (§72), and gastric distress at altitude (§70.2). (A) gas exchange across alveoli is by partial-pressure diffusion (Dalton's/Henry's domain). (C) gas-mixture pressure is Dalton's Law.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 18</span>
+  <p class="qstem">Which data compose the ICAO standard atmosphere?</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Pressure, Temperature, Humidity and positive lapse rate.</li>
+    <li class="correct"><span class="lbl">B)</span> Density, Pressure, Temperature and lapse rate.</li>
+    <li><span class="lbl">C)</span> Density, Pressure, dryness and negative lapse rate.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§3 (Part 1) ISA</span><br>
+    ICAO Standard Atmosphere defines: <strong>SL pressure 1013.25 hPa, SL temperature 15°C, SL density 1.225 kg/m³, and lapse rate 1.98°C/1,000 ft</strong>. Humidity is NOT part of ISA (ISA assumes dry air). The lapse rate is decreasing (temperature falls with altitude) — but the standard refers to it as "the lapse rate," not "negative" or "positive." Option (B) gives the four ISA parameters correctly.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 19</span>
+  <p class="qstem">Otis Barotraumas is:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> Stretching of the ear drum caused by the expansion and contraction of gases trapped in the inner ear by a blocked Eustachian tube.</li>
+    <li><span class="lbl">B)</span> Stretching of the ear drum caused by the expansion and contraction of gases trapped in the outer ear by the blocked Tympanum.</li>
+    <li><span class="lbl">C)</span> Damage to the ear drum caused by the expansion and contraction of gases trapped in the middle ear by infected Ossicles.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§38.3 (Part 8)</span><br>
+    DGCA-quoted definition verbatim. <em>(Strictly, the trapped gas is in the <strong>middle ear</strong>, not the inner ear — the source text says "inner ear" in option A; this is the wording used by DGCA and is the marked-correct answer in the official key.)</em> The cause is a blocked Eustachian tube. (B) "outer ear / Tympanum" is wrong — the tympanum IS the eardrum, not a location. (C) "infected ossicles" is not the mechanism.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 20</span>
+  <p class="qstem">Dalton's law explains the occurrence of:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Ischemic hypoxia.</li>
+    <li><span class="lbl">B)</span> Histotoxic hypoxia.</li>
+    <li class="correct"><span class="lbl">C)</span> Hypoxic hypoxia.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§2 (Part 1) Dalton · §10 (Part 3) Hypoxia types</span><br>
+    Dalton's Law (partial pressures) directly explains <strong>Hypoxic Hypoxia</strong>: at altitude, total pressure falls → pO₂ falls (Dalton) → insufficient driving pressure for O₂ to diffuse into blood. (A) Ischemic = blood flow problem (cardiac). (B) Histotoxic = cells can't use O₂ (cyanide, alcohol). (Note: anemic hypoxia = reduced Hb, not directly Dalton.)
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 21</span>
+  <p class="qstem">Henry's law explains the occurrence of:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Hyperventilation.</li>
+    <li><span class="lbl">B)</span> Hypoxia.</li>
+    <li class="correct"><span class="lbl">C)</span> Decompression sickness.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§20.1 (Part 5)</span><br>
+    DGCA-quoted: "<em>Henry's Law explains the occurrence of decompression sickness.</em>" Henry's Law: gas dissolved in a fluid is proportional to its partial pressure at the surface. When ambient pressure drops rapidly, dissolved N₂ comes out of solution in the blood as bubbles → bends, creeps, chokes, staggers.
+  </div>
+</div>
+
+
+<!-- =================================================================================== -->
+<!-- ============ CLUSTER C: Q22-Q33 ============ -->
+<!-- =================================================================================== -->
+<div id="cluster-C" class="cluster-banner"><span class="cl-chip">Cluster C</span>Q22 – Q33 &nbsp;·&nbsp; Illusions · Gas in Gut · Hypoxia · DCS · Bends · Cabin Pressure · Circulation · Hi-Alt Cause · Diffusion · Creeps · O₂/CO₂ Exchange · Flying after Diving</div>
+
+<div class="qcard">
+  <span class="qnum">Q 22</span>
+  <p class="qstem">In aviation any mismatch between what we sense and what we expect is:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> An effect of motion sickness.</li>
+    <li class="correct"><span class="lbl">B)</span> An illusion.</li>
+    <li><span class="lbl">C)</span> A symptom of Hypoxia.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§45 (Part 9)</span><br>
+    DGCA-quoted verbatim: "<em>In aviation any mismatch between what we sense and what we expect is an illusion.</em>"
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 23</span>
+  <p class="qstem">On ascent the gases in the digestive tract will:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Shrink.</li>
+    <li><span class="lbl">B)</span> Escape to lungs.</li>
+    <li class="correct"><span class="lbl">C)</span> Expand.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§70.2 (Part 10) · Boyle's Law (Part 1)</span><br>
+    On ascent ambient pressure falls → trapped gases expand (Boyle's Law: P·V = constant). Gases in the gut nearly double in volume between sea level and 18,000 ft. This is why gastroenteritis grounds a pilot even on medication (§70.2), and why high-fibre / gas-producing foods are discouraged before flight.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 24</span>
+  <p class="qstem">The most serious hypoxia:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Causes headache and tingling in hands and feet.</li>
+    <li><span class="lbl">B)</span> Causes fornication, flushed cheeks and cherry red lips.</li>
+    <li class="correct"><span class="lbl">C)</span> Interferes with reasoning, gives rise to unusual fatigue and, finally, results in a loss of consciousness/death.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§10 (Part 3)</span><br>
+    <em>Severe</em> hypoxia is the late-stage cascade: impaired reasoning → unusual fatigue → LoC → death. (A) describes mild early-stage hypoxia. (B) describes CO poisoning, not hypoxia per se (cherry-red lips is the diagnostic CO sign — §11). The source text uses "fornication" but the intended word is "<em>formication</em>" (a sensation of ants crawling under the skin — a tactile hallucination).
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 25</span>
+  <p class="qstem">One of the symptoms of decompression sickness are:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> The bends.</li>
+    <li><span class="lbl">B)</span> Convulsions.</li>
+    <li><span class="lbl">C)</span> Impaired night vision and slow reaction time.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§20 (Part 5) DCS symptoms</span><br>
+    DGCA-quoted DCS symptom list: <strong>Bends, Chokes, Skin manifestations, Neurological symptoms, Circulatory shock</strong>. (B) Convulsions are an obvious-incapacitation cause / epilepsy (§27/§28), not DCS proper. (C) Impaired night vision and slow reaction time are hypoxia-family symptoms (§10), not DCS.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 26</span>
+  <p class="qstem">The tendency to develop the bends increases with:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Low rates of climb, age, obesity, physical activity and high temperatures.</li>
+    <li class="correct"><span class="lbl">B)</span> High rates of climb, age, obesity, physical activity and low temperatures.</li>
+    <li><span class="lbl">C)</span> High rates of descend age, obesity, physical activity and high temperatures.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§19.5 (Part 5)</span><br>
+    DGCA-quoted FIVE factors: "<em>High rates of climb, age, obesity, physical activity, low temperatures.</em>" Option B matches exactly. (A) flips climb rate and temperature. (C) refers to "descend" instead of "climb" — and high temperature is the wrong direction.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 27</span>
+  <p class="qstem">The cabin pressure in airline operation is:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Normally not exceeding 4,000 to 5,000 feet.</li>
+    <li><span class="lbl">B)</span> Normally not exceeding 2,000 to 3,000 feet.</li>
+    <li class="correct"><span class="lbl">C)</span> Normally not exceeding 6,000 to 8,000 feet.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§19.4 (Part 5)</span><br>
+    DGCA-quoted: typical airliner cabin pressure ≈ <strong>6,000 ft</strong>, maximum <strong>8,000 ft</strong>. So "not exceeding 6,000 to 8,000 ft" is correct. Modern aircraft (787, A350) maintain lower cabin altitudes (~6,000 ft cruise) for passenger comfort and reduced fatigue — but the DGCA-listed regulatory ceiling remains 8,000 ft.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 28</span>
+  <p class="qstem">The circulation system transports:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Oxygen, carbon monoxide and adrenaline.</li>
+    <li><span class="lbl">B)</span> Oxygen and carbon dioxide only.</li>
+    <li class="correct"><span class="lbl">C)</span> Chemical messengers, oxygen and carbon dioxide.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§9 (Part 2) Five functions of blood</span><br>
+    DGCA-listed five functions of blood include: respiratory transport (O₂, CO₂), <strong>endocrine transport (hormones / "chemical messengers")</strong>, defence, temperature regulation, waste removal. (A) Carbon monoxide is a toxin — not normally transported. (B) is incomplete — circulation transports far more than just gases.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 29</span>
+  <p class="qstem">Physiological problems at high altitude are caused by:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Increased atmospheric pressure.</li>
+    <li><span class="lbl">B)</span> Reduced oxygen percentage in atmosphere.</li>
+    <li class="correct"><span class="lbl">C)</span> Decreased atmospheric pressure.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§1 / §10 (Part 1 &amp; Part 3)</span><br>
+    The root cause of altitude-related physiological problems is the <strong>decrease in atmospheric pressure</strong>, which lowers the partial pressure of oxygen (Dalton), reduces gas dissolution (Henry), expands trapped body gases (Boyle), and degrades cognitive performance. (B) is the classic trap — the <em>percentage</em> of O₂ is constant; it's the partial pressure that falls. (A) is the wrong direction.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 30</span>
+  <p class="qstem">Which gas will diffuse from the blood to the alveoli:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Nitrogen.</li>
+    <li class="correct"><span class="lbl">B)</span> Carbon Dioxide.</li>
+    <li><span class="lbl">C)</span> Oxygen.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§8 (Part 2) Respiratory exchange</span><br>
+    Gas exchange in alveoli: <strong>O₂ moves FROM alveoli INTO blood</strong> (high pO₂ in alveoli → lower pO₂ in venous blood); <strong>CO₂ moves FROM blood INTO alveoli</strong> (high pCO₂ in venous blood → lower pCO₂ in alveoli). Both exchanges happen by simple diffusion down partial-pressure gradients. (A) Nitrogen is inert and roughly in equilibrium across the membrane — no net diffusion either way in normal breathing.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 31</span>
+  <p class="qstem">The symptoms caused by gas bubbles under the skin following a decompression are called:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Leans.</li>
+    <li class="correct"><span class="lbl">B)</span> Creeps.</li>
+    <li><span class="lbl">C)</span> Chokes.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§20.2 (Part 5)</span><br>
+    DGCA's four DCS syndromes: <strong>Bends (joints), Creeps (skin), Chokes (lungs), Staggers (brain)</strong>. Skin bubbles → <strong>Creeps</strong>. (A) Leans is a vestibular illusion in IMC — not DCS. (C) Chokes is bubbles in pulmonary capillaries.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 32</span>
+  <p class="qstem">The Oxygen-Carbon Dioxide exchange takes place through:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> The walls of the capillaries.</li>
+    <li><span class="lbl">B)</span> Red blood cells.</li>
+    <li><span class="lbl">C)</span> Platelets.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§8 (Part 2) Alveolar-capillary membrane</span><br>
+    Gas exchange happens across the <strong>alveolar-capillary membrane</strong> — the thin walls separating alveolar air from blood in pulmonary capillaries. RBCs are the <em>carriers</em> of O₂ once it has crossed the membrane (Q12), but the exchange site itself is the capillary wall.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 33</span>
+  <p class="qstem">In order to get rid of excess nitrogen following scuba diving, subsequent flights should be delayed:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> 36 hours.</li>
+    <li><span class="lbl">B)</span> 12 hours.</li>
+    <li class="correct"><span class="lbl">C)</span> 24 hours.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§21 (Part 5)</span><br>
+    DGCA-quoted: "<em>As a general rule, individuals should NOT fly within <strong>24 hours</strong> following diving and certainly not the same day.</em>" 12 hours is the post-rapid-decompression rule (§20.4) — not diving. 36 hours has no DGCA basis here.
+  </div>
+</div>
+
+
+<!-- =================================================================================== -->
+<!-- ============ CLUSTER D: Q34-Q50 ============ -->
+<!-- =================================================================================== -->
+<div id="cluster-D" class="cluster-banner"><span class="cl-chip">Cluster D</span>Q34 – Q50 &nbsp;·&nbsp; BP · DCS · Baroreceptor · Pressure curve · TUC · Hypoxia signs · Blood &amp; Heart · Bends · Alcohol-after-RD</div>
+
+<div class="qcard">
+  <span class="qnum">Q 34</span>
+  <p class="qstem">The normal arterial blood-pressure of a healthy adult is:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> 140/100 mm HG.</li>
+    <li><span class="lbl">B)</span> 120/60 mm HG.</li>
+    <li class="correct"><span class="lbl">C)</span> 120/80 mm HG.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§15 (Part 4)</span><br>
+    DGCA-quoted normal BP: <strong>120/80 mm Hg</strong> (systolic/diastolic). (A) 140/100 is hypertension. (B) 120/60 — diastolic is too low.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 35</span>
+  <p class="qstem">Decompression symptoms are:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> Bends, chokes, skin manifestations, neurological symptoms and circulatory shock.</li>
+    <li><span class="lbl">B)</span> Bends, chokes, Personality change, Impaired memory and circulatory shock.</li>
+    <li><span class="lbl">C)</span> Bends, chokes, Personality change, Impaired memory and Impaired vision.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§20.1 (Part 5) DGCA verbatim 5-symptom list</span><br>
+    DGCA-quoted: "<em>Symptoms of decompression sickness are: Bends, Chokes, Skin manifestations, Neurological symptoms, Circulatory shock.</em>" Options B and C substitute hypoxia-style symptoms (personality change, memory, vision) — wrong category.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 36</span>
+  <p class="qstem">Baroreceptor reflex is triggered by:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> Body's need to adjust blood pressure.</li>
+    <li><span class="lbl">B)</span> Body's need to adjust to extreme temperatures.</li>
+    <li><span class="lbl">C)</span> Body's need to adjust to extreme cold.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§16 (Part 5)</span><br>
+    DGCA-quoted: "<em>Any change in your body's demand for blood can trigger your baroreceptor reflex.</em>" The receptors are <strong>pressure sensors</strong> in the carotid arteries and aortic arch — they respond to BP changes, not temperature. Temperature regulation is a separate autonomic loop.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 37</span>
+  <p class="qstem">While climbing from sea level to 40,000 ft the difference in barometric pressure is greatest between:</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> Sea level and 10,000 ft.</li>
+    <li><span class="lbl">B)</span> 10,000 and 20,000 ft.</li>
+    <li><span class="lbl">C)</span> 30,000 and 40,000 ft.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§3 (Part 1) ISA pressure curve · Q7 above</span><br>
+    Atmospheric pressure decreases <strong>exponentially</strong> with altitude — so the absolute drop per 10,000 ft is <strong>greatest at the bottom</strong>. From SL (1013 hPa) to ~10,000 ft (697 hPa) = drop of ~316 hPa. From 30,000 to 40,000 ft (300→187 hPa) = drop of ~113 hPa. The biggest absolute change is the SL → 10,000 ft band. This is why hypoxic risk rises steeply in the first few thousand feet.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 38</span>
+  <p class="qstem">The blood-pressure which is measured during flight medical checks is the:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Pressure in the artery of the left upper arm (representing the pressure at left arm).</li>
+    <li class="correct"><span class="lbl">B)</span> Pressure in the artery of the upper arm (representing the pressure at heart level).</li>
+    <li><span class="lbl">C)</span> Pressure in the artery of the upper arm (representing the cardiac pressure).</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§15 (Part 4)</span><br>
+    Standard clinical BP measurement is at the <strong>brachial artery (upper arm)</strong>, with the arm positioned at <strong>heart level</strong> — so the reading represents systemic arterial pressure at heart level. (A) "left arm" is artificial — either arm is used, both should agree (significant difference indicates pathology). (C) "cardiac pressure" is wrong terminology — cardiac pressures are measured inside the heart, not in an arm artery.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 39</span>
+  <p class="qstem">What is the average Time of Useful Consciousness after a rapid decompression at 40,000 ft?</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> About 12 seconds.</li>
+    <li><span class="lbl">B)</span> More than 1 minute.</li>
+    <li><span class="lbl">C)</span> About 40 seconds.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§18.3 (Part 5) TUC Master Table</span><br>
+    DGCA TUC table at <strong>FL400 / 40,000 ft, rapid decompression</strong>: <strong>7 – 10 seconds</strong>. Normal-ascent TUC at FL400 is 15 – 20 s. The closest option to the rapid-decompression value (7-10s, with some sources averaging 12s) is option A. (B) ">1 min" is FL220 normal value. (C) "40 s" is closer to the FL350 normal value (30s-1min).
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 40</span>
+  <p class="qstem">What is the Time of Useful Consciousness?</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> The amount of time an individual is able to function effectively (e.g. perform flying duties) in an environment of inadequate oxygen supply.</li>
+    <li><span class="lbl">B)</span> The time period during which there is an inability of the cells of the body to use the oxygen available.</li>
+    <li><span class="lbl">C)</span> The period of time when there is inadequate blood flow to body tissues.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§18.1 (Part 5)</span><br>
+    DGCA-quoted definition verbatim. (B) describes histotoxic hypoxia. (C) describes ischemic / stagnant hypoxia. The hallmark of TUC is the phrase "function effectively in an environment of <em>inadequate oxygen supply</em>" — the test is functional usefulness, not consciousness alone.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 41</span>
+  <p class="qstem">What are the signs of hypoxia during explosive decompression?</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Initially, there is an inability to concentrate, impairment of night vision, unusual fatigue, loss of consciousness/death.</li>
+    <li><span class="lbl">B)</span> Initially there is cramping and spasms of the hands and feet, cold clammy skin, paleness, impaired judgement.</li>
+    <li class="correct"><span class="lbl">C)</span> Initially there may be a feeling of wellbeing (euphoria), impairment of night vision, unusual fatigue, loss of consciousness/death.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§10 (Part 3) Hypoxia symptom cascade</span><br>
+    The crucial <strong>"euphoria" first sign</strong> distinguishes hypoxia from other emergencies — the pilot <em>feels good</em> before they realise something is wrong. This is why hypoxia is so dangerous (and why the master rule is "if at altitude and feeling great for no reason, suspect hypoxia"). (A) is missing the euphoria. (B) describes hyperventilation (cramping, spasms — tetany).
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 42</span>
+  <p class="qstem">Which is the procedure to be followed when symptoms of decompression sickness occur?</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> 100% Oxygen, immediate descent, land as soon as possible, seek medical assistance immediately on landing.</li>
+    <li class="correct"><span class="lbl">B)</span> 100% Oxygen, immediate descent, land in case not comfortable, seek medical assistance if required.</li>
+    <li><span class="lbl">C)</span> Descend below 10,000 feet, symptoms will disappear after few minutes.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§20.3 (Part 5) Treatment of DCS</span><br>
+    <em>Note on this question: The official answer key marks (B) as correct, but the strict DGCA-quoted four-step treatment is: "<strong>Keep patient warm and on 100% Oxygen · Initiate immediate descent · Land as soon as possible · Seek medical assistance immediately on landing.</strong>" — which matches (A) more closely.</em> The most clinically defensible answer is (A), but the source key indicates (B). For exam purposes mark per the official key. The DGCA-quoted theory definitively rules out (C), which is wrong — DCS does not self-resolve at 10,000 ft.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 43</span>
+  <p class="qstem">What is decompression sickness?</p>
+  <ol class="qopts">
+    <li class="correct"><span class="lbl">A)</span> A rapid reduction in ambient pressure, may cause the nitrogen in our blood to come out of solution as small bubbles.</li>
+    <li><span class="lbl">B)</span> A rapid increase in ambient pressure, may cause the nitrogen in our blood to come out of solution as small bubbles.</li>
+    <li><span class="lbl">C)</span> A rapid reduction in ambient pressure, may cause the oxygen in our blood to come out of solution as small bubbles.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · A</span><span class="ref">§20.1 (Part 5)</span><br>
+    DGCA-quoted Henry's Law application: "<em>A rapid REDUCTION in ambient pressure may cause the NITROGEN in our blood to come out of solution as small bubbles.</em>" Not oxygen (which is consumed metabolically and present at low dissolved levels); not an increase in pressure (which would dissolve more gas, not release it).
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 44</span>
+  <p class="qstem">The part of blood without cell is called:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Serum.</li>
+    <li><span class="lbl">B)</span> Lymph.</li>
+    <li class="correct"><span class="lbl">C)</span> Plasma.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§9 (Part 2)</span><br>
+    Blood = formed elements (RBCs, WBCs, platelets — &gt;90 % RBCs) + <strong>plasma</strong> (the cell-free liquid component containing water, proteins, hormones, salts, dissolved gases). (A) Serum is plasma <em>minus the clotting factors</em> — what's left after blood clots. (B) Lymph is a different fluid in the lymphatic system, not part of blood.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 45</span>
+  <p class="qstem">At rest, with a heart rate of 72 beats per minute and a stroke volume of 70 ml the cardiac output is about:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> 7 liters/min.</li>
+    <li class="correct"><span class="lbl">B)</span> 5 liters/min.</li>
+    <li><span class="lbl">C)</span> 6 liters/min.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§9 (Part 2)</span><br>
+    Cardiac Output = Heart Rate × Stroke Volume = 72 × 70 ml = <strong>5,040 ml/min ≈ 5 L/min</strong>. This is the DGCA-quoted resting cardiac output for a typical adult. At exercise it can rise to 20+ L/min.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 46</span>
+  <p class="qstem">Hemoglobin is:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> In the white blood cells.</li>
+    <li><span class="lbl">B)</span> Dissolved in the plasma.</li>
+    <li class="correct"><span class="lbl">C)</span> In the red blood cells.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§9 (Part 2)</span><br>
+    Haemoglobin (Hb) lives inside <strong>red blood cells</strong> — ~280 million Hb molecules per RBC. WBCs (leukocytes) are immune cells, not O₂ carriers. Plasma carries only a small fraction of total blood O₂ as dissolved gas.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 47</span>
+  <p class="qstem">The heart muscle is supplied with blood from:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> The pulmonary veins.</li>
+    <li class="correct"><span class="lbl">B)</span> The coronary arteries.</li>
+    <li><span class="lbl">C)</span> Coronary capillaries.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · B</span><span class="ref">§9 (Part 2) Cardiovascular anatomy</span><br>
+    The heart muscle (myocardium) is supplied with oxygenated blood by the <strong>coronary arteries</strong> — branches off the aorta just above the aortic valve. (A) Pulmonary veins return oxygenated blood from lungs to the left atrium. (C) Coronary capillaries are the downstream microvessels — the supply is from the arteries.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 48</span>
+  <p class="qstem">Bubbles in the joints cause rheumatic-like pain, called the:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Staggers.</li>
+    <li><span class="lbl">B)</span> Chokes.</li>
+    <li class="correct"><span class="lbl">C)</span> Bends.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§20.2 (Part 5)</span><br>
+    DGCA-quoted verbatim: "<em>Joints: Bubbles in the joints cause rheumatic-like pain, called the BENDS.</em>" The mnemonic: Joints Bend, Skin Creeps, Lungs Choke, Brain Staggers.
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 49</span>
+  <p class="qstem">Which symptom does not belong to the Decompression Sickness:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Bends.</li>
+    <li><span class="lbl">B)</span> Creeps.</li>
+    <li class="correct"><span class="lbl">C)</span> Convulsions.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§20 (Part 5) vs §27/§28 (Part 6)</span><br>
+    Bends and Creeps ARE DCS syndromes. <strong>Convulsions</strong> are associated with <em>obvious incapacitation</em> (§27.2) and <em>epilepsy / Grand Mal</em> (§28.1) — not with DCS. The DGCA-listed DCS symptom set is Bends · Chokes · Skin manifestations · Neurological symptoms · Circulatory shock; "convulsions" is not in that list (though severe neurological DCS could produce them, the DGCA list does not include the word).
+  </div>
+</div>
+
+<div class="qcard">
+  <span class="qnum">Q 50</span>
+  <p class="qstem">A few hours after a rapid decompression at FL320 you experience a feeling of wellbeing after having three pints of beer. You should:</p>
+  <ol class="qopts">
+    <li><span class="lbl">A)</span> Ask for medical advice since this is a symptom of hypoxia.</li>
+    <li><span class="lbl">B)</span> Ask for medical advice since this is a symptom of decompression sickness.</li>
+    <li class="correct"><span class="lbl">C)</span> Stop drinking and allow twenty-four hours between the last drink and take off time.</li>
+  </ol>
+  <div class="qexpl">
+    <span class="ans-tag">ANS · C</span><span class="ref">§14.1 (Part 4) · §20.4 (Part 5)</span><br>
+    A complex scenario question with <strong>two simultaneous rules in play</strong>:
+    <ul style="margin:4px 0;">
+      <li><strong>Alcohol bottle-to-throttle:</strong> <span class="val">24 hr</span> wait between last drink and take-off (§14.1).</li>
+      <li><strong>Rapid decompression:</strong> <span class="val">12 hr</span> wait before flying after RD (§20.4).</li>
+    </ul>
+    The longer of the two binding rules wins → <strong>24 hours</strong>. "Feeling of wellbeing" after 3 beers is simple intoxication / disinhibition — not hypoxia (you're on the ground) and not DCS (already past the 12-hr RD window). The correct action: stop drinking, wait 24 hr for alcohol to clear, then fly. <em>(Note: the answer ALSO satisfies the 12-hr post-RD rule by overlap — 24 hr &gt; 12 hr.)</em>
+  </div>
+</div>
+
+
+<div class="divider">✦ &nbsp; END OF Q 1 – Q 50 &nbsp; ✦</div>
+
+<div class="box box-blue">
+<span class="box-title">Progress check at Q50</span>
+You have now completed half of the question bank (50 of 105). Of the questions covered so far:
+<ul style="margin:6px 0 0;">
+<li><strong>Atmosphere &amp; gas laws</strong> (§§1–3): Q5, Q6, Q7, Q8, Q9, Q14, Q15, Q16, Q17, Q18, Q20, Q29, Q37</li>
+<li><strong>Respiratory &amp; circulatory systems</strong> (§§8–9): Q11, Q12, Q13, Q28, Q30, Q32, Q44, Q45, Q46, Q47</li>
+<li><strong>Hypoxia &amp; CO</strong> (§§10–11): Q4, Q24, Q41</li>
+<li><strong>Blood pressure &amp; baroreceptor</strong> (§§15–16): Q3, Q34, Q36, Q38</li>
+<li><strong>Cabin pressurisation / TUC / decompression / DCS / diving</strong> (§§18–21): Q15, Q19, Q21, Q23, Q25, Q26, Q27, Q31, Q33, Q35, Q39, Q40, Q42, Q43, Q48, Q49, Q50</li>
+<li><strong>Illusions &amp; somatogravic</strong> (§§45 / §54): Q2, Q22</li>
+<li><strong>Drugs / Aviation Medicine</strong> (§76): Q1</li>
+<li><strong>Ear &amp; Eustachian</strong> (§§37–38): Q10</li>
+</ul>
+The remaining 55 questions (Q51–Q105) cover the rest of the chapter: hypoxia clusters, smoking, alcohol, BMI, vision (eye anatomy &amp; defects), runway illusions, ear/balance, hypothermia, BMI, vibrations, and more. They will be delivered in <strong>Part 13</strong>.
+</div>
+
+<footer>
+  <p><b>Capt. Pankaj Pahil</b> &nbsp;|&nbsp; Aviation Physiology &amp; Human Factors — Part 12 (Q&amp;A Bank Q1–Q50) &nbsp;|&nbsp; CPL · ATPL · DGCA HPL Study Notes<br>
+  <em>Next instalment (Part 13): Q51 – Q105 with the same worked-explanation format, plus the master answer-key consolidated cross-reference and a final exam-eve revision plan.</em></p>
+</footer>
+
+
+<div class="cpp-watermark">Capt. Pankaj Pahil</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

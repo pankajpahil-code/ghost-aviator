@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 22 — Security: Safeguarding International Civil Aviation Against Acts of Unlawful Interference | Capt. Pankaj Pahil</title>
+
+<!-- Google Fonts: Aviation-training manual aesthetic -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@500;600;700;800&family=Lato:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<!-- Mermaid.js for flowcharts and visuals -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      primaryColor: '#e8f1fb',
+      primaryTextColor: '#0b2545',
+      primaryBorderColor: '#1d4e89',
+      lineColor: '#1d4e89',
+      secondaryColor: '#fdecea',
+      tertiaryColor: '#eaf6ec',
+      fontFamily: 'Montserrat, sans-serif',
+      fontSize: '14px'
+    },
+    flowchart: { curve: 'basis', padding: 18, nodeSpacing: 40, rankSpacing: 50 }
+  });
+</script>
+
+<style>
+/* ============================================================
+   PAGE & PRINT SETUP — A4, 20mm margins, print-ready
+   ============================================================ */
+@page {
+  size: A4;
+  margin: 20mm;
+}
+
+@media print {
+  body { background: #ffffff !important; }
+  .no-print { display: none !important; }
+  a { color: inherit; text-decoration: none; }
+  .container { box-shadow: none !important; }
+}
+
+/* ============================================================
+   ROOT VARIABLES — Professional Aviation Training Palette
+   ============================================================ */
+:root {
+  --navy: #0b2545;
+  --aviation-blue: #1d4e89;
+  --sky: #4f9cf9;
+  --warn-red: #b1322f;
+  --warn-red-bg: #fdecea;
+  --warn-red-border: #e6b4b1;
+  --def-blue: #1d4e89;
+  --def-blue-bg: #e8f1fb;
+  --def-blue-border: #b8d4ed;
+  --sop-green: #1f6b3a;
+  --sop-green-bg: #eaf6ec;
+  --sop-green-border: #b9deb9;
+  --gold: #c9a227;
+  --paper: #fdfcf8;
+  --ink: #1a1a1a;
+  --muted: #5a6675;
+  --rule: #d8d4c4;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 11.5pt;
+  line-height: 1.65;
+  color: var(--ink);
+  background: #f3f1ea;
+  padding: 30px 0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 950px;
+  margin: 0 auto;
+  background: var(--paper);
+  padding: 50px 55px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   COVER HEADER
+   ============================================================ */
+.cover {
+  text-align: center;
+  padding: 25px 0 30px 0;
+  border-bottom: 3px double var(--navy);
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.cover::before {
+  content: "DGCA RTR / CPL / ATPL STUDY NOTES";
+  display: block;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 9pt;
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.cover .chapter-tag {
+  display: inline-block;
+  background: var(--navy);
+  color: #fff;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10pt;
+  letter-spacing: 2px;
+  padding: 6px 18px;
+  border-radius: 2px;
+  margin-bottom: 18px;
+}
+
+.cover h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38pt;
+  line-height: 1.05;
+  letter-spacing: 2px;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.cover .subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13pt;
+  font-weight: 600;
+  color: var(--aviation-blue);
+  margin-bottom: 8px;
+}
+
+.cover .reg-ref {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10pt;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+.cover .instructor {
+  margin-top: 18px;
+  font-style: italic;
+  font-size: 10pt;
+  color: var(--muted);
+}
+
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
+h2.section {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24pt;
+  letter-spacing: 1.5px;
+  color: var(--navy);
+  border-left: 6px solid var(--gold);
+  padding: 6px 14px;
+  margin: 45px 0 20px 0;
+  background: linear-gradient(90deg, rgba(11,37,69,0.04) 0%, transparent 100%);
+  page-break-after: avoid;
+}
+
+h2.section .num {
+  display: inline-block;
+  background: var(--navy);
+  color: #fff;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 11pt;
+  padding: 2px 10px;
+  border-radius: 2px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+h3.sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--aviation-blue);
+  margin: 28px 0 12px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+  page-break-after: avoid;
+}
+
+h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11.5pt;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 18px 0 8px 0;
+}
+
+p { margin: 8px 0 12px 0; text-align: justify; }
+
+ul, ol { margin: 8px 0 12px 24px; }
+li { margin: 5px 0; }
+
+strong { color: var(--navy); }
+em { color: var(--aviation-blue); }
+
+/* ============================================================
+   COLOR-CODED INFORMATIONAL BOXES
+   ============================================================ */
+.box {
+  border-radius: 6px;
+  padding: 16px 20px 16px 22px;
+  margin: 16px 0;
+  border-left: 6px solid;
+  page-break-inside: avoid;
+  position: relative;
+}
+
+.box .box-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 11pt;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.box .box-title::before {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13pt;
+}
+
+/* RED — Strict limitations, warnings, penalties */
+.box.warning {
+  background: var(--warn-red-bg);
+  border-left-color: var(--warn-red);
+  border: 1px solid var(--warn-red-border);
+  border-left: 6px solid var(--warn-red);
+}
+.box.warning .box-title { color: var(--warn-red); }
+.box.warning .box-title::before { content: "⚠"; }
+
+/* BLUE — Definitions, key concepts */
+.box.definition {
+  background: var(--def-blue-bg);
+  border-left-color: var(--def-blue);
+  border: 1px solid var(--def-blue-border);
+  border-left: 6px solid var(--def-blue);
+}
+.box.definition .box-title { color: var(--def-blue); }
+.box.definition .box-title::before { content: "📘"; }
+
+/* GREEN — SOPs, allowances, standard procedures */
+.box.sop {
+  background: var(--sop-green-bg);
+  border-left-color: var(--sop-green);
+  border: 1px solid var(--sop-green-border);
+  border-left: 6px solid var(--sop-green);
+}
+.box.sop .box-title { color: var(--sop-green); }
+.box.sop .box-title::before { content: "✓"; }
+
+/* GOLD — Memory aids, mnemonics */
+.box.memory {
+  background: #fbf6e4;
+  border: 1px solid #e8d99a;
+  border-left: 6px solid var(--gold);
+}
+.box.memory .box-title { color: #8a6d12; }
+.box.memory .box-title::before { content: "🧠"; }
+
+.box ul, .box ol { margin-left: 22px; }
+.box ul li, .box ol li { margin: 4px 0; }
+
+/* Highlighted regulatory numbers / values */
+.reg-num {
+  background: #fff3b0;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  color: var(--navy);
+  border: 1px solid #e0c861;
+}
+
+.year-stamp {
+  background: var(--navy);
+  color: #fff;
+  padding: 1px 8px;
+  border-radius: 3px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10pt;
+  font-weight: 700;
+}
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 10.5pt;
+  page-break-inside: avoid;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+table thead {
+  background: var(--navy);
+  color: #fff;
+}
+
+table thead th {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 10pt;
+  letter-spacing: 0.5px;
+}
+
+table tbody td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #e6e2d3;
+  vertical-align: top;
+}
+
+table tbody tr:nth-child(even) { background: #f7f5ec; }
+table tbody tr:hover { background: #fdf6dc; }
+
+/* ============================================================
+   MERMAID DIAGRAMS
+   ============================================================ */
+.mermaid-wrap {
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 20px;
+  margin: 18px 0;
+  text-align: center;
+  page-break-inside: avoid;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.mermaid-wrap .caption {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 9pt;
+  color: var(--muted);
+  margin-top: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+pre.mermaid {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+/* ============================================================
+   QUOTE / KEY-STATEMENT BLOCK
+   ============================================================ */
+blockquote {
+  border-left: 4px solid var(--gold);
+  padding: 10px 18px;
+  margin: 16px 0;
+  font-style: italic;
+  color: var(--muted);
+  background: #fbf6e4;
+  font-size: 10.5pt;
+  page-break-inside: avoid;
+}
+
+/* ============================================================
+   MCQ SECTION
+   ============================================================ */
+.mcq-section { margin-top: 50px; }
+
+.mcq {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 18px 22px;
+  margin: 16px 0;
+  page-break-inside: avoid;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.mcq .q-num {
+  display: inline-block;
+  background: var(--navy);
+  color: #fff;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 3px;
+  margin-right: 10px;
+  font-size: 10pt;
+}
+
+.mcq .q-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 12px;
+  font-size: 11pt;
+}
+
+.mcq .options { list-style: none; margin-left: 0; }
+.mcq .options li {
+  padding: 6px 10px;
+  margin: 4px 0;
+  border-left: 3px solid transparent;
+  background: #fafaf3;
+  border-radius: 3px;
+  font-size: 10.5pt;
+}
+
+.mcq .options li.correct {
+  background: var(--sop-green-bg);
+  border-left-color: var(--sop-green);
+  font-weight: 700;
+  color: var(--sop-green);
+}
+
+.mcq .options li.correct::after {
+  content: " ✓ CORRECT";
+  font-family: 'Roboto Mono', monospace;
+  font-size: 9pt;
+  color: var(--sop-green);
+  margin-left: 6px;
+  letter-spacing: 1px;
+}
+
+.mcq .options li .opt-letter {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  margin-right: 8px;
+  color: var(--aviation-blue);
+}
+
+.mcq .explanation {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--def-blue-bg);
+  border-left: 3px solid var(--def-blue);
+  border-radius: 3px;
+  font-size: 10pt;
+}
+
+.mcq .explanation strong {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  font-size: 9pt;
+  text-transform: uppercase;
+  color: var(--def-blue);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 2px solid var(--rule);
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 9pt;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+/* ============================================================
+   TOC
+   ============================================================ */
+.toc {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-left: 6px solid var(--gold);
+  padding: 20px 26px;
+  margin: 30px 0 40px 0;
+  page-break-inside: avoid;
+}
+
+.toc h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18pt;
+  color: var(--navy);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.toc ol { margin-left: 28px; font-family: 'Montserrat', sans-serif; font-weight: 600; }
+.toc ol li { margin: 6px 0; color: var(--aviation-blue); }
+.toc ol li a { color: inherit; text-decoration: none; }
+.toc ol li a:hover { text-decoration: underline; }
+
+/* ============================================================
+   WATERMARK — Diagonal, visible on every page, last in body
+   ============================================================ */
+.watermark-diagonal {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) rotate(-45deg);
+  font-size: 80px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.12);
+  white-space: nowrap;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 8px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ============================================================
+       COVER
+       ============================================================ -->
+  <section class="cover">
+    <span class="chapter-tag">CHAPTER 22</span>
+    <h1>Security — Safeguarding<br>International Civil Aviation Against<br>Acts of Unlawful Interference</h1>
+    <div class="subtitle">Hijacking, Sabotage &amp; Bomb-Threat Procedures</div>
+    <div class="reg-ref">ICAO ANNEX 17 • AIRCRAFT (SECURITY) RULES, 2011 • DGCA AIR REGULATIONS</div>
+    <div class="instructor">Compiled &amp; Instructed by Capt. Pankaj Pahil — DGCA RTR Subject Matter Instructor</div>
+  </section>
+
+  <!-- ============================================================
+       TABLE OF CONTENTS
+       ============================================================ -->
+  <div class="toc">
+    <h3>Lesson Roadmap</h3>
+    <ol>
+      <li><a href="#s1">Historical Background &amp; Why Annex 17 Exists</a></li>
+      <li><a href="#s2">Key Definitions Every Student Must Know</a></li>
+      <li><a href="#s3">Scope of Annex 17 — What It Covers Today</a></li>
+      <li><a href="#s4">Aims &amp; Objectives of Each Contracting State</a></li>
+      <li><a href="#s5">Operational Provisions on Acts of Unlawful Interference</a></li>
+      <li><a href="#s6">Carriage of Weapons by Foreign Agents</a></li>
+      <li><a href="#s7">National Provisions — The Indian Framework</a></li>
+      <li><a href="#s8">Reporting &amp; Investigation of Security Incidents</a></li>
+      <li><a href="#s9">Memory Aids &amp; Quick-Recall Mnemonics</a></li>
+      <li><a href="#s10">Practice Questions (MCQs) — Examination Drill</a></li>
+    </ol>
+  </div>
+
+  <!-- ============================================================
+       SECTION 1 — HISTORICAL BACKGROUND
+       ============================================================ -->
+  <h2 class="section" id="s1"><span class="num">01</span>Historical Background</h2>
+
+  <p>The story of aviation security begins with a problem the world could no longer ignore. During the <strong>late 1960s</strong>, civil aviation experienced a dramatic increase in crimes of violence which adversely affected the safety of flight operations across the globe. Aircraft were being hijacked at an alarming rate, passengers were being held hostage, and the world's airline industry was forced to confront a threat for which existing international law had no comprehensive answer.</p>
+
+  <p>This crisis forced the International Civil Aviation Organization (ICAO) to take extraordinary action. An <strong>Extraordinary Session of the ICAO Assembly</strong> was convened in <span class="year-stamp">June 1970</span>. One of the resolutions of that Assembly called for specifications — either in existing Annexes or in a brand-new Annex to the <strong>Chicago Convention</strong> — to specifically deal with the problem of unlawful interference, in particular with the <strong>unlawful seizure of aircraft (hijacking)</strong>. The result was the birth of <strong>Annex 17</strong>.</p>
+
+  <div class="box definition">
+    <div class="box-title">Why Annex 17 Was Created</div>
+    <p>Annex 17 seeks to <strong>co-ordinate the activities</strong> of those involved in security programmes. The international community recognised that <em>airline operators themselves have a primary responsibility</em> for protecting their passengers, assets and revenues. Therefore, States must ensure that the carriers develop and implement effective <strong>complementary security programmes</strong> compatible with those of the airports out of which they operate.</p>
+  </div>
+
+  <h3 class="sub">The Pre-1985 Era — Hijacking-Centric Focus</h3>
+
+  <p>Prior to <span class="year-stamp">1985</span>, the significant threat to civil aviation was seen overwhelmingly as <strong>the hijacking</strong>. Because of this perception, the Standards and Recommended Practices (SARPs) of the day tended to focus on:</p>
+
+  <ul>
+    <li><strong>Hijacking</strong> as the primary threat</li>
+    <li>Rather than on <strong>sabotage</strong>, <strong>in-flight attack</strong>, or <strong>facility attack</strong></li>
+  </ul>
+
+  <p>By modifying existing technology and applying agreed-upon specifications and procedures, the worldwide aviation community established a <strong>reasonably effective screening system</strong> for passengers and their carry-on luggage. The annex was further amended over the years to deal with:</p>
+
+  <div class="box sop">
+    <div class="box-title">Progressive Amendments to Annex 17 — Pre-1985 Additions</div>
+    <ul>
+      <li><strong>Reconciliation of baggage with passengers</strong> (no bag flies unless its owner flies)</li>
+      <li>Controls over <strong>items left behind on the aircraft</strong> by disembarking passengers</li>
+      <li>Security controls for <strong>commercial courier services</strong></li>
+      <li>Controls over <strong>cargo and mail</strong> under certain situations</li>
+    </ul>
+  </div>
+
+  <h3 class="sub">The Modern Amendment — Post-9/11 &amp; Beyond</h3>
+
+  <p>The later amendment of Annex 17 introduced a significantly broader set of provisions. Today the Annex includes various definitions and new provisions in relation to:</p>
+
+  <div class="box definition">
+    <div class="box-title">Modern Scope of Annex 17</div>
+    <ul>
+      <li>Applicability of the Annex to <strong>domestic operations</strong> (not just international)</li>
+      <li><strong>International cooperation</strong> relating to threat information</li>
+      <li><strong>National quality control</strong></li>
+      <li><strong>Access control</strong></li>
+      <li>Measures related to <strong>passengers and their cabin and hold baggage</strong></li>
+      <li><strong>In-flight security personnel</strong> and protection of the cockpit</li>
+      <li><strong>Code-sharing / collaborative arrangements</strong></li>
+      <li><strong>Human factors</strong></li>
+      <li><strong>Management of response</strong> to acts of unlawful interference</li>
+    </ul>
+  </div>
+
+  <div class="mermaid-wrap">
+<pre class="mermaid">
+timeline
+    title Evolution of Annex 17 — Aviation Security Timeline
+    Late 1960s : Surge in hijackings and crimes of violence
+                : Existing law inadequate
+    June 1970  : ICAO Extraordinary Assembly convened
+                : Resolution to create Annex 17
+    Pre-1985   : Focus = HIJACKING only
+                : Effective passenger and carry-on screening developed
+    Post-1985  : Amendments add baggage reconciliation
+                : Cargo, mail, courier controls
+    Modern Era : Cockpit protection, domestic ops covered
+                : Human factors, threat-information sharing
+</pre>
+    <div class="caption">Figure 1 — Historical evolution of ICAO Annex 17</div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 2 — KEY DEFINITIONS
+       ============================================================ -->
+  <h2 class="section" id="s2"><span class="num">02</span>Key Definitions</h2>
+
+  <p>Before working through the operational rules, students must lock down the precise legal definition of "Security" as it appears in Annex 17, because it is examined directly in MCQs.</p>
+
+  <div class="box definition">
+    <div class="box-title">Definition — "Security" (ICAO Annex 17)</div>
+    <p>Security is a <strong>combination of measures</strong> <em>AND</em> <strong>human and material resources</strong> intended to safeguard international civil aviation against acts of unlawful interference.</p>
+    <p><strong>Memory trick:</strong> Three parts must appear in the definition:</p>
+    <ol>
+      <li>Combination of <strong>measures</strong></li>
+      <li>Combination of <strong>human resources</strong></li>
+      <li>Combination of <strong>material resources</strong></li>
+    </ol>
+    <p>All three together safeguard <em>international civil aviation</em> against <em>acts of unlawful interference</em>. If an option leaves out "human and material resources", it is incorrect.</p>
+  </div>
+
+  <div class="box definition">
+    <div class="box-title">Acts of Unlawful Interference — What They Include</div>
+    <p>Acts of unlawful interference are acts (or attempted acts) which jeopardise the safety of civil aviation, such as:</p>
+    <ul>
+      <li>Unlawful seizure of an aircraft in flight (<strong>hijacking</strong>)</li>
+      <li>Unlawful seizure of an aircraft on the ground</li>
+      <li>Hostage-taking on board an aircraft or on aerodromes</li>
+      <li>Forcible intrusion on board an aircraft, at an airport or on the premises of an aeronautical facility</li>
+      <li>Introduction on board an aircraft or at an airport of a weapon, hazardous device or material intended for criminal purposes</li>
+      <li>Communication of false information so as to jeopardise the safety of an aircraft in flight or on the ground</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================
+       SECTION 3 — SCOPE
+       ============================================================ -->
+  <h2 class="section" id="s3"><span class="num">03</span>Scope of Annex 17 Today</h2>
+
+  <p>The ICAO Annex 17 comprises rules in order to establish security measures for passengers covering the following items:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:25%;">Security Element</th>
+        <th>What it Covers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Cabin Baggage</strong></td>
+        <td>Items the passenger carries into the aircraft cabin — screened at the security check point.</td>
+      </tr>
+      <tr>
+        <td><strong>Checked Baggage</strong></td>
+        <td>Hold baggage tendered for carriage in the aircraft hold — must be reconciled with the passenger.</td>
+      </tr>
+      <tr>
+        <td><strong>Cargo &amp; Other Goods</strong></td>
+        <td>Includes commercial cargo, mail, courier shipments — controlled by regulated agents.</td>
+      </tr>
+      <tr>
+        <td><strong>Access Control</strong></td>
+        <td>Restricting entry to security restricted areas; airside access; staff and crew vetting.</td>
+      </tr>
+      <tr>
+        <td><strong>Airport Design</strong></td>
+        <td>Designing terminals to channel passenger flows safely and to permit effective screening.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box memory">
+    <div class="box-title">Memory Aid — The "5 Pillars" of Annex 17 Scope</div>
+    <p>Remember <strong>"CC-CAA"</strong>: <strong>C</strong>abin baggage, <strong>C</strong>hecked baggage, <strong>C</strong>argo &amp; other goods, <strong>A</strong>ccess control, <strong>A</strong>irport design.</p>
+  </div>
+
+  <!-- ============================================================
+       SECTION 4 — AIMS AND OBJECTIVES
+       ============================================================ -->
+  <h2 class="section" id="s4"><span class="num">04</span>Aims &amp; Objectives of Each Contracting State</h2>
+
+  <p>This section is the regulatory heart of Annex 17. Every Contracting State (i.e. every country that has signed the Chicago Convention, including India) must comply with these obligations.</p>
+
+  <div class="box definition">
+    <div class="box-title">Primary Obligation of Every Contracting State</div>
+    <p>Each Contracting State shall <strong>establish an organization</strong> and <strong>develop and implement regulations, practices and procedures</strong> to safeguard civil aviation against acts of unlawful interference, taking into account the:</p>
+    <ul>
+      <li><strong>Safety</strong> of flights</li>
+      <li><strong>Regularity</strong> of flights</li>
+      <li><strong>Efficiency</strong> of flights</li>
+    </ul>
+  </div>
+
+  <div class="box sop">
+    <div class="box-title">Two Mandatory Capabilities — Sub-clauses (a) and (b)</div>
+    <p>Each Contracting State shall ensure that such an organization and such regulations, practices and procedures:</p>
+    <ol type="a">
+      <li><strong>Protect the safety</strong> of <em>passengers, crew, ground personnel and the general public</em> in all matters related to safeguarding against acts of unlawful interference with civil aviation; <strong>AND</strong></li>
+      <li>Are <strong>capable of responding rapidly</strong> to meet any increased security threat.</li>
+    </ol>
+  </div>
+
+  <div class="mermaid-wrap">
+<pre class="mermaid">
+flowchart TD
+    A[Contracting State<br>under Annex 17] --> B[Establish a national<br>security organisation]
+    A --> C[Develop regulations,<br>practices &amp; procedures]
+    B --> D{Two Mandatory Capabilities}
+    C --> D
+    D --> E[a Protect safety of:<br>Passengers, Crew,<br>Ground personnel,<br>General public]
+    D --> F[b Capable of<br>RAPID RESPONSE to<br>increased security threat]
+    E --> G[Considering: Safety,<br>Regularity, Efficiency<br>of flights]
+    F --> G
+    style A fill:#e8f1fb,stroke:#1d4e89,stroke-width:2px
+    style D fill:#fbf6e4,stroke:#c9a227,stroke-width:2px
+    style E fill:#eaf6ec,stroke:#1f6b3a,stroke-width:2px
+    style F fill:#fdecea,stroke:#b1322f,stroke-width:2px
+    style G fill:#fff,stroke:#5a6675,stroke-width:1px
+</pre>
+    <div class="caption">Figure 2 — Annex 17 obligations on every Contracting State</div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 5 — OPERATIONAL PROVISIONS
+       ============================================================ -->
+  <h2 class="section" id="s5"><span class="num">05</span>Operational Provisions on Unlawful Interference</h2>
+
+  <p>When an act of unlawful interference actually occurs — most importantly an unlawful seizure / hijacking — Annex 17 lays down a sequence of mandatory actions. Students must memorise each clause word-for-word because exam options test fine distinctions.</p>
+
+  <h3 class="sub">5.1 Retention of the Hijacked Aircraft</h3>
+
+  <div class="box warning">
+    <div class="box-title">Mandatory Retention Rule</div>
+    <p>The Contracting State <strong>will make provisions to ensure that an aircraft affected by an unlawful seizure act</strong>, which has landed in their territory, <strong>would be retained</strong> — <em>unless its departure is justified to protect lives</em>.</p>
+    <p><strong>Why this matters:</strong> The default action is <span class="reg-num">RETAIN</span> the aircraft. The <em>only</em> exception is when allowing it to depart will protect human lives (e.g. hijackers credibly threaten to kill hostages unless permitted to leave).</p>
+  </div>
+
+  <h3 class="sub">5.2 Safety of Passengers &amp; Crew After Landing</h3>
+
+  <div class="box sop">
+    <div class="box-title">Duty of Care — Until the Journey Continues</div>
+    <p>A State shall take adequate measures for the <strong>safety of passengers and crew</strong> of an aircraft which is subjected to an act of unlawful interference — <strong>until their journey can be continued</strong>.</p>
+    <p>The phrase "<em>until their journey can be continued</em>" is examined verbatim. It is <strong>not</strong> "during a period of investigation" and it is <strong>not</strong> "until returned to country of origin".</p>
+  </div>
+
+  <h3 class="sub">5.3 Notification Obligations After Landing</h3>
+
+  <p>When an aircraft subject to unlawful interference has landed, the State of landing must, by the <strong>most expeditious means</strong>, notify a specific list of parties. <em>This list is examined directly — memorise it.</em></p>
+
+  <div class="box warning">
+    <div class="box-title">Mandatory Notification List — Five Parties</div>
+    <p>The State of landing shall notify <strong>by the most expeditious means</strong>:</p>
+    <ol>
+      <li>The <strong>State of Registry</strong> of the aircraft</li>
+      <li>The <strong>State of the Operator</strong></li>
+    </ol>
+    <p>...and shall similarly transmit all other relevant information to:</p>
+    <ol start="3">
+      <li>The <strong>two aforementioned States</strong> (Registry + Operator) — i.e. complete info, not just notification</li>
+      <li>Each <strong>State whose citizens suffered fatalities or injuries</strong></li>
+      <li>Each <strong>State whose citizens were detained as hostages</strong></li>
+      <li>Each <strong>State whose citizens are known to be on board</strong> the aircraft</li>
+      <li>The <strong>ICAO</strong></li>
+    </ol>
+    <p><strong>Watch-out:</strong> A wrong option will <em>omit</em> "citizens detained as hostages" or omit "ICAO". Cross-check every option against this complete list.</p>
+  </div>
+
+  <div class="mermaid-wrap">
+<pre class="mermaid">
+flowchart LR
+    A[Hijacked aircraft<br>LANDS in your territory] --> B[Use MOST<br>EXPEDITIOUS<br>means to notify]
+    B --> C[1 State of REGISTRY<br>of the aircraft]
+    B --> D[2 State of the<br>OPERATOR]
+    B --> E[3 States whose citizens<br>suffered FATALITIES<br>or INJURIES]
+    B --> F[4 States whose citizens<br>were DETAINED as<br>HOSTAGES]
+    B --> G[5 States whose citizens<br>are known to be<br>ON BOARD]
+    B --> H[6 ICAO]
+    style A fill:#fdecea,stroke:#b1322f,stroke-width:2px
+    style B fill:#fbf6e4,stroke:#c9a227,stroke-width:2px
+    style C fill:#e8f1fb,stroke:#1d4e89
+    style D fill:#e8f1fb,stroke:#1d4e89
+    style E fill:#e8f1fb,stroke:#1d4e89
+    style F fill:#e8f1fb,stroke:#1d4e89
+    style G fill:#e8f1fb,stroke:#1d4e89
+    style H fill:#eaf6ec,stroke:#1f6b3a,stroke-width:2px
+</pre>
+    <div class="caption">Figure 3 — Notification flowchart following landing of a hijacked aircraft</div>
+  </div>
+
+  <h3 class="sub">5.4 Assistance to a Hijacked Aircraft</h3>
+
+  <div class="box sop">
+    <div class="box-title">Assistance Required from a State — Exact List</div>
+    <p>A State shall provide assistance to an aircraft subjected to an act of unlawful seizure. This assistance <strong>includes</strong>:</p>
+    <ul>
+      <li><strong>Provision of navigation aids</strong></li>
+      <li><strong>Air traffic services</strong></li>
+      <li><strong>Permission to land</strong></li>
+    </ul>
+    <p><strong>Watch-out:</strong> "Only permission to land" is <em>wrong</em>. "Catering for passengers" is <em>not</em> part of this prescribed list, although a State may provide it humanely — exam answer must match the regulation, not common sense.</p>
+  </div>
+
+  <h3 class="sub">5.5 Potentially Disruptive Passengers</h3>
+
+  <div class="box sop">
+    <div class="box-title">Supplementary Safeguards for Disruptive Passengers</div>
+    <p>For the transport of <strong>potentially disruptive passengers</strong>, some supplementary safeguards are to be observed, such as <strong>boarding prior to all passengers</strong>.</p>
+    <p>The disruptive passenger (e.g. a deportee, person in custody, or a known disorderly individual) is boarded <em>first</em>, before all other passengers — not at the pilot-in-command's discretion, not at the State's discretion, but as a prescribed safeguard.</p>
+  </div>
+
+  <h3 class="sub">5.6 Mixing &amp; Contact Post-Screening</h3>
+
+  <div class="box warning">
+    <div class="box-title">Re-screening Rule — Cross-Contamination</div>
+    <p>When <strong>mixing or contact does take place</strong> between passengers who have been subjected to security control, and other persons <em>not</em> subjected to such control, <strong>after</strong> the security screening points at airports serving international civil aviation have been passed — then:</p>
+    <p style="background:#fff; padding:8px 12px; border-radius:3px; border:1px dashed var(--warn-red); margin-top:8px;"><strong>The passengers concerned AND their cabin baggage shall be RE-SCREENED before boarding an aircraft.</strong></p>
+    <p><strong>Why?</strong> Once a screened passenger contacts an unscreened person, the integrity of the sterile area is compromised — a prohibited item could have been passed across. The only way to restore security integrity is to re-screen passenger <em>and</em> cabin baggage.</p>
+  </div>
+
+  <!-- ============================================================
+       SECTION 6 — WEAPONS BY FOREIGN AGENTS
+       ============================================================ -->
+  <h2 class="section" id="s6"><span class="num">06</span>Carriage of Weapons by Foreign Agents</h2>
+
+  <p>Some States allow armed personnel from foreign States (e.g. sky marshals, diplomatic protection officers, presidential bodyguards) to carry weapons on board aircraft within their territory. Annex 17 imposes <strong>two strict conditions</strong> before such carriage is permitted.</p>
+
+  <div class="box warning">
+    <div class="box-title">Conditions for Carriage of Weapons by Foreign Personnel</div>
+    <p>When a member state allows <strong>police officers, security staff, bodyguards or other agents of foreign states</strong> to carry weapons in their territory for the protection of aircraft in flight, permission for the carriage of weapons should be conditional upon:</p>
+    <ol>
+      <li><strong>Prior notification</strong> by the State of <em>embarkation</em> to the foreign State in which the weapons will be carried on the airport of arrival; <strong>AND</strong></li>
+      <li><strong>Notification of the Pilot-in-Command</strong> of a decision to permit a weapon to be carried on board his aircraft.</li>
+    </ol>
+    <p><strong>Both conditions are mandatory.</strong> Notification of only the pilot, without prior State-to-State notification, is <em>insufficient</em>. A mere agreement between embarkation and destination States, without informing the PIC, is also <em>insufficient</em>.</p>
+  </div>
+
+  <div class="mermaid-wrap">
+<pre class="mermaid">
+flowchart TD
+    A[Foreign State agents<br>wish to carry weapons<br>on aircraft in flight] --> B{Two conditions must be met}
+    B --> C[Condition 1<br>PRIOR NOTIFICATION<br>by State of EMBARKATION<br>to State of ARRIVAL]
+    B --> D[Condition 2<br>Notification of<br>PILOT-IN-COMMAND<br>of the decision]
+    C --> E[Both satisfied?]
+    D --> E
+    E -->|YES| F[Carriage of weapon<br>PERMITTED]
+    E -->|NO| G[Carriage NOT permitted]
+    style A fill:#e8f1fb,stroke:#1d4e89,stroke-width:2px
+    style B fill:#fbf6e4,stroke:#c9a227,stroke-width:2px
+    style C fill:#fdecea,stroke:#b1322f,stroke-width:2px
+    style D fill:#fdecea,stroke:#b1322f,stroke-width:2px
+    style F fill:#eaf6ec,stroke:#1f6b3a,stroke-width:2px
+    style G fill:#fdecea,stroke:#b1322f,stroke-width:2px
+</pre>
+    <div class="caption">Figure 4 — Decision flow for foreign-agent weapons carriage</div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 7 — NATIONAL PROVISIONS (INDIA)
+       ============================================================ -->
+  <h2 class="section" id="s7"><span class="num">07</span>National Provisions — The Indian Framework</h2>
+
+  <p>India implements its Annex 17 obligations through a dedicated national framework. Every student pilot must know the chain of command and the regulatory instruments involved, because RTR examiners ask <strong>who reports to whom</strong> and <strong>which rules govern</strong>.</p>
+
+  <h3 class="sub">7.1 Bureau of Civil Aviation Security (BCAS)</h3>
+
+  <div class="box definition">
+    <div class="box-title">BCAS — Constitution &amp; Mandate</div>
+    <p>The <strong>Central Government</strong> has constituted a body known as the <strong>Bureau of Civil Aviation Security (BCAS)</strong>, which shall be <strong>headed by an officer designated as the Director General of Bureau of Civil Aviation Security</strong>, to be appointed in this behalf by the Central Government by <strong>notification in the Official Gazette</strong>.</p>
+    <p>The BCAS shall be responsible for carrying out the <strong>regulatory and oversight functions</strong> in respect of matters relating to civil aviation security.</p>
+  </div>
+
+  <h3 class="sub">7.2 The Governing Rules — Aircraft (Security) Rules, 2011</h3>
+
+  <div class="box definition">
+    <div class="box-title">Aircraft (Security) Rules, 2011</div>
+    <p>Aircraft and airport security in India is governed by the <strong>Aircraft (Security) Rules, <span class="year-stamp">2011</span></strong>. Presently the <strong>Commissioner of Security (Civil Aviation)</strong>, Bureau of Civil Aviation Security, Ministry of Civil Aviation, is the <em>appropriate authority</em> for the requirements of Annex 17.</p>
+  </div>
+
+  <h3 class="sub">7.3 Functions of the Commissioner of Security (CA)</h3>
+
+  <div class="box sop">
+    <div class="box-title">Duties of the Commissioner — Five-Verb Rule</div>
+    <p>The Commissioner shall <strong>establish, develop, implement, maintain and review</strong> the national civil aviation security programme consistent with the provisions of <strong>Annex-17</strong> to the convention, in order to safeguard civil aviation operations against acts of unlawful interference and threat perception, taking into account the:</p>
+    <ul>
+      <li><strong>Safety</strong> of flights</li>
+      <li><strong>Regularity</strong> of flights</li>
+      <li><strong>Efficiency</strong> of flights</li>
+    </ul>
+    <p>All aircraft and airports are required to <strong>comply with the instructions issued by the Commissioner</strong>.</p>
+  </div>
+
+  <h3 class="sub">7.4 Airport-Level Responsibility — AAI vs Private/JVC Airports</h3>
+
+  <p>India has a two-track system at airport level. AAI-operated airports are looked after by the AAI's own Directorate of Security, while major private and joint-venture airports have their own security set-ups.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:25%;">Category</th>
+        <th style="width:35%;">Nodal/Responsible Body</th>
+        <th>Airports / Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>AAI Airports</strong></td>
+        <td><strong>Directorate of Security (AAI)</strong> acts as the nodal agency</td>
+        <td>Covers AAI airports only. At individual airports, the <strong>Airport Director</strong> is responsible for security functions.</td>
+      </tr>
+      <tr>
+        <td rowspan="5"><strong>JVC / Private Airports</strong></td>
+        <td><strong>DIAL</strong> — Delhi International Airport Ltd.</td>
+        <td>Delhi (IGI) — Operates own security set-up</td>
+      </tr>
+      <tr>
+        <td><strong>MIAL</strong> — Mumbai International Airport Ltd.</td>
+        <td>Mumbai (CSMI)</td>
+      </tr>
+      <tr>
+        <td><strong>CIAL</strong> — Cochin International Airport Ltd.</td>
+        <td>Cochin</td>
+      </tr>
+      <tr>
+        <td><strong>HIAL</strong> — Hyderabad International Airport Ltd.</td>
+        <td>Hyderabad (RGIA)</td>
+      </tr>
+      <tr>
+        <td><strong>BIAL</strong> — Bangalore International Airport Ltd.</td>
+        <td>Bangalore (KIA)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><em>These JVC/private airports have their own security set up to monitor and carry out security functions.</em></p>
+
+  <div class="mermaid-wrap">
+<pre class="mermaid">
+flowchart TD
+    A[Central Government<br>of India] -->|Notification in<br>Official Gazette| B[Director General<br>BCAS]
+    B --> C[BUREAU OF CIVIL<br>AVIATION SECURITY<br>BCAS]
+    C -->|Regulatory &amp;<br>Oversight Authority| D[Commissioner of<br>Security Civil Aviation]
+    D -->|Issues instructions| E[Aircraft &amp; Airports<br>MUST COMPLY]
+    E --> F[AAI Directorate<br>of Security<br>— Nodal Agency]
+    E --> G[JVC / Private<br>Airport Operators]
+    F --> F1[Airport Director<br>at each AAI airport]
+    G --> G1[DIAL — Delhi]
+    G --> G2[MIAL — Mumbai]
+    G --> G3[CIAL — Cochin]
+    G --> G4[HIAL — Hyderabad]
+    G --> G5[BIAL — Bangalore]
+    style A fill:#e8f1fb,stroke:#1d4e89,stroke-width:2px
+    style C fill:#fbf6e4,stroke:#c9a227,stroke-width:2px
+    style D fill:#fbf6e4,stroke:#c9a227,stroke-width:2px
+    style F fill:#eaf6ec,stroke:#1f6b3a
+    style G fill:#eaf6ec,stroke:#1f6b3a
+</pre>
+    <div class="caption">Figure 5 — Indian aviation security organisational hierarchy</div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 8 — REPORTING & INVESTIGATION
+       ============================================================ -->
+  <h2 class="section" id="s8"><span class="num">08</span>Reporting &amp; Investigation of Security Incidents</h2>
+
+  <h3 class="sub">8.1 Who Must Report</h3>
+
+  <div class="box warning">
+    <div class="box-title">Mandatory Reporting — Five Categories of Reporters</div>
+    <p><strong>Every</strong> one of the following shall report the security accident or security incident to the <strong>Commissioner immediately on the occurrence</strong>:</p>
+    <ol>
+      <li>Every <strong>aircraft operator</strong></li>
+      <li>Every <strong>aviation security group</strong></li>
+      <li>Every <strong>aerodrome operator</strong></li>
+      <li>Every <strong>regulated agent</strong> (cargo agents)</li>
+      <li>Every <strong>owner or operator of a catering establishment</strong></li>
+    </ol>
+    <p><strong>Note for student pilots:</strong> A terrorist attack at an airport shall be reported to the <strong>Commissioner of Security (Civil Aviation)</strong> — not the Commissioner of Police, not the DGCA.</p>
+  </div>
+
+  <h3 class="sub">8.2 Investigation Procedure</h3>
+
+  <div class="box sop">
+    <div class="box-title">Investigation of Security Accident / Incident</div>
+    <p>The <strong>Commissioner may order</strong> investigation of any security accident or security incident and <strong>appoint an officer not below the rank of Assistant Commissioner of Security</strong> as Inquiry Officer.</p>
+    <p><strong>Critical metric:</strong> The Inquiry Officer must be of <span class="reg-num">at least Assistant Commissioner</span> rank. A junior officer cannot be appointed.</p>
+  </div>
+
+  <div class="mermaid-wrap">
+<pre class="mermaid">
+flowchart LR
+    A[Security Accident<br>or Incident occurs] --> B{Who reports?}
+    B --> B1[Aircraft Operator]
+    B --> B2[Aviation Security Group]
+    B --> B3[Aerodrome Operator]
+    B --> B4[Regulated Agent]
+    B --> B5[Catering Owner/Operator]
+    B1 --> C[Report IMMEDIATELY to<br>Commissioner of Security<br>Civil Aviation]
+    B2 --> C
+    B3 --> C
+    B4 --> C
+    B5 --> C
+    C --> D[Commissioner MAY ORDER<br>investigation]
+    D --> E[Appoint Inquiry Officer<br>NOT BELOW the rank of<br>ASST. COMMISSIONER of Security]
+    style A fill:#fdecea,stroke:#b1322f,stroke-width:2px
+    style C fill:#fbf6e4,stroke:#c9a227,stroke-width:2px
+    style E fill:#eaf6ec,stroke:#1f6b3a,stroke-width:2px
+</pre>
+    <div class="caption">Figure 6 — Reporting &amp; investigation flow for security incidents in India</div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 9 — MEMORY AIDS
+       ============================================================ -->
+  <h2 class="section" id="s9"><span class="num">09</span>Memory Aids &amp; Quick-Recall Mnemonics</h2>
+
+  <div class="box memory">
+    <div class="box-title">Mnemonic — Annex 17 Scope: "CC-CAA"</div>
+    <p><strong>C</strong>abin baggage • <strong>C</strong>hecked baggage • <strong>C</strong>argo &amp; other goods • <strong>A</strong>ccess control • <strong>A</strong>irport design</p>
+  </div>
+
+  <div class="box memory">
+    <div class="box-title">Mnemonic — Five Notifications After Hijacked Aircraft Lands: "R-O-FIH-OB-I"</div>
+    <p><strong>R</strong>egistry State • <strong>O</strong>perator State • States of <strong>F</strong>atalities / <strong>I</strong>njuries / <strong>H</strong>ostages • <strong>O</strong>n-<strong>B</strong>oard citizens' States • <strong>I</strong>CAO</p>
+  </div>
+
+  <div class="box memory">
+    <div class="box-title">Mnemonic — Assistance to a Hijacked Aircraft: "NAP"</div>
+    <p><strong>N</strong>avigation aids • <strong>A</strong>ir traffic services • <strong>P</strong>ermission to land</p>
+  </div>
+
+  <div class="box memory">
+    <div class="box-title">Mnemonic — Commissioner's Five Verbs: "E-D-I-M-R"</div>
+    <p><strong>E</strong>stablish • <strong>D</strong>evelop • <strong>I</strong>mplement • <strong>M</strong>aintain • <strong>R</strong>eview the national civil aviation security programme</p>
+  </div>
+
+  <div class="box memory">
+    <div class="box-title">Mnemonic — Indian JVC Airports: "DMC-HB"</div>
+    <p><strong>D</strong>IAL=Delhi • <strong>M</strong>IAL=Mumbai • <strong>C</strong>IAL=Cochin • <strong>H</strong>IAL=Hyderabad • <strong>B</strong>IAL=Bangalore</p>
+  </div>
+
+  <div class="box memory">
+    <div class="box-title">Mnemonic — Two Conditions for Foreign Weapons: "Prior &amp; PIC"</div>
+    <p><strong>Prior</strong> State-to-State notification <strong>+</strong> Notification of the <strong>PIC</strong> (Pilot-in-Command)</p>
+  </div>
+
+  <!-- ============================================================
+       SECTION 10 — PRACTICE MCQs
+       ============================================================ -->
+  <h2 class="section" id="s10"><span class="num">10</span>Practice Questions — Examination Drill</h2>
+
+  <p>The following 10 MCQs are drawn directly from the DGCA question bank for this chapter. Correct answers are highlighted in green, with examiner-style explanations for each.</p>
+
+  <div class="mcq-section">
+
+    <!-- Q1 -->
+    <div class="mcq">
+      <div class="q-text"><span class="q-num">Q 1</span>The ICAO Annex 17 comprises rules in order to establish security measures for passengers:</div>
+      <ul class="options">
+        <li><span class="opt-letter">A)</span> Checked baggage, cargo and other goods, access control and airport design</li>
+        <li class="correct"><span class="opt-letter">B)</span> Cabin baggage, checked baggage, cargo and other goods, access control and airport design</li>
+        <li><span class="opt-letter">C)</span> And baggage</li>
+      </ul>
+      <div class="explanation">
+        <strong>Why B</strong>
+        Annex 17 covers <em>five</em> security elements — <strong>cabin baggage, checked baggage, cargo &amp; other goods, access control, and airport design</strong>. Option A omits cabin baggage. Option C is grossly incomplete. Mnemonic: <strong>CC-CAA</strong>.
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="mcq">
+      <div class="q-text"><span class="q-num">Q 2</span>A State shall take adequate measures for the safety of passengers and crew of an aircraft which is subjected to an act of unlawful interference,</div>
+      <ul class="options">
+        <li class="correct"><span class="opt-letter">A)</span> Until their journey can be continued</li>
+        <li><span class="opt-letter">B)</span> During a period of investigation</li>
+        <li><span class="opt-letter">C)</span> And arrange for them to return to their country of origin</li>
+      </ul>
+      <div class="explanation">
+        <strong>Why A</strong>
+        The Annex uses the exact wording "<em>until their journey can be continued</em>". The duty of care extends until passengers and crew can resume their travel — not merely until an investigation finishes, and not until they are flown home.
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="mcq">
+      <div class="q-text"><span class="q-num">Q 3</span>When an aircraft subject to unlawful interference has landed, it shall notify by the most expeditious means of the State of registry of the aircraft and the State of the operator of the landing and shall similarly transmit all other relevant information to the:</div>
+      <ul class="options">
+        <li class="correct"><span class="opt-letter">A)</span> Two aforementioned States, each State whose citizens suffered fatalities or injuries, each State whose citizens were detained as hostages, each State whose citizens are known to be on board the aircraft and the ICAO</li>
+        <li><span class="opt-letter">B)</span> Two aforementioned States, each State whose citizens suffered fatalities or injuries on board the aircraft and the ICAO</li>
+        <li><span class="opt-letter">C)</span> Two aforementioned States, each State whose citizens suffered fatalities or injuries, each State whose citizens are known to be on board the aircraft and the ICAO</li>
+      </ul>
+      <div class="explanation">
+        <strong>Why A</strong>
+        Option A is the <em>only</em> one that includes all five categories: aforementioned States + fatalities/injuries + <strong>hostages</strong> + on-board citizens' States + ICAO. Options B and C drop the "hostages" line, which is the deliberate examiner trap.
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="mcq">
+      <div class="q-text"><span class="q-num">Q 4</span>Definition of "Security, the ICAO Annex 17", is a combination of measures:</div>
+      <ul class="options">
+        <li><span class="opt-letter">A)</span> Intended to safeguard international civil aviation against acts of unlawful interference</li>
+        <li class="correct"><span class="opt-letter">B)</span> And human and material resources intended to safeguard international civil aviation against acts of unlawful interference</li>
+        <li><span class="opt-letter">C)</span> And human and material resources intended to safeguard international civil aviation</li>
+      </ul>
+      <div class="explanation">
+        <strong>Why B</strong>
+        The complete definition must contain <strong>three elements</strong>: (i) measures, (ii) human resources, (iii) material resources — all directed against "acts of unlawful interference". Option A omits "human and material resources". Option C omits "against acts of unlawful interference".
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="mcq">
+      <div class="q-text"><span class="q-num">Q 5</span>A State shall provide assistance to an aircraft subjected to an act of unlawful seizure. This assistance includes:</div>
+      <ul class="options">
+        <li><span class="opt-letter">A)</span> Only permission to land</li>
+        <li><span class="opt-letter">B)</span> Provision of navigation aids, air traffic services, permission to land and catering for passengers</li>
+        <li class="correct"><span class="opt-letter">C)</span> Provision of navigation aids, air traffic services, permission to land</li>
+      </ul>
+      <div class="explanation">
+        <strong>Why C</strong>
+        Annex 17 prescribes exactly three forms of assistance: <strong>NAP</strong> — Navigation aids, Air traffic services, Permission to land. "Only permission" is incomplete; "catering for passengers" is not part of the prescribed list.
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="mcq">
+      <div class="q-text"><span class="q-num">Q 6</span>For the transport of potentially disruptive passengers some supplementary safeguards are to be observed such as:</div>
+      <ul class="options">
+        <li class="correct"><span class="opt-letter">A)</span> Boarding prior to all passengers</li>
+        <li><span class="opt-letter">B)</span> The boarding will be at the pilot in command discretion</li>
+        <li><span class="opt-letter">C)</span> The boarding has to be done at the state discretion</li>
+      </ul>
+      <div class="explanation">
+        <strong>Why A</strong>
+        The prescribed supplementary safeguard is that disruptive passengers <em>must</em> be boarded <strong>before</strong> all other passengers. It is not left to the PIC's discretion or the State's discretion — it is a mandatory safeguard.
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="mcq">
+      <div class="q-text"><span class="q-num">Q 7</span>Referring to the operational aspects in the unlawful seizure acts, it can be said:</div>
+      <ul class="options">
+        <li><span class="opt-letter">A)</span> The contracting States will not assist with navigation aids, air transit services, etc, to an aircraft affected by an unlawful seizure act</li>
+        <li><span class="opt-letter">B)</span> The contracting State will make provisions to ensure that an aircraft affected by an unlawful seizure act, which has landed in their territory, would be retained in all cases</li>
+        <li class="correct"><span class="opt-letter">C)</span> The contracting State will make provisions to ensure that an aircraft affected by an unlawful seizure act, which has landed in their territory, would be retained, unless its departure is justified to protect lives</li>
+      </ul>
+      <div class="explanation">
+        <strong>Why C</strong>
+        Option A contradicts the duty to provide NAP assistance. Option B is too absolute — it omits the life-saving exception. Option C reproduces the exact rule: <em>retain the aircraft, unless departure is justified to protect lives</em>.
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="mcq">
+      <div class="q-text"><span class="q-num">Q 8</span>When mixing or contact does take place between passengers subjected to security control and other persons not subjected to such control after the security screening points at airports serving international civil aviation have been passed:</div>
+      <ul class="options">
+        <li><span class="opt-letter">A)</span> The persons not subjected to security control shall be identified</li>
+        <li class="correct"><span class="opt-letter">B)</span> The passengers concerned and their cabin baggage shall be re-screened before boarding an aircraft</li>
+        <li><span class="opt-letter">C)</span> Only the passengers are to be re-screened</li>
+      </ul>
+      <div class="explanation">
+        <strong>Why B</strong>
+        Cross-contamination requires re-screening of <em>both</em> the passengers and their <strong>cabin baggage</strong> — not just passengers (C), and identifying unscreened persons (A) does not restore the integrity of the sterile area.
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="mcq">
+      <div class="q-text"><span class="q-num">Q 9</span>When a member state allows police officers, security staff, bodyguards or other agents of foreign states to carry weapons in their territory for the protection of aircraft in flight, permission for the carriage of weapons should be conditional upon:</div>
+      <ul class="options">
+        <li class="correct"><span class="opt-letter">A)</span> Prior notification by the state of embarkation to the foreign state in which the weapons will be carried on the airport of arrival and notification of the pilot in command of a decision to permit a weapon to be carried on board his aircraft</li>
+        <li><span class="opt-letter">B)</span> Notification of the pilot in command of a decision to permit a weapon to be carried on board his aircraft only</li>
+        <li><span class="opt-letter">C)</span> Agreement between the state of embarkation and the state of destination</li>
+      </ul>
+      <div class="explanation">
+        <strong>Why A</strong>
+        <em>Both</em> conditions must be satisfied: (i) prior State-to-State notification, and (ii) notification of the PIC. Option B leaves out State-to-State notification; Option C omits notification of the PIC.
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="mcq">
+      <div class="q-text"><span class="q-num">Q 10</span>A terrorist attack at an airport shall be reported to:</div>
+      <ul class="options">
+        <li><span class="opt-letter">A)</span> Commissioner of Police</li>
+        <li><span class="opt-letter">B)</span> DGCA</li>
+        <li class="correct"><span class="opt-letter">C)</span> Commissioner of Security (Civil Aviation)</li>
+      </ul>
+      <div class="explanation">
+        <strong>Why C</strong>
+        Under the Aircraft (Security) Rules, 2011, the Commissioner of Security (Civil Aviation) — appointed within BCAS — is the prescribed authority to whom every security accident or incident, including a terrorist attack, must be reported immediately. The Commissioner of Police handles general criminal matters; DGCA is the civil aviation safety regulator (not the security authority).
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============================================================
+       ANSWER KEY TABLE
+       ============================================================ -->
+  <h3 class="sub" style="margin-top:40px;">Quick Answer Key</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th>
+        <th>Q6</th><th>Q7</th><th>Q8</th><th>Q9</th><th>Q10</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="text-align:center; font-family:'Roboto Mono', monospace; font-weight:700; color:var(--sop-green); font-size:13pt;">
+        <td>B</td><td>A</td><td>A</td><td>B</td><td>C</td>
+        <td>A</td><td>C</td><td>B</td><td>A</td><td>C</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ============================================================
+       FINAL WRAP-UP NOTE
+       ============================================================ -->
+  <blockquote style="margin-top:40px;">
+    <strong>Instructor's Closing Note —</strong> Aviation security is not a "soft" subject; it is one of the few chapters in which the examiner tests <em>verbatim recall</em> of statutory phrases. When you read the options in the cockpit-pressure of the exam hall, your only safety is precision. Memorise the lists (CC-CAA, NAP, R-O-FIH-OB-I), recognise the trap options (those that drop "hostages" or "ICAO" or omit "human and material resources"), and you will clear this chapter cleanly.
+  </blockquote>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Chapter 22 — Hijacking &amp; Aviation Security • ICAO Annex 17 &amp; Aircraft (Security) Rules, 2011<br>
+    Compiled for CPL / ATPL / DGCA RTR aspirants • © Capt. Pankaj Pahil — Subject Matter Instructor
+  </div>
+
+</div>
+
+<!-- ============================================================
+     DIAGONAL WATERMARK — LAST ELEMENT IN BODY (renders above all)
+     ============================================================ -->
+<div class="watermark-diagonal">CAPT. PANKAJ PAHIL</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

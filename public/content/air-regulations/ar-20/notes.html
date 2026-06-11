@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 21 – FACILITATION (Annex 9 & AIP India) | DGCA Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: {
+    primaryColor: '#e8f1ff', primaryTextColor: '#0b2545', primaryBorderColor: '#1b3a6b',
+    lineColor: '#1b3a6b', secondaryColor: '#fff1e6', tertiaryColor: '#e8f7ee',
+    fontFamily: 'Georgia, serif', fontSize: '14px'
+  }});
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+
+  :root {
+    --ink: #0b1f3a;
+    --ink-soft: #2c3e50;
+    --paper: #fdfcf7;
+    --accent: #1b3a6b;
+    --gold: #b8860b;
+    --red-bg: #fde8e8;
+    --red-border: #c0392b;
+    --red-text: #7b1818;
+    --blue-bg: #e6f0fb;
+    --blue-border: #1f4e8b;
+    --blue-text: #0d2c54;
+    --green-bg: #e6f5ea;
+    --green-border: #1e7e34;
+    --green-text: #14532d;
+    --amber-bg: #fff7e0;
+    --amber-border: #b8860b;
+    --amber-text: #5c4006;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Georgia', 'Cambria', serif;
+    font-size: 13.5pt;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 30px 40px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== HEADER ===== */
+  .doc-header {
+    text-align: center;
+    border-bottom: 4px double var(--accent);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
+  .doc-header .chapter-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 6px 22px;
+    font-size: 11pt;
+    letter-spacing: 4px;
+    font-weight: bold;
+    border-radius: 3px;
+  }
+  .doc-header h1 {
+    font-size: 32pt;
+    margin: 14px 0 6px;
+    color: var(--accent);
+    letter-spacing: 2px;
+  }
+  .doc-header .subtitle {
+    font-size: 13pt;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .doc-header .author {
+    margin-top: 10px;
+    font-size: 11pt;
+    color: var(--gold);
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  /* ===== SECTIONS ===== */
+  h2.section {
+    background: linear-gradient(90deg, var(--accent), #2c5fa1);
+    color: #fff;
+    padding: 12px 20px;
+    margin: 40px 0 20px;
+    font-size: 18pt;
+    border-left: 8px solid var(--gold);
+    page-break-after: avoid;
+    border-radius: 2px;
+  }
+
+  h3.subsection {
+    color: var(--accent);
+    font-size: 15pt;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 4px;
+    margin-top: 28px;
+    page-break-after: avoid;
+  }
+
+  h4 {
+    color: var(--ink-soft);
+    font-size: 13pt;
+    margin-top: 20px;
+    page-break-after: avoid;
+  }
+
+  p { text-align: justify; }
+
+  /* ===== COLOR-CODED BOXES ===== */
+  .box {
+    border-left: 6px solid;
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 4px;
+    page-break-inside: avoid;
+  }
+  .box .box-title {
+    font-weight: bold;
+    font-size: 12pt;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .box-red {
+    background: var(--red-bg);
+    border-color: var(--red-border);
+    color: var(--red-text);
+  }
+  .box-red .box-title::before { content: "⚠  "; }
+  .box-blue {
+    background: var(--blue-bg);
+    border-color: var(--blue-border);
+    color: var(--blue-text);
+  }
+  .box-blue .box-title::before { content: "📘  "; }
+  .box-green {
+    background: var(--green-bg);
+    border-color: var(--green-border);
+    color: var(--green-text);
+  }
+  .box-green .box-title::before { content: "✅  "; }
+  .box-amber {
+    background: var(--amber-bg);
+    border-color: var(--amber-border);
+    color: var(--amber-text);
+  }
+  .box-amber .box-title::before { content: "💡  "; }
+
+  /* Highlight chip for regulatory numbers */
+  .reg-value {
+    display: inline-block;
+    background: #fff3a3;
+    color: #5a4a00;
+    padding: 1px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    border: 1px solid #d4b800;
+    font-family: 'Consolas', monospace;
+  }
+  .reg-strong {
+    color: var(--red-border);
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  /* ===== TABLES ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    page-break-inside: avoid;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  th {
+    background: var(--accent);
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+    font-size: 11.5pt;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #d0d7de;
+    vertical-align: top;
+    font-size: 11.5pt;
+  }
+  tr:nth-child(even) td { background: #f5f8fc; }
+  tr:hover td { background: #fff7e0; }
+  table caption {
+    caption-side: top;
+    font-weight: bold;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-size: 12pt;
+  }
+
+  /* ===== DEFINITION GRID ===== */
+  .definitions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 18px 0;
+  }
+  .def-card {
+    background: var(--blue-bg);
+    border: 1px solid var(--blue-border);
+    border-left: 6px solid var(--blue-border);
+    border-radius: 4px;
+    padding: 12px 16px;
+    page-break-inside: avoid;
+  }
+  .def-card .term {
+    font-weight: bold;
+    color: var(--blue-text);
+    font-size: 12.5pt;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .def-card .meaning {
+    color: #1a2940;
+    font-size: 11.5pt;
+  }
+
+  /* ===== MERMAID ===== */
+  .mermaid {
+    background: #fafafa;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 16px;
+    margin: 20px 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .diagram-caption {
+    text-align: center;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 10.5pt;
+    margin-top: -10px;
+    margin-bottom: 16px;
+  }
+
+  /* ===== FORM REPLICA ===== */
+  .form-replica {
+    border: 2px solid var(--ink);
+    padding: 14px;
+    margin: 16px 0;
+    background: #fff;
+    page-break-inside: avoid;
+    font-size: 10.5pt;
+  }
+  .form-replica .form-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12pt;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  .form-replica .field {
+    border-bottom: 1px dotted #999;
+    padding: 4px 0;
+    margin: 4px 0;
+  }
+  .form-replica .field-label {
+    font-weight: bold;
+    color: var(--ink-soft);
+  }
+  .form-replica .form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .form-replica .form-row > div { flex: 1; min-width: 180px; }
+  .form-replica table { box-shadow: none; }
+  .form-replica th, .form-replica td {
+    border: 1px solid #555;
+    font-size: 10pt;
+    padding: 6px;
+  }
+  .form-replica th { background: #e8e8e8; color: var(--ink); }
+
+  /* ===== MCQ ===== */
+  .mcq {
+    background: #fff;
+    border: 1px solid #d0d7de;
+    border-left: 5px solid var(--gold);
+    padding: 14px 18px;
+    margin: 14px 0;
+    border-radius: 4px;
+    page-break-inside: avoid;
+  }
+  .mcq .q-num {
+    font-weight: bold;
+    color: var(--gold);
+    font-size: 11pt;
+  }
+  .mcq .q-text {
+    font-weight: bold;
+    color: var(--ink);
+    margin: 6px 0 10px;
+  }
+  .mcq ol {
+    list-style-type: upper-alpha;
+    padding-left: 30px;
+    margin: 6px 0;
+  }
+  .mcq ol li { padding: 3px 0; }
+  .mcq .answer {
+    margin-top: 8px;
+    background: var(--green-bg);
+    border-left: 4px solid var(--green-border);
+    padding: 8px 12px;
+    color: var(--green-text);
+    font-weight: bold;
+    border-radius: 3px;
+  }
+  .mcq .answer::before { content: "✔ Correct Answer: "; }
+
+  /* ===== TIPS / KEY POINTS ===== */
+  .key-points {
+    background: #fffbea;
+    border: 1px dashed var(--amber-border);
+    padding: 12px 18px;
+    border-radius: 6px;
+    margin: 16px 0;
+    page-break-inside: avoid;
+  }
+  .key-points .kp-title {
+    font-weight: bold;
+    color: var(--amber-text);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 11pt;
+  }
+  .key-points ul { margin: 6px 0; padding-left: 22px; }
+  .key-points li { margin: 4px 0; }
+
+  ul, ol { line-height: 1.55; }
+  li { margin: 4px 0; }
+
+  /* ===== SECTION BREAKERS ===== */
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    letter-spacing: 8px;
+    margin: 30px 0;
+    font-size: 14pt;
+  }
+
+  /* ===== TOC ===== */
+  .toc {
+    background: #fff;
+    border: 2px solid var(--accent);
+    padding: 16px 22px;
+    border-radius: 6px;
+    margin: 20px 0 30px;
+    page-break-inside: avoid;
+  }
+  .toc h3 {
+    margin: 0 0 10px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 4px;
+  }
+  .toc ol { margin: 0; padding-left: 24px; }
+  .toc a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .toc a:hover { text-decoration: underline; }
+
+  /* ===== FOOTER ===== */
+  .doc-footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 2px solid var(--accent);
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 10.5pt;
+  }
+
+  /* ===== WATERMARK (per author preference – dedicated div, NOT pseudo-element) ===== */
+  .watermark {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.12);
+    white-space: nowrap;
+    font-family: 'Georgia', serif;
+    letter-spacing: 4px;
+  }
+
+  /* Print-specific watermark repetition for every page */
+  @media print {
+    .watermark {
+      position: fixed;
+      display: block;
+    }
+    body { background: #fff; }
+    .container { padding: 0; }
+    h2.section { page-break-before: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== HEADER ===== -->
+  <header class="doc-header">
+    <div class="chapter-tag">CHAPTER 21 · AIR REGULATIONS</div>
+    <h1>FACILITATION</h1>
+    <div class="subtitle">ICAO Annex 9 &amp; AIP India — Comprehensive Study Notes</div>
+    <div class="author">Compiled &amp; Instructed by Capt. Pankaj Pahil · DGCA Ground Subject SME</div>
+  </header>
+
+  <!-- ===== TABLE OF CONTENTS ===== -->
+  <div class="toc">
+    <h3>Chapter Roadmap</h3>
+    <ol>
+      <li><a href="#sec1">Key Definitions (Annex 9 Vocabulary)</a></li>
+      <li><a href="#sec2">Overview &amp; Purpose of the Annex</a></li>
+      <li><a href="#sec3">Entry &amp; Departure of Aircraft</a></li>
+      <li><a href="#sec4">General Declaration</a></li>
+      <li><a href="#sec5">Entry/Departure of Persons — Crew Member Certificate (CMC)</a></li>
+      <li><a href="#sec6">National Provisions (India)</a></li>
+      <li><a href="#sec7">Standard Forms (Visual Reference)</a></li>
+      <li><a href="#sec8">Customs Requirements</a></li>
+      <li><a href="#sec9">Practice MCQs (with Answers &amp; Explanations)</a></li>
+    </ol>
+  </div>
+
+  <div class="box box-amber">
+    <div class="box-title">What "Facilitation" Means in Aviation</div>
+    Facilitation is the body of regulations that ensures the <b>smooth, efficient, and delay-free</b> movement of aircraft, crew, passengers, baggage, cargo, and mail across international borders. It is governed globally by <b>ICAO Annex 9</b> ("Facilitation") and nationally by the <b>Aeronautical Information Publication (AIP) of India</b>. The focus is on standardising customs, immigration, public health, and agricultural-quarantine procedures so that border formalities do not strangle the success of international civil aviation.
+  </div>
+
+  <!-- =============================================================
+       SECTION 1: DEFINITIONS
+       ============================================================= -->
+  <h2 class="section" id="sec1">1 · Key Definitions (Annex 9 Vocabulary)</h2>
+
+  <p>Examination questions on Facilitation almost always begin by testing your <b>precise grasp of definitions</b>. Memorise these word-for-word.</p>
+
+  <div class="definitions-grid">
+
+    <div class="def-card">
+      <span class="term">Cargo</span>
+      <span class="meaning">Any property carried on an aircraft <b>other than</b> mail, stores, and accompanied or mishandled baggage.</span>
+    </div>
+
+    <div class="def-card">
+      <span class="term">Clearance of Goods</span>
+      <span class="meaning">The accomplishment of the customs formalities necessary to allow goods to <b>enter home use, be exported, or be placed under another customs procedure</b>.</span>
+    </div>
+
+    <div class="def-card">
+      <span class="term">Commencement of Journey</span>
+      <span class="meaning">The point at which the person <i>began</i> his journey, <b>without taking into account any airport at which he stopped in direct transit</b>, either on a through-flight or a connecting flight, if he did not leave the direct transit area of the airport in question.</span>
+    </div>
+
+    <div class="def-card">
+      <span class="term">Commissary Supplies</span>
+      <span class="meaning">Items, either <b>disposable or intended for multiple use</b>, used by the aircraft operator for provision of services during flights — particularly for <b>catering</b> and <b>passenger comfort</b>.</span>
+    </div>
+
+    <div class="def-card">
+      <span class="term">Deportee</span>
+      <span class="meaning">A person who had been <i>legally</i> admitted to a State by its authorities, <b>OR</b> who had entered a State <i>illegally</i>, and who at some later time is <b>formally ordered by the competent authorities to leave</b> that State.</span>
+    </div>
+
+    <div class="def-card">
+      <span class="term">Direct Transit Area</span>
+      <span class="meaning">A <b>special area</b> established in an international airport, <b>approved by the public authorities</b> and under their <b>direct supervision or control</b>, where passengers can stay during transit or transfer <b>without applying for entry</b> to the State.</span>
+    </div>
+
+    <div class="def-card">
+      <span class="term">Disembarkation</span>
+      <span class="meaning">The <b>leaving of an aircraft after landing</b>, except by crew or passengers continuing on the next stage of the same through-flight.</span>
+    </div>
+
+    <div class="def-card">
+      <span class="term">Embarkation</span>
+      <span class="meaning">The <b>boarding of an aircraft</b> for the purpose of commencing a flight, <b>except</b> by such crew or passengers as have embarked on a previous stage of the same through-flight.</span>
+    </div>
+
+    <div class="def-card">
+      <span class="term">International Airport</span>
+      <span class="meaning">Any airport designated by the Contracting State in whose territory it is situated as an <b>airport of entry and departure for international air traffic</b>, where the formalities incident to <b>customs, immigration, public health, animal and plant quarantine</b> and similar procedures are carried out.</span>
+    </div>
+
+    <div class="def-card">
+      <span class="term">Lading</span>
+      <span class="meaning">The <b>placing of cargo, mail, baggage, or stores on board</b> an aircraft to be carried on a flight.</span>
+    </div>
+
+    <div class="def-card">
+      <span class="term">Unlading</span>
+      <span class="meaning">The <b>removal of cargo, mail, baggage, or stores from an aircraft</b> after a landing.</span>
+    </div>
+
+  </div>
+
+  <div class="key-points">
+    <div class="kp-title">Memory Hook</div>
+    <ul>
+      <li><b>Lading vs Unlading</b> — Lading is "loading on", Unlading is "removing off". Easy mnemonic: <i>"L = Load, U = Unload"</i>.</li>
+      <li><b>Embarkation vs Disembarkation</b> — both <b>exclude</b> through-passengers and through-crew. Only new boarders / new exiters count.</li>
+      <li><b>Cargo</b> — exam trap: cargo does <b>NOT</b> include mail, stores, or baggage.</li>
+    </ul>
+  </div>
+
+  <!-- =============================================================
+       SECTION 2: OVERVIEW
+       ============================================================= -->
+  <h2 class="section" id="sec2">2 · Overview &amp; Purpose of the Annex</h2>
+
+  <div class="box box-blue">
+    <div class="box-title">What the SARPs Cover</div>
+    The <b>Standards and Recommended Practices (SARPs)</b> of Annex 9 pertain <b>specifically</b> to facilitation of <b>landside formalities</b> for clearance of aircraft and commercial traffic through the requirements of:
+    <ul>
+      <li>Customs authorities</li>
+      <li>Immigration authorities</li>
+      <li>Public health authorities</li>
+      <li>Agriculture authorities</li>
+    </ul>
+    The Annex is a <b>wide-ranging document</b> which reflects the flexibility of ICAO in keeping pace with international civil aviation. ICAO is recognised as the <b>first international body</b> to make a real start on facilitation by developing Standards which bind its Contracting States.
+  </div>
+
+  <div class="box box-green">
+    <div class="box-title">Original Thrust of Annex 9</div>
+    Initially, the main thrust of the Annex consisted of efforts to:
+    <ol>
+      <li><b>Reduce paperwork</b></li>
+      <li><b>Standardize internationally</b> the documents accompanying traffic between States</li>
+      <li><b>Simplify the procedures</b> required to clear aircraft, passengers, and cargo</li>
+    </ol>
+    <i>Why?</i> Because delays from cumbersome formalities must be reduced — not just because they are unpleasant, but because they are <b>costly to every "customer group"</b> in the community and <b>interfere with the success of everyone</b>.
+  </div>
+
+  <!-- =============================================================
+       SECTION 3: ENTRY AND DEPARTURE OF AIRCRAFT
+       ============================================================= -->
+  <h2 class="section" id="sec3">3 · Entry &amp; Departure of Aircraft</h2>
+
+  <h3 class="subsection">3.1 General Description</h3>
+  <div class="box box-green">
+    <div class="box-title">Standard Obligation on Contracting States</div>
+    Contracting States shall adopt <b>appropriate measures</b> for the clearance of aircraft arriving from or departing to another Contracting State, and shall implement them in such a manner as to <b>prevent unnecessary delays</b>.
+    <br><br>
+    While developing such procedures, Contracting States shall take into account the application of:
+    <ul>
+      <li><b>Aviation security</b> measures</li>
+      <li><b>Narcotics control</b> measures, where appropriate</li>
+    </ul>
+  </div>
+
+  <h3 class="subsection">3.2 Purpose &amp; Use of Aircraft Documents</h3>
+
+  <div class="box box-red">
+    <div class="box-title">No Extra Documents Rule</div>
+    Contracting States shall <b>NOT</b> require any documents <b>other than those provided for in this Chapter</b>, for the entry and departure of aircraft.
+  </div>
+
+  <div class="box box-red">
+    <div class="box-title">No Visa, No Fee for Aircraft Documents</div>
+    Contracting States shall <b>NOT</b> require a visa, nor shall any visa or other fee be collected, in connection with the use of any documentation required for the entry or departure of aircraft.
+  </div>
+
+  <h4>Acceptable Forms of Aircraft Documents</h4>
+  <p>Subject to the technological capabilities of the Contracting State, documents for the entry and departure of aircraft shall be accepted when presented:</p>
+  <table>
+    <thead>
+      <tr><th>Option</th><th>Form of Presentation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>(a)</b></td><td>In <b>electronic form</b>, transmitted to an information system of the public authorities</td></tr>
+      <tr><td><b>(b)</b></td><td>In <b>paper form</b>, produced or transmitted electronically</td></tr>
+      <tr><td><b>(c)</b></td><td>In <b>paper form</b>, completed manually following the formats depicted in <span class="reg-value">Annex 9</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-green">
+    <div class="box-title">E-Document Acceptance Rule</div>
+    When a particular document is transmitted by (or on behalf of) the aircraft operator and <b>received electronically</b> by the public authorities, the Contracting State <b>shall NOT</b> require the presentation of the <b>same document in paper form</b>.
+  </div>
+
+  <h3 class="subsection">3.3 Information &amp; Manifest Requirements</h3>
+
+  <table>
+    <caption>Annex 9 — Aircraft Document Requirements at a Glance</caption>
+    <thead>
+      <tr>
+        <th>Document</th>
+        <th>Standard Requirement</th>
+        <th>Form</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>General Declaration</b></td>
+        <td>Information limited to elements indicated in Annex 9</td>
+        <td>Electronic OR paper</td>
+      </tr>
+      <tr>
+        <td><b>Passenger Manifest</b></td>
+        <td>Contracting States shall <b>NOT normally require</b> presentation</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><b>Cargo Manifest</b></td>
+        <td>When required in paper form, must accept the format shown in Annex 9</td>
+        <td>Annex 9 format</td>
+      </tr>
+      <tr>
+        <td><b>Declaration of Stores on Board</b></td>
+        <td>Contracting States shall <b>NOT require</b> a written declaration</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><b>List of Accompanied / Mishandled Baggage</b></td>
+        <td>Contracting States shall <b>NOT require</b> presentation</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><b>Mail Declaration</b></td>
+        <td>Only the form(s) prescribed by the <b>Acts in force of the Universal Postal Union (UPU)</b> may be required</td>
+        <td>UPU forms only</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-red">
+    <div class="box-title">Maximum Copies Limit — Strict Rule</div>
+    Contracting States shall <b>NOT</b> require the aircraft operator to deliver to the public authorities <span class="reg-strong">more than three (3) copies</span> of any of the above-mentioned documents at the time of entry or departure of the aircraft.
+  </div>
+
+  <div class="box box-green">
+    <div class="box-title">"Empty" Aircraft Exemption</div>
+    If the aircraft is <b>NOT</b> embarking/disembarking passengers <b>OR</b> lading/unlading cargo, stores, or mail, the relevant document(s) shall <b>not be required</b>, provided an <b>appropriate notation is included in the General Declaration</b>.
+  </div>
+
+  <div class="mermaid">
+flowchart TD
+    A[Aircraft Arrival or Departure] --> B{Carrying Pax / Cargo / Stores / Mail?}
+    B -->|No| C[Make notation in General Declaration<br/>NO other documents required]
+    B -->|Yes| D[Submit required documents]
+    D --> E[General Declaration]
+    D --> F[Cargo Manifest if required]
+    D --> G[Mail – UPU Forms only]
+    E --> H{Form?}
+    F --> H
+    G --> H
+    H -->|Electronic| I[Paper NOT required]
+    H -->|Paper| J[Max 3 copies allowed]
+  </div>
+  <div class="diagram-caption">Figure 3.1 — Aircraft Document Submission Flow (Annex 9)</div>
+
+  <!-- =============================================================
+       SECTION 4: GENERAL DECLARATION
+       ============================================================= -->
+  <h2 class="section" id="sec4">4 · General Declaration</h2>
+
+  <div class="box box-blue">
+    <div class="box-title">What is the General Declaration?</div>
+    On those occasions when a General Declaration is required, the information required shall be <b>limited to the format given in Annex 9</b>. The information is acceptable in <b>electronic OR paper form</b>.
+    <br><br>
+    The General Declaration is the <b>"identity card"</b> of the flight — it tells customs, immigration, and health authorities exactly <i>who flew the aircraft, where it came from, where it's going, how many crew &amp; passengers it carries, and the public health status on board</i>.
+  </div>
+
+  <h4>Contents Typically Required on a General Declaration</h4>
+  <ul>
+    <li>Operator name</li>
+    <li>Aircraft marks of nationality and registration</li>
+    <li>Flight number and date</li>
+    <li>Departure and arrival places</li>
+    <li>Flight routing (origin, every en-route stop, destination)</li>
+    <li>Total number of crew at each stage</li>
+    <li>Number of passengers embarking, disembarking, and through on same flight</li>
+    <li>Declaration of Health (illnesses, conditions on board, disinsecting details)</li>
+    <li>Signature of authorised agent or pilot-in-command</li>
+  </ul>
+
+  <!-- =============================================================
+       SECTION 5: ENTRY/DEPARTURE OF PERSONS - CMC
+       ============================================================= -->
+  <h2 class="section" id="sec5">5 · Entry/Departure of Persons — Crew Member Certificate (CMC)</h2>
+
+  <h3 class="subsection">5.1 Crew Inspection</h3>
+  <div class="box box-green">
+    <div class="box-title">Expediting Crew Inspections</div>
+    Contracting States shall establish measures — with the cooperation of <b>aircraft operators</b> and <b>airport operators</b> — to <b>expedite the inspection of crew members and their baggage</b>, as required at departure and upon arrival.
+  </div>
+
+  <h3 class="subsection">5.2 Crew Member Certificate (CMC) Issuance</h3>
+
+  <div class="box box-blue">
+    <div class="box-title">What is a CMC?</div>
+    Contracting States shall facilitate and expedite the process under which aircraft operators based in their territories can apply for <b>Crew Member Certificates (CMCs)</b> for their crew members.
+    <br><br>
+    <i>Note:</i> The CMC has developed as a <b>card for use for identification purposes by crew members</b>, leaving the <b>crew licences</b> to serve their primary purpose of <b>attesting to the professional qualifications of the flight crew members</b>.
+  </div>
+
+  <div class="box box-amber">
+    <div class="box-title">Two Distinct Documents — Don't Confuse Them</div>
+    <table>
+      <thead>
+        <tr><th>Document</th><th>Primary Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Crew Member Certificate (CMC)</b></td><td><b>Identification</b> of the crew member at borders/airports</td></tr>
+        <tr><td><b>Crew Licence (FCL)</b></td><td><b>Attesting the professional qualifications</b> of the flight crew member</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subsection">5.3 CMC Validity Review &amp; Correction</h3>
+  <div class="box box-green">
+    <div class="box-title">Crew's Right to Review CMC Data</div>
+    Contracting States <b>should</b> put in place procedures which will enable any crew member issued with a Crew Member Certificate to <b>examine and review the validity of the data held</b>, and to <b>provide for correction if necessary, at no cost to the crew member</b>.
+  </div>
+
+  <h3 class="subsection">5.4 Crew Identity Card Format</h3>
+  <div class="box box-amber">
+    <div class="box-title">Standardised Layout Requirement</div>
+    To the extent that aircraft operators issue crew identity cards, Contracting States <b>should require</b> the production of such identity documents in the format equivalent to the <b>visual zone of the machine readable crew member certificate</b>, and having the capability to support:
+    <ul>
+      <li>Machine assisted identity confirmation</li>
+      <li>Document security verification</li>
+    </ul>
+  </div>
+
+  <h3 class="subsection">5.5 Electronic Database of Crew Records</h3>
+  <div class="box box-green">
+    <div class="box-title">Database Requirement</div>
+    Contracting States shall ensure that a record of each crew member's certificates and other official identity documents <b>issued, suspended, or withdrawn</b> is stored in an <b>electronic database</b>, secure from <b>interference and unauthorised access</b>.
+  </div>
+
+  <h3 class="subsection">5.6 Anti-Fraud Controls on CMC Issuance</h3>
+  <div class="box box-red">
+    <div class="box-title">Adequate Controls — Mandatory</div>
+    Adequate controls <b>shall</b> be placed on the issuance of CMCs and other official crew identity documents to <b>prevent fraud</b>. Examples:
+    <ul>
+      <li><b>Background check</b> of the applicant</li>
+      <li><b>Certification of employment status</b> of the applicant prior to issuance</li>
+      <li><b>Controls on blank card stock</b></li>
+      <li><b>Accountability requirements</b> for issuing personnel</li>
+    </ul>
+  </div>
+
+  <h3 class="subsection">5.7 Visa Waiver for Crew Holding CMCs</h3>
+
+  <div class="box box-green">
+    <div class="box-title">Mandatory Visa Waiver — Duty Status (Same Operator)</div>
+    Contracting States <b>shall waive the visa requirement</b> for arriving crew members presenting CMCs, when:
+    <ul>
+      <li>Arriving in a <b>duty status</b></li>
+      <li>On an <b>international flight</b></li>
+      <li>Seeking <b>temporary entry</b> for the period allowed by the receiving State</li>
+      <li>In order to <b>join their next assigned flight in a duty status</b></li>
+    </ul>
+  </div>
+
+  <div class="box box-amber">
+    <div class="box-title">Recommended Visa Waiver — Positioning Crew</div>
+    Contracting States <b>should waive the visa requirement</b> for arriving crew members presenting CMCs, when:
+    <ul>
+      <li>Arriving on <b>another aircraft operator</b> or <b>another mode of transport</b></li>
+      <li>Seeking temporary entry to join their assigned flight in a duty status</li>
+    </ul>
+    <i>(This covers crew "positioning" — e.g., flying as a passenger to start their next duty.)</i>
+  </div>
+
+  <h3 class="subsection">5.8 Temporary Entry of Technical Personnel</h3>
+  <div class="box box-green">
+    <div class="box-title">Engineers &amp; Maintenance Personnel</div>
+    Contracting States <b>shall</b> establish measures to provide for the <b>temporary entry without delay</b> into their territories of <b>technical personnel of foreign aircraft operators</b> operating to or through such territories who are <b>urgently required for the purpose of converting to an airworthy condition any aircraft</b> which is, for technical reasons, unable to continue its journey.
+  </div>
+
+  <h3 class="subsection">5.9 Biometric &amp; Machine Readable Travel Documents</h3>
+  <div class="box box-amber">
+    <div class="box-title">Biometric Data in eMRTDs</div>
+    Contracting States <b>should incorporate biometric data</b> in their machine readable travel documents in a <b>contactless integrated circuit chip</b>, as specified in <span class="reg-value">ICAO Doc 9303 — Machine Readable Travel Documents (MRTD)</span>.
+  </div>
+
+  <h3 class="subsection">5.10 Automated Border Control (ABC) Systems</h3>
+  <div class="box box-green">
+    <div class="box-title">ABC System Implementation</div>
+    Each Contracting State <b>should consider</b> the introduction of <b>Automated Border Control (ABC) systems</b> in order to facilitate and expedite the clearance of persons entering or departing by air.
+  </div>
+
+  <div class="box box-blue">
+    <div class="box-title">Data Sources for ABC Systems</div>
+    Contracting States utilising ABC systems should use the information available from:
+    <ul>
+      <li><b>ICAO Public Key Directory (PKD)</b> — to validate eMRTDs</li>
+      <li><b>Biometric matching</b> — to establish that the passenger is the rightful holder of the document</li>
+      <li><b>INTERPOL's Stolen and Lost Travel Documents (SLTD)</b> database</li>
+      <li><b>Other border control records</b> — to determine eligibility for border crossing</li>
+    </ul>
+  </div>
+
+  <div class="mermaid">
+flowchart LR
+    A[Passenger at ABC Gate] --> B[Present eMRTD]
+    B --> C[Read Contactless Chip<br/>per Doc 9303]
+    C --> D{Validate with ICAO PKD}
+    D -->|Valid| E[Biometric Capture<br/>Face / Fingerprint]
+    D -->|Invalid| X[Refer to Manual Counter]
+    E --> F[Match with Chip Data]
+    F -->|Match| G{Check INTERPOL SLTD<br/>and other records}
+    F -->|No Match| X
+    G -->|Clear| H[Border Crossing Approved]
+    G -->|Flag| X
+  </div>
+  <div class="diagram-caption">Figure 5.1 — ABC System Logic Flow</div>
+
+  <!-- =============================================================
+       SECTION 6: NATIONAL PROVISIONS (INDIA)
+       ============================================================= -->
+  <h2 class="section" id="sec6">6 · National Provisions (India) — AIP India</h2>
+
+  <div class="box box-blue">
+    <div class="box-title">Applicability of Indian Regulations</div>
+    International flights into, from, or over <b>Indian territory</b> shall be subjected to the <b>current Indian regulations</b> relating to:
+    <ul>
+      <li>Civil aviation</li>
+      <li>Immigration</li>
+      <li>Customs</li>
+      <li>Passport</li>
+      <li>Health, etc.</li>
+    </ul>
+    These regulations <b>correspond in all essentials</b> to the SARPs contained in <b>Annex 9</b> to the Convention on International Civil Aviation.
+  </div>
+
+  <div class="box box-red">
+    <div class="box-title">Mandatory Compliance — All Aircraft</div>
+    Additionally, <b>every aircraft entering or leaving India</b> must comply with regulations relating to:
+    <ul>
+      <li><b>Immigration</b></li>
+      <li><b>Customs</b></li>
+      <li><b>Quarantine</b></li>
+      <li><b>Health</b></li>
+    </ul>
+    …as laid down by the Government from time to time.
+  </div>
+
+  <h3 class="subsection">6.1 Landing &amp; Departure Aerodromes</h3>
+  <div class="box box-red">
+    <div class="box-title">First Landing / Final Departure Rule</div>
+    Aircraft flying into or departing from Indian territory shall make their <b>first landing at</b> — or <b>final departure from</b> — an <span class="reg-strong">International Aerodrome</span> (see AIP India, AD 1.3 and AD 2).
+    <br><br>
+    <b>Exception:</b> Aircraft <b>may be permitted</b> to land or depart from any <b>notified customs aerodrome</b>.
+  </div>
+
+  <h3 class="subsection">6.2 Cabotage Restriction</h3>
+  <div class="box box-red">
+    <div class="box-title">No Cabotage on International Flights</div>
+    International flights are <b>NOT permitted</b> to:
+    <ul>
+      <li><b>Pick up</b> passengers/load at any place in India <b>AND</b></li>
+      <li><b>Disembark/discharge</b> at any other place in India</li>
+    </ul>
+    <i>(This is the classic prohibition on cabotage — domestic carriage by a foreign-flagged carrier.)</i>
+  </div>
+
+  <h3 class="subsection">6.3 Aircraft Documents Required in India (Arrival/Departure)</h3>
+
+  <table>
+    <caption>India — Document Copies Required by Each Authority</caption>
+    <thead>
+      <tr>
+        <th>Required By</th>
+        <th>General Declaration</th>
+        <th>Passenger Manifest</th>
+        <th>Cargo Manifest</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><b>Customs</b></td><td><span class="reg-value">1</span></td><td><span class="reg-value">1</span></td><td><span class="reg-value">1</span></td></tr>
+      <tr><td><b>Immigration</b></td><td><span class="reg-value">1</span></td><td><span class="reg-value">1</span></td><td><span class="reg-value">1</span></td></tr>
+      <tr><td><b>Health</b></td><td><span class="reg-value">1</span></td><td><span class="reg-value">1</span></td><td><span class="reg-value">1</span></td></tr>
+      <tr style="background:#fff7e0;"><td><b>TOTAL COPIES</b></td><td><b>3</b></td><td><b>3</b></td><td><b>3</b></td></tr>
+    </tbody>
+  </table>
+
+  <div class="key-points">
+    <div class="kp-title">Why "3 Copies" Aligns With Annex 9</div>
+    Annex 9 caps the maximum at <b>3 copies of any document</b>. India requires <b>1 each to Customs, Immigration, and Health</b> — which gives exactly <b>3 copies total per document</b>. This is the maximum permitted under ICAO Standards.
+  </div>
+
+  <h3 class="subsection">6.4 Outbound Clearance</h3>
+  <div class="box box-red">
+    <div class="box-title">No Departure Without Clearance</div>
+    <b>No flight shall leave India</b> without obtaining clearance of <b>Immigration AND Customs</b> authorities on the General Declaration.
+  </div>
+
+  <h3 class="subsection">6.5 Customs Duty on Aircraft</h3>
+  <div class="box box-green">
+    <div class="box-title">6-Month Duty-Free Aircraft Rule</div>
+    <b>No customs duty is levied</b> on an aircraft <b>not registered in India</b> which is brought into India for the purpose of a flight to or across India, <b>provided</b>:
+    <ul>
+      <li>The aircraft is <b>not intended to be registered in India</b>; AND</li>
+      <li>It is intended to be <b>removed from India within</b> <span class="reg-strong">6 months</span> from the date of entry; AND</li>
+      <li>The <b>person-in-charge of the aircraft makes a written declaration</b> to that effect to the <b>Customs Collector on arrival</b>.</li>
+    </ul>
+  </div>
+
+  <div class="mermaid">
+timeline
+    title Foreign Aircraft – Duty-Free Stay in India
+    Day 0 : Aircraft arrives India
+          : PIC submits WRITTEN declaration to Customs Collector
+    Within 6 months : Aircraft must be removed from India
+                    : NO Customs duty levied
+    After 6 months : Duty becomes leviable
+                   : Compliance breach
+  </div>
+  <div class="diagram-caption">Figure 6.1 — Validity Timeline for Duty-Free Foreign Aircraft in India</div>
+
+  <!-- =============================================================
+       SECTION 7: FORMS
+       ============================================================= -->
+  <h2 class="section" id="sec7">7 · Standard Forms (Visual Reference)</h2>
+
+  <p>The three standard documents prescribed by Annex 9 (and reproduced in AIP India) are illustrated below. Familiarise yourself with the layout — exam questions often ask <i>"what data appears on a General Declaration?"</i></p>
+
+  <!-- General Declaration -->
+  <div class="form-replica">
+    <div class="form-title">GENERAL DECLARATION (Outward / Inward)</div>
+    <div class="field"><span class="field-label">Operator:</span> ____________________________________</div>
+    <div class="form-row">
+      <div class="field"><span class="field-label">Marks of Nationality &amp; Registration:</span> __________</div>
+      <div class="field"><span class="field-label">Flight No.:</span> _______</div>
+      <div class="field"><span class="field-label">Date:</span> __________</div>
+    </div>
+    <div class="form-row">
+      <div class="field"><span class="field-label">Departure from:</span> ___________</div>
+      <div class="field"><span class="field-label">Arrival at:</span> ___________ (Place)</div>
+    </div>
+    <table>
+      <thead><tr><th>FLIGHT ROUTING — Place (origin, every en-route stop, destination)</th><th>Total No. of Crew</th><th>No. of Passengers on this Stage</th></tr></thead>
+      <tbody>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td><i>Departure Place: __ Embarking: __ Through: __<br/>Arrival Place: __ Disembarking: __ Through: __</i></td></tr>
+      </tbody>
+    </table>
+    <div class="field"><span class="field-label">Declaration of Health:</span> Persons on board with illnesses other than airsickness or accidents (rash, fever, chills, diarrhoea), other conditions which may spread disease, details of disinsecting/sanitary treatment (place, date, time, method).</div>
+    <div class="field"><span class="field-label">Signed:</span> ______________________ (Crew member concerned)</div>
+    <div class="field" style="font-style:italic;">"I declare that all statements and particulars contained in this General Declaration… are complete, exact, and true to the best of my knowledge…"</div>
+    <div class="field"><span class="field-label">SIGNATURE:</span> ______________________ (Authorised Agent or Pilot-in-Command)</div>
+  </div>
+
+  <!-- Passenger Manifest -->
+  <div class="form-replica">
+    <div class="form-title">PASSENGER MANIFEST</div>
+    <div class="field"><span class="field-label">Operator:</span> ____________________________________</div>
+    <div class="form-row">
+      <div class="field"><span class="field-label">Marks of Nationality &amp; Registration:</span> __________</div>
+      <div class="field"><span class="field-label">Flight No.:</span> _______</div>
+      <div class="field"><span class="field-label">Date:</span> __________</div>
+    </div>
+    <div class="form-row">
+      <div class="field"><span class="field-label">Point of Embarkation:</span> __________</div>
+      <div class="field"><span class="field-label">Point of Disembarkation:</span> __________</div>
+    </div>
+    <table>
+      <thead><tr><th>Surname &amp; Initials</th><th>For use by Operator only</th><th>For Official use only</th></tr></thead>
+      <tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody>
+    </table>
+  </div>
+
+  <!-- Cargo Manifest -->
+  <div class="form-replica">
+    <div class="form-title">CARGO MANIFEST</div>
+    <div class="field"><span class="field-label">Operator:</span> ____________________________________</div>
+    <div class="form-row">
+      <div class="field"><span class="field-label">Marks of Nationality &amp; Registration:</span> __________</div>
+      <div class="field"><span class="field-label">Flight No.:</span> _______</div>
+      <div class="field"><span class="field-label">Date:</span> __________</div>
+    </div>
+    <div class="form-row">
+      <div class="field"><span class="field-label">Point of Lading:</span> __________</div>
+      <div class="field"><span class="field-label">Point of Unloading:</span> __________</div>
+    </div>
+    <table>
+      <thead><tr><th>Air Waybill Number</th><th>Number of Packages</th><th>Nature of Goods</th><th>For use by Operator only</th><th>For Official use only</th></tr></thead>
+      <tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="box box-amber">
+    <div class="box-title">Cargo Manifest — Information Limits</div>
+    A Contracting State which continues to require the Cargo Manifest, apart from the heading information, <b>shall NOT require more than</b>:
+    <ul>
+      <li>The <b>airway bill number</b></li>
+      <li>The <b>number of packages</b> related to each airway bill number</li>
+      <li>The <b>nature of the goods</b></li>
+    </ul>
+  </div>
+
+  <!-- =============================================================
+       SECTION 8: CUSTOMS REQUIREMENTS
+       ============================================================= -->
+  <h2 class="section" id="sec8">8 · Customs Requirements (India)</h2>
+
+  <h3 class="subsection">8.1 Incoming Passengers — The Two-Channel System</h3>
+  <div class="box box-green">
+    <div class="box-title">Two-Channel Clearance</div>
+    All goods imported into India by air are subject to clearance by Customs authorities, <b>except goods within the limits of duty-free allowance</b>. For the purpose of Customs Clearance of arriving passengers, a <b>two-channel system</b> has been adopted:
+    <ul>
+      <li><b style="color:#1e7e34;">GREEN CHANNEL</b> — for passengers <b>NOT having any dutiable goods</b></li>
+      <li><b style="color:#c0392b;">RED CHANNEL</b> — for passengers <b>having dutiable goods</b></li>
+    </ul>
+  </div>
+
+  <div class="mermaid">
+flowchart TD
+    A[Arriving Passenger at Indian Airport] --> B{Carrying Dutiable Goods?}
+    B -->|No| C[GREEN CHANNEL<br/>No duty payable<br/>Within duty-free allowance]
+    B -->|Yes| D[RED CHANNEL<br/>Declare goods<br/>Pay applicable customs duty]
+    C --> E[Exit Customs Area]
+    D --> F[Customs Inspection &amp; Duty Assessment]
+    F --> E
+  </div>
+  <div class="diagram-caption">Figure 8.1 — Two-Channel Customs Clearance System</div>
+
+  <h3 class="subsection">8.2 Regulations for Airline Crew</h3>
+  <div class="box box-red">
+    <div class="box-title">Crew Declaration Obligations</div>
+    Crew members of aircraft are subject to submit a <b>correct declaration</b> before Customs authorities with respect to:
+    <ul>
+      <li><b>Currency</b></li>
+      <li><b>Gold ornaments</b></li>
+      <li><b>Electronic goods, etc.</b></li>
+    </ul>
+    …in their possession <b>on arrival as well as departure</b>.
+  </div>
+
+  <h3 class="subsection">8.3 Outgoing Passengers</h3>
+  <div class="box box-green">
+    <div class="box-title">Export Certificate for High-Value Items</div>
+    All passengers leaving India by air are subject to clearance by Custom Authorities. <b>Only bonafide baggage</b> is allowed to be cleared by passengers. There is a procedure prescribed whereby passengers leaving India can take the <b>Export Certificate</b> for various <b>high-value items as well as jewellery</b> from the Customs authorities.
+  </div>
+
+  <h3 class="subsection">8.4 Regulations for Transit Passengers</h3>
+  <div class="box box-red">
+    <div class="box-title">Transit Passenger Restrictions</div>
+    Transit passengers are <b>kept in the Customs area</b> and Customs authorities <b>keep watch</b> on such passengers so that:
+    <ul>
+      <li>They should <b>NOT hand over anything to any other person</b></li>
+      <li>They are <b>NOT allowed to go outside the airport building</b></li>
+    </ul>
+  </div>
+
+  <h3 class="subsection">8.5 Customs Requirements — Cargo &amp; Other Articles</h3>
+  <div class="box box-red">
+    <div class="box-title">Pre-Departure Cargo Examination — Strict Timing</div>
+    Goods for export by air (<b>including unaccompanied baggage</b>) are required to be presented for examination to the Customs authorities <b>sufficiently in advance</b> for such goods to be examined <b>before the departure</b> of the aircraft on which they are consigned.
+    <br><br>
+    <b>General rule:</b> Such presentation should be made <b>NOT less than</b> <span class="reg-strong">4 working hours</span> before the scheduled time of departure.
+  </div>
+
+  <div class="mermaid">
+timeline
+    title Cargo Export Examination Timeline
+    STD minus 4 hr or more : Cargo presented to Customs for examination
+    Examination window : Customs inspects goods
+    Approval : Goods cleared for loading
+    STD : Aircraft departs with examined cargo
+  </div>
+  <div class="diagram-caption">Figure 8.2 — 4-Hour Cargo Examination Rule</div>
+
+  <!-- =============================================================
+       SECTION 9: MCQs
+       ============================================================= -->
+  <h2 class="section" id="sec9">9 · Practice MCQs (with Answers &amp; Explanations)</h2>
+
+  <p>Each question below is drawn directly from the DGCA Air Regulations textbook. Cover the answer with your hand, attempt the question, then verify.</p>
+
+  <div class="mcq">
+    <div class="q-num">Q1.</div>
+    <div class="q-text">The ICAO Annex which deals with entry and departure of persons and their baggage, cargo and other articles on international flights is:</div>
+    <ol>
+      <li>Annex 9</li>
+      <li>Annex 15</li>
+      <li>Annex 8</li>
+    </ol>
+    <div class="answer">A — Annex 9 ("Facilitation"). Annex 15 = Aeronautical Information Services. Annex 8 = Airworthiness.</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q2.</div>
+    <div class="q-text">In case of aircraft registered in other Contracting States, not engaged in scheduled international services, making flights across the territory of a Contracting State or stopping for non-traffic purposes, such Contracting State shall accept the information contained in a flight plan as adequate advance notification. This information is to be received:</div>
+    <ol>
+      <li>At least 2 hours in advance of arrival</li>
+      <li>At least 4 hours in advance of arrival</li>
+      <li>At least 1 hour in advance of arrival</li>
+    </ol>
+    <div class="answer">A — At least 2 hours in advance of arrival.</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q3.</div>
+    <div class="q-text">A Contracting State which continues to require the presentation of a Cargo Manifest shall, apart from the information indicated in the heading of the format of the Cargo Manifest, not require more than the following item(s):</div>
+    <ol>
+      <li>The airway bill number and the number of packages related to the airway bill number</li>
+      <li>The airway bill number; the number of packages related to each airway bill number and the nature of the goods</li>
+      <li>The airway bill number and the nature of goods</li>
+    </ol>
+    <div class="answer">B — Airway bill number + number of packages per AWB + nature of goods.</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q4.</div>
+    <div class="q-text">An aircraft which is not engaged in scheduled international air services and which is making a flight to or through any designated airport of a Contracting State and is admitted temporarily free of duty shall be allowed to remain within that State without security for customs duty:</div>
+    <ol>
+      <li>For a period of 12 hours</li>
+      <li>For a period of 48 hours</li>
+      <li>For a period to be established by that State</li>
+    </ol>
+    <div class="answer">C — For a period to be established by that State.</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q5.</div>
+    <div class="q-text">Which one of the statements is correct?</div>
+    <ol>
+      <li>Contracting States may not accept oral declaration of baggages</li>
+      <li>Contracting States shall accept an oral declaration of baggage from passengers and crew</li>
+      <li>Contracting States shall accept an oral declaration of baggage only from passengers</li>
+    </ol>
+    <div class="answer">B — Contracting States shall accept an oral declaration of baggage from passengers AND crew.</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q6.</div>
+    <div class="q-text">An aircraft flying to another contracting state:</div>
+    <ol>
+      <li>Is liable to pay customs duty on all unused fuel and oil carried</li>
+      <li>Is admitted to that state temporarily free of customs duty in regard to oil and fuel remaining only</li>
+      <li>Is admitted to that state temporarily free of customs duty</li>
+    </ol>
+    <div class="answer">C — Is admitted to that state temporarily free of customs duty (the aircraft itself, including its fuel/oil/stores under standard Annex 9 facilitation).</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q7.</div>
+    <div class="q-text">Contracting States shall not require the authorized agent or pilot-in-command to deliver to the public authorities concerned, before departure of the aircraft, more than some copies of General Declaration, Cargo Manifest and stores list. The number of copies are:</div>
+    <ol>
+      <li>2 copies of General Declarations and Cargo Manifest and one copy of a simple stores list</li>
+      <li>2 copies of General Declaration and of Cargo Manifest and of a stores list</li>
+      <li>2 of each</li>
+    </ol>
+    <div class="answer">C — 2 of each. (Note: this is the pre-departure cap. The overall Annex 9 ceiling for any document is 3 copies.)</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q8.</div>
+    <div class="q-text">In cases where a visitor travelling by air holds a valid passport and no visa is required of him, Contracting States:</div>
+    <ol>
+      <li>Shall not require him to obtain any other identity document from their consulates or operators prior to initiate the flight</li>
+      <li>None of the answers are applicable</li>
+      <li>In certain cases any other identity may be required</li>
+    </ol>
+    <div class="answer">A — Shall not require him to obtain any other identity document from their consulates or operators prior to initiating the flight.</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q9.</div>
+    <div class="q-text">The documents for entry and departure of aircraft:</div>
+    <ol>
+      <li>Has to be typewritten or produced by electronic data processing techniques</li>
+      <li>Are accepted in handwritten block lettering in ink</li>
+      <li>Are accepted at the contracting state discretion</li>
+    </ol>
+    <div class="answer">B — Are accepted in handwritten block lettering in ink (paper form completed manually following Annex 9 formats is acceptable).</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q10.</div>
+    <div class="q-text">On a general declaration form, the following data can be found:</div>
+    <ol>
+      <li>Aircraft registration mark, flight number, date and place of departure, destination and, number of crew and passengers</li>
+      <li>The nature of goods embarked on the aircraft (e.g. dangerous goods)</li>
+      <li>A complete description of payload (passengers, cargo and mail)</li>
+    </ol>
+    <div class="answer">A — Aircraft registration mark, flight number, date and place of departure, destination, number of crew and passengers.</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q11.</div>
+    <div class="q-text">What is the purpose of a Crew Member's Certificate (CMC)?</div>
+    <ol>
+      <li>To allow flight crew to be exempted from customs, health and immigration formalities when disembarking</li>
+      <li>To permit access to the air side of an aerodrome for aircrew</li>
+      <li>To provide identification of aircrew</li>
+    </ol>
+    <div class="answer">C — To provide identification of aircrew. (Licences attest qualifications; CMC identifies the holder.)</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q12.</div>
+    <div class="q-text">What documentation is required by persons travelling by air, for entry into a state?</div>
+    <ol>
+      <li>Passport and confirmation of inclusion on the general declaration passenger manifest</li>
+      <li>The same as would be required if the person arrived by ship</li>
+      <li>Passport, visa and any necessary health documentation (vaccination certificates)</li>
+    </ol>
+    <div class="answer">B — The same as would be required if the person arrived by ship. (Annex 9 places air travellers on the same footing as sea travellers in respect of entry documentation.)</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q13.</div>
+    <div class="q-text">The Crew Member Certificate (CMC) shall be accepted by each Contracting State for identification purposes:</div>
+    <ol>
+      <li>Together with a valid flight crew license</li>
+      <li>None of the above</li>
+      <li>Together with a valid passport</li>
+    </ol>
+    <div class="answer">B — None of the above. (The CMC by itself is accepted for identification purposes; it does not require to be presented along with another document.)</div>
+  </div>
+
+  <div class="mcq">
+    <div class="q-num">Q14.</div>
+    <div class="q-text">Except in special circumstances determined by the public authorities concerned, when a passenger is passing through the territory of a contracting state and has to stay in that contracting state until the next flight for lack of facilities or any other circumstances, the contracting state where the international airport is located shall permit such a passenger to remain within its territory without requiring visas prior to the arrival when:</div>
+    <ol>
+      <li>The passenger is to leave that state within two (2) days from the day of his (her) arrival</li>
+      <li>The passenger is to leave that state within one (1) day from the day of his (her) arrival</li>
+      <li>The passenger is to leave that state within two (2) weeks from the day of his (her) arrival</li>
+    </ol>
+    <div class="answer">A — Within two (2) days from the day of arrival.</div>
+  </div>
+
+  <h3 class="subsection">Quick-Reference Answer Key</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th>
+        <th>Q8</th><th>Q9</th><th>Q10</th><th>Q11</th><th>Q12</th><th>Q13</th><th>Q14</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="font-weight:bold;text-align:center;font-size:13pt;">
+        <td>A</td><td>A</td><td>B</td><td>C</td><td>B</td><td>C</td><td>C</td>
+        <td>A</td><td>B</td><td>A</td><td>C</td><td>B</td><td>B</td><td>A</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- =============================================================
+       FINAL SUMMARY / KEY TAKEAWAYS
+       ============================================================= -->
+  <h2 class="section">⭐ Top Examiner's Pet Numbers — Memorise These</h2>
+
+  <table>
+    <caption>Critical Regulatory Values You Must Know Cold</caption>
+    <thead>
+      <tr><th>Value</th><th>Subject</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="reg-value">Annex 9</span></td><td>ICAO Annex on Facilitation</td></tr>
+      <tr><td><span class="reg-value">Doc 9303</span></td><td>Machine Readable Travel Documents (MRTD)</td></tr>
+      <tr><td><span class="reg-value">3 copies</span></td><td>Maximum copies of any aircraft document required (Annex 9)</td></tr>
+      <tr><td><span class="reg-value">2 hours</span></td><td>Advance flight-plan notice for non-scheduled ops crossing territory</td></tr>
+      <tr><td><span class="reg-value">2 days</span></td><td>Visa-free transit stay for stranded transit passenger</td></tr>
+      <tr><td><span class="reg-value">4 working hours</span></td><td>Cargo presentation before STD for Customs exam (India)</td></tr>
+      <tr><td><span class="reg-value">6 months</span></td><td>Duty-free stay of foreign aircraft in India</td></tr>
+      <tr><td><span class="reg-value">Green / Red Channels</span></td><td>Two-channel customs system in India</td></tr>
+      <tr><td><span class="reg-value">PKD / SLTD</span></td><td>ICAO Public Key Directory / INTERPOL Stolen &amp; Lost Travel Docs</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-amber">
+    <div class="box-title">Final Instructor's Note</div>
+    Facilitation questions test <b>specific numbers</b> (2 hrs, 4 hrs, 3 copies, 6 months, 2 days), <b>document hierarchy</b> (CMC vs Licence; General Declaration vs Manifest), and <b>document acceptance modes</b> (paper, electronic, handwritten block lettering). Always read the question stem carefully — Facilitation MCQs are notorious for swapping "shall" with "should" and "passenger" with "passenger AND crew".
+    <br><br>
+    Fly safe, study smart. — <i>Capt. Pankaj Pahil</i>
+  </div>
+
+  <footer class="doc-footer">
+    <div class="divider">✦ ✦ ✦</div>
+    DGCA Air Regulations · Chapter 21 — Facilitation (Annex 9 &amp; AIP India)<br>
+    Study Notes prepared by <b>Capt. Pankaj Pahil</b> · For CPL / ATPL aspirants<br>
+    <i>For educational use only. Always refer to the latest DGCA CARs and ICAO Annex 9 amendments for current regulatory text.</i>
+  </footer>
+
+</div>
+
+<!-- WATERMARK — last element in body, dedicated div (proven working approach) -->
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

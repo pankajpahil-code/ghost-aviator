@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DGCA RTR – Chapter 19: Communications | Capt. Pankaj Pahil</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
+<style>
+  /* ========== PRINT / PAGE SETUP ========== */
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+
+  /* ========== BASE STYLES ========== */
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: #1a1a1a;
+    line-height: 1.65;
+    background: #fafbfc;
+  }
+  body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 40px 60px 40px;
+    position: relative;
+  }
+
+  /* ========== TYPOGRAPHY ========== */
+  h1, h2, h3, h4 {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: #0b3d91;
+    page-break-after: avoid;
+  }
+  h1 {
+    font-size: 32px;
+    border-bottom: 4px solid #0b3d91;
+    padding-bottom: 10px;
+    margin-top: 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+  h2 {
+    font-size: 24px;
+    background: linear-gradient(90deg, #0b3d91 0%, #2563eb 100%);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    margin-top: 36px;
+  }
+  h3 {
+    font-size: 19px;
+    color: #0b3d91;
+    border-left: 5px solid #2563eb;
+    padding-left: 12px;
+    margin-top: 28px;
+  }
+  h4 {
+    font-size: 16px;
+    color: #1e40af;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  p { margin: 8px 0; text-align: justify; }
+  strong { color: #0b3d91; }
+  em { color: #b91c1c; font-style: normal; font-weight: 600; }
+
+  /* ========== HEADER BANNER ========== */
+  .header-banner {
+    background: linear-gradient(135deg, #0b3d91 0%, #1e3a8a 50%, #2563eb 100%);
+    color: #fff;
+    padding: 22px 28px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 14px rgba(11, 61, 145, 0.25);
+  }
+  .header-banner .title {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  .header-banner .subtitle {
+    font-size: 14px;
+    opacity: 0.92;
+    margin-top: 6px;
+  }
+  .header-banner .ref {
+    font-size: 13px;
+    margin-top: 8px;
+    background: rgba(255,255,255,0.15);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 16px;
+  }
+
+  /* ========== INFO BOXES ========== */
+  .box {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+    border-left: 6px solid;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .box .box-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  /* RED — Strict limitations / warnings / penalties */
+  .box-red {
+    background: #fff1f0;
+    border-left-color: #dc2626;
+    color: #7f1d1d;
+  }
+  .box-red .box-title { color: #b91c1c; }
+
+  /* BLUE — Definitions / concepts */
+  .box-blue {
+    background: #eff6ff;
+    border-left-color: #2563eb;
+    color: #1e3a8a;
+  }
+  .box-blue .box-title { color: #1d4ed8; }
+
+  /* GREEN — SOPs / allowances / approved practices */
+  .box-green {
+    background: #ecfdf5;
+    border-left-color: #16a34a;
+    color: #14532d;
+  }
+  .box-green .box-title { color: #15803d; }
+
+  /* YELLOW — Memory aids / tips */
+  .box-yellow {
+    background: #fffbeb;
+    border-left-color: #f59e0b;
+    color: #78350f;
+  }
+  .box-yellow .box-title { color: #b45309; }
+
+  /* ========== TABLES ========== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    page-break-inside: avoid;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    font-size: 14px;
+  }
+  thead {
+    background: linear-gradient(90deg, #0b3d91, #1e40af);
+    color: #fff;
+  }
+  th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+    border: 1px solid #1e3a8a;
+  }
+  td {
+    padding: 9px 12px;
+    border: 1px solid #cbd5e1;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) { background: #f1f5f9; }
+  tbody tr:nth-child(odd)  { background: #ffffff; }
+  tbody tr:hover { background: #e0f2fe; }
+
+  .table-narrow td:first-child { width: 80px; font-weight: 700; color: #b91c1c; }
+  .qcode { font-weight: 800; color: #b91c1c; background: #fef2f2; }
+
+  /* ========== HIGHLIGHTED VALUES ========== */
+  .hi-num {
+    background: #fef08a;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    color: #713f12;
+  }
+  .hi-code {
+    background: #1e293b;
+    color: #fef08a;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* ========== MERMAID ========== */
+  pre.mermaid {
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    text-align: center;
+    page-break-inside: avoid;
+    margin: 16px 0;
+  }
+
+  /* ========== LISTS ========== */
+  ul, ol {
+    padding-left: 26px;
+    margin: 8px 0;
+  }
+  li { margin-bottom: 5px; }
+
+  /* ========== CALLOUT / QUOTE ========== */
+  .callout {
+    background: #e0e7ff;
+    border-left: 5px solid #4f46e5;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-style: italic;
+    color: #312e81;
+    page-break-inside: avoid;
+  }
+
+  /* ========== PHRASE CARDS ========== */
+  .phrase-grid {
+    display: block;
+  }
+  .phrase-card {
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    border-left: 6px solid #2563eb;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    page-break-inside: avoid;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .phrase-card .phrase {
+    font-weight: 800;
+    color: #1d4ed8;
+    font-size: 15px;
+    letter-spacing: 0.4px;
+  }
+  .phrase-card .meaning {
+    margin-top: 4px;
+    color: #1f2937;
+    font-size: 14px;
+  }
+  .phrase-card.warn { border-left-color: #dc2626; }
+  .phrase-card.warn .phrase { color: #b91c1c; }
+
+  /* ========== SECTION DIVIDER ========== */
+  hr.divider {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #2563eb, transparent);
+    margin: 30px 0;
+  }
+
+  /* ========== TOC ========== */
+  .toc {
+    background: #f0f9ff;
+    border: 2px solid #0284c7;
+    border-radius: 10px;
+    padding: 16px 24px;
+    margin-bottom: 28px;
+    page-break-inside: avoid;
+  }
+  .toc h3 { margin-top: 0; border: none; color: #075985; padding-left: 0; }
+  .toc ol { columns: 2; column-gap: 30px; }
+  .toc a { color: #0369a1; text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    margin-top: 50px;
+    padding-top: 16px;
+    border-top: 2px solid #cbd5e1;
+    text-align: center;
+    font-size: 12px;
+    color: #475569;
+  }
+
+  /* ========== PRINT OVERRIDES ========== */
+  @media print {
+    body { background: #fff; padding: 0; }
+    h2 { background: #0b3d91 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    thead { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .box, .phrase-card, table, pre.mermaid, .callout { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* ========== WATERMARK (must be last in body) ========== */
+  .watermark {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.12);
+    white-space: nowrap;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    letter-spacing: 4px;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<div class="header-banner">
+  <div class="title">CHAPTER 19 — COMMUNICATIONS</div>
+  <div class="subtitle">DGCA RTR(A) / CPL / ATPL Study Notes — Air Regulations</div>
+  <div class="ref">Reference: ICAO Annex 10 · ICAO Doc 4444 · AIP India</div>
+</div>
+
+<!-- ============================================================
+     TABLE OF CONTENTS
+============================================================ -->
+<div class="toc">
+  <h3>📑 Chapter Contents</h3>
+  <ol>
+    <li><a href="#vfr-comms">VFR Communications & Definitions</a></li>
+    <li><a href="#qcodes">Q-Codes (RTF Air-Ground)</a></li>
+    <li><a href="#msg-categories">Categories of Messages (Priority)</a></li>
+    <li><a href="#gop">General Operating Procedures</a></li>
+    <li><a href="#numbers">Transmission of Numbers</a></li>
+    <li><a href="#time">Transmission of Time</a></li>
+    <li><a href="#phraseology">Standard Phraseology (A–W)</a></li>
+    <li><a href="#callsigns">Aeronautical Station Call Signs</a></li>
+    <li><a href="#readback">Read-Back & Acknowledgement</a></li>
+    <li><a href="#transfer">Transfer of Communication</a></li>
+    <li><a href="#readability">Readability Scale & Test Calls</a></li>
+    <li><a href="#acft-callsigns">Aircraft Call Signs (Full & Abbreviated)</a></li>
+    <li><a href="#radar">Radar Procedural Phraseology</a></li>
+    <li><a href="#traffic-info">Traffic Information & Avoiding Action</a></li>
+    <li><a href="#weather">Weather Information (VFR)</a></li>
+    <li><a href="#metar">METAR / SPECI / TREND Format</a></li>
+    <li><a href="#rvr">RVR / Visibility</a></li>
+    <li><a href="#ag-comms">Air-Ground Communications</a></li>
+    <li><a href="#atis">ATIS & D-ATIS</a></li>
+    <li><a href="#volmet">VOLMET</a></li>
+    <li><a href="#distress">Distress & Urgency Procedures</a></li>
+    <li><a href="#ifr">IFR Communications</a></li>
+    <li><a href="#wake">Wake Turbulence Phraseology</a></li>
+    <li><a href="#level-rep">Level Reporting & Position Reports</a></li>
+    <li><a href="#airrep">Model AIREP SPECIAL</a></li>
+    <li><a href="#vhf-props">VHF Propagation & Wave Theory</a></li>
+    <li><a href="#freq-bands">Frequency Bands & Allocations</a></li>
+    <li><a href="#satcom">Satellite Communications</a></li>
+    <li><a href="#propagation">Propagation of Radio Waves</a></li>
+    <li><a href="#los">LOS, Tx Power & RCP</a></li>
+    <li><a href="#cpdlc">CPDLC & ADS</a></li>
+  </ol>
+</div>
+
+<!-- ============================================================
+     1. VFR COMMUNICATIONS & DEFINITIONS
+============================================================ -->
+<h2 id="vfr-comms">1. VFR Communications & Definitions</h2>
+
+<div class="box box-blue">
+  <div class="box-title">📘 What This Chapter Covers</div>
+  Radiotelephony (RTF) procedures used for two-way air-ground voice communication between aircraft and Air Traffic Services (ATS) units, including standard phraseology, Q-codes, distress procedures, weather messages, and the underlying radio-wave theory.
+</div>
+
+<h3>Commonly Used Abbreviations Specific to R/T</h3>
+<p>Certain abbreviations have become so embedded in aviation terminology that they are <strong>spoken using their constituent letters</strong> rather than the phonetic spelling alphabet.</p>
+
+<div class="box box-green">
+  <div class="box-title">✅ Spoken as Letters (NOT Phonetically)</div>
+  Examples: <span class="hi-code">ILS</span>, <span class="hi-code">QNH</span>, <span class="hi-code">RVR</span>, <span class="hi-code">VOR</span>, <span class="hi-code">DME</span>, <span class="hi-code">ATIS</span>, <span class="hi-code">METAR</span>, etc.
+  <br><em>i.e. say "I-L-S" — not "India Lima Sierra".</em>
+</div>
+
+<!-- ============================================================
+     2. Q-CODES
+============================================================ -->
+<h2 id="qcodes">2. Q-Code Groups Used in RTF Air-Ground Communications</h2>
+
+<div class="box box-blue">
+  <div class="box-title">📘 Definition — Q-Code</div>
+  A Q-code is a three-letter group beginning with <strong>"Q"</strong>, used as a shorthand to either <strong>ask a question</strong> or <strong>give an answer/advice</strong>. Same code carries both meanings depending on whether it's transmitted as a question or response.
+</div>
+
+<table class="table-narrow">
+  <thead>
+    <tr><th>Q-Code</th><th>Question</th><th>Answer / Advice</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="qcode">QDL</td>
+      <td>Do you intend to ask me for a series of bearings?</td>
+      <td>I intend to ask you for a series of bearings.</td>
+    </tr>
+    <tr>
+      <td class="qcode">QDM</td>
+      <td>Will you indicate the <strong>MAGNETIC heading</strong> for me to steer towards you (no wind)?</td>
+      <td>The MAGNETIC heading for you to steer to reach me (no wind) was … degrees (at … hours).</td>
+    </tr>
+    <tr>
+      <td class="qcode">QDR</td>
+      <td>What is my <strong>MAGNETIC bearing</strong> from you?</td>
+      <td>Your MAGNETIC bearing from me was … degrees (at … hours).</td>
+    </tr>
+    <tr>
+      <td class="qcode">QFE</td>
+      <td>What should I set on the altimeter sub-scale so the instrument indicates <strong>height above the reference elevation</strong>?</td>
+      <td>If you set the sub-scale to … millibars, the altimeter will indicate height above aerodrome elevation (above threshold, runway no. …).</td>
+    </tr>
+    <tr>
+      <td class="qcode">QFU</td>
+      <td>What is the magnetic direction (or number) of the runway to be used?</td>
+      <td>The magnetic direction (or number) of the runway in use is …<br><em>Note: Runway number = two-figure group; magnetic direction = three-figure group.</em></td>
+    </tr>
+    <tr>
+      <td class="qcode">QGH</td>
+      <td>May I land using … (procedure or facility)?</td>
+      <td>You may land using … (procedure or facility).</td>
+    </tr>
+    <tr>
+      <td class="qcode">QNE</td>
+      <td>What indication will my altimeter give on landing at … (place) at … hrs, with sub-scale set to <strong>1013.2 mb (29.92 in)</strong>?</td>
+      <td>On landing at … your altimeter will indicate … (figures and units).</td>
+    </tr>
+    <tr>
+      <td class="qcode">QNH</td>
+      <td>What should I set on the sub-scale so the altimeter indicates <strong>elevation</strong> if my aircraft were on the ground at your station?</td>
+      <td>Set sub-scale to … millibars; altimeter will indicate elevation if on the ground at my station at … hrs.<br><em>Note: If setting is given in hundredths of an inch, abbreviation "INS" is used.</em></td>
+    </tr>
+    <tr>
+      <td class="qcode">QTE</td>
+      <td>What is my <strong>TRUE bearing</strong> from you? / from (call sign)? / TRUE bearing of (call sign) from (call sign)?</td>
+      <td>Your TRUE bearing from me is … degrees at … hours.</td>
+    </tr>
+    <tr>
+      <td class="qcode">QUJ</td>
+      <td>Will you indicate the <strong>TRUE track</strong> to reach you?</td>
+      <td>The TRUE track to reach me is … degrees at … hours.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box box-yellow">
+  <div class="box-title">🧠 Memory Aid — Bearings & Tracks</div>
+  <ul>
+    <li><strong>QDM</strong> — <em>"D for Direction to"</em> — Magnetic HEADING <strong>TO</strong> the station (no wind).</li>
+    <li><strong>QDR</strong> — <em>"R for Radial / from"</em> — Magnetic BEARING <strong>FROM</strong> the station.</li>
+    <li><strong>QTE</strong> — <em>"True"</em> — TRUE bearing FROM the station.</li>
+    <li><strong>QUJ</strong> — <em>"U-Track True"</em> — TRUE TRACK TO the station.</li>
+    <li><strong>QFE</strong> — sub-scale for <strong>HEIGHT</strong> above aerodrome.</li>
+    <li><strong>QNH</strong> — sub-scale for <strong>ELEVATION</strong> (i.e. altitude AMSL).</li>
+    <li><strong>QNE</strong> — sub-scale set to <span class="hi-num">1013.2 mb</span> / <span class="hi-num">29.92 in</span> = Standard / Flight Level.</li>
+  </ul>
+</div>
+
+<h4>Visual Reference — QDM vs QDR vs QTE</h4>
+<pre class="mermaid">
+flowchart LR
+    A((Aircraft)) -- "QDM: Mag HDG TO stn" --> S((Ground Station))
+    S -- "QDR: Mag BRG FROM stn" --> A
+    S -. "QTE: TRUE bearing FROM stn" .-> A
+    A -. "QUJ: TRUE track TO stn" .-> S
+</pre>
+
+<hr class="divider">
+
+<!-- ============================================================
+     3. CATEGORIES OF MESSAGES
+============================================================ -->
+<h2 id="msg-categories">3. Categories of Messages (Priority Order)</h2>
+
+<div class="box box-red">
+  <div class="box-title">⚠️ Priority Order — Strict Hierarchy</div>
+  Messages in the Aeronautical Mobile Service follow this <strong>strict priority order</strong>. Higher-priority messages always take precedence over lower-priority traffic.
+</div>
+
+<table>
+  <thead>
+    <tr><th>Priority</th><th>Category</th><th>Signal / Prefix</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>a)</strong></td><td>Distress messages, distress calls, distress traffic</td><td><span class="hi-code">MAYDAY MAYDAY MAYDAY</span></td></tr>
+    <tr><td><strong>b)</strong></td><td>Urgency messages (incl. medical transports)</td><td><span class="hi-code">PAN PAN</span> / <span class="hi-code">PAN PAN MEDICAL</span> / SECURITE</td></tr>
+    <tr><td><strong>c)</strong></td><td>Communications relating to direction finding</td><td>—</td></tr>
+    <tr><td><strong>d)</strong></td><td>Flight safety messages</td><td>—</td></tr>
+    <tr><td><strong>e)</strong></td><td>Meteorological messages</td><td>—</td></tr>
+    <tr><td><strong>f)</strong></td><td>Flight regularity messages</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<pre class="mermaid">
+flowchart TD
+    A[1. DISTRESS - MAYDAY] --> B[2. URGENCY - PAN PAN / SECURITE]
+    B --> C[3. Direction Finding]
+    C --> D[4. Flight Safety]
+    D --> E[5. Meteorological]
+    E --> F[6. Flight Regularity]
+    style A fill:#fecaca,stroke:#b91c1c,stroke-width:3px
+    style B fill:#fed7aa,stroke:#c2410c,stroke-width:2px
+    style C fill:#fef08a,stroke:#854d0e
+    style D fill:#bbf7d0,stroke:#15803d
+    style E fill:#bae6fd,stroke:#0369a1
+    style F fill:#e9d5ff,stroke:#6b21a8
+</pre>
+
+<hr class="divider">
+
+<!-- ============================================================
+     4. GENERAL OPERATING PROCEDURES
+============================================================ -->
+<h2 id="gop">4. General Operating Procedures — Pronunciation Standards</h2>
+
+<div class="box box-blue">
+  <div class="box-title">📘 Standard ICAO Pronunciation</div>
+  Numbers are transmitted using <strong>specific ICAO phonetic pronunciations</strong> to avoid confusion over noisy or distorted radio links. Memorise these — they are heavily tested.
+</div>
+
+<h3>Number Pronunciation</h3>
+<table>
+  <thead><tr><th>Digit</th><th>Pronounced as</th><th>Digit</th><th>Pronounced as</th></tr></thead>
+  <tbody>
+    <tr><td>0</td><td><strong>ZE-RO</strong></td><td>5</td><td><strong>FIFE</strong></td></tr>
+    <tr><td>1</td><td><strong>WUN</strong></td><td>6</td><td><strong>SIX</strong></td></tr>
+    <tr><td>2</td><td><strong>TOO</strong></td><td>7</td><td><strong>SEV-en</strong></td></tr>
+    <tr><td>3</td><td><strong>TREE</strong></td><td>8</td><td><strong>AIT</strong></td></tr>
+    <tr><td>4</td><td><strong>FOW-er</strong></td><td>9</td><td><strong>NIN-er</strong></td></tr>
+    <tr><td>Decimal</td><td><strong>DAY-SEE-MAL</strong></td><td>Hundred</td><td><strong>HUN-dred</strong></td></tr>
+    <tr><td>Thousand</td><td colspan="3"><strong>TOU-SAND</strong></td></tr>
+  </tbody>
+</table>
+
+<h3>Examples — Aircraft Callsigns, Levels, Headings, Wind</h3>
+<table>
+  <thead>
+    <tr><th>Application</th><th>Example</th><th>Transmitted as</th><th>Pronounced as</th></tr>
+  </thead>
+  <tbody>
+    <tr><td rowspan="2"><strong>Aircraft callsign</strong></td><td>AI 235</td><td>Air India 235</td><td>Air India TOO TREE FIFE</td></tr>
+    <tr><td>6E 146</td><td>IFLY 146</td><td>IFLY WUN FOWer SIX</td></tr>
+
+    <tr><td rowspan="3"><strong>Flight levels</strong></td><td>FL 180</td><td>flight level one eight zero</td><td>flight level WUN AIT ZE-RO</td></tr>
+    <tr><td>FL 200</td><td>flight level two zero zero</td><td>flight level TOO ZE-RO ZE-RO</td></tr>
+    <tr><td>FL 70</td><td>flight level seven zero</td><td>flight level SEVen ZE-RO</td></tr>
+
+    <tr><td rowspan="3"><strong>Headings</strong></td><td>150</td><td>heading one five zero</td><td>heading WUN FIFE ZE-RO</td></tr>
+    <tr><td>080</td><td>heading zero eight zero</td><td>heading ZERO AIT ZE-RO</td></tr>
+    <tr><td>300</td><td>heading three zero zero</td><td>heading TREE ZE-RO ZE-RO</td></tr>
+
+    <tr><td rowspan="3"><strong>Wind direction & speed</strong></td><td>020° / 70 kt</td><td>wind zero two zero degrees seven zero knots</td><td>wind ZE-RO TOO ZE-RO degrees SEVen ZE-RO knots</td></tr>
+    <tr><td>100° / 18 kt</td><td>wind one zero zero degrees one eight knots</td><td>wind WUN ZE-RO ZE-RO degrees WUN AIT knots</td></tr>
+    <tr><td>210° / 18 G 30 kt</td><td>wind two one zero degrees one eight knots gusting three zero knots</td><td>wind TOO WUN ZE-RO degrees WUN AIT knots gusting TREE ZE-RO knots</td></tr>
+
+    <tr><td rowspan="3"><strong>Runway designator</strong></td><td>19</td><td>runway one nine</td><td>runway WUN NINer</td></tr>
+    <tr><td>06</td><td>runway zero six</td><td>runway ZE-RO SIX</td></tr>
+    <tr><td>23L</td><td>runway two three left</td><td>runway TOO TREE left</td></tr>
+
+    <tr><td><strong>Mach number</strong></td><td>0.84</td><td>Mach decimal eight four</td><td>Mach DAY-SEE-MAL AIT FOWer</td></tr>
+
+    <tr><td rowspan="2"><strong>Altimeter setting</strong></td><td>984 hPa</td><td>QNH nine eight four</td><td>QNH NINer AIT FOWer</td></tr>
+    <tr><td>1027 hPa</td><td>QNH one zero two seven</td><td>QNH WUN ZE-RO TOO SEVen</td></tr>
+
+    <tr><td rowspan="3"><strong>Frequencies</strong></td><td>128.3 MHz</td><td>one two eight decimal three</td><td>WUN TOO AIT DAY-SEE-MAL TREE</td></tr>
+    <tr><td>135.75 MHz</td><td>one three five decimal seven five</td><td>WUN TREE FIFE DAY-SEE-MAL SEVen FIFE</td></tr>
+    <tr><td>5643 kHz</td><td>five six four three</td><td>FIFE SIX FOWer TREE</td></tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<!-- ============================================================
+     5. NUMBERS — HUNDREDS & THOUSANDS RULE
+============================================================ -->
+<h2 id="numbers">5. Transmission of Numbers — Hundreds & Thousands Rule</h2>
+
+<div class="box box-red">
+  <div class="box-title">⚠️ Strict DGCA / ICAO Rule</div>
+  All numbers used in transmission of <strong>altitude, height, cloud height, visibility, and runway visual range (RVR)</strong> which contain <strong>whole hundreds and whole thousands</strong> shall be transmitted by:
+  <ol>
+    <li>Pronouncing <strong>each digit</strong> in the number of hundreds or thousands,</li>
+    <li>Followed by the word <strong>HUNDRED</strong> or <strong>THOUSAND</strong> as appropriate.</li>
+  </ol>
+  Combinations of thousands and whole hundreds: pronounce each digit of the thousands followed by "THOUSAND", then the hundreds digit followed by "HUNDRED".
+</div>
+
+<table>
+  <thead><tr><th>Number</th><th>Correct Transmission</th></tr></thead>
+  <tbody>
+    <tr><td>800</td><td>EIGHT HUNDRED</td></tr>
+    <tr><td>3 500</td><td>THREE THOUSAND FIVE HUNDRED</td></tr>
+    <tr><td>4 500</td><td>FOUR THOUSAND FIVE HUNDRED</td></tr>
+    <tr><td>11 000</td><td>ONE ONE THOUSAND</td></tr>
+    <tr><td>13 500</td><td>ONE THREE THOUSAND FIVE HUNDRED</td></tr>
+  </tbody>
+</table>
+
+<div class="box box-yellow">
+  <div class="box-title">🧠 Watch-Out — Flight Levels Use a DIFFERENT Rule</div>
+  Flight Levels are <strong>NOT</strong> spoken with "thousand/hundred". Each digit is pronounced separately.<br>
+  Example: FL 180 → <span class="hi-code">flight level WUN AIT ZE-RO</span> (NOT "flight level one eighty").
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     6. TIME
+============================================================ -->
+<h2 id="time">6. Transmission of Time</h2>
+
+<div class="box box-green">
+  <div class="box-title">✅ Time Transmission SOP</div>
+  <ul>
+    <li>When transmitting time, normally <strong>only the minutes of the hour</strong> are required.</li>
+    <li>However, the <strong>hour shall be included</strong> if any possibility of confusion exists.</li>
+    <li>Time checks shall be given to the <strong>nearest half minute</strong>.</li>
+    <li><strong>Coordinated Universal Time (UTC)</strong> shall be used at all times, unless otherwise specified.</li>
+    <li><strong>2400</strong> hours designates midnight (end of day); <strong>0000</strong> hours = beginning of day.</li>
+  </ul>
+</div>
+
+<table>
+  <thead><tr><th>Time</th><th>Transmitted as (minutes only)</th><th>Transmitted as (hour + minutes)</th></tr></thead>
+  <tbody>
+    <tr><td>0920 (9:20 AM)</td><td>TOO ZE-RO</td><td>ZE-RO NINer TOO ZE-RO</td></tr>
+    <tr><td>1643 (4:43 PM)</td><td>FOWer TREE</td><td>WUN SIX FOWer TREE</td></tr>
+    <tr><td>175321 (5:53:21 PM)</td><td>FIFE TREE AND A HALF</td><td>WUN SEVEN FIFE TREE AND A HALF</td></tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<!-- ============================================================
+     7. STANDARD PHRASEOLOGY
+============================================================ -->
+<h2 id="phraseology">7. Standard ICAO Phraseology (A–W)</h2>
+
+<div class="box box-blue">
+  <div class="box-title">📘 Why Standard Phraseology?</div>
+  Standard phraseology eliminates ambiguity, reduces RTF time, and ensures every pilot and controller worldwide understands the same word the same way. <strong>Deviation can be safety-critical.</strong>
+</div>
+
+<div class="phrase-grid">
+
+<div class="phrase-card">
+  <div class="phrase">ACKNOWLEDGE</div>
+  <div class="meaning">"Let me know that you have received and understood this message."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">AFFIRM</div>
+  <div class="meaning">"Yes."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">APPROVED</div>
+  <div class="meaning">"Permission for proposed action granted."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">BREAK</div>
+  <div class="meaning">"I hereby indicate the separation between portions of the message." <em>— used where there is no clear distinction between the text and other portions of the message.</em></div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">BREAK BREAK</div>
+  <div class="meaning">"I hereby indicate the separation between messages transmitted to different aircraft in a very busy environment."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">CANCEL</div>
+  <div class="meaning">"Annul the previously transmitted clearance."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">CHANGING TO</div>
+  <div class="meaning">When transferring to a pilot-to-controller channel — Aircraft: "CHANGING TO …" (ATS unit concerned).</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">CHECK</div>
+  <div class="meaning">"Examine a system or procedure." <em>Not to be used in any other context. No answer is normally expected.</em></div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">CLEARED</div>
+  <div class="meaning">"Authorized to proceed under the conditions specified."</div>
+</div>
+
+<div class="phrase-card warn">
+  <div class="phrase">CLEARED FOR IMMEDIATE TAKE-OFF</div>
+  <div class="meaning">"Taxi immediately to runway and commence take-off without stop."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">CLIMB</div>
+  <div class="meaning">"Climb to a FL, Altitude or Height."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">CONFIRM</div>
+  <div class="meaning">"I request verification of: <em>clearance, instruction, action, information</em>."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">CONTACT</div>
+  <div class="meaning">"Establish communications with …"</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">CORRECT</div>
+  <div class="meaning">"True" or "Accurate".</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">CORRECTION</div>
+  <div class="meaning">"An error has been made in this transmission (or message indicated). The correct version is …"</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">CORRECTION, I SAY AGAIN</div>
+  <div class="meaning">If a correction can best be made by repeating the entire message, the operator shall use the phrase "CORRECTION, I SAY AGAIN" before transmitting the message a second time.</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">DESCEND</div>
+  <div class="meaning">"Descend to a FL, Altitude or Height."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">DISREGARD</div>
+  <div class="meaning">"Ignore."</div>
+</div>
+
+<div class="phrase-card warn">
+  <div class="phrase">HOLD SHORT</div>
+  <div class="meaning">"Stop before reaching the specified location." <em>Only used in limited circumstances where no defined Point exists (e.g. where there is no suitably located holding point), or to reinforce a clearance limit.</em></div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">HOW DO YOU READ</div>
+  <div class="meaning">"What is the readability of my transmission?"</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">I SAY AGAIN</div>
+  <div class="meaning">"I repeat for clarity or emphasis."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">LANDED</div>
+  <div class="meaning">After landing — Aircraft: "LANDED … (location) … (time)".</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">MAINTAIN</div>
+  <div class="meaning">"Continue in accordance with the condition(s) specified" or in its literal sense, e.g. "Maintain VFR".</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">MONITOR</div>
+  <div class="meaning">"Listen out on (frequency)."</div>
+</div>
+
+<div class="phrase-card warn">
+  <div class="phrase">NEGATIVE</div>
+  <div class="meaning">"No" or "Permission not granted" or "That is not correct" or "Not capable".</div>
+</div>
+
+<div class="phrase-card warn">
+  <div class="phrase">NEGATIVE, I SAY AGAIN</div>
+  <div class="meaning">If, in checking the correctness of a read-back, an operator notices incorrect items, he shall transmit the words "NEGATIVE I SAY AGAIN" at the conclusion of the read-back followed by the correct version of the items concerned.</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">OPERATIONS NORMAL</div>
+  <div class="meaning">When "operations normal" reports are transmitted by aircraft, they should consist of the prescribed call followed by the words "OPERATIONS NORMAL".</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">OVER</div>
+  <div class="meaning">"My transmission is ended, and I expect a response from you." <em>Not normally used in VHF communications.</em></div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">OUT</div>
+  <div class="meaning">"This exchange of transmissions is ended and no response is expected." <em>Not normally used in VHF communications.</em></div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">READ BACK</div>
+  <div class="meaning">"Repeat all, or the specified part, of this message back to me exactly as received."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">RECLEARED</div>
+  <div class="meaning">"A change has been made to your last clearance and this new clearance supersedes your previous clearance or part thereof."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">REPORT</div>
+  <div class="meaning">"Pass me the following information …"</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">REQUEST</div>
+  <div class="meaning">"I should like to know …" or "I wish to obtain …"</div>
+</div>
+
+<div class="phrase-card warn">
+  <div class="phrase">ROGER</div>
+  <div class="meaning">"I have received all of your last transmission." <em>Under no circumstances to be used in reply to a question requiring "READ BACK" or a direct answer in the affirmative (AFFIRM) or negative (NEGATIVE).</em></div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">SAY AGAIN / SAY AGAIN (item) / SAY AGAIN all after / SAY AGAIN all before / SAY AGAIN all between … and …</div>
+  <div class="meaning">"Repeat all, or the following part, of your last transmission."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">SPEAK SLOWER</div>
+  <div class="meaning">"Reduce your rate of speech."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">STANDBY</div>
+  <div class="meaning">"Wait and I will call you." <em>The caller would normally re-establish contact if the delay is lengthy. STANDBY is not an approval or denial.</em></div>
+</div>
+
+<div class="phrase-card warn">
+  <div class="phrase">UNABLE / IMPOSSIBLE</div>
+  <div class="meaning">"I cannot comply with your request, instruction or clearance" (normally followed by a reason). / "To indicate that a request cannot be complied with, or that a requested manoeuvre cannot be executed."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">VERIFY</div>
+  <div class="meaning">"Confirm from originator."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">WILCO <em>(Abbreviation for "will comply")</em></div>
+  <div class="meaning">"I understand your message and will comply with it."</div>
+</div>
+
+<div class="phrase-card">
+  <div class="phrase">WORDS TWICE</div>
+  <div class="meaning">
+    <strong>a) As a request:</strong> "Communication is difficult. Please send every word, or group of words, twice."<br>
+    <strong>b) As information:</strong> "Since communication is difficult, every word, or group of words, in this message will be sent twice."
+  </div>
+</div>
+
+</div>
+
+<div class="box box-red">
+  <div class="box-title">⚠️ Important Deletion — "GO AHEAD"</div>
+  The phrase <strong>"GO AHEAD"</strong> has been <strong>deleted</strong>. In its place, the use of the <strong>calling aeronautical station's call sign followed by the answering aeronautical station's call sign</strong> shall be considered the invitation to proceed with transmission by the station calling.
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     8. CALL SIGNS FOR AERONAUTICAL STATIONS
+============================================================ -->
+<h2 id="callsigns">8. Call Signs for Aeronautical Stations</h2>
+
+<div class="box box-blue">
+  <div class="box-title">📘 Suffix System</div>
+  Every ATS unit has a defined RTF call-sign suffix that tells the pilot exactly what type of service is being provided. The aerodrome/area name precedes the suffix (e.g. "Delhi Tower", "Mumbai Approach").
+</div>
+
+<table>
+  <thead><tr><th>Unit / Service Available</th><th>Call Sign Suffix</th></tr></thead>
+  <tbody>
+    <tr><td>Area Control Centre</td><td><strong>CONTROL</strong></td></tr>
+    <tr><td>Upper / Lower Control Area</td><td><strong>UPPER / LOWER CONTROL</strong></td></tr>
+    <tr><td>Approach Control</td><td><strong>APPROACH</strong></td></tr>
+    <tr><td>Approach Control Radar / Area Control Radar</td><td><strong>APPROACH RADAR / CONTROL RADAR</strong></td></tr>
+    <tr><td>Aerodrome Control</td><td><strong>TOWER</strong></td></tr>
+    <tr><td>Surface Movement Control</td><td><strong>GROUND</strong></td></tr>
+    <tr><td>Radar (in general)</td><td><strong>RADAR</strong></td></tr>
+    <tr><td>Precision Approach Radar</td><td><strong>PRECISION</strong></td></tr>
+    <tr><td>Direction-finding Station</td><td><strong>HOMER</strong></td></tr>
+    <tr><td>Flight Information Service</td><td><strong>INFORMATION</strong></td></tr>
+    <tr><td>Clearance Delivery</td><td><strong>DELIVERY</strong></td></tr>
+    <tr><td>Apron Control</td><td><strong>APRON</strong></td></tr>
+    <tr><td>Company Dispatch</td><td><strong>DISPATCH</strong></td></tr>
+    <tr><td>Aeronautical Station</td><td><strong>RADIO</strong></td></tr>
+    <tr><td>Flow Control</td><td><strong>FLOW</strong></td></tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<!-- ============================================================
+     9. READ-BACK & ACKNOWLEDGEMENT
+============================================================ -->
+<h2 id="readback">9. Read-Back & Acknowledgement Requirements</h2>
+
+<div class="box box-red">
+  <div class="box-title">⚠️ MANDATORY Read-Back Items</div>
+  The flight crew <strong>shall read back</strong> to the air traffic controller the <strong>safety-related parts</strong> of clearances and instructions transmitted by voice. Items NOT listed below may be acknowledged by aircraft call sign or by an abbreviated read-back.
+  <br><br>
+  <strong>QNH IS ALWAYS READ BACK.</strong>
+  <br><br>
+  The following items shall <strong>always be read back</strong>:
+  <ol type="a">
+    <li><strong>ATC route clearance</strong>;</li>
+    <li><strong>Clearances and instructions to enter, land on, take off on, hold short of, cross, taxi and back-track on any runway</strong>; and</li>
+    <li><strong>Runway-in-use, altimeter settings, SSR codes, level instructions, heading and speed instructions</strong> and — whether issued by the controller or contained in ATIS broadcast — <strong>transition levels</strong>.</li>
+  </ol>
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    Q[ATC Instruction Received] --> R{Is it a safety-critical item?}
+    R -- "Route clearance / Runway entry / TO / Land / Cross / Hold Short / Back-track" --> M[FULL READ-BACK Mandatory]
+    R -- "RWY in use / QNH / SSR / Level / Heading / Speed / Transition Level" --> M
+    R -- "Other info" --> A[Acknowledge by callsign or abbreviated read-back]
+    style M fill:#fecaca,stroke:#b91c1c,stroke-width:3px
+    style A fill:#bbf7d0,stroke:#15803d,stroke-width:2px
+</pre>
+
+<hr class="divider">
+
+<!-- ============================================================
+     10. TRANSFER OF COMMUNICATION
+============================================================ -->
+<h2 id="transfer">10. Transfer of Communication</h2>
+
+<div class="box box-green">
+  <div class="box-title">✅ Standard Procedure</div>
+  <ul>
+    <li>An aircraft will <strong>normally be advised</strong> by the appropriate aeronautical station to change from one radio frequency to another in accordance with agreed procedures.</li>
+    <li><strong>In the absence of such advice</strong>, the aircraft shall <strong>notify</strong> the aeronautical station before such a change takes place.</li>
+    <li>Aircraft flying in <strong>controlled airspace must obtain permission</strong> from the controlling authority before changing frequency.</li>
+    <li>An aircraft may be instructed to <strong>standby</strong> on a frequency when the ATSU will initiate communications, and to <strong>monitor</strong> a frequency on which information is being broadcast.</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     11. READABILITY SCALE & TEST CALLS
+============================================================ -->
+<h2 id="readability">11. Readability Scale & Test Calls</h2>
+
+<div class="box box-red">
+  <div class="box-title">⚠️ Test Transmission Time Limit</div>
+  All radio transmissions for test purposes shall be of the <strong>minimum duration</strong> necessary for the test and shall <strong>NOT continue for more than <span class="hi-num">10 seconds</span></strong>. The recurrence of such transmissions shall be kept to the minimum necessary for the test.
+</div>
+
+<h3>Readability Scale (1–5)</h3>
+<table>
+  <thead><tr><th>Scale</th><th>Readability</th></tr></thead>
+  <tbody>
+    <tr><td><strong>1</strong></td><td>Unreadable</td></tr>
+    <tr><td><strong>2</strong></td><td>Readable now and then</td></tr>
+    <tr><td><strong>3</strong></td><td>Readable but with difficulty</td></tr>
+    <tr><td><strong>4</strong></td><td>Readable</td></tr>
+    <tr><td><strong>5</strong></td><td>Perfectly readable</td></tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<!-- ============================================================
+     12. AIRCRAFT CALL SIGNS (FULL & ABBREVIATED)
+============================================================ -->
+<h2 id="acft-callsigns">12. Aircraft Call Signs — Full & Abbreviated</h2>
+
+<h3>Full Call Sign Types</h3>
+<table>
+  <thead><tr><th>Type</th><th>Description</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>a)</strong></td>
+      <td>Character corresponding to the registration marking of the aircraft.</td>
+      <td><strong>VTEJP</strong> or <strong>CESSNA VTEJP</strong></td>
+    </tr>
+    <tr>
+      <td><strong>b)</strong></td>
+      <td>Telephony designator of the aircraft operating agency, followed by the <strong>last four characters</strong> of the registration marking.</td>
+      <td><strong>AIRINDIA TEJP</strong></td>
+    </tr>
+    <tr>
+      <td><strong>c)</strong></td>
+      <td>Telephony designator of the aircraft operating agency, followed by the flight identification.</td>
+      <td><strong>AIRINDIA 809</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Abbreviated Call Signs</h3>
+<div class="box box-yellow">
+  <div class="box-title">🧠 When Can You Abbreviate?</div>
+  After <strong>satisfactory communication has been established</strong>, and provided <strong>no confusion is likely to occur</strong>, aircraft call signs may be abbreviated as follows:
+</div>
+
+<table>
+  <thead><tr><th>Type</th><th>Description</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>a)</strong></td>
+      <td>The <strong>first character</strong> of the registration AND at least the <strong>last two characters</strong> of the call sign.</td>
+      <td><strong>VJP</strong> or <strong>CESSNA VJP</strong></td>
+    </tr>
+    <tr>
+      <td><strong>b)</strong></td>
+      <td>Telephony designator of the operating agency, followed by at least the <strong>last two characters</strong> of the call sign.</td>
+      <td><strong>AIRINDIA JP</strong></td>
+    </tr>
+    <tr>
+      <td><strong>c)</strong></td>
+      <td>Telephony designator of the operating agency, followed by the flight identification.</td>
+      <td><strong>NO ABBREVIATED FORM</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<!-- ============================================================
+     13. RADAR PROCEDURAL PHRASEOLOGY
+============================================================ -->
+<h2 id="radar">13. Radar Procedural Phraseology</h2>
+
+<h3>Radar Identification of Aircraft</h3>
+<div class="box box-blue">
+  <div class="box-title">📘 Identification ≠ Radar Service</div>
+  An aircraft must be identified before it can be provided with a radar service. However, <strong>the act of identifying an aircraft is not a service in itself</strong> — pilots should not assume they are receiving a radar service, particularly when flying outside controlled airspace.
+</div>
+
+<p>When a controller has identified an aircraft, he will inform the pilot, according to circumstances, of the following:</p>
+<ul>
+  <li>That the aircraft is <strong>identified</strong>, and</li>
+  <li>Of the <strong>position</strong> of the aircraft.</li>
+</ul>
+<p>The pilot will be <strong>warned if identification is lost</strong>, or about to be lost, and appropriate instructions given.</p>
+
+<h3>Secondary Surveillance Radar (SSR) Phraseology</h3>
+<div class="box box-red">
+  <div class="box-title">⚠️ Mandatory Action</div>
+  The pilot <strong>MUST respond to SSR instructions</strong>, and <strong>read back specific settings</strong>.
+</div>
+
+<h3>Radar Service</h3>
+<p>Where it is not self-evident, pilots will normally be informed by the controller when they are under <strong>radar control</strong>, <strong>radar advisory</strong>, or <strong>information service</strong>.</p>
+
+<h3>Radar Vectoring</h3>
+<ul>
+  <li>Aircraft may be given specific vectors to fly in order to establish separation. Pilots may be informed of the reasons for radar vectoring.</li>
+  <li>It may be necessary for a controller to know the heading of an aircraft as separation can often be established by instructing an aircraft to continue on its existing heading.</li>
+  <li>A controller may not know the aircraft's heading but does require the aircraft to fly a particular heading.</li>
+  <li>When vectoring is complete, pilots will be instructed to <strong>resume their own navigation</strong>, given position information and appropriate instructions as necessary.</li>
+  <li>Occasionally an aircraft may be instructed to make a <strong>complete turn</strong> (known as an <strong>ORBIT</strong> or a <strong>360-degree turn</strong>) or given a heading, for delaying purposes or to achieve required spacing behind preceding traffic.</li>
+</ul>
+
+<hr class="divider">
+
+<!-- ============================================================
+     14. TRAFFIC INFORMATION & AVOIDING ACTION
+============================================================ -->
+<h2 id="traffic-info">14. Traffic Information & Avoiding Action Phraseology</h2>
+
+<div class="box box-green">
+  <div class="box-title">✅ Standard Traffic Information Format</div>
+  Whenever practicable, information regarding traffic on a possible conflicting path should be given in the following form:
+  <ol type="a">
+    <li><strong>Relative bearing</strong> of the conflicting traffic in terms of the <strong>12-hour clock</strong>; or, if the aircraft under service is established in a turn, the <strong>relative position</strong> of the conflicting traffic in relation to <strong>cardinal points</strong> (i.e. northwest, south etc.);</li>
+    <li><strong>Distance</strong> from the conflicting traffic;</li>
+    <li><strong>Direction of flight</strong> of the conflicting traffic; and</li>
+    <li><strong>Relative speed</strong> of the conflicting traffic or the <strong>type of aircraft</strong> and <strong>level</strong> if known.</li>
+  </ol>
+</div>
+
+<div class="box box-blue">
+  <div class="box-title">📘 Relative Movement Terms</div>
+  Relative movement should be described using one of the following terms as applicable:
+  <br><br>
+  <strong>closing · converging · parallel · same direction · opposite direction · diverging · overtaking · crossing left to right · crossing right to left</strong>
+  <br><br>
+  If level is known: <span class="hi-num">1000 ft above/below</span>.
+</div>
+
+<div class="box box-red">
+  <div class="box-title">⚠️ Avoiding Action</div>
+  Avoiding action is given by the controller when an <strong>imminent risk of collision</strong> will exist if action is not taken immediately. The controller will inform the pilot when the conflict <strong>no longer exists</strong>.
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     15. WEATHER INFORMATION (VFR)
+============================================================ -->
+<h2 id="weather">15. Relevant Weather Information Terms (VFR)</h2>
+
+<h3>Aerodrome Weather Sources</h3>
+<p>A pilot may obtain weather through many sources such as: request from <strong>ATC</strong>, <strong>Meteorological Offices</strong>, <strong>ATIS</strong>, <strong>VOLMET</strong>, etc.</p>
+
+<h3>Current Weather Messages & Forecasts</h3>
+<table>
+  <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td><strong>METAR</strong></td><td>Aviation Routine Weather Report</td></tr>
+    <tr><td><strong>SPECI</strong></td><td>Aviation Selected Special Weather Report</td></tr>
+    <tr><td><strong>TREND</strong></td><td>Expected changes in the next <span class="hi-num">2 hours</span></td></tr>
+    <tr><td><strong>TAF</strong></td><td>Aerodrome Forecast</td></tr>
+    <tr><td><strong>ROFOR</strong></td><td>Route Forecast</td></tr>
+    <tr><td><strong>SIGMET</strong></td><td>Information issued by a meteorological watch office concerning the occurrence or expected occurrence of specified <strong>en-route weather phenomena</strong> which may affect the safety of aircraft operations.</td></tr>
+    <tr><td><strong>AIRMET</strong></td><td>Information issued by a meteorological watch office concerning the occurrence or expected occurrence of specified en-route weather phenomena which may affect the safety of <strong>low-level aircraft operations</strong> and which was not already included in the forecast issued for low-level flights in the FIR concerned (or sub-area thereof).</td></tr>
+  </tbody>
+</table>
+
+<h3>Cloud Reporting</h3>
+<div class="box box-blue">
+  <div class="box-title">📘 Cloud Amount in Octas (eighths of sky)</div>
+  <table>
+    <thead><tr><th>Term</th><th>Octas (eighths)</th><th>Coverage</th></tr></thead>
+    <tbody>
+      <tr><td><strong>FEW</strong></td><td>1 – 2 octas</td><td>Few clouds</td></tr>
+      <tr><td><strong>SCATTERED (SCT)</strong></td><td>3 – 4 octas</td><td>Less than half</td></tr>
+      <tr><td><strong>BROKEN (BKN)</strong></td><td>5 – 7 octas</td><td>More than half, not full</td></tr>
+      <tr><td><strong>OVERCAST (OVC)</strong></td><td>8 octas</td><td>Total / 100% cover</td></tr>
+    </tbody>
+  </table>
+  Example reading: <em>"Few at 2000, Scattered at 500, scattered cumulonimbus at 1000, broken at 2500."</em>
+</div>
+
+<div class="box box-green">
+  <div class="box-title">✅ CAVOK — Ceiling And Visibility OK</div>
+  When the following <strong>ALL</strong> conditions are met, the term <strong>"CAVOK"</strong> is used:
+  <ul>
+    <li>Visibility <strong>≥ <span class="hi-num">10 km</span></strong>;</li>
+    <li>NO cloud below <strong><span class="hi-num">1500 m (5000 ft)</span></strong> or below the highest minimum sector altitude, whichever is greater;</li>
+    <li>NO cumulonimbus;</li>
+    <li>NO precipitation, thunderstorm, shallow fog, or low drifting snow.</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     16. METAR / SPECI / TREND FORMAT
+============================================================ -->
+<h2 id="metar">16. METAR / SPECI / TREND — Format & Decoding</h2>
+
+<div class="callout">
+  <strong>Example 1:</strong> VIDP 070200Z 12003KT 2000 BR SKC 10/08 Q1013 NOSIG
+  <br><br>
+  <strong>Decoded:</strong> Delhi (VIDP) weather at 0200 UTC on the 07th — surface wind 120° / 03 kt, visibility 2000 m, mist, sky clear, temp 10 °C, dew point 08 °C, QNH 1013, trend = no significant change.
+</div>
+
+<div class="callout">
+  <strong>Example 2:</strong> VOBG 070030Z 12003KT 4000 HZ BKN004 18/16 Q1014 TEMPO 3000
+  <br><br>
+  <strong>Decoded:</strong> Bangalore (VOBG) at 0030 UTC on the 07th — surface wind 120° / 03 kt, visibility 4000 m in haze, clouds 5–7 octas at 400 ft, temp 18 °C, dew point 16 °C, QNH 1014. Trend: visibility expected to decrease temporarily to 3000 m.
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     17. RVR / VISIBILITY
+============================================================ -->
+<h2 id="rvr">17. Runway Visual Range (RVR) / Visibility</h2>
+
+<div class="box box-green">
+  <div class="box-title">✅ RVR Transmission</div>
+  <ul>
+    <li>When transmitting RVR, the abbreviation <strong>"RVR"</strong> is used <strong>without</strong> spelling each letter phonetically.<br>
+    Example: <em>"RVR runway 27, 800."</em></li>
+    <li>The runway designator <strong>may be omitted</strong> if there is no possibility of confusion.</li>
+    <li>Where <strong>instrumented RVR (IRVR)</strong> observations are available, <strong>more than one reading</strong> may be transmitted (e.g. touchdown, mid-point, stop-end).</li>
+  </ul>
+</div>
+
+<div class="box box-red">
+  <div class="box-title">⚠️ Correct Way of Expressing Visibility</div>
+  Visibility is expressed in <strong>METRES</strong> (or kilometres if large).
+  <br>Example: <em>"Visibility 1200 metres"</em> — NOT "1.2 nautical miles" and NOT "1200 feet".
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     18. AIR/GROUND COMMUNICATIONS
+============================================================ -->
+<h2 id="ag-comms">18. Air/Ground Communications</h2>
+
+<div class="box box-blue">
+  <div class="box-title">📘 Channels Provided to Indian ATS Units</div>
+  Air-Ground communications between aircraft and Indian ATS units are provided on the channels given below:
+  <ul>
+    <li>Air/Ground (Voice) over <strong>High Frequency (HF) Radio</strong>.</li>
+    <li>Air/Ground (Voice) over <strong>Very High Frequency (VHF) Radio</strong>.</li>
+    <li>Air/Ground (Voice) over <strong>Ultra High Frequency (UHF) Radio</strong>.</li>
+    <li><strong>Remote Controlled Air-Ground (RCAG)</strong> communication — for extended range of VHF/UHF Radio.</li>
+    <li><strong>ADS-CPDLC Service</strong> is available at <strong>Mumbai, Delhi, Kolkata, and Chennai</strong>.</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     19. ATIS
+============================================================ -->
+<h2 id="atis">19. Automatic Terminal Information Service (ATIS)</h2>
+
+<div class="box box-green">
+  <div class="box-title">✅ ATIS — Routine Aerodrome Information</div>
+  <ul>
+    <li>ATIS is available in <strong>almost all airports in India</strong>.</li>
+    <li>This broadcast is related to the <strong>terminal aerodrome</strong> and is <strong>continuous and repetitive</strong>.</li>
+    <li>Provides <strong>routine information to arriving and departing aircraft</strong> by means of continuous and repetitive broadcast.</li>
+    <li><strong>Data Link ATIS (D-ATIS)</strong> service is provided through <strong>Pre-FANS Data Link</strong>.</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     20. VOLMET
+============================================================ -->
+<h2 id="volmet">20. Voice Weather Broadcast (VOLMET)</h2>
+
+<div class="box box-blue">
+  <div class="box-title">📘 What is VOLMET?</div>
+  <strong>VOL</strong> (flight) + <strong>MET</strong> (meteorology). Meteorological aerodrome reports for certain aerodromes are <strong>broadcast on specified HF frequencies</strong>. The callsign, frequency, operating hours, aerodromes contained within the group, and contents are published in the <strong>AIP</strong>.
+  <br><br>
+  VOLMET is presently broadcast by <strong>Mumbai and Kolkata</strong> stations on HF frequencies.
+</div>
+
+<h3>Content of a VOLMET Broadcast</h3>
+<ul>
+  <li>Aerodrome identification (e.g. Mumbai / Kolkata)</li>
+  <li>Surface wind</li>
+  <li>Visibility</li>
+  <li>RVR (if applicable)</li>
+  <li>Weather</li>
+  <li>Cloud</li>
+  <li>Temperature</li>
+  <li>QNH</li>
+  <li>Trend (if applicable)</li>
+</ul>
+
+<div class="box box-yellow">
+  <div class="box-title">🧠 D-VOLMET Note</div>
+  Data Link VOLMET (<strong>D-VOLMET</strong>) service is provided through Pre-FANS Data Link. Non-essential words such as "surface wind", "visibility" etc. are <strong>NOT spoken</strong> in D-VOLMET.
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     21. DISTRESS & URGENCY PROCEDURES
+============================================================ -->
+<h2 id="distress">21. Distress & Urgency Procedures</h2>
+
+<div class="box box-red">
+  <div class="box-title">⚠️ Distress Traffic Frequency Rule</div>
+  Distress traffic shall <strong>normally be maintained on the frequency on which such traffic was initiated</strong>, until it is considered that better assistance can be provided by transferring that traffic to another frequency. Any other frequency shall be used to establish contact with any land/mobile or direction-finding station.
+</div>
+
+<h3>International Distress Frequencies</h3>
+<table>
+  <thead><tr><th>Frequency</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><span class="hi-num">121.5 MHz</span> / <span class="hi-num">243 MHz</span></td><td>International <strong>VHF / UHF</strong> distress frequency</td></tr>
+    <tr><td><span class="hi-num">2182 kHz</span></td><td>International distress frequency (MF band)</td></tr>
+    <tr><td><span class="hi-num">500 kHz</span></td><td>International <strong>Maritime</strong> distress frequency</td></tr>
+  </tbody>
+</table>
+
+<h3>Special Purpose SSR Codes</h3>
+<table>
+  <thead><tr><th>SSR Code</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td class="qcode"><span class="hi-num">7700</span></td><td><strong>Emergency</strong> / Distress</td></tr>
+    <tr><td class="qcode"><span class="hi-num">7600</span></td><td><strong>Radio Communication Failure</strong></td></tr>
+    <tr><td class="qcode"><span class="hi-num">7500</span></td><td><strong>Hijack</strong> or Other Act of Violence</td></tr>
+  </tbody>
+</table>
+
+<h3>ELT Transmission Frequencies</h3>
+<div class="box box-green">
+  <div class="box-title">✅ Emergency Locator Transmitter (ELT)</div>
+  ELT transmissions are made on:
+  <ul>
+    <li><span class="hi-num">121.5 MHz</span></li>
+    <li><span class="hi-num">243 MHz</span></li>
+    <li><span class="hi-num">406 MHz</span></li>
+  </ul>
+</div>
+
+<div class="box box-blue">
+  <div class="box-title">📘 Signal Words</div>
+  <ul>
+    <li><strong>MAYDAY MAYDAY MAYDAY</strong> — Distress signal (spoken 3 times)</li>
+    <li><strong>PAN PAN PAN PAN PAN PAN</strong> — Urgency signal (spoken 3 times)</li>
+    <li><strong>PAN PAN MEDICAL</strong> — Protected medical transport prefix</li>
+    <li><strong>SECURITE SECURITE SECURITE</strong> — Safety signal</li>
+  </ul>
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    E[Emergency Situation] --> T{Type?}
+    T -- "Threatened by grave / imminent danger - immediate assistance" --> D[DISTRESS<br>MAYDAY x3<br>Squawk 7700]
+    T -- "Safety of aircraft/person concerned - no immediate assistance" --> U[URGENCY<br>PAN PAN x3]
+    T -- "Radio Comm Failure" --> R[Squawk 7600]
+    T -- "Hijack / Unlawful interference" --> H[Squawk 7500]
+    style D fill:#fecaca,stroke:#b91c1c,stroke-width:3px
+    style U fill:#fed7aa,stroke:#c2410c,stroke-width:2px
+    style R fill:#fef08a,stroke:#854d0e,stroke-width:2px
+    style H fill:#fecaca,stroke:#7f1d1d,stroke-width:3px
+</pre>
+
+<hr class="divider">
+
+<!-- ============================================================
+     22. IFR COMMUNICATIONS
+============================================================ -->
+<h2 id="ifr">22. IFR Communications</h2>
+
+<div class="box box-green">
+  <div class="box-title">✅ IFR vs VFR Procedures</div>
+  The procedures specified above for <strong>VFR flights are equally applicable to IFR flights</strong>. IFR flights will maintain <strong>two-way communications</strong> with ground <strong>in ALL classes of airspace</strong>.
+  <br><br>
+  An IFR flight operating <strong>outside controlled airspace</strong> shall <strong>maintain listening watch</strong> and <strong>establish two-way communications</strong> with the ATS unit providing <strong>Flight Information Service</strong>.
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     23. WAKE TURBULENCE
+============================================================ -->
+<h2 id="wake">23. Wake Turbulence Phraseology</h2>
+
+<div class="box box-red">
+  <div class="box-title">⚠️ Mandatory Wake Category Suffix</div>
+  Aircraft in the <strong>heavy wake turbulence category</strong> shall include the word <strong>"HEAVY"</strong> immediately after the aircraft call sign <strong>in the initial call to each ATSU</strong>.
+  <br><br>
+  For the <strong>Airbus A380</strong>, the word <strong>"SUPER"</strong> is to be included after the call sign on initial contact.
+  <br><br>
+  Purpose: confirm the aircraft type and/or wake turbulence category is the same as that stated on the flight progress strip.
+</div>
+
+<table>
+  <thead><tr><th>Wake Category</th><th>Suffix on initial call</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Heavy (e.g. B777, B747)</td><td><strong>HEAVY</strong></td><td>"AIR INDIA 285 HEAVY"</td></tr>
+    <tr><td>Super (A380)</td><td><strong>SUPER</strong></td><td>"EMIRATES 504 SUPER"</td></tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<!-- ============================================================
+     24. LEVEL REPORTING & POSITION REPORTS
+============================================================ -->
+<h2 id="level-rep">24. Level Reporting & Voice Position Reports</h2>
+
+<h3>Level Reporting</h3>
+<div class="box box-blue">
+  <div class="box-title">📘 Whole Numbers & Reference</div>
+  <ul>
+    <li>All messages relating to an aircraft's climb or descent to a <strong>HEIGHT (QFE)</strong> or <strong>ALTITUDE (QNH)</strong> are given in <strong>whole numbers</strong>.</li>
+    <li>The <strong>initial message</strong> in any such RTF exchange will also include the <strong>appropriate QFE or QNH</strong>.</li>
+    <li>When transmitting messages containing <strong>flight levels (1013.2 hPa)</strong> each digit shall be transmitted separately.</li>
+    <li>Once given an instruction to climb or descend, a <strong>further overriding instruction</strong> may be given to a pilot.</li>
+  </ul>
+</div>
+
+<h3>Content of Voice Position Reports</h3>
+<div class="box box-green">
+  <div class="box-title">✅ Standard Position Report Elements</div>
+  <ol>
+    <li>Aircraft identification</li>
+    <li>Position</li>
+    <li>Time</li>
+    <li>Flight level or altitude</li>
+    <li>Next position and time over</li>
+    <li>Ensuing significant point</li>
+  </ol>
+</div>
+
+<h3>Meteorological Information at MET Reporting Points</h3>
+<div class="box box-blue">
+  <div class="box-title">📘 Once per FIR</div>
+  Pilots shall give the following meteorological information <strong>once in each FIR</strong> along with the position report at <strong>designated MET reporting points</strong> on international and national ATS routes:
+  <ul>
+    <li>Air temperature</li>
+    <li>Wind direction</li>
+    <li>Wind speed</li>
+    <li>Turbulence</li>
+    <li>Aircraft icing</li>
+    <li>Humidity (if available)</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     25. MODEL AIREP SPECIAL
+============================================================ -->
+<h2 id="airrep">25. Model AIREP SPECIAL</h2>
+
+<div class="box box-blue">
+  <div class="box-title">📘 Special Air-Report</div>
+  An <strong>AIREP SPECIAL</strong> is a special air-report transmitted by an aircraft when an unusual or hazardous meteorological phenomenon is encountered en-route.
+</div>
+
+<table>
+  <thead>
+    <tr><th>Section</th><th>Item</th><th>Parameter</th><th>Transmit in Telephony</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>—</td><td>—</td><td>Message-type designator</td><td>(AIREP SPECIAL)</td></tr>
+    <tr><td rowspan="6"><strong>SECTION 1</strong></td><td>1</td><td>Aircraft identification</td><td>(aircraft identification)</td></tr>
+    <tr><td>2</td><td>Position</td><td>POSITION (lat/long) / OVER (sig pt) / ABEAM (sig pt) / (sig pt) (bearing) (distance)</td></tr>
+    <tr><td>3</td><td>Time</td><td>(time)</td></tr>
+    <tr><td>4</td><td>Level</td><td>FLIGHT LEVEL (no.) or (no.) METRES/FEET / CLIMBING TO FL (no.) / DESCENDING TO FL (no.)</td></tr>
+    <tr><td>5</td><td>Next position and ETO</td><td>(position) (time)</td></tr>
+    <tr><td>6</td><td>Ensuing significant point</td><td>(position) NEXT</td></tr>
+    <tr><td rowspan="2"><strong>SECTION 2</strong></td><td>7</td><td>Estimated time of arrival</td><td>(aerodrome) (time)</td></tr>
+    <tr><td>8</td><td>Endurance</td><td>ENDURANCE (hours and minutes)</td></tr>
+    <tr><td rowspan="11"><strong>SECTION 3</strong></td><td rowspan="11">9</td><td>Moderate turbulence</td><td>TURBULENCE MODERATE</td></tr>
+    <tr><td>Severe turbulence</td><td>TURBULENCE SEVERE</td></tr>
+    <tr><td>Moderate icing</td><td>ICING MODERATE</td></tr>
+    <tr><td>Severe icing</td><td>ICING SEVERE</td></tr>
+    <tr><td>Severe mountain wave</td><td>MOUNTAIN WAVE SEVERE</td></tr>
+    <tr><td>Thunderstorms without hail</td><td>THUNDERSTORMS</td></tr>
+    <tr><td>Thunderstorms with hail</td><td>THUNDERSTORMS WITH HAIL</td></tr>
+    <tr><td>Heavy dust / sand storm</td><td>DUST STORM <em>or</em> SAND STORM HEAVY</td></tr>
+    <tr><td>Volcanic ash cloud</td><td>VOLCANIC ASH CLOUD</td></tr>
+    <tr><td>Pre-eruption volcanic activity / volcanic eruption</td><td>PRE-ERUPTION VOLCANIC ACTIVITY <em>or</em> VOLCANIC ERUPTION</td></tr>
+    <tr><td>Runway braking action</td><td>GOOD / GOOD TO MEDIUM / MEDIUM / MEDIUM TO POOR / POOR / LESS THAN POOR</td></tr>
+  </tbody>
+</table>
+
+<div class="box box-yellow">
+  <div class="box-title">🧠 Additional — Transonic & Supersonic Flights</div>
+  For transonic and supersonic flights, <strong>moderate turbulence</strong> or <strong>hail</strong> or <strong>cumulonimbus clouds</strong> are included in AIREP SPECIAL reports.
+</div>
+
+<h3>Runway Braking Action — Specifications</h3>
+<table>
+  <thead><tr><th>Category</th><th>Specification</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Good</strong></td><td>Braking deceleration is <strong>normal</strong> for the wheel braking effort applied and directional control is <strong>normal</strong>.</td></tr>
+    <tr><td><strong>Good to Medium</strong></td><td>Braking deceleration or directional control is between Good and Medium.</td></tr>
+    <tr><td><strong>Medium</strong></td><td>Braking deceleration is <strong>noticeably reduced</strong> for the wheel braking effort applied OR directional control is noticeably reduced.</td></tr>
+    <tr><td><strong>Medium to Poor</strong></td><td>Braking deceleration or directional control is between Medium and Poor.</td></tr>
+    <tr><td><strong>Poor</strong></td><td>Braking deceleration is <strong>significantly reduced</strong> for the wheel braking effort applied OR directional control is significantly reduced.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Example — Spoken in Radiotelephony:</strong><br>
+  "Air Rep Special Air India 213, Position zero six seven radial of DPN VOR at seventy five DME, fix zero one three two, Flight Level two nine zero climbing to Flight Level three five zero, thunderstorm with hail."
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     26. VHF PROPAGATION & WAVE THEORY
+============================================================ -->
+<h2 id="vhf-props">26. General Principles of VHF Propagation & Wave Theory</h2>
+
+<div class="box box-blue">
+  <div class="box-title">📘 Wave Energy — Basics</div>
+  Wave energy is of a <strong>continuous nature</strong> in that it consists of many waves, one following the other at regular intervals, with the wave cycle repeating itself over and over again as the wave motion passes a given point. (A cork floating on water moves up and down as water waves pass — note that the water itself does not move out horizontally with the waves.)
+</div>
+
+<h3>Three Main Wave Parameters</h3>
+<table>
+  <thead><tr><th>Parameter</th><th>Symbol</th><th>Definition</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Wavelength</strong></td><td>λ (lambda)</td><td>The length of one single wave (one complete cycle); also the distance travelled by the wave during transmission of one cycle.</td></tr>
+    <tr><td><strong>Frequency</strong></td><td>F</td><td>The number of completed waves (or cycles) passing a point in <strong>one second</strong>.</td></tr>
+    <tr><td><strong>Amplitude</strong></td><td>—</td><td>The distance from one extremity of the oscillation to the other — "peak to peak".</td></tr>
+  </tbody>
+</table>
+
+<h3>Wave Equation & Conversions</h3>
+<div class="box box-green">
+  <div class="box-title">✅ Key Formula</div>
+  <p style="font-size:18px; text-align:center;">
+    <strong>F ∝ 1/λ &nbsp;&nbsp;&nbsp; F = C/λ</strong>
+  </p>
+  Where <strong>C = 3 × 10⁸ m/s</strong> (speed of EM waves / light in vacuum).
+  <br><br>
+  <em>Higher the wavelength → lower the frequency, and vice-versa.</em>
+
+  <br><br>
+  <strong>Unit conversions:</strong>
+  <ul>
+    <li>1 cycle = 1 Hz</li>
+    <li>1000 Hz = 1 kHz = 10³ Hz</li>
+    <li>1000 kHz = 1 MHz = 10⁶ Hz</li>
+    <li>1000 MHz = 1 GHz = 10⁹ Hz</li>
+    <li>1 km = 1000 m; 1 m = 100 cm; 1 cm = 10 mm</li>
+  </ul>
+</div>
+
+<h3>Polarisation</h3>
+<div class="box box-blue">
+  <div class="box-title">📘 Polarisation Definition</div>
+  In an <strong>EM wave</strong>, two components — <strong>electrical</strong> and <strong>magnetic</strong> — travel <strong>perpendicular to each other</strong> in a direction which is <strong>mutually perpendicular to both</strong>. The direction in which the <strong>electrical component</strong> lies is called the <strong>direction of polarisation</strong>.
+</div>
+
+<h3>Polar Diagram</h3>
+<p>A polar diagram gives the <strong>aerial characteristics</strong> of a transmitter or a receiver. For a transmitter it is drawn up to a distance where signal strength <strong>reduces up to 50% of transmission</strong>.</p>
+
+<h3>Modulation</h3>
+<div class="box box-blue">
+  <div class="box-title">📘 What is Modulation?</div>
+  Modulation is the <strong>process of superimposing audio frequency or information onto a carrier wave</strong>.
+</div>
+
+<div class="box box-green">
+  <div class="box-title">✅ Four Types of Modulation</div>
+  <ol>
+    <li><strong>Amplitude Modulation (AM)</strong></li>
+    <li><strong>Frequency Modulation (FM)</strong></li>
+    <li><strong>Pulse Modulation</strong></li>
+    <li><strong>Phase Modulation</strong></li>
+  </ol>
+</div>
+
+<h3>Properties of Radio Waves</h3>
+<div class="box box-yellow">
+  <div class="box-title">🧠 Key Properties</div>
+  <ol type="i">
+    <li>EM waves travel at the <strong>speed of light = <span class="hi-num">3 × 10⁸ m/s</span></strong>.</li>
+    <li>They get <strong>refracted, reflected, diffracted, and attenuated</strong> during propagation (attenuation = lessening of amplitude in time).</li>
+    <li>Their <strong>direction and velocity both change</strong> while passing from one medium to another.</li>
+    <li>While passing from a medium of <strong>lower density to higher density</strong> they <strong>bend TOWARDS the normal</strong>, and vice-versa. They <strong>always bend towards the denser medium</strong>.</li>
+  </ol>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     27. FREQUENCY BANDS
+============================================================ -->
+<h2 id="freq-bands">27. Frequency Bands & Allocations</h2>
+
+<table>
+  <thead>
+    <tr><th>Band</th><th>Frequency Range</th><th>Wavelength Range</th><th>Wavelength Denomination</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>VLF</strong> — Very Low Frequency</td><td>3 – 30 kHz</td><td>100 km – 10 km</td><td>Myriametric</td></tr>
+    <tr><td><strong>LF</strong> — Low Frequency</td><td>30 – 300 kHz</td><td>10 km – 1 km</td><td>Kilometric</td></tr>
+    <tr><td><strong>MF</strong> — Medium Frequency</td><td>300 kHz – 3 MHz</td><td>1 km – 100 m</td><td>Hectometric</td></tr>
+    <tr><td><strong>HF</strong> — High Frequency</td><td>3 – 30 MHz</td><td>100 m – 10 m</td><td>Decametric</td></tr>
+    <tr><td><strong>VHF</strong> — Very High Frequency</td><td>30 – 300 MHz</td><td>10 m – 1 m</td><td>Metric</td></tr>
+    <tr><td><strong>UHF</strong> — Ultra High Frequency</td><td>300 MHz – 3 GHz</td><td>1 m – 10 cm</td><td>Decimetric</td></tr>
+    <tr><td><strong>SHF</strong> — Super High Frequency</td><td>3 – 30 GHz</td><td>10 cm – 1 cm</td><td>Centimetric (Microwave)</td></tr>
+    <tr><td><strong>EHF</strong> — Extremely High Frequency</td><td>30 – 300 GHz</td><td>1 cm – 1 mm</td><td>Millimetric</td></tr>
+  </tbody>
+</table>
+
+<h3>Aviation Systems & Their Frequencies</h3>
+<table>
+  <thead><tr><th>System</th><th>Frequency Range</th><th>Band</th></tr></thead>
+  <tbody>
+    <tr><td>Decca</td><td>70 – 130 kHz</td><td>LF</td></tr>
+    <tr><td>Loran C</td><td>100 kHz</td><td>LF</td></tr>
+    <tr><td>ADF</td><td>190 – 1750 kHz</td><td>LF / MF</td></tr>
+    <tr><td>HF Communications</td><td>2 – 25 MHz</td><td>HF</td></tr>
+    <tr><td>ILS Markers</td><td>75 MHz</td><td>VHF</td></tr>
+    <tr><td>ILS Localiser</td><td>108.1 – 111.95 MHz</td><td>VHF</td></tr>
+    <tr><td>VOR</td><td>108.0 – 117.95 MHz</td><td>VHF</td></tr>
+    <tr><td>VHF Communications</td><td>118 – 137 MHz</td><td>VHF</td></tr>
+    <tr><td>ILS Glidepath</td><td>329.15 – 335.0 MHz</td><td>UHF</td></tr>
+    <tr><td>DME</td><td>960 – 1213 MHz</td><td>UHF</td></tr>
+    <tr><td>SSR</td><td>1030 and 1090 MHz</td><td>UHF</td></tr>
+    <tr><td>GPS (L1)</td><td>1575.42 MHz</td><td>UHF</td></tr>
+    <tr><td>GPS (L2)</td><td>1227.6 MHz</td><td>UHF</td></tr>
+    <tr><td>Satcom (Inmarsat) — Aircraft to Sat</td><td>1500 – 1600 MHz</td><td>UHF</td></tr>
+    <tr><td>Satcom (Inmarsat) — Sat to Ground</td><td>4000 – 6000 MHz</td><td>SHF</td></tr>
+    <tr><td>Radio Altimeter</td><td>4200 – 4400 MHz</td><td>SHF</td></tr>
+    <tr><td>Weather Radar</td><td>9375 MHz</td><td>SHF</td></tr>
+    <tr><td>MLS</td><td>5031 – 5091 MHz</td><td>SHF</td></tr>
+    <tr><td>ATC Surveillance Radars</td><td>600 – 1300 MHz</td><td>UHF</td></tr>
+    <tr><td>ATC Ground Manoeuvre Radar</td><td>10 – 16 GHz</td><td>SHF</td></tr>
+  </tbody>
+</table>
+
+<h3>Propagation by Band</h3>
+<div class="box box-blue">
+  <div class="box-title">📘 How Each Band Travels</div>
+  <ul>
+    <li><strong>VLF, LF</strong> are <strong>absorbed by layers</strong> → More range as <strong>Ground Wave</strong>.</li>
+    <li>Part of <strong>MF and HF</strong> are <strong>reflected back</strong> → Travel as <strong>Sky Wave</strong>.</li>
+    <li><strong>VHF, UHF, SHF, EHF</strong> pass through the layers → <strong>Line of Sight (LOS)</strong> only.</li>
+  </ul>
+</div>
+
+<pre class="mermaid">
+flowchart LR
+    A[VLF / LF] --> G[Ground Wave - long range]
+    B[MF / HF] --> S[Sky Wave - ionospheric reflection]
+    C[VHF / UHF / SHF / EHF] --> L[Line of Sight]
+    style A fill:#bae6fd
+    style B fill:#fef08a
+    style C fill:#bbf7d0
+    style G fill:#bae6fd,stroke:#0369a1,stroke-width:2px
+    style S fill:#fef08a,stroke:#854d0e,stroke-width:2px
+    style L fill:#bbf7d0,stroke:#15803d,stroke-width:2px
+</pre>
+
+<hr class="divider">
+
+<!-- ============================================================
+     28. SATELLITE COMMUNICATIONS
+============================================================ -->
+<h2 id="satcom">28. Satellite Communications (SATCOM / SATVOICE)</h2>
+
+<div class="box box-blue">
+  <div class="box-title">📘 SATCOM — Definition</div>
+  <strong>SATCOM</strong> refers to the <strong>voice and data service</strong> that allows an aircraft to communicate, <strong>via satellite</strong>, with air traffic control and its airline operations center when <strong>outside the coverage of conventional ground radar and VHF stations</strong>.
+</div>
+
+<h3>Three Types of Satellite Communication Services</h3>
+<ol>
+  <li><strong>Telecommunications</strong></li>
+  <li><strong>Broadcasting</strong></li>
+  <li><strong>Data communications</strong></li>
+</ol>
+
+<p>Satellite communication systems provide <strong>real-time data to aircraft</strong>, allowing for more precise monitoring and improved response times in the event of a maintenance or safety issue. This enhanced capability has led to improved safety and performance, as well as increased efficiency in aircraft maintenance operations.</p>
+
+<div class="box box-green">
+  <div class="box-title">✅ ICAO Doc 9869 — Definitions</div>
+  <ul>
+    <li><strong>SATCOM</strong> is used only when referring to <strong>BOTH voice AND data</strong> satellite communication.</li>
+    <li><strong>SATVOICE</strong> is for <strong>satellite voice communications only</strong>.</li>
+    <li>The SATVOICE system shall be capable of detecting <strong>loss of service, equipment failures, and/or logon failures</strong> and provide indication to the controller / radio operator or flight crew of system status.</li>
+  </ul>
+</div>
+
+<div class="box box-red">
+  <div class="box-title">⚠️ SATVOICE Status as LRCS</div>
+  In addition to <strong>HF</strong>, ICAO recognises <strong>SATVOICE</strong> as a <strong>valid Long-Range Communication System (LRCS)</strong>. <em>However, it will take some more maturing before SATVOICE replaces HF.</em>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     29. PROPAGATION OF RADIO WAVES
+============================================================ -->
+<h2 id="propagation">29. Propagation of Radio Waves</h2>
+
+<div class="box box-blue">
+  <div class="box-title">📘 Two Modes of Propagation</div>
+  EM waves travel from a transmitter to a receiver in <strong>two ways</strong>:
+  <ol type="i">
+    <li><strong>Ground Waves</strong></li>
+    <li><strong>Sky Waves</strong></li>
+  </ol>
+</div>
+
+<table>
+  <thead><tr><th>Wave Type</th><th>Definition</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Ground Wave</strong></td><td>A wave received either <strong>directly from transmitter</strong> or <strong>after reflection from ground</strong> is called a ground wave.</td></tr>
+    <tr><td><strong>Sky Wave</strong></td><td>A wave received at the receiver after getting <strong>refracted from atmosphere (ionosphere)</strong>.</td></tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<!-- ============================================================
+     30. LOS, TX POWER & RCP
+============================================================ -->
+<h2 id="los">30. Range, Tx Power, LOS & Required Communication Performance</h2>
+
+<h3>1. Transmission Power</h3>
+<div class="box box-green">
+  <div class="box-title">✅ Tx Power Rule</div>
+  <strong>Higher the transmission power, more is the range.</strong> Hence, to <strong>double the range, power must be increased 4 times</strong>.
+  <p style="text-align:center; font-size:17px;"><strong>Range ∝ √(Tx Power)</strong></p>
+</div>
+
+<h3>2. Line of Sight (LOS) Range Formula</h3>
+<div class="box box-red">
+  <div class="box-title">⚠️ LOS Formula — Memorise</div>
+  <p style="text-align:center; font-size:18px;">
+    <strong>LOS (range) = 1.25 × ( √Ht(Tx) + √Ht(Rx) )</strong>
+  </p>
+  Where:
+  <ul>
+    <li><strong>Ht</strong> = height in <strong>FEET</strong></li>
+    <li><strong>Range</strong> = in <strong>Nautical Miles (NM)</strong></li>
+  </ul>
+
+  <strong>Worked Example:</strong> Aircraft at FL80 (8000 ft), Ground VHF at 325 ft:<br>
+  LOS = 1.25 × (√8000 + √325) = 1.25 × (89.44 + 18.03) = 1.25 × 107.47 ≈ <strong>134 NM</strong>
+</div>
+
+<h3>3. Required Communication Performance (RCP)</h3>
+<div class="box box-blue">
+  <div class="box-title">📘 RCP Concept</div>
+  The RCP concept characterises the <strong>performance required for communication capabilities</strong> that support ATM functions without reference to any specific technology, and is open to new technology. This approach is essential to evolving operational concepts using emerging technologies.
+  <br><br>
+  An <strong>ATM function</strong> is an individual operational component of air traffic services. Examples include the application of separation between aircraft, the re-routing of aircraft, and the provision of flight information.
+  <br><br>
+  <strong>The number attached to your RCP is the number of seconds it takes for an instruction to travel from the ground to you and your acknowledgement back to the ground.</strong>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================
+     31. CPDLC & ADS
+============================================================ -->
+<h2 id="cpdlc">31. CPDLC & Automatic Dependent Surveillance (ADS)</h2>
+
+<h3>Controller Pilot Data Link Communications (CPDLC)</h3>
+<div class="box box-blue">
+  <div class="box-title">📘 CPDLC — Definition</div>
+  CPDLC is a <strong>two-way data-link system</strong> by which controllers can transmit <strong>non-urgent strategic messages</strong> to an aircraft as an alternative to voice communications. The message is displayed on a flight-deck visual display.
+</div>
+
+<div class="box box-green">
+  <div class="box-title">✅ Operational Use</div>
+  <ul>
+    <li>When communicating with an aircraft operating <strong>within airspace beyond the range of DCPC VHF voice communication</strong>, CPDLC is available, and (unless local ATC procedures state otherwise) controller and flight crew would normally <strong>choose CPDLC</strong> as the means of communication.</li>
+    <li>Voice (VHF, HF, or SATVOICE direct or via radio operator) would be used as an <strong>alternative means</strong>. However, the controller and flight crew always determine the communication medium most appropriate at any given time.</li>
+    <li>Messages from aircraft to ATC may follow a <strong>standard format</strong> or may be <strong>free-text</strong>.</li>
+    <li>Messages from a controller normally follow a <strong>standard format</strong>.</li>
+    <li><strong>Response is required to most messages.</strong></li>
+    <li>Voice and data link shall <strong>co-exist</strong>.</li>
+    <li>Implementation of CPDLC is intended as a <strong>supplementary means</strong> of communication to the use of voice communication.</li>
+  </ul>
+</div>
+
+<div class="box box-red">
+  <div class="box-title">⚠️ CPDLC Usage Restriction</div>
+  CPDLC shall only be used in the context of <strong>NON-TIME-CRITICAL communications</strong>.
+</div>
+
+<h3>Automatic Dependent Surveillance (ADS)</h3>
+<div class="box box-blue">
+  <div class="box-title">📘 ADS — Definition</div>
+  ADS supports <strong>automatic reporting by the Aircraft Flight Management System (FMS)</strong> of:
+  <ul>
+    <li>Aircraft <strong>position</strong>;</li>
+    <li><strong>Intent</strong> information;</li>
+    <li><strong>Meteorological information</strong> (Spot wind and Temperature).</li>
+  </ul>
+  The FMS reports the required information in accordance with <strong>parameters selected by the ground system</strong>. Messages will be transferred by <strong>VHF and satellite data links</strong>.
+</div>
+
+<div class="box box-green">
+  <div class="box-title">✅ ADS-CPDLC in India</div>
+  <ul>
+    <li>ADS/CPDLC is integrated with the <strong>Flight Data Processing System (FDPS)</strong> at <strong>Chennai, Mumbai, Delhi, and Kolkata</strong>.</li>
+    <li>ADS-CPDLC Service is available through <strong>FANS-1A Data Link</strong>.</li>
+    <li>All aircraft fitted with this facility shall <strong>login 10 minutes prior to entering the concerned FIR</strong>.</li>
+  </ul>
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    A[Flight Deck FMS] -- "Position / Intent / Met data" --> ADS[ADS via VHF + SATCOM Data Link]
+    ADS --> FDPS[FDPS - Chennai / Mumbai / Delhi / Kolkata]
+    FDPS --> ATC[ATC Controller]
+    ATC -- "Non-time-critical msgs" --> CPDLC[CPDLC Data Link]
+    CPDLC --> A
+    style A fill:#bae6fd
+    style ADS fill:#fef08a
+    style FDPS fill:#bbf7d0
+    style ATC fill:#fecaca
+    style CPDLC fill:#e9d5ff
+</pre>
+
+<hr class="divider">
+
+<!-- ============================================================
+     EXAM-PREP QUICK CARDS
+============================================================ -->
+<h2>32. Exam-Prep Quick Cards — Answer Key Highlights</h2>
+
+<div class="box box-yellow">
+  <div class="box-title">🧠 High-Frequency Exam Points (from end-of-chapter questions)</div>
+  <ul>
+    <li><strong>QDR</strong> = Magnetic bearing FROM the station.</li>
+    <li><strong>Height</strong> → set <strong>QFE</strong>; <strong>Altitude</strong> → set <strong>QNH</strong>; <strong>FL</strong> → set <strong>QNE (1013.2)</strong>.</li>
+    <li><strong>ATIS</strong> = Automatic <strong>Terminal</strong> Information Service (not "Traffic", not "Termination").</li>
+    <li><strong>QDM</strong> = Magnetic heading TO the station (no wind).</li>
+    <li><strong>QTE</strong> = TRUE bearing FROM the station.</li>
+    <li><strong>QUJ</strong> = TRUE track TO the station (D/F use for true heading no-wind).</li>
+    <li>Priority order = <strong>Distress → Urgency → D/F → Flight Safety → Met → Flight Regularity</strong>.</li>
+    <li>3500 ft → "Three Thousand Five Hundred".</li>
+    <li>13500 → "One Three Thousand Five Hundred".</li>
+    <li>"Decimal" may be omitted if no chance of misunderstanding (some operators); standard rule is the term must be transmitted.</li>
+    <li>9:20 AM (no confusion) → just "TOO ZE-RO" (minutes only).</li>
+    <li>"CORRECTION QNH 1016" → standard phrase for error in transmission.</li>
+    <li>"YES" → <strong>AFFIRM</strong> (NOT "Affirmative", NOT "Roger").</li>
+    <li>"Listen out" → <strong>MONITOR</strong>.</li>
+    <li>Surface movement = <strong>GROUND</strong>; Approach Radar departures = <strong>APPROACH RADAR</strong>.</li>
+    <li>AIR INDIA 285 > 136 t initial call → <strong>"AIR INDIA 285 HEAVY"</strong>.</li>
+    <li>Readability 3 = Readable but with difficulty.</li>
+    <li>Test call ≤ <strong>10 seconds</strong>.</li>
+    <li>Always read back: RWY in use, altimeter settings, SSR codes, level/heading/speed instructions.</li>
+    <li>"Overcast" = 100% / 8 octas; "Broken" = 5–7 octas; "Scattered" = 3–4 octas; "Few" = 1–2 octas.</li>
+    <li>Visibility expressed in <strong>METRES</strong>.</li>
+    <li>CAVOK = ≥10 km vis, no cloud below 5000 ft/MSA, no CB, no precip/TS/fog/drifting snow.</li>
+    <li>Comm failure → try alternative frequency.</li>
+    <li>Blind transmission → make <strong>twice on designated frequency</strong>.</li>
+    <li>Distress: aircraft "threatened by serious / imminent danger" requiring immediate assistance.</li>
+    <li>Squawk <strong>7700</strong> = distress.</li>
+    <li>MAYDAY x 3 = distress; uses <strong>frequency currently in use</strong>.</li>
+    <li>Urgency call: <strong>PAN PAN PAN</strong> on freq in use + station addressed + nature + intentions.</li>
+    <li>ATIS = routine continuous repetitive broadcast to arrivals & departures.</li>
+    <li>HDG 225 @ 3500 ft → "HEADING TOO TOO FIFE AT TREE THOUSAND FIFE HUNDRED".</li>
+    <li>Area Control Centre (no radar) = <strong>...CONTROL</strong>.</li>
+    <li>Approach Control Radar Arrivals = <strong>...RADAR</strong>.</li>
+    <li>Blind transmission = caller believes called station can still receive though no acknowledgement.</li>
+    <li>"Runway vacated" = no longer on active runway.</li>
+    <li>IFR + IMC + comm failure → continue per flight plan to designated navaid serving destination.</li>
+    <li>Commence descent over destination navaid: <strong>at, or as close to, ETA from current flight plan</strong>.</li>
+    <li>Medical transport prefix = <strong>PAN PAN MEDICAL</strong>.</li>
+    <li>Urgency > all other comms EXCEPT distress.</li>
+    <li>VOLMET includes <strong>METARs</strong>.</li>
+    <li>Air India 5345 abbreviated → <strong>No abbreviated form</strong> (telephony designator + flight number cannot be shortened).</li>
+    <li>FL80 + 325 ft VHF station → ≈ <strong>134 NM</strong> LOS.</li>
+    <li>295 kHz → <strong>LF</strong> band.</li>
+    <li>Frequency = number of complete waveforms passing a spot in <strong>1 second</strong>.</li>
+    <li>HF wavelength = <strong>Decametric</strong> (100 m – 10 m).</li>
+    <li>Weather radar (9375 MHz) wavelength = <strong>Centimetric</strong>.</li>
+    <li>19 cm → 1.579 GHz, <strong>UHF</strong>.</li>
+    <li>Thunderstorms without hail → reported as <strong>"THUNDERSTORMS"</strong>.</li>
+    <li><strong>SATVOICE</strong> — recognised as a valid <strong>LRCS</strong> by ICAO.</li>
+  </ul>
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<div class="footer">
+  <strong>Capt. Pankaj Pahil</strong> · DGCA RTR(A) Instructor · Chapter 19 — Communications<br>
+  Compiled per ICAO Annex 10 · ICAO Doc 4444 · AIP India
+</div>
+
+<!-- ============================================================
+     WATERMARK (must be the LAST element in <body>)
+============================================================ -->
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

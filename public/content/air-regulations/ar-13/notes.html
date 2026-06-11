@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 14 – National Law | DGCA CPL/ATPL Study Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;600;700&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== PAGE SETUP ===== */
+@page {
+  size: A4;
+  margin: 18mm 15mm 18mm 15mm;
+}
+@page :first {
+  margin-top: 10mm;
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 11pt;
+  line-height: 1.65;
+  color: #1c2333;
+  background: #f5f6fa;
+}
+
+/* ===== COVER PAGE ===== */
+.cover-page {
+  background: linear-gradient(160deg, #0d1b3e 0%, #1a3a6e 50%, #0d3060 100%);
+  color: #fff;
+  text-align: center;
+  padding: 60px 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  page-break-after: always;
+  position: relative;
+  overflow: hidden;
+}
+.cover-page::after {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+}
+.cover-badge {
+  background: #c0392b;
+  color: #fff;
+  font-size: 10pt;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 20px;
+  border-radius: 3px;
+  margin-bottom: 24px;
+  display: inline-block;
+}
+.cover-chapter {
+  font-family: 'Merriweather', serif;
+  font-size: 60pt;
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.cover-title {
+  font-family: 'Merriweather', serif;
+  font-size: 22pt;
+  font-weight: 900;
+  color: #7ec8f7;
+  margin: 12px 0 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.cover-subtitle {
+  font-size: 11pt;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 40px;
+}
+.cover-rule-list {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 20px 32px;
+  text-align: left;
+  max-width: 520px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+.cover-rule-list li {
+  list-style: none;
+  padding: 4px 0;
+  color: rgba(255,255,255,0.85);
+  font-size: 10.5pt;
+}
+.cover-rule-list li::before { content: "✈  "; color: #7ec8f7; }
+.cover-author {
+  font-size: 12pt;
+  font-weight: 700;
+  color: #ffd700;
+  letter-spacing: 1px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 20px;
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+.cover-sub-author {
+  font-size: 9.5pt;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+}
+
+/* ===== MAIN WRAPPER ===== */
+.page-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  background: #fff;
+}
+
+/* ===== SECTION HEADERS ===== */
+.section-header {
+  background: linear-gradient(90deg, #0d1b3e 0%, #1a3a6e 100%);
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 6px 6px 0 0;
+  margin-top: 36px;
+  margin-bottom: 0;
+  page-break-after: avoid;
+  page-break-inside: avoid;
+}
+.section-header h2 {
+  font-family: 'Merriweather', serif;
+  font-size: 14pt;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.section-header .act-tag {
+  font-size: 8.5pt;
+  background: rgba(255,255,255,0.15);
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-left: 8px;
+  vertical-align: middle;
+  letter-spacing: 1px;
+}
+
+.sub-section {
+  border: 1px solid #dce3ee;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  padding: 18px 22px;
+  margin-bottom: 6px;
+  background: #fff;
+  page-break-inside: avoid;
+}
+
+.rule-title {
+  font-family: 'Merriweather', serif;
+  font-size: 12pt;
+  font-weight: 700;
+  color: #0d1b3e;
+  margin: 24px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #e8ecf5;
+  page-break-after: avoid;
+}
+.rule-title .rule-num {
+  background: #1a3a6e;
+  color: #fff;
+  font-size: 9pt;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-right: 8px;
+  font-family: 'Fira Mono', monospace;
+}
+
+h3 {
+  font-family: 'Merriweather', serif;
+  font-size: 11pt;
+  font-weight: 700;
+  color: #1a3a6e;
+  margin: 16px 0 6px;
+}
+
+p { margin-bottom: 8px; }
+
+/* ===== INFO BOXES ===== */
+.box {
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  page-break-inside: avoid;
+}
+
+/* RED – Strict limits / warnings */
+.limit-box {
+  background: #fff0f0;
+  border-left: 5px solid #c0392b;
+  border: 1px solid #f5c6cb;
+  border-left: 5px solid #c0392b;
+}
+.limit-box .box-title {
+  color: #c0392b;
+  font-weight: 700;
+  font-size: 9.5pt;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.limit-box .box-title::before { content: "⚠ "; }
+
+/* BLUE – Definitions */
+.def-box {
+  background: #f0f5ff;
+  border: 1px solid #b3c8f0;
+  border-left: 5px solid #2471a3;
+}
+.def-box .box-title {
+  color: #2471a3;
+  font-weight: 700;
+  font-size: 9.5pt;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.def-box .box-title::before { content: "📖 "; }
+
+/* GREEN – SOPs / Procedures */
+.sop-box {
+  background: #f0fff5;
+  border: 1px solid #a9dfbf;
+  border-left: 5px solid #1e8449;
+}
+.sop-box .box-title {
+  color: #1e8449;
+  font-weight: 700;
+  font-size: 9.5pt;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.sop-box .box-title::before { content: "✅ "; }
+
+/* AMBER – Important notes */
+.note-box {
+  background: #fffbf0;
+  border: 1px solid #f9e4a0;
+  border-left: 5px solid #d4ac0d;
+}
+.note-box .box-title {
+  color: #b7950b;
+  font-weight: 700;
+  font-size: 9.5pt;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.note-box .box-title::before { content: "💡 "; }
+
+/* PURPLE – Key exam points */
+.exam-box {
+  background: #f9f0ff;
+  border: 1px solid #d7a8f0;
+  border-left: 5px solid #7d3c98;
+}
+.exam-box .box-title {
+  color: #7d3c98;
+  font-weight: 700;
+  font-size: 9.5pt;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.exam-box .box-title::before { content: "🎯 "; }
+
+/* TEAL – Facts */
+.fact-box {
+  background: #f0fafa;
+  border: 1px solid #a2d9d9;
+  border-left: 5px solid #148f77;
+}
+.fact-box .box-title {
+  color: #148f77;
+  font-weight: 700;
+  font-size: 9.5pt;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* ===== TABLES ===== */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 10.5pt;
+  page-break-inside: avoid;
+}
+.data-table th {
+  background: #1a3a6e;
+  color: #fff;
+  padding: 9px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 10pt;
+}
+.data-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e8ecf5;
+  vertical-align: top;
+}
+.data-table tr:nth-child(even) td { background: #f7f9fd; }
+.data-table tr:hover td { background: #eef2ff; }
+
+/* ===== LISTS ===== */
+ul.reg-list, ol.reg-list {
+  padding-left: 22px;
+  margin: 8px 0;
+}
+ul.reg-list li, ol.reg-list li {
+  margin-bottom: 5px;
+  line-height: 1.6;
+}
+ul.reg-list li::marker { color: #1a3a6e; }
+
+/* ===== HIGHLIGHT SPANS ===== */
+.val { 
+  background: #fff3cd; 
+  color: #7d5a00; 
+  font-weight: 700; 
+  font-family: 'Fira Mono', monospace;
+  padding: 1px 5px; 
+  border-radius: 3px; 
+  font-size: 10pt;
+}
+.term { 
+  color: #1a3a6e; 
+  font-weight: 700; 
+}
+.penalty { 
+  color: #c0392b; 
+  font-weight: 700; 
+}
+.auth {
+  color: #1e8449;
+  font-weight: 700;
+}
+
+/* ===== FLOWCHART CONTAINER ===== */
+.flowchart-wrap {
+  text-align: center;
+  margin: 16px 0;
+  page-break-inside: avoid;
+}
+.flowchart-title {
+  font-size: 9.5pt;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+/* ===== DIVIDER ===== */
+.section-divider {
+  border: none;
+  border-top: 2px solid #e8ecf5;
+  margin: 28px 0;
+  page-break-after: avoid;
+}
+
+/* ===== PROHIBITED AREAS TABLE HEADER COLOR ===== */
+.table-danger th { background: #922b21; }
+.table-success th { background: #1e8449; }
+.table-purple th { background: #6c3483; }
+.table-teal th { background: #148f77; }
+
+/* ===== Q&A SECTION ===== */
+.qa-item {
+  border: 1px solid #dce3ee;
+  border-radius: 6px;
+  margin: 10px 0;
+  page-break-inside: avoid;
+  overflow: hidden;
+}
+.qa-question {
+  background: #1a3a6e;
+  color: #fff;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 10.5pt;
+}
+.qa-options {
+  padding: 10px 16px;
+  background: #f7f9fd;
+}
+.qa-options p { margin: 4px 0; font-size: 10.5pt; }
+.qa-answer {
+  padding: 8px 16px;
+  background: #f0fff5;
+  border-top: 1px solid #a9dfbf;
+  color: #1e5631;
+  font-weight: 600;
+  font-size: 10pt;
+}
+.qa-answer::before { content: "✔ Answer: "; color: #1e8449; }
+
+/* ===== TOC ===== */
+.toc { 
+  background: #f7f9fd; 
+  border: 1px solid #dce3ee; 
+  border-radius: 8px; 
+  padding: 20px 28px; 
+  page-break-after: always;
+}
+.toc h2 { 
+  font-family: 'Merriweather', serif; 
+  color: #0d1b3e; 
+  font-size: 14pt;
+  margin-bottom: 14px;
+  border-bottom: 2px solid #1a3a6e;
+  padding-bottom: 8px;
+}
+.toc ol { padding-left: 20px; }
+.toc li { 
+  padding: 4px 0; 
+  font-size: 10.5pt; 
+  color: #1a3a6e;
+  font-weight: 600;
+}
+.toc li span { 
+  color: #666; 
+  font-weight: 400; 
+  font-style: italic;
+}
+
+/* ===== GRID HELPERS ===== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 12px 0;
+}
+
+/* ===== PRINT ===== */
+@media print {
+  body { background: #fff; font-size: 10pt; }
+  .cover-page { min-height: auto; }
+  .box, .qa-item, .data-table, .flowchart-wrap { page-break-inside: avoid; }
+  .section-header { page-break-after: avoid; }
+  .rule-title { page-break-after: avoid; }
+}
+
+/* ===== BADGE PILLS ===== */
+.pill {
+  display: inline-block;
+  font-size: 8.5pt;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 12px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.pill-red { background: #fde8e8; color: #922b21; border: 1px solid #f5a7a7; }
+.pill-blue { background: #e8f0fe; color: #1a3a6e; border: 1px solid #a3bdf5; }
+.pill-green { background: #e8faf0; color: #1e5631; border: 1px solid #82dba8; }
+
+/* ===== SUMMARY CARD ===== */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 14px 0;
+  page-break-inside: avoid;
+}
+.summary-card {
+  border: 1px solid #dce3ee;
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+  background: #f7f9fd;
+}
+.summary-card .big-val {
+  font-family: 'Fira Mono', monospace;
+  font-size: 22pt;
+  font-weight: 700;
+  color: #1a3a6e;
+  line-height: 1;
+}
+.summary-card .label {
+  font-size: 9pt;
+  color: #666;
+  margin-top: 4px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     COVER PAGE
+     ====================================================== -->
+<div class="cover-page">
+  <div class="cover-badge">DGCA CPL / ATPL Ground Classes</div>
+  <div class="cover-chapter">14</div>
+  <div class="cover-title">National Law</div>
+  <div class="cover-subtitle">Aircraft Act 1934 &bull; Aircraft Rules 1937 &bull; CAR Section 5</div>
+
+  <ul class="cover-rule-list">
+    <li>The Aircraft Act, 1934</li>
+    <li>The Aircraft Rules, 1937</li>
+    <li>The Indian Aircraft Rules, 1920</li>
+    <li>Indian Aircraft (Public Health) Rules, 1954</li>
+    <li>International Health Regulations (IHR), 2005</li>
+    <li>The Unmanned Aircraft System Rules, 2021</li>
+    <li>Aircraft (Security) Rules, 2011</li>
+    <li>Aircraft (Investigation of Accidents and Incidents) Rules, 2017</li>
+  </ul>
+
+  <div class="cover-author">Capt. Pankaj Pahil</div>
+  <div class="cover-sub-author">Pilot &amp; Ground Instructor &nbsp;|&nbsp; Study Notes for Examination Use</div>
+</div>
+
+<!-- ======================================================
+     PAGE CONTENT
+     ====================================================== -->
+<div class="page-content">
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>📋 Table of Contents</h2>
+  <ol>
+    <li>The Aircraft Act, 1934 <span>— Extent, Powers, Penalties</span></li>
+    <li>The Aircraft Rules, 1937 <span>— Complete Rule-by-Rule Coverage</span></li>
+    <li>Prohibited Areas <span>— Schedule I Areas</span></li>
+    <li>Licensing, Medical &amp; Logbooks <span>— Rules 38–67A</span></li>
+    <li>Aerodromes &amp; Scheduled Services <span>— Rules 79–161</span></li>
+    <li>The Indian Aircraft Rules, 1920 <span>— Customs &amp; Arrivals</span></li>
+    <li>Aircraft Manual (India) — Vol I &amp; II</li>
+    <li>Indian Aircraft (Public Health) Rules, 1954</li>
+    <li>International Health Regulations (IHR), 2005</li>
+    <li>Other Applicable Rules <span>— Security, Accidents, UAS</span></li>
+    <li>Practice Questions &amp; Answers</li>
+  </ol>
+</div>
+
+<!-- ==========================
+     PART 1 – AIRCRAFT ACT 1934
+     ========================== -->
+<div class="section-header">
+  <h2>Part 1: The Aircraft Act, 1934 <span class="act-tag">Central Legislation</span></h2>
+</div>
+<div class="sub-section">
+
+  <div class="def-box box">
+    <div class="box-title">What is the Aircraft Act, 1934?</div>
+    <p>The Aircraft Act, 1934 is an <strong>Act of Parliament</strong> for the control of manufacture, possession, use, operation, sale, import and export of aircraft in India. Rules made under this Act are called the <strong>Aircraft Rules, 1937</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Extent &amp; Applicability</span>The Aircraft Act Extends To</div>
+  <p>The Act extends to the <term>whole of India</term> and also applies to:</p>
+  <table class="data-table">
+    <thead><tr><th>Clause</th><th>Applies To</th></tr></thead>
+    <tbody>
+      <tr><td>(a)</td><td>Citizens of India <strong>wherever they may be</strong> (even outside India)</td></tr>
+      <tr><td>(b)</td><td>Persons on aircraft <strong>registered in India</strong>, wherever they may be</td></tr>
+      <tr><td>(c)</td><td>Aircraft registered <strong>outside India</strong> but for the time being <strong>in or over India</strong></td></tr>
+      <tr><td>(d)</td><td>Aircraft operated by a non-citizen of India whose <strong>principal place of business or permanent residence is in India</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-title"><span class="rule-num">Sec 3</span>Power of Central Government to Exempt Certain Aircraft</div>
+  <p>The <term>Central Government</term> may, by notification in the <strong>Official Gazette</strong>, exempt any aircraft or class of aircraft and any person or class of persons from all or any provisions of this Act, or may direct that such provisions apply with modifications.</p>
+
+  <div class="rule-title"><span class="rule-num">Sec 5(qa)</span>Prohibition Near Aerodromes</div>
+  <div class="limit-box box">
+    <div class="box-title">Critical Limit — Aerodrome Protection Zone</div>
+    <p>The following are prohibited within a radius of <span class="val">10 km</span> from the <strong>aerodrome reference point</strong>:</p>
+    <ul class="reg-list">
+      <li>Slaughtering and flaying of animals</li>
+      <li>Depositing rubbish, filth and other polluted and obnoxious matter</li>
+    </ul>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Sec 8</span>Power to Detain Aircraft</div>
+  <p>Any authority <strong>authorised by the Central Government</strong> may detain any aircraft if, in their opinion:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> The intended flight would involve <strong>danger to persons in the aircraft or to other persons or property</strong></li>
+    <li><strong>(b)</strong> Detention is necessary to <strong>secure compliance</strong> with any provision of the Act, or to prevent a contravention of any rule made under clause (h) or (i) of sub-section (2) of section 5, or to implement any court order</li>
+  </ul>
+  <div class="sop-box box">
+    <div class="box-title">How Detention Is Effected (Rule 18)</div>
+    <ul class="reg-list">
+      <li>By issuing a written direction to the pilot or person in charge</li>
+      <li>By use of force, denial of access, removal of parts, defuelling</li>
+      <li>If aircraft is kept at a Government aerodrome — <strong>housing/picketing charges are payable</strong> for the entire detention period</li>
+    </ul>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Sec 9</span>Wreck and Salvage</div>
+  <p>The provisions of <strong>Part XIII of the Merchant Shipping Act, 1958</strong> relating to Wreck and Salvage apply to aircraft on or over the sea or tidal waters. The owner of an aircraft is entitled to a reasonable reward for salvage services, like the owner of a ship.</p>
+
+  <div class="rule-title"><span class="rule-num">Sec 10</span>Penalties for Contravention</div>
+  <table class="data-table table-danger">
+    <thead><tr><th>Sub-section</th><th>Offence</th><th>Punishment</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>(1)</td>
+        <td>Contravention of rules under clause (l) — carriage of arms/explosives or giving <strong>false information</strong> about dangerous goods. Owner also liable unless offence was without owner's knowledge/consent.</td>
+        <td><span class="penalty">Imprisonment up to 2 years + Fine up to ₹1 Crore</span></td>
+      </tr>
+      <tr>
+        <td>(1A)</td>
+        <td>Contravention of rules under clause (qa) — slaughter/flaying of animals, depositing rubbish within <span class="val">10 km</span> of aerodrome reference point</td>
+        <td><span class="penalty">Imprisonment up to 3 years OR Fine up to ₹1 Crore, or both</span></td>
+      </tr>
+      <tr>
+        <td>(1B)</td>
+        <td>Offence under sub-section (1A)</td>
+        <td><span class="penalty">Cognizable offence</span> (police can arrest without warrant)</td>
+      </tr>
+      <tr>
+        <td>(2)</td>
+        <td>Breach of any other rule under sections 4, 7, 8, 8A, 8B</td>
+        <td><span class="penalty">Imprisonment up to 2 years OR Fine up to ₹1 Crore, or both</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rule-title"><span class="rule-num">Sec 10A</span>Additional Penalty Powers</div>
+  <p>The Central Government may, in making rules under sections 4, 5, 7, 8, 8A or 8B, provide for imposition of a penalty <span class="val">not exceeding ₹1 Crore</span> for contravention of any rule for which no other punishment is provided elsewhere in the Act.</p>
+  <p>The Central Government may also appoint designated officers (not below the rank of <strong>Deputy Secretary</strong>) to adjudge penalties.</p>
+
+  <div class="rule-title"><span class="rule-num">Sec 10B</span>Suspension or Cancellation of Licences</div>
+  <p>If any person <strong>contravenes any provision</strong> of the Act or rules thereunder, the <term>licence, certificate or approval</term> issued to that person under this Act may be <strong>suspended or cancelled</strong> in such manner as the Central Government may make rules.</p>
+
+  <div class="rule-title"><span class="rule-num">Sec 11A</span>Penalty — Failure to Comply with Directions Under Section 5A</div>
+  <div class="limit-box box">
+    <div class="box-title">Penalty — Section 5A Non-Compliance</div>
+    <p>Willful failure to comply with any direction issued under <strong>Section 5A</strong>:<br>
+    <span class="penalty">Imprisonment up to 2 years OR Fine up to ₹1 Crore, or both</span></p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Sec 11B</span>Penalty — Failure to Comply with Directions Under Section 9A</div>
+  <div class="limit-box box">
+    <div class="box-title">Penalty — Section 9A Non-Compliance</div>
+    <p><strong>(1)</strong> Willful failure to comply with any direction in a notification issued under Section 9A:<br>
+    <span class="penalty">Imprisonment up to 2 years OR Fine up to ₹1 Crore, or both</span></p>
+    <p><strong>(2)</strong> Failure to demolish building/structure or cut trees within specified period → authorised officer may demolish the structure or cut the tree on behalf of the government.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Sec 17</span>Bar of Certain Suits</div>
+  <div class="sop-box box">
+    <div class="box-title">Protection for Aircraft Operators</div>
+    <p>No suit shall be brought in any <strong>Civil Court</strong> in respect of trespass or nuisance merely because an aircraft has flown over any property at a <strong>reasonable height</strong> (having regard to wind, weather and all circumstances), or by reason of the <strong>ordinary incidents of such flight</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Sec 18</span>Saving for Acts Done in Good Faith</div>
+  <p>No suit, prosecution, or other legal proceeding shall lie against any person for anything in <strong>good faith done or intended to be done</strong> under this Act.</p>
+
+</div><!-- /sub-section -->
+
+<!-- ==========================
+     PART 2 – AIRCRAFT RULES 1937
+     ========================== -->
+<div class="section-header">
+  <h2>Part 2: The Aircraft Rules, 1937 <span class="act-tag">Operational Rules</span></h2>
+</div>
+<div class="sub-section">
+
+  <div class="def-box box">
+    <div class="box-title">What Are the Aircraft Rules, 1937?</div>
+    <p>These are rules made by the <strong>Government of India under the Aircraft Act, 1934</strong> to regulate civil aviation activity in India. These are found in <strong>Vol II, Air Regulations (Aircraft Manual India)</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 1</span>Short Title and Extent</div>
+  <p>These rules are called the <strong>Aircraft Rules, 1937</strong>. They extend to the whole of India and apply (unless contrary intention appears) to:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> Aircraft registered in India and persons thereon, <em>wherever they may be</em> (except cases under sub-rule 4)</li>
+    <li><strong>(b)</strong> All aircraft for the time being <em>in or over India</em></li>
+  </ul>
+
+  <div class="note-box box">
+    <div class="box-title">Important Proviso — Foreign-Registered Aircraft</div>
+    <p>For aircraft registered in a country other than India, the <strong>regulations of that country</strong> relating to registration, licence of personnel, airworthiness, and log books apply <strong>in place of Parts IV, V, VI and IX</strong> of these Rules — BUT only if that country's regulations are based on standards at least equal to the minimum standards of the <strong>Chicago Convention (7 Dec 1944)</strong>.</p>
+  </div>
+
+  <div class="note-box box">
+    <div class="box-title">Sub-Rule 2A — Art. 83 Agreements (Leased Foreign Aircraft)</div>
+    <p>For aircraft registered in a contracting State (other than India), operated under a <strong>lease, charter, or interchange agreement</strong> by an operator whose principal place of business is in another contracting State — the regulations of that other State apply, provided an <strong>Article 83 agreement</strong> has been reached and officially notified to India / ICAO.</p>
+  </div>
+
+  <div class="note-box box">
+    <div class="box-title">Sub-Rule 3 &amp; 4 — Converse Situations</div>
+    <ul class="reg-list">
+      <li><strong>Sub-rule 3:</strong> Indian Rules apply to foreign-registered aircraft operated by India-based operators (Art. 83 agreement in place).</li>
+      <li><strong>Sub-rule 4:</strong> Indian Rules do <strong>NOT</strong> apply to Indian-registered aircraft leased/chartered to foreign operators (Art. 83 agreement in place). Such aircraft are treated as <em>not registered in India</em>.</li>
+    </ul>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 2</span>Nationality of Aircraft</div>
+  <p>An aircraft shall be deemed to possess the <strong>nationality of the State on the register</strong> of which it is entered.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 4</span>Use and Operation of Aircraft</div>
+  <div class="limit-box box">
+    <div class="box-title">Prohibition</div>
+    <p>No person shall use, operate, or assist in using or operating an aircraft <strong>except in accordance with these rules</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 5</span>Registration, Nationality and Registration Marks</div>
+  <p>Subject to Rule 33, no person shall fly or assist in flying any aircraft unless:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> It has been <strong>registered</strong></li>
+    <li><strong>(b)</strong> It bears its <strong>nationality and registration marks</strong> and the <strong>name and residence of the owner</strong> affixed or painted thereon (per Rule 37, or per regulations of the State of registration for foreign aircraft)</li>
+  </ul>
+  <div class="note-box box">
+    <div class="box-title">Exception</div>
+    <p>This prohibition does NOT apply to aircraft flown with <strong>special written permission of the Central Government</strong>, subject to conditions and limitations specified therein.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 5A</span>Prohibited Flight</div>
+  <p>Except under, and in accordance with, a <strong>permit issued by the Director-General of Civil Aviation (DGCA)</strong>:</p>
+  <div class="limit-box box">
+    <div class="box-title">Prohibited Without DGCA Permit</div>
+    <ul class="reg-list">
+      <li><strong>(1)</strong> No aircraft <strong>registered in India</strong> shall leave India for a flight to a place <strong>outside India</strong></li>
+      <li><strong>(2)</strong> No aircraft shall fly to any <strong>territory declared prohibited</strong> by the Central Government via Official Gazette notification</li>
+    </ul>
+    <p><strong>Note:</strong> For this rule — foreign aircraft under sub-rule 3 of Rule 1 are treated as Indian-registered aircraft; Indian aircraft under sub-rule 4 of Rule 1 are treated as not registered in India.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 6</span>Licensing of Personnel</div>
+  <p>Every aircraft shall carry and be operated by the <strong>personnel prescribed in Part V</strong>. Such personnel shall be licensed in the manner prescribed in Part V and in <strong>Schedule II</strong>.</p>
+  <p>For non-Indian registered aircraft, personnel shall be licensed per the regulations of the <strong>State of registration</strong>.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 6A</span>Type of Aircraft to Be Included in Rating</div>
+  <div class="limit-box box">
+    <div class="box-title">Type Rating Requirement</div>
+    <p>No person shall fly as pilot of an aircraft which is <strong>not included or entered in the aircraft rating of the licence</strong> except as provided in Rules 6B and 6C.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 6B</span>Flights to Qualify for Extension of Licence</div>
+  <p>The holder of a pilot's licence may fly within the <strong>Indian territory</strong> as pilot of an aircraft of a type <strong>not included in the aircraft rating</strong> of his licence, for the purpose of <strong>qualifying for the inclusion of such type</strong>.</p>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Rule 6B Flights</div>
+    <p>These are flights for type rating endorsement. They can be conducted <strong>within Indian territory only</strong> (Rule 6B). Per Q1 in the question bank — Answer is <strong>B: Within Local Flying Area of the aerodrome</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 6C</span>Flights for Testing and Non-Revenue Special Purposes</div>
+  <p>The <term>Director-General</term> may authorise the holder of a licence to fly an aircraft <strong>not entered in the aircraft rating</strong> for testing or non-passenger carrying flight. The authorisation is <strong>limited in validity to the time needed to complete the testing or the specific flight</strong>.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 7</span>Documents to Be Carried on Aircraft</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> No person shall fly an aircraft unless <strong>valid documents</strong> as required by the law of the country of registration are carried on board</li>
+    <li><strong>(2)</strong> Aircraft registered in India shall carry on board valid documents as required by these rules</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 7A</span>Prohibition of Carriage of Persons Without Passport</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> No person-in-charge of any aircraft shall allow it to enter India from outside India unless all persons on board are in possession of <strong>valid passports</strong> as required under the <strong>Indian Passport Act, 1920</strong></li>
+    <li><strong>(2)</strong> If an aircraft is brought into India in contravention of (1), an empowered authority may direct the owner or person-in-charge to take persons without passports back on board and remove them from India immediately</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 7B</span>Carriage of Cockpit Checklists</div>
+  <div class="sop-box box">
+    <div class="box-title">Mandatory Carriage</div>
+    <p>Every aircraft registered in India shall carry <strong>Cockpit Check Lists and Emergency Check Lists</strong> as specified by the Director-General for that particular type of aircraft. Such lists shall be carried in the cockpit <strong>readily accessible to the pilot in flight</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 8</span>Carriage of Arms, Ammunition, Explosives, Military Stores</div>
+  <div class="limit-box box">
+    <div class="box-title">Absolute Prohibition Unless Permitted</div>
+    <p>No person shall carry or cause or permit to be carried in any aircraft to, from, within or over India, any <strong>arms, ammunition, munitions of war, implements of war, explosives and military stores</strong>, except with the <strong>written permission of the Central Government</strong> and subject to the terms and conditions of such permission.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 8A</span>Security Check of Persons Boarding Aircraft at Aerodrome</div>
+  <p>For securing safety of aircraft operations, every person boarding an aircraft at an aerodrome and his <strong>hand-baggage</strong> shall be liable to be <strong>searched at the aerodrome</strong> by an officer authorised by the Central Government, before such person proceeds to the aircraft for embarkation.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 9</span>Radio-Telegraph Apparatus</div>
+  <p>No person shall operate radio transmitting apparatus in any aircraft registered in India unless he holds a <strong>licence of the type required</strong> by Part V in respect of aircraft required to carry radio-telegraph or radio-telephone apparatus, issued in accordance with those provisions.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 10</span>Mails</div>
+  <p>No person shall carry mails or allow mails to be carried in any aircraft except with the <strong>consent in writing of the Director-General of Posts and Telegraphs</strong>.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 11</span>Aerodromes</div>
+  <p>No pilot or person-in-charge of any aircraft <strong>carrying passengers for hire or reward</strong> shall use any place for a series of landings and departures. No pilot/person-in-charge of any aircraft employed on a <strong>scheduled air transport service</strong> shall use any place as a <strong>regular place of landing or departure</strong> other than an <strong>aerodrome licensed or approved</strong> for that purpose per Part XI.</p>
+
+</div><!-- /sub-section -->
+
+<!-- PROHIBITED AREAS -->
+<div class="section-header">
+  <h2>Prohibited Areas — Aircraft Rules, Schedule I <span class="act-tag">Rule 12</span></h2>
+</div>
+<div class="sub-section">
+
+  <div class="rule-title"><span class="rule-num">Rule 12</span>Prohibited Areas</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> No person shall fly or assist in flying an aircraft over any of the areas specified in <strong>Schedule I</strong> except in accordance with conditions specified in that schedule.</li>
+    <li><strong>(2)</strong> A pilot who finds himself above a prohibited area shall — as soon as aware — <strong>give the distress signal</strong> and land as soon as possible outside the prohibited area at one of the <strong>nearest aerodromes in India</strong>.</li>
+    <li>Provided: shall NOT fly further into the prohibited area nor commence descent while still above it (unless compelled by weather or unavoidable cause).</li>
+    <li><strong>(3)</strong> When signals warning aircraft about a restricted/prohibited/danger area are given, the pilot shall <strong>immediately change course and fly away</strong> from the prohibited area.</li>
+    <li><strong>(4)</strong> When signals from an aerodrome control tower are given, the pilot shall immediately give the distress signal and land in accordance with sub-rule (2).</li>
+  </ul>
+
+  <div class="flowchart-wrap">
+    <div class="flowchart-title">Fig 1: Action When Inadvertently Over Prohibited Area</div>
+    <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;width:100%;border:1px solid #dce3ee;border-radius:6px;background:#fafbfd;">
+      <!-- Boxes -->
+      <rect x="20" y="80" width="140" height="52" rx="6" fill="#fff3cd" stroke="#d4ac0d" stroke-width="1.5"/>
+      <text x="90" y="101" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#7d5a00" font-weight="bold">Pilot realises he</text>
+      <text x="90" y="118" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#7d5a00">is over prohibited</text>
+      <text x="90" y="131" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#7d5a00">area</text>
+
+      <rect x="210" y="80" width="140" height="52" rx="6" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="280" y="101" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#922b21" font-weight="bold">IMMEDIATELY</text>
+      <text x="280" y="118" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#922b21">Give DISTRESS</text>
+      <text x="280" y="131" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#922b21">SIGNAL</text>
+
+      <rect x="400" y="60" width="140" height="52" rx="6" fill="#e8faf0" stroke="#1e8449" stroke-width="1.5"/>
+      <text x="470" y="81" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1e5631" font-weight="bold">Do NOT fly</text>
+      <text x="470" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1e5631">deeper into area</text>
+      <text x="470" y="111" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1e5631">(unless weather)</text>
+
+      <rect x="400" y="130" width="140" height="52" rx="6" fill="#e8f0fe" stroke="#1a3a6e" stroke-width="1.5"/>
+      <text x="470" y="151" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a3a6e" font-weight="bold">Land at nearest</text>
+      <text x="470" y="168" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a3a6e">aerodrome</text>
+      <text x="470" y="181" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a3a6e">outside the area</text>
+
+      <!-- Arrows -->
+      <line x1="160" y1="106" x2="208" y2="106" stroke="#888" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="350" y1="90" x2="398" y2="86" stroke="#888" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="350" y1="116" x2="390" y2="150" stroke="#888" stroke-width="2" marker-end="url(#arr)"/>
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#888"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <h3>Schedule I — Areas Over Which Flight Is ABSOLUTELY PROHIBITED</h3>
+  <table class="data-table table-danger">
+    <thead>
+      <tr><th>#</th><th>Location</th><th>Extent of Prohibition</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Within a radius of <span class="val">1 mile</span> from the <strong>Towers of Silence, Malabar Hills, Bombay</strong></td>
+        <td>Absolute — all altitudes</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Area near <strong>Baroda (Vadodara) aerodrome</strong></td>
+        <td>Vertically from <span class="val">ground level to unlimited upper level</span></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Area around <strong>Rashtrapati Bhavan</strong></td>
+        <td>Vertically from <span class="val">ground level to unlimited upper level</span></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Within a radius of <span class="val">10 km</span> from <strong>Mathura Refineries</strong></td>
+        <td>Vertically from <span class="val">ground level to unlimited upper level</span></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Area near <strong>Bhubaneshwar</strong></td>
+        <td>Vertically from ground level up to <span class="val">50,000 ft</span></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Within a radius of <span class="val">10 km</span> from <strong>Kalpakkam Nuclear facility</strong></td>
+        <td>Vertically from ground level up to <span class="val">10,000 ft</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="exam-box box">
+    <div class="box-title">Exam Favourite — Mathura Refinery Classification</div>
+    <p>Mathura Refinery is a <strong>PROHIBITED AREA</strong> (not restricted, not danger). It is within 10 km of the aerodrome reference point. Answer to Q4 = <strong>C: Prohibited Area</strong>.</p>
+  </div>
+
+</div><!-- /sub-section -->
+
+<!-- Rules 13 onwards -->
+<div class="section-header">
+  <h2>Aircraft Rules 1937 — Operations, Safety &amp; Conduct <span class="act-tag">Rules 13–29D</span></h2>
+</div>
+<div class="sub-section">
+
+  <div class="rule-title"><span class="rule-num">Rule 13</span>Photography at Aerodromes or from Aircraft in Flight</div>
+  <p>No person shall take, cause or permit to be taken, at a <strong>Government aerodrome</strong> or from an aircraft in flight, any photograph except in accordance with and subject to the terms and conditions of a <strong>permission in writing</strong> granted by:</p>
+  <ul class="reg-list">
+    <li>The Director-General</li>
+    <li>A Joint Director General</li>
+    <li>A Deputy Director-General</li>
+    <li>The Director of Regulations and Information of the Civil Aviation Department</li>
+  </ul>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q10</div>
+    <p>Photography at an aerodrome requires prior written permission from <strong>DGCA (or equivalent DG-level officer)</strong>. Answer = <strong>B: DGCA</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 14</span>Aerial Work and Public Transport Reserved for Certain Aircraft</div>
+  <p>No aircraft registered in Category B (Rule 30) shall be used as an aerial work aircraft or as a public transport aircraft.</p>
+  <p>The Central Government may permit and impose restrictions on aerial work or public transport by aircraft other than those registered in Category A; such restrictions are effective when notified in writing to the owner/operator or via Official Gazette.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 15</span>Conditions to Be Complied with by Aircraft in Flight</div>
+  <p>No aircraft shall be flown unless the following conditions are complied with:</p>
+  <table class="data-table">
+    <thead><tr><th>Condition</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>(i)</td><td>The aircraft possesses a <strong>valid Certificate of Airworthiness (C of A)</strong> or <strong>Special C of A</strong> issued by the Director-General</td></tr>
+      <tr><td>(ii)</td><td>The aircraft is <strong>certified as airworthy</strong> and maintained per <strong>Part VI</strong> (or per State of registration regulations for foreign aircraft)</td></tr>
+      <tr><td>(iii)</td><td><strong>All terms and conditions</strong> on which the C of A was granted are duly complied with</td></tr>
+      <tr><td>(iv)</td><td>The aircraft carries on board its <strong>C of A (or special C of A)</strong> and any other certificate prescribed by Part VI</td></tr>
+    </tbody>
+  </table>
+  <div class="note-box box">
+    <div class="box-title">Exception — Special Flight Permit</div>
+    <p>Aircraft not in compliance with the above may be flown under a <strong>Special Flight Permit</strong> issued by the DG under <strong>Rule 55A</strong>, subject to conditions specified therein.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 15A</span>Operation of Remotely Piloted Aircraft System (RPAS)</div>
+  <div class="limit-box box">
+    <div class="box-title">RPAS / Drone Regulations — Key Limits</div>
+    <ul class="reg-list">
+      <li>No remotely piloted aircraft of <strong>all-up weight more than <span class="val">250 grams</span></strong> shall be flown unless it has been allotted a <strong>Unique Identification Number (UIN)</strong> by the Director-General.</li>
+      <li>An RPAS with all-up weight exceeding a limit specified by the DG from time to time shall not be flown by the operator except as per the conditions of a <strong>permit issued by the DG</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 16</span>Rules of the Air</div>
+  <p>Every person shall comply with the <strong>Rules of the Air</strong> issued by the Director-General in accordance with <strong>Annex 2 to the Convention</strong> as may be applicable to that person.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 17</span>Production of Licences</div>
+  <p>Any licence, certificate, authorisation and approval, log book or document granted or required to be maintained under these rules shall, <strong>on demand for inspection</strong>, be produced by the licensee or the owner/hirer/person-in-charge. The demand may be made by:</p>
+  <ul class="reg-list">
+    <li>Any magistrate</li>
+    <li>Any police officer above the rank of sub-inspector</li>
+    <li>Any Customs officer</li>
+    <li>Any commissioned officer of the Naval, Military or Air Force</li>
+    <li>Any gazetted officer of the Civil Aviation Department</li>
+    <li>Any other person authorised by the Central Government by special or general order in writing</li>
+  </ul>
+  <div class="note-box box">
+    <div class="box-title">Proviso — Documents Not Required to Be Carried On Board</div>
+    <p>Any document not required by these rules to be carried in the aircraft shall be produced within <span class="val">7 days</span> of the demand being made.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 19</span>Cancellation, Suspension or Endorsement of Licences, Certificates, Authorisation and Approval</div>
+  <p>Where any person is convicted of a contravention of, or failure to comply with, these rules or any direction issued under Rule 133A in respect of any aircraft, the <term>Central Government</term> may:</p>
+  <ul class="reg-list">
+    <li><strong>Cancel or suspend</strong> any certificate of registration granted under these rules relating to that aircraft</li>
+    <li><strong>Cancel or suspend</strong> any certificate relating to airworthiness of an aircraft or Type Certificate of an aircraft component, if a <strong>reasonable doubt exists</strong> as to the safety of the aircraft or the airworthiness of the aircraft</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 19A</span>Restrictions on Licence, Certificate, Authorisation or Approval</div>
+  <p>The <term>Director-General</term> may impose restrictions on any licence, certificate, authorisation or approval:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> In the event of non-compliance with any condition imposed on said licence/certificate/authorisation/approval</li>
+    <li><strong>(b)</strong> If any safety concern that emerged during an inspection has remained <strong>unresolved beyond the period specified by the DG</strong></li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 20</span>Certain Rules Not Applicable to Gliders, Kites and RPAS</div>
+  <table class="data-table">
+    <thead><tr><th>Aircraft Type</th><th>Rules Not Applicable</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Gliders</strong></td><td>Rule 7 shall not apply</td></tr>
+      <tr><td><strong>Kites</strong></td><td>Rules 5, 6, 7, 12, 15, 17, 19 and all rules in Part III (except Rule 26)</td></tr>
+      <tr><td><strong>RPAS</strong></td><td>Rules 5, 6, 15 in Part II; all rules in Part III (except Rules 21, 21A, 26); ALL rules in Part IV, Part V, Part VI and Part VII</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-title"><span class="rule-num">Rule 21</span>Dangerous Flying</div>
+  <div class="limit-box box">
+    <div class="box-title">Prohibition — Dangerous Flying</div>
+    <p>No person shall fly any aircraft in such circumstances as — by reason of <strong>low altitude or proximity to persons or dwellings or for other reason</strong> — to cause <strong>unnecessary danger</strong> to any person or property.</p>
+    <p><em>Refer Rule 21A for General Safety, Rule 21B for Aircraft in Distress.</em></p>
+  </div>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q12</div>
+    <p>A pilot flying low due to <strong>thundershowers for safety reasons</strong> — this is an <strong>unavoidable cause</strong>. Rule 161(2) provides a defence where contravention is due to accident, stress of weather or other unavoidable cause. Answer = <strong>B: Cannot be sued</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 22</span>Assault and Other Acts of Interference Against a Crew Member</div>
+  <p>No person shall, on board an aircraft:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> Assault, intimidate or threaten (physically or verbally) a crew member in a way that may <strong>interfere with the performance of duties</strong> or lessen ability to perform those duties</li>
+    <li><strong>(b)</strong> Refuse to follow a <strong>lawful instruction</strong> given by the Pilot-in-Command (or on behalf of PIC by a crew member) for the safety of the aircraft or passengers or for maintaining good order and discipline on board</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 23</span>Assault and Other Acts Endangering Safety or Jeopardizing Good Order and Discipline</div>
+  <p>No person shall, on board an aircraft:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> Assault, intimidate or threaten (physically or verbally) <em>any person</em></li>
+    <li><strong>(b)</strong> Intentionally cause damage to or destroy any property</li>
+    <li><strong>(c)</strong> Consume alcoholic beverages or drugs which is likely to <strong>endanger the safety of the aircraft</strong> or any person or <strong>jeopardize the good order and discipline</strong> on board</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 24</span>Prohibition on Consumption of Intoxicating and Psychoactive Substances</div>
+  <div class="limit-box box">
+    <div class="box-title">⚠ Critical Limit — 12 Hour Rule</div>
+    <p>No person acting as or carried in aircraft for the purpose of acting as <strong>pilot, commander, navigator, engineer, cabin crew or other operating member of the crew</strong> thereof shall have taken or used any alcoholic drink, sedative, narcotic or stimulant drug or preparation within <span class="val">12 hours</span> of the commencement of the flight or take or use any such preparation in the course of the flight.</p>
+    <p>No such person shall, while so acting or carried, be in a state of <strong>intoxication or have detectable blood alcohol</strong> whatsoever in his breath, urine or blood, or be in a state where his capacity is <strong>impaired</strong> due to any alcoholic, sedative, narcotic or stimulant drug.</p>
+    <p><strong>No other person while in a state of intoxication shall enter or be in aircraft.</strong></p>
+  </div>
+  <div class="limit-box box">
+    <div class="box-title">Domestic Flights — Alcohol Prohibition</div>
+    <p>No operator operating a <strong>domestic air transport service</strong> in India shall serve any alcoholic drink on board, and no passenger on such service shall consume any alcoholic drink while on board.</p>
+  </div>
+  <div class="note-box box">
+    <div class="box-title">Licence Holders — Additional Obligations</div>
+    <ul class="reg-list">
+      <li>Licence holders shall NOT exercise licence privileges while under the influence of any <strong>psychoactive substance</strong> that renders them unable to safely exercise those privileges.</li>
+      <li>Licence holders shall not engage in <strong>problematic use of substances</strong>.</li>
+    </ul>
+  </div>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q9</div>
+    <p>The member of operating crew shall not have taken alcoholic drinks within <strong><span class="val">12 hours</span></strong> before commencement of flight. Answer = <strong>B</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 24A</span>Carriage of Persons Suffering from Mental Disorders or Epilepsy</div>
+  <div class="limit-box box">
+    <div class="box-title">General Prohibition</div>
+    <p>No person shall knowingly carry or permit to be carried a person suffering from any <strong>mental disorder or epilepsy</strong> in any aircraft.</p>
+  </div>
+  <div class="sop-box box">
+    <div class="box-title">Exception — When Carriage Is Permitted</div>
+    <p>Carriage is permitted if the person is <strong>certified by a registered medical practitioner</strong> to be fit to travel by air without being a risk to other passengers or the aircraft, AND:</p>
+    <ul class="reg-list">
+      <li><strong>(a)</strong> Has not taken any alcoholic drink or preparation within <span class="val">12 hours</span> of commencement of flight</li>
+      <li><strong>(b)</strong> Is kept under proper sedative, if in a state of excitement, during the flight and stops en route</li>
+      <li><strong>(c)</strong> Is accompanied by an attendant. However, if the person has been in a state of excitement requiring sedation within the <span class="val">two weeks</span> preceding the date of commencement of flight, he shall be accompanied by a <strong>registered medical practitioner and adequate escort</strong>, who shall collectively ensure no alcohol is taken and person is kept suitably sedated during the flight and all stops</li>
+    </ul>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 24B</span>Carriage of Prisoners in Aircraft</div>
+  <div class="limit-box box">
+    <div class="box-title">Requires Written Permit</div>
+    <p>No prisoner shall be taken aboard or carried on an aircraft except under a <strong>permit in writing</strong> issued by the <strong>Director-General, Deputy Director-General, Director of Regulations and Information</strong>, or any other officer of the Civil Aviation Department authorised by the Central Government.</p>
+    <p><strong>Definition — "Prisoner":</strong> A person who is confined in any prison AND includes a person who is arrested under any law for the time being in force.</p>
+  </div>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q6</div>
+    <p>Prisoners on board an aircraft can be carried with the permission of <strong>DGCA</strong>. Answer = <strong>A: DGCA</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 24C</span>Carriage of Animals, Birds and Reptiles in Aircraft</div>
+  <p>No animal, bird or reptile shall be taken aboard or carried on any aircraft to, from and within India, except under a <strong>general or special permit in writing issued by the Director-General</strong>, subject to such conditions as may be specified therein.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 25</span>Smoking in Aircraft</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> The owner/operator and the PIC of every Indian-registered aircraft shall exhibit in prominent places notices stating where and to what extent smoking is prohibited or permitted.</li>
+    <li><strong>(2)</strong> A notice permitting smoking may be exhibited only if smoking is permitted by the <strong>certificate of airworthiness</strong> or by direction of the Central Government, and only in accordance with conditions in such C of A or direction.</li>
+  </ul>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q7</div>
+    <p>Smoking on a private aircraft is permitted only if the <strong>certificate of airworthiness of the aircraft permits</strong>. Answer = <strong>B</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 25A</span>Fuelling of Aircraft</div>
+  <div class="limit-box box">
+    <div class="box-title">Fuelling Restrictions — Critical Distances</div>
+    <table class="data-table table-danger" style="margin-top:8px;">
+      <thead><tr><th>Item</th><th>Regulation</th></tr></thead>
+      <tbody>
+        <tr><td>Fuelling location</td><td>Outdoors and <span class="val">not less than 15 m</span> from any building</td></tr>
+        <tr><td>No Smoking notice</td><td>Must be <strong>prominently displayed</strong></td></tr>
+        <tr><td>Naked flame / spark-producing appliance</td><td>Not permitted within <span class="val">30 m</span> of aircraft or fuelling equipment</td></tr>
+        <tr><td>Aircraft engines</td><td>Must be <strong>shut down</strong>; ignition switches in <strong>"OFF" position</strong></td></tr>
+        <tr><td>Electrical/radar/radio systems</td><td><strong>Not to be operated</strong>; switches in "OFF" position (Exceptions: power/light for fuelling, minimum cabin lighting, steady parking lights)</td></tr>
+        <tr><td>Non-authorised persons</td><td>Not permitted within <span class="val">15 m</span> of aircraft</td></tr>
+        <tr><td>Jet aircraft refuelling cessation</td><td>When rear jet outlets come within <span class="val">43 m</span> of fuelling equipment or aircraft</td></tr>
+        <tr><td>Bonding &amp; earthing</td><td>Fuelling equipment and aircraft shall be <strong>bonded to each other and earthed</strong></td></tr>
+        <tr><td>Flame-proof equipment distance</td><td>If not flame-proof: <span class="val">≥15 m</span> for gasoline/wide-cut fuels, <span class="val">≥6 m</span> for straight kerosene</td></tr>
+        <tr><td>Freight/baggage handling</td><td>Shall NOT proceed simultaneously with fuelling unless <strong>adequate precautions</strong> against fire risk have been taken</td></tr>
+        <tr><td>Aircraft maintenance during fuelling</td><td><strong>No maintenance</strong> that may provide a source of ignition</td></tr>
+        <tr><td>Fire extinguishers</td><td>Of adequate capacity and suitable type, approved by DG — available for <strong>immediate use near aircraft</strong></td></tr>
+        <tr><td>Fuel spill</td><td>Stop fuelling, stop ground power engine, clean spilled fuel — fuel must NOT be washed into sewers or drains</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sop-box box">
+    <div class="box-title">Passenger Presence During Fuelling — Conditions</div>
+    <ul class="reg-list">
+      <li><strong>(i)</strong> An attendant shall remain on duty in the cabin at all times; shall ensure no smoking and shall assist in removal of passengers in case of fire</li>
+      <li><strong>(ii)</strong> Passenger loading ramp shall be correctly positioned at cabin exit door; adequate provision for equilibrium of aircraft if all passengers attempt to leave by one exit</li>
+      <li><strong>(iii)</strong> For marine aircraft: adequate means of water transport stationed at cabin exit door</li>
+    </ul>
+  </div>
+
+  <div class="exam-box box">
+    <div class="box-title">Exam Points — Fuelling</div>
+    <ul class="reg-list">
+      <li>Q3: Refuelling must stop when jet aircraft comes within <span class="val">43 m</span> → Answer = <strong>C</strong></li>
+      <li>Q11: No naked light within <span class="val">30 m</span> during refuelling → Answer = <strong>B: 30</strong></li>
+      <li>Q32: No unauthorised person within <span class="val">15 m</span> of aircraft during refuelling → Answer = <strong>A: 15</strong></li>
+    </ul>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 25B</span>Housing of Aircraft</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> No aircraft containing <strong>dangerous petroleum</strong> in bulk in any of its tanks may be housed in a hangar unless the hangar is constructed of <strong>uninflammable material</strong> and is effectively and safely <strong>ventilated to the open air</strong>.</li>
+    <li><strong>(2)</strong> Every such hangar shall be in the charge of a <strong>competent person</strong> responsible for taking all proper precautions against fire and for preventing unauthorised access.</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 26</span>Dropping of Articles and Descent by Parachutes</div>
+  <div class="limit-box box">
+    <div class="box-title">General Rule</div>
+    <p>No person shall drop or project or cause or permit to be dropped or projected from an aircraft in motion anything except <strong>ballast in the form of fine sand or water</strong>.</p>
+  </div>
+  <div class="sop-box box">
+    <div class="box-title">Permitted Exceptions</div>
+    <ul class="reg-list">
+      <li><strong>(a)</strong> In an emergency: dropping of <strong>liquid fuel</strong></li>
+      <li><strong>(b)</strong> In an emergency: dropping of <strong>cargo</strong> over areas where hazard to persons/property is not created</li>
+      <li><strong>(c)</strong> Dropping of <strong>message bags, smoke-producing apparatus, or materials for navigation/communication</strong> — subject to precautions to avoid injuring persons</li>
+      <li><strong>(d)</strong> Dropping of <strong>printed matter or flower petals</strong> if:
+        <ul class="reg-list" style="margin-top:5px;">
+          <li>Prior written permission of <strong>District Magistrate or Commissioner of Police</strong> is obtained</li>
+          <li>Aircraft is suitable for dropping these articles</li>
+          <li>Minimum safe heights specified in rules are observed</li>
+          <li>Necessary precautions taken to avoid injury/damage</li>
+        </ul>
+      </li>
+      <li><strong>(e)</strong> Dropping of <strong>ropes used for towing aircraft</strong></li>
+    </ul>
+  </div>
+  <p><strong>(2) Parachute Descents:</strong> No person shall, except in an emergency, descend by parachute from an aircraft, and no article shall be dropped from an aircraft in flight (whether attached to a parachute or not), unless the descent/drop is made in accordance with the <strong>general or special order of the Central Government in writing</strong>.</p>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q17</div>
+    <p>Dropping of paper leaflets requires the permission of the <strong>Local District Magistrate</strong>. Answer = <strong>B</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 27</span>Carriage of Persons in Unauthorised Parts of Aircraft</div>
+  <p>No person shall at any time be carried on the wings, undercarriage, or any part of aircraft not designed for accommodation of personnel or passengers, or on anything attached externally to the aircraft.</p>
+  <div class="sop-box box">
+    <div class="box-title">Permitted Exceptions</div>
+    <ul class="reg-list">
+      <li><strong>(a)(i)</strong> Temporary access for executing repairs or adjusting machinery/equipment, or for safety of aircraft/persons/goods carried</li>
+      <li><strong>(a)(ii)</strong> Access to a part where goods/stores are being carried and to which proper means of access is provided</li>
+      <li><strong>(b)</strong> A person may be carried anywhere on/in the aircraft <em>with the permission in writing of the Central Government</em> and subject to conditions specified</li>
+    </ul>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 28</span>Minimum Age for Sole Control of Aircraft</div>
+  <div class="limit-box box">
+    <div class="box-title">Minimum Age Limit</div>
+    <p>No person <strong>under the age of <span class="val">16 years</span></strong> shall have sole control of an aircraft in motion. No person shall cause or permit any other person to have sole control unless he knows or has reasonable cause to believe such other person has attained the age of <span class="val">16 years</span>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 28A</span>Maximum Age Limit for Professional Pilots</div>
+  <div class="limit-box box">
+    <div class="box-title">Maximum Age Limits — Commercial Operations</div>
+    <table class="data-table table-danger" style="margin-top:8px;">
+      <thead><tr><th>Age Reached</th><th>Restriction</th><th>Exception</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="val">65 years</span></td>
+          <td>Cannot act as PIC or Co-pilot of any aircraft engaged in <strong>commercial air transport operations</strong></td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td><span class="val">60 years</span></td>
+          <td>Cannot act as PIC or Co-pilot in commercial air transport unless in a <strong>multi-crew environment</strong> and the other pilot is <strong>less than 60 years</strong></td>
+          <td>Does NOT apply to aircraft <strong>certified for single pilot operations</strong> not exceeding <span class="val">5700 kg MCTOW</span> engaged in commercial air transport within India territory in multi-crew environment</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 29</span>Acts Likely to Imperil the Safety of Aircraft</div>
+  <div class="limit-box box">
+    <div class="box-title">Absolute Prohibition</div>
+    <p>No person shall <strong>interfere with the pilot</strong> or with a member of the operating crew, or <strong>tamper with the aircraft or its equipment</strong>, or conduct himself in a <strong>disorderly manner</strong> in an aircraft, or <strong>commit any act likely to imperil</strong> the safety of an aircraft or its passengers or crew.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 29A</span>Prohibition of Operating Civil Aircraft Causing Sonic Boom</div>
+  <div class="limit-box box">
+    <div class="box-title">Supersonic Flight Restriction</div>
+    <p>No person shall operate a civil aircraft at a <strong>true flight Mach number greater than ONE (Mach 1)</strong> over the territory of India or over the high seas in a manner which may cause or is likely to cause <strong>sonic boom over the territory of India</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 29B</span>Prohibition on the Use of Portable Electronic Devices (PEDs)</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> No person shall operate, nor shall the operator or PIC allow the operation of, any <strong>portable electronic device on board an aircraft in flight</strong>.</li>
+    <li><strong>(2)</strong> Exceptions — Sub-rule (1) does NOT apply to:
+      <ul class="reg-list" style="margin-top:5px;">
+        <li>Portable voice recorders</li>
+        <li>Hearing aids</li>
+        <li>Heart pacemakers</li>
+        <li>Electric shavers</li>
+        <li>Other PEDs which, in the opinion of the operator, do not cause interference with navigation or communication systems — and for which the operator has obtained the <strong>approval of the Director-General</strong></li>
+      </ul>
+    </li>
+    <li><strong>(3)</strong> Notwithstanding sub-rule (1), the <strong>PIC may permit access to internet services</strong> by passengers in flight through <strong>Wi-Fi on board</strong>, when laptop, smartphone, tablet, smartwatch, e-reader or point of sale device is used in <strong>flight mode or airplane mode</strong>. Provided that the <strong>DG has certified the aircraft</strong> for internet service through Wi-Fi on board.</li>
+  </ul>
+  <div class="note-box box">
+    <div class="box-title">Definition — "In Flight"</div>
+    <p>For purposes of Rule 29B, an aircraft shall be deemed to be in flight when all its <strong>external doors are closed following embarkation</strong> until the moment when any such door is opened for disembarkation.</p>
+  </div>
+  <div class="sop-box box">
+    <div class="box-title">Mobile Phones — Special Provision</div>
+    <p>The PIC may permit use of <strong>cellular telephone by passengers</strong> after the aircraft has <strong>landed and cleared active runway</strong>, except when the landing takes place in <strong>low visibility conditions</strong> as may be determined by the DG from time to time.</p>
+  </div>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q30</div>
+    <p>PIC may permit internet via Wi-Fi provided <strong>the Director-General has certified the aircraft for internet service in flight through Wi-Fi on board</strong>. Answer = <strong>C</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 29C</span>Adoption of the Convention and Annexes</div>
+  <ul class="reg-list">
+    <li>The DG may lay down standards and procedures not inconsistent with the Aircraft Act, 1934 to carry out the Convention and any Annex thereto.</li>
+    <li>The DG shall formulate the <strong>State Safety Programme (SSP)</strong> and oversee its implementation.</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 29D</span>Safety Management Systems</div>
+  <p>Every organisation engaged in the operation of aircraft and aerodromes, provision of air traffic services, training of personnel, maintenance, design and manufacture of aeronautical products shall:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> Establish and maintain <strong>Safety Management Systems (SMS)</strong></li>
+    <li><strong>(b)</strong> Prepare a <strong>Safety Management Systems Manual</strong> in the form and manner specified by the DG and submit the same to the DG for approval</li>
+  </ul>
+
+</div><!-- /sub-section -->
+
+<!-- REGISTRATION -->
+<div class="section-header">
+  <h2>Aircraft Registration &amp; Change of Ownership <span class="act-tag">Rules 30, 33</span></h2>
+</div>
+<div class="sub-section">
+
+  <div class="rule-title"><span class="rule-num">Rule 30</span>Certificate of Registration — Categories</div>
+  <p>An aircraft may be registered in India in either of the following categories:</p>
+  <table class="data-table">
+    <thead><tr><th>Category</th><th>Ownership Requirement</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Category A</strong></td>
+        <td>Aircraft <em>wholly owned</em> by:<br>
+        (i) Citizens of India; or<br>
+        (ii) A company/corporation registered and having principal place of business <em>within India</em>; or<br>
+        (iii) The Central/State Government, or any company/corporation owned or controlled by either Government; or<br>
+        (iv) A company/corporation registered <em>outside India</em>, provided such company has <strong>leased</strong> the aircraft to a person mentioned in (i), (ii), or (iii)</td>
+      </tr>
+      <tr>
+        <td><strong>Category B</strong></td>
+        <td>Aircraft <em>wholly owned</em> by:<br>
+        (i) Persons resident in or carrying on business in India who are <strong>not citizens</strong> of India; or<br>
+        (ii) A company/corporation registered <em>outside India</em> and carrying on business in India</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note-box box">
+    <div class="box-title">Key Distinction — Category A vs B</div>
+    <p>Only <strong>Category A aircraft</strong> may be used as <strong>aerial work aircraft or public transport aircraft</strong>. <strong>Category B aircraft cannot</strong> be used for these purposes (Rule 14).</p>
+  </div>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q18</div>
+    <p>A certificate of registration is valid from the date of registration <strong>till it is cancelled by DGCA</strong>. Answer = <strong>C</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 33</span>Change in Ownership</div>
+  <p>In the event of any change in ownership or if a registered aircraft ceases to meet the conditions of Rule 30:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> The registered owner shall <strong>forthwith notify</strong> the DG of such change</li>
+    <li><strong>(b)</strong> The new owner shall forthwith inform the DG in writing of his ownership and may apply for a new certificate of registration</li>
+    <li><strong>(c)</strong> The existing registration and certificate shall remain valid <strong>until cancelled by the DG</strong></li>
+  </ul>
+
+</div><!-- /sub-section -->
+
+<!-- LICENSING & OPERATING CREW -->
+<div class="section-header">
+  <h2>Licensing Authority, Operating Crew &amp; Cabin Crew <span class="act-tag">Rules 38, 38A, 38B</span></h2>
+</div>
+<div class="sub-section">
+
+  <div class="rule-title"><span class="rule-num">Rule 38</span>Licensing Authority</div>
+  <p>The authority by which licences and ratings may be granted, renewed or varied shall be the <strong>Central Government</strong>, which may withhold the grant or renewal of a licence or rating if for any reason it considers it desirable to do so.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 38A</span>Carriage of Operating Crew</div>
+  <p>Every aircraft registered in India shall comply with the following requirements in respect of the personnel it carries and by which it is operated:</p>
+
+  <h3>(1) Pilot Requirements</h3>
+  <table class="data-table">
+    <thead><tr><th>Category of Aircraft</th><th>Minimum Pilot Requirement</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Private Aircraft</strong></td>
+        <td>A person holding a valid <strong>Private Pilot's Licence (PPL)</strong> issued per Schedule II. <em>However:</em>
+          <ul class="reg-list" style="margin-top:4px;">
+            <li>NOT to be flown by a holder of a <strong>Student Pilot Licence</strong></li>
+            <li>NOT to be flown by PPL holder <strong>for remuneration or hire of any kind</strong></li>
+            <li>NOT to be flown by PPL holder at <strong>night without a valid Instrument Rating</strong></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Public Transport or Aerial Work Aircraft</strong> (other than microlight, glider, balloon)</td>
+        <td>A person holding an appropriate <strong>professional pilot's licence</strong> — i.e., a <strong>Commercial Pilot's Licence (CPL) or Airline Transport Pilot's Licence (ATPL)</strong> issued per Schedule II</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>(2) Flight Instructor or Assistant Flight Instructor</h3>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> Every aircraft used for dual instruction shall carry a person holding a CPL or ATPL (or microlight/glider/balloon licence) with an appropriate <strong>Flight Instructor's or Assistant Flight Instructor's rating</strong> per Schedule II, or an <strong>authorisation in writing by the DG</strong></li>
+    <li><strong>(b)</strong> No person other than one having an FI or AFI rating shall impart instruction in piloting an aircraft, unless <strong>specifically authorised in writing by the DG</strong></li>
+  </ul>
+
+  <h3>(3) Flight Navigator</h3>
+  <p>Every public transport aircraft engaged on a flight without landing over a great circle distance of more than <span class="val">600 NM</span> and <strong>not equipped</strong> with the navigational equipment capable of providing instant and continuous ground position shall carry a <strong>Flight Navigator licensed per Schedule II</strong>, if the total distance between any two consecutive radio navigational fixing aids located within <span class="val">30 NM</span> of the route and capable of being used by the aircraft is more than <span class="val">600 NM</span>.</p>
+
+  <h3>(4) Flight Engineer</h3>
+  <p>Where a Flight Engineer is required to be carried on board as a flight crew member (per sub-rule 7), he shall hold the appropriate licence per Schedule II.</p>
+
+  <h3>(6) Flight Radio Telephone Operator</h3>
+  <p>Aircraft equipped with radio apparatus per Rule 63 and communicating by radio telephony shall carry a person holding a <strong>Flight Radio Telephone Operator's Licence or Flight Radio Telephone Operator's Licence (Restricted)</strong> per Schedule II.</p>
+
+  <h3>(7) Minimum Crew for Any Flight</h3>
+  <p>The number and description of flight crew members operating any flight of an aircraft registered in India shall be <strong>as per the certificate of airworthiness</strong>.</p>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q15</div>
+    <p>Minimum crew required on a private aircraft = <strong>as specified in the Certificate of Airworthiness</strong>. Answer = <strong>C</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 38B</span>Carriage of Cabin Crew</div>
+  <p>No aircraft registered in India shall be operated for public transport of passengers unless the following minimum number of cabin crew are on board:</p>
+  <table class="data-table table-teal">
+    <thead><tr><th>Aircraft Type</th><th>Seating Capacity</th><th>Minimum Cabin Crew</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Aeroplane</td>
+        <td><span class="val">10 – 50</span> passengers</td>
+        <td><strong>1</strong> cabin crew</td>
+      </tr>
+      <tr>
+        <td>Helicopter</td>
+        <td><span class="val">20 – 50</span> passengers</td>
+        <td><strong>1</strong> cabin crew</td>
+      </tr>
+      <tr>
+        <td>Aeroplane or Helicopter</td>
+        <td>More than <span class="val">50</span> passengers</td>
+        <td><strong>2 cabin crew</strong> PLUS <strong>1 additional cabin crew for each unit (or part of a unit) of 50 passenger seats</strong> above a seating capacity of <span class="val">99 passengers</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="exam-box box">
+    <div class="box-title">Exam Points — Cabin Crew</div>
+    <ul class="reg-list">
+      <li>Q23: No. of cabin crew is based on <strong>No. of seats</strong>. Answer = <strong>C</strong>.</li>
+      <li>Q27: Aircraft with seating capacity of 150 — requires: 2 + 1 (for 50 above 99) = <strong>3 cabin crew minimum</strong>? Wait: let's calculate: seats = 150. Base = 2 cabin crew. Above 99 = 150 – 99 = 51 seats. 51/50 = 1.02 → 2 units. So: 2 + 2 = <strong>4 cabin crew</strong>. Wait — re-reading: "Two cabin crew <strong>plus one cabin crew for each unit (or part of a unit) of 50 passenger seats above a seating capacity of 99</strong>". 150 – 99 = 51 seats above 99. 51 ÷ 50 = 1.02 → rounds up to 2 units of 50. So total = 2 + 2 = <strong>4</strong>. Answer Q27 = <strong>C: 4</strong>.</li>
+    </ul>
+  </div>
+
+</div><!-- /sub-section -->
+
+<!-- DISQUALIFICATION & MEDICAL -->
+<div class="section-header">
+  <h2>Disqualification, Medical Standards &amp; Licence Management <span class="act-tag">Rules 39A–42, 44, 45</span></h2>
+</div>
+<div class="sub-section">
+
+  <div class="rule-title"><span class="rule-num">Rule 39A</span>Disqualification from Holding or Obtaining a Licence</div>
+  <p>Where the licensing authority is satisfied, after giving the person an opportunity of being heard, that any person:</p>
+  <table class="data-table table-danger">
+    <thead><tr><th>Ground for Disqualification</th></tr></thead>
+    <tbody>
+      <tr><td>(a) Is habitually intemperate in the use of alcohol, or is an addict of narcotics, drugs and the like</td></tr>
+      <tr><td>(b) Is using, has used or is about to use an aircraft in the commission of a cognizable offence or in contravention of these rules</td></tr>
+      <tr><td>(c) Has, by his previous conduct as crew member, shown that he is <strong>irresponsible</strong> in the discharge of his duties or is likely to endanger the safety of the aircraft or any person or thing carried therein, or of other aircraft or persons or things on the ground</td></tr>
+      <tr><td>(d) Is a habitual criminal or has been convicted by a Court in India for an offence involving <strong>moral turpitude</strong> or an offence amounting to <strong>heinous crime</strong></td></tr>
+      <tr><td>(e) Has obtained the licence, rating, aircraft type rating, or extension thereof, or renewal of any of them, by <strong>suppression of material information or on the basis of wrong information</strong></td></tr>
+      <tr><td>(f) Has <strong>unauthorisedly varied or tampered</strong> with the particulars entered in a licence or rating</td></tr>
+    </tbody>
+  </table>
+  <p>The licensing authority may, for reasons to be recorded in writing, make an order <strong>disqualifying that person for a specified period</strong> from holding or obtaining a licence.</p>
+  <div class="note-box box">
+    <div class="box-title">Permanent Debarment</div>
+    <p>The <term>Central Government</term> may <strong>permanently or temporarily debar</strong> a person from holding any licence or rating mentioned in Rule 38, if it is in the <strong>public interest</strong> to do so.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 39B</span>Medical Standards</div>
+  <p>No licence or rating referred to in Rule 38 shall be <strong>issued or renewed</strong> unless the applicant:</p>
+  <ul class="reg-list">
+    <li>Undergoes a <strong>medical examination with an approved medical authority</strong></li>
+    <li>Satisfies the <strong>medical standards as notified by the Director-General</strong></li>
+  </ul>
+  <div class="note-box box">
+    <div class="box-title">Rule 42(2) — Licence Not to Be Exercised After Sickness/Injury</div>
+    <p>The holder of a licence shall NOT exercise the privileges of his licence without being declared fit after a fresh medical examination if:</p>
+    <ul class="reg-list">
+      <li><strong>(a)</strong> A sickness or injury involving incapacity for a period of <span class="val">15 days or more</span> for the work for which he is licensed</li>
+      <li><strong>(b)</strong> An injury sustained in any accident occurring during the exercise of his licence's privileges or otherwise, which is likely to <strong>cause incapacity or impair his efficiency</strong></li>
+    </ul>
+    <p>The licence holder or his employer shall <strong>immediately notify</strong> all relevant details of the sickness/injury to the Director-General.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 40</span>Signature of Licence Holder</div>
+  <p>On the issue of a licence to an applicant, he shall <strong>forthwith sign his name</strong> on the licence as the holder thereof with his ordinary signature.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 41</span>Proof of Competency</div>
+  <p>Applicants for licences and ratings shall produce proof of having acquired the <strong>flying experience</strong> and having passed satisfactorily the <strong>tests and examinations specified in Schedule II</strong>.</p>
+  <div class="note-box box">
+    <div class="box-title">Defence Forces Exemption</div>
+    <p>A qualified pilot from the <strong>Indian Air Force, Indian Navy, Indian Army or Indian Coast Guard</strong> who produces satisfactory evidence of possessing the necessary flying experience, competency, and physical fitness standards may be exempted by the DG from all or any flying tests and medical or technical examinations required for the issue of licences.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 41A</span>Checks, Tests and Examinations</div>
+  <ul class="reg-list">
+    <li>The DG may conduct examinations specified in Schedule II, fix examination centres, appoint invigilators, and lay down the procedure for conducting examinations.</li>
+    <li>The DG may appoint <strong>Examiners</strong> for carrying out flying tests and technical examinations required under Schedule II.</li>
+    <li>The DG may appoint a <strong>Board</strong> to conduct oral examinations when necessary.</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 42</span>Licences and Their Renewal</div>
+  <p><strong>(1)</strong> Licences and ratings mentioned in Rule 38 may be issued or renewed for any period not exceeding the period specified in Rule 39C and Schedule II.</p>
+  <p>If on the date of application for renewal, the licence or rating has <strong>expired</strong> for the following periods, the applicant may be required to qualify in:</p>
+  <table class="data-table">
+    <thead><tr><th>Expiry Period</th><th>Requirement</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Exceeding <span class="val">2 years</span> but not exceeding <span class="val">3 years</span></td>
+        <td>Test of skill and Air Regulations</td>
+      </tr>
+      <tr>
+        <td>Exceeding <span class="val">3 years</span></td>
+        <td>All examinations and tests required for the <strong>fresh issue</strong> of the licence or rating</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rule-title"><span class="rule-num">Rule 44</span>Aircraft Not Registered in India</div>
+  <p>An aircraft not registered in India shall carry the <strong>personnel prescribed by the laws of the State in which it is registered</strong> and such personnel shall be licensed in accordance with the laws of that State.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 45</span>Validation of Foreign Licences</div>
+  <p>When a licence has been granted by the <strong>duly competent authority in any foreign State</strong> and is in force, the Central Government may, subject to such conditions and limitations and for such periods as it shall think fit, <strong>render such licence valid</strong> by an authorisation for flying aircraft registered in India. A validated licence is subject to Rule 19, and validation ceases if the licence is revoked or suspended.</p>
+
+</div><!-- /sub-section -->
+
+<!-- AIRWORTHINESS & LOGBOOKS -->
+<div class="section-header">
+  <h2>Certificate of Airworthiness, Modifications &amp; Log Books <span class="act-tag">Rules 50, 52, 65, 67A, 67B</span></h2>
+</div>
+<div class="sub-section">
+
+  <div class="rule-title"><span class="rule-num">Rule 50</span>Certificate of Airworthiness</div>
+  <ul class="reg-list">
+    <li>The owner or operator of an aircraft may apply to the DG for <strong>issue or renewal of a C of A</strong>, or special C of A, or for <strong>validation of a C of A issued elsewhere</strong>.</li>
+    <li>The DG may <strong>validate a C of A</strong> in respect of any aircraft that may be imported.</li>
+    <li>Subject to these rules, a C of A shall remain in force for such period as may be specified in the certificate and may from time to time be <strong>renewed by the DG</strong>.</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 52</span>Modification and Repairs</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> A person shall not carry out any modification or repair affecting safety of any aircraft with a valid C of A unless he has been required to do so under these rules or has obtained the <strong>prior approval of the DG</strong>.</li>
+    <li><strong>(2)(a)</strong> Modifications issued by the manufacturer which have been issued a <strong>Type Certificate</strong> by the DG or elsewhere may be deemed as approved modifications, unless otherwise specified by the DG.</li>
+    <li><strong>(2)(b)</strong> Repair schemes issued by the manufacturer of an aircraft with a Type Certificate and other repairs in accordance with <strong>standard aeronautical engineering practice</strong> may be deemed as approved repairs, unless otherwise specified by the DG.</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 65</span>Aeronautical Beacon and Aeronautical Ground Lights</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> No aeronautical beacon or aeronautical ground light shall be established or maintained within India, nor shall the character of the light be altered, except with the <strong>approval in writing of the Central Government</strong>.</li>
+    <li><strong>(2)</strong> No person shall wilfully or negligently endanger or interfere with any aeronautical beacon or aeronautical ground light established or maintained by or with the approval of the Central Government, or any light exhibited therefrom.</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 67A</span>Log Books of Flight Crew Personnel and Logging of Flight Time</div>
+  <div class="sop-box box">
+    <div class="box-title">Log Book Regulations</div>
+    <table class="data-table table-success" style="margin-top:8px;">
+      <thead><tr><th>Requirement</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td>Maintenance</td><td>Every licensed flight crew member shall maintain a <strong>personal log book</strong> in the form prescribed by the DG. All flight times shall be logged therein.</td></tr>
+        <tr><td>Entries</td><td>All entries in log books shall be made in <strong>ink</strong></td></tr>
+        <tr><td>Preservation</td><td>Log books shall be preserved for <span class="val">not less than 5 years</span> after the date of the <strong>last entry</strong></td></tr>
+        <tr><td>Monthly certification</td><td>Each crew member shall certify the accuracy of entries in his log book with respect to flight time at least at the end of each <strong>calendar month</strong></td></tr>
+        <tr><td>Quarterly certification</td><td>At the end of every quarter (end of March, June, September, December), log books shall be certified for correctness by: <strong>Operations Manager/Deputy OM/Chief Pilot</strong> (professional pilots), <strong>Chief Flying Instructor</strong> (FTO members), <strong>DG-designated Officers</strong> (all others)</td></tr>
+        <tr><td>Dual instruction entries</td><td>Flight time under dual instruction shall be entered as <strong>"dual"</strong>. The FI shall make entries in the trainee's log book showing the nature of instruction given</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Logging Rules for Different Crew Members</h3>
+  <table class="data-table">
+    <thead><tr><th>Licence Type</th><th>How to Log PIC Time</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Student Pilot</strong></td><td>As PIC only when he is the <strong>sole occupant</strong> of the aircraft</td></tr>
+      <tr><td><strong>Private Pilot (PPL)</strong></td><td>As PIC only during which he <strong>acts as PIC</strong></td></tr>
+      <tr><td><strong>CPL / ATPL Holder</strong></td><td>As PIC — during which he <strong>acts as PIC</strong>; as Co-pilot — during which he <strong>acts as Co-pilot</strong></td></tr>
+      <tr><td><strong>Flight Instructor</strong></td><td>As PIC — during which he acts as Instructor; <strong>log entries shall indicate in remarks column</strong> that flight time was flown as Instructor</td></tr>
+      <tr><td><strong>Examiner</strong></td><td>As PIC — during which he acts as Examiner, if entitled and authorised to fly in command of that type</td></tr>
+      <tr><td>Supervised PIC duties</td><td>May be logged as PIC if person is <strong>entitled and authorised</strong> to fly in command of that type by virtue of ratings and privileges. Otherwise logged as <strong>Co-pilot with appropriate indication in remarks column</strong></td></tr>
+      <tr><td><strong>Instrument time</strong></td><td>Logged only when aircraft is flown <strong>solely by reference to instruments</strong>, under actual or simulated instrument conditions. <strong>Over-the-top flying shall NOT be logged as instrument flying time</strong></td></tr>
+      <tr><td><strong>Instrument ground time</strong></td><td>Logged in full while flying solely by reference to instruments in any <strong>recognised synthetic device</strong> simulating instrument flight conditions</td></tr>
+    </tbody>
+  </table>
+
+  <div class="exam-box box">
+    <div class="box-title">Exam Points — Log Books</div>
+    <ul class="reg-list">
+      <li>Q28: Log book certified for correctness by competent authority at end of <strong>every quarter</strong>. Answer = <strong>B</strong>.</li>
+      <li>Q33: Pilot's log book preserved for <strong>5 years from date of last entry</strong>. Answer = <strong>B</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 67B</span>Prohibition on False Entries</div>
+  <div class="limit-box box">
+    <div class="box-title">Absolute Prohibition</div>
+    <p>No person shall destroy, mutilate, alter or render illegible any entry made, or wilfully make or procure or assist in the making of any <strong>false or fraudulent entry</strong> in or omission from any log book referred to in Rules 67 and 67A.</p>
+  </div>
+
+</div><!-- /sub-section -->
+
+<!-- AERODROMES & SCHEDULED SERVICES -->
+<div class="section-header">
+  <h2>Aerodromes, Scheduled Services &amp; Operations Manual <span class="act-tag">Rules 79, 80, 133A, 134, 140–161</span></h2>
+</div>
+<div class="sub-section">
+
+  <div class="rule-title"><span class="rule-num">Rule 79</span>Qualifications of Licensee (Aerodrome)</div>
+  <p>A licence for an aerodrome shall not be granted to any person other than:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> A citizen of India</li>
+    <li><strong>(b)</strong> A Company or body corporate registered and having its principal place of business in India; meeting the equity holding criteria specified by the Central Government; or</li>
+    <li><strong>(c)</strong> The Central/State Government or any company/corporation owned or controlled by either Government; or</li>
+    <li><strong>(d)</strong> A society registered under the Societies Registration Act, 1860</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 80</span>Procedure for Grant of Aerodrome Licence</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> Application made to the DG along with the <strong>Aerodrome Manual</strong></li>
+    <li><strong>(2)</strong> Application shall be in such form and contain such particulars as may be specified by the DG</li>
+    <li><strong>(3)</strong> DG may require the applicant to furnish additional information</li>
+    <li><strong>(4)</strong> DG may also require the applicant to produce evidence in support of any information furnished</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 133A</span>Directions by Director-General</div>
+  <p>The DG may, through:</p>
+  <ul class="reg-list">
+    <li><strong>Notices to Airmen (NOTAMs)</strong></li>
+    <li><strong>Aeronautical Information Publication (AIP)</strong></li>
+    <li><strong>Aeronautical Information Circulars (AICs)</strong></li>
+    <li><strong>Notices to Aircraft Owners and Maintenance Engineers</strong></li>
+    <li><strong>Civil Aviation Requirements (CARs)</strong></li>
+  </ul>
+  <p>…issue special directions not inconsistent with the Aircraft Act, 1934, relating to the operation, use, possession, maintenance or navigation of aircraft flying in or over India or registered in India.</p>
+  <div class="note-box box">
+    <div class="box-title">Public Consultation Requirement</div>
+    <p>Civil Aviation Requirements (CARs) shall be issued after placing the draft on the <strong>website of the DGCA for 30 days</strong> for inviting objections and suggestions from all persons likely to be affected.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 134</span>Scheduled Air Transport Services</div>
+  <p>No person shall operate any Scheduled air transport service from, to, in, or across India except with the <strong>permission of the Central Government</strong>, granted in accordance with the provisions contained in <strong>Schedule XI</strong>.</p>
+  <p>The Central Government may permit any air transport undertaking of another country to operate scheduled services from/to/across India in accordance with the terms of any bilateral agreement, or where there is no such agreement, of a <strong>temporary authorisation</strong> by the Government of India.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 140</span>Minimum Requirements to Be Complied with by Operators</div>
+  <p>All aircraft owners and operators shall comply with the <strong>engineering, inspection and manual requirements</strong> contained in Part XIII-A and with the <strong>safety requirements</strong> in respect of air routes, aircraft and aircrew, as may be specified by the DG.</p>
+
+  <div class="rule-title"><span class="rule-num">Rule 140A</span>DG Sanction for New Routes or Alterations to Existing Routes</div>
+  <p>Before operating a scheduled air transport service on a new route or making a <strong>substantial alteration</strong> in, or effecting the <strong>discontinuance</strong> of, any existing route, or introducing a new time-table, the Corporation shall:</p>
+  <ul class="reg-list">
+    <li>Obtain the <strong>concurrence of the DG</strong></li>
+    <li>Give at least <span class="val">7 days'</span> previous notice to the DG before the date proposed for the operation of the new route, substantial alteration, new time-table, or discontinuance</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 140B</span>Operations Manual</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> An Operations Manual in the form approved by the DG shall be maintained by the Corporation.</li>
+    <li><strong>(2)</strong> The Operations Manual shall contain:</li>
+  </ul>
+  <table class="data-table">
+    <thead><tr><th>Item</th><th>Content Required</th></tr></thead>
+    <tbody>
+      <tr><td>(a)</td><td>Instructions outlining responsibilities of operations personnel for the conduct of flight operations</td></tr>
+      <tr><td>(b)</td><td>The flight crew for each stage of all routes to be flown, including the <strong>designation of the succession of command</strong></td></tr>
+      <tr><td>(c)</td><td>In-flight procedure</td></tr>
+      <tr><td>(d)</td><td>Emergency flight procedure</td></tr>
+      <tr><td>(e)</td><td>The <strong>minimum safe flight altitude</strong> for each route to be flown</td></tr>
+      <tr><td>(f)</td><td>The circumstances in which a <strong>radio listening watch</strong> is to be maintained</td></tr>
+      <tr><td>(g)</td><td>A list of the <strong>navigational equipment</strong> to be carried</td></tr>
+    </tbody>
+  </table>
+  <ul class="reg-list">
+    <li><strong>(3)</strong> A copy of the Operations Manual, or such part as prescribed by the DG, shall be <strong>carried in all aircraft engaged in scheduled air transport services</strong>.</li>
+  </ul>
+  <div class="exam-box box">
+    <div class="box-title">Exam Points — Operations Manual</div>
+    <ul class="reg-list">
+      <li>Q24: Succession of command is given in the <strong>Operations Manual</strong>. Answer = <strong>A</strong>.</li>
+      <li>Q35: Operational Manual is prepared by the <strong>operator and authorised by the DGCA</strong>. Answer = <strong>A</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 140C</span>Route Guide</div>
+  <p>All aircraft of the Corporation engaged in scheduled air transport services shall carry a Route Guide containing:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> Communication facilities, navigation aids, and a list of aerodromes available on the route</li>
+    <li><strong>(b)</strong> Instrument 'let down' procedure for aerodromes on the route or those likely to be used as alternates</li>
+    <li><strong>(c)</strong> Meteorological minima for each aerodrome on the route (regular and alternate)</li>
+    <li><strong>(d)</strong> Specific instructions for computation of quantities of fuel and oil to be carried on each route, having regard to all circumstances including the <strong>possibility of failure of one or more engines</strong></li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 161</span>Penalties</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> Any person who has contravened or failed to comply with any of these rules or any direction issued under Rule 133A shall, where no punishment is provided for such contravention in the Aircraft Act, 1934, be punishable to the extent laid down in <strong>Schedule VI</strong>.</li>
+    <li><strong>(2)</strong> It shall be a defence to any proceedings for contravention if the contravention or failure is proved to have been due to <strong>accident, stress of weather or other unavoidable cause</strong>. Also, it is a defence for the owner, hirer, operator, pilot or commander that the alleged contravention took place without his <strong>actual fault or privity</strong>.</li>
+  </ul>
+
+</div><!-- /sub-section -->
+
+<!-- INDIAN AIRCRAFT RULES 1920 -->
+<div class="section-header">
+  <h2>The Indian Aircraft Rules, 1920 <span class="act-tag">Customs Rules</span></h2>
+</div>
+<div class="sub-section">
+
+  <div class="def-box box">
+    <div class="box-title">Purpose</div>
+    <p>These are <strong>custom rules governing aircraft arriving in or departing from India</strong>. They are found in the Aircraft Manual (India) Vol I.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 53</span>Customs Aerodromes and Customs Officers</div>
+  <p>The Central Government may:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> By notification in the Official Gazette, <strong>declare any aerodrome in India to be a customs aerodrome</strong></li>
+    <li><strong>(b)</strong> Appoint persons to be <strong>Chief Customs Officers and Customs Collectors</strong>, and define areas within which each shall exercise the powers and perform the duties conferred</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 54</span>Arrival and Departure</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> No person in-charge of an aircraft entering India shall cause it to be landed in India for the first time in any journey except at a <strong>customs aerodrome</strong>, unless compelled to land by accident, stress of weather or other unavoidable cause.</li>
+    <li><strong>(2)</strong> No person in-charge of an aircraft shall fly it to a place outside India except from a <strong>customs aerodrome</strong> (unless compelled to land elsewhere).</li>
+  </ul>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q25</div>
+    <p>An international flight from India can take off only from a <strong>customs aerodrome</strong>. Answer = <strong>C</strong>.</p>
+  </div>
+
+  <div class="rule-title"><span class="rule-num">Rule 55</span>Import and Export of Goods</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> No person in any aircraft entering or departing from India shall carry or allow to be carried any goods of which the import or export by sea or by land is <strong>prohibited</strong> by any law in force.</li>
+    <li><strong>(2)</strong> No person in any aircraft entering India shall <strong>break or alter any seal</strong> placed upon any part of the aircraft or upon any goods therein by an officer of customs at the aerodrome at which such aircraft departed for India.</li>
+  </ul>
+
+  <div class="rule-title"><span class="rule-num">Rule 62</span>Examination</div>
+  <ul class="reg-list">
+    <li><strong>(1)</strong> The person in-charge of any aircraft shall permit any <strong>Customs Collector or other authorised officer</strong> to board and examine the aircraft and any goods laden thereon, at any time.</li>
+    <li><strong>(2)</strong> The importer or exporter of any goods shall produce such goods to the <strong>Customs Collector at the customs aerodrome</strong> and permit him to examine such goods.</li>
+  </ul>
+
+</div><!-- /sub-section -->
+
+<!-- AIRCRAFT MANUAL -->
+<div class="section-header">
+  <h2>Aircraft Manual (India) — Vol I &amp; Vol II</h2>
+</div>
+<div class="sub-section">
+  <div class="two-col">
+    <div class="fact-box box">
+      <div class="box-title">Vol I</div>
+      <p>Contains the following <strong>Acts and Rules</strong>:</p>
+      <ul class="reg-list">
+        <li><strong>Aircraft Act, 1934</strong> — Control of manufacture, possession, use, operation, sale, import/export of aircraft</li>
+        <li><strong>Aircraft Rules, 1937</strong> — Regulating civil aviation activity in India (Vol II Air Regulations)</li>
+        <li><strong>Indian Aircraft Rules, 1920</strong> — Customs rules governing aircraft arriving in/departing from India</li>
+      </ul>
+    </div>
+    <div class="fact-box box">
+      <div class="box-title">Vol II</div>
+      <ul class="reg-list">
+        <li><strong>Part I</strong>: National Conventions/Rules/Acts</li>
+        <li><strong>Part II</strong>: International Conventions</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PUBLIC HEALTH RULES -->
+<div class="section-header">
+  <h2>Indian Aircraft (Public Health) Rules, 1954 (Amended 1969)</h2>
+</div>
+<div class="sub-section">
+
+  <div class="def-box box">
+    <div class="box-title">Purpose &amp; Authority</div>
+    <p>Framed by the Government of India under the power given in the Aircraft Act, 1934. These rules govern public health measures at airports and on aircraft.</p>
+  </div>
+
+  <h3>Key Definitions</h3>
+  <table class="data-table table-purple">
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Health officer</strong></td><td>A person appointed by the Central Government to the health office of the airport</td></tr>
+      <tr><td><strong>Infected aircraft</strong></td><td>An aircraft which has any person or animal who carries an infectious disease</td></tr>
+      <tr><td><strong>Infected area</strong></td><td>Any area outside India declared as such in relation to a quarantinable or other infectious disease by the Central Government via notification in the Official Gazette</td></tr>
+      <tr><td><strong>Isolation</strong></td><td>The separation of that person/group from other persons (except health staff on duty) so as to prevent the spread of infection</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Periods of Incubation for Quarantinable Diseases</h3>
+  <div class="limit-box box">
+    <div class="box-title">Incubation Periods</div>
+    <div class="summary-grid">
+      <div class="summary-card"><div class="big-val">6</div><div class="label">days — Yellow Fever</div></div>
+      <div class="summary-card"><div class="big-val">6</div><div class="label">days — Plague</div></div>
+      <div class="summary-card"><div class="big-val">5</div><div class="label">days — Cholera</div></div>
+      <div class="summary-card"><div class="big-val">14</div><div class="label">days — Small Pox</div></div>
+      <div class="summary-card"><div class="big-val">14</div><div class="label">days — Typhus</div></div>
+      <div class="summary-card"><div class="big-val">8</div><div class="label">days — Relapsing Fever</div></div>
+    </div>
+  </div>
+
+  <div class="sop-box box">
+    <div class="box-title">Commander's Obligation — Health Report Before Landing</div>
+    <p>The Commander of an aircraft on its way to India from any place outside India shall send to the officer in-charge of the airport where he proposes to land a <strong>health report at least 2 hours in advance</strong> stating:</p>
+    <ul class="reg-list">
+      <li><strong>(a)</strong> Whether any person on board is suffering from any illness, and if so, what its signs and symptoms are (giving if possible the name of the illness)</li>
+      <li><strong>(b)</strong> Whether at any time during the voyage there has occurred on board any case or suspected case of a quarantinable or other infectious disease</li>
+    </ul>
+  </div>
+
+  <div class="sop-box box">
+    <div class="box-title">Measures Taken by Health Officer on Arrival</div>
+    <ul class="reg-list">
+      <li>When an infected/suspected aircraft comes from a place outside India, the health officer may take appropriate measures as prescribed by the rules</li>
+      <li>May consider medical examination/inspection of any passenger or crew, particularly when coming from a <strong>yellow fever infected area</strong></li>
+      <li>If aircraft comes from an area where <strong>malaria or mosquito-borne disease</strong> could develop from imported vectors, the aircraft may be <strong>disinfected</strong></li>
+    </ul>
+  </div>
+
+  <div class="note-box box">
+    <div class="box-title">Pilgrim Aircraft — Special Requirement</div>
+    <p>For pilgrim aircraft, all persons should produce valid certificates of vaccination against <strong>cholera and yellow fever</strong>.</p>
+  </div>
+
+  <div class="limit-box box">
+    <div class="box-title">Human Remains — Restrictions</div>
+    <p>No person shall bring into India any dead body or human remains of persons who may have died of <strong>yellow fever, plague, anthrax, ganders</strong> or such other diseases notified by the Central Government.</p>
+    <ul class="reg-list">
+      <li>If cremated: ashes shall be placed in an urn or casket having an outer packing of suitable material</li>
+      <li>If not cremated: the corpse should be closed in a <strong>shell of zinc or other equally suitable metal</strong> with all joints soldered to seal hermetically, enclosed in a stoutly built teak or hard wood coffin, enclosed in a zinc or tin-lined wooden packing case filled with sawdust impregnated with carbolic powder</li>
+    </ul>
+  </div>
+
+  <div class="limit-box box">
+    <div class="box-title">Penalty — Public Health Rules</div>
+    <p>Whoever contravenes any provision of these rules may be punished for a term not exceeding <span class="val">3 months</span> or with fine up to <span class="val">₹1,000</span> or with both.</p>
+  </div>
+
+  <div class="exam-box box">
+    <div class="box-title">Exam Points — Public Health</div>
+    <ul class="reg-list">
+      <li>Q5: Passenger from yellow fever infected area without certificate — Referral of suspect travellers to designated quarantine facility by <strong>Airport Health Organisation</strong>. Answer = <strong>A</strong>.</li>
+      <li>Q13: Bringing human remains — subject to <strong>public health clearance of dead bodies/human remains</strong>. Answer = <strong>A</strong>.</li>
+      <li>Q29: If passenger falls sick on board with suspected infectious disease — PIC's action = <strong>To inform health officer of destination aerodrome</strong>. Answer = <strong>B</strong>.</li>
+    </ul>
+  </div>
+
+</div><!-- /sub-section -->
+
+<!-- IHR 2005 -->
+<div class="section-header">
+  <h2>International Health Regulations (IHR), 2005</h2>
+</div>
+<div class="sub-section">
+
+  <div class="def-box box">
+    <div class="box-title">Airport Health Organization (APHO)</div>
+    <p>APHO works under the <strong>Directorate General of Health Services (DGHS), Ministry of Health &amp; Family Welfare, Government of India</strong> to co-ordinate with all service providers and stakeholders to ensure minimum core facilities requirements as per IHR 2005.</p>
+  </div>
+
+  <h3>Major Functions of APHO at Airports</h3>
+  <ul class="reg-list">
+    <li><strong>Airport Quarantine:</strong> Inspection of international travel documents for yellow fever disease; referral of suspect travellers to designated quarantine facility</li>
+    <li>Disinfection, disinsection and deratting of aircraft including inspection and supervision of control measures</li>
+    <li>Supervision of sanitation, quality of drinking water supply, anti-mosquito and anti-rodent work inside airports</li>
+    <li>Public health clearance of dead bodies/human remains</li>
+    <li>Administration of yellow fever vaccine and issue of yellow fever vaccination certificate</li>
+    <li>Arrangements for quarantine of yellow-fever suspects at designated quarantine facilities</li>
+    <li>Attend aircraft medical emergencies</li>
+    <li>Food inspection for VVIP; Inspection of food stuff, catering establishments inside airport under FSSAI, 2011</li>
+    <li>Assistance in sampling of imported food items and forwarding the lab analysis report</li>
+    <li>Inspection and Licensing of eating establishments within local limits of airports as designated officer under FSSAI, 2006</li>
+    <li>Activities during <strong>Public Health Emergencies of International Concern (PHEIC)</strong> like passenger screening, isolation &amp; quarantine, contact listing, aircraft disinsection, transportation</li>
+    <li>Effective surveillance activities on international travellers, aircrafts, cargos, conveyances, goods, postal parcels &amp; human remains</li>
+    <li>Ensure a safe environment for travellers at points of entry (potable water, eating establishments, flight catering facilities, public washrooms, waste disposal)</li>
+  </ul>
+
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q16</div>
+    <p>Responsibility for implementing IHR 2005 at Indian Airports is that of <strong>Director General Health Services</strong>. Answer = <strong>C</strong>.</p>
+  </div>
+
+</div><!-- /sub-section -->
+
+<!-- OTHER RULES -->
+<div class="section-header">
+  <h2>Other Applicable Rules <span class="act-tag">Brief Summaries</span></h2>
+</div>
+<div class="sub-section">
+
+  <table class="data-table">
+    <thead><tr><th>Rule/Act</th><th>Year</th><th>Coverage</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Aircraft (Demolition of Obstructions Caused by Building and Trees Etc.) Rules</strong></td>
+        <td>1994</td>
+        <td>Procedure for demolition of obstructions around aerodromes</td>
+      </tr>
+      <tr>
+        <td><strong>Aircraft (Carriage of Dangerous Goods) Rules</strong></td>
+        <td>2003</td>
+        <td>Procedures for carriage of dangerous goods on aircraft</td>
+      </tr>
+      <tr>
+        <td><strong>Aircraft (Security) Rules</strong></td>
+        <td>2011</td>
+        <td>Deals with airport security</td>
+      </tr>
+      <tr>
+        <td><strong>Aircraft (Investigation of Accidents and Incidents) Rules</strong></td>
+        <td>2017</td>
+        <td>Deals with accidents and incidents investigations</td>
+      </tr>
+      <tr>
+        <td><strong>The Unmanned Aircraft System (UAS) Rules</strong></td>
+        <td>2021</td>
+        <td>See below</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rule-title">The Unmanned Aircraft System (UAS) Rules, 2021</div>
+  <p>These rules apply to:</p>
+  <ul class="reg-list">
+    <li><strong>(a)</strong> Unmanned Aircraft System (UAS) registered in India, wherever they may be</li>
+    <li><strong>(b)</strong> A person owning, possessing, or engaged in exporting, importing, manufacturing, trading, leasing, operating, transferring or maintaining an Unmanned Aircraft System <strong>in India</strong></li>
+    <li><strong>(c)</strong> All Unmanned Aircraft Systems for the time being <strong>in or over India</strong></li>
+  </ul>
+  <div class="note-box box">
+    <div class="box-title">Relationship with Aircraft Rules, 1937</div>
+    <p>The provisions contained in the <strong>Aircraft Rules, 1937 shall NOT apply</strong> to the Unmanned Aircraft System and matters connected therewith except for those provisions whose application on UAS is specifically provided in these rules. These rules apply to UAS for <strong>civil aviation purposes only</strong>.</p>
+  </div>
+  <div class="exam-box box">
+    <div class="box-title">Exam Point — Q19</div>
+    <p>The provisions contained in the Aircraft Rules, 1937 shall <strong>not apply to UAS except for those specifically provided in these rules</strong>. Answer = <strong>C</strong>.</p>
+  </div>
+
+</div><!-- /sub-section -->
+
+<!-- PRACTICE Q&A -->
+<div class="section-header">
+  <h2>Practice Questions &amp; Answers <span class="act-tag">From the DGCA Question Bank</span></h2>
+</div>
+<div class="sub-section">
+
+  <div class="qa-item">
+    <div class="qa-question">Q1. A pilot can fly an aircraft which is not entered in the aircraft rating of his licence for endorsement on his licence:</div>
+    <div class="qa-options">
+      <p>A) Within 5 nm of an aerodrome</p>
+      <p>B) Within Local Flying Area of the aerodrome</p>
+      <p>C) Anywhere</p>
+    </div>
+    <div class="qa-answer">B — Within Local Flying Area of the aerodrome (Rule 6B)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q2. A pilot can fly in 30 consecutive days:</div>
+    <div class="qa-options">
+      <p>A) 100 hrs PIC &amp; 50 hrs as Co-pilot</p>
+      <p>B) 100 hrs PIC &amp; 30 hrs as Co-pilot</p>
+      <p>C) 120 hrs PIC &amp; 20 hrs as Co-pilot</p>
+    </div>
+    <div class="qa-answer">B — 100 hrs PIC &amp; 30 hrs as Co-pilot (CAR Section 7 — FTL)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q3. When an aircraft is being refuelled, the refuelling must be stopped if a jet aircraft crosses within a distance of:</div>
+    <div class="qa-options">
+      <p>A) 15 meters &nbsp;&nbsp; B) 30 meters &nbsp;&nbsp; C) 43 meters</p>
+    </div>
+    <div class="qa-answer">C — 43 meters (Rule 25A(2)(n))</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q4. Mathura Refinery is a:</div>
+    <div class="qa-options">
+      <p>A) Danger Area &nbsp;&nbsp; B) Restricted area &nbsp;&nbsp; C) Prohibited area</p>
+    </div>
+    <div class="qa-answer">C — Prohibited area (Schedule I, Rule 12)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q5. A passenger visited a yellow fever infected area in the previous six days but is not in possession of valid yellow fever certificate. Action taken is:</div>
+    <div class="qa-options">
+      <p>A) Referral of suspect travellers to designated quarantine facility by Airport Health Organisation</p>
+      <p>B) Immigration Officer to hand over suspect to District Health Officer</p>
+      <p>C) DGCA to order an inquiry against the Airline</p>
+    </div>
+    <div class="qa-answer">A — Referral to designated quarantine facility by Airport Health Organisation</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q6. Prisoners on board an aircraft can be carried with the permission of:</div>
+    <div class="qa-options">
+      <p>A) DGCA &nbsp;&nbsp; B) Controller of Aerodrome &nbsp;&nbsp; C) Director General of Prisons</p>
+    </div>
+    <div class="qa-answer">A — DGCA (Rule 24B)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q7. Smoking on a private aircraft is permitted:</div>
+    <div class="qa-options">
+      <p>A) Provided the owner has no objection</p>
+      <p>B) Only if the certificate of airworthiness of the aircraft permits</p>
+      <p>C) Without restriction if no passengers are carried</p>
+    </div>
+    <div class="qa-answer">B — Only if the C of A permits (Rule 25)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q8. An aircraft without registration markings can be flown only:</div>
+    <div class="qa-options">
+      <p>A) If the sale deed is not yet completed</p>
+      <p>B) For purpose of test flight only, prior to purchase</p>
+      <p>C) If specially permitted in writing by the Central Govt.</p>
+    </div>
+    <div class="qa-answer">C — If specially permitted in writing by the Central Govt. (Rule 5 proviso)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q9. The member of operating crew shall not have taken alcoholic drinks:</div>
+    <div class="qa-options">
+      <p>A) 6 hrs before commencement of flight</p>
+      <p>B) 12 hrs before commencement of flight</p>
+      <p>C) 24 hrs before commencement of flight</p>
+    </div>
+    <div class="qa-answer">B — 12 hrs before commencement of flight (Rule 24)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q10. Photography at an aerodrome can be done with prior permission in writing from:</div>
+    <div class="qa-options">
+      <p>A) Aerodrome officer &nbsp;&nbsp; B) DGCA &nbsp;&nbsp; C) Central Govt.</p>
+    </div>
+    <div class="qa-answer">B — DGCA (Rule 13)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q11. While refuelling is in progress, no naked light be brought within ___ mts:</div>
+    <div class="qa-options">
+      <p>A) 35 &nbsp;&nbsp; B) 30 &nbsp;&nbsp; C) 100</p>
+    </div>
+    <div class="qa-answer">B — 30 meters (Rule 25A(2)(c))</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q12. A pilot flying low due to thunder showers for safety reasons can be sued by:</div>
+    <div class="qa-options">
+      <p>A) State Govt. &nbsp;&nbsp; B) Cannot be sued &nbsp;&nbsp; C) Owner of the property over which it is flying</p>
+    </div>
+    <div class="qa-answer">B — Cannot be sued (Rule 161(2) — stress of weather defence, and Sec 17 — bar on civil suits)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q13. A person can bring to India human remains of a person:</div>
+    <div class="qa-options">
+      <p>A) Subject to public health clearance of dead bodies/human remains</p>
+      <p>B) After properly cremating; only ashes can be brought enclosed in a sealed urn</p>
+      <p>C) Only if carried by a Cargo/chartered aircraft</p>
+    </div>
+    <div class="qa-answer">A — Subject to public health clearance (Indian Aircraft (Public Health) Rules)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q14. An aerial work aircraft on an IFR plan to Jaipur departs at 1032 hrs UTC. Sunset at Jaipur is 1318 UTC. Night landing facilities not available. Flying time available to reach Jaipur is:</div>
+    <div class="qa-options">
+      <p>A) 3 hrs &amp; 06 minutes &nbsp;&nbsp; B) 2 hrs &amp; 26 min &nbsp;&nbsp; C) 2 hrs &amp; 46 min</p>
+    </div>
+    <div class="qa-answer">A — 3 hrs &amp; 06 minutes. (Sunset 1318 – departure 1032 = 2h 46min remaining. But an aerial work aircraft must land before sunset. Wait – the available flying time is from 1032 to 1318 = 2h 46min. But then 1318–1032 = 2h 46min. Hmm — the answer key says A: 3h 06min. This likely accounts for 20 minutes after sunset as civil twilight, but the answer given in the book is A.)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q15. Minimum crew required on a private aircraft is:</div>
+    <div class="qa-options">
+      <p>A) One pilot &nbsp;&nbsp; B) Two pilots &nbsp;&nbsp; C) As specified in the certificate of Airworthiness</p>
+    </div>
+    <div class="qa-answer">C — As specified in the certificate of Airworthiness (Rule 38A(7))</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q16. Responsibility for implementing IHR 2005 at Indian Airports is that of:</div>
+    <div class="qa-options">
+      <p>A) DGCA &nbsp;&nbsp; B) Airport Authority of India &nbsp;&nbsp; C) Director General Health Services</p>
+    </div>
+    <div class="qa-answer">C — Director General Health Services (via APHO)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q17. Dropping of paper leaflets require the permission of:</div>
+    <div class="qa-options">
+      <p>A) Aerodrome &nbsp;&nbsp; B) Local District Magistrate &nbsp;&nbsp; C) Operator</p>
+    </div>
+    <div class="qa-answer">B — Local District Magistrate (or Commissioner of Police) — Rule 26(d)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q18. A certificate of registration is valid from the date of registration to:</div>
+    <div class="qa-options">
+      <p>A) 1 year &nbsp;&nbsp; B) Till the aircraft is destroyed in an accident &nbsp;&nbsp; C) Till it is cancelled by DGCA</p>
+    </div>
+    <div class="qa-answer">C — Till it is cancelled by DGCA (Rule 33(c))</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q19. The provisions contained in the Aircraft Rules, 1937 shall:</div>
+    <div class="qa-options">
+      <p>A) Apply to all unmanned aircraft systems</p>
+      <p>B) Apply to only UAS weighing more than 500 Kgs, excluding defence systems</p>
+      <p>C) Not apply to the Unmanned Aircraft Systems except for those specifically provided in these rules</p>
+    </div>
+    <div class="qa-answer">C — UAS Rules 2021</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q20. If your aircraft is carrying cargo for remuneration, it will be known as a:</div>
+    <div class="qa-options">
+      <p>A) Private aircraft &nbsp;&nbsp; B) Aerial work aircraft &nbsp;&nbsp; C) Public transport aircraft</p>
+    </div>
+    <div class="qa-answer">C — Public transport aircraft (carrying persons or cargo for remuneration)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q21. One pilot will be designated as PIC of a public transport aircraft for each flight by:</div>
+    <div class="qa-options">
+      <p>A) The operator &nbsp;&nbsp; B) DGCA &nbsp;&nbsp; C) Flying contract unit</p>
+    </div>
+    <div class="qa-answer">A — The operator</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q22. The privileges of a license can be exercised by a pilot involved in an incident after:</div>
+    <div class="qa-options">
+      <p>A) He is cleared by the medical authority</p>
+      <p>B) He is cleared by the DGCA</p>
+      <p>C) He is cleared by the ATS authority</p>
+    </div>
+    <div class="qa-answer">B — He is cleared by the DGCA</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q23. No of cabin crew required is according to:</div>
+    <div class="qa-options">
+      <p>A) No. of passengers excluding crew members</p>
+      <p>B) No. of persons on board including crew members</p>
+      <p>C) No. of seats</p>
+    </div>
+    <div class="qa-answer">C — No. of seats (Rule 38B)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q24. Succession of command is given:</div>
+    <div class="qa-options">
+      <p>A) In Operations Manual &nbsp;&nbsp; B) by Operator &nbsp;&nbsp; C) by DGCA</p>
+    </div>
+    <div class="qa-answer">A — In Operations Manual (Rule 140B)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q25. An international flight from India can take off:</div>
+    <div class="qa-options">
+      <p>A) From any aerodrome in India</p>
+      <p>B) From any major aerodrome in India</p>
+      <p>C) From any custom aerodrome only</p>
+    </div>
+    <div class="qa-answer">C — From any custom aerodrome only (Indian Aircraft Rules 1920, Rule 54)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q26. PIC of an aeroplane shall:</div>
+    <div class="qa-options">
+      <p>A) Be responsible for safe conduct of navigation</p>
+      <p>B) Be responsible for safe conduct of flight at all times</p>
+      <p>C) All above is correct</p>
+    </div>
+    <div class="qa-answer">C — All above is correct</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q27. An a/c with seating capacity of 150, what is the number of flight attendants required:</div>
+    <div class="qa-options">
+      <p>A) 2 &nbsp;&nbsp; B) 3 &nbsp;&nbsp; C) 4</p>
+    </div>
+    <div class="qa-answer">C — 4. Formula: 2 + 1 per unit of 50 above 99. Seats above 99 = 51 → 2 units → 2 + 2 = 4 (Rule 38B)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q28. Every member of the Flight Crew shall get his log book certified for correctness by the competent authority:</div>
+    <div class="qa-options">
+      <p>A) At the end of each calendar month</p>
+      <p>B) At the end of every quarter</p>
+      <p>C) At a half yearly interval ending Jun and Dec</p>
+    </div>
+    <div class="qa-answer">B — At the end of every quarter (Rule 67A(4))</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q29. If a passenger falls sick on board an a/c and is suspected of any infectious disease then PIC's action is:</div>
+    <div class="qa-options">
+      <p>A) To land immediately</p>
+      <p>B) To inform health officer of destination aerodrome</p>
+      <p>C) To inform DGCA</p>
+    </div>
+    <div class="qa-answer">B — To inform health officer of destination aerodrome (Indian Aircraft (Public Health) Rules)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q30. The Pilot-in-Command may permit the access of internet services by passengers on board an aircraft in flight, through Wi-Fi on board, provided:</div>
+    <div class="qa-options">
+      <p>A) The manufacturer has certified the aircraft for internet usage</p>
+      <p>B) The aircraft is certified by DGCA for Wi-Fi and flying in VMC and pilot is in contact with ground</p>
+      <p>C) The Director-General has certified the aircraft for usage of internet service in flight through Wi-Fi on board</p>
+    </div>
+    <div class="qa-answer">C — Director-General has certified the aircraft (Rule 29B(3))</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q31. If any person contravenes any of the provisions of the Indian aircraft Act or the rules made thereunder:</div>
+    <div class="qa-options">
+      <p>A) The licence, certificate or approval issued to such person may be suspended or cancelled</p>
+      <p>B) The person may be arrested and will not be eligible for bail</p>
+      <p>C) The person may be imprisoned for up to one year or fined ₹1 crore in lieu</p>
+    </div>
+    <div class="qa-answer">A — Licence, certificate or approval may be suspended or cancelled (Sec 10B)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q32. No unauthorised person must be present within ___ mts of a/c while refuelling is on:</div>
+    <div class="qa-options">
+      <p>A) 15 &nbsp;&nbsp; B) 30 &nbsp;&nbsp; C) 50</p>
+    </div>
+    <div class="qa-answer">A — 15 meters (Rule 25A(2)(h))</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q33. Pilot's log book is to be preserved for:</div>
+    <div class="qa-options">
+      <p>A) 5 years from the date of starting the log book</p>
+      <p>B) 5 years from the date of last entry</p>
+      <p>C) 3 years from the date of last entry</p>
+    </div>
+    <div class="qa-answer">B — 5 years from the date of last entry (Rule 67A(3))</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q34. Medical for a CPL holder is valid for:</div>
+    <div class="qa-options">
+      <p>A) 2 years &nbsp;&nbsp; B) 1 year &nbsp;&nbsp; C) 1 year if age is less than 40 years</p>
+    </div>
+    <div class="qa-answer">C — 1 year if age is less than 40 years (CAR Section 6 medical standards)</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-question">Q35. Operational Manual is:</div>
+    <div class="qa-options">
+      <p>A) Prepared by the operator and authorized by the DGCA</p>
+      <p>B) Prepared by the DGCA and authorized by operator</p>
+      <p>C) Prepared by the operator and authorized by manufacturer</p>
+    </div>
+    <div class="qa-answer">A — Prepared by the operator and authorised by DGCA (Rule 140B)</div>
+  </div>
+
+</div><!-- /sub-section -->
+
+<!-- QUICK REFERENCE SUMMARY -->
+<div class="section-header">
+  <h2>📌 Quick Reference — Critical Numbers &amp; Limits</h2>
+</div>
+<div class="sub-section">
+  <table class="data-table table-danger">
+    <thead><tr><th>Parameter</th><th>Value</th><th>Rule Reference</th></tr></thead>
+    <tbody>
+      <tr><td>No-fly radius from aerodrome (animal slaughter/rubbish)</td><td><span class="val">10 km</span></td><td>Sec 5(qa)</td></tr>
+      <tr><td>Alcohol abstinence before flight (operating crew)</td><td><span class="val">12 hours</span></td><td>Rule 24</td></tr>
+      <tr><td>Minimum age for sole control of aircraft</td><td><span class="val">16 years</span></td><td>Rule 28</td></tr>
+      <tr><td>Maximum age for PIC/Co-pilot (commercial)</td><td><span class="val">65 years</span></td><td>Rule 28A</td></tr>
+      <tr><td>Age limit requiring multi-crew &amp; younger co-pilot</td><td><span class="val">60 years</span></td><td>Rule 28A</td></tr>
+      <tr><td>Maximum Mach for civil aircraft (sonic boom)</td><td><span class="val">Mach 1</span></td><td>Rule 29A</td></tr>
+      <tr><td>RPAS requiring UIN (all-up weight)</td><td><span class="val">&gt;250 g</span></td><td>Rule 15A</td></tr>
+      <tr><td>Fuelling — minimum distance from building</td><td><span class="val">15 m</span></td><td>Rule 25A</td></tr>
+      <tr><td>Fuelling — naked flame exclusion zone</td><td><span class="val">30 m</span></td><td>Rule 25A</td></tr>
+      <tr><td>Fuelling — unauthorised persons exclusion</td><td><span class="val">15 m</span></td><td>Rule 25A</td></tr>
+      <tr><td>Fuelling — jet aircraft rear outlet distance (stop fuelling)</td><td><span class="val">43 m</span></td><td>Rule 25A</td></tr>
+      <tr><td>Equipment distance (gasoline/wide-cut fuels)</td><td><span class="val">≥15 m</span></td><td>Rule 25A</td></tr>
+      <tr><td>Equipment distance (straight kerosene)</td><td><span class="val">≥6 m</span></td><td>Rule 25A</td></tr>
+      <tr><td>Documents production after demand (not on board)</td><td><span class="val">7 days</span></td><td>Rule 17</td></tr>
+      <tr><td>Flight Navigator required: circle distance</td><td><span class="val">&gt;600 NM</span></td><td>Rule 38A(3)</td></tr>
+      <tr><td>Flight Navigator required: fix-to-fix distance (within 30 NM of route)</td><td><span class="val">&gt;600 NM</span></td><td>Rule 38A(3)</td></tr>
+      <tr><td>Log book preservation period</td><td><span class="val">5 years (from last entry)</span></td><td>Rule 67A(3)</td></tr>
+      <tr><td>Log book quarterly certification period</td><td><span class="val">End of March, June, September, December</span></td><td>Rule 67A(4)</td></tr>
+      <tr><td>Sickness/injury period requiring fresh medical before flying</td><td><span class="val">≥15 days</span></td><td>Rule 42(2)</td></tr>
+      <tr><td>Advance notice for new route / route change</td><td><span class="val">7 days</span></td><td>Rule 140A</td></tr>
+      <tr><td>CAR draft on DGCA website for public comment</td><td><span class="val">30 days</span></td><td>Rule 133A</td></tr>
+      <tr><td>Towers of Silence (Malabar Hills) — prohibited radius</td><td><span class="val">1 mile</span></td><td>Schedule I</td></tr>
+      <tr><td>Mathura Refineries — prohibited radius</td><td><span class="val">10 km</span></td><td>Schedule I</td></tr>
+      <tr><td>Kalpakkam Nuclear — prohibited radius</td><td><span class="val">10 km</span></td><td>Schedule I</td></tr>
+      <tr><td>Bhubaneshwar — prohibited upper limit</td><td><span class="val">50,000 ft</span></td><td>Schedule I</td></tr>
+      <tr><td>Kalpakkam — prohibited upper limit</td><td><span class="val">10,000 ft</span></td><td>Schedule I</td></tr>
+      <tr><td>Penalty — dangerous goods false info / arms carriage</td><td><span class="val">2 yrs + ₹1 Cr</span></td><td>Sec 10(1)</td></tr>
+      <tr><td>Penalty — animal slaughter / rubbish near aerodrome</td><td><span class="val">3 yrs + ₹1 Cr</span></td><td>Sec 10(1A)</td></tr>
+      <tr><td>Commander's health report before landing (India)</td><td><span class="val">≥2 hours in advance</span></td><td>Public Health Rules</td></tr>
+      <tr><td>Mental disorder epilepsy — alcohol restriction before flight</td><td><span class="val">12 hours</span></td><td>Rule 24A</td></tr>
+      <tr><td>Mental disorder — if excited in previous 2 weeks</td><td><span class="val">Requires registered medical practitioner + escort</span></td><td>Rule 24A</td></tr>
+      <tr><td>Single pilot commercial: max weight (age 60-65, multi-crew exemption)</td><td><span class="val">5700 kg MTOW</span></td><td>Rule 28A</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center; padding: 30px 0 10px; color:#888; font-size:9pt; border-top:1px solid #dce3ee; margin-top:30px;">
+  Chapter 14 — National Law | DGCA CPL/ATPL Study Notes | Prepared by <strong>Capt. Pankaj Pahil</strong><br>
+  Aircraft Act 1934 &bull; Aircraft Rules 1937 &bull; Indian Aircraft Rules 1920 &bull; Public Health Rules 1954 &bull; IHR 2005 &bull; UAS Rules 2021
+</div>
+
+</div><!-- /page-content -->
+
+<!-- ======================================================
+     WATERMARK — MUST BE LAST ELEMENT IN BODY
+     ====================================================== -->
+<div style="position:fixed; z-index:9999; pointer-events:none; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:80px; font-weight:900; color:rgba(0,0,0,0.12); white-space:nowrap; font-family:'Merriweather',serif; letter-spacing:4px; user-select:none;">
+  Capt. Pankaj Pahil
+</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

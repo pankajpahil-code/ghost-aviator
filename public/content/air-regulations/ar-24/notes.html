@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aviation Psychology & Human Factors — DGCA Study Notes | Capt. Pankaj Pahil</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default',
+    flowchart: { curve: 'basis', padding: 20 } });
+</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fafafa;
+  }
+  h1, h2, h3, h4 { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-weight: 700; color: #0f2a4a; }
+  h1 { font-size: 2.2em; margin-bottom: 6px; }
+  h2 { font-size: 1.6em; border-bottom: 3px solid #0f2a4a; padding-bottom: 8px; margin-top: 40px; }
+  h3 { font-size: 1.25em; color: #1b4080; margin-top: 25px; }
+  h4 { font-size: 1.05em; color: #2c5aa0; margin-top: 18px; }
+  p { margin: 10px 0; text-align: justify; }
+  ul, ol { margin: 10px 0 10px 25px; }
+  li { margin: 5px 0; }
+  .cover {
+    background: linear-gradient(135deg, #0f2a4a 0%, #1b4080 100%);
+    color: #fff;
+    padding: 50px 40px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+  .cover h1 { color: #fff; font-size: 2.6em; margin: 0; letter-spacing: 1px; }
+  .cover .subtitle { font-size: 1.1em; opacity: 0.92; margin-top: 10px; }
+  .cover .author { font-size: 1.2em; margin-top: 20px; font-weight: 600; letter-spacing: 0.5px; }
+  .cover .chapter-ref { font-size: 0.95em; opacity: 0.85; margin-top: 10px; font-style: italic; }
+  .toc {
+    background: #fff;
+    border: 2px solid #0f2a4a;
+    border-radius: 8px;
+    padding: 25px 35px;
+    margin: 30px 0;
+    page-break-after: always;
+  }
+  .toc h2 { margin-top: 0; border-bottom: 2px solid #0f2a4a; }
+  .toc ol { columns: 2; column-gap: 40px; }
+  .toc a { color: #1b4080; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  section { background: #fff; border-radius: 8px; padding: 25px 30px; margin-bottom: 25px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .box {
+    padding: 15px 18px;
+    border-radius: 6px;
+    margin: 15px 0;
+    page-break-inside: avoid;
+  }
+  .box-red    { background: #fdecea; border-left: 5px solid #c0392b; }
+  .box-blue   { background: #e8f1fb; border-left: 5px solid #2c5aa0; }
+  .box-green  { background: #e8f5e9; border-left: 5px solid #2e7d32; }
+  .box-amber  { background: #fff8e1; border-left: 5px solid #f57c00; }
+  .box-title { font-weight: 700; display: block; margin-bottom: 6px; font-size: 1.02em; }
+  .box-red   .box-title { color: #8b1e1e; }
+  .box-blue  .box-title { color: #1b4080; }
+  .box-green .box-title { color: #1b5e20; }
+  .box-amber .box-title { color: #b75800; }
+  .reg-value {
+    font-weight: 800;
+    color: #b75800;
+    background: #fff3d6;
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 0.97em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    page-break-inside: avoid;
+    background: #fff;
+  }
+  th, td { border: 1px solid #c8d2e0; padding: 9px 12px; text-align: left; vertical-align: top; }
+  th { background: #0f2a4a; color: #fff; font-weight: 700; }
+  tr:nth-child(even) td { background: #f3f6fb; }
+  blockquote {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    background: #f4f4f4;
+    border-left: 4px solid #888;
+    margin: 15px 0;
+    padding: 12px 18px;
+    color: #333;
+  }
+  code, .formula {
+    font-family: "Courier New", Courier, monospace;
+    background: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.95em;
+  }
+  pre.mermaid {
+    background: #fdfdfd;
+    border: 1px solid #d8dde6;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 18px 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .svg-container {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: #fdfdfd;
+    border: 1px solid #d8dde6;
+    border-radius: 6px;
+    page-break-inside: avoid;
+  }
+  .worked-example {
+    background: #f7f3e9;
+    border: 2px dashed #b78a4c;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    page-break-inside: avoid;
+  }
+  .worked-example .we-title { font-weight: 700; color: #8a5a1e; display: block; margin-bottom: 8px; }
+  .footer-note { font-size: 0.85em; color: #555; text-align: center; margin-top: 30px; }
+
+  .watermark {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(0,0,0,0.12);
+    z-index: 9999;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: Arial, sans-serif;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; font-size: 11pt; }
+    section { box-shadow: none; padding: 12px 0; }
+    .cover { box-shadow: none; }
+    h2 { page-break-before: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <h1>AVIATION PSYCHOLOGY &amp; HUMAN FACTORS</h1>
+  <div class="subtitle">DGCA CPL / ATPL Study Notes</div>
+  <div class="chapter-ref">Chapter 25 — Source pages 615 – 652</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<!-- ============ TOC ============ -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction to Aviation Psychology</a></li>
+    <li><a href="#sec-2">Human Error &amp; Human Reliability</a></li>
+    <li><a href="#sec-3">Workload</a></li>
+    <li><a href="#sec-4">Information Processing — Functional Model</a></li>
+    <li><a href="#sec-5">Types of Memory &amp; Sensory Memories</a></li>
+    <li><a href="#sec-6">Anticipation &amp; Perception</a></li>
+    <li><a href="#sec-7">Attention</a></li>
+    <li><a href="#sec-8">Vigilance &amp; Complacency</a></li>
+    <li><a href="#sec-9">Motor Programmes (Skills) — Anderson Model</a></li>
+    <li><a href="#sec-10">Reflexes, Reaction Time &amp; Startle</a></li>
+    <li><a href="#sec-11">Quantitative Overload &amp; Human Reliability</a></li>
+    <li><a href="#sec-12">Short Term &amp; Long Term Memory</a></li>
+    <li><a href="#sec-13">Learning, Retention &amp; Motivation</a></li>
+    <li><a href="#sec-14">Response, Cognition &amp; Hallucination</a></li>
+    <li><a href="#sec-15">Judgment &amp; Decision Making</a></li>
+    <li><a href="#sec-16">Personality, Attitude &amp; Situational Awareness</a></li>
+    <li><a href="#sec-17">Mechanics of Decision Making</a></li>
+    <li><a href="#sec-18">Communication &amp; Team Work</a></li>
+    <li><a href="#sec-19">Automation</a></li>
+    <li><a href="#sec-20">Human Characteristics &amp; Cockpit Design</a></li>
+    <li><a href="#sec-21">Hardware — Displays &amp; Controls</a></li>
+    <li><a href="#sec-22">Stress, Tolerance, Fatigue &amp; Arousal</a></li>
+    <li><a href="#sec-23">Body Rhythm Disturbance — Circadian Cycle</a></li>
+    <li><a href="#sec-24">Sleep — NREM &amp; REM</a></li>
+    <li><a href="#sec-25">Mental Health Problems &amp; Disorders</a></li>
+    <li><a href="#sec-master">Master Reference Tables &amp; Mnemonics</a></li>
+  </ol>
+</div>
+
+<!-- ============ SECTION 1 ============ -->
+<section id="sec-1">
+  <h2>1. Introduction to Aviation Psychology</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Definition of aviation psychology, its aims, and how its tools support flight safety and efficiency.
+  </div>
+
+  <p><strong>Aviation Psychology</strong> is a specialty in applied psychology that focuses on understanding human behaviour, emotions and mental states as they relate to the operation and control of aviation systems and their influence on the safety and efficiency of flight.</p>
+
+  <p>The <em>aim</em> of aviation psychology is to understand and to predict the behaviour of individuals in an aviation environment. Its study is aimed at improving <strong>safety, efficiency and comfort</strong>.</p>
+
+  <p>Practitioners of aviation psychology bring the tools and techniques of psychology to bear in order to <strong>describe, predict, understand and influence</strong> the aviation community to achieve those aims.</p>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — The Four Action Verbs</span>
+    Remember the four practitioner verbs: <strong>D – P – U – I</strong> → <em>Describe, Predict, Understand, Influence</em>.
+  </div>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section id="sec-2">
+  <h2>2. Human Error &amp; Human Reliability</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    The inevitability of human error and the four areas where pilot errors usually originate.
+  </div>
+
+  <p>It has long been accepted that <strong>human errors are inevitable</strong>. The majority of pilot-related errors are considered to be failures of:</p>
+  <ul>
+    <li>Interpersonal skills</li>
+    <li>Communications</li>
+    <li>Decision-making</li>
+    <li>Leadership</li>
+  </ul>
+
+  <p>This does <strong>not</strong> mean that the frequency of error cannot be reduced, or that the effects cannot be avoided or mitigated.</p>
+
+  <div class="box box-green">
+    <span class="box-title">Golden Maxim — "Superior Pilot"</span>
+    <em>"A superior pilot uses his superior judgment to avoid situations that would require his superior skills."</em>
+  </div>
+
+  <pre class="mermaid">
+flowchart LR
+  A[Pilot Error<br/>Origins] --> B[Interpersonal Skills]
+  A --> C[Communications]
+  A --> D[Decision-Making]
+  A --> E[Leadership]
+  B --> F[Mitigation:<br/>Superior Judgment]
+  C --> F
+  D --> F
+  E --> F
+  F --> G[Safe Flight Outcome]
+  </pre>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+<section id="sec-3">
+  <h2>3. Workload</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Cognitive (mental) workload definition, the four task factors that drive it, indirect factors and observable symptoms.
+  </div>
+
+  <p><strong>Workload</strong> = the amount of mental effort needed (and expended) to process information. Here we discuss <strong>cognitive (mental)</strong> workload, as opposed to physical workload. Workload is linked to almost all other areas within cognition and performance, particularly <em>attention, vigilance, fatigue, decision-making and multi-tasking</em>.</p>
+
+  <div class="box box-red">
+    <span class="box-title">Effects of High Workload</span>
+    High workload is associated with <strong>increased errors, fatigue, task degradation and poor performance</strong>.
+  </div>
+
+  <h3>3.1 Four General Task Factors Affecting Workload</h3>
+  <ol>
+    <li>'Difficulty' of the task</li>
+    <li>Number of tasks running in parallel (concurrently)</li>
+    <li>Number of tasks in series (switching from task to task)</li>
+    <li>The time available for the task (speed of task)</li>
+  </ol>
+
+  <p>Indirect factors also play a role: <em>duration of task, fatigue and level of arousal</em>.</p>
+
+  <h3>3.2 Symptoms of Increasing Workload</h3>
+  <ul>
+    <li>Attention and task focusing</li>
+    <li>Task shedding and re-prioritization</li>
+    <li>Implications for Situation Awareness</li>
+    <li>Increased use of decision short-cuts and less scrutiny or review</li>
+    <li>Increased fatigue and chance of error</li>
+  </ul>
+
+  <p>The area that deals with all such activity is called the <strong>working memory</strong> ('Information Processing').</p>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — Workload Drivers</span>
+    Mnemonic <strong>"DPST"</strong> — <em>Difficulty, Parallel tasks, Series switching, Time available</em>.
+  </div>
+</section>
+
+<!-- ============ SECTION 4 ============ -->
+<section id="sec-4">
+  <h2>4. Information Processing — A Functional Model</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    How sensory inputs are converted into reasoned actions through five mental stages, and the central role of working memory.
+  </div>
+
+  <p>We receive information from the world around us through our senses: <strong>sight, hearing, touch, smell and taste</strong>. The "Gestalt laws" formulate basic principles governing how objects are mentally organised and perceived.</p>
+
+  <h3>4.1 The Five Stages of Reasoning</h3>
+  <ol>
+    <li><strong>Detection</strong></li>
+    <li><strong>Perception</strong></li>
+    <li><strong>Decision Making</strong></li>
+    <li><strong>Action</strong> (responses are selected and executed)</li>
+    <li><strong>Feedback</strong></li>
+  </ol>
+
+  <pre class="mermaid">
+flowchart LR
+  S[Sensory Input<br/>Sight / Hearing / Touch /<br/>Smell / Taste] --> D[1. Detection]
+  D --> P[2. Perception]
+  P --> DM[3. Decision Making<br/><i>Working Memory</i>]
+  DM --> A[4. Action<br/>Response Executed]
+  A --> F[5. Feedback]
+  F -.alters action.-> DM
+  LTM[(Long-Term Memory)] <--> DM
+  STM[(Short-Term Memory)] <--> DM
+  </pre>
+
+  <h3>4.2 The Brain — Central Decision Maker &amp; Response Selection</h3>
+  <p>Once information has been perceived a decision must be made as to the response. Information is continuously entered into and withdrawn from both long-term and short-term memories to assist the decision process. The decision involves <strong>input, processing, actions and feedback</strong>. The information comes from many sources and requires <em>conscious processing</em> in working memory. A problem at any stage of information processing could affect the outcome.</p>
+
+  <p>To carry out multi-tasks we must learn skills through <strong>Motor Programmes</strong>.</p>
+
+  <h3>4.3 Stimuli</h3>
+  <p>The senses provide stimuli to our brain which has the ability to retain them for a short time, from the time they arrive. We may not have the processing capacity to deal with them all.</p>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — First Stage</span>
+    First stage in the information process = <strong>Sensory stimulation</strong> (not "Attention", not "Perception"). Detection is what follows.
+  </div>
+</section>
+
+<!-- ============ SECTION 5 ============ -->
+<section id="sec-5">
+  <h2>5. Types of Memory &amp; Sensory Memories</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Three memory types, key features of sensory memory, iconic memory for sight, and sensory adaptation.
+  </div>
+
+  <h3>5.1 The Three Types of Memory</h3>
+  <ul>
+    <li><strong>Sensory memory</strong></li>
+    <li><strong>Short-term (or working) memory</strong></li>
+    <li><strong>Long-term memory</strong></li>
+  </ul>
+
+  <h3>5.2 Receptors &amp; Sensory Memories — Key Features</h3>
+  <ul>
+    <li>There is a <strong>separate memory store for each sensory system</strong>.</li>
+    <li>The input <strong>decays rapidly</strong>.</li>
+  </ul>
+
+  <p>The sensory stores for <strong>sight and sound</strong> are the most important, and knowledge of these is necessary.</p>
+
+  <h3>5.3 Information Processing Model — Diagrammatic View</h3>
+
+  <div class="svg-container">
+    <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+      <defs>
+        <marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L9,3 z" fill="#1b4080"/>
+        </marker>
+      </defs>
+      <!-- Sensory Input -->
+      <text x="20" y="180" font-family="Arial" font-size="14" font-weight="700" fill="#1a1a1a">Sensory Input</text>
+      <line x1="120" y1="100" x2="200" y2="140" stroke="#1b4080" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="120" y1="170" x2="200" y2="170" stroke="#1b4080" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="120" y1="240" x2="200" y2="200" stroke="#1b4080" stroke-width="2" marker-end="url(#arr)"/>
+      <!-- Sensor Memory -->
+      <rect x="200" y="115" width="120" height="120" fill="#2c5aa0" rx="4"/>
+      <text x="260" y="170" font-family="Arial" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">SENSORY</text>
+      <text x="260" y="195" font-family="Arial" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">MEMORY</text>
+      <!-- Arrows out -->
+      <line x1="320" y1="140" x2="430" y2="140" stroke="#1b4080" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="340" y="130" font-family="Arial" font-size="12" fill="#0f2a4a">Attention</text>
+      <line x1="320" y1="200" x2="430" y2="200" stroke="#1b4080" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="335" y="215" font-family="Arial" font-size="12" fill="#0f2a4a">Pattern Recog.</text>
+      <line x1="260" y1="235" x2="260" y2="305" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+      <text x="265" y="325" font-family="Arial" font-size="12" fill="#c0392b">Decay</text>
+      <!-- Short-Term Memory -->
+      <rect x="430" y="115" width="140" height="120" fill="#0f2a4a" rx="4"/>
+      <text x="500" y="160" font-family="Arial" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">SHORT-TERM</text>
+      <text x="500" y="185" font-family="Arial" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">MEMORY</text>
+      <text x="500" y="210" font-family="Arial" font-size="11" fill="#ffd" text-anchor="middle">(10–20 s)</text>
+      <!-- Rehearsal loop -->
+      <path d="M500 115 C 480 80, 520 80, 510 115" fill="none" stroke="#c0392b" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="510" y="78" font-family="Arial" font-size="12" fill="#c0392b" text-anchor="middle">Rehearsal</text>
+      <line x1="500" y1="235" x2="500" y2="305" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+      <text x="500" y="325" font-family="Arial" font-size="12" fill="#c0392b" text-anchor="middle">Displacement / Decay</text>
+      <!-- Arrows STM <-> LTM -->
+      <line x1="570" y1="145" x2="650" y2="145" stroke="#1b4080" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="580" y="138" font-family="Arial" font-size="12" fill="#0f2a4a">Encoding</text>
+      <line x1="650" y1="200" x2="570" y2="200" stroke="#1b4080" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="580" y="218" font-family="Arial" font-size="12" fill="#0f2a4a">Retrieval</text>
+      <!-- LTM -->
+      <rect x="650" y="115" width="120" height="120" fill="#b75800" rx="4"/>
+      <text x="710" y="165" font-family="Arial" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">LONG-TERM</text>
+      <text x="710" y="190" font-family="Arial" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">MEMORY</text>
+      <line x1="710" y1="235" x2="710" y2="305" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+      <text x="710" y="325" font-family="Arial" font-size="12" fill="#c0392b" text-anchor="middle">Interference / Lost Cues</text>
+      <text x="400" y="350" font-family="Arial" font-size="13" font-weight="700" fill="#1a1a1a" text-anchor="middle">L O S S</text>
+    </svg>
+  </div>
+
+  <h3>5.4 Sensory Memory for Sight — Iconic Memory</h3>
+  <p>The <strong>Iconic Memory</strong> is the visual sensory store. It only lasts for between <span class="reg-value">0.5 and 1 second</span>.</p>
+  <p><span class="reg-value">70–80 %</span> of the information processed by humans is received through the <strong>visual channel</strong>.</p>
+
+  <h3>5.5 Sensory Adaptation (Habituation)</h3>
+  <p>All senses adapt, either partially or completely, to their stimuli after a period of time.</p>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — Sensory Memory Values</span>
+    <strong>Iconic memory = 0.5–1 second.</strong> Visual channel carries <strong>70–80 %</strong> of all received information.
+  </div>
+</section>
+
+<!-- ============ SECTION 6 ============ -->
+<section id="sec-6">
+  <h2>6. Anticipation &amp; Perception</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    How sensory input becomes meaning, the role of expectation, mental models and the concept of funneled perception.
+  </div>
+
+  <h3>6.1 Perception</h3>
+  <p>Perception involves the <strong>conversion of the sensory information received into a meaningful structure</strong>.</p>
+  <p>Sensory information that we <em>expect</em> to receive is more easily perceived and integrated when it actually occurs, compared with totally unexpected information.</p>
+
+  <blockquote>"We can 'perceive' only that which we can 'conceive', but we perceive only a fraction of the information reaching our senses at any moment."</blockquote>
+
+  <p>The process of perception is greatly assisted by our ability to form <strong>mental and three-dimensional visual models</strong>.</p>
+
+  <h3>6.2 Funneled Perception</h3>
+  <p>Perception of a situation can differ depending upon the starting point of an observer.</p>
+
+  <div class="box box-red">
+    <span class="box-title">Hazard — Confirmation Bias / Funneling</span>
+    In an abnormal situation, if a pilot has an apparently correct explanation for the problem, the chance that he/she now <strong>ignores or devalues other relevant information</strong> not fitting into the mental picture is <em>increasing</em>. Stay open-minded; verify, don't rationalize.
+  </div>
+</section>
+
+<!-- ============ SECTION 7 ============ -->
+<section id="sec-7">
+  <h2>7. Attention</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Definition, the two types of attention, why an attention mechanism is required, the cocktail party effect and the dangers of attention mismanagement.
+  </div>
+
+  <p><strong>Attention</strong> is the process of directing and focusing psychological resources to enhance perception, performance and mental experience. To pay attention to something is to concentrate on it — a stimulus, threat, decision or calculation. Critically, <strong>attention is limited</strong>; if some attention is being used for one thing, it cannot be used for something else.</p>
+
+  <h3>7.1 Types of Attention</h3>
+  <ol>
+    <li><strong>Selective Attention</strong> — inputs are sampled continually to decide their relevance to the present task at hand.</li>
+    <li><strong>Divided Attention</strong> — when our central decision-making channel can <em>time-share</em> between a number of tasks, executing several mental activities at almost the same time (e.g. switching attention from outside the aircraft to the airspeed indicator and monitoring the progress of a motor programme such as flying or taxiing on a relatively subconscious level, while making a radio call at the same time).</li>
+  </ol>
+
+  <p>The human brain has <strong>different reservoirs of resources</strong> for information-gathering, information-processing, or the action phase.</p>
+
+  <h3>7.2 Lack of Attention</h3>
+  <p>The major danger for pilots is the <strong>poor management of attention</strong>.</p>
+
+  <h3>7.3 Attention Mechanism — Why It Is Required</h3>
+  <p>Because of two potentially limiting stages in processing information:</p>
+  <ol type="a">
+    <li>There is a limit to the number of items held or maintained in short-term memory (working memory).</li>
+    <li>Our channel capacity is limited.</li>
+  </ol>
+
+  <h3>7.4 Choice of Item</h3>
+  <p>Attention is the deliberate devotion of cognitive resources to a specific item. Although attention can move very quickly from item to item, it can only deal with <strong>one at a time</strong> — so the pilot must consciously prioritize.</p>
+
+  <h3>7.5 The Cocktail Party Effect</h3>
+  <p>With many conversations occurring all around, one conversation can suddenly break through to attention because a word or phrase was particularly meaningful — the classic example is a person hearing their <strong>own name</strong> mentioned in another conversation that they were not paying attention to.</p>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — Cocktail Party Effect</span>
+    Defined as the ability to <em>pick up relevant information unintentionally</em>. It demonstrates that the brain monitors even unattended channels for personally significant cues.
+  </div>
+</section>
+
+<!-- ============ SECTION 8 ============ -->
+<section id="sec-8">
+  <h2>8. Vigilance &amp; Complacency</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Definition of vigilance, the three states (hypo, optimum, hyper), causes and signs, plus the trap of complacency in automated cockpits.
+  </div>
+
+  <p><strong>Vigilance</strong> = the capability to be sensitive to potential changes in one's environment, i.e. the capability to reach a level of alertness above a threshold for a certain period of time — rather than the state of alertness itself.</p>
+
+  <h3>8.1 Hypo (Low) Vigilance</h3>
+  <p>Mainly due to the <strong>monotony of the task, tiredness, the need for sleep and a lack of stimulation</strong>. It may occur at any moment of the flight. Decrease in sensory perception and sensation of muscular heaviness are indications of low vigilance.</p>
+
+  <p>A state of <em>high fatigue</em> is liable to cause phases of drowsiness and hypo-vigilance, which result in a reduction of performance and unconscious phases of <strong>micro-sleep</strong>.</p>
+
+  <div class="box box-green">
+    <span class="box-title">SOP — Managing Hypo-Vigilance</span>
+    <strong>Healthy food and organising periods of rest</strong> during the flight can mitigate the effects of low vigilance.
+  </div>
+
+  <h3>8.2 Hyper Vigilance</h3>
+  <p>In its most acute forms, an extremely <strong>agitated state of panic or near panic</strong>. Characterised by indiscriminate attention to all sorts of minor and major threat cues, as the person frantically searches for means of escaping the anticipated danger.</p>
+  <div class="box box-red">
+    <span class="box-title">Hazard — Hyper Vigilance</span>
+    Hyper vigilance is a state of <strong>panic</strong> that often results in <em>regrettable decision-making</em>.
+  </div>
+
+  <h3>8.3 Optimum Vigilance</h3>
+  <p>Lies somewhere between hypo and hyper vigilance.</p>
+
+  <h3>8.4 Complacency</h3>
+  <p>A state of <strong>self-satisfaction</strong> with one's own performance coupled with an <strong>unawareness of danger, trouble or controversy</strong>.</p>
+  <div class="box box-red">
+    <span class="box-title">Hazard — Complacency</span>
+    Complacency is <strong>extremely dangerous in aviation</strong>. You get so used to things being done the same way that you become less vigilant to hazards in your surroundings. <strong>Automation may make pilots complacent due to low workload.</strong>
+  </div>
+
+  <pre class="mermaid">
+flowchart LR
+  A[Vigilance Spectrum]
+  A --> H[HYPO<br/>Drowsiness, Micro-sleep<br/>Cause: Monotony, Fatigue]
+  A --> O[OPTIMUM<br/>Best Performance]
+  A --> Y[HYPER<br/>Panic, Indiscriminate Attention]
+  H -.->|risk| C[Complacency<br/>Low workload, Automation]
+  Y -.->|risk| R[Regrettable Decisions]
+  </pre>
+</section>
+
+<!-- ============ SECTION 9 ============ -->
+<section id="sec-9">
+  <h2>9. Motor Programmes (Skills) — Anderson Model</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    What motor programmes are, the three phases of skill development per the Anderson model, and how skill enables resource management.
+  </div>
+
+  <p><strong>Motor Programmes</strong>, or "Skills", are behavioural sub-routines which are <strong>learnt by practice and/or repetition</strong> and are <strong>held within the Long-Term Memory</strong>. They can be carried out without conscious thought.</p>
+
+  <p>In the <em>initial phase</em> of flight training the pilot is competent enough to fly the aircraft at this stage but does <em>neither</em> have a great deal of confidence in his/her abilities <em>nor</em> in the whole system.</p>
+
+  <div class="box box-green">
+    <span class="box-title">What Makes a Pilot "Skilled"</span>
+    A pilot is skilled when he trains or practices regularly, knows how to manage himself/herself and knows how to <strong>keep resources in reserve for coping with the unexpected</strong>.
+  </div>
+
+  <h3>9.1 Anderson Model — Three Phases</h3>
+  <ol type="a">
+    <li><strong>The Cognitive Phase</strong></li>
+    <li><strong>The Associative Phase</strong></li>
+    <li><strong>The Automatic (Autonomous) Phase</strong></li>
+  </ol>
+
+  <pre class="mermaid">
+flowchart LR
+  C[a) Cognitive Phase<br/>Conscious effort,<br/>understanding rules] --> AS[b) Associative Phase<br/>Refinement,<br/>fewer errors]
+  AS --> AU[c) Automatic Phase<br/>Subconscious execution,<br/>resources freed for new tasks]
+  AU --> SKILL[Stored as Motor Programme<br/>in Long-Term Memory]
+  </pre>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — "Flying a coordinated turn is …"</span>
+    <strong>Skill-based behaviour</strong> — not attention-based, not experience-based. It draws from procedural memory in the LTM.
+  </div>
+</section>
+
+<!-- ============ SECTION 10 ============ -->
+<section id="sec-10">
+  <h2>10. Reflexes, Reaction Time, Surprise &amp; Startle</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Reflex types, what reaction time depends on, and the operational impact of the startle reflex on pilots.
+  </div>
+
+  <p><strong>Reflexes</strong> occur with little or no involvement of the central nervous system.</p>
+
+  <h3>10.1 Reaction Time</h3>
+  <p>There is a delay between detection, stimulus and muscle contraction called <strong>reaction time</strong>. Reaction time depends on the type of reflex action being used.</p>
+
+  <h3>10.2 Three Types of Reflex Actions</h3>
+  <table>
+    <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+    <tr><td><strong>Unconditioned</strong></td><td>Instinctive natural reflexes</td><td>Blinking</td></tr>
+    <tr><td><strong>Conditioned</strong></td><td>Reflexes that may be <em>learned</em></td><td>Foot-on-rudder on swing</td></tr>
+    <tr><td><strong>Trained</strong></td><td>Reflexes that may be <em>increased by repeated practice</em></td><td>Stall recovery inputs</td></tr>
+  </table>
+
+  <h3>10.3 Surprise and Startle</h3>
+  <p>The <strong>startle reflex</strong> is a reflex-like event that blinks the eyes and causes a whole-body 'jerk' to occur (similar to that sometimes caused in sleep). The reflex has a relatively basic neural pathway from the sense organ. Many things can cause (or contribute to) a startle reflex:</p>
+  <ul>
+    <li>Sudden noises</li>
+    <li>Unexpected tactile sensations</li>
+    <li>Abrupt shocking perceptions</li>
+    <li>The sensation of falling</li>
+    <li>An abrupt visual stimulus</li>
+  </ul>
+
+  <p>There is little evidence that a startle reflex alone creates much of a sustained or lasting impact on cognitive functions, although there are some minor and short-lived physiological changes such as <em>raised heart rate</em>.</p>
+
+  <div class="box box-amber">
+    <span class="box-title">Key Value — Startle Recovery</span>
+    A skilled motor task will be momentarily disrupted by a startle reflex but return to normal within <span class="reg-value">5 to 10 seconds</span>.
+  </div>
+
+  <h3>10.4 Effects on Pilots</h3>
+  <p>The main effects of the pure startle reflex on pilots are:</p>
+  <ul>
+    <li><strong>Interruption</strong> of the on-going process.</li>
+    <li><strong>Distraction of attention</strong> toward the stimulus.</li>
+  </ul>
+  <p>These happen almost immediately and can be quickly dealt with if the cause is found to be <em>non-threatening</em>.</p>
+
+  <div class="box box-red">
+    <span class="box-title">Hazard — Fear Potentiates Startle</span>
+    A perception of fear can cause a startle reflex to be <strong>potentiated</strong> (more pronounced) should it occur, and attention to become more focused. In a state of fear, very little is required to trigger a full <strong>'fight or flight'</strong> response.
+  </div>
+</section>
+
+<!-- ============ SECTION 11 ============ -->
+<section id="sec-11">
+  <h2>11. Quantitative Overload &amp; Human Reliability</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    When workload is acceptable, what overload looks like, error rates with practice, and the cumulative nature of errors.
+  </div>
+
+  <p><strong>Quantitative Overload</strong> — a very high workload can be interpreted as <strong>'Stress'</strong>.</p>
+
+  <div class="box box-green">
+    <span class="box-title">SOP — Acceptable Workload</span>
+    Workload may be said to be acceptable if it requires about <span class="reg-value">60 %</span> of the crew resources, depends on the pilot's expertise and corresponds to the amount of resources available.
+  </div>
+
+  <h3>11.1 Most Common Symptoms of Overload</h3>
+  <ul>
+    <li>A sharp degradation of performance</li>
+    <li>Funneling of attention or focus</li>
+    <li>Regression</li>
+    <li>Mental "blocking"</li>
+    <li>Mood swings</li>
+    <li>Restlessness and trembling</li>
+    <li>Panic</li>
+  </ul>
+
+  <h3>11.2 Human Reliability</h3>
+  <p>The rate of human error during simple and repetitive tasks might be expected to be <span class="reg-value">1 in 100</span>, but after practice, a rate of <span class="reg-value">1 in 1,000</span> could be achieved.</p>
+
+  <div class="box box-blue">
+    <span class="box-title">Definition — Human Reliability</span>
+    The individual functioning in the manner in which he or she is supposed to function.
+  </div>
+
+  <h3>11.3 Error Generation</h3>
+  <p><strong>Errors tend to be cumulative.</strong> One slip rarely stays isolated — it sets up the next.</p>
+
+  <div class="worked-example">
+    <span class="we-title">Worked Example — Human Error Rate</span>
+    A pilot performs 200 routine pre-flight checks per week.<br>
+    • Before practice (1 in 100): expected errors ≈ 200 ÷ 100 = <strong>2 errors / week</strong>.<br>
+    • After practice (1 in 1,000): expected errors ≈ 200 ÷ 1,000 = <strong>0.2 errors / week</strong> (i.e., about 1 every 5 weeks).<br>
+    <em>Practice yields a 10-fold reduction in error rate, but never reaches zero — hence the value of cross-checking and SOPs.</em>
+  </div>
+</section>
+
+<!-- ============ SECTION 12 ============ -->
+<section id="sec-12">
+  <h2>12. Short-Term &amp; Long-Term Memory</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Duration and capacity of short-term memory, methods to expand it, the three subtypes of long-term memory and its capacity characteristics.
+  </div>
+
+  <h3>12.1 Short-Term Memory (Working Memory) — 10 to 20 Seconds</h3>
+  <p>Short-term memory enables information to be retained for a short period of time. That information will be lost in <span class="reg-value">10 to 20 seconds</span> unless it is actively rehearsed and deliberately placed in our long-term memory.</p>
+
+  <p><strong>Auditory information</strong> is considered easier to retain than visual information as it is easier to rehearse sounds than data in a visual form.</p>
+
+  <h3>12.2 Limitations of Short-Term Memory</h3>
+  <p>The capacity of our short-term memory is limited. The maximum number of unrelated items which can be maintained in the short-term memory is about <span class="reg-value">7 ± 2</span>. Once this limit is exceeded one or more of the items are likely to be lost or transposed.</p>
+
+  <h3>12.3 Methods of Increasing Short-Term Memory</h3>
+  <table>
+    <tr><th>Method</th><th>Description</th></tr>
+    <tr><td><strong>Chunking</strong></td><td>Breaking items to be remembered into small pieces and remembering them one at a time.</td></tr>
+    <tr><td><strong>Association</strong></td><td>Used to remember spoken lists of items. A wild and bizarre association is imagined and attached to each item on the list.</td></tr>
+  </table>
+
+  <div class="worked-example">
+    <span class="we-title">Worked Example — Chunking an ATC Clearance</span>
+    Raw clearance string: <code>"VTBL VTBS RWY01L SQK4732 ALT FL310 HDG270"</code> — 7+ unrelated tokens, near STM limit.<br>
+    Chunked: <code>"VT-BL → VT-BS"</code> (route), <code>"RWY 01L"</code> (departure), <code>"4732"</code> (squawk), <code>"FL310"</code> (level), <code>"HDG 270"</code> (heading) = <strong>5 chunks</strong> — comfortably within 7 ± 2.
+  </div>
+
+  <h3>12.4 Long-Term Memory — Unlimited Time Period</h3>
+  <p>It is believed that information is stored in the Long-Term Memory for an <strong>unlimited time period</strong>, although frequently there may be <em>retrieval problems</em>.</p>
+
+  <h3>12.5 Three Subtypes of Long-Term Memory</h3>
+  <table>
+    <tr><th>Type</th><th>Definition</th><th>Example</th></tr>
+    <tr><td><strong>Semantic Memory</strong></td><td>Stores general knowledge of the world</td><td>Knowing that "QNH is altimeter setting"</td></tr>
+    <tr><td><strong>Episodic Memory</strong></td><td>Memory of events or 'episodes' in our life</td><td>Recalling your first solo flight</td></tr>
+    <tr><td><strong>Procedural Memory</strong></td><td>Skills are included within the make-up of the LTM</td><td>Executing a coordinated turn</td></tr>
+  </table>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — Memory Quick Facts</span>
+    • STM duration = <strong>10–20 seconds</strong>, capacity = <strong>7 ± 2</strong> items.<br>
+    • LTM capacity = <strong>unlimited</strong>, but retrieval problems may exist.<br>
+    • Motor programmes live in <strong>LTM (Procedural)</strong>, not STM.
+  </div>
+</section>
+
+<!-- ============ SECTION 13 ============ -->
+<section id="sec-13">
+  <h2>13. Learning, Retention &amp; Motivation</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Types of learning, methods to retain information, and the role and sources of motivation.
+  </div>
+
+  <h3>13.1 The Learning Process</h3>
+  <p>Learning is an <strong>internal process</strong> which allows the mental acquisition and retention of data. Types include:</p>
+
+  <h4>Insight</h4>
+  <p>The data is intellectually and cognitively understood and is retained. <em>Observational Learning / Imitation</em> — data from an outside source is replicated. <em>Experience</em> — learning from our mistakes.</p>
+
+  <h4>Skill Learning</h4>
+  <p>Involves <strong>motivation, attention, observation, much practice and corrective feedback</strong>.</p>
+
+  <h3>13.2 Retention of Information</h3>
+  <p>Retention can be increased by:</p>
+  <ol type="a">
+    <li><strong>Mnemonics</strong> — the practice of improving or helping the memory, or the systems used to achieve this.</li>
+    <li><strong>Memory Training</strong></li>
+  </ol>
+
+  <h3>13.3 Motivation</h3>
+  <p><strong>Motivation</strong> is the combination of a person's desire and energy directed at achieving a goal. It is the <strong>cause of action</strong>.</p>
+
+  <table>
+    <tr><th>Type</th><th>Examples</th></tr>
+    <tr><td><strong>Intrinsic</strong></td><td>Satisfaction and feelings of achievement</td></tr>
+    <tr><td><strong>Extrinsic</strong></td><td>Rewards, punishment, and goal obtainment</td></tr>
+  </table>
+
+  <p>Not all people are motivated by the same thing and over time their motivations might change.</p>
+
+  <div class="box box-green">
+    <span class="box-title">SOP — Motivation and Performance</span>
+    The learning process is vastly improved with motivation, and <strong>high performance is rarely achieved without it</strong>.
+  </div>
+</section>
+
+<!-- ============ SECTION 14 ============ -->
+<section id="sec-14">
+  <h2>14. Experience, Response, Cognition &amp; Hallucination</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    How experience shapes us, response characteristics with age, error of commission, response times, cognition in flight, and hallucinations.
+  </div>
+
+  <h3>14.1 Experience</h3>
+  <p>We all have the ability to learn from our experiences and mistakes, and from those of others.</p>
+
+  <h3>14.2 Response</h3>
+  <p>Any response will cause a detectable change which, in turn, will be noted by the senses. The feedback may alter the action being taken.</p>
+  <ul>
+    <li><strong>Auditory stimuli (noises)</strong> are more likely to attract attention than visual stimuli, but they are also more likely to be responded to in error.</li>
+    <li>An increase in age between <span class="reg-value">20 and 60 years</span> tends to lead to <em>slower but more accurate</em> responses.</li>
+  </ul>
+
+  <h3>14.3 Response Error (Error of Commission)</h3>
+  <p>If an unexpected stimulus occurs, we will be more likely, under pressure, to make an error of commission.</p>
+
+  <h3>14.4 Response Times</h3>
+  <p>Response to reaction time is the interval between the onset of a given signal and the production of a response to that signal.</p>
+
+  <h3>14.5 Cognition in Aviation</h3>
+  <p>Cognition = the mental faculty or process of <strong>acquiring knowledge by the use of reasoning, intuition or perception</strong>. In aviation, flight puts the pilot into an environment which can <strong>distort sense organs</strong>, and the changed perspective which is experienced in flight can result in information being presented which is <em>outside the individual's expectations</em>.</p>
+
+  <h3>14.6 Hallucination</h3>
+  <p>A hallucination is actually a <strong>false perception characterised by a distortion of real sensory stimuli</strong>. (Not a fabrication of stimuli — the stimuli are real, but their perception is distorted.)</p>
+
+  <h3>14.7 Workload and Limitations</h3>
+  <p>Too high <em>or</em> too low a workload can result in degraded performance. Several types of situations may cause mental overload.</p>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — Age and Response</span>
+    Between <strong>20 and 60 years</strong> → responses become <em>slower but more accurate</em>. Experience compensates for slower reflexes.
+  </div>
+</section>
+
+<!-- ============ SECTION 15 ============ -->
+<section id="sec-15">
+  <h2>15. Judgment &amp; Decision Making</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Why decisions matter, how to seek advice, risk assessment fundamentals, and the dynamic nature of "good" decisions.
+  </div>
+
+  <p>Making good decisions is one of the important aspects of piloting an aircraft. <strong>Good decisions</strong> can help lead to safe, successful flights, whereas <strong>bad decisions and even indecision</strong> have led to many aircraft accidents. Talk to your instructor and other pilots about different flying situations to obtain advice about what a good decision would be in a given circumstance.</p>
+
+  <p>When flying with another pilot, it is possible to increase the chance of a good decision being made by <strong>discussing the potential problems beforehand</strong>. If as an inexperienced pilot you are flying with someone of more experience and you see him doing something you consider to be dangerous, you should <strong>immediately question their course of action</strong>.</p>
+
+  <div class="box box-green">
+    <span class="box-title">Best Practice — Always More to Learn</span>
+    A good pilot is one who always realizes there is more to learn. When making a decision a pilot will be influenced by his <strong>previous experience</strong>, the <strong>probability of an occurrence</strong>, and whether the information he is receiving <strong>matches that expected</strong>.
+  </div>
+
+  <h3>15.1 Risk Assessment</h3>
+  <p>Risk assessment is based on:</p>
+  <ul>
+    <li>The <strong>probability of the risk occurring</strong>.</li>
+    <li>The <strong>impact of that risk</strong> if it did occur.</li>
+  </ul>
+  <p>You will have to weigh up the risk and the possible consequences of the risk in order to determine your course of action.</p>
+
+  <pre class="mermaid">
+flowchart TD
+  A[Identify Risk] --> B{Probability<br/>of Occurrence}
+  A --> C{Impact<br/>if it Occurs}
+  B --> D[Combine Probability × Impact]
+  C --> D
+  D --> E{Acceptable?}
+  E -- Yes --> F[Proceed with Mitigation]
+  E -- No --> G[Modify Plan / Don't Fly]
+  </pre>
+
+  <div class="box box-red">
+    <span class="box-title">Remember</span>
+    Making good decisions is one of the most important aspects of piloting an aircraft. Good decisions can help lead to safe, successful flights, whereas bad decisions and even indecision have led to many aircraft accidents. <strong>Always strive to make good decisions.</strong>
+  </div>
+</section>
+
+<!-- ============ SECTION 16 ============ -->
+<section id="sec-16">
+  <h2>16. Personality, Attitude &amp; Situational Awareness</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Desirable pilot traits, the meaning of being Pilot-in-Command, factors that destroy situational awareness, and how to maintain it.
+  </div>
+
+  <h3>16.1 Personality, Attitude and Behaviour</h3>
+  <p>Someone who is <strong>too introverted or anxious may not make a good pilot</strong>. Examples of desirable characteristics in a pilot are:</p>
+  <ul>
+    <li>The ability to cope with stress and adventure.</li>
+    <li>The ability to assess and control risks.</li>
+  </ul>
+  <p>As captain of an aircraft, you will need to show <strong>good leadership skills</strong>.</p>
+
+  <div class="box box-green">
+    <span class="box-title">SOP — Being Pilot-in-Command</span>
+    While acting as pilot-in-command you should ensure that you <strong>stay in command</strong> — you should be <strong>properly organized and prepared</strong>.
+  </div>
+
+  <h3>16.2 Situational Awareness</h3>
+  <p>A good leader displays good situational awareness and accurately assesses his own performance. The following factors can interfere with accurate situational awareness:</p>
+  <ol>
+    <li>Stress</li>
+    <li>Boredom</li>
+    <li>Fatigue</li>
+    <li>Emotional disturbance</li>
+    <li>Poor communication</li>
+    <li>Interruptions</li>
+  </ol>
+
+  <div class="box box-green">
+    <span class="box-title">Maintaining Good SA — SOP</span>
+    In order to maintain good situational awareness, <strong>gather as much information as possible</strong>. Do not rush into making a decision. Make sure you consider all the options. <strong>Do not make the mistake of seeing something that is not really there just because you want it to be there.</strong>
+  </div>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — SA Interference Mnemonic</span>
+    <strong>"SBF-EPI"</strong> → <em>Stress, Boredom, Fatigue, Emotional disturbance, Poor communication, Interruptions</em>.
+  </div>
+</section>
+
+<!-- ============ SECTION 17 ============ -->
+<section id="sec-17">
+  <h2>17. Mechanics of Decision Making</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    The seven-step decision cycle and the dynamic nature of decisions in flight.
+  </div>
+
+  <p>Pilots operate in a <strong>dynamic and constantly changing environment</strong>. A good decision reached a minute ago will <em>not necessarily</em> be the same good decision in two minutes' time.</p>
+
+  <h3>17.1 The Seven Steps</h3>
+  <ol>
+    <li><strong>Recognize and identify the problem</strong> — have a clear definition of what needs addressing.</li>
+    <li><strong>Consider the nature of the problem</strong> — type of issue, why it needs a decision, hoped-for results.</li>
+    <li><strong>Analyze or research the problem</strong> — gather all information so informed choices can be made.</li>
+    <li><strong>Develop a list of possible solutions</strong> — list decisions and their consequences.</li>
+    <li><strong>Select the best alternative</strong> — choose the best solution for the situation.</li>
+    <li><strong>Execute the best choice</strong> — taking action is often the hardest part.</li>
+    <li><strong>Follow up and communication</strong> — keep the process going with constant communication; <strong>Feedback</strong> determines the overall success of and reaction to the decision.</li>
+  </ol>
+
+  <pre class="mermaid">
+flowchart LR
+  S1[1. Recognize<br/>& Identify] --> S2[2. Consider<br/>Nature]
+  S2 --> S3[3. Analyze<br/>/ Research]
+  S3 --> S4[4. List Possible<br/>Solutions]
+  S4 --> S5[5. Select Best<br/>Alternative]
+  S5 --> S6[6. Execute<br/>Best Choice]
+  S6 --> S7[7. Follow Up &<br/>Communicate]
+  S7 --> FB[Feedback]
+  FB -.re-evaluate.-> S1
+  </pre>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — Dynamic Decisions</span>
+    A good decision a minute ago may not be a good decision two minutes from now. <strong>Re-evaluate continuously.</strong>
+  </div>
+</section>
+
+<!-- ============ SECTION 18 ============ -->
+<section id="sec-18">
+  <h2>18. Communication &amp; Team Work</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Why communication matters, attitudes that destroy teamwork, and the danger of "expectation".
+  </div>
+
+  <p>When piloting an aircraft — whether with a passenger, another pilot or an instructor — <strong>good verbal communication</strong> will help the flight go more smoothly and contribute to flight safety.</p>
+
+  <p><strong>Concise and unambiguous communication</strong> is essential to the safe conduct of air traffic.</p>
+
+  <h3>18.1 Barriers to Communication &amp; Team Work</h3>
+  <p>Several things can be done by team leaders to facilitate good teamwork. <em>In the end, it is the team leader who takes the decisions on behalf of the team.</em></p>
+
+  <div class="box box-red">
+    <span class="box-title">Hazardous Attitudes — Barriers</span>
+    Some of the barriers to communication and teamwork are:
+    <ul>
+      <li>Aggressiveness</li>
+      <li>Arrogance</li>
+      <li>Anti-authoritarian behaviour</li>
+      <li>Impulsiveness</li>
+      <li>Feelings of invulnerability</li>
+      <li>Resignation</li>
+    </ul>
+  </div>
+
+  <h3>18.2 Expectation</h3>
+  <div class="box box-red">
+    <span class="box-title">Hazard — Expectation Bias</span>
+    Do <strong>not assume</strong> you have heard what you are expecting to hear. <strong>Actively listen.</strong> Clear, concise and unambiguous communication is essential to the safe conduct of aviation.
+  </div>
+</section>
+
+<!-- ============ SECTION 19 ============ -->
+<section id="sec-19">
+  <h2>19. Automation</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Definition and evolution of automation, the mismatch between automation and the human element, and qualities of human-centred automation.
+  </div>
+
+  <p><strong>Automation</strong> refers to a system or method in which many of the processes of production are automatically performed or controlled by self-operating machines, electronic devices, etc.</p>
+
+  <p>Through microprocessor technology, navigational tasks and aircraft system management have been automated, making the flight crew more <em>peripheral</em> to the actual operation of the aircraft. Pilots who at one time had direct authority over all aspects of aircraft control and management have now become responsible for the <strong>management of complex hardware and software interfaces</strong>.</p>
+
+  <p>These technological advances have given rise to <strong>new forms of error</strong>. Automation is almost always introduced with the expectation of reducing human error and workload, but what frequently happens is that <strong>the potential for error is simply relocated</strong>. More often than not, automation does not replace people in systems; rather, it places the person in a different, and in many cases, <em>more demanding</em> role.</p>
+
+  <h3>19.1 Definition of Automation</h3>
+  <blockquote>"The technique of controlling an apparatus, a process or a system by means of electronic and/or mechanical devices that replaces the human organism in the sensing, decision-making and deliberate output."</blockquote>
+
+  <h3>19.2 Evolution of Transport Aircraft Automation</h3>
+
+  <div class="svg-container">
+    <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+      <defs>
+        <marker id="ar2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L9,3 z" fill="#1b4080"/>
+        </marker>
+      </defs>
+      <!-- Generation 1 -->
+      <g>
+        <rect x="20" y="280" width="130" height="40" fill="#0f2a4a"/><text x="85" y="305" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">PILOT</text>
+        <rect x="20" y="220" width="130" height="40" fill="#2c5aa0"/><text x="85" y="245" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">CONTROLS</text>
+        <rect x="20" y="160" width="130" height="40" fill="#2c5aa0"/><text x="85" y="185" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">AIRCRAFT</text>
+        <line x1="85" y1="280" x2="85" y2="260" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="220" x2="85" y2="200" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <text x="85" y="140" font-size="11" text-anchor="middle" fill="#1a1a1a">Gen 1</text>
+      </g>
+      <!-- Generation 2 -->
+      <g transform="translate(165,0)">
+        <rect x="20" y="280" width="130" height="40" fill="#0f2a4a"/><text x="85" y="305" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">PILOT</text>
+        <rect x="20" y="220" width="130" height="40" fill="#2c5aa0"/><text x="85" y="245" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">AUTOPILOT</text>
+        <rect x="20" y="160" width="130" height="40" fill="#2c5aa0"/><text x="85" y="185" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">CONTROLS</text>
+        <rect x="20" y="100" width="130" height="40" fill="#2c5aa0"/><text x="85" y="125" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">AIRCRAFT</text>
+        <line x1="85" y1="280" x2="85" y2="260" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="220" x2="85" y2="200" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="160" x2="85" y2="140" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <text x="85" y="80" font-size="11" text-anchor="middle" fill="#1a1a1a">Gen 2</text>
+      </g>
+      <!-- Generation 3 -->
+      <g transform="translate(330,0)">
+        <rect x="20" y="280" width="130" height="40" fill="#0f2a4a"/><text x="85" y="305" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">PILOT</text>
+        <rect x="20" y="220" width="130" height="40" fill="#2c5aa0"/><text x="85" y="245" fill="#fff" font-size="12" font-weight="700" text-anchor="middle">CONTROLLER</text>
+        <rect x="20" y="160" width="130" height="40" fill="#2c5aa0"/><text x="85" y="185" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">AUTOPILOT</text>
+        <rect x="20" y="100" width="130" height="40" fill="#2c5aa0"/><text x="85" y="125" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">CONTROLS</text>
+        <rect x="20" y="40" width="130" height="40" fill="#2c5aa0"/><text x="85" y="65" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">AIRCRAFT</text>
+        <rect x="-50" y="220" width="60" height="40" fill="#b75800"/><text x="-20" y="245" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">NAVAIDS</text>
+        <line x1="10" y1="240" x2="20" y2="240" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="280" x2="85" y2="260" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="220" x2="85" y2="200" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="160" x2="85" y2="140" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="100" x2="85" y2="80" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <text x="85" y="25" font-size="11" text-anchor="middle" fill="#1a1a1a">Gen 3</text>
+      </g>
+      <!-- Generation 4 -->
+      <g transform="translate(560,0)">
+        <rect x="20" y="280" width="130" height="40" fill="#0f2a4a"/><text x="85" y="305" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">PILOT</text>
+        <rect x="20" y="220" width="130" height="40" fill="#2c5aa0"/><text x="85" y="245" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">CDU</text>
+        <rect x="20" y="160" width="130" height="40" fill="#2c5aa0"/><text x="85" y="185" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">FMS</text>
+        <rect x="20" y="100" width="130" height="40" fill="#2c5aa0"/><text x="85" y="125" fill="#fff" font-size="12" font-weight="700" text-anchor="middle">CONTROLLER</text>
+        <rect x="20" y="40" width="130" height="40" fill="#2c5aa0"/><text x="85" y="65" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">AUTOPILOT</text>
+        <rect x="20" y="-20" width="130" height="40" fill="#2c5aa0"/><text x="85" y="5" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">CONTROL SYSTEMS</text>
+        <rect x="155" y="160" width="50" height="30" fill="#b75800"/><text x="180" y="180" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">PMS</text>
+        <rect x="155" y="105" width="60" height="22" fill="#b75800"/><text x="185" y="120" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">NAVAIDS</text>
+        <rect x="155" y="125" width="60" height="20" fill="#b75800"/><text x="185" y="139" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">INS</text>
+        <rect x="155" y="145" width="60" height="20" fill="#b75800"/><text x="185" y="159" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">CADC</text>
+        <line x1="155" y1="115" x2="150" y2="115" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="155" y1="135" x2="150" y2="135" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="155" y1="155" x2="150" y2="155" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="155" y1="175" x2="150" y2="175" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="280" x2="85" y2="260" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="220" x2="85" y2="200" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="160" x2="85" y2="140" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="100" x2="85" y2="80" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="85" y1="40" x2="85" y2="20" stroke="#1b4080" stroke-width="2" marker-end="url(#ar2)"/>
+        <text x="85" y="-35" font-size="11" text-anchor="middle" fill="#1a1a1a">Gen 4</text>
+      </g>
+      <!-- Direction arrow -->
+      <rect x="20" y="335" width="700" height="20" fill="#fff8e1" stroke="#f57c00"/>
+      <text x="370" y="350" font-size="12" font-weight="700" text-anchor="middle" fill="#b75800">Increasing peripheralization of the pilot →</text>
+    </svg>
+  </div>
+
+  <h3>19.3 Mismatch Between Automation and the Human Element</h3>
+  <p>Nevertheless, a few accidents point to a mismatch between automation and the human element. Studies identified <strong>nine categories</strong> to focus on:</p>
+  <ol>
+    <li>Situational awareness</li>
+    <li>Automation complacency</li>
+    <li>Automation intimidation</li>
+    <li>Captain's command authority</li>
+    <li>Crew interface design</li>
+    <li>Pilot selection</li>
+    <li>Training and procedures</li>
+    <li>The role of pilots in automated aircraft</li>
+    <li>(Studies concluded scope for improvement in fields like: human capabilities and limitations, ergonomics, cognitive suitability and instrument standardization.)</li>
+  </ol>
+
+  <div class="box box-red">
+    <span class="box-title">Hazard — Automation Side-Effects</span>
+    Although cockpit automation may provide pilots with more time to think, it may encourage pilots to reinvest only some of this mental free time in flight-related thoughts. While manual workload has reduced, <strong>mental workload has not been reduced by the same amount — in fact it may have been increased</strong>. Automation may not always reduce workload in phases of flight in which it is usually high (e.g. arrivals/landings at busy terminals). High cockpit automation may reduce pilot attention with the consequence of <strong>'being out of the loop'</strong>.
+  </div>
+
+  <div class="box box-red">
+    <span class="box-title">Hazard — Reliability ≠ Safety</span>
+    All forms of automated assistance for the human operator must be highly reliable, but this may also induce <strong>complacency</strong>. Human expertise may gradually be lost and if the machine fails, the human operator may accept an inappropriate solution or become unable to formulate a satisfactory alternative.
+  </div>
+
+  <h3>19.4 Qualities of Human-Centred Automation</h3>
+  <p>Human-centred automation should possess these qualities in proper measure:</p>
+  <ul style="columns:2;column-gap:30px;">
+    <li>Accountable</li>
+    <li>Subordinate</li>
+    <li>Predictable</li>
+    <li>Adaptable</li>
+    <li>Comprehensible</li>
+    <li>Flexible</li>
+    <li>Dependable</li>
+    <li>Informative</li>
+    <li>Error-resistant</li>
+    <li>Error-tolerant</li>
+  </ul>
+
+  <div class="box box-green">
+    <span class="box-title">Best Practice — Complementary, Not Alternative</span>
+    Pilots, computers and machines are <strong>not alternatives, but complementary factors</strong> in ensuring flight safety. Achieving the correct balance benefits safety. Automation has undeniably led to an improvement in flight safety.
+  </div>
+</section>
+
+<!-- ============ SECTION 20 ============ -->
+<section id="sec-20">
+  <h2>20. Human Characteristics &amp; Cockpit Design</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Personality types, cultural differences, anthropometry, eye datum, cockpit seats and the design considerations driving them.
+  </div>
+
+  <h3>20.1 Personality</h3>
+  <p>Personality involves two major factors:</p>
+  <ul>
+    <li><strong>Neuroticism – Stable</strong> continuum</li>
+    <li><strong>Introversion – Extroversion</strong> continuum</li>
+  </ul>
+  <p><strong>Extroverts</strong> are said to be impulsive and sociable; <strong>introverts</strong> are more withdrawn and cautious.</p>
+  <p>A low-neuroticism personality is one of an emotionally stable person, whereas a high-neuroticism person will worry and get upset easily.</p>
+  <div class="box box-blue">
+    <span class="box-title">Trait vs State Anxiety</span>
+    <strong>High neuroticism = high trait anxiety</strong> (a personal trait of that person). As opposed to <strong>state anxiety</strong>, which is a <em>transient state of anxiety present in anyone at any time</em>.
+  </div>
+
+  <h3>20.2 Cultural Differences</h3>
+  <p>The way people behave, think and interact with each other generally — as well as what motivates them — will be partly a factor of their national and cultural background. One culture may value subordinates speaking up, whereas another culture may value subordinates who obey their superiors unquestioningly. The latter might perceive a subordinate who points out a concern as being impolite, aggressive or disruptive.</p>
+
+  <h3>20.3 Competencies</h3>
+  <p>The main area where personality and background culture are important is <strong>interpersonal interaction</strong>. In terms of competencies, this means <strong>communication, leadership and teamwork</strong> — crew interactions or interactions with outside agencies such as air traffic control.</p>
+
+  <h3>20.4 Design Considerations</h3>
+  <p>The following human characteristics must be taken into account in the design of aviation systems:</p>
+  <ul style="columns:2;">
+    <li>Physical dimensions</li>
+    <li>Capability for data sensing</li>
+    <li>Capability for data processing</li>
+    <li>Capability for motor activity</li>
+    <li>Capability for learning</li>
+    <li>Physical and psychological needs</li>
+    <li>Sensitivities to physical environment</li>
+    <li>Sensitivities to social environment</li>
+    <li>Coordinated action</li>
+    <li>Differences among individuals</li>
+  </ul>
+
+  <h3>20.5 Hardware, Design of Flight Decks, Size &amp; Anthropometry</h3>
+  <div class="box box-amber">
+    <span class="box-title">Murphy's Law</span>
+    <em>"If equipment is designed in such a way that it can be operated wrongly, then sooner or later, it will be."</em>
+  </div>
+  <p>Therefore a great deal of attention is required to design the equipment. <strong>The most important requirement in the design of both displays and controls is STANDARDIZATION.</strong></p>
+
+  <h3>20.6 Anthropometry</h3>
+  <p>This is the study of <strong>human measurement</strong>. The information is grouped into:</p>
+  <ul>
+    <li>Static measurements</li>
+    <li>Dynamic measurements</li>
+    <li>Contour surface measurements</li>
+  </ul>
+  <p>It is not practical to design a cockpit for both the very short and the very tall individual. Those in the <strong>central <span class="reg-value">90 %</span> of size distribution</strong> will be catered for. Normally the design of aircraft uses measurements taken from the entire population <strong>disregarding both the <span class="reg-value">5 % lowest</span> and the <span class="reg-value">5 % highest</span></strong>.</p>
+
+  <h3>20.7 Eye Datum</h3>
+  <p>Cockpit space must be designed around a defined position of the pilot's eye. This may be called the <strong>Eye Datum</strong>, the <strong>Design Eye Position</strong> or the <strong>Reference Eye Point</strong>.</p>
+  <table>
+    <tr><th>Position</th><th>Effect</th></tr>
+    <tr><td>Too high</td><td>Poor view of instruments, obstructed high view, good downward view</td></tr>
+    <tr><td>Just right</td><td>Optimum view of outside and instruments</td></tr>
+    <tr><td>Too low</td><td>Good view of instruments but poor forward and downward view</td></tr>
+  </table>
+  <p>Once the design eye position has been set, the size of the cockpit can be established.</p>
+
+  <h3>20.8 Design of Cockpit Seats</h3>
+  <p>It is of the utmost importance that the seating is comfortable and adjustable to the individual pilot's size and shape. Pilots should adjust their seats to establish a comfortable position giving full control movement, with <strong>optimum instrument scan and outside visibility</strong>. This position should be used for <strong>all phases of the flight</strong>.</p>
+  <div class="box box-green">
+    <span class="box-title">SOP — Restraint</span>
+    Restraint should be provided by a <strong>5-point harness with a negative 'G' strap</strong>.
+  </div>
+</section>
+
+<!-- ============ SECTION 21 ============ -->
+<section id="sec-21">
+  <h2>21. Hardware — Displays &amp; Controls</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Digital vs analogue display selection, the standard "T" layout, three-pointer altimeter pitfalls, and the eight basic considerations for control design.
+  </div>
+
+  <h3>21.1 Presentation Requirements</h3>
+  <table>
+    <tr><th>Information Type</th><th>Best Display</th></tr>
+    <tr><td>Purely quantitative information</td><td><strong>Digital</strong></td></tr>
+    <tr><td>Qualitative information</td><td><strong>Analogue</strong> (more easily assessed)</td></tr>
+  </table>
+
+  <h3>21.2 Conventional Analogue Standard 'T' Display</h3>
+  <p>A standard 'T' layout has the <strong>artificial horizon / attitude indicator</strong> at the centre with the <strong>altimeter, airspeed indicator and direction indicator</strong> grouped around it. <strong>Digital Display</strong> and the <strong>Compass</strong>. The conventional analogue type of compass card gives a better picture of the aircraft orientation than would a digital readout.</p>
+
+  <h3>21.3 Combination or Analogue and Digital Displays</h3>
+  <p>In some instances, both digital information and analogue information can be combined in a single instrument.</p>
+
+  <div class="box box-red">
+    <span class="box-title">Hazard — Three Pointer Altimeter</span>
+    The three-pointer altimeter can easily be <strong>misread</strong> and produces significantly <strong>more reading errors</strong> than the single-pointer altimeter.
+  </div>
+
+  <h3>21.4 Hardware, Controls — Basic Considerations</h3>
+  <table>
+    <tr><th>Principle</th><th>Description</th></tr>
+    <tr><td><strong>Standardization</strong></td><td>Control of location and sense of use from one aircraft to another should be standardized.</td></tr>
+    <tr><td><strong>Frequency of Use</strong></td><td>Controls used frequently or for protracted periods should be located so that they do not require the pilot to adopt an awkward or fatiguing position.</td></tr>
+    <tr><td><strong>Sequence of Use</strong></td><td>Controls that should normally be used in a given order should be laid out so that the sequence of use is represented in that layout.</td></tr>
+    <tr><td><strong>Importance</strong></td><td>Important controls must be located in easily reached and unobstructed positions.</td></tr>
+    <tr><td><strong>Visual/Tactile Dissimilarity</strong></td><td>Switches and knobs that control different systems or functions should look and feel different from each other.</td></tr>
+    <tr><td><strong>Symbolism</strong></td><td>Controls, if possible, should be designed to contain some reference to their function.</td></tr>
+    <tr><td><strong>Simultaneous Use</strong></td><td>Controls which may require simultaneous use should be located to enable this to take place.</td></tr>
+    <tr><td><strong>Warnings</strong></td><td>All warnings should be 'attention getting' without being startling. The most conspicuous visual warnings rely on <strong>head and gaze orientation</strong>.</td></tr>
+  </table>
+
+  <div class="svg-container">
+    <svg viewBox="0 0 540 360" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+      <!-- Outer panel -->
+      <rect x="20" y="20" width="500" height="320" fill="#1a1a1a" rx="8"/>
+      <!-- AI - centre -->
+      <circle cx="270" cy="180" r="70" fill="#0f2a4a" stroke="#fff" stroke-width="3"/>
+      <path d="M200 180 H340" stroke="#fff" stroke-width="2"/>
+      <rect x="200" y="110" width="140" height="70" fill="#5b8cd6" opacity="0.5"/>
+      <rect x="200" y="180" width="140" height="70" fill="#7a5a3a" opacity="0.5"/>
+      <text x="270" y="270" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">ATTITUDE</text>
+      <!-- ASI - left -->
+      <circle cx="120" cy="180" r="55" fill="#0f2a4a" stroke="#fff" stroke-width="3"/>
+      <text x="120" y="185" fill="#fff" font-size="14" font-weight="700" text-anchor="middle">ASI</text>
+      <text x="120" y="265" fill="#fff" font-size="12" text-anchor="middle">Airspeed</text>
+      <!-- ALT - right -->
+      <circle cx="420" cy="180" r="55" fill="#0f2a4a" stroke="#fff" stroke-width="3"/>
+      <text x="420" y="185" fill="#fff" font-size="14" font-weight="700" text-anchor="middle">ALT</text>
+      <text x="420" y="265" fill="#fff" font-size="12" text-anchor="middle">Altimeter</text>
+      <!-- DI - bottom centre -->
+      <circle cx="270" cy="290" r="40" fill="#0f2a4a" stroke="#fff" stroke-width="3"/>
+      <text x="270" y="295" fill="#fff" font-size="12" font-weight="700" text-anchor="middle">DI</text>
+      <text x="270" y="60" fill="#fff" font-size="16" font-weight="700" text-anchor="middle">STANDARD &quot;T&quot; LAYOUT</text>
+      <text x="270" y="80" fill="#aaa" font-size="11" text-anchor="middle">Attitude Indicator at centre · ASI–ALT–DI grouped around</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ SECTION 22 ============ -->
+<section id="sec-22">
+  <h2>22. Stress Tolerance, Fatigue &amp; Arousal — Well-Being of Operational Personnel</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    Stress, arousal, fatigue, environmental tolerances, life stress scoring, stress management, and the arousal-performance relationship.
+  </div>
+
+  <p>Three of the many factors which may influence the well-being of operational personnel are:</p>
+  <ol>
+    <li>Stress and fatigue</li>
+    <li>Body rhythm disturbance</li>
+    <li>Sleep deprivation or disturbance</li>
+  </ol>
+  <p>Other factors affecting physiological or psychological well-being include: <em>temperature, noise, humidity, light, vibration, workstation design and seat comfort</em>.</p>
+
+  <h3>22.1 Stress, Arousal and Performance</h3>
+  <p>The different stress levels generated within individuals by a particular stressor will differ. A <strong>moderate level of stress may improve performance</strong>. Stress promotes an <strong>increase in physical strength</strong> rather than promoting mental performance.</p>
+  <ul>
+    <li>The response of a person to the event or circumstances to which he is exposed is known as <strong>arousal</strong>.</li>
+    <li>Arousal is a measure of a person's <strong>readiness to respond effectively</strong> to a given stress factor.</li>
+    <li>Personality, character, training and experience will influence levels of arousal in a given individual.</li>
+  </ul>
+
+  <h3>22.2 The Effects of Stress</h3>
+  <p>In an active, outward-going, highly trained person, <em>too little</em> stimulation or stress arousal will lead to the onset of <strong>boredom and even drowsiness</strong>. An introspective, under-confident person, if highly aroused, might be unable to function at all — even in circumstances that he is competent to deal with.</p>
+
+  <h3>22.3 Stress Factors (Stressors)</h3>
+  <p>Stress factors are <strong>cumulative</strong>. Stress occurs under various conditions:</p>
+  <ul>
+    <li>Pilot must revise his plan of action and does not immediately have a solution</li>
+    <li>Inexperienced pilots when situational demands exceed their individual capabilities</li>
+    <li>Pilot is convinced he will not be able to find a solution to the problem</li>
+    <li>Physiological factors — hunger, thirst, pain, lack of sleep, fatigue</li>
+  </ul>
+  <div class="box box-green">
+    <span class="box-title">SOP — Key to Reduced Workload</span>
+    <strong>Thorough flight planning is the key to reducing cockpit workload.</strong>
+  </div>
+
+  <h3>22.4 Environmental Tolerances</h3>
+  <p>Temperature, pressure, humidity, noise, time of day, light and darkness can all be reflected in performance and also in well-being. Heights, enclosed spaces, and a boring or stressful working environment can also influence performance.</p>
+
+  <h3>22.5 Managing Stress</h3>
+  <p>Recognising stress, accepting it and developing a coping strategy is essential for stress management. Training and experience help to ward off stress and high levels of arousal. Successful completion of a stressful task will reduce the amount of stress experienced when a similar situation arises in the future.</p>
+  <div class="box box-green">
+    <span class="box-title">SOP — Stress Self-Management</span>
+    <strong>To avoid stress, know your limits and fly well inside them.</strong> If you are aware that you are under stress, consider whether it would not be wiser for you to stay on the ground rather than to fly when you are not up to it. Make sure that <strong>cockpit housekeeping</strong> is of a high order and that all documents, charts and associated equipment are appropriately stored and accessible. <strong>High-quality headsets</strong> will reduce cockpit noise levels. Temperature can often be regulated using the cabin heating or ventilation system.
+  </div>
+
+  <h3>22.6 Life Stresses — Psychological Scoring</h3>
+  <p>Pilots suffering from life stress should be aware that this can affect their concentration and performance when at the controls of an aircraft. The descending order in which the factors affect a person:</p>
+  <p><em>Death of spouse/child → Divorce → Marital separation → Death of a close family member → Injury / illness → Marriage → Loss of job → Retirement → Pregnancy → Sexual problems → Birth → Change of financial status → Siblings leaving home → Change of eating habits → Change of residence → Loan/debt/mortgage → Vacations → Minor violations of law.</em></p>
+
+  <table>
+    <tr><th>Life Event</th><th>Score</th></tr>
+    <tr><td>Death of a spouse or partner</td><td><span class="reg-value">100</span></td></tr>
+    <tr><td>Divorce</td><td><span class="reg-value">73</span></td></tr>
+    <tr><td>Marital separation</td><td><span class="reg-value">65</span></td></tr>
+    <tr><td>Death of a close family member</td><td><span class="reg-value">63</span></td></tr>
+    <tr><td>Personal injury or illness</td><td><span class="reg-value">53</span></td></tr>
+    <tr><td>Loss of job</td><td><span class="reg-value">47</span></td></tr>
+    <tr><td>Retirement</td><td><span class="reg-value">45</span></td></tr>
+    <tr><td>Pregnancy</td><td><span class="reg-value">40</span></td></tr>
+    <tr><td>Sexual problems</td><td><span class="reg-value">40</span></td></tr>
+    <tr><td>Son or daughter leaving home</td><td><span class="reg-value">29</span></td></tr>
+    <tr><td>Change of residence</td><td><span class="reg-value">20</span></td></tr>
+    <tr><td>Bank loan or credit card debt</td><td><span class="reg-value">17</span></td></tr>
+    <tr><td>Vacation</td><td><span class="reg-value">13</span></td></tr>
+    <tr><td>Minor law violation</td><td><span class="reg-value">11</span></td></tr>
+  </table>
+
+  <table>
+    <tr><th>Cumulative Score</th><th>Interpretation</th></tr>
+    <tr><td><span class="reg-value">&lt; 60</span></td><td>Free of life stress</td></tr>
+    <tr><td><span class="reg-value">60 – 80</span></td><td>Normal life stress</td></tr>
+    <tr><td><span class="reg-value">80 – 100</span></td><td>High life stress</td></tr>
+    <tr><td><span class="reg-value">&gt; 100</span></td><td>Under serious life stress</td></tr>
+  </table>
+  <p><em>Note: such schemes need to be treated with caution because of wide individual variability.</em></p>
+
+  <h3>22.7 Indications of Stress</h3>
+  <p>Stress causes: <strong>mental blocks, confusion, channelized attention, resignation, frustration, rage, deterioration in motor coordination, high pitch voice and fast speaking</strong>.</p>
+  <div class="box box-red">
+    <span class="box-title">Easily Observable Indications of Stress</span>
+    <strong>Perspiration, flushed skin, dilated pupils and fast breathing.</strong>
+  </div>
+
+  <h3>22.8 Tiredness and Fatigue</h3>
+  <p>Tiredness and fatigue, though related concepts, differ in their long-term physical effect on the body. To deal with normal tiredness it is sufficient to ensure that periods of activity and periods of restful sleep comply with the normal pattern for a person's age and physical condition.</p>
+  <p><strong>Ordinary tiredness</strong> results from normal physical and/or mental exertion over a normal waking period. If a person is tired, <em>a good night's sleep</em> is the only requirement for that person to be fit the following morning.</p>
+
+  <div class="box box-blue">
+    <span class="box-title">Definition — Fatigue</span>
+    Fatigue is a <strong>very deep tiredness due to the cumulative effects of a stressful lifestyle and/or living and working environment</strong>.
+    <ul>
+      <li>The effects of fatigue can be <em>insidious</em>.</li>
+      <li>They can creep up slowly on the sufferer.</li>
+      <li>The sufferer may be unwilling to recognize or admit that he is suffering from fatigue.</li>
+      <li>Tiredness and fatigue can kill, but fatigue is harder to recognize.</li>
+    </ul>
+  </div>
+
+  <h4>Causes of Fatigue</h4>
+  <ul>
+    <li>Long-term ill health, either physical or mental</li>
+    <li>Regular sleep deprivation, for whatever reason</li>
+    <li>High levels of stress and/or anxiety over a prolonged period</li>
+    <li>A disturbed body cycle (e.g. jet lag, changing work shift patterns)</li>
+    <li>Long-term difficulties in personal or work-based relationships</li>
+    <li>A stressful living and/or working environment (e.g. high levels of noise, or unreasonable physical or mental demands)</li>
+  </ul>
+
+  <h4>Symptoms of Fatigue</h4>
+  <ul>
+    <li>Memory lapses</li>
+    <li>Frequent mistakes in speech and actions</li>
+    <li>Rapid changes of mood</li>
+    <li>Diminished awareness</li>
+    <li>Tiredness</li>
+    <li>Lack of coordination</li>
+  </ul>
+
+  <h4>Minimum Self-Help Program</h4>
+  <ul>
+    <li>Accept the fact that you are fatigued</li>
+    <li>Eat a balanced diet and healthy food</li>
+    <li>Try to take the stress out of your life</li>
+    <li>Make sure that you get regular, undisturbed sleep</li>
+    <li>Avoid alcohol and caffeine</li>
+    <li>Always consult a doctor</li>
+  </ul>
+
+  <h3>22.9 Arousal</h3>
+  <p>Arousal is a major aspect of many learning theories and is closely related to other concepts such as <em>anxiety, attention, agitation, stress and motivation</em>.</p>
+  <table>
+    <tr><th>Arousal Level</th><th>Effect</th></tr>
+    <tr><td><strong>Low Arousal</strong></td><td>In cruise, attention can wander; information missed or misinterpreted</td></tr>
+    <tr><td><strong>Optimum Arousal</strong></td><td>Central Decision Maker at its most efficient. Lower for difficult/cognitive tasks; higher for tasks requiring endurance and persistence</td></tr>
+    <tr><td><strong>High Arousal (Overload)</strong></td><td>Real danger of attention becoming <strong>narrowed</strong></td></tr>
+  </table>
+
+  <div class="svg-container">
+    <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+      <line x1="60" y1="240" x2="560" y2="240" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="60" y1="240" x2="60" y2="40" stroke="#1a1a1a" stroke-width="2"/>
+      <path d="M 60 240 Q 200 235 280 80 Q 360 235 560 240" fill="none" stroke="#2c5aa0" stroke-width="3"/>
+      <text x="310" y="25" font-size="13" font-weight="700" text-anchor="middle" fill="#1a1a1a">Yerkes-Dodson Curve — Arousal vs Performance</text>
+      <text x="310" y="260" font-size="12" text-anchor="middle">Arousal Level →</text>
+      <text x="35" y="140" font-size="12" text-anchor="middle" transform="rotate(-90 35 140)">Performance →</text>
+      <text x="140" y="220" font-size="11" fill="#c0392b" text-anchor="middle">LOW</text>
+      <text x="140" y="235" font-size="10" fill="#888" text-anchor="middle">Boredom</text>
+      <text x="280" y="100" font-size="11" fill="#2e7d32" text-anchor="middle" font-weight="700">OPTIMUM</text>
+      <text x="280" y="115" font-size="10" fill="#888" text-anchor="middle">Peak Performance</text>
+      <text x="490" y="220" font-size="11" fill="#c0392b" text-anchor="middle">HIGH</text>
+      <text x="490" y="235" font-size="10" fill="#888" text-anchor="middle">Attention Narrowed</text>
+    </svg>
+  </div>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — Stress Promotes…</span>
+    Stress promotes an <strong>increase in physical strength</strong> rather than mental performance. A moderate level of stress may <strong>improve</strong> performance.
+  </div>
+</section>
+
+<!-- ============ SECTION 23 ============ -->
+<section id="sec-23">
+  <h2>23. Body Rhythm Disturbance — The Circadian Cycle</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    The biological clock, the 24-hour vs 25-hour cycle, melatonin's role, jet-lag rules and re-synchronization rates.
+  </div>
+
+  <h3>23.1 Stimuli and Attention</h3>
+  <p>Our bodies are continuously receiving stimuli through our <strong>five senses</strong>. This information is stored briefly in our sensory memory and, if we perceive it to be important, it is transferred to our short-term memory or Central Decision Maker. Some stimuli are better than others at getting our attention. We can split our attention between several different things by concentrating on them in rapid succession.</p>
+
+  <h3>23.2 The Circadian Circle</h3>
+  <p>The Circadian Circle represents our level of alertness throughout the day. Circadian rhythms are internally generated by a <strong>self-sustaining (autonomous) biological clock</strong> located in the <strong>hypothalamus</strong>, which functions as the main control centre for the autonomic nervous system by regulating sleep cycles, body temperature, appetite, etc., and acts as an endocrine gland by producing hormones. It takes into account biological elements such as <strong>body temperature, heart rate and blood pressure</strong> — which affect our level of alertness during the day.</p>
+
+  <div class="box box-red">
+    <span class="box-title">Hazard — Circadian Lows</span>
+    <strong>Human performance degradation at circadian lows is one of the major challenges for the aviation industry.</strong>
+  </div>
+
+  <h3>23.3 24-Hour Circadian Reference</h3>
+  <table>
+    <tr><th>Time</th><th>Body Event</th></tr>
+    <tr><td><span class="reg-value">00:00</span></td><td>Midnight</td></tr>
+    <tr><td><span class="reg-value">02:00</span></td><td>Deepest sleep</td></tr>
+    <tr><td><span class="reg-value">04:30</span></td><td><strong>Lowest body temperature</strong></td></tr>
+    <tr><td><span class="reg-value">06:45</span></td><td>Sharpest rise in blood pressure</td></tr>
+    <tr><td><span class="reg-value">07:30</span></td><td>Melatonin secretion stops</td></tr>
+    <tr><td><span class="reg-value">08:30</span></td><td>Bowel movement likely</td></tr>
+    <tr><td><span class="reg-value">09:00</span></td><td>Highest testosterone secretion</td></tr>
+    <tr><td><span class="reg-value">10:00</span></td><td>High alertness</td></tr>
+    <tr><td><span class="reg-value">12:00</span></td><td>Noon</td></tr>
+    <tr><td><span class="reg-value">14:30</span></td><td>Best coordination</td></tr>
+    <tr><td><span class="reg-value">15:30</span></td><td>Fastest reaction time</td></tr>
+    <tr><td><span class="reg-value">17:00</span></td><td>Greatest cardiovascular efficiency and muscle strength</td></tr>
+    <tr><td><span class="reg-value">18:30</span></td><td>Highest blood pressure</td></tr>
+    <tr><td><span class="reg-value">19:00</span></td><td>Highest body temperature</td></tr>
+    <tr><td><span class="reg-value">21:00</span></td><td>Melatonin secretion starts</td></tr>
+    <tr><td><span class="reg-value">22:30</span></td><td>Bowel movements suppressed</td></tr>
+  </table>
+
+  <p>As we sleep, our heart rate is lowered and hence our level of alertness is reduced. Blood pressure is also often lowered after mealtimes. <strong>Human performance declines at night when the body and mind desire rest.</strong></p>
+
+  <h3>23.4 Melatonin — "The Light of Night"</h3>
+  <p><strong>Melatonin</strong> is secreted from the <strong>pineal gland</strong> principally at night. The hormone is involved in <strong>sleep regulation</strong>, as well as in a number of other cyclical bodily activities and circadian rhythm in humans.</p>
+  <ul>
+    <li>Secretion increases soon after the onset of darkness.</li>
+    <li><strong>Peaks in the middle of the night, between 2 and 4 a.m.</strong></li>
+    <li>Gradually falls during the second half of the night.</li>
+  </ul>
+  <p>This circadian rhythm of secretion plays an important role in its hormonal activity. Melatonin is exclusively involved in signalling the <strong>'time of day' and 'time of year'</strong> (hence considered to help both clock and calendar functions) to all tissues, and is thus considered to be the body's chronological pacemaker or <strong>'Zeitgeber'</strong>.</p>
+
+  <h3>23.5 Trans-Meridian Flight — Pilot Considerations</h3>
+
+  <table>
+    <tr><th>Factor</th><th>Value / Rule</th></tr>
+    <tr><td>Free-running circadian cycle (no time cues)</td><td><span class="reg-value">~ 25 hours</span></td></tr>
+    <tr><td>Cycle with normal time cues</td><td><span class="reg-value">~ 24 hours</span></td></tr>
+    <tr><td>Stop-over rule</td><td>If stop-over <strong>&gt; 24 hours</strong> → move to new time as soon as possible</td></tr>
+    <tr><td>Crossing &gt; 3–4 time zones with layover &gt; 24 hours</td><td>Keep in swing with rhythm of the <strong>departure</strong> country for as long as possible; maintain regular living patterns</td></tr>
+    <tr><td>Re-synchronization rate</td><td><span class="reg-value">1 – 1.5 hours per day</span></td></tr>
+    <tr><td>Eastbound adaptation</td><td><span class="reg-value">~ 50 % slower</span> than westbound; <span class="reg-value">1.5 days per time-zone</span> east</td></tr>
+    <tr><td>Westbound adaptation</td><td><span class="reg-value">~ 1 day per time-zone</span></td></tr>
+    <tr><td>Difficulty</td><td>Readjustment after a time shift is normally <strong>more difficult with flights towards the East</strong></td></tr>
+    <tr><td>Sleep duration</td><td>Governed primarily by the point within your circadian rhythm at which you try to sleep</td></tr>
+    <tr><td>Sensorimotor vs intellectual performance</td><td>Sensorimotor performance is better in the <strong>evening</strong>; intellectual performance is better in the <strong>morning</strong></td></tr>
+  </table>
+
+  <div class="worked-example">
+    <span class="we-title">Worked Example — Hyderabad → Berlin Layover</span>
+    Hyderabad (IST, UTC+5:30) to Berlin (CET, UTC+1) — a westbound trip of about 4.5 time zones with a <strong>22-hour layover</strong>.<br>
+    • Layover &lt; 24 hours → <em>do NOT shift to local time</em>. Stay on departure (IST) rhythm.<br>
+    • Relevant time measure for your circadian rhythm: <strong>IST (Indian Standard Time)</strong>.<br>
+    <em>Reason: short layovers do not give the biological clock time to re-synchronize (only 1–1.5 hours/day shift is possible); attempting to shift will degrade alertness on the return leg.</em>
+  </div>
+
+  <div class="box box-amber">
+    <span class="box-title">Exam Tip — Eastbound = Worse</span>
+    Eastbound travel adaptation is <strong>50% slower</strong> than westbound. East → 1.5 days per time-zone; West → 1 day per time-zone. <em>"Lose hours, lose sleep."</em>
+  </div>
+</section>
+
+<!-- ============ SECTION 24 ============ -->
+<section id="sec-24">
+  <h2>24. Sleep — NREM &amp; REM</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    The two components of sleep, the four NREM stages, REM sleep timing and function, sleep inertia and the implications of sleep loss for pilots.
+  </div>
+
+  <p>Sleep is basically divided into <strong>two components</strong>:</p>
+  <ul>
+    <li><strong>Rapid Eye Movement (REM) sleep</strong></li>
+    <li><strong>Non-Rapid Eye Movement (NREM) sleep</strong></li>
+  </ul>
+
+  <table>
+    <tr><th>Component</th><th>Purpose</th></tr>
+    <tr><td>NREM sleep</td><td><strong>Body restoration</strong> — repair tissues, build bone and muscle, strengthen immune system</td></tr>
+    <tr><td>REM sleep</td><td><strong>Brain restoration</strong> — strengthening, refreshing and organizing memory</td></tr>
+  </table>
+
+  <p>NREM sleep is further divided into <strong>four stages</strong> from lightest to deepest. <strong>Both types of sleep are required to recoup physical and mental energy.</strong></p>
+
+  <h3>24.1 NREM Sleep Stages</h3>
+  <table>
+    <tr><th>Stage</th><th>Description</th><th>Duration</th></tr>
+    <tr><td><strong>NREM Stage 1</strong></td><td>Transition phase between wakefulness and sleep. Brain activity, eye movement and muscle activity become slower. A person is easily awakened. Waking up in this stage causes a person to feel that he/she has <em>not slept</em>.</td><td><span class="reg-value">10 minutes</span> each time</td></tr>
+    <tr><td><strong>NREM Stage 2</strong></td><td>Light sleep — the first stage of true sleep. Occupies <span class="reg-value">50 %</span> of the sleep patterns. Brain activity, eye movement become even slower; cardiac activity decreases.</td><td><span class="reg-value">10–25 minutes</span> each time</td></tr>
+    <tr><td><strong>NREM Stage 3</strong></td><td>Beginning of deep sleep — slow-wave delta sleep. Brain activity and eye movement approaching zero. If awoken, the person may feel groggy and disoriented for a few minutes.</td><td>—</td></tr>
+    <tr><td><strong>NREM Stage 4</strong></td><td><strong>Deep sleep</strong> — slow-wave delta sleep. <strong>No eye movement or muscle activity.</strong> If awoken, the person may feel groggy or disoriented for a few minutes.</td><td>—</td></tr>
+  </table>
+
+  <h3>24.2 REM Sleep (Paradoxical Sleep)</h3>
+  <ul>
+    <li>Usually occurs <span class="reg-value">70–90 minutes</span> into a sleep.</li>
+    <li>Happens in cycles lasting for approximately <span class="reg-value">10 minutes initially to 1 hour</span>.</li>
+    <li>The eye moves rapidly from side to side and the brain wave form is similar to that when a person is awake.</li>
+    <li><strong>Dreams occur.</strong></li>
+  </ul>
+
+  <p>As we grow older, the time spent in REM sleep declines from <span class="reg-value">50 %</span> of our sleep for infants, to <span class="reg-value">20 %</span> of our sleep for adults.</p>
+
+  <h3>24.3 Sleep Inertia</h3>
+  <div class="box box-blue">
+    <span class="box-title">Definition — Sleep Inertia</span>
+    Refers to the transitional state between sleep and wake, marked by <strong>impaired performance, reduced vigilance, and a desire to return to sleep</strong>.
+  </div>
+
+  <h3>24.4 Key Points to Remember</h3>
+  <div class="box box-red">
+    <span class="box-title">Sleep — Critical Facts</span>
+    <ul>
+      <li>The effects of sleep deprivation on performance <strong>increase with altitude and with higher workload</strong>.</li>
+      <li>During paradoxical sleep rapid eye movements can be observed.</li>
+      <li>The duration of a period of sleep is governed primarily by the point within your circadian rhythm at which you try to sleep.</li>
+      <li><strong>Deep sleep allows for physical recovery and the reconstitution of neuron energy reserves.</strong></li>
+      <li>Lack of sleep increases fatigue, concentration and attention. It has risks of <strong>sensory illusions and mood disorders</strong>. Disruption of sleeping patterns can lead to symptoms of drowsiness, irritability and lack of concentration — making an individual more prone to make errors.</li>
+      <li>A person experiencing sleep loss is <strong>unlikely to be aware</strong> of personal performance degradation.</li>
+      <li>Performance loss may be present up to <span class="reg-value">20 minutes</span> after awaking from a short sleep (nap).</li>
+      <li>The sleep cycles repeat during the course of a night's sleep. Each succeeding cycle contains a greater amount of REM sleep. <strong>Frequent interruption of the REM sleep can harm a human being in the long run.</strong> REM sleep is more important for the regeneration of mental and physical functions than all the other sleep stages are.</li>
+    </ul>
+  </div>
+
+  <pre class="mermaid">
+flowchart LR
+  W[Wakefulness] --> N1[NREM 1<br/>~10 min<br/>Transition]
+  N1 --> N2[NREM 2<br/>10–25 min<br/>50% of sleep]
+  N2 --> N3[NREM 3<br/>Onset Deep Sleep]
+  N3 --> N4[NREM 4<br/>Deep Sleep<br/>No eye/muscle activity]
+  N4 --> R[REM<br/>70–90 min in<br/>Dreams · Brain wave ≈ awake]
+  R -.cycle repeats with more REM each time.-> N2
+  </pre>
+</section>
+
+<!-- ============ SECTION 25 ============ -->
+<section id="sec-25">
+  <h2>25. Mental Health Problems &amp; Disorders</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">What this section covers</span>
+    The risk of mental health problems among aviation personnel, the Germanwings 9525 case study, and where preventive efforts should focus.
+  </div>
+
+  <p>Mental health problems and disorders among pilots, ATCOs, maintenance and other personnel in aviation may impair performance and therefore be a <strong>threat to flight safety</strong>.</p>
+
+  <h3>25.1 Case Study — Germanwings Flight 9525</h3>
+  <div class="box box-red">
+    <span class="box-title">Germanwings 9525 — 24 March 2015</span>
+    <ul>
+      <li><strong>Route:</strong> Barcelona–El Prat Airport (Spain) to Düsseldorf Airport (Germany).</li>
+      <li><strong>Aircraft:</strong> Airbus A320.</li>
+      <li><strong>Date:</strong> 24 March 2015.</li>
+      <li><strong>Crash location:</strong> <span class="reg-value">100 km</span> north-west of Nice in the French Alps.</li>
+      <li><strong>Casualties:</strong> All <span class="reg-value">144 passengers</span> and all <span class="reg-value">6 crew members</span> were killed.</li>
+      <li><strong>Cause:</strong> The crash was deliberately caused by the co-pilot, Andreas Lubitz, who had previously been treated for suicidal tendencies and declared unfit to work by his doctor. Lubitz kept this information from his employer and instead reported for duty. Shortly after reaching cruise altitude and while the captain was out of the cockpit, Lubitz locked the cockpit door and initiated a controlled descent that continued until the aircraft hit a mountainside.</li>
+    </ul>
+  </div>
+
+  <h3>25.2 Why Pilots May Not Report Mental Health</h3>
+  <p>There may be many reasons why a pilot may be reluctant to discuss mental health problems with the examining physician during the annual medical assessment, including <strong>fear of losing his or her licence</strong> with both personal and financial costs as a result. This may prevent the pilot from receiving adequate and timely help, and this could potentially make the problems worse and prolong the time for recovery.</p>
+
+  <div class="box box-green">
+    <span class="box-title">Best Practice — Reducing Stigma</span>
+    More could probably be done to increase knowledge about mental health problems and reduce stigma so that more pilots and other professionals working in aviation report mental health problems, get treatment, and return to work. This would probably increase individual well-being, but also <strong>promote safety</strong>.
+  </div>
+
+  <h3>25.3 Where to Focus Preventive Efforts</h3>
+  <p>Serious mental health disorders (e.g. <em>psychosis</em>) are relatively rare and their onset is difficult to predict. <strong>Preventive efforts should be aimed at more common mental health problems such as:</strong></p>
+  <ul>
+    <li><strong>Depression</strong></li>
+    <li><strong>Anxiety</strong></li>
+    <li><strong>Substance misuse</strong></li>
+  </ul>
+</section>
+
+<!-- ============ MASTER REFERENCE TABLES ============ -->
+<section id="sec-master">
+  <h2>Master Reference Tables &amp; Mnemonics</h2>
+
+  <div class="box box-blue">
+    <span class="box-title">Purpose</span>
+    Every numerical value and key rule from the chapter consolidated for quick exam-night revision.
+  </div>
+
+  <h3>M-1. Master Numerical Reference</h3>
+  <table>
+    <tr><th>Topic</th><th>Value</th><th>Section</th></tr>
+    <tr><td>Iconic memory duration</td><td><span class="reg-value">0.5 – 1 second</span></td><td>5</td></tr>
+    <tr><td>Visual channel share of information processing</td><td><span class="reg-value">70 – 80 %</span></td><td>5</td></tr>
+    <tr><td>Short-term memory duration</td><td><span class="reg-value">10 – 20 seconds</span></td><td>12</td></tr>
+    <tr><td>Short-term memory capacity</td><td><span class="reg-value">7 ± 2</span> items</td><td>12</td></tr>
+    <tr><td>Long-term memory capacity</td><td><span class="reg-value">Unlimited</span> (retrieval may fail)</td><td>12</td></tr>
+    <tr><td>Acceptable workload (crew resources)</td><td><span class="reg-value">~ 60 %</span></td><td>11</td></tr>
+    <tr><td>Human error rate – simple/repetitive</td><td><span class="reg-value">1 in 100</span></td><td>11</td></tr>
+    <tr><td>Human error rate – after practice</td><td><span class="reg-value">1 in 1,000</span></td><td>11</td></tr>
+    <tr><td>Startle reflex – motor task recovery</td><td><span class="reg-value">5 – 10 seconds</span></td><td>10</td></tr>
+    <tr><td>Age-related response slowing</td><td><span class="reg-value">20 – 60 years</span></td><td>14</td></tr>
+    <tr><td>Anthropometric design population</td><td>Central <span class="reg-value">90 %</span> (disregard 5% lowest &amp; 5% highest)</td><td>20</td></tr>
+    <tr><td>Free-running circadian cycle</td><td><span class="reg-value">~ 25 hours</span></td><td>23</td></tr>
+    <tr><td>Cued circadian cycle</td><td><span class="reg-value">~ 24 hours</span></td><td>23</td></tr>
+    <tr><td>Circadian re-sync rate</td><td><span class="reg-value">1 – 1.5 hours/day</span></td><td>23</td></tr>
+    <tr><td>Eastbound adaptation</td><td><span class="reg-value">~ 1.5 days/time-zone</span> (50% slower than west)</td><td>23</td></tr>
+    <tr><td>Westbound adaptation</td><td><span class="reg-value">~ 1 day/time-zone</span></td><td>23</td></tr>
+    <tr><td>Stop-over threshold for adjusting to local time</td><td><span class="reg-value">&gt; 24 hours</span></td><td>23</td></tr>
+    <tr><td>Lowest body temperature time</td><td><span class="reg-value">04:30</span></td><td>23</td></tr>
+    <tr><td>Highest body temperature time</td><td><span class="reg-value">19:00</span></td><td>23</td></tr>
+    <tr><td>Melatonin peak</td><td><span class="reg-value">02:00 – 04:00</span></td><td>23</td></tr>
+    <tr><td>Melatonin secretion starts</td><td><span class="reg-value">21:00</span></td><td>23</td></tr>
+    <tr><td>Melatonin secretion stops</td><td><span class="reg-value">07:30</span></td><td>23</td></tr>
+    <tr><td>NREM Stage 1 duration</td><td><span class="reg-value">10 minutes</span></td><td>24</td></tr>
+    <tr><td>NREM Stage 2 duration / share</td><td><span class="reg-value">10–25 min</span> / <span class="reg-value">50 %</span> of sleep</td><td>24</td></tr>
+    <tr><td>REM onset after sleep start</td><td><span class="reg-value">70 – 90 minutes</span></td><td>24</td></tr>
+    <tr><td>REM cycle duration</td><td><span class="reg-value">10 min → up to 1 hour</span></td><td>24</td></tr>
+    <tr><td>REM share – infant vs adult</td><td><span class="reg-value">50 %</span> vs <span class="reg-value">20 %</span></td><td>24</td></tr>
+    <tr><td>Post-nap performance loss</td><td><span class="reg-value">Up to 20 minutes</span></td><td>24</td></tr>
+    <tr><td>Life stress scoring – free / normal / high / serious</td><td><span class="reg-value">&lt;60 / 60–80 / 80–100 / &gt;100</span></td><td>22</td></tr>
+    <tr><td>Germanwings 9525 — date</td><td><span class="reg-value">24 March 2015</span></td><td>25</td></tr>
+    <tr><td>Germanwings 9525 — crash distance</td><td><span class="reg-value">100 km</span> NW of Nice</td><td>25</td></tr>
+    <tr><td>Germanwings 9525 — casualties</td><td><span class="reg-value">144 pax + 6 crew</span></td><td>25</td></tr>
+    <tr><td>Cockpit restraint</td><td><span class="reg-value">5-point harness with negative-G strap</span></td><td>20</td></tr>
+  </table>
+
+  <h3>M-2. Mnemonics &amp; Memory Aids</h3>
+  <table>
+    <tr><th>Concept</th><th>Mnemonic</th></tr>
+    <tr><td>Aviation Psychology aims</td><td><strong>D-P-U-I</strong> → Describe, Predict, Understand, Influence</td></tr>
+    <tr><td>Information-processing stages</td><td><strong>D-P-D-A-F</strong> → Detection, Perception, Decision, Action, Feedback</td></tr>
+    <tr><td>Workload drivers</td><td><strong>DPST</strong> → Difficulty, Parallel, Series, Time</td></tr>
+    <tr><td>Anderson model phases</td><td><strong>C-A-A</strong> → Cognitive, Associative, Automatic</td></tr>
+    <tr><td>STM expansion tools</td><td><strong>"Chunk &amp; Chain"</strong> → Chunking + Association</td></tr>
+    <tr><td>Long-term memory types</td><td><strong>S-E-P</strong> → Semantic, Episodic, Procedural</td></tr>
+    <tr><td>SA-killers</td><td><strong>SBF-EPI</strong> → Stress, Boredom, Fatigue, Emotional, Poor comm., Interruptions</td></tr>
+    <tr><td>Decision-making seven steps</td><td><strong>R-C-A-D-S-E-F</strong> → Recognize, Consider, Analyze, Develop, Select, Execute, Follow-up</td></tr>
+    <tr><td>Communication barriers</td><td><strong>4-A + 2-I-R</strong> → Aggressiveness, Arrogance, Anti-authoritarian, (im)Pulsiveness, Invulnerability, Resignation</td></tr>
+    <tr><td>Human-centred automation qualities</td><td><strong>"A-SPA-CFDIE²"</strong> → Accountable, Subordinate, Predictable, Adaptable, Comprehensible, Flexible, Dependable, Informative, Error-resistant, Error-tolerant</td></tr>
+    <tr><td>Control design principles</td><td><strong>S-F-S-I-V-S-S-W</strong> → Standardization, Frequency, Sequence, Importance, Visual-tactile, Symbolism, Simultaneous, Warnings</td></tr>
+    <tr><td>Stress observables</td><td><strong>"P-FlSh-DP-FB"</strong> → Perspiration, Flushed Skin, Dilated Pupils, Fast Breathing</td></tr>
+    <tr><td>Sleep stages</td><td><strong>1-2-3-4-R</strong> → NREM 1 (transition) → 2 (light, 50%) → 3 (onset deep) → 4 (deep) → REM (dreams)</td></tr>
+    <tr><td>Jet-lag rule</td><td><strong>"East is Least, West is Best"</strong> → East 50% slower; 1.5 d/zone east vs 1 d/zone west</td></tr>
+    <tr><td>Mental health priority targets</td><td><strong>D-A-S</strong> → Depression, Anxiety, Substance misuse</td></tr>
+  </table>
+
+  <h3>M-3. Quick Definitions Recall Sheet</h3>
+  <table>
+    <tr><th>Term</th><th>One-Line Definition</th></tr>
+    <tr><td>Aviation Psychology</td><td>Applied psychology focused on human behaviour in aviation systems.</td></tr>
+    <tr><td>Workload</td><td>Mental effort needed to process information.</td></tr>
+    <tr><td>Perception</td><td>Conversion of sensory information into a meaningful structure.</td></tr>
+    <tr><td>Selective Attention</td><td>Continual sampling of inputs to judge relevance.</td></tr>
+    <tr><td>Divided Attention</td><td>Time-sharing of central decision channel between tasks.</td></tr>
+    <tr><td>Vigilance</td><td>Capability of remaining alert above a threshold for a period.</td></tr>
+    <tr><td>Complacency</td><td>Self-satisfaction with one's performance + unawareness of danger.</td></tr>
+    <tr><td>Motor Programme</td><td>Behavioural sub-routine learnt by practice and held in LTM.</td></tr>
+    <tr><td>Reaction Time</td><td>Delay between detection, stimulus and muscle contraction.</td></tr>
+    <tr><td>Startle Reflex</td><td>Reflex-like blink + body jerk to abrupt stimulus.</td></tr>
+    <tr><td>Human Reliability</td><td>Individual functioning in the manner he/she is supposed to.</td></tr>
+    <tr><td>Hallucination</td><td>False perception characterised by distortion of real sensory stimuli.</td></tr>
+    <tr><td>Cognition</td><td>Mental process of acquiring knowledge by reasoning, intuition or perception.</td></tr>
+    <tr><td>Risk Assessment</td><td>Probability of risk × Impact if it occurs.</td></tr>
+    <tr><td>Situational Awareness</td><td>Accurate appraisal of self, environment and own performance.</td></tr>
+    <tr><td>Automation</td><td>Controlling apparatus/process by electronic/mechanical devices replacing the human organism.</td></tr>
+    <tr><td>Anthropometry</td><td>Study of human measurement (static, dynamic, contour-surface).</td></tr>
+    <tr><td>Eye Datum</td><td>Defined eye position around which the cockpit is designed.</td></tr>
+    <tr><td>Trait Anxiety</td><td>Personality trait of high neuroticism (persistent worry).</td></tr>
+    <tr><td>State Anxiety</td><td>Transient anxiety present in anyone at any time.</td></tr>
+    <tr><td>Arousal</td><td>Person's readiness to respond effectively to a stress factor.</td></tr>
+    <tr><td>Fatigue</td><td>Deep tiredness from cumulative stressful lifestyle/environment.</td></tr>
+    <tr><td>Zeitgeber</td><td>Body's chronological pacemaker — melatonin signals time of day/year.</td></tr>
+    <tr><td>Sleep Inertia</td><td>Transitional state between sleep and wake with impaired performance.</td></tr>
+  </table>
+
+  <h3>M-4. Risk Formula</h3>
+  <div class="worked-example">
+    <span class="we-title">Risk Assessment Formula</span>
+    <code>Risk = Probability of Occurrence × Impact if it Occurs</code><br><br>
+    <strong>Variables:</strong><br>
+    • <em>Probability</em> — likelihood the hazard manifests (low / medium / high).<br>
+    • <em>Impact</em> — severity of consequence (minor / major / catastrophic).<br><br>
+    <strong>Worked example — Marginal weather decision:</strong><br>
+    Probability of icing on route = High (forecast supports it).<br>
+    Impact if encountered without anti-ice = Catastrophic.<br>
+    → Risk = High × Catastrophic = <strong>Unacceptable</strong>. Decision: <strong>Don't fly</strong>, or re-route below freezing level / with active anti-ice.
+  </div>
+
+  <h3>M-5. Final Quick-Revision Summary Box</h3>
+  <div class="box box-amber">
+    <span class="box-title">Exam-Night One-Page Recap</span>
+    <strong>Memory:</strong> Iconic 0.5–1 s · STM 10–20 s, 7±2 · LTM unlimited.<br>
+    <strong>Workload:</strong> Acceptable ≈ 60 % · DPST drivers · symptoms = funneling, regression, mental blocking, panic.<br>
+    <strong>Error rate:</strong> 1/100 raw → 1/1,000 after practice. Errors are cumulative.<br>
+    <strong>Startle:</strong> Motor task back to normal in 5–10 s. Fear potentiates.<br>
+    <strong>Anderson Skill:</strong> Cognitive → Associative → Automatic.<br>
+    <strong>Anthropometry:</strong> central 90 %, discard top &amp; bottom 5 %.<br>
+    <strong>Restraint:</strong> 5-point harness + negative-G strap.<br>
+    <strong>Display rule:</strong> Digital for quantitative · Analogue for qualitative. Standardization is the #1 design rule.<br>
+    <strong>Three-pointer altimeter:</strong> more misreads than single-pointer.<br>
+    <strong>Stress observables:</strong> perspiration, flushed skin, dilated pupils, fast breathing.<br>
+    <strong>Life stress:</strong> &lt;60 free · 60–80 normal · 80–100 high · &gt;100 serious. Spouse death = 100.<br>
+    <strong>Circadian:</strong> Free-running 25 h · cued 24 h · Lowest body temp 04:30 · Highest 19:00 · Melatonin peak 02–04 · Zeitgeber = Melatonin (pineal gland).<br>
+    <strong>Jet-lag:</strong> 1–1.5 h/day re-sync · East 1.5 d/zone (50% slower) · West 1 d/zone · &gt;24 h stopover → shift; &lt;24 h → stay on departure rhythm.<br>
+    <strong>Sleep:</strong> NREM 1 = 10 min · NREM 2 = 10–25 min, 50% · REM at 70–90 min · REM 50% infant → 20% adult · Post-nap loss up to 20 min.<br>
+    <strong>Mental health priority:</strong> Depression, Anxiety, Substance misuse. Germanwings 9525 (24 Mar 2015, A320, 100 km NW Nice, 144 pax + 6 crew).<br>
+    <strong>Communication barriers:</strong> Aggressiveness, Arrogance, Anti-authoritarian, Impulsiveness, Invulnerability, Resignation.<br>
+    <strong>Murphy's Law:</strong> if it can be operated wrongly, sooner or later it will be.<br>
+    <strong>Golden Maxim:</strong> A superior pilot uses his superior judgment to avoid situations that would require his superior skills.
+  </div>
+
+  <div class="footer-note">
+    — End of DGCA Study Notes — Aviation Psychology &amp; Human Factors —<br>
+    Compiled by <strong>Capt. Pankaj Pahil</strong> | Source: Chapter 25 (pages 615–652)
+  </div>
+</section>
+
+<!-- ============ WATERMARK (MUST BE LAST IN BODY) ============ -->
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chapter 20 – Aircraft Accident & Incident | DGCA Study Notes</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'neutral', flowchart: { curve: 'basis' } });
+</script>
+<style>
+  /* ---------- PAGE / PRINT ---------- */
+  @page { size: A4; margin: 20mm; }
+  @media print {
+    body { background: #fff !important; }
+    .no-print { display: none !important; }
+  }
+
+  /* ---------- GLOBAL ---------- */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: #1a2332;
+    background: #f4f6fa;
+    margin: 0;
+    padding: 32px 28px 56px;
+    line-height: 1.55;
+    font-size: 14.5px;
+    position: relative;
+  }
+
+  /* ---------- HEADER / TITLE ---------- */
+  .doc-header {
+    background: linear-gradient(135deg, #0b3d91 0%, #1f6feb 60%, #0ea5e9 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 28px 32px;
+    box-shadow: 0 8px 24px rgba(11,61,145,0.18);
+    margin-bottom: 26px;
+    page-break-inside: avoid;
+  }
+  .doc-header .chap-num {
+    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    opacity: 0.85; margin-bottom: 6px; font-weight: 600;
+  }
+  .doc-header h1 {
+    margin: 0 0 10px;
+    font-size: 30px; font-weight: 800; letter-spacing: 0.3px;
+    line-height: 1.15;
+  }
+  .doc-header .sub {
+    font-size: 13.5px; opacity: 0.95; font-weight: 500;
+    border-top: 1px solid rgba(255,255,255,0.25);
+    padding-top: 10px; margin-top: 10px;
+  }
+  .doc-header .meta {
+    display: inline-block; background: rgba(255,255,255,0.18);
+    padding: 4px 12px; border-radius: 20px; font-size: 12px;
+    margin-top: 8px; font-weight: 600;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  h2 {
+    font-size: 22px; color: #0b3d91; margin: 28px 0 14px;
+    padding: 10px 14px; border-left: 6px solid #1f6feb;
+    background: linear-gradient(90deg, #e8f0ff 0%, transparent 90%);
+    border-radius: 0 8px 8px 0; page-break-after: avoid;
+  }
+  h3 {
+    font-size: 17px; color: #0b3d91; margin: 18px 0 10px;
+    padding-bottom: 4px; border-bottom: 2px dashed #c8d4e8;
+    page-break-after: avoid;
+  }
+  h4 { font-size: 15px; color: #1a3a6d; margin: 14px 0 8px; }
+  p { margin: 8px 0; }
+
+  /* ---------- COLOR BOXES ---------- */
+  .box {
+    border-radius: 10px; padding: 14px 18px; margin: 14px 0;
+    page-break-inside: avoid; border-left: 6px solid;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  .box .box-title {
+    font-weight: 800; font-size: 14px; letter-spacing: 0.5px;
+    text-transform: uppercase; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .box .icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%; font-size: 13px;
+    color: #fff; font-weight: bold;
+  }
+
+  /* RED – limitations, warnings, penalties */
+  .box.red {
+    background: #fdecec; border-color: #d93025;
+  }
+  .box.red .box-title { color: #a3160c; }
+  .box.red .icon { background: #d93025; }
+
+  /* BLUE – definitions, concepts */
+  .box.blue {
+    background: #e7f0ff; border-color: #1f6feb;
+  }
+  .box.blue .box-title { color: #0b3d91; }
+  .box.blue .icon { background: #1f6feb; }
+
+  /* GREEN – SOPs, allowances, procedures */
+  .box.green {
+    background: #e6f6ec; border-color: #1b8a3a;
+  }
+  .box.green .box-title { color: #0f5f27; }
+  .box.green .icon { background: #1b8a3a; }
+
+  /* AMBER – important notes / exam tips */
+  .box.amber {
+    background: #fff6e0; border-color: #d98e00;
+  }
+  .box.amber .box-title { color: #7a4d00; }
+  .box.amber .icon { background: #d98e00; }
+
+  /* ---------- VALUE HIGHLIGHTS ---------- */
+  .val {
+    background: #fff3a8;
+    padding: 1px 7px; border-radius: 4px;
+    font-weight: 800; color: #6b4e00;
+    border: 1px solid #e6d570;
+  }
+  .val-red {
+    background: #ffe1de;
+    padding: 1px 7px; border-radius: 4px;
+    font-weight: 800; color: #a3160c;
+    border: 1px solid #f5b3ad;
+  }
+
+  /* ---------- LISTS ---------- */
+  ul, ol { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  ul.tight li, ol.tight li { margin: 2px 0; }
+  .clause-list { list-style: none; padding-left: 0; }
+  .clause-list > li {
+    background: #fff; border: 1px solid #dde5f0;
+    border-radius: 8px; padding: 10px 14px; margin: 8px 0;
+    border-left: 4px solid #1f6feb;
+    page-break-inside: avoid;
+  }
+  .clause-list .clause-label {
+    display: inline-block; background: #1f6feb; color: #fff;
+    padding: 2px 9px; border-radius: 4px; font-size: 12px;
+    font-weight: 700; margin-right: 8px;
+  }
+
+  /* ---------- TABLES ---------- */
+  table {
+    width: 100%; border-collapse: collapse; margin: 14px 0;
+    page-break-inside: avoid; background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05); border-radius: 8px;
+    overflow: hidden;
+  }
+  th {
+    background: #0b3d91; color: #fff; padding: 10px 12px;
+    text-align: left; font-size: 13px; letter-spacing: 0.3px;
+  }
+  td {
+    padding: 9px 12px; border-bottom: 1px solid #e3e9f3;
+    font-size: 13.5px; vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f7faff; }
+  tr:last-child td { border-bottom: none; }
+
+  /* ---------- MERMAID ---------- */
+  pre.mermaid {
+    background: #fff; padding: 14px; border-radius: 10px;
+    border: 1px solid #dde5f0; margin: 14px 0;
+    page-break-inside: avoid; text-align: center;
+  }
+  .diagram-caption {
+    text-align: center; font-size: 12.5px; color: #4a5a73;
+    font-style: italic; margin-top: -6px; margin-bottom: 14px;
+  }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline {
+    position: relative; padding: 10px 0 10px 30px; margin: 18px 0;
+    border-left: 3px solid #1f6feb; page-break-inside: avoid;
+  }
+  .timeline-item {
+    position: relative; margin-bottom: 14px; padding: 10px 14px;
+    background: #fff; border-radius: 8px;
+    border: 1px solid #dde5f0;
+  }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -39px; top: 14px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #1f6feb; border: 3px solid #fff;
+    box-shadow: 0 0 0 2px #1f6feb;
+  }
+  .timeline-item .t-time {
+    font-weight: 800; color: #0b3d91; font-size: 13px;
+    display: block; margin-bottom: 4px;
+  }
+
+  /* ---------- QUICK FACTS / EXAM CARDS ---------- */
+  .card-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px; margin: 14px 0;
+  }
+  .fact-card {
+    background: #fff; border-radius: 10px; padding: 12px 14px;
+    border-top: 4px solid #1f6feb;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    page-break-inside: avoid;
+  }
+  .fact-card .ft-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+    color: #5a6a85; font-weight: 700;
+  }
+  .fact-card .ft-value {
+    font-size: 18px; font-weight: 800; color: #0b3d91;
+    margin-top: 4px;
+  }
+  .fact-card .ft-desc {
+    font-size: 12px; color: #4a5a73; margin-top: 4px;
+  }
+
+  /* ---------- QUESTIONS ---------- */
+  .question {
+    background: #fff; border: 1px solid #dde5f0; border-radius: 10px;
+    padding: 14px 18px; margin: 12px 0;
+    page-break-inside: avoid;
+    border-left: 5px solid #6a4ec9;
+  }
+  .question .q-num {
+    display: inline-block; background: #6a4ec9; color: #fff;
+    padding: 3px 10px; border-radius: 20px; font-size: 12px;
+    font-weight: 700; margin-right: 8px;
+  }
+  .question .q-text { font-weight: 700; margin-bottom: 10px; color: #1a2332; }
+  .question .options { margin: 8px 0 10px 8px; }
+  .question .options div { padding: 4px 8px; font-size: 13.5px; }
+  .question .correct {
+    background: #e6f6ec; border-left: 3px solid #1b8a3a;
+    border-radius: 4px; font-weight: 700; color: #0f5f27;
+  }
+  .question .answer-explain {
+    background: #f4f6fa; border-radius: 6px; padding: 8px 12px;
+    font-size: 12.5px; color: #2a3a55; margin-top: 8px;
+    border-left: 3px solid #1f6feb;
+  }
+
+  /* ---------- TOC ---------- */
+  .toc {
+    background: #fff; border-radius: 10px; padding: 16px 22px;
+    border: 1px solid #dde5f0; margin: 18px 0;
+    page-break-inside: avoid;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .toc h3 { margin-top: 0; border: none; padding: 0; color: #0b3d91; }
+  .toc ol { columns: 2; column-gap: 30px; margin: 8px 0 0; }
+  .toc a { color: #1a3a6d; text-decoration: none; font-size: 13.5px; }
+  .toc a:hover { color: #1f6feb; text-decoration: underline; }
+
+  /* ---------- WATERMARK ---------- */
+  .watermark {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.12);
+    white-space: nowrap;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 2px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    margin-top: 36px; padding-top: 16px;
+    border-top: 2px solid #dde5f0; text-align: center;
+    font-size: 12px; color: #5a6a85; page-break-inside: avoid;
+  }
+  .footer strong { color: #0b3d91; }
+
+  /* ---------- KEY ROW ---------- */
+  .keyrow {
+    display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0;
+  }
+  .keyrow .chip {
+    background: #fff; border: 1px solid #c8d4e8; border-radius: 20px;
+    padding: 4px 12px; font-size: 12.5px; font-weight: 600;
+    color: #1a3a6d;
+  }
+  .keyrow .chip.red { background: #fdecec; border-color: #f5b3ad; color: #a3160c; }
+  .keyrow .chip.green { background: #e6f6ec; border-color: #b6e1c0; color: #0f5f27; }
+  .keyrow .chip.blue { background: #e7f0ff; border-color: #b6cdf2; color: #0b3d91; }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<div class="doc-header">
+  <div class="chap-num">Chapter 20 · DGCA Air Regulations</div>
+  <h1>Aircraft Accident &amp; Incident</h1>
+  <div class="sub">
+    Annex 13 (ICAO) · Aircraft (Investigation of Accidents and Incidents) Rules, 2017 ·
+    CAR Section 5 – Air Safety Series 'C' Part I
+  </div>
+  <span class="meta">📅 Effective: 26 / 02 / 2020</span>
+  <span class="meta" style="margin-left:6px;">🎓 CPL / ATPL Ground Subject – Air Regs</span>
+</div>
+
+<!-- ============ TOC ============ -->
+<div class="toc no-print">
+  <h3>📑 Contents</h3>
+  <ol>
+    <li><a href="#sec-objective">Objective &amp; Scope of Investigation</a></li>
+    <li><a href="#sec-applicability">Applicability</a></li>
+    <li><a href="#sec-icao-prov">ICAO Annex 13 Provisions</a></li>
+    <li><a href="#sec-accident">Definition: Accident</a></li>
+    <li><a href="#sec-serious-incident">Definition: Serious Incident</a></li>
+    <li><a href="#sec-serious-injury">Definition: Serious Injury</a></li>
+    <li><a href="#sec-incident">Definition: Incident</a></li>
+    <li><a href="#sec-significant">Definition: Significant Incident</a></li>
+    <li><a href="#sec-ati">Air Traffic Incidents (AIRPROX)</a></li>
+    <li><a href="#sec-reporting">Reporting Procedures</a></li>
+    <li><a href="#sec-investigation">Investigation Authority (AAIB)</a></li>
+    <li><a href="#sec-notification">Notification Requirements</a></li>
+    <li><a href="#sec-evidence">Protection of Evidence</a></li>
+    <li><a href="#sec-summary">Quick Reference Summary</a></li>
+    <li><a href="#sec-questions">Practice Questions &amp; Answers</a></li>
+  </ol>
+</div>
+
+<!-- ============ SECTION 1: OBJECTIVE ============ -->
+<section id="sec-objective">
+  <h2>1 · Objective &amp; Scope of Investigation</h2>
+
+  <div class="box blue">
+    <div class="box-title"><span class="icon">i</span> Core Principle</div>
+    The <b>sole objective</b> of the investigation of an accident or serious incident is the
+    <b>prevention of accidents and incidents</b>. It is <u>not</u> the purpose of this activity
+    to apportion blame or liability. The causes of an aircraft accident or serious incident
+    must be identified in order to prevent repeated occurrences.
+  </div>
+
+  <p>The identification of causal factors is best accomplished through a <b>properly conducted
+  investigation</b>. ICAO Annex 13 lays down:</p>
+
+  <ul class="tight">
+    <li>Which States may <b>participate</b> in an investigation.</li>
+    <li>The <b>rights and responsibilities</b> of each State.</li>
+  </ul>
+
+  <h4>🌐 States Entitled to Participate</h4>
+  <div class="keyrow">
+    <span class="chip blue">State of Occurrence</span>
+    <span class="chip blue">State of Registry</span>
+    <span class="chip blue">State of the Operator</span>
+    <span class="chip blue">State of Design</span>
+    <span class="chip blue">State of Manufacture</span>
+  </div>
+</section>
+
+<!-- ============ SECTION 2: APPLICABILITY ============ -->
+<section id="sec-applicability">
+  <h2>2 · Applicability</h2>
+
+  <div class="box green">
+    <div class="box-title"><span class="icon">✓</span> General Rule</div>
+    Unless otherwise stated, the specifications in Annex 13 apply to activities following
+    <b>accidents and incidents wherever they occurred</b>.
+  </div>
+
+  <div class="box amber">
+    <div class="box-title"><span class="icon">!</span> Special Case – State of the Operator</div>
+    The specifications concerning the <b>State of the Operator</b> apply <u>only</u> when:
+    <ul class="tight">
+      <li>The aircraft is <b>leased, chartered or interchanged</b>, AND</li>
+      <li>That State is <b>not the State of Registry</b>, AND</li>
+      <li>It discharges, in respect of this Annex, in part or in whole, the functions and
+      obligations of the State of Registry.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SECTION 3: ICAO PROVISIONS ============ -->
+<section id="sec-icao-prov">
+  <h2>3 · ICAO Annex 13 – Key Provisions</h2>
+
+  <ul class="clause-list">
+    <li>
+      <span class="clause-label">P-1</span>
+      Any State which, on request, provides <b>information, facilities or experts</b> to the
+      State conducting the investigation shall be entitled to appoint an <b>accredited
+      representative</b> to participate in the investigation.
+    </li>
+    <li>
+      <span class="clause-label">P-2</span>
+      The accident investigation <b>final report</b> shall be submitted to appropriate States
+      and to the ICAO, in <b>one of the working languages of ICAO</b>.
+    </li>
+    <li>
+      <span class="clause-label">P-3</span>
+      Upon receipt of the modification and a request by the State of Occurrence for
+      participation, the <b>State of Design</b> and the <b>State of Manufacture</b> shall — in
+      the case of an accident or serious incident — inform the State of Occurrence of the
+      name of its representative to be present at the investigation when the aircraft has a
+      <span class="val">maximum mass over 1,00,000 kg</span>.
+    </li>
+    <li>
+      <span class="clause-label">P-4</span>
+      The <b>Government of the State in which the accident took place</b> is responsible,
+      under Annex 13 of the Chicago Convention, for the <b>initiation</b> of an accident
+      investigation.
+    </li>
+  </ul>
+
+  <div class="card-grid">
+    <div class="fact-card">
+      <div class="ft-label">Aircraft Mass Threshold</div>
+      <div class="ft-value">&gt; 1,00,000 kg</div>
+      <div class="ft-desc">State of Design / Manufacture must send rep</div>
+    </div>
+    <div class="fact-card">
+      <div class="ft-label">Report Language</div>
+      <div class="ft-value">ICAO Working Lang.</div>
+      <div class="ft-desc">Final report submitted in one of</div>
+    </div>
+    <div class="fact-card">
+      <div class="ft-label">Investigation Initiation</div>
+      <div class="ft-value">State of Occurrence</div>
+      <div class="ft-desc">Government where accident took place</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 4: ACCIDENT ============ -->
+<section id="sec-accident">
+  <h2>4 · National Provisions – Definition of "Accident"</h2>
+
+  <div class="box blue">
+    <div class="box-title"><span class="icon">i</span> Accident – Definition</div>
+    An <b>occurrence associated with the operation of an aircraft</b> which:
+    <ul class="tight" style="margin-top:8px;">
+      <li><b>(i) Manned aircraft</b> – takes place between the time any person <u>boards</u>
+      the aircraft with the intention of flight until such time as all such persons have
+      <u>disembarked</u>; OR</li>
+      <li><b>(ii) Unmanned aircraft</b> – takes place between the time the aircraft is
+      <u>ready to move</u> with the purpose of flight until such time as it <u>comes to rest</u>
+      at the end of the flight and the <u>primary propulsion system is shut down</u>.</li>
+    </ul>
+    In which any of the following conditions (a), (b) or (c) applies:
+  </div>
+
+  <h3>4.1 · Conditions that Constitute an Accident</h3>
+
+  <h4>(a) A person is fatally or seriously injured as a result of:</h4>
+  <ul class="tight">
+    <li>Being in the aircraft, <b>or</b></li>
+    <li>Direct contact with any part of the aircraft, including parts which have become detached from the aircraft, <b>or</b></li>
+    <li>Direct exposure to <b>jet blast</b>,</li>
+  </ul>
+
+  <div class="box red">
+    <div class="box-title"><span class="icon">✕</span> EXCEPT — Not Counted as Accident Injury</div>
+    Except when the injuries are from:
+    <ul class="tight">
+      <li><b>Natural causes</b></li>
+      <li><b>Self-inflicted</b></li>
+      <li><b>Inflicted by other persons</b></li>
+      <li>When injuries are to <b>stowaways</b> hiding outside the areas normally available to passengers and crew</li>
+    </ul>
+  </div>
+
+  <h4>(b) The aircraft sustains damage or structural failure which:</h4>
+  <ul class="tight">
+    <li>Adversely affects the <b>structural strength, performance or flight characteristics</b> of the aircraft, AND</li>
+  </ul>
+
+  <div class="box green">
+    <div class="box-title"><span class="icon">✓</span> EXCEPT — Damage NOT Constituting an Accident</div>
+    Damage is <b>NOT</b> classified as an accident when limited to:
+    <ul class="tight">
+      <li>Failure of <b>engine</b> or damage limited to a <b>single engine</b> (including its cowlings or accessories)</li>
+      <li><b>Propellers</b>, <b>wing tips</b>, <b>antennas</b>, <b>probes</b>, <b>vanes</b></li>
+      <li><b>Tires</b>, <b>brakes</b>, <b>wheels</b></li>
+      <li><b>Fairings</b>, <b>panels</b>, <b>landing gear doors</b></li>
+      <li><b>Windscreens</b>, the <b>aircraft skin</b> (small dents or puncture holes)</li>
+      <li><b>Minor damage</b> to main rotor blades, tail rotor blades, landing gear</li>
+      <li>Damage from <b>hail or bird strike</b> (including holes in the radome)</li>
+    </ul>
+  </div>
+
+  <h4>(c) The aircraft is missing or is completely inaccessible.</h4>
+
+  <div class="box amber">
+    <div class="box-title"><span class="icon">!</span> Critical Definitions</div>
+    <ul class="tight">
+      <li><b>"Fatally injured"</b> — means an injury resulting in <span class="val-red">death within 30 days</span> of the date of the accident.</li>
+      <li><b>"Aircraft is missing"</b> — means the wreckage of the aircraft has not been located when the <b>official search has been terminated</b>.</li>
+    </ul>
+  </div>
+
+  <h3>4.2 · Visual: Accident Classification Flow</h3>
+  <pre class="mermaid">
+flowchart TD
+    A[Occurrence with Aircraft Operation] --> B{Manned or Unmanned?}
+    B -->|Manned| C[Between boarding & disembarking?]
+    B -->|Unmanned| D[Between ready-to-move & engine shutdown?]
+    C -->|No| X[Not an Accident]
+    D -->|No| X
+    C -->|Yes| E{Any condition met?}
+    D -->|Yes| E
+    E --> F[a Person fatally/seriously injured]
+    E --> G[b Aircraft damaged/structural failure]
+    E --> H[c Aircraft missing or inaccessible]
+    F --> Y{Excluded cause? natural/self/other/stowaway}
+    Y -->|Yes| X
+    Y -->|No| Z[ACCIDENT]
+    G --> W{Damage limited to listed exceptions?}
+    W -->|Yes| X
+    W -->|No| Z
+    H --> Z
+    style Z fill:#fdecec,stroke:#d93025,stroke-width:3px,color:#a3160c
+    style X fill:#e6f6ec,stroke:#1b8a3a,color:#0f5f27
+  </pre>
+  <div class="diagram-caption">Decision flow — Is the occurrence an "Accident"?</div>
+</section>
+
+<!-- ============ SECTION 5: SERIOUS INCIDENT ============ -->
+<section id="sec-serious-incident">
+  <h2>5 · Definition of "Serious Incident"</h2>
+
+  <div class="box blue">
+    <div class="box-title"><span class="icon">i</span> Serious Incident – Definition</div>
+    An incident involving circumstances indicating that there was a <b>high probability of
+    an accident</b> and associated with the operation of an aircraft which:
+    <ul class="tight" style="margin-top:6px;">
+      <li><b>Manned</b> — takes place between the time any person boards the aircraft with
+      the intention of flight until all such persons have disembarked;</li>
+      <li><b>Unmanned</b> — between the time the aircraft is ready to move with the purpose
+      of flight until it comes to rest at the end of the flight and the primary propulsion
+      system is shut down.</li>
+    </ul>
+  </div>
+
+  <div class="box amber">
+    <div class="box-title"><span class="icon">!</span> Note on the List Below</div>
+    The incidents listed below are <b>typical examples</b> of incidents likely to be serious
+    incidents. The list is <u>not exhaustive</u> and only serves as guidance to the
+    definition of "serious incident".
+  </div>
+
+  <h3>5.1 · Typical Examples of Serious Incidents</h3>
+
+  <table>
+    <thead>
+      <tr><th style="width:7%;">Item</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>a)</b></td><td>Near collisions requiring an avoidance manoeuvre to avoid a collision or an unsafe situation, or when an avoidance action would have been appropriate.</td></tr>
+      <tr><td><b>b)</b></td><td>Collisions not classified as accidents.</td></tr>
+      <tr><td><b>c)</b></td><td>Controlled flight into terrain (<b>CFIT</b>) only marginally avoided.</td></tr>
+      <tr><td><b>d)</b></td><td><b>Aborted take-offs</b> on a closed or engaged runway, on a taxiway or unassigned runway.</td></tr>
+      <tr><td><b>e)</b></td><td><b>Take-offs</b> from a closed or engaged runway, from a taxiway or unassigned runway.</td></tr>
+      <tr><td><b>f)</b></td><td><b>Landings or attempted landings</b> on a closed or engaged runway, on a taxiway or unassigned runway.</td></tr>
+      <tr><td><b>g)</b></td><td>Gross failures to achieve predicted performance during take-off or initial climb.</td></tr>
+      <tr><td><b>h)</b></td><td>Fires and/or smoke in the cockpit, in the passenger compartment, in cargo compartments or engine fires — <i>even though such fires were extinguished by extinguishing agents</i>.</td></tr>
+      <tr><td><b>i)</b></td><td>Events requiring the <b>emergency use of oxygen</b> by the flight crew.</td></tr>
+      <tr><td><b>j)</b></td><td>Aircraft structural failures or engine disintegrations, including <b>uncontained turbine engine failures</b>, not classified as an accident.</td></tr>
+      <tr><td><b>k)</b></td><td>Multiple malfunctions of one or more aircraft systems seriously affecting the operation of the aircraft.</td></tr>
+      <tr><td><b>l)</b></td><td><b>Flight crew incapacitation</b> in flight.</td></tr>
+      <tr><td><b>m)</b></td><td>Fuel quantity level or distribution situations requiring the declaration of an emergency by the pilot — such as <b>insufficient fuel, fuel exhaustion, fuel starvation</b>, or inability to use all usable fuel on board.</td></tr>
+      <tr><td><b>o)</b></td><td><b>Runway incursions classified with severity A.</b> (<i>The Manual on the Prevention of Runway Incursions — ICAO Doc 9870 — contains information on the severity classifications.</i>)</td></tr>
+      <tr><td><b>p)</b></td><td>Take-off or landing incidents — <b>under-shooting, overrunning, or running off the side of runways</b>.</td></tr>
+      <tr><td><b>q)</b></td><td>System failures, weather phenomena, operations outside the <b>approved flight envelope</b>, or other occurrences which caused or could have caused difficulties controlling the aircraft.</td></tr>
+      <tr><td><b>r)</b></td><td>Failures of <b>more than one system</b> in a redundancy system mandatory for flight guidance and navigation.</td></tr>
+      <tr><td><b>s)</b></td><td>The <b>unintentional</b> or, as an emergency measure, the <b>intentional release</b> of a slung load or any other load carried external to the aircraft.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ SECTION 6: SERIOUS INJURY ============ -->
+<section id="sec-serious-injury">
+  <h2>6 · Definition of "Serious Injury"</h2>
+
+  <div class="box blue">
+    <div class="box-title"><span class="icon">i</span> Serious Injury – Definition</div>
+    An <b>injury sustained by a person in an accident</b> and which meets any one or more
+    of the following six criteria:
+  </div>
+
+  <ul class="clause-list">
+    <li><span class="clause-label">a</span>
+      Requires <b>hospitalization for more than <span class="val-red">48 hours</span></b>,
+      commencing <b>within <span class="val">7 days</span> from the date the injury was
+      received</b>; OR
+    </li>
+    <li><span class="clause-label">b</span>
+      Results in a <b>fracture of any bone</b> —
+      <i>except simple fractures of fingers, toes or nose</i>; OR
+    </li>
+    <li><span class="clause-label">c</span>
+      Involves <b>lacerations</b> which cause <b>severe haemorrhage</b>, or
+      <b>nerve, muscle or tendon damage</b>; OR
+    </li>
+    <li><span class="clause-label">d</span>
+      Involves <b>injury to any internal organ</b>; OR
+    </li>
+    <li><span class="clause-label">e</span>
+      Involves <b>second or third degree burns</b>, or any burns affecting
+      <b>more than <span class="val-red">5 percent</span> of the body surface</b>; OR
+    </li>
+    <li><span class="clause-label">f</span>
+      Involves <b>verified exposure to infectious substances or injurious radiation</b>.
+    </li>
+  </ul>
+
+  <div class="card-grid">
+    <div class="fact-card">
+      <div class="ft-label">Hospitalization Limit</div>
+      <div class="ft-value">&gt; 48 Hours</div>
+      <div class="ft-desc">Within 7 days of injury</div>
+    </div>
+    <div class="fact-card">
+      <div class="ft-label">Burns Threshold</div>
+      <div class="ft-value">&gt; 5 % Body</div>
+      <div class="ft-desc">Or 2nd / 3rd degree burns</div>
+    </div>
+    <div class="fact-card">
+      <div class="ft-label">Fatal Injury Window</div>
+      <div class="ft-value">30 Days</div>
+      <div class="ft-desc">Death within 30 days = fatal</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 7: INCIDENT ============ -->
+<section id="sec-incident">
+  <h2>7 · Definition of "Incident"</h2>
+
+  <div class="box blue">
+    <div class="box-title"><span class="icon">i</span> Incident – Definition</div>
+    In relation to an aircraft, means an occurrence which takes place
+    <b>either on the ground or in flight</b>, in which any of the following applies:
+  </div>
+
+  <ul class="clause-list">
+    <li><span class="clause-label">a</span>
+      The aircraft <b>suffers damage</b>, or a person associated either with the
+      <b>maintenance or operation of aircraft</b> (or both) suffers injury,
+      in circumstances <u>other than</u> those specified in the definition of "accident".
+    </li>
+    <li><span class="clause-label">b</span>
+      The aircraft makes a <b>forced landing</b>.
+    </li>
+    <li><span class="clause-label">c</span>
+      The aircraft <b>lands at an aerodrome in an un-airworthy condition</b>.
+    </li>
+    <li><span class="clause-label">d</span>
+      The aircraft is <b>compelled to land at the aerodrome of departure</b> without
+      completing the scheduled flight.
+    </li>
+    <li><span class="clause-label">e</span>
+      The aircraft lands owing to conditions which make <b>continuance of the flight
+      inadvisable</b>.
+    </li>
+    <li><span class="clause-label">f</span>
+      The <b>position of the aircraft becomes "unknown for any period"</b>.
+    </li>
+    <li><span class="clause-label">g</span>
+      The <b>safety of the aircraft, its occupants, or any other person or property is
+      jeopardised</b> in any manner.
+    </li>
+  </ul>
+</section>
+
+<!-- ============ SECTION 8: SIGNIFICANT INCIDENT ============ -->
+<section id="sec-significant">
+  <h2>8 · Definition of "Significant Incident"</h2>
+
+  <div class="box blue">
+    <div class="box-title"><span class="icon">i</span> Significant Incident – Definition</div>
+    An incident involving circumstances indicating that an <b>accident or a serious incident
+    could have occurred</b>, if the <b>risk had not been managed within safety margins</b>.
+  </div>
+
+  <div class="box amber">
+    <div class="box-title"><span class="icon">!</span> Memory Aid</div>
+    Think of it as a <b>"near-near-miss"</b>: it would have escalated into an accident or
+    serious incident, but timely risk management kept it within safe limits.
+  </div>
+
+  <h3>8.1 · Hierarchy of Occurrences (Severity Scale)</h3>
+  <pre class="mermaid">
+flowchart LR
+    A[Incident<br/>Lowest severity] --> B[Significant Incident<br/>Could have escalated]
+    B --> C[Serious Incident<br/>High probability of accident]
+    C --> D[Accident<br/>Highest severity]
+    style A fill:#e7f0ff,stroke:#1f6feb,color:#0b3d91
+    style B fill:#fff6e0,stroke:#d98e00,color:#7a4d00
+    style C fill:#ffe1de,stroke:#d93025,color:#a3160c
+    style D fill:#fdecec,stroke:#8b0000,color:#5a0000,stroke-width:3px
+  </pre>
+  <div class="diagram-caption">Occurrence severity ladder — increasing left to right</div>
+</section>
+
+<!-- ============ SECTION 9: AIR TRAFFIC INCIDENTS ============ -->
+<section id="sec-ati">
+  <h2>9 · Air Traffic Incidents</h2>
+
+  <div class="box blue">
+    <div class="box-title"><span class="icon">i</span> Air Traffic Incident – Definition</div>
+    "Air traffic incidents" is used to mean a <b>serious occurrence related to the
+    provisions of air traffic services</b>, such as:
+    <ul class="tight" style="margin-top:6px;">
+      <li><b>Aircraft proximity (AIRPROX);</b></li>
+      <li>Serious difficulty resulting in a <b>hazard to aircraft</b> caused, for example, by:
+        <ul class="tight">
+          <li>i) <b>Faulty procedures</b></li>
+          <li>ii) <b>Non-compliance with procedures</b></li>
+          <li>iii) <b>Failure of ground facilities</b></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SECTION 10: REPORTING ============ -->
+<section id="sec-reporting">
+  <h2>10 · Reporting Procedures (including In-Flight Procedures)</h2>
+
+  <p>The following are the procedures to be followed by a <b>pilot who is or has been involved
+  in an incident</b>:</p>
+
+  <div class="box green">
+    <div class="box-title"><span class="icon">a</span> During Flight</div>
+    Use the appropriate <b>air/ground frequency</b> for reporting an incident of <b>major
+    significance</b>, particularly if it involves other aircraft, so as to <b>permit the
+    facts to be ascertained immediately</b>.
+  </div>
+
+  <div class="box green">
+    <div class="box-title"><span class="icon">b</span> After Landing</div>
+    As promptly as possible after landing, and in any case <b>within
+    <span class="val-red">24 hours</span></b>, submit a completed <b>Air Traffic Incident
+    Report Form</b> by the quickest means available to:
+    <ul class="tight" style="margin-top:6px;">
+      <li><b>Director General of Civil Aviation</b><br>(Attn: Director Air Safety, HQ)</li>
+      <li><b>With a copy to</b>: Executive Director (ATM), Airports Authority of India,
+      Rajiv Gandhi Bhawan, Safdarjung Airport, New Delhi – 110003.</li>
+    </ul>
+    This submission is required:
+    <ul class="tight">
+      <li><b>i)</b> For <b>confirming a report</b> of an incident made <b>initially by radio</b>, or for making the initial report on such an incident if it had not been possible to report it by radio;</li>
+      <li><b>ii)</b> For reporting an incident which did <b>not require immediate notification</b> at the time of occurrence.</li>
+    </ul>
+  </div>
+
+  <h3>10.1 · Information in an Initial Radio Report</h3>
+  <div class="box blue">
+    <div class="box-title"><span class="icon">i</span> Initial Report by Radio – Contents</div>
+    An initial report made by radio should contain the following information:
+    <ol class="tight" style="margin-top:6px; list-style: lower-alpha;">
+      <li><b>Aircraft identification</b></li>
+      <li><b>Type of incident</b> — e.g. aircraft proximity</li>
+      <li><b>The incident</b> — give information as laid down in the Air Traffic Incident Report Form</li>
+      <li><b>Miscellaneous</b></li>
+    </ol>
+  </div>
+
+  <h3>10.2 · Reporting Timeline</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="t-time">⏱ T = 0 (During flight)</span>
+      Use air/ground frequency to report incident of major significance — facts ascertained immediately.
+    </div>
+    <div class="timeline-item">
+      <span class="t-time">🛬 As soon as practicable after landing</span>
+      Begin compiling the Air Traffic Incident Report Form.
+    </div>
+    <div class="timeline-item">
+      <span class="t-time">⏰ Within 24 hours (maximum)</span>
+      Submit completed Air Traffic Incident Report Form to DGCA (Attn: Dir. Air Safety, HQ) with copy to ED (ATM), AAI.
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 11: INVESTIGATION ============ -->
+<section id="sec-investigation">
+  <h2>11 · Investigation Authority</h2>
+
+  <div class="box blue">
+    <div class="box-title"><span class="icon">i</span> Investigation – Authority</div>
+    In case of an accident or incident to an aircraft <b>in the territory of India</b>,
+    <b>notwithstanding its registration</b>, the <b>DG, Aircraft Accident Investigation
+    Bureau (DG, AAIB)</b> shall institute an investigation into the circumstances of the
+    accident or incident, and shall be responsible for conducting the investigation.
+  </div>
+
+  <div class="box amber">
+    <div class="box-title"><span class="icon">!</span> Who is "DG, AAIB"?</div>
+    "DG, AAIB" means the <b>Director General</b> who shall be the <b>head of the Aircraft
+    Accident Investigation Bureau</b>.
+  </div>
+</section>
+
+<!-- ============ SECTION 12: NOTIFICATION ============ -->
+<section id="sec-notification">
+  <h2>12 · Notification of Accident / Incident</h2>
+
+  <div class="box red">
+    <div class="box-title"><span class="icon">!</span> Mandatory Notification – By PIC</div>
+    Where an accident or incident occurs to an aircraft, the following persons (in order of
+    responsibility) shall give notice:
+    <ul class="tight">
+      <li>The <b>Pilot-in-Command (PIC)</b> of the aircraft; or</li>
+      <li>If the PIC is <b>killed or incapacitated</b>, then:
+        <ul class="tight">
+          <li>The <b>Owner</b>,</li>
+          <li>The <b>Operator</b>,</li>
+          <li>The <b>Hirer</b>, or other person on whose behalf he was in command, or</li>
+          <li>Any relevant person, as the case may be.</li>
+        </ul>
+      </li>
+    </ul>
+    Notice shall be given <b>as soon as is reasonably practicable</b>, but
+    <b>in any case <span class="val-red">NOT LATER THAN 24 HOURS</span></b> after he becomes
+    aware of the accident or incident.
+  </div>
+
+  <h3>12.1 · Who must be Notified by the PIC</h3>
+  <ul class="clause-list">
+    <li><span class="clause-label">a</span>
+      Send notice to the <b>Aircraft Accident Investigation Bureau (AAIB)</b> and the
+      <b>Directorate General of Civil Aviation (DGCA)</b> — by the
+      <b>quickest means of communication available</b>; AND
+    </li>
+    <li><span class="clause-label">b</span>
+      In the case of an accident or incident occurring <b>in India</b>, give information to:
+      <ul class="tight">
+        <li>The <b>District Magistrate (DM)</b>, AND</li>
+        <li>The <b>Officer-in-Charge (O-i-C) of the nearest Police Station</b> of the
+        accident or incident and of the place where it occurred.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>12.2 · Additional Notification to AAIB</h3>
+  <div class="box green">
+    <div class="box-title"><span class="icon">✓</span> Notification Shall ALSO be Submitted to AAIB by</div>
+    <ul class="tight">
+      <li><b>(a)</b> Aerodrome operator</li>
+      <li><b>(b)</b> Air Traffic Services in-charge concerned</li>
+      <li><b>(c)</b> DG, CA — wherever applicable</li>
+    </ul>
+  </div>
+
+  <h3>12.3 · Visual: Notification Flow</h3>
+  <pre class="mermaid">
+flowchart TD
+    A[Accident/Incident Occurs] --> B{PIC alive & able?}
+    B -->|Yes| C[PIC notifies]
+    B -->|No - killed/incapacitated| D[Owner / Operator / Hirer / Relevant Person notifies]
+    C --> E[Within 24 hrs of becoming aware]
+    D --> E
+    E --> F[By quickest means available]
+    F --> G[AAIB]
+    F --> H[DGCA]
+    F --> I[In India only:<br/>District Magistrate]
+    F --> J[In India only:<br/>O-i-C Nearest Police Station]
+    K[ALSO submitted to AAIB by:] --> L[Aerodrome Operator]
+    K --> M[ATS in-charge]
+    K --> N[DG CA where applicable]
+    style E fill:#fdecec,stroke:#d93025,color:#a3160c,stroke-width:2px
+    style G fill:#e6f6ec,stroke:#1b8a3a
+    style H fill:#e6f6ec,stroke:#1b8a3a
+    style I fill:#e6f6ec,stroke:#1b8a3a
+    style J fill:#e6f6ec,stroke:#1b8a3a
+  </pre>
+  <div class="diagram-caption">Mandatory 24-hour notification chain following an accident/incident</div>
+</section>
+
+<!-- ============ SECTION 13: EVIDENCE ============ -->
+<section id="sec-evidence">
+  <h2>13 · Protection of Evidence, Custody, Removal &amp; Preservation of Damaged Aircraft</h2>
+
+  <h3>13.1 · Access &amp; Control by Investigator-in-Charge</h3>
+  <div class="box green">
+    <div class="box-title"><span class="icon">✓</span> Clause (1) — Investigator's Rights</div>
+    In the case of an accident or a serious incident which is required to be notified, the
+    <b>Investigator-in-Charge</b> shall have:
+    <ul class="tight" style="margin-top:6px;">
+      <li><b>Unhampered access</b> to the wreckage and all relevant material and information,
+      including <b>flight recorders</b> and <b>Air Traffic Services records</b>; AND</li>
+      <li><b>Unrestricted control</b> over it, to ensure that a <b>detailed examination</b>
+      can be made <b>without delay</b> by authorised personnel participating in the
+      investigation.</li>
+    </ul>
+  </div>
+
+  <h3>13.2 · Removal Only Under Authority of DG, AAIB</h3>
+  <div class="box red">
+    <div class="box-title"><span class="icon">✕</span> Clause (2) — General Prohibition</div>
+    The aircraft and the contents thereof <b>shall NOT</b>, except by a person <b>under the
+    authority of the DG, AAIB</b>, be <b>removed or otherwise interfered with</b>.
+  </div>
+
+  <h3>13.3 · Permitted Exceptions (Provisos)</h3>
+  <p>Provided that the aircraft / its parts / its contents may be moved in the following
+  circumstances:</p>
+
+  <ul class="clause-list">
+    <li><span class="clause-label">a</span>
+      <b>Search &amp; Rescue Operations</b> — by persons authorised to conduct search and
+      rescue operations, for the purpose of:
+      <ul class="tight" style="margin-top:4px;">
+        <li>Extricating <b>persons or animals dead or alive</b>;</li>
+        <li>Preventing destruction of the aircraft and its contents by <b>fire or other cause</b>;</li>
+        <li>Preventing damage or obstruction to the <b>public</b>, to <b>air navigation</b>, or to <b>other transport</b>.</li>
+      </ul>
+    </li>
+    <li><span class="clause-label">b</span>
+      <b>Aircraft Wrecked on Water</b> — may be removed (to the extent necessary) for
+      bringing it to a <b>place of safety</b>, by persons authorised to conduct search and
+      rescue operations.
+    </li>
+    <li><span class="clause-label">c</span>
+      <b>Goods</b> — may be removed under the <b>supervision and with the concurrence</b> of:
+      <ul class="tight" style="margin-top:4px;">
+        <li>An officer of the AAIB, <b>OR</b></li>
+        <li>A person authorised by the DG, AAIB.</li>
+      </ul>
+    </li>
+    <li><span class="clause-label">d</span>
+      <b>Personal Luggage</b> of passengers and crew — after <b>photography, weighing, etc.</b>
+      — may be removed under the supervision of:
+      <ul class="tight" style="margin-top:4px;">
+        <li>A <b>Police Officer</b>, OR</li>
+        <li>A <b>Magistrate</b>, OR</li>
+        <li>An <b>Officer of the AAIB</b>, OR</li>
+        <li>A person <b>authorised by DG, AAIB</b>.</li>
+      </ul>
+    </li>
+    <li><span class="clause-label">e</span>
+      <b>Mails</b> — after photography, weighing, etc. — may be removed under the supervision
+      of:
+      <ul class="tight" style="margin-top:4px;">
+        <li>A <b>Police Officer</b>, OR</li>
+        <li>A <b>Magistrate</b>, OR</li>
+        <li>An <b>Officer of the Department of Posts &amp; Telegraphs</b>, OR</li>
+        <li>An <b>Officer of the AAIB</b>, OR</li>
+        <li>A person <b>authorised by DG, AAIB</b>.</li>
+      </ul>
+    </li>
+    <li><span class="clause-label">f</span>
+      <b>CVR and Airborne Image Recording Data — Special Protection.</b>
+      <div class="box red" style="margin-top:8px;">
+        <div class="box-title"><span class="icon">✕</span> Use of CVR / Airborne Image Data</div>
+        <b>CVR and airborne image recording data shall NOT be used for:</b>
+        <ul class="tight">
+          <li>Disciplinary proceedings</li>
+          <li>Civil proceedings</li>
+          <li>Administrative proceedings</li>
+          <li>Criminal proceedings</li>
+        </ul>
+        — against the <b>employees, operational personnel or organizations</b>.
+      </div>
+    </li>
+  </ul>
+
+  <h3>13.4 · Visual: Who Can Move What?</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Item Being Removed</th>
+        <th>Authorised Supervisor / Authority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Aircraft / parts / contents (general)</td><td>Only under authority of <b>DG, AAIB</b></td></tr>
+      <tr><td>Aircraft for SAR (life, fire, public safety)</td><td>Search &amp; Rescue authorised personnel</td></tr>
+      <tr><td>Aircraft wrecked on water</td><td>SAR authorised personnel — for safety</td></tr>
+      <tr><td>Goods</td><td>Officer of AAIB OR person authorised by DG, AAIB</td></tr>
+      <tr><td>Personal luggage</td><td>Police Officer / Magistrate / AAIB Officer / person authorised by DG, AAIB</td></tr>
+      <tr><td>Mails</td><td>Police Officer / Magistrate / Officer of Posts &amp; Telegraphs / AAIB Officer / person authorised by DG, AAIB</td></tr>
+      <tr><td>CVR &amp; Airborne Image Data</td><td><b>Not usable</b> against personnel in any disciplinary / civil / admin / criminal proceeding</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ SECTION 14: QUICK REF SUMMARY ============ -->
+<section id="sec-summary">
+  <h2>14 · Quick Reference – Critical Values &amp; Limits</h2>
+
+  <table>
+    <thead>
+      <tr><th>Item</th><th>Value / Rule</th><th>Source</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Aircraft mass threshold — State of Design / Manufacture to send rep</td><td><span class="val">&gt; 1,00,000 kg</span> max mass</td><td>ICAO Annex 13</td></tr>
+      <tr><td>Final report submission language</td><td>One of the <b>ICAO working languages</b></td><td>ICAO Annex 13</td></tr>
+      <tr><td>Fatal injury — definition</td><td>Death within <span class="val-red">30 days</span> of accident</td><td>National Provisions</td></tr>
+      <tr><td>Serious injury — hospitalisation</td><td>More than <span class="val-red">48 hours</span>, beginning within <span class="val">7 days</span></td><td>National Provisions</td></tr>
+      <tr><td>Serious injury — burns</td><td>2nd / 3rd degree, OR more than <span class="val-red">5%</span> body surface</td><td>National Provisions</td></tr>
+      <tr><td>Air Traffic Incident Report — deadline after landing</td><td>Within <span class="val-red">24 hours</span></td><td>Reporting Procedures</td></tr>
+      <tr><td>Notification by PIC after accident/incident</td><td>Not later than <span class="val-red">24 hours</span> after becoming aware</td><td>National Provisions</td></tr>
+      <tr><td>Authority to initiate investigation in India</td><td><b>DG, AAIB</b></td><td>National Provisions</td></tr>
+      <tr><td>Authority responsible (under Annex 13) for initiation</td><td>Government of <b>State of Occurrence</b></td><td>ICAO Annex 13</td></tr>
+      <tr><td>CVR &amp; Airborne Image Data</td><td>NOT usable in disciplinary, civil, administrative, criminal proceedings</td><td>National Provisions</td></tr>
+    </tbody>
+  </table>
+
+  <h3>14.1 · Memory Aid – Severity Ladder</h3>
+  <div class="keyrow">
+    <span class="chip blue">Incident (occurrence)</span>
+    <span class="chip">→</span>
+    <span class="chip">Significant Incident (could have escalated)</span>
+    <span class="chip">→</span>
+    <span class="chip red">Serious Incident (high prob. of accident)</span>
+    <span class="chip">→</span>
+    <span class="chip red">ACCIDENT</span>
+  </div>
+
+  <h3>14.2 · Memory Aid – "24-Hour Rule"</h3>
+  <div class="box amber">
+    <div class="box-title"><span class="icon">!</span> Remember: TWO independent 24-hour clocks</div>
+    <ul class="tight">
+      <li><b>Notification</b> of accident/incident to AAIB, DGCA, DM &amp; police — <b>24 hrs</b> from PIC becoming aware.</li>
+      <li><b>Air Traffic Incident Report Form</b> submission — <b>24 hrs</b> after landing.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SECTION 15: QUESTIONS ============ -->
+<section id="sec-questions">
+  <h2>15 · Practice Questions with Explanations</h2>
+
+  <div class="question">
+    <div><span class="q-num">Q1</span><span class="q-text">The objective of the investigation of an accident or incident shall be the:</span></div>
+    <div class="options">
+      <div>A) Prevention of accidents or incidents and to help the judges</div>
+      <div class="correct">✓ B) Prevention of accidents or incidents and to help the manufacturers in design <span style="font-size:11px; font-weight: normal;">— <i>per textbook answer key</i></span></div>
+      <div>C) Prevention of accidents or incidents</div>
+    </div>
+    <div class="answer-explain">
+      <b>Textbook Answer: A.</b> Per the answer key supplied in the source material, the
+      correct option is listed as <b>A</b>. The doctrinal core principle is that
+      investigations are conducted solely for the <b>prevention of accidents and incidents</b>
+      — not to apportion blame or liability. Refer to Section 1 above for the formal
+      statement of objective.
+    </div>
+  </div>
+
+  <div class="question">
+    <div><span class="q-num">Q2</span><span class="q-text">Which of the following, according to ICAO Annex 13, shall be entitled to appoint an accredited representative to participate in the investigation?</span></div>
+    <div class="options">
+      <div>A) State conducting the investigation and State of design and manufacturing</div>
+      <div>B) All ICAO members States</div>
+      <div class="correct">✓ C) Any State which, on request, provides information, facilities or experts to the State conducting the investigation</div>
+    </div>
+    <div class="answer-explain">
+      <b>Answer: C.</b> Per Annex 13 — entitlement to appoint an accredited representative is
+      tied to the State that <b>contributes</b> information, facilities, or experts on request.
+    </div>
+  </div>
+
+  <div class="question">
+    <div><span class="q-num">Q3</span><span class="q-text">The accident investigation preliminary report shall be submitted to appropriate States and to the ICAO, in:</span></div>
+    <div class="options">
+      <div>A) Any of the world's major languages</div>
+      <div class="correct">✓ B) One of the working languages of ICAO</div>
+      <div>C) The language of the investigating State</div>
+    </div>
+    <div class="answer-explain">
+      <b>Answer: B.</b> Reports (final and preliminary) are submitted in <b>one of the
+      ICAO working languages</b> to ensure uniform accessibility to Contracting States.
+    </div>
+  </div>
+
+  <div class="question">
+    <div><span class="q-num">Q4</span><span class="q-text">Upon receipt of the modification and a request by the State of Occurrence for participation, the State of Design and the State of Manufacture shall, in the case of an accident or serious incident, inform the State of Occurrence of the name of its representative to be present at the investigation when the aircraft:</span></div>
+    <div class="options">
+      <div class="correct">✓ A) Has a maximum mass over 1,00,000 kg</div>
+      <div>B) Has a maximum mass over 27,000 kg</div>
+      <div>C) Has a maximum mass over 5,700 kg</div>
+    </div>
+    <div class="answer-explain">
+      <b>Answer: A.</b> The State of Design and State of Manufacture must nominate
+      representatives only when the aircraft involved exceeds <b>1,00,000 kg</b> maximum mass.
+    </div>
+  </div>
+
+  <div class="question">
+    <div><span class="q-num">Q5</span><span class="q-text">Who is responsible, under Annex 13 of the Chicago Convention, for the initiation of an accident investigation?</span></div>
+    <div class="options">
+      <div>A) The law enforcement authorities of the state in which the aircraft is registered</div>
+      <div>B) The aircraft manufacturer</div>
+      <div class="correct">✓ C) The government of the state in which the accident took place</div>
+    </div>
+    <div class="answer-explain">
+      <b>Answer: C.</b> Under Annex 13, initiation of investigation lies with the
+      <b>State of Occurrence</b> — i.e. the government of the state where the accident
+      physically happened.
+    </div>
+  </div>
+
+  <div class="question">
+    <div><span class="q-num">Q6</span><span class="q-text">Just before arriving on the apron, taxiing inadvertently on the grass, a wheel falls into a hole, which seriously damages the aircraft and obliges the crew to delay departure.</span></div>
+    <div class="options">
+      <div class="correct">✓ A) This is an accident and the crew must follow the procedure relevant to this case</div>
+      <div>B) This is an irregularity in the operation, the crew must inform the operator of the delay caused by necessary repair</div>
+      <div>C) Since no physical injury has been noticed and the flight is over, the actions to be taken are related only to insurance, to the repair man, the operator and the persons in charge of the runways and taxiways</div>
+    </div>
+    <div class="answer-explain">
+      <b>Answer: A.</b> The aircraft sustained <b>damage that adversely affects structural
+      strength / performance</b> while persons were still on board with the intent of flight
+      (definition of "accident" extends from boarding to disembarking). The damage is not
+      among the listed exceptions (tires/brakes/wheels alone). Treat as an <b>accident</b>
+      and follow the relevant procedure.
+    </div>
+  </div>
+
+  <div class="question">
+    <div><span class="q-num">Q7</span><span class="q-text">Where an accident or incident occurs to an aircraft in India, then the Pilot-in-Command of the aircraft shall send notice thereof to:</span></div>
+    <div class="options">
+      <div class="correct">✓ A) AAIB, DGCA, DM and O-i-C of nearest police station — as soon as is reasonably practicable but in any case not later than 24 hours</div>
+      <div>B) AAIB, DGCA, DM and O-i-C of nearest police station — as soon as is reasonably practicable but in any case not later than 48 hours</div>
+      <div>C) AAIB, DGCA, DM and AAI — as soon as is reasonably practicable but in any case not later than 24 hours</div>
+    </div>
+    <div class="answer-explain">
+      <b>Answer: A.</b> The PIC must notify <b>AAIB + DGCA + District Magistrate + O-i-C of
+      the nearest Police Station</b>, within <b>24 hours</b> of becoming aware. The agency is
+      the police station — not AAI.
+    </div>
+  </div>
+
+  <div class="question">
+    <div><span class="q-num">Q8</span><span class="q-text">In the case of an accident, the aircraft or any parts or contents thereof may be removed without the authority of DG/AAIB:</span></div>
+    <div class="options">
+      <div>A) To look for evidence</div>
+      <div>B) If so directed by the P-i-C</div>
+      <div class="correct">✓ C) To extricate the body of a dead dog</div>
+    </div>
+    <div class="answer-explain">
+      <b>Answer: C.</b> Under Clause (2) Proviso (a), aircraft/parts/contents may be moved
+      by SAR-authorised personnel to <b>extricate persons or animals — dead or alive</b>.
+      The other options (looking for evidence; PIC direction alone) are not permitted
+      exceptions.
+    </div>
+  </div>
+
+  <div class="question">
+    <div><span class="q-num">Q9</span><span class="q-text">"An incident involving circumstances indicating that an accident or a serious incident could have occurred, if the risk had not been managed within safety margins" is known as?</span></div>
+    <div class="options">
+      <div>A) Reportable Incident</div>
+      <div class="correct">✓ B) Significant Incident</div>
+      <div>C) Flight Safety Incident</div>
+    </div>
+    <div class="answer-explain">
+      <b>Answer: B.</b> This is the textbook definition of a <b>Significant Incident</b> —
+      one rung below "serious incident" on the severity ladder; risk was kept within margins,
+      preventing escalation.
+    </div>
+  </div>
+
+  <div class="question">
+    <div><span class="q-num">Q10</span><span class="q-text">CVR and airborne image recording data:</span></div>
+    <div class="options">
+      <div>A) Can be used for disciplinary, civil, administrative and criminal proceeding against the employees, operational personnel or organizations</div>
+      <div class="correct">✓ B) Can NOT be used for disciplinary, civil, administrative and criminal proceeding against the employees, operational personnel or organizations</div>
+      <div>C) Can be used for disciplinary, civil, administrative and criminal proceeding against the employees, operational personnel or organizations with the permission of DGCA</div>
+    </div>
+    <div class="answer-explain">
+      <b>Answer: B.</b> The use of CVR &amp; airborne image data is <b>strictly protected</b>
+      — it shall <b>not</b> be used for any disciplinary, civil, administrative or criminal
+      proceedings against employees, operational personnel or organizations. This protection
+      preserves the safety-investigation purpose and protects "just culture".
+    </div>
+  </div>
+
+  <h3>📊 Answer Key (Per Source Textbook)</h3>
+  <table>
+    <thead>
+      <tr><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th><th>Q8</th><th>Q9</th><th>Q10</th></tr>
+    </thead>
+    <tbody>
+      <tr style="text-align:center;font-weight:800;color:#0b3d91;font-size:16px;">
+        <td>A</td><td>C</td><td>B</td><td>A</td><td>C</td><td>A</td><td>A</td><td>C</td><td>B</td><td>B</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<div class="footer">
+  <strong>Capt. Pankaj Pahil</strong> — DGCA Ground Training · Chapter 20: Aircraft Accident &amp; Incident<br>
+  Compiled from <i>Annex 13 (ICAO)</i>, <i>Aircraft (Investigation of Accidents and Incidents) Rules, 2017</i>, and <i>CAR Section 5 Series 'C' Part I</i> · Effective 26/02/2020.<br>
+  <em>For instructional use only. Always refer to the latest DGCA publication for the current regulatory text.</em>
+</div>
+
+<!-- ============ WATERMARK (must be last in body) ============ -->
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>
