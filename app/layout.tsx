@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ContentProtection from "./components/ContentProtection";
+import ProgressSync from "./components/ProgressSync";
 import { SITE_URL } from "@/lib/site";
 
 const TITLE = "Ghost Aviator — DGCA Exam Preparation";
@@ -70,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col" style={{ background: "#050510" }}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
         <ContentProtection />
+        <ProgressSync />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

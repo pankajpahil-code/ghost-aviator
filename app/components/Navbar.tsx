@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import { useUser, getSupabase } from "@/lib/supabase";
 
 // Derived once — dropdowns always reflect the real subject list.
 const CPL_LINKS  = CPL_SUBJECTS.map(s => [s.name, s.id] as const);
@@ -12,6 +13,11 @@ const ATPL_LINKS = ATPL_SUBJECTS.map(s => [s.name, s.id] as const);
 export default function Navbar() {
   const [open, setOpen]   = useState(false);
   const [drop, setDrop]   = useState<string | null>(null);
+  const { user } = useUser();
+  const displayName =
+    (user?.user_metadata?.name as string | undefined)?.split(" ")[0] ||
+    user?.email?.split("@")[0] || "";
+  const signOut = () => { void getSupabase()?.auth.signOut(); };
 
   return (
     <nav style={{ background:"rgba(6,4,14,0.97)", borderBottom:"1px solid rgba(180,100,255,0.15)", backdropFilter:"blur(12px)" }}
@@ -78,13 +84,28 @@ export default function Navbar() {
             <Link href="/resources" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>
           </div>
 
-          {/* CTA */}
+          {/* CTA / account */}
           <div className="hidden md:flex items-center gap-3">
-            <Link href="/login"  className="text-sm font-medium no-underline" style={{ color:"#64748b" }}>Log In</Link>
-            <Link href="/signup" className="text-sm font-black px-4 py-2 rounded-lg no-underline"
-                  style={{ background:"linear-gradient(135deg,#9020ff,#ff2060)", color:"#fff" }}>
-              Get Started Free
-            </Link>
+            {user ? (
+              <>
+                <span className="text-sm font-bold px-3 py-1.5 rounded-lg"
+                      style={{ color:"#c080ff", border:"1px solid rgba(180,100,255,0.35)", background:"rgba(180,100,255,0.08)" }}
+                      title="Signed in — progress syncs across your devices">
+                  ✈ {displayName}
+                </span>
+                <button onClick={signOut} className="text-sm font-medium cursor-pointer bg-transparent border-0" style={{ color:"#64748b" }}>
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/login"  className="text-sm font-medium no-underline" style={{ color:"#64748b" }}>Log In</Link>
+                <Link href="/signup" className="text-sm font-black px-4 py-2 rounded-lg no-underline"
+                      style={{ background:"linear-gradient(135deg,#9020ff,#ff2060)", color:"#fff" }}>
+                  Get Started Free
+                </Link>
+              </>
+            )}
           </div>
 
           <button className="md:hidden" style={{ color:"#c080ff" }} onClick={() => setOpen(!open)}>
@@ -101,11 +122,19 @@ export default function Navbar() {
           <Link href="/notes"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Notes</Link>
           <Link href="/question-bank" onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
           <Link href="/resources"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>
-          <Link href="/signup" onClick={() => setOpen(false)}
-                className="mt-2 py-3 px-4 rounded-xl text-sm font-black text-center no-underline"
-                style={{ background:"linear-gradient(135deg,#9020ff,#ff2060)", color:"#fff" }}>
-            Get Started Free
-          </Link>
+          {user ? (
+            <button onClick={() => { signOut(); setOpen(false); }}
+                    className="mt-2 py-3 px-4 rounded-xl text-sm font-black text-center cursor-pointer border-0"
+                    style={{ background:"rgba(180,100,255,0.12)", color:"#c080ff", border:"1px solid rgba(180,100,255,0.35)" }}>
+              ✈ {displayName} — Sign Out
+            </button>
+          ) : (
+            <Link href="/signup" onClick={() => setOpen(false)}
+                  className="mt-2 py-3 px-4 rounded-xl text-sm font-black text-center no-underline"
+                  style={{ background:"linear-gradient(135deg,#9020ff,#ff2060)", color:"#fff" }}>
+              Get Started Free
+            </Link>
+          )}
         </div>
       )}
     </nav>

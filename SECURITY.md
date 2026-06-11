@@ -71,6 +71,37 @@ create unique index if not exists leads_email_key on public.leads (lower(email))
 If you later add per-user tables (e.g. saved progress), every one of them must have RLS
 with a policy like `using (auth.uid() = user_id)` so users can only see their **own** rows.
 
+### 3b. `progress` table — cross-device progress sync (added 2026-06)
+
+The site mirrors each signed-in student's best quiz/test scores to this table
+(lib/progress-sync.ts). Run this in the Supabase SQL editor:
+
+```sql
+create table if not exists public.progress (
+  user_id     uuid not null references auth.users (id) on delete cascade,
+  chapter_key text not null,            -- e.g. 'cpl/meteorology/met-1'
+  quiz_best   smallint,
+  test_best   smallint,
+  updated_at  timestamptz not null default now(),
+  primary key (user_id, chapter_key)
+);
+
+alter table public.progress enable row level security;
+
+-- Users can only ever touch their OWN rows. Anonymous visitors get nothing.
+create policy "own progress select" on public.progress
+  for select to authenticated using (auth.uid() = user_id);
+create policy "own progress insert" on public.progress
+  for insert to authenticated with check (auth.uid() = user_id);
+create policy "own progress update" on public.progress
+  for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id);
+create policy "own progress delete" on public.progress
+  for delete to authenticated using (auth.uid() = user_id);
+```
+
+The client fails soft if this table doesn't exist yet — progress simply stays
+on-device until the SQL is run.
+
 **Also in Supabase dashboard:**
 - Auth → enable **email confirmation** (already expected by the signup flow).
 - Auth → turn on **rate limiting / CAPTCHA** to stop signup/login brute-force + spam.
