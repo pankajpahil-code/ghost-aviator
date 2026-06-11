@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Headphones, BarChart3, Zap } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
+import HeroGhost from "./components/HeroGhost";
 
 const CPL_CHAPTERS  = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
 const ATPL_CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
@@ -110,22 +111,10 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right — Mascot */}
-            <div className="order-1 lg:order-2 flex justify-center relative" style={{ minHeight:420 }}>
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div style={{ width:420, height:420, borderRadius:"50%", background:"radial-gradient(circle,rgba(255,60,0,0.2) 0%,rgba(150,0,255,0.15) 40%,transparent 70%)", filter:"blur(40px)", animation:"nebulaPulse 4s ease-in-out infinite" }}/>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div style={{ width:460, height:460, borderRadius:"50%", border:"1px solid rgba(180,100,255,0.2)", animation:"spin 25s linear infinite" }}/>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div style={{ width:540, height:540, borderRadius:"50%", border:"1px solid rgba(0,212,255,0.1)", animation:"spin 35s linear infinite reverse" }}/>
-              </div>
-              <div className="relative z-10 flex items-center justify-center">
-                <Image src="/ghost-mascot.png" alt="Ghost Aviator — Capt. Pankaj Pahil" width={500} height={400}
-                       className="object-contain"
-                       style={{ filter:"drop-shadow(0 0 50px rgba(255,0,80,0.6)) drop-shadow(0 0 100px rgba(150,0,255,0.4))", animation:"floatSkull 4s ease-in-out infinite" }}/>
-              </div>
+            {/* Right — the Ghost Aviator: levitating guardian-angel scene with
+                3D mouse parallax, spectral wings, halo, soul embers & lightning */}
+            <div className="order-1 lg:order-2">
+              <HeroGhost />
             </div>
           </div>
         </div>
