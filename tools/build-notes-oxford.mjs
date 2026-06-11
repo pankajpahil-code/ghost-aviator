@@ -56,6 +56,34 @@ const CONFIGS = [
       ["Chapter_07_ADF.html",                       "rnav-7", "ADF"],
       ["Chapter_08_VOR.html",                       "rnav-8", "VOR"],
       ["Chapter_09_ILS.html",                       "rnav-9", "ILS"],
+      ["Chapter_10_MLS.html",                       "rnav-10", "MLS"],
+      ["Chapter_11_Radar_Principles.html",          "rnav-11", "Radar Principles"],
+      ["Chapter_12_Ground_Radar.html",              "rnav-12", "Ground Radar"],
+      ["Chapter_13_AWR.html",                       "rnav-13", "Airborne Weather Radar"],
+      ["Chapter_14_SSR.html",                       "rnav-14", "SSR"],
+      ["Chapter_15_DME.html",                       "rnav-15", "DME"],
+      ["Chapter_16_RNAV.html",                      "rnav-16", "Area Navigation (RNAV)"],
+      ["Chapter_17_EFIS.html",                      "rnav-17", "EFIS"],
+      ["Chapter_18_GNSS.html",                      "rnav-18", "GNSS"],
+      ["Chapter_19_Revision_Questions.html",        "rnav-19", "Revision Questions"],
+      ["Chapter_20_Quick_Reference.html",           "rnav-20", "Quick Reference"],
+    ],
+  },
+  {
+    name: "OXFORD_GEN_NAV",
+    out: "oxford-gen-nav.ts",
+    subjectIds: ["general-navigation"],
+    source: "Oxford ATPL — General Navigation",
+    srcBase: join("C:", "Users", "Admin", "Downloads", "radio navigation antigravity"),
+    chapters: [
+      ["GN_Chapter_01_Direction_Lat_Long.html",  "gnav-1",  "Direction, Latitude & Longitude"],
+      ["GN_Chapter_02_GC_Rhumb_Lines.html",      "gnav-2",  "Great Circles, Rhumb Lines & Directions"],
+      ["GN_Chapter_03_Earth_Magnetism.html",     "gnav-3",  "Earth Magnetism"],
+      ["GN_Chapter_10_1in60_Rule.html",          "gnav-10", "The 1 in 60 Rule"],
+      ["GN_Chapter_11_1in60_Navigation.html",    "gnav-11", "Navigation Using the 1 in 60 Rule"],
+      ["GN_Chapter_12_1in60_Applications.html",  "gnav-12", "Other Applications of the 1 in 60 Rule"],
+      ["GN_Chapter_13_Topo_Maps.html",           "gnav-13", "Topographical Maps & Map Reading"],
+      ["GN_Chapter_14_Convergency.html",         "gnav-14", "Convergency & Conversion Angle"],
     ],
   },
 ];
@@ -159,14 +187,50 @@ function parseBlockV2(block, ctx) {
   const an = block.match(/<div class="answer"[^>]*>([\s\S]*?)<\/div>/i);
   if (!an) return null;
   const ansText = htmlToText(an[1]);
-  const am = ansText.match(/Answer[:\s]*\(\s*([a-e])\s*\)/i)
+  const am = ansText.match(/Ans(?:wer)?[:\s]*\(\s*([a-e])\s*\)/i)
           ?? ansText.match(/\(\s*([a-e])\s*\)/i)
-          ?? ansText.match(/Answer[:\s]*([a-e])\b/i);
+          ?? ansText.match(/Ans(?:wer)?[:\s]*([a-e])\b/i);
   if (!am) return null;
   const ans = am[1].toLowerCase().charCodeAt(0) - 97;
   if (ans < 0 || ans >= clean.length) return null;
 
-  let exp = ansText.replace(/^.*?Answer[:\s]*\(?\s*[a-e]\s*\)?\s*/i, "").trim();
+  let exp = ansText.replace(/^.*?Ans(?:wer)?[:\s]*\(?\s*[a-e]\s*\)?\s*/i, "").trim();
+  if (exp.length > 600) exp = exp.slice(0, 597).trimEnd() + "…";
+  if (!exp) exp = `Correct answer: ${"ABCDE"[ans]}.`;
+
+  return { subjectIds: ctx.subjectIds, chapterId: ctx.chapterId, subtopic: ctx.subtopic, source: ctx.source, q: stem, opts: clean, ans, exp };
+}
+
+// ── Parse the General-Navigation template ────────────────────────────────────
+//   <div class="qa-q"><strong>Q1.</strong> question… <div…><em>Anchor: …</em></div></div>
+//   <div class="qa-opts"><div class="qa-opt">(a) …</div><div class="qa-opt correct">(c) … ✓</div>…</div>
+//   <details><summary>…</summary><div class="qa-answer"><div class="answer-box">Ans… explanation</div>…</details>
+// The correct option is marked by the `correct` class on its qa-opt div.
+function parseBlockV3(block, ctx) {
+  const qm = block.match(/<div class="qa-q"[^>]*>([\s\S]*?)<\/div>\s*(?:<\/div>)?\s*<div class="qa-opts/i)
+          ?? block.match(/<div class="qa-q"[^>]*>([\s\S]*?)<div class="qa-opts/i);
+  if (!qm) return null;
+  // Drop the inline "Anchor: …" sub-div (and anything after the first nested div).
+  const stem = htmlToText(qm[1].split(/<div/i)[0]).replace(/^Q\.?\s*\d+\.?\s*/i, "").trim();
+  if (stem.length < 8) return null;
+
+  const opts = [];
+  let ans = -1;
+  for (const m of block.matchAll(/<div class="qa-opt((?!s)[^"]*)">([\s\S]*?)<\/div>/gi)) {
+    const txt = htmlToText(m[2]).replace(/✓\s*$/, "").trim();
+    const lm = txt.match(/^\(?\s*([a-e])\s*\)?[.)]?\s*(.*)$/i);
+    if (!lm) continue;
+    const idx = lm[1].toLowerCase().charCodeAt(0) - 97;
+    opts[idx] = lm[2].trim();
+    if (/\bcorrect\b/i.test(m[1])) ans = idx;
+  }
+  const clean = opts.filter(Boolean);
+  if (clean.length < 2 || clean.length !== opts.length) return null;
+  if (ans < 0 || ans >= clean.length) return null;
+
+  const an = block.match(/<div class="answer-box"[^>]*>([\s\S]*?)<\/div>/i)
+          ?? block.match(/<div class="qa-answer"[^>]*>([\s\S]*?)<\/div>/i);
+  let exp = an ? htmlToText(an[1]).replace(/^Ans(?:wer)?[:\s]*\(?\s*[a-e]\s*\)?[.\s—-]*/i, "").trim() : "";
   if (exp.length > 600) exp = exp.slice(0, 597).trimEnd() + "…";
   if (!exp) exp = `Correct answer: ${"ABCDE"[ans]}.`;
 
@@ -192,7 +256,8 @@ for (const cfg of CONFIGS) {
     let n = 0;
     for (const b of blocks) {
       const q = parseBlock(b, { ...cfg, chapterId, subtopic })
-             ?? parseBlockV2(b, { ...cfg, chapterId, subtopic });
+             ?? parseBlockV2(b, { ...cfg, chapterId, subtopic })
+             ?? parseBlockV3(b, { ...cfg, chapterId, subtopic });
       if (!q) continue;
       const k = key(q.q);
       if (k.length < 8 || seen.has(k)) continue;

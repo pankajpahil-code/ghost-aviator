@@ -1,0 +1,394 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Chapter 20 — Quick Reference | DGCA CPL/ATPL Radio Navigation</title>
+<style>*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#fafafa;color:#111;font-size:14px;line-height:1.7;}
+.page{max-width:960px;margin:0 auto;padding:20px;}
+h1{background:linear-gradient(135deg,#212121,#455a64);color:#fff;padding:22px 28px;border-radius:12px;font-size:1.7em;margin-bottom:20px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,0.25);}
+h2{color:#fff;background:#212121;font-size:1.08em;padding:7px 16px;border-radius:6px;margin:22px 0 10px;letter-spacing:0.5px;}
+h3{color:#212121;font-size:1.0em;border-left:4px solid #455a64;padding-left:10px;margin:14px 0 6px;}
+p{margin:5px 0 8px;}
+table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:0.91em;}
+th{background:#212121;color:#fff;padding:7px 10px;text-align:left;}
+td{padding:6px 10px;border-bottom:1px solid #e0e0e0;}
+tr:nth-child(even){background:#f5f5f5;}
+tr:hover{background:#e8eaf6;}
+.box-blue{background:#e3f2fd;border-left:5px solid #1565c0;padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0;font-size:0.93em;}
+.box-amber{background:#fff8e1;border-left:5px solid #f57f17;padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0;font-size:0.93em;}
+.box-green{background:#e8f5e9;border-left:5px solid #2e7d32;padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0;font-size:0.93em;}
+.box-red{background:#ffebee;border-left:5px solid #c62828;padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0;font-size:0.93em;}
+.rv{background:#212121;color:#fff;padding:1px 5px;border-radius:4px;font-weight:700;font-size:0.88em;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:8px 0;}
+.card{background:#fff;border:2px solid #cfd8dc;border-radius:8px;padding:10px 14px;}
+.card h4{color:#212121;margin-bottom:4px;font-size:0.95em;border-bottom:1px solid #e0e0e0;padding-bottom:3px;}
+.card p,.card li{font-size:0.88em;margin:2px 0;}
+.toc{background:#fff;border:2px solid #455a64;border-radius:10px;padding:14px;margin-bottom:18px;column-count:2;}
+.toc a{color:#455a64;text-decoration:none;display:block;font-size:0.88em;padding:1px 0;}
+.toc a:hover{text-decoration:underline;}
+.wm1{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:68px;font-weight:900;color:rgba(0,0,0,0.04);z-index:9999;pointer-events:none;white-space:nowrap;user-select:none;}
+.wm2{position:fixed;top:15%;left:10%;transform:rotate(-45deg);font-size:34px;font-weight:800;color:rgba(0,0,0,0.05);z-index:9999;pointer-events:none;white-space:nowrap;user-select:none;}
+.wm3{position:fixed;top:65%;right:8%;transform:rotate(-45deg);font-size:32px;font-weight:800;color:rgba(0,0,0,0.05);z-index:9999;pointer-events:none;white-space:nowrap;user-select:none;}
+.wm4{position:fixed;bottom:12%;left:18%;transform:rotate(-30deg);font-size:28px;font-weight:700;color:rgba(0,0,0,0.04);z-index:9999;pointer-events:none;white-space:nowrap;user-select:none;}
+.wm5{position:fixed;top:30%;right:3%;transform:rotate(-60deg);font-size:26px;font-weight:700;color:rgba(0,0,0,0.04);z-index:9999;pointer-events:none;white-space:nowrap;user-select:none;}
+.wm-inline{font-size:0.56em;color:rgba(0,0,0,0.14);font-weight:600;display:block;text-align:right;margin:4px 0;user-select:none;}
+@media(max-width:600px){.grid2,.grid3{grid-template-columns:1fr;}.toc{column-count:1;}}</style></head>
+<body><div class="wm1">Capt Pankaj Pahil</div>
+<div class="wm2">www.ghostaviator.com</div>
+<div class="wm3">Capt Pankaj Pahil</div>
+<div class="wm4">www.ghostaviator.com</div>
+<div class="wm5">Capt Pankaj Pahil</div>
+<div class="page">
+<div style="text-align:center;color:#455a64;font-size:0.82em;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;">DGCA CPL / ATPL Study Notes &bull; Radio Navigation &bull; Ch 20</div>
+<h1>&#128218; Chapter 20: Quick Reference &amp; Index<br>
+<span style="font-size:0.6em;font-weight:400">All Key Facts, Formulae, Frequencies &amp; Exam Tips — All Chapters</span></h1>
+<span class="wm-inline">&#169; Capt Pankaj Pahil | www.ghostaviator.com</span>
+
+<div class="toc">
+<a href="#formulae">&#9654; Formulae &amp; Calculations</a>
+<a href="#frequencies">&#9654; Frequency Reference</a>
+<a href="#ils-cats">&#9654; ILS Categories</a>
+<a href="#transponder">&#9654; Transponder Codes</a>
+<a href="#gnss">&#9654; GNSS Comparison</a>
+<a href="#radar-specs">&#9654; Radar System Specs</a>
+<a href="#awr">&#9654; AWR Colours &amp; Shapes</a>
+<a href="#ssr">&#9654; SSR Modes</a>
+<a href="#rnav">&#9654; RNAV Accuracy</a>
+<a href="#efis">&#9654; EFIS Modes</a>
+<a href="#errors">&#9654; Error Sources</a>
+<a href="#traps">&#9654; Exam Traps</a>
+</div>
+
+<h2 id="formulae">&#128200; Essential Formulae &amp; Calculations</h2>
+<div class="grid2">
+<div class="card"><h4>&#9654; Radio Waves</h4>
+<p>c = f &times; &lambda; &nbsp;|&nbsp; c = 3&times;10&sup8; m/s</p>
+<p>&lambda;(m) = 300 / f(MHz)</p>
+<p>f(MHz) = 300 / &lambda;(m)</p>
+<p>c = 162,000 NM/s</p>
+</div>
+<div class="card"><h4>&#9654; LOS Range</h4>
+<p>Radar: 1.23 &times; (&radic;h<sub>TX</sub> + &radic;h<sub>RX</sub>) NM</p>
+<p>VOR/VDF: 1.25 &times; (&radic;h<sub>TX</sub> + &radic;h<sub>RX</sub>) NM</p>
+<p>(heights in feet)</p>
+</div>
+<div class="card"><h4>&#9654; Radar Range &amp; PRF</h4>
+<p>Max range (NM) = 81,000 / PRF (pps)</p>
+<p>Max range (km) = 150,000 / PRF (pps)</p>
+<p>PRF = 81,000 / Max range (NM)</p>
+<p>Range (NM) = echo time (&micro;s) / 12.36</p>
+<p>Min range (m) = PW (&micro;s) &times; 150</p>
+</div>
+<div class="card"><h4>&#9654; Power vs Range</h4>
+<p>Power &prop; Range&sup4;</p>
+<p>Double range &rarr; power &times; 2&sup4; = &times;16</p>
+<p>Triple range &rarr; power &times; 81</p>
+</div>
+<div class="card"><h4>&#9654; DME</h4>
+<p>Range (NM) = (echo time &micro;s &minus; 50) / 12.36</p>
+<p>Transponder offset: &plusmn;63 MHz</p>
+<p>Delay: 50 &micro;s</p>
+<p>Slant error negligible: Range(NM) &gt; 3 &times; Alt(000s ft)</p>
+<p>Search: 150 ppps | Acq: 60 ppps | Track: 27 ppps</p>
+<p>Saturation: 2700 ppps &asymp; 100 aircraft</p>
+</div>
+<div class="card"><h4>&#9654; ILS Height Check</h4>
+<p>H(ft) &asymp; GS angle&deg; &times; Range(NM) &times; 100 + threshold ht</p>
+<p>Example: 3&deg; at 4.6 NM + 50 ft = 1430 ft</p>
+</div>
+<div class="card"><h4>&#9654; GPS</h4>
+<p>4 SVs for 3D fix + time</p>
+<p>5 SVs for RAIM detection</p>
+<p>6 SVs for RAIM exclusion</p>
+<p>Horizontal: &plusmn;13 m (95%) | Vertical: &plusmn;22 m (95%)</p>
+<p>Time: &plusmn;40 ns (95%)</p>
+</div>
+<div class="card"><h4>&#9654; NDB Range vs Power</h4>
+<p>P &prop; R&sup4;</p>
+<p>Range 10 NM &rarr; 20 NM: power &times;16</p>
+<p>ADF day accuracy: &plusmn;5&deg;</p>
+<p>VDF Class A: &plusmn;1&deg; | B: &plusmn;2&deg; | C: &plusmn;5&deg; | D: &plusmn;10&deg;</p>
+</div>
+</div>
+
+<h2 id="frequencies">&#128225; Frequency &amp; Emission Reference</h2>
+<table>
+<tr><th>System</th><th>Frequency / Band</th><th>Emission</th><th>Key Facts</th></tr>
+<tr><td><b>NDB</b></td><td>190&ndash;1750 kHz (LF/MF)</td><td>MCW (A2A) / NON</td><td>Omni signal; ADF measures RB; BFO for NON beacons</td></tr>
+<tr><td><b>VDF</b></td><td>VHF (108&ndash;174 MHz)</td><td>A3E</td><td>LOS only; aircraft needs VHF radio only</td></tr>
+<tr><td><b>VOR</b></td><td>108&ndash;117.95 MHz (VHF)</td><td>A9W / A2A (ident)</td><td>Phase comparison 9960 Hz FM ref vs 30 Hz AM var; ident 1020 Hz</td></tr>
+<tr><td><b>ILS LOC</b></td><td>108&ndash;111.975 MHz (VHF, odd decimals)</td><td>A9W</td><td>90 Hz + 150 Hz DDM; 40 channels</td></tr>
+<tr><td><b>ILS G/S</b></td><td>329&ndash;335 MHz (UHF)</td><td>A9W</td><td>Auto-paired with LOC; range 10 NM; &plusmn;0.5&deg;</td></tr>
+<tr><td><b>ILS Markers</b></td><td>75 MHz (VHF)</td><td>A2A</td><td>OM:400Hz/blue | MM:1300Hz/amber | IM:3000Hz/white</td></tr>
+<tr><td><b>DME</b></td><td>960&ndash;1215 MHz (UHF)</td><td>P0N</td><td>252 ch; &plusmn;63 MHz offset; 50&micro;s delay; &plusmn;0.5NM/3%</td></tr>
+<tr><td><b>SSR</b></td><td>1030 MHz (gnd TX) / 1090 MHz (A/C TX)</td><td>P0N</td><td>4096 codes (Mode A); 16.7M (Mode S)</td></tr>
+<tr><td><b>AWR</b></td><td>9375 MHz (SHF, 3.2 cm)</td><td>P0N</td><td>Primary radar; pencil + fan beam</td></tr>
+<tr><td><b>MLS</b></td><td>5031&ndash;5090.7 MHz (SHF)</td><td>&mdash;</td><td>200 ch; TRSB; &plusmn;40&deg; az; 0.9&deg;&ndash;20&deg; GS</td></tr>
+<tr><td><b>ASMI</b></td><td>15&ndash;17 GHz (SHF, ~2 cm)</td><td>&mdash;</td><td>60 rpm; PW 0.03&micro;s; PRF 4000&ndash;20000 pps</td></tr>
+<tr><td><b>GPS L1</b></td><td>1575.42 MHz</td><td>&mdash;</td><td>Civil C/A code; 1.023 MHz chip rate</td></tr>
+<tr><td><b>GPS L2</b></td><td>1227.6 MHz</td><td>&mdash;</td><td>Military P-code; 10.23 MHz chip rate</td></tr>
+<tr><td><b>GLONASS</b></td><td>~1600 MHz / ~1246 MHz</td><td>&mdash;</td><td>FDMA; 24 SVs; 65&deg; incl; PZ90</td></tr>
+<tr><td><b>Galileo</b></td><td>E1/E5a/E5b/E6 (~1.2&ndash;1.6 GHz)</td><td>&mdash;</td><td>30 SVs; 56&deg; incl; ETRS89</td></tr>
+</table>
+
+<h2 id="ils-cats">&#9992; ILS Categories</h2>
+<table>
+<tr><th>Category</th><th>Decision Height</th><th>RVR</th><th>Notes</th></tr>
+<tr><td style="font-weight:700;color:#1565c0">CAT I</td><td>200 ft</td><td>800 m</td><td>Standard ILS</td></tr>
+<tr><td style="font-weight:700;color:#6a1b9a">CAT II</td><td>100 ft</td><td>400 m</td><td>Autoland capable aircraft required</td></tr>
+<tr><td style="font-weight:700;color:#e65100">CAT IIIA</td><td>100 ft</td><td>200 m</td><td>Autoland; enhanced RVR system</td></tr>
+<tr><td style="font-weight:700;color:#b71c1c">CAT IIIB</td><td>&lt;50 ft</td><td>50&ndash;200 m</td><td>Low visibility procedures</td></tr>
+<tr><td style="font-weight:700;color:#1b5e20">CAT IIIC</td><td>None</td><td>None</td><td>Theoretical; no current certification</td></tr>
+</table>
+
+<div class="box-blue">
+<b>ILS False Glideslope:</b> 3&deg; nominal &rarr; false slopes at 9&deg; (3&times;), 15&deg; (5&times;). Strongest false slope at <span class="rv">3&times; nominal</span>. If established on false GS, it indicates ABOVE actual GS but aircraft is too steep.
+</div>
+
+<h2 id="transponder">&#128221; Transponder Codes — Emergency Reference</h2>
+<div class="grid3">
+<div class="card" style="border-color:#c62828">
+<h4 style="color:#c62828">&#128308; 7700 — EMERGENCY</h4>
+<p>General emergency; activates alert on ATC display</p>
+</div>
+<div class="card" style="border-color:#1565c0">
+<h4 style="color:#1565c0">&#128309; 7600 — RADIO FAILURE</h4>
+<p>NORDO; follow lost comms procedures</p>
+</div>
+<div class="card" style="border-color:#e65100">
+<h4 style="color:#e65100">&#128310; 7500 — HIJACK</h4>
+<p>Unlawful interference; covert squawk if possible</p>
+</div>
+<div class="card">
+<h4>7000 — VFR Conspicuity (UK)</h4>
+<p>Standard VFR code in UK; Mode C if available</p>
+</div>
+<div class="card">
+<h4>2000 — Inadvertent CAS Entry</h4>
+<p>Entering controlled airspace without clearance</p>
+</div>
+<div class="card">
+<h4>1200 — VFR (USA)</h4>
+<p>Standard US VFR code (not used in UK)</p>
+</div>
+</div>
+
+<h2 id="gnss">&#127989; GNSS Systems — Full Comparison</h2>
+<table>
+<tr><th>Parameter</th><th>GPS</th><th>GLONASS</th><th>Galileo</th></tr>
+<tr><td>SVs (nominal)</td><td>24 (+spares)</td><td>24</td><td>30</td></tr>
+<tr><td>Orbital planes</td><td>6</td><td>3</td><td>3</td></tr>
+<tr><td>SVs per plane</td><td>4</td><td>8</td><td>10</td></tr>
+<tr><td>Altitude</td><td>20,180 km</td><td>19,099 km</td><td>23,222 km</td></tr>
+<tr><td>Inclination</td><td>55&deg;</td><td>65&deg;</td><td>56&deg;</td></tr>
+<tr><td>Period</td><td>11 h 56 min</td><td>11 h 15 min</td><td>14 h 8 min</td></tr>
+<tr><td>Geoid</td><td>WGS84</td><td>PZ90</td><td>ETRS89</td></tr>
+<tr><td>Multiple access</td><td>CDMA</td><td>FDMA</td><td>CDMA</td></tr>
+<tr><td>L1 frequency</td><td>1575.42 MHz</td><td>~1602 MHz</td><td>1575.42 MHz</td></tr>
+</table>
+
+<div class="box-green">
+<b>GPS Navigation Message Sub-frames:</b>
+SF1 = clock corrections | SF2+3 = ephemeris (orbital data) | SF4 = ionospheric model, UTC | SF5 = almanac<br>
+Almanac download: 25 frames &times; 30 s = <span class="rv">12.5 minutes</span> (cold start)
+</div>
+
+<h2 id="radar-specs">&#128241; Radar System Specifications</h2>
+<table>
+<tr><th>System</th><th>Frequency</th><th>PRF</th><th>Scan Rate</th><th>Max Range</th><th>Purpose</th></tr>
+<tr><td><b>ASR (En-route)</b></td><td>SHF</td><td>200&ndash;400 pps</td><td>5&ndash;6 rpm</td><td>200&ndash;300 NM</td><td>Area surveillance</td></tr>
+<tr><td><b>TAR (Terminal)</b></td><td>SHF</td><td>~400 pps</td><td>15 rpm</td><td>75 NM</td><td>Terminal area</td></tr>
+<tr><td><b>Aerodrome PAR</b></td><td>SHF</td><td>&mdash;</td><td>Sector</td><td>25 NM</td><td>Precision approach</td></tr>
+<tr><td><b>ASMI</b></td><td>15&ndash;17 GHz</td><td>4000&ndash;20000 pps</td><td>60 rpm</td><td>4&ndash;5 NM</td><td>Surface movement</td></tr>
+<tr><td><b>AWR</b></td><td>9375 MHz</td><td>variable</td><td>stabilised</td><td>150&ndash;320 NM</td><td>Weather</td></tr>
+</table>
+
+<h2 id="awr">&#127783; AWR — Colour Guide &amp; Hazardous Shapes</h2>
+<div class="grid2">
+<div>
+<table>
+<tr><th>Colour</th><th>Weather Mode</th><th>Map Mode</th></tr>
+<tr><td style="background:#000;color:#fff;font-weight:700">&nbsp;BLACK&nbsp;</td><td>&lt;0.7 mm/h — nil/very light</td><td>&mdash;</td></tr>
+<tr><td style="background:#2e7d32;color:#fff;font-weight:700">&nbsp;GREEN&nbsp;</td><td>0.7&ndash;4 mm/h — light</td><td>Light return</td></tr>
+<tr><td style="background:#f9a825;color:#000;font-weight:700">&nbsp;YELLOW&nbsp;</td><td>4&ndash;12 mm/h — moderate</td><td>Medium return</td></tr>
+<tr><td style="background:#c62828;color:#fff;font-weight:700">&nbsp;RED&nbsp;</td><td>&gt;12 mm/h — heavy</td><td>Heavy return</td></tr>
+<tr><td style="background:#7b1fa2;color:#fff;font-weight:700">&nbsp;MAGENTA&nbsp;</td><td>Turbulence (severe)</td><td>&mdash;</td></tr>
+</table>
+</div>
+<div class="card">
+<h4>&#9888; Hazardous Return Shapes — AVOID ALL</h4>
+<p><b>Hook shape:</b> tornado / severe turbulence</p>
+<p><b>U-shape (hollow core):</b> hail + severe turbulence</p>
+<p><b>Finger (narrow projection):</b> hail activity</p>
+<p><b>Scalloped edges:</b> hail at storm boundary</p>
+<p><b>Shadow area:</b> severe weather MAY be hidden beyond heavy rain</p>
+<p><b>CONT mode dark bands:</b> steepest rainfall gradient = worst hazard</p>
+</div>
+</div>
+<div class="box-amber"><b>AWR Tilt Rule:</b> Tilt UP to see storm tops (severity assessment). Tilt DOWN to scan for weather at range. Use MAP mode (fan beam) up to 60&ndash;70 NM, then switch to MAN (pencil) beyond.</div>
+
+<h2 id="ssr">&#128225; SSR Modes — Quick Reference</h2>
+<table>
+<tr><th>Mode</th><th>Interrogation Spacing</th><th>Information</th><th>Codes/Resolution</th></tr>
+<tr><td><b>Mode A</b></td><td>P1&ndash;P3: 8 &micro;s</td><td>Identity (squawk)</td><td>4096 codes (octal 0000&ndash;7777)</td></tr>
+<tr><td><b>Mode C</b></td><td>P1&ndash;P3: 21 &micro;s</td><td>Pressure altitude (1013.25 hPa)</td><td>100 ft increments (Gillham code)</td></tr>
+<tr><td><b>Mode S</b></td><td>24-bit address</td><td>Data link; ID; alt; ELS/EHS</td><td>16,777,216 codes; 25 ft alt resolution</td></tr>
+</table>
+<div class="grid2">
+<div class="card">
+<h4>ELS (Elementary Surveillance)</h4>
+<p>Squawk | Callsign | Pressure altitude | Emergency</p>
+</div>
+<div class="card">
+<h4>EHS (Enhanced Surveillance)</h4>
+<p>ELS + Selected altitude | Airspeed | Magnetic heading</p>
+</div>
+</div>
+<div class="box-blue">
+<b>SSR Issues:</b> Garbling — two aircraft within 1.7 NM same direction | Fruiting — phantom targets from other interrogators (fixed by ISLS) | SLS — P2 omnidirectional pulse suppresses side-lobe replies
+</div>
+
+<h2 id="rnav">&#128204; RNAV Accuracy Standards</h2>
+<table>
+<tr><th>Type</th><th>Lateral Accuracy</th><th>% Requirement</th><th>Application</th></tr>
+<tr><td><b>B-RNAV</b></td><td>&plusmn;5 NM</td><td>95%</td><td>Mandatory: Eurocontrol FIR &gt;30 pax jets</td></tr>
+<tr><td><b>P-RNAV</b></td><td>&plusmn;1 NM</td><td>95%</td><td>Terminal area routes</td></tr>
+<tr><td><b>2D RNAV</b></td><td>Lateral only</td><td>&mdash;</td><td>VOR/DME rho/theta</td></tr>
+<tr><td><b>3D RNAV</b></td><td>Lateral + Vertical</td><td>&mdash;</td><td>VNAV added</td></tr>
+<tr><td><b>4D RNAV</b></td><td>Lateral + Vertical + Time</td><td>&mdash;</td><td>RTA (Required Time of Arrival)</td></tr>
+</table>
+<div class="box-amber"><b>RNAV Erratic:</b> Most common cause = aircraft <span class="rv">beyond DOC / below LOS of reference VOR/DME</span>. Also: reference VOR cone of confusion (overhead). Phantom station itself has no broadcast — its position is computed.</div>
+
+<h2 id="efis">&#128187; EFIS Display Modes</h2>
+<table>
+<tr><th>Mode</th><th>Orientation</th><th>WXR/TCAS</th><th>Bearing Pointer</th></tr>
+<tr><td>Full Rose — VOR</td><td>Heading-up</td><td>No</td><td>Yes</td></tr>
+<tr><td>Full Rose — ILS</td><td>Heading-up</td><td>No</td><td>No</td></tr>
+<tr><td>Expanded VOR</td><td>Heading-up</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Expanded ILS</td><td>Heading-up</td><td>Yes</td><td>No</td></tr>
+<tr><td>MAP</td><td>Heading-up</td><td>Yes</td><td>Yes</td></tr>
+<tr><td style="font-weight:700;background:#e3f2fd">PLAN</td><td style="font-weight:700">True North-up</td><td>No</td><td>No</td></tr>
+</table>
+
+<h2 id="errors">&#9888; Error Sources — All Systems</h2>
+<div class="grid3">
+<div class="card">
+<h4>ADF / NDB Errors</h4>
+<p>&#9679; Night effect (sky wave) — WORST</p>
+<p>&#9679; Quadrantal error (airframe)</p>
+<p>&#9679; Coastal refraction</p>
+<p>&#9679; Mountain effect</p>
+<p>&#9679; Static interference</p>
+<p>&#9679; Station interference</p>
+<p>&#9679; No failure warning</p>
+</div>
+<div class="card">
+<h4>VOR Errors</h4>
+<p>&#9679; Site error (terrain reflections) &mdash; WORST</p>
+<p>&#9679; Scalloping (multipath)</p>
+<p>&#9679; Cone of confusion (&gt;30&deg; elevation)</p>
+<p>&#9679; Propagation anomalies</p>
+<p>&#9679; Airborne equipment error</p>
+<p>&#9679; Pilot error (OBS)</p>
+</div>
+<div class="card">
+<h4>GPS Errors</h4>
+<p>&#9679; Ionospheric delay (single freq)</p>
+<p>&#9679; Tropospheric delay</p>
+<p>&#9679; Multipath</p>
+<p>&#9679; Receiver clock error</p>
+<p>&#9679; Ephemeris errors</p>
+<p>&#9679; PDOP (geometry)</p>
+<p>&#9679; Selective Availability (off)</p>
+</div>
+<div class="card">
+<h4>ILS Errors</h4>
+<p>&#9679; Multipath reflections from terrain/buildings</p>
+<p>&#9679; False glideslopes (3&times;, 5&times;)</p>
+<p>&#9679; Beam bends near threshold</p>
+<p>&#9679; Back course reversal</p>
+<p>&#9679; Runway contamination</p>
+</div>
+<div class="card">
+<h4>DME Errors</h4>
+<p>&#9679; Slant range vs ground range</p>
+<p>&#9679; Garbling (multiple aircraft)</p>
+<p>&#9679; Transponder saturation</p>
+<p>&#9679; RNAV cone of confusion (reference VOR)</p>
+</div>
+<div class="card">
+<h4>AWR Limitations</h4>
+<p>&#9679; Cannot detect CAT</p>
+<p>&#9679; Shadow behind heavy rain</p>
+<p>&#9679; Attenuation in heavy precip</p>
+<p>&#9679; Blue ice undetected</p>
+<p>&#9679; Stabilisation failure &rarr; lopsided display</p>
+</div>
+</div>
+
+<h2 id="traps">&#128308; Exam Traps — Don&rsquo;t Mix These Up!</h2>
+<div class="box-red">
+<table style="font-size:0.92em;">
+<tr><th>Topic</th><th style="color:#c62828">WRONG (common error)</th><th style="color:#2e7d32">CORRECT</th></tr>
+<tr><td>VOR variation</td><td>At aircraft</td><td>At <b>station</b></td></tr>
+<tr><td>ADF variation</td><td>At station</td><td>At <b>aircraft</b></td></tr>
+<tr><td>VOR ident tone</td><td>1350 Hz</td><td><b>1020 Hz</b></td></tr>
+<tr><td>DME ident tone</td><td>1020 Hz</td><td><b>1350 Hz</b></td></tr>
+<tr><td>ILS LOC band</td><td>329&ndash;335 MHz</td><td><b>108&ndash;111.975 MHz VHF</b></td></tr>
+<tr><td>ILS G/S band</td><td>108&ndash;118 MHz</td><td><b>329&ndash;335 MHz UHF</b></td></tr>
+<tr><td>SSR ground TX</td><td>1090 MHz</td><td><b>1030 MHz</b></td></tr>
+<tr><td>SSR aircraft TX</td><td>1030 MHz</td><td><b>1090 MHz</b></td></tr>
+<tr><td>GPS SVs for RAIM detect</td><td>4 or 6</td><td><b>5 SVs</b></td></tr>
+<tr><td>GPS SVs for RAIM exclude</td><td>5 or 7</td><td><b>6 SVs</b></td></tr>
+<tr><td>PLAN mode orientation</td><td>Heading-up</td><td><b>True North-up</b></td></tr>
+<tr><td>Mode C altitude ref</td><td>QNH or local</td><td><b>1013.25 hPa (always)</b></td></tr>
+<tr><td>MLS channels</td><td>40 or 252</td><td><b>200 channels</b></td></tr>
+<tr><td>ILS channels</td><td>200 or 252</td><td><b>40 channels</b></td></tr>
+<tr><td>DME channels</td><td>40 or 200</td><td><b>252 channels</b></td></tr>
+<tr><td>GLONASS inclination</td><td>55&deg; or 56&deg;</td><td><b>65&deg;</b></td></tr>
+<tr><td>GPS inclination</td><td>63&deg; or 65&deg;</td><td><b>55&deg;</b></td></tr>
+<tr><td>Max radar range limiter</td><td>Pulse width</td><td><b>PRF</b></td></tr>
+<tr><td>Min radar range limiter</td><td>PRF</td><td><b>Pulse width</b></td></tr>
+<tr><td>AWR type</td><td>Secondary radar</td><td><b>Primary radar</b></td></tr>
+<tr><td>DME/SSR type</td><td>Primary radar</td><td><b>Secondary radar</b></td></tr>
+<tr><td>ILS false GS angle</td><td>2&times; or 5&times; nominal</td><td><b>3&times; nominal</b> (strongest)</td></tr>
+<tr><td>GPS altitude reference</td><td>MSL</td><td><b>WGS84 ellipsoid</b></td></tr>
+<tr><td>7500 squawk</td><td>Emergency / Radio fail</td><td><b>Hijack only</b></td></tr>
+</table>
+</div>
+
+<div class="box-green">
+<b>&#127891; Mnemonics:</b><br>
+<b>ILS colours (low to high frequency for markers):</b> <span class="rv">B</span>lue <span class="rv">A</span>mber <span class="rv">W</span>hite = <b>B</b>ig <b>A</b>pproach <b>W</b>arning (OM&rarr;MM&rarr;IM)<br>
+<b>AWR colours:</b> <b>B</b>lack <b>G</b>reen <b>Y</b>ellow <b>R</b>ed <b>M</b>agenta = <b>B</b>ig <b>G</b>reen <b>Y</b>achts <b>R</b>ace <b>M</b>adly<br>
+<b>SSR emergency codes:</b> 75=<b>Hi</b>jack / 76=R<b>a</b>dio / 77=<b>E</b>mergency = <b>HAE</b><br>
+<b>GPS RAIM:</b> 4=Fix | 5=Detect | 6=Exclude = <b>4-5-6</b>
+</div>
+<span class="wm-inline">&#169; Capt Pankaj Pahil | www.ghostaviator.com</span>
+<hr style="border:none;border-top:2px solid #e0e0e0;margin:22px 0;">
+<div style="text-align:center;padding:14px;color:#888;font-size:0.86em;">
+<strong>DGCA CPL/ATPL Radio Navigation Study Notes</strong><br>Chapter 20 &mdash; Quick Reference Index<br>
+<strong>Capt Pankaj Pahil | www.ghostaviator.com</strong><br>
+<em>For personal study use only.</em></div></div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body></html>

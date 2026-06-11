@@ -10,6 +10,7 @@ import { ICJOSHI_MET } from "./generated/icjoshi-met";
 import { ICJOSHI_NOTES_MET } from "./generated/icjoshi-notes-met";
 import { OXFORD_INSTRUMENTATION } from "./generated/oxford-instrumentation";
 import { OXFORD_RADIO_NAV } from "./generated/oxford-radio-nav";
+import { OXFORD_GEN_NAV } from "./generated/oxford-gen-nav";
 
 export type { DemoQuestion };
 
@@ -24,7 +25,8 @@ const RAW_QUESTIONS: DemoQuestion[] = [
   ...SAR_QUESTIONS,
   ...ICJOSHI_NOTES_MET,   // rich HTML-notes Q&A (met-1..11) — wins de-dup
   ...OXFORD_INSTRUMENTATION, // Instrumentation HTML-notes Q&A (inst-1..23)
-  ...OXFORD_RADIO_NAV,       // Radio Navigation HTML-notes Q&A (rnav-1..9)
+  ...OXFORD_RADIO_NAV,       // Radio Navigation HTML-notes Q&A (rnav-1..20)
+  ...OXFORD_GEN_NAV,         // General Navigation HTML-notes Q&A (gnav-*)
   ...ECQB_061_NAVIGATION,
   ...ICJOSHI_MET,         // font-extracted met bank (dupes of the above are dropped)
 ];
