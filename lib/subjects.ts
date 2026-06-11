@@ -115,6 +115,47 @@ export const CPL_SUBJECTS: Subject[] = [
         description: "Pressure gauge, temperature gauge (ram rise, recovery factor), RPM indicator, fuel flowmeter, fuel gauge (volume/mass, measuring sensors), torque meter. EFIS, EICAS, ECAM, FMS basics. Radio propagation: EM waves, wavelength/amplitude/phase/frequency, frequency bands, carrier/modulation/demodulation, antennas, ground/space wave, MUF, fading.",
         duration: "3 hrs", questionCount: 75, content: makeContent(),
       },
+      // ── Oxford General Navigation study-notes chapters (book numbering in title) ──
+      {
+        id: "nav-13", number: 13, title: "Direction, Latitude & Longitude",
+        description: "Shape of the Earth, poles and equator, latitude/longitude, d-lat and d-long, true/magnetic/compass direction and position expression. Oxford General Navigation Ch.1 study notes with practice Q&A.",
+        duration: "2 hrs", questionCount: 3, content: makeContent(true),
+      },
+      {
+        id: "nav-14", number: 14, title: "Great Circles, Rhumb Lines & Directions",
+        description: "Great circle and rhumb line properties, vertices, track direction changes and when each is used for navigation. Oxford General Navigation Ch.2 study notes.",
+        duration: "2 hrs", questionCount: 2, content: makeContent(true),
+      },
+      {
+        id: "nav-15", number: 15, title: "Earth Magnetism",
+        description: "The Earth's magnetic field, variation and isogonals, dip, deviation, and compass-to-true conversions. Oxford General Navigation Ch.3 study notes with practice Q&A.",
+        duration: "2 hrs", questionCount: 14, content: makeContent(true),
+      },
+      {
+        id: "nav-16", number: 16, title: "The 1 in 60 Rule",
+        description: "The 1 in 60 rule — track error angle, closing angle and distance off track, with fully worked examples. Oxford General Navigation Ch.10 study notes.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-17", number: 17, title: "Navigation Using the 1 in 60 Rule",
+        description: "Applying the 1 in 60 rule in flight — regaining track, heading corrections and revised ETAs, with worked problems. Oxford General Navigation Ch.11 study notes.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-18", number: 18, title: "Other Applications of the 1 in 60 Rule",
+        description: "Glide-path heights, rates of descent, base-of-cloud calculations and other practical 1 in 60 applications. Oxford General Navigation Ch.12 study notes.",
+        duration: "1 hr", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-19", number: 19, title: "Topographical Maps & Map Reading",
+        description: "Topographical chart features, relief, scale, map-reading technique and visual fix selection. Oxford General Navigation Ch.13 study notes.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-20", number: 20, title: "Convergency & Conversion Angle",
+        description: "Convergency between meridians, conversion angle between great circle and rhumb line tracks, with worked examples. Oxford General Navigation Ch.14 study notes.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
     ],
   },
 
@@ -1067,59 +1108,6 @@ export const CPL_SUBJECTS: Subject[] = [
         id: "rnav-20", number: 20, title: "Quick Reference",
         description: "One-stop quick-reference summary — frequencies, bands, ranges and key numbers for every radio navigation aid. Ideal last-minute revision.",
         duration: "30 min", questionCount: 0, content: makeContent(),
-      },
-    ],
-  },
-  {
-    id: "general-navigation",
-    name: "General Navigation",
-    shortName: "Gen Nav",
-    icon: "🌐",
-    color: "#22c55e",
-    description: "The foundations of air navigation — the Earth, direction, latitude and longitude, great circles and rhumb lines, Earth magnetism, the 1 in 60 rule, map reading and convergency. Chapter-wise notes from the Oxford ATPL General Navigation manual with worked examples and practice Q&A.",
-    examDuration: 60,
-    totalQuestions: 50,
-    passMark: 70,
-    chapters: [
-      {
-        id: "gnav-1", number: 1, title: "Direction, Latitude & Longitude",
-        description: "Shape of the Earth, poles and equator, latitude/longitude, d-lat and d-long, true/magnetic/compass direction and position expression.",
-        duration: "2 hrs", questionCount: 3, content: makeContent(true),
-      },
-      {
-        id: "gnav-2", number: 2, title: "Great Circles, Rhumb Lines & Directions",
-        description: "Great circle and rhumb line properties, vertices, track direction changes and when each is used for navigation.",
-        duration: "2 hrs", questionCount: 2, content: makeContent(true),
-      },
-      {
-        id: "gnav-3", number: 3, title: "Earth Magnetism",
-        description: "The Earth's magnetic field, variation and isogonals, dip, deviation, and compass-to-true conversions.",
-        duration: "2 hrs", questionCount: 14, content: makeContent(true),
-      },
-      {
-        id: "gnav-10", number: 10, title: "The 1 in 60 Rule",
-        description: "The 1 in 60 rule — track error angle, closing angle and distance off track, with fully worked examples.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
-      },
-      {
-        id: "gnav-11", number: 11, title: "Navigation Using the 1 in 60 Rule",
-        description: "Applying the 1 in 60 rule in flight — regaining track, heading corrections and revised ETAs, with worked problems.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
-      },
-      {
-        id: "gnav-12", number: 12, title: "Other Applications of the 1 in 60 Rule",
-        description: "Glide-path heights, rates of descent, base-of-cloud calculations and other practical 1 in 60 applications.",
-        duration: "1 hr", questionCount: 0, content: makeContent(),
-      },
-      {
-        id: "gnav-13", number: 13, title: "Topographical Maps & Map Reading",
-        description: "Topographical chart features, relief, scale, map-reading technique and visual fix selection.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
-      },
-      {
-        id: "gnav-14", number: 14, title: "Convergency & Conversion Angle",
-        description: "Convergency between meridians, conversion angle between great circle and rhumb line tracks, with worked examples.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
     ],
   },

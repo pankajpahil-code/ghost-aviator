@@ -27,7 +27,7 @@ const RAW_QUESTIONS: DemoQuestion[] = [
   ...ICJOSHI_NOTES_MET,   // rich HTML-notes Q&A (met-1..11) — wins de-dup
   ...OXFORD_INSTRUMENTATION, // Instrumentation HTML-notes Q&A (inst-1..23)
   ...OXFORD_RADIO_NAV,       // Radio Navigation HTML-notes Q&A (rnav-1..20)
-  ...OXFORD_GEN_NAV,         // General Navigation HTML-notes Q&A (gnav-*)
+  ...OXFORD_GEN_NAV,         // Oxford Gen-Nav notes Q&A (air-navigation nav-13..20)
   ...REGS_NOTES,             // Air Regulations HTML-notes Q&A (ar-22, ar-23)
   ...ECQB_061_NAVIGATION,
   ...ICJOSHI_MET,         // font-extracted met bank (dupes of the above are dropped)

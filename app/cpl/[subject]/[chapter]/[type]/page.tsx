@@ -85,7 +85,7 @@ export default async function Page({
     // Instrumentation: auto-serve HTML notes whenever the chapter's notes.html
     // has been published to public/content/ (the daily notes task drops files
     // there), so newly added chapters appear without editing this allow-list.
-    if (subject.id === "instrumentation" || subject.id === "radio-navigation" || subject.id === "general-navigation") {
+    if (subject.id === "instrumentation" || subject.id === "radio-navigation") {
       const notesFile = path.join(process.cwd(), "public", "content", subject.id, chapter.id, "notes.html");
       if (fs.existsSync(notesFile)) {
         return (
@@ -159,6 +159,15 @@ export default async function Page({
       "meteorology/met-27": true,
       "meteorology/met-28": true,
       "meteorology/met-29": true,
+      // Oxford General Navigation study notes (merged into Air Navigation)
+      "air-navigation/nav-13": true,
+      "air-navigation/nav-14": true,
+      "air-navigation/nav-15": true,
+      "air-navigation/nav-16": true,
+      "air-navigation/nav-17": true,
+      "air-navigation/nav-18": true,
+      "air-navigation/nav-19": true,
+      "air-navigation/nav-20": true,
     };
     if (HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]) {
       return (

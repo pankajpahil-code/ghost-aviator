@@ -3,6 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+
+// Derived once — dropdowns always reflect the real subject list.
+const CPL_LINKS  = CPL_SUBJECTS.map(s => [s.name, s.id] as const);
+const ATPL_LINKS = ATPL_SUBJECTS.map(s => [s.name, s.id] as const);
 
 export default function Navbar() {
   const [open, setOpen]   = useState(false);
@@ -38,15 +43,7 @@ export default function Navbar() {
               {drop === "cpl" && (
                 <div className="absolute top-full left-0 mt-1 w-64 rounded-xl overflow-hidden z-50"
                      style={{ background:"rgba(15,8,30,0.98)", border:"1px solid rgba(124,58,237,0.35)", boxShadow:"0 20px 40px rgba(0,0,0,0.5)" }}>
-                  {[
-                    ["Air Navigation",          "air-navigation"],
-                    ["Aviation Meteorology",    "meteorology"],
-                    ["Air Regulations",         "air-regulations"],
-                    ["Technical General",       "technical-general"],
-                    ["Technical Specific",      "technical-specific"],
-                    ["Technical Performance",   "technical-performance"],
-                    ["Radio Telephony",         "radio-telephony"],
-                  ].map(([label, slug], i, arr) => (
+                  {CPL_LINKS.map(([label, slug], i, arr) => (
                     <Link key={slug} href={`/cpl/${slug}`} className="block px-4 py-2.5 text-sm no-underline hover:bg-purple-900/20 transition-colors"
                           style={{ color:"#94a3b8", borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.04)" : undefined }}>
                       {label}
@@ -65,15 +62,12 @@ export default function Navbar() {
               {drop === "atpl" && (
                 <div className="absolute top-full left-0 mt-1 w-64 rounded-xl overflow-hidden z-50"
                      style={{ background:"rgba(15,8,30,0.98)", border:"1px solid rgba(0,180,255,0.3)", boxShadow:"0 20px 40px rgba(0,0,0,0.5)" }}>
-                  {["Air Regulations (Adv)","Meteorology (Adv)","Navigation (Adv)","Technical (Adv)","Radio Aids (Adv)","Performance (Adv)","Human Performance","Flight Planning"].map((s,i) => {
-                    const slugs = ["atpl-air-regulations","atpl-meteorology","atpl-navigation","atpl-technical","atpl-radio-aids","atpl-performance","human-performance","flight-planning"];
-                    return (
-                      <Link key={s} href={`/atpl/${slugs[i]}`} className="block px-4 py-2.5 text-sm no-underline hover:bg-blue-900/20 transition-colors"
-                            style={{ color:"#94a3b8", borderBottom: i<7 ? "1px solid rgba(255,255,255,0.04)" : undefined }}>
-                        {s}
-                      </Link>
-                    );
-                  })}
+                  {ATPL_LINKS.map(([label, slug], i, arr) => (
+                    <Link key={slug} href={`/atpl/${slug}`} className="block px-4 py-2.5 text-sm no-underline hover:bg-blue-900/20 transition-colors"
+                          style={{ color:"#94a3b8", borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.04)" : undefined }}>
+                      {label}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>

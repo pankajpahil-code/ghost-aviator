@@ -81,20 +81,22 @@ const CONFIGS = [
     ],
   },
   {
+    // Oxford General Navigation — merged into the Air Navigation subject
+    // (user direction 2026-06-11: GN and Air Navigation are the same paper).
     name: "OXFORD_GEN_NAV",
     out: "oxford-gen-nav.ts",
-    subjectIds: ["general-navigation"],
+    subjectIds: ["air-navigation"],
     source: "Oxford ATPL — General Navigation",
     srcBase: join("C:", "Users", "Admin", "Downloads", "radio navigation antigravity"),
     chapters: [
-      ["GN_Chapter_01_Direction_Lat_Long.html",  "gnav-1",  "Direction, Latitude & Longitude"],
-      ["GN_Chapter_02_GC_Rhumb_Lines.html",      "gnav-2",  "Great Circles, Rhumb Lines & Directions"],
-      ["GN_Chapter_03_Earth_Magnetism.html",     "gnav-3",  "Earth Magnetism"],
-      ["GN_Chapter_10_1in60_Rule.html",          "gnav-10", "The 1 in 60 Rule"],
-      ["GN_Chapter_11_1in60_Navigation.html",    "gnav-11", "Navigation Using the 1 in 60 Rule"],
-      ["GN_Chapter_12_1in60_Applications.html",  "gnav-12", "Other Applications of the 1 in 60 Rule"],
-      ["GN_Chapter_13_Topo_Maps.html",           "gnav-13", "Topographical Maps & Map Reading"],
-      ["GN_Chapter_14_Convergency.html",         "gnav-14", "Convergency & Conversion Angle"],
+      ["GN_Chapter_01_Direction_Lat_Long.html",  "nav-13", "Direction, Latitude & Longitude"],
+      ["GN_Chapter_02_GC_Rhumb_Lines.html",      "nav-14", "Great Circles, Rhumb Lines & Directions"],
+      ["GN_Chapter_03_Earth_Magnetism.html",     "nav-15", "Earth Magnetism"],
+      ["GN_Chapter_10_1in60_Rule.html",          "nav-16", "The 1 in 60 Rule"],
+      ["GN_Chapter_11_1in60_Navigation.html",    "nav-17", "Navigation Using the 1 in 60 Rule"],
+      ["GN_Chapter_12_1in60_Applications.html",  "nav-18", "Other Applications of the 1 in 60 Rule"],
+      ["GN_Chapter_13_Topo_Maps.html",           "nav-19", "Topographical Maps & Map Reading"],
+      ["GN_Chapter_14_Convergency.html",         "nav-20", "Convergency & Conversion Angle"],
     ],
   },
 ];

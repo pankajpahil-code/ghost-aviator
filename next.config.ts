@@ -56,6 +56,17 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // General Navigation was briefly a standalone subject before being
+      // merged into Air Navigation (its chapters became nav-13..nav-20).
+      {
+        source: "/cpl/general-navigation/:path*",
+        destination: "/cpl/air-navigation",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

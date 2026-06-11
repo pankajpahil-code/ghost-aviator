@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Ghost, Send, Phone } from "lucide-react";
 import EmailCapture from "./EmailCapture";
+import { CPL_SUBJECTS } from "@/lib/subjects";
 
 export default function Footer() {
   return (
@@ -63,14 +64,7 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold mb-4" style={{ color: "#00d4ff" }}>CPL Subjects</h4>
             <ul className="flex flex-col gap-2">
-              {[
-                ["Air Regulations",     "/cpl/air-regulations"],
-                ["Meteorology",         "/cpl/meteorology"],
-                ["Air Navigation",      "/cpl/air-navigation"],
-                ["Technical General",   "/cpl/technical-general"],
-                ["Radio Telephony",     "/cpl/radio-telephony"],
-                ["Tech. Performance",   "/cpl/technical-performance"],
-              ].map(([item, href]) => (
+              {CPL_SUBJECTS.map(s => [s.shortName, `/cpl/${s.id}`] as const).map(([item, href]) => (
                 <li key={item}>
                   <Link href={href} className="text-sm no-underline" style={{ color: "#64748b" }}>{item}</Link>
                 </li>
