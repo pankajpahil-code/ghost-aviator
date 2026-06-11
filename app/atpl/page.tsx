@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
+import { ALL_QUESTIONS } from "@/lib/questions";
 import { ArrowRight, Clock, FileQuestion, CheckCircle } from "lucide-react";
+
+const CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
+const atplIds = new Set(ATPL_SUBJECTS.map(s => s.id));
+const QUESTIONS = `${(Math.floor(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => atplIds.has(id))).length / 100) * 100).toLocaleString("en-IN")}+`;
 
 export default function ATPLPage() {
   return (
@@ -26,7 +31,7 @@ export default function ATPLPage() {
             Follows the official DGCA ATPL syllabus.
           </p>
           <div className="flex flex-wrap gap-4">
-            {[["8","Written Papers"],["50+","Chapters"],["5,000+","Questions"],["75%","Pass Mark"]].map(([v,l]) => (
+            {[["8","Written Papers"],[`${CHAPTERS}`,"Chapters"],[QUESTIONS,"Questions"],["75%","Pass Mark"]].map(([v,l]) => (
               <div key={l} className="px-5 py-3 rounded-xl text-center" style={{ background:"rgba(0,180,255,0.1)", border:"1px solid rgba(0,180,255,0.25)" }}>
                 <div className="text-2xl font-black text-white">{v}</div>
                 <div className="text-xs" style={{ color:"#00d4ff" }}>{l}</div>

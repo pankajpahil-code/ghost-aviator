@@ -2,16 +2,27 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Headphones, BarChart3, Zap } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import { ALL_QUESTIONS } from "@/lib/questions";
 
 const CPL_CHAPTERS  = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
 const ATPL_CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
+
+// Honest marketing counts, derived from the actual question bank (rounded down
+// to the nearest 100 so the figure is always defensible).
+const SUBJECT_COUNT = CPL_SUBJECTS.length + ATPL_SUBJECTS.length;
+const cplIds  = new Set(CPL_SUBJECTS.map(s => s.id));
+const atplIds = new Set(ATPL_SUBJECTS.map(s => s.id));
+const fmt = (n: number) => `${(Math.floor(n / 100) * 100).toLocaleString("en-IN")}+`;
+const TOTAL_Q = fmt(ALL_QUESTIONS.length);
+const CPL_Q   = fmt(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => cplIds.has(id))).length);
+const ATPL_Q  = fmt(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => atplIds.has(id))).length);
 
 const services = [
   { icon: FileText,      label: "Notes",           desc: "Concise, exam-focused chapter notes" },
   { icon: BarChart3,     label: "Slides",          desc: "Visual slide decks for every chapter" },
   { icon: Video,         label: "Video Lectures",  desc: "Full-length video explanations" },
   { icon: Headphones,    label: "Audio Overview",  desc: "Quick listen before you fly" },
-  { icon: BookOpen,      label: "Question Bank",   desc: "10,000+ MCQs with explanations" },
+  { icon: BookOpen,      label: "Question Bank",   desc: `${TOTAL_Q} MCQs with explanations` },
   { icon: ClipboardList, label: "Mock Tests",      desc: "Chapter, mid-term & full-length tests" },
 ];
 
@@ -89,7 +100,7 @@ export default function Home() {
               </div>
 
               <div className="grid grid-cols-4 gap-3">
-                {[["10K+","Questions"],["15","Subjects"],["70%","Pass Mark"],["FREE","Start"]].map(([v,l]) => (
+                {[[TOTAL_Q,"Questions"],[`${SUBJECT_COUNT}`,"Subjects"],["70%","Pass Mark"],["FREE","Start"]].map(([v,l]) => (
                   <div key={l} className="text-center p-3 rounded-xl"
                        style={{ background:"rgba(20,10,40,0.9)", border:"1px solid rgba(180,100,255,0.2)" }}>
                     <div className="text-xl font-black" style={{ color:"#c080ff" }}>{v}</div>
@@ -148,7 +159,7 @@ export default function Home() {
                 <div className="text-6xl opacity-80">🛩️</div>
               </div>
               <div className="grid grid-cols-3 gap-3 mb-8">
-                {[[`${CPL_SUBJECTS.length}`,"Subjects"],[`${CPL_CHAPTERS}`,"Chapters"],["6,000+","Questions"]].map(([v,l]) => (
+                {[[`${CPL_SUBJECTS.length}`,"Subjects"],[`${CPL_CHAPTERS}`,"Chapters"],[CPL_Q,"Questions"]].map(([v,l]) => (
                   <div key={l} className="p-3 rounded-xl text-center" style={{ background:"rgba(124,58,237,0.15)", border:"1px solid rgba(124,58,237,0.25)" }}>
                     <div className="text-xl font-black text-white">{v}</div>
                     <div className="text-xs" style={{ color:"#7c3aed" }}>{l}</div>
@@ -156,7 +167,7 @@ export default function Home() {
                 ))}
               </div>
               <ul className="flex flex-col gap-2 mb-8">
-                {["Air Regulations","Aviation Meteorology","Air Navigation","Technical General","Radio Aids & Instruments","Performance of Aeroplanes"].map(s => (
+                {CPL_SUBJECTS.map(s => s.name).map(s => (
                   <li key={s} className="flex items-center gap-2 text-sm" style={{ color:"#94a3b8" }}>
                     <CheckCircle className="w-4 h-4" style={{ color:"#7c3aed" }}/> {s}
                   </li>
@@ -183,7 +194,7 @@ export default function Home() {
                 <div className="text-6xl opacity-80">✈️</div>
               </div>
               <div className="grid grid-cols-3 gap-3 mb-8">
-                {[[`${ATPL_SUBJECTS.length}`,"Subjects"],[`${ATPL_CHAPTERS}`,"Chapters"],["5,000+","Questions"]].map(([v,l]) => (
+                {[[`${ATPL_SUBJECTS.length}`,"Subjects"],[`${ATPL_CHAPTERS}`,"Chapters"],[ATPL_Q,"Questions"]].map(([v,l]) => (
                   <div key={l} className="p-3 rounded-xl text-center" style={{ background:"rgba(0,180,255,0.1)", border:"1px solid rgba(0,180,255,0.2)" }}>
                     <div className="text-xl font-black text-white">{v}</div>
                     <div className="text-xs" style={{ color:"#00d4ff" }}>{l}</div>
@@ -191,7 +202,7 @@ export default function Home() {
                 ))}
               </div>
               <ul className="flex flex-col gap-2 mb-8">
-                {["Air Regulations (Advanced)","Aviation Meteorology (Advanced)","Air Navigation (Advanced)","Technical General (Advanced)","Radio Aids & Instruments (Adv)","Performance (Advanced)","Human Performance & Limitations","Flight Planning & Monitoring"].map(s => (
+                {ATPL_SUBJECTS.map(s => s.name).map(s => (
                   <li key={s} className="flex items-center gap-2 text-sm" style={{ color:"#94a3b8" }}>
                     <CheckCircle className="w-4 h-4" style={{ color:"#00d4ff" }}/> {s}
                   </li>

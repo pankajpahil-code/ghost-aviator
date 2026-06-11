@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { CPL_SUBJECTS } from "@/lib/subjects";
+import { ALL_QUESTIONS } from "@/lib/questions";
 import { ArrowRight, Clock, FileQuestion, CheckCircle } from "lucide-react";
+
+const CHAPTERS = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
+const cplIds = new Set(CPL_SUBJECTS.map(s => s.id));
+const QUESTIONS = `${(Math.floor(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => cplIds.has(id))).length / 100) * 100).toLocaleString("en-IN")}+`;
 
 export default function CPLPage() {
   return (
@@ -25,7 +30,7 @@ export default function CPLPage() {
             7 DGCA papers as per CAR Section 7 Series B Part IV. Every chapter mapped directly to the official DGCA CPL syllabus appendices with notes, slides, videos, audio, questions, and tests.
           </p>
           <div className="flex flex-wrap gap-4">
-            {[["7","Written Papers"],["76+","Chapters"],["7,000+","Questions"],["70%","Pass Mark"]].map(([v,l]) => (
+            {[["7","Written Papers"],[`${CHAPTERS}`,"Chapters"],[QUESTIONS,"Questions"],["70%","Pass Mark"]].map(([v,l]) => (
               <div key={l} className="px-5 py-3 rounded-xl text-center" style={{ background:"rgba(124,58,237,0.15)", border:"1px solid rgba(124,58,237,0.3)" }}>
                 <div className="text-2xl font-black text-white">{v}</div>
                 <div className="text-xs" style={{ color:"#7c3aed" }}>{l}</div>
