@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 11 — Introduction to the Piston Engine and the Otto Cycle | Technical General | Ghost Aviator</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:0 auto;padding:28px 22px;background:#fdfdfb;color:#1d2733;line-height:1.75;}
+  .cover{text-align:center;border-bottom:3px double #2c5aa0;margin-bottom:28px;padding-bottom:18px;}
+  .cover h1{color:#2c5aa0;margin:6px 0;font-size:1.7em;}
+  .cover .part{color:#8a4baf;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;font-size:.85em;}
+  .cover .author{color:#555;font-style:italic;margin-top:6px;}
+  h2{color:#2c5aa0;border-left:5px solid #2c5aa0;padding-left:10px;margin-top:30px;}
+  ul{padding-left:24px;margin:10px 0;}
+  li{margin:5px 0;}
+  p{margin:10px 0;text-align:justify;}
+  .footer{margin-top:36px;border-top:1px solid #ccc;padding-top:10px;color:#777;font-size:.85em;text-align:center;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="part">The Piston Engine</div>
+  <h1>Chapter 11: Introduction to the Piston Engine and the Otto Cycle</h1>
+  <p class="author">Technical General for Aviators — Capt. Pankaj Pahil</p>
+</div>
+<h2 id="sec-11-1">11.1 The Piston Engine</h2>
+<ul>
+<li>A stroke is defined as the linear distance the piston moves within the cylinder1. When the</li>
+<li>piston is at the very top of its travel, it is at</li>
+<li>Top Dead Centre (TDC), and when it is at the bottom, it is at Bottom Dead Centre</li>
+<li>(BDC)2. The piston is connected to a crankshaft, and one full stroke from TDC to BDC</li>
+<li>rotates the crankshaft 180°3.</li>
+<li>The piston engine operates on a four-stroke cycle, commonly known as the Otto Cycle. This</li>
+<li>complete cycle requires two full rotations of the crankshaft (720°)4.</li>
+</ul>
+<h2 id="sec-11-2">11.2 The Four-Stroke Otto Cycle</h2>
+<ul>
+<li>The practical Otto cycle is modified from the theoretical version to be more efficient by</li>
+<li>adjusting when the valves open and close5.</li>
+<li>1. Induction (Intake) Stroke:</li>
+<li>The inlet valve opens, and the piston moves down from TDC to BDC, drawing a fuel/air</li>
+<li>mixture into the cylinder6.</li>
+<li>The cylinder pressure decreases below ambient pressure, and the temperature of the charge</li>
+<li>decreases7.</li>
+<li>To improve efficiency, the inlet valve opens slightly</li>
+<li>before TDC and closes slightly after BDC8888.</li>
+<li>2. Compression Stroke:</li>
+<li>Both the inlet and exhaust valves are closed9.</li>
+<li>The piston moves up from BDC to TDC, compressing the fuel/air mixture101010.</li>
+<li>This compression increases the pressure and temperature of the charge11.</li>
+<li>3. Power Stroke:</li>
+<li>Just before the piston reaches TDC on the compression stroke, the mixture is ignited by a</li>
+<li>spark plug12.</li>
+<li>The rapid combustion causes a massive increase in pressure and temperature, forcing the</li>
+<li>piston down from TDC to BDC13. This is the stroke that produces power.</li>
+<li>Because the piston is momentarily stationary at TDC during ignition, combustion occurs at a</li>
+<li>nearly constant volume, which is why the piston engine is known as a 'Constant Volume</li>
+<li>Engine'14.</li>
+<li>4. Exhaust Stroke:</li>
+<li>The exhaust valve opens, and the piston moves up from BDC to TDC, pushing the burnt</li>
+<li>gases out of the cylinder15.</li>
+<li>The pressure in the cylinder during this stroke is slightly higher than ambient due to 'Exhaust</li>
+<li>Back Pressure'16.</li>
+</ul>
+<h2 id="sec-11-3">11.3 Valve Timing and Overlap</h2>
+<ul>
+<li> Valve Lead: When a valve opens before its theoretical timing (e.g., intake valve opening</li>
+<li>before TDC)17.</li>
+<li> Valve Lag: When a valve closes after its theoretical timing (e.g., exhaust valve closing after</li>
+<li>TDC)18.</li>
+<li> Valve Overlap: The period when both the inlet and exhaust valves are partially open at the</li>
+<li>same time (around TDC at the end of the exhaust stroke)19. This improves the engine's</li>
+<li>volumetric efficiency by using the momentum of the outgoing exhaust gases to help draw in</li>
+<li>the new fuel/air charge20.</li>
+</ul>
+<h2 id="sec-11-4">11.4 Engine Power and Performance Metrics</h2>
+<ul>
+<li> Power Control: The pilot controls engine power by using the throttle, which is a valve that</li>
+<li>varies the quantity of the fuel/air mixture entering the cylinders21.</li>
+<li> Indicated Horsepower (IHP): The theoretical power produced within the cylinders22.</li>
+</ul>
+<ul>
+<li> Friction Horsepower (FHP): The power lost due to friction from moving parts23.</li>
+<li> Brake Horsepower (BHP): The actual, usable power delivered to the propeller shaft.</li>
+<li>BHP = IHP - FHP24.</li>
+</ul>
+<div class="footer">© Ghost Aviator · Technical General for Aviators · Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

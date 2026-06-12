@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 36 — AC Generation and Distribution | Technical General | Ghost Aviator</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:0 auto;padding:28px 22px;background:#fdfdfb;color:#1d2733;line-height:1.75;}
+  .cover{text-align:center;border-bottom:3px double #2c5aa0;margin-bottom:28px;padding-bottom:18px;}
+  .cover h1{color:#2c5aa0;margin:6px 0;font-size:1.7em;}
+  .cover .part{color:#8a4baf;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;font-size:.85em;}
+  .cover .author{color:#555;font-style:italic;margin-top:6px;}
+  h2{color:#2c5aa0;border-left:5px solid #2c5aa0;padding-left:10px;margin-top:30px;}
+  ul{padding-left:24px;margin:10px 0;}
+  li{margin:5px 0;}
+  p{margin:10px 0;text-align:justify;}
+  .footer{margin-top:36px;border-top:1px solid #ccc;padding-top:10px;color:#777;font-size:.85em;text-align:center;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="part">Electrical Systems</div>
+  <h1>Chapter 36: AC Generation and Distribution</h1>
+  <p class="author">Technical General for Aviators — Capt. Pankaj Pahil</p>
+</div>
+<h2 id="sec-36-1">36.1 Advantages of AC Power</h2>
+<ul>
+<li>Large modern transport aircraft use AC as their primary power source due to several</li>
+<li>advantages:</li>
+<li> AC generators (alternators) are simpler, more robust, and have a better power-to-weight ratio</li>
+<li>than DC generators.</li>
+<li> Voltage can be easily stepped up or down using transformers.</li>
+<li> AC is easily converted to DC where needed using Transformer Rectifier Units (TRUs).</li>
+<li> Three-phase AC motors are simpler and more efficient than DC motors.</li>
+</ul>
+<h2 id="sec-36-2">36.2 AC Terminology</h2>
+<ul>
+<li> Cycle: One complete series of alternating values.</li>
+<li> Frequency: The number of cycles per second, measured in Hertz (Hz). The standard</li>
+<li>frequency for aircraft AC systems is 400 Hz.</li>
+<li> Three-Phase AC: Most large aircraft use a three-phase system, where three separate AC</li>
+<li>utputs are generated 120° out of phase with each other. This provides a smoother, more</li>
+<li>continuous supply of power.</li>
+</ul>
+<h2 id="sec-36-3">36.3 Constant Frequency Systems</h2>
+<ul>
+<li>To maintain a constant 400 Hz frequency, the alternator must be driven at a constant speed,</li>
+<li>even as the engine RPM varies. This is achieved by a Constant Speed Drive Unit (CSDU).</li>
+<li> CSDU: A complex hydromechanical gearbox that takes a variable speed input from the</li>
+<li>engine and produces a constant speed output to drive the alternator.</li>
+<li> Integrated Drive Generator (IDG): A modern unit where the CSDU and the generator are</li>
+<li>combined into a single housing.</li>
+<li> Paralleling Alternators: To connect multiple AC generators to a common bus bar, their</li>
+<li>voltage, frequency, and phase sequence must be synchronized. The system then automatically</li>
+<li>manages load sharing to ensure each generator takes an equal share of the Real Load (kW)</li>
+<li>and Reactive Load (kVAR).</li>
+</ul>
+<h2 id="sec-36-4">36.4 AC System Components and Backup Power</h2>
+<ul>
+<li> Transformer Rectifier Unit (TRU): A device that uses a transformer to step down the 115V</li>
+<li>AC to a lower voltage and a rectifier to convert it to 28V DC for powering DC components.</li>
+<li> Inverter: A device that converts DC power (from a battery) into AC power (typically 115V /</li>
+<li>400 Hz). This is used to power essential AC instruments in the event of a total AC generator</li>
+<li>failure.</li>
+<li> Auxiliary Power Unit (APU): The APU drives its own AC generator, which can power the</li>
+<li>entire aircraft electrical system on the ground and serve as a backup generator in flight.</li>
+</ul>
+<ul>
+<li> Ram Air Turbine (RAT): A final emergency power source. The RAT is a small turbine that</li>
+<li>deploys into the airstream and spins a small generator or hydraulic pump to power only the</li>
+<li>most essential flight controls and instruments.</li>
+</ul>
+<h2 id="sec-36-5">36.5 Bonding and Screening</h2>
+<ul>
+<li> Bonding: The process of electrically connecting all metal parts of the aircraft with flexible</li>
+<li>wire straps. This ensures that all parts are at the same electrical potential, preventing static</li>
+<li>electricity from building up and creating a spark (fire) hazard.</li>
+<li> Screening: Enclosing electrical wires in a metal sheath to prevent the electromagnetic fields</li>
+<li>they create from causing interference with radio and navigation equipment.</li>
+<li> Static Wicks: Small, pointed devices on the trailing edges of wings and control surfaces.</li>
+<li>They are designed to safely discharge static electricity that builds up on the airframe during</li>
+<li>flight back into the atmosphere, preventing it from interfering with communications.</li>
+</ul>
+<div class="footer">© Ghost Aviator · Technical General for Aviators · Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

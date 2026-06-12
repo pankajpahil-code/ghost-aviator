@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 35 — DC Generation and Distribution | Technical General | Ghost Aviator</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:0 auto;padding:28px 22px;background:#fdfdfb;color:#1d2733;line-height:1.75;}
+  .cover{text-align:center;border-bottom:3px double #2c5aa0;margin-bottom:28px;padding-bottom:18px;}
+  .cover h1{color:#2c5aa0;margin:6px 0;font-size:1.7em;}
+  .cover .part{color:#8a4baf;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;font-size:.85em;}
+  .cover .author{color:#555;font-style:italic;margin-top:6px;}
+  h2{color:#2c5aa0;border-left:5px solid #2c5aa0;padding-left:10px;margin-top:30px;}
+  ul{padding-left:24px;margin:10px 0;}
+  li{margin:5px 0;}
+  p{margin:10px 0;text-align:justify;}
+  .footer{margin-top:36px;border-top:1px solid #ccc;padding-top:10px;color:#777;font-size:.85em;text-align:center;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="part">Electrical Systems</div>
+  <h1>Chapter 35: DC Generation and Distribution</h1>
+  <p class="author">Technical General for Aviators — Capt. Pankaj Pahil</p>
+</div>
+<h2 id="sec-35-1">35.1 Electromagnetic Induction</h2>
+<ul>
+<li>The primary source of electrical power on an aircraft is a generator or alternator, which</li>
+<li>converts mechanical energy into electrical energy through electromagnetic induction.</li>
+<li> Principle: When a conductor is moved through a magnetic field (or a magnetic field is</li>
+<li>moved past a conductor), a voltage is induced in the conductor.</li>
+<li> Simple Generator: Consists of a rotating loop of wire (the armature) spinning within a</li>
+<li>magnetic field. This rotation induces an AC voltage in the loop. In a DC generator, a device</li>
+<li>called a commutator is used to mechanically reverse the connections to the loop every half-</li>
+<li>turn, resulting in a DC output.</li>
+</ul>
+<h2 id="sec-35-2">35.2 DC Generators vs. Alternators</h2>
+<ul>
+<li> DC Generator: Has a rotating armature and stationary field magnets. The high-load output</li>
+<li>current must pass through the commutator and brushes, which can cause sparking and wear,</li>
+<li>especially at high altitudes.</li>
+<li> Alternator (Most Common on Piston Aircraft): Has a rotating field magnet and a</li>
+<li>stationary armature (stator). The high-load output current is taken directly from the stationary</li>
+<li>windings, which is more reliable. The small current needed to energize the rotating field is</li>
+<li>supplied through simple slip rings. An alternator's AC output is converted to DC by a solid-</li>
+<li>state rectifier. Alternators are lighter and more efficient at low engine RPM than DC</li>
+<li>generators.</li>
+</ul>
+<h2 id="sec-35-3">35.3 Voltage Control</h2>
+<ul>
+<li>The output voltage of a generator or alternator must be kept constant (e.g., 14V or 28V)</li>
+<li>regardless of engine speed or electrical load. This is done by a voltage regulator. The</li>
+<li>regulator senses the output voltage and automatically adjusts the current flowing through the</li>
+<li>field winding. Increasing the field current strengthens the magnetic field and increases the</li>
+<li>utput voltage; decreasing it does the opposite.</li>
+</ul>
+<h2 id="sec-35-4">35.4 DC Distribution</h2>
+<ul>
+<li> Bus Bar: A central distribution point for electrical power. The generator, battery, and all</li>
+<li>electrical consumers are connected to the bus bar.</li>
+<li> Earth Return System: On metal aircraft, the airframe itself is used as the negative conductor</li>
+<li>for the electrical system. The negative terminal of the generator and battery, and one side of</li>
+<li>every electrical component, are connected to the airframe ("grounded"). This saves a</li>
+<li>significant amount of wiring weight.</li>
+<li> Ammeters:</li>
+<li>Centre-Zero Ammeter: Shows the current flowing into (charging) or out of (discharging)</li>
+<li>the battery.</li>
+<li>Load Meter: Shows the total current output from the alternator. A zero reading in flight</li>
+<li>indicates an alternator failure.</li>
+</ul>
+<div class="footer">© Ghost Aviator · Technical General for Aviators · Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

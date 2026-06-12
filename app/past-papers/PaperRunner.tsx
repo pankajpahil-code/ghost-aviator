@@ -92,6 +92,11 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
                   );
                 })}
               </div>
+              {submitted && q.exp && (
+                <div className="mt-3 px-4 py-3 rounded-xl text-sm" style={{ background: "rgba(0,212,255,0.06)", border: "1px solid rgba(0,212,255,0.2)", color: "#7dd3fc" }}>
+                  <span className="font-black">Explanation: </span>{q.exp}
+                </div>
+              )}
             </div>
           );
         })}

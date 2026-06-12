@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 25 — Engine Starting and Auxiliary Power Units (APU) | Technical General | Ghost Aviator</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:0 auto;padding:28px 22px;background:#fdfdfb;color:#1d2733;line-height:1.75;}
+  .cover{text-align:center;border-bottom:3px double #2c5aa0;margin-bottom:28px;padding-bottom:18px;}
+  .cover h1{color:#2c5aa0;margin:6px 0;font-size:1.7em;}
+  .cover .part{color:#8a4baf;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;font-size:.85em;}
+  .cover .author{color:#555;font-style:italic;margin-top:6px;}
+  h2{color:#2c5aa0;border-left:5px solid #2c5aa0;padding-left:10px;margin-top:30px;}
+  ul{padding-left:24px;margin:10px 0;}
+  li{margin:5px 0;}
+  p{margin:10px 0;text-align:justify;}
+  .footer{margin-top:36px;border-top:1px solid #ccc;padding-top:10px;color:#777;font-size:.85em;text-align:center;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="part">The Gas Turbine Engine</div>
+  <h1>Chapter 25: Engine Starting and Auxiliary Power Units (APU)</h1>
+  <p class="author">Technical General for Aviators — Capt. Pankaj Pahil</p>
+</div>
+<h2 id="sec-25-1">25.1 The Engine Start Sequence</h2>
+<ul>
+<li>To start a gas turbine engine, three things are required:</li>
+<li>1. Rotation: The compressor must be turned by a starter motor to get air flowing through the</li>
+<li>engine.</li>
+<li>2. Fuel: Fuel must be sprayed into the combustion chambers.</li>
+<li>3. Ignition: A high-energy spark from an igniter plug must ignite the fuel/air mixture.</li>
+<li>The pilot monitors the EGT and the high-pressure compressor RPM (N2) during the start</li>
+<li>sequence.</li>
+<li>1. The starter is engaged, and N2 begins to rise.</li>
+<li>2. At a specific N2 (e.g., 25%), the pilot introduces fuel and ignition.</li>
+<li>3. A light-up should occur, indicated by a rapid rise in EGT.</li>
+</ul>
+<ul>
+<li>4. The engine continues to accelerate. At self-sustaining speed, the turbine is producing enough</li>
+<li>power to drive the compressor without the starter's help.</li>
+<li>5. The starter cuts out, and the engine stabilizes at idle RPM (e.g., ~60% N2).</li>
+</ul>
+<h2 id="sec-25-2">25.2 Abnormal Starts</h2>
+<ul>
+<li> Hot Start: The EGT exceeds its maximum permitted limit. This is usually caused by too</li>
+<li>much fuel for the available airflow. The start must be aborted immediately.</li>
+<li> Wet Start: The fuel/air mixture fails to ignite. EGT does not rise, but fuel flows into the</li>
+<li>engine. The engine must be motored over (a blowout cycle) to clear the unburnt fuel before</li>
+<li>another start is attempted to prevent torching.</li>
+<li> Hung Start: The engine lights up but fails to accelerate to idle RPM, instead stabilizing at a</li>
+<li>lower speed with a rising EGT. This is often caused by insufficient power from the starter.</li>
+</ul>
+<h2 id="sec-25-3">25.3 Auxiliary Power Unit (APU)</h2>
+<ul>
+<li>An APU is a small, self-contained gas turbine engine, typically located in the aircraft's tail</li>
+<li>cone. Its purpose is to provide electrical power and pneumatic (bleed) air for the aircraft's</li>
+<li>systems on the ground, eliminating the need for ground support equipment. It can also serve</li>
+<li>as a backup source of power in flight.</li>
+</ul>
+<h2 id="sec-25-4">25.4 Ram Air Turbine (RAT)</h2>
+<ul>
+<li>A RAT is a small turbine that can be deployed from the fuselage or wing into the airstream in</li>
+<li>the event of a total engine failure. The airflow spins the turbine, which powers an emergency</li>
+<li>hydraulic pump or electrical generator to provide power for essential flight controls and</li>
+<li>instruments.</li>
+</ul>
+<div class="footer">© Ghost Aviator · Technical General for Aviators · Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

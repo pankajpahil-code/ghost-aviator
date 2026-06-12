@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 5 — Three-Dimensional Airflow and Wing Design | Technical General | Ghost Aviator</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:0 auto;padding:28px 22px;background:#fdfdfb;color:#1d2733;line-height:1.75;}
+  .cover{text-align:center;border-bottom:3px double #2c5aa0;margin-bottom:28px;padding-bottom:18px;}
+  .cover h1{color:#2c5aa0;margin:6px 0;font-size:1.7em;}
+  .cover .part{color:#8a4baf;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;font-size:.85em;}
+  .cover .author{color:#555;font-style:italic;margin-top:6px;}
+  h2{color:#2c5aa0;border-left:5px solid #2c5aa0;padding-left:10px;margin-top:30px;}
+  ul{padding-left:24px;margin:10px 0;}
+  li{margin:5px 0;}
+  p{margin:10px 0;text-align:justify;}
+  .footer{margin-top:36px;border-top:1px solid #ccc;padding-top:10px;color:#777;font-size:.85em;text-align:center;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="part">Principles of Flight</div>
+  <h1>Chapter 5: Three-Dimensional Airflow and Wing Design</h1>
+  <p class="author">Technical General for Aviators — Capt. Pankaj Pahil</p>
+</div>
+<h2 id="sec-5-1">5.1 Wing Terminology</h2>
+<ul>
+<li> Wing Area (S): The plan surface area of the wing, including the part covered by the</li>
+<li>fuselage.</li>
+<li> Wing Span (b): The distance from wingtip to wingtip.</li>
+<li> Aspect Ratio (AR): The ratio of the wing span squared to the wing area (AR = b²/S). It</li>
+<li>defines the "slenderness" of a wing.</li>
+<li>High AR wings (long and thin) are found on sailplanes (AR ~35).</li>
+<li>Medium AR wings are found on transport jets (AR ~12).</li>
+</ul>
+<ul>
+<li>Low AR wings (short and stubby) are found on fighter jets (AR ~3).</li>
+<li> Taper Ratio: The ratio of the tip chord to the root chord (Taper = Cₜ / Cᵣ).</li>
+<li> Sweep Angle: The angle between the line of 25% chord and a line perpendicular to the root</li>
+<li>chord.</li>
+</ul>
+<h2 id="sec-5-2">5.2 Wing Tip Vortices</h2>
+<ul>
+<li>On a finite wing, the air from the high-pressure area below the wing's surface will always try</li>
+<li>to flow around the wingtip to the low-pressure area on the upper surface. This flow creates</li>
+<li>a powerful swirling vortex at each wingtip.</li>
+<li> Spanwise Flow: This pressure differential creates a secondary flow pattern on the wing's</li>
+<li>surface: an outward flow on the bottom surface and an inward flow on the top surface.</li>
+<li> Vortex Strength: These vortices are strongest when the pressure differential is highest,</li>
+<li>which occurs at high angles of attack (i.e., when flying slowly).</li>
+</ul>
+<h2 id="sec-5-3">5.3 Induced Downwash and Induced Drag</h2>
+<ul>
+<li> The powerful wingtip vortices create a large field of downward-moving air behind the wing,</li>
+<li>known as</li>
+<li>downwash.</li>
+<li> This downwash alters the direction of the relative airflow experienced by the wing,</li>
+<li>effectively reducing the wing's angle of attack.</li>
+<li> This change tilts the total lift vector rearward. The horizontal component of this tilted lift</li>
+<li>vector is a drag force known as</li>
+<li>induced drag.</li>
+<li> Induced drag is an unavoidable by-product of lift generation on a finite wing. The stronger</li>
+<li>the vortices, the greater the induced drag.</li>
+</ul>
+<h2 id="sec-5-4">5.4 Wake Turbulence</h2>
+<ul>
+<li> The trailing vortices from a large aircraft can be extremely powerful and hazardous to other</li>
+<li>aircraft, a phenomenon known as wake turbulence.</li>
+<li> Generation: Wake vortex generation begins when the nose wheel lifts off on takeoff</li>
+<li>(rotation) and ends when the nose wheel touches down on landing.</li>
+<li> Vortex Characteristics: Vortex strength is determined by:</li>
+<li>Gross Weight: Heavier aircraft produce stronger vortices.</li>
+<li>Airspeed: Slower aircraft produce stronger vortices.</li>
+<li>Configuration: Aircraft in a "clean" configuration (flaps and gear up) produce stronger</li>
+<li>vortices for a given speed.</li>
+<li> Vortex Behavior: The two vortices drift downwards and outwards, separating by about 3/4</li>
+<li>f the aircraft's wingspan. They can descend 500-1000 ft and persist for several minutes.</li>
+</ul>
+<ul>
+<li> Avoidance:</li>
+<li>Landing: Stay above the preceding aircraft's flight path and land beyond its touchdown</li>
+<li>point.</li>
+<li>Takeoff: Rotate prior to the preceding aircraft's rotation point and climb above its flight path.</li>
+</ul>
+<div class="footer">© Ghost Aviator · Technical General for Aviators · Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>
