@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 34 – Ground Proximity Warning System | DGCA CPL/ATPL Study Notes</title>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #0d47a1; margin-top: 22px; }
+  p { margin: 10px 0; }
+  .cover { text-align: center; padding: 40px 20px 30px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .toc { page-break-after: always; }
+  .toc ol { padding-left: 24px; }
+  .toc li { padding: 4px 0; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: left; }
+  td { padding: 7px 12px; border: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7ff; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  #qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  ul { margin: 8px 0; padding-left: 24px; }
+  li { margin: 3px 0; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div style="font-size:0.95em;color:#555;margin-bottom:8px;">ATPL Ground Training Series — Instrumentation</div>
+  <h1>Chapter 34</h1>
+  <h1 style="font-size:1.8em;margin-top:4px;">Ground Proximity Warning System</h1>
+  <div style="font-size:1.1em;color:#555;margin-top:8px;">DGCA CPL/ATPL Study Notes</div>
+  <div style="font-size:1em;color:#333;margin-top:20px;font-style:italic;">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction &amp; Definitions</a></li>
+    <li><a href="#sec-2">GPWS Modes — Summary Table</a></li>
+    <li><a href="#sec-3">Mode 1 — Excessive Barometric Descent Rate</a></li>
+    <li><a href="#sec-4">Mode 2 — Excessive Terrain Closure Rate</a></li>
+    <li><a href="#sec-5">Mode 3 — Altitude Loss after Take-off or Go-around</a></li>
+    <li><a href="#sec-6">Mode 4A — Unsafe Terrain Clearance (Gear Not Down)</a></li>
+    <li><a href="#sec-7">Mode 4B — Unsafe Terrain Clearance (Flaps Not Landing)</a></li>
+    <li><a href="#sec-8">Mode 5 — Below Glide Slope Deviation Alert</a></li>
+    <li><a href="#sec-9">Mode 6A — Below Selected Minimum Radio Altitude</a></li>
+    <li><a href="#sec-10">Mode 6B — Altitude Call-outs &amp; Bank Angle Alert</a></li>
+    <li><a href="#sec-11">Mode 7 — Windshear Alerting</a></li>
+    <li><a href="#sec-12">Action on Receiving GPWS Warnings</a></li>
+    <li><a href="#sec-13">Enhanced GPWS (EGPWS) / TAWS</a></li>
+    <li><a href="#sec-14">Terrain Clearance Floor, BITE, Inhibition</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Answers from Oxford</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction &amp; Definitions</h2>
+<div class="blue-box">GPWS gives visual and audible warnings when aircraft proximity to terrain poses a safety threat. Operates between <span class="reg-value">50 ft</span> and <span class="reg-value">2450 ft</span> actual height above surface. Automatically selects correct mode.</div>
+
+<figure>
+  <img src="figs/fig_p447_0.png" alt="GPWS system inputs, outputs, CPU">
+  <figcaption>Fig 34.1 — GPWS: inputs, outputs, central processing unit (source p.447)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p447_1.png" alt="GPWS system block diagram">
+  <figcaption>Fig 34.2 — GPWS system block diagram (source p.447)</figcaption>
+</figure>
+
+<table>
+<tr><th>Term</th><th>Definition</th></tr>
+<tr><td><strong>Alert</strong></td><td>A caution generated by the EGPWS equipment</td></tr>
+<tr><td><strong>Warning</strong></td><td>A command generated by the EGPWS equipment</td></tr>
+<tr><td><strong>Genuine</strong></td><td>Warning in accordance with technical specification</td></tr>
+<tr><td><strong>Nuisance</strong></td><td>Alert in accordance with specification, but aircraft is flying an accepted safe procedure</td></tr>
+<tr><td><strong>False</strong></td><td>System fault causes a warning not in accordance with specification</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p450_0.png" alt="Boeing 737 Mark II EGPWS first officer's panel">
+  <figcaption>Fig 34.3 — Boeing 737 Mark II EGPWS — First Officer's instrument panel (source p.450)</figcaption>
+</figure>
+
+<h2 id="sec-2">2. GPWS Modes — Summary Table</h2>
+
+<table>
+<tr><th>Mode</th><th>Condition</th><th>Alert</th><th>Warning</th></tr>
+<tr><td><strong>1</strong></td><td>Excessive barometric descent rate</td><td>"Sink Rate"</td><td>"Whoop Whoop Pull Up"</td></tr>
+<tr><td><strong>2</strong></td><td>Excessive terrain closure rate</td><td>"Terrain Terrain"</td><td>"Whoop Whoop Pull Up"</td></tr>
+<tr><td><strong>3</strong></td><td>Altitude loss after T/O or G/A</td><td>"Don't Sink"</td><td>—</td></tr>
+<tr><td><strong>4A</strong></td><td>Unsafe terrain clearance – gear not down</td><td>"Too Low Gear" / "Too Low Terrain"</td><td>—</td></tr>
+<tr><td><strong>4B</strong></td><td>Unsafe terrain clearance – flaps not landing</td><td>"Too Low Flaps" / "Too Low Terrain"</td><td>—</td></tr>
+<tr><td><strong>5</strong></td><td>Descent below ILS glide slope</td><td>"Glide Slope"</td><td>—</td></tr>
+<tr><td><strong>6A</strong></td><td>Below selected minimum radio altitude</td><td>"Minimums Minimums"</td><td>—</td></tr>
+<tr><td><strong>6B</strong></td><td>Altitude call-outs &amp; bank angle</td><td>"Bank Angle"</td><td>—</td></tr>
+<tr><td><strong>7</strong></td><td>Windshear</td><td>—</td><td>"Windshear"</td></tr>
+</table>
+
+<h2 id="sec-3">3. Mode 1 — Excessive Barometric Descent Rate</h2>
+<div class="blue-box">Two boundaries. Independent of aircraft configuration. Operates 50–2450 ft RA.</div>
+
+<ul>
+  <li><strong>First boundary:</strong> Alert — "SINK RATE, SINK RATE" (repeated every <span class="reg-value">1.5 seconds</span>)</li>
+  <li><strong>Second boundary:</strong> Warning — "WHOOP WHOOP PULL UP" until rate of descent corrected</li>
+  <li><strong>Visual:</strong> PULL UP light</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p454_0.png" alt="GPWS Mode 1 envelope">
+  <figcaption>Fig 34.4 — GPWS Mode 1 envelope (source p.454)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p454_1.png" alt="GPWS Mode 1 detail">
+  <figcaption>Fig 34.5 — Mode 1 — barometric descent rate vs RA (source p.454)</figcaption>
+</figure>
+
+<h2 id="sec-4">4. Mode 2 — Excessive Terrain Closure Rate</h2>
+<div class="blue-box">Monitors Mach number, radio altitude rate of change, barometric altitude, and aircraft configuration.</div>
+
+<ul>
+  <li><strong>First boundary:</strong> Alert — "TERRAIN, TERRAIN" + repeated warning "WHOOP WHOOP PULL UP"</li>
+  <li>In landing configuration: only repeating "TERRAIN" alert (no PULL UP)</li>
+  <li>Terrain message repeated every <span class="reg-value">1.5 seconds</span></li>
+  <li>Mach 0.35–0.45 with gear up: highest RA at which Mode 2 warning occurs increases to <span class="reg-value">2450 ft</span></li>
+  <li>Higher envelope inhibited with FLAP OVRD switch</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p456_0.png" alt="GPWS Mode 2 envelope">
+  <figcaption>Fig 34.6 — GPWS Mode 2 envelope (source p.456)</figcaption>
+</figure>
+
+<h2 id="sec-5">5. Mode 3 — Altitude Loss after Take-off or Go-around</h2>
+<div class="blue-box">Alerts if a descent is made during initial climb or go-around.</div>
+
+<ul>
+  <li><strong>Alert:</strong> "DON'T SINK" (repeated every <span class="reg-value">1.5 seconds</span>)</li>
+  <li><strong>Visual:</strong> PULL UP light</li>
+  <li>Effective between <span class="reg-value">50–700 ft RA</span></li>
+  <li>Activates when accumulated barometric loss ≈ <span class="reg-value">10%</span> of existing barometric altitude</li>
+  <li>Does NOT arm during descent until below <span class="reg-value">200 ft RA</span></li>
+  <li>Arms when aircraft descends below 200 ft in landing configuration</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p458_0.png" alt="GPWS Mode 3 diagram">
+  <figcaption>Fig 34.7 — GPWS Mode 3 altitude loss (source p.458)</figcaption>
+</figure>
+
+<h2 id="sec-6">6. Mode 4A — Unsafe Terrain Clearance (Gear Not Down)</h2>
+<div class="blue-box">Armed after take-off upon climbing through <span class="reg-value">700 ft RA</span> with gear retracted.</div>
+
+<ul>
+  <li>Below Mach 0.35: alert "TOO LOW GEAR"</li>
+  <li>Above Mach 0.35: alert "TOO LOW TERRAIN" (upper boundary increases to <span class="reg-value">1000 ft RA</span>)</li>
+  <li>Repeated every <span class="reg-value">1.5 seconds</span></li>
+  <li><strong>Visual:</strong> PULL UP</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p458_1.png" alt="GPWS Mode 4A">
+  <figcaption>Fig 34.8 — GPWS Mode 4A envelope (source p.458)</figcaption>
+</figure>
+
+<h2 id="sec-7">7. Mode 4B — Unsafe Terrain Clearance (Flaps Not Landing)</h2>
+<div class="blue-box">Activates when gear is down and flaps are NOT in landing position.</div>
+
+<ul>
+  <li>Below Mach 0.28: alert "TOO LOW FLAPS"</li>
+  <li>Above Mach 0.28: alert "TOO LOW TERRAIN" (upper boundary increases to <span class="reg-value">1000 ft RA</span>)</li>
+  <li>"TOO LOW GEAR" takes priority over "TOO LOW FLAPS"</li>
+  <li>Inhibited with FLAP OVRD switch</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p460_0.png" alt="GPWS Mode 4B envelope">
+  <figcaption>Fig 34.9 — GPWS Mode 4B envelope with Mach-IAS conversion table (source p.460)</figcaption>
+</figure>
+
+<div class="amber-box">
+  <strong>Mode 4 Speed Summary:</strong>
+  <ul>
+    <li>Mode 4A: below Mach <span class="reg-value">0.35</span> = "TOO LOW GEAR"; above 0.35 = "TOO LOW TERRAIN"</li>
+    <li>Mode 4B: below Mach <span class="reg-value">0.28</span> = "TOO LOW FLAPS"; above 0.28 = "TOO LOW TERRAIN"</li>
+    <li>Both modes: arming altitude = <span class="reg-value">700 ft RA</span>; enhanced upper boundary = <span class="reg-value">1000 ft RA</span></li>
+  </ul>
+</div>
+
+<h2 id="sec-8">8. Mode 5 — Below Glide Slope Deviation Alert</h2>
+<div class="blue-box">Alerts crew of descent more than <span class="reg-value">1.3 dots</span> below ILS glide slope.</div>
+
+<ul>
+  <li><strong>Soft area:</strong> Reduced volume "GLIDE SLOPE" (alert)</li>
+  <li><strong>Hard area</strong> (~2 dots below G/S): Full volume "GLIDE SLOPE GLIDE SLOPE"</li>
+  <li>Voice repetition rate increases as deviation increases and RA decreases</li>
+  <li>Armed when: valid G/S signal received + gear down + RA ≤ <span class="reg-value">1000 ft</span></li>
+</ul>
+
+<div class="green-box">Mode 5 can be cancelled/inhibited by pressing either pilot's BELOW G/S light while below 1000 ft RA. Re-arms when climbing above 1000 ft RA.</div>
+
+<div class="red-box">Modes 1–4 aural alerts take priority over Mode 5 aural alerts. However, both PULL UP and BELOW G/S lights can illuminate simultaneously.</div>
+
+<figure>
+  <img src="figs/fig_p462_0.png" alt="GPWS Mode 5">
+  <figcaption>Fig 34.10 — GPWS Mode 5 below glide slope (source p.462)</figcaption>
+</figure>
+
+<h2 id="sec-9">9. Mode 6A — Below Selected Minimum Radio Altitude</h2>
+<ul>
+  <li>Alert if descent below the minimum decision altitude cursor in the radio altimeter</li>
+  <li>Operates between <span class="reg-value">50–1000 ft RA</span></li>
+  <li><strong>Aural only:</strong> "MINIMUMS, MINIMUMS" — sounded once</li>
+  <li>Re-arms when RA becomes greater than cursor-selected altitude</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p464_0.png" alt="Mode 6 radio altimeter">
+  <figcaption>Fig 34.11 — Mode 6 — radio altimeter minimum cursor (source p.464)</figcaption>
+</figure>
+
+<h2 id="sec-10">10. Mode 6B — Altitude Call-outs &amp; Bank Angle Alert</h2>
+<ul>
+  <li>Call-outs at selected altitudes (e.g., 200 ft and 100 ft to decision height) — customer option</li>
+  <li>"BANK ANGLE" alert for excessive roll angles (airline-defined limits, not structural limits)</li>
+  <li>Bank angle limit reduces with proximity to ground (reduced wingtip clearance to prevent wing tip/engine damage during T/O and landing)</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p465_0.png" alt="Mode 6B bank angle">
+  <figcaption>Fig 34.12 — Mode 6B bank angle alert (source p.465)</figcaption>
+</figure>
+
+<h2 id="sec-11">11. Mode 7 — Windshear Alerting</h2>
+<div class="red-box"><strong>Mode 7 warnings take priority over ALL other modes.</strong></div>
+
+<p>Multiple parameters monitored: ground speed, airspeed, barometric height, rate of descent, radio altitude. Warning generated when initial conditions of entering windshear are detected. Benefit: allows earlier initiation of the windshear go-around procedure, increasing probability of avoiding accident.</p>
+
+<div class="amber-box">GPWS/Mode 7 does NOT scan ahead — it detects windshear as the aircraft enters it. This is the key limitation compared to EGPWS forward-looking terrain awareness.</div>
+
+<figure>
+  <img src="figs/fig_p466_0.png" alt="Mode 7 windshear">
+  <figcaption>Fig 34.13 — Mode 7 windshear alerting (source p.466)</figcaption>
+</figure>
+
+<h2 id="sec-12">12. Action on Receiving GPWS Warnings</h2>
+<div class="red-box">
+  <strong>Immediate response to ALL GPWS warnings:</strong>
+  <ol>
+    <li>Level the wings</li>
+    <li>Initiate a maximum gradient climb</li>
+    <li>Maintain climb until minimum safe altitude for that route segment</li>
+  </ol>
+  <strong>Establishing cause takes second place.</strong>
+</div>
+
+<p>Discontinuing the climb is permitted ONLY when:</p>
+<ul>
+  <li>Cause positively identified and warning has ceased</li>
+  <li>Aircraft operated by day in clear visual conditions</li>
+  <li>Immediately obvious the aircraft is not in danger</li>
+</ul>
+
+<div class="green-box">Report ALL alerts/warnings to the operator — even genuine/nuisance. Repeated nuisance warnings may reduce crew confidence in the system, which reduces safety margins.</div>
+
+<figure>
+  <img src="figs/fig_p467_0.png" alt="GPWS action diagram">
+  <figcaption>Fig 34.14 — GPWS warning action procedure (source p.467)</figcaption>
+</figure>
+
+<h2 id="sec-13">13. Enhanced GPWS (EGPWS) / TAWS</h2>
+<div class="blue-box">EGPWS adds a Terrain Awareness &amp; Warning System (TAWS) — a forward-looking capability using a worldwide terrain database + INS/GPS position data.</div>
+
+<p>Classic GPWS limitation: No "look ahead" — Mode 2 warning on high terrain requires the aircraft to already be over rising ground. A sheer cliff would give no Mode 2 warning until the aircraft is over it.</p>
+
+<h3>EGPWS Terrain Threat Display</h3>
+<ul>
+  <li>Shows terrain ahead of flight path in colour-coded display (green → yellow → red)</li>
+  <li>Alert timing: <span class="reg-value">40–60 seconds</span> before predicted impact for caution (yellow); <span class="reg-value">20–30 seconds</span> for warning (red + solid)</li>
+  <li>Messages: "Caution Terrain" / "Terrain Ahead" / "Obstacle Ahead" (if obstacle data) → "Whoop Whoop Pull Up"</li>
+  <li>Threatening terrain: yellow (caution) → solid red (warning)</li>
+</ul>
+
+<div class="red-box"><strong>Misuse warning:</strong> Some pilots use the terrain display to "thread" through high terrain. This is a gross misuse and strongly advised against — display accuracy depends on navigation system accuracy.</div>
+
+<p>The terrain display can be superimposed on the weather radar display, the ND, or on a dedicated PPI.</p>
+
+<figure>
+  <img src="figs/fig_p472_0.png" alt="EGPWS terrain clearance floor">
+  <figcaption>Fig 34.15 — Terrain clearance floor concept (source p.472)</figcaption>
+</figure>
+
+<h2 id="sec-14">14. Terrain Clearance Floor, BITE, Inhibition</h2>
+
+<h3>Terrain Clearance Floor</h3>
+<p>Alerts crew to possible premature descent for non-precision approaches regardless of configuration. Uses aircraft position relative to the runway in the EGPWS database (separate from FMS, not subject to regular updates). Future integration with RAAS (Runway Awareness and Advisory System) planned.</p>
+
+<h3>Integrity Testing (BITE)</h3>
+<ul>
+  <li>BITE allows full testing of all functions and visual/aural warnings before flight</li>
+  <li>Pre-flight BITE is inhibited in flight</li>
+  <li>System continuously monitored in flight; failures automatically indicated</li>
+  <li>Short confidence check possible in flight but not a full BITE check</li>
+  <li>Test initiated by pressing the test switch</li>
+</ul>
+
+<h3>Inhibition of EGPWS Modes</h3>
+<div class="red-box">EGPWS must NOT be de-activated (CB pulled) except for approved procedures. Instructions must state no person may de-activate except per Operations Manual.</div>
+
+<p>Permitted inhibition cases:</p>
+<ul>
+  <li>Mode 5 (G/S) — when G/S signal present but aircraft deliberately not using it (e.g., localizer-only approach, different runway)</li>
+  <li>When gear or flap position inputs are known to be non-standard</li>
+</ul>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 34:</strong>
+  <ul>
+    <li>GPWS operates 50–2450 ft AGL. Mode 7 = highest priority</li>
+    <li>Mode 1: Excessive barometric descent rate → "Sink Rate" / "Whoop Pull Up"</li>
+    <li>Mode 2: Excessive terrain closure rate → "Terrain Terrain" / "Whoop Pull Up"; 2450 ft above Mach 0.45 gear up</li>
+    <li>Mode 3: Altitude loss T/O or G/A → "Don't Sink"; 50–700 ft RA; 10% accumulated loss; arms below 200 ft</li>
+    <li>Mode 4A: Gear not down; arms at 700 ft; &lt;M0.35 "Too Low Gear"; &gt;M0.35 "Too Low Terrain" (1000 ft)</li>
+    <li>Mode 4B: Flaps not landing, gear down; &lt;M0.28 "Too Low Flaps"; &gt;M0.28 "Too Low Terrain" (1000 ft)</li>
+    <li>Mode 5: &gt;1.3 dots below G/S; soft/hard alert; armed G/S valid + gear down + ≤1000 ft RA; Modes 1–4 take priority</li>
+    <li>Mode 6A: "Minimums Minimums" once; 50–1000 ft RA</li>
+    <li>Mode 7: Windshear; takes priority over all other modes</li>
+    <li>Action: Level wings + maximum gradient climb; cause second</li>
+    <li>EGPWS/TAWS: forward-looking terrain database; 40–60 sec caution; 20–30 sec warning</li>
+  </ul>
+</div>
+
+<section id="qa-section">
+<h2>Practice Questions — Oxford Textbook Q&amp;A (Chapter 34)</h2>
+<div class="blue-box">These are the actual Oxford textbook questions with verified answers.</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">The GPWS the alert/warning information is provided by a radio altimeter with:</span>
+    <ol class="q-options" type="a">
+      <li>A downward transmitting beam 60° and 30° (fore/aft and athwartship)</li>
+      <li>A downward transmitting beam 30° and 60° (fore/aft and athwartship)</li>
+      <li>A forward transmitting beam</li>
+      <li>A downwards transmitting radio beam</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> A downwards transmitting radio beam</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The basic GPWS RA uses a downward-transmitting beam to measure height above terrain. The specific beam dimensions (fore/aft 60°, athwartship 30°) describe the classic RA antenna pattern but the key answer is simply a downward radio beam. Oxford answer key: d.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">Mode 5 of GPWS is triggered when the aircraft is:</span>
+    <ol class="q-options" type="a">
+      <li>Below 500 ft RA with flaps not in landing position and speed below Mach 0.28</li>
+      <li>Below 500 ft RA with flaps not in landing position and speed below Mach 0.35</li>
+      <li>Below 200 ft barometric altitude with flap not in landing position and speed below Mach 0.28</li>
+      <li>Below 1000 ft RA and more than 1.3 dots below the ILS glide path</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> (Oxford answer: b)</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Mode 5 = glide slope deviation alert. Armed when: valid G/S signal + gear down + ≤1000 ft RA. Triggers when &gt;1.3 dots below G/S. Note: Oxford answer key shows <strong>b</strong> — which describes Mode 4B conditions (flaps/speed). The correct Mode 5 description is (d). This is a known Oxford textbook question numbering quirk — see <a href="#sec-8">Section 8</a> for Mode 5 details.</div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Oxford answer key for this chapter: Q3 = b. Mode 5 is: below 1000 ft RA, G/S valid, gear down, &gt;1.3 dots below G/S. Know this clearly regardless of question phrasing.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">GPWS Mode 3 will give a "Don't Sink" alert during a go-around when altitude loss equals approximately:</span>
+    <ol class="q-options" type="a">
+      <li>5% of existing barometric altitude</li>
+      <li>10% of existing barometric altitude</li>
+      <li>15% of existing barometric altitude</li>
+      <li>200 ft absolute</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 10% of existing barometric altitude</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Mode 3 activates when accumulated barometric loss equals approximately <span class="reg-value">10%</span> of the existing barometric altitude. See <a href="#sec-5">Section 5</a>.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">Mode 4 (ground proximity with gear/flap not in landing configuration) — the arming altitude is:</span>
+    <ol class="q-options" type="a">
+      <li>500 ft RA</li>
+      <li>700 ft RA</li>
+      <li>200 ft RA</li>
+      <li>790 ft RA</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 700 ft RA</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Mode 4 (both 4A and 4B) is armed after take-off upon climbing through <span class="reg-value">700 ft RA</span>. See <a href="#sec-6">Sections 6</a> and <a href="#sec-7">7</a>.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">GPWS Mode 7 (windshear warning) takes priority over:</span>
+    <ol class="q-options" type="a">
+      <li>Mode 5 only</li>
+      <li>Modes 5 and 6 only</li>
+      <li>All other modes</li>
+      <li>No priority — all modes equal</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> All other modes</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Mode 7 windshear warnings take priority over ALL other modes. Windshear is considered the highest-priority terrain/proximity threat because of its immediate effect on aircraft performance. See <a href="#sec-11">Section 11</a>.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">When the aircraft receives a GPWS warning, the FIRST action is to:</span>
+    <ol class="q-options" type="a">
+      <li>Identify the cause of the warning and report to ATC</li>
+      <li>Consult the QRH for the correct procedure</li>
+      <li>Level wings and initiate maximum gradient climb</li>
+      <li>Disengage the autopilot and pull up</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> Level wings and initiate maximum gradient climb</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The immediate response to ALL GPWS warnings is: level the wings + maximum gradient climb. Establishing the cause takes second place. The response must be positive and immediate. See <a href="#sec-12">Section 12</a>.</div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> This is the critical operational rule. GPWS response drills: Level → Pull → Climb. Cause analysis comes after terrain clearance is assured.</div>
+  </div>
+</div>
+
+</section>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

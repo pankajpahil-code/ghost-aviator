@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 28 – Autothrottle | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #0d47a1; margin-top: 22px; }
+  h4 { font-size: 1em; font-weight: 700; color: #1565c0; margin-top: 16px; }
+  p { margin: 10px 0; }
+  .cover { text-align: center; padding: 40px 20px 30px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .toc { page-break-after: always; }
+  .toc ol { padding-left: 24px; }
+  .toc li { padding: 4px 0; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: left; }
+  td { padding: 7px 12px; border: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7ff; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  #qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  ul { margin: 8px 0; padding-left: 24px; }
+  li { margin: 3px 0; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div style="font-size:0.95em;color:#555;margin-bottom:8px;">ATPL Ground Training Series — Instrumentation</div>
+  <h1>Chapter 28</h1>
+  <h1 style="font-size:1.8em;margin-top:4px;">Autothrottle</h1>
+  <div style="font-size:1.1em;color:#555;margin-top:8px;">DGCA CPL/ATPL Study Notes</div>
+  <div style="font-size:1em;color:#333;margin-top:20px;font-style:italic;">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction — What the Autothrottle Does</a></li>
+    <li><a href="#sec-2">Autothrottle System Components</a></li>
+    <li><a href="#sec-3">Boeing 737-400 A/T System</a></li>
+    <li><a href="#sec-4">Power Management Control (PMC)</a></li>
+    <li><a href="#sec-5">A/T Engagement and Disengagement</a></li>
+    <li><a href="#sec-6">A/T Operating Modes</a></li>
+    <li><a href="#sec-7">A/T Warning Lights &amp; Thrust Mode Annunciator</a></li>
+    <li><a href="#sec-8">Flexible Take-off</a></li>
+    <li><a href="#sec-9">Turbulence</a></li>
+    <li><a href="#sec-10">FADEC — Full Authority Digital Engine Control</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction — What the Autothrottle Does</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Definition, thrust control parameters, and the scope of A/T operation.</div>
+
+<p>An autothrottle system is a <strong>computer-controlled, electromechanical system</strong> that controls the thrust of an aircraft's engines within specific design parameters. It controls throttle position to maintain a specific value of thrust in terms of:</p>
+<ul>
+  <li><strong>Fan Speed (N1)</strong></li>
+  <li><strong>Engine Pressure Ratio (EPR)</strong>, or</li>
+  <li><strong>Target Airspeed</strong> (set by SPD on mode control panel)</li>
+</ul>
+
+<div class="amber-box"><strong>Important Distinction:</strong> Although there are thrust computation systems, there is currently no direct indicator of thrust value in use. Instead, N1 and EPR are used as measures of engine thrust. The throttles control thrust; on some aircraft the preferred name is <em>thrust levers</em>.</div>
+
+<p>Using the above modes, the autothrottle can control either engine thrust or aircraft speed from the beginning of the take-off roll until disconnection after an automatic landing.</p>
+
+<h2 id="sec-2">2. Autothrottle System Components</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Inputs, outputs and feedback of the Thrust Management System.</div>
+
+<p>The autothrottle (also called <strong>Thrust Management System / TMS</strong>) works in conjunction with the autopilot and FMS.</p>
+
+<figure>
+  <img src="figs/fig_p393_0.png" alt="Autothrottle system signal interfacing">
+  <figcaption>Fig 28.1 — Basic autothrottle system and signal interfacing (source p.393)</figcaption>
+</figure>
+
+<h3>System Inputs</h3>
+<table>
+<tr><th>Input</th><th>Source</th></tr>
+<tr><td>Mode selection &amp; A/T Arm switch</td><td>MCP</td></tr>
+<tr><td>TAS, Mach No., TAT</td><td>ADC</td></tr>
+<tr><td>Attitude and acceleration</td><td>IRS</td></tr>
+<tr><td>N1 speed and/or EPR</td><td>Engine sensors</td></tr>
+<tr><td>Angle of attack</td><td>AoA sensor</td></tr>
+<tr><td>Radio altitude</td><td>Radio altimeter</td></tr>
+<tr><td>Air/ground logic</td><td>Landing gear switch</td></tr>
+<tr><td>Reverse thrust requirement</td><td>Engine accessory unit</td></tr>
+<tr><td>Thrust command</td><td>FMS or thrust mode select panel</td></tr>
+<tr><td>A/T Disconnect switch signal</td><td>Throttle levers</td></tr>
+<tr><td>PLA (power lever angle)</td><td>Transducers</td></tr>
+<tr><td>Flap position</td><td>Flap position sensor</td></tr>
+</table>
+
+<h3>System Outputs</h3>
+<ul>
+  <li>A/T servo actuator signals to move throttles</li>
+  <li>A/T disengage circuit</li>
+  <li>BITE circuits (Built-In Test Equipment) in FCC and FMC</li>
+  <li>Mode annunciation to EFIS symbol generator</li>
+  <li>Thrust limits to EICAS/ECAM display</li>
+  <li>Failure warnings (lamp, aural, electronic display)</li>
+</ul>
+
+<h3>Feedback</h3>
+<p>The A/T compares actual values with reference values and passes control signals to servomotors of the thrust levers. Feedback from servo actuators to the Thrust Management Computer (TMC) controls the rate of movement of the thrust levers.</p>
+
+<h2 id="sec-3">3. Boeing 737-400 A/T System</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The A/T system as fitted to the 737-400, the JAR reference aircraft.</div>
+
+<p>The A/T provides automatic thrust control from <strong>start of take-off roll through to disconnect after landing</strong>. In normal operation, the FMC provides the A/T system with N1 limit values.</p>
+
+<p>The A/T moves each thrust lever with a separate servomotor. Manually positioning thrust levers does NOT cause A/T disengagement unless <span class="reg-value">10 degrees</span> of thrust lever separation is exceeded during a dual channel approach after FLARE is armed. Following manual positioning, the A/T may reposition thrust levers to comply with computed requirements (except in HOLD and ARM modes).</p>
+
+<h2 id="sec-4">4. Power Management Control (PMC)</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The PMC — the electronic engine management unit on the 737-400.</div>
+
+<p>The thrust control system consists of a hydromechanical <strong>Main Engine Control (MEC)</strong> unit and a <strong>PMC</strong> unit on each engine:</p>
+<ul>
+  <li><strong>MEC:</strong> Schedules fuel to provide thrust called for by thrust lever setting</li>
+  <li><strong>PMC:</strong> Further refines fuel flow electronically, without moving thrust levers, using MEC power lever angle, N1 speed, inlet temperature and pressure</li>
+</ul>
+
+<div class="green-box"><strong>PMC Constant Thrust Climb Feature:</strong> Once thrust is set for climb, the PMC automatically maintains that thrust setting throughout the climb profile with no further thrust lever adjustments. This is a "set and forget" feature.</div>
+
+<h3>PMC Failure</h3>
+<ul>
+  <li>PMC detects failure → schedules slow N1 drift over approximately <span class="reg-value">30 seconds</span> → illuminates PMC INOP light + ENG annunciator + MASTER CAUTION lights</li>
+  <li>PMC INOP light suppressed below starter cut-out engine speed</li>
+  <li>PMC selected OFF on aft overhead panel → engine speed controlled by hydromechanical MEC only</li>
+</ul>
+
+<div class="green-box"><strong>A/T with PMC ON or OFF:</strong> A/T system operates properly with PMCs ON or OFF. Recommended to have both PMCs in same state (both ON or both OFF) to minimize thrust lever separation. A/T take-offs may be performed with both PMCs OFF.</div>
+
+<h2 id="sec-5">5. A/T Engagement and Disengagement</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the A/T is armed, engaged, and the conditions that cause disengagement.</div>
+
+<p>Moving the <strong>A/T Arm switch to ARM</strong> arms the A/T for engagement in the N1, MCP SPD, or FMC SPD mode. The switch is magnetically held at ARM and releases to OFF when A/T becomes disengaged.</p>
+
+<h3>A/T Disengagement Conditions</h3>
+<div class="red-box">
+  <ul>
+    <li>Moving A/T Arm switch to OFF</li>
+    <li>Pressing either A/T Disengage switch</li>
+    <li>A/T system fault detected</li>
+    <li><span class="reg-value">2 seconds</span> have elapsed since landing touchdown</li>
+    <li>Thrust levers separated by more than <span class="reg-value">10 degrees</span> during dual channel approach after FLARE is annunciated</li>
+  </ul>
+</div>
+
+<div class="green-box">
+  <strong>Extinguishing A/T Disengage Warning Light:</strong>
+  <ul>
+    <li>Returning A/T Arm switch to ARM</li>
+    <li>Pressing either A/T Disengage light</li>
+    <li>Pressing either A/T Disengage switch</li>
+  </ul>
+  The A/T Disengage lights do NOT illuminate when A/T automatically disengages after landing.
+</div>
+
+<h2 id="sec-6">6. A/T Operating Modes</h2>
+<div class="blue-box"><strong>What this section covers:</strong> All A/T modes from take-off through go-around.</div>
+
+<pre class="mermaid">
+flowchart LR
+  TO["Take-off\nTO/GA → N1\nAdvances to T/O thrust"] --> THR_HLD["THR HLD at 84 kt\n(A/T cannot change thrust\nbut manual OK)"]
+  THR_HLD --> ARM_LIFT["ARM after 400 ft RA\n+ 18 sec post-liftoff\nReduction to climb thrust\nby pressing N1 switch"]
+  ARM_LIFT --> N1["N1 Mode\nMaintains FMC N1 limit"]
+  ARM_LIFT --> SPD["Speed Mode (MCP SPD)\nMaintains target IAS/Mach"]
+  N1 --> RETARD["RETARD\n(LVL CHG / VNAV descent)"]
+  SPD --> FLARE_RETARD["RETARD\n2.5 sec after FLARE\nOR at 27 ft RA"]
+  FLARE_RETARD --> DISENG["Auto-disengage\n~2 sec after TD"]
+</pre>
+
+<h3>Take-off Mode</h3>
+<p>Engaged by pressing TOGA switch on the ground with A/T armed and desired T/O N1 selected from FMC CDU. A/T annunciation changes from ARM to N1; thrust levers advance toward T/O thrust.</p>
+<ul>
+  <li>THR HLD annunciates at <span class="reg-value">84 kt</span> (earlier computers: 64 kt) — A/T cannot change thrust level position, but thrust levers can be manually repositioned</li>
+  <li>After lift-off, THR HLD until <span class="reg-value">400 ft RA</span> reached AND approximately <span class="reg-value">18 seconds</span> have elapsed since liftoff</li>
+  <li>A/T annunciation then changes to ARM; reduction to climb thrust by pressing N1 switch</li>
+  <li>Automatic reduction to climb thrust inhibited until <span class="reg-value">2½ minutes</span> after lift-off when in LVL CHG or V/S mode</li>
+</ul>
+
+<h3>N1 Mode</h3>
+<p>A/T maintains thrust at the N1 limit selected from FMC CDU. If an engine fails while in N1 mode, the thrust lever of the failed engine will advance a few degrees and then return to or below the other lever position.</p>
+
+<h3>Speed Mode (MCP SPD)</h3>
+<p>Available throughout the flight once take-off phase is complete. A/T maintains the speed shown in the MCP IAS/MACH display. A/T will not set power above the displayed N1 limit. If an engine fails in speed mode, both thrust levers advance together to maintain target speed.</p>
+
+<div class="red-box">
+  <strong>Recommended approach speed setting:</strong> VREF + <span class="reg-value">5 kt</span>.
+  <br>Do NOT set higher command speed to allow for wind/gust corrections — A/T corrects for normal wind gusts through airspeed and acceleration sensing. Higher command speeds cause excessive approach speeds.
+  <br><br>
+  Below <span class="reg-value">400 ft RA</span>: A/T thrust response rate and engine power levels are sufficient to place engines in the rapid acceleration range.
+</div>
+
+<h3>FMC Speed Mode</h3>
+<p>A/T mode commanded by FMC during V NAV operation. MCP IAS/Mach display is blank; airspeed cursors positioned at FMC commanded airspeed. A/T limited to N1 value shown on thrust mode annunciators.</p>
+
+<h3>N1 Equalization</h3>
+<p>The A/T attempts to equalize N1 through dual servo individual thrust lever control. Equalization control is limited to <span class="reg-value">8 degrees</span> of thrust lever separation.</p>
+
+<h3>ARM Mode</h3>
+<p>Annunciated ARM when A/T Arm switch is at ARM and no A/T mode is engaged. Thrust levers can be manually positioned without A/T interference.</p>
+
+<h3>Descent Retard Mode</h3>
+<p>A/T engages and annunciates RETARD during LVL CHG and V NAV descents. RETARD changes to ARM when thrust levers reach aft stop or are manually prevented from reaching it.</p>
+
+<h3>Landing Flare Retard Mode</h3>
+<p>RETARD mode engages and reduces thrust <span class="reg-value">2½ seconds</span> after FLARE mode engagement OR at <span class="reg-value">27 ft RA</span>, whichever occurs first. Also engages at 27 ft RA during non-precision/visual approach with flaps ≥15° and AFDS not in ALT ACQ or ALT HOLD. A/T auto-disengages approximately <span class="reg-value">2 seconds</span> after landing touchdown.</p>
+
+<h3>Go-around Mode</h3>
+<p>A/T GA mode is armed when descending below <span class="reg-value">2000 ft RA</span> (with or without AFDS). Once armed, can be engaged until <span class="reg-value">2 seconds</span> after landing touchdown.</p>
+<ul>
+  <li>Pressing either TOGA switch → GA annunciated; thrust levers advance to reduced GA thrust setting (produces <span class="reg-value">1000–2000 fpm</span> rate of climb)</li>
+  <li>Pressing TOGA a <strong>second time</strong> after reaching reduced GA thrust → A/T advances to <strong>full GA N1 limit</strong></li>
+  <li>During single-engine FD go-around → A/T increases thrust to full N1 limit</li>
+</ul>
+
+<h2 id="sec-7">7. A/T Warning Lights &amp; Thrust Mode Annunciator</h2>
+<div class="blue-box"><strong>What this section covers:</strong> A/T Disengage light behaviour and the Thrust Mode Annunciator panel.</div>
+
+<table>
+<tr><th>Light State</th><th>Meaning</th></tr>
+<tr><td>Flashing Red</td><td>A/T disengaged for any reason</td></tr>
+<tr><td>Steady Red</td><td>Disengage Light Test Switch position 2 (red filament test)</td></tr>
+<tr><td>Steady Amber</td><td>Disengage Light Test Switch position 1 (amber filament test)</td></tr>
+<tr><td>Flashing Amber</td><td>A/T airspeed error: speed not held within <span class="reg-value">+10 / –5 knots</span> of commanded speed (when in MCP SPD or FMC SPD, in flight, flaps not up)</td></tr>
+</table>
+
+<div class="amber-box"><strong>Automatic Amber Flash Test:</strong> The A/T amber light auto-tests if A/T is engaged in MCP SPD or FMC SPD mode, more than <span class="reg-value">150 seconds</span> after lift-off, and flaps extended. Flash pattern: 2 sec flash → 2 sec off → 2 sec flash.</div>
+
+<h3>Thrust Mode Annunciator (TMA) Panel</h3>
+<p>Located on the centre instrument panel above N1 rpm indicators (737-400). Displays the active N1 limit reference mode for both autothrottle and manual thrust control.</p>
+
+<div class="red-box"><strong>A/T LIM Annunciation:</strong> When FMC N1 limit calculations become invalid, OR if either engine N1 is less than <span class="reg-value">18%</span>, A/T LIM is annunciated. The autothrottle computer then calculates a single N1 limit for the affected engine(s).</div>
+
+<h2 id="sec-8">8. Flexible Take-off</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Reduced-power (flexible) take-off and how it is achieved with the autothrottle.</div>
+
+<p>When take-off can be performed without full engine power (e.g., light weight, long runway), <strong>reduced power may be used</strong> to reduce engine wear and increase engine life. This is the <strong>Flexible Take-off mode</strong> (FLEX TO on Airbus).</p>
+
+<h3>Achieving Reduced Thrust with A/T</h3>
+<p>Select a temperature on the control panel that is <strong>higher than the ambient airfield temperature</strong>. The thrust computation system calculates a lower limiting EPR or N1, producing reduced power for take-off.</p>
+
+<div class="amber-box"><strong>Exam Tip:</strong> The higher "assumed temperature" fools the FADEC/thrust computation system into thinking the day is hotter, which corresponds to less available engine thrust — thus the system limits to a lower N1/EPR, producing the desired reduced thrust.</div>
+
+<h2 id="sec-9">9. Turbulence</h2>
+<div class="blue-box"><strong>What this section covers:</strong> A/T operation in turbulent conditions.</div>
+
+<div class="green-box"><strong>Light to Moderate Turbulence:</strong> A/T can stay engaged unless performance is poor. Increased thrust lever activity expected; airspeed excursions of <span class="reg-value">10–15 knots</span> are normal.</div>
+
+<div class="red-box"><strong>Severe Turbulence:</strong> The autothrottle is <strong>NOT</strong> to be used in severe turbulence.</div>
+
+<h2 id="sec-10">10. FADEC — Full Authority Digital Engine Control</h2>
+<div class="blue-box"><strong>What this section covers:</strong> FADEC definition, functions, advantages, and thrust control (Airbus reference).</div>
+
+<div class="blue-box"><strong>FADEC = Full Authority Digital Engine Control.</strong> Provides complete engine management throughout all phases of flight.</div>
+
+<h3>FADEC Functions</h3>
+<ul>
+  <li>Gas generation control (fuel flow, acceleration/deceleration, variable bleed valves/stator vanes, turbine clearance, idle setting)</li>
+  <li>Engine limit protection (over-speed N1 and N2)</li>
+  <li>Power management (thrust rating, thrust parameter limits, auto-thrust demand, manual TLA demand)</li>
+  <li>Automatic engine starting sequence (start valve, fuel, ignition, monitoring N1/N2/FF/EGT)</li>
+  <li>Manual engine starting sequence (passive monitoring)</li>
+</ul>
+
+<h3>FADEC Advantages</h3>
+<ul>
+  <li>Reduces crew workload</li>
+  <li>Engine limit protection</li>
+  <li>Improves engine life</li>
+  <li>Saves fuel and maintenance downtime</li>
+</ul>
+
+<h3>FADEC Components</h3>
+<p>Electronic Engine Control (EEC) + fuel metering unit + sensors + peripheral units. <strong>Two FADEC channels per engine</strong> (one controlling, one standby — redundancy).</p>
+<ul>
+  <li>Powered by aircraft AC supply before and during initial start</li>
+  <li>Above <span class="reg-value">12% engine rpm</span>: powered by individual internal magnetic alternator</li>
+</ul>
+
+<h3>FADEC Thrust Lever Detents (Airbus)</h3>
+<p>Thrust levers only moved manually (unlike many autothrottle systems). Lever sector divided into 4 segments by 5 detents/stops. Thrust lever position transmitted to FADEC which computes and displays thrust rating limit and N1 TLA. No reverse idle detent — reverse idle selected by pulling up reverse thrust levers to clear the idle stop.</p>
+
+<div class="green-box">
+  <strong>FADEC Thrust Rating Limit Rule:</strong>
+  <ul>
+    <li>Thrust lever in a detent → FADEC selects rating limit corresponding to that detent</li>
+    <li>Thrust lever between 2 detents → FADEC selects rating limit corresponding to the <strong>higher</strong> mode</li>
+  </ul>
+</div>
+
+<h3>FADEC Fuel Control</h3>
+<p><strong>HMU (Hydromechanical Unit)</strong> — modulated by FADEC; provides fuel flow control to combustion chamber, hydraulic signals to actuators, and over-speed protection.</p>
+<p><strong>FMV (Fuel Metering Valve)</strong> — transforms FADEC orders into fuel flow via torque motor/servo valve. FMV resolver provides electrical feedback proportional to FMV position.</p>
+<p>FADEC computes fuel flow to hold target N1. Allows N2 to vary (within limits) to maintain lift, bleed air, and avoid engine stall/flameout. FADEC also modulates cooling airflow around engine casing to control compressor/turbine clearances.</p>
+
+<h3>FADEC Thrust Control — Automatic Mode</h3>
+<p>In auto-thrust mode (A/THR function active), thrust is computed by the FMGC and limited to value corresponding to thrust lever position (except during alpha floor activation).</p>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 28:</strong>
+  <ul>
+    <li>A/T controls N1, EPR, or target airspeed; no direct thrust indicator exists</li>
+    <li>A/T operates from start of take-off roll to ~2 seconds after touchdown</li>
+    <li>THR HLD engages at 84 kt; clears at 400 ft RA + 18 sec after liftoff</li>
+    <li>A/T auto-disengages: OFF switch, disengage switch, system fault, 2 sec after TD, 10° lever separation in dual approach after FLARE armed</li>
+    <li>Recommended approach speed: VREF + 5 kt — do not add extra for gusts (A/T does this automatically)</li>
+    <li>GA mode: armed below 2000 ft RA; first TOGA = reduced GA thrust; second TOGA = full GA N1</li>
+    <li>A/T flashing amber = airspeed error ±10/–5 kt of commanded speed</li>
+    <li>A/T LIM: FMC N1 invalid OR engine N1 &lt; 18%</li>
+    <li>Flexible T/O: select higher assumed temperature → lower N1/EPR limit → reduced thrust</li>
+    <li>Turbulence: A/T OK in light-moderate (expect ±10–15 kt excursions); NOT used in severe turbulence</li>
+    <li>FADEC: 2 channels per engine; powered by A/C supply then by magnetic alternator above 12% rpm</li>
+    <li>FADEC between detents: selects higher mode rating limit</li>
+  </ul>
+</div>
+
+<section id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box"><em>Instructor-generated questions in DGCA CPL/ATPL examination style.</em></div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">The autothrottle THR HLD annunciation during take-off occurs at:</span>
+    <ol class="q-options" type="a">
+      <li>60 knots IAS</li>
+      <li>84 knots IAS</li>
+      <li>400 ft RA</li>
+      <li>V2 + 20 knots</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 84 knots IAS</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> THR HLD annunciates at <span class="reg-value">84 kt</span> (64 kt for aeroplanes with earlier A/T computers) to indicate that the A/T cannot change thrust level position — but the thrust levers can be manually repositioned. THR HLD remains until 400 ft RA and approximately 18 seconds after liftoff. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> 60 kt is the FD pitch change threshold (Chapter 25), not the A/T THR HLD trigger.</li>
+        <li><strong>(c)</strong> 400 ft RA is when THR HLD is cleared, not when it engages.</li>
+        <li><strong>(d)</strong> V2 + 20 kt is the FD target speed reference, not an A/T threshold.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> THR HLD = autopilot-generated thrust hold. The A/T sets the thrust for T/O, then HOLDS it until the aircraft is safely airborne and established on climb.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">During a dual channel approach with FLARE armed, the A/T will automatically disengage if thrust lever separation exceeds:</span>
+    <ol class="q-options" type="a">
+      <li>5 degrees</li>
+      <li>8 degrees</li>
+      <li>10 degrees</li>
+      <li>15 degrees</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> 10 degrees</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Thrust levers separated by more than <span class="reg-value">10 degrees</span> during a dual channel approach after FLARE is annunciated will cause A/T disengagement. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> 5 degrees is too small; minor lever separation is tolerated.</li>
+        <li><strong>(b)</strong> 8 degrees is the N1 equalization limit, not the A/T disengage threshold.</li>
+        <li><strong>(d)</strong> 15 degrees exceeds the actual threshold — A/T would already have disengaged.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Distinguish the two separation values: <span class="reg-value">8°</span> = N1 equalization limit; <span class="reg-value">10°</span> = A/T disengagement threshold during dual approach with FLARE armed.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">What is the recommended A/T approach speed setting for the Boeing 737-400?</span>
+    <ol class="q-options" type="a">
+      <li>VREF</li>
+      <li>VREF + 5 kt</li>
+      <li>VREF + 15 kt to allow for gusts</li>
+      <li>VREF + 20 kt</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> VREF + 5 kt</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The recommended A/T approach speed setting is <span class="reg-value">VREF + 5 kt</span>. Adding extra speed for wind/gust corrections is NOT recommended — the A/T corrects for normal wind gusts through airspeed and acceleration sensing. Higher command speeds result in excessive approach speeds. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> VREF alone, without the +5 kt buffer, is not recommended.</li>
+        <li><strong>(c), (d)</strong> Adding excessive speed above VREF + 5 kt causes excessive approach speeds; the A/T handles gusts automatically.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> VREF + 5 is the standard 737-400 A/T approach command speed. The A/T's acceleration sensing handles gusts — trusting it is part of the system philosophy.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">During a go-around, pressing the TOGA switch a second time (after initial GA thrust has been set) will cause the A/T to:</span>
+    <ol class="q-options" type="a">
+      <li>Disengage</li>
+      <li>Advance thrust levers to idle</li>
+      <li>Advance thrust levers to full GA N1 limit</li>
+      <li>Remain at reduced GA thrust</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> Advance thrust levers to full GA N1 limit</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The first TOGA switch press advances thrust to reduced GA thrust (producing 1000–2000 fpm rate of climb). Pressing TOGA a second time, after reaching reduced GA thrust, signals the A/T to advance thrust to the <strong>full GA N1 limit</strong>. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Second TOGA press does not disengage the A/T.</li>
+        <li><strong>(b)</strong> Advancing to idle is the opposite of a GA requirement.</li>
+        <li><strong>(d)</strong> Remaining at reduced GA thrust is what happens before the second TOGA press.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The two-step TOGA philosophy: first press = safe assured climb; second press = maximum go-around power. This gives crew a chance to assess before committing to full power.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">FADEC stands for:</span>
+    <ol class="q-options" type="a">
+      <li>Full Automated Digital Engine Computer</li>
+      <li>Full Authority Digital Engine Control</li>
+      <li>Fuel and Air Digital Engine Controller</li>
+      <li>Flight Automated Digital Engine Computer</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Full Authority Digital Engine Control</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> FADEC = Full Authority Digital Engine Control. It provides complete engine management throughout all phases of flight, including gas generation control, engine limit protection, power management, and engine starting. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a), (c), (d)</strong> These are fabricated expansions of the acronym. "Full Authority" is critical — it means the system has complete (full) authority over engine control, unlike partial authority systems.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> "Full Authority" is the key distinguishing word — FADEC has complete control authority, unlike earlier partial authority engine management systems.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">A flexible (reduced thrust) take-off is achieved with the autothrottle by:</span>
+    <ol class="q-options" type="a">
+      <li>Manually setting thrust levers to a lower position before take-off</li>
+      <li>Selecting a higher assumed temperature than the actual ambient temperature on the control panel</li>
+      <li>Selecting a lower N1 limit directly on the EICAS display</li>
+      <li>Reducing the fuel flow on the FMC CDU before take-off</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Selecting a temperature on the control panel that is higher than the ambient airfield temperature causes the thrust computation system to calculate a lower limiting EPR or N1. This produces reduced power for take-off — the "assumed temperature" method. See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Manual lever positioning is the most basic reduced-thrust method, but not how the A/T achieves flexible take-off.</li>
+        <li><strong>(c)</strong> N1 limits on EICAS are computed outputs, not direct control inputs for flexible T/O.</li>
+        <li><strong>(d)</strong> Reducing fuel flow on the FMC CDU is not a standard flexible T/O procedure.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The assumed temperature method is the standard industry technique. Higher assumed temperature = hotter day = less dense air = engine produces less thrust → lower N1/EPR limit computed.</div>
+  </div>
+</div>
+
+</section>
+
+<h2>Master Reference Tables</h2>
+<h3>Key Numerical Values — Chapter 28</h3>
+<table>
+<tr><th>Value</th><th>Parameter</th><th>Section</th></tr>
+<tr><td><span class="reg-value">84 kt</span></td><td>THR HLD engagement IAS (earlier computers: 64 kt)</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td><span class="reg-value">400 ft RA + 18 sec</span></td><td>THR HLD clearance after liftoff</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td><span class="reg-value">2½ min</span></td><td>Automatic climb thrust reduction inhibited when in LVL CHG or V/S mode</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td><span class="reg-value">VREF + 5 kt</span></td><td>Recommended A/T approach command speed</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td><span class="reg-value">400 ft RA</span></td><td>Below this RA: thrust response rate sufficient for rapid acceleration</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td><span class="reg-value">2 sec</span></td><td>A/T auto-disengages this long after touchdown</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td><span class="reg-value">10°</span></td><td>Thrust lever separation causing A/T disengage (dual approach, FLARE armed)</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td><span class="reg-value">8°</span></td><td>N1 equalization limit (thrust lever separation)</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td><span class="reg-value">2½ sec</span></td><td>After FLARE engagement before RETARD engages (or 27 ft RA, whichever first)</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td><span class="reg-value">2000 ft RA</span></td><td>GA mode arms below this RA</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td><span class="reg-value">1000–2000 fpm</span></td><td>Rate of climb achieved at reduced GA thrust</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td><span class="reg-value">+10/–5 kt</span></td><td>A/T amber flashing threshold (airspeed error from commanded speed)</td><td><a href="#sec-7">7</a></td></tr>
+<tr><td><span class="reg-value">150 sec</span></td><td>Minimum after liftoff for amber auto-test to occur</td><td><a href="#sec-7">7</a></td></tr>
+<tr><td><span class="reg-value">18%</span></td><td>Engine N1 below which A/T LIM annunciates</td><td><a href="#sec-7">7</a></td></tr>
+<tr><td><span class="reg-value">10–15 kt</span></td><td>Airspeed excursions expected in light-moderate turbulence with A/T engaged</td><td><a href="#sec-9">9</a></td></tr>
+<tr><td><span class="reg-value">12% rpm</span></td><td>Engine speed above which FADEC powers from internal magnetic alternator</td><td><a href="#sec-10">10</a></td></tr>
+<tr><td><span class="reg-value">30 sec</span></td><td>PMC failure slow N1 drift duration before INOP light</td><td><a href="#sec-4">4</a></td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

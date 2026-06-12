@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 37 – Cockpit Voice Recorder | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #283593; margin-top: 20px; }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0; padding-left: 25px; }
+  li { padding: 3px 0; }
+  .cover { text-align: center; padding: 60px 20px 40px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; margin-bottom: 10px; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin: 8px 0; }
+  .cover .author { font-size: 1em; color: #777; margin-top: 20px; font-style: italic; }
+  .toc { page-break-after: always; }
+  .toc h2 { margin-bottom: 15px; }
+  .toc ol { line-height: 2; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #b71c1c; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 8px 12px; border: 1px solid #ddd; }
+  tr:nth-child(even) { background: #f5f7ff; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .ref-table td:first-child { font-weight: 700; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 37</h1>
+  <div class="subtitle" style="font-size:1.6em; font-weight:700; color:#1a237e;">Cockpit Voice Recorder</div>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes</div>
+  <div class="subtitle">Subject: Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction</a></li>
+    <li><a href="#sec-2">What the CVR Records</a></li>
+    <li><a href="#sec-3">The Voice Recorder Unit</a></li>
+    <li><a href="#sec-4">The Control Unit</a></li>
+    <li><a href="#sec-5">European Regulations</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#ref-tables">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="sec-1">1. Introduction</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The purpose and principal function of the Cockpit Voice Recorder (CVR) system.
+</div>
+
+<p>The principal function of the <strong>Cockpit Voice Recorder (CVR)</strong> system is to preserve, in the event of an air accident, vital information recoverable for use by the <strong>Accident Investigation Branch (AIB)</strong>.</p>
+
+<p>The CVR automatically records the last <span class="reg-value">30 minutes</span> (or <span class="reg-value">2 hours</span> on some aircraft — see regulations) of communications and conversations on the flight deck.</p>
+
+<p><strong>The CVR is operational whenever:</strong></p>
+<ul>
+  <li><span class="reg-value">115 volts AC</span> power is applied to the aircraft, <em>or</em></li>
+  <li>Any engine is running, <em>or</em></li>
+  <li>The aircraft is airborne.</li>
+</ul>
+
+<p>The system comprises: a tape/digital recorder, a control unit, a monitor display, and an <strong>area microphone</strong>.</p>
+
+<div class="box-amber">
+  <strong>Exam Tip:</strong> The CVR operates on three conditions: 115V AC power applied, any engine running, or aircraft airborne — any one of these is sufficient. Know all three.
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="sec-2">2. What the CVR Records</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The five categories of information the CVR must capture, and the regulatory timing of recording.
+</div>
+
+<p>The CVR must record from <em>before</em> the aircraft is capable of moving under its own power until it is no longer able to do so. It should also record pre-start and post-engine-shutdown procedures. The five parameters recorded are:</p>
+
+<ol>
+  <li>Voice communications <strong>transmitted from or received on</strong> the flight deck</li>
+  <li>The <strong>aural environment</strong> of the flight deck</li>
+  <li>Voice communications of flight crew members using the aeroplane's <strong>interphone system</strong></li>
+  <li>Voice or audio signals introduced into a <strong>headset or speaker</strong></li>
+  <li>Voice communications of flight crew using the <strong>PA system</strong></li>
+</ol>
+
+<div class="box-amber">
+  <strong>Memory Aid — "TEIPA":</strong> Transmitted comms, Environment (aural), Interphone, PA system, Audio signals to headset/speaker.
+</div>
+
+<!-- SECTION 3 -->
+<h2 id="sec-3">3. The Voice Recorder Unit</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Physical construction of the CVR unit, its protective housing, colour, location, and the Underwater Locating Device (ULD).
+</div>
+
+<table>
+  <tr><th>Feature</th><th>Detail</th></tr>
+  <tr><td>Housing</td><td>Crash-proof metal box — withstands shock, high temperature, and fire</td></tr>
+  <tr><td>Colour</td><td><strong>Red or orange</strong></td></tr>
+  <tr><td>Location</td><td>Rear of the aircraft, often adjacent to the FDR</td></tr>
+  <tr><td>Front fitting</td><td>Underwater Locating Device (ULD) — emits continuous ultrasonic pulses</td></tr>
+  <tr><td>ULD activation</td><td>Automatically activated by water immersion</td></tr>
+  <tr><td>ULD battery life</td><td>Several days</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p506_0.png" alt="Cockpit Voice Recorder unit">
+  <figcaption>Fig 37.1 — Cockpit Voice Recorder unit and location diagram (source p.506)</figcaption>
+</figure>
+
+<div class="box-red">
+  <strong>Critical Limitation — ULD:</strong> The Underwater Locating Device emits <em>ultrasonic pulses</em> — not radio signals. It helps locate a submerged CVR but has a finite battery life of only <strong>several days</strong>. This is why rapid crash site location is operationally critical.
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="sec-4">4. The Control Unit</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Location, controls, and safeguards of the CVR control unit on the flight deck.
+</div>
+
+<p>The control unit is mounted on the flight deck, usually in the <strong>roof (overhead) panel</strong>. It contains monitoring and testing circuitry and houses the <strong>area microphone</strong> which picks up general flight deck conversations and ambient sounds.</p>
+
+<h3>Control Functions</h3>
+
+<table>
+  <tr><th>Control</th><th>Position/Action</th><th>Function</th></tr>
+  <tr><td><strong>AUTO / ON switch</strong></td><td>AUTO</td><td>CVR starts when first engine starts; stops <span class="reg-value">5 minutes</span> after last engine shutdown</td></tr>
+  <tr><td><strong>AUTO / ON switch</strong></td><td>ON</td><td>CVR begins recording immediately; latches ON until first engine start (clicks back to AUTO)</td></tr>
+  <tr><td><strong>CVR TEST button</strong></td><td>Press</td><td>Activates full BITE self-test; success = visual 'good' indication (needle deflection or LED)</td></tr>
+  <tr><td><strong>ERASE button</strong></td><td>Hold &ge; 2 seconds</td><td>Erases recordings — ONLY possible with: aircraft on ground + all engines stopped + parking brake SET</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p507_0.png" alt="CVR control unit">
+  <figcaption>Fig 37.2 — CVR Control Unit with area microphone (source p.507)</figcaption>
+</figure>
+
+<div class="box-red">
+  <strong>ERASE Safeguards — Critical:</strong> Tape/recording erasure is only possible when ALL of the following are simultaneously true:
+  <ol>
+    <li>Aircraft is <strong>on the ground</strong></li>
+    <li>All engines are <strong>stopped</strong></li>
+    <li>Parking brake is <strong>SET</strong></li>
+    <li>Erase button held depressed for at least <span class="reg-value">2 seconds</span></li>
+  </ol>
+  "Suitable safety interlocks are installed to prevent inadvertent or airborne tape erasure."
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    A[ERASE button pressed] --> B{Aircraft on ground?}
+    B -- No --> C[❌ Erase inhibited]
+    B -- Yes --> D{All engines stopped?}
+    D -- No --> C
+    D -- Yes --> E{Parking brake SET?}
+    E -- No --> C
+    E -- Yes --> F{Button held ≥ 2 seconds?}
+    F -- No --> C
+    F -- Yes --> G[✅ Erasure permitted]
+</pre>
+
+<div class="box-amber">
+  <strong>Quick Revision Summary — Section 4:</strong>
+  <ul>
+    <li>Control unit: overhead panel; contains area microphone.</li>
+    <li>AUTO: starts on first engine start; stops 5 min after last engine shutdown.</li>
+    <li>ON: starts immediately; latches until first engine start then reverts to AUTO.</li>
+    <li>TEST: BITE self-test — visual "good" indication on pass.</li>
+    <li>ERASE: Ground + all engines stopped + parking brake set + hold ≥ 2 sec.</li>
+  </ul>
+</div>
+
+<!-- SECTION 5 -->
+<h2 id="sec-5">5. European Regulations</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> CVR carriage requirements, recording times, dispatch with unserviceable CVR, and combined recorder rules for EU-registered commercial air transport aircraft.
+</div>
+
+<div class="box-red">
+  <strong>CVR Carriage Requirements — EU Commercial Air Transport:</strong>
+  <table style="margin-top:10px;">
+    <tr><th>Case</th><th>Aircraft Category</th><th>Registration</th></tr>
+    <tr><td><strong>Case 1</strong></td><td>All aeroplanes registered after <span class="reg-value">1 April 1998</span> which are &gt;<span class="reg-value">5,700 kg MTOM</span>, OR turbine-powered &lt;5,700 kg with &gt;<span class="reg-value">9 passenger seats</span></td><td>After 1 Apr 1998</td></tr>
+    <tr><td><strong>Case 2</strong></td><td>Turbine-powered aeroplanes &lt;<span class="reg-value">5,700 kg MTOM</span> with &gt;<span class="reg-value">9 passenger seats</span></td><td>Between <span class="reg-value">1 Jan 1990</span> and <span class="reg-value">31 Mar 1998</span></td></tr>
+    <tr><td><strong>Case 3</strong></td><td>All aeroplanes with MTOM &gt;<span class="reg-value">5,700 kg</span></td><td>Any date</td></tr>
+  </table>
+</div>
+
+<h3>Minimum Recording Times</h3>
+<table>
+  <tr><th>Aircraft Category</th><th>Minimum Recording Time</th></tr>
+  <tr><td>Standard minimum</td><td><span class="reg-value">30 minutes</span></td></tr>
+  <tr><td>MTOM &gt;<span class="reg-value">5,700 kg</span>, registered after <span class="reg-value">1 April 1998</span></td><td><span class="reg-value">2 hours</span></td></tr>
+</table>
+
+<h3>Key Rules on Combined Recorders</h3>
+<table>
+  <tr><th>MTOM</th><th>Recorder Rule</th></tr>
+  <tr><td>≤ <span class="reg-value">5,700 kg</span></td><td>May carry a <strong>combined CVR/FDR</strong> (single unit)</td></tr>
+  <tr><td>&gt; <span class="reg-value">5,700 kg</span></td><td>If combined recorders are fitted, must have <strong>two combined units</strong></td></tr>
+</table>
+
+<div class="box-green">
+  <strong>Dispatch with Unserviceable CVR:</strong> The rules are the same as for an unserviceable FDR:
+  <ul>
+    <li>Not reasonably practicable to repair before flight</li>
+    <li>No more than <span class="reg-value">8 further consecutive flights</span></li>
+    <li>Not more than <span class="reg-value">72 hours</span> since the unserviceability was discovered</li>
+    <li>The FDR (if required) must be operative</li>
+  </ul>
+</div>
+
+<div class="box-amber">
+  <strong>Key Difference — CVR vs FDR Regulations:</strong>
+  <table style="margin-top:8px;">
+    <tr><th>Parameter</th><th>FDR</th><th>CVR</th></tr>
+    <tr><td>Standard min recording time</td><td><span class="reg-value">25 hrs</span> (&gt;5,700 kg)</td><td><span class="reg-value">30 min</span></td></tr>
+    <tr><td>Extended recording time</td><td><span class="reg-value">10 hrs</span> (&lt;5,700 kg)</td><td><span class="reg-value">2 hrs</span> (&gt;5,700 kg, post Apr '98)</td></tr>
+    <tr><td>Case 2 date range</td><td>Since 1 Jun 1990</td><td>1 Jan 1990 – 31 Mar 1998</td></tr>
+    <tr><td>Dispatch limits</td><td colspan="2">Identical: 8 flights / 72 hours</td></tr>
+  </table>
+</div>
+
+<!-- Q&A SECTION -->
+<div class="qa-section">
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+
+<div class="box-blue">
+  <strong>Source Questions:</strong> The following questions are taken verbatim from the Oxford source text (pp. 508–509), with answers from the source answer key (p. 510). Explanations are instructor-generated.
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">An altitude alerting system must at least be capable of alerting the crew on:</span>
+    <ol class="q-options" type="1">
+      <li>Approaching selected altitude</li>
+      <li>Abnormal gear/flap combination</li>
+      <li>Excessive vertical speed</li>
+      <li>Excessive terrain closure</li>
+      <li>Excessive deviation from selected altitude</li>
+      <li>Failure to set SPS or RPS as required</li>
+    </ol>
+    <ol class="q-options" type="a">
+      <li>1 &amp; 3</li>
+      <li>2 &amp; 5</li>
+      <li>4 &amp; 6</li>
+      <li>1 &amp; 5</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> 1 &amp; 5</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> An altitude alerting system has two minimum functions: (1) alerting the crew when <em>approaching</em> the selected altitude, and (5) alerting when there is an <em>excessive deviation from</em> the selected altitude. Items 2, 3, 4, and 6 are associated with other warning systems (gear/flap warning, VSI, GPWS, etc.) but are not mandatory functions of an altitude alerting system per se.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a) 1 &amp; 3</strong> — Excessive vertical speed (3) is not a minimum requirement of the altitude alerting system; it relates to VSI or GPWS.</li>
+      <li><strong>(b) 2 &amp; 5</strong> — Abnormal gear/flap combination (2) is a separate configuration warning; not an altitude alerting function.</li>
+      <li><strong>(c) 4 &amp; 6</strong> — Excessive terrain closure (4) = GPWS Mode 2; setting SPS/RPS (6) is a separate altimetry check requirement.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> This question covers altitude alerting systems from Ch. 32/33 but appears in the Ch. 37 question bank. The altitude alerting system alerts on: (1) approaching selected altitude and (5) deviating from selected altitude. Two functions — approaching and deviating.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">According to the regulations, when must the FDR on a 12-seat turbo-prop aircraft begin recording?</span>
+    <ol class="q-options" type="a">
+      <li>Switch on until switch off</li>
+      <li>From before the aircraft is capable of moving under its own power to after the aircraft is no longer capable of moving under its own power</li>
+      <li>From lift-off until the weight-on-wheels switch is made on landing</li>
+      <li>At commencement of the taxi to turning off the runway</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> From before the aircraft is capable of moving under its own power to after the aircraft is no longer capable of moving under its own power</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The regulatory requirement is stated verbatim in the source: "The FDR must start automatically to record the data prior to the aeroplane being capable of moving under its own power and must stop automatically after the aeroplane is incapable of moving under its own power." In practice this means from first engine start until <span class="reg-value">5 minutes</span> after last engine shutdown. A 12-seat turbo-prop exceeds the 9-seat threshold and qualifies for FDR requirements. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — FDR is not manually switched; it starts and stops automatically based on engine state.</li>
+      <li><strong>(c)</strong> — Lift-off to weight-on-wheels would miss taxi, engine start, and post-landing ground roll data — all operationally significant.</li>
+      <li><strong>(d)</strong> — Taxi-only recording would miss pre-taxi engine start and post-landing ground operations.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> This is fundamentally a regulations question about the FDR, not the CVR. The wording "capable of moving under its own power" is the regulatory language — memorise it verbatim. It equates to: first engine start → <span class="reg-value">5 min</span> after last engine shutdown.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">What is the GPWS mode 3 audible alert?</span>
+    <ol class="q-options" type="a">
+      <li>"don't sink, don't sink" followed by "whoop, whoop, pull up" if the sink rate exceeds a certain value</li>
+      <li>"don't sink, don't sink" followed immediately by "whoop, whoop, pull up"</li>
+      <li>"don't sink, don't sink" continuously</li>
+      <li>"Terrain, don't sink" continuously</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> "don't sink, don't sink" continuously</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> GPWS Mode 3 — Altitude loss after take-off or go-around. The alert is "DON'T SINK, DON'T SINK" (spoken phrase), repeated continuously while the condition exists. It does not immediately escalate to "pull up." Escalation to the "whoop whoop pull up" siren is a feature of Mode 1 (excessive descent rate). See Chapter 34 (GPWS).</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Conditional escalation to "pull up" applies to Mode 1, not Mode 3.</li>
+      <li><strong>(b)</strong> — Immediate "pull up" following "don't sink" is not correct for Mode 3.</li>
+      <li><strong>(d)</strong> — "Terrain" is used in Mode 2 (excessive terrain closure), not Mode 3.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> GPWS Mode 3 = altitude loss after T/O or go-around = "DON'T SINK." GPWS Mode 1 = excessive descent rate = "WHOOP WHOOP PULL UP." Mode 2 = excessive terrain closure = "TERRAIN, TERRAIN." Keep these distinct.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">What are the inputs to a modern jet transport aeroplane's stall warning system?</span>
+    <ol class="q-options" type="1">
+      <li>AoA</li>
+      <li>Engine rpm</li>
+      <li>Configuration</li>
+      <li>Pitch and bank information</li>
+      <li>Control surface position</li>
+      <li>Airspeed vector</li>
+    </ol>
+    <ol class="q-options" type="a">
+      <li>1 &amp; 3</li>
+      <li>1, 2, 3, 4, 5 &amp; 6</li>
+      <li>2, 4 &amp; 6</li>
+      <li>1, 3, 5 &amp; 6</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> 1 &amp; 3</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> A modern stall warning system's primary inputs are: (1) <strong>Angle of Attack (AoA)</strong> — the primary sensor, and (3) <strong>Configuration</strong> (flaps/slats position alters the stall AoA threshold). The system adjusts the warning threshold based on configuration. Engine rpm, pitch/bank, control surface position, and airspeed vector are not primary inputs to the stall warning computation in a conventional aerodynamic stall warning system.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(b)</strong> — Including all 6 items is excessive; engine rpm and airspeed vector are not stall warning inputs.</li>
+      <li><strong>(c)</strong> — Engine rpm and airspeed vector are not relevant to angle-of-attack-based stall warning.</li>
+      <li><strong>(d)</strong> — Control surface position (5) and airspeed vector (6) are not standard stall warning inputs.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Stall warning = AoA + Configuration. The system triggers when AoA reaches the pre-stall threshold for the current configuration. This is why the threshold changes with flap/slat selection — different configurations have different stall AoAs.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">GPWS may indicate:</span>
+    <ol class="q-options" type="1">
+      <li>Excessive sink rate after T/O</li>
+      <li>Excessive descent rate</li>
+      <li>Excessive terrain closure</li>
+      <li>Ground proximity, not in the landing configuration</li>
+      <li>Upward deviation from glide slope</li>
+      <li>Proximity to en route terrain</li>
+    </ol>
+    <ol class="q-options" type="a">
+      <li>1, 2, 3, 4</li>
+      <li>All of the above</li>
+      <li>2, 3, 4, 5</li>
+      <li>3, 4, 5, 6</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> 1, 2, 3, 4</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Basic GPWS (Mk I–VI type) covers: (1) excessive sink rate after T/O (Mode 3), (2) excessive descent rate (Mode 1), (3) excessive terrain closure (Mode 2), and (4) ground proximity not in landing configuration (Mode 4). Item (5) — upward deviation from glide slope — is <em>not</em> a GPWS mode; GPWS Mode 5 covers <em>below glide slope</em>, not above. Item (6) — proximity to en route terrain — requires TAWS/EGPWS with terrain database; not basic GPWS. See Chapter 34.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(b)</strong> — (5) and (6) are incorrect: upward GS deviation and en-route terrain proximity are NOT basic GPWS modes.</li>
+      <li><strong>(c)</strong> — (5) upward GS deviation is not a GPWS mode.</li>
+      <li><strong>(d)</strong> — (6) en-route terrain proximity is EGPWS/TAWS, not basic GPWS.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The 6 basic GPWS modes: 1=excessive descent, 2=terrain closure, 3=altitude loss after T/O, 4=proximity not configured, 5=below GS, 6=altitude callouts. Mode 5 is <em>below</em> glide slope, not above — a common exam trap.</div>
+  </div>
+</div>
+
+</div><!-- end qa-section -->
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="ref-tables">Master Reference Tables</h2>
+
+<h3>CVR vs FDR — Key Comparison</h3>
+<table class="ref-table">
+  <tr><th>Parameter</th><th>CVR</th><th>FDR</th></tr>
+  <tr><td>Colour</td><td><span class="reg-value">Red or Orange</span></td><td><span class="reg-value">Red</span></td></tr>
+  <tr><td>Location</td><td>Rear of aircraft</td><td>Rear, under fin</td></tr>
+  <tr><td>ULD</td><td>Yes — ultrasonic pulses</td><td>Yes — ultrasonic pulses</td></tr>
+  <tr><td>Standard min recording time</td><td><span class="reg-value">30 minutes</span></td><td><span class="reg-value">25 hours</span> (&gt;5,700 kg)</td></tr>
+  <tr><td>Extended recording time</td><td><span class="reg-value">2 hours</span> (&gt;5,700 kg, post 1 Apr '98)</td><td><span class="reg-value">10 hours</span> (&lt;5,700 kg)</td></tr>
+  <tr><td>Auto start trigger</td><td>First engine start (AUTO mode)</td><td>First engine start</td></tr>
+  <tr><td>Auto stop</td><td><span class="reg-value">5 min</span> after last engine shutdown</td><td><span class="reg-value">5 min</span> after last engine shutdown</td></tr>
+  <tr><td>Dispatch with u/s unit</td><td colspan="2">Max <span class="reg-value">8 flights</span> / <span class="reg-value">72 hours</span></td></tr>
+  <tr><td>Erase safeguards</td><td>Ground + engines off + park brake + 2 sec hold</td><td>N/A (no erase function)</td></tr>
+  <tr><td>Combined unit: ≤5,700 kg</td><td colspan="2">One combined CVR/FDR permitted</td></tr>
+  <tr><td>Combined unit: &gt;5,700 kg</td><td colspan="2">Must have TWO combined units</td></tr>
+</table>
+
+<h3>Answer Key — Source Questions</h3>
+<table>
+  <tr><th>Q</th><th>Ans</th><th>Topic</th></tr>
+  <tr><td>1</td><td>d</td><td>Altitude alerting system functions</td></tr>
+  <tr><td>2</td><td>b</td><td>FDR recording start/stop requirement</td></tr>
+  <tr><td>3</td><td>c</td><td>GPWS Mode 3 alert</td></tr>
+  <tr><td>4</td><td>a</td><td>Stall warning inputs</td></tr>
+  <tr><td>5</td><td>a</td><td>GPWS modes covered</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

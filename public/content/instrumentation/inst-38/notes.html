@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 38 – Engine Instrumentation | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #283593; margin-top: 20px; }
+  h4 { font-size: 1em; font-weight: 700; color: #37474f; }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0; padding-left: 25px; }
+  li { padding: 3px 0; }
+  .cover { text-align: center; padding: 60px 20px 40px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; margin-bottom: 10px; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin: 8px 0; }
+  .cover .author { font-size: 1em; color: #777; margin-top: 20px; font-style: italic; }
+  .toc { page-break-after: always; }
+  .toc h2 { margin-bottom: 15px; }
+  .toc ol { line-height: 2; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #b71c1c; }
+  blockquote { font-family: Georgia, serif; font-style: italic; border-left: 4px solid #ccc; background: #f9f9f9; margin: 15px 0; padding: 12px 20px; border-radius: 0 6px 6px 0; }
+  code, .formula { font-family: "Courier New", monospace; background: #f5f5f5; padding: 2px 6px; border-radius: 3px; }
+  .worked-example { background: #f5f5f5; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin: 15px 0; page-break-inside: avoid; }
+  .worked-example h4 { margin-top: 0; color: #1a237e; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 8px 12px; border: 1px solid #ddd; }
+  tr:nth-child(even) { background: #f5f7ff; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .ref-table td:first-child { font-weight: 700; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 38</h1>
+  <div class="subtitle" style="font-size:1.6em; font-weight:700; color:#1a237e;">Engine Instrumentation</div>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes</div>
+  <div class="subtitle">Subject: Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction — Engine Instrument Categories</a></li>
+    <li><a href="#sec-2">Types of Display</a></li>
+    <li><a href="#sec-3">Thrust and Power Measuring Instruments (EPR, P7, Torque)</a></li>
+    <li><a href="#sec-4">Engine RPM Measurement (Tachometers)</a></li>
+    <li><a href="#sec-5">Temperature Sensing Equipment</a></li>
+    <li><a href="#sec-6">Pressure Gauges</a></li>
+    <li><a href="#sec-7">Engine Vibration Monitoring</a></li>
+    <li><a href="#sec-8">Fuel Quantity and Flow Measurement</a></li>
+    <li><a href="#sec-9">Remote Signal Transmission &amp; Flight Hour Meter</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#ref-tables">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="sec-1">1. Introduction — Engine Instrument Categories</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The two fundamental categories of engine instruments and the key parameters each type measures.
+</div>
+
+<p>Engine instruments are divided into two fundamental categories:</p>
+
+<table>
+  <tr><th>Category</th><th>Function</th><th>Examples</th></tr>
+  <tr><td><strong>Performance Indicators</strong></td><td>Measure engine thrust/power output</td><td>EPR gauge, Fan Speed (N1) gauge, Torque meter</td></tr>
+  <tr><td><strong>Engine Condition Indicators</strong></td><td>Monitor engine health/serviceability</td><td>EGT gauge, Compressor Speed, Oil Pressure, Oil Temperature</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p515_0.png" alt="Engine parameter sensor positions">
+  <figcaption>Fig 38.1 — Parameters measured and sensor positions on a gas turbine engine (source p.515)</figcaption>
+</figure>
+
+<div class="box-amber">
+  <strong>Exam Tip:</strong> EPR and N1 are <em>Performance Indicators</em> (thrust). EGT, N2, oil pressure/temperature are <em>Condition Indicators</em>. The distinction matters for exam questions asking which parameters indicate "thrust" versus "engine health."
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="sec-2">2. Types of Display</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Analogue vs. electronic display systems.
+</div>
+
+<table>
+  <tr><th>Type</th><th>Description</th></tr>
+  <tr><td><strong>Analogue (Clockwork cockpit)</strong></td><td>Multiple individual gauges; conventional needle-and-dial instruments</td></tr>
+  <tr><td><strong>Electronic (Glass cockpit)</strong></td><td>CRT or LCD panels with LED digital displays; flexible formatting</td></tr>
+</table>
+
+<p>Both types convey essentially the same information, but the glass cockpit offers greater flexibility and is now the preferred means of displaying both flight and engine instrumentation. A small number of conventional gauges are retained in glass cockpit aircraft for backup in case of electronic display failure.</p>
+
+<!-- SECTION 3 -->
+<h2 id="sec-3">3. Thrust and Power Measuring Instruments</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> EPR, P7 gauge, integrated EPR, and torquemeter systems — construction and principles of operation.
+</div>
+
+<h3>3.1 Jet Pipe Pressure (P7) Gauge</h3>
+<p>Measures jet pipe (exhaust) pressure directly. Calibrated in <span class="reg-value">inches of mercury (inHg)</span>, <span class="reg-value">pounds per square inch (psi)</span>, or <strong>percentage of maximum thrust</strong>.</p>
+
+<h3>3.2 Engine Pressure Ratio (EPR) Gauge</h3>
+<p>Measures the <em>ratio</em> of jet pipe pressure to engine air intake pressure. This is the most common thrust indicator on turbofan engines.</p>
+
+<figure>
+  <img src="figs/fig_p516_0.png" alt="EPR indicating system">
+  <figcaption>Fig 38.2 — Engine Pressure Ratio (EPR) indicating system (source p.516)</figcaption>
+</figure>
+
+<div class="box-blue">
+  <strong>EPR System Operation:</strong>
+  <p>The electronic EPR system uses <strong>two transducers</strong> that sense the relevant pressures and <em>vibrate at frequencies proportional to those pressures</em>. A computer calculates the electrical signal appropriate to the pressures and sends it to the EPR gauge and to the engine management system.</p>
+  <p>On some large turbofan engines, an <strong>integrated EPR</strong> is produced by comparing the integrated turbine discharge pressure and fan outlet pressure against the compressor inlet pressure.</p>
+</div>
+
+<div class="box-red">
+  <strong>EPR — Apparent Drop on Take-off Run (CRITICAL EXAM TOPIC):</strong>
+  <p>During the take-off roll, as forward airspeed increases, the <em>engine intake pressure rises</em> (ram effect). The jet pipe pressure is initially unaffected at low airspeed. Therefore the <strong>EPR ratio (jet pipe ÷ intake) FALLS — this is an apparent drop only</strong>, not a loss of thrust.</p>
+  <p>An inexperienced pilot may attempt to advance throttles further to restore EPR, risking exceedance of N1, N2, N3, and EGT limits.</p>
+  <p><strong>Standard procedure:</strong> EPR must be set before approximately <span class="reg-value">60 knots</span> — <em>no increase in engine power is permitted</em> after this speed (except in emergency).</p>
+  <p>After take-off, as airspeed increases beyond V2, the increased intake pressure is transmitted through the engine to the jet pipe, restoring the ratio to the take-off setting.</p>
+</div>
+
+<div class="worked-example">
+  <h4>Worked Example — EPR apparent drop</h4>
+  <p>Assume EPR is set to 1.60 at brake release (intake pressure P₁ = 14.7 psi, jet pipe P₇ = 23.5 psi → EPR = 1.60).</p>
+  <p>At 60 kt (ram effect): P₁ rises to 15.5 psi; P₇ initially unchanged at 23.5 psi → EPR = 23.5/15.5 = <strong>1.516</strong> (apparent fall).</p>
+  <p>The engine has NOT lost thrust — the ratio has changed due to the ram rise in intake pressure. Power must NOT be increased at this point.</p>
+</div>
+
+<h3>3.3 Engine Torque (Turboprop/Turboshaft)</h3>
+<p>Turboprop and turboshaft engines produce <strong>torque</strong>, not direct jet thrust. Power = Torque × rpm.</p>
+<p>Torque is measured <strong>between the engine and the reduction gearbox</strong>.</p>
+
+<table>
+  <tr><th>Method</th><th>Principle</th><th>Key Points</th></tr>
+  <tr><td><strong>Oil Torquemeter</strong></td><td>Axial thrust on helical gears balanced by engine oil pressure (up to <span class="reg-value">800 psi</span>)</td><td>Oil pressure in cylinders counteracts axial gear load; pressure ∝ torque; bleed hole acts as feedback element</td></tr>
+  <tr><td><strong>Electronic Torquemeter</strong></td><td>Phase difference between two concentric shafts (Torque Shaft + Reference Shaft) using exciter wheels and EM pick-ups</td><td>AC voltage generated; phase displacement ∝ torque (shaft twist); lighter and more reliable</td></tr>
+</table>
+
+<p>Torque indicator units vary by system: psi, inch/foot pounds, newton metres, BHP/SHP, or percentage of maximum. The indicator can show negative torque (windmilling propeller). On FADEC systems, limits can be digitally adjusted.</p>
+
+<div class="box-amber">
+  <strong>Memory Aid — Torque measurement location:</strong> Always measured <em>between engine and reduction gearbox</em> — this is where the torsional load is greatest and most representative of engine power output.
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="sec-4">4. Engine RPM Measurement (Tachometers)</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Three methods of measuring engine rotational speed; multi-spool designations; synchroscope.
+</div>
+
+<p>The tachometer (tacho) measures engine rotational speed. For piston engines, it measures crankshaft speed. For gas turbines, it measures compressor speed. There are three basic methods:</p>
+
+<h3>4.1 Mechanical (Magnetic) Tachometer</h3>
+<p>Found on older piston aircraft. Uses a flexible drive shaft connected to a drag-cup indicator:</p>
+<ol>
+  <li>A <strong>magnet</strong> is driven by the engine via the flex drive</li>
+  <li>The rotating magnet induces <strong>eddy currents</strong> in an aluminium/copper <strong>drag-cup</strong></li>
+  <li>The eddy currents create a torque pulling the drag-cup in the direction of magnet rotation</li>
+  <li>A <strong>hairspring</strong> opposes the motion; the equilibrium position moves the pointer</li>
+  <li>Temperature compensation devices are incorporated</li>
+</ol>
+
+<h3>4.2 Electrical Generator System (Tacho-Generator)</h3>
+<p>Possibly the oldest system still in use on large aircraft. Uses a small <strong>3-phase tacho-generator</strong> driven by the engine. Output feeds an indicator with an asynchronous motor driving a drag-cup and pointer. Displays percentage of maximum engine speed or actual rpm.</p>
+
+<div class="box-blue">
+  <strong>Multi-spool Designations:</strong>
+  <ul>
+    <li><strong>N1</strong> — Low Pressure compressor spool speed</li>
+    <li><strong>N2</strong> — Intermediate Pressure compressor spool speed</li>
+    <li><strong>N3</strong> — High Pressure compressor spool speed</li>
+  </ul>
+  <p>N1 and EPR are the primary parameters used to measure thrust in turbojets. The indicator displays percentage speed, with <span class="reg-value">100%</span> corresponding to optimum turbine speed.</p>
+</div>
+
+<div class="box-red">
+  <strong>Overspeed Pointer (Trailing/Limit Pointer):</strong>
+  <ul>
+    <li>Fitted concentrically with the main pointer, initially at the maximum rpm graduation</li>
+    <li>If the main pointer <em>exceeds</em> the limit, the limit pointer is <em>carried with it</em> and stays at the maximum speed reached</li>
+    <li>When speed reduces, the limit pointer <em>remains</em> at the maximum recorded — this is a maintenance record</li>
+    <li>Reset: apply a separate <span class="reg-value">28V DC</span> supply to a solenoid in the indicator</li>
+  </ul>
+</div>
+
+<h3>4.3 Inductive Probe (Speed Probe) System</h3>
+<p>Used where tacho-generators cannot be driven from intermediate or low-pressure shafts. A speed probe is positioned on the compressor casing aligned with a <strong>phonic wheel</strong> (toothed gear) or actual fan blades.</p>
+<ul>
+  <li>As the spool rotates, it alters magnetic flux in the probe</li>
+  <li>This changes the current in the probe coil</li>
+  <li>The frequency of change is <em>directly proportional to spool speed</em></li>
+  <li>The frequency signal drives the indicator</li>
+</ul>
+<p>Advantages: fewer moving parts; can provide multiple outputs (speed indication, engine start warning lamp, automatic power control, flight data acquisition).</p>
+
+<h3>4.4 Colour Coding on RPM Indicators</h3>
+<table>
+  <tr><th>Colour</th><th>Meaning</th></tr>
+  <tr><td><strong>Green</strong></td><td>Normal operating range</td></tr>
+  <tr><td><strong>Amber</strong></td><td>Caution range</td></tr>
+  <tr><td><strong>Red</strong></td><td>Maximum or minimum speed; restricted (vibration) ranges</td></tr>
+</table>
+
+<h3>4.5 Synchroscope</h3>
+<p>On multi-engine aircraft, engine speed must be synchronised to reduce structural vibration and noise. The <strong>Synchroscope</strong> provides a qualitative indication of speed difference between engines:</p>
+<ul>
+  <li>One engine is designated <strong>master</strong>; others are <strong>slaves</strong></li>
+  <li>Displays whether slave engines are running faster or slower than the master</li>
+  <li>Designed to operate from AC generated by the tachometer system</li>
+</ul>
+
+<!-- SECTION 5 -->
+<h2 id="sec-5">5. Temperature Sensing Equipment</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The four types of temperature sensors, thermocouple operation, probe materials, and temperature measurement terminology.
+</div>
+
+<p>Engine temperature ranges from <span class="reg-value">−56°C to +1200°C</span>. Four types of measuring devices are used:</p>
+
+<pre class="mermaid">
+flowchart LR
+    A[Temperature<br/>Measurement] --> B[Expansion Type<br/>e.g. mercury thermometer<br/>bimetallic strip]
+    A --> C[Vapour Pressure Type<br/>liquid-to-vapour state change<br/>pressure ∝ temp]
+    A --> D[Electrical Type<br/>Resistance bulb RTD<br/>Thermocouple Seebeck Effect]
+    A --> E[Radiation Type<br/>Pyrometry<br/>emissivity-based optical]
+    B --> F[Low temp<br/>Direct reading]
+    C --> F
+    D --> G[High temp<br/>Remote sensing]
+    E --> G
+</pre>
+
+<h3>5.1 Thermocouple (Thermo-electric Type) — Most Important for Turbines</h3>
+<p>Two dissimilar metals joined at a junction produce a small voltage (thermo-EMF) proportional to the temperature at the junction — the <strong>Seebeck Effect</strong>.</p>
+
+<table>
+  <tr><th>Junction</th><th>Location</th><th>Role</th></tr>
+  <tr><td><strong>Hot Junction</strong></td><td>In the engine gas stream (the probe)</td><td>Senses temperature → generates EMF</td></tr>
+  <tr><td><strong>Cold Junction</strong></td><td>Cockpit engine instrument</td><td>Reference; EMF measured here on millivoltmeter</td></tr>
+</table>
+
+<div class="box-green">
+  <strong>Industry Standard Thermocouple Materials:</strong>
+  <ul>
+    <li><strong>Chromel</strong> (nickel chromium) — positive element</li>
+    <li><strong>Alumel</strong> (nickel aluminium) — negative element</li>
+  </ul>
+  <p>Selected for: ability to withstand very high temperatures AND a reasonable volts-per-degree ratio. Not the highest milli-voltage output available, but ideal combination of properties.</p>
+</div>
+
+<div class="box-blue">
+  <strong>Parallel Connection of Probes:</strong> Multiple probes are connected in parallel around the periphery of the turbine/exhaust. This means:
+  <ul>
+    <li>The cockpit reads the <em>average</em> temperature of all probes</li>
+    <li>If one probe is damaged, the effect on the reading is minimal (slight drop)</li>
+    <li>A larger portion of the gas stream is sampled, improving accuracy</li>
+  </ul>
+</div>
+
+<div class="box-red">
+  <strong>Critical — No External Power Needed:</strong> The thermocouple system requires NO power supply to indicate temperature (the probe generates its own EMF). However, if the signal is to feed a temperature limiting system, the voltage will need to be amplified (using the aircraft's electrical system). In combined systems, the probes contain TWO hot junctions: one for the limiter, one for the indicator.
+</div>
+
+<h3>5.2 Temperature Probe Locations and Terminology</h3>
+<table>
+  <tr><th>Abbreviation</th><th>Full Name</th><th>Position</th></tr>
+  <tr><td><strong>TIT</strong></td><td>Turbine Inlet Temperature</td><td>Before the turbine</td></tr>
+  <tr><td><strong>TET</strong></td><td>Turbine Entry Temperature</td><td>Before the turbine</td></tr>
+  <tr><td><strong>TGT</strong></td><td>Turbine Gas Temperature</td><td>Inside the turbine</td></tr>
+  <tr><td><strong>EGT</strong></td><td>Exhaust Gas Temperature</td><td>After the turbine</td></tr>
+  <tr><td><strong>JPT</strong></td><td>Jet Pipe Temperature</td><td>Combined with P7 pitot probes</td></tr>
+</table>
+
+<p>Probe position depends on the material's ability to withstand the temperature encountered. TIT/TET locations have the highest temperatures; EGT probes are downstream where temperatures are lower and metal endurance is sufficient.</p>
+
+<h3>5.3 Air Temperature — SAT, RAT, TAT</h3>
+<table>
+  <tr><th>Term</th><th>Definition</th><th>Notes</th></tr>
+  <tr><td><strong>SAT</strong></td><td>Static Air Temperature</td><td>True static condition; what performance data requires</td></tr>
+  <tr><td><strong>RAT</strong></td><td>Ram Air Temperature</td><td>SAT + ram rise (due to adiabatic compression + skin friction at speed)</td></tr>
+  <tr><td><strong>TAT</strong></td><td>Total Air Temperature</td><td>SAT + full ram rise; probes have ~<span class="reg-value">100%</span> recovery factor; used at high Mach numbers</td></tr>
+</table>
+
+<div class="box-blue">
+  <strong>Recovery Factor:</strong> A sensor's ability to detect the temperature rise due to ram effect, expressed as a percentage. If recovery factor = <span class="reg-value">0.80</span>, the sensor reads SAT + 80% of ram rise. TAT probes approach 100% recovery factor.
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="sec-6">6. Pressure Gauges</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Elastic pressure sensing elements — diaphragms, capsules, bellows, and Bourdon tubes; remote indicating systems.
+</div>
+
+<p>Pressure = force per unit area. Common units: <span class="reg-value">psi</span>, <span class="reg-value">inHg</span>, <span class="reg-value">bar</span> (1 bar = <span class="reg-value">14.5 psi</span>), <span class="reg-value">pascal</span> (1 bar = <span class="reg-value">100,000 Pa</span>). Pressure gauges measure <strong>gauge pressure</strong> (difference between absolute and atmospheric pressure).</p>
+
+<h3>Elastic Pressure Sensing Elements</h3>
+<table>
+  <tr><th>Element</th><th>Construction</th><th>Pressure Range</th><th>Application</th></tr>
+  <tr><td><strong>Diaphragm</strong></td><td>Corrugated circular metal disc, secured at edge</td><td>Low pressure</td><td>General low-pressure sensing</td></tr>
+  <tr><td><strong>Capsule (Aneroid)</strong></td><td>Two diaphragms sealed together — sealed chamber (aneroid) or open (pressure capsule)</td><td>Low pressure</td><td>More sensitive than single diaphragm; altimeters</td></tr>
+  <tr><td><strong>Bellows</strong></td><td>Extended corrugated diaphragm principle — accordion-like</td><td>High, low, or differential</td><td>LP booster pump output</td></tr>
+  <tr><td><strong>Bourdon Tube</strong></td><td>C-shaped tube with elliptical cross-section; free end sealed; applied pressure straightens the tube</td><td>Higher pressures</td><td>Engine oil pressure</td></tr>
+</table>
+
+<div class="box-amber">
+  <strong>MAP Gauge (Manifold Absolute Pressure):</strong> Piston engine gauge that reads absolute pressure — calibrated in <span class="reg-value">inHg</span>. Under standard conditions reads <span class="reg-value">30 inHg</span> (called Static Boost). Earlier versions were "Boost Gauges" calibrated in psi. Can read <em>less than atmospheric pressure</em> when the engine is running (throttled back). Note: reads <em>absolute</em> pressure, not gauge pressure.
+</div>
+
+<h3>Remote Indicating Pressure Systems</h3>
+<p>Where it would be impractical to run fluid pipelines to the cockpit (e.g., outer engine of a B747), <strong>remote indicating systems</strong> are used:</p>
+<ul>
+  <li>A <strong>transmitter</strong> at the pressure source</li>
+  <li>An <strong>indicator (receiver)</strong> on the cockpit panel</li>
+  <li>Can be AC or DC operated</li>
+  <li>Advantage: hazardous fluids (e.g., engine oil, hydraulic fluid) need not be piped into the cockpit</li>
+  <li>Saves weight by reducing pipeline length</li>
+</ul>
+
+<!-- SECTION 7 -->
+<h2 id="sec-7">7. Engine Vibration Monitoring</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Vibration Monitoring Equipment (VME) — sensors, principles, and display.
+</div>
+
+<p>Vibration Monitoring Equipment (VME) is fitted to almost all commercial jet aircraft. Gas turbines have very low inherent vibration; any increase is indicative of damage that may lead to failure.</p>
+
+<h3>Sensor Types</h3>
+<table>
+  <tr><th>Sensor</th><th>Principle</th></tr>
+  <tr><td><strong>Piezoelectric crystal</strong></td><td>Crystal generates electrical charge when mechanically stressed by vibration</td></tr>
+  <tr><td><strong>Moving coil / magnet</strong></td><td>Loosely mounted magnet moves within a fixed coil; relative motion generates a signal</td></tr>
+</table>
+
+<h3>VME Operation</h3>
+<p>Both sensor types are suspended within a fixed coil carrying <span class="reg-value">115 volts</span> at <span class="reg-value">400 Hz</span>. The sensor moves in sympathy with engine vibration. The signal is:</p>
+<ol>
+  <li><strong>Filtered:</strong> only frequencies indicative of damage pass through (normal engine frequencies are erased)</li>
+  <li><strong>Amplified</strong> by the amplifier</li>
+  <li><strong>Rectified</strong> and sent to the vibration indicator</li>
+</ol>
+<p>Vibration is measured and displayed in <strong>Relative Amplitude (Rel Ampl)</strong>. If vibration exceeds a predetermined threshold, a <strong>warning light</strong> illuminates on the instrument.</p>
+
+<div class="box-red">
+  <strong>Monitoring Precision:</strong> Modern engine VME can identify the vibration level of <em>each rotating assembly individually</em>, allowing pinpointing of the vibration source. Warnings are provided in the cockpit if vibration limits are exceeded; some systems provide continuous readout.
+</div>
+
+<!-- SECTION 8 -->
+<h2 id="sec-8">8. Fuel Quantity and Flow Measurement</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Float systems (volume), capacitance systems (mass), fuel flowmeters, and integrated flowmeters.
+</div>
+
+<h3>8.1 Volume vs. Mass Measurement</h3>
+<table>
+  <tr><th>Method</th><th>Units</th><th>Application</th><th>Limitation</th></tr>
+  <tr><td>Volume measurement</td><td>Gallons/litres</td><td>Light aircraft only</td><td>Does not account for density changes with temperature</td></tr>
+  <tr><td>Mass measurement</td><td>kg or lb</td><td>All commercial aircraft</td><td>More complex system required</td></tr>
+</table>
+
+<h3>8.2 Float System (DC Volume)</h3>
+<p>A float rests on the fuel surface. Its movement repositions a wiper on a variable resistor, altering current to a cockpit indicator. Simple but has two significant errors:</p>
+<ol>
+  <li>Fuel tanks are rarely symmetrical — float level is not a true measure of quantity</li>
+  <li>Errors occur during manoeuvres as attitude changes affect float position</li>
+</ol>
+<p>The gauge is set to be accurate only at the low and empty positions.</p>
+
+<h3>8.3 Capacitance Fuel Gauge System</h3>
+<p>The standard system on commercial aircraft. Measures mass using the relationship between fuel level (dielectric permittivity) and capacitance.</p>
+
+<div class="box-blue">
+  <strong>Capacitance Formula:</strong>
+  <p style="font-family:'Courier New',monospace; padding:10px; background:#f5f5f5; border-radius:4px;">
+    C = Er × (A / D)
+  </p>
+  <p>Where:</p>
+  <ul>
+    <li><strong>C</strong> = Capacitance (farads; typically picofarads, 10⁻¹² F)</li>
+    <li><strong>Er</strong> = Relative Permittivity of the dielectric (fuel or air)</li>
+    <li><strong>A</strong> = Area of plates (constant)</li>
+    <li><strong>D</strong> = Distance between plates (constant)</li>
+  </ul>
+  <p>Since A and D are fixed, capacitance varies only with Er — which changes as the ratio of fuel to air in the tank changes.</p>
+</div>
+
+<h3>Typical Dielectric Values</h3>
+<table>
+  <tr><th>Material</th><th>Relative Permittivity (Er)</th></tr>
+  <tr><td>Vacuum / Air</td><td><span class="reg-value">1.0 / 1.0006</span></td></tr>
+  <tr><td>Gasolene</td><td><span class="reg-value">1.95</span></td></tr>
+  <tr><td>Kerosene</td><td><span class="reg-value">2.10</span></td></tr>
+  <tr><td>Distilled Water</td><td><span class="reg-value">81.00</span></td></tr>
+  <tr><td>Impure Water</td><td><span class="reg-value">0</span> (effectively shorts capacitor)</td></tr>
+</table>
+
+<div class="box-red">
+  <strong>Water Contamination Warning:</strong> If water is present in fuel tanks, it effectively <em>shorts</em> the sensing capacitors. The indicator is driven <strong>beyond full scale</strong> — a dangerously misleading reading. A red arc must be marked on the indicator extending from calibrated zero to the lowest readable indication in flight, if unusable fuel exceeds <span class="reg-value">1 gallon</span> or <span class="reg-value">5%</span> of tank capacity (whichever is greater).
+</div>
+
+<h3>Reference Unit and Temperature Compensation</h3>
+<ul>
+  <li>A <strong>Reference Unit</strong> is always submerged in the unusable fuel to improve accuracy when permittivity changes from normal</li>
+  <li>A <strong>Compensating Capacitor</strong> corrects for temperature-induced changes in fuel density and Er, allowing the system to indicate <em>mass</em> rather than volume</li>
+  <li>The system senses changes in Specific Gravity (SG) to indicate mass</li>
+</ul>
+
+<h3>Fail-Safe and Test Features</h3>
+<ul>
+  <li>On failure: indicator slowly drives to zero (fail-safe)</li>
+  <li>A test circuit simulates tank emptying; on release, pointer returns to original position</li>
+  <li>A <strong>Fuel Totalizer</strong> can display the sum of all tank gauges</li>
+</ul>
+
+<h3>8.4 Fuel Flowmeter</h3>
+<p>Measures instantaneous fuel consumption rate. Units: volume flow (<span class="reg-value">gallons/hr</span> or <span class="reg-value">litres/hr</span>) or mass flow (<span class="reg-value">lb/hr</span> or <span class="reg-value">kg/hr</span>).</p>
+
+<p>Modern flowmeter uses an electrical sensor with a <strong>helical vane impeller</strong> containing an embedded magnet. Fuel flow rotates the impeller → pick-off coil generates a sinusoidal signal at frequency proportional to volume flow rate. Temperature correction converts this to mass flow.</p>
+
+<p>The flowmeter is located in the <strong>high-pressure fuel line to the burners</strong>. An <strong>Integrated Flowmeter</strong> displays both fuel flow rate and total fuel consumed (rate integrated over time).</p>
+
+<!-- SECTION 9 -->
+<h2 id="sec-9">9. Remote Signal Transmission &amp; Flight Hour Meter</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Remote position indicating systems and the flight hour meter.
+</div>
+
+<p>Remote indicating systems are used to indicate the position of valves, flaps, or levers on engines to the cockpit. Each system comprises:</p>
+<ul>
+  <li>A <strong>Transmitter</strong> at the source position to be measured</li>
+  <li>A <strong>Receiver (indicator)</strong> on the appropriate cockpit panel</li>
+  <li>Can be AC or DC operated</li>
+</ul>
+
+<h3>Flight Hour Meter</h3>
+<p>Records engine and systems usage time. Activated automatically via the <strong>weight-on-wheels switch</strong> or (more commonly) an <strong>airspeed switch</strong>.</p>
+
+<div class="box-amber">
+  <strong>Quick Revision Summary — Ch. 38:</strong>
+  <ul>
+    <li><strong>Performance indicators:</strong> EPR, N1, Torque. <strong>Condition indicators:</strong> EGT, N2, oil pressure/temp.</li>
+    <li>EPR apparent drop during take-off at low speed — set EPR before <span class="reg-value">60 kt</span>, no increase after.</li>
+    <li>Torquemeter: oil pressure type (up to <span class="reg-value">800 psi</span>) or electronic phase-shift type. Measured between engine and reduction gearbox.</li>
+    <li>Tacho methods: Mechanical (eddy current drag-cup), Generator (3-phase), Inductive probe (phonic wheel). N1=LP, N2=IP, N3=HP.</li>
+    <li>Thermocouple: Chromel/Alumel. Hot junction in gas stream, cold junction at cockpit. Parallel probes → average reading. No external power for indication.</li>
+    <li>Temperature: SAT → RAT → TAT (TAT = SAT + full ram rise, ~100% recovery factor).</li>
+    <li>Pressure elements: Diaphragm/Capsule (low), Bellows (variable), Bourdon tube (high/oil pressure).</li>
+    <li>VME: Piezo or magnet/coil sensor. Filter → amplifier → rectifier → display in Rel Ampl.</li>
+    <li>Capacitance fuel gauge: C = Er × A/D. Water → reads beyond full scale. Reference unit always submerged. Fail-safe = drives to zero.</li>
+  </ul>
+</div>
+
+<!-- Q&A SECTION -->
+<div class="qa-section">
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+<div class="box-blue">
+  <strong>Note:</strong> Chapter 38 has no dedicated source question bank. The following questions are <em>instructor-generated</em> in DGCA CPL/ATPL style, covering all major topics of this chapter.
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">Which of the following are classified as "Performance Indicators" on a turbofan engine?</span>
+    <ol class="q-options" type="a">
+      <li>EGT and N2</li>
+      <li>Oil pressure and oil temperature</li>
+      <li>EPR and N1 (fan speed)</li>
+      <li>Vibration level and fuel flow</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> EPR and N1 (fan speed)</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Performance Indicators measure thrust output. The two primary performance indicators on turbofan engines are EPR (Engine Pressure Ratio) and N1 (fan speed). The text states: "N1 and EPR are the parameters used to measure thrust in turbojets." See <a href="#sec-1">Section 1</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — EGT and N2 are Engine Condition Indicators (health monitoring), not performance/thrust indicators.</li>
+      <li><strong>(b)</strong> — Oil pressure and temperature are Condition Indicators.</li>
+      <li><strong>(d)</strong> — Vibration level and fuel flow are condition/monitoring parameters, not primary thrust indicators.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> For turboprops, the performance indicator is the Torquemeter (since turboprops produce power/torque, not direct jet thrust). Always distinguish between the engine type when identifying the primary thrust/power instrument.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">During the take-off roll, an EPR gauge indicates a reading lower than the value set at brake release. The most likely cause is:</span>
+    <ol class="q-options" type="a">
+      <li>A genuine loss of engine thrust — throttles should be advanced to restore EPR</li>
+      <li>An apparent drop caused by ram rise in engine intake pressure with increasing airspeed</li>
+      <li>An instrument malfunction requiring abort of the take-off</li>
+      <li>Atmospheric pressure change during the take-off roll</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> An apparent drop caused by ram rise in engine intake pressure with increasing airspeed</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> As the aircraft accelerates on the runway, forward airspeed causes a relative increase in engine intake pressure (ram effect). Jet pipe pressure is initially unaffected. Therefore EPR (jet pipe ÷ intake) falls — this is an <em>apparent</em> drop only. Standard procedure: EPR must be set before <span class="reg-value">60 kt</span> — no increase in power after that speed except in emergency. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Advancing throttles would risk exceeding N1/EGT limits without genuine benefit; the EPR drop is NOT a real thrust loss.</li>
+      <li><strong>(c)</strong> — This is normal and expected behaviour; it is not a malfunction.</li>
+      <li><strong>(d)</strong> — Atmospheric pressure does not change significantly during a take-off roll.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> This is one of the most important exam topics in engine instrumentation. The trap answer is (a). The safe action is to set EPR before 60 kt and monitor other parameters (N1, N2, EGT) for trend. Never advance throttles based on EPR alone after 60 kt.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">The thermocouple temperature system used in gas turbine engines requires:</span>
+    <ol class="q-options" type="a">
+      <li>An external power supply to generate the EMF at the hot junction</li>
+      <li>No external power for temperature indication; the thermocouple generates its own EMF</li>
+      <li>AC power at 115V/400Hz to energise the measuring circuit</li>
+      <li>28V DC power supply to the hot junction probes</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> No external power for temperature indication; the thermocouple generates its own EMF</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The source text states: "Note: The system requires no power supply to indicate temperature." The hot junction (in the gas stream) generates a millivoltage proportional to temperature via the Seebeck effect — no external power is needed for this. However, if the signal must feed a temperature limiting system (which requires amplification), the aircraft's electrical system is then used. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — The thermocouple probe is self-generating; it does not receive power.</li>
+      <li><strong>(c)</strong> — 115V/400Hz is associated with VME (vibration monitoring), not thermocouple indicating.</li>
+      <li><strong>(d)</strong> — 28V DC is associated with the overspeed pointer reset solenoid in tachometers, not thermocouple systems.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> This is a frequently tested fact. Thermocouples are self-generating (Seebeck effect). The millivoltmeter/galvanometer in the cockpit measures the tiny voltage — no power input required. Power IS required for the temperature limiting (top temperature control) function.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">In a capacitance fuel gauge system, what is the effect of water contamination in the fuel tank?</span>
+    <ol class="q-options" type="a">
+      <li>The indicator reads zero, indicating an empty tank</li>
+      <li>The system automatically compensates and indicates the correct fuel quantity</li>
+      <li>The capacitors are effectively shorted, driving the indicator beyond full scale</li>
+      <li>The indicator fluctuates rapidly between empty and full</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> The capacitors are effectively shorted, driving the indicator beyond full scale</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Water has a relative permittivity (Er) of ~81 (distilled) or even higher (impure), compared to kerosene at 2.10. Water's extremely high dielectric value effectively <em>shorts</em> the capacitors in the sensing units. The resulting anomalously high capacitance drives the indicator <em>beyond full scale</em> — a dangerously misleading overread. See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Zero indication is the system's fail-safe response to a fault, not a water response.</li>
+      <li><strong>(b)</strong> — The system cannot compensate for water; the reference unit only compensates for fuel permittivity/temperature variation.</li>
+      <li><strong>(d)</strong> — Random fluctuation is not the described failure mode; water causes a consistent over-reading.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Water contamination causes an over-reading (beyond full scale) — this is a critical safety fact. Fuel drains and checks before flight detect and drain accumulated water from tank sumps. This is a mandatory pre-flight check.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">Which pressure sensing element is most suitable for measuring high pressures such as engine oil pressure?</span>
+    <ol class="q-options" type="a">
+      <li>Aneroid capsule</li>
+      <li>Corrugated diaphragm</li>
+      <li>Bellows</li>
+      <li>Bourdon tube</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> Bourdon tube</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The Bourdon tube is specifically described as "normally associated with higher pressures such as engine oil pressure." It is a C-shaped metal tube with an elliptical cross-section; applied pressure tends to straighten the tube, driving an indicator pointer. It is manufactured to handle high pressure ranges. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Aneroid capsule is a sealed (evacuated) capsule used to measure low pressures (e.g., altitude).</li>
+      <li><strong>(b)</strong> — Corrugated diaphragm is used for low pressures.</li>
+      <li><strong>(c)</strong> — Bellows can measure high, low, or differential pressures, but are specifically cited for LP booster pump output — not the primary high-pressure element.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Remember: Diaphragm/Capsule = Low. Bourdon = High. Bellows = Variable. This is a classic DGCA pattern-matching question. The Bourdon tube is the oldest pressure sensing element and the primary one for high-pressure systems.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">Total Air Temperature (TAT) is related to Static Air Temperature (SAT) as follows:</span>
+    <ol class="q-options" type="a">
+      <li>TAT = SAT − ram rise</li>
+      <li>TAT = SAT (they are identical in level flight)</li>
+      <li>TAT = SAT + full ram rise (approximately 100% recovery factor)</li>
+      <li>TAT = SAT + 80% of ram rise at all times</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> TAT = SAT + full ram rise (approximately 100% recovery factor)</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The text states: "For use at high Mach numbers, Total Air Temperature (TAT) is measured. The air is brought to rest (or nearly so) without addition or removal of heat. The temperature probes used have a high recovery factor (approximately 100%). TAT is equal to SAT + Ram Rise." See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Ram rise is positive (adds to SAT), not subtracted.</li>
+      <li><strong>(b)</strong> — Above Mach 0.2, friction and adiabatic compression raise air temperature above SAT.</li>
+      <li><strong>(d)</strong> — 80% recovery factor applies to a specific sensor type, not to TAT by definition. TAT by definition has ~100% recovery.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> TAT = SAT + ram rise. For OAT (Outside Air Temperature) use on an aircraft cruise display, TAT is measured and then corrected to SAT using Mach number. The ADC performs this correction automatically. Below Mach 0.2, SAT ≈ RAT ≈ TAT.</div>
+  </div>
+</div>
+
+</div><!-- end qa-section -->
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="ref-tables">Master Reference Tables</h2>
+
+<h3>Numerical Values — Quick Reference</h3>
+<table class="ref-table">
+  <tr><th>Parameter</th><th>Value</th><th>Section</th></tr>
+  <tr><td>P7 gauge calibration units</td><td>inHg, psi, or % max thrust</td><td>3</td></tr>
+  <tr><td>EPR set before this speed on take-off</td><td><span class="reg-value">60 knots</span></td><td>3</td></tr>
+  <tr><td>Oil torquemeter max pressure</td><td><span class="reg-value">800 psi</span></td><td>3</td></tr>
+  <tr><td>Gas turbine speed display</td><td><span class="reg-value">100% = optimum turbine speed</span></td><td>4</td></tr>
+  <tr><td>Overspeed pointer reset supply</td><td><span class="reg-value">28V DC</span></td><td>4</td></tr>
+  <tr><td>VME coil supply voltage/freq</td><td><span class="reg-value">115V / 400Hz</span></td><td>7</td></tr>
+  <tr><td>Engine temp range monitored</td><td><span class="reg-value">−56°C to +1200°C</span></td><td>5</td></tr>
+  <tr><td>TAT recovery factor</td><td><span class="reg-value">~100%</span></td><td>5</td></tr>
+  <tr><td>Er — Air</td><td><span class="reg-value">1.0006</span></td><td>8</td></tr>
+  <tr><td>Er — Kerosene</td><td><span class="reg-value">2.10</span></td><td>8</td></tr>
+  <tr><td>Er — Gasolene</td><td><span class="reg-value">1.95</span></td><td>8</td></tr>
+  <tr><td>Er — Distilled water</td><td><span class="reg-value">81.00</span></td><td>8</td></tr>
+  <tr><td>Red arc on fuel gauge required if unusable fuel exceeds</td><td><span class="reg-value">1 gallon</span> or <span class="reg-value">5%</span> of tank capacity</td><td>8</td></tr>
+  <tr><td>1 bar = </td><td><span class="reg-value">14.5 psi</span> = <span class="reg-value">100,000 Pa</span></td><td>6</td></tr>
+</table>
+
+<h3>Answer Key</h3>
+<table>
+  <tr><th>Q</th><th>Ans</th><th>Topic</th></tr>
+  <tr><td>1</td><td>c</td><td>Performance vs Condition indicators</td></tr>
+  <tr><td>2</td><td>b</td><td>EPR apparent drop during T/O</td></tr>
+  <tr><td>3</td><td>b</td><td>Thermocouple power supply</td></tr>
+  <tr><td>4</td><td>c</td><td>Water contamination — capacitance gauge</td></tr>
+  <tr><td>5</td><td>d</td><td>Bourdon tube — high pressure</td></tr>
+  <tr><td>6</td><td>c</td><td>TAT = SAT + ram rise</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

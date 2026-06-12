@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 40 – Revision Questions | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #283593; margin-top: 20px; }
+  h4 { font-size: 1em; font-weight: 700; color: #37474f; }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0; padding-left: 25px; }
+  li { padding: 3px 0; }
+  .cover { text-align: center; padding: 60px 20px 40px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; margin-bottom: 10px; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin: 8px 0; }
+  .cover .author { font-size: 1em; color: #777; margin-top: 20px; font-style: italic; }
+  .toc { page-break-after: always; }
+  .toc h2 { margin-bottom: 15px; }
+  .toc ol { line-height: 2; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #b71c1c; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 8px 12px; border: 1px solid #ddd; }
+  tr:nth-child(even) { background: #f5f7ff; }
+  .answer-key-table td { padding: 5px 8px; font-family: "Courier New", monospace; font-size: 0.9em; }
+  .answer-key-table th { padding: 5px 8px; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .section-header { background: #1a237e; color: #fff; padding: 12px 18px; border-radius: 6px; margin: 30px 0 15px; font-size: 1.2em; font-weight: 700; page-break-after: avoid; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 40</h1>
+  <div class="subtitle" style="font-size:1.6em; font-weight:700; color:#1a237e;">Revision Questions</div>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes — Final Examination Preparation</div>
+  <div class="subtitle">Subject: Instrumentation | All Topics</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+  <div style="margin-top:20px; font-size:0.95em; color:#555;">This chapter is a pure revision question bank covering the entire Instrumentation syllabus.<br>All questions are taken verbatim from the Oxford ATPL Ground Training Series source text.</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-fi">Section A — Flight Instruments Questions (164 questions)</a></li>
+    <li><a href="#sec-af">Section B — Automatic Flight Questions (58 questions)</a></li>
+    <li><a href="#sec-wr">Section C — Warning &amp; Recording Questions (33 questions)</a></li>
+    <li><a href="#sec-ei">Section D — Engine Instruments Questions (52 questions)</a></li>
+    <li><a href="#sec-sq">Section E — Specimen Questions (55 questions with explanations)</a></li>
+    <li><a href="#sec-sp">Section F — Specimen Examination Paper (55 questions)</a></li>
+    <li><a href="#answer-keys">Master Answer Keys</a></li>
+  </ol>
+</div>
+
+<div class="box-blue">
+  <strong>How to use this chapter:</strong> This chapter contains the complete Oxford revision question bank for the Instrumentation subject. Each section contains the verbatim source questions with the source answer key. Selected key questions have detailed worked explanations. The Specimen Questions section (Section E) includes full explanations for all questions. Use the Master Answer Keys at the end to self-test.
+</div>
+
+<!-- ======================================================== -->
+<!-- SECTION A: FLIGHT INSTRUMENTS -->
+<!-- ======================================================== -->
+<div class="section-header" id="sec-fi">Section A — Flight Instruments Questions</div>
+
+<div class="box-blue">
+  <strong>Coverage:</strong> Chapters 1–23 — Pitot-static systems, airspeed, altimetry, temperature, Machmeter, ADC, magnetism, compasses, gyroscopes, DGI, artificial horizon, turn indicators, remote magnetic compass, INS/IRS, radio altimeter, FMS, EFIS, and basic computers. <strong>164 questions total.</strong>
+</div>
+
+<!-- Selected detailed Q&A for Flight Instruments section -->
+<h3>Key Questions with Detailed Explanations</h3>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">A-Q1.</span><span class="q-text">A 2-axis gyro measuring vertical changes will have:</span>
+    <ol class="q-options" type="a">
+      <li>one degree of freedom, vertical axis</li>
+      <li>two degrees of freedom, vertical axis</li>
+      <li>one degree of freedom, horizontal axis</li>
+      <li>two degrees of freedom, horizontal axis</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> two degrees of freedom, vertical axis</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> A 2-axis gyro has two degrees of freedom (it can precess in two planes). To measure vertical changes (pitch and roll — earth vertical reference), the spin axis must be vertical. This is the configuration used in the artificial horizon. Degrees of freedom = number of axes around which the gyro can precess freely.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — One degree of freedom + vertical axis = rate gyro (measures rotation rate). A single-axis gyro cannot serve as a 2-axis instrument.</li>
+      <li><strong>(c)</strong> — One DOF + horizontal axis = turn indicator gyro.</li>
+      <li><strong>(d)</strong> — Two DOF + horizontal axis = DGI (Directional Gyro Indicator).</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> DOF = number of planes in which the gyro can precess. Artificial horizon: 2 DOF, vertical spin axis. DGI: 2 DOF, horizontal spin axis. Turn indicator: 1 DOF, horizontal spin axis. These pairings are fundamental gyroscope exam knowledge.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">A-Q2.</span><span class="q-text">The properties of a gyro are: (1) mass (2) rigidity (3) inertia (4) precession (5) rotational speed</span>
+    <ol class="q-options" type="a">
+      <li>1, 2 &amp; 3</li>
+      <li>2 &amp; 4</li>
+      <li>2 &amp; 3</li>
+      <li>1 &amp; 3</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 2 &amp; 4 — Rigidity and Precession</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> A gyroscope has two fundamental properties: (1) <strong>Rigidity in space</strong> — tendency to maintain its spin axis direction in space when spinning at high speed; and (2) <strong>Precession</strong> — when a force is applied, the gyro responds at 90° to the applied force in the direction of rotation. Mass, inertia, and rotational speed contribute to the degree of rigidity but are not the "properties" per se.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a), (c), (d)</strong> — Mass, inertia, and rotational speed affect gyroscopic performance but are not the two defining properties. Rigidity and precession are the two fundamental gyroscopic properties.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Gyro Properties = Rigidity + Precession. Everything else (mass, rpm, rotor diameter) affects the degree of rigidity. This two-word answer appears in virtually every DGCA instrumentation exam.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">A-Q7.</span><span class="q-text">The Machmeter consists of:</span>
+    <ol class="q-options" type="a">
+      <li>an airspeed indicator with Mach scale</li>
+      <li>an airspeed indicator with an altimeter capsule</li>
+      <li>an altimeter corrected for density</li>
+      <li>a VSI and altimeter combined</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> an airspeed indicator with an altimeter capsule</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The Machmeter has two capsule systems: (1) a pitot-static capsule that measures dynamic pressure (like an ASI), and (2) an aneroid (altimeter) capsule that senses ambient (static) pressure as a proxy for altitude/density. The ratio of these two pressures gives Mach number: M = √(dynamic pressure / static pressure function). The altimeter capsule corrects the speed reading for altitude.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — A Mach scale alone does not constitute a Machmeter; the additional altitude-compensating capsule is the key differentiator.</li>
+      <li><strong>(c)</strong> — An altimeter corrected for density gives density altitude, not Mach number.</li>
+      <li><strong>(d)</strong> — VSI + altimeter gives rate of climb, not Mach number.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Mach = TAS ÷ LSS. Since LSS varies with temperature (and thus altitude), the Machmeter needs both an ASI capsule (dynamic pressure) and an altimeter capsule (static pressure). The mechanical linkage between these two capsules outputs Mach number directly.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">A-Q10.</span><span class="q-text">An aircraft is flying at an indicated altitude of 16,000 ft. The outside air temperature is −30°C. What is the true altitude of the aircraft?</span>
+    <ol class="q-options" type="a">
+      <li>16,200 ft</li>
+      <li>15,200 ft</li>
+      <li>18,600 ft</li>
+      <li>13,500 ft</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 15,200 ft</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> ISA temperature at 16,000 ft = 15 − (16 × 2) = 15 − 32 = −17°C. Actual OAT = −30°C. Temperature deviation = −30 − (−17) = −13°C colder than ISA. True altitude = indicated altitude × (actual temp / ISA temp in Kelvin). Using the 4 ft/°C/1000 ft rule: correction = −13 × 16 × 4 / 1000 ≈ −832 ft. True alt ≈ 16,000 − 832 ≈ 15,168 ft ≈ <strong>15,200 ft</strong>. Cold temperatures make the aircraft lower than indicated — the altimeter over-reads.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — 16,200 ft would require the aircraft to be in warmer than ISA air.</li>
+      <li><strong>(c)</strong> — 18,600 ft is not achievable with these temperature conditions.</li>
+      <li><strong>(d)</strong> — 13,500 ft overestimates the cold-air correction.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Cold air = denser air = altimeter over-reads = true altitude is LESS than indicated. Warm air = less dense = altimeter under-reads = true altitude is MORE than indicated. Memory: "Cold and Low, Warm and High" — pilots flying in cold air are lower than their altimeter shows.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">A-Q12.</span><span class="q-text">QNH is:</span>
+    <ol class="q-options" type="a">
+      <li>the airfield barometric pressure</li>
+      <li>the setting that will give zero indication on the airfield</li>
+      <li>the equivalent sea level pressure at the airfield</li>
+      <li>the setting that will indicate airfield height</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> the equivalent sea level pressure at the airfield</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> QNH is the altimeter sub-scale setting that causes the altimeter to read the airfield's <em>altitude above mean sea level (AMSL)</em> when the aircraft is on the ground. It is derived by reducing the airfield barometric pressure to MSL using the ISA lapse rate. Setting QNH gives altitude AMSL, not height above the airfield (that would be QFE). Option (b) describes QFE.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — The actual airfield barometric pressure is QFE (gives height above airfield).</li>
+      <li><strong>(b)</strong> — Zero indication at the airfield = QFE setting (height above aerodrome).</li>
+      <li><strong>(d)</strong> — QNH indicates altitude AMSL (e.g., 1,400 ft), not height above airfield (which would be zero at ground level if QFE were set).</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> QNH = altitude AMSL. QFE = height above aerodrome. QNE = altitude at standard pressure (1013.25 hPa), used as flight level. These three Q-codes and their definitions are fundamental DGCA exam topics.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">A-Q13.</span><span class="q-text">What is the Schuler period?</span>
+    <ol class="q-options" type="a">
+      <li>21 minutes</li>
+      <li>84 minutes</li>
+      <li>1 oscillation in azimuth</li>
+      <li>63 minutes</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 84 minutes</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The Schuler period is <span class="reg-value">84.4 minutes</span> — the natural oscillation period of an inertial navigation platform when tuned to Earth's radius. It is derived from the pendulum equation: T = 2π√(R/g), where R = Earth's radius (~6,371 km) and g = gravitational acceleration. An INS tuned to the Schuler period will not precess due to accelerations caused by motion over the Earth's curved surface.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — 21 minutes is not a standard INS parameter.</li>
+      <li><strong>(c)</strong> — One oscillation in azimuth is not the Schuler period definition.</li>
+      <li><strong>(d)</strong> — 63 minutes is not correct.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The Schuler period of <span class="reg-value">84 minutes</span> = same as the orbital period of a satellite at Earth's surface. An INS aligned to this period will maintain a stable earth-vertical reference despite vehicle acceleration. This prevents the Schuler oscillation error.</div>
+  </div>
+</div>
+
+<!-- Answer key table for FI section -->
+<h3>Flight Instruments — Source Answer Key</h3>
+<div class="box-amber"><strong>Complete source answer key — Flight Instruments (Questions 1–164):</strong></div>
+<table class="answer-key-table">
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>b</td><td>2</td><td>b</td><td>3</td><td>a</td><td>4</td><td>b</td><td>5</td><td>a</td><td>6</td><td>c</td></tr>
+  <tr><td>7</td><td>b</td><td>8</td><td>a</td><td>9</td><td>c</td><td>10</td><td>b</td><td>11</td><td>b</td><td>12</td><td>c</td></tr>
+  <tr><td>13</td><td>b</td><td>14</td><td>d</td><td>15</td><td>a</td><td>16</td><td>c</td><td>17</td><td>b</td><td>18</td><td>c</td></tr>
+  <tr><td>19</td><td>b</td><td>20</td><td>b</td><td>21</td><td>b</td><td>22</td><td>a</td><td>23</td><td>d</td><td>24</td><td>d</td></tr>
+  <tr><td>25</td><td>b</td><td>26</td><td>d</td><td>27</td><td>a</td><td>28</td><td>c</td><td>29</td><td>d</td><td>30</td><td>b</td></tr>
+  <tr><td>31</td><td>d</td><td>32</td><td>c</td><td>33</td><td>d</td><td>34</td><td>a</td><td>35</td><td>c</td><td>36</td><td>b</td></tr>
+  <tr><td>37</td><td>a</td><td>38</td><td>d</td><td>39</td><td>a</td><td>40</td><td>b</td><td>41</td><td>c</td><td>42</td><td>b</td></tr>
+  <tr><td>43</td><td>c</td><td>44</td><td>b</td><td>45</td><td>c</td><td>46</td><td>a</td><td>47</td><td>d</td><td>48</td><td>c</td></tr>
+  <tr><td>49</td><td>a</td><td>50</td><td>a</td><td>51</td><td>a</td><td>52</td><td>b</td><td>53</td><td>d</td><td>54</td><td>a</td></tr>
+  <tr><td>55</td><td>a</td><td>56</td><td>a</td><td>57</td><td>b</td><td>58</td><td>a</td><td>59</td><td>a</td><td>60</td><td>d</td></tr>
+  <tr><td>61</td><td>a</td><td>62</td><td>b</td><td>63</td><td>d</td><td>64</td><td>b</td><td>65</td><td>b</td><td>66</td><td>a</td></tr>
+  <tr><td>67</td><td>d</td><td>68</td><td>b</td><td>69</td><td>a</td><td>70</td><td>a</td><td>71</td><td>a</td><td>72</td><td>c</td></tr>
+  <tr><td>73</td><td>c</td><td>74</td><td>c</td><td>75</td><td>b</td><td>76</td><td>c</td><td>77</td><td>c</td><td>78</td><td>a</td></tr>
+  <tr><td>79</td><td>c</td><td>80</td><td>c</td><td>81</td><td>b</td><td>82</td><td>c</td><td>83</td><td>c</td><td>84</td><td>a</td></tr>
+  <tr><td>85</td><td>d</td><td>86</td><td>c</td><td>87</td><td>a</td><td>88</td><td>b</td><td>89</td><td>d</td><td>90</td><td>d</td></tr>
+  <tr><td>91</td><td>b</td><td>92</td><td>d</td><td>93</td><td>a</td><td>94</td><td>a</td><td>95</td><td>b</td><td>96</td><td>c</td></tr>
+  <tr><td>97</td><td>d</td><td>98</td><td>c</td><td>99</td><td>a</td><td>100</td><td>b</td><td>101</td><td>a</td><td>102</td><td>a</td></tr>
+  <tr><td>103</td><td>c</td><td>104</td><td>b</td><td>105</td><td>c</td><td>106</td><td>c</td><td>107</td><td>d</td><td>108</td><td>d</td></tr>
+  <tr><td>109</td><td>a</td><td>110</td><td>b</td><td>111</td><td>a</td><td>112</td><td>d</td><td>113</td><td>b</td><td>114</td><td>a</td></tr>
+  <tr><td>115</td><td>c</td><td>116</td><td>a</td><td>117</td><td>c</td><td>118</td><td>a</td><td>119</td><td>c</td><td>120</td><td>c</td></tr>
+  <tr><td>121</td><td>a</td><td>122</td><td>c</td><td>123</td><td>a</td><td>124</td><td>a</td><td>125</td><td>a</td><td>126</td><td>d</td></tr>
+  <tr><td>127</td><td>c</td><td>128</td><td>c</td><td>129</td><td>a</td><td>130</td><td>c</td><td>131</td><td>d</td><td>132</td><td>c</td></tr>
+  <tr><td>133</td><td>a</td><td>134</td><td>a</td><td>135</td><td>d</td><td>136</td><td>c</td><td>137</td><td>c</td><td>138</td><td>c</td></tr>
+  <tr><td>139</td><td>c</td><td>140</td><td>a</td><td>141</td><td>d</td><td>142</td><td>b</td><td>143</td><td>b</td><td>144</td><td>b</td></tr>
+  <tr><td>145</td><td>b</td><td>146</td><td>c</td><td>147</td><td>d</td><td>148</td><td>b</td><td>149</td><td>a</td><td>150</td><td>d</td></tr>
+  <tr><td>151</td><td>c</td><td>152</td><td>a</td><td>153</td><td>b</td><td>154</td><td>a</td><td>155</td><td>a</td><td>156</td><td>b</td></tr>
+  <tr><td>157</td><td>b</td><td>158</td><td>a</td><td>159</td><td>a</td><td>160</td><td>a</td><td>161</td><td>c</td><td>162</td><td>d</td></tr>
+  <tr><td>163</td><td>a</td><td>164</td><td>d</td><td colspan="8"></td></tr>
+</table>
+
+<!-- ======================================================== -->
+<!-- SECTION B: AUTOMATIC FLIGHT -->
+<!-- ======================================================== -->
+<div class="section-header" id="sec-af">Section B — Automatic Flight Questions</div>
+
+<div class="box-blue">
+  <strong>Coverage:</strong> Chapters 24–31 — FANS, Flight Director, Autopilot, Autoland, Autothrottle, Yaw Dampers, Control Laws, AFCS Revision. <strong>58 questions total.</strong>
+</div>
+
+<h3>Key Questions with Detailed Explanations</h3>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">B-Q5.</span><span class="q-text">At 50 feet AGL during an autoland, what happens to the glide slope signal?</span>
+    <ol class="q-options" type="a">
+      <li>It continues to be actioned</li>
+      <li>It is disconnected</li>
+      <li>It is factored for range</li>
+      <li>It is used to flare the aircraft</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> It is disconnected</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> At <span class="reg-value">50 ft</span> AGL during autoland, the glide slope signal is disconnected. Below this height, the flare is initiated using the radio altimeter signal. The GS signal is unreliable at very short ranges due to the extreme geometry (near vertical approach to the GS transmitter). The flare law takes over, using radio altimeter height to initiate the pitch-up and thrust reduction.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — The GS signal is not reliable at very low height and is purposely disconnected.</li>
+      <li><strong>(c)</strong> — "Factored for range" is not correct; the signal is simply disconnected.</li>
+      <li><strong>(d)</strong> — The radio altimeter (not GS) is used to flare the aircraft.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Autoland flare sequence: GS controls approach → at 50 ft, GS disconnected → radio altimeter triggers flare → at 15 ft, autothrottle retards to idle (flare complete) → touchdown via roll-out mode.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">B-Q42.</span><span class="q-text">If only a single A/P is used to climb, cruise and approach, following a failure:</span>
+    <ol class="q-options" type="a">
+      <li>it is fail-passive with redundancy</li>
+      <li>it is fail-operational and will not disconnect</li>
+      <li>it is fail-soft and will not disconnect</li>
+      <li>it is fail-safe and will disconnect</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> it is fail-safe and will disconnect</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> A single autopilot system, when it fails, must disconnect safely — this is called <strong>fail-safe</strong>. It disconnects on failure, alerting the crew to take manual control. Fail-passive systems (used in autoland) also disconnect but in a neutral position. Fail-operational systems (dual/triple autopilots) can continue the approach after one failure. A single AP has no redundancy, so it must disconnect cleanly on failure.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Fail-passive with redundancy applies to a duplex system used for CAT II approaches, not a single AP.</li>
+      <li><strong>(b)</strong> — Fail-operational requires a triplex system; the single AP cannot continue operating after failure.</li>
+      <li><strong>(c)</strong> — Fail-soft means the system degrades gradually but does not apply to a single AP.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Single AP = fail-safe (disconnects). Duplex AP = fail-passive (disconnects in neutral → CAT II). Triplex AP = fail-operational (continues after 1 failure → CAT III). These three categories and their autoland capability levels are a core AFCS exam topic.</div>
+  </div>
+</div>
+
+<h3>Automatic Flight — Source Answer Key</h3>
+<table class="answer-key-table">
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>a</td><td>2</td><td>a</td><td>3</td><td>b</td><td>4</td><td>b</td><td>5</td><td>b</td><td>6</td><td>c</td></tr>
+  <tr><td>7</td><td>a</td><td>8</td><td>b</td><td>9</td><td>a</td><td>10</td><td>d</td><td>11</td><td>a</td><td>12</td><td>b</td></tr>
+  <tr><td>13</td><td>d</td><td>14</td><td>d</td><td>15</td><td>a</td><td>16</td><td>d</td><td>17</td><td>a</td><td>18</td><td>a</td></tr>
+  <tr><td>19</td><td>d</td><td>20</td><td>c</td><td>21</td><td>d</td><td>22</td><td>b</td><td>23</td><td>d</td><td>24</td><td>a</td></tr>
+  <tr><td>25</td><td>d</td><td>26</td><td>c</td><td>27</td><td>b</td><td>28</td><td>b</td><td>29</td><td>c</td><td>30</td><td>b</td></tr>
+  <tr><td>31</td><td>b</td><td>32</td><td>c</td><td>33</td><td>b</td><td>34</td><td>d</td><td>35</td><td>b</td><td>36</td><td>a</td></tr>
+  <tr><td>37</td><td>d</td><td>38</td><td>b</td><td>39</td><td>c</td><td>40</td><td>a</td><td>41</td><td>a</td><td>42</td><td>d</td></tr>
+  <tr><td>43</td><td>d</td><td>44</td><td>a</td><td>45</td><td>b</td><td>46</td><td>b</td><td>47</td><td>c</td><td>48</td><td>b</td></tr>
+  <tr><td>49</td><td>c</td><td>50</td><td>d</td><td>51</td><td>b</td><td>52</td><td>a</td><td>53</td><td>a</td><td>54</td><td>d</td></tr>
+  <tr><td>55</td><td>a</td><td>56</td><td>c</td><td>57</td><td>d</td><td>58</td><td>b</td><td colspan="4"></td></tr>
+</table>
+
+<!-- ======================================================== -->
+<!-- SECTION C: WARNING AND RECORDING -->
+<!-- ======================================================== -->
+<div class="section-header" id="sec-wr">Section C — Warning &amp; Recording Questions</div>
+
+<div class="box-blue">
+  <strong>Coverage:</strong> Chapters 32–37 — Flight Warning Systems, Aerodynamic Warnings (stall, GPWS), GPWS modes, TCAS, FDR, CVR. <strong>33 questions total.</strong>
+</div>
+
+<h3>Key Questions with Detailed Explanations</h3>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">C-Q1.</span><span class="q-text">The primary input to a basic stall warning system is:</span>
+    <ol class="q-options" type="a">
+      <li>angle of attack</li>
+      <li>IAS</li>
+      <li>slat/flap position</li>
+      <li>MNO</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> angle of attack</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The primary input to a stall warning system is <strong>angle of attack (AoA)</strong>. Stall is fundamentally an aerodynamic phenomenon that occurs at a critical AoA, not at a specific IAS. The AoA sensor (vane or probe on the fuselage) provides the primary signal. Configuration (flap/slat position) adjusts the stall threshold but is secondary. Note that a basic stall warning (e.g., a stall warning horn driven by AoA alone) uses only AoA.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(b)</strong> — IAS is not the primary stall warning input; stall occurs at a given AoA regardless of weight.</li>
+      <li><strong>(c)</strong> — Flap/slat position modifies the stall AoA threshold — it is a secondary input, not the primary.</li>
+      <li><strong>(d)</strong> — Mach number (MNO) is not a primary stall warning input.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> AoA = primary stall warning input. Configuration adjusts the threshold. Weight/bank angle are factored in more sophisticated systems. The vane-type AoA sensor on the fuselage side is the key sensor.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">C-Q3.</span><span class="q-text">An FDR fitted to an aircraft of over 5,700 kg after April 1998 must record for:</span>
+    <ol class="q-options" type="a">
+      <li>10 hours</li>
+      <li>25 hours</li>
+      <li>30 minutes</li>
+      <li>60 minutes</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 25 hours</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Aircraft above <span class="reg-value">5,700 kg MTOM</span> require an FDR with a minimum recording time of <span class="reg-value">25 hours</span>. Registration after 1 April 1998 makes this Case 1. The 10-hour recording time applies to <em>turbine-powered aircraft below 5,700 kg MTOM but with more than 9 passenger seats</em> registered after 1 April 1998.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — 10 hours applies to aircraft below 5,700 kg MTOM.</li>
+      <li><strong>(c)</strong> — 30 minutes is the minimum CVR recording time (not FDR).</li>
+      <li><strong>(d)</strong> — 60 minutes is not a standard FDR recording time threshold.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> FDR recording: &gt;5,700 kg = 25 hrs. &lt;5,700 kg (turbine, &gt;9 seats) = 10 hrs. CVR recording: standard = 30 min; &gt;5,700 kg post-Apr '98 = 2 hrs. These four figures are often cross-tested.</div>
+  </div>
+</div>
+
+<h3>Warning &amp; Recording — Source Answer Key</h3>
+<table class="answer-key-table">
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>a</td><td>2</td><td>a</td><td>3</td><td>b</td><td>4</td><td>a</td><td>5</td><td>d</td><td>6</td><td>c</td></tr>
+  <tr><td>7</td><td>a</td><td>8</td><td>c</td><td>9</td><td>d</td><td>10</td><td>a</td><td>11</td><td>c</td><td>12</td><td>d</td></tr>
+  <tr><td>13</td><td>b</td><td>14</td><td>b</td><td>15</td><td>a</td><td>16</td><td>c</td><td>17</td><td>a</td><td>18</td><td>d</td></tr>
+  <tr><td>19</td><td>a</td><td>20</td><td>a</td><td>21</td><td>a</td><td>22</td><td>b</td><td>23</td><td>c</td><td>24</td><td>b</td></tr>
+  <tr><td>25</td><td>b</td><td>26</td><td>b</td><td>27</td><td>b</td><td>28</td><td>c</td><td>29</td><td>c</td><td>30</td><td>b</td></tr>
+  <tr><td>31</td><td>a</td><td>32</td><td>c</td><td>33</td><td>b</td><td colspan="6"></td></tr>
+</table>
+
+<!-- ======================================================== -->
+<!-- SECTION D: ENGINE INSTRUMENTS -->
+<!-- ======================================================== -->
+<div class="section-header" id="sec-ei">Section D — Engine Instruments Questions</div>
+
+<div class="box-blue">
+  <strong>Coverage:</strong> Chapters 38–39 — Engine instrumentation (EPR, torque, tacho, EGT, pressure gauges, vibration, fuel gauges) and electronic instrumentation (EICAS, ECAM). <strong>52 questions total.</strong>
+</div>
+
+<h3>Key Questions with Detailed Explanations</h3>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">D-Q1.</span><span class="q-text">What type of sensor is used to measure the output of a low-pressure booster pump?</span>
+    <ol class="q-options" type="a">
+      <li>Bourdon tube</li>
+      <li>Aneroid capsule</li>
+      <li>Bellows</li>
+      <li>Differential capsule</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> Bellows</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The Oxford text explicitly states: "The bellows type element... is typically used to measure pressures like the aircraft's LP booster pump output." Bellows can handle variable pressure ranges (high, low, or differential) and are specifically cited for LP booster pump pressure measurement.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Bourdon tube = high pressure (e.g., engine oil pressure).</li>
+      <li><strong>(b)</strong> — Aneroid capsule = low pressure but specifically sealed/evacuated; used in altimeters for ambient pressure sensing.</li>
+      <li><strong>(d)</strong> — A differential capsule measures differential pressure; not specifically cited for LP booster pump.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> LP booster pump = bellows. Oil pressure = Bourdon tube. Altimeter = aneroid capsule. These specific applications are memorisable pairings for the exam.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">D-Q10.</span><span class="q-text">During the take-off run, the effect of increasing airspeed is to cause the EPR indication to:</span>
+    <ol class="q-options" type="a">
+      <li>increase, due to ram rise</li>
+      <li>fall, due to increase of intake pressure relative to jet pipe pressure</li>
+      <li>remain constant as the jet pipe and intake pressures increase at the same rate</li>
+      <li>fall, then gradually return to the original setting as V2 is reached</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> fall, due to increase of intake pressure relative to jet pipe pressure</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> As airspeed increases during the take-off roll, the engine intake pressure increases due to the ram effect (more dynamic pressure). The jet pipe pressure initially does not increase proportionally at low airspeed. Therefore EPR (= jet pipe pressure ÷ intake pressure) <em>falls</em>. This is the well-known EPR apparent drop. Standard procedure: set EPR before <span class="reg-value">60 kt</span>, do not increase power after that speed.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — EPR falls (not increases) as speed increases, because intake pressure rises faster than jet pipe pressure at low speed.</li>
+      <li><strong>(c)</strong> — The two pressures do NOT increase at the same rate at low airspeed.</li>
+      <li><strong>(d)</strong> — The EPR falls and does not return until airspeed exceeds V2, when the increase in intake pressure is passed through the engine to the jet pipe.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> EPR drop on T/O is an APPARENT fall — not a real thrust loss. The standard answer is: set EPR before 60 kt, then do not touch throttles. After V2, as speed increases further, the ram pressure passes through to the jet pipe and EPR returns to the set value.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">D-Q52.</span><span class="q-text">EPR is a:</span>
+    <ol class="q-options" type="a">
+      <li>ratio between ambient pressure and exhaust pressure</li>
+      <li>ratio between ambient pressure and fan pressure</li>
+      <li>ratio between intake pressure and compressor delivery pressure</li>
+      <li>ratio between exhaust pressure and intake pressure</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> ratio between exhaust (jet pipe) pressure and intake pressure</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> EPR = Engine Pressure Ratio = jet pipe pressure (P7) ÷ engine air intake pressure (P1). A higher EPR indicates more thrust. The numerator is the exhaust/jet pipe pressure and the denominator is the intake pressure.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Ambient pressure = intake pressure in still air, but the ratio is exhaust ÷ intake (not ambient ÷ exhaust).</li>
+      <li><strong>(b)</strong> — Fan pressure is part of the integrated EPR on some turbofans, not the basic EPR definition.</li>
+      <li><strong>(c)</strong> — Intake ÷ compressor delivery is a compressor pressure ratio, not EPR.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> EPR = P7 (jet pipe) / P1 (intake). A ratio &gt;1 means engine is producing thrust. The greater the EPR, the higher the thrust. This fundamental definition should be memorised verbatim.</div>
+  </div>
+</div>
+
+<h3>Engine Instruments — Source Answer Key</h3>
+<table class="answer-key-table">
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>c</td><td>2</td><td>b</td><td>3</td><td>b</td><td>4</td><td>d</td><td>5</td><td>b</td><td>6</td><td>c</td></tr>
+  <tr><td>7</td><td>b</td><td>8</td><td>d</td><td>9</td><td>c</td><td>10</td><td>c</td><td>11</td><td>d</td><td>12</td><td>d</td></tr>
+  <tr><td>13</td><td>d</td><td>14</td><td>b</td><td>15</td><td>b</td><td>16</td><td>d</td><td>17</td><td>b</td><td>18</td><td>d</td></tr>
+  <tr><td>19</td><td>a</td><td>20</td><td>d</td><td>21</td><td>d</td><td>22</td><td>a</td><td>23</td><td>a</td><td>24</td><td>b</td></tr>
+  <tr><td>25</td><td>d</td><td>26</td><td>d</td><td>27</td><td>c</td><td>28</td><td>a</td><td>29</td><td>b</td><td>30</td><td>d</td></tr>
+  <tr><td>31</td><td>d</td><td>32</td><td>b</td><td>33</td><td>c</td><td>34</td><td>b</td><td>35</td><td>a</td><td>36</td><td>b</td></tr>
+  <tr><td>37</td><td>b</td><td>38</td><td>a</td><td>39</td><td>a</td><td>40</td><td>b</td><td>41</td><td>c</td><td>42</td><td>d</td></tr>
+  <tr><td>43</td><td>d</td><td>44</td><td>b</td><td>45</td><td>c</td><td>46</td><td>a</td><td>47</td><td>c</td><td>48</td><td>d</td></tr>
+  <tr><td>49</td><td>a</td><td>50</td><td>d</td><td>51</td><td>a</td><td>52</td><td>d</td><td colspan="4"></td></tr>
+</table>
+
+<!-- ======================================================== -->
+<!-- SECTION E: SPECIMEN QUESTIONS WITH EXPLANATIONS -->
+<!-- ======================================================== -->
+<div class="section-header" id="sec-sq">Section E — Specimen Questions</div>
+
+<div class="box-blue">
+  <strong>Coverage:</strong> Mixed topics across the full Instrumentation syllabus. These questions include source explanations. <strong>55 questions total — key questions with full worked explanations below.</strong>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">E-Q1.</span><span class="q-text">A modern radio altimeter uses the frequency band:</span>
+    <ol class="q-options" type="a">
+      <li>VHF — 30–300 MHz</li>
+      <li>SHF — 3,000 MHz–30 GHz</li>
+      <li>UHF — 300 MHz–3 GHz</li>
+      <li>HF — 3 MHz–30 MHz</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> SHF — 3,000 MHz–30 GHz</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Radio altimeters (radar altimeters) operate in the SHF (Super High Frequency) band, typically around <span class="reg-value">4.2–4.4 GHz</span>. This frequency provides the required short wavelength for accurate height measurement at low altitudes (0–2,500 ft). FM-CW (Frequency Modulated Continuous Wave) technique is used.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — VHF (30–300 MHz) is used for VOR, localiser, communications — not radio altimeters.</li>
+      <li><strong>(c)</strong> — UHF (300 MHz–3 GHz) is used for DME, transponders — not radio altimeters.</li>
+      <li><strong>(d)</strong> — HF (3–30 MHz) is used for long-range communications — not radio altimeters.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Radio altimeter = SHF (~4.3 GHz). This is in the microwave/centimetric wavelength range. The FM-CW technique allows measurement of height from 0 ft to 2,500 ft AGL with high accuracy.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">E-Q8.</span><span class="q-text">Which of the following are modes of the GPWS?</span>
+    <ol class="q-options" type="1">
+      <li>Excessive sink rate</li>
+      <li>Altitude loss after take-off or go-around</li>
+      <li>Excessive glide slope deviation</li>
+      <li>High climb rate</li>
+      <li>Flaps in the incorrect position</li>
+      <li>High altitude descent</li>
+      <li>Stall</li>
+    </ol>
+    <ol class="q-options" type="a">
+      <li>i, ii, iii, v</li>
+      <li>ii, iii, v, vii</li>
+      <li>i, ii, iii, vii</li>
+      <li>iii, iv, v, vi</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> i, ii, iii, v — Excessive sink rate; altitude loss after T/O; excessive GS deviation; flaps incorrect</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The six basic GPWS modes are: Mode 1 = Excessive descent rate (i); Mode 2 = Excessive terrain closure; Mode 3 = Altitude loss after T/O or go-around (ii); Mode 4 = Proximity not configured (unsafe gear/flap — v); Mode 5 = Below glide slope (iii, noting this is <em>below</em> GS, not excessive deviation above); Mode 6 = Altitude call-outs. Option (a) matches three confirmed modes. "High climb rate" (iv), "high altitude descent" (vi), and "stall" (vii) are NOT GPWS modes.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(b)</strong> — Stall (vii) is not a GPWS mode.</li>
+      <li><strong>(c)</strong> — Stall (vii) is not a GPWS mode; and this combination is not standard.</li>
+      <li><strong>(d)</strong> — High climb rate (iv) and high altitude descent (vi) are not GPWS modes.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Six GPWS modes: 1=sink rate, 2=terrain closure, 3=altitude loss T/O, 4=proximity not configured (gear/flap), 5=below GS, 6=callouts. TAWS/EGPWS adds predictive terrain capability but the 6 basic modes remain the examination foundation.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">E-Q9.</span><span class="q-text">An aircraft is travelling at 120 kt. What angle of bank would be required for a rate-one turn?</span>
+    <ol class="q-options" type="a">
+      <li>30°</li>
+      <li>12°</li>
+      <li>19°</li>
+      <li>35°</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> 19°</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Rate 1 turn = 3°/second (360° in 2 minutes). Bank angle for rate 1 ≈ TAS/10 + 7. At 120 kt TAS: 120/10 + 7 = 12 + 7 = <strong>19°</strong>. More precisely: tan(bank) = (rate × TAS) / (g × 180/π). Rate = 3°/s = 0.0524 rad/s; TAS = 120 kt = 202 ft/s. tan(bank) = (0.0524 × 202) / 32.2 = 10.58/32.2 = 0.329 → bank = arctan(0.329) ≈ 18.2° ≈ <strong>19°</strong>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — 30° corresponds to a faster speed (approximately 230 kt for rate 1).</li>
+      <li><strong>(b)</strong> — 12° ≈ bank for rate 1 at 50 kt.</li>
+      <li><strong>(d)</strong> — 35° ≈ bank for rate 1 at approximately 280 kt.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Quick formula: Rate 1 bank angle ≈ TAS/10 + 7. At 120 kt: 12+7=19°. At 180 kt: 18+7=25°. At 240 kt: 24+7=31°. This formula is approximate but accurate to within 1–2° for typical airspeeds.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">E-Q10.</span><span class="q-text">An aircraft is travelling at 100 kt forward speed on a 3° glide slope. What is its rate of descent?</span>
+    <ol class="q-options" type="a">
+      <li>500 ft/min</li>
+      <li>300 ft/min</li>
+      <li>250 ft/min</li>
+      <li>500 ft/sec</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> 500 ft/min</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Standard formula: Rate of descent = groundspeed (kt) × 5 × glide slope angle (°). At 100 kt and 3°: ROD = 100 × 5 × 3 / 3 = 500 ft/min. More precisely: ROD = GS × tan(3°) × 101.3 ft/min per kt ≈ 100 × 0.0524 × 101.3 ≈ 531 ft/min, but the standard answer using the 5× rule gives 500. The rule-of-thumb: ROD = GS × (GPA × ~5/3) ≈ GS × 5 for 3° ≈ 500 ft/min at 100 kt.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(b)</strong> — 300 ft/min is too low for this combination.</li>
+      <li><strong>(c)</strong> — 250 ft/min is too low (would be correct for ~50 kt).</li>
+      <li><strong>(d)</strong> — 500 ft/sec is a unit error (500 ft/min, not ft/sec).</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Memorise: 3° GS at 150 kt ≈ 750 ft/min; at 120 kt ≈ 600 ft/min; at 100 kt ≈ 500 ft/min. These benchmarks cover the most common exam speeds. The general rule: ROD (ft/min) ≈ 5 × GS (kt) for a 3° slope.</div>
+  </div>
+</div>
+
+<!-- Specimen questions answer key -->
+<h3>Specimen Questions — Source Answer Key (E-Q1 to E-Q55)</h3>
+<table class="answer-key-table">
+  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>
+  <tr><td>1</td><td>b</td><td>2</td><td>b</td><td>3</td><td>b</td><td>4</td><td>b</td><td>5</td><td>c</td><td>6</td><td>c</td></tr>
+  <tr><td>7</td><td>d</td><td>8</td><td>a</td><td>9</td><td>c</td><td>10</td><td>a</td><td>11</td><td>b</td><td>12</td><td>a</td></tr>
+  <tr><td>13</td><td>b</td><td>14</td><td>a</td><td>15</td><td>c</td><td>16</td><td>a</td><td>17</td><td>b</td><td>18</td><td>a</td></tr>
+  <tr><td>19</td><td>a</td><td>20</td><td>d</td><td>21</td><td>a</td><td>22</td><td>c</td><td>23</td><td>c</td><td>24</td><td>b</td></tr>
+  <tr><td>25</td><td>a</td><td>26</td><td>a</td><td>27</td><td>b</td><td>28</td><td>b</td><td>29</td><td>c</td><td>30</td><td>c</td></tr>
+  <tr><td>31</td><td>c</td><td>32</td><td>b</td><td>33</td><td>d</td><td>34</td><td>d</td><td>35</td><td>b</td><td>36</td><td>a</td></tr>
+  <tr><td>37</td><td>c</td><td>38</td><td>b</td><td>39</td><td>a</td><td>40</td><td>c</td><td>41</td><td>b</td><td>42</td><td>c</td></tr>
+  <tr><td>43</td><td>c</td><td>44</td><td>a</td><td>45</td><td>d</td><td>46</td><td>a</td><td>47</td><td>c</td><td>48</td><td>b</td></tr>
+  <tr><td>49</td><td>a</td><td>50</td><td>d</td><td>51</td><td>c</td><td>52</td><td>a</td><td>53</td><td>a</td><td>54</td><td>d</td></tr>
+  <tr><td>55</td><td>c</td><td colspan="10"></td></tr>
+</table>
+
+<!-- ======================================================== -->
+<!-- SECTION F: SPECIMEN EXAMINATION PAPER -->
+<!-- ======================================================== -->
+<div class="section-header" id="sec-sp">Section F — Specimen Examination Paper</div>
+
+<div class="box-blue">
+  <strong>Instructions:</strong> This is a timed specimen exam paper — 55 questions. Attempt all questions before checking answers. Each question carries the marks weight indicated (w1 = 1 mark, w2 = 2 marks, w3 = 3 marks). Allow approximately 75 minutes for this paper.
+</div>
+
+<h3>Selected Key Questions with Explanations</h3>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">F-Q11.</span><span class="q-text">What correction is given by TCAS?</span>
+    <ol class="q-options" type="a">
+      <li>Turn left or right</li>
+      <li>Climb or descend</li>
+      <li>Contact ATC on receipt of a resolution advisory</li>
+      <li>Climb or descend at 500 ft/min</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Climb or descend</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> TCAS II provides <strong>Resolution Advisories (RAs)</strong> that give vertical manoeuvre guidance only — it tells the pilot to climb or descend (and at what rate). TCAS does NOT give horizontal manoeuvre guidance (turn left/right). The vertical-only guidance is why TCAS RAs specify climb/descend rates (e.g., 1,500 or 2,500 ft/min) rather than headings.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — TCAS does NOT give lateral (turn) manoeuvre instructions — vertical only.</li>
+      <li><strong>(c)</strong> — On receipt of a TCAS RA, the crew must follow the RA, NOT contact ATC first. ATC instructions are <em>secondary</em> to TCAS RAs.</li>
+      <li><strong>(d)</strong> — TCAS specifies minimum vertical rates but does not always specify exactly 500 ft/min; the RA specifies a rate range depending on the threat geometry.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> TCAS RA = vertical guidance only (climb or descend). The correct response: smoothly and immediately comply with the RA. Then notify ATC. NEVER follow ATC instructions that conflict with an active RA. This is the critical safety rule.</div>
+  </div>
+</div>
+
+<h3>Specimen Examination Paper — Source Answer Key</h3>
+<table class="answer-key-table">
+  <tr><th>Q</th><th>A</th><th>Wt</th><th>Q</th><th>A</th><th>Wt</th><th>Q</th><th>A</th><th>Wt</th><th>Q</th><th>A</th><th>Wt</th></tr>
+  <tr><td>1</td><td>c</td><td>w1</td><td>2</td><td>a</td><td>w1</td><td>3</td><td>b</td><td>w1</td><td>4</td><td>a</td><td>w1</td></tr>
+  <tr><td>5</td><td>c</td><td>w1</td><td>6</td><td>b</td><td>w1</td><td>7</td><td>a</td><td>w1</td><td>8</td><td>a</td><td>w1</td></tr>
+  <tr><td>9</td><td>c</td><td>w1</td><td>10</td><td>a</td><td>w1</td><td>11</td><td>c</td><td>w1</td><td>12</td><td>b</td><td>w2</td></tr>
+  <tr><td>13</td><td>c</td><td>w1</td><td>14</td><td>c</td><td>w1</td><td>15</td><td>a</td><td>w1</td><td>16</td><td>d</td><td>w2</td></tr>
+  <tr><td>17</td><td>d</td><td>w1</td><td>18</td><td>c</td><td>w1</td><td>19</td><td>a</td><td>w1</td><td>20</td><td>a</td><td>w1</td></tr>
+  <tr><td>21</td><td>b</td><td>w2</td><td>22</td><td>a</td><td>w2</td><td>23</td><td>d</td><td>w1</td><td>24</td><td>c</td><td>w3</td></tr>
+  <tr><td>25</td><td>c</td><td>w2</td><td>26</td><td>d</td><td>w1</td><td>27</td><td>b</td><td>w1</td><td>28</td><td>d</td><td>w1</td></tr>
+  <tr><td>29</td><td>a</td><td>w1</td><td>30</td><td>d</td><td>w1</td><td>31</td><td>b</td><td>w2</td><td>32</td><td>b</td><td>w1</td></tr>
+  <tr><td>33</td><td>d</td><td>w1</td><td>34</td><td>b</td><td>w1</td><td>35</td><td>a</td><td>w1</td><td>36</td><td>c</td><td>w1</td></tr>
+  <tr><td>37</td><td>d</td><td>w1</td><td>38</td><td>b</td><td>w1</td><td>39</td><td>c</td><td>w1</td><td>40</td><td>d</td><td>w1</td></tr>
+  <tr><td>41</td><td>a</td><td>w1</td><td>42</td><td>a</td><td>w2</td><td>43</td><td>b</td><td>w1</td><td>44</td><td>d</td><td>w1</td></tr>
+  <tr><td>45</td><td>c</td><td>w1</td><td>46</td><td>b</td><td>w2</td><td>47</td><td>c</td><td>w1</td><td>48</td><td>d</td><td>w2</td></tr>
+  <tr><td>49</td><td>b</td><td>w1</td><td>50</td><td>c</td><td>w1</td><td>51</td><td>d</td><td>w1</td><td>52</td><td>d</td><td>w1</td></tr>
+  <tr><td>53</td><td>c</td><td>w1</td><td>54</td><td>c</td><td>w1</td><td>55</td><td>b</td><td>w1</td><td colspan="3"></td></tr>
+</table>
+
+<!-- MASTER ANSWER KEYS -->
+<h2 id="answer-keys">Master Answer Keys — All Sections</h2>
+
+<div class="box-amber">
+  <strong>Exam Strategy for Chapter 40:</strong>
+  <ul>
+    <li>Complete each section independently as a timed practice exam before checking answers</li>
+    <li>Flag any question where you are unsure — these indicate which chapters to revisit</li>
+    <li>Review the detailed explanations in Sections E and F for the most commonly missed question types</li>
+    <li>The Specimen Exam Paper (Section F) most closely reflects actual DGCA/ATPL examination format — prioritise this section</li>
+    <li>Score ≥75% on each section before sitting the actual examination</li>
+  </ul>
+</div>
+
+<div class="box-red">
+  <strong>Top 10 Most-Tested Numerical Values — Final Revision:</strong>
+  <table style="margin-top:8px;">
+    <tr><th>#</th><th>Value</th><th>Topic</th></tr>
+    <tr><td>1</td><td><span class="reg-value">84 minutes</span></td><td>Schuler period (INS)</td></tr>
+    <tr><td>2</td><td><span class="reg-value">25 hours</span></td><td>FDR minimum recording time (&gt;5,700 kg)</td></tr>
+    <tr><td>3</td><td><span class="reg-value">30 minutes</span></td><td>CVR minimum recording time (standard)</td></tr>
+    <tr><td>4</td><td><span class="reg-value">2 hours</span></td><td>CVR minimum recording time (&gt;5,700 kg, post Apr 1998)</td></tr>
+    <tr><td>5</td><td><span class="reg-value">5,700 kg</span></td><td>MTOM threshold — FDR/CVR requirement</td></tr>
+    <tr><td>6</td><td><span class="reg-value">72 hours</span></td><td>Max time since u/s — dispatch with inoperative FDR/CVR</td></tr>
+    <tr><td>7</td><td><span class="reg-value">8 flights</span></td><td>Max consecutive flights — dispatch with inoperative FDR/CVR</td></tr>
+    <tr><td>8</td><td><span class="reg-value">60 kt</span></td><td>EPR must be set before this speed on T/O roll</td></tr>
+    <tr><td>9</td><td><span class="reg-value">50 ft</span></td><td>AGL — GS signal disconnected during autoland flare</td></tr>
+    <tr><td>10</td><td><span class="reg-value">2,500 ft</span></td><td>Maximum operating height of GPWS</td></tr>
+  </table>
+</div>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

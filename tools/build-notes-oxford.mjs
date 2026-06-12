@@ -36,7 +36,7 @@ const CONFIGS = [
     source: "Oxford ATPL — Instrumentation",
     srcBase: join(ROOT, "..", "oxford instrumentation notes claude", "DGCA Study Notes"),
     // [ source notes.html (relative to srcBase), chapterId, subtopic ]
-    chapters: Array.from({ length: 23 }, (_, i) => [
+    chapters: Array.from({ length: 40 }, (_, i) => [
       `inst-${i + 1}/notes.html`, `inst-${i + 1}`, `Instrumentation Ch.${i + 1}`,
     ]),
   },

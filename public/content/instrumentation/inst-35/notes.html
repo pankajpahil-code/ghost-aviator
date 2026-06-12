@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 35 – ACAS/TCAS | DGCA CPL/ATPL Study Notes</title>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #0d47a1; margin-top: 22px; }
+  p { margin: 10px 0; }
+  .cover { text-align: center; padding: 40px 20px 30px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .toc { page-break-after: always; }
+  .toc ol { padding-left: 24px; }
+  .toc li { padding: 4px 0; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: left; }
+  td { padding: 7px 12px; border: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7ff; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  #qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  ul { margin: 8px 0; padding-left: 24px; }
+  li { margin: 3px 0; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div style="font-size:0.95em;color:#555;margin-bottom:8px;">ATPL Ground Training Series — Instrumentation</div>
+  <h1>Chapter 35</h1>
+  <h1 style="font-size:1.8em;margin-top:4px;">Airborne Collision and Avoidance System (ACAS / TCAS)</h1>
+  <div style="font-size:1.1em;color:#555;margin-top:8px;">DGCA CPL/ATPL Study Notes</div>
+  <div style="font-size:1em;color:#333;margin-top:20px;font-style:italic;">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction — ACAS vs TCAS</a></li>
+    <li><a href="#sec-2">TCAS I</a></li>
+    <li><a href="#sec-3">TCAS II — Principle</a></li>
+    <li><a href="#sec-4">Aircraft Equipment (Transponder Requirements)</a></li>
+    <li><a href="#sec-5">Operation — Range, Bearing, Height Detection</a></li>
+    <li><a href="#sec-6">System Interconnections</a></li>
+    <li><a href="#sec-7">Synthetic Voice Prioritization</a></li>
+    <li><a href="#sec-8">Traffic Advisories (TAs) and Resolution Advisories (RAs)</a></li>
+    <li><a href="#sec-9">Resolution Advisory Types</a></li>
+    <li><a href="#sec-10">Traffic Symbols — Proximate, Other, TA, RA</a></li>
+    <li><a href="#sec-11">Data Tag and Off-Scale Advisories</a></li>
+    <li><a href="#sec-12">TCAS Displays and Control Panel</a></li>
+    <li><a href="#sec-13">No Bearing Advisories</a></li>
+    <li><a href="#sec-14">Action on Receiving TAs and RAs</a></li>
+    <li><a href="#qa-section">Oxford Questions + Additional Practice Q&amp;A</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction — ACAS vs TCAS</h2>
+<div class="blue-box">
+  <strong>ACAS</strong> = Airborne Collision Avoidance System (ICAO name)<br>
+  <strong>TCAS</strong> = Traffic alert and Collision Avoidance System (US manufacturer name, now widely accepted alternative)<br>
+  Four systems exist: TCAS I, II, III, IV (increasing levels of protection)
+</div>
+
+<div class="red-box"><strong>Regulatory Requirement:</strong> All commercial air transport turbine-powered aircraft registered in Europe with MTOM &gt; <span class="reg-value">5700 kg</span> or &gt; <span class="reg-value">19 passenger seats</span> must have at least ACAS II (version 7).</div>
+
+<h2 id="sec-2">2. TCAS I</h2>
+<p>First generation collision avoidance system. Capabilities:</p>
+<ul>
+  <li>Detects and displays range and approximate relative bearing of nearby aircraft</li>
+  <li>If intruder carries Mode C: relative altitude also displayed</li>
+  <li>Generates <strong>Traffic Advisories (TAs) only</strong>: "Traffic, Traffic"</li>
+  <li>Does <strong>NOT</strong> give Resolution Advisories (no recommended manoeuvre)</li>
+</ul>
+
+<h2 id="sec-3">3. TCAS II — Principle</h2>
+<div class="blue-box">TCAS II detects intruders, assesses collision risk, and presents both TAs and RAs. Uses Mode S data link to co-ordinate with other TCAS-equipped aircraft, providing <strong>complementary vertical avoidance</strong> instructions.</div>
+
+<p>Operates on secondary radar principle using SSR frequencies of <span class="reg-value">1030 MHz</span> (interrogation) and <span class="reg-value">1090 MHz</span> (reply) in an <strong>air-to-air role</strong>.</p>
+
+<p>Creates two protective 3D bubbles around the aircraft:</p>
+<ul>
+  <li><strong>Outer bubble (caution area)</strong> → Traffic Advisory (TA) zone</li>
+  <li><strong>Inner bubble (warning area)</strong> → Resolution Advisory (RA) zone</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p481_0.png" alt="TCAS two protective bubbles">
+  <figcaption>Fig 35.1 — TCAS II two protective 3D bubbles (source p.481)</figcaption>
+</figure>
+
+<div class="amber-box"><strong>Key TCAS II Limitation:</strong> TCAS II never offers collision avoidance commands in the horizontal plane — <strong>vertical plane only</strong> (climb or descend).</div>
+
+<h2 id="sec-4">4. Aircraft Equipment (Transponder Requirements)</h2>
+
+<table>
+<tr><th>Transponder Type</th><th>Information Available</th><th>TCAS Capability</th></tr>
+<tr><td>Mode A</td><td>Identity only (no height)</td><td>2D — TAs only</td></tr>
+<tr><td>Mode C</td><td>Identity + height</td><td>3D — TAs and RAs</td></tr>
+<tr><td>Mode S</td><td>Identity + height + discrete data link</td><td>3D + co-ordinated RAs between TCAS aircraft</td></tr>
+<tr><td>None / off</td><td>—</td><td>Invisible to TCAS — collision risk!</td></tr>
+</table>
+
+<h2 id="sec-5">5. Operation — Range, Bearing, Height</h2>
+
+<h3>Range</h3>
+<p>Determined by measuring time between interrogation transmission and response (radar principle). Interrogation approximately <span class="reg-value">once per second</span>. In densely populated airspace: <strong>reduced surveillance</strong> — interrogation every <span class="reg-value">5 seconds</span>, priority to closest aircraft.</p>
+<ul>
+  <li>Normal detection range: <span class="reg-value">~30 NM</span></li>
+  <li>Reduced surveillance range: <span class="reg-value">~5 NM</span></li>
+</ul>
+
+<h3>Bearing</h3>
+<p>Determined by directional antenna. Due to wavelengths and antenna size, <strong>bearing is the least accurate parameter</strong>.</p>
+
+<figure>
+  <img src="figs/fig_p482_0.png" alt="TCAS bearing determination">
+  <figcaption>Fig 35.2 — TCAS bearing determination using directional antenna (source p.482)</figcaption>
+</figure>
+
+<h3>Height</h3>
+<p>Found by comparing intruder's Mode C altitude with TCAS aircraft's own altitude.</p>
+
+<h2 id="sec-6">6. System Interconnections</h2>
+
+<p>TCAS feeds from (and limitations based on):</p>
+<ul>
+  <li><strong>Radio altimeter:</strong> Modifies RAs near the ground:
+    <ul>
+      <li>No instructions at all below <span class="reg-value">400 ft AGL</span></li>
+      <li>No descent RAs below <span class="reg-value">1000 ft AGL</span></li>
+      <li>No increase rate of descent below <span class="reg-value">1450 ft AGL</span></li>
+    </ul>
+  </li>
+  <li><strong>Aircraft configuration (gear/flap):</strong> Poor climb performance → TCAS avoids climb demands</li>
+  <li><strong>ADC:</strong> At high altitude near performance ceiling → TCAS avoids climbing RA</li>
+  <li><strong>IRS:</strong> Inertial vertical acceleration input</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p483_0.png" alt="TCAS aircraft installation">
+  <figcaption>Fig 35.3 — TCAS system installation in a commuter/feeder airliner (source p.483)</figcaption>
+</figure>
+
+<h2 id="sec-7">7. Synthetic Voice Prioritization</h2>
+<div class="red-box">
+  <strong>Synthetic voice priority order (highest first):</strong>
+  <ol>
+    <li>Stall Identification/Prevention (stick shake/push) — voice inhibited during stick push</li>
+    <li>Windshear — inhibits both GPWS and TCAS</li>
+    <li>GPWS — inhibits TCAS</li>
+    <li>TCAS (lowest priority)</li>
+  </ol>
+</div>
+
+<h2 id="sec-8">8. Traffic Advisories (TAs) and Resolution Advisories (RAs)</h2>
+
+<p>TCAS can monitor up to <span class="reg-value">30 aircraft</span> simultaneously on display. Conflict assessment based on tau (τ) = Closest Point of Approach (CPA).</p>
+
+<table>
+<tr><th>Advisory Type</th><th>Bubble Penetrated</th><th>Time to Collision</th><th>Symbol</th><th>Voice</th></tr>
+<tr><td><strong>TA</strong> (Traffic Advisory)</td><td>Outer (caution) bubble</td><td><span class="reg-value">45–35 seconds</span></td><td>Solid amber circle</td><td>"Traffic, Traffic"</td></tr>
+<tr><td><strong>RA</strong> (Resolution Advisory)</td><td>Inner (warning) bubble</td><td><span class="reg-value">35–15 seconds</span></td><td>Solid red rectangle</td><td>Climb/Descend commands</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p484_0.png" alt="TCAS TA and RA timeline">
+  <figcaption>Fig 35.4 — TCAS TA and RA time-to-collision zones (source p.484)</figcaption>
+</figure>
+
+<h2 id="sec-9">9. Resolution Advisory Types</h2>
+
+<table>
+<tr><th>RA Type</th><th>Situation</th><th>Voice</th></tr>
+<tr><td><strong>Preventative RA</strong></td><td>No collision risk unless one aircraft changes level</td><td>"Monitor Vertical Speed"</td></tr>
+<tr><td><strong>Corrective RA</strong></td><td>Collision risk exists; manoeuvre required</td><td>"Climb" "Descend" "Increase Climb" "Decrease Descent" etc.</td></tr>
+</table>
+
+<div class="green-box"><strong>Separation intended with smooth RA response:</strong> <span class="reg-value">300–600 ft</span> vertical (700 ft above FL410). Separation varies with Sensitivity Level (SL) which decreases with altitude.</div>
+
+<figure>
+  <img src="figs/fig_p485_0.png" alt="Preventative and corrective RAs on VSI">
+  <figcaption>Fig 35.5 — Preventative and corrective RAs displayed on PFD vertical speed tape (source p.485)</figcaption>
+</figure>
+
+<h2 id="sec-10">10. Traffic Symbols</h2>
+
+<table>
+<tr><th>Symbol</th><th>Appearance</th><th>Meaning</th><th>Range / Height</th></tr>
+<tr><td><strong>RA Traffic</strong></td><td>Solid red rectangle</td><td>Serious collision threat — manoeuvre immediately</td><td>Inner bubble</td></tr>
+<tr><td><strong>TA Traffic</strong></td><td>Solid amber circle</td><td>Potential collision threat — prepare for RA</td><td>Outer bubble</td></tr>
+<tr><td><strong>Proximate Traffic</strong></td><td>Solid cyan diamond</td><td>Near traffic, not a threat</td><td>Within <span class="reg-value">6 NM</span> and ±<span class="reg-value">1200 ft</span></td></tr>
+<tr><td><strong>Other Traffic</strong></td><td>Hollow cyan diamond</td><td>Transponder-equipped, within display range</td><td>Within range, ±<span class="reg-value">2700 ft</span> (or ±8700/2700 in climb/descent)</td></tr>
+</table>
+
+<h2 id="sec-11">11. Data Tag and Off-Scale Advisories</h2>
+
+<h3>Data Tag (Mode C equipped intruders)</h3>
+<ul>
+  <li>Relative altitude in hundreds of feet</li>
+  <li>+ sign = intruder above; − sign = intruder below</li>
+  <li>↑ or ↓ trend arrow when vertical rate ≥ <span class="reg-value">500 fpm</span></li>
+  <li>No number/arrow = non-altitude-reporting intruder</li>
+</ul>
+
+<h3>Off-Scale Traffic Advisory</h3>
+<p>When intruder is outside display range but inside caution/warning area: half of the appropriate symbol appears at the correct bearing at the edge of the display with data tag (if room).</p>
+
+<figure>
+  <img src="figs/fig_p486_0.png" alt="TCAS PPI display">
+  <figcaption>Fig 35.6 — TCAS dedicated Plan Position Indicator (PPI) (source p.486)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p487_0.png" alt="Electronic VSI TCAS display">
+  <figcaption>Fig 35.7 — TCAS on Electronic Vertical Speed Indicator (source p.487)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p487_1.png" alt="TCAS on EFIS Navigation Display">
+  <figcaption>Fig 35.8 — TCAS superimposed on EFIS Navigation Display in MAP mode (source p.487)</figcaption>
+</figure>
+
+<h2 id="sec-12">12. TCAS Displays and Control Panel</h2>
+
+<figure>
+  <img src="figs/fig_p488_0.png" alt="TCAS SSR control panel">
+  <figcaption>Fig 35.9 — Combined TCAS and SSR (ATC Transponder) control panel (source p.488)</figcaption>
+</figure>
+
+<h3>Function Switch Positions</h3>
+<table>
+<tr><th>Position</th><th>Function</th></tr>
+<tr><td>STANDBY</td><td>Warm-up power only; system not operational</td></tr>
+<tr><td>ON</td><td>Transponder only operational (visible to ACAS, but no TCAS function)</td></tr>
+<tr><td>TA</td><td>Transponder + TCAS operational; TAs only generated. "TA ONLY" shown on display. Used for engine failure, reduced performance, parallel runway ops.</td></tr>
+<tr><td>RA/TA</td><td>Full operation — both RAs and TAs generated (normal operation)</td></tr>
+<tr><td>TEST</td><td>Full BITE check. Success: "TCAS SYSTEM TEST OK"; Failure: "TCAS SYSTEM TEST FAIL"</td></tr>
+</table>
+
+<h3>TCAS RNG Switch</h3>
+<p>Selects display range: <span class="reg-value">5, 10, or 20 NM</span>. Does NOT alter detection range or warning thresholds.</p>
+
+<figure>
+  <img src="figs/fig_p488_1.png" alt="TCAS TA display">
+  <figcaption>Fig 35.10 — Traffic advisory on electronic VSI (source p.488)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p489_0.png" alt="Preventative RA">
+  <figcaption>Fig 35.11 — Preventative resolution advisory on VSI (source p.489)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p490_0.png" alt="Corrective RA">
+  <figcaption>Fig 35.12 — Corrective resolution advisory on VSI (source p.490)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p490_1.png" alt="TCAS test display">
+  <figcaption>Fig 35.13 — TCAS test format on VSI (source p.490)</figcaption>
+</figure>
+
+<h2 id="sec-13">13. No Bearing Advisories</h2>
+<p>If TCAS cannot track intruder bearing (e.g., antenna screening), RA or TA appears lower-centre of display in appropriate colour. Up to two lines of information. Example: "TA 2.2- 04 ↑" = TA 2.2 NM away, 400 ft below, climbing ≥500 fpm.</p>
+
+<div class="green-box">No bearing information does NOT degrade TCAS ability to compute a TA or RA — only the display position is affected.</div>
+
+<figure>
+  <img src="figs/fig_p491_0.png" alt="No bearing RA and TA">
+  <figcaption>Fig 35.14 — No bearing RA and TA display (source p.491)</figcaption>
+</figure>
+
+<h2 id="sec-14">14. Action on Receiving TAs and RAs</h2>
+
+<table>
+<tr><th>Advisory</th><th>Crew Action</th></tr>
+<tr><td><strong>TA</strong></td><td>Assimilate information. Begin visual search. Prepare for RA. Seek ATC advice if traffic not seen. <strong>Do NOT manoeuvre on TA alone.</strong></td></tr>
+<tr><td><strong>RA</strong></td><td><strong>Initiate required manoeuvre immediately.</strong> Adjust flight path, power, trim. Inform ATC of deviation as soon as possible.</td></tr>
+</table>
+
+<div class="red-box">
+  <strong>Rules for disregarding RAs:</strong>
+  <ul>
+    <li>Never manoeuvre OPPOSITE to RA (sense may have been co-ordinated with intruder via Mode S)</li>
+    <li>RAs may be disregarded ONLY if pilot visually identifies the conflicting traffic AND decides no deviation is necessary</li>
+    <li>If ATC instruction conflicts with RA — <strong>FOLLOW THE RA</strong></li>
+  </ul>
+</div>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 35:</strong>
+  <ul>
+    <li>ACAS = ICAO name; TCAS = manufacturer/common name. Mandatory &gt;5700 kg or &gt;19 seats (Europe)</li>
+    <li>TCAS I: TAs only. TCAS II: TAs + RAs (vertical only, never horizontal)</li>
+    <li>TCAS II frequencies: 1030 MHz (interrogate) / 1090 MHz (reply)</li>
+    <li>Mode A: TAs only (2D). Mode C: TAs + RAs (3D). Mode S: TAs + RAs + co-ordinated RAs</li>
+    <li>Interrogation: ~1/sec normal; every 5 sec reduced surveillance. Range: 30 NM normal / 5 NM reduced</li>
+    <li>Bearing least accurate parameter (small antenna, SSR wavelength)</li>
+    <li>RA height restrictions: no instructions &lt;400 ft AGL; no descent RA &lt;1000 ft; no increase descent &lt;1450 ft</li>
+    <li>TA = outer bubble = 45–35 sec = solid amber circle. RA = inner bubble = 35–15 sec = solid red rectangle</li>
+    <li>Proximate traffic: solid cyan diamond; within 6 NM ±1200 ft</li>
+    <li>Data tag ↑↓ when V/S ≥500 fpm; + = above; − = below</li>
+    <li>RA types: Preventative ("Monitor VS") / Corrective ("Climb/Descend")</li>
+    <li>Intended separation (smooth response): 300–600 ft; 700 ft above FL410</li>
+    <li>On TA: look; prepare; do NOT manoeuvre. On RA: manoeuvre IMMEDIATELY; follow RA over ATC if conflict</li>
+    <li>Voice priority: Stall → Windshear → GPWS → TCAS</li>
+  </ul>
+</div>
+
+<section id="qa-section">
+<h2>Oxford Questions &amp; Additional Practice Q&amp;A</h2>
+
+<h3>Oxford Textbook Questions (Chapter 35)</h3>
+<div class="answer-key" style="background:#e8f5e9;border-left:5px solid #2e7d32;padding:10px 15px;border-radius:4px;font-family:monospace;">Oxford Answers: 1-a  2-b  3-a  4-c  5-d</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">On receipt of a TCAS RA your action is to:</span>
+    <ol class="q-options" type="a">
+      <li>Initiate the required manoeuvre immediately</li>
+      <li>Make a note of the details</li>
+      <li>Request a flight clearance deviation from ATC</li>
+      <li>Do nothing until a TA is received</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> Initiate the required manoeuvre immediately</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> An RA indicates a serious collision threat (35–15 seconds to CPA). The only correct response is immediate execution of the required manoeuvre. See <a href="#sec-14">Section 14</a>.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">Which statement concerning TCAS is correct?</span>
+    <ol class="q-options" type="a">
+      <li>TCAS II provides avoidance instructions in vertical and horizontal planes</li>
+      <li>TCAS II cannot provide information on non-SSR equipped intruders</li>
+      <li>TCAS II requires Mode S to be fitted to other aircraft</li>
+      <li>TCAS II provides advice on which way to turn</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> TCAS II relies on intruder SSR transponders. Aircraft without transponders are invisible. TCAS II only provides vertical avoidance (never horizontal). Mode S is needed for co-ordinated RAs but not required for basic detection (Mode A/C suffice). See <a href="#sec-4">Section 4</a>.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">The difference between TCAS I and TCAS II is:</span>
+    <ol class="q-options" type="a">
+      <li>TCAS II can provide TAs and RAs whilst TCAS I can only provide TAs</li>
+      <li>TCAS II is only for large aircraft &gt;30 passengers</li>
+      <li>TCAS I requires Mode A only; TCAS II requires Mode C or S</li>
+      <li>TCAS II only works with EFIS equipped aircraft</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> TCAS I = TAs only (alerts crew to look for traffic). TCAS II = TAs + RAs (provides vertical manoeuvre advice). See <a href="#sec-2">Sections 2</a> and <a href="#sec-3">3</a>.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">The aural messages provided by TCAS II are:</span>
+    <ol class="q-options" type="a">
+      <li>Threat, Climb; Threat, Descend</li>
+      <li>Climb left; Climb right; Descend left; Descend right</li>
+      <li>Climb; Descend; Increase Climb; Increase Descent</li>
+      <li>Turn Left, Turn Right, Increase Turn, Decrease Turn</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> TCAS II RA voice commands: "Climb" "Increase Climb" "Descend" "Increase Descent" "Monitor Vertical Speed" "Decrease Climb" "Decrease Descent" — all in the vertical plane only. No lateral (turn) instructions. See <a href="#sec-3">Section 3</a>.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">RAs may be disregarded only when:</span>
+    <ol class="q-options" type="a">
+      <li>RAs may be disregarded only when the pilot visually identifies the traffic, decides no deviation is necessary, and has clearance confirmed by ATC</li>
+      <li>RAs may be disregarded when they conflict with an ATC instruction</li>
+      <li>RAs must never be disregarded</li>
+      <li>RAs may be disregarded only when the pilot visually identifies the traffic and decides no deviation is necessary</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> RAs may be disregarded ONLY when the pilot visually identifies the conflicting traffic AND decides no deviation is necessary. ATC confirmation is NOT required — in fact, if ATC instruction conflicts with RA, the RA takes precedence. See <a href="#sec-14">Section 14</a>.</div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> This is one of the most exam-important rules. (a) is wrong because ATC confirmation is not required. (b) is wrong because ATC instruction that conflicts = follow the RA. (c) is wrong because there is one exception (visual identification).</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">TCAS will NOT give any avoidance commands when the aircraft is below:</span>
+    <ol class="q-options" type="a">
+      <li>1000 ft AGL</li>
+      <li>1450 ft AGL</li>
+      <li>400 ft AGL</li>
+      <li>200 ft AGL</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> 400 ft AGL</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> TCAS gives no instructions at all below <span class="reg-value">400 ft AGL</span>. Below 1000 ft: no descent RAs. Below 1450 ft: no increase rate of descent commands. The most restrictive is 400 ft — no instructions at all. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Three altitude limits to memorise: 400 ft (nothing), 1000 ft (no descent), 1450 ft (no increase descent). On approach these prevent TCAS from commanding dangerous go-arounds below decision height.</div>
+  </div>
+</div>
+
+</section>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

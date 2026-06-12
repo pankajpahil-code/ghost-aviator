@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 26 – Autopilot | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; margin-bottom: 4px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #0d47a1; margin-top: 22px; }
+  h4 { font-size: 1em; font-weight: 700; color: #1565c0; margin-top: 16px; }
+  p { margin: 10px 0; }
+  .cover { text-align: center; padding: 40px 20px 30px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .toc { page-break-after: always; }
+  .toc ol { padding-left: 24px; }
+  .toc li { padding: 4px 0; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: left; }
+  td { padding: 7px 12px; border: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7ff; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  #qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  ul { margin: 8px 0; padding-left: 24px; }
+  li { margin: 3px 0; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div style="font-size:0.95em;color:#555;margin-bottom:8px;">ATPL Ground Training Series — Instrumentation</div>
+  <h1>Chapter 26</h1>
+  <h1 style="font-size:1.8em;margin-top:4px;">Autopilot</h1>
+  <div style="font-size:1.1em;color:#555;margin-top:8px;">DGCA CPL/ATPL Study Notes</div>
+  <div style="font-size:1em;color:#333;margin-top:20px;font-style:italic;">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction — Purpose &amp; Benefits</a></li>
+    <li><a href="#sec-2">Fail-Safe Autopilot</a></li>
+    <li><a href="#sec-3">Control Loops — Inner &amp; Outer</a></li>
+    <li><a href="#sec-4">Aircraft Inner Loop Control System</a></li>
+    <li><a href="#sec-5">Types of Autopilot (Axes)</a></li>
+    <li><a href="#sec-6">EU-OPS Requirements</a></li>
+    <li><a href="#sec-7">Types of Actuator</a></li>
+    <li><a href="#sec-8">Engagement Criteria &amp; Interlocks</a></li>
+    <li><a href="#sec-9">Trim</a></li>
+    <li><a href="#sec-10">Fly-by-Wire</a></li>
+    <li><a href="#sec-11">Outer Loop — Flight Path Modes</a></li>
+    <li><a href="#sec-12">Mode Annunciator &amp; Sensor Inputs</a></li>
+    <li><a href="#sec-13">Outer Loop Roll Modes</a></li>
+    <li><a href="#sec-14">Outer Loop Pitch Modes</a></li>
+    <li><a href="#sec-15">Control Wheel Steering (CWS) &amp; Touch Control Steering (TCS)</a></li>
+    <li><a href="#sec-16">Autopilot Limitations &amp; Gain Adaption</a></li>
+    <li><a href="#sec-17">FMS Integration</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction — Purpose &amp; Benefits</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why autopilots exist, and the two primary reasons they were introduced.</div>
+
+<p>The main purpose of the autopilot is to <strong>relieve the pilot of physical and mental fatigue</strong>, especially during long flights, resulting in the pilot being more alert during the critical landing phase. Modern airliners can fly almost the entire route automatically when combined with an autothrottle.</p>
+
+<div class="blue-box">
+  <strong>Two Primary Reasons for Autopilot Introduction:</strong>
+  <ul>
+    <li><strong>Reduction in Workload:</strong> Crew are more rested for demanding flight phases; allows concentration on other tasks (navigation, system management)</li>
+    <li><strong>Response Time:</strong> Autopilot detects and corrects disturbances in approximately <span class="reg-value">50 ms</span>. A human pilot: ~<span class="reg-value">200 ms</span> (1/5 second) to detect, then additional delay to decide and apply control</li>
+  </ul>
+</div>
+
+<div class="red-box"><strong>Important Limitation:</strong> The autopilot does NOT carry out the take-off — this must be done by the pilot. The autopilot can be engaged shortly after take-off at approximately <span class="reg-value">400 feet</span> or possibly lower.</div>
+
+<h2 id="sec-2">2. Fail-Safe Autopilot</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How autopilots protect against runaways and malfunctions.</div>
+
+<p>With any automatic system, protection against malfunctions (particularly <strong>runaways</strong>) is achieved by:</p>
+<ul>
+  <li><strong>Limiting actuator authority</strong> (maximum deflection), OR</li>
+  <li><strong>Limiting actuator travel rate</strong></li>
+</ul>
+
+<p>The pilot must always be able to override the effects of a malfunction and retain control. Such a system is called a <strong>fail-safe system</strong> — applies to any single autopilot.</p>
+
+<h2 id="sec-3">3. Control Loops — Inner &amp; Outer</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The fundamental architecture of autopilot control — closed loop vs open loop, inner loop vs outer loop.</div>
+
+<h3>Closed Loop vs Open Loop</h3>
+<table>
+<tr><th>Type</th><th>Description</th><th>Example</th></tr>
+<tr><td><strong>Open Loop</strong></td><td>No feedback; output does not affect input</td><td>Central heating with timer only — runs regardless of room temperature</td></tr>
+<tr><td><strong>Closed Loop</strong></td><td>Output fed back to input; error is corrected</td><td>Central heating with thermostat — stops when temperature is reached</td></tr>
+</table>
+
+<p>A <strong>servomechanism</strong> is a closed loop control system where a small input is converted into a larger output in a strictly proportionate manner.</p>
+
+<h3>Basic Closed Loop Elements</h3>
+<pre class="mermaid">
+flowchart LR
+  A["Input\n(Desired attitude)"] --> B["Error Detector\n/ Signal Processor"]
+  B --> C["Control Element\n(Servomotor)"]
+  C --> D["Output\n(Control surface)"]
+  D --> E["Feedback\n(Gyro senses result)"]
+  E --> B
+</pre>
+
+<figure>
+  <img src="figs/fig_p354_0.png" alt="Closed loop control diagram">
+  <figcaption>Fig 26.1 — Closed Loop Control (source p.354)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p354_1.png" alt="Open loop control diagram">
+  <figcaption>Fig 26.2 — Open Loop Control (source p.354)</figcaption>
+</figure>
+
+<div class="amber-box"><strong>Exam Tip:</strong> The domestic thermostat analogy is a classic exam aid — with timer = open loop; with thermostat = closed loop. The autopilot inner loop is always a closed loop (feedback-controlled) system.</div>
+
+<h3>Inner Loop vs Outer Loop</h3>
+<table>
+<tr><th>Loop Type</th><th>Function</th><th>Example Modes</th></tr>
+<tr><td><strong>Inner Loop</strong></td><td>Auto-stability only — keeps aircraft in selected attitude against disturbances</td><td>Roll stabilization, pitch stabilization</td></tr>
+<tr><td><strong>Outer Loop</strong></td><td>Flight path guidance — commands the inner loop to achieve desired flight path</td><td>Altitude Hold, Heading Hold, LNAV, VNAV</td></tr>
+</table>
+
+<h2 id="sec-4">4. Aircraft Inner Loop Control System</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Components and operation of the inner (closed) loop.</div>
+
+<figure>
+  <img src="figs/fig_p356_0.png" alt="Closed loop / inner loop diagram">
+  <figcaption>Fig 26.3 — Closed loop (inner loop) components (source p.356)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p356_1.png" alt="Inner loop vs outer loop relationship">
+  <figcaption>Fig 26.4 — Inner loop vs outer loop relationship (source p.356)</figcaption>
+</figure>
+
+<table>
+<tr><th>Component</th><th>Function</th></tr>
+<tr><td><strong>Attitude Sensor</strong></td><td>Rate gyro — senses disturbance in one axis only</td></tr>
+<tr><td><strong>Transducer</strong></td><td>Converts mechanical gyro movement into electrical signal</td></tr>
+<tr><td><strong>Signal Processor</strong></td><td>Error detector; compares transducer signal with input; determines corrective action; transmits to servomotor</td></tr>
+<tr><td><strong>Servomotor</strong></td><td>Converts processed signal into control surface movement proportional to rate and direction; uses hydraulic, electrical or pneumatic power</td></tr>
+<tr><td><strong>Aerodynamic Feedback</strong></td><td>Aircraft attitude change is sensed by rate gyro; provides measure of output</td></tr>
+</table>
+
+<p>A disturbance produces an error signal → autopilot moves aircraft back toward stabilized condition → error signal progressively reduces → control surface deflection removed when disturbance corrected.</p>
+
+<h2 id="sec-5">5. Types of Autopilot (Axes)</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Single, two, and three axis autopilot systems and which axis is primary.</div>
+
+<p>Aircraft can be disturbed about three axes — longitudinal (roll), lateral (pitch) and vertical/normal (yaw). Each axis requires its own inner loop channel:</p>
+
+<table>
+<tr><th>Axis</th><th>Controls</th><th>Alternative Name</th></tr>
+<tr><td>Roll</td><td>Ailerons</td><td>Primary axis</td></tr>
+<tr><td>Pitch</td><td>Elevators</td><td>Secondary axis</td></tr>
+<tr><td>Yaw</td><td>Rudder</td><td>Third / Tertiary axis</td></tr>
+</table>
+
+<table>
+<tr><th>Autopilot Type</th><th>Axes Controlled</th><th>Description</th></tr>
+<tr><td>Single Axis</td><td>Roll only</td><td>"Wing Leveller" — lateral stability only</td></tr>
+<tr><td>Two Axis</td><td>Roll + Pitch</td><td>Controls ailerons and elevators</td></tr>
+<tr><td>Three Axis</td><td>Roll + Pitch + Yaw</td><td>Full attitude control; required for autoland</td></tr>
+</table>
+
+<div class="green-box">
+  <strong>Key Facts:</strong>
+  <ul>
+    <li>Roll and pitch channels = primary outer loop control channels</li>
+    <li>Rudder channel = essentially a stability channel</li>
+    <li>Roll–rudder interaction assists coordinated turns and faster stability response</li>
+    <li><strong>Three-axis control is required for autoland</strong></li>
+  </ul>
+</div>
+
+<h2 id="sec-6">6. EU-OPS Requirements</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Regulatory requirements for autopilot installation, operation, and single-pilot IFR operations.</div>
+
+<div class="red-box">
+  <strong>Single Pilot IFR or Night Operations:</strong>
+  An operator shall not conduct single pilot IFR operations unless the aeroplane is equipped with an autopilot with at least <strong>ALTITUDE HOLD and HEADING MODE</strong>. This requires at least a <strong>two-axis autopilot</strong>.
+</div>
+
+<h3>Autopilot Installation Requirements</h3>
+<ul>
+  <li>Must be approved; must be designed so autopilot can be <strong>quickly and positively disengaged</strong> to prevent interference with aeroplane control</li>
+  <li>Unless automatic synchronizing — must have means to indicate alignment of actuating device relative to control system</li>
+  <li>Manually operated controls must be <strong>readily accessible to the pilots</strong></li>
+  <li><strong>Quick release (emergency) controls must be on BOTH control wheels</strong>, on the side opposite the throttles</li>
+  <li>Attitude controls must operate in the plane and sense specified for cockpit controls; direction of motion plainly indicated</li>
+  <li>System must not produce hazardous loads or create hazardous deviations — during normal operation OR in the event of malfunction</li>
+  <li>Means must be provided to indicate current mode and any armed modes to the pilots</li>
+</ul>
+
+<h2 id="sec-7">7. Types of Actuator</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Actuator types and configurations.</div>
+
+<p>Actuators produce physical movement of control surfaces. Types by principle of operation:</p>
+<ul>
+  <li><strong>Electromechanical</strong></li>
+  <li><strong>Electrohydraulic</strong></li>
+  <li><strong>Pneumatic</strong></li>
+</ul>
+
+<h3>Actuator Configurations</h3>
+<table>
+<tr><th>Configuration</th><th>Description</th></tr>
+<tr><td><strong>Parallel</strong></td><td>Actuator moves the control surface AND provides feedback to the control stick (stick moves when A/P is controlling)</td></tr>
+<tr><td><strong>Series</strong></td><td>Actuator moves the control surface but NOT the control stick</td></tr>
+<tr><td>Combined Series/Parallel</td><td>Both types used together</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p359_0.png" alt="Parallel actuator">
+  <figcaption>Fig 26.5 — A/P Actuator in parallel configuration (source p.359)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p359_1.png" alt="Series actuator">
+  <figcaption>Fig 26.6 — A/P Actuator in series configuration (source p.359)</figcaption>
+</figure>
+
+<h3>Torque Limiter</h3>
+<p>Limits torque applied to servomotors to prevent excessive structural loads and guard against servomotor runaway (full hard-over deflection). Implemented by mechanical, electrical or electromechanical principles.</p>
+
+<h2 id="sec-8">8. Engagement Criteria &amp; Interlocks</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the autopilot ensures it is safe to engage before connecting to the aircraft's flight controls.</div>
+
+<p>Before coupling, the integrity of the <strong>Autopilot Inner Loop</strong> must be established. A system of <strong>interlocks</strong> closes to allow engagement and holds it engaged only if correct valid signals have been received.</p>
+
+<figure>
+  <img src="figs/fig_p360_0.png" alt="Autopilot engagement interlocks">
+  <figcaption>Fig 26.7 — Interlock relay series for autopilot engagement (source p.360)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p363_0.png" alt="Autopilot trim system">
+  <figcaption>Fig 26.8 — Autopilot trim/engagement system (source p.363)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p364_0.png" alt="Autopilot mode control">
+  <figcaption>Fig 26.9 — A/P mode control (source p.364)</figcaption>
+</figure>
+
+<h2 id="sec-9">9. Trim</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the autopilot uses trim and the importance of trim for safety.</div>
+
+<p>The autopilot uses trim to relieve persistent control surface deflections. This prevents the control surfaces from working at the limit of their travel. On engagement, the autopilot synchronizes with the current trim condition. If trim becomes significantly out of position, disengage warnings activate.</p>
+
+<div class="red-box">
+  <strong>A/P Disengage Warning — Steady Red:</strong>
+  <ul>
+    <li>Stabilizer out of trim below <span class="reg-value">800 ft RA</span> on a dual channel approach</li>
+    <li>ALT ACQ mode inhibited during A/P go-around</li>
+    <li>Disengage light test switch in position 2 (red filament test)</li>
+    <li>Automatic ground system test fail</li>
+  </ul>
+  <strong>Flashing Amber:</strong> A/P automatically reverted to CWS pitch or roll while in CMD.
+</div>
+
+<h2 id="sec-10">10. Fly-by-Wire</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Brief introduction to fly-by-wire as an extension of autopilot concepts.</div>
+
+<p>In conventional aircraft, the pilot's control inputs are transmitted mechanically via cables and linkages to the control surfaces. In <strong>fly-by-wire</strong> aircraft, control inputs are transmitted as electrical signals processed by a flight control computer (FCC). The FCC applies the pilot's demands while also applying envelope protection — the computer can refuse or modify commands that would exceed aircraft limits.</p>
+
+<h2 id="sec-11">11. Outer Loop — Flight Path Modes</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How outer loop modes guide the aircraft through specific flight paths.</div>
+
+<p>Outer loop modes interact with the inner loop to give the aeroplane guidance to achieve a required flight path. Roll and pitch channels receive outer loop signals. Common outer loop functions:</p>
+
+<figure>
+  <img src="figs/fig_p366_0.png" alt="Aircraft sensor inputs">
+  <figcaption>Fig 26.11 — Aircraft sensor inputs to the autoflight computer (source p.366)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p367_0.png" alt="MCP inputs">
+  <figcaption>Fig 26.12 — Inputs to the MCP (source p.367)</figcaption>
+</figure>
+
+<h3>Boeing 737-400 AFDS Overview</h3>
+<p>The <strong>Automatic Flight System (AFS)</strong> for the 737-400 consists of:</p>
+<ul>
+  <li><strong>AFDS</strong> (Autopilot Flight Director System) — dual system with 2 FCCs (A and B) + single MCP</li>
+  <li><strong>A/T</strong> (Autothrottle)</li>
+  <li><strong>FMC</strong> (Flight Management Computer) — provides N1 limits, target N1 and command airspeeds</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p368_0.png" alt="AFDS mode control panel">
+  <figcaption>Fig 26.13 — AFDS Mode Control Panel (MCP) (source p.368)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p368_1.png" alt="AFDS MCP detailed">
+  <figcaption>Fig 26.13b — MCP detailed view (source p.368)</figcaption>
+</figure>
+
+<h2 id="sec-12">12. Mode Annunciator &amp; Sensor Inputs</h2>
+<div class="blue-box"><strong>What this section covers:</strong> MCP mode selector operation and the autopilot modes table.</div>
+
+<div class="green-box">
+  <strong>MCP Mode Selector Switch Operation:</strong>
+  <ul>
+    <li>Switch illuminates when selected; extinguishes when deselected (or when auto-inhibited)</li>
+    <li>When mode engagement would conflict with current AFS operation, pressing has no effect</li>
+    <li>All AFDS modes can be disengaged by selecting another command mode or by disengaging A/P and turning FDs off</li>
+  </ul>
+</div>
+
+<h3>Autopilot in Operation — Mode Summary</h3>
+<table>
+<tr><th>Phase</th><th>Roll Mode</th><th>Pitch Mode</th><th>Autothrottle</th></tr>
+<tr><td>Take-off</td><td>TOGA</td><td>TOGA</td><td>THR REF</td></tr>
+<tr><td>Climb</td><td>LNAV, HDG or VOR</td><td>FLCH SPD, VNAV or V/S</td><td>THR REF, SPD or MACH</td></tr>
+<tr><td>Cruise</td><td>LNAV, HDG or VOR</td><td>ALT HOLD, VNAV</td><td>SPD or MACH</td></tr>
+<tr><td>Descent</td><td>LNAV, HDG or VOR</td><td>FLCH SPD, VNAV or V/S</td><td>THR REF, SPD or MACH</td></tr>
+<tr><td>Approach</td><td>LNAV, HDG or LOC</td><td>ALT, G/S, FLARE</td><td>SPD</td></tr>
+<tr><td>Land</td><td>ROLLOUT</td><td>FLARE</td><td>RETARD</td></tr>
+<tr><td>Go-around</td><td>TOGA</td><td>TOGA</td><td>THR REF</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p369_0.png" alt="Autopilot outer loop modes">
+  <figcaption>Fig 26.14 — Outer loop mode diagram (source p.369)</figcaption>
+</figure>
+
+<h2 id="sec-13">13. Outer Loop Roll Modes</h2>
+<div class="blue-box"><strong>What this section covers:</strong> All roll outer loop modes for the AFDS.</div>
+
+<h3>Heading Select (HDG SEL)</h3>
+<p>Roll commands to turn and maintain MCP heading display. Bank angle limited by Bank Angle Limit Selector on MCP. Automatically disengages upon capture of selected radio course in VOR LOC and APP modes.</p>
+
+<h3>VOR Localizer Tracking (VOR LOC)</h3>
+<ul>
+  <li>VOR frequency tuned → VOR mode; ILS frequency tuned → LOC mode</li>
+  <li>Back-course tracking NOT available</li>
+  <li>Localizer capture occurs not later than <span class="reg-value">½ dot deviation</span></li>
+</ul>
+
+<h3>Cone of Confusion (VOR Over-station)</h3>
+<p>As aircraft approaches VOR, the CDI becomes more sensitive. At a point before the cone of confusion, "over station sensing" circuits cut off VOR signals and the roll channel automatically de-couples from the radio beam. The aircraft continues through the cone on the <strong>drift-corrected heading existing at de-coupling</strong> (Heading Hold mode). After a set period it reverts to VOR mode.</p>
+
+<div class="amber-box"><strong>Exam Tip — Cone of Confusion:</strong> The autopilot goes into <em>Heading Hold</em> (not Heading Mode/Select) through the cone. The distinction matters — Heading Hold maintains the current heading; Heading Mode/Select would command a new heading.</div>
+
+<h3>Lateral Navigation (L NAV)</h3>
+<p>FMC controls AFDS roll to intercept and track the active FMC route. Can include SIDs, STARs, and instrument approaches.</p>
+
+<div class="green-box">
+  <strong>L NAV Capture Criteria:</strong>
+  <ul>
+    <li>Within <span class="reg-value">3 NM</span> of active route segment — always satisfies capture criteria</li>
+    <li>Outside 3 NM — must be on intercept course of <span class="reg-value">90° or less</span> and intercept before active waypoint</li>
+  </ul>
+  <strong>L NAV Auto-Disconnect:</strong> End of active route, route discontinuity, intercepting/missing approach path inbound track, loss of capture criteria, or HDG SEL selected.
+</div>
+
+<h2 id="sec-14">14. Outer Loop Pitch Modes</h2>
+<div class="blue-box"><strong>What this section covers:</strong> All pitch outer loop modes for the AFDS.</div>
+
+<h3>Altitude Hold (ALT HLD)</h3>
+<p>Pitch commands to hold MCP selected altitude or uncorrected barometric altitude at which ALT HOLD switch was pressed. Inhibited after glide slope capture. After ALT HOLD engages, changes in barometric settings do NOT change the selected altitude reference.</p>
+
+<h3>Altitude Acquire (ALT ACQ)</h3>
+<p>Automatic transition manoeuvre from V/S, LVL CHG, or V NAV to MCP selected altitude. Annunciated ALT ACQ. Inhibited when ALT HOLD switch pressed or while GS is captured.</p>
+
+<h3>IAS/MACH Hold (SPD)</h3>
+<p>Holds selected IAS or Mach number by comparing with actual ADC value and pitching up/down to decrease/increase speed.</p>
+
+<h3>Vertical Speed (V/S)</h3>
+<p>Pitch commands to hold selected vertical speed; engages A/T in SPEED mode to hold selected airspeed. V/S becomes armed when in ALT HOLD at selected altitude and new MCP altitude is selected more than <span class="reg-value">100 ft</span> different from previous.</p>
+
+<h3>Level Change (LVL CHG)</h3>
+<p>Coordinates pitch and thrust to make automatic climbs/descents to preselected altitude at selected airspeed.</p>
+<ul>
+  <li>Climb: annunciations = MCP SPD (pitch) + N1 (A/T)</li>
+  <li>Descent: annunciations = MCP SPD (pitch) + RETARD (A/T, reducing toward idle) → ARM at idle</li>
+</ul>
+
+<h3>Vertical Navigation (V NAV)</h3>
+<p>FMC commands AFDS pitch and A/T modes to fly the vertical profile. Includes climbs, cruise altitudes, speeds, descents, and altitude constraints at waypoints.</p>
+
+<div class="red-box">
+  <strong>V NAV Path descent disengages when:</strong>
+  <ul>
+    <li>Glide slope captured, OR</li>
+    <li>Another pitch mode selected, OR</li>
+    <li>Flaps extended beyond <span class="reg-value">15°</span>, OR</li>
+    <li>L NAV disengaged without GS capture</li>
+  </ul>
+</div>
+
+<h2 id="sec-15">15. Control Wheel Steering (CWS) &amp; Touch Control Steering (TCS)</h2>
+<div class="blue-box"><strong>What this section covers:</strong> CWS and TCS — methods of manually directing the autopilot without disconnecting it.</div>
+
+<h3>Control Wheel Steering (CWS)</h3>
+<p>Allows pilot to manoeuvre the aircraft in pitch and/or roll through the automatic control system <strong>without disconnecting the autopilot</strong>. Signals produced by transducers in the control column. The A/P manoeuvres the aircraft in response to control pressure; when pressure released, A/P holds existing attitude.</p>
+
+<div class="green-box">
+  <strong>CWS Heading Hold Feature (when bank released):</strong>
+  If aileron pressure released with <span class="reg-value">6° or less</span> angle of bank, A/P rolls wings level and holds existing heading.
+  <br><strong>Inhibited when:</strong>
+  <ul>
+    <li>Below <span class="reg-value">1500 ft RA</span> with landing gear down</li>
+    <li>After FD VOR capture with TAS <span class="reg-value">250 kt or less</span></li>
+    <li>After FD LOC capture in the APP mode</li>
+  </ul>
+</div>
+
+<h3>Touch Control Steering (TCS)</h3>
+<p>Also allows pilot to manoeuvre without disconnecting autopilot, but unlike CWS, the <strong>appropriate A/P channels and servomotors are disengaged while the TCS button is held</strong>. The pilot flies manually to desired attitude. On TCS button release, autopilot re-engages and holds the aircraft in that attitude.</p>
+
+<table>
+<tr><th>Feature</th><th>CWS</th><th>TCS</th></tr>
+<tr><td>A/P channels during manoeuvre</td><td>Still engaged — A/P responds to stick force</td><td>Disengaged — pilot has direct control</td></tr>
+<tr><td>Activation</td><td>CWS engage switch</td><td>TCS button held depressed</td></tr>
+<tr><td>On release</td><td>A/P holds existing attitude</td><td>A/P re-engages and holds attitude</td></tr>
+</table>
+
+<h2 id="sec-16">16. Autopilot Limitations &amp; Gain Adaption</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Normal A/P pitch/roll limits and why gain adaption is needed.</div>
+
+<div class="red-box">
+  <strong>Maximum Normal A/P Angles (737-400 reference; varies by aircraft type):</strong>
+  <ul>
+    <li>Pitch: <span class="reg-value">± 10°</span></li>
+    <li>Roll: <span class="reg-value">± 30°</span></li>
+  </ul>
+  These limits are NOT legally stipulated and vary between aircraft types.
+</div>
+
+<h3>Gain Adaption</h3>
+<p>Variations in flight parameters (altitude, speed, aircraft load, configuration, rate of manoeuvre) affect handling characteristics. <strong>Gain adaption</strong> changes the response ("gain") of the system to a given input signal level — analogous to changing gear ratios in a mechanical system.</p>
+
+<p>Particularly important for maintaining handling with IAS changes during different flight phases. Similar to FD gain scheduling described in Chapter 25.</p>
+
+<h2 id="sec-17">17. FMS Integration</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The autopilot as part of the overall Flight Management System.</div>
+
+<p>The autopilot can form part of the overall <strong>Flight Management System (FMS)</strong>, also designated:</p>
+<ul>
+  <li>AFCS — Automatic Flight Control System</li>
+  <li>FMGS — Flight Management and Guidance System</li>
+</ul>
+
+<p>Provides manual or automatic control throughout the entire flight envelope from take-off to landing and roll-out. All subsystems are fully integrated with levels of redundancy achieved by providing two or more of each system type.</p>
+
+<p>During preflight, all automated systems are engaged, tested and safety devices verified. The FMS is checked for correct information and any additional data entered.</p>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 26:</strong>
+  <ul>
+    <li>Autopilot purpose: reduce workload, faster response (50 ms vs 200 ms human)</li>
+    <li>Autopilot does NOT do the take-off; engages from ~400 ft</li>
+    <li>Inner loop = auto-stability (closed loop); Outer loop = flight path guidance</li>
+    <li>Single axis = roll (wing leveller); Two axis = roll+pitch; Three axis = required for autoland</li>
+    <li>EU-OPS: single pilot IFR requires at least 2-axis A/P (altitude hold + heading mode)</li>
+    <li>Quick release controls on both control wheels, side opposite throttles</li>
+    <li>Parallel actuator = stick moves; Series actuator = stick stays still</li>
+    <li>Localizer capture: not later than ½ dot deviation</li>
+    <li>L NAV: within 3 NM = always captures; outside 3 NM = must be ≤90° intercept</li>
+    <li>V NAV disengages if flaps extended beyond 15°</li>
+    <li>CWS: A/P still engaged; responds to stick force. TCS: A/P disengaged while button held</li>
+    <li>CWS wings-level/heading hold inhibited below 1500 ft RA with gear down</li>
+    <li>Max A/P angles: ±10° pitch, ±30° roll (typical)</li>
+    <li>Cone of confusion: A/P goes into Heading Hold (not Heading Mode) through cone</li>
+  </ul>
+</div>
+
+<section id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box"><em>Instructor-generated questions in DGCA CPL/ATPL examination style.</em></div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">What is the approximate reaction time of an autopilot to detect and correct a disturbance compared to a human pilot?</span>
+    <ol class="q-options" type="a">
+      <li>Human pilot: 50 ms; Autopilot: 200 ms</li>
+      <li>Human pilot: 200 ms; Autopilot: 50 ms</li>
+      <li>Human pilot: 500 ms; Autopilot: 100 ms</li>
+      <li>Both respond in approximately 100 ms</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> A human pilot takes approximately <span class="reg-value">200 milliseconds (1/5 of a second)</span> to detect a change in attitude, then suffers further delay deciding which control to apply. An autopilot detects and applies the required correction in approximately <span class="reg-value">50 milliseconds</span>. See <a href="#sec-1">Section 1</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Reverses the human and autopilot values.</li>
+        <li><strong>(c)</strong> Exaggerates human delay to 500 ms and uses an incorrect autopilot value of 100 ms.</li>
+        <li><strong>(d)</strong> Both do not respond in 100 ms — the autopilot is distinctly faster at 50 ms.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> 200 ms (human) and 50 ms (autopilot) are specific book values — commit them to memory.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">For single pilot IFR operations, what is the minimum autopilot requirement under EU-OPS?</span>
+    <ol class="q-options" type="a">
+      <li>Single axis (roll only)</li>
+      <li>Two axis with altitude hold and heading mode</li>
+      <li>Three axis with ILS coupling</li>
+      <li>Any autopilot capable of glide slope capture</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> An operator shall not conduct single pilot IFR operations unless the aeroplane is equipped with an autopilot with at least <strong>ALTITUDE HOLD and HEADING MODE</strong> — meaning at least a two-axis autopilot (roll and pitch). See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Single axis (roll only) is insufficient — altitude hold requires pitch axis.</li>
+        <li><strong>(c)</strong> Three axis with ILS is beyond the minimum requirement.</li>
+        <li><strong>(d)</strong> GS capture ability is not the stated requirement; heading mode and altitude hold are.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The regulation specifically names ALTITUDE HOLD and HEADING MODE — two functions that together make a two-axis requirement.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">In the context of autopilot control, what is the difference between a parallel and series actuator?</span>
+    <ol class="q-options" type="a">
+      <li>Parallel actuators use hydraulic power; series actuators use electric power</li>
+      <li>Parallel actuators also move the control stick; series actuators move the control surface without moving the stick</li>
+      <li>Parallel actuators are used for roll only; series actuators for pitch only</li>
+      <li>Series actuators have higher authority than parallel actuators</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> A parallel actuator produces movement of the control surface AND provides feedback to the control stick (the stick moves when the A/P controls). A series actuator produces control surface movement without moving the stick. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> The parallel/series classification refers to stick feedback, not power type.</li>
+        <li><strong>(c)</strong> Both types can be used for any axis; this is not an axis-specific distinction.</li>
+        <li><strong>(d)</strong> Authority levels are not determined by parallel vs series configuration.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> On aircraft with parallel actuators, an unaware pilot may be startled to see the control column moving on its own during autopilot operation.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">When tracking a VOR with the autopilot and entering the cone of confusion overhead the beacon, the A/P roll channel:</span>
+    <ol class="q-options" type="a">
+      <li>Disconnects completely and the crew must fly manually through the cone</li>
+      <li>De-couples from the VOR and goes into Heading Hold on the drift-corrected heading</li>
+      <li>Goes into Heading Select mode and turns toward the next waypoint</li>
+      <li>Continues to track the VOR signal despite reduced accuracy</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> At a point before the cone of confusion, 'over station sensing' circuits cut off VOR signals. The roll channel automatically de-couples from the radio beam and flies the drift-corrected heading that existed at de-coupling — this is Heading Hold, not Heading Mode/Select. After a set period, it reverts to VOR mode. See <a href="#sec-13">Section 13</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> A/P does not fully disconnect; it transitions to Heading Hold automatically.</li>
+        <li><strong>(c)</strong> Heading Select (pilot-commanded heading) is different from Heading Hold (maintains current heading). It does not turn toward the next waypoint.</li>
+        <li><strong>(d)</strong> The over-station sensing circuits specifically disconnect VOR tracking through the cone.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The Heading Hold vs Heading Select distinction is a classic trick question in DGCA exams.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">V NAV path descent automatically disengages if flaps are extended beyond:</span>
+    <ol class="q-options" type="a">
+      <li>5°</li>
+      <li>10°</li>
+      <li>15°</li>
+      <li>25°</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> 15°</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> V NAV path descent disengages when flaps are extended beyond <span class="reg-value">15°</span>. This is because the approach configuration changes the aircraft's drag and performance profile significantly enough that VNAV path control is no longer appropriate. See <a href="#sec-14">Section 14</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> 5° is too early — normal approach flap extensions begin before significant VNAV path interaction.</li>
+        <li><strong>(b)</strong> 10° is not the specified threshold.</li>
+        <li><strong>(d)</strong> 25° is a typical landing flap — but VNAV has already disengaged by 15°.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The 15° flap threshold for VNAV disconnect is an aircraft-specific value (737-400). It represents the transition from clean/approach configuration to significant drag-producing flap.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">What is the key operational difference between Control Wheel Steering (CWS) and Touch Control Steering (TCS)?</span>
+    <ol class="q-options" type="a">
+      <li>CWS disengages the autopilot while TCS keeps it engaged</li>
+      <li>CWS keeps the autopilot engaged and responds to stick force; TCS disengages the A/P channels while the button is held</li>
+      <li>CWS is only for roll; TCS is only for pitch</li>
+      <li>TCS requires a higher control force than CWS to operate</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> CWS keeps the autopilot engaged — the A/P manoeuvres the aircraft in response to control pressure. TCS disengages the appropriate A/P channels and servomotors while the button is held, allowing the pilot to fly manually; on release, the A/P re-engages at the new attitude. See <a href="#sec-15">Section 15</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Reverses the relationship — CWS is the one that keeps A/P engaged.</li>
+        <li><strong>(c)</strong> Both CWS and TCS work in pitch and roll.</li>
+        <li><strong>(d)</strong> Control force requirements are not the distinguishing operational difference described.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> CWS = "steer through the A/P" (like power steering). TCS = "temporarily take over, then hand back."</div>
+  </div>
+</div>
+
+</section>
+
+<h2>Master Reference Tables</h2>
+<h3>Key Numerical Values — Chapter 26</h3>
+<table>
+<tr><th>Value</th><th>Parameter</th><th>Section</th></tr>
+<tr><td><span class="reg-value">200 ms</span></td><td>Human pilot reaction time to detect disturbance</td><td><a href="#sec-1">1</a></td></tr>
+<tr><td><span class="reg-value">50 ms</span></td><td>Autopilot reaction time to detect and correct disturbance</td><td><a href="#sec-1">1</a></td></tr>
+<tr><td><span class="reg-value">~400 ft</span></td><td>Minimum height for autopilot engagement after take-off</td><td><a href="#sec-1">1</a></td></tr>
+<tr><td><span class="reg-value">2-axis</span></td><td>Minimum A/P for single pilot IFR (altitude hold + heading mode)</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td><span class="reg-value">3-axis</span></td><td>Required for autoland</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td><span class="reg-value">½ dot</span></td><td>Localizer capture occurs no later than this deviation</td><td><a href="#sec-13">13</a></td></tr>
+<tr><td><span class="reg-value">3 NM</span></td><td>L NAV: within this distance, always satisfies capture criteria</td><td><a href="#sec-13">13</a></td></tr>
+<tr><td><span class="reg-value">90°</span></td><td>L NAV: maximum intercept angle outside 3 NM</td><td><a href="#sec-13">13</a></td></tr>
+<tr><td><span class="reg-value">100 ft</span></td><td>Min altitude diff to arm V/S from ALT HOLD with new MCP altitude</td><td><a href="#sec-14">14</a></td></tr>
+<tr><td><span class="reg-value">15°</span></td><td>Flap extension beyond which V NAV path disengages</td><td><a href="#sec-14">14</a></td></tr>
+<tr><td><span class="reg-value">6°</span></td><td>Bank angle below which CWS rolls wings level and holds heading</td><td><a href="#sec-15">15</a></td></tr>
+<tr><td><span class="reg-value">1500 ft RA</span></td><td>CWS heading hold inhibited below this RA with gear down</td><td><a href="#sec-15">15</a></td></tr>
+<tr><td><span class="reg-value">250 kt TAS</span></td><td>CWS heading hold inhibited at or below this after FD VOR capture</td><td><a href="#sec-15">15</a></td></tr>
+<tr><td><span class="reg-value">±10°</span></td><td>Normal max A/P pitch angle</td><td><a href="#sec-16">16</a></td></tr>
+<tr><td><span class="reg-value">±30°</span></td><td>Normal max A/P roll angle</td><td><a href="#sec-16">16</a></td></tr>
+<tr><td><span class="reg-value">800 ft RA</span></td><td>Stabilizer out of trim warning threshold on dual approach</td><td><a href="#sec-9">9</a></td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

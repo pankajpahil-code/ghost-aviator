@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 33 – Aerodynamic Warnings | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #0d47a1; margin-top: 22px; }
+  p { margin: 10px 0; }
+  .cover { text-align: center; padding: 40px 20px 30px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .toc { page-break-after: always; }
+  .toc ol { padding-left: 24px; }
+  .toc li { padding: 4px 0; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: left; }
+  td { padding: 7px 12px; border: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7ff; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  #qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  ul { margin: 8px 0; padding-left: 24px; }
+  li { margin: 3px 0; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div style="font-size:0.95em;color:#555;margin-bottom:8px;">ATPL Ground Training Series — Instrumentation</div>
+  <h1>Chapter 33</h1>
+  <h1 style="font-size:1.8em;margin-top:4px;">Aerodynamic Warnings</h1>
+  <div style="font-size:1.1em;color:#555;margin-top:8px;">DGCA CPL/ATPL Study Notes</div>
+  <div style="font-size:1em;color:#333;margin-top:20px;font-style:italic;">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction</a></li>
+    <li><a href="#sec-2">Altitude Alerting System</a></li>
+    <li><a href="#sec-3">Overspeed Warning</a></li>
+    <li><a href="#sec-4">Stall Warning System</a></li>
+    <li><a href="#sec-5">Stall Protection</a></li>
+    <li><a href="#sec-6">Angle of Attack Sensing &amp; Probes</a></li>
+    <li><a href="#sec-7">Angle of Attack Indicators</a></li>
+    <li><a href="#sec-8">Configuration Warning (TOCW)</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction</h2>
+<div class="blue-box">Aerodynamic warnings alert the crew when deviations occur in altitude, airspeed, or angle of attack. Three primary systems: <strong>Altitude Alerting</strong>, <strong>Overspeed Warning</strong>, and <strong>Stall Warning</strong>.</div>
+
+<figure>
+  <img src="figs/fig_p437_0.png" alt="Aerodynamic warnings overview">
+  <figcaption>Fig 33.1 — Aerodynamic warning systems overview (source p.437)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p437_1.png" alt="Altitude alerting diagram">
+  <figcaption>Fig 33.2 — Altitude alerting operation diagram (source p.437)</figcaption>
+</figure>
+
+<h2 id="sec-2">2. Altitude Alerting System</h2>
+<div class="blue-box">Warns pilots that the aircraft is approaching or deviating from the selected altitude.</div>
+
+<h3>Height Bands</h3>
+<table>
+<tr><th>Aircraft</th><th>Approach Band</th><th>Deviation Band</th></tr>
+<tr><td>Boeing</td><td><span class="reg-value">300–900 ft</span> of selected altitude</td><td><span class="reg-value">300 ft</span> from selected altitude</td></tr>
+<tr><td>Airbus</td><td><span class="reg-value">250–750 ft</span> of selected altitude</td><td>—</td></tr>
+</table>
+
+<h3>Boeing 747-400 Operation</h3>
+<p><strong>Approaching selected altitude:</strong></p>
+<ul>
+  <li>At <span class="reg-value">900 ft</span> prior: white box around current altitude on PFD + momentary aural alert</li>
+  <li>At <span class="reg-value">300 ft</span> prior: white box disappears</li>
+</ul>
+
+<p><strong>Deviation from selected altitude:</strong> At <span class="reg-value">300 ft</span> from selected:</p>
+<ul>
+  <li>Master caution lights illuminate</li>
+  <li>Continuous caution beeper sounds</li>
+  <li>EICAS caution message ALTITUDE ALERT displayed</li>
+  <li>Current altitude box changes to amber</li>
+</ul>
+
+<div class="green-box"><strong>Cancellation:</strong> Audible alert and master caution can be cancelled by pressing the light. Warning ceases when aircraft returns to within <span class="reg-value">300 ft</span> of selected altitude OR exceeds <span class="reg-value">900 ft</span> deviation.</div>
+
+<div class="red-box"><strong>Inhibition:</strong> Altitude alerting is inhibited in flight when:
+  <ul>
+    <li>Glide slope is captured, OR</li>
+    <li>Landing flaps are selected with the gear down</li>
+  </ul>
+</div>
+
+<h3>Regulatory Requirement</h3>
+<p>EASA CAT aircraft must have altitude alerting if:</p>
+<ul>
+  <li>Turboprop &gt; <span class="reg-value">5700 kg</span> or &gt; <span class="reg-value">9 passenger seats</span>, or</li>
+  <li>Any turbojet aircraft</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p440_0.png" alt="Altitude alerting system Boeing 767 block diagram">
+  <figcaption>Fig 33.3 — Altitude alerting system block diagram, Boeing 767 (source p.440)</figcaption>
+</figure>
+
+<h2 id="sec-3">3. Overspeed Warning</h2>
+<div class="blue-box">Alerts the crew when airspeed exceeds the VMO/MMO limits calculated by the ADC.</div>
+
+<h3>Operation</h3>
+<p>When overspeed occurs (EFIS aircraft):</p>
+<ul>
+  <li>Sounds the siren or horn</li>
+  <li>Illuminates red master WARNING lights</li>
+  <li>Displays OVERSPEED on EICAS upper display in red</li>
+</ul>
+
+<div class="red-box"><strong>Warning continues while overspeed exists and CANNOT be cancelled by pressing the master WARNING light switch.</strong></div>
+
+<p>Input: ADC via FWS. Can be tested on ground by pressing the test switch (sounds siren/horn).</p>
+<p>In case of system failure: no warning if VMO/MMO is exceeded.</p>
+
+<h3>Displays</h3>
+<p>Maximum allowable speed shown by <strong>barber's pole</strong>:</p>
+<ul>
+  <li>Conventional ASI: barber's pole pointer = VMO</li>
+  <li>EFIS PFD: barber's pole on airspeed tape</li>
+  <li>The barber's pole indicates VMO until MMO becomes limiting, then moves anti-clockwise to show maximum allowable speed</li>
+  <li>Climbing at constant IAS: as altitude increases, MMO expressed as IAS will decrease</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p441_0.png" alt="Conventional ASI with VMO pointer">
+  <figcaption>Fig 33.4 — Conventional ASI with VMO barber's pole pointer (source p.441)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p443_0.png" alt="Overspeed warning on PFD">
+  <figcaption>Fig 33.5 — Overspeed warning on PFD (source p.443)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p443_1.png" alt="Overspeed warning system">
+  <figcaption>Fig 33.6 — Overspeed warning system (source p.443)</figcaption>
+</figure>
+
+<h2 id="sec-4">4. Stall Warning System</h2>
+<div class="blue-box">Warns the pilot of an impending stall when the aircraft approaches the stalling AoA for the current speed and configuration.</div>
+
+<h3>Regulatory Stall Warning Margin</h3>
+<div class="red-box"><strong>Stall warning margin:</strong> <span class="reg-value">5 knots or 5% CAS</span> (whichever is greater) before the stall.</div>
+
+<h3>Warning Types</h3>
+<ul>
+  <li><strong>Tactile:</strong> Stick shaker — vibrates control column, produces a rattling noise</li>
+  <li><strong>Aural:</strong> Various tones, synthetic voice</li>
+  <li><strong>Visual:</strong> Red master WARNING light</li>
+  <li><strong>FBW specific:</strong> Cricket sound + synthetic voice "STALL" + red WARNING light</li>
+</ul>
+
+<div class="green-box"><strong>Stall warning must continue until AoA is reduced to approximately that at which it was initiated.</strong></div>
+
+<h3>System Inputs</h3>
+<ul>
+  <li>Angle of attack (AoA vanes/probes)</li>
+  <li>Flap and slat positions</li>
+  <li>Landing gear weight-on-wheels (microswitches)</li>
+  <li>Airspeed (from ADC)</li>
+</ul>
+
+<p>AoA sensors located on <strong>both sides of the front fuselage</strong> to compensate for sideslip/yaw. Flap/slat extension modifies the AoA signal (as they change the pitch attitude for the same lift). During take-off, nosewheel liftoff microswitches make the stall warning system active.</p>
+
+<h3>System Outputs</h3>
+<ul>
+  <li>Stick shaker motor</li>
+  <li>AoA indicator aural warning</li>
+  <li>Synthetic voice warning</li>
+  <li>Red master WARNING light</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p445_0.png" alt="Components of stall warning system">
+  <figcaption>Fig 33.7 — Components of a stall warning system (source p.445)</figcaption>
+</figure>
+
+<h2 id="sec-5">5. Stall Protection</h2>
+<p>A stall <em>protection</em> system (different from warning) may be fitted to large commercial aircraft:</p>
+<ul>
+  <li><strong>FBW aircraft:</strong> Flight computer limits AoA; aircraft cannot approach the stall</li>
+  <li><strong>Non-FBW:</strong> AFCS advances throttles to full power if deceleration below <span class="reg-value">1.2 VS</span></li>
+  <li><strong>T-tail aircraft:</strong> Stick-pusher pushes control column forward at <span class="reg-value">2 kt above stall speed</span> → prevents deep stall</li>
+</ul>
+
+<div class="red-box"><strong>Deep Stall (T-tail):</strong> T-tail aircraft can enter a deep stall from which there is little or no chance of recovery — hence the stick-pusher is particularly important for these types.</div>
+
+<h2 id="sec-6">6. Angle of Attack Sensing &amp; Probes</h2>
+<div class="blue-box">AoA (alpha, α) = angle between wing chord line and relative airflow direction.</div>
+
+<p>Typical stalling angle: <span class="reg-value">12°–18°</span> for straight wings; up to <span class="reg-value">30°–40°</span> for swept or delta wings.</p>
+
+<h3>Two Types of AoA Probes</h3>
+
+<table>
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td><strong>Conical Slotted Probe</strong></td><td>Extends through skin perpendicular to airflow. Two sets of slots transmit pressure to paddle chamber; paddle rotates to equalise pressures → positions itself at actual AoA.</td></tr>
+<tr><td><strong>Vane Detector</strong></td><td>Counter-balanced aerodynamic vane positions the rotor of a synchro. Simple, reliable rotating vane.</td></tr>
+</table>
+
+<div class="green-box">Both types are protected against ice formation by a heater. Probes mounted on <strong>both sides of the fuselage</strong>, forward of the wing line, to compensate for sideslip/yaw.</div>
+
+<p>AoA probes send information to: stall warning system, ADC, flight envelope protection systems, and AoA indicators.</p>
+
+<figure>
+  <img src="figs/fig_p446_0.png" alt="Conical slotted AoA probe">
+  <figcaption>Fig 33.8 — Conical slotted AoA probe (source p.446)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p446_1.png" alt="Vane-type AoA sensor">
+  <figcaption>Fig 33.9 — Vane-type angle of attack sensor (source p.446)</figcaption>
+</figure>
+
+<h2 id="sec-7">7. Angle of Attack Indicators</h2>
+<p>May be fitted in addition to the stall warning system. Provides a direct cockpit display of the current AoA angle, giving the crew continuous situational awareness of proximity to the stalling angle.</p>
+
+<h2 id="sec-8">8. Configuration Warning (TOCW)</h2>
+<div class="blue-box">Configuration warnings alert the crew to incorrect aircraft configuration at critical phases (take-off and landing).</div>
+
+<h3>Landing Configuration Warning</h3>
+<p>Audible warning if throttles are retarded without the landing gear locked down (and may also warn for flaps).</p>
+
+<h3>Take-Off Configuration Warning (TOCW)</h3>
+<p>Sounds if throttles are advanced with any of the following:</p>
+<ul>
+  <li>Flaps not in take-off position</li>
+  <li>Slats not in take-off position</li>
+  <li>Stabilizer trim outside take-off range</li>
+  <li>Spoilers/speedbrakes deployed</li>
+  <li>Remotely operated flight control locks not disengaged</li>
+  <li>External doors/hatches not locked closed</li>
+  <li>Parking brake applied</li>
+</ul>
+
+<div class="amber-box"><strong>Note:</strong> Landing and take-off configuration warnings would NOT be required on aircraft fitted with GPWS, which already monitors proximity and configuration.</div>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 33:</strong>
+  <ul>
+    <li>Altitude alert: Boeing bands 300–900 ft; Airbus 250–750 ft. Inhibited when G/S captured or landing flaps + gear down</li>
+    <li>Overspeed: siren + red WARNING + EICAS "OVERSPEED". Cannot be cancelled. Input from ADC. Barber's pole on ASI/PFD</li>
+    <li>Stall warning margin: 5 kt or 5% CAS (greater). Must continue until AoA reduced</li>
+    <li>Stall warning inputs: AoA, flaps/slats, weight-on-wheels, airspeed</li>
+    <li>Stall protection: FBW limits AoA; non-FBW: AFCS advances thrust &lt;1.2VS; T-tail: stick-pusher at 2 kt above stall</li>
+    <li>AoA probes: conical slotted OR vane detector; heated; both sides of fuselage; send data to stall warning, ADC, FEP</li>
+    <li>Stalling angle: 12°–18° straight wings; up to 30°–40° swept/delta</li>
+    <li>TOCW: audible warning when throttles advanced with incorrect T/O configuration</li>
+  </ul>
+</div>
+
+<section id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">The altitude alerting system on a Boeing aircraft is inhibited in flight when:</span>
+    <ol class="q-options" type="a">
+      <li>The autopilot is engaged</li>
+      <li>Glide slope is captured OR landing flaps are selected with gear down</li>
+      <li>The aircraft is above 10,000 ft</li>
+      <li>Both radio altimeters have failed</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Glide slope captured OR landing flaps selected with gear down</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> On the approach and landing phases (when G/S is captured or landing flaps + gear are deployed), altitude alerting would generate nuisance warnings as the aircraft intentionally descends below the selected altitude. The system is inhibited in both these conditions. See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Autopilot engagement alone does not inhibit altitude alerting.</li>
+        <li><strong>(c)</strong> Altitude alerting is not inhibited at any particular altitude.</li>
+        <li><strong>(d)</strong> Radio altimeter failure does not affect barometric altitude alerting.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">The overspeed warning cannot be cancelled by pressing the master WARNING light because:</span>
+    <ol class="q-options" type="a">
+      <li>The EICAS system overrides the cancel function</li>
+      <li>The warning continues as long as the overspeed condition exists</li>
+      <li>The ADC has locked the warning circuit</li>
+      <li>This warning is only cancelled by the FMC</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> The warning continues as long as the overspeed condition exists</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The overspeed warning is condition-based — it remains active as long as the overspeed exists. Unlike some warnings that can be acknowledged and silenced, overspeed cannot be cancelled while the speed remains above VMO/MMO. The correct action is to reduce speed. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a), (c), (d)</strong> None of these describe the actual reason. The design principle is: the hazard persists → the warning persists.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">The stall warning regulatory margin is:</span>
+    <ol class="q-options" type="a">
+      <li>3 knots or 3% CAS, whichever is greater</li>
+      <li>5 knots or 5% CAS, whichever is greater</li>
+      <li>10 knots before stall speed</li>
+      <li>7% of stall speed only</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 5 knots or 5% CAS, whichever is greater</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The regulatory margin between the stall and the stall warning is <span class="reg-value">5 knots or 5% CAS, whichever is the greater</span>. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a), (c), (d)</strong> Incorrect values. The 5/5% rule is the defined standard.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> At high cruise speeds the 5% criterion would be larger than 5 kt; at low approach speeds the 5 kt fixed value would be larger. The "whichever is greater" rule ensures adequate warning at all speeds.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">Angle of attack probes are positioned on both sides of the forward fuselage primarily to:</span>
+    <ol class="q-options" type="a">
+      <li>Provide redundancy for one probe heating failure</li>
+      <li>Compensate for sideslip/yaw effects on the AoA reading</li>
+      <li>Allow one probe to measure AoA and the other to measure airspeed</li>
+      <li>Provide AoA data to both pilot and co-pilot independently</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Compensate for sideslip/yaw effects on the AoA reading</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> During sideslip or yaw, the airflow strikes the fuselage at an angle in the horizontal plane, which would affect an AoA reading from a single probe. Having probes on both sides, and averaging the signals, compensates for this effect and provides a true AoA measurement. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Redundancy is a benefit, but not the primary positioning reason.</li>
+        <li><strong>(c)</strong> Both probes measure AoA, not separate parameters.</li>
+        <li><strong>(d)</strong> While separate systems may feed different displays, dual probe positioning is primarily for sideslip compensation.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">A stick-pusher is fitted to T-tail aircraft to prevent:</span>
+    <ol class="q-options" type="a">
+      <li>Dutch Roll oscillation</li>
+      <li>Exceeding VMO</li>
+      <li>Deep stall, from which there is little or no chance of recovery</li>
+      <li>Porpoising on the ground</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> Deep stall, from which there is little or no chance of recovery</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> T-tail aircraft are susceptible to deep stall because at high AoA the wing blankets the tailplane, making pitch recovery impossible. A stick-pusher activates at 2 kt above stall speed to push the nose down before the deep stall can develop. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Dutch Roll is controlled by the yaw damper, not a stick-pusher.</li>
+        <li><strong>(b)</strong> VMO exceedance is addressed by the high speed protection and overspeed warning, not a stick-pusher.</li>
+        <li><strong>(d)</strong> Porpoising is a landing technique issue, unrelated to stick-pusher.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Classic examples of T-tail aircraft: BAC 1-11, Trident, Boeing 727. All had stick-pushers for this reason.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">The Take-Off Configuration Warning (TOCW) sounds when the throttles are advanced with which condition?</span>
+    <ol class="q-options" type="a">
+      <li>Landing gear locked down</li>
+      <li>Spoilers/speedbrakes deployed</li>
+      <li>Flaps in take-off position</li>
+      <li>Stabilizer trim within take-off range</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Spoilers/speedbrakes deployed</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> TOCW activates when throttles are advanced with spoilers/speedbrakes deployed (among other non-normal configurations). Landing gear locked down is correct for T/O. Flaps in T/O position is correct (TOCW activates if NOT in T/O position). Stabilizer trim within range is correct (TOCW activates if OUTSIDE range). See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Gear DOWN is correct for landing, but at T/O the gear should be down — TOCW does not warn for this.</li>
+        <li><strong>(c)</strong> TOCW warns when flaps are NOT in T/O position; flaps IN T/O position is correct.</li>
+        <li><strong>(d)</strong> TOCW warns when trim is OUTSIDE T/O range; within range is correct.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</section>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

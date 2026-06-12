@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 25 – Flight Director Systems | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; margin-bottom: 4px; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #0d47a1; margin-top: 22px; }
+  h4 { font-size: 1em; font-weight: 700; color: #1565c0; margin-top: 16px; }
+  p { margin: 10px 0; }
+  .cover { text-align: center; padding: 40px 20px 30px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .toc { page-break-after: always; }
+  .toc ol { padding-left: 24px; }
+  .toc li { padding: 4px 0; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: left; }
+  td { padding: 7px 12px; border: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7ff; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  #qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  ul { margin: 8px 0; padding-left: 24px; }
+  li { margin: 3px 0; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div style="font-size:0.95em;color:#555;margin-bottom:8px;">ATPL Ground Training Series — Instrumentation</div>
+  <h1>Chapter 25</h1>
+  <h1 style="font-size:1.8em;margin-top:4px;">Flight Director Systems</h1>
+  <div style="font-size:1.1em;color:#555;margin-top:8px;">DGCA CPL/ATPL Study Notes</div>
+  <div style="font-size:1em;color:#333;margin-top:20px;font-style:italic;">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction — Purpose of the FDS</a></li>
+    <li><a href="#sec-2">FDS Information Sources</a></li>
+    <li><a href="#sec-3">Flight Director System Components</a></li>
+    <li><a href="#sec-4">Raw vs Computed Information</a></li>
+    <li><a href="#sec-5">FD Fail Indications</a></li>
+    <li><a href="#sec-6">Flight Director Modes</a></li>
+    <li><a href="#sec-7">Navigation Modes</a></li>
+    <li><a href="#sec-8">FD Take-off Mode</a></li>
+    <li><a href="#sec-9">FD Go-around Mode</a></li>
+    <li><a href="#sec-10">FD Manoeuvre Protection &amp; Gain Scheduling</a></li>
+    <li><a href="#sec-11">Dual FDS &amp; Comparator</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction — Purpose of the FDS</h2>
+<div class="blue-box"><strong>What this section covers:</strong> What a Flight Director System is, why it was developed, and its relationship with the autopilot.</div>
+
+<p>The <strong>Flight Director System (FDS)</strong> was originally developed as an aid to the pilot during landing. It provides steering and attitude signals on one instrument, reducing workload. As autopilots became more advanced, FDS signals could be coupled to the autopilot for more complex tasks.</p>
+
+<p>With an FDS, information about <strong>attitude, heading and flight path</strong> can be integrated with navigation information to produce:</p>
+<ul>
+  <li>Easy-to-interpret visual instructions for the pilot (via flight director bars), and/or</li>
+  <li>Direct input to the autopilot, or both simultaneously</li>
+</ul>
+
+<div class="blue-box"><strong>FDS has 2 Channels:</strong> Roll channel (first channel) and Pitch channel (second channel). This terminology aligns with autopilot channel descriptions.</div>
+
+<h2 id="sec-2">2. FDS Information Sources</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Inputs to the FDS from various aircraft sensors.</div>
+
+<table>
+<tr><th>Input</th><th>Source</th></tr>
+<tr><td>Airspeed, altitude, VSI</td><td>Pitot-Static system or Air Data Computer (ADC)</td></tr>
+<tr><td>VOR / ILS tracking</td><td>VHF Nav receiver</td></tr>
+<tr><td>Navigation/routing</td><td>FMS, INS/IRS</td></tr>
+<tr><td>Attitude (older)</td><td>Gyro-magnetic compass + vertical gyro system</td></tr>
+<tr><td>Attitude (modern)</td><td>INS/IRS (replaces vertical gyro)</td></tr>
+</table>
+
+<h2 id="sec-3">3. Flight Director System Components</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Each component of a typical modern FDS.</div>
+
+<h3>Electronic Attitude Director Indicator (EADI)</h3>
+<p>A standard artificial horizon providing pitch and roll. The <em>Director</em> part comes from its ability to display demand information from the FDS using <strong>Flight Director Command Bars</strong>. The pilot "flies to" either the intersection of the cross-bars or the point between wedge-shaped pointers. Both displays are intuitive and functionally identical.</p>
+
+<figure>
+  <img src="figs/fig_p338_0.png" alt="EADI with flight director command bars">
+  <figcaption>Fig 25.1 — Typical electromechanical FDS / EADI with FD command bars (source p.338)</figcaption>
+</figure>
+
+<h3>Primary Flight Display (PFD)</h3>
+<p>Part of EFIS — brings all flying information onto one display. Contains EADI surrounded by speed, altitude and VSI tapes plus a compass display. Includes the <strong>Flight Mode Annunciator (FMA)</strong> area.</p>
+
+<figure>
+  <img src="figs/fig_p339_0.png" alt="Primary Flight Display">
+  <figcaption>Fig 25.2 — Primary Flight Display (PFD) (source p.339)</figcaption>
+</figure>
+
+<h3>Electronic Horizontal Situation Indicator (EHSI)</h3>
+<p>A gyro-magnetic compass display with:</p>
+<ul>
+  <li>Course Deviation Indicator (CDI) bar</li>
+  <li>Deviation dots (scale varies)</li>
+  <li>From/to pointer</li>
+  <li>Selected course window</li>
+  <li>DME display of range</li>
+  <li>Heading bug</li>
+</ul>
+<p>Modern aircraft use a <strong>Navigational Display (ND)</strong> and a centralized <strong>Autoflight Mode Control Panel (AMCP / MCP)</strong> for course selection rather than a knob on the HSI.</p>
+
+<figure>
+  <img src="figs/fig_p341_0.png" alt="HSI display">
+  <figcaption>Fig 25.4 — HSI Display (source p.341)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p341_1.png" alt="EHSI display">
+  <figcaption>Fig 25.5 — EHSI Display (source p.341)</figcaption>
+</figure>
+
+<h3>Flight Director Computer (FDC)</h3>
+<p>Gathers and processes all inputs. Older aircraft use analogue ADC/VG outputs; modern systems are purely digital. Outputs go to symbol generators for EADI/EHSI and/or the autopilot.</p>
+
+<h3>Optional Components</h3>
+<table>
+<tr><th>Component</th><th>Function</th></tr>
+<tr><td>Instrument Amplifier / Symbol Generator</td><td>Drives electromechanical instrument motors; feeds EFIS symbol generators on modern aircraft</td></tr>
+<tr><td>Vertical Gyro (VG)</td><td>Remote gyro providing attitude reference on older/smaller aircraft without INS/IRS</td></tr>
+<tr><td>INS/IRS</td><td>Replaces VG on modern aircraft; more sensitive, near aircraft C of G</td></tr>
+<tr><td>Mode Controller / MCP</td><td>Allows pilot to change FDS mode, alter pitch trim, switch FDS display on/off</td></tr>
+<tr><td>Mode Annunciators / FMA</td><td>Shows current FDS/autopilot mode and phase</td></tr>
+</table>
+
+<h3>FMA (Flight Mode Annunciator) on EFIS Aircraft</h3>
+<div class="green-box">
+  <ul>
+    <li><strong>Engaged modes</strong> — top line, shown in <strong>green</strong></li>
+    <li><strong>Armed modes</strong> — second line, shown in <strong>white</strong></li>
+    <li><strong>Newly changed mode</strong> — surrounded by a box for emphasis</li>
+  </ul>
+</div>
+
+<p>On older annunciator panels: LOC light = <strong>amber</strong> (armed) → <strong>green</strong> (captured). GS light = <strong>amber</strong> (armed) → <strong>green</strong> (captured).</p>
+
+<h2 id="sec-4">4. Raw vs Computed Information</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The distinction between raw and computed FDS information — critical for failure scenarios.</div>
+
+<table>
+<tr><th>Type</th><th>Description</th><th>Source</th></tr>
+<tr><td><strong>Raw Information</strong></td><td>Unprocessed; shows aircraft deviation left/right of track or above/below GS in degrees</td><td>ILS glide slope indicator, CDI bar</td></tr>
+<tr><td><strong>Computed Information</strong></td><td>Processed from rate of change of deviation; anticipates turns/climbs/descents for smooth flying</td><td>FDC output to command bars</td></tr>
+</table>
+
+<div class="red-box"><strong>On FDS Failure:</strong> Computed information is no longer reliable, but <em>raw information may still be available</em> and can be used for navigation. This is critical in the event of an FDC failure during an ILS approach.</div>
+
+<div class="amber-box"><strong>Exam Tip:</strong> Computed information uses the <em>rate of change</em> of deviation — as deviation rate increases, the FDS demands a turn to intercept track. Raw information simply shows how far off track you are.</div>
+
+<h2 id="sec-5">5. FD Fail Indications</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the FDS warns of failures on electromechanical and EFIS displays.</div>
+
+<table>
+<tr><th>Flag/Warning</th><th>Failure Indicated</th><th>Location</th></tr>
+<tr><td>"GYRO" warning flag</td><td>Vertical gyro or vertical reference system failure, or power supply failure</td><td>ADI</td></tr>
+<tr><td>"ATT" or "FD" flag</td><td>FDC failure, instrument amplifier failure, or ADI failure</td><td>ADI</td></tr>
+<tr><td>"GS" flag</td><td>Glide slope information unreliable or system failure</td><td>GS scale on ADI or HSI</td></tr>
+<tr><td>"NAV" flag</td><td>Poor reception, unreliable or loss of VOR, LNAV or LOC information</td><td>HSI</td></tr>
+<tr><td>Power failure flag</td><td>Loss of power to HSI or compass gyro; also indicates DG mode</td><td>HSI</td></tr>
+</table>
+
+<div class="amber-box"><strong>DG Mode:</strong> The HSI will indicate if the compass system is operating in Directional Gyro (DG) mode — meaning the magnetic reference has been lost and the compass is essentially a DI (Direction Indicator) without magnetic slaving.</div>
+
+<h2 id="sec-6">6. Flight Director Modes</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The main FDS modes common across aircraft types.</div>
+
+<h3>Command Attitude Changes</h3>
+<p>The FD command bars can be offset vertically to provide an aiming point for maintaining a constant pitch angle (level flight, climb, or descent). Achieved by moving the <strong>Pitch Trim knob/wheel</strong>. Pitch trim is inhibited whenever any other pitch mode is active.</p>
+
+<h3>Altitude Acquire / Altitude Hold</h3>
+<p>Signals from ADC through FDS maintain selected level. If aircraft deviates above desired altitude, FD commands <strong>pitch down</strong>; if below, it commands <strong>pitch up</strong>. Command bars indicate neutral position at selected level.</p>
+
+<figure>
+  <img src="figs/fig_p345_0.png" alt="FD modes diagram">
+  <figcaption>Fig 25.7 — FD modes overview (source p.345)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p345_1.png" alt="Altitude acquire mode">
+  <figcaption>Fig 25.8 — Altitude Acquire mode (source p.345)</figcaption>
+</figure>
+
+<h2 id="sec-7">7. Navigation Modes</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Heading mode, LOC/VOR/LNAV tracking, and Flight Director Approach (FDA).</div>
+
+<h3>Heading Mode</h3>
+<p>Pilot selects desired heading via knob on HSI, MCP, or central panel. FDS indicates a fly-to command to bring aircraft onto desired heading.</p>
+
+<h3>LOC / VOR (LNAV)</h3>
+<p>Allows VOR, Localizer, or INS/IRS/FMS/GPS nav information to be fed and displayed on the FDS. After tuning/identifying the VOR, selecting desired track and VOR/LOC on the mode selector, the FDS gives steering commands to intercept and maintain track.</p>
+
+<div class="green-box"><strong>Drift Compensation:</strong> Because the FDS compares actual track with desired track and issues commands to fly the desired track, it effectively compensates for wind drift automatically. No wind velocity input required — it is a natural result of commanding the desired course/track.</div>
+
+<h3>Flight Director Approach (FDA)</h3>
+<p>ILS frequency is tuned and identified; QDM set in the course window; mode selector set to AUTO/APP. Sequence:</p>
+
+<pre class="mermaid">
+flowchart TD
+  A["APP mode selected\nAnnunciator shows LOC armed"] --> B["Localizer captured\nAnnunciator shows LOC (green)"]
+  B --> C["Approaching GS\nAnnunciator shows GS armed (amber)"]
+  C --> D["GS captured\nAnnunciator shows GS (green)\nFDS commands nose-down pitch"]
+  D --> E["Continue ILS approach\nGain scheduling applied as\naircraft nears threshold"]
+</pre>
+
+<div class="amber-box"><strong>Above GS Capture:</strong> If established on LOC past the GS intercept point (above GS), modern systems may automatically adjust to capture from above. Older aircraft: temporarily switch to MAN/GS to force GS capture from above, or to force a fixed LOC intercept angle.</div>
+
+<h2 id="sec-8">8. FD Take-off Mode</h2>
+<div class="blue-box"><strong>What this section covers:</strong> FD take-off mode commands, engagement criteria, and engine failure procedures (Boeing 737-400 as reference).</div>
+
+<p>Both FD systems should be switched on prior to starting the take-off roll. Take-off mode is engaged by pressing a <strong>TO/GA switch on the throttles</strong>.</p>
+
+<h3>Take-off FD Commands</h3>
+<table>
+<tr><th>Phase</th><th>FD Pitch Command</th><th>FD Roll Command</th></tr>
+<tr><td>Initial (before 60 kt)</td><td><span class="reg-value">10° nose-down</span></td><td>Wings level</td></tr>
+<tr><td>After <span class="reg-value">60 kt</span> IAS</td><td><span class="reg-value">15° nose-up</span></td><td>Wings level</td></tr>
+<tr><td>After lift-off</td><td>Maintain 15°NP until climb rate achieved, then hold MCP speed +<span class="reg-value">20 kt</span></td><td>Wings level</td></tr>
+</table>
+
+<div class="green-box"><strong>Engaging FD during take-off roll (FD switches off):</strong> Press TO/GA after <span class="reg-value">80 kt</span> IAS but before <span class="reg-value">2000 ft</span> or <span class="reg-value">150 seconds</span> after lift-off — command bars appear automatically.</div>
+
+<h3>Terminating TO Mode</h3>
+<ul>
+  <li>Below <span class="reg-value">400 ft RA</span>: both FD switches must be turned OFF</li>
+  <li>Above <span class="reg-value">400 ft RA</span>: select other FD pitch modes or engage autopilot</li>
+</ul>
+
+<h3>Engine Failure During Take-off</h3>
+<table>
+<tr><th>Engine Failure Timing</th><th>FD Reference Speed</th></tr>
+<tr><td>Before V2</td><td>V2</td></tr>
+<tr><td>After V2 but below V2 + 20 kt</td><td>Speed at time of failure</td></tr>
+<tr><td>At or above V2 + 20 kt</td><td>V2 + 20 kt</td></tr>
+</table>
+
+<div class="red-box"><strong>Limitation:</strong> Reference speed is never less than V2 for the current flap setting.</div>
+
+<h2 id="sec-9">9. FD Go-around Mode</h2>
+<div class="blue-box"><strong>What this section covers:</strong> FD go-around engagement criteria, commands, and engine-failure scenarios.</div>
+
+<p>For the 737-400, two criteria must be met:</p>
+<ol>
+  <li>In-flight, below <span class="reg-value">2000 ft RA</span>, and NOT in the TO mode</li>
+  <li>TO/GA switch pressed</li>
+</ol>
+
+<p>After GA engagement: command bars appear for both pilots; TO/GA annunciated; MCP IAS/MACH display blanks; airspeed cursors display manoeuvring speed for existing flap.</p>
+
+<h3>GA FD Commands</h3>
+<table>
+<tr><th>Condition</th><th>Pitch Command</th><th>Roll Command</th></tr>
+<tr><td>2-engine GA</td><td><span class="reg-value">15° nose-up</span></td><td>Hold approach ground track at engagement</td></tr>
+<tr><td>Single-engine GA</td><td><span class="reg-value">13° nose-up</span> initial</td><td>Same as 2-engine</td></tr>
+</table>
+
+<h3>Single-Engine GA Target Speed</h3>
+<table>
+<tr><th>Engine Failure Timing (relative to GA engagement)</th><th>FD Target Speed</th></tr>
+<tr><td>Prior to GA engagement</td><td>MCP selected approach speed</td></tr>
+<tr><td>Within 10 seconds of GA; airspeed within 5 kt of GA engagement speed</td><td>Airspeed at GA engagement</td></tr>
+<tr><td>After 10 seconds; airspeed more than 5 kt above GA engagement speed</td><td>Current airspeed at failure</td></tr>
+</table>
+
+<div class="red-box"><strong>Minimum GA target speed:</strong> Never less than V2 speed based on flap position (except in windshear conditions).</div>
+
+<h2 id="sec-10">10. FD Manoeuvre Protection &amp; Gain Scheduling</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the FDC protects against over-stress, and how gain scheduling adapts FDS commands during approach.</div>
+
+<h3>FD Manoeuvre Protection</h3>
+<p>Modern FDC has aircraft performance parameters stored in memory. With inputs from ADC and other systems, it ensures it never commands a manoeuvre that would overstress the aircraft. This is the precursor to fly-by-wire envelope protection.</p>
+
+<h3>Flight Director Gain Scheduling</h3>
+<p>The FDC varies ("schedules") the gain of pitch and roll demands relative to the task. Most significant during the FDA (Flight Director Approach).</p>
+
+<p><strong>Why it's needed:</strong> The ILS glide slope beam diverges from the runway. At different distances, the same 1° of beam error represents very different vertical distances:</p>
+
+<table>
+<tr><th>Distance</th><th>1° GS error = vertical distance</th></tr>
+<tr><td><span class="reg-value">6 NM</span></td><td>~<span class="reg-value">608 ft</span></td></tr>
+<tr><td><span class="reg-value">½ NM</span></td><td>~<span class="reg-value">54 ft</span></td></tr>
+</table>
+
+<p>As the aircraft nears the transmitter, the required correction magnitude decreases. Gain scheduling reduces commanded corrections accordingly — from nearly full authority early in the approach to perhaps <span class="reg-value">½ or ⅓</span> of original value near the threshold.</p>
+
+<h3>Gain Scheduling Methods (in order of sophistication)</h3>
+<table>
+<tr><th>Method</th><th>Trigger</th><th>Notes</th></tr>
+<tr><td>Time-based</td><td>Fixed time after GS capture (e.g. 45 seconds)</td><td>Earliest; no actual position data</td></tr>
+<tr><td>Marker beacon</td><td>Passing inner/outer markers</td><td>Stepped; now in disuse — markers removed from many airfields</td></tr>
+<tr><td>Radio Altimeter</td><td>Actual RA height</td><td>Most accurate; gradual, continuous; no ground signals needed</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p348_0.png" alt="Gain scheduling during approach">
+  <figcaption>Fig 25.9 — FD gain scheduling during FDA (source p.348)</figcaption>
+</figure>
+
+<div class="amber-box"><strong>Exam Tip:</strong> Radio altimeter-based gain scheduling is the best method because it is continuous (not stepped), requires no ground infrastructure, and directly correlates with actual aircraft height.</div>
+
+<h2 id="sec-11">11. Dual FDS &amp; Comparator</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Dual FDS on large aircraft — the FD comparator function and redundancy.</div>
+
+<p>Large aircraft with 2 FDS (one per pilot) can use the <strong>FD Comparator</strong> to monitor command bar positions of both systems.</p>
+
+<div class="red-box">
+  <strong>FD Comparator — Command Bars Removed When:</strong>
+  <ul>
+    <li>Pitch difference between the 2 FDS ≥ <span class="reg-value">1–4°</span>, OR</li>
+    <li>Roll difference between the 2 FDS ≥ <span class="reg-value">3–9°</span></li>
+  </ul>
+  Command bars reappear when difference returns within limits.
+</div>
+
+<h3>Comparator Active Conditions</h3>
+<ul>
+  <li>Both FD switches ON and neither autopilot engaged</li>
+  <li>Only active in TOGA or APP mode below <span class="reg-value">800 ft RA</span></li>
+</ul>
+
+<h3>Comparator Inhibited When:</h3>
+<ul>
+  <li>On the ground</li>
+  <li>Either FD affected by electrical bus transfer</li>
+  <li>Failure of either FD sensor or FD itself</li>
+</ul>
+
+<div class="green-box"><strong>Redundancy:</strong> If one FDS fails, as long as display equipment is serviceable, both sets of ADI/HSI can be driven from the one serviceable FDC output — often via a simple switch. EFIS aircraft have a spare symbol generator for additional redundancy.</div>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 25:</strong>
+  <ul>
+    <li>FDS provides integrated attitude/nav steering commands to pilot and/or autopilot via command bars</li>
+    <li>FDS has 2 channels: roll (first/primary) and pitch (second/secondary)</li>
+    <li>Raw info = unprocessed deviation; Computed info = rate-of-change processed (anticipates corrections)</li>
+    <li>FDC failure: computed info lost, raw info may still be available</li>
+    <li>TO/GA engagement: 10° NP initial → 15° NP after 60 kt; TO mode exit below 400 ft RA needs both FD switches OFF</li>
+    <li>GA pitch command: 15° NP (2-engine), 13° NP initial (single engine)</li>
+    <li>Gain scheduling: reduces FD corrections as aircraft approaches ILS transmitter; RA-based = best method</li>
+    <li>FD Comparator: removes bars at 1–4° pitch or 3–9° roll difference; only active in TOGA/APP below 800 ft RA</li>
+    <li>FMA: green = engaged (top line), white = armed (second line)</li>
+  </ul>
+</div>
+
+<section id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box"><em>Instructor-generated questions in DGCA CPL/ATPL examination style.</em></div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">The Flight Director System was originally developed as an aid for which phase of flight?</span>
+    <ol class="q-options" type="a">
+      <li>Cruise navigation</li>
+      <li>Landing</li>
+      <li>Take-off roll</li>
+      <li>Engine-out climb</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Landing</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The FDS was originally developed as an aid to the pilot during landing. It provides steering and attitude signals on one instrument to reduce workload during the approach. See <a href="#sec-1">Section 1</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Cruise navigation was a later capability added as FDS technology advanced.</li>
+        <li><strong>(c)</strong> Take-off mode was added later; the original purpose was landing aid.</li>
+        <li><strong>(d)</strong> Engine-out procedures are a specific use case, not the original design purpose.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The evolution from a landing aid to a full-flight FDS integrated with autopilot is important context for understanding its architecture.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">What is the key difference between "raw" and "computed" information in an FDS?</span>
+    <ol class="q-options" type="a">
+      <li>Raw information comes from the IRS; computed information comes from the FMC</li>
+      <li>Raw information shows current deviation; computed information uses rate of change to anticipate corrections</li>
+      <li>Raw information is used only for autopilot; computed information is for the pilot only</li>
+      <li>Computed information requires ground station input; raw information does not</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Raw information is unprocessed data (e.g., ILS deviation in degrees) — it shows how far off track you are. Computed information is derived from the rate of change of deviation, allowing the FDS to anticipate turns/climbs/descents for smooth interception of the track. If the FDS fails, raw info may still be available. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Source sensors are not the distinction — both can use ILS/VOR inputs.</li>
+        <li><strong>(c)</strong> Both can be coupled to autopilot or displayed to the pilot.</li>
+        <li><strong>(d)</strong> Computed information is derived onboard from the FDC; no ground station is involved.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> On FDC failure, tell your students to use the raw GS/LOC needles — they still work independently of the FDC.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">On an EFIS FMA, how are engaged modes displayed compared to armed modes?</span>
+    <ol class="q-options" type="a">
+      <li>Engaged modes — amber, second line; Armed modes — green, top line</li>
+      <li>Engaged modes — green, top line; Armed modes — white, second line</li>
+      <li>Engaged modes — white, top line; Armed modes — blue, second line</li>
+      <li>Both engaged and armed modes are shown in green; armed modes are boxed</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> On an EFIS FMA, engaged modes are shown on the top line in green, while armed modes are on the line below in white. Newly changed information is boxed for emphasis. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Reverses the green/amber and line positions — engaged is always top line green.</li>
+        <li><strong>(c)</strong> White is used for armed modes, not engaged; blue is not a standard FMA colour.</li>
+        <li><strong>(d)</strong> Armed modes are white, not green; the boxing indicates newly changed modes.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Green = active/working RIGHT NOW. White = standby/waiting to capture. This convention is standard across Boeing and most modern aircraft.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">During a Boeing 737-400 take-off with FD engaged, what pitch command is given when IAS reaches 60 knots?</span>
+    <ol class="q-options" type="a">
+      <li>10° nose-up</li>
+      <li>15° nose-down</li>
+      <li>15° nose-up</li>
+      <li>5° nose-up, wings level</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> 15° nose-up</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Initially the FD commands 10° nose-down pitch and wings level. At 60 kt IAS, the FD command changes to 15° nose-up and wings level. See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> 10° nose-up is not a standard FD TO command; 10° nose-down is the initial command before 60 kt.</li>
+        <li><strong>(b)</strong> 15° nose-down would put the aircraft on the ground — obviously incorrect.</li>
+        <li><strong>(d)</strong> 5° nose-up is not a standard FD TO command value.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Remember the sequence: 10° ND (initial) → 15° NP (at 60 kt) → then pitch to maintain MCP speed +20 kt after achieving climb rate.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">Why is Radio Altimeter-based gain scheduling considered superior to time-based or marker beacon-based methods?</span>
+    <ol class="q-options" type="a">
+      <li>It is cheaper to install and maintain</li>
+      <li>It provides continuous, gradual scheduling based on actual aircraft height without requiring ground infrastructure</li>
+      <li>It removes the need for an ILS entirely</li>
+      <li>It is required by ICAO for all Category 1 approaches</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> RA-based gain scheduling is continuous and gradual (vs. stepped), relies on no ground signals (unlike marker beacons, now removed from many airfields), and directly correlates with actual aircraft height above ground — the most operationally relevant parameter. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Cost is not the cited advantage; the superiority is operational accuracy.</li>
+        <li><strong>(c)</strong> The ILS is still required; gain scheduling just optimizes how the FDS responds to GS deviations.</li>
+        <li><strong>(d)</strong> No specific ICAO requirement for RA-based scheduling is cited; it is a design preference.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The fact that marker beacons have been removed from many airfields makes marker-based gain scheduling increasingly obsolete.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">The FD Comparator removes command bars when the pitch difference between the two FDS is approximately:</span>
+    <ol class="q-options" type="a">
+      <li>5–10°</li>
+      <li>10–15°</li>
+      <li>1–4°</li>
+      <li>½–1°</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> 1–4°</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The FD Comparator monitors command bar positions and removes bars when a difference of approximately 1–4° of pitch and/or 3–9° of roll is sensed between the two FDS. See <a href="#sec-11">Section 11</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a), (b)</strong> These are larger thresholds than specified — the comparator acts early to alert of divergence.</li>
+        <li><strong>(d)</strong> ½–1° is too small; minor disagreements within this range are tolerated.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The comparator only operates in TOGA or APP mode below 800 ft RA — exactly when precision matters most.</div>
+  </div>
+</div>
+
+</section>
+
+<h2>Master Reference Tables</h2>
+<h3>Key Numerical Values — Chapter 25</h3>
+<table>
+<tr><th>Value</th><th>Parameter</th><th>Section</th></tr>
+<tr><td><span class="reg-value">60 kt</span></td><td>IAS at which FD TO pitch changes from 10° ND to 15° NP</td><td><a href="#sec-8">8</a></td></tr>
+<tr><td><span class="reg-value">10° NP</span></td><td>FD initial TO pitch command (before 60 kt)</td><td><a href="#sec-8">8</a></td></tr>
+<tr><td><span class="reg-value">15° NP</span></td><td>FD TO pitch command after 60 kt; also 2-engine GA pitch command</td><td><a href="#sec-8">8, 9</a></td></tr>
+<tr><td><span class="reg-value">13° NP</span></td><td>Initial FD single-engine GA pitch command</td><td><a href="#sec-9">9</a></td></tr>
+<tr><td><span class="reg-value">80 kt</span></td><td>Min IAS to engage FD during TO with FD switches off</td><td><a href="#sec-8">8</a></td></tr>
+<tr><td><span class="reg-value">400 ft RA</span></td><td>Threshold above which TO mode can be exited by mode selection</td><td><a href="#sec-8">8</a></td></tr>
+<tr><td><span class="reg-value">2000 ft RA</span></td><td>Max RA for GA engagement (with FD switches off: 150 sec after liftoff)</td><td><a href="#sec-9">9</a></td></tr>
+<tr><td><span class="reg-value">10 sec</span></td><td>Critical time threshold for SE GA target speed determination</td><td><a href="#sec-9">9</a></td></tr>
+<tr><td><span class="reg-value">6 NM</span></td><td>1° GS error ≈ 608 ft vertical</td><td><a href="#sec-10">10</a></td></tr>
+<tr><td><span class="reg-value">½ NM</span></td><td>1° GS error ≈ 54 ft vertical</td><td><a href="#sec-10">10</a></td></tr>
+<tr><td><span class="reg-value">1–4°</span></td><td>FD comparator pitch difference trigger</td><td><a href="#sec-11">11</a></td></tr>
+<tr><td><span class="reg-value">3–9°</span></td><td>FD comparator roll difference trigger</td><td><a href="#sec-11">11</a></td></tr>
+<tr><td><span class="reg-value">800 ft RA</span></td><td>Below this RA, FD comparator becomes active in TOGA/APP</td><td><a href="#sec-11">11</a></td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

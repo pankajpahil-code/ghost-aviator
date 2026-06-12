@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 39 – Electronic Instrumentation | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #283593; margin-top: 20px; }
+  h4 { font-size: 1em; font-weight: 700; color: #37474f; }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0; padding-left: 25px; }
+  li { padding: 3px 0; }
+  .cover { text-align: center; padding: 60px 20px 40px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; margin-bottom: 10px; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin: 8px 0; }
+  .cover .author { font-size: 1em; color: #777; margin-top: 20px; font-style: italic; }
+  .toc { page-break-after: always; }
+  .toc h2 { margin-bottom: 15px; }
+  .toc ol { line-height: 2; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #b71c1c; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 8px 12px; border: 1px solid #ddd; }
+  tr:nth-child(even) { background: #f5f7ff; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .ref-table td:first-child { font-weight: 700; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 39</h1>
+  <div class="subtitle" style="font-size:1.6em; font-weight:700; color:#1a237e;">Electronic Instrumentation</div>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes</div>
+  <div class="subtitle">Subject: Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction — EICAS and ECAM</a></li>
+    <li><a href="#sec-2">EICAS — System Overview</a></li>
+    <li><a href="#sec-3">EICAS — Display Units and Colour Coding</a></li>
+    <li><a href="#sec-4">EICAS — Display Modes</a></li>
+    <li><a href="#sec-5">EICAS — Display Select Panel</a></li>
+    <li><a href="#sec-6">EICAS — Alert Messages</a></li>
+    <li><a href="#sec-7">EICAS — Display Unit Failure</a></li>
+    <li><a href="#sec-8">EICAS — Standby Engine Indicator</a></li>
+    <li><a href="#sec-9">ECAM — System Overview and Display Units</a></li>
+    <li><a href="#sec-10">ECAM — Display Modes</a></li>
+    <li><a href="#sec-11">ECAM — Control Panel</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#ref-tables">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="sec-1">1. Introduction — EICAS and ECAM</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The two principal electronic engine and system monitoring systems used in modern commercial aircraft — their origins and fundamental philosophical differences.
+</div>
+
+<p>The display of engine performance and airframe systems parameters via CRT or LCD display has become standard on modern aircraft. Two principal systems are in use:</p>
+
+<table>
+  <tr><th>System</th><th>Full Name</th><th>First Aircraft</th><th>Manufacturer</th></tr>
+  <tr><td><strong>EICAS</strong></td><td>Engine Indicating and Crew Alerting System</td><td>Boeing 757 and 767</td><td>Boeing</td></tr>
+  <tr><td><strong>ECAM</strong></td><td>Electronic Centralized Aircraft Monitoring</td><td>Airbus A310</td><td>Airbus</td></tr>
+</table>
+
+<div class="box-blue">
+  <strong>Philosophical Difference — EICAS vs ECAM:</strong>
+  <table style="margin-top:10px;">
+    <tr><th>Aspect</th><th>EICAS</th><th>ECAM</th></tr>
+    <tr><td>Engine data display</td><td>Always displayed on screens; eliminates traditional instruments</td><td>Originally displayed on conventional instruments (A310); A320 onward: ECAM displays engine data</td></tr>
+    <tr><td>System display format</td><td>Alphanumeric messages and digital/analogue data</td><td>Check-list and schematic/synoptic format</td></tr>
+    <tr><td>Traditional instruments</td><td>Eliminated (small standby set retained)</td><td>Retained in A310; eliminated in later Airbus types</td></tr>
+  </table>
+</div>
+
+<div class="box-amber">
+  <strong>Exam Tip:</strong> The single most testable fact about EICAS vs ECAM is the <em>format</em>: EICAS shows engine data on screen in operational mode; ECAM shows systems in <em>check-list and synoptic/pictorial</em> format. Know the first aircraft for each system.
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="sec-2">2. EICAS — System Overview</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> EICAS hardware components and computer redundancy.
+</div>
+
+<p>The basic EICAS system comprises:</p>
+<ul>
+  <li><strong>Two display units</strong> (upper and lower)</li>
+  <li><strong>One control panel</strong></li>
+  <li><strong>Two computers</strong> — designated 'Left' and 'Right'</li>
+</ul>
+
+<p>Only one computer is in control at a time; the other is on <strong>standby</strong>. In the event of computer failure, the standby can be selected either <strong>manually or automatically</strong>.</p>
+
+<figure>
+  <img src="figs/fig_p540_0.png" alt="EICAS functional diagram">
+  <figcaption>Fig 39.1 — EICAS functional diagram (source p.540)</figcaption>
+</figure>
+
+<div class="box-green">
+  <strong>EICAS provides three levels of information:</strong>
+  <ol>
+    <li>Primary engine parameters — displayed <em>full-time</em></li>
+    <li>Secondary engine parameters — displayed <em>as required</em></li>
+    <li>Warning, caution, and advisory alert messages — displayed <em>as required</em></li>
+  </ol>
+</div>
+
+<!-- SECTION 3 -->
+<h2 id="sec-3">3. EICAS — Display Units and Colour Coding</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> What the upper and lower EICAS display units show, and the meaning of the seven display colours.
+</div>
+
+<p>The two display units are mounted one above the other and use colour shadow mask CRTs (or LCD equivalents):</p>
+
+<table>
+  <tr><th>Display Unit</th><th>Normal Content</th></tr>
+  <tr><td><strong>Upper Display Unit</strong></td><td>Primary engine parameters: <strong>N1 speed, EGT</strong>, and warning/caution messages. May also show <strong>EPR</strong> depending on engine type and thrust management system. Shows rows of 'V's when secondary info is on lower unit.</td></tr>
+  <tr><td><strong>Lower Display Unit</strong></td><td>Secondary engine parameters: N2 speed, fuel flow, oil quantity/pressure/temperature, engine vibration. Also: non-engine system status (flight control surface positions, hydraulic, APU, etc.), aircraft configuration, maintenance data. <em>Normally blank in flight.</em></td></tr>
+</table>
+
+<h3>EICAS Colour Coding (Seven Colours)</h3>
+<table>
+  <tr><th>Colour</th><th>Use</th></tr>
+  <tr><td><strong style="color:#fff;background:#fff;text-shadow:-1px 0 #000,0 1px #000,1px 0 #000,0 -1px #000;">White</strong></td><td>All scales, normal operating range of pointers, digital read-outs</td></tr>
+  <tr><td><strong style="color:#c0392b;">Red</strong></td><td>Warning messages, maximum operating limit marks, digital read-outs at max limits</td></tr>
+  <tr><td><strong style="color:#2e7d32;">Green</strong></td><td>Thrust mode read-out; selected EPR/N1 target cursors</td></tr>
+  <tr><td><strong style="color:#1565c0;">Blue</strong></td><td>System testing only</td></tr>
+  <tr><td><strong style="color:#e65100;">Yellow/Amber</strong></td><td>Caution and advisory messages; caution limit marks; digital read-outs at caution limits</td></tr>
+  <tr><td><strong style="color:#7b1fa2;">Magenta</strong></td><td>In-flight engine starting; cross-bleed messages</td></tr>
+  <tr><td><strong style="color:#00838f;">Cyan</strong></td><td>Names of all parameters being measured (e.g., N1, oil pressure, TAT); status marks/cues</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p541_0.png" alt="EICAS engine data displays">
+  <figcaption>Fig 39.2 — EICAS engine data displays — upper and lower units (source p.541)</figcaption>
+</figure>
+
+<div class="box-amber">
+  <strong>Exam Tip — Colour Memory Aid:</strong>
+  <ul>
+    <li><strong>Red</strong> = Warnings, max limits (immediate action required)</li>
+    <li><strong>Amber/Yellow</strong> = Cautions and advisories (crew awareness)</li>
+    <li><strong>Green</strong> = Target/selected thrust references</li>
+    <li><strong>White</strong> = Scales and normal readouts</li>
+    <li><strong>Cyan</strong> = Parameter names/labels</li>
+    <li><strong>Magenta</strong> = In-flight engine start / cross-bleed</li>
+    <li><strong>Blue</strong> = Test mode only</li>
+  </ul>
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="sec-4">4. EICAS — Display Modes</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The three EICAS display modes — Operational, Status, and Maintenance.
+</div>
+
+<p>EICAS has <strong>three modes</strong>:</p>
+
+<pre class="mermaid">
+flowchart LR
+    A[EICAS Display Modes] --> B[Operational Mode<br/>Selected by flight crew<br/>In-flight engine data + alerts]
+    A --> C[Status Mode<br/>Selected by flight crew<br/>Dispatch readiness / MEL check]
+    A --> D[Maintenance Mode<br/>Selected on maintenance panel<br/>Ground use only — 5 formats]
+    B --> E[Upper DU active<br/>Lower DU blank unless<br/>selected]
+    C --> F[Lower DU shows:<br/>control surface positions<br/>sub-system data<br/>equipment status messages]
+    D --> G[Lower DU only<br/>NOT available in flight]
+</pre>
+
+<table>
+  <tr><th>Mode</th><th>Selected By</th><th>Purpose</th><th>Display Unit</th></tr>
+  <tr><td><strong>Operational</strong></td><td>Flight crew (Display Select Panel)</td><td>In-flight engine operating information and alerts requiring crew action</td><td>Upper DU (continuously); Lower DU on request</td></tr>
+  <tr><td><strong>Status</strong></td><td>Flight crew (Display Select Panel)</td><td>Dispatch readiness; associated with MEL; flight control surface positions; selected sub-system parameters; equipment status messages</td><td>Lower DU</td></tr>
+  <tr><td><strong>Maintenance</strong></td><td>Maintenance panel (ground engineers only)</td><td>Trouble-shooting and verification testing in 5 display formats</td><td>Lower DU — <strong>NOT available in flight</strong></td></tr>
+</table>
+
+<div class="box-red">
+  <strong>Important — Maintenance Mode:</strong> This mode is available to ground engineering staff only, via a remotely located maintenance control panel. It is <em>inhibited in flight</em>. It provides 5 different display formats for troubleshooting.
+</div>
+
+<figure>
+  <img src="figs/fig_p542_0.png" alt="EICAS display modes diagram">
+  <figcaption>Fig 39.3 — EICAS display select panel (source p.542)</figcaption>
+</figure>
+
+<!-- SECTION 5 -->
+<h2 id="sec-5">5. EICAS — Display Select Panel</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> All controls on the EICAS Display Select Panel (DSP), located on the centre pedestal.
+</div>
+
+<p>Located on the <strong>centre pedestal</strong>. Usable both in flight and on the ground. Controls include:</p>
+
+<table>
+  <tr><th>Control</th><th>Type</th><th>Function</th></tr>
+  <tr><td><strong>Engine Display Switch</strong></td><td>Momentary push</td><td>Removes or presents secondary information on the lower DU</td></tr>
+  <tr><td><strong>Status Display Switch</strong></td><td>Momentary push</td><td>Displays Status Mode (status page) on lower DU</td></tr>
+  <tr><td><strong>Event Record Switch</strong></td><td>Momentary push</td><td>Records fault data: automatically (auto event) for malfunctions, or manually (manual event) by crew. Data stored in non-volatile memory; retrievable only on ground via maintenance panel.</td></tr>
+  <tr><td><strong>Computer Select Switch</strong></td><td>Rotary</td><td>AUTO = selects left (primary) computer and auto-switches on failure; Manual = left or right selection</td></tr>
+  <tr><td><strong>Display Brightness Control</strong></td><td>Dual knob</td><td>Inner = display intensity; Outer = brightness balance between displays</td></tr>
+  <tr><td><strong>Thrust Reference Set Switch</strong></td><td>Pull &amp; rotate inner; outer selects engine</td><td>Positions reference cursor on EPR or N1 thrust indicator for selected engine</td></tr>
+  <tr><td><strong>Maximum Indicator Reset Switch</strong></td><td>Pushbutton</td><td>Clears exceeded-parameter alerts from display when the excess condition no longer exists</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p543_0.png" alt="EICAS status mode display">
+  <figcaption>Fig 39.4 — Status Mode Display (source p.543)</figcaption>
+</figure>
+
+<!-- SECTION 6 -->
+<h2 id="sec-6">6. EICAS — Alert Messages</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The three EICAS alert levels, message handling, and Cancel/Recall functions.
+</div>
+
+<p>EICAS continuously monitors over <span class="reg-value">400</span> inputs from engine and airframe sensors. Faults generate messages displayed on the upper DU in urgency order. Up to <span class="reg-value">11</span> messages can be displayed simultaneously.</p>
+
+<table>
+  <tr><th>Level</th><th>Colour</th><th>Name</th><th>Action Required</th><th>Additional Alerts</th></tr>
+  <tr><td><strong>Level A</strong></td><td style="background:#fdecea;"><strong>RED</strong></td><td>Warning</td><td>Immediate corrective action</td><td>Master Warning lights illuminated; aural warning (e.g., fire bell) from central warning system</td></tr>
+  <tr><td><strong>Level B</strong></td><td style="background:#fff8e1;"><strong>AMBER</strong></td><td>Caution</td><td>Immediate crew awareness + future crew action</td><td>Message caution lights; aural tone repeated <strong>twice</strong></td></tr>
+  <tr><td><strong>Level C</strong></td><td style="background:#fff8e1;"><strong>AMBER</strong> (indented)</td><td>Advisory</td><td>Crew awareness only</td><td>No caution lights or aural tones</td></tr>
+</table>
+
+<div class="box-red">
+  <strong>Advisory vs Caution Distinction:</strong> Both are displayed in amber. The advisory (Level C) is always <em>indented one space to the right</em> to differentiate it from the caution (Level B).
+</div>
+
+<h3>Message Management</h3>
+<table>
+  <tr><th>Action</th><th>Effect</th></tr>
+  <tr><td><strong>CANCEL switch</strong></td><td>Removes <em>only caution and advisory</em> messages; <strong>Warning messages cannot be cancelled</strong></td></tr>
+  <tr><td><strong>RECALL switch</strong></td><td>Brings back cancelled caution/advisory messages; word 'RECALL' appears at bottom of display</td></tr>
+  <tr><td>Message auto-removal</td><td>When associated condition no longer exists, message automatically removed; lower messages move up</td></tr>
+  <tr><td>New fault insertion</td><td>New message inserted at appropriate line; older messages move down one line</td></tr>
+  <tr><td>More than 11 messages</td><td>Excess messages form a 'page'; lowest message replaced by page number (white, lower right). Press CANCEL to see next page; warnings carried over.</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p544_0.png" alt="EICAS alert message levels display">
+  <figcaption>Fig 39.5 — Alert message levels and display (source p.544)</figcaption>
+</figure>
+
+<!-- SECTION 7 -->
+<h2 id="sec-7">7. EICAS — Display Unit Failure</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> What happens when the lower EICAS display unit fails.
+</div>
+
+<p>If the <strong>lower display unit fails</strong> while secondary information is displayed:</p>
+<ul>
+  <li>An <strong>amber alert message</strong> appears at the top left of the upper DU</li>
+  <li>Secondary information is transferred to the upper DU in <strong>'compact' format</strong></li>
+  <li>The compact format can be removed by pressing the 'ENGINE' switch on the display select panel</li>
+  <li>The <strong>STATUS switch is inhibited</strong> — the status page cannot be displayed while the lower DU has failed</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p545_0.png" alt="EICAS compact format on lower DU failure">
+  <figcaption>Fig 39.6 — 'Compact format' displayed on upper DU following lower DU failure (source p.545)</figcaption>
+</figure>
+
+<!-- SECTION 8 -->
+<h2 id="sec-8">8. EICAS — Standby Engine Indicator</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The standby instrument that provides engine information if total EICAS display loss occurs.
+</div>
+
+<p>The Standby Engine Indicator provides primary engine information in the event of a <strong>total loss of EICAS displays</strong>. It displays:</p>
+<ul>
+  <li>N1 speed</li>
+  <li>N2 speed</li>
+  <li>EGT</li>
+</ul>
+<p>Displayed using <strong>LCD type</strong> indicators. Operating limit values are also shown.</p>
+
+<figure>
+  <img src="figs/fig_p546_0.png" alt="Standby Engine Indicator">
+  <figcaption>Fig 39.7 — Standby Engine Indicator (source p.546)</figcaption>
+</figure>
+
+<!-- SECTION 9 -->
+<h2 id="sec-9">9. ECAM — System Overview and Display Units</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> ECAM architecture, how it differs from EICAS in both hardware and philosophy, and the role of each display unit.
+</div>
+
+<p>The ECAM system as originally developed for the <strong>Airbus A310</strong> processes and displays data primarily related to <em>primary systems</em> of the aircraft in <strong>check-list and synoptic/pictorial format</strong>. Engine data was displayed by conventional instruments in the A310; the A320 onward integrates engine data into ECAM.</p>
+
+<figure>
+  <img src="figs/fig_p547_0.png" alt="ECAM system functional diagram">
+  <figcaption>Fig 39.8 — ECAM system functional diagram (source p.547)</figcaption>
+</figure>
+
+<h3>Display Unit Layout and Roles</h3>
+<table>
+  <tr><th>Display Unit</th><th>Location</th><th>Content</th></tr>
+  <tr><td><strong>Left-hand DU</strong></td><td>Side-by-side</td><td>Status of systems, warnings, corrective action — in <strong>sequenced check-list format</strong></td></tr>
+  <tr><td><strong>Right-hand DU</strong></td><td>Side-by-side</td><td>Associated information in <strong>pictorial or synoptic (schematic) format</strong></td></tr>
+</table>
+
+<div class="box-amber">
+  <strong>Critical EICAS vs ECAM Layout Difference:</strong>
+  <ul>
+    <li><strong>EICAS:</strong> Displays mounted <em>one above the other</em> (upper and lower)</li>
+    <li><strong>ECAM:</strong> Displays mounted <em>side by side</em> (left and right) — though some installations differ</li>
+  </ul>
+</div>
+
+<!-- SECTION 10 -->
+<h2 id="sec-10">10. ECAM — Display Modes</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The four ECAM display modes — three automatic and one manual.
+</div>
+
+<p>ECAM has <strong>four display modes</strong> — three automatic and one manual:</p>
+
+<pre class="mermaid">
+flowchart TD
+    A[ECAM Display Modes] --> B[1. Flight Phase-related<br/>AUTOMATIC<br/>Normal operations]
+    A --> C[2. Advisory — Mode and Status<br/>AUTOMATIC<br/>Status summaries]
+    A --> D[3. Failure-related<br/>AUTOMATIC — highest priority<br/>Takes precedence over all other modes]
+    A --> E[4. Aircraft System Display<br/>MANUAL<br/>Crew-selected via illuminated push-buttons]
+    D --> F[Left DU: corrective action<br/>Right DU: system diagram<br/>+ Aural warning + Warning light]
+    E --> G[Selects any of 12 systems<br/>for routine checking]
+</pre>
+
+<h3>Mode 1 — Flight Phase-related</h3>
+<p>Automatically selects displays appropriate to the current phase of aircraft operation: <strong>preflight, take-off, climb, cruise, descent, approach, after landing</strong>.</p>
+<ul>
+  <li>Left DU: Advisory memo mode</li>
+  <li>Right DU: Aircraft diagram (fuselage, doors, escape slide arming status, etc.)</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p548_0.png" alt="ECAM preflight phase display">
+  <figcaption>Fig 39.9 — Preflight phase-related mode display (source p.548)</figcaption>
+</figure>
+
+<h3>Mode 2 — Advisory (Status)</h3>
+<p>Status messages displayed on the left DU provide the flight crew with:</p>
+<ul>
+  <li>Operational summary of aircraft condition</li>
+  <li>Possible downgrading of autoland capability</li>
+  <li>Aircraft status after failures (where not flight-affecting)</li>
+</ul>
+
+<figure>
+  <img src="figs/fig_p549_0.png" alt="ECAM status display">
+  <figcaption>Fig 39.10 — Advisory/Status display (source p.549)</figcaption>
+</figure>
+
+<h3>Mode 3 — Failure-related (Highest Priority)</h3>
+<p>Takes precedence over all other automatic modes AND the manual mode. When a failure occurs:</p>
+<ul>
+  <li><strong>Right DU:</strong> immediately displays a diagram of the affected system</li>
+  <li><strong>Left DU:</strong> displays corrective action for the crew</li>
+  <li><strong>Additional:</strong> aural warning sounded; warning light on central warning panel illuminated</li>
+  <li>As corrective action is taken, left DU instructions are replaced by a white confirmation message</li>
+  <li>The right DU diagram is <strong>'redrawn'</strong> to reflect the new configuration</li>
+</ul>
+
+<div class="box-blue">
+  <strong>Single vs Multiple System Failure — ECAM Display:</strong>
+  <ul>
+    <li>Single system failure: system title is <strong>underlined</strong></li>
+    <li>Failure affecting other sub-systems: system title is shown <strong>boxed</strong></li>
+  </ul>
+  <p>Warnings and lights are cleared using <strong>'CLEAR' (CLR)</strong> push-button switches on the ECAM control panel or warning light display panel.</p>
+</div>
+
+<figure>
+  <img src="figs/fig_p550_0.png" alt="ECAM failure-related mode showing sub-system impact">
+  <figcaption>Fig 39.12 — Display showing how a failure affects a sub-system (boxed title) (source p.550)</figcaption>
+</figure>
+
+<h3>Mode 4 — Aircraft System Display (Manual)</h3>
+<p>Permits selection of diagrams related to any one of <span class="reg-value">12</span> aircraft systems for routine checking. Also permits selection of status messages when no warnings are active. Selected via <strong>illuminated push-button switches</strong> on the ECAM system control panel.</p>
+
+<!-- SECTION 11 -->
+<h2 id="sec-11">11. ECAM — Control Panel</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> All switches on the ECAM Control Panel.
+</div>
+
+<table>
+  <tr><th>Switch</th><th>Function</th></tr>
+  <tr><td><strong>SGU Selector Switches</strong></td><td>Control respective Symbol Generator Units (SGUs). Lights off in normal operation. FAULT caption (amber) = SGU internal self-test failure. Releasing switch: isolates SGU, FAULT extinguishes, OFF caption illuminates white.</td></tr>
+  <tr><td><strong>Synoptic Display Switches</strong></td><td>Individually select synoptic diagrams for each of 12 systems; illuminate white when pressed. Automatically cancelled when a warning or advisory occurs.</td></tr>
+  <tr><td><strong>CLR (Clear) Switch</strong></td><td>Illuminates white when a warning or status message is on left DU. Press to clear messages.</td></tr>
+  <tr><td><strong>STS (Status) Switch</strong></td><td>Manual selection of aircraft status message (only when no warning displayed); illuminated white. Also causes CLR to illuminate. Suppressed if warning occurs or CLR is pressed.</td></tr>
+  <tr><td><strong>RCL (Recall) Switch</strong></td><td>Recalls previously cleared warning messages IF the failure condition still exists. Causes CLR to illuminate. If failure no longer exists: 'NO WARNING PRESENT' displayed on left DU.</td></tr>
+</table>
+
+<figure>
+  <img src="figs/fig_p551_0.png" alt="ECAM control panel">
+  <figcaption>Fig 39.13 — ECAM Control Panel (source p.551)</figcaption>
+</figure>
+
+<div class="box-amber">
+  <strong>Quick Revision Summary — Ch. 39:</strong>
+  <ul>
+    <li><strong>EICAS:</strong> Boeing. Two DUs (upper/lower). 3 modes (Operational, Status, Maintenance). 3 alert levels (A=Red/Warning, B=Amber/Caution, C=Amber-indented/Advisory). Monitors &gt;<span class="reg-value">400</span> inputs. Up to <span class="reg-value">11</span> messages. Standby: N1/N2/EGT on LCD.</li>
+    <li><strong>ECAM:</strong> Airbus. Two DUs (left/right — side by side). 4 modes (3 automatic + 1 manual). Left DU = checklist/corrective action. Right DU = synoptic/diagram. Failure-related = highest priority. 12 systems in manual mode.</li>
+    <li><strong>Key EICAS colours:</strong> Red=Warnings; Amber=Cautions+Advisories; Green=Thrust targets; Cyan=Labels; Magenta=Eng start/cross-bleed; Blue=Test.</li>
+    <li><strong>EICAS Lower DU failure:</strong> Compact format on upper DU; STATUS switch inhibited.</li>
+    <li><strong>ECAM failure display:</strong> Underlined = single system; Boxed = affects sub-systems.</li>
+  </ul>
+</div>
+
+<!-- Q&A SECTION -->
+<div class="qa-section">
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+
+<div class="box-blue">
+  <strong>Source Questions:</strong> The following questions are taken verbatim from the Oxford source text (pp. 552–553), with answers from the source answer key (p. 554). Explanations are instructor-generated.
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">With an Engine Indicating and Crew Alerting System:</span>
+    <ol class="q-options" type="a">
+      <li>the secondary display will show continuously the engine primary instruments</li>
+      <li>the primary display unit will continuously show the engine primary instruments such as N1, N2, N3 and maybe oil pressure</li>
+      <li>the primary engine display will continuously show the engine primary instruments such as N1, EGT and maybe EPR</li>
+      <li>the primary engine instruments are N1, EGT and EPR and are on the primary and secondary display units</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> the primary engine display will continuously show the engine primary instruments such as N1, EGT and maybe EPR</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> In EICAS, the <em>upper</em> (primary) display unit shows N1, EGT, and possibly EPR continuously in Operational Mode. The lower (secondary) DU normally remains blank and is selected as needed. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — The secondary (lower) DU shows secondary parameters (N2, fuel flow, oil, vibration), NOT primary instruments continuously.</li>
+      <li><strong>(b)</strong> — N2, N3 and oil pressure are secondary parameters shown on the lower DU; they are not the primary display content.</li>
+      <li><strong>(d)</strong> — Primary instruments (N1, EGT, EPR) are on the upper DU only in Operational Mode — not on both DUs simultaneously.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Upper DU = N1 + EGT + EPR (if fitted) + alerts = continuous. Lower DU = N2, fuel flow, oil, vibration, status = selected as required. This is the core EICAS architecture to memorise.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">The electronic engine display system with three automatic modes is:</span>
+    <ol class="q-options" type="a">
+      <li>the Electronic Centralized Aircraft Monitor, with the fourth mode manual</li>
+      <li>the Electronic Centralized Aircraft Monitor, with the fourth mode flight phase related or manual</li>
+      <li>the Engine Indicating and Crew Alerting System, with the fourth mode manual</li>
+      <li>the Engine Indicating and Crew Alerting System, with the fourth mode a manual cross-over from the Electronic Centralized Aircraft Monitor System</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> the Electronic Centralized Aircraft Monitor, with the fourth mode manual</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> ECAM has four modes: three automatic (Flight Phase-related, Advisory/Status, Failure-related) and one manual (Aircraft System Display). EICAS has three modes total (Operational, Status, Maintenance) — not four. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(b)</strong> — Flight Phase-related is one of the three automatic modes; it is not an alternative "fourth mode."</li>
+      <li><strong>(c)</strong> — EICAS has only 3 modes (Operational, Status, Maintenance); there is no fourth EICAS mode.</li>
+      <li><strong>(d)</strong> — No such cross-over mode exists.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> ECAM = 4 modes (3 auto + 1 manual). EICAS = 3 modes (Operational + Status + Maintenance). This is a frequently tested distinction.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">The display modes for the Engine Indicating and Crew Alerting System are:</span>
+    <ol class="q-options" type="a">
+      <li>operational, status and maintenance of which status and maintenance are automatic</li>
+      <li>flight phase related, advisory and failure related</li>
+      <li>operational, status and maintenance</li>
+      <li>operational, flight phase related and status</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> operational, status and maintenance</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> EICAS has exactly three modes: (1) Operational, (2) Status, and (3) Maintenance. Modes (1) and (2) are selected by the flight crew on the display select panel. Maintenance mode is selected on the maintenance panel for ground staff. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Partially correct on the mode names but wrong about which are automatic — status and maintenance are NOT automatic (both require selection); operational is the normal/default mode.</li>
+      <li><strong>(b)</strong> — Flight phase related, advisory and failure related are <em>ECAM</em> automatic modes, not EICAS modes.</li>
+      <li><strong>(d)</strong> — Flight phase related is an ECAM mode; not an EICAS mode.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> EICAS: Operational / Status / Maintenance. ECAM: Flight Phase-related / Advisory-Status / Failure-related / Manual. Don't mix these up — they're a favourite exam crossover trap.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">With an Engine Indicating and Crew Alerting System lower display unit failure:</span>
+    <ol class="q-options" type="a">
+      <li>a compact message will only appear on the upper display unit</li>
+      <li>a compact message will only appear on the central display unit</li>
+      <li>a compact message will appear both on the upper display unit and the captain's Electronic Flight Instrument System</li>
+      <li>a compact message will appear on the upper display unit when the status button is pressed on the control panel</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> a compact message will only appear on the upper display unit</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> When the lower DU fails while displaying secondary information, an amber alert appears on the upper DU and the secondary info is transferred to the upper DU in "compact format." This compact display can be removed by pressing the ENGINE switch. The STATUS switch is inhibited while the lower DU is failed. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(b)</strong> — EICAS has no "central display unit"; it has upper and lower DUs.</li>
+      <li><strong>(c)</strong> — The compact format only appears on the EICAS upper DU, not on the EFIS displays.</li>
+      <li><strong>(d)</strong> — The compact format appears automatically (not when STATUS is pressed); in fact, STATUS is inhibited following lower DU failure.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Key facts: compact format → upper DU; STATUS button → inhibited; removal of compact format → press ENGINE switch. Three distinct facts, all examinable.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">With an Electronic Centralized Aircraft Monitoring type of system:</span>
+    <ol class="q-options" type="a">
+      <li>the display units have two control panels and with any system failure the control will be from the port control box only</li>
+      <li>the left display unit shows warning and corrective action in a check list format</li>
+      <li>the two display units are only fitted side by side</li>
+      <li>the left display unit shows the synoptic format and the right or lower unit shows the corrective format</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> the left display unit shows warning and corrective action in a check list format</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> In ECAM, the left-hand display unit is dedicated to showing warnings and corrective action in sequenced check-list format. The right-hand unit shows the associated synoptic/pictorial format. See <a href="#sec-9">Section 9</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — ECAM does not have two control panels with port-only control on failure; this description is inaccurate.</li>
+      <li><strong>(c)</strong> — While the standard ECAM layout is side-by-side, saying "only" is incorrect — some compact installations differ.</li>
+      <li><strong>(d)</strong> — This is exactly backwards: the LEFT DU shows corrective action (checklist); the RIGHT DU shows the synoptic/diagram.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> ECAM Left = Checklist/Corrective action. ECAM Right = Synoptic diagram. The most common mistake is reversing left and right. Use: Left = Language (text/checklist); Right = Picture (synoptic).</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">The Engine Indicating and Crew Alerting System alert messages are shown on the upper display unit in three forms:</span>
+    <ol class="q-options" type="a">
+      <li>Level 'C' are warnings that require immediate corrective action</li>
+      <li>Level 'A' are cautions that require immediate crew awareness and possible action</li>
+      <li>Level 'B' are advisories requiring crew awareness</li>
+      <li>and these messages appear on the top left of the upper display unit</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> and these messages appear on the top left of the upper display unit</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> "The messages appear on the top line at the left of the display screen." This is the only true statement among the options. Level A = Warnings (red, immediate action). Level B = Cautions (amber, immediate awareness + future action). Level C = Advisories (amber, indented, awareness only). See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Level C is advisory (awareness), NOT warning (immediate action). Level A = warning.</li>
+      <li><strong>(b)</strong> — Level A is a WARNING requiring immediate corrective action — not a caution.</li>
+      <li><strong>(c)</strong> — Level B is a CAUTION (immediate awareness + future action) — not an advisory. Level C = advisory.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> A = Warning = Red = Immediate action. B = Caution = Amber = Immediate awareness + future action. C = Advisory = Amber indented = Awareness only. Top-left of upper DU. All three: A comes first (most urgent), C last (least urgent, indented).</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q7.</span><span class="q-text">The electronic engine display system will have:</span>
+    <ol class="q-options" type="a">
+      <li>one primary and one secondary display unit for an EICAS and a change over selector to change to the ECAM mode if necessary</li>
+      <li>two display units for ECAM and three display units for EICAS</li>
+      <li>either EICAS or ECAM but not both</li>
+      <li>an interconnect to the EFIS symbol generators in an emergency</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> either EICAS or ECAM but not both</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> An aircraft is equipped with either EICAS or ECAM — these are competing system concepts from Boeing and Airbus respectively. No aircraft uses both systems simultaneously. The text confirms these are two distinct system philosophies on different aircraft types. See <a href="#sec-1">Section 1</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — There is no ECAM mode changeover on an EICAS aircraft; they are separate, non-interchangeable systems.</li>
+      <li><strong>(b)</strong> — Both EICAS and ECAM use 2 display units; EICAS does not use 3.</li>
+      <li><strong>(d)</strong> — Neither EICAS nor ECAM is described as having an emergency interconnect to EFIS symbol generators.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Boeing = EICAS. Airbus = ECAM. An aircraft has one or the other, never both. This seems obvious but the examiner tests it as a distractor.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q8.</span><span class="q-text">The Electronic Centralized Aircraft Monitor (ECAM) type of system shows a:</span>
+    <ol class="q-options" type="a">
+      <li>checklist format on the left display panel and schematic form always automatically on the right display unit</li>
+      <li>checklist format on the left display unit and the right, or lower display unit, a diagram or synoptic format</li>
+      <li>synoptic format on the left display unit and a warning and corrective action display on the right or lower display unit</li>
+      <li>continuous primary engine display on the primary display unit</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> checklist format on the left display unit and the right, or lower display unit, a diagram or synoptic format</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> ECAM: Left DU = checklist/corrective action in check-list format. Right DU = associated synoptic/pictorial/diagram format. The "or lower display unit" wording acknowledges that some compact installations may have vertical rather than side-by-side layout. See <a href="#sec-9">Section 9</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — "Always automatically" is too absolute; the right DU schematic is related to the specific system/failure being displayed, not continuously shown.</li>
+      <li><strong>(c)</strong> — Reversed: left = checklist, right = synoptic (NOT left = synoptic, right = corrective action).</li>
+      <li><strong>(d)</strong> — Continuous primary engine display is an EICAS feature (upper DU); ECAM did not originally display engine data (A310 used conventional gauges).</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> For ECAM: Left = List (checklist/text). Right = Picture (synoptic/diagram). Memorise this left-right assignment — it is tested multiple times across the question bank.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q9.</span><span class="q-text">The electronic display system that has three automatic modes plus one manual is the:</span>
+    <ol class="q-options" type="a">
+      <li>Electronic Management and Control Section</li>
+      <li>Electronic Indication and Fail Safe system</li>
+      <li>Electronic Indication and Crew Alert system</li>
+      <li>Electronic Centralized Aircraft Monitor</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> Electronic Centralized Aircraft Monitor</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> ECAM has four display modes: three automatic (Flight Phase-related, Advisory/Status, Failure-related) and one manual (Aircraft System Display). EICAS has only three modes. The question describes ECAM's 3+1 mode structure. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — "Electronic Management and Control Section" is not a real avionics system acronym.</li>
+      <li><strong>(b)</strong> — "Electronic Indication and Fail Safe system" does not exist.</li>
+      <li><strong>(c)</strong> — EICAS (Engine Indicating and Crew Alerting System) has only 3 modes total, not 3+1.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> 3 auto + 1 manual = ECAM. 3 total = EICAS. This is the most direct way to remember the mode count difference.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q10.</span><span class="q-text">A boxed message shown as an electronic engine display system fault is one that:</span>
+    <ol class="q-options" type="a">
+      <li>affects other sub-systems and is used in the Engine Indicating and Crew Alerting System</li>
+      <li>does not affect any other system</li>
+      <li>does not affect any other system and is used in the Engine Indicating and Aircraft Monitor system</li>
+      <li>affects other sub-systems and is used in the Electronic Centralized Aircraft Monitor type of system</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> affects other sub-systems and is used in the Electronic Centralized Aircraft Monitor type of system</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> In ECAM, when a failure affects <em>other sub-systems</em> beyond the primary failure system, the title of the sub-system is shown <em>boxed</em>. A single-system failure is shown with the title <em>underlined</em> (not boxed). This convention is specific to ECAM. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Boxed format is an ECAM convention, not EICAS.</li>
+      <li><strong>(b)</strong> — A fault NOT affecting other systems is shown underlined, not boxed.</li>
+      <li><strong>(c)</strong> — Incorrect on both counts: boxed = affects sub-systems AND it's ECAM (not EIAS).</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> ECAM display conventions: Underlined title = single system fault. Boxed title = fault affects sub-systems. These visual conventions communicate the scope of the failure at a glance.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q11.</span><span class="q-text">An engine fire indication on an electronic engine display is shown:</span>
+    <ol class="q-options" type="a">
+      <li>on the primary display panel in red</li>
+      <li>on the secondary display panel in amber</li>
+      <li>on both the Electronic Flight Instrument System and Engine Indicating and Crew Alerting System secondary panels</li>
+      <li>only on the Flight Management Computer primary panel</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> on the primary display panel in red</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Engine fire is a Level A Warning — the highest urgency. Level A warnings are displayed in <em>red</em> on the <em>upper (primary) display unit</em> of EICAS. Red is used for "Warning messages, maximum operating limit marks." See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(b)</strong> — Secondary DU shows secondary parameters; fire warning (Level A) goes to the upper DU in red, not amber on the lower DU.</li>
+      <li><strong>(c)</strong> — EFIS does not display EICAS engine fire alerts; these systems are separate.</li>
+      <li><strong>(d)</strong> — The FMC primary panel is not an alert display for engine fire warnings.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Engine fire = Warning = Level A = Red = Upper DU. The source also notes master warning lights and aural warning (fire bell) are also activated. All three: red message + master warning lights + fire bell.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q12.</span><span class="q-text">An engine electronic system which in normal conditions of flight shows only the primary engine instruments is:</span>
+    <ol class="q-options" type="a">
+      <li>an EICAS system with EPR, EGT and N2 shown on the primary instruments</li>
+      <li>an ECAM system with the primary engine instruments displayed on the lower screen</li>
+      <li>an EICAS system with the primary engine instruments displayed on the primary screen, the secondary screen being blank</li>
+      <li>an ECAM system with the primary engine instruments displayed on the primary screen, the left screen being blank</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> an EICAS system with the primary engine instruments displayed on the primary screen, the secondary screen being blank</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> In EICAS Operational Mode, only the upper DU presents information; the lower DU remains <em>blank</em> until selected to display secondary parameters. Primary instruments (N1, EGT, possibly EPR) are shown continuously on the upper (primary) DU. N2 is a secondary parameter, not a primary instrument in EICAS. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — N2 is a secondary parameter; EPR+EGT+N1 are primary. Including N2 in primary instruments is incorrect.</li>
+      <li><strong>(b)</strong> — ECAM originally showed engine data on conventional (non-electronic) instruments in A310; the ECAM lower/right DU shows synoptic information, not primary engine instruments.</li>
+      <li><strong>(d)</strong> — In ECAM, the left DU shows warnings/checklist; engine primary instruments are not on an ECAM screen as described. This is EICAS architecture, not ECAM.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> EICAS Operational Mode: Upper DU = N1 + EGT + EPR (if applicable) = continuous. Lower DU = blank (selected on demand). This "lower blank" is characteristic of EICAS and is a key operational feature to remember.</div>
+  </div>
+</div>
+
+</div><!-- end qa-section -->
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="ref-tables">Master Reference Tables</h2>
+
+<h3>EICAS vs ECAM — Master Comparison</h3>
+<table class="ref-table">
+  <tr><th>Parameter</th><th>EICAS</th><th>ECAM</th></tr>
+  <tr><td>Manufacturer</td><td>Boeing</td><td>Airbus</td></tr>
+  <tr><td>First aircraft</td><td>B757/B767</td><td>A310</td></tr>
+  <tr><td>DU layout</td><td>Upper / Lower (stacked)</td><td>Left / Right (side by side)</td></tr>
+  <tr><td>Number of modes</td><td>3</td><td>4 (3 auto + 1 manual)</td></tr>
+  <tr><td>Mode names</td><td>Operational, Status, Maintenance</td><td>Flight Phase-related, Advisory, Failure-related, Manual (Aircraft System Display)</td></tr>
+  <tr><td>Highest priority mode</td><td>Operational</td><td>Failure-related</td></tr>
+  <tr><td>Maintenance mode availability</td><td>Ground only</td><td>N/A (no separate maintenance mode)</td></tr>
+  <tr><td>Inputs monitored</td><td>&gt;<span class="reg-value">400</span></td><td>—</td></tr>
+  <tr><td>Max messages displayed</td><td><span class="reg-value">11</span></td><td>—</td></tr>
+  <tr><td>Backup for total display loss</td><td>Standby engine indicator (N1/N2/EGT, LCD)</td><td>—</td></tr>
+  <tr><td>Single system fault display</td><td>Red/Amber message</td><td>Underlined title</td></tr>
+  <tr><td>Multi-system fault display</td><td>Red/Amber message</td><td>Boxed title</td></tr>
+  <tr><td>Level A/Warning</td><td>RED — Immediate action + Master Warning + aural</td><td>—</td></tr>
+  <tr><td>Level B/Caution</td><td>AMBER — Awareness + aural tone ×2</td><td>—</td></tr>
+  <tr><td>Level C/Advisory</td><td>AMBER (indented) — Awareness only</td><td>—</td></tr>
+  <tr><td>Advisory differentiation</td><td>Indented one space right</td><td>—</td></tr>
+  <tr><td>Warning cancellation</td><td>Cannot be cancelled</td><td>CLR button</td></tr>
+  <tr><td>Number of manual systems (ECAM)</td><td>—</td><td><span class="reg-value">12</span></td></tr>
+</table>
+
+<h3>Answer Key — Source Questions</h3>
+<table>
+  <tr><th>Q</th><th>Ans</th><th>Topic</th></tr>
+  <tr><td>1</td><td>c</td><td>EICAS upper DU content</td></tr>
+  <tr><td>2</td><td>a</td><td>ECAM — 3 auto + 1 manual modes</td></tr>
+  <tr><td>3</td><td>c</td><td>EICAS 3 modes</td></tr>
+  <tr><td>4</td><td>a</td><td>EICAS lower DU failure</td></tr>
+  <tr><td>5</td><td>b</td><td>ECAM left DU = checklist</td></tr>
+  <tr><td>6</td><td>d</td><td>Alert messages — top left of upper DU</td></tr>
+  <tr><td>7</td><td>c</td><td>EICAS or ECAM — not both</td></tr>
+  <tr><td>8</td><td>b</td><td>ECAM left=checklist, right=synoptic</td></tr>
+  <tr><td>9</td><td>d</td><td>ECAM = 3 auto + 1 manual</td></tr>
+  <tr><td>10</td><td>d</td><td>Boxed = sub-system affected = ECAM</td></tr>
+  <tr><td>11</td><td>a</td><td>Fire = red on primary/upper DU</td></tr>
+  <tr><td>12</td><td>c</td><td>EICAS normal ops = upper DU only</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

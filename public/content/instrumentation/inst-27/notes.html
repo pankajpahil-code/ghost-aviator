@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 27 – Autoland | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #0d47a1; margin-top: 22px; }
+  h4 { font-size: 1em; font-weight: 700; color: #1565c0; margin-top: 16px; }
+  p { margin: 10px 0; }
+  .cover { text-align: center; padding: 40px 20px 30px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .toc { page-break-after: always; }
+  .toc ol { padding-left: 24px; }
+  .toc li { padding: 4px 0; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: left; }
+  td { padding: 7px 12px; border: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7ff; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  #qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  ul { margin: 8px 0; padding-left: 24px; }
+  li { margin: 3px 0; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div style="font-size:0.95em;color:#555;margin-bottom:8px;">ATPL Ground Training Series — Instrumentation</div>
+  <h1>Chapter 27</h1>
+  <h1 style="font-size:1.8em;margin-top:4px;">Autoland</h1>
+  <div style="font-size:1.1em;color:#555;margin-top:8px;">DGCA CPL/ATPL Study Notes</div>
+  <div style="font-size:1em;color:#333;margin-top:20px;font-style:italic;">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction — The Landing Challenge</a></li>
+    <li><a href="#sec-2">Autoland System Requirements</a></li>
+    <li><a href="#sec-3">Autoland Status — Fail-Passive vs Fail-Operational</a></li>
+    <li><a href="#sec-4">The Automatic Landing Sequence</a></li>
+    <li><a href="#sec-5">Height-by-Height Autoland Detail</a></li>
+    <li><a href="#sec-6">Other Autoland Features</a></li>
+    <li><a href="#sec-7">A/P Go-around Mode</a></li>
+    <li><a href="#sec-8">ILS — The Ground Guidance System</a></li>
+    <li><a href="#sec-9">Weather Minima — Decision Height &amp; RVR</a></li>
+    <li><a href="#sec-10">ICAO Categorization of Landing Capabilities</a></li>
+    <li><a href="#sec-11">Alert Height</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction — The Landing Challenge</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why landing is the most demanding manoeuvre, and what an automatic landing system must achieve.</div>
+
+<p>The approach and landing is the most difficult manoeuvre demanded of a pilot because it requires simultaneous control of the aircraft in all three axes AND airspeed. The pilot must:</p>
+<ul>
+  <li>Align the aircraft with the runway centreline</li>
+  <li>Achieve a sink rate of about <span class="reg-value">2 ft/sec</span> before touchdown</li>
+  <li>Reduce airspeed from <span class="reg-value">1.3 VS</span> to about <span class="reg-value">1.15 VS</span> by progressive reduction of engine power</li>
+  <li>Level wings before landing</li>
+  <li>Yaw aircraft to remove drift angle (drift "kick-off" or de-crabbing)</li>
+</ul>
+
+<p>An automatic landing system must provide guidance and control better than that required of the pilot.</p>
+
+<h2 id="sec-2">2. Autoland System Requirements</h2>
+<div class="blue-box"><strong>What this section covers:</strong> What an autoland system must be able to do, and the minimum equipment required.</div>
+
+<h3>Objectives of Autoland System Operation</h3>
+<ul>
+  <li>Not disturb the flight path as a result of an active malfunction</li>
+  <li>Have adequate authority for sufficiently accurate flight path control</li>
+  <li>Warn of a passive failure</li>
+  <li>Allow the intended flight manoeuvre to be completed following an active or passive failure</li>
+</ul>
+
+<h3>Minimum Equipment Required</h3>
+<div class="red-box">
+  <ul>
+    <li>A minimum of <strong>two independent autopilots</strong> capable of following ILS signals</li>
+    <li><strong>Two independent radio altimeters</strong> for accurate height-from-ground information</li>
+    <li><strong>Category 3 ILS ground installation</strong> at the airport</li>
+  </ul>
+</div>
+
+<h2 id="sec-3">3. Autoland Status — Fail-Passive vs Fail-Operational</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The two categories of autoland capability and the A/P numbers required for each.</div>
+
+<table>
+<tr><th>Status</th><th>Definition</th><th>Minimum A/Ps</th><th>ICAO Term</th></tr>
+<tr><td><strong>Fail-Passive</strong> (Fail-Soft)</td><td>Withstands failure without endangering safety, without excessive path deviation, but <em>removes automatic landing capability</em></td><td>2</td><td>LAND 2</td></tr>
+<tr><td><strong>Fail-Operational</strong> (Fail-Active)</td><td>Withstands failure without affecting overall system function; automatic landing capability <em>maintained</em></td><td>3 (or 2 with suitable duplicate monitoring)</td><td>LAND 3</td></tr>
+</table>
+
+<div class="amber-box">
+  <strong>Memory Aid:</strong>
+  <br>Fail-<strong>Passive</strong> = <strong>2</strong> A/Ps = LAND <strong>2</strong> = failure stops autoland but no danger
+  <br>Fail-<strong>Operational</strong> = <strong>3</strong> A/Ps = LAND <strong>3</strong> = failure still leaves autoland working
+</div>
+
+<div class="blue-box"><strong>Status Annunciator:</strong> LAND 2 = dual redundancy (fail-passive). LAND 3 = triple redundancy (fail-operational). Each status displayed on the autoland status annunciator.</div>
+
+<h2 id="sec-4">4. The Automatic Landing Sequence</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The overall profile and the approach, flare, and touchdown sequence.</div>
+
+<p>During cruise and initial approach, the control system operates as a single channel system. At a certain stage of approach, the remaining channels are <strong>armed by pressing the APPR switch</strong> on the flight control panel — this also arms LOC and GS modes.</p>
+
+<h3>Radio Altimeter Role</h3>
+<p>Altitude information for vertical guidance to touchdown is always provided by radio altimeter, which becomes effective as soon as altitude is within its operating range (typically <span class="reg-value">2500 feet</span>).</p>
+
+<div class="red-box"><strong>Radio Altimeter Inoperative:</strong> Failure of a single radio altimeter causes the autoland system to fail passive. Do not use the associated FCC or the A/T (if affected) for approach and landing.</div>
+
+<figure>
+  <img src="figs/fig_p386_0.png" alt="Autoland sequence diagram">
+  <figcaption>Fig 27.1 — Autoland Sequence (source p.386)</figcaption>
+</figure>
+
+<h3>Approach Mode (APP) — Dual A/P</h3>
+<p>The APP mode arms the AFDS to capture and track LOC and GS. One VHF Nav receiver must be tuned to an ILS frequency before APP can be selected. For dual A/P approach, the second VHF Nav receiver must also be tuned and the corresponding A/P engaged prior to <span class="reg-value">800 ft RA</span>.</p>
+
+<div class="green-box">
+  <strong>LOC Capture:</strong> Point is variable; depends on intercept angle and rate of closure. Does not occur at less than <span class="reg-value">½ dot deviation</span>. Upon capture: VOR LOC annunciates captured, 1 CH annunciated for A/P status.
+  <br><br>
+  <strong>GS Capture:</strong> Can be from above or below (below preferred). Capture at <span class="reg-value">2/5 dot deviation</span>. After both LOC and GS captured, APP mode can only be exited by TOGA switch or disengaging A/P + turning off both FD switches.
+</div>
+
+<h2 id="sec-5">5. Height-by-Height Autoland Detail</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The precise sequence of autopilot actions from 1500 ft RA down to touchdown.</div>
+
+<pre class="mermaid">
+flowchart TD
+  A["LOC + GS captured\nbelow 1500 ft RA"] --> B["1500 ft RA\n2nd A/P couples\nFLARE mode armed\nGA mode armed\nROLL OUT armed (if avail)\nLAND 2 or LAND 3 annunciated"]
+  B --> C["800 ft RA\n2nd A/P must be engaged\nby this point\n(inhibited if not)"]
+  C --> D["400–330 ft RA\nStabilizer trimmed nose-up\nElevators neutralize\nIf A/Ps disengage → fwd column force needed"]
+  D --> E["~50 ft RA (45 ft GA)\nFLARE mode engaged\nFD command bars retract\nStabilizer again nose-up\nA/T begins retarding thrust"]
+  E --> F["~5 ft GA\nFLARE disengages → touchdown\nLOC disengages\nROLL OUT engages"]
+  F --> G["~1 ft GA\nPitch attitude decreased to 2°"]
+  G --> H["Touchdown\nElevators lower nose\nNose gear contacts runway\nA/T auto-disengages ~2 sec after TD\nAFCS remains on until manually disengaged"]
+</pre>
+
+<h3>Key Height Values</h3>
+<table>
+<tr><th>Height</th><th>Event</th></tr>
+<tr><td><span class="reg-value">2500 ft</span></td><td>Radio altimeter typically becomes effective</td></tr>
+<tr><td><span class="reg-value">1500 ft RA</span></td><td>2nd A/P couples; FLARE armed; GA armed; ROLL OUT armed; LAND 2/3 annunciated</td></tr>
+<tr><td><span class="reg-value">800 ft RA</span></td><td>2nd A/P must be engaged by this point; 2nd A/P engagement inhibited below this</td></tr>
+<tr><td><span class="reg-value">~350 ft RA</span></td><td>If FLARE not armed, both A/Ps automatically disengage</td></tr>
+<tr><td><span class="reg-value">400–330 ft RA</span></td><td>Stabilizer automatically trimmed nose-up; elevators neutralized</td></tr>
+<tr><td><span class="reg-value">~50 ft RA / 45 ft GA</span></td><td>FLARE mode engages; FD bars retract; A/T begins retarding thrust at ~27 ft RA</td></tr>
+<tr><td><span class="reg-value">27 ft RA</span></td><td>A/T begins retarding thrust toward idle</td></tr>
+<tr><td><span class="reg-value">~5 ft GA</span></td><td>FLARE disengages; transition to touchdown; LOC disengages; ROLL OUT engages</td></tr>
+<tr><td><span class="reg-value">~1 ft GA</span></td><td>Pitch attitude reduced to 2°</td></tr>
+<tr><td>Touchdown</td><td>Elevators lower nose; nose gear on runway; A/T disengages ~2 sec after TD</td></tr>
+</table>
+
+<div class="red-box">
+  <strong>Critical Note on Flare:</strong>
+  The FLARE mode reduces vertical speed from approximately <span class="reg-value">10–12 ft/sec</span> at 50 ft to <span class="reg-value">1–2 ft/sec</span> at touchdown. It uses the rate of reduction of radio height as its controlling signal.
+</div>
+
+<div class="amber-box"><strong>Exam Tip — Gear Altitude vs Radio Altitude:</strong> Gear Altitude (GA) is a calculated value based on radio altitude, pitch attitude, and known geometry between landing gear, fuselage, and RA antenna. It differs from RA (radio altitude) by the amount the gear hangs below the aircraft datum.</div>
+
+<h2 id="sec-6">6. Other Autoland Features</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Runway alignment (de-crabbing), roll-out, and the A/T behaviour after landing.</div>
+
+<h3>Runway Alignment (De-crabbing)</h3>
+<p>Any autoland-capable system must remove drift prior to touchdown. This is the <strong>runway alignment mode</strong>:</p>
+<ul>
+  <li>Typically armed at the same time as flare mode (at 1500 ft descent)</li>
+  <li>Engages at less than <span class="reg-value">100 ft</span></li>
+  <li>From 1500 ft the yaw channel computes the difference between heading and track</li>
+  <li>When align mode engages, rudder deflects to align the aircraft with the runway centreline before touchdown</li>
+  <li>This manoeuvre is called <strong>de-crabbing</strong> or <strong>drift kick-off</strong></li>
+</ul>
+
+<h3>Roll-out</h3>
+<p>A Cat 3 autoland function. Gives steering commands on the ground proportional to localizer deviation to keep the aircraft on the runway centreline throughout the ground roll.</p>
+<ul>
+  <li>Commands displayed via a rotating 'barber's pole' indicator called a <strong>Para-Visual Display (PVD)</strong>, or</li>
+  <li>Automatic steering by applying deviation signals to the rudder channel and nosewheel steering</li>
+</ul>
+
+<h3>A/T After Landing</h3>
+<ul>
+  <li>When reverse thrust is applied, the autothrottle system is automatically disengaged</li>
+  <li>Irrespective of reverse thrust, the A/T automatically disengages approximately <span class="reg-value">2 seconds</span> after touchdown</li>
+  <li>The automatic flight control system remains on until manually disengaged by the flight crew — this is when the autoland sequence is considered complete</li>
+</ul>
+
+<h2 id="sec-7">7. A/P Go-around Mode</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The A/P go-around mode during autoland operations.</div>
+
+<p>The A/P GA mode requires <strong>dual A/P operation</strong>. It becomes armed when FLARE ARMED is annunciated. Cannot be engaged before flare arm is annunciated or after the A/P senses touchdown.</p>
+
+<div class="red-box"><strong>Warning:</strong> If GA mode is selected after touchdown and prior to A/T disengagement, the A/Ps will disengage and the A/Ts may command GA thrust — the procedure must be flown manually.</div>
+
+<h3>A/P GA Sequence</h3>
+<ul>
+  <li>Either TOGA switch pressed → GA mode engaged → GA annunciated for AFDS</li>
+  <li>MCP IAS/MACH display blanks; airspeed cursors display flap manoeuvring speed</li>
+  <li>Thrust levers advance toward reduced GA N1</li>
+  <li>A/P commands <span class="reg-value">15° nose-up pitch</span> initially</li>
+  <li>When programmed rate of climb established, A/P controls pitch to hold normal flap manoeuvring speed</li>
+  <li>Roll: A/Ps maintain the aeroplane ground track existing at GA engagement</li>
+</ul>
+
+<h3>Leaving A/P GA Mode</h3>
+<ul>
+  <li>Below <span class="reg-value">400 ft RA</span>: A/Ps must be disengaged to change pitch or roll modes from GA</li>
+  <li>Above <span class="reg-value">400 ft RA</span>: other modes can be selected</li>
+  <li>If roll mode changed first: selected mode engages in single A/P roll; pitch remains in dual GA</li>
+  <li>If pitch mode changed first: pitch engages in single A/P; 2nd A/P disengages; roll changes to CWS R</li>
+  <li>ALT ACQ engages when approaching selected altitude; ALT HOLD engages at selected altitude if stabilizer trim is satisfactory for single A/P</li>
+</ul>
+
+<div class="amber-box"><strong>Exam Tip:</strong> GA transition to ALT ACQ is normally successful if the selected altitude is at least <span class="reg-value">1000 ft above GA engagement altitude</span>. Higher may be needed if full GA thrust was used.</div>
+
+<h2 id="sec-8">8. ILS — The Ground Guidance System</h2>
+<div class="blue-box"><strong>What this section covers:</strong> ILS components — both ground-based and airborne.</div>
+
+<h3>Ground-based Elements</h3>
+<ul>
+  <li><strong>Localizer transmitter</strong> — runway azimuth (lateral) approach guidance</li>
+  <li><strong>Glide slope transmitter</strong> — vertical approach guidance</li>
+  <li><strong>Marker beacons</strong> — distance to runway threshold (now largely replaced by DME)</li>
+</ul>
+
+<h3>Airborne Elements</h3>
+<ul>
+  <li>Localizer receiving antenna (usually same as VOR antenna)</li>
+  <li>Glide slope receiving antenna</li>
+  <li>Dual ILS receiver installation</li>
+  <li>LOC and GS deviation indicator</li>
+  <li>Marker beacon antenna and receiver (or DME)</li>
+  <li>Marker lights on main instrument panel</li>
+</ul>
+
+<h2 id="sec-9">9. Weather Minima — Decision Height &amp; RVR</h2>
+<div class="blue-box"><strong>What this section covers:</strong> RVR and Decision Height definitions and how they define "weather minima."</div>
+
+<div class="blue-box">
+  <strong>RVR (Runway Visual Range):</strong> An instrumentally derived value representing the range at which high-intensity lights can be seen along the runway. Measured by instruments; transmitted to ATC who inform pilots of current conditions.
+</div>
+
+<div class="blue-box">
+  <strong>Decision Height (DH):</strong> The wheel height above the runway elevation at which a go-around must be initiated by the pilot, unless adequate visual reference has been established and the aircraft position/approach path have been visually assessed as satisfactory to safely continue the approach or landing.
+</div>
+
+<p><strong>Weather minima</strong> = minimum values of DH and RVR, specified by national licensing authorities for various aircraft and airport types.</p>
+
+<div class="amber-box"><strong>Slant Visual Range:</strong> During approach, the pilot's line of sight is down the glide path (not along the runway), causing "slant visual range" — the pilot must account for this to avoid misinterpreting visual cues, especially in low visibility.</div>
+
+<h2 id="sec-10">10. ICAO Categorization of Landing Capabilities</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The three main categories of low-visibility landing and their specific DH and RVR limits.</div>
+
+<div class="red-box"><strong>Important Clarification:</strong> "All weather operations" does NOT mean no weather can prevent landing. No system can land in wind conditions exceeding certification limits, or on a runway contaminated by water, slush or ice.</div>
+
+<figure>
+  <img src="figs/fig_p388_0.png" alt="ICAO categories of landing capabilities">
+  <figcaption>Fig 27.2 — ICAO Categories of low visibility landing capabilities (source p.388)</figcaption>
+</figure>
+
+<table>
+<tr><th>Category</th><th>Decision Height (DH)</th><th>RVR / Visibility</th></tr>
+<tr><td><strong>CAT 1</strong></td><td>No lower than <span class="reg-value">60 m (200 ft)</span></td><td>Visibility ≥ <span class="reg-value">800 m</span>, OR RVR ≥ <span class="reg-value">550 m</span></td></tr>
+<tr><td><strong>CAT 2</strong></td><td>Lower than <span class="reg-value">200 ft</span>, but not lower than <span class="reg-value">100 ft</span></td><td>RVR ≥ <span class="reg-value">300 m</span></td></tr>
+<tr><td><strong>CAT 3A</strong></td><td>Lower than <span class="reg-value">100 ft</span></td><td>RVR ≥ <span class="reg-value">200 m</span></td></tr>
+<tr><td><strong>CAT 3B</strong></td><td>Lower than <span class="reg-value">50 ft</span> (if any)</td><td>RVR: <span class="reg-value">75 m ≤ RVR &lt; 200 m</span></td></tr>
+<tr><td><strong>CAT 3C</strong></td><td>None — to and along surface</td><td>No external visual reference required</td></tr>
+</table>
+
+<div class="amber-box"><strong>Exam Tip — Quick Reference:</strong>
+CAT 1 = 200 ft / 550 m RVR | CAT 2 = 100–200 ft / 300 m RVR | CAT 3A = &lt;100 ft / 200 m RVR | CAT 3B = &lt;50 ft / 75–200 m RVR | CAT 3C = zero/zero</div>
+
+<h2 id="sec-11">11. Alert Height</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Alert Height — the decision point for continuing autoland after a failure.</div>
+
+<p>The <strong>Alert Height</strong> is a specified radio height, based on the aircraft's characteristics and its fail-operational landing system. It is the height above which any failure in a required redundant system leads to a go-around (unless reversion to a higher DH is possible).</p>
+
+<table>
+<tr><th>Failure Point</th><th>Action</th></tr>
+<tr><td>Above Alert Height</td><td>Discontinue approach and execute go-around (unless reverting to higher DH is possible)</td></tr>
+<tr><td>Below Alert Height</td><td>Failure is <em>ignored</em> and approach continued to complete the autoland</td></tr>
+</table>
+
+<div class="amber-box"><strong>Exam Tip:</strong> Alert Height applies only to fail-operational systems. Below the Alert Height, a failure is tolerated because the remaining system still has sufficient capability to complete the landing safely.</div>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 27:</strong>
+  <ul>
+    <li>Landing = most demanding manoeuvre: 3-axis control + airspeed management simultaneously</li>
+    <li>Autoland requires: ≥2 independent A/Ps + 2 radio altimeters + Cat 3 ILS on ground</li>
+    <li>Fail-Passive (LAND 2) = 2 A/Ps = failure stops autoland but no danger</li>
+    <li>Fail-Operational (LAND 3) = 3 A/Ps (or 2 with duplicate monitoring) = failure maintains autoland capability</li>
+    <li>Key heights: 1500 ft (2nd A/P, FLARE armed, LAND 2/3), 800 ft (2nd A/P must be engaged), 350 ft (FLARE not armed → A/Ps disengage), 50 ft (FLARE engages), 27 ft (A/T retards), 5 ft (FLARE off, ROLLOUT on), 1 ft (pitch to 2°)</li>
+    <li>FLARE reduces sink from 10–12 ft/sec to 1–2 ft/sec; uses RA rate of change</li>
+    <li>A/T disengages ~2 seconds after touchdown automatically</li>
+    <li>De-crabbing = runway alignment mode; engages below 100 ft</li>
+    <li>Alert Height: above = GA; below = ignore failure and continue</li>
+    <li>CAT 1 = 200 ft/550 m; CAT 2 = 100–200 ft/300 m; CAT 3A &lt;100 ft/200 m; CAT 3B &lt;50 ft/75–200 m; CAT 3C = no limits</li>
+  </ul>
+</div>
+
+<section id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box"><em>Instructor-generated questions in DGCA CPL/ATPL examination style.</em></div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">What is the minimum number of autopilots required for a fail-passive (LAND 2) autoland?</span>
+    <ol class="q-options" type="a">
+      <li>One</li>
+      <li>Two</li>
+      <li>Three</li>
+      <li>Four</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Two</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Fail-passive (LAND 2) status requires a minimum of two independent autopilots. This allows the system to withstand a failure without endangering safety — but it removes the ability to complete an automatic landing. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> One A/P provides single-channel only — no redundancy for fail-passive operation.</li>
+        <li><strong>(c)</strong> Three A/Ps are required for fail-operational (LAND 3).</li>
+        <li><strong>(d)</strong> Four is not a standard requirement number for autoland.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> LAND 2 = 2 A/Ps = fail-passive; LAND 3 = 3 A/Ps = fail-operational. Commit this pairing to memory.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">During an autoland sequence, at what approximate height does the FLARE mode engage?</span>
+    <ol class="q-options" type="a">
+      <li>200 ft RA</li>
+      <li>100 ft RA</li>
+      <li>50 ft RA (45 ft gear altitude)</li>
+      <li>10 ft RA</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> ~50 ft RA (45 ft gear altitude)</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The A/P flare manoeuvre starts at approximately <span class="reg-value">50 ft RA</span> (computed as 45 ft gear altitude). FLARE mode is engaged, FD command bars retract, and stabilizer is trimmed further nose-up. The A/T begins retarding thrust at approximately <span class="reg-value">27 ft RA</span> to reach idle at touchdown. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a), (b)</strong> These heights trigger other events (1500 ft = 2nd A/P couples; FLARE arms at 1500 ft, engages much later).</li>
+        <li><strong>(d)</strong> 10 ft is too low — flare begins at ~50 ft RA to have time to reduce sink rate properly.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The distinction between FLARE ARMED (1500 ft) and FLARE ENGAGED (~50 ft) is a common exam trap.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">What is the ICAO Category 2 ILS approach decision height range?</span>
+    <ol class="q-options" type="a">
+      <li>Not lower than 200 ft</li>
+      <li>Lower than 200 ft but not lower than 100 ft</li>
+      <li>Lower than 100 ft</li>
+      <li>No decision height (to the surface)</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Lower than 200 ft but not lower than 100 ft</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Category 2 is defined as a precision instrument approach and landing with a decision height lower than <span class="reg-value">200 ft</span> but not lower than <span class="reg-value">100 ft</span>, and a RVR not less than <span class="reg-value">300 m</span>. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> DH not lower than 200 ft = Category 1.</li>
+        <li><strong>(c)</strong> DH lower than 100 ft = Category 3A.</li>
+        <li><strong>(d)</strong> No DH = Category 3C.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Learn the DH values as a sequence: CAT 1 = ≥200 ft; CAT 2 = 100–200 ft; CAT 3A = &lt;100 ft; CAT 3B = &lt;50 ft; CAT 3C = none.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">What is "de-crabbing" in the context of autoland?</span>
+    <ol class="q-options" type="a">
+      <li>The automatic retraction of flaps after landing</li>
+      <li>Applying rudder to align the aircraft with the runway centreline by removing drift before touchdown</li>
+      <li>The automatic go-around manoeuvre initiated below 100 ft</li>
+      <li>The nose-down pitch manoeuvre to lower the nose gear</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> De-crabbing (also called drift kick-off) is the runway alignment mode. The yaw channel computes the difference between heading and track from 1500 ft. Below approximately 100 ft, align mode engages and the rudder deflects to align the aircraft with the runway centreline, removing any crab/drift angle before touchdown. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Flap retraction is a pilot action after landing, not an autoland mode.</li>
+        <li><strong>(c)</strong> Autoland GA mode is separate from runway alignment.</li>
+        <li><strong>(d)</strong> Nose-down pitch to lower the nose gear is a distinct touchdown event.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> "De-crabbing" and "drift kick-off" are the same manoeuvre — removing the crosswind crab angle before wheels touch down.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">What is the Alert Height in the context of autoland?</span>
+    <ol class="q-options" type="a">
+      <li>The height at which the Captain must visually assess the approach for continuation</li>
+      <li>A specified radio height above which a failure in a redundant system causes a go-around; below which the failure is ignored</li>
+      <li>The height at which the FLARE mode is armed</li>
+      <li>The minimum visibility height for Category 3A operations</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong></div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The Alert Height is a specified radio height. Above the Alert Height, a failure in a required redundant operational system causes the approach to be discontinued. Below the Alert Height, such a failure is ignored and the approach continues to complete the autoland — because the remaining system is sufficient to complete it safely. See <a href="#sec-11">Section 11</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> This describes Decision Height, not Alert Height.</li>
+        <li><strong>(c)</strong> FLARE is armed at 1500 ft — that is not the Alert Height.</li>
+        <li><strong>(d)</strong> Alert Height is not directly linked to visibility minima.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Alert Height is a fail-operational concept — it's the boundary below which you commit to completing the autoland even with one system failed.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">At what approximate radio altitude does the autothrottle begin retarding thrust during an autoland flare?</span>
+    <ol class="q-options" type="a">
+      <li>50 ft RA</li>
+      <li>27 ft RA</li>
+      <li>10 ft RA</li>
+      <li>5 ft RA</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 27 ft RA</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The A/T begins retarding thrust at approximately <span class="reg-value">27 ft RA</span> to reach idle at touchdown. The FLARE mode itself engages at approximately 50 ft RA / 45 ft gear altitude. See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> 50 ft RA is when FLARE mode engages, not when A/T retards thrust.</li>
+        <li><strong>(c)</strong> 10 ft RA is too low — A/T must retard early enough for thrust to reach idle at touchdown.</li>
+        <li><strong>(d)</strong> 5 ft is when FLARE disengages and transition to touchdown begins.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> FLARE at 50 ft, A/T RETARD at 27 ft, FLARE off at 5 ft, pitch to 2° at 1 ft. These heights are precise and frequently examined.</div>
+  </div>
+</div>
+
+</section>
+
+<h2>Master Reference Tables</h2>
+<h3>Autoland Height Sequence</h3>
+<table>
+<tr><th>Height</th><th>Event</th><th>Section</th></tr>
+<tr><td><span class="reg-value">2500 ft</span></td><td>RA typically becomes effective</td><td><a href="#sec-4">4</a></td></tr>
+<tr><td><span class="reg-value">1500 ft RA</span></td><td>2nd A/P couples; FLARE armed; GA armed; ROLLOUT armed; LAND 2/3 annunciated; pitch/roll manual override inhibited</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td><span class="reg-value">800 ft RA</span></td><td>2nd A/P must be engaged by this point; engagement inhibited below</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td><span class="reg-value">400–330 ft RA</span></td><td>Stabilizer auto-trimmed nose-up; elevators neutralize</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td><span class="reg-value">~350 ft RA</span></td><td>If FLARE not armed → both A/Ps auto-disengage</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td><span class="reg-value">~50 ft RA / 45 ft GA</span></td><td>FLARE mode engages; FD bars retract; stabilizer again nose-up</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td><span class="reg-value">27 ft RA</span></td><td>A/T begins retarding thrust toward idle</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td><span class="reg-value">~5 ft GA</span></td><td>FLARE disengages; LOC disengages; ROLLOUT engages</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td><span class="reg-value">~1 ft GA</span></td><td>Pitch attitude decreased to 2°</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td>Touchdown</td><td>Elevators lower nose; A/T disengages ~2 sec after TD</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td><span class="reg-value">&lt;100 ft</span></td><td>Runway alignment (de-crab) mode engages</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td><span class="reg-value">400 ft RA</span></td><td>Threshold for changing GA modes after A/P GA engagement</td><td><a href="#sec-7">7</a></td></tr>
+</table>
+
+<h3>ILS Category Values</h3>
+<table>
+<tr><th>Category</th><th>Decision Height</th><th>RVR</th></tr>
+<tr><td>CAT 1</td><td>≥ 200 ft (60 m)</td><td>≥ 550 m (or visibility ≥ 800 m)</td></tr>
+<tr><td>CAT 2</td><td>100–200 ft</td><td>≥ 300 m</td></tr>
+<tr><td>CAT 3A</td><td>&lt; 100 ft</td><td>≥ 200 m</td></tr>
+<tr><td>CAT 3B</td><td>&lt; 50 ft (if any)</td><td>75–200 m</td></tr>
+<tr><td>CAT 3C</td><td>None</td><td>No limit</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 30 – Control Laws | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #0d47a1; margin-top: 22px; }
+  p { margin: 10px 0; }
+  .cover { text-align: center; padding: 40px 20px 30px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .toc { page-break-after: always; }
+  .toc ol { padding-left: 24px; }
+  .toc li { padding: 4px 0; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: left; }
+  td { padding: 7px 12px; border: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7ff; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  #qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  ul { margin: 8px 0; padding-left: 24px; }
+  li { margin: 3px 0; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div style="font-size:0.95em;color:#555;margin-bottom:8px;">ATPL Ground Training Series — Instrumentation</div>
+  <h1>Chapter 30</h1>
+  <h1 style="font-size:1.8em;margin-top:4px;">Control Laws</h1>
+  <div style="font-size:1.1em;color:#555;margin-top:8px;">DGCA CPL/ATPL Study Notes</div>
+  <div style="font-size:1em;color:#333;margin-top:20px;font-style:italic;">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction — What Are Control Laws?</a></li>
+    <li><a href="#sec-2">Boeing 737-400 Command Speed Limiting</a></li>
+    <li><a href="#sec-3">Boeing 737-400 Reversion Modes</a></li>
+    <li><a href="#sec-4">Flight Envelope Protection (Fly-By-Wire)</a></li>
+    <li><a href="#sec-5">High Angle of Attack Protection</a></li>
+    <li><a href="#sec-6">High Speed Protection</a></li>
+    <li><a href="#sec-7">Pitch Attitude Protection</a></li>
+    <li><a href="#sec-8">Bank Angle Protection</a></li>
+    <li><a href="#sec-9">Load Factor Protection</a></li>
+    <li><a href="#sec-10">Autopilot Gain Adaption / Gain Scheduling</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction — What Are Control Laws?</h2>
+<div class="blue-box"><strong>Control Laws</strong> are the rules that govern autopilot authority — ensuring manoeuvres are proportional to the deviation, efficient, and within the safe flight envelope.</div>
+
+<p>The autopilot must manoeuvre the aircraft logically and safely like a human pilot. This means:</p>
+<ul>
+  <li>Not breaking aircraft limitations (speed, load factor, pitch and bank limits)</li>
+  <li>Using enough of the aircraft's performance so manoeuvres are timely</li>
+  <li>Scaling control response in proportion to the deviation/correction required — never commanding an excursion from the safe flight envelope</li>
+</ul>
+
+<div class="amber-box"><strong>Example:</strong> For an 80° turn, the autopilot would use 30°–45° bank. For a 10° turn, 30° bank would be too harsh. Control laws encode this proportional logic — small error → gentle correction; large error → stronger correction, but never beyond limits.</div>
+
+<h2 id="sec-2">2. Boeing 737-400 Command Speed Limiting</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the AFS prevents flight envelope excursions through speed limiting.</div>
+
+<p>The AFS provides speed, pitch and thrust commands to prevent exceeding the following limit speeds:</p>
+<ul>
+  <li>VMO / MMO</li>
+  <li>Wing flap limiting speeds</li>
+  <li>Landing gear speeds</li>
+  <li>Minimum speeds</li>
+</ul>
+
+<div class="green-box">
+  <strong>Rules:</strong>
+  <ul>
+    <li>Commanded speed can equal but NOT exceed a limit speed</li>
+    <li>Speeds greater than VMO/MMO cannot be selected from the MCP</li>
+    <li>Speeds exceeding flap/gear limits <em>can</em> be selected — but AFS limits to the lower placard</li>
+    <li>Minimum speed ≈ <span class="reg-value">1.3 VS</span> for current flap configuration (sensed by AoA vanes on forward fuselage)</li>
+  </ul>
+</div>
+
+<p>If a speed greater than a placard speed or less than minimum speed is selected, the AFS accelerates/decelerates to <em>slightly short of the limit</em>, then commands the limit speed. An over-speed or under-speed limiting symbol appears in the MCP IAS/Mach display.</p>
+
+<p>To remove the under-speed symbol: select a speed <span class="reg-value">15 kt greater</span> than the minimum speed. A speed <span class="reg-value">5 kt greater</span> than minimum is what the AFS actually commands when limiting.</p>
+
+<div class="red-box"><strong>Special Case — V/S mode at minimum speed:</strong> The A/P disengages and FD command bars retract when in LVL CHG climb with a command speed equal to minimum speed and a minimum rate of climb cannot be maintained without decelerating.</div>
+
+<h2 id="sec-3">3. Boeing 737-400 Reversion Modes</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Automatic reversion to a more effective AFDS/A/T combination when speed control alone is insufficient.</div>
+
+<p>During some situations, speed control by AFDS or A/T alone could be insufficient. Mode reversion occurs <em>slightly before</em> reaching the limit speed. Two reversion modes exist:</p>
+
+<h3>Placard Limit Reversion</h3>
+<ul>
+  <li>NOT in AFDS/A/T speed control, A/T armed → A/T reverts to SPEED mode, controls speed to placard limit</li>
+  <li>IN AFDS/A/T speed control → no reversion needed; system holds speed below placard</li>
+  <li>A/T NOT available → no reversion for gear/flap limits; AFDS reverts to speed control for VMO/MMO only</li>
+</ul>
+
+<h3>Minimum Speed Reversion</h3>
+<ul>
+  <li>AFS commands speed <span class="reg-value">5 kt greater</span> than minimum</li>
+  <li>If in V/S mode and speed drops to minimum → AFDS reverts to LVL CHG</li>
+  <li>AFDS commands nose-down pitch to increase airspeed if thrust levers not advanced</li>
+  <li>No minimum speed reversion when A/T is OFF and AFDS is in ALT HOLD, ALT ACQ, or after G/S capture</li>
+</ul>
+
+<h2 id="sec-4">4. Flight Envelope Protection (Fly-By-Wire)</h2>
+<div class="blue-box"><strong>Flight Envelope Protection</strong> (FBW aircraft only) ensures the aircraft remains within the normal flight envelope in ALL phases of flight. The control laws prevent envelope violation during extreme situations.</div>
+
+<p>Extreme situations protected against:</p>
+<ul>
+  <li>Windshear</li>
+  <li>Very high turbulence</li>
+  <li>Mid-air collision avoidance (TCAS RA)</li>
+  <li>GPWS or TCAS activation</li>
+  <li>Crew mismanagement</li>
+</ul>
+
+<p>Protection purpose:</p>
+<ul>
+  <li>Give full authority to allow best possible performance</li>
+  <li>Reduce risk of overcontrolling / overstressing</li>
+  <li>Provide easy, instinctive, immediate best-performance procedure</li>
+</ul>
+
+<p>Parameters protected:</p>
+<ul>
+  <li>Angle of attack</li>
+  <li>Speed</li>
+  <li>Pitch attitude</li>
+  <li>Bank angle</li>
+  <li>Load factor</li>
+</ul>
+
+<h2 id="sec-5">5. High Angle of Attack Protection</h2>
+<p>Enables rapid pull-up at maximum AoA (α<sub>max</sub>) without overcontrolling. Technique: "snatch stick fully back." The pitch auto-trim stop alerts the pilot when exceeding the normal envelope. Auto-thrust automatically provides TOGA thrust at α<sub>floor</sub> (before reaching α<sub>max</sub>).</p>
+
+<ul>
+  <li><strong>Input:</strong> Angle of attack</li>
+  <li><strong>Output:</strong> Applied to elevators and auto-thrust</li>
+</ul>
+
+<h2 id="sec-6">6. High Speed Protection</h2>
+<p>Prevents reaching Vd/Md by adding a positive nose-up g demand proportional to speed overshoot beyond VMO/MMO. A pilot can enter a steep dive knowing the system will prevent exceeding design speed limits.</p>
+
+<ul>
+  <li><strong>Input:</strong> Airspeed/Mach from ADC</li>
+  <li><strong>Output:</strong> Applied to elevators</li>
+</ul>
+
+<h2 id="sec-7">7. Pitch Attitude Protection</h2>
+<p>Only available in fly-by-wire aeroplanes. Enhances high AoA and high speed protection by reducing stick pitch demand when aircraft reaches pre-defined maximum pitch attitudes:</p>
+<ul>
+  <li>Maximum pitch up: <span class="reg-value">30° nose-up</span></li>
+  <li>Maximum pitch down: <span class="reg-value">15° nose-down</span></li>
+</ul>
+<ul>
+  <li><strong>Input:</strong> Pitch angle from attitude gyros</li>
+  <li><strong>Output:</strong> Applied to elevators</li>
+</ul>
+
+<h2 id="sec-8">8. Bank Angle Protection</h2>
+<p>Only available in fly-by-wire aeroplanes. Allows efficient roll manoeuvres while preventing uncontrollable states.</p>
+
+<table>
+<tr><th>Condition</th><th>Bank Angle Limit</th></tr>
+<tr><td>Normal flight envelope</td><td><span class="reg-value">67°</span></td></tr>
+<tr><td>High AoA triggered</td><td><span class="reg-value">45°</span></td></tr>
+<tr><td>High speed protection triggered</td><td><span class="reg-value">40°</span></td></tr>
+<tr><td>Stick released after roll manoeuvre</td><td>Returns to <span class="reg-value">33°</span></td></tr>
+</table>
+
+<p>Bank angle limit is achieved by progressively reducing the roll rate demand as bank angle increases.</p>
+
+<h2 id="sec-9">9. Load Factor Protection</h2>
+<p>Available in fly-by-wire aeroplanes. Accelerometers sense g load. The limiter maintains aircraft within structural limitations while allowing immediate response to evasive manoeuvres. Linked to the high angle of attack protection.</p>
+<ul>
+  <li><strong>Input:</strong> Accelerometers (g load sensing)</li>
+  <li><strong>Output:</strong> Applied to elevators</li>
+</ul>
+
+<h2 id="sec-10">10. Autopilot Gain Adaption / Gain Scheduling</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the autopilot's authority is scaled based on flight regime, altitude and airspeed.</div>
+
+<p>Comparable to the Flight Director's gain scheduling (Chapter 25), the autopilot similarly reduces authority in critical phases:</p>
+
+<table>
+<tr><th>Phase</th><th>Example Bank Angle Limit</th></tr>
+<tr><td>Manual / cruise mode</td><td>45°</td></tr>
+<tr><td>VOR / Localizer tracking</td><td>30°</td></tr>
+<tr><td>Final approach / autoland</td><td>15°</td></tr>
+</table>
+
+<p>Gain adaption also accounts for differing performance at altitude and speed. An input from the ADC (proportional to dynamic pressure Q) reduces autopilot authority at high speed to prevent overstressing — even though artificial feel protects the pilot, the autopilot could ignore feel and overstress the structure without this limiting.</p>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 30:</strong>
+  <ul>
+    <li>Control laws = proportional response rules; prevent flight envelope excursion</li>
+    <li>Minimum speed ≈ 1.3 VS; AFS commands +5 kt above minimum; +15 kt removes under-speed symbol</li>
+    <li>Reversion: Placard (gear/flap/VMO/MMO) and Minimum Speed (reverts to LVL CHG)</li>
+    <li>FBW envelope protection: AoA, speed, pitch, bank, load factor</li>
+    <li>High AoA: elevator + auto-thrust (α-floor = TOGA); technique = snatch stick back</li>
+    <li>High Speed: nose-up g demand proportional to overshoot beyond VMO/MMO</li>
+    <li>Pitch limits: 30° nose-up / 15° nose-down (FBW only)</li>
+    <li>Bank limits: 67° normal / 45° high AoA / 40° high speed / returns to 33° on release (FBW)</li>
+    <li>Load factor: accelerometer-based g limiting (FBW)</li>
+    <li>Gain scheduling: reduces authority during autoland approach and at high Q (high speed)</li>
+  </ul>
+</div>
+
+<section id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box"><em>Instructor-generated questions in DGCA CPL/ATPL examination style.</em></div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">In a Boeing 737-400, the minimum speed protection activates at approximately:</span>
+    <ol class="q-options" type="a">
+      <li>1.2 VS for current configuration</li>
+      <li>1.3 VS for current configuration</li>
+      <li>VMC (minimum control speed)</li>
+      <li>VREF for current configuration</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 1.3 VS for current configuration</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The AFS minimum speed is based on angle of attack and is approximately <span class="reg-value">1.3 VS</span> for the current flap configuration, sensed by AoA vanes on either side of the forward fuselage. See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> 1.2 VS is the stall speed margin used in performance calculations, not the AFS minimum speed.</li>
+        <li><strong>(c)</strong> VMC is an engine-out control speed concept, not the AFS threshold.</li>
+        <li><strong>(d)</strong> VREF is approach speed, not the minimum speed protection threshold.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The AFS commands a speed 5 kt above the minimum, and the under-speed symbol disappears only when 15 kt above minimum is selected.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">In a fly-by-wire aircraft with bank angle protection, if the pilot releases the sidestick after a roll manoeuvre, the aircraft will return to a bank angle of:</span>
+    <ol class="q-options" type="a">
+      <li>0° (wings level)</li>
+      <li>15°</li>
+      <li>33°</li>
+      <li>45°</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> 33°</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> After a roll manoeuvre, if the pilot releases the stick, the aircraft returns to a bank angle of <span class="reg-value">33°</span>. The bank angle protection is not an "auto-wings-level" — it simply stops the bank from increasing beyond the limits. See <a href="#sec-8">Section 8</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> A conventional autopilot might return to wings level, but FBW bank angle protection returns to 33°.</li>
+        <li><strong>(b)</strong> 15° is the autoland pitch limit, not the bank angle release position.</li>
+        <li><strong>(d)</strong> 45° is the high-AoA bank limit, not the release position.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> This is a key FBW distinction: stick neutral = maintain 33° bank, not wings level. "Normal law" FBW is load factor demand, not attitude demand.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">High speed protection on a fly-by-wire aircraft prevents exceeding Vd/Md by:</span>
+    <ol class="q-options" type="a">
+      <li>Automatically retarding the thrust levers</li>
+      <li>Deploying the speed brakes automatically</li>
+      <li>Adding a nose-up g demand proportional to overshoot beyond VMO/MMO</li>
+      <li>Limiting elevator deflection to nose-down only</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> Adding a nose-up g demand proportional to overshoot beyond VMO/MMO</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> High speed protection adds a positive nose-up g demand proportional to the amount of speed overshoot beyond VMO/MMO. Input = airspeed/Mach from ADC; output to elevators. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Auto-thrust retard is a separate function; it is not the high speed protection mechanism.</li>
+        <li><strong>(b)</strong> Speed brakes are not automatically deployed by the high speed protection law.</li>
+        <li><strong>(d)</strong> Limiting to nose-down only would worsen overspeeds — the opposite of protection.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The g demand is <em>proportional</em> — the further beyond VMO/MMO, the stronger the nose-up pitch input. This allows steep dives knowing the system will auto-recover.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">Autopilot pitch and roll authority is significantly reduced as the aircraft nears the ground during autoland. This is an example of:</span>
+    <ol class="q-options" type="a">
+      <li>Fail-passive operation</li>
+      <li>Flight envelope protection</li>
+      <li>Gain adaption / gain scheduling</li>
+      <li>Minimum speed reversion</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> Gain adaption / gain scheduling</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Gain adaption / gain scheduling reduces the autopilot's pitch and roll authority during the final phase of automatic approach and autoland. The bank angle limit progressively reduces from ~45° in manual mode, to 30° for LOC/VOR tracking, to 15° for autoland finals. See <a href="#sec-10">Section 10</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Fail-passive refers to system failure behaviour (no unsafe deviation), not authority limits during normal operation.</li>
+        <li><strong>(b)</strong> Flight envelope protection is a FBW function; gain scheduling applies to conventional autopilots too.</li>
+        <li><strong>(d)</strong> Minimum speed reversion is an AFS mode change, not an authority limitation.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Gain scheduling was introduced in Chapter 25 for FDS and applies equally to the autopilot — reducing authority near the ground and at high Q to prevent dangerous manoeuvres.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">On a fly-by-wire aircraft with pitch attitude protection, what are the maximum pitch attitude limits?</span>
+    <ol class="q-options" type="a">
+      <li>25° nose-up and 10° nose-down</li>
+      <li>30° nose-up and 15° nose-down</li>
+      <li>20° nose-up and 20° nose-down</li>
+      <li>45° nose-up and 30° nose-down</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> 30° nose-up and 15° nose-down</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Pitch attitude protection limits are <span class="reg-value">30° nose-up</span> and <span class="reg-value">15° nose-down</span>. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a), (c), (d)</strong> These are fabricated values. The specific limits of 30° nose-up and 15° nose-down must be memorised.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Asymmetric limits — nose-up is more than nose-down — reflect that overpitch in the dive (nose-down) is corrected more aggressively (hits speed limits faster) than nose-up, which has AoA protection as a further back-stop.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">During a 737-400 AFS minimum speed reversion while in V/S (Vertical Speed) mode, the AFDS will automatically revert to:</span>
+    <ol class="q-options" type="a">
+      <li>ALT HOLD</li>
+      <li>LVL CHG</li>
+      <li>Speed (SPD) mode</li>
+      <li>ARM mode</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> LVL CHG</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> If operating in V/S mode and actual speed becomes equal to or slightly less than the minimum speed, the under-speed limiting symbol appears in the MCP IAS/Mach display and the AFDS reverts to <strong>LVL CHG</strong>. The AFDS then commands nose-down pitch to increase airspeed if thrust levers are not advanced. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> ALT HOLD is an altitude mode and would not increase airspeed in a deceleration scenario.</li>
+        <li><strong>(c)</strong> Speed mode is an A/T mode, not an AFDS pitch mode reversion for minimum speed.</li>
+        <li><strong>(d)</strong> ARM is the A/T state when no A/T mode is engaged — not an AFDS pitch reversion mode.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> No minimum speed reversion is available when A/T is OFF and AFDS is in ALT HOLD, ALT ACQ, or after G/S capture — this is an important limitation to note.</div>
+  </div>
+</div>
+
+</section>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

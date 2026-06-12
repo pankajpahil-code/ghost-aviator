@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 36 – Flight Data Recorder | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #222; margin: 0; padding: 20px; background: #fff; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 30px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #283593; margin-top: 20px; }
+  h4 { font-size: 1em; font-weight: 700; color: #37474f; }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0; padding-left: 25px; }
+  li { padding: 3px 0; }
+  .cover { text-align: center; padding: 60px 20px 40px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; margin-bottom: 10px; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin: 8px 0; }
+  .cover .author { font-size: 1em; color: #777; margin-top: 20px; font-style: italic; }
+  .toc { page-break-after: always; }
+  .toc h2 { margin-bottom: 15px; }
+  .toc ol { line-height: 2; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #b71c1c; }
+  blockquote { font-family: Georgia, serif; font-style: italic; border-left: 4px solid #ccc; background: #f9f9f9; margin: 15px 0; padding: 12px 20px; border-radius: 0 6px 6px 0; }
+  code, .formula { font-family: "Courier New", monospace; background: #f5f5f5; padding: 2px 6px; border-radius: 3px; }
+  .worked-example { background: #f5f5f5; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin: 15px 0; page-break-inside: avoid; }
+  .worked-example h4 { margin-top: 0; color: #1a237e; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 8px 12px; border: 1px solid #ddd; }
+  tr:nth-child(even) { background: #f5f7ff; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  .qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  .ref-table td:first-child { font-weight: 700; white-space: nowrap; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Chapter 36</h1>
+  <div class="subtitle" style="font-size:1.6em; font-weight:700; color:#1a237e;">Flight Data Recorder</div>
+  <div class="subtitle">DGCA CPL/ATPL Study Notes</div>
+  <div class="subtitle">Subject: Instrumentation</div>
+  <div class="author">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction</a></li>
+    <li><a href="#sec-2">FDR Designs</a></li>
+    <li><a href="#sec-3">FDR Components</a></li>
+    <li><a href="#sec-4">Aircraft Integrated Data Systems (AIDS)</a></li>
+    <li><a href="#sec-5">Parameters Recorded</a></li>
+    <li><a href="#sec-6">European Regulations – Carriage Requirements</a></li>
+    <li><a href="#sec-7">Other Regulatory Requirements</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+    <li><a href="#ref-tables">Master Reference Tables</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="sec-1">1. Introduction</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The purpose, function, and operational context of the Flight Data Recorder (FDR) on commercial aircraft.
+</div>
+
+<p>Commercial aircraft carry a <strong>Flight Data Recorder (FDR)</strong>, which records various aircraft parameters throughout the entire duration of every flight. The FDR has two main functions:</p>
+<ul>
+  <li><strong>Primary function:</strong> Preserve aircraft data to determine the cause of any aircraft accident (accident investigation).</li>
+  <li><strong>Secondary function:</strong> Gather information for trend analysis and trouble-shooting of aircraft systems.</li>
+</ul>
+<p>On smaller aircraft, the FDR may be combined with the Cockpit Voice Recorder (CVR) into a single unit.</p>
+
+<div class="box-amber">
+  <strong>Exam Tip:</strong> Remember the two functions — accident investigation (primary) and trend analysis/maintenance (secondary). The DGCA may ask which is the "main" function.
+</div>
+
+<!-- SECTION 2 -->
+<h2 id="sec-2">2. FDR Designs</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Physical design, storage medium, housing, and location of the FDR unit.
+</div>
+
+<p>The FDR records the last <span class="reg-value">10 or 25 hours</span> of aircraft data (depending on MTOM — see regulations) on a <strong>digital storage device</strong>. Key physical characteristics:</p>
+
+<table>
+  <tr><th>Feature</th><th>Detail</th></tr>
+  <tr><td>Housing</td><td>Shock-resistant box</td></tr>
+  <tr><td>Colour</td><td>Painted <strong>red</strong> (commonly called "black box")</td></tr>
+  <tr><td>Location</td><td>Rear of the aircraft, normally under the fin</td></tr>
+  <tr><td>Front fitting</td><td>Underwater Locating Device (ULD)</td></tr>
+</table>
+
+<div class="box-amber">
+  <strong>Exam Tip:</strong> The FDR is painted <em>red</em> (not black). The nickname "black box" is colloquial and does not reflect the actual colour. Locate it at the <em>rear</em> of the aircraft under the fin — this is the area least likely to be destroyed in a crash.
+</div>
+
+<!-- SECTION 3 -->
+<h2 id="sec-3">3. FDR Components</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The four main components of the FDR system, the Data Interface and Acquisition Unit (DIAU), and the control units.
+</div>
+
+<p>The FDR system consists of four main components:</p>
+<ul>
+  <li>A <strong>recording system</strong></li>
+  <li>A <strong>control unit on the overhead panel</strong></li>
+  <li>A <strong>control unit on the pedestal</strong></li>
+  <li>A <strong>Data Interface and Acquisition Unit (DIAU)</strong></li>
+</ul>
+
+<p>The <strong>DIAU</strong> collects inputs from aircraft systems including: air conditioning, auto-flight, flight controls, fuel, landing gear, navigation systems, pneumatic systems, APU, and engines. This information is sent to the <strong>Aeroplane Condition Monitoring System (ACMS)</strong> and is used for system monitoring, trend analysis, and can be downloaded via the aircraft printer, ACARS, or the ATSU.</p>
+
+<h3>Overhead Panel Control Unit — GND CTL Switch</h3>
+<p>This control unit also controls the CVR. It has a spring-loaded switch labelled <strong>GND CTL</strong> with two positions:</p>
+<table>
+  <tr><th>Position</th><th>Function</th></tr>
+  <tr><td><strong>ON</strong></td><td>CVR and DFDR are energized immediately; ON light is illuminated</td></tr>
+  <tr><td><strong>AUTO</strong></td><td>CVR and DFDR energize: on the ground with one engine running, OR in flight (engine running or stopped)</td></tr>
+</table>
+
+<h3>Pedestal Control Unit — EVENT Button</h3>
+<p>A push-button labelled <strong>'EVENT'</strong> sets an event mark on the DFDR recording. This acts as a bookmark to enable rapid location of a specific event during subsequent analysis.</p>
+
+<figure>
+  <img src="figs/fig_p498_0.png" alt="Digital Flight Data Recorder unit">
+  <figcaption>Fig 36.1 — Digital Flight Data Recorder (source p.498)</figcaption>
+</figure>
+
+<div class="box-green">
+  <strong>AUTO Switch Logic:</strong> When GND CTL is set to AUTO, the FDR/CVR system will energize automatically whenever at least one engine is running (whether on the ground or in the air), or whenever the aircraft is airborne. It will automatically stop <span class="reg-value">5 minutes</span> after the final engine shutdown.
+</div>
+
+<figure>
+  <img src="figs/fig_p499_0.png" alt="Digital flight data recorder system block diagram Boeing 767">
+  <figcaption>Fig 36.2 — Digital FDR System (Boeing 767) block diagram (source p.499)</figcaption>
+</figure>
+
+<div class="box-amber">
+  <strong>Quick Revision Summary — Section 3:</strong> FDR has 4 components (recording system, 2 control units, DIAU). GND CTL ON = immediate power. GND CTL AUTO = starts on first engine start, stops 5 min after last engine shutdown. EVENT button = bookmark on recording.
+</div>
+
+<!-- SECTION 4 -->
+<h2 id="sec-4">4. Aircraft Integrated Data Systems (AIDS)</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> How AIDS complements the FDR for maintenance monitoring and data transmission.
+</div>
+
+<p>AIDS processes data from various aircraft systems to ease maintenance tasks. Key components:</p>
+
+<pre class="mermaid">
+flowchart TD
+    A[Aircraft Systems<br/>Air Cond / Autoflight / Engines / Fuel etc.] --> B[Data Management Unit<br/>DMU]
+    B --> C[Flight Data Interface Unit<br/>FDIU]
+    B --> D[Separate Flight<br/>Maintenance Recorder]
+    C --> E[FDR<br/>Mandatory Parameters]
+    B --> F[Aircraft Printer<br/>In-flight & Ground]
+    B --> G[ACARS / VHF Data Link<br/>Ground Transmission]
+    D --> H[Printout for<br/>Maintenance]
+</pre>
+
+<p>The <strong>Data Management Unit (DMU)</strong> collects and processes system data to compile reports for storage and printing. Some mandatory flight parameters are sent via the <strong>Flight Data Interface Unit (FDIU)</strong> to the FDR. The remainder is recorded on a separate flight maintenance recorder.</p>
+
+<p>Data can be transmitted to ground stations via <strong>ACARS (Airborne Communications and Reporting System)</strong> on a <strong>VHF data link</strong>, allowing aircraft performance monitoring from the ground at certain intervals.</p>
+
+<div class="box-amber">
+  <strong>Exam Tip:</strong> ACARS uses a <em>VHF data link</em> for transmitting AIDS data to ground. Know the distinction: FDR records <em>mandatory parameters</em> via FDIU; the maintenance recorder captures the rest.
+</div>
+
+<!-- SECTION 5 -->
+<h2 id="sec-5">5. Parameters Recorded</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> Mandatory and additional parameters recorded, and which aircraft types must record additional parameters.
+</div>
+
+<p>The mandatory parameters recorded on the FDR depend on the age and size of the aircraft and are specified in OPs Regulations. They fall into two categories:</p>
+
+<h3>Mandatory (Main) Parameters</h3>
+<ul>
+  <li>Time or relative time count</li>
+  <li>Attitude (pitch and roll)</li>
+  <li>Airspeed</li>
+  <li>Pressure altitude</li>
+  <li>Heading</li>
+  <li>Normal acceleration</li>
+  <li>Propulsive thrust/power on each engine</li>
+  <li>Cockpit thrust/power lever position</li>
+  <li>Flaps/slats configuration or cockpit selection</li>
+  <li>Ground spoilers and/or speed brake selection</li>
+</ul>
+
+<h3>Additional Parameters</h3>
+<p>(Required for aircraft &gt; <span class="reg-value">27,000 kg MTOM</span>)</p>
+<ul>
+  <li>Positions of primary flight controls and trim</li>
+  <li>Radio altitude and navigation information displayed to flight crew</li>
+  <li>Cockpit warnings</li>
+  <li>Landing gear position</li>
+</ul>
+
+<div class="box-amber">
+  <strong>Memory Aid:</strong> Main parameters = <strong>TAAPH-NPTF-GS</strong> (Time, Attitude, Airspeed, Pressure altitude, Heading, Normal acceleration, Propulsive thrust, Throttle position, Flaps/slats, Ground spoilers). Additional = <strong>FRNL</strong> (Flight controls, Radio alt/Nav, Notifications/Warnings, Landing gear).
+</div>
+
+<!-- SECTION 6 -->
+<h2 id="sec-6">6. European Regulations — Carriage Requirements</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> The three regulatory cases for FDR carriage requirements on EU-registered commercial air transport aircraft, minimum recording times, and additional parameter requirements.
+</div>
+
+<div class="box-red">
+  <strong>Regulatory Framework — FDR Carriage (EU Commercial Air Transport):</strong>
+  <table style="margin-top:10px;">
+    <tr><th>Case</th><th>Aircraft Category</th><th>Registration Date</th></tr>
+    <tr><td><strong>Case 1</strong></td><td>All aeroplanes &gt; <span class="reg-value">5,700 kg MTOM</span>, OR turbine-powered with &gt; <span class="reg-value">9 passenger seats</span> but &lt; 5,700 kg MTOM</td><td>Registered since <span class="reg-value">1 April 1998</span></td></tr>
+    <tr><td><strong>Case 2</strong></td><td>All aeroplanes &gt; <span class="reg-value">5,700 kg MTOM</span></td><td>Registered since <span class="reg-value">1 June 1990</span></td></tr>
+    <tr><td><strong>Case 3</strong></td><td>All turbine-powered aeroplanes &gt; <span class="reg-value">5,700 kg MTOM</span></td><td>Registered <em>before</em> <span class="reg-value">1 June 1990</span></td></tr>
+  </table>
+</div>
+
+<h3>Minimum Recording Times</h3>
+<table>
+  <tr><th>Aircraft Category</th><th>Minimum Recording Time</th></tr>
+  <tr><td>MTOM &gt; <span class="reg-value">5,700 kg</span></td><td><span class="reg-value">25 hours</span> — all mandatory (main) parameters required</td></tr>
+  <tr><td>MTOM ≤ <span class="reg-value">5,700 kg</span> (turbine, &gt; 9 seats, registered after 1 Apr 1998)</td><td><span class="reg-value">10 hours</span></td></tr>
+  <tr><td>MTOM &gt; <span class="reg-value">27,000 kg</span></td><td><span class="reg-value">25 hours</span> + additional parameters mandatory</td></tr>
+</table>
+
+<div class="box-amber">
+  <strong>Exam Tip:</strong> The key thresholds are <span class="reg-value">5,700 kg</span> and <span class="reg-value">27,000 kg</span> MTOM. Recording times are <span class="reg-value">25 hours</span> (above 5,700 kg) or <span class="reg-value">10 hours</span> (below 5,700 kg with &gt;9 seats). Additional parameters only required above <span class="reg-value">27,000 kg</span>.
+</div>
+
+<!-- SECTION 7 -->
+<h2 id="sec-7">7. Other Regulatory Requirements</h2>
+<div class="box-blue">
+  <strong>What this section covers:</strong> FDR operational requirements, combined FDR/CVR rules, and dispatch with inoperative FDR.
+</div>
+
+<div class="box-red">
+  <strong>Operational Requirements:</strong>
+  <ul>
+    <li>The FDR must start automatically <em>before</em> the aircraft is capable of moving under its own power (i.e., from first engine start).</li>
+    <li>The FDR must stop automatically <span class="reg-value">5 minutes</span> after the last engine is shut down (aircraft no longer capable of self-propelled movement).</li>
+    <li>The FDR must have a device to assist in locating the recorder in water (Underwater Locating Device — ULD).</li>
+    <li>Aeroplanes ≤ <span class="reg-value">5,700 kg MTOM</span> may carry a <strong>combined FDR/CVR</strong>.</li>
+    <li>Aircraft &gt; <span class="reg-value">5,700 kg MTOM</span> must have <strong>2 recorders</strong>: either separate FDR/CVR, or two combined units.</li>
+  </ul>
+</div>
+
+<h3>Dispatch with Inoperative FDR</h3>
+<div class="box-red">
+  <strong>An aeroplane may be dispatched with an inoperative FDR only if ALL of the following conditions are met:</strong>
+  <ol>
+    <li>It is not reasonably practicable to repair or replace the FDR before flight.</li>
+    <li>The aeroplane does not exceed <span class="reg-value">8 further consecutive flights</span>.</li>
+    <li>Not more than <span class="reg-value">72 hours</span> have elapsed since the unserviceability was discovered.</li>
+    <li>Any CVR required to be carried is <strong>operative</strong> (unless it is combined with the FDR).</li>
+  </ol>
+</div>
+
+<pre class="mermaid">
+flowchart TD
+    A[FDR Unserviceable] --> B{Practicable to repair<br/>before flight?}
+    B -- Yes --> C[Repair/Replace FDR<br/>before departure]
+    B -- No --> D{Check all 3 conditions}
+    D --> E[≤ 8 consecutive flights<br/>since u/s?]
+    D --> F[≤ 72 hours since<br/>u/s discovered?]
+    D --> G[CVR serviceable?<br/>unless combined]
+    E -- All YES --> H[MAY dispatch<br/>with u/s FDR]
+    F -- All YES --> H
+    G -- All YES --> H
+    E -- Any NO --> I[CANNOT dispatch<br/>Must repair first]
+</pre>
+
+<div class="box-amber">
+  <strong>Quick Revision Summary — Ch. 36:</strong>
+  <ul>
+    <li>FDR = last <span class="reg-value">10</span> or <span class="reg-value">25 hours</span> of data. Red box. Rear of aircraft. Has ULD.</li>
+    <li>Starts: first engine start. Stops: <span class="reg-value">5 min</span> after last engine shutdown.</li>
+    <li>&gt;<span class="reg-value">5,700 kg</span>: 25 hours + mandatory params. &gt;<span class="reg-value">27,000 kg</span>: also additional params.</li>
+    <li>≤<span class="reg-value">5,700 kg</span>: 10 hours, may combine with CVR.</li>
+    <li>Dispatch u/s FDR: max <span class="reg-value">8 flights</span>, max <span class="reg-value">72 hours</span>, CVR must be operative.</li>
+    <li>AIDS: DIAU → ACMS; DMU → FDIU → FDR; ACARS for ground transmission.</li>
+  </ul>
+</div>
+
+<!-- Q&A SECTION -->
+<div class="qa-section">
+<h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
+
+<div class="box-blue">
+  <strong>Note:</strong> The source text for Chapter 36 contains no dedicated question set. The following questions are <em>instructor-generated</em> in DGCA CPL/ATPL style, based entirely on the content of this chapter.
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">The primary function of the Flight Data Recorder (FDR) is to:</span>
+    <ol class="q-options" type="a">
+      <li>Monitor engine trend data and assist in planned maintenance</li>
+      <li>Preserve aircraft data to determine the cause of an aircraft accident</li>
+      <li>Transmit real-time data to ground stations via ACARS</li>
+      <li>Record cockpit voice communications and ambient sound</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Preserve aircraft data to determine the cause of an aircraft accident</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The Oxford text states explicitly: "The main function of the flight data recorder (FDR) is to preserve the aircraft data in order to determine the cause of any aircraft accident." Trend analysis and troubleshooting are secondary functions. See <a href="#sec-1">Section 1</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Engine trend monitoring is a secondary function (maintenance), not the primary purpose.</li>
+      <li><strong>(c)</strong> — ACARS transmission is a function of AIDS/DMU, not the FDR itself.</li>
+      <li><strong>(d)</strong> — Recording cockpit voice is the function of the CVR, not the FDR.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Examiners often present (a) as a trap because trend analysis is indeed a function of the FDR — but it is secondary, not primary. Always anchor on "accident investigation."</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">What is the minimum recording time for an FDR fitted to a turbine-powered aeroplane with an MTOM of 6,500 kg, registered in 1995?</span>
+    <ol class="q-options" type="a">
+      <li>10 hours</li>
+      <li>2 hours</li>
+      <li>25 hours</li>
+      <li>30 minutes</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> 25 hours</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> This aircraft is 6,500 kg MTOM — above the 5,700 kg threshold. For aircraft above 5,700 kg MTOM, the minimum recording time is <span class="reg-value">25 hours</span>. The registration date (1995 = after 1 June 1990) places it in Case 2. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — 10 hours applies to aircraft <em>below</em> 5,700 kg MTOM (turbine, &gt;9 seats, registered after 1 Apr 1998).</li>
+      <li><strong>(b)</strong> — 2 hours is the CVR recording time for large aircraft, not the FDR.</li>
+      <li><strong>(d)</strong> — 30 minutes is the minimum CVR recording time, not applicable to FDRs.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Always check MTOM first. Above 5,700 kg = 25 hours. Below 5,700 kg (turbine, &gt;9 seats, post-April 1998) = 10 hours. These are the only two FDR recording time thresholds.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">An FDR is found unserviceable before flight. Under which conditions may the aircraft be dispatched without a serviceable FDR?</span>
+    <ol class="q-options" type="a">
+      <li>If the CVR is operative, within 8 consecutive flights, and within 72 hours of discovering the unserviceability</li>
+      <li>If both FDR and CVR are inoperative, within 10 flights, and within 48 hours</li>
+      <li>At captain's discretion, provided the flight is under 1 hour in duration</li>
+      <li>Only with specific authority from the regulatory authority for each individual flight</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(a)</strong> If the CVR is operative, within 8 consecutive flights, and within 72 hours of discovering the unserviceability</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The regulations allow dispatch with an inoperative FDR provided: (1) it is not reasonably practicable to repair before flight, (2) no more than <span class="reg-value">8 further consecutive flights</span>, (3) not more than <span class="reg-value">72 hours</span> since the unserviceability, and (4) the CVR is operative. All four conditions must be met. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(b)</strong> — The CVR must be <em>operative</em> (not inoperative); the limit is 8 flights (not 10) and 72 hours (not 48).</li>
+      <li><strong>(c)</strong> — Flight duration is irrelevant; there is no captain's discretion clause for FDR inoperability.</li>
+      <li><strong>(d)</strong> — No individual regulatory authority approval is required for each flight; the conditions are self-contained in the regulations.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Remember: <span class="reg-value">8 flights</span> and <span class="reg-value">72 hours</span> — the same limits apply to CVR dispatch with an unserviceable CVR. The logic is: if FDR is u/s, the CVR must be serviceable to still capture some record of events.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">An aircraft with MTOM of 35,000 kg must record which of the following sets of parameters on its FDR?</span>
+    <ol class="q-options" type="a">
+      <li>Main parameters only (time, attitude, airspeed, pressure altitude, heading, etc.)</li>
+      <li>Main parameters plus additional parameters (flight controls, radio altitude, cockpit warnings, landing gear)</li>
+      <li>Cockpit voice communications and aural environment only</li>
+      <li>Engine parameters and fuel flow only, as it is above 27,000 kg</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Main parameters plus additional parameters</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Aircraft with MTOM above <span class="reg-value">27,000 kg</span> must record both the main mandatory parameters AND the additional parameters (positions of primary flight controls and trim, radio altitude and navigation info displayed to crew, cockpit warnings, and landing gear position). At 35,000 kg this aircraft clearly exceeds the 27,000 kg threshold. See <a href="#sec-5">Section 5</a> and <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Main parameters only is insufficient; additional parameters become mandatory above 27,000 kg.</li>
+      <li><strong>(c)</strong> — Voice/aural recording is the CVR's function, not the FDR.</li>
+      <li><strong>(d)</strong> — Engine and fuel parameters are part of the mandatory main parameters, but the threshold of 27,000 kg triggers additional parameters, not a replacement set.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The two MTOM thresholds to memorise: &gt;<span class="reg-value">5,700 kg</span> = FDR required, 25-hour recording; &gt;<span class="reg-value">27,000 kg</span> = additional parameters also required.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">When must the FDR automatically stop recording?</span>
+    <ol class="q-options" type="a">
+      <li>Immediately when the last engine is shut down</li>
+      <li>When the aircraft's weight-on-wheels switch activates on landing</li>
+      <li>5 minutes after the last engine is shut down</li>
+      <li>When the parking brake is set and all engines are stopped</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> 5 minutes after the last engine is shut down</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The regulation states the FDR must stop automatically after the aircraft is incapable of moving under its own power. In practice, this is achieved by automatically switching off <span class="reg-value">5 minutes</span> after the last engine is shut down. This <span class="reg-value">5-minute</span> buffer ensures post-shutdown data is captured. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — Immediate shutdown would lose important post-shutdown data; the 5-minute delay is intentional.</li>
+      <li><strong>(b)</strong> — Weight-on-wheels switch relates to other systems; FDR stop is engine-shutdown-referenced.</li>
+      <li><strong>(d)</strong> — Parking brake state is not the trigger; engine shutdown time is.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The <span class="reg-value">5-minute</span> stop delay appears in both FDR and CVR regulations. This is the same delay referenced in the GND CTL AUTO switch logic. Consistent value — easy to remember.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">The EVENT push-button on the FDR pedestal control unit serves to:</span>
+    <ol class="q-options" type="a">
+      <li>Erase the last 30 seconds of FDR data in an emergency</li>
+      <li>Activate the underwater locating device</li>
+      <li>Place a bookmark/event mark on the FDR recording to aid subsequent analysis</li>
+      <li>Switch the FDR from automatic to manual recording mode</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> Place a bookmark/event mark on the FDR recording to aid subsequent analysis</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The EVENT push-button "sets an event mark on the DFDR recording. This acts as a kind of bookmark to enable the 'event' to be found rapidly on the recording at a subsequent analysis." See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul>
+      <li><strong>(a)</strong> — There is no erase function on the pedestal; erasure is not a feature of the FDR (only CVR has an erase function, with multiple safeguards).</li>
+      <li><strong>(b)</strong> — The ULD is a passive device activated by water immersion, not by a cockpit button.</li>
+      <li><strong>(d)</strong> — The FDR has no "manual" vs "automatic" mode distinction at the pedestal; the GND CTL switch on the overhead panel manages recording state.</li>
+    </ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The EVENT button is a crew-annotation tool — it does not erase, trigger, or alter recordings. It simply flags a point in time for investigators or analysts to examine.</div>
+  </div>
+</div>
+
+</div><!-- end qa-section -->
+
+<!-- MASTER REFERENCE TABLES -->
+<h2 id="ref-tables">Master Reference Tables</h2>
+
+<h3>Numerical Values — Quick Reference</h3>
+<table class="ref-table">
+  <tr><th>Parameter</th><th>Value</th><th>Reference</th></tr>
+  <tr><td>FDR recording time (MTOM &gt;5,700 kg)</td><td><span class="reg-value">25 hours</span></td><td>Section 6</td></tr>
+  <tr><td>FDR recording time (MTOM ≤5,700 kg, turbine, &gt;9 seats, post Apr 1998)</td><td><span class="reg-value">10 hours</span></td><td>Section 6</td></tr>
+  <tr><td>MTOM threshold — FDR required</td><td><span class="reg-value">5,700 kg</span></td><td>Section 6</td></tr>
+  <tr><td>MTOM threshold — additional parameters required</td><td><span class="reg-value">27,000 kg</span></td><td>Section 5 / 6</td></tr>
+  <tr><td>Auto start</td><td>First engine start</td><td>Section 7</td></tr>
+  <tr><td>Auto stop delay after last engine shutdown</td><td><span class="reg-value">5 minutes</span></td><td>Section 7</td></tr>
+  <tr><td>Max consecutive flights — dispatch with u/s FDR</td><td><span class="reg-value">8 flights</span></td><td>Section 7</td></tr>
+  <tr><td>Max time since u/s — dispatch with u/s FDR</td><td><span class="reg-value">72 hours</span></td><td>Section 7</td></tr>
+  <tr><td>Case 1 registration date</td><td><span class="reg-value">1 April 1998</span></td><td>Section 6</td></tr>
+  <tr><td>Case 2 registration date</td><td><span class="reg-value">1 June 1990</span></td><td>Section 6</td></tr>
+</table>
+
+<h3>Answer Key</h3>
+<table>
+  <tr><th>Q</th><th>Ans</th><th>Topic</th></tr>
+  <tr><td>1</td><td>b</td><td>Primary function of FDR</td></tr>
+  <tr><td>2</td><td>c</td><td>Recording time — 6,500 kg MTOM</td></tr>
+  <tr><td>3</td><td>a</td><td>Dispatch with u/s FDR conditions</td></tr>
+  <tr><td>4</td><td>b</td><td>Parameters — 35,000 kg MTOM</td></tr>
+  <tr><td>5</td><td>c</td><td>FDR auto-stop timing</td></tr>
+  <tr><td>6</td><td>c</td><td>EVENT button function</td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

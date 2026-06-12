@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 32 – Flight Warning Systems | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #0d47a1; margin-top: 22px; }
+  p { margin: 10px 0; }
+  .cover { text-align: center; padding: 40px 20px 30px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .toc { page-break-after: always; }
+  .toc ol { padding-left: 24px; }
+  .toc li { padding: 4px 0; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: left; }
+  td { padding: 7px 12px; border: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7ff; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  #qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  ul { margin: 8px 0; padding-left: 24px; }
+  li { margin: 3px 0; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div style="font-size:0.95em;color:#555;margin-bottom:8px;">ATPL Ground Training Series — Instrumentation</div>
+  <h1>Chapter 32</h1>
+  <h1 style="font-size:1.8em;margin-top:4px;">Flight Warning Systems</h1>
+  <div style="font-size:1.1em;color:#555;margin-top:8px;">DGCA CPL/ATPL Study Notes</div>
+  <div style="font-size:1em;color:#333;margin-top:20px;font-style:italic;">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Introduction &amp; Purpose</a></li>
+    <li><a href="#sec-2">Levels of Alerts</a></li>
+    <li><a href="#sec-3">Warnings in General — Visual, Aural, Sensory</a></li>
+    <li><a href="#sec-4">Aural Warning Specifics (Boeing &amp; Airbus)</a></li>
+    <li><a href="#sec-5">The Flight Warning System (FWS)</a></li>
+    <li><a href="#sec-6">FWS Components</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Introduction &amp; Purpose</h2>
+<div class="blue-box">The <strong>Flight Warning System (FWS)</strong> produces cautions and warnings for the crew to increase situation awareness and indicate actions needed to avoid impending danger.</div>
+
+<p>Modern aircraft have a large number of warning systems. Without prioritisation, multiple simultaneous warnings could overwhelm the crew. The FWS:</p>
+<ul>
+  <li>Prioritises warnings relevant to the current flight phase</li>
+  <li>Inhibits warnings not immediately relevant</li>
+  <li>Enables the crew to respond to the most immediate safety threat first</li>
+</ul>
+
+<h2 id="sec-2">2. Levels of Alerts</h2>
+<table>
+<tr><th>Level</th><th>Name</th><th>Crew Action Required</th></tr>
+<tr><td><strong>Level A</strong></td><td>Warnings</td><td>Immediate crew action</td></tr>
+<tr><td><strong>Level B</strong></td><td>Cautions</td><td>Immediate crew alertness and subsequent crew action</td></tr>
+<tr><td><strong>Level C</strong></td><td>Advisories</td><td>Crew alertness</td></tr>
+</table>
+
+<h2 id="sec-3">3. Warnings in General — Visual, Aural, Sensory</h2>
+
+<h3>Visual</h3>
+<div class="blue-box">Colour coding:
+<ul>
+  <li><strong style="color:#c0392b">RED</strong> — Warnings (immediate action)</li>
+  <li><strong style="color:#f39c12">AMBER / YELLOW</strong> — Cautions (action before failure)</li>
+  <li><strong>Any colour except red or green</strong> — Advisories (on EICAS panels: also amber)</li>
+</ul>
+</div>
+
+<p>Visual indications presented as:</p>
+<ul>
+  <li><strong>Electronic Screens</strong> — coloured text/symbols on flight, navigation, engine and system displays</li>
+  <li><strong>Lights or Flags</strong> — Red lights/flags = warning; Amber lights/flags = approaching a limit</li>
+</ul>
+
+<p>Master warning (red) and caution (amber) lights are provided near the centre of scan in front of each pilot.</p>
+
+<figure>
+  <img src="figs/fig_p431_0.png" alt="Cockpit displays and warnings - Airbus A320">
+  <figcaption>Fig 32.1 — Cockpit displays and warnings of an Airbus A320 (source p.431)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p431_1.png" alt="Warning and alerting system">
+  <figcaption>Fig 32.2 — Warning and alerting system (Boeing 767) (source p.431)</figcaption>
+</figure>
+
+<h3>Aural</h3>
+<p>Audible warning is mandatory if the pilot is required to assume control. Priority order for multiple alerts:</p>
+<div class="red-box"><strong>Aural Warning Priority (highest → lowest):</strong> Stall → Windshear → GPWS → ACAS</div>
+
+<h2 id="sec-4">4. Aural Warning Specifics</h2>
+
+<table>
+<tr><th>Condition</th><th>Boeing Sound</th><th>Airbus Sound</th></tr>
+<tr><td>Fire</td><td>Bell</td><td>—</td></tr>
+<tr><td>Cabin altitude / Config / Overspeed</td><td>Siren</td><td>—</td></tr>
+<tr><td>Autopilot disconnect</td><td>Wailer</td><td>Cavalry charge</td></tr>
+<tr><td>GPWS / Windshear / ACAS</td><td>Synthetic voice</td><td>Synthetic voice</td></tr>
+<tr><td>Red warning (general)</td><td>—</td><td>Continuous repetitive chimes</td></tr>
+<tr><td>Stall warning</td><td>—</td><td>Cricket sound</td></tr>
+<tr><td>Cautions</td><td>Beepers/chimes/tones</td><td>Single chime</td></tr>
+</table>
+
+<h3>Sensory (Tactile)</h3>
+<p>Vibratory mode on controls (stick shaker) indicates stall approach and demands immediate action. A stick-pusher may be fitted on T-tail aircraft to prevent deep stall entry.</p>
+
+<h2 id="sec-5">5. The Flight Warning System (FWS)</h2>
+
+<p>The FWS generates alerts and warnings for three categories:</p>
+
+<table>
+<tr><th>Category</th><th>Examples</th></tr>
+<tr><td>Engine and airframe system malfunctions</td><td>Engine fire, hydraulic failure, pressurisation loss</td></tr>
+<tr><td>Aerodynamic limits exceeded</td><td>Altitude alerting, overspeed, stall warning</td></tr>
+<tr><td>External hazards</td><td>GPWS (terrain proximity), ACAS (collision avoidance)</td></tr>
+</table>
+
+<h2 id="sec-6">6. FWS Components</h2>
+<div class="blue-box"><strong>Inputs:</strong> Hundreds of engine and airframe sensors, air data sensors, GPWS and ACAS systems.<br>
+<strong>Processing unit:</strong> One or two Flight Warning Computers.<br>
+<strong>Outputs:</strong> Alerts (amber lights/text, chimes) and Warnings (red lights/text, sirens/bells).</div>
+
+<figure>
+  <img src="figs/fig_p436_0.png" alt="Warning and alerting system Boeing 767">
+  <figcaption>Fig 32.3 — FWS block diagram — Boeing 767 warning and alert system (source p.436)</figcaption>
+</figure>
+
+<div class="green-box">Glare-shield master warning (red) and master caution (amber) lights act as attention-getters. In older systems: Centralised Warning Panel (CWP). In EFIS: alerts on electronic screens with aural messages.</div>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 32:</strong>
+  <ul>
+    <li>FWS purpose: prioritise and present warnings/cautions/advisories to crew</li>
+    <li>Level A = Warning (red, immediate action); Level B = Caution (amber, crew alertness + action); Level C = Advisory</li>
+    <li>Colour: Red = warnings; Amber/Yellow = cautions; other = advisories</li>
+    <li>Aural priority: Stall → Windshear → GPWS → ACAS</li>
+    <li>Boeing: bell (fire), siren (cabin/config/overspeed), wailer (AP disconnect), synth voice (GPWS/WS/ACAS)</li>
+    <li>Airbus: CRC (red warning), cavalry charge (AP disconnect), cricket (stall), synth voice (GPWS/TCAS)</li>
+    <li>FWS = sensors → Flight Warning Computer → alerts/warnings (visual + aural)</li>
+  </ul>
+</div>
+
+<section id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">The aural warning priority order from highest to lowest is:</span>
+    <ol class="q-options" type="a">
+      <li>GPWS → Windshear → Stall → ACAS</li>
+      <li>ACAS → GPWS → Windshear → Stall</li>
+      <li>Stall → Windshear → GPWS → ACAS</li>
+      <li>Windshear → Stall → ACAS → GPWS</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> Stall → Windshear → GPWS → ACAS</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The standard synthetic voice aural warning priority is: <span class="reg-value">Stall → Windshear → GPWS → ACAS</span>. Stall is inhibited during stick push, windshear takes first active priority, then terrain, then collision. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a), (b), (d)</strong> All incorrect ordering. Stall is always highest priority; ACAS is lowest of the four.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Mnemonic: "Stall Wins, Goes Ahead" = Stall, Windshear, GPWS, ACAS.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">On a Boeing aircraft, an autopilot disconnect is accompanied by:</span>
+    <ol class="q-options" type="a">
+      <li>A bell</li>
+      <li>A siren</li>
+      <li>A wailer</li>
+      <li>Continuous repetitive chimes</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> A wailer</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Boeing: wailer = autopilot disconnect. Bell = fire; Siren = cabin altitude, config, overspeed. Continuous repetitive chimes = Airbus red warning. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Bell = fire on Boeing.</li>
+        <li><strong>(b)</strong> Siren = cabin altitude/config/overspeed on Boeing.</li>
+        <li><strong>(d)</strong> Continuous repetitive chimes = Airbus red warning, not Boeing AP disconnect.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> On Airbus, AP disconnect = cavalry charge. Important to distinguish Boeing vs Airbus aural warnings.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">A Level B alert from the flight warning system requires:</span>
+    <ol class="q-options" type="a">
+      <li>Immediate crew action</li>
+      <li>Immediate crew alertness and subsequent crew action</li>
+      <li>Crew alertness only</li>
+      <li>Automatic system shutdown</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Immediate crew alertness and subsequent crew action</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Level A = Warning = immediate action. Level B = Caution = immediate alertness + subsequent action. Level C = Advisory = alertness only. See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Immediate action = Level A (Warning), not Level B.</li>
+        <li><strong>(c)</strong> Alertness only = Level C (Advisory).</li>
+        <li><strong>(d)</strong> Automatic shutdown is not a warning system response category.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Think of it as urgency levels: Level A = drop everything now; Level B = look up and plan action; Level C = note and monitor.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">Advisories (Level C alerts) are displayed in which colour?</span>
+    <ol class="q-options" type="a">
+      <li>Red</li>
+      <li>Green</li>
+      <li>Amber or yellow only</li>
+      <li>Any colour except red or green</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> Any colour except red or green</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Advisories can be displayed in any colour except red (reserved for warnings) or green (reserved for normal status). On EICAS panels, advisories are also amber. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Red = warnings only.</li>
+        <li><strong>(b)</strong> Green = normal/operational status.</li>
+        <li><strong>(c)</strong> Amber/yellow = cautions; advisories have a broader colour range.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The rule for advisories is defined by exclusion: not red, not green. In practice most advisories are amber too, but the regulation allows other colours.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">The stall warning on a fly-by-wire (Airbus) aircraft consists of:</span>
+    <ol class="q-options" type="a">
+      <li>A bell and red master WARNING light</li>
+      <li>Stick shaker and aural warning</li>
+      <li>Cricket sound, synthetic voice STALL, and red master WARNING light</li>
+      <li>Siren and amber master CAUTION light</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> Cricket sound, synthetic voice STALL, and red master WARNING light</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> On FBW (Airbus) aircraft: stall warning = cricket sound + synthetic voice "STALL" + red master WARNING light. There is no mechanical stick shaker — the FBW system handles control protection directly. See <a href="#sec-4">Section 4</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Bell = fire (Boeing); not stall.</li>
+        <li><strong>(b)</strong> Stick shaker is conventional (non-FBW) aircraft stall warning.</li>
+        <li><strong>(d)</strong> Siren = overspeed/cabin alt; amber caution is not used for stall (which is a red warning).</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> FBW stall protection goes beyond warning — the flight computer limits the AoA. The cricket + synth voice is the last "advisory" before the computer intervenes. It's a Warning (red), not just a caution.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">The Flight Warning System inhibits some warnings in certain flight phases in order to:</span>
+    <ol class="q-options" type="a">
+      <li>Reduce avionics power consumption</li>
+      <li>Allow the crew to focus on the most immediate threat to safety</li>
+      <li>Comply with noise abatement procedures</li>
+      <li>Prevent automatic engagement of the autopilot</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Allow the crew to focus on the most immediate threat to safety</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The FWS prioritises warnings and inhibits those not immediately relevant so the crew can respond to the most critical threat. Multiple simultaneous warnings could confuse the crew and cause them to miss the most urgent one. See <a href="#sec-1">Section 1</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a), (c), (d)</strong> Power consumption, noise, and autopilot engagement are unrelated to why FWS inhibits warnings.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> This is the core philosophy of an integrated FWS vs individual standalone warning systems. Integration → prioritisation → reduced workload → better safety outcomes.</div>
+  </div>
+</div>
+
+</section>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

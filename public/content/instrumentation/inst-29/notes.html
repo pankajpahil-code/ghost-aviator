@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 29 – Yaw Dampers | DGCA CPL/ATPL Study Notes</title>
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });</script>
+<style>
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 20px; }
+  h1 { font-size: 2em; font-weight: 700; color: #1a237e; }
+  h2 { font-size: 1.4em; font-weight: 700; color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 1.15em; font-weight: 700; color: #0d47a1; margin-top: 22px; }
+  h4 { font-size: 1em; font-weight: 700; color: #1565c0; margin-top: 16px; }
+  p { margin: 10px 0; }
+  .cover { text-align: center; padding: 40px 20px 30px; border-bottom: 3px solid #1a237e; margin-bottom: 30px; page-break-after: always; }
+  .toc { page-break-after: always; }
+  .toc ol { padding-left: 24px; }
+  .toc li { padding: 4px 0; }
+  .toc a { color: #1a237e; text-decoration: none; }
+  .blue-box { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .red-box { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .green-box { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .amber-box { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .reg-value { font-weight: 700; color: #c0392b; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1a237e; color: #fff; padding: 8px 12px; text-align: left; }
+  td { padding: 7px 12px; border: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7ff; }
+  pre.mermaid { page-break-inside: avoid; margin: 15px 0; }
+  figure { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-style: italic; color: #666; font-size: 0.9em; margin-top: 6px; }
+  #qa-section { page-break-before: always; }
+  .qa-block { border: 2px solid #2c5aa0; border-radius: 8px; padding: 20px; margin: 25px 0; page-break-inside: avoid; background: #fff; }
+  .qa-question { background: #e8f1fb; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .q-number { font-weight: 900; color: #2c5aa0; font-size: 1.1em; margin-right: 8px; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 1.05em; }
+  .answer-explanation { background: #f5f5f5; padding: 12px 15px; margin: 10px 0; border-radius: 4px; line-height: 1.7; }
+  .distractor-analysis { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+  ul { margin: 8px 0; padding-left: 24px; }
+  li { margin: 3px 0; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-45deg); font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.12); z-index: 9999; pointer-events: none; white-space: nowrap; font-family: Arial,sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div style="font-size:0.95em;color:#555;margin-bottom:8px;">ATPL Ground Training Series — Instrumentation</div>
+  <h1>Chapter 29</h1>
+  <h1 style="font-size:1.8em;margin-top:4px;">Yaw Dampers</h1>
+  <div style="font-size:1.1em;color:#555;margin-top:8px;">DGCA CPL/ATPL Study Notes</div>
+  <div style="font-size:1em;color:#333;margin-top:20px;font-style:italic;">Compiled by Capt. Pankaj Pahil</div>
+</div>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#sec-1">Dutch Roll — The Problem the Yaw Damper Solves</a></li>
+    <li><a href="#sec-2">Why Altitude Worsens Dutch Roll</a></li>
+    <li><a href="#sec-3">Yaw Damper — Purpose and Function</a></li>
+    <li><a href="#sec-4">Yaw Damper System Architecture</a></li>
+    <li><a href="#sec-5">Phase Advance Circuit</a></li>
+    <li><a href="#sec-6">The Dutch Roll Filter</a></li>
+    <li><a href="#sec-7">Rudder Authority and Split Rudder Systems</a></li>
+    <li><a href="#sec-8">Gain Scheduling</a></li>
+    <li><a href="#sec-9">Operating Modes — Synchronisation and Engaged</a></li>
+    <li><a href="#sec-10">LVDT Feedback and Crosswind Compensation</a></li>
+    <li><a href="#sec-11">System Testing</a></li>
+    <li><a href="#qa-section">Practice Questions &amp; Detailed Answers</a></li>
+  </ol>
+</div>
+
+<h2 id="sec-1">1. Dutch Roll — The Problem the Yaw Damper Solves</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Definition and nature of Dutch Roll oscillation and why swept-wing aircraft are particularly susceptible.</div>
+
+<p><strong>Dutch Roll</strong> is an oscillatory motion consisting of a combination of yawing and rolling. It arises from the dynamic <strong>interplay between lateral stability and directional stability</strong>:</p>
+<ul>
+  <li><strong>Strong lateral stability</strong> (dihedral effect) rolls the aircraft back from a bank</li>
+  <li><strong>Weak directional stability</strong> — insufficient yaw correction — allows the nose to swing out of line</li>
+  <li>These two tendencies alternate in a coupled yaw-roll oscillation</li>
+</ul>
+
+<pre class="mermaid">
+flowchart LR
+  A["Gust causes yaw\n(nose left)"] --> B["Swept right wing\nadvances, generates\nmore lift → rolls right"]
+  B --> C["Strong dihedral effect\nrolls aircraft back left"]
+  C --> D["Overswing: nose\nnow swings right"]
+  D --> E["Left wing advances\n→ rolls left"]
+  E --> F["Cycle repeats\n(Dutch Roll)"]
+</pre>
+
+<h3>Why Swept Wings Exacerbate Dutch Roll</h3>
+<p>Swept-wing aircraft have high dihedral effect (rolling tendency from a yaw disturbance) but relatively low keel surface area for directional damping. This <strong>imbalance</strong> — strong lateral vs weak directional stability — is the root cause of Dutch Roll susceptibility in jets.</p>
+
+<figure>
+  <img src="figs/fig_p403_0.png" alt="Dutch roll yaw-roll coupling">
+  <figcaption>Fig 29.1 — Dutch roll yaw-roll coupling (source p.403)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p403_1.png" alt="Dutch roll oscillation path">
+  <figcaption>Fig 29.2 — Dutch roll oscillation path (source p.403)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p403_3.png" alt="Swept wing dihedral effect">
+  <figcaption>Fig 29.3 — Swept wing dihedral effect contributing to Dutch roll (source p.403)</figcaption>
+</figure>
+
+<h2 id="sec-2">2. Why Altitude Worsens Dutch Roll</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why aerodynamic damping decreases at altitude, and why electronic yaw damping is needed.</div>
+
+<p>At altitude, <strong>True Air Speed (TAS) is much higher</strong> for the same Indicated Air Speed (IAS). The aerodynamic damping of any oscillation depends on the change in angle of attack (AoA) produced per unit disturbance. At high TAS, the same angular disturbance produces a <strong>smaller proportional change in AoA</strong> → less aerodynamic damping force.</p>
+
+<div class="amber-box"><strong>Key principle:</strong> Aerodynamic damping decreases with increasing TAS (altitude). This is why aircraft that are neutrally stable or mildly unstable in Dutch Roll at sea level can become significantly under-damped at cruise altitude — requiring an active electronic yaw damper.</div>
+
+<h2 id="sec-3">3. Yaw Damper — Purpose and Function</h2>
+<div class="blue-box"><strong>What this section covers:</strong> What the yaw damper does, when it operates, and its secondary functions.</div>
+
+<p>The yaw damper detects unwanted yaw (Dutch Roll) and applies <strong>rapid, small, automatic rudder deflections</strong> to damp out the oscillation. Unlike the autopilot rudder channel, the yaw damper operates continuously throughout flight — on during the <strong>entire flight from take-off to landing</strong>.</p>
+
+<h3>Functions of the Yaw Damper</h3>
+<ul>
+  <li><strong>Primary:</strong> Damp Dutch Roll oscillations</li>
+  <li><strong>Turn coordination:</strong> Keeps the slip ball centred during coordinated turns</li>
+  <li><strong>Runway alignment:</strong> Assist in aligning aircraft with runway centreline during crosswind landings</li>
+  <li><strong>Asymmetric thrust assistance:</strong> Reduce sideslip tendency during asymmetric power conditions</li>
+</ul>
+
+<div class="green-box"><strong>Large airliners</strong> typically have <span class="reg-value">2 or 3</span> yaw damper systems. Multiple systems provide redundancy and can operate on split rudder panels (upper and lower) for increased authority and fail-safe capability.</div>
+
+<h2 id="sec-4">4. Yaw Damper System Architecture</h2>
+<div class="blue-box"><strong>What this section covers:</strong> System components and signal flow.</div>
+
+<pre class="mermaid">
+flowchart TD
+  YR["Rate Gyro\n(detects yaw rate)"] --> YDC["Yaw Damper\nComputer"]
+  CADC["CADC / ADC\n(gain scheduling input)"] --> YDC
+  RA["Radio Altimeter\n(optional altitude input)"] --> YDC
+  YDC --> PA["Phase Advance\nCircuit"]
+  PA --> DF["Dutch Roll\nFilter\n(band-pass)"]
+  DF --> SER["Rudder Servo\nActuator"]
+  SER --> RUD["Rudder\nDeflection"]
+  LVDT["LVDT Feedback\n(rudder position)"] --> YDC
+</pre>
+
+<figure>
+  <img src="figs/fig_p405_0.png" alt="Yaw damper system block diagram">
+  <figcaption>Fig 29.4 — Yaw damper system block diagram (source p.405)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p405_2.png" alt="Yaw damper signal flow">
+  <figcaption>Fig 29.5 — Yaw damper signal flow and components (source p.405)</figcaption>
+</figure>
+
+<h3>Rate Gyro Sensing</h3>
+<p>The core sensor is a <strong>yaw rate gyro</strong> that measures the angular rate of yaw. The signal goes through the phase advance circuit before the Dutch Roll filter.</p>
+
+<h2 id="sec-5">5. Phase Advance Circuit</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why phase advance is needed and what it does.</div>
+
+<p>Dutch Roll oscillation has a natural frequency. If the yaw damper applies a corrective rudder deflection based purely on the instantaneous yaw rate signal, there is a small time delay in the overall loop (signal processing, servo response, rudder surface deflection). By the time the corrective force is applied, the aircraft's yaw rate has already peaked and started to decrease — the correction arrives <em>late</em>, potentially making things worse.</p>
+
+<div class="green-box"><strong>Phase Advance Solution:</strong> The phase advance circuit shifts the control signal <strong>forward in phase</strong>, so the corrective rudder deflection is applied at the point of <strong>maximum yaw rate</strong> (not at the peak displacement angle). This maximises damping effectiveness.</div>
+
+<figure>
+  <img src="figs/fig_p407_0.png" alt="Phase advance effect on Dutch roll damping">
+  <figcaption>Fig 29.6 — Effect of phase advance circuit on Dutch roll damping (source p.407)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p407_3.png" alt="Phase advance signal comparison">
+  <figcaption>Fig 29.7 — Phase advance signal comparison: with and without phase lead (source p.407)</figcaption>
+</figure>
+
+<h2 id="sec-6">6. The Dutch Roll Filter</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why a band-pass filter is needed and how it prevents rudder deflection during steady turns.</div>
+
+<p>Without filtering, the yaw damper would apply rudder during <em>every</em> yaw input — including deliberate turns. A <strong>Dutch Roll Filter</strong> (also called a <em>wash-out filter</em> or narrow band-pass filter) is inserted to prevent this.</p>
+
+<h3>Filter Characteristics</h3>
+<ul>
+  <li>Passes only signals at the <strong>Dutch Roll frequency</strong> (typically 0.3–1 Hz for transport jets)</li>
+  <li>Attenuates steady-state yaw signals (constant-rate turns produce a DC signal → zero filter output)</li>
+  <li>Attenuates very low frequency (drift) and very high frequency (structural) signals</li>
+</ul>
+
+<div class="amber-box"><strong>Exam Trap:</strong> "During a constant-rate turn, the Dutch Roll filter output is ZERO." — the filter sees a steady, unchanging yaw rate and produces no rudder demand. This is the correct behaviour; the yaw damper does not fight coordinated turns.</div>
+
+<p>The filter ensures the yaw damper only damps the oscillatory Dutch Roll component while ignoring steady manoeuvring yaw rates.</p>
+
+<h2 id="sec-7">7. Rudder Authority and Split Rudder Systems</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How much rudder the yaw damper can apply, and redundancy via split rudder.</div>
+
+<h3>Rudder Authority per System</h3>
+<p>Yaw damper rudder deflection authority is limited to prevent excessive rudder inputs that could cause structural overload:</p>
+<ul>
+  <li>Typical authority: <span class="reg-value">3°–6°</span> per yaw damper system</li>
+  <li>This is sufficient to damp Dutch Roll without the pilot noticing large rudder pedal movement</li>
+</ul>
+
+<div class="green-box"><strong>Dual Systems — Accumulative Authority:</strong> When two yaw damper systems operate on a <strong>single rudder span</strong>, their authority is additive (cumulative). So two systems each rated at 4° = 8° combined authority.</div>
+
+<h3>Split Rudder</h3>
+<p>Many transport aircraft have the rudder divided into <strong>upper and lower panels</strong>, each driven by a separate hydraulic actuator (and a separate yaw damper system). This provides:</p>
+<ul>
+  <li>Redundancy — one system failure means half the rudder remains operative</li>
+  <li>Fail-safe operation — aircraft retains approximately <span class="reg-value">50%</span> Dutch Roll damping capability if one system fails</li>
+</ul>
+
+<div class="red-box"><strong>One Yaw Damper System Failure on Split Rudder:</strong> Only half the rudder span is under damping control → approximately half the protection. "Split rudder: one system failure = ½ protection only."</div>
+
+<h2 id="sec-8">8. Gain Scheduling</h2>
+<div class="blue-box"><strong>What this section covers:</strong> Why yaw damper gain must vary with airspeed, and how this is achieved.</div>
+
+<p>At high airspeeds, even small rudder deflections generate large aerodynamic forces. If the yaw damper applies the same rudder deflection at high speed as it does at low speed, the structural loads could be excessive.</p>
+
+<p>The <strong>CADC (Central Air Data Computer)</strong> provides airspeed/Mach data to the yaw damper computer, which uses this to <strong>reduce the gain</strong> (sensitivity → rudder deflection per unit yaw rate signal) at high speeds. This is <em>gain scheduling</em> or <em>gain programming</em>:</p>
+<ul>
+  <li>Low speed → higher gain (larger rudder deflections needed for adequate damping)</li>
+  <li>High speed → lower gain (smaller deflections to prevent overstress)</li>
+</ul>
+
+<h2 id="sec-9">9. Operating Modes — Synchronisation and Engaged</h2>
+<div class="blue-box"><strong>What this section covers:</strong> The two yaw damper modes and the role of the synchronisation (pre-engagement) mode.</div>
+
+<h3>Synchronisation Mode (Pre-Engagement)</h3>
+<p>When the yaw damper is about to be engaged, it goes through a <strong>synchronisation phase</strong>. An <em>inverting integrator</em> circuit is used to cancel any transient rudder deflection that would occur if the system engaged with the aircraft already in a yaw. The synchronisation ensures a <strong>smooth, transient-free engagement</strong>.</p>
+
+<figure>
+  <img src="figs/fig_p410_0.png" alt="Yaw damper synchronisation circuit">
+  <figcaption>Fig 29.8 — Yaw damper synchronisation circuit (source p.410)</figcaption>
+</figure>
+<figure>
+  <img src="figs/fig_p410_1.png" alt="Yaw damper engaged mode">
+  <figcaption>Fig 29.9 — Yaw damper engaged mode (source p.410)</figcaption>
+</figure>
+
+<h3>Engaged Mode</h3>
+<p>Normal operational mode. The yaw damper computer continuously monitors yaw rate from the rate gyro, passes the signal through the phase advance circuit and Dutch Roll filter, and commands the rudder servo to apply corrective deflections.</p>
+
+<h2 id="sec-10">10. LVDT Feedback and Crosswind Compensation</h2>
+<div class="blue-box"><strong>What this section covers:</strong> LVDT rudder position feedback and why the integrator is needed for crosswind landings.</div>
+
+<p>An <strong>LVDT (Linear Variable Differential Transformer)</strong> on the rudder surface provides position feedback to the yaw damper computer. This ensures the rudder returns to neutral after each corrective deflection — without this, the rudder would creep off centre.</p>
+
+<h3>Crosswind Compensation (Integrator Action)</h3>
+<p>During a crosswind landing, a constant rudder deflection is needed to maintain the aircraft's heading aligned with the runway. The LVDT feedback loop includes an <strong>integrator</strong>:</p>
+<ul>
+  <li>During normal Dutch Roll damping: the integrator ramps quickly, ensuring rudder returns to neutral</li>
+  <li>During a sustained crosswind: the integrator <strong>ramps up slowly</strong> to maintain the offset rudder position, providing the needed steady-state crosswind correction without fighting the rudder</li>
+</ul>
+
+<div class="amber-box"><strong>Exam Tip:</strong> "If a crosswind keeps the rudder off-centre, the integrator slowly ramps up to maintain that offset." This is why the yaw damper aids runway alignment in crosswinds rather than fighting the pilot's crosswind correction.</div>
+
+<h2 id="sec-11">11. System Testing</h2>
+<div class="blue-box"><strong>What this section covers:</strong> How the yaw damper is tested pre-flight and the expected indications.</div>
+
+<h3>Test Procedure</h3>
+<ul>
+  <li>A <strong>Test Switch</strong> applies an electrical signal that <em>torques the yaw rate gyro</em> (simulates a yaw input)</li>
+  <li>The system reacts by commanding a rudder deflection</li>
+  <li>A <strong>Position Indicator</strong> (yaw damper rudder position indicator) moves in the <strong>direction being tested</strong></li>
+  <li>When the test switch is released, the indicator returns to <strong>centre</strong></li>
+</ul>
+
+<div class="green-box"><strong>Test Interpretation:</strong> Indicator moves → correct direction → returns to centre = system serviceable. If the indicator fails to move, or fails to return to centre, a fault is indicated.</div>
+
+<div class="amber-box">
+  <strong>Quick Revision Summary — Chapter 29:</strong>
+  <ul>
+    <li>Dutch Roll = coupled yaw-roll oscillation; caused by high dihedral effect + weak directional damping (swept wings)</li>
+    <li>Aerodynamic damping decreases at altitude (higher TAS → smaller proportional AoA change)</li>
+    <li>Yaw Damper: detects yaw rate → small rapid rudder deflections; operates for <em>entire flight</em></li>
+    <li>Functions: Dutch Roll damping, turn coordination, runway alignment, asymmetric thrust assistance</li>
+    <li>Large airliners: 2–3 yaw damper systems</li>
+    <li>Phase advance: applies correction at <strong>maximum yaw rate</strong> for best damping</li>
+    <li>Dutch Roll filter: passes only Dutch Roll frequency; zero output during constant-rate turns</li>
+    <li>Rudder authority: 3°–6° per system; additive on single rudder span; split rudder = ½ protection if one fails</li>
+    <li>Gain scheduling: CADC reduces gain at high speed to prevent overstress</li>
+    <li>Synchronisation mode: inverting integrator prevents transient at engagement</li>
+    <li>LVDT feedback: ensures rudder returns to neutral; integrator maintains crosswind offset</li>
+    <li>Test: test switch torques gyro → indicator moves in tested direction → returns to centre</li>
+  </ul>
+</div>
+
+<section id="qa-section">
+<h2>Practice Questions &amp; Detailed Answers</h2>
+<div class="blue-box"><em>Instructor-generated questions in DGCA CPL/ATPL examination style.</em></div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q1.</span><span class="q-text">Dutch Roll tendency is worst in swept-wing aircraft because they have:</span>
+    <ol class="q-options" type="a">
+      <li>Low dihedral effect and high directional stability</li>
+      <li>High dihedral effect and low directional stability</li>
+      <li>Low dihedral effect and low directional stability</li>
+      <li>High dihedral effect and high directional stability</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> High dihedral effect and low directional stability</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Swept wings produce high dihedral effect (strong roll response to sideslip), while providing relatively little keel area for directional damping (low directional stability). This imbalance — strong lateral restoring force with weak directional damping — is the root cause of Dutch Roll. See <a href="#sec-1">Section 1</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Low dihedral effect and high directional stability would actually inhibit Dutch Roll — the directional stability would damp the yaw before rolling develops.</li>
+        <li><strong>(c)</strong> Low dihedral + low directional = spiral divergence tendency, not Dutch Roll.</li>
+        <li><strong>(d)</strong> High dihedral + high directional = very stable aircraft; oscillations well-damped.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Think of Dutch Roll as the result of the two stability modes "fighting" each other: lateral stability (dihedral) tries to roll the wings level, directional stability (fin) tries to point the nose straight — but with swept wings the dihedral effect wins temporarily before the fin can act, causing the oscillation.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q2.</span><span class="q-text">The purpose of the Dutch Roll filter in the yaw damper system is to:</span>
+    <ol class="q-options" type="a">
+      <li>Increase rudder deflection during turns</li>
+      <li>Pass only the Dutch Roll frequency and block steady yaw rates</li>
+      <li>Reduce rudder authority at high altitude</li>
+      <li>Prevent the rudder from returning to neutral after deflection</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> Pass only the Dutch Roll frequency and block steady yaw rates</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The Dutch Roll filter is a narrow band-pass filter tuned to the Dutch Roll frequency. During a constant-rate turn, the yaw rate is steady (DC signal) and the filter output is zero — so the yaw damper does not apply rudder during intentional turns. It only passes the oscillatory yaw rate signal characteristic of Dutch Roll. See <a href="#sec-6">Section 6</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> The opposite — the filter prevents rudder input during turns.</li>
+        <li><strong>(c)</strong> Altitude-based gain reduction is the job of gain scheduling using CADC data, not the Dutch Roll filter.</li>
+        <li><strong>(d)</strong> LVDT feedback ensures the rudder returns to neutral; the filter has no role in this.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> "Band-pass" = passes frequencies in a band; "wash-out" = washes out the DC (steady-state) component. Both terms describe the same function here.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q3.</span><span class="q-text">The phase advance circuit in the yaw damper is designed to apply the corrective rudder deflection:</span>
+    <ol class="q-options" type="a">
+      <li>At the point of maximum yaw displacement</li>
+      <li>After the Dutch Roll has completed one full cycle</li>
+      <li>At the point of maximum yaw rate</li>
+      <li>When the aircraft rolls past wings level</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> At the point of maximum yaw rate</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The phase advance circuit shifts the corrective signal forward in phase so that the rudder deflection is applied when yaw rate is maximum. Applying the correction at peak yaw rate maximises the damping force (aerodynamic force is proportional to speed of rudder movement relative to the air). See <a href="#sec-5">Section 5</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Maximum yaw displacement is a phase-lagged point — correcting here would be less effective and potentially add energy.</li>
+        <li><strong>(b)</strong> Waiting for a full cycle to complete would allow the oscillation to grow, not damp it.</li>
+        <li><strong>(d)</strong> Roll through wings level is a lateral event; the phase advance is about yaw rate timing.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> In oscillatory systems, maximum damping is achieved when the corrective force is in phase with the velocity (rate), not the displacement. Phase advance ensures this timing is correct despite system delays.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q4.</span><span class="q-text">If one yaw damper system fails on an aircraft with a split rudder (each panel driven by a separate system), the remaining Dutch Roll protection is:</span>
+    <ol class="q-options" type="a">
+      <li>Zero — full loss of Dutch Roll protection</li>
+      <li>Approximately 75%</li>
+      <li>Approximately 50%</li>
+      <li>100% — no reduction in protection</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(c)</strong> Approximately 50%</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> With a split rudder, one yaw damper system controls the upper rudder panel and another controls the lower panel. If one system fails, only half the rudder span is under yaw damper control → approximately half the damping authority is available. See <a href="#sec-7">Section 7</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> The remaining operative system still provides 50% protection — not zero.</li>
+        <li><strong>(b)</strong> 75% would imply the failed system contributed only 25%, which is not the case with symmetric split rudder systems.</li>
+        <li><strong>(d)</strong> 100% protection would require full rudder span authority from a single system.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Split rudder is specifically designed for this failure case — it avoids total loss of yaw damping while keeping each half independent for maintenance and safety.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q5.</span><span class="q-text">Why does aerodynamic damping of Dutch Roll decrease at high altitude?</span>
+    <ol class="q-options" type="a">
+      <li>Air density increases, reducing the fin's effectiveness</li>
+      <li>TAS is higher, so the same angular disturbance produces a smaller proportional AoA change</li>
+      <li>The yaw rate gyro becomes less sensitive at altitude</li>
+      <li>Swept wing dihedral effect increases with altitude</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> TAS is higher, so the same angular disturbance produces a smaller proportional AoA change</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> Aerodynamic damping depends on the change in AoA produced per unit of angular disturbance. At altitude, TAS is much higher for the same IAS — a given angular displacement of the fin produces a proportionally smaller AoA change → smaller restoring aerodynamic force → less natural damping. See <a href="#sec-2">Section 2</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> Air density decreases at altitude, and lower density means less aerodynamic force — partially correct but not the complete mechanism. The key is TAS vs AoA, not density alone.</li>
+        <li><strong>(c)</strong> Rate gyros are electromechanical devices; their sensitivity does not meaningfully change with altitude.</li>
+        <li><strong>(d)</strong> Dihedral effect changes with speed but is not described as increasing specifically with altitude in this context.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> This explains why yaw dampers are essential for jet transport operations but not needed for most piston trainers — the altitude and TAS differences are the critical factors.</div>
+  </div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">
+    <span class="q-number">Q6.</span><span class="q-text">During a yaw damper pre-engagement test, the position indicator moves to the left and then returns to centre. This indicates:</span>
+    <ol class="q-options" type="a">
+      <li>System fault — the indicator should not move during test</li>
+      <li>System serviceable — correct test response</li>
+      <li>LVDT failure — the indicator should stay at the deflected position</li>
+      <li>Phase advance circuit failure</li>
+    </ol>
+  </div>
+  <div class="qa-answer">
+    <div class="answer-reveal">Correct Answer: <strong>(b)</strong> System serviceable — correct test response</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> During the yaw damper test, the test switch torques the rate gyro to simulate a yaw input. The system responds by deflecting the rudder (indicator moves in the tested direction). When the test switch is released, the LVDT feedback brings the rudder back to neutral (indicator returns to centre). Movement followed by return to centre = system functioning correctly. See <a href="#sec-11">Section 11</a>.</div>
+    <div class="distractor-analysis"><strong>Why other options are wrong:</strong>
+      <ul>
+        <li><strong>(a)</strong> The indicator SHOULD move — that confirms the system responded to the simulated yaw input.</li>
+        <li><strong>(c)</strong> Staying at the deflected position would indicate LVDT failure (rudder not returning to neutral).</li>
+        <li><strong>(d)</strong> Phase advance circuit failure would not affect the test indicator's deflection-and-return response.</li>
+      </ul>
+    </div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> The two key checks in the yaw damper test: (1) indicator moves = gyro torquing → servo → rudder chain works; (2) indicator returns to centre = LVDT feedback → null position circuit works.</div>
+  </div>
+</div>
+
+</section>
+
+<h2>Master Reference Table — Chapter 29</h2>
+<table>
+<tr><th>Item</th><th>Value / Fact</th><th>Section</th></tr>
+<tr><td>Dutch Roll cause</td><td>High dihedral effect + low directional stability (swept wings)</td><td><a href="#sec-1">1</a></td></tr>
+<tr><td>Altitude effect on damping</td><td>Higher TAS → smaller AoA change per disturbance → less aerodynamic damping</td><td><a href="#sec-2">2</a></td></tr>
+<tr><td>Number of yaw damper systems (large airliners)</td><td><span class="reg-value">2–3</span></td><td><a href="#sec-3">3</a></td></tr>
+<tr><td>Yaw damper operation period</td><td>Entire flight (take-off to landing)</td><td><a href="#sec-3">3</a></td></tr>
+<tr><td>Rudder authority per system</td><td><span class="reg-value">3°–6°</span></td><td><a href="#sec-7">7</a></td></tr>
+<tr><td>Split rudder failure (one system)</td><td>~50% damping protection remaining</td><td><a href="#sec-7">7</a></td></tr>
+<tr><td>Phase advance circuit function</td><td>Applies correction at point of maximum yaw rate</td><td><a href="#sec-5">5</a></td></tr>
+<tr><td>Dutch Roll filter</td><td>Band-pass — passes Dutch Roll frequency; zero output during constant-rate turn</td><td><a href="#sec-6">6</a></td></tr>
+<tr><td>Gain scheduling</td><td>CADC reduces gain at high speed to prevent structural overload</td><td><a href="#sec-8">8</a></td></tr>
+<tr><td>Synchronisation mode</td><td>Inverting integrator cancels transient at engagement</td><td><a href="#sec-9">9</a></td></tr>
+<tr><td>LVDT function</td><td>Position feedback ensures rudder returns to neutral; integrator maintains crosswind offset</td><td><a href="#sec-10">10</a></td></tr>
+<tr><td>Test: indicator moves then returns to centre</td><td>System serviceable</td><td><a href="#sec-11">11</a></td></tr>
+</table>
+
+<div class="watermark">Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>
