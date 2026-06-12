@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
+import { ALL_PAST_PAPERS } from "@/lib/past-papers";
 import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -16,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/question-bank"),changeFrequency: "weekly"  as const, priority: 0.8 },
     { url: url("/resources"),    changeFrequency: "monthly" as const, priority: 0.7 },
     { url: url("/mock-test"),    changeFrequency: "monthly" as const, priority: 0.7 },
+    { url: url("/past-papers"),  changeFrequency: "weekly"  as const, priority: 0.8 },
     { url: url("/signup"),       changeFrequency: "monthly" as const, priority: 0.4 },
     { url: url("/login"),        changeFrequency: "monthly" as const, priority: 0.3 },
   ].map(p => ({ ...p, lastModified: now }));
@@ -37,9 +39,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }),
     ]);
 
+  const paperPages: MetadataRoute.Sitemap = ALL_PAST_PAPERS.map(p => ({
+    url: url(`/past-papers/${p.id}`),
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...staticPages,
     ...subjectPages("cpl", CPL_SUBJECTS),
     ...subjectPages("atpl", ATPL_SUBJECTS),
+    ...paperPages,
   ];
 }
