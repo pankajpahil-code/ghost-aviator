@@ -5,6 +5,8 @@ import { OXFORD_NAV_QUESTIONS } from "./oxford-nav-questions";
 import { RK_BALI_REGULATIONS_QUESTIONS } from "./rk-bali-regulations-questions";
 import { AIR_REGS_CH1_QUESTIONS } from "./air-regs-ch1-questions";
 import { SAR_QUESTIONS } from "./sar-questions";
+import { TECHBOOK_QUESTIONS_1 } from "./techbook-questions-1";
+import { TECHBOOK_QUESTIONS_2 } from "./techbook-questions-2";
 import { ECQB_061_NAVIGATION } from "./generated/ecqb-061-navigation";
 import { ICJOSHI_MET } from "./generated/icjoshi-met";
 import { ICJOSHI_NOTES_MET } from "./generated/icjoshi-notes-met";
@@ -24,6 +26,8 @@ const RAW_QUESTIONS: DemoQuestion[] = [
   ...RK_BALI_REGULATIONS_QUESTIONS,
   ...AIR_REGS_CH1_QUESTIONS,
   ...SAR_QUESTIONS,
+  ...TECHBOOK_QUESTIONS_1, // Technical General — own book Q&A (tg-1..18)
+  ...TECHBOOK_QUESTIONS_2, // Technical General — own book Q&A (tg-19..36)
   ...ICJOSHI_NOTES_MET,   // rich HTML-notes Q&A (met-1..11) — wins de-dup
   ...OXFORD_INSTRUMENTATION, // Instrumentation HTML-notes Q&A (inst-1..23)
   ...OXFORD_RADIO_NAV,       // Radio Navigation HTML-notes Q&A (rnav-1..20)
