@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 22: Voice Weather Broadcasts | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 22 &middot; REFERENCE DEPTH</span>
+      <h1 class="hero-title">Voice Weather Broadcasts</h1>
+      <p class="hero-subtitle">While data-link (D-ATIS/D-VOLMET) is now standard in modern cockpits, the exam focuses on the traditional voice broadcasts &mdash; VOLMET and ATIS &mdash; that continuously transmit met conditions on loop over VHF or HF. This chapter covers their structure, differences, and how they keep pilots updated without cluttering the control frequencies.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part III (x) VOLMET &amp; ATIS broadcasts</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Define ATIS and VOLMET.</li>
+        <li>Explain the sequence and contents of an ATIS broadcast.</li>
+        <li>Explain the sequence and contents of a VOLMET broadcast.</li>
+        <li>Understand how to use and acknowledge these broadcasts.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">22.1 ATIS &mdash; the local picture</p>
+      <p>22.2 VOLMET &mdash; the regional picture</p>
+      <p>22.3 The broadcast sequence</p>
+      <p>22.4 Using the information</p>
+      <p>&star; Numbers to memorise</p>
+      <p>? Question bank</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_22_hero.jpg" alt="Aviation radio receiver tuned to a VOLMET frequency">
+      <figcaption>Continuous voice broadcasts allow pilots to copy down weather and aerodrome information before contacting ATC, drastically reducing congestion on the main control frequencies.</figcaption>
+    </figure>
+
+    <h2>22.1 ATIS &mdash; the local picture</h2>
+    
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-broadcast-tower"></i> Definition &mdash; Automatic Terminal Information Service</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>ATIS</strong> is the continuous broadcast of recorded non-control information in selected high-activity terminal areas. It contains <strong>both meteorological and operational information</strong> (runway in use, approach type, transition level) for a <strong>single aerodrome</strong>. It is updated when conditions change significantly, and each update is given an <strong>alphabetical designator</strong> (Alpha, Bravo, Charlie...).
+      </p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic &mdash; the purpose</div>
+      <p style="margin:0; line-height: 1.8;">
+        The purpose of ATIS is <strong>to relieve frequency congestion</strong>. Because the pilot listens to the ATIS on a separate frequency before calling approach, the controller does not have to read the weather and runway details to every arriving aircraft.
+      </p>
+    </div>
+
+    <h2>22.2 VOLMET &mdash; the regional picture</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-globe-asia"></i> Definition &mdash; VOLMET</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>VOLMET</strong> (meteorological information for aircraft in flight) is a continuous or scheduled voice broadcast of meteorological information for <strong>several aerodromes in a region</strong>. It contains <strong>only met information</strong> (METARs, TRENDs, and sometimes TAFs or SIGMETs) &mdash; no operational details like runway-in-use. It allows an aircraft in the cruise to check the weather at its destination and alternates well in advance.
+      </p>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>ATIS</th>
+            <th>VOLMET</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Scope</strong></td><td>One specific aerodrome (terminal area)</td><td>Several aerodromes in a region</td></tr>
+          <tr><td><strong>Contents</strong></td><td>Weather <strong>AND</strong> operational info (runway, approaches, NOTAMs)</td><td><strong>ONLY</strong> weather (METAR, TREND, TAF, SIGMET)</td></tr>
+          <tr><td><strong>Updates</strong></td><td>Designated by a letter (Information Alpha)</td><td>Usually updated every half hour (no letter)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>22.3 The broadcast sequence</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-list-ol"></i> The standard order</div>
+      <p style="margin:0; line-height: 1.8;">
+        Both ATIS and VOLMET follow the standard meteorological sequence (the same order as a METAR): <strong>identification &middot; time &middot; surface wind &middot; visibility/RVR &middot; weather &middot; cloud &middot; temperature/dew point &middot; QNH &middot; trend</strong>.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; typical ATIS</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATIS</span> Delhi International Airport, information Charlie, zero eight three zero zulu. Expect ILS approach runway two seven, runway two seven and two eight in use. Wind two four zero degrees, one zero knots. Visibility three thousand metres. Haze. Cloud few three thousand feet. Temperature three two, dew point two zero. QNH one zero zero nine. Acknowledge receipt of information Charlie on initial contact.</div>
+      </div>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_twenty_two_one.jpg" alt="The VOLMET/ATIS Sequence">
+      <figcaption>Figure 22.1 &mdash; The Sequence: The broadcast strictly follows the METAR order, allowing pilots to rapidly copy the data into standard forms on their kneeboards.</figcaption>
+    </figure>
+
+    <h2>22.4 Using the information</h2>
+
+    <div class="callout box-blue" style="border-left-color: #0ea5e9; background:#e0f2fe;">
+      <div class="callout-title" style="color:#0ea5e9;"><i class="fas fa-check"></i> Acknowledging ATIS</div>
+      <p style="margin:0; line-height: 1.8;">
+        When making initial contact with Approach or Ground, the pilot states they have the ATIS by giving the <strong>letter</strong> and the <strong>QNH</strong> (to prove it is the correct current version). Example: "<strong>Delhi Approach, Ghostair ABC, descending flight level one five zero, information Charlie, QNH one zero zero nine</strong>." The controller then does not need to read the weather to them.
+      </p>
+    </div>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 22</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>ATIS</strong></td><td>Automatic Terminal Information Service</td></tr>
+          <tr><td><strong>ATIS covers</strong></td><td>One aerodrome; met AND operational info (runways/approaches)</td></tr>
+          <tr><td><strong>ATIS identifier</strong></td><td>Alphabetical letter (Alpha, Bravo, etc.)</td></tr>
+          <tr><td><strong>VOLMET covers</strong></td><td>Several aerodromes; ONLY met info (no runways)</td></tr>
+          <tr><td><strong>Sequence</strong></td><td>ID &middot; time &middot; wind &middot; vis &middot; weather &middot; cloud &middot; temp/dew &middot; QNH &middot; trend</td></tr>
+          <tr><td><strong>Pilot action (ATIS)</strong></td><td>State information letter and QNH on initial contact with ATC</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A &mdash; MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. What does ATIS stand for?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Aviation Terminal Information System</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Automatic Terminal Information Service</li>
+          <li onclick="checkAnswer(this, false)">Aerodrome Traffic Information Service</li>
+          <li onclick="checkAnswer(this, false)">Air Traffic Instruction Service</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Automatic Terminal Information Service.</strong> ATIS is the Automatic Terminal Information Service.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. An ATIS broadcast contains:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Only meteorological information for several aerodromes</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Meteorological and operational information for a single aerodrome</li>
+          <li onclick="checkAnswer(this, false)">Control clearances</li>
+          <li onclick="checkAnswer(this, false)">Radar vectors</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Meteorological and operational information for a single aerodrome.</strong> ATIS covers one aerodrome and includes operational data like runway-in-use.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. The primary purpose of ATIS is to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Provide radar separation</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Relieve frequency congestion on the ATC channels</li>
+          <li onclick="checkAnswer(this, false)">Clear aircraft to land</li>
+          <li onclick="checkAnswer(this, false)">Broadcast distress messages</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Relieve frequency congestion on the ATC channels.</strong> By putting routine info on a separate broadcast, the main frequency is kept clear.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. Successive ATIS broadcasts are identified by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A number</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">An alphabetical letter (e.g. Information Alpha)</li>
+          <li onclick="checkAnswer(this, false)">The frequency</li>
+          <li onclick="checkAnswer(this, false)">A squawk code</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: An alphabetical letter (e.g. Information Alpha).</strong> Each new ATIS update gets the next letter in the alphabet.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. VOLMET contains:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Runway in use and approach types</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Only meteorological information for several aerodromes in a region</li>
+          <li onclick="checkAnswer(this, false)">Only information for a single aerodrome</li>
+          <li onclick="checkAnswer(this, false)">Control clearances</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Only meteorological information for several aerodromes in a region.</strong> VOLMET provides only weather, for multiple stations.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. On initial contact with ATC, a pilot proves receipt of the ATIS by stating:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"Weather copied"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The information letter and the QNH</li>
+          <li onclick="checkAnswer(this, false)">The surface wind</li>
+          <li onclick="checkAnswer(this, false)">"Roger ATIS"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The information letter and the QNH.</strong> "Information Charlie, QNH 1009" confirms you have the latest and correct version.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. The standard sequence of elements in an ATIS/VOLMET is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Randomised to keep pilots alert</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Wind, visibility, weather, cloud, temp/dew, QNH</li>
+          <li onclick="checkAnswer(this, false)">QNH, wind, cloud, visibility, temp</li>
+          <li onclick="checkAnswer(this, false)">Temp, wind, QNH, cloud, visibility</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Wind, visibility, weather, cloud, temp/dew, QNH.</strong> It follows the standard METAR sequence.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. If an aircraft hears the ATIS, does the controller need to read the weather to them?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Yes, always</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">No, not unless there is a significant change</li>
+          <li onclick="checkAnswer(this, false)">Only the wind</li>
+          <li onclick="checkAnswer(this, false)">Only the QNH</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: No, not unless there is a significant change.</strong> That is the whole point of ATIS &mdash; to save the controller passing it.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B &mdash; Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is ATIS and what is its purpose?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Automatic Terminal Information Service is the continuous broadcast of recorded meteorological and operational information for a single aerodrome. Its purpose is to relieve frequency congestion on the main ATC channels.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How does VOLMET differ from ATIS?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          VOLMET provides only meteorological information (no operational info like runway-in-use) and covers several aerodromes in a region, whereas ATIS covers a single aerodrome and includes operational data.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the standard sequence of weather elements in a broadcast?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Surface wind, visibility (or RVR), present weather, cloud, temperature and dew point, QNH, and trend.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How should a pilot acknowledge receipt of the ATIS?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          On initial contact with ATC, the pilot states the ATIS information letter and the QNH &mdash; e.g. "Information Bravo, QNH 1012."
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>ATIS</strong> = 1 aerodrome; met + operational info (runway); identified by a letter; relieves frequency congestion.</li>
+        <li><strong>VOLMET</strong> = regional (multiple aerodromes); ONLY met info.</li>
+        <li><strong>Sequence</strong>: wind &middot; vis &middot; weather &middot; cloud &middot; temp/dew &middot; QNH.</li>
+        <li><strong>Acknowledge ATIS</strong> by stating the letter and QNH on initial contact.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 22 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

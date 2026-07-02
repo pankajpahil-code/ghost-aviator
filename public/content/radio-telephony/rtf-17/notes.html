@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 17: Approach Control | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 17 &middot; REFERENCE DEPTH</span>
+      <h1 class="hero-title">Approach Control</h1>
+      <p class="hero-subtitle">Approach control owns the busy transition between the runway and the en-route world &mdash; sequencing arrivals down to final, launching departures up to the airways, and, where there is no ILS, talking an aircraft all the way to the runway by radar. This chapter covers IFR and VFR arrivals and departures, vectors to final, and the surveillance and precision radar approaches your original notes were missing.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part III (vi) Approach control &mdash; IFR/VFR departures &amp; arrivals, vectors to final, surveillance &amp; precision radar approach</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Describe approach control's role and where it sits between Tower and Area control.</li>
+        <li>Use IFR and VFR departure and arrival phraseology.</li>
+        <li>Be vectored to an ILS final and read back an approach clearance.</li>
+        <li>Fly a Surveillance Radar Approach (SRA) talkdown.</li>
+        <li>Fly a Precision Approach Radar (PAR) talkdown and apply its "do not acknowledge" rule.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">17.1 What approach control does</p>
+      <p>17.2 IFR &amp; VFR departures</p>
+      <p>17.3 IFR &amp; VFR arrivals</p>
+      <p>17.4 Vectors to an ILS final</p>
+      <p style="margin-top:0;">17.5 Surveillance Radar Approach (SRA)</p>
+      <p>17.6 Precision Approach Radar (PAR)</p>
+      <p>&star; Numbers to memorise</p>
+      <p>? Question bank</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_17_hero.jpg" alt="Radar Approach Control Room">
+      <figcaption>Approach control uses surveillance radar to vector and sequence aircraft in the terminal area, bridging the gap between the aerodrome and the en-route airways.</figcaption>
+    </figure>
+
+    <h2>17.1 What approach control does</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Approach control</strong> ("Approach", "Radar", "Director") handles aircraft in the <strong>terminal area</strong> &mdash; climbing departures handed up from Tower until they reach the airways, and descending arrivals handed down from Area control until they are established on final and passed to Tower. It usually has radar (a surveillance display), which is why it can <strong>vector</strong> aircraft and provide radar approaches.
+      </p>
+    </div>
+
+    <h2>17.2 IFR &amp; VFR departures</h2>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; IFR departure handed to approach</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Approach, Ghostair Alfa Bravo Charlie, passing two thousand, PAPA two departure.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, identified, climb flight level one zero zero, when ready direct PAPA.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Climb flight level one zero zero, when ready direct PAPA, Ghostair Alfa Bravo Charlie.</div>
+      </div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; VFR departure</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Approach, VT-ABC, leaving the zone to the north, VFR, two thousand feet.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, roger, report leaving the zone, traffic is a helicopter two miles north.</div>
+      </div>
+    </div>
+
+    <h2>17.3 IFR &amp; VFR arrivals</h2>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; IFR arrival</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Approach, Ghostair Alfa Bravo Charlie, flight level one zero zero, inbound PAPA, information Delta.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, descend flight level six zero, expect ILS approach runway two seven.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Descend flight level six zero, expect ILS runway two seven, Ghostair Alfa Bravo Charlie.</div>
+      </div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-lightbulb"></i> "Expect" vs a clearance</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>"Expect ILS approach runway two seven"</strong> is advance information so you can prepare &mdash; it is <strong>not</strong> the approach clearance. The clearance comes later: "cleared ILS approach runway two seven". VFR arrivals are given <strong>join instructions</strong> as in Chapter 15.
+      </p>
+    </div>
+
+    <h2>17.4 Vectors to an ILS final</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-location-arrow"></i> WHY VECTORS</div>
+      <p style="margin:0; line-height: 1.8;">
+        Radar lets the controller <strong>vector</strong> (assign headings to) arrivals so they intercept the ILS localizer at a sensible angle and spacing. The sequence is: turn onto a base heading, descend to the platform altitude, then a closing heading to intercept, then the approach clearance.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; vectors to ILS</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, turn left heading two one zero, descend two thousand five hundred feet, QNH one zero one three.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Left heading two one zero, descend two thousand five hundred feet, QNH one zero one three, Ghostair Alfa Bravo Charlie.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, closing the localizer from the left, report established. Turn left heading two five zero, cleared ILS approach runway two seven.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Left heading two five zero, cleared ILS approach runway two seven, wilco, Ghostair Alfa Bravo Charlie.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Ghostair Alfa Bravo Charlie, established ILS runway two seven.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, contact Tower one one eight decimal one.</div>
+      </div>
+    </div>
+
+    <h2>17.5 Surveillance Radar Approach (SRA)</h2>
+
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-radar"></i> What an SRA is</div>
+      <p style="margin:0; line-height: 1.8;">
+        A <strong>Surveillance Radar Approach</strong> is a non-precision approach in which the controller uses the surveillance radar to give the pilot <strong>azimuth (heading) guidance</strong> and a series of <strong>ranges with advised heights</strong>, but <strong>no glidepath</strong> &mdash; the pilot maintains the correct descent by comparing the radar range with the advised height. It usually <strong>terminates at a fixed range</strong> (commonly 2 NM or &frac12; NM) from touchdown, from where the pilot continues visually.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; SRA talkdown</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, this will be a surveillance radar approach runway two seven, terminating at two miles. Check your minima. Turn left heading two seven zero, closing from the right.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, range six miles, height should be one thousand nine hundred feet.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, range four miles, height should be one thousand three hundred feet. On track.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, range two miles, height should be six hundred and fifty feet, approach completed, contact Tower.</div>
+      </div>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">On an SRA the pilot is <strong>not</strong> normally asked to acknowledge each range/height call &mdash; the controller transmits a steady stream. The pilot flies the heading and checks the advised heights against the ranges. There is <strong>no electronic glidepath</strong>; the height/range advisory <em>is</em> the descent guide.</p>
+    </div>
+
+    <h2>17.6 Precision Approach Radar (PAR)</h2>
+
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-crosshairs"></i> What a PAR is</div>
+      <p style="margin:0; line-height: 1.8;">
+        A <strong>Precision Approach Radar</strong> gives the pilot <strong>continuous azimuth AND elevation guidance</strong> &mdash; the controller watches the aircraft against both the centreline and a precise glidepath, and "talks it down" with a constant patter of corrections almost to touchdown. It is a true precision approach (used mainly by military and some civil fields).
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-square"></i> The "do not acknowledge" rule</div>
+      <p style="margin:0;">Because the talkdown is continuous and time-critical, the controller instructs the pilot <strong>"do not acknowledge further transmissions"</strong>. The pilot then simply flies the corrections and does not reply, so the channel stays clear for the steady stream of guidance.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; PAR talkdown</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, this will be a precision approach runway two seven. Do not acknowledge further transmissions. Turn left heading two seven two.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, approaching the glidepath &hellip; on the glidepath &hellip; on centreline.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Slightly above the glidepath, coming down nicely &hellip; on the glidepath. On centreline.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Going slightly left of centreline, turn right two degrees &hellip; on centreline. On the glidepath. Approaching decision height.</div>
+      </div>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic &mdash; SRA vs PAR</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>SRA = Steered + Range/height (no glidepath)</strong>; <strong>PAR = Precise (centreline + glidepath), continuous, don't acknowledge.</strong> PAR gives <em>both</em> dimensions; SRA gives heading plus a height-check table.
+      </p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_seventeen_one.jpg" alt="SRA vs PAR Diagram">
+      <figcaption>Figure 17.1 &mdash; SRA vs PAR: what the controller can see and say. SRA provides headings and step-down altitudes, while PAR provides a continuous glidepath talkdown.</figcaption>
+    </figure>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 17</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Approach control</strong></td><td>Terminal area between Tower and Area control; usually radar-equipped</td></tr>
+          <tr><td><strong>"Expect" approach</strong></td><td>Advance info, NOT the approach clearance</td></tr>
+          <tr><td><strong>Vectors to ILS</strong></td><td>Base heading &rarr; descend platform &rarr; closing heading &rarr; "cleared ILS approach"</td></tr>
+          <tr><td><strong>SRA</strong></td><td>Heading + range/height advisories, NO glidepath; terminates ~2 NM (or &frac12; NM)</td></tr>
+          <tr><td><strong>PAR</strong></td><td>Continuous azimuth + elevation talkdown; "do not acknowledge further transmissions"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A &mdash; MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. Approach control handles aircraft:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Only on the runway</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">In the terminal area between Tower and Area control</li>
+          <li onclick="checkAnswer(this, false)">Only over the ocean</li>
+          <li onclick="checkAnswer(this, false)">On the apron</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: In the terminal area between Tower and Area control.</strong> Approach sequences arrivals down to final and departures up to the airways.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. "Expect ILS approach runway 27" is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The approach clearance</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Advance information, not a clearance</li>
+          <li onclick="checkAnswer(this, false)">A landing clearance</li>
+          <li onclick="checkAnswer(this, false)">A vector</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Advance information, not a clearance.</strong> "Expect" prepares you; the clearance "cleared ILS approach" comes later.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. To vector an aircraft, the controller assigns:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A squawk</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Headings (and often levels)</li>
+          <li onclick="checkAnswer(this, false)">A frequency</li>
+          <li onclick="checkAnswer(this, false)">A call sign</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Headings (and often levels).</strong> Vectoring is the assignment of headings using radar.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. A Surveillance Radar Approach provides:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Azimuth and glidepath guidance</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Heading guidance plus range/height advisories, no glidepath</li>
+          <li onclick="checkAnswer(this, false)">No guidance at all</li>
+          <li onclick="checkAnswer(this, false)">Only a squawk</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Heading guidance plus range/height advisories, no glidepath.</strong> SRA gives heading and a series of ranges with advised heights; there is no glidepath.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. An SRA normally terminates at:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The threshold</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A fixed range, commonly 2 NM (or &frac12; NM)</li>
+          <li onclick="checkAnswer(this, false)">10 NM</li>
+          <li onclick="checkAnswer(this, false)">It never terminates</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A fixed range, commonly 2 NM (or &frac12; NM).</strong> SRAs terminate at a set range, from where the pilot continues visually.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. On an SRA, the pilot maintains the correct descent by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Following an electronic glidepath</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Comparing the radar range with the advised height</li>
+          <li onclick="checkAnswer(this, false)">Using GPS only</li>
+          <li onclick="checkAnswer(this, false)">Listening to the marker beacons</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Comparing the radar range with the advised height.</strong> The advised height for each range is the descent guide; there is no glidepath signal.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. A Precision Approach Radar provides:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Heading only</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Continuous azimuth and elevation (centreline + glidepath) guidance</li>
+          <li onclick="checkAnswer(this, false)">Range only</li>
+          <li onclick="checkAnswer(this, false)">No talkdown</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Continuous azimuth and elevation (centreline + glidepath) guidance.</strong> PAR gives both dimensions continuously &mdash; a true precision talkdown.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. On a PAR, the controller instructs the pilot to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Acknowledge every transmission</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Not acknowledge further transmissions</li>
+          <li onclick="checkAnswer(this, false)">Squawk ident</li>
+          <li onclick="checkAnswer(this, false)">Change frequency each mile</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Not acknowledge further transmissions.</strong> "Do not acknowledge further transmissions" keeps the channel clear for continuous guidance.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. "Closing the localizer from the left, cleared ILS approach runway 27" tells the pilot to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Continue past the localizer</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Intercept the localizer and fly the ILS approach</li>
+          <li onclick="checkAnswer(this, false)">Go around</li>
+          <li onclick="checkAnswer(this, false)">Hold</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Intercept the localizer and fly the ILS approach.</strong> It is the approach clearance once positioned to intercept the localizer.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. A VFR arrival is given:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A radar talkdown</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Join instructions (as for the circuit)</li>
+          <li onclick="checkAnswer(this, false)">An oceanic clearance</li>
+          <li onclick="checkAnswer(this, false)">A SELCAL check</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Join instructions (as for the circuit).</strong> VFR arrivals receive join instructions, then are sequenced visually.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. The platform/intercept altitude on vectors is given as a:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Flight level only</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Descent to an altitude with QNH, read back</li>
+          <li onclick="checkAnswer(this, false)">Squawk</li>
+          <li onclick="checkAnswer(this, false)">Heading</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Descent to an altitude with QNH, read back.</strong> Below the transition level the controller assigns an altitude on QNH, which is read back.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. After establishing on the ILS, the aircraft is usually:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Told to hold</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Transferred to Tower</li>
+          <li onclick="checkAnswer(this, false)">Told to squawk standby</li>
+          <li onclick="checkAnswer(this, false)">Given an oceanic clearance</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Transferred to Tower.</strong> Approach hands the established aircraft to Tower for landing.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. The key difference between SRA and PAR is that PAR also provides:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A squawk</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Glidepath (elevation) guidance</li>
+          <li onclick="checkAnswer(this, false)">A frequency change</li>
+          <li onclick="checkAnswer(this, false)">Wind information</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Glidepath (elevation) guidance.</strong> PAR adds continuous elevation/glidepath guidance that the SRA lacks.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. On a PAR talkdown, "on the glidepath, on centreline" means the aircraft is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Too high and left</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Correctly positioned in both the vertical and the lateral plane</li>
+          <li onclick="checkAnswer(this, false)">Below the glidepath</li>
+          <li onclick="checkAnswer(this, false)">Off the radar</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Correctly positioned in both the vertical and the lateral plane.</strong> It confirms correct position on both the glidepath and the runway centreline.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. An IFR departure handed to Approach typically receives:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A landing clearance</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A climb clearance and identification</li>
+          <li onclick="checkAnswer(this, false)">A SELCAL check</li>
+          <li onclick="checkAnswer(this, false)">Holding instructions only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A climb clearance and identification.</strong> Approach identifies the departure and issues climb instructions toward the airways.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. The reason a controller can vector and provide radar approaches is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">It has no radar</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Approach is usually radar-equipped (a surveillance display)</li>
+          <li onclick="checkAnswer(this, false)">It uses HF only</li>
+          <li onclick="checkAnswer(this, false)">It is on the apron</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Approach is usually radar-equipped (a surveillance display).</strong> Radar at approach control enables vectoring and SRA/PAR.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B &mdash; Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is approach control's role?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          To control aircraft in the terminal area &mdash; sequencing arrivals from Area control down to final and handing them to Tower, and taking departures from Tower and climbing them up to the airways &mdash; usually with radar, allowing vectoring and radar approaches.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between "expect" an approach and being "cleared" for it?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          "Expect ILS approach runway 27" is advance information to help the crew prepare; the clearance to fly the approach is "cleared ILS approach runway 27", given when positioned to intercept.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Describe a Surveillance Radar Approach.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          A non-precision approach where the controller gives heading guidance and a series of ranges each with an advised height, but no glidepath. The pilot keeps the correct descent by comparing range with advised height, and the approach terminates at a fixed range (commonly 2 NM) from where the pilot continues visually.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Describe a Precision Approach Radar and its key procedural rule.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          A precision approach in which the controller gives continuous azimuth and elevation guidance &mdash; centreline and glidepath &mdash; talking the aircraft down almost to touchdown. The pilot is told "do not acknowledge further transmissions" so the channel stays clear for the continuous guidance.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between SRA and PAR?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          SRA provides heading plus range/height advisories with no glidepath; PAR additionally provides continuous glidepath (elevation) guidance, making it a true precision approach.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>Approach</strong> = terminal area, between Tower and Area; radar-equipped &rarr; vectoring &amp; radar approaches.</li>
+        <li>Vectors to ILS: base heading &rarr; descend to platform (QNH) &rarr; closing heading &rarr; <strong>cleared ILS approach</strong> &rarr; Tower.</li>
+        <li><strong>"Expect"</strong> &ne; clearance. VFR arrivals get join instructions.</li>
+        <li><strong>SRA:</strong> heading + range/height, <strong>no glidepath</strong>, terminates ~2 NM.</li>
+        <li><strong>PAR:</strong> continuous centreline + glidepath, <strong>"do not acknowledge further transmissions"</strong>.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 17 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

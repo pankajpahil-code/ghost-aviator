@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 6: Meteorological Codes & the Pre-Flight Briefing Service | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      // Clear previous selections
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 6 · REFERENCE DEPTH</span>
+      <h1 class="hero-title">Meteorological Codes & the Pre-Flight Briefing Service</h1>
+      <p class="hero-subtitle">Weather is the single biggest variable in aviation, and the industry built a compact, coded language to describe it — terse strings that pack an entire weather picture into one line. This chapter teaches you to read those codes fluently and shows how the pre-flight briefing service puts that weather, and the NOTAMs, in your hands before you fly.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part I (ix) Meteorological codes, Pre-Flight briefing service and their usages</p>
+    </div>
+
+    <!-- Objectives -->
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Explain why aviation weather is coded and read a METAR/SPECI field by field.</li>
+        <li>Interpret a TAF, its validity and change groups, and the TREND group.</li>
+        <li>Identify SIGMET, AIRMET, PIREP and GAMET, and the ATIS/VOLMET broadcasts.</li>
+        <li>State the CAVOK criteria and decode the cloud, weather and RVR groups.</li>
+        <li>Describe the pre-flight briefing service and the pilot's information sequence to a go/no-go decision.</li>
+      </ul>
+    </div>
+
+    <!-- Table of Contents for Chapter -->
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">6.1 Why weather is coded</p>
+      <p>6.2 METAR & SPECI — field by field</p>
+      <p>6.3 Cloud, weather & RVR groups</p>
+      <p>6.4 TAF — the aerodrome forecast</p>
+      <p>6.5 TREND, SIGMET, AIRMET, PIREP</p>
+      <p style="margin-top:0;">6.6 ATIS & VOLMET</p>
+      <p>6.7 CAVOK</p>
+      <p>6.8 The pre-flight briefing service</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/cockpit_hero.jpg" alt="Cockpit Night Flight View">
+      <figcaption>Understanding coded weather accurately is critical for safe decision-making in the flight deck.</figcaption>
+    </figure>
+
+    <h2>6.1 Why weather is coded</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — LANGUAGE-PROOF, TRANSMISSION-PROOF WEATHER</div>
+      <p style="margin:0;">Weather decisions are made by crews of every nationality, and the information often crosses a noisy radio or telex link. A free-text English forecast would be slow, ambiguous and easy to garble. So the world adopted a <strong>fixed-order, internationally standardised code</strong>: every report follows the same sequence of groups, so a pilot in Mumbai or Madrid reads it identically and a single transposed letter is obvious. Master the <strong>order of the slots</strong> and any report decodes itself.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-book"></i> The two families</div>
+      <p style="margin:0; line-height:2;">
+        <strong>Reports</strong> describe weather that <em>is</em> happening: <strong>METAR</strong> (routine, observed) and <strong>SPECI</strong> (special, off-schedule observation).<br>
+        <strong>Forecasts</strong> describe weather that <em>will</em> happen: <strong>TAF</strong> (aerodrome forecast) and the appended <strong>TREND</strong> (a 2-hour landing forecast).
+      </p>
+    </div>
+
+    <h2>6.2 METAR & SPECI — field by field</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">A METAR is the routine observed weather at an aerodrome, issued at fixed intervals (commonly every 30 or 60 minutes). A SPECI uses the same format but is issued <em>off-schedule</em> when something changes significantly. Both follow the same fixed order.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">Example METAR Breakdown</div>
+      <table>
+        <tbody>
+          <tr><td colspan="2" style="background:#0f172a; color:#38bdf8; font-family:'JetBrains Mono', monospace; padding:15px; font-size:1.1rem; letter-spacing:1px;">VABB 241230Z 27008KT 8000 -RA FEW020 SCT025 BKN090 32/26 Q1008 NOSIG</td></tr>
+          <tr><td><strong>VABB</strong></td><td>Mumbai — station (ICAO indicator)</td></tr>
+          <tr><td><strong>241230Z</strong></td><td>24th day of month, 1230 UTC (Zulu)</td></tr>
+          <tr><td><strong>27008KT</strong></td><td>wind 270&deg; (TRUE) at 8 knots</td></tr>
+          <tr><td><strong>8000</strong></td><td>visibility 8000 metres</td></tr>
+          <tr><td><strong>-RA</strong></td><td>light rain (&minus; light, &plus; heavy)</td></tr>
+          <tr><td><strong>FEW020<br>SCT025<br>BKN090</strong></td><td>few cloud at 2000 ft;<br>scattered 2500 ft;<br>broken 9000 ft</td></tr>
+          <tr><td><strong>32/26</strong></td><td>temperature 32 &deg;C / dewpoint 26 &deg;C</td></tr>
+          <tr><td><strong>Q1008</strong></td><td>QNH 1008 hPa (an "A2992" would be inches of mercury)</td></tr>
+          <tr><td><strong>NOSIG</strong></td><td>trend: no significant change expected</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic — read a METAR in order</div>
+      <p style="margin:0;"><strong>"Station, Time, Wind, Visibility, Weather, Cloud, Temp/Dewpoint, Pressure, Trend."</strong> Always the same slots — once you know them, any METAR decodes itself.</p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap — wind reference</div>
+      <p style="margin:0;">Wind in a METAR/TAF is in <strong>degrees TRUE and knots</strong>; the surface wind <strong>passed by ATC on the radio</strong> is in <strong>degrees MAGNETIC</strong>. Same wind, different reference — a favourite catch. A gust is shown as e.g. 27015G27KT; a variable direction as VRB.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — extract the operational picture</div>
+      <p style="margin:0; line-height:1.8;">
+        From the METAR above: lowest <strong>broken</strong> (operational ceiling) is BKN090 = 9000 ft; visibility 8000 m; light rain; temp/dewpoint <strong>32/26</strong> — a 6 &deg;C spread, so humid but not yet fog.<br>
+        <strong>Why temp/dewpoint matters:</strong> when the dewpoint closes on the temperature, the air is near saturation and <strong>fog/low cloud</strong> becomes likely. A 1–2 &deg;C spread on a cooling evening is a warning sign for the destination.
+      </p>
+    </div>
+
+    <h2>6.3 Cloud, weather & RVR groups</h2>
+    
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-cloud"></i> Cloud amount (oktas of sky covered)</div>
+      <p style="margin:0;"><strong>FEW</strong> 1–2 oktas &middot; <strong>SCT</strong> (scattered) 3–4 &middot; <strong>BKN</strong> (broken) 5–7 &middot; <strong>OVC</strong> (overcast) 8. Heights are in <strong>hundreds of feet above aerodrome</strong> (020 = 2000 ft). <strong>NSC</strong> = nil significant cloud; <strong>SKC/NCD</strong> = sky clear / no cloud detected.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">Weather Groups</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Group</th>
+            <th>Meaning</th>
+            <th>Group</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>RA / SN</strong></td><td>Rain / Snow</td><td><strong>FG / BR</strong></td><td>Fog / Mist</td></tr>
+          <tr><td><strong>TS / SH</strong></td><td>Thunderstorm / Shower</td><td><strong>DZ / GR</strong></td><td>Drizzle / Hail</td></tr>
+          <tr><td><strong>CB / TCU</strong></td><td>Cumulonimbus / Towering cumulus</td><td><strong>HZ / FU</strong></td><td>Haze / Smoke</td></tr>
+          <tr><td><strong>+ / &minus;</strong></td><td>Heavy / Light prefix</td><td><strong>VC</strong></td><td>In the vicinity</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-eye"></i> RVR in a METAR</div>
+      <p style="margin:0;">When visibility is low, an <strong>RVR</strong> group appears, e.g. <strong>R27/0600</strong> = runway 27, RVR 600 m. <strong>Runway Visual Range</strong> is the distance over which a pilot on the centreline can see the runway markings or lights — measured by transmissometers, and the governing visibility for low-visibility approaches (full RT detail in Chapter 21).</p>
+    </div>
+
+    <h2>6.4 TAF — the aerodrome forecast</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">A TAF is the forecast for an aerodrome over a <strong>validity period</strong>, written in the same vocabulary as a METAR but with <strong>change groups</strong> that say "and then it will become…". A TAF begins with its issue time and the validity period (e.g. 2412/2512 = from the 24th 1200Z to the 25th 1200Z).</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">TAF Change Groups</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Group</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>FM (FROM)</strong></td><td>A rapid, permanent change from the stated time onward</td></tr>
+          <tr><td><strong>BECMG</strong></td><td>A gradual (becoming) change over the stated period</td></tr>
+          <tr><td><strong>TEMPO</strong></td><td>Temporary fluctuations, each lasting under an hour, totalling less than half the period</td></tr>
+          <tr><td><strong>PROB30 / PROB40</strong></td><td>30% / 40% probability of the stated conditions</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>6.5 TREND, SIGMET, AIRMET & PIREP</h2>
+    
+    <div class="table-container">
+      <div class="table-caption">Other Met Bulletins</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>What it is</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>TREND</strong></td><td>A 2-hour landing forecast appended to a METAR (NOSIG / BECMG / TEMPO)</td></tr>
+          <tr><td><strong>SIGMET</strong></td><td>Warning of weather <strong>significant to all aircraft</strong> — thunderstorms, severe turbulence/icing, volcanic ash, tropical cyclones, dust/sandstorms</td></tr>
+          <tr><td><strong>AIRMET</strong></td><td>Warning of weather significant to <strong>low-level / lighter aircraft</strong> operations</td></tr>
+          <tr><td><strong>PIREP</strong></td><td>A <strong>pilot report</strong> of conditions actually encountered in flight</td></tr>
+          <tr><td><strong>GAMET</strong></td><td>An area forecast for low-level flights</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;"><strong>SIGMET = SIGnificant to all; AIRMET = lighter AIRcraft.</strong> Both are warnings; PIREP is what a pilot actually <em>saw</em>.</p>
+    </div>
+
+    <h2>6.6 ATIS & VOLMET</h2>
+    
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-broadcast-tower"></i> ATIS vs VOLMET</div>
+      <p style="margin:0; line-height:1.8;">
+        <strong>ATIS</strong> — Automatic Terminal Information Service: a continuous broadcast of <strong>one aerodrome's</strong> weather, runway-in-use and operational information, identified by a letter (Information "Alpha", "Bravo"…), so the frequency isn't tied up reading it to every aircraft.<br>
+        <strong>VOLMET</strong> — a scheduled broadcast of <strong>en-route</strong> meteorological information (METARs/TAFs/SIGMETs) for <strong>several aerodromes</strong>, for aircraft in flight, on HF and/or VHF.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality</div>
+      <p style="margin:0;">You listen to ATIS before first contact and read back the letter ("…with Information Charlie") so the controller knows you have the current weather and runway. It saves a congested frequency from reading the same numbers a hundred times an hour — and confirms you and ATC share the same picture.</p>
+    </div>
+
+    <h2>6.7 CAVOK</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> Definition — CAVOK ("Ceiling And Visibility OK")</div>
+      <p style="margin:0;">Used when <strong>all</strong> of these hold simultaneously: visibility <strong>10 km or more; no cloud below 5000 ft</strong> (or below the highest minimum sector altitude, whichever is greater) and <strong>no CB or TCU</strong> at any level; and <strong>no significant weather</strong> at or near the aerodrome. When CAVOK applies, the visibility, cloud and weather groups are replaced by the single word.</p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">CAVOK is not just "nice weather" — it has the three defined criteria above. A common wrong answer is "visibility 8 km"; the threshold is <strong>10 km</strong>. And a single CB, even with great visibility, <strong>disqualifies</strong> CAVOK.</p>
+    </div>
+
+    <h2>6.8 The pre-flight briefing service</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — FLYING THE PAPERWORK BEFORE THE AIRCRAFT</div>
+      <p style="margin:0;">Before a flight a pilot must gather the <strong>weather</strong> and the <strong>NOTAMs</strong>, study the procedures, and <strong>file a flight plan</strong>. The service that makes this possible is the <strong>pre-flight briefing service</strong>, run by the Aeronautical Information Service at the aerodrome, increasingly through self-briefing terminals and online portals.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-double"></i> What the briefing service provides</div>
+      <p style="margin:0;">At the AIS/briefing office (or via self-briefing terminals / the online flight-planning portal) a pilot obtains: the relevant <strong>METARs and TAFs</strong>; <strong>SIGMET/AIRMET/GAMET</strong> warnings; the route <strong>NOTAMs</strong> packaged as a <strong>PIB (Pre-flight Information Bulletin)</strong>; charts and AIP data; and the means to <strong>file the ATS flight plan</strong>.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-square"></i> A pilot's pre-flight information sequence</div>
+      <p style="margin:0; line-height:2;">
+        1. Obtain the <strong>weather</strong> — METAR/TAF for departure, destination and alternates; SIGMETs en route.<br>
+        2. Obtain the <strong>PIB</strong> — NOTAMs affecting the route and aerodromes.<br>
+        3. Study the <strong>AIP/charts</strong> for procedures, facilities and frequencies.<br>
+        4. <strong>File the flight plan</strong> with ATS.<br>
+        5. Make the <strong>go / no-go</strong> decision against the operating minima and fuel.
+      </p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_six_one.jpg" alt="Figure 6.1: Decoding a METAR">
+      <figcaption>Figure 6.1 — Decoding a METAR — the slots in order.</figcaption>
+    </figure>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 6</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>METAR / SPECI</strong></td><td>Routine / special observed aerodrome report</td></tr>
+          <tr><td><strong>METAR order</strong></td><td>Station &middot; Time(Z) &middot; Wind &middot; Vis &middot; Weather &middot; Cloud &middot; Temp/Dew &middot; QNH &middot; Trend</td></tr>
+          <tr><td><strong>Wind reference</strong></td><td>METAR = degrees TRUE; ATC surface wind = degrees MAGNETIC</td></tr>
+          <tr><td><strong>Cloud amounts</strong></td><td>FEW 1–2 &middot; SCT 3–4 &middot; BKN 5–7 &middot; OVC 8 oktas (hundreds of ft)</td></tr>
+          <tr><td><strong>TAF change groups</strong></td><td>FM &middot; BECMG &middot; TEMPO &middot; PROB30/40</td></tr>
+          <tr><td><strong>CAVOK</strong></td><td>Vis &ge;10 km &middot; no cloud &lt;5000 ft / no CB&middot;TCU &middot; no significant wx</td></tr>
+          <tr><td><strong>SIGMET / AIRMET</strong></td><td>Hazard to all aircraft / to low-level light aircraft</td></tr>
+          <tr><td><strong>ATIS / VOLMET</strong></td><td>One-aerodrome broadcast / en-route multi-aerodrome broadcast</td></tr>
+          <tr><td><strong>PIB</strong></td><td>Pre-flight Information Bulletin (route NOTAM digest)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A — MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. A METAR is a:</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">Routine observed aerodrome weather report</li>
+          <li onclick="checkAnswer(this, false)">Aerodrome forecast</li>
+          <li onclick="checkAnswer(this, false)">Pilot report</li>
+          <li onclick="checkAnswer(this, false)">NOTAM</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Routine observed aerodrome weather report.</strong> METAR = routine observation; the forecast is the TAF; a special observation is a SPECI.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. In a METAR, the wind is given in:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Degrees magnetic, km/h</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Degrees true, knots</li>
+          <li onclick="checkAnswer(this, false)">Degrees magnetic, knots</li>
+          <li onclick="checkAnswer(this, false)">Degrees true, m/s</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Degrees true, knots.</strong> METAR/TAF winds are degrees TRUE and knots; ATC passes surface wind in degrees magnetic.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. "BKN" means cloud cover of:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">1–2 oktas</li>
+          <li onclick="checkAnswer(this, false)">3–4 oktas</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">5–7 oktas</li>
+          <li onclick="checkAnswer(this, false)">8 oktas</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 5–7 oktas.</strong> BKN (broken) = 5–7 oktas. OVC = 8, SCT = 3–4, FEW = 1–2.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. "FEW020" indicates few cloud at:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">20 ft</li>
+          <li onclick="checkAnswer(this, false)">200 ft</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">2000 ft</li>
+          <li onclick="checkAnswer(this, false)">20,000 ft</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 2000 ft.</strong> Cloud heights are in hundreds of feet above aerodrome — 020 = 2000 ft.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. "Q1008" in a METAR is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Temperature</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">QNH in hectopascals</li>
+          <li onclick="checkAnswer(this, false)">Visibility</li>
+          <li onclick="checkAnswer(this, false)">Cloud base</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: QNH in hectopascals.</strong> Q1008 = QNH 1008 hPa. An "A" prefix gives inches of mercury.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. "R27/0600" in a report means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Runway 27 closed at 0600</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Runway 27 RVR 600 metres</li>
+          <li onclick="checkAnswer(this, false)">Wind 270&deg; 6 kt</li>
+          <li onclick="checkAnswer(this, false)">QNH 600</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Runway 27 RVR 600 metres.</strong> It is the Runway Visual Range group: runway 27, RVR 600 m.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. When temperature and dewpoint are close, you should expect an increased risk of:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">High pressure</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Fog or low cloud (air near saturation)</li>
+          <li onclick="checkAnswer(this, false)">Strong winds</li>
+          <li onclick="checkAnswer(this, false)">Clear skies</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Fog or low cloud (air near saturation).</strong> A small temp/dewpoint spread means the air is near saturation, favouring fog/low cloud.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. In a TAF, "TEMPO" indicates:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A permanent change from a time</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Temporary fluctuations, each under an hour</li>
+          <li onclick="checkAnswer(this, false)">A 40% probability</li>
+          <li onclick="checkAnswer(this, false)">The validity period</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Temporary fluctuations, each under an hour.</strong> TEMPO = temporary fluctuations each lasting under an hour; FM = permanent change; BECMG = gradual change.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. A SIGMET warns of weather significant to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Only light aircraft</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">All aircraft (e.g. thunderstorms, severe turbulence, volcanic ash)</li>
+          <li onclick="checkAnswer(this, false)">Ground vehicles</li>
+          <li onclick="checkAnswer(this, false)">Only IFR traffic at night</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: All aircraft (e.g. thunderstorms, severe turbulence, volcanic ash).</strong> SIGMET = significant to all aircraft; AIRMET is for low-level/lighter aircraft.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. A report of conditions actually encountered in flight is a:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">TAF</li>
+          <li onclick="checkAnswer(this, false)">SIGMET</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">PIREP</li>
+          <li onclick="checkAnswer(this, false)">ATIS</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: PIREP.</strong> A PIREP is a pilot report of actual conditions met in flight.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. ATIS broadcasts information for:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Several aerodromes en route</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">One aerodrome (its weather and operational info)</li>
+          <li onclick="checkAnswer(this, false)">Only military fields</li>
+          <li onclick="checkAnswer(this, false)">The whole FIR</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: One aerodrome (its weather and operational info).</strong> ATIS = one aerodrome; VOLMET = several aerodromes for aircraft in flight.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. CAVOK requires a visibility of at least:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">5 km</li>
+          <li onclick="checkAnswer(this, false)">8 km</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">10 km</li>
+          <li onclick="checkAnswer(this, false)">1500 m</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 10 km.</strong> CAVOK needs visibility &ge;10 km, no cloud below 5000 ft / no CB&middot;TCU, and no significant weather.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. A single CB present with 15 km visibility:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Still allows CAVOK</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Disqualifies CAVOK</li>
+          <li onclick="checkAnswer(this, false)">Requires a SPECI only</li>
+          <li onclick="checkAnswer(this, false)">Has no effect</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Disqualifies CAVOK.</strong> Any CB or TCU disqualifies CAVOK, regardless of visibility.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. The route NOTAM digest provided at briefing is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">TAF</li>
+          <li onclick="checkAnswer(this, false)">ATIS</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">PIB (Pre-flight Information Bulletin)</li>
+          <li onclick="checkAnswer(this, false)">AIC</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: PIB (Pre-flight Information Bulletin).</strong> The PIB gathers the relevant NOTAMs for the route and aerodromes.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. "-RA" in a METAR means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Recent rain</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Light rain</li>
+          <li onclick="checkAnswer(this, false)">Heavy rain</li>
+          <li onclick="checkAnswer(this, false)">Radar</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Light rain.</strong> "&minus;" = light, "&plus;" = heavy; so &minus;RA is light rain.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. "NOSIG" appended to a METAR means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">No signal</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">No significant change expected (trend)</li>
+          <li onclick="checkAnswer(this, false)">Aerodrome closed</li>
+          <li onclick="checkAnswer(this, false)">Nil cloud</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: No significant change expected (trend).</strong> NOSIG is the trend forecast: no significant change in the next two hours.
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="question-block">
+        <div class="question-text">17. The correct order of the first groups in a METAR is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Wind, station, time, visibility</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Station, time, wind, visibility</li>
+          <li onclick="checkAnswer(this, false)">Time, wind, station, cloud</li>
+          <li onclick="checkAnswer(this, false)">Pressure, temp, wind, station</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Station, time, wind, visibility.</strong> Station &rarr; Time(Z) &rarr; Wind &rarr; Visibility &rarr; Weather &rarr; Cloud &rarr; Temp/Dewpoint &rarr; QNH &rarr; Trend.
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="question-block">
+        <div class="question-text">18. The final step of the pre-flight information sequence is to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">File the flight plan</li>
+          <li onclick="checkAnswer(this, false)">Read the ATIS</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Make the go/no-go decision against minima and fuel</li>
+          <li onclick="checkAnswer(this, false)">Request start-up</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Make the go/no-go decision against minima and fuel.</strong> After weather, PIB, charts and filing the flight plan, the pilot makes the go/no-go decision.
+        </div>
+      </div>
+
+      <h3>Part B — Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between a METAR, a SPECI and a TAF?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          A METAR is a routine report of observed weather at an aerodrome; a SPECI is a special, off-schedule observation in the same format issued when conditions change significantly; a TAF is a forecast of expected weather at an aerodrome over a validity period.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Read out the order of the groups in a METAR.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Station, time in UTC, wind, visibility, present weather, cloud, temperature and dewpoint, QNH, and the trend.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> In which reference are METAR winds and ATC surface winds given?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          METAR/TAF winds are in degrees true and knots; the surface wind passed by ATC on the radio is in degrees magnetic.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> State the CAVOK criteria.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Visibility 10 km or more; no cloud below 5000 ft (or the highest minimum sector altitude, whichever is greater) and no CB or TCU; and no significant weather.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between SIGMET and AIRMET?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          A SIGMET warns of weather significant to all aircraft — thunderstorms, severe turbulence/icing, volcanic ash, tropical cyclones; an AIRMET warns of weather significant to low-level and lighter-aircraft operations.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between ATIS and VOLMET?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          ATIS is a continuous broadcast of one aerodrome's weather and operational information, identified by a letter; VOLMET is a scheduled broadcast of en-route meteorological information for several aerodromes, for aircraft in flight, on HF/VHF.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What does the pre-flight briefing service provide and in what sequence is it used?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Through the AIS briefing office or self-briefing terminals: the relevant METARs and TAFs, SIGMET/AIRMET, the route NOTAMs as a PIB, charts and AIP data, and the facility to file the flight plan. The pilot obtains weather, then the PIB, studies charts, files the flight plan, and makes the go/no-go decision against minima and fuel.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>METAR</strong> observed, <strong>SPECI</strong> special, <strong>TAF</strong> forecast (FM/BECMG/TEMPO/PROB). Order: Station&middot;Time&middot;Wind&middot;Vis&middot;Wx&middot;Cloud&middot;T/Dew&middot;QNH&middot;Trend.</li>
+        <li>Wind: METAR <strong>TRUE</strong>/kt vs ATC <strong>MAGNETIC</strong>. Cloud <strong>FEW 1–2 &middot; SCT 3–4 &middot; BKN 5–7 &middot; OVC 8</strong>.</li>
+        <li><strong>CAVOK</strong> = vis &ge;10 km, no cloud &lt;5000 ft / no CB&middot;TCU, no significant wx (one CB disqualifies).</li>
+        <li><strong>SIGMET</strong> all aircraft &middot; <strong>AIRMET</strong> light &middot; <strong>PIREP</strong> pilot-seen &middot; <strong>ATIS</strong> one field &middot; <strong>VOLMET</strong> en-route.</li>
+        <li>Briefing = weather + <strong>PIB</strong> (NOTAMs) + charts + <strong>file flight plan &rarr; go/no-go</strong>.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 6 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

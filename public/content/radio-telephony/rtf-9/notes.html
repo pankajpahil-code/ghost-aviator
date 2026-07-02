@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 9: Radio Wave Propagation | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 9 · REFERENCE DEPTH</span>
+      <h1 class="hero-title">Radio Wave Propagation</h1>
+      <p class="hero-subtitle">A transmitter radiates energy; a receiver picks it up — but how the wave gets from one to the other decides everything about the radio. Will it hug the curve of the Earth, bounce off a layer 300 km up, or shoot in a straight line and stop dead at the horizon? The answer depends almost entirely on frequency.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part II (ii) Propagation &middot; day/night frequencies &middot; skip distance &middot; fading &middot; ground shadow</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Describe the three propagation paths — ground, sky and space wave — their mechanisms and bands.</li>
+        <li>Explain the structure of the ionosphere and its daily, seasonal and solar variation.</li>
+        <li>Define MUF, LUF and the optimum working frequency, and explain day/night frequency choice.</li>
+        <li>Explain skip distance and dead space, with the geometry.</li>
+        <li>Calculate line-of-sight range from the radio-horizon formula.</li>
+        <li>Explain attenuation, fading and ground shadow.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">9.1 The three paths</p>
+      <p>9.2 The ground wave</p>
+      <p>9.3 The ionosphere</p>
+      <p>9.4 The sky wave: MUF, LUF & OWF</p>
+      <p>9.5 Day & night frequencies</p>
+      <p style="margin-top:0;">9.6 Skip distance & dead space</p>
+      <p>9.7 The space wave & radio horizon</p>
+      <p>9.8 Attenuation, fading & ground shadow</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_9_hero.jpg" alt="Radio Waves Propagating Over Earth">
+      <figcaption>The path a radio wave takes across the globe is dictated entirely by its frequency and the physical environment.</figcaption>
+    </figure>
+
+    <h2>9.1 The three paths a radio wave takes</h2>
+    
+    <div class="table-container">
+      <div class="table-caption">Propagation Paths</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Path</th>
+            <th>How it travels</th>
+            <th>Band</th>
+            <th>Used by</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">Ground (surface) wave</td><td>Follows the curve of the Earth, hugging the surface</td><td>LF / MF</td><td>NDB; maritime</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Sky wave</td><td>Refracted (bent back) by the ionosphere</td><td>HF</td><td>Long-range / oceanic HF voice</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Space wave</td><td>Straight line (line-of-sight) to the radio horizon</td><td>VHF & above</td><td>ATC VHF voice, VOR, ILS</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;"><strong>Low hugs, High bounces, VHF shoots straight.</strong> LF/MF follow the ground; HF bounces off the ionosphere; VHF and up go line-of-sight.</p>
+    </div>
+
+    <h2>9.2 The ground wave</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — WHY LOW FREQUENCIES FOLLOW THE EARTH</div>
+      <p style="margin:0;">A vertically-polarized wave at low frequency induces currents in the conducting surface of the Earth; these slow the bottom of the wavefront, tilting it forward so it <strong>diffracts around the curve</strong> of the planet. The lower the frequency, the better it clings — and the farther it reaches.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-water"></i> What sets ground-wave range</div>
+      <p style="margin:0;">Range grows with <strong>transmitter power</strong>, with <strong>lower frequency</strong>, and with the <strong>conductivity of the surface</strong> — so it is much greater over <strong>sea water</strong> (highly conductive) than over dry land or mountains. This is the path the NDB relies on, giving useful range beyond line-of-sight at low level.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_nine_two.jpg" alt="Ground Wave propagation">
+      <figcaption>The ground wave diffracts around the curvature of the Earth, achieving greatest range over highly conductive sea water.</figcaption>
+    </figure>
+
+    <h2>9.3 The ionosphere</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">High above the Earth, solar radiation strips electrons from thin air, creating electrically charged <strong>layers</strong>. These act like a mirror for HF radio, bending the wave back to Earth and giving HF its enormous range.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-layer-group"></i> The layers</div>
+      <p style="margin:0;"><strong>D layer</strong> (lowest, &approx;60–90 km) — forms only by <strong>day</strong> and <strong>absorbs</strong> lower HF frequencies. <strong>E layer</strong> (&approx;90–150 km). <strong>F1 & F2 layers</strong> (highest, &approx;150–400 km) — the main HF-refracting layers; at night F1 and F2 merge into a single, weaker F layer.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-sun"></i> Variation — why HF is never constant</div>
+      <p style="margin:0;">Ionisation depends on the Sun, so it varies <strong>diurnally</strong> (strong by day, weak by night), <strong>seasonally</strong>, and with the <strong>11-year solar cycle</strong> (sunspots). The <strong>critical frequency</strong> is the highest frequency a layer will reflect at vertical incidence; above it the wave punches straight through.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_nine_three.jpg" alt="Layers of the Ionosphere">
+      <figcaption>The structure of the ionosphere: The D layer absorbs signals during the day, while the F layers act as a mirror for high-frequency (HF) sky waves.</figcaption>
+    </figure>
+
+    <h2>9.4 The sky wave: MUF, LUF & OWF</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> Definitions</div>
+      <p style="margin:0; line-height:1.8;">
+        <strong>MUF — Maximum Usable Frequency:</strong> the highest frequency the ionosphere will still refract back to a given point. Above it, the wave escapes into space and is lost.<br>
+        <strong>LUF — Lowest Usable Frequency:</strong> the lowest frequency that still arrives usable; below it, D-layer absorption kills it.<br>
+        <strong>OWF — Optimum Working Frequency:</strong> typically about <strong>85% of the MUF</strong> — set safely below the MUF so normal ionospheric variation doesn't push the working frequency above it. The usable window lies <strong>between LUF and MUF</strong>.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-angle-double-down"></i> Angle of incidence & hops</div>
+      <p style="margin:0;">A wave striking the ionosphere at a <strong>shallow (grazing) angle</strong> is refracted back over a long distance; a steep angle may punch through. By bouncing between the ionosphere and the ground, a sky wave can make several <strong>hops</strong>, reaching right around the world.</p>
+    </div>
+
+    <h2>9.5 Day & night frequencies</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — WHY HF TRACKS THE SUN</div>
+      <p style="margin:0;">By <strong>day</strong> the D layer is present and absorbs lower frequencies, so you must use a <strong>higher</strong> HF frequency to get through. By <strong>night</strong> the D layer disappears and the ionosphere weakens, so a <strong>lower</strong> HF frequency works best.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-double"></i> The rule of thumb</div>
+      <p style="margin:0;"><strong>Higher frequency by DAY, lower frequency by NIGHT</strong> for HF sky-wave communication. This is why long-haul crews change their HF frequency as they cross the day/night terminator.</p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;"><strong>"Day = High, Night = Low."</strong> Sun up, frequency up.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_nine_four.jpg" alt="Daytime vs Nighttime HF Propagation">
+      <figcaption>By day, the absorbing D-layer forces crews to use higher frequencies. By night, the D-layer vanishes, allowing lower frequencies to reach the reflecting F-layer.</figcaption>
+    </figure>
+
+    <h2>9.6 Skip distance & dead space</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> Definitions</div>
+      <p style="margin:0; line-height:1.8;">
+        <strong>Skip distance:</strong> the distance from the transmitter to the point where the <strong>first sky wave</strong> returns to Earth.<br>
+        <strong>Dead space (skip zone):</strong> the silent ring <em>between</em> the end of ground-wave coverage and the point where the first sky wave lands — a region where neither wave reaches and reception fails.
+      </p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">Skip distance <strong>increases</strong> as you raise the frequency (toward the MUF) and as the ionosphere weakens at night — which is why dead space changes through the day. Above the MUF there is no sky-wave return at all.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_nine_one.jpg" alt="Figure 9.1: Ground wave, sky wave, skip distance & dead space">
+      <figcaption>Figure 9.1 — Ground wave, sky wave, skip distance & dead space.</figcaption>
+    </figure>
+
+    <h2>9.7 The space wave & radio horizon</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0; line-height: 1.8;">VHF and above travel in essentially straight lines (the <strong>space wave</strong>), so range is set by the <strong>radio horizon</strong> — and the higher you (or the station) are, the farther that horizon. This is why a VHF call that fails on the ground works once you climb.</p>
+      <div style="background: #0f172a; color: #38bdf8; text-align: center; font-size: 2rem; font-weight: 800; padding: 20px; border-radius: 8px; margin-top: 15px;">
+        d (NM) &approx; 1.23 &times; &radic;h
+        <div style="font-size: 0.9rem; font-weight: 400; color: #94a3b8; margin-top: 10px;">h = height in feet &middot; the radio horizon is slightly beyond the visual horizon (atmospheric refraction)</div>
+      </div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — line-of-sight range</div>
+      <p style="margin:0; line-height:1.8;">
+        At <strong>10,000 ft:</strong> d &approx; 1.23 &times; &radic;10,000 = 1.23 &times; 100 = <strong>123 NM</strong> to the radio horizon.<br>
+        If the ground station antenna is at <strong>400 ft:</strong> its horizon &approx; 1.23 &times; &radic;400 = 1.23 &times; 20 = &approx; <strong>25 NM</strong>. The <strong>total</strong> path is the sum: 123 + 25 &approx; <strong>148 NM</strong>.<br>
+        Takeaway: <strong>more height, more range</strong> — the exact figure isn't usually required, but the principle and the formula are.
+      </p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_nine_five.jpg" alt="Space Wave and Radio Horizon">
+      <figcaption>VHF and UHF waves travel in a straight line-of-sight. Atmospheric refraction bends them slightly, making the radio horizon &approx;15% farther than the visual horizon.</figcaption>
+    </figure>
+
+    <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+      <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-search-plus"></i> Deep dive — ducting & super-refraction</summary>
+      <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 0.95rem;">
+        Occasionally a temperature inversion traps VHF/UHF in a "duct" near the surface, carrying it far beyond the normal horizon (super-refraction). The opposite, sub-refraction, shortens range. These are anomalies, not the rule — for the exam, treat VHF as reliable line-of-sight whose range grows with altitude.
+      </div>
+    </details>
+
+    <h2>9.8 Attenuation, fading & ground shadow</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-times-circle"></i> Three signal enemies</div>
+      <p style="margin:0; line-height:1.8;">
+        <strong>Attenuation</strong> — the natural weakening of a signal with distance and absorption.<br>
+        <strong>Fading</strong> — fluctuation in received strength, typically when two paths (ground + sky, or two sky paths) arrive together and interfere; common on HF at dusk.<br>
+        <strong>Ground shadow</strong> — loss of a line-of-sight (space) wave behind a hill, building or terrain that blocks it.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality</div>
+      <p style="margin:0;">Low on approach behind high ground, your VHF can drop out — that's ground shadow; climb a little and the line-of-sight clears. On HF over the ocean at night you'll hear the signal swell and fade — that's sky-wave fading, eased by selecting a better frequency.</p>
+    </div>
+
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 9</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Ground wave</strong></td><td>LF/MF, follows Earth's curve, better over sea (NDB)</td></tr>
+          <tr><td><strong>Sky wave</strong></td><td>HF, refracted by ionosphere (long range, multi-hop)</td></tr>
+          <tr><td><strong>Space wave</strong></td><td>VHF+, line-of-sight to radio horizon</td></tr>
+          <tr><td><strong>Ionosphere layers</strong></td><td>D, E, F1, F2 (D absorbs by day; F1/F2 merge at night)</td></tr>
+          <tr><td><strong>HF day/night</strong></td><td>Higher freq by day, lower by night</td></tr>
+          <tr><td><strong>MUF / LUF / OWF</strong></td><td>Max usable / Lowest usable / &approx;85% of MUF</td></tr>
+          <tr><td><strong>Dead space</strong></td><td>Gap between ground-wave range and first sky-wave return</td></tr>
+          <tr><td><strong>Radio horizon</strong></td><td>d (NM) &approx; 1.23 &times; &radic;h(ft)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A — MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. An NDB relies mainly on which propagation path?</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">Ground (surface) wave</li>
+          <li onclick="checkAnswer(this, false)">Sky wave</li>
+          <li onclick="checkAnswer(this, false)">Space wave</li>
+          <li onclick="checkAnswer(this, false)">Satellite</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Ground (surface) wave.</strong> NDB (LF/MF) uses the ground wave that follows the Earth's curvature.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. Ground-wave range is greatest over:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Dry desert</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Sea water (high conductivity)</li>
+          <li onclick="checkAnswer(this, false)">Mountains</li>
+          <li onclick="checkAnswer(this, false)">Forest</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Sea water (high conductivity).</strong> Higher surface conductivity (sea) gives much greater ground-wave range.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. Long-range HF communication is achieved by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Ground wave</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Sky wave refracted by the ionosphere</li>
+          <li onclick="checkAnswer(this, false)">Line-of-sight space wave</li>
+          <li onclick="checkAnswer(this, false)">Direct wave only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Sky wave refracted by the ionosphere.</strong> HF sky waves refract off the ionosphere to travel thousands of miles.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. Which ionospheric layer absorbs lower HF frequencies by day?</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">D layer</li>
+          <li onclick="checkAnswer(this, false)">E layer</li>
+          <li onclick="checkAnswer(this, false)">F1 layer</li>
+          <li onclick="checkAnswer(this, false)">F2 layer</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: D layer.</strong> The D layer forms by day and absorbs lower frequencies; it disappears at night.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. For HF, the best night-time frequency compared with daytime is generally:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Higher</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Lower</li>
+          <li onclick="checkAnswer(this, false)">The same</li>
+          <li onclick="checkAnswer(this, false)">Zero</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Lower.</strong> The D layer disappears at night, so a lower frequency works best — "day high, night low."
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. A frequency above the MUF will:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Be absorbed by the D layer</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Pass through the ionosphere into space</li>
+          <li onclick="checkAnswer(this, false)">Follow the ground</li>
+          <li onclick="checkAnswer(this, false)">Always reflect</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Pass through the ionosphere into space.</strong> Above the Maximum Usable Frequency the wave is no longer refracted back — it escapes to space.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. The optimum working frequency (OWF) is typically about:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">50% of the MUF</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">85% of the MUF</li>
+          <li onclick="checkAnswer(this, false)">110% of the MUF</li>
+          <li onclick="checkAnswer(this, false)">Equal to the LUF</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 85% of the MUF.</strong> The OWF is set around 85% of the MUF so variation doesn't push it above the MUF.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. The silent ring between ground-wave coverage and the first returning sky wave is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Skip distance</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Dead space (skip zone)</li>
+          <li onclick="checkAnswer(this, false)">Radio horizon</li>
+          <li onclick="checkAnswer(this, false)">Fading zone</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Dead space (skip zone).</strong> Dead space is the gap where neither ground nor sky wave is received.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. Skip distance generally increases when:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Frequency is lowered</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Frequency is raised toward the MUF / at night</li>
+          <li onclick="checkAnswer(this, false)">Power is reduced</li>
+          <li onclick="checkAnswer(this, false)">The antenna is shortened</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Frequency is raised toward the MUF / at night.</strong> Higher frequency and a weaker (night) ionosphere lengthen the skip distance.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. The line-of-sight range from 10,000 ft is approximately:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">12 NM</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">123 NM</li>
+          <li onclick="checkAnswer(this, false)">1230 NM</li>
+          <li onclick="checkAnswer(this, false)">40 NM</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 123 NM.</strong> d &approx; 1.23 &times; &radic;10,000 = 1.23 &times; 100 = 123 NM.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. VHF reception is lost behind a hill on approach. This is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Sky-wave fading</li>
+          <li onclick="checkAnswer(this, false)">Skip distance</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Ground shadow</li>
+          <li onclick="checkAnswer(this, false)">Absorption by the D layer</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Ground shadow.</strong> Terrain blocking the line-of-sight (space) wave creates a ground shadow.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. Fading on an HF signal is usually caused by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">High transmitter power</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Two paths interfering (e.g. ground + sky, or two sky paths)</li>
+          <li onclick="checkAnswer(this, false)">A short antenna</li>
+          <li onclick="checkAnswer(this, false)">Vertical polarization</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Two paths interfering (e.g. ground + sky, or two sky paths).</strong> Fading is interference between signals arriving by different paths, common on HF.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. The ionosphere's ionisation varies with:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Transmitter power only</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Time of day, season and the 11-year solar cycle</li>
+          <li onclick="checkAnswer(this, false)">Antenna length</li>
+          <li onclick="checkAnswer(this, false)">Aircraft altitude</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Time of day, season and the 11-year solar cycle.</strong> It is driven by the Sun, so it varies diurnally, seasonally and with the sunspot cycle.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. A sky wave can reach right around the world by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Following the ground</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Multiple hops between the ionosphere and the ground</li>
+          <li onclick="checkAnswer(this, false)">Travelling in a straight line</li>
+          <li onclick="checkAnswer(this, false)">Using a satellite</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Multiple hops between the ionosphere and the ground.</strong> Repeated refraction and ground reflection make multiple hops possible.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. The radio horizon is, compared with the visual horizon:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Shorter</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Slightly farther (atmospheric refraction)</li>
+          <li onclick="checkAnswer(this, false)">Exactly the same</li>
+          <li onclick="checkAnswer(this, false)">Half as far</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Slightly farther (atmospheric refraction).</strong> Atmospheric refraction bends the wave slightly, extending the radio horizon a little beyond the visual one.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. Which path does VHF ATC voice use?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Ground wave</li>
+          <li onclick="checkAnswer(this, false)">Sky wave</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Space wave (line-of-sight)</li>
+          <li onclick="checkAnswer(this, false)">All three equally</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Space wave (line-of-sight).</strong> VHF uses the space wave — line-of-sight, range growing with altitude.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B — Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Name the three propagation paths and the bands that use them.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Ground (surface) wave — LF/MF, follows the Earth's curve; sky wave — HF, refracted by the ionosphere; space wave — VHF and above, line-of-sight.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Describe the ionosphere and how it varies.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Layers of ionised air — D, E, F1, F2 — created by solar radiation. The D layer forms by day and absorbs lower HF; the F layers refract HF. Ionisation varies diurnally, seasonally and with the 11-year solar cycle.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Define MUF, LUF and OWF.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          MUF — the maximum usable frequency the ionosphere will refract back; above it the wave is lost. LUF — the lowest usable frequency; below it the signal is absorbed. OWF — the optimum working frequency, about 85% of the MUF.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Why does the choice of HF frequency change between day and night?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          By day the D layer absorbs lower frequencies, so a higher frequency is needed; by night the D layer disappears, so a lower frequency works best.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is dead space, and how does it relate to skip distance?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Dead space (skip zone) is the region between the limit of ground-wave reception and the point where the first sky wave returns (the skip distance) — where neither wave is received.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How is VHF line-of-sight range estimated, and what increases it?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          By the radio-horizon formula d &approx; 1.23 &times; &radic;h, with h in feet; combine the heights of aircraft and station. Range increases with height — the higher you fly, the farther the horizon.
+        </div>
+      </details>
+
+      <h3 style="margin-top: 40px;">Part C — Numerical problems (tap for worked solutions)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P1. Find the radio horizon from 36,000 ft.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          d &approx; 1.23 &times; &radic;36,000 = 1.23 &times; 189.7 &approx; <strong>233 NM</strong>.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P2. An aircraft at 25,000 ft talks to a station antenna at 100 ft. Estimate the maximum communication range.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          aircraft 1.23 &times; &radic;25,000 = 1.23 &times; 158.1 &approx; 194 NM; station 1.23 &times; &radic;100 = 12.3 NM; total &approx; <strong>206 NM</strong>.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P3. If the MUF is 12 MHz, estimate the OWF.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          OWF &approx; 0.85 &times; 12 = <strong>10.2 MHz</strong>.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>Ground</strong> (LF/MF, NDB, better over sea) &middot; <strong>Sky</strong> (HF, ionosphere, multi-hop) &middot; <strong>Space</strong> (VHF+, line-of-sight).</li>
+        <li>Layers <strong>D E F1 F2</strong>; D absorbs by day. Ionisation varies day/season/solar cycle.</li>
+        <li>HF: <strong>day high, night low</strong>. <strong>MUF</strong> above = lost &middot; <strong>LUF</strong> below = absorbed &middot; <strong>OWF &approx; 85% MUF</strong>.</li>
+        <li><strong>Dead space</strong> = gap before first sky wave; skip distance grows with frequency/at night.</li>
+        <li>Radio horizon <strong>d &approx; 1.23&radic;h(ft)</strong>; <strong>ground shadow</strong> blocks VHF behind terrain; <strong>fading</strong> = multi-path.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 9 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

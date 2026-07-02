@@ -4,6 +4,7 @@ import { CPL_SUBJECTS } from "@/lib/subjects";
 import { FileText, BarChart3, Video, Headphones, HelpCircle, ClipboardList, ListChecks, Lock, ArrowRight, Clock, ChevronRight } from "lucide-react";
 import SubjectProgressBar from "@/app/components/SubjectProgressBar";
 import ChapterProgressBadge from "@/app/components/ChapterProgressBadge";
+import RtrBookExperience from "@/app/components/RtrBookExperience";
 
 const CONTENT_ICONS: Record<string, React.ElementType> = {
   notes: FileText, slides: BarChart3, video: Video,
@@ -22,6 +23,12 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
   const { subject: subjectId } = await params;
   const subject = CPL_SUBJECTS.find(s => s.id === subjectId);
   if (!subject) notFound();
+
+  // The Radio Telephony paper is Capt. Pankaj Pahil's full RTR(A) book — it gets
+  // its own cinematic "grimoire" landing instead of the generic chapter list.
+  if (subject.id === "radio-telephony") {
+    return <RtrBookExperience subject={subject} />;
+  }
 
   const midpoint = Math.ceil(subject.chapters.length / 2);
 

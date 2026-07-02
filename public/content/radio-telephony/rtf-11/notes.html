@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 11: Radio Equipment & Operation | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 11 · REFERENCE DEPTH</span>
+      <h1 class="hero-title">Radio Equipment & Operation</h1>
+      <p class="hero-subtitle">Everything so far has been theory; this chapter is your hands on the equipment. It covers the modes you communicate in, the discipline of the push-to-talk button, the controls on the panel, the antennas on the airframe, the emergency beacon that calls for help when you cannot, and the tell-tale signs that a radio has failed.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part II (iii)(iv) Communication systems &middot; mic/squelch/AVC/tuning &middot; simplex/duplex &middot; advantages & limitations of RT</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Distinguish simplex, duplex, half-duplex and broadcast, and state which aviation VHF uses.</li>
+        <li>Apply correct push-to-talk technique and explain the danger of a stuck microphone.</li>
+        <li>Describe microphones, headsets, ANR, the audio panel and intercom.</li>
+        <li>Explain squelch, AVC/AGC, volume, gain and frequency selection.</li>
+        <li>Describe aircraft antennas, the need for matching, and the ELT and ACARS.</li>
+        <li>Troubleshoot a radio failure and state the advantages and limitations of RT.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">11.1 Simplex, duplex & half-duplex</p>
+      <p>11.2 Push-to-talk technique</p>
+      <p>11.3 Microphones, headsets & ANR</p>
+      <p>11.4 The audio panel & intercom</p>
+      <p>11.5 Squelch, AVC, volume & tuning</p>
+      <p style="margin-top:0;">11.6 Antennas & matching</p>
+      <p>11.7 ELT & ACARS</p>
+      <p>11.8 Radio failure & troubleshooting</p>
+      <p>11.9 Advantages & limitations of RT</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/cockpit_vhf_radio.jpg" alt="VHF COM Radio Panel">
+      <figcaption>Understanding the controls on the COM panel and the audio selector is essential for reliable communication.</figcaption>
+    </figure>
+
+    <h2>11.1 Simplex, duplex & half-duplex</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — ONE FREQUENCY OR TWO?</div>
+      <p style="margin:0;">The number of frequencies a link uses, and whether both ends can talk at once, defines the mode. Aviation VHF deliberately uses the simplest and most disciplined arrangement so that everyone on a shared channel hears everyone else.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">Communication Modes</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Mode</th>
+            <th>Frequencies</th>
+            <th>How it works</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">Simplex</td><td style="color:#0d9488; font-weight:700;">One</td><td style="color:#0d9488; font-weight:700;">Transmit OR receive, one at a time (PTT); all stations share the channel</td><td style="color:#0d9488; font-weight:700;">VHF ATC voice</td></tr>
+          <tr><td><strong>Duplex</strong></td><td>Two</td><td>Transmit AND receive simultaneously (different frequencies)</td><td>Telephone; some satcom</td></tr>
+          <tr><td><strong>Half-duplex</strong></td><td>Two</td><td>Two frequencies but still one-at-a-time at the user end</td><td>Some HF / relay links</td></tr>
+          <tr><td><strong>Broadcast (Simplex)</strong></td><td>One</td><td>One station transmits, others only listen</td><td>ATIS, VOLMET</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> The aviation fact</div>
+      <p style="margin:0;"><strong>VHF aeronautical voice is simplex</strong> — a single frequency shared by all, with only one station transmitting at a time. <strong>ATIS</strong> is simplex broadcast (the ground transmits, aircraft only listen). This shared discipline is why listening-out and brevity matter so much.</p>
+    </div>
+
+    <h2>11.2 Push-to-talk technique</h2>
+    
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check"></i> The correct sequence</div>
+      <ol style="margin:0; padding-left: 20px; line-height: 1.8;">
+        <li><strong>Listen out</strong> first — make sure the frequency is clear.</li>
+        <li><strong>Press</strong> the PTT and pause a beat so the first word isn't clipped.</li>
+        <li><strong>Speak</strong> at a steady pace, normal volume, microphone close to the lips.</li>
+        <li><strong>Release</strong> the PTT fully when finished so you can hear the reply.</li>
+      </ol>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap — the stuck microphone</div>
+      <p style="margin:0; line-height: 1.8;">On simplex, <strong>while you transmit you cannot hear</strong>. A PTT held down or stuck (a "stuck mic") therefore <strong>blocks the whole frequency for everyone</strong> and the offender doesn't even know — nobody else can get a word in. Never hold the button needlessly, release it fully, and if a frequency goes silent suspect a stuck mic.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — two aircraft transmit together</div>
+      <p style="margin:0; line-height: 1.8;">
+        Two aircraft press PTT at the same instant on the same simplex VHF frequency.<br><br>
+        Because the channel carries <strong>AM</strong> (Chapter 10), the two carriers beat together and the controller hears a <strong>heterodyne squeal</strong> rather than either message. The controller says "two together, say again", and each aircraft re-transmits.<br><br>
+        With FM's capture effect one would have been silently lost — which is exactly why aviation uses AM.
+      </p>
+    </div>
+
+    <h2>11.3 Microphones, headsets & ANR</h2>
+    
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> What each does</div>
+      <p style="margin:0; line-height: 1.8;">
+        A <strong>microphone</strong> converts your voice to an electrical signal; <strong>noise-cancelling</strong> (differential) types reject the steady cockpit roar so only your speech is transmitted. A <strong>boom or oxygen-mask microphone</strong> keeps it positioned consistently. The <strong>headset</strong> reproduces received audio; <strong>ANR (Active Noise Reduction)</strong> headsets generate an anti-phase signal to cancel low-frequency cabin noise, reducing fatigue and improving intelligibility.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality</div>
+      <p style="margin:0;">Hold the mic <strong>close and steady</strong> and speak across it, not into it, to avoid "popping". A consistent mic position is half of good readability — the other half is a steady, unhurried pace.</p>
+    </div>
+
+    <h2>11.4 The audio panel & intercom</h2>
+    
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-sliders-h"></i> Selecting who hears whom</div>
+      <p style="margin:0; line-height: 1.8;">
+        The <strong>audio control panel</strong> selects which transmitter the PTT keys (the <strong>transmit selector</strong>) and which receivers you listen to (the <strong>receive selectors</strong> — COM1, COM2, NAV idents, etc.). The <strong>intercom (interphone)</strong> lets the crew talk to each other — and to cabin/PA — <strong>without transmitting</strong> on the radio.<br><br>
+        Selecting the wrong transmitter is a common cause of "transmitting on the wrong box".
+      </p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">An intercom conversation is <strong>internal</strong> — it does not go out on the radio. Conversely, keying the PTT transmits on whichever COM the <strong>transmit selector</strong> is set to, regardless of which receivers you are monitoring.</p>
+    </div>
+
+    <h2>11.5 Squelch, AVC, volume & tuning</h2>
+    
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> The panel controls</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Squelch</strong> — mutes the constant background hiss when no signal is present, opening the audio only when a real signal arrives. Set it just past the point where the hiss disappears.<br>
+        <strong>AVC / AGC (Automatic Volume / Gain Control)</strong> — automatically holds the received audio at a steady level despite changing signal strength, so a distant station and a near one sound similar.<br>
+        <strong>Volume</strong> — sets the listening level.<br>
+        <strong>Tuning / frequency select</strong> — picks the operating channel, usually with a <strong>standby/active</strong> pair so the next frequency can be set ready and flip-flopped in.
+      </p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap — squelch vs AVC</div>
+      <p style="margin:0;">Set squelch <strong>too tight</strong> and weak (distant) signals are muted and missed. <strong>AVC does the opposite job to squelch</strong> — it keeps a wanted signal's <em>level</em> constant; it does not mute noise. Don't confuse the two.</p>
+    </div>
+
+    <h2>11.6 Antennas & matching</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-broadcast-tower"></i> Matching the antenna to the wave</div>
+      <p style="margin:0; line-height: 1.8;">
+        The <strong>VHF COM antenna</strong> is the vertical blade — sized to a fraction of the wavelength and matched to the vertically-polarized VHF signal. <strong>HF</strong> uses a long wire or a probe (often in the fin) with an <strong>antenna coupler/tuner</strong>, because its long wavelength makes a full-size aerial impossible. A well-matched antenna transfers nearly all the transmitter power to the air; a mismatch reflects power back (high <strong>VSWR</strong>), wasting it and risking the transmitter.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — why the VHF aerial is a small blade</div>
+      <p style="margin:0; line-height: 1.8;">
+        At 120 MHz the wavelength is 2.5 m (Chapter 7). A common efficient length is a <strong>quarter-wave:</strong> &frac14; &times; 2.5 m = <strong>0.625 m</strong> — a practical blade.<br>
+        An HF signal at 3 MHz has &lambda; = 100 m; a quarter-wave would be 25 m — impossible on an airframe, so HF uses a long-wire/probe and a coupler to make a short aerial behave as if resonant.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality — antenna shadowing</div>
+      <p style="margin:0;">In a steep turn the airframe can shadow an antenna mounted on the opposite side, briefly weakening the signal. It is one reason aircraft carry <strong>two</strong> COM antennas/radios and why a momentary drop in a hard turn is normal, not a fault.</p>
+    </div>
+    
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/aircraft_exterior_antennas.jpg" alt="Aircraft Exterior Antennas">
+      <figcaption>The short vertical blades on the fuselage are the VHF COM antennas, sized to match a quarter-wavelength of the signal.</figcaption>
+    </figure>
+
+    <h2>11.7 ELT & ACARS</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> ELT — Emergency Locator Transmitter</div>
+      <p style="margin:0; line-height: 1.8;">
+        A beacon that activates <strong>automatically on heavy impact</strong> (g-switch) or manually, transmitting on <strong>406 MHz</strong> — detected by the Cospas-Sarsat satellite system, carrying a coded, <strong>registered identity</strong> so the aircraft is known — and on <strong>121.5 MHz</strong> for short-range homing by rescuers. It is carried under Annex 6 (Chapter 3). Functional testing is restricted to defined windows to avoid false alerts. (Full detail in Chapter 22.)
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> ACARS & datalink</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>ACARS</strong> (Aircraft Communications Addressing and Reporting System) is a digital datalink for short <strong>text</strong> messages between aircraft and ground — clearances, position reports, weather, maintenance and operational messages — reducing voice workload. <strong>CPDLC</strong> (Controller–Pilot Data Link Communications) carries ATC clearances as text, used especially in oceanic airspace (Chapter 18).
+      </p>
+    </div>
+
+    <h2>11.8 Radio failure & troubleshooting</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-square"></i> Quick checks before declaring failure</div>
+      <p style="margin:0; line-height: 1.8;">
+        Hearing nothing / getting no replies? Work through: correct <strong>frequency</strong> selected (active, not standby)? &middot; <strong>volume</strong> up and <strong>squelch</strong> not too tight? &middot; correct <strong>transmit selector</strong> and <strong>receive selectors</strong> on the audio panel? &middot; <strong>headset/PTT</strong> plugged in and the PTT not stuck? &middot; <strong>circuit breaker / power</strong> in? &middot; try the <strong>second COM</strong>. If still nothing, follow the communications-failure procedure (Chapter 20) and <strong>squawk 7600</strong>.
+      </p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;"><strong>"Frequency, Volume, Squelch, Selector, Plug, Power"</strong> — the six things to check before believing the radio has truly failed. Then squawk <strong>7600</strong>.</p>
+    </div>
+
+    <h2>11.9 Advantages & limitations of RT</h2>
+
+    <div class="table-container">
+      <div class="table-caption">Advantages and Limitations of VHF RT</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Advantages</th>
+            <th>Limitations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Instant, direct two-way voice</td><td>VHF range limited to line-of-sight</td></tr>
+          <tr><td>Simple, universal; no fixed infrastructure airborne</td><td>One-at-a-time on simplex — congestion on busy frequencies</td></tr>
+          <tr><td>Standard phraseology crosses language barriers</td><td>Subject to interference, fading and ground shadow</td></tr>
+          <tr><td>Immediate read-back confirms understanding</td><td>Voice can be misheard — discipline essential</td></tr>
+          <tr><td>Datalink (ACARS/CPDLC) offloads routine traffic</td><td>A stuck mic can block a whole channel</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 11</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Aviation VHF voice</strong></td><td>Simplex — one frequency, one transmitter at a time (PTT)</td></tr>
+          <tr><td><strong>ATIS / VOLMET</strong></td><td>Simplex broadcast (listen only)</td></tr>
+          <tr><td><strong>Squelch</strong></td><td>Mutes background hiss until a real signal arrives</td></tr>
+          <tr><td><strong>AVC / AGC</strong></td><td>Keeps received audio level steady (opposite job to squelch)</td></tr>
+          <tr><td><strong>VHF antenna</strong></td><td>Vertical blade, ~quarter-wave; HF uses long-wire + coupler</td></tr>
+          <tr><td><strong>ELT</strong></td><td>406 MHz (satellite, registered ID) + 121.5 MHz (homing)</td></tr>
+          <tr><td><strong>Radio-failure squawk</strong></td><td>7600</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A — MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. Aviation VHF voice communication operates in which mode?</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">Simplex</li>
+          <li onclick="checkAnswer(this, false)">Duplex</li>
+          <li onclick="checkAnswer(this, false)">Full-duplex</li>
+          <li onclick="checkAnswer(this, false)">Broadcast only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Simplex.</strong> A single shared frequency, one transmitter at a time — simplex (PTT).
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. ATIS is an example of:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Duplex</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Simplex broadcast (listen only)</li>
+          <li onclick="checkAnswer(this, false)">Half-duplex</li>
+          <li onclick="checkAnswer(this, false)">Two-way simplex</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Simplex broadcast (listen only).</strong> ATIS is a one-way broadcast; aircraft only listen.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. Duplex operation uses:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">One frequency, one at a time</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Two frequencies, allowing simultaneous transmit and receive</li>
+          <li onclick="checkAnswer(this, false)">No frequency</li>
+          <li onclick="checkAnswer(this, false)">Only HF</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Two frequencies, allowing simultaneous transmit and receive.</strong> Duplex uses two frequencies so both ends can talk at once.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. A "stuck microphone" on a simplex frequency:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Improves the signal</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Blocks the whole frequency for everyone</li>
+          <li onclick="checkAnswer(this, false)">Only affects that aircraft</li>
+          <li onclick="checkAnswer(this, false)">Changes the frequency</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Blocks the whole frequency for everyone.</strong> A held/stuck PTT transmits continuously, blocking the shared channel; the offender can't hear it.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. The correct PTT sequence is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Speak, press, release, listen</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Listen, press & pause, speak, release fully</li>
+          <li onclick="checkAnswer(this, false)">Press and hold throughout the exchange</li>
+          <li onclick="checkAnswer(this, false)">Press and speak instantly</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Listen, press & pause, speak, release fully.</strong> Listen out, press and pause, speak clearly, then release fully to hear the reply.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. A noise-cancelling microphone:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Increases transmitter power</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Rejects steady cockpit noise so mainly speech is transmitted</li>
+          <li onclick="checkAnswer(this, false)">Tunes the radio</li>
+          <li onclick="checkAnswer(this, false)">Replaces the antenna</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Rejects steady cockpit noise so mainly speech is transmitted.</strong> It cancels the steady ambient roar, transmitting clearer speech.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. The intercom (interphone) is used to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Transmit to ATC</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Let the crew talk to each other without transmitting on the radio</li>
+          <li onclick="checkAnswer(this, false)">Broadcast ATIS</li>
+          <li onclick="checkAnswer(this, false)">Tune the navigation receiver</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Let the crew talk to each other without transmitting on the radio.</strong> Intercom is internal; it does not go out on the radio.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. The function of squelch is to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Increase transmitter power</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Mute background noise until a signal is received</li>
+          <li onclick="checkAnswer(this, false)">Change frequency automatically</li>
+          <li onclick="checkAnswer(this, false)">Keep audio level constant</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Mute background noise until a signal is received.</strong> Squelch silences the hiss when no signal is present; keeping level constant is AVC's job.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. AVC (automatic volume control) acts to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Mute weak signals</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Hold the received audio at a steady level despite signal variation</li>
+          <li onclick="checkAnswer(this, false)">Boost transmit power</li>
+          <li onclick="checkAnswer(this, false)">Select the frequency</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Hold the received audio at a steady level despite signal variation.</strong> AVC/AGC keeps the wanted signal's level steady as strength changes.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. Setting the squelch too tight will:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Increase range</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Mute weak (distant) signals so they are missed</li>
+          <li onclick="checkAnswer(this, false)">Boost the audio</li>
+          <li onclick="checkAnswer(this, false)">Have no effect</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Mute weak (distant) signals so they are missed.</strong> Too-tight squelch keeps the audio closed to weak but wanted signals.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. The VHF communication antenna is mounted:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Horizontally</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Vertically, to match the vertically-polarized VHF signal</li>
+          <li onclick="checkAnswer(this, false)">Inside the cabin</li>
+          <li onclick="checkAnswer(this, false)">At 45&deg;</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Vertically, to match the vertically-polarized VHF signal.</strong> Aviation VHF is vertically polarized, so the blade is vertical.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. A poorly matched antenna causes:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">More radiated power</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Power reflected back (high VSWR), wasted and risking the transmitter</li>
+          <li onclick="checkAnswer(this, false)">A lower frequency</li>
+          <li onclick="checkAnswer(this, false)">Better range</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Power reflected back (high VSWR), wasted and risking the transmitter.</strong> A mismatch reflects power (high VSWR) instead of radiating it.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. HF aerials need a coupler/tuner because:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">HF is line-of-sight</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">HF wavelengths are too long for a full-size aerial on an airframe</li>
+          <li onclick="checkAnswer(this, false)">HF uses AM</li>
+          <li onclick="checkAnswer(this, false)">HF needs no antenna</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: HF wavelengths are too long for a full-size aerial on an airframe.</strong> A 3 MHz quarter-wave is 25 m; a coupler makes a short aerial behave as resonant.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. An ELT transmits on:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">118.0 MHz only</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">406 MHz (satellite) and 121.5 MHz (homing)</li>
+          <li onclick="checkAnswer(this, false)">1030 MHz</li>
+          <li onclick="checkAnswer(this, false)">75 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 406 MHz (satellite) and 121.5 MHz (homing).</strong> 406 MHz for satellite detection with coded ID, plus 121.5 MHz for homing.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. ACARS is best described as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A navigation aid</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A digital datalink for short text messages between aircraft and ground</li>
+          <li onclick="checkAnswer(this, false)">An emergency beacon</li>
+          <li onclick="checkAnswer(this, false)">A type of antenna</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A digital datalink for short text messages between aircraft and ground.</strong> ACARS carries short text messages, reducing voice workload.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. On total radio failure, the transponder code to select is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">7500</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">7600</li>
+          <li onclick="checkAnswer(this, false)">7700</li>
+          <li onclick="checkAnswer(this, false)">2000</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 7600.</strong> 7600 indicates radio/communications failure (7500 hijack, 7700 emergency).
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="question-block">
+        <div class="question-text">17. Before declaring a radio failure you should first check:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The weather</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Frequency, volume, squelch, audio-panel selectors, PTT/plug and power</li>
+          <li onclick="checkAnswer(this, false)">The transponder code</li>
+          <li onclick="checkAnswer(this, false)">The fuel</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Frequency, volume, squelch, audio-panel selectors, PTT/plug and power.</strong> Work the quick checks; many "failures" are a wrong frequency, tight squelch or wrong selector.
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="question-block">
+        <div class="question-text">18. A limitation of VHF radiotelephony is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Unlimited range</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Range restricted to line-of-sight</li>
+          <li onclick="checkAnswer(this, false)">It needs no frequency</li>
+          <li onclick="checkAnswer(this, false)">It cannot be misheard</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Range restricted to line-of-sight.</strong> VHF is line-of-sight; range grows with altitude but is horizon-limited.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B — Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between simplex and duplex, and which does aviation VHF use?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Simplex uses one frequency with transmission and reception one at a time (PTT); duplex uses two frequencies allowing simultaneous transmit and receive. Aviation VHF voice is simplex; ATIS/VOLMET are simplex broadcasts.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Describe correct PTT technique and the hazard of a stuck microphone.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Listen out, press the PTT and pause briefly, speak clearly at a steady pace, then release fully. A stuck or held PTT transmits continuously, blocking the shared frequency for everyone — and the offender cannot hear it, so it must be guarded against.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What do squelch and AVC do, and how do they differ?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Squelch mutes the background hiss until a wanted signal is received; AVC (automatic volume/gain control) holds the received audio at a steady level despite changing signal strength. Squelch silences noise; AVC steadies a wanted signal — opposite jobs.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Why is the VHF antenna a short vertical blade while HF needs a coupler?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Antennas are sized to a fraction of the wavelength. At VHF the wavelength is a few metres, so a quarter-wave blade is short and vertical to match the vertical polarization. HF wavelengths are tens to hundreds of metres, too long for a full aerial, so a long-wire/probe with a coupler is used to make a short aerial resonant.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is an ELT and on what frequencies does it transmit?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          An Emergency Locator Transmitter, activating automatically on impact, transmitting on 406 MHz (satellite, with a coded registered identity) and 121.5 MHz (for homing) to aid search and rescue.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> State two advantages and two limitations of RT.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Advantages: instant direct two-way voice; standard phraseology crossing language barriers; read-back confirms understanding. Limitations: VHF line-of-sight range; one-at-a-time congestion on simplex; susceptibility to interference, fading and ground shadow, and a stuck mic blocking the channel.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>Simplex</strong> (one freq, PTT) = aviation VHF; duplex = two freqs simultaneous; ATIS = simplex broadcast.</li>
+        <li><strong>PTT:</strong> listen &rarr; press & pause &rarr; speak &rarr; release fully. A <strong>stuck mic</strong> blocks the channel.</li>
+        <li><strong>Squelch</strong> mutes hiss; <strong>AVC</strong> steadies a wanted signal (opposite jobs). Intercom is internal.</li>
+        <li>VHF antenna = <strong>vertical blade (~&frac14; wave)</strong>; HF = long-wire + coupler; mismatch = high VSWR.</li>
+        <li><strong>ELT</strong> 406 + 121.5; radio failure &rarr; check freq/vol/squelch/selector/plug/power &rarr; squawk <strong>7600</strong>.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 11 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

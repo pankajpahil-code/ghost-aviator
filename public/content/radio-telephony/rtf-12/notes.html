@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 12: Navigation Aids | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 12 · REFERENCE DEPTH</span>
+      <h1 class="hero-title">Navigation Aids</h1>
+      <p class="hero-subtitle">The longest and most technical chapter in the book. Every system here is an application of the propagation and frequency principles of Chapters 7–10. We build each aid from first principles — how the signal is generated, how the receiver extracts navigation information, what its errors are, and how it is flown — then test it with worked examples and a full question bank.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part II (iv) Radio-navigation aids &middot; Part I (viii) navigation facilities & principal frequencies</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Explain the four kinds of navigation information radio provides (bearing, distance, vertical guidance, position) and the physical principle behind each.</li>
+        <li>Describe the operating principle, frequency band, presentation, range and full error set of NDB/ADF, VOR, ILS and DME — and work numerical bearing/range problems.</li>
+        <li>Explain SSR Modes A/C/S, the interrogation/reply pulse scheme, garbling, fruit and side-lobe suppression, and the squawk codes.</li>
+        <li>Contrast primary and secondary radar and state the basic pulse-radar relationships.</li>
+        <li>Describe GNSS ranging, the need for four satellites, the error budget, DOP, and the augmentation systems (ABAS/SBAS/GBAS) including GAGAN and NavIC.</li>
+        <li>Explain PBN (RNAV vs RNP), ACAS/TCAS logic, the radio altimeter, GPWS/EGPWS and INS/IRS.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">12.0 How radio creates navigation information</p>
+      <p>12.1 NDB & ADF</p>
+      <p>12.2 VOR</p>
+      <p>12.3 ILS</p>
+      <p>12.4 DME</p>
+      <p>12.5 SSR, transponders & Mode S</p>
+      <p style="margin-top:0;">12.6 Primary radar & radar principles</p>
+      <p>12.7 GNSS — GPS, GAGAN, NavIC</p>
+      <p>12.8 PBN — RNAV & RNP</p>
+      <p>12.9 ACAS / TCAS</p>
+      <p>12.10 Radio altimeter & GPWS/EGPWS</p>
+      <p>12.11 INS / IRS</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/cockpit_nav_instruments.jpg" alt="Aircraft Navigation Display">
+      <figcaption>Modern navigation displays integrate data from VORs, DME, GNSS, and Inertial systems into a seamless picture.</figcaption>
+    </figure>
+
+    <h2>12.0 How radio creates navigation information</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-sitemap"></i> THE UNIFYING IDEA</div>
+      <p style="margin:0;">Every navigation aid in this chapter answers one of four questions, and each does so by exploiting a single measurable property of a radio wave:</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">The Four Pillars of Navigation Aids</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>Physical principle</th>
+            <th>Aids that use it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">Which direction? (bearing)</td><td>Compare the <strong>phase</strong> or <strong>amplitude</strong> of signals to extract an angle, or find the null of a directional antenna</td><td>ADF (null), VOR (phase), ILS (modulation balance)</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">How far? (distance)</td><td>Measure the <strong>time</strong> a pulse takes to travel out and back; distance = &frac12; &middot; c &middot; t</td><td>DME, primary radar, radio altimeter</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Where exactly? (position)</td><td><strong>Range from several known points</strong> (multilateration / satellite ranging)</td><td>GNSS, DME/DME, INS (dead reckoning)</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Am I high/low, left/right of path?</td><td>Balance of two overlapping <strong>modulated lobes</strong></td><td>ILS localizer & glide path, PAR</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-calculator"></i> Two foundational numbers</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Radio waves travel at c = 3 &times; 10&sup8; m/s.</strong> A pulse therefore takes about <strong>12.36 &micro;s to travel one nautical mile and back</strong> (the "radar mile"). This single fact underlies DME, radar and the radio altimeter. And bearing systems all reduce to measuring an <strong>angle</strong> — by phase, by amplitude balance, or by an antenna null.
+      </p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Classifying any aid in the viva</div>
+      <p style="margin:0;">For any aid, be ready to state four things in order: <strong>(1) band, (2) principle, (3) what it gives the pilot, (4) its main errors/limitations.</strong> Examiners build almost every nav-aid question from this skeleton.</p>
+    </div>
+
+    <h2>12.1 NDB & ADF</h2>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/media__1782791226880.png" alt="ADF Cockpit Indication">
+      <figcaption>The ADF dial in the cockpit points directly to the NDB ground station, providing a relative bearing.</figcaption>
+    </figure>
+
+    <h3>12.1.1 The ground station (NDB)</h3>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">The Non-Directional Beacon is the simplest radio aid: a ground transmitter that radiates equally in <strong>all</strong> directions (hence "non-directional"). It does nothing clever itself — all the navigation intelligence is in the aircraft's receiver, which determines the <em>direction</em> from which the beacon's signal arrives.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> NDB — the facts</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Band:</strong> LF/MF, ICAO range <strong>190–1750 kHz</strong> (most are 200–415 kHz).<br>
+        <strong>Propagation:</strong> primarily <strong>ground (surface) wave</strong>, which follows the Earth's curvature — giving useful range beyond line-of-sight at low level. <strong>Emission:</strong> a carrier keyed with a <strong>two- or three-letter Morse ident</strong> (NON A1A keyed carrier, or NON A2A where a 1020 Hz tone is added so the ident is heard on a standard AM receiver).
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-signal"></i> Classes & range</div>
+      <p style="margin:0;">Range depends on transmitter power and surface conductivity. As a rule of thumb: <strong>Locator (L)</strong> beacons (low power, used on approaches) &approx; 10–25 NM; <strong>en-route</strong> NDBs &approx; 50–100+ NM. Range is greater over <strong>sea</strong> (high conductivity) than over dry land or mountains.</p>
+    </div>
+
+    <h3>12.1.2 The airborne receiver (ADF) — how the bearing is found</h3>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-sync"></i> FIRST PRINCIPLES — THE LOOP & SENSE ANTENNA</div>
+      <p style="margin:0; line-height: 1.8;">
+        The Automatic Direction Finder uses a <strong>loop antenna</strong> whose reception pattern is a <strong>figure-of-eight</strong> (a "polar diagram" with two lobes and two sharp <strong>nulls</strong> at right angles to the lobes). A null is used rather than a peak because a null is far sharper and easier to detect precisely. But a single figure-of-eight has <strong>two</strong> nulls 180&deg; apart — so the loop alone cannot tell whether the station is ahead or behind (180&deg; ambiguity).<br><br>
+        To resolve this, the receiver adds an omnidirectional <strong>sense antenna</strong> (a circular pattern). Combining the loop's figure-of-eight with the sense antenna's circle produces a <strong>cardioid</strong> (heart-shaped) pattern with a <strong>single</strong> null. The receiver electronically rotates this pattern (a goniometer/servo) until it finds that single null, and drives the <strong>ADF needle</strong> to point at the station.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-compass"></i> What the needle shows — relative vs magnetic bearing</div>
+      <p style="margin:0; line-height: 1.8;">
+        On a fixed-card indicator the needle gives the <strong>Relative Bearing (RB)</strong> — the angle to the station measured <em>from the aircraft's nose</em>. To get the <strong>Magnetic Bearing TO the station (QDM)</strong> you add the heading:
+      </p>
+      <div style="background: #0f172a; color: #38bdf8; text-align: center; font-size: 1.2rem; font-weight: 800; padding: 15px; border-radius: 8px; margin: 15px 0;">
+        Magnetic Bearing TO (QDM) = Relative Bearing + Magnetic Heading<br>
+        (QDR = QDM &plusmn; 180&deg;)
+      </div>
+      <p style="margin:0; line-height: 1.8;">
+        On an <strong>RMI</strong> (Radio Magnetic Indicator) the compass card is slaved to the heading, so the needle reads the magnetic bearing (QDM) directly off the head of the needle.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — ADF bearing</div>
+      <p style="margin:0; line-height: 1.8;">
+        Aircraft magnetic heading <strong>040&deg;</strong>; the ADF relative bearing reads <strong>030&deg;</strong> (i.e. 30&deg; to the right of the nose).<br>
+        <strong>QDM</strong> (magnetic bearing to the NDB) = RB + HDG = 030 + 040 = <strong>070&deg;</strong>.<br>
+        <strong>QDR</strong> (magnetic bearing from the NDB) = 070 &minus; 180 = <strong>250&deg;</strong>.<br>
+        If the sum exceeds 360&deg;, subtract 360. E.g. HDG 350&deg;, RB 040&deg; &rarr; QDM = 390 &minus; 360 = <strong>030&deg;</strong>.
+      </p>
+    </div>
+
+    <h3>12.1.3 ADF/NDB errors — the full set</h3>
+
+    <div class="table-container">
+      <div class="table-caption">ADF Errors</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Error</th>
+            <th>Cause</th>
+            <th>When worst</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">Night effect</td><td>After dusk the ionosphere returns a <strong>sky wave</strong> that contaminates the ground wave; the two interfere and the needle wanders</td><td>Dusk & dawn, at longer ranges</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Coastal (shoreline) refraction</td><td>The ground wave changes speed crossing the coast and <strong>bends towards the coast</strong></td><td>Signal crossing coast at a shallow angle; near the coastline</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Quadrantal error</td><td>The aircraft's own structure <strong>re-radiates</strong> the signal, biasing the loop</td><td>When the station is off the four "quadrantal" headings; reduced by calibration</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Thunderstorm (static) effect</td><td>A CB's electrical discharges radiate strongly in LF/MF; the needle <strong>points at the storm</strong></td><td>Near active CBs</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Mountain / terrain effect</td><td>Reflections from high ground</td><td>Mountainous areas</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Station interference</td><td>At night, distant co-channel beacons are heard via sky wave</td><td>Night</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">NDB/ADF is the <strong>least accurate</strong> common aid (system accuracy roughly <strong>&plusmn;5&deg;</strong>). Always confirm the <strong>Morse ident</strong> before using a beacon, and treat a wandering needle near dusk, coast or a CB with suspicion. Unlike VOR, the NDB gives <strong>no failure flag</strong> — a needle that has quietly drifted can mislead you.</p>
+    </div>
+
+    <h2>12.2 VOR — VHF Omnidirectional Range</h2>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/vor_hsi_instrument.jpg" alt="VOR/HSI Instrument">
+      <figcaption>The Horizontal Situation Indicator (HSI) or traditional VOR dial allows the pilot to select and fly specific radials based on phase comparison.</figcaption>
+    </figure>
+
+    <h3>12.2.1 The phase-comparison principle</h3>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-sync"></i> FIRST PRINCIPLES — TWO 30 HZ SIGNALS</div>
+      <p style="margin:0; line-height: 1.8;">
+        A VOR transmits <strong>two</strong> 30 Hz signals and lets the receiver compare their <strong>phase difference</strong> to determine the radial. One is a <strong>reference</strong> phase that is the <em>same in every direction</em>; the other is a <strong>variable</strong> phase whose timing depends on the bearing of the receiver from the station.<br><br>
+        In a <strong>conventional VOR (CVOR)</strong>: the reference 30 Hz is transmitted as <strong>frequency modulation</strong> on a 9960 Hz sub-carrier (the same everywhere), while the variable 30 Hz is produced as <strong>amplitude modulation</strong> by physically/electronically <strong>rotating a directional pattern at 30 revolutions per second</strong>. The two signals are arranged to be <strong>exactly in phase when the aircraft is due magnetic NORTH</strong> of the station. As you move around the station, the variable phase slips relative to the reference by exactly the bearing angle — so the measured phase difference <strong>is</strong> the magnetic radial.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> VOR — the facts</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Band:</strong> VHF <strong>108.0–117.975 MHz</strong> (108.00–111.95 shared with ILS — VOR uses the frequencies with an <strong>odd</strong> first decimal e.g. 108.10; ILS uses even, e.g. 108.10 vs 108.15&hellip; check the chart). <strong>Propagation:</strong> line-of-sight (space wave). <strong>Gives:</strong> magnetic <strong>radial TO or FROM</strong> — 360 radials like spokes. <strong>Ident:</strong> 3-letter Morse, sometimes with voice.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-satellite-dish"></i> DVOR — why most modern stations are Doppler</div>
+      <p style="margin:0; line-height: 1.8;">
+        The <strong>Doppler VOR (DVOR)</strong> <em>reverses</em> the roles (reference = AM, variable = FM produced by Doppler shift from a large ring of antennas electronically "rotated"). The wide antenna ring makes DVOR far <strong>less sensitive to site/terrain reflections</strong>, so it is more accurate and easier to site. The cockpit indication is identical — the pilot cannot tell CVOR from DVOR.
+      </p>
+    </div>
+
+    <h3>12.2.2 Reading the instrument — OBS, CDI & the TO/FROM flag</h3>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0; line-height: 1.8;">
+        You select a course with the <strong>OBS (Omni Bearing Selector)</strong>. The <strong>CDI</strong> (Course Deviation Indicator) needle shows how far left/right of that selected course you are, and the <strong>TO/FROM</strong> flag shows whether flying the selected course would take you <em>toward</em> or <em>away from</em> the station. Each dot of CDI deflection &approx; <strong>2&deg;</strong>; full-scale (5 dots) &approx; <strong>10&deg;</strong>.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — CDI interpretation</div>
+      <p style="margin:0; line-height: 1.8;">
+        You select OBS <strong>090&deg;</strong> and get a <strong>TO</strong> flag with the needle <strong>2 dots left</strong>.<br>
+        TO flag &rarr; flying 090&deg; would take you to the station, so the station is roughly <strong>east</strong> of you (you are west of it, near the 270&deg; radial).<br>
+        Needle 2 dots left &rarr; the selected course is to your <strong>left</strong>; fly left (turn toward the needle) to intercept. 2 dots &approx; <strong>4&deg;</strong> displacement from the 090&deg; course line.<br>
+        <strong>Golden rule:</strong> with a FROM flag the CDI senses correctly when your heading roughly matches the OBS; with a TO flag and the OBS set to the reciprocal, beware <strong>reverse sensing</strong>.
+      </p>
+    </div>
+
+    <h3>12.2.3 VOR errors & range</h3>
+
+    <div class="table-container">
+      <div class="table-caption">VOR Errors</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Error / limitation</th>
+            <th>Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">Site & terrain (scalloping)</td><td>Reflections cause the needle to oscillate ("scalloping"); much reduced on DVOR</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Cone of confusion</td><td>Directly overhead the station the signal is ambiguous — the TO/FROM flag flickers and the needle is unreliable for a short time</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Line-of-sight range</td><td>VHF — range grows with altitude; blocked by terrain</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Aggregate accuracy</td><td>&approx; <strong>&plusmn;5&deg;</strong> system (ground station &plusmn;1–2&deg;), far better than NDB; a <strong>failure flag</strong> appears if the signal is unusable</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-map-marker-alt"></i> VOR/DME, TACAN & VORTAC</div>
+      <p style="margin:0;">A VOR is frequently co-located with a <strong>DME</strong> (VOR/DME) so a single station gives both bearing and distance — a complete fix. <strong>TACAN</strong> is the military equivalent (bearing + DME in UHF); a <strong>VORTAC</strong> co-locates a VOR with a TACAN so civil aircraft get VOR bearing + TACAN's DME.</p>
+    </div>
+
+    <h2>12.3 ILS — Instrument Landing System</h2>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/ils_approach_schematic.jpg" alt="ILS Approach Schematic">
+      <figcaption>The ILS uses intersecting localizer and glide path radio beams to provide precision guidance down to the runway threshold.</figcaption>
+    </figure>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">The ILS is a <strong>precision approach</strong> aid giving the pilot both <strong>azimuth</strong> (left/right of the centreline) and <strong>vertical</strong> (above/below the glide path) guidance down to low height, plus distance checkpoints. It is built from three independent radio systems.</p>
+    </div>
+
+    <h3>12.3.1 The localizer — azimuth guidance</h3>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-balance-scale"></i> FIRST PRINCIPLES — THE 90/150 HZ BALANCE</div>
+      <p style="margin:0; line-height: 1.8;">An antenna array at the <strong>far end</strong> of the runway radiates two overlapping lobes along the approach: the left side carries a tone modulated at <strong>90 Hz</strong>, the right side at <strong>150 Hz</strong>. On the exact centreline the two tones are received with <strong>equal depth of modulation</strong> — the <strong>Difference in Depth of Modulation (DDM) is zero</strong> — and the needle centres. Off to one side, one tone dominates and the needle deflects. The receiver literally measures the <strong>balance</strong> between two modulation tones.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> Localizer — facts</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Band:</strong> VHF <strong>108.10–111.95 MHz</strong> (odd-tenth + 0.05 frequencies). <strong>Course sector:</strong> adjusted so full-scale deflection corresponds to roughly <strong>&plusmn;2.5&deg;</strong> (course width &approx; runway-width dependent, typically 3–6&deg; total). <strong>Sensitivity:</strong> about <strong>4&times; more sensitive</strong> than a VOR for the same needle movement — a small deviation moves the needle a lot.
+      </p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Back course & reverse sensing</div>
+      <p style="margin:0;">The localizer also radiates a <strong>back course</strong> off the approach end. Flying inbound on the back course (or a front course outbound) gives <strong>reverse sensing</strong> — the needle moves opposite to the correction needed — unless the system/HSI compensates. Know this exists.</p>
+    </div>
+
+    <h3>12.3.2 The glide path — vertical guidance</h3>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> Glide path — facts</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Band:</strong> UHF <strong>329–335 MHz</strong> (automatically paired with the localizer frequency — you tune one box). <strong>Principle:</strong> same 90/150 Hz balance but in the <strong>vertical</strong> plane — <strong>90 Hz dominates above</strong> the path, <strong>150 Hz below</strong>. <strong>Nominal angle: 3&deg;</strong>; usable half-width &approx; &plusmn;0.7&deg;.
+      </p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> False glide paths</div>
+      <p style="margin:0;">The glide-path antenna pattern produces additional lobes, creating <strong>false glide slopes</strong> at higher angles (e.g. around 6&deg;, 9&deg;). They can be captured from above. Defence: intercept the glide path <strong>from below</strong> at the correct altitude after establishing on the localizer, and cross-check altitude/distance.</p>
+    </div>
+
+    <h3>12.3.3 Marker beacons & ILS categories</h3>
+
+    <div class="table-container">
+      <div class="table-caption">Marker Beacons</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Marker</th>
+            <th>Tone / code</th>
+            <th>Light</th>
+            <th>Typical position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">Outer (OM)</td><td>400 Hz, low tone, dashes</td><td>Blue</td><td>&approx; 3.9–5 NM (final approach fix)</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Middle (MM)</td><td>1300 Hz, alternate dot-dash</td><td>Amber</td><td>&approx; 0.5–0.6 NM (near CAT I DH)</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Inner (IM)</td><td>3000 Hz, high tone, dots</td><td>White</td><td>Near threshold (CAT II/III)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-broadcast-tower"></i> All marker beacons share 75 MHz</div>
+      <p style="margin:0;">Every marker — outer, middle, inner — transmits on a <strong>75 MHz</strong> carrier (VHF), radiating a narrow fan <em>upward</em>; the aircraft passes through it. Markers are increasingly replaced by <strong>DME</strong> for continuous distance. ICAO categories define the minima:</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">ILS Categories</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Decision Height</th>
+            <th>RVR (typical)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>CAT I</strong></td><td>&ge; 200 ft</td><td>&ge; 550 m</td></tr>
+          <tr><td><strong>CAT II</strong></td><td>100–200 ft</td><td>&ge; 300 m</td></tr>
+          <tr><td><strong>CAT IIIA</strong></td><td>&lt; 100 ft (or none)</td><td>&ge; 200 m</td></tr>
+          <tr><td><strong>CAT IIIB</strong></td><td>&lt; 50 ft (or none)</td><td>50–200 m</td></tr>
+          <tr><td><strong>CAT IIIC</strong></td><td>None</td><td>None (zero/zero)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-edit"></i> Author check before publishing</div>
+      <p style="margin:0;">Confirm exact CAT II/III DH/RVR values against the current DGCA CAR/ICAO Annex 10 & Annex 6, as national thresholds vary slightly. Also confirm protected-area (LSA/GSA critical & sensitive area) wording you wish to include.</p>
+    </div>
+
+    <h2>12.4 DME — Distance Measuring Equipment</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-stopwatch"></i> FIRST PRINCIPLES — TIMING A PULSE PAIR</div>
+      <p style="margin:0; line-height: 1.8;">
+        The aircraft (the <strong>interrogator</strong>) transmits <strong>pulse pairs</strong> on a UHF frequency. The ground <strong>transponder</strong> receives them, waits a <strong>fixed 50 &micro;s system delay</strong>, and replies with pulse pairs on a frequency offset by <strong>63 MHz</strong>. The airborne set measures the <strong>total round-trip time</strong>, subtracts the 50 &micro;s, and converts the remaining time to distance using the radar mile (&approx;12.36 &micro;s per NM round trip). Because the aircraft initiates and the reply is uniquely jittered, each aircraft recognises only its <em>own</em> replies.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> DME — facts</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Band:</strong> UHF <strong>962–1213 MHz</strong>. <strong>Gives: slant range</strong> (direct line-of-sight distance, not ground distance). <strong>Capacity:</strong> a ground transponder serves <strong>&approx; 100 aircraft</strong>; beyond that it sheds the weakest (beacon saturation). Usually paired with a VOR or ILS so one selection drives both.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — slant vs ground range</div>
+      <p style="margin:0; line-height: 1.8;">
+        You are at <strong>6000 ft</strong> (&approx; 1 NM) overhead-ish a DME, reading <strong>6 NM slant range</strong>.<br>
+        Ground distance = &radic;(slant&sup2; &minus; height&sup2;) = &radic;(6&sup2; &minus; 1&sup2;) = &radic;35 &approx; <strong>5.92 NM</strong>.<br>
+        Directly overhead (ground = 0) the DME reads your <strong>height in NM</strong>: 6000 ft &approx; 1 NM, so it reads &approx; 1 NM, not zero. <strong>Slant-range error is greatest close-in and high</strong>, and negligible far out at low level.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality — the DME arc</div>
+      <p style="margin:0;">Holding a constant DME distance while turning lets you fly a <strong>DME arc</strong> around a station — a common way to join a final approach. The DME's continuous distance is also what replaces marker beacons on a modern ILS ("4 DME", "2 DME" checks against altitude).</p>
+    </div>
+
+    <h2>12.5 SSR, transponders & Mode S</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-satellite-dish"></i> FIRST PRINCIPLES — INTERROGATION & REPLY</div>
+      <p style="margin:0;">Unlike primary radar (which listens for a passive echo), Secondary Surveillance Radar is a <strong>cooperative</strong> system. The ground interrogator transmits on <strong>1030 MHz</strong>; the aircraft <strong>transponder</strong> detects the interrogation and actively <strong>replies on 1090 MHz</strong> with coded data. Because the reply is a strong, coded transmission rather than a faint echo, SSR gives reliable <strong>identity and altitude</strong> with far less power.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> Modes & pulse scheme</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Mode A</strong> (identity): interrogation pulses P1–P3 spaced <strong>8 &micro;s</strong>; the reply is a 4096-code (octal) squawk framed between framing pulses <strong>F1/F2 (20.3 &micro;s apart)</strong>. <strong>Mode C</strong> (altitude): P1–P3 spaced <strong>21 &micro;s</strong>; reply encodes pressure altitude in 100 ft steps (Gillham code). <strong>Mode S</strong> (Select): each aircraft has a unique <strong>24-bit address</strong>, so the radar interrogates aircraft individually, carries a data-link, and eliminates the garbling problem. ADS-B (1090ES) is built on the Mode S reply.
+      </p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">SSR Problems and Solutions</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Problem</th>
+            <th>What it is</th>
+            <th>Cure</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">Garbling</td><td>Two aircraft at similar range/bearing reply overlapping in time</td><td>Mode S selective addressing</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">FRUIT</td><td>Replies triggered by <em>other</em> interrogators received by this radar</td><td>Defruiters; Mode S</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Side-lobe replies</td><td>Transponder replies to the radar's antenna side-lobes, giving false bearings</td><td><strong>Side-Lobe Suppression (SLS)</strong> — a P2 control pulse</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-list-ol"></i> Squawk codes — memorise exactly</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>7500</strong> unlawful interference (hijack) &middot; <strong>7600</strong> radio/communications failure &middot; <strong>7700</strong> general emergency. Also: <strong>7000</strong> conspicuity (VFR, many regions), <strong>2000</strong> entering from a non-SSR area, and the <strong>SPI / IDENT</strong> pulse when ATC asks you to "squawk ident".
+      </p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;"><strong>"75 taken alive &middot; 76 nix the comms &middot; 77 going to heaven."</strong></p>
+    </div>
+
+    <h2>12.6 Primary radar & radar principles</h2>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/media__1782791226866.jpg" alt="Primary Radar Dish">
+      <figcaption>Primary Surveillance Radar (PSR) transmits high-power pulses and listens for the faint, passive echo reflected off the aircraft skin.</figcaption>
+    </figure>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">Primary Surveillance Radar (PSR) is the original radar: transmit a pulse, listen for the <strong>reflected echo</strong> from the target, and time it. It needs <strong>no equipment aboard</strong> the aircraft, but gives only <strong>range and bearing</strong> — no identity, no altitude.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-wave-square"></i> The pulse-radar relationships</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Range</strong> = &frac12; &middot; c &middot; t (echo time there-and-back). <strong>PRF</strong> (pulse repetition frequency) sets the maximum unambiguous range — too high a PRF and a distant echo returns after the next pulse is sent (range ambiguity). <strong>Pulse width</strong> sets minimum range and range resolution; <strong>beam width</strong> sets bearing resolution. <strong>MTI/Doppler</strong> processing rejects stationary clutter to show moving targets.
+      </p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">Primary Radar Types</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Radar</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>ASR / TAR</strong></td><td>Airport/terminal surveillance (approach control)</td></tr>
+          <tr><td><strong>ARSR</strong></td><td>En-route (area) surveillance — long range</td></tr>
+          <tr><td><strong>SMR</strong></td><td>Surface Movement Radar — ground traffic in poor visibility</td></tr>
+          <tr><td><strong>PAR</strong></td><td>Precision Approach Radar — controller-guided azimuth + elevation talkdown (Ch 17)</td></tr>
+          <tr><td><strong>Weather radar</strong></td><td>Airborne, ~9.3 GHz (X-band), detects precipitation/CB</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>12.7 GNSS — GPS, GAGAN & NavIC</h2>
+    
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/media__1782791226653.jpg" alt="GAGAN and GNSS Constellations">
+      <figcaption>The GAGAN system uses geostationary satellites to broadcast corrections and integrity messages, augmenting the core GNSS signals over the Indian Flight Information Region.</figcaption>
+    </figure>
+
+    <h3>12.7.1 How satellite ranging fixes a position</h3>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-satellite"></i> FIRST PRINCIPLES — PSEUDO-RANGING & THE FOURTH SATELLITE</div>
+      <p style="margin:0; line-height: 1.8;">
+        Each satellite broadcasts its position and a precisely-timed code. The receiver measures the <strong>time of flight</strong> of the code &rarr; a <strong>range</strong> to that satellite, placing the aircraft on a sphere around it. Two satellites narrow it to a circle, three to two points — so in principle <strong>3 satellites give a 3-D position</strong>. But the receiver's own clock is cheap and slightly wrong, and a small clock error scales by c into a large range error. A <strong>fourth satellite</strong> is used to solve for that clock error as well — hence <strong>four satellites are required for a 3-D fix.</strong>
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> GPS — architecture</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Space segment:</strong> &ge; 24 satellites in <strong>6 orbital planes</strong> at &approx; <strong>20,200 km</strong>, period &approx; <strong>11 h 58 min</strong>, inclination 55&deg;. <strong>Signals: L1 = 1575.42 MHz</strong> (also L2 1227.6, L5 1176.45 MHz). <strong>Control segment:</strong> ground monitor/upload stations. <strong>User segment:</strong> the receiver. Other constellations: <strong>GLONASS</strong> (Russia), <strong>Galileo</strong> (EU), <strong>BeiDou</strong> (China), <strong>NavIC/IRNSS</strong> (India, regional — L5 & S-band, ~7 satellites).
+      </p>
+    </div>
+
+    <h3>12.7.2 Error budget, DOP & integrity</h3>
+
+    <div class="table-container">
+      <div class="table-caption">GNSS Errors</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Error source</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">Ionospheric / tropospheric delay</td><td>Largest natural error; partly modelled, dual-frequency cancels ionosphere</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Satellite clock & ephemeris</td><td>Corrected by the navigation message</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Multipath</td><td>Reflections off ground/structures near the antenna</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Receiver noise</td><td>Internal</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Geometry (GDOP/PDOP)</td><td>Satellites <strong>spread wide</strong> across the sky give a strong fix (low DOP); satellites bunched together give a weak fix (high DOP)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-shield-alt"></i> Augmentation — making GNSS good enough for approaches</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>ABAS</strong> (Aircraft-Based, e.g. <strong>RAIM</strong> — Receiver Autonomous Integrity Monitoring): the receiver cross-checks redundant satellites to detect a faulty one. <strong>SBAS</strong> (Satellite-Based): geostationary satellites broadcast wide-area corrections + integrity — <strong>GAGAN</strong> (India), WAAS (USA), EGNOS (Europe), enabling APV/LPV approaches. <strong>GBAS</strong> (Ground-Based, GLS): a local airport station for precision approaches.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-globe-asia"></i> GAGAN — the Indian SBAS</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>GAGAN (GPS Aided GEO Augmented Navigation)</strong> uses geostationary satellites to broadcast corrections and an <strong>integrity</strong> message over the Indian region, improving GPS accuracy to a few metres and enabling approach procedures with vertical guidance. <strong>Integrity</strong> — the system's ability to warn the pilot promptly when it should not be used — is what makes augmentation essential for IFR approaches.
+      </p>
+    </div>
+
+    <h2>12.8 PBN — RNAV & RNP</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">Performance-Based Navigation (PBN) frees aircraft from flying directly station-to-station: instead they fly defined paths to a stated <strong>accuracy</strong>. The key distinction the exam wants:</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-balance-scale"></i> RNAV vs RNP — the one-line difference</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>RNAV</strong> = Area Navigation: fly any path within the coverage of the nav aids, to a stated lateral accuracy. <strong>RNP</strong> = RNAV <strong>plus on-board performance monitoring and alerting</strong> — the system continuously checks it is meeting the required accuracy and <strong>warns the crew if it is not</strong>. That self-monitoring is the whole difference.
+      </p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">PBN Specifications</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Specification</th>
+            <th>Lateral accuracy (NM, 95%)</th>
+            <th>Phase</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>RNAV 10 / RNP 10</strong></td><td>10</td><td>Oceanic / remote</td></tr>
+          <tr><td><strong>RNAV 5</strong></td><td>5</td><td>En-route continental</td></tr>
+          <tr><td><strong>RNAV 1 / 2</strong></td><td>1 / 2</td><td>Terminal</td></tr>
+          <tr><td><strong>RNP 4</strong></td><td>4</td><td>Oceanic (with monitoring)</td></tr>
+          <tr><td><strong>RNP 1</strong></td><td>1</td><td>Terminal (with monitoring)</td></tr>
+          <tr><td><strong>RNP APCH / AR</strong></td><td>0.3 &rarr; lower</td><td>Approach (AR = authorisation required, curved paths)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>12.9 ACAS / TCAS</h2>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/media__1782791226670.png" alt="TCAS Resolution Advisory">
+      <figcaption>When a conflict is detected, TCAS II issues a coordinated Resolution Advisory (RA) commanding a vertical manoeuvre, such as "CLIMB", to ensure safe separation.</figcaption>
+    </figure>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-plane-departure"></i> FIRST PRINCIPLES — USING TRANSPONDERS TO SEE TRAFFIC</div>
+      <p style="margin:0; line-height: 1.8;">
+        ACAS (the ICAO term; TCAS II is the common implementation) <strong>interrogates the transponders</strong> of nearby aircraft — exactly like a tiny airborne SSR — and tracks their range, closure and altitude. It builds a picture independent of ground radar and warns of conflicts <strong>in the vertical plane</strong>.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-exclamation-circle"></i> TA then RA</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Traffic Advisory (TA):</strong> "TRAFFIC, TRAFFIC" — &approx; <strong>40 s</strong> to closest approach; alerts the crew to look out, but commands nothing. <strong>Resolution Advisory (RA):</strong> &approx; <strong>25 s</strong> to closest approach — a <strong>vertical command</strong> (climb/descend/maintain/level-off). When both aircraft have TCAS II, they <strong>coordinate via Mode S</strong> so one climbs and the other descends. <strong>An RA is followed even if it conflicts with an ATC instruction</strong>, and the crew advises ATC ("TCAS RA").
+      </p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Limitations</div>
+      <p style="margin:0;">TCAS only sees aircraft with an operating <strong>transponder</strong> (it cannot see non-transponding traffic). RAs are <strong>vertical only</strong> — never turn in response to an RA. It is a last-resort safety net, not a substitute for see-and-avoid or ATC separation.</p>
+    </div>
+
+    <h2>12.10 Radio altimeter & GPWS/EGPWS</h2>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/media__1782791226213.jpg" alt="GPWS Terrain Warning">
+      <figcaption>The radio altimeter measures true height above the surface, feeding the GPWS which issues immediate audio and visual warnings (e.g., "TERRAIN, PULL UP") when closure rates become dangerous.</figcaption>
+    </figure>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-arrow-down"></i> Radio (radar) altimeter</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Band:</strong> &approx; <strong>4200–4400 MHz</strong> (SHF). <strong>Technique: FM-CW</strong> (frequency-modulated continuous wave) — the frequency difference between the transmitted and reflected signal is proportional to height. <strong>Measures true height above the surface directly below (AGL)</strong>, typically <strong>0–2500 ft</strong>, used on approach and for auto-land. It reads terrain height, not a barometric level.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-mountain"></i> GPWS modes (1–7) & EGPWS</div>
+      <p style="margin:0; line-height: 1.8;">
+        The <strong>Ground Proximity Warning System</strong> uses radio-altimeter height and aircraft data to warn of dangerous situations: <strong>1</strong> excessive descent rate &middot; <strong>2</strong> excessive terrain closure rate &middot; <strong>3</strong> altitude loss after take-off &middot; <strong>4</strong> unsafe terrain clearance (not in landing config) &middot; <strong>5</strong> below glide slope &middot; <strong>6</strong> altitude callouts / excessive bank &middot; <strong>7</strong> wind shear. <strong>EGPWS (Enhanced)</strong> adds a worldwide <strong>terrain database</strong> and GPS position for <strong>forward-looking</strong> terrain alerting — warning of terrain ahead, not just below.
+      </p>
+    </div>
+
+    <h2>12.11 INS / IRS</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-compass"></i> FIRST PRINCIPLES — NAVIGATION WITH NO OUTSIDE SIGNAL</div>
+      <p style="margin:0; line-height: 1.8;">
+        An Inertial Navigation System measures the aircraft's own <strong>accelerations</strong> (accelerometers) and <strong>rotations</strong> (gyroscopes), and mathematically integrates them from a <strong>known start position</strong> to compute present position continuously — needing <strong>no external radio signal at all.</strong> It is therefore completely self-contained and un-jammable.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> Platform vs strapdown; drift; hybridisation</div>
+      <p style="margin:0; line-height: 1.8;">
+        Older systems use a gimballed stable <strong>platform</strong>; modern <strong>strapdown</strong> IRS fix the sensors to the airframe and use <strong>ring-laser or fibre-optic gyros</strong>. Because errors accumulate through integration, the position <strong>drifts</strong> with time (typically <strong>&approx; 2 NM/hr</strong>). <strong>Schuler tuning</strong> (an 84.4-minute period) prevents the system oscillating with vehicle motion. In practice the IRS is <strong>blended with GNSS</strong> (hybrid IRS/GPS) so GNSS bounds the drift while inertial provides smooth, high-rate, jam-resistant data.
+      </p>
+    </div>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 12</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Aid</th>
+            <th>Band / frequency</th>
+            <th>Principle</th>
+            <th>Gives / key figures</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>NDB / ADF</strong></td><td>LF/MF 190–1750 kHz</td><td>Loop null + sense &rarr; cardioid</td><td>Relative bearing; &plusmn;5&deg;; ground wave</td></tr>
+          <tr><td><strong>VOR</strong></td><td>VHF 108.0–117.975 MHz</td><td>30 Hz phase comparison (ref FM / var AM)</td><td>Magnetic radial; &plusmn;5&deg;; in-phase at North</td></tr>
+          <tr><td><strong>ILS LOC</strong></td><td>VHF 108.10–111.95 MHz</td><td>90/150 Hz DDM balance (azimuth)</td><td>Centreline; &plusmn;2.5&deg; full scale</td></tr>
+          <tr><td><strong>ILS GP</strong></td><td>UHF 329–335 MHz</td><td>90 above /150 below (vertical)</td><td>3&deg; path; false slopes ~6&deg;/9&deg;</td></tr>
+          <tr><td><strong>Markers</strong></td><td>75 MHz (OM 400/MM 1300/IM 3000 Hz)</td><td>Vertical fan</td><td>Distance checkpoints</td></tr>
+          <tr><td><strong>DME</strong></td><td>UHF 962–1213 MHz</td><td>Pulse-pair timing; 50 &micro;s delay; 63 MHz offset</td><td>Slant range; ~100 a/c; radar mile 12.36 &micro;s/NM</td></tr>
+          <tr><td><strong>SSR</strong></td><td>1030 &uarr; / 1090 &darr; MHz</td><td>Interrogate–reply; Mode A 8 &micro;s / C 21 &micro;s / S 24-bit</td><td>ID + altitude; 7500/7600/7700</td></tr>
+          <tr><td><strong>GPS</strong></td><td>L1 1575.42 MHz</td><td>Satellite pseudo-ranging</td><td>4 sats for 3-D; ~20,200 km; GAGAN augments</td></tr>
+          <tr><td><strong>Radio altimeter</strong></td><td>4200–4400 MHz</td><td>FM-CW</td><td>True AGL 0–2500 ft</td></tr>
+          <tr><td><strong>INS/IRS</strong></td><td>(no radio)</td><td>Accelerometers + gyros</td><td>Self-contained; drift ~2 NM/hr; Schuler 84.4 min</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A — MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. The ADF resolves the 180&deg; ambiguity of the loop antenna by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Using a higher frequency</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Adding a sense antenna to form a cardioid with a single null</li>
+          <li onclick="checkAnswer(this, false)">Rotating the aircraft</li>
+          <li onclick="checkAnswer(this, false)">Comparing 90 and 150 Hz tones</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Adding a sense antenna to form a cardioid with a single null.</strong> The omnidirectional sense antenna combines with the figure-of-eight loop to give a cardioid with one null.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. Heading 350&deg;(M), ADF relative bearing 040&deg;. The QDM is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">310&deg;</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">030&deg;</li>
+          <li onclick="checkAnswer(this, false)">050&deg;</li>
+          <li onclick="checkAnswer(this, false)">210&deg;</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 030&deg;.</strong> QDM = RB + HDG = 040 + 350 = 390 &minus; 360 = 030&deg;.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. A VOR's reference and variable 30 Hz signals are in phase when the aircraft is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Overhead the station</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Due magnetic north of the station</li>
+          <li onclick="checkAnswer(this, false)">On the 180&deg; radial</li>
+          <li onclick="checkAnswer(this, false)">At the cone of confusion</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Due magnetic north of the station.</strong> By design the phase difference is zero on the 360&deg; (north) radial; it then equals the radial.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. In a conventional VOR, the reference phase signal is carried as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">30 Hz AM</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">30 Hz FM on a 9960 Hz sub-carrier</li>
+          <li onclick="checkAnswer(this, false)">A 90 Hz tone</li>
+          <li onclick="checkAnswer(this, false)">A Morse code</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 30 Hz FM on a 9960 Hz sub-carrier.</strong> CVOR: reference = FM on 9960 Hz sub-carrier (same in all directions); variable = AM from the rotating pattern.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. The ILS localizer indicates centreline when:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">90 Hz dominates</li>
+          <li onclick="checkAnswer(this, false)">150 Hz dominates</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The depth of modulation of 90 and 150 Hz is equal (DDM = 0)</li>
+          <li onclick="checkAnswer(this, false)">The DME reads zero</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The depth of modulation of 90 and 150 Hz is equal (DDM = 0).</strong> On the centreline the two tones are received equally — zero difference in depth of modulation.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. ILS marker beacons all transmit on:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">329–335 MHz</li>
+          <li onclick="checkAnswer(this, false)">108.10–111.95 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">75 MHz</li>
+          <li onclick="checkAnswer(this, false)">1030 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 75 MHz.</strong> Outer/middle/inner markers share a 75 MHz carrier, differing in tone and code.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. A false glide slope is typically encountered:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Below the true 3&deg; path</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Above the true path (e.g. ~6&deg;), if intercepted from above</li>
+          <li onclick="checkAnswer(this, false)">On the localizer back course</li>
+          <li onclick="checkAnswer(this, false)">Only at night</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Above the true path (e.g. ~6&deg;), if intercepted from above.</strong> Antenna side-lobes create false slopes at higher angles; intercept the GP from below to avoid them.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. DME measures distance by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Comparing two 30 Hz phases</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Timing the round trip of pulse pairs, less a 50 &micro;s ground delay</li>
+          <li onclick="checkAnswer(this, false)">Measuring received signal strength</li>
+          <li onclick="checkAnswer(this, false)">Counting satellites</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Timing the round trip of pulse pairs, less a 50 &micro;s ground delay.</strong> The interrogator times the reply (minus the fixed 50 &micro;s transponder delay) to derive slant range.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. At 12,000 ft (2 NM) directly overhead a DME, the indicator reads approximately:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">0 NM</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">2 NM</li>
+          <li onclick="checkAnswer(this, false)">6 NM</li>
+          <li onclick="checkAnswer(this, false)">12 NM</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 2 NM.</strong> Overhead, ground range is zero so slant range equals height: 12,000 ft &approx; 2 NM.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. An SSR transponder is interrogated on, and replies on, respectively:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">1090 / 1030 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">1030 / 1090 MHz</li>
+          <li onclick="checkAnswer(this, false)">329 / 335 MHz</li>
+          <li onclick="checkAnswer(this, false)">75 / 75 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 1030 / 1090 MHz.</strong> Ground interrogates on 1030 MHz; aircraft replies on 1090 MHz.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. Side-Lobe Suppression in SSR prevents:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Garbling</li>
+          <li onclick="checkAnswer(this, false)">FRUIT</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Replies to the antenna's side lobes giving false bearings</li>
+          <li onclick="checkAnswer(this, false)">Altitude errors</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Replies to the antenna's side lobes giving false bearings.</strong> A P2 control pulse stops the transponder replying when interrogated via a side lobe.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. The transponder code for radio communications failure is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">7500</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">7600</li>
+          <li onclick="checkAnswer(this, false)">7700</li>
+          <li onclick="checkAnswer(this, false)">7000</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 7600.</strong> 7500 hijack, 7600 radio failure, 7700 emergency.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. Which radar requires equipment carried aboard the aircraft to function?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Primary radar</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Secondary radar</li>
+          <li onclick="checkAnswer(this, false)">Both</li>
+          <li onclick="checkAnswer(this, false)">Neither</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Secondary radar.</strong> SSR needs a transponder; primary radar works on the passive echo from any target.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. A 3-D GNSS position fix requires a minimum of how many satellites?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">2</li>
+          <li onclick="checkAnswer(this, false)">3</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">4</li>
+          <li onclick="checkAnswer(this, false)">6</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 4.</strong> Three for position plus one to solve the receiver clock error = four.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. The GPS L1 carrier frequency is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">1227.60 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">1575.42 MHz</li>
+          <li onclick="checkAnswer(this, false)">1090 MHz</li>
+          <li onclick="checkAnswer(this, false)">1176.45 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 1575.42 MHz.</strong> L1 = 1575.42 MHz (L2 = 1227.6, L5 = 1176.45).
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. GAGAN is best described as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A ground-based primary radar</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A satellite-based augmentation system (SBAS) for the Indian region</li>
+          <li onclick="checkAnswer(this, false)">India's own satellite constellation for global coverage</li>
+          <li onclick="checkAnswer(this, false)">An inertial system</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A satellite-based augmentation system (SBAS) for the Indian region.</strong> GAGAN broadcasts corrections + integrity over India via GEO satellites. (NavIC/IRNSS is the regional constellation.)
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="question-block">
+        <div class="question-text">17. The essential difference between RNAV and RNP is that RNP adds:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A higher cruising altitude</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">On-board performance monitoring and alerting</li>
+          <li onclick="checkAnswer(this, false)">A second VOR</li>
+          <li onclick="checkAnswer(this, false)">Mode S</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: On-board performance monitoring and alerting.</strong> RNP = RNAV plus the requirement that the system monitors its own accuracy and alerts the crew.
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="question-block">
+        <div class="question-text">18. A TCAS Resolution Advisory commands a manoeuvre in:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The horizontal plane (turn)</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The vertical plane (climb/descend)</li>
+          <li onclick="checkAnswer(this, false)">Any plane</li>
+          <li onclick="checkAnswer(this, false)">Speed only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The vertical plane (climb/descend).</strong> RAs are vertical-only; never turn in response to an RA.
+        </div>
+      </div>
+
+      <!-- Q19 -->
+      <div class="question-block">
+        <div class="question-text">19. The radio altimeter operates around 4200–4400 MHz and indicates:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Pressure altitude</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">True height above the surface directly below (AGL)</li>
+          <li onclick="checkAnswer(this, false)">Altitude above mean sea level</li>
+          <li onclick="checkAnswer(this, false)">Slant range to a beacon</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: True height above the surface directly below (AGL).</strong> FM-CW radio altimeter gives AGL, typically 0–2500 ft.
+        </div>
+      </div>
+
+      <!-- Q20 -->
+      <div class="question-block">
+        <div class="question-text">20. A characteristic of INS used alone is that its position error:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Is constant regardless of time</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Grows with time (drift), typically a few NM per hour</li>
+          <li onclick="checkAnswer(this, false)">Depends on satellite geometry</li>
+          <li onclick="checkAnswer(this, false)">Only occurs over the sea</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Grows with time (drift), typically a few NM per hour.</strong> Integration accumulates error, so unaided INS drifts (~2 NM/hr); GNSS is used to bound it.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B — Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Explain how an NDB and ADF together give a bearing, and list the main errors.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The NDB radiates omnidirectionally in LF/MF on the ground wave. The airborne ADF loop has a figure-of-eight pattern with sharp nulls but a 180&deg; ambiguity; a sense antenna combines with it to form a cardioid with a single null, which the receiver rotates onto the station to drive the needle to the relative bearing (QDM = RB + HDG). Main errors: night effect, coastal refraction, quadrantal error, thunderstorm effect, mountain effect and station interference; overall &approx; &plusmn;5&deg; and no failure flag.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Describe the phase principle of a VOR.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          A VOR sends a reference 30 Hz (FM on a 9960 Hz sub-carrier, identical in all directions) and a variable 30 Hz (AM from a pattern rotating at 30 rev/s). The two are in phase due magnetic north; elsewhere the phase difference equals the magnetic radial. DVOR reverses the roles using Doppler for better siting. Accuracy &approx; &plusmn;5&deg;, line-of-sight, with a cone of confusion overhead and a failure flag.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How does the ILS provide azimuth and vertical guidance?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The localizer (VHF 108.10–111.95 MHz) radiates 90 Hz on one side and 150 Hz on the other; equal depth of modulation (DDM = 0) marks the centreline. The glide path (UHF 329–335 MHz) does the same vertically — 90 Hz above, 150 Hz below a 3&deg; path. Marker beacons (75 MHz) give distance checkpoints. Beware false glide slopes above the true path and back-course reverse sensing.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Why does DME read slant range, and when is the error significant?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          DME times the round trip of pulse pairs (less the 50 &micro;s transponder delay), which measures the direct line-of-sight distance — the slant range. The error between slant and ground range is greatest when close to the station and high; overhead it reads the aircraft's height in NM. Far out at low level it is negligible.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Explain SSR Modes A, C and S and the problems Mode S solves.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Mode A returns an identity squawk (P1–P3 spaced 8 &micro;s); Mode C returns pressure altitude (21 &micro;s spacing); Mode S addresses each aircraft individually by a 24-bit code and carries a data link. Mode S solves garbling (overlapping replies) and reduces FRUIT, and underpins ADS-B. Side-lobe suppression (P2) prevents false replies via the antenna side lobes.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Why are four satellites needed for a GNSS position, and what limits accuracy?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Three satellites fix a 3-D position, but the receiver's clock error scales by the speed of light into a large range error, so a fourth satellite is needed to solve for that clock error. Accuracy is limited by ionospheric/tropospheric delay, satellite clock/ephemeris errors, multipath, receiver noise and satellite geometry (DOP). Augmentation (ABAS/RAIM, SBAS/GAGAN, GBAS) adds the accuracy and integrity needed for approaches.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between RNAV and RNP?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Both let an aircraft fly defined paths to a stated lateral accuracy, but RNP additionally requires on-board performance monitoring and alerting — the system continuously checks it is meeting the required navigation performance and warns the crew if it is not.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How does TCAS work and what are its limitations?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          TCAS interrogates nearby transponders to track range, closure and altitude, issuing a Traffic Advisory (~40 s) and, if needed, a Resolution Advisory (~25 s) commanding a vertical manoeuvre, coordinated with the other TCAS via Mode S. It only detects transponding aircraft, gives vertical-only RAs, and an RA is flown even against ATC, with ATC then advised.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Distinguish primary and secondary radar.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Primary radar transmits a pulse and times the passive reflected echo, needing nothing aboard but giving only range and bearing. Secondary radar interrogates a cooperative transponder (1030 MHz) which replies (1090 MHz) with identity and altitude, using far less power and giving richer data.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What does the radio altimeter measure and how, and what uses it?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          An FM-CW system around 4200–4400 MHz measuring true height above the surface directly below (AGL), typically 0–2500 ft. It feeds the GPWS/EGPWS (terrain warnings), auto-land and decision-height callouts on precision approaches.
+        </div>
+      </details>
+
+      <h3 style="margin-top: 40px;">Part C — Numerical problems (tap for worked solutions)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P1. Heading 120&deg;(M), ADF relative bearing 250&deg;. Find QDM and QDR.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          QDM = 250 + 120 = 370 &minus; 360 = <strong>010&deg;</strong>; QDR = 010 + 180 = <strong>190&deg;</strong>.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P2. At 9000 ft you read 3 NM on the DME. What is the approximate ground distance?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          height &approx; 9000/6076 &approx; 1.48 NM; ground = &radic;(3&sup2; &minus; 1.48&sup2;) = &radic;(9 &minus; 2.19) = &radic;6.81 &approx; <strong>2.61 NM</strong>.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P3. A radar echo returns 1235 &micro;s after transmission. What is the target range?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          using 12.36 &micro;s/NM round trip, range = 1235 / 12.36 &approx; <strong>100 NM</strong>.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P4. You are on the 045&deg; radial of a VOR, tracking inbound. What OBS and flag give correct sensing?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          inbound track = 045 &minus; 180 = <strong>225&deg;</strong>; set OBS <strong>225</strong>, expect a <strong>TO</strong> flag, needle centred when on track.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>ADF/NDB</strong> LF/MF, loop-null+sense&rarr;cardioid, RB (QDM=RB+HDG), &plusmn;5&deg;, many errors, no flag.</li>
+        <li><strong>VOR</strong> VHF, 30 Hz phase (ref FM/var AM), in-phase at North, radials, &plusmn;5&deg;, cone of confusion, flag.</li>
+        <li><strong>ILS</strong> LOC VHF 90/150 DDM; GP UHF 329–335 (90 above/150 below, 3&deg;, false slopes); markers 75 MHz; CAT I–III.</li>
+        <li><strong>DME</strong> UHF 962–1213, pulse timing, 50 &micro;s delay, slant range, ~100 a/c.</li>
+        <li><strong>SSR</strong> 1030&uarr;/1090&darr;, Mode A/C/S, SLS/garble/FRUIT, 7500/7600/7700.</li>
+        <li><strong>GNSS</strong> L1 1575.42, 4 sats for 3-D, DOP, augment ABAS/SBAS(GAGAN)/GBAS; NavIC=India constellation.</li>
+        <li><strong>RNP</strong>=RNAV+monitoring/alerting. <strong>TCAS</strong> vertical RA, Mode-S coordinated. <strong>RadAlt</strong> 4200–4400 FM-CW AGL. <strong>INS</strong> self-contained, drifts ~2 NM/hr.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 12 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

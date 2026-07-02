@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 20: Distress, Urgency & Communications Failure | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 20 &middot; REFERENCE DEPTH &middot; THE CHAPTER THAT MATTERS MOST</span>
+      <h1 class="hero-title" style="color: #fca5a5;">Distress, Urgency &amp; Communications Failure</h1>
+      <p class="hero-subtitle">This is the chapter that matters most on the worst day of a pilot's career. When something goes badly wrong, phraseology becomes a lifeline: the right word, spoken the right number of times, on the right frequency, summons the whole machinery of air traffic control and search-and-rescue to your aid. Here you learn the exact difference between MAYDAY and PAN, how to format a distress message, the silence procedures, the emergency descent, and what to do when the radio itself fails.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part III (viii) Distress &amp; urgency &middot; imposition/termination of silence &middot; urgency &middot; emergency descent &middot; communications failure</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid #ef4444; padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:#ef4444; font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Distinguish distress (MAYDAY) from urgency (PAN-PAN) and their priorities.</li>
+        <li>Compose and transmit a complete distress message.</li>
+        <li>Apply the imposition and termination of silence (SEELONCE).</li>
+        <li>Carry out and broadcast an emergency descent.</li>
+        <li>Follow the communications-failure procedure, squawk 7600, and read light signals.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">20.1 Distress vs urgency</p>
+      <p>20.2 The distress message</p>
+      <p>20.3 Acknowledgement &amp; handling</p>
+      <p>20.4 Imposition &amp; termination of silence</p>
+      <p>20.5 Urgency messages</p>
+      <p style="margin-top:0;">20.6 Emergency descent</p>
+      <p>20.7 Communications failure</p>
+      <p>20.8 Light signals</p>
+      <p>&star; Numbers to memorise</p>
+      <p>? Question bank</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_20_hero.jpg" alt="Commercial airliner cockpit during a distress situation">
+      <figcaption>When an emergency occurs, precise standard phraseology cuts through the confusion and ensures ATC can immediately dispatch the necessary assistance.</figcaption>
+    </figure>
+
+    <h2>20.1 Distress vs urgency</h2>
+    
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-circle"></i> The two conditions</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Distress</strong> &mdash; <strong>MAYDAY</strong> (spoken <strong>three times</strong>): a condition of being threatened by <strong>grave and imminent danger</strong> and requiring <strong>immediate assistance</strong>. It has <strong>absolute priority over all other transmissions</strong>.<br><br>
+        <strong>Urgency</strong> &mdash; <strong>PAN-PAN</strong> (spoken <strong>three times</strong>): a condition concerning the <strong>safety</strong> of the aircraft or a person, but <strong>not requiring immediate assistance</strong>. It has priority over all communications except distress.
+      </p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>MAYDAY = "M'aider"</strong> (help me) &mdash; <strong>life in danger, help now</strong>. <strong>PAN = "Panne"</strong> (breakdown) &mdash; <strong>a problem, but not life-threatening yet</strong>. Both are said three times. If in doubt, MAYDAY is never wrong.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-broadcast-tower"></i> Frequency &amp; squawk</div>
+      <p style="margin:0; line-height: 1.8;">
+        Make the call on the <strong>frequency in use</strong> (don't change away from the controller already helping you); if not in contact, use <strong>121.5 MHz</strong>. Squawk <strong>7700</strong> (Chapter 12) so you light up on every radar.
+      </p>
+    </div>
+
+    <h2>20.2 The distress message</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-square"></i> The format &mdash; as much as time allows</div>
+      <p style="margin:0; line-height: 1.8;">
+        1. <strong>MAYDAY MAYDAY MAYDAY</strong> &middot; 2. name of the <strong>station addressed</strong> (if time/known) &middot; 3. <strong>aircraft call sign</strong> &middot; 4. <strong>nature</strong> of the emergency &middot; 5. <strong>intentions</strong> of the pilot-in-command &middot; 6. <strong>position, level and heading</strong> &middot; 7. any other useful information (e.g. <strong>persons on board</strong>, fuel). Speak slowly and clearly; you may not get a second chance.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #ef4444; background:#fef2f2;">
+      <div class="callout-title" style="color:#ef4444;"><i class="fas fa-microphone"></i> Transcript &mdash; a distress message</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #ef4444; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> MAYDAY MAYDAY MAYDAY, Delhi Approach, Ghostair Alfa Bravo Charlie, engine failure, attempting forced landing, eight miles north of the field, two thousand feet, heading two seven zero, three persons on board.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, Delhi Approach, MAYDAY received, wind two seven zero degrees eight knots, runway two seven, you are number one, all other traffic standby.</div>
+      </div>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic &mdash; what to pass</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>"Mayday &times; 3, who, who I am, what's wrong, what I'll do, where I am, anything else."</strong> Or remember it as <strong>nature &middot; intentions &middot; position</strong> as the three things ATC most needs.
+      </p>
+    </div>
+
+    <h2>20.3 Acknowledgement &amp; handling</h2>
+
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-hands-helping"></i> How the message is handled</div>
+      <p style="margin:0; line-height: 1.8;">
+        The station addressed (or the first to hear it) <strong>acknowledges</strong> the distress, takes charge, gives the aircraft priority, and may impose silence on other traffic. Any station hearing a distress call that is not acknowledged should <strong>relay</strong> it and assist. The aircraft in distress (or the controlling station) is the <strong>controlling station</strong> for the distress traffic.
+      </p>
+    </div>
+
+    <h2>20.4 Imposition &amp; termination of silence</h2>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-volume-mute"></i> Imposing silence</div>
+      <p style="margin:0; line-height: 1.8;">
+        To keep the frequency clear for the distress, silence is imposed: the <strong>controlling station</strong> (or the aircraft in distress) may say "<strong>STOP TRANSMITTING, MAYDAY</strong>"; the standard signal is <strong>SEELONCE MAYDAY</strong> (silence, mayday) imposed by the station in control, or <strong>SEELONCE DISTRESS</strong> by another station. All other stations stop transmitting until released.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-volume-up"></i> Terminating silence</div>
+      <p style="margin:0; line-height: 1.8;">
+        When the distress is over, the controlling station announces the end and lifts the silence: "<strong>DISTRESS TRAFFIC ENDED, SEELONCE FEENEE</strong>" (silence finished). Normal working then resumes on the frequency.
+      </p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic &mdash; the French roots</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>SEELONCE</strong> = silence; <strong>FEENEE</strong> = fini (finished). "SEELONCE MAYDAY" imposes it; "SEELONCE FEENEE" ends it.
+      </p>
+    </div>
+
+    <h2>20.5 Urgency messages</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-square"></i> PAN-PAN format</div>
+      <p style="margin:0; line-height: 1.8;">
+        The format mirrors the distress message but begins <strong>PAN-PAN PAN-PAN PAN-PAN</strong>: station addressed, call sign, the nature of the urgency, intentions, position/level, and other information. A medical emergency, a minor technical problem, or a low-fuel situation that is concerning but not yet critical are typical urgency calls.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #f59e0b; background:#fffbeb;">
+      <div class="callout-title" style="color:#f59e0b;"><i class="fas fa-microphone"></i> Transcript &mdash; an urgency message</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #f59e0b; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> PAN-PAN PAN-PAN PAN-PAN, Delhi Approach, VT-ABC, a passenger seriously ill, request priority landing and medical assistance, six miles south, three thousand feet.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, Delhi Approach, roger your PAN, cleared direct, descend two thousand feet, medical services alerted.</div>
+      </div>
+    </div>
+
+    <h2>20.6 Emergency descent</h2>
+
+    <div class="callout box-blue" style="border-left-color: #0ea5e9; background:#e0f2fe;">
+      <div class="callout-title" style="color:#0ea5e9;"><i class="fas fa-arrow-down"></i> FIRST PRINCIPLES &mdash; GET DOWN FAST, AND WARN EVERYONE BELOW</div>
+      <p style="margin:0; line-height: 1.8;">
+        An <strong>emergency descent</strong> &mdash; typically after a <strong>pressurisation failure</strong> &mdash; requires the aircraft to descend rapidly to a safe (breathable) level. The danger is to <strong>other traffic below</strong>, so the procedure is as much about <strong>warning them</strong> as about the descent itself. This is the topic your original notes left out entirely.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-square"></i> The phraseology</div>
+      <p style="margin:0; line-height: 1.8;">
+        The crew declares it (often as a MAYDAY): "<strong>MAYDAY MAYDAY MAYDAY, Ghostair ABC, emergency descent</strong>". ATC immediately <strong>broadcasts to all other aircraft</strong> in the area: "<strong>ATTENTION ALL AIRCRAFT in the vicinity of [position], emergency descent in progress from flight level [X]</strong>", and clears traffic out of the way. The descending aircraft turns off the airway if able and may continue to a lower level until cleared.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #ef4444; background:#fef2f2;">
+      <div class="callout-title" style="color:#ef4444;"><i class="fas fa-microphone"></i> Transcript &mdash; emergency descent</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #ef4444; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> MAYDAY MAYDAY MAYDAY, Mumbai Control, Ghostair Alfa Bravo Charlie, pressurisation failure, emergency descent, leaving flight level three five zero.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> ATTENTION ALL AIRCRAFT in the vicinity of SIERRA, emergency descent in progress from flight level three five zero, all aircraft below flight level one zero zero leave the airway to the right.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, descend to flight level one zero zero, QNH one zero one three, report level.</div>
+      </div>
+    </div>
+
+    <h2>20.7 Communications failure</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-square"></i> The actions</div>
+      <p style="margin:0; line-height: 1.8;">
+        1. <strong>Squawk 7600</strong> (radio failure).<br>
+        2. <strong>Try the basics</strong> &mdash; frequency, volume, squelch, selector, PTT, alternate radio (Chapter 11).<br>
+        3. <strong>Listen out</strong> &mdash; you may still be able to receive (a "transmitter failure"); follow instructions you hear and acknowledge by transponder/turns.<br>
+        4. <strong>Transmit blind</strong> your intentions, prefixed "<strong>transmitting blind</strong>" (and "due to receiver failure" if you cannot hear).<br>
+        5. <strong>Continue in accordance with the last acknowledged clearance / the flight plan</strong>, flying the cleared or expected levels and routing, and complete the flight, joining and landing using <strong>light signals</strong> if necessary.
+      </p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0; line-height: 1.8;">
+        Distinguish a <strong>complete</strong> failure (you can neither transmit nor receive) from a <strong>transmitter-only</strong> failure (you can still <em>hear</em>). If you can hear, comply with what you are told and acknowledge by transponder ident or turns &mdash; the controller can still help you (Chapter 19).
+      </p>
+    </div>
+
+    <h2>20.8 Light signals</h2>
+
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-lightbulb"></i> WHEN THE RADIO IS GONE, THE TOWER USES A LAMP</div>
+      <p style="margin:0; line-height: 1.8;">
+        If you arrive with no radio, the tower directs you with a <strong>signal lamp</strong>. Know these cold &mdash; they are the last line of communication.
+      </p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_twenty_one.jpg" alt="Aviation Light Gun Signals Table">
+      <figcaption>Figure 20.1 &mdash; Light Signals: When experiencing a total communications failure, the tower will use these visual signals to issue clearances.</figcaption>
+    </figure>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Signal</th>
+            <th>Aircraft in flight</th>
+            <th>Aircraft on the ground</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Steady green</strong></td><td>Cleared to land</td><td>Cleared for take-off</td></tr>
+          <tr><td><strong>Steady red</strong></td><td>Give way to other aircraft and continue circling</td><td>Stop</td></tr>
+          <tr><td><strong>Green flashes</strong></td><td>Return for landing*</td><td>Cleared to taxi</td></tr>
+          <tr><td><strong>Red flashes</strong></td><td>Aerodrome unsafe &mdash; do not land</td><td>Taxi clear of the landing area in use</td></tr>
+          <tr><td><strong>White flashes</strong></td><td>Land at this aerodrome and proceed to apron*</td><td>Return to starting point on the aerodrome</td></tr>
+          <tr><td><strong>Red pyrotechnic / flare</strong></td><td colspan="2">Notwithstanding any previous instructions, do not land for the time being</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Green = go / good; Red = stop / danger.</strong> Steady = the clearance; flashing = an instruction to position. *Clearances to land/taxi will follow.
+      </p>
+    </div>
+
+    <div class="callout box-red" style="background:#fffcf2; border-left-color:#eab308; margin-top:20px;">
+      <div class="callout-title" style="color:#eab308;"><i class="fas fa-pen-nib"></i> Author check before publishing</div>
+      <p style="margin:0;">Confirm the exact light-signal wording and any nuances against the current ICAO Annex 2 / DGCA CAR, and confirm the precise comms-failure routing/level rules (IFR vs VFR) in Indian airspace.</p>
+    </div>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 20</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Distress</strong></td><td>MAYDAY &times;3 &mdash; grave &amp; imminent danger, immediate assistance, absolute priority; squawk 7700</td></tr>
+          <tr><td><strong>Urgency</strong></td><td>PAN-PAN &times;3 &mdash; safety concern, not immediate; priority over all except distress</td></tr>
+          <tr><td><strong>Emergency frequency</strong></td><td>121.5 MHz (if not already in contact)</td></tr>
+          <tr><td><strong>Distress message</strong></td><td>MAYDAY &times;3 &middot; station &middot; call sign &middot; nature &middot; intentions &middot; position/level/heading &middot; POB/info</td></tr>
+          <tr><td><strong>Silence</strong></td><td>Impose: SEELONCE MAYDAY / "STOP TRANSMITTING MAYDAY"; end: DISTRESS TRAFFIC ENDED, SEELONCE FEENEE</td></tr>
+          <tr><td><strong>Emergency descent</strong></td><td>MAYDAY + "emergency descent"; ATC "ATTENTION ALL AIRCRAFT &hellip; emergency descent in progress"</td></tr>
+          <tr><td><strong>Comms failure</strong></td><td>Squawk 7600 &middot; listen/transmit blind &middot; continue per last clearance/flight plan &middot; light signals</td></tr>
+          <tr><td><strong>Light signals</strong></td><td>Green = cleared (land/take-off); red = stop/give way; flashes = position</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A &mdash; MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. The distress signal is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">PAN-PAN &times;3</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">MAYDAY &times;3</li>
+          <li onclick="checkAnswer(this, false)">SECURITE &times;3</li>
+          <li onclick="checkAnswer(this, false)">SOS &times;3</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: MAYDAY &times;3.</strong> MAYDAY spoken three times signals distress.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. Distress is a condition of:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Minor inconvenience</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Grave and imminent danger requiring immediate assistance</li>
+          <li onclick="checkAnswer(this, false)">A passenger query</li>
+          <li onclick="checkAnswer(this, false)">A frequency change</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Grave and imminent danger requiring immediate assistance.</strong> Distress = grave and imminent danger needing immediate help.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. The urgency signal is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">MAYDAY &times;3</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">PAN-PAN &times;3</li>
+          <li onclick="checkAnswer(this, false)">SEELONCE</li>
+          <li onclick="checkAnswer(this, false)">7700</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: PAN-PAN &times;3.</strong> PAN-PAN three times signals urgency.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. A distress call has priority:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Only over VFR traffic</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Absolute, over all other transmissions</li>
+          <li onclick="checkAnswer(this, false)">Equal to urgency</li>
+          <li onclick="checkAnswer(this, false)">After area control</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Absolute, over all other transmissions.</strong> Distress has absolute priority over everything; urgency over all except distress.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. The transponder code for a general emergency is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">7500</li>
+          <li onclick="checkAnswer(this, false)">7600</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">7700</li>
+          <li onclick="checkAnswer(this, false)">7000</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 7700.</strong> 7700 emergency; 7600 radio failure; 7500 hijack.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. If not already in contact, a distress call is made on:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">123.45 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">121.5 MHz</li>
+          <li onclick="checkAnswer(this, false)">243.0 MHz</li>
+          <li onclick="checkAnswer(this, false)">2182 kHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 121.5 MHz.</strong> 121.5 MHz is the international VHF emergency frequency.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. The three things ATC most needs in a distress message are:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Fuel, weather, route</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Nature of emergency, intentions, position</li>
+          <li onclick="checkAnswer(this, false)">Squawk, frequency, call sign</li>
+          <li onclick="checkAnswer(this, false)">Wind, QNH, runway</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Nature of emergency, intentions, position.</strong> Nature, intentions and position &mdash; with call sign and any extra info as time allows.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. To impose radio silence for a distress, the phrase is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"DISREGARD"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"STOP TRANSMITTING, MAYDAY" / "SEELONCE MAYDAY"</li>
+          <li onclick="checkAnswer(this, false)">"STANDBY"</li>
+          <li onclick="checkAnswer(this, false)">"SEELONCE FEENEE"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "STOP TRANSMITTING, MAYDAY" / "SEELONCE MAYDAY".</strong> SEELONCE MAYDAY (or "stop transmitting, mayday") imposes silence.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. Radio silence is lifted with:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"SEELONCE MAYDAY"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"DISTRESS TRAFFIC ENDED, SEELONCE FEENEE"</li>
+          <li onclick="checkAnswer(this, false)">"PAN-PAN"</li>
+          <li onclick="checkAnswer(this, false)">"ROGER"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "DISTRESS TRAFFIC ENDED, SEELONCE FEENEE".</strong> SEELONCE FEENEE (silence finished) ends the silence.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. A passenger taken seriously ill, not yet life-threatening to the aircraft, is a:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Distress (MAYDAY)</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Urgency (PAN-PAN)</li>
+          <li onclick="checkAnswer(this, false)">Routine call</li>
+          <li onclick="checkAnswer(this, false)">Radio failure</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Urgency (PAN-PAN).</strong> A safety concern not requiring immediate assistance is an urgency (PAN-PAN); escalate to MAYDAY if it worsens.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. An emergency descent is most often caused by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Engine fire</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Pressurisation failure</li>
+          <li onclick="checkAnswer(this, false)">A blocked pitot</li>
+          <li onclick="checkAnswer(this, false)">A radio failure</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Pressurisation failure.</strong> Loss of pressurisation demands a rapid descent to a breathable level.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. On an emergency descent, ATC broadcasts to other traffic:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"SEELONCE FEENEE"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"ATTENTION ALL AIRCRAFT &hellip; emergency descent in progress"</li>
+          <li onclick="checkAnswer(this, false)">"Squawk 7600"</li>
+          <li onclick="checkAnswer(this, false)">"Resume own navigation"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "ATTENTION ALL AIRCRAFT &hellip; emergency descent in progress".</strong> The all-stations broadcast warns and clears traffic below the descending aircraft.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. On a complete communications failure, the pilot squawks:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">7500</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">7600</li>
+          <li onclick="checkAnswer(this, false)">7700</li>
+          <li onclick="checkAnswer(this, false)">2000</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 7600.</strong> 7600 indicates a radio/communications failure.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. If you can still receive but not transmit, you should:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Land immediately anywhere</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Comply with instructions heard and acknowledge by transponder/turns</li>
+          <li onclick="checkAnswer(this, false)">Switch off the transponder</li>
+          <li onclick="checkAnswer(this, false)">Ignore ATC</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Comply with instructions heard and acknowledge by transponder/turns.</strong> A transmitter-only failure still lets you follow ATC and acknowledge by ident/turns.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. A steady green light to an aircraft in flight means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Stop</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Cleared to land</li>
+          <li onclick="checkAnswer(this, false)">Do not land</li>
+          <li onclick="checkAnswer(this, false)">Return for landing</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Cleared to land.</strong> Steady green in flight = cleared to land; on the ground = cleared for take-off.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. Red flashes to an aircraft in flight mean:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Cleared to land</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Aerodrome unsafe &mdash; do not land</li>
+          <li onclick="checkAnswer(this, false)">Cleared to taxi</li>
+          <li onclick="checkAnswer(this, false)">Give way</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Aerodrome unsafe &mdash; do not land.</strong> Red flashes in flight warn that the aerodrome is unsafe &mdash; do not land.
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="question-block">
+        <div class="question-text">17. Transmitting your intentions with no expectation of acknowledgement is prefixed:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"PAN-PAN"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"Transmitting blind"</li>
+          <li onclick="checkAnswer(this, false)">"SEELONCE"</li>
+          <li onclick="checkAnswer(this, false)">"Standby"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "Transmitting blind".</strong> "Transmitting blind" tells anyone listening you cannot receive a reply.
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="question-block">
+        <div class="question-text">18. After a communications failure, an IFR aircraft should generally:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Descend immediately to the ground</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Continue in accordance with the last clearance / flight plan and complete the flight</li>
+          <li onclick="checkAnswer(this, false)">Orbit until fuel runs low</li>
+          <li onclick="checkAnswer(this, false)">Squawk 7500</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Continue in accordance with the last clearance / flight plan and complete the flight.</strong> Continue per the last acknowledged clearance and flight plan, using light signals to land.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B &mdash; Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between distress and urgency?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Distress (MAYDAY, said three times) is a condition of grave and imminent danger requiring immediate assistance, with absolute priority over all transmissions. Urgency (PAN-PAN, said three times) concerns the safety of the aircraft or a person but does not require immediate assistance, with priority over all except distress.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Give the format of a distress message.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          MAYDAY three times; the station addressed; the aircraft call sign; the nature of the emergency; the pilot's intentions; position, level and heading; and any other useful information such as persons on board.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How is radio silence imposed and lifted?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          It is imposed by the controlling station (or the aircraft in distress) with "STOP TRANSMITTING, MAYDAY" or "SEELONCE MAYDAY"; it is lifted when the distress ends with "DISTRESS TRAFFIC ENDED, SEELONCE FEENEE".
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Describe the emergency-descent procedure on the radio.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The crew declares it, usually as a MAYDAY with "emergency descent". ATC immediately broadcasts "ATTENTION ALL AIRCRAFT in the vicinity of [position], emergency descent in progress from flight level [X]" and clears other traffic out of the way, while clearing the descending aircraft to a safe level.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What are the steps on a communications failure?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Squawk 7600; check the basics and try the alternate radio; listen out and comply with any instructions heard, acknowledging by transponder or turns; transmit your intentions blind; and continue in accordance with the last acknowledged clearance and the flight plan, landing using light signals if necessary.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What does a steady red and a steady green light mean to an aircraft in flight?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Steady green &mdash; cleared to land; steady red &mdash; give way to other aircraft and continue circling.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card" style="border-left-color: #ef4444;">
+      <h3 style="color: #ef4444;"><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>MAYDAY &times;3</strong> = distress (grave danger, immediate help, absolute priority, squawk <strong>7700</strong>); <strong>PAN-PAN &times;3</strong> = urgency.</li>
+        <li>Distress message: <strong>nature &middot; intentions &middot; position</strong> (+ call sign, POB). On <strong>121.5</strong> if not in contact.</li>
+        <li>Silence: impose <strong>SEELONCE MAYDAY</strong>; end <strong>DISTRESS TRAFFIC ENDED, SEELONCE FEENEE</strong>.</li>
+        <li><strong>Emergency descent</strong>: MAYDAY + "emergency descent"; ATC "<strong>ATTENTION ALL AIRCRAFT &hellip; emergency descent in progress</strong>".</li>
+        <li>Comms failure: <strong>squawk 7600</strong>, listen/transmit blind, continue per last clearance; <strong>light signals</strong> &mdash; green = cleared, red = stop.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 20 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

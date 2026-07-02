@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 15: Aerodrome Control: Aircraft | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 15 &middot; REFERENCE DEPTH</span>
+      <h1 class="hero-title">Aerodrome Control: Aircraft</h1>
+      <p class="hero-subtitle">This is the chapter the practical examiner listens for. Standard phraseology is a script &mdash; the same words, in the same order, for every phase of flight &mdash; so that a controller in Delhi and a pilot from anywhere understand each other instantly. Here we walk a flight from clearance and start, through taxi, take-off, the circuit, final approach and landing, the go-around, and vacating.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part III (iii) Aerodrome control &mdash; aircraft: departure info, start, push-back, taxi, take-off, circuit, final &amp; landing, go-around, after landing</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Describe the aerodrome controller's responsibilities and the manoeuvring area.</li>
+        <li>Use the correct phraseology for clearance delivery, start-up and push-back.</li>
+        <li>Use taxi phraseology, including holding points, "give way" and conditional clearances.</li>
+        <li>Use line-up and take-off phraseology and the circuit reporting points.</li>
+        <li>Use final-approach, landing and go-around phraseology.</li>
+        <li>Use after-landing and vacating phraseology.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">15.1 The aerodrome controller</p>
+      <p>15.2 Clearance &amp; departure information</p>
+      <p>15.3 Start-up &amp; push-back</p>
+      <p>15.4 Taxi</p>
+      <p>15.5 Line-up &amp; take-off</p>
+      <p style="margin-top:0;">15.6 The traffic circuit</p>
+      <p>15.7 Final approach &amp; landing</p>
+      <p>15.8 Go-around</p>
+      <p>15.9 After landing &amp; vacating</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_15_hero.jpg" alt="Aircraft Ready for Take-off">
+      <figcaption>From engine start to the final runway vacation, strict adherence to standard phraseology is the foundation of aerodrome safety.</figcaption>
+    </figure>
+
+    <h2>15.1 The aerodrome controller</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0; line-height: 1.8;">
+        Aerodrome control (<strong>Tower</strong>) is responsible for traffic on the <strong>runways and in the aerodrome traffic circuit</strong>, and for vehicles and aircraft on the <strong>manoeuvring area</strong>.<br>
+        The <strong>manoeuvring area</strong> is the runways and taxiways used for take-off, landing and taxiing &mdash; but <strong>not</strong> the aprons. The <strong>movement area</strong> is the manoeuvring area <strong>plus</strong> the aprons.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-map-marker-alt"></i> Two definitions to keep straight</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Manoeuvring area</strong> = runways + taxiways (for take-off, landing, taxiing); excludes aprons. <strong>Movement area</strong> = manoeuvring area + aprons.<br>
+        Ground/Tower control the manoeuvring area; the apron may be managed separately ("Apron").
+      </p>
+    </div>
+
+    <h2>15.2 Clearance &amp; departure information</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-question-circle"></i> WHY A CLEARANCE IS READ BACK IN FULL</div>
+      <p style="margin:0;">An IFR departure clearance is a contract: it states <strong>where</strong> you are cleared, by what <strong>route</strong>, to what <strong>level</strong>, and the <strong>squawk</strong>. Because an error here propagates into controlled airspace, the whole clearance is a mandatory read-back.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; IFR clearance (Delivery)</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Delivery, Ghostair Alfa Bravo Charlie, stand two one, request IFR clearance to Mumbai, information Charlie.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, cleared to Mumbai via PAPA two departure, climb flight level one zero zero, squawk four three two one.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Cleared to Mumbai via PAPA two departure, climb flight level one zero zero, squawk four three two one, Ghostair Alfa Bravo Charlie.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, read-back correct.</div>
+      </div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-list-ul"></i> Departure information</div>
+      <p style="margin:0;">Before taxi the pilot needs the <strong>runway in use, surface wind, QNH</strong> and any essential information &mdash; usually obtained from <strong>ATIS</strong> (Chapter 6) and confirmed on first contact ("&hellip;information Charlie"). The controller passes anything ATIS does not cover.</p>
+    </div>
+
+    <h2>15.3 Start-up &amp; push-back</h2>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; start &amp; push</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Ground, Ghostair Alfa Bravo Charlie, stand two one, request start-up.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, start-up approved.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Request push-back.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, push-back approved, facing south.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Push-back approved, facing south, Ghostair Alfa Bravo Charlie.</div>
+      </div>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">"Start-up approved" permits engine start, not movement. <strong>Push-back is a separate clearance</strong>, and the controller may give the direction to face. Never push or taxi on a start-up clearance alone.</p>
+    </div>
+
+    <h2>15.4 Taxi</h2>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; taxi</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Ground, Ghostair Alfa Bravo Charlie, request taxi.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, taxi to holding point Alfa One runway two seven via taxiway Bravo, QNH one zero one three.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Taxi to holding point Alfa One runway two seven via Bravo, QNH one zero one three, Ghostair Alfa Bravo Charlie.</div>
+      </div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-comment-dots"></i> Key taxi phrases</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>"Hold position"</strong> &mdash; stop where you are. <strong>"Give way to [traffic]"</strong> &mdash; let the named traffic pass. <strong>"Follow [traffic]"</strong>. <strong>"Hold short of runway 27"</strong> / <strong>"holding point Alfa One"</strong> &mdash; stop at the marked point and do not enter the runway. A clearance to taxi <strong>does not</strong> include clearance to enter or cross a runway.
+      </p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap &mdash; runway entry</div>
+      <p style="margin:0;">Taxiing to a holding point is <strong>not</strong> permission to enter the runway. Entering, crossing or backtracking a runway each needs its own explicit clearance &mdash; and each is a mandatory read-back.</p>
+    </div>
+
+    <h2>15.5 Line-up &amp; take-off</h2>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; line-up &amp; departure</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Tower, Ghostair Alfa Bravo Charlie, holding point Alfa One, ready for departure.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, line up runway two seven and wait.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Line up runway two seven and wait, Ghostair Alfa Bravo Charlie.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, wind two seven zero degrees eight knots, runway two seven, cleared for take-off.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Runway two seven, cleared for take-off, Ghostair Alfa Bravo Charlie.</div>
+      </div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-lock"></i> Take-off phraseology &mdash; exact words</div>
+      <p style="margin:0; line-height: 1.8;">
+        The word <strong>"take-off"</strong> is used <strong>only</strong> when issuing or cancelling a take-off clearance &mdash; at all other times say "departure". <strong>"Cleared for take-off"</strong> / read back <strong>"cleared for take-off"</strong>. To cancel: <strong>"hold position, cancel take-off, I say again cancel take-off"</strong>. An <strong>"immediate take-off"</strong> may be issued if traffic requires.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-wrench"></i> Worked example &mdash; conditional line-up</div>
+      <p style="margin:0; line-height: 1.8;">
+        ATC: "Ghostair Alfa Bravo Charlie, <strong>behind the landing Airbus</strong>, line up runway two seven <strong>behind</strong>."<br>
+        Correct read-back: "Behind the landing Airbus, line up runway two seven behind, Ghostair Alfa Bravo Charlie." The word "behind" is said <strong>twice</strong> &mdash; at the start and end &mdash; so the condition cannot be missed. Do not move until the Airbus has passed.
+      </p>
+    </div>
+
+    <h2>15.6 The aerodrome traffic circuit</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">The circuit is the standard rectangular pattern flown around a runway. Its legs &mdash; <strong>upwind/crosswind, downwind, base, final</strong> &mdash; are the reporting points the tower uses to sequence visual traffic.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_fifteen_circuit.jpg" alt="The Aerodrome Traffic Circuit">
+      <figcaption>The visual traffic circuit provides a predictable, standardized pattern for VFR aircraft to maneuver and sequence for landing.</figcaption>
+    </figure>
+
+    <div class="table-container">
+      <div class="table-caption">Circuit Legs</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Leg</th>
+            <th>Where</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">Upwind / climb-out</td><td>Straight ahead after take-off</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Crosswind</td><td>Turn (usually 90&deg;) across the upwind end</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Downwind</td><td>Parallel to the runway, opposite direction to landing</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Base</td><td>Turn toward final, descending</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Final</td><td>Lined up with the runway for landing</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; joining &amp; circuit reports</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Tower, VT-ABC, five miles north, for landing, information Charlie.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, join left-hand downwind runway two seven, QNH one zero one three, report downwind.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Join left-hand downwind runway two seven, QNH one zero one three, wilco, VT-ABC.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> VT-ABC, downwind.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, number two, follow the Cessna on base, report final.</div>
+      </div>
+    </div>
+
+    <h2>15.7 Final approach &amp; landing</h2>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; final &amp; landing</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> VT-ABC, final.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, wind two seven zero degrees one zero knots, runway two seven, cleared to land.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Runway two seven, cleared to land, VT-ABC.</div>
+      </div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-plane-arrival"></i> Landing variations</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>"Continue approach"</strong> &mdash; keep approaching; landing clearance not yet given.<br>
+        <strong>"Land after the departing/landing [traffic]"</strong> &mdash; a conditional landing clearance behind preceding traffic. <strong>"Cleared to land"</strong> is the full clearance and a mandatory read-back.
+      </p>
+    </div>
+
+    <h2>15.8 Go-around</h2>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-arrow-up"></i> The go-around / missed approach</div>
+      <p style="margin:0; line-height: 1.8;">
+        If the approach must be discontinued, the instruction is <strong>"go around"</strong> (said clearly, often twice). The pilot applies power, climbs, and flies the missed-approach procedure or the tower's instructions. A pilot may also initiate a go-around without being told &mdash; reporting <strong>"going around"</strong>.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; go-around</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, go around, I say again, go around, vehicle on the runway.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Going around, VT-ABC.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, climb straight ahead to two thousand feet, report downwind.</div>
+      </div>
+    </div>
+
+    <h2>15.9 After landing &amp; vacating</h2>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; vacating</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, vacate next left, contact Ground one two one decimal nine.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Vacate next left, Ground one two one decimal nine, VT-ABC.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Ground, VT-ABC, runway vacated, request taxi to apron.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, taxi to stand two one via taxiway Bravo.</div>
+      </div>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap &mdash; "runway vacated"</div>
+      <p style="margin:0;">You are not clear of the runway until the whole aircraft is past the holding point. Report <strong>"runway vacated"</strong> only when fully clear &mdash; this releases the runway for the next aircraft, so accuracy matters.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_fifteen_flow.jpg" alt="A flight in phraseology">
+      <figcaption>Figure 15.1 &mdash; A flight in phraseology: the critical communication nodes from clearance to vacating the runway.</figcaption>
+    </figure>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 15</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Manoeuvring vs movement area</strong></td><td>Manoeuvring = runways+taxiways; Movement = + aprons</td></tr>
+          <tr><td><strong>"Take-off"</strong></td><td>Used only to issue/cancel a take-off clearance; else "departure"</td></tr>
+          <tr><td><strong>Start vs push</strong></td><td>"Start-up approved" &ne; movement; push-back is a separate clearance</td></tr>
+          <tr><td><strong>Runway entry</strong></td><td>Taxi to a holding point &ne; clearance to enter/cross/backtrack</td></tr>
+          <tr><td><strong>Conditional clearance</strong></td><td>Condition stated first &amp; last ("behind &hellip; behind")</td></tr>
+          <tr><td><strong>Circuit legs</strong></td><td>Upwind &middot; crosswind &middot; downwind &middot; base &middot; final</td></tr>
+          <tr><td><strong>Landing phrases</strong></td><td>Continue approach / cleared to land / land after</td></tr>
+          <tr><td><strong>Go-around</strong></td><td>"Go around" (often twice); pilot may initiate "going around"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A &mdash; MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. The manoeuvring area consists of:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Aprons only</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Runways and taxiways (excluding aprons)</li>
+          <li onclick="checkAnswer(this, false)">Runways, taxiways and aprons</li>
+          <li onclick="checkAnswer(this, false)">The terminal building</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Runways and taxiways (excluding aprons).</strong> Manoeuvring area = runways + taxiways; adding aprons makes it the movement area.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. An IFR departure clearance must be:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Acknowledged with "roger"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Read back in full</li>
+          <li onclick="checkAnswer(this, false)">Read back only if requested</li>
+          <li onclick="checkAnswer(this, false)">Not read back</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Read back in full.</strong> Route clearances are mandatory read-back items.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. "Start-up approved" permits:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Push-back and taxi</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Engine start only</li>
+          <li onclick="checkAnswer(this, false)">Take-off</li>
+          <li onclick="checkAnswer(this, false)">Crossing the runway</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Engine start only.</strong> It allows engine start; push-back and taxi are separate clearances.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. The word "take-off" is used:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Throughout the taxi</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Only when issuing or cancelling a take-off clearance</li>
+          <li onclick="checkAnswer(this, false)">For any departure intention</li>
+          <li onclick="checkAnswer(this, false)">Only by the pilot</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Only when issuing or cancelling a take-off clearance.</strong> Otherwise "departure" is used, to reserve "take-off" for the clearance itself.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. Taxiing to a holding point gives you:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Clearance to line up</li>
+          <li onclick="checkAnswer(this, false)">Clearance to cross the runway</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">No clearance to enter the runway &mdash; stop at the holding point</li>
+          <li onclick="checkAnswer(this, false)">Clearance for take-off</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: No clearance to enter the runway.</strong> A taxi clearance to a holding point does not authorise entering the runway.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. "Give way to the Cessna" means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Follow the Cessna</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Let the Cessna pass before you continue</li>
+          <li onclick="checkAnswer(this, false)">Overtake the Cessna</li>
+          <li onclick="checkAnswer(this, false)">Stop permanently</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Let the Cessna pass before you continue.</strong> Give way = yield to the named traffic, then continue.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. "Line up runway 27 and wait" means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Take off immediately</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Enter the runway, line up, and hold for take-off clearance</li>
+          <li onclick="checkAnswer(this, false)">Hold short of the runway</li>
+          <li onclick="checkAnswer(this, false)">Vacate the runway</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Enter the runway, line up, and hold for take-off clearance.</strong> You line up on the runway but do not take off until cleared.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. A conditional clearance such as "behind the landing Airbus, line up behind" requires:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Immediate line-up</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Waiting until the named Airbus has passed, reading the condition back</li>
+          <li onclick="checkAnswer(this, false)">A go-around</li>
+          <li onclick="checkAnswer(this, false)">Contacting Ground</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Waiting until the named Airbus has passed, reading the condition back.</strong> You act only after the stated condition is satisfied, and read it back including "behind".
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. The downwind leg of the circuit is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Straight ahead after take-off</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Parallel to the runway, opposite to the landing direction</li>
+          <li onclick="checkAnswer(this, false)">Lined up for landing</li>
+          <li onclick="checkAnswer(this, false)">The turn onto final</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Parallel to the runway, opposite to the landing direction.</strong> Downwind runs parallel to the runway in the opposite direction; base then turns toward final.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. "Continue approach" means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">You are cleared to land</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Keep approaching; landing clearance not yet given</li>
+          <li onclick="checkAnswer(this, false)">Go around</li>
+          <li onclick="checkAnswer(this, false)">Vacate the runway</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Keep approaching; landing clearance not yet given.</strong> It is not a landing clearance; expect the landing clearance shortly.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. "Cleared to land" is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Not read back</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A mandatory read-back item</li>
+          <li onclick="checkAnswer(this, false)">Read back only at night</li>
+          <li onclick="checkAnswer(this, false)">Optional</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A mandatory read-back item.</strong> Landing clearances are mandatory read-back items.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. The instruction to discontinue an approach is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"Orbit"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"Go around"</li>
+          <li onclick="checkAnswer(this, false)">"Hold position"</li>
+          <li onclick="checkAnswer(this, false)">"Continue"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "Go around".</strong> "Go around" (often said twice) commands the missed approach.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. A pilot who initiates a missed approach reports:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"Roger"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"Going around"</li>
+          <li onclick="checkAnswer(this, false)">"Cancel landing"</li>
+          <li onclick="checkAnswer(this, false)">"Vacating"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "Going around".</strong> The pilot announces "going around" when initiating it.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. You should report "runway vacated" when:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The nose passes the holding point</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The whole aircraft is clear past the holding point</li>
+          <li onclick="checkAnswer(this, false)">You begin to slow</li>
+          <li onclick="checkAnswer(this, false)">You are on final</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The whole aircraft is clear past the holding point.</strong> Only when fully clear of the runway, releasing it for the next aircraft.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. To cancel a take-off clearance, ATC says:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"Continue"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"Hold position, cancel take-off, I say again cancel take-off"</li>
+          <li onclick="checkAnswer(this, false)">"Line up and wait"</li>
+          <li onclick="checkAnswer(this, false)">"Go around"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "Hold position, cancel take-off, I say again cancel take-off".</strong> The cancellation uses "cancel take-off", repeated for emphasis.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. Surface wind passed with a take-off/landing clearance is in:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Degrees true</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Degrees magnetic</li>
+          <li onclick="checkAnswer(this, false)">Knots only</li>
+          <li onclick="checkAnswer(this, false)">Metres per second</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Degrees magnetic.</strong> ATC passes surface wind in degrees magnetic (the runway is also magnetic).
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B &mdash; Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Define the manoeuvring area and the movement area.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The manoeuvring area is the part of an aerodrome used for take-off, landing and taxiing &mdash; the runways and taxiways, excluding aprons. The movement area is the manoeuvring area plus the aprons.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What does an IFR departure clearance contain, and how is it acknowledged?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The clearance limit (destination), the route/departure, the cleared level, and the squawk. It is read back in full because it is a route clearance.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> When is the word "take-off" used?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Only when issuing or cancelling a take-off clearance; at all other times the word "departure" is used.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What must you do on a conditional clearance, e.g. "behind the landing aircraft, line up behind"?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Identify the stated traffic, read the clearance back including the condition (the word "behind" said first and last), and only act once that traffic has passed.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Name the legs of the aerodrome traffic circuit.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Upwind/climb-out, crosswind, downwind, base and final.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between "continue approach" and "cleared to land"?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          "Continue approach" means keep approaching but you are not yet cleared to land; "cleared to land" is the full landing clearance and a mandatory read-back.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>Manoeuvring</strong> = runways+taxiways; <strong>movement</strong> = + aprons. Clearance read back in full.</li>
+        <li><strong>Start &ne; push &ne; taxi</strong> (separate clearances). Taxi to holding point &ne; enter runway.</li>
+        <li><strong>"Take-off"</strong> only for the clearance; <strong>line up and wait &rarr; cleared for take-off</strong>. Conditional = "behind &hellip; behind".</li>
+        <li>Circuit: upwind&middot;crosswind&middot;<strong>downwind&middot;base&middot;final</strong>. <strong>Continue approach</strong> / <strong>cleared to land</strong> / <strong>land after</strong>.</li>
+        <li><strong>Go around</strong> (twice); report <strong>going around</strong>; report <strong>runway vacated</strong> only when fully clear.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 15 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

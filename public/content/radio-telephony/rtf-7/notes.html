@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 7: Electrical Fundamentals | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 7 · REFERENCE DEPTH</span>
+      <h1 class="hero-title">Electrical Fundamentals</h1>
+      <p class="hero-subtitle">A radio is, at heart, an electrical machine. Before you can understand how a transmitter pushes your voice 60 miles to a control tower, or why VHF behaves so differently from HF, you must be fluent in the quantities that describe all electricity — and the one equation that ties a circuit to a radio wavelength.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part II (i) Electrical units — volt, ampere, ohm, watt; wavelength, frequency & their relationship</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Define voltage, current, resistance and power with their units and symbols.</li>
+        <li>Apply Ohm's Law and the power formulae, and solve numerical problems.</li>
+        <li>Distinguish AC from DC, and explain RMS, peak, frequency and period.</li>
+        <li>State the factors affecting resistance and combine resistors in series and parallel.</li>
+        <li>Explain capacitance, inductance and reactance, and why they matter for tuning.</li>
+        <li>Relate frequency, wavelength and the speed of radio waves and convert units.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">7.1 The four quantities</p>
+      <p>7.2 Ohm's Law</p>
+      <p>7.3 Power</p>
+      <p>7.4 AC & DC</p>
+      <p>7.5 Resistance & materials</p>
+      <p style="margin-top:0;">7.6 Series & parallel circuits</p>
+      <p>7.7 Capacitance, inductance & reactance</p>
+      <p>7.8 Frequency, period & wavelength</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_7_hero.jpg" alt="Glowing Avionics Circuit Board">
+      <figcaption>Understanding the core electrical principles is the first step to mastering radio transmission.</figcaption>
+    </figure>
+
+    <h2>7.1 The four quantities</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — THE WATER ANALOGY, MADE PRECISE</div>
+      <p style="margin:0;">Picture electricity as water in a pipe. <strong>Voltage</strong> is the pressure pushing the water; <strong>current</strong> is how much water flows per second; <strong>resistance</strong> is how narrow the pipe is; <strong>power</strong> is the useful work the flow does. The analogy is exact enough to carry you through every formula in this chapter.</p>
+    </div>
+
+    <figure class="cinematic-figure" style="max-width: 800px; margin: 30px auto;">
+      <img src="/content/radio-telephony/_assets/images/water_analogy.jpg" alt="Water Analogy for Electricity">
+      <figcaption>Voltage is the pump, Current is the flow, and Resistance is the pipe's narrow point.</figcaption>
+    </figure>
+
+    <div class="table-container">
+      <div class="table-caption">Electrical Quantities</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Quantity</th>
+            <th>Symbol</th>
+            <th>Unit</th>
+            <th>Precise meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Voltage (EMF / p.d.)</strong></td><td>V (or E)</td><td>Volt (V)</td><td>Energy given to / taken from each coulomb of charge — the "push"</td></tr>
+          <tr><td><strong>Current</strong></td><td>I</td><td>Ampere (A)</td><td>Rate of flow of charge: 1 A = 1 coulomb per second</td></tr>
+          <tr><td><strong>Resistance</strong></td><td>R</td><td>Ohm (&Omega;)</td><td>Opposition to current flow</td></tr>
+          <tr><td><strong>Power</strong></td><td>P</td><td>Watt (W)</td><td>Rate of doing work / using energy: 1 W = 1 joule per second</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-red" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-bolt"></i> EMF vs potential difference</div>
+      <p style="margin:0;"><strong>EMF (electromotive force)</strong> is the voltage a source <em>produces</em> (e.g. a battery's 12 V). <strong>Potential difference (p.d.)</strong> is the voltage <em>across a component</em> in the circuit. They differ by the voltage lost across the source's own <strong>internal resistance</strong> when current flows.</p>
+    </div>
+
+    <h2>7.2 Ohm's Law</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> THE ONE EQUATION TO KNOW COLD</div>
+      <p style="margin:0; line-height: 1.8;">Push harder (more volts) and more current flows; narrow the pipe (more ohms) and less flows. The three lock together:</p>
+      <div style="background: #0f172a; color: #38bdf8; text-align: center; font-size: 2rem; font-weight: 800; padding: 20px; border-radius: 8px; margin-top: 15px;">
+        V = I &times; R
+        <div style="font-size: 0.9rem; font-weight: 400; color: #94a3b8; margin-top: 10px;">Volts = Amps &times; Ohms &middot; rearranged: I = V &divide; R and R = V &divide; I</div>
+      </div>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic — the VIR triangle</div>
+      <p style="margin:0;">Draw a triangle: <strong>V</strong> on top, <strong>I</strong> and <strong>R</strong> below. Cover the one you want: cover V &rarr; I &times; R; cover I &rarr; V/R; cover R &rarr; V/I. "<strong>V</strong>ery <strong>I</strong>mportant <strong>R</strong>ule."</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — Ohm's Law</div>
+      <p style="margin:0; line-height:1.8;">
+        A 28 V aircraft bus supplies a 14 &Omega; heater. Current = V/R = 28 &divide; 14 = <strong>2 A</strong>.<br>
+        If the resistance halves to 7 &Omega;, current doubles to <strong>4 A</strong> (inverse relationship). If the bus sags to 24 V across the original 14 &Omega;, current = 24 &divide; 14 &approx; <strong>1.71 A</strong>.
+      </p>
+    </div>
+
+    <h2>7.3 Power</h2>
+
+    <div style="background: #0f172a; color: #38bdf8; text-align: center; font-size: 2rem; font-weight: 800; padding: 30px; border-radius: 8px; margin-bottom: 30px;">
+      P = V &times; I = I&sup2;R = V&sup2; &divide; R
+      <div style="font-size: 1rem; font-weight: 400; color: #94a3b8; margin-top: 10px;">Watts = Volts &times; Amps &middot; three forms, choose what you know</div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — power three ways</div>
+      <p style="margin:0; line-height:1.8;">
+        From 7.2: 28 V across 14 &Omega; drawing 2 A. <strong>P = V &times; I</strong> = 28 &times; 2 = <strong>56 W</strong>.<br>
+        Check with <strong>I&sup2;R</strong> = 2&sup2; &times; 14 = 4 &times; 14 = <strong>56 W</strong>. Check with <strong>V&sup2;/R</strong> = 28&sup2; &divide; 14 = 784 &divide; 14 = <strong>56 W</strong>. All agree.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-sort-numeric-up"></i> Units & efficiency</div>
+      <p style="margin:0;">1 kW = 1000 W. <strong>Efficiency</strong> = useful output power &divide; input power (always &lt; 100% because some energy becomes heat). A transmitter rated 50 W <em>output</em> draws more than 50 W from the bus because the power amplifier is not perfectly efficient.</p>
+    </div>
+
+    <h2>7.4 AC & DC</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-random"></i> Direct vs Alternating Current</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>DC (Direct Current)</strong> flows in one direction at a steady value — e.g. a battery.<br>
+        <strong>AC (Alternating Current)</strong> reverses direction periodically, tracing a <strong>sine wave</strong>; the number of complete cycles per second is the <strong>frequency</strong> (hertz), and the time for one cycle is the <strong>period</strong> (T = 1/f). Every <strong>radio-frequency signal</strong> is alternating current.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-chart-line"></i> Peak, peak-to-peak & RMS</div>
+      <p style="margin:0;">An AC wave is described by its <strong>peak</strong> value, its <strong>peak-to-peak</strong> (twice peak), and its <strong>RMS</strong> (root-mean-square) — the equivalent DC value that would do the same heating work. For a sine wave: <strong>RMS = 0.707 &times; peak</strong> (and peak = 1.414 &times; RMS). Mains and aircraft AC voltages are quoted as RMS.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality — aircraft power</div>
+      <p style="margin:0;">A typical aircraft has a <strong>28 V DC</strong> system (battery/bus feeding avionics) and a <strong>115 V AC at 400 Hz</strong> system (for many instruments and as the form every radio signal takes on the way to the antenna). 400 Hz is used rather than 50/60 Hz because transformers and motors can be smaller and lighter at the higher frequency — a real weight saving.</p>
+    </div>
+
+    <h2>7.5 Resistance & materials</h2>
+
+    <div class="table-container">
+      <div class="table-caption">Material Types</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Material type</th>
+            <th>Behaviour</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Conductor</strong></td><td>Many free electrons — low resistance</td><td>Copper, aluminium, silver</td></tr>
+          <tr><td><strong>Insulator</strong></td><td>Almost no free electrons — very high resistance</td><td>PVC, rubber, glass, air</td></tr>
+          <tr><td><strong>Semiconductor</strong></td><td>In between; conductivity controllable — the basis of all radio electronics</td><td>Silicon, germanium (diodes, transistors)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-temperature-high"></i> What sets a conductor's resistance</div>
+      <p style="margin:0;">Resistance increases with <strong>length</strong>, decreases with cross-sectional <strong>area</strong> (a thicker wire conducts better), depends on the <strong>material</strong> (its resistivity), and — for most metals — <strong>increases with temperature</strong>. Hence a long, thin, hot wire has the highest resistance.</p>
+    </div>
+
+    <h2>7.6 Series & parallel circuits</h2>
+
+    <figure class="cinematic-figure" style="max-width: 800px; margin: 30px auto;">
+      <img src="/content/radio-telephony/_assets/images/series_parallel.jpg" alt="Series vs Parallel Circuits">
+      <figcaption>A series circuit has one single path; a parallel circuit offers multiple paths for current.</figcaption>
+    </figure>
+
+    <div class="table-container">
+      <div class="table-caption">Circuit Comparisons</div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Series</th>
+            <th>Parallel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Path</strong></td><td>One single loop</td><td>Multiple branches</td></tr>
+          <tr><td><strong>Current</strong></td><td>Same through every component</td><td>Splits between branches</td></tr>
+          <tr><td><strong>Voltage</strong></td><td>Divides across components</td><td>Same across each branch</td></tr>
+          <tr><td><strong>Total resistance</strong></td><td>R = R&plus; &plus; R&sub2; &plus; ... (adds up)</td><td>1/R = 1/R&plus; &plus; 1/R&sub2; &plus; ... (less than the smallest)</td></tr>
+          <tr><td><strong>If one opens</strong></td><td>Whole circuit stops</td><td>Other branches keep working</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — combining resistors</div>
+      <p style="margin:0; line-height:1.8;">
+        <strong>Series:</strong> 10 &Omega; + 20 &Omega; = <strong>30 &Omega;</strong>. Across 30 V the current = 30/30 = 1 A; the 10 &Omega; drops 10 V and the 20 &Omega; drops 20 V (voltage divides).<br>
+        <strong>Parallel:</strong> two 10 &Omega; resistors &rarr; 1/R = 1/10 + 1/10 = 2/10, so R = <strong>5 &Omega;</strong> (half of one). For two equal resistors, parallel total = half the value; the current splits equally.
+      </p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;"><strong>Series = Same current; Parallel = same Pressure (voltage).</strong> Resistances <em>add</em> in series and <em>reduce</em> in parallel.</p>
+    </div>
+
+    <h2>7.7 Capacitance, inductance & reactance</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> WHY A RADIO NEEDS MORE THAN RESISTORS</div>
+      <p style="margin:0;">Resistors oppose current the same at any frequency. <strong>Capacitors</strong> and <strong>inductors</strong> oppose AC by an amount that <em>depends on frequency</em> — and that frequency dependence is exactly what lets a radio <strong>tune</strong> to one station and reject the rest.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-magnet"></i> The two reactive components</div>
+      <p style="margin:0; line-height:1.8;">
+        <strong>Capacitor</strong> — stores energy in an electric field; blocks DC, passes AC more easily as frequency rises (its reactance <strong>falls</strong> with frequency). Unit: <strong>farad (F)</strong>.<br>
+        <strong>Inductor</strong> — stores energy in a magnetic field; passes DC, opposes AC more as frequency rises (its reactance <strong>rises</strong> with frequency). Unit: <strong>henry (H)</strong>.<br>
+        Their frequency-dependent opposition is called <strong>reactance (X)</strong>, measured in ohms.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-sliders-h"></i> Resonance — the heart of tuning</div>
+      <p style="margin:0;">Put an inductor and capacitor together and at one special <strong>resonant frequency</strong> their reactances cancel, giving a sharp peak in response. A <strong>tuned LC circuit</strong> selects that frequency and rejects others — this is how a receiver is "tuned" to a station and how a transmitter sets its operating frequency.</p>
+    </div>
+
+    <h2>7.8 Frequency, period & wavelength</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0; line-height:1.8;">Every radio wave travels at the speed of light. Its <strong>frequency</strong> (cycles per second) and its <strong>wavelength</strong> (length of one cycle) are two views of the same wave — fix the speed and one decides the other.</p>
+      <div style="background: #0f172a; color: #38bdf8; text-align: center; font-size: 2rem; font-weight: 800; padding: 20px; border-radius: 8px; margin-top: 15px;">
+        c = f &times; &lambda;
+        <div style="font-size: 0.9rem; font-weight: 400; color: #94a3b8; margin-top: 10px;">speed = frequency &times; wavelength &middot; c = 3 &times; 10&sup8; m/s &middot; so &lambda; = c/f and f = 1/T</div>
+      </div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-exchange-alt"></i> Unit conversions</div>
+      <p style="margin:0;">1 kHz = 1,000 Hz &middot; 1 MHz = 1,000,000 Hz &middot; 1 GHz = 1,000 MHz. Period and frequency are reciprocals: a 1 MHz signal has a period of 1 microsecond.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — wavelength of aviation VHF</div>
+      <p style="margin:0; line-height:1.8;">
+        A 120 MHz VHF signal: &lambda; = c/f = (3 &times; 10&sup8;) &divide; (120 &times; 10&sup6;) = <strong>2.5 m</strong>.<br>
+        A 300 MHz signal: &lambda; = (3 &times; 10&sup8;) &divide; (300 &times; 10&sup6;) = <strong>1 m</strong>. A 3 MHz HF signal: &lambda; = (3 &times; 10&sup8;) &divide; (3 &times; 10&sup6;) = <strong>100 m</strong>. Higher frequency &rarr; shorter wavelength.
+      </p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">Frequency and wavelength are <strong>inversely proportional</strong>: as frequency goes up, wavelength comes down. Mixing this round is the classic error, and it explains why high-frequency aerials are short and low-frequency aerials are long.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_seven_one.jpg" alt="Figure 7.1: Ohm's Law and Power Wheel">
+      <figcaption>Figure 7.1 — Ohm's Law triangle &middot; the power wheel &middot; the sine wave.</figcaption>
+    </figure>
+
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 7</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Units</strong></td><td>Volt (V) &middot; Ampere (A) &middot; Ohm (&Omega;) &middot; Watt (W) &middot; Farad (F) &middot; Henry (H)</td></tr>
+          <tr><td><strong>Ohm's Law</strong></td><td>V = I &times; R</td></tr>
+          <tr><td><strong>Power</strong></td><td>P = V &times; I = I&sup2;R = V&sup2;/R</td></tr>
+          <tr><td><strong>RMS (sine)</strong></td><td>RMS = 0.707 &times; peak &middot; peak = 1.414 &times; RMS</td></tr>
+          <tr><td><strong>Aircraft power</strong></td><td>28 V DC &middot; 115 V AC 400 Hz</td></tr>
+          <tr><td><strong>Series / parallel</strong></td><td>Series: R adds, same current &middot; Parallel: R reduces, same voltage</td></tr>
+          <tr><td><strong>Reactance</strong></td><td>Capacitor falls with f &middot; Inductor rises with f &middot; LC resonance = tuning</td></tr>
+          <tr><td><strong>Wave relationship</strong></td><td>c = f &times; &lambda; &middot; c = 3 &times; 10&sup8; m/s &middot; f = 1/T</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A — MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. The unit of electrical resistance is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Volt</li>
+          <li onclick="checkAnswer(this, false)">Ampere</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Ohm</li>
+          <li onclick="checkAnswer(this, false)">Watt</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Ohm.</strong> Resistance — ohm (&Omega;). Volt = voltage, ampere = current, watt = power.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. One ampere is a flow of charge of:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">One volt per second</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">One coulomb per second</li>
+          <li onclick="checkAnswer(this, false)">One ohm per second</li>
+          <li onclick="checkAnswer(this, false)">One joule per second</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: One coulomb per second.</strong> 1 A = 1 coulomb of charge per second.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. Ohm's Law states:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">P = V &times; I</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">V = I &times; R</li>
+          <li onclick="checkAnswer(this, false)">&lambda; = f &times; c</li>
+          <li onclick="checkAnswer(this, false)">I = R &times; P</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: V = I &times; R.</strong> V = I &times; R. Power is a separate relationship.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. A 24 V supply across a 6 &Omega; resistor draws:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">2 A</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">4 A</li>
+          <li onclick="checkAnswer(this, false)">6 A</li>
+          <li onclick="checkAnswer(this, false)">144 A</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 4 A.</strong> I = V/R = 24/6 = 4 A.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. The power dissipated by 4 A through 14 &Omega; is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">56 W</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">224 W</li>
+          <li onclick="checkAnswer(this, false)">3.5 W</li>
+          <li onclick="checkAnswer(this, false)">784 W</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 224 W.</strong> P = I&sup2;R = 4&sup2; &times; 14 = 16 &times; 14 = 224 W.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. For a sine wave, the RMS value is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">1.414 &times; peak</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">0.707 &times; peak</li>
+          <li onclick="checkAnswer(this, false)">Equal to peak</li>
+          <li onclick="checkAnswer(this, false)">Twice peak</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 0.707 &times; peak.</strong> RMS = 0.707 &times; peak (and peak = 1.414 &times; RMS).
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. A radio-frequency signal is a form of:</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">Alternating current</li>
+          <li onclick="checkAnswer(this, false)">Direct current</li>
+          <li onclick="checkAnswer(this, false)">Static charge</li>
+          <li onclick="checkAnswer(this, false)">Resistance</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Alternating current.</strong> Radio signals are AC — oscillating at the carrier frequency.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. Typical aircraft AC power is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">230 V 50 Hz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">115 V 400 Hz</li>
+          <li onclick="checkAnswer(this, false)">12 V DC</li>
+          <li onclick="checkAnswer(this, false)">28 V 60 Hz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 115 V 400 Hz.</strong> Aircraft use 115 V AC at 400 Hz (and 28 V DC); 400 Hz allows lighter components.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. Resistance of a wire increases when it is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Shorter and thicker</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Longer, thinner and hotter</li>
+          <li onclick="checkAnswer(this, false)">Made of silver</li>
+          <li onclick="checkAnswer(this, false)">Cooled</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Longer, thinner and hotter.</strong> Resistance rises with length and temperature, falls with cross-sectional area.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. Two 10 &Omega; resistors in series give a total of:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">5 &Omega;</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">20 &Omega;</li>
+          <li onclick="checkAnswer(this, false)">10 &Omega;</li>
+          <li onclick="checkAnswer(this, false)">100 &Omega;</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 20 &Omega;.</strong> Series resistances add: 10 + 10 = 20 &Omega;.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. Two 10 &Omega; resistors in parallel give a total of:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">20 &Omega;</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">5 &Omega;</li>
+          <li onclick="checkAnswer(this, false)">10 &Omega;</li>
+          <li onclick="checkAnswer(this, false)">0 &Omega;</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 5 &Omega;.</strong> For two equal resistors, parallel total = half the value = 5 &Omega;.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. In a series circuit, the current is:</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">The same through every component</li>
+          <li onclick="checkAnswer(this, false)">Different in each component</li>
+          <li onclick="checkAnswer(this, false)">Zero</li>
+          <li onclick="checkAnswer(this, false)">Always alternating</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The same through every component.</strong> Series = one path = same current; the voltage divides.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. The reactance of a capacitor as frequency increases:</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">Decreases</li>
+          <li onclick="checkAnswer(this, false)">Increases</li>
+          <li onclick="checkAnswer(this, false)">Stays the same</li>
+          <li onclick="checkAnswer(this, false)">Becomes infinite</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Decreases.</strong> Capacitive reactance falls with frequency (a capacitor passes high frequencies more easily).
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. A tuned LC circuit is used in a radio to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Generate DC</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Select one frequency and reject others (tuning)</li>
+          <li onclick="checkAnswer(this, false)">Increase resistance</li>
+          <li onclick="checkAnswer(this, false)">Store charge only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Select one frequency and reject others (tuning).</strong> At resonance an LC circuit responds sharply to one frequency — the basis of tuning.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. The speed of radio waves in free space is approximately:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">3 &times; 10&sup6; m/s</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">3 &times; 10&sup8; m/s</li>
+          <li onclick="checkAnswer(this, false)">300 m/s</li>
+          <li onclick="checkAnswer(this, false)">1013 m/s</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 3 &times; 10&sup8; m/s.</strong> Radio waves travel at the speed of light &approx; 3 &times; 10&sup8; m/s.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. As frequency increases, wavelength:</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">Decreases</li>
+          <li onclick="checkAnswer(this, false)">Increases</li>
+          <li onclick="checkAnswer(this, false)">Stays the same</li>
+          <li onclick="checkAnswer(this, false)">Doubles</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Decreases.</strong> Inversely proportional: c = f &times; &lambda; with c fixed.
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="question-block">
+        <div class="question-text">17. The wavelength of a 150 MHz signal is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">0.5 m</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">2 m</li>
+          <li onclick="checkAnswer(this, false)">20 m</li>
+          <li onclick="checkAnswer(this, false)">200 m</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 2 m.</strong> &lambda; = c/f = 3&times;10&sup8; &divide; 150&times;10&sup6; = 2 m.
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="question-block">
+        <div class="question-text">18. The period of a 1 MHz signal is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">1 second</li>
+          <li onclick="checkAnswer(this, false)">1 millisecond</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">1 microsecond</li>
+          <li onclick="checkAnswer(this, false)">1 nanosecond</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 1 microsecond.</strong> T = 1/f = 1 &divide; 1,000,000 = 1 &micro;s.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B — Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Name the four basic electrical quantities and their units.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Voltage — volt (V); current — ampere (A); resistance — ohm (&Omega;); power — watt (W).
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> State Ohm's Law and the three forms of the power formula.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Ohm's Law: V = I &times; R. Power: P = V &times; I, also I&sup2;R and V&sup2;/R.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between AC and DC, and what is RMS?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          DC flows in one direction at a steady value; AC reverses periodically as a sine wave, its cycles per second being the frequency. The RMS value is the equivalent DC that does the same heating — for a sine wave, 0.707 times the peak. Radio signals are AC.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What factors affect the resistance of a conductor?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Its length (more = higher), cross-sectional area (more = lower), the material's resistivity, and temperature (higher temperature = higher resistance for most metals).
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How do resistances combine in series and in parallel?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          In series they add (R = R&plus; &plus; R&sub2; &plus; ...), with the same current through each. In parallel the reciprocals add (1/R = 1/R&plus; &plus; 1/R&sub2; &plus; ...), giving a total less than the smallest, with the same voltage across each.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Why does a radio need capacitors and inductors, not just resistors?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Their opposition to AC (reactance) depends on frequency — capacitive reactance falls and inductive reactance rises with frequency. Combined as a tuned LC circuit they resonate at one frequency, which is how a radio is tuned to a station.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> State the relationship between frequency and wavelength.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          c = f &times; &lambda;, where c is the speed of radio waves (3 &times; 10&sup8; m/s). They are inversely proportional — higher frequency means shorter wavelength, &lambda; = c/f.
+        </div>
+      </details>
+
+
+      <h3 style="margin-top: 40px;">Part C — Numerical problems (tap for worked solutions)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P1. A 12 V battery with 0.5 &Omega; internal resistance drives a 5.5 &Omega; lamp. Find the current and the lamp voltage.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          total R = 0.5 + 5.5 = 6 &Omega;; I = 12/6 = <strong>2 A</strong>; lamp p.d. = I &times; 5.5 = <strong>11 V</strong> (1 V is lost internally).
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P2. A transmitter draws 4 A from the 28 V bus. What input power, and if it is 60% efficient, what is the RF output?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          input P = 28 &times; 4 = <strong>112 W</strong>; output = 0.6 &times; 112 &approx; <strong>67 W</strong>.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P3. Find the wavelength of the emergency frequency 121.5 MHz.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          &lambda; = 3&times;10&sup8; &divide; 121.5&times;10&sup6; &approx; <strong>2.47 m</strong>.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P4. Three resistors 6 &Omega;, 3 &Omega; and 2 &Omega; in parallel — find the total.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          1/R = 1/6 + 1/3 + 1/2 = 1/6 + 2/6 + 3/6 = 6/6 = 1, so R = <strong>1 &Omega;</strong>.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li>Volt &middot; Ampere &middot; Ohm &middot; Watt — pressure, flow, opposition, work. <strong>V = I &times; R, P = VI = I&sup2;R = V&sup2;/R</strong>.</li>
+        <li><strong>AC</strong> reverses (sine); RMS = 0.707 &times; peak. Aircraft: <strong>28 V DC / 115 V 400 Hz AC</strong>.</li>
+        <li>Resistance: &uarr; length/temperature, &darr; area. <strong>Series</strong> adds R (same current); <strong>parallel</strong> reduces R (same voltage).</li>
+        <li>Capacitor reactance &darr; with f; inductor reactance &uarr; with f; <strong>LC resonance = tuning</strong>.</li>
+        <li><strong>c = f &times; &lambda;</strong>, c = 3 &times; 10&sup8; m/s; higher f &rarr; shorter &lambda;; f = 1/T.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 7 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

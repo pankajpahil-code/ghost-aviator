@@ -52,13 +52,15 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
               </div>
             </div>
 
-            <div className="flex items-center gap-2 flex-wrap">
-              <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
-                    className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg no-underline"
-                    style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)", color: "#f97316" }}>
-                <ListChecks className="w-3.5 h-3.5" /> Chapter Quiz
-              </Link>
-            </div>
+            {chapter.content.find(c => c.type === "chapter-quiz")?.available && (
+              <div className="flex items-center gap-2 flex-wrap">
+                <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
+                      className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg no-underline"
+                      style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)", color: "#f97316" }}>
+                  <ListChecks className="w-3.5 h-3.5" /> Chapter Quiz
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

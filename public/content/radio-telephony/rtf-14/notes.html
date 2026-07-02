@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 14: Call Signs & Establishing Communication | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 14 &middot; REFERENCE DEPTH</span>
+      <h1 class="hero-title">Call Signs &amp; Establishing Communication</h1>
+      <p class="hero-subtitle">On a busy frequency a dozen aircraft may be listening at once, so every transmission must say who is calling and who is being called &mdash; unambiguously, every time. Call signs are that addressing system, and the rules around them are exact: which suffix names which controller, how an airline flight becomes a call sign, when you may shorten one, and what you must always read back.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part III (i) Call signs &middot; aeronautical &amp; aircraft call signs &middot; establishment, continuation &amp; transfer &middot; read-back &middot; test procedures</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Identify aeronautical (ground) station call signs by their suffix.</li>
+        <li>Form the three types of aircraft call sign and apply the abbreviation rules correctly.</li>
+        <li>Make a correct initial call and continue communication.</li>
+        <li>Handle a transfer of communication.</li>
+        <li>State the items that must always be read back.</li>
+        <li>Carry out a radio-check (test) procedure.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">14.1 Why call signs</p>
+      <p>14.2 Ground-station call signs</p>
+      <p>14.3 The three aircraft call-sign types</p>
+      <p>14.4 Abbreviation rules</p>
+      <p>14.5 Establishing communication</p>
+      <p style="margin-top:0;">14.6 Transfer of communication</p>
+      <p>14.7 Mandatory read-back items</p>
+      <p>14.8 Test (radio-check) procedure</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_14_hero.jpg" alt="Air Traffic Control Tower">
+      <figcaption>The ATC tower is the hub of the airport's communication. Ground station suffixes like TOWER, GROUND, and DELIVERY explicitly define who you are talking to.</figcaption>
+    </figure>
+
+    <h2>14.1 Why call signs</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-satellite-dish"></i> FIRST PRINCIPLES &mdash; ADDRESSING ON A PARTY LINE</div>
+      <p style="margin:0;">VHF is a shared, simplex "party line": everyone hears everything. A call sign is the <strong>address</strong> that tells one specific station "this is for you" and tells everyone else "this is not for me". Every transmission therefore names <strong>who is being called</strong> and <strong>who is calling</strong>, so there can never be doubt about who must act.</p>
+    </div>
+
+    <h2>14.2 Ground-station call signs &mdash; the suffix names the service</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">A ground station's call sign is the <strong>place name + a suffix</strong>, and the suffix tells you which service you have reached.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">Ground Station Suffixes</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Suffix</th>
+            <th>Service</th>
+            <th>Suffix</th>
+            <th>Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">DELIVERY</td><td>Clearance delivery</td><td style="color:#0d9488; font-weight:700;">CONTROL</td><td>Area control centre</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">GROUND</td><td>Surface movement control</td><td style="color:#0d9488; font-weight:700;">RADAR</td><td>Radar (general)</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">TOWER</td><td>Aerodrome control</td><td style="color:#0d9488; font-weight:700;">DIRECTOR</td><td>Approach radar (final director)</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">APPROACH</td><td>Approach control</td><td style="color:#0d9488; font-weight:700;">PRECISION</td><td>Precision approach radar (PAR)</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">DEPARTURE</td><td>Departure control</td><td style="color:#0d9488; font-weight:700;">INFORMATION</td><td>Flight Information Service (FIS)</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">APRON</td><td>Apron management</td><td style="color:#0d9488; font-weight:700;">RADIO</td><td>Aeronautical station (HF/communications)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic &mdash; the ground flow</div>
+      <p style="margin:0;">A departing flight typically walks through <strong>Delivery &rarr; Ground &rarr; Tower &rarr; Departure/Radar &rarr; Control</strong>; an arrival comes back <strong>Control &rarr; Approach/Director &rarr; Tower &rarr; Ground</strong>. Learn the suffixes in that running order.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_fourteen_one.jpg" alt="Figure 14.1 - Who you talk to - the ground-station flow">
+      <figcaption>Figure 14.1 &mdash; Who you talk to &mdash; the ground-station flow.</figcaption>
+    </figure>
+
+    <h2>14.3 The three aircraft call-sign types</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Type 1 &mdash; registration / type</div>
+      <p style="margin:0; line-height: 1.8;">
+        The aircraft's <strong>registration</strong> spelled phonetically: <strong>VT-ABC</strong> &rarr; "Victor Tango Alfa Bravo Charlie". A general-aviation aircraft may prefix the manufacturer/type for the first call: "Cessna Victor Tango Alfa Bravo Charlie".
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Type 2 &mdash; operator + last characters of registration</div>
+      <p style="margin:0; line-height: 1.8;">
+        The telephony designator of the operator followed by the last characters of the registration: e.g. operator "GHOSTAIR" + registration ...ABC &rarr; "Ghostair Alfa Bravo Charlie".
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Type 3 &mdash; operator + flight number</div>
+      <p style="margin:0; line-height: 1.8;">
+        The operator's telephony designator followed by the <strong>flight identification</strong> (number/letters): "Air India one zero one" for AIC101. This is the airline call sign you hear most. The flight number is spoken <strong>digit by digit</strong>.
+      </p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_fourteen_callsigns.jpg" alt="Aircraft Call-sign Types">
+      <figcaption>The three types of aircraft call signs ensure there is a clear, standard way to address both small general aviation aircraft and large commercial airliners.</figcaption>
+    </figure>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">The telephony designator is <strong>not</strong> the IATA two-letter code; "AI" is written but spoken as the telephony name "<strong>Air India</strong>". And the flight number is read digit by digit &mdash; "one zero one", not "one hundred and one".</p>
+    </div>
+
+    <h2>14.4 Abbreviation rules</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-circle"></i> When and how a call sign may be shortened</div>
+      <p style="margin:0; line-height: 1.8;">
+        1. An aircraft call sign may be <strong>abbreviated only after the ground station has first abbreviated it</strong> &mdash; never on the pilot's initiative, and not at all if there is any risk of confusion with another similar call sign on frequency.<br>
+        2. <strong>Type 1</strong> (registration) abbreviates to the <strong>first character and at least the last two</strong>: "VT-ABC" &rarr; "Victor Tango &hellip; Bravo Charlie" or "V&hellip;BC".<br>
+        3. <strong>Type 2/3</strong> (operator + flight number) is <strong>not</strong> abbreviated &mdash; the flight number is kept in full.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; full then abbreviated</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Ground, Victor Tango Alfa Bravo Charlie, request taxi.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Victor Tango Alfa Bravo Charlie, taxi to holding point Alfa One. (ground initiates full)</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Taxi holding point Alfa One, Victor Tango Bravo Charlie. (now abbreviated)</div>
+      </div>
+    </div>
+
+    <h2>14.5 Establishing communication</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-circle"></i> The initial call</div>
+      <p style="margin:0;">An initial call names <strong>(1) who you are calling</strong>, then <strong>(2) who you are</strong>, then keeps the first message brief. On a first contact you may state a short request; for a longer message, wait to be invited ("pass your message").</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; establishing communication</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Approach, Ghostair Alfa Bravo Charlie.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, Delhi Approach, pass your message.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Ghostair Alfa Bravo Charlie, Cessna 172, 15 miles north, FL080, inbound for landing, information Charlie.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, roger, descend FL060, QNH one zero one three.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Descend FL060, QNH one zero one three, Ghostair Alfa Bravo Charlie.</div>
+      </div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality &mdash; listen before you call</div>
+      <p style="margin:0;">Before that first call, listen out for a few seconds: you may learn the runway in use, the QNH and how busy the controller is, and you avoid transmitting over someone mid-clearance.</p>
+    </div>
+
+    <h2>14.6 Transfer of communication</h2>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-share"></i> Being handed on</div>
+      <p style="margin:0; line-height: 1.8;">
+        As you pass between sectors, ATC <strong>transfers</strong> you to the next frequency: "contact [station] on [frequency]". You read back the frequency, change over, and make a fresh initial call on the new frequency. "<strong>Monitor</strong>" means tune and listen out without calling immediately.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; transfer</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, contact Delhi Tower one one eight decimal one.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Tower one one eight decimal one, Ghostair Alfa Bravo Charlie.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Tower, Ghostair Alfa Bravo Charlie, FL060 inbound. (new call on new frequency)</div>
+      </div>
+    </div>
+
+    <h2>14.7 Mandatory read-back items</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-question-circle"></i> WHY READ-BACK EXISTS</div>
+      <p style="margin:0;">A read-back closes the loop: the controller hears you repeat the instruction and can catch a mishearing before it becomes an incident. Certain safety-critical items <strong>must always</strong> be read back in full.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-list"></i> Always read back</div>
+      <ul style="margin:0; padding-left: 20px; line-height: 1.8;">
+        <li><strong>ATC route clearances</strong></li>
+        <li>clearances to <strong>enter, land on, take off from, backtrack, cross or hold short of</strong> any runway</li>
+        <li><strong>runway in use</strong></li>
+        <li><strong>level instructions</strong></li>
+        <li><strong>heading</strong> and <strong>speed</strong> instructions</li>
+        <li><strong>altimeter (QNH/QFE)</strong> settings</li>
+        <li><strong>SSR (squawk) codes</strong></li>
+        <li><strong>frequency changes</strong></li>
+        <li>VDF information and transition levels.</li>
+      </ul>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;"><strong>"Runways, Levels, Headings, Speeds, QNH, Squawk, Frequencies"</strong> &mdash; if it's one of these, read it back in full. End the read-back with your call sign.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_fourteen_readback.jpg" alt="Mandatory Read-Back Checklist">
+      <figcaption>A pilot's mental checklist for read-backs ensures no safety-critical instruction is ever glossed over.</figcaption>
+    </figure>
+
+    <h2>14.8 Test (radio-check) procedure</h2>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; radio check</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Tower, VT-ABC, radio check on one one eight decimal one.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, Delhi Tower, readability five.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> VT-ABC, readability five also, thank you.</div>
+      </div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-broadcast-tower"></i> Reporting readability</div>
+      <p style="margin:0;">State the readability on the <strong>1&ndash;5 scale</strong> (1 unreadable &hellip; 5 perfectly readable). If readability is poor, the receiving station may say "readability three, you are broken/distorted", prompting a frequency or equipment check.</p>
+    </div>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 14</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Ground suffixes</strong></td><td>Delivery &middot; Ground &middot; Tower &middot; Approach &middot; Departure &middot; Director &middot; Radar &middot; Control &middot; Information</td></tr>
+          <tr><td><strong>Call-sign types</strong></td><td>1: registration &middot; 2: operator + reg &middot; 3: operator + flight number</td></tr>
+          <tr><td><strong>Abbreviation</strong></td><td>Only after ATC abbreviates; Type 1 &rarr; first + last two; never abbreviate the flight number</td></tr>
+          <tr><td><strong>Initial call</strong></td><td>Who you call &rarr; who you are &rarr; brief message / request</td></tr>
+          <tr><td><strong>Transfer</strong></td><td>"Contact [station] [freq]" &rarr; read back freq &rarr; new call</td></tr>
+          <tr><td><strong>Always read back</strong></td><td>Runways, levels, headings, speeds, QNH, squawk, frequency changes</td></tr>
+          <tr><td><strong>Radio check</strong></td><td>Readability 1&ndash;5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A &mdash; MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. The ground-station suffix "GROUND" denotes:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Area control</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Surface movement control</li>
+          <li onclick="checkAnswer(this, false)">Approach control</li>
+          <li onclick="checkAnswer(this, false)">Flight information</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Surface movement control.</strong> GROUND = surface movement control (taxi); TOWER = aerodrome control.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. "DIRECTOR" is associated with:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Apron management</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Approach radar (final vectoring)</li>
+          <li onclick="checkAnswer(this, false)">Clearance delivery</li>
+          <li onclick="checkAnswer(this, false)">Area control</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Approach radar (final vectoring).</strong> Director provides final approach radar vectoring.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. The suffix for Flight Information Service is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">CONTROL</li>
+          <li onclick="checkAnswer(this, false)">RADAR</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">INFORMATION</li>
+          <li onclick="checkAnswer(this, false)">TOWER</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: INFORMATION.</strong> INFORMATION denotes the Flight Information Service.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. An airline flight AIC101 is spoken as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"A-I-C one hundred one"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"Air India one zero one"</li>
+          <li onclick="checkAnswer(this, false)">"AI one zero one"</li>
+          <li onclick="checkAnswer(this, false)">"Air India one hundred and one"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "Air India one zero one".</strong> Telephony designator + flight number digit by digit: "Air India one zero one".
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. An aircraft call sign may be abbreviated:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Whenever the pilot wishes</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Only after the ground station has first abbreviated it</li>
+          <li onclick="checkAnswer(this, false)">Never</li>
+          <li onclick="checkAnswer(this, false)">Only on initial contact</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Only after the ground station has first abbreviated it.</strong> The pilot may abbreviate only once ATC has done so, and not if confusion is possible.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. Type 1 call sign VT-ABC abbreviates to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"VT-A"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">First character and at least the last two &mdash; e.g. "Victor &hellip; Bravo Charlie"</li>
+          <li onclick="checkAnswer(this, false)">"ABC"</li>
+          <li onclick="checkAnswer(this, false)">It cannot be abbreviated</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: First character and at least the last two.</strong> Registration call signs shorten to the first plus at least the last two characters.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. An airline (operator + flight number) call sign is abbreviated by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Dropping the operator name</li>
+          <li onclick="checkAnswer(this, false)">Shortening the flight number</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">It is not abbreviated &mdash; the flight number is kept in full</li>
+          <li onclick="checkAnswer(this, false)">Using the IATA code</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: It is not abbreviated.</strong> Operator + flight-number call signs are not abbreviated.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. An initial call should give, in order:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Your request, then your call sign</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Who you are calling, then who you are</li>
+          <li onclick="checkAnswer(this, false)">The frequency, then your message</li>
+          <li onclick="checkAnswer(this, false)">Your altitude, then your heading</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Who you are calling, then who you are.</strong> Name the station being called first, then your own call sign.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. "Pass your message" means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Change frequency</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Go ahead with your message / request</li>
+          <li onclick="checkAnswer(this, false)">Standby</li>
+          <li onclick="checkAnswer(this, false)">Read back</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Go ahead with your message / request.</strong> It invites the aircraft to transmit its full message.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. On a transfer of communication, ATC says:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"Squawk ident"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"Contact [station] on [frequency]"</li>
+          <li onclick="checkAnswer(this, false)">"Report ready"</li>
+          <li onclick="checkAnswer(this, false)">"Cleared to land"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "Contact [station] on [frequency]".</strong> A transfer instructs you to contact the next unit on a stated frequency.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. "Monitor [frequency]" means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Call immediately</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Tune and listen out, without calling immediately</li>
+          <li onclick="checkAnswer(this, false)">Squawk the code</li>
+          <li onclick="checkAnswer(this, false)">Change runway</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Tune and listen out, without calling immediately.</strong> MONITOR = listen out on the frequency without an immediate call.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. Which of the following must always be read back?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Traffic information</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A runway clearance (enter/land/take off/cross/hold short)</li>
+          <li onclick="checkAnswer(this, false)">A weather report</li>
+          <li onclick="checkAnswer(this, false)">A position report</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A runway clearance.</strong> Runway clearances are mandatory read-back items.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. A squawk code is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Not read back</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A mandatory read-back item</li>
+          <li onclick="checkAnswer(this, false)">Only read back at night</li>
+          <li onclick="checkAnswer(this, false)">Read back as a whole number</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A mandatory read-back item.</strong> SSR codes must be read back, digit by digit.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. A read-back should normally end with:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"Over and out"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Your call sign</li>
+          <li onclick="checkAnswer(this, false)">"Roger"</li>
+          <li onclick="checkAnswer(this, false)">The frequency</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Your call sign.</strong> Finish the read-back with your own call sign for positive identification.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. A radio check reply of "readability three" means the signal is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Perfectly readable</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Readable but with difficulty</li>
+          <li onclick="checkAnswer(this, false)">Unreadable</li>
+          <li onclick="checkAnswer(this, false)">Readable</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Readable but with difficulty.</strong> 3 = readable but with difficulty (1 unreadable, 5 perfectly readable).
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. The telephony designator spoken for an airline is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The IATA two-letter code</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The assigned telephony name (e.g. "Air India")</li>
+          <li onclick="checkAnswer(this, false)">The aircraft registration</li>
+          <li onclick="checkAnswer(this, false)">The flight number only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The assigned telephony name.</strong> The spoken designator is the telephony name, not the written two-letter code.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B &mdash; Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What does the suffix of a ground station's call sign tell you? Give examples.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          It identifies the service: Delivery (clearance), Ground (surface movement), Tower (aerodrome control), Approach, Departure, Director (final radar), Control (area), Information (FIS).
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Describe the three types of aircraft call sign.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Type 1 &mdash; the registration spelled phonetically (optionally with the type); Type 2 &mdash; the operator's telephony designator plus the last characters of the registration; Type 3 &mdash; the operator's telephony designator plus the flight number, spoken digit by digit.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> When may an aircraft abbreviate its call sign, and how?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Only after the ground station has first abbreviated it, and not if confusion with another call sign is possible. A registration call sign shortens to the first character and at least the last two; operator-plus-flight-number call signs are not abbreviated.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What information does an initial call contain?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Who you are calling, then who you are, then a brief message or request; for a longer message you wait for "pass your message".
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> List the items that must always be read back.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          ATC route clearances; runway clearances (enter/land/take off/backtrack/cross/hold short); the runway in use; level, heading and speed instructions; altimeter settings; SSR codes; and frequency changes.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How do you carry out a radio check?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Call the station with "radio check on [frequency]"; the station replies with your readability on the 1&ndash;5 scale, and you acknowledge with your own readability assessment.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>Ground suffix = service:</strong> Delivery&middot;Ground&middot;Tower&middot;Approach&middot;Departure&middot;Director&middot;Control&middot;Information.</li>
+        <li><strong>Call signs:</strong> <strong>1</strong> registration &middot; <strong>2</strong> operator+reg &middot; <strong>3</strong> operator+flight number (digit by digit).</li>
+        <li><strong>Abbreviate only after ATC does;</strong> Type 1 &rarr; first + last two; never shorten the flight number.</li>
+        <li><strong>Initial call:</strong> <strong>who you call &rarr; who you are &rarr; brief message</strong>. Transfer: "contact [stn] [freq]".</li>
+        <li><strong>Always read back:</strong> <strong>runways, levels, headings, speeds, QNH, squawk, frequencies</strong>; end with your call sign. Radio check = readability <strong>1&ndash;5</strong>.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 14 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

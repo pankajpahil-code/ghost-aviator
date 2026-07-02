@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 2: Who Governs the Airwaves | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      // Clear previous selections
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 2 · SYLLABUS II</span>
+      <h1 class="hero-title">Who Governs the Airwaves</h1>
+      <p class="hero-subtitle">ITU, ICAO, DGCA and the Chicago Convention — the chain of organisations that turns one global agreement into the exact rules you obey on the radio.</p>
+    </div>
+
+    <!-- Chapter cinematic header image -->
+    <div class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/atc_tower_dusk.jpg" alt="Air Traffic Control Tower cab at dusk">
+      <figcaption>Air Traffic Control operations coordinating flight signals across international aviation boundaries.</figcaption>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part I (i) International Telecommunication Convention & Radio Regulations · International & national aviation bodies</p>
+    </div>
+
+    <!-- Objectives -->
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> By the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Explain what the Chicago Convention is and what it created.</li>
+        <li>Describe the roles of ICAO, the ITU and the DGCA — and how they differ.</li>
+        <li>State what ICAO Annexes are and identify Annex 10 as the radiotelephony Annex.</li>
+        <li>Distinguish a regulator (ICAO/DGCA) from a trade body (IATA).</li>
+        <li>Trace the chain of authority from a global standard down to your microphone.</li>
+      </ul>
+    </div>
+
+    <!-- Table of Contents for Chapter -->
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">2.1 Why the world needed a shared rule-book</p>
+      <p>2.2 The Chicago Convention (1944)</p>
+      <p>2.3 ICAO — the global standard-setter</p>
+      <p>2.4 ITU — the keeper of the spectrum</p>
+      <p>2.5 India's regulators — DGCA, AAI & WPC</p>
+      <p style="margin-top:0;">2.6 ICAO vs IATA — regulator or club?</p>
+      <p>2.7 How it all fits together</p>
+      <p>2.8 Exam-day specifics: answering "Who publishes?"</p>
+      <p>2.9 Case study: a flight from Delhi to Dubai</p>
+      <p>2.10 Question bank</p>
+    </div>
+
+    <h2>2.1 Why the world needed a shared rule-book</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">An aircraft that takes off in Delhi and lands in Dubai crosses the airspace of several sovereign nations in a single flight. If each country invented its own radio frequencies, its own phraseology, its own units and its own licences, international flying would be impossible — or lethal. So the world agreed, decades ago, to a shared rule-book. The organisations in this chapter are the bodies that write that rule-book and the chain that connects a global standard to the words you speak on the radio.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-link"></i> WHY IT WORKS THIS WAY</div>
+      <p style="margin:0;">No single country can command another. So aviation is governed by agreement: nations sign a treaty, a UN body turns that treaty into technical standards, and each country then writes those standards into its own national law and enforces them. Understanding this three-step chain — treaty &rarr; international standards &rarr; national law — is the key to the whole chapter.</p>
+    </div>
+
+    <h2>2.2 The Chicago Convention (1944)</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">The Chicago Convention is the founding treaty of international civil aviation — the document that made worldwide flying possible by agreeing common principles between nations. It also created ICAO to look after those principles.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> DEFINITION — THE CHICAGO CONVENTION</div>
+      <p style="margin:0;">The <strong>Convention on International Civil Aviation</strong>, signed at <strong>Chicago on 7 December 1944</strong> by 52 States. It established the principles and arrangements for safe and orderly international air transport — and created the <strong>International Civil Aviation Organization (ICAO)</strong>. India was an original signatory.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chicago_conv.jpg" alt="1944 Chicago Convention historic scene">
+      <figcaption>The 1944 Chicago Convention layout, standardizing global aviation rules and establishing ICAO.</figcaption>
+    </figure>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> EXAM TRAP</div>
+      <p style="margin:0;">Memorise the date and the headline fact: <strong>Chicago, 7 December 1944</strong>, and <strong>"it created ICAO."</strong> Don't confuse the signing in 1944 with ICAO becoming operational later (1947, after the treaty entered into force).</p>
+    </div>
+
+    <details class="deep-dive-panel">
+      <summary>🔍 Deep dive — the Freedoms of the Air</summary>
+      <div class="deep-dive-content">
+        <p>Alongside the Convention, nations negotiated the "freedoms of the air" — the commercial rights one country grants another's airlines, such as the right to overfly (1st freedom), to land for fuel/technical reasons (2nd), and to carry passengers between the home country and another (3rd/4th). You don't need every freedom by heart for RTR, but know that they exist and that they flow from the Chicago framework.</p>
+      </div>
+    </details>
+
+    <h2>2.3 ICAO — the global standard-setter</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">ICAO is the United Nations agency for civil aviation. It writes the technical standards that let aircraft, crews and controllers from any country work together safely. Those standards live in documents called Annexes to the Chicago Convention.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/icao_hq.jpg" alt="ICAO Headquarters Montreal">
+      <figcaption>International Civil Aviation Organization (ICAO) headquarters, setting international flight safety rules in Montreal.</figcaption>
+    </figure>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> DEFINITION — ICAO</div>
+      <p style="margin:0;">The <strong>International Civil Aviation Organization</strong> — a specialised agency of the United Nations, headquartered in <strong>Montreal, Canada</strong>. It develops <strong>Standards and Recommended Practices (SARPs)</strong>, published as <strong>19 Annexes</strong> to the Convention.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> DEFINITION — STANDARD VS RECOMMENDED PRACTICE</div>
+      <p style="margin:0;">A <strong>Standard</strong> is a specification whose uniform application is recognised as <em>necessary</em> for safety; States must comply or file a <strong>difference</strong>. A <strong>Recommended Practice</strong> is <em>desirable</em> but not mandatory.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-calculator"></i> THE 19 ICAO ANNEXES — KNOW ANNEX 10</div>
+      <p style="margin:0;">The most-tested fact in this chapter: <strong>Annex 10 = Aeronautical Telecommunications</strong>, the home of radiotelephony. Learn the full list, but lock Annex 10.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">The 19 Annexes to the Chicago Convention</div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Annex — subject</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Personnel Licensing</td></tr>
+          <tr><td>2</td><td>Rules of the Air</td></tr>
+          <tr><td>3</td><td>Meteorological Service for International Air Navigation</td></tr>
+          <tr><td>4</td><td>Aeronautical Charts</td></tr>
+          <tr><td>5</td><td>Units of Measurement</td></tr>
+          <tr><td>6</td><td>Operation of Aircraft</td></tr>
+          <tr><td>7</td><td>Aircraft Nationality and Registration Marks</td></tr>
+          <tr><td>8</td><td>Airworthiness of Aircraft</td></tr>
+          <tr><td>9</td><td>Facilitation</td></tr>
+          <tr style="background-color: rgba(37, 99, 235, 0.08); font-weight: 700;">
+            <td>10 &star;</td>
+            <td>Aeronautical Telecommunications — the radiotelephony Annex</td>
+          </tr>
+          <tr><td>11</td><td>Air Traffic Services</td></tr>
+          <tr><td>12</td><td>Search and Rescue</td></tr>
+          <tr><td>13</td><td>Aircraft Accident and Incident Investigation</td></tr>
+          <tr><td>14</td><td>Aerodromes</td></tr>
+          <tr><td>15</td><td>Aeronautical Information Services</td></tr>
+          <tr><td>16</td><td>Environmental Protection</td></tr>
+          <tr><td>17</td><td>Security — Safeguarding against Acts of Unlawful Interference</td></tr>
+          <tr><td>18</td><td>The Safe Transport of Dangerous Goods by Air</td></tr>
+          <tr><td>19</td><td>Safety Management</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> MNEMONIC — ANNEX 10</div>
+      <p style="margin:0;"><strong>"TEN = TELECOM."</strong> Annex <strong>10</strong> is Aeronautical <strong>Tele</strong>communications. The two RTR favourites: Annex <strong>2</strong> = Rules of the Air, Annex <strong>10</strong> = Telecom. (Remember the pair "2 & 10".)</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-calculator"></i> ANNEX 10 HAS FIVE VOLUMES</div>
+      <p style="margin:0;">Vol I — Radio Navigation Aids · Vol II — Communication Procedures · Vol III — Communication Systems · Vol IV — Surveillance Radar & ACAS · Vol V — Aeronautical Radio Frequency Spectrum Utilization. The RTR syllabus draws mainly on <strong>Volumes I & II</strong>.</p>
+    </div>
+
+    <h2>2.4 ITU — the keeper of the spectrum</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">Radio waves are a shared natural resource. The ITU is the UN body that divides up the radio spectrum worldwide so that aviation, broadcasting, maritime, mobile phones and the military don't transmit on top of each other.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/itu_satellite_globe.jpg" alt="ITU Satellite Orbit">
+      <figcaption>Global radio frequency allocation is partitioned by the ITU, visualized here as orbital spectrum coverage over a borderless globe.</figcaption>
+    </figure>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> DEFINITION — ITU</div>
+      <p style="margin:0;">The <strong>International Telecommunication Union</strong> — the United Nations specialised agency for information and communication technologies, headquartered in <strong>Geneva</strong>. It allocates the global radio-frequency spectrum and satellite orbits and publishes the <strong>Radio Regulations</strong>. It is the oldest UN agency (origins in 1865).</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-question-circle"></i> WHY TWO BODIES?</div>
+      <p style="margin:0;">Think of it as land and buildings. The <strong>ITU owns the land</strong> — it decides which frequency bands aviation may use at all. <strong>ICAO designs the building on that land</strong> — it decides exactly how aviation uses its allocated bands (which frequency is the emergency channel, how phraseology works, and so on). ITU allocates; ICAO applies.</p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> EXAM TRAP</div>
+      <p style="margin:0;">"Which body allocates radio frequency spectrum?" &rarr; <strong>ITU</strong>, not ICAO. "Which body publishes aviation communication procedures?" &rarr; <strong>ICAO (Annex 10)</strong>. Examiners deliberately swap these.</p>
+    </div>
+
+    <h2>2.5 India's regulators — DGCA, AAI & WPC</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">ICAO's standards are not law in India until India adopts them. The bodies below are how India turns global standards into national rules, runs its airspace, and licenses radio operators.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/india_airports.jpg" alt="AAI Indian Airport Runway">
+      <figcaption>AAI Airport operations in India translating global guidelines into domestic flight safety procedures.</figcaption>
+    </figure>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-double"></i> THE THREE YOU MUST KNOW</div>
+      <p style="margin:0; line-height:2;">
+        <strong>DGCA (Directorate General of Civil Aviation)</strong> — India's civil aviation regulator under the Ministry of Civil Aviation; it adopts ICAO standards into national rules and publishes the <strong>Civil Aviation Requirements (CARs)</strong>, including the RTR syllabus.<br>
+        <strong>AAI (Airports Authority of India)</strong> — manages airports and provides air navigation services (ATS and communications/navigation/surveillance) across Indian airspace.<br>
+        <strong>WPC (Wireless Planning & Coordination Wing)</strong> — the national radio regulator under the Ministry of Communications; it licenses the use of radio spectrum and apparatus.
+      </p>
+    </div>
+
+    <h2>2.6 ICAO vs IATA — regulator or club?</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">These two are constantly confused because the acronyms look alike. ICAO is a <strong>regulator</strong> made of governments. IATA is a <strong>trade association</strong> made of airlines.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">Comparison: ICAO vs IATA</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>ICAO</th>
+            <th>IATA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>What it is</strong></td><td>UN specialised agency (States)</td><td>Trade association (airlines)</td></tr>
+          <tr><td><strong>Members</strong></td><td>Sovereign States</td><td>Airlines</td></tr>
+          <tr><td><strong>Role</strong></td><td>Safety standards & SARPs (Annexes)</td><td>Commercial coordination, fares, industry practice</td></tr>
+          <tr><td><strong>HQ</strong></td><td>Montreal</td><td>Montreal / Geneva</td></tr>
+          <tr><td><strong>Airport codes</strong></td><td>4-letter location indicator (e.g. VIDP)</td><td>3-letter code (e.g. DEL)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> MNEMONIC</div>
+      <p style="margin:0;"><strong>ICAO = countries, IATA = airlines.</strong> "C" in ICAO &rarr; Countries. And for codes: ICAO = <strong>4</strong> letters (VIDP), IATA = <strong>3</strong> letters (DEL).</p>
+    </div>
+
+    <h2>2.7 How it all fits together</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> SEE THE FIGURE</div>
+      <p style="margin:0;">From a global resource down to your transmit button, authority flows in a clear chain — spectrum from the ITU, aviation standards from ICAO, national adoption and licensing by India's bodies, and finally the RTR licence that authorises you.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chain_of_authority.jpg" alt="Figure 2.1: The chain of authority">
+      <figcaption>Figure 2.1 — The chain of authority — from global agreement to your microphone.</figcaption>
+    </figure>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> COCKPIT REALITY</div>
+      <p style="margin:0;">When you say "QNH 1013, runway two-seven" to a controller in any country, it works because of this chain: ITU reserved the band, ICAO standardised the phraseology and the Q-code in Annex 10, and India's DGCA wrote it into the rules you were tested on. You are the last link — and the only one the passengers can hear.</p>
+    </div>
+
+    <h2>2.8 Exam-day specifics: answering "Who publishes?"</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">Examiners love to ask "Who publishes X?" A candidate who confuses a national document with an international one loses the mark. Here is the definitive list to lock down.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">Publications & their Authors</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Document / Publication</th>
+            <th>Published By</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Radio Regulations (RR)</td><td>ITU (International Telecommunication Union)</td></tr>
+          <tr><td>Annex 10 (Aeronautical Telecommunications)</td><td>ICAO (International Civil Aviation Organization)</td></tr>
+          <tr><td>AIP (Aeronautical Information Publication) India</td><td>AAI (Airports Authority of India)</td></tr>
+          <tr><td>Civil Aviation Requirements (CARs)</td><td>DGCA (Directorate General of Civil Aviation)</td></tr>
+          <tr><td>RTR(A) Syllabus</td><td>DGCA (via CAR Section 7)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> EXAM TRAP</div>
+      <p style="margin:0;">Do not say the DGCA publishes the AIP. <strong>AAI publishes the AIP</strong>. The DGCA regulates.</p>
+    </div>
+
+    <h2>2.9 Case study: a flight from Delhi to Dubai</h2>
+    
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> PUTTING IT ALL TOGETHER</div>
+      <p style="margin:0; line-height:1.8;">
+        Imagine you are departing Delhi for Dubai. How do the bodies in this chapter impact your flight?
+        <br>1. <strong>WPC</strong> granted the licence for the VHF radio installed in your aircraft.
+        <br>2. You hold an <strong>RTR(A)</strong> issued under rules made by the Indian Government, governed by a syllabus from the <strong>DGCA</strong>.
+        <br>3. You request start-up from Delhi Delivery on 121.900 MHz — a frequency allocated globally to aviation by the <strong>ITU</strong>.
+        <br>4. You are talking to an Air Traffic Controller employed by the <strong>AAI</strong>.
+        <br>5. You cross into Pakistan airspace, then Iran, then UAE. The reason the controllers in all those countries speak English and use the same phraseology you do is because they all signed the <strong>Chicago Convention</strong> and adopted <strong>ICAO Annex 10</strong>.
+      </p>
+    </div>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 2</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Chicago Convention signed</strong></td><td>7 December 1944, Chicago — by 52 States; created ICAO</td></tr>
+          <tr><td><strong>ICAO</strong></td><td>UN agency · HQ Montreal · 19 Annexes (SARPs)</td></tr>
+          <tr><td><strong>Annex 10</strong></td><td>Aeronautical Telecommunications (5 volumes; RTR uses Vol I & II)</td></tr>
+          <tr><td><strong>Annex 2 / Annex 11 / Annex 15</strong></td><td>Rules of the Air / Air Traffic Services / Aeronautical Information Services</td></tr>
+          <tr><td><strong>ITU</strong></td><td>UN agency · HQ Geneva · allocates spectrum · Radio Regulations · oldest UN agency</td></tr>
+          <tr><td><strong>DGCA</strong></td><td>India's regulator · issues CARs (RTR syllabus = CAR Sec 7, Series G, Part VI)</td></tr>
+          <tr><td><strong>ICAO vs IATA</strong></td><td>ICAO = States/regulator (4-letter codes); IATA = airlines/trade (3-letter codes)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A — MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. The Chicago Convention of 1944 created which organisation?</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">A. ICAO</li>
+          <li onclick="checkAnswer(this, false)">B. ITU</li>
+          <li onclick="checkAnswer(this, false)">C. IATA</li>
+          <li onclick="checkAnswer(this, false)">D. DGCA</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A.</strong> The Convention on International Civil Aviation (Chicago, 7 Dec 1944) established ICAO.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. Which ICAO Annex covers Aeronautical Telecommunications?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A. Annex 2</li>
+          <li onclick="checkAnswer(this, false)">B. Annex 6</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">C. Annex 10</li>
+          <li onclick="checkAnswer(this, false)">D. Annex 11</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: C.</strong> Annex 10 — "TEN = TELECOM." Annex 2 is Rules of the Air, Annex 6 Operation of Aircraft, Annex 11 ATS.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. Which body allocates the global radio-frequency spectrum?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A. ICAO</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">B. ITU</li>
+          <li onclick="checkAnswer(this, false)">C. DGCA</li>
+          <li onclick="checkAnswer(this, false)">D. IATA</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: B.</strong> The ITU allocates spectrum and publishes the Radio Regulations; ICAO then decides aviation's use of it.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. ICAO is headquartered in:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A. Geneva</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">B. Montreal</li>
+          <li onclick="checkAnswer(this, false)">C. Chicago</li>
+          <li onclick="checkAnswer(this, false)">D. London</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: B.</strong> ICAO — Montreal. (The ITU is in Geneva.)
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. Which statement about IATA is correct?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A. It is a UN regulatory agency</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">B. It is a trade association of airlines</li>
+          <li onclick="checkAnswer(this, false)">C. It allocates radio spectrum</li>
+          <li onclick="checkAnswer(this, false)">D. It issues the RTR licence</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: B.</strong> IATA is an airline trade body — commercial, not regulatory. ICAO is the regulator of States.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. An ICAO "Standard" differs from a "Recommended Practice" in that a Standard is:</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">A. Necessary for safety; States must comply or file a difference</li>
+          <li onclick="checkAnswer(this, false)">B. Only a suggestion with no obligation</li>
+          <li onclick="checkAnswer(this, false)">C. Applicable only to IATA airlines</li>
+          <li onclick="checkAnswer(this, false)">D. Issued by the ITU</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A.</strong> A Standard is necessary and binding unless a State files a difference; a Recommended Practice is desirable but optional.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. In India, the document carrying the RTR(A) syllabus is published by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A. ICAO</li>
+          <li onclick="checkAnswer(this, false)">B. ITU</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">C. DGCA (as a CAR)</li>
+          <li onclick="checkAnswer(this, false)">D. IATA</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: C.</strong> The DGCA issues Civil Aviation Requirements; the RTR syllabus is CAR Section 7, Series G, Part VI.
+        </div>
+      </div>
+      
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. Which body publishes the Aeronautical Information Publication (AIP) in India?</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">A. AAI</li>
+          <li onclick="checkAnswer(this, false)">B. DGCA</li>
+          <li onclick="checkAnswer(this, false)">C. ICAO</li>
+          <li onclick="checkAnswer(this, false)">D. WPC</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A.</strong> The Airports Authority of India (AAI) publishes the AIP. The DGCA is the regulator.
+        </div>
+      </div>
+
+      <h3>Part B — Oral / viva (tap to reveal model answers)</h3>
+      
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the Chicago Convention and what did it create?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The Convention on International Civil Aviation, signed at Chicago on 7 December 1944, which set the principles of international air transport and created ICAO.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between ICAO and the ITU?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          ICAO is the UN agency that sets aviation standards (SARPs in 19 Annexes); the ITU is the UN agency that allocates the radio spectrum and publishes the Radio Regulations. ITU allocates the frequencies; ICAO governs aviation's use of them.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Which ICAO Annex deals with radiotelephony, and what are its volumes?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Annex 10 — Aeronautical Telecommunications. Five volumes: I Radio Nav Aids, II Communication Procedures, III Communication Systems, IV Surveillance & ACAS, V Spectrum Utilization. RTR draws mainly on Volumes I and II.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between ICAO and IATA?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          ICAO is a regulatory UN body whose members are sovereign States; IATA is a trade association whose members are airlines. ICAO uses 4-letter location indicators, IATA uses 3-letter codes.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Name the main Indian bodies in civil aviation and their roles.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          DGCA — the regulator that issues CARs and oversees safety; AAI — manages airports and provides air navigation services; WPC — the national radio regulator that licenses spectrum and apparatus.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Who publishes the Radio Regulations?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The ITU (International Telecommunication Union).
+        </div>
+      </details>
+    </div>
+
+    <!-- 30-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 30-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>Chicago Convention, 7 Dec 1944</strong> &rarr; created <strong>ICAO</strong> (HQ Montreal, 19 Annexes).</li>
+        <li><strong>Annex 10 = Telecom</strong> (5 vols; RTR uses I & II). Also know Annex 2, 11, 15.</li>
+        <li><strong>ITU</strong> (Geneva) allocates <strong>spectrum</strong>; ICAO applies it to aviation.</li>
+        <li><strong>DGCA</strong> adopts standards as <strong>CARs</strong>; AAI runs ATS; WPC licenses radio.</li>
+        <li><strong>ICAO</strong> = States/regulator (4-letter); <strong>IATA</strong> = airlines/trade (3-letter).</li>
+        <li><strong>AAI</strong> publishes the AIP.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© 2026 Capt. Pankaj Pahil</span>
+      <span>GHOST AVIATOR · www.GhostAviator.com</span>
+      <span>Chapter 2, Page 12</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

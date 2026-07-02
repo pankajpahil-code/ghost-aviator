@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 3: Licensing, Radio Apparatus & Minimum Equipment | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      // Clear previous selections
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 3 · REFERENCE DEPTH</span>
+      <h1 class="hero-title">Licensing, Radio Apparatus & Minimum Equipment</h1>
+      <p class="hero-subtitle">A legal radio call needs two licences working together — one for the operator, one for the box — and the aircraft must carry a defined minimum of communication, navigation and surveillance equipment set by ICAO Annex 6. This chapter unpacks the regulatory machinery behind a single "Delhi Tower, good morning".</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part I (vi) Licensing of radio apparatus · (vii) Minimum radio equipment per Annex 6 (ICAO & DGCA)</p>
+    </div>
+
+    <!-- Objectives -->
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Distinguish the operator's licence (RTR) from the aircraft radio station licence, and name the authority that issues each.</li>
+        <li>Describe how radio apparatus is licensed in India (WPC, NFAP, SACFA) and why type approval matters.</li>
+        <li>State the minimum communication, navigation and surveillance equipment Annex 6 requires, and how it scales with the operation.</li>
+        <li>Explain the independence (no single-point-failure) requirement and apply it.</li>
+        <li>Describe ELT and transponder carriage and the role of the Minimum Equipment List (MEL).</li>
+        <li>Explain how India's CARs give Annex 6 domestic effect.</li>
+      </ul>
+    </div>
+
+    <!-- Table of Contents for Chapter -->
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">3.1 Why two licences, not one</p>
+      <p>3.2 The operator's licence (RTR)</p>
+      <p>3.3 Licensing the apparatus — WPC, NFAP, SACFA</p>
+      <p>3.4 Annex 6 — the minimum-equipment standard</p>
+      <p>3.5 Communication equipment required</p>
+      <p style="margin-top:0;">3.6 Navigation & surveillance required</p>
+      <p>3.7 The independence rule</p>
+      <p>3.8 ELT & emergency equipment</p>
+      <p>3.9 The MEL — flying with an item u/s</p>
+      <p>3.10 How India applies Annex 6</p>
+    </div>
+
+    <h2>3.1 Why two licences, not one</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — POLICING THE SPECTRUM AT TWO LEVELS</div>
+      <p style="margin:0;">The radio-frequency spectrum is policed at two independent levels because two different things can go wrong. The <strong>person</strong> can be untrained — so the operator is licensed (the RTR). The <strong>equipment</strong> can be the wrong type, off-frequency, or interfering — so the apparatus is licensed too (the aircraft radio station licence). Remove either control and the system fails: a trained pilot on an unapproved, interfering transmitter is as dangerous as an approved radio in untrained hands. To make a single legal transmission, <strong>both</strong> authorisations must exist at the same time.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> The two authorisations</div>
+      <p style="margin:0; line-height:2;">
+        <strong>Operator's licence — RTR(A):</strong> authorises a <em>person</em> to operate aeronautical radio equipment and use the airwaves.<br>
+        <strong>Aircraft Radio Station Licence / installation approval:</strong> authorises the <em>radio apparatus installed in a particular aircraft</em> to transmit on assigned frequencies. Issued by the national radio authority and carried/registered with the aircraft.
+      </p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> EXAM TRAP</div>
+      <p style="margin:0;">"What licences are needed to operate an aircraft radio?" — the complete answer is <strong>both</strong>: the operator's RTR <em>and</em> the aircraft radio station licence. Naming only one is the classic half-mark answer.</p>
+    </div>
+
+    <h2>3.2 The operator's licence (RTR)</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">The RTR(A) is the certificate covered in Chapter 1 — the licence of the <em>person</em> at the microphone. It certifies that the operator knows the regulations, the radio theory, and the disciplined phraseology needed to use a shared, safety-critical frequency.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-double"></i> Where the RTR sits in the carriage rules</div>
+      <p style="margin:0;">The aircraft may carry a fully approved, licensed radio installation, but it may only be <strong>operated</strong> by a person holding a valid radio operator's licence appropriate to the equipment — for civil aircraft radiotelephony, the <strong>RTR(A)</strong>. Operation by an unlicensed person is an offence even if the equipment itself is fully licensed.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Author check before publishing</div>
+      <p style="margin:0;">Confirm the exact wording linking operator licensing to operation of aircraft radio under the RTR (Restricted) Rules, 2025, and any categories of person permitted to operate under supervision/exemption.</p>
+    </div>
+
+    <h2>3.3 Licensing the apparatus — WPC, NFAP, SACFA</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — WHY A RADIO CANNOT JUST TRANSMIT</div>
+      <p style="margin:0;">A transmitter radiates energy into shared spectrum. If it is the wrong type, drifts off frequency, or radiates spurious emissions, it interferes with everyone else on the band — potentially blocking a distress call. So the State requires that each radio station be <strong>type-approved</strong> and <strong>licensed</strong>, and that its frequencies be <strong>assigned</strong> from the national plan so two stations don't clash.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/aircraft_exterior_antennas.jpg" alt="Aircraft Exterior Antennas">
+      <figcaption>Aircraft antennas are part of the licensed radio station apparatus and are governed by WPC and DGCA fitment regulations.</figcaption>
+    </figure>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> The Indian apparatus-licensing machinery</div>
+      <p style="margin:0; line-height:2;">
+        <strong>WPC (Wireless Planning & Coordination) Wing</strong>, Ministry of Communications — the national radio regulator: it licenses the use of radio spectrum and apparatus and assigns frequencies.<br>
+        <strong>NFAP (National Frequency Allocation Plan)</strong> — India's table of which services may use which bands, derived from the ITU Radio Regulations.<br>
+        <strong>SACFA (Standing Advisory Committee on Frequency Allocation)</strong> — clears siting of transmitters/masts.<br>
+        The <strong>DGCA</strong> separately regulates the <strong>airworthiness and operational fitment</strong> of the equipment in the aircraft.
+      </p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic — who does what</div>
+      <p style="margin:0;"><strong>WPC licenses the box; DGCA approves the fitment; you (RTR) operate it.</strong> Spectrum & apparatus = Communications ministry; airworthiness & operation = Civil Aviation.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Author check before publishing</div>
+      <p style="margin:0;">Confirm the exact current name and validity period of the <strong>aircraft radio station licence</strong> in India and whether the 2025 framework changed the issuing route. Insert the validity figure if examinable.</p>
+    </div>
+
+    <h2>3.4 Annex 6 — the minimum-equipment standard</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">An aircraft may not set off carrying whatever radios the owner happens to fancy. ICAO <strong>Annex 6 (Operation of Aircraft)</strong> prescribes the <em>minimum</em> communication, navigation and surveillance equipment that must be carried — and the requirement <strong>scales with the kind of flying</strong>: more is required for IFR and night than for simple day-VFR.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> Definition — ICAO Annex 6</div>
+      <p style="margin:0;"><strong>Annex 6 — Operation of Aircraft. Part I</strong> covers international commercial air transport (aeroplanes); <strong>Part II</strong> international general aviation (aeroplanes); <strong>Part III</strong> helicopters. It prescribes, among much else, the minimum communication, navigation and surveillance equipment to be carried.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_three_one.jpg" alt="Figure 3.1: Minimum equipment scales with the operation">
+      <figcaption>Figure 3.1 — ICAO Annex 6 minimum equipment scaling from Day VFR to IFR complex.</figcaption>
+    </figure>
+
+    <h2>3.5 Communication equipment required</h2>
+    
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-double"></i> The core radio requirement (Annex 6)</div>
+      <p style="margin:0; line-height:2;">
+        An aircraft shall carry radio communication equipment capable of:<br>
+        • conducting <strong>two-way communication</strong> with the appropriate aeronautical stations on the frequencies required by the authority;<br>
+        • receiving <strong>meteorological information at any time</strong> during flight;<br>
+        • conducting two-way communication <strong>at any time</strong> with at least one aeronautical station and such other stations/frequencies as prescribed for the route.
+      </p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/cockpit_vhf_radio.jpg" alt="Cockpit VHF Radio Panel">
+      <figcaption>A dual VHF COM setup ensuring two-way communication and met broadcast reception at any time during flight.</figcaption>
+    </figure>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> WHY THE WORDING IS "TWO-WAY" AND "AT ANY TIME"</div>
+      <p style="margin:0;">Notice the standard is written around <strong>capability and availability</strong>, not mere possession of a box. A receive-only set, or one that cannot reach a met broadcast en route, would not satisfy it. This is precisely why airliners carry <strong>multiple independent COM radios</strong> and can tune VOLMET/ATIS — the rule demands the capability to talk both ways and to get weather throughout the flight.</p>
+    </div>
+
+    <h2>3.6 Navigation & surveillance required</h2>
+    
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-double"></i> Navigation & surveillance (Annex 6)</div>
+      <p style="margin:0;">The aircraft shall also carry <strong>navigation equipment</strong> sufficient to proceed in accordance with its <strong>flight plan</strong> and the requirements of air traffic services; and, where required for the airspace, a <strong>transponder (SSR/Mode S)</strong> and other surveillance equipment. For <strong>IFR or night</strong> operations the standard rises to redundant communication and navigation equipment appropriate to the route, and for precision approaches the relevant ILS/radio-altimeter fit.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality — "RNP/PBN approval"</div>
+      <p style="margin:0;">"Sufficient to proceed per flight plan" is why an aircraft must hold the right <strong>navigation approval</strong> (e.g. RNP/PBN, Chapter 12) for the route it files. File an RNP route without the equipment and approval, and you are below the Annex 6 minimum for that flight.</p>
+    </div>
+
+    <h2>3.7 The independence rule</h2>
+    
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check"></i> No single point of failure</div>
+      <p style="margin:0;">Communication and navigation equipment shall be installed so that the <strong>failure of any single unit</strong> required for either communication or navigation purposes <strong>will not result in the failure of another</strong> unit required for the other purpose. In plain words: <strong>one failure must not take out both your talking and your navigating.</strong></p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — applying the rule</div>
+      <p style="margin:0;">Two VHF radios and two navigation receivers share a <strong>single power bus</strong> and a <strong>single antenna coupler</strong>.<br>
+      Does this meet the independence rule? <strong>No</strong> — the shared bus (or coupler) is a single point whose failure disables comms <em>and</em> nav together.<br>
+      Compliant design: separate power sources/buses and separate antenna feeds, so any one failure leaves the other function working. This is why airliners split avionics across independent buses and generators.</p>
+    </div>
+
+    <h2>3.8 ELT & emergency equipment</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> Emergency Locator Transmitter</div>
+      <p style="margin:0;">Annex 6 requires the carriage of an <strong>ELT</strong> (the number/type depending on the operation). It activates automatically on impact (or manually) and transmits on the <strong>406 MHz</strong> satellite distress frequency (with a coded, registered identity) and <strong>121.5 MHz</strong> for homing, to summon search and rescue. (Full detail in Chapter 22.)</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Author check before publishing</div>
+      <p style="margin:0;">Insert the exact Indian CAR figures: number/type of <strong>ELTs</strong> required by operation, mandatory <strong>transponder (Mode S / ADS-B)</strong> carriage threshold, and the precise minimum-equipment wording from the current DGCA CAR mirroring Annex 6.</p>
+    </div>
+
+    <h2>3.9 The MEL — flying with an item unserviceable</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">If a required item is unserviceable, the aircraft is not automatically grounded. The <strong>Minimum Equipment List</strong> tells the crew whether, and under what conditions, the flight may still be made.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> MEL & MMEL</div>
+      <p style="margin:0;">The <strong>MMEL (Master MEL)</strong> is produced by the manufacturer/State of design and lists items that may be inoperative for a type. The operator's <strong>MEL</strong> is at least as restrictive and approved for that operator. It specifies any limitations and "O" (operational) or "M" (maintenance) procedures required to dispatch with the item inoperative. The Annex 6 minimum-equipment principle is exactly what the MEL enforces: <strong>never depart below the legal minimum for the intended flight.</strong></p>
+    </div>
+
+    <h2>3.10 How India applies Annex 6</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">Annex 6 is the global standard; the DGCA writes the Indian version into its Civil Aviation Requirements, so the minimum-equipment rule you are tested on is the Indian CAR that mirrors Annex 6 — confirmed at every pre-flight by checking the required radios are fitted, serviceable, and (if not) permitted by the MEL.</p>
+    </div>
+
+    <details class="deep-dive-panel">
+      <summary>🔍 Deep dive — type approval & spurious emissions</summary>
+      <div class="deep-dive-content">
+        <p>"Type approval" means a radio model has been tested to confirm it transmits only within its assigned channel, with controlled power and acceptably low <strong>spurious emissions</strong> (unwanted outputs on other frequencies). A non-type-approved or faulty transmitter can splatter energy across adjacent channels — the same effect as over-modulation in Chapter 10 — which is why both the equipment <em>and</em> its installation are licensed, not just bought and bolted in.</p>
+      </div>
+    </details>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 3</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Licences needed</strong></td><td>Operator's RTR(A) + Aircraft Radio Station Licence (apparatus)</td></tr>
+          <tr><td><strong>Apparatus regulator (India)</strong></td><td>WPC Wing, Ministry of Communications (NFAP, SACFA)</td></tr>
+          <tr><td><strong>Fitment/airworthiness regulator</strong></td><td>DGCA</td></tr>
+          <tr><td><strong>Minimum-equipment standard</strong></td><td>ICAO Annex 6 — Operation of Aircraft (Parts I/II/III)</td></tr>
+          <tr><td><strong>Core radio capability</strong></td><td>Two-way comms on required frequencies + receive met at any time</td></tr>
+          <tr><td><strong>Navigation requirement</strong></td><td>Sufficient to proceed per flight plan + ATS requirements (+ transponder)</td></tr>
+          <tr><td><strong>Independence rule</strong></td><td>Single failure must not disable both comms and navigation</td></tr>
+          <tr><td><strong>Emergency beacon</strong></td><td>ELT — 406 MHz (satellite) + 121.5 MHz (homing)</td></tr>
+          <tr><td><strong>Dispatch with item u/s</strong></td><td>Governed by the MEL (derived from the MMEL)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A — MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. To legally operate an aircraft radio you require:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Only the RTR(A)</li>
+          <li onclick="checkAnswer(this, false)">Only the aircraft radio station licence</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Both the RTR(A) and the aircraft radio station licence</li>
+          <li onclick="checkAnswer(this, false)">Neither, below 5,700 kg</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Both the RTR(A) and the aircraft radio station licence.</strong> Both — the operator (RTR) and the installed apparatus (station licence) must be licensed.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. The minimum radio equipment to be carried on an aircraft is prescribed in:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">ICAO Annex 10</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">ICAO Annex 6</li>
+          <li onclick="checkAnswer(this, false)">ICAO Annex 2</li>
+          <li onclick="checkAnswer(this, false)">ICAO Annex 11</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: ICAO Annex 6.</strong> Annex 6 — Operation of Aircraft. Annex 10 is the telecom standards themselves.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. In India, radio spectrum and apparatus are licensed by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">DGCA</li>
+          <li onclick="checkAnswer(this, false)">AAI</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">WPC (Ministry of Communications)</li>
+          <li onclick="checkAnswer(this, false)">ICAO</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: WPC (Ministry of Communications).</strong> The WPC Wing; DGCA handles airworthiness/operational fitment.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. India's table of which services may use which bands is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">MEL</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">NFAP (National Frequency Allocation Plan)</li>
+          <li onclick="checkAnswer(this, false)">CAR Section 7</li>
+          <li onclick="checkAnswer(this, false)">AIP</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: NFAP (National Frequency Allocation Plan).</strong> The NFAP, derived from the ITU Radio Regulations, allocates Indian spectrum.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. SACFA is concerned primarily with:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Pilot licensing</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Clearing the siting of transmitters/masts</li>
+          <li onclick="checkAnswer(this, false)">Weather forecasting</li>
+          <li onclick="checkAnswer(this, false)">Accident investigation</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Clearing the siting of transmitters/masts.</strong> The Standing Advisory Committee on Frequency Allocation clears transmitter siting.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. Annex 6 Part I applies to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Helicopters</li>
+          <li onclick="checkAnswer(this, false)">International general aviation aeroplanes</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">International commercial air transport (aeroplanes)</li>
+          <li onclick="checkAnswer(this, false)">Gliders only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: International commercial air transport (aeroplanes).</strong> Part I = commercial air transport aeroplanes; Part II = international GA; Part III = helicopters.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. The core Annex 6 radio capability includes the ability to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Transmit only</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Conduct two-way communication and receive meteorological information at any time</li>
+          <li onclick="checkAnswer(this, false)">Receive broadcast entertainment</li>
+          <li onclick="checkAnswer(this, false)">Operate without an assigned frequency</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Conduct two-way communication and receive meteorological information at any time.</strong> Two-way comms on required frequencies plus the ability to receive met information at any time.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. The "independence" requirement means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Each radio must be a different brand</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A single failure must not disable both communication and navigation</li>
+          <li onclick="checkAnswer(this, false)">The pilot must operate independently of ATC</li>
+          <li onclick="checkAnswer(this, false)">All equipment must be battery-powered</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A single failure must not disable both communication and navigation.</strong> Installation must ensure one unit's failure won't take out another required for the other function.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. Two COM and two NAV sets sharing a single power bus:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Always meet the independence rule</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">May fail the independence rule because the shared bus is a single point of failure</li>
+          <li onclick="checkAnswer(this, false)">Need no antenna</li>
+          <li onclick="checkAnswer(this, false)">Are exempt from Annex 6</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: May fail the independence rule because the shared bus is a single point of failure.</strong> A shared bus whose failure kills both comms and nav violates the no-single-point-of-failure principle.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. Navigation equipment under Annex 6 must be sufficient to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Reach any airport in the world</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Proceed in accordance with the flight plan and ATS requirements</li>
+          <li onclick="checkAnswer(this, false)">Replace the transponder</li>
+          <li onclick="checkAnswer(this, false)">Operate without approval</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Proceed in accordance with the flight plan and ATS requirements.</strong> It must let the aircraft fly its filed plan and meet ATS requirements (e.g. PBN where required).
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. An ELT transmits on:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">118.0 MHz only</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">406 MHz (satellite) and 121.5 MHz (homing)</li>
+          <li onclick="checkAnswer(this, false)">1030 MHz</li>
+          <li onclick="checkAnswer(this, false)">75 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 406 MHz (satellite) and 121.5 MHz (homing).</strong> 406 MHz for satellite detection with coded ID, plus 121.5 MHz for homing.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. If a required item is unserviceable before departure, the document that governs whether the flight may proceed is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">AIP</li>
+          <li onclick="checkAnswer(this, false)">NOTAM</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Minimum Equipment List (MEL)</li>
+          <li onclick="checkAnswer(this, false)">NFAP</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Minimum Equipment List (MEL).</strong> The MEL (from the MMEL) states whether and how the aircraft may dispatch with the item inoperative.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. The MMEL is produced by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The operator</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The manufacturer / State of design</li>
+          <li onclick="checkAnswer(this, false)">The crew</li>
+          <li onclick="checkAnswer(this, false)">The ITU</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The manufacturer / State of design.</strong> The Master MEL comes from the manufacturer/State of design; the operator's MEL is at least as restrictive.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. Type approval of a radio mainly ensures it:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Is the cheapest available</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Transmits within its assigned channel with low spurious emissions</li>
+          <li onclick="checkAnswer(this, false)">Needs no licence</li>
+          <li onclick="checkAnswer(this, false)">Works only on HF</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Transmits within its assigned channel with low spurious emissions.</strong> Type approval confirms controlled frequency/power and acceptably low spurious emissions to avoid interference.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. Which body regulates the airworthiness and fitment of the radio in the aircraft?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">WPC</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">DGCA</li>
+          <li onclick="checkAnswer(this, false)">ITU</li>
+          <li onclick="checkAnswer(this, false)">IATA</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: DGCA.</strong> DGCA regulates airworthiness/fitment; WPC licenses the spectrum/apparatus.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. Compared with day-VFR, IFR/night operations under Annex 6 generally require:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Less equipment</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">More — including redundant comms/nav appropriate to the route</li>
+          <li onclick="checkAnswer(this, false)">No transponder</li>
+          <li onclick="checkAnswer(this, false)">No navigation equipment</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: More — including redundant comms/nav appropriate to the route.</strong> The minimum scales up with the operation; IFR/night needs redundancy.
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="question-block">
+        <div class="question-text">17. The requirement to "receive meteorological information at any time" means a receive-only set that cannot reach a met broadcast en route:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Is sufficient</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Does not satisfy Annex 6</li>
+          <li onclick="checkAnswer(this, false)">Is required by Annex 10</li>
+          <li onclick="checkAnswer(this, false)">Is exempt for IFR</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Does not satisfy Annex 6.</strong> The standard is about capability/availability — it must be able to obtain weather throughout the flight.
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="question-block">
+        <div class="question-text">18. The complete answer to "what is needed to make a legal aircraft radio transmission" is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A serviceable radio</li>
+          <li onclick="checkAnswer(this, false)">A licensed operator</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A licensed operator (RTR) AND a licensed/approved aircraft radio station</li>
+          <li onclick="checkAnswer(this, false)">ATC permission only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A licensed operator (RTR) AND a licensed/approved aircraft radio station.</strong> Both the person and the apparatus must be licensed simultaneously.
+        </div>
+      </div>
+
+      <h3>Part B — Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What licences are required to operate the radio on an aircraft, and who issues each?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Two: the operator's Radio Telephone Operator (Restricted) licence, RTR(A); and a licence for the aircraft's radio station/apparatus issued by the national radio authority (in India, the WPC Wing). The DGCA separately approves the airworthiness and fitment.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Where is the minimum radio equipment to be carried prescribed, and how is it structured?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          In ICAO Annex 6 (Operation of Aircraft) — Part I commercial aeroplanes, Part II general-aviation aeroplanes, Part III helicopters — reflected in India by the DGCA's CARs. The required equipment scales with the operation (more for IFR/night).
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> State the basic communication requirement under Annex 6.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Equipment capable of two-way communication with the appropriate aeronautical stations on the required frequencies, and of receiving meteorological information at any time during flight.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Explain the independence requirement and give an example.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Equipment must be installed so the failure of any single unit needed for communication or navigation will not cause the failure of another unit required for the other function. For example, comms and nav must not depend on a single shared power bus whose failure would disable both.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is an ELT and on what frequencies does it transmit?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          An Emergency Locator Transmitter, carried under Annex 6, which activates on impact and transmits on 406 MHz (satellite, with a coded registered identity) and 121.5 MHz (for homing) to aid search and rescue.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the MEL and why does it exist?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The Minimum Equipment List — derived from the manufacturer's Master MEL and approved for the operator — states whether, and under what conditions, an aircraft may be dispatched with a particular item unserviceable. It enforces the Annex 6 principle of never departing below the legal minimum for the intended flight.
+        </div>
+      </details>
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li>Two licences: <strong>RTR(A)</strong> (operator) + <strong>aircraft radio station licence</strong> (apparatus, via WPC).</li>
+        <li>India: <strong>WPC</strong> = spectrum/apparatus (NFAP, SACFA); <strong>DGCA</strong> = airworthiness/fitment.</li>
+        <li>Minimum-equipment standard = <strong>ICAO Annex 6</strong>; scales up for IFR/night.</li>
+        <li>Core radio: <strong>two-way comms</strong> on required frequencies + <strong>receive met any time</strong>; nav per flight plan + transponder.</li>
+        <li><strong>Independence:</strong> one failure must not kill both comms and nav. <strong>ELT</strong> 406 + 121.5; dispatch u/s governed by the <strong>MEL</strong>.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 3 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

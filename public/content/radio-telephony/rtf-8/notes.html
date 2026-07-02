@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 8: Frequency Bands & Their Aviation Uses | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 8 · REFERENCE DEPTH</span>
+      <h1 class="hero-title">Frequency Bands & Their Aviation Uses</h1>
+      <p class="hero-subtitle">Chapter 7 told you what a frequency is. This chapter tells you what each slice of the spectrum is used for — and this is where RTR papers harvest most of their marks. Examiners love precise numbers: which band carries ATC voice, which one the glide path, what the transponder replies on, where the emergency frequency sits.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part II (ii) Radio frequency bands &middot; principal aviation frequencies &middot; polarization</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Name the radio bands VLF to EHF with their frequency ranges, wavelengths and dominant propagation.</li>
+        <li>Explain in depth why aviation uses VHF (AM) for short range and HF (SSB) for long range.</li>
+        <li>Recall the principal aviation frequencies and what each does.</li>
+        <li>Explain channel spacing (25 kHz / 8.33 kHz) and calculate channel capacity.</li>
+        <li>Define polarization, state the polarization of aviation VHF, and relate antenna length to wavelength.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">8.1 The spectrum, band by band</p>
+      <p>8.2 VHF — the ATC workhorse</p>
+      <p>8.3 HF — reaching the ocean</p>
+      <p>8.4 The aviation frequency master table</p>
+      <p style="margin-top:0;">8.5 Channel spacing & capacity</p>
+      <p>8.6 Polarization & antenna length</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_8_hero.jpg" alt="VHF Antenna slicing through clouds">
+      <figcaption>The aircraft's antennas are the physical link between the electrical circuits inside and the invisible frequency bands outside.</figcaption>
+    </figure>
+
+    <h2>8.1 The spectrum, band by band</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — WHY THE SPECTRUM IS SPLIT INTO DECADES</div>
+      <p style="margin:0;">The radio spectrum is divided into bands, each a factor of <strong>ten</strong> in frequency above the one below. This matters because the dominant way a wave travels — and therefore what it is useful for — changes with frequency. Low frequencies have long wavelengths and <strong>bend around the Earth</strong>; high frequencies have short wavelengths and travel in <strong>straight lines</strong>. Aviation lives mainly in the <strong>HF, VHF and UHF</strong> bands.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">The Radio Spectrum Bands</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Band</th>
+            <th>Frequency</th>
+            <th>Wavelength</th>
+            <th>Dominant propagation</th>
+            <th>Typical aviation use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>VLF</strong></td><td>3–30 kHz</td><td>10–100 km</td><td>Ground/wave-guide</td><td>(Very long range; rare)</td></tr>
+          <tr><td><strong>LF</strong></td><td>30–300 kHz</td><td>1–10 km</td><td>Ground wave</td><td>NDB (low end)</td></tr>
+          <tr><td><strong>MF</strong></td><td>300 kHz–3 MHz</td><td>100 m–1 km</td><td>Ground wave</td><td>NDB; 2182 kHz maritime distress</td></tr>
+          <tr><td style="color:#0d9488;"><strong>HF</strong></td><td style="color:#0d9488;">3–30 MHz</td><td style="color:#0d9488;">10–100 m</td><td style="color:#0d9488;">Sky wave</td><td style="color:#0d9488;">Long-range / oceanic voice (SSB)</td></tr>
+          <tr><td style="color:#0d9488;"><strong>VHF</strong></td><td style="color:#0d9488;">30–300 MHz</td><td style="color:#0d9488;">1–10 m</td><td style="color:#0d9488;">Space (line-of-sight)</td><td style="color:#0d9488;">ATC voice, VOR, ILS LOC, markers</td></tr>
+          <tr><td style="color:#0d9488;"><strong>UHF</strong></td><td style="color:#0d9488;">300 MHz–3 GHz</td><td style="color:#0d9488;">0.1–1 m</td><td style="color:#0d9488;">Line-of-sight</td><td style="color:#0d9488;">ILS glide path, DME, SSR, GPS, mil voice</td></tr>
+          <tr><td><strong>SHF</strong></td><td>3–30 GHz</td><td>1–10 cm</td><td>Line-of-sight</td><td>Radar, radio altimeter, satcom</td></tr>
+          <tr><td><strong>EHF</strong></td><td>30–300 GHz</td><td>1–10 mm</td><td>Line-of-sight</td><td>(Advanced / experimental)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic — the band order</div>
+      <p style="margin:0;"><strong>"Very Long Modems Help Various Useful Signals Excel"</strong> &rarr; VLF, LF, MF, HF, VHF, UHF, SHF, EHF. Each band is <strong>&times;10</strong> the previous.</p>
+    </div>
+
+    <h2>8.2 VHF — the ATC workhorse</h2>
+    
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-satellite-dish"></i> The VHF aviation communication band</div>
+      <p style="margin:0;"><strong>118.0 – 136.975 MHz</strong>, using <strong>Amplitude Modulation (AM)</strong>, <strong>vertically polarized</strong>, propagating by <strong>line-of-sight (space wave)</strong>. Range is limited to roughly the radio horizon — higher you fly, farther you reach.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-wave-square"></i> WHY AM AND WHY VHF</div>
+      <p style="margin:0;">VHF gives clear, static-free, short-range communication ideal for an airport's busy frequencies. AM is used so that two overlapping transmissions produce a tell-tale <strong>heterodyne squeal</strong> — alerting everyone that two stations transmitted at once, rather than one silently capturing the channel as FM would (the "capture effect", Chapter 10). AM's "you'll hear the clash" behaviour is a <strong>safety feature</strong>.</p>
+    </div>
+
+    <h2>8.3 HF — reaching the ocean</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-globe"></i> The HF band in aviation</div>
+      <p style="margin:0;"><strong>3 – 30 MHz</strong>, using <strong>Single Side Band (SSB)</strong> for efficiency, propagating by <strong>sky wave</strong> (refracted off the ionosphere). This bounces signals thousands of miles — essential over oceans and polar routes where VHF line-of-sight fails. Crews change HF frequency between day and night (Chapter 9).</p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">Tie the band to its job: <strong>VHF = AM, short-range, line-of-sight; HF = SSB, long-range, sky wave.</strong> Swapping AM/SSB or the propagation path is the classic trap.</p>
+    </div>
+
+    <h2>8.4 The aviation frequency master table</h2>
+
+    <div class="table-container">
+      <div class="table-caption">Master Frequency Allocations</div>
+      <table>
+        <thead>
+          <tr>
+            <th>System / use</th>
+            <th>Frequency</th>
+            <th>Band</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">VHF ATC voice</td><td style="color:#0d9488; font-weight:700;">118.0 – 136.975 MHz</td><td style="color:#0d9488; font-weight:700;">VHF</td></tr>
+          <tr><td style="color:#E91E63; font-weight:700;">VHF emergency (guard)</td><td style="color:#E91E63; font-weight:700;">121.5 MHz</td><td style="color:#E91E63; font-weight:700;">VHF</td></tr>
+          <tr><td><strong>UHF military emergency</strong></td><td>243.0 MHz</td><td>UHF</td></tr>
+          <tr><td><strong>SAR scene-of-search (aux)</strong></td><td>123.1 MHz</td><td>VHF</td></tr>
+          <tr><td><strong>ELT (satellite / homing)</strong></td><td>406 MHz / 121.5 MHz</td><td>UHF / VHF</td></tr>
+          <tr><td><strong>VOR</strong></td><td>108.0 – 117.975 MHz</td><td>VHF</td></tr>
+          <tr><td><strong>ILS Localizer</strong></td><td>108.10 – 111.95 MHz</td><td>VHF</td></tr>
+          <tr><td><strong>ILS Glide Path</strong></td><td>329 – 335 MHz</td><td>UHF</td></tr>
+          <tr><td><strong>Marker beacons</strong></td><td>75 MHz</td><td>VHF</td></tr>
+          <tr><td><strong>DME</strong></td><td>962 – 1213 MHz</td><td>UHF</td></tr>
+          <tr><td><strong>SSR transponder</strong></td><td>Interrogate 1030 / Reply 1090 MHz</td><td>UHF</td></tr>
+          <tr><td><strong>NDB / ADF</strong></td><td>&approx; 190 – 1750 kHz</td><td>LF/MF</td></tr>
+          <tr><td><strong>Radio altimeter</strong></td><td>4200 – 4400 MHz</td><td>SHF</td></tr>
+          <tr><td><strong>Maritime distress</strong></td><td>2182 kHz</td><td>MF</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>8.5 Channel spacing & capacity</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-compress-arrows-alt"></i> FIRST PRINCIPLES — FITTING MORE AIRCRAFT INTO ONE BAND</div>
+      <p style="margin:0;">The VHF band is a fixed width, so the number of channels it holds depends on how closely they are spaced. Traditionally channels were <strong>25 kHz</strong> apart; to fit more in the crowded European band, <strong>8.33 kHz</strong> spacing was introduced — tripling the number of channels.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — channel capacity</div>
+      <p style="margin:0; line-height:1.8;">
+        The VHF band is 118.0 to 136.975 MHz, a width of <strong>18.975 MHz = 18,975 kHz.</strong><br>
+        At <strong>25 kHz</strong> spacing: 18,975 &divide; 25 &approx; <strong>760 channels</strong>. At <strong>8.33 kHz</strong> spacing: 18,975 &divide; 8.33 &approx; <strong>2,280 channels</strong> — roughly three times as many.<br>
+        This is why 8.33-spaced frequencies read like <strong>120.275</strong> or <strong>118.905</strong> rather than ending in tidy tenths.
+      </p>
+    </div>
+
+    <h2>8.6 Polarization & antenna length</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-arrows-alt-v"></i> Definition & the aviation fact</div>
+      <p style="margin:0;">Polarization is the plane of the wave's <strong>electric field — vertical</strong> or <strong>horizontal</strong>. The antenna must match it: a vertical wave needs a vertical antenna. <strong>Aviation VHF communication is vertically polarized</strong>, which is why the COM antenna (the blade) is mounted vertically.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-ruler-vertical"></i> Why higher-frequency aerials are short</div>
+      <p style="margin:0;">An efficient antenna is sized to the wavelength — commonly a <strong>half-wave</strong> or <strong>quarter-wave</strong>. Since &lambda; shrinks as frequency rises, VHF aerials are short blades while HF aerials are long wires or probes. From Chapter 7, a 120 MHz &lambda; is 2.5 m, so a quarter-wave whip is about <strong>0.6 m</strong> — a practical blade. An HF &lambda; of 100 m needs a long-wire or a tuned coupler.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality</div>
+      <p style="margin:0;">The little vertical blade on the fuselage is your VHF COM antenna, matched to the vertical polarization of the signal. Mismatch the polarization and received signal strength drops sharply — one reason antennas are mounted exactly as they are.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_eight_one.jpg" alt="Figure 8.1: The Radio Spectrum">
+      <figcaption>Figure 8.1 — The radio spectrum and where aviation lives.</figcaption>
+    </figure>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 8</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Band order (&times;10 each)</strong></td><td>VLF &middot; LF &middot; MF &middot; HF &middot; VHF &middot; UHF &middot; SHF &middot; EHF</td></tr>
+          <tr><td><strong>VHF ATC voice</strong></td><td>118.0–136.975 MHz &middot; AM &middot; vertical &middot; line-of-sight</td></tr>
+          <tr><td><strong>HF voice</strong></td><td>3–30 MHz &middot; SSB &middot; sky wave &middot; oceanic</td></tr>
+          <tr><td><strong>Channel spacing</strong></td><td>25 kHz (&approx;760 ch) and 8.33 kHz (&approx;2280 ch)</td></tr>
+          <tr><td><strong>VOR / ILS LOC</strong></td><td>108.0–117.975 / 108.10–111.95 MHz (VHF)</td></tr>
+          <tr><td><strong>ILS GP / DME</strong></td><td>329–335 MHz / 962–1213 MHz (UHF)</td></tr>
+          <tr><td><strong>SSR transponder</strong></td><td>1030 MHz interrogate &middot; 1090 MHz reply</td></tr>
+          <tr><td><strong>Emergency</strong></td><td>121.5 (VHF) &middot; 243.0 (UHF) &middot; 406 (ELT) &middot; 123.1 (SAR aux)</td></tr>
+          <tr><td><strong>Aviation VHF polarization</strong></td><td>Vertical</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A — MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. The VHF aeronautical communication band is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">108.0–117.975 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">118.0–136.975 MHz</li>
+          <li onclick="checkAnswer(this, false)">3–30 MHz</li>
+          <li onclick="checkAnswer(this, false)">329–335 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 118.0–136.975 MHz.</strong> VHF ATC voice = 118.0–136.975 MHz. 108–117.975 is VOR/ILS-LOC.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. Each radio band differs from the next by a factor of:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">2</li>
+          <li onclick="checkAnswer(this, false)">5</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">10</li>
+          <li onclick="checkAnswer(this, false)">100</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 10.</strong> Bands run in decades — each is ten times the previous in frequency.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. Aviation VHF communication uses which modulation?</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">AM</li>
+          <li onclick="checkAnswer(this, false)">FM</li>
+          <li onclick="checkAnswer(this, false)">SSB</li>
+          <li onclick="checkAnswer(this, false)">PCM</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: AM.</strong> VHF voice uses AM; HF long-range uses SSB.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. Long-range oceanic voice communication uses:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">VHF AM</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">HF SSB (sky wave)</li>
+          <li onclick="checkAnswer(this, false)">UHF</li>
+          <li onclick="checkAnswer(this, false)">VLF</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: HF SSB (sky wave).</strong> HF (3–30 MHz) with SSB propagates by sky wave for long range.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. The dominant propagation of NDB (LF/MF) is:</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">Ground wave</li>
+          <li onclick="checkAnswer(this, false)">Sky wave</li>
+          <li onclick="checkAnswer(this, false)">Line-of-sight</li>
+          <li onclick="checkAnswer(this, false)">Satellite</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Ground wave.</strong> LF/MF travels mainly by the ground (surface) wave.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. An SSR transponder replies on:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">1030 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">1090 MHz</li>
+          <li onclick="checkAnswer(this, false)">121.5 MHz</li>
+          <li onclick="checkAnswer(this, false)">75 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 1090 MHz.</strong> Interrogation is 1030 MHz; the reply is 1090 MHz.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. The ILS glide path operates in which band?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">VHF</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">UHF (329–335 MHz)</li>
+          <li onclick="checkAnswer(this, false)">HF</li>
+          <li onclick="checkAnswer(this, false)">MF</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: UHF (329–335 MHz).</strong> The localizer is VHF; the glide path is UHF (329–335 MHz).
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. ILS marker beacons transmit on:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">108 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">75 MHz</li>
+          <li onclick="checkAnswer(this, false)">329 MHz</li>
+          <li onclick="checkAnswer(this, false)">1090 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 75 MHz.</strong> All markers share a 75 MHz carrier, differing in tone/code.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. Moving from 25 kHz to 8.33 kHz channel spacing roughly:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Halves the number of channels</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Triples the number of channels</li>
+          <li onclick="checkAnswer(this, false)">Has no effect</li>
+          <li onclick="checkAnswer(this, false)">Doubles the band width</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Triples the number of channels.</strong> 8.33 kHz is one-third of 25 kHz, so about three times as many channels fit.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. Aviation VHF communication is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Horizontally polarized</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Vertically polarized</li>
+          <li onclick="checkAnswer(this, false)">Circularly polarized</li>
+          <li onclick="checkAnswer(this, false)">Unpolarized</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Vertically polarized.</strong> Aviation VHF comms are vertically polarized — hence the vertical blade antenna.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. Higher-frequency antennas are physically shorter because:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">They use less power</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Wavelength shrinks as frequency rises, and antennas are sized to the wavelength</li>
+          <li onclick="checkAnswer(this, false)">They are horizontally polarized</li>
+          <li onclick="checkAnswer(this, false)">They carry less data</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Wavelength shrinks as frequency rises, and antennas are sized to the wavelength.</strong> Antennas are a fraction of a wavelength; shorter &lambda; at high f means a shorter aerial.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. The radio altimeter operates in the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">VHF band</li>
+          <li onclick="checkAnswer(this, false)">HF band</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">SHF band (&approx;4200–4400 MHz)</li>
+          <li onclick="checkAnswer(this, false)">LF band</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: SHF band (&approx;4200–4400 MHz).</strong> The radio altimeter works around 4200–4400 MHz in the SHF band.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. The maritime distress frequency in the MF band is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">121.5 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">2182 kHz</li>
+          <li onclick="checkAnswer(this, false)">406 MHz</li>
+          <li onclick="checkAnswer(this, false)">243.0 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 2182 kHz.</strong> 2182 kHz is the maritime distress frequency (MF).
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. The international VHF emergency frequency and the UHF military one are:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">121.5 / 122.5 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">121.5 / 243.0 MHz</li>
+          <li onclick="checkAnswer(this, false)">118.0 / 136.975 MHz</li>
+          <li onclick="checkAnswer(this, false)">406 / 121.5 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 121.5 / 243.0 MHz.</strong> 121.5 MHz (VHF guard) and 243.0 MHz (UHF military guard); 243 = 2 &times; 121.5.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. VOR operates in the:</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">VHF band (108.0–117.975 MHz)</li>
+          <li onclick="checkAnswer(this, false)">UHF band</li>
+          <li onclick="checkAnswer(this, false)">HF band</li>
+          <li onclick="checkAnswer(this, false)">MF band</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: VHF band (108.0–117.975 MHz).</strong> VOR is VHF, 108.0–117.975 MHz (sharing 108–111.95 with ILS-LOC).
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. DME operates in the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">VHF band</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">UHF band (962–1213 MHz)</li>
+          <li onclick="checkAnswer(this, false)">SHF band</li>
+          <li onclick="checkAnswer(this, false)">LF band</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: UHF band (962–1213 MHz).</strong> DME is UHF, 962–1213 MHz.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B — Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> State the VHF communication band and its characteristics.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          118.0–136.975 MHz, amplitude modulated, vertically polarized, propagating line-of-sight (space wave) for short range.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Why is HF used for oceanic communication?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          HF (3–30 MHz) propagates by sky wave, refracting off the ionosphere to reach thousands of miles where VHF line-of-sight cannot. SSB is used for efficiency, and the frequency is changed between day and night.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Name the bands and uses for the ILS components.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Localizer — VHF, 108.10–111.95 MHz (azimuth); glide path — UHF, 329–335 MHz (vertical); marker beacons — 75 MHz (distance).
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> On what frequencies does an SSR transponder interrogate and reply?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Ground interrogation on 1030 MHz; airborne reply on 1090 MHz.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is channel spacing, and why was 8.33 kHz introduced?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The frequency gap between adjacent channels. 8.33 kHz spacing was introduced to fit about three times as many channels into the crowded VHF band as the older 25 kHz spacing.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the polarization of aviation VHF, and why does it matter?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Vertical — the COM antenna is a vertical blade to match it. If the antenna polarization is mismatched, received signal strength drops sharply.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li>Bands &times;10: <strong>VLF&middot;LF&middot;MF&middot;HF&middot;VHF&middot;UHF&middot;SHF&middot;EHF</strong>; aviation core = HF/VHF/UHF.</li>
+        <li><strong>VHF 118–136.975 MHz, AM, vertical, line-of-sight; HF 3–30 MHz, SSB, sky wave, oceanic.</strong></li>
+        <li>ILS: LOC <strong>VHF</strong> 108.10–111.95 &middot; GP <strong>UHF</strong> 329–335 &middot; markers <strong>75 MHz</strong>. DME <strong>UHF</strong> 962–1213. SSR <strong>1030/1090</strong>.</li>
+        <li>Emergency <strong>121.5 / 243.0 / 406</strong>, SAR aux <strong>123.1</strong>. Channel spacing <strong>25 / 8.33 kHz</strong> (&approx;760 / 2280 ch).</li>
+        <li>Aviation VHF <strong>vertically polarized</strong>; antenna length scales with wavelength.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 8 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

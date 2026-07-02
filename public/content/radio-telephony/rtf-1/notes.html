@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 1: The RTR(A) Exam & How to Use This Book | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      // Clear previous selections
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 1 · REFERENCE DEPTH</span>
+      <h1 class="hero-title">The RTR(A) Exam & How to Use This Book</h1>
+      <p class="hero-subtitle">Before a single watt of radio theory, you must understand the licence itself — what it permits, who issues it, exactly how the examination is built and scored, the law that governs it, and the study system that will carry you through every chapter that follows. This is the map for the whole journey.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part I (vi) Licensing of radio apparatus · examination framework · key definitions (ICAO Annex 10)</p>
+    </div>
+
+    <!-- Objectives -->
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Define the RTR(A) licence, the privileges it grants, and the aeronautical mobile service it authorises you to operate in.</li>
+        <li>Define aeronautical station, aircraft station and radiotelephony precisely, as the examiner expects.</li>
+        <li>Describe the structure of the examination — the written/oral theory paper and the practical transmission test — and how each is scored.</li>
+        <li>State the validity, attempts, exemptions and renewal rules (figures to be entered from the current CAR).</li>
+        <li>Explain the layered legal framework — Act, Rules, CAR, ICAO Annex 10, ITU Radio Regulations — and how they interlock.</li>
+        <li>Use the study system in this book and follow a structured study plan.</li>
+      </ul>
+    </div>
+
+    <!-- Table of Contents for Chapter -->
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">1.1 What the RTR(A) is — privileges & the service</p>
+      <p>1.2 The key definitions you must own</p>
+      <p>1.3 How the examination is built & scored</p>
+      <p>1.4 Validity, attempts, exemptions & renewal</p>
+      <p>1.5 The legal framework</p>
+      <p style="margin-top:0;">1.6 Eligibility & the application process</p>
+      <p>1.7 What the examiner is really testing</p>
+      <p>1.8 How to use this book — the study system</p>
+      <p>1.9 A structured study plan</p>
+      <p>1.10 Exam-day strategy & common failure causes</p>
+    </div>
+
+    <h2>1.1 What the RTR(A) is — privileges & the service</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">RTR(A) stands for <strong>Radio Telephone Operator (Restricted) — Aeronautical</strong>. It is the certificate that legally permits a person to <strong>operate an aircraft radio station</strong> and communicate by radiotelephony with air traffic services. The aircraft owns the radio; the RTR is what authorises <em>you</em>, the human, to press the transmit button on a live frequency and speak. Without it, a pilot may not exercise the radio privileges of a flight crew licence.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-question-circle"></i> WHY A SEPARATE RADIO LICENCE EXISTS</div>
+      <p style="margin:0;">Radio spectrum is a shared, finite, safety-critical resource governed by international treaty. One untrained operator who blocks a distress call, transmits on the wrong frequency, or causes a runway incursion through a misunderstood clearance endangers everyone on that frequency. The State therefore requires every operator to demonstrate a defined minimum standard of <strong>regulatory knowledge, radio theory and disciplined phraseology</strong> before being licensed. The word <strong>"Restricted"</strong> signals that the privilege is confined to the <strong>aeronautical mobile service</strong> — you are licensed as an aircraft radio <em>operator</em>, not as a radio engineer or a general (e.g. maritime) operator.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/aero_mobile.jpg" alt="Aeronautical Mobile Service Cockpit">
+      <figcaption>A student pilot operating within the aeronautical mobile service, communicating with Air Traffic Control via radio link.</figcaption>
+    </figure>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-double"></i> Privileges & limitations of the RTR(A)</div>
+      <p style="margin:0; line-height:2;">
+        <strong>Privileges:</strong> to operate radiotelephone equipment in the aeronautical mobile service — transmitting and receiving voice communications with aeronautical (ground) stations and other aircraft, including handling distress, urgency and safety traffic.<br>
+        <strong>Limitations:</strong> restricted to the aeronautical mobile service (not maritime/general); the holder operates equipment but is not certified to install or maintain it; operation is subject to the aircraft radio station being separately licensed (Chapter 3).
+      </p>
+    </div>
+
+    <h2>1.2 The key definitions you must own</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> WHY DEFINITIONS FIRST</div>
+      <p style="margin:0;">The examiner frequently opens with a definition — "What is the aeronautical mobile service?" — because precise language is the foundation of safe radio work. Learn these word-for-word; they recur throughout the book.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> The core ICAO definitions</div>
+      <p style="margin:0; line-height:2;">
+        <strong>Aeronautical Mobile Service (AMS):</strong> a mobile radiocommunication service between <strong>aircraft stations and aeronautical stations</strong>, or between aircraft stations, in which <strong>survival-craft and emergency position-indicating beacon</strong> stations may also participate.<br>
+        <strong>Aeronautical Station:</strong> a <strong>land station</strong> in the aeronautical mobile service (e.g. an ATC or ground station). In certain cases it may be on board a ship or platform.<br>
+        <strong>Aircraft Station:</strong> a <strong>mobile station</strong> in the aeronautical mobile service, located on board an aircraft (other than a survival-craft station).<br>
+        <strong>Radiotelephony:</strong> a form of radiocommunication intended primarily for the <strong>exchange of information in the form of speech</strong>.
+      </p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-calculator"></i> AMS(R) vs AMS(OR)</div>
+      <p style="margin:0;">The AMS is sub-divided: <strong>AMS(R) — "Route"</strong> is reserved for communications relating to <strong>safety and regularity of flight</strong> along national or international civil air routes; <strong>AMS(OR) — "Off-Route"</strong> covers communications outside those routes. As an RTR(A) operator you work primarily in <strong>AMS(R)</strong>.</p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;"><strong>Land station = Aeronautical; Aircraft station = Airborne.</strong> "Aeronautical is on the earth." Both live inside the Aeronautical <strong>Mobile</strong> Service because the aircraft end moves.</p>
+    </div>
+
+    <h2>1.3 How the examination is built & scored</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">The RTR(A) is tested in two complementary halves. A <strong>theory examination</strong> (written and/or oral) checks your knowledge of regulations, radio principles and procedure. A <strong>practical test</strong> checks that you can actually <em>operate</em> — read a passage aloud, transmit and receive messages in correct phraseology, and answer the examiner's spoken questions on the spot.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/exam_split.jpg" alt="The two halves of the RTR(A) exam">
+      <figcaption>Figure 1.1 — The two halves of the RTR(A) examination: Theory (Written/Oral) and Practical & Oral.</figcaption>
+    </figure>
+
+    <h2>1.4 Validity, attempts, exemptions & renewal</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;"><strong>The theory paper — what it covers</strong><br>The theory follows the CAR Section 7 syllabus and breaks into three knowledge blocks: <strong>(I) Aeronautical Telecommunication & Regulations; (II) Radio Principles & Practice;</strong> and <strong>(III) Radiotelephony procedures & phraseology</strong>. Questions are typically objective/short-answer; some centres also conduct an oral on the same material.</p>
+      <br>
+      <p style="margin:0;"><strong>The practical & oral test — what it covers</strong><br>Reading a printed passage clearly at a controlled pace; transmitting and receiving a set of messages using correct <strong>phonetic alphabet, numbers, phraseology and read-back</strong>; demonstrating <strong>distress/urgency</strong> handling; and answering spoken questions. This tests <em>fluency under pressure</em>, not just recall.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-calculator"></i> Marks, weighting & pass standard</div>
+      <p style="margin:0;">Reported section weighting on the theory paper is approximately:<br>Regulations & Procedure &approx; 30%, Radio Principles & Practice &approx; 40%, Radiotelephony &approx; 20%+. <strong>Exact total marks, the pass mark, and time allowed must be quoted from the current CAR</strong> — enter them below and in the table at 1.4.</p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap — the practical is where people fail</div>
+      <p style="margin:0;">Candidates over-invest in theory and under-prepare the oral/practical. Examiners fail more people on the spoken test, where nerves wreck phraseology and readability. Budget at least half your preparation for live transmission practice (Module C of this book).</p>
+    </div>
+
+    <p class="intro-text">Passing is governed by exact rules on how long a part-pass lasts, how many attempts you get, who is exempt, and how the licence is kept current. These are direct viva favourites and they govern your own paperwork — know the numbers cold.</p>
+
+    <div class="table-container">
+      <div class="table-caption">RTR(A) Exam Rules & Validity</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Rule (enter exact figure from current CAR / Rules 2025)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Validity of a part-pass</strong></td><td>A cleared part is valid for a fixed window within which the remaining part must be passed — <em>insert exact period.</em></td></tr>
+          <tr><td><strong>Number of attempts / re-sit interval</strong></td><td><em>Insert permitted attempts and minimum gap between attempts.</em></td></tr>
+          <tr><td><strong>Pass mark (each part)</strong></td><td><em>Insert minimum percentage.</em></td></tr>
+          <tr><td><strong>Minimum age</strong></td><td><em>Insert minimum age to hold the licence.</em></td></tr>
+          <tr><td><strong>Exemptions</strong></td><td><em>Insert categories exempt from part of the exam (e.g. holders of certain higher RTF qualifications or flight crew licences).</em></td></tr>
+          <tr><td><strong>Validity & renewal of the licence</strong></td><td><em>Insert the licence validity period and any renewal/currency requirement.</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>1.5 The legal framework</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — THREE LAYERS OF LAW, PLUS TWO INTERNATIONAL FOUNDATIONS</div>
+      <p style="margin:0;">Authority over your radio licence flows downward through nested layers. The <strong>Act</strong> is the top-level national statute; the <strong>Rules</strong> are the detailed mechanics made under it; the <strong>CAR</strong> is the regulator's operating requirement that turns the rules into a syllabus and procedure. Above the national layer sit two international foundations: <strong>ICAO Annex 10</strong> (the technical standards for aeronautical telecommunications) and the <strong>ITU Radio Regulations</strong> (the global allocation of spectrum). India's national law gives domestic legal force to these international standards.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/legal_frame.jpg" alt="Aviation Legal Framework">
+      <figcaption>The three-tiered structure of Indian aviation law governing radiotelephony licensing and airwaves coordination.</figcaption>
+    </figure>
+
+    <div class="table-container">
+      <div class="table-caption">The Nested Legal Framework</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Instrument</th>
+            <th>What it does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>International (spectrum)</strong></td><td>ITU Radio Regulations</td><td>Allocates the radio-frequency bands aviation may use</td></tr>
+          <tr><td><strong>International (aviation)</strong></td><td>ICAO Annex 10</td><td>Standards & Recommended Practices for aeronautical telecommunications</td></tr>
+          <tr><td><strong>National Act</strong></td><td>Bharatiya Vayuyan Adhiniyam, 2024</td><td>India's principal civil aviation statute</td></tr>
+          <tr><td><strong>National Rules</strong></td><td>RTR (Restricted) Rules, 2025</td><td>Create & govern the RTR licence and examination</td></tr>
+          <tr><td><strong>Requirement</strong></td><td>CAR Section 7, Series G, Part VI</td><td>The examinable syllabus & procedure</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic — "Act &rarr; Rules &rarr; CAR"</div>
+      <p style="margin:0;">Remember <strong>"A Real Carrier"</strong>: Act (Vayuyan Adhiniyam) &rarr; Rules (RTR Restricted 2025) &rarr; CAR (Section 7). Broad to specific, top to bottom — just like a transmitter narrowing a big idea down to one exact frequency.</p>
+    </div>
+
+    <details class="deep-dive-panel">
+      <summary>🔍 Deep dive — why a new Act and Rules appeared in 2024–25</summary>
+      <div class="deep-dive-content">
+        <p>India modernised its aviation statute, replacing the long-standing Aircraft Act, 1934 framework with the <strong>Bharatiya Vayuyan Adhiniyam, 2024</strong>, and refreshed the subordinate rules — including RTR licensing — in 2025. For the exam the practical takeaway is simple: <strong>cite the current Act and Rules by name</strong>. Quoting a repealed Act marks a candidate as out of date, and is exactly why second-hand notes are risky — the legal citations age fast even when the radio physics does not.</p>
+      </div>
+    </details>
+
+    <h2>1.6 Eligibility & the application process</h2>
+    
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-double"></i> Typical path to the licence</div>
+      <p style="margin:0; line-height:2;">
+        1. Meet the <strong>eligibility</strong> (minimum age; any prescribed nationality/identity requirements).<br>
+        2. <strong>Apply</strong> to the examining authority with the required form, fee, photographs and identity/age proof.<br>
+        3. Sit the <strong>theory</strong> examination (and oral where conducted).<br>
+        4. Sit the <strong>practical & oral</strong> transmission test.<br>
+        5. On passing both within the validity window, the <strong>licence is issued</strong>.<br>
+        6. Maintain currency/renewal as required.
+      </p>
+    </div>
+
+    <h2>1.7 What the examiner is really testing</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> THE FIVE COMPETENCIES</div>
+      <p style="margin:0;">Behind every question sits one of five competencies. Frame your study around them, not just around topics:</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">The Five Competencies</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Competency</th>
+            <th>What it looks like in the exam</th>
+            <th>Where in this book</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Regulatory knowledge</strong></td><td>Bodies, licences, NOTAM/AIP, definitions</td><td>Module A (Ch 1–6)</td></tr>
+          <tr><td><strong>Radio theory</strong></td><td>Electrical, bands, propagation, modulation, equipment, nav aids</td><td>Module B (Ch 7–12)</td></tr>
+          <tr><td><strong>Phraseology fluency</strong></td><td>Phonetics, numbers, call signs, ATC scripts</td><td>Module C (Ch 13–22)</td></tr>
+          <tr><td><strong>Readability & delivery</strong></td><td>Clear, paced, correct pronunciation on the practical</td><td>Module C + practice</td></tr>
+          <tr><td><strong>Emergency handling</strong></td><td>Distress/urgency, comms failure, the right word at the right time</td><td>Ch 20</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/oral_viva_test.jpg" alt="Oral Viva Test">
+      <figcaption>The examiner evaluates phraseology fluency and emergency handling during the live practical testing.</figcaption>
+    </figure>
+
+    <h2>1.8 How to use this book — the study system</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">Every chapter is built the same way, so once you learn the pattern here you move fast everywhere. Watch for these coloured boxes — each has a job:</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> Definition</div>
+      <p style="margin:0;">The exact wording to recite. Blue = "say it like this."</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-calculator"></i> Numbers / Limits</div>
+      <p style="margin:0;">Hard figures — frequencies, distances, percentages. Teal = "memorise this."</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-double"></i> Procedure</div>
+      <p style="margin:0;">A step-by-step sequence done in order. Green = "do it in this order."</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example</div>
+      <p style="margin:0;">A problem solved end-to-end. Indigo = "follow the working."</p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam Trap</div>
+      <p style="margin:0;">A common mistake or examiner favourite. Orange = "don't fall for this."</p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;">A memory hook for sticky facts. Purple = "remember it this way."</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit Reality</div>
+      <p style="margin:0;">How the rule plays out in flight. Pink = "why it matters in the air."</p>
+    </div>
+
+    <p class="intro-text">Inside the text you'll also meet the <strong>three-pass method</strong> on each concept — <strong>In plain terms</strong>, then <strong>Why it works</strong>, then the <strong>exact figure or rule</strong>. Collapsible 🔍 <strong>Deep dives</strong> are optional enrichment. Every chapter ends with a <strong>question bank</strong> (MCQs + viva, and numerical problems where relevant) and a <strong>revision card</strong>.</p>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/study_system.jpg" alt="Structured Study System">
+      <figcaption>A structured approach combining theory readings with regular phraseology drills yields the best results.</figcaption>
+    </figure>
+
+    <h2>1.9 A structured study plan</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> AN 8-WEEK FRAMEWORK (COMPRESS OR EXPAND TO SUIT)</div>
+      <p style="margin:0;">Treat theory and practical in parallel — never leave the practical to the last week.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">Suggested 8-Week Study Plan</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Theory focus</th>
+            <th>Practical drill (in parallel)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>1</strong></td><td>Ch 1–2 — exam, bodies, framework</td><td>Phonetic alphabet & numbers daily</td></tr>
+          <tr><td><strong>2</strong></td><td>Ch 3–4 — licensing, Q-codes</td><td>Time, standard words, radio checks</td></tr>
+          <tr><td><strong>3</strong></td><td>Ch 5–6 — FIR/AIS/NOTAM, met codes</td><td>Decode METAR/TAF aloud; ATIS read-back</td></tr>
+          <tr><td><strong>4</strong></td><td>Ch 7–8 — electrical, frequency bands</td><td>Call signs & initial contact</td></tr>
+          <tr><td><strong>5</strong></td><td>Ch 9–10 — propagation, modulation</td><td>Taxi/clearance phraseology</td></tr>
+          <tr><td><strong>6</strong></td><td>Ch 11–12 — equipment, nav aids</td><td>Departure/circuit/approach scripts</td></tr>
+          <tr><td><strong>7</strong></td><td>Ch 13–18 — phraseology & control</td><td>Full message exchanges; distress drills</td></tr>
+          <tr><td><strong>8</strong></td><td>Ch 19–24 — revision & mock papers</td><td>Mock practical & oral under timed pressure</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> COCKPIT REALITY</div>
+      <p style="margin:0;">On your first solo radio call your mouth goes dry and your mind blanks. The pilots who stay calm are the ones who <em>drilled the pattern</em> until it was automatic. The quizzes and revision cards exist for that — not merely to pass the exam, but so the right words come out when the frequency is busy and the pressure is real.</p>
+    </div>
+
+    <h2>1.10 Exam-day strategy & common failure causes</h2>
+    
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-double"></i> The honest pass routine</div>
+      <p style="margin:0;">Aim for <strong>8/10 on every chapter's self-test before moving on</strong>; re-drill the "Numbers to Memorise" tables until automatic; and <strong>speak the phraseology out loud daily</strong> — silent reading does not build the spoken fluency the practical demands.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-double"></i> On the day</div>
+      <p style="margin:0;">Theory: read every question fully before answering; do the ones you know first; never leave objective questions blank; watch the units. Practical: <strong>listen, then press, pause, speak, release</strong>; control your pace; use full standard phraseology and read back correctly; if you fumble, say "<strong>correction</strong>" and continue calmly.</p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> The five most common reasons candidates fail</div>
+      <p style="margin:0; line-height:2;">
+        1. Neglecting the <strong>practical/oral</strong>.<br>
+        2. Guessing <strong>exact regulatory figures</strong> (validity, pass mark, frequencies).<br>
+        3. Confusing look-alike facts (ICAO vs IATA, QNH vs QFE, 121.5 vs 243.0).<br>
+        4. Poor <strong>readability</strong> — too fast, mumbled, wrong pronunciation.<br>
+        5. Freezing on <strong>distress phraseology</strong>.<br>
+        Every one is fixed by drilling, not cramming.
+      </p>
+    </div>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 1</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Licence</strong></td><td>RTR(A) — Radio Telephone Operator (Restricted), Aeronautical</td></tr>
+          <tr><td><strong>Service authorised</strong></td><td>Aeronautical Mobile Service — primarily AMS(R)</td></tr>
+          <tr><td><strong>Aeronautical station</strong></td><td>A land station in the AMS</td></tr>
+          <tr><td><strong>Aircraft station</strong></td><td>A mobile station in the AMS aboard an aircraft</td></tr>
+          <tr><td><strong>Governing Act / Rules</strong></td><td>Bharatiya Vayuyan Adhiniyam 2024 / RTR (Restricted) Rules 2025</td></tr>
+          <tr><td><strong>Syllabus source</strong></td><td>CAR Section 7, Series G, Part VI</td></tr>
+          <tr><td><strong>International foundations</strong></td><td>ICAO Annex 10 (telecom standards) · ITU Radio Regulations (spectrum)</td></tr>
+          <tr><td><strong>Pass mark / validity / attempts</strong></td><td><em>Author to insert from current CAR</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+      
+      <h3>Part A — MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. "RTR(A)" stands for:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Radio Transmission Rating (Advanced)</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Radio Telephone Operator (Restricted) — Aeronautical</li>
+          <li onclick="checkAnswer(this, false)">Registered Telecom Radio (Aircraft)</li>
+          <li onclick="checkAnswer(this, false)">Radar Tracking Receiver (Airborne)</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Radio Telephone Operator (Restricted), Aeronautical</strong> — the operator's licence for the aircraft radio.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. The "Restricted" in RTR(A) means the licence is limited to:</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">Operation within the aeronautical mobile service</li>
+          <li onclick="checkAnswer(this, false)">Daylight operations only</li>
+          <li onclick="checkAnswer(this, false)">Ground operations only</li>
+          <li onclick="checkAnswer(this, false)">Any radio service worldwide</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Operation within the aeronautical mobile service</strong>. It confines the privilege to the aeronautical mobile service — an aircraft radio operator, not a general operator.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. The Aeronautical Mobile Service is a service between:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Two land stations only</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Aircraft stations and aeronautical stations (and between aircraft stations)</li>
+          <li onclick="checkAnswer(this, false)">Ships and aircraft only</li>
+          <li onclick="checkAnswer(this, false)">Satellites and ground</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Aircraft stations and aeronautical stations (and between aircraft stations)</strong>. AMS is between aircraft stations and aeronautical (land) stations, or between aircraft stations; survival-craft/ELT may participate.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. An "aeronautical station" is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A station aboard an aircraft</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A land station in the aeronautical mobile service</li>
+          <li onclick="checkAnswer(this, false)">A satellite</li>
+          <li onclick="checkAnswer(this, false)">An emergency beacon</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A land station in the aeronautical mobile service</strong>. An aeronautical station is a land station; the airborne one is the aircraft station.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. "Radiotelephony" is radiocommunication primarily for the exchange of:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Data packets</li>
+          <li onclick="checkAnswer(this, false)">Morse code</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Information in the form of speech</li>
+          <li onclick="checkAnswer(this, false)">Radar returns</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Information in the form of speech</strong>. Radiotelephony = communication primarily by speech.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. AMS(R) is reserved for communications relating to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Company business</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Safety and regularity of flight along civil air routes</li>
+          <li onclick="checkAnswer(this, false)">Passenger entertainment</li>
+          <li onclick="checkAnswer(this, false)">Military operations only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Safety and regularity of flight along civil air routes</strong>. The "R" = Route; AMS(R) carries safety/regularity-of-flight traffic on civil routes.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. The document that lists the examinable RTR(A) syllabus is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">ICAO Annex 8</li>
+          <li onclick="checkAnswer(this, false)">The Aircraft Rules, 1937</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">CAR Section 7, Series G, Part VI</li>
+          <li onclick="checkAnswer(this, false)">The ITU Radio Regulations</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: CAR Section 7, Series G, Part VI</strong>. The DGCA's CAR Section 7, Series G, Part VI carries the syllabus.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. The correct top-to-bottom legal order is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">CAR &rarr; Rules &rarr; Act</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Act &rarr; Rules &rarr; CAR</li>
+          <li onclick="checkAnswer(this, false)">Rules &rarr; CAR &rarr; Act</li>
+          <li onclick="checkAnswer(this, false)">Act &rarr; CAR &rarr; Rules</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Act &rarr; Rules &rarr; CAR</strong>. "A Real Carrier" — Act (top statute) &rarr; Rules (made under it) &rarr; CAR (operationalises into a syllabus).
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. The principal civil aviation statute currently in force in India is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Aircraft Act, 1934</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Bharatiya Vayuyan Adhiniyam, 2024</li>
+          <li onclick="checkAnswer(this, false)">Telegraph Act, 1885</li>
+          <li onclick="checkAnswer(this, false)">Carriage by Air Act</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Bharatiya Vayuyan Adhiniyam, 2024</strong>. The 2024 Act replaced the older Aircraft Act framework.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. Which international instrument allocates the radio-frequency spectrum aviation may use?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">ICAO Annex 10</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The ITU Radio Regulations</li>
+          <li onclick="checkAnswer(this, false)">CAR Section 7</li>
+          <li onclick="checkAnswer(this, false)">The Chicago Convention</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The ITU Radio Regulations</strong>. The ITU allocates spectrum; ICAO Annex 10 then standardises aviation's use of it.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. The examination is passed only when the candidate clears:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The theory paper alone</li>
+          <li onclick="checkAnswer(this, false)">The practical alone</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Both the theory and the practical/oral</li>
+          <li onclick="checkAnswer(this, false)">Either one</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Both the theory and the practical/oral</strong>. Both halves must be passed (within the validity window) to be licensed.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. Examiners most often fail candidates on:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The application form</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The practical/oral phraseology test</li>
+          <li onclick="checkAnswer(this, false)">The medical</li>
+          <li onclick="checkAnswer(this, false)">The theory paper</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The practical/oral phraseology test</strong>. Live phraseology under pressure trips up the under-prepared — drill it as hard as theory.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. The RTR(A) authorises the holder to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Install and maintain aircraft transmitters</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Operate the aircraft radio and communicate with ATS</li>
+          <li onclick="checkAnswer(this, false)">Act as an air traffic controller</li>
+          <li onclick="checkAnswer(this, false)">Issue NOTAMs</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Operate the aircraft radio and communicate with ATS</strong>. It is the operator's licence — communication, not engineering or control.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. ICAO Annex 10 deals with:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Rules of the Air</li>
+          <li onclick="checkAnswer(this, false)">Operation of Aircraft</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Aeronautical Telecommunications</li>
+          <li onclick="checkAnswer(this, false)">Aerodromes</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Aeronautical Telecommunications</strong>. Annex 10 — Aeronautical Telecommunications — is the international standard behind the RTR syllabus.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. The best preparation balance for the RTR(A) is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">100% theory, nothing spoken</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Theory and spoken phraseology drilled in parallel from the start</li>
+          <li onclick="checkAnswer(this, false)">Practical only in the final two days</li>
+          <li onclick="checkAnswer(this, false)">Memorise the question bank, ignore concepts</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Theory and spoken phraseology drilled in parallel from the start</strong>. Run theory and live transmission practice together throughout; never defer the practical.
+        </div>
+      </div>
+
+      <h3>Part B — Oral / viva (tap to reveal model answers)</h3>
+      
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What does the RTR(A) licence permit, and what does "Restricted" mean?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          It permits the holder to operate an aircraft radio station and communicate by radiotelephony within the aeronautical mobile service. "Restricted" means the privilege is confined to that service — an aircraft radio operator, not a general or maritime operator, and not certified to install/maintain equipment.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Define the Aeronautical Mobile Service.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          A mobile radiocommunication service between aircraft stations and aeronautical stations, or between aircraft stations, in which survival-craft and emergency position-indicating beacon stations may also participate.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between an aeronautical station and an aircraft station?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          An aeronautical station is a land station in the aeronautical mobile service (e.g. ATC/ground); an aircraft station is a mobile station in that service located aboard an aircraft.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Define radiotelephony.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          A form of radiocommunication intended primarily for the exchange of information in the form of speech.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Name the Act, the Rules, and the syllabus document governing the RTR licence.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The Bharatiya Vayuyan Adhiniyam, 2024 (Act); the Radio Telephone Operator (Restricted) Rules, 2025 (Rules); and CAR Section 7, Series G, Part VI (syllabus).
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between AMS(R) and AMS(OR)?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          AMS(R) — "Route" — is reserved for communications relating to safety and regularity of flight along civil air routes; AMS(OR) — "Off-Route" — covers communications outside those routes.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How is the RTR(A) examination structured?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          In two halves: a theory examination (written and/or oral) on regulations, radio principles and radiotelephony; and a practical/oral test of passage reading, message transmission and reception in correct phraseology, distress handling, and spoken questions. Both must be passed to be licensed.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Which two international bodies underpin the system, and what does each do?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The ITU allocates the radio-frequency spectrum (Radio Regulations); ICAO sets the aviation technical standards, with Annex 10 covering aeronautical telecommunications. National law gives these domestic force.
+        </div>
+      </details>
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>RTR(A)</strong> = operator's licence for the aircraft radio, restricted to the <strong>Aeronautical Mobile Service</strong> (mainly AMS(R)).</li>
+        <li><strong>Aeronautical station</strong> = land; <strong>Aircraft station</strong> = airborne; <strong>Radiotelephony</strong> = communication by speech.</li>
+        <li>Exam = <strong>theory</strong> (regs / radio principles / RTF) + <strong>practical & oral</strong>; pass <strong>both</strong>. The oral fails most people.</li>
+        <li>Law stack: <strong>Act 2024</strong> &rarr; <strong>Rules 2025</strong> &rarr; <strong>CAR Sec 7</strong>; foundations <strong>ICAO Annex 10 + ITU Radio Regs</strong>.</li>
+        <li>Insert & memorise the exact <strong>pass mark, validity, attempts, age</strong> from the current CAR.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 1 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

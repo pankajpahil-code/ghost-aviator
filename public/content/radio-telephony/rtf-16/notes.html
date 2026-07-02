@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 16: Aerodrome Control: Vehicles | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 16 &middot; REFERENCE DEPTH &middot; NEW TOPIC</span>
+      <h1 class="hero-title">Aerodrome Control: Vehicles</h1>
+      <p class="hero-subtitle">Aircraft are not the only traffic on the manoeuvring area. Fire trucks, "Follow-Me" cars, sweepers, tugs and inspection vehicles all move among the runways and taxiways &mdash; and a vehicle in the wrong place is one of the most dangerous causes of a runway incursion. This short but vital chapter covers the phraseology that keeps vehicles safely separated from aircraft.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part III (v) Aerodrome control &mdash; vehicles: movement instructions, crossing runways, vehicles towing aircraft</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Explain why vehicles on the manoeuvring area need ATC clearance and phraseology.</li>
+        <li>Use vehicle call signs and basic movement instructions.</li>
+        <li>Apply the strict phraseology for crossing and holding short of runways.</li>
+        <li>Handle a vehicle towing an aircraft.</li>
+        <li>Use "report vacated" and conditional instructions correctly.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">16.1 Why vehicles talk to the tower</p>
+      <p>16.2 Vehicle call signs &amp; movement</p>
+      <p>16.3 Crossing &amp; holding short of runways</p>
+      <p style="margin-top:0;">16.4 Vehicles towing aircraft</p>
+      <p>16.5 Conditional instructions &amp; "report vacated"</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_16_hero.jpg" alt="Follow-Me Vehicle on Taxiway">
+      <figcaption>Vehicles on the manoeuvring area are subject to the same strict ATC control and read-back requirements as aircraft to prevent deadly incursions.</figcaption>
+    </figure>
+
+    <h2>16.1 Why vehicles talk to the tower</h2>
+    
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-broadcast-tower"></i> FIRST PRINCIPLES &mdash; ONE CONTROLLER, ALL THE TRAFFIC</div>
+      <p style="margin:0; line-height: 1.8;">
+        The manoeuvring area is a single shared space. Aircraft land and take off at high speed and cannot stop quickly; a vehicle that strays onto an active runway, or onto a taxiway in front of a taxiing aircraft, is a <strong>runway/taxiway incursion</strong> &mdash; a leading cause of serious accidents. So <strong>every vehicle on the manoeuvring area is controlled by the aerodrome controller</strong>, on the same frequency, using disciplined phraseology, exactly like an aircraft.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-truck-pickup"></i> Who needs clearance</div>
+      <p style="margin:0; line-height: 1.8;">
+        Any vehicle operating on the <strong>manoeuvring area</strong> (runways and taxiways) needs ATC clearance for its movements; vehicles confined to the <strong>apron</strong> are normally handled by apron management. The rule of thumb: if a vehicle could conflict with an aircraft taking off, landing or taxiing, the tower controls it.
+      </p>
+    </div>
+
+    <h2>16.2 Vehicle call signs &amp; movement instructions</h2>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-tag"></i> Call signs</div>
+      <p style="margin:0;">Vehicles use a call sign that identifies their function and a number &mdash; e.g. <strong>"Car 5", "Fire 1", "Sweeper 2", "Follow-Me"</strong>. The controller addresses them just as an aircraft, and they read back instructions.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; vehicle movement</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #f59e0b; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">VEH</span> Delhi Tower, Car 5, request to proceed along taxiway Bravo to the threshold of runway two seven.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Car 5, proceed along taxiway Bravo, hold short of runway two seven.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #f59e0b; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">VEH</span> Proceed Bravo, hold short of runway two seven, Car 5.</div>
+      </div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-comment-dots"></i> Common vehicle phrases</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>"Proceed [route]"</strong> &mdash; move along the stated path. <strong>"Hold position"</strong> &mdash; stop.<br>
+        <strong>"Hold short of [runway/point]"</strong> &mdash; stop at the marking, do not pass it.<br>
+        <strong>"Give way to [aircraft/vehicle]"</strong>. <strong>"Vacate [runway/taxiway]"</strong>. <strong>"Report [position/vacated]"</strong>.
+      </p>
+    </div>
+
+    <h2>16.3 Crossing &amp; holding short of runways</h2>
+
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-exclamation-circle"></i> THE CRITICAL CASE</div>
+      <p style="margin:0; line-height: 1.8;">
+        A vehicle crossing a runway is the highest-risk vehicle movement, so the phraseology is strict and explicit. A vehicle <strong>never</strong> crosses or enters a runway without a specific clearance, and reports when clear so the controller knows the runway is released.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; crossing a runway</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #f59e0b; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">VEH</span> Delhi Tower, Car 5, holding short of runway two seven, request to cross.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Car 5, cross runway two seven, report vacated.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #f59e0b; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">VEH</span> Cross runway two seven, will report vacated, Car 5.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #f59e0b; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">VEH</span> Car 5, runway two seven vacated.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Car 5, roger.</div>
+      </div>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">"Hold short of runway 27" is an instruction to <strong>stop and wait</strong> &mdash; it is <strong>not</strong> a clearance to cross. Crossing requires the explicit <strong>"cross runway 27"</strong>, read back in full, and the crossing is not complete until <strong>"vacated"</strong> is reported.</p>
+    </div>
+
+    <h2>16.4 Vehicles towing aircraft</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-truck"></i> The tug &amp; aircraft as one unit</div>
+      <p style="margin:0; line-height: 1.8;">
+        When a vehicle (a <strong>tug</strong>) tows an aircraft, the combination is treated as a single moving unit on the manoeuvring area and is given <strong>taxi/movement instructions</strong> by the tower. The controller must know it is a tow (it may move slowly and turn within a large radius), and the tow is cleared along a route and to hold short or cross runways exactly like any other movement.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; towing an aircraft</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #f59e0b; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">VEH</span> Delhi Ground, Tug 3, towing the Airbus from stand two one to the maintenance area, request tow.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Tug 3, tow approved to the maintenance area via taxiway Bravo, hold short of runway two seven.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #f59e0b; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">VEH</span> Tow to maintenance via Bravo, hold short of runway two seven, Tug 3.</div>
+      </div>
+    </div>
+
+    <h2>16.5 Conditional instructions &amp; "report vacated"</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-square"></i> Sequencing vehicles with aircraft</div>
+      <p style="margin:0; line-height: 1.8;">
+        The controller often sequences a vehicle around aircraft movements: <strong>"give way to the landing aircraft, then cross"</strong>, or <strong>"after the departing Airbus, cross runway 27"</strong>. As with aircraft, a conditional instruction names the traffic, is read back including the condition, and is acted on only when that traffic has passed. Always <strong>report when the runway/taxiway is vacated</strong>.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #f59e0b; background:#fffbeb;">
+      <div class="callout-title" style="color:#f59e0b;"><i class="fas fa-bolt"></i> Real-world relevance</div>
+      <p style="margin:0; line-height: 1.8;">
+        Many of the world's worst runway accidents began with confusion over who was cleared onto the runway. Tight, explicit vehicle phraseology &mdash; hold short, cross, report vacated &mdash; exists precisely to make a vehicle on an active runway impossible to overlook.
+      </p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_sixteen_one.jpg" alt="Vehicle phraseology - hold short, cross, report vacated">
+      <figcaption>Figure 16.1 &mdash; A visual representation of the critical phraseology sequence required for a vehicle to safely cross an active runway.</figcaption>
+    </figure>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 16</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Who controls vehicles</strong></td><td>Aerodrome controller (Tower/Ground) on the manoeuvring area</td></tr>
+          <tr><td><strong>Vehicle call signs</strong></td><td>Function + number (Car 5, Fire 1, Sweeper 2, Follow-Me, Tug 3)</td></tr>
+          <tr><td><strong>Hold short</strong></td><td>Stop at the marking &mdash; NOT a clearance to cross</td></tr>
+          <tr><td><strong>Crossing a runway</strong></td><td>Explicit "cross runway XX", read back, then "report vacated"</td></tr>
+          <tr><td><strong>Towing aircraft</strong></td><td>Tug + aircraft = one unit; given taxi/movement instructions</td></tr>
+          <tr><td><strong>Conditional</strong></td><td>"Give way to &hellip; then cross" / "after the &hellip; cross" &mdash; act only when condition met</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A &mdash; MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. Vehicles on the manoeuvring area are controlled by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">No one</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The aerodrome controller (Tower/Ground)</li>
+          <li onclick="checkAnswer(this, false)">Area control</li>
+          <li onclick="checkAnswer(this, false)">The airline operations centre</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The aerodrome controller (Tower/Ground).</strong> All vehicles on the manoeuvring area come under the aerodrome controller.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. A vehicle in the wrong place on a runway is called a:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Go-around</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Runway incursion</li>
+          <li onclick="checkAnswer(this, false)">Conditional clearance</li>
+          <li onclick="checkAnswer(this, false)">Transfer</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Runway incursion.</strong> An unauthorised presence on the runway is a runway incursion &mdash; a major hazard.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. A typical vehicle call sign is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"Ghostair 5"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"Car 5" (function + number)</li>
+          <li onclick="checkAnswer(this, false)">"VT-CAR5"</li>
+          <li onclick="checkAnswer(this, false)">"Tower 5"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "Car 5" (function + number).</strong> Vehicles use a function name and number, e.g. Car 5, Fire 1.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. "Hold short of runway 27" instructs the vehicle to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Cross the runway</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Stop at the marking and not enter the runway</li>
+          <li onclick="checkAnswer(this, false)">Proceed onto the runway and wait</li>
+          <li onclick="checkAnswer(this, false)">Vacate the taxiway</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Stop at the marking and not enter the runway.</strong> Hold short = stop at the holding point; it is not a clearance to cross.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. To cross a runway a vehicle needs:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">No clearance if it is quick</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">An explicit "cross runway XX" clearance, read back</li>
+          <li onclick="checkAnswer(this, false)">Only apron approval</li>
+          <li onclick="checkAnswer(this, false)">A go-around</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: An explicit "cross runway XX" clearance, read back.</strong> Crossing requires a specific clearance, read back in full.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. After crossing, the vehicle should:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Say nothing</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Report "runway vacated"</li>
+          <li onclick="checkAnswer(this, false)">Request take-off</li>
+          <li onclick="checkAnswer(this, false)">Change frequency</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Report "runway vacated".</strong> Reporting "vacated" tells the controller the runway is clear again.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. A vehicle towing an aircraft is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Not controlled by ATC</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Treated as a single moving unit and given taxi/movement instructions</li>
+          <li onclick="checkAnswer(this, false)">Always given priority over aircraft</li>
+          <li onclick="checkAnswer(this, false)">Handled only by the airline</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Treated as a single moving unit and given taxi/movement instructions.</strong> The tug-and-aircraft combination is one unit under ATC movement instructions.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. "Give way to the landing aircraft, then cross" means the vehicle should:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Cross immediately</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Wait until the landing aircraft has passed, then cross</li>
+          <li onclick="checkAnswer(this, false)">Hold short permanently</li>
+          <li onclick="checkAnswer(this, false)">Vacate the area</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Wait until the landing aircraft has passed, then cross.</strong> A conditional instruction is acted on only when the stated condition is satisfied.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. Vehicles confined to the apron are normally handled by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Area control</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Apron management</li>
+          <li onclick="checkAnswer(this, false)">The Director</li>
+          <li onclick="checkAnswer(this, false)">No one</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Apron management.</strong> Apron-only vehicles are usually managed by apron control, not the tower.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. A "Follow-Me" vehicle is used to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Tow disabled aircraft only</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Guide an aircraft along a taxi route</li>
+          <li onclick="checkAnswer(this, false)">Inspect the runway surface</li>
+          <li onclick="checkAnswer(this, false)">Fight fires</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Guide an aircraft along a taxi route.</strong> A Follow-Me car leads an aircraft along its taxi route to the stand or runway.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. The phraseology for vehicles is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Casual and informal</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Standard and disciplined, like aircraft, with read-backs</li>
+          <li onclick="checkAnswer(this, false)">Spoken only by the controller</li>
+          <li onclick="checkAnswer(this, false)">Optional</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Standard and disciplined, like aircraft, with read-backs.</strong> Vehicles use standard phraseology and read back instructions just like aircraft.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. The most safety-critical vehicle movement is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Driving on the apron</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Crossing an active runway</li>
+          <li onclick="checkAnswer(this, false)">Parking at a stand</li>
+          <li onclick="checkAnswer(this, false)">Refuelling</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Crossing an active runway.</strong> Crossing an active runway carries the highest incursion risk, hence the strict phraseology.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B &mdash; Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Why must vehicles on the manoeuvring area use ATC and standard phraseology?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Because the manoeuvring area is shared with fast-moving aircraft that cannot stop quickly; a vehicle in the wrong place is a runway or taxiway incursion. The aerodrome controller therefore controls every vehicle on the same frequency, with disciplined read-back phraseology, exactly like an aircraft.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between "hold short of runway 27" and "cross runway 27"?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          "Hold short" instructs the vehicle to stop at the holding marking and not enter the runway; "cross runway 27" is an explicit clearance to cross, which must be read back, and the crossing is not complete until the vehicle reports "vacated".
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How is a vehicle towing an aircraft handled?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The tug and aircraft are treated as a single moving unit and given taxi/movement instructions by the tower, including a route and any hold-short or crossing clearances, just like any other movement.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How does a controller sequence a vehicle around aircraft?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          With conditional instructions such as "give way to the landing aircraft, then cross" or "after the departing Airbus, cross runway 27" &mdash; the vehicle reads back the condition and acts only when the stated traffic has passed, then reports vacated.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li>All vehicles on the <strong>manoeuvring area</strong> are controlled by the <strong>aerodrome controller</strong>, with read-back phraseology.</li>
+        <li>Call signs = function + number (<strong>Car 5, Fire 1, Tug 3, Follow-Me</strong>). Apron vehicles &rarr; apron management.</li>
+        <li><strong>Hold short</strong> = stop (not cross). Crossing needs explicit <strong>"cross runway XX"</strong>, read back, then <strong>"report vacated"</strong>.</li>
+        <li>A <strong>tug + aircraft</strong> is one unit, given taxi/movement instructions.</li>
+        <li>Conditional: <strong>"give way &hellip; then cross"</strong> &mdash; act only when the condition is met. Crossing an active runway is the highest-risk vehicle movement.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 16 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 18: Area Control & Oceanic | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 18 &middot; REFERENCE DEPTH &middot; PARTLY NEW</span>
+      <h1 class="hero-title">Area Control &amp; Oceanic</h1>
+      <p class="hero-subtitle">Once clear of the terminal area, an aircraft cruises through the airways under area control &mdash; reporting its position, holding when traffic demands, and joining, leaving or crossing routes on clearance. Out over the ocean, where there is no radar and no VHF, the same job is done by HF position reports, datalink and the procedural rules this chapter explains.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part III (vii) Area control &mdash; units, position/level info, joining/leaving/crossing airways, holding, ATS surveillance, ADS, oceanic control</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Describe area control units and the structure of a position report.</li>
+        <li>Use level-information phraseology (maintain, climb/descend, cruise).</li>
+        <li>Use joining, leaving and crossing-airway phraseology.</li>
+        <li>Enter and fly an en-route hold, and understand the EAT/onward-clearance system.</li>
+        <li>Explain ATS surveillance, ADS-C/ADS-B and CPDLC in area control.</li>
+        <li>Describe oceanic control &mdash; the oceanic clearance, Mach-number technique and SELCAL.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">18.1 Area control units</p>
+      <p>18.2 Position reporting</p>
+      <p>18.3 Level information</p>
+      <p>18.4 Joining, leaving &amp; crossing airways</p>
+      <p style="margin-top:0;">18.5 En-route holding</p>
+      <p>18.6 ATS surveillance &amp; ADS</p>
+      <p>18.7 Oceanic control</p>
+      <p>&star; Numbers to memorise</p>
+      <p>? Question bank</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_18_hero.jpg" alt="Commercial airliner cruising over the ocean">
+      <figcaption>En-route oceanic control relies on procedural separation, position reporting, and datalink technologies since continuous VHF radar coverage is not available.</figcaption>
+    </figure>
+
+    <h2>18.1 Area control units</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0; line-height: 1.8;">
+        The <strong>Area Control Centre (ACC)</strong>, with the call-sign suffix <strong>"Control"</strong>, provides air traffic control to aircraft <strong>en route</strong> in the airways and upper airspace of an FIR/UIR. A large FIR is split into <strong>sectors</strong>, and as you fly across it you are transferred from sector to sector.
+      </p>
+    </div>
+
+    <h2>18.2 Position reporting</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-map-marker-alt"></i> The standard position report</div>
+      <p style="margin:0; line-height: 1.8;">
+        Where there is no radar, the aircraft reports its progress at compulsory reporting points. The order is: <strong>(1) position, (2) time, (3) level, (4) next point, (5) estimate for the next point</strong> &mdash; and the name of the point after that. ("ABC, PAPA at four two, flight level three five zero, ROMEO five five, next SIERRA.")
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; position report</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Chennai Control, Ghostair Alfa Bravo Charlie, PAPA at four two, flight level three five zero, estimating ROMEO five five, SIERRA next.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, Chennai Control, roger, report ROMEO.</div>
+      </div>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic &mdash; position report order</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>"Place, Time, Level, Next, Estimate (+ the one after)."</strong> Same order every time so the controller can write it straight onto the flight progress strip.
+      </p>
+    </div>
+
+    <h2>18.3 Level information</h2>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Phrase</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>"Maintain FL350"</strong></td><td>Stay at that level</td></tr>
+          <tr><td><strong>"Climb / descend to FL&hellip;"</strong></td><td>Change to the new level</td></tr>
+          <tr><td><strong>"Climb to reach FL&hellip; by [point]"</strong></td><td>Be at the level by the point</td></tr>
+          <tr><td><strong>"Cruise climb"</strong></td><td>Climb gradually as weight reduces (oceanic)</td></tr>
+          <tr><td><strong>"Report leaving / reaching FL&hellip;"</strong></td><td>Tell ATC at the stated event</td></tr>
+          <tr><td><strong>"Expedite climb/descent"</strong></td><td>Climb/descend at best rate</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">All level instructions are <strong>mandatory read-backs</strong>. "Climb FL350" and "maintain FL350" are different instructions &mdash; read back exactly what was said, and do not climb or descend on a "report" or "expect" alone.</p>
+    </div>
+
+    <h2>18.4 Joining, leaving &amp; crossing airways</h2>
+
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-route"></i> Three airway interactions</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Joining:</strong> an aircraft entering a controlled airway needs a clearance &mdash; "cleared to join airway [W] at [point], flight level &hellip;". <strong>Leaving:</strong> on leaving controlled airspace you are told "leaving controlled airspace, report &hellip;". <strong>Crossing:</strong> an aircraft crossing an airway is given a clearance to cross at a level/time keeping it separated from airway traffic.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; joining an airway</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Mumbai Control, VT-ABC, request join airway WHISKEY one zero at SIERRA, flight level one five zero.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, cleared to join airway WHISKEY one zero at SIERRA, flight level one five zero, report SIERRA.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Cleared to join WHISKEY one zero at SIERRA, flight level one five zero, will report SIERRA, VT-ABC.</div>
+      </div>
+    </div>
+
+    <h2>18.5 En-route holding</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-circle-notch"></i> WHY HOLD</div>
+      <p style="margin:0; line-height: 1.8;">
+        When traffic ahead must be sequenced &mdash; for example a busy arrival airport &mdash; ATC may <strong>hold</strong> an aircraft in a racetrack pattern over a fix or beacon until it can be cleared onward.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-comment-dots"></i> Holding phraseology</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>"Hold at [fix], flight level &hellip;, expect onward clearance at [time]"</strong> or <strong>"expect approach time [time] (EAT)"</strong>. The clearance specifies the fix, the level, and the time you may expect to be released (the <strong>Onward Clearance Time</strong> or, for an arrival, the <strong>Expected Approach Time, EAT</strong>). The aircraft reads it back and flies the published hold.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; holding</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, hold at PAPA, flight level one zero zero, expect approach time three five.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Hold at PAPA, flight level one zero zero, expect approach time three five, Ghostair Alfa Bravo Charlie.</div>
+      </div>
+    </div>
+
+    <h2>18.6 ATS surveillance &amp; ADS</h2>
+
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-satellite-dish"></i> ATS surveillance &mdash; radar &amp; ADS-B</div>
+      <p style="margin:0; line-height: 1.8;">
+        In well-served continental airspace, area control uses <strong>ATS surveillance</strong> &mdash; primary/secondary radar and increasingly <strong>ADS-B</strong> (Chapter 12) &mdash; to see aircraft directly, reducing the need for position reports and allowing radar separation and vectoring.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-broadcast-tower"></i> ADS-C &amp; CPDLC for remote/oceanic airspace</div>
+      <p style="margin:0; line-height: 1.8;">
+        Where there is no radar, <strong>ADS-C (Automatic Dependent Surveillance &mdash; Contract)</strong> has the aircraft automatically send position reports over datalink at agreed intervals/events, and <strong>CPDLC (Controller&ndash;Pilot Data Link Communications)</strong> carries clearances and messages as text. Together they let an oceanic controller "see" and instruct aircraft without voice or radar.
+      </p>
+    </div>
+
+    <h2>18.7 Oceanic control</h2>
+
+    <div class="callout box-blue" style="border-left-color: #0ea5e9; background:#e0f2fe;">
+      <div class="callout-title" style="color:#0ea5e9;"><i class="fas fa-water"></i> FIRST PRINCIPLES &mdash; CONTROL WITHOUT RADAR OR VHF</div>
+      <p style="margin:0; line-height: 1.8;">
+        Over the ocean there is no VHF (line-of-sight) and traditionally no radar. So separation is <strong>procedural</strong>: aircraft are pre-cleared onto a track at a level and a <strong>Mach number</strong>, report their position by <strong>HF voice or CPDLC</strong>, and the controller keeps them apart by time and the Mach-number technique. This is why your original notes' "oceanic" was only a propagation footnote &mdash; the <em>control</em> procedure is here.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-plane-departure"></i> The oceanic clearance &amp; Mach-number technique</div>
+      <p style="margin:0; line-height: 1.8;">
+        Before entering oceanic airspace the aircraft obtains an <strong>oceanic clearance</strong>: the track, the flight level, and the <strong>assigned Mach number</strong>. Aircraft on the same track at the same level fly the same Mach number so the time-spacing between them stays constant &mdash; the <strong>Mach-number technique</strong>. <strong>SELCAL</strong> (Chapter 22) lets the crew stop monitoring HF static until called.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; oceanic clearance (often via HF/CPDLC)</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Oceanic Control, Ghostair Alfa Bravo Charlie, request oceanic clearance, estimating SIERRA at five five, requesting flight level three five zero, Mach decimal eight zero.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, cleared to destination via track SIERRA, flight level three five zero, Mach decimal eight zero, report SIERRA.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Cleared via track SIERRA, flight level three five zero, Mach decimal eight zero, will report SIERRA, Ghostair Alfa Bravo Charlie.</div>
+      </div>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_eighteen_one.jpg" alt="Continental vs Oceanic Control">
+      <figcaption>Figure 18.1 &mdash; Continental vs oceanic control: Continental airspace relies on VHF and radar vectoring. Oceanic relies on procedural tracks, CPDLC datalinks, and Mach-number spacing.</figcaption>
+    </figure>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 18</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Area Control Centre</strong></td><td>Suffix "Control"; en-route control of the airways/upper airspace, by sector</td></tr>
+          <tr><td><strong>Position report order</strong></td><td>Position &middot; time &middot; level &middot; next point &middot; estimate (+ the one after)</td></tr>
+          <tr><td><strong>Level instructions</strong></td><td>Maintain / climb / descend &mdash; all mandatory read-backs</td></tr>
+          <tr><td><strong>Airways</strong></td><td>Join (clearance) &middot; leave (report) &middot; cross (level/time)</td></tr>
+          <tr><td><strong>Holding</strong></td><td>"Hold at [fix], FL&hellip;, expect approach time / onward clearance [time]"</td></tr>
+          <tr><td><strong>ADS-C / CPDLC</strong></td><td>Automatic datalink position reports / text clearances (oceanic-remote)</td></tr>
+          <tr><td><strong>Oceanic</strong></td><td>Procedural; oceanic clearance = track + level + Mach; HF/CPDLC; SELCAL</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A &mdash; MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. The call-sign suffix for an Area Control Centre is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Approach</li>
+          <li onclick="checkAnswer(this, false)">Tower</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Control</li>
+          <li onclick="checkAnswer(this, false)">Information</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Control.</strong> "Control" denotes the Area Control Centre (en-route).
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. The correct order of a position report is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Level, position, time, next</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Position, time, level, next point, estimate</li>
+          <li onclick="checkAnswer(this, false)">Time, next, level, position</li>
+          <li onclick="checkAnswer(this, false)">Estimate, position, level</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Position, time, level, next point, estimate.</strong> Position, time, level, next point and estimate (plus the point after).
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. "Maintain flight level 350" must be:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Acknowledged "roger"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Read back</li>
+          <li onclick="checkAnswer(this, false)">Not read back</li>
+          <li onclick="checkAnswer(this, false)">Read back only at night</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Read back.</strong> Level instructions are mandatory read-back items.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. To enter a controlled airway, an aircraft needs:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">No clearance</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A clearance to join</li>
+          <li onclick="checkAnswer(this, false)">Only a squawk</li>
+          <li onclick="checkAnswer(this, false)">A landing clearance</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A clearance to join.</strong> Joining controlled airspace requires a clearance to join.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. An aircraft held over a fix is given:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A take-off clearance</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A fix, level and an expected approach / onward clearance time</li>
+          <li onclick="checkAnswer(this, false)">A SELCAL code</li>
+          <li onclick="checkAnswer(this, false)">A runway</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A fix, level and an expected approach / onward clearance time.</strong> Holding clearance gives the fix, level and EAT/onward-clearance time.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. "Expect approach time three five" tells the pilot:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">To begin the approach now</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The time to expect release from the hold for approach</li>
+          <li onclick="checkAnswer(this, false)">To squawk 3500</li>
+          <li onclick="checkAnswer(this, false)">To climb to FL350</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The time to expect release from the hold for approach.</strong> The EAT is the time the aircraft can expect to leave the hold for its approach.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. ADS-C provides:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Voice communication</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Automatic datalink position reports at agreed intervals/events</li>
+          <li onclick="checkAnswer(this, false)">A glidepath</li>
+          <li onclick="checkAnswer(this, false)">Engine data to ATC</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Automatic datalink position reports at agreed intervals/events.</strong> ADS-C (Contract) sends automatic position reports over datalink.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. CPDLC carries:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Weather radar images</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Controller&ndash;pilot clearances and messages as text</li>
+          <li onclick="checkAnswer(this, false)">A glidepath signal</li>
+          <li onclick="checkAnswer(this, false)">The phonetic alphabet</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Controller&ndash;pilot clearances and messages as text.</strong> CPDLC is a text datalink for ATC clearances and messages.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. Over the ocean, separation is primarily:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">By primary radar</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Procedural (time/Mach), with HF/CPDLC reporting</li>
+          <li onclick="checkAnswer(this, false)">By VHF vectoring</li>
+          <li onclick="checkAnswer(this, false)">Not provided</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Procedural (time/Mach), with HF/CPDLC reporting.</strong> No radar/VHF &mdash; separation is procedural, using position reports and the Mach-number technique.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. An oceanic clearance specifies:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Runway and squawk</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Track, flight level and assigned Mach number</li>
+          <li onclick="checkAnswer(this, false)">A heading only</li>
+          <li onclick="checkAnswer(this, false)">A holding fix</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Track, flight level and assigned Mach number.</strong> The oceanic clearance gives the track, level and Mach number.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. The Mach-number technique keeps aircraft separated by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Vectoring</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Maintaining a constant time spacing through assigned Mach numbers</li>
+          <li onclick="checkAnswer(this, false)">Squawk codes</li>
+          <li onclick="checkAnswer(this, false)">Radio checks</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Maintaining a constant time spacing through assigned Mach numbers.</strong> Same Mach on the same track keeps the time interval between aircraft constant.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. SELCAL allows an oceanic crew to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Vector themselves</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Stop continuously monitoring HF until selectively called</li>
+          <li onclick="checkAnswer(this, false)">Land without a clearance</li>
+          <li onclick="checkAnswer(this, false)">Change their Mach number</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Stop continuously monitoring HF until selectively called.</strong> SELCAL alerts a specific aircraft, so the crew need not strain at HF static.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. A large FIR is divided for control into:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Runways</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Sectors</li>
+          <li onclick="checkAnswer(this, false)">Aprons</li>
+          <li onclick="checkAnswer(this, false)">Holding fixes only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Sectors.</strong> An ACC works the FIR in sectors, handing aircraft on between them.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. "Report leaving flight level 350" requires the pilot to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Read back nothing</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Tell ATC when leaving FL350</li>
+          <li onclick="checkAnswer(this, false)">Maintain FL350</li>
+          <li onclick="checkAnswer(this, false)">Squawk ident</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Tell ATC when leaving FL350.</strong> A "report leaving/reaching" instruction asks for a call at that event.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. ATS surveillance in continental area control commonly uses:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Only HF</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Radar and ADS-B</li>
+          <li onclick="checkAnswer(this, false)">SELCAL</li>
+          <li onclick="checkAnswer(this, false)">Light signals</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Radar and ADS-B.</strong> Continental area control uses radar and increasingly ADS-B.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. An aircraft crossing an airway is cleared to cross at:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Any level it likes</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A level/time that keeps it separated from airway traffic</li>
+          <li onclick="checkAnswer(this, false)">Ground level</li>
+          <li onclick="checkAnswer(this, false)">The transition altitude only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A level/time that keeps it separated from airway traffic.</strong> A crossing clearance specifies a level/time providing separation.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B &mdash; Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What does an Area Control Centre do, and what is its suffix?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          It provides air traffic control to aircraft en route in the airways and upper airspace of an FIR, worked in sectors. Its call-sign suffix is "Control".
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> State the order of a standard position report.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Position, time over it, level, the next reporting point, the estimate for that point, and the name of the point after.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How is an aircraft cleared to join, leave or cross an airway?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Joining requires a clearance to join at a point and level; leaving controlled airspace is acknowledged with a report; crossing is cleared at a level or time that keeps the aircraft separated from airway traffic.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is contained in a holding clearance?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The holding fix, the level, and the time to expect release &mdash; the onward clearance time or, for an arrival, the expected approach time (EAT).
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How is air traffic controlled over the ocean without radar or VHF?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Procedurally: aircraft receive an oceanic clearance (track, level, Mach number), report their position by HF voice or CPDLC and via ADS-C, and are separated by time using the Mach-number technique, with SELCAL alerting the crew.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What are ADS-C and CPDLC?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          ADS-C is Automatic Dependent Surveillance &mdash; Contract, where the aircraft automatically sends position reports over datalink; CPDLC is Controller&ndash;Pilot Data Link Communications, carrying clearances and messages as text. Both are used in remote/oceanic airspace.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>Area Control</strong> = "Control"; en-route, worked in sectors.</li>
+        <li>Position report: <strong>position &middot; time &middot; level &middot; next &middot; estimate</strong>. Level instructions = mandatory read-back.</li>
+        <li>Airways: <strong>join</strong> (clearance) &middot; <strong>leave</strong> (report) &middot; <strong>cross</strong> (level/time). Hold: fix + FL + <strong>EAT/onward time</strong>.</li>
+        <li>Continental surveillance = <strong>radar/ADS-B</strong>; remote/oceanic = <strong>ADS-C + CPDLC</strong>.</li>
+        <li>Oceanic = procedural: <strong>oceanic clearance (track, level, Mach)</strong>, HF/CPDLC, <strong>Mach-number technique</strong>, SELCAL.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 18 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

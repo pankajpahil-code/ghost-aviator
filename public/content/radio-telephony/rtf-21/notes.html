@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 21: Meteorological & Aerodrome Information on RT | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 21 &middot; REFERENCE DEPTH</span>
+      <h1 class="hero-title">Meteorological &amp; Aerodrome Information on RT</h1>
+      <p class="hero-subtitle">Chapter 6 taught you to read coded weather; this chapter is about the weather and aerodrome information passed <strong>by voice on the radio</strong> at the critical moments of approach and landing &mdash; above all the Runway Visual Range and the state of the runway surface, the numbers that decide whether an approach may continue at all.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part III (ix) Transmission of meteorological &amp; other aerodrome information &mdash; RVR, runway surface conditions</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Define RVR and distinguish it from meteorological visibility.</li>
+        <li>Receive and read back RVR passed by ATC, including the three touchdown/mid/stop-end values.</li>
+        <li>Receive runway surface-condition and braking-action information.</li>
+        <li>Receive significant changes to wind, QNH and weather on the radio.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">21.1 RVR &mdash; what and why</p>
+      <p>21.2 Transmission of RVR</p>
+      <p>21.3 RVR vs met visibility</p>
+      <p>21.4 Runway surface conditions</p>
+      <p style="margin-top:0;">21.5 Passing changes in wind, QNH &amp; weather</p>
+      <p>&star; Numbers to memorise</p>
+      <p>? Question bank</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_21_hero.jpg" alt="Foggy runway approach">
+      <figcaption>When meteorological visibility drops, Runway Visual Range (RVR) becomes the governing factor for whether an aircraft is legally permitted to continue an approach.</figcaption>
+    </figure>
+
+    <h2>21.1 RVR &mdash; what and why</h2>
+    
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-eye"></i> Definition &mdash; Runway Visual Range</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>RVR</strong> is the distance over which the pilot of an aircraft on the centreline of a runway can see the <strong>runway surface markings, or the lights delineating the runway or identifying its centreline</strong>. It is measured close to the runway by <strong>transmissometers</strong> (or human observers) and is the <strong>governing visibility</strong> for low-visibility take-offs and approaches.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-cloud-sun"></i> WHY RVR, NOT JUST "VISIBILITY"</div>
+      <p style="margin:0; line-height: 1.8;">
+        General met visibility is measured away from the runway and may not reflect what a pilot actually sees down the runway in fog or at night. RVR measures the operationally relevant distance <strong>at the runway itself</strong>, including the effect of the runway lighting &mdash; which is why approach minima are expressed in RVR.
+      </p>
+    </div>
+
+    <h2>21.2 Transmission of RVR</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-ruler-horizontal"></i> Touchdown, midpoint &amp; stop-end</div>
+      <p style="margin:0; line-height: 1.8;">
+        For a long runway, RVR is measured and passed at up to <strong>three points</strong>: the <strong>touchdown</strong> zone, the <strong>midpoint</strong>, and the <strong>stop-end</strong>. When passed, the values are given in that order and identified, e.g. "<strong>RVR runway two seven, touchdown six hundred metres, midpoint five fifty, stop-end five hundred</strong>". RVR is given in <strong>metres</strong> and read back.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; RVR passed on approach</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, RVR runway two seven, touchdown six hundred metres, midpoint five hundred and fifty metres, stop-end five hundred metres.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> RVR runway two seven, six hundred, five fifty, five hundred metres, Ghostair Alfa Bravo Charlie.</div>
+      </div>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;">RVR is passed when the visibility or RVR is <strong>at or below a stated value</strong> (the reporting threshold). It is in <strong>metres</strong>, not the digit-group altitude rule &mdash; but still spoken digit by digit. The <strong>touchdown</strong> RVR is normally the controlling value for the approach.</p>
+    </div>
+
+    <h2>21.3 RVR vs met visibility</h2>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Meteorological visibility</th>
+            <th>RVR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Where measured</strong></td><td>General aerodrome area / observer</td><td>Along the runway, near it</td></tr>
+          <tr><td><strong>What it represents</strong></td><td>Horizontal visibility in general</td><td>Distance a pilot sees runway markings/lights</td></tr>
+          <tr><td><strong>Includes lighting?</strong></td><td>No</td><td>Yes (lights help RVR be greater than met vis at night)</td></tr>
+          <tr><td><strong>Used for</strong></td><td>METAR, general picture</td><td>Approach/take-off minima</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Cockpit reality</div>
+      <p style="margin:0; line-height: 1.8;">
+        On a foggy approach the controller's RVR call is the number you compare against your minimum. If the touchdown RVR is below your minimum, you do not continue below the decision point unless the required visual references are in sight &mdash; the RVR transmission is therefore safety-critical, not just informational.
+      </p>
+    </div>
+
+    <h2>21.4 Runway surface conditions</h2>
+
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-snowflake"></i> What is passed</div>
+      <p style="margin:0; line-height: 1.8;">
+        When the runway is contaminated, ATC passes the <strong>surface condition</strong> and, where assessed, the <strong>braking action</strong>: the type of contaminant (<strong>water, slush, snow, ice</strong>), its depth/coverage, and the braking action reported as <strong>good &middot; medium &middot; poor</strong> (or measured values). "<strong>Runway two seven wet</strong>" / "<strong>standing water</strong>" / "<strong>braking action medium</strong>".
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; runway condition</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, runway two seven is wet, water patches, braking action reported medium to poor.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Runway two seven wet, braking action medium to poor, VT-ABC.</div>
+      </div>
+    </div>
+
+    <div class="callout box-red" style="background:#fffcf2; border-left-color:#eab308; margin-top:20px;">
+      <div class="callout-title" style="color:#eab308;"><i class="fas fa-pen-nib"></i> Author check before publishing</div>
+      <p style="margin:0;">Confirm the current runway-condition reporting format and braking-action terminology in use in Indian airspace (the global reporting format / RWYCC if adopted), and any standard depths/coverage wording.</p>
+    </div>
+
+    <h2>21.5 Passing changes in wind, QNH &amp; weather</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-wind"></i> Updates by voice</div>
+      <p style="margin:0; line-height: 1.8;">
+        Where ATIS is not current or conditions change, ATC passes the <strong>surface wind</strong> (degrees magnetic, knots) with the landing/take-off clearance, an updated <strong>QNH</strong> (read back), and any <strong>significant weather</strong> &mdash; thunderstorms, wind shear, heavy precipitation. A wind-shear or significant-weather warning is prefixed "<strong>caution</strong>" (e.g. "caution, wind shear reported on final"). Significant changes are passed as they occur.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; updated information on approach</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, wind now two four zero degrees one eight knots, gusting two eight, QNH one zero zero nine, caution wind shear reported on short final.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Wind two four zero one eight gusting two eight, QNH one zero zero nine, copied wind shear caution, VT-ABC.</div>
+      </div>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_twenty_one_one.jpg" alt="RVR along the runway - Touchdown, Midpoint, Stop-end">
+      <figcaption>Figure 21.1 &mdash; RVR along the runway: Three transmissometers provide specific RVR values for the touchdown, midpoint, and stop-end segments of a long runway.</figcaption>
+    </figure>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 21</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>RVR</strong></td><td>Distance a pilot on the centreline sees runway markings/lights; in metres</td></tr>
+          <tr><td><strong>Three RVR points</strong></td><td>Touchdown &middot; midpoint &middot; stop-end (touchdown usually controlling)</td></tr>
+          <tr><td><strong>RVR vs met vis</strong></td><td>RVR at the runway, includes lighting; used for minima</td></tr>
+          <tr><td><strong>Surface conditions</strong></td><td>Wet / water / slush / snow / ice; braking action good/medium/poor</td></tr>
+          <tr><td><strong>Updates</strong></td><td>Wind (magnetic, knots), QNH (read back), significant weather "caution &hellip;"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A &mdash; MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. RVR is the distance over which a pilot on the centreline can see:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The control tower</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The runway markings, or the lights delineating/identifying the runway</li>
+          <li onclick="checkAnswer(this, false)">The horizon</li>
+          <li onclick="checkAnswer(this, false)">Other aircraft</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The runway markings, or the lights delineating/identifying the runway.</strong> RVR is the visible distance of the runway markings or lights from the centreline.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. RVR is measured by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The pilot's altimeter</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Transmissometers near the runway (or observers)</li>
+          <li onclick="checkAnswer(this, false)">Satellite</li>
+          <li onclick="checkAnswer(this, false)">The transponder</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Transmissometers near the runway (or observers).</strong> Transmissometers (or human observers) measure RVR close to the runway.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. RVR is given in:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Nautical miles</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Metres</li>
+          <li onclick="checkAnswer(this, false)">Feet</li>
+          <li onclick="checkAnswer(this, false)">Kilometres only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Metres.</strong> RVR is reported in metres.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. The three points at which RVR may be passed are:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Start, middle, end of the taxiway</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Touchdown, midpoint and stop-end</li>
+          <li onclick="checkAnswer(this, false)">Apron, gate, runway</li>
+          <li onclick="checkAnswer(this, false)">Departure, cruise, arrival</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Touchdown, midpoint and stop-end.</strong> Touchdown, midpoint and stop-end RVR for a long runway.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. The normally controlling RVR for an approach is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Stop-end value</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Touchdown value</li>
+          <li onclick="checkAnswer(this, false)">Midpoint value</li>
+          <li onclick="checkAnswer(this, false)">Average of all three</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Touchdown value.</strong> The touchdown RVR is normally the controlling value for the approach.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. RVR differs from met visibility because RVR:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Is measured far from the runway</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Is measured along the runway and includes the effect of runway lighting</li>
+          <li onclick="checkAnswer(this, false)">Ignores lighting</li>
+          <li onclick="checkAnswer(this, false)">Is only for take-off</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Is measured along the runway and includes the effect of runway lighting.</strong> RVR is runway-specific and accounts for lighting; met visibility is general.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. RVR is normally passed when the visibility/RVR is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Above 10 km</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">At or below a stated reporting value</li>
+          <li onclick="checkAnswer(this, false)">Always, regardless of value</li>
+          <li onclick="checkAnswer(this, false)">Only at night</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: At or below a stated reporting value.</strong> RVR is reported when at or below the reporting threshold (low visibility).
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. "Braking action medium" describes the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Wind</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Runway surface friction condition</li>
+          <li onclick="checkAnswer(this, false)">RVR value</li>
+          <li onclick="checkAnswer(this, false)">QNH</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Runway surface friction condition.</strong> Braking action (good/medium/poor) reports the runway surface condition.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. A runway with standing water would be reported as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">CAVOK</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A contaminated/wet surface condition</li>
+          <li onclick="checkAnswer(this, false)">A wind shear</li>
+          <li onclick="checkAnswer(this, false)">A NOTAM only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A contaminated/wet surface condition.</strong> Water/slush/snow/ice are surface conditions passed with braking action.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. A wind-shear warning on final is prefixed:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"MAYDAY"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"Caution"</li>
+          <li onclick="checkAnswer(this, false)">"SEELONCE"</li>
+          <li onclick="checkAnswer(this, false)">"PAN-PAN"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "Caution".</strong> Hazard advisories such as wind shear are prefixed "caution".
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. An updated QNH passed on approach must be:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Ignored if you have ATIS</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Read back</li>
+          <li onclick="checkAnswer(this, false)">Not read back</li>
+          <li onclick="checkAnswer(this, false)">Squawked</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Read back.</strong> Altimeter settings are mandatory read-back items.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. Surface wind passed with a landing clearance is in:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Degrees true, km/h</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Degrees magnetic, knots</li>
+          <li onclick="checkAnswer(this, false)">Degrees true, knots</li>
+          <li onclick="checkAnswer(this, false)">Degrees magnetic, m/s</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Degrees magnetic, knots.</strong> ATC passes surface wind in degrees magnetic and knots.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. "RVR runway 27 touchdown 600 metres" should be read back as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Not read back</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Read back including the runway and value</li>
+          <li onclick="checkAnswer(this, false)">Acknowledged with "roger" only</li>
+          <li onclick="checkAnswer(this, false)">Squawked</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Read back including the runway and value.</strong> RVR passed to an aircraft is read back to confirm correct receipt.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. At night, RVR is often:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Lower than met visibility</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Greater than met visibility, because the runway lights are visible further</li>
+          <li onclick="checkAnswer(this, false)">The same as met visibility</li>
+          <li onclick="checkAnswer(this, false)">Not measured</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Greater than met visibility, because the runway lights are visible further.</strong> Runway lighting lets a pilot see the runway further than general met visibility suggests.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B &mdash; Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is RVR, and how is it measured?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The Runway Visual Range &mdash; the distance over which a pilot on the runway centreline can see the runway surface markings or the lights delineating or identifying the runway. It is measured close to the runway by transmissometers, or by observers.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How is RVR transmitted for a long runway?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          At up to three points &mdash; touchdown, midpoint and stop-end &mdash; given in that order in metres and identified, with the touchdown value normally controlling, and read back by the pilot.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How does RVR differ from meteorological visibility?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          RVR is measured along the runway itself and includes the effect of the runway lighting, so it can exceed met visibility at night; met visibility is a general value measured elsewhere. Approach minima are expressed in RVR.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What runway surface information is passed, and how is braking action reported?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The type of contaminant &mdash; water, slush, snow or ice &mdash; its extent, and the braking action reported as good, medium or poor (or measured values), e.g. "runway wet, braking action medium".
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How are significant changes in wind, pressure or weather passed?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The surface wind (degrees magnetic and knots) and an updated QNH (read back) are passed, and any significant weather such as wind shear or thunderstorms is given prefixed "caution".
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>RVR</strong> = distance a pilot on the centreline sees runway markings/lights; in <strong>metres</strong>; the minima value.</li>
+        <li>Three points: <strong>touchdown &middot; midpoint &middot; stop-end</strong> (touchdown controlling), read back.</li>
+        <li>RVR is at the runway and <strong>includes lighting</strong> (often > met visibility at night).</li>
+        <li>Surface: wet/water/slush/snow/ice + <strong>braking action good/medium/poor</strong>.</li>
+        <li>Updates: wind (magnetic/kt), <strong>QNH read back</strong>, significant weather "<strong>caution &hellip;</strong>".</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 21 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

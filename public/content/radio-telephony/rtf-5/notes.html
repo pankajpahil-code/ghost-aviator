@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 5: FIRs, Frequencies & Aeronautical Information | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      // Clear previous selections
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 5 · REFERENCE DEPTH</span>
+      <h1 class="hero-title">FIRs, Frequencies & Aeronautical Information</h1>
+      <p class="hero-subtitle">Every flight is built on information someone else collected, published and kept current — the elevation of a runway, the frequency of a beacon, the fact that a taxiway is closed tonight. This chapter covers how the airspace is divided, the frequencies you talk and navigate on, and the information system — AIP, AIC, NOTAM — that keeps it all current.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part I (viii) FIRs in India & principal comms/nav facilities · (x) Notices to airmen (NOTAM/AIS)</p>
+    </div>
+
+    <!-- Objectives -->
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Define an FIR and the related airspace structures (UIR, CTA, CTR, TMA), and the services provided within them.</li>
+        <li>Name India's principal FIRs and decode an ICAO four-letter location indicator.</li>
+        <li>Outline the ICAO airspace classes A–G and what each provides.</li>
+        <li>State the principal communication, emergency and navigation frequencies used in India.</li>
+        <li>Describe the AIS and the Integrated Aeronautical Information Package (AIP, AIC, NOTAM) and the NOTAM Q-line.</li>
+        <li>Explain the AIRAC cycle and the AFTN with its message priorities.</li>
+      </ul>
+    </div>
+
+    <!-- Table of Contents for Chapter -->
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">5.1 How airspace is divided</p>
+      <p>5.2 Indian FIRs & the services</p>
+      <p>5.3 ICAO location indicators</p>
+      <p>5.4 Airspace classes A–G</p>
+      <p>5.5 Principal communication & emergency frequencies</p>
+      <p style="margin-top:0;">5.6 Principal navigation frequencies</p>
+      <p>5.7 The AIS & the IAIP</p>
+      <p>5.8 NOTAM & the Q-line</p>
+      <p>5.9 AIRAC & AFTN</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/atc_tower_dusk.jpg" alt="ATC Tower at Dusk">
+      <figcaption>Airspace is divided into blocks so ATC can manage traffic safely and efficiently.</figcaption>
+    </figure>
+
+    <h2>5.1 How airspace is divided</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — WHY AIRSPACE IS CARVED UP</div>
+      <p style="margin:0;">Airspace is too vast and varied for one office, one service and one set of rules. So it is divided two ways: <strong>horizontally and vertically</strong> into named blocks, and <strong>by class</strong> according to how much control and service is provided. The largest block is the <strong>Flight Information Region (FIR)</strong>; within it sit smaller, more tightly controlled volumes around the busy parts.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-book"></i> The airspace volumes</div>
+      <p style="margin:0; line-height:2;">
+        <strong>FIR</strong> — Flight Information Region: a volume within which <strong>Flight Information Service (FIS)</strong> and <strong>Alerting Service</strong> are provided.<br>
+        <strong>UIR</strong> — Upper Information Region: the FIR's upper-airspace counterpart.<br>
+        <strong>CTA</strong> — Control Area: controlled airspace from a specified lower limit upwards (airways are CTAs).<br>
+        <strong>TMA</strong> — Terminal Control Area: a CTA at the confluence of routes near major aerodromes.<br>
+        <strong>CTR</strong> — Control Zone: controlled airspace from the <strong>surface</strong> upwards around an aerodrome.<br>
+        <strong>ATZ</strong> — Aerodrome Traffic Zone.
+      </p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> Definition — Flight Information Region (FIR)</div>
+      <p style="margin:0;">An airspace of defined dimensions within which <strong>Flight Information Service</strong> (useful information for the safe and efficient conduct of flight) and <strong>Alerting Service</strong> (notifying the appropriate organisations of aircraft needing search and rescue, and assisting) are provided. An FIR may extend over the high seas (an <strong>Oceanic</strong> FIR).</p>
+    </div>
+
+    <h2>5.2 Indian FIRs & the services</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> India's principal FIRs</div>
+      <p style="margin:0;">India's airspace is divided into the FIRs of <strong>Delhi, Mumbai, Kolkata and Chennai</strong>, with the <strong>Chennai (Oceanic)</strong> region extending far over the Bay of Bengal and Indian Ocean. Each is managed by the <strong>Airports Authority of India (AAI)</strong>, which provides ATS, communications, navigation and surveillance within them.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Author check before publishing</div>
+      <p style="margin:0;">Confirm the <strong>complete current list</strong> of Indian FIRs and any sub-FIRs (e.g. Guwahati), their boundaries and exact FIR location indicators from the current AIP. Boundaries/names change — quote the live AIP.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality — crossing an FIR boundary</div>
+      <p style="margin:0;">As you cross from one FIR to the next, control is handed from one area control centre to another and you change frequency on instruction. Over the ocean, where there is no radar or VHF, the Chennai Oceanic FIR uses <strong>HF and position reports</strong> (and increasingly CPDLC/ADS) to keep aircraft separated.</p>
+    </div>
+
+    <h2>5.3 ICAO location indicators</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — A UNIQUE ADDRESS FOR EVERY PLACE</div>
+      <p style="margin:0;">Flight plans, NOTAMs and messages must name aerodromes and stations <strong>unambiguously</strong> across the world, so ICAO assigns each a unique <strong>four-letter code</strong>. The letters are structured by region and territory so the code itself tells you roughly where you are.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-book"></i> How the four letters work</div>
+      <p style="margin:0;">1st letter = <strong>region</strong>; 2nd letter = <strong>State/territory</strong> within the region; 3rd–4th = the <strong>specific location</strong>. For India the first letter is <strong>V</strong>, and the second splits the country by zone (e.g. <strong>VI</strong>&hellip; north, <strong>VA</strong>&hellip; west, <strong>VE</strong>&hellip; east, <strong>VO</strong>&hellip; south). These are <strong>ICAO</strong> codes (4 letters), distinct from the <strong>IATA</strong> 3-letter codes used on tickets and baggage.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">Indian 4-Letter Indicators</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Airport</th>
+            <th>ICAO (4-ltr)</th>
+            <th>IATA (3-ltr)</th>
+            <th>Zone letter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Delhi</strong></td><td>VIDP</td><td>DEL</td><td>VI — north</td></tr>
+          <tr><td><strong>Mumbai</strong></td><td>VABB</td><td>BOM</td><td>VA — west</td></tr>
+          <tr><td><strong>Kolkata</strong></td><td>VECC</td><td>CCU</td><td>VE — east</td></tr>
+          <tr><td><strong>Chennai</strong></td><td>VOMM</td><td>MAA</td><td>VO — south</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;"><strong>India starts with V.</strong> The four metros by zone letter: <strong>V</strong>IDP, <strong>V</strong>ABB, <strong>V</strong>ECC, <strong>V</strong>OMM — "<strong>I-A-E-O</strong>" for north, west, east, south.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/india_airports.jpg" alt="India Airports Map">
+      <figcaption>The four primary metro airports defining India's FIR zones: VIDP, VABB, VOMM, and VECC.</figcaption>
+    </figure>
+
+    <h2>5.4 Airspace classes A–G</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">ICAO grades airspace from <strong>A</strong> (most controlled) to <strong>G</strong> (uncontrolled). The class decides whether you need a clearance, whether you're separated from other traffic, and what service you receive. You need to recognise the spread, not memorise every cell.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">Airspace Classes A–G</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Flights</th>
+            <th>Separation / service (summary)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>A</strong></td><td>IFR only</td><td>All separated; ATC clearance required</td></tr>
+          <tr><td><strong>B</strong></td><td>IFR & VFR</td><td>All separated from all</td></tr>
+          <tr><td><strong>C</strong></td><td>IFR & VFR</td><td>IFR separated from IFR & VFR; VFR get traffic info on other VFR</td></tr>
+          <tr><td><strong>D</strong></td><td>IFR & VFR</td><td>IFR separated from IFR; traffic info on VFR</td></tr>
+          <tr><td><strong>E</strong></td><td>IFR & VFR</td><td>IFR separated from IFR; VFR not separated; controlled for IFR</td></tr>
+          <tr><td><strong>F</strong></td><td>IFR & VFR</td><td>Advisory service to IFR (where provided)</td></tr>
+          <tr><td><strong>G</strong></td><td>IFR & VFR</td><td>Uncontrolled — flight information service only</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;"><strong>A is for "All controlled"; G is for "Go as you please" (uncontrolled).</strong><br>Control and separation steadily decrease from A to G.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Author check before publishing</div>
+      <p style="margin:0;">Confirm which airspace classes India actually uses and their VMC minima from the current AIP/CAR, and insert exact figures if examinable.</p>
+    </div>
+
+    <h2>5.5 Principal communication & emergency frequencies</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">Within India you talk to ATC on the VHF aviation band; long-range/oceanic uses HF; and a small set of emergency frequencies is guarded worldwide. The full spectrum is in Chapter 8; these are the ones the examiner expects you to name.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">Communication & Emergency Frequencies</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Use</th>
+            <th>Frequency / band</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>VHF ATC voice</strong></td><td>118.0 – 136.975 MHz (AM, line-of-sight)</td></tr>
+          <tr><td><strong>VHF emergency (international guard)</strong></td><td>121.5 MHz</td></tr>
+          <tr><td><strong>UHF military emergency</strong></td><td>243.0 MHz (= 2 &times; 121.5)</td></tr>
+          <tr><td><strong>ELT — satellite / homing</strong></td><td>406 MHz / 121.5 MHz</td></tr>
+          <tr><td><strong>SAR scene-of-search (aux)</strong></td><td>123.1 MHz</td></tr>
+          <tr><td><strong>Maritime distress (HF/MF)</strong></td><td>2182 kHz</td></tr>
+          <tr><td><strong>HF long-range / oceanic voice</strong></td><td>3 – 30 MHz (SSB)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap</div>
+      <p style="margin:0;"><strong>121.5 MHz</strong> is the international VHF emergency (guard) frequency — memorise it exactly. Don't confuse it with the UHF military guard <strong>243.0 MHz</strong>, and note <strong>123.1 MHz</strong> is the SAR auxiliary scene-of-search frequency.</p>
+    </div>
+
+    <h2>5.6 Principal navigation frequencies</h2>
+    
+    <div class="table-container">
+      <div class="table-caption">Navigation Frequencies</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Aid</th>
+            <th>Frequency / band</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>NDB / ADF</strong></td><td>LF/MF &approx; 190 – 1750 kHz</td></tr>
+          <tr><td><strong>VOR / ILS localizer</strong></td><td>VHF 108.0 – 117.975 MHz</td></tr>
+          <tr><td><strong>ILS glide path</strong></td><td>UHF 329 – 335 MHz</td></tr>
+          <tr><td><strong>Marker beacons</strong></td><td>75 MHz</td></tr>
+          <tr><td><strong>DME</strong></td><td>UHF 962 – 1213 MHz</td></tr>
+          <tr><td><strong>SSR transponder</strong></td><td>1030 MHz interrogate / 1090 MHz reply</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality</div>
+      <p style="margin:0;">These frequencies and the facilities available at each aerodrome — runway, elevation, beacon idents, frequencies — are exactly what you look up in the <strong>AIP</strong> before flying there. Which brings us to the information system itself.</p>
+    </div>
+
+    <h2>5.7 The AIS & the IAIP</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — FLIGHT RUNS ON PUBLISHED INFORMATION</div>
+      <p style="margin:0;">You cannot personally survey every runway or measure every beacon. Someone collects that data, publishes it, and — critically — <strong>keeps it current</strong>. That is the job of the <strong>Aeronautical Information Service (AIS)</strong>, and its output is bundled as the <strong>Integrated Aeronautical Information Package (IAIP)</strong>. Different kinds of information change at different speeds, so the package has different components for permanent, long-temporary, and short-notice data.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-book"></i> The Integrated Aeronautical Information Package</div>
+      <p style="margin:0; line-height:2;">
+        <strong>AIP</strong> — Aeronautical Information Publication: the permanent reference manual, in three parts — <strong>GEN</strong> (general), <strong>ENR</strong> (en-route) and <strong>AD</strong> (aerodromes).<br>
+        <strong>AIP Amendment</strong> — permanent changes to the AIP.<br>
+        <strong>AIP Supplement</strong> — temporary changes of <strong>long</strong> duration.<br>
+        <strong>AIC</strong> — Aeronautical Information Circular: explanatory/advisory information not meeting NOTAM or AIP criteria.<br>
+        <strong>NOTAM</strong> — short-notice, time-critical changes (see 5.8).<br>
+        Plus pre-flight and post-flight information bulletins.
+      </p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic — by how fast it changes</div>
+      <p style="margin:0;"><strong>AIP = permanent &middot; Supplement = long temporary &middot; AIC = advisory &middot; NOTAM = urgent/now.</strong> The faster the information changes, the further "down" this list it lives.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_five_one.jpg" alt="Figure 5.1: The IAIP">
+      <figcaption>Figure 5.1 — The Integrated Aeronautical Information Package components branching down to time-critical NOTAMs.</figcaption>
+    </figure>
+
+    <h2>5.8 NOTAM & the Q-line</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> Definition — NOTAM</div>
+      <p style="margin:0;">A <strong>Notice to Airmen</strong> — a notice distributed by telecommunication containing information on the establishment, condition or change in any aeronautical facility, service, procedure or hazard, the timely knowledge of which is essential to personnel concerned with flight operations.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check"></i> NOTAM types & relatives</div>
+      <p style="margin:0;"><strong>NOTAMN</strong> — new &middot; <strong>NOTAMR</strong> — replaces a previous NOTAM &middot; <strong>NOTAMC</strong> — cancels one. Specialised: <strong>SNOWTAM</strong> (runway snow/ice/slush conditions, a special format) and <strong>ASHTAM</strong> (volcanic ash). The summarised set for a route is issued as a <strong>PIB — Pre-flight Information Bulletin</strong>.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> The Q-line</div>
+      <p style="margin:0;">Each NOTAM carries a coded <strong>Q-line</strong> that lets computers filter and route it: it encodes the FIR, a <strong>Q-code subject & condition</strong>, the traffic affected (I/V), the purpose, the scope, and the lower/upper limits and a radius. Below the Q-line, items A) to G) give the aerodrome/FIR, start and end times, schedule, and the plain-language text.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — reading a NOTAM</div>
+      <p style="margin:0; line-height:1.8;">
+        A NOTAM reads, in part: <strong>"A) VIDP B) &hellip; C) &hellip; E) RWY 11/29 CLSD DUE WIP."</strong><br>
+        A) = the aerodrome (Delhi, VIDP). B)/C) = valid-from / valid-to times (UTC).<br>
+        E) = the plain text: <strong>runway 11/29 closed due work in progress.</strong><br>
+        So at Delhi, for the period in B)&ndash;C), you must plan around runway 11/29 being unavailable. This is exactly the kind of item the PIB surfaces before you fly.
+      </p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+      <p style="margin:0;"><strong>N-R-C: New, Replace, Cancel</strong> — a NOTAM is freshly issued, takes the place of an old one, or kills one.</p>
+    </div>
+
+    <h2>5.9 AIRAC & AFTN</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-book"></i> Definition — AIRAC</div>
+      <p style="margin:0;"><strong>Aeronautical Information Regulation And Control</strong> — a system delivering operationally significant changes on common <strong>effective dates</strong> at fixed intervals of <strong>28 days</strong>, so that crews, databases and States all update <strong>together</strong> rather than at random.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-network-wired"></i> AFTN — the network & its message priorities</div>
+      <p style="margin:0;">NOTAMs, flight plans and service messages travel over the <strong>AFTN — Aeronautical Fixed Telecommunication Network</strong>, a worldwide ground network of fixed stations exchanging messages in a standard format with <strong>priority indicators</strong>. In descending priority: <strong>SS</strong> Distress, <strong>DD</strong> Urgency, <strong>FF</strong> Flight safety, <strong>GG</strong> Meteorological, <strong>KK</strong> Flight regularity (and lower categories for administrative/service messages).</p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-lightbulb"></i> Mnemonic — AFTN priority order</div>
+      <p style="margin:0;"><strong>"Some Dogs Find Good Kennels"</strong> &rarr; <strong>SS</strong> Distress, <strong>DD</strong> Urgency, <strong>FF</strong> Flight-safety, <strong>GG</strong> Met, <strong>KK</strong> Regularity.</p>
+    </div>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 5</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>FIR</strong></td><td>Airspace with Flight Information Service + Alerting Service</td></tr>
+          <tr><td><strong>Indian FIRs</strong></td><td>Delhi, Mumbai, Kolkata, Chennai (+ Chennai Oceanic)</td></tr>
+          <tr><td><strong>Location indicators</strong></td><td>VIDP &middot; VABB &middot; VECC &middot; VOMM (India = V, 4 letters)</td></tr>
+          <tr><td><strong>Airspace classes</strong></td><td>A (all controlled) &rarr; G (uncontrolled)</td></tr>
+          <tr><td><strong>VHF ATC band</strong></td><td>118.0 &ndash; 136.975 MHz</td></tr>
+          <tr><td><strong>VHF / UHF emergency</strong></td><td>121.5 MHz / 243.0 MHz &middot; SAR aux 123.1</td></tr>
+          <tr><td><strong>IAIP</strong></td><td>AIP (GEN/ENR/AD) &middot; Amendment &middot; Supplement &middot; AIC &middot; NOTAM</td></tr>
+          <tr><td><strong>NOTAM types</strong></td><td>NOTAMN (new) &middot; NOTAMR (replace) &middot; NOTAMC (cancel)</td></tr>
+          <tr><td><strong>AIRAC cycle</strong></td><td>28 days</td></tr>
+          <tr><td><strong>AFTN priorities</strong></td><td>SS &middot; DD &middot; FF &middot; GG &middot; KK (distress &rarr; regularity)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A — MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. Within an FIR, which services are provided?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Air traffic control only</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Flight Information Service and Alerting Service</li>
+          <li onclick="checkAnswer(this, false)">Customs and immigration</li>
+          <li onclick="checkAnswer(this, false)">Refuelling and maintenance</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Flight Information Service and Alerting Service.</strong> An FIR is the airspace within which FIS and Alerting Service are provided.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. Controlled airspace extending from the surface upwards around an aerodrome is a:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">CTA</li>
+          <li onclick="checkAnswer(this, false)">TMA</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">CTR (Control Zone)</li>
+          <li onclick="checkAnswer(this, false)">UIR</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: CTR (Control Zone).</strong> A CTR (control zone) is from the surface up; a CTA is from a specified level up.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. The ICAO location indicator for Mumbai is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">BOM</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">VABB</li>
+          <li onclick="checkAnswer(this, false)">VIDP</li>
+          <li onclick="checkAnswer(this, false)">VOMM</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: VABB.</strong> VABB (ICAO, 4 letters). BOM is the IATA 3-letter code.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. In an ICAO four-letter location indicator, the first letter denotes the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Specific airport</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Region</li>
+          <li onclick="checkAnswer(this, false)">Runway</li>
+          <li onclick="checkAnswer(this, false)">Airline</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Region.</strong> 1st = region, 2nd = State/territory, 3rd–4th = location.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. The most controlled ICAO airspace class is:</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">Class A</li>
+          <li onclick="checkAnswer(this, false)">Class D</li>
+          <li onclick="checkAnswer(this, false)">Class F</li>
+          <li onclick="checkAnswer(this, false)">Class G</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Class A.</strong> Class A is the most controlled (IFR only, all separated); G is uncontrolled.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. Class G airspace is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">IFR only, fully separated</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Uncontrolled, with flight information service only</li>
+          <li onclick="checkAnswer(this, false)">Reserved for the military</li>
+          <li onclick="checkAnswer(this, false)">Above FL600 only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Uncontrolled, with flight information service only.</strong> Class G is uncontrolled — no ATC separation, FIS only.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. The international VHF emergency frequency is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">243.0 MHz</li>
+          <li onclick="checkAnswer(this, false)">118.0 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">121.5 MHz</li>
+          <li onclick="checkAnswer(this, false)">406 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 121.5 MHz.</strong> 121.5 MHz is the VHF guard; 243.0 MHz is the UHF military guard.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. The SAR auxiliary scene-of-search frequency is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">121.5 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">123.1 MHz</li>
+          <li onclick="checkAnswer(this, false)">243.0 MHz</li>
+          <li onclick="checkAnswer(this, false)">2182 kHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 123.1 MHz.</strong> 123.1 MHz is the auxiliary SAR frequency; 121.5 is the primary guard.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. The VHF aeronautical communication band is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">108.0–117.975 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">118.0–136.975 MHz</li>
+          <li onclick="checkAnswer(this, false)">329–335 MHz</li>
+          <li onclick="checkAnswer(this, false)">3–30 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 118.0–136.975 MHz.</strong> 118.0–136.975 MHz is the ATC voice band; 108–117.975 is VOR/ILS-LOC.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. The permanent reference manual of a State's aeronautical data is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">NOTAM</li>
+          <li onclick="checkAnswer(this, false)">AIC</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">AIP</li>
+          <li onclick="checkAnswer(this, false)">SNOWTAM</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: AIP.</strong> The AIP (parts GEN/ENR/AD) is the permanent publication.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. The three parts of the AIP are:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A, B, C</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">GEN, ENR, AD</li>
+          <li onclick="checkAnswer(this, false)">N, R, C</li>
+          <li onclick="checkAnswer(this, false)">SS, DD, FF</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: GEN, ENR, AD.</strong> GEN (general), ENR (en-route), AD (aerodromes).
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. A temporary change of long duration to the AIP is published as a/an:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">NOTAM</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">AIP Supplement</li>
+          <li onclick="checkAnswer(this, false)">AIC</li>
+          <li onclick="checkAnswer(this, false)">SNOWTAM</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: AIP Supplement.</strong> Long-duration temporary changes = AIP Supplement; short-notice = NOTAM.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. A NOTAM that cancels a previous NOTAM is a:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">NOTAMN</li>
+          <li onclick="checkAnswer(this, false)">NOTAMR</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">NOTAMC</li>
+          <li onclick="checkAnswer(this, false)">SNOWTAM</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: NOTAMC.</strong> N = new, R = replace, C = cancel.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. Runway snow, ice and slush conditions are notified by a:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">ASHTAM</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">SNOWTAM</li>
+          <li onclick="checkAnswer(this, false)">AIC</li>
+          <li onclick="checkAnswer(this, false)">PIB</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: SNOWTAM.</strong> SNOWTAM (special format) for runway contamination; ASHTAM for volcanic ash.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. The route NOTAM digest provided at briefing is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">TAF</li>
+          <li onclick="checkAnswer(this, false)">ATIS</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">PIB (Pre-flight Information Bulletin)</li>
+          <li onclick="checkAnswer(this, false)">AIC</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: PIB (Pre-flight Information Bulletin).</strong> The PIB gathers the relevant NOTAMs for the route and aerodromes.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. The AIRAC cycle interval is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">7 days</li>
+          <li onclick="checkAnswer(this, false)">14 days</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">28 days</li>
+          <li onclick="checkAnswer(this, false)">90 days</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 28 days.</strong> AIRAC effective dates recur every 28 days worldwide.
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="question-block">
+        <div class="question-text">17. NOTAMs and flight plans are carried over the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">NFAP</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">AFTN</li>
+          <li onclick="checkAnswer(this, false)">VOLMET</li>
+          <li onclick="checkAnswer(this, false)">SACFA</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: AFTN.</strong> The Aeronautical Fixed Telecommunication Network carries these messages with priority indicators.
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="question-block">
+        <div class="question-text">18. The highest AFTN message priority is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">FF (Flight safety)</li>
+          <li onclick="checkAnswer(this, false)">GG (Meteorological)</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">SS (Distress)</li>
+          <li onclick="checkAnswer(this, false)">KK (Flight regularity)</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: SS (Distress).</strong> Descending priority: SS distress, DD urgency, FF flight-safety, GG met, KK regularity.
+        </div>
+      </div>
+
+      <h3>Part B — Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is an FIR and what services are provided in it?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          A Flight Information Region — an airspace of defined dimensions within which Flight Information Service and Alerting Service are provided. India's principal FIRs are Delhi, Mumbai, Kolkata and Chennai, with Chennai Oceanic over the sea.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Distinguish a CTA, a CTR and a TMA.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          A CTA (control area) is controlled airspace from a specified lower limit upwards; a CTR (control zone) is controlled airspace from the surface upwards around an aerodrome; a TMA is a control area at the confluence of routes near busy aerodromes.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How is an ICAO four-letter location indicator structured?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          First letter = region, second = State/territory, third and fourth = the specific location. For India the first letter is V, e.g. VIDP for Delhi.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between controlled and uncontrolled airspace classes?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Classes A–E are controlled, with ATC clearance and varying separation; Classes F and G are largely uncontrolled, with advisory or flight information service only. Control and separation decrease from A to G.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Name the components of the Integrated Aeronautical Information Package.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The AIP (with parts GEN, ENR and AD) and its Amendments and Supplements, Aeronautical Information Circulars (AIC), and NOTAMs, together with pre-flight and post-flight information.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is a NOTAM, and what are its types?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          A Notice to Airmen distributed by telecommunication giving time-critical information essential to flight operations. Types: NOTAMN (new), NOTAMR (replace), NOTAMC (cancel); plus SNOWTAM and ASHTAM.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is AIRAC?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Aeronautical Information Regulation And Control — a system of common effective dates at fixed 28-day intervals for publishing operationally significant changes, so everyone updates together.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the AFTN and how are its messages prioritised?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The Aeronautical Fixed Telecommunication Network — the worldwide ground message network. Messages carry priority indicators: SS distress, DD urgency, FF flight safety, GG meteorological, KK flight regularity, in descending order.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>FIR</strong> = airspace with FIS + Alerting. India: <strong>Delhi, Mumbai, Kolkata, Chennai (+Oceanic)</strong>. CTA/TMA/CTR nested inside.</li>
+        <li>ICAO codes (4-ltr, India = V): <strong>VIDP, VABB, VECC, VOMM</strong>. Classes <strong>A (all controlled) &rarr; G (uncontrolled)</strong>.</li>
+        <li>VHF ATC <strong>118–136.975</strong>; emergency <strong>121.5/243.0</strong>, SAR aux <strong>123.1</strong>.</li>
+        <li><strong>IAIP</strong> = AIP (GEN/ENR/AD) + Amendment + Supplement + AIC + NOTAM. NOTAM = <strong>N/R/C</strong>, SNOWTAM/ASHTAM.</li>
+        <li><strong>AIRAC = 28 days; AFTN</strong> carries messages, priorities <strong>SS&middot;DD&middot;FF&middot;GG&middot;KK</strong>.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 5 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

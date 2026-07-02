@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 13: The Language of the Air | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 13 &middot; REFERENCE DEPTH</span>
+      <h1 class="hero-title">The Language of the Air &mdash; Phonetics, Numbers &amp; Time</h1>
+      <p class="hero-subtitle">From here the book turns from electronics to the spoken language of the air. A radio frequency is useless if "five" is heard as "nine" or "to" is mistaken for "two". So aviation built its own precise dialect: a spelling alphabet where every word sounds different, exact ways to speak numbers and time, and a small set of standard words that carry one meaning each.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part III (i) Transmitting technique &middot; transmission of letters, numbers &amp; time &middot; standard words &amp; phrases &middot; test procedures</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Apply good transmitting technique (RSVP) and the listen-before-transmit discipline.</li>
+        <li>Spell using the ICAO phonetic alphabet, with correct emphasis.</li>
+        <li>Transmit numbers, frequencies, levels, headings, wind and pressure correctly, and apply the number rules.</li>
+        <li>Transmit time in UTC.</li>
+        <li>Use the standard words and phrases with their exact single meanings.</li>
+        <li>Carry out a radio check and report readability on the 1–5 scale.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">13.1 Transmitting technique (RSVP)</p>
+      <p>13.2 The phonetic alphabet</p>
+      <p>13.3 Transmission of numbers</p>
+      <p>13.4 The number rules</p>
+      <p>13.5 Levels, headings, wind &amp; pressure</p>
+      <p style="margin-top:0;">13.6 Time</p>
+      <p>13.7 Standard words &amp; phrases</p>
+      <p>13.8 Radio check &amp; readability</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_13_hero.jpg" alt="Aviation RT Communication">
+      <figcaption>Precision in radio telephony is critical. The phonetic alphabet ensures that call signs and critical data are never misunderstood.</figcaption>
+    </figure>
+
+    <h2>13.1 Transmitting technique (RSVP)</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-comment-alt"></i> FIRST PRINCIPLES &mdash; CLARITY OVER SPEED</div>
+      <p style="margin:0;">A transmission heard wrongly is worse than no transmission at all. The whole craft of radio is making yourself <strong>understood the first time</strong> on a noisy, shared channel. Before keying the microphone, <strong>listen out</strong> to be sure you won't block another station, then think what you will say.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-check-circle"></i> RSVP &mdash; the four levers of good speech</div>
+      <ul style="margin:0; padding-left: 20px; line-height: 1.8;">
+        <li><strong>R &mdash; Rhythm:</strong> speak in a steady, even cadence; group the message into natural chunks.</li>
+        <li><strong>S &mdash; Speed:</strong> slightly slower than normal conversation, especially for numbers.</li>
+        <li><strong>V &mdash; Volume:</strong> constant, normal level; don't shout or trail off.</li>
+        <li><strong>P &mdash; Pitch:</strong> keep it level; a slightly higher, clear pitch carries better than a mumble.</li>
+      </ul>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_thirteen_rsvp.jpg" alt="RSVP Audio Mixing Sliders">
+      <figcaption>Like an audio mixer, balancing Rhythm, Speed, Volume, and Pitch is the key to perfect RT clarity.</figcaption>
+    </figure>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap &mdash; the practical</div>
+      <p style="margin:0;">The examiner is judging exactly this. The most common practical fails are <strong>too fast, swallowed numbers</strong>, and forgetting to <strong>release the PTT</strong>. Slow down on figures and pause a beat after keying so the first word isn't clipped.</p>
+    </div>
+
+    <h2>13.2 The phonetic alphabet</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">Each letter is spoken as a whole word chosen to sound unlike every other &mdash; so "B" and "D", or "M" and "N", can never be confused. The <strong>bold syllable</strong> is stressed.</p>
+    </div>
+
+    <div class="table-container">
+      <div class="table-caption">The ICAO Phonetic Alphabet</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Letter</th>
+            <th>Word</th>
+            <th>Letter</th>
+            <th>Word</th>
+            <th>Letter</th>
+            <th>Word</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">A</td><td><strong>AL</strong>-fa</td><td style="color:#0d9488; font-weight:700;">J</td><td><strong>JU</strong>-li-<strong>ETT</strong></td><td style="color:#0d9488; font-weight:700;">S</td><td>Si-<strong>ER</strong>-ra</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">B</td><td><strong>BRA</strong>-vo</td><td style="color:#0d9488; font-weight:700;">K</td><td><strong>KI</strong>-lo</td><td style="color:#0d9488; font-weight:700;">T</td><td><strong>TANG</strong>-go</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">C</td><td><strong>CHAR</strong>-lie</td><td style="color:#0d9488; font-weight:700;">L</td><td><strong>LI</strong>-ma</td><td style="color:#0d9488; font-weight:700;">U</td><td><strong>U</strong>-ni-form</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">D</td><td><strong>DEL</strong>-ta</td><td style="color:#0d9488; font-weight:700;">M</td><td><strong>MIKE</strong></td><td style="color:#0d9488; font-weight:700;">V</td><td><strong>VIC</strong>-tor</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">E</td><td><strong>ECH</strong>-o</td><td style="color:#0d9488; font-weight:700;">N</td><td>No-<strong>VEM</strong>-ber</td><td style="color:#0d9488; font-weight:700;">W</td><td><strong>WHIS</strong>-key</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">F</td><td><strong>FOX</strong>-trot</td><td style="color:#0d9488; font-weight:700;">O</td><td><strong>OS</strong>-car</td><td style="color:#0d9488; font-weight:700;">X</td><td><strong>X</strong>-ray</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">G</td><td><strong>GOLF</strong></td><td style="color:#0d9488; font-weight:700;">P</td><td>Pa-<strong>PA</strong></td><td style="color:#0d9488; font-weight:700;">Y</td><td><strong>YANG</strong>-key</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">H</td><td>Ho-<strong>TEL</strong></td><td style="color:#0d9488; font-weight:700;">Q</td><td>Ke-<strong>BECK</strong></td><td style="color:#0d9488; font-weight:700;">Z</td><td><strong>ZOO</strong>-loo</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">I</td><td><strong>IN</strong>-di-a</td><td style="color:#0d9488; font-weight:700;">R</td><td><strong>RO</strong>-me-o</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap &mdash; spelling &amp; pronunciation</div>
+      <p style="margin:0;">Watch the unusual spellings: <strong>Alfa</strong> (not Alpha), <strong>Juliett</strong> (double-t), <strong>Whiskey</strong>, <strong>X-ray</strong>. Pronounce the stressed syllable: <strong>AL</strong>-fah, <strong>BRAH</strong>-VOH, <strong>CHAR</strong>-lee, <strong>KEY</strong>-LOH, etc. Examiners often ask you to spell your own registration.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_thirteen_one.jpg" alt="Figure 13.1 - The phonetic alphabet & number pronunciation card">
+      <figcaption>Figure 13.1 &mdash; The phonetic alphabet &amp; number pronunciation reference card.</figcaption>
+    </figure>
+
+    <h2>13.3 Transmission of numbers</h2>
+
+    <div class="table-container">
+      <div class="table-caption">Pronunciation of Numerals</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Numeral</th>
+            <th>Pronounced</th>
+            <th>Numeral</th>
+            <th>Pronounced</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">0</td><td>ZE-RO</td><td style="color:#0d9488; font-weight:700;">5</td><td>FIFE</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">1</td><td>WUN</td><td style="color:#0d9488; font-weight:700;">6</td><td>SIX</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">2</td><td>TOO</td><td style="color:#0d9488; font-weight:700;">7</td><td>SEV-en</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">3</td><td>TREE</td><td style="color:#0d9488; font-weight:700;">8</td><td>AIT</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">4</td><td>FOW-er</td><td style="color:#0d9488; font-weight:700;">9</td><td>NIN-er</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Decimal</td><td>DAY-SEE-MAL</td><td style="color:#0d9488; font-weight:700;">Hundred / Thousand</td><td>HUN-dred / TOU-SAND</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap &mdash; the "safe" pronunciations</div>
+      <p style="margin:0;">Three (<strong>TREE</strong>), five (<strong>FIFE</strong>), nine (<strong>NIN-er</strong>) and decimal (<strong>DAY-SEE-MAL</strong>) are deliberately altered so they cannot be confused with similar-sounding words or other languages. Use them exactly.</p>
+    </div>
+
+    <h2>13.4 The number rules</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> The two rules</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Rule 1 &mdash; digit by digit.</strong> Most numbers are transmitted by pronouncing <strong>each digit separately</strong>: aircraft call signs, headings, wind, pressure settings, transponder codes, frequencies, and flight levels.<br><br>
+        <strong>Rule 2 &mdash; whole hundreds &amp; thousands.</strong> Whole hundreds and whole thousands are transmitted by pronouncing each digit in the number of hundreds/thousands followed by <strong>HUNDRED</strong> or <strong>THOUSAND</strong> &mdash; used for altitudes, heights, cloud heights and visibility.
+      </p>
+    </div>
+
+    <h2>13.5 Levels, headings, wind &amp; pressure</h2>
+
+    <div class="table-container">
+      <div class="table-caption">Applying the Number Rules</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>How to say it</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">Flight level</td><td>"Flight level" + each digit</td><td>FL280 &rarr; "flight level two eight zero"</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Altitude / height</td><td>Whole thousands/hundreds</td><td>3,500 ft &rarr; "three thousand five hundred feet"</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Heading</td><td>"Heading" + 3 digits</td><td>080 &rarr; "heading zero eight zero"</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Wind</td><td>Direction (3 digits) + speed</td><td>"wind two seven zero degrees, one zero knots"</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Pressure (QNH)</td><td>"QNH" + each digit (units optional)</td><td>1013 &rarr; "QNH one zero one three"</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">Frequency</td><td>Each digit incl. "decimal"</td><td>121.500 &rarr; "one two one decimal five"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked examples &mdash; numbers spoken correctly</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>Heading 270</strong> &rarr; "heading two seven zero" (digit by digit). <strong>Squawk 4321</strong> &rarr; "squawk four three two one".<br>
+        <strong>Altitude 2,500 ft</strong> &rarr; "two thousand five hundred". <strong>Flight level 100</strong> &rarr; "flight level one zero zero" (digit by digit &mdash; note the difference).<br>
+        <strong>Frequency 118.500</strong> &rarr; "one one eight decimal five". <strong>QNH 1009</strong> &rarr; "QNH one zero zero nine".
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality</div>
+      <p style="margin:0;">A controller passing "descend flight level one zero zero, QNH one zero zero nine" expects an exact read-back. The discipline of digit-by-digit numbers is what prevents a "level 100" being flown as "level 1000".</p>
+    </div>
+
+    <h2>13.6 Time</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-clock"></i> UTC &mdash; one clock for the world</div>
+      <p style="margin:0; line-height: 1.8;">
+        Aviation uses <strong>Coordinated Universal Time (UTC)</strong>, spoken "Zulu". Time is normally given as the <strong>minutes of the hour</strong> only (e.g. "at three five"), unless there is any chance of confusion, when the <strong>full hour and minutes</strong> are given (e.g. "one three three five"). Each digit is pronounced separately.
+      </p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_thirteen_utc.jpg" alt="UTC Time Globe">
+      <figcaption>Aviation relies on a single global time standard: Coordinated Universal Time (UTC), commonly referred to as "Zulu" time in RT.</figcaption>
+    </figure>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example</div>
+      <p style="margin:0;">It is 1335 UTC. Normal: "time three five". If confusion is possible (e.g. near the hour): "time one three three five".</p>
+    </div>
+
+    <h2>13.7 Standard words &amp; phrases</h2>
+
+    <div class="table-container">
+      <div class="table-caption">Core Phraseology</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Word / phrase</th>
+            <th>Single meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:#0d9488; font-weight:700;">AFFIRM</td><td>Yes</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">NEGATIVE</td><td>No / not correct / not available</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">ROGER</td><td>I have received all of your last transmission (NOT "yes")</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">WILCO</td><td>I understand your message and will comply</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">STANDBY</td><td>Wait, I will call you</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">SAY AGAIN</td><td>Repeat all (or the specified part) of your last transmission</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">READ BACK</td><td>Repeat all of this message back to me exactly</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">CORRECTION</td><td>An error has been made; the correct version is &hellip;</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">DISREGARD</td><td>Ignore that transmission</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">CONFIRM</td><td>Have I correctly received &hellip;? / Confirm you have received &hellip;</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">MONITOR</td><td>Listen out on (frequency)</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">REQUEST</td><td>I should like to know &hellip; / I wish to obtain &hellip;</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">OUT</td><td>This exchange is ended; no reply expected</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap &mdash; ROGER vs WILCO vs AFFIRM</div>
+      <p style="margin:0; line-height: 1.8;">
+        A favourite: <strong>ROGER</strong> means "received", <strong>not</strong> "yes" and <strong>not</strong> "I will comply". If asked a yes/no question, answer <strong>AFFIRM</strong> or <strong>NEGATIVE</strong>; if instructed to do something, answer <strong>WILCO</strong>. "Over and out" is wrong &mdash; they are mutually exclusive; in modern RT you usually just end naturally.
+      </p>
+    </div>
+
+    <h2>13.8 Radio check &amp; readability</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-list-ol"></i> The readability scale (1&ndash;5)</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>1</strong> Unreadable &middot; <strong>2</strong> Readable now and then &middot; <strong>3</strong> Readable but with difficulty &middot; <strong>4</strong> Readable &middot; <strong>5</strong> Perfectly readable.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; a radio check</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Delhi Tower, VT-ABC, radio check on one one eight decimal one.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, Delhi Tower, readability five.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> VT-ABC, readability five also.</div>
+      </div>
+    </div>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 13</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>RSVP</strong></td><td>Rhythm &middot; Speed &middot; Volume &middot; Pitch</td></tr>
+          <tr><td><strong>Altered numerals</strong></td><td>3 = TREE &middot; 5 = FIFE &middot; 9 = NIN-er &middot; decimal = DAY-SEE-MAL</td></tr>
+          <tr><td><strong>Rule 1</strong></td><td>Digit by digit: call signs, headings, wind, QNH, squawk, frequency, flight levels</td></tr>
+          <tr><td><strong>Rule 2</strong></td><td>Whole hundreds/thousands: altitude, height, cloud, visibility</td></tr>
+          <tr><td><strong>Time</strong></td><td>UTC (Zulu); minutes only, or full hours+minutes if confusion</td></tr>
+          <tr><td><strong>ROGER / WILCO</strong></td><td>Received / will comply (ROGER &ne; yes)</td></tr>
+          <tr><td><strong>AFFIRM / NEGATIVE</strong></td><td>Yes / No</td></tr>
+          <tr><td><strong>Readability</strong></td><td>1 unreadable &rarr; 5 perfectly readable</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A &mdash; MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. In the phonetic alphabet, the letter "J" is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Jupiter</li>
+          <li onclick="checkAnswer(this, false)">Juliet</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Juliett</li>
+          <li onclick="checkAnswer(this, false)">Jig</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Juliett.</strong> "Juliett" &mdash; spelled with a double-t.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. The numeral 9 is pronounced:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Nine</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">NIN-er</li>
+          <li onclick="checkAnswer(this, false)">Niner-zero</li>
+          <li onclick="checkAnswer(this, false)">Nin</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: NIN-er.</strong> 9 = "NIN-er", altered to avoid confusion with "no/nein".
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. The decimal point is spoken as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Point</li>
+          <li onclick="checkAnswer(this, false)">Dot</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">DAY-SEE-MAL</li>
+          <li onclick="checkAnswer(this, false)">Comma</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: DAY-SEE-MAL.</strong> "Decimal" (DAY-SEE-MAL) &mdash; e.g. 118.1 = "one one eight decimal one".
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. Flight level 100 is transmitted as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"flight level one hundred"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"flight level one zero zero"</li>
+          <li onclick="checkAnswer(this, false)">"flight level ten thousand"</li>
+          <li onclick="checkAnswer(this, false)">"level one hundred"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "flight level one zero zero".</strong> Flight levels are spoken digit by digit: "one zero zero".
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. An altitude of 3,500 ft is transmitted as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"three five zero zero"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"three thousand five hundred"</li>
+          <li onclick="checkAnswer(this, false)">"flight level three five"</li>
+          <li onclick="checkAnswer(this, false)">"thirty-five hundred"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "three thousand five hundred".</strong> Altitudes use whole thousands/hundreds: "three thousand five hundred".
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. A heading of 080&deg; is spoken as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"heading eighty"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"heading zero eight zero"</li>
+          <li onclick="checkAnswer(this, false)">"heading eight hundred"</li>
+          <li onclick="checkAnswer(this, false)">"heading eight zero"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "heading zero eight zero".</strong> Headings are three digits, digit by digit: "zero eight zero".
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. The frequency 121.500 is transmitted as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"one twenty-one point five"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"one two one decimal five"</li>
+          <li onclick="checkAnswer(this, false)">"one hundred twenty-one five hundred"</li>
+          <li onclick="checkAnswer(this, false)">"one two one point five hundred"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "one two one decimal five".</strong> Digit by digit with "decimal": "one two one decimal five".
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. "ROGER" means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Yes</li>
+          <li onclick="checkAnswer(this, false)">I will comply</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">I have received all your last transmission</li>
+          <li onclick="checkAnswer(this, false)">Standby</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: I have received all your last transmission.</strong> ROGER = received; it does NOT mean "yes" or "will comply".
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. The correct reply to an instruction you will carry out is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">ROGER</li>
+          <li onclick="checkAnswer(this, false)">AFFIRM</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">WILCO</li>
+          <li onclick="checkAnswer(this, false)">CONFIRM</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: WILCO.</strong> WILCO = "I understand and will comply".
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. The reply meaning "yes" is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">ROGER</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">AFFIRM</li>
+          <li onclick="checkAnswer(this, false)">WILCO</li>
+          <li onclick="checkAnswer(this, false)">CORRECT</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: AFFIRM.</strong> AFFIRM = yes; NEGATIVE = no.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. "STANDBY" means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Continue your approach</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Wait, I will call you</li>
+          <li onclick="checkAnswer(this, false)">Disregard</li>
+          <li onclick="checkAnswer(this, false)">Read back</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Wait, I will call you.</strong> STANDBY = wait; the controller will call you.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. Aviation time is given in:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Local time</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">UTC (Zulu)</li>
+          <li onclick="checkAnswer(this, false)">Indian Standard Time</li>
+          <li onclick="checkAnswer(this, false)">GMT+5:30</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: UTC (Zulu).</strong> Aviation uses UTC, spoken "Zulu".
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. Normally the time is transmitted as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The full hours and minutes always</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The minutes only, unless confusion is possible</li>
+          <li onclick="checkAnswer(this, false)">Local time with AM/PM</li>
+          <li onclick="checkAnswer(this, false)">Seconds only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The minutes only, unless confusion is possible.</strong> Minutes only is normal; the full hour and minutes are used if confusion could arise.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. On the readability scale, "readable but with difficulty" is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">1</li>
+          <li onclick="checkAnswer(this, false)">2</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">3</li>
+          <li onclick="checkAnswer(this, false)">5</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 3.</strong> 3 = readable but with difficulty; 5 = perfectly readable.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. A transponder code 7000 is read as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"seven thousand"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"seven zero zero zero"</li>
+          <li onclick="checkAnswer(this, false)">"seventy hundred"</li>
+          <li onclick="checkAnswer(this, false)">"flight level seven zero"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "seven zero zero zero".</strong> Squawk codes are digit by digit: "seven zero zero zero".
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. The numeral 5 is pronounced:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Five</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">FIFE</li>
+          <li onclick="checkAnswer(this, false)">Fiver</li>
+          <li onclick="checkAnswer(this, false)">Fifty</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: FIFE.</strong> 5 = "FIFE", altered for clarity.
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="question-block">
+        <div class="question-text">17. "SAY AGAIN" requests:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A frequency change</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Repetition of all or part of the last transmission</li>
+          <li onclick="checkAnswer(this, false)">A read-back</li>
+          <li onclick="checkAnswer(this, false)">A radio check</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Repetition of all or part of the last transmission.</strong> SAY AGAIN asks the other station to repeat.
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="question-block">
+        <div class="question-text">18. Good transmitting technique is summarised by:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Loud and fast</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">RSVP &mdash; Rhythm, Speed, Volume, Pitch</li>
+          <li onclick="checkAnswer(this, false)">Brevity only</li>
+          <li onclick="checkAnswer(this, false)">High pitch only</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: RSVP &mdash; Rhythm, Speed, Volume, Pitch.</strong> RSVP &mdash; steady rhythm, controlled (slightly slower) speed, even volume, level pitch.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B &mdash; Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Spell your registration VT-ABC using the phonetic alphabet.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Victor &ndash; Tango &ndash; Alfa &ndash; Bravo &ndash; Charlie.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How are the numerals 3, 5 and 9 pronounced, and why are they altered?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          "TREE", "FIFE" and "NIN-er". They are altered so they cannot be confused with similar-sounding words or with terms in other languages.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> State the two number rules and give an example of each.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Rule 1 &mdash; most numbers are spoken digit by digit (heading 270 = "two seven zero"). Rule 2 &mdash; whole hundreds and thousands use HUNDRED/THOUSAND for altitude, height, cloud and visibility (2,500 ft = "two thousand five hundred").
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the difference between ROGER, WILCO and AFFIRM?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          ROGER means "I have received all your last transmission"; WILCO means "I understand and will comply"; AFFIRM means "yes". ROGER does not mean yes or will comply.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How is time transmitted in radiotelephony?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          In UTC (Zulu), normally as the minutes of the hour only, or as the full hours and minutes if confusion is possible, each digit spoken separately.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is the readability scale?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          1 &mdash; unreadable; 2 &mdash; readable now and then; 3 &mdash; readable but with difficulty; 4 &mdash; readable; 5 &mdash; perfectly readable.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>RSVP:</strong> Rhythm, Speed (slower for numbers), Volume, Pitch. Listen out, press &amp; pause, release fully.</li>
+        <li>Phonetics: Alfa&hellip;Zulu (watch Alfa, Juliett, Whiskey, X-ray). Numerals: <strong>TREE, FIFE, NIN-er, DAY-SEE-MAL</strong>.</li>
+        <li><strong>Rule 1</strong> digit-by-digit (call signs, headings, wind, QNH, squawk, freq, FL); <strong>Rule 2</strong> hundreds/thousands (altitude/height/cloud/vis).</li>
+        <li>Time = <strong>UTC (Zulu)</strong>, minutes only normally. <strong>ROGER</strong>=received &middot; <strong>WILCO</strong>=will comply &middot; <strong>AFFIRM/NEGATIVE</strong>=yes/no.</li>
+        <li>Readability <strong>1&ndash;5</strong>; radio check on initial contact.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 13 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

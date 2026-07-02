@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 10: Modulation | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 10 · REFERENCE DEPTH</span>
+      <h1 class="hero-title">Modulation</h1>
+      <p class="hero-subtitle">Your voice is a slow, weak vibration in the air. A radio wave is a fast, powerful oscillation that can leap across a continent. Modulation is the marriage of the two — the trick that lets a feeble 1 kHz voice ride on a 120 MHz carrier and arrive intact at a control tower. Get it right and you understand why aviation insists on AM for VHF and SSB for HF.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part II (iii) Systems for air-ground communication — carrier, AM/FM/SSB, the Tx/Rx chain</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Explain what a carrier wave is and the two reasons modulation is needed.</li>
+        <li>Describe AM in depth — sidebands, bandwidth, modulation depth and power distribution.</li>
+        <li>Describe FM — deviation, bandwidth (Carson's rule), noise immunity and the capture effect.</li>
+        <li>Compare DSB and SSB and calculate the power/bandwidth saving.</li>
+        <li>Explain why aviation uses AM on VHF and SSB on HF, and read emission designators.</li>
+        <li>Outline the transmitter chain and the superheterodyne receiver.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">10.1 The carrier & why we modulate</p>
+      <p>10.2 AM — sidebands & depth</p>
+      <p>10.3 AM power distribution</p>
+      <p>10.4 FM</p>
+      <p>10.5 DSB & SSB</p>
+      <p style="margin-top:0;">10.6 Why AM on VHF, SSB on HF</p>
+      <p>10.7 Emission designators</p>
+      <p>10.8 The Tx & Rx chains</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_10_hero.jpg" alt="Glowing Radio Wave Modulation">
+      <figcaption>Modulation is the process of loading information—like your voice or digital data—onto a high-frequency carrier wave.</figcaption>
+    </figure>
+
+    <h2>10.1 The carrier & why we modulate</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-info-circle"></i> FIRST PRINCIPLES — TWO REASONS WE CANNOT SEND THE VOICE DIRECTLY</div>
+      <p style="margin:0; line-height: 1.8;">You cannot simply connect a microphone to an antenna. <strong>First</strong>, an efficient antenna must be a fair fraction of a wavelength; a 1 kHz audio tone has a wavelength of 300 km, demanding an absurd aerial. <strong>Second</strong>, every voice would occupy the same low band, so no two stations could share the air. The solution is to put the voice onto a <strong>high-frequency carrier</strong>: the carrier needs only a short antenna, and each station can use a different carrier frequency. <strong>Modulation</strong> is the act of loading the voice onto the carrier.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> Definition — carrier & modulation</div>
+      <p style="margin:0;">The <strong>carrier wave</strong> is a high-frequency wave generated by the transmitter; on its own it carries <strong>no information</strong>. <strong>Modulation</strong> varies one property of the carrier — its <strong>amplitude</strong> or its <strong>frequency</strong> — in step with the low-frequency audio, so the information rides on the carrier and can be recovered at the receiver.</p>
+    </div>
+
+    <h2>10.2 AM — sidebands & modulation depth</h2>
+    
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-wave-square"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">In Amplitude Modulation, the <strong>height (amplitude)</strong> of the carrier is varied in step with the voice, while its frequency stays fixed. The outline (envelope) of the wave traces your voice.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-ruler-horizontal"></i> Sidebands & bandwidth</div>
+      <p style="margin:0; line-height:1.8;">
+        Mixing a carrier (fc) with an audio tone (fa) produces two new frequencies either side of the carrier: an <strong>upper sideband</strong> (fc + fa) and a <strong>lower sideband</strong> (fc − fa). The information lives in the sidebands; the carrier itself carries none.<br>
+        <span style="font-size: 1.1rem; font-weight: 700; color: #0f172a;">The total AM bandwidth = 2 &times; highest audio frequency.</span>
+      </p>
+    </div>
+
+    <div style="background: #0f172a; color: #38bdf8; text-align: center; font-size: 1.5rem; font-weight: 800; padding: 20px; border-radius: 8px; margin: 20px 0;">
+      Modulation depth m = V<sub>m</sub> / V<sub>c</sub>
+      <div style="font-size: 0.9rem; font-weight: 400; color: #94a3b8; margin-top: 10px;">V<sub>m</sub> = peak modulating (audio) voltage &middot; V<sub>c</sub> = carrier voltage &middot; usually expressed as a %</div>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-book"></i> Modulation depth (index)</div>
+      <p style="margin:0;">The <strong>depth of modulation</strong> is how strongly the carrier is varied. <strong>Too little</strong> (low %) wastes power and gives a weak, quiet signal; <strong>over 100% (over-modulation)</strong> distorts the audio and "splatters" energy into adjacent channels, causing interference.</p>
+    </div>
+
+    <h2>10.3 AM power distribution</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-battery-quarter"></i> WHY AM IS POWER-INEFFICIENT</div>
+      <p style="margin:0;">Even at full 100% modulation, <strong>two-thirds of the transmitted power sits in the carrier</strong>, which carries no information; only one-third is shared between the two sidebands. That waste is the motivation for SSB.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/am_power_distribution.jpg" alt="AM Power Distribution Pie Chart">
+      <figcaption>At 100% modulation depth, &approx;67% of the transmitter's power is wasted in the carrier, leaving only &approx;16.7% for each information-carrying sideband.</figcaption>
+    </figure>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-wrench"></i> Worked example — where the power goes</div>
+      <p style="margin:0; line-height: 1.8;">
+        At 100% modulation, of the total power: <strong>~67%</strong> is in the carrier, <strong>~16.7%</strong> in each sideband. The information-bearing power is only the two sidebands <strong>&approx; 33%</strong>.<br><br>
+        SSB throws away the carrier and one sideband, putting essentially <strong>all</strong> the transmitter's power into the single information-bearing sideband — a large efficiency gain, decisive over long HF distances.
+      </p>
+    </div>
+
+    <h2>10.4 FM — Frequency Modulation</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-wave-square"></i> IN PLAIN TERMS</div>
+      <p style="margin:0;">In FM the carrier's <strong>frequency</strong> is varied in step with the voice while its <strong>amplitude stays constant</strong>. The amount of frequency swing is the <strong>deviation</strong>. Because most noise affects amplitude, FM is far more noise-resistant — which is why it is used for music broadcasting.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-ruler-horizontal"></i> FM bandwidth — Carson's rule</div>
+      <p style="margin:0;">FM bandwidth &approx; <strong>2 &times; (deviation + highest audio frequency)</strong>. FM generally needs <strong>more bandwidth</strong> than AM, which is part of why narrow aviation channels stayed with AM.</p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Exam trap — the capture effect</div>
+      <p style="margin:0;">FM has a <strong>capture effect</strong>: the stronger of two signals captures the receiver and the weaker is silenced. In aviation that is dangerous — a second aircraft transmitting would be <strong>silently lost. This is the key reason aviation does NOT use FM for VHF voice.</strong></p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_ten_one.jpg" alt="AM vs FM Waveforms and Sidebands">
+      <figcaption>Figure 10.1 — AM vs FM waveforms, the sidebands, and the concept behind Single Side Band (SSB).</figcaption>
+    </figure>
+
+    <h2>10.5 DSB & SSB</h2>
+
+    <div class="table-container">
+      <div class="table-caption">Modulation Modes Compared</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Mode</th>
+            <th>What is transmitted</th>
+            <th>Trade-off</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>DSB (full AM)</strong></td><td>Carrier + both sidebands</td><td>Simple receiver; but wasteful — most power in the carrier</td></tr>
+          <tr><td><strong>DSB-SC</strong></td><td>Both sidebands, carrier suppressed</td><td>Saves the carrier power; needs carrier reinsertion</td></tr>
+          <tr><td style="color:#0d9488; font-weight:700;">SSB</td><td style="color:#0d9488; font-weight:700;">One sideband only; carrier & other sideband suppressed</td><td style="color:#0d9488; font-weight:700;">Far more power- and bandwidth-efficient — ideal for HF long range</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>10.6 Why AM on VHF, SSB on HF</h2>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-balance-scale"></i> THE TWO DESIGN DECISIONS, SIDE BY SIDE</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>VHF voice = AM:</strong> if two aircraft transmit together on the same VHF frequency, AM produces an audible <strong>heterodyne squeal</strong> — everyone hears that two stations "stepped on" each other and can re-transmit. With FM's capture effect, one would simply be lost. AM's "you'll hear the clash" behaviour is a <strong>safety feature</strong>.<br><br>
+        <strong>HF voice = SSB:</strong> over oceanic distances, efficiency and bandwidth matter most, so HF uses the power- and bandwidth-saving SSB.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-battery-full"></i> Why SSB for HF</div>
+      <p style="margin:0;">SSB puts all the transmitter's power into the one sideband that carries information and uses <strong>half the bandwidth</strong> of full AM. Over thousands of miles of HF that efficiency is decisive — so <strong>HF aviation voice uses SSB</strong>. The receiver must reinsert a local carrier to demodulate it.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-plane"></i> Cockpit reality</div>
+      <p style="margin:0;">That brief squeal you sometimes hear after a call is two aircraft transmitting together. Because VHF is AM, you know it happened and can say "say again, two together." That awareness is exactly what AM buys aviation — and what FM would hide.</p>
+    </div>
+
+    <h2>10.7 Emission designators</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-code"></i> The ICAO/ITU three-symbol code</div>
+      <p style="margin:0; line-height: 1.8;">
+        An emission is classified by three symbols: <strong>type of modulation &middot; nature of the signal &middot; type of information</strong>. The two you must recognise:<br>
+        <strong>A3E</strong> = amplitude-modulated double-sideband telephony (aviation VHF voice)<br>
+        <strong>J3E</strong> = single-sideband suppressed-carrier telephony (aviation HF voice).
+      </p>
+    </div>
+
+    <h2>10.8 The transmitter & receiver chains</h2>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-broadcast-tower"></i> Transmitter — voice to airwaves</div>
+      <p style="margin:0;">Microphone &rarr; audio amplifier &rarr; <strong>oscillator</strong> (generates the carrier) &rarr; <strong>modulator</strong> (mixes audio onto the carrier) &rarr; <strong>RF power amplifier</strong> &rarr; antenna.</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-satellite-dish"></i> Receiver — airwaves to voice (superheterodyne)</div>
+      <p style="margin:0; line-height: 1.8;">Antenna &rarr; RF amplifier &rarr; <strong>mixer + local oscillator</strong> (shifts the signal to a fixed <strong>intermediate frequency</strong>, IF) &rarr; IF amplifier (most gain/selectivity) &rarr; <strong>detector / demodulator</strong> (recovers the audio) &rarr; audio amplifier &rarr; speaker/headset. <strong>AGC/AVC</strong> holds the output level steady (Chapter 11).</p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-cogs"></i> Why "superheterodyne"</div>
+      <p style="margin:0;">Converting every incoming signal to one fixed IF means the gain and selectivity stages are always tuned to the same frequency — far easier to make highly selective than tuning every stage to each station. It is the architecture of virtually every aviation receiver.</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/tx_rx_chains.jpg" alt="Transmitter and Superheterodyne Receiver Chains">
+      <figcaption>The essential block diagrams of a radio transmitter and a superheterodyne receiver.</figcaption>
+    </figure>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 10</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Carrier</strong></td><td>High-frequency wave; carries no info until modulated</td></tr>
+          <tr><td><strong>AM</strong></td><td>Amplitude varied; bandwidth = 2 &times; highest audio; info in sidebands</td></tr>
+          <tr><td><strong>Modulation depth</strong></td><td>m = Vm/Vc; over 100% &rarr; distortion & splatter</td></tr>
+          <tr><td><strong>AM power (100%)</strong></td><td>&approx; 67% carrier, &approx; 33% sidebands (the only useful part)</td></tr>
+          <tr><td><strong>FM</strong></td><td>Frequency varied; noise-resistant; capture effect; Carson BW = 2(dev + fmax)</td></tr>
+          <tr><td><strong>SSB</strong></td><td>One sideband, carrier suppressed; efficient; HF voice</td></tr>
+          <tr><td><strong>Aviation choice</strong></td><td>VHF voice = AM (A3E) &middot; HF voice = SSB (J3E)</td></tr>
+          <tr><td><strong>Receiver</strong></td><td>Superheterodyne — converts to a fixed IF</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A — MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. In amplitude modulation, what is varied?</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">The amplitude of the carrier</li>
+          <li onclick="checkAnswer(this, false)">The frequency of the carrier</li>
+          <li onclick="checkAnswer(this, false)">The speed of light</li>
+          <li onclick="checkAnswer(this, false)">The antenna length</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The amplitude of the carrier.</strong> AM varies the carrier's amplitude in step with the audio; frequency stays fixed.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. One reason a voice cannot be transmitted directly is that it would require:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Too little power</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">An impractically long antenna (its wavelength is enormous)</li>
+          <li onclick="checkAnswer(this, false)">A satellite</li>
+          <li onclick="checkAnswer(this, false)">Frequency modulation</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: An impractically long antenna (its wavelength is enormous).</strong> Audio wavelengths are hundreds of km; modulating a high-frequency carrier allows a short antenna and frequency sharing.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. The information in an AM signal is carried in the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Carrier</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Sidebands</li>
+          <li onclick="checkAnswer(this, false)">Antenna</li>
+          <li onclick="checkAnswer(this, false)">Local oscillator</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Sidebands.</strong> The carrier carries no information; the sidebands do.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. If the highest audio frequency is 3 kHz, the AM bandwidth is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">3 kHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">6 kHz</li>
+          <li onclick="checkAnswer(this, false)">1.5 kHz</li>
+          <li onclick="checkAnswer(this, false)">9 kHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 6 kHz.</strong> AM bandwidth = 2 &times; highest audio frequency = 2 &times; 3 = 6 kHz.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. Modulating beyond 100% depth causes:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A clearer signal</li>
+          <li onclick="checkAnswer(this, false)">More range</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Distortion and interference to adjacent channels</li>
+          <li onclick="checkAnswer(this, false)">Lower frequency</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Distortion and interference to adjacent channels.</strong> Over-modulation distorts the audio and splatters into neighbouring channels.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. At 100% AM modulation, the proportion of power in the carrier is about:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">33%</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">67%</li>
+          <li onclick="checkAnswer(this, false)">100%</li>
+          <li onclick="checkAnswer(this, false)">0%</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 67%.</strong> About two-thirds of the power is in the carrier, which carries no information.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. In FM, what is held constant?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Frequency</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Amplitude</li>
+          <li onclick="checkAnswer(this, false)">Wavelength of the audio</li>
+          <li onclick="checkAnswer(this, false)">Bandwidth</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Amplitude.</strong> FM varies frequency while amplitude stays constant — hence its noise immunity.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. FM is generally NOT used for VHF aviation voice because of its:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Low cost</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Capture effect (weaker signal silenced)</li>
+          <li onclick="checkAnswer(this, false)">Wide range</li>
+          <li onclick="checkAnswer(this, false)">Use of sidebands</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Capture effect (weaker signal silenced).</strong> FM's capture effect would silently suppress a second transmitting aircraft — unsafe.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. Aviation VHF voice uses AM mainly because:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">It is cheaper</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Two simultaneous transmissions produce an audible heterodyne, alerting users</li>
+          <li onclick="checkAnswer(this, false)">It has the longest range</li>
+          <li onclick="checkAnswer(this, false)">It needs no antenna</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Two simultaneous transmissions produce an audible heterodyne, alerting users.</strong> AM reveals when two stations transmit together (a squeal); FM's capture effect would silently lose one.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. SSB is preferred for HF because it is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Simpler to receive</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">More power- and bandwidth-efficient</li>
+          <li onclick="checkAnswer(this, false)">Immune to all fading</li>
+          <li onclick="checkAnswer(this, false)">Higher frequency</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: More power- and bandwidth-efficient.</strong> SSB suppresses the carrier and one sideband, concentrating power and halving bandwidth.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. SSB uses how much bandwidth compared with full AM?</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Twice</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Half</li>
+          <li onclick="checkAnswer(this, false)">The same</li>
+          <li onclick="checkAnswer(this, false)">Four times</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Half.</strong> Transmitting one sideband instead of two halves the bandwidth.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. The emission designator for aviation VHF voice (AM telephony) is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">J3E</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A3E</li>
+          <li onclick="checkAnswer(this, false)">F3E</li>
+          <li onclick="checkAnswer(this, false)">A1A</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A3E.</strong> A3E = AM double-sideband telephony (VHF voice); J3E = SSB telephony (HF voice).
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. The aviation receiver architecture that converts every signal to a fixed intermediate frequency is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Direct-conversion receiver</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Superheterodyne receiver</li>
+          <li onclick="checkAnswer(this, false)">Crystal set</li>
+          <li onclick="checkAnswer(this, false)">Regenerative receiver</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Superheterodyne receiver.</strong> The superheterodyne mixes the signal down to a fixed IF for easy selectivity and gain.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. In the transmitter chain, the stage that generates the carrier is the:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Modulator</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Oscillator</li>
+          <li onclick="checkAnswer(this, false)">Power amplifier</li>
+          <li onclick="checkAnswer(this, false)">Antenna</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Oscillator.</strong> The oscillator generates the carrier; the modulator then mixes the audio onto it.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. Modulation depth m is defined as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Carrier voltage &divide; audio voltage</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Audio (modulating) voltage &divide; carrier voltage</li>
+          <li onclick="checkAnswer(this, false)">Frequency &divide; wavelength</li>
+          <li onclick="checkAnswer(this, false)">Power &divide; bandwidth</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Audio (modulating) voltage &divide; carrier voltage.</strong> m = Vm/Vc, usually expressed as a percentage.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. Compared with AM, FM generally requires:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Less bandwidth</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">More bandwidth</li>
+          <li onclick="checkAnswer(this, false)">No bandwidth</li>
+          <li onclick="checkAnswer(this, false)">The same bandwidth</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: More bandwidth.</strong> By Carson's rule, FM bandwidth &approx; 2(deviation + fmax), usually more than AM.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B — Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is modulation, and why is it needed?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Modulation varies a property of a high-frequency carrier — its amplitude or frequency — in step with the low-frequency audio. It is needed because audio wavelengths are too long for a practical antenna and every voice would occupy the same band; a high-frequency carrier allows a short antenna and lets stations share the spectrum.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Describe AM, its sidebands and bandwidth.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          In AM the carrier's amplitude follows the audio. Mixing produces upper and lower sidebands either side of the carrier; the information is in the sidebands. The bandwidth is twice the highest audio frequency.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Why does aviation use AM for VHF voice?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          With AM, two aircraft transmitting simultaneously produce an audible heterodyne squeal, so everyone knows a clash occurred and can re-transmit. FM's capture effect would silently suppress the weaker signal — a safety hazard.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Why is SSB used for HF?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          SSB suppresses the carrier and one sideband, putting all the power into the single information-bearing sideband and using half the bandwidth — far more efficient over long HF distances.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is over-modulation and its effect?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Modulating beyond 100% depth, which distorts the transmitted audio and causes splatter — interference into adjacent channels.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Outline the superheterodyne receiver.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          The signal is amplified, then mixed with a local oscillator to a fixed intermediate frequency, amplified at the IF (where most gain and selectivity occur), demodulated to recover the audio, then amplified to the speaker, with AGC holding the level steady.
+        </div>
+      </details>
+
+      <h3 style="margin-top: 40px;">Part C — Numerical problems (tap for worked solutions)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P1. A carrier of 120.000 MHz is amplitude-modulated by a 2.5 kHz tone. Give the sideband frequencies and bandwidth.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          USB = 120.0000 + 0.0025 = <strong>120.0025 MHz</strong>; LSB = <strong>119.9975 MHz</strong>;<br>bandwidth = 2 &times; 2.5 = <strong>5 kHz</strong>.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P2. A carrier of 10 V is modulated by a 6 V audio signal. Find the modulation depth.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          m = Vm/Vc = 6/10 = 0.6 = <strong>60%</strong> (within limits).
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: #eff6ff; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: #6366f1; outline: none;"><i class="fas fa-calculator"></i> P3. An FM signal has a deviation of 5 kHz and a top audio of 3 kHz. Estimate its bandwidth.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid #bfdbfe; padding-top: 15px; font-size: 1rem;">
+          <strong>Solution:</strong><br>
+          Carson's rule: BW &approx; 2(5 + 3) = <strong>16 kHz</strong>.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>Carrier</strong> = blank vehicle; modulation loads the voice (needed for a short antenna + frequency sharing).</li>
+        <li><strong>AM</strong> varies amplitude; <strong>BW = 2 &times; fmax</strong>; info in sidebands; &approx;67% power wasted in the carrier.</li>
+        <li><strong>FM</strong> varies frequency, noise-resistant, wider bandwidth, has the <strong>capture effect</strong>.</li>
+        <li><strong>SSB</strong> = one sideband, carrier suppressed, half the bandwidth &rarr; <strong>HF (J3E)</strong>; <strong>AM = VHF voice (A3E)</strong>.</li>
+        <li>Over-modulation (>100%) &rarr; distortion & splatter. Receiver = <strong>superheterodyne</strong> (fixed IF).</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 10 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

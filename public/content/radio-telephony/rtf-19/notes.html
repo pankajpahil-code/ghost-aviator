@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 19: ATS Surveillance Phraseology | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 19 &middot; REFERENCE DEPTH</span>
+      <h1 class="hero-title">ATS Surveillance Phraseology</h1>
+      <p class="hero-subtitle">When a controller can see you on a surveillance display &mdash; radar or ADS-B &mdash; a whole vocabulary opens up: identifying you, turning you for spacing, warning you of conflicting traffic, ordering an avoiding turn, and managing your transponder. This chapter gathers the surveillance phraseology that appears across approach and area control.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> SYLLABUS MAP</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Part III (iv) General ATS surveillance &mdash; identification &amp; vectoring &middot; traffic info &amp; avoiding action &middot; SSR &middot; radar assistance to comms-failure aircraft &middot; alerting</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-bullseye"></i> Learning objectives — by the end of this chapter you will be able to…</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Use identification and vectoring phraseology and respond correctly.</li>
+        <li>Receive traffic information and act on avoiding-action instructions.</li>
+        <li>Use the full set of SSR (transponder) phraseology.</li>
+        <li>Understand how radar assists an aircraft that has a communications failure.</li>
+        <li>Recognise alerting and service-termination phraseology.</li>
+      </ul>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">19.1 Identification</p>
+      <p>19.2 Vectoring</p>
+      <p>19.3 Traffic information &amp; avoiding action</p>
+      <p>19.4 SSR / transponder phraseology</p>
+      <p style="margin-top:0;">19.5 Radar assistance to comms failure</p>
+      <p>19.6 Alerting &amp; termination of service</p>
+      <p>&star; Numbers to memorise</p>
+      <p>? Question bank</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_19_hero.jpg" alt="Air Traffic Controller Radar Scope">
+      <figcaption>When an aircraft is positively identified on a surveillance display, the controller can issue vectors, provide radar separation, and call out conflicting traffic using the clock-code system.</figcaption>
+    </figure>
+
+    <h2>19.1 Identification</h2>
+    
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-search-location"></i> FIRST PRINCIPLES &mdash; THE CONTROLLER MUST BE SURE WHICH BLIP IS YOU</div>
+      <p style="margin:0; line-height: 1.8;">
+        Before a controller can vector you or give you radar separation, they must <strong>positively identify</strong> your return on the display. They confirm it with "<strong>identified</strong>" (often with a position), or tell you "<strong>not identified</strong>". Common methods are a <strong>squawk ident</strong>, observing a turn, or correlating your reported position.
+      </p>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Phrase</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>"Squawk [code]"</strong></td><td>Set the transponder code</td></tr>
+          <tr><td><strong>"Squawk ident"</strong></td><td>Press IDENT to flash the return for identification</td></tr>
+          <tr><td><strong>"Identified [position]"</strong></td><td>You are identified on radar</td></tr>
+          <tr><td><strong>"Not identified, resume own navigation"</strong></td><td>You are not identified; navigate yourself</td></tr>
+          <tr><td><strong>"For identification, turn left heading &hellip;"</strong></td><td>Turn so the controller can identify you</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>19.2 Vectoring</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-route"></i> Headings for a purpose</div>
+      <p style="margin:0; line-height: 1.8;">
+        A <strong>vector</strong> is a heading the controller assigns &mdash; for sequencing, spacing, separation or to position for an approach. It usually states the <strong>reason</strong>: "turn left heading two seven zero <strong>for spacing</strong>". When the vectoring is finished, the controller says "<strong>resume own navigation</strong>" (with a position/route).
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; identification &amp; vector</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, squawk four three two one and ident.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Squawk four three two one, identing, Ghostair Alfa Bravo Charlie.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> Ghostair Alfa Bravo Charlie, identified five miles north of the field, turn right heading one two zero for sequencing.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Right heading one two zero, Ghostair Alfa Bravo Charlie.</div>
+      </div>
+    </div>
+
+    <h2>19.3 Traffic information &amp; avoiding action</h2>
+
+    <div class="callout box-blue" style="border-left-color: #f59e0b; background:#fffbeb;">
+      <div class="callout-title" style="color:#f59e0b;"><i class="fas fa-exclamation-circle"></i> Traffic information</div>
+      <p style="margin:0; line-height: 1.8;">
+        The controller describes conflicting traffic by its <strong>clock-bearing, distance, direction of movement and (if known) level/type</strong>: "traffic, eleven o'clock, five miles, opposite direction, indicating flight level three five zero". You reply "looking out" and, if you see it, "traffic in sight".
+      </p>
+    </div>
+
+    <div class="callout box-red">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Avoiding action &mdash; act immediately</div>
+      <p style="margin:0; line-height: 1.8;">
+        "<strong>Avoiding action</strong>" is an immediate instruction to turn (and/or climb/descend) to avoid a confliction &mdash; for example "<strong>avoiding action, turn left immediately heading one eight zero</strong>, traffic &hellip;". It is obeyed at once and read back; the reason follows the instruction so no time is lost.
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; traffic &amp; avoiding action</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, traffic, two o'clock, four miles, crossing left to right, type unknown.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> VT-ABC, looking out &hellip; traffic in sight.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, avoiding action, turn left immediately heading three six zero, traffic now one o'clock, two miles.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">A/C</span> Avoiding action, left heading three six zero, VT-ABC.</div>
+      </div>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/fig_nineteen_one.jpg" alt="Reading traffic information using the clock code">
+      <figcaption>Figure 19.1 &mdash; Reading traffic information: The clock code provides a relative bearing to the conflicting traffic based on the aircraft's nose being 12 o'clock.</figcaption>
+    </figure>
+
+    <h2>19.4 SSR / transponder phraseology</h2>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Phrase</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>"Squawk [code]"</strong></td><td>Set the four-digit code</td></tr>
+          <tr><td><strong>"Squawk ident"</strong></td><td>Operate the IDENT feature</td></tr>
+          <tr><td><strong>"Squawk Charlie" / "squawk Mode C"</strong></td><td>Select altitude reporting (Mode C)</td></tr>
+          <tr><td><strong>"Confirm squawk [code]"</strong></td><td>Confirm the code set</td></tr>
+          <tr><td><strong>"Reset squawk [code]"</strong></td><td>Re-select the code (e.g. after a fault)</td></tr>
+          <tr><td><strong>"Squawk standby"</strong></td><td>Select standby (no replies)</td></tr>
+          <tr><td><strong>"Stop squawk Charlie, wrong indication"</strong></td><td>Switch off altitude reporting (faulty)</td></tr>
+          <tr><td><strong>"Check altimeter setting and confirm level"</strong></td><td>Mode C disagrees &mdash; verify QNH and level</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #14b8a6; background:#f0fdfa;">
+      <div class="callout-title" style="color:#14b8a6;"><i class="fas fa-sort-numeric-up-alt"></i> Special codes (from Chapter 12)</div>
+      <p style="margin:0; line-height: 1.8;">
+        <strong>7500</strong> hijack &middot; <strong>7600</strong> radio failure &middot; <strong>7700</strong> emergency &middot; <strong>7000</strong> conspicuity (VFR) &middot; <strong>2000</strong> entering from a non-SSR area. These are set without being told, in the relevant situation.
+      </p>
+    </div>
+
+    <h2>19.5 Radar assistance to a comms-failure aircraft</h2>
+
+    <div class="callout box-blue" style="border-left-color: #8b5cf6; background:#eef2ff;">
+      <div class="callout-title" style="color:#8b5cf6;"><i class="fas fa-hands-helping"></i> HELPING AN AIRCRAFT THAT CANNOT REPLY</div>
+      <p style="margin:0; line-height: 1.8;">
+        If an aircraft has a <strong>receiver-only</strong> or partial communications failure but its transponder still works, the controller can still <strong>see and assist</strong> it. The controller transmits instructions <strong>blind</strong> and asks the pilot to acknowledge by transponder: "<strong>reply not received, if you read [station], squawk ident</strong>" or "<strong>acknowledge by [a stated transponder action / a turn]</strong>".
+      </p>
+    </div>
+
+    <div class="callout box-amber">
+      <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> Cockpit reality</div>
+      <p style="margin:0; line-height: 1.8;">
+        Even with no voice, a working transponder turns your aircraft from a guess into a tracked, instructable target &mdash; which is why you keep the transponder ON and squawk 7600 the moment a radio fails (full procedure in Chapter 20).
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: #6366f1; background:#eff6ff;">
+      <div class="callout-title" style="color:#6366f1;"><i class="fas fa-microphone"></i> Transcript &mdash; radar assistance, receiver still working</div>
+      <div style="margin-top:10px;">
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, if you read Delhi Approach, squawk ident.</div>
+        <div style="margin-bottom: 8px;"><span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px;">ATC</span> VT-ABC, ident observed, I will provide vectors. Turn left heading two seven zero, acknowledge with ident.</div>
+      </div>
+    </div>
+
+    <h2>19.6 Alerting &amp; termination of service</h2>
+
+    <div class="callout box-blue" style="border-left-color: #E91E63; background:#fff5f7;">
+      <div class="callout-title" style="color:#E91E63;"><i class="fas fa-map-marked-alt"></i> Position relative to known features</div>
+      <p style="margin:0; line-height: 1.8;">
+        The controller may give your position relative to a feature for situational awareness or for an aircraft in difficulty: "position five miles east of [VOR]". When radar service ends &mdash; leaving cover, or at transfer &mdash; the controller says "<strong>identification terminated [instructions]</strong>" or "<strong>radar service terminated, resume own navigation</strong>".
+      </p>
+    </div>
+
+    <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
+      <div class="callout-title" style="color:var(--success);"><i class="fas fa-lightbulb"></i> Mnemonic &mdash; the surveillance flow</div>
+      <p style="margin:0;"><strong>Identify &rarr; Vector &rarr; Inform/Avoid &rarr; (manage SSR) &rarr; Terminate.</strong> Every surveillance interaction runs through this loop.</p>
+    </div>
+
+    <!-- Numbers to Memorise -->
+    <h2>&star; Numbers to memorise</h2>
+    <div class="table-container">
+      <div class="table-caption">Essential Facts for Chapter 19</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Identification</strong></td><td>"Identified" / "not identified"; squawk ident, turn, or position correlation</td></tr>
+          <tr><td><strong>Vector</strong></td><td>Heading + reason ("for spacing/sequencing"); ends "resume own navigation"</td></tr>
+          <tr><td><strong>Traffic info</strong></td><td>Clock bearing &middot; distance &middot; direction &middot; level/type</td></tr>
+          <tr><td><strong>Avoiding action</strong></td><td>Immediate turn/climb; instruction first, reason after; read back</td></tr>
+          <tr><td><strong>SSR phrases</strong></td><td>Squawk &middot; ident &middot; Charlie (Mode C) &middot; confirm &middot; reset &middot; standby</td></tr>
+          <tr><td><strong>Comms-failure assistance</strong></td><td>Transmit blind; "if you read, squawk ident"; acknowledge by transponder</td></tr>
+          <tr><td><strong>Termination</strong></td><td>"Identification/radar service terminated, resume own navigation"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section">
+      <div class="self-test-header">
+        <i class="fas fa-pencil-alt"></i> Question bank
+      </div>
+
+      <h3>Part A &mdash; MCQs (click an option to check)</h3>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. "Squawk ident" instructs the pilot to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Change frequency</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Operate the transponder IDENT feature to flash the return</li>
+          <li onclick="checkAnswer(this, false)">Set 7700</li>
+          <li onclick="checkAnswer(this, false)">Turn left</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Operate the transponder IDENT feature to flash the return.</strong> IDENT momentarily highlights the return so the controller can identify it.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. "Identified five miles north" means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">You must descend</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">The controller has positively identified your return</li>
+          <li onclick="checkAnswer(this, false)">You are not on radar</li>
+          <li onclick="checkAnswer(this, false)">You must squawk standby</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: The controller has positively identified your return.</strong> It confirms positive radar identification, often with a position.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. A vector is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A squawk code</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A heading assigned by the controller, usually with a reason</li>
+          <li onclick="checkAnswer(this, false)">A frequency</li>
+          <li onclick="checkAnswer(this, false)">A clearance to land</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A heading assigned by the controller, usually with a reason.</strong> Vectoring is the assignment of headings for spacing, separation or positioning.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. When vectoring ends, the controller says:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"Squawk standby"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"Resume own navigation"</li>
+          <li onclick="checkAnswer(this, false)">"Cleared to land"</li>
+          <li onclick="checkAnswer(this, false)">"Go around"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "Resume own navigation".</strong> "Resume own navigation" returns navigation responsibility to the pilot.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. Traffic information is given as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">A frequency and a level</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Clock bearing, distance, direction of movement, and level/type if known</li>
+          <li onclick="checkAnswer(this, false)">A squawk code</li>
+          <li onclick="checkAnswer(this, false)">A QNH</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Clock bearing, distance, direction of movement, and level/type if known.</strong> e.g. "traffic, two o'clock, four miles, crossing left to right".
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. "Avoiding action, turn left immediately heading 180" must be:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Considered and queried first</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Acted on at once and read back</li>
+          <li onclick="checkAnswer(this, false)">Ignored if VFR</li>
+          <li onclick="checkAnswer(this, false)">Acknowledged with "roger"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Acted on at once and read back.</strong> Avoiding action is an immediate manoeuvre, executed at once and read back.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. "Squawk Charlie" instructs the pilot to:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Set code 7700</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Select Mode C (altitude reporting)</li>
+          <li onclick="checkAnswer(this, false)">Squawk standby</li>
+          <li onclick="checkAnswer(this, false)">Ident</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Select Mode C (altitude reporting).</strong> "Charlie"/Mode C turns on pressure-altitude reporting.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. "Squawk standby" means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Reply normally</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Select standby &mdash; the transponder does not reply</li>
+          <li onclick="checkAnswer(this, false)">Set 2000</li>
+          <li onclick="checkAnswer(this, false)">Ident</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Select standby &mdash; the transponder does not reply.</strong> Standby stops the transponder replying (e.g. on the ground).
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. If a controller suspects the Mode C readout is wrong, they may say:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"Squawk ident"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"Check altimeter setting and confirm level" / "stop squawk Charlie, wrong indication"</li>
+          <li onclick="checkAnswer(this, false)">"Resume own navigation"</li>
+          <li onclick="checkAnswer(this, false)">"Cleared to land"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "Check altimeter setting and confirm level" / "stop squawk Charlie, wrong indication".</strong> A Mode C disagreement prompts a level/altimeter check or stopping Mode C.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. A controller can still assist an aircraft with a receiver-only failure if it has:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">No transponder</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">A working transponder (so it can be tracked and instructed blind)</li>
+          <li onclick="checkAnswer(this, false)">A working ELT only</li>
+          <li onclick="checkAnswer(this, false)">Only HF</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: A working transponder (so it can be tracked and instructed blind).</strong> A working transponder lets the controller track it and pass blind instructions acknowledged by squawk.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. To get a no-voice aircraft to confirm it can hear, the controller says:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"Confirm visual"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"If you read [station], squawk ident"</li>
+          <li onclick="checkAnswer(this, false)">"Squawk standby"</li>
+          <li onclick="checkAnswer(this, false)">"Resume own navigation"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "If you read [station], squawk ident".</strong> An ident in response confirms the pilot is receiving.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. "Resume own navigation" returns to the pilot:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">The landing clearance</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Responsibility for navigating the aircraft</li>
+          <li onclick="checkAnswer(this, false)">The squawk code</li>
+          <li onclick="checkAnswer(this, false)">The frequency</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Responsibility for navigating the aircraft.</strong> It ends ATC heading-vectoring and the pilot navigates again.
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block">
+        <div class="question-text">13. The transponder code for general emergency is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">7500</li>
+          <li onclick="checkAnswer(this, false)">7600</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">7700</li>
+          <li onclick="checkAnswer(this, false)">7000</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 7700.</strong> 7700 emergency, 7600 radio failure, 7500 hijack.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block">
+        <div class="question-text">14. "Traffic in sight" tells the controller:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">You will not avoid it</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">You have visually acquired the reported traffic</li>
+          <li onclick="checkAnswer(this, false)">You have a radio failure</li>
+          <li onclick="checkAnswer(this, false)">You are identified</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: You have visually acquired the reported traffic.</strong> It confirms you can see the traffic the controller described.
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block">
+        <div class="question-text">15. Radar service termination is phrased as:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">"Squawk ident"</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">"Radar service terminated, resume own navigation"</li>
+          <li onclick="checkAnswer(this, false)">"Cleared to land"</li>
+          <li onclick="checkAnswer(this, false)">"Avoiding action"</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: "Radar service terminated, resume own navigation".</strong> When leaving cover or at transfer, the radar/identification service is terminated.
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block">
+        <div class="question-text">16. The general surveillance interaction sequence is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Land &rarr; taxi &rarr; park</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Identify &rarr; vector &rarr; inform/avoid &rarr; manage SSR &rarr; terminate</li>
+          <li onclick="checkAnswer(this, false)">Climb &rarr; cruise &rarr; descend</li>
+          <li onclick="checkAnswer(this, false)">Squawk &rarr; ident &rarr; land</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Identify &rarr; vector &rarr; inform/avoid &rarr; manage SSR &rarr; terminate.</strong> Identify, vector, give traffic info/avoiding action, manage the transponder, then terminate.
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Part B &mdash; Oral / viva (tap to reveal model answers)</h3>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How does a controller identify an aircraft on radar?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          By a transponder ident ("squawk ident"), by observing an instructed turn, or by correlating the aircraft's reported position; the controller then confirms "identified", usually with a position.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> What is a vector, and how is the service ended?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          A vector is a heading assigned by the controller, usually with a reason such as spacing or sequencing. When complete the controller says "resume own navigation".
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How is traffic information given, and what is avoiding action?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          Traffic is described by clock bearing, distance, direction of movement and, if known, level or type. Avoiding action is an immediate instruction to turn or change level to avoid a confliction, given instruction-first then reason, executed at once and read back.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> Give five SSR phraseology items and their meanings.</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          "Squawk [code]" &mdash; set the code; "squawk ident" &mdash; operate IDENT; "squawk Charlie/Mode C" &mdash; select altitude reporting; "confirm/reset squawk" &mdash; verify/re-select; "squawk standby" &mdash; select standby so it does not reply.
+        </div>
+      </details>
+
+      <details class="oral-expandable" style="border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; background: white; padding: 15px 20px;">
+        <summary style="font-weight: 700; cursor: pointer; color: var(--secondary); outline: none;"><i class="fas fa-question-circle"></i> How can a controller assist an aircraft with a communications failure?</summary>
+        <div class="oral-answer" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; font-size: 1rem;">
+          <strong>Model Answer:</strong><br>
+          If the aircraft can still receive and its transponder works, the controller transmits instructions blind and asks the pilot to acknowledge by transponder &mdash; "if you read, squawk ident" &mdash; and then provides vectors, with each acknowledged by ident.
+        </div>
+      </details>
+
+    </div>
+
+    <!-- 60-Second Revision Card -->
+    <div class="revision-card">
+      <h3><i class="fas fa-bolt"></i> 60-SECOND REVISION CARD</h3>
+      <ul>
+        <li><strong>Identify</strong> (squawk ident / turn / position) &rarr; "identified" or "not identified".</li>
+        <li><strong>Vector</strong> = heading + reason; ends "<strong>resume own navigation</strong>".</li>
+        <li>Traffic = <strong>clock &middot; distance &middot; direction &middot; level/type</strong>. <strong>Avoiding action</strong> = immediate, read back.</li>
+        <li>SSR: squawk &middot; ident &middot; <strong>Charlie (Mode C)</strong> &middot; confirm &middot; reset &middot; standby. Codes <strong>7500/7600/7700/7000/2000</strong>.</li>
+        <li>Comms failure: "<strong>if you read, squawk ident</strong>", vectors acknowledged by transponder. Service ends "terminated, resume own navigation".</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 19 (reference depth)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

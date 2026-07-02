@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 23: Numbers to Memorise — Master Tables | RTR(A) Mastery</title>
+
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/vendor/fa/css/all.min.css">
+  <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
+
+  <style>
+    /* Table styling for Chapter 23 Master Tables */
+    .master-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .master-table th {
+      background: var(--primary);
+      color: white;
+      padding: 15px;
+      text-align: left;
+      font-size: 1.1rem;
+    }
+    .master-table td {
+      padding: 15px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .master-table tr:last-child td {
+      border-bottom: none;
+    }
+    .master-table tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    .cue-col {
+      font-weight: 700;
+      color: var(--primary);
+      width: 30%;
+    }
+    .val-col {
+      color: var(--text-color);
+      width: 70%;
+    }
+    /* Hideable value column for self-testing */
+    .self-test-mode .val-col-content {
+      filter: blur(8px);
+      transition: filter 0.3s;
+      cursor: pointer;
+    }
+    .self-test-mode .val-col-content:hover,
+    .self-test-mode .val-col-content.revealed {
+      filter: blur(0);
+    }
+    
+    .quick-card {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .quick-card-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+    }
+  </style>
+
+  <script>
+    window.addEventListener('load', () => {
+      const container = document.createElement('div');
+      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
+      for (let i = 0; i < 100; i++) {
+        const wm = document.createElement('div');
+        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
+        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
+        wrapper.appendChild(wm);
+      }
+      container.appendChild(wrapper);
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('details').forEach(el => el.setAttribute('open', ''));
+      document.body.classList.remove('self-test-mode');
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach(el => el.removeAttribute('open'));
+    });
+
+    function toggleAnswer(btn) {
+      const block = btn.nextElementSibling;
+      if (block.style.display === 'block') {
+        block.style.display = 'none';
+        btn.innerText = 'Show Answer';
+      } else {
+        block.style.display = 'block';
+        btn.innerText = 'Hide Answer';
+      }
+    }
+
+    function checkAnswer(selectedOption, isCorrect) {
+      const list = selectedOption.parentElement;
+      const options = list.getElementsByTagName('li');
+      
+      for (let opt of options) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+      
+      if (isCorrect) {
+        selectedOption.classList.add('correct');
+      } else {
+        selectedOption.classList.add('incorrect');
+      }
+    }
+
+    function toggleSelfTestMode() {
+      document.body.classList.toggle('self-test-mode');
+      const btn = document.getElementById('selfTestBtn');
+      if (document.body.classList.contains('self-test-mode')) {
+        btn.innerHTML = '<i class="fas fa-eye"></i> Disable Blur / Reveal All';
+        btn.style.background = '#ef4444';
+      } else {
+        btn.innerHTML = '<i class="fas fa-eye-slash"></i> Enable Self-Test Mode (Blur Values)';
+        btn.style.background = 'var(--secondary)';
+        document.querySelectorAll('.val-col-content').forEach(el => el.classList.remove('revealed'));
+      }
+    }
+
+    function revealValue(el) {
+      if (document.body.classList.contains('self-test-mode')) {
+        el.classList.toggle('revealed');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+  </nav>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <span class="hero-label">CHAPTER 23 &middot; THE EXAM ARSENAL</span>
+      <h1 class="hero-title">Numbers to Memorise &mdash; Master Tables</h1>
+      <p class="hero-subtitle">Every figure, frequency, code and definition the examiner is most likely to demand, pulled together from all 22 chapters into one place. This is your final-week reference: read it, cover a column, and recite. If a number is here, it is worth knowing cold.</p>
+    </div>
+
+    <div class="callout box-blue">
+      <div class="callout-title"><i class="fas fa-map"></i> CONSOLIDATED FROM MODULES A, B &amp; C</div>
+      <p style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">Pair this chapter with the Chapter 24 Question Bank for your final exam preparation.</p>
+    </div>
+
+    <div class="objectives-box" style="border: 1px solid var(--border); border-left: 6px solid var(--secondary); padding: 30px; border-radius: 8px; background: white; margin-bottom: 40px;">
+      <h3 style="margin-top:0; color:var(--primary); font-size:1.2rem; font-weight:800; margin-bottom:15px;"><i class="fas fa-chalkboard-teacher"></i> How to use this chapter</h3>
+      <ul style="padding-left: 20px; line-height: 1.8;">
+        <li>Each table is a self-test: use the button below to blur the right-hand column, then tap/hover to reveal the value from the cue.</li>
+        <li>The "Quick cards" at the end are the reference sheets to photograph and carry.</li>
+        <li>Finish with the rapid-fire self-test, then move to the Chapter 24 question bank.</li>
+      </ul>
+      <button id="selfTestBtn" onclick="toggleSelfTestMode()" style="margin-top: 20px; background: var(--secondary); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 1rem;">
+        <i class="fas fa-eye-slash"></i> Enable Self-Test Mode (Blur Values)
+      </button>
+    </div>
+
+    <div style="column-count: 2; column-gap: 40px; margin-bottom: 40px; font-weight: 600; padding: 20px; background: #f8fafc; border-radius: 8px;">
+      <p style="margin-top:0;">A &middot; Regulations, bodies &amp; documents</p>
+      <p>B &middot; Licensing, Annexes &amp; equipment</p>
+      <p>C &middot; Q-codes, pressure &amp; definitions</p>
+      <p>D &middot; FIRs, frequencies &amp; AIS</p>
+      <p>E &middot; Meteorology &amp; RVR</p>
+      <p style="margin-top:0;">F &middot; Electrical &amp; wave relationships</p>
+      <p>G &middot; Frequency bands &amp; propagation</p>
+      <p>H &middot; Modulation &amp; equipment</p>
+      <p>I &middot; Navigation aids &amp; squawks</p>
+      <p>J &middot; Phraseology, numbers &amp; procedures</p>
+      <p>&star; Quick cards</p>
+      <p>? Rapid-fire self-test</p>
+    </div>
+
+    <figure class="cinematic-figure">
+      <img src="/content/radio-telephony/_assets/images/chapter_23_hero.jpg" alt="Pilot's kneeboard with quick reference tables">
+      <figcaption>When in doubt, consult the tables. These are the hard facts and figures you must know for both the written exam and the oral viva.</figcaption>
+    </figure>
+
+    <h2 id="tableA"><span style="background:var(--secondary); color:white; padding:4px 12px; border-radius:4px; margin-right:10px;">A</span> Regulations, bodies &amp; documents</h2>
+    <table class="master-table">
+      <thead>
+        <tr><th class="cue-col">Cue</th><th class="val-col">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cue-col">Chicago Convention</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Signed 7 Dec 1944 (52 States); in force 4 Apr 1947; created ICAO; 96 Articles, 19 Annexes</div></td></tr>
+        <tr><td class="cue-col">Article 1</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Complete &amp; exclusive sovereignty over national airspace</div></td></tr>
+        <tr><td class="cue-col">Article 38</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Notify ICAO of any differences from a Standard</div></td></tr>
+        <tr><td class="cue-col">ICAO</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">UN specialised agency &middot; HQ Montreal &middot; Assembly / Council(36) / ANC / Secretariat</div></td></tr>
+        <tr><td class="cue-col">ITU</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">UN agency &middot; HQ Geneva &middot; founded 1865 (oldest) &middot; ITU-R/T/D &middot; allocates spectrum (Radio Regs)</div></td></tr>
+        <tr><td class="cue-col">ITU Regions</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Region 1 (Europe/Africa/ME), Region 2 (Americas), Region 3 (Asia-Pacific — India)</div></td></tr>
+        <tr><td class="cue-col">IATA</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Airline trade association (not a regulator); 3-letter airport / 2-letter airline codes</div></td></tr>
+        <tr><td class="cue-col">Standard vs Recommended</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Standard = necessary (comply or file difference); Recommended = desirable</div></td></tr>
+        <tr><td class="cue-col">India</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">DGCA (regulator/CARs) &middot; AAI (ANS) &middot; WPC (spectrum/NFAP) &middot; BCAS (security) &middot; AAIB (investigation)</div></td></tr>
+        <tr><td class="cue-col">Key ICAO docs</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Annex 10 (telecom) &middot; Doc 4444 PANS-ATM &middot; Doc 8168 PANS-OPS &middot; Doc 9432 RTF Manual</div></td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="tableB"><span style="background:var(--secondary); color:white; padding:4px 12px; border-radius:4px; margin-right:10px;">B</span> Licensing, the 19 Annexes &amp; equipment</h2>
+    <table class="master-table">
+      <thead>
+        <tr><th class="cue-col">Cue</th><th class="val-col">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cue-col">RTR(A)</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Radio Telephone Operator (Restricted), Aeronautical — for the aeronautical mobile service</div></td></tr>
+        <tr><td class="cue-col">Two licences</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Operator's RTR(A) + aircraft radio station licence (apparatus, via WPC)</div></td></tr>
+        <tr><td class="cue-col">Governing law</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Bharatiya Vayuyan Adhiniyam 2024 &middot; RTR (Restricted) Rules 2025 &middot; CAR Sec 7, Series G, Part VI</div></td></tr>
+        <tr><td class="cue-col">Minimum equipment</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">ICAO Annex 6 (Operation of Aircraft); scales up for IFR/night</div></td></tr>
+        <tr><td class="cue-col">Independence rule</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">One failure must not disable both comms and navigation</div></td></tr>
+        <tr><td class="cue-col">Dispatch u/s</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Governed by the MEL (from the MMEL)</div></td></tr>
+      </tbody>
+    </table>
+    
+    <table class="master-table" style="margin-top: -15px;">
+      <thead>
+        <tr>
+          <th style="width:10%;">#</th><th style="width:40%;">Annex</th>
+          <th style="width:10%;">#</th><th style="width:40%;">Annex</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>1</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Personnel Licensing</div></td><td><strong>11</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Air Traffic Services</div></td></tr>
+        <tr><td><strong>2</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Rules of the Air</div></td><td><strong>12</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Search and Rescue</div></td></tr>
+        <tr><td><strong>3</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Meteorological Service</div></td><td><strong>13</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Accident &amp; Incident Investigation</div></td></tr>
+        <tr><td><strong>4</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Aeronautical Charts</div></td><td><strong>14</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Aerodromes</div></td></tr>
+        <tr><td><strong>5</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Units of Measurement</div></td><td><strong>15</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Aeronautical Information Services</div></td></tr>
+        <tr><td><strong>6</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Operation of Aircraft</div></td><td><strong>16</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Environmental Protection</div></td></tr>
+        <tr><td><strong>7</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Aircraft Nationality &amp; Registration</div></td><td><strong>17</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Security</div></td></tr>
+        <tr><td><strong>8</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Airworthiness of Aircraft</div></td><td><strong>18</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Dangerous Goods</div></td></tr>
+        <tr><td><strong>9</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Facilitation</div></td><td><strong>19</strong></td><td><div class="val-col-content" onclick="revealValue(this)">Safety Management</div></td></tr>
+        <tr style="background:#f0fdf4;"><td style="color:var(--success);"><strong>10 &star;</strong></td><td colspan="3"><div class="val-col-content" onclick="revealValue(this)"><strong>Aeronautical Telecommunications</strong> — 5 volumes (RTR uses Vol I &amp; II)</div></td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="tableC"><span style="background:var(--secondary); color:white; padding:4px 12px; border-radius:4px; margin-right:10px;">C</span> Q-codes, pressure &amp; vertical definitions</h2>
+    <table class="master-table">
+      <thead>
+        <tr><th class="cue-col">Cue</th><th class="val-col">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cue-col">QNH</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Set &rarr; altimeter reads ALTITUDE (AMSL); reads aerodrome elevation on the ground</div></td></tr>
+        <tr><td class="cue-col">QFE</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Set &rarr; reads HEIGHT above aerodrome; zero on the runway</div></td></tr>
+        <tr><td class="cue-col">QNE</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Standard 1013.2 hPa (29.92 inHg) &rarr; FLIGHT LEVEL</div></td></tr>
+        <tr><td class="cue-col">QFF</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">True MSL pressure (meteorological, not flown)</div></td></tr>
+        <tr><td class="cue-col">Pressure lapse</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">&approx; 1 hPa per 27 ft near sea level</div></td></tr>
+        <tr><td class="cue-col">Transition</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Climb: set 1013 at transition ALTITUDE &middot; Descend: set QNH at transition LEVEL</div></td></tr>
+        <tr><td class="cue-col">QDM / QDR</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Magnetic heading TO / bearing FROM station (QDR = QDM &plusmn; 180&deg;)</div></td></tr>
+        <tr><td class="cue-col">QUJ / QTE</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">True bearing TO / FROM the station</div></td></tr>
+        <tr><td class="cue-col">QSY / QGH</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Change frequency / controlled descent (DF let-down)</div></td></tr>
+        <tr><td class="cue-col">Altitude/Height/Elevation/FL</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">From MSL / from a datum / of a surface point / referenced to 1013.2 hPa</div></td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="tableD"><span style="background:var(--secondary); color:white; padding:4px 12px; border-radius:4px; margin-right:10px;">D</span> FIRs, frequencies &amp; AIS</h2>
+    <table class="master-table">
+      <thead>
+        <tr><th class="cue-col">Cue</th><th class="val-col">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cue-col">Indian FIRs</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Delhi, Mumbai, Kolkata, Chennai (+ Chennai Oceanic)</div></td></tr>
+        <tr><td class="cue-col">ICAO location codes</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">VIDP Delhi &middot; VABB Mumbai &middot; VECC Kolkata &middot; VOMM Chennai (India = V, 4 letters)</div></td></tr>
+        <tr><td class="cue-col">Airspace classes</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">A (all controlled) &rarr; G (uncontrolled)</div></td></tr>
+        <tr><td class="cue-col">VHF ATC band</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">118.0 &ndash; 136.975 MHz (AM, line-of-sight)</div></td></tr>
+        <tr><td class="cue-col">Emergency</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">121.5 MHz (VHF) &middot; 243.0 MHz (UHF mil) &middot; 406 MHz (ELT) &middot; 123.1 (SAR aux)</div></td></tr>
+        <tr><td class="cue-col">Maritime distress</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">2182 kHz (MF)</div></td></tr>
+        <tr><td class="cue-col">IAIP</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">AIP (GEN/ENR/AD) &middot; Amendment &middot; Supplement &middot; AIC &middot; NOTAM</div></td></tr>
+        <tr><td class="cue-col">NOTAM types</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">NOTAMN (new) &middot; NOTAMR (replace) &middot; NOTAMC (cancel); SNOWTAM, ASHTAM</div></td></tr>
+        <tr><td class="cue-col">AIRAC</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">28-day cycle</div></td></tr>
+        <tr><td class="cue-col">AFTN priorities</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">SS Distress &middot; DD Urgency &middot; FF Flight-safety &middot; GG Met &middot; KK Regularity</div></td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="tableE"><span style="background:var(--secondary); color:white; padding:4px 12px; border-radius:4px; margin-right:10px;">E</span> Meteorology &amp; RVR</h2>
+    <table class="master-table">
+      <thead>
+        <tr><th class="cue-col">Cue</th><th class="val-col">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cue-col">METAR / SPECI / TAF</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Observed / special observed / forecast</div></td></tr>
+        <tr><td class="cue-col">METAR order</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Station &middot; Time(Z) &middot; Wind &middot; Vis &middot; Weather &middot; Cloud &middot; Temp/Dew &middot; QNH &middot; Trend</div></td></tr>
+        <tr><td class="cue-col">Cloud oktas</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">FEW 1&ndash;2 &middot; SCT 3&ndash;4 &middot; BKN 5&ndash;7 &middot; OVC 8 (heights in hundreds of ft)</div></td></tr>
+        <tr><td class="cue-col">TAF change groups</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">FM &middot; BECMG &middot; TEMPO &middot; PROB30/40</div></td></tr>
+        <tr><td class="cue-col">CAVOK</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Vis &ge;10 km &middot; no cloud &lt;5000 ft / no CB&middot;TCU &middot; no significant weather</div></td></tr>
+        <tr><td class="cue-col">SIGMET / AIRMET</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Hazard to all aircraft / to low-level light aircraft</div></td></tr>
+        <tr><td class="cue-col">ATIS / VOLMET</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">One-aerodrome broadcast / en-route multi-aerodrome broadcast</div></td></tr>
+        <tr><td class="cue-col">RVR</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Runway Visual Range (metres); points: touchdown &middot; midpoint &middot; stop-end</div></td></tr>
+        <tr><td class="cue-col">Wind reference</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">METAR = degrees TRUE; ATC surface wind = degrees MAGNETIC</div></td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="tableF"><span style="background:var(--secondary); color:white; padding:4px 12px; border-radius:4px; margin-right:10px;">F</span> Electrical &amp; wave relationships</h2>
+    <table class="master-table">
+      <thead>
+        <tr><th class="cue-col">Cue</th><th class="val-col">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cue-col">Units</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Volt &middot; Ampere &middot; Ohm (&Omega;) &middot; Watt &middot; Farad &middot; Henry</div></td></tr>
+        <tr><td class="cue-col">Ohm's Law</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">V = I &times; R</div></td></tr>
+        <tr><td class="cue-col">Power</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">P = V &times; I = I&sup2;R = V&sup2;/R</div></td></tr>
+        <tr><td class="cue-col">RMS (sine)</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">RMS = 0.707 &times; peak &middot; peak = 1.414 &times; RMS</div></td></tr>
+        <tr><td class="cue-col">Aircraft power</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">28 V DC &middot; 115 V AC 400 Hz</div></td></tr>
+        <tr><td class="cue-col">Series / parallel</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Series: R adds, same current &middot; Parallel: R reduces, same voltage</div></td></tr>
+        <tr><td class="cue-col">Wave relationship</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">c = f &times; &lambda; &middot; c = 3 &times; 10&sup8; m/s &middot; f = 1/T (higher f &rarr; shorter &lambda;)</div></td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="tableG"><span style="background:var(--secondary); color:white; padding:4px 12px; border-radius:4px; margin-right:10px;">G</span> Frequency bands &amp; propagation</h2>
+    <table class="master-table">
+      <thead>
+        <tr>
+          <th style="width:15%;">Band</th>
+          <th style="width:25%;">Frequency</th>
+          <th style="width:60%;">Propagation / use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>LF/MF</strong></td>
+          <td>30 kHz &ndash; 3 MHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">Ground wave &mdash; NDB</div></td>
+        </tr>
+        <tr>
+          <td><strong>HF</strong></td>
+          <td>3 &ndash; 30 MHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">Sky wave &mdash; oceanic voice (SSB)</div></td>
+        </tr>
+        <tr>
+          <td><strong>VHF</strong></td>
+          <td>30 &ndash; 300 MHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">Space wave (line-of-sight) &mdash; ATC voice, VOR, ILS LOC</div></td>
+        </tr>
+        <tr>
+          <td><strong>UHF</strong></td>
+          <td>300 MHz &ndash; 3 GHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">Line-of-sight &mdash; ILS GP, DME, SSR, GPS</div></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <table class="master-table" style="margin-top: -15px;">
+      <thead>
+        <tr><th class="cue-col">Cue</th><th class="val-col">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cue-col">HF day/night</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Higher frequency by DAY, lower by NIGHT (D layer absorbs by day)</div></td></tr>
+        <tr><td class="cue-col">MUF / LUF / OWF</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Max usable / Lowest usable / Optimum &approx; 85% of MUF</div></td></tr>
+        <tr><td class="cue-col">Dead space</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Gap between ground-wave range and first sky-wave return</div></td></tr>
+        <tr><td class="cue-col">Radio horizon</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">d (NM) &approx; 1.23 &times; &radic;h(ft)</div></td></tr>
+        <tr><td class="cue-col">Channel spacing</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">25 kHz and 8.33 kHz</div></td></tr>
+        <tr><td class="cue-col">Aviation VHF polarization</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Vertical</div></td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="tableH"><span style="background:var(--secondary); color:white; padding:4px 12px; border-radius:4px; margin-right:10px;">H</span> Modulation &amp; equipment</h2>
+    <table class="master-table">
+      <thead>
+        <tr><th class="cue-col">Cue</th><th class="val-col">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cue-col">AM</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Amplitude varied; bandwidth = 2 &times; highest audio; info in sidebands; &sim;67% power in carrier</div></td></tr>
+        <tr><td class="cue-col">FM</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Frequency varied; noise-resistant; capture effect (not used for VHF voice)</div></td></tr>
+        <tr><td class="cue-col">SSB</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">One sideband, carrier suppressed; efficient &mdash; HF voice</div></td></tr>
+        <tr><td class="cue-col">Aviation choice</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">VHF voice = AM (A3E) &middot; HF voice = SSB (J3E)</div></td></tr>
+        <tr><td class="cue-col">Receiver</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Superheterodyne (converts to a fixed IF)</div></td></tr>
+        <tr><td class="cue-col">Simplex</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">One frequency, one transmitter at a time (aviation VHF)</div></td></tr>
+        <tr><td class="cue-col">Squelch / AVC</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Mutes background hiss / holds received audio level steady</div></td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="tableI"><span style="background:var(--secondary); color:white; padding:4px 12px; border-radius:4px; margin-right:10px;">I</span> Navigation aids &amp; squawk codes</h2>
+    <table class="master-table">
+      <thead>
+        <tr>
+          <th style="width:20%;">Aid</th>
+          <th style="width:30%;">Band</th>
+          <th style="width:50%;">Gives</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>NDB / ADF</strong></td>
+          <td>LF/MF 190&ndash;1750 kHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">Relative bearing (&plusmn;5&deg;)</div></td>
+        </tr>
+        <tr>
+          <td><strong>VOR</strong></td>
+          <td>VHF 108.0&ndash;117.975 MHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">Magnetic radial TO/FROM</div></td>
+        </tr>
+        <tr>
+          <td><strong>ILS LOC / GP</strong></td>
+          <td>VHF 108.10&ndash;111.95 / UHF 329&ndash;335 MHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">Azimuth / glidepath</div></td>
+        </tr>
+        <tr>
+          <td><strong>Markers</strong></td>
+          <td>75 MHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">Distance to runway</div></td>
+        </tr>
+        <tr>
+          <td><strong>DME</strong></td>
+          <td>UHF 962&ndash;1213 MHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">Slant range</div></td>
+        </tr>
+        <tr>
+          <td><strong>SSR</strong></td>
+          <td>1030 &uarr; / 1090 &darr; MHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">Identity (A) + altitude (C) + Mode S</div></td>
+        </tr>
+        <tr>
+          <td><strong>GPS</strong></td>
+          <td>L1 1575.42 MHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">4 satellites for a 3-D fix</div></td>
+        </tr>
+        <tr>
+          <td><strong>Radio altimeter</strong></td>
+          <td>4200&ndash;4400 MHz</td>
+          <td><div class="val-col-content" onclick="revealValue(this)">True height (AGL)</div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="master-table" style="margin-top: -15px;">
+      <thead>
+        <tr><th class="cue-col">Squawk</th><th class="val-col">Meaning</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cue-col">7500</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Unlawful interference (hijack)</div></td></tr>
+        <tr><td class="cue-col">7600</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Radio / communications failure</div></td></tr>
+        <tr><td class="cue-col">7700</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">General emergency</div></td></tr>
+        <tr><td class="cue-col">7000 / 2000</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Conspicuity (VFR) / entering from a non-SSR area</div></td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="tableJ"><span style="background:var(--secondary); color:white; padding:4px 12px; border-radius:4px; margin-right:10px;">J</span> Phraseology, numbers &amp; procedures</h2>
+    <table class="master-table">
+      <thead>
+        <tr><th class="cue-col">Cue</th><th class="val-col">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cue-col">Altered numerals</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">3 = TREE &middot; 5 = FIFE &middot; 9 = NIN-er &middot; decimal = DAY-SEE-MAL</div></td></tr>
+        <tr><td class="cue-col">Number rules</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Digit-by-digit (call signs, headings, FL, squawk, freq) &middot; hundreds/thousands (altitude, height, cloud, vis)</div></td></tr>
+        <tr><td class="cue-col">Time</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">UTC (Zulu); minutes only, or full hours+minutes if confusion</div></td></tr>
+        <tr><td class="cue-col">ROGER / WILCO</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Received / will comply (ROGER &ne; yes; AFFIRM/NEGATIVE = yes/no)</div></td></tr>
+        <tr><td class="cue-col">Readability</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">1 unreadable &rarr; 5 perfectly readable</div></td></tr>
+        <tr><td class="cue-col">Ground suffixes</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Delivery &middot; Ground &middot; Tower &middot; Approach &middot; Departure &middot; Director &middot; Control &middot; Information</div></td></tr>
+        <tr><td class="cue-col">Always read back</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Runway/level/heading/speed clearances, QNH, squawk, frequency changes</div></td></tr>
+        <tr><td class="cue-col">Circuit legs</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Upwind &middot; crosswind &middot; downwind &middot; base &middot; final</div></td></tr>
+        <tr><td class="cue-col">Distress / urgency</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">MAYDAY &times;3 (grave danger) / PAN-PAN &times;3 (safety, not immediate)</div></td></tr>
+        <tr><td class="cue-col">Silence</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Impose: SEELONCE MAYDAY &middot; End: DISTRESS TRAFFIC ENDED, SEELONCE FEENEE</div></td></tr>
+        <tr><td class="cue-col">Emergency descent</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">ATC "ATTENTION ALL AIRCRAFT &hellip; emergency descent in progress"</div></td></tr>
+        <tr><td class="cue-col">Comms failure</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Squawk 7600 &middot; continue per last clearance/flight plan &middot; light signals</div></td></tr>
+        <tr><td class="cue-col">Wake categories</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Super &middot; Heavy (&ge;136t) &middot; Medium (7&ndash;136t) &middot; Light (&le;7t)</div></td></tr>
+        <tr><td class="cue-col">VDF bearing classes</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">A &plusmn;2&deg; &middot; B &plusmn;5&deg; &middot; C &plusmn;10&deg; &middot; D worse</div></td></tr>
+        <tr><td class="cue-col">TCAS RA</td><td class="val-col"><div class="val-col-content" onclick="revealValue(this)">Obey (vertical only), say "TCAS RA" then "clear of conflict"</div></td></tr>
+      </tbody>
+    </table>
+
+    <hr style="border:0; height:2px; background:var(--border); margin:50px 0;">
+
+    <h2 id="quickCards"><span style="background:var(--primary); color:white; padding:4px 12px; border-radius:4px; margin-right:10px;">&star;</span> Quick cards</h2>
+    
+    <div class="quick-card">
+      <div class="quick-card-title">Phonetic alphabet</div>
+      <div style="column-count: 3; column-gap: 20px; font-family: 'JetBrains Mono', monospace; line-height: 2;">
+        A Alfa<br>B Bravo<br>C Charlie<br>D Delta<br>E Echo<br>F Foxtrot<br>G Golf<br>H Hotel<br>I India<br>J Juliett<br>K Kilo<br>L Lima<br>M Mike<br>N November<br>O Oscar<br>P Papa<br>Q Quebec<br>R Romeo<br>S Sierra<br>T Tango<br>U Uniform<br>V Victor<br>W Whiskey<br>X X-ray<br>Y Yankee<br>Z Zulu
+      </div>
+      <div style="margin-top: 20px; font-family: 'JetBrains Mono', monospace; padding-top: 20px; border-top: 1px solid var(--border);">
+        <strong>Numerals:</strong> 0 ZE-RO &middot; 1 WUN &middot; 2 TOO &middot; 3 TREE &middot; 4 FOW-er &middot; 5 FIFE &middot; 6 SIX &middot; 7 SEV-en &middot; 8 AIT &middot; 9 NIN-er
+      </div>
+    </div>
+
+    <div class="quick-card">
+      <div class="quick-card-title">Light signals (no radio)</div>
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="background: var(--primary); color: white;">
+            <th style="padding: 10px; text-align: left;">Signal</th>
+            <th style="padding: 10px; text-align: left;">In flight</th>
+            <th style="padding: 10px; text-align: left;">On the ground</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 10px; font-weight: bold; color: var(--success);">Steady green</td>
+            <td style="padding: 10px;">Cleared to land</td>
+            <td style="padding: 10px;">Cleared for take-off</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 10px; font-weight: bold; color: #ef4444;">Steady red</td>
+            <td style="padding: 10px;">Give way, continue circling</td>
+            <td style="padding: 10px;">Stop</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 10px; font-weight: bold; color: var(--success);">Green flashes</td>
+            <td style="padding: 10px;">Return for landing</td>
+            <td style="padding: 10px;">Cleared to taxi</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 10px; font-weight: bold; color: #ef4444;">Red flashes</td>
+            <td style="padding: 10px;">Aerodrome unsafe &mdash; do not land</td>
+            <td style="padding: 10px;">Taxi clear of landing area</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 10px; font-weight: bold; color: #64748b;">White flashes</td>
+            <td style="padding: 10px;">Land &amp; proceed to apron</td>
+            <td style="padding: 10px;">Return to starting point</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; font-weight: bold; color: #ef4444;">Red pyrotechnic</td>
+            <td style="padding: 10px;" colspan="2">Do not land for the time being (notwithstanding previous instructions)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout box-amber" style="background: #fffbeb;">
+      <div class="callout-title" style="color: #f59e0b;"><i class="fas fa-lightbulb"></i> Big mnemonics on one line</div>
+      <p style="margin:0; line-height: 1.8;">
+        Bands: "<strong>V</strong>ery <strong>L</strong>ong <strong>M</strong>odems <strong>H</strong>elp <strong>V</strong>arious <strong>U</strong>seful <strong>S</strong>ignals <strong>E</strong>xcel" &middot; Annex 10 = <strong>TEN=TELECOM</strong> &middot; Law = <strong>Act&rarr;Rules&rarr;CAR</strong> &middot; Squawks <strong>75 alive / 76 no comms / 77 heaven</strong> &middot; AFTN <strong>S</strong>ome <strong>D</strong>ogs <strong>F</strong>ind <strong>G</strong>ood <strong>K</strong>ennels &middot; QDM = <strong>Direction to Mother</strong> &middot; HF <strong>Day high, Night low.</strong>
+      </p>
+    </div>
+
+    <!-- SELF-TEST SECTION -->
+    <div class="self-test-section" id="rapidFire">
+      <div class="self-test-header">
+        <i class="fas fa-question-circle"></i> Rapid-fire self-test
+      </div>
+      <p style="margin-bottom: 20px;"><em><i class="fas fa-edit"></i> Click an option to check &mdash; one from each table</em></p>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-text">1. The Chicago Convention created ICAO and was signed in:</div>
+        <ul class="options-list">
+          <li class="correct-option" onclick="checkAnswer(this, true)">1944</li>
+          <li onclick="checkAnswer(this, false)">1947</li>
+          <li onclick="checkAnswer(this, false)">1919</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 1944.</strong> Signed 7 Dec 1944; in force (ICAO created) 4 Apr 1947.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-text">2. Annex 10 covers:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Rules of the Air</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">Aeronautical Telecommunications</li>
+          <li onclick="checkAnswer(this, false)">Aerodromes</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: Aeronautical Telecommunications.</strong> Annex 10 — Aeronautical Telecommunications (TEN = TELECOM).
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-text">3. QNE is the standard setting:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">1003.2 hPa</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">1013.2 hPa</li>
+          <li onclick="checkAnswer(this, false)">760 hPa</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 1013.2 hPa.</strong> 1013.2 hPa (29.92 inHg) &rarr; flight levels.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-text">4. The international VHF emergency frequency is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">243.0 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">121.5 MHz</li>
+          <li onclick="checkAnswer(this, false)">406 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 121.5 MHz.</strong> 121.5 MHz (VHF guard); 243.0 UHF military.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-text">5. The AIRAC cycle is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">7 days</li>
+          <li onclick="checkAnswer(this, false)">14 days</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">28 days</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 28 days.</strong> Common effective dates every 28 days.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-text">6. Broken cloud (BKN) is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">1&ndash;2 oktas</li>
+          <li onclick="checkAnswer(this, false)">3&ndash;4 oktas</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">5&ndash;7 oktas</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 5&ndash;7 oktas.</strong> FEW 1&ndash;2, SCT 3&ndash;4, BKN 5&ndash;7, OVC 8.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-text">7. c = f &times; &lambda;, where c is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">3 &times; 10&spades; m/s (approx typo for 10^6)</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">3 &times; 10&sup8; m/s</li>
+          <li onclick="checkAnswer(this, false)">300 m/s</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 3 &times; 10&sup8; m/s.</strong> Speed of radio waves &approx; 3 &times; 10&sup8; m/s.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block">
+        <div class="question-text">8. HF long-range voice uses:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">AM, ground wave</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">SSB, sky wave</li>
+          <li onclick="checkAnswer(this, false)">FM, line-of-sight</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: SSB, sky wave.</strong> HF = SSB, sky wave; VHF = AM, line-of-sight.
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block">
+        <div class="question-text">9. An SSR transponder replies on:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">1030 MHz</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">1090 MHz</li>
+          <li onclick="checkAnswer(this, false)">121.5 MHz</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 1090 MHz.</strong> Interrogate 1030, reply 1090 MHz.
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block">
+        <div class="question-text">10. The squawk for radio failure is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">7500</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">7600</li>
+          <li onclick="checkAnswer(this, false)">7700</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: 7600.</strong> 7600 radio failure; 7500 hijack; 7700 emergency.
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-block">
+        <div class="question-text">11. "ROGER" means:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">Yes</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">I have received all your last transmission</li>
+          <li onclick="checkAnswer(this, false)">I will comply</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: I have received all your last transmission.</strong> ROGER = received; WILCO = will comply; AFFIRM = yes.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block">
+        <div class="question-text">12. The distress signal, spoken three times, is:</div>
+        <ul class="options-list">
+          <li onclick="checkAnswer(this, false)">PAN-PAN</li>
+          <li class="correct-option" onclick="checkAnswer(this, true)">MAYDAY</li>
+          <li onclick="checkAnswer(this, false)">SECURITE</li>
+        </ul>
+        <button class="reveal-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer-block">
+          <strong>Answer: MAYDAY.</strong> MAYDAY &times;3 = distress; PAN-PAN &times;3 = urgency.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Final Week Routine -->
+    <div class="callout" style="background: var(--primary); color: white; border: none; border-radius: 8px; padding: 30px;">
+      <h3 style="margin-top: 0; color: #38bdf8;"><i class="fas fa-bolt"></i> FINAL-WEEK ROUTINE</h3>
+      <ul style="line-height: 1.8; margin-bottom: 0;">
+        <li>Recite each master table by covering the value column &mdash; aim for zero misses.</li>
+        <li>Carry the phonetic, light-signal and squawk quick cards; glance daily.</li>
+        <li>Then hammer the <strong>Chapter 24 question bank</strong> (297 real questions) until 80%+ everywhere.</li>
+        <li>Say the phraseology and the oral answers out loud &mdash; the practical decides the result.</li>
+      </ul>
+    </div>
+
+    <footer class="book-footer">
+      <span>© Capt. Pankaj Pahil</span>
+      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>Chapter 23 (master reference)</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>
