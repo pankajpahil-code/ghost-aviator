@@ -14,12 +14,22 @@ import { OXFORD_INSTRUMENTATION } from "./generated/oxford-instrumentation";
 import { OXFORD_RADIO_NAV } from "./generated/oxford-radio-nav";
 import { OXFORD_GEN_NAV } from "./generated/oxford-gen-nav";
 import { REGS_NOTES } from "./generated/regs-notes";
+import { MET_VERIFIED, VERIFIED_MET_CHAPTERS } from "./generated/met-verified";
 
 export type { DemoQuestion };
+
+// For any Meteorology chapter that has been fully re-verified (answers checked
+// against the Oxford/CAE ATPL manual + standard meteorology, book errors fixed,
+// duplicates removed), the old auto-extracted met banks are dropped entirely so
+// the verified bank is the single source of truth for that chapter.
+const dropVerifiedMet = (q: DemoQuestion) =>
+  !(q.chapterId && VERIFIED_MET_CHAPTERS.has(q.chapterId) &&
+    q.subjectIds.some((s) => s === "meteorology" || s === "atpl-meteorology"));
 
 // Curated sources first (hand-written explanations win on duplicates),
 // auto-generated banks last.
 const RAW_QUESTIONS: DemoQuestion[] = [
+  ...MET_VERIFIED,         // ✅ verified Meteorology chapters — highest priority
   ...DEMO_QUESTIONS,
   ...NAV_QUESTIONS,
   ...OXFORD_NAV_QUESTIONS,
@@ -28,13 +38,13 @@ const RAW_QUESTIONS: DemoQuestion[] = [
   ...SAR_QUESTIONS,
   ...TECHBOOK_QUESTIONS_1, // Technical General — own book Q&A (tg-1..18)
   ...TECHBOOK_QUESTIONS_2, // Technical General — own book Q&A (tg-19..36)
-  ...ICJOSHI_NOTES_MET,   // rich HTML-notes Q&A (met-1..11) — wins de-dup
+  ...ICJOSHI_NOTES_MET.filter(dropVerifiedMet),   // rich HTML-notes Q&A (unverified met chapters only)
   ...OXFORD_INSTRUMENTATION, // Instrumentation HTML-notes Q&A (inst-1..23)
   ...OXFORD_RADIO_NAV,       // Radio Navigation HTML-notes Q&A (rnav-1..20)
   ...OXFORD_GEN_NAV,         // Oxford Gen-Nav notes Q&A (air-navigation nav-13..20)
   ...REGS_NOTES,             // Air Regulations HTML-notes Q&A (ar-22, ar-23)
   ...ECQB_061_NAVIGATION,
-  ...ICJOSHI_MET,         // font-extracted met bank (dupes of the above are dropped)
+  ...ICJOSHI_MET.filter(dropVerifiedMet), // font-extracted met bank (unverified met chapters only)
 ];
 
 // Global de-dupe by normalised question text — keeps the first (highest-priority)

@@ -1,0 +1,23 @@
+// Meteorology Ch.7 (Visibility & Fog) — VERIFIED. IC = IC Joshi QB. (20/20 clean)
+export const CH7 = [
+  { src:"IC", q:"Fog is reported when visibility is reduced to:", opts:["Less than 1000 m","Exactly 1000 m","1000 to 2000 m"], ans:0, status:"VERIFIED", cite:"Fog = visibility below 1000 m." },
+  { src:"IC", q:"RVR is reported when the visibility falls below:", opts:["500 m","1000 m","1500 m"], ans:2, status:"VERIFIED", cite:"RVR is assessed/reported when visibility is below 1500 m." },
+  { src:"IC", q:"Radiation fog forms:", opts:["Over land","Over sea","During the day"], ans:0, status:"VERIFIED", cite:"Radiation fog forms over land by night-time cooling." },
+  { src:"IC", q:"When visibility is between 5000 m and 1000 m with RH near 100%, the phenomenon is:", opts:["Mist","Haze","Fog"], ans:0, status:"VERIFIED", cite:"Mist = reduced visibility (1–5 km) with high humidity; haze is dry." },
+  { src:"IC", q:"Radiation fog forms over North India mainly during:", opts:["May–June","December–February","October–November"], ans:1, status:"VERIFIED", cite:"Winter (Dec–Feb) gives the long cold nights needed." },
+  { src:"IC", q:"Warm, moist air moving over cold ground gives rise to:", opts:["Thunder clouds","Fog and stratus","Frontal clouds"], ans:1, status:"VERIFIED", cite:"Cooling from below saturates the air → fog/stratus." },
+  { src:"IC", q:"Warm, moist air moving over a cold surface causes:", opts:["Radiation fog","Advection fog","Frontal fog"], ans:1, status:"VERIFIED", cite:"Horizontal transport of warm moist air over a cold surface = advection fog." },
+  { src:"IC", q:"Radiation fog forms due to:", opts:["Daytime heating of the earth","Radiational cooling of the earth at night","Advection of cold air"], ans:1, status:"VERIFIED", cite:"Night-time long-wave cooling of the ground." },
+  { src:"IC", q:"Radiation-fog activity increases after the passage of a:", opts:["Western Disturbance","Depression","Col"], ans:0, status:"VERIFIED", cite:"Clearing skies + residual moisture behind a WD favour radiation fog." },
+  { src:"IC", q:"Radiation fog is essentially a ____ phenomenon:", opts:["Nocturnal","Dusk","Daytime"], ans:0, status:"VERIFIED", cite:"It forms overnight and clears after sunrise." },
+  { src:"IC", q:"Radiation fog forms over:", opts:["Water","Land","Both equally"], ans:1, status:"VERIFIED", cite:"Land cools rapidly at night; the sea does not." },
+  { src:"IC", q:"The fog formed by horizontal movement of warm moist air over a cold surface is:", opts:["Radiation","Advection","Frontal"], ans:1, status:"VERIFIED", cite:"Advection fog." },
+  { src:"IC", q:"Advection fog forms during:", opts:["Night only","Daytime only","Any time of day or night"], ans:2, status:"VERIFIED", cite:"It depends on air movement, not on time of day." },
+  { src:"IC", q:"Radiation fog requires:", opts:["Moisture, cloudy sky, no wind","Moisture, clear sky, light wind","Moisture, cloudy sky, strong wind"], ans:1, status:"VERIFIED", cite:"Clear sky (for cooling), moisture, and light wind (gentle mixing)." },
+  { src:"IC", q:"The instrument used to measure visibility is the:", opts:["Visiometer","Transmissometer","Ceilometer"], ans:1, status:"VERIFIED", cite:"A transmissometer measures visibility/RVR; a ceilometer measures cloud base." },
+  { src:"IC", q:"Advection fog forms:", opts:["Over sea only","Over land only","Both over land and sea"], ans:2, status:"VERIFIED", cite:"Advection fog can occur over either surface." },
+  { src:"IC", q:"Fog is essentially ____ cloud on the ground:", opts:["Stratocumulus","Stratus","Nimbostratus"], ans:1, status:"VERIFIED", cite:"Fog is stratus cloud at the surface." },
+  { src:"IC", q:"Frontal fog is most common with a:", opts:["Western Disturbance","Cyclone","Warm front","Cold front"], ans:2, status:"VERIFIED", cite:"Rain evaporating into cold air ahead of a warm front → frontal fog." },
+  { src:"IC", q:"The pressure system most favourable for fog formation is:", opts:["Lows and cols","Highs and troughs","Lows and ridges","Highs and cols"], ans:3, status:"VERIFIED", cite:"Highs and cols give the light winds and clear skies fog needs." },
+  { src:"IC", q:"The temperature structure that favours fog formation is an:", opts:["Isothermal layer","Adiabatic layer","Inversion","SALR layer"], ans:2, status:"VERIFIED", cite:"A surface inversion traps moisture and cooling near the ground." },
+];
