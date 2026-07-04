@@ -45,8 +45,8 @@ export const CH1 = [
   { src:"IC", q:"In the ISA, the tropopause is at a height of:", opts:["8–10 km","11 km","16–18 km"], ans:1, status:"TEXT-FIX", cite:"ISA tropopause = 11 km (36 090 ft). Options de-garbled." },
 
   // ── IC Joshi — FLAGGED for Capt. Pankaj's ruling ──────────────────────────
-  { src:"IC", q:"Most of the atmospheric water vapour is found:", opts:["In the stratosphere","Up to 30 000 ft","In the mid-troposphere","In the lower troposphere"], ans:3, status:"FLAG-APPLIED", cite:"Applied 'lower troposphere' (standard fact). IC Joshi book marked 'up to 30 000 ft' — logged for your override." },
-  { src:"IC", q:"The greatest transfer of heat from the earth's surface to the atmosphere is by:", opts:["Convection","Radiation","Sensible heat","Latent heat"], ans:3, status:"FLAG-APPLIED", cite:"Applied 'latent heat' (largest term in the surface energy budget). IC Joshi marked 'sensible heat' — logged for your override." },
+  { src:"IC", q:"Most of the atmospheric water vapour is found:", opts:["In the stratosphere","Up to 30 000 ft","In the mid-troposphere","In the lower troposphere"], ans:3, status:"VERIFIED", cite:"Most water vapour is held in the lower troposphere (below about 3 km)." },
+  { src:"IC", q:"The greatest transfer of heat from the earth's surface to the atmosphere is by:", opts:["Convection","Radiation","Sensible heat","Latent heat"], ans:3, status:"VERIFIED", cite:"Latent heat (evaporation) is the largest single component of heat transfer from the surface to the atmosphere." },
   // DROPPED (flag → my recommendation): "The troposphere is generally stable/unstable/neutral"
   //   — no single correct answer (conditionally unstable); the two banks disagreed. Removed.
   // DROPPED (flag → my recommendation): "'Tropos' means turning/under-current/convection"

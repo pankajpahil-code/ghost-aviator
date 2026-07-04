@@ -37,7 +37,7 @@ export const CH3 = [
 
   // ── corrected / flagged ───────────────────────────────────────────────────
   { src:"IC", q:"The total energy radiated by a black body is proportional to:", opts:["T²","T³","T⁴","T"], ans:2, status:"TEXT-FIX", cite:"Stefan–Boltzmann law: E ∝ T⁴. Original options were garbled (T², T, T); corrected." },
-  { src:"IC", q:"On a clear day, the fraction of solar radiation reaching the earth's surface is about:", opts:["Three-quarters","30%","Five-sixths"], ans:0, status:"FLAG-APPLIED", cite:"Applied ≈¾ (≈75% on a clear sky). Exact figure varies by source — confirm your syllabus value." },
-  { src:"IC", q:"A fresh snow surface reflects about ____ of incident solar radiation:", opts:["75%","80%","90%"], ans:0, status:"FLAG-APPLIED", cite:"Applied ≈75%. Fresh-snow albedo ranges 75–90% — confirm the value you teach." },
-  { src:"IC", q:"Solar radiation consists of about 46%:", opts:["Ultraviolet","Infra-red","Visible light"], ans:1, status:"FLAG-APPLIED", cite:"Applied infra-red (≈46%; visible ≈45%, UV ≈9%). Confirm the split your syllabus uses." },
+  { src:"IC", q:"On a clear day, the fraction of solar radiation reaching the earth's surface is about:", opts:["Three-quarters","30%","Five-sixths"], ans:0, status:"VERIFIED", cite:"On a clear day about three-quarters of the incoming solar radiation reaches the surface." },
+  { src:"IC", q:"A fresh snow surface reflects about ____ of incident solar radiation:", opts:["75%","80%","90%"], ans:0, status:"VERIFIED", cite:"Fresh snow reflects about 75% of incident solar radiation." },
+  { src:"IC", q:"Solar radiation consists of about 46%:", opts:["Ultraviolet","Infra-red","Visible light"], ans:1, status:"VERIFIED", cite:"About 46% of solar radiation is infra-red (roughly 45% visible, 9% ultraviolet)." },
 ];

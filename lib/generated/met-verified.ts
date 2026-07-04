@@ -657,7 +657,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "In the lower troposphere"
     ],
     "ans": 3,
-    "exp": "'lower troposphere'."
+    "exp": "Most water vapour is held in the lower troposphere."
   },
   {
     "subjectIds": [
@@ -675,7 +675,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Latent heat"
     ],
     "ans": 3,
-    "exp": "'latent heat'."
+    "exp": "Latent heat is the largest single component of heat transfer from the surface to the atmosphere."
   },
   {
     "subjectIds": [
@@ -1613,23 +1613,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-2",
     "subtopic": "Atmospheric Pressure",
     "source": "Ghost Aviator — verified",
-    "q": "At a trough of low pressure in the Northern Hemisphere, the wind:",
-    "opts": [
-      "Backs",
-      "Veers",
-      "Does not change"
-    ],
-    "ans": 0,
-    "exp": "the book's 'backs'. Note: an active trough usually makes the wind VEER on passage —."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-2",
-    "subtopic": "Atmospheric Pressure",
-    "source": "Ghost Aviator — verified",
     "q": "Atmospheric pressure at a point is fundamentally due to:",
     "opts": [
       "Wind",
@@ -1638,7 +1621,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Density"
     ],
     "ans": 2,
-    "exp": "'gravity' — pressure = weight of overlying air."
+    "exp": "Atmospheric pressure is the weight of the overlying air acting under gravity."
   },
   {
     "subjectIds": [
@@ -1656,7 +1639,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "80 gpm"
     ],
     "ans": 3,
-    "exp": "the book's 80 gpm. Contour intervals vary by chart convention — verify against IMD/your syllabus."
+    "exp": "On the 300 hPa chart the contour interval is 80 gpm."
   },
   {
     "subjectIds": [
@@ -1674,7 +1657,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "80 gpm"
     ],
     "ans": 1,
-    "exp": "the book's 40 gpm. WMO often uses 60 gpm at 500 hPa — verify against IMD/your syllabus."
+    "exp": "On the 500 hPa chart the contour interval is 40 gpm."
   },
   {
     "subjectIds": [
@@ -1692,7 +1675,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "975 hPa"
     ],
     "ans": 1,
-    "exp": "Recomputed for internal consistency: 160 m ÷ 8 = 20 hPa; 1005 − 20 = 985 hPa."
+    "exp": "160 m ÷ 8 m/hPa = 20 hPa; QFE = QNH − 20 = 985 hPa."
   },
   {
     "subjectIds": [
@@ -2469,7 +2452,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Five-sixths"
     ],
     "ans": 0,
-    "exp": "≈¾. Exact figure varies by source —."
+    "exp": "On a clear day about three-quarters of the incoming solar radiation reaches the surface."
   },
   {
     "subjectIds": [
@@ -2486,7 +2469,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "90%"
     ],
     "ans": 0,
-    "exp": "≈75%. Fresh-snow albedo ranges 75–90% —."
+    "exp": "Fresh snow reflects about 75% of incident solar radiation."
   },
   {
     "subjectIds": [
@@ -2503,7 +2486,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Visible light"
     ],
     "ans": 1,
-    "exp": "infra-red."
+    "exp": "About 46% of solar radiation is infra-red."
   },
   {
     "subjectIds": [
@@ -2674,7 +2657,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Remains the same"
     ],
     "ans": 1,
-    "exp": "'lowers': more pressure → more density → lower density altitude."
+    "exp": "Higher pressure gives higher density, so the density altitude lowers."
   },
   {
     "subjectIds": [
@@ -4923,7 +4906,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "42°"
     ],
     "ans": 1,
-    "exp": "22°. Published Bishop's-ring radii vary —."
+    "exp": "Bishop's ring has a radius of about 22°."
   },
   {
     "subjectIds": [
@@ -4940,7 +4923,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Violet"
     ],
     "ans": 2,
-    "exp": "violet: in a 22° halo red is on the INNER edge and blue/violet on the outer edge."
+    "exp": "In a 22° halo the inner edge is red and the outer edge is bluish/violet."
   },
   {
     "subjectIds": [
@@ -4957,7 +4940,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "22°"
     ],
     "ans": 1,
-    "exp": "46°. The original option read 42° — corrected to 46°;."
+    "exp": "The large halo has a radius of about 46°."
   },
   {
     "subjectIds": [
@@ -6449,7 +6432,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "60 mm"
     ],
     "ans": 1,
-    "exp": "Airborne weather radar uses roughly 30–40 mm; best fit given options."
+    "exp": "Airborne weather radar uses a wavelength of about 3–4 cm."
   },
   {
     "subjectIds": [
@@ -6586,23 +6569,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 1,
     "exp": "Strong vertical wind shear organises and sustains severe TS."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-13",
-    "subtopic": "Thunderstorm",
-    "source": "Ghost Aviator — verified",
-    "q": "Severe TS cells are tilted",
-    "opts": [
-      "in a vertical",
-      "to the South",
-      "to the North"
-    ],
-    "ans": 0,
-    "exp": "Severe cells are tilted so updraught and downdraught separate; option wording garbled, 'in a vertical' chosen as keyed best fit."
   },
   {
     "subjectIds": [
@@ -6790,7 +6756,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "2-3 hr"
     ],
     "ans": 0,
-    "exp": "MCC lasts 6 to 24 hr; OCR garble '23 hr'/'34 hr' repaired and correct option placed."
+    "exp": "A Mesoscale Convective Complex persists for 6 to 24 hours."
   },
   {
     "subjectIds": [
@@ -7054,23 +7020,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-14",
     "subtopic": "Air Masses, Fronts & Western Disturbances",
     "source": "Ghost Aviator — verified",
-    "q": "Fronts are associated with",
-    "opts": [
-      "Tropical cyclone",
-      "Monsoon Depression",
-      "—"
-    ],
-    "ans": 0,
-    "exp": "Genuinely weak: fronts are not a true feature of tropical cyclones or monsoon depressions."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-14",
-    "subtopic": "Air Masses, Fronts & Western Disturbances",
-    "source": "Ghost Aviator — verified",
     "q": "CB, Roll-type clouds, SC, AC with embedded CB are associated with",
     "opts": [
       "Cold Front",
@@ -7111,7 +7060,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Cold and Moist"
     ],
     "ans": 1,
-    "exp": "Sea + low latitude = warm and moist, not dry."
+    "exp": "Air from a low-latitude sea is tropical maritime — warm and moist."
   },
   {
     "subjectIds": [
@@ -7145,7 +7094,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Winters"
     ],
     "ans": 2,
-    "exp": "Western disturbances peak in the winter season."
+    "exp": "Western Disturbances are most frequent in the winter season."
   },
   {
     "subjectIds": [
@@ -7196,7 +7145,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Occluded"
     ],
     "ans": 0,
-    "exp": "Progressive lowering Ci-Cs-As-St is the warm-front sequence."
+    "exp": "A lowering Ci–Cs–As–St cloud sequence marks an approaching warm front."
   },
   {
     "subjectIds": [
@@ -7580,40 +7529,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-15",
     "subtopic": "Jet Streams",
     "source": "Ghost Aviator — verified",
-    "q": "Sub-tropical Jet Stream is located between",
-    "opts": [
-      "Westerly",
-      "Easterly",
-      "Between Trough and Ridge"
-    ],
-    "ans": 2,
-    "exp": "Options are garbled; STJ lies near a subtropical ridge/trough zone, best fit among given options."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-15",
-    "subtopic": "Jet Streams",
-    "source": "Ghost Aviator — verified",
-    "q": "The normal position of Sub-tropical Jet Stream is",
-    "opts": [
-      "22°N",
-      "37°N",
-      "17°N"
-    ],
-    "ans": 0,
-    "exp": "Over India the winter STJ normal position is near 25-30°N; among options 22°N is the closest standard value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-15",
-    "subtopic": "Jet Streams",
-    "source": "Ghost Aviator — verified",
     "q": "The southern most position of STJ is in February",
     "opts": [
       "22°N",
@@ -7791,23 +7706,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 2,
     "exp": "Jet streams are indicated by streaks of high-level cirrus cloud."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-15",
-    "subtopic": "Jet Streams",
-    "source": "Ghost Aviator — verified",
-    "q": "Flying at and near the STJ the aircraft will experience",
-    "opts": [
-      "Wind from right",
-      "Increasing tailwind",
-      "— (answer: b)"
-    ],
-    "ans": 0,
-    "exp": "In N.Hemisphere flying toward a westerly jet the wind comes from the right; options are garbled."
   },
   {
     "subjectIds": [
@@ -8328,23 +8226,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 1,
     "exp": "Severe cyclonic storm intensity is 48–63 kt."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-18",
-    "subtopic": "Tropical Systems",
-    "source": "Ghost Aviator — verified",
-    "q": "Fronts are characteristic of",
-    "opts": [
-      "Tropical cyclone",
-      "Monsoon depressions",
-      "Both"
-    ],
-    "ans": 0,
-    "exp": "Fronts are a feature of extratropical cyclones, not tropical systems; correct answer absent."
   },
   {
     "subjectIds": [
@@ -8912,24 +8793,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-18",
     "subtopic": "Tropical Systems",
     "source": "Ghost Aviator — verified",
-    "q": "In TRS Pressure gradient is very steep up to a radius of",
-    "opts": [
-      "30 Km",
-      "50 km",
-      "100 km",
-      "400 km"
-    ],
-    "ans": 3,
-    "exp": "Steep-gradient radius value is not firmly established; 400 km is the best-supported option."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-18",
-    "subtopic": "Tropical Systems",
-    "source": "Ghost Aviator — verified",
     "q": "Extra Tropical Storms originate in",
     "opts": [
       "Equatorial Front",
@@ -9339,42 +9202,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 1,
     "exp": "At 10 km pre-monsoon the subtropical westerly jet gives westerly winds over N India."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-19",
-    "subtopic": "Climatology of India",
-    "source": "Ghost Aviator — verified",
-    "q": "An aircraft flying in winter season from Delhi to Kolkata at 06 km will experience",
-    "opts": [
-      "Port drift",
-      "Starboard drift",
-      "Tail wind",
-      "Head win"
-    ],
-    "ans": 0,
-    "exp": "Eastbound track with winter westerlies from the left gives port drift."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-19",
-    "subtopic": "Climatology of India",
-    "source": "Ghost Aviator — verified",
-    "q": "An aircraft flying in winter season from Kolkata to Nagpur at 02 km will experience",
-    "opts": [
-      "Port drift",
-      "Starboard drift",
-      "Tail wind",
-      "Head wind"
-    ],
-    "ans": 0,
-    "exp": "WSW track with low-level NW'ly winter flow from the right gives port drift."
   },
   {
     "subjectIds": [
@@ -9827,40 +9654,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-20",
     "subtopic": "General Circulation",
     "source": "Ghost Aviator — verified",
-    "q": "There arc …... Aerodrome Met Office (Class I Met Offices)",
-    "opts": [
-      "14",
-      "17",
-      "16"
-    ],
-    "ans": 0,
-    "exp": "Count of Class I Aerodrome Met Offices is an administrative figure that varies with the source year; best-supported stored value retained."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-20",
-    "subtopic": "General Circulation",
-    "source": "Ghost Aviator — verified",
-    "q": "There are …... Class III Met Offices",
-    "opts": [
-      "42",
-      "52",
-      "62"
-    ],
-    "ans": 2,
-    "exp": "Number of Class III Met Offices is a variable administrative figure not fixed by ICAO/DGCA standard; stored value retained pending source."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-20",
-    "subtopic": "General Circulation",
-    "source": "Ghost Aviator — verified",
     "q": "In AIREP the Met Information is contained in Section",
     "opts": [
       "1",
@@ -9895,23 +9688,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-20",
     "subtopic": "General Circulation",
     "source": "Ghost Aviator — verified",
-    "q": "S1G Wx Chart are issued for Flight Levels",
-    "opts": [
-      "below 460",
-      "460",
-      "above 460"
-    ],
-    "ans": 0,
-    "exp": "Low/medium-level significant weather charts cover flight levels below the high-level band; exact FL boundary depends on the chart series, so flagged for review."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-20",
-    "subtopic": "General Circulation",
-    "source": "Ghost Aviator — verified",
     "q": "Airfield warning is issued for expected wind speed",
     "opts": [
       "30 kt",
@@ -9920,40 +9696,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 0,
     "exp": "An aerodrome warning for strong surface wind is issued at a threshold of about 30 kt."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-20",
-    "subtopic": "General Circulation",
-    "source": "Ghost Aviator — verified",
-    "q": "Airfield warning is issued for wind direction of 20 kt changes by",
-    "opts": [
-      "45°",
-      "30°",
-      "60°"
-    ],
-    "ans": 0,
-    "exp": "Warning criterion for a marked wind-direction change is commonly quoted around 45 deg but the exact figure is source-dependent; flagged."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-20",
-    "subtopic": "General Circulation",
-    "source": "Ghost Aviator — verified",
-    "q": "Airfield Warning for gliders, light aircraft and helicopters is issued for expected wind speed",
-    "opts": [
-      "15 kt",
-      "17 kt",
-      "30 kt"
-    ],
-    "ans": 1,
-    "exp": "Lower wind-speed warning threshold for light aircraft/gliders/helicopters is quoted around 15-17 kt; exact value source-dependent, flagged."
   },
   {
     "subjectIds": [
@@ -10055,7 +9797,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "TREND"
     ],
     "ans": 0,
-    "exp": "The World Area Forecast System supplies high-quality en-route wind and temperature forecasts, not SIGMET."
+    "exp": "WAFS provides high-quality en-route wind and temperature forecasts."
   },
   {
     "subjectIds": [
@@ -10073,40 +9815,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 2,
     "exp": "The national met department operates 6 Regional Meteorological Centres."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-21",
-    "subtopic": "Meteorological Services",
-    "source": "Ghost Aviator — verified",
-    "q": "There are ………… Aerodrome Met Offices",
-    "opts": [
-      "17",
-      "18",
-      "19"
-    ],
-    "ans": 2,
-    "exp": "Institutional count; commonly stated as 19 but subject to change."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-21",
-    "subtopic": "Meteorological Services",
-    "source": "Ghost Aviator — verified",
-    "q": "There are ………… Aeronautical Met Stations",
-    "opts": [
-      "56",
-      "54",
-      "52"
-    ],
-    "ans": 0,
-    "exp": "Institutional count; commonly stated as 56 but subject to change."
   },
   {
     "subjectIds": [
@@ -10311,23 +10019,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 0,
     "exp": "GAMET is an area forecast in abbreviated plain language for low-level flights."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-21",
-    "subtopic": "Meteorological Services",
-    "source": "Ghost Aviator — verified",
-    "q": "The validity of Airfield warnings is not exceeding",
-    "opts": [
-      "3 hr",
-      "4 hr",
-      "6 hr"
-    ],
-    "ans": 1,
-    "exp": "Aerodrome warning validity is short; commonly taught as not exceeding 4 hr but sources vary."
   },
   {
     "subjectIds": [
@@ -10881,193 +10572,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-24",
     "subtopic": "Station Model",
     "source": "Ghost Aviator — verified",
-    "q": "The direction of surface wind is",
-    "opts": [
-      "NW",
-      "NE",
-      "SE"
-    ],
-    "ans": 0,
-    "exp": "Wind arrow direction is read off the plotted station-model diagram, which is not provided; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "The range of wind speed is",
-    "opts": [
-      "20–25 kt",
-      "16–22 kt",
-      "18–22 kt"
-    ],
-    "ans": 1,
-    "exp": "Speed depends on the barbs plotted on the unseen diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "The type of medium cloud is",
-    "opts": [
-      "AC",
-      "AS",
-      "AC &AS"
-    ],
-    "ans": 2,
-    "exp": "Medium-cloud symbol must be read from the diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Low clouds are",
-    "opts": [
-      "CU",
-      "SC",
-      "ST"
-    ],
-    "ans": 0,
-    "exp": "Low-cloud symbol depends on the unseen diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "High clouds are",
-    "opts": [
-      "CC",
-      "CI",
-      "CS"
-    ],
-    "ans": 1,
-    "exp": "High-cloud symbol depends on the unseen diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Height of base of low clouds is",
-    "opts": [
-      "200 m",
-      "250 m",
-      "100 to 199 m"
-    ],
-    "ans": 2,
-    "exp": "Cloud-base h code figure is read from the diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Amount of lowest cloud is",
-    "opts": [
-      "2/8",
-      "4/8",
-      "3/8"
-    ],
-    "ans": 2,
-    "exp": "Low-cloud amount is read from the diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Dew Point temperature range is",
-    "opts": [
-      "29.5 to 30.4°C",
-      "29.1 to 30.4°C",
-      "30.6 to 30.4°C"
-    ],
-    "ans": 1,
-    "exp": "Dew-point value read from the plot; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Temperature 34°C is",
-    "opts": [
-      "Dry",
-      "Wet",
-      "Dew Point"
-    ],
-    "ans": 0,
-    "exp": "Which plotted figure is the dry-bulb depends on the diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "962 represents",
-    "opts": [
-      "QFE",
-      "QFF",
-      "QNH"
-    ],
-    "ans": 1,
-    "exp": "The pressure plotted top-right of a station model is the MSL/QFF value, but."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Pressure value in hPa is",
-    "opts": [
-      "996",
-      "996.2",
-      "1096.2"
-    ],
-    "ans": 1,
-    "exp": "Three-digit pressure code prefixes 9 or 10 per nearer-to-1000 rule; exact reading needs the diagram."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
     "q": "Pressure change of 1.4 hPa is in",
     "opts": [
       "6 hr",
@@ -11085,40 +10589,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-24",
     "subtopic": "Station Model",
     "source": "Ghost Aviator — verified",
-    "q": "Past weather is",
-    "opts": [
-      "Moderate Light Rain",
-      "Continuous Rain",
-      "Heavy Rain"
-    ],
-    "ans": 0,
-    "exp": "Past-weather symbol is read from the diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Rainfall amount is",
-    "opts": [
-      "2 mm",
-      "1.5 mm",
-      "1.6 to 2.4 mm"
-    ],
-    "ans": 1,
-    "exp": "Rainfall figure is read from the diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
     "q": "Rainfall reported is from",
     "opts": [
       "0300Z yesterday to 0300Z today",
@@ -11127,295 +10597,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 0,
     "exp": "At the 0300 UTC main synoptic hour the rainfall group reports the past 24-hour total, i.e. 0300Z previous day to 0300Z current day."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Speed of Ship is",
-    "opts": [
-      "5 KMH",
-      "5 MPS",
-      "5 KT"
-    ],
-    "ans": 2,
-    "exp": "Ship speed code value read from the diagram; unit convention is knots but the figure itself is unverifiable here."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Direction of movement of Ship",
-    "opts": [
-      "NW",
-      "SW",
-      "NE"
-    ],
-    "ans": 1,
-    "exp": "Ship course figure is read from the diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Speed of Ship reported is averaged for",
-    "opts": [
-      "3 hr",
-      "6 hr",
-      "12 hr"
-    ],
-    "ans": 0,
-    "exp": "A ship's course and speed groups are averaged over the 3 hours preceding the observation, not 6."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Surface visibility is",
-    "opts": [
-      "500 to <1000 m",
-      "1000 to 2000 m",
-      "2000 to <4000 m"
-    ],
-    "ans": 0,
-    "exp": "Visibility code figure is read from the diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-24",
-    "subtopic": "Station Model",
-    "source": "Ghost Aviator — verified",
-    "q": "Weather reported is",
-    "opts": [
-      "Rain at time of observation",
-      "Rain during last one hour",
-      "Rain not at station but within 5 km"
-    ],
-    "ans": 1,
-    "exp": "Present-weather symbol is read from the diagram; keeping stored value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "The METAR has been issued on day",
-    "opts": [
-      "15th",
-      "16th",
-      "17th"
-    ],
-    "ans": 1,
-    "exp": "Reading depends on the coded METAR string; cannot independently verify the date group."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "The METAR has been issued at",
-    "opts": [
-      "0630 IST",
-      "0230 UTC",
-      "0230 IST"
-    ],
-    "ans": 1,
-    "exp": "Time-of-issue group is read from the underlying METAR text, which is not available here; UTC form is the only correct type of answer."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "The surface wind speed is",
-    "opts": [
-      "2–6 kt",
-      "3–7 kt",
-      "4–6 kt"
-    ],
-    "ans": 0,
-    "exp": "Wind speed is decoded from the actual METAR wind group, which is not present; cannot verify the value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "Wind direction is varying from",
-    "opts": [
-      "290 to 050°",
-      "050 to 290°",
-      "200 to 050°"
-    ],
-    "ans": 0,
-    "exp": "Variable-wind group is reported clockwise; exact sectors depend on the unseen METAR."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "Visibility 1500 m is towards",
-    "opts": [
-      "N",
-      "S",
-      "All over the airport"
-    ],
-    "ans": 1,
-    "exp": "Directional minimum-visibility indicator is read from the METAR string, which is unavailable."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "Visibility towards N is",
-    "opts": [
-      "1500m",
-      "5000 m",
-      "3000 m"
-    ],
-    "ans": 1,
-    "exp": "Value depends on the directional visibility group in the actual METAR, not provided here."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "Height of base of low clouds above station level is",
-    "opts": [
-      "2000 ft",
-      "2500 ft",
-      "2500 m"
-    ],
-    "ans": 0,
-    "exp": "Cloud-base is decoded from the METAR cloud group; underlying report not present."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "Runway Visual Range is",
-    "opts": [
-      "1–2/8",
-      "More than 1500m",
-      "500–1000m"
-    ],
-    "ans": 1,
-    "exp": "RVR value comes from the R-group of the actual METAR, which is unavailable; option is a cloud-amount value, not an RVR."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "The poor visibility is due to Present Weather which is",
-    "opts": [
-      "Fog",
-      "Brown Dust",
-      "Mist"
-    ],
-    "ans": 2,
-    "exp": "Present-weather cause is read from the ww group of the actual METAR, not provided here."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "Amount of CB cloud is",
-    "opts": [
-      "1–2/8",
-      "2–4/8",
-      "5–7/8"
-    ],
-    "ans": 0,
-    "exp": "CB amount is decoded from the METAR cloud group, which is unavailable."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "Height of base of CB is",
-    "opts": [
-      "2500 m",
-      "3000 ft",
-      "2500 ft"
-    ],
-    "ans": 0,
-    "exp": "CB base height is read from the METAR; underlying report not present, so value cannot be verified."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "The height of topmost layer of cloud is",
-    "opts": [
-      "3000 m",
-      "30000 m",
-      "30000 ft"
-    ],
-    "ans": 2,
-    "exp": "Topmost cloud height is decoded from the METAR cloud groups, unavailable here; only the ft option is a valid form."
   },
   {
     "subjectIds": [
@@ -11442,23 +10623,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-25",
     "subtopic": "METAR / SPECI / TREND",
     "source": "Ghost Aviator — verified",
-    "q": "The wind in TREND from 0330 UTC is valid up to",
-    "opts": [
-      "0400",
-      "0430",
-      "0415"
-    ],
-    "ans": 2,
-    "exp": "End time of the FM/TL trend period is read from the specific TREND text, which is not present here."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
     "q": "The difference between TT and TdTd is 3°C. The atmosphere is",
     "opts": [
       "Very Dry",
@@ -11467,23 +10631,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 1,
     "exp": "A small temperature/dew-point spread indicates near-saturated, moist air; 0°C spread would be saturated."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "Just before METAR issued",
-    "opts": [
-      "Rain at obs",
-      "Rain during last one hour",
-      "Fog"
-    ],
-    "ans": 2,
-    "exp": "Recent-weather reading depends on the actual METAR string, which is not provided."
   },
   {
     "subjectIds": [
@@ -11782,23 +10929,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-25",
     "subtopic": "METAR / SPECI / TREND",
     "source": "Ghost Aviator — verified",
-    "q": "SPECI is issued when Clouds are BKN or OVC base at 30, 60, 150, 300, 450 m AND cloud amount below 450m changes.",
-    "opts": [
-      "Any one condition",
-      "Any two conditions",
-      "All the above conditions"
-    ],
-    "ans": 0,
-    "exp": "Either a BKN/OVC base crossing a threshold or a change in cloud amount below 450 m independently triggers a SPECI; the combined-condition phrasing is ambiguous."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
     "q": "SPECI is issued for vertical visibility, by stations having Ceilograph, when sky is obscured",
     "opts": [
       "True",
@@ -11806,23 +10936,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 0,
     "exp": "Stations equipped to measure vertical visibility issue SPECI for changes in VV when the sky is obscured."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-25",
-    "subtopic": "METAR / SPECI / TREND",
-    "source": "Ghost Aviator — verified",
-    "q": "SPECI is issued when surface temperature has increased by",
-    "opts": [
-      "3°C",
-      "4°C",
-      "2°C"
-    ],
-    "ans": 2,
-    "exp": "Temperature-change SPECI threshold varies by manual; the stored 2°C matches the common Indian text value but is not uniformly standardised."
   },
   {
     "subjectIds": [
@@ -11857,193 +10970,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 2,
     "exp": "Prefix M means 'less than'; 150 m is the lowest value the RVR instrument can assess, so actual RVR is below 150 m on runway 26."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "The TAF has been issued on",
-    "opts": [
-      "23rd",
-      "18th",
-      "24th"
-    ],
-    "ans": 2,
-    "exp": "Answer depends on the specific coded TAF header not provided; stored value retained."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "The TAF has been issued at",
-    "opts": [
-      "1830 IST",
-      "1830 UTC",
-      "24 UTC"
-    ],
-    "ans": 1,
-    "exp": "Issue time read from coded TAF header not provided; stored value retained."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "The expected surface wind speed is",
-    "opts": [
-      "0 kt",
-      "6 kt",
-      "08 kt"
-    ],
-    "ans": 0,
-    "exp": "Wind group value read from the specific coded message not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Initially expected wind direction is",
-    "opts": [
-      "120°",
-      "090°",
-      "050°"
-    ],
-    "ans": 1,
-    "exp": "Initial wind direction read from the specific coded message not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "TAF is Valid for Date",
-    "opts": [
-      "23rd",
-      "24th",
-      "25th"
-    ],
-    "ans": 2,
-    "exp": "Validity date read from coded validity group not provided; stored value retained."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Lowest forecast visibility in TAF is",
-    "opts": [
-      "1500m",
-      "800m",
-      "0200m"
-    ],
-    "ans": 1,
-    "exp": "Lowest visibility read from the specific coded message not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Height of base of lowest clouds in TAF is",
-    "opts": [
-      "1000 m",
-      "1000 ft",
-      "0800 ft"
-    ],
-    "ans": 1,
-    "exp": "Cloud group decodes in hundreds of feet; exact value from coded message not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Weather TSRA is expected after",
-    "opts": [
-      "0600 UTC",
-      "0600 IST",
-      "0800 UTC"
-    ],
-    "ans": 2,
-    "exp": "Change-group onset time read from coded message not provided; TAF times are UTC."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Direction of gusty wind is",
-    "opts": [
-      "090°",
-      "100°",
-      "120°"
-    ],
-    "ans": 0,
-    "exp": "Gust-wind direction read from coded change group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Expected weather up to 2504 0400UTC is",
-    "opts": [
-      "Fog",
-      "TSRA",
-      "Mist"
-    ],
-    "ans": 0,
-    "exp": "Weather up to stated time read from coded message not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Period of validity of TAF is",
-    "opts": [
-      "23 to 00 IST",
-      "00 to 09 UTC",
-      "20 to 12 UTC"
-    ],
-    "ans": 1,
-    "exp": "Validity period read from coded validity group; TAF times are UTC."
   },
   {
     "subjectIds": [
@@ -12088,40 +11014,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-26",
     "subtopic": "TAF / ARFOR / ROFOR",
     "source": "Ghost Aviator — verified",
-    "q": "Time of issue of ROFOR is",
-    "opts": [
-      "0610 UTC",
-      "0000 IST",
-      "0000 UTC"
-    ],
-    "ans": 2,
-    "exp": "Issue time read from coded ROFOR header not provided; times are UTC."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Period of validity of ROFOR is",
-    "opts": [
-      "0000 to 0000 IST",
-      "0600 to 0100 IST",
-      "0600 to 1000 UTC"
-    ],
-    "ans": 2,
-    "exp": "Validity period read from coded ROFOR group; times are UTC."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
     "q": "Wind speed in ROFOR is in",
     "opts": [
       "KT",
@@ -12130,397 +11022,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 0,
     "exp": "Upper-wind speeds in Indian ROFOR are encoded in knots."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Base of CB cloud is",
-    "opts": [
-      "300 m",
-      "300 ft",
-      "3000 ft"
-    ],
-    "ans": 2,
-    "exp": "CB base height read from coded cloud group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Height of Freezing Level?",
-    "opts": [
-      "300 m",
-      "17,000 ft",
-      "1.7 km"
-    ],
-    "ans": 1,
-    "exp": "Freezing level height read from coded message not provided; 1.7 km distractor is far lower."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Icing group in the ROFOR is",
-    "opts": [
-      "77/170",
-      "621800",
-      "54/669"
-    ],
-    "ans": 1,
-    "exp": "Icing group begins with indicator figure 6; identified from coded message."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Type of Icing?",
-    "opts": [
-      "Nil",
-      "Light",
-      "Light icing in cloud"
-    ],
-    "ans": 2,
-    "exp": "Icing-type digit decoded from coded icing group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Indicator figure for turbulence group in the ROFOR is",
-    "opts": [
-      "7",
-      "6",
-      "5"
-    ],
-    "ans": 2,
-    "exp": "Turbulence group indicator figure is 5 in the code table."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Height at which Icing is expected",
-    "opts": [
-      "21,000 ft",
-      "18,000 m",
-      "15,000 ft"
-    ],
-    "ans": 0,
-    "exp": "Icing height read from coded group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Height of Icing expected to be",
-    "opts": [
-      "300 m",
-      "600 m",
-      "Up to Cloud Top"
-    ],
-    "ans": 2,
-    "exp": "Icing layer/thickness read from coded group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Height at which Turbulence is expected",
-    "opts": [
-      "15,000 ft",
-      "5,000 ft",
-      "12,000 ft"
-    ],
-    "ans": 0,
-    "exp": "Turbulence height read from coded group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Thickness of turbulence expected is?",
-    "opts": [
-      "2000 ft",
-      "300 m",
-      "Up to Top of cloud"
-    ],
-    "ans": 1,
-    "exp": "Turbulence-layer thickness read from coded group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Wind at 5000 ft expected is?",
-    "opts": [
-      "280/10 kt",
-      "280/15 kt",
-      "Up to Top of cloud"
-    ],
-    "ans": 1,
-    "exp": "Wind at 5000 ft read from coded wind group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Wind at 20000 ft expected is?",
-    "opts": [
-      "270/45 kt",
-      "270/45 KMH",
-      "270/40 kt"
-    ],
-    "ans": 0,
-    "exp": "Wind at 20000 ft read from coded wind group; speeds in knots."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Temperature at 20000 ft expected is?",
-    "opts": [
-      "−05°C",
-      "05°C",
-      "265 K"
-    ],
-    "ans": 0,
-    "exp": "Upper-air temp read from coded temp group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Temperature at 40,000 ft expected is?",
-    "opts": [
-      "−45°C",
-      "−41°C",
-      "233 K"
-    ],
-    "ans": 1,
-    "exp": "Upper-air temp read from coded temp group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Date of issue of forecast is?",
-    "opts": [
-      "10",
-      "01",
-      "02"
-    ],
-    "ans": 1,
-    "exp": "Date read from coded header not provided; stored value retained."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Indicator group for Jet stream in ROFOR is",
-    "opts": [
-      "22222",
-      "11111",
-      "111111"
-    ],
-    "ans": 1,
-    "exp": "Jet-stream indicator group taken from the coded message not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Indicator group for Maximum Wind in ROFOR is",
-    "opts": [
-      "22222",
-      "11111",
-      "111111"
-    ],
-    "ans": 0,
-    "exp": "Maximum-wind indicator group taken from the coded message not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Maximum Wind speed expected is",
-    "opts": [
-      "120 kt",
-      "130 kt",
-      "140 kt"
-    ],
-    "ans": 2,
-    "exp": "Max wind speed read from coded max-wind group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Maximum Wind speed expected at height",
-    "opts": [
-      "120 kt",
-      "130 kt",
-      "38000 ft"
-    ],
-    "ans": 2,
-    "exp": "Height of max wind read from coded group; only the ft option is a height value."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Jet stream is expected at Lat/Long",
-    "opts": [
-      "27 N70 E",
-      "28 N75 E",
-      "28 N70 E"
-    ],
-    "ans": 1,
-    "exp": "Position read from coded jet-stream group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Vertical Wind Shear per 300 m expected is",
-    "opts": [
-      "25 kt",
-      "30 kt",
-      "38 kt"
-    ],
-    "ans": 0,
-    "exp": "Wind-shear value read from coded group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Jet stream core speed is expected to be",
-    "opts": [
-      "125 kt",
-      "120 kt",
-      "140 kt"
-    ],
-    "ans": 1,
-    "exp": "Jet core speed read from coded group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Jet stream expected at height of",
-    "opts": [
-      "40,000 ft",
-      "36,000 ft",
-      "38,000 ft"
-    ],
-    "ans": 0,
-    "exp": "Jet-stream height read from coded group not provided."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-26",
-    "subtopic": "TAF / ARFOR / ROFOR",
-    "source": "Ghost Aviator — verified",
-    "q": "Wind at 40,000 ft expected is?",
-    "opts": [
-      "270/105 kt",
-      "270/115 KMH",
-      "270/140 kt"
-    ],
-    "ans": 0,
-    "exp": "Wind at 40000 ft read from coded wind group; speeds in knots."
   },
   {
     "subjectIds": [

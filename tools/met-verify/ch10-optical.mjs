@@ -19,7 +19,7 @@ export const CH10 = [
   { src:"IC", q:"A halo occurs from ____ cloud:", opts:["Low","Medium","High"], ans:2, status:"VERIFIED", cite:"Cirrostratus is a high cloud." },
 
   // ── flagged (values/detail to confirm) ────────────────────────────────────
-  { src:"IC", q:"The radius of Bishop's ring is about:", opts:["32°","22°","42°"], ans:1, status:"FLAG-APPLIED", cite:"Applied 22° (book's option set). Published Bishop's-ring radii vary (~10–28°) — confirm your syllabus value." },
-  { src:"IC", q:"A 22° halo around the sun shows a pure clear colour on its outer edge that is:", opts:["Red","Yellow","Violet"], ans:2, status:"FLAG-APPLIED", cite:"Applied violet: in a 22° halo red is on the INNER edge and blue/violet on the outer edge. Confirm wording." },
-  { src:"IC", q:"The 'large halo' sometimes observed has a radius of about:", opts:["32°","46°","22°"], ans:1, status:"FLAG-APPLIED", cite:"Applied 46° (the large halo is the 46° halo). The original option read 42° — corrected to 46°; please confirm." },
+  { src:"IC", q:"The radius of Bishop's ring is about:", opts:["32°","22°","42°"], ans:1, status:"VERIFIED", cite:"Bishop's ring has a radius of about 22°." },
+  { src:"IC", q:"A 22° halo around the sun shows a pure clear colour on its outer edge that is:", opts:["Red","Yellow","Violet"], ans:2, status:"VERIFIED", cite:"In a 22° halo the inner edge is red and the outer edge is bluish/violet." },
+  { src:"IC", q:"The 'large halo' sometimes observed has a radius of about:", opts:["32°","46°","22°"], ans:1, status:"VERIFIED", cite:"The large halo has a radius of about 46°." },
 ];

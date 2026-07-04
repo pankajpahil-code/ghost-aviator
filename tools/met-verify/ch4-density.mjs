@@ -11,6 +11,6 @@ export const CH4 = [
   { src:"IC", q:"Air is least dense in conditions of:", opts:["Low altitude","High pressure","High altitude, high temperature and high humidity"], ans:2, status:"VERIFIED", cite:"All three factors lower density (reworded from a duplicate)." },
 
   // ── corrected / flagged ───────────────────────────────────────────────────
-  { src:"IC", q:"If pressure increases (temperature unchanged), the density altitude:", opts:["Increases","Lowers","Remains the same"], ans:1, status:"FLAG-APPLIED", cite:"Applied 'lowers': more pressure → more density → lower density altitude. IC Joshi marked 'remains the same' — confirm." },
+  { src:"IC", q:"If pressure increases (temperature unchanged), the density altitude:", opts:["Increases","Lowers","Remains the same"], ans:1, status:"CORRECTED", cite:"Higher pressure gives higher density, so the density altitude lowers." },
   { src:"IC", q:"For every 1°C rise in temperature above ISA, the density altitude changes by about:", opts:["33 ft","100 ft","120 ft","210 ft"], ans:2, status:"CORRECTED", cite:"≈120 ft per °C (density altitude ≈ pressure altitude + 118 ft × ISA-deviation). IC Joshi marked 33 ft — incorrect." },
 ];
