@@ -546,7 +546,7 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "ar-25", number: 25, title: "Aviation Physiology and Human Factors",
         description: "Hypoxia types and time of useful consciousness, hyperventilation, spatial disorientation and illusions (leans, graveyard spiral, somatogravic), G-forces, vision in flight (night vision, empty field myopia), hearing, altitude physiology.",
-        duration: "3 hrs", questionCount: 60, content: makeContent(true),
+        duration: "3 hrs", questionCount: 55, content: makeContent(true),
       },
       {
         id: "ar-26", number: 26, title: "Additional Practice Questions: Human Factors",

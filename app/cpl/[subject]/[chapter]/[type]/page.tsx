@@ -129,6 +129,7 @@ export default async function Page({
       "air-regulations/ar-22": true,
       "air-regulations/ar-23": true,
       "air-regulations/ar-24": true,
+      "air-regulations/ar-25": true,
       "air-regulations/ar-26": true,
       // IC Joshi Meteorology study notes (Ch.1–11)
       "meteorology/met-1":  true,

@@ -14,6 +14,7 @@ import { OXFORD_INSTRUMENTATION } from "./generated/oxford-instrumentation";
 import { OXFORD_RADIO_NAV } from "./generated/oxford-radio-nav";
 import { OXFORD_GEN_NAV } from "./generated/oxford-gen-nav";
 import { REGS_NOTES } from "./generated/regs-notes";
+import { AR25_PHYSIOLOGY_QUESTIONS } from "./generated/ar25-physiology-questions";
 import { MET_VERIFIED, VERIFIED_MET_CHAPTERS } from "./generated/met-verified";
 
 export type { DemoQuestion };
@@ -42,7 +43,8 @@ const RAW_QUESTIONS: DemoQuestion[] = [
   ...OXFORD_INSTRUMENTATION, // Instrumentation HTML-notes Q&A (inst-1..23)
   ...OXFORD_RADIO_NAV,       // Radio Navigation HTML-notes Q&A (rnav-1..20)
   ...OXFORD_GEN_NAV,         // Oxford Gen-Nav notes Q&A (air-navigation nav-13..20)
-  ...REGS_NOTES,             // Air Regulations HTML-notes Q&A (ar-22, ar-23)
+  ...REGS_NOTES,             // Air Regulations HTML-notes Q&A (ar-2, ar-22, ar-23)
+  ...AR25_PHYSIOLOGY_QUESTIONS, // Aviation Physiology Q&A (ar-25)
   ...ECQB_061_NAVIGATION,
   ...ICJOSHI_MET.filter(dropVerifiedMet), // font-extracted met bank (unverified met chapters only)
 ];
