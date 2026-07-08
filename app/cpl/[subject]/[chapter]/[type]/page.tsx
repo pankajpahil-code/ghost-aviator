@@ -106,6 +106,7 @@ export default async function Page({
 
     // serve HTML notes for any chapter that has a notes.html in public/content/
     const HTML_NOTES_CHAPTERS: Record<string, boolean> = {
+      "air-regulations/ar-2":  true,
       "air-regulations/ar-3":  true,
       "air-regulations/ar-4":  true,
       "air-regulations/ar-5":  true,

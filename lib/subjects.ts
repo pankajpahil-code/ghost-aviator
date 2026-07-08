@@ -359,7 +359,7 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "ar-2", number: 2, title: "Aircraft Nationality and Registration Marks",
         description: "ICAO Annex 7: nationality marks, registration marks, common marks, display requirements, marks on aircraft parts. Indian VT- registration series, DGCA registration procedures, certificates of registration, de-registration.",
-        duration: "2 hrs", questionCount: 40,
+        duration: "2 hrs", questionCount: 15,
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },

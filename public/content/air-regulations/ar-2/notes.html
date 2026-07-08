@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGCA Study Notes — Aircraft Nationality &amp; Registration Marks | Capt. Pankaj Pahil</title>
+<style>
+  /* ================= PRINT SETUP ================= */
+  @page { size: A4; margin: 20mm; }
+
+  :root{
+    --navy:#10243e;
+    --navy-2:#1c3a5e;
+    --steel:#2f6db0;
+    --sky:#5b9bd5;
+    --ink:#26323d;
+    --paper:#fbfaf7;
+    --gold:#c8961e;
+    --red-bg:#fdecea;     --red-bd:#d9534f;  --red-tx:#7d211d;
+    --blue-bg:#e8f0fb;    --blue-bd:#2f6db0; --blue-tx:#16365c;
+    --green-bg:#eaf6ee;   --green-bd:#3c9a5a;--green-tx:#1f5232;
+    --amber-bg:#fdf3e0;   --amber-bd:#c8961e;--amber-tx:#7a5708;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:Georgia, 'Times New Roman', serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.62;
+    font-size:16px;
+    position:relative;
+  }
+
+  /* ============ DIAGONAL WATERMARK ============ */
+  body::before{
+    content:"Capt. Pankaj Pahil";
+    position:fixed;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%) rotate(-45deg);
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-weight:900;
+    font-size:84px;
+    letter-spacing:2px;
+    color:#10243e;
+    opacity:0.10;
+    white-space:nowrap;
+    z-index:9999;
+    pointer-events:none;
+    user-select:none;
+  }
+
+  /* ================= LAYOUT ================= */
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:34px 30px 80px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ================= COVER ================= */
+  .cover{
+    background:
+      radial-gradient(900px 420px at 80% -10%, rgba(91,155,213,.35), transparent 60%),
+      linear-gradient(155deg, var(--navy) 0%, var(--navy-2) 55%, #244a73 100%);
+    color:#f4f7fb;
+    border-radius:18px;
+    padding:50px 46px 44px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 18px 40px -22px rgba(16,36,62,.7);
+  }
+  .cover::after{
+    content:"";
+    position:absolute; right:-60px; top:-60px;
+    width:260px; height:260px; border-radius:50%;
+    border:2px dashed rgba(255,255,255,.18);
+  }
+  .cover .badge{
+    display:inline-block;
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-weight:700; font-size:12.5px; letter-spacing:3px;
+    text-transform:uppercase;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    padding:7px 15px; border-radius:30px;
+  }
+  .cover .chno{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-weight:900; font-size:15px; letter-spacing:4px;
+    color:var(--sky); margin:26px 0 4px;
+  }
+  .cover h1{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-weight:900; font-size:43px; line-height:1.07;
+    margin:6px 0 10px; letter-spacing:.5px;
+  }
+  .cover .sub{
+    font-size:17px; opacity:.92; max-width:640px; font-style:italic;
+  }
+  .cover .meta{
+    margin-top:30px; display:flex; flex-wrap:wrap; gap:10px 26px;
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-size:13px; letter-spacing:.5px;
+  }
+  .cover .meta span{ opacity:.85; }
+  .cover .meta b{ color:var(--sky); font-weight:700; }
+  .cover .source{
+    margin-top:12px;
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-size:11.5px;
+    opacity:.75; letter-spacing:.5px;
+  }
+
+  /* ================= SECTION HEADINGS ================= */
+  h2.sec{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-weight:800; font-size:25px; color:var(--navy);
+    margin:54px 0 4px; padding-bottom:8px;
+    border-bottom:3px solid var(--steel);
+    display:flex; align-items:center; gap:14px;
+  }
+  h2.sec .num{
+    background:var(--navy); color:#fff;
+    font-size:15px; font-weight:900;
+    width:38px; height:38px; min-width:38px;
+    border-radius:9px; display:flex; align-items:center; justify-content:center;
+  }
+  h3.sub{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-weight:700; font-size:18.5px; color:var(--navy-2);
+    margin:30px 0 8px;
+    border-left:5px solid var(--gold); padding-left:12px;
+  }
+  h4.mini{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-weight:700; font-size:15px; color:var(--steel);
+    text-transform:uppercase; letter-spacing:1.2px;
+    margin:20px 0 6px;
+  }
+  p{ margin:9px 0; }
+  a{ color:var(--steel); }
+  ul,ol{ margin:9px 0 9px 4px; padding-left:24px; }
+  li{ margin:5px 0; }
+  strong{ color:var(--navy); }
+  em{ color:var(--navy-2); }
+
+  .val{
+    font-family:'Cascadia Code', 'Consolas', 'Courier New', monospace;
+    font-weight:600; font-size:.93em;
+    background:#fff3cf;
+    border-bottom:2px solid var(--gold);
+    padding:1px 5px; border-radius:3px;
+    color:#5e4406; white-space:nowrap;
+  }
+
+  /* ================= INFO BOXES ================= */
+  .box{
+    border-radius:11px;
+    padding:15px 18px 15px 20px;
+    margin:16px 0;
+    page-break-inside:avoid;
+    border:1px solid;
+  }
+  .box .tag{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-weight:800; font-size:12px; letter-spacing:1.5px;
+    text-transform:uppercase;
+    display:inline-flex; align-items:center; gap:7px;
+    margin-bottom:4px;
+  }
+  .box p:last-child, .box ul:last-child, .box ol:last-child{ margin-bottom:0; }
+  .box p:first-of-type{ margin-top:2px; }
+
+  .box.red{ background:var(--red-bg); border-color:var(--red-bd); }
+  .box.red .tag{ color:var(--red-tx); }
+  .box.red strong{ color:var(--red-tx); }
+  .box.blue{ background:var(--blue-bg); border-color:var(--blue-bd); }
+  .box.blue .tag{ color:var(--blue-tx); }
+  .box.blue strong{ color:var(--blue-tx); }
+  .box.green{ background:var(--green-bg); border-color:var(--green-bd); }
+  .box.green .tag{ color:var(--green-tx); }
+  .box.green strong{ color:var(--green-tx); }
+  .box.amber{ background:var(--amber-bg); border-color:var(--amber-bd); }
+  .box.amber .tag{ color:var(--amber-tx); }
+  .box.amber strong{ color:var(--amber-tx); }
+
+  .examtip{
+    background:linear-gradient(180deg,#fffaf0,#fff5e2);
+    border:1px dashed var(--gold);
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:13px 16px; margin:16px 0;
+    page-break-inside:avoid;
+  }
+  .examtip .tag{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight:800;
+    font-size:12px; letter-spacing:1.5px; color:var(--amber-tx);
+    text-transform:uppercase;
+  }
+
+  /* ================= TABLES ================= */
+  table{
+    width:100%; border-collapse:collapse;
+    margin:16px 0; font-size:14.3px;
+    page-break-inside:avoid;
+    background:#fff;
+    border-radius:8px; overflow:hidden;
+    box-shadow:0 4px 14px -10px rgba(16,36,62,.5);
+  }
+  caption{
+    caption-side:top; text-align:left;
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight:700;
+    font-size:13.5px; color:var(--navy-2);
+    padding:4px 2px 8px;
+  }
+  thead th{
+    background:var(--navy); color:#fff;
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight:700;
+    font-size:12.6px; letter-spacing:.4px;
+    padding:9px 11px; text-align:left;
+    text-transform:uppercase;
+  }
+  tbody td, tbody th{
+    padding:8px 11px;
+    border-bottom:1px solid #e3e0d8;
+    vertical-align:top;
+  }
+  tbody tr:nth-child(even){ background:#f4f2ec; }
+  tbody tr:last-child td, tbody tr:last-child th{ border-bottom:none; }
+  tbody th{ font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight:700; color:var(--navy); text-align:left; }
+
+  /* ================= DIAGRAM FRAME ================= */
+  .figure{
+    background:#fff;
+    border:1px solid #e0ddd3;
+    border-radius:12px;
+    padding:18px 16px 12px;
+    margin:18px 0;
+    page-break-inside:avoid;
+    text-align:center;
+  }
+  .figure .cap{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight:700;
+    font-size:12.5px; letter-spacing:1px; text-transform:uppercase;
+    color:var(--steel); margin-bottom:10px;
+  }
+  svg.diagram{ max-width:100%; height:auto; }
+
+  .keyfacts{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin:16px 0; page-break-inside:avoid;
+  }
+  .keyfacts .kf{
+    flex:1 1 150px;
+    background:#fff; border:1px solid #e0ddd3;
+    border-top:4px solid var(--steel);
+    border-radius:9px; padding:11px 13px;
+  }
+  .keyfacts .kf .n{
+    font-family:'Cascadia Code', 'Consolas', 'Courier New', monospace; font-weight:700;
+    font-size:18px; color:var(--navy);
+  }
+  .keyfacts .kf .l{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.6px; color:#6b6b63;
+    margin-top:2px;
+  }
+
+  .toc{
+    background:#fff; border:1px solid #e0ddd3;
+    border-radius:12px; padding:22px 26px; margin:30px 0 10px;
+    page-break-inside:avoid;
+  }
+  .toc h2{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight:800;
+    font-size:18px; color:var(--navy); margin:0 0 12px;
+    letter-spacing:.5px;
+  }
+  .toc ol{
+    columns:2; column-gap:34px;
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-size:13.6px;
+    list-style:none; padding:0; margin:0;
+    counter-reset:toc;
+  }
+  .toc ol li{
+    counter-increment:toc;
+    padding:4px 0; break-inside:avoid;
+    border-bottom:1px dotted #d8d5cc;
+  }
+  .toc ol li::before{
+    content:counter(toc,decimal-leading-zero);
+    color:var(--steel); font-weight:800; margin-right:9px;
+  }
+  .toc ol li a{ text-decoration:none; color:var(--ink); }
+
+  .leadin{
+    font-style:italic; color:var(--navy-2);
+    border-left:3px solid var(--sky);
+    padding:2px 0 2px 14px; margin:14px 0;
+  }
+
+  /* Registration anatomy display */
+  .reg-anatomy{
+    display:flex; justify-content:center; align-items:baseline; gap:6px;
+    margin:12px 0;
+    font-family:'Cascadia Code', 'Consolas', 'Courier New', monospace;
+    font-weight:700;
+  }
+  .reg-anatomy .piece{
+    text-align:center;
+  }
+  .reg-anatomy .piece .txt{
+    font-size:44px; color:var(--navy);
+    padding:6px 12px;
+    background:#fff; border:2px solid var(--steel);
+    border-radius:8px;
+  }
+  .reg-anatomy .piece.hy .txt{
+    border-color:transparent; background:transparent;
+    color:var(--gold);
+  }
+  .reg-anatomy .piece.suffix .txt{
+    border-color:var(--gold); background:#fff3cf; color:#5e4406;
+  }
+  .reg-anatomy .piece .lbl{
+    display:block; margin-top:8px;
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight:800;
+    font-size:11px; letter-spacing:1px; color:var(--steel);
+    text-transform:uppercase;
+  }
+
+  /* MCQ */
+  .mcq{
+    background:#fff; border:1px solid #e0ddd3;
+    border-radius:9px; padding:12px 15px; margin:11px 0;
+    page-break-inside:avoid;
+  }
+  .mcq .q{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight:600;
+    font-size:14.3px; color:var(--navy);
+  }
+  .mcq .q .qn{
+    background:var(--navy); color:#fff; font-weight:800;
+    font-size:11.5px; padding:2px 7px; border-radius:5px; margin-right:8px;
+  }
+  .mcq ul{ list-style:none; padding-left:0; margin:8px 0 0; }
+  .mcq ul li{
+    font-size:13.7px; padding:4px 9px; margin:3px 0;
+    border-radius:6px; border:1px solid transparent;
+  }
+  .mcq ul li.correct{
+    background:var(--green-bg); border-color:var(--green-bd);
+    font-weight:600;
+  }
+  .mcq ul li.correct::after{
+    content:" ✓ Correct"; color:var(--green-tx);
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight:800; font-size:11px;
+  }
+  .mcq ul li .opt{
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight:800;
+    color:var(--steel); margin-right:7px;
+  }
+  .mcq .why{
+    margin-top:7px; font-size:12.8px; font-style:italic;
+    color:var(--navy-2); border-top:1px dotted #ddd9cf; padding-top:6px;
+  }
+  .mcq .why b{ font-style:normal; }
+
+  .footer{
+    margin-top:60px; padding-top:18px;
+    border-top:2px solid var(--steel);
+    font-family:system-ui, -apple-system, 'Segoe UI', sans-serif; font-size:12px;
+    color:#6b6b63; text-align:center; letter-spacing:.4px;
+  }
+
+  @media print{
+    body{ font-size:11.6pt; background:#fff; }
+    .wrap{ padding:0; max-width:100%; }
+    body::before{ font-size:78px; opacity:0.12; }
+    .cover{ box-shadow:none; }
+    table, .figure, .box, .examtip, .keyfacts, .mcq, .toc, .reg-anatomy{ page-break-inside:avoid; }
+    h2.sec, h3.sub, h4.mini{ page-break-after:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===================== COVER ===================== -->
+  <header class="cover">
+    <span class="badge">DGCA Ground School &mdash; Air Regulations</span>
+    <div class="chno">CHAPTER 3</div>
+    <h1>Aircraft Nationality &amp; Registration Marks</h1>
+    <p class="sub">A complete, exam-focused study companion for CPL &amp; ATPL student pilots covering identification plates, mark measurements, the Indian VT / VU / U system, certificate &amp; register of aircraft, and modern aircraft leasing through GIFT&#8209;City.</p>
+    <div class="meta">
+      <span>Prepared by &nbsp;<b>Capt. Pankaj Pahil</b></span>
+      <span>Subject&nbsp;&mdash;&nbsp;<b>Air Regulations</b></span>
+      <span>Target&nbsp;&mdash;&nbsp;<b>CPL / ATPL</b></span>
+      <span>Format&nbsp;&mdash;&nbsp;<b>Notes + 15 MCQ Bank</b></span>
+    </div>
+    <div class="source">Reference: ICAO Annex 7 (Rules of the Air, 1937) &bull; CAR Section 2 &mdash; Airworthiness, Series F Part I, Issue II (Revision 13 Jun 2017 &amp; 12 Apr 2024).</div>
+  </header>
+
+  <!-- ===================== HOW TO USE ===================== -->
+  <div class="box blue" style="margin-top:26px;">
+    <span class="tag">&#9432; How To Use These Notes</span>
+    <p>The colour code is consistent across the Ghost Aviator library:</p>
+    <ul>
+      <li><strong style="color:var(--blue-tx)">Blue</strong> &mdash; Definitions &amp; core concepts.</li>
+      <li><strong style="color:var(--green-tx)">Green</strong> &mdash; Standard procedures &amp; allowances.</li>
+      <li><strong style="color:var(--red-tx)">Red</strong> &mdash; Strict limitations, warnings &amp; prohibitions.</li>
+      <li><strong style="color:var(--amber-tx)">Amber / dashed</strong> &mdash; Memory aids &amp; exam traps.</li>
+    </ul>
+    <p>Exact regulatory values are pinned like this &mdash; <span class="val">at least 50 cm</span> &mdash; because the examiner tests the number, not the paraphrase.</p>
+  </div>
+
+  <!-- ===================== TABLE OF CONTENTS ===================== -->
+  <nav class="toc">
+    <h2>Contents of This Chapter</h2>
+    <ol>
+      <li><a href="#s1">Annex 7 &mdash; What It Sets Out</a></li>
+      <li><a href="#s2">Identification Plate</a></li>
+      <li><a href="#s3">The Registration Mark &mdash; Assignment &amp; Confusion Rules</a></li>
+      <li><a href="#s4">Measurements of Nationality, Common &amp; Registration Marks</a></li>
+      <li><a href="#s5">National Provisions &mdash; Certificate, Cancellation, Register</a></li>
+      <li><a href="#s6">How Indian Marks Are Affixed &mdash; VT, VU &amp; U</a></li>
+      <li><a href="#s7">Use of State Marks</a></li>
+      <li><a href="#s8">Leasing &mdash; Lessor, Lessee, IFSC &amp; GIFT City</a></li>
+      <li><a href="#s9">Practice Question Bank &mdash; 15 MCQs + Answer Key</a></li>
+    </ol>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 1 — ANNEX 7 OVERVIEW -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s1"><span class="num">1</span> Annex 7 &mdash; What It Sets Out</h2>
+  <p class="leadin">Every aircraft has a "name badge" &mdash; a nationality mark that identifies the country of registry and a registration mark that identifies the individual airframe. ICAO Annex 7 is the international rulebook that tells States how to pick, size and display those badges.</p>
+
+  <div class="box blue">
+    <span class="tag">&#9432; What Annex 7 Does</span>
+    <p>Annex 7 sets out procedures for <strong>selection by ICAO Contracting States of nationality marks</strong> from the <strong>nationality symbols included in the radio call signs allocated to the States of Registry by the ITU</strong>.</p>
+    <ul>
+      <li>It sets <strong>standards for the use of letters, numbers and other graphic symbols</strong> in the nationality and registration marks.</li>
+      <li>It spells out <strong>where these characters will be located</strong> on different types of airborne vehicles &mdash; lighter-than-air and heavier-than-air aircraft alike.</li>
+      <li>It calls for the <strong>registration of the aircraft</strong> and provides a sample <strong>Certificate of Registration</strong> for use by ICAO Contracting States.</li>
+      <li>The certificate <strong>must be carried in the aircraft at all times</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="box amber">
+    <span class="tag">&#9888; Who Allots What &mdash; The Three Bodies</span>
+    <p>Three international bodies interact:</p>
+    <ul>
+      <li><strong>ITU (International Telecommunication Union)</strong> &mdash; allocates the underlying radio call-sign symbols to the States of Registry. It also allots the symbols <span class="val">4YA to 4YZ</span> for <strong>common marks</strong> to two or more States carrying out joint operations.</li>
+      <li><strong>ICAO (International Civil Aviation Organisation)</strong> &mdash; assigns the common mark to a common-mark registering authority.</li>
+      <li><strong>State of Registry / Common-Mark Registering Authority</strong> &mdash; assigns the individual registration mark to each aircraft.</li>
+    </ul>
+  </div>
+
+  <div class="figure">
+    <div class="cap">Flow &mdash; How a Registration Ends Up on Your Aircraft</div>
+    <div class="static-flow" style="display:flex;flex-wrap:wrap;gap:0;align-items:stretch;justify-content:center;margin:10px 0;">
+  <div class="flow-node" style="flex:1 1 200px;max-width:220px;background:#fdf3e0;border:2px solid #c8961e;border-radius:10px;padding:14px 16px;text-align:center;color:#7a5708;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1.4;">
+    <strong style="font-size:15px;display:block;margin-bottom:6px;color:#7a5708;">ITU</strong>
+    allocates radio call-sign symbols to States of Registry<br>(4YA–4YZ for common marks)
+  </div>
+  <div style="display:flex;align-items:center;padding:0 6px;font-size:24px;color:#2f6db0;font-weight:bold;">→</div>
+  <div class="flow-node" style="flex:1 1 200px;max-width:220px;background:#e8f0fb;border:2px solid #2f6db0;border-radius:10px;padding:14px 16px;text-align:center;color:#16365c;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1.4;">
+    <strong style="font-size:15px;display:block;margin-bottom:6px;color:#16365c;">ICAO</strong>
+    assigns the common mark to a common-mark registering authority
+  </div>
+  <div style="display:flex;align-items:center;padding:0 6px;font-size:24px;color:#2f6db0;font-weight:bold;">→</div>
+  <div class="flow-node" style="flex:1 1 200px;max-width:220px;background:#eaf6ee;border:2px solid #3c9a5a;border-radius:10px;padding:14px 16px;text-align:center;color:#1f5232;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1.4;">
+    <strong style="font-size:15px;display:block;margin-bottom:6px;color:#1f5232;">State of Registry</strong>
+    assigns the individual registration mark
+  </div>
+  <div style="display:flex;align-items:center;padding:0 6px;font-size:24px;color:#2f6db0;font-weight:bold;">→</div>
+  <div class="flow-node" style="flex:1 1 200px;max-width:220px;background:#fdecea;border:2px solid #d9534f;border-radius:10px;padding:14px 16px;text-align:center;color:#7d211d;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1.4;">
+    <strong style="font-size:15px;display:block;margin-bottom:6px;color:#7d211d;">The AIRCRAFT</strong>
+    bears NATIONALITY MARK + ‘–’ + REGISTRATION MARK
+  </div>
+</div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 2 — IDENTIFICATION PLATE -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s2"><span class="num">2</span> Identification Plate</h2>
+
+  <div class="box blue">
+    <span class="tag">&#9432; The Plate &mdash; What It Is</span>
+    <p>An aircraft <strong>shall carry an identification plate</strong> inscribed with <strong>at least</strong> its:</p>
+    <ul>
+      <li>Nationality or common mark; and</li>
+      <li>Registration mark.</li>
+    </ul>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; Material &amp; Location Rule</span>
+    <p>The plate <strong>shall be made of fireproof metal or other fireproof material of suitable physical properties</strong> and shall be secured to the aircraft in a <strong>prominent position near the main entrance</strong> &mdash; or, for special cases:</p>
+    <ul>
+      <li><strong>(a) Unmanned free balloon</strong> &mdash; <strong>affixed conspicuously to the exterior of the payload</strong>.</li>
+      <li><strong>(b) Remotely piloted aircraft (RPA)</strong> &mdash; secured in a prominent position near the main entrance or compartment; or <strong>affixed conspicuously to the exterior of the aircraft</strong> if there is no main entrance or compartment.</li>
+    </ul>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; The Registration Mark Itself</span>
+    <p>The registration mark shall be <strong>letters, numbers, or a combination of letters and numbers</strong> consisting of <strong><span class="val">1 to 5 digits or characters</span></strong>, and shall be that <strong>assigned by the State of Registry or common-mark registering authority</strong>.</p>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Memory Hook</span>
+    <p><strong>"Fireproof, near the main entrance, 1&ndash;5 characters."</strong> Three facts, three marks in the exam.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 3 — CONFUSION WITH DISTRESS SIGNALS -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s3"><span class="num">3</span> The Registration Mark &mdash; Assignment &amp; Confusion Rules</h2>
+  <p class="leadin">A registration mark must never be mistakable for a distress or urgency signal on the radio &mdash; otherwise a routine call could be read as a life-and-death broadcast.</p>
+
+  <div class="box red">
+    <span class="tag">&#9888; Combinations That Must Be Avoided</span>
+    <p>When letters are used for the registration mark, combinations <strong>shall NOT be used which might be confused with</strong>:</p>
+    <ul>
+      <li>The <strong>five-letter combinations</strong> used in the <strong>International Code of Signals, Part II</strong>;</li>
+      <li>The <strong>three-letter combinations beginning with Q</strong> used in the <strong>Q Code</strong>;</li>
+      <li>The <strong>distress signal SOS</strong>, or other similar urgent signals &mdash; for example <span class="val">XXX</span>, <span class="val">PAN</span> and <span class="val">TTT</span>.</li>
+    </ul>
+  </div>
+
+  <table>
+    <caption>Table 3.1 &mdash; Radio Urgency &amp; Distress Signals To Avoid Confusing With</caption>
+    <thead>
+      <tr><th style="width:22%">Signal</th><th>Meaning &amp; Where It Comes From</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>SOS</th><td>The classic international <strong>distress signal</strong>.</td></tr>
+      <tr><th>XXX</th><td>An <strong>urgency signal</strong> &mdash; the radio-telegraphy equivalent of PAN (very high urgency without being an outright distress).</td></tr>
+      <tr><th>PAN</th><td>The radio-telephony <strong>urgency signal</strong> (spoken "PAN-PAN") &mdash; indicates a situation of urgency but not immediate danger.</td></tr>
+      <tr><th>TTT</th><td>The <strong>safety signal</strong> in radio telegraphy &mdash; precedes safety messages.</td></tr>
+      <tr><th>Q-Codes</th><td>Three-letter combinations <strong>beginning with Q</strong> (e.g. QNH, QFE, QDM) reserved for aeronautical procedure.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Exam Trap</span>
+    <p>In the question bank, the "example" the examiner picks for a forbidden combination will be one of <strong>XXX, PAN, TTT</strong> or <strong>SOS</strong>. Distractors like RCC, LLL, DDD are simply not on the list &mdash; but they are only wrong <em>as examples</em>, not as legal combinations.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4 — MEASUREMENTS -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s4"><span class="num">4</span> Measurements of Nationality, Common &amp; Registration Marks</h2>
+  <p class="leadin">Annex 7 fixes the minimum character height so that marks stay legible at range. The numbers are simple and heavily tested &mdash; learn them cold.</p>
+
+  <h3 class="sub">4.1 &nbsp;Heavier-Than-Air Aircraft</h3>
+  <div class="box green">
+    <span class="tag">&#10003; Character Height &mdash; Heavier-Than-Air</span>
+    <ul>
+      <li><strong>Wings</strong> &mdash; height of marks shall be <strong>at least <span class="val">50 cm</span></strong>.</li>
+      <li><strong>Fuselage (or equivalent structure) and vertical tail surfaces</strong> &mdash; height of marks shall be <strong>at least <span class="val">30 cm</span></strong>.</li>
+      <li><strong>Letters and numbers in each separate group of marks shall be of equal height.</strong></li>
+    </ul>
+  </div>
+
+  <h3 class="sub">4.2 &nbsp;Lighter-Than-Air Aircraft</h3>
+  <div class="box green">
+    <span class="tag">&#10003; Character Height &mdash; Lighter-Than-Air</span>
+    <ul>
+      <li>Height of marks on lighter-than-air aircraft <strong>other than unmanned free balloons</strong> shall be <strong>at least <span class="val">50 cm</span></strong>.</li>
+      <li>Measurements for <strong>unmanned free balloons</strong> shall be <strong>determined by the State of Registry</strong>, taking into account the <strong>size of the payload</strong> to which the identification plate is affixed.</li>
+    </ul>
+  </div>
+
+  <div class="figure">
+    <div class="cap">Where Marks Sit On a Heavier-Than-Air Aircraft &mdash; and How Tall</div>
+    <svg class="diagram" viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aircraft mark placement diagram">
+      <!-- background -->
+      <rect width="720" height="340" fill="#fbfaf7"/>
+
+      <!-- fuselage side view -->
+      <path d="M100,200 Q140,175 200,170 L520,170 Q580,170 620,190 L640,200 L620,215 Q580,235 520,235 L200,235 Q140,230 100,205 Z"
+            fill="#e8f0fb" stroke="#10243e" stroke-width="2"/>
+      <!-- cockpit window -->
+      <path d="M580,180 L620,190 L620,205 L580,210 Z" fill="#c8dbf2" stroke="#10243e" stroke-width="1"/>
+      <!-- wing (side view stub) -->
+      <path d="M300,210 L470,215 L470,225 L300,225 Z" fill="#d3dfef" stroke="#10243e" stroke-width="1.5"/>
+      <!-- vertical tail -->
+      <path d="M120,200 L140,120 L200,135 L200,175 Z" fill="#d3dfef" stroke="#10243e" stroke-width="1.5"/>
+      <!-- horizontal stab -->
+      <path d="M100,205 L60,215 L60,225 L110,225 Z" fill="#c8dbf2" stroke="#10243e" stroke-width="1"/>
+
+      <!-- registration marks -->
+      <!-- on fuselage -->
+      <text x="330" y="202" font-family="Archivo,sans-serif" font-weight="800" font-size="20" fill="#10243e">VT-EPC</text>
+      <!-- on tail -->
+      <text x="158" y="165" font-family="Archivo,sans-serif" font-weight="800" font-size="12" fill="#10243e" transform="rotate(-8 158 165)">VT-EPC</text>
+
+      <!-- fuselage height measurement -->
+      <line x1="670" y1="170" x2="670" y2="235" stroke="#c8961e" stroke-width="2"/>
+      <line x1="662" y1="170" x2="678" y2="170" stroke="#c8961e" stroke-width="2"/>
+      <line x1="662" y1="235" x2="678" y2="235" stroke="#c8961e" stroke-width="2"/>
+      <text x="685" y="210" font-family="JetBrains Mono,monospace" font-weight="700" font-size="12" fill="#7a5708">&#8805;30 cm</text>
+      <text x="685" y="225" font-family="Archivo,sans-serif" font-size="10" fill="#7a5708">on fuselage &amp; tail</text>
+
+      <!-- wing (plan view stub below) -->
+      <g transform="translate(120,260)">
+        <path d="M0,10 L440,10 L440,50 L0,50 Z" fill="#d3dfef" stroke="#10243e" stroke-width="1.5"/>
+        <text x="140" y="38" font-family="Archivo,sans-serif" font-weight="800" font-size="22" fill="#10243e">VT-EPC</text>
+        <line x1="470" y1="10" x2="470" y2="50" stroke="#c8961e" stroke-width="2"/>
+        <line x1="462" y1="10" x2="478" y2="10" stroke="#c8961e" stroke-width="2"/>
+        <line x1="462" y1="50" x2="478" y2="50" stroke="#c8961e" stroke-width="2"/>
+        <text x="486" y="35" font-family="JetBrains Mono,monospace" font-weight="700" font-size="12" fill="#7a5708">&#8805;50 cm</text>
+        <text x="486" y="49" font-family="Archivo,sans-serif" font-size="10" fill="#7a5708">on wings</text>
+        <text x="0" y="-2" font-family="Archivo,sans-serif" font-weight="700" font-size="10" fill="#6b6b63">(underside of wing shown)</text>
+      </g>
+
+      <text x="60" y="30" font-family="Archivo,sans-serif" font-weight="800" font-size="13" fill="#2f6db0" letter-spacing="1">HEAVIER-THAN-AIR</text>
+      <text x="60" y="46" font-family="Lora,serif" font-style="italic" font-size="11" fill="#6b6b63">All characters in one group must be equal height.</text>
+    </svg>
+  </div>
+
+  <table>
+    <caption>Table 4.1 &mdash; Quick-Reference: Minimum Character Heights</caption>
+    <thead>
+      <tr><th>Aircraft Type</th><th>Location</th><th>Minimum Height</th></tr>
+    </thead>
+    <tbody>
+      <tr><th rowspan="2">Heavier-than-air</th><td>Wings</td><td><span class="val">50 cm</span></td></tr>
+      <tr><td>Fuselage (or equivalent structure) &amp; vertical tail surfaces</td><td><span class="val">30 cm</span></td></tr>
+      <tr><th rowspan="2">Lighter-than-air</th><td>All types except unmanned free balloons</td><td><span class="val">50 cm</span></td></tr>
+      <tr><td>Unmanned free balloons</td><td>Determined by the <strong>State of Registry</strong> based on payload size</td></tr>
+    </tbody>
+  </table>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Memory Hook</span>
+    <p><strong>"Fifty on wings, thirty on the fuselage."</strong> Lighter-than-air airships and balloons follow the same 50 cm rule as the wings &mdash; because on those bodies the mark is <em>the only</em> mark visible.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 5 — NATIONAL PROVISIONS -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s5"><span class="num">5</span> National Provisions &mdash; Certificate, Cancellation, Register</h2>
+  <p class="leadin">Annex 7 sets the international rulebook; the CAR then bolts it into Indian law. Three practical items to know: who issues the Certificate of Registration, what it contains, and when the DGCA can pull it.</p>
+
+  <h3 class="sub">5.1 &nbsp;Certificate of Registration</h3>
+  <div class="box blue">
+    <span class="tag">&#9432; Authority to Register</span>
+    <p>The authority empowered to <strong>register aircraft and grant the Certificate of Registration in India</strong> shall be the <strong>Central Government</strong>.</p>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; Particulars On the Certificate of Registration</span>
+    <p>The certificate shall include the following:</p>
+    <ul>
+      <li><strong>Type of aircraft</strong>;</li>
+      <li><strong>Constructor's number</strong>;</li>
+      <li><strong>Year of manufacture</strong>;</li>
+      <li><strong>Nationality and registration marks</strong> (as referred to under these rules);</li>
+      <li><strong>Full name, nationality and address of the owner</strong>;</li>
+      <li><strong>Usual station of aircraft</strong>;</li>
+      <li><strong>Date of registration</strong>;</li>
+      <li><strong>Period of validity</strong>.</li>
+    </ul>
+    <p><strong>Leased aircraft &mdash; additional entries:</strong> the certificate shall <strong>also include the validity of the lease</strong> and the <strong>names, nationalities and addresses of the lessor and the lessee</strong>.</p>
+  </div>
+
+  <h3 class="sub">5.2 &nbsp;Cancellation of Registration</h3>
+  <div class="box red">
+    <span class="tag">&#9888; Grounds On Which the DGCA May Cancel</span>
+    <p>The registration of an aircraft registered in India <strong>may be cancelled at any time by the DGCA</strong>, if satisfied that:</p>
+    <ol>
+      <li>Such registration is <strong>not in conformity with the provisions of the rules</strong>; or</li>
+      <li>The registration has been obtained by <strong>furnishing false information</strong>; or</li>
+      <li>The aircraft could <strong>more suitably be registered in some other country</strong>; or</li>
+      <li>The aircraft has been <strong>destroyed or permanently withdrawn from use</strong>; or</li>
+      <li>It is <strong>inexpedient in the public interest</strong> that the aircraft should remain registered in India; or</li>
+      <li>The <strong>lease</strong> in respect of the aircraft: (i) has <strong>expired</strong>, (ii) has been <strong>terminated by mutual agreement</strong> between the lessor and the lessee, or (iii) has been <strong>otherwise terminated</strong> in accordance with the provisions of the Lease Agreement or terms of the lease; or</li>
+      <li>The <strong>Certificate of Airworthiness</strong> in respect of the aircraft has <strong>expired for a period of five years or more</strong>.</li>
+    </ol>
+  </div>
+
+  <div class="figure">
+    <div class="cap">Cancellation of Registration &mdash; The Seven DGCA Triggers</div>
+    <div style="margin:10px 0;text-align:center;">
+  <div style="display:inline-block;background:#e8f0fb;border:2px solid #2f6db0;border-radius:10px;padding:12px 24px;color:#16365c;font-family:system-ui,sans-serif;font-weight:700;font-size:15px;margin-bottom:12px;">Aircraft registered in India</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0;">
+    <div style="flex:1 1 180px;max-width:280px;background:#fdecea;border:1.5px solid #d9534f;border-radius:8px;padding:10px 12px;color:#7d211d;font-family:system-ui,sans-serif;font-size:12.5px;font-weight:600;line-height:1.35;">1. Registration not in conformity with the rules</div>
+    <div style="flex:1 1 180px;max-width:280px;background:#fdecea;border:1.5px solid #d9534f;border-radius:8px;padding:10px 12px;color:#7d211d;font-family:system-ui,sans-serif;font-size:12.5px;font-weight:600;line-height:1.35;">2. Registration obtained by furnishing FALSE information</div>
+    <div style="flex:1 1 180px;max-width:280px;background:#fdecea;border:1.5px solid #d9534f;border-radius:8px;padding:10px 12px;color:#7d211d;font-family:system-ui,sans-serif;font-size:12.5px;font-weight:600;line-height:1.35;">3. Aircraft could more suitably be registered in another country</div>
+    <div style="flex:1 1 180px;max-width:280px;background:#fdecea;border:1.5px solid #d9534f;border-radius:8px;padding:10px 12px;color:#7d211d;font-family:system-ui,sans-serif;font-size:12.5px;font-weight:600;line-height:1.35;">4. Aircraft DESTROYED or permanently WITHDRAWN from use</div>
+    <div style="flex:1 1 180px;max-width:280px;background:#fdecea;border:1.5px solid #d9534f;border-radius:8px;padding:10px 12px;color:#7d211d;font-family:system-ui,sans-serif;font-size:12.5px;font-weight:600;line-height:1.35;">5. Inexpedient in the PUBLIC INTEREST for aircraft to remain registered</div>
+    <div style="flex:1 1 180px;max-width:280px;background:#fdecea;border:1.5px solid #d9534f;border-radius:8px;padding:10px 12px;color:#7d211d;font-family:system-ui,sans-serif;font-size:12.5px;font-weight:600;line-height:1.35;">6. LEASE expired / terminated / mutually or otherwise ended</div>
+    <div style="flex:1 1 180px;max-width:280px;background:#fdecea;border:1.5px solid #d9534f;border-radius:8px;padding:10px 12px;color:#7d211d;font-family:system-ui,sans-serif;font-size:12.5px;font-weight:600;line-height:1.35;">7. C of A expired for 5 YEARS OR MORE</div>
+  </div>
+  <div style="font-size:20px;color:#d9534f;margin:4px 0;">↓</div>
+  <div style="display:inline-block;background:#7d211d;border:2px solid #7d211d;border-radius:10px;padding:12px 24px;color:#fff;font-family:system-ui,sans-serif;font-weight:700;font-size:14px;">DGCA may CANCEL the registration</div>
+</div>
+  </div>
+
+  <h3 class="sub">5.3 &nbsp;Register of Aircraft</h3>
+  <div class="box green">
+    <span class="tag">&#10003; The Register &mdash; Public Record</span>
+    <p>A <strong>register of aircraft registered in India shall be maintained by the Director-General</strong> and shall include the same particulars as those provided in the Certificate of Registration. The register shall be <strong>open to inspection by members of the public</strong> at such times and subject to such conditions as may be specified by the Director-General. The <strong>Register of Aircraft is also available on the DGCA website</strong>.</p>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Exam Hook &mdash; Validity of Registration</span>
+    <p>A Certificate of Registration is <strong>not time-limited</strong>. It remains valid from the date of registration <strong>until it is cancelled by the DGCA</strong> on one of the grounds above &mdash; not for a fixed year, and not merely until the aircraft is destroyed (destruction is one of several triggers, not the only one).</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 6 — MARKS AFFIXED / INDIAN VT VU U -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s6"><span class="num">6</span> How Indian Marks Are Affixed &mdash; VT, VU &amp; U</h2>
+  <p class="leadin">India's ITU allocation and its actual on-airframe practice are two different stories &mdash; a favourite examiner trap. Get both straight.</p>
+
+  <h3 class="sub">6.1 &nbsp;ITU Allocation vs. Actual Practice</h3>
+  <div class="box amber">
+    <span class="tag">&#9888; Allocated vs. Used</span>
+    <ul>
+      <li>India has been <strong>allotted nationality symbols <span class="val">AT to AW</span> by the ITU</strong>.</li>
+      <li>However, India <strong>continues to use pre-Independence nationality marks</strong>.</li>
+      <li>Civil aircraft: <strong><span class="val">VT</span></strong>.</li>
+      <li>Air Force aircraft: <strong><span class="val">VU</span></strong>.</li>
+      <li>Unmanned aircraft registered in India: <strong><span class="val">U</span></strong> followed by <strong>6 alpha-numeric characters</strong> (0&ndash;9 or A&ndash;Z), e.g. <span class="val">UB67DFC</span>.</li>
+    </ul>
+  </div>
+
+  <div class="figure">
+    <div class="cap">Anatomy of an Indian Civil Registration</div>
+    <div class="reg-anatomy" aria-label="Anatomy of VT-EPC">
+      <div class="piece"><span class="txt">VT</span><span class="lbl">Nationality Mark<br>(Civil = VT)</span></div>
+      <div class="piece hy"><span class="txt">&ndash;</span><span class="lbl">Hyphen</span></div>
+      <div class="piece suffix"><span class="txt">EPC</span><span class="lbl">Registration<br>(3 Roman letters)</span></div>
+    </div>
+    <p style="font-size:12px; color:#6b6b63; margin-top:6px;">Air-Force example: <strong>VU-AWB</strong> &bull; Unmanned example: <strong>UB67DFC</strong> (U + 6 alpha-numeric)</p>
+  </div>
+
+  <div class="box blue">
+    <span class="tag">&#9432; The Rule &mdash; Nationality &amp; Registration Marks Together</span>
+    <p>The nationality mark is followed by a <strong>hyphen</strong> and a registration mark <strong>consisting of 3 letters</strong> &mdash; e.g. <span class="val">VT-EPC</span> or <span class="val">VU-AWB</span> &mdash; in <strong>Roman character without ornamentation</strong>.</p>
+  </div>
+
+  <table>
+    <caption>Table 6.1 &mdash; Indian Nationality Marks At a Glance</caption>
+    <thead><tr><th>Aircraft Type</th><th>Nationality Mark</th><th>Format</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><th>Civil</th><td><span class="val">VT</span></td><td>VT &ndash; 3 Roman letters, no ornamentation</td><td>VT-EPC</td></tr>
+      <tr><th>Air Force</th><td><span class="val">VU</span></td><td>VU &ndash; 3 Roman letters, no ornamentation</td><td>VU-AWB</td></tr>
+      <tr><th>Unmanned (India)</th><td><span class="val">U</span></td><td>U + 6 alpha-numeric characters (0&ndash;9 or A&ndash;Z)</td><td>UB67DFC</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">6.2 &nbsp;How the Marks Are Affixed</h3>
+  <div class="box green">
+    <span class="tag">&#10003; The Marks Shall:</span>
+    <ol type="a">
+      <li>Be <strong>painted on the aircraft</strong>, or fixed by any other means ensuring a <strong>similar degree of permanency</strong>, in the form and manner specified by the Director-General from time to time;</li>
+      <li>Be <strong>inscribed together with the full name and address of the registered owner</strong> on the owner's name plate, in the form and manner specified by the Director-General from time to time; and</li>
+      <li><strong>Always be kept clean and visible.</strong></li>
+    </ol>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Exam Trap</span>
+    <p>The nationality marks <strong>allotted</strong> to India by ITU are <strong>AT to AW</strong> (not VT or VU). The nationality marks <strong>actually used</strong> in India are <strong>VT, VU and U</strong>. Two different questions, two different answers &mdash; do not confuse them.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 7 — USE OF STATE MARKS -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s7"><span class="num">7</span> Use of State Marks</h2>
+  <p class="leadin">The exterior of an aircraft is legally regulated real estate. What may &mdash; and may not &mdash; be displayed on it is spelled out plainly.</p>
+
+  <div class="box red">
+    <span class="tag">&#9888; The No-Advertisement Rule</span>
+    <p>An aircraft <strong>shall not bear on any part of its exterior surface any Advertisement or any sign or lettering except</strong> those under these rules and <strong>as required or permitted by the Director-General</strong>.</p>
+  </div>
+
+  <div class="box green">
+    <span class="tag">&#10003; What IS Permitted</span>
+    <ul>
+      <li>The <strong>name of the aircraft</strong> and the <strong>name and emblems of the owner</strong> may be displayed <strong>if</strong> the location, size, shape and colour of the lettering and signs:
+        <ul>
+          <li>Do <strong>not interfere</strong> with easy recognition of, and</li>
+          <li>Are <strong>not capable of confusion</strong> with, the nationality and registration marks of the aircraft.</li>
+        </ul>
+      </li>
+      <li><strong>National flags or colours</strong> may be displayed on the aircraft in such a manner that they are <strong>distinct</strong> and <strong>not likely to create confusion</strong> with the markings used by military aircraft.</li>
+    </ul>
+  </div>
+
+  <div class="box red">
+    <span class="tag">&#9888; State Aircraft Marks Are Off-Limits</span>
+    <p>An aircraft <strong>other than a State aircraft shall not bear any mark or sign prescribed for use by a State aircraft</strong>. Civil aircraft may not "impersonate" military/state markings.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 8 — LEASING -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s8"><span class="num">8</span> Leasing &mdash; Lessor, Lessee, IFSC &amp; GIFT City</h2>
+  <p class="leadin">Modern airline fleets are largely leased. India's new leasing hub &mdash; IFSC/IFSCA at GIFT City &mdash; is a favourite recent examiner topic.</p>
+
+  <h3 class="sub">8.1 &nbsp;Definitions</h3>
+  <table>
+    <caption>Table 8.1 &mdash; The Four Terms You Must Know</caption>
+    <thead><tr><th style="width:22%">Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><th>Lease</th><td>An <strong>agreement by a person (the lessor) to furnish an aircraft to another person (the lessee)</strong> to be used for <strong>compensation or hire purposes</strong>, for a <strong>specified period</strong> or a <strong>defined number of flights</strong>.</td></tr>
+      <tr><th>Lessor</th><td>The party <strong>furnishing</strong> the aircraft under a lease.</td></tr>
+      <tr><th>Lessee</th><td>The party <strong>using</strong> the aircraft under the provisions of a lease.</td></tr>
+      <tr><th>Leasing Company &mdash; GIFT City</th><td>Leasing companies/entities <strong>registered with IFSC and approved by IFSCA</strong> for undertaking leasing of aircraft.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">8.2 &nbsp;Who Operates The Aircraft?</h3>
+  <div class="box red">
+    <span class="tag">&#9888; The Operational Control Rule</span>
+    <p>The <strong>lessee operator</strong> of the aircraft <strong>must hold the necessary economic and operating authority</strong> for the aircraft and <strong>must exercise operational control over the aircraft</strong>. Accordingly, the <strong>lessee must provide</strong>:</p>
+    <ul>
+      <li>The necessary <strong>flight and cabin crew</strong> members;</li>
+      <li><strong>Ground personnel</strong>;</li>
+      <li><strong>Dispatchers</strong>; and</li>
+      <li><strong>Ground facilities</strong> to operate the aircraft.</li>
+    </ul>
+  </div>
+
+  <div class="figure">
+    <div class="cap">The Lease Relationship &mdash; Who Owns, Who Operates, Who Approves</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:10px 0;">
+  <div style="flex:1 1 200px;max-width:240px;background:#e8f0fb;border:2px solid #2f6db0;border-radius:10px;padding:14px 16px;text-align:center;color:#16365c;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1.4;">
+    <strong style="font-size:15px;display:block;margin-bottom:6px;">LESSOR</strong>
+    furnishes the aircraft
+  </div>
+  <div style="text-align:center;font-family:system-ui,sans-serif;font-size:11px;color:#2f6db0;font-weight:600;padding:0 4px;">
+    <div>→ Lease agreement →</div>
+    <div style="font-size:10px;color:#6b6b63;font-weight:400;">(specified period / no. of flights, for compensation or hire)</div>
+  </div>
+  <div style="flex:1 1 200px;max-width:240px;background:#eaf6ee;border:2px solid #3c9a5a;border-radius:10px;padding:14px 16px;text-align:center;color:#1f5232;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1.4;">
+    <strong style="font-size:15px;display:block;margin-bottom:6px;">LESSEE</strong>
+    uses the aircraft — exercises OPERATIONAL CONTROL, provides crew &amp; facilities
+  </div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:8px 0;">
+  <div style="flex:1 1 200px;max-width:240px;background:#fdf3e0;border:2px solid #c8961e;border-radius:10px;padding:12px 16px;text-align:center;color:#7a5708;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1.4;">
+    <strong style="font-size:14px;display:block;margin-bottom:4px;">IFSC</strong>
+    International Financial Services Centre, at GIFT City, Gandhinagar
+  </div>
+  <div style="font-size:18px;color:#c8961e;padding:0 4px;">—</div>
+  <div style="flex:1 1 200px;max-width:240px;background:#fdecea;border:2px solid #d9534f;border-radius:10px;padding:12px 16px;text-align:center;color:#7d211d;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1.4;">
+    <strong style="font-size:14px;display:block;margin-bottom:4px;">IFSCA</strong>
+    unified authority — approves the leasing company
+  </div>
+</div>
+  </div>
+
+  <h3 class="sub">8.3 &nbsp;IFSC, IFSCA &amp; GIFT City</h3>
+  <div class="box blue">
+    <span class="tag">&#9432; The Three Institutions</span>
+    <ul>
+      <li><strong>IFSC (International Financial Services Centre)</strong> &mdash; a financial centre that caters to customers <strong>outside the jurisdiction of the domestic economy</strong>.</li>
+      <li><strong>IFSCA (International Financial Services Centres Authority)</strong> &mdash; the <strong>unified authority for the development and regulation of financial products, financial services and financial institutions</strong> in the IFSC in India.</li>
+      <li><strong>GIFT City</strong> &mdash; <strong>Gujarat International Finance Tec-city SEZ</strong> is India's <strong>first International Financial Services Centre</strong> under the <strong>Special Economic Zone Act, 2005</strong>. It is headquartered at <strong>GIFT City, Gandhinagar in Gujarat</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="examtip">
+    <span class="tag">&#9733; Exam Hooks &mdash; Leasing</span>
+    <ul style="margin:4px 0;">
+      <li>Operational control over the leased aircraft is exercised by the <strong>lessee</strong>.</li>
+      <li>A company undertaking to lease aircraft in India must be approved by the <strong>IFSCA</strong> (not DGCA, not MOCA).</li>
+      <li>GIFT City is in <strong>Gandhinagar, Gujarat</strong>, under the <strong>SEZ Act, 2005</strong>.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 9 — MCQ BANK -->
+  <!-- ============================================================ -->
+  <h2 class="sec" id="s9"><span class="num">9</span> Practice Question Bank &mdash; 15 MCQs</h2>
+  <div class="box blue">
+    <span class="tag">&#9432; How To Use This Bank</span>
+    <p>All <strong>15 questions</strong> from the chapter are reproduced below. The <strong style="color:var(--green-tx)">correct option is highlighted green and marked &#10003;</strong>, with a one-line rationale. A consolidated <strong>answer key grid</strong> follows.</p>
+  </div>
+
+  <div class="mcq"><p class="q"><span class="qn">1</span>The registration mark shall be letters, numbers or a combination of letters and numbers, and shall be that assigned by:</p><ul>
+    <li><span class="opt">A</span>The International Telecommunication Union</li>
+    <li class="correct"><span class="opt">B</span>The state of registry or common mark registering authority</li>
+    <li><span class="opt">C</span>The state of registry only</li></ul>
+    <p class="why"><b>Why:</b> ITU allots the underlying symbols, but the individual registration mark itself is assigned by the State of Registry (or the common-mark registering authority for joint operations).</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">2</span>The common mark shall be selected from the series of symbols included in the radio call signs allocated:</p><ul>
+    <li><span class="opt">A</span>To state of the operator</li>
+    <li class="correct"><span class="opt">B</span>To the International Civil Aviation Organisation by the International Telecommunication Union</li>
+    <li><span class="opt">C</span>To the state of registry by the International Civil Aviation Organisation</li></ul>
+    <p class="why"><b>Why:</b> The common-mark series (4YA&ndash;4YZ) is allocated by the ITU to ICAO for use by common-mark registering authorities.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">3</span>The assignment of the common mark to a common mark registration authority will be made by:</p><ul>
+    <li class="correct"><span class="opt">A</span>The International Civil Aviation Organisation</li>
+    <li><span class="opt">B</span>The state of registry</li>
+    <li><span class="opt">C</span>The International Telecommunication Union</li></ul>
+    <p class="why"><b>Why:</b> ICAO takes the pool of symbols provided by ITU and assigns a common mark to each common-mark registering authority.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">4</span>When letters are used for the registration mark, combinations shall not be used which might be confused with urgent or distress signals, for example:</p><ul>
+    <li class="correct"><span class="opt">A</span>XXX</li>
+    <li><span class="opt">B</span>RCC</li>
+    <li><span class="opt">C</span>DDD</li></ul>
+    <p class="why"><b>Why:</b> XXX is a radio-telegraphy urgency signal &mdash; expressly listed alongside PAN and TTT as an example to avoid.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">5</span>When letters are used for the registration mark, combinations shall not be used which might be confused with:</p><ul>
+    <li><span class="opt">A</span>Three-letter combinations used in the international code of signals</li>
+    <li><span class="opt">B</span>Four-letter combinations beginning with Q</li>
+    <li class="correct"><span class="opt">C</span>Five-letter combinations used in the international code of signals</li></ul>
+    <p class="why"><b>Why:</b> Annex 7 specifies avoiding five-letter combinations from Part II of the International Code of Signals (and three-letter combinations beginning with Q &mdash; the Q Code).</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">6</span>The height of the marks on the fuselage (or equivalent structure) and on the vertical tail surfaces of heavier-than-air aircraft shall be:</p><ul>
+    <li><span class="opt">A</span>At least 20 centimetres</li>
+    <li><span class="opt">B</span>At least 40 centimetres</li>
+    <li class="correct"><span class="opt">C</span>At least 30 centimetres</li></ul>
+    <p class="why"><b>Why:</b> Fuselage / vertical tail marks &mdash; minimum 30 cm.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">7</span>The height of the marks on lighter-than-air aircraft other than unmanned free balloons shall be at least:</p><ul>
+    <li><span class="opt">A</span>60 centimetres</li>
+    <li class="correct"><span class="opt">B</span>50 centimetres</li>
+    <li><span class="opt">C</span>1 meter</li></ul>
+    <p class="why"><b>Why:</b> Lighter-than-air (airships, manned balloons) &mdash; minimum 50 cm. Unmanned free balloons are the exception (set by the State of Registry).</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">8</span>When letters are used for registration mark, combinations shall not be used which might be confused with urgent signals, for example:</p><ul>
+    <li><span class="opt">A</span>LLL</li>
+    <li class="correct"><span class="opt">B</span>PAN</li>
+    <li><span class="opt">C</span>RCC</li></ul>
+    <p class="why"><b>Why:</b> PAN is the radio-telephony urgency signal &mdash; expressly listed in the rule.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">9</span>When letters are used for registration mark, combinations shall not be used which might be confused with urgent signals, for example:</p><ul>
+    <li><span class="opt">A</span>LLL</li>
+    <li class="correct"><span class="opt">B</span>TTT</li>
+    <li><span class="opt">C</span>RCC</li></ul>
+    <p class="why"><b>Why:</b> TTT is the radio-telegraphy safety signal &mdash; listed alongside XXX and PAN.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">10</span>The height of the marks under the wings of heavier-than-air aircraft shall be at least:</p><ul>
+    <li class="correct"><span class="opt">A</span>50 centimetres</li>
+    <li><span class="opt">B</span>Between 40 and 50 centimetres</li>
+    <li><span class="opt">C</span>60 centimetres</li></ul>
+    <p class="why"><b>Why:</b> Wing marks &mdash; minimum 50 cm on heavier-than-air aircraft.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">11</span>A certificate of registration is valid from the date of registration to:</p><ul>
+    <li><span class="opt">A</span>1 year</li>
+    <li><span class="opt">B</span>Till the aircraft is destroyed in an accident</li>
+    <li class="correct"><span class="opt">C</span>Till it is cancelled by DGCA</li></ul>
+    <p class="why"><b>Why:</b> The certificate has no fixed expiry &mdash; it remains valid until DGCA cancels it (destruction is only one of seven cancellation grounds).</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">12</span>Nationality marks allotted to India by ITU are:</p><ul>
+    <li><span class="opt">A</span>Letters VT and VW, both included</li>
+    <li><span class="opt">B</span>Letters VT only</li>
+    <li class="correct"><span class="opt">C</span>Letters AT to AW</li></ul>
+    <p class="why"><b>Why:</b> ITU <em>allotted</em> AT&ndash;AW to India, though India continues to use pre-Independence VT and VU in practice.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">13</span>Nationality marks used in India are:</p><ul>
+    <li class="correct"><span class="opt">A</span>Letters VT, VU and U</li>
+    <li><span class="opt">B</span>Letters VT and VU only</li>
+    <li><span class="opt">C</span>Letters AT to AW</li></ul>
+    <p class="why"><b>Why:</b> VT for civil, VU for Air Force, and U + 6 alpha-numeric characters for unmanned aircraft.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">14</span>Who exercises operational control over the leased aircraft?</p><ul>
+    <li><span class="opt">A</span>Lessor</li>
+    <li class="correct"><span class="opt">B</span>Lessee</li>
+    <li><span class="opt">C</span>IFSC</li></ul>
+    <p class="why"><b>Why:</b> The lessee must hold the economic and operating authority and provide the crew, dispatchers and ground facilities &mdash; operational control sits with the lessee.</p></div>
+
+  <div class="mcq"><p class="q"><span class="qn">15</span>A company undertaking to lease aircraft in India must be approved by:</p><ul>
+    <li><span class="opt">A</span>DGCA</li>
+    <li class="correct"><span class="opt">B</span>IFSCA</li>
+    <li><span class="opt">C</span>MOCA</li></ul>
+    <p class="why"><b>Why:</b> Aircraft-leasing companies at IFSC (GIFT City) are approved by the IFSCA.</p></div>
+
+  <h3 class="sub">Consolidated Answer Key &mdash; All 15 Questions</h3>
+  <table>
+    <caption>Quick-Reference Answer Grid</caption>
+    <thead><tr>
+      <th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>1</td><td>B</td><td>4</td><td>A</td><td>7</td><td>B</td><td>10</td><td>A</td><td>13</td><td>A</td></tr>
+      <tr><td>2</td><td>B</td><td>5</td><td>C</td><td>8</td><td>B</td><td>11</td><td>C</td><td>14</td><td>B</td></tr>
+      <tr><td>3</td><td>A</td><td>6</td><td>C</td><td>9</td><td>B</td><td>12</td><td>C</td><td>15</td><td>B</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    DGCA Ground School &mdash; Air Regulations &bull; Chapter 3: Aircraft Nationality &amp; Registration Marks<br>
+    Study notes prepared by <strong>Capt. Pankaj Pahil</strong> for CPL / ATPL examinees &bull; Retain exact DGCA values verbatim &bull; For instructional use.
+  </div>
+
+</div><!-- /wrap -->
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>
