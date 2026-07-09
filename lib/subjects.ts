@@ -37,16 +37,14 @@ const makeContent = (hasQuestions = false): ContentType[] => [
   { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true         },
 ];
 
-// The RTR(A) book chapters ship as self-contained HTML notes with their OWN
-// embedded self-tests; the site's quiz/question engine isn't wired to them yet,
-// so only "Notes" is advertised (no empty Practice-Qs / Quiz links).
+// RTR(A) book chapters: notes + extracted question bank + chapter quiz.
 const notesOnly = (): ContentType[] => [
   { type: "notes",        label: "Notes",          icon: "📄", available: true  },
-  { type: "questions",    label: "Practice Qs",    icon: "❓", available: false },
+  { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
   { type: "slides",       label: "Slides",         icon: "📊", available: false },
   { type: "video",        label: "Video Lecture",  icon: "🎥", available: false },
   { type: "audio",        label: "Audio Overview", icon: "🎧", available: false },
-  { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: false },
+  { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -877,125 +875,125 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "rtf-1", number: 1, title: "The RTR(A) Exam & How to Use This Book",
         description: "The licence & service, key definitions, exam structure, validity & exemptions, the legal framework (CAR Section 7 Series G Part VI), and an 8-week study plan.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 15, content: notesOnly(),
       },
       // ── MODULE A · Rule-Makers & Regulations (Syllabus Part I) ───────────
       {
         id: "rtf-2", number: 2, title: "Who Governs the Airwaves",
         description: "The Chicago Convention, ICAO & the 19 Annexes, the ITU, DGCA / AAI / WPC, and ICAO versus IATA.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 8, content: notesOnly(),
       },
       {
         id: "rtf-3", number: 3, title: "Licensing, Radio Apparatus & Minimum Equipment",
         description: "The two-licence system, WPC / NFAP / SACFA, Annex 6, the independence rule, ELT, and the Minimum Equipment List (MEL).",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 18, content: notesOnly(),
       },
       {
         id: "rtf-4", number: 4, title: "Q-Codes, Abbreviations & Definitions",
         description: "The altimeter, QNH / QFE / QNE / QFF, transition altitude & level, bearing codes, and the vertical definitions.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 18, content: notesOnly(),
       },
       {
         id: "rtf-5", number: 5, title: "FIRs, Frequencies & Aeronautical Information",
         description: "Airspace structure & classes, the Indian FIRs, principal frequencies, AIP / AIC / NOTAM, AIRAC, and the AFTN.",
-        duration: "3 hrs", questionCount: 0, content: notesOnly(),
+        duration: "3 hrs", questionCount: 18, content: notesOnly(),
       },
       {
         id: "rtf-6", number: 6, title: "Meteorological Codes & the Pre-Flight Briefing Service",
         description: "METAR / SPECI / TAF, TREND / SIGMET / AIRMET, ATIS / VOLMET, CAVOK, and the pre-flight briefing service.",
-        duration: "3 hrs", questionCount: 0, content: notesOnly(),
+        duration: "3 hrs", questionCount: 18, content: notesOnly(),
       },
       // ── MODULE B · Radio Principles & Practice (Syllabus Part II) ────────
       {
         id: "rtf-7", number: 7, title: "Electrical Fundamentals",
         description: "Volt / ampere / ohm / watt, Ohm's law & power, AC vs DC, circuits, and the frequency–wavelength relationship.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 18, content: notesOnly(),
       },
       {
         id: "rtf-8", number: 8, title: "Frequency Bands & Their Aviation Uses",
         description: "VLF through EHF, VHF & HF, the aviation frequencies, channel spacing, and polarization.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 16, content: notesOnly(),
       },
       {
         id: "rtf-9", number: 9, title: "Radio Wave Propagation",
         description: "Ground / sky / space waves, the ionosphere, MUF / LUF, skip distance, fading, and ground shadow.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 16, content: notesOnly(),
       },
       {
         id: "rtf-10", number: 10, title: "Modulation",
         description: "The carrier, AM / FM / DSB / SSB, modulation index, the Tx/Rx chain, and why AM is used on VHF but SSB on HF.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 16, content: notesOnly(),
       },
       {
         id: "rtf-11", number: 11, title: "Transmitters & Receivers in Depth",
         description: "Oscillators, power amplifiers, superheterodyne stages, BFO / AGC / squelch, and image frequencies.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 18, content: notesOnly(),
       },
       {
         id: "rtf-12", number: 12, title: "Navigation Aids",
         description: "NDB / ADF, VOR, ILS, DME, SSR & transponders, GNSS / PBN, TCAS, and the radio altimeter.",
-        duration: "3 hrs", questionCount: 0, content: notesOnly(),
+        duration: "3 hrs", questionCount: 20, content: notesOnly(),
       },
       // ── MODULE C/D · Radiotelephony in Practice & Exam Arsenal (Part III) ─
       {
         id: "rtf-13", number: 13, title: "The Language of the Air",
         description: "The phonetic alphabet, transmission of numbers, and transmission of time.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 18, content: notesOnly(),
       },
       {
         id: "rtf-14", number: 14, title: "Call Signs & Establishing Communication",
         description: "Aircraft call signs, ground-station suffixes, transfers of communication, and read-backs.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 16, content: notesOnly(),
       },
       {
         id: "rtf-15", number: 15, title: "Aerodrome Control: Aircraft",
         description: "Clearance, start / push, taxi, line-up, the circuit, and landing.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 16, content: notesOnly(),
       },
       {
         id: "rtf-16", number: 16, title: "Aerodrome Control: Vehicles",
         description: "Vehicle call signs, holding short, crossing runways, and towing.",
-        duration: "1.5 hrs", questionCount: 0, content: notesOnly(),
+        duration: "1.5 hrs", questionCount: 12, content: notesOnly(),
       },
       {
         id: "rtf-17", number: 17, title: "Area Control",
         description: "Clearance, position reporting, and level changes.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 16, content: notesOnly(),
       },
       {
         id: "rtf-18", number: 18, title: "ATS Surveillance: Principles",
         description: "Primary radar, SSR, transponder codes, and ADS-B.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 16, content: notesOnly(),
       },
       {
         id: "rtf-19", number: 19, title: "ATS Surveillance Phraseology",
         description: "Identification, vectoring, traffic information, and avoiding action.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 16, content: notesOnly(),
       },
       {
         id: "rtf-20", number: 20, title: "Distress, Urgency & Communications Failure",
         description: "MAYDAY, PAN-PAN, emergency descent, squawk 7600, and light signals.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 18, content: notesOnly(),
       },
       {
         id: "rtf-21", number: 21, title: "Met & Aerodrome Information on RT",
         description: "RVR, runway surface conditions, and wind / weather updates.",
-        duration: "1.5 hrs", questionCount: 0, content: notesOnly(),
+        duration: "1.5 hrs", questionCount: 14, content: notesOnly(),
       },
       {
         id: "rtf-22", number: 22, title: "Voice Weather Broadcasts",
         description: "ATIS, VOLMET, the broadcast sequence, and acknowledging receipt.",
-        duration: "1.5 hrs", questionCount: 0, content: notesOnly(),
+        duration: "1.5 hrs", questionCount: 8, content: notesOnly(),
       },
       {
         id: "rtf-23", number: 23, title: "Numbers to Memorise — Master Tables",
         description: "Every frequency, code, distance, and figure from the whole syllabus, collected into master quick-reference tables.",
-        duration: "2 hrs", questionCount: 0, content: notesOnly(),
+        duration: "2 hrs", questionCount: 12, content: notesOnly(),
       },
       {
         id: "rtf-24", number: 24, title: "Full Mock Papers + Oral / Viva Question Bank",
         description: "Complete mock examination papers plus the oral / viva question bank, all with worked answer keys.",
-        duration: "4 hrs", questionCount: 0, content: notesOnly(),
+        duration: "4 hrs", questionCount: 418, content: notesOnly(),
       },
     ],
   },
