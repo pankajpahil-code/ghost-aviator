@@ -7,15 +7,20 @@ import ContentProtection from "./components/ContentProtection";
 import ProgressSync from "./components/ProgressSync";
 import { SITE_URL } from "@/lib/site";
 
-const TITLE = "Ghost Aviator — DGCA Exam Preparation";
+const TITLE = "Ghost Aviator — DGCA Pilot Course, CPL/ATPL Exam Prep & Live Ground Classes";
 const DESCRIPTION =
-  "India's most comprehensive DGCA CPL/ATPL question bank, mock tests, notes, and video lectures for aviation students — free to start.";
+  "India's most complete DGCA pilot training prep — free CPL/ATPL question bank, notes, mock tests and past papers, plus live online ground classes in Air Regulations, Meteorology and Air Navigation by Capt. Pankaj Pahil.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: TITLE,
   description: DESCRIPTION,
-  keywords: ["DGCA", "CPL", "ATPL", "pilot exam", "aviation", "question bank", "mock test", "India"],
+  keywords: [
+    "DGCA", "CPL", "ATPL", "pilot exam", "aviation", "question bank", "mock test", "India",
+    "DGCA pilot course", "pilot training India", "DGCA ground classes", "CPL coaching online",
+    "DGCA exam preparation", "air navigation classes", "aviation meteorology classes",
+    "air regulations classes", "how to become a pilot in India", "DGCA CPL syllabus",
+  ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

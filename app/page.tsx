@@ -120,6 +120,45 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ══════════════════ LIVE CLASSES BANNER ══════════════════ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+        <Link href="/live-classes" className="group relative block rounded-3xl overflow-hidden no-underline"
+              style={{ border:"1px solid rgba(255,60,60,0.45)", boxShadow:"0 0 40px rgba(255,40,40,0.15)" }}>
+          {/* Animated sheen background */}
+          <div className="absolute inset-0" style={{ background:"linear-gradient(120deg, rgba(255,30,30,0.14), rgba(150,0,255,0.14) 45%, rgba(0,180,255,0.1))" }}/>
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+               style={{ background:"linear-gradient(120deg, rgba(255,30,30,0.22), rgba(150,0,255,0.22) 45%, rgba(0,180,255,0.16))" }}/>
+
+          <div className="relative z-10 px-6 sm:px-10 py-8 flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+            {/* LIVE badge */}
+            <div className="flex items-center gap-3 shrink-0">
+              <span className="relative flex h-4 w-4">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background:"#ff3030" }}/>
+                <span className="relative inline-flex rounded-full h-4 w-4" style={{ background:"#ff3030", boxShadow:"0 0 12px rgba(255,48,48,0.9)" }}/>
+              </span>
+              <span className="text-2xl sm:text-3xl font-black tracking-tight" style={{ color:"#ff5a5a" }}>LIVE</span>
+            </div>
+
+            {/* Copy */}
+            <div className="flex-1 text-center lg:text-left">
+              <div className="text-xl sm:text-2xl font-black text-white leading-snug mb-1">
+                Learn directly from <span style={{ background:"linear-gradient(135deg,#ff6000,#ff2060,#c020ff)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Capt. Pankaj Pahil</span> — live online batches
+              </div>
+              <div className="text-sm font-semibold" style={{ color:"#94a3b8" }}>
+                ⚖️ Air Regulations &nbsp;·&nbsp; 🌤️ Meteorology &nbsp;·&nbsp; 🗺️ Air Navigation &nbsp;—&nbsp;
+                batch of 10 · doubt-clearing · <strong style={{ color:"#22c55e" }}>₹2,499 per subject</strong>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-black"
+                 style={{ background:"linear-gradient(135deg,#ff3030,#c020ff)", color:"#fff", boxShadow:"0 0 25px rgba(255,40,40,0.4)" }}>
+              Admissions Open — Join Now <ArrowRight className="w-4 h-4"/>
+            </div>
+          </div>
+        </Link>
+      </section>
+
       {/* ══════════════════ CHOOSE YOUR PATH ══════════════════ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center mb-14">
