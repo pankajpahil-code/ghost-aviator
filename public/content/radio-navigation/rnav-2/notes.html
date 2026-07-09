@@ -4,10 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chapter 2 – Radio Propagation Theory | DGCA Radio Navigation</title>
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis', padding: 20 } });
-</script>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:14px}
@@ -58,7 +55,7 @@ li{margin:5px 0}
 figure.source-figure{margin:18px 0;text-align:center;page-break-inside:avoid;border:1px solid #d0d7de;border-radius:8px;padding:14px;background:#fafbfc}
 figure.source-figure img{max-width:100%;height:auto;border-radius:4px;display:block;margin:0 auto}
 figure.source-figure figcaption{margin-top:10px;font-size:0.88em;color:#555;font-style:italic}
-pre.mermaid{background:#f8fff8;border:1px solid #a5d6a7;border-radius:8px;padding:16px;margin:18px 0;page-break-inside:avoid}
+
 .qa-section-divider{page-break-before:always;border-top:3px solid #1b5e20;margin:40px 0 30px;padding-top:30px}
 .qa-block{border:2px solid #2e7d32;border-radius:8px;padding:20px;margin:25px 0;page-break-inside:avoid;background:#fff}
 .qa-question{background:#e8f5e9;padding:15px;border-radius:6px;margin-bottom:15px}
@@ -215,29 +212,25 @@ blockquote.reg-quote{font-family:Georgia,serif;font-style:italic;border:1px soli
   <figcaption>Figure 2.2 — Propagation paths: Non-ionospheric (Surface Wave 20 kHz–50 MHz; Space Wave &gt;50 MHz) and Ionospheric (Sky Wave 20 kHz–50 MHz; SatComm/Direct Wave UHF, SHF) (source p.21)</figcaption>
 </figure>
 
-<pre class="mermaid">
-flowchart TD
-    PROP["PROPAGATION"]
-    NI["NON-IONOSPHERIC"]
-    ION["IONOSPHERIC"]
-    SW["Surface Wave
-20 kHz – 50 MHz
-(Used: 20 kHz – 2 MHz)"]
-    SPW["Space Wave
-> 50 MHz (VHF+)"]
-    SKY["Sky Wave
-20 kHz – 50 MHz
-(Used: 2 – 30 MHz / HF)"]
-    SAT["SatComm / Direct Wave
-(UHF, SHF)"]
-    PROP --> NI & ION
-    NI --> SW & SPW
-    ION --> SKY & SAT
-    style SW fill:#e3f2fd
-    style SPW fill:#e8f5e9
-    style SKY fill:#fff3e0
-    style SAT fill:#fce4ec
-</pre>
+<div class="diagram-box">
+<div style="text-align:center;font-weight:900;font-size:1.1em;margin-bottom:12px;">PROPAGATION</div>
+<div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+<div style="flex:1;min-width:200px;border:2px solid #1976d2;border-radius:10px;padding:14px;">
+<div style="font-weight:800;color:#1976d2;margin-bottom:8px;text-align:center;">NON-IONOSPHERIC</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+<div style="flex:1;background:#e3f2fd;padding:10px;border-radius:8px;min-width:140px;"><strong>Surface Wave</strong><br>20 kHz – 50 MHz<br><small>(Used: 20 kHz – 2 MHz)</small></div>
+<div style="flex:1;background:#e8f5e9;padding:10px;border-radius:8px;min-width:140px;"><strong>Space Wave</strong><br>&gt; 50 MHz (VHF+)</div>
+</div>
+</div>
+<div style="flex:1;min-width:200px;border:2px solid #e65100;border-radius:10px;padding:14px;">
+<div style="font-weight:800;color:#e65100;margin-bottom:8px;text-align:center;">IONOSPHERIC</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+<div style="flex:1;background:#fff3e0;padding:10px;border-radius:8px;min-width:140px;"><strong>Sky Wave</strong><br>20 kHz – 50 MHz<br><small>(Used: 2 – 30 MHz / HF)</small></div>
+<div style="flex:1;background:#f3e5f5;padding:10px;border-radius:8px;min-width:140px;"><strong>SatComm / Direct Wave</strong><br><small>(UHF, SHF)</small></div>
+</div>
+</div>
+</div>
+</div>
 
 <p>Ionospheric propagation is affected by the properties of the ionosphere. For this chapter the focus is on <strong>sky wave</strong>. Satellite propagation is covered in Chapter 18. Knowledge of propagation below <span class="reg-value">30 kHz</span> is not required.</p>
 
@@ -674,25 +667,19 @@ flowchart TD
   </ul>
 </div>
 
-<pre class="mermaid">
-flowchart LR
-    NR["Normal Refraction
-(Standard LOS Range)"]
-    SR["Super-refraction
-Range +40%
-High pressure
-Warm/dry over cool/moist
-Duct possible"]
-    SUB["Sub-refraction
-Range -20%
-Low pressure
-Cold over warm
-High lapse rate"]
-    NR --> SR
-    NR --> SUB
-    style SR fill:#e8f5e9
-    style SUB fill:#fdecea
-</pre>
+<div class="diagram-box">
+<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;text-align:center;">
+<div style="flex:1;min-width:160px;padding:14px;border-radius:10px;border:2px solid #999;">
+<strong>Normal Refraction</strong><br><small>(Standard LOS Range)</small>
+</div>
+<div style="flex:1;min-width:160px;background:#e8f5e9;padding:14px;border-radius:10px;border:2px solid #4caf50;">
+<strong>Super-refraction</strong><br>Range +40%<br><small>High pressure · Warm/dry over cool/moist · Duct possible</small>
+</div>
+<div style="flex:1;min-width:160px;background:#fdecea;padding:14px;border-radius:10px;border:2px solid #e53935;">
+<strong>Sub-refraction</strong><br>Range −20%<br><small>Low pressure · Cold over warm · High lapse rate</small>
+</div>
+</div>
+</div>
 
 <table class="data-table">
   <thead>

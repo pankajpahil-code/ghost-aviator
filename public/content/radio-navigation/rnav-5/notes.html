@@ -4,10 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chapter 5 – Doppler Radar Systems | DGCA Radio Navigation</title>
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true, theme: 'default' });
-</script>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:14px}
@@ -56,7 +53,7 @@ li{margin:5px 0}
 figure.source-figure{margin:18px 0;text-align:center;page-break-inside:avoid;border:1px solid #d0d7de;border-radius:8px;padding:14px;background:#fafbfc}
 figure.source-figure img{max-width:100%;height:auto;border-radius:4px;display:block;margin:0 auto}
 figure.source-figure figcaption{margin-top:10px;font-size:0.88em;color:#555;font-style:italic}
-pre.mermaid{background:#fff5f5;border:1px solid #ef9a9a;border-radius:8px;padding:16px;margin:18px 0;page-break-inside:avoid}
+
 .qa-section-divider{page-break-before:always;border-top:3px solid #b71c1c;margin:40px 0 30px;padding-top:30px}
 .qa-block{border:2px solid #c62828;border-radius:8px;padding:20px;margin:25px 0;page-break-inside:avoid;background:#fff}
 .qa-question{background:#ffebee;padding:15px;border-radius:6px;margin-bottom:15px}
@@ -268,34 +265,25 @@ blockquote.reg-quote{font-family:Georgia,serif;font-style:italic;border:1px soli
   </ul>
 </div>
 
-<pre class="mermaid">
-flowchart TD
-    BEAMS["4 Janus Beams
-(Ground reflections)"]
-    FWD["Forward Beams
-f received > f transmitted
-(+ve Doppler)"]
-    AFT["Aft Beams
-f received < f transmitted
-(-ve Doppler)"]
-    PS["Port/Stbd
-Difference"]
-    GS["Ground Speed
-∝ magnitude of shift"]
-    DRIFT["Drift
-∝ port vs starboard difference"]
-    NAV["Navigation Computer
-Position = f(GS, Drift, Heading)"]
-    BEAMS --> FWD & AFT & PS
-    FWD --> GS
-    AFT --> GS
-    PS --> DRIFT
-    GS --> NAV
-    DRIFT --> NAV
-    style GS fill:#e8f5e9
-    style DRIFT fill:#e8f5e9
-    style NAV fill:#e3f2fd
-</pre>
+<div class="diagram-box">
+<div style="text-align:center;font-weight:900;font-size:1.1em;margin-bottom:12px;">4 Janus Beams (Ground reflections)</div>
+<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;text-align:center;">
+<div style="flex:1;min-width:160px;background:#e3f2fd;padding:14px;border-radius:10px;">
+<strong>Forward Beams</strong><br><small>f received &gt; f transmitted<br>(+ve Doppler)</small>
+</div>
+<div style="flex:1;min-width:160px;background:#fff3e0;padding:14px;border-radius:10px;">
+<strong>Aft Beams</strong><br><small>f received &lt; f transmitted<br>(−ve Doppler)</small>
+</div>
+<div style="flex:1;min-width:160px;background:#f3e5f5;padding:14px;border-radius:10px;">
+<strong>Port/Stbd Difference</strong>
+</div>
+</div>
+<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;text-align:center;margin-top:12px;">
+<div style="background:#e8f5e9;padding:12px 20px;border-radius:8px;"><strong>Ground Speed</strong><br><small>∝ magnitude of shift</small></div>
+<div style="background:#fce4ec;padding:12px 20px;border-radius:8px;"><strong>Drift</strong><br><small>∝ port vs starboard difference</small></div>
+</div>
+<div style="text-align:center;margin-top:10px;font-weight:700;">↓ Navigation Computer: Position = f(GS, Drift, Heading)</div>
+</div>
 
 <h3>Modern vs Earlier Systems</h3>
 <table class="data-table">

@@ -4,11 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chapter 1 – Properties of Radio Waves | DGCA Radio Navigation</title>
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true, theme: 'default',
-    flowchart: { curve: 'basis', padding: 20 } });
-</script>
+
 <style>
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -270,14 +266,7 @@ figure.source-figure figcaption {
 }
 
 /* ===== MERMAID ===== */
-pre.mermaid {
-  background: #f8f9ff;
-  border: 1px solid #c5cae9;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 18px 0;
-  page-break-inside: avoid;
-}
+
 
 /* ===== Q&A ===== */
 .qa-section-divider {
@@ -779,25 +768,29 @@ blockquote.reg-quote {
   </ul>
 </div>
 
-<pre class="mermaid">
-flowchart LR
-    A["3 kHz
-(VLF)"] --> B["30 kHz
-(LF)"] --> C["300 kHz
-(MF)"] --> D["3 MHz
-(HF)"] --> E["30 MHz
-(VHF)"] --> F["300 MHz
-(UHF)"] --> G["3 GHz
-(SHF)"] --> H["30 GHz
-(EHF)"] --> I["300 GHz"]
-    style B fill:#e3f2fd
-    style C fill:#e8f5e9
-    style D fill:#fff9c4
-    style E fill:#fce4ec
-    style F fill:#f3e5f5
-    style G fill:#e0f7fa
-    style H fill:#fbe9e7
-</pre>
+<div class="diagram-box" style="overflow-x:auto;">
+<table class="data-table" style="width:100%;text-align:center;">
+<tr>
+<td style="background:#e3f2fd;padding:10px;font-weight:700;">3 kHz<br><small>VLF</small></td>
+<td style="font-size:1.3em;">→</td>
+<td style="background:#e8f5e9;padding:10px;font-weight:700;">30 kHz<br><small>LF</small></td>
+<td style="font-size:1.3em;">→</td>
+<td style="background:#fff9c4;padding:10px;font-weight:700;">300 kHz<br><small>MF</small></td>
+<td style="font-size:1.3em;">→</td>
+<td style="background:#fce4ec;padding:10px;font-weight:700;">3 MHz<br><small>HF</small></td>
+<td style="font-size:1.3em;">→</td>
+<td style="background:#f3e5f5;padding:10px;font-weight:700;">30 MHz<br><small>VHF</small></td>
+<td style="font-size:1.3em;">→</td>
+<td style="background:#e0f7fa;padding:10px;font-weight:700;">300 MHz<br><small>UHF</small></td>
+<td style="font-size:1.3em;">→</td>
+<td style="background:#fbe9e7;padding:10px;font-weight:700;">3 GHz<br><small>SHF</small></td>
+<td style="font-size:1.3em;">→</td>
+<td style="padding:10px;font-weight:700;">30 GHz<br><small>EHF</small></td>
+<td style="font-size:1.3em;">→</td>
+<td style="padding:10px;font-weight:700;">300 GHz</td>
+</tr>
+</table>
+</div>
 
 <div class="wm-inline">— www.ghostaviator.com | Capt. Pankaj Pahil —</div>
 

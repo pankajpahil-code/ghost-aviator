@@ -49,6 +49,25 @@ const BOOKS: Book[] = [
     badge: "COMPLETE",
   },
   {
+    slug: "radio-navigation",
+    title: "Radio Navigation",
+    subtitle: "The Complete DGCA Radio Navigation Study Book — From Radio Waves to GNSS",
+    edition: "1st Edition · 2026",
+    author: "Capt. Pankaj Pahil",
+    coverImage: "",
+    accentFrom: "#06b6d4",
+    accentTo: "#0891b2",
+    glowColor: "rgba(6,182,212,0.3)",
+    chapters: 20,
+    questions: 448,
+    studyHours: 38,
+    description:
+      "20 illuminated chapters covering the entire DGCA Radio Navigation syllabus — radio wave properties, propagation, VDF, ADF/NDB, VOR, ILS, MLS, radar systems, SSR, DME, RNAV, EFIS and GNSS. Includes a 243-question revision bank and a quick-reference summary sheet.",
+    href: "/cpl/radio-navigation",
+    status: "live",
+    badge: "COMPLETE",
+  },
+  {
     slug: "air-regulations",
     title: "Air Regulations",
     subtitle: "DGCA CPL Air Regulations — All 26 Chapters",
@@ -124,7 +143,8 @@ const BOOKS: Book[] = [
 
 export default function BooksPage() {
   const featured = BOOKS[0];
-  const upcoming = BOOKS.slice(1);
+  const otherLive = BOOKS.slice(1).filter(b => b.status === "live");
+  const upcoming = BOOKS.filter(b => b.status === "coming-soon");
 
   return (
     <div style={{ background: "#06040e" }} className="min-h-screen bk-root">
@@ -239,6 +259,44 @@ export default function BooksPage() {
           </div>
         </div>
       </section>
+
+      {/* ── Other live books ─────────────────────────────────────── */}
+      {otherLive.length > 0 && (
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+          <div className="bk-shelf-head">
+            <h2 className="bk-shelf-title">Also in the Library</h2>
+            <p className="bk-shelf-sub">Complete, interactive digital books ready to study now.</p>
+          </div>
+
+          <div className="bk-shelf">
+            {otherLive.map((book) => (
+              <Link key={book.slug} href={book.href} className="bk-book-card bk-book-live">
+                <div className="bk-book-card-glow" style={{ background: `radial-gradient(circle at 50% 0%, ${book.glowColor}, transparent 70%)` }} aria-hidden />
+
+                <div className="bk-mini-cover">
+                  <div className="bk-mini-spine" style={{ background: `linear-gradient(180deg, ${book.accentFrom}, ${book.accentTo})` }} />
+                  <div className="bk-mini-face" style={{ borderColor: `${book.accentFrom}30` }}>
+                    <div className="bk-mini-title" style={{ color: book.accentFrom }}>{book.title.split(" ").map((w, i) => <span key={i}>{w}</span>)}</div>
+                  </div>
+                  <div className="bk-mini-pages" />
+                </div>
+
+                <h3 className="bk-book-card-title">{book.title}</h3>
+                <p className="bk-book-card-sub">{book.subtitle}</p>
+
+                <div className="bk-book-card-meta">
+                  <span><Layers className="w-3 h-3" /> {book.chapters} chapters</span>
+                  <span><HelpCircle className="w-3 h-3" /> {book.questions} Qs</span>
+                </div>
+
+                <div className="bk-book-card-status bk-live-badge" style={{ color: "#fff", borderColor: `${book.accentFrom}60`, background: `linear-gradient(135deg, ${book.accentFrom}, ${book.accentTo})` }}>
+                  <BookOpen className="w-3 h-3" /> Read Now
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── Coming soon shelf ────────────────────────────────────── */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
@@ -501,6 +559,12 @@ const BK_CSS = `
   font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
   padding: 5px 14px; border-radius: 999px; border: 1px solid;
 }
+.bk-live-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.bk-book-live { border-color: rgba(255,255,255,0.12); }
+.bk-book-live .bk-book-card-glow { opacity: 0.5; }
 
 /* ── Bottom CTA ──────────────────────────────────────────────────────────── */
 .bk-bottom-cta {
