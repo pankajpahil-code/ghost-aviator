@@ -12,7 +12,7 @@ import type { NextConfig } from "next";
 // CSP-nonce XSS advisory, so a static allow-list is the safer choice here.
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://cdn.jsdelivr.net",
+  "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://va.vercel-scripts.com https://cdn.jsdelivr.net",
   "style-src 'self' 'unsafe-inline'",
   "worker-src 'self' blob:",
   "img-src 'self' data: https:",

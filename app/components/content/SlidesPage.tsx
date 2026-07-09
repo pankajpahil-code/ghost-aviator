@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import Watermark from "@/app/components/Watermark";
+import PdfSlides from "@/app/components/content/PdfSlides";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -54,16 +55,11 @@ export default function SlidesPage({ track, subject, chapter, prevChapter, nextC
         </div>
       </div>
 
-      {/* PDF Viewer */}
-      <div className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-4">
-        <div className="rounded-2xl overflow-hidden flex-1"
-             style={{ border: `1px solid ${subject.color}25`, minHeight: "75vh" }}>
-          <iframe
-            src={`${src}#toolbar=0&navpanes=0&scrollbar=0`}
-            className="w-full h-full"
-            style={{ minHeight: "75vh", background: "#1a1a2e" }}
-            title={`${chapter.title} — Slides`}
-          />
+      {/* PDF Viewer — PDF.js canvas renderer (works on mobile, unlike <iframe src=pdf>) */}
+      <div className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-4">
+        <div className="rounded-2xl p-2 sm:p-4"
+             style={{ border: `1px solid ${subject.color}25`, background: "#0d0a1a", minHeight: "60vh" }}>
+          <PdfSlides src={src} color={subject.color} />
         </div>
 
         {/* Chapter navigation */}
