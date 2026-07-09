@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, ArrowRight, BookOpen, Sparkles } from "lucide-react";
+import { ChevronRight, ArrowRight, BookOpen, Sparkles, HelpCircle, ListChecks } from "lucide-react";
 import type { Subject } from "@/lib/subjects";
 import ChapterProgressBadge from "@/app/components/ChapterProgressBadge";
 import SubjectProgressBar from "@/app/components/SubjectProgressBar";
@@ -119,10 +119,10 @@ export default function RtrBookExperience({ subject }: { subject: Subject }) {
                 const ch = byNumber.get(num);
                 if (!ch) return null;
                 const delay = `${(mi * 3 + ci) * 55}ms`;
+                const hasQs = ch.questionCount > 0;
                 return (
-                  <Link
+                  <div
                     key={ch.id}
-                    href={`/cpl/${subject.id}/${ch.id}/notes`}
                     className="rtrx-card"
                     style={{ animationDelay: delay }}
                   >
@@ -138,15 +138,29 @@ export default function RtrBookExperience({ subject }: { subject: Subject }) {
                         passMark={subject.passMark}
                       />
                     </div>
-                    <h3 className="rtrx-card-title">{ch.title}</h3>
+                    <Link href={`/cpl/${subject.id}/${ch.id}/notes`} className="rtrx-card-title-link">
+                      <h3 className="rtrx-card-title">{ch.title}</h3>
+                    </Link>
                     <p className="rtrx-card-desc">{ch.description}</p>
+
+                    {hasQs && (
+                      <div className="rtrx-card-actions">
+                        <Link href={`/cpl/${subject.id}/${ch.id}/questions`} className="rtrx-pill rtrx-pill-green">
+                          <HelpCircle className="w-3 h-3" /> {ch.questionCount} Practice Qs
+                        </Link>
+                        <Link href={`/cpl/${subject.id}/${ch.id}/chapter-quiz`} className="rtrx-pill rtrx-pill-orange">
+                          <ListChecks className="w-3 h-3" /> Chapter Quiz
+                        </Link>
+                      </div>
+                    )}
+
                     <div className="rtrx-card-foot">
                       <span className="rtrx-card-time">⏱ {ch.duration}</span>
-                      <span className="rtrx-card-read">
+                      <Link href={`/cpl/${subject.id}/${ch.id}/notes`} className="rtrx-card-read">
                         Read <ArrowRight className="w-3.5 h-3.5" />
-                      </span>
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 );
               })}
             </div>
@@ -301,9 +315,22 @@ const RTRX_CSS = `
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
 .rtrx-card-foot { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
 .rtrx-card-time { font-size: .72rem; color: #64748b; }
-.rtrx-card-read { display: inline-flex; align-items: center; gap: 5px; font-size: .78rem; font-weight: 800; color: #fcd34d; }
+.rtrx-card-title-link { text-decoration: none; position: relative; z-index: 2; }
+.rtrx-card-title-link:hover .rtrx-card-title { color: #fcd34d; }
+.rtrx-card-actions { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.rtrx-pill {
+  display: inline-flex; align-items: center; gap: 5px; text-decoration: none;
+  font-size: .72rem; font-weight: 700; padding: 5px 10px; border-radius: 8px;
+  transition: transform .2s, box-shadow .2s;
+}
+.rtrx-pill:hover { transform: translateY(-1px); }
+.rtrx-pill-green { color: #6ee7b7; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); }
+.rtrx-pill-green:hover { box-shadow: 0 4px 16px rgba(16,185,129,0.25); }
+.rtrx-pill-orange { color: #fdba74; background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.35); }
+.rtrx-pill-orange:hover { box-shadow: 0 4px 16px rgba(249,115,22,0.25); }
+.rtrx-card-read { display: inline-flex; align-items: center; gap: 5px; font-size: .78rem; font-weight: 800; color: #fcd34d; text-decoration: none; }
 .rtrx-card-read svg { transition: transform .25s; }
-.rtrx-card:hover .rtrx-card-read svg { transform: translateX(4px); }
+.rtrx-card-read:hover svg { transform: translateX(4px); }
 
 /* Closing ----------------------------------------------------------------- */
 .rtrx-closing { margin-top: 64px; padding: 30px; border-radius: 18px; text-align: center;
