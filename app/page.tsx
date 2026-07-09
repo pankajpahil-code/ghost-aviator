@@ -145,8 +145,8 @@ export default function Home() {
                 Learn directly from <span style={{ background:"linear-gradient(135deg,#ff6000,#ff2060,#c020ff)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Capt. Pankaj Pahil</span> — live online batches
               </div>
               <div className="text-sm font-semibold" style={{ color:"#94a3b8" }}>
-                ⚖️ Air Regulations &nbsp;·&nbsp; 🌤️ Meteorology &nbsp;·&nbsp; 🗺️ Air Navigation &nbsp;—&nbsp;
-                batch of 10 · doubt-clearing · <strong style={{ color:"#22c55e" }}>₹2,499 per subject</strong>
+                🌤️ Meteorology · ⚖️ Air Regs · 🗺️ Gen Nav · 📡 Radio Nav · 🧭 Instruments &nbsp;—&nbsp;
+                batch of 10 · <span className="line-through" style={{ color:"#64748b" }}>₹5,999</span> <strong style={{ color:"#22c55e" }}>₹2,999 founding price</strong>
               </div>
             </div>
 

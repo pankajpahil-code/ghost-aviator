@@ -1,48 +1,39 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle, MessageCircle, Mail, Radio, Users, Award, BookOpen, Target, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle, MessageCircle, Mail, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers } from "lucide-react";
 import { SITE_URL } from "@/lib/site";
 
 const WHATSAPP = "919990226607";
 const EMAIL = "pankaj.pahil@gmail.com";
-const FEE = "₹2,499";
+const REGULAR = "₹5,999";
+const FOUNDING = "₹2,999";
+const COMBO_REGULAR = "₹14,999";
+const COMBO_FOUNDING = "₹7,999";
 
-const waLink = (subject: string) =>
+const waLink = (subject: string, price: string) =>
   `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-    `Hello Capt. Pahil, I want to join the live ${subject} batch (${FEE}). Please share the details.`
+    `Hello Capt. Pahil, I want to join the founding batch of ${subject} (${price}). Please share the details.`
   )}`;
 
 export const metadata: Metadata = {
-  title: "Live DGCA Ground Classes Online — Air Regulations, Meteorology & Air Navigation | Ghost Aviator",
+  title: "Live DGCA Ground Classes Online — Meteorology, Air Regulations & Navigation | Ghost Aviator",
   description:
-    "Join live online DGCA CPL ground classes taught personally by Capt. Pankaj Pahil — pilot, flight & ground instructor and author. Small batches of 10, Air Regulations, Aviation Meteorology and Air Navigation, ₹2,499 per subject. Admissions open.",
+    "Live online DGCA CPL ground classes taught personally by Capt. Pankaj Pahil — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. Founding batches ₹2,999 (regular ₹5,999), only 10 seats each.",
   keywords: [
     "DGCA ground classes online", "DGCA pilot course", "CPL coaching online", "DGCA Air Regulations classes",
-    "DGCA Meteorology classes", "DGCA Air Navigation classes", "pilot training India", "CPL exam coaching",
-    "DGCA online classes", "aviation ground school India",
+    "DGCA Meteorology classes", "DGCA Navigation classes", "DGCA Radio Navigation classes",
+    "DGCA Instrumentation classes", "pilot training India", "CPL exam coaching", "aviation ground school India",
   ],
   alternates: { canonical: "/live-classes" },
   openGraph: {
     title: "Live DGCA Ground Classes with Capt. Pankaj Pahil",
-    description: "Air Regulations · Meteorology · Air Navigation — live online, small batch of 10, ₹2,499 per subject. Learn from the captain himself.",
+    description: "5 subjects, live online, batches of 10. Founding price ₹2,999 per subject (50% off). Learn from the captain himself.",
     url: `${SITE_URL}/live-classes`,
     type: "website",
   },
 };
 
 const SUBJECTS = [
-  {
-    name: "Air Regulations",
-    icon: "⚖️",
-    color: "#7c3aed",
-    tagline: "The rule book, decoded by someone who has lived it",
-    points: [
-      "ICAO Annexes & Chicago Convention made simple",
-      "Indian CARs, Aircraft Act & Rules — exam-focused",
-      "Licensing, airspace, ATC procedures & SAR",
-      "Solved past papers & most-repeated questions",
-    ],
-  },
   {
     name: "Aviation Meteorology",
     icon: "🌤️",
@@ -56,15 +47,51 @@ const SUBJECTS = [
     ],
   },
   {
-    name: "Air Navigation",
+    name: "Air Regulations",
+    icon: "⚖️",
+    color: "#7c3aed",
+    tagline: "The rule book, decoded by someone who has lived it",
+    points: [
+      "ICAO Annexes & Chicago Convention made simple",
+      "Indian CARs, Aircraft Act & Rules — exam-focused",
+      "Licensing, airspace, ATC procedures & SAR",
+      "Solved past papers & most-repeated questions",
+    ],
+  },
+  {
+    name: "General Navigation",
     icon: "🗺️",
     color: "#10b981",
     tagline: "The subject students fear most — conquered",
     points: [
       "Charts, compasses & the 1-in-60 rule mastered",
       "Numericals solved live, method by method",
-      "Instruments, GNSS & radio navigation aids",
+      "Great circles, rhumb lines & convergency clarity",
       "Speed math tricks for the actual exam",
+    ],
+  },
+  {
+    name: "Radio Navigation",
+    icon: "📡",
+    color: "#06b6d4",
+    tagline: "From radio waves to RNAV — signal by signal",
+    points: [
+      "VOR, ILS, DME, ADF/NDB — principles & failures",
+      "Radar, SSR & GNSS the way DGCA asks them",
+      "Propagation & frequencies without the confusion",
+      "Question-bank drills after every topic",
+    ],
+  },
+  {
+    name: "Navigation — Instrumentation",
+    icon: "🧭",
+    color: "#f59e0b",
+    tagline: "Glass cockpit to gyros — instruments demystified",
+    points: [
+      "Pitot-static, gyros & magnetic compass errors",
+      "EFIS, FMS & autopilot logic made visual",
+      "Air data computers & modern flight decks",
+      "Exam-pattern numericals solved together",
     ],
   },
 ];
@@ -79,8 +106,12 @@ const FAQ = [
     a: "Live online (Google Meet), in small batches of maximum 10 students so every doubt gets answered. Sessions run 4–6 weeks per subject with practice questions after every topic.",
   },
   {
-    q: "What is the fee?",
-    a: `${FEE} per subject batch — a fraction of typical institute fees. Pay only after you speak with Capt. Pahil on WhatsApp and confirm your seat.`,
+    q: "What is the founding-batch price?",
+    a: `The regular fee is ${REGULAR} per subject — already far below typical institute fees. The FIRST batch of each subject is a founding batch at ${FOUNDING} (50% off, 10 seats only). Founding students help shape the course and get the lowest price it will ever be.`,
+  },
+  {
+    q: "Is there a Navigation combo?",
+    a: `Yes — General Navigation + Radio Navigation + Instrumentation together cover the composite DGCA Navigation paper. Combo: ${COMBO_REGULAR}, founding price ${COMBO_FOUNDING}.`,
   },
   {
     q: "Who can join?",
@@ -96,7 +127,7 @@ const JSON_LD = {
       name: `DGCA CPL ${s.name} — Live Online Ground Classes`,
       description: `Live online DGCA ${s.name} classes taught by Capt. Pankaj Pahil. Small batch of 10, 4–6 weeks.`,
       provider: { "@id": `${SITE_URL}/#org` },
-      offers: { "@type": "Offer", price: "2499", priceCurrency: "INR", availability: "https://schema.org/InStock" },
+      offers: { "@type": "Offer", price: "2999", priceCurrency: "INR", availability: "https://schema.org/InStock" },
       hasCourseInstance: {
         "@type": "CourseInstance",
         courseMode: "Online",
@@ -114,6 +145,18 @@ const JSON_LD = {
     },
   ],
 };
+
+function PriceTag({ color }: { color: string }) {
+  return (
+    <div>
+      <div className="flex items-baseline gap-2">
+        <span className="text-sm line-through" style={{ color:"#475569" }}>{REGULAR}</span>
+        <span className="text-2xl font-black text-white">{FOUNDING}</span>
+      </div>
+      <div className="text-xs font-bold" style={{ color }}>Founding batch · 50% off · 10 seats</div>
+    </div>
+  );
+}
 
 export default function LiveClassesPage() {
   return (
@@ -133,22 +176,27 @@ export default function LiveClassesPage() {
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-black mb-6"
                style={{ background:"rgba(255,40,40,0.12)", border:"1px solid rgba(255,60,60,0.45)", color:"#ff5a5a" }}>
-            <Radio className="w-4 h-4 animate-pulse" /> LIVE ONLINE BATCHES · ADMISSIONS OPEN
+            <Radio className="w-4 h-4 animate-pulse" /> LIVE ONLINE BATCHES · FOUNDING ADMISSIONS OPEN
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black text-white leading-tight mb-4">
             Learn From <span style={{ background:"linear-gradient(135deg,#ff6000,#ff2060,#c020ff)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>The Captain</span> Himself
           </h1>
-          <p className="text-lg max-w-2xl mx-auto mb-3 leading-relaxed" style={{ color:"#94a3b8" }}>
-            Live DGCA CPL ground classes — <strong className="text-white">Air Regulations, Aviation Meteorology &amp; Air Navigation</strong> —
+          <p className="text-lg max-w-3xl mx-auto mb-3 leading-relaxed" style={{ color:"#94a3b8" }}>
+            Live DGCA CPL ground classes in <strong className="text-white">five subjects</strong> —
             taught personally by <strong style={{ color:"#c080ff" }}>Capt. Pankaj Pahil</strong>, the instructor and author behind Ghost Aviator.
           </p>
-          <p className="text-sm font-bold tracking-widest uppercase mb-10" style={{ color:"rgba(180,120,255,0.6)", letterSpacing:"0.18em" }}>
-            Small batch of 10 · Live doubt-clearing · {FEE} per subject
+          <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color:"rgba(180,120,255,0.6)", letterSpacing:"0.18em" }}>
+            Small batch of 10 · Live doubt-clearing · 4–6 weeks per subject
+          </p>
+          <p className="text-base font-black mb-10">
+            <span className="line-through mr-2" style={{ color:"#64748b" }}>{REGULAR}</span>
+            <span style={{ color:"#22c55e" }}>{FOUNDING} founding price</span>
+            <span className="ml-2 px-2 py-0.5 rounded text-xs" style={{ background:"rgba(255,40,40,0.15)", color:"#ff5a5a", border:"1px solid rgba(255,60,60,0.35)" }}>50% OFF · FIRST BATCH ONLY</span>
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <a href={waLink("DGCA ground classes")} target="_blank" rel="noopener noreferrer"
+            <a href={waLink("DGCA ground classes", FOUNDING)} target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
               <MessageCircle className="w-5 h-5" /> Message Capt. Pahil on WhatsApp
@@ -183,10 +231,10 @@ export default function LiveClassesPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">Choose Your <span style={{ background:"linear-gradient(135deg,#c080ff,#ff2060)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Battle</span></h2>
-          <p style={{ color:"#64748b" }}>Three subjects. Three live batches. One instructor who has taught them for two decades.</p>
+          <p style={{ color:"#64748b" }}>Five subjects. Five live batches. One instructor who has taught them for two decades.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SUBJECTS.map(s => (
             <div key={s.name} className="relative rounded-3xl overflow-hidden p-8 flex flex-col"
                  style={{ background:"rgba(15,8,30,0.95)", border:`1px solid ${s.color}45` }}>
@@ -201,23 +249,55 @@ export default function LiveClassesPage() {
                   </li>
                 ))}
               </ul>
-              <div className="flex items-center justify-between mb-5">
-                <div>
-                  <div className="text-2xl font-black text-white">{FEE}</div>
-                  <div className="text-xs" style={{ color:"#475569" }}>per batch · 4–6 weeks</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-sm font-black" style={{ color: s.color }}>Batch of 10</div>
-                  <div className="text-xs" style={{ color:"#475569" }}>live · online</div>
-                </div>
+              <div className="mb-5">
+                <PriceTag color={s.color} />
               </div>
-              <a href={waLink(s.name)} target="_blank" rel="noopener noreferrer"
+              <a href={waLink(s.name, FOUNDING)} target="_blank" rel="noopener noreferrer"
                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline"
                  style={{ background:`${s.color}20`, border:`1px solid ${s.color}60`, color:"#fff" }}>
                 <MessageCircle className="w-4 h-4" style={{ color:"#22c55e" }}/> Reserve My Seat
               </a>
             </div>
           ))}
+
+          {/* ══ NAVIGATION COMBO — featured card ══ */}
+          <div className="relative rounded-3xl overflow-hidden p-8 flex flex-col"
+               style={{ background:"linear-gradient(160deg, rgba(16,185,129,0.12), rgba(6,182,212,0.10), rgba(245,158,11,0.10))", border:"1px solid rgba(34,197,94,0.5)", boxShadow:"0 0 35px rgba(16,185,129,0.15)" }}>
+            <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-black"
+                 style={{ background:"rgba(34,197,94,0.18)", border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e" }}>
+              BEST VALUE
+            </div>
+            <div className="flex items-center gap-2 mb-4">
+              <Layers className="w-10 h-10" style={{ color:"#22c55e" }}/>
+              <span className="text-3xl">🗺️📡🧭</span>
+            </div>
+            <h3 className="text-2xl font-black text-white mb-1">The Navigation Combo</h3>
+            <p className="text-sm font-semibold mb-6" style={{ color:"#22c55e" }}>All three navigation subjects — the complete composite paper</p>
+            <ul className="flex flex-col gap-2.5 mb-8 flex-1">
+              {[
+                "General Navigation + Radio Navigation + Instrumentation",
+                "Covers the full composite DGCA Navigation paper",
+                "One integrated plan — concepts connect across subjects",
+                `Save ${"₹1,000"} vs joining the three founding batches separately`,
+              ].map(p => (
+                <li key={p} className="flex items-start gap-2 text-sm leading-relaxed" style={{ color:"#94a3b8" }}>
+                  <CheckCircle className="w-4 h-4 mt-0.5 shrink-0" style={{ color:"#22c55e" }}/> {p}
+                </li>
+              ))}
+            </ul>
+            <div className="mb-5">
+              <div className="flex items-baseline gap-2">
+                <span className="text-sm line-through" style={{ color:"#475569" }}>{COMBO_REGULAR}</span>
+                <span className="text-2xl font-black text-white">{COMBO_FOUNDING}</span>
+              </div>
+              <div className="text-xs font-bold" style={{ color:"#22c55e" }}>Founding combo · 3 subjects · 10 seats</div>
+            </div>
+            <a href={waLink("Navigation Combo (Gen Nav + Radio Nav + Instrumentation)", COMBO_FOUNDING)} target="_blank" rel="noopener noreferrer"
+               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline"
+               style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 20px rgba(34,197,94,0.35)" }}>
+              <MessageCircle className="w-4 h-4"/> Reserve Combo Seat
+            </a>
+          </div>
         </div>
       </section>
 
@@ -228,7 +308,7 @@ export default function LiveClassesPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             {[
               ["1", "Message on WhatsApp", "Tell Capt. Pahil which subject you want — he replies personally."],
-              ["2", "Reserve your seat", "Confirm your slot in the next batch of 10. Pay by UPI only after you're sure."],
+              ["2", "Reserve your seat", "Confirm your slot in the founding batch of 10. Pay by UPI only after you're sure."],
               ["3", "Fly the syllabus live", "Join on Google Meet, ask anything, practise real exam questions together."],
             ].map(([n, title, desc]) => (
               <div key={n}>
@@ -268,13 +348,14 @@ export default function LiveClassesPage() {
         <div className="rounded-3xl p-12 text-center relative overflow-hidden"
              style={{ background:"linear-gradient(135deg,rgba(255,30,30,0.08),rgba(150,0,255,0.08))", border:"1px solid rgba(255,60,60,0.3)" }}>
           <div className="text-4xl mb-3">🛫</div>
-          <h2 className="text-3xl font-black text-white mb-3">Seats Are Limited. Doubts Are Not.</h2>
+          <h2 className="text-3xl font-black text-white mb-3">Founding Seats Are Limited. Doubts Are Not.</h2>
           <p className="mb-8 max-w-xl mx-auto" style={{ color:"#94a3b8" }}>
-            Ten students per batch — so every question gets answered. Message now, and Capt. Pahil will
-            personally tell you when your subject&apos;s next batch begins.
+            Ten students per batch — so every question gets answered. The founding price ({FOUNDING}) retires
+            once the first batches fill. Message now and Capt. Pahil will personally tell you when your
+            subject&apos;s batch begins.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href={waLink("DGCA ground classes")} target="_blank" rel="noopener noreferrer"
+            <a href={waLink("DGCA ground classes", FOUNDING)} target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
               <MessageCircle className="w-5 h-5" /> WhatsApp: +91 99902 26607
