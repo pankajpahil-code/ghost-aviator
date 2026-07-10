@@ -172,6 +172,18 @@ export default async function Page({
       "air-navigation/nav-19": true,
       "air-navigation/nav-20": true,
       "air-navigation/nav-21": true,
+      "air-navigation/nav-22": true,
+      "air-navigation/nav-23": true,
+      "air-navigation/nav-24": true,
+      "air-navigation/nav-25": true,
+      "air-navigation/nav-26": true,
+      "air-navigation/nav-27": true,
+      "air-navigation/nav-28": true,
+      "air-navigation/nav-29": true,
+      "air-navigation/nav-30": true,
+      "air-navigation/nav-31": true,
+      "air-navigation/nav-32": true,
+      "air-navigation/nav-33": true,
     };
     if (HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]) {
       return (

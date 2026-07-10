@@ -168,7 +168,67 @@ export const CPL_SUBJECTS: Subject[] = [
       },
       {
         id: "nav-21", number: 21, title: "Departure",
-        description: "East-west distance along a parallel: the departure formula and all rearrangements, dual-latitude ratio problems, the box pattern trap, Mach/TAS kinematics integration — with 12 fully solved DGCA-style questions.",
+        description: "East-west distance along a parallel: the departure formula and all its rearrangements, dual-latitude ratio problems, the box pattern trap — with fully solved DGCA-style questions.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-22", number: 22, title: "Scale",
+        description: "Chart scale — representative fraction, statement in words and graduated scale line; scale conversions and typical DGCA scale calculations.",
+        duration: "1.5 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-23", number: 23, title: "General Chart Properties",
+        description: "Perspective and mathematical projections, orthomorphism and conformality conditions, and how charts are classified by projection surface.",
+        duration: "1.5 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-24", number: 24, title: "Mercator Charts",
+        description: "Mercator projection properties — meridians and parallels, scale expansion with latitude, rhumb lines and great circles, plotting and measurement.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-25", number: 25, title: "Lambert's Conformal Chart",
+        description: "Lambert conformal conic chart — standard parallels, parallel of origin, constant of the cone, chart convergence, great circles and rhumb lines.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-26", number: 26, title: "Polar Stereographic Chart",
+        description: "Polar stereographic projection — properties, scale variation, grid navigation and plotting in polar regions.",
+        duration: "1.5 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-27", number: 27, title: "Time (1) — Solar System & Time Basics",
+        description: "The solar system, Earth's orbit and rotation, apparent and mean solar time, and LMT/UTC fundamentals.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-28", number: 28, title: "Time (2) — Conversions & the Dateline",
+        description: "Time conversions — LMT, UTC, standard and zone time; arc-to-time; and the international date line.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-29", number: 29, title: "Sunrise, Sunset & Twilight",
+        description: "Sunrise, sunset and twilight — definitions, almanac tables, and how they vary with latitude and season.",
+        duration: "1.5 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-30", number: 30, title: "Direct Indicating Compass",
+        description: "Direct indicating compass — construction, horizontality, sensitivity and aperiodicity, serviceability checks, turning and acceleration errors.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-31", number: 31, title: "Aircraft Magnetism",
+        description: "Hard iron and soft iron magnetism, deviation and its correction, and compass swing fundamentals.",
+        duration: "1.5 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-32", number: 32, title: "General Navigation Problems",
+        description: "Mixed general navigation problems bringing together departure, charts, time and compass topics — exam-style practice with solutions.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-33", number: 33, title: "Revision Questions",
+        description: "Full revision question set for General Navigation — test yourself chapter by chapter before the exam.",
         duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
     ],
