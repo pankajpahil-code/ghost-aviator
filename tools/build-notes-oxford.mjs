@@ -263,6 +263,159 @@ function parseBlockV3(block, ctx) {
   return { subjectIds: ctx.subjectIds, chapterId: ctx.chapterId, subtopic: ctx.subtopic, source: ctx.source, q: stem, opts: clean, ans, exp };
 }
 
+// ── Parse the June-2026 GN details/summary template ──────────────────────────
+//   <div class="qa-block"><details class="qa-details">
+//     <summary class="qa-toggle"><span class="qa-num">Q1</span><span class="qa-stem">…</span></summary>
+//     <div class="qa-opts"><span class="qa-opt"><strong>a.</strong> …</span>…</div>
+//     <div class="qa-answer"><div class="ans-label">Answer: c</div><div class="qstep">…workings…</div></div>
+//   </details></div>
+// Worked-problem chapters share the shape but have no qa-opts → correctly skipped.
+function parseBlockV4(block, ctx) {
+  const sm = block.match(/<span class="qa-stem[^"]*">([\s\S]*?)<\/span>/i);
+  if (!sm) return null;
+  const stem = htmlToText(sm[1]).trim();
+  if (stem.length < 8) return null;
+  // Question needs an unseen figure/map/appendix → not answerable standalone.
+  if (/appendix|figure (?:below|above|\d)|map extract|diagram (?:below|above)|in the (?:figure|diagram|illustration)|jeppesen|E\(LO\)/i.test(stem)) return null;
+
+  const om = block.match(/<div class="qa-opts[^"]*">([\s\S]*?)<\/div>/i);
+  if (!om) return null;
+  const opts = [];
+  for (const m of om[1].matchAll(/<span class="qa-opt[^"]*">([\s\S]*?)<\/span>/gi)) {
+    const txt = htmlToText(m[1]);
+    const lm = txt.match(/^\(?\s*([a-e])\s*[.)]\s*(.*)$/i);
+    if (!lm) continue;
+    opts[lm[1].toLowerCase().charCodeAt(0) - 97] = lm[2].trim();
+  }
+  const clean = opts.filter(Boolean);
+  if (clean.length < 2 || clean.length !== opts.length) return null;
+
+  const al = block.match(/<div class="ans-label[^"]*">([\s\S]*?)<\/div>/i);
+  if (!al) return null;
+  const am = htmlToText(al[1]).match(/Answer[:\s]*\(?\s*([a-e])\b/i);
+  if (!am) return null;
+  const ans = am[1].toLowerCase().charCodeAt(0) - 97;
+  if (ans < 0 || ans >= clean.length) return null;
+
+  const qs = block.match(/<div class="qstep[^"]*">([\s\S]*?)<\/div>/i);
+  let exp = qs ? htmlToText(qs[1]).trim() : "";
+  if (exp.length > 600) exp = exp.slice(0, 597).trimEnd() + "…";
+  if (!exp) exp = `Correct answer: ${"ABCDE"[ans]}.`;
+
+  return { subjectIds: ctx.subjectIds, chapterId: ctx.chapterId, subtopic: ctx.subtopic, source: ctx.source, q: stem, opts: clean, ans, exp };
+}
+
+// ── Parse the GN revision-question card template (nav-33) ────────────────────
+//   <div class="qa-card" id="qN"><p class="q-text">…</p>
+//     <div class="q-options"><div class="opt-item correct-opt"><span class="opt-label">C</span><span class="opt-text">…</span></div>…</div>
+//     …<div class="answer-letter">Correct Answer: <strong>C</strong></div><div class="explanation">…</div></div>
+// The answer is marked TWICE (correct-opt class + answer letter) — both must agree.
+function parseBlockV5(block, ctx) {
+  const qm = block.match(/<p class="q-text[^"]*">([\s\S]*?)<\/p>/i);
+  if (!qm) return null;
+  // Figure-dependent (appendix chart) or incomplete-source questions stay notes-only.
+  if (/class="(?:app-ref|missing-opt|instructor-note)"/i.test(block)) return null;
+  const stem = htmlToText(qm[1]).trim();
+  if (stem.length < 8) return null;
+  if (/appendix|figure (?:below|above|\d)|map extract|diagram (?:below|above)|in the (?:figure|diagram|illustration)|jeppesen|E\(LO\)/i.test(stem)) return null;
+
+  const opts = [];
+  let ansFromClass = -1;
+  for (const m of block.matchAll(/<div class="opt-item([^"]*)"><span class="opt-label">([A-E])<\/span><span class="opt-text">([\s\S]*?)<\/span><\/div>/gi)) {
+    const idx = m[2].charCodeAt(0) - 65;
+    opts[idx] = htmlToText(m[3]).trim();
+    if (/correct-opt/.test(m[1])) ansFromClass = idx;
+  }
+  const clean = opts.filter(Boolean);
+  if (clean.length < 2 || clean.length !== opts.length) return null;
+
+  const lm = block.match(/Correct Answer:\s*<strong>\s*([A-E])\b/i);
+  const ansFromLetter = lm ? lm[1].charCodeAt(0) - 65 : -1;
+  if (ansFromClass < 0 || ansFromLetter < 0) return null;
+  if (ansFromClass !== ansFromLetter) {
+    console.warn(`  ⚠ ${ctx.chapterId}: answer marks disagree (class=${"ABCDE"[ansFromClass]} vs letter=${"ABCDE"[ansFromLetter]}) — skipped: ${stem.slice(0, 70)}`);
+    return null;
+  }
+  const ans = ansFromClass;
+  if (ans >= clean.length) return null;
+
+  const em = block.match(/<div class="explanation[^"]*">([\s\S]*?)<\/div>/i);
+  let exp = em ? htmlToText(em[1]).trim() : "";
+  if (exp.length > 600) exp = exp.slice(0, 597).trimEnd() + "…";
+  if (!exp) exp = `Correct answer: ${"ABCDE"[ans]}.`;
+
+  return { subjectIds: ctx.subjectIds, chapterId: ctx.chapterId, subtopic: ctx.subtopic, source: ctx.source, q: stem, opts: clean, ans, exp };
+}
+
+// ── Hand-verified overrides ──────────────────────────────────────────────────
+// Applied after parsing, keyed by the dedup key of the question text.
+// { drop: true } removes a question; { ans, exp } corrects one. Every entry
+// must carry a `note` saying why (verification trail).
+const OVERRIDES = {
+  // ── nav-19: options are bare numbers referencing an unseen symbol plate ────
+  whichofthefollowingisthesymbolforanexceptionallyhighover1000feetagllightedobstru:
+    { drop: true, note: "options reference numbered symbols on a plate the quiz cannot show" },
+  whatsymbolisusedtoshowavortaconamapchart:
+    { drop: true, note: "options reference numbered symbols on a plate the quiz cannot show" },
+  whichisthesymbolforavor:
+    { drop: true, note: "options reference numbered symbols on a plate the quiz cannot show" },
+  whatdoessymbol3represent:
+    { drop: true, note: "references numbered symbol on a plate the quiz cannot show" },
+  // ── nav-33: source-markup corruption (question tail leaked into option a) ──
+  youareheading080twhenyougetarangeandbearingfixfromyourawron:
+    { drop: true, note: "option (a) text corrupted in source — stem tail merged into it" },
+  anaircraftatposition2700n17000wtravels3000kmonatrackof180tthen3000kmonatrackof09:
+    { drop: true, note: "option (a) text corrupted in source — stem tail merged into it" },
+  // ── nav-33: needs sunrise tables that are not part of the quiz ─────────────
+  whatistheutctimeofsunriseinvancouverbritishcolumbiacanada49n12330wonthe6thdecemb:
+    { drop: true, note: "requires almanac sunrise tables the quiz cannot supply" },
+  // ── nav-33: marked answer fails independent computation ────────────────────
+  anaircraftdepartsapoint0400n17000wandflies240nmsouthfollowedby240nmeastthen240nm:
+    { drop: true, note: "marked answer 170°35.9′W contradicts computation (~170°00.6′W); explanation copied from the 600 NM variant" },
+  onapolarstereographicmapastraightlineisdrawnfrompositiona70n102wtopositionb80n00:
+    { drop: true, note: "as worded (track B→A at B) the answer is ≈310°T; marked 131° is the A→B arrival track — defective" },
+  givenrunwaydirection083msurfacewv04535ktcalculatetheeffectiveheadwindcomponent:
+    { drop: true, note: "35 × cos38° = 27.6 kt → option (b) 27, but source marks (a) 29 — unverifiable" },
+  // ── nav-33: radial/position questions needing chart variation not given ────
+  youareonthe205radialfromtheshannonvorsha5243n00853wandonthe317radialfromcorkvorc:
+    { drop: true, note: "answer requires local variation from the chart, not given" },
+  whatistheradialanddmedistancefromconnaughtvordmecon5355n00849wtooverheadabbeyshr:
+    { drop: true, note: "answer requires local variation from the chart, not given" },
+  whatistheaveragemagnetictrackanddistancebetweenkerryndbker5211n00932wandcarnmore:
+    { drop: true, note: "answer requires local variation from the chart, not given" },
+  whatistheradialanddmedistancefromcrkvor5151n00830wtoposition5220n00910w:
+    { drop: true, note: "options 322 vs 330 differ only by variation, which is not given" },
+  whatistheradialanddmedistancefromshavor5243n00853wtobirrairport5304n00755w:
+    { drop: true, note: "computed distance 40.8 NM sits between options 40 and 42; marked 42 unverifiable without the chart" },
+  whatisthelatandlongoftheshavor5243n00853w239m36nmradialrange:
+    { drop: true, note: "answer requires local variation from the chart, not given" },
+  // ── kept questions whose explanation text was garbled or wrong ─────────────
+  aircraftstarts0410s17822wheadstruenorth2950nmthen90leftfor314kmrlfinalposition: {
+    exp: "2950 NM north from 04°10′S: 2950/60 = 49°10′ change of latitude, so final latitude = 49°10′ − 4°10′ = 45°00′N. 90° left of a northerly heading = due west. 314 km = 169.5 NM. Ch.long = 169.5/cos 45° = 239.7 min ≈ 4°00′ west. Going 4° west of 178°22′W crosses the Date Line: final longitude = 177°38′E. Final position 4500N 17738E.",
+    note: "source explanation tail was garbled",
+  },
+  at65nmfromavoryoucommenceadescentfromfl330inordertoarriveoverthevoratfl80yourmea: {
+    exp: "65 NM at 240 kt ground speed takes 16.25 minutes. You must lose 25 000 ft in that time: 25 000 / 16.25 ≈ 1540 feet per minute.",
+    note: "source explanation had an arithmetic typo (1338 instead of 1538)",
+  },
+  anaircraftisat10nandisflyingnorthat444kmhourafter3hoursthelatitudeis: {
+    exp: "3 × 444 = 1332 km. Divide by 1.852 to get 719 NM ≈ 720 NM, which is 12° change of latitude. Flying north from 10°N: 10° + 12° = 22°N.",
+    note: "source explanation quoted the southbound variant's answer (02°S)",
+  },
+  whatistheapproximatecoursetanddistancebetweenwaterfordndbwtd5212n00705wandsligon: {
+    exp: "Change of latitude = 54°17′ − 52°12′ = 2°05′ = 125 NM north. Change of longitude = 1°31′ = 91 min; departure = 91 × cos 53° ≈ 55 NM west. Track = 360° − tan⁻¹(55/125) ≈ 336°(T); distance = √(125² + 55²) ≈ 137 NM.",
+    note: "answerable by departure math — replaced 'solve by chart measurement' explanation",
+  },
+  anaircraftisonthe025radialfromshannonvorsha5243n00853wat49dmewhatisitsposition: {
+    exp: "Radials are magnetic bearings FROM the station, so the 025 radial puts you north-east of the VOR. Only one option lies north-east of 5243N 00853W: 5329N 00830W (higher latitude, longitude further east). Check: 49 NM up the radial ≈ 46′ of latitude north and ≈ 22′ of longitude east.",
+    note: "answerable by elimination — replaced 'solve by chart measurement' explanation",
+  },
+  whatistheshortestdistancebetweenpointa3543n00841eandpointb5417n17119w: {
+    exp: "Note the longitudes: 008°41′E and 171°19′W add up to exactly 180° — A and B are on a meridian and its anti-meridian, so the shortest route runs over the pole. Distance = (90° − 35°43′) + (90° − 54°17′) = 54°17′ + 35°43′ = 90° = 5400 NM.",
+    note: "over-the-pole trick — replaced 'solve by chart measurement' explanation",
+  },
+};
+
 // ── Build each config ────────────────────────────────────────────────────────
 const tsStr = s => "`" + String(s).replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${") + "`";
 
@@ -278,15 +431,20 @@ for (const cfg of CONFIGS) {
     const html = readFileSync(src, "utf8");
     const i = html.indexOf('id="qa-section"');
     const region = i === -1 ? html : html.slice(i);
-    const blocks = region.split(/<div class="qa-block[^"]*"[^>]*>/).slice(1);
+    const blocks = region.split(/<div class="(?:qa-block|qa-card)[^"]*"[^>]*>/).slice(1);
     let n = 0;
     for (const b of blocks) {
       const q = parseBlock(b, { ...cfg, chapterId, subtopic })
              ?? parseBlockV2(b, { ...cfg, chapterId, subtopic })
-             ?? parseBlockV3(b, { ...cfg, chapterId, subtopic });
+             ?? parseBlockV3(b, { ...cfg, chapterId, subtopic })
+             ?? parseBlockV4(b, { ...cfg, chapterId, subtopic })
+             ?? parseBlockV5(b, { ...cfg, chapterId, subtopic });
       if (!q) continue;
       const k = key(q.q);
       if (k.length < 8 || seen.has(k)) continue;
+      const o = OVERRIDES[k];
+      if (o?.drop) continue;
+      if (o) { if (o.ans !== undefined) q.ans = o.ans; if (o.exp) q.exp = o.exp; }
       seen.add(k);
       all.push(q);
       n++;

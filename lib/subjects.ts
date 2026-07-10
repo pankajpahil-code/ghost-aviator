@@ -158,8 +158,8 @@ export const CPL_SUBJECTS: Subject[] = [
       },
       {
         id: "nav-19", number: 19, title: "Topographical Maps & Map Reading",
-        description: "Topographical chart features, relief, scale, map-reading technique and visual fix selection. Study notes.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        description: "Topographical chart features, relief, scale, map-reading technique and visual fix selection. Study notes with practice Q&A.",
+        duration: "2 hrs", questionCount: 3, content: makeContent(true),
       },
       {
         id: "nav-20", number: 20, title: "Convergency & Conversion Angle",
@@ -169,7 +169,7 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "nav-21", number: 21, title: "Departure",
         description: "East-west distance along a parallel: the departure formula and all its rearrangements, dual-latitude ratio problems, the box pattern trap — with fully solved DGCA-style questions.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 5, content: makeContent(true),
       },
       {
         id: "nav-22", number: 22, title: "Scale",
@@ -184,7 +184,7 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "nav-24", number: 24, title: "Mercator Charts",
         description: "Mercator projection properties — meridians and parallels, scale expansion with latitude, rhumb lines and great circles, plotting and measurement.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 10, content: makeContent(true),
       },
       {
         id: "nav-25", number: 25, title: "Lambert's Conformal Chart",
@@ -229,7 +229,7 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "nav-33", number: 33, title: "Revision Questions",
         description: "Full revision question set for General Navigation — test yourself chapter by chapter before the exam.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 140, content: makeContent(true),
       },
     ],
   },
