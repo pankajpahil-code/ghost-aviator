@@ -19,9 +19,10 @@ const CHAPTERS = [
       // font-family declarations fall back to system fonts.
       [/<link href="https:\/\/fonts\.googleapis\.com[^"]*" rel="stylesheet">\s*/g, ""],
       // Iron rule: no third-party source/author names in student-facing content.
-      ["General Navigation · CAE ATPL Series · Prepared for:", "General Navigation · Ghost Aviator Series · Prepared for:"],
+      // Captain's rule: all students are equal — no "underprivileged" labels anywhere.
+      ['General Navigation · CAE ATPL Series · Prepared for: <strong style="color:#f5d76e;">Underprivileged Student Pilots of India</strong>', "General Navigation · Ghost Aviator Series"],
       ['<span class="badge">Oxford Aviation Academy</span>', '<span class="badge">Ghost Aviator</span>'],
-      ["Based on CAE Oxford Aviation Academy ATPL Series · Compiled for", "Compiled for"],
+      ["Based on CAE Oxford Aviation Academy ATPL Series · Compiled for underprivileged student pilots of India", "For every student pilot of India"],
       ["Oxford Airport ARP: <code>51°50'N 001°19'W</code>", "Delhi (IGI) ARP: <code>28°34'N 077°07'E</code>"],
       // Latitude-slider place label: Bali is at 8°S, not 13°S — Darwin (12.5°S) is
       // both accurate at the -13 stop and keeps the name guard clean.
@@ -31,7 +32,7 @@ const CHAPTERS = [
   },
 ];
 
-const FORBIDDEN = /\b(IC Joshi|Joshi|R\.?K\.? Bali|Bali|Oxford|CAE|Sahil|Surender|Redbird|Nordian|Keith Williams)\b/i;
+const FORBIDDEN = /\b(IC Joshi|Joshi|R\.?K\.? Bali|Bali|Oxford|CAE|Sahil|Surender|Redbird|Nordian|Keith Williams|underprivileged)\b/i;
 
 for (const { chapter, src, replacements } of CHAPTERS) {
   let html = readFileSync(src, "utf8");

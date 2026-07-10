@@ -25,7 +25,7 @@ export default function Footer() {
             </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#64748b" }}>
               India&apos;s most comprehensive DGCA exam preparation platform. Built by pilots, for pilots.
-              Free for students from rural areas and underprivileged backgrounds.
+              Free self-study for every student pilot in India.
             </p>
             <div className="flex flex-wrap gap-3">
               <a href="https://t.me/+tgLMJithc1gzOWJl" target="_blank" rel="noreferrer"
@@ -79,7 +79,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Ghost Aviator. Made with ❤️ for Indian aviation students.
           </p>
           <p className="text-xs" style={{ color: "#475569" }}>
-            Free access for students from villages &amp; underprivileged sections — always.
+            Free access for every student pilot — always.
           </p>
         </div>
       </div>
