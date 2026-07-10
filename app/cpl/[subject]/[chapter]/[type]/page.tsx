@@ -171,6 +171,7 @@ export default async function Page({
       "air-navigation/nav-18": true,
       "air-navigation/nav-19": true,
       "air-navigation/nav-20": true,
+      "air-navigation/nav-21": true,
     };
     if (HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]) {
       return (

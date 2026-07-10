@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 21: Departure — DGCA General Navigation</title>
+<style>
+  :root {
+    --sky: #1a3a5c;
+    --sky-mid: #1e5a8e;
+    --sky-light: #2e7dbf;
+    --sky-pale: #d6eaf8;
+    --gold: #d4a017;
+    --gold-light: #f5d76e;
+    --gold-pale: #fef9e7;
+    --green: #1a7a4a;
+    --green-pale: #e8f8f0;
+    --red: #c0392b;
+    --red-pale: #fdecea;
+    --purple: #6c3483;
+    --purple-pale: #f5eef8;
+    --teal: #117a65;
+    --teal-pale: #e8f8f5;
+    --orange: #ca6f1e;
+    --orange-pale: #fef5e7;
+    --ink: #1a1a2e;
+    --ink-mid: #2c3e50;
+    --ink-light: #4a5568;
+    --border: #b8cfe8;
+    --page-bg: #f0f4f8;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --section-gap: 2.5rem;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--page-bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  /* ── HEADER ── */
+  .hero {
+    background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 45%, #1e6ba8 100%);
+    color: white;
+    padding: 2.5rem 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: #1a1a1a;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--gold-light); }
+  .hero-sub {
+    font-size: 14px;
+    color: #9bbcd6;
+    margin-top: 0.6rem;
+  }
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 1.2rem;
+  }
+  .badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #d6eaf8;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  /* ── TABLE OF CONTENTS ── */
+  .toc-card {
+    background: var(--sky);
+    color: white;
+    margin: 1.5rem 1.5rem 0;
+    border-radius: 12px;
+    padding: 1.4rem 1.8rem;
+  }
+  .toc-card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 0.8rem;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 4px 24px;
+  }
+  .toc-grid a {
+    color: #9bbcd6;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 2px 0;
+    display: block;
+    transition: color 0.2s;
+  }
+  .toc-grid a:hover { color: var(--gold-light); }
+  .toc-grid a::before { content: '§ '; color: var(--gold); font-weight: 700; }
+  /* ── MAIN WRAPPER ── */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+  /* ── SECTION CARDS ── */
+  .section {
+    background: var(--card-bg);
+    border-radius: 14px;
+    margin-top: var(--section-gap);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(26,58,92,0.07);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 1.6rem;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-header.sky    { background: var(--sky); color: white; border-bottom-color: #0d2137; }
+  .section-header.gold   { background: var(--gold); color: #1a1a1a; border-bottom-color: #a87e00; }
+  .section-header.green  { background: var(--green); color: white; border-bottom-color: #0d4a2a; }
+  .section-header.red    { background: var(--red); color: white; border-bottom-color: #7b241c; }
+  .section-header.purple { background: var(--purple); color: white; border-bottom-color: #4a235a; }
+  .section-header.teal   { background: var(--teal); color: white; border-bottom-color: #0a4f41; }
+  .section-header.orange { background: var(--orange); color: white; border-bottom-color: #7e4000; }
+  .section-header.sky-mid{ background: var(--sky-mid); color: white; border-bottom-color: #0e3660; }
+  .section-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .section-body { padding: 1.4rem 1.6rem; }
+  /* ── CONTENT ELEMENTS ── */
+  p { margin-bottom: 0.85rem; }
+  p:last-child { margin-bottom: 0; }
+  h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--sky);
+    margin: 1.2rem 0 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  h4:first-child { margin-top: 0; }
+  /* ── HIGHLIGHT BOXES ── */
+  .def-box {
+    border-left: 5px solid var(--sky-light);
+    background: var(--sky-pale);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin: 0.9rem 0;
+    font-size: 14px;
+  }
+  .def-box strong { color: var(--sky); }
+  .key-box {
+    border: 2px solid var(--gold);
+    background: var(--gold-pale);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin: 0.9rem 0;
+    font-size: 14px;
+  }
+  .key-box strong { color: var(--orange); }
+  .warn-box {
+    border-left: 5px solid var(--red);
+    background: var(--red-pale);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin: 0.9rem 0;
+    font-size: 14px;
+  }
+  .warn-box strong { color: var(--red); }
+  .tip-box {
+    border-left: 5px solid var(--green);
+    background: var(--green-pale);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin: 0.9rem 0;
+    font-size: 14px;
+  }
+  .tip-box strong { color: var(--green); }
+  .exam-box {
+    background: #1a1a2e;
+    color: #e8f0fe;
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    margin: 0.9rem 0;
+    font-size: 14px;
+  }
+  .exam-box .exam-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 4px;
+  }
+  /* ── GRID LAYOUTS ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  @media(max-width: 680px) {
+    .two-col, .three-col { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.8rem; }
+  }
+  /* ── TABLES ── */
+  table { width: 100%; border-collapse: collapse; margin: 0.9rem 0; font-size: 14px; }
+  th {
+    background: var(--sky);
+    color: white;
+    padding: 9px 12px;
+    text-align: left;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+  }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--page-bg); }
+  tr:nth-child(odd)  td { background: var(--white); }
+  /* ── DIAGRAM CONTAINER ── */
+  .diagram-wrap {
+    background: var(--page-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .diagram-caption {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 6px;
+    margin-bottom: 4px;
+    font-style: italic;
+    text-align: center;
+  }
+  /* ── COMPASS DIRECTIONS ── */
+  .compass-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 0.9rem 0;
+  }
+  .compass-card {
+    text-align: center;
+    padding: 0.7rem 0.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .compass-card .deg {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1.6rem;
+    font-weight: 600;
+    display: block;
+  }
+  .compass-card .dir { font-weight: 700; font-size: 13px; }
+  /* ── MINI TAG ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .tag-blue   { background: #d6eaf8; color: #1a5276; }
+  .tag-green  { background: var(--green-pale); color: #1a5e36; }
+  .tag-gold   { background: var(--gold-pale); color: #7e5009; }
+  .tag-red    { background: var(--red-pale); color: #922b21; }
+  .tag-purple { background: var(--purple-pale); color: #512e5f; }
+  /* ── FORMULA BOX ── */
+  .formula {
+    font-family: 'Source Code Pro', monospace;
+    background: #1a1a2e;
+    color: #a8d8ea;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 14px;
+    margin: 0.6rem 0;
+    display: block;
+  }
+  /* ── SVG styling ── */
+  svg text { font-family: 'Nunito', sans-serif; }
+  /* ── SPECIAL PARALLELS ── */
+  .parallel-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+    margin: 0.9rem 0;
+  }
+  .parallel-card {
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    border-left: 5px solid;
+  }
+  .pc-arctic  { border-color: #5dade2; background: #eaf4fc; }
+  .pc-antarc  { border-color: #2980b9; background: #d6eaf8; }
+  .pc-cancer  { border-color: #f39c12; background: #fef9e7; }
+  .pc-capric  { border-color: #e67e22; background: #fef5e7; }
+  .parallel-card .pc-name { font-weight: 800; font-size: 14px; margin-bottom: 2px; }
+  .parallel-card .pc-lat  { font-family: 'Source Code Pro', monospace; font-size: 13px; }
+  .parallel-card .pc-desc { font-size: 12px; color: var(--ink-light); margin-top: 4px; }
+  /* ── ACCURACY TABLE ── */
+  .acc-row { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .acc-row:last-child { border-bottom: none; }
+  .acc-row .acc-fmt {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sky);
+    min-width: 140px;
+  }
+  .acc-row .acc-val { font-size: 13px; color: var(--ink-mid); min-width: 130px; }
+  .acc-row .acc-app { font-size: 12px; color: var(--ink-light); }
+  .acc-bar-wrap { flex: 1; background: #e8edf2; border-radius: 4px; height: 8px; }
+  .acc-bar { height: 8px; border-radius: 4px; background: var(--sky-light); }
+  /* ── INTERACTIVE ELEMENTS ── */
+  .interactive-demo {
+    background: var(--page-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+  }
+  .interactive-demo label { font-size: 13px; color: var(--ink-mid); font-weight: 600; }
+  .interactive-demo input[type=range] { width: 100%; }
+  .interactive-demo .out-val {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--sky);
+    margin-top: 4px;
+    display: block;
+  }
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .section { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-tag">✈ DGCA CPL / ATPL Exam Notes</div>
+  <h1>Chapter 21<br><span>Departure</span></h1>
+  <div class="hero-sub">General Navigation · Ghost Aviator Series · The Geometry of East–West Distance</div>
+  <div class="hero-sub" style="margin-top:4px; font-size:13px; color:#7aabcc;">By Capt. Pankaj Pahil | 17 Years of Teaching Excellence</div>
+  <div class="hero-badges">
+    <span class="badge">Ghost Aviator</span>
+    <span class="badge">EASA / DGCA Syllabus</span>
+    <span class="badge">12 Solved Questions</span>
+    <span class="badge">Diagrams + Exam Tips</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ══ TABLE OF CONTENTS ══ -->
+<div class="toc-card">
+  <h3>📋 Contents — Chapter 21</h3>
+  <div class="toc-grid">
+    <a href="#s1">Definition of Departure</a>
+    <a href="#s2">The Departure Formula</a>
+    <a href="#s3">Types of Departure Questions</a>
+    <a href="#s4">The Box Pattern Trap</a>
+    <a href="#s5">Kinematics Integration</a>
+    <a href="#s6">Navigator's Master Summary</a>
+    <a href="#s7">DGCA Practice Questions</a>
+    <a href="#s8">MCQ Answer Key</a>
+  </div>
+</div>
+
+<!-- ══ SECTION 1 — DEFINITION ══ -->
+<div class="section" id="s1">
+  <div class="section-header sky">
+    <div class="section-num">1</div>
+    <div class="section-title">Definition of Departure</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <h4>What is Departure?</h4>
+        <p>In spherical navigation, <strong>Departure</strong> is the East–West linear distance between two meridians, measured along a specified parallel of latitude, expressed in Nautical Miles (NM). Because it is always measured along a parallel of latitude, departure always represents a <strong>Rhumb Line</strong> distance.</p>
+        <div class="def-box">
+          <strong>Departure:</strong> The E–W distance between two meridians along a given parallel of latitude.<br>
+          Unit: <strong>Nautical Miles (NM)</strong> &nbsp;|&nbsp; Track type: <strong>Rhumb Line</strong>
+        </div>
+        <h4>Why Does Departure Change with Latitude?</h4>
+        <p>The Earth is a sphere. All meridians converge and meet at the North and South Poles. Two meridians always subtend the same angle (ch.long) at the pole, but the actual physical distance between them <strong>decreases as latitude increases</strong>. At the Equator, meridians are furthest apart; at the Poles, they meet at a single point.</p>
+        <div class="key-box">
+          <strong>🔑 The Extremes:</strong><br>
+          <strong>Equator:</strong> 1° ch.long = <strong>60 NM</strong> (= 60' arc of a Great Circle) — MAXIMUM<br>
+          <strong>Poles:</strong> 1° ch.long = <strong>0 NM</strong> (meridians meet at the Pole) — ZERO
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 320 300">
+            <text x="160" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#1a3a5c">MERIDIAN CONVERGENCE</text>
+            <text x="160" y="34" text-anchor="middle" font-size="10" fill="#5a7a9a">Same ch.long — different distance</text>
+            <!-- pole point -->
+            <circle cx="160" cy="55" r="4" fill="#c0392b"/>
+            <text x="160" y="49" text-anchor="middle" font-size="10" font-weight="700" fill="#c0392b">NORTH POLE</text>
+            <!-- two meridians -->
+            <path d="M160,55 L60,270" stroke="#1a3a5c" stroke-width="2" fill="none"/>
+            <path d="M160,55 L260,270" stroke="#1a3a5c" stroke-width="2" fill="none"/>
+            <!-- chords at latitudes -->
+            <line x1="129" y1="122" x2="191" y2="122" stroke="#ca6f1e" stroke-width="3"/>
+            <text x="200" y="126" font-size="10" fill="#ca6f1e" font-weight="700">70°N — short</text>
+            <line x1="105" y1="173" x2="215" y2="173" stroke="#117a65" stroke-width="3"/>
+            <text x="222" y="177" font-size="10" fill="#117a65" font-weight="700">50°N</text>
+            <line x1="78" y1="232" x2="242" y2="232" stroke="#1e5a8e" stroke-width="3"/>
+            <text x="248" y="236" font-size="10" fill="#1e5a8e" font-weight="700">25°N</text>
+            <line x1="60" y1="270" x2="260" y2="270" stroke="#c0392b" stroke-width="4"/>
+            <text x="160" y="290" text-anchor="middle" font-size="10" font-weight="700" fill="#c0392b">EQUATOR — 1° = 60 NM (maximum)</text>
+          </svg>
+          <div class="diagram-caption">Meridians converge toward the poles: longitude is constant, distance is variable.</div>
+        </div>
+      </div>
+    </div>
+    <h4>Departure Varies as the COSINE of Latitude</h4>
+    <table>
+      <tr><th>Latitude</th><th>cos(lat)</th><th>Departure per 1° ch.long</th><th>Physical Meaning</th></tr>
+      <tr><td>0° (Equator)</td><td>1.000</td><td>60 NM</td><td>Maximum — meridians furthest apart</td></tr>
+      <tr><td>30°N/S</td><td>0.866</td><td>52.0 NM</td><td>Departure = 86.6% of equatorial</td></tr>
+      <tr><td>45°N/S</td><td>0.707</td><td>42.4 NM</td><td>Departure = 70.7% of equatorial</td></tr>
+      <tr><td>60°N/S</td><td>0.500</td><td>30.0 NM</td><td>Departure = exactly HALF of equatorial</td></tr>
+      <tr><td>75°N/S</td><td>0.259</td><td>15.5 NM</td><td>Departure rapidly shrinking</td></tr>
+      <tr><td>90° (Poles)</td><td>0.000</td><td>0 NM</td><td>Zero — meridians meet at the Pole</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══ SECTION 2 — THE FORMULA ══ -->
+<div class="section" id="s2">
+  <div class="section-header green">
+    <div class="section-num">2</div>
+    <div class="section-title">The Departure Formula</div>
+  </div>
+  <div class="section-body">
+    <h4>The Fundamental Formula</h4>
+    <p>Because departure varies as the cosine of latitude, the fundamental formula for East–West distance in NM is:</p>
+    <div class="key-box" style="text-align:center; font-size:1.15rem;">
+      <strong>Departure (NM) = ch.long (minutes) × cos (latitude)</strong>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="def-box">
+          <strong>ch.long</strong> — change in longitude. Convert DEGREES → MINUTES (degrees × 60) first!<br><br>
+          <strong>cos(lat)</strong> — scaling factor. Accounts for meridian convergence at that latitude.
+        </div>
+      </div>
+      <div>
+        <div class="warn-box">
+          <strong>⚠ CRITICAL RULE — never skip this step!</strong><br>
+          ALWAYS convert ch.long from degrees to minutes before calculating.<br>
+          Example: 20° change of longitude = 20 × 60 = <strong>1200 minutes of arc</strong>.
+        </div>
+      </div>
+    </div>
+    <h4>Rearrangements of the Formula</h4>
+    <table>
+      <tr><th>Solve For</th><th>Rearranged Formula</th><th>When to Use</th></tr>
+      <tr><td>Departure (NM)</td><td>Dep = ch.long(min) × cos(lat)</td><td>Find E–W distance from ch.long + lat</td></tr>
+      <tr><td>ch.long (minutes)</td><td>ch.long = Dep ÷ cos(lat)</td><td>Find new longitude after flying E/W</td></tr>
+      <tr><td>Latitude</td><td>lat = arccos(Dep ÷ ch.long)</td><td>Find the latitude given Dep and ch.long</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══ SECTION 3 — QUESTION TYPES ══ -->
+<div class="section" id="s3">
+  <div class="section-header purple">
+    <div class="section-num">3</div>
+    <div class="section-title">Types of Departure Questions</div>
+  </div>
+  <div class="section-body">
+    <h4>Diagnostic Flowchart — Identifying Your Scenario</h4>
+    <table>
+      <tr><th>Given</th><th>Target</th><th>Method</th></tr>
+      <tr><td>Distance flown + Latitude</td><td>New position (longitude)</td><td><strong>Forward Calculation</strong></td></tr>
+      <tr><td>Distance + ch.long</td><td>Latitude</td><td><strong>Reverse Algebra</strong></td></tr>
+      <tr><td>Multi-leg track</td><td>Distance at a new latitude</td><td><strong>Ratio Formula</strong></td></tr>
+    </table>
+
+    <h4>Scenario 1: Forward Calculation — Finding New Position</h4>
+    <div class="exam-box">
+      <span class="exam-label">Worked Example 1</span>
+      An aircraft at 60°00'N 005°22'W flies 165 km due East. Find the new position.<br><br>
+      <strong>1. Standardise units:</strong> 165 ÷ 1.852 = <strong>89 NM</strong> (this is our Departure)<br>
+      <strong>2. Apply the formula:</strong> 89 = ch.long(min) × cos 60° = ch.long × 0.5 → ch.long = 89 ÷ 0.5 = 178 min<br>
+      <strong>3. Convert to degrees:</strong> 178 ÷ 60 = 2°58' | Direction = East (+)<br>
+      <strong>4. Plot new position:</strong> 005°22'W + 2°58'E → <strong>✓ New Position = 60°00'N 002°24'W</strong>
+    </div>
+
+    <h4>Scenario 2: Reverse Algebra — Finding Latitude</h4>
+    <div class="exam-box">
+      <span class="exam-label">Worked Example 2</span>
+      In which latitude is a difference of longitude of 44°11' equivalent to a departure of 2000 NM?<br><br>
+      <strong>1. Convert ch.long to minutes:</strong> 44°11' = (44 × 60) + 11 = <strong>2651 min</strong><br>
+      <strong>2. Isolate cos(lat):</strong> 2000 = 2651 × cos(lat) → cos(lat) = 2000 ÷ 2651 = 0.7544<br>
+      <strong>3. Find the latitude:</strong> lat = arccos(0.7544) = <strong>✓ 41° NORTH or SOUTH</strong>
+    </div>
+    <div class="tip-box">
+      <strong>💡 Why North OR South?</strong> cos(41°N) = cos(41°S) — the cosine function gives identical values for equal latitudes in both hemispheres. Hence TWO valid answers!
+    </div>
+
+    <h4>Scenario 3: The Dual-Latitude Problem — Departure at a Different Latitude</h4>
+    <p>When a multi-leg route crosses into a different latitude, the same change of longitude translates to a <strong>different physical E–W distance</strong>. Two methods solve it:</p>
+    <div class="two-col">
+      <div>
+        <div class="exam-box">
+          <span class="exam-label">Worked Example 3</span>
+          Aircraft leaves G (40°S). Flies 240 NM South → 240 NM West → 240 NM North to K. Find the Rhumb Line distance from K to G.<br><br>
+          <strong>Method 1 — Double substitution (3 steps):</strong><br>
+          1. 240 NM S = 4° lat change → lat of H = 44°S<br>
+          2. 240 = ch.long × cos 44° → ch.long = 240 ÷ cos 44° = 333.6 min<br>
+          3. Back at 40°S: Dep = 333.6 × cos 40° = <strong>255.6 NM</strong><br><br>
+          <strong>Method 2 — Ratio Formula (1 step, PREFERRED):</strong><br>
+          Dep(40°S) = 240 × (cos 40° ÷ cos 44°) = 240 × (0.766 ÷ 0.719) = <strong>✓ 255.6 NM — same answer!</strong>
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 320 220">
+            <text x="160" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="#6c3483">THE DUAL-LATITUDE PROBLEM</text>
+            <!-- parallels -->
+            <line x1="20" y1="60" x2="300" y2="60" stroke="#b8cfe8" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="24" y="54" font-size="10" fill="#4a5568">40°S</text>
+            <line x1="20" y1="160" x2="300" y2="160" stroke="#b8cfe8" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="24" y="154" font-size="10" fill="#4a5568">44°S</text>
+            <!-- points -->
+            <circle cx="250" cy="60" r="4" fill="#1a7a4a"/><text x="258" y="56" font-size="11" font-weight="700" fill="#1a7a4a">G (start)</text>
+            <circle cx="250" cy="160" r="4" fill="#1a3a5c"/><text x="258" y="176" font-size="11" font-weight="700" fill="#1a3a5c">H</text>
+            <circle cx="70" cy="160" r="4" fill="#1a3a5c"/><text x="52" y="176" font-size="11" font-weight="700" fill="#1a3a5c">J</text>
+            <circle cx="70" cy="60" r="4" fill="#c0392b"/><text x="52" y="56" font-size="11" font-weight="700" fill="#c0392b">K</text>
+            <!-- legs -->
+            <path d="M250,60 L250,160" stroke="#1a7a4a" stroke-width="2" marker-end="url(#arr)"/>
+            <text x="256" y="115" font-size="10" fill="#1a7a4a">240 NM S</text>
+            <path d="M250,160 L70,160" stroke="#1e5a8e" stroke-width="2"/>
+            <text x="160" y="152" text-anchor="middle" font-size="10" fill="#1e5a8e">240 NM W (at 44°S)</text>
+            <path d="M70,160 L70,60" stroke="#ca6f1e" stroke-width="2"/>
+            <text x="76" y="115" font-size="10" fill="#ca6f1e">240 NM N</text>
+            <path d="M70,60 L250,60" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="6,3"/>
+            <text x="160" y="52" text-anchor="middle" font-size="10" font-weight="700" fill="#c0392b">? K → G = 255.6 NM</text>
+            <text x="160" y="205" text-anchor="middle" font-size="10" fill="#4a5568">Same ch.long — but LONGER E–W distance at 40°S than 44°S</text>
+          </svg>
+          <div class="diagram-caption">Same meridians, different parallel — the E–W distance grows toward the Equator.</div>
+        </div>
+      </div>
+    </div>
+    <div class="key-box">
+      <strong>🔑 THE RATIO FORMULA — master this!</strong><br>
+      Dep(A) ÷ cos(A) = Dep(B) ÷ cos(B) &nbsp;&nbsp;→&nbsp;&nbsp; <strong>Dep(A) = Dep(B) × (cos A ÷ cos B)</strong><br>
+      Use when you know departure at one latitude and need it at another.
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 4 — BOX PATTERN TRAP ══ -->
+<div class="section" id="s4">
+  <div class="section-header red">
+    <div class="section-num">4</div>
+    <div class="section-title">The Box Pattern Trap</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <h4>Understanding the Trap</h4>
+        <p>A classic DGCA exam question involves an aircraft flying a <strong>box pattern</strong>: equal distances in four cardinal directions (S, E, N, W). The trap is assuming the aircraft returns to its starting point. <strong>It does NOT!</strong></p>
+        <p>The Westward leg is flown at a higher (poleward) latitude than the Eastward leg. At higher latitudes meridians are closer together, so the same distance crosses <strong>MORE degrees of longitude</strong> Westward than Eastward. The aircraft ends at the same latitude but further West (in the Northern Hemisphere).</p>
+        <div class="exam-box">
+          <span class="exam-label">Worked Example 4 — The Classic Box Pattern</span>
+          Aircraft at 27°N 170°W flies: 3000 km S, 3000 km E, 3000 km N, 3000 km W. Final position?<br><br>
+          <strong>The no-math logic sequence:</strong><br>
+          1. Westward leg is at 27°N (HIGHER latitude) — meridians are CLOSER together.<br>
+          2. Eastward leg is at 0° Equator (LOWER latitude) — meridians are FURTHER apart.<br>
+          3. Same 3000 km westward crosses MORE meridians (more ch.long) than eastward.<br>
+          4. Net result: same latitude (27°N), displaced WESTWARD.<br>
+          <strong>✓ ANSWER: 27°00'N 173°18'W — NOT 170°00'W!</strong>
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 320 230">
+            <text x="160" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">THE BOX PATTERN TRAP</text>
+            <line x1="20" y1="60" x2="300" y2="60" stroke="#b8cfe8" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="24" y="54" font-size="10" fill="#4a5568">27°N</text>
+            <line x1="20" y1="180" x2="300" y2="180" stroke="#b8cfe8" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="24" y="174" font-size="10" fill="#4a5568">Equator 0°</text>
+            <circle cx="230" cy="60" r="4" fill="#1a7a4a"/><text x="238" y="56" font-size="11" font-weight="700" fill="#1a7a4a">START 170°W</text>
+            <circle cx="55" cy="60" r="4" fill="#c0392b"/><text x="30" y="46" font-size="11" font-weight="700" fill="#c0392b">END 173°18'W</text>
+            <path d="M230,60 L230,180" stroke="#1e5a8e" stroke-width="2"/>
+            <text x="236" y="125" font-size="10" fill="#1e5a8e">3000 km S</text>
+            <path d="M230,180 L290,180" stroke="#117a65" stroke-width="2"/>
+            <text x="260" y="196" text-anchor="middle" font-size="10" fill="#117a65">3000 km E (wide at 0°)</text>
+            <path d="M290,180 L290,60" stroke="#ca6f1e" stroke-width="2"/>
+            <text x="296" y="125" font-size="10" fill="#ca6f1e">N</text>
+            <path d="M290,60 L55,60" stroke="#c0392b" stroke-width="2.5"/>
+            <text x="172" y="76" text-anchor="middle" font-size="10" font-weight="700" fill="#c0392b">3000 km W — narrower at 27°N → crosses MORE longitude</text>
+          </svg>
+          <div class="diagram-caption">Equal legs do not close the box — the aircraft ends WEST of its start (Northern Hemisphere).</div>
+        </div>
+        <div class="tip-box">
+          <strong>💡 EXAM SHORTCUT — inspect the options:</strong><br>
+          • Same latitude as start? YES (same N/S distance flown) — eliminate options at a different latitude.<br>
+          • Displaced WEST in the Northern Hemisphere (W leg at higher lat).<br>
+          • Displaced EAST in the Southern Hemisphere (W leg at lower lat).
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 5 — KINEMATICS ══ -->
+<div class="section" id="s5">
+  <div class="section-header orange">
+    <div class="section-num">5</div>
+    <div class="section-title">Kinematics Integration (Speed + Time + Geometry)</div>
+  </div>
+  <div class="section-body">
+    <h4>Combining Flight Performance with Departure</h4>
+    <p>DGCA questions often combine flight mechanics (TAS from Mach number, Ground Speed from wind) with departure geometry. The approach is always two-phased: first find the departure distance using kinematics, then use the departure formula to find the new position.</p>
+    <div class="exam-box">
+      <span class="exam-label">Worked Example 5 — Kinematics + Departure</span>
+      Aircraft leaves 36°00'S 130°14'E. Track 270° (due West). M 0.81, Temp 0°C, 35 kt tailwind. Fly for 18 minutes. Find the new position.<br><br>
+      <strong>Phase 1 — Kinematics (finding the departure distance):</strong><br>
+      1. TAS from Mach: LSS at 0°C ≈ 644 kt → TAS = 0.81 × 644 ≈ <strong>520 kt</strong><br>
+      2. Ground speed: Track 270° with 35 kt tailwind → GS = 520 + 35 = <strong>555 kt</strong><br>
+      3. Distance: 18 min at 555 kt = (18 ÷ 60) × 555 = <strong>166.5 NM = Departure (Westward)</strong><br><br>
+      <strong>Phase 2 — Geometry (finding the new position):</strong><br>
+      1. 166.5 = ch.long(min) × cos 36° = ch.long × 0.809<br>
+      2. ch.long = 166.5 ÷ 0.809 = 206 min = 3°26' West<br>
+      3. 130°14'E − 3°26' = <strong>✓ New Position: 36°00'S 126°48'E</strong>
+    </div>
+    <div class="key-box">
+      <strong>🔑 MACH → TAS QUICK REFERENCE (TAS = Mach No. × Local Speed of Sound):</strong><br>
+      LSS at +15°C (ISA sea level) = <strong>661 kt</strong> | LSS at 0°C ≈ <strong>644 kt</strong> | LSS at −20°C ≈ <strong>620 kt</strong> | LSS at −56.5°C (tropopause) ≈ <strong>573 kt</strong>
+    </div>
+    <div class="warn-box">
+      <strong>⚠ Common error:</strong> 661 kt is the speed of sound at <strong>+15°C</strong> (ISA sea level), NOT at 0°C. LSS = 38.94 × √(temperature in Kelvin). Using 661 kt at 0°C overestimates TAS by ~15 kt.
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 6 — MASTER SUMMARY ══ -->
+<div class="section" id="s6">
+  <div class="section-header teal">
+    <div class="section-num">6</div>
+    <div class="section-title">Navigator's Master Summary</div>
+  </div>
+  <div class="section-body">
+    <h4>Core Rules — Never Forget These!</h4>
+    <div class="two-col">
+      <div>
+        <div class="def-box"><strong>RULE 1:</strong> Departure is MAXIMUM at the Equator (1° ch.long = 60 NM) and ZERO at the Poles.</div>
+        <div class="def-box"><strong>RULE 2:</strong> Departure varies as the COSINE of latitude. As latitude ↑, departure ↓.</div>
+        <div class="def-box"><strong>RULE 3:</strong> ALWAYS convert ch.long to MINUTES (× 60) before using the formula.</div>
+      </div>
+      <div>
+        <div class="def-box"><strong>RULE 4:</strong> Departure always represents a RHUMB LINE distance (along a parallel).</div>
+        <div class="def-box"><strong>RULE 5:</strong> In the box pattern: same N/S distance → same latitude, but displaced West (NH) / East (SH).</div>
+        <div class="def-box"><strong>RULE 6:</strong> Use the Ratio Formula for dual-latitude problems: Dep A = Dep B × (cos A ÷ cos B).</div>
+      </div>
+    </div>
+    <h4>All Formulas at a Glance</h4>
+    <table>
+      <tr><th>Formula</th><th>Expression</th><th>Use Case</th></tr>
+      <tr><td>Primary Departure</td><td>Dep = ch.long(min) × cos(lat)</td><td>Find E–W distance</td></tr>
+      <tr><td>Find ch.long</td><td>ch.long(min) = Dep ÷ cos(lat)</td><td>Find longitude from departure</td></tr>
+      <tr><td>Find Latitude</td><td>lat = arccos(Dep ÷ ch.long)</td><td>Find lat from Dep &amp; ch.long</td></tr>
+      <tr><td>Ratio Formula</td><td>Dep A = Dep B × (cos A ÷ cos B)</td><td>Dual-latitude problems</td></tr>
+      <tr><td>Speed × Time</td><td>Distance = GS × Time (hours)</td><td>Find departure from flight time</td></tr>
+      <tr><td>Mach → TAS</td><td>TAS = Mach × LSS</td><td>Kinematics integration</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══ SECTION 7 — PRACTICE QUESTIONS ══ -->
+<div class="section" id="s7">
+  <div class="section-header gold">
+    <div class="section-num">7</div>
+    <div class="section-title">DGCA Practice Questions with Full Solutions</div>
+  </div>
+  <div class="section-body">
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q1</span>
+      A flight is made along the parallel of latitude from A (48°00'N 004°00'W) to B (48°00'N 002°27'E). Calculate the distance.<br><br>
+      ch.long = 4°00'W to 2°27'E = 6°27' = 387 minutes<br>
+      Departure = 387 × cos 48° = 387 × 0.6691 = <strong>✓ 259 NM</strong>
+    </div>
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q2</span>
+      An aircraft flies 1000 NM along 090°(T) from C (36°00'N 174°45'E) to D. What is the longitude of D?<br><br>
+      1000 = ch.long(min) × cos 36° → ch.long = 1000 ÷ 0.809 = 1236 min = 20°36' East<br>
+      174°45'E + 20°36' = 195°21'E → crosses the anti-meridian → <strong>✓ Longitude of D = 164°39'W</strong>
+    </div>
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q3</span>
+      Starting from E (50°N), an aircraft flies EF 000°(T) 300 NM; FG 090°(T) 300 NM; GH 180°(T) 300 NM. Find the Rhumb Line bearing and distance from E to H.<br><br>
+      E→F: 300 NM North → lat of F = 55°N<br>
+      F→G: 300 NM East at 55°N → ch.long = 300 ÷ cos 55° = 523 min = 8°43'<br>
+      G→H: 300 NM South → lat of H = 50°N (same as E, displaced East)<br>
+      Departure at 50°N = 523 × cos 50° = 336 NM → <strong>✓ Bearing 090°(T), Distance 336 NM</strong>
+    </div>
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q4</span>
+      Track and distance along 80°S from 176°15'W to 179°45'E?<br><br>
+      ch.long (westward across the anti-meridian) = 3°45' + 0°15' = 4° = 240 minutes<br>
+      Departure = 240 × cos 80° = 240 × 0.1736 = 41.7 NM → <strong>✓ Track 270°(T), Distance 41.7 NM</strong>
+    </div>
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q5</span>
+      In which latitude is a difference in longitude of 44°10' equivalent to a departure of 2295 NM?<br><br>
+      44°10' = 2650 minutes | cos(lat) = 2295 ÷ 2650 = 0.866 → <strong>✓ Latitude = 30° North or South</strong>
+    </div>
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q6</span>
+      Aircraft J (36°S 130°14'E) at 0946Z, Track 270°, FL100, Temp 0°C, M 0.81, 35 kt tailwind. Position at 1004Z?<br><br>
+      Time flown: 1004 − 0946 = 18 min | TAS: M 0.81 at 0°C ≈ 520 kt | GS = 520 + 35 = 555 kt<br>
+      Departure = (18 ÷ 60) × 555 = 166.5 NM West | ch.long = 166.5 ÷ cos 36° = 206 min = 3°26'<br>
+      130°14'E − 3°26' = <strong>✓ 36°00'S 126°48'E</strong>
+    </div>
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q7</span>
+      (a) At which latitude does departure (NM) equal (i) the difference in longitude in minutes, (ii) HALF the difference in longitude in minutes? (b) At 52°N, what are the Rhumb Line and shortest distances between 136°16'W and 043°44'E?<br><br>
+      (a)(i) cos(lat) = 1 → lat = 0° → <strong>✓ the EQUATOR</strong> &nbsp; (ii) cos(lat) = 0.5 → <strong>✓ 60° N or S</strong><br>
+      (b) ch.long = 136°16' + 43°44' = 180° = 10800 min → Rhumb Line = 10800 × cos 52° = <strong>✓ 6650 NM</strong><br>
+      Shortest = Great Circle over the Pole = (90° − 52°) × 2 = 76° × 60 = <strong>✓ 4560 NM</strong>
+    </div>
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q8</span>
+      From L (37°S): LM 270°(T) at 310 kt for 80 min; MN 180°(T) at 280 kt; NP 090°(T) at 250 kt for 93.5 min. P is due South of L. Find distance and time for leg MN.<br><br>
+      L→M: 310 × 80/60 = 413.3 NM West at 37°S → ch.long = 413.3 ÷ cos 37° = 517 min = 8°37'W<br>
+      N→P: 250 × 93.5/60 = 389.6 NM East, covering the same 517 min → cos(lat N) = 389.6 ÷ 517 = 0.7536 → lat N = 41°S<br>
+      M→N: 41°S − 37°S = 4° South = 240 NM | Time = 240 ÷ 280 × 60 = <strong>✓ 240 NM, ≈ 51 minutes</strong>
+    </div>
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q9</span>
+      Aircraft Q (GS 301 kt) flies along 46°N through 10° of longitude. Aircraft R (GS 364 kt) flies between the same meridians in the same time. At what latitude is R?<br><br>
+      Q: 600 min × cos 46° = 417 NM | Time = 417 ÷ 301 × 60 = 83 min<br>
+      R: 364 × 83/60 = 503.5 NM in the same time → cos(lat) = 503.5 ÷ 600 = 0.839 → <strong>✓ Latitude of R = 33° N or S</strong>
+    </div>
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q10 (MCQ)</span>
+      Aircraft at 50°N 006°E flies 300 NM South, 300 NM East, 300 NM North, 300 NM West. Final position relative to start?<br><br>
+      East leg at 45°N (wider meridians), West leg at 50°N (narrower) → same distance West crosses MORE longitude → <strong>✓ (c) WEST of the start point</strong>
+    </div>
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q11 (MCQ)</span>
+      Aircraft at 04°10'S 178°22'W flies North 2950 NM, turns left 90°, then flies 314 km Rhumb Line. Final position?<br><br>
+      2950 NM North = 49°10' of latitude → 45°00'N | Left turn = West. 314 km = 169.5 NM at 45°N<br>
+      ch.long = 169.5 ÷ cos 45° = 239.7 min ≈ 4°00'W → 178°22'W + 4°00' = 182°22'W → <strong>✓ (d) 45°00'N 177°38'E</strong>
+    </div>
+    <div class="exam-box" style="margin-bottom:10px;">
+      <span class="exam-label">Q12 (MCQ)</span>
+      An aircraft at 60°N flies eastward around the Earth at 240 kt. What ground speed must a second aircraft fly along the Equator to circle the Earth in the same time?<br><br>
+      Circumference at 60°N = equatorial × cos 60° = HALF the equatorial distance<br>
+      Speed ratio = 1 ÷ cos 60° = 2 → 240 × 2 = <strong>✓ (c) 480 knots</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 8 — ANSWER KEY ══ -->
+<div class="section" id="s8">
+  <div class="section-header sky">
+    <div class="section-num">8</div>
+    <div class="section-title">MCQ Answer Key</div>
+  </div>
+  <div class="section-body">
+    <table>
+      <tr><th>Q</th><th>Answer</th><th>Key Concept</th></tr>
+      <tr><td>Q1</td><td>259 NM</td><td>ch.long 387 min × cos 48°</td></tr>
+      <tr><td>Q2</td><td>164°39'W</td><td>1236 min East = 20°36' beyond 174°45'E, anti-meridian crossing</td></tr>
+      <tr><td>Q3</td><td>090° / 336 NM</td><td>Ratio of departures at the new latitude 50°N</td></tr>
+      <tr><td>Q4</td><td>270° / 41.7 NM</td><td>cos 80° = 0.1736</td></tr>
+      <tr><td>Q5</td><td>30° N/S</td><td>cos(lat) = 0.866</td></tr>
+      <tr><td>Q6</td><td>36°S 126°48'E</td><td>Kinematics + departure</td></tr>
+      <tr><td>Q7a</td><td>0° / 60°</td><td>cos = 1, cos = 0.5</td></tr>
+      <tr><td>Q8</td><td>240 NM / 51 min</td><td>Dual-latitude reverse algebra</td></tr>
+      <tr><td>Q9</td><td>33° N/S</td><td>cos(lat) = 503.5 ÷ 600</td></tr>
+      <tr><td>Q10</td><td>(c) West</td><td>Box pattern — West leg at higher latitude</td></tr>
+      <tr><td>Q11</td><td>(d) 45°00'N 177°38'E</td><td>Anti-meridian crossing</td></tr>
+      <tr><td>Q12</td><td>(c) 480 kt</td><td>Speed ∝ 1 ÷ cos(lat)</td></tr>
+    </table>
+    <div class="key-box" style="margin-top:1.2rem;">
+      <strong>✈ A MESSAGE FROM CAPT. PANKAJ PAHIL</strong><br>
+      Every great pilot once sat where you sit today — studying, struggling, but never giving up.
+      Master these concepts and the sky truly is not the limit — it is just the beginning!
+      You have the knowledge. You have the determination. Now go fly your dreams!
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <strong>DGCA General Navigation — Chapter 21: Departure</strong><br>
+  For every student pilot of India<br>
+  <span style="color:var(--gold);">❤ Best wishes from Capt. Pankaj Pahil — fly high, dream big!</span><br>
+  <span style="font-size:11px;margin-top:4px;display:block;">For educational use only. Always verify with current DGCA syllabus and official publications.</span>
+</div>
+
+</div><!-- /container -->
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>
