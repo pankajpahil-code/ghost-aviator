@@ -68,7 +68,7 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "nav-1", number: 1, title: "Basics of Navigation",
         description: "Solar system, seasonal/apparent sun movements, the earth, great circles, rhumb lines, convergency, conversion angle, latitude, longitude, time conversions (UTC/LMT/standard), international dateline, directions, terrestrial magnetism, units of distance.",
-        duration: "4 hrs", questionCount: 90, content: makeContent(),
+        duration: "4 hrs", questionCount: 87, content: makeContent(true),
       },
       {
         id: "nav-2", number: 2, title: "Magnetism & Compasses",

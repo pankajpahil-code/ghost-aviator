@@ -162,6 +162,7 @@ export default async function Page({
       "meteorology/met-28": true,
       "meteorology/met-29": true,
       // Oxford General Navigation study notes (merged into Air Navigation)
+      "air-navigation/nav-1":  true,
       "air-navigation/nav-13": true,
       "air-navigation/nav-14": true,
       "air-navigation/nav-15": true,

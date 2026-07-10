@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGCA General Navigation – Chapter 1: Direction, Latitude & Longitude</title>
+<style>
+  :root {
+    --sky: #1a3a5c;
+    --sky-mid: #1e5a8e;
+    --sky-light: #2e7dbf;
+    --sky-pale: #d6eaf8;
+    --gold: #d4a017;
+    --gold-light: #f5d76e;
+    --gold-pale: #fef9e7;
+    --green: #1a7a4a;
+    --green-pale: #e8f8f0;
+    --red: #c0392b;
+    --red-pale: #fdecea;
+    --purple: #6c3483;
+    --purple-pale: #f5eef8;
+    --teal: #117a65;
+    --teal-pale: #e8f8f5;
+    --orange: #ca6f1e;
+    --orange-pale: #fef5e7;
+    --ink: #1a1a2e;
+    --ink-mid: #2c3e50;
+    --ink-light: #4a5568;
+    --border: #b8cfe8;
+    --page-bg: #f0f4f8;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --section-gap: 2.5rem;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--page-bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  /* ── HEADER ── */
+  .hero {
+    background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 45%, #1e6ba8 100%);
+    color: white;
+    padding: 2.5rem 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: #1a1a1a;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--gold-light); }
+  .hero-sub {
+    font-size: 14px;
+    color: #9bbcd6;
+    margin-top: 0.6rem;
+  }
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 1.2rem;
+  }
+  .badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #d6eaf8;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  /* ── TABLE OF CONTENTS ── */
+  .toc-card {
+    background: var(--sky);
+    color: white;
+    margin: 1.5rem 1.5rem 0;
+    border-radius: 12px;
+    padding: 1.4rem 1.8rem;
+  }
+  .toc-card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 0.8rem;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 4px 24px;
+  }
+  .toc-grid a {
+    color: #9bbcd6;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 2px 0;
+    display: block;
+    transition: color 0.2s;
+  }
+  .toc-grid a:hover { color: var(--gold-light); }
+  .toc-grid a::before { content: '§ '; color: var(--gold); font-weight: 700; }
+  /* ── MAIN WRAPPER ── */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+  /* ── SECTION CARDS ── */
+  .section {
+    background: var(--card-bg);
+    border-radius: 14px;
+    margin-top: var(--section-gap);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(26,58,92,0.07);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 1.6rem;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-header.sky    { background: var(--sky); color: white; border-bottom-color: #0d2137; }
+  .section-header.gold   { background: var(--gold); color: #1a1a1a; border-bottom-color: #a87e00; }
+  .section-header.green  { background: var(--green); color: white; border-bottom-color: #0d4a2a; }
+  .section-header.red    { background: var(--red); color: white; border-bottom-color: #7b241c; }
+  .section-header.purple { background: var(--purple); color: white; border-bottom-color: #4a235a; }
+  .section-header.teal   { background: var(--teal); color: white; border-bottom-color: #0a4f41; }
+  .section-header.orange { background: var(--orange); color: white; border-bottom-color: #7e4000; }
+  .section-header.sky-mid{ background: var(--sky-mid); color: white; border-bottom-color: #0e3660; }
+  .section-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .section-body { padding: 1.4rem 1.6rem; }
+  /* ── CONTENT ELEMENTS ── */
+  p { margin-bottom: 0.85rem; }
+  p:last-child { margin-bottom: 0; }
+  h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--sky);
+    margin: 1.2rem 0 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  h4:first-child { margin-top: 0; }
+  /* ── HIGHLIGHT BOXES ── */
+  .def-box {
+    border-left: 5px solid var(--sky-light);
+    background: var(--sky-pale);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin: 0.9rem 0;
+    font-size: 14px;
+  }
+  .def-box strong { color: var(--sky); }
+  .key-box {
+    border: 2px solid var(--gold);
+    background: var(--gold-pale);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin: 0.9rem 0;
+    font-size: 14px;
+  }
+  .key-box strong { color: var(--orange); }
+  .warn-box {
+    border-left: 5px solid var(--red);
+    background: var(--red-pale);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin: 0.9rem 0;
+    font-size: 14px;
+  }
+  .warn-box strong { color: var(--red); }
+  .tip-box {
+    border-left: 5px solid var(--green);
+    background: var(--green-pale);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin: 0.9rem 0;
+    font-size: 14px;
+  }
+  .tip-box strong { color: var(--green); }
+  .exam-box {
+    background: #1a1a2e;
+    color: #e8f0fe;
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    margin: 0.9rem 0;
+    font-size: 14px;
+  }
+  .exam-box .exam-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 4px;
+  }
+  /* ── GRID LAYOUTS ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  @media(max-width: 680px) {
+    .two-col, .three-col { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.8rem; }
+  }
+  /* ── TABLES ── */
+  table { width: 100%; border-collapse: collapse; margin: 0.9rem 0; font-size: 14px; }
+  th {
+    background: var(--sky);
+    color: white;
+    padding: 9px 12px;
+    text-align: left;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+  }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--page-bg); }
+  tr:nth-child(odd)  td { background: var(--white); }
+  /* ── DIAGRAM CONTAINER ── */
+  .diagram-wrap {
+    background: var(--page-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .diagram-caption {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 6px;
+    margin-bottom: 4px;
+    font-style: italic;
+    text-align: center;
+  }
+  /* ── COMPASS DIRECTIONS ── */
+  .compass-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 0.9rem 0;
+  }
+  .compass-card {
+    text-align: center;
+    padding: 0.7rem 0.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .compass-card .deg {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1.6rem;
+    font-weight: 600;
+    display: block;
+  }
+  .compass-card .dir { font-weight: 700; font-size: 13px; }
+  /* ── MINI TAG ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .tag-blue   { background: #d6eaf8; color: #1a5276; }
+  .tag-green  { background: var(--green-pale); color: #1a5e36; }
+  .tag-gold   { background: var(--gold-pale); color: #7e5009; }
+  .tag-red    { background: var(--red-pale); color: #922b21; }
+  .tag-purple { background: var(--purple-pale); color: #512e5f; }
+  /* ── FORMULA BOX ── */
+  .formula {
+    font-family: 'Source Code Pro', monospace;
+    background: #1a1a2e;
+    color: #a8d8ea;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 14px;
+    margin: 0.6rem 0;
+    display: block;
+  }
+  /* ── SVG styling ── */
+  svg text { font-family: 'Nunito', sans-serif; }
+  /* ── SPECIAL PARALLELS ── */
+  .parallel-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+    margin: 0.9rem 0;
+  }
+  .parallel-card {
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    border-left: 5px solid;
+  }
+  .pc-arctic  { border-color: #5dade2; background: #eaf4fc; }
+  .pc-antarc  { border-color: #2980b9; background: #d6eaf8; }
+  .pc-cancer  { border-color: #f39c12; background: #fef9e7; }
+  .pc-capric  { border-color: #e67e22; background: #fef5e7; }
+  .parallel-card .pc-name { font-weight: 800; font-size: 14px; margin-bottom: 2px; }
+  .parallel-card .pc-lat  { font-family: 'Source Code Pro', monospace; font-size: 13px; }
+  .parallel-card .pc-desc { font-size: 12px; color: var(--ink-light); margin-top: 4px; }
+  /* ── ACCURACY TABLE ── */
+  .acc-row { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .acc-row:last-child { border-bottom: none; }
+  .acc-row .acc-fmt {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sky);
+    min-width: 140px;
+  }
+  .acc-row .acc-val { font-size: 13px; color: var(--ink-mid); min-width: 130px; }
+  .acc-row .acc-app { font-size: 12px; color: var(--ink-light); }
+  .acc-bar-wrap { flex: 1; background: #e8edf2; border-radius: 4px; height: 8px; }
+  .acc-bar { height: 8px; border-radius: 4px; background: var(--sky-light); }
+  /* ── INTERACTIVE ELEMENTS ── */
+  .interactive-demo {
+    background: var(--page-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+  }
+  .interactive-demo label { font-size: 13px; color: var(--ink-mid); font-weight: 600; }
+  .interactive-demo input[type=range] { width: 100%; }
+  .interactive-demo .out-val {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--sky);
+    margin-top: 4px;
+    display: block;
+  }
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .section { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-tag">✈ DGCA CPL / ATPL Exam Notes</div>
+  <h1>Chapter 1<br><span>Direction, Latitude &amp; Longitude</span></h1>
+  <div class="hero-sub">General Navigation · Ghost Aviator Series · Prepared for: <strong style="color:#f5d76e;">Underprivileged Student Pilots of India</strong></div>
+  <div class="hero-sub" style="margin-top:4px; font-size:13px; color:#7aabcc;">By Capt. Pankaj Pahil | 17 Years of Teaching Excellence</div>
+  <div class="hero-badges">
+    <span class="badge">Ghost Aviator</span>
+    <span class="badge">EASA / DGCA Syllabus</span>
+    <span class="badge">10 Topics Covered</span>
+    <span class="badge">Diagrams + Exam Tips</span>
+  </div>
+</div>
+
+<!-- ══ TABLE OF CONTENTS ══ -->
+<div class="container">
+<div class="toc-card">
+  <h3>📋 Contents — Chapter 1</h3>
+  <div class="toc-grid">
+    <a href="#s1">Shape of the Earth</a>
+    <a href="#s2">Geodosy &amp; Geoid Models</a>
+    <a href="#s3">The Poles</a>
+    <a href="#s4">Basic Direction</a>
+    <a href="#s5">Sexagesimal System</a>
+    <a href="#s6">Position Reference Systems</a>
+    <a href="#s7">Circles on the Earth</a>
+    <a href="#s8">Equator, Meridians &amp; Graticule</a>
+    <a href="#s9">Latitude</a>
+    <a href="#s10">Geocentric &amp; Geodetic Latitude</a>
+    <a href="#s11">Special Parallels</a>
+    <a href="#s12">Longitude</a>
+    <a href="#s13">Difference in Longitude</a>
+    <a href="#s14">Positions in Lat/Long</a>
+    <a href="#s15">Lat/Long to Distance</a>
+    <a href="#s16">Resolution Accuracy</a>
+    <a href="#s17">Great Circle Vertices</a>
+    <a href="#s18">Practice Questions</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 1 — SHAPE OF THE EARTH
+══════════════════════════════════ -->
+<div class="section" id="s1">
+  <div class="section-header sky">
+    <div class="section-num">1</div>
+    <div class="section-title">The Shape of the Earth</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <p>The Earth is not a perfect sphere. Its official shape is described as an <strong>oblate spheroid</strong> — a sphere slightly flattened at the poles due to centrifugal forces acting during its formation from a rotating gas cloud.</p>
+
+        <div class="def-box">
+          <strong>Oblate Spheroid:</strong> A sphere flattened at the poles and bulging at the equator. The flattening is called <strong>compression</strong>.
+        </div>
+
+        <div class="key-box">
+          <strong>🔑 Key Values to Memorise:</strong><br>
+          Compression ≈ <strong>0.3% (1/300th)</strong><br>
+          Polar diameter is <strong>23 NM or 43 km less</strong> than equatorial diameter<br>
+          Earth is also slightly <strong>pear-shaped</strong> — max diameter south of Equator<br>
+          (Southern hemisphere distortion is in <em>metres</em>, not km)
+        </div>
+
+        <h4>Shapes and Their Cross-Sections</h4>
+        <table>
+          <tr><th>Shape</th><th>Cross-Section</th><th>Math Complexity</th></tr>
+          <tr><td>Perfect Sphere</td><td>Circle</td><td>Simple</td></tr>
+          <tr><td>Oblate Spheroid</td><td>Ellipse</td><td>Moderate</td></tr>
+          <tr><td>Real Earth (Geoid)</td><td>Irregular</td><td>Complex</td></tr>
+        </table>
+
+        <div class="exam-box">
+          <span class="exam-label">✈ DGCA Exam Rule</span>
+          For EASA / DGCA exam calculations, treat the Earth as a <strong>perfect sphere</strong> with:<br>
+          Circumference = <strong>21,600 NM</strong> or <strong>40,000 km</strong>
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 300 320">
+            <!-- Perfect sphere -->
+            <ellipse cx="75" cy="80" rx="55" ry="55" fill="#d6eaf8" stroke="#1a3a5c" stroke-width="1.5"/>
+            <text x="75" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#1a3a5c">Perfect</text>
+            <text x="75" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#1a3a5c">Sphere</text>
+            <text x="75" y="148" text-anchor="middle" font-size="10" fill="#5a7a9a">Polar dia = Equatorial dia</text>
+
+            <!-- Oblate spheroid -->
+            <ellipse cx="220" cy="80" rx="65" ry="50" fill="#d5f5e3" stroke="#1a7a4a" stroke-width="1.5"/>
+            <!-- Equatorial line -->
+            <line x1="155" y1="80" x2="285" y2="80" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3,3"/>
+            <!-- Polar axis -->
+            <line x1="220" y1="25" x2="220" y2="135" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="220" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#1a7a4a">Oblate</text>
+            <text x="220" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#1a7a4a">Spheroid</text>
+            <!-- Annotations -->
+            <text x="290" y="79" font-size="9" fill="#e74c3c" dominant-baseline="central">Equator</text>
+            <text x="224" y="28" font-size="9" fill="#e74c3c">Polar</text>
+            <text x="224" y="39" font-size="9" fill="#e74c3c">axis</text>
+            <text x="220" y="148" text-anchor="middle" font-size="10" fill="#5a7a9a">Polar dia &lt; Equatorial dia by 43 km</text>
+
+            <!-- GEOID -->
+            <ellipse cx="75" cy="230" rx="55" ry="52" fill="#fef9e7" stroke="#d4a017" stroke-width="1.5"/>
+            <!-- slight irregular bump -->
+            <path d="M75 178 Q95 188 105 200 Q115 212 110 230 Q105 248 90 255 Q75 260 60 255 Q45 248 30 235 Q20 218 25 200 Q35 185 55 180 Q65 177 75 178Z" fill="none" stroke="#ca6f1e" stroke-width="1.2" stroke-dasharray="4,3"/>
+            <text x="75" y="228" text-anchor="middle" font-size="11" font-weight="700" fill="#d4a017">Geoid</text>
+            <text x="75" y="242" text-anchor="middle" font-size="11" font-weight="700" fill="#d4a017">(Real Earth)</text>
+            <text x="75" y="292" text-anchor="middle" font-size="10" fill="#5a7a9a">Irregular — "Earth-shaped"</text>
+
+            <!-- Real Earth pear -->
+            <ellipse cx="220" cy="225" rx="60" ry="53" fill="#f5eef8" stroke="#6c3483" stroke-width="1.5"/>
+            <!-- Max diameter below equator line -->
+            <line x1="157" y1="236" x2="283" y2="236" stroke="#6c3483" stroke-width="0.8" stroke-dasharray="3,3"/>
+            <text x="220" y="224" text-anchor="middle" font-size="11" font-weight="700" fill="#6c3483">Real Shape</text>
+            <text x="220" y="238" text-anchor="middle" font-size="11" font-weight="700" fill="#6c3483">(Pear slightly)</text>
+            <text x="280" y="237" font-size="9" fill="#6c3483" dominant-baseline="central">Max↓</text>
+            <text x="220" y="292" text-anchor="middle" font-size="10" fill="#5a7a9a">Max diameter south of Equator</text>
+          </svg>
+          <div class="diagram-caption">Fig 1.1 — Four views of Earth's shape. For exams, use the sphere model.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 2 — GEODOSY & GEOID MODELS
+══════════════════════════════════ -->
+<div class="section" id="s2">
+  <div class="section-header gold">
+    <div class="section-num">2</div>
+    <div class="section-title">Geodosy &amp; Geoid Models</div>
+  </div>
+  <div class="section-body">
+    <p><strong>Geodosy</strong> is the science of measuring and modelling the Earth's shape. Different countries and agencies have created their own <em>geoid models</em>, each optimised for accuracy over a specific region.</p>
+
+    <div class="two-col">
+      <div>
+        <h4>Major Geoid Models</h4>
+        <table>
+          <tr><th>Model</th><th>Used By</th></tr>
+          <tr><td><strong>WGS 84</strong></td><td>USA / GPS / ICAO (World Standard)</td></tr>
+          <tr><td>OS36</td><td>UK Ordnance Survey (survey of 1936)</td></tr>
+          <tr><td>NTF 1970</td><td>France (Nouvelle Triangulation de France)</td></tr>
+          <tr><td>ED50</td><td>European Datum 1950 (other EU countries)</td></tr>
+        </table>
+
+        <div class="warn-box">
+          <strong>⚠ Important:</strong> Using different geoid models for the same position can produce errors of up to <strong>200 metres</strong> (between ED50 and OS36 extremities). This matters for GPS and FMS accuracy!
+        </div>
+      </div>
+      <div>
+        <h4>Why WGS 84 Became the World Standard</h4>
+        <div class="def-box">
+          <strong>GPS</strong> (24 satellites) — accuracy to tens of metres globally. Differences between geoids become significant at this precision.
+        </div>
+        <div class="def-box">
+          <strong>FMS (Flight Management System)</strong> — uses IRS + DME ranging. If DME positions are stored in different datums (UK = OS36, France = NTF70), large position errors occur crossing the English Channel!
+        </div>
+        <div class="tip-box">
+          <strong>✅ ICAO adopted WGS 84</strong> as the world standard. Modern navigation computers auto-correct for Earth shape distortions.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 3 — THE POLES
+══════════════════════════════════ -->
+<div class="section" id="s3">
+  <div class="section-header green">
+    <div class="section-num">3</div>
+    <div class="section-title">The Poles</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <div class="def-box">
+          <strong>The Poles</strong> are the extremities of the axis about which the Earth spins (the <em>polar axis</em>).
+        </div>
+        <div class="key-box">
+          <strong>🔑 Key Fact:</strong> The polar axis is <strong>tilted at 23½°</strong> to the axis of Earth's orbit around the Sun. This tilt causes the seasons! (Covered fully in the "Time" chapter.)
+        </div>
+        <h4>Rotation as Seen from the Poles</h4>
+        <table>
+          <tr><th>View from above</th><th>Rotation appears</th></tr>
+          <tr><td>North Pole</td><td style="color:#c0392b;font-weight:700;">ANTI-CLOCKWISE (Counter-clockwise)</td></tr>
+          <tr><td>South Pole</td><td style="color:#1a7a4a;font-weight:700;">CLOCKWISE</td></tr>
+        </table>
+        <div class="exam-box">
+          <span class="exam-label">✈ Exam Favourite</span>
+          "When viewed from above the North Pole, the Earth rotates <strong>anticlockwise</strong>." This appears frequently in navigation exam questions.
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 280 200">
+            <!-- North pole view -->
+            <circle cx="75" cy="100" r="55" fill="#d6eaf8" stroke="#1a3a5c" stroke-width="1.5"/>
+            <circle cx="75" cy="100" r="4" fill="#1a3a5c"/>
+            <text x="75" y="38" text-anchor="middle" font-size="10" fill="#1a3a5c" font-weight="700">N POLE</text>
+            <!-- anticlockwise arrow arc -->
+            <path d="M75,50 A50,50 0 0,0 125,100" fill="none" stroke="#c0392b" stroke-width="2.5" marker-end="url(#aarrow)"/>
+            <text x="75" y="120" text-anchor="middle" font-size="9" fill="#c0392b" font-weight="700">Anti-clockwise</text>
+            <text x="75" y="132" text-anchor="middle" font-size="9" fill="#c0392b">(from above N)</text>
+
+            <!-- South pole view -->
+            <circle cx="210" cy="100" r="55" fill="#d5f5e3" stroke="#1a7a4a" stroke-width="1.5"/>
+            <circle cx="210" cy="100" r="4" fill="#1a7a4a"/>
+            <text x="210" y="38" text-anchor="middle" font-size="10" fill="#1a7a4a" font-weight="700">S POLE</text>
+            <!-- clockwise arrow arc -->
+            <path d="M210,50 A50,50 0 0,1 260,100" fill="none" stroke="#1a7a4a" stroke-width="2.5" marker-end="url(#aarrow2)"/>
+            <text x="210" y="120" text-anchor="middle" font-size="9" fill="#1a7a4a" font-weight="700">Clockwise</text>
+            <text x="210" y="132" text-anchor="middle" font-size="9" fill="#1a7a4a">(from above S)</text>
+
+            <defs>
+              <marker id="aarrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#c0392b" stroke-width="2"/>
+              </marker>
+              <marker id="aarrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#1a7a4a" stroke-width="2"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="diagram-caption">Fig 1.2 — Earth's rotation seen from above each pole</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 4 — BASIC DIRECTION
+══════════════════════════════════ -->
+<div class="section" id="s4">
+  <div class="section-header purple">
+    <div class="section-num">4</div>
+    <div class="section-title">Basic Direction on the Earth</div>
+  </div>
+  <div class="section-body">
+    <p>Direction is defined starting from a datum — the direction of the Earth's spin, defined as <strong>East</strong> (hence, "sunrise in the East"). From this, all four cardinal directions follow:</p>
+
+    <div class="two-col">
+      <div>
+        <h4>Cardinal Points</h4>
+        <div class="compass-grid">
+          <div class="compass-card" style="background:#fef9e7;border-color:#d4a017;">
+            <span class="deg" style="color:#d4a017;">N</span>
+            <span class="dir">North</span><br>
+            <span style="font-size:11px;color:#888;">Towards North Pole</span>
+          </div>
+          <div class="compass-card" style="background:#d5f5e3;border-color:#1a7a4a;">
+            <span class="deg" style="color:#1a7a4a;">E</span>
+            <span class="dir">East</span><br>
+            <span style="font-size:11px;color:#888;">Direction of spin</span>
+          </div>
+          <div class="compass-card" style="background:#fdecea;border-color:#c0392b;">
+            <span class="deg" style="color:#c0392b;">S</span>
+            <span class="dir">South</span><br>
+            <span style="font-size:11px;color:#888;">Opposite North</span>
+          </div>
+          <div class="compass-card" style="background:#d6eaf8;border-color:#1a5276;">
+            <span class="deg" style="color:#1a5276;">W</span>
+            <span class="dir">West</span><br>
+            <span style="font-size:11px;color:#888;">Opposite East</span>
+          </div>
+        </div>
+
+        <h4>Quadrantal Directions (midway between cardinal)</h4>
+        <div class="compass-grid">
+          <div class="compass-card" style="background:#f5eef8;border-color:#6c3483;">NE</div>
+          <div class="compass-card" style="background:#f5eef8;border-color:#6c3483;">SE</div>
+          <div class="compass-card" style="background:#f5eef8;border-color:#6c3483;">SW</div>
+          <div class="compass-card" style="background:#f5eef8;border-color:#6c3483;">NW</div>
+        </div>
+        <div class="tip-box">
+          <strong>💡 Note:</strong> Cardinal &amp; Quadrantal directions were used in maritime navigation but are too imprecise for air navigation. Aviation uses the <strong>Sexagesimal system</strong> instead.
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 260 260">
+            <!-- Compass rose -->
+            <circle cx="130" cy="130" r="110" fill="#f8fafd" stroke="#b8cfe8" stroke-width="1"/>
+            <circle cx="130" cy="130" r="80"  fill="#eef4fb" stroke="#b8cfe8" stroke-width="0.8"/>
+            <!-- Cardinal lines -->
+            <line x1="130" y1="20" x2="130" y2="240" stroke="#1a3a5c" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="20" y1="130" x2="240" y2="130" stroke="#1a3a5c" stroke-width="1" stroke-dasharray="4,4"/>
+            <!-- Quadrantal lines -->
+            <line x1="52" y1="52" x2="208" y2="208" stroke="#6c3483" stroke-width="0.8" stroke-dasharray="3,5"/>
+            <line x1="208" y1="52" x2="52" y2="208" stroke="#6c3483" stroke-width="0.8" stroke-dasharray="3,5"/>
+            <!-- Cardinal labels -->
+            <text x="130" y="18" text-anchor="middle" font-size="16" font-weight="800" fill="#d4a017">N</text>
+            <text x="130" y="252" text-anchor="middle" font-size="16" font-weight="800" fill="#c0392b">S</text>
+            <text x="248" y="135" text-anchor="start" font-size="16" font-weight="800" fill="#1a7a4a">E</text>
+            <text x="12" y="135" text-anchor="start" font-size="16" font-weight="800" fill="#1a5276">W</text>
+            <!-- Quadrantal labels -->
+            <text x="208" y="46" text-anchor="middle" font-size="13" font-weight="700" fill="#6c3483">NE</text>
+            <text x="208" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#6c3483">SE</text>
+            <text x="52"  y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#6c3483">SW</text>
+            <text x="52"  y="46"  text-anchor="middle" font-size="13" font-weight="700" fill="#6c3483">NW</text>
+            <!-- North arrow -->
+            <polygon points="130,25 124,55 136,55" fill="#d4a017"/>
+            <polygon points="130,235 124,205 136,205" fill="#c0392b"/>
+            <circle cx="130" cy="130" r="6" fill="#1a3a5c"/>
+          </svg>
+          <div class="diagram-caption">Fig 1.3 — Cardinal (N,E,S,W) and Quadrantal (NE,SE,SW,NW) points</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 5 — SEXAGESIMAL SYSTEM
+══════════════════════════════════ -->
+<div class="section" id="s5">
+  <div class="section-header teal">
+    <div class="section-num">5</div>
+    <div class="section-title">Sexagesimal System / True Direction</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <p>The <strong>Sexagesimal system</strong> measures direction as degrees of a <em>clockwise rotation from North</em>, giving a full 360° circle. This provides the precision required in air navigation.</p>
+
+        <div class="compass-grid">
+          <div class="compass-card" style="background:#fef9e7;border-color:#d4a017;">
+            <span class="deg" style="color:#d4a017;">000°</span>
+            <span class="dir">North</span>
+          </div>
+          <div class="compass-card" style="background:#d5f5e3;border-color:#1a7a4a;">
+            <span class="deg" style="color:#1a7a4a;">090°</span>
+            <span class="dir">East</span>
+          </div>
+          <div class="compass-card" style="background:#fdecea;border-color:#c0392b;">
+            <span class="deg" style="color:#c0392b;">180°</span>
+            <span class="dir">South</span>
+          </div>
+          <div class="compass-card" style="background:#d6eaf8;border-color:#1a5276;">
+            <span class="deg" style="color:#1a5276;">270°</span>
+            <span class="dir">West</span>
+          </div>
+        </div>
+
+        <div class="key-box">
+          <strong>🔑 True Direction:</strong> When measured from the <em>geographic North Pole</em>, direction is called <strong>True direction</strong>, suffixed with <strong>(T)</strong>.<br><br>
+          N = 000°(T) &nbsp;|&nbsp; E = 090°(T) &nbsp;|&nbsp; S = 180°(T) &nbsp;|&nbsp; W = 270°(T)
+        </div>
+
+        <div class="warn-box">
+          <strong>⚠ Always use 3-figure groups!</strong><br>
+          Write <code>090°(T)</code> NOT <code>90°(T)</code>.<br>
+          Write <code>027°</code> NOT <code>27°</code> — a 2-digit bearing is ambiguous and should be treated as suspect.
+        </div>
+
+        <h4>Reciprocal Directions</h4>
+        <div class="def-box">
+          The <strong>reciprocal</strong> of any bearing is the direction exactly 180° opposite.<br><br>
+          <strong>Rule:</strong> Add or subtract 180° from the given bearing.<br>
+          If result &gt; 360°, subtract 360°. If result &lt; 0°, add 360°.
+        </div>
+
+        <h4>Worked Examples</h4>
+        <table>
+          <tr><th>Given Direction</th><th>Reciprocal</th><th>Working</th></tr>
+          <tr><td>060°(T)</td><td><strong>240°(T)</strong></td><td>060 + 180 = 240</td></tr>
+          <tr><td>353°(T)</td><td><strong>173°(T)</strong></td><td>353 − 180 = 173</td></tr>
+          <tr><td>020°(T)</td><td><strong>200°(T)</strong></td><td>020 + 180 = 200</td></tr>
+          <tr><td>270°(T)</td><td><strong>090°(T)</strong></td><td>270 − 180 = 090</td></tr>
+        </table>
+
+        <div class="tip-box">
+          <strong>💡 Runway Designators:</strong> Runways are named at 10° intervals using the <em>magnetic</em> bearing divided by 10 (rounded). A runway at 273° magnetic = <strong>RW 27</strong>. Its reciprocal end = <strong>RW 09</strong>. Note: Runway directions use Magnetic North, not True North.
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 280 320">
+            <!-- Outer ring -->
+            <circle cx="140" cy="155" r="115" fill="#f8fafd" stroke="#b8cfe8" stroke-width="1"/>
+            <circle cx="140" cy="155" r="90"  fill="#eef4fb" stroke="#1a3a5c" stroke-width="1.5"/>
+            <!-- Degree ticks -->
+            <g id="ticks">
+              <!-- Major ticks every 30° -->
+              <line x1="140" y1="65" x2="140" y2="80" stroke="#1a3a5c" stroke-width="2"/>
+              <line x1="140" y1="230" x2="140" y2="245" stroke="#1a3a5c" stroke-width="2"/>
+              <line x1="50"  y1="155" x2="65" y2="155" stroke="#1a3a5c" stroke-width="2"/>
+              <line x1="215" y1="155" x2="230" y2="155" stroke="#1a3a5c" stroke-width="2"/>
+            </g>
+            <!-- Cardinal directions on ring -->
+            <text x="140" y="58" text-anchor="middle" font-size="15" font-weight="800" fill="#d4a017">N</text>
+            <text x="140" y="265" text-anchor="middle" font-size="15" font-weight="800" fill="#c0392b">S</text>
+            <text x="245" y="160" text-anchor="middle" font-size="15" font-weight="800" fill="#1a7a4a">E</text>
+            <text x="35"  y="160" text-anchor="middle" font-size="15" font-weight="800" fill="#1a5276">W</text>
+            <!-- Degree values -->
+            <text x="140" y="96" text-anchor="middle" font-size="11" fill="#1a3a5c" font-family="'Source Code Pro',monospace">000°</text>
+            <text x="225" y="160" text-anchor="middle" font-size="11" fill="#1a7a4a" font-family="'Source Code Pro',monospace">090°</text>
+            <text x="140" y="228" text-anchor="middle" font-size="11" fill="#c0392b" font-family="'Source Code Pro',monospace">180°</text>
+            <text x="56"  y="160" text-anchor="middle" font-size="11" fill="#1a5276" font-family="'Source Code Pro',monospace">270°</text>
+            <!-- Clockwise arrow -->
+            <path d="M 140,75 A 80,80 0 0,1 215,140" fill="none" stroke="#6c3483" stroke-width="2" marker-end="url(#markerCW)"/>
+            <text x="200" y="110" text-anchor="middle" font-size="9" fill="#6c3483" font-weight="700">Clockwise</text>
+            <!-- Centre dot -->
+            <circle cx="140" cy="155" r="6" fill="#1a3a5c"/>
+            <!-- True North indicator -->
+            <polygon points="140,75 134,105 146,105" fill="#d4a017"/>
+            <!-- Title -->
+            <text x="140" y="295" text-anchor="middle" font-size="12" fill="#1a3a5c" font-weight="700">True North (T)</text>
+            <text x="140" y="310" text-anchor="middle" font-size="10" fill="#5a7a9a">Sexagesimal compass — 360° system</text>
+            <defs>
+              <marker id="markerCW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#6c3483" stroke-width="2"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="diagram-caption">Fig 1.4 — Sexagesimal compass. Directions measured clockwise from North.</div>
+        </div>
+
+        <div class="interactive-demo">
+          <label for="brg-input">🎯 Reciprocal Calculator: Enter a bearing (0–360):</label><br>
+          <input type="range" id="brg-input" min="0" max="360" value="60" oninput="calcRecip(this.value)" style="margin-top:6px;">
+          <span class="out-val" id="brg-out">Bearing: 060° → Reciprocal: 240°</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 6 & 7 — POSITION REFERENCE + CIRCLES
+══════════════════════════════════ -->
+<div class="section" id="s6">
+  <div class="section-header red">
+    <div class="section-num">6</div>
+    <div class="section-title">Position Reference Systems &amp; Circles on the Earth</div>
+  </div>
+  <div class="section-body">
+    <div class="def-box">
+      <strong>Position Reference System:</strong> A system that defines any position <em>accurately and unambiguously</em> on Earth's surface. For a sphere, linear (x,y) Cartesian co-ordinates are replaced by angular co-ordinates: <strong>Latitude</strong> and <strong>Longitude</strong>.
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h4>Great Circle vs Small Circle</h4>
+        <table>
+          <tr><th>Feature</th><th>Great Circle</th><th>Small Circle</th></tr>
+          <tr><td>Centre &amp; Radius</td><td>Same as Earth's</td><td>Different from Earth's</td></tr>
+          <tr><td>Size</td><td>Largest possible circle</td><td>Smaller than Great Circle</td></tr>
+          <tr><td>Navigation use</td><td>Shortest path between 2 points</td><td>Parallels of latitude</td></tr>
+          <tr><td>Example</td><td>Equator, Meridians</td><td>All parallels except Equator</td></tr>
+        </table>
+
+        <div class="key-box">
+          <strong>🔑 Critical Definition:</strong><br>
+          A <strong>Great Circle</strong> is a circle on Earth's surface whose centre and radius are those of the Earth itself.<br><br>
+          <strong>The shortest distance between two points on Earth</strong> is the shorter arc of the Great Circle joining them.<br><br>
+          Given two points, there is only <strong>ONE</strong> Great Circle joining them (unless they are diametrically opposite).
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 280 220">
+            <defs>
+              <marker id="ga" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#c0392b" stroke-width="2"/>
+              </marker>
+            </defs>
+            <!-- Earth -->
+            <ellipse cx="140" cy="110" rx="90" ry="85" fill="#d6eaf8" stroke="#1a3a5c" stroke-width="1.5"/>
+            <!-- Great Circle (tilted ellipse representing cross-section) -->
+            <ellipse cx="140" cy="110" rx="90" ry="50" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="6,3" transform="rotate(-25,140,110)"/>
+            <!-- Points A and B -->
+            <circle cx="108" cy="78" r="5" fill="#c0392b"/>
+            <circle cx="178" cy="82" r="5" fill="#c0392b"/>
+            <text x="100" y="70" font-size="11" font-weight="700" fill="#c0392b">A</text>
+            <text x="182" y="75" font-size="11" font-weight="700" fill="#c0392b">B</text>
+            <!-- Shorter arc label -->
+            <path d="M108 78 Q143 55 178 82" fill="none" stroke="#1a7a4a" stroke-width="2.5"/>
+            <text x="140" y="52" text-anchor="middle" font-size="10" fill="#1a7a4a" font-weight="700">Shortest Distance</text>
+            <!-- Labels -->
+            <text x="140" y="175" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">Great Circle</text>
+            <text x="140" y="188" text-anchor="middle" font-size="10" fill="#5a7a9a">Centre = Centre of Earth</text>
+            <!-- Small circle (parallel of latitude) -->
+            <ellipse cx="140" cy="140" rx="55" ry="12" fill="none" stroke="#6c3483" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="208" y="143" font-size="9" fill="#6c3483">Small Circle</text>
+            <text x="208" y="154" font-size="9" fill="#6c3483">(parallel of lat)</text>
+          </svg>
+          <div class="diagram-caption">Fig 1.5 — Great Circle arc = shortest path between A and B</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 8 — EQUATOR, MERIDIANS, GRATICULE
+══════════════════════════════════ -->
+<div class="section" id="s8">
+  <div class="section-header sky-mid">
+    <div class="section-num">8</div>
+    <div class="section-title">Equator, Meridians, Parallels &amp; the Graticule</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <h4>The Equator</h4>
+        <div class="def-box">
+          The Great Circle whose plane is at <strong>90° to the polar axis</strong>. It lies East-West and divides Earth into two equal hemispheres. The Equator is the datum (origin) for measuring <strong>Latitude</strong>.
+        </div>
+        <div class="tag tag-blue">Latitude origin = 0°</div>
+        <div style="margin-top: 8px;"></div>
+
+        <h4>Meridians</h4>
+        <div class="def-box">
+          <strong>Semi-Great Circles</strong> joining the North and South poles. Every Great Circle through the poles forms a <em>meridian and its anti-meridian</em>. All meridians indicate True North-South direction and cross the Equator at 90°.
+        </div>
+
+        <h4>The Prime (Greenwich) Meridian</h4>
+        <div class="def-box">
+          The meridian passing through <strong>Greenwich, London</strong>. This is the datum (origin) for measuring <strong>Longitude</strong>.
+        </div>
+        <div class="tag tag-green">Longitude origin = 0°</div>
+        <div style="margin-top: 8px;"></div>
+
+        <h4>Parallels of Latitude</h4>
+        <div class="def-box">
+          <strong>Small circles</strong> whose planes are parallel to the Equator. They lie East-West and indicate position North or South of the Equator.
+        </div>
+        <div class="key-box">
+          <strong>Exception:</strong> The Equator itself is the only <em>parallel of latitude</em> that is also a <em>Great Circle</em>.
+        </div>
+
+        <h4>The Graticule</h4>
+        <div class="def-box">
+          The network formed by the Prime Meridian + all meridians + Equator + all parallels of latitude. It is the spherical equivalent of the x-y grid on graph paper. Position is defined in degrees/minutes/seconds, not by distance.
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 280 300">
+            <!-- Earth globe -->
+            <ellipse cx="140" cy="140" rx="105" ry="100" fill="#cfe2f3" stroke="#1a3a5c" stroke-width="2"/>
+            <!-- Equator -->
+            <ellipse cx="140" cy="140" rx="105" ry="22" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+            <text x="252" y="142" font-size="10" fill="#c0392b" font-weight="700" dominant-baseline="central">Equator</text>
+            <!-- Parallels of latitude -->
+            <ellipse cx="140" cy="105" rx="88"  ry="18" fill="none" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="5,3"/>
+            <ellipse cx="140" cy="68"  rx="58"  ry="13" fill="none" stroke="#d4a017" stroke-width="1" stroke-dasharray="5,3"/>
+            <ellipse cx="140" cy="175" rx="88"  ry="18" fill="none" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="5,3"/>
+            <ellipse cx="140" cy="210" rx="58"  ry="13" fill="none" stroke="#d4a017" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="236" y="107" font-size="9" fill="#d4a017">parallels</text>
+            <text x="236" y="118" font-size="9" fill="#d4a017">of latitude</text>
+            <!-- Prime meridian -->
+            <ellipse cx="140" cy="140" rx="0" ry="100" fill="none" stroke="#1a7a4a" stroke-width="2.5"/>
+            <!-- wait, let's do a vertical line for meridian -->
+            <path d="M140 40 Q170 90 170 140 Q170 190 140 240" fill="none" stroke="#1a7a4a" stroke-width="2"/>
+            <path d="M140 40 Q110 90 110 140 Q110 190 140 240" fill="none" stroke="#6c3483" stroke-width="1.2" stroke-dasharray="4,3"/>
+            <path d="M140 40 Q155 90 165 140 Q155 190 140 240" fill="none" stroke="#6c3483" stroke-width="1" stroke-dasharray="4,3"/>
+            <!-- Poles -->
+            <circle cx="140" cy="40"  r="5" fill="#1a3a5c"/>
+            <circle cx="140" cy="240" r="5" fill="#1a3a5c"/>
+            <text x="140" y="26" text-anchor="middle" font-size="10" font-weight="800" fill="#1a3a5c">NORTH POLE</text>
+            <text x="140" y="258" text-anchor="middle" font-size="10" font-weight="800" fill="#1a3a5c">SOUTH POLE</text>
+            <!-- Labels -->
+            <text x="174" y="90" font-size="9" fill="#1a7a4a" font-weight="700">Prime</text>
+            <text x="174" y="100" font-size="9" fill="#1a7a4a" font-weight="700">Meridian</text>
+            <text x="174" y="110" font-size="9" fill="#1a7a4a">(Greenwich)</text>
+            <text x="252" y="140" font-size="10" fill="#c0392b" font-weight="700">↑</text>
+            <!-- WEST / EAST labels -->
+            <text x="40" y="142" text-anchor="middle" font-size="11" font-weight="700" fill="#1a3a5c">W</text>
+            <text x="238" y="142" text-anchor="middle" font-size="11" font-weight="700" fill="#1a3a5c">E</text>
+            <!-- Graticule label -->
+            <text x="140" y="285" text-anchor="middle" font-size="11" font-weight="700" fill="#1a3a5c">The GRATICULE</text>
+            <text x="140" y="298" text-anchor="middle" font-size="9" fill="#5a7a9a">Network of meridians + parallels</text>
+          </svg>
+          <div class="diagram-caption">Fig 1.6 — The Graticule: Meridians (vertical) + Parallels (horizontal) + Equator</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 9 — LATITUDE
+══════════════════════════════════ -->
+<div class="section" id="s9">
+  <div class="section-header orange">
+    <div class="section-num">9</div>
+    <div class="section-title">Latitude</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <div class="def-box">
+          <strong>Latitude</strong> of any point is the arc (angular distance) measured along the meridian through that point, from the Equator to the point.<br><br>
+          Expressed in <strong>degrees, minutes, and seconds</strong> of arc.<br>
+          Annotated <strong>N</strong> (north of Equator) or <strong>S</strong> (south of Equator).
+        </div>
+
+        <h4>Range of Latitude Values</h4>
+        <table>
+          <tr><th>Location</th><th>Latitude Value</th></tr>
+          <tr><td>Equator</td><td><strong>0°</strong> (neither N nor S)</td></tr>
+          <tr><td>North Pole</td><td><strong>90°N</strong></td></tr>
+          <tr><td>South Pole</td><td><strong>90°S</strong></td></tr>
+        </table>
+
+        <h4>Angular Measurement System</h4>
+        <table>
+          <tr><th>Unit</th><th>Subdivision</th><th>Symbol</th></tr>
+          <tr><td>Degree</td><td>1/360th of circle</td><td>°</td></tr>
+          <tr><td>Minute of arc</td><td>1/60th of degree</td><td>ʹ</td></tr>
+          <tr><td>Second of arc</td><td>1/60th of minute</td><td>ˮ</td></tr>
+        </table>
+
+        <div class="exam-box">
+          <span class="exam-label">✈ Key Exam Distinction</span>
+          <strong>Position</strong> is measured in degrees, minutes, and seconds.<br>
+          <strong>Direction</strong> is measured in degrees and decimal degrees.
+        </div>
+
+        <h4>How to Find a Parallel of Latitude</h4>
+        <div class="tip-box">
+          From Earth's centre, construct a line with an <strong>elevation angle</strong> (for N latitudes) or <strong>depression angle</strong> (for S latitudes) equal to the desired latitude.<br>
+          Where this line touches the Earth's surface = that parallel of latitude.
+        </div>
+
+        <h4>Interactive: Latitude Finder</h4>
+        <div class="interactive-demo">
+          <label>Drag to explore a latitude (°N):</label>
+          <input type="range" id="lat-slider" min="-90" max="90" value="28" oninput="showLat(this.value)">
+          <span class="out-val" id="lat-out">Latitude: 28°N (approx. New Delhi, India)</span>
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 280 310">
+            <!-- Earth cross section -->
+            <circle cx="140" cy="155" r="115" fill="#d6eaf8" stroke="#1a3a5c" stroke-width="2"/>
+            <!-- Equator line (horizontal) -->
+            <line x1="25" y1="155" x2="255" y2="155" stroke="#c0392b" stroke-width="2"/>
+            <text x="260" y="158" font-size="10" fill="#c0392b" dominant-baseline="central" font-weight="700">Equator 0°</text>
+            <!-- Polar axis (vertical) -->
+            <line x1="140" y1="40" x2="140" y2="270" stroke="#1a3a5c" stroke-width="1.5" stroke-dasharray="6,4"/>
+            <!-- North Pole label -->
+            <circle cx="140" cy="40" r="4" fill="#1a3a5c"/>
+            <text x="140" y="28" text-anchor="middle" font-size="10" font-weight="800" fill="#1a3a5c">N POLE 90°N</text>
+            <!-- South Pole -->
+            <circle cx="140" cy="270" r="4" fill="#1a3a5c"/>
+            <text x="140" y="288" text-anchor="middle" font-size="10" font-weight="800" fill="#1a3a5c">S POLE 90°S</text>
+            <!-- 40°N parallel -->
+            <line x1="25" y1="86" x2="255" y2="86" stroke="#d4a017" stroke-width="1" stroke-dasharray="5,4"/>
+            <!-- Angle arc for 40°N -->
+            <path d="M140,155 L190,93" stroke="#1a7a4a" stroke-width="2"/>
+            <circle cx="190" cy="93" r="5" fill="#1a7a4a"/>
+            <path d="M140,125 A30,30 0 0,0 162,101" fill="none" stroke="#1a7a4a" stroke-width="1.5"/>
+            <text x="162" y="118" font-size="11" font-weight="700" fill="#1a7a4a">40°</text>
+            <!-- Point labels -->
+            <text x="196" y="88" font-size="11" font-weight="700" fill="#1a7a4a">A</text>
+            <text x="145" y="152" font-size="10" fill="#c0392b">P</text>
+            <!-- Lat annotation -->
+            <text x="14" y="88" text-anchor="middle" font-size="9" fill="#d4a017">40°N</text>
+            <!-- West / East -->
+            <text x="15" y="158" font-size="10" font-weight="700" fill="#1a3a5c">W</text>
+            <text x="258" y="158" font-size="10" font-weight="700" fill="#1a3a5c" text-anchor="end">E</text>
+            <!-- Caption annotations -->
+            <text x="140" y="302" text-anchor="middle" font-size="11" font-weight="700" fill="#ca6f1e">Latitude of Point A = 40°N</text>
+          </svg>
+          <div class="diagram-caption">Fig 1.7 — Latitude is the angle at Earth's centre between the Equator and the point</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 10 — GEOCENTRIC & GEODETIC LATITUDE
+══════════════════════════════════ -->
+<div class="section" id="s10">
+  <div class="section-header purple">
+    <div class="section-num">10</div>
+    <div class="section-title">Geocentric &amp; Geodetic Latitude</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <h4>Two Types of Latitude</h4>
+        <table>
+          <tr><th>Type</th><th>Definition</th><th>Used on Charts?</th></tr>
+          <tr>
+            <td><strong>Geocentric</strong></td>
+            <td>Angle between the line from point to Earth's <em>centre</em> and the Equatorial plane</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td><strong>Geodetic (Geographic)</strong></td>
+            <td>Angle between the <em>normal</em> (perpendicular) to the spheroid surface at the point and the Equatorial plane</td>
+            <td><span style="color:#1a7a4a;font-weight:700;">YES ✓</span></td>
+          </tr>
+        </table>
+
+        <div class="key-box">
+          <strong>🔑 Important Difference:</strong><br>
+          For a perfect sphere, these two would be identical. Because Earth is an oblate spheroid, the "normal" at a surface point does <em>not</em> pass through Earth's centre.
+        </div>
+
+        <div class="warn-box">
+          <strong>⚠ Maximum Difference:</strong><br>
+          Geocentric vs Geodetic latitude differs most at approximately <strong>45°N/S</strong> and the maximum difference is about <strong>11.6 minutes of arc</strong> (~11.6 NM on the surface — significant for precision navigation!).
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Navigation charts use Geodetic latitude.</strong> Modern navigation computers (GPS, FMS, IRS) automatically account for this.
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 280 260">
+            <!-- Spheroid (ellipse) cross-section -->
+            <ellipse cx="140" cy="140" rx="110" ry="95" fill="#d6eaf8" stroke="#1a3a5c" stroke-width="2"/>
+            <!-- Equator -->
+            <line x1="30" y1="140" x2="250" y2="140" stroke="#c0392b" stroke-width="1.5"/>
+            <!-- Polar axis -->
+            <line x1="140" y1="45" x2="140" y2="235" stroke="#1a3a5c" stroke-width="1" stroke-dasharray="5,3"/>
+            <!-- N / S labels -->
+            <circle cx="140" cy="45" r="3" fill="#1a3a5c"/>
+            <circle cx="140" cy="235" r="3" fill="#1a3a5c"/>
+            <text x="140" y="36" text-anchor="middle" font-size="9" font-weight="700" fill="#1a3a5c">NP</text>
+            <text x="140" y="250" text-anchor="middle" font-size="9" font-weight="700" fill="#1a3a5c">SP</text>
+            <!-- Surface point -->
+            <circle cx="218" cy="85" r="5" fill="#d4a017"/>
+            <text x="228" y="85" font-size="10" font-weight="700" fill="#d4a017" dominant-baseline="central">Surface Pt</text>
+            <!-- Geocentric line (to centre) -->
+            <line x1="140" y1="140" x2="218" y2="85" stroke="#c0392b" stroke-width="1.8"/>
+            <!-- Geodetic normal (perpendicular to spheroid surface, NOT through centre) -->
+            <line x1="218" y1="85" x2="218" y2="155" stroke="#1a7a4a" stroke-width="1.8" stroke-dasharray="6,3"/>
+            <!-- Geocentric angle arc -->
+            <path d="M163,140 A24,24 0 0,0 153,117" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+            <text x="172" y="131" font-size="9" fill="#c0392b" font-weight="700">Geocentric</text>
+            <text x="172" y="142" font-size="9" fill="#c0392b">lat</text>
+            <!-- Geodetic angle arc -->
+            <path d="M218,125 A20,20 0 0,0 200,120" fill="none" stroke="#1a7a4a" stroke-width="1.5"/>
+            <text x="152" y="100" font-size="9" fill="#1a7a4a" font-weight="700">Geodetic</text>
+            <text x="152" y="111" font-size="9" fill="#1a7a4a">lat (normal</text>
+            <text x="152" y="122" font-size="9" fill="#1a7a4a">to surface)</text>
+            <!-- Max diff label -->
+            <text x="140" y="220" text-anchor="middle" font-size="10" fill="#6c3483" font-weight="700">Max diff = 11.6ʹ at 45°N/S</text>
+            <!-- Equator label -->
+            <text x="258" y="140" font-size="9" fill="#c0392b" dominant-baseline="central">0°</text>
+          </svg>
+          <div class="diagram-caption">Fig 1.8 — Geocentric (red) vs Geodetic (green) latitude</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 11 — SPECIAL PARALLELS
+══════════════════════════════════ -->
+<div class="section" id="s11">
+  <div class="section-header gold">
+    <div class="section-num">11</div>
+    <div class="section-title">Special Cases of Parallels of Latitude</div>
+  </div>
+  <div class="section-body">
+    <p>Four special parallels are defined based on Earth's <strong>23½° axial tilt</strong>. They relate to the seasons and periods of daylight throughout the year.</p>
+    <div class="parallel-list">
+      <div class="parallel-card pc-arctic">
+        <div class="pc-name" style="color:#1a5276;">Arctic Circle</div>
+        <div class="pc-lat" style="color:#1a5276;">66½°N</div>
+        <div class="pc-desc">= 90° − 23½°. At summer solstice, sun never sets above this line.</div>
+      </div>
+      <div class="parallel-card pc-antarc">
+        <div class="pc-name" style="color:#154360;">Antarctic Circle</div>
+        <div class="pc-lat" style="color:#154360;">66½°S</div>
+        <div class="pc-desc">= 90° − 23½°. At winter solstice (NH), sun never rises above this line.</div>
+      </div>
+      <div class="parallel-card pc-cancer">
+        <div class="pc-name" style="color:#784212;">Tropic of Cancer</div>
+        <div class="pc-lat" style="color:#784212;">23½°N</div>
+        <div class="pc-desc">Sun is directly overhead on June 21 (NH mid-summer / summer solstice).</div>
+      </div>
+      <div class="parallel-card pc-capric">
+        <div class="pc-name" style="color:#6e2c00;">Tropic of Capricorn</div>
+        <div class="pc-lat" style="color:#6e2c00;">23½°S</div>
+        <div class="pc-desc">Sun is directly overhead on Dec 21 (NH mid-winter / winter solstice).</div>
+      </div>
+    </div>
+    <div class="diagram-wrap" style="margin-top:1rem;">
+      <svg width="100%" viewBox="0 0 680 210">
+        <!-- Earth oval -->
+        <ellipse cx="340" cy="105" rx="180" ry="95" fill="#d6eaf8" stroke="#1a3a5c" stroke-width="1.5"/>
+        <!-- Equator -->
+        <line x1="160" y1="105" x2="520" y2="105" stroke="#c0392b" stroke-width="2"/>
+        <text x="530" y="108" font-size="11" fill="#c0392b" font-weight="700" dominant-baseline="central">Equator (0°)</text>
+        <!-- Arctic Circle 66.5°N -->
+        <line x1="162" y1="60"  x2="518" y2="60"  stroke="#5dade2" stroke-width="1.5" stroke-dasharray="7,4"/>
+        <text x="530" y="63" font-size="10" fill="#5dade2" dominant-baseline="central">Arctic 66½°N</text>
+        <!-- Antarctic Circle 66.5°S -->
+        <line x1="162" y1="150" x2="518" y2="150" stroke="#2980b9" stroke-width="1.5" stroke-dasharray="7,4"/>
+        <text x="530" y="153" font-size="10" fill="#2980b9" dominant-baseline="central">Antarctic 66½°S</text>
+        <!-- Tropic of Cancer 23.5°N -->
+        <line x1="160" y1="80"  x2="520" y2="80"  stroke="#f39c12" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="530" y="83" font-size="10" fill="#f39c12" dominant-baseline="central">Cancer 23½°N</text>
+        <!-- Tropic of Capricorn 23.5°S -->
+        <line x1="160" y1="130" x2="520" y2="130" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="530" y="133" font-size="10" fill="#e67e22" dominant-baseline="central">Capricorn 23½°S</text>
+        <!-- Poles -->
+        <circle cx="340" cy="10" r="4" fill="#1a3a5c"/>
+        <text x="340" y="6" text-anchor="middle" font-size="10" font-weight="800" fill="#1a3a5c">N POLE</text>
+        <circle cx="340" cy="200" r="4" fill="#1a3a5c"/>
+        <text x="340" y="208" text-anchor="middle" font-size="10" font-weight="800" fill="#1a3a5c">S POLE</text>
+        <!-- Tilt angle marker -->
+        <path d="M340,105 L365,77" stroke="#6c3483" stroke-width="1.5"/>
+        <path d="M340,95 A16,16 0 0,0 351,85" fill="none" stroke="#6c3483" stroke-width="1.2"/>
+        <text x="356" y="93" font-size="9" fill="#6c3483" font-weight="700">23½°</text>
+        <text x="140" y="108" font-size="10" font-weight="700" fill="#c0392b" dominant-baseline="central">0°</text>
+      </svg>
+      <div class="diagram-caption">Fig 1.9 — The four special parallels of latitude (not to scale)</div>
+    </div>
+    <div class="exam-box">
+      <span class="exam-label">✈ Memory Aid</span>
+      <strong>66½°</strong> = 90° − 23½° (Earth's tilt). Notice that Arctic/Antarctic and Tropic values are <strong>complementary</strong> (add up to 90°). Also: <strong>Cancer is North</strong> (C-N), <strong>Capricorn is South</strong> (C-S).
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 12 — LONGITUDE
+══════════════════════════════════ -->
+<div class="section" id="s12">
+  <div class="section-header teal">
+    <div class="section-num">12</div>
+    <div class="section-title">Longitude</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <div class="def-box">
+          <strong>Longitude</strong> of any point is the shorter arc along the Equator between the <em>Prime Meridian</em> and the meridian through the point.<br><br>
+          Measured in <strong>degrees and minutes</strong> of arc.<br>
+          Annotated <strong>E</strong> (east of Greenwich) or <strong>W</strong> (west of Greenwich).
+        </div>
+
+        <h4>Range of Longitude Values</h4>
+        <table>
+          <tr><th>Location</th><th>Longitude Value</th></tr>
+          <tr><td>Prime Meridian (Greenwich)</td><td><strong>000°</strong></td></tr>
+          <tr><td>Maximum East</td><td><strong>180°E</strong></td></tr>
+          <tr><td>Maximum West</td><td><strong>180°W</strong></td></tr>
+          <tr><td>Anti-Meridian (coincident)</td><td><strong>180°E = 180°W</strong></td></tr>
+        </table>
+
+        <div class="key-box">
+          <strong>🔑 Key Comparison — Latitude vs Longitude:</strong><br>
+          <em>Latitude lines</em> are all parallel to each other. Think: <strong>"slicing a pineapple"</strong><br>
+          <em>Longitude lines</em> fan from N Pole, max separation at Equator, converge at S Pole. Think: <strong>"segmenting an orange"</strong>
+        </div>
+
+        <h4>Reversal at 180°E (Anti-Meridian)</h4>
+        <div class="warn-box">
+          <strong>⚠ Confusing but Exam-Tested!</strong><br>
+          At the Greenwich Meridian: Eastern longitudes are to your East.<br>
+          At the 180° meridian: Eastern longitudes are now to your <strong>WEST</strong> and Western longitudes to your <strong>EAST</strong>!<br><br>
+          The direction East (090°T) has NOT changed — it is still the direction of Earth's spin. Only the apparent position of E/W hemispheres reverses.
+        </div>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 280 280">
+            <!-- N-pole view (looking down) -->
+            <circle cx="140" cy="140" r="110" fill="#d6eaf8" stroke="#1a3a5c" stroke-width="1.5"/>
+            <!-- North Pole centre point -->
+            <circle cx="140" cy="140" r="5" fill="#1a3a5c"/>
+            <text x="140" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#1a3a5c">N POLE</text>
+            <!-- Greenwich Meridian - bottom -->
+            <line x1="140" y1="140" x2="140" y2="250" stroke="#1a7a4a" stroke-width="2.5"/>
+            <text x="140" y="264" text-anchor="middle" font-size="10" fill="#1a7a4a" font-weight="700">0° (Greenwich)</text>
+            <!-- Anti-Meridian - top -->
+            <line x1="140" y1="140" x2="140" y2="30" stroke="#1a7a4a" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <text x="140" y="22" text-anchor="middle" font-size="9" fill="#1a7a4a">180°E/W</text>
+            <!-- Equator circle -->
+            <circle cx="140" cy="140" r="110" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="8,5"/>
+            <text x="248" y="148" font-size="9" fill="#c0392b">Equator</text>
+            <!-- Point B meridian (40°E) -->
+            <line x1="140" y1="140" x2="220" y2="210" stroke="#6c3483" stroke-width="2"/>
+            <circle cx="220" cy="210" r="5" fill="#6c3483"/>
+            <text x="226" y="208" font-size="10" font-weight="700" fill="#6c3483">B</text>
+            <text x="231" y="220" font-size="9" fill="#6c3483">040°E</text>
+            <!-- Q point on Equator (where B's meridian crosses) -->
+            <circle cx="196" cy="230" r="4" fill="#d4a017"/>
+            <text x="186" y="243" font-size="9" fill="#d4a017">Q (on Equator)</text>
+            <!-- Angle arc for 40°E -->
+            <path d="M140,220 A80,80 0 0,1 190,226" fill="none" stroke="#6c3483" stroke-width="1.5"/>
+            <text x="148" y="238" font-size="9" fill="#6c3483">40°</text>
+            <!-- East / West labels -->
+            <text x="245" y="140" text-anchor="middle" font-size="11" font-weight="700" fill="#1a7a4a">E→</text>
+            <text x="35" y="140" text-anchor="middle" font-size="11" font-weight="700" fill="#1a7a4a">←W</text>
+            <!-- East longitudes region label -->
+            <text x="200" y="95" text-anchor="middle" font-size="9" fill="#1a5276">East</text>
+            <text x="200" y="105" text-anchor="middle" font-size="9" fill="#1a5276">Longitudes</text>
+            <!-- West longitudes region label -->
+            <text x="80" y="95" text-anchor="middle" font-size="9" fill="#7e5009">West</text>
+            <text x="80" y="105" text-anchor="middle" font-size="9" fill="#7e5009">Longitudes</text>
+          </svg>
+          <div class="diagram-caption">Fig 1.10 — Longitude viewed from above North Pole. Point B is at 040°E.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 13 — DIFFERENCE IN LONGITUDE
+══════════════════════════════════ -->
+<div class="section" id="s13">
+  <div class="section-header sky">
+    <div class="section-num">13</div>
+    <div class="section-title">Difference in Longitude (Ch Long)</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <h4>Rules for Calculating Change of Longitude (Ch Long)</h4>
+        <div class="def-box">
+          <strong>RULE 1 — Same side (both E or both W):</strong><br>
+          <code>Ch Long = Larger − Smaller</code><br><br>
+          Example: 100°W and 080°W → 100 − 80 = <strong>20°</strong>
+        </div>
+        <div class="def-box">
+          <strong>RULE 2 — Different sides (one E, one W):</strong><br>
+          <code>Ch Long = E value + W value</code><br><br>
+          Example: 020°W and 010°E → 20 + 10 = <strong>30°</strong>
+        </div>
+        <div class="warn-box">
+          <strong>⚠ Special Case near 180° Anti-Meridian:</strong><br>
+          When positions straddle 180°, the calculated total may exceed 180°.<br>
+          <strong>ALWAYS take the SHORTER arc.</strong><br><br>
+          Example: 163°E and 152°W<br>
+          163 + 152 = 315° (this is the long way round!)<br>
+          Ch Long = 360° − 315° = <strong>45°</strong>
+        </div>
+
+        <h4>Worked Examples</h4>
+        <table>
+          <tr><th>Position 1</th><th>Position 2</th><th>Ch Long</th><th>Method</th></tr>
+          <tr><td>040°E</td><td>070°E</td><td><strong>030°</strong></td><td>Same side: 70−40</td></tr>
+          <tr><td>030°W</td><td>100°W</td><td><strong>070°</strong></td><td>Same side: 100−30</td></tr>
+          <tr><td>020°E</td><td>050°W</td><td><strong>070°</strong></td><td>Diff sides: 20+50</td></tr>
+          <tr><td>163°E</td><td>152°W</td><td><strong>045°</strong></td><td>360−(163+152)=45</td></tr>
+          <tr><td>170°E</td><td>160°W</td><td><strong>030°</strong></td><td>360−(170+160)=30</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 280 260">
+            <defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#c0392b" stroke-width="2"/></marker></defs>
+            <!-- Globe top view for Ch Long -->
+            <circle cx="140" cy="130" r="100" fill="#d6eaf8" stroke="#1a3a5c" stroke-width="1.5"/>
+            <circle cx="140" cy="130" r="4" fill="#1a3a5c"/>
+            <!-- Greenwich -->
+            <line x1="140" y1="130" x2="140" y2="230" stroke="#1a7a4a" stroke-width="2"/>
+            <text x="140" y="244" text-anchor="middle" font-size="9" fill="#1a7a4a" font-weight="700">0° Greenwich</text>
+            <!-- 180° -->
+            <line x1="140" y1="130" x2="140" y2="30" stroke="#1a7a4a" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="140" y="22" text-anchor="middle" font-size="9" fill="#1a7a4a">180°</text>
+            <!-- Two meridians, same side example (40°E and 70°E) -->
+            <line x1="140" y1="130" x2="218" y2="200" stroke="#6c3483" stroke-width="1.8"/>
+            <line x1="140" y1="130" x2="232" y2="160" stroke="#d4a017" stroke-width="1.8"/>
+            <text x="222" y="198" font-size="9" fill="#6c3483" font-weight="700">040°E</text>
+            <text x="236" y="160" font-size="9" fill="#d4a017" font-weight="700">070°E</text>
+            <!-- Arc between them -->
+            <path d="M202,193 A100,100 0 0,1 228,157" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+            <text x="235" y="195" font-size="9" fill="#c0392b" font-weight="700">Ch Long</text>
+            <text x="235" y="205" font-size="9" fill="#c0392b" font-weight="700">= 030°</text>
+            <!-- Cross-180 example: 163E and 152W -->
+            <line x1="140" y1="130" x2="60"  y2="42"  stroke="#ca6f1e" stroke-width="1.8" stroke-dasharray="5,3"/>
+            <line x1="140" y1="130" x2="220" y2="42"  stroke="#117a65" stroke-width="1.8" stroke-dasharray="5,3"/>
+            <text x="30" y="40" font-size="8" fill="#ca6f1e" font-weight="700">152°W</text>
+            <text x="218" y="40" font-size="8" fill="#117a65" font-weight="700">163°E</text>
+            <!-- Short arc via 180° -->
+            <path d="M78,50 A100,100 0 0,0 214,50" fill="none" stroke="#6c3483" stroke-width="2"/>
+            <text x="140" y="40" text-anchor="middle" font-size="8" fill="#6c3483" font-weight="700">45° (short way)</text>
+            <text x="140" y="258" text-anchor="middle" font-size="9" fill="#5a7a9a">Always use the shorter arc!</text>
+          </svg>
+          <div class="diagram-caption">Fig 1.11 — Calculating Ch Long. Red arc = same side (30°). Purple arc = short way round 180° (45°).</div>
+        </div>
+
+        <div class="interactive-demo">
+          <label>Ch Long Calculator:</label><br>
+          <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center; margin:8px 0;">
+            <input type="number" id="lon1v" value="163" min="0" max="180" style="width:100%;padding:6px;border:1px solid var(--border);border-radius:6px;font-size:13px;">
+            <select id="lon1d" style="padding:6px;border:1px solid var(--border);border-radius:6px;font-size:13px;"><option>E</option><option>W</option></select>
+            <span style="text-align:center;font-size:12px;color:#888;">to</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center;">
+            <input type="number" id="lon2v" value="152" min="0" max="180" style="width:100%;padding:6px;border:1px solid var(--border);border-radius:6px;font-size:13px;">
+            <select id="lon2d" style="padding:6px;border:1px solid var(--border);border-radius:6px;font-size:13px;"><option>E</option><option selected>W</option></select>
+          </div>
+          <button onclick="calcChLong()" style="margin-top:8px;padding:7px 16px;background:var(--sky);color:white;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;">Calculate Ch Long</button>
+          <span class="out-val" id="chlong-out"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 14 — POSITIONS IN LAT/LONG
+══════════════════════════════════ -->
+<div class="section" id="s14">
+  <div class="section-header green">
+    <div class="section-num">14</div>
+    <div class="section-title">Positions in Latitude &amp; Longitude</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <div class="key-box">
+          <strong>🔑 Rule:</strong> Latitude ALWAYS comes first, then Longitude!<br><br>
+          New York: <code>41°N 074°W</code><br>
+          Delhi (IGI) ARP: <code>28°34'N 077°07'E</code>
+        </div>
+
+        <h4>Formats for Expressing Position</h4>
+        <table>
+          <tr><th>Format</th><th>Example</th><th>Precision</th></tr>
+          <tr><td>Degrees only</td><td>41N 074W</td><td>~1°</td></tr>
+          <tr><td>Deg + Minutes</td><td>4100N 07400W</td><td>~1 NM</td></tr>
+          <tr><td>Decimal minutes</td><td>5150.2N 00119.3W</td><td>0.1 NM</td></tr>
+          <tr><td>Deg/Min/Sec (DMS)</td><td>515013N 0011912W</td><td>~100 ft</td></tr>
+          <tr><td>DMS decimal</td><td>515000.28N 001924.45W</td><td>&lt;1 metre</td></tr>
+        </table>
+
+        <h4>Indian Pilot Locations (Examples)</h4>
+        <table>
+          <tr><th>Location</th><th>Approx Position</th></tr>
+          <tr><td>Delhi (Indira Gandhi Intl)</td><td>2832N 07708E</td></tr>
+          <tr><td>Mumbai (CSIA)</td><td>1906N 07251E</td></tr>
+          <tr><td>Bangalore (Kempegowda)</td><td>1314N 07732E</td></tr>
+          <tr><td>Chennai (MAA)</td><td>1300N 08010E</td></tr>
+          <tr><td>Kolkata (CCU)</td><td>2238N 08826E</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 280 240">
+            <!-- India-region map schematic -->
+            <rect x="10" y="10" width="260" height="220" rx="8" fill="#eef6fb" stroke="#b8cfe8" stroke-width="1"/>
+            <!-- Equator line (far south) -->
+            <line x1="10" y1="195" x2="270" y2="195" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="15" y="208" font-size="8" fill="#c0392b">0° Equator</text>
+            <!-- Tropic of Cancer approx -->
+            <line x1="10" y1="115" x2="270" y2="115" stroke="#f39c12" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="15" y="112" font-size="8" fill="#f39c12">23½°N (Tropic of Cancer)</text>
+            <!-- India airports dots -->
+            <circle cx="155" cy="55" r="6" fill="#1a7a4a"/>
+            <text x="163" y="58" font-size="9" fill="#1a7a4a" font-weight="700">Delhi</text>
+            <text x="163" y="68" font-size="8" fill="#5a7a9a">2832N 07708E</text>
+            <circle cx="105" cy="105" r="6" fill="#6c3483"/>
+            <text x="113" y="108" font-size="9" fill="#6c3483" font-weight="700">Mumbai</text>
+            <text x="113" y="118" font-size="8" fill="#5a7a9a">1906N 07251E</text>
+            <circle cx="155" cy="138" r="6" fill="#c0392b"/>
+            <text x="163" y="141" font-size="9" fill="#c0392b" font-weight="700">Bangalore</text>
+            <text x="163" y="151" font-size="8" fill="#5a7a9a">1314N 07732E</text>
+            <circle cx="195" cy="145" r="6" fill="#d4a017"/>
+            <text x="203" y="148" font-size="9" fill="#ca6f1e" font-weight="700">Chennai</text>
+            <text x="203" y="158" font-size="8" fill="#5a7a9a">1300N 08010E</text>
+            <circle cx="220" cy="60" r="6" fill="#1a3a5c"/>
+            <text x="228" y="63" font-size="9" fill="#1a3a5c" font-weight="700">Kolkata</text>
+            <text x="228" y="73" font-size="8" fill="#5a7a9a">2238N 08826E</text>
+            <!-- Lat lines -->
+            <line x1="10" y1="73" x2="270" y2="73" stroke="#b8cfe8" stroke-width="0.5" stroke-dasharray="3,4"/>
+            <text x="12" y="70" font-size="7" fill="#b8cfe8">25°N</text>
+            <text x="12" y="137" font-size="7" fill="#b8cfe8">15°N</text>
+            <line x1="10" y1="140" x2="270" y2="140" stroke="#b8cfe8" stroke-width="0.5" stroke-dasharray="3,4"/>
+            <!-- Title -->
+            <text x="140" y="232" text-anchor="middle" font-size="9" fill="#5a7a9a">Major Indian airports — lat always first, then long</text>
+          </svg>
+          <div class="diagram-caption">Fig 1.12 — Major Indian airport positions (approximate)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 15 — LAT/LONG TO DISTANCE
+══════════════════════════════════ -->
+<div class="section" id="s15">
+  <div class="section-header sky-mid">
+    <div class="section-num">15</div>
+    <div class="section-title">Conversion of Latitude &amp; Longitude to Distance</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <div class="def-box">
+          <strong>Nautical Mile (NM):</strong> Defined so that 1 minute of arc on a Great Circle = 1 NM.<br><br>
+          1 NM = 6080 feet = <strong>1852 metres</strong> (ICAO standard)<br>
+          This arises because Earth's mean radius ≈ 20.9 million feet.
+        </div>
+
+        <div class="key-box">
+          <strong>🔑 Converting Latitude Difference to Distance:</strong><br>
+          Since all meridians are Great Circles:<br>
+          <code>1 minute of latitude change = 1 NM</code><br>
+          <code>1 degree of latitude change = 60 NM</code><br><br>
+          Example: 50°00'N to 50°05'N = <strong>5 NM</strong>
+        </div>
+
+        <div class="warn-box">
+          <strong>⚠ Longitude is DIFFERENT!</strong><br>
+          This 1 minute = 1 NM rule applies to longitude <strong>ONLY at the Equator</strong> (because the Equator is the only parallel that is also a Great Circle). At all other latitudes, parallels are Small Circles and the formula is different.
+        </div>
+
+        <h4>Quick Reference</h4>
+        <table>
+          <tr><th>Angular Change</th><th>Distance on Meridian</th></tr>
+          <tr><td>1 second (1")</td><td>≈ 101 feet ≈ 30 metres</td></tr>
+          <tr><td>0.1 minute (0.1')</td><td>≈ 608 feet ≈ 185 metres</td></tr>
+          <tr><td>1 minute (1')</td><td>1 NM = 6080 feet = 1852 m</td></tr>
+          <tr><td>1 degree (1°)</td><td>60 NM = 111.1 km</td></tr>
+          <tr><td>90°</td><td>5400 NM (Equator to Pole)</td></tr>
+          <tr><td>360°</td><td>21,600 NM (circumference)</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 280 260">
+            <defs><marker id="nm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#1a7a4a" stroke-width="2"/></marker></defs>
+            <!-- Meridian line (vertical) -->
+            <line x1="140" y1="20" x2="140" y2="230" stroke="#1a3a5c" stroke-width="2.5"/>
+            <!-- Earth circle outline -->
+            <circle cx="140" cy="130" r="100" fill="none" stroke="#b8cfe8" stroke-width="1.5" stroke-dasharray="8,5"/>
+            <!-- Centre -->
+            <circle cx="140" cy="130" r="4" fill="#1a3a5c"/>
+            <!-- 1-minute arc markers (approx 1 NM) -->
+            <circle cx="158" cy="80" r="4" fill="#1a7a4a"/>
+            <circle cx="155" cy="65" r="4" fill="#1a7a4a"/>
+            <!-- Arc between them -->
+            <path d="M140,130 L158,80" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <path d="M140,130 L155,65" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <path d="M155,65 A4.5,4.5 0 0,1 158,80" fill="none" stroke="#6c3483" stroke-width="1.5"/>
+            <text x="165" y="74" font-size="10" fill="#6c3483" font-weight="700">1'</text>
+            <!-- distance label -->
+            <line x1="162" y1="80" x2="195" y2="80" stroke="#1a7a4a" stroke-width="1.5" marker-end="url(#nm)"/>
+            <text x="200" y="83" font-size="9" fill="#1a7a4a" font-weight="700">= 1 NM</text>
+            <text x="200" y="93" font-size="8" fill="#5a7a9a">= 1852 m</text>
+            <!-- Equator line -->
+            <line x1="40" y1="130" x2="240" y2="130" stroke="#c0392b" stroke-width="2" stroke-dasharray="6,3"/>
+            <text x="245" y="133" font-size="9" fill="#c0392b" dominant-baseline="central">Equator</text>
+            <!-- Two latitude points on meridian -->
+            <circle cx="140" cy="100" r="5" fill="#ca6f1e"/>
+            <circle cx="140" cy="130" r="5" fill="#ca6f1e"/>
+            <text x="150" y="103" font-size="10" font-weight="700" fill="#ca6f1e">50°05'N</text>
+            <text x="150" y="133" font-size="10" font-weight="700" fill="#ca6f1e">50°00'N</text>
+            <!-- Distance between them -->
+            <line x1="132" y1="100" x2="132" y2="130" stroke="#c0392b" stroke-width="2" marker-end="url(#nm)"/>
+            <text x="100" y="117" font-size="10" fill="#c0392b" font-weight="700">5' = 5 NM</text>
+            <!-- Labels -->
+            <text x="140" y="248" text-anchor="middle" font-size="11" font-weight="700" fill="#1a3a5c">1ʹ latitude change = 1 NM</text>
+          </svg>
+          <div class="diagram-caption">Fig 1.13 — On any meridian, 1 minute of arc = 1 nautical mile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 16 — RESOLUTION ACCURACY
+══════════════════════════════════ -->
+<div class="section" id="s16">
+  <div class="section-header red">
+    <div class="section-num">16</div>
+    <div class="section-title">Resolution Accuracy Using Latitude &amp; Longitude</div>
+  </div>
+  <div class="section-body">
+    <p>The number of decimal places used when writing a position declares the <strong>accuracy (resolution)</strong> being claimed. Each format corresponds to a real-world precision:</p>
+
+    <div style="background:var(--page-bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1rem 0;">
+      <div style="background:var(--sky);color:white;padding:8px 16px;display:grid;grid-template-columns:160px 140px 1fr;gap:12px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.5px;">
+        <span>FORMAT</span><span>ACCURACY</span><span>TYPICAL APPLICATION</span>
+      </div>
+      <div class="acc-row">
+        <span class="acc-fmt">5321N</span>
+        <span class="acc-val">1 NM = 6080 ft</span>
+        <span class="acc-app">En route navigation (FPL)</span>
+        <div class="acc-bar-wrap"><div class="acc-bar" style="width:10%;background:#c0392b;"></div></div>
+      </div>
+      <div class="acc-row">
+        <span class="acc-fmt">5321.3N</span>
+        <span class="acc-val">600 ft / 185 m</span>
+        <span class="acc-app">INS, IRS, FMS, GPS cockpit displays</span>
+        <div class="acc-bar-wrap"><div class="acc-bar" style="width:25%;background:#e67e22;"></div></div>
+      </div>
+      <div class="acc-row">
+        <span class="acc-fmt">53°21'17"N</span>
+        <span class="acc-val">100 ft / 30 m</span>
+        <span class="acc-app">Airfield diagram chart, AIP entries</span>
+        <div class="acc-bar-wrap"><div class="acc-bar" style="width:50%;background:#d4a017;"></div></div>
+      </div>
+      <div class="acc-row">
+        <span class="acc-fmt">53°21'17.3"N</span>
+        <span class="acc-val">10 ft / 3 m</span>
+        <span class="acc-app">Location of precision navaid (ILS)</span>
+        <div class="acc-bar-wrap"><div class="acc-bar" style="width:75%;background:#1a7a4a;"></div></div>
+      </div>
+      <div class="acc-row">
+        <span class="acc-fmt">53°21'17.32"N</span>
+        <span class="acc-val">1 ft / 30 cm</span>
+        <span class="acc-app">Calibration of precision navaid (ILS)</span>
+        <div class="acc-bar-wrap"><div class="acc-bar" style="width:100%;background:#1a3a5c;"></div></div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="key-box">
+          <strong>🔑 Two ways to express sub-minute positions:</strong><br>
+          1. <strong>Decimal minutes</strong>: 5150.2N (1 decimal place = 0.1 NM = 608 ft = 185 m)<br>
+          2. <strong>DMS</strong>: 51°50'12"N (1 second = ~101 ft = ~30 m)
+        </div>
+        <div class="tip-box">
+          <strong>💡 Practical Note:</strong> Modern cockpit systems (INS, IRS, FMS, GPS) use <em>decimal minutes</em>. Large-scale charts use DMS. The system can express position from 1 NM (en route) to 50 cm (ILS calibration) — same format, just more digits!
+        </div>
+      </div>
+      <div>
+        <div class="exam-box">
+          <span class="exam-label">✈ DGCA MCQ Tip</span>
+          "A position given as <code>5321N</code> implies an accuracy of approximately <strong>1 NM</strong>."<br><br>
+          "A position entered into an FMS/GPS is to the nearest <strong>decimal minute</strong>, implying accuracy of 0.1 NM = 600 feet."<br><br>
+          "The ARP of an aerodrome quoted in the AIP as <code>515013N 0011912W</code> is accurate to the nearest <strong>second of arc</strong> = 100 feet = 30 metres."
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 17 — GREAT CIRCLE VERTICES
+══════════════════════════════════ -->
+<div class="section" id="s17">
+  <div class="section-header purple">
+    <div class="section-num">17</div>
+    <div class="section-title">Great Circle Vertices</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <div class="def-box">
+          <strong>Vertex:</strong> The most northerly (or southerly) point of a Great Circle. Every Great Circle has a <strong>Northern Vertex</strong> and a <strong>Southern Vertex</strong>, which are antipodal (diametrically opposite).
+        </div>
+
+        <div class="key-box">
+          <strong>🔑 Key Properties of Vertices:</strong><br>
+          1. Vertices are <strong>antipodal</strong> — same latitude, opposite longitude (±180°)<br>
+          2. Distance between vertices = <strong>10,800 NM</strong> (half Earth's circumference)<br>
+          3. At either vertex, the Great Circle direction is <strong>090°(T) or 270°(T)</strong> — i.e., the GC runs East-West at the vertex<br>
+          4. Vertices lie on a meridian and its anti-meridian
+        </div>
+
+        <h4>Finding the Other Vertex</h4>
+        <div class="tip-box">
+          If Southern Vertex = <strong>63°S 170°W</strong><br>
+          Then Northern Vertex = <strong>63°N</strong> and longitude = 170° − 180° = <strong>−10°</strong> = <strong>010°E</strong><br><br>
+          Rule: <em>Same latitude number, opposite N/S. Longitude ± 180°.</em>
+        </div>
+
+        <h4>Equator Crossing Points</h4>
+        <div class="def-box">
+          A Great Circle crosses the Equator at <strong>two points</strong>, each at a longitude <strong>90° Ch Long</strong> from either vertex.<br><br>
+          Example: Northern vertex at <strong>63°N 010°E</strong><br>
+          → Crosses Equator at: 010°E ± 90° = <strong>100°E and 080°W</strong>
+        </div>
+
+        <h4>Track Angle at Equator Crossing</h4>
+        <div class="def-box">
+          At the Equator crossing, the angle = latitude of the vertex.<br><br>
+          <em>Travelling East from N vertex:</em><br>
+          First crossing: Track = 090° + vertex_lat<br>
+          Second crossing: Track = 090° − vertex_lat<br><br>
+          <em>Travelling West from N vertex:</em> Use reciprocals (+180°)
+        </div>
+
+        <h4>Worked Example (63°N vertex, tracking East)</h4>
+        <table>
+          <tr><th>Crossing</th><th>Longitude</th><th>Track °(T)</th><th>Working</th></tr>
+          <tr><td>1st (southbound)</td><td>080°W</td><td><strong>153°</strong></td><td>090+63=153</td></tr>
+          <tr><td>2nd (northbound)</td><td>100°E</td><td><strong>027°</strong></td><td>090−63=027</td></tr>
+        </table>
+
+        <h4>Two Special Cases</h4>
+        <table>
+          <tr><th>Vertex Latitude</th><th>Type of GC</th><th>Equator crossing angle</th></tr>
+          <tr><td>90°N/S</td><td>Meridian</td><td>180° or 000°</td></tr>
+          <tr><td>0°N/S</td><td>Equator itself</td><td>0° (it IS the Equator), direction 090° or 270°</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="diagram-wrap">
+          <svg width="100%" viewBox="0 0 280 310">
+            <defs><marker id="gca" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#6c3483" stroke-width="2"/></marker></defs>
+            <!-- Globe -->
+            <ellipse cx="140" cy="155" rx="110" ry="105" fill="#d6eaf8" stroke="#1a3a5c" stroke-width="1.5"/>
+            <!-- Equator -->
+            <ellipse cx="140" cy="155" rx="110" ry="25" fill="none" stroke="#c0392b" stroke-width="2"/>
+            <text x="258" y="158" font-size="9" fill="#c0392b" dominant-baseline="central">Equator</text>
+            <!-- Poles -->
+            <circle cx="140" cy="50" r="4" fill="#1a3a5c"/>
+            <text x="140" y="40" text-anchor="middle" font-size="9" font-weight="700" fill="#1a3a5c">N POLE</text>
+            <circle cx="140" cy="260" r="4" fill="#1a3a5c"/>
+            <text x="140" y="275" text-anchor="middle" font-size="9" font-weight="700" fill="#1a3a5c">S POLE</text>
+            <!-- Great Circle path (tilted ellipse) -->
+            <ellipse cx="140" cy="155" rx="105" ry="60" fill="none" stroke="#6c3483" stroke-width="2" transform="rotate(30,140,155)"/>
+            <!-- Northern vertex -->
+            <circle cx="178" cy="68" r="6" fill="#1a7a4a"/>
+            <text x="186" y="68" font-size="9" font-weight="700" fill="#1a7a4a" dominant-baseline="central">N.Vertex</text>
+            <text x="186" y="78" font-size="8" fill="#5a7a9a">63°N 010°E</text>
+            <!-- Southern vertex -->
+            <circle cx="102" cy="242" r="6" fill="#ca6f1e"/>
+            <text x="60" y="242" font-size="9" font-weight="700" fill="#ca6f1e" dominant-baseline="central">S.Vertex</text>
+            <text x="55" y="252" font-size="8" fill="#5a7a9a">63°S 170°W</text>
+            <!-- Crossing points on equator -->
+            <circle cx="82"  cy="163" r="5" fill="#c0392b"/>
+            <text x="55" y="163" font-size="8" fill="#c0392b" dominant-baseline="central">080°W</text>
+            <circle cx="205" cy="145" r="5" fill="#c0392b"/>
+            <text x="212" y="145" font-size="8" fill="#c0392b" dominant-baseline="central">100°E</text>
+            <!-- Track angle at 1st crossing -->
+            <path d="M82,163 L108,138" stroke="#d4a017" stroke-width="1.5"/>
+            <text x="70" y="140" font-size="9" fill="#d4a017" font-weight="700">Track=153°</text>
+            <text x="70" y="150" font-size="8" fill="#d4a017">(090+63)</text>
+            <!-- Track angle at 2nd crossing -->
+            <path d="M205,145 L185,118" stroke="#1a7a4a" stroke-width="1.5"/>
+            <text x="194" y="118" font-size="9" fill="#1a7a4a" font-weight="700">Track=027°</text>
+            <text x="194" y="128" font-size="8" fill="#1a7a4a">(090-63)</text>
+            <!-- 63° angle marker -->
+            <text x="140" y="296" text-anchor="middle" font-size="10" font-weight="700" fill="#6c3483">Great Circle — vertex 63°N/S</text>
+          </svg>
+          <div class="diagram-caption">Fig 1.14 — Great Circle vertices, crossing points, and track angles at Equator</div>
+        </div>
+
+        <div class="diagram-wrap" style="margin-top:1rem;">
+          <svg width="100%" viewBox="0 0 280 180">
+            <!-- First crossing diagram (tracking East) -->
+            <rect x="5" y="5" width="130" height="170" rx="8" fill="#f5eef8" stroke="#6c3483" stroke-width="1"/>
+            <text x="70" y="20" text-anchor="middle" font-size="10" font-weight="700" fill="#6c3483">1st Crossing (→E)</text>
+            <!-- Mini globe left -->
+            <circle cx="70" cy="100" r="55" fill="#d6eaf8" stroke="#1a3a5c" stroke-width="1"/>
+            <circle cx="70" cy="55" r="3" fill="#1a3a5c"/>
+            <text x="70" y="48" text-anchor="middle" font-size="8" fill="#1a3a5c">N.Vertex</text>
+            <!-- Equator -->
+            <line x1="15" y1="100" x2="125" y2="100" stroke="#c0392b" stroke-width="1.5"/>
+            <!-- Track line 153° -->
+            <path d="M70,100 L95,70" stroke="#6c3483" stroke-width="2"/>
+            <path d="M70,90 A12,12 0 0,0 82,86" fill="none" stroke="#6c3483" stroke-width="1.5"/>
+            <text x="78" y="98" font-size="9" fill="#6c3483" font-weight="700">63°</text>
+            <text x="60" y="158" text-anchor="middle" font-size="9" fill="#6c3483">090+63 = 153°</text>
+            <text x="60" y="170" text-anchor="middle" font-size="9" fill="#1a7a4a">S.Vertex below</text>
+
+            <!-- Second crossing diagram (tracking East) -->
+            <rect x="145" y="5" width="130" height="170" rx="8" fill="#eef8f0" stroke="#1a7a4a" stroke-width="1"/>
+            <text x="210" y="20" text-anchor="middle" font-size="10" font-weight="700" fill="#1a7a4a">2nd Crossing (→E)</text>
+            <circle cx="210" cy="100" r="55" fill="#d6eaf8" stroke="#1a3a5c" stroke-width="1"/>
+            <circle cx="210" cy="55" r="3" fill="#1a3a5c"/>
+            <text x="210" y="48" text-anchor="middle" font-size="8" fill="#1a3a5c">N.Vertex</text>
+            <line x1="155" y1="100" x2="265" y2="100" stroke="#c0392b" stroke-width="1.5"/>
+            <!-- Track line 027° -->
+            <path d="M210,100 L225,68" stroke="#1a7a4a" stroke-width="2"/>
+            <path d="M210,90 A12,12 0 0,1 218,87" fill="none" stroke="#1a7a4a" stroke-width="1.5"/>
+            <text x="218" y="98" font-size="9" fill="#1a7a4a" font-weight="700">63°</text>
+            <text x="200" y="158" text-anchor="middle" font-size="9" fill="#1a7a4a">090-63 = 027°</text>
+            <text x="200" y="170" text-anchor="middle" font-size="9" fill="#c0392b">S.Vertex below</text>
+          </svg>
+          <div class="diagram-caption">Fig 1.15 — Track angles at first and second Equator crossings (tracking East)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECTION 18 — PRACTICE QUESTIONS
+══════════════════════════════════ -->
+<div class="section" id="s18">
+  <div class="section-header gold">
+    <div class="section-num">18</div>
+    <div class="section-title">Practice Questions &amp; Answers (DGCA Style)</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <h4>Solved Practice Questions</h4>
+
+        <div class="exam-box" style="margin-bottom:10px;">
+          <span class="exam-label">Q1</span>
+          What is the approximate compression of the Earth?<br>
+          a) 3% &nbsp; b) 0.03% &nbsp; <strong style="color:#f5d76e;">c) 0.3%</strong> &nbsp; d) 1/3000
+        </div>
+
+        <div class="exam-box" style="margin-bottom:10px;">
+          <span class="exam-label">Q2</span>
+          A Graticule is the name given to:<br>
+          a) A series of lines drawn on a chart<br>
+          <strong style="color:#f5d76e;">b) A series of Latitude and Longitude lines drawn on a chart or map</strong><br>
+          c) A selection of small circles as you get nearer to either pole
+        </div>
+
+        <div class="exam-box" style="margin-bottom:10px;">
+          <span class="exam-label">Q3</span>
+          A great circle has its North vertex at 70°N 130°E. What is the position of its South vertex?<br><br>
+          <strong style="color:#f5d76e;">Answer: 70°S 050°W</strong><br>
+          <span style="font-size:12px;color:#9bbcd6;">Same latitude number (70), opposite S. Longitude: 130E − 180 = −50 = 050°W</span>
+        </div>
+
+        <div class="exam-box" style="margin-bottom:10px;">
+          <span class="exam-label">Q4a</span>
+          GC with N vertex at 70°N 130°E. Equator crossing longitudes (initial direction EAST from N vertex)?<br><br>
+          Crossing longitudes: 130°E ± 90° = <strong style="color:#f5d76e;">040°E and 140°W</strong><br>
+          Track at 1st crossing (Eastbound): 090 + 70 = <strong style="color:#f5d76e;">160°(T)</strong>
+        </div>
+
+        <div class="exam-box" style="margin-bottom:10px;">
+          <span class="exam-label">Q4b</span>
+          Same GC, initial direction WEST from N vertex?<br><br>
+          Crossings still at <strong style="color:#f5d76e;">040°E</strong> and <strong style="color:#f5d76e;">140°W</strong><br>
+          Tracks = reciprocals: <strong style="color:#f5d76e;">200°(T) and 340°(T)</strong>
+        </div>
+
+        <div class="exam-box" style="margin-bottom:10px;">
+          <span class="exam-label">Q5</span>
+          Compression = 1/297, semi-major axis = 6378.4 km. Find polar semi-minor axis.<br><br>
+          Formula: polar = equatorial × (1 − 1/compression)<br>
+          = 6378.4 × (1 − 1/297)<br>
+          = 6378.4 × 0.99663<br>
+          = <strong style="color:#f5d76e;">6356.9 km</strong> → Answer: <strong style="color:#f5d76e;">b</strong>
+        </div>
+      </div>
+      <div>
+        <h4>Additional Practice (DGCA MCQ Style)</h4>
+
+        <div class="def-box" style="margin-bottom:8px;">
+          <strong>Q6:</strong> The shortest distance between two points on Earth is along:<br>
+          <strong>→ The shorter arc of the Great Circle joining them</strong>
+        </div>
+
+        <div class="def-box" style="margin-bottom:8px;">
+          <strong>Q7:</strong> The Equator is special because it is the only parallel of latitude that is also a:<br>
+          <strong>→ Great Circle</strong>
+        </div>
+
+        <div class="def-box" style="margin-bottom:8px;">
+          <strong>Q8:</strong> At a Great Circle vertex, the direction of the Great Circle is:<br>
+          <strong>→ 090°(T) or 270°(T) — East or West</strong>
+        </div>
+
+        <div class="def-box" style="margin-bottom:8px;">
+          <strong>Q9:</strong> The difference in longitude between 040°E and 055°W is:<br>
+          Different sides → 40 + 55 = <strong>→ 095°</strong>
+        </div>
+
+        <div class="def-box" style="margin-bottom:8px;">
+          <strong>Q10:</strong> ICAO has adopted which datum as the world standard for GPS?<br>
+          <strong>→ WGS 84</strong>
+        </div>
+
+        <div class="def-box" style="margin-bottom:8px;">
+          <strong>Q11:</strong> 1 minute of arc along a meridian equals approximately:<br>
+          <strong>→ 1 Nautical Mile (1 NM = 1852 m)</strong>
+        </div>
+
+        <div class="def-box" style="margin-bottom:8px;">
+          <strong>Q12:</strong> The maximum difference between Geocentric and Geodetic latitudes is approximately 11.6 minutes and occurs at approximately:<br>
+          <strong>→ 45°N/S</strong>
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Quick Summary Table</strong>
+          <table style="margin-top:8px;">
+            <tr><th>Concept</th><th>Key Number</th></tr>
+            <tr><td>Earth compression</td><td>0.3% or 1/300</td></tr>
+            <tr><td>Polar diameter less than equatorial</td><td>23 NM / 43 km</td></tr>
+            <tr><td>Earth circumference (exam)</td><td>21,600 NM / 40,000 km</td></tr>
+            <tr><td>1 NM</td><td>1852 m / 6080 ft</td></tr>
+            <tr><td>1° of Great Circle arc</td><td>60 NM</td></tr>
+            <tr><td>Max geocentric/geodetic diff</td><td>11.6' at 45°N/S</td></tr>
+            <tr><td>Tropic latitudes</td><td>23½°N and S</td></tr>
+            <tr><td>Polar circle latitudes</td><td>66½°N and S</td></tr>
+            <tr><td>Earth's axial tilt</td><td>23½°</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <strong>DGCA General Navigation — Chapter 1: Direction, Latitude &amp; Longitude</strong><br>
+  Compiled for underprivileged student pilots of India<br>
+  <span style="color:var(--gold);">❤ Best wishes from Capt. Pankaj Pahil — fly high, dream big!</span><br>
+  <span style="font-size:11px;margin-top:4px;display:block;">For educational use only. Always verify with current DGCA syllabus and official publications.</span>
+</div>
+
+</div><!-- /container -->
+
+<script>
+  // Reciprocal calculator
+  function calcRecip(val) {
+    val = parseInt(val);
+    let recip = (val + 180) % 360;
+    let fmtVal  = String(val).padStart(3,'0');
+    let fmtRec  = String(recip).padStart(3,'0');
+    // Named direction helper
+    function dir(d) {
+      if(d===0||d===360) return 'North';
+      if(d===90) return 'East';
+      if(d===180) return 'South';
+      if(d===270) return 'West';
+      if(d>0&&d<90) return 'NE quad';
+      if(d>90&&d<180) return 'SE quad';
+      if(d>180&&d<270) return 'SW quad';
+      return 'NW quad';
+    }
+    document.getElementById('brg-out').textContent = `Bearing: ${fmtVal}° → Reciprocal: ${fmtRec}° (${dir(recip)})`;
+  }
+
+  // Latitude description
+  function showLat(val) {
+    val = parseInt(val);
+    const places = {
+      90:'North Pole', 66:'Arctic Circle', 28:'New Delhi, India', 23:'Tropic of Cancer',
+      19:'Mumbai, India', 13:'Bangalore, India', 0:'Equator',
+      '-13':'Darwin, Australia', '-23':'Tropic of Capricorn', '-66':'Antarctic Circle', '-90':'South Pole'
+    };
+    // Find closest
+    let closest = Object.keys(places).reduce((a,b) => Math.abs(b-val) < Math.abs(a-val) ? b : a);
+    let side = val>0 ? `${val}°N` : val<0 ? `${Math.abs(val)}°S` : '0° (Equator)';
+    let near = Math.abs(closest-val) <= 3 ? ` — near ${places[closest]}` : '';
+    document.getElementById('lat-out').textContent = `Latitude: ${side}${near}`;
+  }
+
+  // Ch Long Calculator
+  function calcChLong() {
+    let v1 = parseFloat(document.getElementById('lon1v').value);
+    let d1 = document.getElementById('lon1d').value;
+    let v2 = parseFloat(document.getElementById('lon2v').value);
+    let d2 = document.getElementById('lon2d').value;
+    let result, note='';
+    if(d1===d2) {
+      result = Math.abs(v1-v2);
+      note = `(same side: |${v1}−${v2}|)`;
+    } else {
+      let raw = v1+v2;
+      if(raw > 180) {
+        result = 360-raw;
+        note = `(cross-180°: 360−(${v1}+${v2})=${result})`;
+      } else {
+        result = raw;
+        note = `(diff sides: ${v1}+${v2})`;
+      }
+    }
+    let el = document.getElementById('chlong-out');
+    el.textContent = `Ch Long = ${result}° ${note}`;
+    el.style.color = result > 0 ? '#1a7a4a' : '#c0392b';
+  }
+
+  // Init
+  calcRecip(60);
+  showLat(28);
+</script>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>
