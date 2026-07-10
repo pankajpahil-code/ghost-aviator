@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import GhostMark from "@/app/components/GhostMark";
+import Image from "next/image";
 import { Award, BookOpen, Users, ShieldCheck, MessageCircle, ArrowRight, Radio, GraduationCap, Heart } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
@@ -64,11 +64,11 @@ export default function AboutPage() {
         }}/>
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-14">
           <div className="flex flex-col md:flex-row items-center gap-10">
-            {/* TODO: replace with a real photo of Capt. Pahil when available */}
-            <div className="relative w-44 h-44 rounded-full overflow-hidden flex-shrink-0 flex items-center justify-center"
-                 style={{ border: "2px solid rgba(0,212,255,0.4)", boxShadow: "0 0 40px rgba(0,212,255,0.22)",
-                          background: "radial-gradient(circle at 50% 35%, rgba(0,180,255,0.18), rgba(10,15,35,0.9))" }}>
-              <GhostMark size={110} />
+            {/* TODO: swap for a real photo of Capt. Pahil when available */}
+            <div className="relative w-44 h-44 rounded-full overflow-hidden flex-shrink-0"
+                 style={{ border: "2px solid rgba(0,212,255,0.4)", boxShadow: "0 0 40px rgba(0,212,255,0.22)" }}>
+              <Image src="/captain-portrait.webp" alt="The Ghost Aviator — Capt. Pankaj Pahil" fill
+                     className="object-cover" style={{ objectPosition: "50% 30%" }} />
             </div>
             <div className="text-center md:text-left">
               <div className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: "#c080ff", letterSpacing: "0.2em" }}>
