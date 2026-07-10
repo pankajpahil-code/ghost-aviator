@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import GhostMark from "@/app/components/GhostMark";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { useUser, getSupabase } from "@/lib/supabase";
 
@@ -27,10 +27,10 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 no-underline">
-            <Image src="/ghost-badge.png" alt="Ghost Aviator" width={44} height={44} className="object-contain rounded-lg" style={{ filter:"drop-shadow(0 0 8px rgba(180,100,255,0.5))" }}/>
+            <span style={{ filter:"drop-shadow(0 0 8px rgba(0,212,255,0.45))" }}><GhostMark size={40} /></span>
             <div>
               <div className="text-lg font-black leading-none"
-                   style={{ background:"linear-gradient(135deg,#ff6000,#c020ff)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
+                   style={{ background:"linear-gradient(135deg,#7ad9ff,#c080ff)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
                 Ghost Aviator
               </div>
               <div className="text-xs leading-none" style={{ color:"rgba(180,100,255,0.55)" }}>Capt. Pankaj Pahil</div>
