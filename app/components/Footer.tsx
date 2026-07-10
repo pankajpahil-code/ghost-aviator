@@ -52,6 +52,7 @@ export default function Footer() {
                 ["DGCA Resources",  "/resources"],
                 ["CPL Prep",        "/cpl"],
                 ["ATPL Prep",       "/atpl"],
+                ["Meet the Captain","/about"],
               ].map(([item, href]) => (
                 <li key={item}>
                   <Link href={href} className="text-sm no-underline" style={{ color: "#64748b" }}>{item}</Link>

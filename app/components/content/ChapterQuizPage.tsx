@@ -5,6 +5,7 @@ import { CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen } from "lucide-re
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { DemoQuestion } from "@/lib/demo-questions";
 import { recordResult } from "@/lib/progress";
+import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
 type Phase = "setup" | "quiz" | "result";
 const PASS_MARK = 70;
@@ -153,6 +154,10 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
               <BookOpen className="w-4 h-4" /> Revise Notes
             </Link>
           </div>
+        </div>
+
+        <div className="mb-8">
+          <LiveClassUpsell subjectId={subject.id} subjectColor={subject.color} />
         </div>
 
         {/* Answer review */}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ChevronRight, ChevronLeft, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import Watermark from "@/app/components/Watermark";
+import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -76,6 +77,8 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
             title={`${chapter.title} — Notes`}
           />
         </div>
+
+        <LiveClassUpsell subjectId={subject.id} subjectColor={subject.color} />
 
         {/* Chapter navigation */}
         <div className="flex items-center justify-between gap-4 mt-2 mb-6">

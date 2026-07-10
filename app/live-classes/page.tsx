@@ -3,17 +3,14 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle, MessageCircle, Mail, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers } from "lucide-react";
 import { SITE_URL } from "@/lib/site";
 
-const WHATSAPP = "919990226607";
-const EMAIL = "pankaj.pahil@gmail.com";
-const REGULAR = "₹5,999";
-const FOUNDING = "₹2,999";
-const COMBO_REGULAR = "₹14,999";
-const COMBO_FOUNDING = "₹7,999";
-
-const waLink = (subject: string, price: string) =>
-  `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-    `Hello Capt. Pahil, I want to join the founding batch of ${subject} (${price}). Please share the details.`
-  )}`;
+import {
+  LIVE_EMAIL as EMAIL,
+  LIVE_REGULAR as REGULAR,
+  LIVE_FOUNDING as FOUNDING,
+  LIVE_COMBO_REGULAR as COMBO_REGULAR,
+  LIVE_COMBO_FOUNDING as COMBO_FOUNDING,
+  liveWaLink as waLink,
+} from "@/lib/live-classes";
 
 export const metadata: Metadata = {
   title: "Live DGCA Ground Classes Online — Meteorology, Air Regulations & Navigation | Ghost Aviator",

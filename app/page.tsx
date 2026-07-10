@@ -159,6 +159,21 @@ export default function Home() {
         </Link>
       </section>
 
+      {/* ══════════════════ INSTRUCTOR TEASER ══════════════════ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <Link href="/about" className="flex items-center justify-between gap-4 flex-wrap rounded-2xl px-6 py-4 no-underline"
+              style={{ background:"rgba(15,8,30,0.95)", border:"1px solid rgba(180,100,255,0.22)" }}>
+          <div className="flex items-center gap-3 text-sm" style={{ color:"#94a3b8" }}>
+            <span className="text-xl">👨‍✈️</span>
+            <span>
+              Built and taught by <strong style={{ color:"#c080ff" }}>Capt. Pankaj Pahil</strong> — pilot,
+              DGCA flight &amp; ground instructor, 20+ years in aviation, author of two aviation books.
+            </span>
+          </div>
+          <span className="text-sm font-bold whitespace-nowrap" style={{ color:"#c080ff" }}>Meet the Captain →</span>
+        </Link>
+      </section>
+
       {/* ══════════════════ CHOOSE YOUR PATH ══════════════════ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center mb-14">
