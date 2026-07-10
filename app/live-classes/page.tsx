@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, MessageCircle, Mail, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers } from "lucide-react";
 import { SITE_URL } from "@/lib/site";
@@ -170,7 +171,9 @@ export default function LiveClassesPage() {
           background: "radial-gradient(ellipse at 50% -20%, rgba(255,40,40,0.14), transparent 60%)",
         }}/>
 
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+          <div className="flex-1 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-black mb-6"
                style={{ background:"rgba(255,40,40,0.12)", border:"1px solid rgba(255,60,60,0.45)", color:"#ff5a5a" }}>
             <Radio className="w-4 h-4 animate-pulse" /> LIVE ONLINE BATCHES · FOUNDING ADMISSIONS OPEN
@@ -192,7 +195,7 @@ export default function LiveClassesPage() {
             <span className="ml-2 px-2 py-0.5 rounded text-xs" style={{ background:"rgba(255,40,40,0.15)", color:"#ff5a5a", border:"1px solid rgba(255,60,60,0.35)" }}>50% OFF · FIRST BATCH ONLY</span>
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-10">
+          <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
             <a href={waLink("DGCA ground classes", FOUNDING)} target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
@@ -206,7 +209,7 @@ export default function LiveClassesPage() {
           </div>
 
           {/* Trust strip */}
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center lg:justify-start gap-6">
             {[
               [Award, "20+ years in aviation"],
               [BookOpen, "Author of 2 aviation books"],
@@ -221,6 +224,21 @@ export default function LiveClassesPage() {
               );
             })}
           </div>
+          </div>
+
+          {/* The Captain at the constellation chalkboard — edges dissolved into the night */}
+          <div className="relative flex-shrink-0"
+               style={{ width: "min(460px, 90vw)", aspectRatio: "785 / 718",
+                        maskImage: "linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)",
+                        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)" }}>
+            <Image src="/captain-teaching.webp" alt="Capt. Pahil teaching navigation at a constellation chalkboard" fill priority sizes="460px"
+                   className="object-cover"
+                   style={{
+                     maskImage: "radial-gradient(ellipse 66% 60% at 51% 50%, black 40%, transparent 83%)",
+                     WebkitMaskImage: "radial-gradient(ellipse 66% 60% at 51% 50%, black 40%, transparent 83%)",
+                   }} />
+          </div>
+         </div>
         </div>
       </section>
 
