@@ -102,6 +102,41 @@ create policy "own progress delete" on public.progress
 The client fails soft if this table doesn't exist yet — progress simply stays
 on-device until the SQL is run.
 
+### 3c. `exam_attempts` table — Exam Mode + performance dashboard (added 2026-07-12)
+
+Every full-paper mock exam attempt (Exam Mode) is logged here so the performance
+dashboard can show score trends and weak chapters over time — `progress` above only
+ever kept the *best* score per chapter, not a history. Run this in the Supabase SQL editor:
+
+```sql
+create table if not exists public.exam_attempts (
+  id                 uuid primary key default gen_random_uuid(),
+  user_id            uuid not null references auth.users (id) on delete cascade,
+  paper_id           text not null,          -- e.g. 'navigation', 'meteorology', 'rtr-part1'
+  track              text not null,          -- 'cpl' | 'atpl'
+  score_pct          smallint not null,
+  correct_count      smallint not null,
+  total_count        smallint not null,
+  duration_taken_sec integer,
+  chapter_breakdown  jsonb,                  -- { [chapterId]: { correct, total } } — powers weak-chapter detection
+  created_at         timestamptz not null default now()
+);
+
+alter table public.exam_attempts enable row level security;
+
+-- Attempts are an immutable log — insert + select only, no update/delete policy.
+create policy "own attempts select" on public.exam_attempts
+  for select to authenticated using (auth.uid() = user_id);
+create policy "own attempts insert" on public.exam_attempts
+  for insert to authenticated with check (auth.uid() = user_id);
+
+create index if not exists exam_attempts_user_created_idx
+  on public.exam_attempts (user_id, created_at desc);
+```
+
+Same fail-soft behaviour as `progress`: signed-out students keep a local-only attempt
+history (capped, on-device); signed-in students get it mirrored here for cross-device access.
+
 **Also in Supabase dashboard:**
 - Auth → enable **email confirmation** (already expected by the signup flow).
 - Auth → turn on **rate limiting / CAPTCHA** to stop signup/login brute-force + spam.

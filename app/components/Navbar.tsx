@@ -83,8 +83,10 @@ export default function Navbar() {
             </Link>
             <Link href="/books"     className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#fbbf24" }}>Books</Link>
             <Link href="/about"     className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#c080ff" }}>The Captain</Link>
+            <Link href="/exam" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Exam Mode</Link>
             <Link href="/mock-test" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Mock Test</Link>
             <Link href="/past-papers" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Past Papers</Link>
+            <Link href="/dashboard" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Dashboard</Link>
             <Link href="/notes"     className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Notes</Link>
             <Link href="/question-bank" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
             <Link href="/resources" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>
@@ -127,8 +129,10 @@ export default function Navbar() {
           <Link href="/live-classes"  onClick={() => setOpen(false)} className="py-2.5 text-sm font-black no-underline" style={{ color:"#ff5a5a" }}>🔴 Live Classes</Link>
           <Link href="/books"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#fbbf24" }}>📚 Books</Link>
           <Link href="/about"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#c080ff" }}>👨‍✈️ The Captain</Link>
+          <Link href="/exam"          onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Exam Mode</Link>
           <Link href="/mock-test"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Mock Test</Link>
           <Link href="/past-papers"   onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Past Papers</Link>
+          <Link href="/dashboard"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Dashboard</Link>
           <Link href="/notes"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Notes</Link>
           <Link href="/question-bank" onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
           <Link href="/resources"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>

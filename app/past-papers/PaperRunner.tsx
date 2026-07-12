@@ -2,7 +2,14 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { PastPaper } from "@/lib/past-papers";
+import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ArrowLeft, CheckCircle, XCircle, RotateCcw, Trophy } from "lucide-react";
+
+const SUBJECT_MAP = (() => {
+  const m: Record<string, (typeof CPL_SUBJECTS)[number]> = {};
+  for (const s of [...CPL_SUBJECTS, ...ATPL_SUBJECTS]) m[s.id] = s;
+  return m;
+})();
 
 // Exam-style runner for a full previous-year/sample paper:
 // answer all questions at your pace → submit → score + full answer review.
@@ -10,6 +17,7 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [submitted, setSubmitted] = useState(false);
 
+  const passMark = SUBJECT_MAP[paper.subjectId]?.passMark ?? 70;
   const answered = Object.keys(answers).length;
   const total = paper.questions.length;
   const score = useMemo(
@@ -17,7 +25,7 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
     [answers, paper.questions],
   );
   const pct = total ? Math.round((score / total) * 100) : 0;
-  const passed = pct >= 70;
+  const passed = pct >= passMark;
 
   const choose = (qi: number, oi: number) => {
     if (submitted) return;
@@ -36,7 +44,7 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
           </Link>
           <h1 className="text-2xl sm:text-3xl font-black text-white mb-2">{paper.title}</h1>
           <p className="text-sm" style={{ color: "#64748b" }}>
-            {total} questions · pass mark 70% · answer at your own pace, then submit for the full key.
+            {total} questions · pass mark {passMark}% · answer at your own pace, then submit for the full key.
           </p>
         </div>
       </div>
@@ -50,7 +58,7 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
             <div className="flex-1">
               <div className="text-2xl font-black text-white">{pct}% — {score}/{total} correct</div>
               <div className="text-sm font-bold" style={{ color: passed ? "#22c55e" : "#ff2060" }}>
-                {passed ? "PASS — exam standard met. Review the few you missed below." : "Below the 70% pass mark — review the answers below and re-attempt."}
+                {passed ? "PASS — exam standard met. Review the few you missed below." : `Below the ${passMark}% pass mark — review the answers below and re-attempt.`}
               </div>
             </div>
             <button onClick={reset} className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-black cursor-pointer border-0"

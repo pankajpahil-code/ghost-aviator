@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronRight, ChevronLeft, ListChecks } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronRight, ChevronLeft, ListChecks, Volume2, Pause, Square } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import Watermark from "@/app/components/Watermark";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
@@ -15,7 +16,75 @@ type Props = {
   src: string;
 };
 
+type SpeechState = "idle" | "playing" | "paused" | "unsupported";
+
+// Reads the notes aloud with browser speechSynthesis, preferring an Indian-
+// English voice. The notes live in a same-origin iframe, so the text is read
+// straight from its contentDocument and spoken — never rendered as a visible
+// transcript or otherwise exposed, so this adds no new copy/export surface.
+function useReadAloud(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
+  const [state, setState] = useState<SpeechState>("idle");
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      setState("unsupported");
+    }
+    return () => { window.speechSynthesis?.cancel(); };
+  }, []);
+
+  function pickVoice(): SpeechSynthesisVoice | undefined {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.lang === "en-IN") ??
+      voices.find(v => v.lang?.startsWith("en-IN")) ??
+      voices.find(v => v.lang?.startsWith("en")) ??
+      voices[0]
+    );
+  }
+
+  function extractText(): string {
+    try {
+      const doc = iframeRef.current?.contentDocument;
+      const body = doc?.body?.cloneNode(true) as HTMLElement | undefined;
+      if (!body) return "";
+      body.querySelectorAll("script, style").forEach(el => el.remove());
+      return body.innerText.replace(/\s+/g, " ").trim();
+    } catch {
+      return ""; // not yet loaded
+    }
+  }
+
+  function toggle() {
+    if (state === "unsupported") return;
+    const synth = window.speechSynthesis;
+    if (state === "playing") { synth.pause(); setState("paused"); return; }
+    if (state === "paused") { synth.resume(); setState("playing"); return; }
+    const text = extractText();
+    if (!text) return;
+    synth.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "en-IN";
+    const voice = pickVoice();
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.onend = () => setState("idle");
+    utter.onerror = () => setState("idle");
+    synth.speak(utter);
+    setState("playing");
+  }
+
+  function stop() {
+    window.speechSynthesis?.cancel();
+    setState("idle");
+  }
+
+  return { state, toggle, stop };
+}
+
 export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, src }: Props) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const { state: speechState, toggle: toggleListen, stop: stopListen } = useReadAloud(iframeRef);
+
   return (
     <div style={{ background: "#06040e" }} className="min-h-screen flex flex-col">
       <Watermark />
@@ -53,15 +122,35 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
               </div>
             </div>
 
-            {chapter.content.find(c => c.type === "chapter-quiz")?.available && (
-              <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-2 flex-wrap">
+              {speechState !== "unsupported" && (
+                <>
+                  <button onClick={toggleListen}
+                          className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg cursor-pointer border-0"
+                          style={{ background: "rgba(0,212,255,0.1)", border: "1px solid rgba(0,212,255,0.3)", color: "#00d4ff" }}>
+                    {speechState === "playing"
+                      ? <><Pause className="w-3.5 h-3.5" /> Pause</>
+                      : speechState === "paused"
+                        ? <><Volume2 className="w-3.5 h-3.5" /> Resume</>
+                        : <><Volume2 className="w-3.5 h-3.5" /> Listen</>}
+                  </button>
+                  {speechState !== "idle" && (
+                    <button onClick={stopListen}
+                            className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg cursor-pointer border-0"
+                            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#94a3b8" }}>
+                      <Square className="w-3.5 h-3.5" /> Stop
+                    </button>
+                  )}
+                </>
+              )}
+              {chapter.content.find(c => c.type === "chapter-quiz")?.available && (
                 <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
                       className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg no-underline"
                       style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)", color: "#f97316" }}>
                   <ListChecks className="w-3.5 h-3.5" /> Chapter Quiz
                 </Link>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -71,6 +160,7 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
         <div className="rounded-2xl overflow-hidden"
              style={{ border: `1px solid ${subject.color}20`, minHeight: "80vh" }}>
           <iframe
+            ref={iframeRef}
             src={src}
             className="w-full"
             style={{ minHeight: "80vh", height: "80vh", border: "none", background: "#f8f9fc" }}
