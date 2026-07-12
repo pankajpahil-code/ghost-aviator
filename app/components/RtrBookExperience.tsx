@@ -16,7 +16,7 @@ import SubjectProgressBar from "@/app/components/SubjectProgressBar";
 // for reduced motion.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const COVER = "/content/radio-telephony/_assets/images/book_cover_hero.jpg";
+const COVER = "/content/radio-telephony/_assets/images/pdf_front_cover.jpg";
 
 type Module = { key: string; label: string; part: string; hint: string; chapters: number[] };
 

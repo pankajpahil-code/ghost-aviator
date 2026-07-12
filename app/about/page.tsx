@@ -68,7 +68,8 @@ export default function AboutPage() {
             <div className="relative w-44 h-44 rounded-full overflow-hidden flex-shrink-0"
                  style={{ border: "2px solid rgba(0,212,255,0.4)", boxShadow: "0 0 40px rgba(0,212,255,0.22)" }}>
               <Image src="/captain-portrait.webp" alt="The Ghost Aviator — Capt. Pankaj Pahil" fill
-                     className="object-cover" style={{ objectPosition: "50% 30%" }} />
+                     className="object-cover"
+                     style={{ objectPosition: "50% 32%", transform: "scale(1.5)", transformOrigin: "50% 32%" }} />
             </div>
             <div className="text-center md:text-left">
               <div className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: "#c080ff", letterSpacing: "0.2em" }}>

@@ -35,7 +35,7 @@ const BOOKS: Book[] = [
     subtitle: "The Complete Guide to the DGCA Radio Telephone Operator Examination",
     edition: "1st Edition · 2026",
     author: "Capt. Pankaj Pahil",
-    coverImage: "/content/radio-telephony/_assets/images/book_cover_hero.jpg",
+    coverImage: "/content/radio-telephony/_assets/images/pdf_front_cover.jpg",
     accentFrom: "#fbbf24",
     accentTo: "#ef4444",
     glowColor: "rgba(251,191,36,0.35)",
