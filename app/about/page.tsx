@@ -69,7 +69,7 @@ export default function AboutPage() {
                  style={{ border: "2px solid rgba(0,212,255,0.4)", boxShadow: "0 0 40px rgba(0,212,255,0.22)" }}>
               <Image src="/captain-portrait.webp" alt="The Ghost Aviator — Capt. Pankaj Pahil" fill
                      className="object-cover"
-                     style={{ objectPosition: "50% 32%", transform: "scale(1.5)", transformOrigin: "50% 32%" }} />
+                     style={{ objectPosition: "50% 40%", transform: "scale(1.1)", transformOrigin: "50% 40%" }} />
             </div>
             <div className="text-center md:text-left">
               <div className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: "#c080ff", letterSpacing: "0.2em" }}>
