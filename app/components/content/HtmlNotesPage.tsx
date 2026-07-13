@@ -18,29 +18,67 @@ type Props = {
 
 type SpeechState = "idle" | "playing" | "paused" | "unsupported";
 
-// Reads the notes aloud with browser speechSynthesis, preferring an Indian-
-// English voice. The notes live in a same-origin iframe, so the text is read
-// straight from its contentDocument and spoken — never rendered as a visible
-// transcript or otherwise exposed, so this adds no new copy/export surface.
+// Voice quality is entirely the OS/browser's — this only picks the BEST of
+// whatever is actually installed. Cloud-backed "Online"/"Natural"/"Neural"
+// voices (Edge, and Android Chrome's Google voices) sound genuinely human;
+// offline SAPI-style voices (the Windows/Chrome default) sound robotic no
+// matter how this is tuned. localService === false is the closest signal
+// the Web Speech API exposes for "this is cloud-backed, not the flat local one".
+function scoreVoice(v: SpeechSynthesisVoice): number {
+  let score = 0;
+  if (v.lang === "en-IN") score += 100;
+  else if (v.lang?.startsWith("en-IN")) score += 70;
+  else if (v.lang?.startsWith("en")) score += 20;
+  if (/online|natural|neural/i.test(v.name)) score += 50;
+  if (/google/i.test(v.name)) score += 25;
+  if (v.localService === false) score += 20;
+  return score;
+}
+
+function rankedVoices(): SpeechSynthesisVoice[] {
+  return [...window.speechSynthesis.getVoices()]
+    .filter(v => v.lang?.startsWith("en"))
+    .sort((a, b) => scoreVoice(b) - scoreVoice(a));
+}
+
+// Splits into sentence-sized chunks and speaks them as a queue rather than
+// one giant utterance — most engines keep pitch/pacing more natural across
+// shorter utterances than they do droning through one huge block.
+function splitIntoChunks(text: string): string[] {
+  return text
+    .split(/(?<=[.!?])\s+/)
+    .map(s => s.trim())
+    .filter(Boolean);
+}
+
+// Reads the notes aloud with browser speechSynthesis. The notes live in a
+// same-origin iframe, so the text is read straight from its contentDocument
+// and spoken — never rendered as a visible transcript or otherwise exposed,
+// so this adds no new copy/export surface.
 function useReadAloud(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
   const [state, setState] = useState<SpeechState>("idle");
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const [voiceURI, setVoiceURI] = useState<string>("");
+  const queueRef = useRef<string[]>([]);
+  const queueIndexRef = useRef(0);
 
   useEffect(() => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
       setState("unsupported");
+      return;
     }
-    return () => { window.speechSynthesis?.cancel(); };
+    const refresh = () => {
+      const ranked = rankedVoices();
+      setVoices(ranked);
+      setVoiceURI(v => v || ranked[0]?.voiceURI || "");
+    };
+    refresh();
+    window.speechSynthesis.addEventListener("voiceschanged", refresh);
+    return () => {
+      window.speechSynthesis.removeEventListener("voiceschanged", refresh);
+      window.speechSynthesis.cancel();
+    };
   }, []);
-
-  function pickVoice(): SpeechSynthesisVoice | undefined {
-    const voices = window.speechSynthesis.getVoices();
-    return (
-      voices.find(v => v.lang === "en-IN") ??
-      voices.find(v => v.lang?.startsWith("en-IN")) ??
-      voices.find(v => v.lang?.startsWith("en")) ??
-      voices[0]
-    );
-  }
 
   function extractText(): string {
     try {
@@ -54,6 +92,20 @@ function useReadAloud(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
     }
   }
 
+  function speakNext() {
+    const synth = window.speechSynthesis;
+    const i = queueIndexRef.current;
+    if (i >= queueRef.current.length) { setState("idle"); return; }
+    const utter = new SpeechSynthesisUtterance(queueRef.current[i]);
+    const voice = voices.find(v => v.voiceURI === voiceURI) ?? voices[0];
+    if (voice) { utter.voice = voice; utter.lang = voice.lang; } else { utter.lang = "en-IN"; }
+    utter.rate = 0.93;
+    utter.pitch = 1.0;
+    utter.onend = () => { queueIndexRef.current += 1; speakNext(); };
+    utter.onerror = () => setState("idle");
+    synth.speak(utter);
+  }
+
   function toggle() {
     if (state === "unsupported") return;
     const synth = window.speechSynthesis;
@@ -62,28 +114,24 @@ function useReadAloud(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
     const text = extractText();
     if (!text) return;
     synth.cancel();
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = "en-IN";
-    const voice = pickVoice();
-    if (voice) utter.voice = voice;
-    utter.rate = 0.95;
-    utter.onend = () => setState("idle");
-    utter.onerror = () => setState("idle");
-    synth.speak(utter);
+    queueRef.current = splitIntoChunks(text);
+    queueIndexRef.current = 0;
     setState("playing");
+    speakNext();
   }
 
   function stop() {
     window.speechSynthesis?.cancel();
+    queueRef.current = [];
     setState("idle");
   }
 
-  return { state, toggle, stop };
+  return { state, toggle, stop, voices, voiceURI, setVoiceURI };
 }
 
 export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, src }: Props) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const { state: speechState, toggle: toggleListen, stop: stopListen } = useReadAloud(iframeRef);
+  const { state: speechState, toggle: toggleListen, stop: stopListen, voices, voiceURI, setVoiceURI } = useReadAloud(iframeRef);
 
   return (
     <div style={{ background: "#06040e" }} className="min-h-screen flex flex-col">
@@ -140,6 +188,18 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
                             style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#94a3b8" }}>
                       <Square className="w-3.5 h-3.5" /> Stop
                     </button>
+                  )}
+                  {voices.length > 1 && (
+                    <select value={voiceURI} onChange={e => setVoiceURI(e.target.value)}
+                            title="Voice quality depends on what's installed on your device — pick the best-sounding one"
+                            className="text-xs font-medium px-2 py-2 rounded-lg cursor-pointer"
+                            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#64748b", maxWidth: "9rem" }}>
+                      {voices.map(v => (
+                        <option key={v.voiceURI} value={v.voiceURI} style={{ background: "#0f081e", color: "#fff" }}>
+                          {v.name}
+                        </option>
+                      ))}
+                    </select>
                   )}
                 </>
               )}
