@@ -6,10 +6,13 @@
 // Navigation, Instrumentation) into one 100-question paper. Papers therefore
 // pool one or more subjectIds rather than mapping 1:1 to a subject.
 //
-// Figures verified directly with Capt. Pankaj Pahil (DGCA flight & ground
-// instructor) 2026-07-12 — no authoritative figure could be found on
-// dgca.gov.in/pariksha.dgca.gov.in or in any local reference material, so his
-// confirmation is the citation for these numbers. RTR(A) Part 2 (the 6-scenario
+// Figures verified with Capt. Pankaj Pahil (DGCA flight & ground instructor)
+// 2026-07-12/13: his own instructor knowledge, cross-checked by him against
+// current sources. No public DGCA document states these numbers, but the CEO's
+// official "Instruction to Candidates" (pariksha.dgca.gov.in) corroborates
+// structurally: its break policy (permitted after 1h, banned in the last 30min)
+// only makes sense for papers longer than 90 minutes — refuting third-party
+// blogs claiming uniform 90-minute papers. RTR(A) Part 2 (the 6-scenario
 // voice/ATC practical test) is not an MCQ paper and is intentionally excluded —
 // that belongs to the future RTR(A) practice simulator, not this pool-based runner.
 import { ALL_QUESTIONS, type DemoQuestion } from "./questions";
