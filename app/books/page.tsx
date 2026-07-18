@@ -24,11 +24,32 @@ type Book = {
   studyHours: number;
   description: string;
   href: string;
+  firstChapterId: string;
   status: "live" | "coming-soon";
   badge?: string;
 };
 
 const BOOKS: Book[] = [
+  {
+    slug: "human-performance",
+    title: "Human Performance & Limitations",
+    subtitle: "The Complete ATPL Human Performance & Limitations Book",
+    edition: "1st Edition · 2026",
+    author: "Capt. Pankaj Pahil",
+    coverImage: "/content/human-performance/_assets/images/cover-front.webp",
+    accentFrom: "#fbbf24",
+    accentTo: "#a855f7",
+    glowColor: "rgba(168,85,247,0.35)",
+    chapters: 26,
+    questions: 0,
+    studyHours: 40,
+    description:
+      "The Ghost Aviator flagship: 26 chapters covering the complete Human Performance & Limitations syllabus — the atmosphere, hypoxia and decompression, the senses, illusions and spatial disorientation, fitness to fly, and aviation psychology (workload, memory, decision-making, CRM and automation). Includes a full mock-exam question bank and quick-reference mnemonics.",
+    href: "/atpl/human-performance",
+    firstChapterId: "hpl-1",
+    status: "live",
+    badge: "PREMIUM",
+  },
   {
     slug: "rtra-mastery",
     title: "RTR(A) Mastery",
@@ -45,6 +66,7 @@ const BOOKS: Book[] = [
     description:
       "The only RTR(A) book you need — 24 illuminated chapters covering regulations, radio principles, and radiotelephony procedures. Every chapter includes embedded self-tests, interactive diagrams, and a 418-question mock exam bank with oral/viva preparation.",
     href: "/cpl/radio-telephony",
+    firstChapterId: "rtf-1",
     status: "live",
     badge: "COMPLETE",
   },
@@ -64,6 +86,7 @@ const BOOKS: Book[] = [
     description:
       "20 illuminated chapters covering the entire DGCA Radio Navigation syllabus — radio wave properties, propagation, VDF, ADF/NDB, VOR, ILS, MLS, radar systems, SSR, DME, RNAV, EFIS and GNSS. Includes a 243-question revision bank and a quick-reference summary sheet.",
     href: "/cpl/radio-navigation",
+    firstChapterId: "rnav-1",
     status: "live",
     badge: "COMPLETE",
   },
@@ -83,6 +106,7 @@ const BOOKS: Book[] = [
     description:
       "Complete DGCA Air Regulations study guide — from ICAO conventions and aircraft registration through human performance and CRM. Interactive diagrams, exam-weighted MCQs, and chapter quizzes.",
     href: "/cpl/air-regulations",
+    firstChapterId: "ar-1",
     status: "coming-soon",
   },
   {
@@ -101,6 +125,7 @@ const BOOKS: Book[] = [
     description:
       "From the atmosphere and pressure systems through METAR/TAF decoding, cloud physics, and tropical meteorology — the complete DGCA met syllabus brought to life with animated weather charts and satellite imagery.",
     href: "/cpl/meteorology",
+    firstChapterId: "met-1",
     status: "coming-soon",
   },
   {
@@ -119,6 +144,7 @@ const BOOKS: Book[] = [
     description:
       "Great circles, rhumb lines, chart projections, dead reckoning, radio navigation, and RNAV/PBN — every navigation concept illustrated with interactive plotting exercises and worked examples.",
     href: "/cpl/air-navigation",
+    firstChapterId: "nav-1",
     status: "coming-soon",
   },
   {
@@ -137,6 +163,7 @@ const BOOKS: Book[] = [
     description:
       "Airframe systems, piston and turbine engines, propellers, electrical systems, instruments, aerodynamics, and performance — the entire DGCA technical syllabus with cutaway diagrams and animated system flows.",
     href: "/cpl/technical-general",
+    firstChapterId: "tg-1",
     status: "coming-soon",
   },
 ];
@@ -231,13 +258,15 @@ export default function BooksPage() {
                     <div className="bk-stat-label">Chapters</div>
                   </div>
                 </div>
-                <div className="bk-stat">
-                  <HelpCircle className="w-4 h-4" />
-                  <div>
-                    <div className="bk-stat-num">{featured.questions.toLocaleString()}</div>
-                    <div className="bk-stat-label">Questions</div>
+                {featured.questions > 0 && (
+                  <div className="bk-stat">
+                    <HelpCircle className="w-4 h-4" />
+                    <div>
+                      <div className="bk-stat-num">{featured.questions.toLocaleString()}</div>
+                      <div className="bk-stat-label">Questions</div>
+                    </div>
                   </div>
-                </div>
+                )}
                 <div className="bk-stat">
                   <Clock className="w-4 h-4" />
                   <div>
@@ -251,7 +280,7 @@ export default function BooksPage() {
                 <Link href={featured.href} className="bk-btn-primary" style={{ background: `linear-gradient(135deg, ${featured.accentFrom}, ${featured.accentTo})` }}>
                   <BookOpen className="w-4 h-4" /> Open Book <ArrowRight className="w-4 h-4 bk-arrow" />
                 </Link>
-                <Link href={`${featured.href}/rtf-1/notes`} className="bk-btn-secondary" style={{ borderColor: `${featured.accentFrom}40`, color: featured.accentFrom }}>
+                <Link href={`${featured.href}/${featured.firstChapterId}/notes`} className="bk-btn-secondary" style={{ borderColor: `${featured.accentFrom}40`, color: featured.accentFrom }}>
                   Start Reading Ch.1
                 </Link>
               </div>
