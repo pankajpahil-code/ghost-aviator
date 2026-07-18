@@ -1,8 +1,11 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import fs from "node:fs";
+import path from "node:path";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter } from "@/lib/questions";
 import NotesPage       from "@/app/components/content/NotesPage";
+import HtmlNotesPage   from "@/app/components/content/HtmlNotesPage";
 import QuestionsPage   from "@/app/components/content/QuestionsPage";
 import ChapterTestPage from "@/app/components/content/ChapterTestPage";
 import ChapterQuizPage from "@/app/components/content/ChapterQuizPage";
@@ -57,6 +60,24 @@ export default async function Page({
   const questions = getQuestionsForChapter(subject.id, chapter.id);
 
   if (type === "notes") {
+    // Human Performance & Limitations book: auto-serve HTML notes whenever
+    // notes.html has been published to public/content/, same pattern as the
+    // CPL instrumentation/radio-telephony/radio-navigation/technical-general subjects.
+    if (subject.id === "human-performance") {
+      const notesFile = path.join(process.cwd(), "public", "content", subject.id, chapter.id, "notes.html");
+      if (fs.existsSync(notesFile)) {
+        return (
+          <HtmlNotesPage
+            track="atpl"
+            subject={subject}
+            chapter={chapter}
+            prevChapter={prevChapter}
+            nextChapter={nextChapter}
+            src={`/content/${subject.id}/${chapter.id}/notes.html`}
+          />
+        );
+      }
+    }
     return (
       <NotesPage
         track="atpl"

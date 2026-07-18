@@ -1,0 +1,206 @@
+/*  Human Performance & Limitations — book theme
+    MATCHES the Ghost Aviator RTR(A) book (book_layout.css): light "high-end aviation manual".
+    Author: Capt. Pankaj Pahil  ·  Watermark: www.ghostaviator.com
+    This restyles the existing chapter markup (.cover/.box/.tbl-wrap/.mnemonic/.chip…) into the
+    RTR look so the two books are matching companion volumes. */
+
+body{ -webkit-touch-callout:none; -webkit-user-select:none; -moz-user-select:none; user-select:none; }
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+:root{
+  --primary:#0F172A; --secondary:#2563EB; --accent:#F59E0B;
+  --card-bg:#FFFFFF; --border:#E2E8F0; --success:#10B981; --danger:#EF4444; --text-muted:#64748b;
+}
+
+body{
+  font-family:'Inter','Outfit',system-ui,sans-serif;
+  background:#F8FAFC; color:#1e293b; line-height:1.8; font-size:16.5px;
+  max-width:1000px; margin:0 auto; padding:0 40px 80px; position:relative;
+}
+
+/* ---------- COVER  →  RTR hero-banner ---------- */
+.cover{
+  background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);
+  color:#fff; padding:56px 50px; border-radius:12px; margin:40px 0 46px;
+  box-shadow:0 20px 25px -5px rgba(0,0,0,.15); position:relative; overflow:hidden;
+}
+.cover h1{ font-family:'Inter','Outfit',sans-serif; font-size:3rem; font-weight:900; line-height:1.1; color:#fff; margin:0 0 16px; }
+.cover h1 .subtitle{
+  display:inline-block; background:#e2e8f0; color:var(--primary);
+  font-size:.8rem; font-weight:800; letter-spacing:1.5px; text-transform:uppercase;
+  padding:6px 14px; border-radius:6px; margin-bottom:18px;
+}
+.cover .meta{ display:flex; gap:22px; margin-top:20px; flex-wrap:wrap; font-size:.82rem; position:relative; z-index:2; }
+.cover .meta div{ border-left:3px solid var(--accent); padding-left:10px; color:#cbd5e1; }
+.cover .meta b{ display:block; color:#ffd166; font-size:.7rem; letter-spacing:1px; text-transform:uppercase; }
+
+/* ---------- HEADINGS ---------- */
+h2{
+  font-size:2.1rem; color:var(--primary); font-weight:800;
+  margin:70px 0 26px; display:flex; align-items:center; gap:14px;
+}
+h2::before{ content:''; display:block; width:6px; height:34px; background:var(--secondary); border-radius:4px; }
+h2 .chip{
+  font-family:'JetBrains Mono',monospace; font-size:.8rem; font-weight:700;
+  background:var(--secondary); color:#fff; padding:4px 11px; border-radius:5px;
+}
+h3{ font-size:1.4rem; color:var(--primary); font-weight:700; margin:38px 0 14px; }
+h4{ font-size:1.12rem; color:#8b1e3f; font-weight:700; font-style:italic; margin:20px 0 8px; }
+p{ margin:0 0 22px; }
+.intro-text{ font-size:1.15rem; line-height:1.85; margin-bottom:34px; }
+strong{ color:var(--primary); font-weight:700; }
+em{ color:#6b3410; }
+ul,ol{ margin:8px 0 20px; padding-left:26px; } li{ margin-bottom:8px; }
+a{ color:var(--secondary); }
+
+/* ---------- CALLOUTS  (my .box → RTR .callout) ---------- */
+.callout,.box{
+  padding:24px 28px; border-radius:10px; margin:34px 0;
+  background:var(--card-bg); border:1px solid var(--border); border-left-width:6px; border-left-style:solid;
+  font-size:1rem; line-height:1.75;
+}
+.callout-title,.box-title{
+  display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.05rem;
+  margin-bottom:12px; text-transform:uppercase; letter-spacing:.3px;
+}
+.box-blue{ border-left-color:var(--secondary); background:#eff6ff; } .box-blue .box-title,.box-blue .callout-title{ color:var(--secondary); }
+.box-red{ border-left-color:var(--danger); background:#fef2f2; } .box-red .box-title,.box-red .callout-title{ color:var(--danger); }
+.box-amber{ border-left-color:var(--accent); background:#fffbeb; } .box-amber .box-title,.box-amber .callout-title{ color:#b45309; }
+.box-green{ border-left-color:var(--success); background:#f0fdf4; } .box-green .box-title,.box-green .callout-title{ color:#047857; }
+.callout p,.box p{ margin:0; }
+.callout p+p,.box p+p{ margin-top:12px; }
+
+/* mnemonic pills → amber callout */
+.mnemonic{ background:#fffbeb; border:1px solid var(--border); border-left:6px solid var(--accent); border-radius:10px; padding:18px 24px; margin:26px 0; font-size:1rem; }
+.mnemonic .lbl{ display:inline-block; background:#b45309; color:#fff; font-size:.72rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:3px 11px; border-radius:12px; margin-right:10px; }
+
+/* ---------- TABLES  (my .tbl-wrap + <caption> → RTR .table-container) ---------- */
+.table-container,.tbl-wrap{ margin:30px 0; background:#fff; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+table{ width:100%; border-collapse:collapse; text-align:left; }
+caption,.table-caption{ caption-side:top; text-align:left; background:var(--primary); color:#fff; font-weight:600; padding:12px 20px; font-size:.95rem; }
+thead th{ background:#f8fafc; color:var(--primary); font-weight:700; padding:16px 18px; border-bottom:2px solid var(--border); }
+tbody td{ padding:15px 18px; border-bottom:1px solid var(--border); vertical-align:top; }
+tbody tr:nth-child(even) td{ background:#f8fafc; }
+tbody tr:last-child td{ border-bottom:none; }
+td:first-child{ color:var(--primary); }
+
+/* key-value grid → light cards */
+.kv-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; margin:16px 0 22px; }
+.kv-card{ background:#fff; border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+.kv-card .k{ font-size:.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; font-weight:600; }
+.kv-card .v{ font-family:'JetBrains Mono',monospace; font-weight:700; font-size:1.15rem; color:var(--primary); margin-top:2px; }
+
+/* highlighted values */
+.val{ display:inline-block; background:#fff4cc; color:#6b4f00; border:1px solid #e8c547; border-radius:4px; padding:1px 7px; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.9em; }
+.val-red{ background:#fde2e2; color:#7a0d0d; border-color:#f5a3a3; }
+.val-green{ background:#d8f0e0; color:#14532d; border-color:#86c79e; }
+
+/* ---------- CINEMATIC FIGURES (same class as RTR) ---------- */
+.cinematic-figure{ margin:50px 0; text-align:center; }
+.cinematic-figure img{ width:100%; border-radius:12px; box-shadow:0 25px 50px -12px rgba(0,0,0,.25); }
+.cinematic-figure figcaption{ margin-top:14px; font-size:1rem; color:var(--text-muted); font-style:italic; }
+.fig-pending{ background:linear-gradient(135deg,#1e293b,#0f172a); color:#94a3b8; padding:64px 24px; border-radius:12px; }
+.fig-pending b{ color:#ffd166; display:block; margin-top:8px; }
+
+/* ---------- SELF-TEST (Ch26 details) ---------- */
+details.qa{ background:#fff; border:1px solid var(--border); border-left:5px solid var(--success); border-radius:8px; padding:12px 18px; margin:8px 0 18px; }
+details.qa summary{ cursor:pointer; font-weight:700; color:var(--primary); }
+details.qa[open]{ background:#f0fdf4; }
+.q{ font-weight:600; margin:18px 0 6px; }
+.opts{ list-style:upper-alpha; padding-left:26px; margin:6px 0; } .opts li{ margin:5px 0; }
+
+/* ---------- NAV / FOOTER / DIVIDER / WATERMARK ---------- */
+.nav-buttons{ display:flex; justify-content:space-between; align-items:center; margin:44px 0 10px; }
+.nav-btn{ background:var(--primary); color:#fff; text-decoration:none; padding:11px 20px; border-radius:6px; font-weight:600; font-size:.95rem; }
+.nav-btn:hover{ background:var(--secondary); } .nav-btn.disabled{ opacity:.4; pointer-events:none; }
+.divider{ text-align:center; margin:36px 0 12px; color:var(--accent); font-size:1.4rem; letter-spacing:6px; }
+footer,.book-footer{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; border-top:2px solid var(--accent); padding:24px 0 0; margin-top:70px; font-size:.9rem; color:var(--text-muted); }
+footer b{ color:var(--primary); }
+.cpp-watermark{ position:fixed; z-index:9999; pointer-events:none; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-family:'Inter',sans-serif; font-size:80px; font-weight:900; color:rgba(15,23,42,.05); white-space:nowrap; letter-spacing:2px; }
+/* tiled watermark — baked as a repeating background pattern (image data), not a single
+   selectable text node, so it cannot be stripped out with one click/delete in a PDF editor */
+body{ background-repeat:repeat; background-image:url("images/watermark-tile.webp"); }
+
+/* toc box (front matter) */
+.toc{ background:#f8fafc; border:1px solid var(--border); border-left:6px solid var(--primary); border-radius:8px; padding:18px 26px; margin:24px 0 34px; }
+.toc h3{ margin-top:0; }
+
+/* title / closing page (front & back matter) — single page, no vh flex, no cross-page scatter */
+.title-page{ text-align:center; padding:0; }
+.title-page .eyebrow{ font-family:'Inter',sans-serif; font-size:.72rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin:0 0 14px; }
+.title-page .cover-plate{ margin:0 auto 26px; max-width:340px; }
+.title-page .cover-plate img{ width:100%; border-radius:10px; box-shadow:0 20px 40px -12px rgba(0,0,0,.3); }
+.title-page .book-title{ font-family:'Inter',sans-serif; font-weight:900; font-size:2.6rem; line-height:1.12; color:var(--primary); margin:0 0 14px; }
+.title-page .book-subtitle{ font-family:'Inter',sans-serif; font-size:1rem; color:var(--text-muted); max-width:520px; margin:0 auto 22px; line-height:1.5; }
+.title-page .byline{ font-family:'Inter',sans-serif; font-size:1rem; color:var(--primary); font-weight:700; margin-top:8px; }
+.title-page .byline span{ display:block; font-weight:500; font-size:.82rem; color:var(--text-muted); margin-top:3px; }
+.closing-page{ text-align:center; padding:60px 0 0; }
+.closing-page .cover-plate{ margin:0 auto 22px; max-width:300px; }
+.closing-page .cover-plate img{ width:100%; border-radius:10px; box-shadow:0 20px 40px -12px rgba(0,0,0,.3); }
+.closing-page .quote{ font-family:'Inter',sans-serif; font-style:italic; font-size:1.1rem; color:var(--primary); max-width:480px; margin:0 auto 12px; line-height:1.55; }
+.closing-page .sign{ font-family:'Inter',sans-serif; color:var(--accent); letter-spacing:1.5px; font-size:.82rem; font-weight:700; text-transform:uppercase; }
+
+/* ---------- PRINT: professional textbook density ---------- */
+@page{
+  size:A4;
+  margin:20mm 18mm 20mm 18mm;
+}
+@page:first{ margin-top:20mm; }
+
+@media print{
+  body{ background:#fff; max-width:100%; margin:0; padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+        font-size:10.3pt; line-height:1.5;
+        background-repeat:repeat; background-image:url("images/watermark-tile.webp"); }
+  .nav-buttons,.nav-btn{ display:none !important; }
+
+  .cover{ box-shadow:none; padding:24px 28px; margin:0 0 20px; border-radius:8px; }
+  .cover h1{ font-size:2rem; margin:0 0 10px; }
+  .cover h1 .subtitle{ font-size:.66rem; padding:5px 11px; margin-bottom:12px; }
+  .cover .meta{ margin-top:14px; gap:16px; font-size:.72rem; }
+
+  h2{ font-size:16pt; margin:24px 0 12px; }
+  h2::before{ width:4px; height:20px; }
+  h2 .chip{ font-size:.64rem; padding:3px 9px; }
+  h3{ font-size:12.5pt; margin:16px 0 7px; }
+  h4{ font-size:10.5pt; margin:11px 0 5px; }
+  p{ margin:0 0 10px; orphans:3; widows:3; }
+  .intro-text{ font-size:11pt; line-height:1.55; margin-bottom:16px; }
+  ul,ol{ margin:5px 0 12px; padding-left:20px; }
+  li{ margin-bottom:4px; }
+
+  .callout,.box{ padding:13px 16px; margin:16px 0; font-size:9.8pt; line-height:1.48; border-radius:7px; }
+  .callout-title,.box-title{ font-size:9.2pt; margin-bottom:7px; }
+  .mnemonic{ padding:10px 15px; margin:14px 0; font-size:9.8pt; }
+  .mnemonic .lbl{ font-size:.62rem; padding:2px 8px; }
+
+  .table-container,.tbl-wrap{ margin:16px 0; }
+  caption,.table-caption{ padding:8px 14px; font-size:9pt; }
+  thead th{ padding:8px 12px; font-size:9pt; }
+  tbody td{ padding:7px 12px; font-size:9pt; }
+
+  .kv-grid{ gap:8px; margin:8px 0 14px; }
+  .kv-card{ padding:8px 10px; }
+  .kv-card .k{ font-size:.62rem; }
+  .kv-card .v{ font-size:.95rem; }
+
+  .cinematic-figure{ margin:20px 0; }
+  .cinematic-figure img{ height:130mm; width:auto; max-width:100%; margin:0 auto; display:block; border-radius:8px; }
+  .cinematic-figure figcaption{ font-size:8.5pt; margin-top:8px; }
+  .fig-pending{ padding:30px 20px; }
+
+  details.qa{ padding:9px 14px; margin:6px 0 12px; font-size:9.5pt; }
+  .q{ margin:12px 0 4px; }
+  .opts{ margin:4px 0; } .opts li{ margin:3px 0; }
+
+  .title-page .book-title{ font-size:2.1rem; }
+  .title-page .cover-plate{ max-width:260px; }
+  .title-page .cover-plate img,.closing-page .cover-plate img{ height:100mm; width:auto; max-width:100%; margin:0 auto; }
+  .closing-page{ padding:40px 0 0; }
+
+  .callout,.box,.table-container,.tbl-wrap,.mnemonic,.cinematic-figure,.kv-grid,details.qa,.title-page,.closing-page{ break-inside:avoid; }
+  h2,h3{ break-after:avoid; }
+  details.qa,details.qa>*{ display:block !important; }
+
+  footer,.book-footer{ margin-top:26px; padding-top:12px; font-size:8pt; }
+  .cpp-watermark{ font-size:60px; }
+}
