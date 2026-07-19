@@ -149,7 +149,10 @@ affordances anywhere in the simulator UI; ContentProtection conventions apply.
 ## 8. Content workflow (Iron Rules 1 & 4)
 
 1. Draft scenario scripts are written by the strongest available model from the Captain's book
-   chapters + ICAO Doc 9432/Annex 10, **with citations per transmission**.
+   chapters + ICAO Doc 9432/Annex 10, **with citations per transmission**. The primary-source
+   library is on disk: `C:\Users\Admin\Downloads\radio fable reference\` (Doc 9432 4th ed.,
+   Doc 4444 PANS-ATM, Annex 10 Vol I; Vol II–V in the zip alongside) — verify against these,
+   not memory.
 2. Every script is a **DRAFT until Capt. Pahil approves it** — R/T instruction is literally his
    rating; nothing publishes on model authority.
 3. Candidate scenario set (DRAFT — Captain to correct against the real exam pattern):

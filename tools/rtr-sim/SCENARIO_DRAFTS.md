@@ -9,7 +9,48 @@ scenario.** Drafted 2026-07-19 by Claude Fable 5 per `RTR_SIMULATOR_DESIGN.md` �
 - `[CAR III(n)]` — CAR Series G Part VI, Section 7 (dated 27.11.2025), Annexure A syllabus,
   Part III Radio Telephony item (n). (Scanned PDF in `Downloads\rtr`, transcribed visually
   2026-07-19.)
-- Phraseology aligns with ICAO Annex 10 Vol II / Doc 9432 as taught in the book.
+- `[9432 §x.y]` — ICAO Doc 9432 *Manual of Radiotelephony*, 4th ed. 2007; `[4444 §12.x]` —
+  ICAO Doc 4444 PANS-ATM Ch.12 phraseologies; `[A10-II §5.3.x]` — Annex 10 Vol II (Jul 2016,
+  Am.92). All three now on disk in `C:\Users\Admin\Downloads\radio fable reference\`.
+
+**VERIFICATION PASS 2026-07-19 (Fable, against the primary ICAO sources above):**
+- **Confirmed near-verbatim by ICAO models:** radio-check format [9432 §2.7]; taxi +
+  give-way [9432 §4.4 model]; conditional line-up condition-first-and-last [9432 §4.5];
+  go-around & pilot "going around" [9432 §4.8.3]; runway-vacated reporting [9432 §4.4];
+  position-report element order [9432 §3.4.1]; "looking out"/"traffic in sight" [9432 §6.4];
+  clock-code traffic descriptors [4444 §12.4.1.8]; MAYDAY/PAN-PAN ×3 and message elements
+  [9432 §9.2.1, A10-II §5.3.2.1]; squawk-7700 note [9432 §9.2.1.2]; silence imposition &
+  termination structure [9432 §9.2.2–9.2.3, A10-II §5.3.2.2/5.3.2.5.3]; braking action
+  "medium to poor" [4444 §12 runway-report]; QNH-only readback of a weather transmission
+  [9432 §10.1 model].
+- **Corrections applied in this revision (v2):**
+  1. RVR values follow the WHOLE-HUNDREDS rule ("six hundred"), NOT digit-by-digit
+     [9432 §2.4.3 lists RVR under the hundred/thousand rule; §10.2 model]. Values changed
+     to clean hundreds; readback downgraded from CRITICAL to good-practice (ICAO model
+     acknowledges RVR with "roger" [9432 §10.2]; RVR is not on the mandatory-readback list).
+  2. Hold phrase is "EXPECT FURTHER CLEARANCE AT (time)" [9432 §8.7 model]; "onward
+     clearance" kept as an accepted variant (the concept term the book uses).
+  3. Avoiding action: ICAO transmission is "TURN LEFT/RIGHT IMMEDIATELY HEADING (xxx) TO
+     AVOID TRAFFIC (clock, distance)" [4444 §12.4.1.8 e]; the spoken prefix "avoiding
+     action" is UK CAP413/common practice, not ICAO — kept as an accepted ATC variant,
+     **Captain to decide which the sim voices by default**.
+  4. Conditional line-up now includes "and wait" [9432 §4.5 model: "BEHIND THE LANDING
+     AIRBUS LINE UP AND WAIT BEHIND"].
+  5. Level instructions include "TO" ("climb TO flight level…", "descend TO … feet") per
+     every 9432 model dialogue; pilot readbacks accepted with or without "to".
+  6. Distress-silence beats now use the aeronautical signals only: "ALL STATIONS …
+     STOP TRANSMITTING, MAYDAY" and "ALL STATIONS … DISTRESS TRAFFIC ENDED"
+     [9432 §9.2.2–9.2.3, A10-II §5.3.2.2/5.3.2.5.3]. SEELONCE MAYDAY / SEELONCE FEENEE are
+     the MARITIME mobile-service signals (RTR written syllabus item I(iv)) — moved to the
+     debrief as taught knowledge, not ATC dialogue.
+- **⚠️ For the Captain — two candidate errata in the published book (your call, with the
+  working shown, per the covenant):** (a) Ch21's exam-trap line "…but still spoken digit by
+  digit" for RVR contradicts both its own transcript ("six hundred metres") and 9432 §2.4.3;
+  (b) Ch20 §20.4 presents SEELONCE MAYDAY/FEENEE as the standard aeronautical signal with
+  "STOP TRANSMITTING MAYDAY" as the alternative — Annex 10 Vol II and 9432 use STOP
+  TRANSMITTING/DISTRESS TRAFFIC ENDED for aeronautical RT; SEELONCE belongs to the maritime
+  procedure (still examinable in the written paper). Also a style note: the book's
+  transcripts omit "TO" in level instructions; ICAO models include it.
 
 **Conventions (consistent across scenarios, following the book's own transcripts):**
 - Stations: Delhi Delivery/Ground/Tower/Approach, Chennai Control — the book's convention.
@@ -68,11 +109,12 @@ conditional clearances, circuit departure reports.
    debrief with the rule: "take-off" only when a take-off clearance is issued or cancelled
    [Ch15 §15.5 exam trap; CAR III(iii)]
 
-5. **ATC:** "VT-ABC, behind the landing Cessna, line up runway two seven behind."
-   **PILOT:** "Behind the landing Cessna, line up runway two seven behind, VT-ABC."
+5. **ATC:** "VT-ABC, behind the landing Cessna, line up runway two seven and wait, behind."
+   **PILOT:** "Behind the landing Cessna, lining up and waiting behind runway two seven,
+   VT-ABC." *(also accepted: "…line up runway two seven and wait behind, VT-ABC")*
    — slots: condition FIRST **and** the word "behind" repeated at the END `CRITICAL` (a
    conditional clearance read back without the condition is the classic practical fail),
-   runway `CRITICAL` [Ch15 §15.5 worked example; Ch14 §14.7]
+   runway `CRITICAL` [Ch15 §15.5 worked example; Ch14 §14.7; 9432 §4.5 model]
    *probe (condition dropped):* ATC: "VT-ABC, I say again, BEHIND the landing Cessna, line up
    runway two seven behind — read back the condition."
 
@@ -101,8 +143,8 @@ QNH 1013. *Exam mapping:* CAR III(i) issue of clearance & read-back, III(iii) st
 
 1. **PILOT:** "Delhi Delivery, Ghostair two zero five, stand two one, request IFR clearance
    to Mumbai, information Delta." [Ch15 §15.2]
-   **ATC:** "Ghostair two zero five, cleared to Mumbai via PAPA two departure, climb flight
-   level one zero zero, squawk four three two one."
+   **ATC:** "Ghostair two zero five, cleared to Mumbai via PAPA two departure, climb to
+   flight level one zero zero, squawk four three two one."
    **PILOT:** "Cleared to Mumbai via PAPA two departure, climb flight level one zero zero,
    squawk four three two one, Ghostair two zero five."
    — slots: clearance limit `CRITICAL`, SID `CRITICAL`, level (digit-by-digit "one zero zero")
@@ -171,9 +213,11 @@ discipline, holding clearance + EAT.
    *probe (level missed):* ATC: "Ghostair Alfa Bravo Charlie, say your level."
 
 3. **PILOT:** "Ghostair Alfa Bravo Charlie, request climb flight level one nine zero."
-   **ATC:** "Ghostair Alfa Bravo Charlie, climb flight level one nine zero, report reaching."
-   **PILOT:** "Climb flight level one nine zero, will report reaching, Ghostair Alfa Bravo
-   Charlie." — slots: level `CRITICAL`, report-reaching `minor` [Ch18 §18.3; Ch14 §14.7]
+   **ATC:** "Ghostair Alfa Bravo Charlie, climb to flight level one nine zero, report
+   reaching."
+   **PILOT:** "Climb to flight level one nine zero, will report reaching, Ghostair Alfa
+   Bravo Charlie." *(readback without "to" accepted)* — slots: level `CRITICAL`,
+   report-reaching `minor` [Ch18 §18.3; Ch14 §14.7; 9432 §3.3 models]
 
 4. **PILOT (later):** "Ghostair Alfa Bravo Charlie, reaching flight level one nine zero."
    **ATC:** "Ghostair Alfa Bravo Charlie, roger, maintain flight level one nine zero."
@@ -182,11 +226,13 @@ discipline, holding clearance + EAT.
    was said [Ch18 §18.3 exam trap])*
 
 5. **ATC:** "Ghostair Alfa Bravo Charlie, hold at SIERRA, flight level one nine zero, expect
-   onward clearance at one five."
-   **PILOT:** "Hold at SIERRA, flight level one nine zero, expect onward clearance at one
-   five, Ghostair Alfa Bravo Charlie." — slots: fix `CRITICAL`, level `CRITICAL`, time
-   `CRITICAL` [Ch18 §18.5]
-   *probe (time missed):* ATC: "Ghostair Alfa Bravo Charlie, confirm onward clearance time?"
+   further clearance at one five."
+   **PILOT:** "Hold at SIERRA, flight level one nine zero, expect further clearance at one
+   five, Ghostair Alfa Bravo Charlie." *("onward clearance" accepted as variant)* — slots:
+   fix `CRITICAL`, level `CRITICAL`, time `CRITICAL` [Ch18 §18.5; 9432 §8.7 model "EXPECT
+   FURTHER CLEARANCE AT 02"]
+   *probe (time missed):* ATC: "Ghostair Alfa Bravo Charlie, confirm expected clearance
+   time?"
 
 6. **ATC:** "Ghostair Alfa Bravo Charlie, cleared SIERRA direct BUBKO, descend flight level
    one one zero, contact Chennai Control one three two decimal four."
@@ -209,8 +255,8 @@ traffic info replies, avoiding action, the vector-to-ILS sequence.
    squawk digits `CRITICAL` [Ch19 §19.1, §19.4; Ch14 §14.7]
 
 2. **ATC:** "Ghostair Alfa Bravo Charlie, identified one five miles north of the field,
-   descend flight level six zero, expect ILS approach runway two seven."
-   **PILOT:** "Descend flight level six zero, expect ILS runway two seven, Ghostair Alfa
+   descend to flight level six zero, expect ILS approach runway two seven."
+   **PILOT:** "Descend to flight level six zero, expect ILS runway two seven, Ghostair Alfa
    Bravo Charlie." — slots: level `CRITICAL`; **trap:** a readback of "CLEARED ILS" =
    `CRITICAL` error (branch: ATC "negative, expect ILS — I say again, EXPECT")
    [Ch17 §17.3 "expect vs clearance"; Ch19 §19.1]
@@ -221,18 +267,21 @@ traffic info replies, avoiding action, the vector-to-ILS sequence.
    "Traffic in sight, Ghostair Alfa Bravo Charlie." — slots: looking out / in sight `minor`
    [Ch19 §19.3; CAR III(iv)]
 
-4. **ATC:** "Ghostair Alfa Bravo Charlie, avoiding action, turn left immediately heading
-   three six zero, traffic now one o'clock, two miles."
-   **PILOT:** "Avoiding action, left heading three six zero, Ghostair Alfa Bravo Charlie."
+4. **ATC:** "Ghostair Alfa Bravo Charlie, turn left immediately heading three six zero to
+   avoid traffic, one o'clock, two miles." *(ICAO wording [4444 §12.4.1.8 e]; common-practice
+   variant with "avoiding action" prefix [Ch19 §19.3] also available — Captain picks the
+   sim's default voice line)*
+   **PILOT:** "Left immediately heading three six zero, Ghostair Alfa Bravo Charlie."
+   *(accepted: "left heading three six zero" / with "avoiding action" echoed)*
    — slots: IMMEDIATE readback, heading `CRITICAL`; delay > a beat = flagged in debrief
-   [Ch19 §19.3; Ch14 §14.7]
+   [Ch19 §19.3; Ch14 §14.7; 9432 §6.4 model "RIGHT HEADING 110"]
 
 5. **ATC:** "Ghostair Alfa Bravo Charlie, clear of traffic, resume own navigation direct
    PAPA."
    **PILOT:** "Resume own navigation direct PAPA, Ghostair Alfa Bravo Charlie." `minor`
    [Ch19 §19.2, §19.6]
 
-6. **ATC:** "Ghostair Alfa Bravo Charlie, turn left heading two one zero, descend two
+6. **ATC:** "Ghostair Alfa Bravo Charlie, turn left heading two one zero, descend to two
    thousand five hundred feet, QNH one zero one three."
    **PILOT:** "Left heading two one zero, descend two thousand five hundred feet, QNH one
    zero one three, Ghostair Alfa Bravo Charlie." — slots: heading `CRITICAL`, altitude (whole
@@ -260,10 +309,13 @@ caution advisories, the go-around, vacating discipline.
 
 1. **PILOT:** "Delhi Tower, Ghostair one zero eight, ILS runway two seven."
    **ATC:** "Ghostair one zero eight, Delhi Tower, continue approach, RVR runway two seven,
-   touchdown six hundred metres, midpoint five five zero, stop-end five zero zero."
-   **PILOT:** "Continue approach, RVR six hundred, five five zero, five zero zero metres,
-   Ghostair one zero eight." — slots: "continue approach" (NOT "cleared to land") `CRITICAL`,
-   RVR three values in order `CRITICAL` [Ch21 §21.2; Ch15 §15.7; CAR III(ix)]
+   touchdown six hundred metres, midpoint five hundred metres, stop-end four hundred metres."
+   **PILOT:** "Continue approach, RVR six hundred, five hundred, four hundred metres,
+   Ghostair one zero eight." *(for the RVR part, "roger" is also accepted — the ICAO model
+   acknowledges RVR with "roger" [9432 §10.2] and RVR is not a mandatory-readback item;
+   full readback taught as best practice)* — slots: "continue approach" (NOT "cleared to
+   land") `CRITICAL`; RVR values IF read back must be correct and in order (wrong value =
+   `CRITICAL`) [Ch21 §21.2; Ch15 §15.7; CAR III(ix); 9432 §2.4.3 whole-hundreds rule + §10.2]
 
 2. **ATC:** "Ghostair one zero eight, wind two four zero degrees one eight knots gusting two
    eight, QNH one zero zero nine, caution wind shear reported on short final."
@@ -326,7 +378,7 @@ squawk 7700, silence imposition/termination awareness.
    `CRITICAL`, intentions `CRITICAL`, position+level `CRITICAL` [Ch20 §20.5, §20.1; CAR III(viii)]
    *probe (position missed):* ATC: "VT-ABC, say your position."
 
-2. **ATC:** "VT-ABC, Delhi Approach, roger your PAN, cleared direct to the field, descend
+2. **ATC:** "VT-ABC, Delhi Approach, roger your PAN, cleared direct to the field, descend to
    three thousand five hundred feet, QNH one zero one three, number one, medical and fire
    services alerted."
    **PILOT:** "Cleared direct, descend three thousand five hundred feet, QNH one zero one
@@ -349,15 +401,18 @@ squawk 7700, silence imposition/termination awareness.
    [Ch20 §20.3]
 
 5. *(Another station calls with a routine request — sim plays it.)*
-   **ATC (to that station):** "Station calling, STOP TRANSMITTING, MAYDAY. SEELONCE MAYDAY."
-   — *awareness beat, not scored: the student hears silence imposed* [Ch20 §20.4]
+   **ATC (to that station):** "All stations, Delhi Approach, STOP TRANSMITTING, MAYDAY."
+   — *awareness beat, not scored: the student hears silence imposed* [Ch20 §20.4; 9432
+   §9.2.2; A10-II §5.3.2.2 — debrief teaches SEELONCE MAYDAY as the maritime-service
+   equivalent, still examinable in the written paper, syllabus item I(iv)]
 
 6. **ATC:** "VT-ABC, field at your twelve o'clock, one zero miles, cleared to land runway
    two seven, no traffic."
    **PILOT:** "Cleared to land runway two seven, VT-ABC." `CRITICAL` [Ch15 §15.7]
 
 7. *(Safe landing.)* **ATC (broadcast):** "All stations, Delhi Approach, DISTRESS TRAFFIC
-   ENDED, SEELONCE FEENEE." — *awareness beat: silence lifted* [Ch20 §20.4] *(end — debrief
+   ENDED." — *awareness beat: silence lifted* [Ch20 §20.4; 9432 §9.2.3; A10-II §5.3.2.5.3 —
+   debrief teaches SEELONCE FEENEE as the maritime equivalent] *(end — debrief
    walks the full distress-message format and the PAN→MAYDAY escalation decision.)*
 
 ---
@@ -368,6 +423,8 @@ squawk 7700, silence imposition/termination awareness.
   `RTR_SIMULATOR_DESIGN.md` §4. Convert only APPROVED scenarios.
 - The number-normalization layer must accept both spoken-digit and figure forms for every
   numeric slot above [Ch13 §13.4–13.5], and the phonetic alphabet for VT-ABC [Ch13 §13.2].
+  RVR/altitude/visibility values normalize under the whole-hundreds/thousands rule
+  [9432 §2.4.3]; level readbacks accepted with or without "to".
 - Forbidden-phrase list (flag + teach in debrief, never hard-fail): "over and out"
   [Ch13 §13.7 exam trap], "roger" in reply to a yes/no question or an instruction to comply
   [Ch13 §13.7], "take-off" outside clearance readback [Ch15 §15.5].
