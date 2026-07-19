@@ -178,8 +178,22 @@ no source-name leaks (guard), ONE deploy at the end of each phase.
 
 ## 10. Open items
 
-- Feature name (Captain's call; candidates: "Ghost Tower", "R/T Live", "The Radio Room").
-- Neural TTS provider (shared with regional-languages decision).
-- Voice-clone consent for the instructor/debrief voice.
-- Whether simulator attempts appear on `/dashboard` alongside exam papers (recommended: yes,
-  as its own card — but after v1 ships).
+*Updated 2026-07-19 — the Captain delegated the pending decisions ("you become my voice"):*
+- ~~Feature name~~ → **"Ghost Tower"** (decided under delegation; his override stands).
+- ~~Avoiding-action default~~ → **ICAO wording** ("turn left immediately heading … to avoid
+  traffic"); "avoiding action" prefix accepted as a variant.
+- ~~Scenario drafts~~ → v2 approved for build under delegation; SCN-1 live as
+  `lib/rtr-sim/scn1.ts`. Scenarios 2–6 convert on the same basis when built.
+- Neural TTS provider (shared with regional-languages decision) — still open.
+- Voice-clone consent for the instructor/debrief voice — **explicitly NOT covered by the
+  delegation**; remains the Captain's personal consent to give.
+- Simulator attempts on `/dashboard` (recommended: yes, own card — after v1 bedding-in).
+
+## 11. v1 shipped (2026-07-19)
+
+`/rtr-simulator` — Ghost Tower v1: scenario 1 (VFR departure, 10 transmissions) free and
+playable; PTT voice + tap composer; radio-atmosphere layer (squelch + hiss; watchdog so a
+silent synthesis can never hang the flow); examiner probe/correction branches (−1 per probe);
+debrief gradesheet vs the 50% Part-2 pass mark; callsign position policy (initial calls/reports
+carry it early, read-backs must close with it); scenarios 2–6 shown as locked sign-in teasers
+(gating table + RLS still to build with them). Navbar + sitemap + Exam-Mode cross-link wired.

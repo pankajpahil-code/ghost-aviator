@@ -9,20 +9,6 @@
   <link rel="stylesheet" href="/content/radio-telephony/_assets/book_layout.css">
 
   <script>
-    window.addEventListener('load', () => {
-      const container = document.createElement('div');
-      container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; display: flex; justify-content: center; align-items: center;';
-      const wrapper = document.createElement('div');
-      wrapper.style.cssText = 'transform: rotate(-45deg); width: 200vw; height: 200vh; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 80px 150px; opacity: 0.08;';
-      for (let i = 0; i < 100; i++) {
-        const wm = document.createElement('div');
-        wm.style.cssText = 'font-size: 32px; font-weight: 900; color: black; white-space: nowrap; font-family: Arial;';
-        wm.innerText = 'www.ghostaviator.com | Capt. Pankaj Pahil';
-        wrapper.appendChild(wm);
-      }
-      container.appendChild(wrapper);
-      document.body.appendChild(container);
-    });
 
     window.addEventListener('beforeprint', () => {
       document.querySelectorAll('.answer-block').forEach(el => el.style.display = 'block');
@@ -64,7 +50,7 @@
 
   <nav class="navbar">
     <div class="navbar-brand"><i class="fas fa-book"></i> The Complete RTR(A) Examination Book</div>
-    <div class="nav-user"><i class="fas fa-plane"></i> Capt. Pankaj Pahil</div>
+    <div class="nav-user"><i class="fas fa-plane"></i> RTR(A) Candidate</div>
   </nav>
 
   <div class="container">
@@ -87,7 +73,7 @@
         <li>Define the RTR(A) licence, the privileges it grants, and the aeronautical mobile service it authorises you to operate in.</li>
         <li>Define aeronautical station, aircraft station and radiotelephony precisely, as the examiner expects.</li>
         <li>Describe the structure of the examination — the written/oral theory paper and the practical transmission test — and how each is scored.</li>
-        <li>State the validity, attempts, exemptions and renewal rules (figures to be entered from the current CAR).</li>
+        <li>State the validity, attempts, exemptions and renewal rules (3 years validity, 3 attempts, written-only exemptions, and lifetime validity with age 80 renewal).</li>
         <li>Explain the layered legal framework — Act, Rules, CAR, ICAO Annex 10, ITU Radio Regulations — and how they interlock.</li>
         <li>Use the study system in this book and follow a structured study plan.</li>
       </ul>
@@ -182,7 +168,7 @@
 
     <div class="callout box-blue" style="border-left-color: var(--success); background:#f0fdf4;">
       <div class="callout-title" style="color:var(--success);"><i class="fas fa-calculator"></i> Marks, weighting & pass standard</div>
-      <p style="margin:0;">Reported section weighting on the theory paper is approximately:<br>Regulations & Procedure &approx; 30%, Radio Principles & Practice &approx; 40%, Radiotelephony &approx; 20%+. <strong>Exact total marks, the pass mark, and time allowed must be quoted from the current CAR</strong> — enter them below and in the table at 1.4.</p>
+      <p style="margin:0;">Reported section weighting on the theory paper is approximately:<br>Regulations & Procedure &approx; 30%, Radio Principles & Practice &approx; 40%, Radiotelephony &approx; 20%+. <strong>The pass marks are Written = 70% and Practical = 50% under CAR 2025.</strong></p>
     </div>
 
     <div class="callout box-red">
@@ -202,12 +188,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td><strong>Validity of a part-pass</strong></td><td>A cleared part is valid for a fixed window within which the remaining part must be passed — <em>insert exact period.</em></td></tr>
-          <tr><td><strong>Number of attempts / re-sit interval</strong></td><td><em>Insert permitted attempts and minimum gap between attempts.</em></td></tr>
-          <tr><td><strong>Pass mark (each part)</strong></td><td><em>Insert minimum percentage.</em></td></tr>
-          <tr><td><strong>Minimum age</strong></td><td><em>Insert minimum age to hold the licence.</em></td></tr>
-          <tr><td><strong>Exemptions</strong></td><td><em>Insert categories exempt from part of the exam (e.g. holders of certain higher RTF qualifications or flight crew licences).</em></td></tr>
-          <tr><td><strong>Validity & renewal of the licence</strong></td><td><em>Insert the licence validity period and any renewal/currency requirement.</em></td></tr>
+          <tr><td><strong>Validity of a part-pass</strong></td><td>3 years (36 months). Practical attempts are valid for 3 years.</td></tr>
+          <tr><td><strong>Number of attempts / re-sit interval</strong></td><td>3 practical attempts allowed. There is no minimum re-sit interval.</td></tr>
+          <tr><td><strong>Pass mark (each part)</strong></td><td>Written = 70%; Practical = 50%.</td></tr>
+          <tr><td><strong>Minimum age</strong></td><td>18 years.</td></tr>
+          <tr><td><strong>Exemptions</strong></td><td>Written exam (Part 1) only. Exempt categories: military pilots (1000 hrs flying experience), old 1954 rules licence holders, and Commonwealth/Philippines FRTOL holders. No practical exam exemptions.</td></tr>
+          <tr><td><strong>Validity & renewal of the licence</strong></td><td>Lifetime validity. Yearly renewal required only after age 80 based on 3 months of experience in the preceding 1 year.</td></tr>
         </tbody>
       </table>
     </div>
@@ -429,7 +415,7 @@
           <tr><td><strong>Governing Act / Rules</strong></td><td>Bharatiya Vayuyan Adhiniyam 2024 / RTR (Restricted) Rules 2025</td></tr>
           <tr><td><strong>Syllabus source</strong></td><td>CAR Section 7, Series G, Part VI</td></tr>
           <tr><td><strong>International foundations</strong></td><td>ICAO Annex 10 (telecom standards) · ITU Radio Regulations (spectrum)</td></tr>
-          <tr><td><strong>Pass mark / validity / attempts</strong></td><td><em>Author to insert from current CAR</em></td></tr>
+          <tr><td><strong>Pass mark / validity / attempts</strong></td><td>Written = 70%, Practical = 50% | Valid for 3 years | 3 practical attempts</td></tr>
         </tbody>
       </table>
     </div>
@@ -742,13 +728,13 @@
         <li><strong>Aeronautical station</strong> = land; <strong>Aircraft station</strong> = airborne; <strong>Radiotelephony</strong> = communication by speech.</li>
         <li>Exam = <strong>theory</strong> (regs / radio principles / RTF) + <strong>practical & oral</strong>; pass <strong>both</strong>. The oral fails most people.</li>
         <li>Law stack: <strong>Act 2024</strong> &rarr; <strong>Rules 2025</strong> &rarr; <strong>CAR Sec 7</strong>; foundations <strong>ICAO Annex 10 + ITU Radio Regs</strong>.</li>
-        <li>Insert & memorise the exact <strong>pass mark, validity, attempts, age</strong> from the current CAR.</li>
+        <li>Remember: pass mark (Written 70% / Practical 50%), validity of part-pass (3 years), attempts (3 practical attempts), and minimum age (18 years).</li>
       </ul>
     </div>
 
     <footer class="book-footer">
-      <span>© Capt. Pankaj Pahil</span>
-      <span>Ghost Aviator · www.GhostAviator.com</span>
+      <span>© Ghost Aviator</span>
+      <span>www.GhostAviator.com</span>
       <span>Chapter 1 (reference depth)</span>
     </footer>
 
