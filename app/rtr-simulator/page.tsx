@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Radio, Mic, BookOpen, Award } from "lucide-react";
+import { Radio, Mic, BookOpen, Award, Dices } from "lucide-react";
 import GhostTower, { LockedScenarios } from "./GhostTower";
 
 export const metadata: Metadata = {
@@ -34,6 +34,7 @@ export default function RtrSimulatorPage() {
             <span className="flex items-center gap-1.5"><Radio className="w-4 h-4" /> ATC voice with real radio feel</span>
             <span className="flex items-center gap-1.5"><Award className="w-4 h-4" /> Graded to the 50% Part-2 pass mark</span>
             <span className="flex items-center gap-1.5"><BookOpen className="w-4 h-4" /> Every rule cross-linked to the RTR(A) book</span>
+            <span className="flex items-center gap-1.5"><Dices className="w-4 h-4" /> No two flights the same — airport, weather, callsign &amp; traffic roll fresh</span>
           </div>
         </div>
       </div>

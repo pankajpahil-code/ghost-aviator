@@ -14,7 +14,9 @@ import {
 import {
   scoreTransmission, matchCallsign, scoreScenario,
 } from "@/lib/rtr-sim/engine.mjs";
-import { SCN1, type SimStep } from "@/lib/rtr-sim/scn1";
+import { rollWorld, randomSeed } from "@/lib/rtr-sim/world.mjs";
+import { buildVfrDeparture } from "@/lib/rtr-sim/director.mjs";
+import type { SimStep } from "@/lib/rtr-sim/scn1";
 
 /* ----------------------------- ATC voice pick ----------------------------- */
 // Same philosophy as the notes read-aloud: quality is the device's; we only
@@ -108,13 +110,22 @@ type StepOutcome = {
   res: ReturnType<typeof scoreTransmission>;
   saidText: string;
   retried: boolean;
+  /** Voice-delivery metrics (speech rate, filler words) — voice attempts only. */
+  delivery: { wpm: number; fillers: number } | null;
 };
 
-const scn = SCN1;
+const FILLER_RE = /\b(uh|um|umm|ah|ahh|hmm|haan)\b/gi;
 
 /* ================================ Component ================================ */
 export default function GhostTower() {
   const [phase, setPhase] = useState<Phase>("brief");
+  // Seed 0 renders deterministically on the server; the real roll happens
+  // after mount (avoids a hydration mismatch), gated by seedReady.
+  const [seed, setSeed] = useState(0);
+  const [seedReady, setSeedReady] = useState(false);
+  const [mode, setMode] = useState<"learn" | "practice">("learn");
+  const [typedText, setTypedText] = useState("");
+  const scn = useMemo(() => buildVfrDeparture(rollWorld(seed)), [seed]);
   const [stepIndex, setStepIndex] = useState(0);
   const [log, setLog] = useState<LogEntry[]>([]);
   const [outcomes, setOutcomes] = useState<StepOutcome[]>([]);
@@ -130,6 +141,8 @@ export default function GhostTower() {
   const retriedRef = useRef(false);
   const recRef = useRef<SRInstance | null>(null);
   const heardRef = useRef("");
+  const pttStartRef = useRef(0);
+  const lastDeliveryRef = useRef<{ wpm: number; fillers: number } | null>(null);
   const lastAtcRef = useRef("");
   const logBoxRef = useRef<HTMLDivElement | null>(null);
   const busyRef = useRef(false);
@@ -156,6 +169,12 @@ export default function GhostTower() {
   useEffect(() => {
     logBoxRef.current?.scrollTo({ top: logBoxRef.current.scrollHeight, behavior: "smooth" });
   }, [log]);
+
+  // Roll the real flight after mount (server rendered the deterministic seed 0).
+  useEffect(() => {
+    setSeed(randomSeed());
+    setSeedReady(true);
+  }, []);
 
   const speakAtc = useCallback((text: string, after?: () => void) => {
     lastAtcRef.current = text;
@@ -191,10 +210,11 @@ export default function GhostTower() {
     const st = scn.steps[i];
     retriedRef.current = false;
     setComposed([]);
+    setTypedText("");
     setLog(l => [...l, { who: "sys", text: st.cue }]);
     if (st.atcBefore) speakAtc(st.atcBefore, () => setInputOpen(true));
     else setInputOpen(true);
-  }, [speakAtc]);
+  }, [speakAtc, scn]);
 
   const start = useCallback(() => {
     fx.current.ensure();
@@ -220,7 +240,7 @@ export default function GhostTower() {
     };
     if (outcome.step.atcAfter) speakAtc(outcome.step.atcAfter, proceed);
     else proceed();
-  }, [stepIndex, beginStep, speakAtc]);
+  }, [stepIndex, beginStep, speakAtc, scn]);
 
   const onTransmit = useCallback((text: string) => {
     const clean = text.trim();
@@ -259,8 +279,9 @@ export default function GhostTower() {
       speakAtc(line, () => { setInputOpen(true); busyRef.current = false; });
       return;
     }
-    finishStep({ step, res, saidText: clean, retried: retriedRef.current });
-  }, [step, inputOpen, speakAtc, finishStep]);
+    finishStep({ step, res, saidText: clean, retried: retriedRef.current, delivery: lastDeliveryRef.current });
+    lastDeliveryRef.current = null;
+  }, [step, inputOpen, speakAtc, finishStep, scn]);
 
   /* ------------------------------ Voice input ------------------------------ */
   const pttDown = useCallback(() => {
@@ -278,11 +299,21 @@ export default function GhostTower() {
     rec.onend = () => {
       setPtt(false);
       fx.current.click();
-      if (heardRef.current) onTransmit(heardRef.current);
+      const heard = heardRef.current;
+      if (heard) {
+        const durSec = Math.max(0.6, (performance.now() - pttStartRef.current) / 1000);
+        const words = heard.trim().split(/\s+/).length;
+        lastDeliveryRef.current = {
+          wpm: Math.round((words / durSec) * 60),
+          fillers: (heard.match(FILLER_RE) ?? []).length,
+        };
+        onTransmit(heard);
+      }
     };
     recRef.current = rec;
     fx.current.click();
     setPtt(true);
+    pttStartRef.current = performance.now();
     try { rec.start(); } catch { setPtt(false); }
   }, [micAvailable, inputOpen, atcSpeaking, onTransmit]);
 
@@ -306,6 +337,13 @@ export default function GhostTower() {
   const amber = "#fbbf24";
 
   if (phase === "brief") {
+    if (!seedReady) {
+      return (
+        <div className="glass-card p-8 select-none text-sm animate-pulse" style={{ color: "#64748b" }}>
+          Rolling your flight — weather, callsign, traffic…
+        </div>
+      );
+    }
     return (
       <div className="glass-card p-6 sm:p-8 select-none">
         <div className="flex items-center gap-3 mb-5">
@@ -330,11 +368,22 @@ export default function GhostTower() {
             Headphones recommended. {micAvailable ? "Hold the PTT to speak your calls, or tap the phrase chips." : "Voice input isn't supported in this browser — tap the phrase chips to compose your calls."}
           </p>
         </div>
-        <button onClick={start}
-                className="inline-flex items-center gap-2 font-black px-6 py-3 rounded-xl text-black"
-                style={{ background: cyan }}>
-          <Play className="w-5 h-5" /> Begin Scenario
-        </button>
+        <div className="flex flex-wrap gap-3">
+          <button onClick={() => { setMode("learn"); start(); }}
+                  className="inline-flex items-center gap-2 font-black px-6 py-3 rounded-xl text-black"
+                  style={{ background: cyan }}>
+            <Play className="w-5 h-5" /> Learn Mode
+          </button>
+          <button onClick={() => { setMode("practice"); start(); }}
+                  className="inline-flex items-center gap-2 font-black px-6 py-3 rounded-xl"
+                  style={{ color: cyan, border: `2px solid ${cyan}` }}>
+            <Mic className="w-5 h-5" /> Practice Mode
+          </button>
+        </div>
+        <p className="text-xs mt-3" style={{ color: "#475569" }}>
+          Learn = phrase chips guide you. Practice = freeform — speak or type from memory,
+          the way the examiner expects it.
+        </p>
       </div>
     );
   }
@@ -348,12 +397,22 @@ export default function GhostTower() {
             <div className="font-black text-white text-2xl">{debrief.percent}% — {debrief.pass ? "PASS" : "NOT YET"}</div>
             <div className="text-xs" style={{ color: "#64748b" }}>
               {debrief.points} of {debrief.maxPoints} points · RTR(A) Part 2 pass mark {scn.passMark}%
+              · flight #{seed} · {mode === "learn" ? "Learn" : "Practice"} mode
             </div>
           </div>
-          <button onClick={start} className="ml-auto inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-lg"
-                  style={{ color: cyan, border: `1px solid ${cyan}55` }}>
-            <RotateCcw className="w-4 h-4" /> Fly it again
-          </button>
+          <div className="ml-auto flex flex-wrap gap-2">
+            <button onClick={start} className="inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-lg"
+                    title="Same weather, same callsign, same traffic — beat your score"
+                    style={{ color: "#94a3b8", border: "1px solid rgba(255,255,255,0.2)" }}>
+              <RotateCcw className="w-4 h-4" /> Same flight
+            </button>
+            <button onClick={() => { setSeed(randomSeed()); setPhase("brief"); }}
+                    className="inline-flex items-center gap-2 text-sm font-black px-4 py-2 rounded-lg text-black"
+                    title="Roll a fresh flight — new airport, weather, callsign, traffic"
+                    style={{ background: cyan }}>
+              <Play className="w-4 h-4" /> New flight
+            </button>
+          </div>
         </div>
 
         <div className="space-y-4">
@@ -390,6 +449,11 @@ export default function GhostTower() {
                 {o.retried && (
                   <span className="text-xs px-2 py-1 rounded" style={{ color: "#94a3b8", border: "1px solid rgba(255,255,255,0.15)" }}>
                     examiner probed (−1)
+                  </span>
+                )}
+                {o.delivery && (
+                  <span className="text-xs px-2 py-1 rounded" style={{ color: "#94a3b8", border: "1px solid rgba(255,255,255,0.15)" }}>
+                    🎙 {o.delivery.wpm} wpm{o.delivery.fillers > 0 ? ` · ${o.delivery.fillers} filler${o.delivery.fillers > 1 ? "s" : ""}` : ""}
                   </span>
                 )}
               </div>
@@ -457,36 +521,64 @@ export default function GhostTower() {
 
       {/* Controls */}
       <div className="px-4 sm:px-6 py-4 space-y-3" style={{ background: "rgba(0,0,0,0.25)", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-        {/* composed line */}
-        <div className="min-h-[38px] rounded-lg px-3 py-2 text-sm font-mono flex items-center flex-wrap gap-1"
-             style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(0,212,255,0.3)", color: "#cbd5e1" }}>
-          {composed.length === 0
-            ? <span style={{ color: "#475569" }}>{inputOpen ? "Compose your transmission…" : "Stand by…"}</span>
-            : composed.join(" ")}
-        </div>
-        {/* chips */}
-        <div className="flex flex-wrap gap-2">
-          {step.chips.map((c, i) => (
-            <button key={i} disabled={!inputOpen}
-                    onClick={() => setComposed(p => [...p, c])}
-                    className="text-xs px-2.5 py-1.5 rounded-lg font-medium disabled:opacity-30 transition-opacity"
-                    style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: "#cbd5e1" }}>
-              {c}
-            </button>
-          ))}
-        </div>
+        {mode === "learn" ? (
+          <>
+            {/* composed line */}
+            <div className="min-h-[38px] rounded-lg px-3 py-2 text-sm font-mono flex items-center flex-wrap gap-1"
+                 style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(0,212,255,0.3)", color: "#cbd5e1" }}>
+              {composed.length === 0
+                ? <span style={{ color: "#475569" }}>{inputOpen ? "Compose your transmission…" : "Stand by…"}</span>
+                : composed.join(" ")}
+            </div>
+            {/* chips */}
+            <div className="flex flex-wrap gap-2">
+              {step.chips.map((c, i) => (
+                <button key={i} disabled={!inputOpen}
+                        onClick={() => setComposed(p => [...p, c])}
+                        className="text-xs px-2.5 py-1.5 rounded-lg font-medium disabled:opacity-30 transition-opacity"
+                        style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: "#cbd5e1" }}>
+                  {c}
+                </button>
+              ))}
+            </div>
+          </>
+        ) : (
+          <input
+            value={typedText}
+            onChange={e => setTypedText(e.target.value)}
+            onKeyDown={e => {
+              if (e.key === "Enter" && inputOpen && typedText.trim()) {
+                lastDeliveryRef.current = null;
+                const t = typedText; setTypedText("");
+                onTransmit(t);
+              }
+            }}
+            disabled={!inputOpen}
+            placeholder={inputOpen
+              ? (micAvailable ? "Hold the mic to speak — or type your transmission…" : "Type your transmission…")
+              : "Stand by…"}
+            className="w-full rounded-lg px-3 py-2.5 text-sm font-mono disabled:opacity-40"
+            style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(0,212,255,0.3)", color: "#e2e8f0", outline: "none" }}
+          />
+        )}
         <div className="flex items-center gap-2">
-          <button disabled={!inputOpen || composed.length === 0}
-                  onClick={() => onTransmit(composed.join(" "))}
+          <button disabled={!inputOpen || (mode === "learn" ? composed.length === 0 : typedText.trim() === "")}
+                  onClick={() => {
+                    lastDeliveryRef.current = null;
+                    if (mode === "learn") onTransmit(composed.join(" "));
+                    else { const t = typedText; setTypedText(""); onTransmit(t); }
+                  }}
                   className="inline-flex items-center gap-2 font-black px-5 py-2.5 rounded-xl text-black disabled:opacity-30"
                   style={{ background: cyan }}>
             <ChevronRight className="w-4 h-4" /> TRANSMIT
           </button>
-          <button disabled={composed.length === 0} onClick={() => setComposed(p => p.slice(0, -1))}
-                  className="p-2.5 rounded-xl disabled:opacity-30" title="Remove last phrase"
-                  style={{ border: "1px solid rgba(255,255,255,0.15)", color: "#94a3b8" }}>
-            <Delete className="w-4 h-4" />
-          </button>
+          {mode === "learn" && (
+            <button disabled={composed.length === 0} onClick={() => setComposed(p => p.slice(0, -1))}
+                    className="p-2.5 rounded-xl disabled:opacity-30" title="Remove last phrase"
+                    style={{ border: "1px solid rgba(255,255,255,0.15)", color: "#94a3b8" }}>
+              <Delete className="w-4 h-4" />
+            </button>
+          )}
           <button disabled={!lastAtcRef.current || atcSpeaking} onClick={() => speakAtc(lastAtcRef.current)}
                   className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2.5 rounded-xl disabled:opacity-30"
                   title="Replay the last ATC transmission" style={{ border: "1px solid rgba(251,191,36,0.35)", color: amber }}>
