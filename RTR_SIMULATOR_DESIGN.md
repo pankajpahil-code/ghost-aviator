@@ -1,5 +1,9 @@
 # RTR(A) Practice Simulator — Design Blueprint
 
+> **2026-07-19: superseded in scope by `GHOST_TOWER_MASTER_PLAN.md`** (professional-grade
+> VFR+IFR+emergencies plan, written after competitive research when the Captain judged v1
+> below the mark). The engine, iron-rule guardrails and locked decisions here still stand.
+
 *Architecture session 2026-07-19, Claude Fable 5 (Examiner tier) with Capt. Pankaj Pahil.
 Status: **APPROVED design — implementation not started.** Any model implementing this: read
 `D:\pk\CLAUDE.md`, `D:\pk\AI_COPILOT_HANDBOOK.md`, `D:\pk\MODEL_PLAYBOOK.md` first. The iron
