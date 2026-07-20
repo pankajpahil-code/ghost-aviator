@@ -79,9 +79,12 @@ export class VoiceBank {
     if (!segs.length || !ids.every(id => this.manifest!.fragments[id] !== undefined)) return false;
 
     // Prefetch every fragment BEFORE playing — a mid-line network stall would
-    // otherwise chop the transmission in half.
-    const bufs = await Promise.all(ids.map(id => this.fetchBuffer(ctx, id)));
-    if (bufs.some(b => !b)) return false;
+    // otherwise chop the transmission in half. Deduped: callsigns repeat
+    // letters (VT-JGV has two V's) and we shouldn't fetch those twice.
+    const unique = [...new Set(ids)];
+    const got = await Promise.all(unique.map(id => this.fetchBuffer(ctx, id)));
+    if (got.some(b => !b)) return false;
+    const bufs = ids.map(id => this.buffers.get(id)!);
 
     this.stop();
     await ctx.resume().catch(() => {});
@@ -90,8 +93,13 @@ export class VoiceBank {
     gain.gain.value = 1;
     gain.connect(ctx.destination);
 
-    // Natural radio cadence: tight between spelled/counted atoms, a beat more
-    // around phrases.
+    // Cadence. Fragments are silence-trimmed, so THESE gaps are the only
+    // spacing — they carry the whole rhythm. Spelled letters and digits run
+    // fast the way a busy controller rattles off a callsign; phrase boundaries
+    // get a real beat. Tuned so a full transmission lands at ~4-5s, which is
+    // what a live controller actually takes.
+    const GAP_ATOM = 0.05;
+    const GAP_PHRASE = 0.10;
     const LEAD = 0.06;
     let cursor = ctx.currentTime + LEAD;
     onCarrier?.open();
@@ -103,9 +111,8 @@ export class VoiceBank {
       src.connect(gain);
       src.start(cursor);
       this.playing.push(src);
-      const nextIsAtom = segs[i + 1]?.type === "atom";
-      const bothAtoms = segs[i].type === "atom" && nextIsAtom;
-      cursor += buf.duration + (bothAtoms ? 0.012 : 0.075);
+      const bothAtoms = segs[i].type === "atom" && segs[i + 1]?.type === "atom";
+      cursor += buf.duration + (bothAtoms ? GAP_ATOM : GAP_PHRASE);
     }
 
     const endsAt = cursor;

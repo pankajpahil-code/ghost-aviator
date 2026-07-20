@@ -33,7 +33,10 @@ const arg = (name, def) => {
   return i !== -1 && argv[i + 1] ? argv[i + 1] : def;
 };
 const VOICE = arg("voice", "en-IN-PrabhatNeural");
-const RATE = arg("rate", "-5%");
+// Real controllers are BRISK — they're working a busy frequency, not narrating.
+// A negative rate made transmissions drone; +10% reads as businesslike ATC
+// while staying clearly intelligible for a student.
+const RATE = arg("rate", "+10%");
 const FORCE = argv.includes("--force");
 const CONCURRENCY = 5;
 
@@ -43,10 +46,21 @@ const fragments = manifest.fragments;
 mkdirSync(OUT_DIR, { recursive: true });
 mkdirSync(TMP_DIR, { recursive: true });
 
-// VHF radio character: 4th-order band-limit 300-2800 Hz + AGC compression.
+// STEP 1 — strip the silence the TTS pads around every standalone utterance.
+// Measured: "Victor" was 0.54s of speech inside a 1.56s file (0.18s lead +
+// 0.84s tail). Untrimmed, spelling one callsign injected ~5 SECONDS of dead
+// air — the "Alfa … long pause … Bravo" drag. start_periods=1 removes only the
+// FIRST silence run, so pauses *inside* a phrase are preserved; areverse does
+// the tail the same way.
+const TRIM =
+  "silenceremove=start_periods=1:start_duration=0:start_threshold=-45dB:detection=peak,areverse," +
+  "silenceremove=start_periods=1:start_duration=0:start_threshold=-45dB:detection=peak,areverse";
+
+// STEP 2 — VHF radio character: 4th-order band-limit 300-2800 Hz + AGC.
 // (Verified by spectrogram — gentler single-pole filters leak hiss and sound
 // like tape, not a radio.)
 const VHF_FILTER =
+  TRIM + "," +
   "highpass=f=300:poles=2,highpass=f=300:poles=2," +
   "lowpass=f=2800:poles=2,lowpass=f=2800:poles=2," +
   "acompressor=threshold=-18dB:ratio=6:attack=3:release=60," +
