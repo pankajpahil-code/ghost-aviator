@@ -62,8 +62,8 @@ export default function ExamModePage() {
         <p className="text-sm mt-10" style={{ color: "#475569" }}>
           RTR(A) Part 2 (the practical voice/ATC test) isn&apos;t a written paper — practise it in{" "}
           <Link href="/rtr-simulator" className="underline font-bold" style={{ color: "#00d4ff" }}>
-            Ghost Tower
-          </Link>, India&apos;s first R/T simulator.
+            the Radio Simulator
+          </Link>, India&apos;s first R/T practice sim.
         </p>
       </div>
     </div>

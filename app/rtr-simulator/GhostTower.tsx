@@ -183,6 +183,9 @@ export default function GhostTower() {
   const lastDeliveryRef = useRef<{ wpm: number; fillers: number } | null>(null);
   const disciplineRef = useRef({ freq: 0, squawk: 0 });
   const squawkProbeRef = useRef<string | null>(null);
+  // The mode chosen at click time — state alone is stale inside the very first
+  // beginStep/onTransmit closures of a run.
+  const modeRef = useRef<"learn" | "practice">("learn");
   const lastAtcRef = useRef("");
   const logBoxRef = useRef<HTMLDivElement | null>(null);
   const busyRef = useRef(false);
@@ -254,22 +257,30 @@ export default function GhostTower() {
     setLog(l => [...l, { who: "sys", text: st.cue }]);
     // Learn mode is training wheels: the radio and transponder set themselves,
     // with a note. Practice makes the student work the cockpit.
-    if (mode === "learn" && st.requiresFreq && activeCents !== toCents(st.requiresFreq)) {
+    if (modeRef.current === "learn" && st.requiresFreq && activeCents !== toCents(st.requiresFreq)) {
       setActiveCents(toCents(st.requiresFreq));
       setLog(l => [...l, { who: "sys", text: `Radio tuned to ${st.requiresFreq} for you — in Practice you'll tune it yourself.` }]);
     }
-    if (mode === "learn" && st.requiresSquawk && xpdr !== st.requiresSquawk) {
+    if (modeRef.current === "learn" && st.requiresSquawk && xpdr !== st.requiresSquawk) {
       setXpdr(st.requiresSquawk);
       setLog(l => [...l, { who: "sys", text: `Transponder set to ${st.requiresSquawk} for you — in Practice you'll set it yourself.` }]);
     }
     if (st.atcBefore) speakAtc(st.atcBefore, () => setInputOpen(true));
     else setInputOpen(true);
-  }, [speakAtc, scn, mode, activeCents, xpdr]);
+  }, [speakAtc, scn, activeCents, xpdr]);
 
-  const start = useCallback(() => {
+  const start = useCallback((m: "learn" | "practice") => {
     fx.current.ensure();
+    setMode(m);
+    modeRef.current = m;
     setPhase("sim");
-    setLog([]);
+    // First lines of the session teach the controls for the chosen mode.
+    setLog([{
+      who: "sys",
+      text: m === "learn"
+        ? "LEARN MODE — build each call by tapping the phrase chips in order, then press TRANSMIT. The radio tunes itself here, and SAY AGAIN replays ATC any time you missed a word."
+        : "PRACTICE MODE — hold the round MIC while you speak (release to send), or type your call and press TRANSMIT. Handoffs are yours: dial STBY with M−/M+/k−/k+, then press ⇄. Set the SQK digits when ATC assigns a squawk.",
+    }]);
     setOutcomes([]);
     setStepIndex(0);
     setActiveCents(toCents(scn.freq));
@@ -302,7 +313,7 @@ export default function GhostTower() {
     if (!clean || busyRef.current || !inputOpen) return;
 
     // Cockpit discipline gates (Practice only — Learn auto-sets with a note).
-    if (mode === "practice" && step.requiresFreq && activeCents !== toCents(step.requiresFreq)) {
+    if (modeRef.current === "practice" && step.requiresFreq && activeCents !== toCents(step.requiresFreq)) {
       disciplineRef.current.freq += 1;
       fx.current.click();
       setLog(l => [...l,
@@ -311,7 +322,7 @@ export default function GhostTower() {
       ]);
       return;
     }
-    if (mode === "practice" && step.requiresSquawk && xpdr !== step.requiresSquawk) {
+    if (modeRef.current === "practice" && step.requiresSquawk && xpdr !== step.requiresSquawk) {
       if (squawkProbeRef.current !== step.id) {
         squawkProbeRef.current = step.id;
         setLog(l => [...l, { who: "you", text: clean }]);
@@ -509,12 +520,12 @@ export default function GhostTower() {
         ) : (
           <>
             <div className="flex flex-wrap gap-3">
-              <button onClick={() => { setMode("learn"); start(); }}
+              <button onClick={() => start("learn")}
                       className="inline-flex items-center gap-2 font-black px-6 py-3 rounded-xl text-black"
                       style={{ background: cyan }}>
                 <Play className="w-5 h-5" /> Learn Mode
               </button>
-              <button onClick={() => { setMode("practice"); start(); }}
+              <button onClick={() => start("practice")}
                       className="inline-flex items-center gap-2 font-black px-6 py-3 rounded-xl"
                       style={{ color: cyan, border: `2px solid ${cyan}` }}>
                 <Mic className="w-5 h-5" /> Practice Mode
@@ -523,6 +534,14 @@ export default function GhostTower() {
             <p className="text-xs mt-3" style={{ color: "#475569" }}>
               Learn = phrase chips guide you, radio tunes itself. Practice = freeform — speak or
               type from memory, work the radio and transponder yourself.
+            </p>
+            <p className="text-xs mt-3 flex flex-wrap gap-x-4 gap-y-1" style={{ color: "#475569" }}>
+              <a href="#how-to-use" className="underline" style={{ color: cyan }}>
+                First flight? Read the walkaround below ↓
+              </a>
+              <Link href="/cpl/radio-telephony" className="underline" style={{ color: cyan }}>
+                Theory first? Open the RTR(A) book
+              </Link>
             </p>
           </>
         )}
@@ -551,7 +570,7 @@ export default function GhostTower() {
             )}
           </div>
           <div className="ml-auto flex flex-wrap gap-2">
-            <button onClick={start} className="inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-lg"
+            <button onClick={() => start(mode)} className="inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-lg"
                     title="Same weather, same callsign, same traffic — beat your score"
                     style={{ color: "#94a3b8", border: "1px solid rgba(255,255,255,0.2)" }}>
               <RotateCcw className="w-4 h-4" /> Same flight
