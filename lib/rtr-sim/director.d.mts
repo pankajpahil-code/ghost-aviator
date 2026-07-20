@@ -10,3 +10,5 @@ export declare function speakCallsign(reg: string): string;
 export declare function speakCallsignShort(reg: string): string;
 export declare function buildVfrDeparture(world: World): Scenario;
 export declare function buildIfrFlight(world: World): Scenario;
+export declare function buildEmergencyFlight(world: World): Scenario;
+export declare function buildRadioFailureFlight(world: World): Scenario;

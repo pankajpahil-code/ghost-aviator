@@ -29,6 +29,17 @@ export interface IfrPlan {
   events: { avoidingAction: boolean; hold: boolean; lowVis: boolean };
 }
 
+export interface EmergencyPlan {
+  cruiseAlt: number;
+  divertAlt: number;
+  maydayAlt: number;
+  distance: number;
+  distance2: number;
+  direction: string;
+  pob: number;
+  finalMiles: number;
+}
+
 export interface World {
   seed: number;
   airport: {
@@ -42,6 +53,7 @@ export interface World {
     taxiway: string;
   };
   ifr: IfrPlan;
+  emergency: EmergencyPlan;
   atis: string;
   wind: Wind;
   qnh: string;

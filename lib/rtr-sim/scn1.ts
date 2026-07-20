@@ -34,6 +34,12 @@ export interface SimStep {
   requiresFreq?: string;
   /** Radar contact needs this squawk set on the transponder widget. */
   requiresSquawk?: string;
+  /** Squawk-gate messages come as quiet system hints, not ATC voice (lost comms). */
+  gateSilent?: boolean;
+  /** This step is completed by pressing IDENT — no transmission expected. */
+  requiresIdent?: boolean;
+  /** Button/cue label for action-only steps. */
+  actionLabel?: string;
 }
 
 export interface Scenario {

@@ -15,7 +15,9 @@ import {
   scoreTransmission, matchCallsign, scoreScenario,
 } from "@/lib/rtr-sim/engine.mjs";
 import { rollWorld, randomSeed } from "@/lib/rtr-sim/world.mjs";
-import { buildVfrDeparture, buildIfrFlight } from "@/lib/rtr-sim/director.mjs";
+import {
+  buildVfrDeparture, buildIfrFlight, buildEmergencyFlight, buildRadioFailureFlight,
+} from "@/lib/rtr-sim/director.mjs";
 import type { SimStep } from "@/lib/rtr-sim/scn1";
 import { useUser } from "@/lib/supabase";
 
@@ -146,17 +148,23 @@ export default function GhostTower() {
   const [seed, setSeed] = useState(0);
   const [seedReady, setSeedReady] = useState(false);
   const [mode, setMode] = useState<"learn" | "practice">("learn");
-  const [flightType, setFlightType] = useState<"vfr" | "ifr">("vfr");
+  const [flightType, setFlightType] = useState<"vfr" | "ifr" | "emergency" | "radiofail">("vfr");
   const [typedText, setTypedText] = useState("");
   const { user } = useUser();
   const scn = useMemo(() => {
     const w = rollWorld(seed);
-    return flightType === "vfr" ? buildVfrDeparture(w) : buildIfrFlight(w);
+    switch (flightType) {
+      case "ifr": return buildIfrFlight(w);
+      case "emergency": return buildEmergencyFlight(w);
+      case "radiofail": return buildRadioFailureFlight(w);
+      default: return buildVfrDeparture(w);
+    }
   }, [seed, flightType]);
   const [stepIndex, setStepIndex] = useState(0);
   const [activeCents, setActiveCents] = useState(11800);
   const [stbyCents, setStbyCents] = useState(11800);
   const [xpdr, setXpdr] = useState("2000");
+  const [identOn, setIdentOn] = useState(false);
   const [log, setLog] = useState<LogEntry[]>([]);
   const [outcomes, setOutcomes] = useState<StepOutcome[]>([]);
   const [inputOpen, setInputOpen] = useState(false);
@@ -307,11 +315,15 @@ export default function GhostTower() {
       if (squawkProbeRef.current !== step.id) {
         squawkProbeRef.current = step.id;
         setLog(l => [...l, { who: "you", text: clean }]);
-        speakAtc(`${scn.callsign}, negative radar contact — confirm squawk?`);
+        if (step.gateSilent) {
+          setLog(l => [...l, { who: "sys", text: `Your transponder still shows ${xpdr}. The situation demands a specific code — set it, then transmit.` }]);
+        } else {
+          speakAtc(`${scn.callsign}, negative radar contact — confirm squawk?`);
+        }
         return;
       }
       disciplineRef.current.squawk += 1;
-      setLog(l => [...l, { who: "sys", text: "Radar contact delayed — the transponder is still on the wrong code." }]);
+      setLog(l => [...l, { who: "sys", text: "The transponder is still on the wrong code — logged." }]);
     }
 
     busyRef.current = true;
@@ -390,6 +402,28 @@ export default function GhostTower() {
     try { recRef.current?.stop(); } catch { /* not started */ }
   }, []);
 
+  // IDENT: momentary flash — and on action steps, the press IS the answer
+  // (a pilot who cannot transmit can still be seen).
+  const identPress = useCallback(() => {
+    fx.current.click();
+    setIdentOn(true);
+    window.setTimeout(() => setIdentOn(false), 1600);
+    if (!inputOpen || busyRef.current || !step.requiresIdent) return;
+    busyRef.current = true;
+    setInputOpen(false);
+    setLog(l => [...l, { who: "sys", text: "▲ IDENT — your return blossoms on the radar screen." }]);
+    finishStep({
+      step,
+      res: {
+        norm: [], slots: [], callsign: null, forbidden: [],
+        points: 1, maxPoints: 1, wrongCritical: [], missingCritical: [],
+      } as ReturnType<typeof scoreTransmission>,
+      saidText: "(IDENT)",
+      retried: false,
+      delivery: null,
+    });
+  }, [inputOpen, step, finishStep]);
+
   /* ------------------------------- Debrief math ---------------------------- */
   const debrief = useMemo(() => {
     if (phase !== "debrief") return null;
@@ -421,20 +455,18 @@ export default function GhostTower() {
     return (
       <div className="glass-card p-6 sm:p-8 select-none">
         <div className="flex flex-wrap gap-2 mb-5">
-          <button onClick={() => setFlightType("vfr")}
-                  className="text-xs font-black px-3 py-2 rounded-lg"
-                  style={flightType === "vfr"
-                    ? { background: "rgba(0,212,255,0.12)", border: `1px solid ${cyan}`, color: cyan }
-                    : { border: "1px solid rgba(255,255,255,0.15)", color: "#94a3b8" }}>
-            SCENARIO 1 · VFR Departure
-          </button>
-          <button onClick={() => setFlightType("ifr")}
-                  className="text-xs font-black px-3 py-2 rounded-lg"
-                  style={flightType === "ifr"
-                    ? { background: "rgba(0,212,255,0.12)", border: `1px solid ${cyan}`, color: cyan }
-                    : { border: "1px solid rgba(255,255,255,0.15)", color: "#94a3b8" }}>
-            SCENARIO 2 · IFR Full Flight{!user && " 🔒"}
-          </button>
+          {([["vfr", "SCENARIO 1 · VFR Departure", false],
+             ["ifr", "SCENARIO 2 · IFR Full Flight", true],
+             ["emergency", "SCENARIO 3 · Emergency", true],
+             ["radiofail", "SCENARIO 4 · Radio Failure", true]] as const).map(([ft, label, gated]) => (
+            <button key={ft} onClick={() => setFlightType(ft)}
+                    className="text-xs font-black px-3 py-2 rounded-lg"
+                    style={flightType === ft
+                      ? { background: "rgba(0,212,255,0.12)", border: `1px solid ${cyan}`, color: cyan }
+                      : { border: "1px solid rgba(255,255,255,0.15)", color: "#94a3b8" }}>
+              {label}{gated && !user && " 🔒"}
+            </button>
+          ))}
         </div>
         <div className="flex items-center gap-3 mb-5">
           <Radio className="w-7 h-7" style={{ color: cyan }} />
@@ -464,11 +496,11 @@ export default function GhostTower() {
             Headphones recommended. {micAvailable ? "Hold the PTT to speak your calls, or tap the phrase chips." : "Voice input isn't supported in this browser — tap the phrase chips to compose your calls."}
           </p>
         </div>
-        {flightType === "ifr" && !user ? (
+        {flightType !== "vfr" && !user ? (
           <div className="flex flex-wrap items-center gap-3">
             <Link href="/login" className="inline-flex items-center gap-2 font-black px-6 py-3 rounded-xl text-black no-underline"
                   style={{ background: cyan }}>
-              <Lock className="w-5 h-5" /> Sign in free to fly IFR
+              <Lock className="w-5 h-5" /> Sign in free to fly this scenario
             </Link>
             <span className="text-xs" style={{ color: "#475569" }}>
               Free forever — sign-in just keeps your progress and unlocks the full flights.
@@ -552,7 +584,7 @@ export default function GhostTower() {
                     </span>
                   );
                 })}
-                {o.res.callsign !== "ok-end" && (
+                {o.res.callsign !== null && o.res.callsign !== "ok-end" && (
                   <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded"
                         style={{ color: amber, border: `1px solid ${amber}44`, background: `${amber}11` }}>
                     <AlertTriangle className="w-3 h-3" /> {o.res.callsign === "missing" ? "Callsign missing" : "End with your callsign"}
@@ -622,6 +654,13 @@ export default function GhostTower() {
                 {d}
               </button>
             ))}
+            <button onClick={identPress} title="IDENT — flash your radar return"
+                    className="ml-1 px-1.5 h-6 rounded font-black text-[10px] transition-colors"
+                    style={identOn
+                      ? { background: amber, color: "#000", border: `1px solid ${amber}` }
+                      : { color: amber, border: `1px solid ${amber}55` }}>
+              IDENT
+            </button>
           </div>
         )}
         <div className="text-xs hidden lg:block" style={{ color: "#64748b" }}>{scn.callsign} · {scn.aircraft}</div>
@@ -668,7 +707,12 @@ export default function GhostTower() {
 
       {/* Controls */}
       <div className="px-4 sm:px-6 py-4 space-y-3" style={{ background: "rgba(0,0,0,0.25)", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-        {mode === "learn" ? (
+        {step.requiresIdent ? (
+          <div className="rounded-lg px-3 py-3 text-sm text-center font-bold"
+               style={{ border: `1px dashed ${amber}66`, color: amber, background: "rgba(251,191,36,0.05)" }}>
+            {step.actionLabel ?? "Use the transponder"} — the IDENT button is on the radio head ↑
+          </div>
+        ) : mode === "learn" ? (
           <>
             {/* composed line */}
             <div className="min-h-[38px] rounded-lg px-3 py-2 text-sm font-mono flex items-center flex-wrap gap-1"
@@ -752,18 +796,15 @@ export default function GhostTower() {
 
 /* ----------------------- Coming-soon scenario teasers ---------------------- */
 export function LockedScenarios() {
-  const items = [
-    "Emergencies — MAYDAY & PAN-PAN", "Radio Failure — 7600 Drills",
-    "Weather Diversion & Go-Around", "Exam Mode — Examiner-led Mock + Viva",
-  ];
+  const items = ["Weather Diversion & Go-Around", "Exam Mode — Examiner-led Mock + Viva"];
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
       {items.map((t, i) => (
         <div key={i} className="glass-card p-5 opacity-70">
           <div className="flex items-center gap-2 mb-2">
             <Lock className="w-4 h-4" style={{ color: "#64748b" }} />
             <span className="text-xs font-bold" style={{ color: "#64748b" }}>
-              {i < 3 ? `SCENARIO ${i + 3}` : "COMING SOON"}
+              {i === 0 ? "SCENARIO 5" : "COMING SOON"}
             </span>
           </div>
           <div className="font-bold text-white text-sm mb-2">{t}</div>
