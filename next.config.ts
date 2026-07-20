@@ -36,7 +36,11 @@ const securityHeaders = [
   // Don't leak full URLs (which chapter/subject a user is on) to third parties.
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   // Lock down powerful browser features the site never uses.
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" },
+  // microphone=(self): the Radio Simulator's push-to-talk needs the mic on our
+  // OWN origin. A bare microphone=() blocks the page even after the user grants
+  // permission in Chrome — that silently broke PTT until 2026-07-20. Everything
+  // else stays fully disabled.
+  { key: "Permissions-Policy", value: "camera=(), microphone=(self), geolocation=(), payment=(), usb=(), interest-cohort=()" },
   // Force HTTPS for two years incl. subdomains (Vercel is always HTTPS).
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   { key: "X-DNS-Prefetch-Control", value: "on" },

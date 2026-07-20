@@ -185,6 +185,9 @@ export default function GhostTower() {
   const heardRef = useRef("");
   const errRef = useRef("");
   const primedRef = useRef(false);
+  // Set by the getUserMedia prime: proves whether the MIC itself is usable, so
+  // a speech-service failure is never misreported as a permission problem.
+  const micGrantedRef = useRef<boolean | null>(null);
   const pttStartRef = useRef(0);
   const lastDeliveryRef = useRef<{ wpm: number; fillers: number } | null>(null);
   const disciplineRef = useRef({ freq: 0, squawk: 0 });
@@ -304,8 +307,8 @@ export default function GhostTower() {
         typeof navigator !== "undefined" && navigator.mediaDevices?.getUserMedia) {
       primedRef.current = true;
       navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(s => s.getTracks().forEach(t => t.stop()))
-        .catch(() => { /* handled with a clear message on actual mic use */ });
+        .then(s => { micGrantedRef.current = true; s.getTracks().forEach(t => t.stop()); })
+        .catch(() => { micGrantedRef.current = false; });
     }
     setMode(m);
     modeRef.current = m;
@@ -442,17 +445,25 @@ export default function GhostTower() {
         };
         onTransmit(heard);
       } else {
-        // Never fail silently — say what happened and how to proceed.
+        // Never fail silently — and never blame the wrong thing. If the mic
+        // itself opened fine, a "not-allowed" is the speech SERVICE, not you.
         const err = errRef.current;
+        const permissionBlocked =
+          (err === "not-allowed" || err === "service-not-allowed") && micGrantedRef.current === false;
+        const serviceFailed =
+          (err === "not-allowed" || err === "service-not-allowed") && micGrantedRef.current !== false;
         const msg =
-          (err === "not-allowed" || err === "service-not-allowed")
-            ? "🎤 Microphone is blocked for this site. Click the tune/lock icon at the left of the address bar → allow the Microphone → reload. Meanwhile you can tap the phrase chips or type your call and press TRANSMIT."
+          permissionBlocked
+            ? "🎤 Microphone is blocked for this site. Click the tune/lock icon at the left of the address bar → allow the Microphone → reload. Meanwhile you can type your call and press TRANSMIT."
+            : serviceFailed
+            ? "🎤 Your mic is fine, but the browser's speech service refused this transmission. Try once more — if it keeps happening, use Chrome, or type your call and press TRANSMIT (it scores exactly the same)."
             : err === "no-speech"
-            ? "Didn't catch anything — press and HOLD the mic, wait half a second, then speak. Or tap the chips / type your call and press TRANSMIT."
+            ? "Didn't catch anything — press and HOLD the mic, wait half a second, then speak. Or type your call and press TRANSMIT."
             : err === "audio-capture"
-            ? "No microphone found. Plug one in, or tap the chips / type your call and press TRANSMIT."
-            : "Voice didn't come through — hold the mic and speak clearly, or tap the chips / type your call and press TRANSMIT.";
-        setLog(l => [...l, { who: "sys", text: msg }]);
+            ? "No microphone found. Plug one in, or type your call and press TRANSMIT."
+            : "Voice didn't come through — hold the mic and speak clearly, or type your call and press TRANSMIT.";
+        // Don't stack the same warning over and over.
+        setLog(l => (l[l.length - 1]?.text === msg ? l : [...l, { who: "sys", text: msg }]));
       }
     };
     recRef.current = rec;
