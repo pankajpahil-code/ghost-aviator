@@ -15,8 +15,30 @@ import {
   scoreTransmission, matchCallsign, scoreScenario,
 } from "@/lib/rtr-sim/engine.mjs";
 import { rollWorld, randomSeed } from "@/lib/rtr-sim/world.mjs";
-import { buildVfrDeparture } from "@/lib/rtr-sim/director.mjs";
+import { buildVfrDeparture, buildIfrFlight } from "@/lib/rtr-sim/director.mjs";
 import type { SimStep } from "@/lib/rtr-sim/scn1";
+import { useUser } from "@/lib/supabase";
+
+/* -------------------------- Radio-head frequency ---------------------------
+   Frequencies live as integer "cents" (118.35 → 11835) so tuning arithmetic
+   and equality checks never meet floating point. VHF band 118–136, 25 kHz. */
+const toCents = (f: string) => Math.round(parseFloat(f) * 100);
+const fmtFreq = (c: number) => {
+  const s = (c / 100).toFixed(2);
+  return s.endsWith("0") ? s.slice(0, -1) : s;
+};
+const stepMhz = (c: number, d: number) => {
+  let m = Math.floor(c / 100) + d;
+  if (m < 118) m = 136;
+  if (m > 136) m = 118;
+  return m * 100 + (c % 100);
+};
+const stepKhz = (c: number, d: number) => {
+  let k = (c % 100) + d * 5;
+  if (k < 0) k = 95;
+  if (k > 95) k = 0;
+  return Math.floor(c / 100) * 100 + k;
+};
 
 /* ----------------------------- ATC voice pick ----------------------------- */
 // Same philosophy as the notes read-aloud: quality is the device's; we only
@@ -124,9 +146,17 @@ export default function GhostTower() {
   const [seed, setSeed] = useState(0);
   const [seedReady, setSeedReady] = useState(false);
   const [mode, setMode] = useState<"learn" | "practice">("learn");
+  const [flightType, setFlightType] = useState<"vfr" | "ifr">("vfr");
   const [typedText, setTypedText] = useState("");
-  const scn = useMemo(() => buildVfrDeparture(rollWorld(seed)), [seed]);
+  const { user } = useUser();
+  const scn = useMemo(() => {
+    const w = rollWorld(seed);
+    return flightType === "vfr" ? buildVfrDeparture(w) : buildIfrFlight(w);
+  }, [seed, flightType]);
   const [stepIndex, setStepIndex] = useState(0);
+  const [activeCents, setActiveCents] = useState(11800);
+  const [stbyCents, setStbyCents] = useState(11800);
+  const [xpdr, setXpdr] = useState("2000");
   const [log, setLog] = useState<LogEntry[]>([]);
   const [outcomes, setOutcomes] = useState<StepOutcome[]>([]);
   const [inputOpen, setInputOpen] = useState(false);
@@ -143,6 +173,8 @@ export default function GhostTower() {
   const heardRef = useRef("");
   const pttStartRef = useRef(0);
   const lastDeliveryRef = useRef<{ wpm: number; fillers: number } | null>(null);
+  const disciplineRef = useRef({ freq: 0, squawk: 0 });
+  const squawkProbeRef = useRef<string | null>(null);
   const lastAtcRef = useRef("");
   const logBoxRef = useRef<HTMLDivElement | null>(null);
   const busyRef = useRef(false);
@@ -212,9 +244,19 @@ export default function GhostTower() {
     setComposed([]);
     setTypedText("");
     setLog(l => [...l, { who: "sys", text: st.cue }]);
+    // Learn mode is training wheels: the radio and transponder set themselves,
+    // with a note. Practice makes the student work the cockpit.
+    if (mode === "learn" && st.requiresFreq && activeCents !== toCents(st.requiresFreq)) {
+      setActiveCents(toCents(st.requiresFreq));
+      setLog(l => [...l, { who: "sys", text: `Radio tuned to ${st.requiresFreq} for you — in Practice you'll tune it yourself.` }]);
+    }
+    if (mode === "learn" && st.requiresSquawk && xpdr !== st.requiresSquawk) {
+      setXpdr(st.requiresSquawk);
+      setLog(l => [...l, { who: "sys", text: `Transponder set to ${st.requiresSquawk} for you — in Practice you'll set it yourself.` }]);
+    }
     if (st.atcBefore) speakAtc(st.atcBefore, () => setInputOpen(true));
     else setInputOpen(true);
-  }, [speakAtc, scn]);
+  }, [speakAtc, scn, mode, activeCents, xpdr]);
 
   const start = useCallback(() => {
     fx.current.ensure();
@@ -222,9 +264,14 @@ export default function GhostTower() {
     setLog([]);
     setOutcomes([]);
     setStepIndex(0);
+    setActiveCents(toCents(scn.freq));
+    setStbyCents(toCents(scn.freq));
+    setXpdr("2000");
+    disciplineRef.current = { freq: 0, squawk: 0 };
+    squawkProbeRef.current = null;
     busyRef.current = false;
     beginStep(0);
-  }, [beginStep]);
+  }, [beginStep, scn]);
 
   const finishStep = useCallback((outcome: StepOutcome) => {
     setOutcomes(o => [...o, outcome]);
@@ -245,6 +292,28 @@ export default function GhostTower() {
   const onTransmit = useCallback((text: string) => {
     const clean = text.trim();
     if (!clean || busyRef.current || !inputOpen) return;
+
+    // Cockpit discipline gates (Practice only — Learn auto-sets with a note).
+    if (mode === "practice" && step.requiresFreq && activeCents !== toCents(step.requiresFreq)) {
+      disciplineRef.current.freq += 1;
+      fx.current.click();
+      setLog(l => [...l,
+        { who: "you", text: clean },
+        { who: "sys", text: `Only static answers — ${fmtFreq(activeCents)} is the wrong frequency. Tune the radio and transmit again.` },
+      ]);
+      return;
+    }
+    if (mode === "practice" && step.requiresSquawk && xpdr !== step.requiresSquawk) {
+      if (squawkProbeRef.current !== step.id) {
+        squawkProbeRef.current = step.id;
+        setLog(l => [...l, { who: "you", text: clean }]);
+        speakAtc(`${scn.callsign}, negative radar contact — confirm squawk?`);
+        return;
+      }
+      disciplineRef.current.squawk += 1;
+      setLog(l => [...l, { who: "sys", text: "Radar contact delayed — the transponder is still on the wrong code." }]);
+    }
+
     busyRef.current = true;
     setInputOpen(false);
     setComposed([]);
@@ -281,7 +350,7 @@ export default function GhostTower() {
     }
     finishStep({ step, res, saidText: clean, retried: retriedRef.current, delivery: lastDeliveryRef.current });
     lastDeliveryRef.current = null;
-  }, [step, inputOpen, speakAtc, finishStep, scn]);
+  }, [step, inputOpen, speakAtc, finishStep, scn, mode, activeCents, xpdr]);
 
   /* ------------------------------ Voice input ------------------------------ */
   const pttDown = useCallback(() => {
@@ -324,13 +393,18 @@ export default function GhostTower() {
   /* ------------------------------- Debrief math ---------------------------- */
   const debrief = useMemo(() => {
     if (phase !== "debrief") return null;
-    // A probed/corrected step costs one point — the examiner had to help.
+    // A probed/corrected step costs one point — the examiner had to help — and
+    // every wrong-frequency call or missed squawk costs one more.
     const adjusted = outcomes.map(o => ({
       points: Math.max(0, o.res.points - (o.retried ? 1 : 0)),
       maxPoints: o.res.maxPoints,
     }));
-    return scoreScenario(adjusted as Parameters<typeof scoreScenario>[0]);
-  }, [phase, outcomes]);
+    const base = scoreScenario(adjusted as Parameters<typeof scoreScenario>[0]);
+    const discipline = { ...disciplineRef.current };
+    const points = Math.max(0, base.points - discipline.freq - discipline.squawk);
+    const percent = base.maxPoints === 0 ? 0 : Math.round((points / base.maxPoints) * 100);
+    return { points, maxPoints: base.maxPoints, percent, pass: percent >= scn.passMark, discipline };
+  }, [phase, outcomes, scn]);
 
   /* ================================ Render ================================= */
   const cyan = "#00d4ff";
@@ -346,13 +420,35 @@ export default function GhostTower() {
     }
     return (
       <div className="glass-card p-6 sm:p-8 select-none">
+        <div className="flex flex-wrap gap-2 mb-5">
+          <button onClick={() => setFlightType("vfr")}
+                  className="text-xs font-black px-3 py-2 rounded-lg"
+                  style={flightType === "vfr"
+                    ? { background: "rgba(0,212,255,0.12)", border: `1px solid ${cyan}`, color: cyan }
+                    : { border: "1px solid rgba(255,255,255,0.15)", color: "#94a3b8" }}>
+            SCENARIO 1 · VFR Departure
+          </button>
+          <button onClick={() => setFlightType("ifr")}
+                  className="text-xs font-black px-3 py-2 rounded-lg"
+                  style={flightType === "ifr"
+                    ? { background: "rgba(0,212,255,0.12)", border: `1px solid ${cyan}`, color: cyan }
+                    : { border: "1px solid rgba(255,255,255,0.15)", color: "#94a3b8" }}>
+            SCENARIO 2 · IFR Full Flight{!user && " 🔒"}
+          </button>
+        </div>
         <div className="flex items-center gap-3 mb-5">
           <Radio className="w-7 h-7" style={{ color: cyan }} />
           <div>
-            <div className="font-black text-white text-xl">Scenario 1 — {scn.title}</div>
+            <div className="font-black text-white text-xl">{scn.title}</div>
             <div className="text-xs" style={{ color: "#64748b" }}>{scn.subtitle}</div>
           </div>
-          <span className="ml-auto text-xs font-bold px-3 py-1 rounded-full" style={{ color: "#4ade80", border: "1px solid rgba(74,222,128,0.35)", background: "rgba(74,222,128,0.08)" }}>FREE</span>
+          {flightType === "vfr" ? (
+            <span className="ml-auto text-xs font-bold px-3 py-1 rounded-full" style={{ color: "#4ade80", border: "1px solid rgba(74,222,128,0.35)", background: "rgba(74,222,128,0.08)" }}>FREE</span>
+          ) : (
+            <span className="ml-auto text-xs font-bold px-3 py-1 rounded-full" style={{ color: user ? "#4ade80" : "#fbbf24", border: `1px solid ${user ? "rgba(74,222,128,0.35)" : "rgba(251,191,36,0.35)"}`, background: user ? "rgba(74,222,128,0.08)" : "rgba(251,191,36,0.08)" }}>
+              {user ? "UNLOCKED" : "FREE SIGN-IN"}
+            </span>
+          )}
         </div>
         <div className="space-y-3 mb-6">
           {scn.briefing.map((b, i) => (
@@ -368,22 +464,36 @@ export default function GhostTower() {
             Headphones recommended. {micAvailable ? "Hold the PTT to speak your calls, or tap the phrase chips." : "Voice input isn't supported in this browser — tap the phrase chips to compose your calls."}
           </p>
         </div>
-        <div className="flex flex-wrap gap-3">
-          <button onClick={() => { setMode("learn"); start(); }}
-                  className="inline-flex items-center gap-2 font-black px-6 py-3 rounded-xl text-black"
+        {flightType === "ifr" && !user ? (
+          <div className="flex flex-wrap items-center gap-3">
+            <Link href="/login" className="inline-flex items-center gap-2 font-black px-6 py-3 rounded-xl text-black no-underline"
                   style={{ background: cyan }}>
-            <Play className="w-5 h-5" /> Learn Mode
-          </button>
-          <button onClick={() => { setMode("practice"); start(); }}
-                  className="inline-flex items-center gap-2 font-black px-6 py-3 rounded-xl"
-                  style={{ color: cyan, border: `2px solid ${cyan}` }}>
-            <Mic className="w-5 h-5" /> Practice Mode
-          </button>
-        </div>
-        <p className="text-xs mt-3" style={{ color: "#475569" }}>
-          Learn = phrase chips guide you. Practice = freeform — speak or type from memory,
-          the way the examiner expects it.
-        </p>
+              <Lock className="w-5 h-5" /> Sign in free to fly IFR
+            </Link>
+            <span className="text-xs" style={{ color: "#475569" }}>
+              Free forever — sign-in just keeps your progress and unlocks the full flights.
+            </span>
+          </div>
+        ) : (
+          <>
+            <div className="flex flex-wrap gap-3">
+              <button onClick={() => { setMode("learn"); start(); }}
+                      className="inline-flex items-center gap-2 font-black px-6 py-3 rounded-xl text-black"
+                      style={{ background: cyan }}>
+                <Play className="w-5 h-5" /> Learn Mode
+              </button>
+              <button onClick={() => { setMode("practice"); start(); }}
+                      className="inline-flex items-center gap-2 font-black px-6 py-3 rounded-xl"
+                      style={{ color: cyan, border: `2px solid ${cyan}` }}>
+                <Mic className="w-5 h-5" /> Practice Mode
+              </button>
+            </div>
+            <p className="text-xs mt-3" style={{ color: "#475569" }}>
+              Learn = phrase chips guide you, radio tunes itself. Practice = freeform — speak or
+              type from memory, work the radio and transponder yourself.
+            </p>
+          </>
+        )}
       </div>
     );
   }
@@ -399,6 +509,14 @@ export default function GhostTower() {
               {debrief.points} of {debrief.maxPoints} points · RTR(A) Part 2 pass mark {scn.passMark}%
               · flight #{seed} · {mode === "learn" ? "Learn" : "Practice"} mode
             </div>
+            {(debrief.discipline.freq > 0 || debrief.discipline.squawk > 0) && (
+              <div className="text-xs mt-1" style={{ color: amber }}>
+                Cockpit discipline: {debrief.discipline.freq > 0 && `${debrief.discipline.freq} wrong-frequency call${debrief.discipline.freq > 1 ? "s" : ""}`}
+                {debrief.discipline.freq > 0 && debrief.discipline.squawk > 0 && " · "}
+                {debrief.discipline.squawk > 0 && `${debrief.discipline.squawk} squawk miss${debrief.discipline.squawk > 1 ? "es" : ""}`}
+                {" "}(−1 each)
+              </div>
+            )}
           </div>
           <div className="ml-auto flex flex-wrap gap-2">
             <button onClick={start} className="inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-lg"
@@ -474,10 +592,39 @@ export default function GhostTower() {
   return (
     <div className="glass-card overflow-hidden select-none">
       {/* Radio head */}
-      <div className="flex items-center gap-3 px-4 sm:px-6 py-3" style={{ background: "rgba(0,0,0,0.35)", borderBottom: "1px solid rgba(0,212,255,0.15)" }}>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 px-4 sm:px-6 py-3" style={{ background: "rgba(0,0,0,0.35)", borderBottom: "1px solid rgba(0,212,255,0.15)" }}>
         <Radio className="w-5 h-5" style={{ color: cyan }} />
-        <div className="font-mono font-black text-lg tracking-widest" style={{ color: amber }}>{scn.freq}</div>
-        <div className="text-xs hidden sm:block" style={{ color: "#64748b" }}>{scn.station} · {scn.callsign} · {scn.aircraft}</div>
+        <div className="font-mono font-black text-lg tracking-widest" title="Active frequency" style={{ color: amber }}>{fmtFreq(activeCents)}</div>
+        {/* Standby tuner + flip — handoffs must actually be TUNED */}
+        <div className="flex items-center gap-1 font-mono text-[10px]" style={{ color: "#64748b" }}>
+          <span>STBY</span>
+          <span className="font-black text-xs" style={{ color: "#94a3b8" }}>{fmtFreq(stbyCents)}</span>
+          {([["M−", () => setStbyCents(c => stepMhz(c, -1))],
+             ["M+", () => setStbyCents(c => stepMhz(c, 1))],
+             ["k−", () => setStbyCents(c => stepKhz(c, -1))],
+             ["k+", () => setStbyCents(c => stepKhz(c, 1))]] as const).map(([lab, fn]) => (
+            <button key={lab} onClick={fn} className="px-1 py-0.5 rounded"
+                    style={{ border: "1px solid rgba(255,255,255,0.12)", color: "#94a3b8" }}>{lab}</button>
+          ))}
+          <button onClick={() => { setStbyCents(activeCents); setActiveCents(stbyCents); fx.current.click(); }}
+                  title="Flip standby to active" className="px-1.5 py-0.5 rounded font-black"
+                  style={{ color: cyan, border: `1px solid ${cyan}55` }}>⇄</button>
+        </div>
+        {scn.hasTransponder && (
+          <div className="flex items-center gap-0.5 font-mono text-[10px]" style={{ color: "#64748b" }}>
+            <span className="mr-0.5">SQK</span>
+            {xpdr.split("").map((d, i) => (
+              <button key={i}
+                      onClick={() => setXpdr(x => x.slice(0, i) + String((Number(x[i]) + 1) % 8) + x.slice(i + 1))}
+                      title="Tap to change (0–7)"
+                      className="w-5 h-6 rounded font-black text-xs"
+                      style={{ background: "rgba(255,255,255,0.06)", color: amber, border: "1px solid rgba(255,255,255,0.12)" }}>
+                {d}
+              </button>
+            ))}
+          </div>
+        )}
+        <div className="text-xs hidden lg:block" style={{ color: "#64748b" }}>{scn.callsign} · {scn.aircraft}</div>
         {/* signal bars */}
         <div className="ml-auto flex items-end gap-0.5 h-4" aria-hidden>
           {[3, 6, 9, 12, 15].map((h, i) => (
@@ -603,24 +750,24 @@ export default function GhostTower() {
   );
 }
 
-/* ------------------------- Locked scenario teasers ------------------------- */
+/* ----------------------- Coming-soon scenario teasers ---------------------- */
 export function LockedScenarios() {
   const items = [
-    "IFR Clearance & Departure", "En-route & Position Reports",
-    "Radar Vectors & Traffic", "Weather Arrival & Go-Around", "MAYDAY — Emergency",
+    "Emergencies — MAYDAY & PAN-PAN", "Radio Failure — 7600 Drills",
+    "Weather Diversion & Go-Around", "Exam Mode — Examiner-led Mock + Viva",
   ];
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
       {items.map((t, i) => (
         <div key={i} className="glass-card p-5 opacity-70">
           <div className="flex items-center gap-2 mb-2">
             <Lock className="w-4 h-4" style={{ color: "#64748b" }} />
-            <span className="text-xs font-bold" style={{ color: "#64748b" }}>SCENARIO {i + 2}</span>
+            <span className="text-xs font-bold" style={{ color: "#64748b" }}>
+              {i < 3 ? `SCENARIO ${i + 3}` : "COMING SOON"}
+            </span>
           </div>
           <div className="font-bold text-white text-sm mb-2">{t}</div>
-          <Link href="/login" className="text-xs underline" style={{ color: "#00d4ff" }}>
-            Sign in free to unlock
-          </Link>
+          <span className="text-xs" style={{ color: "#64748b" }}>In build — the tower grows weekly</span>
         </div>
       ))}
     </div>

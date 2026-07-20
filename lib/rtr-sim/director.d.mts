@@ -9,3 +9,4 @@ export declare function speakAltitude(feet: number): string;
 export declare function speakCallsign(reg: string): string;
 export declare function speakCallsignShort(reg: string): string;
 export declare function buildVfrDeparture(world: World): Scenario;
+export declare function buildIfrFlight(world: World): Scenario;

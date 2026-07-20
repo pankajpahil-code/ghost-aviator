@@ -30,6 +30,10 @@ export interface SimStep {
    * the callsign correctly sits early (who you call → who you are).
    */
   callsignPosition?: "end" | "any";
+  /** The radio head must be TUNED to this frequency or the call goes nowhere. */
+  requiresFreq?: string;
+  /** Radar contact needs this squawk set on the transponder widget. */
+  requiresSquawk?: string;
 }
 
 export interface Scenario {
@@ -43,6 +47,8 @@ export interface Scenario {
   briefing: string[];
   passMark: number;
   steps: SimStep[];
+  /** IFR flights show the transponder widget. */
+  hasTransponder?: boolean;
 }
 
 export const SCN1: Scenario = {
