@@ -114,11 +114,13 @@ class RadioFx {
 /* --------------------------------- Types ---------------------------------- */
 // Minimal Web Speech recognition typings — the API is not in TS's DOM lib.
 type SREvent = { results: ArrayLike<{ 0: { transcript: string } }> };
+type SRErrEvent = { error?: string };
 type SRInstance = {
-  lang: string; interimResults: boolean; maxAlternatives: number;
-  start(): void; stop(): void;
+  lang: string; interimResults: boolean; maxAlternatives: number; continuous?: boolean;
+  start(): void; stop(): void; abort(): void;
   onresult: ((e: SREvent) => void) | null;
   onend: (() => void) | null;
+  onerror: ((e: SRErrEvent) => void) | null;
 };
 type SRCtor = new () => SRInstance;
 function getSR(): SRCtor | undefined {
@@ -179,6 +181,8 @@ export default function GhostTower() {
   const retriedRef = useRef(false);
   const recRef = useRef<SRInstance | null>(null);
   const heardRef = useRef("");
+  const errRef = useRef("");
+  const primedRef = useRef(false);
   const pttStartRef = useRef(0);
   const lastDeliveryRef = useRef<{ wpm: number; fillers: number } | null>(null);
   const disciplineRef = useRef({ freq: 0, squawk: 0 });
@@ -271,6 +275,15 @@ export default function GhostTower() {
 
   const start = useCallback((m: "learn" | "practice") => {
     fx.current.ensure();
+    // Prime microphone permission once, at a calm moment, so the first
+    // hold-to-talk doesn't collide with a permission prompt (the silent-mic bug).
+    if (micAvailable && !primedRef.current &&
+        typeof navigator !== "undefined" && navigator.mediaDevices?.getUserMedia) {
+      primedRef.current = true;
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(s => s.getTracks().forEach(t => t.stop()))
+        .catch(() => { /* handled with a clear message on actual mic use */ });
+    }
     setMode(m);
     modeRef.current = m;
     setPhase("sim");
@@ -290,7 +303,7 @@ export default function GhostTower() {
     squawkProbeRef.current = null;
     busyRef.current = false;
     beginStep(0);
-  }, [beginStep, scn]);
+  }, [beginStep, scn, micAvailable]);
 
   const finishStep = useCallback((outcome: StepOutcome) => {
     setOutcomes(o => [...o, outcome]);
@@ -377,29 +390,46 @@ export default function GhostTower() {
 
   /* ------------------------------ Voice input ------------------------------ */
   const pttDown = useCallback(() => {
-    if (!micAvailable || !inputOpen || atcSpeaking) return;
+    if (!micAvailable || !inputOpen || atcSpeaking || ptt) return;
     const SR = getSR();
     if (!SR) return;
+    try { recRef.current?.abort(); } catch { /* none running */ }
     heardRef.current = "";
+    errRef.current = "";
     const rec = new SR();
     rec.lang = "en-IN";
-    rec.interimResults = false;
+    rec.interimResults = true;   // keep partial words even if released early
     rec.maxAlternatives = 1;
     rec.onresult = (e: SREvent) => {
-      heardRef.current = Array.from(e.results).map(r => r[0].transcript).join(" ");
+      let t = "";
+      for (let i = 0; i < e.results.length; i++) t += (e.results[i][0]?.transcript ?? "") + " ";
+      heardRef.current = t.trim();
     };
+    rec.onerror = (e: SRErrEvent) => { errRef.current = e?.error ?? "error"; };
     rec.onend = () => {
       setPtt(false);
       fx.current.click();
-      const heard = heardRef.current;
+      const heard = heardRef.current.trim();
       if (heard) {
         const durSec = Math.max(0.6, (performance.now() - pttStartRef.current) / 1000);
-        const words = heard.trim().split(/\s+/).length;
+        const words = heard.split(/\s+/).length;
         lastDeliveryRef.current = {
           wpm: Math.round((words / durSec) * 60),
           fillers: (heard.match(FILLER_RE) ?? []).length,
         };
         onTransmit(heard);
+      } else {
+        // Never fail silently — say what happened and how to proceed.
+        const err = errRef.current;
+        const msg =
+          (err === "not-allowed" || err === "service-not-allowed")
+            ? "🎤 Microphone is blocked for this site. Click the tune/lock icon at the left of the address bar → allow the Microphone → reload. Meanwhile you can tap the phrase chips or type your call and press TRANSMIT."
+            : err === "no-speech"
+            ? "Didn't catch anything — press and HOLD the mic, wait half a second, then speak. Or tap the chips / type your call and press TRANSMIT."
+            : err === "audio-capture"
+            ? "No microphone found. Plug one in, or tap the chips / type your call and press TRANSMIT."
+            : "Voice didn't come through — hold the mic and speak clearly, or tap the chips / type your call and press TRANSMIT.";
+        setLog(l => [...l, { who: "sys", text: msg }]);
       }
     };
     recRef.current = rec;
@@ -407,10 +437,17 @@ export default function GhostTower() {
     setPtt(true);
     pttStartRef.current = performance.now();
     try { rec.start(); } catch { setPtt(false); }
-  }, [micAvailable, inputOpen, atcSpeaking, onTransmit]);
+  }, [micAvailable, inputOpen, atcSpeaking, ptt, onTransmit]);
 
   const pttUp = useCallback(() => {
-    try { recRef.current?.stop(); } catch { /* not started */ }
+    // Give recognition a beat to finalize before stopping — a too-fast release
+    // otherwise cuts the capture off with nothing recognized.
+    const rec = recRef.current;
+    if (!rec) return;
+    const held = performance.now() - pttStartRef.current;
+    const stop = () => { try { rec.stop(); } catch { /* not started */ } };
+    if (held < 350) window.setTimeout(stop, 350 - held);
+    else stop();
   }, []);
 
   // IDENT: momentary flash — and on action steps, the press IS the answer
