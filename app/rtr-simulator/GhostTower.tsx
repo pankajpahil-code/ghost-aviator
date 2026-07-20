@@ -19,6 +19,7 @@ import {
   buildVfrDeparture, buildIfrFlight, buildEmergencyFlight, buildRadioFailureFlight,
 } from "@/lib/rtr-sim/director.mjs";
 import type { SimStep } from "@/lib/rtr-sim/scn1";
+import { voiceBank } from "@/lib/rtr-sim/voicebank";
 import { useUser } from "@/lib/supabase";
 
 /* -------------------------- Radio-head frequency ---------------------------
@@ -176,6 +177,7 @@ export default function GhostTower() {
   const [micAvailable, setMicAvailable] = useState(false);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [voiceURI, setVoiceURI] = useState("");
+  const [bankReady, setBankReady] = useState(false);
 
   const fx = useRef<RadioFx>(new RadioFx());
   const retriedRef = useRef(false);
@@ -207,6 +209,8 @@ export default function GhostTower() {
     refresh();
     window.speechSynthesis.addEventListener("voiceschanged", refresh);
     setMicAvailable(!!getSR());
+    // Pre-rendered neural ATC bank — silent no-op if it can't load.
+    voiceBank.load().then(setBankReady);
     return () => {
       window.speechSynthesis.removeEventListener("voiceschanged", refresh);
       window.speechSynthesis.cancel();
@@ -223,17 +227,15 @@ export default function GhostTower() {
     setSeedReady(true);
   }, []);
 
-  const speakAtc = useCallback((text: string, after?: () => void) => {
-    lastAtcRef.current = text;
-    setLog(l => [...l, { who: "atc", text }]);
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) { after?.(); return; }
+  // Fallback voice: whatever the device has installed (robotic on most desktops).
+  const speakSynth = useCallback((text: string, done: () => void) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) { done(); return; }
     const synth = window.speechSynthesis;
     synth.cancel();
     const u = new SpeechSynthesisUtterance(text);
     const v = voices.find(x => x.voiceURI === voiceURI) ?? voices[0];
     if (v) { u.voice = v; u.lang = v.lang; } else u.lang = "en-IN";
     u.rate = 0.92;
-    setAtcSpeaking(true);
     fx.current.click();
     fx.current.startHiss();
     // Watchdog: some devices never fire onend (broken/absent voices). The
@@ -244,13 +246,34 @@ export default function GhostTower() {
       finished = true;
       fx.current.stopHiss();
       fx.current.click();
-      setAtcSpeaking(false);
-      after?.();
+      done();
     };
     u.onend = u.onerror = finish;
     window.setTimeout(finish, Math.min(14000, 2000 + text.length * 90));
     synth.speak(u);
   }, [voices, voiceURI]);
+
+  const speakAtc = useCallback((text: string, after?: () => void) => {
+    lastAtcRef.current = text;
+    setLog(l => [...l, { who: "atc", text }]);
+    setAtcSpeaking(true);
+    const done = () => { setAtcSpeaking(false); after?.(); };
+
+    // Preferred: pre-rendered neural Indian-English ATC, stitched inside one
+    // continuous VHF carrier. Falls back to the device voice on any miss.
+    const ctx = fx.current.ensure();
+    if (ctx && voiceBank.ready && voiceBank.canSpeak(text)) {
+      voiceBank
+        .speak(ctx, text, {
+          open: () => { fx.current.click(); fx.current.startHiss(); },
+          close: () => { fx.current.stopHiss(); fx.current.click(); },
+        })
+        .then(ok => { if (ok) done(); else speakSynth(text, done); })
+        .catch(() => speakSynth(text, done));
+      return;
+    }
+    speakSynth(text, done);
+  }, [speakSynth]);
 
   /* ------------------------------- Step flow ------------------------------- */
   const beginStep = useCallback((i: number) => {
@@ -727,7 +750,13 @@ export default function GhostTower() {
                  style={{ height: h, background: atcSpeaking || ptt ? cyan : "rgba(255,255,255,0.15)", opacity: atcSpeaking || ptt ? 0.4 + i * 0.15 : 1 }} />
           ))}
         </div>
-        {voices.length > 1 && (
+        {bankReady ? (
+          <span className="text-[10px] font-black px-1.5 py-0.5 rounded tracking-wide"
+                title="Pre-rendered neural Indian-English controller voice, through a VHF radio filter"
+                style={{ color: "#4ade80", border: "1px solid rgba(74,222,128,0.35)", background: "rgba(74,222,128,0.08)" }}>
+            ATC ▸ en-IN
+          </span>
+        ) : voices.length > 1 && (
           <select value={voiceURI} onChange={e => setVoiceURI(e.target.value)}
                   className="text-xs rounded px-1 py-0.5 max-w-[110px]"
                   style={{ background: "rgba(255,255,255,0.06)", color: "#94a3b8", border: "1px solid rgba(255,255,255,0.1)" }}
