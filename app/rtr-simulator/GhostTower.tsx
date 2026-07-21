@@ -143,6 +143,25 @@ type StepOutcome = {
 
 const FILLER_RE = /\b(uh|um|umm|ah|ahh|hmm|haan)\b/gi;
 
+/**
+ * One place that turns a speech-recognition failure into student-readable
+ * guidance. `micGranted` comes from the getUserMedia probe: if the mic itself
+ * opened fine, a "not-allowed" is the speech SERVICE, never the user's setting.
+ */
+function micMessage(err: string, micGranted: boolean | null): string {
+  if ((err === "not-allowed" || err === "service-not-allowed") && micGranted === false)
+    return "🎤 Microphone is blocked for this site. Tap the lock/tune icon next to the address bar → Permissions → allow Microphone → reload. Meanwhile you can type your call and press TRANSMIT — it scores exactly the same.";
+  if (err === "not-allowed" || err === "service-not-allowed")
+    return "🎤 Your mic is fine, but the browser's speech service refused this transmission. Tap the mic and try once more — or type your call and press TRANSMIT (scored exactly the same).";
+  if (err === "no-speech")
+    return "Didn't catch anything — tap the mic, wait half a second, speak, then tap again to send. Or type your call and press TRANSMIT.";
+  if (err === "audio-capture")
+    return "No microphone found. Check your headset, or type your call and press TRANSMIT.";
+  if (err === "start-failed")
+    return "🎤 The browser wouldn't open the mic. On phones this usually means voice input isn't supported here — type your call and press TRANSMIT instead (scored exactly the same).";
+  return "Voice didn't come through — tap the mic, speak clearly, tap again to send. Or type your call and press TRANSMIT.";
+}
+
 /* ================================ Component ================================ */
 export default function GhostTower() {
   const [phase, setPhase] = useState<Phase>("brief");
@@ -188,6 +207,7 @@ export default function GhostTower() {
   // Set by the getUserMedia prime: proves whether the MIC itself is usable, so
   // a speech-service failure is never misreported as a permission problem.
   const micGrantedRef = useRef<boolean | null>(null);
+  const micTimerRef = useRef<number | undefined>(undefined);
   const pttStartRef = useRef(0);
   const lastDeliveryRef = useRef<{ wpm: number; fillers: number } | null>(null);
   const disciplineRef = useRef({ freq: 0, squawk: 0 });
@@ -318,7 +338,7 @@ export default function GhostTower() {
       who: "sys",
       text: m === "learn"
         ? "LEARN MODE — build each call by tapping the phrase chips in order, then press TRANSMIT. The radio tunes itself here, and SAY AGAIN replays ATC any time you missed a word."
-        : "PRACTICE MODE — hold the round MIC while you speak (release to send), or type your call and press TRANSMIT. Handoffs are yours: dial STBY with M−/M+/k−/k+, then press ⇄. Set the SQK digits when ATC assigns a squawk.",
+        : "PRACTICE MODE — TAP the round MIC, speak your call, then TAP IT AGAIN to send. Or just type your call and press TRANSMIT. Handoffs are yours: dial STBY with M−/M+/k−/k+, then press ⇄. Set the SQK digits when ATC assigns a squawk.",
     }]);
     setOutcomes([]);
     setStepIndex(0);
@@ -414,9 +434,20 @@ export default function GhostTower() {
     lastDeliveryRef.current = null;
   }, [step, inputOpen, speakAtc, finishStep, scn, mode, activeCents, xpdr]);
 
-  /* ------------------------------ Voice input ------------------------------ */
-  const pttDown = useCallback(() => {
-    if (!micAvailable || !inputOpen || atcSpeaking || ptt) return;
+  /* ------------------------------ Voice input ------------------------------
+     TAP to start, TAP to send. Press-and-hold is unusable on phones: a finger
+     always drifts (pointerleave killed the capture), the browser cancels the
+     gesture when it suspects a scroll, and long-press raises text selection.
+     One tap works identically on every device — and still teaches PTT
+     discipline: key the mic, speak, unkey.                                    */
+  const stopListening = useCallback(() => {
+    const rec = recRef.current;
+    if (!rec) return;
+    try { rec.stop(); } catch { /* not started */ }
+  }, []);
+
+  const startListening = useCallback(() => {
+    if (!micAvailable || !inputOpen || atcSpeaking) return;
     const SR = getSR();
     if (!SR) return;
     try { recRef.current?.abort(); } catch { /* none running */ }
@@ -424,7 +455,8 @@ export default function GhostTower() {
     errRef.current = "";
     const rec = new SR();
     rec.lang = "en-IN";
-    rec.interimResults = true;   // keep partial words even if released early
+    rec.interimResults = true;   // keep partial words
+    rec.continuous = true;       // a pause mid-readback must NOT cut you off
     rec.maxAlternatives = 1;
     rec.onresult = (e: SREvent) => {
       let t = "";
@@ -433,6 +465,7 @@ export default function GhostTower() {
     };
     rec.onerror = (e: SRErrEvent) => { errRef.current = e?.error ?? "error"; };
     rec.onend = () => {
+      window.clearTimeout(micTimerRef.current);
       setPtt(false);
       fx.current.click();
       const heard = heardRef.current.trim();
@@ -445,23 +478,8 @@ export default function GhostTower() {
         };
         onTransmit(heard);
       } else {
-        // Never fail silently — and never blame the wrong thing. If the mic
-        // itself opened fine, a "not-allowed" is the speech SERVICE, not you.
-        const err = errRef.current;
-        const permissionBlocked =
-          (err === "not-allowed" || err === "service-not-allowed") && micGrantedRef.current === false;
-        const serviceFailed =
-          (err === "not-allowed" || err === "service-not-allowed") && micGrantedRef.current !== false;
-        const msg =
-          permissionBlocked
-            ? "🎤 Microphone is blocked for this site. Click the tune/lock icon at the left of the address bar → allow the Microphone → reload. Meanwhile you can type your call and press TRANSMIT."
-            : serviceFailed
-            ? "🎤 Your mic is fine, but the browser's speech service refused this transmission. Try once more — if it keeps happening, use Chrome, or type your call and press TRANSMIT (it scores exactly the same)."
-            : err === "no-speech"
-            ? "Didn't catch anything — press and HOLD the mic, wait half a second, then speak. Or type your call and press TRANSMIT."
-            : err === "audio-capture"
-            ? "No microphone found. Plug one in, or type your call and press TRANSMIT."
-            : "Voice didn't come through — hold the mic and speak clearly, or type your call and press TRANSMIT.";
+        // Never fail silently — and never blame the wrong thing.
+        const msg = micMessage(errRef.current, micGrantedRef.current);
         // Don't stack the same warning over and over.
         setLog(l => (l[l.length - 1]?.text === msg ? l : [...l, { who: "sys", text: msg }]));
       }
@@ -470,19 +488,26 @@ export default function GhostTower() {
     fx.current.click();
     setPtt(true);
     pttStartRef.current = performance.now();
-    try { rec.start(); } catch { setPtt(false); }
-  }, [micAvailable, inputOpen, atcSpeaking, ptt, onTransmit]);
+    // Safety: never leave a phone's mic open indefinitely.
+    micTimerRef.current = window.setTimeout(() => {
+      try { rec.stop(); } catch { /* already ended */ }
+    }, 20000);
+    try {
+      rec.start();
+    } catch {
+      // start() can throw synchronously (mic unavailable / already running).
+      // That path must speak too — it was the last silent failure left.
+      window.clearTimeout(micTimerRef.current);
+      setPtt(false);
+      const msg = micMessage("start-failed", micGrantedRef.current);
+      setLog(l => (l[l.length - 1]?.text === msg ? l : [...l, { who: "sys", text: msg }]));
+    }
+  }, [micAvailable, inputOpen, atcSpeaking, onTransmit]);
 
-  const pttUp = useCallback(() => {
-    // Give recognition a beat to finalize before stopping — a too-fast release
-    // otherwise cuts the capture off with nothing recognized.
-    const rec = recRef.current;
-    if (!rec) return;
-    const held = performance.now() - pttStartRef.current;
-    const stop = () => { try { rec.stop(); } catch { /* not started */ } };
-    if (held < 350) window.setTimeout(stop, 350 - held);
-    else stop();
-  }, []);
+  const toggleMic = useCallback(() => {
+    if (ptt) stopListening();
+    else startListening();
+  }, [ptt, startListening, stopListening]);
 
   // IDENT: momentary flash — and on action steps, the press IS the answer
   // (a pilot who cannot transmit can still be seen).
@@ -575,7 +600,7 @@ export default function GhostTower() {
           </p>
           <p className="text-xs flex items-center gap-2" style={{ color: "#64748b" }}>
             <Headphones className="w-4 h-4 shrink-0" />
-            Headphones recommended. {micAvailable ? "Hold the PTT to speak your calls, or tap the phrase chips." : "Voice input isn't supported in this browser — tap the phrase chips to compose your calls."}
+            Headphones recommended. {micAvailable ? "Tap the mic to speak your calls, tap again to send — or tap the phrase chips / type instead." : "Voice input isn't supported in this browser — tap the phrase chips or type your calls (scored exactly the same)."}
           </p>
         </div>
         {flightType !== "vfr" && !user ? (
@@ -842,7 +867,7 @@ export default function GhostTower() {
             }}
             disabled={!inputOpen}
             placeholder={inputOpen
-              ? (micAvailable ? "Hold the mic to speak — or type your transmission…" : "Type your transmission…")
+              ? (micAvailable ? "Tap the mic to speak — or type your transmission…" : "Type your transmission…")
               : "Stand by…"}
             className="w-full rounded-lg px-3 py-2.5 text-sm font-mono disabled:opacity-40"
             style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(0,212,255,0.3)", color: "#e2e8f0", outline: "none" }}
@@ -872,18 +897,27 @@ export default function GhostTower() {
             <Volume2 className="w-4 h-4" /> SAY AGAIN
           </button>
           {micAvailable && (
-            <button onPointerDown={pttDown} onPointerUp={pttUp} onPointerLeave={pttUp}
+            <button onClick={toggleMic}
                     disabled={!inputOpen || atcSpeaking}
-                    className="ml-auto inline-flex items-center justify-center rounded-full w-14 h-14 font-black disabled:opacity-30 transition-transform active:scale-95"
-                    title="Hold to transmit by voice"
-                    style={{ background: ptt ? "#ef4444" : "rgba(0,212,255,0.12)", border: `2px solid ${ptt ? "#ef4444" : cyan}`, color: ptt ? "#fff" : cyan, touchAction: "none" }}>
-              <Mic className="w-6 h-6" />
+                    className={`ml-auto inline-flex items-center justify-center rounded-full w-16 h-16 font-black disabled:opacity-30 transition-transform active:scale-95 ${ptt ? "animate-pulse" : ""}`}
+                    title={ptt ? "Tap to send your transmission" : "Tap to start speaking"}
+                    aria-label={ptt ? "Tap to send" : "Tap to speak"}
+                    style={{ background: ptt ? "#ef4444" : "rgba(0,212,255,0.12)", border: `2px solid ${ptt ? "#ef4444" : cyan}`, color: ptt ? "#fff" : cyan, touchAction: "manipulation" }}>
+              <Mic className="w-7 h-7" />
             </button>
           )}
         </div>
+        {micAvailable && (
+          <div className="text-center text-xs font-bold py-1 rounded-lg"
+               style={ptt
+                 ? { color: "#fff", background: "rgba(239,68,68,0.9)" }
+                 : { color: cyan, background: "rgba(0,212,255,0.08)", border: `1px solid ${cyan}33` }}>
+            {ptt ? "🔴 LISTENING — speak now, then TAP THE MIC AGAIN to send" : "🎤 Tap the mic to speak your call"}
+          </div>
+        )}
         <div className="text-[11px] flex items-center justify-between" style={{ color: "#475569" }}>
           <span>Step {stepIndex + 1} of {scn.steps.length}</span>
-          {micAvailable && <span>{ptt ? "TRANSMITTING — release to send" : "Hold the mic to speak"}</span>}
+          <span>{micAvailable ? "Tap mic · or type your call" : "Type your call and press TRANSMIT"}</span>
         </div>
       </div>
     </div>

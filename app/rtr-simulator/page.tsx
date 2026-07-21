@@ -36,7 +36,7 @@ const HOW_TO = [
   {
     icon: Mic,
     title: "3 · Transmit",
-    body: "When it's your turn, the cue line (✦) tells you what the situation demands. HOLD the round mic button while you speak, release to send — or tap the chips in order (Learn) / type your call (Practice) and press TRANSMIT. End every read-back with your callsign.",
+    body: "When it's your turn, the cue line (✦) tells you what the situation demands. TAP the round mic button, speak your call, then TAP IT AGAIN to send — the button glows red while it's listening. Prefer not to speak? Tap the chips in order (Learn) or type your call (Practice) and press TRANSMIT — typing scores exactly the same. On a phone, tapping is far more reliable than holding.",
   },
   {
     icon: Volume2,
