@@ -20,6 +20,7 @@ import {
 } from "@/lib/rtr-sim/director.mjs";
 import type { SimStep } from "@/lib/rtr-sim/scn1";
 import { voiceBank } from "@/lib/rtr-sim/voicebank";
+import { newFinalSegments, joinTranscript } from "@/lib/rtr-sim/transcript.mjs";
 import { useUser } from "@/lib/supabase";
 
 /* -------------------------- Radio-head frequency ---------------------------
@@ -114,7 +115,10 @@ class RadioFx {
 
 /* --------------------------------- Types ---------------------------------- */
 // Minimal Web Speech recognition typings — the API is not in TS's DOM lib.
-type SREvent = { results: ArrayLike<{ 0: { transcript: string } }> };
+type SRResult = { 0: { transcript: string }; isFinal?: boolean };
+// `resultIndex` marks where the NEW results start in the cumulative list —
+// ignoring it and re-reading from 0 is what stacked the transcript.
+type SREvent = { resultIndex?: number; results: ArrayLike<SRResult> };
 type SRErrEvent = { error?: string };
 type SRInstance = {
   lang: string; interimResults: boolean; maxAlternatives: number; continuous?: boolean;
@@ -202,12 +206,18 @@ export default function GhostTower() {
   const retriedRef = useRef(false);
   const recRef = useRef<SRInstance | null>(null);
   const heardRef = useRef("");
+  // Finalised speech segments for the current transmission, in order.
+  const finalsRef = useRef<string[]>([]);
   const errRef = useRef("");
   const primedRef = useRef(false);
   // Set by the getUserMedia prime: proves whether the MIC itself is usable, so
   // a speech-service failure is never misreported as a permission problem.
   const micGrantedRef = useRef<boolean | null>(null);
   const micTimerRef = useRef<number | undefined>(undefined);
+  // Identifies the live recognition session. Aborting the previous one fires
+  // its onend asynchronously — without this it would post a phantom error and
+  // clear the LISTENING state of the session that just replaced it.
+  const micSessionRef = useRef(0);
   const pttStartRef = useRef(0);
   const lastDeliveryRef = useRef<{ wpm: number; fillers: number } | null>(null);
   const disciplineRef = useRef({ freq: 0, squawk: 0 });
@@ -452,19 +462,24 @@ export default function GhostTower() {
     if (!SR) return;
     try { recRef.current?.abort(); } catch { /* none running */ }
     heardRef.current = "";
+    finalsRef.current = [];
     errRef.current = "";
+    const session = ++micSessionRef.current;
     const rec = new SR();
     rec.lang = "en-IN";
-    rec.interimResults = true;   // keep partial words
+    // Finals only: interim hypotheses are never displayed, and mixing them into
+    // the transcript was a second source of repetition.
+    rec.interimResults = false;
     rec.continuous = true;       // a pause mid-readback must NOT cut you off
     rec.maxAlternatives = 1;
     rec.onresult = (e: SREvent) => {
-      let t = "";
-      for (let i = 0; i < e.results.length; i++) t += (e.results[i][0]?.transcript ?? "") + " ";
-      heardRef.current = t.trim();
+      // Consume ONLY newly-arrived results (see lib/rtr-sim/transcript.mjs).
+      finalsRef.current.push(...newFinalSegments(e.results, e.resultIndex));
+      heardRef.current = joinTranscript(finalsRef.current);
     };
     rec.onerror = (e: SRErrEvent) => { errRef.current = e?.error ?? "error"; };
     rec.onend = () => {
+      if (micSessionRef.current !== session) return;   // superseded — stay quiet
       window.clearTimeout(micTimerRef.current);
       setPtt(false);
       fx.current.click();
