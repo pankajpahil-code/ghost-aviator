@@ -17,6 +17,11 @@ import {
 import { rollWorld, randomSeed } from "@/lib/rtr-sim/world.mjs";
 import {
   buildVfrDeparture, buildIfrFlight, buildEmergencyFlight, buildRadioFailureFlight,
+  buildVfrCircuit, buildSraApproach, buildMedicalEmergency,
+  buildLostPilot, buildEmergencyDescent, buildTcasEvent,
+  buildSpecialVfr, buildNdbApproach, buildParTalkdown, buildVfrArrival,
+  buildAirwaysTransit, buildFuelDump, buildAbandonedTakeoff,
+  buildMsawAlert, buildRunwayConditions,
 } from "@/lib/rtr-sim/director.mjs";
 import type { SimStep } from "@/lib/rtr-sim/scn1";
 import { voiceBank } from "@/lib/rtr-sim/voicebank";
@@ -174,7 +179,7 @@ export default function GhostTower() {
   const [seed, setSeed] = useState(0);
   const [seedReady, setSeedReady] = useState(false);
   const [mode, setMode] = useState<"learn" | "practice">("learn");
-  const [flightType, setFlightType] = useState<"vfr" | "ifr" | "emergency" | "radiofail">("vfr");
+  const [flightType, setFlightType] = useState<"vfr" | "ifr" | "emergency" | "radiofail" | "circuit" | "sra" | "medical" | "lost" | "decompression" | "tcas" | "svfr" | "ndb" | "par" | "vfrArrival" | "airways" | "fuelDump" | "abandonedTakeoff" | "msaw" | "runwayConditions">("vfr");
   const [typedText, setTypedText] = useState("");
   const { user } = useUser();
   const scn = useMemo(() => {
@@ -183,6 +188,21 @@ export default function GhostTower() {
       case "ifr": return buildIfrFlight(w);
       case "emergency": return buildEmergencyFlight(w);
       case "radiofail": return buildRadioFailureFlight(w);
+      case "circuit": return buildVfrCircuit(w);
+      case "sra": return buildSraApproach(w);
+      case "medical": return buildMedicalEmergency(w);
+      case "lost": return buildLostPilot(w);
+      case "decompression": return buildEmergencyDescent(w);
+      case "tcas": return buildTcasEvent(w);
+      case "svfr": return buildSpecialVfr(w);
+      case "ndb": return buildNdbApproach(w);
+      case "par": return buildParTalkdown(w);
+      case "vfrArrival": return buildVfrArrival(w);
+      case "airways": return buildAirwaysTransit(w);
+      case "fuelDump": return buildFuelDump(w);
+      case "abandonedTakeoff": return buildAbandonedTakeoff(w);
+      case "msaw": return buildMsawAlert(w);
+      case "runwayConditions": return buildRunwayConditions(w);
       default: return buildVfrDeparture(w);
     }
   }, [seed, flightType]);
@@ -580,7 +600,22 @@ export default function GhostTower() {
           {([["vfr", "SCENARIO 1 · VFR Departure", false],
              ["ifr", "SCENARIO 2 · IFR Full Flight", true],
              ["emergency", "SCENARIO 3 · Emergency", true],
-             ["radiofail", "SCENARIO 4 · Radio Failure", true]] as const).map(([ft, label, gated]) => (
+             ["radiofail", "SCENARIO 4 · Radio Failure", true],
+             ["circuit", "SCENARIO 5 · VFR Circuit", true],
+             ["sra", "SCENARIO 6 · SRA Talkdown", true],
+             ["medical", "SCENARIO 7 · Medical PAN-PAN", true],
+             ["lost", "SCENARIO 8 · Lost Pilot", true],
+             ["decompression", "SCENARIO 9 · Decompression MAYDAY", true],
+             ["tcas", "SCENARIO 10 · TCAS RA", true],
+             ["svfr", "SCENARIO 11 · Special VFR", true],
+             ["ndb", "SCENARIO 12 · NDB Approach", true],
+             ["par", "SCENARIO 13 · PAR Talkdown", true],
+             ["vfrArrival", "SCENARIO 14 · VFR Arrival", true],
+             ["airways", "SCENARIO 15 · Airways Transit", true],
+             ["fuelDump", "SCENARIO 16 · Fuel Dump", true],
+             ["abandonedTakeoff", "SCENARIO 17 · Abandoned Takeoff", true],
+             ["msaw", "SCENARIO 18 · MSAW Terrain Alert", true],
+             ["runwayConditions", "SCENARIO 19 · Runway Conditions", true]] as const).map(([ft, label, gated]) => (
             <button key={ft} onClick={() => setFlightType(ft)}
                     className="text-xs font-black px-3 py-2 rounded-lg"
                     style={flightType === ft

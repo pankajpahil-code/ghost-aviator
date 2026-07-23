@@ -13,6 +13,11 @@ import { fileURLToPath } from "node:url";
 import { rollWorld } from "../../../lib/rtr-sim/world.mjs";
 import {
   buildVfrDeparture, buildIfrFlight, buildEmergencyFlight, buildRadioFailureFlight,
+  buildVfrCircuit, buildSraApproach, buildMedicalEmergency,
+  buildLostPilot, buildEmergencyDescent, buildTcasEvent,
+  buildSpecialVfr, buildNdbApproach, buildParTalkdown, buildVfrArrival,
+  buildAirwaysTransit, buildFuelDump, buildAbandonedTakeoff,
+  buildMsawAlert, buildRunwayConditions,
 } from "../../../lib/rtr-sim/director.mjs";
 import { collectFragments, segmentLine } from "../../../lib/rtr-sim/segment.mjs";
 
@@ -23,6 +28,21 @@ const BUILDERS = [
   ["ifr", buildIfrFlight],
   ["emergency", buildEmergencyFlight],
   ["radiofail", buildRadioFailureFlight],
+  ["circuit", buildVfrCircuit],
+  ["sra", buildSraApproach],
+  ["medical", buildMedicalEmergency],
+  ["lost", buildLostPilot],
+  ["decompression", buildEmergencyDescent],
+  ["tcas", buildTcasEvent],
+  ["svfr", buildSpecialVfr],
+  ["ndb", buildNdbApproach],
+  ["par", buildParTalkdown],
+  ["vfrArrival", buildVfrArrival],
+  ["airways", buildAirwaysTransit],
+  ["fuelDump", buildFuelDump],
+  ["abandonedTakeoff", buildAbandonedTakeoff],
+  ["msaw", buildMsawAlert],
+  ["runwayConditions", buildRunwayConditions],
 ];
 
 const lines = [];
