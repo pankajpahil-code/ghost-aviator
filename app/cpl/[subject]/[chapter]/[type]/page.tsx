@@ -184,6 +184,17 @@ export default async function Page({
       "air-navigation/nav-31": true,
       "air-navigation/nav-32": true,
       "air-navigation/nav-33": true,
+      // DA-42 NG (Austro) type-specific study notes
+      "technical-specific/da42-1":  true,
+      "technical-specific/da42-2":  true,
+      "technical-specific/da42-3":  true,
+      "technical-specific/da42-4":  true,
+      "technical-specific/da42-5":  true,
+      "technical-specific/da42-6":  true,
+      "technical-specific/da42-7":  true,
+      "technical-specific/da42-8":  true,
+      "technical-specific/da42-9":  true,
+      "technical-specific/da42-10": true,
     };
     if (HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]) {
       return (

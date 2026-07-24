@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DA-42 NG (Austro) — Ch.7: Limitations & V-Speeds | Technical Specific | Ghost Aviator</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:0 auto;padding:28px 22px;background:#fdfdfb;color:#1d2733;line-height:1.75;}
+  .cover{text-align:center;border-bottom:3px double #ec4899;margin-bottom:26px;padding-bottom:18px;}
+  .cover .part{color:#b3316f;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;font-size:.82em;}
+  .cover h1{color:#b3316f;margin:8px 0 4px;font-size:1.55em;}
+  .cover .author{color:#555;font-style:italic;margin-top:6px;font-size:.95em;}
+  h2{color:#b3316f;border-left:5px solid #ec4899;padding-left:10px;margin-top:32px;font-size:1.25em;}
+  h3{color:#333;margin-top:22px;font-size:1.05em;}
+  p{margin:11px 0;text-align:justify;}
+  ul{padding-left:22px;margin:10px 0;}
+  li{margin:6px 0;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.95em;}
+  th,td{border:1px solid #d9c2ce;padding:6px 9px;text-align:left;vertical-align:top;}
+  th{background:#fbe6f0;color:#8a2758;font-family:Arial,sans-serif;font-size:.9em;}
+  .swatch{display:inline-block;width:12px;height:12px;border:1px solid #888;vertical-align:middle;margin-right:5px;}
+  .callout{border-left:5px solid #ec4899;background:#fdf0f6;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .callout .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#b3316f;display:block;margin-bottom:4px;}
+  .why{border-left:5px solid #2c5aa0;background:#eef3fb;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .why .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#2c5aa0;display:block;margin-bottom:4px;}
+  .footer{margin-top:38px;border-top:1px solid #ccc;padding-top:12px;color:#777;font-size:.85em;text-align:center;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="part">Technical Specific · DA-42 NG (Austro Engine)</div>
+  <h1>Chapter 7 — Operating Limitations &amp; V-Speeds</h1>
+  <p class="author">DGCA CPL Technical Specific notes — Capt. Pankaj Pahil</p>
+</div>
+
+<p>This is the chapter the paper is built on. Nearly every type-specific question is, at heart, a limitation
+question — a speed, a mass, an RPM, a marking. Learn these tables until you can write them from memory. I've
+laid them out the way I'd want a cadet to rote-learn them.</p>
+
+<h2>7.1 The V-speeds</h2>
+<p>All speeds are indicated (KIAS).</p>
+<table>
+<tr><th>Speed</th><th>Value</th><th>What it means</th></tr>
+<tr><td>V<sub>NE</sub></td><td>188</td><td>Never exceed — in any operation.</td></tr>
+<tr><td>V<sub>NO</sub></td><td>151</td><td>Max structural cruising — above it only in smooth air, with caution.</td></tr>
+<tr><td>V<sub>O</sub> (manoeuvring)</td><td>122 / 119 / 112</td><td>122 above 1800 kg; 119 from 1700–1800 kg; 112 up to 1700 kg. No full or abrupt control inputs above it.</td></tr>
+<tr><td>V<sub>FE</sub></td><td>133 (APP) / 113 (LDG)</td><td>Max flaps-extended speed for each setting.</td></tr>
+<tr><td>V<sub>LE</sub></td><td>188</td><td>Max speed with the gear extended.</td></tr>
+<tr><td>V<sub>LO</sub> extend</td><td>188</td><td>Max speed to extend the gear.</td></tr>
+<tr><td>V<sub>LO</sub> retract</td><td>152</td><td>Max speed to retract the gear.</td></tr>
+<tr><td>V<sub>MCA</sub></td><td>76 (UP) / 73 (APP)</td><td>Minimum control speed airborne, one engine inoperative.</td></tr>
+<tr><td>V<sub>YSE</sub> (blue line)</td><td>85</td><td>Best rate of climb, one engine inoperative.</td></tr>
+</table>
+<div class="why">
+<span class="lbl">Why the blue-line / red-line gap matters</span>
+V<sub>YSE</sub> 85 sits <em>above</em> V<sub>MCA</sub> 76 — a 9-knot cushion. On one engine you fly the blue
+line: it gives you both directional control and the best climb the aeroplane has. Let the speed sag towards
+the red line and you're trading away the control that keeps the aeroplane pointing straight. That gap is the
+single most important idea in multi-engine flying.
+</div>
+
+<h2>7.2 Airspeed indicator markings</h2>
+<table>
+<tr><th>Marking</th><th>Range / value</th><th>Meaning</th></tr>
+<tr><td><span class="swatch" style="background:#fff"></span>White arc</td><td>62 – 113 KIAS</td><td>Full-flap operating range (V<sub>S0</sub> to V<sub>FE</sub> LDG).</td></tr>
+<tr><td><span class="swatch" style="background:#2e8b3d"></span>Green arc</td><td>69 – 151 KIAS</td><td>Normal operating range.</td></tr>
+<tr><td><span class="swatch" style="background:#e0c000"></span>Yellow arc</td><td>151 – 188 KIAS</td><td>Caution — smooth air only.</td></tr>
+<tr><td><span class="swatch" style="background:#1a5fd0"></span>Blue radial</td><td>85 KIAS</td><td>Best single-engine rate of climb (V<sub>YSE</sub>).</td></tr>
+<tr><td><span class="swatch" style="background:#c81e1e"></span>Red radial</td><td>76 KIAS</td><td>Minimum control speed (V<sub>MCA</sub>).</td></tr>
+<tr><td><span class="swatch" style="background:#c81e1e"></span>Red radial</td><td>188 KIAS</td><td>Never-exceed (V<sub>NE</sub>).</td></tr>
+</table>
+
+<h2>7.3 Power-plant limits</h2>
+<table>
+<tr><th>Item</th><th>Limit</th></tr>
+<tr><td>Engines</td><td>2 × Austro Engine E4-B</td></tr>
+<tr><td>Max take-off RPM</td><td>2300 (propeller), 5 min max</td></tr>
+<tr><td>Max continuous RPM</td><td>2100 (propeller)</td></tr>
+<tr><td>Max overspeed</td><td>2500 RPM, 20 sec max</td></tr>
+<tr><td>Max take-off power</td><td>100% (≈ 123.5 kW), 5 min max</td></tr>
+<tr><td>Max continuous power</td><td>92% (≈ 114 kW)</td></tr>
+<tr><td>Max fuel temperature</td><td>60 °C</td></tr>
+</table>
+
+<h2>7.4 Mass limits</h2>
+<table>
+<tr><th>Mass</th><th>Standard limit</th></tr>
+<tr><td>Maximum take-off mass</td><td>1900 kg (4189 lb)</td></tr>
+<tr><td>Maximum landing mass</td><td>1805 kg (3979 lb)</td></tr>
+<tr><td>Maximum zero-fuel mass</td><td>1765 kg (3891 lb)</td></tr>
+</table>
+<div class="callout">
+<span class="lbl">A word on the higher figures</span>
+You will meet 1999 kg and 2001 kg quoted for this type. Those apply only to aircraft carrying a specific
+approved weight-increase modification. For the standard aeroplane — and in the exam unless told otherwise —
+work to <strong>1900 kg</strong>.
+</div>
+
+<h2>7.5 Centre of gravity, load factors, altitude and crew</h2>
+<p>The datum plane is 2.196 m forward of the most forward point of the wing root rib. The permitted CG for
+flight lies between a forward limit that moves aft as mass increases (about 2.350 m at light weight to about
+2.418 m at maximum take-off mass) and an aft limit of about 2.480 m. In practice you confirm this with the
+loading chart in the mass-and-balance chapter — but know that the envelope <em>narrows at the front as you
+get heavier</em>.</p>
+<table>
+<tr><th>Structural load factors</th><th>Positive</th><th>Negative</th></tr>
+<tr><td>Flaps up (at V<sub>O</sub> / V<sub>NE</sub>)</td><td>+3.8 g</td><td>−1.52 g</td></tr>
+<tr><td>Flaps in APP or LDG</td><td>+2.0 g</td><td>0.0 g</td></tr>
+</table>
+<p>Intentional negative-g manoeuvres are not permitted. The maximum operating altitude is
+<strong>18,000 ft</strong> pressure altitude. Minimum crew is <strong>one</strong>; maximum occupancy is
+<strong>four</strong>.</p>
+
+<div class="callout">
+<span class="lbl">The must-know shortlist</span>
+V<sub>NE</sub> 188 · V<sub>NO</sub> 151 · V<sub>YSE</sub> (blue) 85 · V<sub>MCA</sub> (red) 76 · V<sub>FE</sub>
+133/113 · gear retract 152, extend 188 · take-off 2300 RPM (5 min) / continuous 2100 · MTOM 1900 kg · load
++3.8/−1.52 clean · ceiling 18,000 ft · crew 1, occupants 4.
+</div>
+
+<div class="footer">© Ghost Aviator · DGCA CPL Technical Specific · DA-42 NG (Austro Engine) · Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DA-42 NG (Austro) — Ch.3: Fuel System | Technical Specific | Ghost Aviator</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:0 auto;padding:28px 22px;background:#fdfdfb;color:#1d2733;line-height:1.75;}
+  .cover{text-align:center;border-bottom:3px double #ec4899;margin-bottom:26px;padding-bottom:18px;}
+  .cover .part{color:#b3316f;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;font-size:.82em;}
+  .cover h1{color:#b3316f;margin:8px 0 4px;font-size:1.55em;}
+  .cover .author{color:#555;font-style:italic;margin-top:6px;font-size:.95em;}
+  h2{color:#b3316f;border-left:5px solid #ec4899;padding-left:10px;margin-top:32px;font-size:1.25em;}
+  h3{color:#333;margin-top:22px;font-size:1.05em;}
+  p{margin:11px 0;text-align:justify;}
+  ul{padding-left:22px;margin:10px 0;}
+  li{margin:6px 0;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.95em;}
+  th,td{border:1px solid #d9c2ce;padding:6px 9px;text-align:left;vertical-align:top;}
+  th{background:#fbe6f0;color:#8a2758;font-family:Arial,sans-serif;font-size:.9em;}
+  .callout{border-left:5px solid #ec4899;background:#fdf0f6;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .callout .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#b3316f;display:block;margin-bottom:4px;}
+  .why{border-left:5px solid #2c5aa0;background:#eef3fb;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .why .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#2c5aa0;display:block;margin-bottom:4px;}
+  .warn{border-left:5px solid #b3261e;background:#fdeceb;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .warn .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#b3261e;display:block;margin-bottom:4px;}
+  .footer{margin-top:38px;border-top:1px solid #ccc;padding-top:12px;color:#777;font-size:.85em;text-align:center;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="part">Technical Specific · DA-42 NG (Austro Engine)</div>
+  <h1>Chapter 3 — The Fuel System</h1>
+  <p class="author">DGCA CPL Technical Specific notes — Capt. Pankaj Pahil</p>
+</div>
+
+<p>The fuel system on this aeroplane is simple to fly and easy to get wrong on paper, because the
+crossfeed has firm rules and the examiner tests them. Learn where the fuel lives, how much of it you can
+actually use, and — most importantly — the do's and don'ts of the selector valves.</p>
+
+<h2>3.1 Where the fuel lives</h2>
+<p>Fuel is carried in an aluminium tank inside each wing, each tank made of three chambers linked by a
+flexible hose and filled from a single filler on the outboard chamber. Of the fuel in each wing, a small
+amount is unusable, leaving:</p>
+<table>
+<tr><th>Tank</th><th>Usable per side</th></tr>
+<tr><td>Main wing tank (standard)</td><td>≈ 25.4 US gal (96 litres); about 1 US gal (4 litres) is unusable</td></tr>
+<tr><td>Optional auxiliary tank (in each nacelle)</td><td>+ 13.7 US gal (52 litres)</td></tr>
+<tr><td>Total per side with auxiliary fitted</td><td>≈ 39.7 US gal (150 litres)</td></tr>
+</table>
+<p>So a standard aeroplane has roughly <strong>50 US gallons usable</strong> in total, and one with the
+auxiliary tanks carries close to 80.</p>
+
+<h2>3.2 How fuel reaches the engine</h2>
+<p>Normally the left engine draws from the left tank and the right from the right. Each engine has
+<strong>two</strong> independent low-pressure electric fuel pumps working in parallel; in normal flight
+only one runs, and if it loses pressure the ECU automatically switches to the second. From there a
+high-pressure pump raises the fuel to common-rail pressure and the injectors spray it directly into the
+cylinders. Fuel that isn't burned is returned to the wing tank.</p>
+<p>A FUEL PUMP switch lets you run both pumps together — you do this for take-off and landing, and any time
+you suspect a fuel-pressure problem.</p>
+
+<h2>3.3 The fuel selector valves — read this twice</h2>
+<p>Each engine has a fuel selector on the centre console with three positions: <strong>ON</strong>,
+<strong>CROSSFEED</strong> and <strong>OFF</strong>. In normal operation both are ON, each engine feeding
+from its own side. CROSSFEED lets an engine draw from the <em>opposite</em> tank — you use it to balance
+fuel during a long single-engine flight. To reach OFF you must twist a safety guard, so you cannot select
+it by accident.</p>
+<div class="warn">
+<span class="lbl">The crossfeed rules — high-yield exam material</span>
+<ul>
+<li><strong>Do not</strong> take off with a selector in CROSSFEED.</li>
+<li><strong>Do not</strong> put both selectors in CROSSFEED at once.</li>
+<li><strong>Do not</strong> run the FUEL PUMP together with CROSSFEED — the extra pressure can damage the
+high-pressure pump and forces special maintenance.</li>
+<li><strong>Do not</strong> shut an engine down with the selector — that also risks the high-pressure pump.
+Shut down with the ENGINE MASTER.</li>
+<li>If an engine is <strong>inoperative</strong>, its selector goes to <strong>OFF</strong>.</li>
+</ul>
+</div>
+<div class="why">
+<span class="lbl">Why it matters</span>
+Crossfeed exists for one real job: keeping the aeroplane laterally balanced when you're flying a long way
+on one engine and burning fuel from only one wing. It is a fuel-balancing tool, not a normal-ops setting —
+which is exactly why every rule around it is a "don't."
+</div>
+
+<h2>3.4 The auxiliary tanks (if fitted)</h2>
+<p>Where auxiliary tanks are installed, an electric AUX PUMP on each side transfers their fuel forward into
+the related main tank; there are two AUX PUMP switches in the cockpit. Use them together to avoid a lateral
+imbalance, but switch the two on about 10 seconds apart so the starting current doesn't trip the fuse. Fuel
+level switches stop the transfer automatically when the auxiliary tank runs empty or the main tank fills. A
+G1000 advisory tells you a transfer is in progress; a caution warns you when an auxiliary tank is empty and
+its pump should be turned off.</p>
+
+<h2>3.5 Knowing how much you have</h2>
+<p>Two capacity probes in each main tank feed the fuel quantity to the flight display. For pre-flight you
+can also confirm the contents mechanically: a communicating-containers measuring device reads the level
+directly at the tank drain, and a second "fuel indicator II" method uses the aircraft's measured pitch angle
+together with a lookup table to give an exact figure. Either way, the maximum permitted fuel temperature is
+<strong>60&nbsp;°C</strong>, and only the approved jet-fuel grades may be used.</p>
+
+<div class="callout">
+<span class="lbl">Remember for the exam</span>
+Same-side feed is normal · two pumps per engine, one runs · both pumps for take-off/landing · CROSSFEED is
+for single-engine fuel balancing only · never crossfeed + pump, never crossfeed on take-off, never shut
+down on the selector · inoperative engine → selector OFF.
+</div>
+
+<div class="footer">© Ghost Aviator · DGCA CPL Technical Specific · DA-42 NG (Austro Engine) · Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DA-42 NG (Austro) — Ch.4: Electrical System | Technical Specific | Ghost Aviator</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:0 auto;padding:28px 22px;background:#fdfdfb;color:#1d2733;line-height:1.75;}
+  .cover{text-align:center;border-bottom:3px double #ec4899;margin-bottom:26px;padding-bottom:18px;}
+  .cover .part{color:#b3316f;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;font-size:.82em;}
+  .cover h1{color:#b3316f;margin:8px 0 4px;font-size:1.55em;}
+  .cover .author{color:#555;font-style:italic;margin-top:6px;font-size:.95em;}
+  h2{color:#b3316f;border-left:5px solid #ec4899;padding-left:10px;margin-top:32px;font-size:1.25em;}
+  h3{color:#333;margin-top:22px;font-size:1.05em;}
+  p{margin:11px 0;text-align:justify;}
+  ul{padding-left:22px;margin:10px 0;}
+  li{margin:6px 0;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.95em;}
+  th,td{border:1px solid #d9c2ce;padding:6px 9px;text-align:left;vertical-align:top;}
+  th{background:#fbe6f0;color:#8a2758;font-family:Arial,sans-serif;font-size:.9em;}
+  .callout{border-left:5px solid #ec4899;background:#fdf0f6;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .callout .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#b3316f;display:block;margin-bottom:4px;}
+  .why{border-left:5px solid #2c5aa0;background:#eef3fb;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .why .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#2c5aa0;display:block;margin-bottom:4px;}
+  .footer{margin-top:38px;border-top:1px solid #ccc;padding-top:12px;color:#777;font-size:.85em;text-align:center;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="part">Technical Specific · DA-42 NG (Austro Engine)</div>
+  <h1>Chapter 4 — The Electrical System</h1>
+  <p class="author">DGCA CPL Technical Specific notes — Capt. Pankaj Pahil</p>
+</div>
+
+<p>On a normal piston trainer the electrics run the radios and the lights, and a total failure is a
+nuisance. On the DA-42 NG the electrics also keep the engine computers alive — so here, electrical health
+is engine health. That single fact is the theme of this chapter. Learn the voltage, the sources, and what
+keeps the engines running when the alternators quit.</p>
+
+<h2>4.1 A 28-volt DC system in four parts</h2>
+<p>The aeroplane runs a 28-volt direct-current system. It's easiest to remember in four blocks:
+<strong>generation</strong> (the alternators), <strong>storage</strong> (the batteries),
+<strong>distribution</strong> (the busbars) and <strong>consumers</strong> (everything that draws power).</p>
+
+<h2>4.2 Generation — the alternators</h2>
+<p>Power comes from two <strong>70-ampere</strong> alternators, one belt-driven on each engine. The left
+alternator feeds the left main busbar and the right feeds the right, each through its own relay and a
+60-ampere protective breaker. The two main busbars tie to a central battery busbar through a 90-ampere
+breaker. Each alternator has its own control unit that regulates output voltage and warns you, with an
+ALTN FAIL caution, if it goes over- or under-voltage or fails outright.</p>
+
+<h2>4.3 Storage — three kinds of battery</h2>
+<p>There are three distinct battery sources, and knowing what each does is exam gold:</p>
+<table>
+<tr><th>Battery</th><th>Job</th></tr>
+<tr><td>Main battery (24 V, 13.6 Ah)</td><td>Starts the engines and powers the aircraft before the alternators come online. Connected through the ELECT. MASTER switch.</td></tr>
+<tr><td>ECU backup batteries (12 V each, in series, per engine)</td><td>Keep the engine computers alive if the main battery fails — good for about <strong>30 minutes</strong> of engine running in a complete electrical failure.</td></tr>
+<tr><td>Emergency dry battery (non-rechargeable)</td><td>Powers the standby attitude instrument and flood light for at least <strong>1.5 hours</strong> when the EMERGENCY switch is ON — independent of everything else.</td></tr>
+</table>
+<div class="why">
+<span class="lbl">Why it matters — the 30-minute number</span>
+This is the single most important electrical fact on the type. If both alternators fail and the main
+battery cannot help, the ECU backup batteries run the engines for roughly <strong>30 minutes</strong> — and
+then both engines may stop. A double-alternator failure is therefore a "land within 30 minutes" emergency,
+not a "carry on to destination" one. That is why the type is flown with a healthy respect for its electrics.
+</div>
+
+<h2>4.4 Distribution — the busbars</h2>
+<p>You don't need to memorise the wiring diagram, but you should know the busbars and what hangs off each:</p>
+<ul>
+<li><strong>Hot Battery Bus</strong> — wired straight to the main battery and never switched off; feeds a
+map/reading light and the ELT unit.</li>
+<li><strong>Battery Bus</strong> — connected to the main battery through the battery relay (the ELECT.
+MASTER switch); feeds the main busbars and heavy current to both starters.</li>
+<li><strong>ECU Bus (left/right)</strong> — supplies the engine computers, with the ECU backup batteries
+tied on for resilience.</li>
+<li><strong>Main Bus (left/right)</strong> — feeds most consumers; the right main bus also feeds the
+avionics.</li>
+<li><strong>Avionic Bus</strong> — connected to the right main bus through the AVIONIC MASTER switch; feeds
+the radios, transponder and autopilot.</li>
+</ul>
+
+<h2>4.5 Monitoring and warnings</h2>
+<p>A voltmeter shows system voltage (alternator voltage normally, battery voltage if the alternators are
+gone) and an ammeter shows how much current each alternator is supplying. The alerts you must recognise:</p>
+<table>
+<tr><th>Message</th><th>Meaning</th></tr>
+<tr><td>L/R VOLTS LOW</td><td>That bus is below 25 volts.</td></tr>
+<tr><td>L/R ALTN FAIL</td><td>That alternator has failed.</td></tr>
+<tr><td>L/R ALTN AMPS</td><td>That alternator's load is above 70 amps.</td></tr>
+</table>
+
+<div class="callout">
+<span class="lbl">Remember for the exam</span>
+28 V DC · two 70 A alternators (one per engine) · main battery 24 V / 13.6 Ah for starting · ECU backup
+batteries give ~30 minutes of engine running in a total electrical failure · emergency dry battery gives
+1.5 hours to the standby instrument · VOLTS LOW below 25 V.
+</div>
+
+<div class="footer">© Ghost Aviator · DGCA CPL Technical Specific · DA-42 NG (Austro Engine) · Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

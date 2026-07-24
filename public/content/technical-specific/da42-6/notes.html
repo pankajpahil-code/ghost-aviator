@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DA-42 NG (Austro) — Ch.6: Avionics | Technical Specific | Ghost Aviator</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:0 auto;padding:28px 22px;background:#fdfdfb;color:#1d2733;line-height:1.75;}
+  .cover{text-align:center;border-bottom:3px double #ec4899;margin-bottom:26px;padding-bottom:18px;}
+  .cover .part{color:#b3316f;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;font-size:.82em;}
+  .cover h1{color:#b3316f;margin:8px 0 4px;font-size:1.55em;}
+  .cover .author{color:#555;font-style:italic;margin-top:6px;font-size:.95em;}
+  h2{color:#b3316f;border-left:5px solid #ec4899;padding-left:10px;margin-top:32px;font-size:1.25em;}
+  h3{color:#333;margin-top:22px;font-size:1.05em;}
+  p{margin:11px 0;text-align:justify;}
+  ul{padding-left:22px;margin:10px 0;}
+  li{margin:6px 0;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.95em;}
+  th,td{border:1px solid #d9c2ce;padding:6px 9px;text-align:left;vertical-align:top;}
+  th{background:#fbe6f0;color:#8a2758;font-family:Arial,sans-serif;font-size:.9em;}
+  .callout{border-left:5px solid #ec4899;background:#fdf0f6;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .callout .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#b3316f;display:block;margin-bottom:4px;}
+  .why{border-left:5px solid #2c5aa0;background:#eef3fb;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .why .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#2c5aa0;display:block;margin-bottom:4px;}
+  .footer{margin-top:38px;border-top:1px solid #ccc;padding-top:12px;color:#777;font-size:.85em;text-align:center;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="part">Technical Specific · DA-42 NG (Austro Engine)</div>
+  <h1>Chapter 6 — Avionics: The G1000 &amp; GFC 700 Autopilot</h1>
+  <p class="author">DGCA CPL Technical Specific notes — Capt. Pankaj Pahil</p>
+</div>
+
+<p>You are not expected to be a Garmin systems engineer for this exam. You <em>are</em> expected to know the
+layout, what each screen shows, where the engine indications live, and — the part the examiner really
+wants — how the autopilot behaves and which failures knock it out. Keep it at that level and this chapter
+is straightforward.</p>
+
+<h2>6.1 The integrated glass cockpit</h2>
+<p>The DA-42 NG is built around an integrated avionics suite: a Primary Flight Display (PFD), a
+Multi-Function Display (MFD), an audio panel, an Attitude and Heading Reference System (AHRS) and an Air
+Data Computer (ADC), all sharing information. Inside it are dual GPS receivers, dual VOR/ILS receivers, dual
+VHF communication radios and a transponder — full redundancy in the navigation and communication kit.</p>
+
+<h3>The PFD — your flying picture</h3>
+<p>The PFD in front of you presents airspeed, attitude, altitude and heading in the familiar tape-and-ball
+layout. Slip is shown as a trapezoid under the bank pointer, turn rate on the scale above the compass, and
+short magenta "trend" lines predict where speed and altitude are heading. Crucially, the PFD also carries
+the crew-alerting messages. If the displays misbehave, pressing DISPLAY BACKUP puts the PFD into a composite
+"reversionary" mode that keeps attitude and alerting alive.</p>
+
+<h3>The MFD — everything else</h3>
+<p>The MFD carries the engine instruments, the moving map, terrain, traffic and the flight plan — and it
+also holds the autopilot controls. When an engine parameter leaves its normal band, its readout turns
+yellow for caution and red-and-flashing for warning, so the engine display doubles as an alerting system.</p>
+
+<h3>AHRS, ADC and the standby</h3>
+<p>The AHRS blends GPS, rate sensors, air data and magnetic variation to produce attitude and heading; it
+will align while taxiing but aligns faster if you keep the wings level. The ADC supplies airspeed, altitude,
+vertical speed and air temperature. Behind both sits an independent standby attitude module showing attitude,
+altitude, airspeed and slip — powered by its own emergency battery for at least <strong>1.5 hours</strong> in
+a total electrical failure. That is your last-ditch instrument, and it owes nothing to the glass panel.</p>
+
+<h2>6.2 The GFC 700 autopilot</h2>
+<p>The autopilot and flight director is the GFC 700 — a three-axis system (pitch, roll and yaw damper) with a
+flight director. Its lateral and vertical modes are the ones to know:</p>
+<table>
+<tr><th>Type</th><th>Modes</th></tr>
+<tr><td>Lateral</td><td>HDG (heading), NAV/GPS (course tracking), APR (approach), plus a basic roll mode</td></tr>
+<tr><td>Vertical</td><td>ALT (altitude hold), VS (vertical speed), FLC (flight level change / airspeed hold), plus go-around</td></tr>
+<tr><td>Third axis</td><td>YD (yaw damper)</td></tr>
+</table>
+<p>On the display, <strong>green</strong> means a mode is active and <strong>white</strong> means it is
+armed. The autopilot and manual electric trim will not engage until a preflight self-test completes after
+power-up, so never rush that test on start.</p>
+
+<h2>6.3 Autopilot disconnects — the exam's favourite</h2>
+<p>The autopilot will <strong>automatically</strong> disconnect on any of: electrical power failure, an
+internal autopilot fault, an AHRS malfunction, or loss of air-data information. You can disconnect it
+<strong>manually</strong> in several ways: the red AP DISC button on the control stick, moving the manual
+electric trim switch, the AP button on the mode controller, the go-around button on the power lever, pulling
+the AUTOPILOT breaker, or switching off the AVIONICS MASTER or ELECT. MASTER.</p>
+<div class="why">
+<span class="lbl">How G1000 failures affect the autopilot</span>
+<ul>
+<li>Lose the <strong>AHRS</strong> → autopilot disconnects (no attitude reference to fly by).</li>
+<li>Lose the <strong>PFD</strong> → autopilot disconnects.</li>
+<li>Lose the <strong>ADC</strong> (air data) → autopilot disconnects; the flight director stays available
+except for the air-data modes (ALT, VS, FLC).</li>
+<li>Lose the <strong>MFD</strong> → the autopilot keeps flying with reduced function, but once it
+disconnects you cannot re-engage it.</li>
+</ul>
+The pattern to remember: anything that removes the autopilot's <em>attitude or air-data source</em> drops
+the autopilot; losing the MFD only limits it.
+</div>
+
+<div class="callout">
+<span class="lbl">Remember for the exam</span>
+PFD flies, MFD holds engine + map + autopilot controls · standby attitude module runs 1.5 h on its own
+battery · GFC 700 is 3-axis · green = active, white = armed · autopilot auto-disconnects on electrical
+failure, internal fault, AHRS loss or air-data loss.
+</div>
+
+<div class="footer">© Ghost Aviator · DGCA CPL Technical Specific · DA-42 NG (Austro Engine) · Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

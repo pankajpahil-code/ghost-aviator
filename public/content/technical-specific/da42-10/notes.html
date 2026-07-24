@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DA-42 NG (Austro) — Ch.10: Performance, Mass & Balance | Technical Specific | Ghost Aviator</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:0 auto;padding:28px 22px;background:#fdfdfb;color:#1d2733;line-height:1.75;}
+  .cover{text-align:center;border-bottom:3px double #ec4899;margin-bottom:26px;padding-bottom:18px;}
+  .cover .part{color:#b3316f;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;font-size:.82em;}
+  .cover h1{color:#b3316f;margin:8px 0 4px;font-size:1.55em;}
+  .cover .author{color:#555;font-style:italic;margin-top:6px;font-size:.95em;}
+  h2{color:#b3316f;border-left:5px solid #ec4899;padding-left:10px;margin-top:32px;font-size:1.25em;}
+  h3{color:#333;margin-top:22px;font-size:1.05em;}
+  p{margin:11px 0;text-align:justify;}
+  ul{padding-left:22px;margin:10px 0;}
+  li{margin:6px 0;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.95em;}
+  th,td{border:1px solid #d9c2ce;padding:6px 9px;text-align:left;vertical-align:top;}
+  th{background:#fbe6f0;color:#8a2758;font-family:Arial,sans-serif;font-size:.9em;}
+  .callout{border-left:5px solid #ec4899;background:#fdf0f6;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .callout .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#b3316f;display:block;margin-bottom:4px;}
+  .why{border-left:5px solid #2c5aa0;background:#eef3fb;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .why .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#2c5aa0;display:block;margin-bottom:4px;}
+  .footer{margin-top:38px;border-top:1px solid #ccc;padding-top:12px;color:#777;font-size:.85em;text-align:center;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="part">Technical Specific · DA-42 NG (Austro Engine)</div>
+  <h1>Chapter 10 — Performance, Mass &amp; Balance</h1>
+  <p class="author">DGCA CPL Technical Specific notes — Capt. Pankaj Pahil</p>
+</div>
+
+<p>The exam won't hand you the flight-manual charts, but it will test whether you understand what drives the
+numbers and how to work a weight-and-balance problem. That's what this chapter builds. The actual planning
+figures always come from the aircraft's own performance tables — treat what follows as how to <em>read and
+reason about</em> them, never as a substitute for them.</p>
+
+<h2>10.1 Reading the performance tables</h2>
+<p>The flight manual gives performance as multi-variable tables — take-off distance, climb, cruise, landing
+distance and go-around — each entered with three main variables: <strong>pressure altitude, outside air
+temperature and mass</strong>. You interpolate between the printed values for your actual conditions. The
+qualitative effects are what the paper tests, and they never change:</p>
+<table>
+<tr><th>Increase in…</th><th>Take-off / landing distance</th><th>Climb performance</th></tr>
+<tr><td>Mass</td><td>Longer</td><td>Reduced</td></tr>
+<tr><td>Pressure altitude</td><td>Longer</td><td>Reduced</td></tr>
+<tr><td>Temperature</td><td>Longer</td><td>Reduced</td></tr>
+<tr><td>Headwind</td><td>Shorter</td><td>Steeper (over the ground)</td></tr>
+</table>
+<div class="why">
+<span class="lbl">Density altitude — the one idea behind them all</span>
+Heat, altitude and humidity all thin the air. Thin air means less lift, less thrust and a lazier propeller —
+so the aeroplane needs more runway and climbs worse. Every "hot and high" performance question is really a
+density-altitude question. Fix that idea and the tables make sense.
+</div>
+
+<h2>10.2 Single-engine performance</h2>
+<p>The table you will care about most in real operations is the one-engine-inoperative climb. Lose an engine
+and you lose far more than half your climb — the drag of the airframe stays while the power halves — so
+single-engine climb is modest at best and evaporates as weight, altitude and temperature rise. This is the
+whole reason for the caution about flying a diesel twin at night, in cloud or over unlandable terrain: plan
+so that reduced single-engine performance is never the thing that hurts you.</p>
+
+<h2>10.3 Mass and balance — the method</h2>
+<p>Weight and balance on this aeroplane is the same arithmetic you already know, referenced to a datum plane
+set 2.196 m forward of the wing root rib. For each item — empty aircraft, crew, passengers, baggage, fuel —
+you take its <strong>mass × arm = moment</strong>, add up all the masses and all the moments, and then:</p>
+<p style="text-align:center;font-size:1.05em;"><strong>Centre of gravity = total moment ÷ total mass</strong></p>
+<p>You then check two things: that the total mass is within the mass limits, and that the CG falls inside the
+published envelope. The type provides a loading diagram and a permissible-CG-range chart to do this
+graphically — plot your loaded point and confirm it sits inside the envelope.</p>
+<div class="callout">
+<span class="lbl">The limits to check against</span>
+Maximum take-off mass 1900 kg · maximum landing mass 1805 kg · maximum zero-fuel mass 1765 kg. The CG
+envelope's forward limit moves aft as mass increases (roughly 2.35 m light to 2.42 m at maximum), with an aft
+limit near 2.48 m — so a heavy aeroplane has <em>less</em> room at the front.
+</div>
+
+<h2>10.4 Watching the CG shift in flight</h2>
+<p>Fuel burn moves the CG, so a loading that is legal at take-off must also stay legal as the tanks empty.
+Because the tanks are in the wings, close to the CG, the shift is modest — but on a long flight, and with
+rear-seat passengers and baggage, always confirm the aeroplane stays inside the envelope for the whole
+flight, not just at the start.</p>
+<div class="why">
+<span class="lbl">Why the CG matters</span>
+Too far forward and the aeroplane is heavy on the controls and may not flare; too far aft and it becomes
+unstable and, at the extreme, unrecoverable from a stall or spin. The envelope is the band where the
+manufacturer has proven the aeroplane handles and recovers as advertised. Loading is not paperwork — it's
+airmanship you do before you ever start an engine.</p>
+</div>
+
+<div class="callout">
+<span class="lbl">Remember for the exam</span>
+Performance tables run on pressure altitude, temperature and mass — all worsen with density altitude ·
+single-engine climb is modest and fades hot-and-high · CG = total moment ÷ total mass · check mass limits
+AND the CG envelope · forward CG limit tightens as you get heavier · fuel burn shifts the CG, so check the
+whole flight.
+</div>
+
+<div class="footer">© Ghost Aviator · DGCA CPL Technical Specific · DA-42 NG (Austro Engine) · Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

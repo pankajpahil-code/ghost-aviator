@@ -47,6 +47,17 @@ const notesOnly = (): ContentType[] => [
   { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
 ];
 
+// DA-42 NG type-specific notes: original-voice study notes live now;
+// practice questions & chapter quiz follow after the Opus verification pass.
+const da42Notes = (): ContentType[] => [
+  { type: "notes",        label: "Notes",          icon: "📄", available: true  },
+  { type: "questions",    label: "Practice Qs",    icon: "❓", available: false },
+  { type: "slides",       label: "Slides",         icon: "📊", available: false },
+  { type: "video",        label: "Video Lecture",  icon: "🎥", available: false },
+  { type: "audio",        label: "Audio Overview", icon: "🎧", available: false },
+  { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: false },
+];
+
 // ─────────────────────────────────────────────────────────────────────────────
 // CPL SUBJECTS  (DGCA CAR Section 7 Series B Part IV — 7 Papers)
 // Chapters map directly to the official DGCA CPL syllabus appendices.
@@ -821,48 +832,100 @@ export const CPL_SUBJECTS: Subject[] = [
     shortName: "Tech Specific",
     icon: "🛩️",
     color: "#ec4899",
-    description: "Aircraft-type specific paper covering the systems and operations of the particular aircraft for which the CPL is sought.",
+    description: "Aircraft-type specific paper. Featured type: the Diamond DA-42 NG (Austro Engine) — a full type-rating study set covering its airframe, powerplant, systems, limitations, procedures and performance, written for the DGCA CPL Technical Specific exam.",
     examDuration: 60,
     totalQuestions: 50,
     passMark: 70,
     chapters: [
+      // ── DA-42 NG (Austro Engine) — featured type-specific study set ──────────
       {
-        id: "ts-1", number: 1, title: "Aircraft Type — Systems Overview",
+        id: "da42-1", number: 1, title: "DA-42 NG: The Aircraft & Its Systems — A First Look",
+        description: "Orientation to the Diamond DA-42 NG: general arrangement, principal dimensions, the Austro turbo-diesel engines, propellers, fuel and glass cockpit, and the headline mass and V-speed limits every candidate must know for the type.",
+        duration: "2 hrs", questionCount: 0, content: da42Notes(),
+      },
+      {
+        id: "da42-2", number: 2, title: "DA-42 NG: Powerplant — Austro E4-B & Propeller",
+        description: "The E4-B turbo-diesel engine: compression ignition on Jet A-1, common-rail injection, turbocharging, the EECU and single-lever control, the reduction gearbox, and the constant-speed feathering propeller with its RPM and power limits.",
+        duration: "3 hrs", questionCount: 0, content: da42Notes(),
+      },
+      {
+        id: "da42-3", number: 3, title: "DA-42 NG: Fuel System",
+        description: "Wing main tanks and optional auxiliary tanks, the electric fuel pumps, fuel selector valve positions (ON / CROSSFEED / OFF) and the strict rules governing crossfeed, fuel management, quantity indication and the alternate measuring methods.",
+        duration: "2 hrs", questionCount: 0, content: da42Notes(),
+      },
+      {
+        id: "da42-4", number: 4, title: "DA-42 NG: Electrical System",
+        description: "The 28 V DC system: alternators, main and ECU backup batteries, the bus architecture (hot battery, battery, ECU, main and avionic buses), how the ECUs stay powered, and the electrical warning and caution messages.",
+        duration: "2 hrs", questionCount: 0, content: da42Notes(),
+      },
+      {
+        id: "da42-5", number: 5, title: "DA-42 NG: Landing Gear, Brakes & Hydraulics",
+        description: "The hydraulically operated retractable tricycle gear, gear indications and warnings, the gravity emergency free-fall extension, the operating speeds, wheel brakes and the parking brake.",
+        duration: "2 hrs", questionCount: 0, content: da42Notes(),
+      },
+      {
+        id: "da42-6", number: 6, title: "DA-42 NG: Avionics — G1000 & GFC 700 Autopilot",
+        description: "The integrated glass cockpit: PFD and MFD, the standby attitude module, the crew alerting system, and the GFC 700 automatic flight control system — its modes, its disconnects, and how G1000 failures downgrade it.",
+        duration: "2 hrs", questionCount: 0, content: da42Notes(),
+      },
+      {
+        id: "da42-7", number: 7, title: "DA-42 NG: Operating Limitations & V-Speeds",
+        description: "The highest-yield chapter for the exam: all airspeed limits and ASI markings, mass and CG limits, power-plant limits and instrument markings, load factors and approved manoeuvres — the numbers you must know cold.",
+        duration: "3 hrs", questionCount: 0, content: da42Notes(),
+      },
+      {
+        id: "da42-8", number: 8, title: "DA-42 NG: Normal Operating Procedures",
+        description: "The normal flow: pre-flight inspection, engine start and the ECU self-test, taxi, before-take-off checks, take-off and climb, cruise, descent, approach and landing, after-landing and shutdown.",
+        duration: "3 hrs", questionCount: 0, content: da42Notes(),
+      },
+      {
+        id: "da42-9", number: 9, title: "DA-42 NG: Emergency & Abnormal Procedures",
+        description: "Engine failure and securing, feathering, one-engine-inoperative handling and the blue-line discipline, engine fire, electrical failures, landing-gear malfunctions and the abnormal G1000 caution messages.",
+        duration: "3 hrs", questionCount: 0, content: da42Notes(),
+      },
+      {
+        id: "da42-10", number: 10, title: "DA-42 NG: Performance, Mass & Balance",
+        description: "Reading and applying the performance data — take-off and landing distances, single-engine climb, the effect of altitude, temperature and mass — plus the weight-and-balance method and staying inside the CG envelope.",
+        duration: "3 hrs", questionCount: 0, content: da42Notes(),
+      },
+      // ── Generic type-specific placeholders (for other aircraft types) ────────
+      {
+        id: "ts-1", number: 11, title: "Aircraft Type — Systems Overview",
         description: "General description of the specific aircraft type: manufacturer, model, certification category, max take-off weight, seating, powerplant type.",
         duration: "2 hrs", questionCount: 50, content: makeContent(),
       },
       {
-        id: "ts-2", number: 2, title: "Powerplant — Type Specific",
+        id: "ts-2", number: 12, title: "Powerplant — Type Specific",
         description: "Engine model, type (piston/turboprop/turbojet), fuel type, oil type, engine limitations (RPM limits, CHT/EGT limits), engine operating procedures.",
         duration: "3 hrs", questionCount: 70, content: makeContent(),
       },
       {
-        id: "ts-3", number: 3, title: "Fuel System — Type Specific",
+        id: "ts-3", number: 13, title: "Fuel System — Type Specific",
         description: "Fuel tank arrangement, total usable/unusable fuel, fuel selector positions, crossfeed procedures, fuel management, fuel system limitations.",
         duration: "2 hrs", questionCount: 55, content: makeContent(),
       },
       {
-        id: "ts-4", number: 4, title: "Electrical System — Type Specific",
+        id: "ts-4", number: 14, title: "Electrical System — Type Specific",
         description: "Generator/alternator type, battery specifications, bus configuration, circuit breakers layout, emergency electrical procedures.",
         duration: "2 hrs", questionCount: 50, content: makeContent(),
       },
       {
-        id: "ts-5", number: 5, title: "Avionics & Navigation Equipment",
+        id: "ts-5", number: 15, title: "Avionics & Navigation Equipment",
         description: "Installed navigation radios (VHF COM/NAV, ADF, GPS), autopilot (if fitted), transponder, ELT, intercom. EFIS/glass cockpit layout (if applicable).",
         duration: "2 hrs", questionCount: 55, content: makeContent(),
       },
       {
-        id: "ts-6", number: 6, title: "Normal Operating Procedures",
+        id: "ts-6", number: 16, title: "Normal Operating Procedures",
         description: "Pre-flight inspection, starting procedures, taxiing, take-off, climb, cruise, descent, landing, shutdown — as per the specific AFM/POH.",
         duration: "3 hrs", questionCount: 70, content: makeContent(),
       },
       {
-        id: "ts-7", number: 7, title: "Abnormal & Emergency Procedures",
+        id: "ts-7", number: 17, title: "Abnormal & Emergency Procedures",
         description: "Engine failure procedures (on ground and in-flight), electrical failures, fire procedures, forced landing, emergency descent, pressurisation emergencies — as per AFM/POH.",
         duration: "3 hrs", questionCount: 70, content: makeContent(),
       },
       {
-        id: "ts-8", number: 8, title: "Aircraft Limitations & V-Speeds",
+        id: "ts-8", number: 18, title: "Aircraft Limitations & V-Speeds",
         description: "All published limitations: MTOW, ZFW, CG limits, flap/gear speed limits, max demonstrated crosswind, Vne/Vno/Va/Vfe/Vlo/Vle/Vx/Vy/Vso/Vs1 for the specific type.",
         duration: "2 hrs", questionCount: 60, content: makeContent(),
       },

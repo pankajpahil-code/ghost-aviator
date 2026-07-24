@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DA-42 NG (Austro) — Ch.2: Powerplant | Technical Specific | Ghost Aviator</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:860px;margin:0 auto;padding:28px 22px;background:#fdfdfb;color:#1d2733;line-height:1.75;}
+  .cover{text-align:center;border-bottom:3px double #ec4899;margin-bottom:26px;padding-bottom:18px;}
+  .cover .part{color:#b3316f;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;font-size:.82em;}
+  .cover h1{color:#b3316f;margin:8px 0 4px;font-size:1.55em;}
+  .cover .author{color:#555;font-style:italic;margin-top:6px;font-size:.95em;}
+  h2{color:#b3316f;border-left:5px solid #ec4899;padding-left:10px;margin-top:32px;font-size:1.25em;}
+  h3{color:#333;margin-top:22px;font-size:1.05em;}
+  p{margin:11px 0;text-align:justify;}
+  ul{padding-left:22px;margin:10px 0;}
+  li{margin:6px 0;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.95em;}
+  th,td{border:1px solid #d9c2ce;padding:6px 9px;text-align:left;vertical-align:top;}
+  th{background:#fbe6f0;color:#8a2758;font-family:Arial,sans-serif;font-size:.9em;}
+  .callout{border-left:5px solid #ec4899;background:#fdf0f6;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .callout .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#b3316f;display:block;margin-bottom:4px;}
+  .why{border-left:5px solid #2c5aa0;background:#eef3fb;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .why .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#2c5aa0;display:block;margin-bottom:4px;}
+  .warn{border-left:5px solid #b3261e;background:#fdeceb;padding:10px 14px;margin:16px 0;border-radius:0 5px 5px 0;}
+  .warn .lbl{font-family:Arial,sans-serif;font-weight:bold;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#b3261e;display:block;margin-bottom:4px;}
+  .footer{margin-top:38px;border-top:1px solid #ccc;padding-top:12px;color:#777;font-size:.85em;text-align:center;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="part">Technical Specific · DA-42 NG (Austro Engine)</div>
+  <h1>Chapter 2 — Powerplant: The Austro E4-B &amp; Its Propeller</h1>
+  <p class="author">DGCA CPL Technical Specific notes — Capt. Pankaj Pahil</p>
+</div>
+
+<p>Most of you learned to fly behind a carburetted AVGAS engine with a throttle, a mixture knob and a
+propeller lever. Forget all three habits here. The DA-42 NG is a <em>diesel</em> — it burns jet fuel by
+compression ignition, it is run by a computer, and you control the whole thing with one lever. This
+chapter is about that engine, the gearbox behind it, and the constant-speed feathering propeller in
+front. Get the RPM and power limits into your memory, because they carry straight through to the
+limitations paper.</p>
+
+<h2>2.1 What kind of engine is it?</h2>
+<p>Each nacelle holds an Austro Engine E4-B: a liquid-cooled, four-cylinder, four-stroke,
+in-line engine with wet-sump lubrication. It is turbocharged with an intercooler, it uses common-rail
+direct injection, and it ignites by compression — there are no spark plugs and no magnetos. Because it
+is a diesel, it runs on Jet A-1, not AVGAS, which is one of the type's biggest operating advantages: jet
+fuel is cheaper and available everywhere airliners fly.</p>
+<p>The engine does not drive the propeller directly. A reduction gearbox with a ratio of
+<strong>1 : 1.69</strong> sits between them, so the propeller always turns slower than the crankshaft.
+Every RPM figure published for this aircraft is <strong>propeller</strong> RPM — keep that straight, or
+the limits won't make sense.</p>
+<div class="callout">
+<span class="lbl">In plain English</span>
+Diesel, jet fuel, compression ignition, turbocharged, common-rail, computer-controlled, geared to the
+propeller. No mixture control, no carburettor heat, no magneto checks — those concepts simply don't exist
+on this aeroplane.
+</div>
+
+<h2>2.2 The EECU — the brain</h2>
+<p>The engine is managed by an Electronic Engine Control Unit (the EECU, often just "the ECU"). It reads
+the sensors — manifold pressure, rail pressure, temperatures, RPM, power-lever position — and it sets the
+fuelling, the turbocharger wastegate and the propeller pitch to deliver the power you asked for. You do
+not manage any of that by hand.</p>
+<p>For redundancy there are <strong>two ECUs per engine</strong>, called ECU A and ECU B. A VOTER switch
+for each engine normally sits in <strong>AUTO</strong>, letting the system choose which ECU is in charge.
+If one fails, the system should switch automatically to the other; you can also force ECU A or B manually,
+but that is an emergency action only. On the ground, with the power lever at idle and low RPM, an ECU
+TEST button runs a self-check that cycles between the two ECUs.</p>
+<div class="why">
+<span class="lbl">Why it matters</span>
+Because the ECU needs electrical power to run the engine, the electrical system and the engine are far
+more intertwined than on a piston trainer. That is why the aircraft carries dedicated ECU backup
+batteries — you'll meet them in the electrical chapter. A total electrical failure is an engine problem
+here, not just a lost-radio problem.
+</div>
+
+<h2>2.3 Power and RPM limits</h2>
+<p>These are the numbers the examiner loves. Learn them exactly.</p>
+<table>
+<tr><th>Setting</th><th>Limit</th></tr>
+<tr><td>Maximum take-off power</td><td>100% (≈ 123.5 kW), at 2300 propeller RPM — <strong>5 minutes maximum</strong></td></tr>
+<tr><td>Maximum continuous power</td><td>92% (≈ 114 kW), at 2100 propeller RPM</td></tr>
+<tr><td>Maximum overspeed</td><td>2500 propeller RPM — <strong>20 seconds maximum</strong></td></tr>
+<tr><td>Reduction gear ratio</td><td>1 : 1.69</td></tr>
+</table>
+<div class="callout">
+<span class="lbl">Memory hook</span>
+<strong>23 / 21 / 25</strong> — take-off 2300 (5 min), continuous 2100, never-exceed overspeed 2500
+(20 sec). Take-off power is time-limited; continuous is what you can hold all day.
+</div>
+
+<h2>2.4 The propeller</h2>
+<p>Each engine drives a three-blade, constant-speed, fully-feathering MT propeller with wood-composite
+blades. It is hydraulically operated, but the oil is directed by the ECU through the governor — you do
+not have a separate blue propeller lever to pull. Increasing oil pressure into the hub drives the blades
+to a <em>finer</em> pitch and higher RPM; reducing it drives them <em>coarser</em> and slower.</p>
+<h3>Feathering — the whole point of it</h3>
+<p>On a twin, the deadliest drag comes from a stopped engine's propeller windmilling. Feathering turns the
+blades edge-on to the airflow so the dead propeller stops and stops fighting you. On this aircraft you
+feather by shutting the engine down with its ENGINE MASTER switch — that releases the hub oil and lets the
+blades drive to the feather position.</p>
+<div class="warn">
+<span class="lbl">Critical limit</span>
+Feathering is only possible above about <strong>1300 propeller RPM</strong>. If the engine is shut down
+below that, the blades stay at the fine "start-lock" pitch and will not feather. In a real failure you
+feather promptly, while the propeller is still turning fast — hesitate and you may lose the option.
+</div>
+<h3>Unfeathering and the accumulator</h3>
+<p>To restart and unfeather in flight, the ENGINE MASTER is set back ON. A nitrogen-oil pressure
+accumulator, charged to roughly 22 bar during normal running, pushes the blades out of feather so the
+propeller starts to windmill and the engine can be restarted. A governor failure or loss of gearbox oil
+pressure drives the propeller <em>towards</em> feather automatically — a fail-safe that protects you from
+a runaway overspeed.</p>
+
+<h2>2.5 The single power lever</h2>
+<p>One lever per engine sets the demanded power as a percentage of LOAD. Fully forward is MAX (full
+power); fully back is IDLE. Everything between — manifold pressure, fuel, propeller RPM — is resolved by
+the ECU. Move the lever smoothly; slamming it produces rapid RPM changes that the light wooden blades
+respond to sharply.</p>
+
+<h2>2.6 Starting, temperatures and fire protection</h2>
+<p>Being a diesel, the engine uses glow plugs, not spark plugs, and the ECU manages a pre-heat sequence
+before cranking. Two fuel-temperature gates matter: the engine may only be started above a minimum fuel
+temperature, and take-off power is only permitted above a (higher) take-off fuel temperature. The maximum
+fuel temperature is <strong>60&nbsp;°C</strong>.</p>
+<p>An overheat detector in each engine bay triggers a fire warning on the flight display if the
+compartment temperature climbs above about <strong>250&nbsp;°C</strong>. You test it on the ground as part
+of the pre-flight checks; if the warning does not appear on test, the aircraft needs maintenance before
+flight.</p>
+
+<h2>2.7 Where this leads</h2>
+<p>You now understand the heart of the aeroplane: a computer-run, geared, turbo-diesel twin with feathering
+propellers. Two threads run out of this chapter — the <em>fuel system</em> that feeds it (next chapter) and
+the <em>electrical system</em> that keeps the ECUs alive (the chapter after). Both are more critical on this
+type than on anything you have flown before, precisely because the engine cannot run without them.</p>
+
+<div class="footer">© Ghost Aviator · DGCA CPL Technical Specific · DA-42 NG (Austro Engine) · Capt. Pankaj Pahil</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>
