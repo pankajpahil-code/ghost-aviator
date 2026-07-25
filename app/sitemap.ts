@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { ALL_PAST_PAPERS } from "@/lib/past-papers";
 import { EXAM_PAPERS } from "@/lib/exam-papers";
+import { GUIDES } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -23,6 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/exam"),         changeFrequency: "weekly"  as const, priority: 0.8 },
     { url: url("/rtr-simulator"),changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/past-papers"),  changeFrequency: "weekly"  as const, priority: 0.8 },
+    { url: url("/guides"),       changeFrequency: "weekly"  as const, priority: 0.9 },
+    { url: url("/cpl-cost-calculator"), changeFrequency: "monthly" as const, priority: 0.9 },
     { url: url("/signup"),       changeFrequency: "monthly" as const, priority: 0.4 },
     { url: url("/login"),        changeFrequency: "monthly" as const, priority: 0.3 },
   ].map(p => ({ ...p, lastModified: now }));
@@ -58,11 +61,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const guidePages: MetadataRoute.Sitemap = GUIDES.map(g => ({
+    url: url(`/guides/${g.slug}`),
+    lastModified: new Date(g.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   return [
     ...staticPages,
     ...subjectPages("cpl", CPL_SUBJECTS),
     ...subjectPages("atpl", ATPL_SUBJECTS),
     ...paperPages,
     ...examPages,
+    ...guidePages,
   ];
 }

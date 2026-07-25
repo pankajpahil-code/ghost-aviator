@@ -1,15 +1,45 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { ArrowRight, Clock, FileQuestion, CheckCircle } from "lucide-react";
+
+import { SITE_URL } from "@/lib/site";
 
 const CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
 const atplIds = new Set(ATPL_SUBJECTS.map(s => s.id));
 const QUESTIONS = `${(Math.floor(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => atplIds.has(id))).length / 100) * 100).toLocaleString("en-IN")}+`;
 
+export const metadata: Metadata = {
+  title: "ATPL Preparation — Syllabus, Mock Tests & Notes | Ghost Aviator",
+  description: "Complete preparation for all 8 DGCA ATPL papers. Access chapters, notes, slides, video lectures, and mock tests for Airline Transport Pilot Licence exams.",
+  alternates: { canonical: "/atpl" },
+};
+
 export default function ATPLPage() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": ATPL_SUBJECTS.map((subject, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "item": {
+        "@type": "Course",
+        "url": `${SITE_URL}/atpl/${subject.id}`,
+        "name": `${subject.name} (ATPL) Syllabus, Question Bank & Notes`,
+        "description": subject.description,
+        "provider": {
+          "@type": "Organization",
+          "name": "Ghost Aviator",
+          "sameAs": SITE_URL
+        }
+      }
+    }))
+  };
+
   return (
     <div style={{ background:"#06040e" }} className="min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       {/* Header */}
       <div className="relative overflow-hidden" style={{ borderBottom:"1px solid rgba(0,180,255,0.2)" }}>

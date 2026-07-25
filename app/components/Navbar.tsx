@@ -92,6 +92,7 @@ export default function Navbar() {
             <Link href="/question-bank" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
             <Link href="/resources" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>
             <Link href="/guides" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Guides</Link>
+            <Link href="/cpl-cost-calculator" className="px-3 py-2 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#38bdf8" }}>Cost Calculator</Link>
           </div>
 
           {/* CTA / account */}

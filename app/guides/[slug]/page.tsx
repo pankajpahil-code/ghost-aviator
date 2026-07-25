@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { GUIDES } from "@/lib/guides";
 import { ChevronLeft, Calendar, User, Clock } from "lucide-react";
+import { SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return GUIDES.map(g => ({ slug: g.slug }));
@@ -40,8 +41,33 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const wordCount = contentHtml.replace(/<[^>]*>?/gm, '').split(/\s+/).length;
   const readTime = Math.max(1, Math.ceil(wordCount / 200));
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": guide.title,
+    "description": guide.description,
+    "author": {
+      "@type": "Person",
+      "name": guide.author,
+    },
+    "datePublished": guide.date,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Ghost Aviator",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_URL}/logo.png`
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/guides/${guide.slug}`
+    }
+  };
+
   return (
     <div style={{ background: "#06040e" }} className="min-h-screen pb-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <Link href="/guides" className="inline-flex items-center gap-1 text-sm font-semibold mb-8 hover:text-white transition-colors" style={{ color: "#94a3b8" }}>
           <ChevronLeft className="w-4 h-4" /> Back to Guides

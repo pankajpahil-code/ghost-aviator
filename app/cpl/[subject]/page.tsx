@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { FileText, BarChart3, Video, Headphones, HelpCircle, ClipboardList, ListChecks, Lock, ArrowRight, Clock, ChevronRight } from "lucide-react";
 import SubjectProgressBar from "@/app/components/SubjectProgressBar";
 import ChapterProgressBadge from "@/app/components/ChapterProgressBadge";
 import RtrBookExperience from "@/app/components/RtrBookExperience";
+import { SITE_URL } from "@/lib/site";
 
 const CONTENT_ICONS: Record<string, React.ElementType> = {
   notes: FileText, slides: BarChart3, video: Video,
@@ -17,6 +19,18 @@ const CONTENT_COLORS: Record<string, string> = {
 
 export function generateStaticParams() {
   return CPL_SUBJECTS.map(s => ({ subject: s.id }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ subject: string }> }): Promise<Metadata> {
+  const { subject: subjectId } = await params;
+  const subject = CPL_SUBJECTS.find(s => s.id === subjectId);
+  if (!subject) return {};
+  
+  return {
+    title: `${subject.name} (CPL) Syllabus, Question Bank & Notes | Ghost Aviator`,
+    description: subject.description,
+    alternates: { canonical: `/cpl/${subject.id}` },
+  };
 }
 
 export default async function CPLSubjectPage({ params }: { params: Promise<{ subject: string }> }) {
@@ -32,9 +46,21 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
 
   const midpoint = Math.ceil(subject.chapters.length / 2);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": `${subject.name} (CPL) DGCA Prep`,
+    "description": subject.description,
+    "provider": {
+      "@type": "Organization",
+      "name": "Ghost Aviator",
+      "sameAs": SITE_URL
+    }
+  };
+
   return (
     <div style={{ background:"#06040e" }} className="min-h-screen">
-
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Header */}
       <div className="relative overflow-hidden" style={{ borderBottom:`1px solid ${subject.color}25` }}>
         <div className="absolute inset-0 pointer-events-none"

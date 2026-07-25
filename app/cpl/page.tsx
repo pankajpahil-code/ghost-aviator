@@ -1,15 +1,45 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { ArrowRight, Clock, FileQuestion, CheckCircle } from "lucide-react";
+
+import { SITE_URL } from "@/lib/site";
 
 const CHAPTERS = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
 const cplIds = new Set(CPL_SUBJECTS.map(s => s.id));
 const QUESTIONS = `${(Math.floor(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => cplIds.has(id))).length / 100) * 100).toLocaleString("en-IN")}+`;
 
+export const metadata: Metadata = {
+  title: "CPL Preparation — Syllabus, Mock Tests & Notes | Ghost Aviator",
+  description: "Complete preparation for all 7 DGCA CPL papers. Access chapters, notes, slides, video lectures, and mock tests for Commercial Pilot Licence exams.",
+  alternates: { canonical: "/cpl" }
+};
+
 export default function CPLPage() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": CPL_SUBJECTS.map((subject, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "item": {
+        "@type": "Course",
+        "url": `${SITE_URL}/cpl/${subject.id}`,
+        "name": `${subject.name} (CPL) Syllabus, Question Bank & Notes`,
+        "description": subject.description,
+        "provider": {
+          "@type": "Organization",
+          "name": "Ghost Aviator",
+          "sameAs": SITE_URL
+        }
+      }
+    }))
+  };
+
   return (
     <div style={{ background:"#06040e" }} className="min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       {/* Header */}
       <div className="relative overflow-hidden" style={{ borderBottom:"1px solid rgba(124,58,237,0.25)" }}>

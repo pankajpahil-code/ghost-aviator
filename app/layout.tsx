@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import Navbar from "./components/Navbar";
@@ -6,6 +7,8 @@ import Footer from "./components/Footer";
 import ContentProtection from "./components/ContentProtection";
 import ProgressSync from "./components/ProgressSync";
 import { SITE_URL } from "@/lib/site";
+
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 const TITLE = "Ghost Aviator — DGCA Pilot Course, CPL/ATPL Exam Prep & Live Ground Classes";
 const DESCRIPTION =
@@ -21,7 +24,6 @@ export const metadata: Metadata = {
     "DGCA exam preparation", "air navigation classes", "aviation meteorology classes",
     "air regulations classes", "how to become a pilot in India", "DGCA CPL syllabus",
   ],
-  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: "Ghost Aviator",
@@ -72,7 +74,7 @@ const JSON_LD = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className={`h-full ${inter.className}`}>
       <body className="min-h-full flex flex-col" style={{ background: "#050510" }}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
         <ContentProtection />

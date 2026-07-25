@@ -1,9 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Headphones, BarChart3, Zap } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import HeroGhost from "./components/HeroGhost";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" }
+};
 
 const CPL_CHAPTERS  = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
 const ATPL_CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
@@ -36,7 +41,7 @@ export default function Home() {
 
         {/* Full scene hero image as background */}
         <div className="absolute inset-0">
-          <Image src="/ghost-hero.png" alt="" fill className="object-cover object-center" style={{ opacity: 0.35 }} priority/>
+          <Image src="/ghost-hero.png" alt="Ghost Aviator DGCA Pilot Exam Preparation" fill className="object-cover object-center" style={{ opacity: 0.35 }} priority/>
           {/* Dark overlay so text is readable */}
           <div className="absolute inset-0" style={{ background:"linear-gradient(to right, rgba(6,4,14,0.92) 50%, rgba(6,4,14,0.3) 100%)" }}/>
           <div className="absolute inset-0" style={{ background:"linear-gradient(to top, rgba(6,4,14,0.95) 0%, transparent 40%)" }}/>
@@ -75,11 +80,14 @@ export default function Home() {
                 <Zap className="w-3 h-3" /> INDIA&apos;S #1 DGCA PREP
               </div>
 
-              <div className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-1"
-                   style={{ color:"#ffffff", textShadow:"0 0 40px rgba(180,100,255,0.4)" }}>GHOST</div>
-              <div className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-4"
-                   style={{ background:"linear-gradient(135deg,#ff6000,#ff2020,#ff0080,#c020ff)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text", filter:"drop-shadow(0 0 25px rgba(255,60,0,0.7))" }}>
-                AVIATOR
+              <h1 className="sr-only">Ghost Aviator — DGCA CPL & ATPL Pilot Exam Preparation</h1>
+              <div aria-hidden="true">
+                <div className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-1"
+                     style={{ color:"#ffffff", textShadow:"0 0 40px rgba(180,100,255,0.4)" }}>GHOST</div>
+                <div className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-4"
+                     style={{ background:"linear-gradient(135deg,#ff6000,#ff2020,#ff0080,#c020ff)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text", filter:"drop-shadow(0 0 25px rgba(255,60,0,0.7))" }}>
+                  AVIATOR
+                </div>
               </div>
               <p className="text-xs font-bold tracking-widest mb-8 uppercase" style={{ color:"rgba(180,120,255,0.65)", letterSpacing:"0.22em" }}>
                 Legacy of the Skies · The Spirit Beyond the Clouds

@@ -52,6 +52,7 @@ export default function Footer() {
                 ["DGCA Resources",  "/resources"],
                 ["CPL Prep",        "/cpl"],
                 ["ATPL Prep",       "/atpl"],
+                ["Study Guides",    "/guides"],
                 ["Meet the Captain","/about"],
               ].map(([item, href]) => (
                 <li key={item}>

@@ -40,6 +40,7 @@ export async function generateMetadata({
   return {
     title: `Ch.${chapter.number} ${chapter.title} — ${label} | ${subject.shortName} CPL | Ghost Aviator`,
     description: chapter.description,
+    alternates: { canonical: `/cpl/${subject.id}/${chapter.id}/${type}` },
   };
 }
 

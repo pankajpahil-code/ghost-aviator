@@ -123,12 +123,12 @@ export const CPL_SUBJECTS: Subject[] = [
       },
       {
         id: "nav-10", number: 10, title: "Radio Navigation Aids",
-        description: "Ground D/F, ADF & NDB (principles, presentation, range, errors), VOR & Doppler VOR (principles, coverage, errors), DME, ILS (principles, presentation, coverage, errors), SSR & transponder (modes/codes including Mode S), GPS/GLONASS (principle, advantages, disadvantages).",
+        description: "Ground D/F, ADF navigation & NDB navigation (principles, presentation, range, errors), VOR & Doppler VOR (principles, coverage, errors), DME, ILS (principles, presentation, coverage, errors), SSR & transponder (modes/codes including Mode S), GPS/GLONASS (principle, advantages, disadvantages).",
         duration: "4 hrs", questionCount: 90, content: makeContent(),
       },
       {
         id: "nav-11", number: 11, title: "Flight Instruments",
-        description: "Air data instruments: pitot-static system, altimeter, ASI (IAS, coloured sectors, VMO/MMO), VSI (aneroid & IVSI). Gyroscopic instruments: gyro fundamentals (stability, precession, types, ring laser gyro), directional gyro, slaved gyro compass, attitude indicator, turn & bank indicator, turn coordinator. Magnetic compass: construction, errors.",
+        description: "Air data instruments: pitot-static system, altimeter, ASI (IAS, coloured sectors, VMO/MMO), Vertical Speed Indicator diagram (aneroid & IVSI). Gyroscopic instruments: gyro fundamentals (stability, precession, types, ring laser gyro), directional gyro, slaved gyro compass, attitude indicator, turn & bank indicator, turn coordinator. Magnetic compass: construction, errors.",
         duration: "4 hrs", questionCount: 90, content: makeContent(),
       },
       {

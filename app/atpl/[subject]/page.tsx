@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
 import { FileText, BarChart3, Video, Headphones, HelpCircle, ClipboardList, ListChecks, Lock, ArrowRight, Clock, ChevronRight } from "lucide-react";
 import SubjectProgressBar from "@/app/components/SubjectProgressBar";
 import ChapterProgressBadge from "@/app/components/ChapterProgressBadge";
+import { SITE_URL } from "@/lib/site";
 
 const CONTENT_ICONS: Record<string, React.ElementType> = {
   notes: FileText, slides: BarChart3, video: Video,
@@ -18,6 +20,18 @@ export function generateStaticParams() {
   return ATPL_SUBJECTS.map(s => ({ subject: s.id }));
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ subject: string }> }): Promise<Metadata> {
+  const { subject: subjectId } = await params;
+  const subject = ATPL_SUBJECTS.find(s => s.id === subjectId);
+  if (!subject) return {};
+  
+  return {
+    title: `${subject.name} (ATPL) Syllabus, Question Bank & Notes | Ghost Aviator`,
+    description: subject.description,
+    alternates: { canonical: `/atpl/${subject.id}` },
+  };
+}
+
 export default async function ATPLSubjectPage({ params }: { params: Promise<{ subject: string }> }) {
   const { subject: subjectId } = await params;
   const subject = ATPL_SUBJECTS.find(s => s.id === subjectId);
@@ -25,8 +39,21 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
 
   const midpoint = Math.ceil(subject.chapters.length / 2);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": `${subject.name} (ATPL) DGCA Prep`,
+    "description": subject.description,
+    "provider": {
+      "@type": "Organization",
+      "name": "Ghost Aviator",
+      "sameAs": SITE_URL
+    }
+  };
+
   return (
     <div style={{ background:"#06040e" }} className="min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="relative overflow-hidden" style={{ borderBottom:`1px solid ${subject.color}25` }}>
         <div className="absolute inset-0 pointer-events-none"
              style={{ background:`radial-gradient(ellipse 80% 50% at 50% 0%, ${subject.color}15 0%, transparent 65%)` }}/>
