@@ -91,6 +91,7 @@ export default function Navbar() {
             <Link href="/notes"     className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Notes</Link>
             <Link href="/question-bank" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
             <Link href="/resources" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>
+            <Link href="/guides" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Guides</Link>
           </div>
 
           {/* CTA / account */}
@@ -138,6 +139,7 @@ export default function Navbar() {
           <Link href="/notes"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Notes</Link>
           <Link href="/question-bank" onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
           <Link href="/resources"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>
+          <Link href="/guides"        onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Guides</Link>
           {user ? (
             <button onClick={() => { signOut(); setOpen(false); }}
                     className="mt-2 py-3 px-4 rounded-xl text-sm font-black text-center cursor-pointer border-0"

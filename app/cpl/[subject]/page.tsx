@@ -88,6 +88,23 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
           })}
         </div>
 
+        {/* SEO Prose Block */}
+        <article className="prose prose-invert max-w-none mb-10">
+          <h2 className="text-2xl font-bold text-white mb-4">How to study DGCA {subject.name}</h2>
+          <p className="text-slate-300 leading-relaxed">
+            The DGCA {subject.name} (CPL) exam requires a solid conceptual foundation rather than rote memorization. 
+            This paper tests your knowledge across {subject.chapters.length} chapters, covering everything from fundamental principles to practical in-flight applications. 
+            You must score a minimum of <strong>{subject.passMark}%</strong> on the {subject.totalQuestions}-question, {subject.examDuration}-minute exam.
+          </p>
+          <p className="text-slate-300 leading-relaxed mt-4">
+            {subject.id === "meteorology" && "For Aviation Meteorology, focus heavily on decoding METARs/TAFs and understanding atmospheric phenomena rather than just learning definitions. Use the interactive notes below to visualize weather patterns."}
+            {subject.id === "air-navigation" && "For Air Navigation, mastering the 1 in 60 rule and understanding chart projections are critical. Our digital notes bridge the gap between static textbook PDFs and dynamic, interactive learning."}
+            {subject.id === "air-regulations" && "Air Regulations requires staying updated with the latest DGCA Civil Aviation Requirements (CARs) and ICAO annexes. The notes provided below are continuously updated to reflect the latest legal frameworks."}
+            {subject.id === "technical-general" && "Technical General blends aerodynamics with aircraft systems. Pay special attention to the engine mechanics and flight instruments, ensuring you understand the practical implications of system failures."}
+            {(!["meteorology", "air-navigation", "air-regulations", "technical-general"].includes(subject.id)) && `Ghost Aviator provides comprehensive, free, and interactive study material mapped precisely to the DGCA ${subject.shortName} syllabus.`}
+          </p>
+        </article>
+
         {/* Progress */}
         <SubjectProgressBar
           track="cpl"
