@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     // twitter image supplied by app/twitter-image.tsx (file convention)
   },
-  // Set NEXT_PUBLIC_GSC_VERIFICATION in Vercel to your Google Search Console token.
-  verification: { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION },
+  // Google Search Console verification
+  verification: { google: "TghR6KcOYeEDo1WjLWAVuTiutX4yynj00qyVfO3UJe4" },
 };
 
 // Structured data so Google understands the site (rich results + sitelinks search box).
