@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter } from "@/lib/questions";
+import { getSeoHtmlForNotes } from "@/lib/seo-notes";
 import NotesPage              from "@/app/components/content/NotesPage";
 import AirRegsChapter1Notes   from "@/app/components/content/AirRegsChapter1Notes";
 import QuestionsPage          from "@/app/components/content/QuestionsPage";
@@ -68,6 +69,25 @@ export default async function Page({
   // navigation (or prev/next inside a viewer) can't land on broken media.
   const isAvailable = (t: string) => chapter.content.find(c => c.type === t)?.available ?? false;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": `Chapter ${chapter.number}: ${chapter.title} - ${subject.shortName} CPL`,
+    "description": chapter.description || `${subject.shortName} Chapter ${chapter.number} study material for DGCA CPL/ATPL exams.`,
+    "provider": {
+      "@type": "Organization",
+      "name": "Ghost Aviator",
+      "sameAs": "https://ghostaviator.com"
+    }
+  };
+
+  const JsonLdScript = () => (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+
   if (type === "notes") {
     if (subject.id === "air-regulations" && chapter.id === "ar-1") {
       return (
@@ -88,15 +108,20 @@ export default async function Page({
     if (subject.id === "instrumentation" || subject.id === "radio-navigation" || subject.id === "technical-general" || subject.id === "radio-telephony") {
       const notesFile = path.join(process.cwd(), "public", "content", subject.id, chapter.id, "notes.html");
       if (fs.existsSync(notesFile)) {
+        const seoHtml = getSeoHtmlForNotes(subject.id, chapter.id);
         return (
-          <HtmlNotesPage
-            track="cpl"
-            subject={subject}
-            chapter={chapter}
-            prevChapter={prevChapter}
-            nextChapter={nextChapter}
-            src={notesHtmlPath}
-          />
+          <>
+            <JsonLdScript />
+            {seoHtml && <article className="sr-only" aria-hidden="true" dangerouslySetInnerHTML={{ __html: seoHtml }} />}
+            <HtmlNotesPage
+              track="cpl"
+              subject={subject}
+              chapter={chapter}
+              prevChapter={prevChapter}
+              nextChapter={nextChapter}
+              src={notesHtmlPath}
+            />
+          </>
         );
       }
       return (
@@ -197,15 +222,20 @@ export default async function Page({
       "technical-specific/da42-10": true,
     };
     if (HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]) {
+      const seoHtml = getSeoHtmlForNotes(subject.id, chapter.id);
       return (
-        <HtmlNotesPage
-          track="cpl"
-          subject={subject}
-          chapter={chapter}
-          prevChapter={prevChapter}
-          nextChapter={nextChapter}
-          src={notesHtmlPath}
-        />
+        <>
+          <JsonLdScript />
+          {seoHtml && <article className="sr-only" aria-hidden="true" dangerouslySetInnerHTML={{ __html: seoHtml }} />}
+          <HtmlNotesPage
+            track="cpl"
+            subject={subject}
+            chapter={chapter}
+            prevChapter={prevChapter}
+            nextChapter={nextChapter}
+            src={notesHtmlPath}
+          />
+        </>
       );
     }
     return (
