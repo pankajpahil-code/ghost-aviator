@@ -22,4 +22,5 @@ export const LIVE_CLASS_SUBJECTS: Record<string, string> = {
   "air-navigation": "General Navigation",
   "radio-navigation": "Radio Navigation",
   "instrumentation": "Navigation — Instrumentation",
+  "radio-telephony": "Radio Telephony (RTR-A)",
 };

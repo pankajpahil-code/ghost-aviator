@@ -6,6 +6,8 @@ import { GUIDES } from "@/lib/guides";
 import { ChevronLeft, Calendar, User, Clock } from "lucide-react";
 import { SITE_URL } from "@/lib/site";
 
+import LiveClassUpsell from "@/app/components/LiveClassUpsell";
+
 export function generateStaticParams() {
   return GUIDES.map(g => ({ slug: g.slug }));
 }
@@ -90,9 +92,17 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
         {/* The Guide Content */}
         <div 
-          className="prose prose-invert prose-purple max-w-none"
+          className="prose prose-invert prose-purple max-w-none mb-12"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
+
+        {/* Live Classes Banner */}
+        <div className="my-10">
+          <LiveClassUpsell 
+            subjectId={slug === "rtr-exam-guide" ? "radio-telephony" : "air-navigation"} 
+            subjectColor={slug === "rtr-exam-guide" ? "#00d4ff" : "#10b981"} 
+          />
+        </div>
         
         {/* Call to Action & Interlinking */}
         <div className="mt-16 p-8 rounded-2xl text-center" style={{ background: "rgba(124, 58, 237, 0.1)", border: "1px solid rgba(124, 58, 237, 0.2)" }}>
