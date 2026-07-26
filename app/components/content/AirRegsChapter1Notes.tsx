@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, ChevronLeft, ListChecks, Clock, BookOpen } from "lucide-react";
+import { ChevronRight, ChevronLeft, ListChecks, Clock } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { ReactNode } from "react";
 

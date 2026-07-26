@@ -17,6 +17,11 @@ export default function ChapterProgressBadge({ track, subjectId, chapterId, pass
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Progress lives in localStorage, which does not exist on the server. It can
+    // only be read after mount — computing it during render would make the
+    // server HTML and the client's first render disagree. The extra render is
+    // the price of correct hydration, not an oversight.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     setStat(getChapterStat(track, subjectId, chapterId));
   }, [track, subjectId, chapterId, version]);

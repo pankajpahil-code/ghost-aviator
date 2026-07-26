@@ -18,6 +18,8 @@ export default function SubjectProgressBar({ track, subjectId, chapterIds, passM
   const [cleared, setCleared] = useState(0);
 
   useEffect(() => {
+    // localStorage is client-only — see ChapterProgressBadge for the full note.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const map = readProgress();
     const n = chapterIds.filter(id => isChapterCleared(map[`${track}/${subjectId}/${id}`], passMark)).length;

@@ -64,6 +64,10 @@ function useReadAloud(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
 
   useEffect(() => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      // speechSynthesis support is a browser fact unknowable during SSR, so it
+      // can only be detected after mount — computing it during render would
+      // desync the server HTML from the client's first render.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setState("unsupported");
       return;
     }

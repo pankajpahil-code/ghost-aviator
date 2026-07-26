@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Link from "next/link";
 import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, BookOpen, Flag } from "lucide-react";
@@ -19,7 +19,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 export default function ExamRunner({ paper }: { paper: ExamPaper }) {
-  // Composed once per mount — retaking the exam (restart) reshuffles for variety.
+  // Composed once per mount â€” retaking the exam (restart) reshuffles for variety.
   const [seed, setSeed] = useState(0);
   const questions = useMemo(() => {
     const pool = getPaperQuestionPool(paper);
@@ -40,6 +40,11 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
 
   useEffect(() => {
     if (phase !== "exam") return;
+    // A countdown that expires MUST change state from an effect — the trigger is
+    // time passing, not a user action or a render. This is the legitimate case
+    // the rule cannot distinguish. It cannot double-submit: submit() flips phase,
+    // after which this effect early-returns above.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (timeLeft <= 0) { submit(); return; }
     const t = setTimeout(() => setTimeLeft(p => p - 1), 1000);
     return () => clearTimeout(t);
@@ -53,7 +58,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
 
   const fmt = (s: number) => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 
-  // Record the attempt once, when results appear — answers are never revealed
+  // Record the attempt once, when results appear â€” answers are never revealed
   // mid-paper (real DGCA CBT format), only in this final review.
   useEffect(() => {
     if (phase !== "result" || recorded.current || questions.length === 0) return;
@@ -109,11 +114,11 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
   const track = paper.track;
   const backHref = track === "cpl" ? "/exam" : "/exam";
 
-  /* ── EMPTY (bank not deep enough for this paper yet) ── */
+  /* â”€â”€ EMPTY (bank not deep enough for this paper yet) â”€â”€ */
   if (questions.length === 0) return (
     <div className="grid-bg min-h-screen flex items-center justify-center px-4">
       <div className="glass-card p-10 max-w-md w-full text-center">
-        <div className="text-5xl mb-4">📝</div>
+        <div className="text-5xl mb-4">ðŸ“</div>
         <h1 className="text-2xl font-extrabold mb-2">{paper.title}</h1>
         <p className="mb-8" style={{ color: "#94a3b8" }}>
           The question bank for this paper is still being prepared. Try the chapter quizzes in the meantime.
@@ -126,13 +131,13 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
     </div>
   );
 
-  /* ── SETUP ── */
+  /* â”€â”€ SETUP â”€â”€ */
   if (phase === "setup") return (
     <div className="grid-bg min-h-screen flex items-center justify-center px-4 py-16">
       <div className="glass-card p-10 max-w-lg w-full text-center">
-        <div className="text-5xl mb-4">✈️</div>
+        <div className="text-5xl mb-4">âœˆï¸</div>
         <h1 className="text-3xl font-extrabold mb-2">{paper.title}</h1>
-        <p className="mb-2" style={{ color: "#94a3b8" }}>Real DGCA format · {paper.passMark}% required to pass.</p>
+        <p className="mb-2" style={{ color: "#94a3b8" }}>Real DGCA format Â· {paper.passMark}% required to pass.</p>
         {paper.note && (
           <p className="mb-6 text-xs px-4 py-3 rounded-xl text-left" style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.25)", color: "#fbbf24" }}>
             {paper.note}
@@ -147,7 +152,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
           ))}
         </div>
         <ul className="text-left mb-8 flex flex-col gap-2">
-          {["Each question has one correct answer", "No negative marking — attempt every question", "You can move between questions and flag ones to revisit", "Answers are shown only after you submit the whole paper", "Timer starts immediately and auto-submits at zero"].map(item => (
+          {["Each question has one correct answer", "No negative marking â€” attempt every question", "You can move between questions and flag ones to revisit", "Answers are shown only after you submit the whole paper", "Timer starts immediately and auto-submits at zero"].map(item => (
             <li key={item} className="flex items-start gap-2 text-sm" style={{ color: "#94a3b8" }}>
               <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#f59e0b" }} /> {item}
             </li>
@@ -162,12 +167,12 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
     </div>
   );
 
-  /* ── RESULT ── */
+  /* â”€â”€ RESULT â”€â”€ */
   if (phase === "result") return (
     <div className="grid-bg min-h-screen py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <div className="glass-card p-10 text-center mb-8">
-          <div className="text-6xl mb-4">{passed ? "🎉" : "😔"}</div>
+          <div className="text-6xl mb-4">{passed ? "ðŸŽ‰" : "ðŸ˜”"}</div>
           <h2 className="text-3xl font-extrabold mb-2">{passed ? "Congratulations! You Passed!" : "Keep Practising!"}</h2>
           <p className="mb-8" style={{ color: "#94a3b8" }}>
             {passed ? `You cleared the ${paper.passMark}% benchmark on ${paper.title}. Great work!` : `You need ${paper.passMark}% to pass ${paper.title}. Review the explanations below.`}
@@ -215,7 +220,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
                     ? <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#22c55e" }} />
                     : <XCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#ef4444" }} />}
                   <div>
-                    <div className="text-xs mb-1" style={{ color: "#475569" }}>Q{i + 1}{flagged[i] ? " · 🚩 flagged" : ""}</div>
+                    <div className="text-xs mb-1" style={{ color: "#475569" }}>Q{i + 1}{flagged[i] ? " Â· ðŸš© flagged" : ""}</div>
                     <p className="text-sm font-medium">{rq.q}</p>
                   </div>
                 </div>
@@ -232,7 +237,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
                   ))}
                 </div>
                 <div className="px-4 py-3 rounded-lg text-sm" style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.15)", color: "#94a3b8" }}>
-                  💡 {rq.exp}
+                  ðŸ’¡ {rq.exp}
                 </div>
               </div>
             );
@@ -242,7 +247,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
     </div>
   );
 
-  /* ── EXAM (no reveal — real DGCA CBT behaviour) ── */
+  /* â”€â”€ EXAM (no reveal â€” real DGCA CBT behaviour) â”€â”€ */
   const q = questions[current];
   const chosen = answers[current];
   return (
@@ -300,7 +305,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
           <button onClick={() => goto(current - 1)} disabled={current === 0}
                   className="flex-1 py-3 rounded-xl text-sm font-medium disabled:opacity-30"
                   style={{ border: "1px solid rgba(0,212,255,0.2)", color: "#64748b", background: "transparent" }}>
-            ← Previous
+            â† Previous
           </button>
           <button onClick={toggleFlag}
                   className="flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl text-sm font-medium"

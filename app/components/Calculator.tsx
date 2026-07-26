@@ -147,7 +147,7 @@ export default function Calculator() {
               
               <div className="mt-4 p-4 rounded-lg bg-purple-900/30 border border-purple-500/30 text-sm text-purple-200">
                 <div className="font-bold flex items-center gap-1 mb-1"><Info size={16}/> Pro Tip for Savings</div>
-                Self-study using the <Link href="/cpl" className="text-purple-400 underline font-bold">Ghost Aviator Free Question Bank</Link>, or join Capt. Pankaj Pahil's <Link href="/live-classes" className="text-purple-400 underline font-bold">Live Classes</Link> for a fraction of the cost of traditional academies.
+                Self-study using the <Link href="/cpl" className="text-purple-400 underline font-bold">Ghost Aviator Free Question Bank</Link>, or join Capt. Pankaj Pahil&apos;s <Link href="/live-classes" className="text-purple-400 underline font-bold">Live Classes</Link> for a fraction of the cost of traditional academies.
               </div>
             </div>
           </div>

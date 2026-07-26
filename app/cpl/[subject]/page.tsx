@@ -143,7 +143,7 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
         {/* Chapters */}
         <h2 className="text-xl font-black text-white mb-5">Chapters</h2>
         <div className="flex flex-col gap-3 mb-8">
-          {subject.chapters.map((ch, idx) => (
+          {subject.chapters.map((ch) => (
             <div key={ch.id} className="rounded-2xl overflow-hidden"
                  style={{ background:"rgba(15,8,30,0.95)", border:`1px solid ${subject.color}20` }}>
               <div className="p-5">

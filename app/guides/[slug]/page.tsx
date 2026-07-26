@@ -42,7 +42,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   let contentHtml = "";
   try {
     contentHtml = fs.readFileSync(filePath, "utf-8");
-  } catch (e) {
+  } catch {
     // If not written yet, show a placeholder
     contentHtml = `<p>This guide is currently being written by Capt. Pahil and will be available soon.</p>`;
   }

@@ -1,13 +1,11 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Ghost, ArrowRight, CheckCircle } from "lucide-react";
 import { getSupabase, SUPABASE_ENABLED, captureLead } from "@/lib/supabase";
 import EmailCapture from "@/app/components/EmailCapture";
 
 export default function SignupPage() {
-  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

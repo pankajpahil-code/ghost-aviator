@@ -39,10 +39,14 @@ export async function captureLead(name: string, email: string, source = "site"):
 // Current logged-in user (null when signed-out or auth disabled).
 export function useUser(): { user: User | null; loading: boolean } {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  // Seeded from SUPABASE_ENABLED (a build-time constant, identical on server and
+  // client, so no hydration mismatch). With auth switched off there is nothing
+  // to wait for, so loading starts false and the effect no longer has to call
+  // setLoading synchronously just to undo a wrong initial value.
+  const [loading, setLoading] = useState(SUPABASE_ENABLED);
   useEffect(() => {
     const sb = getSupabase();
-    if (!sb) { setLoading(false); return; }
+    if (!sb) return;
     sb.auth.getUser().then(({ data }) => { setUser(data.user ?? null); setLoading(false); });
     const { data: sub } = sb.auth.onAuthStateChange((_e, session) => setUser(session?.user ?? null));
     return () => sub.subscription.unsubscribe();

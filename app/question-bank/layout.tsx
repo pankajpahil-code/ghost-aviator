@@ -1,5 +1,4 @@
 import { ALL_QUESTIONS } from "@/lib/questions";
-import { SITE_URL } from "@/lib/site";
 
 export const metadata = {
   title: "DGCA Question Bank | CPL & ATPL MCQs with Explanations",

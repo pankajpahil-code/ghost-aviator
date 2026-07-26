@@ -77,6 +77,11 @@ function WeakChapterBars({ items }: { items: { chapterId: string; accuracy: numb
 export default function DashboardPage() {
   const { user } = useUser();
   const version = useExamHistoryVersion(); // bumps on attempt/sync changes
+  // `version` looks "unnecessary" to the lint rule because readExamHistory()
+  // takes no arguments — but it reads localStorage, so `version` is the ONLY
+  // thing that invalidates this memo. Removing it freezes the dashboard: new
+  // attempts and cross-device syncs would stop appearing. Do not "clean up".
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const history = useMemo(() => readExamHistory(), [version]);
 
   const byPaper = useMemo(() => {

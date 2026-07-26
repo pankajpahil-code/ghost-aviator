@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
-import { FileText, BarChart3, Video, Headphones, HelpCircle, ClipboardList, ListChecks, Lock, ArrowRight, Clock, ChevronRight } from "lucide-react";
+import { FileText, BarChart3, Video, Headphones, HelpCircle, ClipboardList, ListChecks, Lock, ArrowRight, ChevronRight } from "lucide-react";
 import SubjectProgressBar from "@/app/components/SubjectProgressBar";
 import ChapterProgressBadge from "@/app/components/ChapterProgressBadge";
 import { SITE_URL } from "@/lib/site";

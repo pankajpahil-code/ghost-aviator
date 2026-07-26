@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useEffect, useCallback, useMemo, Suspense } from "react";
 import { useSearchParams, notFound } from "next/navigation";
 import Link from "next/link";
@@ -9,19 +9,11 @@ import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 // Unified shape used by the exam UI.
 type MockQ = { q: string; opts: string[]; ans: number; exp: string; subject: string };
 
-// Generic mixed-subject test (shown when no ?subject= is supplied).
-const GENERIC_QUESTIONS: MockQ[] = [
-  { subject: "Air Regulations", q: "The minimum age requirement for a Commercial Pilot Licence (CPL) in India as per DGCA regulations is:", opts: ["17 years","18 years","19 years","21 years"], ans: 1, exp: "As per DGCA CAR Section 7 Series C Part I, the minimum age to hold a CPL is 18 years." },
-  { subject: "Meteorology", q: "A METAR report showing wind direction 270° means the wind is coming from the:", opts: ["East","West","North","South"], ans: 1, exp: "Wind direction in METAR is the direction FROM which the wind blows. 270° is due West." },
-  { subject: "Air Navigation", q: "If an aircraft is flying a true heading of 090° with a variation of 5°W, the magnetic heading is:", opts: ["085°","090°","095°","080°"], ans: 2, exp: "Magnetic heading = True heading + West variation = 090° + 5° = 095°. (TVMDC rule: East is least, West is best)" },
-  { subject: "Technical General", q: "In a four-stroke engine, the order of strokes is:", opts: ["Intake, Power, Compression, Exhaust","Intake, Compression, Power, Exhaust","Compression, Intake, Power, Exhaust","Power, Intake, Compression, Exhaust"], ans: 1, exp: "The four strokes in order are: Intake → Compression → Power (combustion) → Exhaust." },
-  { subject: "Radio Aids & Instruments", q: "The VOR indicator shows a full-scale deflection of the CDI. This means the aircraft is at least how many degrees off course?", opts: ["5°","10°","15°","20°"], ans: 1, exp: "A standard VOR CDI has full-scale deflection at 10° from the selected radial." },
-  { subject: "Performance", q: "V1 in aircraft performance refers to:", opts: ["Stall speed in landing configuration","Takeoff decision speed","Best angle of climb speed","Maximum gear extension speed"], ans: 1, exp: "V1 is the takeoff decision speed. Above V1, the pilot is committed to takeoff even if an engine fails." },
-  { subject: "Air Regulations", q: "Under DGCA regulations, the validity of a Class 1 Medical Certificate for a pilot below 40 years of age is:", opts: ["6 months","12 months","18 months","24 months"], ans: 1, exp: "For pilots under 40 years, the Class 1 Medical Certificate is valid for 12 months." },
-  { subject: "Meteorology", q: "What does QNH represent on an altimeter?", opts: ["Height above sea level with standard pressure set","Altitude above sea level with local QNH pressure set","Height above aerodrome elevation","Pressure altitude"], ans: 1, exp: "QNH is the altimeter setting that causes the instrument to read altitude above mean sea level when at the aerodrome." },
-  { subject: "Technical General", q: "Bernoulli's theorem states that as the velocity of airflow increases, the pressure:", opts: ["Increases","Decreases","Remains the same","First increases then decreases"], ans: 1, exp: "Bernoulli's principle: in a streamline flow, as velocity increases, static pressure decreases. This is the basis of lift generation." },
-  { subject: "Air Navigation", q: "The great circle distance between two points is always:", opts: ["Greater than the rhumb line distance","Equal to the rhumb line distance","Less than or equal to the rhumb line distance","Always exactly half the rhumb line distance"], ans: 2, exp: "A great circle is the shortest path between two points on a sphere. It is always less than or equal to the rhumb line distance." },
-];
+// NOTE: a hardcoded 10-question GENERIC_QUESTIONS array used to live here for
+// the no-?subject= case. It was superseded by getSubjectQuestionPool and became
+// unreachable. Removed 2026-07-26 (recoverable from git). Those 10 questions
+// never went through the answer-verification protocol, so do not restore them
+// without an audit first — see the Iron Rules in D:\pk\CLAUDE.md.
 
 const SUBJECT_MAP = (() => {
   const m: Record<string, (typeof CPL_SUBJECTS)[number]> = {};
@@ -56,7 +48,7 @@ type TestConfig = {
 function buildConfig(subjectId: string | null, type: string | null): TestConfig {
   const subject = subjectId ? SUBJECT_MAP[subjectId] : undefined;
 
-  // No subject (or unknown) → return 404 since generic mock-test page is removed.
+  // No subject (or unknown) â†’ return 404 since generic mock-test page is removed.
   if (!subject) {
     notFound();
   }
@@ -77,8 +69,8 @@ function buildConfig(subjectId: string | null, type: string | null): TestConfig 
   return {
     questions,
     durationSec: durationMin * 60,
-    title: `${subject.name} — ${label}`,
-    subtitle: `${subject.shortName} · DGCA format · ${questions.length} questions`,
+    title: `${subject.name} â€” ${label}`,
+    subtitle: `${subject.shortName} Â· DGCA format Â· ${questions.length} questions`,
     passMark: subject.passMark,
     backHref: `/${track}/${subject.id}`,
   };
@@ -106,6 +98,11 @@ function MockTestInner() {
 
   useEffect(() => {
     if (phase !== "exam") return;
+    // A countdown that expires MUST change state from an effect — the trigger is
+    // time passing, not a user action or a render. This is the legitimate case
+    // the rule cannot distinguish. It cannot double-submit: submit() flips phase,
+    // after which this effect early-returns above.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (timeLeft <= 0) { submit(); return; }
     const t = setTimeout(() => setTimeLeft(p => p - 1), 1000);
     return () => clearTimeout(t);
@@ -140,11 +137,11 @@ function MockTestInner() {
     setFlagged(Array(questions.length).fill(false));
   }
 
-  /* ── EMPTY (subject has no questions yet) ── */
+  /* â”€â”€ EMPTY (subject has no questions yet) â”€â”€ */
   if (questions.length === 0) return (
     <div className="grid-bg min-h-screen flex items-center justify-center px-4">
       <div className="glass-card p-10 max-w-md w-full text-center">
-        <div className="text-5xl mb-4">📝</div>
+        <div className="text-5xl mb-4">ðŸ“</div>
         <h1 className="text-2xl font-extrabold mb-2">{title}</h1>
         <p className="mb-8" style={{ color: "#94a3b8" }}>
           The question bank for this paper is still being prepared. Try the chapter quizzes in the meantime.
@@ -157,13 +154,13 @@ function MockTestInner() {
     </div>
   );
 
-  /* ── SETUP ── */
+  /* â”€â”€ SETUP â”€â”€ */
   if (phase === "setup") return (
     <div className="grid-bg min-h-screen flex items-center justify-center px-4">
       <div className="glass-card p-10 max-w-lg w-full text-center">
-        <div className="text-5xl mb-4">✈️</div>
+        <div className="text-5xl mb-4">âœˆï¸</div>
         <h1 className="text-3xl font-extrabold mb-2">{title}</h1>
-        <p className="mb-8" style={{ color: "#94a3b8" }}>{subtitle} · {passMark}% required to pass.</p>
+        <p className="mb-8" style={{ color: "#94a3b8" }}>{subtitle} Â· {passMark}% required to pass.</p>
         <div className="grid grid-cols-3 gap-4 mb-10">
           {[["Questions", `${questions.length}`], ["Duration", `${Math.round(durationSec / 60)} min`], ["Pass Mark", `${passMark}%`]].map(([l, v]) => (
             <div key={l} className="glass-card p-3">
@@ -188,12 +185,12 @@ function MockTestInner() {
     </div>
   );
 
-  /* ── RESULT ── */
+  /* â”€â”€ RESULT â”€â”€ */
   if (phase === "result") return (
     <div className="grid-bg min-h-screen py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <div className="glass-card p-10 text-center mb-8">
-          <div className="text-6xl mb-4">{passed ? "🎉" : "😔"}</div>
+          <div className="text-6xl mb-4">{passed ? "ðŸŽ‰" : "ðŸ˜”"}</div>
           <h2 className="text-3xl font-extrabold mb-2">{passed ? "Congratulations! You Passed!" : "Keep Practising!"}</h2>
           <p className="mb-8" style={{ color: "#94a3b8" }}>
             {passed ? `You cleared the ${passMark}% benchmark. Great work!` : `You need ${passMark}% to pass. Review the explanations below.`}
@@ -236,7 +233,7 @@ function MockTestInner() {
                     ? <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#22c55e" }} />
                     : <XCircle    className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#ef4444" }} />}
                   <div>
-                    <div className="text-xs mb-1" style={{ color: "#475569" }}>Q{i + 1} · {rq.subject}</div>
+                    <div className="text-xs mb-1" style={{ color: "#475569" }}>Q{i + 1} Â· {rq.subject}</div>
                     <p className="text-sm font-medium">{rq.q}</p>
                   </div>
                 </div>
@@ -255,7 +252,7 @@ function MockTestInner() {
                   ))}
                 </div>
                 <div className="px-4 py-3 rounded-lg text-sm" style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.15)", color: "#94a3b8" }}>
-                  💡 {rq.exp}
+                  ðŸ’¡ {rq.exp}
                 </div>
               </div>
             );
@@ -265,7 +262,7 @@ function MockTestInner() {
     </div>
   );
 
-  /* ── EXAM ── */
+  /* â”€â”€ EXAM â”€â”€ */
   const optClass = (oi: number) => {
     if (!revealed) return "option-btn";
     if (oi === q.ans) return "option-btn correct";
@@ -315,7 +312,7 @@ function MockTestInner() {
           {/* Explanation */}
           {revealed && (
             <div className="mt-6 p-4 rounded-xl text-sm" style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.2)", color: "#94a3b8" }}>
-              <span className="font-semibold" style={{ color: "#00d4ff" }}>💡 Explanation: </span>
+              <span className="font-semibold" style={{ color: "#00d4ff" }}>ðŸ’¡ Explanation: </span>
               {q.exp}
             </div>
           )}
@@ -336,12 +333,12 @@ function MockTestInner() {
             <button onClick={() => { const f = [...flagged]; f[current] = !f[current]; setFlagged(f); }}
                     className="flex-1 py-3 rounded-xl text-sm font-medium"
                     style={{ border: `1px solid ${flagged[current] ? "#f59e0b" : "rgba(0,212,255,0.2)"}`, color: flagged[current] ? "#f59e0b" : "#64748b", background: "transparent" }}>
-              {flagged[current] ? "🚩 Flagged" : "🏳️ Flag Question"}
+              {flagged[current] ? "ðŸš© Flagged" : "ðŸ³ï¸ Flag Question"}
             </button>
             <button onClick={next}
                     className="flex-1 py-3 rounded-xl text-sm font-medium"
                     style={{ border: "1px solid rgba(0,212,255,0.2)", color: "#64748b", background: "transparent" }}>
-              Skip →
+              Skip â†’
             </button>
           </div>
         )}

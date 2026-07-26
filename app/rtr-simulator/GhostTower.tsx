@@ -246,12 +246,22 @@ export default function GhostTower() {
   const micSessionRef = useRef(0);
   const pttStartRef = useRef(0);
   const lastDeliveryRef = useRef<{ wpm: number; fillers: number } | null>(null);
+  // Accumulated in a ref because onTransmit increments and then reads it within
+  // one synchronous pass — state would be stale there. But the DEBRIEF must not
+  // read the ref during render: a ref is invisible to React, so the rendered
+  // gradesheet would not follow a change to it. The final counts are therefore
+  // snapshotted into state the moment the scenario ends, and render reads that.
   const disciplineRef = useRef({ freq: 0, squawk: 0 });
+  const [disciplineFinal, setDisciplineFinal] = useState({ freq: 0, squawk: 0 });
   const squawkProbeRef = useRef<string | null>(null);
   // The mode chosen at click time — state alone is stale inside the very first
   // beginStep/onTransmit closures of a run.
   const modeRef = useRef<"learn" | "practice">("learn");
   const lastAtcRef = useRef("");
+  // Mirrored into state so the SAY AGAIN button's disabled prop is driven by a
+  // value React can see. Reading lastAtcRef during render left the button's
+  // enabled state dependent on an unrelated re-render happening to occur.
+  const [lastAtc, setLastAtc] = useState("");
   const logBoxRef = useRef<HTMLDivElement | null>(null);
   const busyRef = useRef(false);
 
@@ -267,6 +277,11 @@ export default function GhostTower() {
     };
     refresh();
     window.speechSynthesis.addEventListener("voiceschanged", refresh);
+    // Capability detection MUST happen after mount, not during render: the
+    // server has no SpeechRecognition, so computing this any earlier would make
+    // the server HTML and the client's first render disagree — a hydration
+    // mismatch. The one extra render on mount is the correct cost here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMicAvailable(!!getSR());
     // Pre-rendered neural ATC bank — silent no-op if it can't load.
     voiceBank.load().then(setBankReady);
@@ -281,7 +296,11 @@ export default function GhostTower() {
   }, [log]);
 
   // Roll the real flight after mount (server rendered the deterministic seed 0).
+  // Same reason as the capability check above: a random seed chosen during
+  // render would differ between server and client and break hydration. This
+  // is the intended pattern, not an oversight.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSeed(randomSeed());
     setSeedReady(true);
   }, []);
@@ -314,6 +333,7 @@ export default function GhostTower() {
 
   const speakAtc = useCallback((text: string, after?: () => void) => {
     lastAtcRef.current = text;
+    setLastAtc(text);
     setLog(l => [...l, { who: "atc", text }]);
     setAtcSpeaking(true);
     const done = () => { setAtcSpeaking(false); after?.(); };
@@ -382,6 +402,8 @@ export default function GhostTower() {
     setStbyCents(toCents(scn.freq));
     setXpdr("2000");
     disciplineRef.current = { freq: 0, squawk: 0 };
+    setDisciplineFinal({ freq: 0, squawk: 0 });
+    setLastAtc("");
     squawkProbeRef.current = null;
     busyRef.current = false;
     beginStep(0);
@@ -395,6 +417,10 @@ export default function GhostTower() {
         beginStep(stepIndex + 1);
       } else {
         setLog(l => [...l, { who: "sys", text: "Scenario complete. The examiner is totting up your gradesheet…" }]);
+        // Commit the discipline counters to state before the debrief renders.
+        // Every increment happens in onTransmit, which has already run for the
+        // final step by this point, so this snapshot is complete.
+        setDisciplineFinal({ ...disciplineRef.current });
         setTimeout(() => setPhase("debrief"), 1200);
       }
       busyRef.current = false;
@@ -479,7 +505,10 @@ export default function GhostTower() {
     }
     finishStep({ step, res, saidText: clean, retried: retriedRef.current, delivery: lastDeliveryRef.current });
     lastDeliveryRef.current = null;
-  }, [step, inputOpen, speakAtc, finishStep, scn, mode, activeCents, xpdr]);
+    // `mode` is deliberately NOT a dependency: this callback reads modeRef, not
+    // mode, precisely because state is stale inside the first closures of a run
+    // (the stale-mode bug fixed on 2026-07-20). Listing it would be misleading.
+  }, [step, inputOpen, speakAtc, finishStep, scn, activeCents, xpdr]);
 
   /* ------------------------------ Voice input ------------------------------
      TAP to start, TAP to send. Press-and-hold is unusable on phones: a finger
@@ -600,11 +629,11 @@ export default function GhostTower() {
       maxPoints: o.res.maxPoints,
     }));
     const base = scoreScenario(adjusted as Parameters<typeof scoreScenario>[0]);
-    const discipline = { ...disciplineRef.current };
+    const discipline = { ...disciplineFinal };
     const points = Math.max(0, base.points - discipline.freq - discipline.squawk);
     const percent = base.maxPoints === 0 ? 0 : Math.round((points / base.maxPoints) * 100);
     return { points, maxPoints: base.maxPoints, percent, pass: percent >= scn.passMark, discipline };
-  }, [phase, outcomes, scn]);
+  }, [phase, outcomes, scn, disciplineFinal]);
 
   /* ================================ Render ================================= */
   const cyan = "#00d4ff";
@@ -965,7 +994,7 @@ export default function GhostTower() {
               <Delete className="w-4 h-4" />
             </button>
           )}
-          <button disabled={!lastAtcRef.current || atcSpeaking} onClick={() => speakAtc(lastAtcRef.current)}
+          <button disabled={!lastAtc || atcSpeaking} onClick={() => speakAtc(lastAtcRef.current)}
                   className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2.5 rounded-xl disabled:opacity-30"
                   title="Replay the last ATC transmission" style={{ border: "1px solid rgba(251,191,36,0.35)", color: amber }}>
             <Volume2 className="w-4 h-4" /> SAY AGAIN

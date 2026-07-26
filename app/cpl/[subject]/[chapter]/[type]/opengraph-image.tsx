@@ -138,7 +138,7 @@ export default async function Image({
             fontWeight: 500,
           }}
         >
-          <span>India's Most Complete DGCA Exam Prep</span>
+          <span>India&apos;s Most Complete DGCA Exam Prep</span>
           <span>ghostaviator.com</span>
         </div>
       </div>
