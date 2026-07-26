@@ -23,9 +23,9 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: "rtr-exam-guide",
-    title: "RTR(A) Exam Pattern Explained",
-    description: "A comprehensive breakdown of the WPC RTR (Aero) Part 1 (Transmission) and Part 2 (Viva) exams in India. Tips on phraseology, regulation, and passing the interview.",
+    title: "RTR(A) Exam Pattern & Syllabus Explained",
+    description: "Official DGCA CAR Section 7 Series G Part VI breakdown of the WPC RTR(A) examination syllabus, 48-hour curriculum, Transmission (Part 1), and Viva (Part 2).",
     author: "Capt. Pankaj Pahil",
-    date: "2024-06-01"
+    date: "2025-11-27"
   }
 ];
