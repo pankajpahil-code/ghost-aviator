@@ -12,7 +12,7 @@ import {
   CheckCircle, XCircle, AlertTriangle, Award, Headphones, Delete,
 } from "lucide-react";
 import {
-  scoreTransmission, matchCallsign, scoreScenario,
+  scoreTransmission, matchCallsign, scoreScenario, scoreBestOf,
 } from "@/lib/rtr-sim/engine.mjs";
 import { rollWorld, randomSeed } from "@/lib/rtr-sim/world.mjs";
 import {
@@ -25,7 +25,9 @@ import {
 } from "@/lib/rtr-sim/director.mjs";
 import type { SimStep } from "@/lib/rtr-sim/scn1";
 import { voiceBank } from "@/lib/rtr-sim/voicebank";
-import { newFinalSegments, joinTranscript } from "@/lib/rtr-sim/transcript.mjs";
+import {
+  newFinalSegments, joinTranscript, newFinalAlternatives, candidateTranscripts,
+} from "@/lib/rtr-sim/transcript.mjs";
 import { useUser } from "@/lib/supabase";
 
 /* -------------------------- Radio-head frequency ---------------------------
@@ -228,6 +230,10 @@ export default function GhostTower() {
   const heardRef = useRef("");
   // Finalised speech segments for the current transmission, in order.
   const finalsRef = useRef<string[]>([]);
+  // Same segments, but every alternative reading the recognizer offered. Used
+  // only for scoring — what the student SEES stays the top-1 reading, so the
+  // transcript never shows words they did not say.
+  const altsRef = useRef<string[][]>([]);
   const errRef = useRef("");
   const primedRef = useRef(false);
   // Set by the getUserMedia prime: proves whether the MIC itself is usable, so
@@ -431,7 +437,18 @@ export default function GhostTower() {
     setComposed([]);
     setLog(l => [...l, { who: "you", text: clean }]);
 
-    const res = scoreTransmission(step.expect, clean);
+    // Voice attempts are scored against every reading the recognizer offered,
+    // not just its first guess — see scoreBestOf. `clean` is always included
+    // and always first, so typed and tap-composed input behave exactly as
+    // before, and a voice attempt can only ever be scored UP by this, never
+    // down. The student still sees `clean` in the log; only the grading looks
+    // at the alternatives.
+    const voiceCandidates = altsRef.current.length ? candidateTranscripts(altsRef.current) : [];
+    // Consume them here: a later typed or tap-composed attempt must never be
+    // scored against a previous voice attempt's leftover alternatives.
+    altsRef.current = [];
+    const candidates = [clean, ...voiceCandidates.filter((t: string) => t !== clean)];
+    const res = scoreBestOf(step.expect, candidates);
     // Book Ch14: once ATC abbreviates, the abbreviated callsign is legitimate.
     if (res.callsign === "missing" && step.callsignAlt) {
       const alt = matchCallsign(res.norm, step.callsignAlt);
@@ -483,6 +500,7 @@ export default function GhostTower() {
     try { recRef.current?.abort(); } catch { /* none running */ }
     heardRef.current = "";
     finalsRef.current = [];
+    altsRef.current = [];
     errRef.current = "";
     const session = ++micSessionRef.current;
     const rec = new SR();
@@ -491,10 +509,16 @@ export default function GhostTower() {
     // the transcript was a second source of repetition.
     rec.interimResults = false;
     rec.continuous = true;       // a pause mid-readback must NOT cut you off
-    rec.maxAlternatives = 1;
+    // Keep the recognizer's runner-up readings. On Indian-accented R/T the
+    // correct one is often not ranked first ("niner"->"minor", "hotel"->
+    // "hostel"), and scoring only the top guess fails the student for the
+    // recognizer's error. scoreBestOf picks the reading that fits the
+    // phraseology; see lib/rtr-sim/transcript.mjs.
+    rec.maxAlternatives = 5;
     rec.onresult = (e: SREvent) => {
       // Consume ONLY newly-arrived results (see lib/rtr-sim/transcript.mjs).
       finalsRef.current.push(...newFinalSegments(e.results, e.resultIndex));
+      altsRef.current.push(...newFinalAlternatives(e.results, e.resultIndex));
       heardRef.current = joinTranscript(finalsRef.current);
     };
     rec.onerror = (e: SRErrEvent) => { errRef.current = e?.error ?? "error"; };

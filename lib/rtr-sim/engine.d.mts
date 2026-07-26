@@ -75,3 +75,15 @@ export declare function scoreTransmission(
   weights?: ScoreWeights
 ): TransmissionResult;
 export declare function scoreScenario(results: TransmissionResult[]): ScenarioResult;
+
+/**
+ * Score several candidate readings of ONE transmission and return the best.
+ * Used so a student is never failed for the speech recognizer's mistake — the
+ * correct reading of Indian-accented R/T is often not the top hypothesis.
+ * The winning candidate is used whole, its own forbidden-phrase list included.
+ */
+export declare function scoreBestOf(
+  expect: ExpectedTransmission,
+  utterances: ReadonlyArray<string | null | undefined>,
+  weights?: ScoreWeights
+): TransmissionResult & { chosenText: string; candidatesTried: number };
