@@ -50,7 +50,7 @@ export default function Footer() {
                 ["CPL Cost Calculator", "/cpl-cost-calculator"],
                 ["RTR Radio Simulator", "/rtr-simulator"],
                 ["DGCA Past Papers",    "/past-papers"],
-                ["Mock Tests",          "/mock-test"],
+                ["Exam Mode",           "/exam"],
                 ["CPL & ATPL Notes",    "/notes"],
                 ["DGCA Resources",      "/resources"],
                 ["Study Guides",        "/guides"],

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback, useMemo, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, notFound } from "next/navigation";
 import Link from "next/link";
 import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, BookOpen } from "lucide-react";
 import { getSubjectQuestionPool } from "@/lib/questions";
@@ -56,16 +56,9 @@ type TestConfig = {
 function buildConfig(subjectId: string | null, type: string | null): TestConfig {
   const subject = subjectId ? SUBJECT_MAP[subjectId] : undefined;
 
-  // No subject (or unknown) → generic mixed mock test.
+  // No subject (or unknown) → return 404 since generic mock-test page is removed.
   if (!subject) {
-    return {
-      questions: GENERIC_QUESTIONS,
-      durationSec: 30 * 60,
-      title: "DGCA Mock Test",
-      subtitle: "Mixed subjects · full exam simulation",
-      passMark: 70,
-      backHref: "/cpl",
-    };
+    notFound();
   }
 
   const label = TYPE_LABEL[type ?? ""] ?? "Subject Test";
