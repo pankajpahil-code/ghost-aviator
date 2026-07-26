@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Exam Mode — Full DGCA Mock Exams | Ghost Aviator",
   description:
     "Sit a full-length DGCA CPL paper exactly as it's examined — real question count, real time, real pass mark. Every attempt is saved to your performance dashboard.",
+  alternates: { canonical: "/exam" },
 };
 
 export default function ExamModePage() {

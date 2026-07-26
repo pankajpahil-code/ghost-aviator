@@ -16,6 +16,7 @@ export async function generateMetadata(
   return {
     title: `${paper.title} | Ghost Aviator`,
     description: `Attempt ${paper.title} — ${paper.questions.length} exam-style questions with full answer key.`,
+    alternates: { canonical: `/past-papers/${paper.id}` },
   };
 }
 

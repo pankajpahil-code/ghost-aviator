@@ -20,6 +20,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${guide.title} | Ghost Aviator Guides`,
     description: guide.description,
+    alternates: { canonical: `/guides/${guide.slug}` },
+    openGraph: {
+      type: "article",
+      title: guide.title,
+      description: guide.description,
+      url: `${SITE_URL}/guides/${guide.slug}`,
+      publishedTime: guide.date,
+    },
   };
 }
 

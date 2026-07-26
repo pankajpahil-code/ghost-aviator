@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Digital Books | Ghost Aviator — Interactive DGCA Study Library",
   description:
     "Interactive digital books for DGCA CPL & ATPL exam preparation. Animated, chapter-indexed study material by Capt. Pankaj Pahil.",
+  alternates: { canonical: "/books" },
 };
 
 type Book = {

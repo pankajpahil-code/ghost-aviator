@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
+import fs from "node:fs";
+import path from "node:path";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
+import { getQuestionsForChapter } from "@/lib/questions";
 import { ALL_PAST_PAPERS } from "@/lib/past-papers";
 import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { GUIDES } from "@/lib/guides";
@@ -25,23 +28,47 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/past-papers"),  changeFrequency: "weekly"  as const, priority: 0.8 },
     { url: url("/guides"),       changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/cpl-cost-calculator"), changeFrequency: "monthly" as const, priority: 0.9 },
-    { url: url("/signup"),       changeFrequency: "monthly" as const, priority: 0.4 },
-    { url: url("/login"),        changeFrequency: "monthly" as const, priority: 0.3 },
+    // /login and /signup are deliberately absent: thin, no search intent, and
+    // they are marked noindex. Submitting them only spends crawl budget.
   ].map(p => ({ ...p, lastModified: now }));
 
-  // Per-subject index + per-chapter content that is actually published.
+  // A chapter's notes route is only worth submitting when real notes exist.
+  // `content[].available` cannot be trusted for this — makeContent() hardcodes
+  // notes to available:true for every chapter, including the ~56 that are still
+  // placeholders. Check the filesystem, which is the actual source of truth.
+  const hasRealNotes = (subjectId: string, chapterId: string): boolean => {
+    // ar-1 renders from a React component rather than a published HTML file.
+    if (subjectId === "air-regulations" && chapterId === "ar-1") return true;
+    return fs.existsSync(
+      path.join(process.cwd(), "public", "content", subjectId, chapterId, "notes.html"),
+    );
+  };
+
+  // Per-subject index + only those chapter routes that have real content behind
+  // them. A sitemap full of "Detailed Notes Being Prepared" placeholders and
+  // zero-question quizzes teaches Google that this domain is mostly thin pages.
   const subjectPages = (track: "cpl" | "atpl", subjects: Subject[]): MetadataRoute.Sitemap =>
     subjects.flatMap(s => [
       { url: url(`/${track}/${s.id}`), lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
       ...s.chapters.flatMap(ch => {
-        // Notes & chapter-quiz always exist; other types only when available.
-        const types = new Set<string>(["notes", "chapter-quiz"]);
-        for (const c of ch.content) if (c.available) types.add(c.type);
+        const types = new Set<string>();
+        if (hasRealNotes(s.id, ch.id)) types.add("notes");
+        // Quiz and practice-question routes are empty shells without questions.
+        const questionCount = getQuestionsForChapter(s.id, ch.id).length;
+        if (questionCount > 0) {
+          types.add("chapter-quiz");
+          types.add("questions");
+        }
+        // Media types stay gated on their own availability flags, which are honest.
+        for (const c of ch.content) {
+          if (c.available && ["slides", "video", "audio"].includes(c.type)) types.add(c.type);
+        }
         return Array.from(types).map(type => ({
           url: url(`/${track}/${s.id}/${ch.id}/${type}`),
           lastModified: now,
           changeFrequency: "monthly" as const,
-          priority: 0.6,
+          // Notes are the substantive page; drills are secondary.
+          priority: type === "notes" ? 0.7 : 0.5,
         }));
       }),
     ]);

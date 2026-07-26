@@ -5,6 +5,7 @@ import path from "node:path";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter } from "@/lib/questions";
 import { getSeoHtmlForNotes } from "@/lib/seo-notes";
+import { SITE_URL } from "@/lib/site";
 import NotesPage              from "@/app/components/content/NotesPage";
 import AirRegsChapter1Notes   from "@/app/components/content/AirRegsChapter1Notes";
 import QuestionsPage          from "@/app/components/content/QuestionsPage";
@@ -70,16 +71,38 @@ export default async function Page({
   // navigation (or prev/next inside a viewer) can't land on broken media.
   const isAvailable = (t: string) => chapter.content.find(c => c.type === t)?.available ?? false;
 
+  // Course + BreadcrumbList. The breadcrumb is what turns a bare URL in the
+  // search result into "Home › CPL › Meteorology › Ch.3", which measurably
+  // improves click-through on deep pages like these.
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Course",
-    "name": `Chapter ${chapter.number}: ${chapter.title} - ${subject.shortName} CPL`,
-    "description": chapter.description || `${subject.shortName} Chapter ${chapter.number} study material for DGCA CPL/ATPL exams.`,
-    "provider": {
-      "@type": "Organization",
-      "name": "Ghost Aviator",
-      "sameAs": "https://ghostaviator.com"
-    }
+    "@graph": [
+      {
+        "@type": "Course",
+        "@id": `${SITE_URL}/cpl/${subject.id}/${chapter.id}/${type}#course`,
+        "name": `Chapter ${chapter.number}: ${chapter.title} - ${subject.shortName} CPL`,
+        "description": chapter.description || `${subject.shortName} Chapter ${chapter.number} study material for DGCA CPL/ATPL exams.`,
+        "url": `${SITE_URL}/cpl/${subject.id}/${chapter.id}/${type}`,
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "teaches": chapter.title,
+        "provider": {
+          "@type": "EducationalOrganization",
+          "name": "Ghost Aviator",
+          "url": SITE_URL,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/cpl/${subject.id}/${chapter.id}/${type}#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "CPL", item: `${SITE_URL}/cpl` },
+          { "@type": "ListItem", position: 3, name: subject.name, item: `${SITE_URL}/cpl/${subject.id}` },
+          { "@type": "ListItem", position: 4, name: `Ch.${chapter.number} ${chapter.title}` },
+        ],
+      },
+    ],
   };
 
   const JsonLdScript = () => (
@@ -113,7 +136,13 @@ export default async function Page({
         return (
           <>
             <JsonLdScript />
-            {seoHtml && <article className="sr-only" aria-hidden="true" dangerouslySetInnerHTML={{ __html: seoHtml }} />}
+            {/* Server-rendered copy of the chapter text. `sr-only` keeps it out of the
+    visual layout (the styled notes render in the iframe below) while leaving
+    it in the accessibility tree, so screen-reader users get the real chapter.
+    Do NOT add aria-hidden here: content that no user can reach by any means
+    but a crawler can is hidden text under Google's spam policies, and risks a
+    manual action on the whole domain. It was aria-hidden until 2026-07-26. */}
+{seoHtml && <article className="sr-only" dangerouslySetInnerHTML={{ __html: seoHtml }} />}
             <HtmlNotesPage
               track="cpl"
               subject={subject}
@@ -227,7 +256,13 @@ export default async function Page({
       return (
         <>
           <JsonLdScript />
-          {seoHtml && <article className="sr-only" aria-hidden="true" dangerouslySetInnerHTML={{ __html: seoHtml }} />}
+          {/* Server-rendered copy of the chapter text. `sr-only` keeps it out of the
+    visual layout (the styled notes render in the iframe below) while leaving
+    it in the accessibility tree, so screen-reader users get the real chapter.
+    Do NOT add aria-hidden here: content that no user can reach by any means
+    but a crawler can is hidden text under Google's spam policies, and risks a
+    manual action on the whole domain. It was aria-hidden until 2026-07-26. */}
+{seoHtml && <article className="sr-only" dangerouslySetInnerHTML={{ __html: seoHtml }} />}
           <HtmlNotesPage
             track="cpl"
             subject={subject}

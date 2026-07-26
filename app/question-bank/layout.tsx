@@ -8,6 +8,7 @@ export const metadata = {
     title: "DGCA Question Bank | Ghost Aviator",
     description: "Thousands of latest chapter-wise MCQs with detailed explanations for Air Regulations, Navigation, and Meteorology.",
   },
+  alternates: { canonical: "/question-bank" },
 };
 
 export default function QuestionBankLayout({ children }: { children: React.ReactNode }) {

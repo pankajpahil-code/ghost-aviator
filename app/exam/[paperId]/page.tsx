@@ -16,6 +16,7 @@ export async function generateMetadata(
   return {
     title: `${paper.title} — Exam Mode | Ghost Aviator`,
     description: `Sit the full ${paper.title} paper in real DGCA format: ${paper.questionCount} questions, ${paper.durationMin} minutes, ${paper.passMark}% to pass.`,
+    alternates: { canonical: `/exam/${paper.id}` },
   };
 }
 

@@ -11,7 +11,7 @@ export function getSeoHtmlForNotes(subjectId: string, chapterId: string): string
     const notesPath = path.join(process.cwd(), "public", "content", subjectId, chapterId, "notes.html");
     if (!fs.existsSync(notesPath)) return null;
 
-    let html = fs.readFileSync(notesPath, "utf-8");
+    const html = fs.readFileSync(notesPath, "utf-8");
 
     // Extract body content
     const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);

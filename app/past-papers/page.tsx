@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Previous Year Papers — DGCA Exam Practice | Ghost Aviator",
   description:
     "Attempt full DGCA previous-year and sample question papers with answer keys — exam-style practice, subject by subject.",
+  alternates: { canonical: "/past-papers" },
 };
 
 const SUBJECTS = [...CPL_SUBJECTS, ...ATPL_SUBJECTS];

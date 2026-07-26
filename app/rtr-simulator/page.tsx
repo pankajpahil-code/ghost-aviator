@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Radio Simulator — RTR(A) R/T Practice | Ghost Aviator",
   description:
     "India's first RTR(A) radio simulator. Talk to ATC, read back clearances, handle emergencies, get graded like the real WPC exam — free for every student pilot.",
+  alternates: { canonical: "/rtr-simulator" },
 };
 
 const cyan = "#00d4ff";
