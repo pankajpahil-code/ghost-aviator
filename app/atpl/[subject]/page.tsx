@@ -194,6 +194,42 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
             </Link>
           </div>
         </div>
+
+        {/* Related ATPL Subjects & Tools */}
+        <div className="mt-12 pt-10 border-t border-white/10 space-y-8">
+          <div>
+            <h3 className="text-xl font-black text-white mb-2">Explore Other ATPL Subjects</h3>
+            <p className="text-sm text-slate-400 mb-6">Complete your Airline Transport Pilot License ground training syllabus.</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              {ATPL_SUBJECTS.filter(s => s.id !== subject.id).map(other => (
+                <Link key={other.id} href={`/atpl/${other.id}`}
+                      className="p-3.5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] transition-all no-underline group">
+                  <div className="text-xl mb-1">{other.icon}</div>
+                  <div className="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">{other.shortName}</div>
+                  <div className="text-xs text-slate-500">{other.chapters.length} Chapters</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-black text-white mb-2">ATPL Prep Tools</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <Link href="/question-bank" className="p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 no-underline hover:bg-emerald-500/20 transition-all">
+                <div className="text-base font-bold text-emerald-400 mb-1">Question Bank</div>
+                <div className="text-xs text-slate-300">Practice ATPL & CPL exam questions with full explanations.</div>
+              </Link>
+              <Link href="/past-papers" className="p-4 rounded-xl border border-purple-500/30 bg-purple-500/10 no-underline hover:bg-purple-500/20 transition-all">
+                <div className="text-base font-bold text-purple-400 mb-1">DGCA Past Papers</div>
+                <div className="text-xs text-slate-300">Review solved papers for ATPL Navigation, Meteorology & Radio.</div>
+              </Link>
+              <Link href="/cpl-cost-calculator" className="p-4 rounded-xl border border-sky-500/30 bg-sky-500/10 no-underline hover:bg-sky-500/20 transition-all">
+                <div className="text-base font-bold text-sky-400 mb-1">CPL & Flight Cost Calculator</div>
+                <div className="text-xs text-slate-300">Interactive calculator for flying hours and exam fees.</div>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

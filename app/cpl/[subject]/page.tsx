@@ -232,7 +232,7 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
         </div>
 
         {/* Quick study stats */}
-        <div className="p-5 rounded-2xl flex flex-wrap gap-6" style={{ background:"rgba(15,8,30,0.95)", border:"1px solid rgba(255,255,255,0.06)" }}>
+        <div className="p-5 rounded-2xl flex flex-wrap gap-6 mb-12" style={{ background:"rgba(15,8,30,0.95)", border:"1px solid rgba(255,255,255,0.06)" }}>
           <div className="flex items-center gap-2">
             <Clock className="w-4 h-4" style={{ color:"#475569" }}/>
             <span className="text-sm" style={{ color:"#475569" }}>
@@ -247,6 +247,42 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
                 {subject.chapters.reduce((s,c) => s + c.questionCount, 0).toLocaleString()}
               </strong>
             </span>
+          </div>
+        </div>
+
+        {/* Related Subjects & Interlinking Hub */}
+        <div className="pt-10 border-t border-white/10 space-y-8">
+          <div>
+            <h3 className="text-xl font-black text-white mb-2">Explore Other CPL Subjects</h3>
+            <p className="text-sm text-slate-400 mb-6">Complete your DGCA ground school prep across all required Commercial Pilot License subjects.</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              {CPL_SUBJECTS.filter(s => s.id !== subject.id).map(other => (
+                <Link key={other.id} href={`/cpl/${other.id}`}
+                      className="p-3.5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] transition-all no-underline group">
+                  <div className="text-xl mb-1">{other.icon}</div>
+                  <div className="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">{other.shortName}</div>
+                  <div className="text-xs text-slate-500">{other.chapters.length} Chapters</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-black text-white mb-2">Pilot Tools & Exam Resources</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <Link href="/cpl-cost-calculator" className="p-4 rounded-xl border border-sky-500/30 bg-sky-500/10 no-underline hover:bg-sky-500/20 transition-all">
+                <div className="text-base font-bold text-sky-400 mb-1">CPL Cost Calculator</div>
+                <div className="text-xs text-slate-300">Calculate total flight hours, DGCA exams, and living costs.</div>
+              </Link>
+              <Link href="/question-bank" className="p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 no-underline hover:bg-emerald-500/20 transition-all">
+                <div className="text-base font-bold text-emerald-400 mb-1">Question Bank</div>
+                <div className="text-xs text-slate-300">Access thousands of DGCA practice questions with explanations.</div>
+              </Link>
+              <Link href="/past-papers" className="p-4 rounded-xl border border-purple-500/30 bg-purple-500/10 no-underline hover:bg-purple-500/20 transition-all">
+                <div className="text-base font-bold text-purple-400 mb-1">DGCA Past Papers</div>
+                <div className="text-xs text-slate-300">Practice previous DGCA exam papers with timed scoring.</div>
+              </Link>
+            </div>
           </div>
         </div>
 

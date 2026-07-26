@@ -41,22 +41,22 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Study */}
+          {/* Study Tools & Links */}
           <div>
-            <h4 className="text-sm font-semibold mb-4" style={{ color: "#00d4ff" }}>Study</h4>
+            <h4 className="text-sm font-semibold mb-4" style={{ color: "#00d4ff" }}>Study Tools</h4>
             <ul className="flex flex-col gap-2">
               {[
-                ["Question Bank",   "/question-bank"],
-                ["Mock Tests",      "/mock-test"],
-                ["Notes",           "/notes"],
-                ["DGCA Resources",  "/resources"],
-                ["CPL Prep",        "/cpl"],
-                ["ATPL Prep",       "/atpl"],
-                ["Study Guides",    "/guides"],
-                ["Meet the Captain","/about"],
+                ["Question Bank",       "/question-bank"],
+                ["CPL Cost Calculator", "/cpl-cost-calculator"],
+                ["RTR Radio Simulator", "/rtr-simulator"],
+                ["DGCA Past Papers",    "/past-papers"],
+                ["Mock Tests",          "/mock-test"],
+                ["CPL & ATPL Notes",    "/notes"],
+                ["DGCA Resources",      "/resources"],
+                ["Study Guides",        "/guides"],
               ].map(([item, href]) => (
                 <li key={item}>
-                  <Link href={href} className="text-sm no-underline" style={{ color: "#64748b" }}>{item}</Link>
+                  <Link href={href} className="text-sm no-underline hover:text-white transition-colors" style={{ color: "#64748b" }}>{item}</Link>
                 </li>
               ))}
             </ul>

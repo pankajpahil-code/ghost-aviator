@@ -94,15 +94,35 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
         
-        {/* Call to Action */}
+        {/* Call to Action & Interlinking */}
         <div className="mt-16 p-8 rounded-2xl text-center" style={{ background: "rgba(124, 58, 237, 0.1)", border: "1px solid rgba(124, 58, 237, 0.2)" }}>
           <h3 className="text-xl font-bold text-white mb-2">Ready to clear your DGCA exams?</h3>
           <p className="text-sm mb-6 max-w-md mx-auto" style={{ color: "#94a3b8" }}>
             Ghost Aviator provides free, high-quality, and interactive study material for DGCA CPL exams. Stop paying for outdated question banks.
           </p>
-          <Link href="/cpl" className="inline-block px-6 py-3 rounded-xl font-bold text-white transition-colors" style={{ background: "#7c3aed" }}>
-            Explore CPL Subjects
-          </Link>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link href="/cpl" className="px-6 py-3 rounded-xl font-bold text-white transition-colors no-underline" style={{ background: "#7c3aed" }}>
+              Explore CPL Subjects
+            </Link>
+            <Link href="/cpl-cost-calculator" className="px-6 py-3 rounded-xl font-bold text-sky-400 border border-sky-500/30 bg-sky-500/10 hover:bg-sky-500/20 transition-colors no-underline">
+              CPL Cost Calculator
+            </Link>
+          </div>
+        </div>
+
+        {/* Recommended Links */}
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <h3 className="text-lg font-bold text-white mb-4">Recommended Pilot Study Tools</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <Link href="/question-bank" className="p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] transition-all no-underline">
+              <div className="text-sm font-bold text-emerald-400 mb-1">DGCA Question Bank</div>
+              <div className="text-xs text-slate-400">Practice questions across Air Navigation, Meteorology, Air Regs & Tech.</div>
+            </Link>
+            <Link href="/rtr-simulator" className="p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] transition-all no-underline">
+              <div className="text-sm font-bold text-cyan-400 mb-1">RTR(A) Radio Simulator</div>
+              <div className="text-xs text-slate-400">Interactive radio telephony simulator for Part 1 & Part 2 exams.</div>
+            </Link>
+          </div>
         </div>
       </article>
     </div>
