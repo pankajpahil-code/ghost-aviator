@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { Clock, CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen } from "lucide-react";
@@ -86,7 +86,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
     return (
       <div style={{ background: "#06040e" }} className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-md">
-          <div className="text-5xl mb-4">ðŸ“</div>
+          <div className="text-5xl mb-4">📝</div>
           <h2 className="text-2xl font-black text-white mb-3">Chapter Test Coming Soon</h2>
           <p className="mb-6 text-sm" style={{ color: "#64748b" }}>
             Questions for <strong style={{ color: subject.color }}>{chapter.title}</strong> are being prepared.
@@ -114,7 +114,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
         </div>
         <h1 className="text-2xl font-black text-white mb-1">{chapter.title}</h1>
         <p className="text-sm mb-7" style={{ color: "#64748b" }}>
-          {subject.shortName} Â· Pass mark: {subject.passMark}%
+          {subject.shortName} · Pass mark: {subject.passMark}%
         </p>
         <div className="grid grid-cols-3 gap-3 mb-8">
           {[
@@ -132,7 +132,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
         <button onClick={() => { setPhase("test"); window.scrollTo(0, 0); }}
                 className="w-full py-4 rounded-xl font-black text-lg"
                 style={{ background: `linear-gradient(135deg, ${subject.color}, #c020ff)`, color: "#fff" }}>
-          Start Test â†’
+          Start Test →
         </button>
       </div>
     </div>
@@ -144,7 +144,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
       <div className="max-w-3xl mx-auto">
         <div className="rounded-3xl p-10 text-center mb-8"
              style={{ background: "rgba(15,8,30,0.95)", border: `1px solid ${passed ? "#22c55e" : "#ef4444"}40` }}>
-          <div className="text-5xl mb-4">{passed ? "ðŸ†" : "ðŸ“š"}</div>
+          <div className="text-5xl mb-4">{passed ? "🏆" : "📚"}</div>
           <h2 className="text-3xl font-black text-white mb-2">
             {passed ? "Chapter Cleared!" : "Keep Practising"}
           </h2>
@@ -214,7 +214,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
                 </div>
                 <div className="text-xs px-3 py-2 rounded-lg"
                      style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.12)", color: "#64748b" }}>
-                  ðŸ’¡ {q.exp}
+                  💡 {q.exp}
                 </div>
               </div>
             );
@@ -229,7 +229,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
   return (
     <div style={{ background: "#06040e", minHeight: "100vh", paddingBottom: "2rem" }}>
 
-      {/* Fixed timer bar â€” sits below sticky navbar (navbar = 64px = 4rem) */}
+      {/* Fixed timer bar — sits below sticky navbar (navbar = 64px = 4rem) */}
       <div style={{
         position: "fixed", top: "4rem", left: 0, right: 0, zIndex: 20,
         background: "rgba(6,4,14,0.97)",
@@ -254,7 +254,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
         </div>
       </div>
 
-      {/* Content â€” pushed down by navbar (64px) + timer bar (~52px) + extra breathing room */}
+      {/* Content — pushed down by navbar (64px) + timer bar (~52px) + extra breathing room */}
       <div style={{ maxWidth: "48rem", margin: "0 auto", padding: "8rem 1rem 0" }}>
 
         {/* Question card */}
@@ -298,7 +298,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
           {/* Explanation */}
           {revealed && (
             <div style={{ marginTop: "1.25rem", padding: "1rem", borderRadius: "0.75rem", background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.15)", color: "#94a3b8", fontSize: "0.875rem" }}>
-              <span style={{ color: "#00d4ff", fontWeight: 700 }}>ðŸ’¡ </span>{q.exp}
+              <span style={{ color: "#00d4ff", fontWeight: 700 }}>💡 </span>{q.exp}
             </div>
           )}
         </div>
@@ -314,7 +314,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
         ) : (
           <button onClick={next}
                   style={{ width: "100%", padding: "0.75rem", borderRadius: "0.75rem", fontSize: "0.875rem", fontWeight: 500, border: "1px solid rgba(255,255,255,0.1)", color: "#64748b", background: "transparent", cursor: "pointer" }}>
-            Skip â†’
+            Skip →
           </button>
         )}
       </div>

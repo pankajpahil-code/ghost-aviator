@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState, useEffect, useCallback, useMemo, Suspense } from "react";
 import { useSearchParams, notFound } from "next/navigation";
 import Link from "next/link";
@@ -48,7 +48,7 @@ type TestConfig = {
 function buildConfig(subjectId: string | null, type: string | null): TestConfig {
   const subject = subjectId ? SUBJECT_MAP[subjectId] : undefined;
 
-  // No subject (or unknown) â†’ return 404 since generic mock-test page is removed.
+  // No subject (or unknown) → return 404 since generic mock-test page is removed.
   if (!subject) {
     notFound();
   }
@@ -69,8 +69,8 @@ function buildConfig(subjectId: string | null, type: string | null): TestConfig 
   return {
     questions,
     durationSec: durationMin * 60,
-    title: `${subject.name} â€” ${label}`,
-    subtitle: `${subject.shortName} Â· DGCA format Â· ${questions.length} questions`,
+    title: `${subject.name} — ${label}`,
+    subtitle: `${subject.shortName} · DGCA format · ${questions.length} questions`,
     passMark: subject.passMark,
     backHref: `/${track}/${subject.id}`,
   };
@@ -137,11 +137,11 @@ function MockTestInner() {
     setFlagged(Array(questions.length).fill(false));
   }
 
-  /* â”€â”€ EMPTY (subject has no questions yet) â”€â”€ */
+  /* ── EMPTY (subject has no questions yet) ── */
   if (questions.length === 0) return (
     <div className="grid-bg min-h-screen flex items-center justify-center px-4">
       <div className="glass-card p-10 max-w-md w-full text-center">
-        <div className="text-5xl mb-4">ðŸ“</div>
+        <div className="text-5xl mb-4">📝</div>
         <h1 className="text-2xl font-extrabold mb-2">{title}</h1>
         <p className="mb-8" style={{ color: "#94a3b8" }}>
           The question bank for this paper is still being prepared. Try the chapter quizzes in the meantime.
@@ -154,13 +154,13 @@ function MockTestInner() {
     </div>
   );
 
-  /* â”€â”€ SETUP â”€â”€ */
+  /* ── SETUP ── */
   if (phase === "setup") return (
     <div className="grid-bg min-h-screen flex items-center justify-center px-4">
       <div className="glass-card p-10 max-w-lg w-full text-center">
-        <div className="text-5xl mb-4">âœˆï¸</div>
+        <div className="text-5xl mb-4">✈️</div>
         <h1 className="text-3xl font-extrabold mb-2">{title}</h1>
-        <p className="mb-8" style={{ color: "#94a3b8" }}>{subtitle} Â· {passMark}% required to pass.</p>
+        <p className="mb-8" style={{ color: "#94a3b8" }}>{subtitle} · {passMark}% required to pass.</p>
         <div className="grid grid-cols-3 gap-4 mb-10">
           {[["Questions", `${questions.length}`], ["Duration", `${Math.round(durationSec / 60)} min`], ["Pass Mark", `${passMark}%`]].map(([l, v]) => (
             <div key={l} className="glass-card p-3">
@@ -185,12 +185,12 @@ function MockTestInner() {
     </div>
   );
 
-  /* â”€â”€ RESULT â”€â”€ */
+  /* ── RESULT ── */
   if (phase === "result") return (
     <div className="grid-bg min-h-screen py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <div className="glass-card p-10 text-center mb-8">
-          <div className="text-6xl mb-4">{passed ? "ðŸŽ‰" : "ðŸ˜”"}</div>
+          <div className="text-6xl mb-4">{passed ? "🎉" : "😔"}</div>
           <h2 className="text-3xl font-extrabold mb-2">{passed ? "Congratulations! You Passed!" : "Keep Practising!"}</h2>
           <p className="mb-8" style={{ color: "#94a3b8" }}>
             {passed ? `You cleared the ${passMark}% benchmark. Great work!` : `You need ${passMark}% to pass. Review the explanations below.`}
@@ -233,7 +233,7 @@ function MockTestInner() {
                     ? <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#22c55e" }} />
                     : <XCircle    className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#ef4444" }} />}
                   <div>
-                    <div className="text-xs mb-1" style={{ color: "#475569" }}>Q{i + 1} Â· {rq.subject}</div>
+                    <div className="text-xs mb-1" style={{ color: "#475569" }}>Q{i + 1} · {rq.subject}</div>
                     <p className="text-sm font-medium">{rq.q}</p>
                   </div>
                 </div>
@@ -252,7 +252,7 @@ function MockTestInner() {
                   ))}
                 </div>
                 <div className="px-4 py-3 rounded-lg text-sm" style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.15)", color: "#94a3b8" }}>
-                  ðŸ’¡ {rq.exp}
+                  💡 {rq.exp}
                 </div>
               </div>
             );
@@ -262,7 +262,7 @@ function MockTestInner() {
     </div>
   );
 
-  /* â”€â”€ EXAM â”€â”€ */
+  /* ── EXAM ── */
   const optClass = (oi: number) => {
     if (!revealed) return "option-btn";
     if (oi === q.ans) return "option-btn correct";
@@ -312,7 +312,7 @@ function MockTestInner() {
           {/* Explanation */}
           {revealed && (
             <div className="mt-6 p-4 rounded-xl text-sm" style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.2)", color: "#94a3b8" }}>
-              <span className="font-semibold" style={{ color: "#00d4ff" }}>ðŸ’¡ Explanation: </span>
+              <span className="font-semibold" style={{ color: "#00d4ff" }}>💡 Explanation: </span>
               {q.exp}
             </div>
           )}
@@ -333,12 +333,12 @@ function MockTestInner() {
             <button onClick={() => { const f = [...flagged]; f[current] = !f[current]; setFlagged(f); }}
                     className="flex-1 py-3 rounded-xl text-sm font-medium"
                     style={{ border: `1px solid ${flagged[current] ? "#f59e0b" : "rgba(0,212,255,0.2)"}`, color: flagged[current] ? "#f59e0b" : "#64748b", background: "transparent" }}>
-              {flagged[current] ? "ðŸš© Flagged" : "ðŸ³ï¸ Flag Question"}
+              {flagged[current] ? "🚩 Flagged" : "🏳️ Flag Question"}
             </button>
             <button onClick={next}
                     className="flex-1 py-3 rounded-xl text-sm font-medium"
                     style={{ border: "1px solid rgba(0,212,255,0.2)", color: "#64748b", background: "transparent" }}>
-              Skip â†’
+              Skip →
             </button>
           </div>
         )}

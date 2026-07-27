@@ -1,4 +1,4 @@
-﻿import { notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import fs from "node:fs";
 import path from "node:path";
@@ -39,7 +39,7 @@ export async function generateMetadata({
   const label = type === "mock-test" ? "Chapter Test"
     : type.charAt(0).toUpperCase() + type.slice(1);
   return {
-    title: `Ch.${chapter.number} ${chapter.title} â€” ${label} | ${subject.shortName} CPL | Ghost Aviator`,
+    title: `Ch.${chapter.number} ${chapter.title} — ${label} | ${subject.shortName} CPL | Ghost Aviator`,
     description: chapter.description,
     alternates: { canonical: `/cpl/${subject.id}/${chapter.id}/${type}` },
   };
@@ -72,7 +72,7 @@ export default async function Page({
   const isAvailable = (t: string) => chapter.content.find(c => c.type === t)?.available ?? false;
 
   // Course + BreadcrumbList. The breadcrumb is what turns a bare URL in the
-  // search result into "Home â€º CPL â€º Meteorology â€º Ch.3", which measurably
+  // search result into "Home › CPL › Meteorology › Ch.3", which measurably
   // improves click-through on deep pages like these.
   const jsonLd = {
     "@context": "https://schema.org",
@@ -105,7 +105,7 @@ export default async function Page({
     ],
   };
 
-  // Plain element, not a component defined during render â€” declaring a
+  // Plain element, not a component defined during render — declaring a
   // component inside the render body gives it a new identity on every render,
   // which defeats reconciliation and is why react-hooks/static-components
   // flags it.
@@ -190,7 +190,7 @@ export default async function Page({
       "air-regulations/ar-24": true,
       "air-regulations/ar-25": true,
       "air-regulations/ar-26": true,
-      // IC Joshi Meteorology study notes (Ch.1â€“11)
+      // IC Joshi Meteorology study notes (Ch.1–11)
       "meteorology/met-1":  true,
       "meteorology/met-2":  true,
       "meteorology/met-3":  true,
