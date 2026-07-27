@@ -5,9 +5,9 @@ import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { FileText, ArrowRight, Clock, CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Previous Year Papers — DGCA Exam Practice | Ghost Aviator",
+  title: "DGCA Previous Year Question Papers — Practice Online Free | Ghost Aviator",
   description:
-    "Attempt full DGCA previous-year and sample question papers with answer keys — exam-style practice, subject by subject.",
+    "Practice full DGCA previous-year and sample question papers online with answer keys — free exam-style practice for CPL and ATPL, subject by subject.",
   alternates: { canonical: "/past-papers" },
 };
 

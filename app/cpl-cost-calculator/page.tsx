@@ -3,8 +3,8 @@ import { Calculator as CalcIcon } from "lucide-react";
 import Calculator from "@/app/components/Calculator";
 
 export const metadata: Metadata = {
-  title: "CPL Cost Calculator India 2026 | Ghost Aviator",
-  description: "Calculate the exact cost of getting a Commercial Pilot License (CPL) in India. Estimate flying hours, DGCA exams, medicals, ground classes, and living expenses.",
+  title: "Pilot Training Cost in India 2026 — CPL Cost Calculator | Ghost Aviator",
+  description: "How much does pilot training cost in India? Calculate the real cost of a Commercial Pilot Licence (CPL) — flying hours, DGCA exams, medicals, ground classes and living expenses.",
   alternates: { canonical: "/cpl-cost-calculator" },
 };
 

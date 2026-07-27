@@ -4,9 +4,9 @@ import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { FileCheck, ArrowRight, Clock, ListChecks, Trophy } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Exam Mode — Full DGCA Mock Exams | Ghost Aviator",
+  title: "DGCA Mock Test Online Free — Real Exam Pattern | Ghost Aviator",
   description:
-    "Sit a full-length DGCA CPL paper exactly as it's examined — real question count, real time, real pass mark. Every attempt is saved to your performance dashboard.",
+    "Free DGCA mock tests online — sit a full-length CPL paper exactly as it's examined: real question count, real time, real pass mark. Every attempt is saved to your performance dashboard.",
   alternates: { canonical: "/exam" },
 };
 

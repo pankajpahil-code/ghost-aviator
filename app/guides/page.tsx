@@ -3,7 +3,7 @@ import { GUIDES } from "@/lib/guides";
 import { BookOpen, Calendar, User, ChevronRight } from "lucide-react";
 
 export const metadata = {
-  title: "Aviation Study Guides | Ghost Aviator",
+  title: "DGCA Exam Guides — CPL, RTR(A) & Pilot Training in India | Ghost Aviator",
   description: "Comprehensive guides on DGCA exams, eGCA computer numbers, RTR(A) exam patterns, and CPL mock tests by Capt. Pankaj Pahil.",
   alternates: { canonical: "/guides" },
 };

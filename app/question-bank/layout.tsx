@@ -1,7 +1,7 @@
 import { ALL_QUESTIONS } from "@/lib/questions";
 
 export const metadata = {
-  title: "DGCA Question Bank | CPL & ATPL MCQs with Explanations",
+  title: "Free DGCA Question Bank — CPL & ATPL MCQs with Explanations",
   description: "India's most comprehensive DGCA question bank for CPL and ATPL. Thousands of latest chapter-wise MCQs with detailed explanations for Air Regulations, Navigation, and Meteorology.",
   openGraph: {
     title: "DGCA Question Bank | Ghost Aviator",

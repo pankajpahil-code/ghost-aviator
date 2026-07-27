@@ -4,10 +4,59 @@ import { Radio, Mic, BookOpen, Award, Dices, Play, Volume2, Repeat, ClipboardChe
 import GhostTower, { LockedScenarios } from "./GhostTower";
 
 export const metadata: Metadata = {
-  title: "Radio Simulator — RTR(A) R/T Practice | Ghost Aviator",
+  title: "RTR(A) Exam Radio Simulator — Free Online ATC Practice | Ghost Aviator",
   description:
-    "India's first RTR(A) radio simulator. Talk to ATC, read back clearances, handle emergencies, get graded like the real WPC exam — free for every student pilot.",
+    "India's first free online RTR(A) radio simulator for the DGCA/WPC exam. Talk to ATC in real ICAO phraseology, read back clearances, handle emergencies, get graded like the real practical — free for every Indian student pilot.",
   alternates: { canonical: "/rtr-simulator" },
+};
+
+// FAQ rich-result markup. Every answer restates a fact already published on
+// this page — no regulatory claims live here, product facts only.
+const FAQ_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is the RTR(A) Radio Simulator free?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Scenario 1 (VFR Departure) works without any account, and the full set of 19 scenarios unlocks with a free sign-in. The simulator is free forever for every student pilot.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can I practice RTR(A) radiotelephony without a microphone?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. You can speak your calls with the mic, tap phrase chips in Learn mode, or type your transmission — typed and spoken calls are scored exactly the same.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How is the simulator graded?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Every transmission is graded item by item — mandatory read-backs, callsign discipline, non-standard words, and on voice calls your speech rate and filler words. The pass mark is 50%, the same as the RTR(A) practical.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does it use real ATC phraseology?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes — standard ICAO phraseology as taught for the DGCA/WPC RTR(A) syllabus, with examiner-style probes and corrections. Every rule on the gradesheet is cross-linked to the free 24-chapter RTR(A) book on this site.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Are the practice flights always the same?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No two flights are the same — the airport, runway, weather, ATIS, callsign and traffic roll fresh on every flight, so you practice the procedure, not a memorised script.",
+      },
+    },
+  ],
 };
 
 const cyan = "#00d4ff";
@@ -64,13 +113,14 @@ const HOW_TO = [
 export default function RtrSimulatorPage() {
   return (
     <div className="grid-bg min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_LD) }} />
       {/* Hero */}
       <div className="relative overflow-hidden" style={{ borderBottom: "1px solid rgba(0,212,255,0.2)" }}>
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,0.15) 0%, transparent 70%)" }} />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 relative z-10">
           <div className="inline-block text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-5"
                style={{ color: cyan, border: "1px solid rgba(0,212,255,0.35)", background: "rgba(0,212,255,0.08)", letterSpacing: "0.18em" }}>
-            INDIA&apos;S FIRST R/T PRACTICE SIMULATOR
+            INDIA&apos;S FIRST FREE RTR(A) R/T PRACTICE SIMULATOR
           </div>
           <h1 className="text-5xl sm:text-6xl font-black text-white mb-4">
             Radio <span className="gradient-text">Simulator</span>

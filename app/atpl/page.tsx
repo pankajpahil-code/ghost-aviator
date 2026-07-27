@@ -11,8 +11,8 @@ const atplIds = new Set(ATPL_SUBJECTS.map(s => s.id));
 const QUESTIONS = `${(Math.floor(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => atplIds.has(id))).length / 100) * 100).toLocaleString("en-IN")}+`;
 
 export const metadata: Metadata = {
-  title: "ATPL Preparation — Syllabus, Mock Tests & Notes | Ghost Aviator",
-  description: "Complete preparation for all 8 DGCA ATPL papers. Access chapters, notes, slides, video lectures, and mock tests for Airline Transport Pilot Licence exams.",
+  title: "DGCA ATPL Exam Preparation — Free Question Bank, Notes & Mock Tests | Ghost Aviator",
+  description: "Free online DGCA ATPL exam preparation for India — question bank, chapter-wise notes, video lectures and mock tests for every Airline Transport Pilot Licence paper.",
   alternates: { canonical: "/atpl" },
 };
 

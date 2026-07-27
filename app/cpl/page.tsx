@@ -11,8 +11,8 @@ const cplIds = new Set(CPL_SUBJECTS.map(s => s.id));
 const QUESTIONS = `${(Math.floor(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => cplIds.has(id))).length / 100) * 100).toLocaleString("en-IN")}+`;
 
 export const metadata: Metadata = {
-  title: "CPL Preparation — Syllabus, Mock Tests & Notes | Ghost Aviator",
-  description: "Complete preparation for all 7 DGCA CPL papers. Access chapters, notes, slides, video lectures, and mock tests for Commercial Pilot Licence exams.",
+  title: "DGCA CPL Exam Preparation — Free Question Bank, Notes & Mock Tests | Ghost Aviator",
+  description: "Free online DGCA CPL exam preparation for India — complete question bank, chapter-wise notes, video lectures and mock tests for every Commercial Pilot Licence paper.",
   alternates: { canonical: "/cpl" }
 };
 
