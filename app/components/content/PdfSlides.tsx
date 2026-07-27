@@ -84,7 +84,6 @@ export default function PdfSlides({ src, color }: { src: string; color: string }
           slots.push(slot);
         }
         setStatus("ready");
-        console.log("[PdfSlides] ready: slots", slots.length, "cancelled?", cancelled, "pdf?", !!pdf);
 
         // Guarantee the opening slides paint immediately (don't wait on the observer).
         for (let i = 0; i < Math.min(3, slots.length); i++) renderPage(slots[i], i + 1);

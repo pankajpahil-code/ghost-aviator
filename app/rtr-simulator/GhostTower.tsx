@@ -1037,7 +1037,7 @@ export function LockedScenarios() {
           <div className="flex items-center gap-2 mb-2">
             <Lock className="w-4 h-4" style={{ color: "#64748b" }} />
             <span className="text-xs font-bold" style={{ color: "#64748b" }}>
-              {i === 0 ? "SCENARIO 5" : "COMING SOON"}
+              COMING SOON
             </span>
           </div>
           <div className="font-bold text-white text-sm mb-2">{t}</div>
