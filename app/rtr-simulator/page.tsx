@@ -6,7 +6,7 @@ import GhostTower, { LockedScenarios } from "./GhostTower";
 export const metadata: Metadata = {
   title: "RTR(A) Exam Radio Simulator — Free Online ATC Practice | Ghost Aviator",
   description:
-    "India's first free online RTR(A) radio simulator for the DGCA/WPC exam. Talk to ATC in real ICAO phraseology, read back clearances, handle emergencies, get graded like the real practical — free for every Indian student pilot.",
+    "India's first free online RTR(A) radio simulator for the DGCA exam. Talk to ATC in real ICAO phraseology, read back clearances, handle emergencies, get graded like the real practical — free for every Indian student pilot.",
   alternates: { canonical: "/rtr-simulator" },
 };
 
@@ -45,7 +45,7 @@ const FAQ_LD = {
       name: "Does it use real ATC phraseology?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes — standard ICAO phraseology as taught for the DGCA/WPC RTR(A) syllabus, with examiner-style probes and corrections. Every rule on the gradesheet is cross-linked to the free 24-chapter RTR(A) book on this site.",
+        text: "Yes — standard ICAO phraseology as taught for the DGCA RTR(A) syllabus under CAR Section 7 Series G Part VI, with examiner-style probes and corrections. Every rule on the gradesheet is cross-linked to the free 24-chapter RTR(A) book on this site.",
       },
     },
     {
@@ -101,7 +101,7 @@ const HOW_TO = [
   {
     icon: Repeat,
     title: "6 · The examiner probes — answer",
-    body: "Miss a mandatory item and ATC probes you, exactly like the WPC practical: “confirm QNH?”. Get it wrong and you're corrected and asked to read back again. Each probe costs one point — the flight continues either way.",
+    body: "Miss a mandatory item and ATC probes you, exactly like the real practical: “confirm QNH?”. Get it wrong and you're corrected and asked to read back again. Each probe costs one point — the flight continues either way.",
   },
   {
     icon: ClipboardCheck,
@@ -175,7 +175,7 @@ export default function RtrSimulatorPage() {
           </h2>
           <p className="text-sm mb-5" style={{ color: "#64748b" }}>
             Every phrase this simulator grades is taught in the complete RTR(A) book, free on
-            this site — written for the DGCA/WPC syllabus and aligned with the ICAO Manual of
+            this site — written for the DGCA RTR(A) syllabus and aligned with the ICAO Manual of
             Radiotelephony. Fly a scenario, then read the chapter it drilled — that loop is
             how the phraseology becomes yours.
           </p>

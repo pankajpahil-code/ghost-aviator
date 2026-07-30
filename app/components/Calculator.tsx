@@ -7,7 +7,14 @@ import Link from "next/link";
 export default function Calculator() {
   // Flight Training
   const [hours, setHours] = useState(200);
-  const [hourlyRate, setHourlyRate] = useState(15000);
+  // ₹25,000/hr default set 2026-07-27 on Capt. Pahil's correction: the previous
+  // ₹15,000 default produced a ~₹38 lakh total, when the real 2026 all-in figure
+  // is around ₹60 lakh. Under-quoting the biggest cheque a student's family will
+  // ever write is worse than over-quoting, so the default now sits at the top of
+  // the market band (₹8,000–₹25,000/hr) and students at a cheaper school dial it
+  // DOWN with the slider. Keep this in step with tools/guide-drafts/
+  // pilot-training-cost-india.html, which quotes the same figures.
+  const [hourlyRate, setHourlyRate] = useState(25000);
   
   // DGCA
   const [exams, setExams] = useState(6); // Nav, Met, Regs, Tech Gen, Tech Spec, RTR(A)
@@ -52,6 +59,12 @@ export default function Calculator() {
         <p className="text-slate-300 max-w-2xl mx-auto text-sm">
           Includes flight training, DGCA exams, medicals, ground school, living expenses, and a 10% contingency buffer. Adjust the sliders below for your specific scenario.
         </p>
+        <p className="text-amber-300/90 max-w-2xl mx-auto text-xs mt-3 px-4 py-2 rounded-lg"
+           style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.28)" }}>
+          <strong>This is the CPL only.</strong> A type rating on the aircraft you will actually fly is
+          a further ₹15–25 lakh, and it comes after the licence — not included above. Budget for the
+          landing, not just the flight.
+        </p>
 
         {/* Visual Bar Chart */}
         <div className="mt-8 h-4 flex rounded-full overflow-hidden bg-slate-800 w-full">
@@ -95,8 +108,11 @@ export default function Calculator() {
                 <label className="text-sm font-bold text-slate-300">Hourly Rate (₹/hr)</label>
                 <span className="text-sm font-bold text-white">{fmt(hourlyRate)}/hr</span>
               </div>
-              <input type="range" min="10000" max="30000" step="500" value={hourlyRate} onChange={e => setHourlyRate(Number(e.target.value))} className="w-full accent-sky-400" />
-              <p className="text-xs text-slate-500 mt-1">Varies heavily by country and flying school.</p>
+              <input type="range" min="8000" max="30000" step="500" value={hourlyRate} onChange={e => setHourlyRate(Number(e.target.value))} className="w-full accent-sky-400" />
+              <p className="text-xs text-slate-500 mt-1">
+                Indian schools currently quote roughly ₹8,000–₹25,000 per hour. Ask what the rate
+                <em> includes</em> — fuel, instructor, landing fees — before you compare two schools.
+              </p>
             </div>
           </div>
         </div>

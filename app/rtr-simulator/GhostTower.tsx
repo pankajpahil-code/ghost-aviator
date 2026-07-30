@@ -697,7 +697,7 @@ export default function GhostTower() {
             <p key={i} className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{b}</p>
           ))}
           <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
-            The examiner probes exactly like the real WPC practical: miss a mandatory read-back and
+            The examiner probes exactly like the real RTR(A) practical: miss a mandatory read-back and
             you&apos;ll hear <em>&ldquo;confirm QNH?&rdquo;</em> — get it wrong and you&apos;ll be corrected.
             Pass mark {scn.passMark}%, just like RTR(A) Part&nbsp;2.
           </p>

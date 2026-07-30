@@ -24,7 +24,7 @@ export const GUIDES: Guide[] = [
   {
     slug: "rtr-exam-guide",
     title: "RTR(A) Exam Pattern & Syllabus Explained",
-    description: "Official DGCA CAR Section 7 Series G Part VI breakdown of the WPC RTR(A) examination syllabus, 48-hour curriculum, Transmission (Part 1), and Viva (Part 2).",
+    description: "DGCA CAR Section 7 Series G Part VI breakdown of the RTR(A) examination syllabus, 48-hour curriculum, Transmission (Part 1) and Viva (Part 2) — updated for the DGCA takeover of the exam from the WPC in November 2025.",
     author: "Capt. Pankaj Pahil",
     date: "2025-11-27"
   }

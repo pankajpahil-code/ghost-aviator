@@ -232,7 +232,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Which body publishes the Aeronautical Information Publication (AIP) in India?`,
     opts: [`AAI`, `DGCA`, `ICAO`, `WPC`],
     ans: 0,
-    exp: `. The Airports Authority of India (AAI) publishes the AIP. The DGCA is the regulator.`,
+    exp: `The Airports Authority of India (AAI) publishes the AIP. The DGCA is the regulator.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -382,7 +382,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Which body regulates the airworthiness and fitment of the radio in the aircraft?`,
     opts: [`WPC`, `DGCA`, `ITU`, `IATA`],
     ans: 1,
-    exp: `GCA. DGCA regulates airworthiness/fitment; WPC licenses the spectrum/apparatus.`,
+    exp: `DGCA regulates airworthiness and fitment of the radio in the aircraft; the WPC licenses the spectrum and the apparatus itself.`,
   },
   {
     subjectIds: ["radio-telephony"],
