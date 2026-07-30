@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { getQuestionsForChapter } from "@/lib/questions";
+import { getChapterVideos } from "@/lib/chapter-videos";
 import { ALL_PAST_PAPERS } from "@/lib/past-papers";
 import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { GUIDES } from "@/lib/guides";
@@ -60,10 +61,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
           types.add("chapter-quiz");
           types.add("questions");
         }
-        // Media types stay gated on their own availability flags, which are honest.
+        // Slides/audio stay gated on their availability flags, which are honest.
         for (const c of ch.content) {
-          if (c.available && ["slides", "video", "audio"].includes(c.type)) types.add(c.type);
+          if (c.available && ["slides", "audio"].includes(c.type)) types.add(c.type);
         }
+        // Video is gated on the SAME condition the route renders with: a
+        // mapped lecture in lib/chapter-videos.ts (the flag alone can lie).
+        if (getChapterVideos(s.id, ch.id).length > 0) types.add("video");
         return Array.from(types).map(type => ({
           url: url(`/${track}/${s.id}/${ch.id}/${type}`),
           lastModified: now,

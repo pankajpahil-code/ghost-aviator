@@ -4,11 +4,13 @@ import fs from "node:fs";
 import path from "node:path";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter } from "@/lib/questions";
+import { getChapterVideos } from "@/lib/chapter-videos";
 import NotesPage       from "@/app/components/content/NotesPage";
 import HtmlNotesPage   from "@/app/components/content/HtmlNotesPage";
 import QuestionsPage   from "@/app/components/content/QuestionsPage";
 import ChapterTestPage from "@/app/components/content/ChapterTestPage";
 import ChapterQuizPage from "@/app/components/content/ChapterQuizPage";
+import VideoPage       from "@/app/components/content/VideoPage";
 import ComingSoonPage  from "@/app/components/content/ComingSoonPage";
 
 const VALID_TYPES = ["notes", "slides", "video", "audio", "questions", "mock-test", "chapter-quiz"] as const;
@@ -75,6 +77,7 @@ export default async function Page({
             prevChapter={prevChapter}
             nextChapter={nextChapter}
             src={`/content/${subject.id}/${chapter.id}/notes.html`}
+            videos={getChapterVideos(subject.id, chapter.id)}
           />
         );
       }
@@ -121,6 +124,24 @@ export default async function Page({
         questions={questions}
       />
     );
+  }
+
+  if (type === "video") {
+    // Same rule as the CPL route: a mapping in lib/chapter-videos.ts IS the
+    // availability — one line there lights up the route and the sitemap.
+    const videos = getChapterVideos(subject.id, chapter.id);
+    if (videos.length > 0) {
+      return (
+        <VideoPage
+          track="atpl"
+          subject={subject}
+          chapter={chapter}
+          prevChapter={prevChapter}
+          nextChapter={nextChapter}
+          videos={videos}
+        />
+      );
+    }
   }
 
   return (

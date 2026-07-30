@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter } from "@/lib/questions";
+import { getChapterVideos } from "@/lib/chapter-videos";
 import { getSeoHtmlForNotes } from "@/lib/seo-notes";
 import { SITE_URL } from "@/lib/site";
 import NotesPage              from "@/app/components/content/NotesPage";
@@ -125,6 +126,7 @@ export default async function Page({
           chapter={chapter}
           prevChapter={prevChapter}
           nextChapter={nextChapter}
+          videos={getChapterVideos(subject.id, chapter.id)}
         />
       );
     }
@@ -154,6 +156,7 @@ export default async function Page({
               prevChapter={prevChapter}
               nextChapter={nextChapter}
               src={notesHtmlPath}
+              videos={getChapterVideos(subject.id, chapter.id)}
             />
           </>
         );
@@ -274,6 +277,7 @@ export default async function Page({
             prevChapter={prevChapter}
             nextChapter={nextChapter}
             src={notesHtmlPath}
+            videos={getChapterVideos(subject.id, chapter.id)}
           />
         </>
       );
@@ -306,21 +310,11 @@ export default async function Page({
     );
   }
 
-  if (type === "video" && isAvailable("video")) {
-    const YOUTUBE_IDS: Record<string, string> = {
-      "air-regulations/ar-1": "U-3qsvPNXSQ",
-      "air-regulations/ar-2": "3clEEVEFjhs",
-      "air-regulations/ar-3": "49Pb_y2Jy4Y",
-      "air-regulations/ar-4": "-wNK3jt0_Vc",
-      "air-regulations/ar-5": "gSiElA8OTKY",
-      "air-regulations/ar-6": "yEk9FYgRTho",
-      "air-regulations/ar-7": "wvN_ol_zXPo",
-      "air-regulations/ar-8": "urz6tppqass",
-      "air-regulations/ar-9": "a1Zda_GDGSs",
-      "air-regulations/ar-10": "cncICehqRws",
-    };
-    const youtubeId = YOUTUBE_IDS[`${subject.id}/${chapter.id}`];
-    if (youtubeId) {
+  if (type === "video") {
+    // A mapped lecture IS availability — the mapping in lib/chapter-videos.ts
+    // is the single source of truth, and the sitemap uses the same condition.
+    const videos = getChapterVideos(subject.id, chapter.id);
+    if (videos.length > 0) {
       return (
         <VideoPage
           track="cpl"
@@ -328,7 +322,7 @@ export default async function Page({
           chapter={chapter}
           prevChapter={prevChapter}
           nextChapter={nextChapter}
-          youtubeId={youtubeId}
+          videos={videos}
         />
       );
     }

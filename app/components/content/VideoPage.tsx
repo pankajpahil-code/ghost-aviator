@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { ChevronRight, ChevronLeft, BookOpen, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
+import type { ChapterVideo } from "@/lib/chapter-videos";
+import VideoLectureCard from "@/app/components/content/VideoLectureCard";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -10,10 +12,10 @@ type Props = {
   chapter: Chapter;
   prevChapter: Chapter | null;
   nextChapter: Chapter | null;
-  youtubeId: string;
+  videos: ChapterVideo[];
 };
 
-export default function VideoPage({ track, subject, chapter, prevChapter, nextChapter, youtubeId }: Props) {
+export default function VideoPage({ track, subject, chapter, prevChapter, nextChapter, videos }: Props) {
   return (
     <div style={{ background: "#06040e" }} className="min-h-screen">
 
@@ -52,16 +54,10 @@ export default function VideoPage({ track, subject, chapter, prevChapter, nextCh
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        {/* YouTube embed */}
-        <div className="rounded-2xl overflow-hidden mb-6"
-             style={{ border: `1px solid ${subject.color}25`, aspectRatio: "16/9", background: "#000" }}>
-          <iframe
-            src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}
-            className="w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            title={`${chapter.title} — Video Lecture`}
-          />
+        {/* Lecture player — same component the notes page uses, so multi-part
+            series and the click-to-load behaviour stay identical everywhere. */}
+        <div className="mb-6">
+          <VideoLectureCard videos={videos} title={chapter.title} color={subject.color} />
         </div>
 
         {/* Cross-links */}

@@ -55,7 +55,11 @@ const JSON_LD = {
       description: DESCRIPTION,
       founder: { "@type": "Person", name: "Capt. Pankaj Pahil" },
       areaServed: "IN",
-      sameAs: ["https://t.me/+tgLMJithc1gzOWJl"],
+      sameAs: [
+        "https://t.me/+tgLMJithc1gzOWJl",
+        "https://www.youtube.com/@PankajPahil",
+        "https://www.youtube.com/@Capt.GhostAviator",
+      ],
     },
     {
       "@type": "WebSite",

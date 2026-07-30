@@ -6,6 +6,8 @@ import { ChevronRight, ChevronLeft, ListChecks, Volume2, Pause, Square } from "l
 import type { Subject, Chapter } from "@/lib/subjects";
 import Watermark from "@/app/components/Watermark";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
+import VideoLectureCard from "@/app/components/content/VideoLectureCard";
+import type { ChapterVideo } from "@/lib/chapter-videos";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -14,6 +16,8 @@ type Props = {
   prevChapter: Chapter | null;
   nextChapter: Chapter | null;
   src: string;
+  /** The Captain's lecture(s) for this chapter — card renders above the notes when non-empty. */
+  videos?: ChapterVideo[];
 };
 
 type SpeechState = "idle" | "playing" | "paused" | "unsupported";
@@ -133,7 +137,7 @@ function useReadAloud(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
   return { state, toggle, stop, voices, voiceURI, setVoiceURI };
 }
 
-export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, src }: Props) {
+export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, src, videos }: Props) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const { state: speechState, toggle: toggleListen, stop: stopListen, voices, voiceURI, setVoiceURI } = useReadAloud(iframeRef);
 
@@ -221,6 +225,9 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
 
       {/* Notes iframe */}
       <div className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-4">
+        {videos && videos.length > 0 && (
+          <VideoLectureCard videos={videos} title={chapter.title} color={subject.color} />
+        )}
         <div className="rounded-2xl overflow-hidden"
              style={{ border: `1px solid ${subject.color}20`, minHeight: "80vh" }}>
           <iframe

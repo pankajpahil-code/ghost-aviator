@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ChevronRight, ChevronLeft, ListChecks, Clock } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { ReactNode } from "react";
+import VideoLectureCard from "@/app/components/content/VideoLectureCard";
+import type { ChapterVideo } from "@/lib/chapter-videos";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -9,6 +11,8 @@ type Props = {
   chapter: Chapter;
   prevChapter: Chapter | null;
   nextChapter: Chapter | null;
+  /** The Captain's lecture(s) for this chapter — card renders above the notes when non-empty. */
+  videos?: ChapterVideo[];
 };
 
 // ─── styling constants ────────────────────────────────────────────────────────
@@ -165,7 +169,7 @@ function TdRed({ children }: { children: ReactNode }) {
 
 // ─── main component ───────────────────────────────────────────────────────────
 
-export default function AirRegsChapter1Notes({ track, subject, chapter, prevChapter, nextChapter }: Props) {
+export default function AirRegsChapter1Notes({ track, subject, chapter, prevChapter, nextChapter, videos }: Props) {
   return (
     <div style={{ background: "#06040e" }} className="min-h-screen">
 
@@ -217,6 +221,12 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
 
       {/* ── Content ─────────────────────────────────────────────────── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        {videos && videos.length > 0 && (
+          <div className="mb-8">
+            <VideoLectureCard videos={videos} title={chapter.title} color={subject.color} />
+          </div>
+        )}
 
         {/* ══════════════════════════════════════════════════════════════
             SECTION 1 — PARIS CONVENTION, 1919
