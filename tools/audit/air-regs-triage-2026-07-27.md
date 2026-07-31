@@ -79,11 +79,29 @@ Not necessarily wrong — each needs an Indian source I could not reach today
 | **Explanation is a placeholder** (`"Correct answer: B"`) | **946** | **100%** |
 | Placeholder option text (`"(no option d)"`) | 71 | 7.5% |
 | Question-number prefix leaked into the stem (`"Q45."`) | 92 | 9.7% |
-| Suspiciously short stem (<25 chars — truncation) | 54 | 5.7% |
+| ~~Suspiciously short stem (<25 chars — truncation)~~ | ~~54~~ | **false alarm — see below** |
 | Option ends mid-sentence (parser-split signature) | 21 | 2.2% |
 | Stem text bled into an option (ends `:` / `It is:`) | 5 | 0.5% |
 | Duplicate question stems | 86 | 9.1% |
 | Uses all/none-of-the-above | 34 | 3.6% |
+
+### Correction to this report (added during the step-1 repair)
+
+**The "54 suspiciously short stems" finding was wrong.** I used "stem under 25
+characters" as a proxy for truncation. On inspection they are overwhelmingly just
+*terse questions* — "UTC means", "TMA means", "Threshold lights are",
+"Rashtrapati Bhawan is a". Nothing to repair.
+
+The real signal is a broken **option**, not a short stem. A first attempt at
+detecting those flagged 411 questions (43% of the bank) — also wrong, because it
+fired on ordinary English: it called "AIP" too short and treated any stem ending in
+"is" as truncated. Tightening the rules to signatures taken only from *confirmed*
+broken questions brought it to 28 candidates, of which manual reading found
+**12 genuinely broken and 16 false positives**. Those 12 were dropped.
+
+Lesson worth keeping: a structural heuristic must be calibrated against questions
+you have actually read. Both of my first two heuristics would have caused edits to
+questions that were completely fine.
 
 **The headline: 100% of explanations teach nothing.** A student who gets a question wrong
 is told only *"Correct answer: B"* — no reasoning, no rule, no reference. That is the

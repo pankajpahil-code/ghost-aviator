@@ -1,7 +1,7 @@
 import type { DemoQuestion } from "./demo-questions";
 
 // RK Bali Regulations Question Bank — parsed and chapter-classified
-// Total questions: 946
+// Total questions: 933
 export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -804,7 +804,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `at the higher altitude .`,
       `at the lower altitude ,but the pilot shall not take advantage of this rule to cut in front of or to to overtake the other aircraft.`,
       `That is more maneuverable ,and that aircraft may ,with caution ,move in front of or overtake the other aircraft .`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -817,7 +816,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `1.5 Km visibility; clear of clouds`,
       `10000 feet MSL, if above 10000 feet AGL.`,
       `5 Km visibility; and 1000 feet below.`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -843,7 +841,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `If any crosswind ,land on the windward side of the runaway and prior to the jet’s touchdown point .`,
       `At least 1000 feet beyond the jet’s touchdown point .`,
       `Beyond the jet’s touchdown point .`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -1019,26 +1016,12 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `Class ‘D’ airspace in`,
-    opts: [
-      `traffic is provided Air Traffic Services`,
-      `where IFR flights receive Air Traffic control service and VFR flights receive traffic`,
-      `information and traffic avoidance advice on request`,
-      `separation between IFR flights is assured`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
-    q: `34. Two aircraft of the different category are approaching an airport for the purpose of landing. The right-of-way belongs to the aircraft`,
+    q: `Two aircraft of the different category are approaching an airport for the purpose of landing. The right-of-way belongs to the aircraft`,
     opts: [
       `At the higher altitude`,
       `At the lower altitude, but the pilot shall not take advantage of this rule to cut in front of or to overtake the other aircraft`,
       `That is more maneuverable , that the aircraft may with caution move in front of or overtake the other aircraft`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -1051,7 +1034,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Direct headwind`,
       `Direct tailwind`,
       `Light quartering tailwind`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -1064,7 +1046,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `sea level`,
       `the standard datum plane`,
       `the pressure level set in the barometric window .`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -1188,26 +1169,12 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-8",
-    q: `Aircraft meets with an accident on runway, its wreckage can be removed:`,
-    opts: [
-      `For smooth flow of air traffic. and`,
-      `For removing a dead body or injured person. are correct`,
-      `After taking photographs.`,
-      `Both`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
     q: `A person dies of cholera, his body can be brought to if:`,
     opts: [
       `Packed in a wooden box.`,
       `Cannot be brought.`,
       `Sealed in zinc and packed in a wooden box. Closed in a shell of zinc, joints sealed, shell enclosed in a teak wooden box which is enclosed in zinc lined box, filled with saw dust impregnated with carbolic powder. Permitted by the DGCA.`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -1865,7 +1832,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `Q1. AIP India is published by:`,
+    q: `AIP India is published by:`,
     opts: [
       `DGCA`,
       `AAI`,
@@ -1878,7 +1845,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q2. AIP consists of:`,
+    q: `AIP consists of:`,
     opts: [
       `3 parts (GEN, ENR & AD)`,
       `4 parts (GEN, ENR, AD MET)`,
@@ -1891,7 +1858,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q3. Regular amendments to the AIP will be:`,
+    q: `Regular amendments to the AIP will be:`,
     opts: [
       `Twice a year in Jan and July month of each year`,
       `Every quarter of the year Jan, April, July and Oct month of each year`,
@@ -1904,12 +1871,11 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
-    q: `Q4. Without visual aid, a pilot often interprets centrifugal force as a sensation of:`,
+    q: `Without visual aid, a pilot often interprets centrifugal force as a sensation of:`,
     opts: [
       `Rising or falling`,
       `turning`,
       `motion reversal`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -1930,7 +1896,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `Q6. A passenger visited a yellow fever infected area on the previous six days, but is not in possession of valid yellow fever certificate, then action taken by PIC of the flight is:`,
+    q: `A passenger visited a yellow fever infected area on the previous six days, but is not in possession of valid yellow fever certificate, then action taken by PIC of the flight is:`,
     opts: [
       `Send a radio message two hours before the arrival about the state of the health of the passenger`,
       `No action required`,
@@ -1943,12 +1909,11 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
-    q: `Q7. Abrupt head movement during a prolonged constant rate turn in IMC or simulated instrument condition can cause:`,
+    q: `Abrupt head movement during a prolonged constant rate turn in IMC or simulated instrument condition can cause:`,
     opts: [
       `Pilot disorientation`,
       `False horizon`,
       `Elevator illusion`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -1956,7 +1921,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q8. Which of the following statements is not correct for classification of Airspace in ?`,
+    q: `Which of the following statements is not correct for classification of Airspace in ?`,
     opts: [
       `Class D Airspace is applicable to TMA, control zones and control areas`,
       `Class E is applicable to Airspace in designated ATS route outside terminal and control areas.`,
@@ -1969,12 +1934,11 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
-    q: `Q9. An abrupt change from climb to straight and level flight can create the illusion of:`,
+    q: `An abrupt change from climb to straight and level flight can create the illusion of:`,
     opts: [
       `Tumbling backwards`,
       `a nose up attitude`,
       `a descent with the wing level`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -1982,12 +1946,11 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
-    q: `Q10. A rapid acceleration during takeoff can create the illusion of:`,
+    q: `A rapid acceleration during takeoff can create the illusion of:`,
     opts: [
       `Spinning in the opposite direction`,
       `Being in a nose up attitude`,
       `Diving into the ground`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -1995,7 +1958,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-13",
-    q: `Q11. An Aircraft shall report “long final” when it is at ____ from the approach end of the rwy`,
+    q: `An Aircraft shall report “long final” when it is at ____ from the approach end of the rwy`,
     opts: [
       `8NMs`,
       `4NMs`,
@@ -2008,7 +1971,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q12. A Cessna 152 aircraft force lands at a wheat field due to shortage of fuel. It will be reported as:`,
+    q: `A Cessna 152 aircraft force lands at a wheat field due to shortage of fuel. It will be reported as:`,
     opts: [
       `An accident`,
       `An incident`,
@@ -2021,7 +1984,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-1",
-    q: `Q13. A pilot should never cross a:`,
+    q: `A pilot should never cross a:`,
     opts: [
       `Stop bar which is switched off`,
       `Stop bar which is lighted`,
@@ -2034,7 +1997,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `Q14. FDTL for training flights does not restrict:`,
+    q: `FDTL for training flights does not restrict:`,
     opts: [
       `Flight Time`,
       `Flight Duty Time`,
@@ -2047,7 +2010,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
-    q: `Q15. For a flight at night in VMC, the approach will appear to be`,
+    q: `For a flight at night in VMC, the approach will appear to be`,
     opts: [
       `Same as day`,
       `Steeper`,
@@ -2060,7 +2023,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q16. Decision Altitude is applicable for:`,
+    q: `Decision Altitude is applicable for:`,
     opts: [
       `Non Precision Approaches`,
       `PAPI Approaches`,
@@ -2073,7 +2036,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `Q17. Prisoners on Board an aircraft can be carried with the permission of`,
+    q: `Prisoners on Board an aircraft can be carried with the permission of`,
     opts: [
       `DGCA`,
       `Controller of Aerodrome`,
@@ -2086,7 +2049,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `Q18. Flight time/flight duty time limitations shall be applicable to:`,
+    q: `Flight time/flight duty time limitations shall be applicable to:`,
     opts: [
       `Pilots only`,
       `Pilots and cabin crews only`,
@@ -2099,7 +2062,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
-    q: `Q19. Large accumulation of carbon mono-oxide in the blood results in:`,
+    q: `Large accumulation of carbon mono-oxide in the blood results in:`,
     opts: [
       `Dizziness`,
       `Fear`,
@@ -2112,7 +2075,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q20. Deviations from International Standards and recommended practices are published in:`,
+    q: `Deviations from International Standards and recommended practices are published in:`,
     opts: [
       `AIRAC`,
       `AICs`,
@@ -2125,7 +2088,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q21. To find current watch hours of a station you should look into:`,
+    q: `To find current watch hours of a station you should look into:`,
     opts: [
       `AIRAC`,
       `AICs`,
@@ -2138,7 +2101,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-13",
-    q: `Q22. ‘ATIS’ is a continuous broadcast of recorded information concerning:`,
+    q: `‘ATIS’ is a continuous broadcast of recorded information concerning:`,
     opts: [
       `ATS information`,
       `ATS and Met information`,
@@ -2151,7 +2114,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `Q23. Flight Manual is to be carried by`,
+    q: `Flight Manual is to be carried by`,
     opts: [
       `All aircraft`,
       `Scheduled aircraft only`,
@@ -2190,7 +2153,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q26. OCA is used for determination of:`,
+    q: `OCA is used for determination of:`,
     opts: [
       `MDA`,
       `DA`,
@@ -2203,7 +2166,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q27. The numbers 09 and 27 on a runway indicate that the runway is oriented approximately`,
+    q: `The numbers 09 and 27 on a runway indicate that the runway is oriented approximately`,
     opts: [
       `009º and 27º true`,
       `090º and 270º true`,
@@ -2216,7 +2179,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q28. When approaching taxiway holding lines from the side with the continuous lines, the pilot`,
+    q: `When approaching taxiway holding lines from the side with the continuous lines, the pilot`,
     opts: [
       `may continue taxiing`,
       `should not cross the lines without ATC clearance`,
@@ -2229,7 +2192,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q29. The numbers 08 and 26 on the approach ends of the runway is oriented approximately`,
+    q: `The numbers 08 and 26 on the approach ends of the runway is oriented approximately`,
     opts: [
       `008º and 26º true`,
       `080º and 260º true`,
@@ -2242,7 +2205,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q30. What is the purpose of the runway/runway hold position sign?`,
+    q: `What is the purpose of the runway/runway hold position sign?`,
     opts: [
       `Denotes entrance to runway from a taxiway`,
       `Denotes area protected for an aircraft approaching or departing a runway`,
@@ -2255,7 +2218,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q31. An airport’s rotating beacon operated during daylight hours indicates`,
+    q: `An airport’s rotating beacon operated during daylight hours indicates`,
     opts: [
       `there are obstructions on the airport`,
       `that weather at the airport located in Class D airspace is below basic VFR weather minimums`,
@@ -2268,7 +2231,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q32. Wingtip vortices are created only when an aircraft is`,
+    q: `Wingtip vortices are created only when an aircraft is`,
     opts: [
       `operating at high airspeeds`,
       `heavily loaded`,
@@ -2281,7 +2244,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q33. Wingtip vortices created by large aircraft tend to`,
+    q: `Wingtip vortices created by large aircraft tend to`,
     opts: [
       `sink below the aircraft generating turbulence`,
       `rise into the traffic pattern`,
@@ -2294,7 +2257,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q34. How does the wake turbulence vortex circulate around each wingtip?`,
+    q: `How does the wake turbulence vortex circulate around each wingtip?`,
     opts: [
       `Inward, upward, and around each tip`,
       `Inward, upward and counterclockwise`,
@@ -2307,7 +2270,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q35. When taking off or landing where heavy aircraft are operating, one should be particularly alert to the hazards of wingtip vortices because this turbulence tends to`,
+    q: `When taking off or landing where heavy aircraft are operating, one should be particularly alert to the hazards of wingtip vortices because this turbulence tends to`,
     opts: [
       `rise from crossing runway into the takeoff or landing path`,
       `rise into the traffic pattern area surrounding the airport.`,
@@ -2320,7 +2283,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q36. The greatest vortex strength occurs when the generating aircraft is`,
+    q: `The greatest vortex strength occurs when the generating aircraft is`,
     opts: [
       `light, dirty and fast`,
       `heavy, dirty and fast`,
@@ -2333,7 +2296,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q37. The wind condition that requires maximum caution when avoiding wake turbulence on landing is a`,
+    q: `The wind condition that requires maximum caution when avoiding wake turbulence on landing is a`,
     opts: [
       `light, quartering headwind`,
       `light, quartering tailwind`,
@@ -2346,7 +2309,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q38. When departing behind a heavy aircraft, the pilot should avoid wake turbulence by maneuvering the aircraft`,
+    q: `When departing behind a heavy aircraft, the pilot should avoid wake turbulence by maneuvering the aircraft`,
     opts: [
       `below and downwind from the heavy aircraft`,
       `above and upwind from the heavy aircraft`,
@@ -2359,25 +2322,11 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q39. When landing behind a large aircraft, the pilot should avoid wake turbulence by staying`,
+    q: `When landing behind a large aircraft, the pilot should avoid wake turbulence by staying`,
     opts: [
       `Above the large aircraft’s final approach path and landing beyond the large aircraft’s touchdown point`,
       `Below the large aircraft’s final approach path and landing before the large aircraft’s Touchdown point`,
       `Above the large aircraft’s final approach path and landing before the large aircraft’s touchdown point`,
-      `(no option d)`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `Q40. When landing behind a large aircraft, which procedure should be followed for vortex`,
-    opts: [
-      `avoidance?`,
-      `Stay below and to one side of its final approach flight path`,
-      `Stay well below its final approach flight path`,
-      `Make a normal approach and land`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -2385,7 +2334,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
-    q: `Q41. During a night flight, you observe a steady red light and a flashing red light ahead and at the same altitude. What is the general direction of movement of the other aircraft?`,
+    q: `During a night flight, you observe a steady red light and a flashing red light ahead and at the same altitude. What is the general direction of movement of the other aircraft?`,
     opts: [
       `The other aircraft is crossing to the left`,
       `The other aircraft is flying away from you`,
@@ -2398,7 +2347,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
-    q: `Q42. During a night flight, you observe steady white light and a flashing red light ahead and at the same altitude. What is the general direction of movement of the other aircraft?`,
+    q: `During a night flight, you observe steady white light and a flashing red light ahead and at the same altitude. What is the general direction of movement of the other aircraft?`,
     opts: [
       `The other aircraft is flying away from you`,
       `The other aircraft is crossing to the left`,
@@ -2411,7 +2360,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
-    q: `Q43. During a night flight, you observe steady red and green lights ahead and at the same altitude. What is the general direction of movement of the other aircraft?`,
+    q: `During a night flight, you observe steady red and green lights ahead and at the same altitude. What is the general direction of movement of the other aircraft?`,
     opts: [
       `The other aircraft is crossing to the left`,
       `The other aircraft is flying away from you`,
@@ -2424,7 +2373,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
-    q: `Q45. The most effective method of scanning for other aircraft for collision avoidance during nighttime hours is to use`,
+    q: `The most effective method of scanning for other aircraft for collision avoidance during nighttime hours is to use`,
     opts: [
       `regularly spaced concentration on the 3-,9-, and 12-o’clock positions`,
       `a series of short, regularly spaced eye movements to search each 10-degree sector`,
@@ -2437,7 +2386,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
-    q: `Q46. How can you determine if another aircraft is on a collision course with your aircraft?`,
+    q: `How can you determine if another aircraft is on a collision course with your aircraft?`,
     opts: [
       `The other aircraft will always appear to get larger and closer at a rapid rate`,
       `The nose of each aircraft is pointed at the same point in space`,
@@ -2450,7 +2399,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
-    q: `Q48. Most midair collision accidents occur during`,
+    q: `Most midair collision accidents occur during`,
     opts: [
       `hazy days`,
       `clear days`,
@@ -3001,7 +2950,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `High`,
       `Low`,
       `Shallow`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -3079,7 +3027,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Rely on kinesthetic sense`,
       `Use a very rapid`,
       `Read and interpret the flight instruments, and act accordingly.`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -3287,7 +3234,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Kinesthetic senses are ignored.`,
       `Eye are moved often in the process of cross-checking the flight instrument.`,
       `Body signal are used to interpret flight attitude.`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -3352,7 +3298,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Reduce head and eye movement to the extent possible.`,
       `Rely on the kinesthetic senses.`,
       `Rely on the indications of the flight instruments.`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -3391,7 +3336,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Breathe at a slower rate by taking very deep breaths`,
       `Consciously breathe at a slower rate than normal`,
       `Consciously force yourself to taken deep breathe and breathe at a faster rate than normal`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -5439,19 +5383,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-5",
-    q: `Class ‘G’ airspace in`,
-    opts: [
-      `Is a controlled airspace where Air traffic advisory service is provided to both IFR & VFR flights.`,
-      `Is an uncontrolled airspace where only flight information service is provided to both IFR & VFR flights`,
-      `Is airspace of defined dimension where IFR flights are provided Air Traffic Advisory service and VFR flight receive flight information service .`,
-      `Includes controlled and uncontrolled airspaces`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
     q: `What is the minimum visibility requirement in under special VFR operation in Class D airspace below 10000 feet`,
     opts: [
@@ -5848,7 +5779,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `For all flights`,
       `For schedule flights only`,
       `For training flights only`,
-      `IFR flights proposed to be conducted in controlled airspace only:`,
+      `IFR flights proposed to be conducted in controlled airspace only`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -5926,7 +5857,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `QDM.`,
       `QDR.`,
       `QTE.`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -6161,19 +6091,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `5`,
       `4`,
       `7`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `Class ‘G’ airspace in`,
-    opts: [
-      `flights.`,
-      `Is an uncontrolled airspace where only flight information service is provided to both IFR`,
-      `& VFR flights .`,
-      `service and VFR flight receive flight information service.`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -6498,7 +6415,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `rising or falling`,
       `turning`,
       `motion reversal`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -6615,7 +6531,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `pilot disorientation`,
       `false horizon`,
       `elevator illusion`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -6641,7 +6556,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Elevator illusions`,
       `autokinesis`,
       `false horizons`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -6654,7 +6568,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Tumbling backwards`,
       `a nose up attitude`,
       `a descent with the wing level`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -6723,19 +6636,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 1,
     exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `The sensations which lead to spatial disorientation during instrument flight conditions: are frequently encountered by beginning instrument pilot, but never by pilots with moderate instrument experience.`,
-    opts: [
-      `occur, in most instances, during the initial period of transition from visual to`,
-      `instrument flight.`,
-      `must be suppressed and complete reliance placed on the indications of the flight`,
-      `instruments.`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -7382,7 +7282,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Rely on kinesthetic sense.`,
       `Use a very rapid cross-check.`,
       `Read and interpret the flight instruments, and act accordingly.`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -7454,19 +7353,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-5",
-    q: `RVSM is:`,
-    opts: [
-      `Applicable in`,
-      `Not applicable in`,
-      `Applicable to VFR flts only`,
-      `Applicable to military aircraft only`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-8",
     q: `A Boeing 737 aircraft fails to arrive over DPN at 1135 UTC .His ETA DPN is 1105 UTC .It will be a:`,
     opts: [
@@ -7526,19 +7412,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `VFR flights only`,
       `For all aerodrome traffic`,
       `For all arriving aircraft`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `RVR for a runway filed by an operator is 500m. Threshold RVR is reported`,
-    opts: [
-      `to be 800m. It is:`,
-      `below filed minima`,
-      `with in minima if mid RVR is above 450m`,
-      `with in minima if both mid RVR and stop end RVR are above 500m.`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -7915,7 +7788,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Air temp, turbulence, spot wind`,
       `Air temp, clouds above, turbulence`,
       `Air temp, cabin pressure, winds`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -7954,7 +7826,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Reduce head and eye movement to the extent possible`,
       `rely on the kinesthetic senses.`,
       `Rely on the indications of the flight instruments.`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -7967,7 +7838,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Breathe at a slower rate by taking very deep breaths.`,
       `Consciously breathe at a slower rate than normal.`,
       `Consciously force yourself to take deep breaths and breathe at a faster rate than normal.`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -8383,7 +8253,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Altitude`,
       `Flight level`,
       `On QFE`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -8552,7 +8421,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Rising or falling`,
       `Turning`,
       `Motion reversal`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -8708,7 +8576,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Spinning in the opposite direction`,
       `Being in a nose up attitude`,
       `Diving into the ground`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -8760,7 +8627,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Are frequently encountered by beginning instrument pilot, but never by pilots with moderate instrument experience.`,
       `Occur, in most instances, during the initial period of transition from visual to instrument flight.`,
       `Must be suppressed and complete reliance placed on the indications of the flight instruments.`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -8845,19 +8711,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `State aircraft includes:`,
-    opts: [
-      `Air India Aircraft`,
-      `Military aircraft`,
-      `All aircrafts registered in`,
-      `aircraft operating in a state.`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-8",
     q: `While force landing an aircraft in a field due to engine failure, one person is killed on ground P-i-C can be prosecuted for`,
     opts: [
@@ -8881,19 +8734,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 2,
     exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `For landing minima considerations, following values out of the multiple RVR values are taken into account.`,
-    opts: [
-      `RVR at the beginning of runway ,`,
-      `RVR at the middle of runway &`,
-      `RVR at the end of the runway above`,
-      `Lowest value out of`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -9111,7 +8951,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Air temp, turbulence, spot mind`,
       `Air temp, clouds above, turbulence`,
       `Air temp, cabin pressure, minds`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -9184,7 +9023,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q1. In a precision approach, minimum height below which p-i-c cannot descend unless visual reference to land is established`,
+    q: `In a precision approach, minimum height below which p-i-c cannot descend unless visual reference to land is established`,
     opts: [
       `DA`,
       `DH`,
@@ -9197,7 +9036,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q2. In a non-precision approach, min height below which p-i-c may not descend is:`,
+    q: `In a non-precision approach, min height below which p-i-c may not descend is:`,
     opts: [
       `DA`,
       `DH`,
@@ -9210,7 +9049,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q3. OCA is calculated for`,
+    q: `OCA is calculated for`,
     opts: [
       `Precision approaches`,
       `Non-precision approaches`,
@@ -9223,7 +9062,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
-    q: `Q4. Green Light on an aircraft is visible if seen from the front`,
+    q: `Green Light on an aircraft is visible if seen from the front`,
     opts: [
       `At an arc of 110º to the starboard side`,
       `At an arc of 110º to the port side`,
@@ -9236,7 +9075,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q5. ILS glide slope angle normally is set at :`,
+    q: `ILS glide slope angle normally is set at :`,
     opts: [
       `2.5 º`,
       `3.0 º`,
@@ -9249,7 +9088,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q6. An instrument runway served by ILS & visual aids intended for operations with a DH not lower than 60m and RVR not less than 550m is a`,
+    q: `An instrument runway served by ILS & visual aids intended for operations with a DH not lower than 60m and RVR not less than 550m is a`,
     opts: [
       `Cat I runway`,
       `Cat II runway`,
@@ -9262,7 +9101,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q7. Airfield safety altitude:`,
+    q: `Airfield safety altitude:`,
     opts: [
       `Is highest sector safety altitude with in 25NMs`,
       `Is highest sector safety altitude with in 10NMs`,
@@ -9275,7 +9114,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-1",
-    q: `Q8. Enroute Jeppensen charts are based on ________________ projection`,
+    q: `Enroute Jeppensen charts are based on ________________ projection`,
     opts: [
       `Lamberts`,
       `Mercator`,
@@ -9288,7 +9127,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q9. Fuel to be carried by a Turbo-jet aircraft when destination alternate is required is to fly to destination aerodrome execute an approach and MA and thereafter:`,
+    q: `Fuel to be carried by a Turbo-jet aircraft when destination alternate is required is to fly to destination aerodrome execute an approach and MA and thereafter:`,
     opts: [
       `To fly to alternate +45 mts at holding speed at 1500’`,
       `To fly to alternate +30mts at 1500’ make an approach and land`,
@@ -9301,7 +9140,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-2",
-    q: `Q10. ATPL medical fitness and license validity period is`,
+    q: `ATPL medical fitness and license validity period is`,
     opts: [
       `one year and five years`,
       `six month & five years`,
@@ -9314,7 +9153,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `Q11. Cabin crew requirement for an airplane with seating capacity of more than 50 passengers is :`,
+    q: `Cabin crew requirement for an airplane with seating capacity of more than 50 passengers is :`,
     opts: [
       `One cabin crew for each unit of 50 passengers`,
       `Two cabin crew plus one cabin crew for each unit of 50 passengers units above 99 passengers`,
@@ -9327,7 +9166,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-5",
-    q: `Q12. Vertical separation in RVSM airspace`,
+    q: `Vertical separation in RVSM airspace`,
     opts: [
       `is increased`,
       `is decreased`,
@@ -9340,7 +9179,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q13. On PAPI approach, if a pilot sees 3 lights white and green, the aircraft is`,
+    q: `On PAPI approach, if a pilot sees 3 lights white and green, the aircraft is`,
     opts: [
       `too high`,
       `slightly high`,
@@ -9353,7 +9192,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q14. MDA is calculated for:`,
+    q: `MDA is calculated for:`,
     opts: [
       `Precision approaches`,
       `non-precision approach &`,
@@ -9366,12 +9205,12 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q15. ETOPS stands for`,
+    q: `ETOPS stands for`,
     opts: [
       `Extra Time Operations`,
       `Extended Turbojet Operations`,
       `Extend true engine operation`,
-      `for Twin Engine Operations`,
+      `Extended-range Twin-engine Operations`,
     ],
     ans: 3,
     exp: `Correct answer: D`,
@@ -9379,7 +9218,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `Q16. An Air India aircraft is on an dry lease to I.F.A for military use. It will be known as a:`,
+    q: `An Air India aircraft is on an dry lease to I.F.A for military use. It will be known as a:`,
     opts: [
       `Civil aircraft`,
       `Military aircraft`,
@@ -9392,7 +9231,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-2",
-    q: `Q17. Registration of an aircraft is valid for:`,
+    q: `Registration of an aircraft is valid for:`,
     opts: [
       `One year`,
       `Till cancelled by DGCA`,
@@ -9405,7 +9244,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q18. Flight manual contains:`,
+    q: `Flight manual contains:`,
     opts: [
       `Fuel and oil to be carried on board`,
       `Certificate of air worthiness`,
@@ -9418,7 +9257,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `Q19. Succession of command is given by:`,
+    q: `Succession of command is given by:`,
     opts: [
       `The operator to pilots by a circular`,
       `DGCA`,
@@ -9431,7 +9270,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-1",
-    q: `Q20. Emergency check list is to be carried by:`,
+    q: `Emergency check list is to be carried by:`,
     opts: [
       `Scheduled flights`,
       `Non - scheduled operators`,
@@ -9444,7 +9283,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `Q21. A pilot doing a test flight can carried by:`,
+    q: `A pilot doing a test flight can carried by:`,
     opts: [
       `On payment`,
       `Without payment`,
@@ -9457,7 +9296,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-2",
-    q: `Q22. If a CPL holder is hospitalized for ___________ day his medical becomes invalid:`,
+    q: `If a CPL holder is hospitalized for ___________ day his medical becomes invalid:`,
     opts: [
       `7 days`,
       `10 days`,
@@ -9470,7 +9309,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
-    q: `Q23. Hyperventilation is caused due to:`,
+    q: `Hyperventilation is caused due to:`,
     opts: [
       `Decreased breathing rate`,
       `Increased hearty beat`,
@@ -9483,7 +9322,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q24. OCA is Associated with:`,
+    q: `OCA is Associated with:`,
     opts: [
       `Precision Approaches`,
       `Circling approaches`,
@@ -9496,7 +9335,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-1",
-    q: `Q25. Flt plan is to be filed in in respect of:`,
+    q: `Flt plan is to be filed in in respect of:`,
     opts: [
       `All flights other than scheduled flts`,
       `All flts other than local flts`,
@@ -9509,7 +9348,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-1",
-    q: `Q26. Sun rise at Kalikut aerodrome is at 0550h. A VFR flight can take off from there at the earliest at:`,
+    q: `Sun rise at Kalikut aerodrome is at 0550h. A VFR flight can take off from there at the earliest at:`,
     opts: [
       `0530 h`,
       `0610 h`,
@@ -9522,7 +9361,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
-    q: `Q27. Hyper ventilation is caused due to lack of ___________ in blood system`,
+    q: `Hyper ventilation is caused due to lack of ___________ in blood system`,
     opts: [
       `Oxygen`,
       `Carbon Dioxide`,
@@ -9535,7 +9374,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q28. OCA circling approach is __________ the OCA precision approach:`,
+    q: `OCA circling approach is __________ the OCA precision approach:`,
     opts: [
       `Lower than`,
       `Higher than`,
@@ -9548,7 +9387,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q29. If an aerodrome minima is not established for IFR/VFR operations the minima to be applied will be laid down by:`,
+    q: `If an aerodrome minima is not established for IFR/VFR operations the minima to be applied will be laid down by:`,
     opts: [
       `AAI`,
       `DGCA`,
@@ -9561,7 +9400,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-5",
-    q: `Q30. Enroute flt levels are on:`,
+    q: `Enroute flt levels are on:`,
     opts: [
       `QNH`,
       `QNE`,
@@ -9574,7 +9413,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-12",
-    q: `Q31. To overcome severe turbulence pilot should maintain`,
+    q: `To overcome severe turbulence pilot should maintain`,
     opts: [
       `Constant flt attitude`,
       `Constant airspeed`,
@@ -9587,7 +9426,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
-    q: `Q32. At Aerodromes where no ATZ is established, the vicinity of aerodrome for VFR flts shall be:`,
+    q: `At Aerodromes where no ATZ is established, the vicinity of aerodrome for VFR flts shall be:`,
     opts: [
       `5 NMs from ARP upto 1000’ agl`,
       `25 NMs from ARP upto 5000’ agl`,
@@ -9600,7 +9439,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q33. Deviations from ICAO procedures are published in`,
+    q: `Deviations from ICAO procedures are published in`,
     opts: [
       `AIC`,
       `AIRAC`,
@@ -9613,7 +9452,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-8",
-    q: `Q34. To get valid result, FDR data can be erased for testing purpose upto`,
+    q: `To get valid result, FDR data can be erased for testing purpose upto`,
     opts: [
       `Last one hr of the recoding`,
       `Earliest one hr of the recording`,
@@ -9626,7 +9465,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q35. Track separation is also known as separation`,
+    q: `Track separation is also known as separation`,
     opts: [
       `Vertical`,
       `Lateral`,
@@ -9639,7 +9478,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
-    q: `Q36. Abrupt head movements in IMC operations may cause:`,
+    q: `Abrupt head movements in IMC operations may cause:`,
     opts: [
       `False horizon`,
       `Disorientation`,
@@ -9652,7 +9491,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-2",
-    q: `Q37. Flt. Engg. Is carried on board:`,
+    q: `Flt. Engg. Is carried on board:`,
     opts: [
       `If P-I-C desires so`,
       `If operator feels so`,
@@ -9665,7 +9504,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q38. Flt plan is prepared by`,
+    q: `Flt plan is prepared by`,
     opts: [
       `Taking any arbitrary points on route`,
       `Taking shortest distance to the destination`,
@@ -9678,7 +9517,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-1",
-    q: `Q39. For safety reasons, a person should remain away from a jet engine by at least:`,
+    q: `For safety reasons, a person should remain away from a jet engine by at least:`,
     opts: [
       `100’`,
       `200’`,
@@ -9691,7 +9530,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `Q40. ADC is required for`,
+    q: `ADC is required for`,
     opts: [
       `Scheduled flight only`,
       `Non-scheduled flight only`,
@@ -9704,7 +9543,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q41. Vertical separation in CVSM airspaces above FL 290 is:`,
+    q: `Vertical separation in CVSM airspaces above FL 290 is:`,
     opts: [
       `1000’`,
       `2000’`,
@@ -9717,7 +9556,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q42. Decision Altitude is related to:`,
+    q: `Decision Altitude is related to:`,
     opts: [
       `Precision Approaches &`,
       `Non precision approaches`,
@@ -9730,7 +9569,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-8",
-    q: `Q43. A worker working close to the runway is thrown off and seriously injured by a jet blast from a departing aircraft it is an`,
+    q: `A worker working close to the runway is thrown off and seriously injured by a jet blast from a departing aircraft it is an`,
     opts: [
       `Notifiable Accident`,
       `Notifiable incident`,
@@ -9743,7 +9582,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
-    q: `Q44. Minimum visibility required to fly at 12000’ for a VFR flt is`,
+    q: `Minimum visibility required to fly at 12000’ for a VFR flt is`,
     opts: [
       `5 kms`,
       `8 kms`,
@@ -9756,7 +9595,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `Q45. ATC services are provided to IFR flts and traffic information to VFR flts as far as practical provided in class airspace:`,
+    q: `ATC services are provided to IFR flts and traffic information to VFR flts as far as practical provided in class airspace:`,
     opts: [
       `B`,
       `C`,
@@ -9769,7 +9608,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
-    q: `Q46. Cruising level available on a magnetic track of 300 degrees are`,
+    q: `Cruising level available on a magnetic track of 300 degrees are`,
     opts: [
       `115, 135, 155, 175`,
       `110, 130, 150, 160,`,
@@ -9782,7 +9621,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Q47. Route designator for domestic routes is:`,
+    q: `Route designator for domestic routes is:`,
     opts: [
       `White`,
       `Amber`,
@@ -9795,7 +9634,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
-    q: `Q48. Series of red and green projection fired at an interval of 10 sees means:`,
+    q: `Series of red and green projection fired at an interval of 10 sees means:`,
     opts: [
       `Do not land for the time being`,
       `Exercise caution while landing`,
@@ -9804,19 +9643,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 2,
     exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `Q49. Black bars on a white dumbbell means:`,
-    opts: [
-      `Land, take off and taxi on runways only`,
-      `Land, take off on runways only but other maneoures need not be confined to runways`,
-      `& taxiways only`,
-      `Exercise caution for all traffic`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -10548,19 +10374,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `A white dumbbell with a black bar spaced perpendicularly indicates`,
-    opts: [
-      `All aircraft are required to land, takeoff and taxi on taxiways and runways only.`,
-      `Are required to land and takeoff on runways only`,
-      `A white dumbbell when displayed requires a/c to land and takeoff and taxi on taxiways and`,
-      `runways only.`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
     q: `A/c on same level converging track has separation`,
     opts: [
@@ -10580,7 +10393,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Timely knowledge of services, procedure or hazard which is essential to personnel concerned with flight operations`,
       `Does not qualify as a NOTAM or an inclusion in AIP, but relates to flight safety, air navigation, administrative or legislative matters.`,
       `Temporary changes to the information contained in the AIP which are published by means of special pages.`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -10645,7 +10457,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `a/c accident investigation`,
       `safeguarding acts of unlawful interference`,
       `Search and rescue`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -10710,7 +10521,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Immediately after take off.`,
       `before entering runway`,
       `on finals`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -10736,7 +10546,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Over prohibited area, restricted area or danger area.`,
       `Do not land for the time being.`,
       `Exercise caution while landing.`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -10749,7 +10558,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `White dashes lie towards nearest runway.`,
       `Yellow continuous lines lie towards runway.`,
       `While dashes lie towards nearest runway.`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -10762,7 +10570,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Green and white lights 75 mtr spacing`,
       `White paired, flash lights at 150 mtr longitudinal`,
       `White paired variable lights with 30 mtr longitudinal spacing`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -10801,7 +10608,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Spatial disorientation`,
       `False horizon`,
       `Elevator illusion`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -10814,7 +10620,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Motion reversal`,
       `Turning`,
       `Rising and falling`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -10827,7 +10632,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Black letter in yellow background`,
       `Yellow letter in black background`,
       `White in back`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -10840,7 +10644,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Red light as they help in reading contours on maps at night`,
       `Bright lights`,
       `Dim white light`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -10853,7 +10656,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Excessive oxygen in blood stream`,
       `Lack of sleep`,
       `Insufficient CO2`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -10866,7 +10668,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Increases with altitude`,
       `Is normally experienced below 8000 feet`,
       `Is due to over breathing`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -10879,7 +10680,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `15 min`,
       `60 min`,
       `30 min`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -10892,7 +10692,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `A/c flying away from you`,
       `Right to left`,
       `Left to right`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -10905,7 +10704,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Red light`,
       `Red and white light`,
       `Green light`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -10918,7 +10716,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `10,000’`,
       `49,000’`,
       `60,000’`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -10931,7 +10728,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `0422`,
       `0427`,
       `0417`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -10944,7 +10740,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Investigation for accidents and incidents`,
       `Training`,
       `Collision avoidance`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -10957,7 +10752,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `5 nm and below 3000’`,
       `3 nm and below 1000’`,
       `5 nm and below 1000’ AGL`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -10970,7 +10764,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `2000’`,
       `6000’`,
       `3000’`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -10983,7 +10776,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `2`,
       `10`,
       `17`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -10996,7 +10788,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `3`,
       `6`,
       `11`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -11009,7 +10800,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `AIRACS`,
       `AIP`,
       `CARS`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -11022,7 +10812,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `6 days`,
       `7 days`,
       `8 days`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -11035,7 +10824,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `5 km`,
       `1.6 km`,
       `8 km`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -11048,7 +10836,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Both will turn to right`,
       `Aircraft on right will turn right`,
       `Aircraft on the left will give way`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -11074,7 +10861,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Nearest than normal`,
       `Farther then normal`,
       `Will have no difference`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -11087,7 +10873,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Not more then one hour accumulated for testing purpose.`,
       `One hour of data last recorded for testing purpose.`,
       `Two hour of recorded data for testing purpose.`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -11503,7 +11288,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Flying simulator`,
       `Flying in IMC`,
       `Flying a/c with sole reference to instruments`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -11698,7 +11482,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Aerodrome officer`,
       `Custom’s officer`,
       `DGCA authorized personnel`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -11887,19 +11670,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `RVR minima filed at 550m, reported touch down RVR 800, weather conditions are;`,
-    opts: [
-      `above.`,
-      `Below minima`,
-      `Above minima`,
-      `All above are correct`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
     q: `An aircraft ‘A’ on a track of 030M reported crossing point X at 0412 at FL370. another aircraft ‘B’ at FL 370 on a track of 100M can cross the same crossing point not earlier then;`,
     opts: [
@@ -11919,7 +11689,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Uncertainty (INCERFA)`,
       `Distress phase (DISTRESFA)`,
       `Alert phase (ALERFA)`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -12023,7 +11792,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Amber lights from 3000 ft to 1000 ft, then alternate red and white lights to the end.`,
       `Alternate red and white from 3000 ft to 1000 ft, then red lights to the end.`,
       `Alternate red and white lights from 3000 ft to the end of the runway.`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -12049,7 +11817,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Constant air speed (VA)`,
       `Level flight attitude`,
       `Constant altitude and constant airspeed`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -12231,7 +11998,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Tightening of forehead.`,
       `Loss of muscular power.`,
       `Increased sense of well being.`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -12244,7 +12010,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Rising or falling`,
       `Turning`,
       `Motion reversal`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -12257,7 +12022,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Pilot disorientation`,
       `false horizon`,
       `elevator illusion`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -12270,7 +12034,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Elevator illusions`,
       `auto kinesis`,
       `false horizons`,
-      `(no option d)`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -12283,7 +12046,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Tumbling backwards`,
       `A nose up attitude`,
       `A descent with the wing level`,
-      `(no option d)`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -12296,7 +12058,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Spinning in the opposite direction`,
       `Being in a nose up attitude`,
       `Diving into the ground`,
-      `(no option d)`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
