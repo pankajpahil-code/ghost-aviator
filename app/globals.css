@@ -106,6 +106,28 @@
   0%, 24%, 56%, 100% { opacity: 0; transform: translate(-50%,-50%) scale(0.9); }
   34%, 46%           { opacity: 0.85; transform: translate(-50%,-50%) scale(1.06); }
 }
+/* The trident is a SEPARATE layer pivoting on the hand, so this is real
+   articulated motion, not a whole-frame nudge. The swing is small and its
+   fastest frames sit under the impact flash: the matte carries a little dark
+   background it cannot avoid (see tools/rig-mascot.mjs), and at speed, under a
+   flash, that is invisible — which is exactly how it is hidden in compositing.
+   At rest it sits at 0deg, perfectly registered over the patched plate. */
+@keyframes tridentSwing {
+  0%, 58%   { transform: rotate(0deg); }
+  66%       { transform: rotate(-3.2deg); }   /* lift  */
+  70%       { transform: rotate(1.4deg); }    /* drive */
+  73%       { transform: rotate(-0.5deg); }   /* recoil */
+  78%, 100% { transform: rotate(0deg); }
+}
+/* Weight shift and stride. The body carries no cut edges, so it can move freely
+   without any matte to betray it: a slow lean, a step-rhythm rise and fall, and
+   a wing-beat read created by breathing the frame horizontally. */
+@keyframes mascotStride {
+  0%, 100% { transform: translate3d(0, 0, 0) scaleX(1) rotate(0deg); }
+  25%      { transform: translate3d(0, -0.55%, 0) scaleX(1.006) rotate(-0.22deg); }
+  50%      { transform: translate3d(0, 0.15%, 0) scaleX(0.997) rotate(0deg); }
+  75%      { transform: translate3d(0, -0.5%, 0) scaleX(1.005) rotate(0.2deg); }
+}
 @keyframes mascotDrift {
   0%   { transform: translate3d(0,0,0) scale(1.06); }
   50%  { transform: translate3d(-0.7%,-0.5%,0) scale(1.085); }

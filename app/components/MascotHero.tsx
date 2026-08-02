@@ -135,15 +135,35 @@ export default function MascotHero({ children }: { children?: React.ReactNode })
              }}>
           <div className="absolute inset-0 transition-transform duration-500 ease-out"
                style={{ transform: `translate3d(${tilt.x * -14}px, ${tilt.y * -10}px, 0)` }}>
-            {/* wide plate for tablet and up */}
-            <Image src="/mascot-hero.webp" alt="" fill priority sizes="100vw"
-                   className="hidden sm:block object-cover" style={{ objectPosition: "50% 48%" }} />
+            {/* ── RIGGED PLATE (tablet and up) ──
+                Two layers: the plate with the trident painted out, and the
+                trident itself pivoting on the hand. That makes the weapon
+                genuinely articulate rather than the whole frame nudging. */}
+            <div className="mascot-anim hidden sm:block absolute inset-0"
+                 style={{ animation: `mascotStride 3.4s ease-in-out infinite`, willChange: "transform" }}>
+              <Image src="/mascot-base.webp" alt="" fill priority sizes="100vw"
+                     className="object-cover" style={{ objectPosition: "50% 48%" }} />
+              <Image src="/mascot-trident.webp" alt="" fill priority sizes="100vw"
+                     className="mascot-anim object-cover"
+                     style={{
+                       objectPosition: "50% 48%",
+                       transformOrigin: "63.42% 41.41%",   // the hand grip, measured
+                       animation: `tridentSwing ${BEAT} cubic-bezier(0.3,0,0.2,1) infinite`,
+                       willChange: "transform",
+                     }} />
+            </div>
             {/* Tall narrow crop for phones. The wide plate renders him far too
                 small on a 390px screen, and a squarer crop made object-cover eat
                 the trident entirely — verified by rendering both. 35% pushes the
-                figure up so the lower third stays dark for the copy. */}
-            <Image src="/mascot-hero-mobile.webp" alt="" fill priority sizes="100vw"
-                   className="sm:hidden object-cover" style={{ objectPosition: "50% 35%" }} />
+                figure up so the lower third stays dark for the copy. Phones get
+                the unrigged plate and the stride only: the rig's second image
+                would double the bytes on mobile data for motion that is barely
+                readable at that size. */}
+            <div className="mascot-anim sm:hidden absolute inset-0"
+                 style={{ animation: `mascotStride 3.4s ease-in-out infinite`, willChange: "transform" }}>
+              <Image src="/mascot-hero-mobile.webp" alt="" fill priority sizes="100vw"
+                     className="object-cover" style={{ objectPosition: "50% 35%" }} />
+            </div>
           </div>
         </div>
       </div>
