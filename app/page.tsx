@@ -1,10 +1,9 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Headphones, BarChart3, Zap } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
-import HeroGhost from "./components/HeroGhost";
+import MascotHero from "./components/MascotHero";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" }
@@ -36,97 +35,69 @@ export default function Home() {
   return (
     <div style={{ background: "#06040e" }}>
 
-      {/* ══════════════════ HERO ══════════════════ */}
-      <section className="relative overflow-hidden" style={{ minHeight: "100vh" }}>
-
-        {/* Full scene hero image as background */}
-        <div className="absolute inset-0">
-          <Image src="/ghost-hero.png" alt="Ghost Aviator DGCA Pilot Exam Preparation" fill className="object-cover object-center" style={{ opacity: 0.35 }} priority/>
-          {/* Dark overlay so text is readable */}
-          <div className="absolute inset-0" style={{ background:"linear-gradient(to right, rgba(6,4,14,0.92) 50%, rgba(6,4,14,0.3) 100%)" }}/>
-          <div className="absolute inset-0" style={{ background:"linear-gradient(to top, rgba(6,4,14,0.95) 0%, transparent 40%)" }}/>
-        </div>
-
-        {/* Grid overlay */}
-        <div className="absolute inset-0 pointer-events-none" style={{
-          backgroundImage: "linear-gradient(rgba(120,60,220,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(120,60,220,0.04) 1px,transparent 1px)",
-          backgroundSize: "55px 55px"
-        }}/>
-
-        {/* HUD corners */}
-        {[["top-6 left-6","t","l"],["top-6 right-6","t","r"],["bottom-6 left-6","b","l"],["bottom-6 right-6","b","r"]].map(([pos,v,h]) => (
-          <div key={pos} className={`absolute ${pos} pointer-events-none`} style={{ width:44, height:44,
-            borderTop:    v==="t" ? "2px solid rgba(180,100,255,0.55)" : undefined,
-            borderBottom: v==="b" ? "2px solid rgba(180,100,255,0.55)" : undefined,
-            borderLeft:   h==="l" ? "2px solid rgba(180,100,255,0.55)" : undefined,
-            borderRight:  h==="r" ? "2px solid rgba(180,100,255,0.55)" : undefined }}/>
-        ))}
-        <div className="absolute top-8 left-14 text-xs font-mono" style={{ color:"rgba(180,120,255,0.45)" }}>ALT: FL350</div>
-        <div className="absolute top-8 right-14 text-xs font-mono" style={{ color:"rgba(0,212,255,0.45)" }}>HDG: 360°</div>
-        <div className="absolute bottom-8 left-14 text-xs font-mono" style={{ color:"rgba(180,120,255,0.45)" }}>GS: 480 KTS</div>
-        <div className="absolute bottom-8 right-14 text-xs font-mono" style={{ color:"rgba(0,212,255,0.45)" }}>DGCA READY</div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center min-h-screen py-20">
-
-            {/* Left */}
-            <div className="order-2 lg:order-1">
-              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold mb-5"
-                   style={{ background:"rgba(180,100,255,0.12)", border:"1px solid rgba(180,100,255,0.4)", color:"#c080ff" }}>
-                ✈️ CAPT. PANKAJ PAHIL
-              </div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-8 ml-3"
-                   style={{ background:"rgba(255,50,50,0.12)", border:"1px solid rgba(255,50,50,0.35)", color:"#ff6060" }}>
-                <Zap className="w-3 h-3" /> INDIA&apos;S #1 DGCA PREP
+      {/* ══════════════════ HERO ══════════════════
+          The mascot plate carries the whole frame now, so the old two-column
+          layout (copy left, illustration right) is gone: the artwork IS the
+          right-hand side. Copy sits low and left over the darkest part of the
+          grade, where the figure and the trident are not competing with it. */}
+      <MascotHero>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex items-end min-h-[100svh] pb-16 pt-28">
+            <div className="max-w-2xl">
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold"
+                      style={{ background:"rgba(240,145,58,0.12)", border:"1px solid rgba(240,145,58,0.45)", color:"var(--ember-soft)" }}>
+                  ✈️ CAPT. PANKAJ PAHIL
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold"
+                      style={{ background:"rgba(207,216,238,0.10)", border:"1px solid rgba(207,216,238,0.30)", color:"var(--bolt)" }}>
+                  <Zap className="w-3 h-3" /> INDIA&apos;S #1 DGCA PREP
+                </span>
               </div>
 
-              <h1 className="sr-only">Ghost Aviator — DGCA CPL & ATPL Pilot Exam Preparation</h1>
+              <h1 className="sr-only">Ghost Aviator — DGCA CPL &amp; ATPL Pilot Exam Preparation</h1>
               <div aria-hidden="true">
                 <div className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-1"
-                     style={{ color:"#ffffff", textShadow:"0 0 40px rgba(180,100,255,0.4)" }}>GHOST</div>
+                     style={{ color:"#ffffff", textShadow:"0 2px 30px rgba(0,0,0,0.85), 0 0 60px rgba(240,145,58,0.25)" }}>GHOST</div>
                 <div className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-4"
-                     style={{ background:"linear-gradient(135deg,#ff6000,#ff2020,#ff0080,#c020ff)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text", filter:"drop-shadow(0 0 25px rgba(255,60,0,0.7))" }}>
+                     style={{ background:"linear-gradient(135deg,#f3c889,#f0913a,#ab794d)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text", filter:"drop-shadow(0 2px 18px rgba(0,0,0,0.8))" }}>
                   AVIATOR
                 </div>
               </div>
-              <p className="text-xs font-bold tracking-widest mb-8 uppercase" style={{ color:"rgba(180,120,255,0.65)", letterSpacing:"0.22em" }}>
+              <p className="text-xs font-bold tracking-widest mb-6 uppercase"
+                 style={{ color:"rgba(243,200,137,0.75)", letterSpacing:"0.22em", textShadow:"0 1px 12px rgba(0,0,0,0.9)" }}>
                 Legacy of the Skies · The Spirit Beyond the Clouds
               </p>
-              <p className="text-base mb-10 max-w-lg leading-relaxed" style={{ color:"#94a3b8" }}>
+              <p className="text-base mb-9 max-w-lg leading-relaxed"
+                 style={{ color:"#c8d2dc", textShadow:"0 1px 14px rgba(0,0,0,0.9)" }}>
                 India&apos;s most complete DGCA exam prep — structured chapter by chapter, exactly like the actual exam.
-                <strong style={{ color:"#00d4ff" }}> 100% free to start.</strong>
+                <strong style={{ color:"var(--ember-soft)" }}> 100% free to start.</strong>
               </p>
 
-              <div className="flex flex-wrap gap-4 mb-12">
+              <div className="flex flex-wrap gap-4 mb-10">
                 <Link href="/cpl" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline"
-                      style={{ background:"linear-gradient(135deg,#9020ff,#ff2060)", color:"#fff", boxShadow:"0 0 30px rgba(150,30,255,0.45)" }}>
+                      style={{ background:"linear-gradient(135deg,#f0913a,#c25a1e)", color:"#1a1206", boxShadow:"0 0 34px rgba(240,145,58,0.45)" }}>
                   Start CPL Prep <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link href="/atpl" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
-                      style={{ border:"1px solid rgba(0,212,255,0.5)", color:"#00d4ff", background:"rgba(0,212,255,0.06)" }}>
+                      style={{ border:"1px solid rgba(243,200,137,0.55)", color:"var(--ember-soft)", background:"rgba(11,17,23,0.55)", backdropFilter:"blur(4px)" }}>
                   Start ATPL Prep
                 </Link>
               </div>
 
-              <div className="grid grid-cols-4 gap-3">
+              <div className="grid grid-cols-4 gap-3 max-w-xl">
                 {[[TOTAL_Q,"Questions"],[`${SUBJECT_COUNT}`,"Subjects"],["70%","Pass Mark"],["FREE","Start"]].map(([v,l]) => (
                   <div key={l} className="text-center p-3 rounded-xl"
-                       style={{ background:"rgba(20,10,40,0.9)", border:"1px solid rgba(180,100,255,0.2)" }}>
-                    <div className="text-xl font-black" style={{ color:"#c080ff" }}>{v}</div>
-                    <div className="text-xs" style={{ color:"#475569" }}>{l}</div>
+                       style={{ background:"rgba(11,17,23,0.72)", border:"1px solid rgba(240,145,58,0.22)", backdropFilter:"blur(6px)" }}>
+                    <div className="text-xl font-black" style={{ color:"var(--ember-soft)" }}>{v}</div>
+                    <div className="text-xs" style={{ color:"#7c8a99" }}>{l}</div>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Right — the Ghost Aviator: levitating guardian-angel scene with
-                3D mouse parallax, spectral wings, halo, soul embers & lightning */}
-            <div className="order-1 lg:order-2">
-              <HeroGhost />
-            </div>
           </div>
         </div>
-      </section>
+      </MascotHero>
 
       {/* ══════════════════ LIVE CLASSES BANNER ══════════════════ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
