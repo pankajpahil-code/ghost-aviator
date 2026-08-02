@@ -38,10 +38,12 @@ console.log(`source: ${srcArg}  ${W}x${H}`);
 // any resolution. cx/cy = centre of the crop, size = side length as a fraction
 // of the SHORTER edge. Tune these if the framing is off — that is the whole
 // point of the variant step.
+// Measured against the source (1080x1045): his face centres near x=0.265,
+// eyes sit at about y=0.565, chin near y=0.635.
 const CANDIDATES = [
-  { name: "1-tight",   cx: 0.265, cy: 0.60, size: 0.30, note: "tight — head fills the circle" },
-  { name: "2-balanced", cx: 0.265, cy: 0.62, size: 0.38, note: "balanced — head and shoulders, epaulettes just visible" },
-  { name: "3-wide",    cx: 0.270, cy: 0.66, size: 0.48, note: "wider — shoulders, epaulettes and rank clearly visible" },
+  { name: "1-tight",    cx: 0.265, cy: 0.585, size: 0.32, note: "tight — head fills the circle" },
+  { name: "2-balanced", cx: 0.265, cy: 0.620, size: 0.42, note: "balanced — head and shoulders, epaulettes just visible" },
+  { name: "3-wide",     cx: 0.268, cy: 0.660, size: 0.54, note: "wider — shoulders, epaulettes and rank clearly visible" },
 ];
 
 const shorter = Math.min(W, H);

@@ -69,30 +69,30 @@ export default function AboutPage() {
     <div style={{ background: "#06040e" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
 
+      {/* ══ BANNER ══
+          A band ABOVE the hero, not behind it. Behind was tried first and was
+          wrong twice over: the heading and the portrait circle both landed on
+          top of his face, and the crop sliced his chin. As its own band nothing
+          overlaps him, the whole apron scene reads, and only the bottom edge
+          fades into the page. objectPosition 50% 66% is measured, not guessed —
+          it is the window that holds the aircraft AND his full head. */}
+      {BANNER && (
+        <div className="relative w-full h-[320px] sm:h-[440px] lg:h-[600px]">
+          <Image src={BANNER} alt="Capt. Pankaj Pahil on the apron" fill priority sizes="100vw"
+                 className="object-cover" style={{ objectPosition: "50% 66%" }} />
+          <div className="absolute inset-0" style={{
+            background:
+              "linear-gradient(to bottom, rgba(6,4,14,0.10) 0%, rgba(6,4,14,0.20) 60%, rgba(6,4,14,0.80) 88%, #06040e 100%)",
+          }} />
+        </div>
+      )}
+
       {/* ══ HERO ══ */}
       <section className="relative overflow-hidden">
-        {/* Banner photograph. Sits behind the hero rather than above it, so the
-            heading reads over the open apron and sky instead of being pushed
-            down the page. Two gradients do the work: a vertical one that lands
-            the bottom of the image on the page background, and a left-weighted
-            one that keeps the text side dark enough for contrast. */}
-        {BANNER && (
-          <div className="absolute inset-0" aria-hidden>
-            <Image src={BANNER} alt="" fill priority sizes="100vw"
-                   className="object-cover" style={{ objectPosition: "50% 42%" }} />
-            <div className="absolute inset-0" style={{
-              background:
-                "linear-gradient(to bottom, rgba(6,4,14,0.45) 0%, rgba(6,4,14,0.62) 45%, rgba(6,4,14,0.94) 88%, #06040e 100%)",
-            }} />
-            <div className="absolute inset-0 hidden md:block" style={{
-              background: "linear-gradient(to right, rgba(6,4,14,0.80) 0%, rgba(6,4,14,0.35) 55%, rgba(6,4,14,0.1) 100%)",
-            }} />
-          </div>
-        )}
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse at 50% -20%, rgba(150,0,255,0.13), transparent 60%)",
         }}/>
-        <div className={`relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 ${BANNER ? "pt-28 sm:pt-36" : "pt-20"}`}>
+        <div className={`relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 ${BANNER ? "pt-10" : "pt-20"}`}>
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className="relative w-44 h-44 rounded-full overflow-hidden flex-shrink-0"
                  style={{ border: "2px solid rgba(0,212,255,0.4)", boxShadow: "0 0 40px rgba(0,212,255,0.22)" }}>
