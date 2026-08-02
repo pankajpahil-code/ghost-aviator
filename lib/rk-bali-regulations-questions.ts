@@ -1,7 +1,7 @@
 import type { DemoQuestion } from "./demo-questions";
 
 // RK Bali Regulations Question Bank — parsed and chapter-classified
-// Total questions: 933
+// Total questions: 814
 export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -951,19 +951,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Photography at an aerodrome can be done with prior permission in writing from :`,
-    opts: [
-      `Aerodrome officer`,
-      `DGCA`,
-      `Central Govt.`,
-      `Indian Air Force`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
     q: `At the correct height on the approach to runway with PAPIs pilot should see:`,
     opts: [
@@ -987,19 +974,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 0,
     exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `While refueling is in progress, no naked light be brought within ____________ mts:`,
-    opts: [
-      `35`,
-      `30`,
-      `100`,
-      `15`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -1311,19 +1285,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Aerodrome data and facilities are given in`,
-    opts: [
-      `Aeradio`,
-      `AIP`,
-      `Notams`,
-      `AIRACs`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
     q: `The highest point on the landing area is called:`,
     opts: [
@@ -1383,19 +1344,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `55,75,95,155,175,195,215,235,255,275,295`,
       `50,70,90,110,130,160,180,200,220,240,260,280`,
       `55, 75, 95, 115, 135, 155, 175, 195, 215, 235, 255, 275`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `A horizontal red square panel with one yellow diagonal means:`,
-    opts: [
-      `Do not land for the time being`,
-      `Landings Prohibited`,
-      `Aircraft are to land Take off & Taxi on runways and taxi ways only`,
-      `Special precaution while landing should be taken because of the bad state of the Maneuvering area`,
     ],
     ans: 3,
     exp: `Correct answer: D`,
@@ -1490,71 +1438,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 3,
     exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `Wake turbulence separation minima for Take off, if a light aircraft is to take off behind a heavy or a medium aircraft is:`,
-    opts: [
-      `2 minutes`,
-      `3 minutes`,
-      `5 minutes`,
-      `Non of the above`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-3",
-    q: `All flights above_________ flight levels are to be cleared IFR irrespective of weather Conditions:`,
-    opts: [
-      `F 280`,
-      `F 150`,
-      `F 140`,
-      `F 100`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Dropping of paper leaf lets require the permission of:`,
-    opts: [
-      `Aerodrome`,
-      `Local District Magistrate.`,
-      `Operator.`,
-      `DGCA`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `If there is a temporary change in the aeronautical services it is intimated through`,
-    opts: [
-      `AIP`,
-      `AIC`,
-      `NOTAM`,
-      `AIRAC`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-5",
-    q: `The highest flight level that can be flown in is`,
-    opts: [
-      `460`,
-      `450`,
-      `440`,
-      `400`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -1727,19 +1610,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-13",
-    q: `What information is included in the third section of an Air report?`,
-    opts: [
-      `Air Temperature, Icing, Turbulence`,
-      `Spot Wind, Icing, Cloud above`,
-      `Spot Wind, Air Temperature, Icing, Turbulence`,
-      `ETA Destination`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
     q: `A fresh flight plan is to be filled if a scheduled flight is delayed by more than`,
     opts: [
@@ -1760,19 +1630,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Red & Green`,
       `Red, Green, Blue & Amber`,
       `Red, Green, Blue, Amber & White`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `The minimum wake turbulence time separation for a heavy aircraft to land behind a heavy aircraft is:`,
-    opts: [
-      `2 minutes`,
-      `3 minutes`,
-      `5 minutes`,
-      `not required`,
     ],
     ans: 3,
     exp: `Correct answer: D`,
@@ -1828,19 +1685,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 2,
     exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `AIP India is published by:`,
-    opts: [
-      `DGCA`,
-      `AAI`,
-      `Civil Aviation Ministry`,
-      `ICAO`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -1954,19 +1798,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 1,
     exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-13",
-    q: `An Aircraft shall report “long final” when it is at ____ from the approach end of the rwy`,
-    opts: [
-      `8NMs`,
-      `4NMs`,
-      `1NMs`,
-      `2 NMs`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -2100,19 +1931,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-13",
-    q: `‘ATIS’ is a continuous broadcast of recorded information concerning:`,
-    opts: [
-      `ATS information`,
-      `ATS and Met information`,
-      `Navigation Information`,
-      `Traffic Information`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
     q: `Flight Manual is to be carried by`,
     opts: [
@@ -2217,19 +2035,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `An airport’s rotating beacon operated during daylight hours indicates`,
-    opts: [
-      `there are obstructions on the airport`,
-      `that weather at the airport located in Class D airspace is below basic VFR weather minimums`,
-      `the Air Traffic Control is not in operation`,
-      `runway is blocked`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
     q: `Wingtip vortices are created only when an aircraft is`,
     opts: [
@@ -2292,19 +2097,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 2,
     exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `The wind condition that requires maximum caution when avoiding wake turbulence on landing is a`,
-    opts: [
-      `light, quartering headwind`,
-      `light, quartering tailwind`,
-      `strong headwind`,
-      `strong tailwind`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -2424,19 +2216,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Automatic Terminal Information Service (ATIS) is the continuous broadcast of recorded information concerning`,
-    opts: [
-      `Pilots of radar-identified aircraft whose aircraft is in dangerous proximity to terrain or to an obstruction`,
-      `Non-essential information to reduce frequency congestion`,
-      `Non-control information in selected high-activity terminal areas`,
-      `To warn pilots about conflicting traffic`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-13",
     q: `If the control tower uses a light signal to direct a pilot to give way to other aircraft and continue circling, the light will be`,
     opts: [
@@ -2499,19 +2278,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 1,
     exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-5",
-    q: `Prior to takeoff, the altimeter should be set to which altitude or altimeter setting?`,
-    opts: [
-      `The current local altimeter setting, if available, or the departure airport elevation`,
-      `The corrected density altitude of the departure airport`,
-      `The corrected pressure altitude for the departure airport`,
-      `QFE`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -3033,19 +2799,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `The visibility reqd. when flying at (or) below 3000’ in a controlled airspace`,
-    opts: [
-      `5 kms`,
-      `8 kms`,
-      `10 kms`,
-      `3 kms`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-5",
     q: `The lateral separation reqd. if an A/C is holding at a level`,
     opts: [
@@ -3106,21 +2859,8 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `AIRAC`,
       `AIP`,
     ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Flight navigator shall be carried , if the flight is more than _______ NM and no Nav aid is present with in ______Nm of route`,
-    opts: [
-      `300 NM, 600 NM`,
-      `600 NM, 60 NM`,
-      `600 NM, 30 NM.`,
-      `300 NM, 60 NM`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
+    ans: 3,
+    exp: `Aerodrome facilities are published in the AIP — the Aeronautical Information Publication, whose AD section carries aerodrome data. An AIRAC is not a document at all: it is the fixed calendar of effective dates on which amendments are brought into force. Elsewhere in this bank the same fact appears as "Aerodrome data and facilities are given in: AIP", and danger areas likewise sit in the AIP.`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -3163,19 +2903,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-13",
-    q: `The pilot has to inform the ATC if the ETA changes by`,
-    opts: [
-      `5 mins`,
-      `3 mins`,
-      `10 mins`,
-      `2 mins`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
     q: `Night flying hours can be logged between __________ mins after sunset to ________ mins before sunrise:`,
     opts: [
@@ -3186,32 +2913,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 0,
     exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `Runaway direction is measured from`,
-    opts: [
-      `True North`,
-      `Compass North`,
-      `Magnetic North`,
-      `North Pole`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `If the marshaller has either arm placed level with shoulder and moved laterally across throat Indicates:`,
-    opts: [
-      `Stop`,
-      `Cut Engines`,
-      `Continue Straight`,
-      `Turn Off`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -3250,19 +2951,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 0,
     exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-5",
-    q: `If a climbing a/c is crossing the level of another a/c the separation required is`,
-    opts: [
-      `15 NMs`,
-      `15 Mins`,
-      `20 NMs`,
-      `5 Mins`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -3433,19 +3121,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `How should a close part of a runway be marked?`,
-    opts: [
-      `With yellow and black marker boards`,
-      `With red and white marker boards`,
-      `With a white cross on the surface`,
-      `With white chevrons on the surface`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
     q: `The pilot of an aircraft which has the right of way must do certain things to reduce the risk of collision. Apart from monitoring the other aircraft’ actions, what else must he do?`,
     opts: [
@@ -3508,19 +3183,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 3,
     exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `What is the minimum flight visibility for flight in VFR if an aircraft is flying at 5000 feet in Class G airspace at a speed of 120 knots and in sight of the surface?`,
-    opts: [
-      `8000 meters`,
-      `5000 meters`,
-      `1500 meters`,
-      `There is no minimum`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -3771,32 +3433,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `In class A airspace`,
-    opts: [
-      `all flights are permitted.`,
-      `only VFR flights are permitted.`,
-      `Only IFR flights are permitted.`,
-      `SPL VFR flights are permitted`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Letter ‘W’ in designator indicates:`,
-    opts: [
-      `Domestic routes`,
-      `International routes`,
-      `Regional routes`,
-      `None of the above`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-5",
     q: `The air traffic service which prevents the collision between aircraft is called`,
     opts: [
@@ -3954,19 +3590,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `A pilot can fly in 30 consecutive days`,
-    opts: [
-      `100 hrs PIC & 50 hrs as Co pilot`,
-      `100 hrs PIC & 30 hrs as Co pilot`,
-      `120 hrs PIC & 20 hrs as Co pilot`,
-      `120 hrs PIC & 10 hrs as Co pilot`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
     q: `Fresh ADC is required in case the flight is delayed by _________ minutes.`,
     opts: [
       `10 mins`,
@@ -4041,19 +3664,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 1,
     exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Flight navigator shall be carried, if the flight is more than ________ Nm and no Nav-aid is present with in ________ Nm of route.`,
-    opts: [
-      `600 Nm/ 30 Nm`,
-      `300 Nm/30 Nms`,
-      `600 Nm/60 Nm`,
-      `300 Nm/ 60 Nm`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4304,19 +3914,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Dropping of paper leaf lets require the permission of`,
-    opts: [
-      `Aerodrome officer`,
-      `Local District Magistrate`,
-      `Operator`,
-      `DGCA`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
     q: `If you see an aircraft on relative bearing of 270º with its red light than PIC’s action is`,
     opts: [
@@ -4350,19 +3947,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Circle over aerodrome`,
       `Rock wings`,
       `land`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `Runaway direction is measured from`,
-    opts: [
-      `True North`,
-      `Compass North`,
-      `Magnetic North`,
-      `North Pole`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -4431,19 +4015,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 0,
     exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `An aircraft can fly over a danger area`,
-    opts: [
-      `If a NOTAM is issued that it is not active`,
-      `With the permission of ATC`,
-      `Out side the stipulated time`,
-      `Cannot fly at all`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4642,19 +4213,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `Approach Control Service is provided with in:`,
-    opts: [
-      `CTA`,
-      `CTR`,
-      `CTZ`,
-      `TMA`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
     q: `For an operator who has not filed minima, visibility minima for take off, if the aerodrome is equipped with VOR is _______ Km:`,
     opts: [
@@ -4675,19 +4233,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Restricted Area`,
       `Prohibited Area`,
       `Terminal Area`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `FDTL for training flights does not restrict:`,
-    opts: [
-      `Flight Time`,
-      `Flight Duty Time`,
-      `Number of landings`,
-      `All of the above`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -4733,19 +4278,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `The maneuvering area of an airport is that area`,
-    opts: [
-      `Normally referred to as the ramp or apron.`,
-      `Which includes the apron, taxiways and runways?`,
-      `Used when taxiing to and from the parking area.`,
-      `Used for taxiing ,taking off and landing .`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
     q: `When two aircraft are converging at approximately the same altitude, which statement applies?`,
     opts: [
@@ -4785,32 +4317,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-3",
-    q: `What is lowest altitude permitted for acrobatic flight?`,
-    opts: [
-      `1,000 feet AGL`,
-      `1,500 feet AGL`,
-      `2,000 feet AGL`,
-      `6,000 feet AGL`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `The maximum duty time limit per day extension is`,
-    opts: [
-      `4 hrs`,
-      `2 hrs`,
-      `6 hrs`,
-      `8 hrs`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
     q: `Control Zone is from`,
     opts: [
@@ -4831,19 +4337,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `10 nm`,
       `5 nm`,
       `3 nm`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Anti-collision lights are required on aircraft above`,
-    opts: [
-      `1500 kg`,
-      `15000 kg`,
-      `5700 kgs`,
-      `all ac rudder`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -4876,19 +4369,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `VFR flight in class F airspace above 3000’ msl and below 10,000 ‘MSL.`,
-    opts: [
-      `Provided flight visibility is 1500 m.`,
-      `Provided flight visibility is 3000 m.`,
-      `Provided flight visibility is 5000 m.`,
-      `Provided flight visibility is 8000 m.`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
     q: `A prohibited area means an area over which:`,
     opts: [
@@ -4902,32 +4382,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `An aircraft should be refueled:`,
-    opts: [
-      `Inside a hanger.`,
-      `Inside a hanger or building under supervision after taking adequate precautions.`,
-      `In the open.`,
-      `Wherever adequate facility exists.`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Night flying hours can be logged between __________ mins after sunset to ________ mins before sunrise:`,
-    opts: [
-      `20 mins`,
-      `45 mins`,
-      `1 hrs`,
-      `15 mins`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
     q: `. What is defined as “ A unit established to provide flight information and alerting service” ?`,
     opts: [
@@ -4938,19 +4392,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 3,
     exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `. In which class of airspace does ATC provide separation for IFR traffic from all other IFR traffic, but relies on VFR traffic to provide its own separation from all other traffic?`,
-    opts: [
-      `Class B`,
-      `Class C`,
-      `Class D`,
-      `Class E`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4976,7 +4417,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `By altering the heading to the left.`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `The aircraft being overtaken has right of way. The overtaking aircraft must keep out of the way by altering its heading to the RIGHT, and must go on doing so until it is entirely clear — changing speed is not an accepted method of avoidance, because it does not guarantee lateral separation.`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5015,7 +4456,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Flight Information control`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `A control zone surrounds an aerodrome and extends upward from the surface, so it is served by the aerodrome tower and by approach control for arriving and departing traffic. Area control is what it cannot be: an area control centre serves control areas and airways en route, not the zone around an aerodrome.`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5124,19 +4565,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
-    q: `A flight, which exceeds Mach number-1, cannot fly over:`,
-    opts: [
-      `Populated areas`,
-      `Indian Air Space`,
-      `Europe`,
-      `High seas`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
     q: `Incubation period of Chicken Pox is:`,
     opts: [
       `14 days`,
@@ -5146,19 +4574,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 0,
     exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Indian airspace comes under _______class of airspace:`,
-    opts: [
-      `A & B`,
-      `D & E`,
-      `A,B,C, & D`,
-      `D, E, F, & G`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5172,19 +4587,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 1,
     exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Flight navigator shall be carried, if the flight is more than _______ NM and no Nav aid is present with in ______Nm of route`,
-    opts: [
-      `300 NM, 600 NM`,
-      `600 NM, 60 NM`,
-      `600 NM, 30 NM.`,
-      `300 NM, 60 NM`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5224,19 +4626,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 3,
     exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-5",
-    q: `An A/C descending through the transition layer will report its height in`,
-    opts: [
-      `Flight Levels`,
-      `AMSL`,
-      `Altitude`,
-      `AGL`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5340,7 +4729,7 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `The time from crew report to 30 minutes after landing`,
     ],
     ans: 0,
-    exp: `Correct answer: A`,
+    exp: `Flight time for an aeroplane is block time: from the moment it first moves for the purpose of taking off, until it finally comes to rest at the end of the flight. It is not merely airborne time (take-off to landing), and no fixed padding is added to it.`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5409,19 +4798,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `What is the definition of MEA?`,
-    opts: [
-      `The lowest published altitude, which meets obstacle clearance requirements and assures acceptable navigational signal coverage.`,
-      `Lowest published altitude, which meets obstacle requirements assures acceptable navigational signal coverage, two - way radio communications, and provides adequate radar coverage .`,
-      `An altitude, which meets obstacle clearance`,
-      `An altitude which ensures minimum 1000’ clearance from all obstacles`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
     q: `Avoiding wake turbulence is`,
     opts: [
@@ -5461,19 +4837,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Anti collision lights are _________ lights`,
-    opts: [
-      `Steady Red`,
-      `Rotating Red`,
-      `Flashing Red`,
-      `Red & White`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
     q: `What does a flashing white light from ATC indicate to the pilot of a taxiing aircraft?`,
     opts: [
@@ -5500,19 +4863,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Indian Airspace comes under ________ class of airspace.`,
-    opts: [
-      `A&B`,
-      `D& E`,
-      `A,B,C& D`,
-      `D,E,F& G`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
     q: `In separation between IFR and IFR is provided in______class of Airspace.`,
     opts: [
@@ -5536,45 +4886,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 1,
     exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `Approach Control Service is provided with in`,
-    opts: [
-      `CTA`,
-      `CTR`,
-      `CTZ`,
-      `TMA`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-3",
-    q: `An overtake aircraft whether climbing, descending or in horizontal flight, shall keep out of the way of the other aircraft by:`,
-    opts: [
-      `Decreasing its speed.`,
-      `Increasing its speed.`,
-      `By altering the heading to the right.`,
-      `By altering the heading to the left.`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `Within a control zone, the air traffic control is provided by`,
-    opts: [
-      `Area control.`,
-      `Aerodrome Control.`,
-      `Approach Control.`,
-      `Flight Information control.`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5734,32 +5045,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `The member of operating crew shall not have taken alcoholic drinks:`,
-    opts: [
-      `6 hrs before commencement if flight`,
-      `12 hrs before commencement of flight.`,
-      `24 hrs before commencement of flight.`,
-      `36 hrs before commencement of flight.`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `While refueling is in progress, no naked light be brought within:`,
-    opts: [
-      `35 mtrs`,
-      `30 m.`,
-      `100 mtrs`,
-      `43 m`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
     q: `A person can bring unto human remains of a person who may have died of plague:`,
     opts: [
@@ -5876,19 +5161,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `If a passenger falls sick on board an a/c and he is suspected of any infectious disease then PIC’s action is:`,
-    opts: [
-      `TO land immediately.`,
-      `To inform health officer of destination aerodrome at least two hrs before landing.`,
-      `To inform DGCA.`,
-      `To inform doctor on board.`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
     q: `An Aircraft is crossing at right angle left to right then the light seen by you , as PIC is:`,
     opts: [
@@ -5899,32 +5171,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 2,
     exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-5",
-    q: `Minimum transition altitude in for an aerodrome is:`,
-    opts: [
-      `4000’ AMSL.`,
-      `4000’ AGL.`,
-      `3000’ above ground level.`,
-      `3000’ AMSL.`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-5",
-    q: `Lateral separation between two aircraft, one climbing and another holding is:`,
-    opts: [
-      `10 mins.`,
-      `15 mins`,
-      `20 mins`,
-      `5 mins.`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5993,19 +5239,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-13",
-    q: `The pilot has to inform the ATC if the ETA changes by:`,
-    opts: [
-      `5 mins`,
-      `10 mins`,
-      `3 mins`,
-      `2 mins`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-1",
     q: `Separation between medium a/c taking off behind heavy a/c of (or) light a/c taking off behind medium a/c is:`,
     opts: [
@@ -6055,19 +5288,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 0,
     exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `With regard to flight time limitations, “flight time “means:`,
-    opts: [
-      `The total time from when an aircraft first moves under its own power for the purpose of taking off until it comes to rest after the flight`,
-      `The time between take-off and landing`,
-      `The time between an aircraft starting to move and coming to a complete stop plus one and a half hours`,
-      `The time from crew report to 30 minutes after landing`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -6188,19 +5408,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-2",
-    q: `An aircraft without registration markings can be flown only:`,
-    opts: [
-      `If the sale deed is not yet completed.`,
-      `For purpose of test flight only, prior to purchase.`,
-      `If it is used for Govt. Work.`,
-      `If specially permitted in writing by the central govt.`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
     q: `A Control Area normally is controlled airspace extending upwards from`,
     opts: [
@@ -6211,32 +5418,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 3,
     exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Photography at an aerodrome can be done with prior permission in writing from:`,
-    opts: [
-      `Aerodrome office`,
-      `DGCA`,
-      `Central Govt.`,
-      `Defence Ministry`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-5",
-    q: `Air Traffic Advisory Service is provided in airspace classified as`,
-    opts: [
-      `Class E`,
-      `Class F`,
-      `Class G`,
-      `Class A`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -6360,19 +5541,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     chapterId: "ar-6",
     q: `Flight must invariably be conducted in accordance with Instrument Flight Rules, even during broad day light, when aircraft are flown:`,
     opts: [
-      `At or above F150`,
-      `Within controlled airspace.`,
-      `At or above F 200.`,
-      `In designated areas or designated routes.`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `Flight must invariably be conducted in accordance with Instrument Flight Rules, even during broad day light, when aircraft are flown:`,
-    opts: [
       `In class ‘D’ airspace`,
       `Within controlled airspace.`,
       `In class A airspace`,
@@ -6406,18 +5574,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 3,
     exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `Without visual aid, a pilot often interprets centrifugal force as a sensation of:`,
-    opts: [
-      `rising or falling`,
-      `turning`,
-      `motion reversal`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -6460,32 +5616,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `FDTL for 2 crew international flight is ______ hrs and _____ landing.`,
-    opts: [
-      `10 hrs and 3 landings.`,
-      `Three hrs and 9 landings.`,
-      `9 hrs and 3 landings.`,
-      `8 hrs and 3 landings.`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Dropping of paper leaf lets require the permission of:`,
-    opts: [
-      `Aerodrome`,
-      `Local District Magistrate.`,
-      `Operator`,
-      `DGCA.`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-13",
     q: `Emergency µHF frequency is:`,
     opts: [
@@ -6496,19 +5626,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 2,
     exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `DME separation between a/c on same track, same level and in same direction is:`,
-    opts: [
-      `10 NM.`,
-      `20 NM.`,
-      `15 NM.`,
-      `5 NM`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -6562,18 +5679,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `An abrupt change from climb to straight and level flight can create the illusion of:`,
-    opts: [
-      `Tumbling backwards`,
-      `a nose up attitude`,
-      `a descent with the wing level`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-5",
     q: `An a/c climbing through the transition layer will reports its height in:`,
     opts: [
@@ -6623,19 +5728,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 2,
     exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `An aircraft accident has to be informed to the DGCA with in:`,
-    opts: [
-      `12 hrs`,
-      `24 hrs`,
-      `48 hrs`,
-      `60 hrs`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -6769,19 +5861,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `In IMC, on a route where reporting points are not given, the reporting will be done:`,
-    opts: [
-      `Every half an hour`,
-      `Every hour`,
-      `First report after 30mins and subsequent every 60mins`,
-      `On as required basis`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
     q: `A pilot involved in an incident whose flying has been stopped can start flying again with the permission of :`,
     opts: [
@@ -6808,32 +5887,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `The member of operating crew shall not have taken alcoholic drinks:`,
-    opts: [
-      `6 hrs before commencement if flight.`,
-      `12 hrs before commencement of flight.`,
-      `24 hrs before commencement of flight.`,
-      `36 hrs before commencement of flight.`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Photography at an aerodrome can be done with prior permission in writing from :`,
-    opts: [
-      `Aerodrome officer`,
-      `DGCA`,
-      `Central Govt.`,
-      `Indian Air Force`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-2",
     q: `If PPL holder is 30 years old, his license can be renewed for a period of___________yrs`,
     opts: [
@@ -6841,19 +5894,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `10`,
       `Two`,
       `4`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `While refueling is in progress, no naked light be brought within _______________mts :`,
-    opts: [
-      `35`,
-      `30`,
-      `100`,
-      `15`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -6883,32 +5923,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 3,
     exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-3",
-    q: `Aircraft intending to fly in formation:`,
-    opts: [
-      `Cannot fly.`,
-      `Can fly during daytime.`,
-      `Can fly with permission for DGCA.`,
-      `Can fly with prior arrangement.`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-2",
-    q: `The “Certificate of Airworthiness” of an aircraft shall be deemed to be suspended when an aircraft:`,
-    opts: [
-      `Is involved in an accident/incident.`,
-      `Is modified or repaired without the consent of the Director General.`,
-      `Is modified or repaired otherwise than in accordance with the provisions of the rules.`,
-      `Is involved in a serious violation of the rules contained in the aircraft rules.`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -7237,19 +6251,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `A pilot involved in an incident whose flying has been stopped can start flying again with the permission of :`,
-    opts: [
-      `Operator`,
-      `DGCA`,
-      `Central govt.`,
-      `ATC`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
     q: `The sensations which lead to spatial disorientation during instrument flight conditions:`,
     opts: [
@@ -7282,19 +6283,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Rely on kinesthetic sense.`,
       `Use a very rapid cross-check.`,
       `Read and interpret the flight instruments, and act accordingly.`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `Two a/c flying in the vicinity of aerodrome under radar control will be separated by :`,
-    opts: [
-      `15 nm`,
-      `10 nm`,
-      `5 nm`,
-      `3 nm`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -7574,19 +6562,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-8",
-    q: `What mode A transponder setting means an aircraft is suffering unlawful interference?`,
-    opts: [
-      `7000`,
-      `7500`,
-      `7600`,
-      `7700`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-5",
     q: `If a military aero plane flies alongside you and rocks its wings, what should you do?`,
     opts: [
@@ -7794,19 +6769,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `The visibility reqd. when flying at (or) below 3000’ in a controlled airspace`,
-    opts: [
-      `5 kms`,
-      `8 kms`,
-      `10 kms`,
-      `3 kms`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-5",
     q: `Transition altitude at an aerodrome is above _____ Msl in`,
     opts: [
@@ -7814,18 +6776,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `3000’ AMSL`,
       `4000’ AMSL`,
       `5000’ AMSL`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `Which procedure is recommended to prevent or overcome spatial disorientation?`,
-    opts: [
-      `Reduce head and eye movement to the extent possible`,
-      `rely on the kinesthetic senses.`,
-      `Rely on the indications of the flight instruments.`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -7948,45 +6898,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-5",
-    q: `An A/C descending through the transition layer will report its height in`,
-    opts: [
-      `Flight Levels`,
-      `AMSL`,
-      `Altitude`,
-      `AGL`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `Information about facilities on an aerodrome is found in`,
-    opts: [
-      `AICs`,
-      `NOTAMs`,
-      `AIRAC`,
-      `AIP`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Publicity material can be dropped from an A/C if it has the permission of`,
-    opts: [
-      `DM/ Commissioner of Police`,
-      `DGCA`,
-      `Aerodrome officer`,
-      `ICAO`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-9",
     q: `Petroleum in bulk is petroleum in receptable, which exceeds`,
     opts: [
@@ -8026,45 +6937,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `The incubation period of relapsing fever is _____ days:`,
-    opts: [
-      `6`,
-      `7`,
-      `8`,
-      `10`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `The route navigation charges are on the basis of`,
-    opts: [
-      `AUW`,
-      `Length of aircraft`,
-      `No. of Nav Aids used`,
-      `No. of passengers`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
-    q: `Control Zone is from`,
-    opts: [
-      `Surface of earth to a specified upper limit`,
-      `5000’ to unlimited`,
-      `Atleast 700’`,
-      `None of the above`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
     q: `If an a/c has R/T failure then it will indicate to the ATC during day by`,
     opts: [
@@ -8072,19 +6944,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Rocking Wings`,
       `Flickering Anti-collision lights`,
       `Flying low`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-3",
-    q: `If PIC of an a/c flying sees the red navigation flight of an a/c at a Relative bearing of 270 then the action of pilot`,
-    opts: [
-      `Turn Right`,
-      `No action`,
-      `Turn left`,
-      `Give way`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -8101,19 +6960,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 2,
     exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-13",
-    q: `The pilot has to inform the ATC if the ETA changes by`,
-    opts: [
-      `5 mins`,
-      `3 mins`,
-      `10 mins`,
-      `2 mins`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -8234,19 +7080,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Anti collision lights are _________ lights`,
-    opts: [
-      `Steady Red`,
-      `Rotating Red`,
-      `Flashing Red`,
-      `Red & White`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-5",
     q: `If an A/C flying at F290 is descending over Palam and its altimeter reads 12000 ft then the pilot will report its height as`,
     opts: [
@@ -8266,19 +7099,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `F 240`,
       `F250`,
       `F 255`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-5",
-    q: `If a climbing a/c is crossing the level of another a/c the separation required is`,
-    opts: [
-      `15 NMs`,
-      `15 Mins`,
-      `20 NMs`,
-      `5 Mins`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -8389,19 +7209,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Draft amendments to aircraft rules 1937 will be published in:`,
-    opts: [
-      `AIP`,
-      `AIC`,
-      `AIP Supplement`,
-      `CARs`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-3",
     q: `When two aircraft are converging at approximately the same altitude`,
     opts: [
@@ -8412,18 +7219,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 2,
     exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `Without visual aid, a pilot often interprets centrifugal force as a sensation of:`,
-    opts: [
-      `Rising or falling`,
-      `Turning`,
-      `Motion reversal`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -8564,18 +7359,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `4 hrs`,
       `6 hrs`,
       `8 hrs`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `A rapid acceleration during takeoff can create the illusion of:`,
-    opts: [
-      `Spinning in the opposite direction`,
-      `Being in a nose up attitude`,
-      `Diving into the ground`,
     ],
     ans: 1,
     exp: `Correct answer: B`,
@@ -8764,32 +7547,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `In IMC, on a route where reporting points are not given, the reporting will be done:`,
-    opts: [
-      `Every half an hour`,
-      `Every hour`,
-      `First report after 30mins and subsequent every 60mins`,
-      `On as required basis`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `A pilot involved in an incident whose flying has been stopped can start flying again with the permission of :`,
-    opts: [
-      `operator`,
-      `DGCA`,
-      `Central govt.`,
-      `ATC`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-6",
     q: `Separation is affected between:`,
     opts: [
       `Special VFR flts & IFR flts`,
@@ -8854,19 +7611,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `HAT for Precision approaches Cat II is:`,
-    opts: [
-      `Nil`,
-      `50’`,
-      `100’`,
-      `200’`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-8",
     q: `ICAO document dealing with Acts of Unlawful Interference is`,
     opts: [
@@ -8894,45 +7638,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-7",
-    q: `Apron is an area on aerodrome where following activities take place:`,
-    opts: [
-      `Loading /unloading of passengers, mail and cargo only. and`,
-      `Parking of aircraft only. are correct.`,
-      `Both`,
-      `loading/unloading of passengers, mail and cargo, fueling, parking or maintenance.`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `When body temp. is low, its called:`,
-    opts: [
-      `Hyperventilation`,
-      `Antokinensis`,
-      `Hypothermia`,
-      `Hypoxia`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Incubation period of yellow fever is ______ days.`,
-    opts: [
-      `6`,
-      `7`,
-      `8`,
-      `10`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
     q: `All aircraft after take off are to turn __________ for a circuit pattern`,
     opts: [
       `Right`,
@@ -8954,32 +7659,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 0,
     exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `The west end of a runway oriented east and west is numbered`,
-    opts: [
-      `09`,
-      `90`,
-      `27`,
-      `270`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `Min. width of runway centre line stripes for Cat I runways is :`,
-    opts: [
-      `0.3mts`,
-      `0.6mts`,
-      `0.45mts`,
-      `0.9mts`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -9646,58 +8325,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `Inst. Chart procedures are given in:`,
-    opts: [
-      `AIC`,
-      `NOTAMS`,
-      `AIRAC`,
-      `AIP`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Inst. Charts carried in aircraft are contained in:`,
-    opts: [
-      `Operation Manual`,
-      `Aircraft Manual`,
-      `Route guides`,
-      `Operational Circulars`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `Danger areas are given in:`,
-    opts: [
-      `AIRAC`,
-      `AIC`,
-      `AIP`,
-      `NOTAMs`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `To know the current watch hours at an aerodrome, pilot should refer to`,
-    opts: [
-      `NOTAMs`,
-      `AIP`,
-      `AIC`,
-      `CARs`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-5",
     q: `Vertical separation applicable to non-RVSM aircraft operating in RVSM airspaces is`,
     opts: [
@@ -9711,19 +8338,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `Weather below minima implies that:`,
-    opts: [
-      `RVR/ Visibility and weather below minima specified by the operator`,
-      `Weather below V M C`,
-      `RVR / and weather below minima specified by ICAO`,
-      `Cloud ceiling is below 1500’ above the aerodrome`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
     q: `Two digits in black over yellow black ground hanging from the tower indicates`,
     opts: [
@@ -9734,19 +8348,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 1,
     exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `Decision altitude is related to:`,
-    opts: [
-      `Precision app`,
-      `Non precision app`,
-      `Circling app`,
-      `both ‘a’& ’b’`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -9776,19 +8377,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-7",
-    q: `SIDS are published in:`,
-    opts: [
-      `AIRAC`,
-      `NOTAMs`,
-      `CARs`,
-      `AIP`,
-    ],
-    ans: 3,
-    exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
     q: `White flashes from tower to aircraft in flight means:`,
     opts: [
@@ -9809,32 +8397,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Pilot error`,
       `Operational considerations`,
       `Weather considerations.`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `RVR/DH for cat II ILS ops is`,
-    opts: [
-      `550m/60`,
-      `350m/30m`,
-      `550m/30m`,
-      `800m/60m`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-4",
-    q: `RVR/DH minima cat III A MLS is:`,
-    opts: [
-      `200m/Nil`,
-      `50m/nil`,
-      `nil/nil`,
-      `Non of the alone`,
     ],
     ans: 0,
     exp: `Correct answer: A`,
@@ -9867,32 +8429,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-8",
-    q: `A twin engine p-i-c has decided to divert due to failure of one engine. It will be`,
-    opts: [
-      `Uncertainty phase`,
-      `Alert phase`,
-      `Distress phase`,
-      `Non of the above`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-9",
-    q: `Prisoners can be carried on board with the permission of`,
-    opts: [
-      `Police commissioner`,
-      `DGCA`,
-      `DM`,
-      `DIG prisons`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-4",
     q: `In Cat II, What is DH & RVR?`,
     opts: [
@@ -9903,19 +8439,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 3,
     exp: `Correct answer: D`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-3",
-    q: `VFR flts are not permitted:`,
-    opts: [
-      `Above F 100`,
-      `Above FL150`,
-      `Above F 50`,
-      `above 3000 from terrain or water`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -10069,19 +8592,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Stop`,
       `Aerodrome unsafe, do not land`,
       `Not withstanding any previous instructions, do not land for the time being`,
-    ],
-    ans: 2,
-    exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `Decompression sickness causes:`,
-    opts: [
-      `Lack of CO2 in blood`,
-      `Lack of O2 in blood.`,
-      `N2 babbles in tissues`,
-      `Over breathing`,
     ],
     ans: 2,
     exp: `Correct answer: C`,
@@ -12005,30 +10515,6 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-10",
-    q: `Without visual aid, a pilot often interprets centrifugal force as a sensation of:`,
-    opts: [
-      `Rising or falling`,
-      `Turning`,
-      `Motion reversal`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `Abrupt head movement during a prolonged constant rate in IMC or simulated instrument conditions can cause:`,
-    opts: [
-      `Pilot disorientation`,
-      `false horizon`,
-      `elevator illusion`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
     q: `A sloping cloud formation, an obscured horizon, and a dark scene spread with ground lights and stars can create an illusion known as:`,
     opts: [
       `Elevator illusions`,
@@ -12037,29 +10523,5 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
     ],
     ans: 2,
     exp: `Correct answer: C`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `An abrupt change from climb to straight and level flight can create the illusion of:`,
-    opts: [
-      `Tumbling backwards`,
-      `A nose up attitude`,
-      `A descent with the wing level`,
-    ],
-    ans: 0,
-    exp: `Correct answer: A`,
-  },
-  {
-    subjectIds: ["air-regulations", "atpl-air-regulations"],
-    chapterId: "ar-10",
-    q: `A rapid acceleration during takeoff can create the illusion of:`,
-    opts: [
-      `Spinning in the opposite direction`,
-      `Being in a nose up attitude`,
-      `Diving into the ground`,
-    ],
-    ans: 1,
-    exp: `Correct answer: B`,
   },
 ];

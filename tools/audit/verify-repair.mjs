@@ -43,6 +43,17 @@ const INTENTIONAL = [
   // change, the only one in this audit, and it is recorded here so it can never
   // pass as an accident.
   { was: "6", now: "5" },
+  // 2026-07-27 step 2. Four questions were marked with one answer in one copy
+  // and a different answer in an identical copy — the bank contradicting itself.
+  // Each was settled against ICAO/doctrine, not by preferring a copy:
+  //   AIRAC is a calendar of effective dates, not a document of facilities -> AIP
+  //   an overtaking aircraft alters heading RIGHT; changing speed is not avoidance
+  //   flight time is block time, not airborne time and not airborne time + padding
+  //   a control zone is served by aerodrome/approach control, never area control
+  { was: "AIRAC", now: "AIP" },
+  { was: "Increasing its speed.", now: "By altering the heading to the right." },
+  { was: "The time between an aircraft starting to move and coming to a complete stop plus one and a half hours", now: "The total time from when an aircraft first moves under its own power for the purpose of taking off until it comes to rest after the flight" },
+  { was: "Area control.", now: "Approach Control" },
 ];
 const declared = (was, now) => INTENTIONAL.some(i => i.was === was && i.now === now);
 
