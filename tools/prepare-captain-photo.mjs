@@ -47,7 +47,7 @@ const CANDIDATES = [
 ];
 
 const shorter = Math.min(W, H);
-async function makeSquare(c, outPath, px = 640) {
+async function makeSquare(c, outPath, px = 768) {
   const side = Math.round(shorter * c.size);
   let left = Math.round(W * c.cx - side / 2);
   let top = Math.round(H * c.cy - side / 2);
@@ -55,10 +55,29 @@ async function makeSquare(c, outPath, px = 640) {
   top = Math.max(0, Math.min(top, H - side));
   await sharp(srcArg)
     .extract({ left, top, width: side, height: side })
-    .resize(px, px, { fit: "cover" })
-    .webp({ quality: 90 })
+    .resize(px, px, { fit: "cover", kernel: "lanczos3" })
+    .sharpen({ sigma: 0.7 })
+    .webp({ quality: 94 })
     .toFile(outPath);
   return { left, top, side };
+}
+
+// The banner spans the full viewport — up to ~2560 px on a desktop — while the
+// source is only ~1080 px wide. Left alone, next/image can offer nothing larger
+// than the source and the BROWSER upscales, which is what "blurry" looks like.
+// Resampling here with lanczos3 plus a light unsharp gives next/image a genuine
+// 2x asset to build its srcset from, so the browser scales DOWN rather than up.
+// This cannot invent detail the source never had; it removes the soft mush that
+// naive upscaling adds on top of it.
+async function makeBanner(outPath) {
+  const target = Math.min(2400, W * 2);
+  await sharp(srcArg)
+    .resize(target, null, { kernel: "lanczos3" })
+    .sharpen({ sigma: 0.8, m1: 0.5, m2: 2 })
+    .webp({ quality: 90 })
+    .toFile(outPath);
+  const m2 = await sharp(outPath).metadata();
+  return { w: m2.width, h: m2.height };
 }
 
 if (pick === null) {
@@ -69,8 +88,8 @@ if (pick === null) {
   }
   // Banner preview too, so both can be judged together.
   const bannerOut = path.join(OUT_DIR, "banner.webp");
-  await sharp(srcArg).resize(2000, null, { withoutEnlargement: true }).webp({ quality: 82 }).toFile(bannerOut);
-  console.log(`  ${bannerOut}  — full-width banner`);
+  const b = await makeBanner(bannerOut);
+  console.log(`  ${bannerOut}  — full-width banner ${b.w}x${b.h}`);
   console.log(`\nOpen ${OUT_DIR} and look at all three, then rerun with --pick 1|2|3.`);
   process.exit(0);
 }
@@ -78,8 +97,9 @@ if (pick === null) {
 const chosen = CANDIDATES[pick - 1];
 if (!chosen) { console.error(`--pick must be 1..${CANDIDATES.length}`); process.exit(1); }
 
-const box = await makeSquare(chosen, "public/captain-real.webp", 640);
-await sharp(srcArg).resize(2000, null, { withoutEnlargement: true }).webp({ quality: 82 }).toFile("public/captain-banner.webp");
+const box = await makeSquare(chosen, "public/captain-real.webp", 768);
+const banner = await makeBanner("public/captain-banner.webp");
+console.log(`  banner rendered at ${banner.w}x${banner.h}`);
 
 const p = fs.statSync("public/captain-real.webp").size;
 const b = fs.statSync("public/captain-banner.webp").size;
