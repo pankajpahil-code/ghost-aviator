@@ -36,6 +36,13 @@ const key = q => q
 // still the correct answer — only the wording was completed.
 const INTENTIONAL = [
   { was: "for Twin Engine Operations", now: "Extended-range Twin-engine Operations" },
+  // 2026-07-27, cabin-crew question (250 seats, 136 passengers). The bank marked
+  // "6"; corrected to "5" on Capt. Pahil's ruling that the count is on SEATS and
+  // on the scale he supplied: 2 crew from 100 seats, plus one per 50-seat unit
+  // above 100 -> 250-100 = 150 = 3 units -> 5. This is a deliberate ANSWER-KEY
+  // change, the only one in this audit, and it is recorded here so it can never
+  // pass as an accident.
+  { was: "6", now: "5" },
 ];
 const declared = (was, now) => INTENTIONAL.some(i => i.was === was && i.now === now);
 

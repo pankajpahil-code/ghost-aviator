@@ -5248,8 +5248,8 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `6`,
       `10`,
     ],
-    ans: 2,
-    exp: `Correct answer: C`,
+    ans: 0,
+    exp: `Cabin crew are calculated on SEATS INSTALLED, never on the passengers actually carried — so the load of 136 is a deliberate distractor. An aircraft is crewed for the seats it has. The scale: up to 19 seats, no cabin crew required; 20–50 seats, at least 1; 51–99 seats, 2; and from 100 seats, 2 cabin crew plus one more for every unit (or part unit) of 50 seats above 100. For 250 seats: 250 − 100 = 150, which is exactly 3 units of 50, so 2 + 3 = 5. Sanity-check the scale and you will see it is simply one crew member per 50 seats once you are past 100 — 150 seats needs 3, 200 needs 4, 250 needs 5.`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
