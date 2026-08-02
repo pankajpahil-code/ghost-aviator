@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import fs from "node:fs";
-import path from "node:path";
 import Link from "next/link";
 import Image from "next/image";
 import { Award, BookOpen, Users, ShieldCheck, MessageCircle, ArrowRight, Radio, GraduationCap, Heart } from "lucide-react";
@@ -10,15 +8,18 @@ import { TESTIMONIALS } from "@/lib/testimonials";
 import { LIVE_WHATSAPP, LIVE_FOUNDING } from "@/lib/live-classes";
 import { SITE_URL } from "@/lib/site";
 
-// Real photographs of the Captain, prepared by tools/prepare-captain-photo.mjs.
-// Both are OPTIONAL: the page checks the filesystem at build time, exactly like
-// the sitemap checks for real notes, so a missing file can never ship a broken
-// image. Drop the files in and the banner and portrait appear on the next build;
-// until then the page renders as it always has.
-const hasAsset = (f: string) => fs.existsSync(path.join(process.cwd(), "public", f));
-const BANNER = hasAsset("captain-banner.webp") ? "/captain-banner.webp" : null;
-const PORTRAIT = hasAsset("captain-real.webp") ? "/captain-real.webp" : "/captain-portrait.webp";
-const PORTRAIT_IS_REAL = PORTRAIT === "/captain-real.webp";
+// Real photographs of the Captain, prepared by tools/prepare-captain-photo.mjs
+// and committed alongside this file.
+//
+// These were briefly resolved with fs.existsSync so a missing file could not
+// ship a broken image. That check cost two failed deployments: touching the
+// filesystem pulls this page out of static generation into a server function,
+// and Next then traces public/ — the whole notes tree — into the bundle, which
+// came to 662 MB against Vercel's 250 MB limit. The page is static again, and
+// these are plain constants. If either file is ever removed, the build fails
+// loudly at next/image instead, which is the better failure anyway.
+const BANNER = "/captain-banner.webp";
+const PORTRAIT = "/captain-real.webp";
 
 const SUBJECT_COUNT = CPL_SUBJECTS.length + ATPL_SUBJECTS.length;
 const CHAPTER_COUNT = [...CPL_SUBJECTS, ...ATPL_SUBJECTS].reduce((n, s) => n + s.chapters.length, 0);
@@ -76,31 +77,26 @@ export default function AboutPage() {
           overlaps him, the whole apron scene reads, and only the bottom edge
           fades into the page. objectPosition 50% 66% is measured, not guessed —
           it is the window that holds the aircraft AND his full head. */}
-      {BANNER && (
-        <div className="relative w-full h-[320px] sm:h-[440px] lg:h-[600px]">
-          <Image src={BANNER} alt="Capt. Pankaj Pahil on the apron" fill priority sizes="100vw"
-                 className="object-cover" style={{ objectPosition: "50% 66%" }} />
-          <div className="absolute inset-0" style={{
-            background:
-              "linear-gradient(to bottom, rgba(6,4,14,0.10) 0%, rgba(6,4,14,0.20) 60%, rgba(6,4,14,0.80) 88%, #06040e 100%)",
-          }} />
-        </div>
-      )}
+      <div className="relative w-full h-[320px] sm:h-[440px] lg:h-[600px]">
+        <Image src={BANNER} alt="Capt. Pankaj Pahil on the apron" fill priority sizes="100vw"
+               className="object-cover" style={{ objectPosition: "50% 66%" }} />
+        <div className="absolute inset-0" style={{
+          background:
+            "linear-gradient(to bottom, rgba(6,4,14,0.10) 0%, rgba(6,4,14,0.20) 60%, rgba(6,4,14,0.80) 88%, #06040e 100%)",
+        }} />
+      </div>
 
       {/* ══ HERO ══ */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse at 50% -20%, rgba(150,0,255,0.13), transparent 60%)",
         }}/>
-        <div className={`relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 ${BANNER ? "pt-10" : "pt-20"}`}>
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 pt-10">
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className="relative w-44 h-44 rounded-full overflow-hidden flex-shrink-0"
                  style={{ border: "2px solid rgba(0,212,255,0.4)", boxShadow: "0 0 40px rgba(0,212,255,0.22)" }}>
               <Image src={PORTRAIT} alt="Capt. Pankaj Pahil" fill priority sizes="176px"
-                     className="object-cover"
-                     style={PORTRAIT_IS_REAL
-                       ? { objectPosition: "50% 50%" }
-                       : { objectPosition: "50% 40%", transform: "scale(1.1)", transformOrigin: "50% 40%" }} />
+                     className="object-cover" style={{ objectPosition: "50% 50%" }} />
             </div>
             <div className="text-center md:text-left">
               <div className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: "#c080ff", letterSpacing: "0.2em" }}>
