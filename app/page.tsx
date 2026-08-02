@@ -42,7 +42,10 @@ export default function Home() {
           grade, where the figure and the trident are not competing with it. */}
       <MascotHero>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="flex items-end min-h-[100svh] pb-16 pt-28">
+          {/* Copy sits BELOW the footage now, not over it. Overlaid text fought
+              the camera moves — the mascot walks through frame, so any fixed
+              headline ends up on top of his face at some point in the loop. */}
+          <div className="pb-16 pt-10 sm:pt-12">
             <div className="max-w-2xl">
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold"
