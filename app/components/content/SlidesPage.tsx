@@ -17,7 +17,7 @@ type Props = {
 
 export default function SlidesPage({ track, subject, chapter, prevChapter, nextChapter, src }: Props) {
   return (
-    <div style={{ background: "#06040e" }} className="min-h-screen flex flex-col">
+    <div style={{ background: "#0b1117" }} className="min-h-screen flex flex-col">
       <Watermark />
 
       {/* Header */}
@@ -67,7 +67,7 @@ export default function SlidesPage({ track, subject, chapter, prevChapter, nextC
           {prevChapter ? (
             <Link href={`/${track}/${subject.id}/${prevChapter.id}/slides`}
                   className="flex items-center gap-2 px-4 py-3 rounded-xl no-underline min-w-0"
-                  style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
+                  style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
               <ChevronLeft className="w-4 h-4 flex-shrink-0" />
               <div className="text-left min-w-0">
                 <div className="text-xs" style={{ color: "#475569" }}>Previous</div>
@@ -85,7 +85,7 @@ export default function SlidesPage({ track, subject, chapter, prevChapter, nextC
           {nextChapter ? (
             <Link href={`/${track}/${subject.id}/${nextChapter.id}/slides`}
                   className="flex items-center gap-2 px-4 py-3 rounded-xl no-underline min-w-0"
-                  style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
+                  style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
               <div className="text-right min-w-0">
                 <div className="text-xs" style={{ color: "#475569" }}>Next</div>
                 <div className="text-sm font-semibold truncate">Ch.{nextChapter.number}: {nextChapter.title}</div>

@@ -142,7 +142,7 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
   const { state: speechState, toggle: toggleListen, stop: stopListen, voices, voiceURI, setVoiceURI } = useReadAloud(iframeRef);
 
   return (
-    <div style={{ background: "#06040e" }} className="min-h-screen flex flex-col">
+    <div style={{ background: "#0b1117" }} className="min-h-screen flex flex-col">
       <Watermark />
 
       {/* Header */}
@@ -183,7 +183,7 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
                 <>
                   <button onClick={toggleListen}
                           className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg cursor-pointer border-0"
-                          style={{ background: "rgba(0,212,255,0.1)", border: "1px solid rgba(0,212,255,0.3)", color: "#00d4ff" }}>
+                          style={{ background: "rgba(240,145,58,0.1)", border: "1px solid rgba(240,145,58,0.3)", color: "#f0913a" }}>
                     {speechState === "playing"
                       ? <><Pause className="w-3.5 h-3.5" /> Pause</>
                       : speechState === "paused"
@@ -203,7 +203,7 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
                             className="text-xs font-medium px-2 py-2 rounded-lg cursor-pointer"
                             style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#64748b", maxWidth: "9rem" }}>
                       {voices.map(v => (
-                        <option key={v.voiceURI} value={v.voiceURI} style={{ background: "#0f081e", color: "#fff" }}>
+                        <option key={v.voiceURI} value={v.voiceURI} style={{ background: "#111a22", color: "#fff" }}>
                           {v.name}
                         </option>
                       ))}
@@ -246,7 +246,7 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
           {prevChapter ? (
             <Link href={`/${track}/${subject.id}/${prevChapter.id}/notes`}
                   className="flex items-center gap-2 px-4 py-3 rounded-xl no-underline min-w-0"
-                  style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
+                  style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
               <ChevronLeft className="w-4 h-4 flex-shrink-0" />
               <div className="text-left min-w-0">
                 <div className="text-xs" style={{ color: "#475569" }}>Previous</div>
@@ -264,7 +264,7 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
           {nextChapter ? (
             <Link href={`/${track}/${subject.id}/${nextChapter.id}/notes`}
                   className="flex items-center gap-2 px-4 py-3 rounded-xl no-underline min-w-0"
-                  style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
+                  style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
               <div className="text-right min-w-0">
                 <div className="text-xs" style={{ color: "#475569" }}>Next</div>
                 <div className="text-sm font-semibold truncate">Ch.{nextChapter.number}: {nextChapter.title}</div>

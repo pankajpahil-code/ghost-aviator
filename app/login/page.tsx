@@ -24,11 +24,11 @@ export default function LoginPage() {
   }
 
   return (
-    <div style={{ background: "#06040e" }} className="min-h-screen flex items-center justify-center px-4 py-16">
+    <div style={{ background: "#0b1117" }} className="min-h-screen flex items-center justify-center px-4 py-16">
       <div className="max-w-md w-full rounded-3xl p-10"
-           style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(0,212,255,0.3)" }}>
+           style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(240,145,58,0.3)" }}>
         <div className="text-center">
-          <Ghost className="w-12 h-12 mx-auto mb-4" style={{ color: "#00d4ff" }} />
+          <Ghost className="w-12 h-12 mx-auto mb-4" style={{ color: "#f0913a" }} />
           <h1 className="text-3xl font-black text-white mb-2">Welcome Back</h1>
           <p className="text-sm mb-7" style={{ color: "#94a3b8" }}>Log in to sync your progress.</p>
         </div>
@@ -42,11 +42,11 @@ export default function LoginPage() {
             {state === "error" && <p className="text-xs" style={{ color: "#ef4444" }}>{msg}</p>}
             <button type="submit" disabled={state === "loading"}
                     className="py-3 rounded-xl text-sm font-black disabled:opacity-60"
-                    style={{ background: "linear-gradient(135deg,#00d4ff,#0099cc)", color: "#000" }}>
+                    style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
               {state === "loading" ? "Logging in..." : "Log In"}
             </button>
             <p className="text-xs text-center" style={{ color: "#64748b" }}>
-              New here? <Link href="/signup" className="no-underline" style={{ color: "#00d4ff" }}>Create a free account</Link>
+              New here? <Link href="/signup" className="no-underline" style={{ color: "#f0913a" }}>Create a free account</Link>
             </p>
           </form>
         ) : (
@@ -61,12 +61,12 @@ export default function LoginPage() {
             <EmailCapture compact source="login" />
             <div className="flex flex-col gap-3 mt-6">
               <Link href="/cpl" className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold no-underline"
-                    style={{ background: "linear-gradient(135deg,#9020ff,#ff2060)", color: "#fff" }}>
+                    style={{ background: "linear-gradient(135deg,#c25a1e,#c25a1e)", color: "#fff" }}>
                 Start CPL Prep <ArrowRight className="w-4 h-4" />
               </Link>
               <a href="https://t.me/+tgLMJithc1gzOWJl" target="_blank" rel="noreferrer"
                  className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium no-underline"
-                 style={{ background: "rgba(0,212,255,0.1)", color: "#00d4ff", border: "1px solid rgba(0,212,255,0.2)" }}>
+                 style={{ background: "rgba(240,145,58,0.1)", color: "#f0913a", border: "1px solid rgba(240,145,58,0.2)" }}>
                 <Send className="w-4 h-4" /> Get notified on Telegram
               </a>
             </div>
@@ -77,4 +77,4 @@ export default function LoginPage() {
   );
 }
 
-const inp: React.CSSProperties = { background: "rgba(5,5,16,0.8)", border: "1px solid rgba(0,212,255,0.3)", color: "#fff" };
+const inp: React.CSSProperties = { background: "rgba(10,15,20,0.8)", border: "1px solid rgba(240,145,58,0.3)", color: "#fff" };

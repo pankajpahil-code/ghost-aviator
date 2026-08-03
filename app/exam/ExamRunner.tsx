@@ -124,7 +124,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
           The question bank for this paper is still being prepared. Try the chapter quizzes in the meantime.
         </p>
         <Link href="/exam" className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl font-bold no-underline"
-              style={{ background: "linear-gradient(135deg,#00d4ff,#0099cc)", color: "#000" }}>
+              style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
           <BookOpen className="w-4 h-4" /> All Papers
         </Link>
       </div>
@@ -146,7 +146,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
         <div className="grid grid-cols-3 gap-4 mb-8 mt-6">
           {[["Questions", `${questions.length}`], ["Duration", `${paper.durationMin} min`], ["Pass Mark", `${paper.passMark}%`]].map(([l, v]) => (
             <div key={l} className="glass-card p-3">
-              <div className="text-xl font-bold" style={{ color: "#00d4ff" }}>{v}</div>
+              <div className="text-xl font-bold" style={{ color: "#f0913a" }}>{v}</div>
               <div className="text-xs" style={{ color: "#64748b" }}>{l}</div>
             </div>
           ))}
@@ -160,7 +160,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
         </ul>
         <button onClick={() => { startedAtRef.current = Date.now(); setPhase("exam"); window.scrollTo(0, 0); }}
                 className="w-full py-4 rounded-xl font-bold text-lg"
-                style={{ background: "linear-gradient(135deg,#00d4ff,#0099cc)", color: "#000" }}>
+                style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
           Start Exam
         </button>
       </div>
@@ -179,7 +179,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
           </p>
           <div className="grid grid-cols-3 gap-4 mb-8">
             {[["Score", `${pct}%`, passed ? "#22c55e" : "#ef4444"],
-              ["Correct", `${score}/${questions.length}`, "#00d4ff"],
+              ["Correct", `${score}/${questions.length}`, "#f0913a"],
               ["Status", passed ? "PASS" : "FAIL", passed ? "#22c55e" : "#ef4444"]].map(([l, v, c]) => (
               <div key={l} className="glass-card p-4">
                 <div className="text-2xl font-bold" style={{ color: c }}>{v}</div>
@@ -190,11 +190,11 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
           <div className="flex gap-4 justify-center flex-wrap">
             <button onClick={restart}
                     className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold"
-                    style={{ background: "linear-gradient(135deg,#00d4ff,#0099cc)", color: "#000" }}>
+                    style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
               <RotateCcw className="w-4 h-4" /> Retake Exam
             </button>
             <Link href="/dashboard" className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold no-underline"
-                  style={{ border: "1px solid rgba(0,212,255,0.3)", color: "#00d4ff", background: "rgba(0,212,255,0.06)" }}>
+                  style={{ border: "1px solid rgba(240,145,58,0.3)", color: "#f0913a", background: "rgba(240,145,58,0.06)" }}>
               View Dashboard
             </Link>
             <Link href={backHref} className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold no-underline"
@@ -205,7 +205,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
         </div>
 
         <div className="mb-8">
-          <LiveClassUpsell subjectId={paper.subjectIds[0]} subjectColor="#00d4ff" />
+          <LiveClassUpsell subjectId={paper.subjectIds[0]} subjectColor="#f0913a" />
         </div>
 
         <h3 className="text-xl font-bold mb-4">Answer Review</h3>
@@ -229,14 +229,14 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
                     <div key={oi} className="px-4 py-2 rounded-lg text-sm"
                          style={{
                            background: oi === rq.ans ? "rgba(34,197,94,0.15)" : oi === userAns ? "rgba(239,68,68,0.15)" : "rgba(13,13,26,0.5)",
-                           border: oi === rq.ans ? "1px solid #22c55e" : oi === userAns ? "1px solid #ef4444" : "1px solid rgba(0,212,255,0.1)",
+                           border: oi === rq.ans ? "1px solid #22c55e" : oi === userAns ? "1px solid #ef4444" : "1px solid rgba(240,145,58,0.1)",
                            color: oi === rq.ans ? "#22c55e" : oi === userAns ? "#ef4444" : "#94a3b8",
                          }}>
                       {String.fromCharCode(65 + oi)}. {opt}
                     </div>
                   ))}
                 </div>
-                <div className="px-4 py-3 rounded-lg text-sm" style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.15)", color: "#94a3b8" }}>
+                <div className="px-4 py-3 rounded-lg text-sm" style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8" }}>
                   💡 {rq.exp}
                 </div>
               </div>
@@ -256,19 +256,19 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
         {/* Header bar */}
         <div className="glass-card px-6 py-4 flex items-center justify-between mb-6 flex-wrap gap-2">
           <div className="text-sm font-medium" style={{ color: "#94a3b8" }}>
-            Question <span style={{ color: "#00d4ff" }}>{current + 1}</span> / {questions.length}
+            Question <span style={{ color: "#f0913a" }}>{current + 1}</span> / {questions.length}
           </div>
           <div className={`flex items-center gap-2 font-mono text-lg font-bold ${urgent ? "timer-urgent" : ""}`}
-               style={{ color: urgent ? "#ef4444" : "#00d4ff" }}>
+               style={{ color: urgent ? "#ef4444" : "#f0913a" }}>
             <Clock className="w-5 h-5" /> {fmt(timeLeft)}
           </div>
           <div className="text-sm" style={{ color: "#94a3b8" }}>{answeredCount} answered</div>
         </div>
 
         {/* Progress */}
-        <div className="w-full h-1 rounded-full mb-6" style={{ background: "rgba(0,212,255,0.1)" }}>
+        <div className="w-full h-1 rounded-full mb-6" style={{ background: "rgba(240,145,58,0.1)" }}>
           <div className="h-1 rounded-full transition-all duration-500"
-               style={{ width: `${((current + 1) / questions.length) * 100}%`, background: "linear-gradient(90deg,#00d4ff,#7c3aed)" }} />
+               style={{ width: `${((current + 1) / questions.length) * 100}%`, background: "linear-gradient(90deg,#f0913a,#ab794d)" }} />
         </div>
 
         {/* Question map */}
@@ -277,9 +277,9 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
             <button key={i} onClick={() => goto(i)}
                     className="w-7 h-7 rounded-md text-xs font-bold flex items-center justify-center"
                     style={{
-                      background: i === current ? "rgba(0,212,255,0.25)" : answers[i] !== null ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.04)",
-                      border: flagged[i] ? "1px solid #f59e0b" : i === current ? "1px solid #00d4ff" : "1px solid rgba(255,255,255,0.08)",
-                      color: i === current ? "#00d4ff" : answers[i] !== null ? "#22c55e" : "#64748b",
+                      background: i === current ? "rgba(240,145,58,0.25)" : answers[i] !== null ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.04)",
+                      border: flagged[i] ? "1px solid #f59e0b" : i === current ? "1px solid #f0913a" : "1px solid rgba(255,255,255,0.08)",
+                      color: i === current ? "#f0913a" : answers[i] !== null ? "#22c55e" : "#64748b",
                       cursor: "pointer",
                     }}>
               {i + 1}
@@ -304,18 +304,18 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
         <div className="flex gap-3">
           <button onClick={() => goto(current - 1)} disabled={current === 0}
                   className="flex-1 py-3 rounded-xl text-sm font-medium disabled:opacity-30"
-                  style={{ border: "1px solid rgba(0,212,255,0.2)", color: "#64748b", background: "transparent" }}>
+                  style={{ border: "1px solid rgba(240,145,58,0.2)", color: "#64748b", background: "transparent" }}>
             ← Previous
           </button>
           <button onClick={toggleFlag}
                   className="flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl text-sm font-medium"
-                  style={{ border: `1px solid ${flagged[current] ? "#f59e0b" : "rgba(0,212,255,0.2)"}`, color: flagged[current] ? "#f59e0b" : "#64748b", background: "transparent" }}>
+                  style={{ border: `1px solid ${flagged[current] ? "#f59e0b" : "rgba(240,145,58,0.2)"}`, color: flagged[current] ? "#f59e0b" : "#64748b", background: "transparent" }}>
             <Flag className="w-4 h-4" /> {flagged[current] ? "Flagged" : "Flag"}
           </button>
           {current < questions.length - 1 ? (
             <button onClick={() => goto(current + 1)}
                     className="flex-1 py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2"
-                    style={{ background: "linear-gradient(135deg,#00d4ff,#0099cc)", color: "#000" }}>
+                    style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
               Next <ArrowRight className="w-4 h-4" />
             </button>
           ) : (

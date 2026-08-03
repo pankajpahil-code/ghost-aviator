@@ -24,12 +24,12 @@ export default function CostCalculatorPage() {
   };
 
   return (
-    <main className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: "#06040e" }}>
+    <main className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: "#0b1117" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       
       {/* Background Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full blur-[120px] opacity-20 pointer-events-none"
-           style={{ background: "radial-gradient(circle, rgba(0,212,255,0.8) 0%, rgba(192,128,255,0.5) 50%, transparent 70%)" }} />
+           style={{ background: "radial-gradient(circle, rgba(240,145,58,0.8) 0%, rgba(243,200,137,0.5) 50%, transparent 70%)" }} />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12">

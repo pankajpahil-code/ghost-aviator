@@ -12,8 +12,8 @@ const CONTENT_ICONS: Record<string, React.ElementType> = {
   audio: Headphones, questions: HelpCircle, "mock-test": ClipboardList, "chapter-quiz": ListChecks,
 };
 const CONTENT_COLORS: Record<string, string> = {
-  notes: "#7c3aed", slides: "#0ea5e9", video: "#ef4444",
-  audio: "#f59e0b", questions: "#10b981", "mock-test": "#c080ff", "chapter-quiz": "#f97316",
+  notes: "#ab794d", slides: "#0ea5e9", video: "#ef4444",
+  audio: "#f59e0b", questions: "#10b981", "mock-test": "#f3c889", "chapter-quiz": "#f97316",
 };
 
 export function generateStaticParams() {
@@ -52,7 +52,7 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
   };
 
   return (
-    <div style={{ background:"#06040e" }} className="min-h-screen">
+    <div style={{ background:"#0b1117" }} className="min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="relative overflow-hidden" style={{ borderBottom:`1px solid ${subject.color}25` }}>
         <div className="absolute inset-0 pointer-events-none"
@@ -115,7 +115,7 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
         <div className="flex flex-col gap-3 mb-8">
           {subject.chapters.map(ch => (
             <div key={ch.id} className="rounded-2xl overflow-hidden"
-                 style={{ background:"rgba(15,8,30,0.95)", border:`1px solid ${subject.color}20` }}>
+                 style={{ background:"rgba(17,24,32,0.95)", border:`1px solid ${subject.color}20` }}>
               <div className="p-5">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-sm font-black"
@@ -159,7 +159,7 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
         </div>
 
         <div className="rounded-2xl p-6 mb-4 flex items-center gap-5"
-             style={{ background:`linear-gradient(135deg, ${subject.color}18, rgba(0,180,255,0.08))`, border:`1px solid ${subject.color}35` }}>
+             style={{ background:`linear-gradient(135deg, ${subject.color}18, rgba(240,145,58,0.08))`, border:`1px solid ${subject.color}35` }}>
           <div className="text-3xl">🎯</div>
           <div className="flex-1">
             <h3 className="font-black text-white mb-1">Mid-Subject Test</h3>

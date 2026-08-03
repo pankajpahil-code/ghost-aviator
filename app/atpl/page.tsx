@@ -38,33 +38,33 @@ export default function ATPLPage() {
   };
 
   return (
-    <div style={{ background:"#06040e" }} className="min-h-screen">
+    <div style={{ background:"#0b1117" }} className="min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       {/* Header */}
-      <div className="relative overflow-hidden" style={{ borderBottom:"1px solid rgba(0,180,255,0.2)" }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ background:"radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,150,255,0.18) 0%, transparent 70%)" }}/>
+      <div className="relative overflow-hidden" style={{ borderBottom:"1px solid rgba(240,145,58,0.2)" }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ background:"radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240,145,58,0.18) 0%, transparent 70%)" }}/>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
           <Link href="/" className="inline-flex items-center gap-1 text-sm mb-6 no-underline" style={{ color:"#64748b" }}>
             ← Back to Home
           </Link>
           <div className="inline-block text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-5"
-               style={{ color:"#00d4ff", border:"1px solid rgba(0,212,255,0.35)", background:"rgba(0,212,255,0.08)", letterSpacing:"0.18em" }}>
+               style={{ color:"#f0913a", border:"1px solid rgba(240,145,58,0.35)", background:"rgba(240,145,58,0.08)", letterSpacing:"0.18em" }}>
             DGCA INDIA
           </div>
           <h1 className="text-5xl sm:text-6xl font-black text-white mb-4">
-            ATPL <span style={{ background:"linear-gradient(135deg,#00d4ff,#0080ff)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Prep</span>
+            ATPL <span style={{ background:"linear-gradient(135deg,#f0913a,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Prep</span>
           </h1>
-          <p className="text-xl font-semibold mb-2" style={{ color:"#00d4ff" }}>Airline Transport Pilot Licence — Written Examinations</p>
+          <p className="text-xl font-semibold mb-2" style={{ color:"#f0913a" }}>Airline Transport Pilot Licence — Written Examinations</p>
           <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
             8 advanced DGCA papers. Structured chapter by chapter with notes, slides, videos, audio, questions, and tests.
             Follows the official DGCA ATPL syllabus.
           </p>
           <div className="flex flex-wrap gap-4">
             {[["8","Written Papers"],[`${CHAPTERS}`,"Chapters"],[QUESTIONS,"Questions"],["75%","Pass Mark"]].map(([v,l]) => (
-              <div key={l} className="px-5 py-3 rounded-xl text-center" style={{ background:"rgba(0,180,255,0.1)", border:"1px solid rgba(0,180,255,0.25)" }}>
+              <div key={l} className="px-5 py-3 rounded-xl text-center" style={{ background:"rgba(240,145,58,0.1)", border:"1px solid rgba(240,145,58,0.25)" }}>
                 <div className="text-2xl font-black text-white">{v}</div>
-                <div className="text-xs" style={{ color:"#00d4ff" }}>{l}</div>
+                <div className="text-xs" style={{ color:"#f0913a" }}>{l}</div>
               </div>
             ))}
           </div>
@@ -78,7 +78,7 @@ export default function ATPLPage() {
           {ATPL_SUBJECTS.map((subject, idx) => (
             <Link key={subject.id} href={`/atpl/${subject.id}`}
                   className="group rounded-2xl overflow-hidden no-underline block transition-all duration-300"
-                  style={{ background:"rgba(15,8,30,0.95)", border:`1px solid ${subject.color}30` }}>
+                  style={{ background:"rgba(17,24,32,0.95)", border:`1px solid ${subject.color}30` }}>
               <div className="p-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-5 flex-1">
@@ -126,12 +126,12 @@ export default function ATPLPage() {
         </div>
 
         {/* Tests */}
-        <div className="mt-16 p-8 rounded-3xl" style={{ background:"rgba(15,8,30,0.95)", border:"1px solid rgba(0,180,255,0.2)" }}>
+        <div className="mt-16 p-8 rounded-3xl" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(240,145,58,0.2)" }}>
           <h3 className="text-xl font-black text-white mb-6">ATPL Full Tests & Sample Papers</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
-              { label:"Full ATPL Mock Test",  icon:"🎯", desc:"All 8 subjects combined · 480 Qs · 10 hrs", color:"#00d4ff", href:"/mock-test?type=atpl-full" },
-              { label:"Subject-wise Tests",   icon:"📝", desc:"60 Qs per subject · 75 min each",           color:"#7c3aed", href:"/mock-test?type=atpl-subject" },
+              { label:"Full ATPL Mock Test",  icon:"🎯", desc:"All 8 subjects combined · 480 Qs · 10 hrs", color:"#f0913a", href:"/mock-test?type=atpl-full" },
+              { label:"Subject-wise Tests",   icon:"📝", desc:"60 Qs per subject · 75 min each",           color:"#ab794d", href:"/mock-test?type=atpl-subject" },
               { label:"DGCA Sample Papers",   icon:"📋", desc:"ATPL-style papers · Actual format",         color:"#f59e0b", href:"/mock-test?type=atpl-sample" },
             ].map(t => (
               <Link key={t.label} href={t.href} className="p-5 rounded-2xl no-underline block"

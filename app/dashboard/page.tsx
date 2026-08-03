@@ -39,11 +39,11 @@ function ScoreTrend({ attempts, passMark }: { attempts: ExamAttempt[]; passMark:
       <line x1={pad} x2={w - pad} y1={y(passMark)} y2={y(passMark)} stroke="rgba(255,255,255,0.12)" strokeWidth={1} />
       <text x={w - pad} y={y(passMark) - 4} textAnchor="end" fontSize="9" fill="#475569">Pass {passMark}%</text>
       {/* trend line */}
-      {ordered.length > 1 && <path d={path} fill="none" stroke="#00d4ff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />}
+      {ordered.length > 1 && <path d={path} fill="none" stroke="#f0913a" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />}
       {points.map(([px, py], i) => (
         <circle key={i} cx={px} cy={py} r={i === points.length - 1 ? 5 : 3}
-                fill={i === points.length - 1 ? (lastPassed ? "#22c55e" : "#ef4444") : "#00d4ff"}
-                stroke="#06040e" strokeWidth={2} />
+                fill={i === points.length - 1 ? (lastPassed ? "#22c55e" : "#ef4444") : "#f0913a"}
+                stroke="#0b1117" strokeWidth={2} />
       ))}
       <text x={points[points.length - 1][0]} y={points[points.length - 1][1] - 10} textAnchor="middle" fontSize="11" fontWeight="bold"
             fill={lastPassed ? "#22c55e" : "#ef4444"}>
@@ -98,8 +98,8 @@ export default function DashboardPage() {
 
   return (
     <div className="grid-bg min-h-screen">
-      <div className="relative overflow-hidden" style={{ borderBottom: "1px solid rgba(0,212,255,0.2)" }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,0.15) 0%, transparent 70%)" }} />
+      <div className="relative overflow-hidden" style={{ borderBottom: "1px solid rgba(240,145,58,0.2)" }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240,145,58,0.15) 0%, transparent 70%)" }} />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 relative z-10">
           <h1 className="text-4xl sm:text-5xl font-black text-white mb-3">Performance Dashboard</h1>
           <p className="max-w-2xl" style={{ color: "#94a3b8" }}>
@@ -123,7 +123,7 @@ export default function DashboardPage() {
               Sit a full-length paper in Exam Mode and your score history, trend, and weak chapters will show up here.
             </p>
             <Link href="/exam" className="inline-flex items-center gap-2 py-3 px-5 rounded-xl font-bold no-underline"
-                  style={{ background: "linear-gradient(135deg,#00d4ff,#0099cc)", color: "#000" }}>
+                  style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
               <FileCheck className="w-4 h-4" /> Go to Exam Mode
             </Link>
           </div>
@@ -132,7 +132,7 @@ export default function DashboardPage() {
             {/* Score trend per paper */}
             <section>
               <h2 className="text-xl font-black text-white mb-5 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5" style={{ color: "#00d4ff" }} /> Score Trend
+                <TrendingUp className="w-5 h-5" style={{ color: "#f0913a" }} /> Score Trend
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {[...byPaper.entries()].map(([paperId, attempts]) => {
@@ -166,7 +166,7 @@ export default function DashboardPage() {
             {/* Recent attempts */}
             <section>
               <h2 className="text-xl font-black text-white mb-5 flex items-center gap-2">
-                <Trophy className="w-5 h-5" style={{ color: "#00d4ff" }} /> Recent Attempts
+                <Trophy className="w-5 h-5" style={{ color: "#f0913a" }} /> Recent Attempts
               </h2>
               <div className="glass-card overflow-hidden">
                 {recent.map((a, i) => {

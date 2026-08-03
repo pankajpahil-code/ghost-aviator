@@ -39,7 +39,7 @@ export default function QuestionsPage({ track, subject, chapter, questions }: Pr
   // Empty state
   if (questions.length === 0) {
     return (
-      <div style={{ background: "#06040e" }} className="min-h-screen flex items-center justify-center px-4">
+      <div style={{ background: "#0b1117" }} className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <div className="text-5xl mb-4">❓</div>
           <h2 className="text-2xl font-black text-white mb-3">Questions Coming Soon</h2>
@@ -65,9 +65,9 @@ export default function QuestionsPage({ track, subject, chapter, questions }: Pr
   if (done) {
     const pct = Math.round((correct / questions.length) * 100);
     return (
-      <div style={{ background: "#06040e" }} className="min-h-screen flex items-center justify-center px-4">
+      <div style={{ background: "#0b1117" }} className="min-h-screen flex items-center justify-center px-4">
         <div className="rounded-3xl p-8 max-w-md w-full text-center"
-             style={{ background: "rgba(15,8,30,0.95)", border: `1px solid ${subject.color}30` }}>
+             style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${subject.color}30` }}>
           <div className="text-5xl mb-4">{pct >= 70 ? "🎉" : "📚"}</div>
           <h2 className="text-2xl font-black text-white mb-1">Practice Complete</h2>
           <p className="text-sm mb-6" style={{ color: "#64748b" }}>
@@ -105,11 +105,11 @@ export default function QuestionsPage({ track, subject, chapter, questions }: Pr
   const q = questions[current];
 
   return (
-    <div style={{ background: "#06040e" }} className="min-h-screen">
+    <div style={{ background: "#0b1117" }} className="min-h-screen">
 
       {/* Sticky progress bar */}
       <div className="sticky top-16 z-10 backdrop-blur-md"
-           style={{ background: "rgba(6,4,14,0.97)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+           style={{ background: "rgba(11,17,23,0.97)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs" style={{ color: "#475569" }}>
             <Link href={`/${track}/${subject.id}/${chapter.id}/notes`}
@@ -129,7 +129,7 @@ export default function QuestionsPage({ track, subject, chapter, questions }: Pr
         </div>
         <div className="h-0.5" style={{ background: "rgba(255,255,255,0.06)" }}>
           <div className="h-full transition-all duration-500"
-               style={{ width: `${((current + 1) / questions.length) * 100}%`, background: `linear-gradient(90deg, ${subject.color}, #c080ff)` }} />
+               style={{ width: `${((current + 1) / questions.length) * 100}%`, background: `linear-gradient(90deg, ${subject.color}, #f3c889)` }} />
         </div>
       </div>
 
@@ -145,7 +145,7 @@ export default function QuestionsPage({ track, subject, chapter, questions }: Pr
 
         {/* Question card */}
         <div className="rounded-2xl p-6 mb-4"
-             style={{ background: "rgba(15,8,30,0.95)", border: `1px solid ${subject.color}20` }}>
+             style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${subject.color}20` }}>
           <p className="text-base font-semibold text-white mb-6 leading-relaxed">{q.q}</p>
           <div className="flex flex-col gap-2.5">
             {q.opts.map((opt, oi) => {
@@ -175,8 +175,8 @@ export default function QuestionsPage({ track, subject, chapter, questions }: Pr
           ) : (
             <div className="mt-5">
               <div className="p-4 rounded-xl text-sm mb-4"
-                   style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.15)", color: "#94a3b8" }}>
-                <span className="font-bold" style={{ color: "#00d4ff" }}>💡 </span>{q.exp}
+                   style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8" }}>
+                <span className="font-bold" style={{ color: "#f0913a" }}>💡 </span>{q.exp}
               </div>
               <div className="flex gap-3">
                 <button onClick={() => markAndAdvance("correct")}

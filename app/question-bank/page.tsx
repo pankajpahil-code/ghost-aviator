@@ -60,7 +60,7 @@ export default function QuestionBankPage() {
         {/* Header */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6"
-               style={{ background: "rgba(0,212,255,0.1)", border: "1px solid rgba(0,212,255,0.3)", color: "#00d4ff" }}>
+               style={{ background: "rgba(240,145,58,0.1)", border: "1px solid rgba(240,145,58,0.3)", color: "#f0913a" }}>
             <BookOpen className="w-4 h-4" /> Question Bank
           </div>
           <h1 className="text-4xl font-extrabold mb-4">DGCA <span className="gradient-text">Question Bank</span></h1>
@@ -76,12 +76,12 @@ export default function QuestionBankPage() {
             <input value={search} onChange={e => { setSearch(e.target.value); setShown(PAGE_SIZE); setRevealed({}); }}
                    placeholder="Search questions or options..."
                    className="w-full pl-9 pr-4 py-2 rounded-lg text-sm outline-none"
-                   style={{ background: "rgba(5,5,16,0.8)", border: "1px solid rgba(0,212,255,0.2)", color: "#fff" }} />
+                   style={{ background: "rgba(10,15,20,0.8)", border: "1px solid rgba(240,145,58,0.2)", color: "#fff" }} />
           </div>
           <div className="relative">
             <select value={filter} onChange={e => { setFilter(e.target.value); setShown(PAGE_SIZE); setRevealed({}); }}
                     className="appearance-none pl-4 pr-9 py-2 rounded-lg text-sm outline-none"
-                    style={{ background: "rgba(5,5,16,0.8)", border: "1px solid rgba(0,212,255,0.2)", color: "#fff", cursor: "pointer" }}>
+                    style={{ background: "rgba(10,15,20,0.8)", border: "1px solid rgba(240,145,58,0.2)", color: "#fff", cursor: "pointer" }}>
               {SUBJECT_FILTERS.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
             </select>
             <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" style={{ color: "#475569" }} />
@@ -96,7 +96,7 @@ export default function QuestionBankPage() {
           </span>
           {Object.keys(revealed).length > 0 && (
             <button onClick={() => setRevealed({})}
-                    className="text-xs" style={{ color: "#00d4ff" }}>
+                    className="text-xs" style={{ color: "#f0913a" }}>
               Hide all answers
             </button>
           )}
@@ -117,12 +117,12 @@ export default function QuestionBankPage() {
                 <div className="p-6">
                   <div className="flex items-start gap-4">
                     <span className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-                          style={{ background: "rgba(0,212,255,0.15)", color: "#00d4ff" }}>
+                          style={{ background: "rgba(240,145,58,0.15)", color: "#f0913a" }}>
                       {i + 1}
                     </span>
                     <div className="flex-1 min-w-0">
                       <div className="text-xs mb-2 px-2 py-0.5 rounded-full inline-block max-w-full"
-                           style={{ background: "rgba(0,212,255,0.08)", color: "#00d4ff", border: "1px solid rgba(0,212,255,0.15)" }}>
+                           style={{ background: "rgba(240,145,58,0.08)", color: "#f0913a", border: "1px solid rgba(240,145,58,0.15)" }}>
                         {displaySubjects(q.subjectIds)}
                       </div>
                       <p className="text-base font-medium mb-4 leading-relaxed">{q.q}</p>
@@ -131,8 +131,8 @@ export default function QuestionBankPage() {
                         {q.opts.map((opt, oi) => (
                           <div key={oi} className="px-4 py-2.5 rounded-lg text-sm flex items-center gap-3"
                                style={{
-                                 background: open && oi === q.ans ? "rgba(34,197,94,0.12)" : "rgba(5,5,16,0.6)",
-                                 border: open && oi === q.ans ? "1px solid #22c55e" : "1px solid rgba(0,212,255,0.1)",
+                                 background: open && oi === q.ans ? "rgba(34,197,94,0.12)" : "rgba(10,15,20,0.6)",
+                                 border: open && oi === q.ans ? "1px solid #22c55e" : "1px solid rgba(240,145,58,0.1)",
                                  color: open && oi === q.ans ? "#22c55e" : "#94a3b8",
                                }}>
                             {open && oi === q.ans && <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: "#22c55e" }} />}
@@ -146,8 +146,8 @@ export default function QuestionBankPage() {
 
                       {open && q.exp && (
                         <div className="mt-4 p-4 rounded-xl text-sm"
-                             style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.15)", color: "#94a3b8" }}>
-                          💡 <strong style={{ color: "#00d4ff" }}>Explanation:</strong> {q.exp}
+                             style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8" }}>
+                          💡 <strong style={{ color: "#f0913a" }}>Explanation:</strong> {q.exp}
                         </div>
                       )}
                     </div>
@@ -156,7 +156,7 @@ export default function QuestionBankPage() {
 
                 <button onClick={() => toggle(key)}
                         className="w-full py-3 text-sm font-medium flex items-center justify-center gap-2"
-                        style={{ borderTop: "1px solid rgba(0,212,255,0.1)", background: "rgba(0,212,255,0.03)", color: open ? "#ef4444" : "#00d4ff", cursor: "pointer" }}>
+                        style={{ borderTop: "1px solid rgba(240,145,58,0.1)", background: "rgba(240,145,58,0.03)", color: open ? "#ef4444" : "#f0913a", cursor: "pointer" }}>
                   {open ? <><XCircle className="w-4 h-4" /> Hide Answer</> : <><CheckCircle className="w-4 h-4" /> Show Answer</>}
                 </button>
               </div>
@@ -169,7 +169,7 @@ export default function QuestionBankPage() {
           <div className="mt-8 flex justify-center">
             <button onClick={() => setShown(s => s + PAGE_SIZE)}
                     className="px-6 py-3 rounded-xl text-sm font-bold"
-                    style={{ background: "rgba(0,212,255,0.1)", border: "1px solid rgba(0,212,255,0.3)", color: "#00d4ff" }}>
+                    style={{ background: "rgba(240,145,58,0.1)", border: "1px solid rgba(240,145,58,0.3)", color: "#f0913a" }}>
               Load {Math.min(PAGE_SIZE, filtered.length - shown)} more
             </button>
           </div>

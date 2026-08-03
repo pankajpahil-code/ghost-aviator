@@ -40,7 +40,7 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
   const topicCount = sections.reduce((n, s) => n + s.topics.length, 0);
 
   return (
-    <div style={{ background: "#06040e" }} className="min-h-screen">
+    <div style={{ background: "#0b1117" }} className="min-h-screen">
       <Watermark />
 
       {/* Header */}
@@ -101,7 +101,7 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
 
         {/* Syllabus overview */}
         <div className="rounded-2xl p-5 mb-8"
-             style={{ background: "rgba(15,8,30,0.95)", border: `1px solid ${subject.color}30` }}>
+             style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${subject.color}30` }}>
           <div className="flex items-center gap-2 mb-2">
             <BookOpen className="w-4 h-4" style={{ color: subject.color }} />
             <span className="text-sm font-bold" style={{ color: subject.color }}>DGCA Syllabus — What to Know</span>
@@ -114,7 +114,7 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
         <div className="flex flex-col gap-4 mb-10">
           {sections.map((sec, i) => (
             <div key={i} className="rounded-2xl p-5"
-                 style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                 style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(255,255,255,0.07)" }}>
               {sec.heading && (
                 <div className="text-sm font-bold mb-3" style={{ color: subject.color }}>{sec.heading}</div>
               )}
@@ -132,7 +132,7 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
 
         {/* Full notes callout */}
         <div className="rounded-2xl p-8 mb-10 text-center"
-             style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(255,255,255,0.08)" }}>
+             style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(255,255,255,0.08)" }}>
           <div className="text-4xl mb-3">📝</div>
           <h3 className="text-lg font-black text-white mb-2">Detailed Notes Being Prepared</h3>
           <p className="text-sm max-w-md mx-auto mb-6" style={{ color: "#64748b" }}>
@@ -152,7 +152,7 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
           {prevChapter ? (
             <Link href={`/${track}/${subject.id}/${prevChapter.id}/notes`}
                   className="flex items-center gap-2 px-4 py-3 rounded-xl no-underline min-w-0"
-                  style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
+                  style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
               <ChevronLeft className="w-4 h-4 flex-shrink-0" />
               <div className="text-left min-w-0">
                 <div className="text-xs truncate" style={{ color: "#475569" }}>Previous</div>
@@ -170,7 +170,7 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
           {nextChapter ? (
             <Link href={`/${track}/${subject.id}/${nextChapter.id}/notes`}
                   className="flex items-center gap-2 px-4 py-3 rounded-xl no-underline min-w-0"
-                  style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
+                  style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
               <div className="text-right min-w-0">
                 <div className="text-xs truncate" style={{ color: "#475569" }}>Next</div>
                 <div className="text-sm font-semibold truncate">Ch.{nextChapter.number}: {nextChapter.title}</div>

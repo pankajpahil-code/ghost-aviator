@@ -15,7 +15,7 @@ export default function LiveClassUpsell({ subjectId, subjectColor }: Props) {
 
   return (
     <div className="rounded-2xl p-6 relative overflow-hidden"
-         style={{ background: "rgba(15,8,30,0.95)", border: `1px solid ${subjectColor}35` }}>
+         style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${subjectColor}35` }}>
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3,
                     background: `linear-gradient(to right, ${subjectColor}, transparent)` }} />
       <div className="flex items-center justify-between gap-6 flex-wrap">

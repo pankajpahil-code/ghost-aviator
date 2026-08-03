@@ -38,32 +38,32 @@ export default function CPLPage() {
   };
 
   return (
-    <div style={{ background:"#06040e" }} className="min-h-screen">
+    <div style={{ background:"#0b1117" }} className="min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       {/* Header */}
-      <div className="relative overflow-hidden" style={{ borderBottom:"1px solid rgba(124,58,237,0.25)" }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ background:"radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,58,237,0.2) 0%, transparent 70%)" }}/>
+      <div className="relative overflow-hidden" style={{ borderBottom:"1px solid rgba(171,121,77,0.25)" }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ background:"radial-gradient(ellipse 80% 60% at 50% 0%, rgba(171,121,77,0.2) 0%, transparent 70%)" }}/>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
           <Link href="/" className="inline-flex items-center gap-1 text-sm mb-6 no-underline" style={{ color:"#64748b" }}>
             ← Back to Home
           </Link>
           <div className="inline-block text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-5"
-               style={{ color:"#c080ff", border:"1px solid rgba(180,100,255,0.35)", background:"rgba(180,100,255,0.08)", letterSpacing:"0.18em" }}>
+               style={{ color:"#f3c889", border:"1px solid rgba(243,200,137,0.35)", background:"rgba(243,200,137,0.08)", letterSpacing:"0.18em" }}>
             DGCA INDIA
           </div>
           <h1 className="text-5xl sm:text-6xl font-black text-white mb-4">
-            CPL <span style={{ background:"linear-gradient(135deg,#c080ff,#ff2060)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Prep</span>
+            CPL <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Prep</span>
           </h1>
-          <p className="text-xl font-semibold mb-2" style={{ color:"#c080ff" }}>Commercial Pilot Licence — Written Examinations</p>
+          <p className="text-xl font-semibold mb-2" style={{ color:"#f3c889" }}>Commercial Pilot Licence — Written Examinations</p>
           <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
             7 DGCA papers as per CAR Section 7 Series B Part IV. Every chapter mapped directly to the official DGCA CPL syllabus appendices with notes, slides, videos, audio, questions, and tests.
           </p>
           <div className="flex flex-wrap gap-4">
             {[["7","Written Papers"],[`${CHAPTERS}`,"Chapters"],[QUESTIONS,"Questions"],["70%","Pass Mark"]].map(([v,l]) => (
-              <div key={l} className="px-5 py-3 rounded-xl text-center" style={{ background:"rgba(124,58,237,0.15)", border:"1px solid rgba(124,58,237,0.3)" }}>
+              <div key={l} className="px-5 py-3 rounded-xl text-center" style={{ background:"rgba(171,121,77,0.15)", border:"1px solid rgba(171,121,77,0.3)" }}>
                 <div className="text-2xl font-black text-white">{v}</div>
-                <div className="text-xs" style={{ color:"#7c3aed" }}>{l}</div>
+                <div className="text-xs" style={{ color:"#ab794d" }}>{l}</div>
               </div>
             ))}
           </div>
@@ -77,7 +77,7 @@ export default function CPLPage() {
           {CPL_SUBJECTS.map((subject, idx) => (
             <Link key={subject.id} href={`/cpl/${subject.id}`}
                   className="group rounded-2xl overflow-hidden no-underline block transition-all duration-300"
-                  style={{ background:"rgba(15,8,30,0.95)", border:`1px solid ${subject.color}30` }}>
+                  style={{ background:"rgba(17,24,32,0.95)", border:`1px solid ${subject.color}30` }}>
               <div className="p-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-5 flex-1">
@@ -134,11 +134,11 @@ export default function CPLPage() {
         </div>
 
         {/* Tests section */}
-        <div className="mt-16 p-8 rounded-3xl" style={{ background:"rgba(15,8,30,0.95)", border:"1px solid rgba(124,58,237,0.2)" }}>
+        <div className="mt-16 p-8 rounded-3xl" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(171,121,77,0.2)" }}>
           <h3 className="text-xl font-black text-white mb-6">CPL Full Tests & Sample Papers</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
-              { label:"Full CPL Mock Test",     icon:"🎯", desc:"All 6 subjects combined · 300 Qs · 6 hrs", color:"#7c3aed", href:"/mock-test?type=cpl-full" },
+              { label:"Full CPL Mock Test",     icon:"🎯", desc:"All 6 subjects combined · 300 Qs · 6 hrs", color:"#ab794d", href:"/mock-test?type=cpl-full" },
               { label:"Subject-wise Tests",     icon:"📝", desc:"60 Qs per subject · 60 min each",          color:"#0ea5e9", href:"/mock-test?type=cpl-subject" },
               { label:"DGCA Sample Papers",     icon:"📋", desc:"Previous style papers · Actual format",    color:"#10b981", href:"/mock-test?type=cpl-sample" },
             ].map(t => (

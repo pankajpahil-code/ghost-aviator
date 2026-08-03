@@ -59,7 +59,7 @@ const FAQ_LD = {
   ],
 };
 
-const cyan = "#00d4ff";
+const cyan = "#f0913a";
 
 // The theory backbone: the phraseology chapters of the RTR(A) book that this
 // simulator drills. Keep in step with lib/subjects.ts radio-telephony chapters.
@@ -115,11 +115,11 @@ export default function RtrSimulatorPage() {
     <div className="grid-bg min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_LD) }} />
       {/* Hero */}
-      <div className="relative overflow-hidden" style={{ borderBottom: "1px solid rgba(0,212,255,0.2)" }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,0.15) 0%, transparent 70%)" }} />
+      <div className="relative overflow-hidden" style={{ borderBottom: "1px solid rgba(240,145,58,0.2)" }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240,145,58,0.15) 0%, transparent 70%)" }} />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 relative z-10">
           <div className="inline-block text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-5"
-               style={{ color: cyan, border: "1px solid rgba(0,212,255,0.35)", background: "rgba(0,212,255,0.08)", letterSpacing: "0.18em" }}>
+               style={{ color: cyan, border: "1px solid rgba(240,145,58,0.35)", background: "rgba(240,145,58,0.08)", letterSpacing: "0.18em" }}>
             INDIA&apos;S FIRST FREE RTR(A) R/T PRACTICE SIMULATOR
           </div>
           <h1 className="text-5xl sm:text-6xl font-black text-white mb-4">

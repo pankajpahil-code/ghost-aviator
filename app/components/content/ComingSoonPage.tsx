@@ -39,7 +39,7 @@ export default function ComingSoonPage({ track, subject, chapter, type }: Props)
   };
 
   return (
-    <div style={{ background: "#06040e" }} className="min-h-screen">
+    <div style={{ background: "#0b1117" }} className="min-h-screen">
 
       {/* Header */}
       <div className="relative" style={{ borderBottom: `1px solid ${subject.color}25` }}>
@@ -85,7 +85,7 @@ export default function ComingSoonPage({ track, subject, chapter, type }: Props)
           <div className="flex flex-col gap-3">
             <Link href={`/${track}/${subject.id}/${chapter.id}/notes`}
                   className="flex items-center gap-3 px-4 py-3 rounded-xl no-underline"
-                  style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.3)", color: "#c080ff" }}>
+                  style={{ background: "rgba(171,121,77,0.1)", border: "1px solid rgba(171,121,77,0.3)", color: "#f3c889" }}>
               <BookOpen className="w-4 h-4" />
               <span className="text-sm font-bold">Read Chapter Notes</span>
             </Link>

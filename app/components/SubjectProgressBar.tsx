@@ -32,7 +32,7 @@ export default function SubjectProgressBar({ track, subjectId, chapterIds, passM
 
   return (
     <div className="rounded-2xl p-5 mb-6"
-         style={{ background: "rgba(15,8,30,0.95)", border: `1px solid ${color}30` }}>
+         style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${color}30` }}>
       <div className="flex items-center justify-between gap-4 mb-3 flex-wrap">
         <div className="flex items-center gap-2">
           <Trophy className="w-4 h-4" style={{ color }} />
@@ -55,7 +55,7 @@ export default function SubjectProgressBar({ track, subjectId, chapterIds, passM
       </div>
       <div className="h-2 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
         <div className="h-2 rounded-full transition-all duration-500"
-             style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${color}, #c080ff)` }} />
+             style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${color}, #f3c889)` }} />
       </div>
       <p className="text-xs mt-2" style={{ color: "#475569" }}>
         Pass a chapter quiz or test ({passMark}%+) to mark it cleared. Progress is saved on this device.

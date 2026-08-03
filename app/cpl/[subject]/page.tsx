@@ -13,8 +13,8 @@ const CONTENT_ICONS: Record<string, React.ElementType> = {
   audio: Headphones, questions: HelpCircle, "mock-test": ClipboardList, "chapter-quiz": ListChecks,
 };
 const CONTENT_COLORS: Record<string, string> = {
-  notes: "#7c3aed", slides: "#0ea5e9", video: "#ef4444",
-  audio: "#f59e0b", questions: "#10b981", "mock-test": "#c080ff", "chapter-quiz": "#f97316",
+  notes: "#ab794d", slides: "#0ea5e9", video: "#ef4444",
+  audio: "#f59e0b", questions: "#10b981", "mock-test": "#f3c889", "chapter-quiz": "#f97316",
 };
 
 export function generateStaticParams() {
@@ -59,7 +59,7 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
   };
 
   return (
-    <div style={{ background:"#06040e" }} className="min-h-screen">
+    <div style={{ background:"#0b1117" }} className="min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Header */}
       <div className="relative overflow-hidden" style={{ borderBottom:`1px solid ${subject.color}25` }}>
@@ -145,7 +145,7 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
         <div className="flex flex-col gap-3 mb-8">
           {subject.chapters.map((ch) => (
             <div key={ch.id} className="rounded-2xl overflow-hidden"
-                 style={{ background:"rgba(15,8,30,0.95)", border:`1px solid ${subject.color}20` }}>
+                 style={{ background:"rgba(17,24,32,0.95)", border:`1px solid ${subject.color}20` }}>
               <div className="p-5">
                 <div className="flex items-start gap-4">
                   {/* Chapter number */}
@@ -232,7 +232,7 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
         </div>
 
         {/* Quick study stats */}
-        <div className="p-5 rounded-2xl flex flex-wrap gap-6 mb-12" style={{ background:"rgba(15,8,30,0.95)", border:"1px solid rgba(255,255,255,0.06)" }}>
+        <div className="p-5 rounded-2xl flex flex-wrap gap-6 mb-12" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(255,255,255,0.06)" }}>
           <div className="flex items-center gap-2">
             <Clock className="w-4 h-4" style={{ color:"#475569" }}/>
             <span className="text-sm" style={{ color:"#475569" }}>

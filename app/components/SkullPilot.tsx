@@ -50,12 +50,12 @@ export default function SkullPilot({ size = 500 }: { size?: number }) {
             <stop offset="100%" stopColor="#ff0000" stopOpacity="0"/>
           </radialGradient>
           <linearGradient id="wingL" x1="100%" y1="50%" x2="0%" y2="50%">
-            <stop offset="0%"   stopColor="#00d4ff" stopOpacity="0.9"/>
+            <stop offset="0%"   stopColor="#f0913a" stopOpacity="0.9"/>
             <stop offset="40%"  stopColor="#c8a020" stopOpacity="0.7"/>
             <stop offset="100%" stopColor="#c8a020" stopOpacity="0"/>
           </linearGradient>
           <linearGradient id="wingR" x1="0%" y1="50%" x2="100%" y2="50%">
-            <stop offset="0%"   stopColor="#00d4ff" stopOpacity="0.9"/>
+            <stop offset="0%"   stopColor="#f0913a" stopOpacity="0.9"/>
             <stop offset="40%"  stopColor="#c8a020" stopOpacity="0.7"/>
             <stop offset="100%" stopColor="#c8a020" stopOpacity="0"/>
           </linearGradient>
@@ -68,7 +68,7 @@ export default function SkullPilot({ size = 500 }: { size?: number }) {
             <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
           <filter id="skullGlow">
-            <feDropShadow dx="0" dy="0" stdDeviation="12" floodColor="#00d4ff" floodOpacity="0.25"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="12" floodColor="#f0913a" floodOpacity="0.25"/>
           </filter>
           <clipPath id="teethClip">
             <rect x="190" y="340" width="120" height="40"/>
@@ -82,16 +82,16 @@ export default function SkullPilot({ size = 500 }: { size?: number }) {
         <g opacity="0.85">
           <path d="M145 285 C110 265 55 255 10 235 C40 215 85 225 120 248 C90 235 55 245 90 272 C58 262 25 275 62 300 C30 295 5 308 45 328 L145 298 Z" fill="url(#wingL)"/>
           {/* Wing feather lines */}
-          <path d="M145 290 C100 270 50 258 15 240" stroke="#00d4ff" strokeWidth="0.8" strokeOpacity="0.4" fill="none"/>
-          <path d="M145 298 C95 278 48 265 18 250" stroke="#00d4ff" strokeWidth="0.6" strokeOpacity="0.3" fill="none"/>
+          <path d="M145 290 C100 270 50 258 15 240" stroke="#f0913a" strokeWidth="0.8" strokeOpacity="0.4" fill="none"/>
+          <path d="M145 298 C95 278 48 265 18 250" stroke="#f0913a" strokeWidth="0.6" strokeOpacity="0.3" fill="none"/>
           <path d="M140 306 C90 290 45 275 20 260" stroke="#c8a020" strokeWidth="0.6" strokeOpacity="0.25" fill="none"/>
         </g>
 
         {/* ── RIGHT WING ── */}
         <g opacity="0.85" transform="translate(500,0) scale(-1,1)">
           <path d="M145 285 C110 265 55 255 10 235 C40 215 85 225 120 248 C90 235 55 245 90 272 C58 262 25 275 62 300 C30 295 5 308 45 328 L145 298 Z" fill="url(#wingR)"/>
-          <path d="M145 290 C100 270 50 258 15 240" stroke="#00d4ff" strokeWidth="0.8" strokeOpacity="0.4" fill="none"/>
-          <path d="M145 298 C95 278 48 265 18 250" stroke="#00d4ff" strokeWidth="0.6" strokeOpacity="0.3" fill="none"/>
+          <path d="M145 290 C100 270 50 258 15 240" stroke="#f0913a" strokeWidth="0.8" strokeOpacity="0.4" fill="none"/>
+          <path d="M145 298 C95 278 48 265 18 250" stroke="#f0913a" strokeWidth="0.6" strokeOpacity="0.3" fill="none"/>
           <path d="M140 306 C90 290 45 275 20 260" stroke="#c8a020" strokeWidth="0.6" strokeOpacity="0.25" fill="none"/>
         </g>
 
@@ -105,9 +105,9 @@ export default function SkullPilot({ size = 500 }: { size?: number }) {
         {/* Cap seam */}
         <path d="M145 200 C145 140 355 140 355 200" stroke="#1a1a3a" strokeWidth="2" fill="none"/>
         {/* Center emblem on cap */}
-        <circle cx="250" cy="148" r="22" fill="#0a0a1e" stroke="#00d4ff" strokeWidth="1.5"/>
-        <circle cx="250" cy="148" r="17" fill="none" stroke="#00d4ff" strokeWidth="0.5" strokeOpacity="0.5"/>
-        <text x="250" y="154" textAnchor="middle" fill="#00d4ff" fontSize="18" fontWeight="bold">✈</text>
+        <circle cx="250" cy="148" r="22" fill="#0a0a1e" stroke="#f0913a" strokeWidth="1.5"/>
+        <circle cx="250" cy="148" r="17" fill="none" stroke="#f0913a" strokeWidth="0.5" strokeOpacity="0.5"/>
+        <text x="250" y="154" textAnchor="middle" fill="#f0913a" fontSize="18" fontWeight="bold">✈</text>
         {/* Cap chin strap */}
         <path d="M148 218 C150 245 158 262 168 272" stroke="#1e1e3a" strokeWidth="5" fill="none" strokeLinecap="round"/>
         <path d="M352 218 C350 245 342 262 332 272" stroke="#1e1e3a" strokeWidth="5" fill="none" strokeLinecap="round"/>

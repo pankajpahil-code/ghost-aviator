@@ -81,7 +81,7 @@ export default function HeroGhost() {
         {/* calm night aurora behind the apparition */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ transform: "translateZ(-120px)" }}>
           <div style={{ width: 480, height: 480, borderRadius: "50%",
-                        background: "radial-gradient(circle, rgba(0,180,255,0.18) 0%, rgba(80,60,220,0.12) 45%, transparent 70%)",
+                        background: "radial-gradient(circle, rgba(240,145,58,0.18) 0%, rgba(80,60,220,0.12) 45%, transparent 70%)",
                         filter: "blur(46px)" }} />
         </div>
 
@@ -102,7 +102,7 @@ export default function HeroGhost() {
         {/* soft breathing shadow beneath */}
         <div className="absolute left-1/2 pointer-events-none" style={{ bottom: -26, transform: "translateX(-50%)", width: 300, height: 100 }}>
           <div className="absolute inset-0" style={{ borderRadius: "50%",
-               background: "radial-gradient(ellipse, rgba(0,180,255,0.30) 0%, transparent 65%)",
+               background: "radial-gradient(ellipse, rgba(240,145,58,0.30) 0%, transparent 65%)",
                animation: "gaShadow 4.6s ease-in-out infinite" }} />
         </div>
 

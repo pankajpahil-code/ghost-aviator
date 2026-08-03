@@ -79,7 +79,7 @@ const JSON_LD = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`h-full ${inter.className}`}>
-      <body className="min-h-full flex flex-col" style={{ background: "#050510" }}>
+      <body className="min-h-full flex flex-col" style={{ background: "#0a0f14" }}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
         <ContentProtection />
         <ProgressSync />

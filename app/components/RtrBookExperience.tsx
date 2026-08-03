@@ -33,7 +33,7 @@ export default function RtrBookExperience({ subject }: { subject: Subject }) {
   const totalHrs = subject.chapters.reduce((s, c) => s + parseFloat(c.duration) || s, 0);
 
   return (
-    <div style={{ background: "#06040e" }} className="min-h-screen rtrx-root">
+    <div style={{ background: "#0b1117" }} className="min-h-screen rtrx-root">
       <style>{RTRX_CSS}</style>
 
       {/* ── Cinematic cover ─────────────────────────────────────────────── */}
@@ -194,18 +194,18 @@ const RTRX_CSS = `
 .rtrx-cover::after {
   content: ""; position: absolute; inset: 0; z-index: 1;
   background:
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(124,58,237,0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(171,121,77,0.28) 0%, transparent 60%),
     radial-gradient(ellipse 70% 50% at 80% 20%, rgba(239,68,68,0.16) 0%, transparent 60%),
-    linear-gradient(180deg, rgba(6,4,14,0.35) 0%, rgba(6,4,14,0.82) 70%, #06040e 100%);
+    linear-gradient(180deg, rgba(11,17,23,0.35) 0%, rgba(11,17,23,0.82) 70%, #0b1117 100%);
 }
 .rtrx-aurora {
   position: absolute; inset: -20% -10% auto -10%; height: 70%; z-index: 1; pointer-events: none;
   background:
-    conic-gradient(from 180deg at 50% 50%, rgba(124,58,237,0.0), rgba(56,189,248,0.22), rgba(251,191,36,0.18), rgba(239,68,68,0.20), rgba(124,58,237,0.0));
+    conic-gradient(from 180deg at 50% 50%, rgba(171,121,77,0.0), rgba(56,189,248,0.22), rgba(251,191,36,0.18), rgba(239,68,68,0.20), rgba(171,121,77,0.0));
   filter: blur(60px); opacity: 0.55; mix-blend-mode: screen;
 }
 .rtrx-cover-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; z-index: 1;
-  background: linear-gradient(180deg, transparent, #06040e); }
+  background: linear-gradient(180deg, transparent, #0b1117); }
 
 .rtrx-cover-inner {
   position: relative; z-index: 2; max-width: 64rem; margin: 0 auto;
@@ -273,10 +273,10 @@ const RTRX_CSS = `
 .rtrx-rune {
   flex-shrink: 0; width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
   font-size: 1.5rem; font-weight: 900; color: #fcd34d;
-  background: radial-gradient(circle at 30% 20%, rgba(251,191,36,0.22), rgba(124,58,237,0.10));
+  background: radial-gradient(circle at 30% 20%, rgba(251,191,36,0.22), rgba(171,121,77,0.10));
   border: 1px solid rgba(251,191,36,0.35); box-shadow: 0 0 30px rgba(251,191,36,0.15);
 }
-.rtrx-module-part { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #a78bfa; }
+.rtrx-module-part { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #e0a058; }
 .rtrx-module-title { font-size: clamp(1.15rem, 3vw, 1.5rem); font-weight: 900; color: #fff; margin: 2px 0; }
 .rtrx-module-hint { font-size: .85rem; color: #64748b; font-style: italic; }
 .rtrx-module-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(251,191,36,0.4), transparent); }
@@ -288,14 +288,14 @@ const RTRX_CSS = `
   position: relative; overflow: hidden; text-decoration: none; display: flex; flex-direction: column;
   padding: 20px; border-radius: 18px; min-height: 190px;
   background: linear-gradient(160deg, rgba(23,16,42,0.96), rgba(12,8,24,0.96));
-  border: 1px solid rgba(139,92,246,0.18);
+  border: 1px solid rgba(171,121,77,0.18);
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s;
 }
 .rtrx-card:hover {
   transform: translateY(-6px) rotateX(3deg);
   border-color: rgba(251,191,36,0.5);
-  box-shadow: 0 22px 50px rgba(124,58,237,0.28), 0 0 40px rgba(251,191,36,0.12);
+  box-shadow: 0 22px 50px rgba(171,121,77,0.28), 0 0 40px rgba(251,191,36,0.12);
 }
 .rtrx-card-sheen {
   position: absolute; top: 0; left: -60%; width: 55%; height: 100%; z-index: 1; pointer-events: none;
@@ -334,7 +334,7 @@ const RTRX_CSS = `
 
 /* Closing ----------------------------------------------------------------- */
 .rtrx-closing { margin-top: 64px; padding: 30px; border-radius: 18px; text-align: center;
-  background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.12), transparent 70%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(171,121,77,0.12), transparent 70%);
   border: 1px solid rgba(251,191,36,0.16); display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .rtrx-closing p { font-size: 1.05rem; font-style: italic; color: #cbd5e1; margin: 0; line-height: 1.6; }
 .rtrx-closing span { display: block; font-style: normal; font-size: .82rem; color: #64748b; margin-top: 8px; }

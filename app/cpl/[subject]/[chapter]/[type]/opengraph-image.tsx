@@ -37,8 +37,8 @@ export default async function Image({
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "space-between",
-          backgroundColor: "#050510",
-          backgroundImage: "linear-gradient(to bottom right, #050510, #0a0a20)",
+          backgroundColor: "#0a0f14",
+          backgroundImage: "linear-gradient(to bottom right, #0a0f14, #0a0a20)",
           padding: "80px",
           fontFamily: "sans-serif",
         }}

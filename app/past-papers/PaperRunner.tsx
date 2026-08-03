@@ -35,9 +35,9 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
   const reset = () => { setAnswers({}); setSubmitted(false); window.scrollTo({ top: 0 }); };
 
   return (
-    <div style={{ background: "#06040e" }} className="min-h-screen">
+    <div style={{ background: "#0b1117" }} className="min-h-screen">
       {/* Header */}
-      <div style={{ borderBottom: "1px solid rgba(124,58,237,0.25)" }}>
+      <div style={{ borderBottom: "1px solid rgba(171,121,77,0.25)" }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
           <Link href="/past-papers" className="inline-flex items-center gap-1 text-sm mb-4 no-underline" style={{ color: "#64748b" }}>
             <ArrowLeft className="w-4 h-4" /> All Papers
@@ -54,15 +54,15 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 mt-6">
           <div className="rounded-2xl p-6 flex flex-wrap items-center gap-5"
                style={{ background: passed ? "rgba(34,197,94,0.1)" : "rgba(255,32,96,0.1)", border: `1px solid ${passed ? "rgba(34,197,94,0.4)" : "rgba(255,32,96,0.4)"}` }}>
-            <Trophy className="w-10 h-10" style={{ color: passed ? "#22c55e" : "#ff2060" }} />
+            <Trophy className="w-10 h-10" style={{ color: passed ? "#22c55e" : "#c25a1e" }} />
             <div className="flex-1">
               <div className="text-2xl font-black text-white">{pct}% — {score}/{total} correct</div>
-              <div className="text-sm font-bold" style={{ color: passed ? "#22c55e" : "#ff2060" }}>
+              <div className="text-sm font-bold" style={{ color: passed ? "#22c55e" : "#c25a1e" }}>
                 {passed ? "PASS — exam standard met. Review the few you missed below." : `Below the ${passMark}% pass mark — review the answers below and re-attempt.`}
               </div>
             </div>
             <button onClick={reset} className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-black cursor-pointer border-0"
-                    style={{ background: "rgba(124,58,237,0.25)", color: "#c080ff" }}>
+                    style={{ background: "rgba(171,121,77,0.25)", color: "#f3c889" }}>
               <RotateCcw className="w-4 h-4" /> Re-attempt
             </button>
           </div>
@@ -75,9 +75,9 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
           const chosen = answers[qi];
           return (
             <div key={qi} className="rounded-2xl p-5"
-                 style={{ background: "rgba(20,10,40,0.6)", border: "1px solid rgba(124,58,237,0.25)" }}>
+                 style={{ background: "rgba(22,30,38,0.6)", border: "1px solid rgba(171,121,77,0.25)" }}>
               <div className="flex gap-3 mb-4">
-                <span className="font-black shrink-0" style={{ color: "#c080ff" }}>Q{qi + 1}.</span>
+                <span className="font-black shrink-0" style={{ color: "#f3c889" }}>Q{qi + 1}.</span>
                 <p className="text-white font-medium m-0">{q.q}</p>
               </div>
               <div className="flex flex-col gap-2">
@@ -85,7 +85,7 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
                   const isChosen = chosen === oi;
                   const isAns = q.ans === oi;
                   let border = "1px solid rgba(255,255,255,0.08)", bg = "rgba(255,255,255,0.02)", color = "#94a3b8";
-                  if (!submitted && isChosen) { border = "1px solid rgba(124,58,237,0.7)"; bg = "rgba(124,58,237,0.15)"; color = "#fff"; }
+                  if (!submitted && isChosen) { border = "1px solid rgba(171,121,77,0.7)"; bg = "rgba(171,121,77,0.15)"; color = "#fff"; }
                   if (submitted && isAns) { border = "1px solid rgba(34,197,94,0.6)"; bg = "rgba(34,197,94,0.12)"; color = "#86efac"; }
                   if (submitted && isChosen && !isAns) { border = "1px solid rgba(255,32,96,0.6)"; bg = "rgba(255,32,96,0.1)"; color = "#fda4af"; }
                   return (
@@ -95,13 +95,13 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
                       <span className="font-black shrink-0">({"abcde"[oi]})</span>
                       <span>{opt}</span>
                       {submitted && isAns && <CheckCircle className="w-4 h-4 ml-auto shrink-0" style={{ color: "#22c55e" }} />}
-                      {submitted && isChosen && !isAns && <XCircle className="w-4 h-4 ml-auto shrink-0" style={{ color: "#ff2060" }} />}
+                      {submitted && isChosen && !isAns && <XCircle className="w-4 h-4 ml-auto shrink-0" style={{ color: "#c25a1e" }} />}
                     </button>
                   );
                 })}
               </div>
               {submitted && q.exp && (
-                <div className="mt-3 px-4 py-3 rounded-xl text-sm" style={{ background: "rgba(0,212,255,0.06)", border: "1px solid rgba(0,212,255,0.2)", color: "#7dd3fc" }}>
+                <div className="mt-3 px-4 py-3 rounded-xl text-sm" style={{ background: "rgba(240,145,58,0.06)", border: "1px solid rgba(240,145,58,0.2)", color: "#7dd3fc" }}>
                   <span className="font-black">Explanation: </span>{q.exp}
                 </div>
               )}
@@ -112,7 +112,7 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
 
       {/* Submit bar */}
       {!submitted && (
-        <div className="sticky bottom-0 z-40" style={{ background: "rgba(6,4,14,0.95)", borderTop: "1px solid rgba(124,58,237,0.3)", backdropFilter: "blur(10px)" }}>
+        <div className="sticky bottom-0 z-40" style={{ background: "rgba(11,17,23,0.95)", borderTop: "1px solid rgba(171,121,77,0.3)", backdropFilter: "blur(10px)" }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
             <div className="text-sm font-bold" style={{ color: answered === total ? "#22c55e" : "#94a3b8" }}>
               {answered}/{total} answered
@@ -120,7 +120,7 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
             <button onClick={() => { setSubmitted(true); window.scrollTo({ top: 0, behavior: "smooth" }); }}
                     disabled={answered === 0}
                     className="px-6 py-3 rounded-xl text-sm font-black cursor-pointer border-0 disabled:opacity-40"
-                    style={{ background: "linear-gradient(135deg,#9020ff,#ff2060)", color: "#fff" }}>
+                    style={{ background: "linear-gradient(135deg,#c25a1e,#c25a1e)", color: "#fff" }}>
               Submit Paper
             </button>
           </div>

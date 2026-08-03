@@ -39,8 +39,8 @@ const BOOKS: Book[] = [
     author: "Capt. Pankaj Pahil",
     coverImage: "/content/human-performance/_assets/images/cover-front.webp",
     accentFrom: "#fbbf24",
-    accentTo: "#a855f7",
-    glowColor: "rgba(168,85,247,0.35)",
+    accentTo: "#e0a058",
+    glowColor: "rgba(243,200,137,0.35)",
     chapters: 26,
     questions: 0,
     studyHours: 40,
@@ -175,7 +175,7 @@ export default function BooksPage() {
   const upcoming = BOOKS.filter(b => b.status === "coming-soon");
 
   return (
-    <div style={{ background: "#06040e" }} className="min-h-screen bk-root">
+    <div style={{ background: "#0b1117" }} className="min-h-screen bk-root">
       <style>{BK_CSS}</style>
 
       {/* ── Breadcrumb ───────────────────────────────────────────── */}
@@ -386,7 +386,7 @@ const BK_CSS = `
 }
 .bk-hero-glow {
   position: absolute; inset: -40% -20% auto -20%; height: 80%; z-index: 0; pointer-events: none;
-  background: conic-gradient(from 200deg at 50% 60%, rgba(251,191,36,0.0), rgba(124,58,237,0.18), rgba(251,191,36,0.14), rgba(239,68,68,0.12), rgba(124,58,237,0.0));
+  background: conic-gradient(from 200deg at 50% 60%, rgba(251,191,36,0.0), rgba(171,121,77,0.18), rgba(251,191,36,0.14), rgba(239,68,68,0.12), rgba(171,121,77,0.0));
   filter: blur(80px); opacity: 0.6; mix-blend-mode: screen;
 }
 .bk-hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
@@ -401,7 +401,7 @@ const BK_CSS = `
   line-height: 1.05; margin: 0 0 18px;
 }
 .bk-hero-accent {
-  background: linear-gradient(100deg, #fbbf24, #ef4444, #c084fc);
+  background: linear-gradient(100deg, #fbbf24, #ef4444, #f3c889);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
 }
 .bk-hero-sub {
@@ -565,7 +565,7 @@ const BK_CSS = `
 .bk-mini-face {
   position: absolute; left: 12px; top: 0; right: 0; bottom: 0;
   border-radius: 0 6px 6px 0; border: 1px solid; overflow: hidden;
-  background: rgba(15,8,30,0.9);
+  background: rgba(17,24,32,0.9);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 2px; padding: 8px 6px;
 }

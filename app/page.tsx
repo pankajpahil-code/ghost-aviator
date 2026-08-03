@@ -33,7 +33,7 @@ const services = [
 
 export default function Home() {
   return (
-    <div style={{ background: "#06040e" }}>
+    <div style={{ background: "#0b1117" }}>
 
       {/* ══════════════════ HERO ══════════════════
           The mascot plate carries the whole frame now, so the old two-column
@@ -107,9 +107,9 @@ export default function Home() {
         <Link href="/live-classes" className="group relative block rounded-3xl overflow-hidden no-underline"
               style={{ border:"1px solid rgba(255,60,60,0.45)", boxShadow:"0 0 40px rgba(255,40,40,0.15)" }}>
           {/* Animated sheen background */}
-          <div className="absolute inset-0" style={{ background:"linear-gradient(120deg, rgba(255,30,30,0.14), rgba(150,0,255,0.14) 45%, rgba(0,180,255,0.1))" }}/>
+          <div className="absolute inset-0" style={{ background:"linear-gradient(120deg, rgba(255,30,30,0.14), rgba(194,90,30,0.14) 45%, rgba(240,145,58,0.1))" }}/>
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-               style={{ background:"linear-gradient(120deg, rgba(255,30,30,0.22), rgba(150,0,255,0.22) 45%, rgba(0,180,255,0.16))" }}/>
+               style={{ background:"linear-gradient(120deg, rgba(255,30,30,0.22), rgba(194,90,30,0.22) 45%, rgba(240,145,58,0.16))" }}/>
 
           <div className="relative z-10 px-6 sm:px-10 py-8 flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
             {/* LIVE badge */}
@@ -124,7 +124,7 @@ export default function Home() {
             {/* Copy */}
             <div className="flex-1 text-center lg:text-left">
               <div className="text-xl sm:text-2xl font-black text-white leading-snug mb-1">
-                Learn directly from <span style={{ background:"linear-gradient(135deg,#ff6000,#ff2060,#c020ff)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Capt. Pankaj Pahil</span> — live online batches
+                Learn directly from <span style={{ background:"linear-gradient(135deg,#ff6000,#c25a1e,#f0913a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Capt. Pankaj Pahil</span> — live online batches
               </div>
               <div className="text-sm font-semibold" style={{ color:"#94a3b8" }}>
                 🌤️ Meteorology · ⚖️ Air Regs · 🗺️ Gen Nav · 📡 Radio Nav · 🧭 Instruments &nbsp;—&nbsp;
@@ -134,7 +134,7 @@ export default function Home() {
 
             {/* CTA */}
             <div className="shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-black"
-                 style={{ background:"linear-gradient(135deg,#ff3030,#c020ff)", color:"#fff", boxShadow:"0 0 25px rgba(255,40,40,0.4)" }}>
+                 style={{ background:"linear-gradient(135deg,#ff3030,#f0913a)", color:"#fff", boxShadow:"0 0 25px rgba(255,40,40,0.4)" }}>
               Admissions Open — Join Now <ArrowRight className="w-4 h-4"/>
             </div>
           </div>
@@ -144,15 +144,15 @@ export default function Home() {
       {/* ══════════════════ INSTRUCTOR TEASER ══════════════════ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
         <Link href="/about" className="flex items-center justify-between gap-4 flex-wrap rounded-2xl px-6 py-4 no-underline"
-              style={{ background:"rgba(15,8,30,0.95)", border:"1px solid rgba(180,100,255,0.22)" }}>
+              style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(243,200,137,0.22)" }}>
           <div className="flex items-center gap-3 text-sm" style={{ color:"#94a3b8" }}>
             <span className="text-xl">👨‍✈️</span>
             <span>
-              Built and taught by <strong style={{ color:"#c080ff" }}>Capt. Pankaj Pahil</strong> — pilot,
+              Built and taught by <strong style={{ color:"#f3c889" }}>Capt. Pankaj Pahil</strong> — pilot,
               DGCA flight &amp; ground instructor, 20+ years in aviation, author of two aviation books.
             </span>
           </div>
-          <span className="text-sm font-bold whitespace-nowrap" style={{ color:"#c080ff" }}>Meet the Captain →</span>
+          <span className="text-sm font-bold whitespace-nowrap" style={{ color:"#f3c889" }}>Meet the Captain →</span>
         </Link>
       </section>
 
@@ -160,10 +160,10 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center mb-14">
           <div className="inline-block text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-5"
-               style={{ color:"#c080ff", border:"1px solid rgba(180,100,255,0.35)", background:"rgba(180,100,255,0.08)", letterSpacing:"0.18em" }}>
+               style={{ color:"#f3c889", border:"1px solid rgba(243,200,137,0.35)", background:"rgba(243,200,137,0.08)", letterSpacing:"0.18em" }}>
             WHERE DO YOU WANT TO FLY?
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">Choose Your <span style={{ background:"linear-gradient(135deg,#c080ff,#ff2060)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Licence Path</span></h2>
+          <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">Choose Your <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Licence Path</span></h2>
           <p style={{ color:"#64748b" }}>Select your exam goal — we&apos;ll guide you through every chapter.</p>
         </div>
 
@@ -171,34 +171,34 @@ export default function Home() {
 
           {/* CPL Card */}
           <Link href="/cpl" className="group relative rounded-3xl overflow-hidden no-underline block"
-                style={{ background:"linear-gradient(135deg,rgba(124,58,237,0.15),rgba(255,32,96,0.1))", border:"1px solid rgba(124,58,237,0.4)" }}>
+                style={{ background:"linear-gradient(135deg,rgba(171,121,77,0.15),rgba(255,32,96,0.1))", border:"1px solid rgba(171,121,77,0.4)" }}>
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                 style={{ background:"linear-gradient(135deg,rgba(124,58,237,0.25),rgba(255,32,96,0.18))" }}/>
+                 style={{ background:"linear-gradient(135deg,rgba(171,121,77,0.25),rgba(255,32,96,0.18))" }}/>
             <div className="relative z-10 p-10">
               <div className="flex items-start justify-between mb-8">
                 <div>
-                  <div className="text-xs font-bold tracking-widest mb-3" style={{ color:"rgba(180,100,255,0.7)", letterSpacing:"0.2em" }}>DGCA INDIA</div>
+                  <div className="text-xs font-bold tracking-widest mb-3" style={{ color:"rgba(243,200,137,0.7)", letterSpacing:"0.2em" }}>DGCA INDIA</div>
                   <h3 className="text-4xl font-black text-white mb-2">CPL</h3>
-                  <p className="text-lg font-semibold" style={{ color:"#c080ff" }}>Commercial Pilot Licence</p>
+                  <p className="text-lg font-semibold" style={{ color:"#f3c889" }}>Commercial Pilot Licence</p>
                 </div>
                 <div className="text-6xl opacity-80">🛩️</div>
               </div>
               <div className="grid grid-cols-3 gap-3 mb-8">
                 {[[`${CPL_SUBJECTS.length}`,"Subjects"],[`${CPL_CHAPTERS}`,"Chapters"],[CPL_Q,"Questions"]].map(([v,l]) => (
-                  <div key={l} className="p-3 rounded-xl text-center" style={{ background:"rgba(124,58,237,0.15)", border:"1px solid rgba(124,58,237,0.25)" }}>
+                  <div key={l} className="p-3 rounded-xl text-center" style={{ background:"rgba(171,121,77,0.15)", border:"1px solid rgba(171,121,77,0.25)" }}>
                     <div className="text-xl font-black text-white">{v}</div>
-                    <div className="text-xs" style={{ color:"#7c3aed" }}>{l}</div>
+                    <div className="text-xs" style={{ color:"#ab794d" }}>{l}</div>
                   </div>
                 ))}
               </div>
               <ul className="flex flex-col gap-2 mb-8">
                 {CPL_SUBJECTS.map(s => s.name).map(s => (
                   <li key={s} className="flex items-center gap-2 text-sm" style={{ color:"#94a3b8" }}>
-                    <CheckCircle className="w-4 h-4" style={{ color:"#7c3aed" }}/> {s}
+                    <CheckCircle className="w-4 h-4" style={{ color:"#ab794d" }}/> {s}
                   </li>
                 ))}
               </ul>
-              <div className="flex items-center gap-2 font-black text-lg" style={{ color:"#c080ff" }}>
+              <div className="flex items-center gap-2 font-black text-lg" style={{ color:"#f3c889" }}>
                 Enter CPL Section <ArrowRight className="w-5 h-5"/>
               </div>
             </div>
@@ -206,34 +206,34 @@ export default function Home() {
 
           {/* ATPL Card */}
           <Link href="/atpl" className="group relative rounded-3xl overflow-hidden no-underline block"
-                style={{ background:"linear-gradient(135deg,rgba(0,180,255,0.12),rgba(255,120,0,0.1))", border:"1px solid rgba(0,180,255,0.4)" }}>
+                style={{ background:"linear-gradient(135deg,rgba(240,145,58,0.12),rgba(255,120,0,0.1))", border:"1px solid rgba(240,145,58,0.4)" }}>
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                 style={{ background:"linear-gradient(135deg,rgba(0,180,255,0.2),rgba(255,120,0,0.15))" }}/>
+                 style={{ background:"linear-gradient(135deg,rgba(240,145,58,0.2),rgba(255,120,0,0.15))" }}/>
             <div className="relative z-10 p-10">
               <div className="flex items-start justify-between mb-8">
                 <div>
-                  <div className="text-xs font-bold tracking-widest mb-3" style={{ color:"rgba(0,212,255,0.7)", letterSpacing:"0.2em" }}>DGCA INDIA</div>
+                  <div className="text-xs font-bold tracking-widest mb-3" style={{ color:"rgba(240,145,58,0.7)", letterSpacing:"0.2em" }}>DGCA INDIA</div>
                   <h3 className="text-4xl font-black text-white mb-2">ATPL</h3>
-                  <p className="text-lg font-semibold" style={{ color:"#00d4ff" }}>Airline Transport Pilot Licence</p>
+                  <p className="text-lg font-semibold" style={{ color:"#f0913a" }}>Airline Transport Pilot Licence</p>
                 </div>
                 <div className="text-6xl opacity-80">✈️</div>
               </div>
               <div className="grid grid-cols-3 gap-3 mb-8">
                 {[[`${ATPL_SUBJECTS.length}`,"Subjects"],[`${ATPL_CHAPTERS}`,"Chapters"],[ATPL_Q,"Questions"]].map(([v,l]) => (
-                  <div key={l} className="p-3 rounded-xl text-center" style={{ background:"rgba(0,180,255,0.1)", border:"1px solid rgba(0,180,255,0.2)" }}>
+                  <div key={l} className="p-3 rounded-xl text-center" style={{ background:"rgba(240,145,58,0.1)", border:"1px solid rgba(240,145,58,0.2)" }}>
                     <div className="text-xl font-black text-white">{v}</div>
-                    <div className="text-xs" style={{ color:"#00d4ff" }}>{l}</div>
+                    <div className="text-xs" style={{ color:"#f0913a" }}>{l}</div>
                   </div>
                 ))}
               </div>
               <ul className="flex flex-col gap-2 mb-8">
                 {ATPL_SUBJECTS.map(s => s.name).map(s => (
                   <li key={s} className="flex items-center gap-2 text-sm" style={{ color:"#94a3b8" }}>
-                    <CheckCircle className="w-4 h-4" style={{ color:"#00d4ff" }}/> {s}
+                    <CheckCircle className="w-4 h-4" style={{ color:"#f0913a" }}/> {s}
                   </li>
                 ))}
               </ul>
-              <div className="flex items-center gap-2 font-black text-lg" style={{ color:"#00d4ff" }}>
+              <div className="flex items-center gap-2 font-black text-lg" style={{ color:"#f0913a" }}>
                 Enter ATPL Section <ArrowRight className="w-5 h-5"/>
               </div>
             </div>
@@ -248,16 +248,16 @@ export default function Home() {
                style={{ color:"#ff6060", border:"1px solid rgba(255,60,60,0.3)", background:"rgba(255,60,60,0.08)", letterSpacing:"0.18em" }}>
             WHAT&apos;S INSIDE
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">Everything Per <span style={{ background:"linear-gradient(135deg,#ff4400,#ff0080)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Chapter</span></h2>
+          <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">Everything Per <span style={{ background:"linear-gradient(135deg,#ff4400,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Chapter</span></h2>
           <p style={{ color:"#64748b" }}>Not just a question bank. A complete structured learning system.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((s, i) => (
             <div key={s.label} className="p-6 rounded-2xl relative overflow-hidden"
-                 style={{ background:"rgba(15,8,30,0.95)", border:"1px solid rgba(180,100,255,0.12)" }}>
-              <div style={{ position:"absolute", top:0, left:0, width:3, height:"100%", background:`linear-gradient(to bottom, ${["#7c3aed","#ff4444","#00d4ff","#f59e0b","#10b981","#c080ff"][i]}, transparent)` }}/>
-              <s.icon className="w-8 h-8 mb-4" style={{ color:["#7c3aed","#ff4444","#00d4ff","#f59e0b","#10b981","#c080ff"][i] }}/>
+                 style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(243,200,137,0.12)" }}>
+              <div style={{ position:"absolute", top:0, left:0, width:3, height:"100%", background:`linear-gradient(to bottom, ${["#ab794d","#ff4444","#f0913a","#f59e0b","#10b981","#f3c889"][i]}, transparent)` }}/>
+              <s.icon className="w-8 h-8 mb-4" style={{ color:["#ab794d","#ff4444","#f0913a","#f59e0b","#10b981","#f3c889"][i] }}/>
               <h3 className="font-bold text-white mb-1">{s.label}</h3>
               <p className="text-sm" style={{ color:"#64748b" }}>{s.desc}</p>
             </div>
@@ -265,11 +265,11 @@ export default function Home() {
         </div>
 
         {/* Progress path visual */}
-        <div className="mt-16 p-8 rounded-3xl" style={{ background:"rgba(15,8,30,0.95)", border:"1px solid rgba(180,100,255,0.2)" }}>
+        <div className="mt-16 p-8 rounded-3xl" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(243,200,137,0.2)" }}>
           <h3 className="text-xl font-black text-white mb-6 text-center">Your Learning Journey</h3>
           <div className="flex flex-wrap justify-center items-center gap-2">
             {[
-              { label:"Chapter Study",   icon:"📚", color:"#7c3aed" },
+              { label:"Chapter Study",   icon:"📚", color:"#ab794d" },
               { label:"→",              icon:"",   color:"#475569" },
               { label:"Chapter Quiz",   icon:"✅", color:"#f97316" },
               { label:"→",              icon:"",   color:"#475569" },
@@ -279,7 +279,7 @@ export default function Home() {
               { label:"→",              icon:"",   color:"#475569" },
               { label:"Sample Papers",  icon:"📋", color:"#ef4444" },
               { label:"→",              icon:"",   color:"#475569" },
-              { label:"DGCA EXAM",      icon:"✈️", color:"#c080ff" },
+              { label:"DGCA EXAM",      icon:"✈️", color:"#f3c889" },
             ].map((step, i) => (
               step.label === "→"
                 ? <span key={i} className="text-2xl font-black" style={{ color:"#334155" }}>→</span>
@@ -296,12 +296,12 @@ export default function Home() {
       {/* ══════════════════ PROMISE ══════════════════ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-24">
         <div className="relative rounded-3xl overflow-hidden p-12 text-center"
-             style={{ background:"linear-gradient(135deg,rgba(255,30,30,0.07),rgba(150,0,255,0.07),rgba(0,180,255,0.05))", border:"1px solid rgba(180,100,255,0.25)" }}>
+             style={{ background:"linear-gradient(135deg,rgba(255,30,30,0.07),rgba(194,90,30,0.07),rgba(240,145,58,0.05))", border:"1px solid rgba(243,200,137,0.25)" }}>
           <div className="text-5xl mb-4">🇮🇳</div>
           <h2 className="text-3xl font-black text-white mb-4">Free for Every Indian Student</h2>
           <p className="max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color:"#94a3b8" }}>
             Ghost Aviator&apos;s self-study is <strong style={{ color:"#ff6060" }}>always free</strong> — for every student, everywhere in India.
-            Coupon code: <span className="font-black px-2 py-0.5 rounded" style={{ background:"rgba(180,100,255,0.15)", color:"#c080ff", border:"1px solid rgba(180,100,255,0.3)" }}>FREEPILOT</span>
+            Coupon code: <span className="font-black px-2 py-0.5 rounded" style={{ background:"rgba(243,200,137,0.15)", color:"#f3c889", border:"1px solid rgba(243,200,137,0.3)" }}>FREEPILOT</span>
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             {["Free for every student","No credit card needed","Free 1 year for all","Cancel anytime"].map(item => (

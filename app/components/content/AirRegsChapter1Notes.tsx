@@ -22,7 +22,7 @@ const BOX: Record<string, { border: string; bg: string; title: string }> = {
   blue:   { border: "#60a5fa", bg: "rgba(59,130,246,0.07)",   title: "#60a5fa" },
   green:  { border: "#4ade80", bg: "rgba(34,197,94,0.07)",    title: "#4ade80" },
   yellow: { border: "#fbbf24", bg: "rgba(234,179,8,0.07)",    title: "#fbbf24" },
-  purple: { border: "#c084fc", bg: "rgba(168,85,247,0.07)",   title: "#c084fc" },
+  purple: { border: "#f3c889", bg: "rgba(243,200,137,0.07)",   title: "#f3c889" },
   gray:   { border: "rgba(255,255,255,0.12)", bg: "rgba(255,255,255,0.03)", title: "#94a3b8" },
 };
 
@@ -75,12 +75,12 @@ function SectionBlock({ num, title, children }: { num: string; title: string; ch
   return (
     <div style={{ marginTop: 32 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12, background: "#1e0845", padding: "12px 20px", borderRadius: "8px 8px 0 0" }}>
-        <span style={{ fontFamily: "monospace", fontSize: "0.75rem", fontWeight: 700, background: "#7c3aed", color: "#fff", padding: "2px 9px", borderRadius: 4 }}>
+        <span style={{ fontFamily: "monospace", fontSize: "0.75rem", fontWeight: 700, background: "#ab794d", color: "#fff", padding: "2px 9px", borderRadius: 4 }}>
           SECTION {num}
         </span>
         <h2 style={{ color: "#fff", fontWeight: 800, fontSize: "1.05rem", margin: 0 }}>{title}</h2>
       </div>
-      <div style={{ border: "1px solid rgba(124,58,237,0.3)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "20px 22px", background: "rgba(15,8,30,0.97)" }}>
+      <div style={{ border: "1px solid rgba(171,121,77,0.3)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "20px 22px", background: "rgba(17,24,32,0.97)" }}>
         {children}
       </div>
     </div>
@@ -140,7 +140,7 @@ function DTable({ heads, rows }: { heads: string[]; rows: (string | ReactNode)[]
     <div style={{ overflowX: "auto", margin: "10px 0" }}>
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
         <thead>
-          <tr style={{ background: "rgba(124,58,237,0.18)", borderBottom: "1px solid rgba(124,58,237,0.3)" }}>
+          <tr style={{ background: "rgba(171,121,77,0.18)", borderBottom: "1px solid rgba(171,121,77,0.3)" }}>
             {heads.map((h, i) => (
               <th key={i} style={{ padding: "6px 10px", color: "#c4b5fd", fontWeight: 700, textAlign: "left", whiteSpace: "nowrap" }}>{h}</th>
             ))}
@@ -171,7 +171,7 @@ function TdRed({ children }: { children: ReactNode }) {
 
 export default function AirRegsChapter1Notes({ track, subject, chapter, prevChapter, nextChapter, videos }: Props) {
   return (
-    <div style={{ background: "#06040e" }} className="min-h-screen">
+    <div style={{ background: "#0b1117" }} className="min-h-screen">
 
       {/* ── Header ─────────────────────────────────────────────────── */}
       <div className="relative" style={{ borderBottom: `1px solid ${subject.color}25` }}>
@@ -626,7 +626,7 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
                 padding: "8px 10px",
                 background: std ? "rgba(234,179,8,0.05)" : "rgba(255,255,255,0.02)",
               }}>
-                <div style={{ fontFamily: "monospace", fontSize: "0.72rem", fontWeight: 700, color: std ? "#fbbf24" : "#7c3aed", marginBottom: 3 }}>{n}</div>
+                <div style={{ fontFamily: "monospace", fontSize: "0.72rem", fontWeight: 700, color: std ? "#fbbf24" : "#ab794d", marginBottom: 3 }}>{n}</div>
                 <div style={{ fontSize: "0.78rem", color: "#94a3b8" }}>{t}</div>
               </div>
             ))}
@@ -815,7 +815,7 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
               { year: "1999", name: "Montreal Convention",             desc: "Aimed at replacing Warsaw Convention system. India did NOT ratify. No financial limits on liability for passenger injury or death. For damages up to 113,100 SDRs, air carrier cannot contest claims." },
             ].map(({ year, name, desc }) => (
               <div key={year} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "8px 12px", borderRadius: 7, background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                <div style={{ fontFamily: "monospace", fontWeight: 700, color: "#7c3aed", fontSize: "0.8rem", minWidth: 36, paddingTop: 1 }}>{year}</div>
+                <div style={{ fontFamily: "monospace", fontWeight: 700, color: "#ab794d", fontSize: "0.8rem", minWidth: 36, paddingTop: 1 }}>{year}</div>
                 <div>
                   <div style={{ fontWeight: 700, color: "#e2e8f0", fontSize: "0.875rem" }}>{name}</div>
                   <div style={{ color: "#94a3b8", fontSize: "0.8rem", marginTop: 2 }}>{desc}</div>
@@ -972,7 +972,7 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
             SECTION 9 — GOLDEN RULES (EXAM CHECKLIST)
         ══════════════════════════════════════════════════════════════ */}
         <SectionBlock num="09" title="Captain's Exam Checklist — Golden Rules to Memorize">
-          <div style={{ border: "1px solid rgba(124,58,237,0.35)", borderRadius: 10, padding: 18, background: "rgba(124,58,237,0.05)" }}>
+          <div style={{ border: "1px solid rgba(171,121,77,0.35)", borderRadius: 10, padding: 18, background: "rgba(171,121,77,0.05)" }}>
             <div style={{ color: "#c4b5fd", fontWeight: 800, fontSize: "1rem", marginBottom: 12 }}>⭐ Golden Rules — These Come Up Again &amp; Again in DGCA Exams</div>
             <ol style={{ color: "#d1d5db", fontSize: "0.875rem", lineHeight: 1.75, paddingLeft: 22, display: "grid", gap: 6 }}>
               <li><strong style={{ color: "#e2e8f0" }}>Paris Convention (1919)</strong> established <strong style={{ color: "#fbbf24" }}>ICAN</strong>. The Chicago Convention (1944) established <strong style={{ color: "#fbbf24" }}>ICAO</strong>. These are DIFFERENT bodies.</li>
@@ -1015,7 +1015,7 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
 
         {/* ── Quiz CTA ─────────────────────────────────────────────── */}
         <div className="rounded-2xl p-8 mt-8 mb-10 text-center"
-          style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(124,58,237,0.25)" }}>
+          style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(171,121,77,0.25)" }}>
           <div className="text-4xl mb-3">✅</div>
           <h3 className="text-lg font-black text-white mb-2">Ready to Test Yourself?</h3>
           <p className="text-sm max-w-md mx-auto mb-6" style={{ color: "#64748b" }}>
@@ -1023,7 +1023,7 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
           </p>
           <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
             className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl text-sm font-black no-underline"
-            style={{ background: "linear-gradient(135deg, #7c3aed, #c020ff)", color: "#fff" }}>
+            style={{ background: "linear-gradient(135deg, #ab794d, #f0913a)", color: "#fff" }}>
             <ListChecks className="w-4 h-4" /> Start Chapter Quiz →
           </Link>
         </div>
@@ -1033,7 +1033,7 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
           {prevChapter ? (
             <Link href={`/${track}/${subject.id}/${prevChapter.id}/notes`}
               className="flex items-center gap-2 px-4 py-3 rounded-xl no-underline min-w-0"
-              style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
+              style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
               <ChevronLeft className="w-4 h-4 flex-shrink-0" />
               <div className="text-left min-w-0">
                 <div className="text-xs truncate" style={{ color: "#475569" }}>Previous</div>
@@ -1051,7 +1051,7 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
           {nextChapter ? (
             <Link href={`/${track}/${subject.id}/${nextChapter.id}/notes`}
               className="flex items-center gap-2 px-4 py-3 rounded-xl no-underline min-w-0"
-              style={{ background: "rgba(15,8,30,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
+              style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
               <div className="text-right min-w-0">
                 <div className="text-xs truncate" style={{ color: "#475569" }}>Next</div>
                 <div className="text-sm font-semibold truncate">Ch.{nextChapter.number}: {nextChapter.title}</div>

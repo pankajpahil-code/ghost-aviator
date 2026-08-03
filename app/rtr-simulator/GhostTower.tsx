@@ -636,7 +636,7 @@ export default function GhostTower() {
   }, [phase, outcomes, scn, disciplineFinal]);
 
   /* ================================ Render ================================= */
-  const cyan = "#00d4ff";
+  const cyan = "#f0913a";
   const amber = "#fbbf24";
 
   if (phase === "brief") {
@@ -672,7 +672,7 @@ export default function GhostTower() {
             <button key={ft} onClick={() => setFlightType(ft)}
                     className="text-xs font-black px-3 py-2 rounded-lg"
                     style={flightType === ft
-                      ? { background: "rgba(0,212,255,0.12)", border: `1px solid ${cyan}`, color: cyan }
+                      ? { background: "rgba(240,145,58,0.12)", border: `1px solid ${cyan}`, color: cyan }
                       : { border: "1px solid rgba(255,255,255,0.15)", color: "#94a3b8" }}>
               {label}{gated && !user && " 🔒"}
             </button>
@@ -842,7 +842,7 @@ export default function GhostTower() {
   return (
     <div className="glass-card overflow-hidden select-none">
       {/* Radio head */}
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 px-4 sm:px-6 py-3" style={{ background: "rgba(0,0,0,0.35)", borderBottom: "1px solid rgba(0,212,255,0.15)" }}>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 px-4 sm:px-6 py-3" style={{ background: "rgba(0,0,0,0.35)", borderBottom: "1px solid rgba(240,145,58,0.15)" }}>
         <Radio className="w-5 h-5" style={{ color: cyan }} />
         <div className="font-mono font-black text-lg tracking-widest" title="Active frequency" style={{ color: amber }}>{fmtFreq(activeCents)}</div>
         {/* Standby tuner + flip — handoffs must actually be TUNED */}
@@ -901,7 +901,7 @@ export default function GhostTower() {
                   style={{ background: "rgba(255,255,255,0.06)", color: "#94a3b8", border: "1px solid rgba(255,255,255,0.1)" }}
                   title="ATC voice — depends on what's installed on your device">
             {voices.slice(0, 8).map(v => (
-              <option key={v.voiceURI} value={v.voiceURI} style={{ background: "#0f081e", color: "#fff" }}>{v.name}</option>
+              <option key={v.voiceURI} value={v.voiceURI} style={{ background: "#111a22", color: "#fff" }}>{v.name}</option>
             ))}
           </select>
         )}
@@ -917,7 +917,7 @@ export default function GhostTower() {
               <div className="max-w-[85%] rounded-xl px-3 py-2 text-sm"
                    style={e.who === "atc"
                      ? { background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.25)", color: "#fde68a" }
-                     : { background: "rgba(0,212,255,0.08)", border: "1px solid rgba(0,212,255,0.25)", color: "#a5f3fc" }}>
+                     : { background: "rgba(240,145,58,0.08)", border: "1px solid rgba(240,145,58,0.25)", color: "#a5f3fc" }}>
                 <span className="block text-[10px] font-bold tracking-widest mb-0.5" style={{ color: e.who === "atc" ? amber : cyan }}>
                   {e.who === "atc" ? "ATC" : scn.callsign}
                 </span>
@@ -940,7 +940,7 @@ export default function GhostTower() {
           <>
             {/* composed line */}
             <div className="min-h-[38px] rounded-lg px-3 py-2 text-sm font-mono flex items-center flex-wrap gap-1"
-                 style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(0,212,255,0.3)", color: "#cbd5e1" }}>
+                 style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(240,145,58,0.3)", color: "#cbd5e1" }}>
               {composed.length === 0
                 ? <span style={{ color: "#475569" }}>{inputOpen ? "Compose your transmission…" : "Stand by…"}</span>
                 : composed.join(" ")}
@@ -973,7 +973,7 @@ export default function GhostTower() {
               ? (micAvailable ? "Tap the mic to speak — or type your transmission…" : "Type your transmission…")
               : "Stand by…"}
             className="w-full rounded-lg px-3 py-2.5 text-sm font-mono disabled:opacity-40"
-            style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(0,212,255,0.3)", color: "#e2e8f0", outline: "none" }}
+            style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(240,145,58,0.3)", color: "#e2e8f0", outline: "none" }}
           />
         )}
         <div className="flex items-center gap-2">
@@ -1005,7 +1005,7 @@ export default function GhostTower() {
                     className={`ml-auto inline-flex items-center justify-center rounded-full w-16 h-16 font-black disabled:opacity-30 transition-transform active:scale-95 ${ptt ? "animate-pulse" : ""}`}
                     title={ptt ? "Tap to send your transmission" : "Tap to start speaking"}
                     aria-label={ptt ? "Tap to send" : "Tap to speak"}
-                    style={{ background: ptt ? "#ef4444" : "rgba(0,212,255,0.12)", border: `2px solid ${ptt ? "#ef4444" : cyan}`, color: ptt ? "#fff" : cyan, touchAction: "manipulation" }}>
+                    style={{ background: ptt ? "#ef4444" : "rgba(240,145,58,0.12)", border: `2px solid ${ptt ? "#ef4444" : cyan}`, color: ptt ? "#fff" : cyan, touchAction: "manipulation" }}>
               <Mic className="w-7 h-7" />
             </button>
           )}
@@ -1014,7 +1014,7 @@ export default function GhostTower() {
           <div className="text-center text-xs font-bold py-1 rounded-lg"
                style={ptt
                  ? { color: "#fff", background: "rgba(239,68,68,0.9)" }
-                 : { color: cyan, background: "rgba(0,212,255,0.08)", border: `1px solid ${cyan}33` }}>
+                 : { color: cyan, background: "rgba(240,145,58,0.08)", border: `1px solid ${cyan}33` }}>
             {ptt ? "🔴 LISTENING — speak now, then TAP THE MIC AGAIN to send" : "🎤 Tap the mic to speak your call"}
           </div>
         )}

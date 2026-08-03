@@ -49,11 +49,11 @@ export default function Calculator() {
       
       {/* Total Display */}
       <div className="relative overflow-hidden rounded-2xl p-8 shadow-2xl text-center"
-           style={{ background: "linear-gradient(135deg, rgba(6,4,14,0.9), rgba(15,8,30,0.95))", border: "1px solid rgba(180,100,255,0.2)" }}>
+           style={{ background: "linear-gradient(135deg, rgba(11,17,23,0.9), rgba(17,24,32,0.95))", border: "1px solid rgba(243,200,137,0.2)" }}>
         <div className="absolute top-0 right-0 p-4 opacity-10"><CalcIcon size={120} /></div>
         <h2 className="text-xl font-bold text-slate-400 uppercase tracking-widest mb-2">Estimated Total Cost</h2>
         <div className="text-5xl md:text-7xl font-black mb-4"
-             style={{ background: "linear-gradient(135deg, #00d4ff, #c080ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+             style={{ background: "linear-gradient(135deg, #f0913a, #f3c889)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
           {fmt(totalCost)}
         </div>
         <p className="text-slate-300 max-w-2xl mx-auto text-sm">
@@ -70,14 +70,14 @@ export default function Calculator() {
         <div className="mt-8 h-4 flex rounded-full overflow-hidden bg-slate-800 w-full">
           <div style={{ width: `${(flightCost / totalCost) * 100}%`, background: "#0ea5e9" }} title={`Flight: ${fmt(flightCost)}`} />
           <div style={{ width: `${(livingCost / totalCost) * 100}%`, background: "#f59e0b" }} title={`Living: ${fmt(livingCost)}`} />
-          <div style={{ width: `${(groundSchool / totalCost) * 100}%`, background: "#7c3aed" }} title={`Ground School: ${fmt(groundSchool)}`} />
+          <div style={{ width: `${(groundSchool / totalCost) * 100}%`, background: "#ab794d" }} title={`Ground School: ${fmt(groundSchool)}`} />
           <div style={{ width: `${(dgcaCost / totalCost) * 100}%`, background: "#10b981" }} title={`DGCA: ${fmt(dgcaCost)}`} />
           <div style={{ width: `${(contingency / totalCost) * 100}%`, background: "#ef4444" }} title={`Contingency: ${fmt(contingency)}`} />
         </div>
         <div className="flex flex-wrap justify-center gap-4 mt-4 text-xs font-bold text-slate-400">
           <span className="flex items-center gap-1"><div className="w-3 h-3 rounded-full bg-[#0ea5e9]"></div> Flying</span>
           <span className="flex items-center gap-1"><div className="w-3 h-3 rounded-full bg-[#f59e0b]"></div> Living</span>
-          <span className="flex items-center gap-1"><div className="w-3 h-3 rounded-full bg-[#7c3aed]"></div> Ground</span>
+          <span className="flex items-center gap-1"><div className="w-3 h-3 rounded-full bg-[#ab794d]"></div> Ground</span>
           <span className="flex items-center gap-1"><div className="w-3 h-3 rounded-full bg-[#10b981]"></div> DGCA/Med</span>
           <span className="flex items-center gap-1"><div className="w-3 h-3 rounded-full bg-[#ef4444]"></div> Buffer (10%)</span>
         </div>
@@ -146,7 +146,7 @@ export default function Calculator() {
         </div>
 
         {/* Ground School & Studies */}
-        <div className="rounded-xl p-6 shadow-lg relative overflow-hidden" style={{ background: "linear-gradient(180deg, rgba(124,58,237,0.1), rgba(255,255,255,0.03))", border: "1px solid rgba(124,58,237,0.3)" }}>
+        <div className="rounded-xl p-6 shadow-lg relative overflow-hidden" style={{ background: "linear-gradient(180deg, rgba(171,121,77,0.1), rgba(255,255,255,0.03))", border: "1px solid rgba(171,121,77,0.3)" }}>
           <div className="flex items-center gap-3 mb-6">
             <div className="p-2 rounded-lg bg-purple-500/20 text-purple-400"><GraduationCap size={24}/></div>
             <h3 className="text-xl font-bold text-white">Ground Classes</h3>

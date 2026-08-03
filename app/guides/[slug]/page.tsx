@@ -76,7 +76,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   };
 
   return (
-    <div style={{ background: "#06040e" }} className="min-h-screen pb-20">
+    <div style={{ background: "#0b1117" }} className="min-h-screen pb-20">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <Link href="/guides" className="inline-flex items-center gap-1 text-sm font-semibold mb-8 hover:text-white transition-colors" style={{ color: "#94a3b8" }}>
@@ -108,18 +108,18 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <div className="my-10">
           <LiveClassUpsell 
             subjectId={slug === "rtr-exam-guide" ? "radio-telephony" : "air-navigation"} 
-            subjectColor={slug === "rtr-exam-guide" ? "#00d4ff" : "#10b981"} 
+            subjectColor={slug === "rtr-exam-guide" ? "#f0913a" : "#10b981"} 
           />
         </div>
         
         {/* Call to Action & Interlinking */}
-        <div className="mt-16 p-8 rounded-2xl text-center" style={{ background: "rgba(124, 58, 237, 0.1)", border: "1px solid rgba(124, 58, 237, 0.2)" }}>
+        <div className="mt-16 p-8 rounded-2xl text-center" style={{ background: "rgba(171, 121, 77, 0.1)", border: "1px solid rgba(171, 121, 77, 0.2)" }}>
           <h3 className="text-xl font-bold text-white mb-2">Ready to clear your DGCA exams?</h3>
           <p className="text-sm mb-6 max-w-md mx-auto" style={{ color: "#94a3b8" }}>
             Ghost Aviator provides free, high-quality, and interactive study material for DGCA CPL exams. Stop paying for outdated question banks.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/cpl" className="px-6 py-3 rounded-xl font-bold text-white transition-colors no-underline" style={{ background: "#7c3aed" }}>
+            <Link href="/cpl" className="px-6 py-3 rounded-xl font-bold text-white transition-colors no-underline" style={{ background: "#ab794d" }}>
               Explore CPL Subjects
             </Link>
             <Link href="/cpl-cost-calculator" className="px-6 py-3 rounded-xl font-bold text-sky-400 border border-sky-500/30 bg-sky-500/10 hover:bg-sky-500/20 transition-colors no-underline">

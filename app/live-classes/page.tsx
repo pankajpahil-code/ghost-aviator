@@ -47,7 +47,7 @@ const SUBJECTS = [
   {
     name: "Air Regulations",
     icon: "⚖️",
-    color: "#7c3aed",
+    color: "#ab794d",
     tagline: "The rule book, decoded by someone who has lived it",
     points: [
       "ICAO Annexes & Chicago Convention made simple",
@@ -158,13 +158,13 @@ function PriceTag({ color }: { color: string }) {
 
 export default function LiveClassesPage() {
   return (
-    <div style={{ background: "#06040e" }}>
+    <div style={{ background: "#0b1117" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
 
       {/* ══════════ HERO ══════════ */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{
-          backgroundImage: "linear-gradient(rgba(120,60,220,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(120,60,220,0.05) 1px,transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(171,121,77,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(171,121,77,0.05) 1px,transparent 1px)",
           backgroundSize: "55px 55px",
         }}/>
         <div className="absolute inset-0 pointer-events-none" style={{
@@ -180,13 +180,13 @@ export default function LiveClassesPage() {
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black text-white leading-tight mb-4">
-            Learn From <span style={{ background:"linear-gradient(135deg,#ff6000,#ff2060,#c020ff)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>The Captain</span> Himself
+            Learn From <span style={{ background:"linear-gradient(135deg,#ff6000,#c25a1e,#f0913a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>The Captain</span> Himself
           </h1>
           <p className="text-lg max-w-3xl mx-auto mb-3 leading-relaxed" style={{ color:"#94a3b8" }}>
             Live DGCA CPL ground classes in <strong className="text-white">five subjects</strong> —
-            taught personally by <strong style={{ color:"#c080ff" }}>Capt. Pankaj Pahil</strong>, the instructor and author behind Ghost Aviator.
+            taught personally by <strong style={{ color:"#f3c889" }}>Capt. Pankaj Pahil</strong>, the instructor and author behind Ghost Aviator.
           </p>
-          <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color:"rgba(180,120,255,0.6)", letterSpacing:"0.18em" }}>
+          <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color:"rgba(243,200,137,0.6)", letterSpacing:"0.18em" }}>
             Small batch of 10 · Live doubt-clearing · 4–6 weeks per subject
           </p>
           <p className="text-base font-black mb-10">
@@ -203,7 +203,7 @@ export default function LiveClassesPage() {
             </a>
             <a href={`mailto:${EMAIL}?subject=${encodeURIComponent("Live DGCA Classes — Seat Enquiry")}`}
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
-               style={{ border:"1px solid rgba(0,212,255,0.5)", color:"#00d4ff", background:"rgba(0,212,255,0.06)" }}>
+               style={{ border:"1px solid rgba(240,145,58,0.5)", color:"#f0913a", background:"rgba(240,145,58,0.06)" }}>
               <Mail className="w-5 h-5" /> Email Instead
             </a>
           </div>
@@ -219,7 +219,7 @@ export default function LiveClassesPage() {
               const I = Icon as typeof Award;
               return (
                 <div key={label as string} className="flex items-center gap-2 text-sm" style={{ color:"#94a3b8" }}>
-                  <I className="w-4 h-4" style={{ color:"#c080ff" }}/> {label as string}
+                  <I className="w-4 h-4" style={{ color:"#f3c889" }}/> {label as string}
                 </div>
               );
             })}
@@ -245,14 +245,14 @@ export default function LiveClassesPage() {
       {/* ══════════ SUBJECT BATCHES ══════════ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">Choose Your <span style={{ background:"linear-gradient(135deg,#c080ff,#ff2060)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Battle</span></h2>
+          <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">Choose Your <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Battle</span></h2>
           <p style={{ color:"#64748b" }}>Five subjects. Five live batches. One instructor who has taught them for two decades.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SUBJECTS.map(s => (
             <div key={s.name} className="relative rounded-3xl overflow-hidden p-8 flex flex-col"
-                 style={{ background:"rgba(15,8,30,0.95)", border:`1px solid ${s.color}45` }}>
+                 style={{ background:"rgba(17,24,32,0.95)", border:`1px solid ${s.color}45` }}>
               <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:`linear-gradient(to right, ${s.color}, transparent)` }}/>
               <div className="text-5xl mb-4">{s.icon}</div>
               <h3 className="text-2xl font-black text-white mb-1">{s.name}</h3>
@@ -318,7 +318,7 @@ export default function LiveClassesPage() {
 
       {/* ══════════ HOW IT WORKS ══════════ */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="rounded-3xl p-10" style={{ background:"rgba(15,8,30,0.95)", border:"1px solid rgba(180,100,255,0.2)" }}>
+        <div className="rounded-3xl p-10" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(243,200,137,0.2)" }}>
           <h2 className="text-2xl font-black text-white mb-8 text-center">Joining Takes Two Minutes</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             {[
@@ -328,7 +328,7 @@ export default function LiveClassesPage() {
             ].map(([n, title, desc]) => (
               <div key={n}>
                 <div className="w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center text-lg font-black"
-                     style={{ background:"linear-gradient(135deg,#9020ff,#ff2060)", color:"#fff" }}>{n}</div>
+                     style={{ background:"linear-gradient(135deg,#c25a1e,#c25a1e)", color:"#fff" }}>{n}</div>
                 <div className="font-bold text-white mb-1">{title}</div>
                 <div className="text-sm leading-relaxed" style={{ color:"#64748b" }}>{desc}</div>
               </div>
@@ -340,7 +340,7 @@ export default function LiveClassesPage() {
       {/* ══════════ WHY LIVE / FAQ ══════════ */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-black text-white mb-3">Why Learn <span style={{ color:"#c080ff" }}>Live</span> With The Author?</h2>
+          <h2 className="text-3xl font-black text-white mb-3">Why Learn <span style={{ color:"#f3c889" }}>Live</span> With The Author?</h2>
           <p className="max-w-2xl mx-auto leading-relaxed" style={{ color:"#94a3b8" }}>
             This entire website — the notes, the verified question bank, the books — was built by one instructor.
             The live classes are where he teaches you personally: exam strategy, doubt-clearing, the tricks that
@@ -350,9 +350,9 @@ export default function LiveClassesPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14">
           {FAQ.map(f => (
-            <div key={f.q} className="p-6 rounded-2xl" style={{ background:"rgba(15,8,30,0.95)", border:"1px solid rgba(180,100,255,0.15)" }}>
+            <div key={f.q} className="p-6 rounded-2xl" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(243,200,137,0.15)" }}>
               <div className="flex items-start gap-2 font-bold text-white mb-2">
-                <Target className="w-4 h-4 mt-1 shrink-0" style={{ color:"#ff2060" }}/> {f.q}
+                <Target className="w-4 h-4 mt-1 shrink-0" style={{ color:"#c25a1e" }}/> {f.q}
               </div>
               <p className="text-sm leading-relaxed" style={{ color:"#94a3b8" }}>{f.a}</p>
             </div>
@@ -361,7 +361,7 @@ export default function LiveClassesPage() {
 
         {/* Final CTA */}
         <div className="rounded-3xl p-12 text-center relative overflow-hidden"
-             style={{ background:"linear-gradient(135deg,rgba(255,30,30,0.08),rgba(150,0,255,0.08))", border:"1px solid rgba(255,60,60,0.3)" }}>
+             style={{ background:"linear-gradient(135deg,rgba(255,30,30,0.08),rgba(194,90,30,0.08))", border:"1px solid rgba(255,60,60,0.3)" }}>
           <div className="text-4xl mb-3">🛫</div>
           <h2 className="text-3xl font-black text-white mb-3">Founding Seats Are Limited. Doubts Are Not.</h2>
           <p className="mb-8 max-w-xl mx-auto" style={{ color:"#94a3b8" }}>
@@ -376,7 +376,7 @@ export default function LiveClassesPage() {
               <MessageCircle className="w-5 h-5" /> WhatsApp: +91 99902 26607
             </a>
             <Link href="/cpl" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
-                  style={{ border:"1px solid rgba(180,100,255,0.4)", color:"#c080ff", background:"rgba(180,100,255,0.06)" }}>
+                  style={{ border:"1px solid rgba(243,200,137,0.4)", color:"#f3c889", background:"rgba(243,200,137,0.06)" }}>
               Explore Free Material First <ArrowRight className="w-5 h-5"/>
             </Link>
           </div>

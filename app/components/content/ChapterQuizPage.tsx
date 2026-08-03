@@ -62,7 +62,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
   // Empty state
   if (questions.length === 0) {
     return (
-      <div style={{ background: "#06040e" }} className="min-h-screen flex items-center justify-center px-4">
+      <div style={{ background: "#0b1117" }} className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <div className="text-5xl mb-4">📝</div>
           <h2 className="text-2xl font-black text-white mb-3">Quiz Coming Soon</h2>
@@ -82,9 +82,9 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
 
   // Setup screen
   if (phase === "setup") return (
-    <div style={{ background: "#06040e" }} className="min-h-screen flex items-center justify-center px-4">
+    <div style={{ background: "#0b1117" }} className="min-h-screen flex items-center justify-center px-4">
       <div className="rounded-3xl p-10 max-w-lg w-full text-center"
-           style={{ background: "rgba(15,8,30,0.95)", border: `1px solid ${subject.color}35` }}>
+           style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${subject.color}35` }}>
         <div className="text-4xl mb-1">{subject.icon}</div>
         <div className="text-xs font-bold tracking-widest mb-2 mt-1"
              style={{ color: subject.color, letterSpacing: "0.18em" }}>
@@ -108,7 +108,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
         </div>
         <button onClick={() => { setPhase("quiz"); window.scrollTo(0, 0); }}
                 className="w-full py-4 rounded-xl font-black text-lg"
-                style={{ background: `linear-gradient(135deg, ${subject.color}, #c020ff)`, color: "#fff" }}>
+                style={{ background: `linear-gradient(135deg, ${subject.color}, #f0913a)`, color: "#fff" }}>
           Start Quiz →
         </button>
       </div>
@@ -117,10 +117,10 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
 
   // Result screen
   if (phase === "result") return (
-    <div style={{ background: "#06040e" }} className="min-h-screen py-16 px-4">
+    <div style={{ background: "#0b1117" }} className="min-h-screen py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <div className="rounded-3xl p-10 text-center mb-8"
-             style={{ background: "rgba(15,8,30,0.95)", border: `1px solid ${passed ? "#22c55e" : "#ef4444"}40` }}>
+             style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${passed ? "#22c55e" : "#ef4444"}40` }}>
           <div className="text-5xl mb-4">{passed ? "🏆" : "📚"}</div>
           <h2 className="text-3xl font-black text-white mb-2">
             {passed ? "Quiz Cleared!" : "Keep Practising"}
@@ -133,7 +133,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
           <div className="grid grid-cols-3 gap-4 mb-8">
             {[
               ["Score",   `${pct}%`,                     passed ? "#22c55e" : "#ef4444"],
-              ["Correct", `${score}/${questions.length}`, "#00d4ff"],
+              ["Correct", `${score}/${questions.length}`, "#f0913a"],
               ["Status",  passed ? "PASS" : "FAIL",      passed ? "#22c55e" : "#ef4444"],
             ].map(([l, v, c]) => (
               <div key={l} className="p-4 rounded-xl" style={{ background: `${c}10`, border: `1px solid ${c}25` }}>
@@ -168,7 +168,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
             const correct = userAns === q.ans;
             return (
               <div key={i} className="rounded-2xl p-5"
-                   style={{ background: "rgba(15,8,30,0.95)", border: `1px solid ${correct ? "rgba(34,197,94,0.25)" : "rgba(239,68,68,0.2)"}` }}>
+                   style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${correct ? "rgba(34,197,94,0.25)" : "rgba(239,68,68,0.2)"}` }}>
                 <div className="flex items-start gap-3 mb-3">
                   {correct
                     ? <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#22c55e" }} />
@@ -190,7 +190,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
                   ))}
                 </div>
                 <div className="text-xs px-3 py-2 rounded-lg"
-                     style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.12)", color: "#64748b" }}>
+                     style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.12)", color: "#64748b" }}>
                   💡 {q.exp}
                 </div>
               </div>
@@ -206,12 +206,12 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
   const selected = answers[current];
 
   return (
-    <div style={{ background: "#06040e", minHeight: "100vh", paddingBottom: "2rem" }}>
+    <div style={{ background: "#0b1117", minHeight: "100vh", paddingBottom: "2rem" }}>
 
       {/* Progress bar — no timer, just position */}
       <div style={{
         position: "fixed", top: "4rem", left: 0, right: 0, zIndex: 20,
-        background: "rgba(6,4,14,0.97)",
+        background: "rgba(11,17,23,0.97)",
         borderBottom: "1px solid rgba(255,255,255,0.07)",
         backdropFilter: "blur(12px)",
       }}>
@@ -230,7 +230,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
           <div style={{
             height: "100%",
             width: `${((current + 1) / questions.length) * 100}%`,
-            background: `linear-gradient(90deg, ${subject.color}, #c020ff)`,
+            background: `linear-gradient(90deg, ${subject.color}, #f0913a)`,
             transition: "width 0.4s",
           }} />
         </div>
@@ -240,7 +240,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
       <div style={{ maxWidth: "48rem", margin: "0 auto", padding: "8rem 1rem 0" }}>
 
         {/* Question card */}
-        <div style={{ background: "rgba(15,8,30,0.95)", border: `1px solid ${subject.color}20`, borderRadius: "1rem", padding: "1.75rem", marginBottom: "1rem" }}>
+        <div style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${subject.color}20`, borderRadius: "1rem", padding: "1.75rem", marginBottom: "1rem" }}>
           <p style={{ color: "#ffffff", fontSize: "1.0625rem", fontWeight: 600, lineHeight: 1.65, marginBottom: "1.5rem" }}>
             {q.q}
           </p>
@@ -276,7 +276,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
         {/* Next / Skip */}
         {selected !== null ? (
           <button onClick={advance}
-                  style={{ width: "100%", padding: "1rem", borderRadius: "0.75rem", fontWeight: 900, fontSize: "1rem", background: `linear-gradient(135deg, ${subject.color}, #c020ff)`, color: "#fff", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
+                  style={{ width: "100%", padding: "1rem", borderRadius: "0.75rem", fontWeight: 900, fontSize: "1rem", background: `linear-gradient(135deg, ${subject.color}, #f0913a)`, color: "#fff", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
             {current < questions.length - 1
               ? <><ArrowRight className="w-5 h-5" /> Next Question</>
               : "Submit & See Results"}

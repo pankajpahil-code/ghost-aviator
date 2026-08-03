@@ -147,7 +147,7 @@ function MockTestInner() {
           The question bank for this paper is still being prepared. Try the chapter quizzes in the meantime.
         </p>
         <Link href={backHref} className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl font-bold no-underline"
-              style={{ background: "linear-gradient(135deg,#00d4ff,#0099cc)", color: "#000" }}>
+              style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
           <BookOpen className="w-4 h-4" /> Back to Chapters
         </Link>
       </div>
@@ -164,7 +164,7 @@ function MockTestInner() {
         <div className="grid grid-cols-3 gap-4 mb-10">
           {[["Questions", `${questions.length}`], ["Duration", `${Math.round(durationSec / 60)} min`], ["Pass Mark", `${passMark}%`]].map(([l, v]) => (
             <div key={l} className="glass-card p-3">
-              <div className="text-xl font-bold" style={{ color: "#00d4ff" }}>{v}</div>
+              <div className="text-xl font-bold" style={{ color: "#f0913a" }}>{v}</div>
               <div className="text-xs" style={{ color: "#64748b" }}>{l}</div>
             </div>
           ))}
@@ -178,7 +178,7 @@ function MockTestInner() {
         </ul>
         <button onClick={() => setPhase("exam")}
                 className="w-full py-4 rounded-xl font-bold text-lg"
-                style={{ background: "linear-gradient(135deg,#00d4ff,#0099cc)", color: "#000" }}>
+                style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
           Start Test
         </button>
       </div>
@@ -198,7 +198,7 @@ function MockTestInner() {
 
           <div className="grid grid-cols-3 gap-4 mb-8">
             {[["Score", `${pct}%`, passed ? "#22c55e" : "#ef4444"],
-              ["Correct", `${score}/${questions.length}`, "#00d4ff"],
+              ["Correct", `${score}/${questions.length}`, "#f0913a"],
               ["Status", passed ? "PASS" : "FAIL", passed ? "#22c55e" : "#ef4444"]].map(([l, v, c]) => (
               <div key={l} className="glass-card p-4">
                 <div className="text-2xl font-bold" style={{ color: c }}>{v}</div>
@@ -210,11 +210,11 @@ function MockTestInner() {
           <div className="flex gap-4 justify-center flex-wrap">
             <button onClick={restart}
                     className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold"
-                    style={{ background: "linear-gradient(135deg,#00d4ff,#0099cc)", color: "#000" }}>
+                    style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
               <RotateCcw className="w-4 h-4" /> Try Again
             </button>
             <Link href={backHref} className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold no-underline"
-                  style={{ border: "1px solid rgba(0,212,255,0.3)", color: "#00d4ff", background: "rgba(0,212,255,0.06)" }}>
+                  style={{ border: "1px solid rgba(240,145,58,0.3)", color: "#f0913a", background: "rgba(240,145,58,0.06)" }}>
               <BookOpen className="w-4 h-4" /> Back to Chapters
             </Link>
           </div>
@@ -244,14 +244,14 @@ function MockTestInner() {
                            background: oi === rq.ans ? "rgba(34,197,94,0.15)"
                                      : oi === userAns  ? "rgba(239,68,68,0.15)" : "rgba(13,13,26,0.5)",
                            border: oi === rq.ans ? "1px solid #22c55e"
-                                 : oi === userAns  ? "1px solid #ef4444" : "1px solid rgba(0,212,255,0.1)",
+                                 : oi === userAns  ? "1px solid #ef4444" : "1px solid rgba(240,145,58,0.1)",
                            color: oi === rq.ans ? "#22c55e" : oi === userAns ? "#ef4444" : "#94a3b8",
                          }}>
                       {String.fromCharCode(65 + oi)}. {opt}
                     </div>
                   ))}
                 </div>
-                <div className="px-4 py-3 rounded-lg text-sm" style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.15)", color: "#94a3b8" }}>
+                <div className="px-4 py-3 rounded-lg text-sm" style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8" }}>
                   💡 {rq.exp}
                 </div>
               </div>
@@ -276,10 +276,10 @@ function MockTestInner() {
         {/* Header bar */}
         <div className="glass-card px-6 py-4 flex items-center justify-between mb-6">
           <div className="text-sm font-medium" style={{ color: "#94a3b8" }}>
-            Question <span style={{ color: "#00d4ff" }}>{current + 1}</span> / {questions.length}
+            Question <span style={{ color: "#f0913a" }}>{current + 1}</span> / {questions.length}
           </div>
           <div className={`flex items-center gap-2 font-mono text-lg font-bold ${timeLeft < 300 ? "timer-urgent" : ""}`}
-               style={{ color: timeLeft < 300 ? "#ef4444" : "#00d4ff" }}>
+               style={{ color: timeLeft < 300 ? "#ef4444" : "#f0913a" }}>
             <Clock className="w-5 h-5" /> {fmt(timeLeft)}
           </div>
           <div className="text-sm" style={{ color: "#94a3b8" }}>
@@ -288,15 +288,15 @@ function MockTestInner() {
         </div>
 
         {/* Progress */}
-        <div className="w-full h-1 rounded-full mb-6" style={{ background: "rgba(0,212,255,0.1)" }}>
+        <div className="w-full h-1 rounded-full mb-6" style={{ background: "rgba(240,145,58,0.1)" }}>
           <div className="h-1 rounded-full transition-all duration-500"
-               style={{ width: `${((current + 1) / questions.length) * 100}%`, background: "linear-gradient(90deg,#00d4ff,#7c3aed)" }} />
+               style={{ width: `${((current + 1) / questions.length) * 100}%`, background: "linear-gradient(90deg,#f0913a,#ab794d)" }} />
         </div>
 
         {/* Question card */}
         <div className="glass-card p-8 mb-4">
           <div className="text-xs mb-4 px-2 py-1 rounded-full inline-block"
-               style={{ background: "rgba(0,212,255,0.1)", color: "#00d4ff", border: "1px solid rgba(0,212,255,0.2)" }}>
+               style={{ background: "rgba(240,145,58,0.1)", color: "#f0913a", border: "1px solid rgba(240,145,58,0.2)" }}>
             {q.subject}
           </div>
           <p className="text-lg font-semibold mb-8 leading-relaxed">{q.q}</p>
@@ -311,8 +311,8 @@ function MockTestInner() {
 
           {/* Explanation */}
           {revealed && (
-            <div className="mt-6 p-4 rounded-xl text-sm" style={{ background: "rgba(0,212,255,0.05)", border: "1px solid rgba(0,212,255,0.2)", color: "#94a3b8" }}>
-              <span className="font-semibold" style={{ color: "#00d4ff" }}>💡 Explanation: </span>
+            <div className="mt-6 p-4 rounded-xl text-sm" style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.2)", color: "#94a3b8" }}>
+              <span className="font-semibold" style={{ color: "#f0913a" }}>💡 Explanation: </span>
               {q.exp}
             </div>
           )}
@@ -322,7 +322,7 @@ function MockTestInner() {
         {revealed && (
           <button onClick={next}
                   className="w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2"
-                  style={{ background: "linear-gradient(135deg,#00d4ff,#0099cc)", color: "#000" }}>
+                  style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
             {current < questions.length - 1 ? <><ArrowRight className="w-5 h-5" /> Next Question</> : "Submit & See Results"}
           </button>
         )}
@@ -332,12 +332,12 @@ function MockTestInner() {
           <div className="flex gap-3 mt-4">
             <button onClick={() => { const f = [...flagged]; f[current] = !f[current]; setFlagged(f); }}
                     className="flex-1 py-3 rounded-xl text-sm font-medium"
-                    style={{ border: `1px solid ${flagged[current] ? "#f59e0b" : "rgba(0,212,255,0.2)"}`, color: flagged[current] ? "#f59e0b" : "#64748b", background: "transparent" }}>
+                    style={{ border: `1px solid ${flagged[current] ? "#f59e0b" : "rgba(240,145,58,0.2)"}`, color: flagged[current] ? "#f59e0b" : "#64748b", background: "transparent" }}>
               {flagged[current] ? "🚩 Flagged" : "🏳️ Flag Question"}
             </button>
             <button onClick={next}
                     className="flex-1 py-3 rounded-xl text-sm font-medium"
-                    style={{ border: "1px solid rgba(0,212,255,0.2)", color: "#64748b", background: "transparent" }}>
+                    style={{ border: "1px solid rgba(240,145,58,0.2)", color: "#64748b", background: "transparent" }}>
               Skip →
             </button>
           </div>
