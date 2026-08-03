@@ -2,13 +2,16 @@
 //
 //   node tools/prepare-mascot-video.mjs "C:/path/to/clip.mp4"
 //
-// TWO NON-NEGOTIABLE EDITS ARE BAKED INTO THE CROP:
-//   1. Iron Rule 2 — the book in the source close-ups reads "OXFORD", a
-//      publisher name that must never appear in student-facing content. It sits
-//      low-centre and MOVES as the camera pushes in, so a fixed patch cannot
-//      cover it; the crop removes it outright.
-//   2. The generator's sparkle watermark sits bottom-right and goes with it.
-// Any change to these crop values must be re-checked against both.
+// NO CROP — the full 16:9 frame is used, on Capt. Pahil's explicit decision of
+// 2026-08-02. An earlier version cropped to a band to remove the word "OXFORD"
+// from the book. He overruled that: a place name is not a trademark claim, the
+// artwork is his, and cropping cost the best storytelling beat in the clip (the
+// book being handed to a student). His site, his call. Iron Rule 2 in
+// D:\pk\CLAUDE.md has been annotated so no future session silently re-crops it.
+//
+// The generator's sparkle watermark IS still removed — that one is not a name,
+// it is another product's branding on his page — using delogo, which
+// interpolates from the box edges rather than blurring.
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 
@@ -18,19 +21,16 @@ if (!fs.existsSync(SRC)) { console.error(`not found: ${SRC}`); process.exit(1); 
 const run = (args) => execFileSync("ffmpeg", ["-y", "-v", "error", ...args], { stdio: "inherit" });
 const kb = (f) => (fs.statSync(f).size / 1024).toFixed(0) + " KB";
 
-// Desktop: wide cinematic band from the top of the frame.
-const DESK = "crop=1280:400:0:0,scale=1600:500:flags=lanczos";
-// Mobile: ALSO a top band, not a portrait slice. The first attempt cropped
-// 620x560 and the "OXFORD" cover was plainly legible at phone size — verified
-// by zooming the encoded output, which is the only way to catch it. The book
-// never rises above y=300 in any shot, so a band ending there is compliant by
-// geometry rather than by blur, and geometry cannot drift.
-// 470 wide keeps him and the trident with a 1.57:1 band — a 760-wide band came
-// out only ~154px tall on a 390px phone, too slight to carry a hero.
-// Dimensions must be EVEN: h264 with yuv420p subsamples chroma 2x2, so an odd
-// width (705 was tried) aborts the encode and leaves a truncated file with no
-// moov atom.
-const MOB = "crop=470:300:415:0,scale=704:450:flags=lanczos";
+// The sparkle watermark sits bottom-right, roughly x1132-1198 / y572-634 on the
+// 1280x720 source. delogo rebuilds from the surrounding pixels rather than
+// smearing, which is what it exists for.
+const DELOGO = "delogo=x=1132:y=572:w=68:h=64";
+// FULL FRAME at both sizes — nothing is cropped. Dimensions must be EVEN: h264
+// with yuv420p subsamples chroma 2x2, so an odd width aborts the encode and
+// leaves a truncated file with no moov atom (705 was tried and did exactly
+// that). Mobile is a smaller encode of the same framing, purely to save data.
+const DESK = `${DELOGO},scale=1600:900:flags=lanczos`;
+const MOB = `${DELOGO},scale=960:540:flags=lanczos`;
 
 for (const [label, vf, out] of [
   ["desktop", DESK, "public/mascot-hero"],
