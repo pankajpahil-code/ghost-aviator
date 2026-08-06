@@ -3460,7 +3460,9 @@ Reference: PANS-ATM 5.3.2 a)`,
       `Air Traffic Advisory Service`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `Air traffic control service is defined by its purpose: preventing collisions between aircraft, preventing collisions on the manoeuvring area between aircraft and obstructions, and expediting and maintaining an orderly flow of traffic. Compare the three distractors — alerting service notifies organisations when an aircraft needs search and rescue, flight information service gives advice and information useful for safe conduct, and advisory service separates only so far as is practical. Only control service exists to prevent collisions.
+
+Reference: ICAO Annex 2, Chapter 1 — Definitions`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4634,7 +4636,9 @@ Reference: PANS-ATM 5.4.2.2.2.2 a)`,
       `none of these`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `The figures are right but the question's premise is not, so learn it correctly. This is not a separation minimum between two aircraft at all — it is a minimum flight altitude for terrain clearance. An IFR flight must not be flown below the minimum altitude established by the State overflown; where none is established, it must be at least 2000 ft above the highest obstacle within 8 km of the aircraft's estimated position over high terrain or mountainous areas. Over terrain that is not high or mountainous, the figure is 1000 ft above the highest obstacle within the same 8 km.
+
+Reference: ICAO Annex 2, Chapter 5 — minimum levels for IFR flight`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -6597,7 +6601,9 @@ Reference: PANS-ATM 5.3.2 b)`,
       `All the above`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `Rocking the wings from an intercepting aircraft means "you have been intercepted, follow me". You are required to do several things, not one — which is why the answer is all of them. Follow the intercepting aircraft's instructions; notify the appropriate ATS unit if you can; attempt radio contact on the emergency frequency 121.5 MHz, giving your identity and the nature of the flight (repeating on 243 MHz if nothing is heard); and select Mode A Code 7700 unless ATS tells you otherwise. Your acknowledgement is to rock your own wings — "understood, will comply". And if radio instructions from anywhere conflict with the visual signals, you keep complying with the visual signals and ask for clarification.
+
+Reference: ICAO Annex 2 — action by intercepted aircraft`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -6753,7 +6759,9 @@ Reference: PANS-ATM 5.3.2 b)`,
       `Air Traffic Alerting Service`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `That is the definition of air traffic advisory service, essentially word for word. The phrase doing the work is "in so far as is practical" — advisory service tries to keep IFR traffic apart but cannot guarantee it, because it does not have the full picture or the authority that control service has. That is the whole distinction: a control service separates, an advisory service advises.
+
+Reference: ICAO Annex 2, Chapter 1 — Definitions`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
