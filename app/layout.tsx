@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ContentProtection from "./components/ContentProtection";
 import ProgressSync from "./components/ProgressSync";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, CAPTAIN_PROFILES } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -55,11 +55,7 @@ const JSON_LD = {
       description: DESCRIPTION,
       founder: { "@type": "Person", name: "Capt. Pankaj Pahil" },
       areaServed: "IN",
-      sameAs: [
-        "https://t.me/+tgLMJithc1gzOWJl",
-        "https://www.youtube.com/@PankajPahil",
-        "https://www.youtube.com/@Capt.GhostAviator",
-      ],
+      sameAs: CAPTAIN_PROFILES,
     },
     {
       "@type": "WebSite",

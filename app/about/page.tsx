@@ -6,7 +6,7 @@ import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import { LIVE_WHATSAPP, LIVE_FOUNDING } from "@/lib/live-classes";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, CAPTAIN_PROFILES, TELEGRAM_GROUP } from "@/lib/site";
 
 // Real photographs of the Captain, prepared by tools/prepare-captain-photo.mjs
 // and committed alongside this file.
@@ -25,7 +25,7 @@ const SUBJECT_COUNT = CPL_SUBJECTS.length + ATPL_SUBJECTS.length;
 const CHAPTER_COUNT = [...CPL_SUBJECTS, ...ATPL_SUBJECTS].reduce((n, s) => n + s.chapters.length, 0);
 const QUESTION_COUNT = `${Math.floor(ALL_QUESTIONS.length / 100) * 100}+`;
 
-const TELEGRAM = "https://t.me/+tgLMJithc1gzOWJl";
+const TELEGRAM = TELEGRAM_GROUP;
 const WA_SHARE = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
   "Hello Capt. Pahil, I cleared my DGCA exam using Ghost Aviator! Here is my result and testimonial:"
 )}`;
@@ -54,7 +54,7 @@ const JSON_LD = {
   jobTitle: "Pilot, DGCA Flight & Ground Instructor",
   description:
     "Pilot and DGCA flight & ground instructor with 20+ years in aviation. Author of 'Technical General for Aviators' and 'Complete RTR(A) Examination Book'. Creator of Ghost Aviator, a free DGCA exam preparation platform.",
-  sameAs: [TELEGRAM],
+  sameAs: CAPTAIN_PROFILES,
   worksFor: { "@id": `${SITE_URL}/#org` },
 };
 
