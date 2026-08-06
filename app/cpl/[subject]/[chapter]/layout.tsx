@@ -1,40 +1,15 @@
-import { CPL_SUBJECTS } from "@/lib/subjects";
-
-export default async function CPLChapterLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ subject: string; chapter: string }>;
-}) {
-  const { subject: subjectId, chapter: chapterId } = await params;
-  
-  const subject = CPL_SUBJECTS.find(s => s.id === subjectId);
-  const chapter = subject?.chapters.find(c => c.id === chapterId);
-
-  if (!subject || !chapter) {
-    return <>{children}</>;
-  }
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": `Chapter ${chapter.number}: ${chapter.title} - ${subject.shortName} CPL`,
-    "description": chapter.description || `${subject.shortName} Chapter ${chapter.number} study material for DGCA CPL exams.`,
-    "provider": {
-      "@type": "Organization",
-      "name": "Ghost Aviator",
-      "sameAs": "https://ghostaviator.com"
-    }
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {children}
-    </>
-  );
+/**
+ * Deliberately a pass-through.
+ *
+ * This layout used to emit its own bare `Course` node — no @id, no author, a
+ * second copy of the provider. Because the `[type]/page.tsx` beneath it emits a
+ * full Course + BreadcrumbList graph for the same URL, every one of the ~290
+ * chapter pages was publishing TWO competing descriptions of one course. That
+ * splits the entity instead of consolidating it, and leaves the engine to guess
+ * which node is authoritative — usually the poorer one, since it appears first.
+ *
+ * The chapter page owns the structured data. Found in the 2026-08-06 audit.
+ */
+export default function CPLChapterLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }

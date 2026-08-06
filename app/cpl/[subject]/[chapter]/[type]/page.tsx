@@ -6,7 +6,7 @@ import { CPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { getSeoHtmlForNotes } from "@/lib/seo-notes";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 import NotesPage              from "@/app/components/content/NotesPage";
 import AirRegsChapter1Notes   from "@/app/components/content/AirRegsChapter1Notes";
 import QuestionsPage          from "@/app/components/content/QuestionsPage";
@@ -87,11 +87,12 @@ export default async function Page({
         "inLanguage": "en",
         "isAccessibleForFree": true,
         "teaches": chapter.title,
-        "provider": {
-          "@type": "EducationalOrganization",
-          "name": "Ghost Aviator",
-          "url": SITE_URL,
-        },
+        // Who taught this. Without it, the site's largest content surface —
+        // every chapter — carries no expertise signal at all, and a search or
+        // answer engine has no way to attribute 290 chapters to a real
+        // instructor with a licence, two books and a public teaching record.
+        "author": { "@id": PERSON_ID },
+        "provider": { "@id": ORG_ID },
       },
       {
         "@type": "BreadcrumbList",

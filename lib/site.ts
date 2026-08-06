@@ -17,3 +17,23 @@ export const YOUTUBE_BRAND = "https://www.youtube.com/@Capt.GhostAviator";
 export const TELEGRAM_GROUP = "https://t.me/+tgLMJithc1gzOWJl";
 
 export const CAPTAIN_PROFILES = [TELEGRAM_GROUP, YOUTUBE_PERSONAL, YOUTUBE_BRAND];
+
+// Stable schema.org node ids. Search and answer engines consolidate an entity by
+// matching @id across pages: every Course, Article and Organization node that
+// names the Captain should POINT at this id rather than repeating a bare name
+// string, so the graph describes one person 300 times instead of 300 people once.
+export const PERSON_ID = `${SITE_URL}/about#person`;
+export const ORG_ID = `${SITE_URL}/#org`;
+
+// What the Captain is demonstrably qualified to teach. Used for schema.org
+// knowsAbout — keep this to subjects he actually holds credentials and
+// publications in; it is an expertise claim, not a keyword list.
+export const CAPTAIN_KNOWS_ABOUT = [
+  "DGCA CPL examinations",
+  "Aviation Meteorology",
+  "Air Navigation",
+  "Air Regulations",
+  "Radio Telephony RTR(A)",
+  "Aircraft Technical General",
+  "Flight instruction",
+];

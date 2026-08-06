@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import { GUIDES } from "@/lib/guides";
 import { ChevronLeft, Calendar, User, Clock } from "lucide-react";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
@@ -27,6 +27,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: guide.description,
       url: `${SITE_URL}/guides/${guide.slug}`,
       publishedTime: guide.date,
+      modifiedTime: guide.updated,
+      authors: [`${SITE_URL}/about`],
     },
   };
 }
@@ -51,28 +53,36 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const wordCount = contentHtml.replace(/<[^>]*>?/gm, '').split(/\s+/).length;
   const readTime = Math.max(1, Math.ceil(wordCount / 200));
 
+  // The author is a REFERENCE to the Person entity defined on /about, not a
+  // loose name string. A bare {"@type":"Person","name":"..."} on each guide
+  // creates six unconnected people; an @id reference credits all six articles
+  // to the one instructor whose licence, books and channels are described once.
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": guide.title,
-    "description": guide.description,
-    "author": {
-      "@type": "Person",
-      "name": guide.author,
-    },
-    "datePublished": guide.date,
-    "publisher": {
-      "@type": "Organization",
-      "name": "Ghost Aviator",
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${SITE_URL}/logo.png`
-      }
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `${SITE_URL}/guides/${guide.slug}`
-    }
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${SITE_URL}/guides/${guide.slug}#article`,
+        "headline": guide.title,
+        "description": guide.description,
+        "author": { "@id": PERSON_ID },
+        "datePublished": guide.date,
+        "dateModified": guide.updated,
+        "inLanguage": "en-IN",
+        "isAccessibleForFree": true,
+        "publisher": { "@id": ORG_ID },
+        "mainEntityOfPage": { "@id": `${SITE_URL}/guides/${guide.slug}` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/guides/${guide.slug}#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "Guides", item: `${SITE_URL}/guides` },
+          { "@type": "ListItem", position: 3, name: guide.title },
+        ],
+      },
+    ],
   };
 
   return (
@@ -86,11 +96,15 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <header className="mb-10">
           <h1 className="text-3xl sm:text-4xl font-black text-white mb-4 leading-tight">{guide.title}</h1>
           <div className="flex flex-wrap items-center gap-4 text-sm" style={{ color: "#64748b" }}>
-            <div className="flex items-center gap-1.5">
+            {/* The byline links to the instructor's page. A student — and an
+                answer engine — can follow it to the credentials behind the guide. */}
+            <Link href="/about" className="flex items-center gap-1.5 no-underline hover:text-white transition-colors" style={{ color: "#94a3b8" }}>
               <User className="w-4 h-4" /> {guide.author}
-            </div>
+            </Link>
             <div className="flex items-center gap-1.5">
-              <Calendar className="w-4 h-4" /> {new Date(guide.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+              <Calendar className="w-4 h-4" />
+              {guide.updated !== guide.date ? "Updated " : ""}
+              {new Date(guide.updated).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
             <div className="flex items-center gap-1.5">
               <Clock className="w-4 h-4" /> {readTime} min read

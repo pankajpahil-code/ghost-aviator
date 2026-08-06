@@ -6,7 +6,7 @@ import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import { LIVE_WHATSAPP, LIVE_FOUNDING } from "@/lib/live-classes";
-import { SITE_URL, CAPTAIN_PROFILES, TELEGRAM_GROUP } from "@/lib/site";
+import { SITE_URL, CAPTAIN_PROFILES, TELEGRAM_GROUP, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
 
 // Real photographs of the Captain, prepared by tools/prepare-captain-photo.mjs
 // and committed alongside this file.
@@ -46,16 +46,22 @@ export const metadata: Metadata = {
   },
 };
 
+// This is the canonical description of the Captain for the whole site. Every
+// other page references it by @id (see lib/site.ts) instead of restating his
+// name, so the entity consolidates rather than fragmenting.
 const JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": PERSON_ID,
   name: "Capt. Pankaj Pahil",
   url: `${SITE_URL}/about`,
+  image: `${SITE_URL}${PORTRAIT}`,
   jobTitle: "Pilot, DGCA Flight & Ground Instructor",
   description:
     "Pilot and DGCA flight & ground instructor with 20+ years in aviation. Author of 'Technical General for Aviators' and 'Complete RTR(A) Examination Book'. Creator of Ghost Aviator, a free DGCA exam preparation platform.",
   sameAs: CAPTAIN_PROFILES,
-  worksFor: { "@id": `${SITE_URL}/#org` },
+  knowsAbout: CAPTAIN_KNOWS_ABOUT,
+  worksFor: { "@id": ORG_ID },
 };
 
 const CREDENTIALS: [typeof Award, string, string][] = [

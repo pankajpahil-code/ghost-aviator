@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ContentProtection from "./components/ContentProtection";
 import ProgressSync from "./components/ProgressSync";
-import { SITE_URL, CAPTAIN_PROFILES } from "@/lib/site";
+import { SITE_URL, CAPTAIN_PROFILES, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -48,21 +48,34 @@ const JSON_LD = {
   "@graph": [
     {
       "@type": "EducationalOrganization",
-      "@id": `${SITE_URL}/#org`,
+      "@id": ORG_ID,
       name: "Ghost Aviator",
       url: SITE_URL,
       logo: `${SITE_URL}/logo.png`,
       description: DESCRIPTION,
-      founder: { "@type": "Person", name: "Capt. Pankaj Pahil" },
+      // Reference, not a restatement. A bare {name: "Capt. Pankaj Pahil"} here
+      // reads as a different person from the one described on /about.
+      founder: { "@id": PERSON_ID },
       areaServed: "IN",
       sameAs: CAPTAIN_PROFILES,
+    },
+    // The Captain travels with every page, so the entity behind the teaching is
+    // asserted site-wide. /about carries the full description under the same @id.
+    {
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: "Capt. Pankaj Pahil",
+      url: `${SITE_URL}/about`,
+      jobTitle: "Pilot, DGCA Flight & Ground Instructor",
+      sameAs: CAPTAIN_PROFILES,
+      knowsAbout: CAPTAIN_KNOWS_ABOUT,
     },
     {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
       name: "Ghost Aviator",
-      publisher: { "@id": `${SITE_URL}/#org` },
+      publisher: { "@id": ORG_ID },
       potentialAction: {
         "@type": "SearchAction",
         target: { "@type": "EntryPoint", urlTemplate: `${SITE_URL}/question-bank?q={search_term_string}` },
