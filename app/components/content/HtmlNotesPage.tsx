@@ -8,6 +8,7 @@ import Watermark from "@/app/components/Watermark";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 import VideoLectureCard from "@/app/components/content/VideoLectureCard";
 import type { ChapterVideo } from "@/lib/chapter-videos";
+import { keyFactsFor } from "@/lib/chapter-key-facts";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -139,6 +140,7 @@ function useReadAloud(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
 
 export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, src, videos }: Props) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const keyFacts = keyFactsFor(subject.id, chapter.id);
   const { state: speechState, toggle: toggleListen, stop: stopListen, voices, voiceURI, setVoiceURI } = useReadAloud(iframeRef);
 
   return (
@@ -238,6 +240,33 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
             title={`${chapter.title} — Notes`}
           />
         </div>
+
+        {/* Key facts — the only part of this chapter that is offered for
+            quoting. Rendered VISIBLY and after the notes: a student who has
+            just read the chapter gets a revision box, and the page finally has
+            something extractable on it. Never hide this from users to feed a
+            crawler — see lib/chapter-key-facts.ts. */}
+        {keyFacts && (
+          <section
+            className="rounded-2xl p-6 sm:p-8"
+            style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${subject.color}25` }}
+          >
+            <h2 className="text-xl font-bold text-white mb-1">
+              Key facts — {chapter.title}
+            </h2>
+            <p className="text-sm mb-5" style={{ color: "#64748b" }}>
+              The figures from this chapter worth carrying into the exam hall.
+            </p>
+            <dl className="space-y-4">
+              {keyFacts.facts.map(f => (
+                <div key={f.term}>
+                  <dt className="text-sm font-bold mb-1" style={{ color: subject.color }}>{f.term}</dt>
+                  <dd className="text-base leading-relaxed m-0" style={{ color: "#94a3b8" }}>{f.fact}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
 
         <LiveClassUpsell subjectId={subject.id} subjectColor={subject.color} />
 
