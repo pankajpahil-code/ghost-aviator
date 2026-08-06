@@ -53,7 +53,7 @@ export const VERIFICATION: SubjectVerification[] = [
     level: "audited",
     when: "July 2026",
     note:
-      "The bank was audited and repaired: 161 printing defects fixed, 13 questions that had been split beyond recovery removed, and one wrong answer key corrected. A seeded random sample was verified answer by answer. Worked explanations — each one cited to the paragraph of the regulation it comes from — are now being written chapter by chapter, starting with Separation Methods and Minima. Questions whose answer cannot yet be traced to a source I hold are deliberately left without an explanation rather than given a plausible one.",
+      "The bank was audited and repaired: 161 printing defects fixed, 13 questions that had been split beyond recovery removed, and one wrong answer key corrected. A seeded random sample was verified answer by answer. Worked explanations — each one cited to the paragraph of the regulation it comes from — are now being written topic by topic, starting with separation minima, holding, altimetry and the visual and light signals. Questions whose answer cannot yet be traced to a source I hold are deliberately left without an explanation rather than given a plausible one.",
   },
   {
     subjectId: "air-navigation",
