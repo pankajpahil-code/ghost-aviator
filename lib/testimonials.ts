@@ -2,16 +2,33 @@
 // quote — an empty section with a "share your result" CTA is better than a
 // fake review. Add entries exactly as students gave them (with permission).
 //
-// PROVENANCE (added 2026-08-06). Every quote below is transcribed from a
-// WhatsApp screenshot the Captain supplied, and he holds the originals. The
-// words are the students' own. Only SMS contractions were expanded — "u" to
-// "you", "ur" to "your", "abt" to "about" — because a testimonial should be
-// readable; nothing was added, sharpened or invented. If you cannot point at a
-// screenshot for an entry, it does not belong in this file.
+// PROVENANCE (added 2026-08-06). Every quote below is transcribed from a chat
+// screenshot the Captain supplied, and he holds the originals. The words are the
+// students' own. What was changed, exactly: SMS contractions expanded ("u" to
+// "you", "ur" to "your", "abt" to "about") and sentence punctuation added, since
+// the originals are unpunctuated chat messages. Wording was NOT smoothed —
+// "your notes are goat" and "recall few things in exam" are left as written,
+// because slightly awkward phrasing is what real testimonials look like and
+// polishing them is how honest ones start reading like invented ones. Nothing
+// was added, sharpened or invented. If you cannot point at a screenshot for an
+// entry, it does not belong in this file.
 //
-// NO NAMES. None of the screenshots showed a name, so none is claimed here.
-// Never invent a name, a city, or a percentage to make an entry look stronger —
-// that turns a real testimonial into a fabricated one.
+// SELECTIVITY IS PART OF THE HONESTY. Several screenshots are simple
+// "thank you sir" messages. They are genuine but say nothing a reader can use,
+// and nine thin cards persuade less than five specific ones. Publish the quotes
+// that name a subject, a paper or an outcome; leave the rest in the archive.
+//
+// ONE SCREENSHOT WAS PARTLY UNUSABLE: it showed the Captain's own reply listing
+// his reference sources by name. The quoted context was excluded entirely — a
+// testimonial must never smuggle a source name onto the site through a reply
+// quote (Iron Rule 2). The student's own words in it carry none.
+//
+// NO NAMES. Some screenshots show chat handles ("Raptor", "Brat", "R"), not
+// real names, and no student has given permission to be quoted by handle — so
+// none is used. Never invent a name, a city, or a percentage to make an entry
+// look stronger; that turns a real testimonial into a fabricated one. If the
+// Captain gets a student's consent, a real first name and initial is stronger
+// than "DGCA CPL student" and should replace it.
 //
 // DELIBERATELY NOT MARKED UP AS schema.org Review / AggregateRating. Reviews an
 // organisation collects about itself and hosts on its own site are not eligible
@@ -53,5 +70,19 @@ export const TESTIMONIALS: Testimonial[] = [
     subject: "radio-telephony",
     quote:
       "This is really impressive and easy to understand, the RTR. Thank you once again for it.",
+  },
+  {
+    name: "DGCA CPL student",
+    detail: "On the Air Navigation notes",
+    subject: "air-navigation",
+    quote:
+      "Professor, your notes are goat — they helped me so much in learning convergency and departure last night. Before that I was so confused how to start.",
+  },
+  {
+    name: "DGCA CPL student",
+    detail: "Cleared Air Regulations",
+    subject: "air-regulations",
+    quote:
+      "Sir, your videos really helped me for the regulation — that female AI voice and brainstorming were in my head, and I was able to recall few things in exam. I managed to clear it, and your online chapters quiz really helped me a lot.",
   },
 ];
