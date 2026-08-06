@@ -14,6 +14,9 @@
 // tool changes no stem, no option and no answer index.
 import fs from "node:fs";
 import { AR5_EXPLANATIONS } from "./explanations-ar-5.mjs";
+import { AR4_EXPLANATIONS } from "./explanations-ar-4.mjs";
+
+const ALL = [...AR5_EXPLANATIONS, ...AR4_EXPLANATIONS];
 
 const FILE = "lib/rk-bali-regulations-questions.ts";
 const WRITE = process.argv.includes("--write");
@@ -23,7 +26,7 @@ const BLOCK = /\{\s*subjectIds:\s*\[([^\]]*)\],\s*chapterId:\s*"([^"]*)",\s*q:\s
 const key = s => s.replace(/^(?:Q\s*\.?\s*)?\d{1,3}\s*R?\s*[.)]\s+/, "")
   .toLowerCase().replace(/\s+/g, " ").trim();
 
-const wanted = new Map(AR5_EXPLANATIONS.map(e => [key(e.stem), e]));
+const wanted = new Map(ALL.map(e => [key(e.stem), e]));
 
 const original = fs.readFileSync(FILE, "utf8");
 let applied = 0, skippedAlready = 0;

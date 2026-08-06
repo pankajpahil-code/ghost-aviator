@@ -115,6 +115,18 @@ export const AR5_EXPLANATIONS = [
     exp: `That is the definition of air traffic advisory service, essentially word for word. The phrase doing the work is "in so far as is practical" — advisory service tries to keep IFR traffic apart but cannot guarantee it, because it does not have the full picture or the authority that control service has. That is the whole distinction: a control service separates, an advisory service advises.`,
   },
   {
+    // Settled 2026-08-06 from the Captain's own Air Traffic Services study notes
+    // (39 pp), which he confirmed as his and which state their own sources:
+    // Annex 11, Doc 4444, AIP India and CAR Section 9 Series 'E' Part I. The
+    // airspace-class table is Annex 11 material and Annex 11 is not on this
+    // machine; his notes are the authority here, cited to the regulation behind
+    // them rather than to the notes.
+    stem: "Air Traffic Advisory Service is provided in airspace classified as",
+    expect: "Class F",
+    cite: "ICAO Annex 11 — ATS airspace classes",
+    exp: `Class F is the advisory class. In it, IFR flights receive an air traffic ADVISORY service, and any flight receives flight information service on request. Fix the neighbours in your mind and the question answers itself: Class A through E are controlled airspace where IFR flights receive a control service; Class G is uncontrolled, where nobody is separated and only flight information is available. Class F sits between the two — more than nothing, less than control.`,
+  },
+  {
     stem: "The air traffic service which prevents the collision between aircraft is called",
     expect: "Air traffic control service",
     cite: "ICAO Annex 2, Chapter 1 — Definitions",

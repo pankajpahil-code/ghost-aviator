@@ -40,7 +40,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `Special precaution while landing should be taken because of the bad state of the Maneuvering area`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `Count the diagonals — that is the whole question. ONE yellow diagonal on a red square panel means special precautions must be observed when approaching to land or landing, because of the bad state of the manoeuvring area or for some other reason. You may still land; you must be careful. TWO yellow diagonals on the same red panel is the harder signal: landings are prohibited, and the prohibition is likely to be prolonged.
+
+Reference: ICAO Annex 2, Appendix 1, 4.2.2`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -804,7 +806,9 @@ Reference: PANS-ATM 5.3.2 a) and b)`,
       `Clear the landing area`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `Every light signal means one thing to an aircraft in flight and a different thing to one on the ground — that is the first hurdle in this table, and most wrong answers come from mixing the two columns. A steady red to an aircraft in flight means give way to other aircraft and continue circling. To an aircraft on the ground the same steady red simply means stop. Note what it does NOT mean: the aerodrome is not closed and not unserviceable — you are being sequenced, not turned away.
+
+Reference: ICAO Annex 2, Appendix 1, 4.1.1`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -841,7 +845,9 @@ Reference: PANS-ATM 5.3.2 a) and b)`,
       `Class A`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `Class F is the advisory class. In it, IFR flights receive an air traffic ADVISORY service, and any flight receives flight information service on request. Fix the neighbours in your mind and the question answers itself: Class A through E are controlled airspace where IFR flights receive a control service; Class G is uncontrolled, where nobody is separated and only flight information is available. Class F sits between the two — more than nothing, less than control.
+
+Reference: ICAO Annex 11 — ATS airspace classes`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -1681,7 +1687,9 @@ Reference: PANS-ATM 5.3.2 a) and b)`,
       `All of the above are correct`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `This is not an aerodrome signal at all — it is a warning to an unauthorised aircraft. Projectiles discharged from the ground at ten-second intervals, each bursting to show red and green lights or stars, tell you that you are flying in, or are about to enter, a restricted, prohibited or danger area, and that you must take whatever remedial action is needed. The signal does not distinguish between the three kinds of airspace, which is exactly why all three options are correct.
+
+Reference: ICAO Annex 2, Appendix 1, 3`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4703,7 +4711,9 @@ Reference: ICAO Annex 2, Chapter 5 — minimum levels for IFR flight`,
       `Notwithstanding any other instructions do not land at the moment`,
     ],
     ans: 0,
-    exp: `Correct answer: A`,
+    exp: `Red flashes in flight mean the aerodrome is unsafe — do not land. Hold the pair together so you can never confuse them: steady red is about other traffic and you keep circling; flashing red is about the aerodrome itself and you do not land at all. On the ground, the same series of red flashes means taxi clear of the landing area in use.
+
+Reference: ICAO Annex 2, Appendix 1, 4.1.1`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5054,7 +5064,9 @@ Reference: ICAO Annex 2, Chapter 5 — minimum levels for IFR flight`,
       `Disregard previous instruments; do not land for the time being.`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `Red flashes in flight mean the aerodrome is unsafe — do not land. Hold the pair together so you can never confuse them: steady red is about other traffic and you keep circling; flashing red is about the aerodrome itself and you do not land at all. On the ground, the same series of red flashes means taxi clear of the landing area in use.
+
+Reference: ICAO Annex 2, Appendix 1, 4.1.1`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5365,7 +5377,9 @@ Reference: ICAO Annex 2, Chapter 5 — minimum levels for IFR flight`,
       `Taxi clears of landing area in use.`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `The question specifies an aircraft on the manoeuvring area, so read the ground column: a series of white flashes means return to your starting point on the aerodrome. To an aircraft in flight the same signal means something quite different — land at this aerodrome and proceed to the apron. White is the only signal colour whose two meanings are not obviously related, so it is worth learning as a pair.
+
+Reference: ICAO Annex 2, Appendix 1, 4.1.1`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5547,7 +5561,9 @@ Reference: ICAO Annex 2, Chapter 5 — minimum levels for IFR flight`,
       `Aerodrome closed.`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `A plain white dumb-bell in the signal area means aircraft must land, take off AND taxi on runways and taxiways only — nothing on the grass. Learn its variant alongside it: the same dumb-bell with a black bar across each circular end relaxes the taxi requirement, so landings and take-offs stay on runways but other manoeuvres need not be confined to runways and taxiways.
+
+Reference: ICAO Annex 2, Appendix 1, 4.2.3.1`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -6655,7 +6671,9 @@ Reference: ICAO Annex 2 — action by intercepted aircraft`,
       `Make all take-offs, landings and taxiing on runways & taxiways only.`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `A plain white dumb-bell in the signal area means aircraft must land, take off AND taxi on runways and taxiways only — nothing on the grass. Learn its variant alongside it: the same dumb-bell with a black bar across each circular end relaxes the taxi requirement, so landings and take-offs stay on runways but other manoeuvres need not be confined to runways and taxiways.
+
+Reference: ICAO Annex 2, Appendix 1, 4.2.3.1`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
