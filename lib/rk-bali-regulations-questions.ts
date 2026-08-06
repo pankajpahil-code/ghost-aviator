@@ -53,7 +53,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `5000 feet up to F460`,
     ],
     ans: 0,
-    exp: `Correct answer: A`,
+    exp: `RVSM is the exception, and it has a ceiling. The standard minimum is 1000 ft below FL290 and 2000 ft at or above it — but inside designated RVSM airspace the 1000 ft minimum is extended upward to FL410. Above FL410 it reverts to 2000 ft, so the band in which 1000 ft applies is FL290 to FL410 inclusive. Note the minimum does not depend on the tracks being reciprocal; it is the same figure whatever the relative direction.
+
+Reference: PANS-ATM 5.3.2 b)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -274,7 +276,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `0402 hrs`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `Work it in two steps. First, what geometry? The tracks differ by 70°, so these are crossing tracks, and both aircraft are at F370 — the same level, with no vertical separation available. Second, what minimum? For aircraft on crossing tracks at the same level, 15 minutes is required at the point of intersection. So 0412 + 15 = 0427. The "0417 if 40 kts faster" option is bait from a different rule — the 3-minute same-track concession — which does not apply to crossing tracks.
+
+Reference: PANS-ATM 5.4.2.2.1.2 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -287,7 +291,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `0250 hrs`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `Two steps again. First, when do they pass? One aircraft is over the point at 0210, the other estimates it at 0300, and both hold the same speed — so they meet midway in time, at 0235. Second, what does the rule demand? On reciprocal tracks, vertical separation must exist for at least 10 minutes before and after the estimated passing time. The descending aircraft must therefore be established at F310, clear below F330, by 0235 − 10 = 0225. Reaching F310 any later leaves the two aircraft inside the protected window.
+
+Reference: PANS-ATM 5.4.2.2.3`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -482,7 +488,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `5 Mins`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `While an aircraft is passing through the level of another on the same track, vertical separation does not exist for a period — so longitudinal separation has to cover the gap. The minimum is 15 minutes. It reduces to 10 minutes where navigation aids allow frequent checks of position and speed, and to 5 minutes if the level change is begun within 10 minutes of the second aircraft reporting over an exact reporting point. Note the answer is a time, not a distance — that is what the other options are testing.
+
+Reference: PANS-ATM 5.4.2.2.2.1 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -729,7 +737,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `4000ft`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `This is the properly worded version of the question, and the answer is "it depends". At or above FL290 the general minimum is 2000 ft. Inside designated RVSM airspace, and only for aircraft approved for it, the minimum stays at 1000 ft up to FL410. So 30 000 ft alone does not fix the answer — you must know whether the airspace is RVSM.
+
+Reference: PANS-ATM 5.3.2 a) and b)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -1953,7 +1963,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `0402 hrs`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `Work it in two steps. First, what geometry? The tracks differ by 70°, so these are crossing tracks, and both aircraft are at F370 — the same level, with no vertical separation available. Second, what minimum? For aircraft on crossing tracks at the same level, 15 minutes is required at the point of intersection. So 0412 + 15 = 0427. The "0417 if 40 kts faster" option is bait from a different rule — the 3-minute same-track concession — which does not apply to crossing tracks.
+
+Reference: PANS-ATM 5.4.2.2.1.2 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -1966,7 +1978,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `0250 hrs`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `Two steps again. First, when do they pass? One aircraft is over the point at 0210, the other estimates it at 0300, and both hold the same speed — so they meet midway in time, at 0235. Second, what does the rule demand? On reciprocal tracks, vertical separation must exist for at least 10 minutes before and after the estimated passing time. The descending aircraft must therefore be established at F310, clear below F330, by 0235 − 10 = 0225. Reaching F310 any later leaves the two aircraft inside the protected window.
+
+Reference: PANS-ATM 5.4.2.2.3`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -2808,7 +2822,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `20 Nms`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `Five minutes is the right figure, though the question calls it the wrong thing. The rule is not a lateral minimum: unless lateral separation already exists, VERTICAL separation must be applied between an aircraft holding and any other aircraft — arriving, departing or en route — whenever that other aircraft comes within five minutes flying time of the holding area. So five minutes is the trigger that forces vertical separation, not a horizontal minimum in its own right.
+
+Reference: PANS-ATM 5.5.2`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -2950,7 +2966,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `5000’`,
     ],
     ans: 0,
-    exp: `Correct answer: A`,
+    exp: `This question is asking for the general rule: a nominal 1000 ft below FL290, and a nominal 2000 ft at or above it. Keep that as your default. The 1000 ft you may be thinking of applies only inside designated RVSM airspace, and only up to FL410 — an exception, not the rule.
+
+Reference: PANS-ATM 5.3.2 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4053,7 +4071,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `5 mins`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `The same holding rule. A climbing aircraft is simply "other traffic" as far as the hold is concerned: unless lateral separation exists, vertical separation must be applied once it is within five minutes flying time of the holding area. Remember it as a protected bubble of five minutes around the hold.
+
+Reference: PANS-ATM 5.5.2`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4066,7 +4086,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `3mins`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `Same principle as the same-track case, applied where the tracks cross: 15 minutes while vertical separation does not exist, reducing to 10 minutes only where navigation aids permit frequent determination of position and speed. There is no 5-minute provision for crossing tracks — that concession exists only on the same track.
+
+Reference: PANS-ATM 5.4.2.2.2.2 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5638,7 +5660,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `20mins.`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `Same principle as the same-track case, applied where the tracks cross: 15 minutes while vertical separation does not exist, reducing to 10 minutes only where navigation aids permit frequent determination of position and speed. There is no 5-minute provision for crossing tracks — that concession exists only on the same track.
+
+Reference: PANS-ATM 5.4.2.2.2.2 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5714,7 +5738,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `4000’`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `FL410 is the top of the RVSM band. The reduced 1000 ft minimum applies below FL410; at or above that level the minimum goes back to 2000 ft. The reason is practical — altimetry error grows with altitude, and above FL410 the height-keeping performance that makes 1000 ft safe can no longer be assured.
+
+Reference: PANS-ATM 5.3.2 b)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -7853,7 +7879,9 @@ export const RK_BALI_REGULATIONS_QUESTIONS: DemoQuestion[] = [
       `increases between F 290 & 410`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `Reduced Vertical Separation Minimum does what its name says: it halves the minimum from 2000 ft to 1000 ft between FL290 and FL410, which roughly doubles the number of usable cruising levels in that band. The trade is equipment and approval — the aircraft must hold height accurately enough to justify the reduction.
+
+Reference: PANS-ATM 5.3.2 b)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
