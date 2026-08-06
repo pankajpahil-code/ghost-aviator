@@ -54,6 +54,7 @@ export default function Footer() {
                 ["CPL & ATPL Notes",    "/notes"],
                 ["DGCA Resources",      "/resources"],
                 ["Study Guides",        "/guides"],
+                ["How Answers Are Verified", "/how-answers-are-verified"],
               ].map(([item, href]) => (
                 <li key={item}>
                   <Link href={href} className="text-sm no-underline hover:text-white transition-colors" style={{ color: "#64748b" }}>{item}</Link>

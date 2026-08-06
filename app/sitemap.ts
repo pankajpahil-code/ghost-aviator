@@ -29,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/books"),        changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/past-papers"),  changeFrequency: "weekly"  as const, priority: 0.8 },
     { url: url("/guides"),       changeFrequency: "weekly"  as const, priority: 0.9 },
+    { url: url("/how-answers-are-verified"), changeFrequency: "monthly" as const, priority: 0.7 },
     { url: url("/cpl-cost-calculator"), changeFrequency: "monthly" as const, priority: 0.9 },
     // /login and /signup are deliberately absent: thin, no search intent, and
     // they are marked noindex. Submitting them only spends crawl budget.
