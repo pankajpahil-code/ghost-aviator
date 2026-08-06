@@ -5,6 +5,7 @@ import path from "path";
 import { GUIDES } from "@/lib/guides";
 import { ChevronLeft, Calendar, User, Clock } from "lucide-react";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
+import { faqsForGuide, faqJsonLd } from "@/lib/faq";
 
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
@@ -57,9 +58,18 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   // loose name string. A bare {"@type":"Person","name":"..."} on each guide
   // creates six unconnected people; an @id reference credits all six articles
   // to the one instructor whose licence, books and channels are described once.
+  // The same verified answers the /faq hub serves, filtered to this guide. A
+  // guide that already answers a question is where an engine is most likely to
+  // look for it, so the answer is marked up here too — one fact, one source,
+  // rendered in both places rather than restated differently in each.
+  const faqs = faqsForGuide(slug);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
+      ...(faqs.length
+        ? [{ ...faqJsonLd(faqs), "@id": `${SITE_URL}/guides/${guide.slug}#faq` }]
+        : []),
       {
         "@type": "Article",
         "@id": `${SITE_URL}/guides/${guide.slug}#article`,
@@ -117,6 +127,33 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           className="prose prose-invert prose-purple max-w-none mb-12"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
+
+        {/* Quick answers — the questions this guide gets asked, answered in a
+            form short enough to be quoted and complete enough to stand alone. */}
+        {faqs.length > 0 && (
+          <section className="mt-14 mb-12">
+            <h2 className="text-2xl font-bold text-white mb-5">Quick answers</h2>
+            <div className="space-y-4">
+              {faqs.map(f => (
+                <div
+                  key={f.q}
+                  className="rounded-2xl p-6"
+                  style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(255,255,255,0.06)" }}
+                >
+                  <h3 className="text-lg font-bold text-white mb-2">{f.q}</h3>
+                  <p className="text-base leading-relaxed" style={{ color: "#94a3b8" }}>{f.a}</p>
+                </div>
+              ))}
+            </div>
+            <Link
+              href="/faq"
+              className="inline-block mt-5 text-sm font-bold no-underline"
+              style={{ color: "#ab794d" }}
+            >
+              All DGCA exam questions →
+            </Link>
+          </section>
+        )}
 
         {/* Live Classes Banner */}
         <div className="my-10">
