@@ -7,6 +7,7 @@ import { getQuestionsForChapter, getChapterSpecificQuestions } from "@/lib/quest
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { chapterMetaDescription } from "@/lib/chapter-meta";
 import { getInlineNotes } from "@/lib/notes-inline";
+import { videoObjectsFor } from "@/lib/video-schema";
 import NotesPage       from "@/app/components/content/NotesPage";
 import HtmlNotesPage   from "@/app/components/content/HtmlNotesPage";
 import QuestionsPage   from "@/app/components/content/QuestionsPage";
@@ -137,15 +138,27 @@ export default async function Page({
     // availability — one line there lights up the route and the sitemap.
     const videos = getChapterVideos(subject.id, chapter.id);
     if (videos.length > 0) {
+      const videoNodes = videoObjectsFor("atpl", subject.id, chapter.id, chapter.title, videos);
       return (
-        <VideoPage
-          track="atpl"
-          subject={subject}
-          chapter={chapter}
-          prevChapter={prevChapter}
-          nextChapter={nextChapter}
-          videos={videos}
-        />
+        <>
+          {videoNodes.length > 0 && (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": videoNodes,
+              }) }}
+            />
+          )}
+          <VideoPage
+            track="atpl"
+            subject={subject}
+            chapter={chapter}
+            prevChapter={prevChapter}
+            nextChapter={nextChapter}
+            videos={videos}
+          />
+        </>
       );
     }
   }

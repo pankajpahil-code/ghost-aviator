@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { getChapterSpecificQuestions } from "@/lib/questions";
+import { getChapterVideos } from "@/lib/chapter-videos";
 import { ALL_PAST_PAPERS } from "@/lib/past-papers";
 import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { GUIDES } from "@/lib/guides";
@@ -67,7 +68,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   //
   // These routes stay live and stay internally linked; they are simply not
   // *submitted*. Google is free to find and index them by following links.
-  const SUBMITTED_TYPES = new Set(["notes", "questions"]);
+  //
+  // Video pages rejoined this list on 2026-08-08. They were pruned with the
+  // other drills for being ~230-word shells, which was right at the time. They
+  // now carry something no other page on the site has: one of the Captain's own
+  // lectures, described by a VideoObject built from metadata read off YouTube
+  // itself (lib/generated/video-metadata.ts). Video results are a separate
+  // index with its own eligibility, and Search Console was reporting the site's
+  // only detected video as "Video isn't on a watch page" — i.e. zero eligible.
+  // 27 pages, each with a genuinely unique asset.
+  const SUBMITTED_TYPES = new Set(["notes", "questions", "video"]);
 
   // ONE URL PER DISTINCT QUESTION SET (2026-08-08).
   //
@@ -101,6 +111,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
           seenQuestionSets.add(key);
           types.add("questions");
         }
+        // Gate identical to the route's own render condition: a mapped lecture.
+        if (getChapterVideos(s.id, ch.id).length > 0) types.add("video");
         return Array.from(types).filter(t => SUBMITTED_TYPES.has(t)).map(type => ({
           url: url(`/${track}/${s.id}/${ch.id}/${type}`),
           lastModified: now,

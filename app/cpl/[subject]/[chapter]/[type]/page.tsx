@@ -7,6 +7,7 @@ import { getQuestionsForChapter, getChapterSpecificQuestions } from "@/lib/quest
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { getInlineNotes } from "@/lib/notes-inline";
 import { chapterMetaDescription } from "@/lib/chapter-meta";
+import { videoObjectsFor } from "@/lib/video-schema";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 import NotesPage              from "@/app/components/content/NotesPage";
 import AirRegsChapter1Notes   from "@/app/components/content/AirRegsChapter1Notes";
@@ -305,15 +306,31 @@ export default async function Page({
     // is the single source of truth, and the sitemap uses the same condition.
     const videos = getChapterVideos(subject.id, chapter.id);
     if (videos.length > 0) {
+      // VideoObject, so this page can be recognised as the lecture's watch page.
+      // Search Console reported the site's one detected video as "Video isn't on
+      // a watch page" — nothing here was eligible for video results at all.
+      const videoNodes = videoObjectsFor("cpl", subject.id, chapter.id, chapter.title, videos);
       return (
-        <VideoPage
-          track="cpl"
-          subject={subject}
-          chapter={chapter}
-          prevChapter={prevChapter}
-          nextChapter={nextChapter}
-          videos={videos}
-        />
+        <>
+          {jsonLdScript}
+          {videoNodes.length > 0 && (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": videoNodes,
+              }) }}
+            />
+          )}
+          <VideoPage
+            track="cpl"
+            subject={subject}
+            chapter={chapter}
+            prevChapter={prevChapter}
+            nextChapter={nextChapter}
+            videos={videos}
+          />
+        </>
       );
     }
   }

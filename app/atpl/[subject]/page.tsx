@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { getChapterSpecificQuestions } from "@/lib/questions";
+import { getChapterVideos } from "@/lib/chapter-videos";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
@@ -136,7 +138,13 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
                       {ch.content.map(c => {
                         const Icon = CONTENT_ICONS[c.type];
                         const color = CONTENT_COLORS[c.type];
-                        return c.available ? (
+                        // Same drift as the CPL index: the questions flag is hand-kept
+                        // and lies in both directions. Derived from the bank instead.
+                        const available =
+                          c.type === "questions" ? getChapterSpecificQuestions(subject.id, ch.id).length > 0
+                          : c.type === "video"   ? getChapterVideos(subject.id, ch.id).length > 0
+                          : c.available;
+                        return available ? (
                           <Link key={c.type} href={`/atpl/${subject.id}/${ch.id}/${c.type}`}
                                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold no-underline"
                                 style={{ background:`${color}18`, border:`1px solid ${color}40`, color }}>

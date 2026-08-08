@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { getChapterSpecificQuestions } from "@/lib/questions";
+import { getChapterVideos } from "@/lib/chapter-videos";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { CPL_SUBJECTS } from "@/lib/subjects";
@@ -169,7 +171,23 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
                       {ch.content.map(c => {
                         const Icon = CONTENT_ICONS[c.type];
                         const color = CONTENT_COLORS[c.type];
-                        return c.available ? (
+                        // The `available` flag for questions is hand-maintained in
+                        // subjects.ts (makeContent defaults it to false) and had drifted
+                        // badly: 11 chapters were flagged false while the bank held real
+                        // questions — nav-3 has 176 and nav-4 has 223 that no student
+                        // could reach from anywhere on the site, and which a link crawl
+                        // found orphaned with zero inbound links. Iron Rule 5: derive
+                        // this surface from the data, never from a hand-kept flag.
+                        // Video has the identical problem: makeContent() hardcodes it
+                        // false, while lib/chapter-videos.ts is the real source of
+                        // truth and the route and sitemap both use THAT. Left on the
+                        // flag, 17 lecture pages were submitted to Google while being
+                        // linked from nowhere on the site.
+                        const available =
+                          c.type === "questions" ? getChapterSpecificQuestions(subject.id, ch.id).length > 0
+                          : c.type === "video"   ? getChapterVideos(subject.id, ch.id).length > 0
+                          : c.available;
+                        return available ? (
                           <Link key={c.type}
                                 href={`/cpl/${subject.id}/${ch.id}/${c.type}`}
                                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold no-underline transition-all"
