@@ -12,6 +12,42 @@
 // already correct; nothing in this batch required an answer change.
 
 export const AR4_EXPLANATIONS = [
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Batch 2, verified 2026-08-08 against ICAO Doc 4444 (PANS-ATM), the 432-page
+  // copy at C:\Users\Admin\Downloads\Telegram Desktop\4444 Air Traffic
+  // Management.pdf. Every paragraph below was read in that document.
+  // ═══════════════════════════════════════════════════════════════════════════
+  {
+    stem: "Wake turbulence separation minima for Take off, if a light aircraft is to take off behind a heavy or a medium aircraft is:",
+    expect: "2 minutes",
+    cite: "PANS-ATM 5.8.3.1",
+    exp: `Two minutes. The departing minimum applies to a LIGHT or MEDIUM aircraft taking off behind a HEAVY, and to a LIGHT taking off behind a MEDIUM — the same two minutes in each case.
+
+It is conditional on the runway geometry, and that is the part worth learning: it applies when the aircraft use the same runway, parallel runways separated by less than 760 m (2 500 ft), or crossing runways where the second aircraft's projected path will cross the first's at the same altitude or less than 300 m (1 000 ft) below.
+
+Know the category boundaries too, because a question can hinge on them: HEAVY is 136 000 kg or more, MEDIUM is less than 136 000 kg but more than 7 000 kg, and LIGHT is 7 000 kg or less — all on maximum certificated take-off mass. The three-minute figure that appears as a distractor is real, but it belongs to the arrival case, not departure.`,
+  },
+  {
+    stem: "The minimum wake turbulence time separation for a heavy aircraft to land behind a heavy aircraft is",
+    expect: "not required",
+    cite: "PANS-ATM 5.8.2.1.1",
+    exp: `There is no time-based wake turbulence minimum for this pairing, and the reason is that the rule only protects an aircraft from something heavier than itself. The arrival minima are stated as exactly two cases: a MEDIUM behind a HEAVY gets 2 minutes, and a LIGHT behind a HEAVY or a MEDIUM gets 3 minutes.
+
+HEAVY behind HEAVY appears in neither, so no wake turbulence separation is prescribed — the following aircraft is as capable of handling the vortex as the one that made it. The same logic explains the other silences in the table: MEDIUM behind MEDIUM and LIGHT behind LIGHT are not listed either.
+
+Not prescribed is not the same as no hazard. Where separation is not applied the controller still issues a caution of possible wake turbulence, and the pilot-in-command remains responsible for judging whether the spacing behind a heavier aircraft is acceptable — and for asking for more if it is not.`,
+  },
+  {
+    stem: "Position report shall be made after every _______, where no standard reporting points exist .",
+    expect: "first report after 30 mins and subsequent after 60 mins",
+    cite: "PANS-ATM 4.11.1.2",
+    exp: `The rule is deliberately asymmetric, which is why the single-interval options are all wrong. On routes **not** defined by designated significant points, position reports are made as soon as possible after the first half hour of flight, and at hourly intervals after that.
+
+The early first report exists to confirm the flight is where it planned to be while the error is still small; once that is established, hourly is enough. Contrast the other case: on routes that **are** defined by designated significant points, you report over — or as soon as possible after — each compulsory reporting point, with no clock involved at all.
+
+In both cases ATS may ask for additional reports at shorter intervals, and may exempt a flight from routine reports altogether where it already has adequate position data from radar, ADS-B or ADS-C.`,
+  },
+
   // ---- Appendix 1, 4.1.1 Light and pyrotechnic signals ----
   {
     stem: "A continuous red beam directed at an aircraft from the ATC tower means :",
