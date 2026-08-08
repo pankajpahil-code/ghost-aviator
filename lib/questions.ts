@@ -160,3 +160,51 @@ export function getQuestionsForChapter(
   if (byChapter.length > 0) return byChapter;
   return ALL_QUESTIONS.filter(q => q.subjectIds.includes(subjectId));
 }
+
+/**
+ * The questions that genuinely belong to this chapter — empty when the chapter
+ * has none of its own and `getQuestionsForChapter` would hand back the whole
+ * subject pool instead.
+ *
+ * That subject-wide fallback is good for a student (a chapter with no bank of
+ * its own still gives you something to practise) and terrible for search.
+ * Measured 2026-08-08: **114 of 284 chapter question pages serve a question set
+ * identical to at least one other chapter** — 16 Air Navigation chapters return
+ * the very same 1,020 questions, 8 Meteorology chapters the same 651, 6 ATPL
+ * Navigation the same 865. Across the site 33,043 question-renders draw on only
+ * 4,269 distinct questions, a 7.7x duplication factor.
+ *
+ * Sixteen URLs with byte-identical content is precisely what produces
+ * "Crawled - currently not indexed", which Search Console reported for 303 of
+ * 343 known pages. So the fallback set still powers the interactive drill, but
+ * it is neither rendered as bulk page content nor submitted in the sitemap.
+ */
+export function getChapterSpecificQuestions(
+  subjectId: string,
+  chapterId: string,
+): DemoQuestion[] {
+  if (subjectId === "air-regulations") {
+    if (Number(chapterId.replace("ar-", "")) > 13) {
+      const own = ALL_QUESTIONS.filter(
+        q => q.chapterId === chapterId && q.subjectIds.includes("air-regulations"),
+      );
+      if (own.length > 0) return own;
+    }
+    const bankId = CPL_AR_CHAPTER_MAP[chapterId] ?? chapterId;
+    return ALL_QUESTIONS.filter(
+      q => q.chapterId === bankId && q.subjectIds.includes("air-regulations"),
+    );
+  }
+
+  if (subjectId === "atpl-air-regulations") {
+    const bankId = ATPL_AR_CHAPTER_MAP[chapterId];
+    if (!bankId) return [];
+    return ALL_QUESTIONS.filter(
+      q => q.chapterId === bankId && q.subjectIds.includes("air-regulations"),
+    );
+  }
+
+  return ALL_QUESTIONS.filter(
+    q => q.chapterId === chapterId && q.subjectIds.includes(subjectId),
+  );
+}

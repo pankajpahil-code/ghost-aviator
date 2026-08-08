@@ -10,9 +10,36 @@ type Props = {
   subject: Subject;
   chapter: Chapter;
   questions: DemoQuestion[];
+  /** True when these questions genuinely belong to this chapter. False when
+   *  they are the subject-wide fallback shared with other chapters — the drill
+   *  still runs, but the full list is not rendered, because 16 chapters
+   *  publishing the same 1,020 questions is duplicate content, not content.
+   *  See getChapterSpecificQuestions in lib/questions.ts. */
+  chapterSpecific?: boolean;
 };
 
-export default function QuestionsPage({ track, subject, chapter, questions }: Props) {
+/**
+ * True when an explanation actually explains something.
+ *
+ * 782 of the bank's 1,277 explanations (61%) are still the placeholder
+ * `Correct answer: B` — measured 2026-08-08, and tracked as an open task in
+ * CLAUDE.md. Rendering those under a "Why:" label would put one near-identical
+ * meaningless sentence on every question of every page: padding that teaches a
+ * student nothing and hands Google exactly the boilerplate-repetition signal
+ * the full question list exists to escape. A question with no real explanation
+ * simply shows its marked answer and nothing more.
+ */
+function isRealExplanation(exp: string | undefined): boolean {
+  if (!exp || !exp.trim()) return false;
+  return !/^\s*correct answer\s*[:\-]?\s*[A-D]?\s*\.?\s*$/i.test(exp.trim());
+}
+
+export default function QuestionsPage({ track, subject, chapter, questions, chapterSpecific = true }: Props) {
+  // Content protection for the full question list below — same deterrents the
+  // notes carry. Iron Rule 3: the answers are the most valuable thing on the
+  // site and the easiest to lift.
+  const blockCopy = (e: React.SyntheticEvent) => { e.preventDefault(); e.stopPropagation(); };
+
   const [current, setCurrent] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [selfScore, setSelfScore] = useState<("correct" | "wrong" | null)[]>(
@@ -242,6 +269,80 @@ export default function QuestionsPage({ track, subject, chapter, questions }: Pr
             {current < questions.length - 1 ? <>Next <ChevronRight className="w-4 h-4" /></> : "Finish"}
           </button>
         </div>
+
+        {/* ── Full question list ────────────────────────────────────────────
+            Every question, rendered into the page rather than revealed one at
+            a time by the drill above.
+
+            WHY: the drill is a client component that shows question 1 of N.
+            Search Console (2026-08-08) reported 303 of 343 known pages as
+            "Crawled - currently not indexed" — fetched, then judged not worth
+            indexing — and these 284 pages were handing Googlebot ~269 words
+            each: the navigation, and one question. 284 near-identical thin
+            pages, all submitted in the sitemap, while the site was already
+            being de-indexed. Rendering the full set makes each page what it
+            claims to be.
+
+            It is also better for the student: a revision list you can read
+            end-to-end beats clicking through 56 cards. Protection matches the
+            notes — selectable text and copy are blocked, no print. */}
+        {chapterSpecific && (
+        <section
+          className="mt-14 mb-4"
+          onContextMenu={blockCopy}
+          onCopy={blockCopy}
+          onCut={blockCopy}
+          style={{ userSelect: "none", WebkitUserSelect: "none" }}
+        >
+          <h2 className="text-lg font-black text-white mb-1">
+            All {questions.length} questions — {chapter.title}
+          </h2>
+          <p className="text-xs mb-6" style={{ color: "#64748b" }}>
+            {subject.name} · DGCA {track.toUpperCase()}. The correct option is marked on each.
+          </p>
+
+          <ol className="list-none p-0 m-0 flex flex-col gap-5">
+            {questions.map((qq, qi) => (
+              <li key={qi}
+                  className="rounded-xl p-4"
+                  style={{ background: "rgba(17,24,32,0.7)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="text-sm font-semibold text-white mb-3 leading-relaxed">
+                  <span style={{ color: subject.color }}>Q{qi + 1}.</span> {qq.q}
+                </p>
+                <ul className="list-none p-0 m-0 flex flex-col gap-1.5">
+                  {qq.opts.map((opt, oi) => {
+                    const isAns = oi === qq.ans;
+                    return (
+                      <li key={oi}
+                          className="text-sm px-3 py-1.5 rounded-lg"
+                          style={{
+                            background: isAns ? "rgba(34,197,94,0.12)" : "transparent",
+                            border: `1px solid ${isAns ? "rgba(34,197,94,0.35)" : "rgba(255,255,255,0.06)"}`,
+                            color: isAns ? "#22c55e" : "#94a3b8",
+                          }}>
+                        <span className="font-bold mr-2">{String.fromCharCode(65 + oi)}.</span>
+                        {opt}
+                        {isAns && <span className="ml-2 font-bold">✓</span>}
+                      </li>
+                    );
+                  })}
+                </ul>
+                {/* Explanations are only worth rendering when they explain
+                    something. Much of the bank still carries placeholder text
+                    of the form "Correct answer: B", which teaches nothing and
+                    would pad every page with a near-identical sentence — the
+                    exact thin-content signal this section exists to fix. */}
+                {isRealExplanation(qq.exp) && (
+                  <p className="text-xs mt-3 mb-0 leading-relaxed" style={{ color: "#64748b" }}>
+                    <span className="font-bold" style={{ color: "#94a3b8" }}>Why: </span>
+                    {qq.exp}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ol>
+        </section>
+        )}
       </div>
     </div>
   );

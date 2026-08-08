@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import fs from "node:fs";
 import path from "node:path";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
-import { getQuestionsForChapter } from "@/lib/questions";
+import { getQuestionsForChapter, getChapterSpecificQuestions } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { chapterMetaDescription } from "@/lib/chapter-meta";
 import { getInlineNotes } from "@/lib/notes-inline";
@@ -105,6 +105,7 @@ export default async function Page({
         subject={subject}
         chapter={chapter}
         questions={questions}
+        chapterSpecific={getChapterSpecificQuestions(subject.id, chapter.id).length > 0}
       />
     );
   }
