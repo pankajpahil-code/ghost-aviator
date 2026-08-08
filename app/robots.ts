@@ -22,13 +22,24 @@ import { SITE_URL } from "@/lib/site";
  * and a crawler must be allowed to fetch a page in order to SEE that it is
  * noindex. Disallowing a noindex page is self-defeating — it can leave the bare
  * URL indexed with no way to remove it.
+ *
+ * AMENDED 2026-08-08. The chapter now renders in the notes page itself instead
+ * of in an iframe, and its figures were extracted out of base64 into real files
+ * under /content/<subject>/<chapter>/img/. Those images are now part of a page
+ * we want indexed, so they must be crawlable: blocking a resource our own pages
+ * render is how a site ends up assessed on a broken rendering of itself, and it
+ * would keep 239 of the Captain's diagrams out of Google Images — a discovery
+ * channel that matters for queries like "VOR radial diagram". The raw
+ * notes.html documents stay closed; only the figures open up.
  */
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
-      // The Captain's own notes. Link to the chapter page instead.
+      // Longest match wins, so the img rule beats the /content/ block.
+      allow: ["/", "/content/*/*/img/"],
+      // The raw standalone chapter documents. The chapter page renders the same
+      // material and is the URL that should rank; these are unlinked duplicates.
       disallow: "/content/",
     },
     sitemap: `${SITE_URL}/sitemap.xml`,

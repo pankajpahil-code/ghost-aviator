@@ -3,7 +3,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { getQuestionsForChapter } from "@/lib/questions";
-import { getChapterVideos } from "@/lib/chapter-videos";
 import { ALL_PAST_PAPERS } from "@/lib/past-papers";
 import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { GUIDES } from "@/lib/guides";
@@ -51,26 +50,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Per-subject index + only those chapter routes that have real content behind
   // them. A sitemap full of "Detailed Notes Being Prepared" placeholders and
   // zero-question quizzes teaches Google that this domain is mostly thin pages.
+  //
+  // SUBMIT ONLY WHAT CAN RANK (2026-08-08). A crawl of the previous 931-URL
+  // sitemap measured what Googlebot actually receives per route type:
+  //
+  //     notes         median 2,514 words
+  //     questions     median   243 words
+  //     chapter-quiz  median   201 words
+  //     video/slides/audio  ~215-285 words
+  //
+  // Everything except notes and questions is a client-rendered drill: the page
+  // is a shell, the content arrives after hydration, and it duplicates the
+  // sibling questions page besides. That was 331 of 931 submitted URLs — a
+  // third of everything we asked Google to look at — spending crawl budget on
+  // pages that cannot win a query, on a domain whose real asset is the notes.
+  //
+  // These routes stay live and stay internally linked; they are simply not
+  // *submitted*. Google is free to find and index them by following links.
+  const SUBMITTED_TYPES = new Set(["notes", "questions"]);
+
   const subjectPages = (track: "cpl" | "atpl", subjects: Subject[]): MetadataRoute.Sitemap =>
     subjects.flatMap(s => [
       { url: url(`/${track}/${s.id}`), lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
       ...s.chapters.flatMap(ch => {
         const types = new Set<string>();
         if (hasRealNotes(s.id, ch.id)) types.add("notes");
-        // Quiz and practice-question routes are empty shells without questions.
-        const questionCount = getQuestionsForChapter(s.id, ch.id).length;
-        if (questionCount > 0) {
-          types.add("chapter-quiz");
-          types.add("questions");
-        }
-        // Slides/audio stay gated on their availability flags, which are honest.
-        for (const c of ch.content) {
-          if (c.available && ["slides", "audio"].includes(c.type)) types.add(c.type);
-        }
-        // Video is gated on the SAME condition the route renders with: a
-        // mapped lecture in lib/chapter-videos.ts (the flag alone can lie).
-        if (getChapterVideos(s.id, ch.id).length > 0) types.add("video");
-        return Array.from(types).map(type => ({
+        // Practice-question routes are empty shells without questions.
+        if (getQuestionsForChapter(s.id, ch.id).length > 0) types.add("questions");
+        return Array.from(types).filter(t => SUBMITTED_TYPES.has(t)).map(type => ({
           url: url(`/${track}/${s.id}/${ch.id}/${type}`),
           lastModified: now,
           changeFrequency: "monthly" as const,

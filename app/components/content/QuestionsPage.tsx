@@ -42,7 +42,7 @@ export default function QuestionsPage({ track, subject, chapter, questions }: Pr
       <div style={{ background: "#0b1117" }} className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <div className="text-5xl mb-4">❓</div>
-          <h2 className="text-2xl font-black text-white mb-3">Questions Coming Soon</h2>
+          <h1 className="text-2xl font-black text-white mb-3">Questions Coming Soon</h1>
           <p className="mb-6 text-sm" style={{ color: "#64748b" }}>
             Chapter-specific questions for{" "}
             <strong style={{ color: subject.color }}>{chapter.title}</strong> are being prepared.
@@ -139,7 +139,17 @@ export default function QuestionsPage({ track, subject, chapter, questions }: Pr
           <div className="text-xs font-bold tracking-widest mb-1" style={{ color: subject.color, letterSpacing: "0.15em" }}>
             {subject.shortName.toUpperCase()} — CH.{chapter.number}
           </div>
-          <h2 className="text-xl font-black text-white">{chapter.title}</h2>
+          {/* h1, not h2. All 284 practice-question pages in the sitemap shipped
+              with no h1 at all — the one heading every search engine reads
+              first to decide what a page is about. The subject line below it
+              is visible, not sr-only: it names the exam and the subject, which
+              is the query a student actually types. */}
+          <h1 className="text-xl font-black text-white">
+            {chapter.title}
+            <span className="block text-xs font-bold mt-1" style={{ color: "#64748b" }}>
+              {subject.name} — DGCA {track.toUpperCase()} practice questions
+            </span>
+          </h1>
           <p className="text-xs mt-1" style={{ color: "#475569" }}>Question {current + 1} of {questions.length}</p>
         </div>
 

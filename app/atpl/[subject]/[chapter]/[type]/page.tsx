@@ -5,6 +5,8 @@ import path from "node:path";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
+import { chapterMetaDescription } from "@/lib/chapter-meta";
+import { getInlineNotes } from "@/lib/notes-inline";
 import NotesPage       from "@/app/components/content/NotesPage";
 import HtmlNotesPage   from "@/app/components/content/HtmlNotesPage";
 import QuestionsPage   from "@/app/components/content/QuestionsPage";
@@ -36,7 +38,9 @@ export async function generateMetadata({
     : type.charAt(0).toUpperCase() + type.slice(1);
   return {
     title: `Ch.${chapter.number} ${chapter.title} — ${label} | ${subject.shortName} ATPL | Ghost Aviator`,
-    description: chapter.description,
+    description: chapterMetaDescription(
+      "atpl", subject, chapter, type, getQuestionsForChapter(subject.id, chapter.id).length,
+    ),
     alternates: { canonical: `/atpl/${subject.id}/${chapter.id}/${type}` },
   };
 }
@@ -68,7 +72,8 @@ export default async function Page({
     // CPL instrumentation/radio-telephony/radio-navigation/technical-general subjects.
     if (subject.id === "human-performance") {
       const notesFile = path.join(process.cwd(), "public", "content", subject.id, chapter.id, "notes.html");
-      if (fs.existsSync(notesFile)) {
+      const inlineNotes = fs.existsSync(notesFile) ? getInlineNotes(subject.id, chapter.id) : null;
+      if (inlineNotes) {
         return (
           <HtmlNotesPage
             track="atpl"
@@ -76,7 +81,7 @@ export default async function Page({
             chapter={chapter}
             prevChapter={prevChapter}
             nextChapter={nextChapter}
-            src={`/content/${subject.id}/${chapter.id}/notes.html`}
+            notes={inlineNotes}
             videos={getChapterVideos(subject.id, chapter.id)}
           />
         );

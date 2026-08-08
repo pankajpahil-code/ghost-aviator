@@ -16,7 +16,10 @@ type Props = {
   chapter: Chapter;
   prevChapter: Chapter | null;
   nextChapter: Chapter | null;
-  src: string;
+  /** The chapter rendered in-page: its own stylesheet, scoped to `.ga-notes`,
+   *  plus the body markup. See lib/notes-inline.ts for why this replaced the
+   *  iframe + sr-only pair. */
+  notes: { css: string; html: string };
   /** The Captain's lecture(s) for this chapter — card renders above the notes when non-empty. */
   videos?: ChapterVideo[];
 };
@@ -56,11 +59,11 @@ function splitIntoChunks(text: string): string[] {
     .filter(Boolean);
 }
 
-// Reads the notes aloud with browser speechSynthesis. The notes live in a
-// same-origin iframe, so the text is read straight from its contentDocument
-// and spoken — never rendered as a visible transcript or otherwise exposed,
-// so this adds no new copy/export surface.
-function useReadAloud(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
+// Reads the notes aloud with browser speechSynthesis. The chapter now renders
+// in the page itself, so the text is read from the container element rather
+// than an iframe's contentDocument — spoken only, never rendered as a
+// selectable transcript, so this adds no new copy/export surface.
+function useReadAloud(notesRef: React.RefObject<HTMLDivElement | null>) {
   const [state, setState] = useState<SpeechState>("idle");
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [voiceURI, setVoiceURI] = useState<string>("");
@@ -90,15 +93,9 @@ function useReadAloud(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
   }, []);
 
   function extractText(): string {
-    try {
-      const doc = iframeRef.current?.contentDocument;
-      const body = doc?.body?.cloneNode(true) as HTMLElement | undefined;
-      if (!body) return "";
-      body.querySelectorAll("script, style").forEach(el => el.remove());
-      return body.innerText.replace(/\s+/g, " ").trim();
-    } catch {
-      return ""; // not yet loaded
-    }
+    const el = notesRef.current;
+    if (!el) return "";
+    return (el.innerText || "").replace(/\s+/g, " ").trim();
   }
 
   function speakNext() {
@@ -138,10 +135,17 @@ function useReadAloud(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
   return { state, toggle, stop, voices, voiceURI, setVoiceURI };
 }
 
-export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, src, videos }: Props) {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, notes, videos }: Props) {
+  const notesRef = useRef<HTMLDivElement>(null);
   const keyFacts = keyFactsFor(subject.id, chapter.id);
-  const { state: speechState, toggle: toggleListen, stop: stopListen, voices, voiceURI, setVoiceURI } = useReadAloud(iframeRef);
+  const { state: speechState, toggle: toggleListen, stop: stopListen, voices, voiceURI, setVoiceURI } = useReadAloud(notesRef);
+
+  // Content protection, previously injected into the iframe document by
+  // tools/_protect-snippet.mjs. The chapter renders in this page now, so the
+  // same deterrents have to live here: no selection, no copy/cut, no
+  // right-click, no drag-saving a figure, and nothing at all on print.
+  // Iron Rule 3 — protection stays on; only the delivery mechanism changed.
+  const block = (e: React.SyntheticEvent) => { e.preventDefault(); e.stopPropagation(); };
 
   return (
     <div style={{ background: "#0b1117" }} className="min-h-screen flex flex-col">
@@ -230,16 +234,42 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
         {videos && videos.length > 0 && (
           <VideoLectureCard videos={videos} title={chapter.title} color={subject.color} />
         )}
-        <div className="rounded-2xl overflow-hidden"
-             style={{ border: `1px solid ${subject.color}20`, minHeight: "80vh" }}>
-          <iframe
-            ref={iframeRef}
-            src={src}
-            className="w-full"
-            style={{ minHeight: "80vh", height: "80vh", border: "none", background: "#f8f9fc" }}
-            title={`${chapter.title} — Notes`}
-          />
-        </div>
+        {/* The chapter itself — rendered in this page, visibly, once.
+            It used to sit in an iframe with a duplicate hidden copy alongside
+            it for crawlers; that gave the notes route no credit for its own
+            content and served ~2,500 words no user could reach. See
+            lib/notes-inline.ts. */}
+        <style dangerouslySetInnerHTML={{ __html: `
+/* Container defaults FIRST, so a chapter's own body rules (which scope to
+   .ga-notes) override them rather than the other way round. These must not be
+   inline styles on the div: an inline style beats every stylesheet rule, which
+   would silently discard each chapter's own background, padding and measure. */
+.ga-notes { background: #f8f9fc; color: #111; padding: 1.5rem; }
+
+${notes.css}
+/* Protection + fit. Kept after the chapter's own rules so it always wins. */
+.ga-notes, .ga-notes * {
+  -webkit-user-select: none !important; -moz-user-select: none !important;
+  -ms-user-select: none !important; user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+.ga-notes img, .ga-notes svg { -webkit-user-drag: none !important; max-width: 100%; height: auto; }
+/* The chapter is authored as a standalone page; keep it from forcing the
+   layout wider than the viewport on a phone. */
+.ga-notes { overflow-x: auto; }
+.ga-notes table { max-width: 100%; }
+@media print { .ga-notes { display: none !important; } }
+` }} />
+        <div
+          ref={notesRef}
+          className="ga-notes rounded-2xl"
+          style={{ border: `1px solid ${subject.color}20` }}
+          onContextMenu={block}
+          onCopy={block}
+          onCut={block}
+          onDragStart={block}
+          dangerouslySetInnerHTML={{ __html: notes.html }}
+        />
 
         {/* Key facts — the only part of this chapter that is offered for
             quoting. Rendered VISIBLY and after the notes: a student who has

@@ -5,7 +5,8 @@ import path from "node:path";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
-import { getSeoHtmlForNotes } from "@/lib/seo-notes";
+import { getInlineNotes } from "@/lib/notes-inline";
+import { chapterMetaDescription } from "@/lib/chapter-meta";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 import NotesPage              from "@/app/components/content/NotesPage";
 import AirRegsChapter1Notes   from "@/app/components/content/AirRegsChapter1Notes";
@@ -41,7 +42,9 @@ export async function generateMetadata({
     : type.charAt(0).toUpperCase() + type.slice(1);
   return {
     title: `Ch.${chapter.number} ${chapter.title} — ${label} | ${subject.shortName} CPL | Ghost Aviator`,
-    description: chapter.description,
+    description: chapterMetaDescription(
+      "cpl", subject, chapter, type, getQuestionsForChapter(subject.id, chapter.id).length,
+    ),
     alternates: { canonical: `/cpl/${subject.id}/${chapter.id}/${type}` },
   };
 }
@@ -131,32 +134,23 @@ export default async function Page({
         />
       );
     }
-    const notesHtmlPath = `/content/${subject.id}/${chapter.id}/notes.html`;
-
     // Instrumentation: auto-serve HTML notes whenever the chapter's notes.html
     // has been published to public/content/ (the daily notes task drops files
     // there), so newly added chapters appear without editing this allow-list.
     if (subject.id === "instrumentation" || subject.id === "radio-navigation" || subject.id === "technical-general" || subject.id === "radio-telephony") {
       const notesFile = path.join(process.cwd(), "public", "content", subject.id, chapter.id, "notes.html");
-      if (fs.existsSync(notesFile)) {
-        const seoHtml = getSeoHtmlForNotes(subject.id, chapter.id);
+      const inlineNotes = fs.existsSync(notesFile) ? getInlineNotes(subject.id, chapter.id) : null;
+      if (inlineNotes) {
         return (
           <>
             {jsonLdScript}
-            {/* Server-rendered copy of the chapter text. `sr-only` keeps it out of the
-    visual layout (the styled notes render in the iframe below) while leaving
-    it in the accessibility tree, so screen-reader users get the real chapter.
-    Do NOT add aria-hidden here: content that no user can reach by any means
-    but a crawler can is hidden text under Google's spam policies, and risks a
-    manual action on the whole domain. It was aria-hidden until 2026-07-26. */}
-{seoHtml && <article className="sr-only" dangerouslySetInnerHTML={{ __html: seoHtml }} />}
             <HtmlNotesPage
               track="cpl"
               subject={subject}
               chapter={chapter}
               prevChapter={prevChapter}
               nextChapter={nextChapter}
-              src={notesHtmlPath}
+              notes={inlineNotes}
               videos={getChapterVideos(subject.id, chapter.id)}
             />
           </>
@@ -259,25 +253,20 @@ export default async function Page({
       "technical-specific/da42-9":  true,
       "technical-specific/da42-10": true,
     };
-    if (HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]) {
-      const seoHtml = getSeoHtmlForNotes(subject.id, chapter.id);
+    const inlineNotes = HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]
+      ? getInlineNotes(subject.id, chapter.id)
+      : null;
+    if (inlineNotes) {
       return (
         <>
           {jsonLdScript}
-          {/* Server-rendered copy of the chapter text. `sr-only` keeps it out of the
-    visual layout (the styled notes render in the iframe below) while leaving
-    it in the accessibility tree, so screen-reader users get the real chapter.
-    Do NOT add aria-hidden here: content that no user can reach by any means
-    but a crawler can is hidden text under Google's spam policies, and risks a
-    manual action on the whole domain. It was aria-hidden until 2026-07-26. */}
-{seoHtml && <article className="sr-only" dangerouslySetInnerHTML={{ __html: seoHtml }} />}
           <HtmlNotesPage
             track="cpl"
             subject={subject}
             chapter={chapter}
             prevChapter={prevChapter}
             nextChapter={nextChapter}
-            src={notesHtmlPath}
+            notes={inlineNotes}
             videos={getChapterVideos(subject.id, chapter.id)}
           />
         </>

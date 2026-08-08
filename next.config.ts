@@ -58,11 +58,27 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      // The raw chapter files. These are the standalone documents the notes
+      // route used to iframe; since 2026-08-08 the chapter renders in the page
+      // itself, so these are unlinked duplicates of a page we DO want indexed —
+      // exactly the kind of thing that should never compete in search.
+      //
+      // Scoped to the actual documents rather than `/content/:path*`, because
+      // that catch-all also covered the chapter figures. Those are now real
+      // <img> files rendered on the public notes pages: a noindex on them would
+      // keep 239 of the Captain's diagrams out of Google Images and tell Google
+      // that resources our own pages depend on are not to be looked at.
       {
-        source: "/content/:path*",
-        headers: [
-          { key: "X-Robots-Tag", value: "noindex, nofollow" },
-        ],
+        source: "/content/:subject/:chapter/notes.html",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/content/:subject/:chapter/slides.pdf",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/content/:subject/:chapter/audio.m4a",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
     ];
   },
