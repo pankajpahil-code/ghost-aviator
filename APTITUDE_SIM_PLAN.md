@@ -348,9 +348,37 @@ chapters. **That is the Captain's call to make, not mine.**
 | Runner UI | `app/adapt-test/AdaptRunner.tsx` | ✅ Built. Timed, wall-clock deadline, question palette, figures, full debrief. |
 | Landing page | `app/adapt-test/page.tsx` | ✅ Built. Canonical set, FAQ schema, honest-notes section, module list derived from the registry. |
 | Psychomotor tracking | `lib/adapt/tracking.mjs`, `app/adapt-test/TrackingTask.tsx` | ✅ Built. Compensatory tracking, seeded sum-of-sines disturbance, **correct** RMSE formula, fixed 50 Hz scoring clock, Canvas 2D at devicePixelRatio, touch/mouse/gamepad, scored as share of disturbance cancelled. |
-| Divided attention | — | ⬜ Not started (needs VoiceBank). |
-| English | — | ⬜ Not started. |
-| Personality (teach + score) | — | ⬜ Not started (§2.4 ruling box governs). |
+| English bank | `lib/adapt/items/english.mjs` | ✅ Built. 5 rule-based families — agreement, tense sequence, countability, comparison, briefing comprehension. Answers fixed by a grammatical rule, never by ear. |
+| Divided attention | `lib/adapt/divided-attention.mjs`, `app/adapt-test/DividedAttentionTask.tsx` | ✅ Built. Gauge monitoring + radio discipline + arithmetic interruptions, with a **fixation penalty** so abandoning one stream scores worse than being average at all three. |
+| Personality (teach + score) | `lib/adapt/personality.mjs`, `app/adapt-test/AttitudesTask.tsx` | ✅ Built per the §2.4 ruling. **DRAFT — needs the Captain's eye on the scenario wording.** |
+| Module picker | `AdaptRunner.tsx` | ✅ Built. Seven modules back to back is ~99 minutes; students can now drill one area. |
+
+### The audio decision, taken 2026-08-09 (delegated by the Captain: "do it ur self")
+
+The divided-attention module's radio stream uses **Web Audio synthesised tones,
+not speech**. `speechSynthesis` cannot be routed through Web Audio, fails
+silently on some Android builds, and its timing varies by device and installed
+voice — none of which is acceptable in a task being SCORED on *when* the student
+responded. Two tones are sample-accurate on the audio clock, cost nothing,
+require no TTS provider decision, and still test the real construct: telling
+your own call from another aircraft's while your eyes are elsewhere. A rising
+pair is yours; a falling pair is other traffic. **When the VoiceBank exists, a
+spoken callsign drops into the same slot without touching the scoring** — so
+this decision does not have to be revisited to be upgraded.
+
+### What the personality module refuses to do
+
+It scores, as ruled — but every scored dimension anchors to the **published**
+FAA hazardous-attitude framework and its published antidotes, which are
+reproduced verbatim because they are meant to be memorised. Ghost Aviator
+supplies original scenarios and nothing else. The module:
+- returns a **profile plus coaching**, never a verdict, and the tests assert the
+  output contains no word like "unsuitable" or "fail";
+- names a dominant attitude **only when one genuinely outranks the next**, so a
+  flat tally is reported as flat rather than mined for a story;
+- carries **weight 0** in the session, so a hazardous-attitude tally can never
+  leak into an aptitude stanine;
+- keeps every response on the student's device.
 | Navbar / footer / sitemap wiring | `Navbar.tsx`, `Footer.tsx`, `sitemap.ts` | ✅ Built. Same three surfaces the Radio Simulator uses — the homepage links neither, by existing design. |
 | Attempt history | — | ⬜ Not done. Reuse `lib/exam-history.ts` local-first pattern; summary only, never raw responses (§2.6). |
 

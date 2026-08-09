@@ -19,7 +19,10 @@ export interface AdaptItem {
   figure?: string;
 }
 
-export type ModuleKind = "knowledge" | "psychomotor" | "behavioural";
+import type { DividedRun, DividedScore, DividedResponse, StreamName } from "./divided-attention.mjs";
+import type { Scenario, PersonalityResponse, AttitudeProfile } from "./personality.mjs";
+
+export type ModuleKind = "knowledge" | "psychomotor" | "divided-attention" | "behavioural";
 
 export interface TrackingRun {
   seed: number;
@@ -38,7 +41,9 @@ export interface AdaptModule {
   blurb: string;
   timeLimitSec: number;
   items?: AdaptItem[];
-  run?: TrackingRun;
+  run?: TrackingRun | DividedRun;
+  /** Present only on the behavioural module. */
+  scenarios?: Scenario[];
 }
 
 export interface AdaptModuleDef {
@@ -120,6 +125,33 @@ export interface TrackingResult {
   anomalies: { code: string; detail: string }[];
 }
 
+export interface DividedAttentionResult {
+  moduleId: string;
+  moduleName: string;
+  kind: "divided-attention";
+  durationSec: number;
+  detail: DividedScore | null;
+  composite: number;
+  /** The stream to train first; null when nothing stood out. */
+  weakest: StreamName | null;
+  stanine: number;
+  band: Band;
+  basis: "criterion" | "observed";
+  cuts: number[];
+  rationale: string | null;
+  anomalies: { code: string; detail: string }[];
+}
+
+export interface PersonalityResult {
+  moduleId: string;
+  moduleName: string;
+  kind: "behavioural";
+  profile: AttitudeProfile;
+  /** Always null. This module is not an aptitude score and never becomes one. */
+  stanine: null;
+  anomalies: { code: string; detail: string }[];
+}
+
 export interface CompositeResult {
   stanine: number;
   band: Band;
@@ -147,6 +179,14 @@ export declare function scoreTracking(
   module: AdaptModule,
   raw: { rmse: number | null; sampleCount?: number; inputClass?: string; worstError?: number | null }
 ): TrackingResult;
+export declare function scoreDividedAttention(
+  module: AdaptModule,
+  responses?: DividedResponse[]
+): DividedAttentionResult;
+export declare function scorePersonality(
+  module: AdaptModule,
+  responses?: PersonalityResponse[]
+): PersonalityResult;
 export declare function scoreSession(
-  moduleResults: (ModuleResult | TrackingResult)[]
+  moduleResults: (ModuleResult | TrackingResult | DividedAttentionResult | PersonalityResult)[]
 ): CompositeResult | null;

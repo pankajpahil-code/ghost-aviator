@@ -11,14 +11,21 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { AlertTriangle, ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Clock, RotateCcw, XCircle } from "lucide-react";
-import { buildSession, scoreModule, scoreTracking, scoreSession, MODULES, MODULE_IDS } from "@/lib/adapt/session.mjs";
-import type { AdaptSession, ModuleResult, TrackingResult, CompositeResult } from "@/lib/adapt/session.mjs";
+import { buildSession, scoreModule, scoreTracking, scoreDividedAttention, scorePersonality, scoreSession, MODULES, MODULE_IDS } from "@/lib/adapt/session.mjs";
+import type { AdaptSession, ModuleResult, TrackingResult, DividedAttentionResult, PersonalityResult, CompositeResult } from "@/lib/adapt/session.mjs";
+import type { DividedRun, DividedResponse } from "@/lib/adapt/divided-attention.mjs";
+import type { TrackingRun } from "@/lib/adapt/session.mjs";
 import { randomSeed } from "@/lib/adapt/rng.mjs";
 import { inputLabel } from "@/lib/adapt/tracking.mjs";
 import TrackingTask, { type TrackingRaw } from "./TrackingTask";
+import DividedAttentionTask from "./DividedAttentionTask";
+import AttitudesTask from "./AttitudesTask";
+import type { PersonalityResponse } from "@/lib/adapt/personality.mjs";
 
-type AnyResult = ModuleResult | TrackingResult;
+type AnyResult = ModuleResult | TrackingResult | DividedAttentionResult | PersonalityResult;
 const isTracking = (r: AnyResult): r is TrackingResult => r.kind === "psychomotor";
+const isDivided = (r: AnyResult): r is DividedAttentionResult => r.kind === "divided-attention";
+const isAttitudes = (r: AnyResult): r is PersonalityResult => r.kind === "behavioural";
 
 const cyan = "#f0913a";
 
@@ -30,6 +37,12 @@ function clock(sec: number) {
 }
 
 const BAND_COLOUR: Record<string, string> = { low: "#ef4444", average: "#eab308", high: "#22c55e" };
+
+const STREAM_LABEL: Record<string, string> = {
+  monitor: "Gauge monitoring",
+  radio: "Radio discipline",
+  arithmetic: "Interruptions",
+};
 
 export default function AdaptRunner() {
   const [phase, setPhase] = useState<Phase>("brief");
@@ -50,10 +63,24 @@ export default function AdaptRunner() {
   const currentItem = currentModule?.items?.[itemIndex] ?? null;
   const currentResponses = responses[moduleIndex] ?? [];
   const isPsychomotor = currentModule?.kind === "psychomotor";
+  const isDividedModule = currentModule?.kind === "divided-attention";
+  const isAttitudeModule = currentModule?.kind === "behavioural";
+  // Both timed-run modules own their own clock and report when finished.
+  // Untimed too: the questionnaire has no clock, so the countdown must not run.
+  const selfTimed = isPsychomotor || isDividedModule || isAttitudeModule;
 
-  const start = useCallback((seed?: number) => {
+  // Sitting all seven modules back to back is over an hour and a half. The real
+  // battery is long too, but a student revising on a phone needs to be able to
+  // drill one weak area without committing an evening — so the briefing lets
+  // them choose, and defaults to everything.
+  const [picked, setPicked] = useState<string[]>(MODULE_IDS);
+  const togglePicked = (id: string) =>
+    setPicked((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : MODULE_IDS.filter((m) => prev.includes(m) || m === id)));
+
+  const start = useCallback((seed?: number, ids?: string[]) => {
     const s = Number.isInteger(seed) ? (seed as number) : randomSeed();
-    const built = buildSession(s, MODULE_IDS);
+    const chosen = ids?.length ? ids : MODULE_IDS;
+    const built = buildSession(s, chosen);
     setSession(built);
     setResponses(built.modules.map((m) => (m.items ?? []).map(() => null)));
     setResults([]);
@@ -66,16 +93,24 @@ export default function AdaptRunner() {
     setPhase("running");
   }, []);
 
-  const finishModule = useCallback((trackingRaw?: TrackingRaw) => {
+  const finishModule = useCallback((payload?: TrackingRaw | DividedResponse[] | PersonalityResponse[]) => {
     if (!session) return;
     const mod = session.modules[moduleIndex];
     const durationSec = Math.round((Date.now() - startedAtRef.current) / 1000);
-    const result: AnyResult =
-      mod.kind === "psychomotor"
-        // A run with no raw data — the student navigated away mid-task — scores
-        // as an unflown run rather than silently as a zero.
-        ? scoreTracking(mod, trackingRaw ?? { rmse: null, sampleCount: 0, inputClass: "pointer", worstError: null })
-        : scoreModule(mod, responses[moduleIndex], durationSec);
+
+    let result: AnyResult;
+    if (mod.kind === "psychomotor") {
+      // A run with no raw data — the student navigated away mid-task — scores
+      // as an unflown run rather than silently as a zero.
+      const raw = Array.isArray(payload) ? undefined : payload;
+      result = scoreTracking(mod, raw ?? { rmse: null, sampleCount: 0, inputClass: "pointer", worstError: null });
+    } else if (mod.kind === "divided-attention") {
+      result = scoreDividedAttention(mod, Array.isArray(payload) ? (payload as DividedResponse[]) : []);
+    } else if (mod.kind === "behavioural") {
+      result = scorePersonality(mod, Array.isArray(payload) ? (payload as PersonalityResponse[]) : []);
+    } else {
+      result = scoreModule(mod, responses[moduleIndex], durationSec);
+    }
     const nextResults = [...results, result];
     setResults(nextResults);
 
@@ -98,14 +133,14 @@ export default function AdaptRunner() {
     // The tracking task owns its own clock and reports when it is finished, so
     // this countdown must stay out of its way — two timers racing to end the
     // same module would double-score it.
-    if (phase !== "running" || isPsychomotor) return;
+    if (phase !== "running" || selfTimed) return;
     const id = setInterval(() => {
       const left = (deadlineRef.current - Date.now()) / 1000;
       setRemaining(left);
       if (left <= 0) finishModule();
     }, 250);
     return () => clearInterval(id);
-  }, [phase, isPsychomotor, finishModule]);
+  }, [phase, selfTimed, finishModule]);
 
   const choose = (optionIndex: number) => {
     setResponses((prev) => {
@@ -128,26 +163,40 @@ export default function AdaptRunner() {
       <div className="glass-card p-6 sm:p-8">
         <h2 className="text-2xl font-black text-white mb-2">Your practice session</h2>
         <p className="text-sm mb-6" style={{ color: "#94a3b8" }}>
-          {MODULE_IDS.length} timed modules, back to back, exactly as a screening battery runs
-          them. No calculator — that is the point. Everything is generated fresh, so you can sit
-          this as often as you like and never meet the same paper or the same disturbance twice.
+          {MODULE_IDS.length} modules, back to back, the way a screening battery runs them. No
+          calculator — that is the point. Everything is generated fresh, so you can sit this as
+          often as you like and never meet the same paper twice. <strong className="text-white">Tap
+          a module to include or drop it</strong> — the full set takes well over an hour, so drill
+          one weak area if that is what you have time for.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
           {MODULE_IDS.map((id) => {
             const m = MODULES[id];
             return (
-              <div key={id} className="glass-card p-5">
-                <div className="font-bold text-white mb-1">{m.name}</div>
+              <button key={id} onClick={() => togglePicked(id)}
+                      className="glass-card p-5 text-left"
+                      style={{ opacity: picked.includes(id) ? 1 : 0.4, borderColor: picked.includes(id) ? "rgba(240,145,58,0.45)" : undefined }}>
+                <div className="font-bold text-white mb-1 flex items-center gap-2">
+                  <span aria-hidden style={{ color: picked.includes(id) ? cyan : "#475569" }}>{picked.includes(id) ? "✓" : "○"}</span>
+                  {m.name}
+                </div>
                 <p className="text-xs mb-3" style={{ color: "#94a3b8" }}>{m.blurb}</p>
                 <div className="flex gap-4 text-xs" style={{ color: "#64748b" }}>
-                  <span>{m.kind === "psychomotor" ? "one continuous run" : `${m.itemCount} questions`}</span>
+                  <span>
+                    {m.kind === "psychomotor" ? "one continuous run"
+                      : m.kind === "divided-attention" ? "three tasks at once"
+                      : m.kind === "behavioural" ? "six situations"
+                      : `${m.itemCount} questions`}
+                  </span>
                   <span className="flex items-center gap-1">
                     <Clock className="w-3 h-3" />
-                    {m.timeLimitSec < 60 ? `${m.timeLimitSec} sec` : `${Math.round(m.timeLimitSec / 60)} min`}
+                    {m.timeLimitSec === 0 ? "no time limit"
+                      : m.timeLimitSec < 60 ? `${m.timeLimitSec} sec`
+                      : `${Math.round(m.timeLimitSec / 60)} min`}
                   </span>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -159,8 +208,11 @@ export default function AdaptRunner() {
           in the real thing.
         </div>
 
-        <button onClick={() => start()} className="btn-primary px-8 py-3 font-bold rounded-lg">
-          Begin the session
+        <button onClick={() => start(undefined, picked)} disabled={picked.length === 0}
+                className="btn-primary px-8 py-3 font-bold rounded-lg disabled:opacity-40">
+          {picked.length === MODULE_IDS.length
+            ? "Begin the full session"
+            : `Begin ${picked.length} module${picked.length === 1 ? "" : "s"}`}
         </button>
       </div>
     );
@@ -190,7 +242,98 @@ export default function AdaptRunner() {
             </div>
           )}
 
-          {results.map((r) => isTracking(r) ? (
+          {results.map((r) => isAttitudes(r) ? (
+            <div key={r.moduleId} className="mb-6">
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-bold text-white">{r.moduleName}</span>
+                <span className="text-xs" style={{ color: "#64748b" }}>not graded — this is a mirror, not a mark</span>
+              </div>
+
+              {!r.profile.complete && (
+                <p className="text-xs mb-3" style={{ color: "#f59e0b" }}>
+                  {r.profile.answered} of {r.profile.total} situations answered — the profile below
+                  is based only on those.
+                </p>
+              )}
+
+              {r.profile.dominant ? (
+                <div className="p-4 rounded-lg mb-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.09)" }}>
+                  <div className="font-bold text-white mb-1">
+                    The attitude that showed up most for you: {r.profile.dominant.name}
+                  </div>
+                  <p className="text-xs mb-2" style={{ color: "#94a3b8" }}>
+                    <em>&ldquo;{r.profile.dominant.reads}&rdquo;</em> — {r.profile.dominant.meaning}
+                  </p>
+                  <p className="text-xs mb-2 font-bold" style={{ color: "#22c55e" }}>
+                    The antidote, worth memorising: &ldquo;{r.profile.dominant.antidote}&rdquo;
+                  </p>
+                  <p className="text-xs leading-relaxed" style={{ color: "#cbd5e1" }}>{r.profile.dominant.coaching}</p>
+                </div>
+              ) : (
+                <p className="text-xs mb-3" style={{ color: "#94a3b8" }}>
+                  No single attitude stood out in your answers. That is a perfectly ordinary
+                  result and a better one than any single attitude dominating.
+                </p>
+              )}
+
+              {r.profile.consistency !== null && (
+                <p className="text-xs" style={{ color: "#64748b" }}>
+                  Consistency: you answered {Math.round(r.profile.consistency * 100)}% of the paired
+                  situations the same way. This is a fact about your own answers, not a judgement —
+                  a low figure usually means the situations felt genuinely different to you, which
+                  is worth a moment&apos;s thought rather than a mark.
+                </p>
+              )}
+            </div>
+          ) : isDivided(r) ? (
+            <div key={r.moduleId} className="mb-6">
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-bold text-white">{r.moduleName}</span>
+                <span className="text-sm font-bold" style={{ color: BAND_COLOUR[r.band.key] }}>
+                  Stanine {r.stanine} · {r.band.label}
+                </span>
+              </div>
+              <div className="text-xs mb-3" style={{ color: "#94a3b8" }}>
+                Overall <strong className="text-white">{Math.round(r.composite)}%</strong> across all three streams
+                {r.weakest && <> — weakest was <strong className="text-white">{STREAM_LABEL[r.weakest] ?? r.weakest}</strong></>}
+              </div>
+
+              {r.detail && (
+                <div className="space-y-1 mb-3">
+                  {([
+                    ["monitor", r.detail.monitor.accuracy, `${r.detail.monitor.hits}/${r.detail.monitor.total} caught, ${r.detail.monitor.falseAlarms} false`],
+                    ["radio", r.detail.radio.accuracy, `${r.detail.radio.hits}/${r.detail.radio.total} answered, ${r.detail.radio.wrongKeys} wrong keys`],
+                    ["arithmetic", r.detail.arithmetic.accuracy, `${r.detail.arithmetic.correct}/${r.detail.arithmetic.total} correct`],
+                  ] as const).map(([key, acc, note]) => (
+                    <div key={key} className="flex items-center gap-3 text-xs">
+                      <span className="w-40 shrink-0" style={{ color: "#94a3b8" }}>{STREAM_LABEL[key]}</span>
+                      <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                        <div className="h-full rounded-full" style={{ width: `${(acc ?? 0) * 100}%`, background: cyan }} />
+                      </div>
+                      <span className="w-44 text-right" style={{ color: "#64748b" }}>{note}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {r.detail && r.detail.fixationPenalty > 1 && (
+                <div className="text-xs p-2 rounded mb-3" style={{ background: "rgba(245,158,11,0.1)", color: "#fbbf24" }}>
+                  <AlertTriangle className="w-3 h-3 inline mr-1" />
+                  Fixation cost you {Math.round(r.detail.fixationPenalty)} points — you serviced one task far
+                  better than another. Flying all three evenly scores higher than being excellent at one.
+                </div>
+              )}
+
+              <details className="text-xs">
+                <summary className="cursor-pointer" style={{ color: cyan }}>How this stanine was worked out</summary>
+                <p className="mt-2 leading-relaxed" style={{ color: "#94a3b8" }}>
+                  Mean across the three streams {Math.round(r.detail?.mean ?? 0)}%, minus a fixation penalty
+                  proportional to the gap between your best and worst stream. {r.rationale} Cut scores:{" "}
+                  {r.cuts.map((c, i) => `${i + 2}→${c}%`).join(", ")}.
+                </p>
+              </details>
+            </div>
+          ) : isTracking(r) ? (
             <div key={r.moduleId} className="mb-6">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-bold text-white">{r.moduleName}</span>
@@ -350,18 +493,42 @@ export default function AdaptRunner() {
     );
   }
 
-  // ── Running: the tracking task ───────────────────────────────────────────
-  if (isPsychomotor && currentModule.run) {
+  // ── Running: the untimed questionnaire ───────────────────────────────────
+  if (isAttitudeModule && currentModule.scenarios) {
     return (
       <div>
         <div className="text-xs mb-2 text-right" style={{ color: "#64748b" }}>
           Module {moduleIndex + 1} of {session.modules.length}
         </div>
-        <TrackingTask
+        <AttitudesTask
           key={currentModule.id}
-          run={currentModule.run}
-          onComplete={(raw) => finishModule(raw)}
+          scenarios={currentModule.scenarios}
+          onComplete={(rs) => finishModule(rs)}
         />
+      </div>
+    );
+  }
+
+  // ── Running: the self-timed tasks ────────────────────────────────────────
+  if (selfTimed && currentModule.run) {
+    return (
+      <div>
+        <div className="text-xs mb-2 text-right" style={{ color: "#64748b" }}>
+          Module {moduleIndex + 1} of {session.modules.length}
+        </div>
+        {isPsychomotor ? (
+          <TrackingTask
+            key={currentModule.id}
+            run={currentModule.run as TrackingRun}
+            onComplete={(raw) => finishModule(raw)}
+          />
+        ) : (
+          <DividedAttentionTask
+            key={currentModule.id}
+            run={currentModule.run as DividedRun}
+            onComplete={(rs) => finishModule(rs)}
+          />
+        )}
       </div>
     );
   }
