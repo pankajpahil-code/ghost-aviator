@@ -11,6 +11,12 @@ export interface AdaptItem {
   optionNotes: (string | null)[];
   solution: string;
   meta: Record<string, number | string>;
+  /**
+   * Inline SVG for items that must be READ off an instrument rather than
+   * computed from a sentence. Generated entirely by lib/adapt code from numeric
+   * inputs — it never contains anything a user supplied.
+   */
+  figure?: string;
 }
 
 export interface AdaptModule {
@@ -47,6 +53,7 @@ export interface Band {
 export interface ItemResult {
   family: string;
   stem: string;
+  figure?: string;
   options: string[];
   chosen: number | null;
   answerIndex: number;

@@ -242,6 +242,9 @@ export default function AdaptRunner() {
                           : <XCircle className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "#ef4444" }} />}
                         <span className="text-xs text-white leading-relaxed">{p.stem}</span>
                       </div>
+                      {p.figure && (
+                        <div className="flex justify-center my-3" dangerouslySetInnerHTML={{ __html: p.figure }} />
+                      )}
                       <div className="text-xs pl-6 space-y-1" style={{ color: "#94a3b8" }}>
                         <div>
                           Correct: <strong style={{ color: "#22c55e" }}>{p.options[p.answerIndex]}</strong>
@@ -309,6 +312,13 @@ export default function AdaptRunner() {
       </div>
 
       <p className="text-white text-base leading-relaxed mb-5">{currentItem.stem}</p>
+
+      {/* Instrument faces for items that must be read rather than computed. The
+          SVG is produced by lib/adapt/items/spatial.mjs from numeric inputs —
+          no user-supplied content reaches this markup. */}
+      {currentItem.figure && (
+        <div className="flex justify-center mb-6" dangerouslySetInnerHTML={{ __html: currentItem.figure }} />
+      )}
 
       <div className="space-y-2 mb-6">
         {currentItem.options.map((opt, i) => {

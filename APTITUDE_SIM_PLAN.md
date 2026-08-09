@@ -343,26 +343,43 @@ chapters. **That is the Captain's call to make, not mine.**
 | Paper assembly | `lib/adapt/items/paper.mjs` | ✅ Built. Round-robin family coverage, duplicate-stem rejection, prefix stability. |
 | Aviation Maths bank | `lib/adapt/items/maths.mjs` | ✅ Built. 10 families. |
 | Physics bank | `lib/adapt/items/physics.mjs` | ✅ Built. 8 families. |
+| Spatial & pattern bank | `lib/adapt/items/spatial.mjs` | ✅ Built. 8 families, including a real direction indicator rendered as inline SVG. |
 | Session engine | `lib/adapt/session.mjs` | ✅ Built. Module registry, assembly, per-module + composite scoring. |
-| Runner UI | `app/adapt-test/AdaptRunner.tsx` | ✅ Built. Timed, wall-clock deadline, question palette, full debrief. |
-| Landing page | `app/adapt-test/page.tsx` | ✅ Built. Canonical set, FAQ schema, honest-notes section. |
-| Spatial / pattern module | — | ⬜ Next. |
-| Psychomotor tracking | — | ⬜ Not started (fixed-rate RMSE per §2.1/§2.2). |
+| Runner UI | `app/adapt-test/AdaptRunner.tsx` | ✅ Built. Timed, wall-clock deadline, question palette, figures, full debrief. |
+| Landing page | `app/adapt-test/page.tsx` | ✅ Built. Canonical set, FAQ schema, honest-notes section, module list derived from the registry. |
+| Psychomotor tracking | — | ⬜ Next (fixed-rate RMSE per §2.1/§2.2). |
 | Divided attention | — | ⬜ Not started (needs VoiceBank). |
 | English | — | ⬜ Not started. |
 | Personality (teach + score) | — | ⬜ Not started (§2.4 ruling box governs). |
 | Navbar / sitemap wiring | — | ⬜ Not done — must be derived from data, not hardcoded (Iron Rule 5). |
 | Attempt history | — | ⬜ Not done. Reuse `lib/exam-history.ts` local-first pattern; summary only, never raw responses (§2.6). |
 
-**112 tests, all green. Repo lint clean.** `npm run test:adapt`.
+**133 tests, all green. Repo lint clean.** `npm run test:adapt`.
 
-**Defects the tests caught during the build** — recorded because each one is a
-class of mistake that will recur in the modules still to come: degenerate
-crosswind distractors at 90°/80°/45°; a paper repeating a question; a fuel
-distractor going negative and being silently filtered to nothing; a
-rate-of-descent roll left with a single teaching distractor; and every padded
-distractor collapsing onto the answer when the answer is a small integer, which
-shipped a three-option question. None of these were visible by reading the code.
+**Defects the tests caught during the build** — recorded because each is a class
+of mistake that will recur in the modules still to come, and not one of them was
+visible by reading the code:
+
+1. Crosswind distractors collapsing at 90°, 80° and 45°, where sine and cosine
+   coincide or round together.
+2. A 20-question paper asking the same question twice.
+3. A fuel distractor going negative on most rolls, being filtered as
+   implausible, and leaving the item padded with meaningless near-misses.
+4. A rate-of-descent roll left with a single teaching distractor.
+5. Every padded distractor collapsing onto the answer when the answer is a small
+   integer — which shipped a **three-option** question.
+6. Heading distractors like "475°", which is not a heading at all, plus a
+   left-turn branch computing the unwrapped value wrongly.
+7. **The plausibility rule applied to a bounded scale.** Filtering distractors by
+   magnitude ratio is meaningless on a compass — 005° and 355° are three degrees
+   apart and look 71× different — so good distractors were being thrown away.
+   Hence `bounded` and `clamp` in `items/mcq.mjs`.
+8. Clock angles on the exact hour, where the answer and every taught distractor
+   are all 180°.
+9. **Duplicate detection keyed on the stem alone.** Every `compass-read` item
+   asks the identical sentence and differs only in the instrument drawn, so the
+   second one on a paper looked like a repeat, was rejected 32 times, and shipped
+   anyway. The key is now stem + figure.
 
 ## 5. Decisions — TAKEN by Capt. Pahil, 2026-08-09
 

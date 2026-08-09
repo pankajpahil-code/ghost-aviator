@@ -2,6 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Calculator, Dices, Gauge, ListChecks, ShieldCheck, Timer } from "lucide-react";
 import AdaptRunner from "./AdaptRunner";
+import { MODULES, MODULE_IDS } from "@/lib/adapt/session.mjs";
+
+// Derived, never hardcoded — adding a module to the registry updates this line,
+// the runner and the briefing together, so they cannot drift apart.
+const COUNT_WORD = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight"];
+const moduleNames = MODULE_IDS.map((id) => MODULES[id].name);
+const liveModules = `${COUNT_WORD[moduleNames.length] ?? moduleNames.length} modules live now — ${moduleNames
+  .slice(0, -1)
+  .join(", ")} and ${moduleNames[moduleNames.length - 1]}.`;
 
 export const metadata: Metadata = {
   title: "ADAPT Test Practice — Free Airline Screening Aptitude Simulator | Ghost Aviator",
@@ -92,8 +101,7 @@ export default function AdaptTestPage() {
             where you meet it beforehand, as many times as you want, free.
           </p>
           <p className="text-xs" style={{ color: "#64748b" }}>
-            Two modules live now — Aviation Maths and Physics &amp; Mechanical Reasoning. More
-            modules are being built.
+            {liveModules} More modules are being built.
           </p>
         </div>
       </div>
@@ -129,15 +137,20 @@ export default function AdaptTestPage() {
             An aptitude score improves when the underlying knowledge is solid. Both of these
             subjects are already written out in full on this site, free.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <Link href="/cpl/air-navigation" className="glass-card p-4 no-underline block">
               <span className="text-xs font-bold" style={{ color: "#cbd5e1" }}>
-                Air Navigation — speed, distance, time, fuel and the whole mental-arithmetic toolkit
+                Air Navigation — speed, distance, time, fuel, headings and bearings
               </span>
             </Link>
             <Link href="/cpl/technical-general" className="glass-card p-4 no-underline block">
               <span className="text-xs font-bold" style={{ color: "#cbd5e1" }}>
                 Technical General — forces, motion, energy and the principles of flight
+              </span>
+            </Link>
+            <Link href="/cpl/instrumentation" className="glass-card p-4 no-underline block">
+              <span className="text-xs font-bold" style={{ color: "#cbd5e1" }}>
+                Instrumentation — the direction indicator and the rest of the panel
               </span>
             </Link>
           </div>
