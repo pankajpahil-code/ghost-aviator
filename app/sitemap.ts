@@ -26,6 +26,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/resources"),    changeFrequency: "monthly" as const, priority: 0.7 },
     { url: url("/exam"),         changeFrequency: "weekly"  as const, priority: 0.8 },
     { url: url("/rtr-simulator"),changeFrequency: "weekly"  as const, priority: 0.9 },
+    // Landing + runner on one indexable route. It carries real prose (what the
+    // practice is, how it is scored, the honest-notes section) rather than being
+    // a client-rendered shell, so it is worth submitting — unlike the drill
+    // routes, which duplicate their sibling questions page.
+    { url: url("/adapt-test"),   changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/books"),        changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/past-papers"),  changeFrequency: "weekly"  as const, priority: 0.8 },
     { url: url("/guides"),       changeFrequency: "weekly"  as const, priority: 0.9 },

@@ -49,6 +49,7 @@ export default function Footer() {
                 ["Question Bank",       "/question-bank"],
                 ["CPL Cost Calculator", "/cpl-cost-calculator"],
                 ["RTR Radio Simulator", "/rtr-simulator"],
+                ["ADAPT Test Practice", "/adapt-test"],
                 ["DGCA Past Papers",    "/past-papers"],
                 ["Exam Mode",           "/exam"],
                 ["CPL & ATPL Notes",    "/notes"],

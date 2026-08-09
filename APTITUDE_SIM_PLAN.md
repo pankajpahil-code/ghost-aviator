@@ -351,7 +351,7 @@ chapters. **That is the Captain's call to make, not mine.**
 | Divided attention | — | ⬜ Not started (needs VoiceBank). |
 | English | — | ⬜ Not started. |
 | Personality (teach + score) | — | ⬜ Not started (§2.4 ruling box governs). |
-| Navbar / sitemap wiring | — | ⬜ Not done — must be derived from data, not hardcoded (Iron Rule 5). |
+| Navbar / footer / sitemap wiring | `Navbar.tsx`, `Footer.tsx`, `sitemap.ts` | ✅ Built. Same three surfaces the Radio Simulator uses — the homepage links neither, by existing design. |
 | Attempt history | — | ⬜ Not done. Reuse `lib/exam-history.ts` local-first pattern; summary only, never raw responses (§2.6). |
 
 **133 tests, all green. Repo lint clean.** `npm run test:adapt`.

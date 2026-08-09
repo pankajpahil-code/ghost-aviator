@@ -84,14 +84,7 @@ export default function Navbar() {
             <Link href="/books"     className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#fbbf24" }}>Books</Link>
             <Link href="/about"     className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#f3c889" }}>The Captain</Link>
             <Link href="/rtr-simulator" className="px-3 py-2 rounded-lg text-sm font-black no-underline" style={{ color:"#f0913a" }}>Radio Simulator</Link>
-            <Link href="/exam" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Exam Mode</Link>
-            <Link href="/past-papers" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Past Papers</Link>
-            <Link href="/dashboard" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Dashboard</Link>
-            <Link href="/notes"     className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Notes</Link>
-            <Link href="/question-bank" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
-            <Link href="/resources" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>
-            <Link href="/guides" className="px-3 py-2 rounded-lg text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Guides</Link>
-            <Link href="/cpl-cost-calculator" className="px-3 py-2 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#38bdf8" }}>Cost Calculator</Link>
+            <Link href="/adapt-test" className="px-3 py-2 rounded-lg text-sm font-black no-underline" style={{ color:"#f0913a" }}>ADAPT Test</Link>
           </div>
 
           {/* CTA / account */}
@@ -124,6 +117,29 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Second row — the study tools.
+          The top row carries the destinations a visitor chooses between (CPL,
+          ATPL, classes, the two simulators) and the account CTA; this row
+          carries the tools they use once they are studying. Splitting them is
+          what stopped the single bar overflowing: at 1280px it was 1391px of
+          links in a 1274px bar, which silently clipped Cost Calculator, Log In
+          and "Get Started Free" — the signup CTA — right off the edge.
+          Desktop only: the mobile menu already lists every link. */}
+      <div className="hidden md:block" style={{ borderTop:"1px solid rgba(243,200,137,0.08)", background:"rgba(255,255,255,0.015)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-1 h-11">
+            <Link href="/exam" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Exam Mode</Link>
+            <Link href="/past-papers" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Past Papers</Link>
+            <Link href="/question-bank" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Question Bank</Link>
+            <Link href="/notes" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Notes</Link>
+            <Link href="/guides" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Guides</Link>
+            <Link href="/resources" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Resources</Link>
+            <Link href="/dashboard" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Dashboard</Link>
+            <Link href="/cpl-cost-calculator" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#38bdf8" }}>Cost Calculator</Link>
+          </div>
+        </div>
+      </div>
+
       {open && (
         <div className="md:hidden px-4 pb-5 flex flex-col gap-1" style={{ borderTop:"1px solid rgba(243,200,137,0.12)" }}>
           <Link href="/cpl"           onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#f3c889" }}>✈ CPL Prep</Link>
@@ -132,6 +148,7 @@ export default function Navbar() {
           <Link href="/books"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#fbbf24" }}>📚 Books</Link>
           <Link href="/about"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#f3c889" }}>👨‍✈️ The Captain</Link>
           <Link href="/rtr-simulator" onClick={() => setOpen(false)} className="py-2.5 text-sm font-black no-underline" style={{ color:"#f0913a" }}>📻 Radio Simulator</Link>
+          <Link href="/adapt-test"    onClick={() => setOpen(false)} className="py-2.5 text-sm font-black no-underline" style={{ color:"#f0913a" }}>🧭 ADAPT Test</Link>
           <Link href="/exam"          onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Exam Mode</Link>
           <Link href="/past-papers"   onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Past Papers</Link>
           <Link href="/dashboard"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Dashboard</Link>
