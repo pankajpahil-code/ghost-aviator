@@ -353,6 +353,25 @@ chapters. **That is the Captain's call to make, not mine.**
 | Personality (teach + score) | `lib/adapt/personality.mjs`, `app/adapt-test/AttitudesTask.tsx` | ✅ Built per the §2.4 ruling. **DRAFT — needs the Captain's eye on the scenario wording.** |
 | Module picker | `AdaptRunner.tsx` | ✅ Built. Seven modules back to back is ~99 minutes; students can now drill one area. |
 
+### Divided attention, flown in real Chrome (2026-08-09)
+
+The browser pane runs pages hidden, so `requestAnimationFrame` never fires there
+and no timed module can be exercised in it. Both were flown instead against the
+real engine in headless Chrome over the DevTools protocol, full 180-second runs:
+
+| | Autopilot services all three | Autopilot does nothing |
+|---|---|---|
+| Frames | 10,795 (60.0 fps) | 60.0 fps |
+| Oscillators scheduled | **34** = 17 calls × 2 tones | 34 |
+| Gauge excursions | **6/6 caught**, 0 false alarms | 0/6, 0 false alarms |
+| Radio | **7/7 answered**, 10 other aircraft ignored, 0 wrong keys | 0/7 |
+| Arithmetic | **9/9** | 0/9, 9 unanswered |
+| Composite | **100 → stanine 9** | **0 → stanine 1** |
+
+Identical schedules on both runs — the run is deterministic from its seed. The
+oscillator count is how the audio path is verified without being able to listen:
+seventeen scheduled calls produced exactly thirty-four tones.
+
 ### The audio decision, taken 2026-08-09 (delegated by the Captain: "do it ur self")
 
 The divided-attention module's radio stream uses **Web Audio synthesised tones,

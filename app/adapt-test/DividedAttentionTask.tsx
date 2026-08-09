@@ -137,8 +137,13 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
           setPrompt((p) => (p && p.id === item.id ? null : p));
         }
       }
+      // Throttled to the tenth of a second actually shown, not to the frame
+      // rate. Pushing state every frame re-renders the whole task sixty times a
+      // second — the one thing a three-task module on a budget phone cannot
+      // afford, and it would be the arithmetic overlay that stuttered.
       const live = run.arithmetic.find((i) => t >= i.t && t <= i.t + WINDOW_SEC.arithmetic && !answeredRef.current.has(i.id));
-      setPromptLeft(live ? Math.max(0, live.t + WINDOW_SEC.arithmetic - t) : 0);
+      const left10 = live ? Math.max(0, live.t + WINDOW_SEC.arithmetic - t) : 0;
+      setPromptLeft((prev) => (Math.round(prev * 10) === Math.round(left10 * 10) ? prev : left10));
 
       if (canvas) {
         const rect = canvas.getBoundingClientRect();
@@ -176,8 +181,8 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
         }
       }
 
-      const left = run.durationSec - t;
-      setRemaining(Math.max(0, left));
+      const left = Math.max(0, run.durationSec - t);
+      setRemaining((prev) => (Math.ceil(prev) === Math.ceil(left) ? prev : left));
       if (left <= 0) {
         if (!doneRef.current) {
           doneRef.current = true;

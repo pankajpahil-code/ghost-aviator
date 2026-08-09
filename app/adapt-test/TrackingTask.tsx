@@ -156,8 +156,12 @@ export default function TrackingTask({ run, onComplete }: Props) {
       ctx.fillStyle = onTarget ? "#22c55e" : cyan;
       ctx.fill();
 
-      const left = run.durationSec - elapsed;
-      setRemaining(Math.max(0, left));
+      // Only push state when the DISPLAYED value changes. Calling setRemaining
+      // every frame re-renders the whole component sixty times a second to show
+      // a number that changes once a second — wasted work everywhere, and
+      // visible jank on the budget Android this site is built for.
+      const left = Math.max(0, run.durationSec - elapsed);
+      setRemaining((prev) => (Math.ceil(prev) === Math.ceil(left) ? prev : left));
 
       if (left <= 0) {
         if (!doneRef.current) {
