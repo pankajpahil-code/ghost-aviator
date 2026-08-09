@@ -7,7 +7,9 @@
     "build": "node tools/seo-fix-notes.mjs && next build",
     "start": "next start",
     "lint": "eslint",
-    "test:rtr-sim": "node --test \"lib/rtr-sim/**/*.test.mjs\""
+    "test:rtr-sim": "node --test \"lib/rtr-sim/**/*.test.mjs\"",
+    "test:adapt": "node --test \"lib/adapt/**/*.test.mjs\"",
+    "test": "node --test \"lib/**/*.test.mjs\""
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.1",
