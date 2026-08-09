@@ -333,6 +333,37 @@ chapters. **That is the Captain's call to make, not mine.**
 
 ---
 
+## 4b. BUILD STATUS (2026-08-09)
+
+| Piece | File | State |
+|---|---|---|
+| Seeded randomness | `lib/adapt/rng.mjs` | ✅ Built. Kept in lockstep with Ghost Tower's PRNG by test. |
+| Scoring core (stanine) | `lib/adapt/stanine.mjs` | ✅ Built. Criterion + frozen-observed norms, composite, anomaly detection. |
+| Shared MCQ assembly | `lib/adapt/items/mcq.mjs` | ✅ Built. Named-error distractors, plausibility rule, throws rather than ship a 3-option item. |
+| Paper assembly | `lib/adapt/items/paper.mjs` | ✅ Built. Round-robin family coverage, duplicate-stem rejection, prefix stability. |
+| Aviation Maths bank | `lib/adapt/items/maths.mjs` | ✅ Built. 10 families. |
+| Physics bank | `lib/adapt/items/physics.mjs` | ✅ Built. 8 families. |
+| Session engine | `lib/adapt/session.mjs` | ✅ Built. Module registry, assembly, per-module + composite scoring. |
+| Runner UI | `app/adapt-test/AdaptRunner.tsx` | ✅ Built. Timed, wall-clock deadline, question palette, full debrief. |
+| Landing page | `app/adapt-test/page.tsx` | ✅ Built. Canonical set, FAQ schema, honest-notes section. |
+| Spatial / pattern module | — | ⬜ Next. |
+| Psychomotor tracking | — | ⬜ Not started (fixed-rate RMSE per §2.1/§2.2). |
+| Divided attention | — | ⬜ Not started (needs VoiceBank). |
+| English | — | ⬜ Not started. |
+| Personality (teach + score) | — | ⬜ Not started (§2.4 ruling box governs). |
+| Navbar / sitemap wiring | — | ⬜ Not done — must be derived from data, not hardcoded (Iron Rule 5). |
+| Attempt history | — | ⬜ Not done. Reuse `lib/exam-history.ts` local-first pattern; summary only, never raw responses (§2.6). |
+
+**112 tests, all green. Repo lint clean.** `npm run test:adapt`.
+
+**Defects the tests caught during the build** — recorded because each one is a
+class of mistake that will recur in the modules still to come: degenerate
+crosswind distractors at 90°/80°/45°; a paper repeating a question; a fuel
+distractor going negative and being silently filtered to nothing; a
+rate-of-descent roll left with a single teaching distractor; and every padded
+distractor collapsing onto the answer when the answer is a small integer, which
+shipped a three-option question. None of these were visible by reading the code.
+
 ## 5. Decisions — TAKEN by Capt. Pahil, 2026-08-09
 
 | # | Decision | Status |
