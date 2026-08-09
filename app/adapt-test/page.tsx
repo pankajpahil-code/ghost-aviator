@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Calculator, Dices, Gauge, ListChecks, ShieldCheck, Timer } from "lucide-react";
+import { Calculator, Dices, Gauge, ListChecks, Move, ShieldCheck, Timer } from "lucide-react";
 import AdaptRunner from "./AdaptRunner";
 import { MODULES, MODULE_IDS } from "@/lib/adapt/session.mjs";
 
@@ -14,8 +14,11 @@ const liveModules = `${COUNT_WORD[moduleNames.length] ?? moduleNames.length} mod
 
 export const metadata: Metadata = {
   title: "ADAPT Test Practice — Free Airline Screening Aptitude Simulator | Ghost Aviator",
+  // Keep this in step with the module registry. It named only maths and physics
+  // for two releases after the spatial and tracking modules shipped — a search
+  // snippet that undersells the page is a slow, invisible leak.
   description:
-    "Free ADAPT-style airline screening practice for Indian student pilots. Timed aviation maths and physics modules, no calculator, scored on the stanine 1–9 scale with a worked solution for every question.",
+    "Free ADAPT-style airline screening practice: timed aviation maths, physics, spatial reasoning and a psychomotor control task, scored on the stanine 1–9 scale. No calculator.",
   alternates: { canonical: "/adapt-test" },
 };
 
@@ -76,6 +79,7 @@ const FEATURES = [
   { icon: Gauge, title: "Scored on the stanine scale", body: "The 1 to 9 scale airline screening uses, with 5 at the middle. The raw score needed for each stanine is printed on your result, so nothing about the grade is hidden from you." },
   { icon: ListChecks, title: "Every mistake explained", body: "Each wrong option corresponds to a specific error — forgetting to convert minutes to hours, using cosine where sine belongs. Pick one and the review names the mistake rather than just marking you down." },
   { icon: ShieldCheck, title: "Nothing leaves your device", body: "The whole test is generated and scored in your browser. Your answers and your results are yours; we do not collect them." },
+  { icon: Move, title: "A real hand-eye test, not just questions", body: "The Control & Co-ordination module gives you a marker that drifts for a full minute while you hold it on the centre. Drag it, or plug in a joystick and it is used automatically. You are scored on how much of the drift you actually cancelled — and only ever against others using the same kind of input." },
 ];
 
 export default function AdaptTestPage() {
