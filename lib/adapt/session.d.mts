@@ -19,21 +19,35 @@ export interface AdaptItem {
   figure?: string;
 }
 
+export type ModuleKind = "knowledge" | "psychomotor" | "behavioural";
+
+export interface TrackingRun {
+  seed: number;
+  durationSec: number;
+  sampleHz: number;
+}
+
+/**
+ * A module is either a paper (`items`) or a timed run (`run`), never both.
+ * Branch on `kind`, never on which field happens to be present.
+ */
 export interface AdaptModule {
   id: string;
   name: string;
-  kind: "knowledge" | "aptitude" | "behavioural";
+  kind: ModuleKind;
   blurb: string;
   timeLimitSec: number;
-  items: AdaptItem[];
+  items?: AdaptItem[];
+  run?: TrackingRun;
 }
 
 export interface AdaptModuleDef {
   id: string;
   name: string;
-  kind: "knowledge" | "aptitude" | "behavioural";
+  kind: ModuleKind;
   blurb: string;
-  itemCount: number;
+  itemCount?: number;
+  durationSec?: number;
   timeLimitSec: number;
   weight: number;
 }
@@ -66,6 +80,8 @@ export interface ItemResult {
 export interface ModuleResult {
   moduleId: string;
   moduleName: string;
+  /** Discriminant: lets a mixed result list be narrowed safely. */
+  kind: "knowledge";
   correct: number;
   total: number;
   unanswered: number;
@@ -80,6 +96,27 @@ export interface ModuleResult {
   rationale: string | null;
   byFamily: Record<string, { correct: number; total: number }>;
   perItem: ItemResult[];
+  anomalies: { code: string; detail: string }[];
+}
+
+export interface TrackingResult {
+  moduleId: string;
+  moduleName: string;
+  kind: "psychomotor";
+  rmse: number | null;
+  baseline: number | null;
+  worstError: number | null;
+  /** Share of the disturbance the student cancelled, 0-100. */
+  cancellation: number | null;
+  sampleCount: number;
+  /** Never pool scores across input classes — see tracking.mjs. */
+  inputClass: string;
+  durationSec: number;
+  stanine: number;
+  band: Band;
+  basis: "criterion" | "observed";
+  cuts: number[];
+  rationale: string | null;
   anomalies: { code: string; detail: string }[];
 }
 
@@ -106,4 +143,10 @@ export declare function scoreModule(
   responses: (number | null)[],
   durationSec?: number | null
 ): ModuleResult;
-export declare function scoreSession(moduleResults: ModuleResult[]): CompositeResult | null;
+export declare function scoreTracking(
+  module: AdaptModule,
+  raw: { rmse: number | null; sampleCount?: number; inputClass?: string; worstError?: number | null }
+): TrackingResult;
+export declare function scoreSession(
+  moduleResults: (ModuleResult | TrackingResult)[]
+): CompositeResult | null;

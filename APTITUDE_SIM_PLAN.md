@@ -347,7 +347,7 @@ chapters. **That is the Captain's call to make, not mine.**
 | Session engine | `lib/adapt/session.mjs` | ✅ Built. Module registry, assembly, per-module + composite scoring. |
 | Runner UI | `app/adapt-test/AdaptRunner.tsx` | ✅ Built. Timed, wall-clock deadline, question palette, figures, full debrief. |
 | Landing page | `app/adapt-test/page.tsx` | ✅ Built. Canonical set, FAQ schema, honest-notes section, module list derived from the registry. |
-| Psychomotor tracking | — | ⬜ Next (fixed-rate RMSE per §2.1/§2.2). |
+| Psychomotor tracking | `lib/adapt/tracking.mjs`, `app/adapt-test/TrackingTask.tsx` | ✅ Built. Compensatory tracking, seeded sum-of-sines disturbance, **correct** RMSE formula, fixed 50 Hz scoring clock, Canvas 2D at devicePixelRatio, touch/mouse/gamepad, scored as share of disturbance cancelled. |
 | Divided attention | — | ⬜ Not started (needs VoiceBank). |
 | English | — | ⬜ Not started. |
 | Personality (teach + score) | — | ⬜ Not started (§2.4 ruling box governs). |
@@ -380,6 +380,25 @@ visible by reading the code:
    asks the identical sentence and differs only in the instrument drawn, so the
    second one on a paper looked like a repeat, was rejected 32 times, and shipped
    anyway. The key is now stem + figure.
+10. **A self-scheduling `useCallback` in the tracking render loop.** A loop that
+    calls `requestAnimationFrame(itself)` from inside `useCallback` captures the
+    version of itself that existed on the first frame; once any dependency
+    changed it would run the stale closure for the rest of the minute, reading a
+    dead tracker. The loop now lives inside its effect, where recursion is safe.
+11. **Backfilling a gap in a tracking run.** Found while verifying in the
+    browser: animation frames stop completely in a hidden tab. The sampler would
+    then catch up on waking by taking every missed sample with whatever control
+    value happened to be current — crediting a student who tabbed away for
+    twenty seconds with twenty seconds of flawless tracking. Gaps are now
+    SKIPPED, not filled, so the sample count comes up short and the run is
+    reported as interrupted. Leaving the page also ends the run rather than
+    freezing the canvas forever.
+
+**Calibration check on the tracking ladder** (simulated controllers, 60 s run):
+a 0.15 s reaction lag scores stanine 8, 0.25 s scores 7, 0.35 s scores 6, 0.50 s
+scores 5, 0.80 s scores 2, and doing nothing scores 1. Typical human visuomotor
+lag is 200–500 ms, which lands in the middle of the scale — which is where a
+criterion ladder should put typical performance.
 
 ## 5. Decisions — TAKEN by Capt. Pahil, 2026-08-09
 

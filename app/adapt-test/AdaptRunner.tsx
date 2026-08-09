@@ -11,9 +11,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { AlertTriangle, ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Clock, RotateCcw, XCircle } from "lucide-react";
-import { buildSession, scoreModule, scoreSession, MODULES, MODULE_IDS } from "@/lib/adapt/session.mjs";
-import type { AdaptSession, ModuleResult, CompositeResult } from "@/lib/adapt/session.mjs";
+import { buildSession, scoreModule, scoreTracking, scoreSession, MODULES, MODULE_IDS } from "@/lib/adapt/session.mjs";
+import type { AdaptSession, ModuleResult, TrackingResult, CompositeResult } from "@/lib/adapt/session.mjs";
 import { randomSeed } from "@/lib/adapt/rng.mjs";
+import { inputLabel } from "@/lib/adapt/tracking.mjs";
+import TrackingTask, { type TrackingRaw } from "./TrackingTask";
+
+type AnyResult = ModuleResult | TrackingResult;
+const isTracking = (r: AnyResult): r is TrackingResult => r.kind === "psychomotor";
 
 const cyan = "#f0913a";
 
@@ -32,7 +37,7 @@ export default function AdaptRunner() {
   const [moduleIndex, setModuleIndex] = useState(0);
   const [itemIndex, setItemIndex] = useState(0);
   const [responses, setResponses] = useState<(number | null)[][]>([]);
-  const [results, setResults] = useState<ModuleResult[]>([]);
+  const [results, setResults] = useState<AnyResult[]>([]);
   const [remaining, setRemaining] = useState(0);
   const [reviewOpen, setReviewOpen] = useState<string | null>(null);
 
@@ -42,14 +47,15 @@ export default function AdaptRunner() {
   const startedAtRef = useRef<number>(0);
 
   const currentModule = session?.modules[moduleIndex] ?? null;
-  const currentItem = currentModule?.items[itemIndex] ?? null;
+  const currentItem = currentModule?.items?.[itemIndex] ?? null;
   const currentResponses = responses[moduleIndex] ?? [];
+  const isPsychomotor = currentModule?.kind === "psychomotor";
 
   const start = useCallback((seed?: number) => {
     const s = Number.isInteger(seed) ? (seed as number) : randomSeed();
     const built = buildSession(s, MODULE_IDS);
     setSession(built);
-    setResponses(built.modules.map((m) => m.items.map(() => null)));
+    setResponses(built.modules.map((m) => (m.items ?? []).map(() => null)));
     setResults([]);
     setModuleIndex(0);
     setItemIndex(0);
@@ -60,11 +66,16 @@ export default function AdaptRunner() {
     setPhase("running");
   }, []);
 
-  const finishModule = useCallback(() => {
+  const finishModule = useCallback((trackingRaw?: TrackingRaw) => {
     if (!session) return;
     const mod = session.modules[moduleIndex];
     const durationSec = Math.round((Date.now() - startedAtRef.current) / 1000);
-    const result = scoreModule(mod, responses[moduleIndex], durationSec);
+    const result: AnyResult =
+      mod.kind === "psychomotor"
+        // A run with no raw data — the student navigated away mid-task — scores
+        // as an unflown run rather than silently as a zero.
+        ? scoreTracking(mod, trackingRaw ?? { rmse: null, sampleCount: 0, inputClass: "pointer", worstError: null })
+        : scoreModule(mod, responses[moduleIndex], durationSec);
     const nextResults = [...results, result];
     setResults(nextResults);
 
@@ -84,14 +95,17 @@ export default function AdaptRunner() {
   // is the correct mechanism rather than a smell — same reasoning as the other
   // timers in this codebase.
   useEffect(() => {
-    if (phase !== "running") return;
+    // The tracking task owns its own clock and reports when it is finished, so
+    // this countdown must stay out of its way — two timers racing to end the
+    // same module would double-score it.
+    if (phase !== "running" || isPsychomotor) return;
     const id = setInterval(() => {
       const left = (deadlineRef.current - Date.now()) / 1000;
       setRemaining(left);
       if (left <= 0) finishModule();
     }, 250);
     return () => clearInterval(id);
-  }, [phase, finishModule]);
+  }, [phase, isPsychomotor, finishModule]);
 
   const choose = (optionIndex: number) => {
     setResponses((prev) => {
@@ -109,14 +123,14 @@ export default function AdaptRunner() {
   const answeredCount = currentResponses.filter((r) => r !== null).length;
 
   // ── Briefing ─────────────────────────────────────────────────────────────
-  if (phase === "brief" || !session || !currentModule || !currentItem) {
+  if (phase === "brief" || !session || !currentModule) {
     return (
       <div className="glass-card p-6 sm:p-8">
         <h2 className="text-2xl font-black text-white mb-2">Your practice session</h2>
         <p className="text-sm mb-6" style={{ color: "#94a3b8" }}>
-          Two timed modules, back to back, exactly as a screening battery runs them.
-          No calculator — that is the point. Every paper is generated fresh, so you can
-          sit this as often as you like and never meet the same question twice.
+          {MODULE_IDS.length} timed modules, back to back, exactly as a screening battery runs
+          them. No calculator — that is the point. Everything is generated fresh, so you can sit
+          this as often as you like and never meet the same paper or the same disturbance twice.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
@@ -127,9 +141,10 @@ export default function AdaptRunner() {
                 <div className="font-bold text-white mb-1">{m.name}</div>
                 <p className="text-xs mb-3" style={{ color: "#94a3b8" }}>{m.blurb}</p>
                 <div className="flex gap-4 text-xs" style={{ color: "#64748b" }}>
-                  <span>{m.itemCount} questions</span>
+                  <span>{m.kind === "psychomotor" ? "one continuous run" : `${m.itemCount} questions`}</span>
                   <span className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" /> {Math.round(m.timeLimitSec / 60)} min
+                    <Clock className="w-3 h-3" />
+                    {m.timeLimitSec < 60 ? `${m.timeLimitSec} sec` : `${Math.round(m.timeLimitSec / 60)} min`}
                   </span>
                 </div>
               </div>
@@ -175,7 +190,49 @@ export default function AdaptRunner() {
             </div>
           )}
 
-          {results.map((r) => (
+          {results.map((r) => isTracking(r) ? (
+            <div key={r.moduleId} className="mb-6">
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-bold text-white">{r.moduleName}</span>
+                <span className="text-sm font-bold" style={{ color: BAND_COLOUR[r.band.key] }}>
+                  Stanine {r.stanine} · {r.band.label}
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-4 text-xs mb-3" style={{ color: "#94a3b8" }}>
+                <span>
+                  {r.cancellation == null
+                    ? "Run not completed"
+                    : <>You cancelled <strong className="text-white">{Math.round(r.cancellation)}%</strong> of the disturbance</>}
+                </span>
+                <span>on a {inputLabel(r.inputClass)}</span>
+              </div>
+
+              {r.cancellation != null && (
+                <div className="h-2 rounded-full overflow-hidden mb-3" style={{ background: "rgba(255,255,255,0.07)" }}>
+                  <div className="h-full rounded-full"
+                       style={{ width: `${r.cancellation}%`, background: BAND_COLOUR[r.band.key] }} />
+                </div>
+              )}
+
+              {r.anomalies.length > 0 && (
+                <div className="text-xs p-2 rounded mb-3" style={{ background: "rgba(245,158,11,0.1)", color: "#fbbf24" }}>
+                  <AlertTriangle className="w-3 h-3 inline mr-1" />
+                  {r.anomalies.map((a) => a.detail).join(" ")}
+                </div>
+              )}
+
+              <details className="text-xs">
+                <summary className="cursor-pointer" style={{ color: cyan }}>How this stanine was worked out</summary>
+                <p className="mt-2 leading-relaxed" style={{ color: "#94a3b8" }}>
+                  Your average error was {r.rmse == null ? "not recorded" : r.rmse.toFixed(3)} against{" "}
+                  {r.baseline == null ? "—" : r.baseline.toFixed(3)} for leaving the control centred,
+                  measured on a fixed 50&nbsp;per-second clock so the score does not depend on how fast
+                  your screen refreshes. {r.rationale} Cut scores, as a percentage cancelled:{" "}
+                  {r.cuts.map((c, i) => `${i + 2}→${c}%`).join(", ")}.
+                </p>
+              </details>
+            </div>
+          ) : (
             <div key={r.moduleId} className="mb-6">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-bold text-white">{r.moduleName}</span>
@@ -293,7 +350,25 @@ export default function AdaptRunner() {
     );
   }
 
-  // ── Running ──────────────────────────────────────────────────────────────
+  // ── Running: the tracking task ───────────────────────────────────────────
+  if (isPsychomotor && currentModule.run) {
+    return (
+      <div>
+        <div className="text-xs mb-2 text-right" style={{ color: "#64748b" }}>
+          Module {moduleIndex + 1} of {session.modules.length}
+        </div>
+        <TrackingTask
+          key={currentModule.id}
+          run={currentModule.run}
+          onComplete={(raw) => finishModule(raw)}
+        />
+      </div>
+    );
+  }
+
+  // ── Running: a question paper ────────────────────────────────────────────
+  const items = currentModule.items;
+  if (!currentItem || !items) return null;
   const low = remaining < 60;
   return (
     <div className="glass-card p-5 sm:p-7 select-none" onContextMenu={(e) => e.preventDefault()}>
@@ -307,7 +382,7 @@ export default function AdaptRunner() {
         </span>
       </div>
       <div className="text-xs mb-5" style={{ color: "#64748b" }}>
-        Question {itemIndex + 1} of {currentModule.items.length} · {answeredCount} answered ·
+        Question {itemIndex + 1} of {items.length} · {answeredCount} answered ·
         module {moduleIndex + 1} of {session.modules.length}
       </div>
 
@@ -344,7 +419,7 @@ export default function AdaptRunner() {
       </div>
 
       <div className="flex flex-wrap gap-1.5 mb-6">
-        {currentModule.items.map((_, i) => (
+        {items.map((_, i) => (
           <button
             key={i}
             onClick={() => setItemIndex(i)}
@@ -370,7 +445,7 @@ export default function AdaptRunner() {
           <ArrowLeft className="w-4 h-4" /> Back
         </button>
 
-        {itemIndex < currentModule.items.length - 1 ? (
+        {itemIndex < items.length - 1 ? (
           <button
             onClick={() => setItemIndex((i) => i + 1)}
             className="px-6 py-2 rounded-lg text-sm font-bold flex items-center gap-2"
@@ -379,7 +454,7 @@ export default function AdaptRunner() {
             Next <ArrowRight className="w-4 h-4" />
           </button>
         ) : (
-          <button onClick={finishModule} className="btn-primary px-6 py-2 font-bold rounded-lg text-sm">
+          <button onClick={() => finishModule()} className="btn-primary px-6 py-2 font-bold rounded-lg text-sm">
             {moduleIndex + 1 < session.modules.length ? "Finish module" : "Finish & see result"}
           </button>
         )}
