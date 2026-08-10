@@ -8,9 +8,9 @@
 // single seed — so it costs nothing to run at any number of students and works
 // on a slow connection.
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { AlertTriangle, ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Clock, RotateCcw, XCircle } from "lucide-react";
+import { AlertTriangle, ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Clock, RotateCcw, ShieldCheck, XCircle } from "lucide-react";
 import { buildSession, scoreModule, scoreTracking, scoreDividedAttention, scorePersonality, scoreSession, MODULES, MODULE_IDS } from "@/lib/adapt/session.mjs";
 import type { AdaptSession, ModuleResult, TrackingResult, DividedAttentionResult, PersonalityResult, CompositeResult } from "@/lib/adapt/session.mjs";
 import type { DividedRun, DividedResponse } from "@/lib/adapt/divided-attention.mjs";
@@ -21,6 +21,10 @@ import TrackingTask, { type TrackingRaw } from "./TrackingTask";
 import DividedAttentionTask from "./DividedAttentionTask";
 import AttitudesTask from "./AttitudesTask";
 import type { PersonalityResponse } from "@/lib/adapt/personality.mjs";
+import { recordSession, useAdaptHistory } from "@/lib/adapt/history";
+import { bestByModule, trendFor, movement } from "@/lib/adapt/history-core.mjs";
+import type { Attempt } from "@/lib/adapt/history-core.mjs";
+import { recordAttempt, telemetryEnabled, setTelemetryEnabled, subscribeTelemetry, telemetryServerSnapshot } from "@/lib/adapt/telemetry";
 
 type AnyResult = ModuleResult | TrackingResult | DividedAttentionResult | PersonalityResult;
 const isTracking = (r: AnyResult): r is TrackingResult => r.kind === "psychomotor";
@@ -53,6 +57,7 @@ export default function AdaptRunner() {
   const [results, setResults] = useState<AnyResult[]>([]);
   const [remaining, setRemaining] = useState(0);
   const [reviewOpen, setReviewOpen] = useState<string | null>(null);
+  const history = useAdaptHistory();
 
   // Wall-clock deadline rather than a decremented counter: an interval that is
   // throttled in a background tab would otherwise hand the student free time.
@@ -116,6 +121,10 @@ export default function AdaptRunner() {
 
     const next = moduleIndex + 1;
     if (next >= session.modules.length) {
+      // Local progress for the student, anonymous counts for the Captain. Both
+      // fail soft: a debrief must never be lost to storage or a network.
+      recordSession(session.seed, nextResults);
+      void recordAttempt(session.seed, nextResults);
       setPhase("done");
       return;
     }
@@ -207,6 +216,8 @@ export default function AdaptRunner() {
           guaranteed zero and a guess costs you nothing — so never leave a box empty, here or
           in the real thing.
         </div>
+
+        {history.length > 0 && <ProgressPanel attempts={history} />}
 
         <button onClick={() => start(undefined, picked)} disabled={picked.length === 0}
                 className="btn-primary px-8 py-3 font-bold rounded-lg disabled:opacity-40">
@@ -466,6 +477,8 @@ export default function AdaptRunner() {
             </div>
           ))}
 
+          <TelemetryNote />
+
           <div className="flex flex-wrap gap-3 mt-8">
             <button onClick={() => start()} className="btn-primary px-6 py-3 font-bold rounded-lg">
               New session
@@ -626,6 +639,99 @@ export default function AdaptRunner() {
           </button>
         )}
       </div>
+    </div>
+  );
+}
+
+/**
+ * Progress across past sittings, from this device only.
+ *
+ * "Best" rather than "latest" is deliberate: a student's ceiling is the more
+ * motivating number, and one bad evening should not wipe out a good week. The
+ * direction arrow needs enough sittings to mean anything — two readings are
+ * noise, and telling someone they are improving on the strength of one good
+ * night is the kind of flattery that stops being believed.
+ */
+function ProgressPanel({ attempts }: { attempts: Attempt[] }) {
+  const best = bestByModule(attempts);
+  const rows = MODULE_IDS.map((id) => best[id]).filter(Boolean);
+  if (rows.length === 0) return null;
+
+  const ARROW: Record<string, { mark: string; colour: string }> = {
+    up: { mark: "▲ improving", colour: "#22c55e" },
+    down: { mark: "▼ slipping", colour: "#ef4444" },
+    steady: { mark: "— steady", colour: "#64748b" },
+  };
+
+  return (
+    <div className="rounded-lg p-4 mb-6" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-sm font-bold text-white">Your progress</span>
+        <span className="text-xs" style={{ color: "#64748b" }}>
+          {attempts.length} session{attempts.length === 1 ? "" : "s"} on this device
+        </span>
+      </div>
+      <div className="space-y-1.5">
+        {rows.map((r) => {
+          const trend = trendFor(attempts, r.id);
+          const move = movement(trend);
+          return (
+            <div key={r.id} className="flex items-center gap-3 text-xs">
+              <span className="w-48 shrink-0 truncate" style={{ color: "#94a3b8" }}>{r.name}</span>
+              <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                <div className="h-full rounded-full" style={{ width: `${(r.best / 9) * 100}%`, background: cyan }} />
+              </div>
+              <span className="w-28 text-right" style={{ color: "#cbd5e1" }}>
+                best <strong className="text-white">{r.best}</strong> · now {r.latest}
+              </span>
+              <span className="w-24 text-right" style={{ color: move ? ARROW[move].colour : "#475569" }}>
+                {move ? ARROW[move].mark : `${r.sittings} sat`}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      <p className="text-xs mt-3" style={{ color: "#475569" }}>
+        Kept on this device only. Clearing your browser data clears it.
+      </p>
+    </div>
+  );
+}
+
+/**
+ * What was sent, and the switch to stop it.
+ *
+ * Shown on the result page rather than buried in a policy: a student who has
+ * just been scored is exactly the person entitled to know what left their
+ * device, and the honest place to offer the off switch is next to the answer.
+ * Reads its state after mount — the server has no localStorage.
+ */
+function TelemetryNote() {
+  // localStorage is an external store; useSyncExternalStore is the mechanism
+  // React provides for reading one without cascading an extra render.
+  const on = useSyncExternalStore(subscribeTelemetry, telemetryEnabled, telemetryServerSnapshot);
+
+  return (
+    <div className="mt-6 p-3 rounded-lg text-xs leading-relaxed"
+         style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", color: "#94a3b8" }}>
+      <ShieldCheck className="w-3.5 h-3.5 inline mr-1.5" style={{ color: on ? "#22c55e" : "#64748b" }} />
+      {on ? (
+        <>
+          An anonymous score line for each module above was recorded — the module, the stanine and
+          one percentage. Your answers, your workings and everything from the attitudes
+          questionnaire stayed on this device. It is how the provisional grade bands eventually
+          get replaced with real ones.
+        </>
+      ) : (
+        <>Nothing was recorded from this session. Only your on-device progress was saved.</>
+      )}
+      <button
+        onClick={() => setTelemetryEnabled(!on)}
+        className="ml-2 underline font-bold"
+        style={{ color: cyan }}
+      >
+        {on ? "Turn it off" : "Turn it back on"}
+      </button>
     </div>
   );
 }

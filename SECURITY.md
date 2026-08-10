@@ -137,6 +137,61 @@ create index if not exists exam_attempts_user_created_idx
 Same fail-soft behaviour as `progress`: signed-out students keep a local-only attempt
 history (capped, on-device); signed-in students get it mirrored here for cross-device access.
 
+### 3d. `adapt_attempts` table — anonymous ADAPT score lines (added 2026-08-09)
+
+Capt. Pahil's decision: collect ADAPT results so we can see how many students use
+it, how often, and how they actually score. **Anonymous by construction** — the
+row carries a random per-device id, never a `user_id`, never an email, and never
+a question, an answer, a tracking sample or anything at all from the attitudes
+questionnaire beyond the bare fact that it was completed. See the header of
+`lib/adapt/telemetry-core.mjs`; the guarantee is enforced by tests, not by care.
+
+This is also how the **provisional criterion grade bands eventually get replaced
+with measured ones** — `lib/adapt/stanine.mjs` already accepts either, and needs
+about 500 attempts per module before an observed norm is honest.
+
+```sql
+create table if not exists public.adapt_attempts (
+  id            uuid primary key default gen_random_uuid(),
+  device_id     uuid not null,            -- random per browser; NOT a person
+  session_seed  bigint not null,          -- lets a disputed paper be rebuilt exactly
+  module_id     text not null,            -- e.g. 'aviation-maths', 'control-coordination'
+  module_kind   text not null,            -- knowledge | psychomotor | divided-attention | behavioural
+  stanine       smallint,                 -- null for the questionnaire, which has no grade
+  headline_pct  smallint,                 -- % correct, % cancelled, or the divided composite
+  input_class   text,                     -- tracking only; norms must never pool devices
+  completed     boolean not null default true,
+  created_at    timestamptz not null default now()
+);
+
+alter table public.adapt_attempts enable row level security;
+
+-- Insert-only from the browser, and NO select policy: nothing in the client
+-- may ever read another device's rows back. Query it from the dashboard.
+create policy "anon adapt insert" on public.adapt_attempts
+  for insert to anon, authenticated with check (true);
+
+create index if not exists adapt_attempts_module_created_idx
+  on public.adapt_attempts (module_id, created_at desc);
+```
+
+Until this table exists the insert simply fails and is swallowed — students see
+no difference. Students can also switch it off from their result page, and the
+feature page says plainly what is recorded.
+
+**Useful queries once it fills up:**
+
+```sql
+-- how many students, how many sittings
+select count(distinct device_id) as students, count(*) as module_sittings
+from public.adapt_attempts;
+
+-- how they do, per module — this is what replaces the provisional bands
+select module_id, count(*) n, round(avg(stanine),2) mean_stanine, round(stddev(stanine),2) sd
+from public.adapt_attempts where stanine is not null
+group by module_id order by n desc;
+```
+
 **Also in Supabase dashboard:**
 - Auth → enable **email confirmation** (already expected by the signup flow).
 - Auth → turn on **rate limiting / CAPTCHA** to stop signup/login brute-force + spam.

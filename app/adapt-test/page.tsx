@@ -69,6 +69,14 @@ const FAQ_LD = {
         text: "Yes. Every question carries a full worked solution, and if you pick a wrong option the review explains the specific mistake that produces that particular answer.",
       },
     },
+    {
+      "@type": "Question",
+      name: "What data does the ADAPT practice collect?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "An anonymous score line per module — which module you sat, the stanine, and one percentage. Your answers, your workings and everything from the attitudes questionnaire stay on your device and are never sent. No account is required, and you can switch the score line off on your result page.",
+      },
+    },
   ],
 };
 
@@ -78,8 +86,38 @@ const FEATURES = [
   { icon: Dices, title: "Never the same paper twice", body: "Questions are generated from a random seed rather than drawn from a fixed bank. You cannot memorise your way through it, which is the whole point — you train the skill, not the answers." },
   { icon: Gauge, title: "Scored on the stanine scale", body: "The 1 to 9 scale airline screening uses, with 5 at the middle. The raw score needed for each stanine is printed on your result, so nothing about the grade is hidden from you." },
   { icon: ListChecks, title: "Every mistake explained", body: "Each wrong option corresponds to a specific error — forgetting to convert minutes to hours, using cosine where sine belongs. Pick one and the review names the mistake rather than just marking you down." },
-  { icon: ShieldCheck, title: "Nothing leaves your device", body: "The whole test is generated and scored in your browser. Your answers and your results are yours; we do not collect them." },
+  { icon: ShieldCheck, title: "Your answers stay on your device", body: "The whole test is generated and scored in your browser, and your answers, your workings and your attitudes questionnaire never leave it. We do record an anonymous score line per module — which module, the stanine, one percentage — so we can see how students are doing and eventually replace our provisional grade bands with real ones. No name, no account needed, and you can switch it off on your result page." },
   { icon: Move, title: "A real hand-eye test, not just questions", body: "The Control & Co-ordination module gives you a marker that drifts for a full minute while you hold it on the centre. Drag it, or plug in a joystick and it is used automatically. You are scored on how much of the drift you actually cancelled — and only ever against others using the same kind of input." },
+];
+
+// The four-week shape the research recommends: build the raw skills first,
+// layer the motor and attention load on top, then rehearse whole and rest.
+// Deliberately not a "revision timetable" — none of this is knowledge.
+const PLAN = [
+  {
+    week: 1,
+    title: "Build the arithmetic habit",
+    body: "Mental maths and physics every day, no calculator, no exceptions. This is the week that decides your ceiling — everything later is layered on top of how fast the sums come. Short and daily beats long and occasional.",
+    modules: "Aviation Maths · Physics & Mechanical Reasoning",
+  },
+  {
+    week: 2,
+    title: "Add orientation and the motor loop",
+    body: "Keep the daily maths, and bring in headings, instruments and the tracking task. The see-decide-move loop improves with repetition faster than almost anything else here, but only if it is worked regularly.",
+    modules: "Spatial & Pattern · Control & Co-ordination",
+  },
+  {
+    week: 3,
+    title: "Put it under load",
+    body: "Now the divided-attention module, and full sittings under the clock. Expect your maths to get worse the moment something else is competing for you — that drop is the thing being measured, and it is what this week trains away.",
+    modules: "Divided Attention · full sessions",
+  },
+  {
+    week: 4,
+    title: "Consolidate, then rest",
+    body: "Light sittings, review your progress panel rather than chasing new ground, and read the attitudes module properly. Sleep matters more than one more practice run — arriving tired undoes a month of this.",
+    modules: "Attitudes & Airmanship · English · light review",
+  },
 ];
 
 export default function AdaptTestPage() {
@@ -158,6 +196,33 @@ export default function AdaptTestPage() {
               </span>
             </Link>
           </div>
+        </section>
+
+        <section className="mt-12">
+          <h2 className="text-2xl font-black text-white mb-2">
+            Four weeks out? <span className="gradient-text">Here is the plan</span>
+          </h2>
+          <p className="text-sm mb-6" style={{ color: "#64748b" }}>
+            Most candidates cram aptitude the way they cram a written paper, in the last week. It
+            does not work, because none of this is knowledge — it is capacity, and capacity is
+            built the way fitness is: little, often, and early enough to matter.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {PLAN.map(({ week, title, body, modules }) => (
+              <div key={week} className="glass-card p-5">
+                <div className="text-xs font-bold tracking-widest mb-1" style={{ color: cyan, letterSpacing: "0.15em" }}>
+                  WEEK {week}
+                </div>
+                <div className="font-bold text-white mb-2">{title}</div>
+                <p className="text-xs leading-relaxed mb-3" style={{ color: "#94a3b8" }}>{body}</p>
+                <div className="text-xs" style={{ color: "#64748b" }}>{modules}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs mt-4" style={{ color: "#475569" }}>
+            Twenty minutes a day beats three hours on a Sunday. The modules are free and unlimited,
+            so there is no reason to ration them.
+          </p>
         </section>
 
         <section className="mt-12">

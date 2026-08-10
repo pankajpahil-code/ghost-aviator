@@ -352,6 +352,9 @@ chapters. **That is the Captain's call to make, not mine.**
 | Divided attention | `lib/adapt/divided-attention.mjs`, `app/adapt-test/DividedAttentionTask.tsx` | ✅ Built. Gauge monitoring + radio discipline + arithmetic interruptions, with a **fixation penalty** so abandoning one stream scores worse than being average at all three. |
 | Personality (teach + score) | `lib/adapt/personality.mjs`, `app/adapt-test/AttitudesTask.tsx` | ✅ Built per the §2.4 ruling. **DRAFT — needs the Captain's eye on the scenario wording.** |
 | Module picker | `AdaptRunner.tsx` | ✅ Built. Seven modules back to back is ~99 minutes; students can now drill one area. |
+| Attempt history | `lib/adapt/history-core.mjs`, `history.ts` | ✅ Built. **Device-local only.** Best/latest stanine per module, trend, and a direction arrow that needs enough sittings before it says anything. Records no answers and nothing from the questionnaire. |
+| Anonymous telemetry | `lib/adapt/telemetry-core.mjs`, `telemetry.ts` | ✅ Built per the Captain's decision. One score line per module, random device id, no account, opt-out on the result page. SQL in `SECURITY.md` §3d. |
+| Four-week programme | `app/adapt-test/page.tsx` | ✅ Built. |
 
 ### Divided attention, flown in real Chrome (2026-08-09)
 
