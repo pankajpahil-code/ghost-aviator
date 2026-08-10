@@ -57,12 +57,19 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
       const gain = ctx.createGain();
       osc.type = "square";
       osc.frequency.value = freq;
-      const t0 = now + i * 0.17;
-      // Short attack/release: a hard square-wave edge clicks unpleasantly, and
-      // this is meant to sound like a radio, not an alarm clock.
+      // Tones are spaced 0.20s and last 0.18s, so they never overlap and can
+      // never sum into clipping.
+      const t0 = now + i * 0.2;
+      // Attack, HOLD, release. An earlier version ramped straight from attack
+      // to silence, which measured at about -26 dBFS through the sustained part
+      // of the tone — quiet enough that a student on a phone in a normal room
+      // would miss calls, and be marked down for a volume problem rather than
+      // an attention one. Rendering it offline and measuring the peak is how
+      // that was caught; it is inaudible in a silent office either way.
       gain.gain.setValueAtTime(0.0001, t0);
-      gain.gain.exponentialRampToValueAtTime(0.16, t0 + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.15);
+      gain.gain.exponentialRampToValueAtTime(0.35, t0 + 0.015);
+      gain.gain.setValueAtTime(0.35, t0 + 0.13);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.17);
       osc.connect(gain).connect(ctx.destination);
       osc.start(t0);
       osc.stop(t0 + 0.18);

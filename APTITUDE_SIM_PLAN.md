@@ -375,6 +375,54 @@ Identical schedules on both runs — the run is deterministic from its seed. The
 oscillator count is how the audio path is verified without being able to listen:
 seventeen scheduled calls produced exactly thirty-four tones.
 
+### The radio calls, measured rather than listened to (2026-08-09)
+
+I cannot hear. I can render the calls through an `OfflineAudioContext` and
+measure what comes out of the speaker, which covers everything except whether
+they sound pleasant.
+
+| | Yours | Other traffic |
+|---|---|---|
+| Tone 1 | **883 Hz** | 661 Hz |
+| Tone 2 | **1317 Hz** (rises) | 439 Hz (falls) |
+| Peak | 0.346 | 0.347 |
+| Clipping | none | none |
+| Call length | 347 ms | 347 ms |
+
+**This found a real defect.** The first version measured a peak of **0.05 —
+about −26 dBFS** through the sustained part of the tone, because the envelope
+ramped straight from attack to silence with no hold. On a phone in a room with
+any noise that is missable, and this is a SCORED stream: students would have
+lost marks for a volume problem rather than an attention one. The envelope now
+attacks, **holds**, then releases, and the tones are spaced 0.20 s apart so they
+can never overlap and sum into clipping. Peak went from 0.05 to 0.346 — seven
+times the amplitude.
+
+Still needs a human: whether it is pleasant, and whether it cuts through on a
+real phone speaker. Everything else above is measured.
+
+### Adversarial audit of the attitudes scenarios (2026-08-09)
+
+I wrote the scenarios, so this is not an independent review of their voice — but
+the mapping is mechanical and can be audited. Two defects found:
+
+1. **`p3` anti-authority was not anti-authority.** It read "the paperwork is
+   signed, so the matter is closed whatever I think", which is DEFERENCE — and
+   it near-duplicated the same scenario's resignation option, so one feeling had
+   two boxes. Worse: **p3 and p6 are the module's only consistency pair**, and
+   p6's anti-authority option resents procedure. A student who consistently
+   resents procedure would have been reported as INCONSISTENT. Rewritten to
+   resent the reporting system, parallel to p6.
+2. **`p4` anti-authority punished good crew behaviour.** It read "seniority does
+   not make him right, I would tell him he is doing it wrong" — but speaking up
+   about a wrong set-up is exactly what a first officer should do. An assertive
+   student would have scored a hazardous attitude for correct CRM. Rewritten so
+   the hazard is contempt for rank, not the raising of the concern.
+
+The other 28 options audited clean. **The Captain's read of the wording is still
+outstanding** — this pass checked that each option maps to the attitude it
+claims, not that it sounds like him.
+
 ### The audio decision, taken 2026-08-09 (delegated by the Captain: "do it ur self")
 
 The divided-attention module's radio stream uses **Web Audio synthesised tones,
