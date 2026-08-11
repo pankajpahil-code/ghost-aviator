@@ -27,7 +27,7 @@
 //    rather than implying a save that did not happen.
 
 import { getSupabase, SUPABASE_ENABLED } from "@/lib/supabase";
-import { buildResultRows, findForbidden } from "@/lib/adapt/results-core.mjs";
+import { buildResultRows, findForbidden, tableMissing } from "@/lib/adapt/results-core.mjs";
 import type { AnyResult } from "@/lib/adapt/telemetry";
 
 const TABLE = "adapt_results";
@@ -40,24 +40,9 @@ export type SaveOutcome =
   | { status: "not-ready" }
   | { status: "failed"; reason: string };
 
-/**
- * Is this error "the table has not been created yet" rather than a real failure?
- *
- * This matters because the code and the table ship separately: the site deploys
- * from a git push, the table is created by hand in Supabase, and whichever
- * happens second leaves a window in between. Without this check, that window
- * shows every signed-in student an alarming apology quoting a Postgres
- * schema-cache message — for a condition that is entirely ours, entirely
- * temporary, and nothing to do with them or their result.
- *
- * PostgREST reports it differently across versions, so both the Postgres code
- * for an undefined table and PostgREST's own schema-cache message are matched.
- */
-function tableMissing(error: { code?: string; message?: string } | null): boolean {
-  if (!error) return false;
-  if (error.code === "42P01" || error.code === "PGRST205") return true;
-  return /does not exist|schema cache|could not find the table/i.test(error.message ?? "");
-}
+// `tableMissing` lives in results-core.mjs so the verification probe uses the
+// SAME predicate this does. Written out twice, the probe could keep passing
+// after the real check had changed.
 
 /**
  * Save one finished session to the signed-in student's account.

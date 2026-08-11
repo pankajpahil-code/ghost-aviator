@@ -175,6 +175,12 @@ create index if not exists adapt_attempts_module_created_idx
   on public.adapt_attempts (module_id, created_at desc);
 ```
 
+**STATUS, 2026-08-11: this one may never have been created.** The project shows "No
+migrations", and nothing on record confirms this SQL was ever run — which would mean the
+anonymous telemetry has been failing silently since it shipped on 2026-08-10, and no norms
+have been accumulating. The statements above are idempotent apart from the policy, so the
+repair script adds `drop policy if exists` before it. **Verify before assuming it exists.**
+
 Until this table exists the insert simply fails and is swallowed — students see
 no difference. Students can also switch it off from their result page, and the
 feature page says plainly what is recorded.

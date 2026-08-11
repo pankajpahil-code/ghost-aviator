@@ -8,6 +8,7 @@
 
 import http from "node:http";
 import { createClient } from "@supabase/supabase-js";
+import { tableMissing } from "../../lib/adapt/results-core.mjs";
 
 const PORT = 54399;
 
@@ -26,11 +27,10 @@ await new Promise((r) => server.listen(PORT, r));
 const sb = createClient(`http://localhost:${PORT}`, "anon", { auth: { persistSession: false } });
 const { error } = await sb.from("adapt_results").insert({ module_id: "probe" });
 
-// The same predicate results.ts uses. Kept in step by the test below.
-const tableMissing = (e) =>
-  !!e && (e.code === "42P01" || e.code === "PGRST205" ||
-    /does not exist|schema cache|could not find the table/i.test(e.message ?? ""));
-
+// Imported, not re-written. This probe previously carried its own copy of the
+// predicate, which meant it could keep reporting PASS after the real check in
+// results.ts had changed — a probe that can drift from the thing it probes is
+// worth nothing.
 const pass = tableMissing(error);
 console.log(`\n  ${pass ? "PASS" : "FAIL"}  a missing table is recognised as "not ready", not as a failure`);
 console.log(`        server said: ${error?.code} — ${error?.message}`);

@@ -19,3 +19,6 @@ export function buildResultRows(seed: number | null, results: unknown[], userId:
 
 /** Path of the first field a saved row must never carry, or null when clean. */
 export function findForbidden(value: unknown, path?: string): string | null;
+
+/** True when an error means the table does not exist yet, rather than a real failure. */
+export function tableMissing(error: { code?: string; message?: string } | null | undefined): boolean;
