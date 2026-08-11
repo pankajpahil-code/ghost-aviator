@@ -25,16 +25,46 @@
 // governs both cases — but if you want it proven, sign in on two accounts and
 // confirm each dashboard shows only its own sittings.
 
+import fs from "node:fs";
 import { createClient } from "@supabase/supabase-js";
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+/**
+ * Read the two public values from .env.local if they are not already in the
+ * environment, so `vercel env pull` is enough and nothing has to be exported
+ * by hand. Values are used in-process and never printed.
+ *
+ * Only these two keys are read. Both are public by design — they are compiled
+ * into the site's client JavaScript and every visitor's browser already has
+ * them. Nothing here reads, wants, or would accept a service-role key.
+ */
+function fromEnvFile(name) {
+  if (process.env[name]) return process.env[name];
+  try {
+    const line = fs
+      .readFileSync(".env.local", "utf8")
+      .split(/\r?\n/)
+      .find((l) => l.startsWith(`${name}=`));
+    if (!line) return undefined;
+    const raw = line.slice(name.length + 1).trim().replace(/^["']|["']$/g, "");
+    return raw || undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+const url = fromEnvFile("NEXT_PUBLIC_SUPABASE_URL");
+const key = fromEnvFile("NEXT_PUBLIC_SUPABASE_ANON_KEY");
 
 if (!url || !key) {
   console.error(
-    "\nNEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY must be set.\n" +
-      "They are empty in .env.local — the real values are in the Vercel project\n" +
-      "settings, or in Supabase under Project Settings > API.\n"
+    "\nNEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are not set,\n" +
+      "and .env.local does not carry them (its values are empty strings).\n\n" +
+      "Easiest fix — pull them from Vercel, which already has them:\n\n" +
+      "    npx vercel link       (once, if not already linked)\n" +
+      "    npx vercel env pull\n" +
+      "    npm run verify:adapt-rls\n\n" +
+      "Or copy them from the Supabase dashboard under Project Settings > API.\n" +
+      "Both values are public — they are already in the site's JavaScript.\n"
   );
   process.exit(2);
 }
