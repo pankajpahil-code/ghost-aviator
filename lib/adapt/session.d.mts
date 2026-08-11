@@ -100,6 +100,10 @@ export interface ModuleResult {
   cuts: number[];
   rationale: string | null;
   byFamily: Record<string, { correct: number; total: number }>;
+  /** Accuracy per difficulty tier, easiest first. Empty on an untiered bank. */
+  tiers: { tier: number; label: string; correct: number; total: number }[];
+  /** The first tier the student dropped below half on, or null if they held them all. */
+  ceiling: { tier: number; label: string; correct: number; total: number } | null;
   perItem: ItemResult[];
   anomalies: { code: string; detail: string }[];
 }
@@ -117,6 +121,12 @@ export interface TrackingResult {
   /** Never pool scores across input classes — see tracking.mjs. */
   inputClass: string;
   durationSec: number;
+  /** Cancellation per reporting segment. Segments barely flown are absent, never zero-filled. */
+  segments: { index: number; fromSec: number; toSec: number; cancellation: number; samples: number }[];
+  segmentSec: number;
+  /** Points of cancellation lost between the first segment and the last; null below three segments. */
+  fade: number | null;
+  endurance: "held" | "faded" | "built" | null;
   stanine: number;
   band: Band;
   basis: "criterion" | "observed";
@@ -177,11 +187,19 @@ export declare function scoreModule(
 ): ModuleResult;
 export declare function scoreTracking(
   module: AdaptModule,
-  raw: { rmse: number | null; sampleCount?: number; inputClass?: string; worstError?: number | null }
+  raw: {
+    rmse: number | null;
+    sampleCount?: number;
+    inputClass?: string;
+    worstError?: number | null;
+    segmentRmse?: { index: number; rmse: number; samples: number }[];
+  }
 ): TrackingResult;
 export declare function scoreDividedAttention(
   module: AdaptModule,
-  responses?: DividedResponse[]
+  responses?: DividedResponse[],
+  /** Wall-clock seconds the module actually ran, so an early exit can be flagged. */
+  elapsedSec?: number | null
 ): DividedAttentionResult;
 export declare function scorePersonality(
   module: AdaptModule,

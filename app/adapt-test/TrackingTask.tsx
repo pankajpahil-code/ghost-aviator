@@ -22,10 +22,18 @@ import { makeTracker, inputClass, inputLabel } from "@/lib/adapt/tracking.mjs";
 
 const cyan = "#f0913a";
 
+/** A five-minute run cannot be read as a raw second count. */
+const mmss = (sec: number) => {
+  const s = Math.max(0, Math.ceil(sec));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+};
+
 export type TrackingRaw = {
   rmse: number | null;
   sampleCount: number;
   worstError: number;
+  /** Per-minute error, so the result can show whether the standard was HELD. */
+  segmentRmse: { index: number; rmse: number; samples: number }[];
   inputClass: string;
 };
 
@@ -170,6 +178,7 @@ export default function TrackingTask({ run, onComplete }: Props) {
             rmse: tracker.rmse(),
             sampleCount: tracker.sampleCount,
             worstError: tracker.worstError,
+            segmentRmse: tracker.segmentRmse(),
             inputClass: deviceRef.current,
           });
         }
@@ -197,6 +206,7 @@ export default function TrackingTask({ run, onComplete }: Props) {
         rmse: tracker?.rmse() ?? null,
         sampleCount: tracker?.sampleCount ?? 0,
         worstError: tracker?.worstError ?? 0,
+        segmentRmse: tracker?.segmentRmse() ?? [],
         inputClass: deviceRef.current,
       });
     };
@@ -241,12 +251,16 @@ export default function TrackingTask({ run, onComplete }: Props) {
         <span className="text-xs font-bold tracking-widest" style={{ color: cyan, letterSpacing: "0.15em" }}>
           CONTROL &amp; CO-ORDINATION
         </span>
-        <span className="text-lg font-black tabular-nums" style={{ color: remaining < 10 ? "#ef4444" : "#cbd5e1" }}>
-          {Math.ceil(remaining)}s
+        {/* mm:ss, not a raw second count. This read fine at sixty seconds and
+            became "299s" the moment the run was lengthened to the real five
+            minutes — a number no one reads as time. */}
+        <span className="text-lg font-black tabular-nums" style={{ color: remaining < 30 ? "#ef4444" : "#cbd5e1" }}>
+          {mmss(remaining)}
         </span>
       </div>
       <p className="text-xs mb-4" style={{ color: "#64748b" }}>
-        Keep the marker inside the green ring. It will fight you the whole minute — that is the test.
+        Keep the marker inside the green ring. It will fight you for the whole run — that is the test.
+        Holding the standard in the last minute as well as the first is most of what is being measured.
       </p>
 
       <div className="flex justify-center mb-4">

@@ -21,10 +21,15 @@ import TrackingTask, { type TrackingRaw } from "./TrackingTask";
 import DividedAttentionTask from "./DividedAttentionTask";
 import AttitudesTask from "./AttitudesTask";
 import type { PersonalityResponse } from "@/lib/adapt/personality.mjs";
+import { SCENARIOS as ATTITUDE_SCENARIOS } from "@/lib/adapt/personality.mjs";
 import { recordSession, useAdaptHistory } from "@/lib/adapt/history";
 import { bestByModule, trendFor, movement } from "@/lib/adapt/history-core.mjs";
 import type { Attempt } from "@/lib/adapt/history-core.mjs";
 import { recordAttempt, telemetryEnabled, setTelemetryEnabled, subscribeTelemetry, telemetryServerSnapshot } from "@/lib/adapt/telemetry";
+import { saveResults, loadResults, seriesFor, type SaveOutcome, type SavedRow } from "@/lib/adapt/results";
+import { useUser } from "@/lib/supabase";
+import SignupPrompt from "./SignupPrompt";
+import { OverallScore, SaveNotice, TierBreakdown, PhaseBreakdown, EnduranceBreakdown, LearningPanel, ModuleScoreLine } from "./ReportBlocks";
 
 type AnyResult = ModuleResult | TrackingResult | DividedAttentionResult | PersonalityResult;
 const isTracking = (r: AnyResult): r is TrackingResult => r.kind === "psychomotor";
@@ -32,6 +37,14 @@ const isDivided = (r: AnyResult): r is DividedAttentionResult => r.kind === "div
 const isAttitudes = (r: AnyResult): r is PersonalityResult => r.kind === "behavioural";
 
 const cyan = "#f0913a";
+
+/**
+ * How long the whole battery takes, derived from the registry rather than
+ * written down. The clocks changed on 2026-08-10 when the real figures were
+ * confirmed, and a hand-written "well over an hour" would now be an
+ * understatement by more than half.
+ */
+const fullSessionMinutes = Math.round(MODULE_IDS.reduce((n, id) => n + MODULES[id].timeLimitSec, 0) / 60);
 
 type Phase = "brief" | "running" | "done";
 
@@ -58,6 +71,26 @@ export default function AdaptRunner() {
   const [remaining, setRemaining] = useState(0);
   const [reviewOpen, setReviewOpen] = useState<string | null>(null);
   const history = useAdaptHistory();
+  // `loading` matters here: useUser resolves asynchronously, so for the first
+  // moment after mount a signed-IN student looks signed out. Without this the
+  // brief screen flashes "create a free account" at someone who already has
+  // one, which reads as the site not knowing who they are.
+  const { user, loading: authLoading } = useUser();
+  const [saveState, setSaveState] = useState<SaveOutcome | null>(null);
+  const [saved, setSaved] = useState<SavedRow[]>([]);
+
+  // The student's own saved sittings, for the learning curve. Loaded once per
+  // sign-in rather than per render, and it stays empty for a signed-out
+  // student — who still gets everything else, including the device-local
+  // history panel.
+  useEffect(() => {
+    let live = true;
+    // No synchronous setState on the signed-out path: loadResults already
+    // returns [] for a null user, so signing out clears this through the same
+    // async route as signing in rather than cascading an extra render.
+    void loadResults(user?.id ?? null).then((rows) => { if (live) setSaved(rows); });
+    return () => { live = false; };
+  }, [user]);
 
   // Wall-clock deadline rather than a decremented counter: an interval that is
   // throttled in a background tab would otherwise hand the student free time.
@@ -110,7 +143,7 @@ export default function AdaptRunner() {
       const raw = Array.isArray(payload) ? undefined : payload;
       result = scoreTracking(mod, raw ?? { rmse: null, sampleCount: 0, inputClass: "pointer", worstError: null });
     } else if (mod.kind === "divided-attention") {
-      result = scoreDividedAttention(mod, Array.isArray(payload) ? (payload as DividedResponse[]) : []);
+      result = scoreDividedAttention(mod, Array.isArray(payload) ? (payload as DividedResponse[]) : [], durationSec);
     } else if (mod.kind === "behavioural") {
       result = scorePersonality(mod, Array.isArray(payload) ? (payload as PersonalityResponse[]) : []);
     } else {
@@ -125,6 +158,14 @@ export default function AdaptRunner() {
       // fail soft: a debrief must never be lost to storage or a network.
       recordSession(session.seed, nextResults);
       void recordAttempt(session.seed, nextResults);
+      // Saved to the student's own account when they have one. Fails soft in
+      // every direction and REPORTS which way it went, so the result page can
+      // say what actually happened rather than implying a save that did not
+      // occur.
+      void saveResults(session.seed, nextResults, user?.id ?? null).then((outcome) => {
+        setSaveState(outcome);
+        if (outcome.status === "saved" && user) void loadResults(user.id).then(setSaved);
+      });
       setPhase("done");
       return;
     }
@@ -133,7 +174,7 @@ export default function AdaptRunner() {
     deadlineRef.current = Date.now() + session.modules[next].timeLimitSec * 1000;
     startedAtRef.current = Date.now();
     setRemaining(session.modules[next].timeLimitSec);
-  }, [session, moduleIndex, responses, results]);
+  }, [session, moduleIndex, responses, results, user]);
 
   // The countdown. The trigger here is time passing, not a render, so an effect
   // is the correct mechanism rather than a smell — same reasoning as the other
@@ -175,8 +216,8 @@ export default function AdaptRunner() {
           {MODULE_IDS.length} modules, back to back, the way a screening battery runs them. No
           calculator — that is the point. Everything is generated fresh, so you can sit this as
           often as you like and never meet the same paper twice. <strong className="text-white">Tap
-          a module to include or drop it</strong> — the full set takes well over an hour, so drill
-          one weak area if that is what you have time for.
+          a module to include or drop it</strong> — the full set runs about {fullSessionMinutes} minutes,
+          so drill one weak area if that is what you have time for.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
@@ -193,9 +234,11 @@ export default function AdaptRunner() {
                 <p className="text-xs mb-3" style={{ color: "#94a3b8" }}>{m.blurb}</p>
                 <div className="flex gap-4 text-xs" style={{ color: "#64748b" }}>
                   <span>
+                    {/* Derived, never counted by hand — a hardcoded "six
+                        situations" goes stale the moment a scenario is added. */}
                     {m.kind === "psychomotor" ? "one continuous run"
-                      : m.kind === "divided-attention" ? "three tasks at once"
-                      : m.kind === "behavioural" ? "six situations"
+                      : m.kind === "divided-attention" ? "three tasks at once, escalating"
+                      : m.kind === "behavioural" ? `${ATTITUDE_SCENARIOS.length} situations`
                       : `${m.itemCount} questions`}
                   </span>
                   <span className="flex items-center gap-1">
@@ -216,6 +259,8 @@ export default function AdaptRunner() {
           guaranteed zero and a guess costs you nothing — so never leave a box empty, here or
           in the real thing.
         </div>
+
+        {!authLoading && !user && <SignupPrompt where="brief" />}
 
         {history.length > 0 && <ProgressPanel attempts={history} />}
 
@@ -240,18 +285,9 @@ export default function AdaptRunner() {
             builds the same paper, so you can sit this one again and compare like for like.
           </p>
 
-          {composite && (
-            <div className="flex items-center gap-5 mb-8 p-5 rounded-lg"
-                 style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
-              <div className="text-6xl font-black leading-none" style={{ color: BAND_COLOUR[composite.band.key] }}>
-                {composite.stanine}
-              </div>
-              <div>
-                <div className="font-bold text-white">Overall stanine · {composite.band.label}</div>
-                <p className="text-xs mt-1" style={{ color: "#94a3b8" }}>{composite.band.advice}</p>
-              </div>
-            </div>
-          )}
+          <SaveNotice outcome={saveState} signedIn={Boolean(user)} />
+
+          {composite && <OverallScore stanine={composite.stanine} advice={composite.band.advice} />}
 
           {results.map((r) => isAttitudes(r) ? (
             <div key={r.moduleId} className="mb-6">
@@ -300,9 +336,7 @@ export default function AdaptRunner() {
             <div key={r.moduleId} className="mb-6">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-bold text-white">{r.moduleName}</span>
-                <span className="text-sm font-bold" style={{ color: BAND_COLOUR[r.band.key] }}>
-                  Stanine {r.stanine} · {r.band.label}
-                </span>
+                <ModuleScoreLine stanine={r.stanine} />
               </div>
               <div className="text-xs mb-3" style={{ color: "#94a3b8" }}>
                 Overall <strong className="text-white">{Math.round(r.composite)}%</strong> across all three streams
@@ -335,6 +369,12 @@ export default function AdaptRunner() {
                 </div>
               )}
 
+              <PhaseBreakdown
+                phases={(r.detail?.phases ?? []).map((p) => ({ key: p.key, label: p.label, composite: p.composite }))}
+                collapsePhase={r.detail?.collapsePhase ?? null}
+              />
+              <LearningPanel scores={seriesFor(saved, r.moduleId)} />
+
               <details className="text-xs">
                 <summary className="cursor-pointer" style={{ color: cyan }}>How this stanine was worked out</summary>
                 <p className="mt-2 leading-relaxed" style={{ color: "#94a3b8" }}>
@@ -348,9 +388,7 @@ export default function AdaptRunner() {
             <div key={r.moduleId} className="mb-6">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-bold text-white">{r.moduleName}</span>
-                <span className="text-sm font-bold" style={{ color: BAND_COLOUR[r.band.key] }}>
-                  Stanine {r.stanine} · {r.band.label}
-                </span>
+                <ModuleScoreLine stanine={r.stanine} />
               </div>
               <div className="flex flex-wrap gap-4 text-xs mb-3" style={{ color: "#94a3b8" }}>
                 <span>
@@ -375,6 +413,9 @@ export default function AdaptRunner() {
                 </div>
               )}
 
+              <EnduranceBreakdown segments={r.segments ?? []} endurance={r.endurance ?? null} fade={r.fade ?? null} />
+              <LearningPanel scores={seriesFor(saved, r.moduleId, r.inputClass)} />
+
               <details className="text-xs">
                 <summary className="cursor-pointer" style={{ color: cyan }}>How this stanine was worked out</summary>
                 <p className="mt-2 leading-relaxed" style={{ color: "#94a3b8" }}>
@@ -390,9 +431,7 @@ export default function AdaptRunner() {
             <div key={r.moduleId} className="mb-6">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-bold text-white">{r.moduleName}</span>
-                <span className="text-sm font-bold" style={{ color: BAND_COLOUR[r.band.key] }}>
-                  Stanine {r.stanine} · {r.band.label}
-                </span>
+                <ModuleScoreLine stanine={r.stanine} />
               </div>
               <div className="flex flex-wrap gap-4 text-xs mb-3" style={{ color: "#94a3b8" }}>
                 <span>{r.correct} / {r.total} correct ({r.percent}%)</span>
@@ -404,6 +443,8 @@ export default function AdaptRunner() {
                 )}
                 {r.overTime && <span style={{ color: "#f59e0b" }}>ran past the clock</span>}
               </div>
+
+              <TierBreakdown tiers={r.tiers ?? []} ceiling={r.ceiling ?? null} />
 
               <div className="space-y-1 mb-3">
                 {Object.entries(r.byFamily)
@@ -421,6 +462,8 @@ export default function AdaptRunner() {
                     </div>
                   ))}
               </div>
+
+              <LearningPanel scores={seriesFor(saved, r.moduleId)} />
 
               <details className="text-xs">
                 <summary className="cursor-pointer" style={{ color: cyan }}>

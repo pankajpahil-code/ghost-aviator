@@ -50,7 +50,8 @@ attitudes questionnaire beyond `completed`. This is enforced by
 attitude, a tally, a profile, a question or an answer.
 
 **No account, no email, no `user_id`.** The row is not joined to `auth.users`
-and cannot be — there is no column for it. RLS is insert-only with **no select
+and cannot be — there is no column for it. (This remains true of `adapt_attempts`.
+A SECOND, account-linked table was added on 2026-08-10 — see §4b.) RLS is insert-only with **no select
 policy**, so no browser can read another device's rows back.
 
 ### 2b. Kept on the student's own device only
@@ -103,6 +104,56 @@ Ranked by how little they cost:
 **Option 1 alone removes most of the exposure and costs almost nothing**, because
 the reason the data exists at all is to replace the provisional grade bands with
 measured ones, and that needs distributions rather than people.
+
+## 4b. COLLECTION WIDENED 2026-08-10 — accounts, and what changed
+
+Capt. Pahil's instruction: *"ask student for free signup, record their result so that
+we have data, we are not gonna share data with anyone but we will improve our version
+from data."* Built the same day. This section exists because §5 below requires it: the
+page copy, the FAQ and this document were all changed in the same commit.
+
+**What is new.** A second table, `adapt_results` (SECURITY.md §3e), holding the results
+of students who choose to sign in. It is keyed to `auth.users` by `user_id` — so unlike
+everything described in §2a, **this data IS linked to a named person with an email
+address.** That is the material change, and it is what a lawyer should be re-asked about.
+
+**Signing up is asked for, not required.** Every module still runs signed-out, and a
+student who never makes an account is in exactly the position described in §2a — an
+anonymous device id and nothing else. Nothing is withheld from them.
+
+**What a signed-in row holds:** the score (stanine, sten, band, one percentage) and the
+*breakdown* of the score — accuracy per difficulty tier, per question family, per phase
+of the multitasking run, per minute of the tracking run — plus the input device, the
+duration, and the session seed. The breakdown is the point: it is what shows which
+question generators are too hard and whether the difficulty ramp works, which is the
+stated purpose.
+
+**What is still refused, signed in or out, and enforced by test rather than by care:**
+the questions, the student's answers, the tracking samples, and **anything at all from
+the attitudes questionnaire beyond the bare fact that it was completed.** No attitude, no
+tally, no profile. `results-core.test.mjs` scans a genuinely scored session for those
+fields and fails if one appears; `results.ts` runs the same scan again immediately before
+the insert and drops the row rather than send it.
+
+**RLS is own-rows-only.** A student can read and write their own rows and there is no
+policy under which one account could read another's. Unlike `adapt_attempts`, this table
+does have a select policy — because the student's own dashboard reads it back.
+
+**The questions for a lawyer that this changes:**
+
+1. §3 question 1 (is a device id personal data?) is now **moot for signed-in students** —
+   an account with an email plainly is. The question becomes what lawful basis covers it.
+2. §3 question 2 becomes sharper, not softer: **a 17-year-old can now create an account**
+   and have behaviour-derived scores stored against their identity. There is no age gate
+   on signup today. If verifiable parental consent is required for under-18s, that is a
+   signup-flow change, and it is the single most likely thing to need doing.
+3. Retention is still unset, and now applies to identified data.
+4. Deletion: `on delete cascade` means removing the auth user removes the results, but
+   **there is no self-serve "delete my account" in the product.** If a data-erasure right
+   applies, that is a gap.
+
+**Nothing here is legal advice.** It is an inventory, kept current so the advice can be
+about judgement instead of archaeology.
 
 ## 5. Standing rule for whoever works on this next
 

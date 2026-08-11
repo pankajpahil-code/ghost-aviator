@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { useUser } from "@/lib/supabase";
+import AdaptPanel from "./AdaptPanel";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { EXAM_PAPERS, getExamPaper } from "@/lib/exam-papers";
 import { readExamHistory, weakChapters, useExamHistoryVersion, type ExamAttempt } from "@/lib/exam-history";
@@ -114,11 +115,17 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 flex flex-col gap-10">
+        {/* Deliberately OUTSIDE the exam-history branch. A student who has only
+            sat the screening practice has attempts — just not Exam Mode ones —
+            and hiding their results behind an "no attempts yet" card would be
+            wrong, and would break the promise made when they signed up. */}
+        <AdaptPanel userId={user?.id ?? null} />
+
         {history.length === 0 ? (
           <div className="glass-card p-10 text-center">
             <div className="text-5xl mb-4">📊</div>
-            <h2 className="text-2xl font-extrabold mb-2">No attempts yet</h2>
+            <h2 className="text-2xl font-extrabold mb-2">No Exam Mode attempts yet</h2>
             <p className="mb-8" style={{ color: "#94a3b8" }}>
               Sit a full-length paper in Exam Mode and your score history, trend, and weak chapters will show up here.
             </p>

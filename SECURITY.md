@@ -192,6 +192,100 @@ from public.adapt_attempts where stanine is not null
 group by module_id order by n desc;
 ```
 
+### 3e. `adapt_results` table — ADAPT results saved to a student's account (added 2026-08-10)
+
+Capt. Pahil's decision, 2026-08-10: **ask students to sign up free, and record their
+results so the data can be used to improve the simulator.** His words: *"we are not
+gonna share data with anyone but we will improve our version from data."*
+
+This is a DIFFERENT table from `adapt_attempts` (§3d) and both stay. `adapt_attempts`
+is the anonymous device-level count and keeps working for students who never sign in;
+`adapt_results` is the signed-in student's own history, which they can see on their
+dashboard and which survives losing a phone.
+
+**Signing up is asked for, never required.** The whole simulator works signed-out. What
+an account adds is a saved history, a learning curve across sittings, and results that
+follow the student between devices.
+
+**What is stored, and what is still refused.** The row carries the score and the
+BREAKDOWN of the score — per-difficulty-tier accuracy, per-family accuracy, the
+per-phase composites from the multitasking run, the per-minute shape of the tracking
+run. That is what makes the data useful for fixing the simulator: it shows which
+question families are too hard, whether the difficulty ramp is real, and where students
+actually run out of capacity.
+
+It does **not** carry the questions, the individual answers, or **anything whatsoever
+from the attitudes questionnaire beyond the bare fact that it was completed** — no
+attitude, no tally, no profile, signed in or not. That was binding before accounts
+existed and it stays binding now. `telemetry-core.test.mjs` and
+`results-core.test.mjs` both fail if a row ever contains one.
+
+```sql
+create table if not exists public.adapt_results (
+  id             uuid primary key default gen_random_uuid(),
+  user_id        uuid not null references auth.users(id) on delete cascade,
+  session_seed   bigint not null,          -- lets a disputed paper be rebuilt exactly
+  module_id      text not null,
+  module_kind    text not null,            -- knowledge | psychomotor | divided-attention | behavioural
+  stanine        smallint,                 -- null for the questionnaire, which has no grade
+  sten           smallint,                 -- the 1-10 scale the real report uses
+  band           text,                     -- colour band key
+  headline_pct   smallint,
+  detail         jsonb not null default '{}'::jsonb,  -- tiers, families, phases, segments
+  input_class    text,                     -- tracking only; norms must never pool devices
+  duration_sec   integer,
+  completed      boolean not null default true,
+  created_at     timestamptz not null default now()
+);
+
+alter table public.adapt_results enable row level security;
+
+-- A student may write and read ONLY their own rows. There is no policy under
+-- which one account can see another's results, and none should ever be added.
+create policy "own adapt results insert" on public.adapt_results
+  for insert to authenticated with check (auth.uid() = user_id);
+create policy "own adapt results select" on public.adapt_results
+  for select to authenticated using (auth.uid() = user_id);
+
+create index if not exists adapt_results_user_module_idx
+  on public.adapt_results (user_id, module_id, created_at desc);
+```
+
+Until this table exists the insert fails and is swallowed — a student's practice must
+never break because saving did. The result page says whether the result was saved.
+
+**Useful queries once it fills up:**
+
+```sql
+-- which question families are actually too hard — the item-quality signal
+select module_id,
+       f.key            as family,
+       sum((f.value->>'correct')::int) as correct,
+       sum((f.value->>'total')::int)   as total,
+       round(100.0 * sum((f.value->>'correct')::int) / nullif(sum((f.value->>'total')::int),0), 1) as pct
+from public.adapt_results, jsonb_each(detail->'families') f
+where module_kind = 'knowledge'
+group by module_id, f.key order by pct;
+
+-- is the difficulty ramp real? accuracy should fall from tier 1 to tier 3
+select module_id, t.key as tier,
+       round(100.0 * sum((t.value->>'correct')::int) / nullif(sum((t.value->>'total')::int),0), 1) as pct
+from public.adapt_results, jsonb_each(detail->'tiers') t
+group by module_id, t.key order by module_id, tier;
+
+-- where students run out of capacity in the multitasking run
+select detail->'phases' from public.adapt_results where module_kind = 'divided-attention';
+
+-- distribution per module — this is what replaces the provisional grade bands
+select module_id, count(*) n, round(avg(stanine),2) mean_stanine, round(stddev(stanine),2) sd
+from public.adapt_results where stanine is not null group by module_id order by n desc;
+```
+
+**DPDP Act, 2023 — unchanged and still open.** Moving from an anonymous device id to a
+named account raises the stakes of the questions already listed in
+`ADAPT_DATA_REVIEW.md`, it does not answer them. A meaningful share of these students
+are 17 or 18. The lawyer's questions in that document still need a lawyer.
+
 **Also in Supabase dashboard:**
 - Auth → enable **email confirmation** (already expected by the signup flow).
 - Auth → turn on **rate limiting / CAPTCHA** to stop signup/login brute-force + spam.

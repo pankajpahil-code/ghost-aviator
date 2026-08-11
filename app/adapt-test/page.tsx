@@ -34,7 +34,7 @@ const FAQ_LD = {
       name: "Is this ADAPT practice free?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Every module is free, with no account required and no limit on how many times you can sit it. Ghost Aviator does not charge student pilots for exam preparation.",
+        text: "Yes. Every module is free, with no limit on how many times you can sit it, and Ghost Aviator does not charge student pilots for exam preparation. No account is needed to practise — everything works signed out. A free account adds one thing: your results are saved, so they survive losing a phone and build into a learning curve across sittings.",
       },
     },
     {
@@ -74,7 +74,7 @@ const FAQ_LD = {
       name: "What data does the ADAPT practice collect?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An anonymous score line per module — which module you sat, the stanine, and one percentage. Your answers, your workings and everything from the attitudes questionnaire stay on your device and are never sent. No account is required, and you can switch the score line off on your result page.",
+        text: "Signed out: an anonymous score line per module — which module you sat, the stanine, and one percentage — with no account and no name attached. Signed in: your score and the breakdown behind it are saved to your own account so your history follows you between devices, and so we can see which questions are too hard and fix them. Either way your answers and your workings never leave your device, and nothing from the attitudes questionnaire is ever sent beyond the bare fact that you finished it. Your results are yours; we do not share or sell them.",
       },
     },
   ],
@@ -86,7 +86,7 @@ const FEATURES = [
   { icon: Dices, title: "Never the same paper twice", body: "Questions are generated from a random seed rather than drawn from a fixed bank. You cannot memorise your way through it, which is the whole point — you train the skill, not the answers." },
   { icon: Gauge, title: "Scored on the stanine scale", body: "The 1 to 9 scale airline screening uses, with 5 at the middle. The raw score needed for each stanine is printed on your result, so nothing about the grade is hidden from you." },
   { icon: ListChecks, title: "Every mistake explained", body: "Each wrong option corresponds to a specific error — forgetting to convert minutes to hours, using cosine where sine belongs. Pick one and the review names the mistake rather than just marking you down." },
-  { icon: ShieldCheck, title: "Your answers stay on your device", body: "The whole test is generated and scored in your browser, and your answers, your workings and your attitudes questionnaire never leave it. We do record an anonymous score line per module — which module, the stanine, one percentage — so we can see how students are doing and eventually replace our provisional grade bands with real ones. No name, no account needed, and you can switch it off on your result page." },
+  { icon: ShieldCheck, title: "Your answers stay on your device", body: "The whole test is generated and scored in your browser, and your answers, your workings and your attitudes questionnaire never leave it. What we do record is the score and the breakdown behind it — anonymously if you are signed out, or to your own account if you are signed in, which is what lets your history follow you between devices. That data is used to fix the questions that are too hard and to replace our provisional grade bands with measured ones. It is never shared or sold, and you can switch the anonymous line off on your result page." },
   { icon: Move, title: "A real hand-eye test, not just questions", body: "The Control & Co-ordination module gives you a marker that drifts for a full minute while you hold it on the centre. Drag it, or plug in a joystick and it is used automatically. You are scored on how much of the drift you actually cancelled — and only ever against others using the same kind of input." },
 ];
 
