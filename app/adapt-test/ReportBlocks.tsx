@@ -124,6 +124,25 @@ export function SaveNotice({ outcome, signedIn }: { outcome: SaveOutcome | null;
     );
   }
 
+  // Saving switched on for accounts before the storage behind it existed, and
+  // for a short window it did not. That is our sequencing, not a fault of the
+  // student's or of their result, so it is said calmly and without the database
+  // error text — which would mean nothing to them and alarm them anyway.
+  if (outcome.status === "not-ready" || outcome.status === "unavailable") {
+    return (
+      <div
+        className="flex items-start gap-2 text-xs mb-6 p-3 rounded-lg"
+        style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.10)", color: "#94a3b8" }}
+      >
+        <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" aria-hidden />
+        <span>
+          Saving to your account is not switched on quite yet — it is coming shortly. Your result
+          below is complete and correct, and it is kept in this browser in the meantime.
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div
       className="flex items-start gap-2 text-xs mb-6 p-3 rounded-lg"

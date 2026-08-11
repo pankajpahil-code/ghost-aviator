@@ -36,7 +36,28 @@ export type SaveOutcome =
   | { status: "saved"; rows: number }
   | { status: "signed-out" }
   | { status: "unavailable" }
+  /** The table does not exist yet. Expected, temporary, and not the student's fault. */
+  | { status: "not-ready" }
   | { status: "failed"; reason: string };
+
+/**
+ * Is this error "the table has not been created yet" rather than a real failure?
+ *
+ * This matters because the code and the table ship separately: the site deploys
+ * from a git push, the table is created by hand in Supabase, and whichever
+ * happens second leaves a window in between. Without this check, that window
+ * shows every signed-in student an alarming apology quoting a Postgres
+ * schema-cache message — for a condition that is entirely ours, entirely
+ * temporary, and nothing to do with them or their result.
+ *
+ * PostgREST reports it differently across versions, so both the Postgres code
+ * for an undefined table and PostgREST's own schema-cache message are matched.
+ */
+function tableMissing(error: { code?: string; message?: string } | null): boolean {
+  if (!error) return false;
+  if (error.code === "42P01" || error.code === "PGRST205") return true;
+  return /does not exist|schema cache|could not find the table/i.test(error.message ?? "");
+}
 
 /**
  * Save one finished session to the signed-in student's account.
@@ -64,6 +85,7 @@ export async function saveResults(seed: number, results: AnyResult[], userId: st
     }
 
     const { error } = await getSupabase()!.from(TABLE).insert(rows);
+    if (tableMissing(error)) return { status: "not-ready" };
     if (error) return { status: "failed", reason: error.message };
     return { status: "saved", rows: rows.length };
   } catch (e) {

@@ -11,7 +11,8 @@
     "test:adapt": "node --test \"lib/adapt/**/*.test.mjs\"",
     "test": "node --test \"lib/**/*.test.mjs\"",
     "verify:adapt-save": "node tools/adapt/mock-supabase.mjs 54321 & node tools/adapt/verify-save-path.mjs",
-    "verify:adapt-rls": "node tools/adapt/verify-rls.mjs"
+    "verify:adapt-rls": "node tools/adapt/verify-rls.mjs",
+    "verify:adapt-notready": "node tools/adapt/verify-not-ready.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.1",

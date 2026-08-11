@@ -324,6 +324,14 @@ review: a distractor collision in the English briefing item that could throw and
 student's whole paper, and a wrong object path in the results builder that would have
 saved every multitasking row with all streams null.
 
+**The deploy-order window is handled.** The site ships from a git push and the table is
+created by hand in Supabase, so whichever happens second leaves a gap. In that gap a
+signed-in student used to get an apology quoting a Postgres schema-cache message. A missing
+table is now recognised (`42P01` / `PGRST205`) and reported as "saving is not switched on
+quite yet" — no database text, no implication the result was lost. Proved against a server
+returning exactly what PostgREST returns: `npm run verify:adapt-notready`. This means the
+code and the migration can be applied in either order.
+
 **Still open from this audit:** working-memory and verbal-reasoning sections, the
 mechanical-reasoning strand, English listening, a rudder axis, the longer questionnaire,
 and the keepable-report / Iron-Rule-3 question. And buying the £68 bundle.
