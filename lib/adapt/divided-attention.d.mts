@@ -1,10 +1,13 @@
 // Types for lib/adapt/divided-attention.mjs
 
 export interface RedWindow { start: number; end: number }
-export interface RadioCall { id: string; t: number; mine: boolean }
+export interface RadioCall { id: string; t: number; mine: boolean; phase: PhaseKey; window: number }
 export interface Interruption {
   id: string;
   t: number;
+  phase: PhaseKey;
+  /** The response window this item was actually SHOWN with — it tightens as the run escalates. */
+  window: number;
   stem: string;
   options: string[];
   answerIndex: number;
@@ -19,6 +22,31 @@ export interface DividedRun {
   monitor: RedWindow[];
   radio: RadioCall[];
   arithmetic: Interruption[];
+  phases: PhaseWindow[];
+}
+
+export type PhaseKey = "settling" | "building" | "saturated";
+
+export interface Phase {
+  key: PhaseKey;
+  label: string;
+  /** Multiplier on the gap between events — below 1 means they arrive faster. */
+  gapScale: number;
+  /** Multiplier on the time allowed to respond — below 1 means less time. */
+  windowScale: number;
+}
+
+export interface PhaseWindow extends Phase {
+  index: number;
+  start: number;
+  end: number;
+}
+
+export interface PhaseScore extends PhaseWindow {
+  accuracies: Record<StreamName, number | null>;
+  /** Null when the phase contained no scorable events at all. */
+  composite: number | null;
+  weakest: StreamName | null;
 }
 
 export type StreamName = "monitor" | "radio" | "arithmetic";
@@ -37,12 +65,19 @@ export interface DividedScore {
   fixationPenalty: number;
   composite: number;
   weakest: StreamName | null;
+  phases: PhaseScore[];
+  /** The phase where performance stepped down, or null if it never did. */
+  collapsePhase: PhaseKey | null;
 }
 
 export declare const STREAMS: StreamName[];
 export declare const WINDOW_SEC: { radio: number; arithmetic: number };
 export declare const FIXATION_WEIGHT: number;
 export declare const MIN_EXCURSIONS: number;
+export declare const PHASES: Phase[];
+export declare const COLLAPSE_DROP: number;
+export declare function phaseIndexAt(t: number, durationSec: number): number;
+export declare function phaseWindows(durationSec: number): PhaseWindow[];
 export declare const GAUGE: { min: number; max: number; redline: number };
 export declare function makeGauge(seed: number): { at(t: number): number };
 export declare function redWindows(seed: number, durationSec: number, step?: number): RedWindow[];

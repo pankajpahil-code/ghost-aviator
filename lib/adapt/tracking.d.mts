@@ -20,12 +20,16 @@ export interface Tracker {
   readonly worstError: number;
   /** Root-mean-square radial error; null before the first sample. */
   rmse(): number | null;
+  /** RMSE per reporting segment, oldest first. Segments barely flown are omitted. */
+  segmentRmse(): { index: number; rmse: number; samples: number }[];
 }
 
 export declare const SAMPLE_HZ: number;
+export declare const SEGMENT_SEC: number;
+export declare const MIN_SEGMENT_SHARE: number;
 export declare function makeDisturbance(seed: number): Disturbance;
 export declare function markerPosition(disturbanceAt: Vec2, control: Vec2): Vec2;
-export declare function makeTracker(opts: { seed: number; sampleHz?: number }): Tracker;
+export declare function makeTracker(opts: { seed: number; sampleHz?: number; maxCatchUpSec?: number; segmentSec?: number }): Tracker;
 export declare function evaluate(opts: {
   seed: number;
   durationSec: number;
@@ -33,6 +37,12 @@ export declare function evaluate(opts: {
   controlAt?: (t: number, d: Vec2) => Vec2;
 }): { rmse: number | null; samples: number };
 export declare function passiveRmse(seed: number, durationSec: number, sampleHz?: number): number | null;
+export declare function passiveSegmentRmse(
+  seed: number,
+  durationSec: number,
+  sampleHz?: number,
+  segmentSec?: number
+): { index: number; rmse: number }[];
 export declare function cancellationPercent(rmse: number | null, baseline: number | null): number | null;
 export declare const CANCELLATION_NORM: {
   mode: "criterion";

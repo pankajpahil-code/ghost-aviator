@@ -19,7 +19,21 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Radio, Volume2 } from "lucide-react";
-import { makeGauge, GAUGE, WINDOW_SEC } from "@/lib/adapt/divided-attention.mjs";
+import { makeGauge, GAUGE, WINDOW_SEC, phaseIndexAt, PHASES } from "@/lib/adapt/divided-attention.mjs";
+
+/**
+ * How long this particular interruption is shown for.
+ *
+ * Falls back to the opening constant only for a run built before windows were
+ * carried per event — never as the normal path.
+ */
+const itemWindow = (item: { window?: number }) => item.window ?? WINDOW_SEC.arithmetic;
+
+/** A fifteen-minute run cannot be read as a raw second count. */
+const mmss = (sec: number) => {
+  const s = Math.max(0, Math.ceil(sec));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+};
 import type { DividedRun, DividedResponse, Interruption } from "@/lib/adapt/divided-attention.mjs";
 
 const cyan = "#f0913a";
@@ -138,7 +152,11 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
           setPrompt(item);
         }
         // Time-out an unanswered prompt rather than letting it sit there.
-        if (t > item.t + WINDOW_SEC.arithmetic && !answeredRef.current.has(item.id)) {
+        // The window comes off the ITEM, not off the constant: the run
+        // escalates, so a sum late in the session is shown for less time than
+        // one at the start, and the display must expire it when the scorer
+        // does — otherwise a student sees a prompt they can no longer score on.
+        if (t > item.t + itemWindow(item) && !answeredRef.current.has(item.id)) {
           answeredRef.current.add(item.id);
           responsesRef.current.push({ stream: "arithmetic", id: item.id, chosen: null });
           setPrompt((p) => (p && p.id === item.id ? null : p));
@@ -148,8 +166,8 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
       // rate. Pushing state every frame re-renders the whole task sixty times a
       // second — the one thing a three-task module on a budget phone cannot
       // afford, and it would be the arithmetic overlay that stuttered.
-      const live = run.arithmetic.find((i) => t >= i.t && t <= i.t + WINDOW_SEC.arithmetic && !answeredRef.current.has(i.id));
-      const left10 = live ? Math.max(0, live.t + WINDOW_SEC.arithmetic - t) : 0;
+      const live = run.arithmetic.find((i) => t >= i.t && t <= i.t + itemWindow(i) && !answeredRef.current.has(i.id));
+      const left10 = live ? Math.max(0, live.t + itemWindow(live) - t) : 0;
       setPromptLeft((prev) => (Math.round(prev * 10) === Math.round(left10 * 10) ? prev : left10));
 
       if (canvas) {
@@ -220,6 +238,11 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
     return () => document.removeEventListener("visibilitychange", onHide);
   }, [phase, onComplete]);
 
+  // Derived from the clock already being tracked rather than from a second
+  // piece of state — two sources for "where are we in the run" is how the
+  // banner and the scoring end up disagreeing.
+  const livePhase = PHASES[phaseIndexAt(Math.max(0, run.durationSec - remaining), run.durationSec)];
+
   if (phase === "ready") {
     return (
       <div className="glass-card p-6 sm:p-8">
@@ -234,6 +257,10 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
           Sound is required for the radio stream — turn it up before you start.
           You cannot ace this by picking a favourite task: abandoning one stream is
           scored as fixation and costs more than being merely average at all three.
+          <strong className="text-white"> It gets harder as it runs</strong> — calls and sums
+          arrive closer together and you get less time to answer each one. Your result
+          breaks the run into its three phases, so you can see exactly where you ran out
+          of capacity.
         </div>
         <button onClick={begin} className="btn-primary px-6 py-2.5 font-bold rounded-lg text-sm">Start the run</button>
       </div>
@@ -244,9 +271,19 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
     <div className="glass-card p-5 sm:p-7 select-none" onContextMenu={(e) => e.preventDefault()}>
       <div className="flex items-center justify-between mb-3">
         <span className="text-xs font-bold tracking-widest" style={{ color: cyan, letterSpacing: "0.15em" }}>DIVIDED ATTENTION</span>
-        <span className="text-lg font-black tabular-nums" style={{ color: remaining < 20 ? "#ef4444" : "#cbd5e1" }}>
-          {Math.ceil(remaining)}s
-        </span>
+        <div className="flex items-center gap-3">
+          {/* The phase is shown, and deliberately so. The real assessment does
+              not announce its escalation, but a student practising alone needs
+              to SEE that the workload climbed — otherwise a drop in the last
+              third reads as "I got worse" rather than "it got harder". */}
+          <span className="text-[10px] font-bold px-2 py-1 rounded"
+                style={{ background: "rgba(240,145,58,0.12)", color: cyan, border: "1px solid rgba(240,145,58,0.3)" }}>
+            {livePhase.label.toUpperCase()}
+          </span>
+          <span className="text-lg font-black tabular-nums" style={{ color: remaining < 30 ? "#ef4444" : "#cbd5e1" }}>
+            {mmss(remaining)}
+          </span>
+        </div>
       </div>
 
       {audioOk === false && (
