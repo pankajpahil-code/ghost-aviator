@@ -46,6 +46,7 @@ export default function Footer() {
             <h4 className="text-sm font-semibold mb-4" style={{ color: "#f0913a" }}>Study Tools</h4>
             <ul className="flex flex-col gap-2">
               {[
+                ["Video Lectures (CBT)", "/video-lectures"],
                 ["Question Bank",       "/question-bank"],
                 ["CPL Cost Calculator", "/cpl-cost-calculator"],
                 ["RTR Radio Simulator", "/rtr-simulator"],

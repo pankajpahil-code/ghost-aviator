@@ -130,6 +130,7 @@ export default function Navbar() {
           <div className="flex items-center gap-1 h-11">
             <Link href="/exam" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Exam Mode</Link>
             <Link href="/past-papers" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Past Papers</Link>
+            <Link href="/video-lectures" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#f87171" }}>Video Lectures</Link>
             <Link href="/question-bank" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Question Bank</Link>
             <Link href="/notes" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Notes</Link>
             <Link href="/guides" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Guides</Link>
@@ -152,6 +153,7 @@ export default function Navbar() {
           <Link href="/exam"          onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Exam Mode</Link>
           <Link href="/past-papers"   onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Past Papers</Link>
           <Link href="/dashboard"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Dashboard</Link>
+          <Link href="/video-lectures" onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#f87171" }}>🎥 Video Lectures</Link>
           <Link href="/notes"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Notes</Link>
           <Link href="/question-bank" onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
           <Link href="/resources"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>

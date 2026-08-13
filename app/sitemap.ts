@@ -22,6 +22,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/cpl"),          changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/atpl"),         changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/notes"),        changeFrequency: "weekly"  as const, priority: 0.8 },
+    // The lecture index. Unlike the per-chapter /video drills this is a real
+    // server-rendered page — every lecture title, chapter and subject is in the
+    // HTML, so it carries substantive content rather than being a shell.
+    { url: url("/video-lectures"), changeFrequency: "weekly" as const, priority: 0.9 },
     { url: url("/question-bank"),changeFrequency: "weekly"  as const, priority: 0.8 },
     { url: url("/resources"),    changeFrequency: "monthly" as const, priority: 0.7 },
     { url: url("/exam"),         changeFrequency: "weekly"  as const, priority: 0.8 },
