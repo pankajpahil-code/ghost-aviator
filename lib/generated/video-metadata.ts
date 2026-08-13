@@ -20,12 +20,89 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
     "duration": "PT7M48S",
     "thumbnailUrl": "https://i.ytimg.com/vi/U-3qsvPNXSQ/hqdefault.jpg"
   },
+  "SHo-QjiRnbI": {
+    "name": "Hindi- Air Regulations DGCA Exam (Air Law ) CH#001",
+    "description": "यह वीडियो कैप्टन पंकज पाहिल द्वारा प्रस्तुत \"एयर रेगुलेशन\" (Air Regulations) श्रृंखला का पहला अध्याय है, जो विशेष रूप से DGCA परीक्षाओं की तैयारी करने वाले प...",
+    "uploadDate": "2026-04-26T08:57:11-07:00",
+    "duration": "PT7M13S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/SHo-QjiRnbI/hqdefault.jpg"
+  },
+  "JpGnn-DjlMw": {
+    "name": "Ch.01 | Air Law & Regs | International Obligations of Contracted States | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.01 | Air Law & Regs | International Obligations of Contracted States | ATPL & CPL | FREEMaster...",
+    "uploadDate": "2026-07-31T18:08:00-07:00",
+    "duration": "PT2M47S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/JpGnn-DjlMw/hqdefault.jpg"
+  },
+  "jBORCiFMJ_w": {
+    "name": "Ch.02 | Air Law & Regs | Duties of ICAO Member States | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.02 | Air Law & Regs | Duties of ICAO Member States | ATPL & CPL | FREEMaster ATPL & CPL Air La...",
+    "uploadDate": "2026-07-31T18:09:05-07:00",
+    "duration": "PT6M2S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/jBORCiFMJ_w/hqdefault.jpg"
+  },
+  "PdmkxmZ3750": {
+    "name": "Ch.03 | Air Law & Regs | The International Civil Aviation Organisation ICAO | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.03 | Air Law & Regs | The International Civil Aviation Organisation ICAO | ATPL & CPL | FREEMa...",
+    "uploadDate": "2026-07-31T18:09:55-07:00",
+    "duration": "PT5M46S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/PdmkxmZ3750/hqdefault.jpg"
+  },
+  "ApktRSz4n_E": {
+    "name": "Ch.04 | Air Law & Regs | ICAO Publications | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.04 | Air Law & Regs | ICAO Publications | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regul...",
+    "uploadDate": "2026-07-31T18:10:18-07:00",
+    "duration": "PT4M14S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/ApktRSz4n_E/hqdefault.jpg"
+  },
+  "2abJZqxWNZg": {
+    "name": "Ch.05 | Air Law & Regs | Other International Agreements | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.05 | Air Law & Regs | Other International Agreements | ATPL & CPL | FREEMaster ATPL & CPL Air ...",
+    "uploadDate": "2026-07-31T18:10:54-07:00",
+    "duration": "PT4M40S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/2abJZqxWNZg/hqdefault.jpg"
+  },
+  "cICUAvuTcjM": {
+    "name": "Ch.06 | Air Law & Regs | The Convention of Tokyo, The Hague and Montreal | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.06 | Air Law & Regs | The Convention of Tokyo, The Hague and Montreal | ATPL & CPL | FREEMaste...",
+    "uploadDate": "2026-07-31T18:11:33-07:00",
+    "duration": "PT4M13S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/cICUAvuTcjM/hqdefault.jpg"
+  },
+  "b_0I9g2BIh4": {
+    "name": "Ch.07 | Air Law & Regs | European Organisations | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.07 | Air Law & Regs | European Organisations | ATPL & CPL | FREEMaster ATPL & CPL Air Law and ...",
+    "uploadDate": "2026-07-31T18:12:11-07:00",
+    "duration": "PT4M25S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/b_0I9g2BIh4/hqdefault.jpg"
+  },
+  "6PBKx3tTNiE": {
+    "name": "Ch.08 | Air Law & Regs | The Warsaw Convention and Associated Documents | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.08 | Air Law & Regs | The Warsaw Convention and Associated Documents | ATPL & CPL | FREEMaster...",
+    "uploadDate": "2026-07-31T18:12:37-07:00",
+    "duration": "PT3M21S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/6PBKx3tTNiE/hqdefault.jpg"
+  },
   "3clEEVEFjhs": {
     "name": "DGCA -Air Regulations ch# 2 -Aircraft Reg & Markings",
     "description": "These sources provide a comprehensive guide to aircraft nationality and registration marks, focusing on both international standards and specific Indian regu...",
     "uploadDate": "2026-05-02T21:53:26-07:00",
     "duration": "PT10M20S",
     "thumbnailUrl": "https://i.ytimg.com/vi/3clEEVEFjhs/hqdefault.jpg"
+  },
+  "aHQ2MIgMWo8": {
+    "name": "Hindi DGCA Air Regulations ch#002   एयरक्राफ्ट रजिस्ट्रेशन",
+    "description": "DGCA एयरक्राफ्ट रजिस्ट्रेशन नियम: सब कुछ जो एक पायलट को जानना चाहिए (Masterclass)Video Description (Hindi)नमस्ते भविष्य के एविएटर्स! ✈️मैं हूँ कैप्टन पंकज पा...",
+    "uploadDate": "2026-05-02T21:58:44-07:00",
+    "duration": "PT7M52S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/aHQ2MIgMWo8/hqdefault.jpg"
+  },
+  "au8FiahVAlk": {
+    "name": "Ch.12 | Air Law & Regs | Aircraft Nationality & Registration Marks | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.12 | Air Law & Regs | Aircraft Nationality & Registration Marks | ATPL & CPL | FREEMaster ATPL...",
+    "uploadDate": "2026-07-31T18:15:08-07:00",
+    "duration": "PT6M14S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/au8FiahVAlk/hqdefault.jpg"
   },
   "49Pb_y2Jy4Y": {
     "name": "DGCA Air Regulation - CH003 - Rules of Air",
@@ -34,12 +111,194 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
     "duration": "PT6M29S",
     "thumbnailUrl": "https://i.ytimg.com/vi/49Pb_y2Jy4Y/hqdefault.jpg"
   },
+  "VO4lLbsFUR4": {
+    "name": "Ch.13 | Air Law & Regs | Rules of the Air Introduction | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.13 | Air Law & Regs | Rules of the Air Introduction | ATPL & CPL | FREEMaster ATPL & CPL Air L...",
+    "uploadDate": "2026-07-31T18:18:10-07:00",
+    "duration": "PT15M25S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/VO4lLbsFUR4/hqdefault.jpg"
+  },
+  "47UODY8EVis": {
+    "name": "Ch.14 | Air Law & Regs | Rules of the Air National Rules and Annex 2 | ATPL & CPL | FREE",
+    "description": "Ch.14 | Air Law & Regs | Rules of the Air National Rules and Annex 2 | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground schoo...",
+    "uploadDate": "2026-07-31T18:18:02-07:00",
+    "duration": "PT3M26S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/47UODY8EVis/hqdefault.jpg"
+  },
+  "dg763P_HjeI": {
+    "name": "Ch.15 | Air Law & Regs | Rules of the Air Visual Flight Rules VFR | ATPL & CPL | FREE",
+    "description": "Ch.15 | Air Law & Regs | Rules of the Air Visual Flight Rules VFR | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school t...",
+    "uploadDate": "2026-07-31T18:20:52-07:00",
+    "duration": "PT26M54S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/dg763P_HjeI/hqdefault.jpg"
+  },
+  "q7ekrW6maec": {
+    "name": "Ch.16 | Air Law & Regs | Rules of the Air Instrument Flight Rules IFR | ATPL & CPL | FREE",
+    "description": "Ch.16 | Air Law & Regs | Rules of the Air Instrument Flight Rules IFR | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground scho...",
+    "uploadDate": "2026-07-31T18:21:37-07:00",
+    "duration": "PT12M52S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/q7ekrW6maec/hqdefault.jpg"
+  },
+  "gJbALJzPShM": {
+    "name": "Ch.17 | Air Law | Rules of the Air Minimum Height, Cruise Level... | FREE",
+    "description": "Ch.17 | Air Law | Rules of the Air Minimum Height, Cruise Level... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-07-31T18:22:56-07:00",
+    "duration": "PT16M11S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/gJbALJzPShM/hqdefault.jpg"
+  },
+  "096wf1Ok8dU": {
+    "name": "Ch.18 | Air Law & Regs | Rules of the Air Aircraft Lights | ATPL & CPL | FREE",
+    "description": "Ch.18 | Air Law & Regs | Rules of the Air Aircraft Lights | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training ...",
+    "uploadDate": "2026-07-31T18:22:43-07:00",
+    "duration": "PT2M18S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/096wf1Ok8dU/hqdefault.jpg"
+  },
+  "xRrUwi1Pq4Q": {
+    "name": "Ch.19 | Air Law & Regs | Rules of the Air Flight Plans | ATPL & CPL | FREE",
+    "description": "Ch.19 | Air Law & Regs | Rules of the Air Flight Plans | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training ser...",
+    "uploadDate": "2026-07-31T18:23:48-07:00",
+    "duration": "PT8M57S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/xRrUwi1Pq4Q/hqdefault.jpg"
+  },
+  "Tefbar_6Du4": {
+    "name": "Ch.20 | Air Law & Regs | Rules of the Air Communications Failure | ATPL & CPL | FREE",
+    "description": "Ch.20 | Air Law & Regs | Rules of the Air Communications Failure | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school tr...",
+    "uploadDate": "2026-07-31T18:24:15-07:00",
+    "duration": "PT5M13S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Tefbar_6Du4/hqdefault.jpg"
+  },
+  "_SI6VCs2D-E": {
+    "name": "Ch.21 | Air Law & Regs | Rules of the Air Interception of Civil Aircraft | ATPL & CPL | FREE",
+    "description": "Ch.21 | Air Law & Regs | Rules of the Air Interception of Civil Aircraft | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground s...",
+    "uploadDate": "2026-07-31T18:24:35-07:00",
+    "duration": "PT3M17S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/_SI6VCs2D-E/hqdefault.jpg"
+  },
+  "XqGnpHJNhI4": {
+    "name": "Ch.22 | Air Law & Regs | Rules of the Air Distress and Urgency Signals | ATPL & CPL | FREE",
+    "description": "Ch.22 | Air Law & Regs | Rules of the Air Distress and Urgency Signals | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground sch...",
+    "uploadDate": "2026-07-31T18:24:50-07:00",
+    "duration": "PT3M46S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/XqGnpHJNhI4/hqdefault.jpg"
+  },
+  "ZLYWd2MkvrM": {
+    "name": "Ch.23 | Air Law | Rules of the Air Restricted, Prohibited and D... | FREE",
+    "description": "Ch.23 | Air Law | Rules of the Air Restricted, Prohibited and D... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-01T18:16:49-07:00",
+    "duration": "PT1M",
+    "thumbnailUrl": "https://i.ytimg.com/vi/ZLYWd2MkvrM/hqdefault.jpg"
+  },
+  "L4O8jpSUUtY": {
+    "name": "Ch.24 | Air Law & Regs | Rules of the Air Signals for Aerodrome Traffic | ATPL & CPL | FREE",
+    "description": "Ch.24 | Air Law & Regs | Rules of the Air Signals for Aerodrome Traffic | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground sc...",
+    "uploadDate": "2026-08-01T18:18:09-07:00",
+    "duration": "PT11M32S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/L4O8jpSUUtY/hqdefault.jpg"
+  },
+  "o8Foj8tlSMs": {
+    "name": "Ch.25 | Air Law & Regs | Rules of the Air Marshaling Signals | ATPL & CPL | FREE",
+    "description": "Ch.25 | Air Law & Regs | Rules of the Air Marshaling Signals | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school traini...",
+    "uploadDate": "2026-08-01T18:18:33-07:00",
+    "duration": "PT3M35S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/o8Foj8tlSMs/hqdefault.jpg"
+  },
   "-wNK3jt0_Vc": {
     "name": "DGCA Air Regulation ch04 - Air Traffic Services",
     "description": "This document outlines the regulatory framework for Air Traffic Services within the Indian aviation sector, specifically focusing on safety, efficiency, and ...",
     "uploadDate": "2026-05-13T23:45:48-07:00",
     "duration": "PT8M39S",
     "thumbnailUrl": "https://i.ytimg.com/vi/-wNK3jt0_Vc/hqdefault.jpg"
+  },
+  "TZlOBk51PFw": {
+    "name": "Ch.40 | Air Law & Regs | Air Traffic Services Classes of Airspace | ATPL & CPL | FREE",
+    "description": "Ch.40 | Air Law & Regs | Air Traffic Services Classes of Airspace | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school t...",
+    "uploadDate": "2026-08-03T20:21:43-07:00",
+    "duration": "PT5M7S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/TZlOBk51PFw/hqdefault.jpg"
+  },
+  "p2yWT7oHdSM": {
+    "name": "Ch.41 | Air Law | Air Traffic Services Units Providing Air Traf... | FREE",
+    "description": "Ch.41 | Air Law | Air Traffic Services Units Providing Air Traf... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-03T20:21:50-07:00",
+    "duration": "PT1M1S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/p2yWT7oHdSM/hqdefault.jpg"
+  },
+  "zyWiUWOZSmQ": {
+    "name": "Ch.42 | Air Law & Regs | Air Traffic Services Flight Information Regions | ATPL & CPL | FREE",
+    "description": "Ch.42 | Air Law & Regs | Air Traffic Services Flight Information Regions | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground s...",
+    "uploadDate": "2026-08-03T20:22:14-07:00",
+    "duration": "PT3M6S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/zyWiUWOZSmQ/hqdefault.jpg"
+  },
+  "uxxaSUeU6yQ": {
+    "name": "Ch.43 | Air Law | Air Traffic Services Air Traffic Route Struct... | FREE",
+    "description": "Ch.43 | Air Law | Air Traffic Services Air Traffic Route Struct... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-03T20:23:00-07:00",
+    "duration": "PT5M10S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/uxxaSUeU6yQ/hqdefault.jpg"
+  },
+  "q58NDZN7Uno": {
+    "name": "Ch.45 | Air Law & Regs | Air Traffic Services Air Traffic Control Service | ATPL & CPL | FREE",
+    "description": "Ch.45 | Air Law & Regs | Air Traffic Services Air Traffic Control Service | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground ...",
+    "uploadDate": "2026-08-03T20:23:35-07:00",
+    "duration": "PT3M12S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/q58NDZN7Uno/hqdefault.jpg"
+  },
+  "GAMhjL9pI1w": {
+    "name": "Ch.47 | Air Law & Regs | Air Traffic Services Air Traffic Control Clearance | ATPL & CPL | FREE",
+    "description": "Ch.47 | Air Law & Regs | Air Traffic Services Air Traffic Control Clearance | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free groun...",
+    "uploadDate": "2026-08-03T20:24:22-07:00",
+    "duration": "PT2M55S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/GAMhjL9pI1w/hqdefault.jpg"
+  },
+  "1F7Ap9A9U1k": {
+    "name": "Ch.49 | Air Law & Regs | Air Traffic Services Flight Information Service | ATPL & CPL | FREE",
+    "description": "Ch.49 | Air Law & Regs | Air Traffic Services Flight Information Service | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground s...",
+    "uploadDate": "2026-08-03T20:26:22-07:00",
+    "duration": "PT4M59S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/1F7Ap9A9U1k/hqdefault.jpg"
+  },
+  "pX9u06RX2-8": {
+    "name": "Ch.50 | Air Law & Regs | Air Traffic Services Alerting Service | ATPL & CPL | FREE",
+    "description": "Ch.50 | Air Law & Regs | Air Traffic Services Alerting Service | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school trai...",
+    "uploadDate": "2026-08-05T18:37:01-07:00",
+    "duration": "PT5M36S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/pX9u06RX2-8/hqdefault.jpg"
+  },
+  "FZBfsX3n4ss": {
+    "name": "Ch.44 | Air Law & Regs | Air Traffic Services Contingencies | ATPL & CPL | FREE",
+    "description": "Ch.44 | Air Law & Regs | Air Traffic Services Contingencies | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school trainin...",
+    "uploadDate": "2026-08-03T20:23:06-07:00",
+    "duration": "PT1M34S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/FZBfsX3n4ss/hqdefault.jpg"
+  },
+  "FLczf-3WTTM": {
+    "name": "Ch.52 | Air Law & Regs | Procedures for Air Traffic Management Flight Plans | ATPL & CPL | FREE",
+    "description": "Ch.52 | Air Law & Regs | Procedures for Air Traffic Management Flight Plans | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free groun...",
+    "uploadDate": "2026-08-05T18:38:29-07:00",
+    "duration": "PT10M51S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/FLczf-3WTTM/hqdefault.jpg"
+  },
+  "wBhnQ0edMOs": {
+    "name": "Ch.53 | Air Law & Regs | Flow Management and Provision of Information | ATPL & CPL | FREE",
+    "description": "Ch.53 | Air Law & Regs | Flow Management and Provision of Information | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground scho...",
+    "uploadDate": "2026-08-05T18:38:36-07:00",
+    "duration": "PT5M22S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/wBhnQ0edMOs/hqdefault.jpg"
+  },
+  "r1atWgSQQBs": {
+    "name": "Ch.54 | Air Law | Procedures for Air Traffic Management Positio... | FREE",
+    "description": "Ch.54 | Air Law | Procedures for Air Traffic Management Positio... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-05T18:39:05-07:00",
+    "duration": "PT4M47S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/r1atWgSQQBs/hqdefault.jpg"
+  },
+  "zY1h3iuBvHM": {
+    "name": "Ch.55 | Air Law | Procedures for Air Traffic Management Air Tra... | FREE",
+    "description": "Ch.55 | Air Law | Procedures for Air Traffic Management Air Tra... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-05T18:39:24-07:00",
+    "duration": "PT2M19S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/zY1h3iuBvHM/hqdefault.jpg"
   },
   "gSiElA8OTKY": {
     "name": "DGCA Air regulation ch005 -Separation Methods",
@@ -48,12 +307,82 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
     "duration": "PT8M56S",
     "thumbnailUrl": "https://i.ytimg.com/vi/gSiElA8OTKY/hqdefault.jpg"
   },
+  "lVC1r-5Km1g": {
+    "name": "Ch.46 | Air Law & Regs | Air Traffic Services Separation | ATPL & CPL | FREE",
+    "description": "Ch.46 | Air Law & Regs | Air Traffic Services Separation | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training s...",
+    "uploadDate": "2026-08-03T20:24:06-07:00",
+    "duration": "PT7M45S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/lVC1r-5Km1g/hqdefault.jpg"
+  },
+  "aDrK-U6elho": {
+    "name": "Ch.56 | Air Law & Regs | Area Control Service Vertical Separation | ATPL & CPL | FREE",
+    "description": "Ch.56 | Air Law & Regs | Area Control Service Vertical Separation | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school t...",
+    "uploadDate": "2026-08-05T18:39:54-07:00",
+    "duration": "PT4M51S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/aDrK-U6elho/hqdefault.jpg"
+  },
+  "94mzkrUgBIk": {
+    "name": "Ch.57 | Air Law & Regs | Area Control Service Horizontal Separation | ATPL & CPL | FREE",
+    "description": "Ch.57 | Air Law & Regs | Area Control Service Horizontal Separation | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school...",
+    "uploadDate": "2026-08-05T18:41:25-07:00",
+    "duration": "PT20M4S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/94mzkrUgBIk/hqdefault.jpg"
+  },
+  "X8ujJpexSiE": {
+    "name": "Ch.58 | Air Law & Regs | Area Control Service Air Traffic Control Clearances | ATPL & CPL | FREE",
+    "description": "Ch.58 | Air Law & Regs | Area Control Service Air Traffic Control Clearances | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free grou...",
+    "uploadDate": "2026-08-05T18:41:45-07:00",
+    "duration": "PT6M20S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/X8ujJpexSiE/hqdefault.jpg"
+  },
+  "_C70fKG4Mq4": {
+    "name": "Ch.59 | Air Law | Area Control Service Emergency and Communicat... | FREE",
+    "description": "Ch.59 | Air Law | Area Control Service Emergency and Communicat... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-05T18:42:09-07:00",
+    "duration": "PT6M57S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/_C70fKG4Mq4/hqdefault.jpg"
+  },
   "yEk9FYgRTho": {
     "name": "DGCA Air Regulation ch006 - Separation in the Vicinity of Aerodromes",
     "description": "These study materials outline the regulatory standards and procedures for maintaining safe distances between aircraft within Indian airspace, specifically fo...",
     "uploadDate": "2026-05-13T23:53:20-07:00",
     "duration": "PT9M5S",
     "thumbnailUrl": "https://i.ytimg.com/vi/yEk9FYgRTho/hqdefault.jpg"
+  },
+  "bhM6LYDQ6Xk": {
+    "name": "Ch.60 | Air Law & Regs | Approach Control Service Establishment | ATPL & CPL | FREE",
+    "description": "Ch.60 | Air Law & Regs | Approach Control Service Establishment | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school tra...",
+    "uploadDate": "2026-08-05T18:42:22-07:00",
+    "duration": "PT1M23S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/bhM6LYDQ6Xk/hqdefault.jpg"
+  },
+  "QS0NtlmpqBA": {
+    "name": "Ch.61 | Air Law & Regs | Approach Control Service Departing Aircraft | ATPL & CPL | FREE",
+    "description": "Ch.61 | Air Law & Regs | Approach Control Service Departing Aircraft | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground schoo...",
+    "uploadDate": "2026-08-05T18:43:02-07:00",
+    "duration": "PT4M26S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/QS0NtlmpqBA/hqdefault.jpg"
+  },
+  "8qKEykDWARw": {
+    "name": "Ch.62 | Air Law & Regs | Approach Control Service Arriving Aircraft | ATPL & CPL | FREE",
+    "description": "Ch.62 | Air Law & Regs | Approach Control Service Arriving Aircraft | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school...",
+    "uploadDate": "2026-08-05T18:43:47-07:00",
+    "duration": "PT5M",
+    "thumbnailUrl": "https://i.ytimg.com/vi/8qKEykDWARw/hqdefault.jpg"
+  },
+  "YwrqTYkl2VI": {
+    "name": "Ch.63 | Air Law & Regs | Approach Control Service Stacking | ATPL & CPL | FREE",
+    "description": "Ch.63 | Air Law & Regs | Approach Control Service Stacking | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training...",
+    "uploadDate": "2026-08-05T18:44:17-07:00",
+    "duration": "PT4M21S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/YwrqTYkl2VI/hqdefault.jpg"
+  },
+  "h-J4UcITCkw": {
+    "name": "Ch.64 | Air Law & Regs | Approach Control Service Parallel Runway Operations | ATPL & CPL | FREE",
+    "description": "Ch.64 | Air Law & Regs | Approach Control Service Parallel Runway Operations | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free grou...",
+    "uploadDate": "2026-08-05T18:45:39-07:00",
+    "duration": "PT4M48S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/h-J4UcITCkw/hqdefault.jpg"
   },
   "wvN_ol_zXPo": {
     "name": "DGCA Air Regulation ch07 -  Aerodrome Control Service  The DGCA Procedural Matrix",
@@ -62,12 +391,110 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
     "duration": "PT6M51S",
     "thumbnailUrl": "https://i.ytimg.com/vi/wvN_ol_zXPo/hqdefault.jpg"
   },
+  "ZUXwIpb6TZs": {
+    "name": "Ch.65 | Air Law & Regs | Aerodrome Control Services Aerodrome Control Service | ATPL & CPL | FREE",
+    "description": "Ch.65 | Air Law & Regs | Aerodrome Control Services Aerodrome Control Service | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free gro...",
+    "uploadDate": "2026-08-05T18:46:33-07:00",
+    "duration": "PT4M23S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/ZUXwIpb6TZs/hqdefault.jpg"
+  },
+  "MBWEAW6z94U": {
+    "name": "Ch.66 | Air Law & Regs | Aerodrome Control Services Information to Aircraft | ATPL & CPL | FREE",
+    "description": "Ch.66 | Air Law & Regs | Aerodrome Control Services Information to Aircraft | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free groun...",
+    "uploadDate": "2026-08-05T18:47:16-07:00",
+    "duration": "PT6M20S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/MBWEAW6z94U/hqdefault.jpg"
+  },
+  "FrTQsTncX3c": {
+    "name": "Ch.67 | Air Law | Aerodrome Control Services Control of Aerodro... | FREE",
+    "description": "Ch.67 | Air Law | Aerodrome Control Services Control of Aerodro... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-05T18:48:17-07:00",
+    "duration": "PT8M32S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/FrTQsTncX3c/hqdefault.jpg"
+  },
+  "j1mj5D9XZeg": {
+    "name": "Ch.48 | Air Law | Air Traffic Services Control of Persons and V... | FREE",
+    "description": "Ch.48 | Air Law | Air Traffic Services Control of Persons and V... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-03T20:24:35-07:00",
+    "duration": "PT2M5S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/j1mj5D9XZeg/hqdefault.jpg"
+  },
+  "-aY9JS-6HkA": {
+    "name": "Ch.68 | Air Law & Regs | Aerodrome Control Services Wake Turbulence | ATPL & CPL | FREE",
+    "description": "Ch.68 | Air Law & Regs | Aerodrome Control Services Wake Turbulence | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school...",
+    "uploadDate": "2026-08-05T18:49:08-07:00",
+    "duration": "PT10M1S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/-aY9JS-6HkA/hqdefault.jpg"
+  },
   "urz6tppqass": {
     "name": "DGCA Air Regulation ch08 - The ATS Surveillance",
     "description": "This comprehensive study guide details the Air Traffic Services (ATS) Surveillance Systems used in modern aviation, specifically within the context of ICAO D...",
     "uploadDate": "2026-05-15T22:09:44-07:00",
     "duration": "PT7M",
     "thumbnailUrl": "https://i.ytimg.com/vi/urz6tppqass/hqdefault.jpg"
+  },
+  "rHrMgrxqNk0": {
+    "name": "Ch.70 | Air Law & Regs | Radar Services Introduction | ATPL & CPL | FREE",
+    "description": "Ch.70 | Air Law & Regs | Radar Services Introduction | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training serie...",
+    "uploadDate": "2026-08-05T18:51:40-07:00",
+    "duration": "PT11M34S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/rHrMgrxqNk0/hqdefault.jpg"
+  },
+  "1feSl6Ndqa4": {
+    "name": "Ch.69 | Air Law & Regs | Radar Services General Radar Procedures | ATPL & CPL | FREE",
+    "description": "Ch.69 | Air Law & Regs | Radar Services General Radar Procedures | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school tr...",
+    "uploadDate": "2026-08-05T18:50:17-07:00",
+    "duration": "PT14M14S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/1feSl6Ndqa4/hqdefault.jpg"
+  },
+  "lyPcBr65-60": {
+    "name": "Ch.71 | Air Law & Regs | Radar Services Radar Separation Standers | ATPL & CPL | FREE",
+    "description": "Ch.71 | Air Law & Regs | Radar Services Radar Separation Standers | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school t...",
+    "uploadDate": "2026-08-05T18:52:12-07:00",
+    "duration": "PT4M32S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/lyPcBr65-60/hqdefault.jpg"
+  },
+  "Kw_SiPSnQLE": {
+    "name": "Ch.72 | Air Law & Regs | Radar Services Use of Radar in Approach Control | ATPL & CPL | FREE",
+    "description": "Ch.72 | Air Law & Regs | Radar Services Use of Radar in Approach Control | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground s...",
+    "uploadDate": "2026-08-05T18:52:29-07:00",
+    "duration": "PT3M58S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Kw_SiPSnQLE/hqdefault.jpg"
+  },
+  "wAriRV0FoQk": {
+    "name": "Ch.73 | Air Law & Regs | Radar Services Surface Movement Radar | ATPL & CPL | FREE",
+    "description": "Ch.73 | Air Law & Regs | Radar Services Surface Movement Radar | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school trai...",
+    "uploadDate": "2026-08-09T04:40:28-07:00",
+    "duration": "PT1M17S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/wAriRV0FoQk/hqdefault.jpg"
+  },
+  "xLMoEXslKuk": {
+    "name": "Ch.74 | Air Law & Regs | Radar Services Air Traffic Advisory Service | ATPL & CPL | FREE",
+    "description": "Ch.74 | Air Law & Regs | Radar Services Air Traffic Advisory Service | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground schoo...",
+    "uploadDate": "2026-08-09T04:41:19-07:00",
+    "duration": "PT3M7S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/xLMoEXslKuk/hqdefault.jpg"
+  },
+  "ukRgihOxhzo": {
+    "name": "Ch.75 | Air Law & Regs | Radar Services Emergencies | ATPL & CPL | FREE",
+    "description": "Ch.75 | Air Law & Regs | Radar Services Emergencies | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training series...",
+    "uploadDate": "2026-08-09T04:41:43-07:00",
+    "duration": "PT1M20S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/ukRgihOxhzo/hqdefault.jpg"
+  },
+  "Gf43q7zD1kc": {
+    "name": "Ch.37 | Air Law | Procedures in Flight Operations Secondary Sur... | FREE",
+    "description": "Ch.37 | Air Law | Procedures in Flight Operations Secondary Sur... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-02T18:05:51-07:00",
+    "duration": "PT4M16S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Gf43q7zD1kc/hqdefault.jpg"
+  },
+  "JRd6XeNECso": {
+    "name": "Ch.38 | Air Law | Procedures in Flight Operations Radar Control... | FREE",
+    "description": "Ch.38 | Air Law | Procedures in Flight Operations Radar Control... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-02T18:07:29-07:00",
+    "duration": "PT11M29S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/JRd6XeNECso/hqdefault.jpg"
   },
   "a1Zda_GDGSs": {
     "name": "DGCA Air Regulation ch 09 - AIS Data Backbone & The IAIP Ecosystem",
@@ -76,6 +503,34 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
     "duration": "PT6M41S",
     "thumbnailUrl": "https://i.ytimg.com/vi/a1Zda_GDGSs/hqdefault.jpg"
   },
+  "KGurRIjfHyo": {
+    "name": "Ch.76 | Air Law & Regs | Aeronautical Information Services Introduction | ATPL & CPL | FREE",
+    "description": "Ch.76 | Air Law & Regs | Aeronautical Information Services Introduction | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground sc...",
+    "uploadDate": "2026-08-09T04:43:04-07:00",
+    "duration": "PT7M19S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/KGurRIjfHyo/hqdefault.jpg"
+  },
+  "bBa-vXGs9Us": {
+    "name": "Ch.77 | Air Law & Regs | Aeronautical Information Services NOTAMS | ATPL & CPL | FREE",
+    "description": "Ch.77 | Air Law & Regs | Aeronautical Information Services NOTAMS | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school t...",
+    "uploadDate": "2026-08-09T04:43:53-07:00",
+    "duration": "PT8M34S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/bBa-vXGs9Us/hqdefault.jpg"
+  },
+  "pUUkJ2X7mJY": {
+    "name": "Ch.78 | Air Law | Aeronautical Information Services Regulation ... | FREE",
+    "description": "Ch.78 | Air Law | Aeronautical Information Services Regulation ... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-09T04:44:40-07:00",
+    "duration": "PT3M49S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/pUUkJ2X7mJY/hqdefault.jpg"
+  },
+  "8n8pbH8ux0I": {
+    "name": "Ch.79 | Air Law & Regs | Aeronautical Information Services Circulars | ATPL & CPL | FREE",
+    "description": "Ch.79 | Air Law & Regs | Aeronautical Information Services Circulars | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground schoo...",
+    "uploadDate": "2026-08-09T04:44:59-07:00",
+    "duration": "PT3M39S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/8n8pbH8ux0I/hqdefault.jpg"
+  },
   "cncICehqRws": {
     "name": "DGCA Air Regulation ch10 - Search and Rescue",
     "description": "These sources provide a comprehensive educational guide on Search and Rescue (SAR) regulations and procedures, specifically tailored for aviation examination...",
@@ -83,12 +538,173 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
     "duration": "PT10M23S",
     "thumbnailUrl": "https://i.ytimg.com/vi/cncICehqRws/hqdefault.jpg"
   },
+  "UYUpyJor-UU": {
+    "name": "DGCA Air Regulations CH 11 - Visual Aids for Navigation",
+    "description": "These regulatory documents outline the mandatory standards and technical specifications for visual navigation aids at aerodromes. The text covers a wide arra...",
+    "uploadDate": "2026-05-16T04:18:19-07:00",
+    "duration": "PT9M41S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/UYUpyJor-UU/hqdefault.jpg"
+  },
+  "zTYaAPUOX4Q": {
+    "name": "Ch.80 | Air Law & Regs | Aerodromes Introduction | ATPL & CPL | FREE",
+    "description": "Ch.80 | Air Law & Regs | Aerodromes Introduction | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training series. I...",
+    "uploadDate": "2026-08-09T04:46:07-07:00",
+    "duration": "PT4M51S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/zTYaAPUOX4Q/hqdefault.jpg"
+  },
+  "iTCYanWEkMI": {
+    "name": "Ch.81 | Air Law & Regs | Aerodromes Pavements, Runways and Hard Surfaces | ATPL & CPL | FREE",
+    "description": "Ch.81 | Air Law & Regs | Aerodromes Pavements, Runways and Hard Surfaces | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground s...",
+    "uploadDate": "2026-08-09T04:49:00-07:00",
+    "duration": "PT28M7S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/iTCYanWEkMI/hqdefault.jpg"
+  },
+  "vw4ciwCFXdU": {
+    "name": "Ch.82 | Air Law & Regs | Aerodromes Visual Aids to Navigation | ATPL & CPL | FREE",
+    "description": "Ch.82 | Air Law & Regs | Aerodromes Visual Aids to Navigation | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school train...",
+    "uploadDate": "2026-08-09T04:48:33-07:00",
+    "duration": "PT2M46S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/vw4ciwCFXdU/hqdefault.jpg"
+  },
+  "nsV_38iL3DQ": {
+    "name": "Ch.83 | Air Law & Regs | Aerodromes Markings | ATPL & CPL | FREE",
+    "description": "Ch.83 | Air Law & Regs | Aerodromes Markings | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training series. In th...",
+    "uploadDate": "2026-08-09T04:51:27-07:00",
+    "duration": "PT10M55S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/nsV_38iL3DQ/hqdefault.jpg"
+  },
+  "lemhj_t9Uyk": {
+    "name": "Ch.84 | Air Law & Regs | Aerodrome Lighting and Signs Aerodrome Lights | ATPL & CPL | FREE",
+    "description": "Ch.84 | Air Law & Regs | Aerodrome Lighting and Signs Aerodrome Lights | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground sch...",
+    "uploadDate": "2026-08-12T05:22:08-07:00",
+    "duration": "PT5M45S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/lemhj_t9Uyk/hqdefault.jpg"
+  },
+  "iKG60rOyF20": {
+    "name": "Ch.85 | Air Law & Regs | Aerodrome Lighting and Signs Approach Lighting System | ATPL & CPL | FREE",
+    "description": "Ch.85 | Air Law & Regs | Aerodrome Lighting and Signs Approach Lighting System | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free gr...",
+    "uploadDate": "2026-08-12T05:22:28-07:00",
+    "duration": "PT6M5S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/iKG60rOyF20/hqdefault.jpg"
+  },
+  "5WKb2lGfVR4": {
+    "name": "Ch.87 | Air Law & Regs | Aerodrome Lighting and Signs Runway Lighting | ATPL & CPL | FREE",
+    "description": "Ch.87 | Air Law & Regs | Aerodrome Lighting and Signs Runway Lighting | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground scho...",
+    "uploadDate": "2026-08-12T05:22:27-07:00",
+    "duration": "PT8M8S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/5WKb2lGfVR4/hqdefault.jpg"
+  },
+  "fXGc2GdVvdo": {
+    "name": "Ch.86 | Air Law & Regs | Aerodrome Lighting and Signs PAPI and VASIS | ATPL & CPL | FREE",
+    "description": "Ch.86 | Air Law & Regs | Aerodrome Lighting and Signs PAPI and VASIS | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground schoo...",
+    "uploadDate": "2026-08-12T05:22:24-07:00",
+    "duration": "PT4M2S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/fXGc2GdVvdo/hqdefault.jpg"
+  },
+  "KdmMUecbCYY": {
+    "name": "DGCA Air  Regulation chapter 12 -  PANS OPS Doc 8168",
+    "description": "These study notes by Capt. Pankaj Pahil provide a comprehensive overview of ICAO Document 8168, which details the PANS-OPS criteria for aircraft flight proce...",
+    "uploadDate": "2026-05-22T20:48:41-07:00",
+    "duration": "PT8M43S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/KdmMUecbCYY/hqdefault.jpg"
+  },
+  "mu_ck9yfC6Y": {
+    "name": "Ch.26 | Air Law & Regs | Procedures in Flight Operations Instrument Procedures | ATPL & CPL | FREE",
+    "description": "Ch.26 | Air Law & Regs | Procedures in Flight Operations Instrument Procedures | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free gr...",
+    "uploadDate": "2026-08-01T18:18:49-07:00",
+    "duration": "PT4M30S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/mu_ck9yfC6Y/hqdefault.jpg"
+  },
+  "ENXyFv6Zq9A": {
+    "name": "Ch.27 | Air Law & Regs | Procedures in Flight Operations Departure Procedures | ATPL & CPL | FREE",
+    "description": "Ch.27 | Air Law & Regs | Procedures in Flight Operations Departure Procedures | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free gro...",
+    "uploadDate": "2026-08-01T18:22:13-07:00",
+    "duration": "PT13M3S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/ENXyFv6Zq9A/hqdefault.jpg"
+  },
+  "5Pz8nWSxfhs": {
+    "name": "Ch.28 | Air Law & Regs | Procedures in Flight Operations Approach Procedures | ATPL & CPL | FREE",
+    "description": "Ch.28 | Air Law & Regs | Procedures in Flight Operations Approach Procedures | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free grou...",
+    "uploadDate": "2026-08-01T18:22:13-07:00",
+    "duration": "PT6M22S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/5Pz8nWSxfhs/hqdefault.jpg"
+  },
+  "zpSb51PUqJQ": {
+    "name": "Ch.29 | Air Law | Procedures in Flight Operations Approach Proc... | FREE",
+    "description": "Ch.29 | Air Law | Procedures in Flight Operations Approach Proc... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-01T18:23:36-07:00",
+    "duration": "PT11M52S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/zpSb51PUqJQ/hqdefault.jpg"
+  },
+  "rra6xTE04bc": {
+    "name": "Ch.31 | Air Law & Regs | Arrival and Approach Segments | ATPL & CPL | FREE",
+    "description": "Ch.31 | Air Law & Regs | Arrival and Approach Segments | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training ser...",
+    "uploadDate": "2026-08-01T18:24:56-07:00",
+    "duration": "PT10M",
+    "thumbnailUrl": "https://i.ytimg.com/vi/rra6xTE04bc/hqdefault.jpg"
+  },
+  "RTpq1Viw9DQ": {
+    "name": "Ch.30 | Air Law | Procedures in Flight Operations Track Reversa... | FREE",
+    "description": "Ch.30 | Air Law | Procedures in Flight Operations Track Reversa... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-01T18:23:58-07:00",
+    "duration": "PT8M34S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/RTpq1Viw9DQ/hqdefault.jpg"
+  },
+  "Bwg89D7WlxI": {
+    "name": "Ch.32 | Air Law & Regs | Procedures in Flight Operations Missed Approach | ATPL & CPL | FREE",
+    "description": "Ch.32 | Air Law & Regs | Procedures in Flight Operations Missed Approach | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground s...",
+    "uploadDate": "2026-08-01T18:24:52-07:00",
+    "duration": "PT4M2S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Bwg89D7WlxI/hqdefault.jpg"
+  },
+  "5IRiYb6hVRA": {
+    "name": "Ch.33 | Air Law & Regs | Procedures in Flight Operations Holding Procedures | ATPL & CPL | FREE",
+    "description": "Ch.33 | Air Law & Regs | Procedures in Flight Operations Holding Procedures | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free groun...",
+    "uploadDate": "2026-08-02T18:03:40-07:00",
+    "duration": "PT8M35S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/5IRiYb6hVRA/hqdefault.jpg"
+  },
+  "0Q9at5ShhQ0": {
+    "name": "Ch.34 | Air Law & Regs | Procedures in Flight Operations Visual Maneuvering | ATPL & CPL | FREE",
+    "description": "Ch.34 | Air Law & Regs | Procedures in Flight Operations Visual Maneuvering | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free groun...",
+    "uploadDate": "2026-08-02T18:04:07-07:00",
+    "duration": "PT2M49S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/0Q9at5ShhQ0/hqdefault.jpg"
+  },
+  "2aWRB2Qnstc": {
+    "name": "Ch.35 | Air Law | Procedures in Flight Operations Altimeter Set... | FREE",
+    "description": "Ch.35 | Air Law | Procedures in Flight Operations Altimeter Set... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-02T18:04:19-07:00",
+    "duration": "PT4M38S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/2aWRB2Qnstc/hqdefault.jpg"
+  },
+  "OOmn7XvvPs4": {
+    "name": "Ch.36 | Air Law | Procedures in Flight Operations Simultaneous ... | FREE",
+    "description": "Ch.36 | Air Law | Procedures in Flight Operations Simultaneous ... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-02T18:05:13-07:00",
+    "duration": "PT4M50S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/OOmn7XvvPs4/hqdefault.jpg"
+  },
   "ojBmyaj53cE": {
     "name": "DGCA Air Regulation ch13 - The DGCA National Law Matrix  From Legislation to Enforcement",
     "description": "This document serves as a comprehensive study guide for pilots and ground instructors regarding Indian aviation law and operational regulations. It outlines ...",
     "uploadDate": "2026-05-22T21:30:11-07:00",
     "duration": "PT6M45S",
     "thumbnailUrl": "https://i.ytimg.com/vi/ojBmyaj53cE/hqdefault.jpg"
+  },
+  "SaTfP2MyS5Y": {
+    "name": "Ch.09 | Air Law & Regs | The Authority of the Commander | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.09 | Air Law & Regs | The Authority of the Commander | ATPL & CPL | FREEMaster ATPL & CPL Air ...",
+    "uploadDate": "2026-07-31T18:13:03-07:00",
+    "duration": "PT2M8S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/SaTfP2MyS5Y/hqdefault.jpg"
+  },
+  "wkhhpz_ZRuw": {
+    "name": "Ch.10 | Air Law & Regs | Commercial Practices & Associated Rules Leasing | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.10 | Air Law & Regs | Commercial Practices & Associated Rules Leasing | ATPL & CPL | FREEMaste...",
+    "uploadDate": "2026-07-31T18:13:30-07:00",
+    "duration": "PT3M34S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/wkhhpz_ZRuw/hqdefault.jpg"
   },
   "ID4_Qo4yYeY": {
     "name": "DGCA Air Regs ch 14 - DGCA Personnel Licensing",
@@ -103,6 +719,13 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
     "uploadDate": "2026-05-28T23:31:57-07:00",
     "duration": "PT7M49S",
     "thumbnailUrl": "https://i.ytimg.com/vi/iM98a2v25q8/hqdefault.jpg"
+  },
+  "A8Y13jv9zW8": {
+    "name": "Ch.11 | Air Law & Regs | Airworthiness of Aircraft | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.11 | Air Law & Regs | Airworthiness of Aircraft | ATPL & CPL | FREEMaster ATPL & CPL Air Law a...",
+    "uploadDate": "2026-07-31T18:13:59-07:00",
+    "duration": "PT3M32S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/A8Y13jv9zW8/hqdefault.jpg"
   },
   "2m5VJdr9_SI": {
     "name": "DGCA Air Regs Ch # 16Operational Procedures Masterclass",
@@ -124,6 +747,41 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
     "uploadDate": "2026-05-28T23:51:40-07:00",
     "duration": "PT5M59S",
     "thumbnailUrl": "https://i.ytimg.com/vi/3NWp7gmYYw8/hqdefault.jpg"
+  },
+  "LylAMP-t0KU": {
+    "name": "Ch.51 | Air Law & Regs | Air Traffic Services ATS Communications | ATPL & CPL | FREE",
+    "description": "Ch.51 | Air Law & Regs | Air Traffic Services ATS Communications | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school tr...",
+    "uploadDate": "2026-08-05T18:36:33-07:00",
+    "duration": "PT2M14S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/LylAMP-t0KU/hqdefault.jpg"
+  },
+  "6MF9rZnzGfY": {
+    "name": "Ch.89 | Air Law | Aircraft Accident and Incident Investigation ... | FREE",
+    "description": "Ch.89 | Air Law | Aircraft Accident and Incident Investigation ... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-12T05:24:40-07:00",
+    "duration": "PT4M9S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/6MF9rZnzGfY/hqdefault.jpg"
+  },
+  "wXiSi6-ZScY": {
+    "name": "Ch.91 | Air Law & Regs | Aircraft Accident Notification and Investigation | ATPL & CPL | FREE",
+    "description": "Ch.91 | Air Law & Regs | Aircraft Accident Notification and Investigation | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground ...",
+    "uploadDate": "2026-08-12T05:26:16-07:00",
+    "duration": "PT4M15S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/wXiSi6-ZScY/hqdefault.jpg"
+  },
+  "rnHrLR8xgKQ": {
+    "name": "Ch.90 | Air Law | Aircraft Investigations, Evidence, Custody & ... | FREE",
+    "description": "Ch.90 | Air Law | Aircraft Investigations, Evidence, Custody & ... | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school training seri...",
+    "uploadDate": "2026-08-12T05:25:10-07:00",
+    "duration": "PT1M32S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/rnHrLR8xgKQ/hqdefault.jpg"
+  },
+  "WA4A2uk3IiM": {
+    "name": "Ch.88 | Air Law & Regs | Management of Aviation Security Procedures | ATPL & CPL | FREE",
+    "description": "Ch.88 | Air Law & Regs | Management of Aviation Security Procedures | ATPL & CPL | FREEMaster ATPL & CPL Air Law and Regulations with this free ground school...",
+    "uploadDate": "2026-08-12T05:23:48-07:00",
+    "duration": "PT6M41S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/WA4A2uk3IiM/hqdefault.jpg"
   },
   "rqM1zkllly4": {
     "name": "The DGCA Air Reregulation Ch# 24  Aviation Psychology & Human Factors",
@@ -167,6 +825,209 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
     "duration": "PT9M24S",
     "thumbnailUrl": "https://i.ytimg.com/vi/bZc-_oEVCxE/hqdefault.jpg"
   },
+  "6Vzz8-DJ1VQ": {
+    "name": "Meteorology ch# 01 Aviation Atmosphere",
+    "description": "This document provides comprehensive study notes on aviation meteorology, specifically focusing on the fundamental characteristics of the atmosphere. It serv...",
+    "uploadDate": "2026-04-25T01:56:20-07:00",
+    "duration": "PT6M",
+    "thumbnailUrl": "https://i.ytimg.com/vi/6Vzz8-DJ1VQ/hqdefault.jpg"
+  },
+  "MEuSnFKkAnE": {
+    "name": "Ch.1 | Atmospheric Pressure | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.1 | Atmospheric Pressure | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter...",
+    "uploadDate": "2026-07-17T20:26:45-07:00",
+    "duration": "PT11M10S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/MEuSnFKkAnE/hqdefault.jpg"
+  },
+  "1qAcfQkW9kw": {
+    "name": "Ch.1 Part 2 | Atmospheric Pressure | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.1 Part 2 | Atmospheric Pressure | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter...",
+    "uploadDate": "2026-07-17T20:27:11-07:00",
+    "duration": "PT14M7S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/1qAcfQkW9kw/hqdefault.jpg"
+  },
+  "Xrqy2zsP2z4": {
+    "name": "Ch.3 | Pressure Systems | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.3 | Pressure Systems | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we...",
+    "uploadDate": "2026-07-17T20:28:46-07:00",
+    "duration": "PT7M25S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Xrqy2zsP2z4/hqdefault.jpg"
+  },
+  "H7VEc3zBm5Y": {
+    "name": "Ch.3 Part 2 | Pressure Systems | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.3 Part 2 | Pressure Systems | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we...",
+    "uploadDate": "2026-07-17T20:28:17-07:00",
+    "duration": "PT11M33S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/H7VEc3zBm5Y/hqdefault.jpg"
+  },
+  "kTGiLLXe8_k": {
+    "name": "Ch.3 Part 3 | Pressure Systems | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.3 Part 3 | Pressure Systems | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we...",
+    "uploadDate": "2026-07-17T20:28:30-07:00",
+    "duration": "PT6M8S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/kTGiLLXe8_k/hqdefault.jpg"
+  },
+  "VMhBsHlrgwI": {
+    "name": "Ch.3 Part 4 | Pressure Systems | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.3 Part 4 | Pressure Systems | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we...",
+    "uploadDate": "2026-07-17T20:29:01-07:00",
+    "duration": "PT12M11S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/VMhBsHlrgwI/hqdefault.jpg"
+  },
+  "GiqX4RUutE4": {
+    "name": "Ch.4 | Altimetry | QNH QFE QFF | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.4 | Altimetry | QNH QFE QFF | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we...",
+    "uploadDate": "2026-07-17T20:29:08-07:00",
+    "duration": "PT6M3S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/GiqX4RUutE4/hqdefault.jpg"
+  },
+  "PoLZtJDc_uw": {
+    "name": "Ch.4 Part 2 | Altimetry | Transition Altitude | ATPL & CPL | FREE",
+    "description": "Ch.4 Part 2 | Altimetry | Transition Altitude | ATPL & CPL | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter,...",
+    "uploadDate": "2026-07-17T20:29:41-07:00",
+    "duration": "PT12M50S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/PoLZtJDc_uw/hqdefault.jpg"
+  },
+  "gm7ZR4YIlTE": {
+    "name": "Ch.4 Part 3 | Altimeter Errors | HIGH TO LOW | ATPL & CPL | FREE",
+    "description": "Ch.4 Part 3 | Altimeter Errors | HIGH TO LOW | ATPL & CPL | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, ...",
+    "uploadDate": "2026-07-17T20:30:07-07:00",
+    "duration": "PT13M57S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/gm7ZR4YIlTE/hqdefault.jpg"
+  },
+  "0w7u_rrKM5w": {
+    "name": "Ch.5 | Temperature & ISA | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.5 | Temperature & ISA | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, w...",
+    "uploadDate": "2026-07-17T20:31:13-07:00",
+    "duration": "PT10M50S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/0w7u_rrKM5w/hqdefault.jpg"
+  },
+  "EBCbaErTntM": {
+    "name": "Ch.5 Part 2 | Temperature Inversions | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.5 Part 2 | Temperature Inversions | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapt...",
+    "uploadDate": "2026-07-17T20:31:03-07:00",
+    "duration": "PT12M3S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/EBCbaErTntM/hqdefault.jpg"
+  },
+  "CChFK1obTr4": {
+    "name": "Ch.2 | Air Density | ATPL & CPL Meteorology | FREE Ground School",
+    "description": "Ch.2 | Air Density | ATPL & CPL Meteorology | FREE Ground SchoolMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, ...",
+    "uploadDate": "2026-07-17T20:27:24-07:00",
+    "duration": "PT9M35S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/CChFK1obTr4/hqdefault.jpg"
+  },
+  "r2UxxkI1j0c": {
+    "name": "Ch.6 | Humidity & Dew Point | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.6 | Humidity & Dew Point | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter...",
+    "uploadDate": "2026-07-17T20:31:05-07:00",
+    "duration": "PT7M47S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/r2UxxkI1j0c/hqdefault.jpg"
+  },
+  "Jrd64Y9X8ko": {
+    "name": "Ch.6 Part 2 | Cloud Base & LCL | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.6 Part 2 | Cloud Base & LCL | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we...",
+    "uploadDate": "2026-07-17T20:31:41-07:00",
+    "duration": "PT8M19S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Jrd64Y9X8ko/hqdefault.jpg"
+  },
+  "PANbGKCLuI8": {
+    "name": "Ch.9 | Lower Winds & Surface Wind | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.9 | Lower Winds & Surface Wind | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter,...",
+    "uploadDate": "2026-07-17T20:33:51-07:00",
+    "duration": "PT9M10S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/PANbGKCLuI8/hqdefault.jpg"
+  },
+  "BEx1WMnKlOc": {
+    "name": "Ch.9 Part 2 | Sea Breeze & Valley Winds | ATPL & CPL Met | FREE",
+    "description": "Ch.9 Part 2 | Sea Breeze & Valley Winds | ATPL & CPL Met | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, w...",
+    "uploadDate": "2026-07-17T20:34:09-07:00",
+    "duration": "PT10M5S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/BEx1WMnKlOc/hqdefault.jpg"
+  },
+  "jDtanzRzYag": {
+    "name": "Ch.9 Part 3 | Foehn Mistral Bora | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.9 Part 3 | Foehn Mistral Bora | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, ...",
+    "uploadDate": "2026-07-17T20:34:33-07:00",
+    "duration": "PT15M12S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/jDtanzRzYag/hqdefault.jpg"
+  },
+  "x2VxuMojgpE": {
+    "name": "Ch.9 Part 4 | Wind Shear LLWS | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.9 Part 4 | Wind Shear LLWS | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we ...",
+    "uploadDate": "2026-07-17T20:34:36-07:00",
+    "duration": "PT5M7S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/x2VxuMojgpE/hqdefault.jpg"
+  },
+  "1OCATPoCwPY": {
+    "name": "DGCA Aviation Met Winds",
+    "description": "Aviation Meteorology: वायु (Winds) और बलों का संतुलन (Force Balance) | DGCA Ground Classesआसमान में उड़ान भरने के लिए मौसम और हवाओं की समझ होना एक पायलट के ल...",
+    "uploadDate": "2026-04-29T04:54:17-07:00",
+    "duration": "PT8M36S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/1OCATPoCwPY/hqdefault.jpg"
+  },
+  "gN9GZYAu8fg": {
+    "name": "Ch.13 | Visibility & Fog | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.13 | Visibility & Fog | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, w...",
+    "uploadDate": "2026-07-19T02:16:16-07:00",
+    "duration": "PT9M6S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/gN9GZYAu8fg/hqdefault.jpg"
+  },
+  "NxhxYp1OCpk": {
+    "name": "Ch.13 Part 2 | Fog Types | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.13 Part 2 | Fog Types | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, w...",
+    "uploadDate": "2026-07-19T02:16:31-07:00",
+    "duration": "PT13M23S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/NxhxYp1OCpk/hqdefault.jpg"
+  },
+  "D6or0Avul8M": {
+    "name": "Ch.11 | Cloud Types | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.11 | Cloud Types | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we cov...",
+    "uploadDate": "2026-07-17T20:37:38-07:00",
+    "duration": "PT10M38S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/D6or0Avul8M/hqdefault.jpg"
+  },
+  "jotUOuMgJVY": {
+    "name": "Ch.11 Part 2 | Clouds Identification Guide | ATPL & CPL | FREE",
+    "description": "Ch.11 Part 2 | Clouds Identification Guide | ATPL & CPL | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we...",
+    "uploadDate": "2026-07-17T20:37:56-07:00",
+    "duration": "PT14M6S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/jotUOuMgJVY/hqdefault.jpg"
+  },
+  "bsG6rCXW69Y": {
+    "name": "Ch.11 Part 3 | Cumulonimbus CB | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.11 Part 3 | Cumulonimbus CB | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we...",
+    "uploadDate": "2026-07-17T20:38:21-07:00",
+    "duration": "PT11M46S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/bsG6rCXW69Y/hqdefault.jpg"
+  },
+  "h6rq1jjYbXE": {
+    "name": "DGCA - Aviation Met Clouds",
+    "description": "Aviation Meteorology: Wind Dynamics & The Physics of Force Balance | DGCA Ground Classes (Hindi)Mastering atmospheric forces is a prerequisite for any profes...",
+    "uploadDate": "2026-04-29T05:06:47-07:00",
+    "duration": "PT10M9S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/h6rq1jjYbXE/hqdefault.jpg"
+  },
+  "aGCOcp2LWss": {
+    "name": "Hindi - DGCA Clouds एविएशन मीटियोरोलॉजी- Aviation Meteorology - clouds",
+    "description": "एविएशन मीटियोरोलॉजी: बादलों का वर्गीकरण और मौसम के खतरे | DGCA Ground Classes (Hindi)विमानन (Aviation) में बादलों को केवल दृश्य के रूप में नहीं, बल्कि \"साइनप...",
+    "uploadDate": "2026-04-29T05:11:17-07:00",
+    "duration": "PT8M59S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/aGCOcp2LWss/hqdefault.jpg"
+  },
+  "JHAYKe3cWHo": {
+    "name": "Ch.7 | Adiabatics & Stability | DALR SALR | ATPL & CPL | FREE",
+    "description": "Ch.7 | Adiabatics & Stability | DALR SALR | ATPL & CPL | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we ...",
+    "uploadDate": "2026-07-17T20:31:55-07:00",
+    "duration": "PT9M16S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/JHAYKe3cWHo/hqdefault.jpg"
+  },
+  "4sbkQiN8jCk": {
+    "name": "Ch.7 Part 2 | Atmospheric Stability | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.7 Part 2 | Atmospheric Stability | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapte...",
+    "uploadDate": "2026-07-17T20:32:27-07:00",
+    "duration": "PT9M23S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/4sbkQiN8jCk/hqdefault.jpg"
+  },
   "LC_B_w6ErHc": {
     "name": "DGCA Aviation Meteorology - Ch10 Optical Phenomena",
     "description": "This educational document outlines various optical and electrical phenomena found in the atmosphere, specifically tailored for aviation meteorology students....",
@@ -174,95 +1035,893 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
     "duration": "PT10M35S",
     "thumbnailUrl": "https://i.ytimg.com/vi/LC_B_w6ErHc/hqdefault.jpg"
   },
+  "5RJlBtJFYAo": {
+    "name": "Ch.11 Part 4 | Precipitation & Icing Rain | ATPL & CPL | FREE",
+    "description": "Ch.11 Part 4 | Precipitation & Icing Rain | ATPL & CPL | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we ...",
+    "uploadDate": "2026-07-17T20:38:44-07:00",
+    "duration": "PT11M28S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/5RJlBtJFYAo/hqdefault.jpg"
+  },
+  "z3MuMAjWHog": {
+    "name": "Ch.14 | Aircraft Icing | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.14 | Aircraft Icing | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we ...",
+    "uploadDate": "2026-07-19T02:16:45-07:00",
+    "duration": "PT11M34S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/z3MuMAjWHog/hqdefault.jpg"
+  },
+  "MoGgvgLeU3w": {
+    "name": "Ch.14 Part 2 | Icing Types & Intensity | ATPL & CPL | FREE",
+    "description": "Ch.14 Part 2 | Icing Types & Intensity | ATPL & CPL | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we cov...",
+    "uploadDate": "2026-07-19T02:16:59-07:00",
+    "duration": "PT8M58S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/MoGgvgLeU3w/hqdefault.jpg"
+  },
+  "XjhZF98UrhI": {
+    "name": "Ch.12 | Thunderstorms | Mature Stage | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.12 | Thunderstorms | Mature Stage | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapt...",
+    "uploadDate": "2026-07-17T20:39:03-07:00",
+    "duration": "PT7M42S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/XjhZF98UrhI/hqdefault.jpg"
+  },
+  "ECLzoawoVJs": {
+    "name": "Ch.12 Part 2 | Thunderstorm Hazards | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.12 Part 2 | Thunderstorm Hazards | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapte...",
+    "uploadDate": "2026-07-19T02:15:59-07:00",
+    "duration": "PT9M40S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/ECLzoawoVJs/hqdefault.jpg"
+  },
+  "qkP26k2qmZg": {
+    "name": "Ch.15 | Air Masses & Fronts | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.15 | Air Masses & Fronts | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we co...",
+    "uploadDate": "2026-07-19T02:17:21-07:00",
+    "duration": "PT8M32S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/qkP26k2qmZg/hqdefault.jpg"
+  },
+  "M2QVtY8p3gI": {
+    "name": "Ch.15 Part 2 | Warm & Cold Fronts | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.15 Part 2 | Warm & Cold Fronts | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter,...",
+    "uploadDate": "2026-07-19T02:17:52-07:00",
+    "duration": "PT11M9S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/M2QVtY8p3gI/hqdefault.jpg"
+  },
+  "rR5nAbjYNE8": {
+    "name": "Ch.15 Part 3 | Occluded Fronts | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.15 Part 3 | Occluded Fronts | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we...",
+    "uploadDate": "2026-07-20T02:30:29-07:00",
+    "duration": "PT8M33S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/rR5nAbjYNE8/hqdefault.jpg"
+  },
+  "kC8wyBRLS0g": {
+    "name": "Ch.16 | Depressions | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.16 | Depressions | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we cov...",
+    "uploadDate": "2026-07-20T02:30:17-07:00",
+    "duration": "PT8M57S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/kC8wyBRLS0g/hqdefault.jpg"
+  },
+  "xTbcwTu9GH8": {
+    "name": "Ch.16 Part 2 | Depression Development | ATPL & CPL | FREE",
+    "description": "Ch.16 Part 2 | Depression Development | ATPL & CPL | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we cove...",
+    "uploadDate": "2026-07-20T02:30:47-07:00",
+    "duration": "PT9M4S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/xTbcwTu9GH8/hqdefault.jpg"
+  },
+  "qvU6ROQB4us": {
+    "name": "Ch.10 | Upper Winds & Jet Stream | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.10 | Upper Winds & Jet Stream | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, ...",
+    "uploadDate": "2026-07-17T20:36:06-07:00",
+    "duration": "PT12M43S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/qvU6ROQB4us/hqdefault.jpg"
+  },
+  "zhexgW3l1l4": {
+    "name": "Ch.10 Part 2 | Tropopause & Upper Charts | ATPL & CPL | FREE",
+    "description": "Ch.10 Part 2 | Tropopause & Upper Charts | ATPL & CPL | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we c...",
+    "uploadDate": "2026-07-17T20:35:58-07:00",
+    "duration": "PT13M14S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/zhexgW3l1l4/hqdefault.jpg"
+  },
+  "YAnZCKacrBs": {
+    "name": "Ch.8 | Turbulence Types | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.8 | Turbulence Types | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we...",
+    "uploadDate": "2026-07-17T20:32:59-07:00",
+    "duration": "PT12M52S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/YAnZCKacrBs/hqdefault.jpg"
+  },
+  "RQVX6CiVizc": {
+    "name": "Ch.8 Part 2 | CAT & Wake Turbulence | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.8 Part 2 | CAT & Wake Turbulence | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapte...",
+    "uploadDate": "2026-07-17T20:33:07-07:00",
+    "duration": "PT10M56S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/RQVX6CiVizc/hqdefault.jpg"
+  },
+  "GwcXE3SwxBs": {
+    "name": "Ch.9 Part 5 | Orographic Mountain Waves | ATPL & CPL | FREE",
+    "description": "Ch.9 Part 5 | Orographic Mountain Waves | ATPL & CPL | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we co...",
+    "uploadDate": "2026-07-17T20:35:14-07:00",
+    "duration": "PT12M22S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/GwcXE3SwxBs/hqdefault.jpg"
+  },
+  "DhgM_YOyC7Y": {
+    "name": "Indian Climatology -DGCA Air Meteorology",
+    "description": "These educational notes provide a comprehensive study of Indian climatology by examining the relationship between Earth’s orbital movements and the nation's ...",
+    "uploadDate": "2026-04-27T03:47:55-07:00",
+    "duration": "PT9M",
+    "thumbnailUrl": "https://i.ytimg.com/vi/DhgM_YOyC7Y/hqdefault.jpg"
+  },
+  "dmSXdEbzaU0": {
+    "name": "Hindi - DGCA Air Meteorology- Indian Climatology",
+    "description": "यह वीडियो लेक्चर कैप्टन पंकज पाहिल द्वारा भारतीय मौसम विज्ञान (Aviation Meteorology) और विमानन पर आधारित है, जो विशेष रूप से DGCA CPL/ATPL परीक्षाओं की तैयार...",
+    "uploadDate": "2026-04-27T05:11:01-07:00",
+    "duration": "PT8M11S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/dmSXdEbzaU0/hqdefault.jpg"
+  },
+  "Hk_w16u6Oe4": {
+    "name": "Ch.18 | Area Climatology | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.18 | Area Climatology | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, w...",
+    "uploadDate": "2026-07-20T02:32:09-07:00",
+    "duration": "PT10M38S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Hk_w16u6Oe4/hqdefault.jpg"
+  },
+  "Aw5kxX_-1z4": {
+    "name": "Ch.18 Part 2 | Area Climatology | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.18 Part 2 | Area Climatology | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, w...",
+    "uploadDate": "2026-07-20T02:32:43-07:00",
+    "duration": "PT9M6S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Aw5kxX_-1z4/hqdefault.jpg"
+  },
+  "AT6h46lYNU0": {
+    "name": "Ch.18 Part 3 | Area Climatology | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.18 Part 3 | Area Climatology | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, w...",
+    "uploadDate": "2026-07-20T02:33:29-07:00",
+    "duration": "PT6M48S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/AT6h46lYNU0/hqdefault.jpg"
+  },
+  "NIfv3ZgMRG8": {
+    "name": "Ch.17 | Global Climatology | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.17 | Global Climatology | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we cov...",
+    "uploadDate": "2026-07-20T02:30:46-07:00",
+    "duration": "PT6M6S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/NIfv3ZgMRG8/hqdefault.jpg"
+  },
+  "ibmK2ZS15TU": {
+    "name": "Ch.17 Part 2 | Global Climatology | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.17 Part 2 | Global Climatology | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter,...",
+    "uploadDate": "2026-07-20T02:31:05-07:00",
+    "duration": "PT7M5S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/ibmK2ZS15TU/hqdefault.jpg"
+  },
+  "fHX1rWvKV9s": {
+    "name": "Ch.17 Part 3 | Global Climatology | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.17 Part 3 | Global Climatology | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter,...",
+    "uploadDate": "2026-07-20T02:31:47-07:00",
+    "duration": "PT12M9S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/fHX1rWvKV9s/hqdefault.jpg"
+  },
+  "HGyxqUMmvfM": {
+    "name": "Ch.26 | In-Flight Briefing | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.26 | In-Flight Briefing | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter,...",
+    "uploadDate": "2026-07-22T04:34:43-07:00",
+    "duration": "PT4M44S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/HGyxqUMmvfM/hqdefault.jpg"
+  },
+  "lFxpHLQ_yro": {
+    "name": "Ch.19 | Remote Sensing | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.19 | Remote Sensing | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we ...",
+    "uploadDate": "2026-07-20T02:33:22-07:00",
+    "duration": "PT8M56S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/lFxpHLQ_yro/hqdefault.jpg"
+  },
+  "_H80wsuZ5XE": {
+    "name": "Ch.19 Part 2 | Remote Sensing | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.19 Part 2 | Remote Sensing | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we ...",
+    "uploadDate": "2026-07-21T03:08:25-07:00",
+    "duration": "PT10M24S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/_H80wsuZ5XE/hqdefault.jpg"
+  },
+  "m4bnq1Zrytw": {
+    "name": "Ch.20 | METARs Decoded | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.20 | METARs Decoded | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we ...",
+    "uploadDate": "2026-07-21T03:08:31-07:00",
+    "duration": "PT10M37S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/m4bnq1Zrytw/hqdefault.jpg"
+  },
+  "xLhlFMS2k9o": {
+    "name": "Ch.20 Part 2 | METARs Continued | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.20 Part 2 | METARs Continued | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, w...",
+    "uploadDate": "2026-07-21T03:08:59-07:00",
+    "duration": "PT12M43S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/xLhlFMS2k9o/hqdefault.jpg"
+  },
+  "n72oX0MQUP8": {
+    "name": "Ch.20 Part 3 | METARs Advanced | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.20 Part 3 | METARs Advanced | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we...",
+    "uploadDate": "2026-07-21T03:09:27-07:00",
+    "duration": "PT10M1S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/n72oX0MQUP8/hqdefault.jpg"
+  },
+  "nNgg0PjbDgA": {
+    "name": "Ch.21 | TAFs Terminal Aerodrome Forecast | ATPL & CPL | FREE",
+    "description": "Ch.21 | TAFs Terminal Aerodrome Forecast | ATPL & CPL | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we c...",
+    "uploadDate": "2026-07-21T03:09:31-07:00",
+    "duration": "PT10M2S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/nNgg0PjbDgA/hqdefault.jpg"
+  },
+  "DAwMvuKm_qw": {
+    "name": "Ch.24 | SIGMET Explained | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.24 | SIGMET Explained | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, w...",
+    "uploadDate": "2026-07-21T03:10:30-07:00",
+    "duration": "PT7M45S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/DAwMvuKm_qw/hqdefault.jpg"
+  },
+  "tEQ6BDOK1jI": {
+    "name": "Ch.25 | AIRMET Explained | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.25 | AIRMET Explained | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, w...",
+    "uploadDate": "2026-07-22T04:34:45-07:00",
+    "duration": "PT10M28S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/tEQ6BDOK1jI/hqdefault.jpg"
+  },
+  "qoRtNQiMtsQ": {
+    "name": "Ch.23 | SIG WX Charts | ATPL & CPL Meteorology | FREE Course",
+    "description": "Ch.23 | SIG WX Charts | ATPL & CPL Meteorology | FREE CourseMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, we c...",
+    "uploadDate": "2026-07-21T03:10:01-07:00",
+    "duration": "PT12M53S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/qoRtNQiMtsQ/hqdefault.jpg"
+  },
+  "xU6ZF_HCECk": {
+    "name": "Ch.23 Part 2 | High Level SIG WX | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.23 Part 2 | High Level SIG WX | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, ...",
+    "uploadDate": "2026-07-21T03:10:05-07:00",
+    "duration": "PT8M38S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/xU6ZF_HCECk/hqdefault.jpg"
+  },
+  "tU0shyNQ0vA": {
+    "name": "Ch.23 Part 3 | High Level SIG WX | ATPL & CPL Meteorology | FREE",
+    "description": "Ch.23 Part 3 | High Level SIG WX | ATPL & CPL Meteorology | FREEMaster ATPL & CPL Meteorology with this free ground school training series. In this chapter, ...",
+    "uploadDate": "2026-07-21T03:10:37-07:00",
+    "duration": "PT8M5S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/tU0shyNQ0vA/hqdefault.jpg"
+  },
+  "feF8tvjx5sY": {
+    "name": "Ch.3 | Pressure Heads | Air Pressure Instruments and Definitions | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.3 | Pressure Heads | Air Pressure Instruments and Definitions | ATPL Instruments | FREEMaster ...",
+    "uploadDate": "2026-07-22T04:48:58-07:00",
+    "duration": "PT6M9S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/feF8tvjx5sY/hqdefault.jpg"
+  },
+  "t-Eb36ZI7Vo": {
+    "name": "Ch.4 | Pressure Heads | Pitot Static System Errors | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.4 | Pressure Heads | Pitot Static System Errors | ATPL Instruments | FREEMaster ATPL & CPL Fli...",
+    "uploadDate": "2026-07-22T04:49:15-07:00",
+    "duration": "PT9M40S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/t-Eb36ZI7Vo/hqdefault.jpg"
+  },
+  "mAmT0hroKEE": {
+    "name": "Ch.1 | Air Temperature Measurement | Temperature Sensors and TAT | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.1 | Air Temperature Measurement | Temperature Sensors and TAT | ATPL Instruments | FREEMaster ...",
+    "uploadDate": "2026-07-22T04:48:11-07:00",
+    "duration": "PT12M26S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/mAmT0hroKEE/hqdefault.jpg"
+  },
+  "VsH9HHGft0U": {
+    "name": "Ch.2 | Air Temperature Measurement | Definitions and Corrections | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.2 | Air Temperature Measurement | Definitions and Corrections | ATPL Instruments | FREEMaster ...",
+    "uploadDate": "2026-07-22T04:48:45-07:00",
+    "duration": "PT18M29S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/VsH9HHGft0U/hqdefault.jpg"
+  },
+  "CooeghJgUXM": {
+    "name": "Ch.5 | Air Speed Indicator | Principle of Operation and Calibration | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.5 | Air Speed Indicator | Principle of Operation and Calibration | ATPL Instruments | FREEMast...",
+    "uploadDate": "2026-07-22T04:49:34-07:00",
+    "duration": "PT10M27S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/CooeghJgUXM/hqdefault.jpg"
+  },
+  "U3e1XFAmakw": {
+    "name": "Ch.6 | Air Speed Indicator | ASI Definitions and Blockages | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.6 | Air Speed Indicator | ASI Definitions and Blockages | ATPL Instruments | FREEMaster ATPL &...",
+    "uploadDate": "2026-07-22T04:49:52-07:00",
+    "duration": "PT9M35S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/U3e1XFAmakw/hqdefault.jpg"
+  },
+  "Q0qQQvYSFYE": {
+    "name": "Ch.7 | Pressure Altimeter | Operation, Calibration and Types | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.7 | Pressure Altimeter | Operation, Calibration and Types | ATPL Instruments | FREEMaster ATPL...",
+    "uploadDate": "2026-07-22T04:50:46-07:00",
+    "duration": "PT16M39S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Q0qQQvYSFYE/hqdefault.jpg"
+  },
+  "cv5etwzmCUQ": {
+    "name": "Ch.8 | Pressure Altimeter | Altimeter Settings | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.8 | Pressure Altimeter | Altimeter Settings | ATPL Instruments | FREEMaster ATPL & CPL Flight ...",
+    "uploadDate": "2026-07-22T04:51:29-07:00",
+    "duration": "PT20M28S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/cv5etwzmCUQ/hqdefault.jpg"
+  },
+  "GKKXufngGO0": {
+    "name": "Ch.9 | Pressure Altitudemeter | Transition,Pressure and Density Altitude | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.9 | Pressure Altitudemeter | Transition,Pressure and Density Altitude | ATPL Instruments | FRE...",
+    "uploadDate": "2026-07-23T05:04:38-07:00",
+    "duration": "PT16M27S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/GKKXufngGO0/hqdefault.jpg"
+  },
+  "eIdToqoN5cg": {
+    "name": "Ch.10 | Pressure Altimeter | Errors, Blockages and Pressure Settings | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.10 | Pressure Altimeter | Errors, Blockages and Pressure Settings | ATPL Instruments | FREEMas...",
+    "uploadDate": "2026-07-23T05:05:45-07:00",
+    "duration": "PT25M51S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/eIdToqoN5cg/hqdefault.jpg"
+  },
+  "1RtTM1EBJUs": {
+    "name": "Ch.11 | Vertical Speed Indicator VSI | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.11 | Vertical Speed Indicator VSI | ATPL Instruments | FREEMaster ATPL & CPL Flight Instrument...",
+    "uploadDate": "2026-07-23T05:06:13-07:00",
+    "duration": "PT10M57S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/1RtTM1EBJUs/hqdefault.jpg"
+  },
+  "AE-R4SgNMVE": {
+    "name": "Ch.12 | Machmeter | Theory, Operation and Construction | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.12 | Machmeter | Theory, Operation and Construction | ATPL Instruments | FREEMaster ATPL & CPL...",
+    "uploadDate": "2026-07-23T05:06:37-07:00",
+    "duration": "PT12M8S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/AE-R4SgNMVE/hqdefault.jpg"
+  },
+  "YUuNbcTcZ-w": {
+    "name": "Ch.13 | Machmeter | Mach, TAS, CAS Relationship | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.13 | Machmeter | Mach, TAS, CAS Relationship | ATPL Instruments | FREEMaster ATPL & CPL Flight...",
+    "uploadDate": "2026-07-23T05:07:01-07:00",
+    "duration": "PT13M25S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/YUuNbcTcZ-w/hqdefault.jpg"
+  },
+  "OOD-v9Xo_FM": {
+    "name": "Ch.15 | Air Data Computer ADC | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.15 | Air Data Computer ADC | ATPL Instruments | FREEMaster ATPL & CPL Flight Instruments with ...",
+    "uploadDate": "2026-07-23T05:08:14-07:00",
+    "duration": "PT12M48S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/OOD-v9Xo_FM/hqdefault.jpg"
+  },
+  "HzglZ5gKu54": {
+    "name": "Ch.14 | Angle of Attack Measurement | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.14 | Angle of Attack Measurement | ATPL Instruments | FREEMaster ATPL & CPL Flight Instruments...",
+    "uploadDate": "2026-07-23T05:07:20-07:00",
+    "duration": "PT7M23S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/HzglZ5gKu54/hqdefault.jpg"
+  },
+  "no_UZUxTcus": {
+    "name": "Ch.16 | Magnetism and Compasses | Basic Magnetism | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.16 | Magnetism and Compasses | Basic Magnetism | ATPL Instruments | FREEMaster ATPL & CPL Flig...",
+    "uploadDate": "2026-07-23T05:08:54-07:00",
+    "duration": "PT7M24S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/no_UZUxTcus/hqdefault.jpg"
+  },
+  "SXy2ua1k20c": {
+    "name": "Ch.17 | Magnetism and Compasses | Variation | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.17 | Magnetism and Compasses | Variation | ATPL Instruments | FREEMaster ATPL & CPL Flight Ins...",
+    "uploadDate": "2026-07-23T05:09:10-07:00",
+    "duration": "PT6M4S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/SXy2ua1k20c/hqdefault.jpg"
+  },
+  "2-l-B5tjq6g": {
+    "name": "Ch.19 | Magnetism and Compasses | Magnetic Dip | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.19 | Magnetism and Compasses | Magnetic Dip | ATPL Instruments | FREEMaster ATPL & CPL Flight ...",
+    "uploadDate": "2026-07-23T05:09:15-07:00",
+    "duration": "PT3M11S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/2-l-B5tjq6g/hqdefault.jpg"
+  },
+  "YMg12StWIZE": {
+    "name": "Ch.20 | The Direct Reading Compass | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.20 | The Direct Reading Compass | ATPL Instruments | FREEMaster ATPL & CPL Flight Instruments ...",
+    "uploadDate": "2026-07-23T05:11:42-07:00",
+    "duration": "PT20M40S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/YMg12StWIZE/hqdefault.jpg"
+  },
+  "8b6sj9lSwqE": {
+    "name": "Ch.25 | Gyroscopes | Gyroscopic Theory | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.25 | Gyroscopes | Gyroscopic Theory | ATPL Instruments | FREEMaster ATPL & CPL Flight Instrume...",
+    "uploadDate": "2026-07-24T05:50:03-07:00",
+    "duration": "PT21M5S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/8b6sj9lSwqE/hqdefault.jpg"
+  },
+  "UltPsFF3dyM": {
+    "name": "Ch.26 | Gyroscopes | Types of Gyros | YouTube | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.26 | Gyroscopes | Types of Gyros | YouTube | ATPL Instruments | FREEMaster ATPL & CPL Flight I...",
+    "uploadDate": "2026-07-24T05:50:02-07:00",
+    "duration": "PT14M22S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/UltPsFF3dyM/hqdefault.jpg"
+  },
+  "7fqzFlpY4F4": {
+    "name": "Ch.27 | Directional Gyro DGI | Principle of Operation and Errors | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.27 | Directional Gyro DGI | Principle of Operation and Errors | ATPL Instruments | FREEMaster ...",
+    "uploadDate": "2026-07-24T05:52:15-07:00",
+    "duration": "PT21M1S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/7fqzFlpY4F4/hqdefault.jpg"
+  },
+  "p2t3sdCtqUs": {
+    "name": "Ch.28 | Directional Gyro DGI | Drift Rate Calculations | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.28 | Directional Gyro DGI | Drift Rate Calculations | ATPL Instruments | FREEMaster ATPL & CPL...",
+    "uploadDate": "2026-07-24T05:51:50-07:00",
+    "duration": "PT6M40S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/p2t3sdCtqUs/hqdefault.jpg"
+  },
+  "MzSenPzsTPI": {
+    "name": "Ch.29 | Artificial Horizon | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.29 | Artificial Horizon | ATPL Instruments | FREEMaster ATPL & CPL Flight Instruments with thi...",
+    "uploadDate": "2026-07-24T05:54:01-07:00",
+    "duration": "PT21M6S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/MzSenPzsTPI/hqdefault.jpg"
+  },
+  "r49EHz1ITNM": {
+    "name": "Ch.30 | Turn Co ordinator and Turn and Slip Indicator | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.30 | Turn Co ordinator and Turn and Slip Indicator | ATPL Instruments | FREEMaster ATPL & CPL ...",
+    "uploadDate": "2026-07-24T05:55:03-07:00",
+    "duration": "PT18M25S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/r49EHz1ITNM/hqdefault.jpg"
+  },
+  "Eew7NTCvqWw": {
+    "name": "Ch.21 | Aircraft Magnetism | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.21 | Aircraft Magnetism | ATPL Instruments | FREEMaster ATPL & CPL Flight Instruments with thi...",
+    "uploadDate": "2026-07-24T05:45:27-07:00",
+    "duration": "PT21M3S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Eew7NTCvqWw/hqdefault.jpg"
+  },
+  "I7T8hrTn9HM": {
+    "name": "Ch.18 | Magnetism and Compasses | Deviation | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.18 | Magnetism and Compasses | Deviation | ATPL Instruments | FREEMaster ATPL & CPL Flight Ins...",
+    "uploadDate": "2026-07-23T05:09:19-07:00",
+    "duration": "PT5M57S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/I7T8hrTn9HM/hqdefault.jpg"
+  },
+  "8FnbU6s_kns": {
+    "name": "Ch.22 | The Gyro Magnetic Compass | Operation and System Construction | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.22 | The Gyro Magnetic Compass | Operation and System Construction | ATPL Instruments | FREEMa...",
+    "uploadDate": "2026-07-24T05:46:15-07:00",
+    "duration": "PT14M43S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/8FnbU6s_kns/hqdefault.jpg"
+  },
+  "_kS6fEmfXLU": {
+    "name": "Ch.23 | The Gyro Magnetic Compass | Flux Valve | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.23 | The Gyro Magnetic Compass | Flux Valve | ATPL Instruments | FREEMaster ATPL & CPL Flight ...",
+    "uploadDate": "2026-07-24T05:47:01-07:00",
+    "duration": "PT10M54S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/_kS6fEmfXLU/hqdefault.jpg"
+  },
+  "TwsWwCslNQ4": {
+    "name": "Ch.24 | Gyro Magnetic Compass | Components and Remote Transmission | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.24 | Gyro Magnetic Compass | Components and Remote Transmission | ATPL Instruments | FREEMaste...",
+    "uploadDate": "2026-07-24T05:47:25-07:00",
+    "duration": "PT10M47S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/TwsWwCslNQ4/hqdefault.jpg"
+  },
+  "g3XinFJHsjQ": {
+    "name": "Ch.31 | Inertial Navigation Systems | Principle of Operation | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.31 | Inertial Navigation Systems | Principle of Operation | ATPL Instruments | FREEMaster ATPL...",
+    "uploadDate": "2026-07-24T20:57:15-07:00",
+    "duration": "PT13M1S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/g3XinFJHsjQ/hqdefault.jpg"
+  },
+  "VSDy7V7G3uo": {
+    "name": "Ch.32 | Inertial Navigation Systems | Data Flow | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.32 | Inertial Navigation Systems | Data Flow | ATPL Instruments | FREEMaster ATPL & CPL Flight...",
+    "uploadDate": "2026-07-24T20:57:46-07:00",
+    "duration": "PT16M27S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/VSDy7V7G3uo/hqdefault.jpg"
+  },
+  "vqUi4qT-zRc": {
+    "name": "Ch.33 | Inertial Navigation Systems | Platform Stabilization | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.33 | Inertial Navigation Systems | Platform Stabilization | ATPL Instruments | FREEMaster ATPL...",
+    "uploadDate": "2026-07-25T20:31:18-07:00",
+    "duration": "PT23M44S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/vqUi4qT-zRc/hqdefault.jpg"
+  },
+  "V7me-S2eP1A": {
+    "name": "Ch.34 | Inertial Navigation Systems | Alignment | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.34 | Inertial Navigation Systems | Alignment | ATPL Instruments | FREEMaster ATPL & CPL Flight...",
+    "uploadDate": "2026-07-24T20:58:20-07:00",
+    "duration": "PT10M46S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/V7me-S2eP1A/hqdefault.jpg"
+  },
+  "zVt3tWsyLjU": {
+    "name": "Ch.35 | Inertial Navigation Systems | Operation | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.35 | Inertial Navigation Systems | Operation | ATPL Instruments | FREEMaster ATPL & CPL Flight...",
+    "uploadDate": "2026-07-24T20:59:41-07:00",
+    "duration": "PT24M22S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/zVt3tWsyLjU/hqdefault.jpg"
+  },
+  "R4OgG8NmatI": {
+    "name": "Ch.36 | Inertial Navigation Systems | Errors | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.36 | Inertial Navigation Systems | Errors | ATPL Instruments | FREEMaster ATPL & CPL Flight In...",
+    "uploadDate": "2026-07-25T20:31:56-07:00",
+    "duration": "PT22M24S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/R4OgG8NmatI/hqdefault.jpg"
+  },
+  "9NiKgNcMPb4": {
+    "name": "Ch.37 | Inertial Reference System IRS | Introduction | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.37 | Inertial Reference System IRS | Introduction | ATPL Instruments | FREEMaster ATPL & CPL F...",
+    "uploadDate": "2026-07-25T20:31:23-07:00",
+    "duration": "PT10M8S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/9NiKgNcMPb4/hqdefault.jpg"
+  },
+  "HF7fb5r9UCg": {
+    "name": "Ch.38 | Inertial Reference System IRS | Rising Laser Gyro | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.38 | Inertial Reference System IRS | Rising Laser Gyro | ATPL Instruments | FREEMaster ATPL & ...",
+    "uploadDate": "2026-07-25T20:31:49-07:00",
+    "duration": "PT10M48S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/HF7fb5r9UCg/hqdefault.jpg"
+  },
+  "lenI-VDcLsI": {
+    "name": "Ch.39 | Inertial Reference System IRS | Summary | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.39 | Inertial Reference System IRS | Summary | ATPL Instruments | FREEMaster ATPL & CPL Flight...",
+    "uploadDate": "2026-07-25T20:32:07-07:00",
+    "duration": "PT13M41S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/lenI-VDcLsI/hqdefault.jpg"
+  },
+  "kTd3MxS2PjM": {
+    "name": "Ch.40 | Modern Avionics | Radio Altimeter | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.40 | Modern Avionics | Radio Altimeter | ATPL Instruments | FREEMaster ATPL & CPL Flight Instr...",
+    "uploadDate": "2026-07-24T21:00:01-07:00",
+    "duration": "PT17M53S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/kTd3MxS2PjM/hqdefault.jpg"
+  },
+  "UEz8XcDId1I": {
+    "name": "Ch.41 | Modern Avionics | Flight Management System FMS | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.41 | Modern Avionics | Flight Management System FMS | ATPL Instruments | FREEMaster ATPL & CPL...",
+    "uploadDate": "2026-07-25T20:33:07-07:00",
+    "duration": "PT17M41S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/UEz8XcDId1I/hqdefault.jpg"
+  },
+  "HwkZj6HN_wA": {
+    "name": "Ch.42 | Modern Avionics | Flight Management System FMS Operation | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.42 | Modern Avionics | Flight Management System FMS Operation | ATPL Instruments | FREEMaster ...",
+    "uploadDate": "2026-07-25T20:33:21-07:00",
+    "duration": "PT21M35S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/HwkZj6HN_wA/hqdefault.jpg"
+  },
+  "RCQLm6bdWyw": {
+    "name": "Ch.43 | Modern Avionics | FMS Equipment Operation | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.43 | Modern Avionics | FMS Equipment Operation | ATPL Instruments | FREEMaster ATPL & CPL Flig...",
+    "uploadDate": "2026-07-25T20:33:21-07:00",
+    "duration": "PT13M7S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/RCQLm6bdWyw/hqdefault.jpg"
+  },
+  "Osw8oUS4XzA": {
+    "name": "Ch.44 | Electronic Flight Instrument System EFIS & EADI | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.44 | Electronic Flight Instrument System EFIS & EADI | ATPL Instruments | FREEMaster ATPL & CP...",
+    "uploadDate": "2026-07-24T21:00:51-07:00",
+    "duration": "PT18M38S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Osw8oUS4XzA/hqdefault.jpg"
+  },
+  "MTKlV6Y5i5Y": {
+    "name": "Ch.45 | Modern Avionics | EFIS & EHSI, Display Modes | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.45 | Modern Avionics | EFIS & EHSI, Display Modes | ATPL Instruments | FREEMaster ATPL & CPL F...",
+    "uploadDate": "2026-07-24T21:01:45-07:00",
+    "duration": "PT18M16S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/MTKlV6Y5i5Y/hqdefault.jpg"
+  },
+  "kPgBGy9Faqk": {
+    "name": "Ch.46 | Modern Avionics | Future Air Navigation System FANS | ATPL Instruments | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.46 | Modern Avionics | Future Air Navigation System FANS | ATPL Instruments | FREEMaster ATPL ...",
+    "uploadDate": "2026-07-25T20:34:03-07:00",
+    "duration": "PT10M41S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/kPgBGy9Faqk/hqdefault.jpg"
+  },
+  "Jq8gsAeRSF0": {
+    "name": "Ch.01 | Propagation Theory Electromagnetic Waves | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.01 | Propagation Theory Electromagnetic Waves | Radio Navigation | ATPL & CPL | FREEMaster ATP...",
+    "uploadDate": "2026-07-25T20:45:38-07:00",
+    "duration": "PT7M6S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Jq8gsAeRSF0/hqdefault.jpg"
+  },
+  "Buq4QSZmWy4": {
+    "name": "Ch.02 | Propagation Theory Radio Waves | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.02 | Propagation Theory Radio Waves | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Ra...",
+    "uploadDate": "2026-07-25T20:46:15-07:00",
+    "duration": "PT14M16S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Buq4QSZmWy4/hqdefault.jpg"
+  },
+  "Vodh-m2QIb0": {
+    "name": "Ch.03 | Propagation Theory Propagation Paths | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.03 | Propagation Theory Propagation Paths | Radio Navigation | ATPL & CPL | FREEMaster ATPL & ...",
+    "uploadDate": "2026-07-25T20:48:02-07:00",
+    "duration": "PT29M7S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Vodh-m2QIb0/hqdefault.jpg"
+  },
+  "YqnepRpi1S4": {
+    "name": "Ch.04 | Propagation Theory Modulation | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.04 | Propagation Theory Modulation | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Rad...",
+    "uploadDate": "2026-07-25T20:48:05-07:00",
+    "duration": "PT12M40S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/YqnepRpi1S4/hqdefault.jpg"
+  },
+  "ZvdjStLdEO8": {
+    "name": "Ch.05 | Propagation Theory Antennae | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.05 | Propagation Theory Antennae | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio...",
+    "uploadDate": "2026-07-25T20:48:21-07:00",
+    "duration": "PT15M25S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/ZvdjStLdEO8/hqdefault.jpg"
+  },
+  "lnlfVx_ATYQ": {
+    "name": "Ch.06 | Propagation Theory Doppler | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.06 | Propagation Theory Doppler | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio ...",
+    "uploadDate": "2026-07-26T22:06:57-07:00",
+    "duration": "PT9M6S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/lnlfVx_ATYQ/hqdefault.jpg"
+  },
+  "X6k3O-75myw": {
+    "name": "Ch.07 | Radio Aids Ground Direction Finding | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.07 | Radio Aids Ground Direction Finding | Radio Navigation | ATPL & CPL | FREEMaster ATPL & C...",
+    "uploadDate": "2026-07-26T22:07:20-07:00",
+    "duration": "PT9M28S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/X6k3O-75myw/hqdefault.jpg"
+  },
+  "khFSCtcHplA": {
+    "name": "Ch.08 | Radio Aids NDB ADF Operation | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.08 | Radio Aids NDB ADF Operation | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radi...",
+    "uploadDate": "2026-07-26T22:09:20-07:00",
+    "duration": "PT16M21S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/khFSCtcHplA/hqdefault.jpg"
+  },
+  "sXiLAQdQF2E": {
+    "name": "Ch.09 | Radio Aids NDB ADF Interpretation | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.09 | Radio Aids NDB ADF Interpretation | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL...",
+    "uploadDate": "2026-07-26T22:12:10-07:00",
+    "duration": "PT26M39S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/sXiLAQdQF2E/hqdefault.jpg"
+  },
+  "DpFHZV1kioI": {
+    "name": "Ch.10 | Radio Aids VOR and Doppler VOR Operation | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.10 | Radio Aids VOR and Doppler VOR Operation | Radio Navigation | ATPL & CPL | FREEMaster ATP...",
+    "uploadDate": "2026-07-26T22:13:48-07:00",
+    "duration": "PT18M32S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/DpFHZV1kioI/hqdefault.jpg"
+  },
+  "I-d2y7vhdu0": {
+    "name": "Ch.11 | Radio Aids VOR and Doppler VOR Interpretation | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.11 | Radio Aids VOR and Doppler VOR Interpretation | Radio Navigation | ATPL & CPL | FREEMaste...",
+    "uploadDate": "2026-07-26T22:14:53-07:00",
+    "duration": "PT16M7S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/I-d2y7vhdu0/hqdefault.jpg"
+  },
+  "N2iy3NquqLQ": {
+    "name": "Ch.12 | Radio Aids Instrument Landing System ILS Operation | Radio Navigation | ATPL & CPL | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.12 | Radio Aids Instrument Landing System ILS Operation | Radio Navigation | ATPL & CPL | FREE...",
+    "uploadDate": "2026-07-26T22:16:05-07:00",
+    "duration": "PT17M24S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/N2iy3NquqLQ/hqdefault.jpg"
+  },
+  "gySd3fVbatw": {
+    "name": "Ch.13 | Radio Aids Instrument Landing System ILS Inte... | Radio Navigation | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.13 | Radio Aids Instrument Landing System ILS Inte... | Radio Navigation | FREEMaster ATPL & C...",
+    "uploadDate": "2026-07-26T22:18:27-07:00",
+    "duration": "PT19M48S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/gySd3fVbatw/hqdefault.jpg"
+  },
   "QbzAevd4qjA": {
     "name": "Ch.14 | Radio Aids Microwave Landing System MLS | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.14 | Radio Aids Microwave Landing System MLS | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground school trainin...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.14 | Radio Aids Microwave Landing System MLS | Radio Navigation | ATPL & CPL | FREEMaster ATPL...",
     "uploadDate": "2026-07-26T22:18:38-07:00",
     "duration": "PT12M56S",
     "thumbnailUrl": "https://i.ytimg.com/vi/QbzAevd4qjA/hqdefault.jpg"
   },
   "xhQVSoXaib4": {
     "name": "Ch.16 | Radar Principles of Operation | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.16 | Radar Principles of Operation | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground school training series. ...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.16 | Radar Principles of Operation | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Rad...",
     "uploadDate": "2026-07-28T01:21:48-07:00",
     "duration": "PT18M55S",
     "thumbnailUrl": "https://i.ytimg.com/vi/xhQVSoXaib4/hqdefault.jpg"
   },
   "sUEZolnnsKk": {
     "name": "Ch.17 | Radar Ground Radar | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.17 | Radar Ground Radar | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground school training series. In this cha...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.17 | Radar Ground Radar | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigati...",
     "uploadDate": "2026-07-28T01:21:57-07:00",
     "duration": "PT12M18S",
     "thumbnailUrl": "https://i.ytimg.com/vi/sUEZolnnsKk/hqdefault.jpg"
   },
   "IozBeMZ_8kw": {
     "name": "Ch.18 | Radar Airborne Weather Radar | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.18 | Radar Airborne Weather Radar | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground school training series. I...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.18 | Radar Airborne Weather Radar | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radi...",
     "uploadDate": "2026-07-28T01:23:12-07:00",
     "duration": "PT19M49S",
     "thumbnailUrl": "https://i.ytimg.com/vi/IozBeMZ_8kw/hqdefault.jpg"
   },
   "3c7dyP8_zJM": {
     "name": "Ch.19 | Radar Secondary Surveillance Radar | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.19 | Radar Secondary Surveillance Radar | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground school training ser...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.19 | Radar Secondary Surveillance Radar | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CP...",
     "uploadDate": "2026-07-28T01:24:21-07:00",
     "duration": "PT18M11S",
     "thumbnailUrl": "https://i.ytimg.com/vi/3c7dyP8_zJM/hqdefault.jpg"
   },
   "Jiq8HSaEymI": {
     "name": "Ch.20 | Radar Mode S | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.20 | Radar Mode S | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground school training series. In this chapter, ...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.20 | Radar Mode S | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation wit...",
     "uploadDate": "2026-07-28T01:23:35-07:00",
     "duration": "PT7M3S",
     "thumbnailUrl": "https://i.ytimg.com/vi/Jiq8HSaEymI/hqdefault.jpg"
   },
   "mIMrrpsvMJM": {
     "name": "Ch.15 | Radio Aids Distance Measuring Equipment DME | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.15 | Radio Aids Distance Measuring Equipment DME | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground school tra...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.15 | Radio Aids Distance Measuring Equipment DME | Radio Navigation | ATPL & CPL | FREEMaster ...",
     "uploadDate": "2026-07-26T22:20:24-07:00",
     "duration": "PT22M17S",
     "thumbnailUrl": "https://i.ytimg.com/vi/mIMrrpsvMJM/hqdefault.jpg"
   },
   "AO9CCreBDrM": {
     "name": "Ch.21 | Area Navigation Systems Area Navigation RNAV | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.21 | Area Navigation Systems Area Navigation RNAV | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground school tr...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.21 | Area Navigation Systems Area Navigation RNAV | Radio Navigation | ATPL & CPL | FREEMaster...",
     "uploadDate": "2026-07-28T01:25:18-07:00",
     "duration": "PT16M59S",
     "thumbnailUrl": "https://i.ytimg.com/vi/AO9CCreBDrM/hqdefault.jpg"
   },
   "64e3Tgd0aHk": {
     "name": "Ch.22 | Area Navigation Systems FMS Purpose and Components | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.22 | Area Navigation Systems FMS Purpose and Components | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground sch...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.22 | Area Navigation Systems FMS Purpose and Components | Radio Navigation | ATPL & CPL | FREE...",
     "uploadDate": "2026-07-28T01:25:46-07:00",
     "duration": "PT17M45S",
     "thumbnailUrl": "https://i.ytimg.com/vi/64e3Tgd0aHk/hqdefault.jpg"
   },
   "rQngpjEKLLE": {
     "name": "Ch.23 | Area Navigation Systems FMS Equipment Operation | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.23 | Area Navigation Systems FMS Equipment Operation | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground school...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.23 | Area Navigation Systems FMS Equipment Operation | Radio Navigation | ATPL & CPL | FREEMas...",
     "uploadDate": "2026-07-28T01:26:44-07:00",
     "duration": "PT21M26S",
     "thumbnailUrl": "https://i.ytimg.com/vi/rQngpjEKLLE/hqdefault.jpg"
   },
   "ogIdZu-eiv0": {
     "name": "Ch.24 | Area Navigation Systems FMS Supplement | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.24 | Area Navigation Systems FMS Supplement | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground school training...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.24 | Area Navigation Systems FMS Supplement | Radio Navigation | ATPL & CPL | FREEMaster ATPL ...",
     "uploadDate": "2026-07-28T01:26:52-07:00",
     "duration": "PT8M53S",
     "thumbnailUrl": "https://i.ytimg.com/vi/ogIdZu-eiv0/hqdefault.jpg"
   },
+  "au8nFcs0z0c": {
+    "name": "Ch.25 | Area Nav Electronic Horizontal Situation Indi... | Radio Navigation | FREE",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.25 | Area Nav Electronic Horizontal Situation Indi... | Radio Navigation | FREEMaster ATPL & C...",
+    "uploadDate": "2026-07-28T01:28:10-07:00",
+    "duration": "PT20M27S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/au8nFcs0z0c/hqdefault.jpg"
+  },
   "jHL9w-I707A": {
     "name": "Ch.26 | Global Positioning System GPS GPS GLONASS GALLILEO | Radio Navigation | ATPL & CPL | FREE",
-    "description": "Ch.26 | Global Positioning System GPS GPS GLONASS GALLILEO | Radio Navigation | ATPL & CPL | FREEMaster ATPL & CPL Radio Navigation with this free ground sch...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.26 | Global Positioning System GPS GPS GLONASS GALLILEO | Radio Navigation | ATPL & CPL | FREE...",
     "uploadDate": "2026-07-29T01:42:15-07:00",
     "duration": "PT19M16S",
     "thumbnailUrl": "https://i.ytimg.com/vi/jHL9w-I707A/hqdefault.jpg"
   },
   "7QzFqzUpfYc": {
     "name": "Ch.27 | Global Positioning System GPS Principles of O... | Radio Navigation | FREE",
-    "description": "Ch.27 | Global Positioning System GPS Principles of O... | Radio Navigation | FREEMaster ATPL & CPL Radio Navigation with this free ground school training se...",
+    "description": "Free notes and question bank at https://www.ghostaviator.comCh.27 | Global Positioning System GPS Principles of O... | Radio Navigation | FREEMaster ATPL & C...",
     "uploadDate": "2026-07-29T01:43:42-07:00",
     "duration": "PT25M44S",
     "thumbnailUrl": "https://i.ytimg.com/vi/7QzFqzUpfYc/hqdefault.jpg"
+  },
+  "7qKTC6kPtfA": {
+    "name": "Ch01 Gen Nav",
+    "description": "These study materials from Capt. Pankaj Pahil provide a structured foundation for aeronautical navigation specifically designed for commercial pilot candidat...",
+    "uploadDate": "2026-04-20T20:55:48-07:00",
+    "duration": "PT7M17S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/7qKTC6kPtfA/hqdefault.jpg"
+  },
+  "zKC3tHEXP_w": {
+    "name": "Gen NAV - The Mass Payload Limits",
+    "description": "hese educational notes provide a technical breakdown of aircraft mass and balance principles essential for flight safety and performance. The material define...",
+    "uploadDate": "2026-04-25T09:40:42-07:00",
+    "duration": "PT5M41S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/zKC3tHEXP_w/hqdefault.jpg"
+  },
+  "tsOitQF47t8": {
+    "name": "Hindi - Gen NAV - The Mass Payload Limits & Balance",
+    "description": "यह शैक्षणिक नोट्स विमान के द्रव्यमान और संतुलन (Mass and Balance) के उन तकनीकी सिद्धांतों का विस्तृत विश्लेषण प्रदान करते हैं जो उड़ान की सुरक्षा और प्रदर्शन...",
+    "uploadDate": "2026-04-25T10:24:37-07:00",
+    "duration": "PT8M25S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/tsOitQF47t8/hqdefault.jpg"
+  },
+  "UOHSv6J-EBs": {
+    "name": "Point of Equal Time OR Critical Point",
+    "description": "The provided sources define the Point of Equal Time (PET), also known as the Critical Point, as the specific location along a flight path where the duration ...",
+    "uploadDate": "2026-04-23T03:59:39-07:00",
+    "duration": "PT5M53S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/UOHSv6J-EBs/hqdefault.jpg"
+  },
+  "q8rAD_XDnxU": {
+    "name": "HINDI - Point of Equal Time (PET), also known as the Critical Point,",
+    "description": "वीडियो का शीर्षक (Video Title): Understanding Point of Equal Time (PET) & Critical Point in Aviation | Flight Planning Explained (Hindi)वीडियो अवलोकन (Video ...",
+    "uploadDate": "2026-04-23T04:25:13-07:00",
+    "duration": "PT5M4S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/q8rAD_XDnxU/hqdefault.jpg"
+  },
+  "psfgixg7IAg": {
+    "name": "General Navigation CH#001- Earth",
+    "description": "This source is a comprehensive educational guide designed for student pilots preparing for the DGCA navigation exams. It covers fundamental concepts of terre...",
+    "uploadDate": "2026-04-11T02:35:01-07:00",
+    "duration": "PT6M58S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/psfgixg7IAg/hqdefault.jpg"
+  },
+  "w9CsmyvuB_A": {
+    "name": "HINDI -General Navigation CH#001- Earth",
+    "description": "This source is a comprehensive educational guide designed for student pilots preparing for the DGCA navigation exams. It covers fundamental concepts of terre...",
+    "uploadDate": "2026-04-11T02:48:04-07:00",
+    "duration": "PT9M11S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/w9CsmyvuB_A/hqdefault.jpg"
+  },
+  "tH9OZKlXFYA": {
+    "name": "Hindi - Gen Nav Ch001",
+    "description": "दिए गए स्रोतों के आधार पर, यहाँ कैप्टन पंकज पाहिल द्वारा तैयार किए गए DGCA (Directorate General of Civil Aviation) परीक्षाओं के लिए नेविगेशन (Navigation) के ...",
+    "uploadDate": "2026-04-21T01:48:16-07:00",
+    "duration": "PT7M24S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/tH9OZKlXFYA/hqdefault.jpg"
+  },
+  "UEjVvw3zjuE": {
+    "name": "General Navigation - Chapter # 002 Great Circles, Rhumb Lines & Directions on the Earth",
+    "description": "This instructional material examines the fundamental geometric concepts used in global navigation, specifically comparing Great Circles and Rhumb Lines. It d...",
+    "uploadDate": "2026-04-11T09:31:13-07:00",
+    "duration": "PT7M36S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/UEjVvw3zjuE/hqdefault.jpg"
+  },
+  "wqxHqCIiEDA": {
+    "name": "HINDI -General Navigation CH#002 Great Circles, Rhumb Lines & Directions on the Earth.",
+    "description": "This instructional material examines the fundamental geometric concepts used in global navigation, specifically comparing Great Circles and Rhumb Lines. It d...",
+    "uploadDate": "2026-04-11T09:52:45-07:00",
+    "duration": "PT7M27S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/wqxHqCIiEDA/hqdefault.jpg"
+  },
+  "vrmQ-3Frg7Q": {
+    "name": "Earth Magnetism and Navigation Principles",
+    "description": "These sources examine the principles of Earth magnetism and its critical role in aircraft navigation. The material defines True Direction based on the geogra...",
+    "uploadDate": "2026-04-11T11:26:46-07:00",
+    "duration": "PT7M21S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/vrmQ-3Frg7Q/hqdefault.jpg"
+  },
+  "Z-TyJw6eKxY": {
+    "name": "Hindi - Earth Magnetism and Navigation Principles",
+    "description": "These sources examine the principles of Earth magnetism and its critical role in aircraft navigation. The material defines True Direction based on the geogra...",
+    "uploadDate": "2026-04-11T11:19:12-07:00",
+    "duration": "PT6M24S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Z-TyJw6eKxY/hqdefault.jpg"
+  },
+  "zfZlcVwj8hM": {
+    "name": "DGCA - Gen Nav - Convergency & Conversion Angle",
+    "description": "Understanding Earth Convergency & Conversion AngleConvergency is the angular inclination between meridians. It is a critical concept in navigation because me...",
+    "uploadDate": "2026-05-02T00:55:14-07:00",
+    "duration": "PT7M27S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/zfZlcVwj8hM/hqdefault.jpg"
+  },
+  "dkVLpxpJpvw": {
+    "name": "Earth Convergency & conversion angles Gen Nav DGCA",
+    "description": "This instructional material by Capt. Pankaj Pahil serves as a comprehensive study guide for pilots preparing for DGCA examinations in India. The text focuses...",
+    "uploadDate": "2026-04-22T05:57:02-07:00",
+    "duration": "PT6M28S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/dkVLpxpJpvw/hqdefault.jpg"
+  },
+  "9wVmMkYesuI": {
+    "name": "Hindi - कन्वर्जेन्सी और कन्वर्शन एंगल ( convergency and conversion angles ) Gen Nav DGCA",
+    "description": "1. कन्वर्जेन्सी (Convergency / Earth Convergence) पृथ्वी पर देशांतर रेखाएं (Meridians) भूमध्य रेखा (Equator) पर एक-दूसरे के समानांतर होती हैं, लेकिन ध्रुवों ...",
+    "uploadDate": "2026-04-22T06:00:38-07:00",
+    "duration": "PT5M59S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/9wVmMkYesuI/hqdefault.jpg"
+  },
+  "QMncJ2xjw00": {
+    "name": "HINDI- DGCA Gen Nav अर्थ कन्वर्जेंसी (Earth Convergency) और कन्वर्शन एंगल (Conversion Angle)",
+    "description": "अर्थ कन्वर्जेंसी और कन्वर्शन एंगल: एरोनॉटिकल नेविगेशन के मूल सिद्धांतइस वीडियो में हम एरोनॉटिकल नेविगेशन के दो सबसे महत्वपूर्ण और बुनियादी सिद्धांतों—अर्थ कन...",
+    "uploadDate": "2026-05-02T00:50:28-07:00",
+    "duration": "PT9M24S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/QMncJ2xjw00/hqdefault.jpg"
+  },
+  "cN32AVdKIXc": {
+    "name": "01  ATPL/CPL Training   AC Electrics #01 Introduction to AC",
+    "description": "Introduction to AC",
+    "uploadDate": "2026-07-14T20:38:46-07:00",
+    "duration": "PT12M5S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/cN32AVdKIXc/hqdefault.jpg"
+  },
+  "GcAoT5q4ZY0": {
+    "name": "DGCA RTRA Latest Syllabus 2026",
+    "description": "This document establishes the Civil Aviation Requirements for obtaining a Radio Telephone Operator (Restricted) Certificate and Licence in India. Issued by t...",
+    "uploadDate": "2026-04-21T09:12:02-07:00",
+    "duration": "PT6M24S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/GcAoT5q4ZY0/hqdefault.jpg"
+  },
+  "Hk7sLe2AgXQ": {
+    "name": "Hindi -D.G.C.A RTR Exam Requirements explained in hindi .",
+    "description": "यह दस्तावेज़ भारत के नागर विमानन महानिदेशालय (DGCA) द्वारा जारी किया गया है, जो 'रेडियो टेलीफोन ऑपरेटर (प्रतिबंधित)' [Radio Telephone Operator (Restricted) -...",
+    "uploadDate": "2026-04-21T06:25:47-07:00",
+    "duration": "PT5M34S",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Hk7sLe2AgXQ/hqdefault.jpg"
   }
 };

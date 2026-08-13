@@ -1,5 +1,9 @@
 export type ContentType = {
-  type: "notes" | "slides" | "video" | "audio" | "questions" | "mock-test" | "chapter-quiz";
+  // Slides and Audio Overview were retired 2026-08-13: neither added anything a
+  // student could not get better from the notes or the lecture, and every empty
+  // "Coming soon" tile cost trust. The teaching surfaces are now, in order:
+  // lecture video → notes → questions → quiz.
+  type: "notes" | "video" | "questions" | "mock-test" | "chapter-quiz";
   label: string;
   icon: string;
   available: boolean;
@@ -28,12 +32,16 @@ export type Subject = {
   chapters: Chapter[];
 };
 
+// NOTE on `video: false` in these builders: it is a stale flag and nothing reads
+// it for routing. A chapter's lecture is published iff lib/chapter-videos.ts
+// maps it — the route, the notes-page card and the sitemap all key off that map
+// (Iron Rule 5). Leaving a hardcoded flag disagreeing with the real source is
+// exactly what created the 17 video orphans on 2026-08-08, so the subject index
+// derives its video link from the map too.
 const makeContent = (hasQuestions = false): ContentType[] => [
   { type: "notes",        label: "Notes",          icon: "📄", available: true         },
   { type: "questions",    label: "Practice Qs",    icon: "❓", available: hasQuestions },
-  { type: "slides",       label: "Slides",         icon: "📊", available: false        },
   { type: "video",        label: "Video Lecture",  icon: "🎥", available: false        },
-  { type: "audio",        label: "Audio Overview", icon: "🎧", available: false        },
   { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true         },
 ];
 
@@ -41,9 +49,7 @@ const makeContent = (hasQuestions = false): ContentType[] => [
 const notesOnly = (): ContentType[] => [
   { type: "notes",        label: "Notes",          icon: "📄", available: true  },
   { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-  { type: "slides",       label: "Slides",         icon: "📊", available: false },
   { type: "video",        label: "Video Lecture",  icon: "🎥", available: false },
-  { type: "audio",        label: "Audio Overview", icon: "🎧", available: false },
   { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
 ];
 
@@ -52,9 +58,7 @@ const notesOnly = (): ContentType[] => [
 const da42Notes = (): ContentType[] => [
   { type: "notes",        label: "Notes",          icon: "📄", available: true  },
   { type: "questions",    label: "Practice Qs",    icon: "❓", available: false },
-  { type: "slides",       label: "Slides",         icon: "📊", available: false },
   { type: "video",        label: "Video Lecture",  icon: "🎥", available: false },
-  { type: "audio",        label: "Audio Overview", icon: "🎧", available: false },
   { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: false },
 ];
 
@@ -424,9 +428,7 @@ export const CPL_SUBJECTS: Subject[] = [
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
           { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
-          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
           { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
         ],
       },
@@ -437,9 +439,7 @@ export const CPL_SUBJECTS: Subject[] = [
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
           { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
-          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
           { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
         ],
       },
@@ -450,9 +450,7 @@ export const CPL_SUBJECTS: Subject[] = [
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
           { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
-          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
           { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
         ],
       },
@@ -463,9 +461,7 @@ export const CPL_SUBJECTS: Subject[] = [
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
           { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
-          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
           { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
         ],
       },
@@ -476,9 +472,7 @@ export const CPL_SUBJECTS: Subject[] = [
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
           { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
-          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
           { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
         ],
       },
@@ -489,9 +483,7 @@ export const CPL_SUBJECTS: Subject[] = [
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
           { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
-          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
           { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
         ],
       },
@@ -502,9 +494,7 @@ export const CPL_SUBJECTS: Subject[] = [
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
           { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
-          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
           { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
         ],
       },
@@ -515,9 +505,7 @@ export const CPL_SUBJECTS: Subject[] = [
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
           { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
-          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
           { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
         ],
       },
@@ -528,9 +516,7 @@ export const CPL_SUBJECTS: Subject[] = [
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
           { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
-          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
           { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
         ],
       },
@@ -541,9 +527,7 @@ export const CPL_SUBJECTS: Subject[] = [
         content: [
           { type: "notes",        label: "Notes",          icon: "📄", available: true  },
           { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
-          { type: "slides",       label: "Slides",         icon: "📊", available: true  },
           { type: "video",        label: "Video Lecture",  icon: "🎥", available: true  },
-          { type: "audio",        label: "Audio Overview", icon: "🎧", available: true  },
           { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
         ],
       },

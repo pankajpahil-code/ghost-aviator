@@ -3,11 +3,12 @@ import type { Subject, Chapter } from "@/lib/subjects";
 /**
  * Per-route-type meta descriptions for chapter pages.
  *
- * Why this exists: every chapter publishes up to six routes (notes, questions,
- * chapter-quiz, video, slides, audio) and all six were emitting the SAME
+ * Why this exists: every chapter publishes several routes (notes, questions,
+ * chapter-quiz, video, mock-test) and all of them were emitting the SAME
  * `chapter.description`. A crawl of the live sitemap on 2026-08-08 found 931
  * URLs sharing far fewer distinct descriptions — six identical ones per chapter
- * in the worst case. Duplicate descriptions are a de-duplication signal: Google
+ * in the worst case (slides and audio were retired 2026-08-13, leaving five).
+ * Duplicate descriptions are a de-duplication signal: Google
  * picks one URL per cluster to rank and drops the rest, and it rewrites the
  * snippet itself rather than using ours, so we lose control of the one line a
  * student reads before deciding whether to click.
@@ -38,10 +39,6 @@ export function chapterMetaDescription(
       return `Timed self-test on ${topic} — ${qty}questions scored instantly, so you know what you actually know before the ${exam} ${subj} paper.`;
     case "video":
       return `Video lecture on ${topic} for the ${exam} ${subj} paper, taught by Capt. Pankaj Pahil. Free to watch, no sign-up.`;
-    case "slides":
-      return `Slide deck covering ${topic} for the ${exam} ${subj} paper — the diagrams and definitions worth revising the night before.`;
-    case "audio":
-      return `Audio lesson on ${topic} for the ${exam} ${subj} paper — revise ${subj} on the commute or between flights.`;
     case "mock-test":
       return `Chapter test on ${topic}, marked against the ${exam} ${subj} syllabus. ${qty}questions, instant result.`;
     case "notes":

@@ -57,7 +57,7 @@ export default function ATPLPage() {
           </h1>
           <p className="text-xl font-semibold mb-2" style={{ color:"#f0913a" }}>Airline Transport Pilot Licence — Written Examinations</p>
           <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
-            8 advanced DGCA papers. Structured chapter by chapter with notes, slides, videos, audio, questions, and tests.
+            8 advanced DGCA papers. Structured chapter by chapter — video lecture, study notes, practice questions and a timed chapter test.
             Follows the official DGCA ATPL syllabus.
           </p>
           <div className="flex flex-wrap gap-4">

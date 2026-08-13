@@ -3,23 +3,11 @@ import { BookOpen, ListChecks, ChevronRight } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 
 const TYPE_INFO: Record<string, { icon: string; title: string; desc: string; eta: string }> = {
-  slides: {
-    icon: "📊",
-    title: "Slide Deck",
-    desc: "Visual presentation of key concepts with diagrams, charts, and memory aids — perfect for quick revision before your exam.",
-    eta: "Coming Soon",
-  },
   video: {
     icon: "🎥",
     title: "Video Lecture",
     desc: "Full-length video explanation by Capt. Pankaj Pahil, walking through every topic in this chapter with real-world cockpit examples.",
     eta: "In Production",
-  },
-  audio: {
-    icon: "🎧",
-    title: "Audio Overview",
-    desc: "A 15–20 minute audio walkthrough of this chapter — ideal for listening while commuting or during pre-flight preparation.",
-    eta: "Coming Soon",
   },
 };
 

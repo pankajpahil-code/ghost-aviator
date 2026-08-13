@@ -57,7 +57,7 @@ export default function CPLPage() {
           </h1>
           <p className="text-xl font-semibold mb-2" style={{ color:"#f3c889" }}>Commercial Pilot Licence — Written Examinations</p>
           <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
-            7 DGCA papers as per CAR Section 7 Series B Part IV. Every chapter mapped directly to the official DGCA CPL syllabus appendices with notes, slides, videos, audio, questions, and tests.
+            7 DGCA papers as per CAR Section 7 Series B Part IV. Every chapter mapped directly to the official DGCA CPL syllabus appendices — video lecture, study notes, practice questions and a timed chapter test.
           </p>
           <div className="flex flex-wrap gap-4">
             {[["7","Written Papers"],[`${CHAPTERS}`,"Chapters"],[QUESTIONS,"Questions"],["70%","Pass Mark"]].map(([v,l]) => (

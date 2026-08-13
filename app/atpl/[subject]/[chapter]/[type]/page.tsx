@@ -16,7 +16,8 @@ import ChapterQuizPage from "@/app/components/content/ChapterQuizPage";
 import VideoPage       from "@/app/components/content/VideoPage";
 import ComingSoonPage  from "@/app/components/content/ComingSoonPage";
 
-const VALID_TYPES = ["notes", "slides", "video", "audio", "questions", "mock-test", "chapter-quiz"] as const;
+// "slides" and "audio" were retired 2026-08-13 — see the CPL route for why.
+const VALID_TYPES = ["notes", "video", "questions", "mock-test", "chapter-quiz"] as const;
 
 export function generateStaticParams() {
   return ATPL_SUBJECTS.flatMap(s =>
@@ -95,6 +96,7 @@ export default async function Page({
         chapter={chapter}
         prevChapter={prevChapter}
         nextChapter={nextChapter}
+        videos={getChapterVideos(subject.id, chapter.id)}
       />
     );
   }

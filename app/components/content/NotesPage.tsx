@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ChevronRight, ChevronLeft, Clock, BookOpen, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import Watermark from "@/app/components/Watermark";
+import VideoLectureCard from "@/app/components/content/VideoLectureCard";
+import type { ChapterVideo } from "@/lib/chapter-videos";
 
 function parseDescription(desc: string): Array<{ heading: string; topics: string[] }> {
   const sentences = desc.split(/\.\s+/).filter(Boolean);
@@ -33,9 +35,13 @@ type Props = {
   chapter: Chapter;
   prevChapter: Chapter | null;
   nextChapter: Chapter | null;
+  /** The Captain's lecture(s) for this chapter — card renders above the notes
+   *  when non-empty, exactly as it does on HtmlNotesPage. A chapter that has a
+   *  lecture but no written notes yet is the case that most needs it. */
+  videos?: ChapterVideo[];
 };
 
-export default function NotesPage({ track, subject, chapter, prevChapter, nextChapter }: Props) {
+export default function NotesPage({ track, subject, chapter, prevChapter, nextChapter, videos }: Props) {
   const sections = parseDescription(chapter.description);
   const topicCount = sections.reduce((n, s) => n + s.topics.length, 0);
 
@@ -98,6 +104,13 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        {/* Lecture first, then the chapter — watch it, then read it. */}
+        {videos && videos.length > 0 && (
+          <div className="mb-8">
+            <VideoLectureCard videos={videos} title={chapter.title} color={subject.color} />
+          </div>
+        )}
 
         {/* Syllabus overview */}
         <div className="rounded-2xl p-5 mb-8"

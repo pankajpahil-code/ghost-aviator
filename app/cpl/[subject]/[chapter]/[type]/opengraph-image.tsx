@@ -24,8 +24,6 @@ export default async function Image({
   else if (type === "chapter-quiz") label = "Chapter Quiz";
   else if (type === "questions") label = "Question Bank";
   else if (type === "video") label = "Video Lecture";
-  else if (type === "audio") label = "Audio Overview";
-  else if (type === "slides") label = "Class Slides";
 
   return new ImageResponse(
     (

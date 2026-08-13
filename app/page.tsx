@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Headphones, BarChart3, Zap } from "lucide-react";
+import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import MascotHero from "./components/MascotHero";
@@ -22,11 +22,13 @@ const TOTAL_Q = fmt(ALL_QUESTIONS.length);
 const CPL_Q   = fmt(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => cplIds.has(id))).length);
 const ATPL_Q  = fmt(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => atplIds.has(id))).length);
 
+// Four surfaces, in the order a student actually uses them: watch the lecture,
+// read the chapter, drill the questions, then test yourself under the clock.
+// Slides and Audio Overview were dropped 2026-08-13 — they were listed here as
+// features while most chapters had neither, which is a promise, not a feature.
 const services = [
+  { icon: Video,         label: "Video Lectures",  desc: "The chapter taught, above every set of notes" },
   { icon: FileText,      label: "Notes",           desc: "Concise, exam-focused chapter notes" },
-  { icon: BarChart3,     label: "Slides",          desc: "Visual slide decks for every chapter" },
-  { icon: Video,         label: "Video Lectures",  desc: "Full-length video explanations" },
-  { icon: Headphones,    label: "Audio Overview",  desc: "Quick listen before you fly" },
   { icon: BookOpen,      label: "Question Bank",   desc: `${TOTAL_Q} MCQs with explanations` },
   { icon: ClipboardList, label: "Mock Tests",      desc: "Chapter, mid-term & full-length tests" },
 ];

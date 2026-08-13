@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronRight, ChevronLeft, BookOpen, ListChecks } from "lucide-react";
+import { ChevronRight, ChevronLeft, BookOpen, ListChecks, HelpCircle } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { ChapterVideo } from "@/lib/chapter-videos";
 import VideoLectureCard from "@/app/components/content/VideoLectureCard";
@@ -67,15 +67,10 @@ export default function VideoPage({ track, subject, chapter, prevChapter, nextCh
                 style={{ background: `${subject.color}12`, border: `1px solid ${subject.color}30`, color: subject.color }}>
             <BookOpen className="w-4 h-4" /> Read Notes
           </Link>
-          <Link href={`/${track}/${subject.id}/${chapter.id}/slides`}
+          <Link href={`/${track}/${subject.id}/${chapter.id}/questions`}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl no-underline text-sm font-bold"
-                style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#94a3b8" }}>
-            📊 View Slides
-          </Link>
-          <Link href={`/${track}/${subject.id}/${chapter.id}/audio`}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl no-underline text-sm font-bold"
-                style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#94a3b8" }}>
-            🎧 Audio Overview
+                style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.3)", color: "#10b981" }}>
+            <HelpCircle className="w-4 h-4" /> Practice Questions
           </Link>
           <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl no-underline text-sm font-bold"

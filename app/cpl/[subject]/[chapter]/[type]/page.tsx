@@ -15,12 +15,13 @@ import QuestionsPage          from "@/app/components/content/QuestionsPage";
 import ChapterTestPage        from "@/app/components/content/ChapterTestPage";
 import ChapterQuizPage        from "@/app/components/content/ChapterQuizPage";
 import HtmlNotesPage          from "@/app/components/content/HtmlNotesPage";
-import SlidesPage             from "@/app/components/content/SlidesPage";
-import AudioPage              from "@/app/components/content/AudioPage";
 import VideoPage              from "@/app/components/content/VideoPage";
 import ComingSoonPage         from "@/app/components/content/ComingSoonPage";
 
-const VALID_TYPES = ["notes", "slides", "video", "audio", "questions", "mock-test", "chapter-quiz"] as const;
+// "slides" and "audio" were retired 2026-08-13. Old URLs are 308-redirected to
+// the chapter's notes in next.config.ts rather than 404'd, so any link a student
+// bookmarked still lands on the teaching for that chapter.
+const VALID_TYPES = ["notes", "video", "questions", "mock-test", "chapter-quiz"] as const;
 
 export function generateStaticParams() {
   return CPL_SUBJECTS.flatMap(s =>
@@ -70,11 +71,6 @@ export default async function Page({
   const nextChapter = chapterIdx < subject.chapters.length - 1 ? subject.chapters[chapterIdx + 1] : null;
 
   const questions = getQuestionsForChapter(subject.id, chapter.id);
-
-  // Whether a given content type is actually published for this chapter.
-  // Mirrors the `available` flags shown on the subject index, so direct
-  // navigation (or prev/next inside a viewer) can't land on broken media.
-  const isAvailable = (t: string) => chapter.content.find(c => c.type === t)?.available ?? false;
 
   // Course + BreadcrumbList. The breadcrumb is what turns a bare URL in the
   // search result into "Home › CPL › Meteorology › Ch.3", which measurably
@@ -280,23 +276,7 @@ export default async function Page({
         chapter={chapter}
         prevChapter={prevChapter}
         nextChapter={nextChapter}
-      />
-    );
-  }
-
-  if (type === "slides") {
-    if (!isAvailable("slides")) {
-      return <ComingSoonPage track="cpl" subject={subject} chapter={chapter} type={type} />;
-    }
-    const slidesPath = `/content/${subject.id}/${chapter.id}/slides.pdf`;
-    return (
-      <SlidesPage
-        track="cpl"
-        subject={subject}
-        chapter={chapter}
-        prevChapter={prevChapter}
-        nextChapter={nextChapter}
-        src={slidesPath}
+        videos={getChapterVideos(subject.id, chapter.id)}
       />
     );
   }
@@ -333,36 +313,6 @@ export default async function Page({
         </>
       );
     }
-  }
-
-  if (type === "audio") {
-    if (!isAvailable("audio")) {
-      return <ComingSoonPage track="cpl" subject={subject} chapter={chapter} type={type} />;
-    }
-    const AUDIO_TITLES: Record<string, string> = {
-      "air-regulations/ar-1": "Aasman Ke Kanoon Aur Hawai Niyam",
-      "air-regulations/ar-2": "The Secret Logic of Aircraft Tail Numbers",
-      "air-regulations/ar-3": "DGCA Air Regulations and Emergency Procedures",
-      "air-regulations/ar-4": "Indian Airspace Classifications and ATC Protocols",
-      "air-regulations/ar-5": "DGCA Aircraft Separation Methods and Minima",
-      "air-regulations/ar-6": "DGCA Separation Rules and Visual Minima",
-      "air-regulations/ar-7": "DGCA Procedures for Aerodrome Control Service",
-      "air-regulations/ar-8": "ATS Surveillance Systems and Separation Standards",
-      "air-regulations/ar-9": "Aeronautical Information Services Exam Essentials",
-      "air-regulations/ar-10": "Global Aviation Search and Rescue Protocols",
-    };
-    const audioPath = `/content/${subject.id}/${chapter.id}/audio.m4a`;
-    return (
-      <AudioPage
-        track="cpl"
-        subject={subject}
-        chapter={chapter}
-        prevChapter={prevChapter}
-        nextChapter={nextChapter}
-        src={audioPath}
-        title={AUDIO_TITLES[`${subject.id}/${chapter.id}`]}
-      />
-    );
   }
 
   if (type === "questions") {

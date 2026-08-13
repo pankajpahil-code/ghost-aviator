@@ -4,19 +4,19 @@ import { getChapterVideos } from "@/lib/chapter-videos";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { CPL_SUBJECTS } from "@/lib/subjects";
-import { FileText, BarChart3, Video, Headphones, HelpCircle, ClipboardList, ListChecks, Lock, ArrowRight, Clock, ChevronRight } from "lucide-react";
+import { FileText, Video, HelpCircle, ClipboardList, ListChecks, Lock, ArrowRight, Clock, ChevronRight } from "lucide-react";
 import SubjectProgressBar from "@/app/components/SubjectProgressBar";
 import ChapterProgressBadge from "@/app/components/ChapterProgressBadge";
 import RtrBookExperience from "@/app/components/RtrBookExperience";
 import { SITE_URL } from "@/lib/site";
 
 const CONTENT_ICONS: Record<string, React.ElementType> = {
-  notes: FileText, slides: BarChart3, video: Video,
-  audio: Headphones, questions: HelpCircle, "mock-test": ClipboardList, "chapter-quiz": ListChecks,
+  notes: FileText, video: Video,
+  questions: HelpCircle, "mock-test": ClipboardList, "chapter-quiz": ListChecks,
 };
 const CONTENT_COLORS: Record<string, string> = {
-  notes: "#ab794d", slides: "#0ea5e9", video: "#ef4444",
-  audio: "#f59e0b", questions: "#10b981", "mock-test": "#f3c889", "chapter-quiz": "#f97316",
+  notes: "#ab794d", video: "#ef4444",
+  questions: "#10b981", "mock-test": "#f3c889", "chapter-quiz": "#f97316",
 };
 
 export function generateStaticParams() {
@@ -105,7 +105,7 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
 
         {/* Content legend */}
         <div className="flex flex-wrap gap-3 mb-10">
-          {["notes","slides","video","audio","chapter-quiz"].map(type => {
+          {["video","notes","questions","chapter-quiz"].map(type => {
             const Icon = CONTENT_ICONS[type];
             return (
               <div key={type} className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full"

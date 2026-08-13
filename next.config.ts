@@ -72,6 +72,8 @@ const nextConfig: NextConfig = {
         source: "/content/:subject/:chapter/notes.html",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
+      // Slides and Audio Overview were retired 2026-08-13. The route is gone but
+      // the files can linger in the deployment, so keep them out of the index.
       {
         source: "/content/:subject/:chapter/slides.pdf",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
@@ -89,6 +91,15 @@ const nextConfig: NextConfig = {
       {
         source: "/cpl/general-navigation/:path*",
         destination: "/cpl/air-navigation",
+        permanent: true,
+      },
+      // Slides / Audio Overview retired 2026-08-13. Send the old URLs to the
+      // chapter's notes rather than 404'ing them: a student who bookmarked
+      // "slides" still gets that chapter's teaching, and any link equity those
+      // URLs hold transfers instead of evaporating.
+      {
+        source: "/:track(cpl|atpl)/:subject/:chapter/:type(slides|audio)",
+        destination: "/:track/:subject/:chapter/notes",
         permanent: true,
       },
     ];
