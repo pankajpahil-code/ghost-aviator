@@ -47,3 +47,8 @@ next-env.d.ts
 
 .env*.local
 tools/rtr-sim/voicebank/.tmp-raw/
+
+# YouTube metadata tooling — generated state, never committed
+tools/yt/_*.json
+tools/yt/_*.txt
+tools/_video-chapter-map.json
