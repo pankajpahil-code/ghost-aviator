@@ -16,6 +16,10 @@ type Props = {
    *  publishing the same 1,020 questions is duplicate content, not content.
    *  See getChapterSpecificQuestions in lib/questions.ts. */
   chapterSpecific?: boolean;
+  /** Whether this chapter has notes published. The two "Notes" links here were
+   *  unconditional and led into a "being prepared" stub on chapters that have
+   *  none — a dead end for the student and an empty URL for a crawler. */
+  hasNotes?: boolean;
 };
 
 /**
@@ -34,7 +38,7 @@ function isRealExplanation(exp: string | undefined): boolean {
   return !/^\s*correct answer\s*[:\-]?\s*[A-D]?\s*\.?\s*$/i.test(exp.trim());
 }
 
-export default function QuestionsPage({ track, subject, chapter, questions, chapterSpecific = true }: Props) {
+export default function QuestionsPage({ track, subject, chapter, questions, chapterSpecific = true, hasNotes = true }: Props) {
   // Content protection for the full question list below — same deterrents the
   // notes carry. Iron Rule 3: the answers are the most valuable thing on the
   // site and the easiest to lift.
@@ -75,11 +79,13 @@ export default function QuestionsPage({ track, subject, chapter, questions, chap
             <strong style={{ color: subject.color }}>{chapter.title}</strong> are being prepared.
             Target: {chapter.questionCount} practice questions.
           </p>
-          <Link href={`/${track}/${subject.id}/${chapter.id}/notes`}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold no-underline"
-                style={{ background: `${subject.color}20`, border: `1px solid ${subject.color}45`, color: subject.color }}>
-            <BookOpen className="w-4 h-4" /> Read Notes Instead
-          </Link>
+          {hasNotes && (
+            <Link href={`/${track}/${subject.id}/${chapter.id}/notes`}
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold no-underline"
+                  style={{ background: `${subject.color}20`, border: `1px solid ${subject.color}45`, color: subject.color }}>
+              <BookOpen className="w-4 h-4" /> Read Notes Instead
+            </Link>
+          )}
         </div>
       </div>
     );
@@ -139,8 +145,13 @@ export default function QuestionsPage({ track, subject, chapter, questions, chap
            style={{ background: "rgba(11,17,23,0.97)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs" style={{ color: "#475569" }}>
-            <Link href={`/${track}/${subject.id}/${chapter.id}/notes`}
-                  className="no-underline hover:text-white transition-colors" style={{ color: "#475569" }}>Notes</Link>
+            {hasNotes ? (
+              <Link href={`/${track}/${subject.id}/${chapter.id}/notes`}
+                    className="no-underline hover:text-white transition-colors" style={{ color: "#475569" }}>Notes</Link>
+            ) : (
+              <Link href={`/${track}/${subject.id}`}
+                    className="no-underline hover:text-white transition-colors" style={{ color: "#475569" }}>{subject.shortName}</Link>
+            )}
             <ChevronRight className="w-3 h-3" />
             <span style={{ color: subject.color, fontWeight: "700" }}>
               <HelpCircle className="w-3 h-3 inline mr-1" />Questions

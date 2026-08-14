@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
-import { getChapterSpecificQuestions } from "@/lib/questions";
+import { getChapterSpecificQuestions, getQuestionsForChapter } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
 
 /**
@@ -192,6 +192,32 @@ export const NOINDEX: { robots: { index: false; follow: true } } = {
 // ─── Chapter-to-chapter navigation ───────────────────────────────────────────
 
 /**
+ * Is there anything here for a student — a different question from whether the
+ * URL belongs in the index.
+ *
+ * The two diverge on `questions`. A chapter with no bank of its own still runs a
+ * real drill off the subject-wide pool, so there IS something to practise; it
+ * just must not be indexed, because sixteen chapters serving the same 1,020
+ * questions is one page under sixteen URLs. Navigation must use this predicate
+ * and robots must use the other one. Conflating them would quietly wall off
+ * every fallback chapter from the Previous/Next walk.
+ */
+export function hasRouteContent(
+  subjectId: string,
+  chapterId: string,
+  type: ChapterRouteType,
+): boolean {
+  switch (type) {
+    case "notes":    return servesRealNotes(subjectId, chapterId);
+    case "video":    return getChapterVideos(subjectId, chapterId).length > 0;
+    // Includes the subject-wide fallback: the drill runs either way.
+    case "questions": return getQuestionsForChapter(subjectId, chapterId).length > 0;
+    // Every chapter has a quiz and a test.
+    default:         return true;
+  }
+}
+
+/**
  * The nearest chapter either side that actually has this route's content.
  *
  * The Previous/Next pair at the foot of every chapter page used to be the
@@ -201,8 +227,8 @@ export const NOINDEX: { robots: { index: false; follow: true } } = {
  * supply of empty URLs discovered from pages that do have content.
  *
  * Skipping to the next chapter that has something is better navigation on its
- * own terms. Returning null at the ends is correct: the component already
- * renders nothing for a null.
+ * own terms. Returning -1 at the ends is correct: the component already renders
+ * nothing when the chapter is null.
  */
 export function adjacentWithContent(
   chapters: readonly { id: string }[],
@@ -210,7 +236,7 @@ export function adjacentWithContent(
   index: number,
   type: ChapterRouteType,
 ): { prev: number; next: number } {
-  const has = (i: number) => isIndexableChapterRoute(subjectId, chapters[i].id, type);
+  const has = (i: number) => hasRouteContent(subjectId, chapters[i].id, type);
   let prev = -1;
   for (let i = index - 1; i >= 0; i--) if (has(i)) { prev = i; break; }
   let next = -1;

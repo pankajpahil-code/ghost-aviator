@@ -2,7 +2,6 @@ import type { MetadataRoute } from "next";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { isIndexableChapterRoute } from "@/lib/indexability";
 import { ALL_PAST_PAPERS } from "@/lib/past-papers";
-import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { GUIDES } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
 
@@ -77,12 +76,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const examPages: MetadataRoute.Sitemap = EXAM_PAPERS.map(p => ({
-    url: url(`/exam/${p.id}`),
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  // /exam/<paper> is deliberately absent. Each is the exam runner — a client
+  // component behind 22-90 words of server-rendered shell — so it is the same
+  // kind of page as the chapter drills and is now noindex for the same reason.
+  // The /exam landing page, which actually describes the papers, is submitted
+  // above and is the URL that should rank for "DGCA mock test".
 
   const guidePages: MetadataRoute.Sitemap = GUIDES.map(g => ({
     url: url(`/guides/${g.slug}`),
@@ -96,7 +94,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...subjectPages("cpl", CPL_SUBJECTS),
     ...subjectPages("atpl", ATPL_SUBJECTS),
     ...paperPages,
-    ...examPages,
     ...guidePages,
   ];
 }

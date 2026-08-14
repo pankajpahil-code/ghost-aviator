@@ -17,6 +17,12 @@ export async function generateMetadata(
     title: `${paper.title} — Exam Mode | Ghost Aviator`,
     description: `Sit the full ${paper.title} paper in real DGCA format: ${paper.questionCount} questions, ${paper.durationMin} minutes, ${paper.passMark}% to pass.`,
     alternates: { canonical: `/exam/${paper.id}` },
+    // These are the runner itself — ExamRunner is a client component, so the
+    // server sends 22-90 words of shell. Measured 2026-08-14 alongside the
+    // chapter drills and treated the same way: the page students use, not a
+    // page search should judge the domain by. /exam is the landing page that
+    // describes the papers and stays indexable.
+    robots: { index: false, follow: true },
   };
 }
 

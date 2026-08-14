@@ -97,7 +97,7 @@ function SubjectBlock({ subject }: { subject: (typeof cpl)[number] }) {
               <Link href={ch.chapterUrl}
                     className="ml-auto text-xs no-underline whitespace-nowrap"
                     style={{ color: "#64748b" }}>
-                Notes &amp; questions →
+                {ch.chapterUrlLabel} →
               </Link>
             </div>
 

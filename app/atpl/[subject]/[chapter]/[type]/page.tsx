@@ -119,6 +119,7 @@ export default async function Page({
         chapter={chapter}
         questions={questions}
         chapterSpecific={getChapterSpecificQuestions(subject.id, chapter.id).length > 0}
+        hasNotes={servesRealNotes(subject.id, chapter.id)}
       />
     );
   }

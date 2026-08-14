@@ -15,6 +15,7 @@
  */
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { getChapterVideos } from "@/lib/chapter-videos";
+import { servesRealNotes } from "@/lib/indexability";
 import { VIDEO_METADATA } from "@/lib/generated/video-metadata";
 
 export type IndexedLecture = {
@@ -32,6 +33,8 @@ export type IndexedChapter = {
   number: number;
   title: string;
   chapterUrl: string;
+  /** What that link leads to — it is not always the notes. */
+  chapterUrlLabel: string;
   lectures: IndexedLecture[];
 };
 
@@ -86,11 +89,20 @@ function buildTrack(track: "cpl" | "atpl"): IndexedSubject[] {
       const chapters = s.chapters
         .map(c => {
           const vids = getChapterVideos(s.id, c.id);
+          const hasNotes = servesRealNotes(s.id, c.id);
           return {
             id: c.id,
             number: c.number,
             title: c.title,
-            chapterUrl: `/${track}/${s.id}/${c.id}/notes`,
+            chapterUrlLabel: hasNotes ? "Notes & questions" : "Chapter lecture",
+            // Point at the notes only when there ARE notes. This hardcoded
+            // /notes sent 15 of this index's links into "being prepared" —
+            // a dead end for the reader, and 15 empty URLs discovered from
+            // one of the site's strongest pages. Every chapter listed here
+            // has a lecture by construction, so /video always exists.
+            chapterUrl: hasNotes
+              ? `/${track}/${s.id}/${c.id}/notes`
+              : `/${track}/${s.id}/${c.id}/video`,
             lectures: vids.map((v, i) => {
               const meta = VIDEO_METADATA[v.id];
               return {
