@@ -212,7 +212,15 @@ def build_tags(topic, subject_id, existing):
 
 def main():
     plan, skipped, truncated = [], [], []
+    # The snapshot can list the same video twice (232 entries against a channel
+    # videoCount of 229), which put one duplicate proposal in the plan and made
+    # it report 202 updates for 201 videos — and overstate the quota by 50 units.
+    # Harmless to apply, confusing to read, so dedupe at the source.
+    seen_ids = set()
     for v in SNAP["videos"]:
+        if v["id"] in seen_ids:
+            continue
+        seen_ids.add(v["id"])
         vid = v["id"]
         entry = CHAPTER_MAP.get(vid)
         if not entry:
