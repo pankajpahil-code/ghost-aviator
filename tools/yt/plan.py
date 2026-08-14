@@ -188,13 +188,25 @@ def build_tags(topic, subject_id, existing):
         if t and k not in seen:
             seen.add(k)
             out.append(t)
-    # YouTube caps the tags field at 500 characters total.
+    # YouTube caps the tags field at 500 characters total — and it counts a tag
+    # containing a space AS IF QUOTED, so such a tag costs len + 2, not len.
+    #
+    # Budgeting only len + 1 is why 72 videos came back HTTP 400 on 2026-08-14.
+    # Almost every tag built above is multi-word ("DGCA exam", "CPL ground
+    # school", "Capt Pankaj Pahil"), so the unbilled quotes ran to ~30 characters
+    # and pushed a list this loop believed was under 480 up to 501-535 real ones.
+    # The split was total: all 72 failures measured >= 501, all 130 successes
+    # <= 499. The 480 margin was never the problem; the arithmetic was.
+    def cost(t):
+        return len(t) + (2 if any(c.isspace() for c in t) else 0)
+
     total, kept = 0, []
     for t in out:
-        if total + len(t) + 1 > 480:
+        add = cost(t) + (1 if kept else 0)   # comma separator between tags
+        if total + add > 480:
             break
         kept.append(t)
-        total += len(t) + 1
+        total += add
     return kept
 
 

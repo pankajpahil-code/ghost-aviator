@@ -75,7 +75,12 @@ def main():
             break
         except Exception as e:  # noqa: BLE001 - one bad video must not stop the run
             fail += 1
-            print(f"  FAILED [{p['id']}] {str(e)[:120]}")
+            # Log the WHOLE error. This was [:120], which cut every message off
+            # at "...returned "The requ" — so 144 logged failures said only
+            # "HttpError 400" and the actual reason (an over-long tags field)
+            # had to be reconstructed from the plan data instead of just read.
+            # A truncated error log is worse than none: it looks like evidence.
+            print(f"  FAILED [{p['id']}] {e}")
 
     save_done(done)
     print(f"\napplied {ok}, failed {fail}, total done {len(done)}/{len(plan)}")
