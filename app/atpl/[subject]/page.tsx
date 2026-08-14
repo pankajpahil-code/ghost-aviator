@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getChapterSpecificQuestions } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
+import { servesRealNotes } from "@/lib/indexability";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
@@ -140,9 +141,12 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
                         const color = CONTENT_COLORS[c.type];
                         // Same drift as the CPL index: the questions flag is hand-kept
                         // and lies in both directions. Derived from the bank instead.
+                        // Notes too, from 2026-08-14 — 40 of this track's 68 chapters
+                        // have no notes published, and all 40 were linked as if they had.
                         const available =
                           c.type === "questions" ? getChapterSpecificQuestions(subject.id, ch.id).length > 0
                           : c.type === "video"   ? getChapterVideos(subject.id, ch.id).length > 0
+                          : c.type === "notes"   ? servesRealNotes(subject.id, ch.id)
                           : c.available;
                         return available ? (
                           <Link key={c.type} href={`/atpl/${subject.id}/${ch.id}/${c.type}`}

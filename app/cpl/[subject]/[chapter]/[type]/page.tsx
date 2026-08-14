@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import fs from "node:fs";
-import path from "node:path";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter, getChapterSpecificQuestions } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { getInlineNotes } from "@/lib/notes-inline";
-import { chapterMetaDescription } from "@/lib/chapter-meta";
-import { videoObjectsFor } from "@/lib/video-schema";
+import { isIndexableChapterRoute, servesRealNotes, adjacentWithContent, NOINDEX } from "@/lib/indexability";
+import { chapterMetaDescription, chapterTitle } from "@/lib/chapter-meta";
+import { videoObjectsFor, lecturePartsFor } from "@/lib/video-schema";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 import NotesPage              from "@/app/components/content/NotesPage";
 import AirRegsChapter1Notes   from "@/app/components/content/AirRegsChapter1Notes";
@@ -40,14 +39,17 @@ export async function generateMetadata({
   const subject = CPL_SUBJECTS.find(s => s.id === subjectId);
   const chapter = subject?.chapters.find(c => c.id === chapterId);
   if (!subject || !chapter) return {};
-  const label = type === "mock-test" ? "Chapter Test"
-    : type.charAt(0).toUpperCase() + type.slice(1);
   return {
-    title: `Ch.${chapter.number} ${chapter.title} — ${label} | ${subject.shortName} CPL | Ghost Aviator`,
+    title: chapterTitle("cpl", subject, chapter, type),
     description: chapterMetaDescription(
       "cpl", subject, chapter, type, getQuestionsForChapter(subject.id, chapter.id).length,
     ),
     alternates: { canonical: `/cpl/${subject.id}/${chapter.id}/${type}` },
+    // A route that renders a stub or a drill asks not to be indexed. Leaving it
+    // out of the sitemap was never enough — it stays linked, stays crawled, and
+    // still counts toward what Google concludes this domain is made of. See
+    // lib/indexability.ts for the crawl that measured it.
+    ...(isIndexableChapterRoute(subject.id, chapter.id, type) ? {} : NOINDEX),
   };
 }
 
@@ -66,9 +68,17 @@ export default async function Page({
   const chapterIdx = subject.chapters.findIndex(c => c.id === chapterId);
   if (chapterIdx === -1) notFound();
 
-  const chapter     = subject.chapters[chapterIdx];
-  const prevChapter = chapterIdx > 0 ? subject.chapters[chapterIdx - 1] : null;
-  const nextChapter = chapterIdx < subject.chapters.length - 1 ? subject.chapters[chapterIdx + 1] : null;
+  const chapter = subject.chapters[chapterIdx];
+
+  // Previous/Next skip to the nearest chapter that actually HAS this route's
+  // content, rather than the literally adjacent one — see adjacentWithContent.
+  // The drill routes keep plain adjacency: every chapter has a quiz.
+  const skips = type === "notes" || type === "video" || type === "questions";
+  const { prev, next } = skips
+    ? adjacentWithContent(subject.chapters, subject.id, chapterIdx, type as "notes")
+    : { prev: chapterIdx - 1, next: chapterIdx + 1 };
+  const prevChapter = prev >= 0 ? subject.chapters[prev] : null;
+  const nextChapter = next >= 0 && next < subject.chapters.length ? subject.chapters[next] : null;
 
   const questions = getQuestionsForChapter(subject.id, chapter.id);
 
@@ -131,126 +141,11 @@ export default async function Page({
         />
       );
     }
-    // Instrumentation: auto-serve HTML notes whenever the chapter's notes.html
-    // has been published to public/content/ (the daily notes task drops files
-    // there), so newly added chapters appear without editing this allow-list.
-    if (subject.id === "instrumentation" || subject.id === "radio-navigation" || subject.id === "technical-general" || subject.id === "radio-telephony") {
-      const notesFile = path.join(process.cwd(), "public", "content", subject.id, chapter.id, "notes.html");
-      const inlineNotes = fs.existsSync(notesFile) ? getInlineNotes(subject.id, chapter.id) : null;
-      if (inlineNotes) {
-        return (
-          <>
-            {jsonLdScript}
-            <HtmlNotesPage
-              track="cpl"
-              subject={subject}
-              chapter={chapter}
-              prevChapter={prevChapter}
-              nextChapter={nextChapter}
-              notes={inlineNotes}
-              videos={getChapterVideos(subject.id, chapter.id)}
-            />
-          </>
-        );
-      }
-      return (
-        <ComingSoonPage track="cpl" subject={subject} chapter={chapter} type={type} />
-      );
-    }
-
-    // serve HTML notes for any chapter that has a notes.html in public/content/
-    const HTML_NOTES_CHAPTERS: Record<string, boolean> = {
-      "air-regulations/ar-2":  true,
-      "air-regulations/ar-3":  true,
-      "air-regulations/ar-4":  true,
-      "air-regulations/ar-5":  true,
-      "air-regulations/ar-6":  true,
-      "air-regulations/ar-7":  true,
-      "air-regulations/ar-8":  true,
-      "air-regulations/ar-9":  true,
-      "air-regulations/ar-10": true,
-      "air-regulations/ar-11": true,
-      "air-regulations/ar-14": true,
-      "air-regulations/ar-15": true,
-      "air-regulations/ar-16": true,
-      "air-regulations/ar-17": true,
-      "air-regulations/ar-12": true,
-      "air-regulations/ar-13": true,
-      "air-regulations/ar-18": true,
-      "air-regulations/ar-19": true,
-      "air-regulations/ar-20": true,
-      "air-regulations/ar-21": true,
-      "air-regulations/ar-22": true,
-      "air-regulations/ar-23": true,
-      "air-regulations/ar-24": true,
-      "air-regulations/ar-25": true,
-      "air-regulations/ar-26": true,
-      // IC Joshi Meteorology study notes (Ch.1–11)
-      "meteorology/met-1":  true,
-      "meteorology/met-2":  true,
-      "meteorology/met-3":  true,
-      "meteorology/met-4":  true,
-      "meteorology/met-5":  true,
-      "meteorology/met-6":  true,
-      "meteorology/met-7":  true,
-      "meteorology/met-8":  true,
-      "meteorology/met-9":  true,
-      "meteorology/met-10": true,
-      "meteorology/met-11": true,
-      "meteorology/met-12": true,
-      "meteorology/met-13": true,
-      "meteorology/met-14": true,
-      "meteorology/met-15": true,
-      "meteorology/met-16": true,
-      "meteorology/met-17": true,
-      "meteorology/met-18": true,
-      "meteorology/met-19": true,
-      "meteorology/met-20": true,
-      "meteorology/met-21": true,
-      "meteorology/met-22": true,
-      "meteorology/met-23": true,
-      "meteorology/met-24": true,
-      "meteorology/met-25": true,
-      "meteorology/met-26": true,
-      "meteorology/met-27": true,
-      "meteorology/met-28": true,
-      "meteorology/met-29": true,
-      // Oxford General Navigation study notes (merged into Air Navigation)
-      "air-navigation/nav-1":  true,
-      "air-navigation/nav-13": true,
-      "air-navigation/nav-14": true,
-      "air-navigation/nav-15": true,
-      "air-navigation/nav-16": true,
-      "air-navigation/nav-17": true,
-      "air-navigation/nav-18": true,
-      "air-navigation/nav-19": true,
-      "air-navigation/nav-20": true,
-      "air-navigation/nav-21": true,
-      "air-navigation/nav-22": true,
-      "air-navigation/nav-23": true,
-      "air-navigation/nav-24": true,
-      "air-navigation/nav-25": true,
-      "air-navigation/nav-26": true,
-      "air-navigation/nav-27": true,
-      "air-navigation/nav-28": true,
-      "air-navigation/nav-29": true,
-      "air-navigation/nav-30": true,
-      "air-navigation/nav-31": true,
-      "air-navigation/nav-32": true,
-      "air-navigation/nav-33": true,
-      // DA-42 NG (Austro) type-specific study notes
-      "technical-specific/da42-1":  true,
-      "technical-specific/da42-2":  true,
-      "technical-specific/da42-3":  true,
-      "technical-specific/da42-4":  true,
-      "technical-specific/da42-5":  true,
-      "technical-specific/da42-6":  true,
-      "technical-specific/da42-7":  true,
-      "technical-specific/da42-8":  true,
-      "technical-specific/da42-9":  true,
-      "technical-specific/da42-10": true,
-    };
-    const inlineNotes = HTML_NOTES_CHAPTERS[`${subject.id}/${chapter.id}`]
+    // Whether a chapter serves real notes is decided in lib/indexability.ts —
+    // the same predicate the sitemap and this route's own robots tag read, so a
+    // chapter can never be advertised as content while rendering a stub. The
+    // per-chapter allow-list that used to sit here moved there with it.
+    const inlineNotes = servesRealNotes(subject.id, chapter.id)
       ? getInlineNotes(subject.id, chapter.id)
       : null;
     if (inlineNotes) {
@@ -267,6 +162,15 @@ export default async function Page({
             videos={getChapterVideos(subject.id, chapter.id)}
           />
         </>
+      );
+    }
+    // No notes published for this chapter yet. These subjects' chapters arrive
+    // one published file at a time, so they show the explicit waiting state;
+    // the rest fall back to the chapter overview.
+    if (subject.id === "instrumentation" || subject.id === "radio-navigation"
+        || subject.id === "technical-general" || subject.id === "radio-telephony") {
+      return (
+        <ComingSoonPage track="cpl" subject={subject} chapter={chapter} type={type} />
       );
     }
     return (
@@ -309,6 +213,9 @@ export default async function Page({
             prevChapter={prevChapter}
             nextChapter={nextChapter}
             videos={videos}
+            parts={lecturePartsFor(videos)}
+            hasNotes={servesRealNotes(subject.id, chapter.id)}
+            hasQuestions={getChapterSpecificQuestions(subject.id, chapter.id).length > 0}
           />
         </>
       );

@@ -6,6 +6,9 @@ import type { Subject, Chapter } from "@/lib/subjects";
 import type { ChapterVideo } from "@/lib/chapter-videos";
 import VideoLectureCard from "@/app/components/content/VideoLectureCard";
 
+/** One lecture part, with the runtime read off YouTube (null when unknown). */
+export type LecturePart = { id: string; label: string; minutes: number | null };
+
 type Props = {
   track: "cpl" | "atpl";
   subject: Subject;
@@ -13,9 +16,18 @@ type Props = {
   prevChapter: Chapter | null;
   nextChapter: Chapter | null;
   videos: ChapterVideo[];
+  /** Computed server-side from lib/generated/video-metadata.ts. */
+  parts?: LecturePart[];
+  /** Whether this chapter's notes and question bank actually exist. */
+  hasNotes?: boolean;
+  hasQuestions?: boolean;
 };
 
-export default function VideoPage({ track, subject, chapter, prevChapter, nextChapter, videos }: Props) {
+export default function VideoPage({
+  track, subject, chapter, prevChapter, nextChapter, videos,
+  parts = [], hasNotes = true, hasQuestions = true,
+}: Props) {
+  const totalMinutes = parts.reduce((sum, p) => sum + (p.minutes ?? 0), 0);
   return (
     <div style={{ background: "#0b1117" }} className="min-h-screen">
 
@@ -60,18 +72,68 @@ export default function VideoPage({ track, subject, chapter, prevChapter, nextCh
           <VideoLectureCard videos={videos} title={chapter.title} color={subject.color} />
         </div>
 
-        {/* Cross-links */}
+        {/* What the lecture covers.
+            This page used to be a player and a row of buttons — 63 words of
+            server-rendered text, on 140 URLs. The chapter's syllabus coverage
+            was already written in lib/subjects.ts and shown on every other
+            surface but this one, which is the page a student most needs it on:
+            it is what tells them whether this lecture is the one they need
+            before they spend twenty minutes watching it. */}
+        <div className="rounded-2xl p-5 mb-6"
+             style={{ background: "rgba(17,24,32,0.7)", border: "1px solid rgba(255,255,255,0.07)" }}>
+          <h2 className="text-sm font-black mb-2" style={{ color: subject.color, letterSpacing: "0.06em" }}>
+            WHAT THIS LECTURE COVERS
+          </h2>
+          <p className="text-sm leading-relaxed mb-0" style={{ color: "#94a3b8" }}>
+            {chapter.description}
+          </p>
+          <p className="text-xs mt-3 mb-0" style={{ color: "#64748b" }}>
+            Chapter {chapter.number} of the DGCA {track.toUpperCase()} {subject.name} syllabus
+            {totalMinutes > 0 && ` · ${totalMinutes} min of lecture`}
+            {parts.length > 1 && ` across ${parts.length} parts`}
+            {" · free, no sign-up."}
+          </p>
+        </div>
+
+        {/* Lecture parts. Only worth listing when the chapter is taught across
+            more than one video — with a single part the player above says it. */}
+        {parts.length > 1 && (
+          <div className="rounded-2xl p-5 mb-6"
+               style={{ background: "rgba(17,24,32,0.7)", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <h2 className="text-sm font-black mb-3" style={{ color: subject.color, letterSpacing: "0.06em" }}>
+              LECTURE PARTS
+            </h2>
+            <ol className="m-0 pl-5 space-y-1.5">
+              {parts.map(p => (
+                <li key={p.id} className="text-sm" style={{ color: "#94a3b8" }}>
+                  {p.label}
+                  {p.minutes !== null && (
+                    <span className="text-xs ml-2" style={{ color: "#475569" }}>{p.minutes} min</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+
+        {/* Cross-links. Notes and Practice Questions are shown only when the
+            chapter actually has them — an inviting button that lands on "being
+            prepared" costs more trust than a missing button does. */}
         <div className="flex flex-wrap gap-3 mb-10">
-          <Link href={`/${track}/${subject.id}/${chapter.id}/notes`}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl no-underline text-sm font-bold"
-                style={{ background: `${subject.color}12`, border: `1px solid ${subject.color}30`, color: subject.color }}>
-            <BookOpen className="w-4 h-4" /> Read Notes
-          </Link>
-          <Link href={`/${track}/${subject.id}/${chapter.id}/questions`}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl no-underline text-sm font-bold"
-                style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.3)", color: "#10b981" }}>
-            <HelpCircle className="w-4 h-4" /> Practice Questions
-          </Link>
+          {hasNotes && (
+            <Link href={`/${track}/${subject.id}/${chapter.id}/notes`}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl no-underline text-sm font-bold"
+                  style={{ background: `${subject.color}12`, border: `1px solid ${subject.color}30`, color: subject.color }}>
+              <BookOpen className="w-4 h-4" /> Read Notes
+            </Link>
+          )}
+          {hasQuestions && (
+            <Link href={`/${track}/${subject.id}/${chapter.id}/questions`}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl no-underline text-sm font-bold"
+                  style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.3)", color: "#10b981" }}>
+              <HelpCircle className="w-4 h-4" /> Practice Questions
+            </Link>
+          )}
           <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl no-underline text-sm font-bold"
                 style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)", color: "#f97316" }}>

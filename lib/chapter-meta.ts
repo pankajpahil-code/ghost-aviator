@@ -20,6 +20,57 @@ import type { Subject, Chapter } from "@/lib/subjects";
  *
  * Kept under ~155 characters so Google does not truncate mid-sentence.
  */
+/**
+ * The <title> for a chapter route.
+ *
+ * WHY THE ORDER CHANGED (2026-08-14). Every chapter title used to open with
+ * "Ch.7 " — six characters of the most valuable real estate in search, spent on
+ * a string no student has ever typed. A crawl measured 196 of the 235 notes
+ * titles running past the ~60 characters Google displays, so what a searcher
+ * actually saw was:
+ *
+ *     Ch.16 The 1 in 60 Rule — Notes | Navigation CPL | Ghost A…
+ *
+ * and the word "DGCA" — the qualifier that separates a student sitting an Indian
+ * exam from someone idly reading about navigation — appeared in none of them.
+ *
+ * The topic now leads, because that is the part of the query a student types
+ * ("the 1 in 60 rule", "vertical speed indicator" — both are real queries this
+ * site has already drawn impressions for). Then the exam, then the paper, then
+ * the brand last where truncation costs nothing.
+ *
+ * Dropping the chapter number is safe: no two chapters within one subject share
+ * a title, so every title stays unique. The number is still in the h1, the
+ * breadcrumb and the URL.
+ */
+export function chapterTitle(
+  track: "cpl" | "atpl",
+  subject: Subject,
+  chapter: Chapter,
+  type: string,
+): string {
+  const exam = `DGCA ${track.toUpperCase()}`;
+  const subj = subject.shortName;
+  const brand = "Ghost Aviator";
+
+  switch (type) {
+    // "Practice Questions" and "Video Lecture" were trimmed to one word each:
+    // at ~60 visible characters, the second word was being cut off mid-way on
+    // most chapters and bought no relevance the first one did not.
+    case "questions":
+      return `${chapter.title} — ${exam} ${subj} Questions | ${brand}`;
+    case "video":
+      return `${chapter.title} — ${exam} ${subj} Lecture | ${brand}`;
+    case "chapter-quiz":
+      return `${chapter.title} Quiz — ${exam} ${subj} | ${brand}`;
+    case "mock-test":
+      return `${chapter.title} Chapter Test — ${exam} ${subj} | ${brand}`;
+    case "notes":
+    default:
+      return `${chapter.title} — ${exam} ${subj} Notes | ${brand}`;
+  }
+}
+
 export function chapterMetaDescription(
   track: "cpl" | "atpl",
   subject: Subject,

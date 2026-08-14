@@ -17,6 +17,40 @@ import type { ChapterVideo } from "@/lib/chapter-videos";
  * `uploadDate` in particular is a factual claim about when the Captain
  * published, and this codebase has shipped invented dates before.
  */
+/** "PT1H7M48S" -> 68. Returns null for anything it cannot read. */
+function isoMinutes(iso: string | undefined): number | null {
+  if (!iso) return null;
+  const m = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/.exec(iso);
+  if (!m) return null;
+  const [, h, mi, s] = m;
+  const total = (Number(h ?? 0) * 60) + Number(mi ?? 0) + (Number(s ?? 0) / 60);
+  return total > 0 ? Math.round(total) : null;
+}
+
+/**
+ * The visible lecture-part list for a chapter's video page.
+ *
+ * The labels are the Captain's own topic names from lib/chapter-videos.ts (246
+ * of 285 lectures carry one); the runtimes come from YouTube via
+ * lib/generated/video-metadata.ts. Both are facts already on record here.
+ *
+ * Deliberately NOT included: the YouTube `description` field. 272 of 273 of
+ * those are cut off at 160 characters by YouTube's own meta tag and most open
+ * with the same boilerplate line, so rendering them would put near-identical
+ * text on 140 pages — the exact duplication this page is being fixed to escape.
+ * They stay in the VideoObject, where a truncated description is normal, and
+ * off the page, where it would be filler.
+ */
+export function lecturePartsFor(
+  videos: ChapterVideo[],
+): { id: string; label: string; minutes: number | null }[] {
+  return videos.map((v, i) => ({
+    id: v.id,
+    label: v.label ?? `Part ${i + 1}`,
+    minutes: isoMinutes(VIDEO_METADATA[v.id]?.duration),
+  }));
+}
+
 export function videoObjectsFor(
   track: "cpl" | "atpl",
   subjectId: string,

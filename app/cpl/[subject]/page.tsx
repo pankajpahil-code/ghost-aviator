@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getChapterSpecificQuestions } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
+import { servesRealNotes } from "@/lib/indexability";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { CPL_SUBJECTS } from "@/lib/subjects";
@@ -183,9 +184,17 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
                         // truth and the route and sitemap both use THAT. Left on the
                         // flag, 17 lecture pages were submitted to Google while being
                         // linked from nowhere on the site.
+                        // Notes had the identical defect, found 2026-08-14 and
+                        // the third instance of it: makeContent() hardcodes
+                        // notes to available:true for all 290 chapters, so this
+                        // index linked a Notes button on 27 CPL chapters that
+                        // have no notes.html behind them. A student clicking it
+                        // got a dead end, and Google got 27 more thin URLs to
+                        // form an opinion of the domain from.
                         const available =
                           c.type === "questions" ? getChapterSpecificQuestions(subject.id, ch.id).length > 0
                           : c.type === "video"   ? getChapterVideos(subject.id, ch.id).length > 0
+                          : c.type === "notes"   ? servesRealNotes(subject.id, ch.id)
                           : c.available;
                         return available ? (
                           <Link key={c.type}

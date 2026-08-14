@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import fs from "node:fs";
-import path from "node:path";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter, getChapterSpecificQuestions } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
-import { chapterMetaDescription } from "@/lib/chapter-meta";
+import { chapterMetaDescription, chapterTitle } from "@/lib/chapter-meta";
+import { isIndexableChapterRoute, servesRealNotes, adjacentWithContent, NOINDEX } from "@/lib/indexability";
 import { getInlineNotes } from "@/lib/notes-inline";
-import { videoObjectsFor } from "@/lib/video-schema";
+import { videoObjectsFor, lecturePartsFor } from "@/lib/video-schema";
 import NotesPage       from "@/app/components/content/NotesPage";
 import HtmlNotesPage   from "@/app/components/content/HtmlNotesPage";
 import QuestionsPage   from "@/app/components/content/QuestionsPage";
@@ -36,14 +35,17 @@ export async function generateMetadata({
   const subject = ATPL_SUBJECTS.find(s => s.id === subjectId);
   const chapter = subject?.chapters.find(c => c.id === chapterId);
   if (!subject || !chapter) return {};
-  const label = type === "mock-test" ? "Chapter Test"
-    : type.charAt(0).toUpperCase() + type.slice(1);
   return {
-    title: `Ch.${chapter.number} ${chapter.title} — ${label} | ${subject.shortName} ATPL | Ghost Aviator`,
+    title: chapterTitle("atpl", subject, chapter, type),
     description: chapterMetaDescription(
       "atpl", subject, chapter, type, getQuestionsForChapter(subject.id, chapter.id).length,
     ),
     alternates: { canonical: `/atpl/${subject.id}/${chapter.id}/${type}` },
+    // See the CPL route and lib/indexability.ts: a stub or a drill asks not to
+    // be indexed. On the ATPL side this covers most of the track — 40 of its 68
+    // chapters have no notes published yet, and every one of them was an
+    // indexable page saying so.
+    ...(isIndexableChapterRoute(subject.id, chapter.id, type) ? {} : NOINDEX),
   };
 }
 
@@ -62,32 +64,40 @@ export default async function Page({
   const chapterIdx = subject.chapters.findIndex(c => c.id === chapterId);
   if (chapterIdx === -1) notFound();
 
-  const chapter     = subject.chapters[chapterIdx];
-  const prevChapter = chapterIdx > 0 ? subject.chapters[chapterIdx - 1] : null;
-  const nextChapter = chapterIdx < subject.chapters.length - 1 ? subject.chapters[chapterIdx + 1] : null;
+  const chapter = subject.chapters[chapterIdx];
+
+  // Skip to the nearest chapter that has this route's content — see the CPL
+  // route and adjacentWithContent. This matters more here: 40 of the ATPL
+  // track's 68 chapters have no notes yet, so plain adjacency sent a reader
+  // straight into a stub most of the time.
+  const skips = type === "notes" || type === "video" || type === "questions";
+  const { prev, next } = skips
+    ? adjacentWithContent(subject.chapters, subject.id, chapterIdx, type as "notes")
+    : { prev: chapterIdx - 1, next: chapterIdx + 1 };
+  const prevChapter = prev >= 0 ? subject.chapters[prev] : null;
+  const nextChapter = next >= 0 && next < subject.chapters.length ? subject.chapters[next] : null;
 
   const questions = getQuestionsForChapter(subject.id, chapter.id);
 
   if (type === "notes") {
-    // Human Performance & Limitations book: auto-serve HTML notes whenever
-    // notes.html has been published to public/content/, same pattern as the
-    // CPL instrumentation/radio-telephony/radio-navigation/technical-general subjects.
-    if (subject.id === "human-performance") {
-      const notesFile = path.join(process.cwd(), "public", "content", subject.id, chapter.id, "notes.html");
-      const inlineNotes = fs.existsSync(notesFile) ? getInlineNotes(subject.id, chapter.id) : null;
-      if (inlineNotes) {
-        return (
-          <HtmlNotesPage
-            track="atpl"
-            subject={subject}
-            chapter={chapter}
-            prevChapter={prevChapter}
-            nextChapter={nextChapter}
-            notes={inlineNotes}
-            videos={getChapterVideos(subject.id, chapter.id)}
-          />
-        );
-      }
+    // Same predicate as the sitemap and this route's robots tag — see
+    // lib/indexability.ts. Human Performance chapters serve inline notes as soon
+    // as notes.html is published; the other ATPL subjects have none yet.
+    const inlineNotes = servesRealNotes(subject.id, chapter.id)
+      ? getInlineNotes(subject.id, chapter.id)
+      : null;
+    if (inlineNotes) {
+      return (
+        <HtmlNotesPage
+          track="atpl"
+          subject={subject}
+          chapter={chapter}
+          prevChapter={prevChapter}
+          nextChapter={nextChapter}
+          notes={inlineNotes}
+          videos={getChapterVideos(subject.id, chapter.id)}
+        />
+      );
     }
     return (
       <NotesPage
@@ -159,6 +169,9 @@ export default async function Page({
             prevChapter={prevChapter}
             nextChapter={nextChapter}
             videos={videos}
+            parts={lecturePartsFor(videos)}
+            hasNotes={servesRealNotes(subject.id, chapter.id)}
+            hasQuestions={getChapterSpecificQuestions(subject.id, chapter.id).length > 0}
           />
         </>
       );
