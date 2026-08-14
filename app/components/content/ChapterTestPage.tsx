@@ -87,7 +87,8 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
       <div style={{ background: "#0b1117" }} className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <div className="text-5xl mb-4">📝</div>
-          <h2 className="text-2xl font-black text-white mb-3">Chapter Test Coming Soon</h2>
+          {/* h1, not h2 — same defect as ChapterQuizPage's empty state. */}
+          <h1 className="text-2xl font-black text-white mb-3">Chapter Test Coming Soon</h1>
           <p className="mb-6 text-sm" style={{ color: "#64748b" }}>
             Questions for <strong style={{ color: subject.color }}>{chapter.title}</strong> are being prepared.
             Target: {chapter.questionCount} questions.
@@ -145,9 +146,10 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
         <div className="rounded-3xl p-10 text-center mb-8"
              style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${passed ? "#22c55e" : "#ef4444"}40` }}>
           <div className="text-5xl mb-4">{passed ? "🏆" : "📚"}</div>
-          <h2 className="text-3xl font-black text-white mb-2">
+          {/* Own early return, so this is the page's top-level heading. */}
+          <h1 className="text-3xl font-black text-white mb-2">
             {passed ? "Chapter Cleared!" : "Keep Practising"}
-          </h2>
+          </h1>
           <p className="mb-8" style={{ color: "#64748b" }}>
             {passed
               ? `Passed Ch.${chapter.number} with ${pct}%. Move to the next chapter!`

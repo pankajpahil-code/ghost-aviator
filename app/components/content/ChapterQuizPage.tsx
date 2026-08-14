@@ -65,7 +65,12 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
       <div style={{ background: "#0b1117" }} className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <div className="text-5xl mb-4">📝</div>
-          <h2 className="text-2xl font-black text-white mb-3">Quiz Coming Soon</h2>
+          {/* h1, not h2. Every other state of this page has one; this branch had
+              none at all, so 18 chapters shipped a page with no top-level
+              heading — the document just started at level 2. Invisible to a
+              sighted reader, but it is how a screen-reader user finds out what
+              page they are on. Matches the empty state in QuestionsPage. */}
+          <h1 className="text-2xl font-black text-white mb-3">Quiz Coming Soon</h1>
           <p className="mb-6 text-sm" style={{ color: "#64748b" }}>
             Questions for <strong style={{ color: subject.color }}>{chapter.title}</strong> are being prepared.
             Target: {chapter.questionCount} questions.
@@ -122,9 +127,11 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
         <div className="rounded-3xl p-10 text-center mb-8"
              style={{ background: "rgba(17,24,32,0.95)", border: `1px solid ${passed ? "#22c55e" : "#ef4444"}40` }}>
           <div className="text-5xl mb-4">{passed ? "🏆" : "📚"}</div>
-          <h2 className="text-3xl font-black text-white mb-2">
+          {/* The result is a distinct screen with its own early return, so this
+              is the page's top-level heading, not a section under one. */}
+          <h1 className="text-3xl font-black text-white mb-2">
             {passed ? "Quiz Cleared!" : "Keep Practising"}
-          </h2>
+          </h1>
           <p className="mb-8" style={{ color: "#64748b" }}>
             {passed
               ? `Passed with ${pct}%. Great work on ${chapter.title}!`
