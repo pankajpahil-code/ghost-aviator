@@ -72,6 +72,8 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
   const trkTakenRef = useRef(0);
   const deviceRef = useRef<string>("pointer");
   const markerRef = useRef({ x: 0, y: 0 });
+  /** Display-only heading, integrated from bank. Never reaches the scorer. */
+  const headingRef = useRef(Math.floor(Math.random() * 360));
 
   const elapsed = () => (performance.now() - startedRef.current) / 1000;
 
@@ -245,30 +247,117 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
           const cx = W / 2, cy = H * 0.82, R = Math.min(W / 2, H * 0.72) - 8;
           ctx.clearRect(0, 0, W, H);
 
-          // ── The aeroplane you must hold ────────────────────────────────
-          // Drawn above the gauge so both are visible at once — that
-          // simultaneity IS the task; a student who has to look away from one
-          // to see the other is being tested on scrolling, not attention.
+          // ── Attitude indicator: keep the wings level ───────────────────
+          //
+          // PROVENANCE, and it matters. Nobody on this project has seen the
+          // real test's screen. This is drawn from ONE sentence in a public
+          // video description — the task is "keeping a plane level" — plus the
+          // NASA MATB tracking paradigm. "Level" is attitude, not heading, so
+          // it is an artificial horizon. It is NOT a reproduction of anyone's
+          // display, and must never be described as one.
+          //
+          // Only the DRAWING changed when this replaced a plain box. The error
+          // fed to the scorer is still hypot(x, y) on the same disturbance, so
+          // every psychometric property and every test is untouched — a student
+          // is graded on the same thing, shown on an instrument instead of a dot.
           {
-            const bx = W / 2, by = H * 0.26, br = Math.min(W * 0.30, H * 0.22);
-            ctx.strokeStyle = "rgba(255,255,255,0.12)";
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.rect(bx - br, by - br * 0.62, br * 2, br * 1.24); ctx.stroke();
-            ctx.strokeStyle = "rgba(34,197,94,0.55)";
-            ctx.beginPath(); ctx.moveTo(bx - br * 0.34, by); ctx.lineTo(bx + br * 0.34, by); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(bx, by - br * 0.20); ctx.lineTo(bx, by + br * 0.20); ctx.stroke();
-
             const m = markerRef.current;
-            const mx = bx + Math.max(-1, Math.min(1, m.x)) * br;
-            const my = by + Math.max(-1, Math.min(1, m.y)) * br * 0.62;
+            const cxA = W / 2, cyA = H * 0.27;
+            const rA = Math.min(W * 0.26, H * 0.23);
+            // Bank from the lateral error, pitch from the vertical — the sign is
+            // inverted so pushing the control RIGHT banks right, which is what a
+            // hand expects.
+            const bank = Math.max(-1, Math.min(1, m.x)) * (Math.PI / 6);   // ±30°
+            const pitchPx = Math.max(-1, Math.min(1, m.y)) * rA * 0.75;
+
+            ctx.save();
+            ctx.beginPath(); ctx.arc(cxA, cyA, rA, 0, Math.PI * 2); ctx.clip();
+            ctx.translate(cxA, cyA);
+            ctx.rotate(-bank);
+            ctx.translate(0, pitchPx);
+
+            const big = rA * 2.4;
+            ctx.fillStyle = "#1e6fa8";                       // sky
+            ctx.fillRect(-big, -big, big * 2, big);
+            ctx.fillStyle = "#7a4a1e";                       // ground
+            ctx.fillRect(-big, 0, big * 2, big);
+            ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(-big, 0); ctx.lineTo(big, 0); ctx.stroke();
+
+            // Pitch ladder — long bars every 10°, short every 5°.
+            ctx.lineWidth = 1.5;
+            for (let deg = -20; deg <= 20; deg += 5) {
+              if (deg === 0) continue;
+              const y = (deg / 10) * (rA * 0.38);
+              const halfW = deg % 10 === 0 ? rA * 0.30 : rA * 0.16;
+              ctx.beginPath(); ctx.moveTo(-halfW, y); ctx.lineTo(halfW, y); ctx.stroke();
+            }
+            ctx.restore();
+
+            // Bank scale and pointer — fixed to the case, as on a real AI.
+            ctx.save();
+            ctx.translate(cxA, cyA);
+            ctx.strokeStyle = "rgba(255,255,255,0.8)"; ctx.lineWidth = 1.5;
+            for (const deg of [-30, -20, -10, 0, 10, 20, 30]) {
+              const a = -Math.PI / 2 + (deg * Math.PI) / 180;
+              const inner = deg === 0 ? rA * 0.80 : rA * 0.88;
+              ctx.beginPath();
+              ctx.moveTo(Math.cos(a) * inner, Math.sin(a) * inner);
+              ctx.lineTo(Math.cos(a) * rA, Math.sin(a) * rA);
+              ctx.stroke();
+            }
+            // The moving bank pointer.
+            const pa = -Math.PI / 2 + bank;
+            ctx.fillStyle = "#f0913a";
+            ctx.beginPath();
+            ctx.moveTo(Math.cos(pa) * rA * 0.78, Math.sin(pa) * rA * 0.78);
+            ctx.lineTo(Math.cos(pa - 0.06) * rA * 0.66, Math.sin(pa - 0.06) * rA * 0.66);
+            ctx.lineTo(Math.cos(pa + 0.06) * rA * 0.66, Math.sin(pa + 0.06) * rA * 0.66);
+            ctx.closePath(); ctx.fill();
+            ctx.restore();
+
+            // Fixed aircraft symbol — wings and centre dot, standard layout.
             const off = Math.hypot(m.x, m.y);
             const col = off < 0.22 ? "#22c55e" : off < 0.5 ? "#eab308" : "#ef4444";
-            ctx.strokeStyle = col; ctx.lineWidth = 2.5;
+            ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.lineCap = "round";
             ctx.beginPath();
-            ctx.moveTo(mx - 13, my); ctx.lineTo(mx + 13, my);
-            ctx.moveTo(mx, my - 4); ctx.lineTo(mx, my + 7);
-            ctx.moveTo(mx - 5, my + 7); ctx.lineTo(mx + 5, my + 7);
+            ctx.moveTo(cxA - rA * 0.55, cyA); ctx.lineTo(cxA - rA * 0.18, cyA);
+            ctx.moveTo(cxA + rA * 0.18, cyA); ctx.lineTo(cxA + rA * 0.55, cyA);
+            ctx.moveTo(cxA - rA * 0.18, cyA); ctx.lineTo(cxA - rA * 0.18, cyA + rA * 0.10);
+            ctx.moveTo(cxA + rA * 0.18, cyA); ctx.lineTo(cxA + rA * 0.18, cyA + rA * 0.10);
             ctx.stroke();
+            ctx.fillStyle = col;
+            ctx.beginPath(); ctx.arc(cxA, cyA, 2.5, 0, Math.PI * 2); ctx.fill();
+
+            ctx.strokeStyle = "rgba(255,255,255,0.25)"; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.arc(cxA, cyA, rA, 0, Math.PI * 2); ctx.stroke();
+
+            // Heading tape. Bank produces a turn, so heading integrates bank —
+            // aviation-correct, and it gives the student a second cue that they
+            // are not level. Display only: it never reaches the scorer.
+            headingRef.current = (headingRef.current + (bank / (Math.PI / 6)) * 0.55 + 360) % 360;
+            const hdg = headingRef.current;
+            const tapeY = cyA - rA - 16, tapeW = rA * 2;
+            ctx.save();
+            ctx.beginPath(); ctx.rect(cxA - tapeW / 2, tapeY - 9, tapeW, 18); ctx.clip();
+            ctx.fillStyle = "rgba(255,255,255,0.05)";
+            ctx.fillRect(cxA - tapeW / 2, tapeY - 9, tapeW, 18);
+            ctx.strokeStyle = "rgba(255,255,255,0.55)";
+            ctx.fillStyle = "rgba(255,255,255,0.75)";
+            ctx.font = "10px ui-sans-serif, system-ui, sans-serif";
+            ctx.textAlign = "center";
+            ctx.lineWidth = 1;
+            for (let d = -60; d <= 60; d += 10) {
+              const mark = Math.round((hdg + d) / 10) * 10;
+              const x = cxA + ((mark - hdg) * tapeW) / 120;
+              ctx.beginPath(); ctx.moveTo(x, tapeY + 4); ctx.lineTo(x, tapeY + 9); ctx.stroke();
+              ctx.fillText(String(((mark % 360) + 360) % 360 || 360).padStart(3, "0"), x, tapeY + 1);
+            }
+            ctx.restore();
+            ctx.fillStyle = "#f0913a";
+            ctx.beginPath();
+            ctx.moveTo(cxA, tapeY + 11); ctx.lineTo(cxA - 4, tapeY + 17); ctx.lineTo(cxA + 4, tapeY + 17);
+            ctx.closePath(); ctx.fill();
           }
 
           const A0 = Math.PI, A1 = 2 * Math.PI; // half-dial, left to right

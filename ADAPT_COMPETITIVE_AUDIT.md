@@ -456,6 +456,125 @@ Ranked by how much it differentiates us and how little it costs:
 4. **Extend the questionnaire.** Six scenarios cannot carry the weight the real report
    gives this half. This is now evidence-backed, not just a hunch from the item count.
 
+## 7. THE TRANSCRIPT — what the candidate actually says, 2026-08-12
+
+The auto-captions for the Lakshay Thakur video were finally obtained (yt-dlp, public
+captions, no login). The full text is saved at
+`tools/adapt/candidate-report-transcript.txt`. **This supersedes every inference in
+§1 and §6 that was drawn from the publisher's practice catalogue.** He is reading his
+own report aloud, section by section.
+
+### 7.1 The modules the report actually contains
+
+His own list: *"personality questionnaire, abnormal traits, culture, safety culture,
+maths, physics, cognitive reasoning, English, fast, flight test, performance learning,
+coordination."*
+
+**We are missing two entire modules — FLIGHT TEST and PERFORMANCE LEARNING —
+and our coordination task is mechanically the wrong task.**
+
+### 7.2 Colour banding — SIX levels, and we invented five
+
+*"green, blue, orange … yellow, amber, and red … how excellent, good, reasonable, need
+attention, support, and need to learn … you might also get the low and the high."*
+
+Six levels, not our five, and the labels are theirs, not ours. Our `COLOUR_BANDS` in
+`bands.mjs` should be rebuilt on these six. (His colour list is garbled by a
+self-correction mid-sentence; the six LABELS are unambiguous.)
+
+### 7.3 The two-attempt learning mechanic — the heart of the whole battery
+
+Every psychomotor/FAST task is **performed TWICE, and the score is the IMPROVEMENT**.
+
+*"the tasks you have to perform twice. First, you would be learning how to do it, and the
+second time is again you have to perform the same task … if you perform very well in your
+first attempt, your progress of learning would be very less in your second attempt."*
+
+His own report read: *"candidate shows little evidence of learning across the cognitive
+and physical demand of the task"* — because he did well first time. On coordination he
+scored **2 first attempt, 10 second**, and that improvement is what was rewarded.
+
+**This is materially different from what we built.** Our `learning.mjs` measures a slope
+across SITTINGS over days. The real one measures improvement between two back-to-back
+attempts INSIDE one test. Both are defensible, but only one matches.
+
+His summary of the whole battery: *"This all exam is about how well you adapt and learn."*
+
+### 7.4 FAST — what it actually contains
+
+*"FAST physical, FAST cognitive, spatial awareness, balance, physical coordination and
+dexterity, cognitive capability, reasoning and processing speed, and display through
+auditory and visual channels."*
+
+Auditory AND visual channels — our two-tone radio stream is the right idea.
+
+### 7.5 FLIGHT TEST — a whole module we do not have
+
+*"you'll be having a yoke or a side stick or a joystick and you'll be having rudder
+pedals and you have to fly aircraft from one position to other and in between there
+would be various call, ATC would be calling you … you'll have to go either to the lake
+or you have to go to the town … after all your exam, there would be a certain exam that
+would be asking you whatever was happening in the flight."*
+
+So: **fly A to B, ATC calls give waypoints (wind farm, airfield, power station), you must
+REMEMBER them, and afterwards an MCQ test asks what happened during the flight.**
+
+Scored on: *"physical dexterity and how well I maintained the altitude and speed … also
+maintaining the heading … pitch, roll or way point adherence."*
+
+**This is the module the Captain was asking about** when he asked whether our sim lets a
+student fly an aircraft and maintain heading. The real test does. We do not.
+
+### 7.6 COORDINATION — a ball on a table, not a marker in a box
+
+*"there would be a table, above that there would be a ball and you have to balance the
+ball with your side stick and your rudder pedals and you have to maintain it on the
+table. And if the ball falls, then again it would be coming on the table."*
+
+**Our Control & Co-ordination task is the wrong mechanic.** Ours is first-order
+compensatory tracking — the marker goes where you put it. A ball on a tilting table is
+**second-order**: you command tilt, tilt accelerates the ball, and the ball has momentum.
+That is dramatically harder and is why he called it his worst module. It also has a
+**fail-and-reset** state (the ball falls off and comes back) which we have no concept of.
+
+### 7.7 The knowledge tests are EASIER than we built them
+
+*Maths:* "almost conversions, simple multiplication, division … don't over-prepare … I
+studied till 12th all the math books and trust me the questions are pretty very simple."
+*Physics:* "same till your 10th class — speed, distance, time, force, pressure."
+*Cognitive reasoning:* "numericals … and working memory, spatial rotation."
+*English:* "vocabulary, structure, comprehension."
+
+Confirms **working memory** and **spatial rotation** as real Cognitive Reasoning sections
+we still do not have, and suggests our maths/physics items may be pitched too hard.
+
+### 7.8 Personality questionnaire — 100–150 items, not 275+
+
+*"you will be getting around 100 to 150 questions that would be totally random."*
+Sections named: role, personal style, character, environment. Also reported: abnormal
+traits, culture, safety culture, self-reported anxiety, motivations, risk-taking, and
+**anti-authority, impulsivity, invulnerability** — the FAA hazardous-attitude model our
+questionnaire is already built on, confirmed by name.
+
+His advice: *"you don't have to act very smart … and you don't have to lie."*
+
+### 7.9 Sitting conditions
+
+*"you'll be divided in various group among your batch and there would be a group of 15
+people and each person would be given a system."* Supervised, in a room, on a provided
+machine.
+
+### 7.10 What this changes, in priority order
+
+1. **Build the FLIGHT TEST module** — fly to ATC-called waypoints, hold heading/altitude/
+   speed, then an MCQ recall test on what happened. Entirely missing, and it is the most
+   distinctive part of the real battery.
+2. **Rebuild Control & Co-ordination as a ball on a tilting table** — second-order
+   control with momentum and a fall-and-reset. Ours is the wrong task.
+3. **Two attempts, scored on improvement**, inside FAST, flight test and coordination.
+4. **Six colour bands with the real labels.**
+5. Add working memory and spatial rotation to the cognitive module.
+
 ## 5. Sources
 
 First-party (Symbiotics Ltd): product pages for
