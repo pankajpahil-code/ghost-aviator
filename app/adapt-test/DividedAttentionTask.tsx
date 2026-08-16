@@ -19,7 +19,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Radio, Volume2 } from "lucide-react";
-import { makeGauge, GAUGE, WINDOW_SEC, phaseIndexAt, PHASES } from "@/lib/adapt/divided-attention.mjs";
+import { makeGauge, GAUGE, WINDOW_SEC, phaseIndexAt, PHASES, trackingGainAt } from "@/lib/adapt/divided-attention.mjs";
+import { makeDisturbance, markerPosition, inputClass, SAMPLE_HZ } from "@/lib/adapt/tracking.mjs";
 
 /**
  * How long this particular interruption is shown for.
@@ -57,6 +58,20 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
   const answeredRef = useRef<Set<string>>(new Set());
   const audioRef = useRef<AudioContext | null>(null);
   const gaugeRef = useRef(makeGauge(run.gaugeSeed));
+
+  // ── The continuous stream ────────────────────────────────────────────────
+  //
+  // Sampled on the SAME fixed 50 Hz clock the standalone tracking task uses, so
+  // the score cannot depend on how fast this student's screen refreshes. The
+  // disturbance is amplified per phase by the shared trackingGainAt — the same
+  // function the scorer grades with, so the two can never drift apart.
+  const distRef = useRef(makeDisturbance(run.trackingSeed));
+  const controlRef = useRef({ x: 0, y: 0 });
+  const trkIdxRef = useRef(0);
+  const trkSumSqRef = useRef(0);
+  const trkTakenRef = useRef(0);
+  const deviceRef = useRef<string>("pointer");
+  const markerRef = useRef({ x: 0, y: 0 });
 
   const elapsed = () => (performance.now() - startedRef.current) / 1000;
 
@@ -109,6 +124,23 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
     setRemaining(run.durationSec);
     setPhase("running");
   }, [run.durationSec]);
+
+  /**
+   * Pointer position -> control input, in the same normalised space the scorer
+   * uses. The control is what the student ADDS to the disturbance, so holding
+   * the marker centred means producing the exact opposite of the drift.
+   */
+  const readControl = (clientX: number, clientY: number, el: HTMLCanvasElement, pointerType: string) => {
+    if (phase !== "running") return;
+    const rect = el.getBoundingClientRect();
+    const bx = rect.left + rect.width / 2;
+    const by = rect.top + rect.height * 0.26;
+    const br = Math.min(rect.width * 0.30, rect.height * 0.22);
+    const nx = Math.max(-1, Math.min(1, (clientX - bx) / br));
+    const ny = Math.max(-1, Math.min(1, (clientY - by) / (br * 0.62)));
+    controlRef.current = { x: nx, y: ny };
+    deviceRef.current = inputClass(pointerType === "touch" ? "touch" : "pointer");
+  };
 
   const acknowledge = () => {
     if (phase !== "running") return;
@@ -170,6 +202,37 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
       const left10 = live ? Math.max(0, live.t + itemWindow(live) - t) : 0;
       setPromptLeft((prev) => (Math.round(prev * 10) === Math.round(left10 * 10) ? prev : left10));
 
+      // ── Sample the continuous stream ──────────────────────────────────────
+      //
+      // On a fixed 50 Hz grid, not per frame: a 120 Hz laptop must not
+      // contribute twice as many samples as a 60 Hz phone over the same minute.
+      // Sample instants are idx*dt computed fresh rather than a running total,
+      // so floating-point drift cannot creep in device-dependently.
+      {
+        const dt = 1 / SAMPLE_HZ;
+        const target = t + 1e-9;
+        // A long stall (tab hidden, phone locked) is SKIPPED, not backfilled —
+        // crediting a student with seconds of flawless tracking they never flew
+        // would be inventing a score.
+        if (target - trkIdxRef.current * dt > 1) {
+          trkIdxRef.current = Math.ceil(target / dt);
+        } else {
+          while (trkIdxRef.current * dt <= target) {
+            const st = trkIdxRef.current * dt;
+            const g = trackingGainAt(st, run.durationSec);
+            const d = distRef.current.at(st);
+            const ex = d.x * g + controlRef.current.x;
+            const ey = d.y * g + controlRef.current.y;
+            trkSumSqRef.current += ex * ex + ey * ey;
+            trkTakenRef.current++;
+            trkIdxRef.current++;
+          }
+        }
+        const gNow = trackingGainAt(Math.min(t, run.durationSec), run.durationSec);
+        const dNow = distRef.current.at(Math.min(t, run.durationSec));
+        markerRef.current = markerPosition({ x: dNow.x * gNow, y: dNow.y * gNow }, controlRef.current);
+      }
+
       if (canvas) {
         const rect = canvas.getBoundingClientRect();
         const dpr = window.devicePixelRatio || 1;
@@ -181,6 +244,32 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
           const W = rect.width, H = rect.height;
           const cx = W / 2, cy = H * 0.82, R = Math.min(W / 2, H * 0.72) - 8;
           ctx.clearRect(0, 0, W, H);
+
+          // ── The aeroplane you must hold ────────────────────────────────
+          // Drawn above the gauge so both are visible at once — that
+          // simultaneity IS the task; a student who has to look away from one
+          // to see the other is being tested on scrolling, not attention.
+          {
+            const bx = W / 2, by = H * 0.26, br = Math.min(W * 0.30, H * 0.22);
+            ctx.strokeStyle = "rgba(255,255,255,0.12)";
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.rect(bx - br, by - br * 0.62, br * 2, br * 1.24); ctx.stroke();
+            ctx.strokeStyle = "rgba(34,197,94,0.55)";
+            ctx.beginPath(); ctx.moveTo(bx - br * 0.34, by); ctx.lineTo(bx + br * 0.34, by); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(bx, by - br * 0.20); ctx.lineTo(bx, by + br * 0.20); ctx.stroke();
+
+            const m = markerRef.current;
+            const mx = bx + Math.max(-1, Math.min(1, m.x)) * br;
+            const my = by + Math.max(-1, Math.min(1, m.y)) * br * 0.62;
+            const off = Math.hypot(m.x, m.y);
+            const col = off < 0.22 ? "#22c55e" : off < 0.5 ? "#eab308" : "#ef4444";
+            ctx.strokeStyle = col; ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(mx - 13, my); ctx.lineTo(mx + 13, my);
+            ctx.moveTo(mx, my - 4); ctx.lineTo(mx, my + 7);
+            ctx.moveTo(mx - 5, my + 7); ctx.lineTo(mx + 5, my + 7);
+            ctx.stroke();
+          }
 
           const A0 = Math.PI, A1 = 2 * Math.PI; // half-dial, left to right
           const angleFor = (v: number) => A0 + ((v - GAUGE.min) / (GAUGE.max - GAUGE.min)) * (A1 - A0);
@@ -215,6 +304,10 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
             if (!answeredRef.current.has(item.id)) responsesRef.current.push({ stream: "arithmetic", id: item.id, chosen: null });
           }
           try { void audioRef.current?.close(); } catch { /* already closed */ }
+          {
+            const rmse = trkTakenRef.current === 0 ? null : Math.sqrt(trkSumSqRef.current / trkTakenRef.current);
+            if (rmse !== null) responsesRef.current.push({ stream: "tracking", rmse, samples: trkTakenRef.current, inputClass: deviceRef.current });
+          }
           onComplete(responsesRef.current);
         }
         return;
@@ -232,7 +325,11 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
     const onHide = () => {
       if (document.visibilityState !== "hidden" || doneRef.current) return;
       doneRef.current = true;
-      onComplete(responsesRef.current);
+      {
+            const rmse = trkTakenRef.current === 0 ? null : Math.sqrt(trkSumSqRef.current / trkTakenRef.current);
+            if (rmse !== null) responsesRef.current.push({ stream: "tracking", rmse, samples: trkTakenRef.current, inputClass: deviceRef.current });
+          }
+          onComplete(responsesRef.current);
     };
     document.addEventListener("visibilitychange", onHide);
     return () => document.removeEventListener("visibilitychange", onHide);
@@ -246,8 +343,14 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
   if (phase === "ready") {
     return (
       <div className="glass-card p-6 sm:p-8">
-        <h3 className="text-xl font-black text-white mb-2">Three things at once</h3>
+        <h3 className="text-xl font-black text-white mb-2">Four things at once</h3>
         <ul className="text-sm space-y-2 mb-5" style={{ color: "#94a3b8" }}>
+          <li>
+            <strong className="text-white">Fly the aeroplane.</strong> Drag anywhere in the top box
+            to hold the aircraft symbol on the centre. It drifts the whole time, and it drifts
+            harder as the run goes on. This one never stops — it is running while you do
+            everything else below, and that is the point.
+          </li>
           <li><strong className="text-white">Watch the gauge.</strong> When the needle enters the red, press ACKNOWLEDGE — and only then. Pressing when it is safe costs you marks.</li>
           <li><strong className="text-white">Listen to the radio.</strong> A <em>rising</em> two-tone call is for you: key the mic. A <em>falling</em> call is another aircraft — leave it alone.</li>
           <li><strong className="text-white">Answer the sums.</strong> They interrupt without warning and do not wait.</li>
@@ -256,7 +359,7 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
           <Volume2 className="w-3.5 h-3.5 inline mr-1.5" style={{ color: cyan }} />
           Sound is required for the radio stream — turn it up before you start.
           You cannot ace this by picking a favourite task: abandoning one stream is
-          scored as fixation and costs more than being merely average at all three.
+          scored as fixation and costs more than being merely average at all four — and flying beautifully while ignoring the rest scores close to nothing.
           <strong className="text-white"> It gets harder as it runs</strong> — calls and sums
           arrive closer together and you get less time to answer each one. Your result
           breaks the run into its three phases, so you can see exactly where you ran out
@@ -292,7 +395,20 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
         </div>
       )}
 
-      <canvas ref={canvasRef} className="w-full" style={{ height: 150 }} />
+      {/* Taller than it was: the canvas now carries the aeroplane as well as
+          the gauge, and both must be readable without scrolling. Dragging
+          anywhere inside steers — touch-action:none is load-bearing on a phone
+          or the browser scrolls the page instead of flying. */}
+      <canvas
+        ref={canvasRef}
+        className="w-full"
+        style={{ height: 300, touchAction: "none", cursor: "none" }}
+        onPointerDown={(e) => {
+          e.currentTarget.setPointerCapture(e.pointerId);
+          readControl(e.clientX, e.clientY, e.currentTarget, e.pointerType);
+        }}
+        onPointerMove={(e) => readControl(e.clientX, e.clientY, e.currentTarget, e.pointerType)}
+      />
 
       <div className="grid grid-cols-2 gap-3 mt-4">
         <button onClick={acknowledge}

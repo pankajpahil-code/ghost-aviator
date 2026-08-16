@@ -56,6 +56,10 @@ function clock(sec: number) {
 const BAND_COLOUR: Record<string, string> = { low: "#ef4444", average: "#eab308", high: "#22c55e" };
 
 const STREAM_LABEL: Record<string, string> = {
+  // Without this entry the report can name "tracking" as the weakest stream and
+  // render an empty label — the exact failure that follows from adding a stream
+  // to the engine and forgetting the presentation layer reads from a map.
+  tracking: "Flying the aeroplane",
   monitor: "Gauge monitoring",
   radio: "Radio discipline",
   arithmetic: "Interruptions",
@@ -237,7 +241,7 @@ export default function AdaptRunner() {
                     {/* Derived, never counted by hand — a hardcoded "six
                         situations" goes stale the moment a scenario is added. */}
                     {m.kind === "psychomotor" ? "one continuous run"
-                      : m.kind === "divided-attention" ? "three tasks at once, escalating"
+                      : m.kind === "divided-attention" ? "four tasks at once, escalating"
                       : m.kind === "behavioural" ? `${ATTITUDE_SCENARIOS.length} situations`
                       : `${m.itemCount} questions`}
                   </span>

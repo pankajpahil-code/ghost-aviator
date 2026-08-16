@@ -23,6 +23,9 @@ export interface DividedRun {
   radio: RadioCall[];
   arithmetic: Interruption[];
   phases: PhaseWindow[];
+  /** Seed for the continuous stream — its own, so it never drifts in lockstep with the gauge. */
+  trackingSeed: number;
+  tracking: { seed: number; sampleHz: number; gain: Record<string, number> };
 }
 
 export type PhaseKey = "settling" | "building" | "saturated";
@@ -49,9 +52,10 @@ export interface PhaseScore extends PhaseWindow {
   weakest: StreamName | null;
 }
 
-export type StreamName = "monitor" | "radio" | "arithmetic";
+export type StreamName = "tracking" | "monitor" | "radio" | "arithmetic";
 
 export type DividedResponse =
+  | { stream: "tracking"; rmse: number; samples?: number; inputClass?: string }
   | { stream: "monitor"; t: number }
   | { stream: "radio"; t: number }
   | { stream: "arithmetic"; id: string; chosen: number | null };
@@ -68,12 +72,26 @@ export interface DividedScore {
   phases: PhaseScore[];
   /** The phase where performance stepped down, or null if it never did. */
   collapsePhase: PhaseKey | null;
+  /** Null when the continuous stream was never flown — never a zero. */
+  tracking: {
+    rmse: number;
+    baseline: number;
+    cancellation: number;
+    samples: number | null;
+    inputClass: string | null;
+    incomplete: boolean | null;
+  } | null;
 }
 
 export declare const STREAMS: StreamName[];
 export declare const WINDOW_SEC: { radio: number; arithmetic: number };
 export declare const FIXATION_WEIGHT: number;
 export declare const MIN_EXCURSIONS: number;
+export declare const TRACKING_GAIN: Record<string, number>;
+/** Disturbance multiplier at time t — used by BOTH the component and the scorer. */
+export declare function trackingGainAt(t: number, durationSec: number): number;
+/** Do-nothing baseline for the gained disturbance. */
+export declare function passiveRmseGained(seed: number, durationSec: number, sampleHz?: number): number | null;
 export declare const PHASES: Phase[];
 export declare const COLLAPSE_DROP: number;
 export declare function phaseIndexAt(t: number, durationSec: number): number;
