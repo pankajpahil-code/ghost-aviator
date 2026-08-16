@@ -348,6 +348,103 @@ and the keepable-report / Iron-Rule-3 question. And buying the £68 bundle.
 
 ---
 
+## 6. A candidate's ACTUAL report — new evidence, 2026-08-12
+
+The Captain supplied two YouTube sources. One of them is the best evidence we have
+seen on this test, because it is a real candidate walking through **his own official
+Symbiotics ADAPT report** on screen.
+
+### 6.1 "How to Pass the ADAPT exam in First Attempt | IndiGo Cadet Selection Process"
+Channel **Lakshay Thakur** (767 subs), 4.4K views, ~2 months old, 20 minutes.
+Sourcing tier: **first-hand candidate account** — he is showing his own report. Not
+first-party from the publisher, but far stronger than a coaching blog.
+
+**His stated results:** 95% English, 90% Maths. **Concerns flagged on Coordination and
+on FAST** — the two psychomotor modules, exactly the ones our own audit called the
+hardest to prepare for.
+
+**The report's actual section order, from his chapter list:**
+
+| Time | Section |
+|---|---|
+| 0:00 | Why the ADAPT test |
+| 1:06 | **The Silhouette Profile** |
+| 4:05 | Personality Questionnaire — **Role** |
+| 5:53 | Personality Questionnaire — **Personal Style** |
+| 6:46 | Personality Questionnaire — **Character** |
+| 7:12 | Personality Questionnaire — **Work Environment** |
+| 7:43 | Personality Questionnaire — **Silhouette** |
+| 8:28 | Personality Questionnaire — Summary |
+| 8:53 | Personality Questionnaire — **Key Attributes** |
+| 11:10 | Progressive Maths |
+| 11:40 | Progressive Physics & Cognitive Foundation |
+| 11:58 | **English** |
+| 12:14 | **FAST & Flight Test** |
+| 15:36 | Coordination & Control |
+| 17:00 | Symbiotics ADAPT |
+| 19:44 | Q&A |
+
+**Three findings that change what we thought:**
+
+1. **English IS part of the cadet battery.** Our §1.2 treated the English Language test
+   as a separate instrument outside the cadet set, and §1.3 listed only six cadet
+   products. A real cadet report contains an English section. **Our English module is
+   therefore not "ours rather than theirs" — it belongs.** Correcting the earlier claim.
+2. **"Hazardous attitudes" are explicitly part of what airlines read.** His description
+   says the report covers "what hazardous attitudes airlines look for". Our
+   attitudes-and-airmanship module, built on the FAA hazardous-attitude inventory and
+   deliberately weighted zero, is aimed at a real thing the real report names.
+3. **The personality answers generate the interview.** He states that the questionnaire
+   responses "automatically generate tough questions for your final interview panel."
+   If true, the APQ is not a pass/fail gate — it is the source material for the human
+   interview that follows. **That is the single most useful thing on this page**, and
+   nothing free in India tells a student it.
+
+**Note the report is dominated by the personality half** — roughly 9 of his 20 minutes,
+against ~2 minutes for all three knowledge tests combined. We have been building the
+knowledge modules hardest and treating the questionnaire as a side feature. The real
+report weights it the other way round.
+
+### 6.2 Short: "Adapt Test Indigo Cadet Pilot Program — Multitasking, Coordination ball games"
+Channel **Capt.CoalField**, 27,184 views, 13 May 2025, 60 seconds.
+Sourcing tier: **third-party explainer**, and it says so itself — the clip carries an
+explicit disclaimer that the game visuals are "sample visuals sourced from publicly
+available material on the internet", not the official test.
+
+Useful content: describes the multitasking task as "keeping a plane level, doing math,
+and responding to symbols" simultaneously, and the ball game as "controlling a moving
+object with a joystick **or keyboard**". Assesses multitasking, hand-eye coordination,
+concentration under pressure, situational awareness, decision-making speed.
+
+The keyboard mention is another independent voice against the "you must have a joystick"
+claim the coaching blogs repeat (see §1.4).
+
+### 6.3 Publisher page re-verified 2026-08-12 — unchanged
+Prices, attempts and rules confirmed identical to §1.3: Knowledge £48, Dexterity £47,
+**Essentials £68**, Insight £245. Knowledge tests repeatable 4 further times (5 total);
+dexterity tests 14 times; 3 months' access. FAST and Co-Ordination **cannot be taken on
+a tablet**. APQ valid 24 months, once only, and **the report is not released until the
+psychologist feedback session is completed** — current lead time 3 weeks.
+
+### 6.4 What this suggests building next
+
+Ranked by how much it differentiates us and how little it costs:
+
+1. ~~**Show a panel-question preview after the attitudes questionnaire.**~~ **BUILT
+   2026-08-12** — `lib/adapt/panel-questions.mjs`, rendered by `PanelQuestions` on the
+   result page. Driven by the attitudes the student actually showed, breadth-first, capped
+   at five, with a consistency prompt when the paired answers disagree. The questions are
+   ORIGINAL, written against the published FAA hazardous-attitude model the questionnaire
+   is already scored on — the preamble states plainly they are not the real test's items,
+   and a test fails if that sentence is ever softened. Each carries a `listeningFor` line,
+   which is the half that actually coaches and the half no free resource in India offers.
+2. **Restructure the attitudes report into the real report's sections** — Role, Personal
+   Style, Character, Work Environment, Key Attributes. Familiarisation is the product.
+3. **A "silhouette"-style visual profile.** We do not know the real one's construction and
+   must not fake it — but a shape-based profile summary is the format candidates meet.
+4. **Extend the questionnaire.** Six scenarios cannot carry the weight the real report
+   gives this half. This is now evidence-backed, not just a hunch from the item count.
+
 ## 5. Sources
 
 First-party (Symbiotics Ltd): product pages for

@@ -24,9 +24,10 @@
 // band boundaries are ours, because they are — the publisher does not publish
 // theirs and we did not buy the test to observe them.
 
-import { AlertTriangle, CheckCircle2 } from "lucide-react";
+import { AlertTriangle, CheckCircle2, MessagesSquare } from "lucide-react";
 import { reportLine, colourBandForSten, BAND_PROVENANCE } from "@/lib/adapt/bands.mjs";
 import { learningFor, learningNote } from "@/lib/adapt/learning.mjs";
+import { panelQuestionsFor, PANEL_PREAMBLE } from "@/lib/adapt/panel-questions.mjs";
 import type { SaveOutcome } from "@/lib/adapt/results";
 import SignupPrompt from "./SignupPrompt";
 
@@ -400,5 +401,52 @@ export function ModuleScoreLine({ stanine }: { stanine: number }) {
       Stanine {line.stanine} · sten {line.sten}
       <span className="block text-[11px] font-normal">{line.band.label}</span>
     </span>
+  );
+}
+
+/**
+ * The questions a selection panel may build from the questionnaire answers.
+ *
+ * Why this is on the page at all: a candidate who published a walkthrough of
+ * his own real report states that the personality answers are used to generate
+ * questions for the final interview panel. If that is right — and it matches
+ * how competency-based airline selection generally works — then the
+ * questionnaire is not a gate, it is the raw material for the conversation
+ * afterwards. A student who knows that stops guessing "correct" answers and
+ * starts preparing to defend honest ones.
+ *
+ * The questions are OURS, written against the same published attitude model the
+ * answers are scored with. The preamble says so; see panel-questions.mjs.
+ */
+export function PanelQuestions({ profile }: { profile: unknown }) {
+  const questions = panelQuestionsFor(profile);
+  if (questions.length === 0) return null;
+
+  return (
+    <div className="mt-4 mb-2 p-4 rounded-lg"
+         style={{ background: "rgba(240,145,58,0.06)", border: "1px solid rgba(240,145,58,0.25)" }}>
+      <div className="flex items-center gap-2 mb-2">
+        <MessagesSquare className="w-4 h-4 shrink-0" style={{ color: "#f0913a" }} aria-hidden />
+        <span className="text-[11px] font-bold uppercase" style={{ color: "#f0913a", letterSpacing: "0.08em" }}>
+          what a panel may ask you about these answers
+        </span>
+      </div>
+
+      <p className="text-[11px] leading-relaxed mb-4" style={{ color: "#94a3b8" }}>{PANEL_PREAMBLE}</p>
+
+      <ol className="space-y-3 list-none p-0 m-0">
+        {questions.map((q, i) => (
+          <li key={q.question}>
+            <div className="text-sm font-bold text-white leading-snug">
+              <span style={{ color: "#f0913a" }}>{i + 1}.</span> {q.question}
+            </div>
+            <p className="text-xs mt-1 leading-relaxed" style={{ color: "#cbd5e1" }}>
+              <span className="font-bold" style={{ color: "#94a3b8" }}>They are listening for: </span>
+              {q.listeningFor}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }

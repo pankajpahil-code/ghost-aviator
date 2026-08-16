@@ -29,7 +29,7 @@ import { recordAttempt, telemetryEnabled, setTelemetryEnabled, subscribeTelemetr
 import { saveResults, loadResults, seriesFor, type SaveOutcome, type SavedRow } from "@/lib/adapt/results";
 import { useUser } from "@/lib/supabase";
 import SignupPrompt from "./SignupPrompt";
-import { OverallScore, SaveNotice, TierBreakdown, PhaseBreakdown, EnduranceBreakdown, LearningPanel, ModuleScoreLine } from "./ReportBlocks";
+import { OverallScore, SaveNotice, TierBreakdown, PhaseBreakdown, EnduranceBreakdown, LearningPanel, ModuleScoreLine, PanelQuestions } from "./ReportBlocks";
 
 type AnyResult = ModuleResult | TrackingResult | DividedAttentionResult | PersonalityResult;
 const isTracking = (r: AnyResult): r is TrackingResult => r.kind === "psychomotor";
@@ -331,6 +331,11 @@ export default function AdaptRunner() {
                   is worth a moment&apos;s thought rather than a mark.
                 </p>
               )}
+
+              {/* The questionnaire is not a gate — in a real process it feeds
+                  the interview that follows. This is the half of the pipeline
+                  no free resource in India shows a student. */}
+              <PanelQuestions profile={r.profile} />
             </div>
           ) : isDivided(r) ? (
             <div key={r.moduleId} className="mb-6">
