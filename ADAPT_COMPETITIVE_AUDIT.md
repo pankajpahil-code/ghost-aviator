@@ -63,8 +63,19 @@ Behavioural: **ADAPT Personality Questionnaire (APQ)** · Aspects Leadership ·
 Crew Resource Management · Emotional Intelligence · Motivation Drivers ·
 Preferences Under Pressure · Instructor Capabilities.
 
-**What a cadet actually sits** — the six Symbiotics themselves package as the
-cadet products: Maths, Physics, Cognitive Reasoning, FAST, Ball Game, APQ.
+**What a cadet actually sits — CORRECTED 2026-08-12.** This section previously stated
+that the battery was "the six Symbiotics themselves package as the cadet products:
+Maths, Physics, Cognitive Reasoning, FAST, Ball Game, APQ." **That was wrong, and so was
+the reasoning that produced it.** Those six are what they SELL as practice — a shop
+window, not the exam paper.
+
+A real candidate's report (§6.1) additionally contains **English**, and names a
+**"FAST & Flight Test"** section and a **"Progressive Physics & Cognitive Foundation"**
+section — naming that does not match the practice-product list either.
+
+**The only authority on what is actually administered is a real report**, and we hold
+exactly one, second-hand, from a candidate's video. Every inference in §1.2 that was
+drawn from the practice catalogue must be read with this correction applied.
 
 ### 1.3 Hard specifications — first-party, quoted from the product pages
 
