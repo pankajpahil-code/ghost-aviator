@@ -11,7 +11,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { AlertTriangle, ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Clock, RotateCcw, ShieldCheck, XCircle } from "lucide-react";
-import { buildSession, scoreModule, scoreTracking, scoreDividedAttention, scorePersonality, scoreSession, MODULES, MODULE_IDS } from "@/lib/adapt/session.mjs";
+import { buildSession, scoreModule, scoreTracking, scoreDividedAttention, scorePersonality, scoreSession, MODULES, MODULE_IDS, DIFFICULTY, DIFFICULTY_KEYS, DEFAULT_DIFFICULTY } from "@/lib/adapt/session.mjs";
 import type { AdaptSession, ModuleResult, TrackingResult, DividedAttentionResult, PersonalityResult, CompositeResult } from "@/lib/adapt/session.mjs";
 import type { DividedRun, DividedResponse } from "@/lib/adapt/divided-attention.mjs";
 import type { TrackingRun } from "@/lib/adapt/session.mjs";
@@ -19,6 +19,7 @@ import { randomSeed } from "@/lib/adapt/rng.mjs";
 import { inputLabel } from "@/lib/adapt/tracking.mjs";
 import TrackingTask, { type TrackingRaw } from "./TrackingTask";
 import DividedAttentionTask from "./DividedAttentionTask";
+import RecallDebrief from "./RecallDebrief";
 import AttitudesTask from "./AttitudesTask";
 import type { PersonalityResponse } from "@/lib/adapt/personality.mjs";
 import { SCENARIOS as ATTITUDE_SCENARIOS } from "@/lib/adapt/personality.mjs";
@@ -74,6 +75,12 @@ export default function AdaptRunner() {
   const [results, setResults] = useState<AnyResult[]>([]);
   const [remaining, setRemaining] = useState(0);
   const [reviewOpen, setReviewOpen] = useState<string | null>(null);
+  /**
+   * Responses from a finished multitasking run, held back while the debrief is
+   * asked. The module is not scored until both halves are in — the debrief is a
+   * scored section of the same run, not a bonus round after it.
+   */
+  const [pendingDivided, setPendingDivided] = useState<DividedResponse[] | null>(null);
   const history = useAdaptHistory();
   // `loading` matters here: useUser resolves asynchronously, so for the first
   // moment after mount a signed-IN student looks signed out. Without this the
@@ -116,13 +123,14 @@ export default function AdaptRunner() {
   // drill one weak area without committing an evening — so the briefing lets
   // them choose, and defaults to everything.
   const [picked, setPicked] = useState<string[]>(MODULE_IDS);
+  const [difficulty, setDifficulty] = useState<string>(DEFAULT_DIFFICULTY);
   const togglePicked = (id: string) =>
     setPicked((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : MODULE_IDS.filter((m) => prev.includes(m) || m === id)));
 
-  const start = useCallback((seed?: number, ids?: string[]) => {
+  const start = useCallback((seed?: number, ids?: string[], level?: string) => {
     const s = Number.isInteger(seed) ? (seed as number) : randomSeed();
     const chosen = ids?.length ? ids : MODULE_IDS;
-    const built = buildSession(s, chosen);
+    const built = buildSession(s, chosen, level ?? DEFAULT_DIFFICULTY);
     setSession(built);
     setResponses(built.modules.map((m) => (m.items ?? []).map(() => null)));
     setResults([]);
@@ -268,7 +276,47 @@ export default function AdaptRunner() {
 
         {history.length > 0 && <ProgressPanel attempts={history} />}
 
-        <button onClick={() => start(undefined, picked)} disabled={picked.length === 0}
+        {/* The setting is chosen before the seed is rolled, and it travels with
+            every score from here on. The copy is explicit that the settings are
+            not comparable, because the criterion ladder deliberately does not
+            move between them — see DIFFICULTY in session.mjs. */}
+        <div className="mb-5">
+          <div className="text-xs font-bold tracking-widest mb-2" style={{ color: cyan, letterSpacing: "0.15em" }}>
+            DIFFICULTY
+          </div>
+          <div className="grid sm:grid-cols-3 gap-2">
+            {DIFFICULTY_KEYS.map((key) => {
+              const d = DIFFICULTY[key];
+              const on = difficulty === key;
+              return (
+                <button
+                  key={key}
+                  onClick={() => setDifficulty(key)}
+                  className="text-left p-3 rounded-lg"
+                  style={{
+                    background: on ? "rgba(240,145,58,0.10)" : "rgba(255,255,255,0.03)",
+                    border: `1px solid ${on ? "rgba(240,145,58,0.55)" : "rgba(255,255,255,0.12)"}`,
+                  }}
+                >
+                  <div className="font-black text-sm mb-1" style={{ color: on ? cyan : "#e2e8f0" }}>
+                    {d.label}
+                    {key === DEFAULT_DIFFICULTY && (
+                      <span className="ml-2 text-[10px] font-bold" style={{ color: "#64748b" }}>REAL CLOCKS</span>
+                    )}
+                  </div>
+                  <div className="text-xs leading-snug" style={{ color: "#94a3b8" }}>{d.blurb}</div>
+                </button>
+              );
+            })}
+          </div>
+          <p className="text-xs mt-2" style={{ color: "#64748b" }}>
+            The pass marks are the same at every setting — only the clock and the workload change. That
+            means a score on one setting cannot be compared with a score on another, so your progress is
+            tracked separately for each.
+          </p>
+        </div>
+
+        <button onClick={() => start(undefined, picked, difficulty)} disabled={picked.length === 0}
                 className="btn-primary px-8 py-3 font-bold rounded-lg disabled:opacity-40">
           {picked.length === MODULE_IDS.length
             ? "Begin the full session"
@@ -283,10 +331,33 @@ export default function AdaptRunner() {
     return (
       <div className="select-none" onContextMenu={(e) => e.preventDefault()}>
         <div className="glass-card p-6 sm:p-8 mb-6">
-          <h2 className="text-2xl font-black text-white mb-1">Your result</h2>
+          <div className="flex items-start justify-between gap-3 mb-1">
+            <h2 className="text-2xl font-black text-white">Your result</h2>
+            {/* The setting is stamped on the result, not tucked away. A stanine
+                means the same raw performance at every setting — the ladder does
+                not move — so the setting is the only thing that tells a reader
+                how much the number is worth. */}
+            <span
+              className="text-[10px] font-black px-2 py-1 rounded shrink-0"
+              style={{
+                background: "rgba(240,145,58,0.12)",
+                color: cyan,
+                border: "1px solid rgba(240,145,58,0.35)",
+                letterSpacing: "0.1em",
+              }}
+            >
+              {(DIFFICULTY[session.difficulty]?.label ?? session.difficulty).toUpperCase()}
+            </span>
+          </div>
           <p className="text-xs mb-6" style={{ color: "#64748b" }}>
             Session seed <code style={{ color: cyan }}>{session.seed}</code> — the same seed always
             builds the same paper, so you can sit this one again and compare like for like.
+            {session.difficulty !== DEFAULT_DIFFICULTY && (
+              <>
+                {" "}The pass marks below are the same ones used at every setting, so this result is
+                not comparable with a result sat on a different setting.
+              </>
+            )}
           </p>
 
           <SaveNotice outcome={saveState} signedIn={Boolean(user)} />
@@ -348,7 +419,7 @@ export default function AdaptRunner() {
                 <ModuleScoreLine stanine={r.stanine} />
               </div>
               <div className="text-xs mb-3" style={{ color: "#94a3b8" }}>
-                Overall <strong className="text-white">{Math.round(r.composite)}%</strong> across all three streams
+                Overall <strong className="text-white">{Math.round(r.composite)}%</strong> across all four live streams
                 {r.weakest && <> — weakest was <strong className="text-white">{STREAM_LABEL[r.weakest] ?? r.weakest}</strong></>}
               </div>
 
@@ -367,6 +438,55 @@ export default function AdaptRunner() {
                       <span className="w-44 text-right" style={{ color: "#64748b" }}>{note}</span>
                     </div>
                   ))}
+                </div>
+              )}
+
+              {/* The debrief and the latency sit BELOW the bars and outside the
+                  composite, because that is exactly what they are: reported
+                  beside the score, not folded into it. Saying so on the page is
+                  the same honesty the published cut ladder is there for. */}
+              {r.detail?.sightings && (
+                <div className="text-xs mb-2" style={{ color: "#94a3b8" }}>
+                  Lookout — you called{" "}
+                  <strong className="text-white">
+                    {r.detail.sightings.correct}/{r.detail.sightings.total}
+                  </strong>{" "}
+                  of what passed the window
+                  {r.detail.sightings.misidentified > 0 && <>, {r.detail.sightings.misidentified} called as the wrong type</>}
+                  {r.detail.sightings.falseReports > 0 && <>, {r.detail.sightings.falseReports} called with nothing there</>}.{" "}
+                  <span style={{ color: "#64748b" }}>Reported separately; it does not change the score above.</span>
+                </div>
+              )}
+
+              {r.detail?.recall && (
+                <div className="text-xs mb-2" style={{ color: "#94a3b8" }}>
+                  Debrief — you recalled{" "}
+                  <strong className="text-white">
+                    {r.detail.recall.correct}/{r.detail.recall.total}
+                  </strong>{" "}
+                  of what ATC gave you while you were flying.{" "}
+                  <span style={{ color: "#64748b" }}>Reported separately; it does not change the score above.</span>
+                </div>
+              )}
+
+              {r.detail?.responseTime && (r.detail.responseTime.radio || r.detail.responseTime.interruptions) && (
+                <div className="text-xs mb-3" style={{ color: "#94a3b8" }}>
+                  Response time on correct answers —{" "}
+                  {r.detail.responseTime.radio && (
+                    <>
+                      radio <strong className="text-white">{r.detail.responseTime.radio.medianSec.toFixed(1)}s</strong>{" "}
+                      ({Math.round(r.detail.responseTime.radio.medianWindowUsed * 100)}% of the window you had)
+                    </>
+                  )}
+                  {r.detail.responseTime.radio && r.detail.responseTime.interruptions && ", "}
+                  {r.detail.responseTime.interruptions && (
+                    <>
+                      interruptions{" "}
+                      <strong className="text-white">{r.detail.responseTime.interruptions.medianSec.toFixed(1)}s</strong>{" "}
+                      ({Math.round(r.detail.responseTime.interruptions.medianWindowUsed * 100)}%)
+                    </>
+                  )}
+                  .
                 </div>
               )}
 
@@ -588,11 +708,33 @@ export default function AdaptRunner() {
             onComplete={(raw) => finishModule(raw)}
           />
         ) : (
-          <DividedAttentionTask
-            key={currentModule.id}
-            run={currentModule.run as DividedRun}
-            onComplete={(rs) => finishModule(rs)}
-          />
+          /* The run first, then the debrief on what ATC said during it. A run
+             too short to have issued any clearance asks nothing and finishes
+             straight away — an empty debrief screen is worse than none. */
+          pendingDivided ? (
+            <RecallDebrief
+              key={`${currentModule.id}-debrief`}
+              items={(currentModule.run as DividedRun).recall}
+              onComplete={(answers) => {
+                const all: DividedResponse[] = [
+                  ...pendingDivided,
+                  ...answers.map((a) => ({ stream: "recall" as const, id: a.id, chosen: a.chosen })),
+                ];
+                setPendingDivided(null);
+                finishModule(all);
+              }}
+            />
+          ) : (
+            <DividedAttentionTask
+              key={currentModule.id}
+              run={currentModule.run as DividedRun}
+              onComplete={(rs) => {
+                const r = (currentModule.run as DividedRun).recall;
+                if (r && r.length > 0) setPendingDivided(rs);
+                else finishModule(rs);
+              }}
+            />
+          )
         )}
       </div>
     );

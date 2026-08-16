@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:rtr-sim": "node --test \"lib/rtr-sim/**/*.test.mjs\"",
+    "verify:adapt-debrief": "npx tsx tools/adapt/render-debrief.tsx",
     "test:adapt": "node --test \"lib/adapt/**/*.test.mjs\"",
     "test": "node --test \"lib/**/*.test.mjs\"",
     "verify:adapt-save": "node tools/adapt/mock-supabase.mjs 54321 & node tools/adapt/verify-save-path.mjs",

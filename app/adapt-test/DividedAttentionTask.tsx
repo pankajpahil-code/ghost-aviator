@@ -19,7 +19,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Radio, Volume2 } from "lucide-react";
-import { makeGauge, GAUGE, WINDOW_SEC, phaseIndexAt, PHASES, trackingGainAt } from "@/lib/adapt/divided-attention.mjs";
+import { makeGauge, GAUGE, WINDOW_SEC, phaseIndexAt, PHASES, trackingGainAt, CLEARANCE_SHOW_EXTRA_SEC } from "@/lib/adapt/divided-attention.mjs";
 import { makeDisturbance, markerPosition, inputClass, SAMPLE_HZ } from "@/lib/adapt/tracking.mjs";
 
 /**
@@ -46,7 +46,7 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
   const [remaining, setRemaining] = useState(run.durationSec);
   const [prompt, setPrompt] = useState<Interruption | null>(null);
   const [promptLeft, setPromptLeft] = useState(0);
-  const [flash, setFlash] = useState<null | "ack" | "key">(null);
+  const [flash, setFlash] = useState<null | "ack" | "key" | "traffic" | "landmark">(null);
   const [audioOk, setAudioOk] = useState<boolean | null>(null);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -58,6 +58,23 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
   const answeredRef = useRef<Set<string>>(new Set());
   const audioRef = useRef<AudioContext | null>(null);
   const gaugeRef = useRef(makeGauge(run.gaugeSeed));
+  /**
+   * The clearance currently on the strip, or null.
+   *
+   * It is shown and then it GOES. Nothing re-shows it and nothing logs it for
+   * the student to scroll back to — the debrief afterwards is only a memory
+   * test if the value was allowed to leave the screen.
+   */
+  const [clearance, setClearance] = useState<{ id: string; text: string } | null>(null);
+  /**
+   * The target currently in the outside view, if any.
+   *
+   * A ref and NOT state, deliberately. The canvas reads it every frame; nothing
+   * outside the canvas is allowed to know it, because any control that reacts
+   * to a target being present tells the student it is there and destroys the
+   * search. It also means no re-render at 60 Hz.
+   */
+  const sightingRef = useRef<{ id: string; type: string; x: number; y: number } | null>(null);
 
   // ── The continuous stream ────────────────────────────────────────────────
   //
@@ -72,10 +89,26 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
   const trkTakenRef = useRef(0);
   const deviceRef = useRef<string>("pointer");
   const markerRef = useRef({ x: 0, y: 0 });
-  /** Display-only heading, integrated from bank. Never reaches the scorer. */
-  const headingRef = useRef(Math.floor(Math.random() * 360));
+  /**
+   * Display-only heading, integrated from bank. Never reaches the scorer.
+   *
+   * Seeded from the run, not from Math.random(). Two reasons, and the lint rule
+   * that flagged it was right on both: an impure call in a useRef initialiser
+   * runs on every render, and a run that starts on a different heading each
+   * time is not the same run — which breaks the replay guarantee the whole
+   * module is built on ("same seed -> the same fifteen minutes").
+   */
+  const headingRef = useRef(run.seed % 360);
 
-  const elapsed = () => (performance.now() - startedRef.current) / 1000;
+  /**
+   * Seconds since the run began.
+   *
+   * useCallback, not a bare arrow: performance.now() is impure, and declared
+   * plainly in the component body the purity rule reads it as a render-time
+   * call. It is only ever invoked from handlers and effects, and wrapping it
+   * says so to the compiler as well as to a reader.
+   */
+  const elapsed = useCallback(() => (performance.now() - startedRef.current) / 1000, []);
 
   /** Two-tone radio call. Rising means it is for you; falling is other traffic. */
   const playCall = useCallback((mine: boolean) => {
@@ -158,10 +191,25 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
     setTimeout(() => setFlash(null), 180);
   };
 
+  /**
+   * Call what you can see. Scored on WHETHER a target was in view and whether
+   * the button matched it — the scorer decides both, from the schedule. This
+   * only records that a button was pressed and when.
+   */
+  const report = (type: "traffic" | "landmark") => {
+    if (phase !== "running") return;
+    responsesRef.current.push({ stream: "sighting", t: elapsed(), type });
+    setFlash(type === "traffic" ? "traffic" : "landmark");
+    setTimeout(() => setFlash(null), 180);
+  };
+
   const answerPrompt = (item: Interruption, chosen: number | null) => {
     if (answeredRef.current.has(item.id)) return;
     answeredRef.current.add(item.id);
-    responsesRef.current.push({ stream: "arithmetic", id: item.id, chosen });
+    // The time is carried so the scorer can report how much of the window the
+    // student actually used. It changes no accuracy: a right answer at 5.9s of
+    // a 6s window is still right.
+    responsesRef.current.push({ stream: "arithmetic", id: item.id, chosen, t: elapsed() });
     setPrompt(null);
   };
 
@@ -203,6 +251,28 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
       const live = run.arithmetic.find((i) => t >= i.t && t <= i.t + itemWindow(i) && !answeredRef.current.has(i.id));
       const left10 = live ? Math.max(0, live.t + itemWindow(live) - t) : 0;
       setPromptLeft((prev) => (Math.round(prev * 10) === Math.round(left10 * 10) ? prev : left10));
+
+      // The clearance strip, on the same throttle. Identity is compared on the
+      // call id rather than the object, so this sets state once when a strip
+      // appears and once when it clears — not ten times a second.
+      // The lookout target in view, if any. Same identity-on-id trick as the
+      // clearance strip so this sets state twice per target, not per frame.
+      const liveSighting = (run.sightings ?? []).find((sg) => t >= sg.t && t <= sg.t + sg.visible);
+      sightingRef.current = liveSighting
+        ? { id: liveSighting.id, type: liveSighting.type, x: liveSighting.x, y: liveSighting.y }
+        : null;
+
+      const liveCall = run.radio.find(
+        (c) => c.mine && c.clearance && t >= c.t && t <= c.t + (c.window ?? 3.5) + CLEARANCE_SHOW_EXTRA_SEC
+      );
+      const liveId = liveCall ? liveCall.id : null;
+      setClearance((prev) =>
+        (prev ? prev.id : null) === liveId
+          ? prev
+          : liveCall && liveCall.clearance
+            ? { id: liveCall.id, text: liveCall.clearance.text }
+            : null
+      );
 
       // ── Sample the continuous stream ──────────────────────────────────────
       //
@@ -332,6 +402,36 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
             ctx.strokeStyle = "rgba(255,255,255,0.25)"; ctx.lineWidth = 1.5;
             ctx.beginPath(); ctx.arc(cxA, cyA, rA, 0, Math.PI * 2); ctx.stroke();
 
+            // The lookout target, drawn in the outside view rather than on an
+            // instrument — the whole point is that it is NOT in a known place.
+            // Traffic is an aeroplane silhouette, a landmark is a ground square;
+            // they are deliberately distinguishable at a glance but only if you
+            // actually glance, which is the skill.
+            const sg = sightingRef.current;
+            if (sg) {
+              const sx = sg.x * w;
+              const sy = sg.y * h * 0.55;
+              ctx.save();
+              ctx.globalAlpha = 0.95;
+              if (sg.type === "traffic") {
+                ctx.strokeStyle = "#e2e8f0";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(sx - 9, sy); ctx.lineTo(sx + 9, sy);
+                ctx.moveTo(sx, sy - 5); ctx.lineTo(sx, sy + 4);
+                ctx.moveTo(sx - 4, sy + 4); ctx.lineTo(sx + 4, sy + 4);
+                ctx.stroke();
+              } else {
+                ctx.strokeStyle = "#fbbf24";
+                ctx.lineWidth = 2;
+                ctx.strokeRect(sx - 6, sy - 6, 12, 12);
+                ctx.beginPath();
+                ctx.moveTo(sx - 6, sy + 6); ctx.lineTo(sx, sy - 10); ctx.lineTo(sx + 6, sy + 6);
+                ctx.stroke();
+              }
+              ctx.restore();
+            }
+
             // Heading tape. Bank produces a turn, so heading integrates bank —
             // aviation-correct, and it gives the student a second cue that they
             // are not level. Display only: it never reaches the scorer.
@@ -405,7 +505,7 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [phase, run, playCall, onComplete]);
+  }, [phase, run, playCall, onComplete, elapsed]);
 
   // Leaving the page ends the run — animation frames stop in a hidden tab and
   // the task would otherwise freeze forever.
@@ -484,6 +584,24 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
         </div>
       )}
 
+      {/* The clearance strip. Deliberately plain and deliberately temporary:
+          ATC has assigned you something and you will be asked for it after the
+          run, with nothing on screen to help you. */}
+      <div style={{ minHeight: 44 }} className="mb-2">
+        {clearance && (
+          <div
+            className="px-3 py-2 rounded-lg flex items-center gap-2"
+            style={{ background: "rgba(56,189,248,0.10)", border: "1px solid rgba(56,189,248,0.45)" }}
+          >
+            <Radio className="w-4 h-4 shrink-0" style={{ color: "#38bdf8" }} />
+            <span className="text-[10px] font-bold tracking-widest" style={{ color: "#7dd3fc", letterSpacing: "0.15em" }}>
+              ATC
+            </span>
+            <span className="font-black text-white text-base sm:text-lg">{clearance.text}</span>
+          </div>
+        )}
+      </div>
+
       {/* Taller than it was: the canvas now carries the aeroplane as well as
           the gauge, and both must be readable without scrolling. Dragging
           anywhere inside steers — touch-action:none is load-bearing on a phone
@@ -514,15 +632,40 @@ export default function DividedAttentionTask({ run, onComplete }: Props) {
         </button>
       </div>
 
+      {/* The lookout. Two buttons, because a lookout with one button is a
+          reaction test — telling traffic from a landmark is the discrimination.
+          NOTHING here indicates that a target is present. An earlier version lit
+          a halo round these buttons while one was in view, which would have
+          handed the student the harder half of the task: knowing there is
+          something to find is most of visual search. The only way to know is to
+          look at the window. */}
+      <div className="grid grid-cols-2 gap-3 mt-3">
+        <button onClick={() => report("traffic")}
+                className="py-3 rounded-lg font-black text-xs"
+                style={{ border: `2px solid ${flash === "traffic" ? "#22c55e" : "rgba(255,255,255,0.18)"}`,
+                         background: flash === "traffic" ? "rgba(34,197,94,0.18)" : "rgba(255,255,255,0.03)", color: "#e2e8f0" }}>
+          TRAFFIC IN SIGHT
+        </button>
+        <button onClick={() => report("landmark")}
+                className="py-3 rounded-lg font-black text-xs"
+                style={{ border: `2px solid ${flash === "landmark" ? "#22c55e" : "rgba(255,255,255,0.18)"}`,
+                         background: flash === "landmark" ? "rgba(34,197,94,0.18)" : "rgba(255,255,255,0.03)", color: "#e2e8f0" }}>
+          LANDMARK IN SIGHT
+        </button>
+      </div>
+
       {prompt && (
         <div className="mt-4 p-4 rounded-lg" style={{ background: "rgba(240,145,58,0.10)", border: `1px solid ${cyan}` }}>
           <div className="flex items-center justify-between mb-2">
-            <span className="font-black text-white text-lg">{prompt.stem} = ?</span>
+            <span className="font-black text-white text-base sm:text-lg">{prompt.stem}</span>
             <span className="text-sm font-black tabular-nums" style={{ color: promptLeft < 2 ? "#ef4444" : cyan }}>
               {promptLeft.toFixed(1)}s
             </span>
           </div>
-          <div className="grid grid-cols-4 gap-2">
+          {/* Two across, not four: this slot now carries words as well as
+              numbers, and AIRSPEED INDICATOR in a quarter-width button on a
+              phone is a reading test, not an attention one. */}
+          <div className={prompt.family === "odd" || prompt.family === "spelling" ? "grid grid-cols-2 gap-2" : "grid grid-cols-4 gap-2"}>
             {prompt.options.map((o, i) => (
               <button key={i} onClick={() => answerPrompt(prompt, i)}
                       className="py-2.5 rounded font-bold text-sm"

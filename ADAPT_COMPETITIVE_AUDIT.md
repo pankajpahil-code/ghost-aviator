@@ -14,12 +14,22 @@ competitor's product, and read the coaching-industry write-ups against all of it
 practice bundles.** Creating accounts and entering payment details is outside
 what I am permitted to do, and it is not a judgement call I get to make. If you
 want the inside of the real thing — the actual FAST screen, the actual ball
-game, the actual report PDF — that purchase has to be made by you or by a
-student, and it is the single most valuable thing that could be added to this
-research. £68 (Cadet Essentials) buys Maths, Physics, Cognitive Reasoning, FAST
-and Ball Game with 5–15 attempts each over three months. **My recommendation: buy
-that bundle.** Everything below is built from public first-party specification;
-the bundle would convert it into observed fact.
+game, the actual report PDF — that would need a paid bundle.
+
+**CORRECTED 2026-08-16. This section used to read "My recommendation: buy that
+bundle" and called it the single most valuable thing that could be added. Strike
+it.** The Captain has no card and no money; the subscription that runs this
+workspace is a gift from his wife. Ranking a purchase as the top open item put a
+bill at the head of a build backlog and left it there through two audits.
+**Never rank a purchase as an open item in this project.** Where a fact can only
+be bought, record it as *unknown and unbuyable*, state the assumption used
+instead, and move on to what can be built for free.
+
+The free route to the same knowledge, and it is a better one: **a student who has
+actually sat the screening.** He teaches hundreds. One candidate debrief
+describes the real battery rather than the practice shop window — which is
+exactly the distinction §1.2 had to be corrected for. That is an ask, not a
+purchase. Everything below is built from public first-party specification.
 
 Sourcing rule used throughout: **first-party (Symbiotics' own pages) is marked
 as such and trusted. Coaching-company blogs are marked and treated as hearsay.**

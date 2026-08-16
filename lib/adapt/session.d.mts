@@ -40,6 +40,10 @@ export interface AdaptModule {
   kind: ModuleKind;
   blurb: string;
   timeLimitSec: number;
+  /** The setting this module was built at. */
+  difficulty: string;
+  /** False where the setting genuinely changes nothing — tracking and the questionnaire. */
+  difficultyApplies: boolean;
   items?: AdaptItem[];
   run?: TrackingRun | DividedRun;
   /** Present only on the behavioural module. */
@@ -59,6 +63,8 @@ export interface AdaptModuleDef {
 
 export interface AdaptSession {
   seed: number;
+  /** The setting this session was built at. Every score carries it; scores are never pooled across settings. */
+  difficulty: string;
   modules: AdaptModule[];
 }
 
@@ -179,7 +185,21 @@ export declare function criterionNormFor(total: number): {
   cuts: number[];
   rationale: string;
 };
-export declare function buildSession(seed: number, moduleIds?: string[]): AdaptSession;
+export interface DifficultySetting {
+  key: string;
+  label: string;
+  blurb: string;
+  /** Multiplier on the clock of a TIMED PAPER. Not applied to duration-defined tasks. */
+  clockScale: number;
+  /** Multiplier on event density in the multitasking run. */
+  loadScale: number;
+}
+
+export declare const DIFFICULTY: Record<string, DifficultySetting>;
+export declare const DIFFICULTY_KEYS: string[];
+export declare const DEFAULT_DIFFICULTY: string;
+
+export declare function buildSession(seed: number, moduleIds?: string[], difficulty?: string): AdaptSession;
 export declare function scoreModule(
   module: AdaptModule,
   responses: (number | null)[],
