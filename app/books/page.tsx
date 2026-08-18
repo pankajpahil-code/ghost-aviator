@@ -139,13 +139,13 @@ const BOOKS: Book[] = [
     accentFrom: "#34d399",
     accentTo: "#10b981",
     glowColor: "rgba(52,211,153,0.25)",
-    chapters: 20,
+    chapters: 21,
     questions: 0,
     studyHours: 0,
     description:
       "Great circles, rhumb lines, chart projections, dead reckoning, radio navigation, and RNAV/PBN — every navigation concept illustrated with interactive plotting exercises and worked examples.",
     href: "/cpl/air-navigation",
-    firstChapterId: "nav-1",
+    firstChapterId: "nav-13",
     status: "coming-soon",
   },
   {

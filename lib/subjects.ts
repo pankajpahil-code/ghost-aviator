@@ -57,9 +57,9 @@ const notesOnly = (): ContentType[] => [
 // practice questions & chapter quiz follow after the Opus verification pass.
 const da42Notes = (): ContentType[] => [
   { type: "notes",        label: "Notes",          icon: "📄", available: true  },
-  { type: "questions",    label: "Practice Qs",    icon: "❓", available: false },
+  { type: "questions",    label: "Practice Qs",    icon: "❓", available: true  },
   { type: "video",        label: "Video Lecture",  icon: "🎥", available: false },
-  { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: false },
+  { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true  },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -80,171 +80,172 @@ export const CPL_SUBJECTS: Subject[] = [
     totalQuestions: 50,
     passMark: 70,
     chapters: [
+      // ── Oxford General Navigation — book chapters (renumbered 1–21) ──
       {
-        id: "nav-1", number: 1, title: "Basics of Navigation",
-        description: "Solar system, seasonal/apparent sun movements, the earth, great circles, rhumb lines, convergency, conversion angle, latitude, longitude, time conversions (UTC/LMT/standard), international dateline, directions, terrestrial magnetism, units of distance.",
-        duration: "4 hrs", questionCount: 87, content: makeContent(true),
-      },
-      {
-        id: "nav-2", number: 2, title: "Magnetism & Compasses",
-        description: "Terrestrial magnetism, earth's total magnetic force (vertical/horizontal components), directive force, magnetic dip, variation, aircraft magnetism (hard iron/vertical soft iron), turning & acceleration errors, direct reading & remote reading compasses, serviceability tests, compass adjustment.",
-        duration: "3 hrs", questionCount: 80, content: makeContent(),
-      },
-      {
-        id: "nav-3", number: 3, title: "Aeronautical Charts",
-        description: "Mercator, Lambert conformal conic, polar stereographic, transverse Mercator, oblique Mercator — properties, representation of meridians/parallels/great circles/rhumb lines. Use of aeronautical charts: plotting positions, scale, conventional signs, measuring tracks & distances, plotting bearings.",
-        duration: "3 hrs", questionCount: 80, content: makeContent(),
-      },
-      {
-        id: "nav-4", number: 4, title: "Dead Reckoning Navigation",
-        description: "Track, heading (compass/magnetic/true/grid), wind velocity, airspeed (IAS/CAS/TAS/Mach), groundspeed, ETA, drift, wind correction angle, DR position, navigational computer (speed/time/distance/fuel/conversions), triangle of velocities, DR position determination, max range, radius of action, PSR, PET.",
-        duration: "4 hrs", questionCount: 100, content: makeContent(),
-      },
-      {
-        id: "nav-5", number: 5, title: "In-Flight Navigation",
-        description: "Use of visual observations, navigation in climb & descent (average airspeed, average wind velocity, ground speed during climb/descent), navigation in cruising flight (groundspeed revision, off-track corrections, wind calculation, ETA revisions), flight log.",
-        duration: "3 hrs", questionCount: 75, content: makeContent(),
-      },
-      {
-        id: "nav-6", number: 6, title: "Mass & Balance — Aeroplanes",
-        description: "Centre of gravity definition, importance for aircraft stability, mass and balance terminology (empty mass, dry operating mass, zero fuel mass, standard masses, useful load), effects of overloading, datum, moment arm, moment, CG calculation, expression in % MAC, effect of load-shift.",
-        duration: "3 hrs", questionCount: 80, content: makeContent(),
-      },
-      {
-        id: "nav-7", number: 7, title: "Performance — Single-Engine Aeroplanes",
-        description: "Definitions of terms and speeds, take-off and landing performance, effect of aeroplane mass/wind/density altitude/runway slope/runway conditions, use of AFM data, climb & cruise performance, effect of density altitude and mass, endurance, still air range with various power settings.",
-        duration: "3 hrs", questionCount: 75, content: makeContent(),
-      },
-      {
-        id: "nav-8", number: 8, title: "Performance — Multi-Engine Aeroplanes",
-        description: "New terms for multi-engine performance, take-off and landing distances, obstacle clearance at take-off, rate of climb/descent, effects of power settings/speeds/configuration, cruise altitudes and ceiling, en-route requirements, payload/range and speed/economy trade-offs, performance graphs and flight manual.",
-        duration: "3 hrs", questionCount: 80, content: makeContent(),
-      },
-      {
-        id: "nav-9", number: 9, title: "Flight Planning & Monitoring",
-        description: "Navigation plan (route, terrain/obstacle clearance, wind forecast, heading/groundspeed/ETA computation), fuel plan (fuel log, holding/diversion/reserve fuel), in-flight re-planning, ICAO ATC flight plan (format, completing, filing, adherence), practical chart preparation and flight plan completion.",
-        duration: "4 hrs", questionCount: 90, content: makeContent(),
-      },
-      {
-        id: "nav-10", number: 10, title: "Radio Navigation Aids",
-        description: "Ground D/F, ADF navigation & NDB navigation (principles, presentation, range, errors), VOR & Doppler VOR (principles, coverage, errors), DME, ILS (principles, presentation, coverage, errors), SSR & transponder (modes/codes including Mode S), GPS/GLONASS (principle, advantages, disadvantages).",
-        duration: "4 hrs", questionCount: 90, content: makeContent(),
-      },
-      {
-        id: "nav-11", number: 11, title: "Flight Instruments",
-        description: "Air data instruments: pitot-static system, altimeter, ASI (IAS, coloured sectors, VMO/MMO), Vertical Speed Indicator diagram (aneroid & IVSI). Gyroscopic instruments: gyro fundamentals (stability, precession, types, ring laser gyro), directional gyro, slaved gyro compass, attitude indicator, turn & bank indicator, turn coordinator. Magnetic compass: construction, errors.",
-        duration: "4 hrs", questionCount: 90, content: makeContent(),
-      },
-      {
-        id: "nav-12", number: 12, title: "Power Plant Instruments & Avionics",
-        description: "Pressure gauge, temperature gauge (ram rise, recovery factor), RPM indicator, fuel flowmeter, fuel gauge (volume/mass, measuring sensors), torque meter. EFIS, EICAS, ECAM, FMS basics. Radio propagation: EM waves, wavelength/amplitude/phase/frequency, frequency bands, carrier/modulation/demodulation, antennas, ground/space wave, MUF, fading.",
-        duration: "3 hrs", questionCount: 75, content: makeContent(),
-      },
-      // ── Oxford General Navigation study-notes chapters (book numbering in title) ──
-      {
-        id: "nav-13", number: 13, title: "Direction, Latitude & Longitude",
+        id: "nav-13", number: 1, title: "Direction, Latitude and Longitude",
         description: "Shape of the Earth, poles and equator, latitude/longitude, d-lat and d-long, true/magnetic/compass direction and position expression. Study notes with practice Q&A.",
         duration: "2 hrs", questionCount: 3, content: makeContent(true),
       },
       {
-        id: "nav-14", number: 14, title: "Great Circles, Rhumb Lines & Directions",
+        id: "nav-14", number: 2, title: "Great Circles, Rhumb Lines & Directions on the Earth",
         description: "Great circle and rhumb line properties, vertices, track direction changes and when each is used for navigation. Study notes.",
         duration: "2 hrs", questionCount: 2, content: makeContent(true),
       },
       {
-        id: "nav-15", number: 15, title: "Earth Magnetism",
+        id: "nav-15", number: 3, title: "Earth Magnetism",
         description: "The Earth's magnetic field, variation and isogonals, dip, deviation, and compass-to-true conversions. Study notes with practice Q&A.",
         duration: "2 hrs", questionCount: 14, content: makeContent(true),
       },
       {
-        id: "nav-16", number: 16, title: "The 1 in 60 Rule",
+        id: "nav-16", number: 4, title: "The 1 in 60 Rule",
         description: "The 1 in 60 rule — track error angle, closing angle and distance off track, with fully worked examples. Study notes.",
         duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-17", number: 17, title: "Navigation Using the 1 in 60 Rule",
+        id: "nav-17", number: 5, title: "Navigation Using the 1 in 60 Rule",
         description: "Applying the 1 in 60 rule in flight — regaining track, heading corrections and revised ETAs, with worked problems. Study notes.",
         duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-18", number: 18, title: "Other Applications of the 1 in 60 Rule",
+        id: "nav-18", number: 6, title: "Other Applications of the 1 in 60 Rule",
         description: "Glide-path heights, rates of descent, base-of-cloud calculations and other practical 1 in 60 applications. Study notes.",
         duration: "1 hr", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-19", number: 19, title: "Topographical Maps & Map Reading",
+        id: "nav-19", number: 7, title: "Topographical Maps and Map Reading",
         description: "Topographical chart features, relief, scale, map-reading technique and visual fix selection. Study notes with practice Q&A.",
         duration: "2 hrs", questionCount: 3, content: makeContent(true),
       },
       {
-        id: "nav-20", number: 20, title: "Convergency & Conversion Angle",
+        id: "nav-20", number: 8, title: "Convergency and Conversion Angle",
         description: "Convergency between meridians, conversion angle between great circle and rhumb line tracks, with worked examples. Study notes.",
         duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-21", number: 21, title: "Departure",
+        id: "nav-21", number: 9, title: "Departure",
         description: "East-west distance along a parallel: the departure formula and all its rearrangements, dual-latitude ratio problems, the box pattern trap — with fully solved DGCA-style questions.",
         duration: "2 hrs", questionCount: 5, content: makeContent(true),
       },
       {
-        id: "nav-22", number: 22, title: "Scale",
+        id: "nav-22", number: 10, title: "Scale",
         description: "Chart scale — representative fraction, statement in words and graduated scale line; scale conversions and typical DGCA scale calculations.",
         duration: "1.5 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-23", number: 23, title: "General Chart Properties",
+        id: "nav-23", number: 11, title: "General Chart Properties",
         description: "Perspective and mathematical projections, orthomorphism and conformality conditions, and how charts are classified by projection surface.",
         duration: "1.5 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-24", number: 24, title: "Mercator Charts",
+        id: "nav-24", number: 12, title: "Mercator Charts",
         description: "Mercator projection properties — meridians and parallels, scale expansion with latitude, rhumb lines and great circles, plotting and measurement.",
         duration: "2 hrs", questionCount: 10, content: makeContent(true),
       },
       {
-        id: "nav-25", number: 25, title: "Lambert's Conformal Chart",
+        id: "nav-25", number: 13, title: "Lambert's Conformal Chart",
         description: "Lambert conformal conic chart — standard parallels, parallel of origin, constant of the cone, chart convergence, great circles and rhumb lines.",
         duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-26", number: 26, title: "Polar Stereographic Chart",
+        id: "nav-26", number: 14, title: "The Polar Stereographic Chart",
         description: "Polar stereographic projection — properties, scale variation, grid navigation and plotting in polar regions.",
         duration: "1.5 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-27", number: 27, title: "Time (1) — Solar System & Time Basics",
+        id: "nav-27", number: 15, title: "Time (1)",
         description: "The solar system, Earth's orbit and rotation, apparent and mean solar time, and LMT/UTC fundamentals.",
         duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-28", number: 28, title: "Time (2) — Conversions & the Dateline",
+        id: "nav-28", number: 16, title: "Time (2)",
         description: "Time conversions — LMT, UTC, standard and zone time; arc-to-time; and the international date line.",
         duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-29", number: 29, title: "Sunrise, Sunset & Twilight",
+        id: "nav-29", number: 17, title: "Time (3)",
         description: "Sunrise, sunset and twilight — definitions, almanac tables, and how they vary with latitude and season.",
         duration: "1.5 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-30", number: 30, title: "Direct Indicating Compass",
+        id: "nav-30", number: 18, title: "The Direct Indicating Compass",
         description: "Direct indicating compass — construction, horizontality, sensitivity and aperiodicity, serviceability checks, turning and acceleration errors.",
         duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-31", number: 31, title: "Aircraft Magnetism",
+        id: "nav-31", number: 19, title: "Aircraft Magnetism",
         description: "Hard iron and soft iron magnetism, deviation and its correction, and compass swing fundamentals.",
         duration: "1.5 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-32", number: 32, title: "General Navigation Problems",
+        id: "nav-32", number: 20, title: "General Navigation Problems",
         description: "Mixed general navigation problems bringing together departure, charts, time and compass topics — exam-style practice with solutions.",
         duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-33", number: 33, title: "Revision Questions",
+        id: "nav-33", number: 21, title: "Revision Questions",
         description: "Full revision question set for General Navigation — test yourself chapter by chapter before the exam.",
         duration: "2 hrs", questionCount: 140, content: makeContent(true),
+      },
+      // ── Additional DGCA Appendix-A topics not in the GN book (kept as extra chapters) ──
+      {
+        id: "nav-1", number: 22, title: "Basics of Navigation",
+        description: "Solar system, seasonal/apparent sun movements, the earth, great circles, rhumb lines, convergency, conversion angle, latitude, longitude, time conversions (UTC/LMT/standard), international dateline, directions, terrestrial magnetism, units of distance.",
+        duration: "4 hrs", questionCount: 87, content: makeContent(true),
+      },
+      {
+        id: "nav-2", number: 23, title: "Magnetism & Compasses",
+        description: "Terrestrial magnetism, earth's total magnetic force (vertical/horizontal components), directive force, magnetic dip, variation, aircraft magnetism (hard iron/vertical soft iron), turning & acceleration errors, direct reading & remote reading compasses, serviceability tests, compass adjustment.",
+        duration: "3 hrs", questionCount: 80, content: makeContent(),
+      },
+      {
+        id: "nav-3", number: 24, title: "Aeronautical Charts",
+        description: "Mercator, Lambert conformal conic, polar stereographic, transverse Mercator, oblique Mercator — properties, representation of meridians/parallels/great circles/rhumb lines. Use of aeronautical charts: plotting positions, scale, conventional signs, measuring tracks & distances, plotting bearings.",
+        duration: "3 hrs", questionCount: 80, content: makeContent(),
+      },
+      {
+        id: "nav-4", number: 25, title: "Dead Reckoning Navigation",
+        description: "Track, heading (compass/magnetic/true/grid), wind velocity, airspeed (IAS/CAS/TAS/Mach), groundspeed, ETA, drift, wind correction angle, DR position, navigational computer (speed/time/distance/fuel/conversions), triangle of velocities, DR position determination, max range, radius of action, PSR, PET.",
+        duration: "4 hrs", questionCount: 100, content: makeContent(),
+      },
+      {
+        id: "nav-5", number: 26, title: "In-Flight Navigation",
+        description: "Use of visual observations, navigation in climb & descent (average airspeed, average wind velocity, ground speed during climb/descent), navigation in cruising flight (groundspeed revision, off-track corrections, wind calculation, ETA revisions), flight log.",
+        duration: "3 hrs", questionCount: 75, content: makeContent(),
+      },
+      {
+        id: "nav-6", number: 27, title: "Mass & Balance — Aeroplanes",
+        description: "Centre of gravity definition, importance for aircraft stability, mass and balance terminology (empty mass, dry operating mass, zero fuel mass, standard masses, useful load), effects of overloading, datum, moment arm, moment, CG calculation, expression in % MAC, effect of load-shift.",
+        duration: "3 hrs", questionCount: 80, content: makeContent(),
+      },
+      {
+        id: "nav-7", number: 28, title: "Performance — Single-Engine Aeroplanes",
+        description: "Definitions of terms and speeds, take-off and landing performance, effect of aeroplane mass/wind/density altitude/runway slope/runway conditions, use of AFM data, climb & cruise performance, effect of density altitude and mass, endurance, still air range with various power settings.",
+        duration: "3 hrs", questionCount: 75, content: makeContent(),
+      },
+      {
+        id: "nav-8", number: 29, title: "Performance — Multi-Engine Aeroplanes",
+        description: "New terms for multi-engine performance, take-off and landing distances, obstacle clearance at take-off, rate of climb/descent, effects of power settings/speeds/configuration, cruise altitudes and ceiling, en-route requirements, payload/range and speed/economy trade-offs, performance graphs and flight manual.",
+        duration: "3 hrs", questionCount: 80, content: makeContent(),
+      },
+      {
+        id: "nav-9", number: 30, title: "Flight Planning & Monitoring",
+        description: "Navigation plan (route, terrain/obstacle clearance, wind forecast, heading/groundspeed/ETA computation), fuel plan (fuel log, holding/diversion/reserve fuel), in-flight re-planning, ICAO ATC flight plan (format, completing, filing, adherence), practical chart preparation and flight plan completion.",
+        duration: "4 hrs", questionCount: 90, content: makeContent(),
+      },
+      {
+        id: "nav-10", number: 31, title: "Radio Navigation Aids",
+        description: "Ground D/F, ADF navigation & NDB navigation (principles, presentation, range, errors), VOR & Doppler VOR (principles, coverage, errors), DME, ILS (principles, presentation, coverage, errors), SSR & transponder (modes/codes including Mode S), GPS/GLONASS (principle, advantages, disadvantages).",
+        duration: "4 hrs", questionCount: 90, content: makeContent(),
+      },
+      {
+        id: "nav-11", number: 32, title: "Flight Instruments",
+        description: "Air data instruments: pitot-static system, altimeter, ASI (IAS, coloured sectors, VMO/MMO), Vertical Speed Indicator diagram (aneroid & IVSI). Gyroscopic instruments: gyro fundamentals (stability, precession, types, ring laser gyro), directional gyro, slaved gyro compass, attitude indicator, turn & bank indicator, turn coordinator. Magnetic compass: construction, errors.",
+        duration: "4 hrs", questionCount: 90, content: makeContent(),
+      },
+      {
+        id: "nav-12", number: 33, title: "Power Plant Instruments & Avionics",
+        description: "Pressure gauge, temperature gauge (ram rise, recovery factor), RPM indicator, fuel flowmeter, fuel gauge (volume/mass, measuring sensors), torque meter. EFIS, EICAS, ECAM, FMS basics. Radio propagation: EM waves, wavelength/amplitude/phase/frequency, frequency bands, carrier/modulation/demodulation, antennas, ground/space wave, MUF, fading.",
+        duration: "3 hrs", questionCount: 75, content: makeContent(),
       },
     ],
   },
@@ -825,52 +826,52 @@ export const CPL_SUBJECTS: Subject[] = [
       {
         id: "da42-1", number: 1, title: "DA-42 NG: The Aircraft & Its Systems — A First Look",
         description: "Orientation to the Diamond DA-42 NG: general arrangement, principal dimensions, the Austro turbo-diesel engines, propellers, fuel and glass cockpit, and the headline mass and V-speed limits every candidate must know for the type.",
-        duration: "2 hrs", questionCount: 0, content: da42Notes(),
+        duration: "2 hrs", questionCount: 14, content: da42Notes(),
       },
       {
         id: "da42-2", number: 2, title: "DA-42 NG: Powerplant — Austro E4-B & Propeller",
         description: "The E4-B turbo-diesel engine: compression ignition on Jet A-1, common-rail injection, turbocharging, the EECU and single-lever control, the reduction gearbox, and the constant-speed feathering propeller with its RPM and power limits.",
-        duration: "3 hrs", questionCount: 0, content: da42Notes(),
+        duration: "3 hrs", questionCount: 24, content: da42Notes(),
       },
       {
         id: "da42-3", number: 3, title: "DA-42 NG: Fuel System",
         description: "Wing main tanks and optional auxiliary tanks, the electric fuel pumps, fuel selector valve positions (ON / CROSSFEED / OFF) and the strict rules governing crossfeed, fuel management, quantity indication and the alternate measuring methods.",
-        duration: "2 hrs", questionCount: 0, content: da42Notes(),
+        duration: "2 hrs", questionCount: 14, content: da42Notes(),
       },
       {
         id: "da42-4", number: 4, title: "DA-42 NG: Electrical System",
         description: "The 28 V DC system: alternators, main and ECU backup batteries, the bus architecture (hot battery, battery, ECU, main and avionic buses), how the ECUs stay powered, and the electrical warning and caution messages.",
-        duration: "2 hrs", questionCount: 0, content: da42Notes(),
+        duration: "2 hrs", questionCount: 12, content: da42Notes(),
       },
       {
         id: "da42-5", number: 5, title: "DA-42 NG: Landing Gear, Brakes & Hydraulics",
         description: "The hydraulically operated retractable tricycle gear, gear indications and warnings, the gravity emergency free-fall extension, the operating speeds, wheel brakes and the parking brake.",
-        duration: "2 hrs", questionCount: 0, content: da42Notes(),
+        duration: "2 hrs", questionCount: 12, content: da42Notes(),
       },
       {
         id: "da42-6", number: 6, title: "DA-42 NG: Avionics — G1000 & GFC 700 Autopilot",
         description: "The integrated glass cockpit: PFD and MFD, the standby attitude module, the crew alerting system, and the GFC 700 automatic flight control system — its modes, its disconnects, and how G1000 failures downgrade it.",
-        duration: "2 hrs", questionCount: 0, content: da42Notes(),
+        duration: "2 hrs", questionCount: 12, content: da42Notes(),
       },
       {
         id: "da42-7", number: 7, title: "DA-42 NG: Operating Limitations & V-Speeds",
         description: "The highest-yield chapter for the exam: all airspeed limits and ASI markings, mass and CG limits, power-plant limits and instrument markings, load factors and approved manoeuvres — the numbers you must know cold.",
-        duration: "3 hrs", questionCount: 0, content: da42Notes(),
+        duration: "3 hrs", questionCount: 22, content: da42Notes(),
       },
       {
         id: "da42-8", number: 8, title: "DA-42 NG: Normal Operating Procedures",
         description: "The normal flow: pre-flight inspection, engine start and the ECU self-test, taxi, before-take-off checks, take-off and climb, cruise, descent, approach and landing, after-landing and shutdown.",
-        duration: "3 hrs", questionCount: 0, content: da42Notes(),
+        duration: "3 hrs", questionCount: 10, content: da42Notes(),
       },
       {
         id: "da42-9", number: 9, title: "DA-42 NG: Emergency & Abnormal Procedures",
         description: "Engine failure and securing, feathering, one-engine-inoperative handling and the blue-line discipline, engine fire, electrical failures, landing-gear malfunctions and the abnormal G1000 caution messages.",
-        duration: "3 hrs", questionCount: 0, content: da42Notes(),
+        duration: "3 hrs", questionCount: 12, content: da42Notes(),
       },
       {
         id: "da42-10", number: 10, title: "DA-42 NG: Performance, Mass & Balance",
         description: "Reading and applying the performance data — take-off and landing distances, single-engine climb, the effect of altitude, temperature and mass — plus the weight-and-balance method and staying inside the CG envelope.",
-        duration: "3 hrs", questionCount: 0, content: da42Notes(),
+        duration: "3 hrs", questionCount: 13, content: da42Notes(),
       },
       // ── Generic type-specific placeholders (for other aircraft types) ────────
       {
