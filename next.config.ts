@@ -82,6 +82,27 @@ const nextConfig: NextConfig = {
         source: "/content/:subject/:chapter/audio.m4a",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
+      // Let a client reuse a chapter page for five minutes.
+      //
+      // Next's default for a prerendered page is `max-age=0, must-revalidate`,
+      // which forbids ANY downstream reuse: every hit, from anyone, comes back
+      // to Vercel and reads the ISR cache. On this site that metric IS the
+      // request count — 751K reads against 7,331 human pageviews in 30 days.
+      //
+      // The measured pattern behind that: a recursive scraper re-fetches every
+      // navbar destination once per page it crawls (one IP hit /notes, /exam,
+      // /past-papers and /dashboard 41-43 times each inside an hour). Any client
+      // that honours HTTP caching collapses those repeats into one fetch.
+      // Students get the same benefit on back-navigation.
+      //
+      // Five minutes is deliberately short: Iron Rule 1 means a corrected answer
+      // must reach students quickly, and this is the longest window worth having
+      // where that is still true. The CDN is unaffected, so Googlebot still sees
+      // fresh HTML on every crawl.
+      {
+        source: "/:track(cpl|atpl)/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=300" }],
+      },
     ];
   },
   async redirects() {
