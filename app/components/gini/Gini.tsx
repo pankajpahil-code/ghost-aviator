@@ -23,6 +23,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ask, type GiniReply } from "@/lib/gini/knowledge";
+import { sections, speakSection, stop as stopReading, hasNotes, supported as speechSupported } from "@/lib/gini/reader";
 import GiniSprite, { GINI_KEYFRAMES, type GiniMood } from "./GiniSprite";
 
 const DISMISS_KEY = "ga:gini:dismissed";
@@ -67,6 +68,9 @@ export default function Gini() {
   const timers = useRef<number[]>([]);
   const pathname = usePathname();
   const greeted = useRef<string | null>(null);
+  const [onNotes, setOnNotes] = useState(false);
+  const [reading, setReading] = useState(false);
+  const sectionIdx = useRef(0);
 
   const later = useCallback((fn: () => void, ms: number) => {
     timers.current.push(window.setTimeout(fn, ms));
@@ -130,6 +134,54 @@ export default function Gini() {
   const figureH = narrow ? 116 : 200;
   const panelW = narrow ? 150 : 230;
 
+  // Whether a chapter is rendered is a DOM fact, unknowable during render.
+  // Checked shortly after paint so the Read button never appears where there
+  // is nothing to read. (setState sits inside the timeout, so no directive
+  // is needed — and an unused one is itself a lint warning.)
+  useEffect(() => {
+    const t = window.setTimeout(() => setOnNotes(hasNotes() && speechSupported()), 500);
+    return () => window.clearTimeout(t);
+  }, [pathname]);
+
+  /** Read the chapter aloud, one section at a time, announcing each heading. */
+  const readNext = useCallback(() => {
+    const all = sections();
+    if (!all.length) {
+      setBubble("There's no chapter text on this page for me to read.");
+      return;
+    }
+    if (sectionIdx.current >= all.length) sectionIdx.current = 0;
+    const s = all[sectionIdx.current];
+    setReading(true);
+    setMood("talk");
+    setBubble(`Reading ${sectionIdx.current + 1} of ${all.length}: ${s.title}`);
+    speakSection(s, () => {
+      setReading(false);
+      setMood("idle");
+      sectionIdx.current += 1;
+      if (sectionIdx.current >= all.length) {
+        sectionIdx.current = 0;
+        setBubble("That's the whole chapter. Ask me about any of it.");
+      } else {
+        setBubble(`Done. Press Read again for "${all[sectionIdx.current].title}".`);
+      }
+    });
+  }, []);
+
+  const haltReading = useCallback(() => {
+    stopReading();
+    setReading(false);
+    setMood("idle");
+    setBubble(null);
+  }, []);
+
+  // Never keep talking after he is dismissed or the student navigates away.
+  useEffect(() => () => stopReading(), []);
+  // Silence him the moment he is dismissed. Deliberately calls the DOM-only
+  // stopReading() rather than haltReading(): an effect must not set React
+  // state synchronously. The `reading` flag is cleared in recall() instead.
+  useEffect(() => { if (dismissed) stopReading(); }, [dismissed]);
+
   /**
    * ARRIVING ON A CHAPTER. He is holding the Captain's book in every frame, so
    * he offers it when a student lands on notes — once per chapter, briefly, and
@@ -188,6 +240,7 @@ export default function Gini() {
   }, [later]);
 
   const vanish = useCallback(() => {
+    stopReading();
     setBubble(null);
     setVanishing(true);
     later(() => {
@@ -200,6 +253,7 @@ export default function Gini() {
   const recall = useCallback(() => {
     try { localStorage.removeItem(DISMISS_KEY); } catch { /* ignore */ }
     setDismissed(false);
+    setReading(false);
     setEntering(true);
     setMood("happy");
     setBubble("Back. What do you need?");
@@ -298,6 +352,9 @@ export default function Gini() {
 
         <div style={{ pointerEvents: "auto", display: "flex", gap: 6, marginTop: 4 }}>
           <GiniBtn onClick={() => setAsking(a => !a)} label={asking ? "Close" : "Ask"} />
+          {onNotes && (
+            <GiniBtn onClick={reading ? haltReading : readNext} label={reading ? "Stop" : "Read"} />
+          )}
           <GiniBtn onClick={() => flyTo(perch + 1)} label="Fly" />
           <GiniBtn onClick={() => { setMood("thunder"); later(() => setMood("idle"), 2600); }} label="⚡" />
           <GiniBtn onClick={toggleMotion} label={reduced ? "Motion on" : "Still"} />
