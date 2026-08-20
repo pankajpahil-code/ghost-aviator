@@ -22,7 +22,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ask, type GiniReply } from "@/lib/gini/knowledge";
+import { ask, PROMOS, type GiniReply } from "@/lib/gini/knowledge";
 import { sections, speakSection, stop as stopReading, hasNotes, supported as speechSupported } from "@/lib/gini/reader";
 import GiniSprite, { GINI_KEYFRAMES, type GiniMood } from "./GiniSprite";
 
@@ -61,6 +61,7 @@ export default function Gini() {
   const [mood, setMood] = useState<GiniMood>("idle");
   const [perch, setPerch] = useState(0);
   const [bubble, setBubble] = useState<string | null>(null);
+  const [bubbleHref, setBubbleHref] = useState<string | null>(null);
   const [asking, setAsking] = useState(false);
   const [query, setQuery] = useState("");
   const [vanishing, setVanishing] = useState(false);
@@ -216,6 +217,17 @@ export default function Gini() {
         setMood("fly");
         setPerch(p => (p + 1 + Math.floor(Math.random() * 3)) % perches.length);
         window.setTimeout(() => setMood("idle"), 2200);
+      } else if (Math.random() < 0.45) {
+        // Mention what the Captain actually offers — his live batches and the
+        // groups where he answers doubts. Boon 8: the free school stays free,
+        // but a receptionist who never mentions the paid path is not doing his
+        // job. Rotated, never repeated back to back, and always dismissable.
+        const promo = PROMOS[Math.floor(Math.random() * PROMOS.length)];
+        setMood("present_book");
+        setBubbleHref(promo.href);
+        setBubble(promo.text);
+        window.setTimeout(() => setMood("idle"), 2600);
+        window.setTimeout(() => { setBubble(null); setBubbleHref(null); }, 12000);
       } else {
         // Just a flicker of personality, staying put.
         const faces: GiniMood[] = ["happy", "laugh", "surprised"];
@@ -227,7 +239,8 @@ export default function Gini() {
   }, [dismissed, reduced, asking, bubble, perches.length]);
 
   /** Say something, wearing the right face, then settle back to idle. */
-  const say = useCallback((text: string, face: GiniMood) => {
+  const say = useCallback((text: string, face: GiniMood, href?: string) => {
+    setBubbleHref(href ?? null);
     setBubble(text);
     setMood(face);
     later(() => setMood("talk"), 1400);
@@ -242,6 +255,7 @@ export default function Gini() {
   const vanish = useCallback(() => {
     stopReading();
     setBubble(null);
+    setBubbleHref(null);
     setVanishing(true);
     later(() => {
       setDismissed(true);
@@ -268,6 +282,7 @@ export default function Gini() {
     if (reply.kind === "answer") {
       // He knows this one — trident up, lightning, then settle into laughing.
       setMood("thunder");
+      setBubbleHref(reply.href ?? null);
       setBubble(reply.text);
       later(() => setMood("laugh"), 1500);
       later(() => setMood("talk"), 3200);
@@ -328,6 +343,19 @@ export default function Gini() {
             }}
           >
             {bubble}
+            {bubbleHref && (
+              <a
+                href={bubbleHref}
+                target={bubbleHref.startsWith("http") ? "_blank" : undefined}
+                rel={bubbleHref.startsWith("http") ? "noopener noreferrer" : undefined}
+                style={{
+                  display: "block", marginTop: 8, fontWeight: 700,
+                  color: "#f0913a", textDecoration: "none", fontSize: 12,
+                }}
+              >
+                {bubbleHref.startsWith("http") ? "Open →" : "Take me there →"}
+              </a>
+            )}
           </div>
         )}
 

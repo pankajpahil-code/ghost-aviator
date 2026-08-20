@@ -15,8 +15,12 @@ export const SITE_URL =
 export const YOUTUBE_PERSONAL = "https://www.youtube.com/@PankajPahil";
 export const YOUTUBE_BRAND = "https://www.youtube.com/@Capt.GhostAviator";
 export const TELEGRAM_GROUP = "https://t.me/+tgLMJithc1gzOWJl";
+// "D.G.C.A Exams HelpLine" — the student help group. Added 2026-08-20; verified
+// 200 before shipping, per the rule that a sameAs pointing at a 404 is a
+// negative signal rather than a neutral one.
+export const WHATSAPP_GROUP = "https://chat.whatsapp.com/J3F9zaMJRQn5IYEiaYzP6t";
 
-export const CAPTAIN_PROFILES = [TELEGRAM_GROUP, YOUTUBE_PERSONAL, YOUTUBE_BRAND];
+export const CAPTAIN_PROFILES = [TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_PERSONAL, YOUTUBE_BRAND];
 
 // Stable schema.org node ids. Search and answer engines consolidate an entity by
 // matching @id across pages: every Course, Article and Organization node that

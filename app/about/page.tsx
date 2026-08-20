@@ -5,7 +5,7 @@ import { Award, BookOpen, Users, ShieldCheck, MessageCircle, ArrowRight, Radio, 
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { TESTIMONIALS } from "@/lib/testimonials";
-import { LIVE_WHATSAPP, LIVE_FOUNDING } from "@/lib/live-classes";
+import { LIVE_WHATSAPP, LIVE_PRICE } from "@/lib/live-classes";
 import { SITE_URL, CAPTAIN_PROFILES, TELEGRAM_GROUP, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
 
 // Real photographs of the Captain, prepared by tools/prepare-captain-photo.mjs
@@ -237,7 +237,7 @@ export default function AboutPage() {
              style={{ background: "linear-gradient(135deg,rgba(255,30,30,0.08),rgba(194,90,30,0.08))", border: "1px solid rgba(255,60,60,0.3)" }}>
           <h2 className="text-3xl font-black text-white mb-3">Learn Directly From the Captain</h2>
           <p className="mb-8 max-w-xl mx-auto" style={{ color: "#94a3b8" }}>
-            Live online batches of 10 — five DGCA subjects, founding price {LIVE_FOUNDING} per subject.
+            Live online batches of 10 — five DGCA subjects, {LIVE_PRICE} per subject.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/live-classes"

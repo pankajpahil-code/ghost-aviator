@@ -31,6 +31,11 @@ import { FAQS, type FaqEntry } from "@/lib/faq";
 import { keyFactsFor } from "@/lib/chapter-key-facts";
 import { verificationFor, LEVEL_LABEL } from "@/lib/verification-status";
 import { CPL_SUBJECTS } from "@/lib/subjects";
+import {
+  LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE,
+  LIVE_CLASS_SUBJECTS,
+} from "@/lib/live-classes";
+import { TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_PERSONAL, YOUTUBE_BRAND } from "@/lib/site";
 
 /* ─────────────────────────── result shape ─────────────────────────── */
 
@@ -246,6 +251,84 @@ export function findChapter(query: string): GiniReply {
   };
 }
 
+/* ─────────────────────── what the Captain offers ─────────────────────── */
+
+/**
+ * THE PAID PATH AND THE COMMUNITY.
+ *
+ * The notes stay free forever — that is not negotiable and Gini never implies
+ * otherwise. But the Captain teaches live batches, and a receptionist who never
+ * mentions them is not doing his job. Every figure here is IMPORTED from
+ * lib/live-classes.ts rather than typed out, so a price can never drift between
+ * what the page charges and what Gini says.
+ *
+ * The links are the same ones in CAPTAIN_PROFILES, all verified 200 before
+ * shipping — Gini must never send a student to a dead invite.
+ */
+const OFFERS: { keys: RegExp; text: string; href: string }[] = [
+  {
+    keys: /\b(class|classes|live|batch|batches|coach|coaching|teach|tuition|admission|join|enrol|enroll|course|fee|fees|price|cost|charge)\b/i,
+    text:
+      `Capt. Pahil teaches live online batches himself — ten students only, so every question gets answered. ` +
+      `${LIVE_PRICE} per subject (down from ${LIVE_LIST_PRICE}), or ${LIVE_COMBO_PRICE} instead of ${LIVE_COMBO_LIST_PRICE} ` +
+      `for the whole Navigation combo: General Navigation, Radio Navigation and Instrumentation together. ` +
+      `The notes on this site stay free either way.`,
+    href: "/live-classes",
+  },
+  {
+    keys: /\b(whatsapp|wa|group|helpline|help ?line)\b/i,
+    text: "Join the WhatsApp group — D.G.C.A Exams HelpLine. Ask doubts there and the Captain answers.",
+    href: WHATSAPP_GROUP,
+  },
+  {
+    keys: /\b(telegram|tg)\b/i,
+    text: "The Telegram group is where notes and exam updates get posted first.",
+    href: TELEGRAM_GROUP,
+  },
+  {
+    keys: /\b(youtube|video|videos|lecture|lectures|channel|watch)\b/i,
+    text:
+      "Two YouTube channels: @PankajPahil carries the Radio Navigation lecture series, " +
+      "and @Capt.GhostAviator covers Air Regulations and Meteorology. Both free.",
+    href: YOUTUBE_PERSONAL,
+  },
+];
+
+/** Answer a question about classes, price, or where to find the Captain. */
+export function offerFor(query: string): GiniReply | null {
+  for (const o of OFFERS) {
+    if (o.keys.test(query)) {
+      return { kind: "answer", text: o.text, source: { type: "structure" }, href: o.href };
+    }
+  }
+  return null;
+}
+
+/** One line Gini can volunteer while idle. Rotated by the caller, never spammed. */
+export const PROMOS: { text: string; href: string }[] = [
+  {
+    text: `Stuck on something? Capt. Pahil runs live batches of ten — ${LIVE_PRICE} a subject, or ${LIVE_COMBO_PRICE} for all three Navigation subjects.`,
+    href: "/live-classes",
+  },
+  {
+    text: "There's a WhatsApp group — D.G.C.A Exams HelpLine — where the Captain answers doubts directly.",
+    href: WHATSAPP_GROUP,
+  },
+  {
+    text: "Notes and exam updates go to the Telegram group first.",
+    href: TELEGRAM_GROUP,
+  },
+  {
+    text: "Radio Navigation lectures are on @PankajPahil; Air Regs and Met on @Capt.GhostAviator. Free.",
+    href: YOUTUBE_BRAND,
+  },
+];
+
+/** Does this subject have a live batch? Used to make the offer specific. */
+export function hasLiveBatch(subjectId: string): boolean {
+  return subjectId in LIVE_CLASS_SUBJECTS;
+}
+
 /* ────────────────────────────── the router ────────────────────────────── */
 
 /**
@@ -256,6 +339,11 @@ export function findChapter(query: string): GiniReply {
 export function ask(query: string): GiniReply {
   const faq = answerFromFaq(query);
   if (faq.kind === "answer") return faq;
+
+  // The Captain's own classes, groups and channels. These are his facts, not
+  // retrieved teaching, so they are answerable with certainty.
+  const offer = offerFor(query);
+  if (offer) return offer;
 
   const where = /\b(where|find|which chapter|show me|take me)\b/i.test(query);
   if (where) {

@@ -6,17 +6,18 @@ import { SITE_URL } from "@/lib/site";
 
 import {
   LIVE_EMAIL as EMAIL,
-  LIVE_REGULAR as REGULAR,
-  LIVE_FOUNDING as FOUNDING,
-  LIVE_COMBO_REGULAR as COMBO_REGULAR,
-  LIVE_COMBO_FOUNDING as COMBO_FOUNDING,
+  LIVE_PRICE as PRICE,
+  LIVE_LIST_PRICE as LIST_PRICE,
+  LIVE_COMBO_PRICE as COMBO_PRICE,
+  LIVE_COMBO_LIST_PRICE as COMBO_LIST_PRICE,
+  LIVE_PRICE_VALUE,
   liveWaLink as waLink,
 } from "@/lib/live-classes";
 
 export const metadata: Metadata = {
   title: "Live DGCA Ground Classes Online — Meteorology, Air Regulations & Navigation | Ghost Aviator",
   description:
-    "Live online DGCA CPL ground classes taught personally by Capt. Pankaj Pahil — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. Founding batches ₹2,999 (regular ₹5,999), only 10 seats each.",
+    `Live online DGCA CPL ground classes taught personally by Capt. Pankaj Pahil — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each.`,
   keywords: [
     "DGCA ground classes online", "DGCA pilot course", "CPL coaching online", "DGCA Air Regulations classes",
     "DGCA Meteorology classes", "DGCA Navigation classes", "DGCA Radio Navigation classes",
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/live-classes" },
   openGraph: {
     title: "Live DGCA Ground Classes with Capt. Pankaj Pahil",
-    description: "5 subjects, live online, batches of 10. Founding price ₹2,999 per subject (50% off). Learn from the captain himself.",
+    description: `5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. Learn from the captain himself.`,
     url: `${SITE_URL}/live-classes`,
     type: "website",
   },
@@ -105,11 +106,11 @@ const FAQ = [
   },
   {
     q: "What is the founding-batch price?",
-    a: `The regular fee is ${REGULAR} per subject — already far below typical institute fees. The FIRST batch of each subject is a founding batch at ${FOUNDING} (50% off, 10 seats only). Founding students help shape the course and get the lowest price it will ever be.`,
+    a: `${PRICE} per subject, down from ${LIST_PRICE} — far below typical institute fees, and taught by the Captain himself rather than a hired faculty member. The Navigation combo (Gen Nav + Radio Nav + Instrumentation) is ${COMBO_PRICE} instead of ${COMBO_LIST_PRICE} for all three. Ten seats per batch, so every question gets answered.`,
   },
   {
     q: "Is there a Navigation combo?",
-    a: `Yes — General Navigation + Radio Navigation + Instrumentation together cover the composite DGCA Navigation paper. Combo: ${COMBO_REGULAR}, founding price ${COMBO_FOUNDING}.`,
+    a: `Yes — General Navigation + Radio Navigation + Instrumentation together cover the composite DGCA Navigation paper. The combo is ${COMBO_PRICE} for all three.`,
   },
   {
     q: "Who can join?",
@@ -125,7 +126,7 @@ const JSON_LD = {
       name: `DGCA CPL ${s.name} — Live Online Ground Classes`,
       description: `Live online DGCA ${s.name} classes taught by Capt. Pankaj Pahil. Small batch of 10, 4–6 weeks.`,
       provider: { "@id": `${SITE_URL}/#org` },
-      offers: { "@type": "Offer", price: "2999", priceCurrency: "INR", availability: "https://schema.org/InStock" },
+      offers: { "@type": "Offer", price: LIVE_PRICE_VALUE, priceCurrency: "INR", availability: "https://schema.org/InStock" },
       hasCourseInstance: {
         "@type": "CourseInstance",
         courseMode: "Online",
@@ -148,10 +149,10 @@ function PriceTag({ color }: { color: string }) {
   return (
     <div>
       <div className="flex items-baseline gap-2">
-        <span className="text-sm line-through" style={{ color:"#475569" }}>{REGULAR}</span>
-        <span className="text-2xl font-black text-white">{FOUNDING}</span>
+        <span className="text-sm line-through" style={{ color:"#475569" }}>{LIST_PRICE}</span>
+        <span className="text-2xl font-black text-white">{PRICE}</span>
       </div>
-      <div className="text-xs font-bold" style={{ color }}>Founding batch · 50% off · 10 seats</div>
+      <div className="text-xs font-bold" style={{ color }}>Live batch · 10 seats</div>
     </div>
   );
 }
@@ -176,7 +177,7 @@ export default function LiveClassesPage() {
           <div className="flex-1 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-black mb-6"
                style={{ background:"rgba(255,40,40,0.12)", border:"1px solid rgba(255,60,60,0.45)", color:"#ff5a5a" }}>
-            <Radio className="w-4 h-4 animate-pulse" /> LIVE ONLINE BATCHES · FOUNDING ADMISSIONS OPEN
+            <Radio className="w-4 h-4 animate-pulse" /> LIVE ONLINE BATCHES · ADMISSIONS OPEN
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black text-white leading-tight mb-4">
@@ -190,13 +191,13 @@ export default function LiveClassesPage() {
             Small batch of 10 · Live doubt-clearing · 4–6 weeks per subject
           </p>
           <p className="text-base font-black mb-10">
-            <span className="line-through mr-2" style={{ color:"#64748b" }}>{REGULAR}</span>
-            <span style={{ color:"#22c55e" }}>{FOUNDING} founding price</span>
-            <span className="ml-2 px-2 py-0.5 rounded text-xs" style={{ background:"rgba(255,40,40,0.15)", color:"#ff5a5a", border:"1px solid rgba(255,60,60,0.35)" }}>50% OFF · FIRST BATCH ONLY</span>
+            <span className="line-through mr-2" style={{ color:"#64748b" }}>{LIST_PRICE}</span>
+            <span style={{ color:"#22c55e" }}>{PRICE} per subject</span>
+            <span className="ml-2 px-2 py-0.5 rounded text-xs" style={{ background:"rgba(34,197,94,0.15)", color:"#22c55e", border:"1px solid rgba(34,197,94,0.35)" }}>NAVIGATION COMBO {COMBO_LIST_PRICE} → {COMBO_PRICE}</span>
           </p>
 
           <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
-            <a href={waLink("DGCA ground classes", FOUNDING)} target="_blank" rel="noopener noreferrer"
+            <a href={waLink("DGCA ground classes", PRICE)} target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
               <MessageCircle className="w-5 h-5" /> Message Capt. Pahil on WhatsApp
@@ -267,7 +268,7 @@ export default function LiveClassesPage() {
               <div className="mb-5">
                 <PriceTag color={s.color} />
               </div>
-              <a href={waLink(s.name, FOUNDING)} target="_blank" rel="noopener noreferrer"
+              <a href={waLink(s.name, PRICE)} target="_blank" rel="noopener noreferrer"
                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline"
                  style={{ background:`${s.color}20`, border:`1px solid ${s.color}60`, color:"#fff" }}>
                 <MessageCircle className="w-4 h-4" style={{ color:"#22c55e" }}/> Reserve My Seat
@@ -302,12 +303,12 @@ export default function LiveClassesPage() {
             </ul>
             <div className="mb-5">
               <div className="flex items-baseline gap-2">
-                <span className="text-sm line-through" style={{ color:"#475569" }}>{COMBO_REGULAR}</span>
-                <span className="text-2xl font-black text-white">{COMBO_FOUNDING}</span>
+                <span className="text-sm line-through" style={{ color:"#475569" }}>{COMBO_LIST_PRICE}</span>
+                <span className="text-2xl font-black text-white">{COMBO_PRICE}</span>
               </div>
-              <div className="text-xs font-bold" style={{ color:"#22c55e" }}>Founding combo · 3 subjects · 10 seats</div>
+              <div className="text-xs font-bold" style={{ color:"#22c55e" }}>Navigation combo · 3 subjects · 10 seats</div>
             </div>
-            <a href={waLink("Navigation Combo (Gen Nav + Radio Nav + Instrumentation)", COMBO_FOUNDING)} target="_blank" rel="noopener noreferrer"
+            <a href={waLink("Navigation Combo (Gen Nav + Radio Nav + Instrumentation)", COMBO_PRICE)} target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 20px rgba(34,197,94,0.35)" }}>
               <MessageCircle className="w-4 h-4"/> Reserve Combo Seat
@@ -363,14 +364,14 @@ export default function LiveClassesPage() {
         <div className="rounded-3xl p-12 text-center relative overflow-hidden"
              style={{ background:"linear-gradient(135deg,rgba(255,30,30,0.08),rgba(194,90,30,0.08))", border:"1px solid rgba(255,60,60,0.3)" }}>
           <div className="text-4xl mb-3">🛫</div>
-          <h2 className="text-3xl font-black text-white mb-3">Founding Seats Are Limited. Doubts Are Not.</h2>
+          <h2 className="text-3xl font-black text-white mb-3">Seats Are Limited. Doubts Are Not.</h2>
           <p className="mb-8 max-w-xl mx-auto" style={{ color:"#94a3b8" }}>
-            Ten students per batch — so every question gets answered. The founding price ({FOUNDING}) retires
-            once the first batches fill. Message now and Capt. Pahil will personally tell you when your
+            Ten students per batch — so every question gets answered. {PRICE} per subject (list {LIST_PRICE}),
+            or {COMBO_PRICE} for the full Navigation combo. Message now and Capt. Pahil will personally tell you when your
             subject&apos;s batch begins.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href={waLink("DGCA ground classes", FOUNDING)} target="_blank" rel="noopener noreferrer"
+            <a href={waLink("DGCA ground classes", PRICE)} target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
               <MessageCircle className="w-5 h-5" /> WhatsApp: +91 99902 26607
