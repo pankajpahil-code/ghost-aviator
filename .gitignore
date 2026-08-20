@@ -53,3 +53,16 @@ tools/yt/_*.json
 tools/yt/_*.txt
 tools/_video-chapter-map.json
 __pycache__/
+
+# Gini build intermediates — regenerate with tools/gini/*.py, never commit.
+# These are ~120 MB of extracted video frames, Blender scenes and generated
+# meshes. The shipped output is public/gini/sprites/*.webp only.
+tools/gini/seqwork/
+tools/gini/facework/
+tools/gini/frames/
+tools/gini/preview/
+tools/gini/ref/
+tools/gini/input/
+tools/gini/out/
+tools/gini/*.blend
+tools/gini/*.blend1

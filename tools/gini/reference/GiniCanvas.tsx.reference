@@ -1,0 +1,167 @@
+"use client";
+
+/* eslint-disable react-hooks/immutability -- WHOLE-FILE, and deliberately so.
+ * This module's entire job is driving a three.js AnimationMixer, whose API is
+ * imperative by design: `action.setLoop()`, `action.clampWhenFinished = x`,
+ * `action.fadeIn().play()` all mutate the action object, and the `actions` map
+ * returned by useAnimations IS that object graph. There is no non-mutating way
+ * to play an animation in three.js.
+ *
+ * This is safe where the rule's usual target is not: the mutation touches only
+ * the mixer's internal playback state, never React state and never anything
+ * read during render, so it cannot produce the inconsistent re-render the rule
+ * exists to prevent. Everything React owns here (which clip is active) is
+ * passed in as a prop.
+ */
+
+/**
+ * Gini's body — the WebGL half.
+ *
+ * This module is NEVER imported directly by anything server-rendered. It is
+ * pulled in by `Gini.tsx` through `next/dynamic` with `ssr: false`, which the
+ * local Next docs confirm is only legal inside a Client Component
+ * (node_modules/next/dist/docs/01-app/02-guides/lazy-loading.md:94).
+ *
+ * PERFORMANCE IS A CORRECTNESS CONCERN HERE, not a nicety. This site's
+ * students are largely on low-end Android phones, and the domain already has a
+ * documented indexing problem where thin/slow pages were being dropped. So:
+ *
+ *   - the canvas is SMALL (a moving box, not a full-viewport surface). The
+ *     character flies by translating its container in CSS; the GPU only ever
+ *     rasterises a few hundred pixels square.
+ *   - devicePixelRatio is clamped to 1.5.
+ *   - the render loop stops entirely when the tab is hidden.
+ *   - `prefers-reduced-motion` freezes him into a still idle pose.
+ */
+
+import { useEffect, useMemo, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useGLTF, useAnimations, Bounds } from "@react-three/drei";
+import * as THREE from "three";
+
+export const MODEL_URL = "/gini/gini.glb";
+
+/**
+ * Self-hosted Draco decoder. The mesh is Draco-compressed (2.2 MB instead of
+ * ~7 MB), and drei fetches the decoder from a Google CDN by default — which
+ * this site's CSP blocks, by design. The model then downloads fine (200) and
+ * silently fails to parse with "Failed to fetch" out of _initDecoder.
+ * Copied from node_modules/three/examples/jsm/libs/draco/ into public/draco/.
+ */
+const DRACO_PATH = "/draco/";
+
+/** Clip names — these MUST match docs/GINI_3D_MODEL_SPEC.md §6 exactly. */
+export type GiniClip =
+  | "idle" | "fly" | "talk" | "point" | "happy"
+  | "surprised" | "sad" | "present_book" | "vanish" | "appear";
+
+/** Clips that play once and hand back to idle, rather than looping. */
+const ONE_SHOT: ReadonlySet<GiniClip> = new Set<GiniClip>([
+  "point", "happy", "surprised", "sad", "present_book", "vanish", "appear",
+]);
+
+function Model({ clip, reduced }: { clip: GiniClip; reduced: boolean }) {
+  const group = useRef<THREE.Group>(null);
+  const { scene, animations } = useGLTF(MODEL_URL, DRACO_PATH);
+  const { actions, mixer } = useAnimations(animations, group);
+  const current = useRef<THREE.AnimationAction | null>(null);
+
+  // Clone so multiple mounts (React strict double-render, or a future second
+  // instance) do not fight over one scene graph.
+  //
+  // Framing is deliberately NOT computed here. An earlier version scaled the
+  // model from Box3.setFromObject(), which on a SkinnedMesh reports the UNPOSED
+  // geometry bounds — so the derived scale was wrong and cropped the character.
+  // <Bounds fit clip> below measures what is actually rendered and moves the
+  // CAMERA instead: correct, and mesh-agnostic, so a replacement model (or a
+  // commissioned sculpt) frames itself with no code change.
+  const model = useMemo(() => scene.clone(true), [scene]);
+
+  useEffect(() => {
+    const next = actions[clip];
+    if (!next) return;
+
+    if (current.current && current.current !== next) {
+      current.current.fadeOut(0.25);
+    }
+    next.reset();
+    if (ONE_SHOT.has(clip)) {
+      next.setLoop(THREE.LoopOnce, 1);
+      next.clampWhenFinished = true;
+    } else {
+      next.setLoop(THREE.LoopRepeat, Infinity);
+      next.clampWhenFinished = false;
+    }
+    next.fadeIn(0.25).play();
+    if (reduced) next.paused = true;      // still pose, no motion
+    current.current = next;
+
+    return () => { next.fadeOut(0.25); };
+  }, [clip, actions, reduced]);
+
+  // A one-shot that finishes returns to idle, so he never freezes mid-gesture.
+  useEffect(() => {
+    const onFinished = (e: { action: THREE.AnimationAction }) => {
+      if (!ONE_SHOT.has(clip) || clip === "vanish") return;
+      const idle = actions["idle"];
+      if (idle && e.action === current.current) {
+        e.action.fadeOut(0.3);
+        idle.reset().fadeIn(0.3).play();
+        current.current = idle;
+      }
+    };
+    mixer.addEventListener("finished", onFinished as never);
+    return () => mixer.removeEventListener("finished", onFinished as never);
+  }, [mixer, actions, clip]);
+
+  // Gentle bob so he reads as hovering even while a clip loops.
+  useFrame((state) => {
+    if (reduced || !group.current) return;
+    group.current.position.y = Math.sin(state.clock.elapsedTime * 1.4) * 0.03;
+  });
+
+  return (
+    <group ref={group} position={[0, 0, 0]}>
+      <primitive object={model} />
+    </group>
+  );
+}
+
+export default function GiniCanvas({
+  clip,
+  reduced,
+}: {
+  clip: GiniClip;
+  reduced: boolean;
+}) {
+  return (
+    <Canvas
+      // Clamp DPR: a retina phone would otherwise render 3x the pixels for a
+      // 220px character nobody is inspecting closely.
+      dpr={[1, 1.5]}
+      camera={{ position: [0, 0, 3.0], fov: 42 }}
+      gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
+      /* pointerEvents:none is LOAD-BEARING, not styling. r3f makes the canvas
+         accept pointer events so it can raycast, and it overlaps Gini's Ask /
+         Move / Vanish buttons — which made every one of them dead on the live
+         page while looking perfectly normal. document.elementFromPoint() over
+         the Vanish button returned CANVAS. It must be set HERE and not only on
+         the wrapper, because the canvas re-enables what the parent's
+         `pointer-events: none` would otherwise have inherited down. */
+      style={{ width: "100%", height: "100%", background: "transparent", pointerEvents: "none" }}
+      frameloop={reduced ? "demand" : "always"}
+    >
+      <ambientLight intensity={1.15} />
+      <directionalLight position={[3, 4, 5]} intensity={2.1} />
+      {/* Warm rim from behind — this is what makes the membrane wings read. */}
+      <directionalLight position={[-3, 2, -4]} intensity={1.5} color="#ff7a2f" />
+      <Bounds fit clip observe margin={1.15}>
+        <Model clip={clip} reduced={reduced} />
+      </Bounds>
+    </Canvas>
+  );
+}
+
+// Warm the model as soon as this chunk loads, so his first appearance is not a
+// blank box. Safe: the chunk itself only loads after hydration.
+useGLTF.preload(MODEL_URL, DRACO_PATH);

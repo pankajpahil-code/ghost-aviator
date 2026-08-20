@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ContentProtection from "./components/ContentProtection";
 import ProgressSync from "./components/ProgressSync";
+import Gini from "./components/gini/Gini";
 import { SITE_URL, CAPTAIN_PROFILES, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -95,6 +96,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        {/* Gini — the Ghost Aviator guide. Client-only: the WebGL chunk loads
+            after hydration via next/dynamic({ssr:false}), so nothing about him
+            reaches the server-rendered HTML a crawler sees. Mounted here, in the
+            root layout, because the root layout is cached across client
+            navigation — he survives page changes instead of remounting. */}
+        <Gini />
         <Analytics />
       </body>
     </html>
