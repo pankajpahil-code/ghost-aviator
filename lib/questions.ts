@@ -17,6 +17,7 @@ import { REGS_NOTES } from "./generated/regs-notes";
 import { AR25_PHYSIOLOGY_QUESTIONS } from "./generated/ar25-physiology-questions";
 import { RTF_QUESTIONS } from "./generated/rtf-questions";
 import { MET_VERIFIED, VERIFIED_MET_CHAPTERS } from "./generated/met-verified";
+import { DA42_QUESTIONS } from "./generated/da42-questions";
 
 export type { DemoQuestion };
 
@@ -40,6 +41,7 @@ const RAW_QUESTIONS: DemoQuestion[] = [
   ...SAR_QUESTIONS,
   ...TECHBOOK_QUESTIONS_1, // Technical General — own book Q&A (tg-1..18)
   ...TECHBOOK_QUESTIONS_2, // Technical General — own book Q&A (tg-19..36)
+  ...DA42_QUESTIONS,       // Technical Specific — DA-42 NG (Austro) type bank (da42-1..10)
   ...ICJOSHI_NOTES_MET.filter(dropVerifiedMet),   // rich HTML-notes Q&A (unverified met chapters only)
   ...OXFORD_INSTRUMENTATION, // Instrumentation HTML-notes Q&A (inst-1..23)
   ...OXFORD_RADIO_NAV,       // Radio Navigation HTML-notes Q&A (rnav-1..20)

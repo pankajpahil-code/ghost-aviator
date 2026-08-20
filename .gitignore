@@ -66,3 +66,9 @@ tools/gini/input/
 tools/gini/out/
 tools/gini/*.blend
 tools/gini/*.blend1
+
+# Source material used only for verification — never served, never committed.
+# Iron Rule 4: third-party books are references, not publishing sources; and a
+# PDF under public/ is a public download regardless of robots.txt, which the
+# scrapers hitting this site do not honour anyway.
+_sources/
