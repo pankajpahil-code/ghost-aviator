@@ -26,6 +26,7 @@ import {
 } from "../../lib/gini/knowledge";
 import { explainQuestion, isSpeakable, speakableStats } from "../../lib/gini/deep";
 import { FAKE_URGENCY, FREE_THREAT } from "../../lib/gini/marketing";
+import { guardModelProse } from "../../lib/gini/guard";
 import { CORPUS } from "../../lib/gini/generated/corpus-stats";
 import { ALL_QUESTIONS } from "../../lib/questions";
 import { CPL_SUBJECTS } from "../../lib/subjects";
@@ -190,6 +191,24 @@ for (let i = 0; i < PITCH_RULES.MAX_PER_SESSION; i++) {
 check(new Set(picked).size === picked.length, "never repeats an offer", picked.join(", "));
 
 /* ──────────────────────── 7. wisdom must be sourced ────────────────────── */
+
+line("\n--- OUTPUT GUARDS (what a model is allowed to say) ---");
+// Each case was either caught in production or is the exact thing the guard
+// exists to stop. A guard with no test is a comment.
+const GUARD_CASES: { text: string; ok: boolean; label: string }[] = [
+  { text: "Ask me about the chapter and I will read what is written.", ok: true, label: "ordinary sentence" },
+  { text: "Tell me if you need help finding anything.আন্তরিত", ok: false, label: "stray Bengali script (seen live 2026-08-21)" },
+  { text: "The notes are based on the Oxford ATPL manual.", ok: false, label: "names a source" },
+  { text: "Only 2 seats left, book now before it fills!", ok: false, label: "manufactured urgency" },
+  { text: "It is free for a limited time, so join today.", ok: false, label: "threatens the free material" },
+  { text: "The batch costs ₹8,000 per subject.", ok: false, label: "a price we do not charge" },
+  { text: "Capt. Pahil teaches live batches at ₹7,999 a subject.", ok: true, label: "a real price" },
+  { text: "We guarantee you will pass the DGCA exam.", ok: false, label: "promises an outcome" },
+];
+for (const g of GUARD_CASES) {
+  const v = guardModelProse(g.text);
+  check(v.ok === g.ok, g.label, v.ok ? "allowed" : `blocked: ${(v as { ok: false; why: string }).why}`);
+}
 
 line("\n--- WISDOM PROVENANCE ---");
 const unsourced = WISDOM.filter(w => w.kind === "fact" && (!w.source || w.source === "method"));

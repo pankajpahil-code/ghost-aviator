@@ -72,6 +72,35 @@ export const OVERCLAIM =
 export const SOUNDS_LIKE_TEACHING =
   /\b(\d+\s?(kt|kts|knots|ft|feet|nm|hpa|mb|°c|degrees|rpm|psi|bar|fl\s?\d+)|the answer is|correct option|formula is|is calculated (as|by)|equals)\b/i;
 
+/**
+ * TOKEN GARBAGE, AND IT IS NOT HYPOTHETICAL.
+ *
+ * Caught on the live site, 2026-08-21, in an otherwise perfect greeting:
+ *
+ *   "…Tell me if you need help finding anything.ান্তরিত"
+ *
+ * A fragment of Bengali script welded onto the end of an English sentence. No
+ * wrong fact, nothing unsafe — just a mascot that looks broken on a site whose
+ * entire pitch is that it is careful. The other guards all passed it, because
+ * they were looking for lies and this was corruption.
+ *
+ * The brief instructs Indian English, so any run of an unrelated script is a
+ * defect rather than a translation. Listed by block instead of by an allow-list
+ * of Latin, so ordinary typography (— ₹ ' " …) can never trip it.
+ */
+export const FOREIGN_SCRIPT = new RegExp(
+  "[" +
+  "\\u0370-\\u03FF" +   // Greek
+  "\\u0400-\\u04FF" +   // Cyrillic
+  "\\u0590-\\u06FF" +   // Hebrew, Arabic
+  "\\u0900-\\u0DFF" +   // Devanagari through Sinhala (incl. Bengali, Tamil, Telugu)
+  "\\u0E00-\\u0E7F" +   // Thai
+  "\\u3040-\\u30FF" +   // Hiragana, Katakana
+  "\\u4E00-\\u9FFF" +   // CJK
+  "\\uAC00-\\uD7AF" +   // Hangul
+  "]",
+);
+
 export type GuardVerdict = { ok: true } | { ok: false; why: string };
 
 const MAX_CHARS = 700;
@@ -85,6 +114,7 @@ export function guardModelProse(text: string, opts: { allowTeaching?: boolean } 
   if (!t) return { ok: false, why: "empty" };
   if (t.length > MAX_CHARS) return { ok: false, why: `too long (${t.length})` };
 
+  if (FOREIGN_SCRIPT.test(t)) return { ok: false, why: "contains stray non-Latin script (token garbage)" };
   if (ATTRIBUTION.test(t)) return { ok: false, why: "names a third-party source (Iron Rule 2)" };
   if (FAKE_URGENCY.test(t)) return { ok: false, why: "manufactured urgency" };
   if (FREE_THREAT.test(t)) return { ok: false, why: "implies the free material will end" };
