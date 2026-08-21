@@ -33,6 +33,7 @@ import type { GiniMoodName } from "./persona";
 import { answer, type GiniReply } from "./types";
 import { Index } from "./match";
 import { CORPUS } from "./generated/corpus-stats";
+import { captainWhatsApp } from "./brief";
 import {
   LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE,
   LIVE_CLASS_SUBJECTS, LIVE_COMBO_SUBJECTS,
@@ -102,6 +103,29 @@ export const PITCHES: Pitch[] = [
       `If a subject is fighting you, the Captain runs live batches of ten — ${LIVE_PRICE} a subject, or ` +
       `${LIVE_COMBO_PRICE} for the whole Navigation combo. The free material here doesn't change either way.`,
     href: () => "/live-classes",
+  },
+
+  {
+    /**
+     * THE DIRECT LINE. The Captain asked specifically that Gini hand students a
+     * way to reach HIM about classes, rather than leaving them on a page to
+     * work it out. The link opens WhatsApp with the enquiry already written,
+     * because a student who has to compose the first message often never sends
+     * it — and it names their subject when we know it.
+     */
+    id: "talk-to-captain",
+    kind: "paid",
+    ask: "talk to captain directly contact him enrol join now number whatsapp classes",
+    fits: anywhere,
+    weight: 9,
+    mood: "point",
+    say: ctx => {
+      const s = liveSubject(ctx);
+      return s
+        ? `If ${s} is the one fighting you, talk to Capt. Pahil himself — this opens a message straight to him. Ten students a batch, ${LIVE_PRICE}, and he teaches it personally. Send it while it's in front of you.`
+        : `You can speak to Capt. Pahil directly about a batch — this opens a message straight to him. He teaches every batch himself, ten students only, ${LIVE_PRICE} a subject.`;
+    },
+    href: ctx => captainWhatsApp(liveSubject(ctx) ?? undefined),
   },
 
   /* ──────────────────────── the free flagship assets ──────────────────── */

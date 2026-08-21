@@ -27,6 +27,7 @@ import {
 import { explainQuestion, isSpeakable, speakableStats } from "../../lib/gini/deep";
 import { FAKE_URGENCY, FREE_THREAT } from "../../lib/gini/marketing";
 import { guardModelProse } from "../../lib/gini/guard";
+import { isOffTopic, DECLINES } from "../../lib/gini/persona";
 import { CORPUS } from "../../lib/gini/generated/corpus-stats";
 import { ALL_QUESTIONS } from "../../lib/questions";
 import { CPL_SUBJECTS } from "../../lib/subjects";
@@ -82,13 +83,22 @@ check(subjectDrift === 0, "per-subject counts", `${subjectDrift} drifted`);
 line("\n--- REFUSAL BEHAVIOUR (the important half) ---");
 const mustRefuse = [
   "what is the airspeed limit of a Boeing 747",
-  "who will win the cricket match",
   "should I bribe the examiner",
   "",
 ];
 for (const p of mustRefuse) {
   const r = ask(p);
   check(r.kind === "refusal", `refuses "${p}"`, r.kind === "answer" ? r.text.slice(0, 60) : "");
+}
+// Off-topic is now a WARM DECLINE rather than a bare refusal, so it comes back
+// as an answer — but it must still never actually answer the question. That is
+// the Captain's scope rule working, not the refusal rule breaking.
+{
+  const r = ask("who will win the cricket match");
+  const declined = r.kind === "refusal" ||
+    (r.kind === "answer" && DECLINES.includes(r.text));
+  check(declined, 'declines "who will win the cricket match"',
+    r.kind === "answer" && !DECLINES.includes(r.text) ? r.text.slice(0, 60) : "");
 }
 
 /* ───────────────────────── 5. manners, not refusals ────────────────────── */
@@ -159,7 +169,9 @@ check(PITCHES.every(p => !!p.href(home)), "every pitch has somewhere to go");
 check(new Set(PITCHES.map(p => p.id)).size === PITCHES.length, "pitch ids are unique");
 // Prices must be imported, never typed. Any rupee figure in a pitch has to be
 // one of the four that lib/live-classes.ts exports.
-const priced = everyPitchText.match(/₹[\d,]+/g) ?? [];
+// \d at the end, so a sentence comma right after the figure is not eaten:
+// "ten a batch, ₹7,999, and he teaches it" was matching "₹7,999,".
+const priced = everyPitchText.match(/₹\s?\d[\d,]*\d|₹\s?\d/g) ?? [];
 const allowed = new Set(["₹12,999", "₹7,999", "₹23,999", "₹14,999"]);
 check(priced.every(p => allowed.has(p)), "every price comes from lib/live-classes.ts", priced.join(" "));
 
@@ -191,6 +203,28 @@ for (let i = 0; i < PITCH_RULES.MAX_PER_SESSION; i++) {
 check(new Set(picked).size === picked.length, "never repeats an offer", picked.join(", "));
 
 /* ──────────────────────── 7. wisdom must be sourced ────────────────────── */
+
+line("\n--- SCOPE: DGCA, aviation, this site, the classes. Nothing else. ---");
+// The Captain's rule, 2026-08-21. The interesting cases are the near-misses:
+// an off-topic word inside an aviation question must NOT throw the question away.
+const SCOPE_CASES: { q: string; off: boolean }[] = [
+  { q: "who will win the cricket match", off: true },
+  { q: "write me a python function", off: true },
+  { q: "what do you think of the election", off: true },
+  { q: "suggest a movie for tonight", off: true },
+  // ...and these are ours, despite sharing words with the list above:
+  { q: "how does weather affect takeoff performance", off: false },
+  { q: "what is in the meteorology syllabus", off: false },
+  { q: "how much are the classes", off: false },
+  { q: "where is the chapter on jet streams", off: false },
+];
+for (const c of SCOPE_CASES) {
+  const got = isOffTopic(c.q);
+  check(got === c.off, `${c.off ? "declines" : "keeps"} "${c.q}"`, got === c.off ? "" : `got off=${got}`);
+}
+check(DECLINES.length >= 2, "more than one way to say no");
+check(DECLINES.every(d => /ask|what|dgca|aviation|exam|class|chapter|prepar/i.test(d)),
+  "every decline offers the door back rather than stonewalling");
 
 line("\n--- OUTPUT GUARDS (what a model is allowed to say) ---");
 // Each case was either caught in production or is the exact thing the guard

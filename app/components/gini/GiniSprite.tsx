@@ -43,6 +43,22 @@ const SEQS: Partial<Record<GiniMood, Seq>> = {
   thunder: { src: "/gini/sprites/seq_thunder.webp", frames: 12, fw: 247, fh: 200, fps: 12 },
 };
 
+/**
+ * HIS MOUTH ACTUALLY MOVES NOW.
+ *
+ * Cut from close-up footage the Captain supplied on 2026-08-21 of the character
+ * talking — sixteen frames of real articulation: teeth, open, a wide "O", a
+ * closed smile. Before that, "speaking" was a small bob on a still, because the
+ * original hero video is a wide shot where the face never articulates.
+ *
+ * Keyed OFF the mood on purpose. It plays whenever he is mid-sentence, whatever
+ * face the answer called for, and hands straight back to that face when the
+ * words stop. Rebuild with tools/gini/build_talk_sprite.py.
+ */
+const TALK_SEQ: Seq = {
+  src: "/gini/sprites/seq_talk.webp", frames: 16, fw: 300, fh: 240, fps: 12,
+};
+
 /** Held single frames for expression. */
 const STILLS: Partial<Record<GiniMood, { src: string; w: number; h: number }>> = {
   idle:         { src: "/gini/sprites/idle.webp",         w: 520, h: 434 },
@@ -90,12 +106,14 @@ function Bolts() {
 }
 
 export default function GiniSprite({
-  mood, reduced, vanishing, entering, height = 200,
+  mood, reduced, vanishing, entering, speaking, height = 200,
 }: {
   mood: GiniMood;
   reduced: boolean;
   vanishing?: boolean;
   entering?: boolean;
+  /** True while his words are still appearing in the bubble — he "talks". */
+  speaking?: boolean;
   height?: number;
 }) {
   // Warm every asset once so a mood change never flashes an empty frame.
@@ -110,6 +128,18 @@ export default function GiniSprite({
     }
   }, []);
 
+  /**
+   * The float under him. `speaking` deliberately does NOT get its own motion
+   * here any more: the talking sequence below is real mouth articulation cut
+   * from the Captain's footage, so adding a bob on top of it would be two
+   * animations fighting over the same figure.
+   *
+   * (Until 2026-08-21 this branch DID carry a faked articulation bob, because
+   * the only footage available was a wide shot where the face never moves. That
+   * is what a stand-in looks like, and it is worth remembering how much better
+   * the real thing reads — no amount of clever motion substitutes for having
+   * the frames.)
+   */
   const outer =
     vanishing ? "gini-poof .9s ease-in forwards"
     : entering ? "gini-pop .5s cubic-bezier(.34,1.56,.64,1)"
@@ -117,7 +147,7 @@ export default function GiniSprite({
     : (mood === "fly" || mood === "thunder") ? "gini-hover 2.4s ease-in-out infinite"
     : "gini-bob 3.6s ease-in-out infinite";
 
-  const seq = SEQS[mood];
+  const seq = speaking && !reduced ? TALK_SEQ : SEQS[mood];
   if (seq) {
     const w = Math.round(seq.fw * (height / seq.fh));
     const sheetW = w * seq.frames;

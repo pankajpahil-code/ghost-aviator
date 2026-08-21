@@ -73,6 +73,8 @@ export default function Gini() {
   const [perch, setPerch] = useState(0);
   const [bubble, setBubble] = useState<string | null>(null);
   const [bubbleHref, setBubbleHref] = useState<string | null>(null);
+  /** How much of the current bubble has been "spoken" so far. */
+  const [typed, setTyped] = useState(0);
   const [asking, setAsking] = useState(false);
   const [query, setQuery] = useState("");
   const [thinking, setThinking] = useState(false);
@@ -98,11 +100,24 @@ export default function Gini() {
   /** The last chapter path he has already remarked on, so he says it once. */
   const roomed = useRef<string | null>(null);
 
+  /**
+   * SAY SOMETHING. Every bubble in this component goes through here, so the
+   * typewriter can never be left showing a half-revealed previous sentence —
+   * the reset and the text are set together, in one place, rather than in the
+   * eight places that used to call setBubble directly.
+   */
+  const show = useCallback((text: string | null, href?: string | null) => {
+    setTyped(0);
+    setBubbleHref(href ?? null);
+    setBubble(text);
+  }, []);
+
   const later = useCallback((fn: () => void, ms: number) => {
     timers.current.push(window.setTimeout(fn, ms));
   }, []);
 
   useEffect(() => () => { timers.current.forEach(clearTimeout); }, []);
+
 
   /* eslint-disable react-hooks/set-state-in-effect -- localStorage and
    * matchMedia are browser facts that CANNOT be known while rendering on the
@@ -151,6 +166,27 @@ export default function Gini() {
   // The explicit choice wins; the OS hint is only the default.
   const reduced = motionPref === "on" ? false : motionPref === "off" ? true : osReduced;
 
+  /**
+   * HIM TALKING. The words arrive one at a time and his mouth moves while they
+   * do — real articulation, cut from close-up footage the Captain supplied, not
+   * a bob standing in for it. `speaking` drives the sprite; this drives the text.
+   *
+   * No setState in the effect body, so no lint suppression is needed: the
+   * counter only advances inside the interval callback, and `show()` does the
+   * reset at the moment the text is set.
+   *
+   * Under reduced motion `typed` simply stays at 0 and the render shows the
+   * whole sentence at once — a person who asked for less movement should not
+   * have to sit through a letter-by-letter reveal to read an answer.
+   */
+  useEffect(() => {
+    if (!bubble || reduced) return;
+    const id = window.setInterval(() => {
+      setTyped(n => (n >= bubble.length ? n : n + 1));
+    }, 18);
+    return () => window.clearInterval(id);
+  }, [bubble, reduced]);
+
   const toggleMotion = useCallback(() => {
     const next = reduced ? "on" : "off";
     setMotionPref(next);
@@ -177,33 +213,33 @@ export default function Gini() {
   const readNext = useCallback(() => {
     const all = sections();
     if (!all.length) {
-      setBubble("There's no chapter text on this page for me to read.");
+      show("There's no chapter text on this page for me to read.");
       return;
     }
     if (sectionIdx.current >= all.length) sectionIdx.current = 0;
     const s = all[sectionIdx.current];
     setReading(true);
     setMood("talk");
-    setBubble(`Reading ${sectionIdx.current + 1} of ${all.length}: ${s.title}`);
+    show(`Reading ${sectionIdx.current + 1} of ${all.length}: ${s.title}`);
     speakSection(s, () => {
       setReading(false);
       setMood("idle");
       sectionIdx.current += 1;
       if (sectionIdx.current >= all.length) {
         sectionIdx.current = 0;
-        setBubble("That's the whole chapter. Ask me about any of it.");
+        show("That's the whole chapter. Ask me about any of it.");
       } else {
-        setBubble(`Done. Press Read again for "${all[sectionIdx.current].title}".`);
+        show(`Done. Press Read again for "${all[sectionIdx.current].title}".`);
       }
     });
-  }, []);
+  }, [show]);
 
   const haltReading = useCallback(() => {
     stopReading();
     setReading(false);
     setMood("idle");
-    setBubble(null);
-  }, []);
+    show(null);
+  }, [show]);
 
   // Never keep talking after he is dismissed or the student navigates away.
   useEffect(() => () => stopReading(), []);
@@ -254,12 +290,11 @@ export default function Gini() {
     // than a suppression — the same shape the onNotes check above already uses.
     later(() => {
       setMood(spoken.mood);
-      setBubbleHref(spoken.href ?? null);
-      setBubble(spoken.text);
+      show(spoken.text, spoken.href);
     }, 900);
     later(() => setMood("idle"), 4100);
-    later(() => { setBubble(null); setBubbleHref(null); }, 13900);
-  }, [ctx, pathname, dismissed, ready, asking, bubble, later]);
+    later(() => show(null), 13900);
+  }, [ctx, pathname, dismissed, ready, asking, bubble, later, show]);
 
   /**
    * ARRIVING ON A CHAPTER, having already been greeted. One short line per
@@ -271,14 +306,14 @@ export default function Gini() {
     if (roomed.current === pathname) return;
     roomed.current = pathname;
     setMood("present_book");
-    setBubble(
+    show(
       ctx.chapterTitle
         ? `${ctx.chapterTitle} is open. I can read it aloud, or answer on it.`
         : "Chapter's open. I can read it aloud, or answer on it.",
     );
     later(() => setMood("idle"), 3000);
-    later(() => setBubble(null), 7000);
-  }, [pathname, ctx.chapterTitle, dismissed, asking, bubble, later]);
+    later(() => show(null), 7000);
+  }, [pathname, ctx.chapterTitle, dismissed, asking, bubble, later, show]);
 
   /**
    * IDLE LIFE. Every 30 seconds he does ONE small thing — either drifts to a
@@ -309,10 +344,9 @@ export default function Gini() {
         if (pitch) {
           pitchState.current = recordPitch(pitchState.current, pitch.id, now);
           setMood(pitch.mood);
-          setBubbleHref(pitch.href(ctx));
-          setBubble(pitch.say(ctx));
+          show(pitch.say(ctx), pitch.href(ctx));
           window.setTimeout(() => setMood("idle"), 2600);
-          window.setTimeout(() => { setBubble(null); setBubbleHref(null); }, 14000);
+          window.setTimeout(() => show(null), 14000);
         }
       } else {
         // Just a flicker of personality, staying put.
@@ -322,15 +356,14 @@ export default function Gini() {
       }
     }, 30000);
     return () => window.clearInterval(id);
-  }, [ctx, dismissed, reduced, asking, bubble, perches.length]);
+  }, [ctx, dismissed, reduced, asking, bubble, perches.length, show]);
 
   /** Say something, wearing the right face, then settle back to idle. */
   const say = useCallback((text: string, face: GiniMood, href?: string) => {
-    setBubbleHref(href ?? null);
-    setBubble(text);
+    show(text, href);
     setMood(face);
     later(() => setMood("talk"), 1400);
-  }, [later]);
+  }, [later, show]);
 
   const flyTo = useCallback((next: number) => {
     setMood("fly");
@@ -340,15 +373,14 @@ export default function Gini() {
 
   const vanish = useCallback(() => {
     stopReading();
-    setBubble(null);
-    setBubbleHref(null);
+    show(null);
     setVanishing(true);
     later(() => {
       setDismissed(true);
       setVanishing(false);
       try { localStorage.setItem(DISMISS_KEY, "1"); } catch { /* private mode */ }
     }, reduced ? 0 : 900);
-  }, [reduced, later]);
+  }, [reduced, later, show]);
 
   const recall = useCallback(() => {
     try { localStorage.removeItem(DISMISS_KEY); } catch { /* ignore */ }
@@ -356,9 +388,9 @@ export default function Gini() {
     setReading(false);
     setEntering(true);
     setMood("happy");
-    setBubble("Back. What do you need?");
+    show("Back. What do you need?");
     later(() => { setEntering(false); setMood("idle"); }, 900);
-  }, [later]);
+  }, [later, show]);
 
   /**
    * ANSWERING. askDeep() answers instantly from the light layer where it can
@@ -377,8 +409,7 @@ export default function Gini() {
     setQuery("");
     setThinking(true);
     setMood("surprised");
-    setBubble("Let me look…");
-    setBubbleHref(null);
+    show("Let me look…");
 
     let reply: GiniReply;
     try {
@@ -396,20 +427,27 @@ export default function Gini() {
     if (reply.kind === "answer") {
       // He knows this one — trident up, lightning, then settle into laughing.
       setMood("thunder");
-      setBubbleHref(reply.href ?? null);
-      setBubble(reply.text);
+      show(reply.text, reply.href);
       later(() => setMood("laugh"), 1500);
       later(() => setMood("talk"), 3200);
     } else {
       say(reply.text, "angry");
     }
-  }, [ctx, say, later]);
+  }, [ctx, say, later, show]);
 
   const submit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     void answerQuery(query);
   }, [query, answerQuery]);
 
+
+  /**
+   * What is on screen right now, and whether he is still saying it. Derived, so
+   * there is one source of truth for the text, the articulation animation and
+   * whether the call-to-action link has been reached yet.
+   */
+  const speaking = !!bubble && !reduced && typed < bubble.length;
+  const visibleText = !bubble ? null : reduced ? bubble : bubble.slice(0, typed);
 
   if (!ready) return null;
 
@@ -458,10 +496,17 @@ export default function Gini() {
               border: "1px solid rgba(240,145,58,0.4)",
               boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
               maxHeight: 200, overflowY: "auto",
+              cursor: speaking ? "pointer" : "default",
             }}
+            // Impatience is legitimate. Tapping the bubble finishes the sentence
+            // at once rather than making a student watch him spell it out.
+            onClick={() => bubble && setTyped(bubble.length)}
+            title={speaking ? "Tap to show it all" : undefined}
           >
-            {bubble}
-            {bubbleHref && (
+            {visibleText}
+            {/* The link waits until he has finished the sentence — a call to
+                action that appears mid-word reads as a glitch. */}
+            {bubbleHref && !speaking && (
               <a
                 href={bubbleHref}
                 target={bubbleHref.startsWith("http") ? "_blank" : undefined}
@@ -516,7 +561,7 @@ export default function Gini() {
           </div>
         )}
 
-        <GiniSprite mood={mood} reduced={reduced} vanishing={vanishing} entering={entering} height={figureH} />
+        <GiniSprite mood={mood} reduced={reduced} vanishing={vanishing} entering={entering} speaking={speaking} height={figureH} />
 
         <div style={{ pointerEvents: "auto", display: "flex", gap: 6, marginTop: 4 }}>
           <GiniBtn onClick={() => setAsking(a => !a)} label={asking ? "Close" : "Ask"} />

@@ -202,6 +202,51 @@ export function smallTalk(query: string, ctx: GiniContext): GiniReply | null {
   return null;
 }
 
+/* ────────────────────────── staying in his lane ────────────────────────── */
+
+/**
+ * OFF THE PREMISES.
+ *
+ * The Captain's instruction, 2026-08-21: Gini talks about DGCA, aviation, this
+ * website and the classes. Nothing else. Not politics, not cricket, not films,
+ * not general knowledge, not somebody's homework.
+ *
+ * Two reasons, and the second is the real one. The obvious one is focus. The
+ * important one is that every sentence outside this scope is a sentence nobody
+ * verified, on a site whose entire claim is that it does not publish unverified
+ * sentences. A mascot cheerfully rating cricket teams is a mascot the student
+ * has been taught to believe about airspace too.
+ *
+ * The decline is WARM and it always offers the door back. Being told "that's
+ * not something I do" by a polite host is fine; being stonewalled is not.
+ */
+const OFF_TOPIC =
+  /\b(cricket|ipl|football|match score|movie|film|bollywood|song|lyrics|politic|election|modi|stock|crypto|bitcoin|recipe|joke|poem|homework|assignment|essay|code|python|javascript|girlfriend|boyfriend|love|marriage|horoscope|astrolog|medicine|doctor|symptom|lawyer|legal advice|weather (today|tomorrow) in)\b/i;
+
+/** Concepts that mean the question IS our business after all. */
+const IN_SCOPE =
+  /\b(dgca|cpl|atpl|ppl|pilot|aviation|aircraft|aeroplane|airplane|flying|flight|exam|paper|syllabus|licence|license|met|meteorolog|navigation|regulation|instrument|technical|rtr|radio|simulator|chapter|notes|question|class|batch|fee|price|captain|pahil|ghost aviator|site|website|book|lecture|video|weather)\b/i;
+
+/**
+ * Is this outside the house? Deliberately conservative: an off-topic word only
+ * counts when nothing in the sentence is our business, so "what is the weather
+ * like at altitude" stays in scope while "weather today in Delhi" does not.
+ */
+export const isOffTopic = (query: string) =>
+  OFF_TOPIC.test(query) && !IN_SCOPE.test(query);
+
+/** Stored, so a decline is always in his voice — never improvised. */
+export const DECLINES: string[] = [
+  "That's outside what I do, I'm afraid — I look after Capt. Pahil's flying school and nothing else. Ask me about the DGCA papers, any chapter here, or his classes.",
+  "I'll be honest and stay in my lane: I only know aviation, these exams and this site. Anything on those, and I'm genuinely useful.",
+  "Not my department. I keep the library here — DGCA subjects, the question bank, the simulator, the Captain's classes. What are you preparing for?",
+];
+
+/** One decline, chosen without repeating the previous one. */
+export function declineOffTopic(seed: number): GiniReply {
+  return answer(DECLINES[Math.abs(seed) % DECLINES.length], { type: "captain" });
+}
+
 export const HELP_TEXT =
   "Four things, and I do them without guessing. One: find anything — ask which chapter covers a topic. " +
   "Two: explain a practice question, by reading you the worked explanation a human wrote for it. " +

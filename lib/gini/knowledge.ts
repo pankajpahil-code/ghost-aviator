@@ -49,7 +49,7 @@ import { LIVE_CLASS_SUBJECTS } from "@/lib/live-classes";
 import { answer, refuse, REFUSALS, type GiniReply, type GiniSource, type RefusalReason } from "./types";
 import { Index, mentions } from "./match";
 import { readContext, type GiniContext } from "./context";
-import { smallTalk, wisdomFor } from "./persona";
+import { smallTalk, wisdomFor, isOffTopic, declineOffTopic } from "./persona";
 import { offerFor } from "./marketing";
 import { CORPUS, corpusFor } from "./generated/corpus-stats";
 
@@ -57,7 +57,7 @@ export type { GiniReply, GiniSource, RefusalReason };
 export { REFUSALS };
 export { readContext, type GiniContext } from "./context";
 export { PITCHES, choosePitch, offerFor, PITCH_RULES, type Pitch, type PitchState } from "./marketing";
-export { greeting, smallTalk, HELP_TEXT, WISDOM, partOfDay, suggestionsFor, type Spoken } from "./persona";
+export { greeting, smallTalk, HELP_TEXT, WISDOM, partOfDay, suggestionsFor, isOffTopic, declineOffTopic, DECLINES, type Spoken } from "./persona";
 
 /* ──────────────────────────── site questions ──────────────────────────── */
 
@@ -286,6 +286,18 @@ export function ask(query: string, ctx: GiniContext = readContext("/")): GiniRep
     const found = findChapter(q);
     if (found.kind === "answer") return found;
   }
+
+  /**
+   * OUTSIDE THE HOUSE. Checked LAST, not first, and that ordering is the whole
+   * point: a question is only off-topic once nothing on this site could answer
+   * it. Checking first would let one stray word ("what's the weather doing at
+   * altitude") throw away a question we can actually answer.
+   *
+   * The decline is warm and stored — the Captain's instruction is that Gini
+   * stays strictly on DGCA, aviation, this site and the classes, but a host who
+   * stonewalls is worse than one who simply says what he does.
+   */
+  if (isOffTopic(q)) return declineOffTopic(q.length);
 
   return refuse("not-verified");
 }
