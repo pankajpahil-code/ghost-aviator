@@ -18,11 +18,21 @@
  *      so no crawler ever sees a word of him.
  *   6. Every sentence he says comes from lib/gini/knowledge.ts, which retrieves
  *      verified text and never composes any. He refuses rather than guesses.
+ *   7. He greets ONCE PER SESSION, in text, and the first greeting he ever
+ *      gives a person also tells them how to get rid of him.
+ *   8. He may mention what the Captain sells, but on a leash: nothing for the
+ *      first 90 seconds, a four-minute gap, three per session, never the same
+ *      one twice, and nothing at all during an exam, the simulator or signup.
+ *      The rules live in lib/gini/marketing.ts, not in this file.
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ask, PROMOS, type GiniReply } from "@/lib/gini/knowledge";
+import {
+  askDeep, readContext, greeting, choosePitch, suggestionsFor,
+  type GiniReply, type PitchState,
+} from "@/lib/gini/knowledge";
+import { countVisit, hasGreeted, markGreeted, readPitchState, recordPitch } from "@/lib/gini/session";
 import { sections, speakSection, stop as stopReading, hasNotes, supported as speechSupported } from "@/lib/gini/reader";
 import GiniSprite, { GINI_KEYFRAMES, type GiniMood } from "./GiniSprite";
 
@@ -64,14 +74,28 @@ export default function Gini() {
   const [bubbleHref, setBubbleHref] = useState<string | null>(null);
   const [asking, setAsking] = useState(false);
   const [query, setQuery] = useState("");
+  const [thinking, setThinking] = useState(false);
   const [vanishing, setVanishing] = useState(false);
   const [entering, setEntering] = useState(false);
   const timers = useRef<number[]>([]);
   const pathname = usePathname();
-  const greeted = useRef<string | null>(null);
   const [onNotes, setOnNotes] = useState(false);
   const [reading, setReading] = useState(false);
   const sectionIdx = useRef(0);
+
+  /**
+   * WHERE THE STUDENT IS STANDING. Everything context-aware — which greeting,
+   * which of the Captain's offers, which subject to bias a bank search towards
+   * — is derived from this and from lib/subjects.ts, so none of it can be a
+   * stale hardcoded claim.
+   */
+  const ctx = useMemo(() => readContext(pathname), [pathname]);
+  const suggestions = useMemo(() => suggestionsFor(ctx), [ctx]);
+
+  /** The offers already made in this tab. Kept in a ref: changing it must not re-render. */
+  const pitchState = useRef<PitchState>({ shown: [], lastAt: 0, startedAt: 0 });
+  /** The last chapter path he has already remarked on, so he says it once. */
+  const roomed = useRef<string | null>(null);
 
   const later = useCallback((fn: () => void, ms: number) => {
     timers.current.push(window.setTimeout(fn, ms));
@@ -111,6 +135,10 @@ export default function Gini() {
     setOsReduced(mq.matches);
     const onChange = () => setOsReduced(mq.matches);
     mq.addEventListener("change", onChange);
+
+    // Seed the offer leash from this tab's session, so navigating between
+    // pages neither resets the warm-up nor re-offers something already said.
+    pitchState.current = readPitchState(Date.now());
     setReady(true);
     return () => {
       mq.removeEventListener("change", onChange);
@@ -184,21 +212,72 @@ export default function Gini() {
   useEffect(() => { if (dismissed) stopReading(); }, [dismissed]);
 
   /**
-   * ARRIVING ON A CHAPTER. He is holding the Captain's book in every frame, so
-   * he offers it when a student lands on notes — once per chapter, briefly, and
-   * never while they are already talking to him. Silent everywhere else: a
-   * receptionist greets you at the door, not in every room.
+   * THE GREETING. Once per tab, never per page — a receptionist greets you at
+   * the door, not in every room. Text only: he does not make a sound unless
+   * asked (design rule 2), and this fires without anyone asking.
+   *
+   * The line itself is chosen in lib/gini/persona.ts from the time on the
+   * student's own clock, whether they have been here before, and which room
+   * they walked into. A first-ever visitor is told what he is AND how to
+   * dismiss him, in the same breath.
+   *
+   * He stays silent in a quiet zone — a running exam, the simulator, signup —
+   * where greeting someone would be interrupting them.
    */
   useEffect(() => {
-    if (dismissed || !pathname || asking) return;
+    if (dismissed || !ready || asking || bubble) return;
+    /**
+     * The quiet-zone check has to come BEFORE the greeting is marked as used,
+     * and it is not obvious why. Landing straight on /signup or an exam is
+     * common — and marking the greeting spent there would mean the student
+     * walks into the rest of the site to be met by nobody, all session. Worse,
+     * countVisit() sits in the call below, so a page he must stay silent on
+     * would have incremented the visit counter on every render.
+     */
+    if (ctx.quietZone) return;
+    if (hasGreeted()) return;
+    markGreeted();
+
+    const spoken = greeting(ctx, { visits: countVisit(), hour: new Date().getHours() });
+    if (!spoken) return;
+
+    // The greeting already says what the chapter line would say, so claim this
+    // path and keep the two from talking over each other in the same commit —
+    // `bubble` is still null in both effects on this pass.
+    roomed.current = pathname;
+
+    // A BEAT BEFORE HE SPEAKS, and it is doing two jobs. A character who talks
+    // the instant the page paints reads as a pop-up; one who takes a moment
+    // reads as having noticed you. It also keeps the setState out of the effect
+    // body, which is the correct fix for react-hooks/set-state-in-effect rather
+    // than a suppression — the same shape the onNotes check above already uses.
+    later(() => {
+      setMood(spoken.mood);
+      setBubbleHref(spoken.href ?? null);
+      setBubble(spoken.text);
+    }, 900);
+    later(() => setMood("idle"), 4100);
+    later(() => { setBubble(null); setBubbleHref(null); }, 13900);
+  }, [ctx, pathname, dismissed, ready, asking, bubble, later]);
+
+  /**
+   * ARRIVING ON A CHAPTER, having already been greeted. One short line per
+   * chapter, offering the thing he can uniquely do here — read it aloud.
+   */
+  useEffect(() => {
+    if (dismissed || !pathname || asking || bubble) return;
     if (!/\/notes$/.test(pathname)) return;
-    if (greeted.current === pathname) return;
-    greeted.current = pathname;
+    if (roomed.current === pathname) return;
+    roomed.current = pathname;
     setMood("present_book");
-    setBubble("Chapter's open. Ask me about it, or hit Vanish and I'll leave you to read.");
+    setBubble(
+      ctx.chapterTitle
+        ? `${ctx.chapterTitle} is open. I can read it aloud, or answer on it.`
+        : "Chapter's open. I can read it aloud, or answer on it.",
+    );
     later(() => setMood("idle"), 3000);
     later(() => setBubble(null), 7000);
-  }, [pathname, dismissed, asking, later]);
+  }, [pathname, ctx.chapterTitle, dismissed, asking, bubble, later]);
 
   /**
    * IDLE LIFE. Every 30 seconds he does ONE small thing — either drifts to a
@@ -218,16 +297,22 @@ export default function Gini() {
         setPerch(p => (p + 1 + Math.floor(Math.random() * 3)) % perches.length);
         window.setTimeout(() => setMood("idle"), 2200);
       } else if (Math.random() < 0.45) {
-        // Mention what the Captain actually offers — his live batches and the
-        // groups where he answers doubts. Boon 8: the free school stays free,
+        // Mention what the Captain actually offers. The free school stays free,
         // but a receptionist who never mentions the paid path is not doing his
-        // job. Rotated, never repeated back to back, and always dismissable.
-        const promo = PROMOS[Math.floor(Math.random() * PROMOS.length)];
-        setMood("present_book");
-        setBubbleHref(promo.href);
-        setBubble(promo.text);
-        window.setTimeout(() => setMood("idle"), 2600);
-        window.setTimeout(() => { setBubble(null); setBubbleHref(null); }, 12000);
+        // job. EVERY constraint on this — warm-up, gap, per-session cap, no
+        // repeats, silence in a quiet zone, which offer suits this page — is
+        // decided in lib/gini/marketing.ts. This branch only asks and obeys;
+        // a null answer, which is the common one, means he says nothing.
+        const now = Date.now();
+        const pitch = choosePitch(ctx, pitchState.current, now, Math.random());
+        if (pitch) {
+          pitchState.current = recordPitch(pitchState.current, pitch.id, now);
+          setMood(pitch.mood);
+          setBubbleHref(pitch.href(ctx));
+          setBubble(pitch.say(ctx));
+          window.setTimeout(() => setMood("idle"), 2600);
+          window.setTimeout(() => { setBubble(null); setBubbleHref(null); }, 14000);
+        }
       } else {
         // Just a flicker of personality, staying put.
         const faces: GiniMood[] = ["happy", "laugh", "surprised"];
@@ -236,7 +321,7 @@ export default function Gini() {
       }
     }, 30000);
     return () => window.clearInterval(id);
-  }, [dismissed, reduced, asking, bubble, perches.length]);
+  }, [ctx, dismissed, reduced, asking, bubble, perches.length]);
 
   /** Say something, wearing the right face, then settle back to idle. */
   const say = useCallback((text: string, face: GiniMood, href?: string) => {
@@ -274,11 +359,35 @@ export default function Gini() {
     later(() => { setEntering(false); setMood("idle"); }, 900);
   }, [later]);
 
-  const submit = useCallback((e: React.FormEvent) => {
-    e.preventDefault();
-    const q = query.trim();
+  /**
+   * ANSWERING. askDeep() answers instantly from the light layer where it can
+   * — manners, the FAQ, the Captain's offers, site structure — and only pulls
+   * in the question bank (a dynamic import, megabytes) when nothing lighter
+   * fits. So the common cases stay instant and the bank costs nothing to
+   * anyone who never types a question.
+   *
+   * `thinking` exists because that import is a real network fetch the first
+   * time. A character who freezes for a second looks broken; one who says he
+   * is looking does not.
+   */
+  const answerQuery = useCallback(async (raw: string) => {
+    const q = raw.trim();
     if (!q) return;
-    const reply: GiniReply = ask(q);
+    setQuery("");
+    setThinking(true);
+    setMood("surprised");
+    setBubble("Let me look…");
+    setBubbleHref(null);
+
+    let reply: GiniReply;
+    try {
+      reply = await askDeep(q, ctx);
+    } catch {
+      // A failed lookup must never become a guess.
+      reply = { kind: "refusal", text: "Something went wrong looking that up. Try again?", reason: "not-verified" };
+    }
+
+    setThinking(false);
     if (reply.kind === "answer") {
       // He knows this one — trident up, lightning, then settle into laughing.
       setMood("thunder");
@@ -289,8 +398,12 @@ export default function Gini() {
     } else {
       say(reply.text, "angry");
     }
-    setQuery("");
-  }, [query, say, later]);
+  }, [ctx, say, later]);
+
+  const submit = useCallback((e: React.FormEvent) => {
+    e.preventDefault();
+    void answerQuery(query);
+  }, [query, answerQuery]);
 
 
   if (!ready) return null;
@@ -360,20 +473,42 @@ export default function Gini() {
         )}
 
         {asking && (
-          <form onSubmit={submit} style={{ pointerEvents: "auto", alignSelf: "stretch", marginBottom: 10 }}>
-            <input
-              autoFocus
-              value={query}
-              onChange={e => setQuery(e.target.value)}
-              placeholder="Ask me about the site…"
-              aria-label="Ask Gini a question"
-              style={{
-                width: "100%", padding: "9px 11px", borderRadius: 11, fontSize: 13,
-                background: "rgba(10,15,20,0.95)", color: "#e6edf3",
-                border: "1px solid rgba(240,145,58,0.4)", outline: "none",
-              }}
-            />
-          </form>
+          <div style={{ pointerEvents: "auto", alignSelf: "stretch", marginBottom: 10 }}>
+            <form onSubmit={submit}>
+              <input
+                autoFocus
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                disabled={thinking}
+                placeholder="Ask about a chapter, a question, the exam…"
+                aria-label="Ask Gini a question"
+                style={{
+                  width: "100%", padding: "9px 11px", borderRadius: 11, fontSize: 13,
+                  background: "rgba(10,15,20,0.95)", color: "#e6edf3",
+                  border: "1px solid rgba(240,145,58,0.4)", outline: "none",
+                }}
+              />
+            </form>
+            {/* One-tap questions he can definitely answer, chosen for this page.
+                An assistant that advertises none of what it does gets used for
+                none of it. */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 6 }}>
+              {suggestions.map(s => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => void answerQuery(s)}
+                  style={{
+                    padding: "3px 8px", fontSize: 10.5, borderRadius: 999, cursor: "pointer",
+                    background: "rgba(240,145,58,0.12)", color: "#f0b070",
+                    border: "1px solid rgba(240,145,58,0.35)", textAlign: "left",
+                  }}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
         )}
 
         <GiniSprite mood={mood} reduced={reduced} vanishing={vanishing} entering={entering} height={figureH} />

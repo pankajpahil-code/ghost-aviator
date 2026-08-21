@@ -22,9 +22,10 @@
 
 import { useEffect, useRef } from "react";
 
-export type GiniMood =
-  | "idle" | "fly" | "thunder" | "talk" | "happy"
-  | "laugh" | "angry" | "surprised" | "point" | "present_book";
+// The union lives in lib/gini/types.ts, beside the code that CHOOSES a mood.
+// This file owns the frames for each one, not the list of names.
+import type { GiniMood } from "@/lib/gini/types";
+export type { GiniMood };
 
 /** Animated strips: `frames` cells of fw x fh, walked with steps(). */
 type Seq = { src: string; frames: number; fw: number; fh: number; fps: number };

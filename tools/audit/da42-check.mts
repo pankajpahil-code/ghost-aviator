@@ -17,7 +17,7 @@ import {
   getChapterSpecificQuestions,
   ALL_QUESTIONS,
 } from "../../lib/questions";
-import { isSpeakable, explainQuestion } from "../../lib/gini/knowledge";
+import { isSpeakable, explainQuestion } from "../../lib/gini/deep";
 
 const IDS = Array.from({ length: 10 }, (_, i) => `da42-${i + 1}`);
 const BANNED = /\b(oxford|cae|nordian|redbird|jeppesen|ic\s*joshi|rk\s*bali)\b/i;
