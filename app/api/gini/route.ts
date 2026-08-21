@@ -37,6 +37,17 @@ import { guardModelProse, isAllowedHref } from "@/lib/gini/guard";
 /** Never prerendered, never cached — every request is a different question. */
 export const dynamic = "force-dynamic";
 
+/**
+ * The platform's own ceiling for this function, declared rather than inherited.
+ *
+ * lib/gini/gemini.ts gives up on Google at 9s and returns a clean ok:false. That
+ * graceful hand-back only happens if the FUNCTION is still alive to send it, so
+ * the function must outlive its own deadline — otherwise a slow call becomes a
+ * platform kill and a 5xx instead of a tidy fallback. Measured on production:
+ * warm calls run 1.4-2.6s, so this headroom is for the outliers, not the norm.
+ */
+export const maxDuration = 15;
+
 /* ──────────────────────────── protecting the quota ──────────────────────── */
 
 /**
