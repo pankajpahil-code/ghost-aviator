@@ -33,6 +33,7 @@ import {
   type GiniReply, type PitchState,
 } from "@/lib/gini/knowledge";
 import { countVisit, hasGreeted, markGreeted, readPitchState, recordPitch } from "@/lib/gini/session";
+import { askSmart } from "@/lib/gini/smart";
 import { sections, speakSection, stop as stopReading, hasNotes, supported as speechSupported } from "@/lib/gini/reader";
 import GiniSprite, { GINI_KEYFRAMES, type GiniMood } from "./GiniSprite";
 
@@ -381,7 +382,11 @@ export default function Gini() {
 
     let reply: GiniReply;
     try {
-      reply = await askDeep(q, ctx);
+      // The smart route first: the server asks Gemini to PICK from answers that
+      // already exist here, and returns that stored text verbatim. It returns
+      // null for every imperfect outcome — no key, quota gone, timeout, a guard
+      // rejection — and then the local layer answers exactly as it always has.
+      reply = (await askSmart(q, ctx)) ?? (await askDeep(q, ctx));
     } catch {
       // A failed lookup must never become a guess.
       reply = { kind: "refusal", text: "Something went wrong looking that up. Try again?", reason: "not-verified" };

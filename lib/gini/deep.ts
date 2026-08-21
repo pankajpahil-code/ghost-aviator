@@ -176,6 +176,30 @@ export function searchBank(query: string, subjectId?: string, allowSolo = false)
 }
 
 /**
+ * SHORTLIST FOR THE ROUTER, and its floor is deliberately far lower than
+ * searchBank's.
+ *
+ * These candidates are not answers — they are a menu handed to the model,
+ * which then picks the one that actually addresses the question, or none. So
+ * recall matters here and precision does not: a bad candidate on the list is
+ * harmless, while a good answer missing from the list can never be given. The
+ * precision that keeps a wrong answer off a student's screen is applied after
+ * the pick, by only ever speaking the stored text of whatever was chosen.
+ */
+export function topBank(query: string, subjectId: string | undefined, n = 8): DemoQuestion[] {
+  const hits = getBankIndex().search(query, 0.3, n * 3).filter(h => h.inTitle > 0);
+  const mine = subjectId ? hits.filter(h => h.item.subjectIds.includes(subjectId)) : [];
+  const rest = hits.filter(h => !mine.includes(h));
+  return [...mine, ...rest].slice(0, n).map(h => h.item);
+}
+
+/** Look one up again by its stem, so the route never trusts an index across calls. */
+export function bankQuestionByStem(stem: string): DemoQuestion | null {
+  const want = stem.trim().toLowerCase();
+  return ALL_QUESTIONS.find(q => isSpeakable(q) && q.q.trim().toLowerCase() === want) ?? null;
+}
+
+/**
  * Answer from the bank, showing which question was matched. `subjectId` biases
  * towards the subject the student is standing in, without excluding the rest.
  */

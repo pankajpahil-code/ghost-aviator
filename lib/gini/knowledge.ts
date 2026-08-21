@@ -137,7 +137,7 @@ const SUBJECT_INDEX = new Index<Subject>(
 );
 
 /** Where something lives on the site. Pure structure, always true. */
-type ChapterRef = { href: string; label: string };
+export type ChapterRef = { href: string; label: string };
 
 const CHAPTER_INDEX = new Index<ChapterRef>(
   CPL_SUBJECTS.flatMap(s =>
@@ -170,6 +170,31 @@ export function findChapter(query: string): GiniReply {
   if (!hit) return refuse("not-verified");
   return answer(`That's ${hit.item.label}.`, { type: "structure" }, hit.item.href);
 }
+
+/* ─────────── shortlists for the router (see lib/gini/candidates.ts) ─────────── */
+
+/**
+ * Loose shortlists, NOT answers. The floors here are far below the ones the
+ * deterministic router answers on, because these are a menu handed to a model
+ * that then picks — recall matters, precision is applied after the pick by only
+ * ever speaking the stored text of whatever was chosen.
+ */
+export const topFaq = (query: string, n = 4): FaqEntry[] =>
+  FAQ_INDEX.search(query, 0.25, n).map(h => h.item);
+
+export const topChapters = (query: string, n = 4): ChapterRef[] =>
+  CHAPTER_INDEX.search(query, 0.25, n).filter(h => h.inTitle > 0).map(h => h.item);
+
+export const faqByQuestion = (q: string): FaqEntry | undefined =>
+  FAQS.find(f => f.q === q);
+
+export const chapterByHref = (href: string): ChapterRef | undefined =>
+  CPL_SUBJECTS.flatMap(s =>
+    s.chapters.map(c => ({
+      href: `/cpl/${s.id}/${c.id}/notes`,
+      label: `${s.name} — Chapter ${c.number}: ${c.title}`,
+    })),
+  ).find(c => c.href === href);
 
 /**
  * "How many questions are in Meteorology", "is Air Regs verified", "how many

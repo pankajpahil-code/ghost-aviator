@@ -237,6 +237,16 @@ export function offerFor(query: string, ctx: GiniContext): GiniReply | null {
   return answer(p.say(ctx), { type: "captain" }, p.href(ctx));
 }
 
+/**
+ * A loose shortlist for the router — see lib/gini/candidates.ts. Not answers:
+ * a menu the model picks from, so the floor is low and being wrong is cheap.
+ */
+export const topPitches = (query: string, ctx: GiniContext, n = 3): Pitch[] =>
+  PITCH_INDEX.search(query, 0.3, n * 2)
+    .map(h => h.item)
+    .filter(p => p.fits(ctx))
+    .slice(0, n);
+
 /* ───────────────────────── the unprompted pitch ─────────────────────────── */
 
 /** State the caller keeps for the session. Nothing here is persisted to a server. */
