@@ -208,10 +208,23 @@ export function topTopics(query: string, subjectId: string | undefined, n = 5): 
  *
  * Deliberately BELOW the pointer floor: this is never presented as an answer,
  * only as "the closest I have", attached to a refusal that has already said it
- * does not know. Being loosely wrong about a suggestion costs nothing, because
- * the sentence around it has already set the expectation.
+ * does not know.
+ *
+ * BUT NOT FAR BELOW, AND THE NUMBER IS MEASURED. At 0.32 a student asking
+ * "what is the maximum crosswind limit for a Cessna 152" was told the closest
+ * thing was "Maximum Age Limit for Professional Pilots" — a match on the two
+ * most generic words in the query, scoring 0.35. A refusal is a promise being
+ * kept; following it with something absurd spends the credibility the refusal
+ * just earned.
+ *
+ * Measured against the live index: that nonsense scores 0.35, while genuinely
+ * near topics score 0.48-0.73 ("wake turbulence separation" 0.69, "semi
+ * circular" 0.73). So the suggestion band sits just under the answer band —
+ * close enough to have nearly been an answer, and nothing looser. Offering
+ * nothing is the correct outcome for a query with no near neighbour, and the
+ * refusal stands perfectly well on its own.
  */
-const NEAREST_FLOOR = 0.32;
+const NEAREST_FLOOR = 0.4;
 
 export function nearestTopic(query: string, subjectId?: string): { label: string; href: string } | null {
   const hits = getIndex().search(query, NEAREST_FLOOR, 6).filter(h => h.inTitle > 0);

@@ -511,10 +511,23 @@ for (const q of [...offered].sort()) {
  * must still be a refusal. Both halves are asserted: an assistant that turns
  * "I don't know" into a confident-sounding suggestion has not improved.
  */
-const dead = await askDeep("what is the maximum crosswind for a Cessna 152", home);
-line(`\n  refusal-with-a-door: ${dead.text.slice(0, 130)}…`);
+const dead = await askDeep("what is the maximum crosswind limit for a Cessna 152", home);
+line(`\n  refusal-with-a-door: ${dead.text.slice(0, 160)}…`);
 check(dead.kind === "refusal", "still refuses what it cannot verify");
 check(/ask capt\. pahil|whatsapp/i.test(dead.text), "the refusal still points at a human");
+
+/**
+ * AND THE DOOR MUST LEAD SOMEWHERE SENSIBLE, OR NOWHERE.
+ *
+ * Seen live: this query was answered with a correct refusal followed by "the
+ * closest thing I have is 'Maximum Age Limit for Professional Pilots'" — a
+ * match on the two most generic words in the sentence. A refusal is a promise
+ * being kept; following it with something absurd spends the credibility the
+ * refusal just earned. Offering nothing is the right outcome here.
+ */
+check(!/maximum age limit/i.test(dead.text),
+  "a refusal does not follow itself with an absurd suggestion",
+  dead.text.slice(0, 120));
 
 /* ──────────────────────────────── structure ────────────────────────────── */
 
