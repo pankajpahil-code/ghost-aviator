@@ -76,3 +76,8 @@ tools/gini/*.blend1
 # PDF under public/ is a public download regardless of robots.txt, which the
 # scrapers hitting this site do not honour anyway.
 _sources/
+
+# Scratch probes written while auditing. Kept out of git deliberately: they are
+# one-off measurements, not tools anyone should run again, and a comment on the
+# same line as a pattern would make the whole line one literal pattern.
+.tmp-audit/

@@ -4,12 +4,54 @@ import { isIndexableChapterRoute } from "@/lib/indexability";
 import { ALL_PAST_PAPERS } from "@/lib/past-papers";
 import { GUIDES } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
+import { LASTMOD } from "@/lib/generated/lastmod";
+import { getChapterVideos } from "@/lib/chapter-videos";
+import { videoSitemapEntriesFor, isWatchPage } from "@/lib/video-schema";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const url = (path: string) => `${SITE_URL}${path}`;
+
+  /**
+   * LASTMOD IS A CLAIM, SO IT IS EITHER TRUE OR ABSENT.
+   *
+   * This file used to open `const now = new Date()` and stamp it on every
+   * entry. Measured on the live sitemap 2026-08-23: 603 of 609 URLs carried the
+   * build timestamp, so each deploy announced that six hundred pages had just
+   * changed. Google uses lastmod only while it stays verifiably accurate and
+   * ignores it once it does not — which threw away the one signal that could
+   * tell it which of these pages is actually new, on a domain with 633 URLs
+   * stuck in "Discovered - currently not indexed".
+   *
+   * The dates now come from git history via tools/build-lastmod.mts, generated
+   * and committed because Vercel's shallow clone cannot compute them at build
+   * time. A route the tool could not date is omitted here rather than guessed:
+   * no lastmod is an honest "we do not know", and Google falls back to its own
+   * heuristics, which is the correct outcome.
+   */
+  const mod = (path: string) => {
+    const d = LASTMOD[path];
+    return d ? { lastModified: new Date(d) } : {};
+  };
+
+  /**
+   * The <video:video> entries for a chapter, on the page that is its watch page.
+   *
+   * Search Console has reported "Video indexed: 0" every day for 90 days and
+   * "Discovered videos: 0" against the sitemap. The cause is that
+   * VideoLectureCard is a click-to-load facade — deliberately, so a budget
+   * phone never pulls the YouTube player unasked — which means no video element
+   * exists in the DOM when Googlebot renders, because Googlebot does not click.
+   * A video sitemap is Google's documented answer for exactly that case, and
+   * none has ever been supplied. See lib/video-schema.ts.
+   */
+  const videosFor = (track: "cpl" | "atpl", subjectId: string, chapterId: string,
+                     chapterTitle: string, type: string) => {
+    if (!isWatchPage(track, subjectId, chapterId, type)) return {};
+    const entries = videoSitemapEntriesFor(chapterTitle, getChapterVideos(subjectId, chapterId));
+    return entries.length ? { videos: entries } : {};
+  };
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: url("/"),             changeFrequency: "weekly"  as const, priority: 1.0 },
@@ -39,7 +81,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/cpl-cost-calculator"), changeFrequency: "monthly" as const, priority: 0.9 },
     // /login and /signup are deliberately absent: thin, no search intent, and
     // they are marked noindex. Submitting them only spends crawl budget.
-  ].map(p => ({ ...p, lastModified: now }));
+  ].map(p => ({ ...p, ...mod(p.url.replace(SITE_URL, "") || "/") }));
 
   // Per-subject index + only those chapter routes that have real content behind
   // them. What counts as "real" is decided in ONE place — lib/indexability.ts —
@@ -57,11 +99,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const subjectPages = (track: "cpl" | "atpl", subjects: Subject[]): MetadataRoute.Sitemap =>
     subjects.flatMap(s => [
-      { url: url(`/${track}/${s.id}`), lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
+      { url: url(`/${track}/${s.id}`), ...mod(`/${track}/${s.id}`), changeFrequency: "weekly" as const, priority: 0.8 },
       ...s.chapters.flatMap(ch =>
         CHAPTER_TYPES.filter(type => isIndexableChapterRoute(s.id, ch.id, type)).map(type => ({
           url: url(`/${track}/${s.id}/${ch.id}/${type}`),
-          lastModified: now,
+          ...mod(`/${track}/${s.id}/${ch.id}/${type}`),
+          ...videosFor(track, s.id, ch.id, ch.title, type),
           changeFrequency: "monthly" as const,
           // Notes are the substantive page; drills are secondary.
           priority: type === "notes" ? 0.7 : 0.5,
@@ -71,7 +114,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const paperPages: MetadataRoute.Sitemap = ALL_PAST_PAPERS.map(p => ({
     url: url(`/past-papers/${p.id}`),
-    lastModified: now,
+    ...mod(`/past-papers/${p.id}`),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));

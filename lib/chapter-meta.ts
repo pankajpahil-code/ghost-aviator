@@ -71,6 +71,46 @@ export function chapterTitle(
   }
 }
 
+/**
+ * Fit a description into the snippet Google actually shows.
+ *
+ * THE DEFECT THIS FIXES. The header above promised "kept under ~155 characters
+ * so Google does not truncate mid-sentence", and every branch below honoured it
+ * EXCEPT the notes branch, which returns `chapter.description` unbounded.
+ * Measured 2026-08-23 across the 437 indexable chapter routes: 114 descriptions
+ * ran past 160 characters, 33 past 200, the longest 328.
+ *
+ * What that looks like to a student is the live snippet for ar-6 — the site's
+ * most-seen content page, 36 impressions and no clicks in three months:
+ *
+ *     …runway occupancy, circuit procedures, visual approach sepa
+ *
+ * Cut mid-word. A snippet that ends like that reads as a broken page, and it is
+ * the one line a searcher weighs before deciding whether to click.
+ *
+ * This only makes the cut clean; it does not make a keyword list into a
+ * sentence. Several chapter descriptions are comma-separated syllabus coverage
+ * rather than prose — better copy is worth writing, but it is the Captain's
+ * voice and his call, not a truncation function's.
+ */
+const SNIPPET_MAX = 155;
+
+export function fitSnippet(text: string, max = SNIPPET_MAX): string {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+
+  // Prefer ending on a real sentence, but only if that keeps most of the line —
+  // stopping at a full stop 30 characters in would throw away the substance.
+  const head = clean.slice(0, max);
+  const lastStop = Math.max(head.lastIndexOf(". "), head.lastIndexOf("? "), head.lastIndexOf("! "));
+  if (lastStop >= max * 0.6) return clean.slice(0, lastStop + 1);
+
+  // Otherwise cut at the last word boundary and mark it as continuing. Trailing
+  // punctuation goes with it, so we never leave "…procedures, …".
+  const cut = head.slice(0, head.lastIndexOf(" "));
+  return cut.replace(/[\s,;:—–-]+$/, "") + "…";
+}
+
 export function chapterMetaDescription(
   track: "cpl" | "atpl",
   subject: Subject,
@@ -85,20 +125,20 @@ export function chapterMetaDescription(
 
   switch (type) {
     case "questions":
-      return `${qty}exam-style practice questions on ${topic}, with the correct answer and reasoning shown for each. Free ${exam} ${subj} preparation.`;
+      return fitSnippet(`${qty}exam-style practice questions on ${topic}, with the correct answer and reasoning shown for each. Free ${exam} ${subj} preparation.`);
     case "chapter-quiz":
-      return `Timed self-test on ${topic} — ${qty}questions scored instantly, so you know what you actually know before the ${exam} ${subj} paper.`;
+      return fitSnippet(`Timed self-test on ${topic} — ${qty}questions scored instantly, so you know what you actually know before the ${exam} ${subj} paper.`);
     case "video":
-      return `Video lecture on ${topic} for the ${exam} ${subj} paper, taught by Capt. Pankaj Pahil. Free to watch, no sign-up.`;
+      return fitSnippet(`Video lecture on ${topic} for the ${exam} ${subj} paper, taught by Capt. Pankaj Pahil. Free to watch, no sign-up.`);
     case "mock-test":
-      return `Chapter test on ${topic}, marked against the ${exam} ${subj} syllabus. ${qty}questions, instant result.`;
+      return fitSnippet(`Chapter test on ${topic}, marked against the ${exam} ${subj} syllabus. ${qty}questions, instant result.`);
     case "notes":
     default:
       // The notes page is the real article; its own description is the best one
       // we have. Fall back to a built line only when a chapter has none.
-      return (
+      return fitSnippet(
         chapter.description ||
-        `Study notes on ${topic} for the ${exam} ${subj} paper, written for Indian student pilots and free to read.`
+        `Study notes on ${topic} for the ${exam} ${subj} paper, written for Indian student pilots and free to read.`,
       );
   }
 }

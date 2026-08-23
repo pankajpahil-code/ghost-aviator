@@ -6,7 +6,7 @@ import { getChapterVideos } from "@/lib/chapter-videos";
 import { getInlineNotes } from "@/lib/notes-inline";
 import { isIndexableChapterRoute, servesRealNotes, adjacentWithContent, NOINDEX } from "@/lib/indexability";
 import { chapterMetaDescription, chapterTitle } from "@/lib/chapter-meta";
-import { videoObjectsFor, lecturePartsFor } from "@/lib/video-schema";
+import { videoObjectsFor, lecturePartsFor, isWatchPage } from "@/lib/video-schema";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 import NotesPage              from "@/app/components/content/NotesPage";
 import AirRegsChapter1Notes   from "@/app/components/content/AirRegsChapter1Notes";
@@ -128,17 +128,45 @@ export default async function Page({
     />
   );
 
+  // The lecture's schema goes on whichever route is its watch page, which for
+  // 94 of the 109 chapters that have a lecture is the NOTES page — the video
+  // renders at the top of it, above the chapter itself. It used to go only on
+  // /video, a 119-word copy of the same lecture, and Search Console's verdict
+  // on the one video it ever looked at was "Video isn't on a watch page".
+  // lib/video-schema.ts owns the split; this route only asks which side it is on.
+  const chapterVideos = getChapterVideos(subject.id, chapter.id);
+  const watchNodes = isWatchPage("cpl", subject.id, chapter.id, type)
+    ? videoObjectsFor("cpl", subject.id, chapter.id, chapter.title, chapterVideos)
+    : [];
+  const videoLdScript = watchNodes.length > 0 ? (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": watchNodes,
+      }) }}
+    />
+  ) : null;
+
   if (type === "notes") {
     if (subject.id === "air-regulations" && chapter.id === "ar-1") {
+      // This branch returned bare. Every other chapter page carries Course +
+      // BreadcrumbList, so ar-1 — a React component rather than a published
+      // file, and easy to miss for exactly that reason — was the one chapter
+      // with no author, no provider and no breadcrumb in its markup.
       return (
-        <AirRegsChapter1Notes
-          track="cpl"
-          subject={subject}
-          chapter={chapter}
-          prevChapter={prevChapter}
-          nextChapter={nextChapter}
-          videos={getChapterVideos(subject.id, chapter.id)}
-        />
+        <>
+          {jsonLdScript}
+          {videoLdScript}
+          <AirRegsChapter1Notes
+            track="cpl"
+            subject={subject}
+            chapter={chapter}
+            prevChapter={prevChapter}
+            nextChapter={nextChapter}
+            videos={chapterVideos}
+          />
+        </>
       );
     }
     // Whether a chapter serves real notes is decided in lib/indexability.ts —
@@ -152,6 +180,7 @@ export default async function Page({
       return (
         <>
           {jsonLdScript}
+          {videoLdScript}
           <HtmlNotesPage
             track="cpl"
             subject={subject}
@@ -188,24 +217,16 @@ export default async function Page({
   if (type === "video") {
     // A mapped lecture IS availability — the mapping in lib/chapter-videos.ts
     // is the single source of truth, and the sitemap uses the same condition.
-    const videos = getChapterVideos(subject.id, chapter.id);
+    const videos = chapterVideos;
     if (videos.length > 0) {
-      // VideoObject, so this page can be recognised as the lecture's watch page.
-      // Search Console reported the site's one detected video as "Video isn't on
-      // a watch page" — nothing here was eligible for video results at all.
-      const videoNodes = videoObjectsFor("cpl", subject.id, chapter.id, chapter.title, videos);
+      // videoLdScript is null here whenever this chapter has a notes page: the
+      // lecture is claimed there instead, and two pages claiming one video is
+      // the duplication this change exists to remove. For the 15 chapters with
+      // a lecture and no notes, /video is the watch page and does carry it.
       return (
         <>
           {jsonLdScript}
-          {videoNodes.length > 0 && (
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@graph": videoNodes,
-              }) }}
-            />
-          )}
+          {videoLdScript}
           <VideoPage
             track="cpl"
             subject={subject}

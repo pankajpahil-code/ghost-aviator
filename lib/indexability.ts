@@ -166,7 +166,22 @@ export function isIndexableChapterRoute(
     case "video":
       // A mapped lecture IS availability (lib/chapter-videos.ts is the source of
       // truth). Without one the route renders Coming Soon.
-      return getChapterVideos(subjectId, chapterId).length > 0;
+      //
+      // But a lecture alone is not a reason to submit a URL. This route was the
+      // whole of the site's remaining thin surface: on 2026-08-23 the audit
+      // found 99 indexable-and-thin pages and all 99 were /video, at a median
+      // of 119 words. The reason is that the same lecture ALREADY renders at
+      // the top of the chapter's notes page, above a median 2,656 words — so
+      // for 94 of the 109 chapters that have one, /video is a thinner copy of a
+      // page we are already asking Google to index.
+      //
+      // Only the 15 chapters with a lecture and no notes keep the URL: there
+      // /video is the lecture's only home, and dropping it would make those
+      // lectures unfindable. lib/video-schema.ts derives the same split for the
+      // schema and the video sitemap, from this same predicate, so the watch
+      // page and the indexable page can never disagree.
+      return getChapterVideos(subjectId, chapterId).length > 0
+        && !servesRealNotes(subjectId, chapterId);
 
     // Client-rendered drills over questions the sibling /questions page already
     // publishes in full. 28 main words of server-rendered HTML, and the same 28

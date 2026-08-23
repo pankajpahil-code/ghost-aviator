@@ -6,7 +6,7 @@ import { getChapterVideos } from "@/lib/chapter-videos";
 import { chapterMetaDescription, chapterTitle } from "@/lib/chapter-meta";
 import { isIndexableChapterRoute, servesRealNotes, adjacentWithContent, NOINDEX } from "@/lib/indexability";
 import { getInlineNotes } from "@/lib/notes-inline";
-import { videoObjectsFor, lecturePartsFor } from "@/lib/video-schema";
+import { videoObjectsFor, lecturePartsFor, isWatchPage } from "@/lib/video-schema";
 import NotesPage       from "@/app/components/content/NotesPage";
 import HtmlNotesPage   from "@/app/components/content/HtmlNotesPage";
 import QuestionsPage   from "@/app/components/content/QuestionsPage";
@@ -79,6 +79,22 @@ export default async function Page({
 
   const questions = getQuestionsForChapter(subject.id, chapter.id);
 
+  // Same rule as the CPL route: the lecture's schema belongs on its watch page,
+  // which is the notes page wherever one exists. See lib/video-schema.ts.
+  const chapterVideos = getChapterVideos(subject.id, chapter.id);
+  const watchNodes = isWatchPage("atpl", subject.id, chapter.id, type)
+    ? videoObjectsFor("atpl", subject.id, chapter.id, chapter.title, chapterVideos)
+    : [];
+  const videoLdScript = watchNodes.length > 0 ? (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": watchNodes,
+      }) }}
+    />
+  ) : null;
+
   if (type === "notes") {
     // Same predicate as the sitemap and this route's robots tag — see
     // lib/indexability.ts. Human Performance chapters serve inline notes as soon
@@ -88,15 +104,18 @@ export default async function Page({
       : null;
     if (inlineNotes) {
       return (
-        <HtmlNotesPage
-          track="atpl"
-          subject={subject}
-          chapter={chapter}
-          prevChapter={prevChapter}
-          nextChapter={nextChapter}
-          notes={inlineNotes}
-          videos={getChapterVideos(subject.id, chapter.id)}
-        />
+        <>
+          {videoLdScript}
+          <HtmlNotesPage
+            track="atpl"
+            subject={subject}
+            chapter={chapter}
+            prevChapter={prevChapter}
+            nextChapter={nextChapter}
+            notes={inlineNotes}
+            videos={chapterVideos}
+          />
+        </>
       );
     }
     return (
@@ -149,20 +168,12 @@ export default async function Page({
   if (type === "video") {
     // Same rule as the CPL route: a mapping in lib/chapter-videos.ts IS the
     // availability — one line there lights up the route and the sitemap.
-    const videos = getChapterVideos(subject.id, chapter.id);
+    const videos = chapterVideos;
     if (videos.length > 0) {
-      const videoNodes = videoObjectsFor("atpl", subject.id, chapter.id, chapter.title, videos);
+      // Null whenever this chapter has notes — the lecture is claimed there.
       return (
         <>
-          {videoNodes.length > 0 && (
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@graph": videoNodes,
-              }) }}
-            />
-          )}
+          {videoLdScript}
           <VideoPage
             track="atpl"
             subject={subject}

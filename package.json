@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node tools/audit/ownership-files.mjs && node tools/seo-fix-notes.mjs && next build",
+    "build": "node tools/audit/ownership-files.mjs && node tools/seo-fix-notes.mjs && npx tsx tools/audit/sitemap-xml.mts && next build",
     "start": "next start",
     "lint": "eslint",
     "test:rtr-sim": "node --test \"lib/rtr-sim/**/*.test.mjs\"",
@@ -13,7 +13,9 @@
     "test": "node --test \"lib/**/*.test.mjs\"",
     "verify:adapt-save": "node tools/adapt/mock-supabase.mjs 54321 & node tools/adapt/verify-save-path.mjs",
     "verify:adapt-rls": "node tools/adapt/verify-rls.mjs",
-    "verify:adapt-notready": "node tools/adapt/verify-not-ready.mjs"
+    "verify:adapt-notready": "node tools/adapt/verify-not-ready.mjs",
+    "verify:sitemap": "npx tsx tools/audit/sitemap-xml.mts",
+    "build:lastmod": "npx tsx tools/build-lastmod.mts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.1",
@@ -30,6 +32,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "fast-xml-parser": "^5.11.0",
     "pdf-lib": "^1.17.1",
     "pdf-parse": "^2.4.5",
     "pdfjs-dist": "^5.4.296",
