@@ -71,6 +71,25 @@ export function readPitchState(now: number): PitchState {
   }
 }
 
+/**
+ * WHAT HE WAS JUST TALKING ABOUT.
+ *
+ * The one piece of conversational memory Gini has, and it is a single subject
+ * id in this tab. It exists so a follow-up works the way a follow-up works with
+ * a person: ask "what is drift" on the home page, then ask "how many questions
+ * are there" — a host understands the second question is still about Navigation.
+ * Without it every question started from nothing, and standing on a page was
+ * the only way he could ever know what you meant.
+ *
+ * Deliberately ONE id and nothing else. No transcript, no profile, no history
+ * — a mascot has no business building a record of what a student struggled
+ * with, and sessionStorage means it dies with the tab.
+ */
+const FOCUS_KEY = "ga:gini:focus";          // per tab
+
+export const rememberSubject = (subjectId: string) => writeSession(FOCUS_KEY, subjectId);
+export const rememberedSubject = (): string | undefined => readSession(FOCUS_KEY) ?? undefined;
+
 export function recordPitch(state: PitchState, id: string, now: number): PitchState {
   const next: PitchState = { shown: [...state.shown, id], lastAt: now, startedAt: state.startedAt };
   writeSession(PITCH_KEY, JSON.stringify({ shown: next.shown, lastAt: next.lastAt }));

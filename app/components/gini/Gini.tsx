@@ -29,13 +29,27 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
-  askDeep, readContext, greeting, choosePitch, suggestionsFor,
-  type GiniReply, type PitchState,
+  askDeep, readContext, greeting, choosePitch, suggestionsFor, followUpsFor,
+  type GiniReply, type GiniSource, type GiniContext, type PitchState,
 } from "@/lib/gini/knowledge";
-import { countVisit, hasGreeted, markGreeted, readPitchState, recordPitch } from "@/lib/gini/session";
+import {
+  countVisit, hasGreeted, markGreeted, readPitchState, recordPitch,
+  rememberSubject, rememberedSubject,
+} from "@/lib/gini/session";
+import { CPL_SUBJECTS } from "@/lib/subjects";
 import { askSmart } from "@/lib/gini/smart";
 import { sections, speakSection, stop as stopReading, hasNotes, supported as speechSupported } from "@/lib/gini/reader";
 import GiniSprite, { GINI_KEYFRAMES, type GiniMood } from "./GiniSprite";
+
+/**
+ * The name of the subject an answer came from, for the follow-ups to use. Read
+ * from lib/subjects.ts rather than carried in the reply, so it can never be a
+ * stale copy of a name the site has since changed (Iron Rule 5).
+ */
+const subjectNameOf = (src: GiniSource | null, ctx: GiniContext): string | undefined => {
+  const id = src && "subjectId" in src ? src.subjectId : ctx.subjectId;
+  return id ? CPL_SUBJECTS.find(s => s.id === id)?.name : undefined;
+};
 
 const DISMISS_KEY = "ga:gini:dismissed";
 /**
@@ -93,7 +107,27 @@ export default function Gini() {
    * stale hardcoded claim.
    */
   const ctx = useMemo(() => readContext(pathname), [pathname]);
-  const suggestions = useMemo(() => suggestionsFor(ctx), [ctx]);
+
+  /**
+   * WHAT TO OFFER NEXT. Page-appropriate openers until he has answered
+   * something, then follow-ups chosen for what he just said — because the most
+   * useful next question is almost never the one that was useful before you
+   * asked anything.
+   */
+  const [followUps, setFollowUps] = useState<{ path: string; items: string[] } | null>(null);
+
+  /**
+   * TIED TO THE PATH THEY WERE CHOSEN ON, so walking to another page brings
+   * back the suggestions for that page instead of leaving the last answer's
+   * follow-ups sitting there forever. Derived rather than reset in an effect:
+   * setting state from an effect on every navigation is what
+   * react-hooks/set-state-in-effect exists to catch, and comparing two strings
+   * during render is both cheaper and clearer than suppressing it.
+   */
+  const suggestions = useMemo(
+    () => (followUps && followUps.path === ctx.pathname ? followUps.items : suggestionsFor(ctx)),
+    [followUps, ctx],
+  );
 
   /** The offers already made in this tab. Kept in a ref: changing it must not re-render. */
   const pitchState = useRef<PitchState>({ shown: [], lastAt: 0, startedAt: 0 });
@@ -411,19 +445,35 @@ export default function Gini() {
     setMood("surprised");
     show("Let me look…");
 
+    /**
+     * The subject he was last talking about stands in when the page does not
+     * name one. A student on the home page who asks about drift and then asks
+     * "how many questions are there" means Navigation, and before this the
+     * second question started from nothing.
+     */
+    const asked: GiniContext = ctx.subjectId
+      ? ctx
+      : { ...ctx, subjectId: rememberedSubject() };
+
     let reply: GiniReply;
     try {
       // The smart route first: the server asks Gemini to PICK from answers that
       // already exist here, and returns that stored text verbatim. It returns
       // null for every imperfect outcome — no key, quota gone, timeout, a guard
       // rejection — and then the local layer answers exactly as it always has.
-      reply = (await askSmart(q, ctx)) ?? (await askDeep(q, ctx));
+      reply = (await askSmart(q, asked)) ?? (await askDeep(q, asked));
     } catch {
       // A failed lookup must never become a guess.
       reply = { kind: "refusal", text: "Something went wrong looking that up. Try again?", reason: "not-verified" };
     }
 
     setThinking(false);
+
+    // Remember the subject, and offer what is worth asking next.
+    const src = reply.kind === "answer" ? reply.source : null;
+    if (src && "subjectId" in src && src.subjectId) rememberSubject(src.subjectId);
+    setFollowUps({ path: ctx.pathname, items: followUpsFor(src, asked, subjectNameOf(src, asked)) });
+
     if (reply.kind === "answer") {
       // He knows this one — trident up, lightning, then settle into laughing.
       setMood("thunder");

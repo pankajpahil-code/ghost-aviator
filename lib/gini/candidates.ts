@@ -40,8 +40,9 @@ import type { GiniContext } from "./context";
 import { topFaq, topChapters } from "./knowledge";
 import { topPitches } from "./marketing";
 import { topBank, explainQuestion } from "./deep";
+import { topTopics, replyForTopic } from "./topics";
 
-export type CandidateKind = "bank" | "faq" | "chapter" | "offer";
+export type CandidateKind = "bank" | "faq" | "chapter" | "offer" | "topic";
 
 export type Candidate = {
   /** Short id the model returns. Valid only within this one request. */
@@ -61,6 +62,13 @@ const BANK_N = 6;
 const FAQ_N = 3;
 const CHAPTER_N = 3;
 const OFFER_N = 3;
+/**
+ * The Captain's own chapter sections. Offered generously, because this is the
+ * only part of the menu that holds DEFINITIONS — the bank holds applied
+ * problems, and a model handed only those will pick the least-bad one rather
+ * than none.
+ */
+const TOPIC_N = 5;
 
 export function buildCandidates(query: string, ctx: GiniContext): Candidate[] {
   const out: Candidate[] = [];
@@ -78,6 +86,13 @@ export function buildCandidates(query: string, ctx: GiniContext): Candidate[] {
 
   for (const f of topFaq(query, FAQ_N)) {
     add("faq", f.q, answer(f.a, { type: "faq", question: f.q }, f.href));
+  }
+
+  // What the Captain teaches on the topic, in his own published words. Listed
+  // before the bank so that on a "what is X" question the model reads a
+  // definition before it reads six applied problems that merely contain X.
+  for (const t of topTopics(query, ctx.subjectId, TOPIC_N)) {
+    add("topic", `From the chapter notes: ${t.t}`, replyForTopic(t));
   }
 
   for (const q of topBank(query, ctx.subjectId, BANK_N)) {

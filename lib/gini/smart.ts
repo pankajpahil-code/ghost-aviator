@@ -17,7 +17,7 @@
  * the same thing.
  */
 
-import type { GiniReply } from "./types";
+import type { GiniReply, GiniSource } from "./types";
 import type { GiniContext } from "./context";
 
 let disabled = false;
@@ -46,6 +46,7 @@ export async function askSmart(query: string, ctx: GiniContext): Promise<GiniRep
     }
     const data = await res.json() as {
       ok?: boolean; kind?: string; text?: string; href?: string | null; why?: string;
+      source?: GiniSource;
     };
 
     if (data?.why === "not-configured") { disabled = true; return null; }
@@ -53,10 +54,26 @@ export async function askSmart(query: string, ctx: GiniContext): Promise<GiniRep
       return null;
     }
 
+    /**
+     * KEEP THE REAL SOURCE. Every smart answer used to be stamped
+     * `{type:"captain"}`, which made this path misreport what it had just done:
+     * an answer read out of the question bank looked, to everything downstream,
+     * like the Captain talking about his own school. The follow-up layer then
+     * offered course questions after an aviation answer, and the one-subject
+     * memory never learned a subject, because "captain" carries no subjectId.
+     *
+     * Falls back to "captain" when the server sends nothing usable — which is
+     * correct for the `talk` branch, where the words really are about the site.
+     */
+    const source: GiniSource =
+      data.source && typeof data.source === "object" && typeof data.source.type === "string"
+        ? data.source
+        : { type: "captain" };
+
     return {
       kind: "answer",
       text: data.text,
-      source: { type: "captain" },
+      source,
       href: data.href ?? undefined,
     } satisfies GiniReply;
   } catch {

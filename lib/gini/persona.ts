@@ -31,7 +31,7 @@
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-import { answer, type GiniReply, type GiniMood } from "./types";
+import { answer, type GiniReply, type GiniMood, type GiniSource } from "./types";
 import { Index, mentions, normalise } from "./match";
 import type { GiniContext } from "./context";
 import { WHATSAPP_GROUP } from "@/lib/site";
@@ -434,6 +434,76 @@ export function suggestionsFor(ctx: GiniContext): string[] {
   out.push("How should I study?");
   out.push("Are the answers verified?");
   return out.slice(0, 3);
+}
+
+/* ────────────────────────── carrying on a conversation ────────────────────── */
+
+/**
+ * WHAT A HOST SAYS NEXT.
+ *
+ * A receptionist who answers your question, falls silent and waits for you to
+ * think of another one is technically correct and useless. After every answer
+ * Gini offers two or three things worth asking next, chosen for what he just
+ * said rather than for the page.
+ *
+ * THE HARD RULE, and it is the same one suggestionsFor() obeys: every string
+ * returned here must be a question the layers below can genuinely answer. A
+ * suggestion that lands on "I don't have a verified answer for that" is worse
+ * than no suggestion, because Gini offered it himself — he would be walking a
+ * student into his own refusal. tools/audit/gini-selftest.mts asks every one of
+ * these and fails if any of them refuses.
+ *
+ * So the pool is drawn only from shapes already proven to answer: a subject's
+ * structure, the FAQ entries the probe table covers, the study wisdom, and the
+ * Captain's own offers.
+ */
+export function followUpsFor(
+  source: GiniSource | null,
+  ctx: GiniContext,
+  subjectName?: string,
+): string[] {
+  const out: string[] = [];
+  const subject = subjectName ?? ctx.subjectName;
+
+  // What he just talked about comes first — that is what "following up" means.
+  if (source?.type === "chapter-topic" || source?.type === "explanation" || source?.type === "key-fact") {
+    if (subject) out.push(`How many questions in ${subject}?`);
+    out.push("How should I study?");
+  }
+
+  if (source?.type === "faq") {
+    out.push("Are the answers verified?");
+    out.push("Is this site free?");
+  }
+
+  if (source?.type === "captain") {
+    out.push("How much are the live classes?");
+    out.push("Is there a WhatsApp group?");
+  }
+
+  if (source?.type === "structure") {
+    /**
+     * NOT "Does the Captain teach <subject> live?", which reads better and
+     * which the self-test caught him being unable to answer: that phrasing
+     * shares only the concept {classes} with the offer index and scores 0.25
+     * against a 0.5 floor. Lowering that floor to rescue one suggestion would
+     * loosen how every question about the courses is matched, to fix a sentence
+     * nobody had to write this way. The pool's contract is that it only offers
+     * what is PROVEN to answer, so the phrasing gives way, not the floor.
+     */
+    out.push("How much are the live classes?");
+  }
+
+  // A refusal is exactly when a student most needs somewhere else to go.
+  if (!source) {
+    out.push("What can you do?");
+    out.push("How should I study?");
+  }
+
+  // Always worth knowing, and always answerable.
+  out.push("Is there negative marking?");
+
+  return [...new Set(out)].slice(0, 3);
 }
 
 /** The mood a wisdom entry should be delivered with, if the caller wants it. */

@@ -323,12 +323,17 @@ export function choosePitch(
 }
 
 /**
- * Exposed for the self-test. Anything matching this is fabricated pressure and
- * must never appear in a pitch.
+ * THE HONESTY GUARDS ARE DEFINED ONCE, IN guard.ts, AND RE-EXPORTED HERE.
+ *
+ * They used to be declared twice — once there for model prose, once here for
+ * the hand-written pitches — and the two had ALREADY DRIFTED: guard.ts was
+ * widened on 2026-08-21 to catch "will not stay free" and "while it lasts",
+ * and this copy was not. So the self-test's sweep over every pitch was checking
+ * the stale pattern while reporting that the pitches were clean.
+ *
+ * That is the same defect this repository has shipped twice before under a
+ * different name — a sitemap condition drifting from the route's own render
+ * condition — and the fix is the one lib/indexability.ts and lib/gini/prompt.ts
+ * already use: state the rule once, import it everywhere.
  */
-export const FAKE_URGENCY =
-  /\b(only \d+ (seats?|spots?|places?) (left|remaining)|hurry|limited time|last chance|offer ends|act now|don'?t miss out|book now before|selling fast|few seats)\b/i;
-
-/** Exposed for the self-test. Gini must never suggest the free material will end. */
-export const FREE_THREAT =
-  /\b(free (for a limited|until|till|only until)|won'?t stay free|going paid|before it becomes paid|price goes up)\b/i;
+export { FAKE_URGENCY, FREE_THREAT } from "./guard";

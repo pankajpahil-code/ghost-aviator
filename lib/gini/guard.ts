@@ -41,9 +41,24 @@ export const ATTRIBUTION =
 export const FAKE_URGENCY =
   /\b(only \d+ (seats?|spots?|places?) (left|remaining)|hurry|limited time|last chance|offer ends|act now|don'?t miss out|book now before|selling fast|few seats|filling fast|enroll today)\b/i;
 
-/** Never suggest the free material will stop being free. */
+/**
+ * Never suggest the free material will stop being free.
+ *
+ * WIDENED 2026-08-21 after finding this guard had never actually fired in a
+ * test. Its one selftest case ("It is free for a limited time, so join today")
+ * is caught by FAKE_URGENCY first, so the case passed on the wrong guard and
+ * hid the gap — which is why the cases below now assert the REASON, not just
+ * that something was blocked. Two plain threats sailed through: "The free notes
+ * will not stay free forever" (the pattern had `won't` but not `will not`) and
+ * "Enjoy the free material while it lasts" (not covered at all).
+ *
+ * The line to walk: block the THREAT, never the honest reassurance. "It is free
+ * forever", "the free notes are unaffected" and "it lasts about 60 minutes" must
+ * all still pass — telling a student the material stays free is the mission,
+ * and a guard that gagged that would be worse than the hole it closed.
+ */
 export const FREE_THREAT =
-  /\b(free (for a limited|until|till|only until)|won'?t stay free|going paid|before it becomes paid|price goes up|soon be paid)\b/i;
+  /\b(free (for a limited|until|till|only until|for now|while)|(wo|will|would|may|might|could)n'?t (stay|remain|be) free|will not (stay|remain|be) free|no longer (be )?free|stops? being free|going paid|becomes? paid|before it becomes paid|price goes? up|prices? (will )?(go|going) up|soon be paid|start(s|ing)? charging|while (it|they|this|these|stocks?) lasts?)\b/i;
 
 /**
  * Every rupee figure Gini may utter. A model asked to "mention the courses"
@@ -101,6 +116,30 @@ export const FOREIGN_SCRIPT = new RegExp(
   "]",
 );
 
+
+/**
+ * CODE AND MARKUP LEAKING INTO PROSE — the same failure as the Bengali
+ * fragment above, wearing the Latin alphabet, so FOREIGN_SCRIPT never saw it.
+ *
+ * Caught on the live site, 2026-08-21, on a plain "hello":
+ *
+ *   "...Have a look around the library. same.href = "/""
+ *
+ * A fragment of the model's own scratch reasoning welded onto the end of an
+ * otherwise perfect greeting. Every existing guard passed it: it states no
+ * fact, quotes no price, names no source and uses no foreign script. It is
+ * simply not English, and a mascot that hands a student a line of JavaScript
+ * reads as a broken site on a domain whose whole pitch is that it is careful.
+ *
+ * Deliberately narrow. Gini's real replies carry paths (/live-classes),
+ * domains (ghostaviator.com), abbreviations (Capt. Pahil) and currency, none
+ * of which are code. What is matched is SYNTAX: assignment to a property, a
+ * declaration keyword, an arrow, a tag, a JSON pair, a template hole, or a
+ * sentence ending on a brace or semicolon. Prose does none of those things.
+ */
+export const CODE_FRAGMENT =
+  /[A-Za-z_$][\w$]*\s*\.\s*[A-Za-z_$][\w$]*\s*=|\b(?:const|let|var|function|return)\s+[\w$]*\s*[=({["'`]|=>|<\/?[a-z][a-z0-9-]*(?:\s[^>]*)?\/?>|"[\w-]+"\s*:|[{};]\s*$|\$\{|\bconsole\.[a-z]+\(/i;
+
 export type GuardVerdict = { ok: true } | { ok: false; why: string };
 
 const MAX_CHARS = 700;
@@ -115,6 +154,7 @@ export function guardModelProse(text: string, opts: { allowTeaching?: boolean } 
   if (t.length > MAX_CHARS) return { ok: false, why: `too long (${t.length})` };
 
   if (FOREIGN_SCRIPT.test(t)) return { ok: false, why: "contains stray non-Latin script (token garbage)" };
+  if (CODE_FRAGMENT.test(t)) return { ok: false, why: "contains code or markup (token garbage)" };
   if (ATTRIBUTION.test(t)) return { ok: false, why: "names a third-party source (Iron Rule 2)" };
   if (FAKE_URGENCY.test(t)) return { ok: false, why: "manufactured urgency" };
   if (FREE_THREAT.test(t)) return { ok: false, why: "implies the free material will end" };

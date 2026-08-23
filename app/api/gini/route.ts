@@ -143,6 +143,18 @@ export async function POST(req: Request) {
       text: chosen.reply.text,          // STORED text, verbatim. Not the model's.
       href: chosen.reply.href ?? null,
       via: chosen.kind,
+      /**
+       * WHAT THE ANSWER ACTUALLY WAS, not merely that it came from here.
+       *
+       * The browser used to stamp every smart answer `{type:"captain"}`, which
+       * made the whole primary path lie about itself: after a question answered
+       * out of the BANK, Gini offered course follow-ups ("how much are the live
+       * classes") instead of study ones, and the one-subject conversational
+       * memory never learned anything, because "captain" carries no subjectId.
+       * Found by driving the real page — no test saw it, because the self-test
+       * exercises the deterministic path and this defect lives on the other one.
+       */
+      source: chosen.reply.source,
     });
   }
 

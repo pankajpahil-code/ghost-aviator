@@ -22,15 +22,20 @@
 import {
   ask, askDeep, findChapter, describeSubject, answerFromFaq,
   readContext, greeting, smallTalk, WISDOM, partOfDay, suggestionsFor,
-  PITCHES, choosePitch, offerFor, PITCH_RULES,
+  PITCHES, choosePitch, offerFor, PITCH_RULES, isDefinitional, followUpsFor,
+  type GiniSource,
 } from "../../lib/gini/knowledge";
 import { explainQuestion, isSpeakable, speakableStats } from "../../lib/gini/deep";
+import { topicStats } from "../../lib/gini/topics";
+import { TOPICS } from "../../lib/gini/generated/topics";
 import { FAKE_URGENCY, FREE_THREAT } from "../../lib/gini/marketing";
 import { guardModelProse } from "../../lib/gini/guard";
 import { isOffTopic, DECLINES } from "../../lib/gini/persona";
 import { CORPUS } from "../../lib/gini/generated/corpus-stats";
 import { ALL_QUESTIONS } from "../../lib/questions";
 import { CPL_SUBJECTS } from "../../lib/subjects";
+import { readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 
 const line = (s = "") => console.log(s);
 let failures = 0;
@@ -229,19 +234,42 @@ check(DECLINES.every(d => /ask|what|dgca|aviation|exam|class|chapter|prepar/i.te
 line("\n--- OUTPUT GUARDS (what a model is allowed to say) ---");
 // Each case was either caught in production or is the exact thing the guard
 // exists to stop. A guard with no test is a comment.
-const GUARD_CASES: { text: string; ok: boolean; label: string }[] = [
+const GUARD_CASES: { text: string; ok: boolean; label: string; why?: RegExp }[] = [
   { text: "Ask me about the chapter and I will read what is written.", ok: true, label: "ordinary sentence" },
   { text: "Tell me if you need help finding anything.আন্তরিত", ok: false, label: "stray Bengali script (seen live 2026-08-21)" },
   { text: "The notes are based on the Oxford ATPL manual.", ok: false, label: "names a source" },
   { text: "Only 2 seats left, book now before it fills!", ok: false, label: "manufactured urgency" },
-  { text: "It is free for a limited time, so join today.", ok: false, label: "threatens the free material" },
+  // These assert WHY. Without that, this case passed on FAKE_URGENCY while
+  // FREE_THREAT went unexercised and two plain threats shipped un-caught.
+  { text: "The free notes will not stay free forever.", ok: false, why: /free material will end/, label: "threatens the free material (will not stay free)" },
+  { text: "Enjoy the free material while it lasts.", ok: false, why: /free material will end/, label: "threatens the free material (while it lasts)" },
+  { text: "The question bank will no longer be free after this month.", ok: false, why: /free material will end/, label: "threatens the free material (no longer free)" },
+  { text: "It is free for a limited time, so join today.", ok: false, label: "manufactured scarcity around the free material" },
+  // The honest reassurance must survive — gagging this would be worse than
+  // the hole it closes, because saying so is the mission.
+  { text: "Everything here is free forever, no sign-up needed.", ok: true, label: "'free forever' is a promise we keep, not a threat" },
+  { text: "The batches are paid; the free notes are unaffected.", ok: true, label: "contrasting paid and free is allowed" },
   { text: "The batch costs ₹8,000 per subject.", ok: false, label: "a price we do not charge" },
   { text: "Capt. Pahil teaches live batches at ₹7,999 a subject.", ok: true, label: "a real price" },
   { text: "We guarantee you will pass the DGCA exam.", ok: false, label: "promises an outcome" },
+  // The Latin-alphabet twin of the Bengali case above. Seen live on a plain
+  // "hello", 2026-08-21: every other guard passed it because it states no
+  // fact, quotes no price and names no source - it is simply not English.
+  { text: 'Have a look around the library. same.href = "/"', ok: false, label: "JS assignment welded onto a greeting (seen live 2026-08-21)" },
+  { text: "Welcome to Ghost Aviator. <div>notes</div>", ok: false, label: "HTML markup in prose" },
+  { text: "Here you go: {\"mode\":\"talk\"}", ok: false, label: "raw JSON in prose" },
+  // The guard must stay narrow: these carry dots, slashes and currency and
+  // are all ordinary Gini replies.
+  { text: "Welcome to ghostaviator.com - try /faq, /notes or /question-bank, all free.", ok: true, label: "paths and a domain are not code" },
+  { text: "Capt. Pahil is a DGCA-approved instructor. He replies himself.", ok: true, label: "abbreviation is not a property access" },
 ];
 for (const g of GUARD_CASES) {
   const v = guardModelProse(g.text);
-  check(v.ok === g.ok, g.label, v.ok ? "allowed" : `blocked: ${(v as { ok: false; why: string }).why}`);
+  const why = v.ok ? "" : (v as { ok: false; why: string }).why;
+  // When a case names the guard it is meant to exercise, being blocked by a
+  // DIFFERENT guard is a failure: it means the intended one is untested.
+  const rightReason = v.ok === g.ok && (!g.why || g.why.test(why));
+  check(rightReason, g.label, v.ok ? "allowed" : `blocked: ${why}`);
 }
 
 line("\n--- WISDOM PROVENANCE ---");
@@ -283,7 +311,7 @@ check(stubs === 0, "no placeholder ever spoken", `${stubs} found`);
 
 /* ───────────────────────── the deep layer, end to end ──────────────────── */
 
-line("\n--- DEEP LAYER (question-bank search) ---");
+line("\n--- DEEP LAYER (question-bank + chapter search) ---");
 const deepProbes = [
   "what is QNH", "what is the transition altitude", "what does an altimeter measure",
   "what is a jet stream", "explain the semi circular rule", "what is drift",
@@ -293,6 +321,200 @@ for (const p of deepProbes) {
   const r = await askDeep(p, home);
   line(`  ${r.kind === "answer" ? "ANSWER" : "REFUSE"}  "${p}" -> ${r.text.slice(0, 90)}…`);
 }
+
+/* ────────────────────── the Captain's chapters, searchable ───────────────── */
+
+line("\n--- CHAPTER TOPICS (the Captain's own teaching) ---");
+const stats = topicStats();
+line(`  ${stats.topics} topics across ${stats.chapters} chapters; ${stats.quotable} carry a quotable sentence`);
+
+check(stats.chapters >= 200, "the index covers the published chapters", `${stats.chapters} chapters`);
+check(stats.topics > CPL_SUBJECTS.length * 10, "far more topics than chapter titles", `${stats.topics}`);
+
+/**
+ * IRON RULE 2 OVER THE WHOLE INDEX. This is the newest thing Gini can speak and
+ * the biggest corpus he speaks from, so it gets the same sweep the bank gets.
+ * A name reaching a student here would be attribution in the Captain's own
+ * voice, which is the worst place for it.
+ */
+const NAMES = /\b(oxford|cae|nordian|redbird|jeppesen|ic\s*joshi|joshi|rk\s*bali|sahil|surender)\b/i;
+const leakyTopics = TOPICS.filter(t => NAMES.test(t.t) || (t.o && NAMES.test(t.o)));
+check(leakyTopics.length === 0, "no attribution anywhere in the topic index",
+  leakyTopics.length ? leakyTopics.slice(0, 3).map(t => t.t).join(" | ") : "0 found");
+
+/**
+ * The gates in tools/gini/build-topics.mts exist to keep exam scaffolding,
+ * dangling references and table rows out of anything Gini reads aloud. Asserted
+ * here rather than trusted, because the generator is not run on every build and
+ * a regression in it would be invisible until a student heard it.
+ */
+const SCAFFOLD = /(show answer|correct answer|option \(?[A-D]\)?|_{3,}|click an option)/i;
+const badOpeners = TOPICS.filter(t => t.o && SCAFFOLD.test(t.o));
+check(badOpeners.length === 0, "no quiz scaffolding in any quotable sentence",
+  badOpeners.length ? badOpeners[0].o!.slice(0, 60) : "0 found");
+
+const shortOpeners = TOPICS.filter(t => t.o && (t.o.length < 40 || !/[.!?]$/.test(t.o)));
+check(shortOpeners.length === 0, "every quotable sentence is a whole sentence",
+  shortOpeners.length ? `${shortOpeners.length} malformed` : "0 found");
+
+/**
+ * THE PROBE THAT MATTERS, AND THE ONE THIS WHOLE FEATURE EXISTS FOR.
+ *
+ * Every one of these is a definitional question that the bank answered with a
+ * correct, verified, APPLIED problem before the chapters were searchable —
+ * "what is QNH" returned an aerodrome-elevation calculation. The assertion is
+ * not that the reply is any particular string; it is that the reply is drawn
+ * from the teaching rather than from a worked exam question.
+ */
+line("\n  definitional questions must reach the teaching, not an applied problem:");
+const DEFINITIONAL = [
+  "what is QNH", "what is drift", "what is a great circle",
+  "what is deviation", "what is aquaplaning", "what is a jet stream",
+];
+let fromTeaching = 0;
+for (const q of DEFINITIONAL) {
+  check(isDefinitional(q), `recognised as definitional: "${q}"`);
+  const r = await askDeep(q, home);
+  const teaching = r.kind === "answer" && !r.text.startsWith("From the bank");
+  if (teaching) fromTeaching++;
+  line(`    ${teaching ? "TEACHING" : "bank/none"}  "${q}" -> ${r.text.slice(0, 74)}…`);
+}
+check(fromTeaching >= 4, "most definitional questions answer from the chapters",
+  `${fromTeaching}/${DEFINITIONAL.length}`);
+
+/**
+ * The other half of the same rule: an APPLIED question must still go to the
+ * bank. Fixing the definitional case by sending everything to the chapters
+ * would trade one wrong default for another.
+ */
+check(!isDefinitional("if I fly at 250 knots for 40 minutes how far do I go"),
+  "an applied problem is not treated as definitional");
+check(!isDefinitional("how many questions are in the meteorology paper"),
+  "a counting question is not treated as definitional");
+
+/**
+ * WHERE A QUESTION MUST LAND, ASSERTED — NOT PRINTED AND EYEBALLED.
+ *
+ * The probe block above prints its results and asserts nothing about them. That
+ * is how a regression rode inside a green run on 2026-08-22: adding the topic
+ * index sent "how does a VOR work" to *"Communication & Team Work", Air
+ * Regulations Chapter 24* — a heading that shares exactly one generic word with
+ * the query — while the suite still reported ALL CHECKS PASSED, because the
+ * only thing it did with that line was display it.
+ *
+ * A printed line is not a test. Each of these names the subject the answer must
+ * come from, which is the coarsest claim that would still have caught it.
+ */
+line("\n  every question lands in the right subject:");
+const LANDINGS: { q: string; want: RegExp }[] = [
+  { q: "how does a VOR work",     want: /radio navigation/i },
+  { q: "what is QNH",             want: /meteorology|instrumentation|radio telephony/i },
+  { q: "what is a great circle",  want: /navigation/i },
+  { q: "what is aquaplaning",     want: /regulation|technical/i },
+  { q: "what does an altimeter measure", want: /instrumentation/i },
+];
+for (const l of LANDINGS) {
+  const r = await askDeep(l.q, home);
+  const where = r.kind === "answer" ? `${r.text} ${r.href ?? ""}` : "REFUSED";
+  check(l.want.test(where), `"${l.q}" lands in ${l.want.source}`, where.slice(0, 88));
+}
+
+/**
+ * EVERY FOLLOW-UP HE OFFERS MUST BE ONE HE CAN ANSWER.
+ *
+ * Gini now proposes two or three next questions after each answer. A proposed
+ * question that lands on "I don't have a verified answer for that" is worse
+ * than proposing nothing: he walked the student into his own refusal, having
+ * put the words in their mouth himself. So every string the follow-up layer can
+ * emit is asked here, from several different starting points, and any refusal
+ * fails the run.
+ */
+/**
+ * THE LAZY BOUNDARY, ENFORCED RATHER THAN DOCUMENTED.
+ *
+ * deep.ts (the 4,400-question bank) and topics.ts (the ~460 KB chapter index)
+ * must be reached with `await import(...)`. Gini renders from the root layout,
+ * so one static import from anywhere in the client path puts megabytes into
+ * every page's bundle — which is exactly what happened on 2026-08-20, measured
+ * as a 2.2 MB chunk pulled in by /about and /signup.
+ *
+ * Both files carry a comment warning about it, and CLAUDE.md notes that if you
+ * do it "nothing will fail to tell you". A comment is not a mechanism. This is
+ * the mechanism: only candidates.ts may import them directly, because it is
+ * server-only and throws if it is ever evaluated in a browser.
+ */
+line("\n--- BUNDLE BOUNDARY (megabytes must stay lazy) ---");
+{
+  const SERVER_ONLY = new Set(["candidates.ts"]);
+  const roots = ["lib", "app"];
+  const offenders: string[] = [];
+  const walk = (dir: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const p = join(dir, e.name);
+      if (e.isDirectory()) { walk(p); continue; }
+      if (!/\.tsx?$/.test(e.name)) continue;
+      if (SERVER_ONLY.has(e.name)) continue;
+      const src = readFileSync(p, "utf8");
+      if (/^\s*import\s[^;]*from\s+["'](?:\.\/|@\/lib\/gini\/)(?:deep|topics)["']/m.test(src)) {
+        offenders.push(p);
+      }
+    }
+  };
+  for (const r of roots) walk(r);
+  check(offenders.length === 0,
+    "nothing on the client path statically imports the bank or the topic index",
+    offenders.length ? offenders.join(", ") : "0 offenders");
+}
+
+/**
+ * THE PAPERWORK QUESTIONS. None of this is aviation theory, so none of it is in
+ * a chapter, and before the guides were indexed Gini could not find one word of
+ * it — a student asking the single most common question in Indian flight
+ * training ("how do I get a computer number") was refused.
+ */
+line("\n--- GUIDES (the paperwork half) ---");
+const GUIDE_PROBES = [
+  "how do I get a computer number",
+  "what is the DGCA exam pattern",
+  "how do I become a pilot in India",
+];
+for (const q of GUIDE_PROBES) {
+  const r = await askDeep(q, home);
+  const ok = r.kind === "answer" && !!r.href;
+  check(ok, `answers "${q}"`, r.kind === "answer" ? `-> ${r.href}` : "REFUSED");
+}
+
+line("\n--- FOLLOW-UPS (he must be able to answer what he offers) ---");
+const FOLLOW_SOURCES: (GiniSource | null)[] = [
+  null,
+  { type: "faq", question: "x" },
+  { type: "captain" },
+  { type: "structure" },
+  { type: "chapter-topic", subjectId: "meteorology", chapterId: "met-1", heading: "x" },
+  { type: "explanation", subjectId: "air-navigation", chapterId: "nav-1" },
+];
+const offered = new Set<string>();
+for (const src of FOLLOW_SOURCES) {
+  for (const c of [home, readContext("/cpl/meteorology/met-1/notes"), readContext("/live-classes")]) {
+    for (const s of followUpsFor(src, c, c.subjectName)) offered.add(s);
+  }
+}
+line(`  ${offered.size} distinct follow-ups can be offered`);
+check(offered.size > 0, "follow-ups are offered at all");
+for (const q of [...offered].sort()) {
+  const r = await askDeep(q, home);
+  check(r.kind === "answer", `answerable: "${q}"`, r.kind === "refusal" ? "REFUSED" : "");
+}
+
+/**
+ * A refusal should hand the student somewhere to go, not a closed door — but it
+ * must still be a refusal. Both halves are asserted: an assistant that turns
+ * "I don't know" into a confident-sounding suggestion has not improved.
+ */
+const dead = await askDeep("what is the maximum crosswind for a Cessna 152", home);
+line(`\n  refusal-with-a-door: ${dead.text.slice(0, 130)}…`);
+check(dead.kind === "refusal", "still refuses what it cannot verify");
+check(/ask capt\. pahil|whatsapp/i.test(dead.text), "the refusal still points at a human");
 
 /* ──────────────────────────────── structure ────────────────────────────── */
 

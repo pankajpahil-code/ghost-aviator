@@ -45,6 +45,7 @@ import { keyFactsFor } from "@/lib/chapter-key-facts";
 import { verificationFor, LEVEL_LABEL } from "@/lib/verification-status";
 import { CPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { LIVE_CLASS_SUBJECTS } from "@/lib/live-classes";
+import { GUIDES, type Guide } from "@/lib/guides";
 
 import { answer, refuse, REFUSALS, type GiniReply, type GiniSource, type RefusalReason } from "./types";
 import { Index, mentions } from "./match";
@@ -57,7 +58,7 @@ export type { GiniReply, GiniSource, RefusalReason };
 export { REFUSALS };
 export { readContext, type GiniContext } from "./context";
 export { PITCHES, choosePitch, offerFor, PITCH_RULES, type Pitch, type PitchState } from "./marketing";
-export { greeting, smallTalk, HELP_TEXT, WISDOM, partOfDay, suggestionsFor, isOffTopic, declineOffTopic, DECLINES, type Spoken } from "./persona";
+export { greeting, smallTalk, HELP_TEXT, WISDOM, partOfDay, suggestionsFor, followUpsFor, isOffTopic, declineOffTopic, DECLINES, type Spoken } from "./persona";
 
 /* ──────────────────────────── site questions ──────────────────────────── */
 
@@ -129,6 +130,39 @@ export function describeSubject(subjectId: string): GiniReply {
     { type: "structure" },
     `/cpl/${s.id}`,
   );
+}
+
+/**
+ * THE GUIDES — the paperwork half of becoming a pilot, which no chapter covers.
+ *
+ * "How do I get a computer number", "what does the training actually cost",
+ * "what is the exam pattern", "what is RTR(A)" — none of that is aviation
+ * theory, so none of it is in the notes, and until now Gini could not find a
+ * word of it. It is published, Captain-approved prose sitting at /guides.
+ *
+ * LIGHT, unlike the chapter index: there are six of them, so a title and a
+ * description each costs nothing to ship and answers instantly. The guides'
+ * internal SECTION headings are in the lazy topic index alongside the chapters.
+ *
+ * The answer is the guide's own published description, which is what the
+ * /guides page already shows — not a summary written here. Nothing new is
+ * asserted about the DGCA.
+ */
+const GUIDE_INDEX = new Index<Guide>(
+  GUIDES.map(g => ({ item: g, title: g.title, body: g.description })),
+);
+
+/**
+ * Higher than the chapter floor and lower than the FAQ's. A guide is a whole
+ * document, so pointing at a slightly wrong one is cheap; but there are only
+ * six, and a corpus that small over-matches, which is why it is not lower.
+ */
+const GUIDE_FLOOR = 0.5;
+
+export function findGuide(query: string): GiniReply {
+  const hit = GUIDE_INDEX.bestByTitle(query, GUIDE_FLOOR);
+  if (!hit) return refuse("not-verified");
+  return answer(hit.item.description, { type: "structure" }, `/guides/${hit.item.slug}`);
 }
 
 /** Which subject is the student talking about, if any? */
@@ -276,6 +310,19 @@ export function ask(query: string, ctx: GiniContext = readContext("/")): GiniRep
   const wise = wisdomFor(q);
   if (wise) return wise;
 
+  /**
+   * The paperwork questions — computer number, exam pattern, what it costs.
+   *
+   * BEFORE the offers, not after. The "guides" pitch advertises the whole
+   * shelf ("the paperwork questions are answered in the guides"), and it
+   * matches the same words, so behind the offer a student asking the single
+   * most common question in Indian flight training — how do I get a computer
+   * number — was handed the index page instead of the guide that answers it.
+   * The specific answer outranks the advertisement for it.
+   */
+  const guide = findGuide(q);
+  if (guide.kind === "answer") return guide;
+
   const offer = offerFor(q, ctx);
   if (offer) return offer;
 
@@ -303,12 +350,43 @@ export function ask(query: string, ctx: GiniContext = readContext("/")): GiniRep
 }
 
 /**
- * THE FULL ANSWER, including the question bank.
+ * IS THE STUDENT ASKING WHAT SOMETHING IS, OR HOW TO WORK SOMETHING OUT?
  *
- * Tries the light layer first — it is instant and covers manners, the FAQ, the
- * offers and the structure. Only if that comes up empty does it pull in
- * deep.ts, which is where the megabytes live. Most visitors never trigger it;
- * nobody triggers it before they have typed something.
+ * The distinction decides which corpus goes first, and getting it backwards is
+ * what made Gini look stupid on the simplest questions in the language. The
+ * bank is thousands of APPLIED problems; the chapters are where things are
+ * DEFINED. Ask the bank "what is QNH" and it correctly returns an aerodrome
+ * elevation calculation that happens to contain the letters QNH.
+ *
+ * A bare term with no verb — a student typing just "QNH" — counts too. That is
+ * a request for a definition with the sentence left off.
+ */
+const DEFINITION_INTENT =
+  /\b(what (is|are|was|were|does .{2,30} mean)|what's|whats|define|definition|meaning|means|explain|describe|tell me about|who is|which is)\b/i;
+
+export function isDefinitional(query: string): boolean {
+  const q = query.trim();
+  if (DEFINITION_INTENT.test(q)) return true;
+  // Two or three words, no verb, no digits — "QNH", "transition altitude".
+  const words = q.split(/\s+/);
+  return words.length <= 3 && !/\d/.test(q) && !/\b(is|are|do|does|can|will|how|why|when|where)\b/i.test(q);
+}
+
+/**
+ * THE FULL ANSWER — the question bank AND the Captain's own chapters.
+ *
+ * Tries the light layer first: it is instant and covers manners, the FAQ, the
+ * offers and the structure. Only if that comes up empty does it pull in the two
+ * lazy corpora, which is where the megabytes live. Most visitors never trigger
+ * either; nobody triggers them before they have typed something.
+ *
+ * ORDER IS DECIDED BY THE QUESTION, NOT BY A FIXED PREFERENCE. A definitional
+ * question goes to the chapters first, an applied one to the bank first. Before
+ * this, the bank always went first, and so "what is drift" was answered with
+ * "In the NH, if you experience port drift, the altimeter will read:" — a
+ * verified, correct, entirely unhelpful reply. The code comment in deep.ts
+ * called that exact case out and the routing still produced it, because a
+ * comment is not a mechanism.
  *
  * A failed dynamic import must never turn into a guess: on any failure the
  * honest refusal from the light layer is what the student gets.
@@ -318,42 +396,105 @@ export async function askDeep(query: string, ctx: GiniContext = readContext("/")
   if (light.kind === "answer") return light;
   if (light.reason === "out-of-scope") return light;
 
-  let deep: typeof import("./deep") | null = null;
-  try {
-    deep = await import("./deep");
-  } catch {
-    // Offline, or the chunk failed to load. A failed lookup must never become
-    // a guess, so everything below is simply skipped.
-  }
+  // Loaded together — they are independent chunks and a student who needs one
+  // usually needs the other. Either may fail on its own without taking the
+  // other down, so each is settled separately.
+  const [deepRes, topicsRes] = await Promise.allSettled([
+    import("./deep"),
+    import("./topics"),
+  ]);
+  const deep = deepRes.status === "fulfilled" ? deepRes.value : null;
+  const topics = topicsRes.status === "fulfilled" ? topicsRes.value : null;
 
-  if (deep) {
-    // A confident, multi-concept match on a question the student more or less
-    // asked. This is the good case and it goes first.
-    const fromBank = deep.answerFromBank(query, ctx.subjectId);
-    if (fromBank.kind === "answer") return fromBank;
+  /**
+   * Held rather than returned: "the bank has this question but nobody wrote its
+   * explanation" is more useful than "not verified", but it must not preempt a
+   * chapter that could have answered properly.
+   */
+  let heldBankRefusal: GiniReply | null = null;
 
-    // The bank knows this question but has no explanation written for it. That
-    // is a more useful thing to be told than "not verified", so it wins.
-    if (fromBank.reason === "no-explanation" || fromBank.reason === "needs-figure") return fromBank;
-  }
+  const tryBank = (): GiniReply | null => {
+    if (!deep) return null;
+    const r = deep.answerFromBank(query, ctx.subjectId);
+    if (r.kind === "answer") return r;
+    if (r.reason === "no-explanation" || r.reason === "needs-figure") heldBankRefusal ??= r;
+    return null;
+  };
 
-  // "What is drift" is a request for a definition, and the bank is full of
-  // applied problems that merely contain the word. Where the site teaches the
-  // topic, the chapter is the better answer than a tangential question.
-  const found = findChapter(query);
-  if (found.kind === "answer") {
+  const tryQuote = (): GiniReply | null => {
+    if (!topics) return null;
+    const r = topics.quoteTopic(query, ctx.subjectId);
+    return r.kind === "answer" ? r : null;
+  };
+
+  /**
+   * CHAPTER TITLES BEAT SECTION HEADINGS WHEN NEITHER CAN BE QUOTED. A chapter
+   * title is a coarser net but a far more reliable statement of what a chapter
+   * is ABOUT: there are 234 of them against thousands of headings, so the
+   * headings win ties on sheer volume — which is how "how does a VOR work"
+   * pointed at "Communication & Team Work" instead of the chapter called VOR.
+   */
+  const tryChapterTitle = (): GiniReply | null => {
+    const found = findChapter(query);
+    if (found.kind !== "answer") return null;
     return answer(
       found.text.replace(/^That's /, "That's taught in "),
       { type: "structure" },
       found.href,
     );
+  };
+
+  /** No chapter is named for it — but a section inside one may be. */
+  const tryPoint = (): GiniReply | null => {
+    if (!topics) return null;
+    const r = topics.pointToTopic(query, ctx.subjectId);
+    return r.kind === "answer" ? r : null;
+  };
+
+  /**
+   * THE ORDER IS THE FEATURE, and it is different for the two kinds of question.
+   *
+   * Asked what something IS, a pointer into the chapter that teaches it beats a
+   * worked exam problem that merely contains the word — "what is a jet stream"
+   * answered from the bank gives "on 'Jet stream has' — the answer is one or
+   * more maxima", which is true, verified, and not what anyone meant. So for a
+   * definition the bank is the LAST resort, not the first.
+   *
+   * Asked to work something out, that inverts completely: the bank is full of
+   * exactly that, worked, and a chapter link would be a shrug.
+   */
+  const steps = isDefinitional(query)
+    ? [tryQuote, tryChapterTitle, tryPoint, tryBank]
+    : [tryBank, tryQuote, tryChapterTitle, tryPoint];
+
+  for (const step of steps) {
+    const hit = step();
+    if (hit) return hit;
   }
 
-  // Last resort: a single-concept match, still verified and still labelled with
-  // the question it came from, so the student can see what he matched.
+  if (heldBankRefusal) return heldBankRefusal;
+
+  // Last resort: a single-concept match in the bank, still verified and still
+  // labelled with the question it came from, so the student can see what he
+  // matched and catch him having matched the wrong one.
   if (deep) {
     const solo = deep.answerFromBank(query, ctx.subjectId, true);
     if (solo.kind === "answer") return solo;
+  }
+
+  /**
+   * NO ANSWER — but not a closed door. He has already said he will not guess;
+   * adding where to look next costs nothing and is the difference between a
+   * host and a turnstile.
+   */
+  if (topics) {
+    const near = topics.nearestTopic(query, ctx.subjectId);
+    if (near) {
+      return {
+        ...light,
+        text: `${light.text} The closest thing I have is ${near.label} — start there.`,
+      };
+    }
   }
 
   return light;

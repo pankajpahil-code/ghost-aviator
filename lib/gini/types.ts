@@ -22,6 +22,14 @@ export type GiniSource =
   | { type: "faq"; question: string }
   | { type: "explanation"; subjectId: string; chapterId?: string }
   | { type: "key-fact"; subjectId: string; chapterId: string }
+  /**
+   * A sentence quoted VERBATIM from under a heading in one of the Captain's
+   * published chapters. Distinct from "key-fact" (hand-curated) and from
+   * "structure" (asserts nothing), because this one does make an aviation
+   * claim — his claim, already live on the site, reproduced without edit and
+   * always shown with a link back to the chapter it came from.
+   */
+  | { type: "chapter-topic"; subjectId: string; chapterId: string; heading: string }
   | { type: "structure" }
   /** The Captain's own words about his own school — greetings, method, offers. */
   | { type: "captain" };
