@@ -110,10 +110,34 @@ function stripInlineLabel(blockHtml: string): string {
     // screen</strong> lining the inside of the eyeball" — and peeling that
     // would behead the answer. A label either ends in a colon, or is a short
     // noun phrase with no linking verb in it.
-    const isLabel = /:$/.test(inner) || (inner.split(/\s+/).length <= 7 && !DEFINING.test(inner));
-    if (!isLabel) break;
+    const rest = h.slice(m[0].length);
 
-    h = h.slice(m[0].length);
+    /**
+     * AND WHAT FOLLOWS DECIDES IT, which the first version missed and which
+     * shipped: the emphasised word is often the TERM BEING DEFINED, not a
+     * label. "<strong>Aquaplaning</strong> (also known as hydroplaning) is a
+     * condition..." has one word and no verb, so it looked exactly like
+     * "Strict Requirement" — and stripping it left a student reading
+     * "(also known as hydroplaning) is a condition...", a sentence with no
+     * subject. Five of 663 openers went out that way.
+     *
+     * A real label is followed by the start of a new sentence, so the next
+     * character is a CAPITAL ("Strict Requirement" → "All aeroplanes..."). A
+     * defined term is followed by the rest of its own sentence, so the next
+     * character is punctuation or lowercase. A trailing colon is still decisive
+     * on its own, since nothing but a label ends that way.
+     */
+    // BOTH tests must hold. The shape test alone let a defined term through;
+    // the follows-with-a-capital test alone would strip a genuine opening
+    // clause that happens to precede a new sentence.
+    const looksLikeLabel =
+      /:$/.test(inner) || (inner.split(/\s+/).length <= 7 && !DEFINING.test(inner));
+    if (!looksLikeLabel) break;
+
+    const nextChar = text(rest).charAt(0);
+    if (!/:$/.test(inner) && !/[A-Z]/.test(nextChar)) break;
+
+    h = rest;
   }
   return h;
 }
@@ -322,14 +346,27 @@ function openerFrom(bodyHtml: string, heading: string): string | null {
     .filter(Boolean);
 
   for (const raw of candidates) {
-    // Peel a repeated heading, then any label, then any label the heading was
-    // hiding. Twice is enough for every stacking seen in these chapters.
+    /**
+     * Peel a repeated heading, then any label, then any label the heading was
+     * hiding. Twice is enough for every stacking seen in these chapters.
+     *
+     * THE REPEATED HEADING IS ONLY PEELED IF A NEW SENTENCE FOLLOWS IT — the
+     * same rule stripInlineLabel() uses, and it is here for the same defect.
+     * "Compass Swing" followed by "A compass swing is the systematic process"
+     * is a title line and should go. "The Vertical Card Compass" followed by
+     * "(B-type / E-type) is the standard direct reading compass" is the
+     * sentence's own SUBJECT, and peeling it left a student reading
+     * "(B-type / E-type) is the standard direct reading compass".
+     */
+    const headingRe = new RegExp(
+      `^${heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*[\\s:\u2014\u2013-]+`,
+      "i",
+    );
     let s = raw.trim();
     for (let pass = 0; pass < 2; pass++) {
-      s = s
-        .replace(new RegExp(`^${heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*[\\s:\u2014\u2013-]+`, "i"), "")
-        .replace(LEAD_LABEL, "")
-        .trim();
+      const withoutHeading = s.replace(headingRe, "");
+      if (withoutHeading !== s && /^[A-Z]/.test(withoutHeading)) s = withoutHeading;
+      s = s.replace(LEAD_LABEL, "").trim();
     }
     if (s.length < 40 || s.length > 300) { drop("length"); continue; }
     if (!/^[A-Z(]/.test(s)) { drop("no capital start"); continue; }
