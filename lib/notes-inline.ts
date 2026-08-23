@@ -150,6 +150,42 @@ function scopeCss(css: string): string {
   return out;
 }
 
+/**
+ * Remove the chapter's `<div class="cover">…</div>` block, nested divs and all.
+ *
+ * Walks forward from the opening tag counting `<div` against `</div>` until the
+ * depth returns to zero, which is the only way to find the real end of a block
+ * that contains other blocks. If the depth never closes the markup is already
+ * broken, so nothing is removed — leaving a cover visible is a cosmetic fault,
+ * while deleting to the end of the document is a destroyed chapter.
+ */
+function removeCoverBlock(html: string): string {
+  // The class must be the exact token `cover`. A word-boundary test is NOT
+  // enough: `-` is a boundary in regex, so /\bcover\b/ also matches
+  // `cover-page`, `cover-header`, `cover-part`… Those are ordinary content
+  // blocks inside the chapter, and matching one would delete it and everything
+  // nested in it. Nine chapters (rnav-1..7, ar-7, ar-13) sat behind that
+  // difference. Split the attribute into tokens and compare.
+  const openTag = /<div\b[^>]*?\bclass\s*=\s*["']([^"']*)["'][^>]*>/gi;
+  let open: RegExpExecArray | null = null;
+  for (let m = openTag.exec(html); m; m = openTag.exec(html)) {
+    if (m[1].trim().split(/\s+/).includes("cover")) { open = m; break; }
+  }
+  if (!open) return html;
+
+  const start = open.index;
+  const tag = /<(\/?)div\b[^>]*>/gi;
+  tag.lastIndex = start + open[0].length;
+
+  let depth = 1;
+  let m: RegExpExecArray | null;
+  while ((m = tag.exec(html))) {
+    depth += m[1] ? -1 : 1;
+    if (depth === 0) return html.slice(0, start) + html.slice(m.index + m[0].length);
+  }
+  return html;                       // unbalanced source — leave it alone
+}
+
 export type InlineNotes = { css: string; html: string };
 
 export function getInlineNotes(subjectId: string, chapterId: string): InlineNotes | null {
@@ -178,7 +214,21 @@ export function getInlineNotes(subjectId: string, chapterId: string): InlineNote
     // The chapter's cover block repeats the title/author the page header
     // already shows as its <h1>; leaving it in would give the page two
     // competing top headings.
-    html = html.replace(/<div class="cover"[\s\S]*?<\/div>/i, "");
+    //
+    // THIS USED TO BE `replace(/<div class="cover"[\s\S]*?<\/div>/i, "")` AND
+    // IT BROKE 123 OF 234 CHAPTERS. A cover is not a leaf — it holds a title
+    // div, an author div, and so on — so the lazy `*?` stopped at the FIRST
+    // inner `</div>` and deleted only part of the block. What survived was the
+    // cover's own trailing `</div>` with nothing left to close: one orphaned
+    // tag at the top of every affected chapter.
+    //
+    // That single tag closed the React container it was injected into, so the
+    // browser hoisted the key-facts section and everything after it OUT of that
+    // container. The server HTML therefore parsed into a different shape from
+    // the tree React expected, and every one of those pages threw React #418
+    // ("Hydration failed...") and re-rendered the subtree on the client.
+    // Nesting cannot be matched with a regex — count the depth instead.
+    html = removeCoverBlock(html);
 
     // Demote the chapter's own <h1> to <h2>. These files were authored as
     // standalone documents, so each opens with an <h1> repeating its title —

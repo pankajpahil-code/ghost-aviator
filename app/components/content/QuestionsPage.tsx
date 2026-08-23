@@ -25,9 +25,12 @@ type Props = {
 /**
  * True when an explanation actually explains something.
  *
- * 782 of the bank's 1,277 explanations (61%) are still the placeholder
- * `Correct answer: B` — measured 2026-08-08, and tracked as an open task in
- * CLAUDE.md. Rendering those under a "Why:" label would put one near-identical
+ * 1,182 of the 4,397 questions reachable on a chapter page (27%) still carry
+ * the placeholder `Correct answer: B` — re-measured 2026-08-21 and tracked as
+ * an open task in CLAUDE.md. (The figure previously written here, "782 of
+ * 1,277", counted regex hits in lib/*.ts rather than distinct reachable
+ * questions; run `npx tsx tools/audit/explanation-gap.mts` for the live number
+ * rather than trusting this comment.) Rendering those under a "Why:" label would put one near-identical
  * meaningless sentence on every question of every page: padding that teaches a
  * student nothing and hands Google exactly the boilerplate-repetition signal
  * the full question list exists to escape. A question with no real explanation

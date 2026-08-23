@@ -35,6 +35,44 @@ const CONCURRENCY = 6;
 /** Below this many words of <main> text, a page cannot realistically rank. */
 const THIN_WORDS = 150;
 
+/**
+ * PACING — why this tool is deliberately slow against production.
+ *
+ * On 2026-08-20 a Vercel firewall rule went live: "Scraper burst limit",
+ * 300 requests / 60s keyed on IP, action 429. This tool used to fire 6
+ * concurrent requests with no delay; at the ~0.4s that a chapter page takes
+ * that is roughly 900 req/min, i.e. three times the limit. It tripped the rule
+ * about twenty seconds in and every URL after that came back 429.
+ *
+ * The damaging part was not the 429s, it was that the run still PRINTED. It
+ * reported a tidy "45 indexable and thin" while 473 of 770 URLs had never
+ * actually been read — a plausible number from a measurement that did not
+ * happen. So: stay under the limit, and if we hit it anyway, say so loudly
+ * instead of summarising nothing (see the RUN INVALID guard at the end).
+ *
+ * Localhost has no firewall in front of it, so it runs unthrottled.
+ */
+const isLocal = /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])/.test(BASE);
+const rateAt = args.indexOf("--rate");
+const RATE_PER_MIN = rateAt >= 0 ? Number(args[rateAt + 1]) : (isLocal ? 0 : 240);
+/** Minimum gap between the START of two requests. 0 disables throttling. */
+const MIN_GAP_MS = RATE_PER_MIN > 0 ? Math.ceil(60_000 / RATE_PER_MIN) : 0;
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+/** Serialises request start times so the whole pool obeys one global rate. */
+let nextSlot = 0;
+async function takeSlot() {
+  if (!MIN_GAP_MS) return;
+  const now = Date.now();
+  const at = Math.max(now, nextSlot);
+  nextSlot = at + MIN_GAP_MS;
+  if (at > now) await sleep(at - now);
+}
+
+/** Counts 429s that survived every retry — the signal that a run is worthless. */
+let rateLimited = 0;
+
 const strip = html => html
   .replace(/<(script|style|svg|noscript)[\s\S]*?<\/\1>/gi, " ")
   .replace(/<!--[\s\S]*?-->/g, " ")
@@ -45,9 +83,22 @@ const strip = html => html
 
 const attr = (html, re) => { const m = html.match(re); return m ? m[1].trim() : null; };
 
-async function fetchPage(url) {
+async function fetchPage(url, attempt = 0) {
   try {
+    await takeSlot();
     const res = await fetch(url, { headers: { "User-Agent": UA, Accept: "text/html" }, redirect: "manual" });
+    // A 429 means we already overshot the fixed window; the only useful move is
+    // to wait the window out rather than to keep asking. Three tries, then give
+    // up and let the guard at the end invalidate the run.
+    if (res.status === 429) {
+      if (attempt < 2) {
+        const wait = Number(res.headers.get("retry-after")) * 1000 || (attempt + 1) * 30_000;
+        await sleep(wait);
+        return fetchPage(url, attempt + 1);
+      }
+      rateLimited++;
+      return { url, status: 429 };
+    }
     if (res.status >= 300 && res.status < 400) {
       return { url, status: res.status, redirect: res.headers.get("location") };
     }
@@ -166,8 +217,35 @@ function dupes(pages, field) {
   return [...byValue.values()].filter(v => v.length > 1).flatMap(v => v.slice(1));
 }
 
+/**
+ * THE RUN INVALID GUARD.
+ *
+ * Everything below reports only on pages we managed to read. If the firewall
+ * shut us out partway through, the pages we never read are silently absent
+ * from every count -- and absence reads exactly like health. Refuse to be
+ * quoted rather than publish a number built on a partial crawl.
+ */
+if (rateLimited > 0) {
+  const bang = "!".repeat(74);
+  const pct = Math.round((rateLimited / all.length) * 100);
+  console.log([
+    "",
+    bang,
+    `RUN INVALID -- ${rateLimited} of ${all.length} URLs (${pct}%) returned 429 after`,
+    "retries and were never read. Every figure above under-counts by an unknown",
+    "amount and none of it is evidence of anything.",
+    "",
+    "This site sits behind a Vercel firewall rule of 300 requests / 60s per IP.",
+    `Re-run slower:  node tools/audit/indexable-surface.mjs ${BASE} --rate 120`,
+    `(this run used ${RATE_PER_MIN}/min). If it still trips, the rule has been`,
+    "tightened or something else is using your IP -- check Vercel > Firewall.",
+    bang,
+    "",
+  ].join("\n"));
+}
+
 console.log("\nDEFECTS");
-let clean = true;
+let clean = rateLimited === 0;
 for (const [label, list] of problems) {
   if (!list.length) { console.log(`  ok    ${label}`); continue; }
   clean = false;
@@ -176,6 +254,7 @@ for (const [label, list] of problems) {
   if (list.length > 12) console.log(`          … and ${list.length - 12} more`);
 }
 console.log(clean ? "\nNo defects.\n" : "");
+if (rateLimited > 0) process.exitCode = 2;
 
 if (jsonOut) {
   fs.writeFileSync(jsonOut, JSON.stringify(all, null, 1));

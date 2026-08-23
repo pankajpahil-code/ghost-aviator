@@ -10,9 +10,20 @@ import type { NextConfig } from "next";
 //   • frame-ancestors 'self' → nobody can embed Ghost Aviator content in THEIR site (anti-theft + anti-clickjacking)
 // NOTE: nonce-based CSP is intentionally NOT used — this Next version has a known
 // CSP-nonce XSS advisory, so a static allow-list is the safer choice here.
+//
+// DEV NEEDS eval; PRODUCTION MUST NOT HAVE IT.
+// React's development build and Turbopack's HMR client both evaluate code at
+// runtime, so with the production policy applied to `next dev` the page never
+// hydrates: nothing is interactive, and any hydration warning React would have
+// printed in full is never reached. That has cost this project real debugging
+// time (see the note in .claude/launch.json) and it is why a site-wide
+// hydration mismatch stayed unexplained. `'unsafe-eval'` is therefore added
+// ONLY outside a production build — `next build` output is unchanged.
+const isDev = process.env.NODE_ENV !== "production";
+
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://va.vercel-scripts.com https://cdn.jsdelivr.net",
+  `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com https://cdn.jsdelivr.net`,
   "style-src 'self' 'unsafe-inline'",
   "worker-src 'self' blob:",
   "img-src 'self' data: https:",
