@@ -218,7 +218,9 @@ Reference: PANS-ATM 5.8.2.1.1`,
       `Visibility falls below 8 km or cloud ceiling is less than 1000 feet`,
     ],
     ans: 0,
-    exp: `Correct answer: A`,
+    exp: `Annex 2 4.2 says a VFR flight shall not take off or land at an aerodrome within a control zone, or enter its traffic zone or pattern, when the ceiling is less than 450 m (1500 ft) or the ground visibility is less than 5 km — "except when a clearance is obtained from an air traffic control unit". That clearance is what a Special VFR authorisation is. So Special VFR is precisely the mechanism for operating below those two figures, which is why they are the numbers in the answer. Note both are triggers: either one falling below its limit is enough.
+
+Reference: ICAO Annex 2, 4.2`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -434,7 +436,9 @@ Reference: Annex 2, Chapter 1 — Definitions`,
       `3 kms`,
     ],
     ans: 0,
-    exp: `Correct answer: A`,
+    exp: `Controlled airspace means Class A to E, and in every one of those the VMC flight visibility is 5 km, at every altitude below 10 000 ft. The figure only changes at 10 000 ft AMSL, where it goes up to 8 km. The trap in this question is the phrase "at or below 3000 ft" — that band DOES have a relaxation, but only in Classes F and G, where you may fly clear of cloud and in sight of the surface. Inside controlled airspace there is no such relaxation, so 5 km stands.
+
+Reference: ICAO Annex 2, Table 3-1 (see 4.1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -553,7 +557,9 @@ Reference: PANS-ATM 5.4.2.2.2.1 a)`,
       `There is no minimum`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `5000 ft AMSL puts you in the middle band — below 10 000 ft but above 3000 ft — and there the requirement is 5 km, which is 5000 m, in every airspace class including G. The words "in sight of the surface" and the speed are there to pull you toward the bottom band, where Class F and G aircraft may fly clear of cloud with the surface in sight. That concession belongs to the band at or below 3000 ft AMSL (or 1000 ft above terrain, whichever is higher). At 5000 ft you are above it, so the full 5 km applies.
+
+Reference: ICAO Annex 2, Table 3-1 (see 4.1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -611,7 +617,9 @@ Reference: PANS-ATM 4.11.1.2`,
       `5 NM`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `37 km — 20 NM — for aircraft on the same track, provided both are using the same on-track DME station (or an equivalent GNSS waypoint arrangement) and the separation is checked by simultaneous readings at frequent intervals. There is a 10 NM version in 5.4.2.3.3.1 b), but it is conditional: the leading aircraft must be maintaining a true airspeed at least 20 kt faster than the one behind. With no speed differential stated, 20 NM is the figure.
+
+Reference: PANS-ATM 5.4.2.3.3.1 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -624,7 +632,9 @@ Reference: PANS-ATM 4.11.1.2`,
       `Shared equally by the pilot and the controller.`,
     ],
     ans: 0,
-    exp: `Correct answer: A`,
+    exp: `A Special VFR clearance separates you from other traffic. It does not separate you from the ground or from anything standing on it. Annex 2 2.3.1 is unambiguous: the pilot-in-command is responsible for the operation of the aircraft in accordance with the rules of the air, whether manipulating the controls or not. Obstacle clearance under VFR — special or otherwise — stays with the pilot, because VFR is by definition flown by visual reference. This is the distinction to hold on to: a clearance is permission to enter airspace, never a guarantee about terrain.
+
+Reference: ICAO Annex 2, 2.3.1`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -650,7 +660,9 @@ Reference: PANS-ATM 4.11.1.2`,
       `Provided flight visibility is 8000 m.`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `Between 3000 ft and 10 000 ft AMSL the flight visibility minimum is 5 km — 5000 m — and it is the same in every class from A to G. Class F buys you nothing extra here. The relaxations Class F and G enjoy (clear of cloud, in sight of the surface, and a possible reduction to 1500 m where the ATS authority prescribes it) all live in the band at or below 3000 ft AMSL or 1000 ft above terrain, whichever is higher.
+
+Reference: ICAO Annex 2, Table 3-1 (see 4.1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -745,7 +757,9 @@ Reference: Annex 2, 3.2.2.2`,
       `3 minutes`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `Three minutes, and the reason is the intermediate start. From the same take-off position the minimum is 2 minutes (5.8.3.1), but a lighter aircraft beginning its roll from an intermediate point on the runway starts INSIDE the region where the heavy aircraft's vortices were generated, and it lifts off further along than the heavy did. It therefore needs a full extra minute. The same 3 minutes applies to an intermediate start on a parallel runway separated by less than 760 m.
+
+Reference: PANS-ATM 5.8.3.2 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -758,7 +772,9 @@ Reference: Annex 2, 3.2.2.2`,
       `Is expected to leave the last en-route holding point before destination`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `Expected approach time is defined as the time at which ATC expects that an arriving aircraft, following a delay, will leave the holding fix to complete its approach for a landing. Two traps sit in the other options. EAT is not the landing time — the approach still has to be flown after it. And the definition attaches to the holding fix, so it only has meaning when a delay and a hold exist; the note to the definition adds that the actual time of leaving the fix depends on the approach clearance.
+
+Reference: PANS-ATM, Chapter 1 — Definitions, "Expected approach time"`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -799,7 +815,9 @@ Reference: PANS-ATM 5.3.2 a) and b)`,
       `8nm`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `9.3 km — 5.0 NM — is the standard horizontal separation minimum based on radar or ADS-B. It can be reduced where the ATS authority prescribes it, but not below 3.0 NM in general, and not below 2.5 NM between succeeding aircraft on the same final approach track within 10 NM of the runway end, which itself carries a list of conditions about runway occupancy time, braking action and radar update rate. Unless the question gives you one of those situations, 5 NM is the answer.
+
+Reference: PANS-ATM 8.7.3.1`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -868,7 +886,9 @@ Reference: Annex 2, 3.2.2.5.2`,
       `5 Km visibility; and 1000 feet below.`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `6500 ft AMSL is the middle band, so the answer is 5 km flight visibility with the standard cloud clearance: 1500 m horizontally and 300 m — that is 1000 ft — vertically. Learn the cloud distances as one pair, because they do not change anywhere in the table above 3000 ft: 1500 m and 1000 ft, whatever the class and whatever the altitude, right up to and including the 8 km band above 10 000 ft.
+
+Reference: ICAO Annex 2, Table 3-1 (see 4.1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -1341,7 +1361,9 @@ Reference: Annex 2, 3.2.2.5.2`,
       `all are correct`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `All three are required. 4.11.1.1 requires a report over, or as soon as possible after passing, each designated compulsory reporting point, and adds that additional reports over other points may be requested by the ATS unit. 4.11.1.4 requires that where prescribed or requested, the last position report before passing from one FIR or control area into an adjacent one is made to the unit serving the airspace about to be entered. So the compulsory point, the FIR boundary and an ATC request are each a trigger in their own right.
+
+Reference: PANS-ATM 4.11.1.1 and 4.11.1.4`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -2919,7 +2941,9 @@ Reference: PANS-ATM 5.5.2`,
       `30º`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `90 degrees, as nearly as possible. PANS-ATM states this for IFR flights intending to cross an advisory route: cross as near to a right angle as you can, and at a level appropriate to your track taken from the cruising-level tables for IFR flights outside controlled airspace. The reason is exposure time — a perpendicular crossing puts you inside the route's protected airspace for the shortest possible period, and it makes your intention obvious to anyone else using the route. A shallow crossing angle keeps you in conflict for far longer.
+
+Reference: PANS-ATM 9.1.4.2.2.2`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -2945,7 +2969,9 @@ Reference: PANS-ATM 5.5.2`,
       `None of the above`,
     ],
     ans: 0,
-    exp: `Correct answer: A`,
+    exp: `A control zone is controlled airspace extending upwards FROM THE SURFACE of the earth to a specified upper limit. That first phrase is the whole distinction: a control ZONE starts at the ground, a control AREA starts at some specified limit above it. If you can only remember one thing about the pair, remember that the zone touches the ground — which is why it is the airspace that surrounds an aerodrome and why VFR arrivals and departures there need a clearance.
+
+Reference: ICAO Annex 2, Definitions (also PANS-ATM Chapter 1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -3578,7 +3604,9 @@ Reference: ICAO Annex 2, Chapter 1 — Definitions`,
       `5`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `15 minutes is the baseline time-based longitudinal minimum for aircraft on the same track at the same level. The other figures in that paragraph are all reductions you must earn: 10 minutes where navigation aids permit frequent determination of position and speed, 5 minutes where the leading aircraft is 20 kt or more faster in TAS and the pair meet one of three listed cases, and 3 minutes where that speed advantage is 40 kt or more. With no such condition given, answer 15.
+
+Reference: PANS-ATM 5.4.2.2.1.1 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -3643,7 +3671,9 @@ Reference: ICAO Annex 2, Chapter 1 — Definitions`,
       `15º at 10 NMs`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `Lateral separation using a VOR exists when both aircraft are established on radials diverging by at least 15 degrees and at least one of them is 28 km — 15 NM — or more from the facility. Learn the set together, because the exam moves between them: VOR 15 degrees, NDB 30 degrees, dead reckoning 45 degrees, and the distance is 15 NM in all three cases. The angle grows as the navigation aid gets less precise, which is the logic worth remembering rather than three separate numbers.
+
+Reference: PANS-ATM 5.4.1.2.1.2 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4119,7 +4149,9 @@ Reference: Annex 2, Table 3-1`,
       `5 NM`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `The same rule as the previous question, with a typo in the stem — read it as "same direction". 20 NM (37 km) on the same track, both aircraft referenced to the same on-track DME station, checked by simultaneous readings. The reduced 10 NM minimum applies only when the leading aircraft is 20 kt or more faster in true airspeed than the following one.
+
+Reference: PANS-ATM 5.4.2.3.3.1 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4132,7 +4164,9 @@ Reference: Annex 2, Table 3-1`,
       `45º`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `Right angles — 90 degrees, or as close to it as circumstances allow. The provision in PANS-ATM is written for IFR flights crossing an advisory route, and it pairs the angle with a level requirement: use a cruising level appropriate to your track from the tables for IFR flights outside controlled airspace. Angle and level go together, because crossing quickly at the wrong level is no safer than crossing slowly at the right one.
+
+Reference: PANS-ATM 9.1.4.2.2.2`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4201,7 +4235,9 @@ Reference: PANS-ATM 5.4.2.2.2.2 a)`,
       `1500 mts`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `Same rule as above, written in metres: 5 km is 5000 m. Controlled airspace is Classes A to E, and the VMC flight visibility for all of them below 10 000 ft is 5 km regardless of how low you are. The 1500 m figure that appears in the footnotes to Table 3-1 is a reduction the ATS authority MAY prescribe, and only for Class F and G operations at low speed or in low-traffic areas — never inside controlled airspace.
+
+Reference: ICAO Annex 2, Table 3-1 (see 4.1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4240,7 +4276,9 @@ Reference: PANS-ATM 5.4.2.2.2.2 a)`,
       `first report after 30 mins and subsequent after 60 mins`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `On routes NOT defined by designated significant points, position reports are made as soon as possible after the first half hour of flight and at hourly intervals thereafter. So the pattern is 30 minutes, then every 60 — not a single repeating interval, which is what the other options offer. The ATS unit may ask for additional reports at shorter intervals, but that is a request, not the standing rule.
+
+Reference: PANS-ATM 4.11.1.2`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4426,7 +4464,9 @@ Reference: Annex 2, 3.2.2.3 a)`,
       `None of the above`,
     ],
     ans: 0,
-    exp: `Correct answer: A`,
+    exp: `A control zone is controlled airspace extending upwards FROM THE SURFACE of the earth to a specified upper limit. That first phrase is the whole distinction: a control ZONE starts at the ground, a control AREA starts at some specified limit above it. If you can only remember one thing about the pair, remember that the zone touches the ground — which is why it is the airspace that surrounds an aerodrome and why VFR arrivals and departures there need a clearance.
+
+Reference: ICAO Annex 2, Definitions (also PANS-ATM Chapter 1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4439,7 +4479,9 @@ Reference: Annex 2, 3.2.2.3 a)`,
       `3 nm`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `The standard radar/ADS-B horizontal minimum of 5 NM applies here too. Being near an aerodrome does not by itself reduce it. The reductions in 8.7.3.2 are permissions the ATS authority must prescribe — 3 NM where radar capability allows, and 2.5 NM only between aircraft established on the same final approach track inside 10 NM of the runway end. "In the vicinity of an aerodrome" is not the same as "established on final approach", so the standard figure stands.
+
+Reference: PANS-ATM 8.7.3.1`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -4495,7 +4537,9 @@ Reference: Annex 2, Appendix 3 b)`,
       `Flight Information Centre`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `A flight information centre is a unit established to provide flight information service and alerting service — exactly those two services, and not air traffic control. That is the point of the definition. An air traffic services unit is the generic term covering an ATC unit, a flight information centre and an ATS reporting office together, so it is too broad to be the answer; area control service is a control service, which an FIC does not provide.
+
+Reference: ICAO Annex 2, Definitions (also PANS-ATM Chapter 1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5083,7 +5127,9 @@ Reference: ICAO Annex 2, Appendix 1, 4.1.1`,
       `a specified height above the surface of the earth .`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `From the surface of the earth to a specified upper limit — that is the definition word for word. The distractors offering a specific height above the surface are describing a control AREA, not a zone. The zone is the one that comes all the way down to the ground.
+
+Reference: ICAO Annex 2, Definitions (also PANS-ATM Chapter 1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5096,7 +5142,9 @@ Reference: ICAO Annex 2, Appendix 1, 4.1.1`,
       `1,000 feet vertically and 3 km horizontally.`,
     ],
     ans: 2,
-    exp: `Correct answer: C`,
+    exp: `1500 m horizontally and 300 m vertically — and 300 m is 1000 ft, which is how the figure is usually spoken. This pair is worth memorising as a single item, because it is constant across the whole of Table 3-1 wherever a cloud distance is specified at all. Only the visibility changes with altitude (5 km, then 8 km above 10 000 ft), and only Classes F and G at low level escape the cloud distances entirely by flying clear of cloud in sight of the surface.
+
+Reference: ICAO Annex 2, Table 3-1 (see 4.1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5241,7 +5289,9 @@ Reference: ICAO Annex 2, Appendix 1, 4.1.1`,
       `15 min.`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `Same rule, asked the other way round: the time-based longitudinal minimum for same track, same level is 15 minutes. Note the word "horizontal" here means longitudinal — along the track — not lateral. Lateral separation is a different mechanism entirely, expressed as an angular divergence plus a distance from the facility rather than as a time.
+
+Reference: PANS-ATM 5.4.2.2.1.1 a)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5318,7 +5368,9 @@ Reference: ICAO Annex 2, Appendix 1, 4.1.1`,
       `45 mins`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `Same rule as the previous question: first report after the first half hour, then hourly. Note that 4.11.1.2 is written in terms of the ROUTE — whether it is defined by designated significant points — and not in terms of the meteorological conditions. The mention of IMC in the stem does not change the interval.
+
+Reference: PANS-ATM 4.11.1.2`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5448,7 +5500,9 @@ Reference: ICAO Annex 2, Appendix 1, 4.1.1`,
       `An ATC service is provided.`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `Controlled airspace is an airspace of defined dimensions within which air traffic CONTROL service is provided in accordance with the airspace classification. Two things are doing work in that definition. First, it is the control service that makes airspace controlled — not flight information service, not an alerting service. Second, "in accordance with the airspace classification" means how much control you actually get depends on the class: A through E are all controlled, but the service each one owes to IFR and VFR traffic differs.
+
+Reference: ICAO Annex 2, Definitions (also PANS-ATM Chapter 1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -5545,7 +5599,9 @@ Reference: Annex 2, 3.2.2.3 a)`,
       `A specified height above the surface of the earth, which should not be less than 200 mts`,
     ],
     ans: 3,
-    exp: `Correct answer: D`,
+    exp: `A control area is controlled airspace extending upwards from a specified limit ABOVE the earth — and that is what decides this question. Every other option either starts at the surface, which would make it a control zone, or names an arbitrary height. The base of a control area is not fixed worldwide; it is prescribed for each area, and the lower limit is set so that aircraft operating beneath it are clear of the controlled airspace. Contrast it with a control zone, which by definition extends upwards from the surface itself.
+
+Reference: ICAO Annex 2, Definitions (also PANS-ATM Chapter 1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
@@ -6653,7 +6709,9 @@ Reference: PANS-ATM 5.3.2 b)`,
       `There is no minimum`,
     ],
     ans: 1,
-    exp: `Correct answer: B`,
+    exp: `5000 ft AMSL puts you in the middle band — below 10 000 ft but above 3000 ft — and there the requirement is 5 km, which is 5000 m, in every airspace class including G. The words "in sight of the surface" and the speed are there to pull you toward the bottom band, where Class F and G aircraft may fly clear of cloud with the surface in sight. That concession belongs to the band at or below 3000 ft AMSL (or 1000 ft above terrain, whichever is higher). At 5000 ft you are above it, so the full 5 km applies.
+
+Reference: ICAO Annex 2, Table 3-1 (see 4.1)`,
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
