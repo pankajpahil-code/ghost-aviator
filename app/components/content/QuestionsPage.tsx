@@ -309,7 +309,7 @@ export default function QuestionsPage({ track, subject, chapter, questions, chap
           style={{ userSelect: "none", WebkitUserSelect: "none" }}
         >
           <h2 className="text-lg font-black text-white mb-1">
-            All {questions.length} questions — {chapter.title}
+            All {questions.length} {questions.length === 1 ? "question" : "questions"} — {chapter.title}
           </h2>
           <p className="text-xs mb-6" style={{ color: "#64748b" }}>
             {subject.name} · DGCA {track.toUpperCase()}. The correct option is marked on each.

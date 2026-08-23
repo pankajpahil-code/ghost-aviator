@@ -122,16 +122,21 @@ export function chapterMetaDescription(
   const topic = chapter.title;
   const subj = subject.shortName;
   const qty = questionCount > 0 ? `${questionCount} ` : "";
+  // Three chapters own exactly one question (ar-24, inst-19, rnav-10), and the
+  // snippet Google showed for them read "1 exam-style practice questions".
+  // Small, and on a site whose entire claim is precision it is the wrong kind
+  // of small. Both callers below need the noun, so it is computed once.
+  const qWord = questionCount === 1 ? "question" : "questions";
 
   switch (type) {
     case "questions":
-      return fitSnippet(`${qty}exam-style practice questions on ${topic}, with the correct answer and reasoning shown for each. Free ${exam} ${subj} preparation.`);
+      return fitSnippet(`${qty}exam-style practice ${qWord} on ${topic}, with the correct answer and reasoning shown for each. Free ${exam} ${subj} preparation.`);
     case "chapter-quiz":
-      return fitSnippet(`Timed self-test on ${topic} — ${qty}questions scored instantly, so you know what you actually know before the ${exam} ${subj} paper.`);
+      return fitSnippet(`Timed self-test on ${topic} — ${qty}${qWord} scored instantly, so you know what you actually know before the ${exam} ${subj} paper.`);
     case "video":
       return fitSnippet(`Video lecture on ${topic} for the ${exam} ${subj} paper, taught by Capt. Pankaj Pahil. Free to watch, no sign-up.`);
     case "mock-test":
-      return fitSnippet(`Chapter test on ${topic}, marked against the ${exam} ${subj} syllabus. ${qty}questions, instant result.`);
+      return fitSnippet(`Chapter test on ${topic}, marked against the ${exam} ${subj} syllabus. ${qty}${qWord}, instant result.`);
     case "notes":
     default:
       // The notes page is the real article; its own description is the best one

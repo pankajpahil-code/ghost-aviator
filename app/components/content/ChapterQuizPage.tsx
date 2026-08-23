@@ -73,7 +73,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
           <h1 className="text-2xl font-black text-white mb-3">Quiz Coming Soon</h1>
           <p className="mb-6 text-sm" style={{ color: "#64748b" }}>
             Questions for <strong style={{ color: subject.color }}>{chapter.title}</strong> are being prepared.
-            Target: {chapter.questionCount} questions.
+            Target: {chapter.questionCount} {chapter.questionCount === 1 ? "question" : "questions"}.
           </p>
           <Link href={`/${track}/${subject.id}/${chapter.id}/notes`}
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold no-underline"
