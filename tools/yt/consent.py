@@ -25,6 +25,7 @@ from _yt import CHANNELS, CLIENT_SECRETS, SCOPES, NL  # noqa: E402
 
 from google_auth_oauthlib.flow import InstalledAppFlow  # noqa: E402
 from googleapiclient.discovery import build  # noqa: E402
+from googleapiclient.errors import HttpError  # noqa: E402
 
 
 def main():
@@ -52,26 +53,51 @@ def main():
     flow = InstalledAppFlow.from_client_secrets_file(str(CLIENT_SECRETS), SCOPES)
     creds = flow.run_local_server(port=0, prompt="consent")
 
-    yt = build("youtube", "v3", credentials=creds)
-    items = yt.channels().list(part="id,snippet", mine=True).execute().get("items", [])
-    got = [(c["id"], c["snippet"]["title"]) for c in items]
-
-    if meta["id"] not in [g[0] for g in got]:
+    # VERIFY IF WE CAN, BUT NEVER THROW AWAY A GOOD CONSENT BECAUSE WE COULD NOT.
+    #
+    # 2026-09-06: this block called channels.list(mine=True) and let any failure
+    # propagate, so the token was saved only on success. The Captain completed
+    # the browser flow, the verify call came back 403 quotaExceeded - the daily
+    # quota had gone on an unrelated pass an hour earlier - and his consent was
+    # discarded. He had to click again for a reason that had nothing to do with
+    # him or with which channel he picked.
+    #
+    # The safety property does not live here. Every write path calls
+    # _yt.assert_controls() before videos.update, so a token pointing at the
+    # wrong channel can never reach a write. This check is a convenience that
+    # catches a mis-pick early; a convenience must not be able to destroy the
+    # thing it is checking. Wrong channel -> refuse. Cannot tell -> save and say so.
+    verified = False
+    try:
+        items = yt.channels().list(part="id,snippet", mine=True).execute().get("items", [])
+        got = [(c["id"], c["snippet"]["title"]) for c in items]
+        if meta["id"] not in [g[0] for g in got]:
+            print(NL.join([
+                "",
+                "  NOT SAVED. You picked: " + (str(got) if got else "(no channel)"),
+                "  This consent is for:   " + meta["id"] + "  " + meta["handle"],
+                "",
+                "  Run it again and choose the other channel in the chooser.",
+            ]))
+            raise SystemExit(1)
+        verified = True
+    except HttpError as e:
+        # Quota, rate limit, a transient 5xx - none of these say anything about
+        # which channel was chosen. Keep the consent.
         print(NL.join([
             "",
-            "  NOT SAVED. You picked: " + (str(got) if got else "(no channel)"),
-            "  This consent is for:   " + meta["id"] + "  " + meta["handle"],
-            "",
-            "  Run it again and choose the other channel in the chooser.",
+            "  Could not verify the channel right now: " + str(e)[:160],
+            "  SAVING THE CONSENT ANYWAY - assert_controls() re-checks before any write,",
+            "  so a wrong channel still cannot reach videos.update.",
         ]))
-        raise SystemExit(1)
 
     meta["token"].parent.mkdir(parents=True, exist_ok=True)
     with open(meta["token"], "wb") as f:
         pickle.dump(creds, f)
     print(NL.join([
         "",
-        "  Consent saved for " + meta["handle"] + ".",
+        "  Consent saved for " + meta["handle"] + "."
+        + ("  (channel verified)" if verified else "  (channel NOT yet verified - see above)"),
         "  Next:  python tools/yt/brand.py snapshot",
     ]))
 

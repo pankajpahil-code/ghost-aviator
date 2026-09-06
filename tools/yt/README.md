@@ -128,3 +128,25 @@ python tools/yt/brand.py apply --write
    public scrape cannot see tags, so `plan` marks such a plan `simulated` and
    `apply` refuses to write it. Testing must never be one flag away from data
    loss.
+
+## The daily runner, and why the order is what it is
+
+Scheduled task **GhostAviator-YouTube-Metadata**, daily at 12:40 IST (the quota
+resets at midnight US/Pacific = 12:30 IST). It now calls
+`tools/yt/run-daily.cmd`, which runs **@Capt.GhostAviator first** and
+**@PankajPahil second**, because 51 brand-channel lectures carry no link at all
+while the 201 on the other channel already carry a working one and are only
+waiting to move from the `www` host to the canonical apex. Against a 10,000/day
+cap the brand channel finishes on day one and the apex republish takes what is
+left.
+
+`run-daily.cmd` **snapshots the brand channel only if no snapshot exists.**
+Re-running the snapshot after an apply would overwrite the only record of the
+original descriptions with the rewritten ones and destroy the rollback — the
+same reason `snapshot.py` is a one-time command on the other channel.
+
+Every step is idempotent and checkpoints on quota, so leaving it on a daily
+trigger is safe: once there is nothing to do it exits having written nothing.
+Verified 2026-09-06 by firing the task by hand with the quota exhausted — all
+three brand steps refused cleanly and named their own fix, and the apply
+checkpointed at 0 updates.
