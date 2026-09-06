@@ -1,0 +1,11 @@
+{
+  "_why": "Iron Rule 2. ONE definition, read by tools/scrub-source-names.mjs (published notes) and tools/yt/brand.py (YouTube descriptions). A second copy is how one of them goes stale - already the failure mode behind two sitemap-condition drifts and a duplicated FAKE_URGENCY in this codebase.",
+  "_scope": "The rule targets ATTRIBUTION - presenting someone else's book as the source of this site's teaching. Capt. Pahil ruled 2026-08-02 that the bare word is not banned ('oxford is a name, city, street, university'). So these patterns are deliberately multi-word and specific: 'Oxford Aviation', never 'Oxford'.",
+  "_plain": "Names must be letters, digits, spaces or hyphens only - they are joined into a regex unescaped.",
+  "names": [
+    "IC Joshi",
+    "RK Bali",
+    "Oxford Aviation",
+    "CAE Oxford"
+  ]
+}

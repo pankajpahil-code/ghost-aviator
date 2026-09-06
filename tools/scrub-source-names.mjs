@@ -40,7 +40,16 @@ const REPLACEMENTS = [
 // Verification: real-text mentions only (long base64 runs can contain
 // accidental substrings of short names — the patterns below are specific
 // enough not to occur in base64).
-const FORBIDDEN = /(IC Joshi|RK Bali|Oxford Aviation|CAE Oxford)/;
+const FORBIDDEN_NAMES = JSON.parse(
+  readFileSync(join(ROOT, "tools", "forbidden-source-names.json"), "utf8")).names;
+// Joined unescaped, so refuse anything with regex meaning rather than silently
+// building a pattern that matches something else.
+for (const n of FORBIDDEN_NAMES) {
+  if (!/^[A-Za-z0-9 -]+$/.test(n)) {
+    throw new Error(`forbidden-source-names.json: "${n}" is not plain text`);
+  }
+}
+const FORBIDDEN = new RegExp("(" + FORBIDDEN_NAMES.join("|") + ")");
 
 let changed = 0, total = 0;
 const unresolved = [];
