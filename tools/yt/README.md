@@ -150,3 +150,20 @@ trigger is safe: once there is nothing to do it exits having written nothing.
 Verified 2026-09-06 by firing the task by hand with the quota exhausted — all
 three brand steps refused cleanly and named their own fix, and the apply
 checkpointed at 0 updates.
+
+## Tests
+
+```
+python tools/yt/test-consent.py     # exits 0 on pass
+```
+
+Four cases against `consent.main()` with the network stubbed: right channel
+saves, wrong channel refuses and saves nothing, **a verification that cannot run
+does not discard a good consent**, and an existing token is never overwritten.
+
+It exists because two defects shipped on 2026-09-06 one after the other and each
+cost the Captain a completed browser consent: a 403 quotaExceeded on the verify
+call propagated and threw the token away, and the fix for that dropped the
+`yt = build(...)` line, giving `NameError` on the next attempt. **`py_compile`
+passes on both.** Proved by re-introducing the second bug and watching this test
+go red while `py_compile` stayed green. Run it after any edit to `consent.py`.

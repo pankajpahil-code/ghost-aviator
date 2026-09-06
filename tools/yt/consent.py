@@ -68,6 +68,7 @@ def main():
     # catches a mis-pick early; a convenience must not be able to destroy the
     # thing it is checking. Wrong channel -> refuse. Cannot tell -> save and say so.
     verified = False
+    yt = build("youtube", "v3", credentials=creds)
     try:
         items = yt.channels().list(part="id,snippet", mine=True).execute().get("items", [])
         got = [(c["id"], c["snippet"]["title"]) for c in items]
