@@ -1,15 +1,31 @@
-# YouTube channel metadata tooling — @PankajPahil
+# YouTube channel metadata tooling — both channels
 
 Rewrites titles, descriptions and tags across the channel so every lecture
 deep-links to the chapter it teaches, instead of the site homepage.
 
 ## Credentials
 
-Uses the OAuth token the dubbing pipeline already established:
-`D:\pk\ATPL Training oxford CBT\_secrets\token.pickle`. Its scope is
-`.../auth/youtube` (full read/write) plus upload, so **no new Google API setup
-is needed for @PankajPahil**. `@Capt.GhostAviator` is a different channel and
-needs its own one-time consent before any of this can touch it.
+Two channels, one token each. `_yt.py` holds the registry:
+
+| key | channel | token |
+|---|---|---|
+| `pankaj` | @PankajPahil | `_secrets/token.pickle` (exists) |
+| `brand` | @Capt.GhostAviator | `_secrets/token-ghostaviator.pickle` |
+
+A token is bound to the ONE channel picked in Google's chooser at consent time.
+**Verified 2026-09-06** by calling `channels.list(mine=True)` on the existing
+token: it returned exactly one channel. So the brand channel cannot be reached
+by borrowing the other token, and no code gets around that — it needs a Google
+login, which is the Captain's alone:
+
+```
+python tools/yt/consent.py brand
+```
+
+That opens a browser, and **refuses to save the token if the wrong channel is
+picked** rather than leaving a credential that would rewrite the wrong videos.
+Every write path also calls `assert_controls()` first (1 quota unit), so a
+mis-pointed token cannot reach `videos.update` at all.
 
 ## THE QUOTA IS THE BINDING CONSTRAINT — read this before planning any run
 
@@ -69,3 +85,46 @@ skipped rather than guessed at.
 | `_plan-review.txt` | proposed changes, for a human to read |
 | `_plan-truncated.json` / `_truncated-review.txt` | the 21 held back |
 | `_applied.json` | resume checkpoint — video ids already written |
+
+---
+
+## The second channel: @Capt.GhostAviator (`brand.py`)
+
+**A different job, in a separate script on purpose.** `plan.py` rewrites titles,
+descriptions and tags. None of that transfers:
+
+- **Titles are not touched.** `plan.py` extracts a topic by stripping known
+  boilerplate from pipe-separated title segments. This channel does not use that
+  format (`DGCA Air Regulation - CH003 - Rules of Air`), so the stripper would
+  return the whole title as the topic and build nonsense. A title is a public
+  claim about what a lecture teaches.
+- **Tags are passed through verbatim.** `videos.update(part="snippet")` replaces
+  the whole snippet, so omitting tags DELETES them, and tags are not readable
+  for a channel the token does not own. That is why consent comes first.
+- **Descriptions are only prepended to.** Measured 2026-09-06: **0 of 51** mapped
+  lectures here carried ANY link to the site, and the median description is 986
+  characters of real writing. The defect is a missing link, not bad prose.
+
+```
+python tools/yt/consent.py brand      # the Captain, once, in a browser
+python tools/yt/brand.py snapshot     # rollback FIRST, always
+python tools/yt/brand.py plan         # writes nothing; read _plan-brand-review.txt
+python tools/yt/brand.py apply        # dry run
+python tools/yt/brand.py apply --write
+```
+
+51 videos x 50 units = 2,550 against the 10,000/day cap: one day, not two.
+
+**Two guards worth knowing about.**
+
+1. **Iron Rule 2.** `plan` refuses to republish a description that names a
+   source, and writes it to `_plan-brand-flagged.txt` for the Captain instead of
+   silently carrying the attribution forward. The banned list is read from
+   `tools/forbidden-source-names.json`, the same one definition
+   `scrub-source-names.mjs` uses. On the simulated run, 1 of 51 was flagged:
+   `6Vzz8-DJ1VQ` names two textbook sources in its live description.
+2. **Simulated snapshots cannot be applied.** The planning logic was tested
+   against a snapshot built from public watch pages before consent existed. A
+   public scrape cannot see tags, so `plan` marks such a plan `simulated` and
+   `apply` refuses to write it. Testing must never be one flag away from data
+   loss.

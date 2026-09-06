@@ -12,11 +12,34 @@ from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-SECRETS = Path(r"D:\pk\ATPL Training oxford CBT\_secrets")
-TOKEN = SECRETS / "token.pickle"
+SECRETS = Path("D:/pk/ATPL Training oxford CBT/_secrets")
+CLIENT_SECRETS = SECRETS / "client_secrets.json"
+SCOPES = ["https://www.googleapis.com/auth/youtube"]
 
-# @PankajPahil — the channel this token controls.
-CHANNEL_ID = "UCKTxHMHDfh2jBb7rrdTCMkg"
+# A token is bound to the ONE channel selected at consent time. Verified
+# 2026-09-06 by calling channels.list(mine=True) on the existing token: it
+# returned exactly one channel, "Pankaj Pahil". So the second channel cannot be
+# reached by borrowing this token - it needs its own one-time consent, which
+# only the Captain can give (Google login + channel picker). See consent.py.
+CHANNELS = {
+    "pankaj": {
+        "id": "UCKTxHMHDfh2jBb7rrdTCMkg",
+        "handle": "@PankajPahil",
+        "token": SECRETS / "token.pickle",
+    },
+    "brand": {
+        "id": "UCliKc6qVcGs5tnI03yNg6Lg",
+        "handle": "@Capt.GhostAviator",
+        "token": SECRETS / "token-ghostaviator.pickle",
+    },
+}
+
+# Back-compat for the scripts written before there were two channels.
+TOKEN = CHANNELS["pankaj"]["token"]
+CHANNEL_ID = CHANNELS["pankaj"]["id"]
+
+
+NL = chr(10)
 
 
 class QuotaExhausted(RuntimeError):
@@ -50,19 +73,45 @@ def run(request, tries=5):
             delay *= 2
 
 
-def client():
-    with open(TOKEN, "rb") as f:
+def client(channel="pankaj"):
+    tok = CHANNELS[channel]["token"]
+    if not tok.exists():
+        h = CHANNELS[channel]['handle']
+        raise SystemExit(NL.join([
+            f"No token for {h} at {tok}.",
+            "It needs a one-time consent only the Captain can give:",
+            f"    python tools/yt/consent.py {channel}",
+        ]))
+    with open(tok, "rb") as f:
         creds = pickle.load(f)
     if creds.expired and creds.refresh_token:
         creds.refresh(Request())
-        with open(TOKEN, "wb") as f:
+        with open(tok, "wb") as f:
             pickle.dump(creds, f)
     return build("youtube", "v3", credentials=creds)
 
 
-def all_uploads(yt):
+def assert_controls(yt, channel):
+    """Refuse to write unless the token really controls the channel we think.
+
+    A token silently pointing at the wrong channel would rewrite the wrong
+    videos, and there is no undo on YouTube beyond the snapshot. This costs
+    1 quota unit and removes the whole class of mistake.
+    """
+    want = CHANNELS[channel]["id"]
+    got = [c["id"] for c in run(yt.channels().list(part="id", mine=True)).get("items", [])]
+    if want not in got:
+        raise SystemExit(NL.join([
+            f"REFUSING: this token controls {got or 'nothing'}, not",
+            f"{want} ({CHANNELS[channel]['handle']}).",
+            "Re-run consent.py and pick the right channel in the Google chooser.",
+        ]))
+    return True
+
+
+def all_uploads(yt, channel="pankaj"):
     """Every video on the channel, with the fields we intend to rewrite."""
-    ch = run(yt.channels().list(part="contentDetails", id=CHANNEL_ID))
+    ch = run(yt.channels().list(part="contentDetails", id=CHANNELS[channel]["id"]))
     uploads = ch["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
 
     ids, token = [], None
