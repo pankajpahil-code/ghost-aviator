@@ -42,7 +42,18 @@ const INTENTIONAL = [
   // above 100 -> 250-100 = 150 = 3 units -> 5. This is a deliberate ANSWER-KEY
   // change, the only one in this audit, and it is recorded here so it can never
   // pass as an accident.
-  { was: "6", now: "5" },
+  //
+  // 2026-09-05 REVERTED — that change was WRONG and this entry is why it stood.
+  // The governing text is Rule 38B(1)(iii) of the Aircraft Rules, 1937 (subst.
+  // GSR 383/2001, amd. GSR 150(E)/2009), read verbatim: two cabin crew plus one
+  // for each unit (or part of a unit) of 50 passenger seats above a seating
+  // capacity of NINETY-NINE. The scale recorded in July said "above 100". That
+  // one seat shifts every band: 250-99 = 151 -> 4 part-units -> 2+4 = 6.
+  // Capt. Pahil re-ruled "6" on 2026-09-05 and the statute confirms him, so the
+  // key goes back to 6. The lesson: a ruling repeated from memory is not a
+  // source — the July note had no citation, and it was used to overwrite a
+  // correct answer key with a wrong one.
+  { was: "5", now: "6" },
   // 2026-07-27 step 2. Four questions were marked with one answer in one copy
   // and a different answer in an identical copy — the bank contradicting itself.
   // Each was settled against ICAO/doctrine, not by preferring a copy:
