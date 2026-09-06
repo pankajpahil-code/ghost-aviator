@@ -1,0 +1,108 @@
+{
+  "_what": "Things the Indian DGCA market teaches WRONG, where Capt. Pahil holds the statute.",
+  "_why": "Not promotion. Every entry is a correction a student can verify in one click, on a point where circulating notes and coaching material are out of date or simply wrong. Posting this is helping, and it is the one thing that travels into rooms nobody can be invited to.",
+  "_rule": "IRON RULE 1. Nothing here is composed. Every entry is a correction already recorded as verified in D:/pk/CLAUDE.md or in tools/audit/verify-repair.mjs INTENTIONAL, WITH its citation. If an entry has no citation it does not ship. A correction without a source is exactly the thing being corrected.",
+  "_status": "DRAFT for the Captain's review. Nothing has been published. He rules on every line before any of it becomes a card.",
+  "corrections": [
+    {
+      "id": "licence-validity",
+      "subject": "Air Regulations",
+      "common": "CPL and ATPL licences are valid for 5 years (ATPL sometimes taught as 2).",
+      "correct": "TEN years for ATPL, CPL and PPL. The Student Pilot Licence is still 5.",
+      "cite": "Rule 39C, Aircraft Rules 1937, as amended by G.S.R. 733(E) dated 10 October 2023 (Aircraft (First Amendment) Rules, 2023) — 'Five years' substituted by 'Ten years' against ATPL and CPL.",
+      "note": "Medical validity is unchanged: 12 months ATPL/CPL, halved to 6 past age 40. Instrument Rating is 12 months and is a RATING under Schedule II, not a licence validity — do not fold it in.",
+      "recorded": "CLAUDE.md, domain facts corrected by the Captain, item 5, verified 2026-09-05",
+      "strength": "highest — most circulating notes still teach the pre-2023 position"
+    },
+    {
+      "id": "cabin-crew-99",
+      "subject": "Air Regulations",
+      "common": "Two cabin crew, plus one for every 50 seats above 100.",
+      "correct": "Two, plus one for each unit or part-unit of 50 passenger seats above a seating capacity of NINETY-NINE. For 250 seats: 250-99 = 151 -> four part-units -> 2+4 = SIX.",
+      "cite": "Rule 38B(1)(iii), Aircraft Rules 1937 (substituted by GSR 383 dated 11-07-2001, amended by GSR 150(E) dated 04-03-2009).",
+      "note": "The count is on SEATS INSTALLED, never on passengers carried. Aeroplane floor is 10 seats; the 20-seat floor is for HELICOPTERS.",
+      "recorded": "CLAUDE.md item 4, re-ruled by Capt. Pahil 2026-09-05; the statute confirms him",
+      "strength": "highest — one seat moves every band, and this site itself had it wrong until today"
+    },
+    {
+      "id": "rtr-is-dgca",
+      "subject": "RTR(A)",
+      "common": "RTR(A) is a WPC examination, held April / August / November.",
+      "correct": "The DGCA took the examination over from the WPC wing in November 2025. Sittings are far more frequent; the written paper runs in Delhi, Mumbai, Hyderabad, Kolkata and Chennai.",
+      "cite": "Radio Telephone Operator (Restricted) Certificate and Licence Rules, 2025, read with CAR Section 7 Series G Part VI.",
+      "note": "The WPC remains India's radio spectrum and apparatus regulator (NFAP, SACFA, the aircraft radio station licence). Every WPC reference about APPARATUS LICENSING is still correct — do not over-correct.",
+      "recorded": "CLAUDE.md, domain facts corrected by the Captain 2026-07-27, item 1",
+      "strength": "high — a whole exam changed hands and most material has not caught up"
+    },
+    {
+      "id": "fdtl-rebuilt",
+      "subject": "Air Regulations",
+      "common": "The FDTL domestic / international, day / night table.",
+      "correct": "That table is gone. Limits are now flight time x FDP x landings: 8 hrs -> FDP 11:00 with 6 landings, 11:30/5, 12:00/4, 12:30/3; 9 hrs -> 13:00/2; 10 hrs -> 13:00/1. Night duty: 8 hrs, FDP 10:00, 2 landings. Weekly rest 48 hrs, not 36.",
+      "cite": "CAR Section 7 (Flight Crew Standards) Series J Part III, Issue III dated 24 Apr 2019, Revision 1 dated 8 January 2024, issued under Rule 42A r/w Rule 133A.",
+      "note": "Night duty means any duty touching 0000-0600 in the acclimatised zone. A LOCAL NIGHT is 8 hrs between 2200-0800 and is a different thing. Rule 42A's statutory 125 hrs/30 days still exists but the CAR's 100 hrs/28 days binds tighter. A Revision 2 dated 26 Mar 2024 is referenced in press reporting and has NOT been retrieved — do not claim it is identical.",
+      "recorded": "CLAUDE.md, domain facts item 6, verified 2026-09-05",
+      "strength": "high"
+    },
+    {
+      "id": "flight-time-is-block-time",
+      "subject": "Air Regulations",
+      "common": "Flight time is airborne time, or airborne time plus one and a half hours.",
+      "correct": "Flight time is BLOCK time — from when the aircraft first moves under its own power for the purpose of taking off, until it comes to rest after the flight.",
+      "cite": "ICAO definition; settled in the 2026-07-27 bank audit where two copies of the question contradicted each other.",
+      "note": null,
+      "recorded": "tools/audit/verify-repair.mjs, INTENTIONAL list, 2026-07-27 step 2",
+      "strength": "medium — a classic exam trap"
+    },
+    {
+      "id": "overtaking-turn-right",
+      "subject": "Air Regulations",
+      "common": "An overtaking aircraft avoids by increasing speed.",
+      "correct": "The overtaking aircraft alters HEADING TO THE RIGHT. Changing speed is not an avoidance manoeuvre.",
+      "cite": "ICAO Annex 2, Rules of the Air; settled in the 2026-07-27 audit against doctrine, not by preferring one copy.",
+      "note": null,
+      "recorded": "tools/audit/verify-repair.mjs, INTENTIONAL list",
+      "strength": "medium"
+    },
+    {
+      "id": "control-zone-service",
+      "subject": "Air Regulations",
+      "common": "A control zone is served by area control.",
+      "correct": "A control zone is served by aerodrome or approach control. NEVER area control.",
+      "cite": "ICAO ATS structure; settled in the 2026-07-27 bank audit.",
+      "note": null,
+      "recorded": "tools/audit/verify-repair.mjs, INTENTIONAL list",
+      "strength": "medium"
+    },
+    {
+      "id": "airac-is-a-calendar",
+      "subject": "Air Regulations",
+      "common": "AIRAC is the document listing facilities and services.",
+      "correct": "AIRAC is a calendar of common effective dates for changes. The document of facilities and services is the AIP.",
+      "cite": "ICAO Annex 15 / AIS practice; settled in the 2026-07-27 bank audit.",
+      "note": null,
+      "recorded": "tools/audit/verify-repair.mjs, INTENTIONAL list",
+      "strength": "medium"
+    },
+    {
+      "id": "etops-expansion",
+      "subject": "Air Regulations",
+      "common": "ETOPS = Extended range operations FOR Twin engine operations.",
+      "correct": "ETOPS = EXTENDED-RANGE TWIN-ENGINE OPERATIONS.",
+      "cite": "Standard ICAO/regulatory expansion; corrected in the 2026-07-27 bank audit.",
+      "note": null,
+      "recorded": "tools/audit/verify-repair.mjs, INTENTIONAL list",
+      "strength": "low — small, but it is the kind of thing an examiner uses as a distractor"
+    },
+    {
+      "id": "no-negative-marking",
+      "subject": "All DGCA papers",
+      "common": "Leave it blank if you are unsure.",
+      "correct": "There is NO negative marking in any DGCA examination. A blank is a guaranteed zero; a guess is free. Fill every box. Pass mark is 70% per paper, with no aggregate.",
+      "cite": "Capt. Pahil, DGCA-approved instructor, ruling recorded 2026-07-27.",
+      "note": "This one is an exam-technique fact rather than a statute, and it is his own professional ruling. Attribute it that way.",
+      "recorded": "CLAUDE.md, domain facts corrected by the Captain 2026-07-27, item 2",
+      "strength": "high — costs students real marks every sitting"
+    }
+  ]
+}

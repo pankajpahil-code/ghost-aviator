@@ -36,6 +36,7 @@ SPEC = HERE / "_spec.json"
 WORK = HERE / "_frames"
 OUT = HERE / "out"
 
+NL = chr(10)   # never a typed escape: the authoring heredoc eats backslashes
 W, H = 1080, 1920
 SAFE_TOP, SAFE_BOT = 250, 1450     # below the badge, above the Shorts chrome
 MARGIN_X = 80
@@ -202,17 +203,11 @@ def card_cta(spec):
     ], footer=False)
 
 
-def slug(s, n=44):
-    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")[:n]
-
-
-def main():
-    if not SPEC.exists():
-        raise SystemExit("No spec. Run: npx tsx tools/shorts/pick.mts")
+def encode(seq, out):
+    """PNG frames + durations -> an H.264 Short. Shared with correction.py, so
+    there is ONE encode path and one place the concat quirk is handled."""
     if not shutil.which("ffmpeg"):
         raise SystemExit("ffmpeg not on PATH")
-    spec = json.loads(SPEC.read_text(encoding="utf-8"))
-
     # A fresh work dir every run. Leaving old frames behind is how a shorter run
     # silently mixes two videos together - that exact bug is on record in
     # CLAUDE.md from the Gini sprite pipeline.
@@ -220,6 +215,34 @@ def main():
         shutil.rmtree(WORK)
     WORK.mkdir(parents=True)
     OUT.mkdir(parents=True, exist_ok=True)
+
+    lines = []
+    for i, (img, dur) in enumerate(seq):
+        img.save(WORK / f"f{i:02d}.png")
+        lines.append(f"file 'f{i:02d}.png'")
+        lines.append(f"duration {dur}")
+    lines.append(f"file 'f{len(seq) - 1:02d}.png'")   # concat needs the last repeated
+    (WORK / "list.txt").write_text(NL.join(lines) + NL, encoding="utf-8")
+
+    r = subprocess.run([
+        "ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(WORK / "list.txt"),
+        "-vf", "fps=30,format=yuv420p", "-c:v", "libx264", "-preset", "medium",
+        "-crf", "20", "-movflags", "+faststart", str(out),
+    ], capture_output=True, text=True)
+    if r.returncode != 0:
+        print(r.stderr[-2500:])
+        raise SystemExit("ffmpeg failed")
+    return out
+
+
+def slug(s, n=44):
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")[:n]
+
+
+def main():
+    if not SPEC.exists():
+        raise SystemExit("No spec. Run: npx tsx tools/shorts/pick.mts")
+    spec = json.loads(SPEC.read_text(encoding="utf-8"))
 
     seq = [
         (card_hook(spec), 2.4),
@@ -232,24 +255,9 @@ def main():
         (card_cta(spec), 3.5),
     ]
 
-    lines = []
-    for i, (img, dur) in enumerate(seq):
-        img.save(WORK / f"f{i:02d}.png")
-        lines.append(f"file 'f{i:02d}.png'")
-        lines.append(f"duration {dur}")
-    lines.append(f"file 'f{len(seq) - 1:02d}.png'")   # concat needs the last repeated
-    (WORK / "list.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
-
     name = f"{spec['chapterId']}-{slug(spec['q'])}.mp4"
     out = OUT / name
-    r = subprocess.run([
-        "ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(WORK / "list.txt"),
-        "-vf", "fps=30,format=yuv420p", "-c:v", "libx264", "-preset", "medium",
-        "-crf", "20", "-movflags", "+faststart", str(out),
-    ], capture_output=True, text=True)
-    if r.returncode != 0:
-        print(r.stderr[-2500:])
-        raise SystemExit("ffmpeg failed")
+    encode(seq, out)
 
     caption = (
         f"{spec['q']}\n\n"
