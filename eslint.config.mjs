@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated scratch probes and the vendored, minified PDF.js worker are
+    // not authored source. Keep `npm run lint` focused on code we maintain.
+    ".tmp-audit/**",
+    "public/pdf.worker.min.mjs",
   ]),
 ]);
 

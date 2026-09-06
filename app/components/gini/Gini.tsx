@@ -613,7 +613,10 @@ export default function Gini() {
 
         <GiniSprite mood={mood} reduced={reduced} vanishing={vanishing} entering={entering} speaking={speaking} height={figureH} />
 
-        <div style={{ pointerEvents: "auto", display: "flex", gap: 6, marginTop: 4 }}>
+        <div style={{
+          pointerEvents: "auto", display: "flex", flexWrap: "wrap",
+          justifyContent: "center", gap: 6, marginTop: 4, width: "100%",
+        }}>
           <GiniBtn onClick={() => setAsking(a => !a)} label={asking ? "Close" : "Ask"} />
           {onNotes && (
             <GiniBtn onClick={reading ? haltReading : readNext} label={reading ? "Stop" : "Read"} />

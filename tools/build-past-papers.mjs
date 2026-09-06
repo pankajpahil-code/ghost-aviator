@@ -85,7 +85,7 @@ const Q_RE     = /^(\d{1,3})[.)]\s*(.+)$/;
 const OPT_RE   = /^([a-d])[.)]\s*(.*)$/i;
 const NOISE_RE = /^(\d{1,3}|AR-\d+|AIR REGULATIONS? \d+|CPL LEVEL|QUESTIONS? BANK)$/i;
 
-function parse(lines, cfg) {
+function parse(lines) {
   const papers = [];
   const skips = { noAnswer: 0, ambiguous: 0, badOpts: 0 };
   let paper = null;
@@ -150,7 +150,7 @@ const tsStr = s => "`" + s.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/
 
 for (const cfg of MANIFEST) {
   const lines = await extractLines(cfg.input);
-  const { papers, skips } = parse(lines, cfg);
+  const { papers, skips } = parse(lines);
 
   const out = [
     `import type { PastPaper } from "../past-papers";`,

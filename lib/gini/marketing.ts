@@ -247,6 +247,22 @@ const PITCH_INDEX = new Index<Pitch>(
   PITCHES.map(p => ({ item: p, title: p.ask })),
 );
 
+const LIVE_CLASS_TERMS =
+  /\b(live\s+class(?:es)?|(?:our|your|this|these|the|captain(?:'s)?|ghost\s+aviator)\s+class(?:es)?|classes|batch(?:es)?|coaching|tuition)\b/i;
+const LIVE_SUBJECT_CLASS_TERMS =
+  /\b(air\s+regulations?|aviation\s+meteorology|meteorology|general\s+navigation|radio\s+navigation|instrumentation|technical(?:\s+general|\s+specific)?|rtr(?:\(a\))?)\s+class\b/i;
+const PRICE_TERMS = /\b(cost|costs|price|prices|fee|fees|charge|charges|pay|payment|rupees?|how much)\b|₹/i;
+const NON_TEACHING_CLASS_TERMS =
+  /\b(class\s*[12]\s+medical|medical(?:s)?|business\s+class|first\s+class|economy\s+class|airline|ticket|rail|train)\b/i;
+const WHATSAPP_GROUP_QUERY =
+  /\bwhats?app\b.*\b(group|community|helpline)\b|\b(group|community|helpline)\b.*\bwhats?app\b/i;
+
+/** Explicit commercial intent must not be confused with the full CPL-cost guide. */
+export const isLiveClassPriceQuery = (query: string): boolean =>
+  !NON_TEACHING_CLASS_TERMS.test(query) &&
+  (LIVE_CLASS_TERMS.test(query) || LIVE_SUBJECT_CLASS_TERMS.test(query)) &&
+  PRICE_TERMS.test(query);
+
 /**
  * When a student ASKS about classes, groups, videos or the bank, that is not a
  * pitch — it is the answer to their question, and none of the frequency rules
@@ -254,6 +270,21 @@ const PITCH_INDEX = new Index<Pitch>(
  * are classes" should name the Meteorology batch.
  */
 export function offerFor(query: string, ctx: GiniContext): GiniReply | null {
+  if (WHATSAPP_GROUP_QUERY.test(query)) {
+    const group = PITCHES.find(p => p.id === "whatsapp");
+    if (group) return answer(group.say(ctx), { type: "captain" }, group.href(ctx));
+  }
+
+  // "Class" also appears in aviation medicals and passenger travel. Those
+  // questions must never fall through to a fuzzy sales pitch.
+  if (NON_TEACHING_CLASS_TERMS.test(query)) return null;
+
+  if (isLiveClassPriceQuery(query)) {
+    const id = liveSubject(ctx) ? "live-subject" : "live-general";
+    const direct = PITCHES.find(p => p.id === id);
+    if (direct) return answer(direct.say(ctx), { type: "captain" }, direct.href(ctx));
+  }
+
   const hits = PITCH_INDEX.search(query, 0.5, 4);
   if (!hits.length) return null;
   const fitting = hits.find(h => h.item.fits(ctx)) ?? hits[0];

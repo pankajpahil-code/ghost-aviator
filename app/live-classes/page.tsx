@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle, MessageCircle, Mail, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers } from "lucide-react";
+import { ArrowRight, CheckCircle, MessageCircle, Mail, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers, CreditCard } from "lucide-react";
 import { SITE_URL } from "@/lib/site";
 
 import {
@@ -12,6 +12,10 @@ import {
   LIVE_COMBO_LIST_PRICE as COMBO_LIST_PRICE,
   LIVE_PRICE_VALUE,
   liveWaLink as waLink,
+  hasLivePaymentLink,
+  hasLiveComboPaymentLink,
+  liveEnrollLink,
+  liveComboEnrollLink,
 } from "@/lib/live-classes";
 
 export const metadata: Metadata = {
@@ -34,6 +38,7 @@ export const metadata: Metadata = {
 
 const SUBJECTS = [
   {
+    key: "meteorology",
     name: "Aviation Meteorology",
     icon: "🌤️",
     color: "#0ea5e9",
@@ -46,6 +51,7 @@ const SUBJECTS = [
     ],
   },
   {
+    key: "air-regulations",
     name: "Air Regulations",
     icon: "⚖️",
     color: "#ab794d",
@@ -58,6 +64,7 @@ const SUBJECTS = [
     ],
   },
   {
+    key: "air-navigation",
     name: "General Navigation",
     icon: "🗺️",
     color: "#10b981",
@@ -70,6 +77,7 @@ const SUBJECTS = [
     ],
   },
   {
+    key: "radio-navigation",
     name: "Radio Navigation",
     icon: "📡",
     color: "#06b6d4",
@@ -82,6 +90,7 @@ const SUBJECTS = [
     ],
   },
   {
+    key: "instrumentation",
     name: "Navigation — Instrumentation",
     icon: "🧭",
     color: "#f59e0b",
@@ -197,11 +206,19 @@ export default function LiveClassesPage() {
           </p>
 
           <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
-            <a href={waLink("DGCA ground classes", PRICE)} target="_blank" rel="noopener noreferrer"
-               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline"
+            <a href={liveEnrollLink("general", "DGCA Ground Classes", PRICE)} target="_blank" rel="noopener noreferrer"
+               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
-              <MessageCircle className="w-5 h-5" /> Message Capt. Pahil on WhatsApp
+              {hasLivePaymentLink("general") ? <CreditCard className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
+              {hasLivePaymentLink("general") ? "Enroll & Pay Online" : "Enquire on WhatsApp"}
             </a>
+            {hasLivePaymentLink("general") ? (
+              <a href={waLink("DGCA ground classes", PRICE)} target="_blank" rel="noopener noreferrer"
+                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
+                 style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
+                <MessageCircle className="w-5 h-5" /> Message on WhatsApp
+              </a>
+            ) : null}
             <a href={`mailto:${EMAIL}?subject=${encodeURIComponent("Live DGCA Classes — Seat Enquiry")}`}
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                style={{ border:"1px solid rgba(240,145,58,0.5)", color:"#f0913a", background:"rgba(240,145,58,0.06)" }}>
@@ -268,11 +285,21 @@ export default function LiveClassesPage() {
               <div className="mb-5">
                 <PriceTag color={s.color} />
               </div>
-              <a href={waLink(s.name, PRICE)} target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline"
-                 style={{ background:`${s.color}20`, border:`1px solid ${s.color}60`, color:"#fff" }}>
-                <MessageCircle className="w-4 h-4" style={{ color:"#22c55e" }}/> Reserve My Seat
-              </a>
+              <div className="flex flex-col gap-2 mt-auto">
+                <a href={liveEnrollLink(s.key, s.name, PRICE)} target="_blank" rel="noopener noreferrer"
+                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline transition-transform hover:-translate-y-0.5"
+                   style={{ background:`linear-gradient(135deg, ${s.color}, ${s.color}dd)`, color:"#fff", boxShadow:`0 4px 16px ${s.color}35` }}>
+                  {hasLivePaymentLink(s.key) ? <CreditCard className="w-4 h-4"/> : <MessageCircle className="w-4 h-4"/>}
+                  {hasLivePaymentLink(s.key) ? `Enroll & Pay Online (${PRICE})` : `Enquire on WhatsApp (${PRICE})`}
+                </a>
+                {hasLivePaymentLink(s.key) ? (
+                  <a href={waLink(s.name, PRICE)} target="_blank" rel="noopener noreferrer"
+                     className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline"
+                     style={{ background:"rgba(255,255,255,0.04)", border:`1px solid ${s.color}40`, color:"#94a3b8" }}>
+                    <MessageCircle className="w-3.5 h-3.5" style={{ color:"#22c55e" }}/> Chat on WhatsApp
+                  </a>
+                ) : null}
+              </div>
             </div>
           ))}
 
@@ -308,11 +335,21 @@ export default function LiveClassesPage() {
               </div>
               <div className="text-xs font-bold" style={{ color:"#22c55e" }}>Navigation combo · 3 subjects · 10 seats</div>
             </div>
-            <a href={waLink("Navigation Combo (Gen Nav + Radio Nav + Instrumentation)", COMBO_PRICE)} target="_blank" rel="noopener noreferrer"
-               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline"
-               style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 20px rgba(34,197,94,0.35)" }}>
-              <MessageCircle className="w-4 h-4"/> Reserve Combo Seat
-            </a>
+            <div className="flex flex-col gap-2 mt-auto">
+              <a href={liveComboEnrollLink()} target="_blank" rel="noopener noreferrer"
+                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline transition-transform hover:-translate-y-0.5"
+                 style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 25px rgba(34,197,94,0.4)" }}>
+                {hasLiveComboPaymentLink() ? <CreditCard className="w-4 h-4"/> : <MessageCircle className="w-4 h-4"/>}
+                {hasLiveComboPaymentLink() ? `Enroll in Combo Online (${COMBO_PRICE})` : `Enquire on WhatsApp (${COMBO_PRICE})`}
+              </a>
+              {hasLiveComboPaymentLink() ? (
+                <a href={waLink("Navigation Combo (Gen Nav + Radio Nav + Instrumentation)", COMBO_PRICE)} target="_blank" rel="noopener noreferrer"
+                   className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline"
+                   style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(34,197,94,0.4)", color:"#94a3b8" }}>
+                  <MessageCircle className="w-3.5 h-3.5" style={{ color:"#22c55e" }}/> WhatsApp Inquiry
+                </a>
+              ) : null}
+            </div>
           </div>
         </div>
       </section>
@@ -320,7 +357,7 @@ export default function LiveClassesPage() {
       {/* ══════════ HOW IT WORKS ══════════ */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="rounded-3xl p-10" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(243,200,137,0.2)" }}>
-          <h2 className="text-2xl font-black text-white mb-8 text-center">Joining Takes Two Minutes</h2>
+          <h2 className="text-2xl font-black text-white mb-8 text-center">How Joining Works</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             {[
               ["1", "Message on WhatsApp", "Tell Capt. Pahil which subject you want — he replies personally."],
@@ -371,11 +408,19 @@ export default function LiveClassesPage() {
             subject&apos;s batch begins.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href={waLink("DGCA ground classes", PRICE)} target="_blank" rel="noopener noreferrer"
-               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline"
+            <a href={liveEnrollLink("general", "DGCA Ground Classes", PRICE)} target="_blank" rel="noopener noreferrer"
+               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline transition-transform hover:-translate-y-0.5"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
-              <MessageCircle className="w-5 h-5" /> WhatsApp: +91 99902 26607
+              {hasLivePaymentLink("general") ? <CreditCard className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
+              {hasLivePaymentLink("general") ? `Enroll & Pay Online (${PRICE})` : `Enquire on WhatsApp (${PRICE})`}
             </a>
+            {hasLivePaymentLink("general") ? (
+              <a href={waLink("DGCA ground classes", PRICE)} target="_blank" rel="noopener noreferrer"
+                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
+                 style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
+                <MessageCircle className="w-5 h-5" /> WhatsApp: +91 99902 26607
+              </a>
+            ) : null}
             <Link href="/cpl" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                   style={{ border:"1px solid rgba(243,200,137,0.4)", color:"#f3c889", background:"rgba(243,200,137,0.06)" }}>
               Explore Free Material First <ArrowRight className="w-5 h-5"/>

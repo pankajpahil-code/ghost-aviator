@@ -19,7 +19,7 @@ for (let p=1;p<=pdf.numPages;p++){
     lines.push({text,font});
   }
 }
-const L="abcdefgh"; const chapters={}; let curCh=null,cur=null;
+const chapters={}; let curCh=null,cur=null;
 const flush=()=>{ if(cur&&curCh){ (chapters[curCh]??=[]).push(cur); cur=null; } };
 for(const ln of lines){
   const ch=ln.text.match(/^(\d+)\.\s+([A-Z][A-Z ,()\/]+)$/);

@@ -34,6 +34,7 @@ import { isOffTopic, DECLINES } from "../../lib/gini/persona";
 import { CORPUS } from "../../lib/gini/generated/corpus-stats";
 import { ALL_QUESTIONS } from "../../lib/questions";
 import { CPL_SUBJECTS } from "../../lib/subjects";
+import { WHATSAPP_GROUP } from "../../lib/site";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -143,6 +144,9 @@ const probes: Probe[] = [
   { q: "is this site free",                         want: "faq" },
   { q: "who conducts the RTR exam",                 want: "faq" },
   { q: "how much are the live classes",             want: "captain" },
+  { q: "what do the classes cost",                  want: "captain" },
+  { q: "what are your tuition charges",             want: "captain" },
+  { q: "how much is meteorology class",             want: "captain" },
   { q: "I want to join a batch",                    want: "captain" },
   { q: "is there a whatsapp group",                 want: "captain" },
   { q: "do you have video lectures",                want: "captain" },
@@ -157,6 +161,32 @@ for (const p of probes) {
   const got = r.kind === "refusal" ? "refusal" : r.source.type;
   check(got === p.want, `"${p.q}"`, `wanted ${p.want}, got ${got}`);
 }
+
+for (const q of [
+  "what does a class 1 medical cost",
+  "how much is the class 2 medical",
+  "what does business class cost",
+]) {
+  const r = ask(q, home);
+  const got = r.kind === "refusal" ? "refusal" : r.source.type;
+  check(got !== "captain", `"${q}" is not sold as a live class`, `got ${got}`);
+}
+
+for (const q of ["whatsapp group", "join the whatsapp group"]) {
+  const r = ask(q, home);
+  check(
+    r.kind === "answer" && r.href === WHATSAPP_GROUP && !/₹|batch/i.test(r.text),
+    `"${q}" opens the community group without a class sales pitch`,
+    r.kind === "answer" ? `${r.href} — ${r.text.slice(0, 70)}` : "REFUSED",
+  );
+}
+
+const cplCourseCost = ask("what does a CPL course cost", home);
+check(
+  cplCourseCost.kind === "answer" && cplCourseCost.href === "/guides/pilot-training-cost-india",
+  '"what does a CPL course cost" reaches the training-cost guide',
+  cplCourseCost.kind === "answer" ? cplCourseCost.href ?? "no href" : "REFUSED",
+);
 
 // Context must steer the answer, not just decorate it.
 const metOffer = offerFor("how much are classes", readContext("/cpl/meteorology/met-1/notes"));
@@ -417,6 +447,18 @@ for (const l of LANDINGS) {
   const r = await askDeep(l.q, home);
   const where = r.kind === "answer" ? `${r.text} ${r.href ?? ""}` : "REFUSED";
   check(l.want.test(where), `"${l.q}" lands in ${l.want.source}`, where.slice(0, 88));
+}
+
+for (const q of ["explain the semi circular rule", "what is the semicircular rule"]) {
+  const r = await askDeep(q, home);
+  const where = r.kind === "answer" ? `${r.text} ${r.href ?? ""}` : "REFUSED";
+  check(
+    r.kind === "answer" &&
+      r.href === "/cpl/air-regulations/ar-3/notes" &&
+      !/vestibular|otolith|semi-circular canals?/i.test(where),
+    `"${q}" reaches Rules of the Air, not inner-ear physiology`,
+    where.slice(0, 110),
+  );
 }
 
 /**

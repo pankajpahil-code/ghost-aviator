@@ -304,10 +304,9 @@ export default function Home() {
           <h2 className="text-3xl font-black text-white mb-4">Free for Every Indian Student</h2>
           <p className="max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color:"#94a3b8" }}>
             Ghost Aviator&apos;s self-study is <strong style={{ color:"#ff6060" }}>always free</strong> — for every student, everywhere in India.
-            Coupon code: <span className="font-black px-2 py-0.5 rounded" style={{ background:"rgba(243,200,137,0.15)", color:"#f3c889", border:"1px solid rgba(243,200,137,0.3)" }}>FREEPILOT</span>
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            {["Free for every student","No credit card needed","Free 1 year for all","Cancel anytime"].map(item => (
+            {["Free for every student","No credit card needed","No trial expiry","No cancellation needed"].map(item => (
               <div key={item} className="flex items-center gap-2 text-sm" style={{ color:"#94a3b8" }}>
                 <CheckCircle className="w-4 h-4" style={{ color:"#22c55e" }}/> {item}
               </div>

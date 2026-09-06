@@ -153,7 +153,14 @@ const pad = (s, n) => String(s).padStart(n);
 // ── 1. the submitted set ────────────────────────────────────────────────────
 console.log(`\nAuditing ${BASE}\n`);
 const sitemapXml = await (await fetch(`${BASE}/sitemap.xml`, { headers: { "User-Agent": UA } })).text();
-const submitted = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
+const submitted = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => {
+  const loc = new URL(m[1]);
+  // Sitemaps correctly keep the production origin even during a local build.
+  // For a local audit, fetch the same paths from the local server; otherwise
+  // the report mixes production pages with localhost links and invents
+  // duplicate metadata and route-shape defects.
+  return isLocal ? `${BASE}${loc.pathname}${loc.search}` : loc.href.replace(/\/$/, "");
+});
 console.log(`Sitemap: ${submitted.length} URLs. Fetching…`);
 const subPages = await fetchAll(submitted);
 

@@ -136,6 +136,15 @@ const SOLO_CONCEPT_FLOOR = 0.9;
 const admissible = (h: { matched: string[]; inTitle: number; score: number }) =>
   h.inTitle > 0 && (new Set(h.matched).size >= 2 || h.score >= SOLO_CONCEPT_FLOOR);
 
+const SEMICIRCULAR_RULE_QUERY =
+  /\bsemi[-\s]?circular\b.*\b(rule|system|cruising|level)\b|\b(rule|system|cruising|level)\b.*\bsemi[-\s]?circular\b/i;
+const PHYSIOLOGY_TOPIC = /\b(vestibular|otoliths?|canals?)\b/i;
+
+/** Do not confuse cruising-level rules with the inner-ear semi-circular canals. */
+const compatibleWithQuery = (query: string, topic: Topic) =>
+  !SEMICIRCULAR_RULE_QUERY.test(query) ||
+  !PHYSIOLOGY_TOPIC.test([topic.t, ...(topic.a ?? [])].join(" "));
+
 /** Prefer the subject the student is standing in, without excluding the rest. */
 function pick<T extends { item: Topic; score: number }>(hits: T[], subjectId?: string) {
   if (!hits.length) return null;
@@ -147,7 +156,12 @@ function ranked(query: string, subjectId?: string) {
   // .filter(inTitle > 0), inside admissible(), is the codebase idiom for
   // "matched on what this entry is CALLED, not on a passing mention in its
   // text" — the same guard knowledge.ts uses for chapter lookup.
-  return pick(getIndex().search(query, POINTER_FLOOR, 8).filter(admissible), subjectId);
+  return pick(
+    getIndex().search(query, POINTER_FLOOR, 8)
+      .filter(admissible)
+      .filter(h => compatibleWithQuery(query, h.item)),
+    subjectId,
+  );
 }
 
 /**
@@ -193,7 +207,9 @@ export function pointToTopic(query: string, subjectId?: string): GiniReply {
  * perfectly well without spending a model call on it.
  */
 export function topTopics(query: string, subjectId: string | undefined, n = 5): Topic[] {
-  const hits = getIndex().search(query, 0.3, n * 3).filter(h => h.inTitle > 0 && h.item.o);
+  const hits = getIndex().search(query, 0.3, n * 3)
+    .filter(h => h.inTitle > 0 && h.item.o)
+    .filter(h => compatibleWithQuery(query, h.item));
   const mine = subjectId ? hits.filter(h => h.item.s === subjectId) : [];
   const rest = hits.filter(h => !mine.includes(h));
   return [...mine, ...rest].slice(0, n).map(h => h.item);
@@ -227,7 +243,9 @@ export function topTopics(query: string, subjectId: string | undefined, n = 5): 
 const NEAREST_FLOOR = 0.4;
 
 export function nearestTopic(query: string, subjectId?: string): { label: string; href: string } | null {
-  const hits = getIndex().search(query, NEAREST_FLOOR, 6).filter(h => h.inTitle > 0);
+  const hits = getIndex().search(query, NEAREST_FLOOR, 6)
+    .filter(h => h.inTitle > 0)
+    .filter(h => compatibleWithQuery(query, h.item));
   const best = pick(hits, subjectId);
   if (!best) return null;
   return { label: `"${best.item.t}" in ${whereItLives(best.item)}`, href: topicHref(best.item) };

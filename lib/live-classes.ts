@@ -33,6 +33,56 @@ export const liveWaLink = (subject: string, price: string) =>
     `Hello Capt. Pahil, I want to join the ${subject} batch (${price}). Please share the details.`
   )}`;
 
+/**
+ * Direct payment links (Instamojo / Razorpay payment pages) for automated enrollment.
+ * When a URL is configured here, students can pay directly online without waiting for manual WhatsApp replies.
+ * If empty/undefined, liveEnrollLink gracefully falls back to the pre-filled WhatsApp link.
+ */
+export const LIVE_PAYMENT_LINKS: Record<string, string> = {
+  "general": "",
+  "meteorology": "",
+  "air-regulations": "",
+  "air-navigation": "",
+  "radio-navigation": "",
+  "instrumentation": "",
+  "radio-telephony": "",
+};
+
+/** Direct payment link for the full 3-subject Navigation Combo. */
+export const LIVE_COMBO_PAYMENT_LINK: string = "";
+
+export const hasLivePaymentLink = (subjectKey: string): boolean =>
+  Boolean(LIVE_PAYMENT_LINKS[subjectKey]?.trim());
+
+export const hasLiveComboPaymentLink = (): boolean =>
+  Boolean(LIVE_COMBO_PAYMENT_LINK.trim());
+
+/**
+ * Returns the direct payment/enrollment URL if configured; otherwise falls back to smart WhatsApp checkout.
+ */
+export const liveEnrollLink = (subjectKey: string, subjectDisplayName: string, price: string): string => {
+  const directUrl = LIVE_PAYMENT_LINKS[subjectKey];
+  if (hasLivePaymentLink(subjectKey)) {
+    return directUrl;
+  }
+  return `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+    `Hello Capt. Pahil, I want to enroll & pay for the ${subjectDisplayName} live batch (${price}). Please share the payment link / UPI QR.`
+  )}`;
+};
+
+/**
+ * Returns the direct combo payment URL if configured; otherwise WhatsApp fallback.
+ */
+export const liveComboEnrollLink = (): string => {
+  const directComboUrl: string = LIVE_COMBO_PAYMENT_LINK;
+  if (hasLiveComboPaymentLink()) {
+    return directComboUrl;
+  }
+  return `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+    `Hello Capt. Pahil, I want to enroll & pay for the Navigation Combo live batch (3 subjects — ${LIVE_COMBO_PRICE}). Please share the payment link / UPI QR.`
+  )}`;
+};
+
 // Site subject id → live-class display name. A subject appears in upsell
 // cards only when it has an entry here.
 export const LIVE_CLASS_SUBJECTS: Record<string, string> = {

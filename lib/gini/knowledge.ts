@@ -51,7 +51,7 @@ import { answer, refuse, REFUSALS, type GiniReply, type GiniSource, type Refusal
 import { Index, mentions } from "./match";
 import { readContext, type GiniContext } from "./context";
 import { smallTalk, wisdomFor, isOffTopic, declineOffTopic } from "./persona";
-import { offerFor } from "./marketing";
+import { isLiveClassPriceQuery, offerFor } from "./marketing";
 import { CORPUS, corpusFor } from "./generated/corpus-stats";
 
 export type { GiniReply, GiniSource, RefusalReason };
@@ -152,6 +152,12 @@ const GUIDE_INDEX = new Index<Guide>(
   GUIDES.map(g => ({ item: g, title: g.title, body: g.description })),
 );
 
+const PILOT_TRAINING_COST_GUIDE = GUIDES.find(g => g.slug === "pilot-training-cost-india");
+const isCplCourseCostQuery = (query: string) =>
+  /\b(cpl|pilot)\b/i.test(query) &&
+  /\b(course|training)\b/i.test(query) &&
+  /\b(cost|costs|price|prices|fee|fees|charge|charges|how much)\b|₹/i.test(query);
+
 /**
  * Higher than the chapter floor and lower than the FAQ's. A guide is a whole
  * document, so pointing at a slightly wrong one is cheap; but there are only
@@ -160,6 +166,13 @@ const GUIDE_INDEX = new Index<Guide>(
 const GUIDE_FLOOR = 0.5;
 
 export function findGuide(query: string): GiniReply {
+  if (isCplCourseCostQuery(query) && PILOT_TRAINING_COST_GUIDE) {
+    return answer(
+      PILOT_TRAINING_COST_GUIDE.description,
+      { type: "structure" },
+      `/guides/${PILOT_TRAINING_COST_GUIDE.slug}`,
+    );
+  }
   const hit = GUIDE_INDEX.bestByTitle(query, GUIDE_FLOOR);
   if (!hit) return refuse("not-verified");
   return answer(hit.item.description, { type: "structure" }, `/guides/${hit.item.slug}`);
@@ -186,6 +199,13 @@ const CHAPTER_INDEX = new Index<ChapterRef>(
   ),
 );
 
+const SEMICIRCULAR_RULE_QUERY =
+  /\bsemi[-\s]?circular\b.*\b(rule|system|cruising|level)\b|\b(rule|system|cruising|level)\b.*\bsemi[-\s]?circular\b/i;
+const SEMICIRCULAR_RULE_CHAPTER: ChapterRef = {
+  href: "/cpl/air-regulations/ar-3/notes",
+  label: "Air Regulations — Chapter 3: Rules of the Air",
+};
+
 /**
  * A LOWER FLOOR THAN ANYWHERE ELSE, DELIBERATELY, and the reason is what a
  * wrong answer costs here. Everywhere else a mediocre match means Gini states
@@ -200,6 +220,13 @@ const CHAPTER_INDEX = new Index<ChapterRef>(
  * cannot arrive here on a passing mention in a description.
  */
 export function findChapter(query: string): GiniReply {
+  if (SEMICIRCULAR_RULE_QUERY.test(query)) {
+    return answer(
+      `That's ${SEMICIRCULAR_RULE_CHAPTER.label}.`,
+      { type: "structure" },
+      SEMICIRCULAR_RULE_CHAPTER.href,
+    );
+  }
   const hit = CHAPTER_INDEX.bestByTitle(query, 0.42);
   if (!hit) return refuse("not-verified");
   return answer(`That's ${hit.item.label}.`, { type: "structure" }, hit.item.href);
@@ -217,7 +244,9 @@ export const topFaq = (query: string, n = 4): FaqEntry[] =>
   FAQ_INDEX.search(query, 0.25, n).map(h => h.item);
 
 export const topChapters = (query: string, n = 4): ChapterRef[] =>
-  CHAPTER_INDEX.search(query, 0.25, n).filter(h => h.inTitle > 0).map(h => h.item);
+  SEMICIRCULAR_RULE_QUERY.test(query)
+    ? [SEMICIRCULAR_RULE_CHAPTER]
+    : CHAPTER_INDEX.search(query, 0.25, n).filter(h => h.inTitle > 0).map(h => h.item);
 
 export const faqByQuestion = (q: string): FaqEntry | undefined =>
   FAQS.find(f => f.q === q);
@@ -309,6 +338,14 @@ export function ask(query: string, ctx: GiniContext = readContext("/")): GiniRep
 
   const wise = wisdomFor(q);
   if (wise) return wise;
+
+  // "What do the classes cost?" is about the Captain's live batches, not the
+  // guide to the total cost of pilot training. Resolve that intent before the
+  // broader guide matcher gets a chance to claim the word "cost".
+  if (isLiveClassPriceQuery(q)) {
+    const liveClassOffer = offerFor(q, ctx);
+    if (liveClassOffer) return liveClassOffer;
+  }
 
   /**
    * The paperwork questions — computer number, exam pattern, what it costs.

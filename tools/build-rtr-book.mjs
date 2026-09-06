@@ -45,7 +45,7 @@ fs.cpSync(imgSrc, imgOut, { recursive: true });
 console.log(`images: ${fs.readdirSync(imgOut).length} files`);
 
 // ── 2. transform each chapter ──────────────────────────────────────────────
-function transform(html, n) {
+function transform(html) {
   let out = html;
 
   // Drop the external font/icon CDN <link>s + preconnects (CSP blocks them).
@@ -94,6 +94,6 @@ for (let n = 1; n <= CHAPTERS; n++) {
   const html = fs.readFileSync(srcFile, "utf8");
   const outDir = path.join(OUT, `rtf-${n}`);
   mkdirp(outDir);
-  fs.writeFileSync(path.join(outDir, "notes.html"), transform(html, n), "utf8");
+  fs.writeFileSync(path.join(outDir, "notes.html"), transform(html), "utf8");
 }
 console.log(`chapters: rtf-1..rtf-${CHAPTERS} written to ${OUT}`);

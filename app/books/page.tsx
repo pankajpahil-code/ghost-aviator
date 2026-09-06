@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { ArrowRight, BookOpen, Sparkles, Clock, HelpCircle, Layers, ChevronRight } from "lucide-react";
+import { ArrowRight, BookOpen, Sparkles, Clock, HelpCircle, Layers, ChevronRight, Download, ShoppingBag, ShieldCheck, MessageCircle } from "lucide-react";
+import { AUTHORED_BOOKS, getBookPdfCheckoutUrl, getBookPaperbackUrl } from "@/lib/books";
 
 export const metadata: Metadata = {
   title: "Digital Books | Ghost Aviator — Interactive DGCA Study Library",
@@ -290,6 +291,129 @@ export default function BooksPage() {
         </div>
       </section>
 
+      {/* ── Authored Master Editions and availability state ─────────────────────── */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="bk-shelf-head">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider mb-3"
+               style={{ background: "rgba(251,191,36,0.12)", border: "1px solid rgba(251,191,36,0.35)", color: "#fbbf24" }}>
+            <Sparkles className="w-3.5 h-3.5"/> Author Editions · Capt. Pankaj Pahil
+          </div>
+          <h2 className="bk-shelf-title">Master Study Books & Offline Editions</h2>
+          <p className="bk-shelf-sub">
+            All online chapters on Ghost Aviator remain 100% free forever. Offline PDF and paperback editions will be offered here when available; until then, read the online editions free.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
+          {Object.values(AUTHORED_BOOKS).map((ab) => (
+            <div key={ab.slug} className="relative rounded-3xl overflow-hidden p-8 flex flex-col justify-between"
+                 style={{
+                   background: "linear-gradient(160deg, rgba(23,16,42,0.98), rgba(12,8,24,0.98))",
+                   border: "1px solid rgba(251,191,36,0.3)",
+                   boxShadow: "0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(251,191,36,0.08)",
+                 }}>
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "linear-gradient(to right, #fbbf24, #ef4444, transparent)" }}/>
+
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <span className="text-xs font-bold uppercase tracking-widest text-amber-400">
+                    {ab.edition}
+                  </span>
+                  <span className={`text-xs font-black px-2.5 py-1 rounded-full border ${
+                    ab.isReadyForSale
+                      ? "text-amber-300 border-amber-400/30"
+                      : "text-orange-400 border-orange-400/30"
+                  }`}
+                  style={{ background: ab.isReadyForSale ? "rgba(251,191,36,0.1)" : "rgba(249,115,22,0.1)" }}>
+                    {ab.isReadyForSale ? "AVAILABLE" : "NOT CURRENTLY FOR SALE"}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl font-black text-white mb-1.5">{ab.title}</h3>
+                <p className="text-sm font-semibold text-amber-200/70 mb-3">{ab.subtitle}</p>
+                <p className="text-xs text-slate-400 mb-4">{ab.tagline}</p>
+
+                {ab.revisionNote && (
+                  <div className="p-3.5 rounded-xl mb-6 text-xs text-amber-200/90 leading-relaxed"
+                       style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.25)" }}>
+                    <strong className="text-amber-300">Notice:</strong> {ab.revisionNote}
+                  </div>
+                )}
+
+                <ul className="flex flex-col gap-2.5 mb-8">
+                  {ab.features.map((feat, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-xs text-slate-300 leading-relaxed">
+                      <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="border-t border-white/10 pt-6">
+                {ab.isReadyForSale ? (
+                  <>
+                    <div className="flex items-baseline justify-between mb-5">
+                      <div>
+                        <div className="text-xs text-slate-400 uppercase font-semibold">Digital PDF Edition</div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-xs line-through text-slate-500">{ab.pdfListPrice}</span>
+                          <span className="text-2xl font-black text-white">{ab.pdfPrice}</span>
+                        </div>
+                      </div>
+                      {ab.paperbackPrice && (
+                        <div className="text-right">
+                          <div className="text-xs text-slate-400 uppercase font-semibold">Paperback</div>
+                          <div className="flex items-baseline gap-1.5 justify-end">
+                            <span className="text-xs line-through text-slate-500">{ab.paperbackListPrice}</span>
+                            <span className="text-lg font-bold text-amber-300">{ab.paperbackPrice}</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex flex-col gap-2.5">
+                      <a href={getBookPdfCheckoutUrl(ab.slug)} target="_blank" rel="noopener noreferrer"
+                         className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline transition-transform hover:-translate-y-0.5"
+                         style={{ background: "linear-gradient(135deg, #fbbf24, #d97706)", color: "#1a1200", boxShadow: "0 4px 20px rgba(251,191,36,0.3)" }}>
+                        {ab.pdfPaymentUrl.trim() ? <Download className="w-4 h-4" /> : <MessageCircle className="w-4 h-4" />}
+                        {ab.pdfPaymentUrl.trim() ? `Buy Offline Study PDF (${ab.pdfPrice})` : `Order PDF on WhatsApp (${ab.pdfPrice})`}
+                      </a>
+
+                      <div className="grid grid-cols-2 gap-2">
+                        <a href={getBookPaperbackUrl(ab.slug)} target="_blank" rel="noopener noreferrer"
+                           className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold no-underline text-slate-300 border border-white/10 hover:border-amber-400/40 hover:text-white transition-colors"
+                           style={{ background: "rgba(255,255,255,0.03)" }}>
+                          {ab.amazonUrl.trim() ? <ShoppingBag className="w-3.5 h-3.5 text-amber-400" /> : <MessageCircle className="w-3.5 h-3.5 text-green-400" />}
+                          {ab.amazonUrl.trim() ? "Amazon Paperback" : "Ask About Paperback"}
+                        </a>
+
+                        <Link href={ab.slug === "rtra-mastery" ? "/cpl/radio-telephony" : "/cpl/technical-general"}
+                              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold no-underline text-slate-300 border border-white/10 hover:border-white/30 hover:text-white transition-colors"
+                              style={{ background: "rgba(255,255,255,0.03)" }}>
+                          <BookOpen className="w-3.5 h-3.5 text-sky-400" /> Read Free Online
+                        </Link>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex flex-col gap-3">
+                    <div className="text-center text-xs text-slate-400 font-semibold py-1">
+                      Offline editions are not currently for sale
+                    </div>
+                    <Link href={ab.slug === "rtra-mastery" ? "/cpl/radio-telephony" : "/cpl/technical-general"}
+                          className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-bold no-underline text-white border border-white/20 hover:border-white/40 transition-colors"
+                          style={{ background: "rgba(255,255,255,0.05)" }}>
+                      <BookOpen className="w-4 h-4 text-sky-400" /> Read Free Online
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── Other live books ─────────────────────────────────────── */}
       {otherLive.length > 0 && (
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
@@ -368,7 +492,7 @@ export default function BooksPage() {
       <section className="bk-bottom-cta">
         <Sparkles className="w-5 h-5" style={{ color: "#fbbf24" }} />
         <p className="bk-bottom-text">
-          Every book is <strong>free</strong> — written in service of student pilots preparing for the DGCA exams.
+          Online study chapters are 100% <strong>free for every student pilot</strong>. Paid live teaching helps sustain the academy while self-study remains free.
         </p>
         <p className="bk-bottom-author">— Capt. Pankaj Pahil · Ghost Aviator</p>
       </section>
