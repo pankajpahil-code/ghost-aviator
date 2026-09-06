@@ -32,7 +32,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The Aeronautical Mobile Service is a service between:`,
     opts: [`Two land stations only`, `Aircraft stations and aeronautical stations (and between aircraft stations)`, `Ships and aircraft only`, `Satellites and ground`],
     ans: 1,
-    exp: `ircraft stations and aeronautical stations (and between aircraft stations). AMS is between aircraft stations and aeronautical (land) stations, or between aircraft stations; survival-craft/ELT may participate.`,
+    exp: `Aircraft stations and aeronautical stations (and between aircraft stations). AMS is between aircraft stations and aeronautical (land) stations, or between aircraft stations; survival-craft/ELT may participate.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -42,7 +42,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `An "aeronautical station" is:`,
     opts: [`A station aboard an aircraft`, `A land station in the aeronautical mobile service`, `A satellite`, `An emergency beacon`],
     ans: 1,
-    exp: `land station in the aeronautical mobile service. An aeronautical station is a land station; the airborne one is the aircraft station.`,
+    exp: `A land station in the aeronautical mobile service. An aeronautical station is a land station; the airborne one is the aircraft station.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -82,7 +82,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The correct top-to-bottom legal order is:`,
     opts: [`CAR → Rules → Act`, `Act → Rules → CAR`, `Rules → CAR → Act`, `Act → CAR → Rules`],
     ans: 1,
-    exp: `ct → Rules → CAR. "A Real Carrier" — Act (top statute) → Rules (made under it) → CAR (operationalises into a syllabus).`,
+    exp: `Act → Rules → CAR. "A Real Carrier" — Act (top statute) → Rules (made under it) → CAR (operationalises into a syllabus).`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -92,7 +92,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The principal civil aviation statute currently in force in India is the:`,
     opts: [`Aircraft Act, 1934`, `Bharatiya Vayuyan Adhiniyam, 2024`, `Telegraph Act, 1885`, `Carriage by Air Act`],
     ans: 1,
-    exp: `haratiya Vayuyan Adhiniyam, 2024. The 2024 Act replaced the older Aircraft Act framework.`,
+    exp: `Bharatiya Vayuyan Adhiniyam, 2024. The 2024 Act replaced the older Aircraft Act framework.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -112,7 +112,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The examination is passed only when the candidate clears:`,
     opts: [`The theory paper alone`, `The practical alone`, `Both the theory and the practical/oral`, `Either one`],
     ans: 2,
-    exp: `oth the theory and the practical/oral. Both halves must be passed (within the validity window) to be licensed.`,
+    exp: `Both the theory and the practical/oral. Both halves must be passed (within the validity window) to be licensed.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -142,7 +142,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `ICAO Annex 10 deals with:`,
     opts: [`Rules of the Air`, `Operation of Aircraft`, `Aeronautical Telecommunications`, `Aerodromes`],
     ans: 2,
-    exp: `eronautical Telecommunications. Annex 10 — Aeronautical Telecommunications — is the international standard behind the RTR syllabus.`,
+    exp: `Aeronautical Telecommunications. Annex 10 — Aeronautical Telecommunications — is the international standard behind the RTR syllabus.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -242,7 +242,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `To legally operate an aircraft radio you require:`,
     opts: [`Only the RTR(A)`, `Only the aircraft radio station licence`, `Both the RTR(A) and the aircraft radio station licence`, `Neither, below 5,700 kg`],
     ans: 2,
-    exp: `oth the RTR(A) and the aircraft radio station licence. Both — the operator (RTR) and the installed apparatus (station licence) must be licensed.`,
+    exp: `Both the RTR(A) and the aircraft radio station licence. Both — the operator (RTR) and the installed apparatus (station licence) must be licensed.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -282,7 +282,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `SACFA is concerned primarily with:`,
     opts: [`Pilot licensing`, `Clearing the siting of transmitters/masts`, `Weather forecasting`, `Accident investigation`],
     ans: 1,
-    exp: `learing the siting of transmitters/masts. The Standing Advisory Committee on Frequency Allocation clears transmitter siting.`,
+    exp: `Clearing the siting of transmitters/masts. The Standing Advisory Committee on Frequency Allocation clears transmitter siting.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -302,7 +302,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The core Annex 6 radio capability includes the ability to:`,
     opts: [`Transmit only`, `Conduct two-way communication and receive meteorological information at any time`, `Receive broadcast entertainment`, `Operate without an assigned frequency`],
     ans: 1,
-    exp: `onduct two-way communication and receive meteorological information at any time. Two-way comms on required frequencies plus the ability to receive met information at any time.`,
+    exp: `Conduct two-way communication and receive meteorological information at any time. Two-way comms on required frequencies plus the ability to receive met information at any time.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -312,7 +312,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The "independence" requirement means:`,
     opts: [`Each radio must be a different brand`, `A single failure must not disable both communication and navigation`, `The pilot must operate independently of ATC`, `All equipment must be battery-powered`],
     ans: 1,
-    exp: `single failure must not disable both communication and navigation. Installation must ensure one unit's failure won't take out another required for the other function.`,
+    exp: `A single failure must not disable both communication and navigation. Installation must ensure one unit's failure won't take out another required for the other function.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -402,7 +402,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The requirement to "receive meteorological information at any time" means a receive-only set that cannot reach a met broadcast en route:`,
     opts: [`Is sufficient`, `Does not satisfy Annex 6`, `Is required by Annex 10`, `Is exempt for IFR`],
     ans: 1,
-    exp: `oes not satisfy Annex 6. The standard is about capability/availability — it must be able to obtain weather throughout the flight.`,
+    exp: `Does not satisfy Annex 6. The standard is about capability/availability — it must be able to obtain weather throughout the flight.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -412,7 +412,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The complete answer to "what is needed to make a legal aircraft radio transmission" is:`,
     opts: [`A serviceable radio`, `A licensed operator`, `A licensed operator (RTR) AND a licensed/approved aircraft radio station`, `ATC permission only`],
     ans: 2,
-    exp: `licensed operator (RTR) AND a licensed/approved aircraft radio station. Both the person and the apparatus must be licensed simultaneously.`,
+    exp: `A licensed operator (RTR) AND a licensed/approved aircraft radio station. Both the person and the apparatus must be licensed simultaneously.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -422,7 +422,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `With QNH set, the altimeter reads:`,
     opts: [`Altitude above mean sea level`, `Height above the aerodrome`, `Flight level`, `Zero on the runway`],
     ans: 0,
-    exp: `ltitude above mean sea level. QNH → altitude (AMSL); on the ground it reads the aerodrome elevation.`,
+    exp: `Altitude above mean sea level. QNH → altitude (AMSL); on the ground it reads the aerodrome elevation.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -542,7 +542,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `QGH describes a:`,
     opts: [`Pressure setting`, `Controlled descent through cloud using DF bearings`, `Met report request`, `True bearing`],
     ans: 1,
-    exp: `ontrolled descent through cloud using DF bearings. QGH — a DF let-down / controlled descent through cloud on ground-station bearings.`,
+    exp: `Controlled descent through cloud using DF bearings. QGH — a DF let-down / controlled descent through cloud on ground-station bearings.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -572,7 +572,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `"Elevation" applies to:`,
     opts: [`An aircraft in flight`, `A point on or affixed to the surface, above MSL`, `A pressure setting`, `A radio bearing`],
     ans: 1,
-    exp: `point on or affixed to the surface, above MSL. Elevation is the height of a surface point above MSL (e.g. aerodrome elevation).`,
+    exp: `A point on or affixed to the surface, above MSL. Elevation is the height of a surface point above MSL (e.g. aerodrome elevation).`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -642,7 +642,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The most controlled ICAO airspace class is:`,
     opts: [`Class A`, `Class D`, `Class F`, `Class G`],
     ans: 0,
-    exp: `lass A. Class A is the most controlled (IFR only, all separated); G is uncontrolled.`,
+    exp: `Class A. Class A is the most controlled (IFR only, all separated); G is uncontrolled.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -792,7 +792,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `In a METAR, the wind is given in:`,
     opts: [`Degrees magnetic, km/h`, `Degrees true, knots`, `Degrees magnetic, knots`, `Degrees true, m/s`],
     ans: 1,
-    exp: `egrees true, knots. METAR/TAF winds are degrees TRUE and knots; ATC passes surface wind in degrees magnetic.`,
+    exp: `Degrees true, knots. METAR/TAF winds are degrees TRUE and knots; ATC passes surface wind in degrees magnetic.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -862,7 +862,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A SIGMET warns of weather significant to:`,
     opts: [`Only light aircraft`, `All aircraft (e.g. thunderstorms, severe turbulence, volcanic ash)`, `Ground vehicles`, `Only IFR traffic at night`],
     ans: 1,
-    exp: `ll aircraft (e.g. thunderstorms, severe turbulence, volcanic ash). SIGMET = significant to all aircraft; AIRMET is for low-level/lighter aircraft.`,
+    exp: `All aircraft (e.g. thunderstorms, severe turbulence, volcanic ash). SIGMET = significant to all aircraft; AIRMET is for low-level/lighter aircraft.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -902,7 +902,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A single CB present with 15 km visibility:`,
     opts: [`Still allows CAVOK`, `Disqualifies CAVOK`, `Requires a SPECI only`, `Has no effect`],
     ans: 1,
-    exp: `isqualifies CAVOK. Any CB or TCU disqualifies CAVOK, regardless of visibility.`,
+    exp: `Disqualifies CAVOK. Any CB or TCU disqualifies CAVOK, regardless of visibility.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1022,7 +1022,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A radio-frequency signal is a form of:`,
     opts: [`Alternating current`, `Direct current`, `Static charge`, `Resistance`],
     ans: 0,
-    exp: `lternating current. Radio signals are AC — oscillating at the carrier frequency.`,
+    exp: `Alternating current. Radio signals are AC — oscillating at the carrier frequency.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1082,7 +1082,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The reactance of a capacitor as frequency increases:`,
     opts: [`Decreases`, `Increases`, `Stays the same`, `Becomes infinite`],
     ans: 0,
-    exp: `ecreases. Capacitive reactance falls with frequency (a capacitor passes high frequencies more easily).`,
+    exp: `Decreases. Capacitive reactance falls with frequency (a capacitor passes high frequencies more easily).`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1112,7 +1112,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `As frequency increases, wavelength:`,
     opts: [`Decreases`, `Increases`, `Stays the same`, `Doubles`],
     ans: 0,
-    exp: `ecreases. Inversely proportional: c = f × λ with c fixed.`,
+    exp: `Decreases. Inversely proportional: c = f × λ with c fixed.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1332,7 +1332,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Which ionospheric layer absorbs lower HF frequencies by day?`,
     opts: [`D layer`, `E layer`, `F1 layer`, `F2 layer`],
     ans: 0,
-    exp: `layer. The D layer forms by day and absorbs lower frequencies; it disappears at night.`,
+    exp: `D layer. The D layer forms by day and absorbs lower frequencies; it disappears at night.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1372,7 +1372,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The silent ring between ground-wave coverage and the first returning sky wave is the:`,
     opts: [`Skip distance`, `Dead space (skip zone)`, `Radio horizon`, `Fading zone`],
     ans: 1,
-    exp: `ead space (skip zone). Dead space is the gap where neither ground nor sky wave is received.`,
+    exp: `Dead space (skip zone). Dead space is the gap where neither ground nor sky wave is received.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1472,7 +1472,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `One reason a voice cannot be transmitted directly is that it would require:`,
     opts: [`Too little power`, `An impractically long antenna (its wavelength is enormous)`, `A satellite`, `Frequency modulation`],
     ans: 1,
-    exp: `n impractically long antenna (its wavelength is enormous). Audio wavelengths are hundreds of km; modulating a high-frequency carrier allows a short antenna and frequency sharing.`,
+    exp: `An impractically long antenna (its wavelength is enormous). Audio wavelengths are hundreds of km; modulating a high-frequency carrier allows a short antenna and frequency sharing.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1502,7 +1502,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Modulating beyond 100% depth causes:`,
     opts: [`A clearer signal`, `More range`, `Distortion and interference to adjacent channels`, `Lower frequency`],
     ans: 2,
-    exp: `istortion and interference to adjacent channels. Over-modulation distorts the audio and splatters into neighbouring channels.`,
+    exp: `Distortion and interference to adjacent channels. Over-modulation distorts the audio and splatters into neighbouring channels.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1522,7 +1522,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `In FM, what is held constant?`,
     opts: [`Frequency`, `Amplitude`, `Wavelength of the audio`, `Bandwidth`],
     ans: 1,
-    exp: `mplitude. FM varies frequency while amplitude stays constant — hence its noise immunity.`,
+    exp: `Amplitude. FM varies frequency while amplitude stays constant — hence its noise immunity.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1532,7 +1532,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `FM is generally NOT used for VHF aviation voice because of its:`,
     opts: [`Low cost`, `Capture effect (weaker signal silenced)`, `Wide range`, `Use of sidebands`],
     ans: 1,
-    exp: `apture effect (weaker signal silenced). FM's capture effect would silently suppress a second transmitting aircraft — unsafe.`,
+    exp: `Capture effect (weaker signal silenced). FM's capture effect would silently suppress a second transmitting aircraft — unsafe.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1602,7 +1602,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Modulation depth m is defined as:`,
     opts: [`Carrier voltage &divide; audio voltage`, `Audio (modulating) voltage &divide; carrier voltage`, `Frequency &divide; wavelength`, `Power &divide; bandwidth`],
     ans: 1,
-    exp: `udio (modulating) voltage &divide; carrier voltage. m = Vm/Vc, usually expressed as a percentage.`,
+    exp: `Audio (modulating) voltage &divide; carrier voltage. m = Vm/Vc, usually expressed as a percentage.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1652,7 +1652,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A "stuck microphone" on a simplex frequency:`,
     opts: [`Improves the signal`, `Blocks the whole frequency for everyone`, `Only affects that aircraft`, `Changes the frequency`],
     ans: 1,
-    exp: `locks the whole frequency for everyone. A held/stuck PTT transmits continuously, blocking the shared channel; the offender can't hear it.`,
+    exp: `Blocks the whole frequency for everyone. A held/stuck PTT transmits continuously, blocking the shared channel; the offender can't hear it.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1762,7 +1762,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `ACARS is best described as:`,
     opts: [`A navigation aid`, `A digital datalink for short text messages between aircraft and ground`, `An emergency beacon`, `A type of antenna`],
     ans: 1,
-    exp: `digital datalink for short text messages between aircraft and ground. ACARS carries short text messages, reducing voice workload.`,
+    exp: `A digital datalink for short text messages between aircraft and ground. ACARS carries short text messages, reducing voice workload.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1802,7 +1802,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The ADF resolves the 180° ambiguity of the loop antenna by:`,
     opts: [`Using a higher frequency`, `Adding a sense antenna to form a cardioid with a single null`, `Rotating the aircraft`, `Comparing 90 and 150 Hz tones`],
     ans: 1,
-    exp: `dding a sense antenna to form a cardioid with a single null. The omnidirectional sense antenna combines with the figure-of-eight loop to give a cardioid with one null.`,
+    exp: `Adding a sense antenna to form a cardioid with a single null. The omnidirectional sense antenna combines with the figure-of-eight loop to give a cardioid with one null.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1822,7 +1822,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A VOR's reference and variable 30 Hz signals are in phase when the aircraft is:`,
     opts: [`Overhead the station`, `Due magnetic north of the station`, `On the 180° radial`, `At the cone of confusion`],
     ans: 1,
-    exp: `ue magnetic north of the station. By design the phase difference is zero on the 360° (north) radial; it then equals the radial.`,
+    exp: `Due magnetic north of the station. By design the phase difference is zero on the 360° (north) radial; it then equals the radial.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1862,7 +1862,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A false glide slope is typically encountered:`,
     opts: [`Below the true 3° path`, `Above the true path (e.g. ~6°), if intercepted from above`, `On the localizer back course`, `Only at night`],
     ans: 1,
-    exp: `bove the true path (e.g. ~6°), if intercepted from above. Antenna side-lobes create false slopes at higher angles; intercept the GP from below to avoid them.`,
+    exp: `Above the true path (e.g. ~6°), if intercepted from above. Antenna side-lobes create false slopes at higher angles; intercept the GP from below to avoid them.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -1952,7 +1952,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `GAGAN is best described as:`,
     opts: [`A ground-based primary radar`, `A satellite-based augmentation system (SBAS) for the Indian region`, `India's own satellite constellation for global coverage`, `An inertial system`],
     ans: 1,
-    exp: `satellite-based augmentation system (SBAS) for the Indian region. GAGAN broadcasts corrections + integrity over India via GEO satellites. (NavIC/IRNSS is the regional constellation.)`,
+    exp: `A satellite-based augmentation system (SBAS) for the Indian region. GAGAN broadcasts corrections + integrity over India via GEO satellites. (NavIC/IRNSS is the regional constellation.)`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2192,7 +2192,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `"DIRECTOR" is associated with:`,
     opts: [`Apron management`, `Approach radar (final vectoring)`, `Clearance delivery`, `Area control`],
     ans: 1,
-    exp: `pproach radar (final vectoring). Director provides final approach radar vectoring.`,
+    exp: `Approach radar (final vectoring). Director provides final approach radar vectoring.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2292,7 +2292,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Which of the following must always be read back?`,
     opts: [`Traffic information`, `A runway clearance (enter/land/take off/cross/hold short)`, `A weather report`, `A position report`],
     ans: 1,
-    exp: `runway clearance. Runway clearances are mandatory read-back items.`,
+    exp: `A runway clearance. Runway clearances are mandatory read-back items.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2302,7 +2302,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A squawk code is:`,
     opts: [`Not read back`, `A mandatory read-back item`, `Only read back at night`, `Read back as a whole number`],
     ans: 1,
-    exp: `mandatory read-back item. SSR codes must be read back, digit by digit.`,
+    exp: `A mandatory read-back item. SSR codes must be read back, digit by digit.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2442,7 +2442,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `"Cleared to land" is:`,
     opts: [`Not read back`, `A mandatory read-back item`, `Read back only at night`, `Optional`],
     ans: 1,
-    exp: `mandatory read-back item. Landing clearances are mandatory read-back items.`,
+    exp: `A mandatory read-back item. Landing clearances are mandatory read-back items.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2492,7 +2492,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Surface wind passed with a take-off/landing clearance is in:`,
     opts: [`Degrees true`, `Degrees magnetic`, `Knots only`, `Metres per second`],
     ans: 1,
-    exp: `egrees magnetic. ATC passes surface wind in degrees magnetic (the runway is also magnetic).`,
+    exp: `Degrees magnetic. ATC passes surface wind in degrees magnetic (the runway is also magnetic).`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2542,7 +2542,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `To cross a runway a vehicle needs:`,
     opts: [`No clearance if it is quick`, `An explicit "cross runway XX" clearance, read back`, `Only apron approval`, `A go-around`],
     ans: 1,
-    exp: `n explicit "cross runway XX" clearance, read back. Crossing requires a specific clearance, read back in full.`,
+    exp: `An explicit "cross runway XX" clearance, read back. Crossing requires a specific clearance, read back in full.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2582,7 +2582,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Vehicles confined to the apron are normally handled by:`,
     opts: [`Area control`, `Apron management`, `The Director`, `No one`],
     ans: 1,
-    exp: `pron management. Apron-only vehicles are usually managed by apron control, not the tower.`,
+    exp: `Apron management. Apron-only vehicles are usually managed by apron control, not the tower.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2612,7 +2612,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The most safety-critical vehicle movement is:`,
     opts: [`Driving on the apron`, `Crossing an active runway`, `Parking at a stand`, `Refuelling`],
     ans: 1,
-    exp: `rossing an active runway. Crossing an active runway carries the highest incursion risk, hence the strict phraseology.`,
+    exp: `Crossing an active runway. Crossing an active runway carries the highest incursion risk, hence the strict phraseology.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2632,7 +2632,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `"Expect ILS approach runway 27" is:`,
     opts: [`The approach clearance`, `Advance information, not a clearance`, `A landing clearance`, `A vector`],
     ans: 1,
-    exp: `dvance information, not a clearance. "Expect" prepares you; the clearance "cleared ILS approach" comes later.`,
+    exp: `Advance information, not a clearance. "Expect" prepares you; the clearance "cleared ILS approach" comes later.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2662,7 +2662,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `An SRA normally terminates at:`,
     opts: [`The threshold`, `A fixed range, commonly 2 NM (or &frac12; NM)`, `10 NM`, `It never terminates`],
     ans: 1,
-    exp: `fixed range, commonly 2 NM (or &frac12; NM). SRAs terminate at a set range, from where the pilot continues visually.`,
+    exp: `A fixed range, commonly 2 NM (or &frac12; NM). SRAs terminate at a set range, from where the pilot continues visually.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2672,7 +2672,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `On an SRA, the pilot maintains the correct descent by:`,
     opts: [`Following an electronic glidepath`, `Comparing the radar range with the advised height`, `Using GPS only`, `Listening to the marker beacons`],
     ans: 1,
-    exp: `omparing the radar range with the advised height. The advised height for each range is the descent guide; there is no glidepath signal.`,
+    exp: `Comparing the radar range with the advised height. The advised height for each range is the descent guide; there is no glidepath signal.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2682,7 +2682,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A Precision Approach Radar provides:`,
     opts: [`Heading only`, `Continuous azimuth and elevation (centreline + glidepath) guidance`, `Range only`, `No talkdown`],
     ans: 1,
-    exp: `ontinuous azimuth and elevation (centreline + glidepath) guidance. PAR gives both dimensions continuously — a true precision talkdown.`,
+    exp: `Continuous azimuth and elevation (centreline + glidepath) guidance. PAR gives both dimensions continuously — a true precision talkdown.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2722,7 +2722,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The platform/intercept altitude on vectors is given as a:`,
     opts: [`Flight level only`, `Descent to an altitude with QNH, read back`, `Squawk`, `Heading`],
     ans: 1,
-    exp: `escent to an altitude with QNH, read back. Below the transition level the controller assigns an altitude on QNH, which is read back.`,
+    exp: `Descent to an altitude with QNH, read back. Below the transition level the controller assigns an altitude on QNH, which is read back.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2752,7 +2752,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `On a PAR talkdown, "on the glidepath, on centreline" means the aircraft is:`,
     opts: [`Too high and left`, `Correctly positioned in both the vertical and the lateral plane`, `Below the glidepath`, `Off the radar`],
     ans: 1,
-    exp: `orrectly positioned in both the vertical and the lateral plane. It confirms correct position on both the glidepath and the runway centreline.`,
+    exp: `Correctly positioned in both the vertical and the lateral plane. It confirms correct position on both the glidepath and the runway centreline.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2762,7 +2762,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `An IFR departure handed to Approach typically receives:`,
     opts: [`A landing clearance`, `A climb clearance and identification`, `A SELCAL check`, `Holding instructions only`],
     ans: 1,
-    exp: `climb clearance and identification. Approach identifies the departure and issues climb instructions toward the airways.`,
+    exp: `A climb clearance and identification. Approach identifies the departure and issues climb instructions toward the airways.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2772,7 +2772,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The reason a controller can vector and provide radar approaches is:`,
     opts: [`It has no radar`, `Approach is usually radar-equipped (a surveillance display)`, `It uses HF only`, `It is on the apron`],
     ans: 1,
-    exp: `pproach is usually radar-equipped (a surveillance display). Radar at approach control enables vectoring and SRA/PAR.`,
+    exp: `Approach is usually radar-equipped (a surveillance display). Radar at approach control enables vectoring and SRA/PAR.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2782,7 +2782,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `The call-sign suffix for an Area Control Centre is:`,
     opts: [`Approach`, `Tower`, `Control`, `Information`],
     ans: 2,
-    exp: `ontrol. "Control" denotes the Area Control Centre (en-route).`,
+    exp: `Control. "Control" denotes the Area Control Centre (en-route).`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2812,7 +2812,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `To enter a controlled airway, an aircraft needs:`,
     opts: [`No clearance`, `A clearance to join`, `Only a squawk`, `A landing clearance`],
     ans: 1,
-    exp: `clearance to join. Joining controlled airspace requires a clearance to join.`,
+    exp: `A clearance to join. Joining controlled airspace requires a clearance to join.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2822,7 +2822,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `An aircraft held over a fix is given:`,
     opts: [`A take-off clearance`, `A fix, level and an expected approach / onward clearance time`, `A SELCAL code`, `A runway`],
     ans: 1,
-    exp: `fix, level and an expected approach / onward clearance time. Holding clearance gives the fix, level and EAT/onward-clearance time.`,
+    exp: `A fix, level and an expected approach / onward clearance time. Holding clearance gives the fix, level and EAT/onward-clearance time.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2842,7 +2842,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `ADS-C provides:`,
     opts: [`Voice communication`, `Automatic datalink position reports at agreed intervals/events`, `A glidepath`, `Engine data to ATC`],
     ans: 1,
-    exp: `utomatic datalink position reports at agreed intervals/events. ADS-C (Contract) sends automatic position reports over datalink.`,
+    exp: `Automatic datalink position reports at agreed intervals/events. ADS-C (Contract) sends automatic position reports over datalink.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2852,7 +2852,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `CPDLC carries:`,
     opts: [`Weather radar images`, `Controller–pilot clearances and messages as text`, `A glidepath signal`, `The phonetic alphabet`],
     ans: 1,
-    exp: `ontroller–pilot clearances and messages as text. CPDLC is a text datalink for ATC clearances and messages.`,
+    exp: `Controller–pilot clearances and messages as text. CPDLC is a text datalink for ATC clearances and messages.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2932,7 +2932,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `An aircraft crossing an airway is cleared to cross at:`,
     opts: [`Any level it likes`, `A level/time that keeps it separated from airway traffic`, `Ground level`, `The transition altitude only`],
     ans: 1,
-    exp: `level/time that keeps it separated from airway traffic. A crossing clearance specifies a level/time providing separation.`,
+    exp: `A level/time that keeps it separated from airway traffic. A crossing clearance specifies a level/time providing separation.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2982,7 +2982,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Traffic information is given as:`,
     opts: [`A frequency and a level`, `Clock bearing, distance, direction of movement, and level/type if known`, `A squawk code`, `A QNH`],
     ans: 1,
-    exp: `lock bearing, distance, direction of movement, and level/type if known. e.g. "traffic, two o'clock, four miles, crossing left to right".`,
+    exp: `Clock bearing, distance, direction of movement, and level/type if known. e.g. "traffic, two o'clock, four miles, crossing left to right".`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -2992,7 +2992,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `"Avoiding action, turn left immediately heading 180" must be:`,
     opts: [`Considered and queried first`, `Acted on at once and read back`, `Ignored if VFR`, `Acknowledged with "roger"`],
     ans: 1,
-    exp: `cted on at once and read back. Avoiding action is an immediate manoeuvre, executed at once and read back.`,
+    exp: `Acted on at once and read back. Avoiding action is an immediate manoeuvre, executed at once and read back.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3032,7 +3032,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A controller can still assist an aircraft with a receiver-only failure if it has:`,
     opts: [`No transponder`, `A working transponder (so it can be tracked and instructed blind)`, `A working ELT only`, `Only HF`],
     ans: 1,
-    exp: `working transponder (so it can be tracked and instructed blind). A working transponder lets the controller track it and pass blind instructions acknowledged by squawk.`,
+    exp: `A working transponder (so it can be tracked and instructed blind). A working transponder lets the controller track it and pass blind instructions acknowledged by squawk.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3132,7 +3132,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A distress call has priority:`,
     opts: [`Only over VFR traffic`, `Absolute, over all other transmissions`, `Equal to urgency`, `After area control`],
     ans: 1,
-    exp: `bsolute, over all other transmissions. Distress has absolute priority over everything; urgency over all except distress.`,
+    exp: `Absolute, over all other transmissions. Distress has absolute priority over everything; urgency over all except distress.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3232,7 +3232,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `If you can still receive but not transmit, you should:`,
     opts: [`Land immediately anywhere`, `Comply with instructions heard and acknowledge by transponder/turns`, `Switch off the transponder`, `Ignore ATC`],
     ans: 1,
-    exp: `omply with instructions heard and acknowledge by transponder/turns. A transmitter-only failure still lets you follow ATC and acknowledge by ident/turns.`,
+    exp: `Comply with instructions heard and acknowledge by transponder/turns. A transmitter-only failure still lets you follow ATC and acknowledge by ident/turns.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3242,7 +3242,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A steady green light to an aircraft in flight means:`,
     opts: [`Stop`, `Cleared to land`, `Do not land`, `Return for landing`],
     ans: 1,
-    exp: `leared to land. Steady green in flight = cleared to land; on the ground = cleared for take-off.`,
+    exp: `Cleared to land. Steady green in flight = cleared to land; on the ground = cleared for take-off.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3252,7 +3252,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Red flashes to an aircraft in flight mean:`,
     opts: [`Cleared to land`, `Aerodrome unsafe — do not land`, `Cleared to taxi`, `Give way`],
     ans: 1,
-    exp: `erodrome unsafe — do not land. Red flashes in flight warn that the aerodrome is unsafe — do not land.`,
+    exp: `Aerodrome unsafe — do not land. Red flashes in flight warn that the aerodrome is unsafe — do not land.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3272,7 +3272,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `After a communications failure, an IFR aircraft should generally:`,
     opts: [`Descend immediately to the ground`, `Continue in accordance with the last clearance / flight plan and complete the flight`, `Orbit until fuel runs low`, `Squawk 7500`],
     ans: 1,
-    exp: `ontinue in accordance with the last clearance / flight plan and complete the flight. Continue per the last acknowledged clearance and flight plan, using light signals to land.`,
+    exp: `Continue in accordance with the last clearance / flight plan and complete the flight. Continue per the last acknowledged clearance and flight plan, using light signals to land.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3342,7 +3342,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `RVR is normally passed when the visibility/RVR is:`,
     opts: [`Above 10 km`, `At or below a stated reporting value`, `Always, regardless of value`, `Only at night`],
     ans: 1,
-    exp: `t or below a stated reporting value. RVR is reported when at or below the reporting threshold (low visibility).`,
+    exp: `At or below a stated reporting value. RVR is reported when at or below the reporting threshold (low visibility).`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3362,7 +3362,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `A runway with standing water would be reported as:`,
     opts: [`CAVOK`, `A contaminated/wet surface condition`, `A wind shear`, `A NOTAM only`],
     ans: 1,
-    exp: `contaminated/wet surface condition. Water/slush/snow/ice are surface conditions passed with braking action.`,
+    exp: `A contaminated/wet surface condition. Water/slush/snow/ice are surface conditions passed with braking action.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3392,7 +3392,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Surface wind passed with a landing clearance is in:`,
     opts: [`Degrees true, km/h`, `Degrees magnetic, knots`, `Degrees true, knots`, `Degrees magnetic, m/s`],
     ans: 1,
-    exp: `egrees magnetic, knots. ATC passes surface wind in degrees magnetic and knots.`,
+    exp: `Degrees magnetic, knots. ATC passes surface wind in degrees magnetic and knots.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3422,7 +3422,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `What does ATIS stand for?`,
     opts: [`Aviation Terminal Information System`, `Automatic Terminal Information Service`, `Aerodrome Traffic Information Service`, `Air Traffic Instruction Service`],
     ans: 1,
-    exp: `utomatic Terminal Information Service. ATIS is the Automatic Terminal Information Service.`,
+    exp: `Automatic Terminal Information Service. ATIS is the Automatic Terminal Information Service.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3452,7 +3452,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Successive ATIS broadcasts are identified by:`,
     opts: [`A number`, `An alphabetical letter (e.g. Information Alpha)`, `The frequency`, `A squawk code`],
     ans: 1,
-    exp: `n alphabetical letter (e.g. Information Alpha). Each new ATIS update gets the next letter in the alphabet.`,
+    exp: `An alphabetical letter (e.g. Information Alpha). Each new ATIS update gets the next letter in the alphabet.`,
   },
   {
     subjectIds: ["radio-telephony"],
@@ -3512,7 +3512,7 @@ export const RTF_QUESTIONS: DemoQuestion[] = [
     q: `Annex 10 covers:`,
     opts: [`Rules of the Air`, `Aeronautical Telecommunications`, `Aerodromes`],
     ans: 1,
-    exp: `eronautical Telecommunications. Annex 10 — Aeronautical Telecommunications (TEN = TELECOM).`,
+    exp: `Aeronautical Telecommunications. Annex 10 — Aeronautical Telecommunications (TEN = TELECOM).`,
   },
   {
     subjectIds: ["radio-telephony"],
