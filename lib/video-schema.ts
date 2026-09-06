@@ -1,4 +1,4 @@
-import { VIDEO_METADATA } from "@/lib/generated/video-metadata";
+import { VIDEO_METADATA, type VideoMeta } from "@/lib/generated/video-metadata";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 import { servesRealNotes } from "@/lib/indexability";
 import type { ChapterVideo } from "@/lib/chapter-videos";
@@ -93,6 +93,32 @@ export function isWatchPage(
   return watchPageFor(track, subjectId, chapterId).endsWith(`/${type}`);
 }
 
+/**
+ * The YouTube description — unless it is a call to action rather than a description.
+ *
+ * 2026-09-06: the channel pass moved each chapter's deep link above YouTube's
+ * ~160-character "...more" fold, which is the only place a viewer can actually
+ * click it. Measured before that pass, 0 of 201 lectures had the link inside
+ * 160 characters, so 201 lectures were referring no traffic at all.
+ *
+ * But lib/generated/video-metadata.ts stores exactly that first ~160 characters,
+ * because that is all YouTube's own meta tag exposes. So the same change turned
+ * 199 of 273 stored descriptions into "topic — subject / Free notes + practice
+ * questions: https://...". Right on YouTube, useless here: a video rich result
+ * whose description is a bare link to the page it is already on is worse than
+ * no description at all.
+ *
+ * A stored description containing this site's own URL is therefore the CTA, not
+ * a description. Measured: 4 of 273 before the pass, 199 after. The sentence
+ * used instead asserts nothing new — the lecture's real title and the chapter
+ * it teaches are both already on record here.
+ */
+function describe(meta: VideoMeta, chapterTitle: string): string {
+  const isCallToAction = meta.description.includes("ghostaviator.com");
+  if (meta.description && !isCallToAction) return meta.description;
+  return `${meta.name} — ${chapterTitle}. A free DGCA CPL/ATPL ground school lecture by Capt. Pankaj Pahil.`;
+}
+
 export function videoObjectsFor(
   track: "cpl" | "atpl",
   subjectId: string,
@@ -109,7 +135,7 @@ export function videoObjectsFor(
       "@type": "VideoObject",
       "@id": `${pageUrl}#video-${v.id}`,
       name: meta.name,
-      description: meta.description || `${chapterTitle} — DGCA ${track.toUpperCase()} lecture by Capt. Pankaj Pahil.`,
+      description: describe(meta, chapterTitle),
       thumbnailUrl: meta.thumbnailUrl,
       uploadDate: meta.uploadDate,
       ...(meta.duration ? { duration: meta.duration } : {}),
@@ -177,7 +203,7 @@ export function videoSitemapEntriesFor(
   return videos.flatMap(v => {
     const meta = VIDEO_METADATA[v.id];
     if (!meta || !meta.thumbnailUrl) return [];
-    const description = meta.description || `${chapterTitle} — DGCA lecture by Capt. Pankaj Pahil.`;
+    const description = describe(meta, chapterTitle);
     const seconds = isoSeconds(meta.duration);
     return [{
       title: xml(meta.name),

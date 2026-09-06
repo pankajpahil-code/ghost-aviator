@@ -11,8 +11,16 @@
 import { writeFileSync } from "node:fs";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { CHAPTER_VIDEOS } from "@/lib/chapter-videos";
+import { SITE_URL } from "@/lib/site";
 
-const SITE = "https://www.ghostaviator.com";
+// Iron Rule 5: derived, never hardcoded. This read "https://www.ghostaviator.com"
+// until 2026-09-06 while lib/site.ts has always canonicalised to the apex, so
+// every one of the 201 lecture descriptions published a URL that 307-redirects
+// — an extra hop for exactly the student on a cheap phone this site is built
+// for, and a channel pointing all its links at a host the site does not consider
+// canonical. The file comment above already called this "the canonical chapter
+// URL"; it just was not one.
+const SITE = SITE_URL;
 
 type Placement = {
   track: "cpl" | "atpl";

@@ -19,7 +19,10 @@ sys.path.insert(0, str(HERE))
 SNAP = json.loads((HERE / "_snapshot.json").read_text(encoding="utf-8"))
 CHAPTER_MAP = json.loads((ROOT / "tools" / "_video-chapter-map.json").read_text(encoding="utf-8"))
 
-SITE = "https://www.ghostaviator.com"
+# The canonical origin is lib/site.ts (apex, no www). Python cannot import it,
+# so the guard below asserts the generated map agrees rather than trusting this
+# literal to stay in step. See CLAUDE.md 2026-09-06.
+SITE = "https://ghostaviator.com"
 
 # Playlist per site subject. Read from the live snapshot so a renamed or
 # rebuilt playlist can never leave a stale id baked into this file.
@@ -58,6 +61,14 @@ TYPO_FIX = [
     (re.compile(r"\bGALLILEO\b", re.I), "Galileo"),
     (re.compile(r"\bAerodro\.\.\.$"), "Aerodrome Traffic"),
 ]
+
+_bad = sorted({e["primary"]["url"] for e in CHAPTER_MAP.values()
+               if not e["primary"]["url"].startswith(SITE + "/")})
+if _bad:
+    raise SystemExit(
+        f"{len(_bad)} mapped chapter URLs are not on {SITE} — "
+        f"e.g. {_bad[0]}. "
+        "Re-run: npx tsx tools/export-video-chapter-map.mts")
 
 SUBJECT_LABEL = {
     "air-regulations": "Air Regulations",
@@ -142,15 +153,25 @@ def build_description(topic, chapter_ref, place, subject_id):
         also = f"\nAlso covered in:\n{also}\n"
 
     tags = SUBJECT_HASHTAG.get(subject_id, "")
+    # THE FOLD. YouTube collapses a description at roughly 160 characters behind
+    # "...more". The 2026-08-14 pass wrote the deep link into a block four lines
+    # down: measured over all 201 planned videos the first site URL sat at a
+    # median offset of 314 and 0 of 201 were inside 160, so no viewer ever saw
+    # it without expanding. Line 1 keeps the topic words (the search-weighted
+    # position); line 2 carries the link. Worst case on this channel: 122.
+    # NOT the chapter number here: the live title already carries HIS lecture
+    # number (e.g. "Ch.91") while ch['chapterNumber'] is the SITE chapter
+    # (19). Printing "Ch.19" one line under a title reading "Ch.91" reads as a
+    # contradiction. The site chapter is named in full in the paragraph below.
+    head = (f"{topic} \u2014 DGCA {ch['subjectName']}\n"
+            f"\U0001F4D6 Free notes + practice questions: {url}\n")
+
     return (
-        f"{topic} — DGCA {ch['subjectName']}, Chapter {ch['chapterNumber']}: "
-        f"{ch['chapterTitle']}\n"
+        head +
         f"\n"
         f"Free {label} ground school for the DGCA CPL and ATPL papers, taught by "
-        f"Capt. Pankaj Pahil. This lecture covers {topic}.\n"
-        f"\n"
-        f"📖 NOTES + PRACTICE QUESTIONS FOR THIS EXACT CHAPTER\n"
-        f"   {url}\n"
+        f"Capt. Pankaj Pahil. This lecture covers {topic} \u2014 Chapter "
+        f"{ch['chapterNumber']}: {ch['chapterTitle']}.\n"
         f"{also}"
         f"{pl_line}"
         f"\n"
