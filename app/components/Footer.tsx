@@ -24,7 +24,7 @@ export default function Footer() {
               <span className="text-lg font-bold">Ghost <span style={{ color: "#f0913a" }}>Aviator</span></span>
             </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#64748b" }}>
-              India&apos;s most comprehensive DGCA exam preparation platform. Built by pilots, for pilots.
+              DGCA CPL and ATPL exam preparation, with chapter notes, practice questions and mock tests.
               Free self-study for every student pilot in India.
             </p>
             <div className="flex flex-wrap gap-3">

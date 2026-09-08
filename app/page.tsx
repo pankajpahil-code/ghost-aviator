@@ -57,7 +57,7 @@ export default function Home() {
                 </span>
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold"
                       style={{ background:"rgba(207,216,238,0.10)", border:"1px solid rgba(207,216,238,0.30)", color:"var(--bolt)" }}>
-                  <Zap className="w-3 h-3" /> INDIA&apos;S #1 DGCA PREP
+                  <Zap className="w-3 h-3" /> FREE DGCA SELF-STUDY
                 </span>
               </div>
 
@@ -76,8 +76,8 @@ export default function Home() {
               </p>
               <p className="text-base mb-9 max-w-lg leading-relaxed"
                  style={{ color:"#c8d2dc", textShadow:"0 1px 14px rgba(0,0,0,0.9)" }}>
-                India&apos;s most complete DGCA exam prep — structured chapter by chapter, exactly like the actual exam.
-                <strong style={{ color:"var(--ember-soft)" }}> 100% free to start.</strong>
+                Study for DGCA CPL and ATPL exams with chapter notes, practice questions and mock tests.
+                <strong style={{ color:"var(--ember-soft)" }}> Self-study stays free. Live classes are optional.</strong>
               </p>
 
               <div className="flex flex-wrap gap-4 mb-10">
@@ -92,7 +92,7 @@ export default function Home() {
               </div>
 
               <div className="grid grid-cols-4 gap-3 max-w-xl">
-                {[[TOTAL_Q,"Questions"],[`${SUBJECT_COUNT}`,"Subjects"],["70%","Pass Mark"],["FREE","Start"]].map(([v,l]) => (
+                {[[TOTAL_Q,"Questions"],[`${SUBJECT_COUNT}`,"Subjects"],["70%","Pass Mark"],["FREE","Self-study"]].map(([v,l]) => (
                   <div key={l} className="text-center p-3 rounded-xl"
                        style={{ background:"rgba(11,17,23,0.72)", border:"1px solid rgba(240,145,58,0.22)", backdropFilter:"blur(6px)" }}>
                     <div className="text-xl font-black" style={{ color:"var(--ember-soft)" }}>{v}</div>

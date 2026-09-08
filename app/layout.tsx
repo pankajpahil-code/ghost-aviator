@@ -11,9 +11,9 @@ import { SITE_URL, CAPTAIN_PROFILES, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } fr
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
-const TITLE = "Ghost Aviator — DGCA Pilot Course, CPL/ATPL Exam Prep & Live Ground Classes";
+const TITLE = "Free DGCA CPL & ATPL Exam Prep | Ghost Aviator";
 const DESCRIPTION =
-  "India's most complete DGCA pilot training prep — free CPL/ATPL question bank, notes, mock tests and past papers, plus live online ground classes in Air Regulations, Meteorology and Air Navigation by Capt. Pankaj Pahil.";
+  "Free DGCA CPL and ATPL notes, question banks and mock tests for student pilots in India. Explore live ground classes with Capt. Pankaj Pahil.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
