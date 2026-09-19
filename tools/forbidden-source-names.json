@@ -6,6 +6,14 @@
     "IC Joshi",
     "RK Bali",
     "Oxford Aviation",
-    "CAE Oxford"
-  ]
+    "CAE Oxford",
+    "Oxford Instrumentation",
+    "Oxford text",
+    "Oxford source",
+    "Oxford answer",
+    "Oxford ATPL",
+    "Oxford Questions",
+    "Oxford revision"
+  ],
+  "_matching": "scrub-source-names.mjs matches case-insensitively and treats a space as any run of spaces, dots or hyphens, and a short all-caps token as initials with optional dots - so 'RK Bali' also catches 'RK-Bali' and 'R.K. Bali'. Added 2026-09-19 after both spellings shipped live past the exact-match check."
 }

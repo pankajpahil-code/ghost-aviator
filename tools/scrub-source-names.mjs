@@ -49,7 +49,14 @@ for (const n of FORBIDDEN_NAMES) {
     throw new Error(`forbidden-source-names.json: "${n}" is not plain text`);
   }
 }
-const FORBIDDEN = new RegExp("(" + FORBIDDEN_NAMES.join("|") + ")");
+// A name is matched by its spelling variants, not its exact bytes: "RK Bali"
+// passed this check for weeks while "RK-Bali" and "R.K. Bali" were live.
+// Case-insensitive; a space matches any run of spaces/dots/hyphens; a short
+// all-caps token is read as initials, so "RK" also matches "R.K." and "R K".
+const variant = n => n.split(/[ -]+/).map(t =>
+  /^[A-Z]{2,3}$/.test(t) ? t.split("").join("[\\s.]*") + "\\.?" : t
+).join("[\\s.\\-]*");
+const FORBIDDEN = new RegExp("(" + FORBIDDEN_NAMES.map(variant).join("|") + ")", "i");
 
 let changed = 0, total = 0;
 const unresolved = [];
