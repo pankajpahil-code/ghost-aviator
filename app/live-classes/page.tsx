@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, MessageCircle, Mail, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers, CreditCard } from "lucide-react";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 import {
   LIVE_EMAIL as EMAIL,
@@ -134,13 +134,13 @@ const JSON_LD = {
       "@type": "Course",
       name: `DGCA CPL ${s.name} — Live Online Ground Classes`,
       description: `Live online DGCA ${s.name} classes taught by Capt. Pankaj Pahil. Small batch of 10, 4–6 weeks.`,
-      provider: { "@id": `${SITE_URL}/#org` },
+      provider: { "@id": ORG_ID },
       offers: { "@type": "Offer", price: LIVE_PRICE_VALUE, priceCurrency: "INR", availability: "https://schema.org/InStock" },
       hasCourseInstance: {
         "@type": "CourseInstance",
         courseMode: "Online",
         courseWorkload: "PT6H",
-        instructor: { "@type": "Person", name: "Capt. Pankaj Pahil" },
+        instructor: { "@id": PERSON_ID },
       },
     })),
     {
@@ -150,6 +150,14 @@ const JSON_LD = {
         name: f.q,
         acceptedAnswer: { "@type": "Answer", text: f.a },
       })),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${SITE_URL}/live-classes#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Live Ground Classes" },
+      ],
     },
   ],
 };

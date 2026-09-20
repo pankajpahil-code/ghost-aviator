@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { GUIDES } from "@/lib/guides";
 import { BookOpen, Calendar, User, ChevronRight } from "lucide-react";
+import { SITE_URL, ORG_ID } from "@/lib/site";
 
 export const metadata = {
   title: "DGCA Exam Guides — CPL, RTR(A) & Pilot Training in India | Ghost Aviator",
@@ -9,8 +10,35 @@ export const metadata = {
 };
 
 export default function GuidesIndexPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${SITE_URL}/guides#webpage`,
+        "name": "DGCA Aviation Study Guides",
+        "description": "Comprehensive guides on DGCA exams, eGCA computer numbers, RTR(A) exam patterns, and CPL mock tests by Capt. Pankaj Pahil.",
+        "url": `${SITE_URL}/guides`,
+        "inLanguage": "en-IN",
+        "publisher": { "@id": ORG_ID },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/guides#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "Guides" },
+        ],
+      },
+    ],
+  };
+
   return (
     <div style={{ background: "#0b1117" }} className="min-h-screen pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Header */}
       <div className="relative overflow-hidden" style={{ borderBottom: `1px solid #ab794d25` }}>
         <div className="absolute inset-0 pointer-events-none"

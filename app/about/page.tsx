@@ -51,17 +51,29 @@ export const metadata: Metadata = {
 // name, so the entity consolidates rather than fragmenting.
 const JSON_LD = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": PERSON_ID,
-  name: "Capt. Pankaj Pahil",
-  url: `${SITE_URL}/about`,
-  image: `${SITE_URL}${PORTRAIT}`,
-  jobTitle: "Pilot, DGCA Flight & Ground Instructor",
-  description:
-    "Pilot and DGCA flight & ground instructor with 20+ years in aviation. Author of 'Technical General for Aviators' and 'Complete RTR(A) Examination Book'. Creator of Ghost Aviator, a free DGCA exam preparation platform.",
-  sameAs: CAPTAIN_PROFILES,
-  knowsAbout: CAPTAIN_KNOWS_ABOUT,
-  worksFor: { "@id": ORG_ID },
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: "Capt. Pankaj Pahil",
+      url: `${SITE_URL}/about`,
+      image: `${SITE_URL}${PORTRAIT}`,
+      jobTitle: "Pilot, DGCA Flight & Ground Instructor",
+      description:
+        "Pilot and DGCA flight & ground instructor with 20+ years in aviation. Author of 'Technical General for Aviators' and 'Complete RTR(A) Examination Book'. Creator of Ghost Aviator, a free DGCA exam preparation platform.",
+      sameAs: CAPTAIN_PROFILES,
+      knowsAbout: CAPTAIN_KNOWS_ABOUT,
+      worksFor: { "@id": ORG_ID },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${SITE_URL}/about#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "About Capt. Pankaj Pahil" },
+      ],
+    },
+  ],
 };
 
 const CREDENTIALS: [typeof Award, string, string][] = [

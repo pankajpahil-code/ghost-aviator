@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { papersBySubject } from "@/lib/past-papers";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import { SITE_URL, ORG_ID } from "@/lib/site";
 import { FileText, ArrowRight, Clock, CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -15,8 +16,37 @@ const SUBJECTS = [...CPL_SUBJECTS, ...ATPL_SUBJECTS];
 
 export default function PastPapersPage() {
   const groups = papersBySubject();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${SITE_URL}/past-papers#webpage`,
+        "name": "DGCA Previous Year Question Papers",
+        "description":
+          "Practice full DGCA previous-year and sample question papers online with answer keys — free exam-style practice for CPL and ATPL, subject by subject.",
+        "url": `${SITE_URL}/past-papers`,
+        "inLanguage": "en-IN",
+        "publisher": { "@id": ORG_ID },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/past-papers#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "Past Papers" },
+        ],
+      },
+    ],
+  };
+
   return (
     <div style={{ background: "#0b1117" }} className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Header */}
       <div className="relative overflow-hidden" style={{ borderBottom: "1px solid rgba(171,121,77,0.25)" }}>
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(171,121,77,0.2) 0%, transparent 70%)" }} />

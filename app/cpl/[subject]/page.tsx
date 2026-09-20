@@ -9,7 +9,7 @@ import { FileText, Video, HelpCircle, ClipboardList, ListChecks, Lock, ArrowRigh
 import SubjectProgressBar from "@/app/components/SubjectProgressBar";
 import ChapterProgressBadge from "@/app/components/ChapterProgressBadge";
 import RtrBookExperience from "@/app/components/RtrBookExperience";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, ORG_ID } from "@/lib/site";
 
 const CONTENT_ICONS: Record<string, React.ElementType> = {
   notes: FileText, video: Video,
@@ -51,14 +51,23 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Course",
-    "name": `${subject.name} (CPL) DGCA Prep`,
-    "description": subject.description,
-    "provider": {
-      "@type": "Organization",
-      "name": "Ghost Aviator",
-      "sameAs": SITE_URL
-    }
+    "@graph": [
+      {
+        "@type": "Course",
+        "name": `${subject.name} (CPL) DGCA Prep`,
+        "description": subject.description,
+        "provider": { "@id": ORG_ID },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/cpl/${subject.id}#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "CPL", item: `${SITE_URL}/cpl` },
+          { "@type": "ListItem", position: 3, name: subject.name, item: `${SITE_URL}/cpl/${subject.id}` },
+        ],
+      },
+    ],
   };
 
   return (

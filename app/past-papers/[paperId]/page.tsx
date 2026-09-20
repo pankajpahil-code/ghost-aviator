@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ALL_PAST_PAPERS, getPastPaper } from "@/lib/past-papers";
+import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 import PaperRunner from "../PaperRunner";
 
 export function generateStaticParams() {
@@ -26,5 +27,40 @@ export default async function PastPaperPage(
   const { paperId } = await params;
   const paper = getPastPaper(paperId);
   if (!paper) notFound();
-  return <PaperRunner paper={paper} />;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Quiz",
+        "@id": `${SITE_URL}/past-papers/${paper.id}#quiz`,
+        "name": paper.title,
+        "description": `Full-length DGCA exam practice paper: ${paper.title} with ${paper.questions.length} questions with answers and explanations.`,
+        "educationalLevel": "Advanced",
+        "inLanguage": "en-IN",
+        "isAccessibleForFree": true,
+        "provider": { "@id": ORG_ID },
+        "author": { "@id": PERSON_ID },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/past-papers/${paper.id}#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "Past Papers", item: `${SITE_URL}/past-papers` },
+          { "@type": "ListItem", position: 3, name: paper.title },
+        ],
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <PaperRunner paper={paper} />
+    </>
+  );
 }

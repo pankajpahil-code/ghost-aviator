@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { ArrowRight, BookOpen, Sparkles, Clock, HelpCircle, Layers, ChevronRight, Download, ShoppingBag, ShieldCheck, MessageCircle } from "lucide-react";
 import { AUTHORED_BOOKS, getBookPdfCheckoutUrl, getBookPaperbackUrl } from "@/lib/books";
+import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Digital Books | Ghost Aviator — Interactive DGCA Study Library",
@@ -175,8 +176,56 @@ export default function BooksPage() {
   const otherLive = BOOKS.slice(1).filter(b => b.status === "live");
   const upcoming = BOOKS.filter(b => b.status === "coming-soon");
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${SITE_URL}/books#webpage`,
+        name: "Digital Books — Interactive DGCA Study Library",
+        description:
+          "Interactive digital books for DGCA CPL & ATPL exam preparation. Animated, chapter-indexed study material by Capt. Pankaj Pahil.",
+        url: `${SITE_URL}/books`,
+        inLanguage: "en-IN",
+        publisher: { "@id": ORG_ID },
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${SITE_URL}/books#list`,
+        name: "DGCA Pilot Training Digital Books",
+        numberOfItems: BOOKS.length,
+        itemListElement: BOOKS.map((b, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "Book",
+            name: b.title,
+            description: b.description,
+            author: { "@id": PERSON_ID },
+            url: `${SITE_URL}${b.href}`,
+            bookFormat: "https://schema.org/EBook",
+            inLanguage: "en-IN",
+            publisher: { "@id": ORG_ID },
+          },
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/books#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "Books" },
+        ],
+      },
+    ],
+  };
+
   return (
     <div style={{ background: "#0b1117" }} className="min-h-screen bk-root">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <style>{BK_CSS}</style>
 
       {/* ── Breadcrumb ───────────────────────────────────────────── */}

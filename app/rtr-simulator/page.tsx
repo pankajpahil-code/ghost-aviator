@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Radio, Mic, BookOpen, Award, Dices, Play, Volume2, Repeat, ClipboardCheck } from "lucide-react";
 import GhostTower, { LockedScenarios } from "./GhostTower";
+import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "RTR(A) Exam Radio Simulator — Free Online ATC Practice | Ghost Aviator",
@@ -10,11 +11,31 @@ export const metadata: Metadata = {
   alternates: { canonical: "/rtr-simulator" },
 };
 
-// FAQ rich-result markup. Every answer restates a fact already published on
-// this page — no regulatory claims live here, product facts only.
-const FAQ_LD = {
+// Rich-result markup: WebApplication + FAQPage + BreadcrumbList.
+const SIM_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${SITE_URL}/rtr-simulator#app`,
+      name: "RTR(A) Exam Radio Simulator",
+      description:
+        "A free online RTR(A) radio simulator for the DGCA exam. Talk to ATC in real ICAO phraseology, read back clearances, handle emergencies, and get graded like the real practical.",
+      url: `${SITE_URL}/rtr-simulator`,
+      applicationCategory: "EducationalApplication",
+      operatingSystem: "Web",
+      isAccessibleForFree: true,
+      provider: { "@id": ORG_ID },
+      author: { "@id": PERSON_ID },
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "INR",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/rtr-simulator#faq`,
   mainEntity: [
     {
       "@type": "Question",
@@ -55,6 +76,16 @@ const FAQ_LD = {
         "@type": "Answer",
         text: "No two flights are the same — the airport, runway, weather, ATIS, callsign and traffic roll fresh on every flight, so you practice the procedure, not a memorised script.",
       },
+    },
+  ],
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${SITE_URL}/rtr-simulator#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "RTR(A) Simulator" },
+      ],
     },
   ],
 };
@@ -113,7 +144,7 @@ const HOW_TO = [
 export default function RtrSimulatorPage() {
   return (
     <div className="grid-bg min-h-screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SIM_SCHEMA) }} />
       {/* Hero */}
       <div className="relative overflow-hidden" style={{ borderBottom: "1px solid rgba(240,145,58,0.2)" }}>
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240,145,58,0.15) 0%, transparent 70%)" }} />

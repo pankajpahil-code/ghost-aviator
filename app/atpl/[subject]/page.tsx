@@ -8,7 +8,7 @@ import { ATPL_SUBJECTS } from "@/lib/subjects";
 import { FileText, Video, HelpCircle, ClipboardList, ListChecks, Lock, ArrowRight, ChevronRight } from "lucide-react";
 import SubjectProgressBar from "@/app/components/SubjectProgressBar";
 import ChapterProgressBadge from "@/app/components/ChapterProgressBadge";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, ORG_ID } from "@/lib/site";
 
 const CONTENT_ICONS: Record<string, React.ElementType> = {
   notes: FileText, video: Video,
@@ -44,14 +44,23 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Course",
-    "name": `${subject.name} (ATPL) DGCA Prep`,
-    "description": subject.description,
-    "provider": {
-      "@type": "Organization",
-      "name": "Ghost Aviator",
-      "sameAs": SITE_URL
-    }
+    "@graph": [
+      {
+        "@type": "Course",
+        "name": `${subject.name} (ATPL) DGCA Prep`,
+        "description": subject.description,
+        "provider": { "@id": ORG_ID },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/atpl/${subject.id}#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "ATPL", item: `${SITE_URL}/atpl` },
+          { "@type": "ListItem", position: 3, name: subject.name, item: `${SITE_URL}/atpl/${subject.id}` },
+        ],
+      },
+    ],
   };
 
   return (

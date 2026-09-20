@@ -4,7 +4,7 @@ import { ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { ArrowRight, Clock, FileQuestion, CheckCircle } from "lucide-react";
 
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, ORG_ID } from "@/lib/site";
 
 const CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
 const atplIds = new Set(ATPL_SUBJECTS.map(s => s.id));
@@ -28,11 +28,7 @@ export default function ATPLPage() {
         "url": `${SITE_URL}/atpl/${subject.id}`,
         "name": `${subject.name} (ATPL) Syllabus, Question Bank & Notes`,
         "description": subject.description,
-        "provider": {
-          "@type": "Organization",
-          "name": "Ghost Aviator",
-          "sameAs": SITE_URL
-        }
+        "provider": { "@id": ORG_ID }
       }
     }))
   };

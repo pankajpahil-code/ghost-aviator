@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Calculator as CalcIcon } from "lucide-react";
 import Calculator from "@/app/components/Calculator";
+import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Pilot Training Cost in India 2026 — CPL Cost Calculator | Ghost Aviator",
@@ -11,16 +12,31 @@ export const metadata: Metadata = {
 export default function CostCalculatorPage() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "CPL Cost Calculator India",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "INR"
-    },
-    "description": "An interactive tool to calculate the total cost of Commercial Pilot License (CPL) training in India, including flying hours, DGCA exams, and living expenses."
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": `${SITE_URL}/cpl-cost-calculator#app`,
+        "name": "CPL Cost Calculator India",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "provider": { "@id": ORG_ID },
+        "author": { "@id": PERSON_ID },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        },
+        "description": "An interactive tool to calculate the total cost of Commercial Pilot License (CPL) training in India, including flying hours, DGCA exams, and living expenses."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/cpl-cost-calculator#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "CPL Cost Calculator" },
+        ],
+      },
+    ],
   };
 
   return (
