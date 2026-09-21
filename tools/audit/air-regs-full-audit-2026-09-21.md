@@ -4,8 +4,11 @@
 **Scope:** every question the site serves under CPL and ATPL Air Regulations. That is 923 questions
 after the site's de-duplication (IDs from `tools/audit/_dump-ar-all.mts`).
 **Row-by-row verdicts:** `air-regs-full-audit-2026-09-21.tsv` (same folder).
-**Nothing on the site was changed and nothing was committed.** Every correction is a proposal for the
-Captain's ruling.
+**UPDATE 2026-09-21: all 26 corrections APPLIED** on the Captain's instruction "apply all" (commit
+`6924339`). They live in `lib/answer-corrections.ts` as one declared layer, applied to every question
+source and to the past papers, so a regenerated bank cannot undo them. `npx tsx
+tools/audit/check-corrections.mts` shows 26/26 applied and 0 copies still wrong. The FLAGGED items are
+NOT changed and still need rulings.
 
 ## Why there is a second pass
 
@@ -146,7 +149,35 @@ DGCA CAR first.
 - **This is one auditor's pass.** Under the two-pass rule, the 26 corrections should get a second check before
   they're applied.
 
-## To apply, once the Captain has ruled
+## How corrections are applied from now on
 
-Add each accepted change to `verify-repair.mjs`'s `INTENTIONAL` list, then edit the bank. Run
-`node tools/audit/verify-repair.mjs`: it must show 0 undeclared answer changes. Then build and push.
+Add an entry to `lib/answer-corrections.ts` (exact stem, old option text, new option text, cited
+explanation). Run `npx tsx tools/audit/check-corrections.mts`: every entry must apply and no copy may
+still carry the old key. Then run `npx tsc --noEmit -p .` (Vercel's build type-checks `tools/` too), build
+and push.
+
+## UPDATE: every FLAGGED question resolved (2026-09-21, second batch)
+
+On the Captain's instruction "check flagged questions against DGCA and correct them", all 123 flagged
+questions and the 7 recommended drops were settled against DGCA sources (CARs, AIP India, Aircraft
+Rules, Investigation Rules 2025) and applied through `lib/answer-corrections.ts`:
+
+| Outcome | Count |
+|---|---|
+| Rewritten: stem or option text updated to the current DGCA rule, then keyed | 76 |
+| Re-keyed: the right answer was already an option | 8 |
+| Key confirmed: explanation with citation added | 18 (includes #752, already verified) |
+| Hidden from every page: broken text, obsolete rule with no fixable form, or no rule behind the claim | 29 |
+
+Notable resolutions:
+- **Turbulence (#535, #595, #724, #761):** the answer is level flight attitude at manoeuvring speed, not constant airspeed.
+- **20 NM vs 10 km (#539, #763):** kept at 20 NM, per the DGCA CAR on minimum flight altitudes (9-R-I 1.2).
+- **Night:** 30 minutes for logging and "flight by night" (Aircraft Rules Sch. II); 20 minutes for VFR (CAR 9-C-I 4.3). Each question now says which one it asks about.
+- **FDTL:** the five "international 9 h / 3 landings" questions became one current question (9 h flight time allows 2 landings).
+- **Flight plans:** required for all flights, including local ones (flying clubs may file by phone or fax).
+- **Airspace:** Classes C, D, E, F, G are in use; A and B are designated but under consideration.
+- **Cat II / III:** RVR 300 m.
+- **Licence validity:** 10 years.
+- **Registration:** valid until the date on the certificate.
+
+`npx tsx tools/audit/check-corrections.mts`: 157 corrections (29 hides), 0 failing.
