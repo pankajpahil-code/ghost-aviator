@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle, MessageCircle, Mail, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers, CreditCard } from "lucide-react";
+import { ArrowRight, CheckCircle, MessageCircle, Mail, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers, CreditCard, QrCode } from "lucide-react";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 import {
@@ -11,6 +11,12 @@ import {
   LIVE_COMBO_PRICE as COMBO_PRICE,
   LIVE_COMBO_LIST_PRICE as COMBO_LIST_PRICE,
   LIVE_PRICE_VALUE,
+  LIVE_COMBO_PRICE_VALUE,
+  LIVE_UPI_VPA,
+  LIVE_UPI_PAYEE,
+  LIVE_UPI_QR,
+  liveUpiLink,
+  livePaidLink,
   liveWaLink as waLink,
   hasLivePaymentLink,
   hasLiveComboPaymentLink,
@@ -227,6 +233,11 @@ export default function LiveClassesPage() {
                 <MessageCircle className="w-5 h-5" /> Message on WhatsApp
               </a>
             ) : null}
+            <a href="#pay"
+               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
+               style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
+              <QrCode className="w-5 h-5" /> Pay by UPI
+            </a>
             <a href={`mailto:${EMAIL}?subject=${encodeURIComponent("Live DGCA Classes — Seat Enquiry")}`}
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                style={{ border:"1px solid rgba(240,145,58,0.5)", color:"#f0913a", background:"rgba(240,145,58,0.06)" }}>
@@ -362,6 +373,51 @@ export default function LiveClassesPage() {
         </div>
       </section>
 
+      {/* ══════════ PAY BY UPI ══════════
+          Added 2026-09-21. A student can pay at any hour without anyone awake.
+          The QR is the reliable path (personal UPI account); the "open UPI app"
+          link is a best-effort shortcut some apps refuse for P2P amounts. */}
+      <section id="pay" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-mt-24">
+        <div className="rounded-3xl p-6 sm:p-10" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(34,197,94,0.35)" }}>
+          <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 text-center">Pay by UPI — any time</h2>
+          <p className="text-center text-sm mb-8 max-w-2xl mx-auto" style={{ color:"#94a3b8" }}>
+            Scan with GPay, PhonePe, Paytm or any UPI app. The amount is already filled in.
+            Then send the payment screenshot on WhatsApp and your seat is confirmed.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[
+              { label: "One subject", price: PRICE, value: LIVE_PRICE_VALUE, qr: LIVE_UPI_QR.single, what: "live batch (one subject)" },
+              { label: "Navigation combo — Gen Nav + Radio Nav + Instruments", price: COMBO_PRICE, value: LIVE_COMBO_PRICE_VALUE, qr: LIVE_UPI_QR.combo, what: "Navigation Combo live batch" },
+            ].map(p => (
+              <div key={p.value} className="rounded-2xl p-6 text-center" style={{ background:"rgba(11,17,23,0.9)", border:"1px solid rgba(243,200,137,0.2)" }}>
+                <div className="text-sm font-bold mb-1" style={{ color:"#f3c889" }}>{p.label}</div>
+                <div className="text-3xl font-black text-white mb-4">{p.price}</div>
+                <div className="mx-auto mb-4 rounded-xl bg-white p-2" style={{ width: 216, height: 216 }}>
+                  <Image src={p.qr} alt={`UPI QR code to pay ${p.price} to ${LIVE_UPI_VPA}`} width={200} height={200} unoptimized />
+                </div>
+                <a href={liveUpiLink(p.value, `DGCA ${p.what}`)}
+                   className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-bold no-underline mb-3"
+                   style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff" }}>
+                  <QrCode className="w-4 h-4" /> Open UPI app ({p.price})
+                </a>
+                <a href={livePaidLink(p.what, p.price)} target="_blank" rel="noopener noreferrer"
+                   className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-bold no-underline"
+                   style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
+                  <MessageCircle className="w-4 h-4" /> Paid? Send screenshot on WhatsApp
+                </a>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center text-sm" style={{ color:"#94a3b8" }}>
+            <div>UPI ID: <strong className="text-white">{LIVE_UPI_VPA}</strong></div>
+            <div className="mt-1">Your UPI app will show the account name <strong className="text-white">{LIVE_UPI_PAYEE}</strong> — that is our registered payment account.</div>
+            <div className="mt-1">Not sure which batch fits? Message first — pay only once you&apos;re sure.</div>
+          </div>
+        </div>
+      </section>
+
       {/* ══════════ HOW IT WORKS ══════════ */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="rounded-3xl p-10" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(243,200,137,0.2)" }}>
@@ -429,6 +485,11 @@ export default function LiveClassesPage() {
                 <MessageCircle className="w-5 h-5" /> WhatsApp: +91 99902 26607
               </a>
             ) : null}
+            <a href="#pay"
+               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
+               style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
+              <QrCode className="w-5 h-5" /> Pay by UPI
+            </a>
             <Link href="/cpl" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                   style={{ border:"1px solid rgba(243,200,137,0.4)", color:"#f3c889", background:"rgba(243,200,137,0.06)" }}>
               Explore Free Material First <ArrowRight className="w-5 h-5"/>

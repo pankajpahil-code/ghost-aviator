@@ -48,6 +48,31 @@ export const LIVE_PAYMENT_LINKS: Record<string, string> = {
   "radio-telephony": "",
 };
 
+/**
+ * UPI — added 2026-09-21 on the Captain's instruction. Lets a student pay at
+ * 2 AM without anyone awake. Fields DECODED from his PhonePe QR, not retyped:
+ *   upi://pay?pa=9643961464@axl&pn=PRISHA%20&mc=0000&mode=02&purpose=00
+ * mc=0000 is a personal (P2P) account: scanning the QR is the reliable path;
+ * the upi:// link is a best-effort shortcut some apps refuse for P2P amounts.
+ *
+ * The QR images in public/pay/ are generated from these by
+ * tools/pay/build-upi-qr.py, which decodes each image back and fails unless it
+ * pays exactly this address. Change the VPA here AND re-run that script.
+ */
+export const LIVE_UPI_VPA = "9643961464@axl";
+export const LIVE_UPI_PAYEE = "PRISHA";
+export const LIVE_UPI_QR = { single: "/pay/upi-7999.png", combo: "/pay/upi-14999.png" };
+
+export const liveUpiLink = (amountValue: string, note: string): string =>
+  `upi://pay?pa=${LIVE_UPI_VPA}&pn=${encodeURIComponent(LIVE_UPI_PAYEE)}&mc=0000&mode=02&purpose=00` +
+  `&am=${amountValue}.00&cu=INR&tn=${encodeURIComponent(note)}`;
+
+/** After paying by UPI there is no automatic receipt — the student sends the screenshot. */
+export const livePaidLink = (what: string, price: string): string =>
+  `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+    `Hello, I have paid ${price} by UPI to ${LIVE_UPI_VPA} for the ${what}. Sending the payment screenshot to confirm my seat.`
+  )}`;
+
 /** Direct payment link for the full 3-subject Navigation Combo. */
 export const LIVE_COMBO_PAYMENT_LINK: string = "";
 

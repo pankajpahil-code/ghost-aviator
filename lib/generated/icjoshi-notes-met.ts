@@ -3852,7 +3852,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `The polewards moving air piles up in the subtropical regions and forms high pressure belt at the surface, it is called`,
     opts: [`Subtropical high`, `Polar High`, `Equatorial high`],
     ans: 0,
-    exp: `Subtropical high At ~30°N/S, the poleward-moving Hadley cell air sinks, forming the Subtropical High pressure belt at the surface. � Instructor's Note: Subtropical High = 30°N/S sinking air. Remember: "Sink at 30° = Subtropical High = Deserts = Horse Latitudes."`,
+    exp: `Subtropical high At ~30°N/S, the poleward-moving Hadley cell air sinks, forming the Subtropical High pressure belt at the surface. Instructor's Note: Subtropical High = 30°N/S sinking air. Remember: "Sink at 30° = Subtropical High = Deserts = Horse Latitudes."`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3862,7 +3862,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `________ occurs over subtropical high.`,
     opts: [`advection`, `convection`, `subsidence`],
     ans: 2,
-    exp: `subsidence Subtropical Highs are characterised by descending/sinking air (subsidence), which inhibits cloud formation and causes clear skies and deserts below. � Instructor's Note: Subsidence = sinking = subtropical high = desert belt. Convection = rising = ITCZ = clouds/rain.`,
+    exp: `subsidence Subtropical Highs are characterised by descending/sinking air (subsidence), which inhibits cloud formation and causes clear skies and deserts below. Instructor's Note: Subsidence = sinking = subtropical high = desert belt. Convection = rising = ITCZ = clouds/rain.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3872,7 +3872,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `The occurrence of large deserts near 30N and 30S are due to large scale`,
     opts: [`advection`, `convection`, `subsidence`],
     ans: 2,
-    exp: `subsidence Large-scale subsidence at the subtropical highs (~30°N/S) suppresses cloud formation and precipitation, creating desert regions (Sahara, Arabian Desert, etc.). � Instructor's Note: Deserts at 30°N/S = Subtropical high = Subsidence. Classic DGCA link between synoptic-scale subsidence and desert climatology.`,
+    exp: `subsidence Large-scale subsidence at the subtropical highs (~30°N/S) suppresses cloud formation and precipitation, creating desert regions (Sahara, Arabian Desert, etc.). Instructor's Note: Deserts at 30°N/S = Subtropical high = Subsidence. Classic DGCA link between synoptic-scale subsidence and desert climatology.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3882,7 +3882,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `A part of the sinking air over the subtropical highs flows towards the equator, turning west (in the northern hemisphere) due to the Coriolis force. This surface air is called`,
     opts: [`Trade winds`, `Westerlies`, `Doldrums`],
     ans: 0,
-    exp: `Trade winds The surface return flow from subtropical highs towards the ITCZ is deflected westward by the Coriolis force, creating the NE Trade Winds (NH) and SE Trade Winds (SH). � Instructor's Note: Trade Winds blow from subtropical high TOWARD equator — NE in NH, SE in SH. They are the surface branch of the Hadley Cell.`,
+    exp: `Trade winds The surface return flow from subtropical highs towards the ITCZ is deflected westward by the Coriolis force, creating the NE Trade Winds (NH) and SE Trade Winds (SH). Instructor's Note: Trade Winds blow from subtropical high TOWARD equator — NE in NH, SE in SH. They are the surface branch of the Hadley Cell.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3892,7 +3892,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `The huge vertical circulations, one between the equator and 30N and another between equator and 30S, are called`,
     opts: [`Hadley Cells`, `Ferrel Cells`, `Polar cells`],
     ans: 0,
-    exp: `Hadley Cells Hadley Cells are the large convective cells between the equator and ~30°N/S, driven by solar heating at the ITCZ and sinking at the subtropical highs. � Instructor's Note: Hadley=equator-30°, Ferrel=30°-60°, Polar=60°-90°. Use "HFP" — Hat, Ferrel, Pole!`,
+    exp: `Hadley Cells Hadley Cells are the large convective cells between the equator and ~30°N/S, driven by solar heating at the ITCZ and sinking at the subtropical highs. Instructor's Note: Hadley=equator-30°, Ferrel=30°-60°, Polar=60°-90°. Use "HFP" — Hat, Ferrel, Pole!`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3902,7 +3902,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Descending branch of the Hadley cell marked by calm winds and high pressure at the surface are called`,
     opts: [`Tropical Latitudes`, `Middle latitudes`, `Horse Latitudes`],
     ans: 2,
-    exp: `Horse Latitudes Horse Latitudes (approximately 30–40°) are characterised by calm winds, subsidence, and high pressure — the descending branch of the Hadley cell. � Instructor's Note: "Horse Latitudes" — historically ships got stuck in calms here and threw horses overboard to save water. Located at ~30–40°N/S.`,
+    exp: `Horse Latitudes Horse Latitudes (approximately 30–40°) are characterised by calm winds, subsidence, and high pressure — the descending branch of the Hadley cell. Instructor's Note: "Horse Latitudes" — historically ships got stuck in calms here and threw horses overboard to save water. Located at ~30–40°N/S.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3912,7 +3912,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `The winds in the upper troposphere in the equatorial regions are`,
     opts: [`Westerlies`, `Easterlies`, `Zonal Westerlies`],
     ans: 1,
-    exp: `Easterlies In the equatorial regions, the upper tropospheric winds are Easterlies. (Note: a narrow belt near the equator has Zonal Westerlies, but the general equatorial upper troposphere is dominated by Easterlies.) � Instructor's Note: DGCA exam: Upper equatorial troposphere = Easterlies. This steers tropical disturbances from east to west.`,
+    exp: `Easterlies In the equatorial regions, the upper tropospheric winds are Easterlies. (Note: a narrow belt near the equator has Zonal Westerlies, but the general equatorial upper troposphere is dominated by Easterlies.) Instructor's Note: DGCA exam: Upper equatorial troposphere = Easterlies. This steers tropical disturbances from east to west.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3922,7 +3922,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `The disturbances of middle latitudes move from`,
     opts: [`Easterly direction`, `Westerly direction`, `Southerly direction`],
     ans: 1,
-    exp: `Westerly direction Middle latitude disturbances move from west to east in the westerly current (the Ferrel Cell/Roaring Forties region). This is steered by the upper westerlies. � Instructor's Note: Mid-lat disturbances = W to E. Tropical disturbances = E to W (recurve later). Key for tropical meteorology questions!`,
+    exp: `Westerly direction Middle latitude disturbances move from west to east in the westerly current (the Ferrel Cell/Roaring Forties region). This is steered by the upper westerlies. Instructor's Note: Mid-lat disturbances = W to E. Tropical disturbances = E to W (recurve later). Key for tropical meteorology questions!`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3932,7 +3932,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `The tropical disturbance which form in the equatorial low pressure belt move in a`,
     opts: [`Easterly direction`, `Westerly direction`, `Northerly direction`],
     ans: 1,
-    exp: `Westerly direction Tropical disturbances form in the equatorial low pressure belt and move westward, steered by the high-level easterly flow. � Instructor's Note: "Westerly direction" = moving westward. Tropical disturbances are steered westward by upper-level easterlies until they recurve poleward when they reach mid-latitudes.`,
+    exp: `Westerly direction Tropical disturbances form in the equatorial low pressure belt and move westward, steered by the high-level easterly flow. Instructor's Note: "Westerly direction" = moving westward. Tropical disturbances are steered westward by upper-level easterlies until they recurve poleward when they reach mid-latitudes.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3942,7 +3942,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Latitudinally, on the average there is radiation ………… in the tropics than in the polar regions.`,
     opts: [`surplus`, `deficit`, `balance`],
     ans: 0,
-    exp: `surplus The tropics receive more solar radiation than they emit (radiation surplus). The poles emit more than they receive (radiation deficit). This imbalance drives the general circulation. � Instructor's Note: Tropics = radiation SURPLUS → drives Hadley cell. Poles = radiation DEFICIT. The general circulation transfers energy from surplus to deficit regions.`,
+    exp: `surplus The tropics receive more solar radiation than they emit (radiation surplus). The poles emit more than they receive (radiation deficit). This imbalance drives the general circulation. Instructor's Note: Tropics = radiation SURPLUS → drives Hadley cell. Poles = radiation DEFICIT. The general circulation transfers energy from surplus to deficit regions.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3952,7 +3952,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `The systems like highs, lows, cyclonic and anticyclonic circulations etc. are associated with distinct types of weather. A study of the behaviour of these systems, known as`,
     opts: [`Synoptic Meteorology`, `Climatology`, `Physical Meteorology`],
     ans: 0,
-    exp: `Synoptic Meteorology Synoptic Meteorology is the study of weather systems (highs, lows, fronts, cyclones) and their associated weather, using synoptic-scale charts and observations. � Instructor's Note: Synoptic = weather maps and systems. Physical = properties of atmosphere. Climatology = long-term averages. Know all three branches for DGCA.`,
+    exp: `Synoptic Meteorology Synoptic Meteorology is the study of weather systems (highs, lows, fronts, cyclones) and their associated weather, using synoptic-scale charts and observations. Instructor's Note: Synoptic = weather maps and systems. Physical = properties of atmosphere. Climatology = long-term averages. Know all three branches for DGCA.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3962,7 +3962,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Rising air creates calms or doldrums in equatorial region. Q13. Steady NE winds in the N hemisphere and SE winds in the S hemisphere are called`,
     opts: [`Easterly winds`, `Trade Winds`, `Tropical Winds`],
     ans: 1,
-    exp: `Correct Answers: Q12: Rising air → Doldrums at equatorial region. Q13: (b) Trade Winds — NE in NH, SE in SH, surface return flow of Hadley Cell. � Instructor's Note: Trade Winds are steady and reliable — historically used by traders for sailing. NE Trades in NH, SE Trades in SH.`,
+    exp: `Correct Answers: Q12: Rising air → Doldrums at equatorial region. Q13: (b) Trade Winds — NE in NH, SE in SH, surface return flow of Hadley Cell. Instructor's Note: Trade Winds are steady and reliable — historically used by traders for sailing. NE Trades in NH, SE Trades in SH.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3972,7 +3972,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `For non-scheduled National Flights, advance notice (before ETD) is required to be given to AMOs`,
     opts: [`24 hr`, `18 hr`, `6 hr`],
     ans: 2,
-    exp: `6 hr Non-scheduled flights must give 6 hr advance notice to AMOs. Scheduled national flights only require 3 hr to AMOs. � Instructor's Note: Key distinction — Scheduled National: AMO=3hr, AMS=18-24hr. Non-scheduled: AMO=6hr, AMS=18-24hr. International: AMO=3hr, AMS=12hr.`,
+    exp: `6 hr Non-scheduled flights must give 6 hr advance notice to AMOs. Scheduled national flights only require 3 hr to AMOs. Instructor's Note: Key distinction — Scheduled National: AMO=3hr, AMS=18-24hr. Non-scheduled: AMO=6hr, AMS=18-24hr. International: AMO=3hr, AMS=12hr.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -3982,7 +3982,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `For non-scheduled National Flights, advance notice to AMSs is required`,
     opts: [`3 hr`, `18–24 hr`, `6 hr`],
     ans: 1,
-    exp: `18–24 hr AMSs require 18–24 hr advance notice for all flight types (national, non-scheduled, and international at non-major stations). � AMS always needs more advance notice than AMO. Remember: AMS = 18-24 hr for most flight categories.`,
+    exp: `18–24 hr AMSs require 18–24 hr advance notice for all flight types (national, non-scheduled, and international at non-major stations). AMS always needs more advance notice than AMO. Remember: AMS = 18-24 hr for most flight categories.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4002,7 +4002,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `IMD has ……… Regional Met offices`,
     opts: [`4`, `5`, `6`],
     ans: 2,
-    exp: `6 — Wait, answer key shows Q4=b (5). Looking at text: "It has 6 Regional Met offices (RMO)." But answer key says (b) 5. Note: the question asks for RMOs. Per the text it says 6, but answer key shows b=5. As per the textbook answer key: (b) 5 . � Instructor's Note: For exam purposes, use the answer key answer. The 6 RMOs are: Delhi, Mumbai, Kolkata, Chennai, Guwahati, Nagpur.`,
+    exp: `6 — Wait, answer key shows Q4=b (5). Looking at text: "It has 6 Regional Met offices (RMO)." But answer key says (b) 5. Note: the question asks for RMOs. Per the text it says 6, but answer key shows b=5. As per the textbook answer key: (b) 5 . Instructor's Note: For exam purposes, use the answer key answer. The 6 RMOs are: Delhi, Mumbai, Kolkata, Chennai, Guwahati, Nagpur.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4012,7 +4012,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `There are ………… Aerodrome Met Offices`,
     opts: [`17`, `18`, `19`],
     ans: 2,
-    exp: `19 — Per answer key Q5=c. The text states 18 AMOs including 4 MWOs. � AMOs = 18 (incl. 4 MWOs) per text, answer key says 19. Use the answer key for exam.`,
+    exp: `19 — Per answer key Q5=c. The text states 18 AMOs including 4 MWOs. AMOs = 18 (incl. 4 MWOs) per text, answer key says 19. Use the answer key for exam.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4022,7 +4022,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `There are ………… Aeronautical Met Stations`,
     opts: [`56`, `54`, `52`],
     ans: 0,
-    exp: `56 — Per answer key Q6=a. The text states 54 AMS. � AMS count — text says 54, answer key says 56. Use answer key: (a) 56 for DGCA exam.`,
+    exp: `56 — Per answer key Q6=a. The text states 54 AMS. AMS count — text says 54, answer key says 56. Use answer key: (a) 56 for DGCA exam.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4032,7 +4032,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `In AIREP, Met Information is contained in Section`,
     opts: [`1`, `2`, `3`],
     ans: 2,
-    exp: `3 Section 3 of the AIREP contains Met Information: Air Temp., Wind, TS, Turbulence, Icing, and Humidity. Section 1 = Identification/Position/Time. Section 2 = Operational (ETA/Endurance). � Remember: 1=Who/Where/When, 2=Operations, 3=Weather (Met). "3 = Met" mnemonic.`,
+    exp: `3 Section 3 of the AIREP contains Met Information: Air Temp., Wind, TS, Turbulence, Icing, and Humidity. Section 1 = Identification/Position/Time. Section 2 = Operational (ETA/Endurance). Remember: 1=Who/Where/When, 2=Operations, 3=Weather (Met). "3 = Met" mnemonic.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4042,7 +4042,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `TAF are generally valid for`,
     opts: [`18 hr`, `12 hr`, `30 hr`],
     ans: 2,
-    exp: `30 hr TAF is valid for at least 9 hr and a maximum of 30 hr. The maximum validity is 30 hr. � TAF: min 9hr, max 30hr. 9hr TAF issued every 3hr; 12–30hr TAF issued every 6hr from 0000 UTC.`,
+    exp: `30 hr TAF is valid for at least 9 hr and a maximum of 30 hr. The maximum validity is 30 hr. TAF: min 9hr, max 30hr. 9hr TAF issued every 3hr; 12–30hr TAF issued every 6hr from 0000 UTC.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4052,7 +4052,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `The validity of Landing Forecast (TREND) is`,
     opts: [`1 hr`, `2 hr`, `3 hr`],
     ans: 1,
-    exp: `2 hr TREND (landing forecast) appended to METAR/SPECI has a validity of 2 hr. � TREND validity = 2hr. PROB not used in TREND. NOSIG = no significant change. Issued by AMOs (except Jaipur and Safdarjung).`,
+    exp: `2 hr TREND (landing forecast) appended to METAR/SPECI has a validity of 2 hr. TREND validity = 2hr. PROB not used in TREND. NOSIG = no significant change. Issued by AMOs (except Jaipur and Safdarjung).`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4062,7 +4062,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Landing Forecast is appended to`,
     opts: [`ITCZ`, `TAF`, `AIREP`],
     ans: 1,
-    exp: `TAF — Per answer key Q10=b. Actually the text says TREND is appended to METAR or SPECI. However the answer key says (b) TAF. In practice TREND is appended to METAR/SPECI. As per answer key: TAF. � Landing Forecast (TREND) — appended to METAR or SPECI. Answer key shows TAF. Some exam editions may phrase this differently.`,
+    exp: `TAF — Per answer key Q10=b. Actually the text says TREND is appended to METAR or SPECI. However the answer key says (b) TAF. In practice TREND is appended to METAR/SPECI. As per answer key: TAF. Landing Forecast (TREND) — appended to METAR or SPECI. Answer key shows TAF. Some exam editions may phrase this differently.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4072,7 +4072,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Local/Area Forecast is issued three times a day valid for next`,
     opts: [`18 hr`, `12 hr`, `9 hr`],
     ans: 1,
-    exp: `12 hr Local/Area forecasts are issued 3 times a day for a validity of 12 hr each. � Local forecast: 3× daily, 12hr valid, 100NM area, 50NM local. IST issue times: 0700, 1300, 1800.`,
+    exp: `12 hr Local/Area forecasts are issued 3 times a day for a validity of 12 hr each. Local forecast: 3× daily, 12hr valid, 100NM area, 50NM local. IST issue times: 0700, 1300, 1800.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4082,7 +4082,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Area Forecast covers an area`,
     opts: [`100 NM`, `100 km`, `50 NM`],
     ans: 0,
-    exp: `100 NM Area Forecast covers 100 NM or more around. Local Forecast covers 50 NM around. � Area = 100 NM. Local = 50 NM. Note: nautical miles (NM), not km.`,
+    exp: `100 NM Area Forecast covers 100 NM or more around. Local Forecast covers 50 NM around. Area = 100 NM. Local = 50 NM. Note: nautical miles (NM), not km.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4092,7 +4092,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `SIGMET is a notice of severe weather for`,
     opts: [`actual`, `expected`, `both`],
     ans: 2,
-    exp: `both SIGMET is issued for occurrence OR expected occurrence of en-route weather which may affect safety of aircraft operations. So it covers both actual and expected phenomena. � SIGMET = actual OR expected severe weather. Key: "occurrence or expected occurrence."`,
+    exp: `both SIGMET is issued for occurrence OR expected occurrence of en-route weather which may affect safety of aircraft operations. So it covers both actual and expected phenomena. SIGMET = actual OR expected severe weather. Key: "occurrence or expected occurrence."`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4102,7 +4102,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `SIGMET is issued for aircraft`,
     opts: [`in flight`, `on ground`, `both`],
     ans: 0,
-    exp: `in flight SIGMET is specifically issued for aircraft IN FLIGHT by MWOs for their FIRs. Aerodrome Warnings cover ground operations. � SIGMET = for aircraft IN FLIGHT. Aerodrome Warning = for aircraft ON GROUND. Key distinction for DGCA.`,
+    exp: `in flight SIGMET is specifically issued for aircraft IN FLIGHT by MWOs for their FIRs. Aerodrome Warnings cover ground operations. SIGMET = for aircraft IN FLIGHT. Aerodrome Warning = for aircraft ON GROUND. Key distinction for DGCA.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4112,7 +4112,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `SIGMET is issued by`,
     opts: [`WAFC`, `AMO`, `MWO`],
     ans: 2,
-    exp: `MWO SIGMETs are issued by the 4 Met Watch Offices (MWO) at Mumbai, Kolkata, New Delhi, and Chennai for their respective FIRs. � SIGMET issuers: MWO (4 in India: DMKC — Delhi, Mumbai, Kolkata, Chennai). AIRMET also issued by MWO (for low level flights).`,
+    exp: `MWO SIGMETs are issued by the 4 Met Watch Offices (MWO) at Mumbai, Kolkata, New Delhi, and Chennai for their respective FIRs. SIGMET issuers: MWO (4 in India: DMKC — Delhi, Mumbai, Kolkata, Chennai). AIRMET also issued by MWO (for low level flights).`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4122,7 +4122,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `SIGMET is valid for`,
     opts: [`4 hr`, `8 hr`, `9 hr`],
     ans: 0,
-    exp: `4 hr SIGMET validity is not more than 4 hr. Exception: for Volcanic Ash and Tropical Cyclones — up to 12 hr before validity, updated every 6 hr. � SIGMET max validity = 4 hr. VA/TC SIGMET can be issued up to 12 hr before validity period and updated every 6 hr.`,
+    exp: `4 hr SIGMET validity is not more than 4 hr. Exception: for Volcanic Ash and Tropical Cyclones — up to 12 hr before validity, updated every 6 hr. SIGMET max validity = 4 hr. VA/TC SIGMET can be issued up to 12 hr before validity period and updated every 6 hr.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4132,7 +4132,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `SIGMET is not issued for`,
     opts: [`Rain`, `Volcanic Ash`, `SEV Icing`],
     ans: 0,
-    exp: `Rain Rain by itself is not a SIGMET criterion. SIGMET criteria include: TS (OBSC/EMBD/FRQ/SQL), TC, SEV TURB, SEV ICING, SEV MTW, HVY DS, HVY SS, VA, Radioactive Cloud. Plain rain is not included. � SIGMET excludes plain rain. Remember the SIGMET list: TS types, TC, SEV TURB, SEV ICING, SEV MTW, DS, SS, VA, Radioactive cloud.`,
+    exp: `Rain Rain by itself is not a SIGMET criterion. SIGMET criteria include: TS (OBSC/EMBD/FRQ/SQL), TC, SEV TURB, SEV ICING, SEV MTW, HVY DS, HVY SS, VA, Radioactive Cloud. Plain rain is not included. SIGMET excludes plain rain. Remember the SIGMET list: TS types, TC, SEV TURB, SEV ICING, SEV MTW, DS, SS, VA, Radioactive cloud.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4142,7 +4142,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `AIRMET is SIGMET issued by a MWO for the safety of`,
     opts: [`low-level aircraft`, `high-level flights`, `all`],
     ans: 0,
-    exp: `low-level aircraft AIRMET is SIGMET for low level flights, issued by MWO. � AIRMET = AIR-MET = SIGMET for Low Level. MWO issues both SIGMET (all levels) and AIRMET (low level).`,
+    exp: `low-level aircraft AIRMET is SIGMET for low level flights, issued by MWO. AIRMET = AIR-MET = SIGMET for Low Level. MWO issues both SIGMET (all levels) and AIRMET (low level).`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4152,7 +4152,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `GAMET is an area forecast in abbreviated plain language for`,
     opts: [`low level flights`, `high level flights`, `all level flights`],
     ans: 1,
-    exp: `high level flights — Per answer key Q24=b. Note: GAMET per the text is an area forecast for a FIR or sub-area prepared by AMOs in abbreviated plain language, exchanged with adjacent FIRs. Answer key shows (b). � GAMET: prepared by AMOs, for FIR or sub-area, exchanged with adjacent FIRs. Answer key = (b) high level flights.`,
+    exp: `high level flights — Per answer key Q24=b. Note: GAMET per the text is an area forecast for a FIR or sub-area prepared by AMOs in abbreviated plain language, exchanged with adjacent FIRs. Answer key shows (b). GAMET: prepared by AMOs, for FIR or sub-area, exchanged with adjacent FIRs. Answer key = (b) high level flights.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4162,7 +4162,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `The validity of Airfield warnings is not exceeding`,
     opts: [`3 hr`, `4 hr`, `6 hr`],
     ans: 1,
-    exp: `4 hr Aerodrome (Airfield) Warning validity does not exceed 4 hr. � Aerodrome Warning = max 4 hr validity. Wind warning: 30kt or 45° direction change for 20kt winds. For light aircraft: 17kt threshold.`,
+    exp: `4 hr Aerodrome (Airfield) Warning validity does not exceed 4 hr. Aerodrome Warning = max 4 hr validity. Wind warning: 30kt or 45° direction change for 20kt winds. For light aircraft: 17kt threshold.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4172,7 +4172,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Wind Shear Warning is issued for observed or expected wind shear above runway (up to)`,
     opts: [`up to 500 m`, `above 500 m`, `300 m`],
     ans: 0,
-    exp: `up to 500 m Wind Shear Warning covers up to 500 m (1600 ft) above runway. WS above 500 m due to topography is also included as additional information. � WS Warning = up to 500m (1600ft) above runway. Remember: 500m = ~1600ft — both given in text.`,
+    exp: `up to 500 m Wind Shear Warning covers up to 500 m (1600 ft) above runway. WS above 500 m due to topography is also included as additional information. WS Warning = up to 500m (1600ft) above runway. Remember: 500m = ~1600ft — both given in text.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4182,7 +4182,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `VOLMET is a MET information for aircraft`,
     opts: [`on ground`, `in flight`, `both`],
     ans: 1,
-    exp: `in flight VOLMET is a global network of radio stations that broadcast MET information specifically for aircraft in flight. � VOLMET = for aircraft IN FLIGHT (radio broadcast). ATIS = for operators/pilots on ground (broadcast at aerodrome).`,
+    exp: `in flight VOLMET is a global network of radio stations that broadcast MET information specifically for aircraft in flight. VOLMET = for aircraft IN FLIGHT (radio broadcast). ATIS = for operators/pilots on ground (broadcast at aerodrome).`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4192,7 +4192,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `VOLMET consists of`,
     opts: [`SIGMET only`, `TAF only`, `TAF and METAR`],
     ans: 2,
-    exp: `TAF and METAR VOLMET broadcasts METAR, SPECI, TAF, and SIGMET. The basic components are METAR and TAF at minimum. � VOLMET full content: METAR + SPECI + TAF + SIGMET (+ Special AIREPs + AIRMET in D-VOLMET).`,
+    exp: `TAF and METAR VOLMET broadcasts METAR, SPECI, TAF, and SIGMET. The basic components are METAR and TAF at minimum. VOLMET full content: METAR + SPECI + TAF + SIGMET (+ Special AIREPs + AIRMET in D-VOLMET).`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4202,7 +4202,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Global SIGWX Charts are issued ……… times a day`,
     opts: [`Two`, `Three`, `Four`],
     ans: 2,
-    exp: `Four WAFC prepares 4 SIGWX forecasts of 24 hr validity, based on 00, 06, 12, and 18 UTC data — i.e., 4 times per day. � Global SIGWX: 4 times/day (00, 06, 12, 18 UTC). National SIGWX (India): 6 times/day. Both valid for 24 hr.`,
+    exp: `Four WAFC prepares 4 SIGWX forecasts of 24 hr validity, based on 00, 06, 12, and 18 UTC data — i.e., 4 times per day. Global SIGWX: 4 times/day (00, 06, 12, 18 UTC). National SIGWX (India): 6 times/day. Both valid for 24 hr.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4212,7 +4212,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Global SIGWX Charts for Medium-level are issued for Flight Levels`,
     opts: [`150 & 200`, `100 & 250`, `100 & 150`],
     ans: 1,
-    exp: `100 & 250 Medium-level SIGWX covers FL100 to FL250. High-level covers FL250 to FL630. � Medium SIGWX: FL100–FL250. High SIGWX: FL250–FL630. "100-250 is medium, 250-630 is high." Easy to remember.`,
+    exp: `100 & 250 Medium-level SIGWX covers FL100 to FL250. High-level covers FL250 to FL630. Medium SIGWX: FL100–FL250. High SIGWX: FL250–FL630. "100-250 is medium, 250-630 is high." Easy to remember.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4222,7 +4222,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Individual TS which cover less than 50% area is termed as`,
     opts: [`ISOL TS`, `FRQ TS`, `OCNL TS`],
     ans: 0,
-    exp: `ISOL TS ISOL TS = Individual TS, less than 50% area covered. OCNL TS = 50–75%. FRQ TS = >75%. � Mnemonic: "I (ISOL) <50%, O (OCNL) 50-75%, F (FRQ) >75%" — I O F in order of increasing coverage.`,
+    exp: `ISOL TS ISOL TS = Individual TS, less than 50% area covered. OCNL TS = 50–75%. FRQ TS = >75%. Mnemonic: "I (ISOL) <50%, O (OCNL) 50-75%, F (FRQ) >75%" — I O F in order of increasing coverage.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4232,7 +4232,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `If TS cells have no separation between adjacent TS and cover an area more than 75%, it is termed as`,
     opts: [`FRQ`, `ISOL`, `OCNL`],
     ans: 0,
-    exp: `FRQ FRQ TS: little or no separation between adjacent TS, covering more than 75% of the area. � FRQ = Frequent = >75% = no separation. Represents the worst scenario for en-route TS avoidance.`,
+    exp: `FRQ FRQ TS: little or no separation between adjacent TS, covering more than 75% of the area. FRQ = Frequent = >75% = no separation. Represents the worst scenario for en-route TS avoidance.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4242,7 +4242,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `PPI scope provides`,
     opts: [`Plan view of echoes — bearing and range`, `Height of echoes`, `Intensity of echoes`],
     ans: 0,
-    exp: `Plan view of echoes — bearing and range The Plan-Position Indicator (PPI) presents a plan (top-down) view of echoes and provides the bearing and range of the echo. � PPI = Plan (horizontal) = Position = Bearing/Range. RHI = Range-Height = Altitude of CB cells. Easy: "RHI reads Height."`,
+    exp: `Plan view of echoes — bearing and range The Plan-Position Indicator (PPI) presents a plan (top-down) view of echoes and provides the bearing and range of the echo. PPI = Plan (horizontal) = Position = Bearing/Range. RHI = Range-Height = Altitude of CB cells. Easy: "RHI reads Height."`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4252,7 +4252,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `RHI scope enables direct reading of`,
     opts: [`Speed of echoes`, `Range of echoes`, `Altitude of CB cells`],
     ans: 2,
-    exp: `Altitude of CB cells The Range-Height Indicator (RHI) enables direct reading of the altitudes of CB cells — essential for aviation weather avoidance decisions. � RHI = Range-Height Indicator. Direct reading of CB cell altitude = pilots can decide if they can overfly the CB or need to deviate.`,
+    exp: `Altitude of CB cells The Range-Height Indicator (RHI) enables direct reading of the altitudes of CB cells — essential for aviation weather avoidance decisions. RHI = Range-Height Indicator. Direct reading of CB cell altitude = pilots can decide if they can overfly the CB or need to deviate.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4262,7 +4262,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `S band radar is used for`,
     opts: [`Detection of clouds`, `Storm detection`, `Cyclone detection and tracking (rain, precipitation, cyclones)`],
     ans: 2,
-    exp: `Cyclone detection and tracking S band (8–15 cm wavelength) is used for rain, precipitation, cyclones, and depressions. It is also called the Cyclone Detection (and tracking) Radar. � "S for Sea/Storm/Cyclone" — S band covers the longest range for weather, best for cyclone tracking. IMD's cyclone detection network uses S-band radars along the coast.`,
+    exp: `Cyclone detection and tracking S band (8–15 cm wavelength) is used for rain, precipitation, cyclones, and depressions. It is also called the Cyclone Detection (and tracking) Radar. "S for Sea/Storm/Cyclone" — S band covers the longest range for weather, best for cyclone tracking. IMD's cyclone detection network uses S-band radars along the coast.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4272,7 +4272,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Quantitative Radar measures rate of precipitation using wavelength`,
     opts: [`5.0 cm`, `10.0 cm`, `3.2 cm`],
     ans: 1,
-    exp: `10.0 cm Quantitative Radar (10.0 cm wavelength) is used for quantitative measurement of rate of precipitation, total precipitation, intensity, and snowfall. � Quantitative Radar = 10 cm. Remember: 10 cm is in the S-Band range (8–15 cm). Airborne weather radar = 3 cm (X-Band).`,
+    exp: `10.0 cm Quantitative Radar (10.0 cm wavelength) is used for quantitative measurement of rate of precipitation, total precipitation, intensity, and snowfall. Quantitative Radar = 10 cm. Remember: 10 cm is in the S-Band range (8–15 cm). Airborne weather radar = 3 cm (X-Band).`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4282,7 +4282,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `DWR detects if targets are moving towards or away by measuring`,
     opts: [`Amplitude of return signal`, `Change of frequency of return signal`, `Time delay of return signal`],
     ans: 1,
-    exp: `Change of frequency of return signal DWR works on the principle of the Doppler Effect — measuring the change of frequency of the return signal to determine if targets (precipitation, wind, etc.) are moving towards or away from the radar station. � Doppler Effect = frequency change. Moving towards radar = higher frequency (blue shift). Moving away = lower frequency (red shift). This principle also used in airborne weather radar for wind shear detection.`,
+    exp: `Change of frequency of return signal DWR works on the principle of the Doppler Effect — measuring the change of frequency of the return signal to determine if targets (precipitation, wind, etc.) are moving towards or away from the radar station. Doppler Effect = frequency change. Moving towards radar = higher frequency (blue shift). Moving away = lower frequency (red shift). This principle also used in airborne weather radar for wind shear detection.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4292,7 +4292,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Bright Band is an indicator of`,
     opts: [`Strong/severe storm`, `CB cloud`, `Weak storm`],
     ans: 2,
-    exp: `Weak storm Bright Band is an indicator of a WEAK storm. It appears at the freezing level in stratiform precipitation (not convective). It disappears with increasing convection. � Counter-intuitive DGCA trap! Bright Band = WEAK storm. Formed by melting snowflakes at the freezing level in stratiform rain. Disappears when convection (strong storm) develops.`,
+    exp: `Weak storm Bright Band is an indicator of a WEAK storm. It appears at the freezing level in stratiform precipitation (not convective). It disappears with increasing convection. Counter-intuitive DGCA trap! Bright Band = WEAK storm. Formed by melting snowflakes at the freezing level in stratiform rain. Disappears when convection (strong storm) develops.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4302,7 +4302,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `A figure '6' echo is an indication of`,
     opts: [`Hailstorm`, `Tornado`, `Severe turbulence`],
     ans: 1,
-    exp: `Tornado A radar echo of the figure '6' shape is an indication of a tornado. Hooks, Appendages and Protuberances indicate severe storms with hail. � Figure '6' = Tornado on radar. This is because the hook-echo structure (associated with tornado supercells) resembles the number 6. Classic DGCA question.`,
+    exp: `Tornado A radar echo of the figure '6' shape is an indication of a tornado. Hooks, Appendages and Protuberances indicate severe storms with hail. Figure '6' = Tornado on radar. This is because the hook-echo structure (associated with tornado supercells) resembles the number 6. Classic DGCA question.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4312,7 +4312,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Spiral bands on radar indicate`,
     opts: [`Severe TS`, `Tropical Cyclone`, `Hailstorm`],
     ans: 1,
-    exp: `Tropical Cyclone Spiral bands on radar indicate tropical cyclones and last for a long time. � Spiral bands = TC signature. The spiral arms of precipitation are the classic visual structure of a tropical cyclone on radar imagery.`,
+    exp: `Tropical Cyclone Spiral bands on radar indicate tropical cyclones and last for a long time. Spiral bands = TC signature. The spiral arms of precipitation are the classic visual structure of a tropical cyclone on radar imagery.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4322,7 +4322,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `On airborne weather radar, Red/Magenta colour indicates`,
     opts: [`Light precipitation`, `Moderate precipitation`, `Heavy precipitation, TS, severe turbulence — AVOID`],
     ans: 2,
-    exp: `Heavy precipitation, TS, severe turbulence — aircraft should ALWAYS AVOID Red/Magenta on airborne radar = heavy precipitation, TS, hail, strong winds, tornadoes, severe turbulence. Aircraft must always avoid these areas. � Color code: Green=Go (light, 1–4mm), Yellow=Caution (moderate, 4–12mm), Red/Magenta=STOP/AVOID (severe, ≥12mm). Never penetrate Red/Magenta areas.`,
+    exp: `Heavy precipitation, TS, severe turbulence — aircraft should ALWAYS AVOID Red/Magenta on airborne radar = heavy precipitation, TS, hail, strong winds, tornadoes, severe turbulence. Aircraft must always avoid these areas. Color code: Green=Go (light, 1–4mm), Yellow=Caution (moderate, 4–12mm), Red/Magenta=STOP/AVOID (severe, ≥12mm). Never penetrate Red/Magenta areas.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4332,7 +4332,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Geostationary satellites are placed at an altitude of approximately`,
     opts: [`650–1500 km`, `36,000 km`, `500 km`],
     ans: 1,
-    exp: `36,000 km Geostationary satellites are placed in near circular orbit at about 36,000 km in the plane of the earth's equator. They are earth synchronized with same period of rotation as earth. � Geostationary = 36,000 km; 5 cover the globe; earth-synchronized. Polar = 650–1500 km; covers earth twice/day; same spot every 12 hr.`,
+    exp: `36,000 km Geostationary satellites are placed in near circular orbit at about 36,000 km in the plane of the earth's equator. They are earth synchronized with same period of rotation as earth. Geostationary = 36,000 km; 5 cover the globe; earth-synchronized. Polar = 650–1500 km; covers earth twice/day; same spot every 12 hr.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4342,7 +4342,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `How many geostationary satellites are needed to cover the entire globe?`,
     opts: [`3`, `4`, `5`],
     ans: 2,
-    exp: `5 Five geostationary satellites are capable of covering the entire globe. METEOSAT, INSAT, GMS, and GOES (2) together provide global geostationary coverage. � 5 geostationary satellites = global coverage. NOAA provides polar (LEO) global coverage with fewer satellites but periodic, not continuous, coverage.`,
+    exp: `5 Five geostationary satellites are capable of covering the entire globe. METEOSAT, INSAT, GMS, and GOES (2) together provide global geostationary coverage. 5 geostationary satellites = global coverage. NOAA provides polar (LEO) global coverage with fewer satellites but periodic, not continuous, coverage.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4352,7 +4352,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Kalpana-1 satellite is located at`,
     opts: [`74°E`, `93.5°E`, `82°E`],
     ans: 0,
-    exp: `74°E Kalpana-1 was launched on 12 September 2002 and is located at 74°E. INSAT-3A is at 93.5°E. INSAT-3D is at 82°E. � Satellite positions: Kalpana-1 = 74°E; INSAT-3A = 93.5°E; INSAT-3D = 82°E; INSAT-3DR = 74°E (same as Kalpana-1). GMS (Japan) = 130°E.`,
+    exp: `74°E Kalpana-1 was launched on 12 September 2002 and is located at 74°E. INSAT-3A is at 93.5°E. INSAT-3D is at 82°E. Satellite positions: Kalpana-1 = 74°E; INSAT-3A = 93.5°E; INSAT-3D = 82°E; INSAT-3DR = 74°E (same as Kalpana-1). GMS (Japan) = 130°E.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4362,7 +4362,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `In IR satellite imagery, the lowest temperatures appear`,
     opts: [`Black`, `Dark grey`, `White (brightest)`],
     ans: 2,
-    exp: `White (brightest) In IR images, the lowest temperatures (highest, coldest cloud tops) are the whitest (brightest). The warmest areas appear dark grey or black. � IR imagery rule: COLD = WHITE = High clouds. WARM = BLACK/DARK = Surface/warm areas. Useful for identifying deep convection (appears bright white in IR).`,
+    exp: `White (brightest) In IR images, the lowest temperatures (highest, coldest cloud tops) are the whitest (brightest). The warmest areas appear dark grey or black. IR imagery rule: COLD = WHITE = High clouds. WARM = BLACK/DARK = Surface/warm areas. Useful for identifying deep convection (appears bright white in IR).`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4372,7 +4372,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Drizzle does not show up on radar because radar returns are proportional to`,
     opts: [`Square of droplet diameter`, `Fourth power of droplet diameter`, `Sixth power of droplet diameter`],
     ans: 2,
-    exp: `Sixth power of droplet diameter Radar returns are proportional to the sixth power of droplet diameter. Since drizzle droplets are very small, their sixth power is tiny — making them virtually invisible to radar. � Z = D⁶ (Z is radar reflectivity, D is droplet diameter). Sixth power means a tiny change in size = massive change in reflectivity. Drizzle droplets too small = near zero radar return.`,
+    exp: `Sixth power of droplet diameter Radar returns are proportional to the sixth power of droplet diameter. Since drizzle droplets are very small, their sixth power is tiny — making them virtually invisible to radar. Z = D⁶ (Z is radar reflectivity, D is droplet diameter). Sixth power means a tiny change in size = massive change in reflectivity. Drizzle droplets too small = near zero radar return.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4382,7 +4382,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `INSAT-3D was launched from`,
     opts: [`Sriharikota`, `Baikonur`, `French Guiana Space Centre`],
     ans: 2,
-    exp: `French Guiana Space Centre INSAT-3D was launched on 25 July 2013 from French Guiana Space Centre (Ariane launch site). It is an advanced weather satellite for operational, environmental and storm warning. � INSAT-3D = French Guiana Space Centre, 25 Jul 2013, at 82°E. INSAT-3DR = launched 08 Sep 2016 at 74°E. Both are operational Met satellites.`,
+    exp: `French Guiana Space Centre INSAT-3D was launched on 25 July 2013 from French Guiana Space Centre (Ariane launch site). It is an advanced weather satellite for operational, environmental and storm warning. INSAT-3D = French Guiana Space Centre, 25 Jul 2013, at 82°E. INSAT-3DR = launched 08 Sep 2016 at 74°E. Both are operational Met satellites.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4392,7 +4392,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Pressure is measured in units of`,
     opts: [`Knots`, `Hectopascal (hPa) or Millibar (mb)`, `Percentage (%)`],
     ans: 1,
-    exp: `Hectopascal (hPa) or Millibar (mb) Atmospheric pressure is measured in Hectopascals (hPa), Millibars (mb), or inches of mercury. Note: 1 hPa = 1 mb. � Standard sea level pressure = 1013.25 hPa = 1013.25 mb = 29.92 inches Hg. The DGCA uses hPa in QNH and altimeter settings.`,
+    exp: `Hectopascal (hPa) or Millibar (mb) Atmospheric pressure is measured in Hectopascals (hPa), Millibars (mb), or inches of mercury. Note: 1 hPa = 1 mb. Standard sea level pressure = 1013.25 hPa = 1013.25 mb = 29.92 inches Hg. The DGCA uses hPa in QNH and altimeter settings.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4402,7 +4402,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Minimum temperature is measured by`,
     opts: [`Mercury thermometer`, `Alcohol thermometer`, `Aneroid thermometer`],
     ans: 1,
-    exp: `Alcohol thermometer The minimum thermometer uses alcohol (not mercury) because alcohol has a much lower freezing point (~−114°C) than mercury (−39°C), allowing measurement of very low temperatures. � Min = Alcohol; Max = Mercury. Remember: "A for Alcohol = A for Arctic cold." Alcohol remains liquid at extremely low temperatures.`,
+    exp: `Alcohol thermometer The minimum thermometer uses alcohol (not mercury) because alcohol has a much lower freezing point (~−114°C) than mercury (−39°C), allowing measurement of very low temperatures. Min = Alcohol; Max = Mercury. Remember: "A for Alcohol = A for Arctic cold." Alcohol remains liquid at extremely low temperatures.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4412,7 +4412,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Relative Humidity is measured by`,
     opts: [`Barograph`, `Hygrometer / Psychrometer`, `Anemometer`],
     ans: 1,
-    exp: `Hygrometer / Psychrometer Relative Humidity (%) is measured by Hygrometers, Hygrograph (self-recording), Psychrometer (dry and wet bulb combination), and Dry & Wet bulb thermometers. � Hygrometer = Humidity. Psychrometer = Dry + Wet bulb thermometers = RH. Hygrograph = self-recording hygrometer = also gives Mixing Ratio in gm/kg.`,
+    exp: `Hygrometer / Psychrometer Relative Humidity (%) is measured by Hygrometers, Hygrograph (self-recording), Psychrometer (dry and wet bulb combination), and Dry & Wet bulb thermometers. Hygrometer = Humidity. Psychrometer = Dry + Wet bulb thermometers = RH. Hygrograph = self-recording hygrometer = also gives Mixing Ratio in gm/kg.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4422,7 +4422,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Cloud base is measured by`,
     opts: [`Hygrograph`, `Ceilometer / Ceilograph / Ceiling Balloon`, `Anemograph`],
     ans: 1,
-    exp: `Ceilometer / Ceilograph / Ceiling Balloon Cloud base instruments include: Search light/Laser beam, Ceilometer/Ceilograph, Ceiling Balloon, Nephroscope (direction of movement), and Alidade. Units: feet or metres; 8 points of compass (for direction). � Cloud base = Ceilometer or Ceiling Balloon. For METAR reporting, cloud base is given in hundreds of feet AGL (e.g., BKN030 = broken cloud at 3000 ft).`,
+    exp: `Ceilometer / Ceilograph / Ceiling Balloon Cloud base instruments include: Search light/Laser beam, Ceilometer/Ceilograph, Ceiling Balloon, Nephroscope (direction of movement), and Alidade. Units: feet or metres; 8 points of compass (for direction). Cloud base = Ceilometer or Ceiling Balloon. For METAR reporting, cloud base is given in hundreds of feet AGL (e.g., BKN030 = broken cloud at 3000 ft).`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4432,7 +4432,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Upper air pressure, temperature and humidity are measured by`,
     opts: [`Optical Theodolite`, `Radiosonde / Dropsonde`, `AVRA`],
     ans: 1,
-    exp: `Radiosonde / Dropsonde Radiosonde (balloon-borne) measures upper air pressure, temperature, and humidity. Dropsonde is the same but dropped from aircraft — specifically used in cyclones where balloon launching is not practical. � Radiosonde = upper air P/T/RH (all three parameters). Dropsonde = same as Radiosonde but dropped from aircraft into cyclones. Theodolite/RAWIN = upper WINDS only.`,
+    exp: `Radiosonde / Dropsonde Radiosonde (balloon-borne) measures upper air pressure, temperature, and humidity. Dropsonde is the same but dropped from aircraft — specifically used in cyclones where balloon launching is not practical. Radiosonde = upper air P/T/RH (all three parameters). Dropsonde = same as Radiosonde but dropped from aircraft into cyclones. Theodolite/RAWIN = upper WINDS only.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4442,7 +4442,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Upper winds are measured by`,
     opts: [`Radiosonde`, `Radar Wind (RAWIN) / Optical Theodolite / Pilot Balloon`, `Ceilometer`],
     ans: 1,
-    exp: `Radar Wind (RAWIN) / Optical Theodolite / Pilot Balloon Upper winds are measured by: Optical Theodolite (tracks pilot balloon), Hydrogen-filled Pilot Balloon, and Radar Wind (RAWIN) — radar tracking of balloon. Units: degrees, Knots (KT), km/hr (KMH), or m/sec (MPS). � Upper winds: RAWIN, Theodolite, PIBAL. Upper air P/T/RH: Radiosonde/Dropsonde. Don't confuse them! The balloon gives you both — but separate instruments are used for each measurement.`,
+    exp: `Radar Wind (RAWIN) / Optical Theodolite / Pilot Balloon Upper winds are measured by: Optical Theodolite (tracks pilot balloon), Hydrogen-filled Pilot Balloon, and Radar Wind (RAWIN) — radar tracking of balloon. Units: degrees, Knots (KT), km/hr (KMH), or m/sec (MPS). Upper winds: RAWIN, Theodolite, PIBAL. Upper air P/T/RH: Radiosonde/Dropsonde. Don't confuse them! The balloon gives you both — but separate instruments are used for each measurement.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4452,7 +4452,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Visibility / RVR is measured by`,
     opts: [`Wind Vane`, `Transmissometer / Scopograph / Forward Scatterometer`, `Nephroscope`],
     ans: 1,
-    exp: `Transmissometer / Scopograph / Forward Scatterometer Visibility and RVR are measured by AVRA, Transmissometer or Scopograph, Forward Scatterometer, or manually using Visibility Landmarks. Units: metres (m) or km. � Transmissometer = measures transmission of light through atmosphere = gives RVR. Forward Scatterometer = scatters laser forward into a detector = visibility measurement. Both used at major airports.`,
+    exp: `Transmissometer / Scopograph / Forward Scatterometer Visibility and RVR are measured by AVRA, Transmissometer or Scopograph, Forward Scatterometer, or manually using Visibility Landmarks. Units: metres (m) or km. Transmissometer = measures transmission of light through atmosphere = gives RVR. Forward Scatterometer = scatters laser forward into a detector = visibility measurement. Both used at major airports.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4462,7 +4462,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Surface wind direction is reported from True North in which direction?`,
     opts: [`Anticlockwise`, `Clockwise`, `From South`],
     ans: 1,
-    exp: `Clockwise Wind direction is reported in degrees from True North in the clockwise direction. For example, 090° = East, 180° = South, 270° = West. � Wind direction convention: From True North, measured clockwise. Used in METAR (e.g., "27015KT" = wind from 270° True at 15 knots). This is same as compass bearing convention.`,
+    exp: `Clockwise Wind direction is reported in degrees from True North in the clockwise direction. For example, 090° = East, 180° = South, 270° = West. Wind direction convention: From True North, measured clockwise. Used in METAR (e.g., "27015KT" = wind from 270° True at 15 knots). This is same as compass bearing convention.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4472,7 +4472,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Humidity Mixing Ratio is measured in`,
     opts: [`%`, `gm/kg`, `hPa`],
     ans: 1,
-    exp: `gm/kg Humidity Mixing Ratio (HMR) is measured in grams per kilogram (gm/kg) of dry air. It is measured using the Hygrograph. Note: Relative Humidity is measured in % (different parameter). � Key distinction: Relative Humidity = % ; Mixing Ratio = gm/kg. Both are measures of humidity but in different units and with different meanings. Mixing Ratio does not change with temperature changes alone.`,
+    exp: `gm/kg Humidity Mixing Ratio (HMR) is measured in grams per kilogram (gm/kg) of dry air. It is measured using the Hygrograph. Note: Relative Humidity is measured in % (different parameter). Key distinction: Relative Humidity = % ; Mixing Ratio = gm/kg. Both are measures of humidity but in different units and with different meanings. Mixing Ratio does not change with temperature changes alone.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -4482,7 +4482,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `Dropsonde is used in`,
     opts: [`Mountain areas`, `Cyclones (dropped from aircraft)`, `Upper atmosphere research`],
     ans: 1,
-    exp: `Cyclones (dropped from aircraft) Dropsonde is a Radiosonde-equivalent instrument that is DROPPED from reconnaissance aircraft into cyclones to gather upper air pressure, temperature, and humidity data where balloon launching is not feasible. � Radiosonde goes UP (balloon); Dropsonde goes DOWN (aircraft drop). Both measure upper air P/T/RH. Dropsonde specifically used in cyclone reconnaissance missions.`,
+    exp: `Cyclones (dropped from aircraft) Dropsonde is a Radiosonde-equivalent instrument that is DROPPED from reconnaissance aircraft into cyclones to gather upper air pressure, temperature, and humidity data where balloon launching is not feasible. Radiosonde goes UP (balloon); Dropsonde goes DOWN (aircraft drop). Both measure upper air P/T/RH. Dropsonde specifically used in cyclone reconnaissance missions.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
