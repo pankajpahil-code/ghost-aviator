@@ -1,6 +1,7 @@
 // Previous-year / sample papers — full exam-style papers with answer keys,
 // organised by subject. Papers are intentionally titled by subject only.
 import { AIR_REGULATIONS_PAPERS } from "./generated/past-papers-air-regulations";
+import { applyAnswerCorrections } from "./answer-corrections";
 
 export type PastPaperQuestion = { q: string; opts: string[]; ans: number; exp?: string };
 
@@ -15,7 +16,8 @@ export type PastPaper = {
 import { SAMPLE_PAPERS } from "./sample-papers";
 
 export const ALL_PAST_PAPERS: PastPaper[] = [
-  ...AIR_REGULATIONS_PAPERS,
+  // Printed keys, with declared corrections applied (lib/answer-corrections.ts).
+  ...AIR_REGULATIONS_PAPERS.map(p => ({ ...p, questions: applyAnswerCorrections(p.questions) })),
   ...SAMPLE_PAPERS,
 ];
 

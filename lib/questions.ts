@@ -18,6 +18,7 @@ import { AR25_PHYSIOLOGY_QUESTIONS } from "./generated/ar25-physiology-questions
 import { RTF_QUESTIONS } from "./generated/rtf-questions";
 import { MET_VERIFIED, VERIFIED_MET_CHAPTERS } from "./generated/met-verified";
 import { DA42_QUESTIONS } from "./generated/da42-questions";
+import { applyAnswerCorrections } from "./answer-corrections";
 
 export type { DemoQuestion };
 
@@ -31,7 +32,9 @@ const dropVerifiedMet = (q: DemoQuestion) =>
 
 // Curated sources first (hand-written explanations win on duplicates),
 // auto-generated banks last.
-const RAW_QUESTIONS: DemoQuestion[] = [
+// Declared answer-key corrections (lib/answer-corrections.ts) are applied to
+// every source before de-dupe, so a regenerated bank cannot undo them.
+const RAW_QUESTIONS: DemoQuestion[] = applyAnswerCorrections([
   ...MET_VERIFIED,         // ✅ verified Meteorology chapters — highest priority
   ...DEMO_QUESTIONS,
   ...NAV_QUESTIONS,
@@ -51,7 +54,7 @@ const RAW_QUESTIONS: DemoQuestion[] = [
   ...RTF_QUESTIONS,              // Radio Telephony Q&A (rtf-1..24, 779 questions)
   ...ECQB_061_NAVIGATION,
   ...ICJOSHI_MET.filter(dropVerifiedMet), // font-extracted met bank (unverified met chapters only)
-];
+]);
 
 // Global de-dupe by normalised question text — keeps the first (highest-priority)
 // copy so we never ship the same question twice across sources.
