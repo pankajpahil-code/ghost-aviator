@@ -7,6 +7,7 @@ import { SITE_URL } from "@/lib/site";
 import { LASTMOD } from "@/lib/generated/lastmod";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { videoSitemapEntriesFor, isWatchPage } from "@/lib/video-schema";
+import { PUBLISHED_CORRECTIONS } from "@/lib/corrections";
 
 export const dynamic = "force-static";
 
@@ -79,6 +80,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/how-answers-are-verified"), changeFrequency: "monthly" as const, priority: 0.7 },
     { url: url("/faq"),          changeFrequency: "monthly" as const, priority: 0.8 },
     { url: url("/cpl-cost-calculator"), changeFrequency: "monthly" as const, priority: 0.9 },
+    // Same condition the page renders on (lib/corrections.ts): submitted only once the Captain
+    // has approved at least one correction; until then the route is a 404.
+    ...(PUBLISHED_CORRECTIONS.length ? [{ url: url("/corrections"), changeFrequency: "monthly" as const, priority: 0.8 }] : []),
     // /login and /signup are deliberately absent: thin, no search intent, and
     // they are marked noindex. Submitting them only spends crawl budget.
   ].map(p => ({ ...p, ...mod(p.url.replace(SITE_URL, "") || "/") }));
