@@ -42,6 +42,12 @@ const REQUIRED = [
     what: "Google Search Console verification for ghostaviator.com",
     added: "2026-08-23, at the Captain's instruction: upload it and never remove it",
   },
+  {
+    path: "public/8afb1d23a7b77f9b01617efd23f13598.txt",
+    sha256: "91ce88ed1b717173dca08c94083c77783aa2b2002585e91f603c16e1fec2bfe7",
+    what: "IndexNow key for ghostaviator.com (Bing / ChatGPT search / Copilot) - used by tools/seo/indexnow.mjs",
+    added: "2026-09-24, with tools/seo/indexnow.mjs",
+  },
 ];
 
 let bad = 0;
