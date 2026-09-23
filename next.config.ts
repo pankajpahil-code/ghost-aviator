@@ -75,6 +75,23 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      // THE ONE EXCEPTION TO frame-ancestors 'self': the "DGCA Question of the Day" widget
+      // (app/embed/question/route.ts), which flight schools and clubs paste into their own sites.
+      // It must come AFTER the catch-all: "if two headers match the same path and set the same
+      // header key, the last header key will override the first" (next.config headers docs).
+      // It carries one public question already published in the question bank - nothing that is
+      // not already given away - and no script at all, so its policy forbids scripts entirely.
+      // CSP frame-ancestors supersedes X-Frame-Options in current browsers; ALLOWALL is set too
+      // because an old browser that ignores CSP would otherwise obey SAMEORIGIN and show nothing.
+      {
+        // Exact path on purpose: a pattern like /embed/:path* would also match a normal page at
+        // /embed and strip its scripts. The instructions page for schools lives at /widget.
+        source: "/embed/question",
+        headers: [
+          { key: "Content-Security-Policy", value: "default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; frame-ancestors *; base-uri 'none'; form-action 'none'" },
+          { key: "X-Frame-Options", value: "ALLOWALL" },
+        ],
+      },
       // The raw chapter files. These are the standalone documents the notes
       // route used to iframe; since 2026-08-08 the chapter renders in the page
       // itself, so these are unlinked duplicates of a page we DO want indexed —
