@@ -6,6 +6,7 @@ import { getChapterVideos } from "@/lib/chapter-videos";
 import { chapterMetaDescription, chapterTitle } from "@/lib/chapter-meta";
 import { isIndexableChapterRoute, servesRealNotes, adjacentWithContent, NOINDEX } from "@/lib/indexability";
 import { getInlineNotes } from "@/lib/notes-inline";
+import { openerFactsFor } from "@/lib/opener-key-facts";
 import { videoObjectsFor, lecturePartsFor, isWatchPage } from "@/lib/video-schema";
 import NotesPage       from "@/app/components/content/NotesPage";
 import HtmlNotesPage   from "@/app/components/content/HtmlNotesPage";
@@ -114,6 +115,7 @@ export default async function Page({
             nextChapter={nextChapter}
             notes={inlineNotes}
             videos={chapterVideos}
+            openerFacts={openerFactsFor(subject.id, chapter.id)}
           />
         </>
       );

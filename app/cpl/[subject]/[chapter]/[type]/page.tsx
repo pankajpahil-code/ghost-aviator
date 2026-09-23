@@ -4,6 +4,7 @@ import { CPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter, getChapterSpecificQuestions } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { getInlineNotes } from "@/lib/notes-inline";
+import { openerFactsFor } from "@/lib/opener-key-facts";
 import { isIndexableChapterRoute, servesRealNotes, adjacentWithContent, NOINDEX } from "@/lib/indexability";
 import { chapterMetaDescription, chapterTitle } from "@/lib/chapter-meta";
 import { videoObjectsFor, lecturePartsFor, isWatchPage } from "@/lib/video-schema";
@@ -189,6 +190,7 @@ export default async function Page({
             nextChapter={nextChapter}
             notes={inlineNotes}
             videos={getChapterVideos(subject.id, chapter.id)}
+            openerFacts={openerFactsFor(subject.id, chapter.id)}
           />
         </>
       );

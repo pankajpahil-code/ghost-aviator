@@ -8,7 +8,7 @@ import Watermark from "@/app/components/Watermark";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 import VideoLectureCard from "@/app/components/content/VideoLectureCard";
 import type { ChapterVideo } from "@/lib/chapter-videos";
-import { keyFactsFor } from "@/lib/chapter-key-facts";
+import { keyFactsFor, type ChapterKeyFacts } from "@/lib/chapter-key-facts";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -22,6 +22,10 @@ type Props = {
   notes: { css: string; html: string };
   /** The Captain's lecture(s) for this chapter — card renders above the notes when non-empty. */
   videos?: ChapterVideo[];
+  /** Key facts computed on the server (lib/opener-key-facts.ts) for THIS chapter only, used when
+   *  lib/chapter-key-facts.ts has no hand-written entry. Passed as a prop so the full set never
+   *  enters a client bundle. */
+  openerFacts?: ChapterKeyFacts;
 };
 
 type SpeechState = "idle" | "playing" | "paused" | "unsupported";
@@ -135,9 +139,9 @@ function useReadAloud(notesRef: React.RefObject<HTMLDivElement | null>) {
   return { state, toggle, stop, voices, voiceURI, setVoiceURI };
 }
 
-export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, notes, videos }: Props) {
+export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, notes, videos, openerFacts }: Props) {
   const notesRef = useRef<HTMLDivElement>(null);
-  const keyFacts = keyFactsFor(subject.id, chapter.id);
+  const keyFacts = keyFactsFor(subject.id, chapter.id) ?? openerFacts;
   const { state: speechState, toggle: toggleListen, stop: stopListen, voices, voiceURI, setVoiceURI } = useReadAloud(notesRef);
 
   // Content protection, previously injected into the iframe document by
