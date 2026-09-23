@@ -340,7 +340,7 @@ export default function LiveClassesPage() {
                 "General Navigation + Radio Navigation + Instrumentation",
                 "Covers the full composite DGCA Navigation paper",
                 "One integrated plan — concepts connect across subjects",
-                `Save ${"₹1,000"} vs joining the three founding batches separately`,
+                `Save ₹${(LIVE_PRICE_VALUE * 3 - LIVE_COMBO_PRICE_VALUE).toLocaleString("en-IN")} vs joining the three founding batches separately`,
               ].map(p => (
                 <li key={p} className="flex items-start gap-2 text-sm leading-relaxed" style={{ color:"#94a3b8" }}>
                   <CheckCircle className="w-4 h-4 mt-0.5 shrink-0" style={{ color:"#22c55e" }}/> {p}
