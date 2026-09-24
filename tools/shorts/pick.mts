@@ -28,6 +28,7 @@ import { fileURLToPath } from "node:url";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "../../lib/subjects";
 import { getChapterSpecificQuestions } from "../../lib/questions";
 import { SITE_URL } from "../../lib/site";
+import { VERIFICATION } from "../../lib/verification-status";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -73,8 +74,16 @@ const pool: Pick[] = [];
 const rejected: Record<string, number> = {};
 const seen = new Set<string>();
 
+// A Short is PUBLIC and is watched by strangers who never see the site's caveats. So it draws ONLY from
+// subjects that /how-answers-are-verified declares "verified" (lib/verification-status.ts) - today that is
+// Meteorology alone. Added 2026-09-24: the picker had been drawing from every bank, and its first two
+// renders were Radio Telephony questions, a bank not yet audited; Air Regs carries 26 keys awaiting the
+// Captain's ruling. Widen this only by upgrading a subject's status there, never by editing this line.
+const PUBLISHABLE = new Set(VERIFICATION.filter(v => v.level === "verified").map(v => v.subjectId));
+
 for (const [track, subs] of [["cpl", CPL_SUBJECTS], ["atpl", ATPL_SUBJECTS]] as const) {
   for (const s of subs) {
+    if (track !== "cpl" || !PUBLISHABLE.has(s.id)) continue;   // an ATPL bank is not the CPL bank that was verified
     for (const ch of s.chapters) {
       for (const q of getChapterSpecificQuestions(s.id, ch.id)) {
         const key = q.q.trim();
