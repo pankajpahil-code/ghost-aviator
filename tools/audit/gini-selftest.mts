@@ -332,11 +332,22 @@ const spokenPersona = [
 check(!BANNED.test(spokenPersona), "no attribution leaks in the hand-written lines");
 
 line("\n--- PLACEHOLDER SWEEP: would he ever read a stub aloud? ---");
-let stubs = 0;
+// Written independently of isRealExplanation() so the sweep is not the
+// predicate grading itself. Before 2026-09-24 it knew only "Correct answer: B",
+// and 647 "Correct answer: C. Topic: <syllabus line>." stubs were spoken under
+// a green run because this line could not see them.
+const STUB = /^\s*correct answer\s*[:\-]?\s*\(?[a-d]\)?\s*\.?\s*(topic\s*:.{0,200})?$/i;
+let stubs = 0, stubsInBank = 0;
 for (const q of ALL_QUESTIONS) {
-  const r = explainQuestion(q);
-  if (r.kind === "answer" && /^\s*correct answer\s*[:\-]?\s*[A-D]?\s*\.?\s*$/i.test((q.exp ?? "").trim())) stubs++;
+  const e = (q.exp ?? "").trim();
+  if (!STUB.test(e)) continue;
+  stubsInBank++;
+  if (explainQuestion(q).kind === "answer") stubs++;
 }
+const STUB_SAMPLES = ["Correct answer: B", "Correct Answer: (b)",
+  "Correct answer: C. Topic: Name range specifics of maximum range and radius of."];
+check(STUB_SAMPLES.every(s => STUB.test(s)), "the sweep recognises every known stub shape",
+  `${stubsInBank} stubs in the bank today, all held silent`);
 check(stubs === 0, "no placeholder ever spoken", `${stubs} found`);
 
 /* ───────────────────────── the deep layer, end to end ──────────────────── */

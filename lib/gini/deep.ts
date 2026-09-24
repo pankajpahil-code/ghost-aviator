@@ -38,7 +38,10 @@ import { answer, refuse, type GiniReply } from "./types";
  */
 export function isRealExplanation(exp: string | undefined): boolean {
   if (!exp || !exp.trim()) return false;
-  return !/^\s*correct answer\s*[:\-]?\s*[A-D]?\s*\.?\s*$/i.test(exp.trim());
+  // Three stub shapes: "Correct answer: B", "Correct Answer: (b)", and the
+  // generated "Correct answer: C. Topic: <one syllabus line>." — 668 of those in
+  // the Navigation bank (2026-09-24), which name the topic and explain nothing.
+  return !/^\s*correct answer\s*[:\-]?\s*\(?[A-D]?\)?\s*\.?\s*(topic\s*:[^\n]*)?$/i.test(exp.trim());
 }
 
 /**

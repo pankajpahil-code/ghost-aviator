@@ -25,7 +25,7 @@ import { getChapterVideos } from "../../lib/chapter-videos";
 // ── the exact production definition ─────────────────────────────────────────
 function isRealExplanation(exp: string | undefined): boolean {
   if (!exp || !exp.trim()) return false;
-  return !/^\s*correct answer\s*[:\-]?\s*[A-D]?\s*\.?\s*$/i.test(exp.trim());
+  return !/^\s*correct answer\s*[:\-]?\s*\(?[A-D]?\)?\s*\.?\s*(topic\s*:[^\n]*)?$/i.test(exp.trim());
 }
 
 /** Stems that cannot be answered without a chart/figure the student never saw. */

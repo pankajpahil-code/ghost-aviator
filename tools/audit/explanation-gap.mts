@@ -2,7 +2,7 @@ import { CPL_SUBJECTS, ATPL_SUBJECTS } from "../../lib/subjects";
 import { getChapterSpecificQuestions } from "../../lib/questions";
 
 const placeholder = (e?: string) =>
-  !e || !e.trim() || /^\s*correct answer\s*[:\-]?\s*[A-D]?\s*\.?\s*$/i.test(e.trim());
+  !e || !e.trim() || /^\s*correct answer\s*[:\-]?\s*\(?[A-D]?\)?\s*\.?\s*(topic\s*:[^\n]*)?$/i.test(e.trim());
 
 // Count each DISTINCT question once, keyed by stem, so chapters sharing a bank
 // don't inflate the total.

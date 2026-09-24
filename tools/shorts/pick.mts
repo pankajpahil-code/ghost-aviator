@@ -39,7 +39,7 @@ const OUT = join(HERE, "_spec.json");
 
 /** The placeholder test, identical to QuestionsPage.isRealExplanation. */
 const isPlaceholder = (e?: string) =>
-  !e || !e.trim() || /^\s*correct answer\s*[:\-]?\s*[A-D]?\s*\.?\s*$/i.test(e.trim());
+  !e || !e.trim() || /^\s*correct answer\s*[:\-]?\s*\(?[A-D]?\)?\s*\.?\s*(topic\s*:[^\n]*)?$/i.test(e.trim());
 
 /**
  * Can this question stand alone on a screen with no diagram and no context?

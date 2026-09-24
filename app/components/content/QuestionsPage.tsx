@@ -38,7 +38,10 @@ type Props = {
  */
 function isRealExplanation(exp: string | undefined): boolean {
   if (!exp || !exp.trim()) return false;
-  return !/^\s*correct answer\s*[:\-]?\s*[A-D]?\s*\.?\s*$/i.test(exp.trim());
+  // Three stub shapes: "Correct answer: B", "Correct Answer: (b)", and the
+  // generated "Correct answer: C. Topic: <one syllabus line>." — 668 of those in
+  // the Navigation bank (2026-09-24), which name the topic and explain nothing.
+  return !/^\s*correct answer\s*[:\-]?\s*\(?[A-D]?\)?\s*\.?\s*(topic\s*:[^\n]*)?$/i.test(exp.trim());
 }
 
 export default function QuestionsPage({ track, subject, chapter, questions, chapterSpecific = true, hasNotes = true }: Props) {
@@ -225,10 +228,12 @@ export default function QuestionsPage({ track, subject, chapter, questions, chap
             </button>
           ) : (
             <div className="mt-5">
-              <div className="p-4 rounded-xl text-sm mb-4"
-                   style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8" }}>
-                <span className="font-bold" style={{ color: "#f0913a" }}>💡 </span>{q.exp}
-              </div>
+              {isRealExplanation(q.exp) && (
+                <div className="p-4 rounded-xl text-sm mb-4"
+                     style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8" }}>
+                  <span className="font-bold" style={{ color: "#f0913a" }}>💡 </span>{q.exp}
+                </div>
+              )}
               <div className="flex gap-3">
                 <button onClick={() => markAndAdvance("correct")}
                         className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-bold"
