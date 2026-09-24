@@ -28,21 +28,18 @@
 import { ALL_QUESTIONS, type DemoQuestion } from "@/lib/questions";
 import { Index } from "./match";
 import { answer, refuse, type GiniReply } from "./types";
+import { isRealExplanation } from "@/lib/explanation";
 
 /* ─────────────────────── the speakable gate ─────────────────────── */
 
 /**
- * EXACTLY the production predicate from QuestionsPage.tsx. Duplicated on
- * purpose with this note: if that one changes, change this one in the same
- * commit, or Gini will start speaking placeholders the page itself hides.
+ * The speakable gate starts from the SAME predicate every page uses to decide
+ * whether to show an explanation, imported from lib/explanation.ts. It used to be
+ * a copy of QuestionsPage's, "duplicated on purpose" with a note to keep them in
+ * step; one definition now, so Gini can never speak a placeholder the page hides.
+ * Re-exported so this module's public surface is unchanged.
  */
-export function isRealExplanation(exp: string | undefined): boolean {
-  if (!exp || !exp.trim()) return false;
-  // Three stub shapes: "Correct answer: B", "Correct Answer: (b)", and the
-  // generated "Correct answer: C. Topic: <one syllabus line>." — 668 of those in
-  // the Navigation bank (2026-09-24), which name the topic and explain nothing.
-  return !/^\s*correct answer\s*[:\-]?\s*\(?[A-D]?\)?\s*\.?\s*(topic\s*:[^\n]*)?$/i.test(exp.trim());
-}
+export { isRealExplanation };
 
 /**
  * Iron Rule 2 — nothing student-facing may attribute teaching to a third party.

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Clock, CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { DemoQuestion } from "@/lib/demo-questions";
+import { isRealExplanation } from "@/lib/explanation";
 import { recordResult } from "@/lib/progress";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
@@ -214,10 +215,12 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
                     </div>
                   ))}
                 </div>
-                <div className="text-xs px-3 py-2 rounded-lg"
-                     style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.12)", color: "#64748b" }}>
-                  💡 {q.exp}
-                </div>
+                {isRealExplanation(q.exp) && (
+                  <div className="text-xs px-3 py-2 rounded-lg"
+                       style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.12)", color: "#64748b" }}>
+                    💡 {q.exp}
+                  </div>
+                )}
               </div>
             );
           })}
@@ -298,7 +301,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
           </div>
 
           {/* Explanation */}
-          {revealed && (
+          {revealed && isRealExplanation(q.exp) && (
             <div style={{ marginTop: "1.25rem", padding: "1rem", borderRadius: "0.75rem", background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8", fontSize: "0.875rem" }}>
               <span style={{ color: "#f0913a", fontWeight: 700 }}>💡 </span>{q.exp}
             </div>

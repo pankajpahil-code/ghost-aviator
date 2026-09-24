@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ChevronRight, ChevronLeft, BookOpen, CheckCircle, XCircle, RotateCcw, HelpCircle } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { DemoQuestion } from "@/lib/demo-questions";
+import { isRealExplanation } from "@/lib/explanation";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -21,28 +22,6 @@ type Props = {
    *  none — a dead end for the student and an empty URL for a crawler. */
   hasNotes?: boolean;
 };
-
-/**
- * True when an explanation actually explains something.
- *
- * 1,182 of the 4,397 questions reachable on a chapter page (27%) still carry
- * the placeholder `Correct answer: B` — re-measured 2026-08-21 and tracked as
- * an open task in CLAUDE.md. (The figure previously written here, "782 of
- * 1,277", counted regex hits in lib/*.ts rather than distinct reachable
- * questions; run `npx tsx tools/audit/explanation-gap.mts` for the live number
- * rather than trusting this comment.) Rendering those under a "Why:" label would put one near-identical
- * meaningless sentence on every question of every page: padding that teaches a
- * student nothing and hands Google exactly the boilerplate-repetition signal
- * the full question list exists to escape. A question with no real explanation
- * simply shows its marked answer and nothing more.
- */
-function isRealExplanation(exp: string | undefined): boolean {
-  if (!exp || !exp.trim()) return false;
-  // Three stub shapes: "Correct answer: B", "Correct Answer: (b)", and the
-  // generated "Correct answer: C. Topic: <one syllabus line>." — 668 of those in
-  // the Navigation bank (2026-09-24), which name the topic and explain nothing.
-  return !/^\s*correct answer\s*[:\-]?\s*\(?[A-D]?\)?\s*\.?\s*(topic\s*:[^\n]*)?$/i.test(exp.trim());
-}
 
 export default function QuestionsPage({ track, subject, chapter, questions, chapterSpecific = true, hasNotes = true }: Props) {
   // Content protection for the full question list below — same deterrents the

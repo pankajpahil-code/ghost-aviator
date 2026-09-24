@@ -2,6 +2,7 @@
 import { useMemo, useState } from "react";
 import { Search, BookOpen, CheckCircle, XCircle, ChevronDown } from "lucide-react";
 import { ALL_QUESTIONS } from "@/lib/questions";
+import { isRealExplanation } from "@/lib/explanation";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 
 const SUBJECT_INDEX: Record<string, string> = (() => {
@@ -144,7 +145,7 @@ export default function QuestionBankPage() {
                         ))}
                       </div>
 
-                      {open && q.exp && (
+                      {open && isRealExplanation(q.exp) && (
                         <div className="mt-4 p-4 rounded-xl text-sm"
                              style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8" }}>
                           💡 <strong style={{ color: "#f0913a" }}>Explanation:</strong> {q.exp}

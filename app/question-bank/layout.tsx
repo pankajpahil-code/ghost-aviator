@@ -1,5 +1,6 @@
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { SITE_URL } from "@/lib/site";
+import { isRealExplanation } from "@/lib/explanation";
 
 export const metadata = {
   title: "Free DGCA Question Bank — CPL & ATPL MCQs with Explanations",
@@ -26,7 +27,7 @@ export default function QuestionBankLayout({ children }: { children: React.React
           name: q.q,
           acceptedAnswer: {
             "@type": "Answer",
-            text: `${q.opts[q.ans]}${q.exp ? ` - ${q.exp}` : ''}`
+            text: `${q.opts[q.ans]}${isRealExplanation(q.exp) ? ` - ${q.exp}` : ''}`
           }
         }))
       },

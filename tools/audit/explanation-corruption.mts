@@ -19,9 +19,9 @@
  */
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "../../lib/subjects";
 import { getChapterSpecificQuestions } from "../../lib/questions";
+import { isRealExplanation } from "../../lib/explanation";
 
-const placeholder = (e?: string) =>
-  !e || !e.trim() || /^\s*correct answer\s*[:\-]?\s*[A-D]?\s*\.?\s*$/i.test(e.trim());
+const placeholder = (e?: string) => !isRealExplanation(e);
 
 type Hit = { why: string; q: string; exp: string; where: string };
 const hits: Hit[] = [];

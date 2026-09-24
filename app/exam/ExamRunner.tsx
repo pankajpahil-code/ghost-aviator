@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, BookOpen, Flag } from "lucide-react";
 import type { ExamPaper } from "@/lib/exam-papers";
 import { getPaperQuestionPool } from "@/lib/exam-papers";
+import { isRealExplanation } from "@/lib/explanation";
 import { recordExamAttempt, type ChapterBreakdown } from "@/lib/exam-history";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
@@ -236,9 +237,11 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
                     </div>
                   ))}
                 </div>
-                <div className="px-4 py-3 rounded-lg text-sm" style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8" }}>
-                  💡 {rq.exp}
-                </div>
+                {isRealExplanation(rq.exp) && (
+                  <div className="px-4 py-3 rounded-lg text-sm" style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8" }}>
+                    💡 {rq.exp}
+                  </div>
+                )}
               </div>
             );
           })}

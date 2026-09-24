@@ -23,6 +23,7 @@
  * Captain's bank.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
+import { isRealExplanation } from "../../lib/explanation";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "../../lib/subjects";
@@ -37,9 +38,8 @@ const LEDGER = join(HERE, "_used.json");
 const OUT = join(HERE, "_spec.json");
 
 
-/** The placeholder test, identical to QuestionsPage.isRealExplanation. */
-const isPlaceholder = (e?: string) =>
-  !e || !e.trim() || /^\s*correct answer\s*[:\-]?\s*\(?[A-D]?\)?\s*\.?\s*(topic\s*:[^\n]*)?$/i.test(e.trim());
+/** The placeholder test: the one shared definition every page uses. */
+const isPlaceholder = (e?: string) => !isRealExplanation(e);
 
 /**
  * Can this question stand alone on a screen with no diagram and no context?

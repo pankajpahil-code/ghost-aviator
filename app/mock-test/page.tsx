@@ -4,6 +4,7 @@ import { useSearchParams, notFound } from "next/navigation";
 import Link from "next/link";
 import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, BookOpen } from "lucide-react";
 import { getSubjectQuestionPool } from "@/lib/questions";
+import { isRealExplanation } from "@/lib/explanation";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 
 // Unified shape used by the exam UI.
@@ -251,9 +252,11 @@ function MockTestInner() {
                     </div>
                   ))}
                 </div>
-                <div className="px-4 py-3 rounded-lg text-sm" style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8" }}>
-                  💡 {rq.exp}
-                </div>
+                {isRealExplanation(rq.exp) && (
+                  <div className="px-4 py-3 rounded-lg text-sm" style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8" }}>
+                    💡 {rq.exp}
+                  </div>
+                )}
               </div>
             );
           })}
@@ -310,7 +313,7 @@ function MockTestInner() {
           </div>
 
           {/* Explanation */}
-          {revealed && (
+          {revealed && isRealExplanation(q.exp) && (
             <div className="mt-6 p-4 rounded-xl text-sm" style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.2)", color: "#94a3b8" }}>
               <span className="font-semibold" style={{ color: "#f0913a" }}>💡 Explanation: </span>
               {q.exp}

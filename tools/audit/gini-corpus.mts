@@ -7,9 +7,8 @@
  * here, so re-run it rather than trusting a figure written down in prose — the
  * banks grow one file at a time and a stale count is a claim like any other.
  *
- * The placeholder test is copied VERBATIM from isRealExplanation() in
- * app/components/content/QuestionsPage.tsx:36-39. If that changes, change it
- * here in the same commit or the two will drift.
+ * The placeholder test is imported from lib/explanation.ts, the one definition
+ * every page and Gini use, so this inventory cannot drift from what is shown.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -21,12 +20,7 @@ import { CHAPTER_KEY_FACTS } from "../../lib/chapter-key-facts";
 import { VERIFICATION } from "../../lib/verification-status";
 import { GUIDES } from "../../lib/guides";
 import { getChapterVideos } from "../../lib/chapter-videos";
-
-// ── the exact production definition ─────────────────────────────────────────
-function isRealExplanation(exp: string | undefined): boolean {
-  if (!exp || !exp.trim()) return false;
-  return !/^\s*correct answer\s*[:\-]?\s*\(?[A-D]?\)?\s*\.?\s*(topic\s*:[^\n]*)?$/i.test(exp.trim());
-}
+import { isRealExplanation } from "../../lib/explanation";
 
 /** Stems that cannot be answered without a chart/figure the student never saw. */
 const FIGREF =

@@ -35,6 +35,7 @@ import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ALL_QUESTIONS } from "../../lib/questions";
+import { isRealExplanation } from "../../lib/explanation";
 // ALL_QUESTIONS, not getChapterSpecificQuestions. The latter returns [] for a
 // bank that only serves a subject as a fallback, so the first version of this
 // scan could not see lib/generated/icjoshi-notes-met.ts at all and reported
@@ -44,8 +45,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const LIB = join(ROOT, "lib");
 const WRITE = process.argv.includes("--write");
 
-const placeholder = (e?: string) =>
-  !e || !e.trim() || /^\s*correct answer\s*[:\-]?\s*[A-D]?\s*\.?\s*$/i.test(e.trim());
+const placeholder = (e?: string) => !isRealExplanation(e);
 
 // ---- collect every distinct question that looks truncated -------------------
 type Cand = {

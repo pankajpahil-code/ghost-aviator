@@ -10,6 +10,7 @@
  * that embeds it gets a fresh question every day with no work.
  */
 import { MET_VERIFIED } from "./generated/met-verified";
+import { isRealExplanation } from "./explanation";
 import forbidden from "../tools/forbidden-source-names.json";
 
 const CHART = /figure|chart|diagram|table|shown|below|above|attached|annex|metar|taf|given/i;
@@ -28,7 +29,7 @@ export const EMBEDDABLE: EmbedQuestion[] = MET_VERIFIED.filter(
     x.opts.length <= 4 &&
     x.ans >= 0 &&
     x.ans < x.opts.length &&
-    !/^\s*correct answer:?\s*[a-d]\.?\s*$/i.test(x.exp) &&
+    isRealExplanation(x.exp) &&
     !NAMES.test([x.q, ...x.opts, x.exp].join(" ")),
 ).map((x) => ({ q: x.q, opts: x.opts, ans: x.ans, exp: x.exp, chapterId: x.chapterId || "", topic: x.subtopic || "" }));
 

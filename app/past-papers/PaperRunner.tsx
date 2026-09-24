@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { PastPaper } from "@/lib/past-papers";
+import { isRealExplanation } from "@/lib/explanation";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ArrowLeft, CheckCircle, XCircle, RotateCcw, Trophy } from "lucide-react";
 
@@ -100,7 +101,7 @@ export default function PaperRunner({ paper }: { paper: PastPaper }) {
                   );
                 })}
               </div>
-              {submitted && q.exp && (
+              {submitted && isRealExplanation(q.exp) && (
                 <div className="mt-3 px-4 py-3 rounded-xl text-sm" style={{ background: "rgba(240,145,58,0.06)", border: "1px solid rgba(240,145,58,0.2)", color: "#7dd3fc" }}>
                   <span className="font-black">Explanation: </span>{q.exp}
                 </div>

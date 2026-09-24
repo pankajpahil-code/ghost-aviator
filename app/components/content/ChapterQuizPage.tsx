@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { DemoQuestion } from "@/lib/demo-questions";
+import { isRealExplanation } from "@/lib/explanation";
 import { recordResult } from "@/lib/progress";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
@@ -196,10 +197,12 @@ export default function ChapterQuizPage({ track, subject, chapter, questions }: 
                     </div>
                   ))}
                 </div>
-                <div className="text-xs px-3 py-2 rounded-lg"
-                     style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.12)", color: "#64748b" }}>
-                  💡 {q.exp}
-                </div>
+                {isRealExplanation(q.exp) && (
+                  <div className="text-xs px-3 py-2 rounded-lg"
+                       style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.12)", color: "#64748b" }}>
+                    💡 {q.exp}
+                  </div>
+                )}
               </div>
             );
           })}
