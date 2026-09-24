@@ -32,6 +32,13 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 HERE = Path(__file__).parent
+
+
+def bank_total():
+    """The practice-question count, READ from the bank's own self-tested count file - never typed. The cards said
+    4,414 for weeks after the bank had become 4,381 (found 24 Sep 2026)."""
+    raw = (HERE.parent.parent / "lib/gini/generated/corpus-stats.ts").read_text(encoding="utf-8")
+    return f"{int(re.search(r'\btotal:\s*(\d+)', raw).group(1)):,}"
 SPEC = HERE / "_spec.json"
 WORK = HERE / "_frames"
 OUT = HERE / "out"
@@ -165,8 +172,10 @@ def draw_card(spec, rows, footer=True):
 
 def card_hook(spec):
     return draw_card(spec, [
-        row_text("Most student pilots", bold(94), WHITE, centre=True),
-        row_text("get this wrong.", bold(94), AMBER, gap=10, centre=True),
+        # Was "Most student pilots get this wrong." - a statistic nobody measured, on a public video.
+        # Changed 24 Sep 2026 to a hook that is true.
+        row_text("Answer this in", bold(94), WHITE, centre=True),
+        row_text("10 seconds?", bold(94), AMBER, gap=10, centre=True),
         row_text(f"Chapter {spec['chapterNumber']} - {spec['chapterTitle']}",
                  reg(40), MUTED, gap=80, centre=True),
     ], footer=False)
@@ -195,7 +204,7 @@ def card_why(spec):
 def card_cta(spec):
     return draw_card(spec, [
         row_text("Free DGCA notes and", bold(74), WHITE, centre=True),
-        row_text("4,414 practice questions", bold(74), AMBER, gap=6, centre=True),
+        row_text(f"{bank_total()} practice questions", bold(74), AMBER, gap=6, centre=True),
         row_text("No sign-up. No paywall. No ads.", reg(44), MUTED, gap=54, centre=True),
         row_text("ghostaviator.com", bold(84), WHITE, gap=76, centre=True),
         row_text("Capt. Pankaj Pahil - DGCA approved instructor",
@@ -264,7 +273,7 @@ def main():
         f"Answer: {spec['answerLetter']}. {spec['answerText']}\n\n"
         f"{spec['exp']}\n\n"
         f"Full chapter, free: {spec['url']}\n"
-        f"234 chapters and 4,414 practice questions, no sign-up: ghostaviator.com\n\n"
+        f"234 chapters and {bank_total()} practice questions, no sign-up: ghostaviator.com\n\n"
         f"#DGCA #DGCAExam #CPL #ATPL #PilotTraining #StudentPilot #IndianPilot #Shorts"
     )
     out.with_suffix(".txt").write_text(caption, encoding="utf-8")

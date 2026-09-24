@@ -64,7 +64,7 @@ const WELCOME =
 const FREE =
   "Everything below is free — no login, no payment:\n\n" +
   "• Chapter notes for every CPL/ATPL subject\n" +
-  "• 4,400 practice questions with worked explanations\n" +
+  "• Over 4,000 practice questions, most with worked explanations\n" +
   "• Past paper banks\n" +
   "• RTR(A) radio simulator — practise real R/T calls\n" +
   "• ADAPT airline-screening aptitude simulator";

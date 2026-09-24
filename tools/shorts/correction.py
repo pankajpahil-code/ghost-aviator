@@ -56,7 +56,7 @@ def cards(c):
 
         (R.draw_card(spec, [
             R.row_text("Check it yourself.", R.bold(72), R.WHITE, centre=True),
-            R.row_text("234 chapters, 4,414 questions,", R.reg(44), R.MUTED, gap=54, centre=True),
+            R.row_text(f"234 chapters, {R.bank_total()} questions,", R.reg(44), R.MUTED, gap=54, centre=True),
             R.row_text("every answer sourced. Free.", R.reg(44), R.MUTED, gap=8, centre=True),
             R.row_text("ghostaviator.com", R.bold(80), R.AMBER, gap=70, centre=True),
             R.row_text("Capt. Pankaj Pahil - DGCA approved instructor",
@@ -92,7 +92,7 @@ def main():
         f"{c['correct']}\n\n"
         f"Source: {c['cite']}\n\n"
         + (f"{c['note']}\n\n" if c.get("note") else "")
-        + "Check it yourself. 234 chapters and 4,414 practice questions, every answer "
+        + f"Check it yourself. 234 chapters and {R.bank_total()} practice questions, every answer "
           "sourced, free and no sign-up: ghostaviator.com\n\n"
           "#DGCA #DGCAExam #CPL #ATPL #PilotTraining #StudentPilot #IndianPilot #Shorts"
     )
