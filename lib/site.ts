@@ -22,6 +22,23 @@ export const WHATSAPP_GROUP = "https://chat.whatsapp.com/J3F9zaMJRQn5IYEiaYzP6t"
 
 export const CAPTAIN_PROFILES = [TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_PERSONAL, YOUTUBE_BRAND];
 
+// The Captain's public per-subject study groups on Telegram (created 2026-09-24; the
+// Ghost Aviator assistant answers /q doubts there from his notes). Keyed by subject id,
+// CPL and ATPL tracks both, so a chapter page can point a reader at the right room.
+// A subject with no group simply shows no card. Mirrors SUBJECT_GROUPS in the sales
+// desk's brain.py - change both together.
+const TG_MET = "https://t.me/ghostaviator_met";
+const TG_REGS = "https://t.me/ghostaviator_airregs";
+const TG_NAV = "https://t.me/ghostaviator_nav";
+const TG_RTR = "https://t.me/ghostaviator_rtr";
+export const SUBJECT_TELEGRAM_GROUPS: Record<string, string> = {
+  "meteorology": TG_MET, "atpl-meteorology": TG_MET,
+  "air-regulations": TG_REGS, "atpl-air-regulations": TG_REGS,
+  "air-navigation": TG_NAV, "radio-navigation": TG_NAV, "instrumentation": TG_NAV,
+  "atpl-navigation": TG_NAV, "atpl-radio-aids": TG_NAV,
+  "radio-telephony": TG_RTR,
+};
+
 // Stable schema.org node ids. Search and answer engines consolidate an entity by
 // matching @id across pages: every Course, Article and Organization node that
 // names the Captain should POINT at this id rather than repeating a bare name

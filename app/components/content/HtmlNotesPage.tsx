@@ -9,6 +9,7 @@ import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 import VideoLectureCard from "@/app/components/content/VideoLectureCard";
 import type { ChapterVideo } from "@/lib/chapter-videos";
 import { keyFactsFor, type ChapterKeyFacts } from "@/lib/chapter-key-facts";
+import { SUBJECT_TELEGRAM_GROUPS } from "@/lib/site";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -300,6 +301,26 @@ ${notes.css}
               ))}
             </dl>
           </section>
+        )}
+
+        {/* The subject's free study group. Deliberately says nothing about files: the notes on this site
+            stay protected (Iron Rule 3); the group is for doubts and batchmates. */}
+        {SUBJECT_TELEGRAM_GROUPS[subject.id] && (
+          <div className="p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+               style={{ background: "rgba(34,158,217,0.08)", border: "1px solid rgba(34,158,217,0.3)" }}>
+            <div>
+              <div className="text-sm font-bold text-white mb-1">Study {subject.shortName} with other student pilots</div>
+              <div className="text-xs" style={{ color: "#94a3b8" }}>
+                Join the free {subject.shortName} group on Telegram. Stuck on a doubt? Type /q and your question, and
+                get an answer from Capt. Pankaj Pahil&apos;s notes.
+              </div>
+            </div>
+            <a href={SUBJECT_TELEGRAM_GROUPS[subject.id]} target="_blank" rel="noopener noreferrer"
+               className="px-4 py-2 rounded-lg text-xs font-bold no-underline whitespace-nowrap text-center"
+               style={{ background: "#229ED9", color: "#fff" }}>
+              Join the {subject.shortName} group →
+            </a>
+          </div>
         )}
 
         <LiveClassUpsell subjectId={subject.id} subjectColor={subject.color} />
