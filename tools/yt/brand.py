@@ -50,11 +50,9 @@ REVIEW = HERE / "_plan-brand-review.txt"
 FLAGGED = HERE / "_plan-brand-flagged.txt"
 DONE = HERE / "_applied-brand.json"
 MAP_FILE = ROOT / "tools" / "_video-chapter-map.json"
-NAMES_FILE = ROOT / "tools" / "forbidden-source-names.json"
 
 EM = chr(0x2014)
 BOOK = chr(0x1F4D6)
-ALLOWED = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 -"
 
 FOLD = 160          # YouTube collapses the description at roughly this
 DESC_CAP = 5000     # YouTube hard limit
@@ -62,13 +60,13 @@ COST = 50
 DAILY_UNITS = 10000
 
 
-def forbidden_names():
-    """Iron Rule 2, from the ONE definition shared with scrub-source-names.mjs."""
-    names = json.loads(NAMES_FILE.read_text(encoding="utf-8"))["names"]
-    for n in names:
-        if not n or any(c not in ALLOWED for c in n):
-            raise SystemExit("forbidden-source-names.json: bad entry " + repr(n))
-    return names
+def forbidden_rx():
+    """Iron Rule 2: the ONE compiled pattern (tools/forbidden_source_names.py),
+    shared with scrub-source-names.mjs and every other check. It catches the
+    dotted spellings ("R.K. Bali") that a plain substring test let through."""
+    sys.path.insert(0, str(ROOT / "tools"))
+    from forbidden_source_names import FORBIDDEN_RX
+    return FORBIDDEN_RX
 
 
 def find_site_link(text):
@@ -117,7 +115,7 @@ def cmd_plan():
         raise SystemExit("No snapshot. Run: python tools/yt/brand.py snapshot")
     snap = json.loads(SNAP.read_text(encoding="utf-8"))
     cmap = json.loads(MAP_FILE.read_text(encoding="utf-8"))
-    banned = forbidden_names()
+    banned = forbidden_rx()
 
     # SIMULATION. The planning logic can be exercised against a snapshot built
     # from public watch pages, which is how it was tested before the Captain had
@@ -138,11 +136,12 @@ def cmd_plan():
             continue
         p = entry["primary"]
         desc = v["description"] or ""
-        hay = (desc + " " + v["title"]).lower()
+        hay = desc + " " + v["title"]
 
-        leak = next((n for n in banned if n.lower() in hay), None)
+        m = banned.search(hay)
+        leak = m.group(0) if m else None
         if leak:
-            i = hay.find(leak.lower())
+            i = m.start()
             flagged.append({
                 "id": v["id"], "title": v["title"],
                 "reason": "IRON RULE 2 - names a source",

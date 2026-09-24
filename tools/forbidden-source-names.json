@@ -1,7 +1,7 @@
 {
-  "_why": "Iron Rule 2. ONE definition, read by tools/scrub-source-names.mjs (published notes) and tools/yt/brand.py (YouTube descriptions). A second copy is how one of them goes stale - already the failure mode behind two sitemap-condition drifts and a duplicated FAKE_URGENCY in this codebase.",
+  "_why": "Iron Rule 2. ONE definition. It is compiled in exactly two places - tools/forbidden-source-names.mjs (JS/TS) and tools/forbidden_source_names.py (Python) - which build a byte-identical pattern; every check imports one of them. tools/audit/forbidden-names-selftest.mjs proves the twins agree and that every probe below is classified correctly. Hand-compiling these names elsewhere is how four copies drifted into four behaviours by 2026-09-24, and only one of them caught 'R.K. Bali'.",
   "_scope": "The rule targets ATTRIBUTION - presenting someone else's book as the source of this site's teaching. Capt. Pahil ruled 2026-08-02 that the bare word is not banned ('oxford is a name, city, street, university'). So these patterns are deliberately multi-word and specific: 'Oxford Aviation', never 'Oxford'.",
-  "_plain": "Names must be letters, digits, spaces or hyphens only - they are joined into a regex unescaped.",
+  "_plain": "Names must be letters and digits, separated by single spaces or hyphens. The compilers refuse anything else.",
   "names": [
     "IC Joshi",
     "RK Bali",
@@ -15,5 +15,51 @@
     "Oxford Questions",
     "Oxford revision"
   ],
-  "_matching": "scrub-source-names.mjs matches case-insensitively and treats a space as any run of spaces, dots or hyphens, and a short all-caps token as initials with optional dots - so 'RK Bali' also catches 'RK-Bali' and 'R.K. Bali'. Added 2026-09-19 after both spellings shipped live past the exact-match check."
+  "_matching": "Case-insensitive. A token of 2-3 capital letters is read as initials: spaces or dots may sit between its letters and one dot may follow, so 'RK Bali' catches 'R.K. Bali', 'R. K. Bali', 'R.K.Bali' and 'RK-Bali'. Tokens are joined by any run of spaces, dots or hyphens. The match must START at a word boundary ('work Bali', 'basic Joshi' do not match) but need not end at one ('Oxford textbook' does). Initials were first added to the scrubber alone on 2026-09-19; the other copies stayed exact until 2026-09-24.",
+  "probes": {
+    "_note": "Calibration table, run by tools/audit/forbidden-names-selftest.mjs against BOTH compilers. Add a line here whenever a spelling slips past, or a harmless sentence is wrongly caught.",
+    "must_match": [
+      "RK Bali",
+      "R.K. Bali",
+      "R. K. Bali",
+      "R.K.Bali",
+      "RK-Bali",
+      "r.k. bali",
+      "Air Regulations by R.K. Bali",
+      "R.K. Bali",
+      "IC Joshi",
+      "I.C. Joshi",
+      "I. C. Joshi",
+      "I.C.Joshi",
+      "(Source: IC Joshi — Meteorology QB.)",
+      "Oxford Aviation Academy",
+      "Oxford-Aviation",
+      "CAE Oxford",
+      "C.A.E. Oxford",
+      "Oxford textbook",
+      "Oxford ATPL — Radio Navigation",
+      "Oxford Instrumentation"
+    ],
+    "must_not_match": [
+      "Oxford",
+      "the mascot's book reads OXFORD",
+      "Oxford Street",
+      "Oxford University Press",
+      "a holiday in Bali",
+      "Mr Joshi",
+      "CAE",
+      "network Bali",
+      "park Bali",
+      "basic Joshi",
+      "magnetic Joshi",
+      "graphic I.C. engine"
+    ],
+    "known_gaps": [
+      "Joshi, I.C.",
+      "Bali R.K.",
+      "R.K.&nbsp;Bali",
+      "<b>RK</b> Bali"
+    ],
+    "_known_gaps": "Attribution these patterns do NOT catch, listed so nobody assumes they do. Surname-first citations are not matched. Raw HTML must be reduced to visible text (tags stripped, entities decoded) before it is checked - the self-test reports these, it does not fail on them."
+  }
 }

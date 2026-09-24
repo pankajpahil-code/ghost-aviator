@@ -33,28 +33,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 LIB = os.path.join(ROOT, "lib")
 OUT = os.path.join(ROOT, "..", "viral-cards")
 
-# Iron Rule 2 - attribution. Loaded from the single shared definition when
-# present so this file cannot drift from the scrubber.
-FORBIDDEN_FALLBACK = [
-    "ic joshi", "icjoshi", "joshi", "rk bali", "r k bali", "bali",
-    "oxford", "cae", "nordian", "jeppesen", "sahil", "surender", "redbird",
-]
-
-
-def load_forbidden():
-    path = os.path.join(ROOT, "tools", "forbidden-source-names.json")
-    try:
-        with open(path, "r", encoding="utf-8") as fh:
-            data = json.load(fh)
-        names = data if isinstance(data, list) else data.get("names", [])
-        if names:
-            return [str(n).lower() for n in names]
-    except Exception:
-        pass
-    return FORBIDDEN_FALLBACK
-
-
-FORBIDDEN = load_forbidden()
+# Iron Rule 2 - attribution. The ONE compiled pattern, shared with every other
+# check (tools/forbidden_source_names.py). There is deliberately no fallback
+# list: if the definition cannot load, this must stop, not quietly check less.
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+from forbidden_source_names import find_forbidden  # noqa: E402
 
 # ---------------------------------------------------------------- parsing
 
@@ -134,11 +117,7 @@ def strip_echoed_answer(exp, answer):
 
 
 def names_a_source(*texts):
-    blob = " ".join(texts).lower()
-    for name in FORBIDDEN:
-        if re.search(r"\b" + re.escape(name) + r"\b", blob):
-            return name
-    return None
+    return find_forbidden(" ".join(texts))
 
 
 def harvest():

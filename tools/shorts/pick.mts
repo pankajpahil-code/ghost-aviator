@@ -29,15 +29,13 @@ import { CPL_SUBJECTS, ATPL_SUBJECTS } from "../../lib/subjects";
 import { getChapterSpecificQuestions } from "../../lib/questions";
 import { SITE_URL } from "../../lib/site";
 import { VERIFICATION } from "../../lib/verification-status";
+import { findForbidden } from "../forbidden-source-names.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
 const LEDGER = join(HERE, "_used.json");
 const OUT = join(HERE, "_spec.json");
 
-const FORBIDDEN: string[] = JSON.parse(
-  readFileSync(join(ROOT, "tools", "forbidden-source-names.json"), "utf8"),
-).names;
 
 /** The placeholder test, identical to QuestionsPage.isRealExplanation. */
 const isPlaceholder = (e?: string) =>
@@ -58,7 +56,7 @@ function isCardable(q: { q: string; opts: string[]; exp: string }): string | nul
   if (q.opts.some(o => o.length > 90)) return "an option is too long for the card";
   if (/\b(figure|diagram|chart|annex(?:ure)?|appendix|shown below|given below|above|following table)\b/i.test(all))
     return "depends on something the viewer cannot see";
-  const leak = FORBIDDEN.find(n => all.toLowerCase().includes(n.toLowerCase()));
+  const leak: string | null = findForbidden(all);
   if (leak) return `names a source (${leak})`;
   return null;
 }

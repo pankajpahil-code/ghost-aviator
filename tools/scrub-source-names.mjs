@@ -7,6 +7,7 @@
 import { readFileSync, writeFileSync, readdirSync, statSync } from "fs";
 import { join, dirname, relative } from "path";
 import { fileURLToPath } from "url";
+import { FORBIDDEN_RX as FORBIDDEN } from "./forbidden-source-names.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CONTENT = join(ROOT, "public", "content");
@@ -40,23 +41,9 @@ const REPLACEMENTS = [
 // Verification: real-text mentions only (long base64 runs can contain
 // accidental substrings of short names — the patterns below are specific
 // enough not to occur in base64).
-const FORBIDDEN_NAMES = JSON.parse(
-  readFileSync(join(ROOT, "tools", "forbidden-source-names.json"), "utf8")).names;
-// Joined unescaped, so refuse anything with regex meaning rather than silently
-// building a pattern that matches something else.
-for (const n of FORBIDDEN_NAMES) {
-  if (!/^[A-Za-z0-9 -]+$/.test(n)) {
-    throw new Error(`forbidden-source-names.json: "${n}" is not plain text`);
-  }
-}
 // A name is matched by its spelling variants, not its exact bytes: "RK Bali"
-// passed this check for weeks while "RK-Bali" and "R.K. Bali" were live.
-// Case-insensitive; a space matches any run of spaces/dots/hyphens; a short
-// all-caps token is read as initials, so "RK" also matches "R.K." and "R K".
-const variant = n => n.split(/[ -]+/).map(t =>
-  /^[A-Z]{2,3}$/.test(t) ? t.split("").join("[\\s.]*") + "\\.?" : t
-).join("[\\s.\\-]*");
-const FORBIDDEN = new RegExp("(" + FORBIDDEN_NAMES.map(variant).join("|") + ")", "i");
+// passed this check for weeks while "RK-Bali" and "R.K. Bali" were live. The
+// compiled pattern lives in ONE place, shared with every other Iron Rule 2 check.
 
 let changed = 0, total = 0;
 const unresolved = [];

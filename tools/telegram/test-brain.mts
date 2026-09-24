@@ -11,7 +11,7 @@
  *   - a price that is not one of the four live-classes.ts exports
  */
 
-import { readFileSync } from "node:fs";
+import { findForbidden } from "../forbidden-source-names.mjs";
 import { replyFor } from "../../lib/telegram-bot/brain";
 import {
   LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE,
@@ -36,14 +36,6 @@ const PROBES = [
   "",
 ];
 
-let forbidden: string[] = [];
-try {
-  const raw = JSON.parse(readFileSync("tools/forbidden-source-names.json", "utf8"));
-  forbidden = (Array.isArray(raw) ? raw : raw.names || []).map((s: string) => s.toLowerCase());
-} catch {
-  forbidden = ["ic joshi", "rk bali", "oxford", "cae", "nordian", "jeppesen"];
-}
-
 const PRICES = new Set([LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE]);
 let failures = 0;
 const fail = (probe: string, why: string) => {
@@ -65,12 +57,10 @@ for (const probe of PROBES) {
     if (!/^https:\/\//.test(b.url)) fail(probe, `non-https button url: ${b.url}`);
   }
 
-  const blob = (r.text + " " + r.buttons.flat().map(b => b.text).join(" ")).toLowerCase();
-  for (const name of forbidden) {
-    if (new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(blob)) {
-      fail(probe, `source name "${name}" reached the student`);
-    }
-  }
+  // Iron Rule 2 from the one shared compiler. It used to fall back to a
+  // hard-coded list if the JSON failed to load; a test should fail loudly instead.
+  const leak = findForbidden(r.text + " " + r.buttons.flat().map(b => b.text).join(" "));
+  if (leak) fail(probe, `source name "${leak}" reached the student`);
 
   for (const m of r.text.matchAll(/₹\s?[\d,]+/g)) {
     const p = m[0].replace(/\s/, "");

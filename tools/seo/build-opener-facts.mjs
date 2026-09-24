@@ -18,11 +18,10 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { FORBIDDEN_RX as forbidden } from "../forbidden-source-names.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const rows = readFileSync(join(ROOT, "TOPIC_OPENERS_FOR_REVIEW.tsv"), "utf8").split(/\r?\n/).slice(1).filter(Boolean);
-const names = JSON.parse(readFileSync(join(ROOT, "tools", "forbidden-source-names.json"), "utf8")).names;
-const forbidden = new RegExp(names.map((n) => n.split(/\s+/).map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("[\\s.\\-]*")).join("|"), "i");
 
 const out = {};
 let kept = 0, dropped = 0;
