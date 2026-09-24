@@ -126,7 +126,7 @@ export const LIVE_CLASS_SUBJECTS: Record<string, string> = {
  * The start tag tells the bot where the student came from, and opens the right flow:
  * a tag containing "career" opens the Career Navigator, "quiz" the readiness check.
  */
-export const LIVE_TELEGRAM_BOT: string = "";
+export const LIVE_TELEGRAM_BOT: string = "GhostAviator2_Bot";
 
 export const botLink = (tag: string): string =>
   LIVE_TELEGRAM_BOT ? `https://t.me/${LIVE_TELEGRAM_BOT}?start=${encodeURIComponent(tag)}` : "";
