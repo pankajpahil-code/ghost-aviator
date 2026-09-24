@@ -58,6 +58,7 @@ export default function Footer() {
                 ["Study Guides",        "/guides"],
                 ["DGCA Exam FAQ",       "/faq"],
                 ["How Answers Are Verified", "/how-answers-are-verified"],
+                ["Privacy",             "/privacy"],
               ].map(([item, href]) => (
                 <li key={item}>
                   <Link href={href} className="text-sm no-underline hover:text-white transition-colors" style={{ color: "#64748b" }}>{item}</Link>
