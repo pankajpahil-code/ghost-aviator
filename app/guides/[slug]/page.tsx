@@ -8,6 +8,7 @@ import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 import { faqsForGuide, faqJsonLd } from "@/lib/faq";
 
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
+import { botLink } from "@/lib/live-classes";
 
 export function generateStaticParams() {
   return GUIDES.map(g => ({ slug: g.slug }));
@@ -127,6 +128,19 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           className="prose prose-invert prose-purple max-w-none mb-12"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
+
+        {/* The career guides hand the reader straight to the Career Navigator: five taps, and a roadmap
+            built only from sentences in these guides. Hidden until LIVE_TELEGRAM_BOT is set. */}
+        {botLink("web") && (slug === "how-to-become-a-pilot-in-india" || slug === "pilot-training-cost-india") && (
+          <a href={botLink("web_career")} target="_blank" rel="noopener noreferrer"
+             className="block rounded-2xl p-6 mb-12 no-underline"
+             style={{ background: "rgba(56,189,248,0.08)", border: "1px solid rgba(56,189,248,0.35)" }}>
+            <div className="text-lg font-bold text-white mb-1">Build your own pilot roadmap in five taps</div>
+            <div className="text-sm" style={{ color: "#94a3b8" }}>
+              Where you are now, Physics and Maths, medical, money, goal: get the steps above in the order that fits you. Free, on Telegram.
+            </div>
+          </a>
+        )}
 
         {/* Quick answers — the questions this guide gets asked, answered in a
             form short enough to be quoted and complete enough to stand alone. */}

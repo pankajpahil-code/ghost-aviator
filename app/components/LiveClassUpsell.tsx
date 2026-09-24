@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MessageCircle, Radio, ArrowRight } from "lucide-react";
-import { LIVE_CLASS_SUBJECTS, LIVE_PRICE, LIVE_LIST_PRICE, liveWaLink } from "@/lib/live-classes";
+import { LIVE_CLASS_SUBJECTS, LIVE_PRICE, LIVE_LIST_PRICE, liveWaLink, botLink } from "@/lib/live-classes";
 
 type Props = {
   subjectId: string;
@@ -39,6 +39,15 @@ export default function LiveClassUpsell({ subjectId, subjectColor }: Props) {
              style={{ background: "linear-gradient(135deg,#16a34a,#22c55e)", color: "#fff" }}>
             <MessageCircle className="w-4 h-4" /> Reserve a Seat
           </a>
+          {/* Instant answers from the assistant; hidden until LIVE_TELEGRAM_BOT is set. Meteorology
+              chapters open straight into the readiness check (its bank is the fully verified one). */}
+          {botLink("web") && (
+            <a href={botLink(subjectId === "meteorology" ? "web_quiz_met" : `web_${subjectId}`)} target="_blank" rel="noopener noreferrer"
+               className="inline-flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-bold no-underline"
+               style={{ color: "#38bdf8", border: "1px solid rgba(56,189,248,0.35)", background: "rgba(56,189,248,0.08)" }}>
+              {subjectId === "meteorology" ? "90-second readiness check" : "Ask instantly on Telegram"}
+            </a>
+          )}
           <Link href="/live-classes"
                 className="inline-flex items-center gap-1.5 text-sm font-bold no-underline px-4 py-3 rounded-xl"
                 style={{ color: subjectColor, border: `1px solid ${subjectColor}30`, background: `${subjectColor}10` }}>

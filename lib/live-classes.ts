@@ -119,5 +119,17 @@ export const LIVE_CLASS_SUBJECTS: Record<string, string> = {
   "radio-telephony": "Radio Telephony (RTR-A)",
 };
 
+/**
+ * The Ghost Aviator assistant on Telegram (username, no "@"). ONE switch for every "ask the
+ * assistant" button on the site: EMPTY = all of them stay hidden. Set it once the Captain has chosen
+ * the branded bot username in @BotFather (the current token's username is not branded).
+ * The start tag tells the bot where the student came from, and opens the right flow:
+ * a tag containing "career" opens the Career Navigator, "quiz" the readiness check.
+ */
+export const LIVE_TELEGRAM_BOT: string = "";
+
+export const botLink = (tag: string): string =>
+  LIVE_TELEGRAM_BOT ? `https://t.me/${LIVE_TELEGRAM_BOT}?start=${encodeURIComponent(tag)}` : "";
+
 /** The three subjects the Navigation combo covers, by site subject id. */
 export const LIVE_COMBO_SUBJECTS = ["air-navigation", "radio-navigation", "instrumentation"];

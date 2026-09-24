@@ -22,6 +22,7 @@ import {
   hasLiveComboPaymentLink,
   liveEnrollLink,
   liveComboEnrollLink,
+  botLink,
 } from "@/lib/live-classes";
 
 export const metadata: Metadata = {
@@ -233,6 +234,14 @@ export default function LiveClassesPage() {
                 <MessageCircle className="w-5 h-5" /> Message on WhatsApp
               </a>
             ) : null}
+            {/* Instant answers from the assistant: hidden until LIVE_TELEGRAM_BOT is set (lib/live-classes.ts). */}
+            {botLink("web") && (
+              <a href={botLink("web_live")} target="_blank" rel="noopener noreferrer"
+                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
+                 style={{ border: "1px solid rgba(56,189,248,0.5)", color: "#38bdf8", background: "rgba(56,189,248,0.08)" }}>
+                Instant answers on Telegram
+              </a>
+            )}
             <a href="#pay"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
