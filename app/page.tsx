@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
+import { servesRealNotes } from "@/lib/indexability";
 import MascotHero from "./components/MascotHero";
 
 export const metadata: Metadata = {
@@ -27,6 +28,43 @@ const ATPL_Q  = fmt(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => atplIds.ha
 // read the chapter, drill the questions, then test yourself under the clock.
 // Slides and Audio Overview were dropped 2026-08-13 — they were listed here as
 // features while most chapters had neither, which is a promise, not a feature.
+// ─── Direct links to chapters ────────────────────────────────────────────────
+//
+// Added 2026-09-25 from the Search Console export. The homepage is the ONLY page
+// Google recrawls (last crawl 21 Sep); 28 of the 29 indexed URLs were last
+// crawled 8–13 June, and 347 URLs sit "Discovered – currently not indexed".
+// Until now the homepage linked subject hubs and not one chapter, so every
+// chapter was at least two hops from the one page Google keeps visiting.
+//
+// Selection: the first six are the chapters Google has already shown in search
+// (impressions in the 90-day Performance report). The rest are one core exam
+// topic per subject that had none — an editorial pick, for the Captain to change.
+// Titles come from lib/subjects.ts, and a chapter whose notes route would render
+// the stub is dropped rather than linked (servesRealNotes — the same predicate
+// the route and the sitemap use), so this list can never advertise an empty page.
+const START_HERE: ReadonlyArray<[subjectId: string, chapterId: string]> = [
+  ["air-regulations", "ar-6"],
+  ["air-regulations", "ar-4"],
+  ["radio-navigation", "rnav-7"],
+  ["radio-navigation", "rnav-8"],
+  ["radio-navigation", "rnav-9"],
+  ["instrumentation", "inst-3"],
+  ["meteorology", "met-13"],
+  ["meteorology", "met-25"],
+  ["air-navigation", "nav-16"],
+  ["air-regulations", "ar-3"],
+  ["instrumentation", "inst-5"],
+  ["technical-general", "tg-7"],
+  ["radio-telephony", "rtf-20"],
+];
+
+const startHere = START_HERE.flatMap(([subjectId, chapterId]) => {
+  const subject = CPL_SUBJECTS.find(s => s.id === subjectId);
+  const chapter = subject?.chapters.find(c => c.id === chapterId);
+  if (!subject || !chapter || !servesRealNotes(subjectId, chapterId)) return [];
+  return [{ href: `/cpl/${subjectId}/${chapterId}/notes`, subject: subject.shortName, title: chapter.title }];
+});
+
 const services = [
   { icon: Video,         label: "Video Lectures",  desc: "The chapter taught, above every set of notes" },
   { icon: FileText,      label: "Notes",           desc: "Concise, exam-focused chapter notes" },
@@ -243,6 +281,30 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* ══════════════════ START HERE ══════════════════ */}
+      {startHere.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">Start With These <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Chapters</span></h2>
+            <p style={{ color:"#64748b" }}>Full chapter notes, free to read, no sign-up.</p>
+          </div>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {startHere.map(c => (
+              <li key={c.href}>
+                <Link href={c.href} className="flex items-center justify-between gap-3 h-full px-5 py-4 rounded-xl no-underline"
+                      style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(243,200,137,0.18)" }}>
+                  <span>
+                    <span className="block text-xs font-bold tracking-wider uppercase mb-1" style={{ color:"#ab794d" }}>{c.subject}</span>
+                    <span className="block font-bold text-white leading-snug">{c.title}</span>
+                  </span>
+                  <ArrowRight className="w-4 h-4 shrink-0" style={{ color:"#f3c889" }}/>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* ══════════════════ SERVICES ══════════════════ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
