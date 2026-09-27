@@ -73,6 +73,30 @@ TOPICS = {
     },
 }
 
+TOPICS["trs"] = {
+    "subject": "meteorology", "chapter": "met-18", "length": 34.0,
+    "title": "How is a cyclone born?",
+    "beats": [
+        (0.0, 3.4, "", [("A vast violent whirl", 0, ""), ("150 to 800 km", 0, "")], ["TC is a vast violent whirl of 150 to 800 km"]),
+        (3.4, 11.0, "4 INGREDIENTS", [], ["Warm sea (>26°C) to a depth of 60 m", "High RH above 7000 m", "Coriolis Force to spiral wind inward",
+                                         "Very little Wind Shear", "WS preferably below 20 kt"]),
+        (11.0, 17.5, "WHERE?", [], ["between Lat 5–25°", "Below 5° there is no Coriolis force", "Above 25° it is cold"]),
+        (17.5, 25.5, "INSIDE A CYCLONE", [], ["Mostly 30–65 km diameter", "Light winds, often clear skies", "Eye Wall / Wall Clouds",
+                                              "Winds >64 kt", "Most hazardous part", "Spiral bands of clouds"]),
+        (25.5, 30.5, "SAME STORM, 3 NAMES", [], ["Hurricane (Atlantic), Typhoon (NW Pacific)", "simply Cyclone",
+                                                 "Form over Bay of Bengal and Arabian Sea", "Average life of Indian cyclones: 3–5 days"]),
+        (30.5, 34.0, "", [], []),
+    ],
+    "flashes": [],
+    "caption": ("How is a cyclone born? 4 ingredients, and what is inside" + NL + NL +
+                "A tropical revolving storm is a vast violent whirl of 150 to 800 km. It needs a warm sea above 26°C to a "
+                "depth of 60 m, high humidity above 7000 m, Coriolis force to spiral the wind inward and very little wind "
+                "shear - so it forms only between 5° and 25° latitude. The eye (30-65 km) has light winds and often clear "
+                "skies; the eye wall, with winds above 64 kt, is the most hazardous part." + NL + NL +
+                "Full chapter, free: https://ghostaviator.com/cpl/meteorology/met-18/notes" + NL +
+                "#DGCA #CPL #AviationMeteorology #Cyclone #PilotTraining"),
+}
+
 def verify(topic):
     """Refuse to render a single frame unless every source phrase is in the Captain's chapter, verbatim."""
     spec = TOPICS[topic]

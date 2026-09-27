@@ -399,8 +399,158 @@ def scene(t, tick):
 for a, b in [(0.0, 2.3), (3.3, 8.0), (8.25, 11.0), (13.8, 18.3), (22.05, 23.8), (26.65, 29.2)]:
     span(a, b)
 
+# ------------------------------------------------------------------------------------------ the tropical revolving storm
+TRS_SPANS = [(0.0, 2.6), (3.45, 10.4), (11.05, 15.8), (17.55, 22.5), (25.55, 29.6), (30.55, 33.2)]
+
+def cyclone(pen, cx, cy, R, t, p=1.0, key='cy', labels=False, tick=0):
+    """A tropical cyclone from above: a clear eye, a dark eye wall, spiral bands turning anticlockwise (the northern
+    hemisphere view). Drawn as spiral arms so it reads as a whirl, not a target."""
+    spin = -0.55 * t
+    eye, wall = R * 0.13, R * 0.30
+    ring = [(cx + wall * math.cos(a), cy + wall * math.sin(a)) for a in np.linspace(0, 2 * math.pi, 40)]
+    hole = [(cx + eye * math.cos(a), cy + eye * math.sin(a)) for a in np.linspace(0, 2 * math.pi, 30)]
+    mass = [(cx + R * 0.92 * math.cos(a), cy + R * 0.92 * math.sin(a)) for a in np.linspace(0, 2 * math.pi, 48)]
+    pen.hatch(mass, (203, 213, 225), p, gap=24, w=3, key=(key, 'mass'), alpha=150)       # the cloud mass under the bands
+    pen.hatch(ring, (71, 85, 105), p, gap=11, w=5, key=(key, 'wall'), alpha=210)
+    pen.d.polygon(hole, fill=PAPER + (255,))
+    pen.hatch(hole, SKY, p, gap=14, w=4, key=(key, 'eye'), alpha=150)
+    pen.path(hole, INK, 6, p, key=(key, 'eyeo'), closed=True)
+    for arm in range(4):
+        base = spin + arm * math.pi / 2
+        pts = [(cx + (wall + (R - wall) * u) * math.cos(base + 2.4 * u), cy + (wall + (R - wall) * u) * math.sin(base + 2.4 * u))
+               for u in np.linspace(0, 1, 26)]
+        pen.path(pts, BLUE if arm % 2 else SKY, 16 - arm % 2 * 4, p, 3, key=(key, 'arm', arm))
+        pen.path([(x + 18 * math.cos(base), y + 18 * math.sin(base)) for x, y in pts[:18]], GREY, 6, p, 3, key=(key, 'arm2', arm))
+    if labels:
+        pen.path([(cx + eye * 0.7, cy - eye * 0.7), (cx + 300, cy - 330)], RED, 5, prog(t, 18.6, 19.0), key='l1')
+        pen.write("EYE: 30–65 km", cx + 230, cy - 430, 58, RED, prog(t, 18.9, 19.5), tick)
+        pen.write("light winds, often clear skies", cx + 120, cy - 364, 44, RED, prog(t, 19.3, 20.1), tick)
+        pen.path([(cx - wall * 0.5, cy + wall * 0.85), (cx - 90, cy + 340)], PURPLE, 5, prog(t, 20.6, 21.0), key='l2')
+        pen.write("EYE WALL: winds >64 kt", cx + 20, cy + 345, 58, PURPLE, prog(t, 20.9, 21.6), tick)
+        pen.write("the most hazardous part!", cx + 20, cy + 412, 52, RED, prog(t, 21.4, 22.1), tick)
+        pen.write("spiral bands", cx + 270, cy + 250, 44, BLUE, prog(t, 22.3, 22.8), tick)
+
+def scene_trs(t, tick):
+    img = Image.new("RGB", (W, H), PAPER)
+    pen = Pen(img, tick)
+    d = pen.d
+    for gy in range(40, H, 60):
+        for gx in range(40, W, 60):
+            d.point((gx, gy), fill=(226, 222, 210))
+
+    if t < 3.4:                                                    # hook
+        pen.write("A vast violent whirl", 490, 330, 80, INK, prog(t, 0.0, 0.6), tick)
+        pen.write("150 to 800 km!", 490, 430, 132, RED, prog(t, 0.4, 1.2), tick)
+        pen.path([(150, 600), (830, 590)], ORANGE, 10, prog(t, 1.1, 1.4), key='hu')
+        cyclone(pen, 490, 1050, 330, t, prog(t, 0.2, 1.6), key='hook')
+        pen.write("a Tropical Revolving Storm", 490, 1440, 56, BLUE, prog(t, 1.5, 2.4), tick)
+        pen.marker(RED)
+        return img
+
+    if t < 11.0:                                                   # four ingredients, 2 x 2
+        chip(pen, t, "4 INGREDIENTS", YELLOW, 3.45, tick)
+        pen.write("How is a cyclone born?", 490, 345, 80, INK, prog(t, 3.5, 4.3), tick)
+        pen.path([(170, 445), (810, 435)], PINK, 8, prog(t, 4.2, 4.5), key='u')
+        cells = [(265, 560, "Warm sea >26°C", "60 m deep", RED), (715, 560, "High humidity", "above 7000 m", BLUE),
+                 (265, 1000, "Coriolis force", "spirals it inward", PURPLE), (715, 1000, "Little wind shear", "below 20 kt", GREEN)]
+        for i, (x, y, l1, l2, col) in enumerate(cells):
+            a = 4.5 + i * 1.45
+            if i == 0:   # sea with a thermometer
+                for k in range(3):
+                    wave_ = [(x - 150 + u * 300, y + 150 + k * 34 + 10 * math.sin(u * 12 + t * 3)) for u in np.linspace(0, 1, 30)]
+                    pen.path(wave_, BLUE, 7, prog(t, a + 0.1 * k, a + 0.4 + 0.1 * k), key=('w', k))
+                th = [(x + 90, y + 20), (x + 90, y + 120)]
+                pen.path(th, INK, 18, prog(t, a + 0.4, a + 0.7), key='therm')
+                pen.path(th, RED, 9, prog(t, a + 0.6, a + 0.9), key='therm2')
+                bulb = [(x + 90 + 22 * math.cos(q), y + 136 + 22 * math.sin(q)) for q in np.linspace(0, 2 * math.pi, 18)]
+                pen.hatch(bulb, RED, prog(t, a + 0.6, a + 0.9), gap=7, w=5, key='bulb', alpha=240)
+                pen.path(bulb, INK, 5, prog(t, a + 0.4, a + 0.7), key='bulbo', closed=True)
+            if i == 1:   # a moist cloud with drops
+                c = cloud(x, y + 150, y + 30, 130)
+                pen.hatch(c, SKY, prog(t, a + 0.4, a + 0.9), gap=15, key='hc', alpha=180)
+                pen.path(c, INK, 7, prog(t, a, a + 0.5), key='hco')
+                for k in range(3):
+                    dx = x - 60 + 60 * k
+                    drop = [(dx, y + 165)] + [(dx + 14 * math.sin(q), y + 200 + 14 * math.cos(q)) for q in np.linspace(2.4, -2.4, 12)] + [(dx, y + 165)]
+                    pen.path(drop, BLUE, 5, prog(t, a + 0.6, a + 0.9), key=('dr', k))
+            if i == 2:   # a spiral
+                sp = [(x + 12 * q * math.cos(-q * 1.1), y + 120 + 12 * q * math.sin(-q * 1.1)) for q in np.linspace(0.5, 10, 60)]
+                pen.path(sp, PURPLE, 9, prog(t, a, a + 0.8), key='sp')
+            if i == 3:   # gentle, parallel wind
+                for k in range(3):
+                    pen.path([(x - 140, y + 60 + k * 50), (x + 110, y + 60 + k * 50)], GREEN, 8, prog(t, a + 0.1 * k, a + 0.5 + 0.1 * k), key=('ws', k))
+                    pen.path([(x + 85, y + 42 + k * 50), (x + 112, y + 60 + k * 50), (x + 85, y + 78 + k * 50)], GREEN, 8,
+                             prog(t, a + 0.5, a + 0.7), key=('wh', k))
+            pen.write(l1, x, y + 270, 52, col, prog(t, a + 0.7, a + 1.1), tick)
+            pen.write(l2, x, y + 332, 46, INK, prog(t, a + 0.9, a + 1.3), tick)
+        pen.marker(INK)
+        return img
+
+    if t < 17.5:                                                   # where: latitude 5-25, both hemispheres
+        chip(pen, t, "WHERE?", ORANGE, 11.05, tick)
+        pen.write("Only between 5° and 25°", 490, 345, 78, INK, prog(t, 11.1, 12.0), tick)
+        cx, cy, R = 470, 900, 300
+        globe = [(cx + R * math.cos(a), cy + R * math.sin(a)) for a in np.linspace(0, 2 * math.pi, 60)]
+        pen.hatch(globe, SKY, prog(t, 11.6, 12.4), gap=26, w=3, key='gl', alpha=90)
+        pen.path(globe, INK, 8, prog(t, 11.3, 12.1), key='glo')
+        def lat_y(deg):
+            return cy - R * math.sin(math.radians(deg))
+        def band(d0, d1):
+            top = [(cx - R * math.cos(math.radians(d)) , lat_y(d)) for d in np.linspace(d0, d1, 12)]
+            bot = [(cx + R * math.cos(math.radians(d)), lat_y(d)) for d in np.linspace(d1, d0, 12)]
+            return top + bot
+        for k, (d0, d1) in enumerate(((5, 25), (-25, -5))):
+            pen.hatch(band(d0, d1), ORANGE, prog(t, 12.4, 13.2), gap=12, w=5, key=('band', k), alpha=210)
+        pen.path([(cx - R, cy), (cx + R, cy)], RED, 5, prog(t, 12.2, 12.6), key='eq')
+        for deg, lab in ((25, "25°N"), (5, "5°N"), (-5, "5°S"), (-25, "25°S")):
+            half = R * math.cos(math.radians(deg))
+            pen.path([(cx - half, lat_y(deg)), (cx + half, lat_y(deg))], INK, 4, prog(t, 12.3, 12.8), key=('lat', deg))
+            pen.write(lab, cx + half + 70, lat_y(deg) - 30, 38, INK, prog(t, 12.8, 13.2), tick)
+        pen.write("Below 5°: no Coriolis force", 490, 1250, 60, RED, prog(t, 13.6, 14.6), tick)
+        pen.write("Above 25°: too cold", 490, 1330, 60, BLUE, prog(t, 14.6, 15.4), tick)
+        for k in range(2):
+            for sgn in (1, -1):
+                xx, yy = cx - 60 + k * 130, cy - sgn * R * 0.26
+                pen.path([(xx + 22 * math.cos(q), yy + 22 * math.sin(q)) for q in np.linspace(0, -5.5, 16)], BLUE, 5,
+                         prog(t, 13.2, 13.8), key=('mini', k, sgn))
+        pen.marker(INK)
+        return img
+
+    if t < 25.5:                                                   # inside
+        chip(pen, t, "INSIDE A CYCLONE", PURPLE, 17.55, tick)
+        pen.write("Calm eye, violent wall", 490, 345, 78, INK, prog(t, 17.6, 18.5), tick)
+        cyclone(pen, 470, 920, 320, t, prog(t, 17.7, 18.7), key='in', labels=True, tick=tick)
+        pen.marker(INK)
+        return img
+
+    if t < 30.5:                                                   # names
+        chip(pen, t, "SAME STORM, 3 NAMES", GREEN, 25.55, tick)
+        rows = [("Hurricane", "Atlantic", RED), ("Typhoon", "NW Pacific", ORANGE), ("Cyclone", "Bay of Bengal & Arabian Sea", BLUE)]
+        for i, (n1, n2, col) in enumerate(rows):
+            a = 25.7 + i * 0.9
+            y = 420 + i * 230
+            pen.write(n1, 490, y, 110, col, prog(t, a, a + 0.5), tick)
+            pen.write(n2, 490, y + 120, 50, INK, prog(t, a + 0.4, a + 0.8), tick)
+            cyclone(pen, 140, y + 70, 60, t, prog(t, a, a + 0.6), key=('mini', i))
+        pen.write("Indian cyclones last", 490, 1190, 64, INK, prog(t, 28.5, 29.1), tick)
+        pen.write("3–5 days on average", 490, 1270, 76, RED, prog(t, 28.9, 29.6), tick)
+        pen.marker(INK)
+        return img
+
+    pen.write("Full chapter,", 490, 520, 96, INK, prog(t, 30.55, 31.0), tick)          # call to action
+    pen.write("FREE!", 490, 630, 160, RED, prog(t, 30.8, 31.3), tick)
+    pen.write("ghostaviator.com", 490, 860, 96, BLUE, prog(t, 31.2, 31.9), tick)
+    pen.path([(170, 990), (820, 980)], ORANGE, 10, prog(t, 31.8, 32.1), key='cu1')
+    pen.write("DGCA Meteorology · Capt. Pankaj Pahil", 490, 1070, 50, INK, prog(t, 32.0, 32.7), tick)
+    cyclone(pen, 490, 1330, 170, t, prog(t, 32.2, 33.0), key='end')
+    pen.marker(BLUE)
+    return img
+
+SCENES = {'thunderstorm': (lambda t, k: scene(t, k), FLASHES, DRAW_SPANS),
+          'trs': (scene_trs, [], TRS_SPANS)}
+
 # ------------------------------------------------------------------------------------------ sound: bright music + scribbles
-def audio(length):
+def audio(length, flashes=FLASHES, spans=DRAW_SPANS, wind=None, quiet=(14, 22)):
     n = int(SR * length); t = np.arange(n) / SR; out = np.zeros(n)
     bpm = 104; beat = 60 / bpm
     chords = [(60, 64, 67), (55, 59, 62), (57, 60, 64), (53, 57, 60)]          # C G Am F - bright, not ominous
@@ -413,20 +563,26 @@ def audio(length):
         s = np.arange(L) / SR
         f = explainer.note(m)
         pluck = (np.sin(2 * np.pi * f * s) + 0.35 * np.sin(4 * np.pi * f * s)) * np.exp(-s * 7)
-        storm = 0.6 if 14 <= at < 22 else 1.0
+        storm = 0.6 if quiet[0] <= at < quiet[1] else 1.0
         out[a:a + L] += 0.10 * storm * pluck
         if k % 2 == 0 and at >= 3.2:
             Lk = min(int(0.25 * SR), n - a); sk = np.arange(Lk) / SR
-            out[a:a + Lk] += (0.28 if 14 <= at < 22 else 0.18) * np.sin(2 * np.pi * (50 * sk + 70 * (1 - np.exp(-sk * 35)) / 35)) * np.exp(-sk * 12)
+            out[a:a + Lk] += (0.28 if quiet[0] <= at < quiet[1] else 0.18) * np.sin(2 * np.pi * (50 * sk + 70 * (1 - np.exp(-sk * 35)) / 35)) * np.exp(-sk * 12)
         k += 1
     rng = np.random.default_rng(3)
-    for a, b in DRAW_SPANS:                                   # marker scribble while drawing
+    for a, b in spans:                                        # marker scribble while drawing
         i0, i1 = int(a * SR), min(n, int(b * SR))
         noise = explainer.lowpass(rng.standard_normal(i1 - i0), 5000) - explainer.lowpass(rng.standard_normal(i1 - i0), 900) * 0
         mod = 0.5 + 0.5 * np.sin(2 * np.pi * 11 * np.arange(i1 - i0) / SR + rng.uniform(0, 6)) ** 2
         env = np.minimum(1, np.arange(i1 - i0) / (0.05 * SR)) * np.minimum(1, (i1 - i0 - np.arange(i1 - i0)) / (0.05 * SR))
         out[i0:i1] += 0.045 * noise / (np.abs(noise).max() + 1e-9) * mod * env
-    for i, f in enumerate(FLASHES):                           # thunder
+    for a, b in (wind or []):                                 # wind roar (cyclone): slow swells of filtered noise
+        i0, i1 = int(a * SR), min(n, int(b * SR)); L = i1 - i0
+        roar = explainer.lowpass(rng.standard_normal(L), 700)
+        swell = 0.55 + 0.45 * np.sin(2 * np.pi * 0.35 * np.arange(L) / SR) * np.sin(2 * np.pi * 0.11 * np.arange(L) / SR)
+        env = np.minimum(1, np.arange(L) / (0.6 * SR)) * np.minimum(1, (L - np.arange(L)) / (0.6 * SR))
+        out[i0:i1] += 0.30 * roar / (np.abs(roar).max() + 1e-9) * swell * env
+    for i, f in enumerate(flashes):                           # thunder
         a = int((f + 0.2) * SR); L = min(int(2.6 * SR), n - a)
         s = np.arange(L) / SR
         brown = np.cumsum(np.random.default_rng(20 + i).standard_normal(L))
@@ -442,14 +598,16 @@ def render(topic="thunderstorm"):
     spec = explainer.TOPICS[topic]
     OUT.mkdir(exist_ok=True)
     wav, mp4 = OUT / f"sketch-{topic}.wav", OUT / f"sketch-{topic}.mp4"
-    explainer.write_wav(wav, audio(spec["length"]))
+    draw, flashes, spans = SCENES[topic]
+    wind = [(0.0, 3.4), (17.5, 25.5)] if topic == 'trs' else None
+    explainer.write_wav(wav, audio(spec["length"], flashes, spans, wind, (14, 22) if topic == 'thunderstorm' else (99, 99)))
     ff = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS),
                            "-i", "-", "-i", str(wav), "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p",
                            "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", str(SR), "-c:a", "aac", "-b:a", "192k", "-shortest",
                            "-movflags", "+faststart", str(mp4)], stdin=subprocess.PIPE)
     frames = int(spec["length"] * FPS)
     for i in range(frames):
-        ff.stdin.write(scene(i / FPS, i // BOIL).tobytes())
+        ff.stdin.write(draw(i / FPS, i // BOIL).tobytes())
         if i % 150 == 0:
             print(f"  frame {i}/{frames}", flush=True)
     ff.stdin.close()
