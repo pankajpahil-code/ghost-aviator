@@ -97,6 +97,28 @@ TOPICS["trs"] = {
                 "#DGCA #CPL #AviationMeteorology #Cyclone #PilotTraining"),
 }
 
+TOPICS["rain"] = {
+    "subject": "meteorology", "chapter": "met-11", "length": 34.0,
+    "title": "How does rain form?",
+    "beats": [
+        (0.0, 3.4, "", [], ["cloud particles must grow large enough to overcome vertical currents inside the clouds"]),
+        (3.4, 8.0, "HOW BIG?", [], ["Dia 0.2–0.5 mm", "Dia 0.5–5 mm", "5–50 mm or more"]),
+        (8.0, 16.8, "WAY 1 · COLD CLOUD", [], ["Bergeron Ice Crystal Theory (Cold Cloud Process)", "super cooled water and ice particles co-exist",
+                                              "ice crystals grow at expense of water drops", "fall out of cloud base as snow or rain"]),
+        (16.8, 24.8, "WAY 2 · WARM CLOUD", [], ["Coalescence Theory (Warm Cloud Process)", "collision and coalescence of the smaller droplets",
+                                               "In tropical areas"]),
+        (24.8, 30.5, "WAY 3 · SEA SALT", [], ["Giant Nucleus Theory", "large number of salt particles", "from salt spray"]),
+        (30.5, 34.0, "", [], []),
+    ],
+    "flashes": [],
+    "caption": ("How does rain form? 3 ways a cloud makes rain" + NL + NL +
+                "Cloud particles must grow large enough to overcome the updrafts. Cold clouds: ice crystals grow at the "
+                "expense of supercooled water drops (Bergeron). Warm clouds, as in the tropics: droplets collide and "
+                "coalesce. Near the sea: salt particles from sea spray start the chain (giant nucleus)." + NL + NL +
+                "Full chapter, free: https://ghostaviator.com/cpl/meteorology/met-11/notes" + NL +
+                "#DGCA #CPL #AviationMeteorology #Rain #PilotTraining"),
+}
+
 def verify(topic):
     """Refuse to render a single frame unless every source phrase is in the Captain's chapter, verbatim."""
     spec = TOPICS[topic]

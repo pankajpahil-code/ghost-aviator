@@ -546,11 +546,177 @@ def scene_trs(t, tick):
     pen.marker(BLUE)
     return img
 
+# ------------------------------------------------------------------------------------------ how rain forms
+RAIN_SPANS = [(0.0, 2.6), (3.45, 7.2), (8.05, 11.5), (16.85, 19.8), (24.85, 27.8), (30.55, 33.2)]
+RAIN_SOUND = [(13.2, 16.8), (21.5, 24.8), (28.2, 30.5)]
+
+def snowflake(pen, cx, cy, r, col, p, key):
+    for k in range(3):
+        a = k * math.pi / 3
+        pen.path([(cx - r * math.cos(a), cy - r * math.sin(a)), (cx + r * math.cos(a), cy + r * math.sin(a))], col, 5, p, 1.5, key=(key, k))
+    for k in range(6):
+        a = k * math.pi / 3
+        mx, my = cx + 0.6 * r * math.cos(a), cy + 0.6 * r * math.sin(a)
+        for s in (-1, 1):
+            b = a + s * 0.7
+            pen.path([(mx, my), (mx + 0.3 * r * math.cos(b), my + 0.3 * r * math.sin(b))], col, 4, p, 1, key=(key, 'b', k, s))
+
+def droplet(pen, cx, cy, r, col, p, key, fill=True):
+    pts = [(cx, cy - 1.9 * r)] + [(cx + r * math.sin(q), cy + r * math.cos(q)) for q in np.linspace(2.4, -2.4, 16)] + [(cx, cy - 1.9 * r)]
+    if fill and r > 8:
+        pen.hatch(pts, SKY, p, gap=max(5, int(r / 3)), w=3, key=(key, 'f'), alpha=200)
+    pen.path(pts, BLUE, 4 if r < 14 else 6, p, 1.5 if r < 14 else 2.5, key=(key, 'o'))
+
+def scene_rain(t, tick):
+    img = Image.new("RGB", (W, H), PAPER)
+    pen = Pen(img, tick)
+    d = pen.d
+    for gy in range(40, H, 60):
+        for gx in range(40, W, 60):
+            d.point((gx, gy), fill=(226, 222, 210))
+
+    if t < 3.4:                                                    # hook
+        pen.write("Why doesn't every", 490, 330, 84, INK, prog(t, 0.0, 0.5), tick)
+        pen.write("cloud rain?", 490, 430, 110, BLUE, prog(t, 0.3, 0.9), tick)
+        c = cloud(470, 1050, 720, 300)
+        pen.hatch(c, SKY, prog(t, 0.3, 1.2), gap=20, key='hc', alpha=170)
+        pen.path(c, INK, 8, prog(t, 0.1, 0.9), key='hco')
+        r = random.Random(4)
+        for i in range(10):
+            x = 280 + r.uniform(0, 380); y = 860 + r.uniform(0, 150) + 18 * math.sin(t * 4 + i)
+            droplet(pen, x, y, 8, BLUE, prog(t, 0.6, 1.0), ('hd', i), fill=False)
+        for k, x in enumerate((330, 470, 610)):
+            shaft, head = arrow(x, 1230, 170)
+            pen.path(shaft, ORANGE, 11, prog(t, 0.9, 1.3), key=('ha', k)); pen.path(head, ORANGE, 11, prog(t, 1.2, 1.4), key=('hh', k))
+        pen.write("Its drops must grow big enough", 490, 1270, 60, RED, prog(t, 1.5, 2.3), tick)
+        pen.write("to beat the updrafts!", 490, 1355, 60, RED, prog(t, 2.0, 2.6), tick)
+        pen.marker(BLUE)
+        return img
+
+    if t < 8.0:                                                    # sizes
+        chip(pen, t, "HOW BIG?", YELLOW, 3.45, tick)
+        rows = [("Drizzle", "0.2–0.5 mm", 7, 3.6), ("Rain", "0.5–5 mm", 34, 4.6), ("Hail", "5–50 mm or more", 90, 5.6)]
+        for i, (name, size, rad, a) in enumerate(rows):
+            y = 520 + i * 300
+            if name == "Hail":
+                ball = [(300 + rad * math.cos(q), y + 60 + rad * math.sin(q)) for q in np.linspace(0, 2 * math.pi, 30)]
+                pen.hatch(ball, (186, 230, 253), prog(t, a + 0.3, a + 0.8), gap=12, key='hail', alpha=220)
+                pen.path(ball, INK, 7, prog(t, a, a + 0.5), key='hailo', closed=True)
+            else:
+                droplet(pen, 300, y + 70, rad, BLUE, prog(t, a, a + 0.5), ('sz', i))
+            pen.write(name, 640, y, 80, INK, prog(t, a + 0.2, a + 0.6), tick)
+            pen.write(size, 640, y + 90, 60, RED, prog(t, a + 0.4, a + 0.9), tick)
+        pen.write("(not to scale)", 490, 1380, 40, GREY, prog(t, 6.6, 7.2), tick)
+        pen.marker(INK)
+        return img
+
+    if t < 16.8:                                                   # cold cloud: Bergeron
+        chip(pen, t, "WAY 1 · COLD CLOUD", PURPLE, 8.05, tick)
+        pen.write("Ice + supercooled water together", 490, 345, 58, INK, prog(t, 8.1, 9.0), tick)
+        pen.write("ice crystals GROW, water drops shrink", 490, 420, 52, PURPLE, prog(t, 9.2, 10.2), tick)
+        if t >= 13.0:
+            pen.write("then fall as snow or rain", 490, 490, 52, BLUE, prog(t, 13.0, 13.8), tick)
+        c = cloud(470, 1180, 620, 330)
+        pen.hatch(c, (203, 213, 225), prog(t, 8.4, 9.4), gap=22, key='cc', alpha=160)
+        pen.path(c, INK, 8, prog(t, 8.2, 9.0), key='cco')
+        fl = 960
+        pen.path([(80, fl), (1000, fl)], RED, 5, prog(t, 9.0, 9.4), key='fz')
+        pen.write("0°C  freezing level", 830, fl + 10, 40, RED, prog(t, 9.3, 9.8), tick)
+        grow = ease(prog(t, 10.0, 13.0))
+        for i, (x, y) in enumerate([(300, 760), (470, 700), (640, 770), (400, 880), (570, 870)]):
+            fall = max(0.0, t - 13.2 - i * 0.25) * 260
+            yy = y + fall
+            if yy > 1420:
+                continue
+            if yy > fl:          # below the 0°C level the crystal melts: it falls on as rain
+                droplet(pen, x, yy, 18, BLUE, 1, ('fd', i))
+            else:
+                snowflake(pen, x, yy, 14 + 26 * grow, PURPLE, prog(t, 9.6, 10.2), ('sf', i))
+        r = random.Random(8)
+        for i in range(12):
+            x = 220 + r.uniform(0, 500); y = 690 + r.uniform(0, 240)
+            rad = 11 * (1 - 0.8 * grow)
+            if rad > 2.5 and t < 14:
+                droplet(pen, x, y, rad, BLUE, prog(t, 9.8, 10.3), ('wd', i), fill=False)
+        pen.marker(INK)
+        return img
+
+    if t < 24.8:                                                   # warm cloud: coalescence
+        chip(pen, t, "WAY 2 · WARM CLOUD", ORANGE, 16.85, tick)
+        pen.write("Tops below the freezing level", 490, 345, 60, INK, prog(t, 16.9, 17.8), tick)
+        pen.write("droplets collide and coalesce", 490, 425, 56, ORANGE, prog(t, 18.0, 18.9), tick)
+        pen.write("(common in tropical areas)", 490, 500, 44, GREY, prog(t, 18.8, 19.5), tick)
+        sun = [(880 + 55 * math.cos(a), 660 + 55 * math.sin(a)) for a in np.linspace(0, 2 * math.pi, 24)]
+        pen.hatch(sun, YELLOW, prog(t, 17.2, 17.6), gap=12, key='sun', alpha=220)
+        pen.path(sun, ORANGE, 6, prog(t, 17.0, 17.4), key='suno')
+        c = cloud(450, 1130, 760, 330)
+        pen.hatch(c, (224, 242, 254), prog(t, 17.2, 18.0), gap=20, key='wc', alpha=180)
+        pen.path(c, INK, 8, prog(t, 17.0, 17.8), key='wco')
+        for i, (x0, y0) in enumerate([(260, 920), (400, 880), (560, 930), (330, 1030), (620, 1040)]):
+            m = ease(prog(t, 19.2 + i * 0.35, 20.2 + i * 0.35))           # two droplets drift together and merge
+            ax, bx = x0 - 50 * (1 - m), x0 + 50 * (1 - m)
+            if m < 1:
+                droplet(pen, ax, y0, 12, BLUE, 1, ('m1', i), fill=False); droplet(pen, bx, y0, 12, BLUE, 1, ('m2', i), fill=False)
+            else:
+                droplet(pen, x0, y0, 20, BLUE, 1, ('mm', i))
+        if t > 21.5:                                               # a big drop falls, sweeping small ones on its way
+            y = 1000 + (t - 21.5) * 180
+            if y < 1420:
+                droplet(pen, 450, y, 30, BLUE, 1, 'big')
+                for k in range(4):
+                    sy = 1180 + k * 50
+                    if sy > y + 20:
+                        droplet(pen, 450 + (-1) ** k * 26, sy, 7, BLUE, 1, ('sm', k), fill=False)
+        pen.marker(INK)
+        return img
+
+    if t < 30.5:                                                   # sea salt: giant nucleus
+        chip(pen, t, "WAY 3 · SEA SALT", GREEN, 24.85, tick)
+        pen.write("Near the sea, salt from", 490, 345, 64, INK, prog(t, 24.9, 25.8), tick)
+        pen.write("sea spray starts the drops", 490, 425, 64, GREEN, prog(t, 25.6, 26.6), tick)
+        for k in range(3):
+            wv = [(60 + u * 900, 1330 + k * 40 + 12 * math.sin(u * 14 + t * 3)) for u in np.linspace(0, 1, 40)]
+            pen.path(wv, BLUE, 8, prog(t, 25.0 + 0.1 * k, 25.6 + 0.1 * k), key=('sw', k))
+        c = cloud(470, 900, 640, 260)
+        pen.hatch(c, (224, 242, 254), prog(t, 25.5, 26.2), gap=20, key='sc', alpha=180)
+        pen.path(c, INK, 8, prog(t, 25.3, 26.0), key='sco')
+        r = random.Random(12)
+        for i in range(9):
+            x = 250 + r.uniform(0, 440); ph = r.uniform(0, 1)
+            y = 1300 - ((t * 0.25 + ph) % 1.0) * 480
+            if t < 26.2:
+                continue
+            if y > 900:
+                pen.path([(x - 7, y - 7), (x + 7, y - 7), (x + 7, y + 7), (x - 7, y + 7)], GREEN, 4, 1, 1.5, key=('salt', i), closed=True)
+            else:
+                droplet(pen, x, y - 40, 16, BLUE, 1, ('sd', i))
+        pen.write("salt", 820, 1180, 48, GREEN, prog(t, 26.5, 27.0), tick)
+        if t > 28.2:
+            for i in range(14):
+                x = 320 + (i * 37) % 300; y = 930 + ((t * 1.3 + i * 0.13) % 1.0) * 330
+                pen.line((x, y), (x - 8, y + 30), BLUE, 5, 1.5, ('rr', i))
+        pen.marker(INK)
+        return img
+
+    pen.write("Full chapter,", 490, 520, 96, INK, prog(t, 30.55, 31.0), tick)          # call to action
+    pen.write("FREE!", 490, 630, 160, RED, prog(t, 30.8, 31.3), tick)
+    pen.write("ghostaviator.com", 490, 860, 96, BLUE, prog(t, 31.2, 31.9), tick)
+    pen.path([(170, 990), (820, 980)], ORANGE, 10, prog(t, 31.8, 32.1), key='cu1')
+    pen.write("DGCA Meteorology · Capt. Pankaj Pahil", 490, 1070, 50, INK, prog(t, 32.0, 32.7), tick)
+    c = cloud(490, 1330, 1170, 170)
+    pen.hatch(c, SKY, prog(t, 32.2, 32.9), gap=18, key='ecf', alpha=190)
+    pen.path(c, INK, 7, prog(t, 32.1, 32.8), key='eco')
+    for i in range(6):
+        droplet(pen, 400 + i * 36, 1370 + (i % 2) * 30 + ((t * 120) % 40), 9, BLUE, prog(t, 32.6, 33.0), ('ed', i), fill=False)
+    pen.marker(BLUE)
+    return img
+
 SCENES = {'thunderstorm': (lambda t, k: scene(t, k), FLASHES, DRAW_SPANS),
-          'trs': (scene_trs, [], TRS_SPANS)}
+          'trs': (scene_trs, [], TRS_SPANS),
+          'rain': (scene_rain, [], RAIN_SPANS)}
 
 # ------------------------------------------------------------------------------------------ sound: bright music + scribbles
-def audio(length, flashes=FLASHES, spans=DRAW_SPANS, wind=None, quiet=(14, 22)):
+def audio(length, flashes=FLASHES, spans=DRAW_SPANS, wind=None, quiet=(14, 22), rain=None):
     n = int(SR * length); t = np.arange(n) / SR; out = np.zeros(n)
     bpm = 104; beat = 60 / bpm
     chords = [(60, 64, 67), (55, 59, 62), (57, 60, 64), (53, 57, 60)]          # C G Am F - bright, not ominous
@@ -582,6 +748,11 @@ def audio(length, flashes=FLASHES, spans=DRAW_SPANS, wind=None, quiet=(14, 22)):
         swell = 0.55 + 0.45 * np.sin(2 * np.pi * 0.35 * np.arange(L) / SR) * np.sin(2 * np.pi * 0.11 * np.arange(L) / SR)
         env = np.minimum(1, np.arange(L) / (0.6 * SR)) * np.minimum(1, (L - np.arange(L)) / (0.6 * SR))
         out[i0:i1] += 0.30 * roar / (np.abs(roar).max() + 1e-9) * swell * env
+    for a, b in (rain or []):                                 # rainfall: soft high hiss with a slow swell
+        i0, i1 = int(a * SR), min(n, int(b * SR)); L = i1 - i0
+        hiss = rng.standard_normal(L); hiss = hiss - explainer.lowpass(hiss, 2500)
+        env = np.minimum(1, np.arange(L) / (0.8 * SR)) * np.minimum(1, (L - np.arange(L)) / (0.8 * SR))
+        out[i0:i1] += 0.09 * hiss / (np.abs(hiss).max() + 1e-9) * env
     for i, f in enumerate(flashes):                           # thunder
         a = int((f + 0.2) * SR); L = min(int(2.6 * SR), n - a)
         s = np.arange(L) / SR
@@ -600,7 +771,8 @@ def render(topic="thunderstorm"):
     wav, mp4 = OUT / f"sketch-{topic}.wav", OUT / f"sketch-{topic}.mp4"
     draw, flashes, spans = SCENES[topic]
     wind = [(0.0, 3.4), (17.5, 25.5)] if topic == 'trs' else None
-    explainer.write_wav(wav, audio(spec["length"], flashes, spans, wind, (14, 22) if topic == 'thunderstorm' else (99, 99)))
+    explainer.write_wav(wav, audio(spec["length"], flashes, spans, wind, (14, 22) if topic == 'thunderstorm' else (99, 99),
+                                   RAIN_SOUND if topic == 'rain' else None))
     ff = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS),
                            "-i", "-", "-i", str(wav), "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p",
                            "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", str(SR), "-c:a", "aac", "-b:a", "192k", "-shortest",
