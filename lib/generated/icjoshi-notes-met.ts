@@ -1211,8 +1211,8 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     source: `IC Joshi — Aviation Meteorology`,
     q: `If an aircraft in N-hemisphere flies from H to L it will experience`,
     opts: [`Starboard drift`, `Port drift`],
-    ans: 1,
-    exp: `Port drift — In N hemisphere, flying from H to L (against pressure gradient), wind blows from right to left relative to flight path → port (left) drift. In N hemisphere: flying H→L = Port drift. Flying L→H = Starboard drift. In S hemisphere: reverse.`,
+    ans: 0,
+    exp: `Starboard drift — Buys Ballot: with your back to the wind in the N hemisphere, low pressure is on your left. Flying towards the low, the wind comes from your left and pushes you right. N hemisphere: towards LOW = starboard drift; towards HIGH = port drift. S hemisphere: reverse.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
@@ -1222,7 +1222,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `In N-Hemisphere if you experience Port drift, altimeter will read`,
     opts: [`Under`, `Over`],
     ans: 0,
-    exp: `Under — Port drift in N hemisphere means flying H→L. Flying from H to L pressure → flying into lower pressure → altimeter over-reads (reads higher than actual altitude). Wait — actually flying H→L means the pressure under the aircraft is decreasing, so altimeter over-reads. But altimeter "reads under" means indicating less than true height... Let me reconsider. In N hemi, port drift = flying H to L. Flying into lower pressure → altimeter reads HIGH (over). So answer should be (b) Over. Instructor's Note: "H to L = Port drift in N hemi = Altimeter OVER-reads." Flying L to H = Starboard drift…`,
+    exp: `Under — Port drift in the N hemisphere means you are flying towards HIGH pressure. Holding the same altimeter reading you follow a pressure level, and pressure levels are higher over a high, so you climb: true altitude is more than indicated, the altimeter under-reads. "High to Low, beware below": towards LOW (starboard drift in NH) it over-reads.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],

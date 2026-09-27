@@ -752,7 +752,7 @@ export const OXFORD_INSTRUMENTATION: DemoQuestion[] = [
     q: `An aircraft in the southern hemisphere is turning from a heading of 090°C to 360°C using a DGI. At the end of the turn the compass will read ....... than 360° and liquid swirl will ....... this effect.`,
     opts: [`more; increase`, `less; increase`, `more; decrease`, `less; decrease`],
     ans: 3,
-    exp: `The aircraft is turning left (from 090 to 360°) through north in the Southern Hemisphere. North is the FURTHER pole in the SH (south is nearer). Turning through the further pole: aircraft and magnet rotate in OPPOSITE directions → compass is LIVELY → over-reads → will show MORE than 360° (e.g. ~020°) as degrees pass quickly. Wait — the question says compass reads LESS than 360°. Let me reconsider: turning from 090 to 360 is a left turn of 90°. In SH, turning through north (further pole) — the magnet assembly is thrown out clockwise (opposite to aircraft which turns anticlockwise). Clockwise…`,
+    exp: `The aircraft is turning left (from 090 to 360°) through north in the Southern Hemisphere. North is the FURTHER pole in the SH (south is nearer). Turning through the further pole, the magnet assembly is thrown out in the OPPOSITE direction to the turn (clockwise here, while the aircraft turns anticlockwise), so at the end of the turn the compass reads LESS than 360°. Liquid swirl acts in the direction of the aircraft's turn, which opposes that displacement, so the swirl REDUCES the error. Answer: less; decrease`,
   },
   {
     subjectIds: ["instrumentation"],
