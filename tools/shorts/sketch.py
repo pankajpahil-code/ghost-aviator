@@ -711,9 +711,168 @@ def scene_rain(t, tick):
     pen.marker(BLUE)
     return img
 
+# ------------------------------------------------------------------------------------------ fog (met-7), 28 Sep 2026
+FOG_SPANS = [(0.0, 2.6), (3.45, 8.6), (10.55, 13.4), (16.55, 18.4), (21.55, 25.0), (27.85, 29.4), (30.85, 33.2)]
+FOG_GROUND = 1300
+
+def fog_band(pen, top, bottom, t, p, key, x0=60, x1=940):
+    """A soft fog layer: pale grey hachure between a wavy top edge and the ground."""
+    edge = [(x, top + 14 * math.sin(x / 70 + t * 0.8)) for x in np.linspace(x0, x1, 28)]
+    poly = edge + [(x1, bottom), (x0, bottom)]
+    pen.hatch(poly, (148, 163, 184), p, gap=16, angle=-8, w=4, key=(key, 'h'), alpha=120)
+    pen.path(edge, GREY, 5, p, 2, key=(key, 'e'))
+
+def ground(pen, t, p, key='gr', grass=True):
+    pen.path([(40, FOG_GROUND), (960, FOG_GROUND)], INK, 8, p, key=key)
+    if grass:
+        for i, x in enumerate(range(90, 940, 70)):
+            pen.path([(x, FOG_GROUND), (x - 8, FOG_GROUND - 26)], GREEN, 5, p, 1.5, key=(key, 'g', i))
+            pen.path([(x, FOG_GROUND), (x + 10, FOG_GROUND - 30)], GREEN, 5, p, 1.5, key=(key, 'h', i))
+
+def hwind(pen, x, y, length, p, key, col=SKY):
+    pen.path([(x, y), (x + length, y)], col, 8, p, 2, key=(key, 's'))
+    pen.path([(x + length - 26, y - 18), (x + length, y), (x + length - 26, y + 18)], col, 8, prog(p, 0.6, 1.0), 2, key=(key, 'h'))
+
+def moon(pen, cx, cy, r, p, key):
+    # A crescent: the lit limb outside, the shadowed limb as an inner arc - pale, so it never reads as the sun.
+    outer = [(cx + r * math.cos(a), cy + r * math.sin(a)) for a in np.linspace(-1.9, 1.9, 26)]
+    inner = [(cx + 0.45 * r + 0.8 * r * math.cos(a), cy + 0.95 * r * math.sin(a)) for a in np.linspace(1.75, -1.75, 26)]
+    pen.hatch(outer + inner, (226, 232, 240), p, gap=8, key=(key, 'f'), alpha=230)
+    pen.path(outer + inner, GREY, 5, p, 1.5, key=(key, 'o'), closed=True)
+
+def star(pen, x, y, s, p, key):
+    pen.path([(x - s, y), (x + s, y)], YELLOW, 4, p, 1, key=(key, 'a'))
+    pen.path([(x, y - s), (x, y + s)], YELLOW, 4, p, 1, key=(key, 'b'))
+
+def scene_fog(t, tick):
+    img = Image.new("RGB", (W, H), PAPER)
+    pen = Pen(img, tick)
+    d = pen.d
+    for gy in range(40, H, 60):
+        for gx in range(40, W, 60):
+            d.point((gx, gy), fill=(226, 222, 210))
+
+    if t < 3.4:                                                    # hook: a cloud sitting on the ground
+        pen.write("Fog is a cloud", 490, 330, 100, INK, prog(t, 0.0, 0.6), tick)
+        pen.write("sitting on the ground", 490, 450, 80, GREY, prog(t, 0.4, 1.1), tick)
+        ground(pen, t, prog(t, 0.2, 0.6), grass=False)
+        rw = [(330, FOG_GROUND), (650, FOG_GROUND), (560, 1010), (420, 1010)]              # a runway vanishing into it
+        pen.path(rw, INK, 6, prog(t, 0.4, 0.9), key='rw', closed=True)
+        for i in range(5):
+            y = FOG_GROUND - 40 - i * 55
+            pen.path([(490, y), (490, y - 25)], YELLOW, 7, prog(t, 0.7 + i * 0.05, 0.9 + i * 0.05), 1, key=('cl', i))
+        fog_band(pen, 900, FOG_GROUND, t, prog(t, 1.0, 1.8), 'hf')
+        pen.write("visibility below 1000 m", 490, 1350, 56, RED, prog(t, 1.9, 2.6), tick)
+        pen.marker(GREY)
+        return img
+
+    if t < 10.5:                                                   # radiation fog: the four conditions
+        chip(pen, t, "RADIATION FOG", PURPLE, 3.45, tick)
+        pen.write("Clear night: the ground cools", 490, 345, 62, INK, prog(t, 3.5, 4.4), tick)
+        pen.write("and the air on it cools too", 490, 420, 54, GREY, prog(t, 4.2, 5.0), tick)
+        moon(pen, 820, 590, 50, prog(t, 4.0, 4.5), 'mn')
+        for i, (x, y) in enumerate([(160, 560), (300, 640), (620, 540), (700, 700)]):
+            star(pen, x, y, 14, prog(t, 4.3 + i * 0.1, 4.6 + i * 0.1), ('st', i))
+        rows = [("1  High humidity", BLUE, 5.2), ("2  Clear sky", ORANGE, 5.9), ("3  Light wind, 3–7 kt", SKY, 6.6), ("4  Stable air", GREEN, 7.3)]
+        for i, (txt, col, a) in enumerate(rows):
+            pen.write(txt, 490, 780 + i * 95, 62, col, prog(t, a, a + 0.6), tick)
+        ground(pen, t, prog(t, 4.6, 5.1))
+        for k in range(3):                                         # the ground loses heat upward, into the clear sky
+            shaft, head = arrow(260 + k * 240, FOG_GROUND - 40, 110)
+            pen.path(shaft, RED, 7, prog(t, 5.0 + 0.15 * k, 5.4 + 0.15 * k), key=('ha', k))
+            pen.path(head, RED, 7, prog(t, 5.3 + 0.15 * k, 5.5 + 0.15 * k), key=('hh', k))
+        fog_band(pen, FOG_GROUND - 120 + 60 * (1 - ease(prog(t, 8.2, 10.0))), FOG_GROUND, t, prog(t, 8.2, 9.2), 'rf')
+        pen.marker(INK)
+        return img
+
+    if t < 16.5:                                                   # too calm / too windy
+        chip(pen, t, "TOO CALM? TOO WINDY?", ORANGE, 10.55, tick)
+        pen.write("Calm:", 260, 390, 70, INK, prog(t, 10.6, 11.0), tick)
+        pen.write("only DEW", 260, 470, 64, BLUE, prog(t, 10.9, 11.5), tick)
+        pen.write("Strong wind:", 720, 390, 62, INK, prog(t, 12.6, 13.1), tick)
+        pen.write("mixed away", 720, 470, 64, RED, prog(t, 13.0, 13.6), tick)
+        pen.path([(490, 380), (490, 1320)], GREY, 4, prog(t, 10.6, 11.0), 1.5, key='div')
+        pen.path([(40, FOG_GROUND), (470, FOG_GROUND)], INK, 7, prog(t, 10.7, 11.1), key='gl')
+        pen.path([(510, FOG_GROUND), (960, FOG_GROUND)], INK, 7, prog(t, 12.7, 13.1), key='grr')
+        for i, x in enumerate(range(80, 460, 60)):                 # left: grass beaded with dew
+            pen.path([(x, FOG_GROUND), (x - 6, FOG_GROUND - 40)], GREEN, 5, prog(t, 11.1, 11.5), 1.5, key=('lg', i))
+            droplet(pen, x - 6, FOG_GROUND - 52, 9, BLUE, prog(t, 11.6 + i * 0.08, 12.0 + i * 0.08), ('dew', i))
+        pen.write("drops settle on the grass", 260, 1360, 42, GREY, prog(t, 12.0, 12.6), tick)
+        for k in range(3):                                         # right: wind churns the layer
+            hwind(pen, 540, 820 + k * 150, 300, prog(t, 13.2 + 0.2 * k, 13.8 + 0.2 * k), ('sw', k), RED)
+            sp = [(740 + (6 + 40 * u) * math.cos(u * 2 * math.pi * 2.2 + t * 3), 900 + k * 150 + (6 + 40 * u) * math.sin(u * 2 * math.pi * 2.2 + t * 3))
+                  for u in np.linspace(0, 1, 44)]
+            pen.path(sp, GREY, 4, prog(t, 13.8 + 0.2 * k, 14.4 + 0.2 * k), 1.5, key=('sp', k))
+        pen.write("no layer cools enough", 720, 1360, 42, GREY, prog(t, 14.2, 14.8), tick)
+        pen.marker(INK)
+        return img
+
+    if t < 21.5:                                                   # after sunrise: lifts into stratus, then goes
+        chip(pen, t, "AFTER SUNRISE", YELLOW, 16.55, tick)
+        pen.write("Clears 2–3 hours after sunrise", 490, 345, 60, INK, prog(t, 16.6, 17.5), tick)
+        pen.write("usually lifting into low stratus first", 490, 420, 48, GREY, prog(t, 17.4, 18.3), tick)
+        rise = ease(prog(t, 16.6, 20.0))
+        sy = FOG_GROUND - 40 - 420 * rise
+        sun = [(820 + 70 * math.cos(a), sy + 70 * math.sin(a)) for a in np.linspace(0, 2 * math.pi, 30)]
+        pen.hatch(sun, YELLOW, prog(t, 16.6, 17.0), gap=12, key='sun', alpha=220)
+        pen.path(sun, ORANGE, 6, prog(t, 16.6, 17.0), key='suno', closed=True)
+        ground(pen, t, 1.0)
+        lift = ease(prog(t, 17.6, 20.6))
+        top = FOG_GROUND - 200 - 380 * lift
+        bottom = FOG_GROUND - 360 * lift
+        fog_band(pen, top, bottom, t, 1.0, 'lf', 60, 700)
+        if lift > 0.5:
+            pen.write("low stratus", 380, top - 80, 52, GREY, prog(t, 19.2, 19.8), tick)
+        pen.marker(ORANGE)
+        return img
+
+    if t < 27.8:                                                   # advection fog
+        chip(pen, t, "ADVECTION FOG", SKY, 21.55, tick)
+        pen.write("Warm moist air moves over", 490, 345, 62, INK, prog(t, 21.6, 22.5), tick)
+        pen.write("a COLD surface", 490, 425, 70, BLUE, prog(t, 22.3, 23.0), tick)
+        for k in range(3):                                         # warm sea on the left
+            wv = [(40 + u * 380, 1290 + k * 36 + 10 * math.sin(u * 16 + t * 3)) for u in np.linspace(0, 1, 30)]
+            pen.path(wv, BLUE, 7, prog(t, 21.7 + 0.1 * k, 22.2 + 0.1 * k), key=('sea', k))
+        pen.write("warm", 230, 1390, 48, ORANGE, prog(t, 22.2, 22.6), tick)
+        pen.path([(440, FOG_GROUND), (960, FOG_GROUND)], INK, 8, prog(t, 22.0, 22.4), key='cl')
+        pen.hatch([(440, FOG_GROUND), (960, FOG_GROUND), (960, FOG_GROUND + 60), (440, FOG_GROUND + 60)], SKY,
+                  prog(t, 22.2, 22.8), gap=12, key='cold', alpha=200)
+        pen.write("cold land", 700, 1390, 48, BLUE, prog(t, 22.4, 22.9), tick)
+        for k in range(2):
+            hwind(pen, 120, 1020 + k * 110, 360, prog(t, 22.8 + 0.3 * k, 23.6 + 0.3 * k), ('aw', k), ORANGE)
+        spread = ease(prog(t, 23.6, 25.6))
+        fog_band(pen, FOG_GROUND - 190, FOG_GROUND, t, prog(t, 23.6, 24.4), 'af', 440, 440 + 520 * spread + 1)
+        pen.write("day OR night", 300, 620, 60, PURPLE, prog(t, 25.0, 25.6), tick)
+        pen.write("more persistent", 680, 700, 56, RED, prog(t, 25.6, 26.3), tick)
+        pen.marker(INK)
+        return img
+
+    if t < 30.8:                                                   # India
+        chip(pen, t, "IN INDIA", GREEN, 27.85, tick)
+        pen.write("A winter hazard", 490, 360, 80, INK, prog(t, 27.9, 28.6), tick)
+        pen.write("usually after a Western Disturbance", 490, 470, 50, PURPLE, prog(t, 28.5, 29.4), tick)
+        snowflake(pen, 490, 640, 60, SKY, prog(t, 28.0, 28.6), 'wf')
+        ground(pen, t, 1.0, grass=False)
+        fog_band(pen, FOG_GROUND - 260, FOG_GROUND, t, prog(t, 28.8, 29.8), 'if')
+        pen.write("rain, then the sky clears...", 490, 800, 52, BLUE, prog(t, 29.4, 30.0), tick)
+        pen.write("...and fog by morning", 490, 880, 52, RED, prog(t, 29.9, 30.5), tick)
+        pen.marker(INK)
+        return img
+
+    pen.write("Full chapter,", 490, 520, 96, INK, prog(t, 30.85, 31.3), tick)          # call to action
+    pen.write("FREE!", 490, 630, 160, RED, prog(t, 31.1, 31.6), tick)
+    pen.write("ghostaviator.com", 490, 860, 96, BLUE, prog(t, 31.5, 32.2), tick)
+    pen.path([(170, 990), (820, 980)], ORANGE, 10, prog(t, 32.1, 32.4), key='cu1')
+    pen.write("DGCA Meteorology · Capt. Pankaj Pahil", 490, 1070, 50, INK, prog(t, 32.3, 33.0), tick)
+    ground(pen, t, prog(t, 32.2, 32.6), grass=False)
+    fog_band(pen, FOG_GROUND - 120, FOG_GROUND, t, prog(t, 32.4, 33.0), 'ef')
+    pen.marker(BLUE)
+    return img
+
 SCENES = {'thunderstorm': (lambda t, k: scene(t, k), FLASHES, DRAW_SPANS),
           'trs': (scene_trs, [], TRS_SPANS),
-          'rain': (scene_rain, [], RAIN_SPANS)}
+          'rain': (scene_rain, [], RAIN_SPANS),
+          'fog': (scene_fog, [], FOG_SPANS)}
 
 # ------------------------------------------------------------------------------------------ sound: bright music + scribbles
 def audio(length, flashes=FLASHES, spans=DRAW_SPANS, wind=None, quiet=(14, 22), rain=None):

@@ -119,6 +119,36 @@ TOPICS["rain"] = {
                 "#DGCA #CPL #AviationMeteorology #Rain #PilotTraining"),
 }
 
+TOPICS["fog"] = {
+    "subject": "meteorology", "chapter": "met-7", "length": 34.0,
+    "title": "How does fog form?",
+    "beats": [
+        (0.0, 3.4, "", [], ["Fog is the cloud sitting on ground", "RH ~100% <1000 m"]),
+        (3.4, 10.5, "RADIATION FOG", [], ["Radiation fog forms due to nocturnal cooling of the ground and the adjacent air layers", "(a) High Relative Humidity",
+                                          "(b) Clear Sky", "(c) Light Wind: 3–7 kt", "(d) Stability"]),
+        (10.5, 16.5, "TOO CALM? TOO WINDY?", [], ["moisture close to ground merely settles down as dew",
+                                                  "Turbulence prevents cooling any one layer enough"]),
+        (16.5, 21.5, "AFTER SUNRISE", [], ["Radiation fog dissipates about 2–3 hours after sunrise due to heating",
+                                           "Usually lifts into low stratus clouds before finally dissipating"]),
+        (21.5, 27.8, "ADVECTION FOG", [], ["warm moist air from elsewhere is transported over a cold surface",
+                                           "Advection fog forms any time of day and night",
+                                           "More persistent than radiation fog and more extensive"]),
+        (27.8, 30.8, "IN INDIA", [], ["A winter hazard in India", "Usually forms after the passage of a Western Disturbance",
+                                       "which caused rain and then sky cleared"]),
+        (30.8, 34.0, "", [], []),
+    ],
+    "flashes": [],
+    "caption": ("How does fog form? Radiation fog vs advection fog" + NL + NL +
+                "Fog is a cloud sitting on the ground. Radiation fog forms as the ground cools at night: it needs high "
+                "humidity, a clear sky, a light wind of 3–7 kt and stable air. Too calm and the moisture only settles as "
+                "dew; too windy and turbulence stops any one layer cooling enough. It usually clears 2–3 hours after "
+                "sunrise, often lifting into low stratus first. Advection fog forms when warm moist air moves over a cold "
+                "surface, day or night, and it is more persistent. In India fog is a winter hazard, usually after a "
+                "Western Disturbance." + NL + NL +
+                "Full chapter, free: https://ghostaviator.com/cpl/meteorology/met-7/notes" + NL +
+                "#DGCA #CPL #AviationMeteorology #Fog #PilotTraining"),
+}
+
 def verify(topic):
     """Refuse to render a single frame unless every source phrase is in the Captain's chapter, verbatim."""
     spec = TOPICS[topic]
