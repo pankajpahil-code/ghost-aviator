@@ -869,10 +869,208 @@ def scene_fog(t, tick):
     pen.marker(BLUE)
     return img
 
+# ------------------------------------------------------------------------------------------ icing (met-12), 2 Oct 2026
+ICING_SPANS = [(0.0, 2.6), (3.45, 6.0), (10.55, 13.0), (17.05, 19.5), (22.05, 25.0), (27.85, 29.8), (30.85, 33.2)]
+ICE = (224, 242, 254)                                              # pale ice blue
+
+def aerofoil(cx, cy, chord, tc=0.15):
+    """A symmetric aerofoil, leading edge on the LEFT (the air comes from the left). Returns (upper, lower) point lists."""
+    up, lo = [], []
+    for u in np.linspace(0, 1, 40) ** 1.8:
+        yt = 5 * tc * chord * (0.2969 * math.sqrt(u) - 0.126 * u - 0.3516 * u ** 2 + 0.2843 * u ** 3 - 0.1036 * u ** 4)
+        x = cx - chord / 2 + chord * u
+        up.append((x, cy - yt)); lo.append((x, cy + yt))
+    return up, lo
+
+def wing(pen, cx, cy, chord, p, key):
+    up, lo = aerofoil(cx, cy, chord)
+    outline = up + lo[::-1]
+    pen.hatch(outline, (203, 213, 225), p, gap=18, w=3, key=(key, 'f'), alpha=150)
+    pen.path(outline, INK, 7, p, 2, key=(key, 'o'), closed=True)
+    return up, lo
+
+def drops_in(pen, t, t0, x_le, cy, r, n, key, spread=150, speed=520):
+    """Supercooled drops streaming in from the left toward the leading edge; each vanishes as it reaches it."""
+    rr = random.Random(key)
+    for i in range(n):
+        y = cy + rr.uniform(-spread, spread)
+        start = t0 + i * 0.22
+        if t < start:
+            continue
+        x = 60 + ((t - start) * speed) % (x_le - 60 - r * 2)
+        droplet(pen, x, y, r, BLUE, 1.0, (key, i), fill=r > 8)
+
+def rime_lump(pen, x_le, cy, grow, p, key):
+    """Rough, opaque rime growing FORWARD from the leading edge into the airstream."""
+    rr = random.Random(7)
+    pts = []
+    for k, a in enumerate(np.linspace(-1.25, 1.25, 23)):
+        reach = grow * (90 + rr.uniform(0, 70)) * math.cos(a) ** 0.6
+        pts.append((x_le + 8 - reach * math.cos(a) - (14 if k % 2 else 0) * grow, cy + 44 * math.sin(a) * (1 + 0.35 * grow)))
+    poly = [(x_le + 45, cy - 40)] + pts + [(x_le + 45, cy + 40)]
+    if p > 0.3 and grow > 0.05:                                     # milky-white body: opaque, so it hides the wing
+        pen.d.polygon(poly, fill=(241, 245, 249, 255))
+    pen.hatch(poly, GREY, p, gap=15, angle=-50, w=3, key=(key, 'g'), alpha=120)
+    for k in range(0, len(pts) - 1, 3):                             # rough, crusty texture
+        pen.path([pts[k], ((pts[k][0] + x_le) / 2, pts[k][1])], GREY, 3, p, 2.5, key=(key, 'c', k), alpha=150)
+    pen.path(pts, GREY, 5, p, 3.5, key=(key, 'o'))
+
+def glaze_sheet(pen, up, lo, reach, thick, p, key):
+    """Clear ice: a glassy sheet that has run BACK along both surfaces, lumpy at its trailing edge."""
+    for side, pts, s in (('u', up, -1), ('l', lo, 1)):
+        n = max(2, int(len(pts) * reach))
+        inner = pts[:n]
+        outer = [(x, y + s * thick * (1.0 + 0.3 * math.sin(i * 0.9)) * (1 - 0.4 * i / n)) for i, (x, y) in enumerate(inner)]
+        poly = inner + outer[::-1]
+        if p > 0.3:
+            pen.d.polygon(poly, fill=SKY + (90,))
+        pen.hatch(poly, SKY, p, gap=9, angle=20, w=3, key=(key, side, 'f'), alpha=170)
+        pen.path(outer, BLUE, 5, p, 1.5, key=(key, side, 'o'))
+        for i in range(0, n, 6):                                       # glints: it is glossy
+            x, y = outer[i]
+            pen.path([(x - 6, y - s * 4), (x + 8, y - s * 12)], (255, 255, 255), 4, p, 0.5, key=(key, side, 'g', i))
+
+def fern(pen, x, y, h, p, key):
+    """A feathery hoar-frost crystal standing on a surface."""
+    pen.path([(x, y), (x, y - h)], SKY, 4, p, 1, key=(key, 's'))
+    for k in range(1, 5):
+        yy = y - h * k / 5; L = h * 0.32 * (1 - k / 6)
+        for s in (-1, 1):
+            pen.path([(x, yy), (x + s * L, yy - L * 0.7)], SKY, 3, p, 1, key=(key, k, s))
+
+def scene_icing(t, tick):
+    img = Image.new("RGB", (W, H), PAPER)
+    pen = Pen(img, tick)
+    d = pen.d
+    for gy in range(40, H, 60):
+        for gx in range(40, W, 60):
+            d.point((gx, gy), fill=(226, 222, 210))
+    CX, CY, CH = 600, 1000, 640
+    XLE = CX - CH / 2
+
+    if t < 3.4:                                                    # hook
+        pen.write("How does ice grow", 490, 330, 92, INK, prog(t, 0.0, 0.6), tick)
+        pen.write("on a wing?", 490, 450, 84, GREY, prog(t, 0.4, 1.0), tick)
+        drops_in(pen, t, 0.8, XLE, CY, 9, 8, 'hd')
+        rime_lump(pen, XLE, CY, ease(prog(t, 1.4, 3.2)), prog(t, 1.4, 1.9), 'hr')
+        wing(pen, CX, CY, CH, prog(t, 0.2, 0.8), 'hw')
+        pen.write("supercooled drops: liquid below 0°C", 490, 1250, 46, BLUE, prog(t, 1.9, 2.7), tick)
+        pen.marker(INK)
+        return img
+
+    if t < 10.5:                                                   # rime
+        chip(pen, t, "RIME ICE", GREY, 3.45, tick)
+        pen.write("SMALL drops", 490, 345, 80, INK, prog(t, 3.5, 4.1), tick)
+        pen.write("freeze INSTANTLY on impact", 490, 445, 58, BLUE, prog(t, 4.0, 4.8), tick)
+        drops_in(pen, t, 4.2, XLE, CY, 7, 12, 'rd')
+        rime_lump(pen, XLE, CY, ease(prog(t, 4.6, 8.0)), prog(t, 4.6, 5.2), 'rl')
+        wing(pen, CX, CY, CH, 1.0, 'rw')
+        pen.write("grows FORWARD,", 300, 640, 50, GREY, prog(t, 6.2, 6.8), tick)
+        pen.write("into the airstream", 300, 700, 50, GREY, prog(t, 6.6, 7.2), tick)
+        rows = [("opaque, milky-white", GREY, 7.6), ("rough", GREY, 8.3), ("light and porous", GREEN, 9.0)]
+        for i, (txt, col, a) in enumerate(rows):
+            pen.write(txt, 490, 1230 + i * 80, 58, col, prog(t, a, a + 0.6), tick)
+        pen.marker(INK)
+        return img
+
+    if t < 17.0:                                                   # clear / glaze
+        chip(pen, t, "CLEAR ICE (GLAZE)", BLUE, 10.55, tick)
+        pen.write("LARGE drops", 490, 345, 80, INK, prog(t, 10.6, 11.2), tick)
+        pen.write("spread BACK, then freeze", 490, 445, 58, BLUE, prog(t, 11.1, 11.9), tick)
+        up, lo = wing(pen, CX, CY, CH, 1.0, 'gw')
+        drops_in(pen, t, 11.2, XLE, CY, 17, 7, 'gd', spread=60, speed=440)
+        glaze_sheet(pen, up, lo, 0.15 + 0.45 * ease(prog(t, 11.8, 14.5)), 42, prog(t, 11.8, 12.3), 'gs')
+        rows = [("clear, hard, dense, HEAVY", BLUE, 13.6), ("breaks off in dangerous lumps", ORANGE, 14.4)]
+        for i, (txt, col, a) in enumerate(rows):
+            pen.write(txt, 490, 1220 + i * 80, 56, col, prog(t, a, a + 0.7), tick)
+        pen.write("MOST HAZARDOUS", 490, 1420, 92, RED, prog(t, 15.2, 15.9), tick)
+        pen.path([(150, 1540), (830, 1530)], RED, 9, prog(t, 15.9, 16.3), key='mh')
+        pen.marker(RED)
+        return img
+
+    if t < 22.0:                                                   # hoar frost
+        chip(pen, t, "HOAR FROST", SKY, 17.05, tick)
+        pen.write("Moist, CLOUDLESS air", 490, 345, 68, INK, prog(t, 17.1, 17.8), tick)
+        pen.write("vapour turns straight to ice", 490, 430, 54, BLUE, prog(t, 17.7, 18.5), tick)
+        pen.write("(sublimation)", 490, 500, 46, GREY, prog(t, 18.3, 18.8), tick)
+        for i, (x, y) in enumerate([(160, 640), (330, 720), (650, 620), (850, 700)]):
+            star(pen, x, y, 14, prog(t, 17.2 + i * 0.1, 17.5 + i * 0.1), ('hs', i))
+        sy = 1010                                                  # a wing's upper skin, seen side-on
+        pen.path([(80, sy + 40), (300, sy), (900, sy + 20)], INK, 8, prog(t, 17.3, 17.9), key='skin')
+        pen.hatch([(80, sy + 40), (300, sy), (900, sy + 20), (900, sy + 90), (80, sy + 90)], (203, 213, 225),
+                  prog(t, 17.5, 18.0), gap=18, w=3, key='skf', alpha=150)
+        for i, x in enumerate(range(130, 880, 52)):
+            yy = sy + 40 - (x - 80) * 40 / 220 if x < 300 else sy + (x - 300) * 20 / 600
+            fern(pen, x, yy, 34 + 22 * random.Random(i).random(), prog(t, 18.6 + i * 0.07, 19.0 + i * 0.07), ('fe', i))
+        pen.write("feathery ice crystals", 490, 1110, 56, SKY, prog(t, 19.4, 20.0), tick)
+        pen.write("also: a cold-soaked aircraft", 490, 1260, 52, INK, prog(t, 20.2, 20.8), tick)
+        pen.write("descending into warm, moist air", 490, 1330, 52, ORANGE, prog(t, 20.7, 21.4), tick)
+        pen.marker(SKY)
+        return img
+
+    if t < 27.8:                                                   # effects
+        chip(pen, t, "WHAT ICE DOES", RED, 22.05, tick)
+        rime_lump(pen, XLE, 780, 1.0, 1.0, 'el')
+        up, lo = wing(pen, CX, 780, CH, 1.0, 'ew')
+        for name, (x, y, L, upw, col), a in (("LIFT", (CX, 700, 150, True, GREEN), 22.3),
+                                             ("WEIGHT", (CX - 60, 860, 150, False, ORANGE), 22.8),
+                                             ("DRAG", (CX + 335, 780, 0, None, PURPLE), 23.3)):
+            if upw is None:
+                pen.path([(x, y), (x + 100, y)], col, 9, prog(t, a, a + 0.4), key=(name, 's'))
+                pen.path([(x + 76, y - 20), (x + 100, y), (x + 76, y + 20)], col, 9, prog(t, a + 0.3, a + 0.5), key=(name, 'h'))
+                pen.write(name, x + 40, y + 34, 42, col, prog(t, a + 0.3, a + 0.7), tick)
+            else:
+                shaft, head = arrow(x, y, L, up=upw)
+                pen.path(shaft, col, 9, prog(t, a, a + 0.4), key=(name, 's'))
+                pen.path(head, col, 9, prog(t, a + 0.3, a + 0.5), key=(name, 'h'))
+                pen.write(name, x + 120, (y - L - 30) if upw else (y + L - 30), 42, col, prog(t, a + 0.3, a + 0.7), tick)
+        rows = [("weight UP, lift DOWN", INK, 24.0), ("drag UP", PURPLE, 24.7), ("stalling speed UP", RED, 25.4),
+                ("iced pitot: ASI can read wrong", BLUE, 26.2)]
+        for i, (txt, col, a) in enumerate(rows):
+            pen.write(txt, 490, 1150 + i * 92, 60 if i < 3 else 52, col, prog(t, a, a + 0.6), tick)
+        pen.marker(RED)
+        return img
+
+    if t < 30.8:                                                   # carburettor icing
+        chip(pen, t, "CARB ICING", ORANGE, 27.85, tick)
+        pen.write("Hot day? Still possible.", 490, 345, 70, INK, prog(t, 27.9, 28.6), tick)
+        tx, ty = 220, 640                                          # thermometer at +30
+        tube = [(tx - 22, ty), (tx + 22, ty), (tx + 22, ty + 420), (tx - 22, ty + 420)]
+        pen.path(tube, INK, 6, prog(t, 27.9, 28.3), key='th', closed=True)
+        bulb = [(tx + 46 * math.cos(a), ty + 470 + 46 * math.sin(a)) for a in np.linspace(0, 2 * math.pi, 26)]
+        pen.hatch(bulb, RED, prog(t, 28.1, 28.4), gap=8, key='tb', alpha=230)
+        pen.path(bulb, INK, 6, prog(t, 28.1, 28.4), key='tbo', closed=True)
+        lvl = ty + 420 - 300 * ease(prog(t, 28.2, 28.9))
+        pen.hatch([(tx - 12, lvl), (tx + 12, lvl), (tx + 12, ty + 440), (tx - 12, ty + 440)], RED, 1.0, gap=6, key='tl', alpha=230)
+        pen.write("+30°C", tx, ty - 90, 70, RED, prog(t, 28.6, 29.0), tick)
+        vx = 560                                                   # the carburettor venturi, with ice at the throat
+        lw = [(vx - 180, 640), (vx - 60, 820), (vx - 60, 960), (vx - 180, 1140)]
+        rw = [(vx + 180, 640), (vx + 60, 820), (vx + 60, 960), (vx + 180, 1140)]
+        pen.path(lw, INK, 7, prog(t, 28.0, 28.5), key='vl'); pen.path(rw, INK, 7, prog(t, 28.0, 28.5), key='vr')
+        for k, (s, x0) in enumerate(((1, vx - 60), (-1, vx + 60))):
+            ice = [(x0, 800), (x0 + s * 34, 850), (x0 + s * 22, 890), (x0 + s * 38, 930), (x0, 980)]
+            pen.hatch(ice, ICE, prog(t, 29.0, 29.4), gap=6, key=('ci', k), alpha=255)
+            pen.path(ice, SKY, 5, prog(t, 29.0, 29.4), 1.5, key=('co', k), closed=True)
+        pen.write("air in", vx, 560, 44, GREY, prog(t, 28.4, 28.7), tick)
+        pen.write("if humidity is HIGH", 490, 1260, 62, BLUE, prog(t, 29.3, 29.9), tick)
+        pen.write("not only a cold-weather problem", 490, 1350, 50, INK, prog(t, 29.8, 30.5), tick)
+        pen.marker(ORANGE)
+        return img
+
+    pen.write("Full chapter,", 490, 520, 96, INK, prog(t, 30.85, 31.3), tick)          # call to action
+    pen.write("FREE!", 490, 630, 160, RED, prog(t, 31.1, 31.6), tick)
+    pen.write("ghostaviator.com", 490, 860, 96, BLUE, prog(t, 31.5, 32.2), tick)
+    pen.path([(170, 990), (820, 980)], ORANGE, 10, prog(t, 32.1, 32.4), key='cu1')
+    pen.write("DGCA Meteorology · Capt. Pankaj Pahil", 490, 1070, 50, INK, prog(t, 32.3, 33.0), tick)
+    wing(pen, CX, 1350, 520, prog(t, 32.2, 32.8), 'cw')
+    pen.marker(BLUE)
+    return img
+
 SCENES = {'thunderstorm': (lambda t, k: scene(t, k), FLASHES, DRAW_SPANS),
           'trs': (scene_trs, [], TRS_SPANS),
           'rain': (scene_rain, [], RAIN_SPANS),
-          'fog': (scene_fog, [], FOG_SPANS)}
+          'fog': (scene_fog, [], FOG_SPANS),
+          'icing': (scene_icing, [], ICING_SPANS)}
 
 # ------------------------------------------------------------------------------------------ sound: bright music + scribbles
 def audio(length, flashes=FLASHES, spans=DRAW_SPANS, wind=None, quiet=(14, 22), rain=None):

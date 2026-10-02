@@ -149,6 +149,38 @@ TOPICS["fog"] = {
                 "#DGCA #CPL #AviationMeteorology #Fog #PilotTraining"),
 }
 
+TOPICS["icing"] = {
+    "subject": "meteorology", "chapter": "met-12", "length": 34.0,
+    "title": "Rime ice vs clear ice",
+    "beats": [
+        (0.0, 3.4, "", [], ["contact with supercooled water droplets", "in sub-freezing conditions"]),
+        (3.4, 10.5, "RIME ICE", [], ["Rime ice forms by the instantaneous freezing of small supercooled water droplets on impact",
+                                     "opaque, milky-white, rough appearance", "It is light and porous",
+                                     "builds up on leading edges and into the airstream"]),
+        (10.5, 17.0, "CLEAR ICE (GLAZE)", [], ["Forms from large supercooled water droplets that spread backwards after impact before freezing",
+                                               "clear, hard, dense, heavy", "Most hazardous type of icing",
+                                               "if it breaks it comes away in dangerous lumps"]),
+        (17.0, 22.0, "HOAR FROST", [], ["moist, cloudless air", "sublimation of water vapour onto feathery ice crystals",
+                                        "Also forms when a cold-soaked aircraft descends into warmer moist air"]),
+        (22.0, 27.8, "WHAT ICE DOES", [], ["increases weight, and decreases lift", "Increases the stalling speed appreciably",
+                                           "Increases drag", "ASI may give erroneous readings due to icing of pitot tube"]),
+        (27.8, 30.8, "CARB ICING", [], ["Can occur in clear air at ambient temperature of +30°C if humidity is high",
+                                        "It is NOT only a cold-weather phenomenon"]),
+        (30.8, 34.0, "", [], []),
+    ],
+    "flashes": [],
+    "caption": ("Rime ice vs clear ice - and why clear ice is the dangerous one" + NL + NL +
+                "Airframe ice forms when supercooled water droplets hit the aircraft in sub-freezing conditions. Small drops "
+                "freeze instantly on impact: rime ice - opaque, milky-white, rough, light and porous, building forward into "
+                "the airstream. Large drops spread backwards before freezing: clear (glaze) ice - clear, hard, dense, heavy, "
+                "and the most hazardous type. Hoar frost forms in moist, cloudless air by sublimation, including when a "
+                "cold-soaked aircraft descends into warmer moist air. Ice increases weight and drag, decreases lift and "
+                "raises the stalling speed appreciably; an iced pitot tube can make the ASI read wrong. And carburettor "
+                "icing can occur at +30°C if the humidity is high - it is not only a cold-weather problem." + NL + NL +
+                "Full chapter, free: https://ghostaviator.com/cpl/meteorology/met-12/notes" + NL +
+                "#DGCA #CPL #AviationMeteorology #Icing #PilotTraining"),
+}
+
 def verify(topic):
     """Refuse to render a single frame unless every source phrase is in the Captain's chapter, verbatim."""
     spec = TOPICS[topic]
