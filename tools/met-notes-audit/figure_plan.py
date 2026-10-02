@@ -128,3 +128,19 @@ P = [
 # Second textbook (Jeppesen) - figures keyed J<index>
 from jep_plan import J as _J
 P += [(ch, "J%d" % k, rx, cap, alt) for (k, ch, rx, cap, alt) in _J]
+
+# Generated (Antigravity) figures - each opened at full size and checked for labels, numbers and physics
+GEN = [
+ ("met-01","G_layers",r"Atmospheric Layers in Detail","The atmosphere in layers, with the temperature profile beside it","Quarter-circle of the atmosphere with the troposphere, stratosphere, mesosphere and thermosphere and the tropopause at 11 km, stratopause at 50 km and mesopause at 80 km; beside it a graph of temperature against height falling from +15 degrees Celsius at 6.5 degrees per km to minus 56.5 degrees at 11 km, constant to 20 km, rising to the stratopause, falling to the mesopause and rising again."),
+ ("met-04","G_density",r"Density Altitude","Why a hot, high, humid day lengthens the take-off","Two airfields side by side: on the left cool dense air with many particles, a short take-off roll and a steep climb; on the right hot humid thin air with few particles, a long take-off roll and a shallow climb; a balance in the middle reads hot plus high plus humid equals high density altitude."),
+ ("met-09","G_stability",r"Types of Instability","Stable, unstable and conditionally unstable air","Three temperature-height graphs with the environmental lapse rate in black, dry adiabatic in red and saturated adiabatic in blue: stable, where a lifted parcel is colder than its surroundings and sinks; unstable, where it is warmer and keeps rising; and conditionally unstable, where the dry parcel sinks but a saturated parcel rises."),
+ ("met-10","G_halo",r"Introduction","Halo, corona and rainbow compared","Three scenes: a halo, a ring with red inside and violet outside, around the sun seen through cirrostratus; a corona, small coloured rings close around the sun seen through altostratus; and a primary rainbow with red on the outside beneath a rain cloud."),
+ ("met-10","G_mirage",r"Mirage","Inferior and superior mirage","Top: an inferior mirage on a hot road, where a car has an inverted image below it in the hot air near the ground. Bottom: a superior mirage over the sea, where a layer of warm air above cold air lifts the image of a ship above the real ship."),
+ ("met-11","G_bergeron",r"Theories of Precipitation","Ice crystals grow at the expense of supercooled droplets","In a cloud above the freezing level, water vapour from evaporating supercooled droplets moves to a growing ice crystal; on the right a snowflake falls through the freezing level and melts into rain."),
+ ("met-16","G_kh",r"Causes","Kelvin-Helmholtz billows","A fast layer of air sliding over a slower layer, with a row of rolling wave crests (billows) along the boundary where the wind shear is."),
+ ("met-17","G_mwave",r"Definition","A mountain wave and its features","Wind blowing from the left over a mountain: a cap cloud over the summit, lee waves downwind, lenticular clouds above the wave crests, a rotor under the first wave on the lee side and turbulence below it."),
+ ("met-19","G_monsoon",r"SW Monsoon","The two branches of the south-west monsoon","Map of India: the Arabian Sea branch arriving from the south-west onto the west coast, the Bay of Bengal branch curving north-west along the Gangetic plain, and the monsoon trough as a dashed line from north-west India to the head of the Bay of Bengal."),
+ ("met-22","G_radar",r"Weather Radar","Radar beam, echo and shadow area","A radar sends a beam that rises slightly; part of the energy returns from heavy rain as an echo, and the rain hides a more distant cloud in a shadow area behind it."),
+ ("met-22","G_orbits",r"Meteorological Satellites","Geostationary and polar-orbiting satellites","Earth with a geostationary satellite above the equator at about 36,000 km and a polar-orbiting satellite passing over the poles at about 800 km with its swath on the ground; not drawn to scale."),
+]
+P += GEN
