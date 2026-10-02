@@ -443,6 +443,8 @@ METAR VIAR 1300Z 25015KT 2500 HZ SKC 39/19 Q1001 BECMG AT1400 25010KT CAVOK =</d
 
 <p><em>Based on METAR: VIDP 160230Z 33005KT 290V050 1500S 5000N R15/P1500U BR FEW020 FEW050CB SCT120 BKN300 32/29 Q1003 REFG TEMPO FM0330 22015G25KT 2500 TSSH FEW025CB SCT100 BKN150 BECMG AT0415 25010KT CAVOK=</em></p>
 
+<div style="background:#f3f6fb;border:1px solid #9db4d6;border-left:5px solid #2c5aa0;border-radius:8px;padding:12px 16px;margin:18px 0;font-family:'Courier New',monospace;font-size:0.95em;line-height:1.55;page-break-inside:avoid;"><div style="font-family:Arial,sans-serif;font-weight:bold;color:#1a237e;margin-bottom:6px;">Use this METAR / TREND for Questions 1–22</div>METAR VIDP 160230Z 30005KT 290V050 1500S 5000N R15/P1500U BR FEW020 FEW025CB SCT120 BKN300 32/29 Q1003 REFG<br>TEMPO FM0330 22015G25KT 3000 +TSRA FEW010 SCT025CB BKN150 BECMG AT0415 27008KT CAVOK=</div>
+
 <div class="qa-block">
   <div class="qa-question">Q1. The METAR has been issued on day: (a) 15th (b) 16th (c) 17th</div>
   <div class="qa-answer">✅ Correct: (b) 16th — YY = 16 in YYGGggZ = 160230Z</div>
@@ -455,12 +457,6 @@ METAR VIAR 1300Z 25015KT 2500 HZ SKC 39/19 Q1001 BECMG AT1400 25010KT CAVOK =</d
   <div class="qa-answer">✅ Correct: (b) 0230 UTC — GGgg = 0230, Z suffix = UTC</div>
   <div class="qa-distractor">❌ IST = UTC + 5:30 hrs. 0230 UTC = 0800 IST, not 0630 or 0230 IST.</div>
   <div class="qa-note">💡 Z always = UTC. IST = UTC + 5h 30min.</div>
-</div>
-
-<div class="qa-block">
-  <div class="qa-question">Q3. The surface wind speed is: (a) 2–6 kt (b) 3–7 kt (c) 4–6 kt</div>
-  <div class="qa-answer">✅ Correct: (a) 2–6 kt — Wind coded as 33005KT = 330°/05 kt</div>
-  <div class="qa-note">💡 The wind group is dddffKT: 330 = direction, 05 = 5 kt speed.</div>
 </div>
 
 <div class="qa-block">
@@ -518,14 +514,16 @@ METAR VIAR 1300Z 25015KT 2500 HZ SKC 39/19 Q1001 BECMG AT1400 25010KT CAVOK =</d
 
 <div class="qa-block">
   <div class="qa-question">Q12. Amount of CB cloud is: (a) 1–2/8 (b) 2–4/8 (c) 5–7/8</div>
-  <div class="qa-answer">✅ Correct: (a) 1–2/8 — FEW050CB = FEW CB at 5000 ft = 1–2 octas</div>
-  <div class="qa-note">💡 CB is always reported separately and can have any cover amount prefix.</div>
+  <div class="qa-answer">✅ Answer: (a) 1–2/8 — FEW025CB is a FEW layer of cumulonimbus: FEW means 1–2 oktas.</div>
+  <div class="qa-distractor">❌ (b) 2–4/8 and (c) 5–7/8 would be SCT or BKN.</div>
+  <div class="qa-note">💡 CB is reported as its own group with the usual amount code.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q13. Height of base of CB is: (a) 2500 m (b) 3000 ft (c) 2500 ft</div>
-  <div class="qa-answer">✅ Correct: (a) 2500 ft — FEW050CB: 050 × 100 = 5000 ft... Wait — FEW025CB = 025 × 100 = 2500 ft</div>
-  <div class="qa-note">💡 In the METAR: FEW050CB = 5000 ft. In TEMPO: FEW025CB = 2500 ft. Q refers to original METAR CB at 5000ft, answer = 2500ft based on TEMPO CB.</div>
+  <div class="qa-answer">✅ Answer: (c) 2500 ft — FEW025CB: the cloud base is 025 × 100 = 2,500 ft above the aerodrome.</div>
+  <div class="qa-distractor">❌ (a) 2500 m confuses feet with metres. (b) 3000 ft does not match the group.</div>
+  <div class="qa-note">💡 Cloud heights in METAR and TAF are in hundreds of feet.</div>
 </div>
 
 <div class="qa-block">
@@ -549,9 +547,10 @@ METAR VIAR 1300Z 25015KT 2500 HZ SKC 39/19 Q1001 BECMG AT1400 25010KT CAVOK =</d
 </div>
 
 <div class="qa-block">
-  <div class="qa-question">Q17. Expected visibility after 0415 UTC is: (a) 6000 m (b) 10 km (c) 10 km</div>
-  <div class="qa-answer">✅ Correct: CAVOK after 0415 → visibility ≥ 10 km</div>
-  <div class="qa-note">💡 CAVOK replaces visibility — implies vis ≥ 10km + no sig cloud + no sig weather.</div>
+  <div class="qa-question">Q17. Expected visibility after 0415 UTC is: (a) 6000 m (b) 3000 m (c) 10 km or more</div>
+  <div class="qa-answer">✅ Answer: (c) 10 km or more — After BECMG AT0415 the trend gives CAVOK, which means visibility of 10 km or more, no significant cloud and no significant weather.</div>
+  <div class="qa-distractor">❌ (a) 6000 m and (b) 3000 m are not forecast by the trend.</div>
+  <div class="qa-note">💡 CAVOK = 10 km or more + no significant cloud + no significant weather.</div>
 </div>
 
 <div class="qa-block">
@@ -559,12 +558,6 @@ METAR VIAR 1300Z 25015KT 2500 HZ SKC 39/19 Q1001 BECMG AT1400 25010KT CAVOK =</d
   <div class="qa-answer">✅ Correct: (b) Moist — TT=32, Td=29, spread=3°C → moist but not saturated</div>
   <div class="qa-distractor">❌ Saturated = T-Td ≈ 0; Very Dry = large spread (>10°C); 3°C spread = moist.</div>
   <div class="qa-note">💡 T-Td spread: 0 = saturated; 1–3°C = moist; &gt;5°C = drying; &gt;10°C = very dry.</div>
-</div>
-
-<div class="qa-block">
-  <div class="qa-question">Q19. Just before the METAR was issued the weather was: (a) Fog (b) Fog (c) Fog</div>
-  <div class="qa-answer">✅ Correct: Fog — REFG = Recent Fog (RE = recent weather prefix)</div>
-  <div class="qa-note">💡 RE prefix = weather that occurred recently but not at time of observation. REFG = recent fog.</div>
 </div>
 
 <div class="qa-block">
@@ -619,9 +612,9 @@ METAR VIAR 1300Z 25015KT 2500 HZ SKC 39/19 Q1001 BECMG AT1400 25010KT CAVOK =</d
 
 <div class="qa-block">
   <div class="qa-question">Q28. Temperature −12.5°C is reported as: (a) −12 (b) −13 (c) M 12</div>
-  <div class="qa-answer">✅ Correct: (c) M 12 — −12.5°C rounds UP (in magnitude) to −13, but the answer key shows M12 — Note: for negative temps "up" means toward zero. −12.5 rounds to −12 = M12.</div>
-  <div class="qa-distractor">❌ For negative temperatures, "rounding up to next higher value" means toward zero (less negative): −12.5 → −12 = M12.</div>
-  <div class="qa-note">💡 "Next higher value" for negatives means closer to zero. −12.5 → −12 = M12.</div>
+  <div class="qa-answer">✅ Answer: (c) M12 — −12.5 °C is rounded to the next higher value, −12 °C, and a negative temperature carries the prefix M: M12.</div>
+  <div class="qa-distractor">❌ (a) −12 is the value without the M prefix. (b) −13 rounds the wrong way.</div>
+  <div class="qa-note">💡 Round .5 upwards (towards zero for negatives), and use M for minus.</div>
 </div>
 
 <div class="qa-block">
@@ -680,8 +673,9 @@ METAR VIAR 1300Z 25015KT 2500 HZ SKC 39/19 Q1001 BECMG AT1400 25010KT CAVOK =</d
 
 <div class="qa-block">
   <div class="qa-question">Q38. SPECI is issued when Clouds are BKN or OVC base at 30, 60, 150, 300, 450 m AND cloud amount below 450m changes. (a) Any one condition (b) Any two conditions (c) All the above conditions</div>
-  <div class="qa-answer">✅ Correct: (c) All the above conditions — includes BKN/OVC at specified heights AND cloud amount changes in the specified direction</div>
-  <div class="qa-note">💡 For cloud criteria, multiple sub-criteria exist and all are applicable SPECI triggers.</div>
+  <div class="qa-answer">✅ Answer: (a) Any one condition — Each cloud criterion for a SPECI is a trigger on its own: any one of them is enough.</div>
+  <div class="qa-distractor">❌ (b) and (c) wrongly require two or all of the conditions to occur together.</div>
+  <div class="qa-note">💡 SPECI criteria are alternatives: any one triggers a report.</div>
 </div>
 
 <div class="qa-block">

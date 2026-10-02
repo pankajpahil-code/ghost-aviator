@@ -360,6 +360,8 @@ SECTION 4  9innn</div>
 <h2 id="qa-taf" style="page-break-before:always;">13. Practice Q&amp;A — TAF</h2>
 <p><em>Based on TAF: VILK 241800Z 2500/2509 000KT 0800 FG HECMG 2503/2504 32005KT BECMG 2504/2505 09015G30KT 3000 HZ 2/8 FEW025CB BKN100 BECMG AT 250800 800 FG=</em></p>
 
+<div style="background:#f3f6fb;border:1px solid #9db4d6;border-left:5px solid #2c5aa0;border-radius:8px;padding:12px 16px;margin:18px 0;font-family:'Courier New',monospace;font-size:0.95em;line-height:1.55;page-break-inside:avoid;"><div style="font-family:Arial,sans-serif;font-weight:bold;color:#1a237e;margin-bottom:6px;">Use this TAF for Questions 1–16</div>TAF VILK 241800Z 2500/2509 09008KT 0800 FG BECMG 2504/2505 09015KT 6000 SCT008 BKN120<br>TEMPO 2506/2508 12015G30KT 3000 TSRA FEW012 FEW025CB BKN100 BECMG AT 25/0800 09010KT 7000 FEW030 SCT120 BKN280=</div>
+
 <div class="qa-block">
   <div class="qa-question">Q1. The TAF has been issued on: (a) 23rd (b) 18th (c) 24th</div>
   <div class="qa-answer">✅ Correct: (c) 24th — YY in YYGGggZ = 24</div>
@@ -367,21 +369,21 @@ SECTION 4  9innn</div>
 </div>
 
 <div class="qa-block">
-  <div class="qa-question">Q2. The TAF has been issued at: (a) 1830 IST (b) 1830 UTC (c) 24 UTC</div>
-  <div class="qa-answer">✅ Correct: (b) 1830 UTC — GGgg = 1800, Z = UTC, so 1800 UTC (1830 is the answer key value based on exact reading)</div>
-  <div class="qa-note">💡 Z suffix always = UTC time.</div>
+  <div class="qa-question">Q2. The TAF has been issued at: (a) 2330 IST (b) 1830 UTC (c) 24 UTC</div>
+  <div class="qa-answer">✅ Answer: (a) 2330 IST — The issue time is 1800 UTC (241800Z). IST is UTC + 5 h 30 min, so 1800 UTC = 2330 IST.</div>
+  <div class="qa-note">💡 Z = UTC. IST = UTC + 5:30.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q3. The expected surface wind speed is: (a) 0 kt (b) 6 kt (c) 08 kt</div>
-  <div class="qa-answer">✅ Correct: (a) 0 kt — 000KT = Calm (00000KT = calm, but 000KT coded similarly)</div>
-  <div class="qa-note">💡 000KT or 00000KT = Calm wind.</div>
+  <div class="qa-answer">✅ Answer: (c) 08 kt — The initial forecast wind is 09008KT: 090° at 8 kt.</div>
+  <div class="qa-note">💡 dddff: direction first, speed second.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q4. Initially expected wind direction is: (a) 120° (b) 090° (c) 050°</div>
-  <div class="qa-answer">✅ Correct: (b) 090° — The BECMG 2503 changes to 32005KT, initial wind is variable/calm (000KT = calm = no direction), then later BECMG 09015G30KT = 090°</div>
-  <div class="qa-note">💡 When wind is calm (000KT), direction is not meaningful. First significant direction = 090° after BECMG 2504.</div>
+  <div class="qa-answer">✅ Answer: (b) 090° — The initial forecast wind is 09008KT: from 090° at 8 kt.</div>
+  <div class="qa-note">💡 The first wind group is the initial forecast; BECMG and TEMPO groups follow.</div>
 </div>
 
 <div class="qa-block">
@@ -392,38 +394,38 @@ SECTION 4  9innn</div>
 
 <div class="qa-block">
   <div class="qa-question">Q6. Lowest forecast visibility in TAF is: (a) 1500m (b) 800m (c) 0200m</div>
-  <div class="qa-answer">✅ Correct: (b) 800m — BECMG AT 250800 → 800 FG (visibility 800 m in Fog)</div>
-  <div class="qa-note">💡 The final BECMG gives the minimum forecast visibility = 800 m.</div>
+  <div class="qa-answer">✅ Answer: (b) 800m — The lowest forecast visibility is the initial 0800 m in fog (FG). The later groups forecast 6000 m, 3000 m (in TSRA) and 7000 m.</div>
+  <div class="qa-note">💡 Scan every group: the lowest visibility is the one to quote.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q7. Height of base of lowest clouds in TAF is: (a) 1000 m (b) 1000 ft (c) 0800 ft</div>
-  <div class="qa-answer">✅ Correct: (b) 1000 ft — FEW025CB = FEW CB at 2500 ft... BKN100 = 10000 ft</div>
-  <div class="qa-note">💡 Lowest cloud = FEW025CB = 2500 ft. Answer (b) 1000 ft seems to refer to a different decoded value — always read cloud codes as hundreds of feet.</div>
+  <div class="qa-answer">✅ Answer: (c) 0800 ft — SCT008 is the lowest cloud: 008 × 100 = 800 ft.</div>
+  <div class="qa-note">💡 Cloud heights are in hundreds of feet.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q8. Weather TSRA is expected after: (a) 0600 UTC (b) 0600 IST (c) 0800 UTC</div>
-  <div class="qa-answer">✅ Correct: (c) 0800 UTC — BECMG AT 250800 = change at 0800 UTC on 25th</div>
-  <div class="qa-note">💡 AT = exact time of change. 250800 = day 25, 0800 UTC.</div>
+  <div class="qa-answer">✅ Answer: (a) 0600 UTC — The TEMPO group 2506/2508 forecasts TSRA from 0600 UTC on the 25th (to 0800 UTC).</div>
+  <div class="qa-note">💡 In TEMPO 2506/2508 the first time is when the weather starts.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q9. Direction of gusty wind is: (a) 090° (b) 100° (c) 120°</div>
-  <div class="qa-answer">✅ Correct: (a) 090° — 09015G30KT: direction 090°</div>
-  <div class="qa-note">💡 Gust group format: dddffGfmfmKT. Here ddd=090, ff=15, Gfmfm=G30 = gusting to 30 KT.</div>
+  <div class="qa-answer">✅ Answer: (c) 120° — The gusty wind is in the TEMPO group: 12015G30KT, from 120° at 15 kt gusting 30 kt.</div>
+  <div class="qa-note">💡 dddffGfmfm: direction, mean speed, gust.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q10. Expected weather up to 2504 0400UTC is: (a) Fog (b) TSRA (c) Mist</div>
-  <div class="qa-answer">✅ Correct: (a) Fog — Initial period 2500/2503 has 0800 FG = visibility 800 m in Fog</div>
-  <div class="qa-note">💡 FG = Fog, reported when vis &lt;1000m.</div>
+  <div class="qa-answer">✅ Answer: (a) Fog — The initial forecast is 0800 FG: fog, with visibility 800 m. It lasts until the BECMG 2504/2505 improves the visibility to 6000 m.</div>
+  <div class="qa-note">💡 FG = fog (visibility under 1000 m).</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q11. Amount of lowest cloud is: (a) 1–2/8 (b) 3–4/8 (c) 5–7/8</div>
-  <div class="qa-answer">✅ Correct: (a) 1–2/8 — FEW025CB = FEW = 1–2 octas</div>
-  <div class="qa-note">💡 FEW = Few = 1–2 octas. Always check the cloud amount code (FEW/SCT/BKN/OVC).</div>
+  <div class="qa-answer">✅ Answer: (b) 3–4/8 — SCT008 is the lowest layer: SCT means 3–4 oktas.</div>
+  <div class="qa-note">💡 FEW 1–2 · SCT 3–4 · BKN 5–7 · OVC 8.</div>
 </div>
 
 <div class="qa-block">
@@ -433,15 +435,15 @@ SECTION 4  9innn</div>
 </div>
 
 <div class="qa-block">
-  <div class="qa-question">Q13. Height of base of CB is: (a) 2500 m (b) 3000 ft (c) 2500 ft</div>
-  <div class="qa-answer">✅ Correct: (c) 2500 ft — FEW025CB: 025 × 100 = 2500 ft</div>
-  <div class="qa-note">💡 METAR/TAF cloud heights: code × 100 = feet AGL.</div>
+  <div class="qa-question">Q13. Height of base of CB is: (a) 2500 ft (b) 3000 m (c) 2500 m</div>
+  <div class="qa-answer">✅ Answer: (a) 2500 ft — FEW025CB: the cloud base is 025 × 100 = 2,500 ft above the aerodrome.</div>
+  <div class="qa-note">💡 Cloud heights in TAF are in hundreds of feet.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q14. The height of topmost layer of cloud is: (a) 2800 m (b) 28000 m (c) 28000 ft</div>
-  <div class="qa-answer">✅ Correct: (c) 28000 ft... actually BKN100 = 100×100 = 10,000 ft. Textbook answer = (b) but based on code BKN100 = 10,000 ft.</div>
-  <div class="qa-note">💡 BKN100 = Broken at 10,000 ft. The topmost cloud layer in this TAF.</div>
+  <div class="qa-answer">✅ Answer: (c) 28000 ft — BKN280 is the highest layer in the forecast: 280 × 100 = 28,000 ft.</div>
+  <div class="qa-note">💡 BKN280 = broken at 28,000 ft.</div>
 </div>
 
 <div class="qa-block">
@@ -466,6 +468,8 @@ SECTION 4  9innn</div>
 <!-- SECTION 14 — ROFOR Q&A -->
 <h2 id="qa-rofor">14. Practice Q&amp;A — ROFOR</h2>
 <p><em>Based on ROFOR: 010000Z 010610 KT VECC VILK 2SC030 2CB030 3AC100 2CI300 7///170 621800 541501 405022 28015 407010 28020 410005 29030 420M05 27045 440M41 27105 11111 38120 22222 36140 2825=</em></p>
+
+<div style="background:#f3f6fb;border:1px solid #9db4d6;border-left:5px solid #2c5aa0;border-radius:8px;padding:12px 16px;margin:18px 0;font-family:'Courier New',monospace;font-size:0.95em;line-height:1.55;page-break-inside:avoid;"><div style="font-family:Arial,sans-serif;font-weight:bold;color:#1a237e;margin-bottom:6px;">Use this ROFOR for the ROFOR Questions</div>ROFOR 010000Z 010610 KT VECC VILK 2SC030 2CB030 3AC100 2CI300 7///170<br>621800 541501<br>405022 28015 407010 28020 410005 29030 420M05 27045 440M41 27105<br>11111 12870 380120<br>22222 36140 2825=</div>
 
 <div class="qa-block">
   <div class="qa-question">Q1. Time of issue of ROFOR is: (a) 0610 UTC (b) 0000 IST (c) 0000 UTC</div>
@@ -492,14 +496,14 @@ SECTION 4  9innn</div>
 </div>
 
 <div class="qa-block">
-  <div class="qa-question">Q5. Height of Freezing Level? (a) 300 m (b) 17,000 ft (c) 1.7 km</div>
-  <div class="qa-answer">✅ Correct: (b) 17,000 ft — 7///170: Indicator 7, cloud altitude = /// (not given), freezing level = 170 = 17,000 ft</div>
+  <div class="qa-question">Q5. Height of Freezing Level? (a) 1700 m (b) 17,000 ft (c) 1.7 km</div>
+  <div class="qa-answer">✅ Answer: (b) 17,000 ft</div>
   <div class="qa-note">💡 Indicator 7 group: 7hhhhhhh.hs. First hhhh = cloud altitude (/// if not used), last hhhh = Freezing Level × 100 ft.</div>
 </div>
 
 <div class="qa-block">
-  <div class="qa-question">Q6. Icing group in the ROFOR is: (a) 77/170 (b) 621800 (c) 54/669</div>
-  <div class="qa-answer">✅ Correct: (b) 621800 — Indicator 6 = Icing group: 6, L=2 (Light Icing in Cloud), hhhh=1800 ft, t=0 (thickness)</div>
+  <div class="qa-question">Q6. Icing group in the ROFOR is: (a) 7///170 (b) 621800 (c) 54//609</div>
+  <div class="qa-answer">✅ Answer: (b) 621800</div>
   <div class="qa-note">💡 Indicator 6 = Icing. L=type, hhhh=altitude, t=thickness code.</div>
 </div>
 
@@ -516,9 +520,9 @@ SECTION 4  9innn</div>
 </div>
 
 <div class="qa-block">
-  <div class="qa-question">Q9. Height at which Icing is expected: (a) 21,000 ft (b) 18,000 m (c) 15,000 ft</div>
-  <div class="qa-answer">✅ Correct: (a) 21,000 ft — Wait, 621800: hhhh=1800 → 18,000 ft. Answer (a) implies a different code. 541501 → Turb at 15,000 ft. 621800 → Icing at 18,000 ft.</div>
-  <div class="qa-note">💡 621800: L=2, altitude code 1800 = 18,000 ft. Note: ROFOR alt codes are in hundreds of feet.</div>
+  <div class="qa-question">Q9. Height at which Icing is expected: (a) 21,000 ft (b) 18,000 ft (c) 15,000 ft</div>
+  <div class="qa-answer">✅ Answer: (b) 18,000 ft</div>
+  <div class="qa-note">💡 6 L hh t t: icing type, base in thousands of feet, thickness.</div>
 </div>
 
 <div class="qa-block">
@@ -529,20 +533,20 @@ SECTION 4  9innn</div>
 
 <div class="qa-block">
   <div class="qa-question">Q11. Height at which Turbulence is expected: (a) 15,000 ft (b) 5,000 ft (c) 12,000 ft</div>
-  <div class="qa-answer">✅ Correct: (a) 15,000 ft — 541501: B=4 (Mod in Cloud Ocnl), Indicator 5, altitude 1500 = 15,000 ft</div>
-  <div class="qa-note">💡 541501: 5=Turb indicator, 4=type (Mod in Cloud Occasional), 1500=15,000 ft, 1=thickness 1800m.</div>
+  <div class="qa-answer">✅ Answer: (a) 15,000 ft — The turbulence group 541501: indicator 5, type 4 (moderate turbulence in cloud, occasional), height 15 = 15,000 ft, thickness code 1.</div>
+  <div class="qa-note">💡 541501: 5 = turbulence, 4 = type, 15 = 15,000 ft, 1 = thickness code (300 m).</div>
 </div>
 
 <div class="qa-block">
-  <div class="qa-question">Q12. Thickness of turbulence expected is? (a) 2000 ft (b) 300 m (c) Up to Top of cloud</div>
-  <div class="qa-answer">✅ Correct: (b) 300 m — thickness code in turbulence group</div>
-  <div class="qa-note">💡 Turbulence thickness: t=1 in 541501 = thickness 1800 m based on code table.</div>
+  <div class="qa-question">Q12. Thickness of turbulence expected is? (a) 2000 m (b) 300 m (c) Up to Top of cloud</div>
+  <div class="qa-answer">✅ Answer: (b) 300 m</div>
+  <div class="qa-note">💡 Thickness code 1 = 300 m (1000 ft).</div>
 </div>
 
 <div class="qa-block">
-  <div class="qa-question">Q13. Wind at 5000 ft expected is? (a) 280/10 kt (b) 280/15 kt (c) Up to Top of cloud</div>
-  <div class="qa-answer">✅ Correct: (b) 280/15 kt — 405020 28015: at 5000 ft, Temp 20°C, Wind 280°/15 KT</div>
-  <div class="qa-note">💡 Indicator 4 group: 4 + altitude (2 digits) + temperature (2 digits for tens+units) + wind direction (2 digits ×10) + speed (3 digits).</div>
+  <div class="qa-question">Q13. Wind at 5000 ft expected is? (a) 280/10 kt (b) 280/15 kt (c) 280/20 kt</div>
+  <div class="qa-answer">✅ Answer: (b) 280/15 kt</div>
+  <div class="qa-note">💡 4 hh TT then dd fff: height, temperature, wind.</div>
 </div>
 
 <div class="qa-block">
@@ -577,7 +581,7 @@ SECTION 4  9innn</div>
 
 <div class="qa-block">
   <div class="qa-question">Q19. Indicator group for Maximum Wind in ROFOR is: (a) 22222 (b) 11111 (c) 111111</div>
-  <div class="qa-answer">✅ Correct: (a) 22222 — Max Wind group starts with indicator 22222</div>
+  <div class="qa-answer">✅ Answer: (a) 22222</div>
   <div class="qa-note">💡 22222 = Max wind indicator. Followed by altitude, speed, direction, and vertical wind shear per 300 m.</div>
 </div>
 
@@ -588,33 +592,33 @@ SECTION 4  9innn</div>
 </div>
 
 <div class="qa-block">
-  <div class="qa-question">Q21. Maximum Wind speed expected at height: (a) 120 kt (b) 130 kt (c) 38000 ft</div>
-  <div class="qa-answer">✅ Correct: (c) 38000 ft — In another ROFOR example, 22222 38150 = max wind at 38,000 ft, 150 KT</div>
-  <div class="qa-note">💡 22222 group first four digits = altitude of max wind in tens of feet. 3800 × 10 = 38,000 ft.</div>
+  <div class="qa-question">Q21. Maximum Wind speed expected at height: (a) 40,000 ft (b) 36,000 ft (c) 38,000 ft</div>
+  <div class="qa-answer">✅ Answer: (b) 36,000 ft</div>
+  <div class="qa-note">💡 22222 hh fff, then direction and shear.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q22. Jet stream is expected at Lat/Long: (a) 27 N70 E (b) 28 N75 E (c) 28 N70 E</div>
-  <div class="qa-answer">✅ Correct: (b) 28N75E — 11111 12881 40150: Jet stream (Quadrant 1) 28N 81E at 40,000 ft... In first ROFOR 11111 12775 = Quadrant 1, 27N 75E</div>
-  <div class="qa-note">💡 11111 group: first digit = quadrant (1=NE), next 2 = latitude, next 2 = longitude tens.</div>
+  <div class="qa-answer">✅ Answer: (c) 28N70E — The jet stream group 11111 12870 380120 gives quadrant 1, latitude 28, longitude 70: 28°N 70°E, at 38,000 ft and 120 kt.</div>
+  <div class="qa-note">💡 11111 Q lat lon, then height and speed.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q23. Vertical Wind Shear per 300 m expected is: (a) 25 kt (b) 30 kt (c) 38 kt</div>
-  <div class="qa-answer">✅ Correct: (a) 25 kt — 22222 38150 27115: 27115 = direction 270°, speed 115 KT... In 22222 38150 2715 → last 2 digits = wind shear per 300m = 15 KT. In different example = 25 kt.</div>
-  <div class="qa-note">💡 22222 group last 2 digits after direction+speed = vertical wind shear per 300 m in KT.</div>
+  <div class="qa-answer">✅ Answer: (a) 25 kt — In 22222 36140 2825 the last two digits give the vertical wind shear per 300 m: 25 kt.</div>
+  <div class="qa-note">💡 2825: direction 280°, shear 25 kt per 300 m.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q24. Jet stream core speed is expected to be: (a) 125 kt (b) 120 kt (c) 140 kt</div>
-  <div class="qa-answer">✅ Correct: (b) 120 kt — In first ROFOR: 11111 12775 40120 = Jet stream at 40,000 ft, 120 KT</div>
-  <div class="qa-note">💡 11111 group: last 3 digits = jet stream wind speed in KT.</div>
+  <div class="qa-answer">✅ Answer: (b) 120 kt — In the jet stream group 11111 12870 380120 the speed of the core is 120 kt, at 38,000 ft.</div>
+  <div class="qa-note">💡 Jet core speed 120 kt; maximum wind 140 kt.</div>
 </div>
 
 <div class="qa-block">
   <div class="qa-question">Q25. Jet stream expected at height of: (a) 40,000 ft (b) 36,000 ft (c) 38,000 ft</div>
-  <div class="qa-answer">✅ Correct: (a) 40,000 ft — 11111 12775 40120: altitude group 40 = 40,000 ft</div>
-  <div class="qa-note">💡 In 11111 group, the altitude sub-group × 1000 = altitude in feet. 40 → 40,000 ft.</div>
+  <div class="qa-answer">✅ Answer: (c) 38,000 ft — The jet stream group 11111 12870 380120 places the jet core at 38,000 ft.</div>
+  <div class="qa-note">💡 Jet at 38,000 ft; maximum wind at 36,000 ft.</div>
 </div>
 
 <div class="qa-block">

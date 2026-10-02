@@ -2447,12 +2447,12 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "source": "Ghost Aviator — verified",
     "q": "On a clear day, the fraction of solar radiation reaching the earth's surface is about:",
     "opts": [
-      "Three-quarters",
+      "One quarter",
       "30%",
       "Five-sixths"
     ],
-    "ans": 0,
-    "exp": "On a clear day about three-quarters of the incoming solar radiation reaches the surface."
+    "ans": 2,
+    "exp": "On a clear day about five-sixths of the incoming solar radiation reaches the surface."
   },
   {
     "subjectIds": [
@@ -2468,8 +2468,8 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "80%",
       "90%"
     ],
-    "ans": 0,
-    "exp": "Fresh snow reflects about 75% of incident solar radiation."
+    "ans": 1,
+    "exp": "Snow reflects about 80% of the incident solar radiation."
   },
   {
     "subjectIds": [
@@ -3482,11 +3482,11 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "q": "Friction makes the wind cross the isobars by about ____ over land and ____ over sea:",
     "opts": [
       "20° / 10°",
-      "20° / 30°",
+      "30° / 15°",
       "40° / 30°"
     ],
-    "ans": 0,
-    "exp": "Greater friction over land than sea."
+    "ans": 1,
+    "exp": "Over land the surface wind is backed about 30° from the geostrophic direction, over the sea about 10-15°."
   },
   {
     "subjectIds": [
@@ -7178,8 +7178,8 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Ahead & During",
       "After & During"
     ],
-    "ans": 0,
-    "exp": "Warm-front poor visibility set in ahead of the front."
+    "ans": 1,
+    "exp": "Visibility is poor ahead of a warm front, in the drizzle, low stratus and frontal fog, and stays poor while the front passes."
   },
   {
     "subjectIds": [
@@ -7195,8 +7195,8 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "During",
       "After"
     ],
-    "ans": 0,
-    "exp": "Pre-frontal fog in warm air mass of cold front."
+    "ans": 2,
+    "exp": "Fog is expected after the passage of a cold front, in the moist cold air behind it."
   },
   {
     "subjectIds": [
@@ -7246,8 +7246,8 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Warm",
       "Occluded"
     ],
-    "ans": 0,
-    "exp": "Narrow cold-front rain clears rapidly after passage."
+    "ans": 1,
+    "exp": "After a warm front passes the rain and drizzle stop and the sky clears; after a cold front showers can continue behind the front."
   },
   {
     "subjectIds": [
@@ -7603,8 +7603,8 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Large",
       "Moderate"
     ],
-    "ans": 1,
-    "exp": "Jet streams coincide with strong horizontal temperature gradients."
+    "ans": 0,
+    "exp": "At and near the core of the STJ the horizontal temperature gradient is very small or negligible; the strong gradient is below the jet and it reverses above."
   },
   {
     "subjectIds": [
@@ -7621,7 +7621,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "same above and below"
     ],
     "ans": 0,
-    "exp": "Vertical wind shear is greater below the STJ core than above it."
+    "exp": "The greatest vertical wind shear is just below the jet core, with a secondary area above it."
   },
   {
     "subjectIds": [
@@ -7808,7 +7808,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "along"
     ],
     "ans": 1,
-    "exp": "Vertical wind shear is greater below the jet core."
+    "exp": "The greatest vertical wind shear is just below the jet core, with a secondary area above it."
   },
   {
     "subjectIds": [
@@ -8915,15 +8915,14 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-19",
     "subtopic": "Climatology of India",
     "source": "Ghost Aviator — verified",
-    "q": "During Summer season, the WDs cause TS activity over Punjab & Rajasthan and track of WD is",
+    "q": "During the summer season:",
     "opts": [
-      "No WD",
-      "NE Part",
-      "Northern most part of country",
-      "Southern most part of country"
+      "WDs cause TS/DS over Punjab & Rajasthan",
+      "No WD affects the northern parts of the country",
+      "The track of WD is southern most"
     ],
-    "ans": 2,
-    "exp": "In summer WD tracks shift to the northern-most part of the country."
+    "ans": 0,
+    "exp": "In summer the Western Disturbances are fewer and track further north, but they can still cause thunderstorms and dust storms over Punjab and Rajasthan."
   },
   {
     "subjectIds": [
@@ -9776,7 +9775,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "q": "For non-scheduled National Flights, advance notice to AMSs is required",
     "opts": [
       "3 hr",
-      "18–24 hr",
+      "18-24 hr",
       "6 hr"
     ],
     "ans": 1,
@@ -11054,8 +11053,8 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "High level charts",
       "Low level charts"
     ],
-    "ans": 2,
-    "exp": "The 0°C freezing level is depicted on low-level significant weather charts, which serve flights below the mid/high-level regime."
+    "ans": 0,
+    "exp": "The zero-degree isotherm is included in the medium-level significant weather charts."
   },
   {
     "subjectIds": [
