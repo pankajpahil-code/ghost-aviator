@@ -123,3 +123,8 @@ P = [
  ("met-23","15.11",r"Instrument Classification","Transmissometer","Transmissometer with a projector and detector either side of a runway."),
  ("met-27","27.1",r"SIGMET","Significant weather chart for Europe","European significant weather chart with fronts, cloud and icing areas."),
 ]
+
+
+# Second textbook (Jeppesen) - figures keyed J<index>
+from jep_plan import J as _J
+P += [(ch, "J%d" % k, rx, cap, alt) for (k, ch, rx, cap, alt) in _J]
