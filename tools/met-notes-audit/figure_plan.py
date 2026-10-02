@@ -1,7 +1,6 @@
 # (chapter, CAE figure, heading regex, caption, alt text)
 # Alt texts were written looking at each cropped image (see MET_NOTES_AUDIT).
 P = [
- ("met-01","1.1",r"Thermal Structure","Mean tropopause height and temperature by latitude band, January and July","Fan diagram of tropopause heights by latitude in January and July: about 54,000 to 57,000 ft over the tropics, falling to 31,000-37,000 ft over the polar regions."),
  ("met-02","2.1",r"Pressure as Weight","Pressure is the weight of the column of air above","A column of air of unit cross-section, with the total weight of the atmosphere above marked at the bottom of the column."),
  ("met-02","2.2",r"Measurement Instruments","The mercury barometer","Mercury barometer: a tube with a vacuum at the top standing in a dish of mercury, atmospheric pressure acting on the open surface, with a scale beside the column."),
  ("met-02","2.3",r"Measurement Instruments","The aneroid barometer","Aneroid barometer: stacked evacuated capsules linked by levers to a pointer moving over a scale."),
