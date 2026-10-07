@@ -6,6 +6,7 @@ import { GUIDES } from "@/lib/guides";
 import { ChevronLeft, Calendar, User, Clock } from "lucide-react";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 import { faqsForGuide, faqJsonLd } from "@/lib/faq";
+import { howToForGuide, howToJsonLd } from "@/lib/howto";
 
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 import { botLink } from "@/lib/live-classes";
@@ -64,6 +65,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   // look for it, so the answer is marked up here too — one fact, one source,
   // rendered in both places rather than restated differently in each.
   const faqs = faqsForGuide(slug);
+  const howto = howToForGuide(slug);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -71,6 +73,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       ...(faqs.length
         ? [{ ...faqJsonLd(faqs), "@id": `${SITE_URL}/guides/${guide.slug}#faq` }]
         : []),
+      ...(howto ? [howToJsonLd(howto)] : []),
       {
         "@type": "Article",
         "@id": `${SITE_URL}/guides/${guide.slug}#article`,
