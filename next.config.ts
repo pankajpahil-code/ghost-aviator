@@ -146,6 +146,18 @@ const nextConfig: NextConfig = {
         source: "/:track(cpl|atpl)/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=300" }],
       },
+      // Sitemap + robots are force-static and change with deploys, not per request.
+      // max-age=0 was forcing every miss to revalidate at the edge; give the CDN
+      // a day so crawlers keep hitting a warm object while still refreshing after
+      // a publish via stale-while-revalidate.
+      {
+        source: "/sitemap.xml",
+        headers: [{ key: "Cache-Control", value: "public, s-maxage=86400, stale-while-revalidate=86400" }],
+      },
+      {
+        source: "/robots.txt",
+        headers: [{ key: "Cache-Control", value: "public, s-maxage=86400, stale-while-revalidate=86400" }],
+      },
     ];
   },
   async redirects() {

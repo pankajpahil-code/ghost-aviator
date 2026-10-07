@@ -50,8 +50,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const videosFor = (track: "cpl" | "atpl", subjectId: string, chapterId: string,
                      chapterTitle: string, type: string) => {
     if (!isWatchPage(track, subjectId, chapterId, type)) return {};
-    const entries = videoSitemapEntriesFor(chapterTitle, getChapterVideos(subjectId, chapterId));
-    return entries.length ? { videos: entries } : {};
+    // Video enrichment must never take down the whole sitemap. A bad chapter
+    // video entry was one path to intermittent 500s for fetchers that miss the
+    // CDN HIT; fall back to a plain URL entry instead.
+    try {
+      const entries = videoSitemapEntriesFor(chapterTitle, getChapterVideos(subjectId, chapterId));
+      return entries.length ? { videos: entries } : {};
+    } catch {
+      return {};
+    }
   };
 
   const staticPages: MetadataRoute.Sitemap = [
