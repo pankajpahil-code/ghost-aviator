@@ -535,7 +535,7 @@ export const CHAPTER_VIDEOS: Record<string, ChapterVideo[]> = {
        This site's 20-chapter Radio Nav subject has no Loran chapter at all. It
        needs either a new chapter or a home inside an existing one.
    • s8eDBrSIr9g + pAJnbSVahLk  "DGCA Computer Number" (x2)
-       Not chapter material — this is the eGCA computer-number process, which is
+       Not chapter material — this is the PARIKSHA computer-number process, which is
        exactly the subject of the /guides/computer-number guide. Best embedded
        there, which needs a small guide-page video slot (not built yet).
    • oEbA_o28UHo  "DGCA - Aviation Meteorology Winds"

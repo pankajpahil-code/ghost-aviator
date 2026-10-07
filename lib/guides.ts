@@ -26,10 +26,10 @@ export const GUIDES: Guide[] = [
   {
     slug: "computer-number",
     title: "How to Apply for a DGCA Computer Number",
-    description: "A step-by-step guide to generating your eGCA computer number for DGCA CPL exams, including required documents, board verification, and common rejection reasons.",
+    description: "A step-by-step guide to applying for a DGCA Flight Crew computer number on the PARIKSHA portal — DigiLocker documents, NEW-candidate registration, allotment (including CBSE auto-generation), and how this differs from eGCA licensing.",
     author: "Capt. Pankaj Pahil",
     date: "2026-07-25",
-    updated: "2026-07-25"
+    updated: "2026-10-07"
   },
   {
     slug: "cpl-mock-tests",
@@ -53,7 +53,7 @@ export const GUIDES: Guide[] = [
     description: "The complete path to a Commercial Pilot Licence in India, in the order it actually happens: eligibility, the Class 1 and Class 2 medicals, your DGCA computer number, the written papers, RTR(A), 200 hours of flying, and what comes after the CPL.",
     author: "Capt. Pankaj Pahil",
     date: "2026-08-02",
-    updated: "2026-08-02"
+    updated: "2026-10-07"
   },
   {
     slug: "dgca-cpl-exam-pattern",

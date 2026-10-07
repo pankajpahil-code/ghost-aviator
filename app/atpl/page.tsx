@@ -49,9 +49,9 @@ export default function ATPLPage() {
             DGCA INDIA
           </div>
           <h1 className="text-5xl sm:text-6xl font-black text-white mb-4">
-            ATPL <span style={{ background:"linear-gradient(135deg,#f0913a,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Prep</span>
+            DGCA ATPL <span style={{ background:"linear-gradient(135deg,#f0913a,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Written Exam Prep</span>
           </h1>
-          <p className="text-xl font-semibold mb-2" style={{ color:"#f0913a" }}>Airline Transport Pilot Licence — Written Examinations</p>
+          <p className="text-xl font-semibold mb-2" style={{ color:"#f0913a" }}>Airline Transport Pilot Licence — India theory papers, notes & mocks</p>
           <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
             8 advanced DGCA papers. Structured chapter by chapter — video lecture, study notes, practice questions and a timed chapter test.
             Follows the official DGCA ATPL syllabus.
