@@ -1,6 +1,5 @@
 import { VIDEO_METADATA, type VideoMeta } from "@/lib/generated/video-metadata";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
-import { servesRealNotes } from "@/lib/indexability";
 import type { ChapterVideo } from "@/lib/chapter-videos";
 
 /**
@@ -53,21 +52,19 @@ export function lecturePartsFor(
 }
 
 /**
- * WHERE A LECTURE'S WATCH PAGE IS — and why it moved.
+ * WHERE A LECTURE'S WATCH PAGE IS — and why it is /video (again).
  *
- * Search Console, 2026-08-23: Video indexed 0, every day for 90 days, and the
- * one video Google looked at came back "Video isn't on a watch page".
+ * Search Console through 2026-10-07 still reports Video indexed 0. An earlier
+ * pass moved VideoObject + the video sitemap onto the chapter notes page
+ * (lecture already sits above ~2,600 words of teaching), hoping a richer URL
+ * would qualify. Google's watch-page test is not a word-count test: a notes URL
+ * is a document whose primary purpose is reading, so the claim was rejected
+ * with "Video isn't on a watch page".
  *
- * It was telling the truth. The VideoObject was emitted only on the chapter's
- * /video route, which carries a median of 119 words — the lecture, a part list
- * and a syllabus line. Meanwhile the SAME lecture already renders at the top of
- * the chapter's notes page, immediately above a median 2,656 words of the
- * Captain's own teaching. The thin duplicate was claiming to be the watch page
- * and the real one was not claiming anything.
- *
- * So the watch page is the notes page wherever there is one — 94 of the 109
- * chapters that have a lecture. For the remaining 15 there is no notes page, so
- * /video genuinely is the lecture's only home and keeps the claim.
+ * The watch page is the chapter's /video route whenever a lecture exists. That
+ * page's main content is the lecture. Notes pages still show VideoLectureCard
+ * for students, but they no longer claim to be the watch page in schema or in
+ * the sitemap.
  *
  * Derived here rather than passed in, because three callers need the same
  * answer — the notes route, the video route, and the sitemap — and a second
@@ -79,18 +76,21 @@ export function watchPageFor(
   subjectId: string,
   chapterId: string,
 ): string {
-  const type = servesRealNotes(subjectId, chapterId) ? "notes" : "video";
-  return `${SITE_URL}/${track}/${subjectId}/${chapterId}/${type}`;
+  // Always /video. Notes pages embed the same lecture for students, but Google's
+  // watch-page test requires the URL's primary purpose to be watching — see the
+  // block comment above. Attaching VideoObject / video sitemap entries to /notes
+  // produced months of "Video isn't on a watch page".
+  return `${SITE_URL}/${track}/${subjectId}/${chapterId}/video`;
 }
 
 /** True when THIS route is the one that should carry the lecture's schema. */
 export function isWatchPage(
-  track: "cpl" | "atpl",
-  subjectId: string,
-  chapterId: string,
+  _track: "cpl" | "atpl",
+  _subjectId: string,
+  _chapterId: string,
   type: string,
 ): boolean {
-  return watchPageFor(track, subjectId, chapterId).endsWith(`/${type}`);
+  return type === "video";
 }
 
 /**

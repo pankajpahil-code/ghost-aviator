@@ -70,6 +70,22 @@ export default function VideoPage({
             series and the click-to-load behaviour stay identical everywhere. */}
         <div className="mb-6">
           <VideoLectureCard videos={videos} title={chapter.title} color={subject.color} />
+          {/* Plain links for crawlers and no-JS clients. VideoLectureCard is a
+              click-to-load facade (no iframe until tap), so without these the only
+              youtube.com/watch URLs on the watch page sit inside JSON-LD. */}
+          <ul className="mt-3 mb-0 pl-5 space-y-1">
+            {videos.map((v, i) => (
+              <li key={v.id} className="text-xs" style={{ color: "#64748b" }}>
+                <a href={`https://www.youtube.com/watch?v=${v.id}`}
+                   className="hover:underline"
+                   style={{ color: subject.color }}
+                   rel="noopener noreferrer"
+                   target="_blank">
+                  {v.label ?? (videos.length > 1 ? `Part ${i + 1}` : "Open on YouTube")}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* What the lecture covers.

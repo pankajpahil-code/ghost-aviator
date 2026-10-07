@@ -167,21 +167,17 @@ export function isIndexableChapterRoute(
       // A mapped lecture IS availability (lib/chapter-videos.ts is the source of
       // truth). Without one the route renders Coming Soon.
       //
-      // But a lecture alone is not a reason to submit a URL. This route was the
-      // whole of the site's remaining thin surface: on 2026-08-23 the audit
-      // found 99 indexable-and-thin pages and all 99 were /video, at a median
-      // of 119 words. The reason is that the same lecture ALREADY renders at
-      // the top of the chapter's notes page, above a median 2,656 words — so
-      // for 94 of the 109 chapters that have one, /video is a thinner copy of a
-      // page we are already asking Google to index.
+      // /video is the lecture's watch page (see lib/video-schema.ts). Google will
+      // not index a video whose watch URL is noindex, and it also rejected the
+      // earlier attempt to claim the notes page as the watch page. So every
+      // chapter that has a lecture must keep /video indexable and in the
+      // sitemap — even when notes exist beside it. The two URLs serve different
+      // intents (watch vs read); titles and descriptions already diverge.
       //
-      // Only the 15 chapters with a lecture and no notes keep the URL: there
-      // /video is the lecture's only home, and dropping it would make those
-      // lectures unfindable. lib/video-schema.ts derives the same split for the
-      // schema and the video sitemap, from this same predicate, so the watch
-      // page and the indexable page can never disagree.
-      return getChapterVideos(subjectId, chapterId).length > 0
-        && !servesRealNotes(subjectId, chapterId);
+      // Thin-shell drills (chapter-quiz / mock-test) stay noindex below. Do not
+      // invent filler on /video to "fatten" it — VideoPage already renders the
+      // Captain's syllabus line and part list from existing data.
+      return getChapterVideos(subjectId, chapterId).length > 0;
 
     // Client-rendered drills over questions the sibling /questions page already
     // publishes in full. 28 main words of server-rendered HTML, and the same 28
