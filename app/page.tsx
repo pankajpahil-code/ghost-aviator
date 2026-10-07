@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { LIVE_PRICE, LIVE_LIST_PRICE } from "@/lib/live-classes";
+import { LIVE_PRICE, LIVE_LIST_PRICE, liveWaLink } from "@/lib/live-classes";
+import { TESTIMONIALS } from "@/lib/testimonials";
 import type { Metadata } from "next";
-import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap } from "lucide-react";
+import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap, MessageCircle } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { servesRealNotes } from "@/lib/indexability";
@@ -143,17 +144,13 @@ export default function Home() {
         </div>
       </MascotHero>
 
-      {/* ══════════════════ LIVE CLASSES BANNER ══════════════════ */}
+      {/* ══════════════════ LIVE CLASSES BANNER ══════════════════
+          Approved CTA copy (Site Watch) — honest paid strip under free hero. */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-        <Link href="/live-classes" className="group relative block rounded-3xl overflow-hidden no-underline"
-              style={{ border:"1px solid rgba(255,60,60,0.45)", boxShadow:"0 0 40px rgba(255,40,40,0.15)" }}>
-          {/* Animated sheen background */}
+        <div className="group relative rounded-3xl overflow-hidden"
+             style={{ border:"1px solid rgba(255,60,60,0.45)", boxShadow:"0 0 40px rgba(255,40,40,0.15)" }}>
           <div className="absolute inset-0" style={{ background:"linear-gradient(120deg, rgba(255,30,30,0.14), rgba(194,90,30,0.14) 45%, rgba(240,145,58,0.1))" }}/>
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-               style={{ background:"linear-gradient(120deg, rgba(255,30,30,0.22), rgba(194,90,30,0.22) 45%, rgba(240,145,58,0.16))" }}/>
-
           <div className="relative z-10 px-6 sm:px-10 py-8 flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
-            {/* LIVE badge */}
             <div className="flex items-center gap-3 shrink-0">
               <span className="relative flex h-4 w-4">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background:"#ff3030" }}/>
@@ -162,24 +159,36 @@ export default function Home() {
               <span className="text-2xl sm:text-3xl font-black tracking-tight" style={{ color:"#ff5a5a" }}>LIVE</span>
             </div>
 
-            {/* Copy */}
             <div className="flex-1 text-center lg:text-left">
               <div className="text-xl sm:text-2xl font-black text-white leading-snug mb-1">
-                Learn directly from <span style={{ background:"linear-gradient(135deg,#ff6000,#c25a1e,#f0913a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Capt. Pankaj Pahil</span> — live online batches
+                Live classes from <span style={{ color:"#22c55e" }}>{LIVE_PRICE}</span> — Meteorology, Air Regs &amp; Navigation with{" "}
+                <span style={{ background:"linear-gradient(135deg,#ff6000,#c25a1e,#f0913a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Capt. Pankaj Pahil</span>
               </div>
               <div className="text-sm font-semibold" style={{ color:"#94a3b8" }}>
-                🌤️ Meteorology · ⚖️ Air Regs · 🗺️ Gen Nav · 📡 Radio Nav · 🧭 Instruments &nbsp;—&nbsp;
-                batch of 10 · <span className="line-through" style={{ color:"#64748b" }}>{LIVE_LIST_PRICE}</span> <strong style={{ color:"#22c55e" }}>{LIVE_PRICE} per subject</strong>
+                Small batch of 10 seats. Self-study stays free.
+                {" "}· list <span className="line-through" style={{ color:"#64748b" }}>{LIVE_LIST_PRICE}</span>
               </div>
             </div>
 
-            {/* CTA */}
-            <div className="shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-black"
-                 style={{ background:"linear-gradient(135deg,#ff3030,#f0913a)", color:"#fff", boxShadow:"0 0 25px rgba(255,40,40,0.4)" }}>
-              Admissions Open — Join Now <ArrowRight className="w-4 h-4"/>
+            <div className="shrink-0 flex flex-wrap items-center justify-center gap-3">
+              <Link href="/live-classes" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-black no-underline"
+                    style={{ background:"linear-gradient(135deg,#ff3030,#f0913a)", color:"#fff", boxShadow:"0 0 25px rgba(255,40,40,0.4)" }}>
+                See Live Classes <ArrowRight className="w-4 h-4"/>
+              </Link>
+              <a href={liveWaLink("DGCA live classes", LIVE_PRICE)} target="_blank" rel="noopener noreferrer"
+                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold no-underline"
+                 style={{ border:"1px solid rgba(34,197,94,0.55)", color:"#22c55e", background:"rgba(34,197,94,0.10)" }}>
+                <MessageCircle className="w-4 h-4" /> WhatsApp +91 99902 26607
+              </a>
             </div>
           </div>
-        </Link>
+        </div>
+
+        {/* Seats / waitlist — honest founding-batch line */}
+        <p className="mt-4 text-center text-sm font-semibold" style={{ color:"#94a3b8" }}>
+          Founding batches: <strong style={{ color:"#f3c889" }}>10 seats per subject</strong>.
+          Message on WhatsApp to reserve; pay by UPI only after your slot is confirmed.
+        </p>
       </section>
 
       {/* ══════════════════ INSTRUCTOR TEASER ══════════════════ */}
@@ -357,6 +366,36 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ══════════════════ WHAT STUDENTS SAY ══════════════════
+          Real quotes from lib/testimonials.ts only — never invent. */}
+      {TESTIMONIALS.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-2">What Students <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Say</span></h2>
+            <p style={{ color:"#64748b" }}>From students who cleared papers with these notes — their words, not ours.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {TESTIMONIALS.slice(0, 3).map(t => (
+              <div key={`${t.name}-${t.quote.slice(0, 24)}`} className="p-6 rounded-2xl flex flex-col"
+                   style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(34,197,94,0.2)" }}>
+                <p className="text-sm leading-relaxed flex-1 mb-4" style={{ color:"#94a3b8" }}>&ldquo;{t.quote}&rdquo;</p>
+                <div>
+                  <div className="font-bold text-white text-sm">{t.name}</div>
+                  {t.detail && <div className="text-xs" style={{ color:"#22c55e" }}>{t.detail}</div>}
+                </div>
+              </div>
+            ))}
+          </div>
+          {TESTIMONIALS.length > 3 && (
+            <div className="text-center mt-5">
+              <Link href="/about" className="text-sm font-bold no-underline" style={{ color:"#f3c889" }}>
+                More on About →
+              </Link>
+            </div>
+          )}
+        </section>
+      )}
 
       {/* ══════════════════ PROMISE ══════════════════ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-24">
