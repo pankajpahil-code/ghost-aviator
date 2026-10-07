@@ -129,8 +129,8 @@
 <div class="formula-box">
   <div class="formula">PV = RT</div>
   <table>
-    <tr><td>P</td><td>Pressure of the gas (hPa)</td></tr>
-    <tr><td>V</td><td>Volume of the gas</td></tr>
+    <tr><td>P</td><td>Pressure in pascals (Pa); 1 hPa = 100 Pa</td></tr>
+    <tr><td>V</td><td>Specific volume (volume per unit mass), in m³/kg</td></tr>
     <tr><td>R</td><td>Gas constant for the particular gas</td></tr>
     <tr><td>T</td><td>Absolute temperature (Kelvin)</td></tr>
   </table>
@@ -141,8 +141,8 @@
 <div class="formula-box">
   <div class="formula">P/ρ = RT &nbsp;&nbsp; or &nbsp;&nbsp; ρ = P/RT</div>
   <table>
-    <tr><td>ρ</td><td>Air density (g/m³)</td></tr>
-    <tr><td>P</td><td>Pressure (hPa)</td></tr>
+    <tr><td>ρ</td><td>Air density (kg/m³)</td></tr>
+    <tr><td>P</td><td>Pressure (Pa; multiply hPa by 100)</td></tr>
     <tr><td>R</td><td>Gas constant (specific to the gas)</td></tr>
     <tr><td>T</td><td>Absolute temperature (Kelvin)</td></tr>
   </table>
@@ -156,17 +156,17 @@
 <!-- SECTION 2 -->
 <h2 id="s2">2. Density of Dry Air</h2>
 
-<p>For dry air, the gas constant R = <span class="reg-value">2.87 × 10¹</span>.</p>
+<p>For dry air, the gas constant R = <span class="reg-value">287 J/(kg·K)</span>.</p>
 
 <div class="worked-example">
   <h4>🔢 Worked Example — ISA Surface Density</h4>
   <p><strong>Given:</strong></p>
   <ul>
     <li>ISA surface pressure = <span class="reg-value">1013.25 hPa</span></li>
-    <li>ISA surface temperature = <span class="reg-value">15°C</span> = <span class="reg-value">288 K</span></li>
-    <li>R for dry air = <span class="reg-value">2.87 × 10¹</span></li>
+    <li>ISA surface temperature = <span class="reg-value">15°C</span> = <span class="reg-value">288.15 K</span></li>
+    <li>R for dry air = <span class="reg-value">287 J/(kg·K)</span></li>
   </ul>
-  <p><strong>Calculation:</strong> ρ = P/RT = 1013.25 / (2.87 × 10¹ × 288)</p>
+  <p><strong>Calculation:</strong> ρ = P/(RT) = 101325 / (287 × 288.15) ≈ 1.225 kg/m³ = 1225 g/m³.</p>
   <p><strong>Result:</strong> ISA surface air density = <span class="reg-value">1225 g/m³</span></p>
 </div>
 
@@ -460,7 +460,7 @@ flowchart LR
   <ul style="margin-top:8px;">
     <li>Gas equation: <strong>PV = RT</strong> → Density ρ = <strong>P/RT</strong></li>
     <li>ISA surface density = <strong>1225 g/m³</strong> at 15°C (288 K) and 1013.25 hPa</li>
-    <li>Gas constant for dry air R = <strong>2.87 × 10¹</strong></li>
+    <li>Gas constant for dry air R = <strong>287 J/(kg·K)</strong></li>
     <li>Water vapour gas constant = <strong>8/5 times</strong> dry air; moist air density = (p − 3e/8)/RT</li>
     <li><strong>Moist air &lt; Dry air</strong> in density (under same T and P)</li>
     <li>Density decreases with: ↑ Altitude, ↑ Temperature, ↑ Humidity</li>
@@ -641,7 +641,7 @@ flowchart LR
     <tr><td>ISA Surface Density</td><td><span class="reg-value">1225 g/m³</span></td><td>At 15°C, 1013.25 hPa</td></tr>
     <tr><td>ISA Surface Pressure</td><td><span class="reg-value">1013.25 hPa</span></td><td>Standard atmosphere</td></tr>
     <tr><td>ISA Surface Temperature</td><td><span class="reg-value">15°C / 288 K</span></td><td>Standard atmosphere</td></tr>
-    <tr><td>Gas constant — Dry Air</td><td><span class="reg-value">2.87 × 10¹</span></td><td>R in gas equation</td></tr>
+    <tr><td>Gas constant — Dry Air</td><td><span class="reg-value">287 J/(kg·K)</span></td><td>R in gas equation</td></tr>
     <tr><td>Water vapour R</td><td><span class="reg-value">8/5 × R(dry)</span></td><td>More than dry air</td></tr>
     <tr><td>Density decrease per 1000 ft (lower atmosphere)</td><td><span class="reg-value">~3%</span></td><td>Valid to 20,000 ft</td></tr>
     <tr><td>1% density change rule</td><td><span class="reg-value">10 hPa / 3°C / 300 ft</span></td><td>Any one causes 1% change</td></tr>

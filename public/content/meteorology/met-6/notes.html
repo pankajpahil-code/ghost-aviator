@@ -200,7 +200,7 @@ flowchart LR
 <h2 id="s4">4. Forces Acting on Wind — Coriolis Force</h2>
 
 <div class="box-blue">
-  The wind blows from higher to lower pressure (H→L) along the isobars under the influence of <strong>Pressure Gradient Force (P)</strong>. Due to Earth's rotation (W→E), wind is constantly deflected to its right (N hemisphere) until it attains uniform speed along isobars.
+  The <strong>pressure gradient force</strong> acts across isobars, from higher to lower pressure. In geostrophic balance, Coriolis balances this force and the wind flows along straight isobars. Due to Earth's rotation (W→E), wind is constantly deflected to its right (N hemisphere) until it attains uniform speed along isobars.
 </div>
 <figure class="ga-fig" style="margin:18px auto;text-align:center;page-break-inside:avoid;"><img src="/content/meteorology/met-6/img/fig-fbbf3d9029949836.png" alt="Air deflected to the right in the northern hemisphere and to the left in the southern hemisphere, with the reason shown for the lag in speed of the Earth&#x27;s surface." loading="lazy" style="max-width:min(100%,680px);max-height:520px;width:auto;height:auto;display:block;margin:0 auto;border-radius:6px;"><figcaption style="font-size:0.9em;color:#555;margin-top:6px;">Coriolis deflection</figcaption></figure>
 
@@ -268,7 +268,7 @@ flowchart TD
   <strong>⚠ Limitations of Geostrophic Rule:</strong>
   <ul>
     <li>Valid only when PGF and Coriolis are in balance and isobars are straight &amp; parallel</li>
-    <li>Breaks down at <strong>Poles</strong> (pressure changes with time) and at <strong>Equator</strong> (sin φ = 0)</li>
+    <li>The geostrophic approximation fails near the <strong>Equator</strong>, where Coriolis is weak. It also requires negligible friction, nearly steady conditions and straight, parallel isobars; it does not automatically fail at the poles.</li>
     <li>Winds like gusts, squalls, local winds, and sea breezes do NOT follow this rule</li>
     <li>Geostrophic wind differs in direction and speed from actual wind (especially middle latitudes)</li>
   </ul>
@@ -279,8 +279,8 @@ flowchart TD
   Wind blowing along <strong>curved isobars</strong> where Coriolis is negligible compared to Pressure Gradient. Centripetal force acts. Balance: <strong>P = Centripetal</strong>
 </div>
 <div class="formula-box">
-  <div class="formula">ρ V² / r = P &nbsp;&nbsp;∴ V = (P/ρ)^½</div>
-  <p>Near centre of tropical revolving storm or in circular tornado. <strong>Anticyclonic in both hemispheres.</strong></p>
+  <div class="formula">ρ V² / r = P &nbsp;&nbsp;∴ V = (Pr/ρ)^½</div>
+  <p>A useful approximation for some tightly curved flows, including tornadoes, where Coriolis is small relative to the pressure-gradient and curvature terms. The balance does not require anticyclonic rotation.</p>
 </div>
 <div class="box-blue">
   <strong>Cyclostrophic Wind</strong> = markedly curved wind that blows due to balance between <strong>Pressure Gradient and Cyclostrophic force</strong>. Frictional force is disregarded.
@@ -292,8 +292,8 @@ flowchart TD
 </div>
 <table>
   <tr><th>System</th><th>Balance</th><th>Result</th></tr>
-  <tr><td>Cyclone (Low)</td><td>P + C = f (P &lt; f)</td><td><strong>Sub-geostrophic</strong> (V &lt; Vg)</td></tr>
-  <tr><td>Anticyclone (High)</td><td>P = C + f (P &gt; f)</td><td><strong>Super-geostrophic</strong> (V &gt; Vg)</td></tr>
+  <tr><td>Cyclone (Low)</td><td>P = f + C, with C denoting centrifugal force</td><td><strong>Sub-geostrophic</strong> (V &lt; Vg)</td></tr>
+  <tr><td>Anticyclone (High)</td><td>f = P + C, with C denoting centrifugal force</td><td><strong>Super-geostrophic</strong> (V &gt; Vg)</td></tr>
 </table>
 
 <h3>Isallobaric Wind</h3>
@@ -427,15 +427,10 @@ flowchart TD
 <p>Strong vertical and horizontal WS are associated with jet streams in upper air.</p>
 
 <h3>Effects of WS on Aircraft</h3>
-<table>
-  <tr><th>Phase of Flight</th><th>Head Wind Reduces</th><th>Tail Wind Increases</th></tr>
-  <tr><td><strong>Level Flight</strong></td><td>IAS decreases, A/C loses height</td><td>IAS increases, A/C gains height</td></tr>
-  <tr><td><strong>Descent</strong></td><td>IAS increases, A/C gains height</td><td>IAS decreases, A/C loses height</td></tr>
-  <tr><td><strong>Climb</strong></td><td>IAS decreases, A/C loses height</td><td>IAS increases, A/C gains height</td></tr>
-</table>
+<table><tr><th>Sudden shear encountered</th><th>Initial effect</th></tr><tr><td>Decreasing headwind or increasing tailwind</td><td>Airspeed and performance decrease.</td></tr><tr><td>Increasing headwind or decreasing tailwind</td><td>Airspeed and performance increase.</td></tr></table><p>Actual flight-path response depends on the aircraft, vertical wind and crew response. Follow approved aircraft windshear procedures.</p>
 
 <div class="box-red">
-  <strong>⚠ Critical: Effects of WS on Approach</strong> — These effects are critical during landing and take-offs. Tail wind will reverse the effect shown in table above.
+  <strong>⚠ Critical: Effects of WS on Approach</strong> — These effects are critical during landing and take-offs. Decreasing headwind and increasing tailwind both initially reduce airspeed; the opposite changes initially increase it.
 </div>
 
 <pre class="mermaid">
@@ -935,7 +930,7 @@ flowchart TD
   <tr><th>Formula</th><th>Explanation</th></tr>
   <tr><td>f = 2ΩρV sinφ</td><td>Coriolis Force; max at poles (φ=90°), zero at equator (φ=0°)</td></tr>
   <tr><td>Vg = P/(2Ωρ sinφ)</td><td>Geostrophic wind; inversely proportional to sin φ and isobar spacing</td></tr>
-  <tr><td>ρV²/r = P → V = (P/ρ)^½</td><td>Cyclostrophic wind; anticyclonic both hemispheres</td></tr>
+  <tr><td>ρV²/r = P → V = (Pr/ρ)^½</td><td>Cyclostrophic wind; pressure-gradient and curvature balance</td></tr>
   <tr><td>Vt = V1 − V0</td><td>Thermal wind = upper level minus lower level geostrophic wind (vector)</td></tr>
   <tr><td>Vi = fR</td><td>Inertial wind; f = Coriolis, R = radius of path; anticyclonic both hemispheres</td></tr>
 </table>

@@ -110,7 +110,7 @@
 
   <div class="box-blue">
     <strong>Units adopted by ICAO:</strong> Hectopascal (hPa)<br>
-    <span class="reg-value">1 hPa = 1000 dynes</span><br>
+    <span class="reg-value">1 hPa = 1000 dyn/cm²</span><br>
     Unit of force is Newton (N).<br><br>
     <strong>Standard Sea Level Pressure:</strong><br>
     &nbsp;&nbsp;<span class="reg-value">1013.25 hPa = 760 mm = 29.92 in</span><br>
@@ -122,7 +122,7 @@
     <strong>Conversion: hPa → Inches</strong><br>
     Multiply hPa value by <span class="reg-value">0.02953</span><br>
     <div class="worked">
-      Example: 1013.25 hPa × 0.2953 = <strong>29.92 inches</strong>
+      Example: 1013.25 hPa × 0.02953 = <strong>29.92 inches</strong>
     </div>
   </div>
   <div class="box-red">
@@ -282,7 +282,7 @@
     The correction applied to indicated altitude to obtain true altitude is called <strong>Altimeter Correction</strong> (also called <strong>Alticor</strong>).<br><br>
     This is frequently required for <strong>mountain flying</strong> and <strong>bombing operations</strong>.<br><br>
     <strong>D Value = True Altitude − Indicated Altitude</strong><br>
-    <strong>Alticor = Indicated Altitude − True Altitude</strong><br><br>
+    <strong>Correction to obtain true altitude = True Altitude − Indicated Altitude</strong><br><br>
     <span style="color:#c0392b;font-weight:bold;">D Value decreases when aircraft flies from High to Low pressure.</span>
   </div>
 
@@ -299,7 +299,7 @@
   <div class="box-amber">
     <strong>🎯 Memory Aid (H-L-H rule):</strong><br>
     <strong>H</strong>igh to <strong>L</strong>ow → Over <strong>R</strong>ead (altimeter reads <strong>H</strong>igh = dangerous, you're lower than indicated)<br>
-    <strong>L</strong>ow to <strong>H</strong>igh → Under <strong>R</strong>ead (altimeter reads <strong>L</strong>ow = safe)<br><br>
+    <strong>L</strong>ow to <strong>H</strong>igh → Under <strong>R</strong>ead (altimeter reads <strong>L</strong>ow; this alone does not establish terrain clearance)<br><br>
     Warm to Cold → Over Read | Cold to Warm → Under Read<br>
     If QNH is <strong>High</strong> → True Alt will be <strong>High</strong>
   </div>
@@ -314,7 +314,7 @@
     In <strong>Contour Charts</strong>, contours are drawn at an interval of <span class="reg-value">40 gpm</span> (geopotential metre) in <span class="reg-value">700 hPa</span> and <span class="reg-value">500 hPa</span> level charts; and at <span class="reg-value">80 gpm</span> in <span class="reg-value">300 hPa</span> and <span class="reg-value">200 hPa</span> level charts.<br><br>
     <span class="reg-value">1 gpm = 9.8 J/kg</span> (gravitational potential energy per unit mass).<br>
     Contour lines numbered in geopotential decametres, e.g. <span class="reg-value">5280 gpm = 528</span>.<br>
-    If the gpm = 700, the air parcel is located approximately <span class="reg-value">7000 m above MSL</span>.<br>
+    A geopotential height of <span class="reg-value">700 gpm</span> is approximately 700 m. A chart label 700 in geopotential decametres represents 7000 gpm; always check the chart units.<br>
     Centres of Low and High are marked as in surface pressure charts.
   </div>
 
@@ -379,7 +379,7 @@
     <tr><th>Setting</th><th>Definition</th><th>Use</th></tr>
     <tr>
       <td><strong>QFE</strong></td>
-      <td>Pressure at the Aerodrome Reference Point (ARP) = highest point on the runway. Altimeter reads <strong>Zero</strong> on the runway (zero setting).</td>
+      <td>Pressure at the specified aerodrome or runway pressure datum. With QFE set, the altimeter reads approximately zero at that datum.</td>
       <td>Height above aerodrome</td>
     </tr>
     <tr>
@@ -389,7 +389,7 @@
     </tr>
     <tr>
       <td><strong>QNH</strong></td>
-      <td>Station level pressure reduced to MSL assuming <em>ISA conditions</em>. Altimeter indicates station elevation. Also called <strong>Absolute Altitude</strong>.</td>
+      <td>Station pressure reduced to mean sea level using the standard atmosphere. With QNH set, the altimeter reads the aerodrome elevation at its datum. Absolute altitude means height above ground and is a different quantity.</td>
       <td>Vertical separation of aircraft and terrain</td>
     </tr>
     <tr>
@@ -478,7 +478,7 @@
       Low to High → Under Read<br>
       Cold to Warm → Under Read<br>
       Altimeter Setting is Low → Indicated Alt will be Low<br>
-      <em>Safe — you are higher than indicated.</em>
+      <em>You are higher than indicated for this pressure-error comparison. Terrain clearance still requires the correct setting and other applicable corrections.</em>
     </div>
   </div>
   <div class="box-red">
@@ -503,7 +503,7 @@
     <tr>
       <td><strong>Low (L) / Cyclone</strong></td>
       <td>Area enclosed by isobars with lowest pressure at centre. Two or more closed isobars = <strong>Depression</strong>. Severe = <strong>Cyclone</strong>.</td>
-      <td>Bad weather, visibility poor due to subsidence</td>
+      <td>Cloud and precipitation can occur with rising moist air; visibility varies</td>
       <td>N Hemisphere: winds blow anticlockwise, converging &amp; upward</td>
     </tr>
     <tr>
@@ -705,7 +705,7 @@ flowchart LR
     <tr><th>Parameter</th><th>Value</th></tr>
     <tr><td>Standard sea level pressure</td><td><span class="reg-value">1013.25 hPa = 760 mm Hg = 29.92 in</span></td></tr>
     <tr><td>Atmospheric pressure at sea level</td><td><span class="reg-value">100,000 N/m² = 1 Bar</span></td></tr>
-    <tr><td>1 hPa</td><td><span class="reg-value">1000 dynes</span></td></tr>
+    <tr><td>1 hPa</td><td><span class="reg-value">1000 dyn/cm²</span></td></tr>
     <tr><td>1 Bar</td><td><span class="reg-value">1000 mb = 1000 hPa</span></td></tr>
     <tr><td>hPa to inches conversion factor</td><td><span class="reg-value">× 0.02953</span></td></tr>
     <tr><td>Height formula per 1 hPa</td><td><span class="reg-value">96T/p feet</span></td></tr>
@@ -766,7 +766,7 @@ flowchart LR
   <div class="box-amber">
     <strong>Top 10 Exam Points — Atmospheric Pressure:</strong><br>
     1. Standard sea level pressure = <span class="reg-value">1013.25 hPa = 760 mm = 29.92 in</span><br>
-    2. 1 hPa = 1000 dynes; 1 Bar = 1000 hPa = 100,000 N/m²<br>
+    2. 1 hPa = 1000 dyn/cm²; 1 Bar = 1000 hPa = 100,000 N/m²<br>
     3. Pressure halves at 6 km; vacuum at 100 km<br>
     4. Height per 1 hPa = 96T/p feet (28.8 ft at 1000 hPa, 300K)<br>
     5. Semi-diurnal maxima: 1000 &amp; 2200 hr; minima: 0400 &amp; 1600 hr<br>
