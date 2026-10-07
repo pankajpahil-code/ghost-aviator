@@ -27,24 +27,24 @@ const HOWTOS: HowToGuide[] = [
     slug: "computer-number",
     name: "How to Apply for a DGCA Computer Number",
     description:
-      "Generate your eGCA computer number for DGCA CPL exams: board verification, eGCA registration, document upload, and submission tracking.",
+      "Apply for a DGCA Flight Crew computer number on the PARIKSHA portal: eligibility, DigiLocker documents, NEW-candidate registration, upload, and allotment (including CBSE auto-generation where eligible).",
     steps: [
       {
-        name: "Complete 10+2 board verification",
-        text: "Obtain the official board verification certificate (not just the marksheet) for 10+2 with Physics and Mathematics from a recognised board. Missing this letter is the most common reason applications are rejected.",
+        name: "Confirm eligibility and DigiLocker documents",
+        text: "Confirm 10+2 with Physics and Mathematics from a recognised board. Prefer fetching Class X/XII certificates from DigiLocker into PARIKSHA — DigiLocker-fetched X/XII documents do not require a separate Board Verification Certificate upload (DGCA notice w.e.f. 16-12-2024).",
       },
       {
-        name: "Register on the eGCA portal",
-        text: "Create an account on the official eGCA portal (egca.dgca.gov.in), preferably with Aadhaar for e-KYC, and enter personal details exactly as they appear on your 10th standard certificate.",
-        url: "https://egca.dgca.gov.in",
+        name: "Register as a NEW candidate on PARIKSHA",
+        text: "Create a NEW Flight Crew candidate registration on the official PARIKSHA portal (pariksha.dgca.gov.in) — not eGCA. Verify mobile and email, and enter personal details exactly as on Class X / DigiLocker data.",
+        url: "https://pariksha.dgca.gov.in/",
       },
       {
         name: "Upload the required documents",
-        text: "Upload a passport-size photograph (white background), signature in black ink, 10th certificate for date of birth, 10+2 marksheet or passing certificate, and the board verification certificate, within the portal's format and size limits.",
+        text: "Upload photograph, signature, Class X and Class XII documents (and any category-specific papers) within the format and size limits in the current Flight Crew User Manual on PARIKSHA.",
       },
       {
-        name: "Submit online and send physical copies",
-        text: "Submit the application on eGCA, then send attested physical copies to the CEO (Central Examination Organization) at DGCA, R.K. Puram, New Delhi. Track status on the eGCA portal.",
+        name: "Submit and wait for allotment",
+        text: "Submit the application on PARIKSHA. Eligible CBSE DigiLocker candidates may receive auto-generated computer numbers (w.e.f. 16-10-2025); others follow CEO scrutiny. Allotment is emailed; login ID is typically the computer number with a P- prefix. Always follow the latest FC User Manual and PARIKSHA notices.",
       },
     ],
   },
@@ -56,7 +56,7 @@ const HOWTOS: HowToGuide[] = [
     steps: [
       {
         name: "Confirm eligibility",
-        text: "Confirm 10+2 with Physics and Mathematics from a recognised board (or clear Physics and Maths later through an open school such as NIOS) and start the official board verification letter early.",
+        text: "Confirm 10+2 with Physics and Mathematics from a recognised board (or clear Physics and Maths later through an open school such as NIOS) and start gathering Class X/XII documents early — DigiLocker fetch into PARIKSHA is preferred where available.",
       },
       {
         name: "Get the medical done early",
@@ -64,7 +64,7 @@ const HOWTOS: HowToGuide[] = [
       },
       {
         name: "Obtain your DGCA computer number",
-        text: "Apply for a computer number through the eGCA portal after board verification is accepted — you cannot sit a DGCA paper without it.",
+        text: "Apply for a computer number through the PARIKSHA portal (pariksha.dgca.gov.in) — not eGCA — after your documents are in order; you cannot sit a DGCA paper without it.",
         url: `${SITE_URL}/guides/computer-number`,
       },
       {

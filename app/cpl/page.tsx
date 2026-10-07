@@ -49,9 +49,9 @@ export default function CPLPage() {
             DGCA INDIA
           </div>
           <h1 className="text-5xl sm:text-6xl font-black text-white mb-4">
-            CPL <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Prep</span>
+            DGCA CPL <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Written Exam Prep</span>
           </h1>
-          <p className="text-xl font-semibold mb-2" style={{ color:"#f3c889" }}>Commercial Pilot Licence — Written Examinations</p>
+          <p className="text-xl font-semibold mb-2" style={{ color:"#f3c889" }}>Commercial Pilot Licence — India theory papers, notes & mocks</p>
           <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
             7 DGCA papers as per CAR Section 7 Series B Part IV. Every chapter mapped directly to the official DGCA CPL syllabus appendices — video lecture, study notes, practice questions and a timed chapter test.
           </p>

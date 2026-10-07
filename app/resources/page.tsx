@@ -18,7 +18,7 @@ const GROUPS: Group[] = [
     icon: ClipboardList,
     color: "#f0913a",
     links: [
-      { label: "PARIKSHA — DGCA Exam Portal", href: "https://pariksha.dgca.gov.in/", desc: "Register and book your CPL/ATPL computer-based exams (replaces VIMAN/UDAAN)." },
+      { label: "PARIKSHA — DGCA Exam Portal", href: "https://pariksha.dgca.gov.in/", desc: "Allot Flight Crew computer numbers, register, and book CPL/ATPL computer-based exams (replaces VIMAN/UDAAN). Not eGCA." },
       { label: "Exam Schedule / Notice Board", href: "https://pariksha.dgca.gov.in/Form/Notice_Board_General_PLT", desc: "Regular sessions in Mar, Jun, Sep & Dec plus monthly on-demand (OLODE) windows." },
       { label: "DGCA Examination Results", href: "https://www.dgca.gov.in/digigov-portal/?page=4231%2F4203%2Fsericename", desc: "Check your flight-crew written exam results." },
       { label: "PARIKSHA — Pilot FAQs", href: "https://pariksha.dgca.gov.in/Form/PLT_FAQs", desc: "Official answers on registration, eligibility and exam process." },
@@ -29,7 +29,7 @@ const GROUPS: Group[] = [
     icon: IdCard,
     color: "#f3c889",
     links: [
-      { label: "eGCA Portal", href: "https://www.egca.gov.in/", desc: "Create your eGCA ID and apply for licences/ratings (EPL). Every Indian pilot needs one." },
+      { label: "eGCA Portal", href: "https://www.egca.gov.in/", desc: "Create your eGCA ID and apply for licences/ratings (EPL). Licensing only — computer numbers are on PARIKSHA." },
       { label: "DGCA — Flight Crew Licensing", href: "https://www.dgca.gov.in/digigov-portal/", desc: "FCL circulars, CPL/ATPL requirements and procedures." },
     ],
   },
@@ -124,6 +124,29 @@ export default function ResourcesPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Citation hub — our verified walkthroughs that cite the portals above */}
+        <div className="rounded-2xl p-6 mt-10"
+             style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(240,145,58,0.25)" }}>
+          <h2 className="text-lg font-black text-white mb-2">Guides that cite these portals</h2>
+          <p className="text-sm mb-4" style={{ color: "#64748b" }}>
+            Step-by-step walkthroughs written against current DGCA / PARIKSHA notices — use these when the official FAQ is dense.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/guides/computer-number" className="inline-flex items-center gap-1 text-sm font-bold px-4 py-2 rounded-xl no-underline"
+                  style={{ background: "rgba(240,145,58,0.12)", border: "1px solid rgba(240,145,58,0.35)", color: "#f0913a" }}>
+              Computer number on PARIKSHA <ChevronRight className="w-4 h-4" />
+            </Link>
+            <Link href="/guides/dgca-cpl-exam-pattern" className="inline-flex items-center gap-1 text-sm font-bold px-4 py-2 rounded-xl no-underline"
+                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "#94a3b8" }}>
+              CPL exam pattern <ChevronRight className="w-4 h-4" />
+            </Link>
+            <Link href="/guides" className="inline-flex items-center gap-1 text-sm font-bold px-4 py-2 rounded-xl no-underline"
+                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "#94a3b8" }}>
+              All guides <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
 
         {/* Study CTA */}
