@@ -23,6 +23,7 @@ import {
   liveEnrollLink,
   liveComboEnrollLink,
   botLink,
+  LIVE_BATCH_META,
 } from "@/lib/live-classes";
 
 export const metadata: Metadata = {
@@ -214,11 +215,28 @@ export default function LiveClassesPage() {
           <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color:"rgba(243,200,137,0.6)", letterSpacing:"0.18em" }}>
             Small batch of 10 · Live doubt-clearing · 4–6 weeks per subject
           </p>
-          <p className="text-base font-black mb-10">
+          <p className="text-base font-black mb-6">
             <span className="line-through mr-2" style={{ color:"#64748b" }}>{LIST_PRICE}</span>
             <span style={{ color:"#22c55e" }}>{PRICE} per subject</span>
             <span className="ml-2 px-2 py-0.5 rounded text-xs" style={{ background:"rgba(34,197,94,0.15)", color:"#22c55e", border:"1px solid rgba(34,197,94,0.35)" }}>NAVIGATION COMBO {COMBO_LIST_PRICE} → {COMBO_PRICE}</span>
           </p>
+
+          {/* Next published cohort — sourced from LIVE_BATCH_META */}
+          <div className="mb-10 mx-auto lg:mx-0 max-w-xl rounded-2xl px-5 py-4 text-left"
+               style={{ background:"rgba(255,40,40,0.08)", border:"1px solid rgba(255,60,60,0.35)" }}>
+            <div className="text-xs font-black tracking-widest uppercase mb-1" style={{ color:"#ff5a5a" }}>
+              Next batch
+            </div>
+            <div className="text-lg font-black text-white leading-snug">
+              {LIVE_BATCH_META.subjectTitle}
+            </div>
+            <div className="text-sm font-semibold mt-1" style={{ color:"#94a3b8" }}>
+              Starts {LIVE_BATCH_META.startLabel} · {LIVE_BATCH_META.mode} · max {LIVE_BATCH_META.maxSeats} seats · {LIVE_BATCH_META.durationLabel}
+            </div>
+            <div className="text-xs font-bold mt-2" style={{ color:"#f3c889" }}>
+              {LIVE_BATCH_META.maxSeats} seats only — founding price shown above
+            </div>
+          </div>
 
           <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
             <a href={liveEnrollLink("general", "DGCA Ground Classes", PRICE)} target="_blank" rel="noopener noreferrer"

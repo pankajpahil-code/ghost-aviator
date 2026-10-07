@@ -119,6 +119,21 @@ export const LIVE_CLASS_SUBJECTS: Record<string, string> = {
   "radio-telephony": "Radio Telephony (RTR-A)",
 };
 
+/** Next published live cohort. Confirm with Captain before treating as live. */
+export const LIVE_BATCH_META = {
+  subjectSlug: "meteorology" as const,
+  subjectTitle: "Aviation Meteorology",
+  instructor: "Capt. Pankaj Pahil",
+  mode: "Google Meet",
+  maxSeats: 10,
+  durationLabel: "4–6 weeks",
+  startDateIST: "2026-10-20",
+  startLabel: "Monday, 20 Oct 2026 (IST)",
+  priceINR: 7999,
+  enrollWhatsApp: `https://wa.me/${LIVE_WHATSAPP}`,
+  telegramInvite: "https://t.me/+tgLMJithc1gzOWJl",
+} as const;
+
 /**
  * The Ghost Aviator assistant on Telegram (username, no "@"). ONE switch for every "ask the
  * assistant" button on the site: EMPTY = all of them stay hidden. Set it once the Captain has chosen
