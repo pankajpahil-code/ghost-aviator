@@ -207,17 +207,17 @@ export default function LiveClassesPage() {
           <h1 className="text-4xl sm:text-6xl font-black text-white leading-tight mb-4">
             Learn From <span style={{ background:"linear-gradient(135deg,#ff6000,#c25a1e,#f0913a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>The Captain</span> Himself
           </h1>
-          <p className="text-lg max-w-3xl mx-auto mb-3 leading-relaxed" style={{ color:"#94a3b8" }}>
-            Live DGCA CPL ground classes in <strong className="text-white">five subjects</strong> —
-            taught personally by <strong style={{ color:"#f3c889" }}>Capt. Pankaj Pahil</strong>, the instructor and author behind Ghost Aviator.
+          <p className="text-lg max-w-3xl mx-auto lg:mx-0 mb-3 leading-relaxed" style={{ color:"#94a3b8" }}>
+            Live DGCA CPL ground classes — taught by <strong style={{ color:"#f3c889" }}>Capt. Pankaj Pahil</strong>.
           </p>
-          <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color:"rgba(243,200,137,0.6)", letterSpacing:"0.18em" }}>
-            Small batch of 10 · Live doubt-clearing · 4–6 weeks per subject
+          <p className="text-base font-black mb-2">
+            From <span style={{ color:"#22c55e" }}>{PRICE}</span> / subject{" "}
+            <span className="font-semibold" style={{ color:"#94a3b8" }}>(list <span className="line-through">{LIST_PRICE}</span>)</span>
+            {" "}· Navigation combo <span style={{ color:"#22c55e" }}>{COMBO_PRICE}</span>
+            {" "}· <span style={{ color:"#f3c889" }}>Only 10 seats</span>
           </p>
-          <p className="text-base font-black mb-10">
-            <span className="line-through mr-2" style={{ color:"#64748b" }}>{LIST_PRICE}</span>
-            <span style={{ color:"#22c55e" }}>{PRICE} per subject</span>
-            <span className="ml-2 px-2 py-0.5 rounded text-xs" style={{ background:"rgba(34,197,94,0.15)", color:"#22c55e", border:"1px solid rgba(34,197,94,0.35)" }}>NAVIGATION COMBO {COMBO_LIST_PRICE} → {COMBO_PRICE}</span>
+          <p className="text-sm font-semibold mb-10" style={{ color:"#94a3b8" }}>
+            Message to reserve · UPI after confirmation
           </p>
 
           <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
@@ -475,10 +475,12 @@ export default function LiveClassesPage() {
              style={{ background:"linear-gradient(135deg,rgba(255,30,30,0.08),rgba(194,90,30,0.08))", border:"1px solid rgba(255,60,60,0.3)" }}>
           <div className="text-4xl mb-3">🛫</div>
           <h2 className="text-3xl font-black text-white mb-3">Seats Are Limited. Doubts Are Not.</h2>
+          <p className="mb-3 max-w-xl mx-auto font-bold" style={{ color:"#f3c889" }}>
+            Seats left this batch — 10 seats per batch; when full, next batch announced on WhatsApp/Telegram.
+          </p>
           <p className="mb-8 max-w-xl mx-auto" style={{ color:"#94a3b8" }}>
-            Ten students per batch — so every question gets answered. {PRICE} per subject (list {LIST_PRICE}),
-            or {COMBO_PRICE} for the full Navigation combo. Message now and Capt. Pahil will personally tell you when your
-            subject&apos;s batch begins.
+            {PRICE} per subject (list {LIST_PRICE}), or {COMBO_PRICE} for the full Navigation combo.
+            Message now and Capt. Pahil will personally tell you when your subject&apos;s batch begins.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href={liveEnrollLink("general", "DGCA Ground Classes", PRICE)} target="_blank" rel="noopener noreferrer"
