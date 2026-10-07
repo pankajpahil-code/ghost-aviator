@@ -175,8 +175,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         {/* Live Classes Banner */}
         <div className="my-10">
           <LiveClassUpsell 
-            subjectId={slug === "rtr-exam-guide" ? "radio-telephony" : "air-navigation"} 
-            subjectColor={slug === "rtr-exam-guide" ? "#f0913a" : "#10b981"} 
+            subjectId={slug === "rtr-exam-guide" || slug === "rtr-after-dgca-takeover" ? "radio-telephony" : "air-navigation"} 
+            subjectColor={slug === "rtr-exam-guide" || slug === "rtr-after-dgca-takeover" ? "#f0913a" : "#10b981"} 
           />
         </div>
         

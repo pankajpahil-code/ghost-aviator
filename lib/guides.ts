@@ -45,7 +45,7 @@ export const GUIDES: Guide[] = [
     description: "DGCA CAR Section 7 Series G Part VI breakdown of the RTR(A) examination syllabus, 48-hour curriculum, Transmission (Part 1) and Viva (Part 2) — updated for the DGCA takeover of the exam from the WPC in November 2025.",
     author: "Capt. Pankaj Pahil",
     date: "2026-07-25",
-    updated: "2026-07-30"
+    updated: "2026-10-07"
   },
   {
     slug: "how-to-become-a-pilot-in-india",
@@ -70,5 +70,29 @@ export const GUIDES: Guide[] = [
     author: "Capt. Pankaj Pahil",
     date: "2026-08-02",
     updated: "2026-08-02"
+  },
+  {
+    slug: "free-vs-paid-dgca-question-banks",
+    title: "Free vs Paid DGCA Question Banks",
+    description: "Honest comparison of free self-study versus paid DGCA question banks — what actually clears papers, why Ghost Aviator keeps notes and mocks free, and when optional live classes are worth paying for.",
+    author: "Capt. Pankaj Pahil",
+    date: "2026-10-07",
+    updated: "2026-10-07"
+  },
+  {
+    slug: "rtr-after-dgca-takeover",
+    title: "RTR(A) After the DGCA Takeover (Nov 2025)",
+    description: "What changed when DGCA took over the RTR(A) exam from the WPC in November 2025 — computer number, more frequent sittings, centres, what the WPC still regulates, and what to do before your next attempt.",
+    author: "Capt. Pankaj Pahil",
+    date: "2026-10-07",
+    updated: "2026-10-07"
+  },
+  {
+    slug: "atpl-theory-before-1500-hours",
+    title: "ATPL Theory Before 1,500 Hours",
+    description: "You do not need 1,500 flight hours to sit DGCA ATPL theory — that total is for licence issue. When to attempt ATPL papers after CPL, what eligibility actually requires, and an honest timing plan.",
+    author: "Capt. Pankaj Pahil",
+    date: "2026-10-07",
+    updated: "2026-10-07"
   }
 ];

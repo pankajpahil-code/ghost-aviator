@@ -1,5 +1,5 @@
 /**
- * schema.org HowTo graphs for the two guides that are genuine step-by-step
+ * schema.org HowTo graphs for guides that are genuine step-by-step
  * journeys. Steps are taken from the published guide HTML — not invented —
  * so the markup cannot drift into a claim the page does not make.
  *
@@ -85,6 +85,58 @@ const HOWTOS: HowToGuide[] = [
         name: "After the CPL",
         text: "Plan type rating, airline selection preparation, and — when ready — ATPL theory, which can be attempted before the full ATPL hour requirement for licence issue.",
         url: `${SITE_URL}/atpl`,
+      },
+    ],
+  },
+  {
+    slug: "rtr-after-dgca-takeover",
+    name: "Prepare for RTR(A) After the DGCA Takeover",
+    description:
+      "Practical steps after DGCA took over the RTR(A) exam from the WPC in November 2025: computer number, current notices, CAR syllabus, and voice practice for the practical.",
+    steps: [
+      {
+        name: "Confirm your DGCA computer number",
+        text: "Obtain or confirm your Flight Crew computer number on the PARIKSHA portal before registering for RTR(A) under DGCA — the same number used for other Flight Crew papers.",
+        url: `${SITE_URL}/guides/computer-number`,
+      },
+      {
+        name: "Follow current DGCA / PARIKSHA session notices",
+        text: "Ignore outdated WPC April/August/November calendars as your primary plan. Use published DGCA, PARIKSHA and (where applicable) eGCA notices for written and practical slots for your session.",
+      },
+      {
+        name: "Study CAR Section 7 Series G Part VI",
+        text: "Use the current DGCA CAR syllabus for RTR(A), not legacy WPC WhatsApp PDFs. Theory chapters are mapped in the free RTR(A) book on Ghost Aviator.",
+        url: `${SITE_URL}/cpl/radio-telephony`,
+      },
+      {
+        name: "Practise the practical out loud",
+        text: "Pass the practical with live radiotelephony practice — read-backs, scenarios and emergencies — until phraseology is automatic. The free RTR(A) radio simulator is built for that.",
+        url: `${SITE_URL}/rtr-simulator`,
+      },
+    ],
+  },
+  {
+    slug: "atpl-theory-before-1500-hours",
+    name: "Plan DGCA ATPL Theory Before Licence Hours",
+    description:
+      "Plan ATPL theory attempts after CPL without waiting for 1,500 hours: confirm eligibility, map weak subjects, practise on the ATPL track, and watch result validity against your hour plan.",
+    steps: [
+      {
+        name: "Confirm ATPL theory eligibility",
+        text: "Confirm you hold an Indian CPL (or the documented defence alternate path) and a Flight Crew computer number. You do not need 1,500 hours to sit the papers — re-check CAR Section 7 Series B Part I before applying.",
+      },
+      {
+        name: "Map papers to weak CPL subjects",
+        text: "Start with subjects you already cleared at CPL level while knowledge is warm, then schedule the weak ones deliberately rather than waiting for airline hours.",
+      },
+      {
+        name: "Practise on the ATPL track",
+        text: "Use chapter notes, questions and mocks on the ATPL preparation track — not unverified PDF dumps — and book sessions you can finish as a cluster.",
+        url: `${SITE_URL}/atpl`,
+      },
+      {
+        name: "Align attempts with result validity",
+        text: "Track current DGCA validity rules for written results against your hour-building plan so passes are still usable when you apply for licence issue.",
       },
     ],
   },
