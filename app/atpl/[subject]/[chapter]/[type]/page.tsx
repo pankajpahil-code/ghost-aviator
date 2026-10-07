@@ -80,8 +80,9 @@ export default async function Page({
 
   const questions = getQuestionsForChapter(subject.id, chapter.id);
 
-  // Same rule as the CPL route: the lecture's schema belongs on its watch page,
-  // which is the notes page wherever one exists. See lib/video-schema.ts.
+  // The lecture's schema goes only on /video — that is the watch page
+  // (lib/video-schema.ts). Notes may still embed VideoLectureCard for students,
+  // but must not claim VideoObject / video sitemap entries.
   const chapterVideos = getChapterVideos(subject.id, chapter.id);
   const watchNodes = isWatchPage("atpl", subject.id, chapter.id, type)
     ? videoObjectsFor("atpl", subject.id, chapter.id, chapter.title, chapterVideos)

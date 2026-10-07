@@ -129,12 +129,9 @@ export default async function Page({
     />
   );
 
-  // The lecture's schema goes on whichever route is its watch page, which for
-  // 94 of the 109 chapters that have a lecture is the NOTES page — the video
-  // renders at the top of it, above the chapter itself. It used to go only on
-  // /video, a 119-word copy of the same lecture, and Search Console's verdict
-  // on the one video it ever looked at was "Video isn't on a watch page".
-  // lib/video-schema.ts owns the split; this route only asks which side it is on.
+  // The lecture's schema goes only on /video — that is the watch page
+  // (lib/video-schema.ts). Notes may still embed VideoLectureCard for students,
+  // but must not claim VideoObject / video sitemap entries.
   const chapterVideos = getChapterVideos(subject.id, chapter.id);
   const watchNodes = isWatchPage("cpl", subject.id, chapter.id, type)
     ? videoObjectsFor("cpl", subject.id, chapter.id, chapter.title, chapterVideos)
@@ -221,10 +218,8 @@ export default async function Page({
     // is the single source of truth, and the sitemap uses the same condition.
     const videos = chapterVideos;
     if (videos.length > 0) {
-      // videoLdScript is null here whenever this chapter has a notes page: the
-      // lecture is claimed there instead, and two pages claiming one video is
-      // the duplication this change exists to remove. For the 15 chapters with
-      // a lecture and no notes, /video is the watch page and does carry it.
+      // videoLdScript is set whenever this is the /video route and the chapter
+      // has mapped lectures — /video is always the watch page now.
       return (
         <>
           {jsonLdScript}
