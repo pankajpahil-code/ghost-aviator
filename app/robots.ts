@@ -33,15 +33,41 @@ import { SITE_URL } from "@/lib/site";
  * notes.html documents stay closed; only the figures open up.
  */
 export default function robots(): MetadataRoute.Robots {
+  // Shared policy: public pages are open (including AI assistants); raw notes
+  // under /content/ stay closed. Explicit AI user-agents restate the same rule
+  // so a future edit to "*" cannot silently leave GPTBot / ClaudeBot / etc.
+  // freer than Googlebot when the intent is the opposite.
+  const publicAllow = ["/", "/content/*/*/img/"] as const;
+  const contentClosed = "/content/";
+  const aiAgents = [
+    "GPTBot",
+    "ChatGPT-User",
+    "OAI-SearchBot",
+    "ClaudeBot",
+    "Anthropic-AI",
+    "Google-Extended",
+    "PerplexityBot",
+    "Applebot-Extended",
+    "CCBot",
+    "Bytespider",
+  ];
+
   return {
-    rules: {
-      userAgent: "*",
-      // Longest match wins, so the img rule beats the /content/ block.
-      allow: ["/", "/content/*/*/img/"],
-      // The raw standalone chapter documents. The chapter page renders the same
-      // material and is the URL that should rank; these are unlinked duplicates.
-      disallow: "/content/",
-    },
+    rules: [
+      {
+        userAgent: "*",
+        // Longest match wins, so the img rule beats the /content/ block.
+        allow: [...publicAllow],
+        // The raw standalone chapter documents. The chapter page renders the same
+        // material and is the URL that should rank; these are unlinked duplicates.
+        disallow: contentClosed,
+      },
+      {
+        userAgent: aiAgents,
+        allow: [...publicAllow],
+        disallow: contentClosed,
+      },
+    ],
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,
   };

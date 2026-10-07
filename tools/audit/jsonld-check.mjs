@@ -18,7 +18,7 @@ const BLOCK = /<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script
 // and (b) a type that can only mean one thing per page appearing more than once. A listing page
 // legitimately carries many Course nodes, and /about legitimately restates the Person under the
 // SAME @id as the site-wide node, so a bare type count flags those and teaches you to ignore it.
-const SINGLETON = new Set(["WebSite", "WebPage", "CollectionPage", "FAQPage", "BreadcrumbList",
+const SINGLETON = new Set(["WebSite", "WebPage", "CollectionPage", "FAQPage", "HowTo", "BreadcrumbList",
                            "WebApplication", "SoftwareApplication", "Quiz", "Article"]);
 // The entities the site is trying to make Google recognise as ONE thing. Repeating these
 // without a shared @id is what fragments them (AEO rule 2). ListItem, Question, Answer and

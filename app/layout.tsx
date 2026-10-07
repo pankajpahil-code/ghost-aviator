@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 const TITLE = "Free DGCA CPL & ATPL Exam Prep | Ghost Aviator";
 const DESCRIPTION =
-  "Free DGCA CPL and ATPL notes, question banks and mock tests for student pilots in India. Explore live ground classes with Capt. Pankaj Pahil.";
+  "Free DGCA CPL and ATPL exam preparation for India - chapter notes, question banks, mock tests and video lectures. Self-study stays free. Live classes with Capt. Pankaj Pahil are optional.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

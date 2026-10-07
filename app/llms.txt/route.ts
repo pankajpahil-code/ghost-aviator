@@ -54,6 +54,11 @@ export function GET() {
 > flight and ground instructor. The self-study material is free and always
 > will be.
 
+## Full catalogue
+
+For a longer URL list (every CPL/ATPL subject landing plus every guide), see
+${SITE_URL}/llms-full.txt.
+
 ## Who wrote this
 
 All teaching content is authored or verified by **Capt. Pankaj Pahil**, a

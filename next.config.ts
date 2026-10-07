@@ -158,6 +158,14 @@ const nextConfig: NextConfig = {
         source: "/robots.txt",
         headers: [{ key: "Cache-Control", value: "public, s-maxage=86400, stale-while-revalidate=86400" }],
       },
+      {
+        source: "/llms.txt",
+        headers: [{ key: "Cache-Control", value: "public, s-maxage=86400, stale-while-revalidate=86400" }],
+      },
+      {
+        source: "/llms-full.txt",
+        headers: [{ key: "Cache-Control", value: "public, s-maxage=86400, stale-while-revalidate=86400" }],
+      },
     ];
   },
   async redirects() {
