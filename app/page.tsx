@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LIVE_PRICE, LIVE_LIST_PRICE, liveWaLink } from "@/lib/live-classes";
+import { LIVE_PRICE, LIVE_LIST_PRICE, LIVE_BATCH_META, liveWaLink } from "@/lib/live-classes";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import type { Metadata } from "next";
 import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap, MessageCircle } from "lucide-react";
@@ -167,6 +167,9 @@ export default function Home() {
               <div className="text-sm font-semibold" style={{ color:"#94a3b8" }}>
                 Small batch of 10 seats. Self-study stays free.
                 {" "}· list <span className="line-through" style={{ color:"#64748b" }}>{LIVE_LIST_PRICE}</span>
+              </div>
+              <div className="text-sm font-bold mt-2" style={{ color:"#f3c889" }}>
+                Next batch: {LIVE_BATCH_META.subjectTitle} · {LIVE_BATCH_META.startLabel} · max {LIVE_BATCH_META.maxSeats} seats
               </div>
             </div>
 

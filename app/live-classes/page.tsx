@@ -23,6 +23,7 @@ import {
   liveEnrollLink,
   liveComboEnrollLink,
   botLink,
+  LIVE_BATCH_META,
 } from "@/lib/live-classes";
 
 export const metadata: Metadata = {
@@ -216,9 +217,26 @@ export default function LiveClassesPage() {
             {" "}· Navigation combo <span style={{ color:"#22c55e" }}>{COMBO_PRICE}</span>
             {" "}· <span style={{ color:"#f3c889" }}>Only 10 seats</span>
           </p>
-          <p className="text-sm font-semibold mb-10" style={{ color:"#94a3b8" }}>
+          <p className="text-sm font-semibold mb-6" style={{ color:"#94a3b8" }}>
             Message to reserve · UPI after confirmation
           </p>
+
+          {/* Next published cohort — sourced from LIVE_BATCH_META */}
+          <div className="mb-10 mx-auto lg:mx-0 max-w-xl rounded-2xl px-5 py-4 text-left"
+               style={{ background:"rgba(255,40,40,0.08)", border:"1px solid rgba(255,60,60,0.35)" }}>
+            <div className="text-xs font-black tracking-widest uppercase mb-1" style={{ color:"#ff5a5a" }}>
+              Next batch
+            </div>
+            <div className="text-lg font-black text-white leading-snug">
+              {LIVE_BATCH_META.subjectTitle}
+            </div>
+            <div className="text-sm font-semibold mt-1" style={{ color:"#94a3b8" }}>
+              Starts {LIVE_BATCH_META.startLabel} · {LIVE_BATCH_META.mode} · max {LIVE_BATCH_META.maxSeats} seats · {LIVE_BATCH_META.durationLabel}
+            </div>
+            <div className="text-xs font-bold mt-2" style={{ color:"#f3c889" }}>
+              {LIVE_BATCH_META.maxSeats} seats only — founding price shown above
+            </div>
+          </div>
 
           <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
             <a href={liveEnrollLink("general", "DGCA Ground Classes", PRICE)} target="_blank" rel="noopener noreferrer"
