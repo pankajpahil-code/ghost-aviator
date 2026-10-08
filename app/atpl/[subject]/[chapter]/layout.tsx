@@ -1,5 +1,6 @@
 import { ATPL_SUBJECTS } from "@/lib/subjects";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
+import { isIndexableChapterRoute } from "@/lib/indexability";
 
 /**
  * Unlike the CPL side, the ATPL `[type]/page.tsx` emits no structured data of
@@ -24,13 +25,16 @@ export default async function ATPLChapterLayout({
   }
 
   const base = `${SITE_URL}/atpl/${subject.id}/${chapter.id}`;
-  // This layout has no page.tsx of its own: `base` itself is a 404. A layout is
-  // not given the [type] segment, so the Course node cannot name the exact
-  // route it sits on (the CPL page does). It names the chapter's notes route
-  // instead: every ATPL chapter has one, it is the chapter's primary page, and
-  // it is the canonical the notes page declares for itself. The same @id on the
-  // sibling routes then reads as one course described on several of its pages.
-  const home = `${base}/notes`;
+  // This layout has no page.tsx of its own: `base` itself is a 404, and a layout is
+  // not given the [type] segment, so the Course node cannot name the exact route it
+  // sits on (the CPL page does). It names the chapter's first page that really has
+  // content: the notes where they exist, otherwise the questions, otherwise the
+  // lecture. Forty ATPL chapters have no notes, so naming /notes for all of them
+  // would point at a "being prepared" page that is not in the index.
+  const first = (['notes', 'questions', 'video'] as const).find(
+    type => isIndexableChapterRoute(subject.id, chapter.id, type),
+  ) ?? 'notes';
+  const home = `${base}/${first}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
