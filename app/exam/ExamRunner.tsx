@@ -4,41 +4,12 @@ import Link from "next/link";
 import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, BookOpen, Flag, Check } from "lucide-react";
 import type { ExamPaper } from "@/lib/exam-papers";
 import { getPaperQuestionPool } from "@/lib/exam-papers";
-import { getChapterSpecificQuestions } from "@/lib/questions";
-import { CPL_SUBJECTS } from "@/lib/subjects";
 import { isRealExplanation } from "@/lib/explanation";
 import { recordExamAttempt, type ChapterBreakdown } from "@/lib/exam-history";
 import { useDeadlineCountdown } from "@/lib/progress";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
 type Phase = "setup" | "exam" | "result";
-
-const AIR_REGS = "air-regulations";
-
-/**
- * Air Regulations bank chapterId -> the SITE chapter that serves it.
- *
- * The bank still uses the old 13 Air Regs chapter ids while the site has 26, and
- * CPL_AR_CHAPTER_MAP routes site -> bank many-to-one with no name correspondence
- * (site ar-4 is served bank ar-6; bank ar-8 is not site ar-8). The weak-chapter
- * list names chapters by SITE id, so a bank id stored as-is names the wrong chapter.
- *
- * Built from what the site actually serves rather than from a copy of the map:
- * every chapter-specific set shares one bank id, so ask each site chapter which
- * bank id it serves. Where several site chapters share a bank id, the chapter
- * whose own id matches wins, otherwise the first in syllabus order.
- */
-export function airRegsBankToSiteChapter(): Record<string, string> {
-  const out: Record<string, string> = {};
-  const subject = CPL_SUBJECTS.find(s => s.id === AIR_REGS);
-  if (!subject) return out;
-  for (const ch of subject.chapters) {
-    const bankId = getChapterSpecificQuestions(subject.id, ch.id)[0]?.chapterId;
-    if (!bankId) continue;
-    if (!(bankId in out) || ch.id === bankId) out[bankId] = ch.id;
-  }
-  return out;
-}
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -86,17 +57,12 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
     if (phase !== "result" || recorded.current || questions.length === 0) return;
     recorded.current = true;
     const chapterBreakdown: ChapterBreakdown = {};
-    const siteChapterOfBank = airRegsBankToSiteChapter();
     questions.forEach((q, i) => {
       if (!q.chapterId) return;
-      // Air Regs questions carry a BANK chapter id; the dashboard names SITE chapters.
-      const key = q.subjectIds.includes(AIR_REGS) ? siteChapterOfBank[q.chapterId] : q.chapterId;
-      // No site chapter serves this bank chapter: leave it out rather than file it under the wrong one.
-      if (!key) return;
-      const cur = chapterBreakdown[key] ?? { correct: 0, total: 0 };
+      const cur = chapterBreakdown[q.chapterId] ?? { correct: 0, total: 0 };
       cur.total += 1;
       if (answers[i] === q.ans) cur.correct += 1;
-      chapterBreakdown[key] = cur;
+      chapterBreakdown[q.chapterId] = cur;
     });
     recordExamAttempt({
       paperId: paper.id,

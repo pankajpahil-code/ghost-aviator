@@ -7,7 +7,7 @@ import type { DemoQuestion } from "@/lib/demo-questions";
 import { isRealExplanation } from "@/lib/explanation";
 import {
   recordResult, useDeadlineCountdown, isSubjectFallback, questionsForRun, countsTowardChapter,
-  QUIZ_SAMPLE_SIZE, MIN_QUESTIONS_FOR_VERDICT,
+  QUIZ_SAMPLE_SIZE, MIN_QUESTIONS_FOR_VERDICT, canStartRun,
 } from "@/lib/progress";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
@@ -64,6 +64,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions: po
   }, [phase, pct, counts, track, subject.id, chapter.id, questions.length]);
 
   function start() {
+    if (!canStartRun({ poolSize: pool.length, fallback })) return;
     const run = questionsForRun(pool, fallback);
     setQuestions(run);
     setAnswers(Array(run.length).fill(null));
@@ -109,6 +110,30 @@ export default function ChapterTestPage({ track, subject, chapter, questions: po
           <p className="mb-6 text-sm" style={{ color: "#64748b" }}>
             Questions for <strong style={{ color: subject.color }}>{chapter.title}</strong> are being prepared.
             Target: {chapter.questionCount} questions.
+          </p>
+          <Link href={`/${track}/${subject.id}/${chapter.id}/notes`}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold no-underline"
+                style={{ background: `${subject.color}20`, border: `1px solid ${subject.color}45`, color: subject.color }}>
+            <BookOpen className="w-4 h-4" /> Study Notes
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // A chapter with no questions of its own is served the whole subject pool. When
+  // that pool is tiny a random sample of it would be the same one or two
+  // questions every time, so say so and do not start anything.
+  if (phase === "setup" && !canStartRun({ poolSize: pool.length, fallback })) {
+    return (
+      <div style={{ background: "#0b1117" }} className="min-h-screen flex items-center justify-center px-4">
+        <div className="text-center max-w-md">
+          <div className="text-5xl mb-4">📝</div>
+          <h1 className="text-2xl font-black text-white mb-3">Not enough questions for a test yet</h1>
+          <p className="mb-6 text-sm" style={{ color: "#64748b" }}>
+            <strong style={{ color: subject.color }}>{chapter.title}</strong> has no questions of its own yet, and
+            {" "}{subject.shortName} as a whole holds only {pool.length} {pool.length === 1 ? "question" : "questions"} so far.
+            A test needs at least {MIN_QUESTIONS_FOR_VERDICT} for a score to mean anything.
           </p>
           <Link href={`/${track}/${subject.id}/${chapter.id}/notes`}
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold no-underline"

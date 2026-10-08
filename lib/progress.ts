@@ -175,6 +175,16 @@ export function questionsForRun<T>(
   return fallback ? sampleQuestions(questions, QUIZ_SAMPLE_SIZE, rand) : [...questions];
 }
 
+/**
+ * A subject-wide fallback pool smaller than the verdict minimum cannot make an
+ * honest revision quiz (a "random 25 from the subject" of 2 questions is not a
+ * quiz), so no run is started. A chapter's OWN short bank still runs, but is
+ * labelled and never stored (see countsTowardChapter).
+ */
+export function canStartRun(run: { poolSize: number; fallback: boolean }): boolean {
+  return run.poolSize > 0 && !(run.fallback && run.poolSize < MIN_QUESTIONS_FOR_VERDICT);
+}
+
 /** Only a full-size run of the chapter's OWN questions may be stored as a chapter result. */
 export function countsTowardChapter(run: { questionCount: number; fallback: boolean }): boolean {
   return !run.fallback && run.questionCount >= MIN_QUESTIONS_FOR_VERDICT;

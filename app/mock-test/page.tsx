@@ -26,7 +26,7 @@ const SUBJECT_MAP = (() => {
 const TYPE_LABEL: Record<string, string> = {
   mid:    "Mid-Subject Test",
   full:   "Full Subject Test",
-  sample: "DGCA Sample Paper",
+  sample: "Random Practice Paper",
 };
 
 function shuffle<T>(arr: T[]): T[] {
@@ -75,7 +75,7 @@ function buildConfig(subjectId: string | null, type: string | null): TestConfig 
     poolSize: pool.length,
     durationSec: durationMin * 60,
     title: `${subject.name} — ${label}`,
-    subtitle: `${subject.shortName} · DGCA format · ${questions.length} questions`,
+    subtitle: `${subject.shortName} · ${questions.length} questions drawn at random from the question bank`,
     passMark: subject.passMark,
     backHref: `/${track}/${subject.id}`,
   };
