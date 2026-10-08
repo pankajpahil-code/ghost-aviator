@@ -104,11 +104,13 @@ const ALLOWED_AMOUNTS = new Set<string>([...ALLOWED_PRICES].map(p => p.replace(/
 const AMOUNT = /\d(?:[\d,]*\d)?(?:\.\d+)?/.source;
 const MULTIPLIER = /(?:\s?(?:k|thousand|lakhs?|lacs?|crores?)(?![a-z]))?/.source;
 const RUPEE_WORD = /(?:rupees?|rs\.?|inr)(?![a-z])/.source;
-const MARKER_FIRST = /(?:₹|\b(?:rs\.?|inr|rupees?))\s?/.source;
+// The marker may be set off from the figure by spaces, a full stop or a colon
+// ("Rs: 8,000", "INR. 8000", "₹  8,000").
+const MARKER_FIRST = /(?:₹|\b(?:rs|inr|rupees?))[\s.:]*/.source;
 const SPELLED_OUT = /\b(?:hundred|thousand|lakhs?|lacs?|crores?)\s+/.source;
 const PRICE_MENTION = new RegExp(
   `${MARKER_FIRST}(${AMOUNT})(${MULTIPLIER})` +
-  `|(${AMOUNT})(${MULTIPLIER})\\s?(?:${RUPEE_WORD}|/-)` +
+  `|(${AMOUNT})(${MULTIPLIER})\\s?(?:in\\s+)?(?:${RUPEE_WORD}|/-)` +
   `|${SPELLED_OUT}${RUPEE_WORD}`,
   "gi",
 );

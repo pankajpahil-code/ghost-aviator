@@ -281,6 +281,17 @@ const GUARD_CASES: { text: string; ok: boolean; label: string; why?: RegExp }[] 
   { text: "The batches are paid; the free notes are unaffected.", ok: true, label: "contrasting paid and free is allowed" },
   { text: "The batch costs ₹8,000 per subject.", ok: false, label: "a price we do not charge" },
   { text: "Capt. Pahil teaches live batches at ₹7,999 a subject.", ok: true, label: "a real price" },
+  // Site audit 2026-10-08: the guard read only the ₹ symbol, and choked on a comma
+  // after a true price. These hold both fixes in place.
+  { text: "A batch costs ₹7,999, down from ₹12,999.", ok: true, label: "a real price followed by a comma" },
+  { text: "The batch costs Rs. 8,000 per subject.", ok: false, label: "wrong price written as Rs." },
+  { text: "The batch is INR 9,999 a subject.", ok: false, label: "wrong price written as INR" },
+  { text: "It is about 8000 rupees per subject.", ok: false, label: "wrong price written in rupees" },
+  { text: "The fee is Rs: 8,000 a subject.", ok: false, label: "wrong price, marker set off by a colon" },
+  { text: "It costs ₹  8,000 a subject.", ok: false, label: "wrong price, marker set off by two spaces" },
+  { text: "That is 8000 in rupees.", ok: false, label: "wrong price, 'in rupees'" },
+  { text: "The fee is Rs 7,999 a subject.", ok: true, label: "a real price written as Rs" },
+  { text: "There are 4,350 questions and the next batch starts on 20 Oct 2026.", ok: true, label: "numbers that are not prices" },
   { text: "We guarantee you will pass the DGCA exam.", ok: false, label: "promises an outcome" },
   // The Latin-alphabet twin of the Bengali case above. Seen live on a plain
   // "hello", 2026-08-21: every other guard passed it because it states no
