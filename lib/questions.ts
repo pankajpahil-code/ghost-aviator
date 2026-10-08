@@ -18,7 +18,7 @@ import { AR25_PHYSIOLOGY_QUESTIONS } from "./generated/ar25-physiology-questions
 import { RTF_QUESTIONS } from "./generated/rtf-questions";
 import { MET_VERIFIED, VERIFIED_MET_CHAPTERS } from "./generated/met-verified";
 import { DA42_QUESTIONS } from "./generated/da42-questions";
-import { applyAnswerCorrections } from "./answer-corrections";
+import { ANSWER_CORRECTIONS, applyAnswerCorrections, sameOption } from "./answer-corrections";
 
 export type { DemoQuestion };
 
@@ -34,7 +34,9 @@ const dropVerifiedMet = (q: DemoQuestion) =>
 // auto-generated banks last.
 // Declared answer-key corrections (lib/answer-corrections.ts) are applied to
 // every source before de-dupe, so a regenerated bank cannot undo them.
-const RAW_QUESTIONS: DemoQuestion[] = applyAnswerCorrections([
+// Exported for tools/audit only (the duplicate and figure reports replay the steps below).
+// Pages read ALL_QUESTIONS.
+export const BANK_BEFORE_DEDUPE: DemoQuestion[] = applyAnswerCorrections([
   ...MET_VERIFIED,         // ✅ verified Meteorology chapters — highest priority
   ...DEMO_QUESTIONS,
   ...NAV_QUESTIONS,
@@ -56,22 +58,113 @@ const RAW_QUESTIONS: DemoQuestion[] = applyAnswerCorrections([
   ...ICJOSHI_MET.filter(dropVerifiedMet), // font-extracted met bank (unverified met chapters only)
 ]);
 
-// Global de-dupe by normalised question text — keeps the first (highest-priority)
-// copy so we never ship the same question twice across sources.
-const dedupeKey = (q: DemoQuestion) =>
-  q.q.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 100);
+// Questions that cannot be answered without a figure the site does not hold. DemoQuestion
+// has no image field and every runner prints the stem and options only, so a stem that
+// says "(Refer to figure 061-12)" was being asked, marked right or wrong and counted
+// toward a pass mark with nothing to look at (found 2026-10-08). They are left out of
+// ALL_QUESTIONS. They return when the figure exists and the runners can show it: at that
+// point narrow or delete this predicate, do not work around it.
+// A stem that describes its own picture in words ("Figure 1 [aircraft symbol aligned with
+// the left Rate 1 mark]") is answerable and is NOT matched. Words like "chart" or "Annex"
+// alone are not matched either: "On a Mercator chart..." and "Annex 14 contains..." need
+// no figure. Same idea as NEEDS_FIGURE in lib/gini/deep.ts, which tests the explanation;
+// kept separate so this file does not import lib/gini.
+const MISSING_FIGURE =
+  /\brefer to\b[^)]{0,60}\b(?:figures?|annex|appendix|diagram|chart)\b|\bdiagram below\b|\(in the symbol diagram\)|\(appendix [a-z]\)/i;
+export const needsMissingFigure = (q: Pick<DemoQuestion, "q">) => MISSING_FIGURE.test(q.q);
 
-export const ALL_QUESTIONS: DemoQuestion[] = (() => {
-  const seen = new Set<string>();
+// De-dupe: two copies are the same question only when the WHOLE normalised stem matches
+// and both key the same answer text.
+// Until 2026-10-08 the key was the first 100 letters and digits of the stem, with anything
+// under 10 thrown away. That deleted 18 valid short questions ("A gale is:", "UTC means"),
+// merged different questions that share a long opening (two point-of-safe-return questions
+// vanished behind the point-of-equal-time ones) and, when two sources keyed the same stem
+// differently, silently published whichever came first.
+const stemKey = (q: Pick<DemoQuestion, "q">) => q.q.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+// The keyed option, compared after removing the spelling differences between sources:
+// "90°" / "90 deg" / "90 degrees", "8 min" / "8 mins", "5000 meters" / "5000 metres",
+// "132°(T)" / "132 T". A decimal point and a sign or comparison in front of a number are
+// kept, so "1.5" never equals "15" and "-5" never equals "+5". Anything this does not
+// equate stays as two questions: showing a question twice is recoverable, hiding a
+// disagreement between two keys is not.
+const answerKey = (q: DemoQuestion) =>
+  (q.opts[q.ans] ?? "")
+    .toLowerCase()
+    .replace(/\b(?:degrees?|deg)\b/g, "")
+    .replace(/\b(?:minutes?|mins)\b/g, "min")
+    .replace(/\b(?:hours?|hrs)\b/g, "hr")
+    .replace(/\bmet(?:er|re)s?\b/g, "metre")
+    .replace(/(?<![a-z0-9])[-−–](?=\d)/g, "~")
+    .replace(/(?<!\d)\.|\.(?!\d)/g, "")
+    .replace(/[^a-z0-9.~+<>]/g, "");
+const sameKeyedAnswer = (a: DemoQuestion, b: DemoQuestion) =>
+  answerKey(a) === answerKey(b) || sameOption(a.opts[a.ans], b.opts[b.ans] ?? "");
+
+// Stems Capt. Pahil has already ruled on (lib/answer-corrections.ts), with the answer(s)
+// ruled right. Keeping both copies of a same-stem pair is for pairs nobody has ruled on.
+// Where a ruling exists and a copy carrying it is live, another source's copy of that stem
+// keyed to something else contradicts the ruling, so it stays out, as it did before
+// 8 Oct 2026 (tools/audit/check-corrections.mts fails if one gets through). It is never
+// the last copy of its stem that goes, and tools/audit/bank-duplicates.mts lists each one.
+const RULED_ANSWERS = new Map<string, string[]>();
+for (const c of ANSWER_CORRECTIONS) {
+  if (c.hide) continue;
+  const k = stemKey({ q: c.edit?.q ?? c.q });
+  RULED_ANSWERS.set(k, [...(RULED_ANSWERS.get(k) ?? []), c.now]);
+}
+const keysRuledAnswer = (q: DemoQuestion) =>
+  (RULED_ANSWERS.get(stemKey(q)) ?? []).some((now) => sameOption(q.opts[q.ans], now));
+export function contradictsRuling(q: DemoQuestion, all: DemoQuestion[]): boolean {
+  const k = stemKey(q);
+  if (!RULED_ANSWERS.has(k) || keysRuledAnswer(q)) return false;
+  return all.some((x) => stemKey(x) === k && keysRuledAnswer(x));
+}
+
+// A repeated or empty option: the mark of a copy damaged when it was extracted.
+export const hasBrokenOptions = (q: Pick<DemoQuestion, "opts">) => {
+  const t = q.opts.map((o) => o.trim().toLowerCase());
+  return t.some((o) => o === "") || new Set(t).size < t.length;
+};
+
+// Keeps the first (highest-priority) copy of each question. A later true duplicate is
+// dropped, but any subject it carries that the kept copy lacks is added to the kept copy,
+// so a question filed under two subjects by two sources stays in both subject pools.
+// (The kept copy keeps its own chapterId: DemoQuestion holds one chapter.)
+// Same stem with a DIFFERENT keyed answer is not a duplicate: both stay, and
+// tools/audit/bank-duplicates.mts lists every such group for Capt. Pahil to rule on.
+// One exception: a later copy with a repeated or empty option does not join a stem that
+// already has a live copy. It is a damaged printing of that question, not a second opinion.
+export function collapseDuplicates(qs: DemoQuestion[]): DemoQuestion[] {
+  const byStem = new Map<string, number[]>(); // stem key -> positions in `out`
   const out: DemoQuestion[] = [];
-  for (const q of RAW_QUESTIONS) {
-    const k = dedupeKey(q);
-    if (k.length < 10 || seen.has(k)) continue;
-    seen.add(k);
-    out.push(q);
+  for (const q of qs) {
+    const k = stemKey(q);
+    // A stem with no letter or digit cannot be compared, so it is never treated as a copy.
+    const group = k ? byStem.get(k) ?? [] : [];
+    const at = group.find((i) => sameKeyedAnswer(out[i], q));
+    if (at === undefined) {
+      if (group.length > 0 && hasBrokenOptions(q)) continue;
+      if (k) byStem.set(k, [...group, out.length]);
+      out.push(q);
+      continue;
+    }
+    const gained = q.subjectIds.filter((s) => !out[at].subjectIds.includes(s));
+    if (gained.length > 0) {
+      out[at] = { ...out[at], subjectIds: [...out[at].subjectIds, ...gained] };
+    }
   }
   return out;
+}
+
+// The copies the de-dupe is run over: everything except the two declared exclusions.
+export const BANK_ELIGIBLE: DemoQuestion[] = (() => {
+  const shown = BANK_BEFORE_DEDUPE.filter((q) => !needsMissingFigure(q));
+  const ruledCopies = shown.filter(keysRuledAnswer);
+  return shown.filter((q) => !contradictsRuling(q, ruledCopies));
 })();
+
+export const ALL_QUESTIONS: DemoQuestion[] = collapseDuplicates(BANK_ELIGIBLE);
 
 // CPL air-regulations chapters were restructured from 13 → 26 chapters.
 // The RK Bali question bank uses the old ar-1…ar-13 IDs. This map routes
