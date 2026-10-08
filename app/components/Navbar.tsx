@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import GhostMark from "@/app/components/GhostMark";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
@@ -18,6 +18,36 @@ export default function Navbar() {
     (user?.user_metadata?.name as string | undefined)?.split(" ")[0] ||
     user?.email?.split("@")[0] || "";
   const signOut = () => { void getSupabase()?.auth.signOut(); };
+
+  // Hover alone used to be the only way to open the CPL / ATPL lists, so a
+  // keyboard user tabbing to "CPL" never saw the subject links. Focus now opens
+  // them too, they stay open while focus is anywhere inside, and Escape closes
+  // them and hands focus back to the trigger link.
+  const escaping = useRef(false); // Escape refocuses the trigger — that focus must not reopen the list
+  const dropdown = (id: "cpl" | "atpl") => ({
+    onMouseEnter: () => setDrop(id),
+    onMouseLeave: () => setDrop(null),
+    onFocus: () => { if (!escaping.current) setDrop(id); },
+    onBlur: (e: React.FocusEvent<HTMLDivElement>) => {
+      if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setDrop(null);
+    },
+    onKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => {
+      const trigger = e.currentTarget.querySelector("a");
+      if (e.key === "Escape" && drop === id) {
+        escaping.current = true;
+        setDrop(null);
+        trigger?.focus();
+        escaping.current = false;
+        return;
+      }
+      // After Escape the trigger keeps focus, so no focus event will fire again:
+      // ArrowDown (or Space) on the trigger itself must be able to reopen the list.
+      if (drop !== id && e.target === trigger && (e.key === "ArrowDown" || e.key === " ")) {
+        e.preventDefault();
+        setDrop(id);
+      }
+    },
+  });
 
   return (
     <nav style={{ background:"rgba(11,17,23,0.97)", borderBottom:"1px solid rgba(243,200,137,0.15)", backdropFilter:"blur(12px)" }}
@@ -41,10 +71,10 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-1">
 
             {/* CPL dropdown */}
-            <div className="relative" onMouseEnter={() => setDrop("cpl")} onMouseLeave={() => setDrop(null)}>
-              <Link href="/cpl" className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-bold no-underline transition-colors"
+            <div className="relative" {...dropdown("cpl")}>
+              <Link href="/cpl" aria-expanded={drop === "cpl"} className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-bold no-underline transition-colors"
                     style={{ color: drop==="cpl" ? "#f3c889" : "#94a3b8" }}>
-                CPL <ChevronDown className="w-3 h-3"/>
+                CPL <ChevronDown className="w-3 h-3" aria-hidden="true"/>
               </Link>
               {drop === "cpl" && (
                 <div className="absolute top-full left-0 mt-1 w-64 rounded-xl overflow-hidden z-50"
@@ -60,10 +90,10 @@ export default function Navbar() {
             </div>
 
             {/* ATPL dropdown */}
-            <div className="relative" onMouseEnter={() => setDrop("atpl")} onMouseLeave={() => setDrop(null)}>
-              <Link href="/atpl" className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-bold no-underline transition-colors"
+            <div className="relative" {...dropdown("atpl")}>
+              <Link href="/atpl" aria-expanded={drop === "atpl"} className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-bold no-underline transition-colors"
                     style={{ color: drop==="atpl" ? "#f0913a" : "#94a3b8" }}>
-                ATPL <ChevronDown className="w-3 h-3"/>
+                ATPL <ChevronDown className="w-3 h-3" aria-hidden="true"/>
               </Link>
               {drop === "atpl" && (
                 <div className="absolute top-full left-0 mt-1 w-64 rounded-xl overflow-hidden z-50"
@@ -111,8 +141,9 @@ export default function Navbar() {
             )}
           </div>
 
-          <button className="md:hidden" style={{ color:"#f3c889" }} onClick={() => setOpen(!open)}>
-            {open ? <X className="w-6 h-6"/> : <Menu className="w-6 h-6"/>}
+          <button className="md:hidden" style={{ color:"#f3c889" }} onClick={() => setOpen(!open)}
+                  aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls={open ? "mobile-menu" : undefined}>
+            {open ? <X className="w-6 h-6" aria-hidden="true"/> : <Menu className="w-6 h-6" aria-hidden="true"/>}
           </button>
         </div>
       </div>
@@ -142,7 +173,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden px-4 pb-5 flex flex-col gap-1" style={{ borderTop:"1px solid rgba(243,200,137,0.12)" }}>
+        <div id="mobile-menu" className="md:hidden px-4 pb-5 flex flex-col gap-1" style={{ borderTop:"1px solid rgba(243,200,137,0.12)" }}>
           <Link href="/cpl"           onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#f3c889" }}>✈ CPL Prep</Link>
           <Link href="/atpl"          onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#f0913a" }}>✈ ATPL Prep</Link>
           <Link href="/live-classes"  onClick={() => setOpen(false)} className="py-2.5 text-sm font-black no-underline" style={{ color:"#ff5a5a" }}>🔴 Live Classes</Link>
@@ -158,6 +189,7 @@ export default function Navbar() {
           <Link href="/question-bank" onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
           <Link href="/resources"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Resources</Link>
           <Link href="/guides"        onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Guides</Link>
+          <Link href="/cpl-cost-calculator" onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#38bdf8" }}>Cost Calculator</Link>
           {user ? (
             <button onClick={() => { signOut(); setOpen(false); }}
                     className="mt-2 py-3 px-4 rounded-xl text-sm font-black text-center cursor-pointer border-0"

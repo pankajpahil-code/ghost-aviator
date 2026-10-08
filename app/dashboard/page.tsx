@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useUser } from "@/lib/supabase";
 import AdaptPanel from "./AdaptPanel";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
-import { EXAM_PAPERS, getExamPaper } from "@/lib/exam-papers";
+// Metadata module, NOT lib/exam-papers: that one imports the whole question bank.
+import { EXAM_PAPERS, getExamPaper } from "@/lib/exam-papers-meta";
 import { readExamHistory, weakChapters, useExamHistoryVersion, type ExamAttempt } from "@/lib/exam-history";
 import { TrendingUp, AlertTriangle, FileCheck, Trophy, XCircle, CheckCircle } from "lucide-react";
 
@@ -16,6 +17,9 @@ const CHAPTER_LABEL = (() => {
   }
   return m;
 })();
+
+// Stable empty list for the pre-mount render, so memos downstream keep a steady input.
+const NO_HISTORY: ExamAttempt[] = [];
 
 function fmtDate(iso: string): string {
   const d = new Date(iso);
@@ -78,12 +82,22 @@ function WeakChapterBars({ items }: { items: { chapterId: string; accuracy: numb
 export default function DashboardPage() {
   const { user } = useUser();
   const version = useExamHistoryVersion(); // bumps on attempt/sync changes
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    // History lives in localStorage, which the server cannot see. Reading it
+    // during render made the first client render differ from the prerendered
+    // HTML for returning students. So the first render (server AND client) sees
+    // an empty history, and the real read happens once mounted.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
   // `version` looks "unnecessary" to the lint rule because readExamHistory()
   // takes no arguments — but it reads localStorage, so `version` is the ONLY
-  // thing that invalidates this memo. Removing it freezes the dashboard: new
-  // attempts and cross-device syncs would stop appearing. Do not "clean up".
+  // thing that invalidates this memo once mounted. Removing it freezes the
+  // dashboard: new attempts and cross-device syncs would stop appearing. Do not
+  // "clean up".
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const history = useMemo(() => readExamHistory(), [version]);
+  const history = useMemo(() => (mounted ? readExamHistory() : NO_HISTORY), [mounted, version]);
 
   const byPaper = useMemo(() => {
     const groups = new Map<string, ExamAttempt[]>();

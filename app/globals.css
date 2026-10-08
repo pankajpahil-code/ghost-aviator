@@ -92,6 +92,16 @@ html, body {
   font-family: system-ui, -apple-system, sans-serif;
 }
 
+/* Visible keyboard focus on text fields. Several forms (login, the email
+   capture) removed the browser's ring and put nothing in its place, so a
+   keyboard user could not tell which field was active. This rule is unlayered,
+   so it also wins over Tailwind's layered outline-none utility. :focus-visible
+   keeps it off mouse clicks. */
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid #f0913a;
+  outline-offset: 2px;
+}
+
 /* ── Content protection ─────────────────────────────────────────────────── */
 body {
   -webkit-user-select: none;

@@ -20,7 +20,7 @@
  * it can fire on cue instead of only when a frame happens to contain it.
  */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
 // The union lives in lib/gini/types.ts, beside the code that CHOOSES a mood.
 // This file owns the frames for each one, not the list of names.
@@ -105,6 +105,38 @@ function Bolts() {
   );
 }
 
+/**
+ * Animation strips are only ever PLAYED once they have loaded and decoded.
+ * Warming alone cannot guarantee that: under Data Saver it is skipped, and
+ * otherwise it is deferred to idle time, so the first fly or thunder could start
+ * over a strip still in flight and leave him invisible. The component asks for
+ * the strip it wants (loadStrip), shows the still until the answer comes back,
+ * and stays on the still for good if the strip fails. State is module-level so a
+ * strip loaded once is ready instantly for every later mount.
+ */
+const stripState = new Map<string, "ready" | "failed">();
+const stripPending = new Map<string, Promise<void>>();
+function loadStrip(src: string): Promise<void> {
+  let p = stripPending.get(src);
+  if (!p) {
+    p = new Promise<void>((resolve) => {
+      const img = new window.Image();
+      img.onload = () => {
+        // decode() makes sure the first frame can paint the moment it is shown.
+        // onload already proved the file is good, so a decode() rejection is not
+        // treated as a failure.
+        const done = () => { stripState.set(src, "ready"); resolve(); };
+        if (typeof img.decode === "function") img.decode().then(done, done);
+        else done();
+      };
+      img.onerror = () => { stripState.set(src, "failed"); resolve(); };
+      img.src = src;
+    });
+    stripPending.set(src, p);
+  }
+  return p;
+}
+
 export default function GiniSprite({
   mood, reduced, vanishing, entering, speaking, height = 200,
 }: {
@@ -116,16 +148,37 @@ export default function GiniSprite({
   speaking?: boolean;
   height?: number;
 }) {
-  // Warm every asset once so a mood change never flashes an empty frame.
-  const warmed = useRef(false);
+  // Warm the assets so a mood change never flashes an empty frame — but not all
+  // at once. Gini is in the root layout, so this runs on EVERY route, including
+  // legal pages and running exams, and the strips and stills add up to about
+  // 500 KB. The idle still is fetched immediately (it is what he stands on); the
+  // rest wait until the browser has nothing better to do, and are skipped
+  // entirely under Data Saver. Skipping costs nothing visible: a mood's own
+  // <img> / background-image fetches its file the moment it is first shown, so
+  // "warming" is only ever about hiding that first-use delay.
   useEffect(() => {
-    if (warmed.current) return;
-    warmed.current = true;
-    for (const u of [...Object.values(SEQS).map(s => s.src),
-                     ...Object.values(STILLS).map(s => s.src)]) {
-      const i = new window.Image();
-      i.src = u;
+    const load = (u: string) => { const i = new window.Image(); i.src = u; };
+    const first = STILLS.idle!.src;
+    load(first);
+    const stripSrcs = new Set<string>([TALK_SEQ.src, ...Object.values(SEQS).map(s => s.src)]);
+
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    if (conn?.saveData) return;
+
+    const rest = [...Object.values(SEQS).map(s => s.src),
+                  ...Object.values(STILLS).map(s => s.src)].filter(u => u !== first);
+    // Strips go through loadStrip so the result is recorded and shared.
+    const warmRest = () => { for (const u of rest) { if (stripSrcs.has(u)) void loadStrip(u); else load(u); } };
+
+    // Safari has no requestIdleCallback; a plain delay is the fallback. The
+    // cleanup cancels a pending warm-up if he is dismissed or unmounted first
+    // (and keeps React Strict Mode's mount/unmount/mount from losing it).
+    if (typeof window.requestIdleCallback === "function") {
+      const id = window.requestIdleCallback(warmRest, { timeout: 8000 });
+      return () => window.cancelIdleCallback(id);
     }
+    const t = window.setTimeout(warmRest, 4000);
+    return () => window.clearTimeout(t);
   }, []);
 
   /**
@@ -147,7 +200,18 @@ export default function GiniSprite({
     : (mood === "fly" || mood === "thunder") ? "gini-hover 2.4s ease-in-out infinite"
     : "gini-bob 3.6s ease-in-out infinite";
 
-  const seq = speaking && !reduced ? TALK_SEQ : SEQS[mood];
+  const wanted = speaking && !reduced ? TALK_SEQ : SEQS[mood];
+  const wantedSrc = wanted?.src;
+  const [, setStripTick] = useState(0);
+  useEffect(() => {
+    if (!wantedSrc || stripState.has(wantedSrc)) return;
+    let live = true;
+    void loadStrip(wantedSrc).then(() => { if (live) setStripTick((n) => n + 1); });
+    return () => { live = false; };
+  }, [wantedSrc]);
+  // Play the strip only once it is ready; until then (or if it failed) he stands
+  // on a still, so he is never invisible.
+  const seq = wanted && stripState.get(wanted.src) === "ready" ? wanted : undefined;
   if (seq) {
     const w = Math.round(seq.fw * (height / seq.fh));
     const sheetW = w * seq.frames;
@@ -176,7 +240,7 @@ export default function GiniSprite({
     );
   }
 
-  const still = STILLS[mood] ?? STILLS.talk!;
+  const still = STILLS[mood] ?? (wanted === TALK_SEQ ? STILLS.talk! : STILLS.idle!);
   const w = Math.round(height * (still.w / still.h));
   return (
     /* next/image is wrong here: these are pre-optimised WebP at a fixed size, so
