@@ -28,11 +28,58 @@ export const EXAM_HISTORY_EVENT = "ga-exam-history-change";
 // ── Sync bookkeeping (consumed by lib/exam-history-sync.ts) ─────────────────
 // New local attempts mark themselves pending; remote pulls merge in WITHOUT
 // marking pending, so a pull never echoes back as a push.
-const pendingIds = new Set<string>();
-export function drainPendingIds(): string[] {
-  const out = [...pendingIds];
-  pendingIds.clear();
-  return out;
+//
+// The pending ids are PERSISTED, and an id leaves the list only when the sync
+// says its upload was confirmed. Until 2026-10-08 they lived in a module-level
+// Set that was emptied before the upload was attempted, so two things lost
+// attempts for good: closing the tab between sitting an exam and signing in,
+// and any upload that failed (offline, server error). Both left the attempt on
+// this device only, and the dashboard on another device never showed it.
+//
+// This is a NEW key. The attempt log itself (KEY above) is unchanged, so
+// history written by an older build loads exactly as before; it simply has no
+// pending list yet, which reads as empty.
+const PENDING_KEY = "ga-exam-history-pending-v1";
+// Kept as well as the stored list, so a browser that refuses storage writes
+// still syncs within the session, as it did before.
+const memoryPending = new Set<string>();
+
+export function readPendingIds(): string[] {
+  const ids = new Set(memoryPending);
+  if (typeof window !== "undefined") {
+    try {
+      const stored: unknown = JSON.parse(localStorage.getItem(PENDING_KEY) || "[]");
+      if (Array.isArray(stored)) {
+        for (const id of stored) if (typeof id === "string" && id) ids.add(id);
+      }
+    } catch {
+      /* unreadable or blocked storage: the in-memory set still stands */
+    }
+  }
+  return [...ids];
+}
+
+function writePendingIds(ids: string[]) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(PENDING_KEY, JSON.stringify(ids));
+  } catch {
+    /* storage full or blocked: memoryPending carries the session */
+  }
+}
+
+function markPending(id: string) {
+  memoryPending.add(id);
+  writePendingIds(readPendingIds());
+}
+
+// Called by the sync ONLY for ids it has finished with: the server took the
+// row, or the attempt has aged out of the local log and can never be sent.
+export function confirmPendingIds(done: string[]): void {
+  if (!done.length) return;
+  const gone = new Set(done);
+  for (const id of gone) memoryPending.delete(id);
+  writePendingIds(readPendingIds().filter(id => !gone.has(id)));
 }
 
 export function readExamHistory(): ExamAttempt[] {
@@ -69,7 +116,7 @@ export function recordExamAttempt(input: {
     ...input,
   };
   const attempts = [attempt, ...readExamHistory()].slice(0, MAX_LOCAL_ATTEMPTS);
-  pendingIds.add(attempt.id);
+  markPending(attempt.id);
   writeExamHistory(attempts);
   return attempt;
 }

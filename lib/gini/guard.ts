@@ -70,6 +70,56 @@ export const ALLOWED_PRICES = new Set<string>([
 ]);
 
 /**
+ * HOW A PRICE IS FOUND IN A SENTENCE, and it is not only the rupee glyph.
+ *
+ * Until 2026-10-08 the check was one pattern anchored on the glyph, with two
+ * holes found by the site audit:
+ *
+ *   1. It swallowed the sentence comma, so a CORRECT price was thrown away:
+ *      "costs ₹7,999, down from ₹12,999" compared "₹7,999," against the list.
+ *   2. It never looked at "Rs. 8,000", "INR 9,999" or "8000 rupees" at all, so
+ *      a price nobody charges reached the student as long as it avoided "₹".
+ *
+ * So a figure now counts as a price when it carries ANY rupee marker, before
+ * it (₹ / Rs / INR) or after it (rupees / Rs / INR / "/-"), and what is
+ * compared is the NUMBER, not the spelling: digits only, commas and a ".00"
+ * dropped. The allowed numbers are still derived from ALLOWED_PRICES above,
+ * which is still imported from lib/live-classes.ts. Nothing is typed here.
+ *
+ * A multiplier ("8k", "8 thousand", "60 lakh") is never how this site states
+ * a price, so a rupee figure carrying one is rejected outright, as is a
+ * spelled-out amount ("eight thousand rupees").
+ *
+ * WHAT THIS STILL CANNOT SEE: a bare number with no rupee marker anywhere
+ * near it ("the batch is 8,000 a subject"). Blocking every number would gag
+ * "4,414 questions" and "20 Oct 2026", so that case is left to the brief.
+ *
+ * No lookbehind on purpose: this module is also imported by the browser
+ * bundle, and older Safari refuses to parse a pattern that contains one.
+ */
+const ALLOWED_AMOUNTS = new Set<string>([...ALLOWED_PRICES].map(p => p.replace(/\D/g, "")));
+
+// Written as regex literals and joined by .source, so no backslash has to
+// survive a string escape.
+const AMOUNT = /\d(?:[\d,]*\d)?(?:\.\d+)?/.source;
+const MULTIPLIER = /(?:\s?(?:k|thousand|lakhs?|lacs?|crores?)(?![a-z]))?/.source;
+const RUPEE_WORD = /(?:rupees?|rs\.?|inr)(?![a-z])/.source;
+const MARKER_FIRST = /(?:₹|\b(?:rs\.?|inr|rupees?))\s?/.source;
+const SPELLED_OUT = /\b(?:hundred|thousand|lakhs?|lacs?|crores?)\s+/.source;
+const PRICE_MENTION = new RegExp(
+  `${MARKER_FIRST}(${AMOUNT})(${MULTIPLIER})` +
+  `|(${AMOUNT})(${MULTIPLIER})\\s?(?:${RUPEE_WORD}|/-)` +
+  `|${SPELLED_OUT}${RUPEE_WORD}`,
+  "gi",
+);
+
+function isAllowedAmount(amount: string): boolean {
+  const [whole, paise] = amount.split(".");
+  if (paise && /[1-9]/.test(paise)) return false;
+  return ALLOWED_AMOUNTS.has(whole.replace(/,/g, ""));
+}
+
+/**
  * Claims a model must not make on this site's behalf. Guarantees about passing
  * an exam are the specific thing coaching centres in this market lie about, and
  * the reason students distrust all of them.
@@ -161,10 +211,11 @@ export function guardModelProse(text: string, opts: { allowTeaching?: boolean } 
   if (OVERCLAIM.test(t)) return { ok: false, why: "unverifiable claim about outcomes" };
 
   // Every price must be one this repository actually charges.
-  const prices = t.match(/₹\s?[\d,]+/g) ?? [];
-  for (const p of prices) {
-    if (!ALLOWED_PRICES.has(p.replace(/\s/g, ""))) {
-      return { ok: false, why: `price not from lib/live-classes.ts: ${p}` };
+  for (const m of t.matchAll(PRICE_MENTION)) {
+    const amount = m[1] ?? m[3];
+    const multiplier = m[2] ?? m[4];
+    if (!amount || multiplier || !isAllowedAmount(amount)) {
+      return { ok: false, why: `price not from lib/live-classes.ts: ${m[0].trim()}` };
     }
   }
 

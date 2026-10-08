@@ -27,7 +27,11 @@ If you add a new third-party (e.g. a new analytics/video host), update the match
 
 ## 2. Dependencies  ✅ kept patched
 
-- Pinned to **Next 16.2.7** (patched the high-severity DoS + middleware/cache advisories).
+- Pinned to **Next 16.3.4**: the exact version in `package.json`, and what `package-lock.json`
+  resolves (checked 2026-10-08). This line said 16.2.7 until then; that earlier pin was recorded
+  as patching the high-severity DoS + middleware/cache advisories. Which advisories 16.3.4
+  closes was **not** re-checked when this line was corrected: `npm audit` is the source of truth.
+  This file does not update itself, so read the version from `package.json`, not from here.
 - Re-run `npm audit` after any dependency change. The only known remaining items are a
   `postcss` transitive dep bundled *inside* Next (build-time only, not runtime-exposed) —
   do **not** "fix" it by downgrading Next.
@@ -303,13 +307,27 @@ are 17 or 18. The lawyer's questions in that document still need a lawyer.
 
 - `ContentProtection.tsx` + `globals.css`: block right-click, copy/cut, drag-save, print, and
   devtools shortcuts site-wide.
-- `tools/protect-notes.mjs`: injects the same protection into every `public/content/**/notes.html`
-  (served in an iframe). **Re-run `node tools/protect-notes.mjs` after any notes rebuild.**
+- Chapter notes render **inside the page**, not in an iframe (since 2026-08-08).
+  `app/components/content/HtmlNotesPage.tsx` puts the chapter into a `.ga-notes` container and
+  carries the protection itself: right-click, copy, cut and drag are blocked on that container,
+  and it is hidden on print.
+- `tools/protect-notes.mjs`: injects the same protection into every `public/content/**/notes.html`.
+  Those files are now the *source* the page is built from and are no longer served to visitors
+  (next point). **Still re-run `node tools/protect-notes.mjs` after any notes rebuild.**
+- The raw chapter files are not downloadable by URL. `next.config.ts` redirects
+  `/content/<subject>/<chapter>/notes.html`, `slides.pdf` and `audio.m4a` (308) to that chapter's
+  notes page, and redirects are checked before files in `public/`. This is a statement about the
+  code as of 2026-10-08; it was not re-tested against the live site when this section was corrected.
 - `Watermark.tsx`: tiles the logged-in user's email across content, so a leaked screenshot is
   traceable to the account.
 
-⚠️ **Reality check:** client-side protection is *deterrence against casual copying only*. Any
-file in `public/` can be fetched directly (e.g. `curl /content/.../notes.html`, `slides.pdf`).
+⚠️ **Reality check:** client-side protection is *deterrence against casual copying only*. The
+notes page itself answers anyone who requests it, a script included, with the whole chapter in
+its HTML. And every other file in `public/` can still be fetched directly. That includes the
+chapter figures: `/content/<subject>/<chapter>/img/` is served on purpose, because the notes
+pages display those images, and the `figs/` and `_assets/` folders sit in `public/` beside them.
+Nothing is deleted by the redirect either: the ten `slides.pdf` and ten `audio.m4a` files are
+still in the repository under `public/`, only unreachable by that URL.
 The robust fix for genuinely sensitive material is **auth-gating** it behind a Supabase login
 and serving it from a protected route — not relying on the browser. Keep the highest-value
 content behind accounts once auth is live.

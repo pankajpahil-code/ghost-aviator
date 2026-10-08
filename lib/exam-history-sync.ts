@@ -10,13 +10,20 @@
 //
 // Every server call fails soft: if the table is missing or the network is
 // down, the site keeps working on localStorage alone.
+//
+// PENDING MEANS PENDING UNTIL THE SERVER SAYS OTHERWISE. The pending ids are
+// stored on the device (lib/exam-history.ts) and one is removed only after its
+// row is confirmed uploaded. A failed push leaves it there for the next start
+// or the next attempt. Before 2026-10-08 the list was emptied first and the
+// result of the upload was never looked at, so a failure was permanent.
 // ─────────────────────────────────────────────────────────────────────────────
 import { getSupabase } from "./supabase";
 import {
   EXAM_HISTORY_EVENT,
   readExamHistory,
   mergeRemoteAttempts,
-  drainPendingIds,
+  readPendingIds,
+  confirmPendingIds,
   type ExamAttempt,
 } from "./exam-history";
 
@@ -36,8 +43,15 @@ type Row = {
   created_at: string;
 };
 
-function rowsForIds(userId: string, ids: string[]): Row[] {
-  const byId = new Map(readExamHistory().map(a => [a.id, a]));
+// Postgres "unique_violation": the row is already on the server.
+const DUPLICATE = "23505";
+// Classes 22 (bad data) and 23 (constraint) are about ONE row, so the rest of
+// the batch is worth sending row by row. Anything else (table missing, not
+// allowed, offline) would fail for every row alike, so it is not retried now.
+const isRowLevel = (code: string | undefined) => /^2[23]/.test(code ?? "");
+
+function rowsForIds(userId: string, history: ExamAttempt[], ids: string[]): Row[] {
+  const byId = new Map(history.map(a => [a.id, a]));
   return ids
     .filter(id => byId.has(id))
     .map(id => {
@@ -77,12 +91,49 @@ export function startExamHistorySync(userId: string): () => void {
 
   let timer: ReturnType<typeof setTimeout> | null = null;
   let stopped = false;
+  let pushing = false;
+  let again = false;
 
   const pushPending = async () => {
     if (stopped) return;
-    const rows = rowsForIds(userId, drainPendingIds());
-    if (rows.length) {
-      await sb.from(TABLE).upsert(rows, { onConflict: "id" });
+    // One push at a time: the start-up reconcile and the debounced push can
+    // overlap, and two of them would send the same rows twice.
+    if (pushing) { again = true; return; }
+    pushing = true;
+    try {
+      const ids = readPendingIds();
+      if (!ids.length) return;
+      const history = readExamHistory();
+      const rows = rowsForIds(userId, history, ids);
+      const settled: string[] = [];
+      // An id whose attempt has aged out of the local log (only the newest 50
+      // are kept) can never be sent. Only trusted when the log is readable and
+      // non-empty, so a storage hiccup cannot wipe the list.
+      if (history.length) {
+        const sendable = new Set(rows.map(r => r.id));
+        settled.push(...ids.filter(id => !sendable.has(id)));
+      }
+      if (rows.length) {
+        // Plain INSERT, not upsert: attempts are an immutable log with insert
+        // and select policies only (SECURITY.md 3c), and an id being retried
+        // may already be there if the first answer was lost on the way back.
+        const { error } = await sb.from(TABLE).insert(rows);
+        if (!error) {
+          settled.push(...rows.map(r => r.id));
+        } else if (isRowLevel(error.code)) {
+          for (const row of rows) {
+            const { error: rowError } = await sb.from(TABLE).insert(row);
+            if (!rowError || rowError.code === DUPLICATE) settled.push(row.id);
+          }
+        }
+      }
+      confirmPendingIds(settled);
+    } finally {
+      pushing = false;
+      if (again && !stopped) {
+        again = false;
+        void pushPending().catch(() => {});
+      }
     }
   };
 
@@ -92,7 +143,8 @@ export function startExamHistorySync(userId: string): () => void {
   };
 
   // Initial reconcile: pull everything the server has, merge into local,
-  // then push up anything recorded locally before sign-in.
+  // then push up anything still pending: recorded before sign-in, in an
+  // earlier visit, or left over from an upload that failed.
   void (async () => {
     try {
       const { data, error } = await sb

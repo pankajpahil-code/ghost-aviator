@@ -59,8 +59,24 @@ const findChapterIn = (s: Subject | undefined, id: string): Chapter | undefined 
 /** Areas where Gini says nothing unprompted. He is a guide, not an interruption. */
 const QUIET: SiteArea[] = ["account", "exam", "simulator", "live-classes"];
 
+/**
+ * Drop trailing slashes with a loop, not with /\/+$/.
+ *
+ * That regex is quadratic on a long run of slashes followed by anything else:
+ * every slash is a fresh place to start a match that then fails at the end.
+ * This string also arrives from the network (the `path` field of /api/gini),
+ * and 50,000 slashes held the event loop for about ten seconds (site audit,
+ * 2026-10-08). The route caps the length too; this keeps the function safe
+ * for any caller that does not.
+ */
+function withoutTrailingSlashes(s: string): string {
+  let end = s.length;
+  while (end > 0 && s.charCodeAt(end - 1) === 47 /* "/" */) end--;
+  return end === s.length ? s : s.slice(0, end);
+}
+
 export function readContext(pathname: string | null | undefined): GiniContext {
-  const path = (pathname || "/").split("?")[0].replace(/\/+$/, "") || "/";
+  const path = withoutTrailingSlashes((pathname || "/").split("?")[0]) || "/";
   const seg = path.split("/").filter(Boolean);
 
   const base = (area: SiteArea, extra: Partial<GiniContext> = {}): GiniContext => ({

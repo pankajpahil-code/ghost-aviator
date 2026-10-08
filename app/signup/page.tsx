@@ -19,8 +19,11 @@ export default function SignupPage() {
     if (password.length < 6) { setState("error"); setMsg("Password must be at least 6 characters."); return; }
     setState("loading");
     const { error } = await sb.auth.signUp({ email: email.trim().toLowerCase(), password, options: { data: { name: name.trim() } } });
-    await captureLead(name.trim(), email.trim().toLowerCase(), "signup");
     if (error) { setState("error"); setMsg(error.message); return; }
+    // Only once the account exists. This line used to run before `error` was
+    // looked at, so a rejected sign-up still put the address on the list.
+    // A failure here must not turn a created account into an error screen.
+    await captureLead(name.trim(), email.trim().toLowerCase(), "signup").catch(() => {});
     setState("done");
     setMsg("Account created! Check your email to confirm, then log in.");
   }

@@ -45,8 +45,16 @@ function overLimit(chatId: number, now: number): boolean {
 function secretOk(req: Request): boolean {
   const expected = process.env.TELEGRAM_WEBHOOK_SECRET || "";
   const got = req.headers.get("x-telegram-bot-api-secret-token") || "";
-  if (!expected || got.length !== expected.length) return false;
-  return timingSafeEqual(Buffer.from(got), Buffer.from(expected));
+  if (!expected) return false;
+  // Compare BYTE lengths, not string lengths. timingSafeEqual throws when the
+  // two buffers differ in size, and a header with one non-ASCII character has
+  // the secret's character count but more bytes: that used to escape as a 500,
+  // which told a stranger how long the secret is. Now it is a 401 like any
+  // other wrong value.
+  const a = Buffer.from(got);
+  const b = Buffer.from(expected);
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(a, b);
 }
 
 type TgChat = { id: number; type: "private" | "group" | "supergroup" | "channel" };
