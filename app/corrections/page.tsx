@@ -13,7 +13,7 @@ import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 export const metadata: Metadata = {
   title: "What Your DGCA Notes Get Wrong — Sourced Corrections | Ghost Aviator",
   description:
-    "Rules that changed and exam facts most notes still teach wrongly — each correction with the rule or circular it comes from, checked by Capt. Pankaj Pahil.",
+    "Rules that changed and exam facts most notes still teach wrongly — each correction with the rule or circular it comes from, checked by Ghost Aviator.",
   alternates: { canonical: "/corrections" },
 };
 

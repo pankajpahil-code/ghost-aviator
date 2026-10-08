@@ -38,7 +38,7 @@ import {
   LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE,
   LIVE_CLASS_SUBJECTS, LIVE_COMBO_SUBJECTS,
 } from "@/lib/live-classes";
-import { TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_PERSONAL } from "@/lib/site";
+import { TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND } from "@/lib/site";
 
 export type PitchKind = "paid" | "free" | "community" | "trust";
 
@@ -75,7 +75,7 @@ export const PITCHES: Pitch[] = [
     weight: 10,
     mood: "present_book",
     say: ctx =>
-      `Capt. Pahil teaches ${liveSubject(ctx)} live himself — ten students in a batch, so every question gets ` +
+      `The Captain teaches ${liveSubject(ctx)} live himself — ten students in a batch, so every question gets ` +
       `answered. ${LIVE_PRICE} for the subject, down from ${LIVE_LIST_PRICE}. Everything you're reading here stays free either way.`,
     href: () => "/live-classes",
   },
@@ -122,8 +122,8 @@ export const PITCHES: Pitch[] = [
     say: ctx => {
       const s = liveSubject(ctx);
       return s
-        ? `If ${s} is the one fighting you, talk to Capt. Pahil himself — this opens a message straight to him. Ten students a batch, ${LIVE_PRICE}, and he teaches it personally. Send it while it's in front of you.`
-        : `You can speak to Capt. Pahil directly about a batch — this opens a message straight to him. He teaches every batch himself, ten students only, ${LIVE_PRICE} a subject.`;
+        ? `If ${s} is the one fighting you, talk to the Captain himself — this opens a chat that reaches him directly. Ten students a batch, ${LIVE_PRICE}, and he teaches it personally. Send it while it's in front of you.`
+        : `You can speak to the Captain directly about a batch — this opens a chat that reaches him directly. He teaches every batch himself, ten students only, ${LIVE_PRICE} a subject.`;
     },
     href: ctx => captainWhatsApp(liveSubject(ctx) ?? undefined),
   },
@@ -168,7 +168,7 @@ export const PITCHES: Pitch[] = [
   {
     id: "books",
     kind: "free",
-    ask: "books written by captain pahil study material read",
+    ask: "books written by the captain study material read",
     fits: ctx => ctx.area !== "books",
     weight: 5,
     mood: "present_book",
@@ -185,9 +185,9 @@ export const PITCHES: Pitch[] = [
     weight: 4,
     mood: "point",
     say: () =>
-      "He teaches on YouTube too: @PankajPahil carries the Radio Navigation series, @Capt.GhostAviator covers " +
-      "Air Regulations and Meteorology. Both free.",
-    href: () => YOUTUBE_PERSONAL,
+      "He teaches on YouTube too: the Ghost Aviator channel, @Capt.GhostAviator, carries his video lectures. " +
+      "Free.",
+    href: () => YOUTUBE_BRAND,
   },
 
   /* ───────────────────────────── the community ────────────────────────── */

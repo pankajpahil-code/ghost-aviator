@@ -13,8 +13,24 @@
 // and schema.org offers must carry the price actually charged, because
 // advertising a struck-through figure as the offer is a false price claim.
 
-export const LIVE_WHATSAPP = "919990226607";
-export const LIVE_EMAIL = "pankaj.pahil@gmail.com";
+/**
+ * CLASS ENQUIRIES — the ONE route for the whole site. 8 Oct 2026, the Captain's ruling: no personal phone
+ * number (and no personal name) anywhere public. Every "enquire / join / paid? / order" button opens the
+ * Ghost Aviator assistant on Telegram; it records the enquiry and alerts the instructor privately, and he
+ * answers in the same chat. The sales desk reads this constant too (sync_knowledge.py -> enquiry_route).
+ * TEMPORARY (8 Oct 2026): points at Neki (@NayKi10_bot), the desk running in LIVE mode, because the
+ * main desk (@GhostAviator2_Bot, Chhotu) is in draft mode and holds every public reply until the Captain
+ * approves it. Switch back to GhostAviator2_Bot when Chhotu goes live.
+ * Never put a phone number or a wa.me link here.
+ */
+export const LIVE_ENQUIRY_URL = "https://t.me/NayKi10_bot?start=enquiry";
+
+/** The enquiry route, tagged so the assistant knows where the student came from (Telegram start
+ *  parameter: A-Z a-z 0-9 _ - only, at most 64 characters). */
+export const enquiryLink = (tag = "enquiry"): string => {
+  const safe = tag.replace(/[^A-Za-z0-9_-]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 64) || "enquiry";
+  return LIVE_ENQUIRY_URL.replace(/([?&]start=)[^&]*/, `$1${safe}`);
+};
 
 /** One subject, live, batch of 10. */
 export const LIVE_LIST_PRICE = "₹12,999";
@@ -28,15 +44,15 @@ export const LIVE_COMBO_PRICE = "₹14,999";
 export const LIVE_PRICE_VALUE = "7999";
 export const LIVE_COMBO_PRICE_VALUE = "14999";
 
-export const liveWaLink = (subject: string, price: string) =>
-  `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
-    `Hello Capt. Pahil, I want to join the ${subject} batch (${price}). Please share the details.`
-  )}`;
+/** "Enquire" for one batch. (Was a WhatsApp link to a personal number until 8 Oct 2026.) */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const liveEnquiryLink = (subject: string, _price?: string): string =>
+  enquiryLink("join_" + subject.toLowerCase());
 
 /**
  * Direct payment links (Instamojo / Razorpay payment pages) for automated enrollment.
  * When a URL is configured here, students can pay directly online without waiting for manual WhatsApp replies.
- * If empty/undefined, liveEnrollLink gracefully falls back to the pre-filled WhatsApp link.
+ * If empty/undefined, liveEnrollLink falls back to the enquiry route (LIVE_ENQUIRY_URL).
  */
 export const LIVE_PAYMENT_LINKS: Record<string, string> = {
   "general": "",
@@ -68,10 +84,9 @@ export const liveUpiLink = (amountValue: string, note: string): string =>
   `&am=${amountValue}.00&cu=INR&tn=${encodeURIComponent(note)}`;
 
 /** After paying by UPI there is no automatic receipt — the student sends the screenshot. */
-export const livePaidLink = (what: string, price: string): string =>
-  `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
-    `Hello, I have paid ${price} by UPI to ${LIVE_UPI_VPA} for the ${what}. Sending the payment screenshot to confirm my seat.`
-  )}`;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const livePaidLink = (what: string, _price?: string): string =>
+  enquiryLink("paid_" + what.toLowerCase());
 
 /** Direct payment link for the full 3-subject Navigation Combo. */
 export const LIVE_COMBO_PAYMENT_LINK: string = "";
@@ -83,29 +98,26 @@ export const hasLiveComboPaymentLink = (): boolean =>
   Boolean(LIVE_COMBO_PAYMENT_LINK.trim());
 
 /**
- * Returns the direct payment/enrollment URL if configured; otherwise falls back to smart WhatsApp checkout.
+ * Returns the direct payment/enrollment URL if configured; otherwise the enquiry route.
  */
 export const liveEnrollLink = (subjectKey: string, subjectDisplayName: string, price: string): string => {
   const directUrl = LIVE_PAYMENT_LINKS[subjectKey];
   if (hasLivePaymentLink(subjectKey)) {
     return directUrl;
   }
-  return `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
-    `Hello Capt. Pahil, I want to enroll & pay for the ${subjectDisplayName} live batch (${price}). Please share the payment link / UPI QR.`
-  )}`;
+  void subjectDisplayName; void price;
+  return enquiryLink("enrol_" + subjectKey);
 };
 
 /**
- * Returns the direct combo payment URL if configured; otherwise WhatsApp fallback.
+ * Returns the direct combo payment URL if configured; otherwise the enquiry route.
  */
 export const liveComboEnrollLink = (): string => {
   const directComboUrl: string = LIVE_COMBO_PAYMENT_LINK;
   if (hasLiveComboPaymentLink()) {
     return directComboUrl;
   }
-  return `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
-    `Hello Capt. Pahil, I want to enroll & pay for the Navigation Combo live batch (3 subjects — ${LIVE_COMBO_PRICE}). Please share the payment link / UPI QR.`
-  )}`;
+  return enquiryLink("enrol_nav_combo");
 };
 
 // Site subject id → live-class display name. A subject appears in upsell
@@ -123,14 +135,14 @@ export const LIVE_CLASS_SUBJECTS: Record<string, string> = {
 export const LIVE_BATCH_META = {
   subjectSlug: "meteorology" as const,
   subjectTitle: "Aviation Meteorology",
-  instructor: "Capt. Pankaj Pahil",
+  instructor: "Ghost Aviator",
   mode: "Google Meet",
   maxSeats: 10,
   durationLabel: "4–6 weeks",
   startDateIST: "2026-10-20",
   startLabel: "Monday, 20 Oct 2026 (IST)",
   priceINR: 7999,
-  enrollWhatsApp: `https://wa.me/${LIVE_WHATSAPP}`,
+  enrollLink: enquiryLink("enrol_meteorology"),
   telegramInvite: "https://t.me/+tgLMJithc1gzOWJl",
 } as const;
 
@@ -140,8 +152,9 @@ export const LIVE_BATCH_META = {
  * the branded bot username in @BotFather (the current token's username is not branded).
  * The start tag tells the bot where the student came from, and opens the right flow:
  * a tag containing "career" opens the Career Navigator, "quiz" the readiness check.
+ * TEMPORARY (8 Oct 2026): Neki (live) for the same reason as LIVE_ENQUIRY_URL above; was "GhostAviator2_Bot".
  */
-export const LIVE_TELEGRAM_BOT: string = "GhostAviator2_Bot";
+export const LIVE_TELEGRAM_BOT: string = "NayKi10_bot";
 
 export const botLink = (tag: string): string =>
   LIVE_TELEGRAM_BOT ? `https://t.me/${LIVE_TELEGRAM_BOT}?start=${encodeURIComponent(tag)}` : "";

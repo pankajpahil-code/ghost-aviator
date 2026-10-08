@@ -115,7 +115,7 @@ img, svg, video, audio {
 @media print {
   body * { visibility: hidden !important; }
   body::after {
-    content: "Printing is disabled — © Ghost Aviator · Capt. Pankaj Pahil";
+    content: "Printing is disabled — © Ghost Aviator";
     visibility: visible;
     position: fixed; top: 40%; left: 0; right: 0; text-align: center;
     color: #000; font-size: 18px; font-weight: bold;

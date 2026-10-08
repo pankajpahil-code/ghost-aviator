@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck, Search, XCircle, AlertTriangle, MessageCircle, Mail } from "lucide-react";
+import { ShieldCheck, Search, XCircle, AlertTriangle, MessageCircle } from "lucide-react";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { VERIFICATION, LEVEL_LABEL, LEVEL_COLOR } from "@/lib/verification-status";
-import { LIVE_WHATSAPP } from "@/lib/live-classes";
+import { enquiryLink } from "@/lib/live-classes";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 const ACCENT = "#ab794d";
@@ -18,9 +18,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/how-answers-are-verified" },
 };
 
-const WA_ERROR = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
-  "Hello Capt. Pahil, I think I have found a mistake in a question on Ghost Aviator. Here are the details:"
-)}`;
+const WA_ERROR = enquiryLink("report_error");   // 8 Oct 2026: the Telegram assistant, not a personal number
 
 const questionsFor = (subjectId: string) =>
   ALL_QUESTIONS.filter(q => q.subjectIds?.includes(subjectId)).length;
@@ -189,16 +187,9 @@ export default function HowAnswersAreVerifiedPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white transition-colors no-underline"
-              style={{ background: "#25D366" }}
+              style={{ background: "#229ED9" }}
             >
-              <MessageCircle className="w-4 h-4" /> Report it on WhatsApp
-            </a>
-            <a
-              href="mailto:pankaj.pahil@gmail.com?subject=Possible%20error%20on%20Ghost%20Aviator"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-colors no-underline"
-              style={{ color: ACCENT, border: `1px solid ${ACCENT}55`, background: `${ACCENT}12` }}
-            >
-              <Mail className="w-4 h-4" /> Email me
+              <MessageCircle className="w-4 h-4" /> Report it on Telegram
             </a>
           </div>
         </section>
@@ -208,7 +199,7 @@ export default function HowAnswersAreVerifiedPage() {
           <p className="text-base" style={{ color: "#94a3b8" }}>
             The checking is done by{" "}
             <Link href="/about" className="font-bold no-underline" style={{ color: ACCENT }}>
-              Capt. Pankaj Pahil
+              Ghost Aviator
             </Link>
             {" "}— a pilot, a DGCA flight and ground instructor, and the author of two aviation books.
           </p>

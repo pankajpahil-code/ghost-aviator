@@ -185,7 +185,7 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
                   {subject.shortName.toUpperCase()} — CHAPTER {chapter.number} · NOTES
                 </div>
                 <h1 className="text-xl font-black text-white">{chapter.title}</h1>
-                <p className="text-xs mt-0.5" style={{ color: "#64748b" }}>by Capt. Pankaj Pahil</p>
+                <p className="text-xs mt-0.5" style={{ color: "#64748b" }}>by Ghost Aviator</p>
               </div>
             </div>
 
@@ -312,7 +312,7 @@ ${notes.css}
               <div className="text-sm font-bold text-white mb-1">Study {subject.shortName} with other student pilots</div>
               <div className="text-xs" style={{ color: "#94a3b8" }}>
                 Join the free {subject.shortName} group on Telegram. Stuck on a doubt? Type /q and your question, and
-                get an answer from Capt. Pankaj Pahil&apos;s notes.
+                get an answer from Ghost Aviator&apos;s notes.
               </div>
             </div>
             <a href={SUBJECT_TELEGRAM_GROUPS[subject.id]} target="_blank" rel="noopener noreferrer"

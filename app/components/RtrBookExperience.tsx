@@ -70,7 +70,7 @@ export default function RtrBookExperience({ subject }: { subject: Subject }) {
           </p>
 
           <div className="rtrx-author">
-            <div className="rtrx-author-name">Capt. Pankaj Pahil</div>
+            <div className="rtrx-author-name">Ghost Aviator</div>
             <div className="rtrx-author-role">Pilot · Flight Instructor · Ground Instructor · 17 years in aviation</div>
           </div>
 
@@ -172,7 +172,7 @@ export default function RtrBookExperience({ subject }: { subject: Subject }) {
           <Sparkles className="w-5 h-5" style={{ color: "#fbbf24" }} />
           <p>
             &ldquo;May your readback always be correct, and your skies always clear.&rdquo;
-            <span>— Capt. Pankaj Pahil · Ghost Aviator</span>
+            <span>— Ghost Aviator</span>
           </p>
         </div>
       </main>

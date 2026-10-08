@@ -33,7 +33,7 @@ export default function Navbar() {
                    style={{ background:"linear-gradient(135deg,#7ad9ff,#f3c889)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
                 Ghost Aviator
               </div>
-              <div className="text-xs leading-none" style={{ color:"rgba(243,200,137,0.55)" }}>Capt. Pankaj Pahil</div>
+              <div className="text-xs leading-none" style={{ color:"rgba(243,200,137,0.55)" }}>Ghost Aviator</div>
             </div>
           </Link>
 

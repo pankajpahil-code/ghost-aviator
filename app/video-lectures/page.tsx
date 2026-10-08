@@ -9,7 +9,7 @@ const { cpl, atpl } = videoIndex();
 const totals = videoIndexTotals();
 
 export const metadata: Metadata = {
-  title: `DGCA Video Lectures (CBT) — ${totals.distinctLectures} Free Classes by Capt. Pankaj Pahil | Ghost Aviator`,
+  title: `DGCA Video Lectures (CBT) — ${totals.distinctLectures} Free Classes by Ghost Aviator`,
   description:
     `Every DGCA CPL and ATPL video lecture in one place — ${totals.distinctLectures} free classes across ` +
     `${totals.subjects} subjects and ${totals.chapters} chapters. Meteorology, Air Regulations, ` +
@@ -152,7 +152,7 @@ export default function VideoLecturesPage() {
             DGCA Video Lectures
           </h1>
           <p className="text-base max-w-2xl mx-auto mb-6" style={{ color: "#64748b" }}>
-            Every lecture Capt. Pankaj Pahil has recorded, organised the way you study —
+            Every lecture the Captain has recorded, organised the way you study —
             subject, then chapter. Free to watch, no sign-up, no paywall.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-2">
@@ -223,11 +223,6 @@ export default function VideoLecturesPage() {
             on the channel first, then here.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <a href="https://www.youtube.com/@PankajPahil" target="_blank" rel="noopener noreferrer"
-               className="px-4 py-2.5 rounded-xl text-sm font-bold no-underline"
-               style={{ background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.35)", color: "#f87171" }}>
-              ▶ @PankajPahil
-            </a>
             <a href="https://www.youtube.com/@Capt.GhostAviator" target="_blank" rel="noopener noreferrer"
                className="px-4 py-2.5 rounded-xl text-sm font-bold no-underline"
                style={{ background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.35)", color: "#f87171" }}>

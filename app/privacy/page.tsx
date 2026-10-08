@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LIVE_EMAIL, LIVE_WHATSAPP } from "@/lib/live-classes";
+import { enquiryLink } from "@/lib/live-classes";
 
 // Every sentence on this page is a claim about what the code does. Checked against the code on 24 Sep 2026:
 // accounts (Supabase) are NOT switched on in production; progress lives in localStorage; Gini's route keeps
 // the IP only in an in-memory rate limiter; the sales assistant stores chats on the Captain's own computer
 // (D:\pk\ghost-sales-desk) and deletes a person on "delete my data" (engine.forget). Change the code, change this.
-const UPDATED = "24 September 2026";
+const UPDATED = "8 October 2026";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — Ghost Aviator",
@@ -30,16 +30,24 @@ function Section({ id, title, children }: { id?: string; title: string; children
 }
 
 export default function PrivacyPage() {
-  const wa = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent("Hello Capt. Pahil, please delete my data. My name / chat is:")}`;
+  const tg = enquiryLink("privacy");   // 8 Oct 2026: no personal phone number or personal email in public
   return (
     <div style={{ background: "#0b1117" }} className="min-h-screen pb-20">
       <div className="max-w-3xl mx-auto px-4 pt-24">
         <p className="text-xs uppercase tracking-widest mb-2" style={{ color: ACCENT }}>Ghost Aviator</p>
         <h1 className="text-3xl font-bold mb-3" style={{ color: "#f8fafc" }}>Privacy Policy</h1>
         <p className="mb-8 text-sm" style={{ color: "#94a3b8" }}>
-          Last updated {UPDATED}. Ghost Aviator is run by Capt. Pankaj Pahil. Questions about this page:{" "}
-          <a href={`mailto:${LIVE_EMAIL}`} style={{ color: ACCENT }}>{LIVE_EMAIL}</a>.
+          Last updated {UPDATED}. Questions about this page:{" "}
+          <a href={tg} style={{ color: ACCENT }}>message Ghost Aviator on Telegram</a>.
         </p>
+
+        <Section title="Who we are">
+          <p>This website (ghostaviator.com) and its assistants on Telegram, Instagram, Facebook, WhatsApp and YouTube are
+            run by <strong>Ghost Aviator</strong>. Ghost Aviator decides what is stored about you and why, and is the one to ask
+            about anything on this page.</p>
+          <p><strong>Contact:</strong> <a href={tg} style={{ color: ACCENT }}>message Ghost Aviator on Telegram</a>.
+            We reply in the same chat.</p>
+        </Section>
 
         <Section title="The short version">
           <p>You can use every chapter, question and tool on this website without an account and without telling us who you are.</p>
@@ -62,8 +70,8 @@ export default function PrivacyPage() {
             that app, the name the app shows us, the messages or comments you send and our replies, and anything you choose to
             tell us, such as your exam, subjects or exam month.</p>
           <p><strong>Why:</strong> to answer you, to remember where your conversation left off, and to follow up about the
-            classes you asked about. Capt. Pahil sees these conversations so he can reply personally.</p>
-          <p><strong>Where:</strong> on Capt. Pahil&rsquo;s own computer. It is not sold, rented or shared with anyone else.
+            classes you asked about. The Captain sees these conversations so he can reply personally.</p>
+          <p><strong>Where:</strong> on Ghost Aviator&rsquo;s own computer. It is not sold, rented or shared with anyone else.
             The messaging app you used (Telegram or Meta) also keeps its own copy under its own policy.</p>
           <p><strong>Your choices:</strong> send <strong>stop</strong> and we stop follow-up messages. The daily practice
             question is sent only if you ask for it, and <strong>stop daily</strong> ends it.</p>
@@ -73,14 +81,13 @@ export default function PrivacyPage() {
 
         <Section title="Payments">
           <p>You pay for live classes in your own UPI app. We never see your bank, card or UPI PIN details. If you send us a
-            payment screenshot, Capt. Pahil uses it only to confirm your seat.</p>
+            payment screenshot, the Captain uses it only to confirm your seat.</p>
         </Section>
 
         <Section id="delete-your-data" title="Delete your data">
           <p>Send <strong>delete my data</strong> to our assistant in the same chat you used. It deletes your record, your
             messages and anything waiting to be sent to you, straight away, and confirms in one last message.</p>
-          <p>Or ask us by <a href={wa} style={{ color: ACCENT }}>WhatsApp</a> or{" "}
-            <a href={`mailto:${LIVE_EMAIL}?subject=${encodeURIComponent("Delete my data")}`} style={{ color: ACCENT }}>email</a>{" "}
+          <p>Or ask us on <a href={tg} style={{ color: ACCENT }}>Telegram</a>{" "}
             and we will delete it within 30 days.</p>
         </Section>
 

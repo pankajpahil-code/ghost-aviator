@@ -25,7 +25,7 @@ import {
   LIVE_LIST_PRICE,
   LIVE_COMBO_PRICE,
   LIVE_COMBO_LIST_PRICE,
-  LIVE_WHATSAPP,
+  enquiryLink,
   LIVE_UPI_VPA,
   LIVE_UPI_PAYEE,
 } from "@/lib/live-classes";
@@ -42,11 +42,10 @@ export const abs = (href: string): string =>
   /^https?:\/\//i.test(href) ? href : SITE + (href.startsWith("/") ? href : "/" + href);
 
 /** Hand-off to a human, with the context already written so nobody has to retype it. */
-export const talkLink = (topic?: string): string =>
-  `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
-    "Hello, I came from the Ghost Aviator Telegram bot." +
-      (topic ? ` My question is about: ${topic.slice(0, 120)}` : ""),
-  )}`;
+// 8 Oct 2026: no personal phone number in public - the hand-off goes to the Ghost Aviator assistant, which
+// records the enquiry and alerts the instructor privately.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const talkLink = (topic?: string): string => enquiryLink("site_bot");
 
 const clip = (s: string): string =>
   s.length <= MAX_LEN ? s : s.slice(0, MAX_LEN - 1).replace(/\s+\S*$/, "") + "…";
@@ -87,7 +86,7 @@ const ADAPT =
   "The free ADAPT simulator is timed and scored in the same shape. Use it before your date, not after.";
 
 const TALK =
-  "Tap below to message our instructor on WhatsApp — your enquiry is already written, just send it.";
+  "Tap below to message the Ghost Aviator assistant — it passes your enquiry to our instructor, who replies personally.";
 
 // --------------------------------------------------------------- buttons
 
@@ -154,6 +153,7 @@ function commandReply(cmd: string): BotReply | null {
  *  "Read the full chapter" is a small lie a student notices. */
 function labelFor(href: string): string {
   if (/wa\.me|whatsapp/i.test(href)) return "💬 Message on WhatsApp";
+  if (/t\.me\/(GhostAviator2_Bot|NayKi10_bot)/i.test(href)) return "💬 Message our assistant";
   if (/\/live-classes/.test(href)) return "🎓 See batches & enrol";
   if (/\/rtr-simulator/.test(href)) return "🎙️ Open the RTR simulator";
   if (/\/adapt-test/.test(href)) return "🧠 Open the ADAPT test";

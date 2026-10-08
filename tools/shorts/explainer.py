@@ -61,7 +61,7 @@ TOPICS = {
                                                     ("runs out", 46, "muted")],
              ["DISSIPATING STAGE", "Only Downdraughts", "decreases as moisture is depleted"]),
             (26.6, 30.0, "", [("Full chapter, free", 60, "white"), ("ghostaviator.com", 76, "amber"),
-                              ("DGCA Meteorology · Capt. Pankaj Pahil", 40, "muted")], []),
+                              ("DGCA Meteorology · Ghost Aviator", 40, "muted")], []),
         ],
         "flashes": [0.15, 1.1, 2.4, 16.4, 18.1, 19.2, 20.7],
         "caption": ("How is a thunderstorm born? Three ingredients, three stages" + NL + NL +

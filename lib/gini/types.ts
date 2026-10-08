@@ -55,7 +55,7 @@ export const REFUSALS: Record<RefusalReason, string> = {
   "no-explanation":
     "The answer is marked, but nobody has written the explanation for this one yet — so I won't invent one. Work through it with the notes for this chapter.",
   "not-verified":
-    "I don't have a verified answer for that, and I'm not going to guess at it. Ask Capt. Pahil — the WhatsApp group is the fastest way to reach him.",
+    "I don't have a verified answer for that, and I'm not going to guess at it. Ask the Captain — the WhatsApp group is the fastest way to reach him.",
   "needs-figure":
     "This one depends on a diagram you can't see from here, so reading it out would mislead you. Open the chapter notes instead.",
   "out-of-scope":

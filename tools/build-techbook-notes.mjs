@@ -125,10 +125,10 @@ function pageHtml(ch) {
 <div class="cover">
   <div class="part">${esc(ch.part)}</div>
   <h1>Chapter ${ch.n}: ${esc(ch.title)}</h1>
-  <p class="author">Technical General for Aviators — Capt. Pankaj Pahil</p>
+  <p class="author">Technical General for Aviators — Ghost Aviator</p>
 </div>
 ${renderBody(ch.lines)}
-<div class="footer">© Ghost Aviator · Technical General for Aviators · Capt. Pankaj Pahil</div>
+<div class="footer">© Ghost Aviator · Technical General for Aviators · Ghost Aviator</div>
 </body>
 </html>
 `;

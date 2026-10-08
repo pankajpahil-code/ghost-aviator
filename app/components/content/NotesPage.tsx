@@ -149,7 +149,7 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
           <div className="text-4xl mb-3">📝</div>
           <h3 className="text-lg font-black text-white mb-2">Detailed Notes Being Prepared</h3>
           <p className="text-sm max-w-md mx-auto mb-6" style={{ color: "#64748b" }}>
-            Full chapter notes with diagrams, mnemonics, and exam-focused explanations are being written by Capt. Pankaj Pahil.
+            Full chapter notes with diagrams, mnemonics, and exam-focused explanations are being written by Ghost Aviator.
           </p>
           <div className="flex justify-center gap-3 flex-wrap">
             <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}

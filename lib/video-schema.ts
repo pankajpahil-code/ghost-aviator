@@ -116,7 +116,7 @@ export function isWatchPage(
 function describe(meta: VideoMeta, chapterTitle: string): string {
   const isCallToAction = meta.description.includes("ghostaviator.com");
   if (meta.description && !isCallToAction) return meta.description;
-  return `${meta.name} — ${chapterTitle}. A free DGCA CPL/ATPL ground school lecture by Capt. Pankaj Pahil.`;
+  return `${meta.name} — ${chapterTitle}. A free DGCA CPL/ATPL ground school lecture by Ghost Aviator.`;
 }
 
 export function videoObjectsFor(

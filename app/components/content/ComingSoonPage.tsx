@@ -6,7 +6,7 @@ const TYPE_INFO: Record<string, { icon: string; title: string; desc: string; eta
   video: {
     icon: "🎥",
     title: "Video Lecture",
-    desc: "Full-length video explanation by Capt. Pankaj Pahil, walking through every topic in this chapter with real-world cockpit examples.",
+    desc: "Full-length video explanation by Ghost Aviator, walking through every topic in this chapter with real-world cockpit examples.",
     eta: "In Production",
   },
 };
