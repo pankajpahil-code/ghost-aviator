@@ -122,8 +122,8 @@ export const PITCHES: Pitch[] = [
     say: ctx => {
       const s = liveSubject(ctx);
       return s
-        ? `If ${s} is the one fighting you, talk to Capt. Pahil himself — this opens a message straight to him. Ten students a batch, ${LIVE_PRICE}, and he teaches it personally. Send it while it's in front of you.`
-        : `You can speak to Capt. Pahil directly about a batch — this opens a message straight to him. He teaches every batch himself, ten students only, ${LIVE_PRICE} a subject.`;
+        ? `If ${s} is the one fighting you, talk to Capt. Pahil himself — this opens a chat that reaches him directly. Ten students a batch, ${LIVE_PRICE}, and he teaches it personally. Send it while it's in front of you.`
+        : `You can speak to Capt. Pahil directly about a batch — this opens a chat that reaches him directly. He teaches every batch himself, ten students only, ${LIVE_PRICE} a subject.`;
     },
     href: ctx => captainWhatsApp(liveSubject(ctx) ?? undefined),
   },

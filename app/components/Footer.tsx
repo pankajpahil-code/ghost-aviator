@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Ghost, Send, Phone } from "lucide-react";
+import { Ghost, Send } from "lucide-react";
 import EmailCapture from "./EmailCapture";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 
@@ -32,11 +32,6 @@ export default function Footer() {
                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium no-underline"
                  style={{ background: "rgba(240,145,58,0.1)", color: "#f0913a", border: "1px solid rgba(240,145,58,0.2)" }}>
                 <Send className="w-4 h-4" /> Join Telegram Community
-              </a>
-              <a href="tel:+919990226607"
-                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium no-underline"
-                 style={{ background: "rgba(240,145,58,0.05)", color: "#94a3b8", border: "1px solid rgba(240,145,58,0.15)" }}>
-                <Phone className="w-4 h-4" /> +91 99902 26607
               </a>
             </div>
           </div>

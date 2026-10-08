@@ -34,7 +34,7 @@
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import {
   LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE,
-  LIVE_CLASS_SUBJECTS, LIVE_WHATSAPP,
+  LIVE_CLASS_SUBJECTS, enquiryLink,
 } from "@/lib/live-classes";
 import { TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_PERSONAL, YOUTUBE_BRAND } from "@/lib/site";
 import { CORPUS } from "./generated/corpus-stats";
@@ -47,11 +47,10 @@ import { CORPUS } from "./generated/corpus-stats";
  * compose the first message often never sends it.
  */
 export const captainWhatsApp = (subject?: string) =>
-  `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
-    subject
-      ? `Hello Capt. Pahil, I want to join your live ${subject} batch. Please share the details.`
-      : `Hello Capt. Pahil, I want to know more about your live DGCA classes.`,
-  )}`;
+  // 8 Oct 2026, the Captain's ruling: no personal phone number in public. The "direct line" is now the
+  // Ghost Aviator assistant on Telegram; it records the enquiry and alerts him privately. (Name kept so
+  // callers need not change.)
+  enquiryLink(subject ? "gini_" + subject.toLowerCase() : "gini");
 
 /** Everywhere Gini is permitted to send a student. Nothing else is a valid link. */
 export const ALLOWED_HREFS = new Set<string>([
@@ -114,7 +113,7 @@ export function systemBrief(): string {
     "  - Say you understand which subject is hurting, by name.",
     "  - Tell them what the batch actually is: the Captain teaching it himself, live, ten students only, so their doubt gets answered in the room instead of being lost.",
     "  - Give the real price, and mention the free material does not go away either way.",
-    `  - Then hand them the direct line and ask them to take it: the WhatsApp link ${captainWhatsApp()} opens a message straight to Capt. Pahil. Invite them to send it now while it is in front of them.`,
+    `  - Then hand them the direct line and ask them to take it: the Telegram link ${captainWhatsApp()} opens a chat with the Ghost Aviator assistant, which passes it straight to the Captain. Invite them to send it now while it is in front of them. Never give out any phone number.`,
     "Be warm, be confident, be specific, and ask for the enrolment plainly. Never beg, never pressure, never repeat a pitch a student has already declined — if they say no, say that the free material is genuinely enough for many students, and go back to helping.",
     "",
     "HOW TO SPEAK: plain, direct, warm. HARD LIMIT: at most THREE sentences and under 400 characters — you are speaking in a small bubble beside the page, not writing a page. Indian English, and English only: never switch script mid-sentence. Write PROSE ONLY: never emit code, markup, JSON, a tag, or a key=value fragment — a student sees this text exactly as you write it. No hype, no exclamation marks, no emoji. You are a knowledgeable, well-mannered person at a desk, not an advertisement.",
