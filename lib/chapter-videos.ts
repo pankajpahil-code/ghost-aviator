@@ -23,9 +23,13 @@
 //
 // ⚠️ ONE LECTURE MAY SERVE TWO CHAPTERS. inst-14 and inst-15 both point at the
 // same "Turn Co-ordinator and Turn and Slip Indicator" lecture because that is
-// genuinely what it teaches. This is safe — video pages are not submitted to
-// the sitemap, so it cannot create the duplicate-URL problem that the
-// subject-wide question fallback did.
+// genuinely what it teaches. Know what that costs: video pages ARE submitted
+// to the sitemap (isIndexableChapterRoute "video" is true whenever a lecture is
+// mapped, and app/sitemap.ts adds a <video:video> entry for each), so a lecture
+// mapped to two chapters is declared on two watch URLs with the same player
+// location. As of 2026-10-08, 24 lecture ids are shared by two or more
+// chapters (e.g. ar-1 and aar-1 share three). That is a known duplication, not
+// a harmless one; do not add shared mappings casually.
 //
 // Hindi lectures are wired as an extra labelled entry on the same chapter
 // rather than a separate route, so a student picks the language they think in

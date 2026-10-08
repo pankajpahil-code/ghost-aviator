@@ -24,16 +24,23 @@ export default async function ATPLChapterLayout({
   }
 
   const base = `${SITE_URL}/atpl/${subject.id}/${chapter.id}`;
+  // This layout has no page.tsx of its own: `base` itself is a 404. A layout is
+  // not given the [type] segment, so the Course node cannot name the exact
+  // route it sits on (the CPL page does). It names the chapter's notes route
+  // instead: every ATPL chapter has one, it is the chapter's primary page, and
+  // it is the canonical the notes page declares for itself. The same @id on the
+  // sibling routes then reads as one course described on several of its pages.
+  const home = `${base}/notes`;
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Course",
-        "@id": `${base}#course`,
+        "@id": `${home}#course`,
         "name": `Chapter ${chapter.number}: ${chapter.title} - ${subject.shortName} ATPL`,
         "description": chapter.description || `${subject.shortName} Chapter ${chapter.number} study material for DGCA ATPL exams.`,
-        "url": base,
+        "url": home,
         "inLanguage": "en",
         "isAccessibleForFree": true,
         "teaches": chapter.title,

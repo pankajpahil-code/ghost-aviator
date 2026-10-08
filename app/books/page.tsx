@@ -175,6 +175,9 @@ export default function BooksPage() {
   const featured = BOOKS[0];
   const otherLive = BOOKS.slice(1).filter(b => b.status === "live");
   const upcoming = BOOKS.filter(b => b.status === "coming-soon");
+  // Structured data describes what exists. A "coming-soon" title is not a
+  // published Book, and its href is only a subject hub.
+  const liveBooks = BOOKS.filter(b => b.status === "live");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -193,8 +196,8 @@ export default function BooksPage() {
         "@type": "ItemList",
         "@id": `${SITE_URL}/books#list`,
         name: "DGCA Pilot Training Digital Books",
-        numberOfItems: BOOKS.length,
-        itemListElement: BOOKS.map((b, i) => ({
+        numberOfItems: liveBooks.length,
+        itemListElement: liveBooks.map((b, i) => ({
           "@type": "ListItem",
           position: i + 1,
           item: {
