@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { getChapterSpecificQuestions } from "@/lib/questions";
+import { getChapterSpecificQuestions, getSubjectQuestionPool } from "@/lib/questions";
+import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { servesRealNotes } from "@/lib/indexability";
 import { notFound } from "next/navigation";
@@ -19,6 +20,38 @@ const CONTENT_COLORS: Record<string, string> = {
   notes: "#ab794d", video: "#ef4444",
   questions: "#10b981", "mock-test": "#f3c889", "chapter-quiz": "#f97316",
 };
+
+// What /mock-test really runs (buildConfig in app/mock-test/page.tsx): the mid-subject
+// test is a random draw of up to 40 questions from the WHOLE subject bank in 45
+// minutes, and the full / sample tests draw up to subject.totalQuestions in
+// subject.examDuration minutes. That file is a client page and cannot export these,
+// so the two mid-test values are mirrored here: change them together.
+const MID_TEST_QUESTIONS = 40;
+const MID_TEST_MINUTES = 45;
+// A bank this small cannot honestly be sold as a test (Technical Performance holds
+// 2 questions, and a 100% on 2 is not a result), so below it no test is advertised.
+const MIN_TEST_POOL = 10;
+
+// How DGCA actually examines is in lib/exam-papers.ts (figures verified by the
+// Captain). subjects.ts holds study-side placeholders (50 Qs / 60 min for nearly
+// every subject) that contradict it. The composite paper is the foreign-CPL
+// conversion paper, never the one a subject is normally sat in.
+function paperFor(subjectId: string) {
+  return EXAM_PAPERS.find(p => p.track === "cpl" && !p.id.startsWith("composite") && p.subjectIds.includes(subjectId));
+}
+
+function minutesText(min: number): string {
+  return min % 60 === 0 ? `${min / 60} ${min === 60 ? "hour" : "hours"}` : `${min} minutes`;
+}
+
+// Chapter durations are strings like "2 hrs", "1.5 hrs", "1 hr", "30 min". parseInt
+// read "30 min" as 30 hours and "1.5 hrs" as 1. A string it cannot read counts as 0.
+function durationHours(duration: string): number {
+  const m = /^\s*(\d+(?:\.\d+)?)\s*(min(?:ute)?s?|h(?:ou)?rs?)\b/i.exec(duration);
+  if (!m) return 0;
+  const n = parseFloat(m[1]);
+  return /^m/i.test(m[2]) ? n / 60 : n;
+}
 
 export function generateStaticParams() {
   return CPL_SUBJECTS.map(s => ({ subject: s.id }));
@@ -47,7 +80,14 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
     return <RtrBookExperience subject={subject} />;
   }
 
-  const midpoint = Math.ceil(subject.chapters.length / 2);
+  // Real figures, read from the question bank (Iron Rule 5), never hand-typed.
+  const pool = getSubjectQuestionPool(subject.id).length;
+  const testsOpen = pool >= MIN_TEST_POOL;
+  const midQs = Math.min(MID_TEST_QUESTIONS, pool);
+  const fullQs = Math.min(subject.totalQuestions, pool);
+  const paper = paperFor(subject.id);
+  const passMark = paper?.passMark ?? subject.passMark;
+  const studyHours = Math.round(subject.chapters.reduce((s, c) => s + durationHours(c.duration), 0) * 10) / 10;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -98,9 +138,11 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
           <div className="flex flex-wrap gap-4">
             {[
               [`${subject.chapters.length} Chapters`, subject.color],
-              [`${subject.examDuration} min Exam`, "#475569"],
-              [`${subject.totalQuestions} Qs in Paper`, "#475569"],
-              [`${subject.passMark}% to Pass`, "#22c55e"],
+              ...(paper ? [
+                [`${paper.durationMin} min Exam`, "#475569"],
+                [`${paper.questionCount} Qs in ${paper.subjectIds.length > 1 ? `the combined ${paper.shortTitle} paper` : "Paper"}`, "#475569"],
+              ] : []),
+              [`${passMark}% to Pass`, "#22c55e"],
             ].map(([v, c]) => (
               <span key={v} className="text-sm px-3 py-1 rounded-full font-medium"
                     style={{ background:`${c}15`, border:`1px solid ${c}35`, color: c }}>
@@ -132,7 +174,7 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
           <p className="text-slate-300 leading-relaxed">
             The DGCA {subject.name} (CPL) exam requires a solid conceptual foundation rather than rote memorization. 
             This paper tests your knowledge across {subject.chapters.length} chapters, covering everything from fundamental principles to practical in-flight applications. 
-            You must score a minimum of <strong>{subject.passMark}%</strong> on the {subject.totalQuestions}-question, {subject.examDuration}-minute exam.
+            You must score a minimum of <strong>{passMark}%</strong>{paper ? ` on the ${paper.questionCount}-question, ${paper.durationMin}-minute DGCA paper${paper.subjectIds.length > 1 ? ` (the combined ${paper.shortTitle} paper)` : ""}` : " to pass"}.
           </p>
           <p className="text-slate-300 leading-relaxed mt-4">
             {subject.id === "meteorology" && "For Aviation Meteorology, focus heavily on decoding METARs/TAFs and understanding atmospheric phenomena rather than just learning definitions. Use the interactive notes below to visualize weather patterns."}
@@ -155,7 +197,11 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
         {/* Chapters */}
         <h2 className="text-xl font-black text-white mb-5">Chapters</h2>
         <div className="flex flex-col gap-3 mb-8">
-          {subject.chapters.map((ch) => (
+          {subject.chapters.map((ch) => {
+            // The chapter's OWN questions only: a chapter with none of its own is
+            // served the subject-wide pool for drilling, which is not "its" count.
+            const chapterQs = getChapterSpecificQuestions(subject.id, ch.id).length;
+            return (
             <div key={ch.id} className="rounded-2xl overflow-hidden"
                  style={{ background:"rgba(17,24,32,0.95)", border:`1px solid ${subject.color}20` }}>
               <div className="p-5">
@@ -173,7 +219,7 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
                     <p className="text-xs mb-3" style={{ color:"#475569" }}>{ch.description}</p>
                     <div className="flex items-center gap-3 mb-4">
                       <span className="text-xs" style={{ color:"#334155" }}>⏱ {ch.duration}</span>
-                      <span className="text-xs" style={{ color:"#334155" }}>❓ {ch.questionCount} practice Qs</span>
+                      {chapterQs > 0 && <span className="text-xs" style={{ color:"#334155" }}>❓ {chapterQs} practice Qs</span>}
                     </div>
 
                     {/* Content type buttons */}
@@ -225,16 +271,24 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
+        {/* Tests: only advertised when the bank can really fill one */}
+        {!testsOpen && (
+          <p className="text-sm mb-8" style={{ color:"#64748b" }}>
+            Subject tests are not available for this subject yet — its question bank is still being prepared.
+          </p>
+        )}
+        {testsOpen && (<>
         {/* Mid-subject test banner */}
         <div className="rounded-2xl p-6 mb-4 flex items-center gap-5"
              style={{ background:`linear-gradient(135deg, ${subject.color}18, rgba(255,120,0,0.08))`, border:`1px solid ${subject.color}35` }}>
           <div className="text-3xl">🎯</div>
           <div className="flex-1">
             <h3 className="font-black text-white mb-1">Mid-Subject Test</h3>
-            <p className="text-sm" style={{ color:"#64748b" }}>After completing first {midpoint} chapters · 40 questions · 45 minutes</p>
+            <p className="text-sm" style={{ color:"#64748b" }}>{midQs} questions drawn from across the subject · {MID_TEST_MINUTES} minutes</p>
           </div>
           <Link href={`/mock-test?subject=${subject.id}&type=mid`}
                 className="flex items-center gap-1 text-sm font-bold px-4 py-2 rounded-xl no-underline"
@@ -248,7 +302,13 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
           <div className="rounded-2xl p-6" style={{ background:"rgba(34,197,94,0.08)", border:"1px solid rgba(34,197,94,0.25)" }}>
             <div className="text-3xl mb-3">🏆</div>
             <h3 className="font-black text-white mb-1">Full Subject Test</h3>
-            <p className="text-sm mb-4" style={{ color:"#64748b" }}>After all {subject.chapters.length} chapters · {subject.totalQuestions} Qs · {subject.examDuration} min · DGCA format</p>
+            <p className="text-sm mb-4" style={{ color:"#64748b" }}>
+              {fullQs} questions drawn from the whole {subject.shortName} bank · {subject.examDuration} min
+              {paper && (<>
+                <br />The real DGCA paper is {paper.questionCount} questions in {minutesText(paper.durationMin)}:{" "}
+                <Link href={`/exam/${paper.id}`} className="underline" style={{ color:"#22c55e" }}>sit it in Exam Mode</Link>.
+              </>)}
+            </p>
             <Link href={`/mock-test?subject=${subject.id}&type=full`}
                   className="inline-flex items-center gap-1 text-sm font-bold px-4 py-2 rounded-xl no-underline"
                   style={{ background:"rgba(34,197,94,0.18)", border:"1px solid rgba(34,197,94,0.35)", color:"#22c55e" }}>
@@ -257,15 +317,16 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
           </div>
           <div className="rounded-2xl p-6" style={{ background:"rgba(249,115,22,0.08)", border:"1px solid rgba(249,115,22,0.25)" }}>
             <div className="text-3xl mb-3">📋</div>
-            <h3 className="font-black text-white mb-1">DGCA Sample Papers</h3>
-            <p className="text-sm mb-4" style={{ color:"#64748b" }}>Previous-style DGCA papers for {subject.shortName} · Actual exam pattern</p>
+            <h3 className="font-black text-white mb-1">Sample Paper</h3>
+            <p className="text-sm mb-4" style={{ color:"#64748b" }}>A fresh random draw of {fullQs} {subject.shortName} questions, timed like the Full Subject Test</p>
             <Link href={`/mock-test?subject=${subject.id}&type=sample`}
                   className="inline-flex items-center gap-1 text-sm font-bold px-4 py-2 rounded-xl no-underline"
                   style={{ background:"rgba(249,115,22,0.18)", border:"1px solid rgba(249,115,22,0.35)", color:"#f97316" }}>
-              View Papers <ArrowRight className="w-4 h-4"/>
+              Start Sample Test <ArrowRight className="w-4 h-4"/>
             </Link>
           </div>
         </div>
+        </>)}
 
         {/* Quick study stats */}
         <div className="p-5 rounded-2xl flex flex-wrap gap-6 mb-12" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(255,255,255,0.06)" }}>
@@ -273,17 +334,19 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
             <Clock className="w-4 h-4" style={{ color:"#475569" }}/>
             <span className="text-sm" style={{ color:"#475569" }}>
               Total study time: <strong style={{ color:"#94a3b8" }}>
-                ~{subject.chapters.reduce((s,c) => s + parseInt(c.duration), 0)} hrs
+                ~{studyHours} hrs
               </strong>
             </span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-sm" style={{ color:"#475569" }}>
-              Total practice questions: <strong style={{ color:"#94a3b8" }}>
-                {subject.chapters.reduce((s,c) => s + c.questionCount, 0).toLocaleString()}
-              </strong>
-            </span>
-          </div>
+          {pool > 0 && (
+            <div className="flex items-center gap-2">
+              <span className="text-sm" style={{ color:"#475569" }}>
+                Total practice questions: <strong style={{ color:"#94a3b8" }}>
+                  {pool.toLocaleString()}
+                </strong>
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Related Subjects & Interlinking Hub */}

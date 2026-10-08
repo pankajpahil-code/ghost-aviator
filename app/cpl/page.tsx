@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
+import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { ArrowRight, Clock, FileQuestion, CheckCircle } from "lucide-react";
 
 import { SITE_URL, ORG_ID } from "@/lib/site";
@@ -9,6 +10,17 @@ import { SITE_URL, ORG_ID } from "@/lib/site";
 const CHAPTERS = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
 const cplIds = new Set(CPL_SUBJECTS.map(s => s.id));
 const QUESTIONS = `${(Math.floor(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => cplIds.has(id))).length / 100) * 100).toLocaleString("en-IN")}+`;
+
+// How DGCA actually examines lives in lib/exam-papers.ts (figures verified by the
+// Captain). The per-subject examDuration / totalQuestions in lib/subjects.ts are
+// study-side placeholders (50 Qs / 60 min for nearly every subject) and contradict
+// it: Navigation is one 100-question, 3-hour paper that pools Air Navigation, Radio
+// Navigation and Instrumentation. So the exam facts on each card are read from the
+// paper the subject is sat in. The composite paper is the foreign-CPL conversion
+// paper, never the one a subject is normally examined in. A subject with no paper
+// (Technical Performance) shows no exam facts rather than invented ones.
+const paperFor = (subjectId: string) =>
+  EXAM_PAPERS.find(p => p.track === "cpl" && !p.id.startsWith("composite") && p.subjectIds.includes(subjectId));
 
 export const metadata: Metadata = {
   title: "DGCA CPL Exam Preparation — Free Question Bank, Notes & Mock Tests | Ghost Aviator",
@@ -53,10 +65,10 @@ export default function CPLPage() {
           </h1>
           <p className="text-xl font-semibold mb-2" style={{ color:"#f3c889" }}>Commercial Pilot Licence — India theory papers, notes & mocks</p>
           <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
-            7 DGCA papers as per CAR Section 7 Series B Part IV. Every chapter mapped directly to the official DGCA CPL syllabus appendices — video lecture, study notes, practice questions and a timed chapter test.
+            Every chapter is mapped directly to the official DGCA CPL syllabus (CAR Section 7 Series B Part IV) — video lecture, study notes, practice questions and a chapter quiz.
           </p>
           <div className="flex flex-wrap gap-4">
-            {[["7","Written Papers"],[`${CHAPTERS}`,"Chapters"],[QUESTIONS,"Questions"],["70%","Pass Mark"]].map(([v,l]) => (
+            {[[`${CPL_SUBJECTS.length}`,"Subjects"],[`${CHAPTERS}`,"Chapters"],[QUESTIONS,"Questions"],["70%","Pass Mark"]].map(([v,l]) => (
               <div key={l} className="px-5 py-3 rounded-xl text-center" style={{ background:"rgba(171,121,77,0.15)", border:"1px solid rgba(171,121,77,0.3)" }}>
                 <div className="text-2xl font-black text-white">{v}</div>
                 <div className="text-xs" style={{ color:"#ab794d" }}>{l}</div>
@@ -68,9 +80,14 @@ export default function CPLPage() {
 
       {/* Subjects */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-2xl font-black text-white mb-8">All 7 CPL Papers</h2>
+        <h2 className="text-2xl font-black text-white mb-2">All {CPL_SUBJECTS.length} CPL Subjects</h2>
+        <p className="text-sm mb-8 max-w-3xl" style={{ color:"#64748b" }}>
+          Air Navigation, Radio Navigation and Instrumentation are examined together in the single DGCA Navigation paper, so the exam details on those cards are for that combined paper.
+        </p>
         <div className="flex flex-col gap-5">
-          {CPL_SUBJECTS.map((subject, idx) => (
+          {CPL_SUBJECTS.map((subject, idx) => {
+            const paper = paperFor(subject.id);
+            return (
             <Link key={subject.id} href={`/cpl/${subject.id}`}
                   className="group rounded-2xl overflow-hidden no-underline block transition-all duration-300"
                   style={{ background:"rgba(17,24,32,0.95)", border:`1px solid ${subject.color}30` }}>
@@ -90,14 +107,18 @@ export default function CPLPage() {
                       </div>
                       <p className="text-sm mb-3" style={{ color:"#64748b" }}>{subject.description}</p>
                       <div className="flex flex-wrap gap-4">
+                        {paper && (
+                          <span className="flex items-center gap-1 text-xs" style={{ color:"#475569" }}>
+                            <Clock className="w-3 h-3"/> {paper.durationMin} min exam
+                          </span>
+                        )}
+                        {paper && (
+                          <span className="flex items-center gap-1 text-xs" style={{ color:"#475569" }}>
+                            <FileQuestion className="w-3 h-3"/> {paper.questionCount} Qs in {paper.subjectIds.length > 1 ? `the combined ${paper.shortTitle} paper` : "paper"}
+                          </span>
+                        )}
                         <span className="flex items-center gap-1 text-xs" style={{ color:"#475569" }}>
-                          <Clock className="w-3 h-3"/> {subject.examDuration} min exam
-                        </span>
-                        <span className="flex items-center gap-1 text-xs" style={{ color:"#475569" }}>
-                          <FileQuestion className="w-3 h-3"/> {subject.totalQuestions} Qs in paper
-                        </span>
-                        <span className="flex items-center gap-1 text-xs" style={{ color:"#475569" }}>
-                          <CheckCircle className="w-3 h-3"/> Pass: {subject.passMark}%
+                          <CheckCircle className="w-3 h-3"/> Pass: {paper?.passMark ?? subject.passMark}%
                         </span>
                         <span className="text-xs px-2 py-0.5 rounded-full font-bold"
                               style={{ background:`${subject.color}18`, color: subject.color }}>
@@ -126,17 +147,17 @@ export default function CPLPage() {
                 </div>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
 
         {/* Tests section */}
         <div className="mt-16 p-8 rounded-3xl" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(171,121,77,0.2)" }}>
           <h3 className="text-xl font-black text-white mb-6">CPL Full Tests & Sample Papers</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { label:"Full CPL Mock Test",     icon:"🎯", desc:"All 6 subjects combined · 300 Qs · 6 hrs", color:"#ab794d", href:"/mock-test?type=cpl-full" },
-              { label:"Subject-wise Tests",     icon:"📝", desc:"60 Qs per subject · 60 min each",          color:"#0ea5e9", href:"/mock-test?type=cpl-subject" },
-              { label:"DGCA Sample Papers",     icon:"📋", desc:"Previous style papers · Actual format",    color:"#10b981", href:"/mock-test?type=cpl-sample" },
+              { label:"Full-Length Mock Papers",  icon:"🎯", desc:"Sit a paper in Exam Mode with the real DGCA question count, time allowed and pass mark", color:"#ab794d", href:"/exam" },
+              { label:"Previous-Year & Sample Papers", icon:"📋", desc:"Full question papers with answer keys, subject by subject", color:"#10b981", href:"/past-papers" },
             ].map(t => (
               <Link key={t.label} href={t.href} className="p-5 rounded-2xl no-underline block"
                     style={{ background:`${t.color}12`, border:`1px solid ${t.color}30` }}>

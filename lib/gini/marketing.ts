@@ -138,7 +138,7 @@ export const PITCHES: Pitch[] = [
     mood: "thunder",
     say: () =>
       "There's a live R/T simulator on this site — you fly a sequence and talk to an ATC that answers back. " +
-      "Speak your calls or type them; both are scored the same way. Free, and there is nothing else like it in India.",
+      "Speak your calls or type them; both are scored the same way. It's free: the first scenario needs no account, and a free sign-in unlocks the rest.",
     href: () => "/rtr-simulator",
   },
   {

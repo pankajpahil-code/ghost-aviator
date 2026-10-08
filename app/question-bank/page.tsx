@@ -1,5 +1,6 @@
 "use client";
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Search, BookOpen, CheckCircle, XCircle, ChevronDown } from "lucide-react";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { isRealExplanation } from "@/lib/explanation";
@@ -17,24 +18,52 @@ function displaySubjects(ids: string[]): string {
   return Array.from(new Set(names)).join(" · ");
 }
 
-const SUBJECT_FILTERS = [
-  { value: "all",                  label: "All Subjects" },
-  { value: "air-regulations",      label: "Air Regulations (CPL)" },
-  { value: "atpl-air-regulations", label: "Air Regulations (ATPL)" },
-  { value: "air-navigation",       label: "Air Navigation (CPL)" },
-  { value: "atpl-navigation",      label: "Air Navigation (ATPL)" },
-  { value: "meteorology",          label: "Meteorology (CPL)" },
-  { value: "atpl-meteorology",     label: "Meteorology (ATPL)" },
-  { value: "technical-general",    label: "Technical General" },
-  { value: "technical-specific",   label: "Technical Specific" },
-  { value: "technical-performance",label: "Performance" },
-  { value: "radio-telephony",      label: "Radio Telephony" },
-];
+// Built from the subject lists and the bank itself (Iron Rule 5), never typed by
+// hand: the hand-written list had no Instrumentation or Radio Navigation (719
+// questions between them) and offered "Performance" with 2 questions. A subject
+// is offered only when its bank is big enough to be worth filtering to.
+const MIN_FILTER_QUESTIONS = 10;
+const SUBJECT_FILTERS: { value: string; label: string }[] = (() => {
+  const counts: Record<string, number> = {};
+  for (const q of ALL_QUESTIONS) {
+    for (const id of new Set(q.subjectIds)) counts[id] = (counts[id] ?? 0) + 1;
+  }
+  const subjects = [
+    ...CPL_SUBJECTS.map(s => ({ s, track: "CPL" })),
+    ...ATPL_SUBJECTS.map(s => ({ s, track: "ATPL" })),
+  ];
+  return [
+    { value: "all", label: "All Subjects" },
+    ...subjects
+      .filter(({ s }) => (counts[s.id] ?? 0) >= MIN_FILTER_QUESTIONS)
+      .map(({ s, track }) => ({ value: s.id, label: `${s.name} · ${track}` })),
+  ];
+})();
 
 const PAGE_SIZE = 25;
 
+// The site's SearchAction (app/layout.tsx) advertises /question-bank?q={term}, so the
+// page has to honour it. useSearchParams makes the tree under its Suspense boundary
+// client-rendered, so the same view is also the fallback: the question list stays in
+// the prerendered HTML and the URL's search term is applied once the client reads it.
+const MAX_QUERY_LENGTH = 200;
+
 export default function QuestionBankPage() {
-  const [search, setSearch]     = useState("");
+  return (
+    <Suspense fallback={<QuestionBankView initialQuery="" />}>
+      <QuestionBankFromUrl />
+    </Suspense>
+  );
+}
+
+function QuestionBankFromUrl() {
+  const q = (useSearchParams().get("q") ?? "").slice(0, MAX_QUERY_LENGTH);
+  // key: a different ?q= (client navigation) starts the view afresh with that search.
+  return <QuestionBankView key={q} initialQuery={q} />;
+}
+
+function QuestionBankView({ initialQuery }: { initialQuery: string }) {
+  const [search, setSearch]     = useState(initialQuery);
   const [filter, setFilter]     = useState("all");
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
   const [shown, setShown]       = useState(PAGE_SIZE);
