@@ -140,10 +140,168 @@ function useReadAloud(notesRef: React.RefObject<HTMLDivElement | null>) {
   return { state, toggle, stop, voices, voiceURI, setVoiceURI };
 }
 
+// ─── The chapters' own buttons ──────────────────────────────────────────────
+//
+// 43 chapters ship "Show Answer", option-check, Reveal/Hide All and a few
+// calculators whose functions lived in a <script> that lib/notes-inline.ts
+// does not let across. It rewrites each known inline handler into a
+// data-ga-act attribute, and THIS is where those actions happen: one
+// delegated listener on the notes container, a fixed set of behaviours, no
+// chapter script ever evaluated. Every case below is a line-for-line port of
+// the function the chapter used to define; the names must match NOTE_ACTIONS
+// in lib/notes-inline.ts (tools/audit/notes-inline-check.mts fails if one is
+// missing here).
+//
+// The container, not <body>, is the "document" these ports act on, so the
+// RTR(A) self-test class is toggled on it and lib/notes-inline.ts anchors the
+// chapter's `.self-test-mode ...` rules to `.ga-notes.self-test-mode`.
+
+const byId = (root: HTMLElement, id: string) => root.querySelector<HTMLElement>(`#${id}`);
+
+function runClickAction(root: HTMLElement, el: HTMLElement, act: string, arg: string | undefined) {
+  switch (act) {
+    case "toggle-answer-id": {                       // Radio Navigation: toggleAnswer(7)
+      if (!arg || !/^\d+$/.test(arg)) return;
+      const ans = byId(root, `ans_${arg}`);
+      const btn = byId(root, `btn_${arg}`);
+      if (!ans) return;
+      const shown = ans.style.display === "block";
+      ans.style.display = shown ? "none" : "block";
+      if (btn) btn.textContent = shown ? "Show Answer" : "Hide Answer";
+      return;
+    }
+    case "toggle-answer-next": {                     // RTR(A): toggleAnswer(this)
+      const block = el.nextElementSibling as HTMLElement | null;
+      if (!block) return;
+      const shown = block.style.display === "block";
+      block.style.display = shown ? "none" : "block";
+      el.textContent = shown ? "Show Answer" : "Hide Answer";
+      return;
+    }
+    case "check-answer": {                           // RTR(A): checkAnswer(this, true|false)
+      const list = el.parentElement;
+      if (!list) return;
+      for (const li of Array.from(list.getElementsByTagName("li"))) li.classList.remove("correct", "incorrect");
+      el.classList.add(arg === "true" ? "correct" : "incorrect");
+      return;
+    }
+    case "reveal-value":                             // RTR(A) self-test: revealValue(this)
+      if (root.classList.contains("self-test-mode")) el.classList.toggle("revealed");
+      return;
+    case "self-test-mode": {                         // RTR(A) ch.23: toggleSelfTestMode()
+      const on = root.classList.toggle("self-test-mode");
+      const icon = document.createElement("i");
+      icon.className = on ? "fas fa-eye" : "fas fa-eye-slash";
+      el.replaceChildren(icon, document.createTextNode(on ? " Disable Blur / Reveal All" : " Enable Self-Test Mode (Blur Values)"));
+      el.style.background = on ? "#ef4444" : "var(--secondary)";
+      if (!on) root.querySelectorAll(".val-col-content").forEach(v => v.classList.remove("revealed"));
+      return;
+    }
+    case "show-all":                                 // Radio Navigation ch.19: showAll()
+    case "hide-all": {                               //                         hideAll()
+      const show = act === "show-all";
+      root.querySelectorAll<HTMLElement>(".answer").forEach(a => { a.style.display = show ? "block" : "none"; });
+      root.querySelectorAll<HTMLElement>(".show-btn").forEach(b => { b.textContent = show ? "Hide Answer" : "Show Answer"; });
+      return;
+    }
+    case "set-all-details":                          // Air Navigation: setAllAnswers(true|false)
+      root.querySelectorAll<HTMLDetailsElement>("details.qa-details").forEach(d => { d.open = arg === "true"; });
+      return;
+    case "calc-chlong": {                            // Air Navigation ch.1: calcChLong()
+      const v1 = parseFloat((byId(root, "lon1v") as HTMLInputElement | null)?.value ?? "");
+      const v2 = parseFloat((byId(root, "lon2v") as HTMLInputElement | null)?.value ?? "");
+      const d1 = (byId(root, "lon1d") as HTMLSelectElement | null)?.value;
+      const d2 = (byId(root, "lon2d") as HTMLSelectElement | null)?.value;
+      const out = byId(root, "chlong-out");
+      if (!out) return;
+      if (Number.isNaN(v1) || Number.isNaN(v2)) { out.textContent = ""; return; }
+      let result: number;
+      let note: string;
+      if (d1 === d2) {
+        result = Math.abs(v1 - v2);
+        note = `(same side: |${v1}−${v2}|)`;
+      } else {
+        const sum = v1 + v2;
+        if (sum > 180) { result = 360 - sum; note = `(cross-180°: 360−(${v1}+${v2})=${result})`; }
+        else { result = sum; note = `(diff sides: ${v1}+${v2})`; }
+      }
+      out.textContent = `Ch Long = ${result}° ${note}`;
+      out.style.color = result > 0 ? "#1a7a4a" : "#c0392b";
+      return;
+    }
+    default:
+      return;
+  }
+}
+
+function runInputAction(root: HTMLElement, act: string, value: string) {
+  switch (act) {
+    case "calc-recip": {                             // Air Navigation ch.1: calcRecip(this.value)
+      const out = byId(root, "brg-out");
+      const val = parseInt(value, 10);
+      if (!out || Number.isNaN(val)) return;
+      const recip = (val + 180) % 360;
+      const dir = (d: number) => {
+        if (d === 0 || d === 360) return "North";
+        if (d === 90) return "East";
+        if (d === 180) return "South";
+        if (d === 270) return "West";
+        if (d > 0 && d < 90) return "NE quad";
+        if (d > 90 && d < 180) return "SE quad";
+        if (d > 180 && d < 270) return "SW quad";
+        return "NW quad";
+      };
+      out.textContent = `Bearing: ${String(val).padStart(3, "0")}° → Reciprocal: ${String(recip).padStart(3, "0")}° (${dir(recip)})`;
+      return;
+    }
+    case "show-lat": {                               // Air Navigation ch.1: showLat(this.value)
+      const out = byId(root, "lat-out");
+      const val = parseInt(value, 10);
+      if (!out || Number.isNaN(val)) return;
+      const places: Record<string, string> = {
+        90: "North Pole", 66: "Arctic Circle", 28: "New Delhi, India", 23: "Tropic of Cancer",
+        19: "Mumbai, India", 13: "Bangalore, India", 0: "Equator",
+        "-13": "Darwin, Australia", "-23": "Tropic of Capricorn", "-66": "Antarctic Circle", "-90": "South Pole",
+      };
+      const closest = Object.keys(places).reduce((a, b) => (Math.abs(Number(b) - val) < Math.abs(Number(a) - val) ? b : a));
+      const side = val > 0 ? `${val}°N` : val < 0 ? `${Math.abs(val)}°S` : "0° (Equator)";
+      const near = Math.abs(Number(closest) - val) <= 3 ? ` — near ${places[closest]}` : "";
+      out.textContent = `Latitude: ${side}${near}`;
+      return;
+    }
+    default:
+      return;
+  }
+}
+
 export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, notes, videos, openerFacts }: Props) {
   const notesRef = useRef<HTMLDivElement>(null);
   const keyFacts = keyFactsFor(subject.id, chapter.id) ?? openerFacts;
   const { state: speechState, toggle: toggleListen, stop: stopListen, voices, voiceURI, setVoiceURI } = useReadAloud(notesRef);
+
+  // Nav-1's two sliders used to run calcRecip(60) / showLat(28) when the page
+  // loaded; the markup carries a static fallback line, this makes it live.
+  useEffect(() => {
+    const root = notesRef.current;
+    if (!root) return;
+    const brg = byId(root, "brg-input") as HTMLInputElement | null;
+    const lat = byId(root, "lat-slider") as HTMLInputElement | null;
+    if (brg) runInputAction(root, "calc-recip", brg.value);
+    if (lat) runInputAction(root, "show-lat", lat.value);
+  }, [notes.html]);
+
+  const actionTarget = (e: React.SyntheticEvent<HTMLDivElement>): HTMLElement | null => {
+    const el = (e.target as Element | null)?.closest?.("[data-ga-act]") as HTMLElement | null;
+    return el && e.currentTarget.contains(el) ? el : null;
+  };
+  const onNotesClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = actionTarget(e);
+    if (el) runClickAction(e.currentTarget, el, el.dataset.gaAct ?? "", el.dataset.gaArg);
+  };
+  const onNotesInput = (e: React.FormEvent<HTMLDivElement>) => {
+    const el = actionTarget(e);
+    if (el) runInputAction(e.currentTarget, el.dataset.gaAct ?? "", (el as HTMLInputElement).value ?? "");
+  };
 
   // Content protection, previously injected into the iframe document by
   // tools/_protect-snippet.mjs. The chapter renders in this page now, so the
@@ -269,6 +427,8 @@ ${notes.css}
           ref={notesRef}
           className="ga-notes rounded-2xl"
           style={{ border: `1px solid ${subject.color}20` }}
+          onClick={onNotesClick}
+          onInput={onNotesInput}
           onContextMenu={block}
           onCopy={block}
           onCut={block}
