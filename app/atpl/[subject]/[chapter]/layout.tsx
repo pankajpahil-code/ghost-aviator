@@ -33,7 +33,9 @@ export default async function ATPLChapterLayout({
   // would point at a "being prepared" page that is not in the index.
   const first = (['notes', 'questions', 'video'] as const).find(
     type => isIndexableChapterRoute(subject.id, chapter.id, type),
-  ) ?? 'notes';
+  );
+  // A chapter with nothing published yet is not described as a course at all.
+  if (!first) return <>{children}</>;
   const home = `${base}/${first}`;
 
   const jsonLd = {
