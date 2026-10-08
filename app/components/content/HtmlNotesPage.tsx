@@ -20,7 +20,7 @@ type Props = {
   /** The chapter rendered in-page: its own stylesheet, scoped to `.ga-notes`,
    *  plus the body markup. See lib/notes-inline.ts for why this replaced the
    *  iframe + sr-only pair. */
-  notes: { css: string; html: string };
+  notes: { css: string; html: string; stylesheets: string[] };
   /** The Captain's lecture(s) for this chapter — card renders above the notes when non-empty. */
   videos?: ChapterVideo[];
   /** Key facts computed on the server (lib/opener-key-facts.ts) for THIS chapter only, used when
@@ -402,6 +402,15 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
             it for crawlers; that gave the notes route no credit for its own
             content and served ~2,500 words no user could reach. See
             lib/notes-inline.ts. */}
+        {/* Vendor sheets a chapter bundles (Font Awesome for the RTR(A) set) are
+            linked, not inlined: copying 102 KB of icon CSS into each of 24
+            pages is what lib/notes-inline.ts stopped doing. `precedence` is
+            what makes React 19 hoist the link into <head>, emit it once however
+            many pages share it, and hold first paint until it has loaded.
+            Same-origin, so the style-src 'self' CSP allows it. */}
+        {notes.stylesheets.map(href => (
+          <link key={href} rel="stylesheet" href={href} precedence="default" />
+        ))}
         <style dangerouslySetInnerHTML={{ __html: `
 /* Container defaults FIRST, so a chapter's own body rules (which scope to
    .ga-notes) override them rather than the other way round. These must not be

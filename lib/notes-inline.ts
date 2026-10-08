@@ -299,10 +299,12 @@ function rewriteCssUrls(css: string, basePath: string): string {
 // The 28 Human Performance chapters link ../_assets/hf_book.css and the 24
 // RTR(A) chapters link book_layout.css and the bundled Font Awesome. Those
 // <link>s sit in <head>, which is discarded, so the chapters rendered without
-// their layout or their icon font. A linked sheet is read from disk and goes
-// through exactly the same scoping as an inline <style>. An external sheet
-// (Google Fonts) cannot be inlined, and the site's CSP (style-src 'self'
-// 'unsafe-inline') would refuse it anyway, so those are left out as before.
+// their layout or their icon font. A chapter-authored sheet is read from disk
+// and goes through exactly the same scoping as an inline <style>. A vendor sheet
+// (Font Awesome) is NOT copied into the page: it comes back as a same-origin
+// URL for HtmlNotesPage to <link>. An external sheet (Google Fonts) can be
+// neither, and the site's CSP (style-src 'self' 'unsafe-inline') would refuse
+// it anyway, so those are left out as before.
 
 const TAG_ATTR_RE = /([^\s"'<>/=]+)(?:(\s*=\s*)(?:"([^"]*)"|'([^']*)'|([^\s"'<>=`]+)))?/g;
 
@@ -314,7 +316,19 @@ function tagAttr(tag: string, name: string): string | null {
   return null;
 }
 
-function readLinkedSheet(href: string, basePath: string): string | null {
+/**
+ * A vendor sheet is a third-party library the chapter bundles under
+ * `/content/<subject>/_assets/vendor/` (Font Awesome today, 102 KB). Inlining
+ * it would copy it into every page that uses it (24 radio-telephony pages), so
+ * it is handed back as a URL for the page to <link> instead. Only same-origin
+ * paths under /content/ qualify: the CSP is style-src 'self', and a vendor
+ * sheet is never allowed to point anywhere the site does not already serve.
+ */
+const VENDOR_SHEET_RE = /^\/content\/[^/]+\/_assets\/vendor\/.+\.css$/i;
+
+type LinkedSheet = { kind: "inline"; css: string } | { kind: "vendor"; url: string } | null;
+
+function readLinkedSheet(href: string, basePath: string): LinkedSheet {
   if (/^([a-z][a-z0-9+.-]*:)?\/\//i.test(href.trim())) return null; // external
   const resolved = resolveAgainst(href, basePath);
   let rel: string;
@@ -323,26 +337,55 @@ function readLinkedSheet(href: string, basePath: string): string | null {
   // Stay inside public/: a stylesheet href must never read an arbitrary file.
   if (!file.startsWith(PUBLIC_DIR + path.sep) || !/\.css$/i.test(file)) return null;
   try {
-    return rewriteCssUrls(fs.readFileSync(file, "utf-8"), resolved.pathname);
+    if (VENDOR_SHEET_RE.test(rel)) {
+      // Only advertise a sheet that exists: a <link> to a 404 is a wasted request.
+      if (!fs.statSync(file).isFile()) return null;
+      return { kind: "vendor", url: resolved.pathname };
+    }
+    return { kind: "inline", css: rewriteCssUrls(fs.readFileSync(file, "utf-8"), resolved.pathname) };
   } catch (error) {
     console.error(`Linked stylesheet ${href} for ${basePath} could not be read:`, error);
     return null;
   }
 }
 
-/** The chapter's CSS in document order: linked sheets and <style> blocks, cascade preserved. */
-function collectCss(raw: string, basePath: string): string {
+/**
+ * The chapter's CSS in document order — chapter-authored linked sheets and
+ * <style> blocks, cascade preserved — plus the vendor sheets to <link> rather
+ * than inline.
+ */
+function collectCss(raw: string, basePath: string): { css: string; vendor: string[] } {
   const parts: string[] = [];
+  const vendor: string[] = [];
   for (const m of raw.matchAll(/<link\b[^>]*>|<style\b[^>]*>([\s\S]*?)<\/style>/gi)) {
     if (m[1] !== undefined) { parts.push(rewriteCssUrls(m[1], basePath)); continue; }
     const rel = tagAttr(m[0], "rel");
     const href = tagAttr(m[0], "href");
     if (!href || !rel || !/\bstylesheet\b/i.test(rel)) continue;
     const sheet = readLinkedSheet(href, basePath);
-    if (sheet !== null) parts.push(sheet);
+    if (!sheet) continue;
+    if (sheet.kind === "inline") parts.push(sheet.css);
+    else if (!vendor.includes(sheet.url)) vendor.push(sheet.url);
   }
-  return parts.join("\n");
+  return { css: parts.join("\n"), vendor };
 }
+
+// ── The owner's name is not on the public pages ──────────────────────────────
+//
+// hf_book.css (every Human Performance chapter) tiles an image of the author's
+// personal name across the page background: `body{background-image:
+// url(images/watermark-tile.webp)}`, and again inside @media print. The owner
+// has ordered his name off the public site, and the site already draws its own
+// brand watermark. Every declaration that references that tile is dropped from
+// the inlined CSS, and the chapters' own `.cpp-watermark` element (a fixed,
+// full-page diagonal overlay from the same stylesheet) is removed from the
+// markup. tools/audit/notes-inline-check.mts fails if "watermark-tile" or a
+// .cpp-watermark element survives in any chapter's output.
+const WATERMARK_TILE_DECL = /[^;{}]*watermark-tile[^;{}]*(?:;|(?=\}))/gi;
+const CPP_WATERMARK_ELEMENT =
+  /<div\b[^>]*\bclass\s*=\s*["'][^"']*\bcpp-watermark\b[^"']*["'][^>]*>[^<]*<\/div>/gi;
+/** Backstop for a .cpp-watermark the leaf-element regex above cannot match. */
+const HIDE_CHAPTER_WATERMARK = "\n.ga-notes .cpp-watermark { display: none !important; }\n";
 
 // ── Inline handlers ──────────────────────────────────────────────────────────
 //
@@ -387,6 +430,24 @@ const HANDLER_PATTERNS: { attr: "onclick" | "oninput"; re: RegExp; act: NoteActi
   { attr: "oninput", re: /^showLat\(\s*this\.value\s*\)$/, act: "show-lat" },
 ];
 
+// ── URLs assigned inside an inline error handler ─────────────────────────────
+//
+// hpl-1 carries onerror="if(!this.dataset.f){this.dataset.f=1;
+// this.src='../_assets/images/x.webp';}else{...}" — a relative fallback URL
+// inside a JavaScript string, which resolves against the app route like any
+// other relative URL and 404s. The handler is left as authored; only the URL in
+// the string is made absolute. (The other 107 onerror handlers assign no URL.)
+const JS_URL_ASSIGN_RE = /(\.(?:src|href|srcset|poster)\s*=\s*)(?:'([^']*)'|"([^"]*)")/gi;
+
+function rewriteHandlerUrls(code: string, basePath: string): string {
+  return code.replace(JS_URL_ASSIGN_RE, (whole, pre: string, sq?: string, dq?: string) => {
+    const value = sq ?? dq ?? "";
+    if (!isRelativeUrl(value)) return whole;
+    const q = sq !== undefined ? "'" : '"';
+    return `${pre}${q}${rewriteUrlValue(value, basePath, false)}${q}`;
+  });
+}
+
 // ── One pass over every tag ──────────────────────────────────────────────────
 
 const TAG_RE = /<([a-zA-Z][\w:-]*)\b((?:[^>"']|"[^"]*"|'[^']*')*)>/g;
@@ -421,6 +482,12 @@ function transformTags(html: string, basePath: string): string {
           changed = true;
           return `${an}${eq}${quote}${out}${quote}`;
         }
+        if (key === "onerror") {
+          const out = rewriteHandlerUrls(value, basePath);
+          if (out === value) return attr;
+          changed = true;
+          return `${an}${eq}${quote}${out}${quote}`;
+        }
         if (key === "onclick" || key === "oninput") {
           changed = true;
           const code = value.trim().replace(/;$/, "").trim();
@@ -448,7 +515,13 @@ function transformTags(html: string, basePath: string): string {
   });
 }
 
-export type InlineNotes = { css: string; html: string };
+/**
+ * css         the chapter's own CSS, scoped to `.ga-notes`, to be inlined.
+ * html        the chapter body.
+ * stylesheets same-origin vendor sheets (absolute URLs under /content/) that the
+ *             page links instead of inlining; see VENDOR_SHEET_RE.
+ */
+export type InlineNotes = { css: string; html: string; stylesheets: string[] };
 
 export function getInlineNotes(subjectId: string, chapterId: string): InlineNotes | null {
   try {
@@ -466,7 +539,7 @@ export function getInlineNotes(subjectId: string, chapterId: string): InlineNote
 
     // Collect the chapter's own CSS (linked sheets and <style> blocks, in
     // document order), then scope it.
-    const css = collectCss(raw, basePath);
+    const { css, vendor } = collectCss(raw, basePath);
 
     // Scripts never come across. Most of these files carry only the protection
     // snippet, which is reimplemented on the React side for the in-page
@@ -478,6 +551,7 @@ export function getInlineNotes(subjectId: string, chapterId: string): InlineNote
     // A <link rel=stylesheet> in the body would load UNSCOPED; its CSS was
     // already collected above.
     html = html.replace(/<link\b[^>]*>/gi, "");
+    html = html.replace(CPP_WATERMARK_ELEMENT, "");
 
     // The chapter's cover block repeats the title/author the page header
     // already shows as its <h1>; leaving it in would give the page two
@@ -520,7 +594,9 @@ export function getInlineNotes(subjectId: string, chapterId: string): InlineNote
       return `<img${attrs} loading="lazy" decoding="async">`;
     });
 
-    return { css: scopeCss(css), html: html.trim() };
+    // Scoped first (scopeCss also drops comments), then the watermark tile.
+    const scoped = scopeCss(css).replace(WATERMARK_TILE_DECL, "");
+    return { css: scoped + HIDE_CHAPTER_WATERMARK, html: html.trim(), stylesheets: vendor };
   } catch (error) {
     console.error(`Failed to inline notes for ${subjectId}/${chapterId}:`, error);
     return null;
