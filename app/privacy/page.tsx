@@ -6,7 +6,7 @@ import { enquiryLink } from "@/lib/live-classes";
 // accounts (Supabase) are NOT switched on in production; progress lives in localStorage; Gini's route keeps
 // the IP only in an in-memory rate limiter; the sales assistant stores chats on the Captain's own computer
 // (D:\pk\ghost-sales-desk) and deletes a person on "delete my data" (engine.forget). Change the code, change this.
-const UPDATED = "24 September 2026";
+const UPDATED = "8 October 2026";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — Ghost Aviator",
@@ -41,6 +41,14 @@ export default function PrivacyPage() {
           <a href={tg} style={{ color: ACCENT }}>message Ghost Aviator on Telegram</a>.
         </p>
 
+        <Section title="Who we are">
+          <p>This website (ghostaviator.com) and its assistants on Telegram, Instagram, Facebook, WhatsApp and YouTube are
+            run by <strong>Ghost Aviator</strong>. Ghost Aviator decides what is stored about you and why, and is the one to ask
+            about anything on this page.</p>
+          <p><strong>Contact:</strong> <a href={tg} style={{ color: ACCENT }}>message Ghost Aviator on Telegram</a>.
+            We reply in the same chat.</p>
+        </Section>
+
         <Section title="The short version">
           <p>You can use every chapter, question and tool on this website without an account and without telling us who you are.</p>
           <p>We keep a record of you only if you message us or comment on our videos and posts yourself. We never sell it, and we
@@ -63,7 +71,7 @@ export default function PrivacyPage() {
             tell us, such as your exam, subjects or exam month.</p>
           <p><strong>Why:</strong> to answer you, to remember where your conversation left off, and to follow up about the
             classes you asked about. The Captain sees these conversations so he can reply personally.</p>
-          <p><strong>Where:</strong> on the Captain&rsquo;s own computer. It is not sold, rented or shared with anyone else.
+          <p><strong>Where:</strong> on Ghost Aviator&rsquo;s own computer. It is not sold, rented or shared with anyone else.
             The messaging app you used (Telegram or Meta) also keeps its own copy under its own policy.</p>
           <p><strong>Your choices:</strong> send <strong>stop</strong> and we stop follow-up messages. The daily practice
             question is sent only if you ask for it, and <strong>stop daily</strong> ends it.</p>

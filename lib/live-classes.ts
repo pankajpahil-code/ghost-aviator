@@ -18,9 +18,12 @@
  * number (and no personal name) anywhere public. Every "enquire / join / paid? / order" button opens the
  * Ghost Aviator assistant on Telegram; it records the enquiry and alerts the instructor privately, and he
  * answers in the same chat. The sales desk reads this constant too (sync_knowledge.py -> enquiry_route).
+ * TEMPORARY (8 Oct 2026): points at Neki (@NayKi10_bot), the desk running in LIVE mode, because the
+ * main desk (@GhostAviator2_Bot, Chhotu) is in draft mode and holds every public reply until the Captain
+ * approves it. Switch back to GhostAviator2_Bot when Chhotu goes live.
  * Never put a phone number or a wa.me link here.
  */
-export const LIVE_ENQUIRY_URL = "https://t.me/GhostAviator2_Bot?start=enquiry";
+export const LIVE_ENQUIRY_URL = "https://t.me/NayKi10_bot?start=enquiry";
 
 /** The enquiry route, tagged so the assistant knows where the student came from (Telegram start
  *  parameter: A-Z a-z 0-9 _ - only, at most 64 characters). */
@@ -134,8 +137,9 @@ export const LIVE_CLASS_SUBJECTS: Record<string, string> = {
  * the branded bot username in @BotFather (the current token's username is not branded).
  * The start tag tells the bot where the student came from, and opens the right flow:
  * a tag containing "career" opens the Career Navigator, "quiz" the readiness check.
+ * TEMPORARY (8 Oct 2026): Neki (live) for the same reason as LIVE_ENQUIRY_URL above; was "GhostAviator2_Bot".
  */
-export const LIVE_TELEGRAM_BOT: string = "GhostAviator2_Bot";
+export const LIVE_TELEGRAM_BOT: string = "NayKi10_bot";
 
 export const botLink = (tag: string): string =>
   LIVE_TELEGRAM_BOT ? `https://t.me/${LIVE_TELEGRAM_BOT}?start=${encodeURIComponent(tag)}` : "";

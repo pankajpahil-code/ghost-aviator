@@ -223,11 +223,6 @@ export default function VideoLecturesPage() {
             on the channel first, then here.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <a href="https://www.youtube.com/@PankajPahil" target="_blank" rel="noopener noreferrer"
-               className="px-4 py-2.5 rounded-xl text-sm font-bold no-underline"
-               style={{ background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.35)", color: "#f87171" }}>
-              ▶ @PankajPahil
-            </a>
             <a href="https://www.youtube.com/@Capt.GhostAviator" target="_blank" rel="noopener noreferrer"
                className="px-4 py-2.5 rounded-xl text-sm font-bold no-underline"
                style={{ background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.35)", color: "#f87171" }}>

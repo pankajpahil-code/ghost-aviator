@@ -10,9 +10,9 @@ export const SITE_URL =
 //
 // Handles can be renamed; the channel IDs below cannot. If a handle URL ever
 // 404s, repair it from these:
-//   @PankajPahil       UCKTxHMHDfh2jBb7rrdTCMkg  (Radio Navigation lectures)
-//   @Capt.GhostAviator UCliKc6qVcGs5tnI03yNg6Lg  (Air Regulations, Meteorology)
-export const YOUTUBE_PERSONAL = "https://www.youtube.com/@PankajPahil";
+//   @Capt.GhostAviator UCliKc6qVcGs5tnI03yNg6Lg  (the brand channel)
+// 8 Oct 2026, the Captain's ruling: the site links ONLY the brand channel. His personal channel is not
+// linked or named anywhere public (no name, no number in public output).
 export const YOUTUBE_BRAND = "https://www.youtube.com/@Capt.GhostAviator";
 export const TELEGRAM_GROUP = "https://t.me/+tgLMJithc1gzOWJl";
 // "D.G.C.A Exams HelpLine" — the student help group. Added 2026-08-20; verified
@@ -20,7 +20,7 @@ export const TELEGRAM_GROUP = "https://t.me/+tgLMJithc1gzOWJl";
 // negative signal rather than a neutral one.
 export const WHATSAPP_GROUP = "https://chat.whatsapp.com/J3F9zaMJRQn5IYEiaYzP6t";
 
-export const CAPTAIN_PROFILES = [TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_PERSONAL, YOUTUBE_BRAND];
+export const CAPTAIN_PROFILES = [TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND];
 
 // The Captain's public per-subject study groups on Telegram (created 2026-09-24; the
 // Ghost Aviator assistant answers /q doubts there from his notes). Keyed by subject id,

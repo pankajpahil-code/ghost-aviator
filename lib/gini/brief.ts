@@ -36,7 +36,7 @@ import {
   LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE,
   LIVE_CLASS_SUBJECTS, enquiryLink,
 } from "@/lib/live-classes";
-import { TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_PERSONAL, YOUTUBE_BRAND } from "@/lib/site";
+import { TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND } from "@/lib/site";
 import { CORPUS } from "./generated/corpus-stats";
 
 /**
@@ -57,7 +57,7 @@ export const ALLOWED_HREFS = new Set<string>([
   "/", "/about", "/cpl", "/atpl", "/books", "/guides", "/faq",
   "/question-bank", "/exam", "/live-classes", "/rtr-simulator",
   "/how-answers-are-verified", "/cpl-cost-calculator", "/video-lectures",
-  TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_PERSONAL, YOUTUBE_BRAND,
+  TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND,
   captainWhatsApp(),
   ...Object.values(LIVE_CLASS_SUBJECTS).map(s => captainWhatsApp(s)),
   ...CPL_SUBJECTS.map(s => `/cpl/${s.id}`),
@@ -106,7 +106,7 @@ export function systemBrief(): string {
     `- CPL subjects: ${subjectList}.`,
     `- Free tools: /question-bank, /exam (full mock papers on the real DGCA pattern), /rtr-simulator (talk to an ATC that answers back; speak or type), /books, /guides, /how-answers-are-verified.`,
     `- PAID, and the only paid thing: live online batches taught by the Captain himself, TEN students to a batch, so every student's doubt actually gets answered. ${LIVE_PRICE} per subject (list ${LIVE_LIST_PRICE}), or ${LIVE_COMBO_PRICE} (list ${LIVE_COMBO_LIST_PRICE}) for the Navigation combo — General Navigation, Radio Navigation and Instrumentation together. Live subjects: ${liveSubjects}. Page: /live-classes.`,
-    `- Community: a WhatsApp group (D.G.C.A Exams HelpLine) where he answers doubts himself, a Telegram group for notes and exam updates, and two YouTube channels — @PankajPahil (Radio Navigation) and @Capt.GhostAviator (Air Regulations, Meteorology).`,
+    `- Community: a WhatsApp group (D.G.C.A Exams HelpLine) where he answers doubts himself, a Telegram group for notes and exam updates, and the Ghost Aviator YouTube channel, @Capt.GhostAviator, for free video lectures. Never name or link any other channel.`,
     "",
     "BRINGING STUDENTS TO THE CLASSES. This matters and you should be good at it.",
     "Do not pitch at someone who only asked where a chapter is — answer them first, fully, and be genuinely useful. But when a student tells you a subject is hard, that they failed a paper, that they are running out of time, that they keep getting the same questions wrong, or when they ask about coaching, price or classes — that is the moment. Then:",

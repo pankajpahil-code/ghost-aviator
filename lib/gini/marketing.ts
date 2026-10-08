@@ -38,7 +38,7 @@ import {
   LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE,
   LIVE_CLASS_SUBJECTS, LIVE_COMBO_SUBJECTS,
 } from "@/lib/live-classes";
-import { TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_PERSONAL } from "@/lib/site";
+import { TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND } from "@/lib/site";
 
 export type PitchKind = "paid" | "free" | "community" | "trust";
 
@@ -168,7 +168,7 @@ export const PITCHES: Pitch[] = [
   {
     id: "books",
     kind: "free",
-    ask: "books written by captain pahil study material read",
+    ask: "books written by the captain study material read",
     fits: ctx => ctx.area !== "books",
     weight: 5,
     mood: "present_book",
@@ -185,9 +185,9 @@ export const PITCHES: Pitch[] = [
     weight: 4,
     mood: "point",
     say: () =>
-      "He teaches on YouTube too: @PankajPahil carries the Radio Navigation series, @Capt.GhostAviator covers " +
-      "Air Regulations and Meteorology. Both free.",
-    href: () => YOUTUBE_PERSONAL,
+      "He teaches on YouTube too: the Ghost Aviator channel, @Capt.GhostAviator, carries his video lectures. " +
+      "Free.",
+    href: () => YOUTUBE_BRAND,
   },
 
   /* ───────────────────────────── the community ────────────────────────── */

@@ -153,7 +153,7 @@ function commandReply(cmd: string): BotReply | null {
  *  "Read the full chapter" is a small lie a student notices. */
 function labelFor(href: string): string {
   if (/wa\.me|whatsapp/i.test(href)) return "💬 Message on WhatsApp";
-  if (/t\.me\/GhostAviator2_Bot/i.test(href)) return "💬 Message our assistant";
+  if (/t\.me\/(GhostAviator2_Bot|NayKi10_bot)/i.test(href)) return "💬 Message our assistant";
   if (/\/live-classes/.test(href)) return "🎓 See batches & enrol";
   if (/\/rtr-simulator/.test(href)) return "🎙️ Open the RTR simulator";
   if (/\/adapt-test/.test(href)) return "🧠 Open the ADAPT test";

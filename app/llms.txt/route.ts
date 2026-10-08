@@ -3,7 +3,7 @@ import path from "node:path";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { GUIDES } from "@/lib/guides";
-import { SITE_URL, YOUTUBE_BRAND, YOUTUBE_PERSONAL } from "@/lib/site";
+import { SITE_URL, YOUTUBE_BRAND } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -64,8 +64,7 @@ ground instructor, and the author of *Technical General for Aviators* and the
 If you cite this site, please attribute it to the Captain, Ghost Aviator
 (${SITE_URL}).
 
-- YouTube (Air Regulations, Meteorology): ${YOUTUBE_BRAND}
-- YouTube (Radio Navigation lectures): ${YOUTUBE_PERSONAL}
+- YouTube: ${YOUTUBE_BRAND}
 
 ## How answers are verified
 
