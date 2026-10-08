@@ -318,6 +318,35 @@ export const ANSWER_CORRECTIONS: AnswerCorrection[] = [
   {"q": "Night vision can be affected by:", "was": "Age, hypoxia, altitudes above 8,000 ft, smoking and alcohol.", "now": "Age, hypoxia, altitudes above 5,000 ft, smoking and alcohol.", "exp": "Age, hypoxia, altitudes above 5,000 ft, smoking and alcohol all reduce night vision.\n\nReference: FAA AIM 8-1-6", "edit": {"opts": {"Age, hypoxia, altitudes above 8,000 ft, smoking and alcohol.": "Age, hypoxia, altitudes above 5,000 ft, smoking and alcohol."}}},
   {"q": "\"Oxygen moves from the alveoli into the blood and from the blood into the tissues\" this phenomenon is explained by:", "was": "Graham's law.", "now": "Fick's law.", "exp": "Fick's law: gas transfer is proportional to the area and the partial-pressure difference and inversely proportional to the thickness of the membrane.\n\nReference: Human Performance - respiration", "edit": {"opts": {"Graham's law.": "Fick's law."}}},
   {"q": "Bright runway / app. lights give illusion of being:", "was": "Low, resulting in high approaches.", "now": "Closer to the runway than it is, resulting in high approaches.", "exp": "Closer to the runway than it really is, leading to a high approach.\n\nReference: FAA AIM 8-1-5 (bright lights: illusion of less distance)", "edit": {"opts": {"Low, resulting in high approaches.": "Closer to the runway than it is, resulting in high approaches."}}},
+  // --- Navigation and Radio Navigation (2026-10-08) -----------------------------
+  // Applied on Capt. Pahil's instruction "apply but back it with evidence". Each key was
+  // re-worked by two methods; working and sources: tools/audit/nav-key-corrections-2026-10-08.md
+  {
+    q: "Planned TAS 140 kt, wind 050°/20 kt, desired track 090°T. The wind correction angle is approximately:",
+    was: "8°L", now: "5°L",
+    exp: "About 5° left. The wind is 40° off the track, from the left. Wind correction angle = sin⁻¹(20 × sin 40° ÷ 140) = sin⁻¹(0.092) = 5.3°, and you always turn into wind, so the heading is about 085°. Eight degrees would need a crosswind of nearly 20 kt; here the crosswind component is only 13 kt.",
+  },
+  {
+    q: "The distance between point of departure and destination is 340 NM and wind velocity in the whole area is 100°/25 kt. TAS is 140 kt. True Track is 135° and safe endurance 3 hr and 10 min. How long will it take to reach the Point of Safe Return?",
+    was: "1 hr and 44 min", now: "1 hr and 49 min",
+    edit: { opts: { "1 hr and 44 min": "1 hr and 49 min" } },
+    exp: "1 hour 49 minutes. Outbound on track 135° the wind is 35° off the nose: drift 6°, groundspeed out 119 kt. Homebound on 315° the same wind is behind: groundspeed home 160 kt. Time to the point of safe return = endurance × home ÷ (out + home) = 190 min × 160 ÷ 279 = 109 min. The 340 NM distance is not needed for a point of safe return. The option originally printed here, 1 hr 44 min, does not follow from the data given and has been corrected.",
+  },
+  {
+    q: "How do rhumb lines (other than meridians) appear on a Polar Stereographic chart?",
+    was: "Convex to the nearer pole (curves spiraling away from pole)", now: "Concave to the nearer pole",
+    exp: "Concave to the nearer pole. A rhumb line crosses every meridian at the same angle. On a polar stereographic chart the meridians are straight lines radiating from the pole, so a line that keeps a constant angle to them must keep bending round the pole. A parallel of latitude is the simplest case: it is a rhumb line, and it is a circle centred on the pole.",
+  },
+  {
+    q: "Isogonal lines converge at:",
+    was: "The North and South Magnetic Poles", now: "The North and South Magnetic and both Geographical Poles",
+    exp: "At both magnetic poles and both geographic poles. Variation is the angle between true north and magnetic north. At a magnetic pole the direction of magnetic north is undefined; at a geographic pole the direction of true north is undefined. In both cases every value of variation is found around the point, so the isogonals all meet there.",
+  },
+  {
+    q: "Advantage of Mode S over Mode A/C:",
+    was: "uses VHF frequencies", now: "eliminates garbling by selective addressing",
+    exp: "Selective addressing. Every Mode S aircraft has its own 24-bit address, so the ground station can interrogate one aircraft at a time and replies from aircraft close together no longer overlap (garble). Mode S does not use VHF: it interrogates on 1030 MHz and replies on 1090 MHz, the same UHF pair as Mode A/C.\n\nReference: ICAO Annex 10 Volume IV, 3.1.1.1.1 and 3.1.1.2.1.",
+  },
 ];
 
 type Keyed = { q: string; opts: string[]; ans: number; exp?: string };
