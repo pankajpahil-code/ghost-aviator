@@ -20,7 +20,7 @@
  * it can fire on cue instead of only when a frame happens to contain it.
  */
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 // The union lives in lib/gini/types.ts, beside the code that CHOOSES a mood.
 // This file owns the frames for each one, not the list of names.
@@ -116,16 +116,35 @@ export default function GiniSprite({
   speaking?: boolean;
   height?: number;
 }) {
-  // Warm every asset once so a mood change never flashes an empty frame.
-  const warmed = useRef(false);
+  // Warm the assets so a mood change never flashes an empty frame — but not all
+  // at once. Gini is in the root layout, so this runs on EVERY route, including
+  // legal pages and running exams, and the strips and stills add up to about
+  // 500 KB. The idle still is fetched immediately (it is what he stands on); the
+  // rest wait until the browser has nothing better to do, and are skipped
+  // entirely under Data Saver. Skipping costs nothing visible: a mood's own
+  // <img> / background-image fetches its file the moment it is first shown, so
+  // "warming" is only ever about hiding that first-use delay.
   useEffect(() => {
-    if (warmed.current) return;
-    warmed.current = true;
-    for (const u of [...Object.values(SEQS).map(s => s.src),
-                     ...Object.values(STILLS).map(s => s.src)]) {
-      const i = new window.Image();
-      i.src = u;
+    const load = (u: string) => { const i = new window.Image(); i.src = u; };
+    const first = STILLS.idle!.src;
+    load(first);
+
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    if (conn?.saveData) return;
+
+    const rest = [...Object.values(SEQS).map(s => s.src),
+                  ...Object.values(STILLS).map(s => s.src)].filter(u => u !== first);
+    const warmRest = () => { for (const u of rest) load(u); };
+
+    // Safari has no requestIdleCallback; a plain delay is the fallback. The
+    // cleanup cancels a pending warm-up if he is dismissed or unmounted first
+    // (and keeps React Strict Mode's mount/unmount/mount from losing it).
+    if (typeof window.requestIdleCallback === "function") {
+      const id = window.requestIdleCallback(warmRest, { timeout: 8000 });
+      return () => window.cancelIdleCallback(id);
     }
+    const t = window.setTimeout(warmRest, 4000);
+    return () => window.clearTimeout(t);
   }, []);
 
   /**

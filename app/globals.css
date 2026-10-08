@@ -86,10 +86,30 @@
 
 html, body {
   max-width: 100vw;
-  overflow-x: hidden;
   background-color: #0a0f14;
   color: #ffffff;
   font-family: system-ui, -apple-system, sans-serif;
+}
+/* Sideways overflow: hidden on html, clip on body — never hidden on both.
+   With both at overflow-x:hidden, html's value is propagated to the viewport
+   so body's applies to body itself, and hidden forces overflow-y to auto: body
+   became a scroll container that never scrolls. Every position:sticky
+   descendant (the Navbar, the question progress bar, the paper Submit bar)
+   then stuck to THAT box instead of the viewport, so none of them ever stuck.
+   clip hides overflow without creating a scroll container. Support: Chrome 90,
+   Firefox 81, Safari 16. Where clip is unknown the body line is dropped, body
+   stays visible, and html alone still suppresses the sideways scroll. */
+html { overflow-x: hidden; }
+body { overflow-x: clip; }
+
+/* Visible keyboard focus on text fields. Several forms (login, the email
+   capture) removed the browser's ring and put nothing in its place, so a
+   keyboard user could not tell which field was active. This rule is unlayered,
+   so it also wins over Tailwind's layered outline-none utility. :focus-visible
+   keeps it off mouse clicks. */
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid #f0913a;
+  outline-offset: 2px;
 }
 
 /* ── Content protection ─────────────────────────────────────────────────── */

@@ -36,10 +36,10 @@ export default function LoginPage() {
         {SUPABASE_ENABLED ? (
           <form onSubmit={submit} className="flex flex-col gap-3">
             <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email address" type="email" required
-                   className="px-4 py-3 rounded-xl text-sm outline-none" style={inp} />
+                   aria-label="Email address" className="px-4 py-3 rounded-xl text-sm" style={inp} />
             <input value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" type="password" required
-                   className="px-4 py-3 rounded-xl text-sm outline-none" style={inp} />
-            {state === "error" && <p className="text-xs" style={{ color: "#ef4444" }}>{msg}</p>}
+                   aria-label="Password" className="px-4 py-3 rounded-xl text-sm" style={inp} />
+            {state === "error" && <p role="alert" className="text-xs" style={{ color: "#ef4444" }}>{msg}</p>}
             <button type="submit" disabled={state === "loading"}
                     className="py-3 rounded-xl text-sm font-black disabled:opacity-60"
                     style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
