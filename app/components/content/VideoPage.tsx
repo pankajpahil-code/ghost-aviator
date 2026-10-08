@@ -58,7 +58,7 @@ export default function VideoPage({
                 {subject.shortName.toUpperCase()} — CHAPTER {chapter.number} · VIDEO LECTURE
               </div>
               <h1 className="text-xl font-black text-white">{chapter.title}</h1>
-              <p className="text-xs mt-0.5" style={{ color: "#64748b" }}>by Capt. Pankaj Pahil</p>
+              <p className="text-xs mt-0.5" style={{ color: "#64748b" }}>by Ghost Aviator</p>
             </div>
           </div>
         </div>

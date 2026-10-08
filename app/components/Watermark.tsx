@@ -6,7 +6,7 @@ import { useUser } from "@/lib/supabase";
 // back to the account. Falls back to brand text for signed-out visitors.
 export default function Watermark() {
   const { user } = useUser();
-  const label = (user?.email || (user?.user_metadata?.name as string) || "Ghost Aviator · Capt. Pankaj Pahil").slice(0, 48);
+  const label = (user?.email || (user?.user_metadata?.name as string) || "Ghost Aviator").slice(0, 48);
   const svg =
     `<svg xmlns='http://www.w3.org/2000/svg' width='360' height='200'>` +
     `<text x='10' y='110' transform='rotate(-28 180 100)' fill='rgba(140,140,160,0.10)' ` +

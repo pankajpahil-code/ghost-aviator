@@ -174,7 +174,7 @@ export function smallTalk(query: string, ctx: GiniContext): GiniReply | null {
 
   if (WHO.test(q))
     return answer(
-      "I'm Gini, the Ghost Aviator who keeps this library — Capt. Pahil's site. " +
+      "I'm Gini, the Ghost Aviator who keeps this library — the Captain's site. " +
       "I'm not a chatbot and I don't generate answers: every sentence I say is written down here " +
       "and checked before it ships. When there's nothing checked to say, I tell you that instead of guessing.",
       { type: "captain" },
@@ -194,7 +194,7 @@ export function smallTalk(query: string, ctx: GiniContext): GiniReply | null {
   if (RUDE.test(q))
     return answer(
       "Fair enough — I only know this site, and I refuse rather than guess. " +
-      "Ask Capt. Pahil directly in the WhatsApp group; he answers there himself.",
+      "Ask the Captain directly in the WhatsApp group; he answers there himself.",
       { type: "captain" },
       WHATSAPP_GROUP,
     );
@@ -237,7 +237,7 @@ export const isOffTopic = (query: string) =>
 
 /** Stored, so a decline is always in his voice — never improvised. */
 export const DECLINES: string[] = [
-  "That's outside what I do, I'm afraid — I look after Capt. Pahil's flying school and nothing else. Ask me about the DGCA papers, any chapter here, or his classes.",
+  "That's outside what I do, I'm afraid — I look after the Captain's flying school and nothing else. Ask me about the DGCA papers, any chapter here, or his classes.",
   "I'll be honest and stay in my lane: I only know aviation, these exams and this site. Anything on those, and I'm genuinely useful.",
   "Not my department. I keep the library here — DGCA subjects, the question bank, the simulator, the Captain's classes. What are you preparing for?",
 ];
@@ -288,7 +288,7 @@ export const WISDOM: Wisdom[] = [
       "Never leave a box empty. There is no negative marking in any DGCA paper, so a blank is a guaranteed zero " +
       "and a guess costs you nothing. Eliminate what you know is wrong, mark your best of what's left, and move on.",
     kind: "fact",
-    source: "lib/faq.ts — negative marking, Capt. Pahil confirmed 2026-07-27",
+    source: "lib/faq.ts — negative marking, the Captain confirmed 2026-07-27",
     href: "/guides/dgca-cpl-exam-pattern",
     mood: "point",
   },
@@ -300,7 +300,7 @@ export const WISDOM: Wisdom[] = [
       "so a paper you clear stays cleared while you go after the next. Spreading four subjects thin is how people " +
       "sit four papers and clear none.",
     kind: "fact",
-    source: "lib/faq.ts — pass mark 70% per paper, no aggregate, Capt. Pahil confirmed 2026-07-27",
+    source: "lib/faq.ts — pass mark 70% per paper, no aggregate, the Captain confirmed 2026-07-27",
     href: "/guides/dgca-cpl-exam-pattern",
     mood: "point",
   },
@@ -312,7 +312,7 @@ export const WISDOM: Wisdom[] = [
       "— about 1.8 minutes each. Meteorology, Air Regulations and Technical Specific are 50 in 2 hours — about 2.4 " +
       "minutes each. If one question has eaten four minutes, mark it, move, and come back.",
     kind: "fact",
-    source: "lib/faq.ts — paper structure, Capt. Pahil instructor citation 2026-07-12; timing is that division",
+    source: "lib/faq.ts — paper structure, the Captain's instructor citation 2026-07-12; timing is that division",
     href: "/guides/dgca-cpl-exam-pattern",
     mood: "point",
   },
@@ -346,7 +346,7 @@ export const WISDOM: Wisdom[] = [
       "stay cleared, so the job in front of you is a single subject, not a fresh start. Go back to the questions " +
       "you got wrong, not to page one of the notes.",
     kind: "fact",
-    source: "lib/faq.ts — each paper cleared on its own, Capt. Pahil confirmed 2026-07-27",
+    source: "lib/faq.ts — each paper cleared on its own, the Captain confirmed 2026-07-27",
     mood: "talk",
   },
   {
@@ -357,7 +357,7 @@ export const WISDOM: Wisdom[] = [
       "the twenty questions you keep getting wrong. Fear grows on a vague, enormous task and dies on a specific, " +
       "small one. And on the day, attempt everything — nothing is deducted for being wrong.",
     kind: "method",
-    source: "method (the no-deduction half: lib/faq.ts, Capt. Pahil confirmed 2026-07-27)",
+    source: "method (the no-deduction half: lib/faq.ts, the Captain confirmed 2026-07-27)",
     mood: "talk",
   },
   {
@@ -368,7 +368,7 @@ export const WISDOM: Wisdom[] = [
       "type rating after it is another 15 to 25 lakh. The flying is most of that bill — which is exactly why the " +
       "ground exams are the cheapest marks you will ever buy, and why everything on this site is free.",
     kind: "fact",
-    source: "CLAUDE.md — cost corrected by Capt. Pahil 2026-07-27; /cpl-cost-calculator",
+    source: "CLAUDE.md — cost corrected by the Captain 2026-07-27; /cpl-cost-calculator",
     href: "/cpl-cost-calculator",
     mood: "point",
   },

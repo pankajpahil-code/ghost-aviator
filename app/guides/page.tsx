@@ -5,7 +5,7 @@ import { SITE_URL, ORG_ID } from "@/lib/site";
 
 export const metadata = {
   title: "DGCA Exam Guides — CPL, RTR(A) & Pilot Training in India | Ghost Aviator",
-  description: "Comprehensive guides on DGCA exams, eGCA computer numbers, RTR(A) exam patterns, and CPL mock tests by Capt. Pankaj Pahil.",
+  description: "Comprehensive guides on DGCA exams, eGCA computer numbers, RTR(A) exam patterns, and CPL mock tests by Ghost Aviator.",
   alternates: { canonical: "/guides" },
 };
 
@@ -17,7 +17,7 @@ export default function GuidesIndexPage() {
         "@type": "CollectionPage",
         "@id": `${SITE_URL}/guides#webpage`,
         "name": "DGCA Aviation Study Guides",
-        "description": "Comprehensive guides on DGCA exams, eGCA computer numbers, RTR(A) exam patterns, and CPL mock tests by Capt. Pankaj Pahil.",
+        "description": "Comprehensive guides on DGCA exams, eGCA computer numbers, RTR(A) exam patterns, and CPL mock tests by Ghost Aviator.",
         "url": `${SITE_URL}/guides`,
         "inLanguage": "en-IN",
         "publisher": { "@id": ORG_ID },

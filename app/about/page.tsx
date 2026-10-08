@@ -31,12 +31,12 @@ const WA_SHARE = enquiryLink("testimonial");
 const WA_CLASSES = enquiryLink("about_classes");
 
 export const metadata: Metadata = {
-  title: "Meet Capt. Pankaj Pahil — Pilot, Instructor & Creator of Ghost Aviator",
+  title: "Meet the Captain — Pilot, Instructor & Creator of Ghost Aviator",
   description:
-    "Capt. Pankaj Pahil is a pilot, DGCA flight & ground instructor with 20+ years in aviation, author of two aviation books, and the creator of Ghost Aviator — free DGCA exam preparation for every student pilot in India.",
+    "The Captain is a pilot, DGCA flight & ground instructor with 20+ years in aviation, author of two aviation books, and the creator of Ghost Aviator — free DGCA exam preparation for every student pilot in India.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "Meet Capt. Pankaj Pahil — The Captain Behind Ghost Aviator",
+    title: "Meet the Captain Behind Ghost Aviator",
     description: "Pilot, DGCA flight & ground instructor, author of two aviation books. Free DGCA prep for every student pilot.",
     url: `${SITE_URL}/about`,
     type: "profile",
@@ -52,7 +52,7 @@ const JSON_LD = {
     {
       "@type": "Person",
       "@id": PERSON_ID,
-      name: "Capt. Pankaj Pahil",
+      name: "Ghost Aviator",
       url: `${SITE_URL}/about`,
       image: `${SITE_URL}${PORTRAIT}`,
       jobTitle: "Pilot, DGCA Flight & Ground Instructor",
@@ -67,7 +67,7 @@ const JSON_LD = {
       "@id": `${SITE_URL}/about#breadcrumb`,
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-        { "@type": "ListItem", position: 2, name: "About Capt. Pankaj Pahil" },
+        { "@type": "ListItem", position: 2, name: "About the Captain" },
       ],
     },
   ],
@@ -93,7 +93,7 @@ export default function AboutPage() {
           fades into the page. objectPosition 50% 66% is measured, not guessed —
           it is the window that holds the aircraft AND his full head. */}
       <div className="relative w-full h-[320px] sm:h-[440px] lg:h-[600px]">
-        <Image src={BANNER} alt="Capt. Pankaj Pahil on the apron" fill priority sizes="100vw"
+        <Image src={BANNER} alt="The Captain on the apron" fill priority sizes="100vw"
                className="object-cover" style={{ objectPosition: "50% 66%" }} />
         <div className="absolute inset-0" style={{
           background:
@@ -110,14 +110,14 @@ export default function AboutPage() {
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className="relative w-44 h-44 rounded-full overflow-hidden flex-shrink-0"
                  style={{ border: "2px solid rgba(240,145,58,0.4)", boxShadow: "0 0 40px rgba(240,145,58,0.22)" }}>
-              <Image src={PORTRAIT} alt="Capt. Pankaj Pahil" fill priority sizes="176px"
+              <Image src={PORTRAIT} alt="Ghost Aviator" fill priority sizes="176px"
                      className="object-cover" style={{ objectPosition: "50% 50%" }} />
             </div>
             <div className="text-center md:text-left">
               <div className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: "#f3c889", letterSpacing: "0.2em" }}>
                 The Captain Behind Ghost Aviator
               </div>
-              <h1 className="text-4xl sm:text-5xl font-black text-white mb-3">Capt. Pankaj Pahil</h1>
+              <h1 className="text-4xl sm:text-5xl font-black text-white mb-3">Ghost Aviator</h1>
               <p className="text-lg leading-relaxed max-w-xl" style={{ color: "#94a3b8" }}>
                 Pilot. DGCA flight &amp; ground instructor. Author.
                 For over two decades he has flown the theory that students struggle with —
@@ -152,7 +152,7 @@ export default function AboutPage() {
           <div className="flex flex-col gap-4 text-[15px] leading-relaxed" style={{ color: "#94a3b8" }}>
             <p>
               Quality DGCA ground training in India can cost lakhs of rupees — and a wrong answer
-              memorised from an unverified question bank can cost a student an attempt. Capt. Pahil
+              memorised from an unverified question bank can cost a student an attempt. The Captain
               built Ghost Aviator to fix both: <strong className="text-white">exam-grade study material,
               verified against authoritative references, free for every student pilot.</strong>
             </p>

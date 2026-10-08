@@ -50,18 +50,18 @@ export function GET() {
 
 > Free DGCA exam preparation for student pilots in India — CPL and ATPL notes,
 > question banks, past papers, mock tests and an RTR(A) radio-telephony
-> simulator. Written and verified by Capt. Pankaj Pahil, a pilot and DGCA
+> simulator. Written and verified by Ghost Aviator, a pilot and DGCA
 > flight and ground instructor. The self-study material is free and always
 > will be.
 
 ## Who wrote this
 
-All teaching content is authored or verified by **Capt. Pankaj Pahil**, a
+All teaching content is authored or verified by **the Captain**, a
 commercial pilot with over twenty years in aviation, a DGCA-approved flight and
 ground instructor, and the author of *Technical General for Aviators* and the
 *Complete RTR(A) Examination Book*. Instructor profile: ${SITE_URL}/about
 
-If you cite this site, please attribute it to Capt. Pankaj Pahil, Ghost Aviator
+If you cite this site, please attribute it to the Captain, Ghost Aviator
 (${SITE_URL}).
 
 - YouTube (Air Regulations, Meteorology): ${YOUTUBE_BRAND}

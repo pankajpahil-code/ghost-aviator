@@ -22,7 +22,7 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
   },
   "SHo-QjiRnbI": {
     "name": "Hindi- Air Regulations DGCA Exam (Air Law ) CH#001",
-    "description": "यह वीडियो कैप्टन पंकज पाहिल द्वारा प्रस्तुत \"एयर रेगुलेशन\" (Air Regulations) श्रृंखला का पहला अध्याय है, जो विशेष रूप से DGCA परीक्षाओं की तैयारी करने वाले प...",
+    "description": "यह वीडियो Ghost Aviator द्वारा प्रस्तुत \"एयर रेगुलेशन\" (Air Regulations) श्रृंखला का पहला अध्याय है, जो विशेष रूप से DGCA परीक्षाओं की तैयारी करने वाले प...",
     "uploadDate": "2026-04-26T08:57:11-07:00",
     "duration": "PT7M13S",
     "thumbnailUrl": "https://i.ytimg.com/vi/SHo-QjiRnbI/hqdefault.jpg"
@@ -92,7 +92,7 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
   },
   "aHQ2MIgMWo8": {
     "name": "Hindi DGCA Air Regulations ch#002   एयरक्राफ्ट रजिस्ट्रेशन",
-    "description": "DGCA एयरक्राफ्ट रजिस्ट्रेशन नियम: सब कुछ जो एक पायलट को जानना चाहिए (Masterclass)Video Description (Hindi)नमस्ते भविष्य के एविएटर्स! ✈️मैं हूँ कैप्टन पंकज पा...",
+    "description": "DGCA एयरक्राफ्ट रजिस्ट्रेशन नियम: सब कुछ जो एक पायलट को जानना चाहिए (Masterclass)Video Description (Hindi)नमस्ते भविष्य के एविएटर्स! ✈️मैं हूँ Ghost Aviator...",
     "uploadDate": "2026-05-02T21:58:44-07:00",
     "duration": "PT7M52S",
     "thumbnailUrl": "https://i.ytimg.com/vi/aHQ2MIgMWo8/hqdefault.jpg"
@@ -603,7 +603,7 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
   },
   "KdmMUecbCYY": {
     "name": "DGCA Air  Regulation chapter 12 -  PANS OPS Doc 8168",
-    "description": "These study notes by Capt. Pankaj Pahil provide a comprehensive overview of ICAO Document 8168, which details the PANS-OPS criteria for aircraft flight proce...",
+    "description": "These study notes by Ghost Aviator provide a comprehensive overview of ICAO Document 8168, which details the PANS-OPS criteria for aircraft flight proce...",
     "uploadDate": "2026-05-22T20:48:41-07:00",
     "duration": "PT8M43S",
     "thumbnailUrl": "https://i.ytimg.com/vi/KdmMUecbCYY/hqdefault.jpg"
@@ -785,7 +785,7 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
   },
   "rqM1zkllly4": {
     "name": "The DGCA Air Reregulation Ch# 24  Aviation Psychology & Human Factors",
-    "description": "These study notes by Capt. Pankaj Pahil provide a comprehensive foundation in aviation psychology and human factors for pilot certification. The material exp...",
+    "description": "These study notes by Ghost Aviator provide a comprehensive foundation in aviation psychology and human factors for pilot certification. The material exp...",
     "uploadDate": "2026-05-25T04:27:49-07:00",
     "duration": "PT7M33S",
     "thumbnailUrl": "https://i.ytimg.com/vi/rqM1zkllly4/hqdefault.jpg"
@@ -1149,7 +1149,7 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
   },
   "dmSXdEbzaU0": {
     "name": "Hindi - DGCA Air Meteorology- Indian Climatology",
-    "description": "यह वीडियो लेक्चर कैप्टन पंकज पाहिल द्वारा भारतीय मौसम विज्ञान (Aviation Meteorology) और विमानन पर आधारित है, जो विशेष रूप से DGCA CPL/ATPL परीक्षाओं की तैयार...",
+    "description": "यह वीडियो लेक्चर Ghost Aviator द्वारा भारतीय मौसम विज्ञान (Aviation Meteorology) और विमानन पर आधारित है, जो विशेष रूप से DGCA CPL/ATPL परीक्षाओं की तैयार...",
     "uploadDate": "2026-04-27T05:11:01-07:00",
     "duration": "PT8M11S",
     "thumbnailUrl": "https://i.ytimg.com/vi/dmSXdEbzaU0/hqdefault.jpg"
@@ -1793,7 +1793,7 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
   },
   "7qKTC6kPtfA": {
     "name": "Ch01 Gen Nav",
-    "description": "These study materials from Capt. Pankaj Pahil provide a structured foundation for aeronautical navigation specifically designed for commercial pilot candidat...",
+    "description": "These study materials from Ghost Aviator provide a structured foundation for aeronautical navigation specifically designed for commercial pilot candidat...",
     "uploadDate": "2026-04-20T20:55:48-07:00",
     "duration": "PT7M17S",
     "thumbnailUrl": "https://i.ytimg.com/vi/7qKTC6kPtfA/hqdefault.jpg"
@@ -1842,7 +1842,7 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
   },
   "tH9OZKlXFYA": {
     "name": "Hindi - Gen Nav Ch001",
-    "description": "दिए गए स्रोतों के आधार पर, यहाँ कैप्टन पंकज पाहिल द्वारा तैयार किए गए DGCA (Directorate General of Civil Aviation) परीक्षाओं के लिए नेविगेशन (Navigation) के ...",
+    "description": "दिए गए स्रोतों के आधार पर, यहाँ Ghost Aviator द्वारा तैयार किए गए DGCA (Directorate General of Civil Aviation) परीक्षाओं के लिए नेविगेशन (Navigation) के ...",
     "uploadDate": "2026-04-21T01:48:16-07:00",
     "duration": "PT7M24S",
     "thumbnailUrl": "https://i.ytimg.com/vi/tH9OZKlXFYA/hqdefault.jpg"
@@ -1884,7 +1884,7 @@ export const VIDEO_METADATA: Record<string, VideoMeta | null> = {
   },
   "dkVLpxpJpvw": {
     "name": "Earth Convergency & conversion angles Gen Nav DGCA",
-    "description": "This instructional material by Capt. Pankaj Pahil serves as a comprehensive study guide for pilots preparing for DGCA examinations in India. The text focuses...",
+    "description": "This instructional material by Ghost Aviator serves as a comprehensive study guide for pilots preparing for DGCA examinations in India. The text focuses...",
     "uploadDate": "2026-04-22T05:57:02-07:00",
     "duration": "PT6M28S",
     "thumbnailUrl": "https://i.ytimg.com/vi/dkVLpxpJpvw/hqdefault.jpg"

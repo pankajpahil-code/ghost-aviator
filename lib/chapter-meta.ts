@@ -134,7 +134,7 @@ export function chapterMetaDescription(
     case "chapter-quiz":
       return fitSnippet(`Timed self-test on ${topic} — ${qty}${qWord} scored instantly, so you know what you actually know before the ${exam} ${subj} paper.`);
     case "video":
-      return fitSnippet(`Video lecture on ${topic} for the ${exam} ${subj} paper, taught by Capt. Pankaj Pahil. Free to watch, no sign-up.`);
+      return fitSnippet(`Video lecture on ${topic} for the ${exam} ${subj} paper, taught by the Captain. Free to watch, no sign-up.`);
     case "mock-test":
       return fitSnippet(`Chapter test on ${topic}, marked against the ${exam} ${subj} syllabus. ${qty}${qWord}, instant result.`);
     case "notes":

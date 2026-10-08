@@ -39,7 +39,7 @@ summary{cursor:pointer;color:var(--accent);font-weight:650}details p{margin:8px 
 <div class="q">${esc(q.q)}</div>
 <ol>${q.opts.map((o, i) => `<li><b>${L[i]})</b> ${esc(o)}</li>`).join("")}</ol>
 <details><summary>Show the answer</summary><p><span class="a">${L[q.ans]}) ${esc(q.opts[q.ans])}</span> — ${esc(q.exp)}</p></details>
-<div class="f">From Capt. Pankaj Pahil's verified question bank · <a href="${chapter}" target="_blank" rel="noopener">read the chapter</a> · <a href="https://ghostaviator.com/question-bank" target="_blank" rel="noopener">free practice</a></div>
+<div class="f">From Ghost Aviator's verified question bank · <a href="${chapter}" target="_blank" rel="noopener">read the chapter</a> · <a href="https://ghostaviator.com/question-bank" target="_blank" rel="noopener">free practice</a></div>
 </div></body></html>`;
   return new Response(html, {
     headers: {

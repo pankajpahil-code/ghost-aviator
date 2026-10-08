@@ -20,6 +20,6 @@ export function openerFactsFor(subjectId: string, chapterId: string): ChapterKey
   if (!APPROVED_OPENER_SUBJECTS.includes(subjectId)) return undefined;
   const facts = OPENER_FACTS[`${subjectId}/${chapterId}`];
   return facts?.length
-    ? { facts, source: "Verbatim sentences from this chapter as published (TOPIC_OPENERS_FOR_REVIEW.tsv), approved by Capt. Pahil" }
+    ? { facts, source: "Verbatim sentences from this chapter as published (TOPIC_OPENERS_FOR_REVIEW.tsv), approved by the Captain" }
     : undefined;
 }

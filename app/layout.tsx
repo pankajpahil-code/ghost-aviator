@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 const TITLE = "Free DGCA CPL & ATPL Exam Prep | Ghost Aviator";
 const DESCRIPTION =
-  "Free DGCA CPL and ATPL notes, question banks and mock tests for student pilots in India. Explore live ground classes with Capt. Pankaj Pahil.";
+  "Free DGCA CPL and ATPL notes, question banks and mock tests for student pilots in India. Explore live ground classes with the Captain.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -65,7 +65,7 @@ const JSON_LD = {
     {
       "@type": "Person",
       "@id": PERSON_ID,
-      name: "Capt. Pankaj Pahil",
+      name: "Ghost Aviator",
       url: `${SITE_URL}/about`,
       jobTitle: "Pilot, DGCA Flight & Ground Instructor",
       sameAs: CAPTAIN_PROFILES,

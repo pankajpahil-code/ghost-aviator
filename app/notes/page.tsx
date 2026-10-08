@@ -22,7 +22,7 @@ export default function NotesPage() {
             DGCA Chapter Notes
           </h1>
           <p className="text-base max-w-xl mx-auto" style={{ color: "#64748b" }}>
-            Concise, exam-focused notes written by Capt. Pankaj Pahil — one page per chapter, exactly on syllabus.
+            Concise, exam-focused notes written by Ghost Aviator — one page per chapter, exactly on syllabus.
           </p>
         </div>
       </div>

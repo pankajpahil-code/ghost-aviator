@@ -52,7 +52,7 @@ export default function WidgetPage() {
           <li>It follows their device&apos;s light or dark setting and fits any width.</li>
         </ul>
         <p className="text-slate-400 text-sm mt-8">
-          Questions or a different subject for your school? Write to Capt. Pankaj Pahil via the{" "}
+          Questions or a different subject for your school? Write to the Captain via the{" "}
           <Link className="underline" href="/about">about page</Link>.
         </p>
       </div>

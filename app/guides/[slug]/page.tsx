@@ -48,7 +48,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     contentHtml = fs.readFileSync(filePath, "utf-8");
   } catch {
     // If not written yet, show a placeholder
-    contentHtml = `<p>This guide is currently being written by Capt. Pahil and will be available soon.</p>`;
+    contentHtml = `<p>This guide is currently being written by the Captain and will be available soon.</p>`;
   }
 
   // Calculate estimated read time (roughly 200 words per minute)

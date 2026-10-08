@@ -73,7 +73,7 @@ export default function VideoLectureCard({ videos, title, color }: Props) {
               </span>
               <span className="text-sm font-black text-white px-4 py-1.5 rounded-full"
                     style={{ background: "rgba(0,0,0,0.7)", border: "1px solid rgba(255,255,255,0.2)" }}>
-                Watch the lecture — Capt. Pankaj Pahil
+                Watch the lecture — Ghost Aviator
                 {videos.length > 1 && ` · ${videos.length} parts`}
               </span>
             </span>

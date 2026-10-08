@@ -29,7 +29,7 @@ export function buildPrompt(q: string, ctx: GiniContext, candidates: Candidate[]
       : "Nothing on this site matches what was asked.",
     renderMenu(candidates),
     "",
-    'Reply as JSON. PREFER PICKING. If any numbered entry above covers what was asked, use {"mode":"pick","id":"<number>"} — do not write the answer yourself, just choose it. Those entries are written in Capt. Pahil\'s own words and carry the right links, so a pick is almost always better than your paraphrase.',
+    'Reply as JSON. PREFER PICKING. If any numbered entry above covers what was asked, use {"mode":"pick","id":"<number>"} — do not write the answer yourself, just choose it. Those entries are written in the Captain\'s own words and carry the right links, so a pick is almost always better than your paraphrase.',
     'Use {"mode":"talk","reply":"<your own words>","href":"<a site path>"} ONLY when nothing in the list fits — a greeting, small talk, or a question about this site that no entry covers. Always set href when you mention a page.',
     'If it is an aviation question and no entry above genuinely answers it, use {"mode":"none"} — never answer it yourself.',
   ].join("\n");

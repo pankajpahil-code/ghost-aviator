@@ -62,8 +62,8 @@ export default function PrivacyPage() {
             that app, the name the app shows us, the messages or comments you send and our replies, and anything you choose to
             tell us, such as your exam, subjects or exam month.</p>
           <p><strong>Why:</strong> to answer you, to remember where your conversation left off, and to follow up about the
-            classes you asked about. Capt. Pahil sees these conversations so he can reply personally.</p>
-          <p><strong>Where:</strong> on Capt. Pahil&rsquo;s own computer. It is not sold, rented or shared with anyone else.
+            classes you asked about. The Captain sees these conversations so he can reply personally.</p>
+          <p><strong>Where:</strong> on the Captain&rsquo;s own computer. It is not sold, rented or shared with anyone else.
             The messaging app you used (Telegram or Meta) also keeps its own copy under its own policy.</p>
           <p><strong>Your choices:</strong> send <strong>stop</strong> and we stop follow-up messages. The daily practice
             question is sent only if you ask for it, and <strong>stop daily</strong> ends it.</p>
@@ -73,7 +73,7 @@ export default function PrivacyPage() {
 
         <Section title="Payments">
           <p>You pay for live classes in your own UPI app. We never see your bank, card or UPI PIN details. If you send us a
-            payment screenshot, Capt. Pahil uses it only to confirm your seat.</p>
+            payment screenshot, the Captain uses it only to confirm your seat.</p>
         </Section>
 
         <Section id="delete-your-data" title="Delete your data">

@@ -25,7 +25,7 @@ export default function LiveClassUpsell({ subjectId, subjectColor }: Props) {
             <Radio className="w-3 h-3 animate-pulse" /> LIVE BATCH
           </div>
           <div className="text-lg font-black text-white leading-snug">
-            Study {liveName} <span style={{ color: subjectColor }}>live</span> with Capt. Pahil
+            Study {liveName} <span style={{ color: subjectColor }}>live</span> with the Captain
           </div>
           <div className="text-xs mt-1" style={{ color: "#64748b" }}>
             Small batch of 10 · live doubt-clearing · 4–6 weeks ·{" "}
