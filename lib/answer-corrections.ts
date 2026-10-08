@@ -24,6 +24,10 @@ export type AnswerCorrection = {
   // answer (rule changed) or whose stem was ambiguous/damaged.
   edit?: { q?: string; opts?: Record<string, string> };  // opts: old text -> new text
   hide?: boolean;  // unanswerable / unsupported: removed from every page
+  // Other printings of the SAME keyed option that differ by more than spacing or
+  // punctuation (a paper that prints "5700 kg." for "5700 kgs", or the full sentence
+  // where the bank copy is cut short). Each is listed by hand so it can be reviewed.
+  wasAlso?: string[];
 };
 
 export const ANSWER_CORRECTIONS: AnswerCorrection[] = [
@@ -186,7 +190,7 @@ export const ANSWER_CORRECTIONS: AnswerCorrection[] = [
   // hidden: time is not a lateral separation; no such rule in Doc 4444
   {"q": "The lateral separation reqd. if an A/C is holding at a level", "was": "5 mins", "now": "5 mins", "hide": true, "exp": ""},
   // hidden: no current 'above 5700 kg' anti-collision rule; all aeroplanes at night need them
-  {"q": "Anti-collision lights are required on aircraft above", "was": "5700 kgs", "now": "5700 kgs", "hide": true, "exp": ""},
+  {"q": "Anti-collision lights are required on aircraft above", "was": "5700 kgs", "wasAlso": ["5700 kg"], "now": "5700 kgs", "hide": true, "exp": ""},
   {"q": "Night flying hours can be logged between __________ mins after sunset to ________ mins before sunrise:", "was": "20 mins", "now": "30 mins", "exp": "30 minutes. For logging, 'flight by night' is from half an hour after sunset to half an hour before sunrise. (VFR operations use a different limit: 20 minutes.)\n\nReference: Aircraft Rules 1937, Schedule II para 4", "edit": {"opts": {"20 mins": "30 mins"}}},
   {"q": "The Min. Separation above F 290 is:", "was": "2000’", "now": "2000’", "exp": "2000 ft. Outside RVSM airspace the vertical separation above FL290 is 2000 ft; inside RVSM airspace (FL290-FL410) it is 1000 ft.\n\nReference: ICAO Doc 4444 5.3.2", "edit": {"q": "Outside RVSM airspace, the minimum vertical separation above FL 290 is:"}},
   // hidden: EET treatment of stopovers not settled by a held source
@@ -222,7 +226,7 @@ export const ANSWER_CORRECTIONS: AnswerCorrection[] = [
   {"q": "Avoiding wake turbulence is", "was": "The sole responsibility of the pilot.", "now": "A responsibility shared by both the pilot and ATC.", "exp": "A shared responsibility. ATC applies wake-turbulence separation minima to the flights covered by the rules, and where the responsibility rests with the pilot-in-command (e.g. visual approaches) ATC advises and the pilot keeps the spacing.\n\nReference: ICAO Doc 4444 5.8.1 and 7.4.1.6.1"},
   // hidden: as #225
   {"q": "Anti collision light is reqd. for A/C whose AUW exceeds", "was": "5700 Kg", "now": "5700 Kg", "hide": true, "exp": ""},
-  {"q": "A VFR flt takes off from Jaipur at 1040 hrs for Ahmedabad. Sunset time at Ahmedabad is1232hrs. What is the maximum flying time available to the p-i-c to land at Ahmedabad?", "was": "1 hr and 52 mins", "now": "2 hrs 12 mins", "exp": "2 hours 12 minutes. VFR may continue until 20 minutes after sunset: 1232 + 20 = 1252; from 1040 to 1252 is 2 h 12 min.\n\nReference: DGCA CAR Section 9 Series C Part I (Rules of the Air), 4.3", "edit": {"opts": {"2 hrs 02 mins": "2 hrs 12 mins"}}},
+  {"q": "A VFR flt takes off from Jaipur at 1040 hrs for Ahmedabad. Sunset time at Ahmedabad is1232hrs. What is the maximum flying time available to the p-i-c to land at Ahmedabad?", "was": "1 hr and 52 mins", "wasAlso": ["2 hrs and 22 mins"], "now": "2 hrs 12 mins", "exp": "2 hours 12 minutes. VFR may continue until 20 minutes after sunset: 1232 + 20 = 1252; from 1040 to 1252 is 2 h 12 min.\n\nReference: DGCA CAR Section 9 Series C Part I (Rules of the Air), 4.3", "edit": {"opts": {"2 hrs 02 mins": "2 hrs 12 mins"}}},
   {"q": "Indian ATS Routes come under _______class of airspace:", "was": "A, B, C, & D", "now": "C, D, E, & F", "exp": "C, D, E and F. ATS routes inside controlled airspace are Class C or D; ATS route segments outside controlled airspace are Class E or F.\n\nReference: AIP India ENR 1.4", "edit": {"opts": {"D, E, F, & G": "C, D, E, & F"}}},
   {"q": "All the flights at night must be conducted in accordance with IFR.", "was": "Irrespective of weather condition and flight level.", "now": "Irrespective of weather condition and flight level.", "exp": "Yes - in India VFR is permitted only from 20 minutes before sunrise to 20 minutes after sunset, so night flights are IFR unless ATC exempts local or flying-club training flights.\n\nReference: DGCA CAR Section 9 Series C Part I (Rules of the Air) 4.3; AIP India ENR 1.2 3", "edit": {"q": "Except for local and training flights exempted by ATC, flights at night in India must be conducted in accordance with IFR:"}},
   {"q": "In night starts from", "was": "20 mts after sunset", "now": "30 mts after sunset", "exp": "30 minutes after sunset, for the Aircraft Rules definition of flight by night. (Do not confuse it with the VFR limit of 20 minutes after sunset.)\n\nReference: Aircraft Rules 1937, Schedule II para 4"},
@@ -244,9 +248,9 @@ export const ANSWER_CORRECTIONS: AnswerCorrection[] = [
   {"q": "In Cat II ILS approach, what is DH & RVR?", "was": "100’ & upto 350m", "now": "100’ & RVR not less than 300m", "exp": "DH 100 ft and RVR not less than 300 m (Category II).\n\nReference: DGCA CAR Section 8 Series C Part I (AWO)", "edit": {"opts": {"100’ & upto 350m": "100’ & RVR not less than 300m"}}},
   {"q": "Met report contains", "was": "Air temp, turbulence, spot wind", "now": "Air temp, turbulence, wind", "exp": "Air temperature, turbulence and wind - the meteorological section of the air-report.\n\nReference: ICAO Doc 4444 4.12", "edit": {"opts": {"Air temp, turbulence, spot wind": "Air temp, turbulence, wind"}}},
   {"q": "The demolition of buildings and trees act was came into effect in year", "was": "1994", "now": "1994", "exp": "1994. The original Demolition Rules were notified in 1994 and have since been replaced by the 2026 Rules.\n\nReference: DGCA list of Rules (Demolition Rules 1994 / 2026)", "edit": {"q": "The original Aircraft (Demolition of Obstructions caused by Buildings and Trees etc.) Rules were notified in the year:"}},
-  {"q": "Night flying hours can be logged between", "was": "20 mins after Sunset to 20 mins before", "now": "30 mins after sunset to 30 mins before sunrise", "exp": "30 minutes after sunset to 30 minutes before sunrise - the Aircraft Rules definition of flight by night used for logging.\n\nReference: Aircraft Rules 1937, Schedule II para 4", "edit": {"opts": {"20 mins after Sunset to 20 mins before": "30 mins after sunset to 30 mins before sunrise"}}},
+  {"q": "Night flying hours can be logged between", "was": "20 mins after Sunset to 20 mins before", "wasAlso": ["20 mins after Sunset to 20 mins before Sunrise"], "now": "30 mins after sunset to 30 mins before sunrise", "exp": "30 minutes after sunset to 30 minutes before sunrise - the Aircraft Rules definition of flight by night used for logging.\n\nReference: Aircraft Rules 1937, Schedule II para 4", "edit": {"opts": {"20 mins after Sunset to 20 mins before": "30 mins after sunset to 30 mins before sunrise", "20 mins after Sunset to 20 mins before Sunrise": "30 mins after sunset to 30 mins before sunrise"}}},
   {"q": "International flying time in one day is:", "was": "9 hrs 3 landing", "now": "2 landings", "exp": "2 landings. With 9 hours' flight time the maximum FDP is 13:00 and only 2 landings are allowed (8 h allows up to 6 landings at an 11:00 FDP; 10 h allows 1). The old domestic/international table no longer exists.\n\nReference: DGCA CAR Section 7 Series J Part III, 6.1", "edit": {"q": "Under the current DGCA FDTL CAR, a two-pilot crew flying the maximum flight time of 9 hours in 24 hours may make at most:", "opts": {"8 hrs 4 landing": "4 landings", "8 hrs 3 landing": "3 landings", "9 hrs 3 landing": "2 landings", "6 hrs 4 landing": "1 landing"}}},
-  {"q": "If you fly into Severe Turbulence which flight condition should you intend to maintain -", "was": "Constant Airspeed", "now": "Level flight attitude", "exp": "Level flight attitude. Slow to manoeuvring speed and hold a level attitude, accepting changes in altitude and speed.\n\nReference: FAA knowledge-test standard (turbulence penetration)", "edit": {"opts": {"Level flt Altitude": "Level flight attitude"}}},
+  {"q": "If you fly into Severe Turbulence which flight condition should you intend to maintain -", "was": "Constant Airspeed", "wasAlso": ["Level flt Altitude"], "now": "Level flight attitude", "exp": "Level flight attitude. Slow to manoeuvring speed and hold a level attitude, accepting changes in altitude and speed.\n\nReference: FAA knowledge-test standard (turbulence penetration)", "edit": {"opts": {"Level flt Altitude": "Level flight attitude"}}},
   {"q": "En-route Altitude will be determined for each stage of the route by taking 1000 ft of Terrain clearance with in a width of:", "was": "20 Nms", "now": "20 Nms", "exp": "20 NM. DGCA's CAR on minimum flight altitudes states that published ATS routes provide at least 1000 ft clearance above the highest obstacle within the route width of 20 nautical miles.\n\nReference: DGCA CAR Section 9 Series R Part I, 1.2"},
   {"q": "Flt Duty Time in the event of being extended shall be limited to:", "was": "4 hrs", "now": "2 hrs", "exp": "2 hours - the maximum FDP extension for unforeseen operational circumstances.\n\nReference: DGCA CAR Section 7 Series J Part III, 16.1", "edit": {"opts": {"4 hrs": "2 hrs"}}},
   {"q": "Flt Crew on Domestic Flt, the Flt time should not exceed more than ______ and No. of landing restrictions is", "was": "8 hrs and 6 landings", "now": "8 hrs and 6 landings", "exp": "8 hours and 6 landings. For a two-pilot crew with 8 hours' flight time, up to 6 landings are allowed within an 11-hour FDP (fewer as the FDP gets longer).\n\nReference: DGCA CAR Section 7 Series J Part III, 6.1", "edit": {"q": "For a two-pilot crew, the maximum flight time and landings allowed within an 11-hour flight duty period are:"}},
@@ -254,7 +258,7 @@ export const ANSWER_CORRECTIONS: AnswerCorrection[] = [
   {"q": "Take off Alternate Aerodrome shall be located from the Aerodrome of departure not more than a distance equal to the Flt of______ with one engine inoperative cruise speed.", "was": "1 hr for 2 Eng A/c and 2 hrs or more for 3 Eng or more than 3 Eng A/c", "now": "1 hr for 2 Eng A/c and 2 hrs or more for 3 Eng or more than 3 Eng A/c", "exp": "One hour for two-engine aeroplanes at one-engine-inoperative cruise speed; two hours for three or more engines at all-engines cruise speed.\n\nReference: DGCA CAR Section 8 Series O Part II, 4.3.4.1.2", "edit": {"q": "A take-off alternate aerodrome shall be located from the aerodrome of departure within a flight time of:"}},
   // hidden: absolute legal claim with no statute behind it
   {"q": "While force landing an aircraft in a field due to engine failure, one person is killed on ground P-i-C can be prosecuted for", "was": "cannot be prosecuted", "now": "cannot be prosecuted", "hide": true, "exp": ""},
-  {"q": "Flight Duty time is calculated based on:", "was": "From the time you report for the duty till 15 minutes after switch off.", "now": "From reporting for duty until engines off at the end of the last flight", "exp": "From reporting for duty until engines off at the end of the last flight.\n\nReference: DGCA CAR Section 7 Series J Part III (definition of Flight Duty Period)", "edit": {"opts": {"From the time you report for the duty till 15 minutes after switch off.": "From reporting for duty until engines off at the end of the last flight"}}},
+  {"q": "Flight Duty time is calculated based on:", "was": "From the time you report for the duty till 15 minutes after switch off.", "wasAlso": ["Chokes off to Chokes on time"], "now": "From reporting for duty until engines off at the end of the last flight", "exp": "From reporting for duty until engines off at the end of the last flight.\n\nReference: DGCA CAR Section 7 Series J Part III (definition of Flight Duty Period)", "edit": {"opts": {"From the time you report for the duty till 15 minutes after switch off.": "From reporting for duty until engines off at the end of the last flight"}}},
   {"q": "ATPL medical fitness and license validity period is", "was": "six months & two years", "now": "12 months (6 months after age 40) & 10 years", "exp": "Medical 12 months (6 months after age 40); licence 10 years since the 2023 amendment.\n\nReference: Aircraft Rules 1937, Rule 39C (as amended by G.S.R. 733(E), 2023)", "edit": {"opts": {"six months & two years": "12 months (6 months after age 40) & 10 years"}}},
   {"q": "On PAPI approach, if a pilot sees 3 lights white and green, the aircraft is", "was": "slightly high", "now": "slightly high", "exp": "Slightly high. One red and three white means slightly above the approach slope; two and two is on slope.\n\nReference: DGCA CAR Section 4 Series B Part I, 5.3.5", "edit": {"q": "On a PAPI approach, if a pilot sees three white lights and one red, the aircraft is"}},
   {"q": "MDA is calculated for:", "was": "both", "now": "both", "exp": "Both. MDA/H is used for non-precision (2D) approaches and for circling approaches.\n\nReference: DGCA CAR Section 8 Series C Part I (definition of MDA/H)", "edit": {"opts": {"non-precision approach &": "Non-precision approaches"}}},
@@ -353,13 +357,32 @@ type Keyed = { q: string; opts: string[]; ans: number; exp?: string };
 
 // Option text compared without trailing full stops / whitespace, because the
 // same option is printed "2 mins" in one paper and "2 mins." in another.
-export const sameOption = (a: string | undefined, b: string) =>
-  a !== undefined && a.trim().replace(/[.\s]+$/, "") === b.trim().replace(/[.\s]+$/, "");
+// Case is ignored too: one paper prints "the sole responsibility of the pilot" where the
+// bank prints "The sole ...", and a case-sensitive test left that paper on the old key.
+// Spacing and list punctuation inside an option are ignored as well ("D,E,F& G" against
+// "D, E, F & G"). A full stop BETWEEN digits is kept, so "1.5 hrs" never equals "15 hrs".
+export const sameOption = (a: string | undefined, b: string) => a !== undefined && optKey(a) === optKey(b);
+const optKey = (s: string) =>
+  s.toLowerCase().replace(/(?<!\d)\.|\.(?!\d)/g, "").replace(/[\s,&;:]+/g, "");
+
+// The same question is printed with small differences from paper to paper: a missing
+// colon or full stop, a different run of underscores in a blank, double spaces, capitals.
+// Matching the stem exactly left 30-odd past-paper copies on their old keys while the
+// chapter bank showed the corrected one (found 2026-10-08). The stem is therefore compared
+// with those differences removed. Letters, digits and operators (< > = + /) are KEPT, so
+// two genuinely different questions cannot collapse into one, and the keyed-text guard
+// below still has to pass before anything is changed.
+export const sameStem = (a: string, b: string) => stemKey(a) === stemKey(b);
+const stemKey = (s: string) => s.toLowerCase().replace(/[\s_.:…?‘’'"“”-]+/g, "");
 
 // Apply every correction whose guard passes. Returns new objects; inputs untouched.
 export function applyAnswerCorrections<T extends Keyed>(qs: T[]): T[] {
   return qs.flatMap((x) => {
-    const c = ANSWER_CORRECTIONS.find((k) => k.q === x.q && sameOption(x.opts[x.ans], k.was));
+    const keyed = x.opts[x.ans];
+    const wasKeyed = (k: AnswerCorrection) => [k.was, ...(k.wasAlso ?? [])].some((w) => sameOption(keyed, w));
+    const c =
+      ANSWER_CORRECTIONS.find((k) => k.q === x.q && wasKeyed(k)) ??
+      ANSWER_CORRECTIONS.find((k) => sameStem(k.q, x.q) && wasKeyed(k));
     if (!c) return [x];
     if (c.hide) return [];
     const map = c.edit?.opts ?? {};
