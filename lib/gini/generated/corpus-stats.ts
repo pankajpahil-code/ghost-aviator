@@ -13,24 +13,24 @@
 export type CorpusCount = { total: number; speakable: number };
 
 export const CORPUS = {
-  total: 4381,
-  speakable: 2514,
+  total: 4327,
+  speakable: 2517,
   bySubject: {
       "air-navigation": {
-          "total": 1020,
-          "speakable": 263
+          "total": 958,
+          "speakable": 264
       },
       "meteorology": {
-          "total": 651,
-          "speakable": 616
+          "total": 653,
+          "speakable": 618
       },
       "air-regulations": {
-          "total": 890,
-          "speakable": 318
+          "total": 899,
+          "speakable": 320
       },
       "technical-general": {
-          "total": 183,
-          "speakable": 183
+          "total": 184,
+          "speakable": 184
       },
       "technical-specific": {
           "total": 145,
@@ -41,16 +41,16 @@ export const CORPUS = {
           "speakable": 2
       },
       "radio-telephony": {
-          "total": 769,
-          "speakable": 349
+          "total": 775,
+          "speakable": 355
       },
       "instrumentation": {
-          "total": 272,
-          "speakable": 263
+          "total": 265,
+          "speakable": 257
       },
       "radio-navigation": {
-          "total": 447,
-          "speakable": 398
+          "total": 446,
+          "speakable": 397
       }
   } as Record<string, CorpusCount>,
 } as const;

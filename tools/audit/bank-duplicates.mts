@@ -4,19 +4,23 @@
 //   npx tsx tools/audit/bank-duplicates.mts <out.md>   also write the full lists
 //
 // Nothing here changes a key or picks a winner. It reports:
-//   1. groups with the same stem and DIFFERENT keyed answers (all copies are live)
-//   2. copies dropped as true duplicates, and the subjects the kept copy gained
+//   1. same stem, DIFFERENT keyed answer: the first copy is live, the later one is hidden
+//      (as it was before 8 Oct 2026). Both option sets are printed.
 //   1c. copies held back because a declared correction already rules on their stem
+//   2. copies dropped as true duplicates, and the subjects the kept copy gained
 //   3. questions left out because they need a figure the site cannot show
 //   4. short-stem questions the old loader deleted, which are live again
 //   5. live questions with a repeated or empty option
 //   6. (subject, chapterId) pairs that match no chapter in lib/subjects.ts
+//
+// Exits 1 if the live bank holds two copies of one stem: that is the state this report
+// exists to prevent.
 import { writeFileSync } from "node:fs";
 import {
   ALL_QUESTIONS,
   BANK_BEFORE_DEDUPE,
   BANK_ELIGIBLE,
-  collapseDuplicates,
+  collapseWithReport,
   hasBrokenOptions,
   needsMissingFigure,
   type DemoQuestion,
@@ -27,6 +31,8 @@ const alnum = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
 const cell = (s: string) => s.replace(/\|/g, "\\|").replace(/\s+/g, " ").trim();
 const tag = (q: DemoQuestion) => `${q.subjectIds.join("+")} / ${q.chapterId ?? "(no chapter)"}`;
 const optSet = (q: DemoQuestion) => q.opts.map(alnum).sort().join("|");
+const options = (q: DemoQuestion) =>
+  q.opts.map((o, i) => `${i === q.ans ? "[x]" : "[ ]"} ${cell(o) || "(empty)"}`).join(" ; ");
 
 const figure = BANK_BEFORE_DEDUPE.filter(needsMissingFigure);
 const eligible = BANK_ELIGIBLE;
@@ -34,71 +40,71 @@ const eligible = BANK_ELIGIBLE;
 const heldBack = BANK_BEFORE_DEDUPE.filter((q) => !needsMissingFigure(q) && !eligible.includes(q));
 
 // The script must describe the loader that pages use, not a copy of it.
-const replay = collapseDuplicates(eligible);
-if (replay.length !== ALL_QUESTIONS.length) {
-  console.error(`replay ${replay.length} != ALL_QUESTIONS ${ALL_QUESTIONS.length}: this report is not about the live bank`);
+const replay = collapseWithReport(eligible);
+if (
+  replay.live.length !== ALL_QUESTIONS.length ||
+  replay.live.some((q, i) => q.q !== ALL_QUESTIONS[i].q || q.opts[q.ans] !== ALL_QUESTIONS[i].opts[ALL_QUESTIONS[i].ans])
+) {
+  console.error(`replay of the loader does not match ALL_QUESTIONS (${replay.live.length} vs ${ALL_QUESTIONS.length}): this report is not about the live bank`);
   process.exit(1);
 }
+const live = replay.live;
 
-// 1. same stem, different keyed answer
+// 1. same stem, different keyed answer: one live copy, the later copies hidden
+const pairs = replay.otherKey;
+const hiddenSet = new Set(pairs.map((p) => p.hidden));
+const groups = new Map<DemoQuestion, DemoQuestion[]>(); // live copy -> hidden copies
+for (const p of pairs) groups.set(p.live, [...(groups.get(p.live) ?? []), p.hidden]);
+const sameOptions = [...groups].filter(([l, hs]) => hs.some((h) => optSet(h) === optSet(l)));
+
+// The state the loader must never produce: two live copies of one stem.
 const liveByStem = new Map<string, DemoQuestion[]>();
-for (const q of ALL_QUESTIONS) {
+for (const q of live) {
   const k = alnum(q.q);
-  liveByStem.set(k, [...(liveByStem.get(k) ?? []), q]);
+  if (k) liveByStem.set(k, [...(liveByStem.get(k) ?? []), q]);
 }
-const conflicts = [...liveByStem.values()].filter((g) => g.length > 1);
-const sameOptions = conflicts.filter((g) => new Set(g.map(optSet)).size < g.length);
+const twiceLive = [...liveByStem.values()].filter((g) => g.length > 1);
 
 // 2. true duplicates dropped, and subjects gained
-const liveSet = new Set(ALL_QUESTIONS);
-// Later copies with a repeated or empty option whose stem already has a live copy keyed differently.
-const damaged = eligible.filter(
-  (q) =>
-    hasBrokenOptions(q) &&
-    !ALL_QUESTIONS.some((x) => x.opts === q.opts) &&
-    !(liveByStem.get(alnum(q.q)) ?? []).some((x) => alnum(x.opts[x.ans] ?? "") === alnum(q.opts[q.ans] ?? "")),
-);
 const rawByStem = new Map<string, DemoQuestion[]>();
 for (const q of eligible) {
   const k = alnum(q.q);
   rawByStem.set(k, [...(rawByStem.get(k) ?? []), q]);
 }
-const dropped = eligible.length - ALL_QUESTIONS.length - damaged.length;
+const dropped = eligible.length - live.length - pairs.length;
 const gained: { q: DemoQuestion; from: DemoQuestion[]; subjects: string[] }[] = [];
-for (const q of ALL_QUESTIONS) {
-  const copies = (rawByStem.get(alnum(q.q)) ?? []).filter((r) => r !== q && !liveSet.has(r));
+for (const q of live) {
+  const g = rawByStem.get(alnum(q.q)) ?? [];
   // A kept copy that gained a subject is a NEW object, so find the raw copy it came from.
-  const original = (rawByStem.get(alnum(q.q)) ?? []).find(
-    (r) => r.opts === q.opts && r.chapterId === q.chapterId,
-  );
+  const original = g.find((r) => r.opts === q.opts && r.chapterId === q.chapterId);
   if (!original || original === q) continue;
   const subjects = q.subjectIds.filter((s) => !original.subjectIds.includes(s));
-  if (subjects.length) gained.push({ q, from: copies.filter((c) => c !== original), subjects });
+  const from = g.filter((r) => r !== original && !hiddenSet.has(r));
+  if (subjects.length) gained.push({ q, from, subjects });
 }
 const droppedDifferentOptions = (() => {
   let n = 0;
-  for (const q of ALL_QUESTIONS) {
-    const g = rawByStem.get(alnum(q.q)) ?? [];
-    for (const r of g) {
-      if (liveSet.has(r) || r.opts === q.opts) continue;
-      if (alnum(r.opts[r.ans] ?? "") === alnum(q.opts[q.ans] ?? "") && optSet(r) !== optSet(q)) n++;
+  for (const q of live) {
+    for (const r of rawByStem.get(alnum(q.q)) ?? []) {
+      if (r.opts === q.opts || hiddenSet.has(r)) continue;
+      if (optSet(r) !== optSet(q)) n++;
     }
   }
   return n;
 })();
 
 // 4. short stems (the old loader deleted every stem under 10 letters and digits)
-const shortStems = ALL_QUESTIONS.filter((q) => alnum(q.q).length < 10);
+const shortStems = live.filter((q) => alnum(q.q).length < 10);
 
 // 5. repeated or empty options
-const badOptions = ALL_QUESTIONS.filter(hasBrokenOptions);
+const badOptions = live.filter(hasBrokenOptions);
 
 // 6. chapter ids that match no chapter of the subject
 const chapters = new Map<string, Set<string>>();
 for (const s of [...CPL_SUBJECTS, ...ATPL_SUBJECTS]) chapters.set(s.id, new Set(s.chapters.map((c) => c.id)));
 const unmatched = new Map<string, number>();
 let noChapter = 0;
-for (const q of ALL_QUESTIONS) {
+for (const q of live) {
   if (!q.chapterId) { noChapter++; continue; }
   for (const s of q.subjectIds) {
     if (chapters.get(s)?.has(q.chapterId)) continue;
@@ -111,12 +117,12 @@ const summary = [
   `raw copies after declared corrections: ${BANK_BEFORE_DEDUPE.length}`,
   `left out, need a figure: ${figure.length}`,
   `held back, contradict a declared correction on the same stem: ${heldBack.length}`,
-  `held back, damaged later copy of a stem that is already live: ${damaged.length}`,
+  `hidden, same stem as a live copy but a different keyed answer: ${pairs.length} copies of ${groups.size} live questions`,
+  `  of which the hidden copy has the same set of options as the live one (the two keys contradict): ${sameOptions.length}`,
   `dropped as true duplicates (same stem, same keyed answer): ${dropped}`,
   `  of which the dropped copy had a different set of options: ${droppedDifferentOptions}`,
-  `live bank (ALL_QUESTIONS): ${ALL_QUESTIONS.length}`,
-  `same stem, different keyed answer: ${conflicts.length} groups, ${conflicts.reduce((n, g) => n + g.length, 0)} live questions`,
-  `  of which the options are the same set (one of the keys must be wrong): ${sameOptions.length}`,
+  `live bank (ALL_QUESTIONS): ${live.length}`,
+  `stems with more than one live copy (must be 0): ${twiceLive.length}`,
   `kept copies that gained a subject from a dropped duplicate: ${gained.length}`,
   `live short-stem questions (under 10 letters and digits): ${shortStems.length}`,
   `live questions with a repeated or empty option: ${badOptions.length}`,
@@ -138,27 +144,30 @@ if (out) {
   L.push("");
   L.push("## 1. Same stem, different keyed answer");
   L.push("");
-  L.push("Every copy below is live. Before 8 Oct 2026 only the first copy of each group was shown and the");
-  L.push("others were silently dropped. For each group the ruling needed is one of: both are right (different");
-  L.push("questions that happen to share a stem), one key is wrong, or they are the same answer spelt two ways");
-  L.push("and one copy should go.");
+  L.push("Two sources carry the same question and key it differently. The copy marked LIVE is the one students");
+  L.push("see, and it is the one they saw before 8 Oct 2026 (the first copy in source order). The copy marked");
+  L.push("HIDDEN is not shown anywhere and was not shown before. Nothing here was decided by the loader: for each");
+  L.push("pair the ruling needed is which key is right. If the hidden key is the right one, the live copy needs a");
+  L.push("declared correction in lib/answer-corrections.ts.");
   L.push("");
-  L.push("### 1a. Options are the same set: the two keys contradict each other");
-  L.push("");
-  const printGroup = (g: DemoQuestion[]) => {
-    L.push(`**${cell(g[0].q)}**`);
+  const printGroup = ([l, hs]: [DemoQuestion, DemoQuestion[]]) => {
+    L.push(`**${cell(l.q)}**`);
     L.push("");
-    for (const q of g) {
-      L.push(`- ${tag(q)}: keyed **${cell(q.opts[q.ans] ?? "")}**`);
-      L.push(`  - options: ${q.opts.map((o, i) => `${i === q.ans ? "[x]" : "[ ]"} ${cell(o)}`).join(" ; ")}`);
-      if (q.q !== g[0].q) L.push(`  - stem as printed in this copy: ${cell(q.q)}`);
+    L.push(`- LIVE, ${tag(l)}: keyed **${cell(l.opts[l.ans] ?? "")}**`);
+    L.push(`  - options: ${options(l)}`);
+    for (const h of hs) {
+      L.push(`- HIDDEN, ${tag(h)}: keyed **${cell(h.opts[h.ans] ?? "")}**${hasBrokenOptions(h) ? " (this copy has a repeated or empty option)" : ""}`);
+      L.push(`  - options: ${options(h)}`);
+      if (h.q !== l.q) L.push(`  - stem as printed in this copy: ${cell(h.q)}`);
     }
     L.push("");
   };
+  L.push("### 1a. Options are the same set: the two keys contradict each other");
+  L.push("");
   sameOptions.forEach(printGroup);
   L.push("### 1b. Options differ between the copies");
   L.push("");
-  conflicts.filter((g) => !sameOptions.includes(g)).forEach(printGroup);
+  [...groups].filter((g) => !sameOptions.some((s) => s[0] === g[0])).forEach(printGroup);
 
   L.push("### 1c. Held back: a declared correction already rules on this stem");
   L.push("");
@@ -166,26 +175,15 @@ if (out) {
   L.push("ruled answer is live, and this other copy keys something else. They were not live before 8 Oct either.");
   L.push("");
   for (const q of heldBack) {
-    const ruled = ALL_QUESTIONS.filter((x) => alnum(x.q) === alnum(q.q));
+    const ruled = live.filter((x) => alnum(x.q) === alnum(q.q));
     L.push(`**${cell(q.q)}**`);
     L.push("");
-    L.push(`- held back, ${tag(q)}: keyed **${cell(q.opts[q.ans] ?? "")}**`);
-    L.push(`  - options: ${q.opts.map((o, i) => `${i === q.ans ? "[x]" : "[ ]"} ${cell(o)}`).join(" ; ")}`);
-    for (const x of ruled) L.push(`- live, ${tag(x)}: keyed **${cell(x.opts[x.ans] ?? "")}**`);
-    L.push("");
-  }
-
-  L.push("### 1d. Held back: a damaged later copy of a stem that is already live");
-  L.push("");
-  L.push("These copies are NOT live. Each has a repeated or empty option and keys a different answer from the");
-  L.push("copy that is live. They were not live before 8 Oct either.");
-  L.push("");
-  for (const q of damaged) {
-    L.push(`**${cell(q.q)}**`);
-    L.push("");
-    L.push(`- held back, ${tag(q)}: keyed **${cell(q.opts[q.ans] ?? "")}**`);
-    L.push(`  - options: ${q.opts.map((o, i) => `${i === q.ans ? "[x]" : "[ ]"} ${cell(o) || "(empty)"}`).join(" ; ")}`);
-    for (const x of liveByStem.get(alnum(q.q)) ?? []) L.push(`- live, ${tag(x)}: keyed **${cell(x.opts[x.ans] ?? "")}**`);
+    for (const x of ruled) {
+      L.push(`- LIVE, ${tag(x)}: keyed **${cell(x.opts[x.ans] ?? "")}**`);
+      L.push(`  - options: ${options(x)}`);
+    }
+    L.push(`- HIDDEN, ${tag(q)}: keyed **${cell(q.opts[q.ans] ?? "")}**`);
+    L.push(`  - options: ${options(q)}`);
     L.push("");
   }
 
@@ -204,11 +202,13 @@ if (out) {
 
   L.push("## 3. Left out because the question needs a figure the site cannot show");
   L.push("");
-  L.push("Predicate: `needsMissingFigure` in lib/questions.ts. They return when the figure exists.");
+  L.push("Predicate: `needsMissingFigure` in lib/questions.ts. They return when the figure exists and the");
+  L.push("question pages can show it. `npx tsx tools/audit/figure-stems.mts` prints every stem that mentions a");
+  L.push("picture, kept or left out, for re-reading after a new source is added.");
   L.push("");
   L.push("| Filed under | Stem |");
   L.push("|---|---|");
-  for (const q of figure) L.push(`| ${tag(q)} | ${cell(q.q).slice(0, 170)} |`);
+  for (const q of figure) L.push(`| ${tag(q)} | ${cell(q.q)} |`);
   L.push("");
 
   L.push("## 4. Short-stem questions that are live again");
@@ -227,7 +227,7 @@ if (out) {
   L.push("");
   for (const q of badOptions) {
     L.push(`- ${tag(q)}: **${cell(q.q)}**`);
-    L.push(`  - options: ${q.opts.map((o, i) => `${i === q.ans ? "[x]" : "[ ]"} ${cell(o) || "(empty)"}`).join(" ; ")}`);
+    L.push(`  - options: ${options(q)}`);
   }
   L.push("");
 
@@ -247,4 +247,10 @@ if (out) {
   L.push("");
   writeFileSync(out, L.join("\n"));
   console.log(`\nwritten: ${out}`);
+}
+
+if (twiceLive.length) {
+  console.error(`\nFAIL: ${twiceLive.length} stems have more than one live copy`);
+  for (const g of twiceLive) console.error(`  ${g[0].q.slice(0, 100)}`);
+  process.exit(1);
 }

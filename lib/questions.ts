@@ -70,24 +70,27 @@ export const BANK_BEFORE_DEDUPE: DemoQuestion[] = applyAnswerCorrections([
 // no figure. Same idea as NEEDS_FIGURE in lib/gini/deep.ts, which tests the explanation;
 // kept separate so this file does not import lib/gini.
 const MISSING_FIGURE =
-  /\brefer to\b[^)]{0,60}\b(?:figures?|annex|appendix|diagram|chart)\b|\bdiagram below\b|\(in the symbol diagram\)|\(appendix [a-z]\)/i;
-export const needsMissingFigure = (q: Pick<DemoQuestion, "q">) => MISSING_FIGURE.test(q.q);
+  /\brefer\s+to\b[^)]{0,60}\b(?:figures?|annex|appendix|diagram|chart)\b|\bdiagram below\b|\(in the symbol diagram\)|\(appendix [a-z]\)|\bthe drawing shows\b/i;
+// A lettered display ("Refer to display E (expanded ILS)", "On display D (Plan mode) the
+// track from ZAPPO to BANTU is") is one panel of a printed sheet of EFIS screens. Matched
+// with the capital letter only, so "the display a pilot sees" is not caught.
+const LETTERED_DISPLAY = /\b[Dd]isplays?\s+[A-F]\b/;
+export const needsMissingFigure = (q: Pick<DemoQuestion, "q">) =>
+  MISSING_FIGURE.test(q.q) || LETTERED_DISPLAY.test(q.q);
 
 // De-dupe: two copies are the same question only when the WHOLE normalised stem matches
 // and both key the same answer text.
 // Until 2026-10-08 the key was the first 100 letters and digits of the stem, with anything
 // under 10 thrown away. That deleted 18 valid short questions ("A gale is:", "UTC means"),
-// merged different questions that share a long opening (two point-of-safe-return questions
-// vanished behind the point-of-equal-time ones) and, when two sources keyed the same stem
-// differently, silently published whichever came first.
+// and merged different questions that share a long opening (two point-of-safe-return questions
+// vanished behind the point-of-equal-time ones).
 const stemKey = (q: Pick<DemoQuestion, "q">) => q.q.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 // The keyed option, compared after removing the spelling differences between sources:
 // "90°" / "90 deg" / "90 degrees", "8 min" / "8 mins", "5000 meters" / "5000 metres",
 // "132°(T)" / "132 T". A decimal point and a sign or comparison in front of a number are
 // kept, so "1.5" never equals "15" and "-5" never equals "+5". Anything this does not
-// equate stays as two questions: showing a question twice is recoverable, hiding a
-// disagreement between two keys is not.
+// equate is treated as a different keyed answer and goes on the list for Capt. Pahil.
 const answerKey = (q: DemoQuestion) =>
   (q.opts[q.ans] ?? "")
     .toLowerCase()
@@ -102,7 +105,7 @@ const sameKeyedAnswer = (a: DemoQuestion, b: DemoQuestion) =>
   answerKey(a) === answerKey(b) || sameOption(a.opts[a.ans], b.opts[b.ans] ?? "");
 
 // Stems Capt. Pahil has already ruled on (lib/answer-corrections.ts), with the answer(s)
-// ruled right. Keeping both copies of a same-stem pair is for pairs nobody has ruled on.
+// ruled right.
 // Where a ruling exists and a copy carrying it is live, another source's copy of that stem
 // keyed to something else contradicts the ruling, so it stays out, as it did before
 // 8 Oct 2026 (tools/audit/check-corrections.mts fails if one gets through). It is never
@@ -127,26 +130,35 @@ export const hasBrokenOptions = (q: Pick<DemoQuestion, "opts">) => {
   return t.some((o) => o === "") || new Set(t).size < t.length;
 };
 
-// Keeps the first (highest-priority) copy of each question. A later true duplicate is
-// dropped, but any subject it carries that the kept copy lacks is added to the kept copy,
-// so a question filed under two subjects by two sources stays in both subject pools.
-// (The kept copy keeps its own chapterId: DemoQuestion holds one chapter.)
-// Same stem with a DIFFERENT keyed answer is not a duplicate: both stay, and
-// tools/audit/bank-duplicates.mts lists every such group for Capt. Pahil to rule on.
-// One exception: a later copy with a repeated or empty option does not join a stem that
-// already has a live copy. It is a damaged printing of that question, not a second opinion.
-export function collapseDuplicates(qs: DemoQuestion[]): DemoQuestion[] {
-  const byStem = new Map<string, number[]>(); // stem key -> positions in `out`
+// Keeps the first (highest-priority) copy of each stem, as the loader always has.
+// A later copy that keys the SAME answer is a true duplicate: it is dropped, but any subject
+// it carries that the kept copy lacks is added to the kept copy, so a question filed under
+// two subjects by two sources stays in both subject pools. (The kept copy keeps its own
+// chapterId: DemoQuestion holds one chapter.)
+// A later copy that keys a DIFFERENT answer stays hidden, exactly as it was before
+// 8 Oct 2026, and gives the kept copy nothing. Which of the two keys is right is
+// Capt. Pahil's ruling, not the loader's: putting the second copy live would show students
+// two opposite keys for one question, and some of those copies cannot be answered at all.
+// Every such pair is returned in `otherKey` and printed, with both option sets, by
+// tools/audit/bank-duplicates.mts.
+export function collapseWithReport(qs: DemoQuestion[]): {
+  live: DemoQuestion[];
+  otherKey: { hidden: DemoQuestion; live: DemoQuestion }[];
+} {
+  const byStem = new Map<string, number>(); // stem key -> position in `out`
   const out: DemoQuestion[] = [];
+  const held: { hidden: DemoQuestion; at: number }[] = [];
   for (const q of qs) {
     const k = stemKey(q);
     // A stem with no letter or digit cannot be compared, so it is never treated as a copy.
-    const group = k ? byStem.get(k) ?? [] : [];
-    const at = group.find((i) => sameKeyedAnswer(out[i], q));
+    const at = k ? byStem.get(k) : undefined;
     if (at === undefined) {
-      if (group.length > 0 && hasBrokenOptions(q)) continue;
-      if (k) byStem.set(k, [...group, out.length]);
+      if (k) byStem.set(k, out.length);
       out.push(q);
+      continue;
+    }
+    if (!sameKeyedAnswer(out[at], q)) {
+      held.push({ hidden: q, at });
       continue;
     }
     const gained = q.subjectIds.filter((s) => !out[at].subjectIds.includes(s));
@@ -154,8 +166,9 @@ export function collapseDuplicates(qs: DemoQuestion[]): DemoQuestion[] {
       out[at] = { ...out[at], subjectIds: [...out[at].subjectIds, ...gained] };
     }
   }
-  return out;
+  return { live: out, otherKey: held.map((h) => ({ hidden: h.hidden, live: out[h.at] })) };
 }
+export const collapseDuplicates = (qs: DemoQuestion[]): DemoQuestion[] => collapseWithReport(qs).live;
 
 // The copies the de-dupe is run over: everything except the two declared exclusions.
 export const BANK_ELIGIBLE: DemoQuestion[] = (() => {
