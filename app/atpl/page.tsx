@@ -53,11 +53,11 @@ export default function ATPLPage() {
           </h1>
           <p className="text-xl font-semibold mb-2" style={{ color:"#f0913a" }}>Airline Transport Pilot Licence — India theory papers, notes & mocks</p>
           <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
-            8 advanced DGCA papers. Structured chapter by chapter — video lecture, study notes, practice questions and a timed chapter test.
+            {ATPL_SUBJECTS.length} advanced DGCA subjects. Structured chapter by chapter — video lecture, study notes, practice questions and a chapter quiz.
             Follows the official DGCA ATPL syllabus.
           </p>
           <div className="flex flex-wrap gap-4">
-            {[["8","Written Papers"],[`${CHAPTERS}`,"Chapters"],[QUESTIONS,"Questions"],["75%","Pass Mark"]].map(([v,l]) => (
+            {[[`${ATPL_SUBJECTS.length}`,"Subjects"],[`${CHAPTERS}`,"Chapters"],[QUESTIONS,"Questions"],["75%","Pass Mark"]].map(([v,l]) => (
               <div key={l} className="px-5 py-3 rounded-xl text-center" style={{ background:"rgba(240,145,58,0.1)", border:"1px solid rgba(240,145,58,0.25)" }}>
                 <div className="text-2xl font-black text-white">{v}</div>
                 <div className="text-xs" style={{ color:"#f0913a" }}>{l}</div>
@@ -69,7 +69,7 @@ export default function ATPLPage() {
 
       {/* Subjects */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-2xl font-black text-white mb-8">All 8 ATPL Subjects</h2>
+        <h2 className="text-2xl font-black text-white mb-8">All {ATPL_SUBJECTS.length} ATPL Subjects</h2>
         <div className="flex flex-col gap-5">
           {ATPL_SUBJECTS.map((subject, idx) => (
             <Link key={subject.id} href={`/atpl/${subject.id}`}
@@ -119,25 +119,6 @@ export default function ATPLPage() {
               </div>
             </Link>
           ))}
-        </div>
-
-        {/* Tests */}
-        <div className="mt-16 p-8 rounded-3xl" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(240,145,58,0.2)" }}>
-          <h3 className="text-xl font-black text-white mb-6">ATPL Full Tests & Sample Papers</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {[
-              { label:"Full ATPL Mock Test",  icon:"🎯", desc:"All 8 subjects combined · 480 Qs · 10 hrs", color:"#f0913a", href:"/mock-test?type=atpl-full" },
-              { label:"Subject-wise Tests",   icon:"📝", desc:"60 Qs per subject · 75 min each",           color:"#ab794d", href:"/mock-test?type=atpl-subject" },
-              { label:"DGCA Sample Papers",   icon:"📋", desc:"ATPL-style papers · Actual format",         color:"#f59e0b", href:"/mock-test?type=atpl-sample" },
-            ].map(t => (
-              <Link key={t.label} href={t.href} className="p-5 rounded-2xl no-underline block"
-                    style={{ background:`${t.color}12`, border:`1px solid ${t.color}30` }}>
-                <div className="text-3xl mb-3">{t.icon}</div>
-                <h4 className="font-bold text-white mb-1">{t.label}</h4>
-                <p className="text-xs" style={{ color:"#64748b" }}>{t.desc}</p>
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
     </div>

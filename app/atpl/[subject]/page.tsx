@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getChapterSpecificQuestions } from "@/lib/questions";
+import { getChapterSpecificQuestions, getSubjectQuestionPool } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { servesRealNotes } from "@/lib/indexability";
 import { notFound } from "next/navigation";
@@ -18,6 +18,18 @@ const CONTENT_COLORS: Record<string, string> = {
   notes: "#ab794d", video: "#ef4444",
   questions: "#10b981", "mock-test": "#f3c889", "chapter-quiz": "#f97316",
 };
+
+// What /mock-test really runs (buildConfig in app/mock-test/page.tsx): the mid-subject
+// test is a random draw of up to 40 questions from the WHOLE subject bank in 45
+// minutes (for every subject, CPL and ATPL alike), and the full / sample tests draw
+// up to subject.totalQuestions in subject.examDuration minutes. That file is a client
+// page and cannot export these, so the two mid-test values are mirrored here:
+// change them together. (The card used to promise 50 minutes; the test runs 45.)
+const MID_TEST_QUESTIONS = 40;
+const MID_TEST_MINUTES = 45;
+// A bank this small cannot honestly be sold as a test (four ATPL subjects hold 1-2
+// questions, and a 100% on 2 is not a result), so below it no test is advertised.
+const MIN_TEST_POOL = 10;
 
 export function generateStaticParams() {
   return ATPL_SUBJECTS.map(s => ({ subject: s.id }));
@@ -40,7 +52,11 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
   const subject = ATPL_SUBJECTS.find(s => s.id === subjectId);
   if (!subject) notFound();
 
-  const midpoint = Math.ceil(subject.chapters.length / 2);
+  // Real figures, read from the question bank (Iron Rule 5), never hand-typed.
+  const pool = getSubjectQuestionPool(subject.id).length;
+  const testsOpen = pool >= MIN_TEST_POOL;
+  const midQs = Math.min(MID_TEST_QUESTIONS, pool);
+  const fullQs = Math.min(subject.totalQuestions, pool);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -125,7 +141,11 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
 
         <h2 className="text-xl font-black text-white mb-5">Chapters</h2>
         <div className="flex flex-col gap-3 mb-8">
-          {subject.chapters.map(ch => (
+          {subject.chapters.map(ch => {
+            // The chapter's OWN questions only: a chapter with none of its own is
+            // served the subject-wide pool for drilling, which is not "its" count.
+            const chapterQs = getChapterSpecificQuestions(subject.id, ch.id).length;
+            return (
             <div key={ch.id} className="rounded-2xl overflow-hidden"
                  style={{ background:"rgba(17,24,32,0.95)", border:`1px solid ${subject.color}20` }}>
               <div className="p-5">
@@ -142,7 +162,7 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
                     <p className="text-xs mb-3" style={{ color:"#475569" }}>{ch.description}</p>
                     <div className="flex items-center gap-3 mb-4">
                       <span className="text-xs" style={{ color:"#334155" }}>⏱ {ch.duration}</span>
-                      <span className="text-xs" style={{ color:"#334155" }}>❓ {ch.questionCount} practice Qs</span>
+                      {chapterQs > 0 && <span className="text-xs" style={{ color:"#334155" }}>❓ {chapterQs} practice Qs</span>}
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {ch.content.map(c => {
@@ -176,15 +196,23 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
+        {/* Tests: only advertised when the bank can really fill one */}
+        {!testsOpen && (
+          <p className="text-sm" style={{ color:"#64748b" }}>
+            Subject tests are not available for this subject yet — its question bank is still being prepared.
+          </p>
+        )}
+        {testsOpen && (<>
         <div className="rounded-2xl p-6 mb-4 flex items-center gap-5"
              style={{ background:`linear-gradient(135deg, ${subject.color}18, rgba(240,145,58,0.08))`, border:`1px solid ${subject.color}35` }}>
           <div className="text-3xl">🎯</div>
           <div className="flex-1">
             <h3 className="font-black text-white mb-1">Mid-Subject Test</h3>
-            <p className="text-sm" style={{ color:"#64748b" }}>After first {midpoint} chapters · 40 questions · 50 minutes</p>
+            <p className="text-sm" style={{ color:"#64748b" }}>{midQs} questions drawn from across the subject · {MID_TEST_MINUTES} minutes</p>
           </div>
           <Link href={`/mock-test?subject=${subject.id}&type=mid`}
                 className="flex items-center gap-1 text-sm font-bold px-4 py-2 rounded-xl no-underline"
@@ -197,7 +225,7 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
           <div className="rounded-2xl p-6" style={{ background:"rgba(34,197,94,0.08)", border:"1px solid rgba(34,197,94,0.25)" }}>
             <div className="text-3xl mb-3">🏆</div>
             <h3 className="font-black text-white mb-1">Full Subject Test</h3>
-            <p className="text-sm mb-4" style={{ color:"#64748b" }}>All {subject.chapters.length} chapters · {subject.totalQuestions} Qs · {subject.examDuration} min · DGCA format</p>
+            <p className="text-sm mb-4" style={{ color:"#64748b" }}>{fullQs} questions drawn from the whole {subject.shortName} bank · {subject.examDuration} min</p>
             <Link href={`/mock-test?subject=${subject.id}&type=full`}
                   className="inline-flex items-center gap-1 text-sm font-bold px-4 py-2 rounded-xl no-underline"
                   style={{ background:"rgba(34,197,94,0.18)", border:"1px solid rgba(34,197,94,0.35)", color:"#22c55e" }}>
@@ -206,15 +234,16 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
           </div>
           <div className="rounded-2xl p-6" style={{ background:"rgba(249,115,22,0.08)", border:"1px solid rgba(249,115,22,0.25)" }}>
             <div className="text-3xl mb-3">📋</div>
-            <h3 className="font-black text-white mb-1">DGCA Sample Papers</h3>
-            <p className="text-sm mb-4" style={{ color:"#64748b" }}>ATPL-style papers for {subject.shortName} · Actual exam pattern</p>
+            <h3 className="font-black text-white mb-1">Sample Paper</h3>
+            <p className="text-sm mb-4" style={{ color:"#64748b" }}>A fresh random draw of {fullQs} {subject.shortName} questions, timed like the Full Subject Test</p>
             <Link href={`/mock-test?subject=${subject.id}&type=sample`}
                   className="inline-flex items-center gap-1 text-sm font-bold px-4 py-2 rounded-xl no-underline"
                   style={{ background:"rgba(249,115,22,0.18)", border:"1px solid rgba(249,115,22,0.35)", color:"#f97316" }}>
-              View Papers <ArrowRight className="w-4 h-4"/>
+              Start Sample Test <ArrowRight className="w-4 h-4"/>
             </Link>
           </div>
         </div>
+        </>)}
 
         {/* Related ATPL Subjects & Tools */}
         <div className="mt-12 pt-10 border-t border-white/10 space-y-8">
