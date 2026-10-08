@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 // It activates automatically once these two env vars are set in Vercel:
 //   NEXT_PUBLIC_SUPABASE_URL
 //   NEXT_PUBLIC_SUPABASE_ANON_KEY
-// Until then, everything degrades gracefully (forms show a friendly message,
-// the site keeps working).
+// Until then, everything degrades gracefully (the site keeps working, and a
+// form that cannot save says so instead of implying it did).
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -27,10 +27,15 @@ export function getSupabase(): SupabaseClient | null {
 // Capture a marketing lead (name + email). Stored in the `leads` table.
 export async function captureLead(name: string, email: string, source = "site"): Promise<{ ok: boolean; message: string }> {
   const sb = getSupabase();
-  if (!sb) return { ok: false, message: "Sign-ups are opening soon — please check back." };
+  // Nothing is stored in this state, so the message has to say so. It used to
+  // read "Sign-ups are opening soon, please check back", which never told a
+  // visitor who had just typed their details that none of it was kept.
+  if (!sb) return { ok: false, message: "Not saved: the sign-up list is not switched on yet, so your details were not stored." };
   const { error } = await sb.from("leads").insert({ name, email, source });
-  if (error) {
-    if (error.code === "23505") return { ok: true, message: "You're already on the list — thank you!" };
+  // 23505 = the address is already on the list. It gets the SAME answer as a
+  // new address: a different one let anyone type somebody else's email and
+  // learn whether that person had signed up.
+  if (error && error.code !== "23505") {
     return { ok: false, message: "Something went wrong. Please try again." };
   }
   return { ok: true, message: "You're in! We'll keep you posted." };

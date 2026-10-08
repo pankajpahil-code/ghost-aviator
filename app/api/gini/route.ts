@@ -99,6 +99,21 @@ const clientIp = (req: Request) =>
 
 const MAX_Q = 300;
 
+/**
+ * `path` is where the student is standing, sent by the browser so the answer
+ * can fit the page. It was accepted at ANY length until the 2026-10-08 audit,
+ * and it reaches two places that care: readContext(), and (for a path that
+ * matches no subject) the prompt itself, which made it a way round MAX_Q.
+ *
+ * The longest chapter route on this site is 49 characters (measured against
+ * lib/subjects.ts, 2026-10-08), so 200 is generous. Anything longer is
+ * refused before it costs a quota slot. A path of sane length but odd shape
+ * (a query string, an encoded 404 URL) is not an attack worth a refusal: the
+ * student still gets an answer, as if from the home page.
+ */
+const MAX_PATH = 200;
+const PATH_SHAPE = /^\/[A-Za-z0-9/._~-]*$/;
+
 export async function POST(req: Request) {
   // Nothing configured: answer instantly and cheaply so the client stops asking.
   if (!geminiConfigured()) return Response.json({ ok: false, why: "not-configured" });
@@ -111,8 +126,10 @@ export async function POST(req: Request) {
   }
 
   const q = typeof body.q === "string" ? body.q.trim() : "";
-  const path = typeof body.path === "string" ? body.path : "/";
+  const rawPath = typeof body.path === "string" ? body.path : "/";
   if (!q || q.length > MAX_Q) return Response.json({ ok: false, why: "bad-query" }, { status: 400 });
+  if (rawPath.length > MAX_PATH) return Response.json({ ok: false, why: "bad-path" }, { status: 400 });
+  const path = PATH_SHAPE.test(rawPath) ? rawPath : "/";
 
   const limited = overLimit(clientIp(req), Date.now());
   if (limited) return Response.json({ ok: false, why: limited }, { status: 429 });
