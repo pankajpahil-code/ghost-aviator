@@ -32,11 +32,20 @@ export default function Navbar() {
       if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setDrop(null);
     },
     onKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (e.key !== "Escape" || drop !== id) return;
-      escaping.current = true;
-      setDrop(null);
-      e.currentTarget.querySelector("a")?.focus();
-      escaping.current = false;
+      const trigger = e.currentTarget.querySelector("a");
+      if (e.key === "Escape" && drop === id) {
+        escaping.current = true;
+        setDrop(null);
+        trigger?.focus();
+        escaping.current = false;
+        return;
+      }
+      // After Escape the trigger keeps focus, so no focus event will fire again:
+      // ArrowDown (or Space) on the trigger itself must be able to reopen the list.
+      if (drop !== id && e.target === trigger && (e.key === "ArrowDown" || e.key === " ")) {
+        e.preventDefault();
+        setDrop(id);
+      }
     },
   });
 
@@ -133,7 +142,7 @@ export default function Navbar() {
           </div>
 
           <button className="md:hidden" style={{ color:"#f3c889" }} onClick={() => setOpen(!open)}
-                  aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-menu">
+                  aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls={open ? "mobile-menu" : undefined}>
             {open ? <X className="w-6 h-6" aria-hidden="true"/> : <Menu className="w-6 h-6" aria-hidden="true"/>}
           </button>
         </div>

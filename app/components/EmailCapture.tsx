@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 import { captureLead } from "@/lib/supabase";
 
@@ -11,13 +11,31 @@ export default function EmailCapture({ compact = false, heading, sub, source = "
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [msg, setMsg] = useState("");
 
+  // The error text lives in a live region that is ALWAYS mounted, and is emptied
+  // and refilled on every failed attempt. A screen reader announces a change, so
+  // the same message twice in a row (the same bad email submitted again) would
+  // otherwise be silent the second time.
+  const [errText, setErrText] = useState("");
+  const errTimer = useRef<number | null>(null);
+  useEffect(() => () => { if (errTimer.current !== null) window.clearTimeout(errTimer.current); }, []);
+  function clearErr() {
+    if (errTimer.current !== null) { window.clearTimeout(errTimer.current); errTimer.current = null; }
+    setErrText("");
+  }
+  function showErr(m: string) {
+    clearErr();
+    errTimer.current = window.setTimeout(() => { errTimer.current = null; setErrText(m); }, 60);
+  }
+
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) { setState("error"); setMsg("Enter a valid email."); return; }
+    clearErr();
+    if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) { setState("error"); setMsg("Enter a valid email."); showErr("Enter a valid email."); return; }
     setState("loading");
     const r = await captureLead(name.trim(), email.trim().toLowerCase(), source);
     setState(r.ok ? "done" : "error");
     setMsg(r.message);
+    if (!r.ok) showErr(r.message);
   }
 
   if (state === "done") {
@@ -46,7 +64,7 @@ export default function EmailCapture({ compact = false, heading, sub, source = "
           <Send className="w-4 h-4" /> {state === "loading" ? "..." : "Notify Me"}
         </button>
       </form>
-      {state === "error" && <p role="alert" className="text-xs mt-2" style={{ color: "#ef4444" }}>{msg}</p>}
+      <p role="alert" aria-atomic="true" className={errText ? "text-xs mt-2" : "text-xs"} style={{ color: "#ef4444" }}>{errText}</p>
       <p className="text-xs mt-2" style={{ color: "#475569" }}>Free updates &amp; new chapters. No spam, unsubscribe anytime.</p>
     </div>
   );
