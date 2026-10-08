@@ -59,7 +59,7 @@ def cards(c):
             R.row_text(f"234 chapters, {R.bank_total()} questions,", R.reg(44), R.MUTED, gap=54, centre=True),
             R.row_text("every answer sourced. Free.", R.reg(44), R.MUTED, gap=8, centre=True),
             R.row_text("ghostaviator.com", R.bold(80), R.AMBER, gap=70, centre=True),
-            R.row_text("Capt. Pankaj Pahil - DGCA approved instructor",
+            R.row_text("Ghost Aviator - DGCA CPL & ATPL prep",
                        R.reg(36), R.MUTED, gap=60, centre=True),
         ], footer=False), 4.0),
     ]

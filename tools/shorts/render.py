@@ -207,7 +207,7 @@ def card_cta(spec):
         row_text(f"{bank_total()} practice questions", bold(74), AMBER, gap=6, centre=True),
         row_text("No sign-up. No paywall. No ads.", reg(44), MUTED, gap=54, centre=True),
         row_text("ghostaviator.com", bold(84), WHITE, gap=76, centre=True),
-        row_text("Capt. Pankaj Pahil - DGCA approved instructor",
+        row_text("Ghost Aviator - DGCA CPL & ATPL prep",
                  reg(36), MUTED, gap=64, centre=True),
     ], footer=False)
 
