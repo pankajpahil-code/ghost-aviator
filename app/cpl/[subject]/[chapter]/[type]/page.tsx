@@ -260,6 +260,7 @@ export default async function Page({
         subject={subject}
         chapter={chapter}
         questions={questions}
+        chapterSpecific={getChapterSpecificQuestions(subject.id, chapter.id).length > 0}
       />
     );
   }
@@ -271,6 +272,7 @@ export default async function Page({
         subject={subject}
         chapter={chapter}
         questions={questions}
+        chapterSpecific={getChapterSpecificQuestions(subject.id, chapter.id).length > 0}
       />
     );
   }

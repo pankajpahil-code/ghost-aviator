@@ -187,7 +187,9 @@ export function canStartRun(run: { poolSize: number; fallback: boolean }): boole
 
 /** Only a full-size run of the chapter's OWN questions may be stored as a chapter result. */
 export function countsTowardChapter(run: { questionCount: number; fallback: boolean }): boolean {
-  return !run.fallback && run.questionCount >= MIN_QUESTIONS_FOR_VERDICT;
+  // A chapter's own bank counts at any size, as it always has: many chapters hold
+  // fewer than ten questions of their own and must still be able to show progress.
+  return !run.fallback && run.questionCount > 0;
 }
 
 // ── Deadline-based countdown ────────────────────────────────────────────────

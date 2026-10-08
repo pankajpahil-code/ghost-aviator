@@ -60,14 +60,34 @@ function ScoreTrend({ attempts, passMark }: { attempts: ExamAttempt[]; passMark:
 
 // Horizontal bar list of weakest chapters — bars capped at 24px, rounded data-end,
 // severity colour by accuracy band (this list is already filtered to the weak tail).
+// Air Regulations attempts store the BANK chapter id, which is not the site chapter
+// of the same spelling (bank ar-6 is site Ch.4). The map lives beside the question
+// bank, so it is loaded on demand: a static import would put the bank back in this page.
+const isAirRegsBankId = (id: string) => /^ar-\d+$/.test(id) || id === "sar";
+type StoredLabel = (id: string, labelOf: (siteId: string) => string | undefined) => string | undefined;
+
 function WeakChapterBars({ items }: { items: { chapterId: string; accuracy: number; total: number }[] }) {
+  const needsMap = items.some(it => isAirRegsBankId(it.chapterId));
+  const [storedLabel, setStoredLabel] = useState<StoredLabel | null>(null);
+  useEffect(() => {
+    if (!needsMap) return;
+    let live = true;
+    import("@/lib/air-regs-chapter-label")
+      .then(m => { if (live) setStoredLabel(() => m.siteChapterLabelForStoredId); })
+      .catch(() => {});
+    return () => { live = false; };
+  }, [needsMap]);
+  const labelFor = (id: string) => {
+    if (!isAirRegsBankId(id)) return CHAPTER_LABEL[id] ?? id;
+    return (storedLabel && storedLabel(id, s => CHAPTER_LABEL[s])) ?? "Air Regulations";
+  };
   const color = (acc: number) => (acc < 50 ? "#ef4444" : acc < 70 ? "#f59e0b" : "#64748b");
   return (
     <div className="flex flex-col gap-3">
       {items.map(it => (
         <div key={it.chapterId}>
           <div className="flex items-center justify-between text-xs mb-1">
-            <span style={{ color: "#94a3b8" }}>{CHAPTER_LABEL[it.chapterId] ?? it.chapterId}</span>
+            <span style={{ color: "#94a3b8" }}>{labelFor(it.chapterId)}</span>
             <span style={{ color: color(it.accuracy) }} className="font-bold">{it.accuracy}%</span>
           </div>
           <div className="w-full rounded-full" style={{ height: 8, background: "rgba(255,255,255,0.06)" }}>
