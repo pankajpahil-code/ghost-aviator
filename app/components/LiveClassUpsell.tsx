@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MessageCircle, Radio, ArrowRight } from "lucide-react";
-import { LIVE_CLASS_SUBJECTS, LIVE_PRICE, LIVE_LIST_PRICE, liveEnquiryLink, botLink } from "@/lib/live-classes";
+import { LIVE_CLASS_SUBJECTS, LIVE_PRICE, LIVE_LIST_PRICE, liveWaLink, botLink } from "@/lib/live-classes";
 
 type Props = {
   subjectId: string;
@@ -34,7 +34,7 @@ export default function LiveClassUpsell({ subjectId, subjectColor }: Props) {
           </div>
         </div>
         <div className="flex items-center gap-3 flex-wrap">
-          <a href={liveEnquiryLink(liveName, LIVE_PRICE)} target="_blank" rel="noopener noreferrer"
+          <a href={liveWaLink(liveName, LIVE_PRICE)} target="_blank" rel="noopener noreferrer"
              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-black no-underline"
              style={{ background: "linear-gradient(135deg,#16a34a,#22c55e)", color: "#fff" }}>
             <MessageCircle className="w-4 h-4" /> Reserve a Seat

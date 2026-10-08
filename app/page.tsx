@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LIVE_PRICE, LIVE_LIST_PRICE, LIVE_BATCH_META, enquiryLink } from "@/lib/live-classes";
+import { LIVE_PRICE, LIVE_LIST_PRICE, LIVE_BATCH_META, liveWaLink } from "@/lib/live-classes";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import type { Metadata } from "next";
 import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap, MessageCircle } from "lucide-react";
@@ -162,7 +162,7 @@ export default function Home() {
             <div className="flex-1 text-center lg:text-left">
               <div className="text-xl sm:text-2xl font-black text-white leading-snug mb-1">
                 Live classes from <span style={{ color:"#22c55e" }}>{LIVE_PRICE}</span> — Meteorology, Air Regs &amp; Navigation with{" "}
-                <span style={{ background:"linear-gradient(135deg,#ff6000,#c25a1e,#f0913a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>the Captain</span>
+                <span style={{ background:"linear-gradient(135deg,#ff6000,#c25a1e,#f0913a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Ghost Aviator</span>
               </div>
               <div className="text-sm font-semibold" style={{ color:"#94a3b8" }}>
                 Small batch of 10 seats. Self-study stays free.
@@ -178,10 +178,10 @@ export default function Home() {
                     style={{ background:"linear-gradient(135deg,#ff3030,#f0913a)", color:"#fff", boxShadow:"0 0 25px rgba(255,40,40,0.4)" }}>
                 See Live Classes <ArrowRight className="w-4 h-4"/>
               </Link>
-              <a href={enquiryLink("home_live_classes")} target="_blank" rel="noopener noreferrer"
+              <a href={liveWaLink("DGCA live classes", LIVE_PRICE)} target="_blank" rel="noopener noreferrer"
                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold no-underline"
                  style={{ border:"1px solid rgba(34,197,94,0.55)", color:"#22c55e", background:"rgba(34,197,94,0.10)" }}>
-                <MessageCircle className="w-4 h-4" /> Message on Telegram
+                <MessageCircle className="w-4 h-4" /> WhatsApp +91 99902 26607
               </a>
             </div>
           </div>

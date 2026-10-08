@@ -1,4 +1,4 @@
-import { enquiryLink } from "./live-classes";
+import { LIVE_WHATSAPP } from "./live-classes";
 
 export type AuthoredBook = {
   slug: string;
@@ -79,19 +79,20 @@ export const AUTHORED_BOOKS: Record<string, AuthoredBook> = {
 };
 
 /**
- * Order enquiry for a book: the Ghost Aviator assistant on Telegram (8 Oct 2026: no personal number in public).
+ * Generates an automated WhatsApp link for ordering a book directly.
  */
 export const bookWaOrderLink = (bookTitle: string, editionType: "PDF" | "Paperback", price: string): string => {
-  void price;
-  return enquiryLink(`book_${editionType}_${bookTitle}`.toLowerCase());
+  return `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+    `Hello Captain, I would like to order the ${editionType} edition of '${bookTitle}' (${price}). Please share the payment & delivery details.`
+  )}`;
 };
 
 /**
- * Returns the direct payment URL for the PDF edition, falling back to the enquiry route.
+ * Returns the direct payment URL for the PDF edition, falling back to smart WhatsApp ordering.
  */
 export const getBookPdfCheckoutUrl = (slug: string): string => {
   const book = AUTHORED_BOOKS[slug];
-  if (!book) return enquiryLink("book");
+  if (!book) return `https://wa.me/${LIVE_WHATSAPP}`;
 
   if (book.pdfPaymentUrl && book.pdfPaymentUrl.trim().length > 0) {
     return book.pdfPaymentUrl;
@@ -100,11 +101,11 @@ export const getBookPdfCheckoutUrl = (slug: string): string => {
 };
 
 /**
- * Returns the Amazon URL for the paperback edition, falling back to the enquiry route.
+ * Returns the Amazon URL for the paperback edition, falling back to WhatsApp physical order inquiry.
  */
 export const getBookPaperbackUrl = (slug: string): string => {
   const book = AUTHORED_BOOKS[slug];
-  if (!book) return enquiryLink("book");
+  if (!book) return `https://wa.me/${LIVE_WHATSAPP}`;
 
   if (book.amazonUrl && book.amazonUrl.trim().length > 0) {
     return book.amazonUrl;

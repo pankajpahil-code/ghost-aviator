@@ -16,7 +16,7 @@ import {
   LIVE_UPI_QR,
   liveUpiLink,
   livePaidLink,
-  liveEnquiryLink as waLink,
+  liveWaLink as waLink,
   hasLivePaymentLink,
   hasLiveComboPaymentLink,
   liveEnrollLink,
@@ -242,13 +242,13 @@ export default function LiveClassesPage() {
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
               {hasLivePaymentLink("general") ? <CreditCard className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
-              {hasLivePaymentLink("general") ? "Enroll & Pay Online" : "Enquire on Telegram"}
+              {hasLivePaymentLink("general") ? "Enroll & Pay Online" : "Enquire on WhatsApp"}
             </a>
             {hasLivePaymentLink("general") ? (
               <a href={waLink("DGCA ground classes", PRICE)} target="_blank" rel="noopener noreferrer"
                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                  style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
-                <MessageCircle className="w-5 h-5" /> Message on Telegram
+                <MessageCircle className="w-5 h-5" /> Message on WhatsApp
               </a>
             ) : null}
             {/* Instant answers from the assistant: hidden until LIVE_TELEGRAM_BOT is set (lib/live-classes.ts). */}
@@ -330,13 +330,13 @@ export default function LiveClassesPage() {
                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline transition-transform hover:-translate-y-0.5"
                    style={{ background:`linear-gradient(135deg, ${s.color}, ${s.color}dd)`, color:"#fff", boxShadow:`0 4px 16px ${s.color}35` }}>
                   {hasLivePaymentLink(s.key) ? <CreditCard className="w-4 h-4"/> : <MessageCircle className="w-4 h-4"/>}
-                  {hasLivePaymentLink(s.key) ? `Enroll & Pay Online (${PRICE})` : `Enquire on Telegram (${PRICE})`}
+                  {hasLivePaymentLink(s.key) ? `Enroll & Pay Online (${PRICE})` : `Enquire on WhatsApp (${PRICE})`}
                 </a>
                 {hasLivePaymentLink(s.key) ? (
                   <a href={waLink(s.name, PRICE)} target="_blank" rel="noopener noreferrer"
                      className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline"
                      style={{ background:"rgba(255,255,255,0.04)", border:`1px solid ${s.color}40`, color:"#94a3b8" }}>
-                    <MessageCircle className="w-3.5 h-3.5" style={{ color:"#22c55e" }}/> Chat on Telegram
+                    <MessageCircle className="w-3.5 h-3.5" style={{ color:"#22c55e" }}/> Chat on WhatsApp
                   </a>
                 ) : null}
               </div>
@@ -380,13 +380,13 @@ export default function LiveClassesPage() {
                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline transition-transform hover:-translate-y-0.5"
                  style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 25px rgba(34,197,94,0.4)" }}>
                 {hasLiveComboPaymentLink() ? <CreditCard className="w-4 h-4"/> : <MessageCircle className="w-4 h-4"/>}
-                {hasLiveComboPaymentLink() ? `Enroll in Combo Online (${COMBO_PRICE})` : `Enquire on Telegram (${COMBO_PRICE})`}
+                {hasLiveComboPaymentLink() ? `Enroll in Combo Online (${COMBO_PRICE})` : `Enquire on WhatsApp (${COMBO_PRICE})`}
               </a>
               {hasLiveComboPaymentLink() ? (
                 <a href={waLink("Navigation Combo (Gen Nav + Radio Nav + Instrumentation)", COMBO_PRICE)} target="_blank" rel="noopener noreferrer"
                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline"
                    style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(34,197,94,0.4)", color:"#94a3b8" }}>
-                  <MessageCircle className="w-3.5 h-3.5" style={{ color:"#22c55e" }}/> Telegram Enquiry
+                  <MessageCircle className="w-3.5 h-3.5" style={{ color:"#22c55e" }}/> WhatsApp Inquiry
                 </a>
               ) : null}
             </div>
@@ -403,7 +403,7 @@ export default function LiveClassesPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 text-center">Pay by UPI — any time</h2>
           <p className="text-center text-sm mb-8 max-w-2xl mx-auto" style={{ color:"#94a3b8" }}>
             Scan with GPay, PhonePe, Paytm or any UPI app. The amount is already filled in.
-            Then send the payment screenshot to the Ghost Aviator assistant on Telegram and your seat is confirmed.
+            Then send the payment screenshot on WhatsApp and your seat is confirmed.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -425,7 +425,7 @@ export default function LiveClassesPage() {
                 <a href={livePaidLink(p.what, p.price)} target="_blank" rel="noopener noreferrer"
                    className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-bold no-underline"
                    style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
-                  <MessageCircle className="w-4 h-4" /> Paid? Send screenshot on Telegram
+                  <MessageCircle className="w-4 h-4" /> Paid? Send screenshot on WhatsApp
                 </a>
               </div>
             ))}
@@ -445,7 +445,7 @@ export default function LiveClassesPage() {
           <h2 className="text-2xl font-black text-white mb-8 text-center">How Joining Works</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             {[
-              ["1", "Message on Telegram", "Tell the Captain which subject you want — he replies personally."],
+              ["1", "Message on WhatsApp", "Tell the Captain which subject you want — he replies personally."],
               ["2", "Reserve your seat", "Confirm your slot in the founding batch of 10. Pay by UPI only after you're sure."],
               ["3", "Fly the syllabus live", "Join on Google Meet, ask anything, practise real exam questions together."],
             ].map(([n, title, desc]) => (
@@ -499,13 +499,13 @@ export default function LiveClassesPage() {
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline transition-transform hover:-translate-y-0.5"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
               {hasLivePaymentLink("general") ? <CreditCard className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
-              {hasLivePaymentLink("general") ? `Enroll & Pay Online (${PRICE})` : `Enquire on Telegram (${PRICE})`}
+              {hasLivePaymentLink("general") ? `Enroll & Pay Online (${PRICE})` : `Enquire on WhatsApp (${PRICE})`}
             </a>
             {hasLivePaymentLink("general") ? (
               <a href={waLink("DGCA ground classes", PRICE)} target="_blank" rel="noopener noreferrer"
                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                  style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
-                <MessageCircle className="w-5 h-5" /> Message on Telegram
+                <MessageCircle className="w-5 h-5" /> WhatsApp: +91 99902 26607
               </a>
             ) : null}
             <a href="#pay"

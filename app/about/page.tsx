@@ -5,7 +5,7 @@ import { Award, BookOpen, Users, ShieldCheck, MessageCircle, ArrowRight, Radio, 
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { TESTIMONIALS } from "@/lib/testimonials";
-import { LIVE_PRICE, enquiryLink } from "@/lib/live-classes";
+import { LIVE_WHATSAPP, LIVE_PRICE } from "@/lib/live-classes";
 import { SITE_URL, CAPTAIN_PROFILES, TELEGRAM_GROUP, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
 
 // Real photographs of the Captain, prepared by tools/prepare-captain-photo.mjs
@@ -26,9 +26,12 @@ const CHAPTER_COUNT = [...CPL_SUBJECTS, ...ATPL_SUBJECTS].reduce((n, s) => n + s
 const QUESTION_COUNT = `${Math.floor(ALL_QUESTIONS.length / 100) * 100}+`;
 
 const TELEGRAM = TELEGRAM_GROUP;
-// 8 Oct 2026: no personal phone number in public - both go to the Ghost Aviator assistant on Telegram.
-const WA_SHARE = enquiryLink("testimonial");
-const WA_CLASSES = enquiryLink("about_classes");
+const WA_SHARE = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+  "Hello Captain, I cleared my DGCA exam using Ghost Aviator! Here is my result and testimonial:"
+)}`;
+const WA_CLASSES = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+  "Hello Captain, I want to know more about your live DGCA classes."
+)}`;
 
 export const metadata: Metadata = {
   title: "Meet the Captain — Pilot, Instructor & Creator of Ghost Aviator",
@@ -257,7 +260,7 @@ export default function AboutPage() {
             <a href={WA_CLASSES} target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                style={{ border: "1px solid rgba(34,197,94,0.5)", color: "#22c55e", background: "rgba(34,197,94,0.06)" }}>
-              <MessageCircle className="w-5 h-5" /> Message the Captain on Telegram
+              <MessageCircle className="w-5 h-5" /> WhatsApp the Captain
             </a>
             <a href={TELEGRAM} target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"

@@ -4,7 +4,7 @@ import { ShieldCheck, Search, XCircle, AlertTriangle, MessageCircle } from "luci
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { VERIFICATION, LEVEL_LABEL, LEVEL_COLOR } from "@/lib/verification-status";
-import { enquiryLink } from "@/lib/live-classes";
+import { LIVE_WHATSAPP } from "@/lib/live-classes";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 const ACCENT = "#ab794d";
@@ -18,7 +18,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/how-answers-are-verified" },
 };
 
-const WA_ERROR = enquiryLink("report_error");   // 8 Oct 2026: the Telegram assistant, not a personal number
+const WA_ERROR = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+  "Hello Captain, I think I have found a mistake in a question on Ghost Aviator. Here are the details:"
+)}`;
 
 const questionsFor = (subjectId: string) =>
   ALL_QUESTIONS.filter(q => q.subjectIds?.includes(subjectId)).length;
@@ -187,9 +189,9 @@ export default function HowAnswersAreVerifiedPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white transition-colors no-underline"
-              style={{ background: "#229ED9" }}
+              style={{ background: "#25D366" }}
             >
-              <MessageCircle className="w-4 h-4" /> Report it on Telegram
+              <MessageCircle className="w-4 h-4" /> Report it on WhatsApp
             </a>
           </div>
         </section>
