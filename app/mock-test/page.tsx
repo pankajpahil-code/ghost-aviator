@@ -1,10 +1,11 @@
 "use client";
-import { useState, useEffect, useCallback, useMemo, Suspense } from "react";
+import { useState, useCallback, useMemo, Suspense } from "react";
 import { useSearchParams, notFound } from "next/navigation";
 import Link from "next/link";
 import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, BookOpen } from "lucide-react";
 import { getSubjectQuestionPool } from "@/lib/questions";
 import { isRealExplanation } from "@/lib/explanation";
+import { useDeadlineCountdown, MIN_QUESTIONS_FOR_VERDICT } from "@/lib/progress";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 
 // Unified shape used by the exam UI.
@@ -39,6 +40,8 @@ function shuffle<T>(arr: T[]): T[] {
 
 type TestConfig = {
   questions: MockQ[];
+  /** How many questions the subject holds in total (the test may be a slice of it). */
+  poolSize: number;
   durationSec: number;
   title: string;
   subtitle: string;
@@ -69,6 +72,7 @@ function buildConfig(subjectId: string | null, type: string | null): TestConfig 
 
   return {
     questions,
+    poolSize: pool.length,
     durationSec: durationMin * 60,
     title: `${subject.name} — ${label}`,
     subtitle: `${subject.shortName} · DGCA format · ${questions.length} questions`,
@@ -86,28 +90,18 @@ function MockTestInner() {
 
   // Built once per subject/type combination (stable across the sitting).
   const config = useMemo(() => buildConfig(subjectId, type), [subjectId, type]);
-  const { questions, durationSec, title, subtitle, passMark, backHref } = config;
+  const { questions, poolSize, durationSec, title, subtitle, passMark, backHref } = config;
 
   const [phase, setPhase]       = useState<Phase>("setup");
   const [current, setCurrent]   = useState(0);
   const [answers, setAnswers]   = useState<(number | null)[]>(Array(questions.length).fill(null));
   const [revealed, setRevealed] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(durationSec);
   const [flagged, setFlagged]   = useState<boolean[]>(Array(questions.length).fill(false));
 
   const submit = useCallback(() => setPhase("result"), []);
-
-  useEffect(() => {
-    if (phase !== "exam") return;
-    // A countdown that expires MUST change state from an effect — the trigger is
-    // time passing, not a user action or a render. This is the legitimate case
-    // the rule cannot distinguish. It cannot double-submit: submit() flips phase,
-    // after which this effect early-returns above.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (timeLeft <= 0) { submit(); return; }
-    const t = setTimeout(() => setTimeLeft(p => p - 1), 1000);
-    return () => clearTimeout(t);
-  }, [phase, timeLeft, submit]);
+  // Deadline-based: the end time is fixed at Start and the clock is re-read on
+  // every tick and on visibilitychange, so a locked phone cannot gain time.
+  const { timeLeft, start: startClock, reset: resetClock } = useDeadlineCountdown(phase === "exam", durationSec, submit);
 
   const q = questions[current];
   const answered = answers.filter(a => a !== null).length;
@@ -132,20 +126,24 @@ function MockTestInner() {
   }
 
   function restart() {
-    setPhase("setup"); setCurrent(0); setTimeLeft(durationSec);
+    setPhase("setup"); setCurrent(0); resetClock(durationSec);
     setAnswers(Array(questions.length).fill(null));
     setRevealed(false);
     setFlagged(Array(questions.length).fill(false));
   }
 
-  /* ── EMPTY (subject has no questions yet) ── */
-  if (questions.length === 0) return (
+  /* ── NOT ENOUGH QUESTIONS (none yet, or too few for a score to mean anything) ──
+     A "Congratulations! You Passed!" on 100% of one question is a false claim,
+     so below the minimum no test is run at all. */
+  if (poolSize < MIN_QUESTIONS_FOR_VERDICT || questions.length === 0) return (
     <div className="grid-bg min-h-screen flex items-center justify-center px-4">
       <div className="glass-card p-10 max-w-md w-full text-center">
         <div className="text-5xl mb-4">📝</div>
         <h1 className="text-2xl font-extrabold mb-2">{title}</h1>
         <p className="mb-8" style={{ color: "#94a3b8" }}>
-          The question bank for this paper is still being prepared. Try the chapter quizzes in the meantime.
+          {poolSize === 0 || poolSize >= MIN_QUESTIONS_FOR_VERDICT
+            ? "The question bank for this paper is still being prepared. Try the chapter quizzes in the meantime."
+            : `Not enough questions yet. This test needs at least ${MIN_QUESTIONS_FOR_VERDICT} questions and the bank holds ${poolSize} so far, too few for a score to mean anything.`}
         </p>
         <Link href={backHref} className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl font-bold no-underline"
               style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
@@ -177,7 +175,7 @@ function MockTestInner() {
             </li>
           ))}
         </ul>
-        <button onClick={() => setPhase("exam")}
+        <button onClick={() => { startClock(durationSec); setPhase("exam"); }}
                 className="w-full py-4 rounded-xl font-bold text-lg"
                 style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
           Start Test
@@ -305,9 +303,15 @@ function MockTestInner() {
           <p className="text-lg font-semibold mb-8 leading-relaxed">{q.q}</p>
           <div className="flex flex-col gap-3">
             {q.opts.map((opt, oi) => (
-              <button key={oi} className={optClass(oi)} onClick={() => selectAnswer(oi)} disabled={revealed}>
+              <button key={oi} className={optClass(oi)} onClick={() => selectAnswer(oi)} disabled={revealed}
+                      aria-pressed={answers[current] === oi}
+                      aria-label={revealed
+                        ? `${String.fromCharCode(65 + oi)}. ${opt}${oi === q.ans ? " (correct answer)" : oi === answers[current] ? " (your answer, incorrect)" : ""}`
+                        : undefined}>
                 <span className="font-bold mr-3" style={{ color: "#475569" }}>{String.fromCharCode(65 + oi)}.</span>
                 {opt}
+                {revealed && oi === q.ans && <CheckCircle aria-hidden className="inline w-4 h-4 ml-2 align-text-bottom" />}
+                {revealed && oi !== q.ans && oi === answers[current] && <XCircle aria-hidden className="inline w-4 h-4 ml-2 align-text-bottom" />}
               </button>
             ))}
           </div>
@@ -334,6 +338,7 @@ function MockTestInner() {
         {!revealed && (
           <div className="flex gap-3 mt-4">
             <button onClick={() => { const f = [...flagged]; f[current] = !f[current]; setFlagged(f); }}
+                    aria-pressed={flagged[current]}
                     className="flex-1 py-3 rounded-xl text-sm font-medium"
                     style={{ border: `1px solid ${flagged[current] ? "#f59e0b" : "rgba(240,145,58,0.2)"}`, color: flagged[current] ? "#f59e0b" : "#64748b", background: "transparent" }}>
               {flagged[current] ? "🚩 Flagged" : "🏳️ Flag Question"}

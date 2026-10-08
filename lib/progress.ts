@@ -2,7 +2,7 @@
 
 // Lightweight client-side progress tracking backed by localStorage.
 // No account needed — best quiz/test score per chapter is remembered on-device.
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export type ChapterStat = {
   quizBest?: number; // best chapter-quiz %
@@ -122,6 +122,130 @@ export function clearSubjectProgress(track: Track, subjectId: string) {
   for (const key of Object.keys(map)) if (key.startsWith(prefix)) delete map[key];
   clearedPrefixes.add(prefix);
   writeProgress(map);
+}
+
+// ── Which quiz runs may count towards a chapter ─────────────────────────────
+// A chapter with no questions of its own is handed the WHOLE subject pool by
+// getQuestionsForChapter (1,020 questions on 16 Air Navigation chapters, 1-2 on
+// others). Neither is a quiz OF that chapter, so such a run is sampled and
+// labelled honestly, and it must never be able to mark the chapter "Cleared".
+// These helpers are pure and take no question bank: the quiz components import
+// this file and must not drag the bank into their bundle.
+export const QUIZ_SAMPLE_SIZE = 25;
+/** Below this many questions a score says nothing: no verdict, no progress. */
+export const MIN_QUESTIONS_FOR_VERDICT = 10;
+
+type HasChapterId = { chapterId?: string };
+
+/**
+ * True when `questions` is a subject-wide fallback rather than the chapter's own
+ * bank. `chapterSpecific` is authoritative when the route passes it
+ * (getChapterSpecificQuestions(...).length > 0). Without it we read the data:
+ * a chapter's own set always shares ONE bank chapterId (including the Air
+ * Regulations sets that CPL_AR_CHAPTER_MAP routes to a different id), while a
+ * subject pool spans several, or carries questions with no chapterId at all.
+ * Checked against all 302 chapters on 2026-10-08, zero disagreements.
+ */
+export function isSubjectFallback(
+  questions: readonly HasChapterId[],
+  chapterSpecific?: boolean,
+): boolean {
+  if (chapterSpecific !== undefined) return !chapterSpecific && questions.length > 0;
+  if (questions.length === 0) return false;
+  const ids = new Set(questions.map(q => q.chapterId ?? ""));
+  return ids.size > 1 || ids.has("");
+}
+
+/** Up to `max` items in random order. Fewer than `max` items come back whole. */
+export function sampleQuestions<T>(items: readonly T[], max: number, rand: () => number = Math.random): T[] {
+  const a = [...items];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a.slice(0, Math.max(0, max));
+}
+
+/** The questions a chapter quiz/test actually runs: a sample for a fallback set, otherwise all. */
+export function questionsForRun<T>(
+  questions: readonly T[],
+  fallback: boolean,
+  rand: () => number = Math.random,
+): T[] {
+  return fallback ? sampleQuestions(questions, QUIZ_SAMPLE_SIZE, rand) : [...questions];
+}
+
+/** Only a full-size run of the chapter's OWN questions may be stored as a chapter result. */
+export function countsTowardChapter(run: { questionCount: number; fallback: boolean }): boolean {
+  return !run.fallback && run.questionCount >= MIN_QUESTIONS_FOR_VERDICT;
+}
+
+// ── Deadline-based countdown ────────────────────────────────────────────────
+// Counting timer ticks loses time whenever the browser throttles or suspends
+// timers (locked phone, backgrounded tab). The deadline is fixed when the run
+// starts and the time left is always read from the clock.
+export function secondsLeft(deadlineMs: number, nowMs: number): number {
+  return Math.max(0, Math.ceil((deadlineMs - nowMs) / 1000));
+}
+
+export type CountdownState = { deadline: number | null; fired: boolean };
+
+export function startCountdown(state: CountdownState, nowMs: number, durationSec: number): void {
+  state.deadline = nowMs + durationSec * 1000;
+  state.fired = false;
+}
+
+export function stopCountdown(state: CountdownState): void {
+  state.deadline = null;
+  state.fired = false;
+}
+
+/**
+ * Re-read the clock. Returns null when no run is armed. `expire` is true exactly
+ * once per startCountdown(), on the first poll at or after the deadline, however
+ * many polls (interval ticks, visibilitychange) arrive after that.
+ */
+export function pollCountdown(state: CountdownState, nowMs: number): { left: number; expire: boolean } | null {
+  if (state.deadline === null) return null;
+  const left = secondsLeft(state.deadline, nowMs);
+  const expire = left <= 0 && !state.fired;
+  if (expire) state.fired = true;
+  return { left, expire };
+}
+
+/**
+ * Countdown for a timed run. Call start(durationSec) from the click that begins
+ * the run and reset(durationSec) when it is restarted; `running` switches the
+ * polling on. The clock is re-read every 500 ms and on visibilitychange, so a
+ * phone that was locked past the deadline submits the moment it wakes.
+ */
+export function useDeadlineCountdown(running: boolean, initialSec: number, onExpire: () => void) {
+  const [timeLeft, setTimeLeft] = useState(initialSec);
+  const state = useRef<CountdownState>({ deadline: null, fired: false });
+  const start = useCallback((durationSec: number) => {
+    startCountdown(state.current, Date.now(), durationSec);
+    setTimeLeft(durationSec);
+  }, []);
+  const reset = useCallback((durationSec: number) => {
+    stopCountdown(state.current);
+    setTimeLeft(durationSec);
+  }, []);
+  useEffect(() => {
+    if (!running) return;
+    const check = () => {
+      const r = pollCountdown(state.current, Date.now());
+      if (!r) return;
+      setTimeLeft(r.left);
+      if (r.expire) onExpire();
+    };
+    const id = setInterval(check, 500);
+    document.addEventListener("visibilitychange", check);
+    return () => {
+      clearInterval(id);
+      document.removeEventListener("visibilitychange", check);
+    };
+  }, [running, onExpire]);
+  return { timeLeft, start, reset };
 }
 
 // Re-render hook: returns a counter that increments whenever progress changes

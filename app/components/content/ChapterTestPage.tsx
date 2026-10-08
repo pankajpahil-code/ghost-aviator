@@ -5,7 +5,10 @@ import { Clock, CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen } from "lu
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { DemoQuestion } from "@/lib/demo-questions";
 import { isRealExplanation } from "@/lib/explanation";
-import { recordResult } from "@/lib/progress";
+import {
+  recordResult, useDeadlineCountdown, isSubjectFallback, questionsForRun, countsTowardChapter,
+  QUIZ_SAMPLE_SIZE, MIN_QUESTIONS_FOR_VERDICT,
+} from "@/lib/progress";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
 type Phase = "setup" | "test" | "result";
@@ -15,31 +18,31 @@ type Props = {
   subject: Subject;
   chapter: Chapter;
   questions: DemoQuestion[];
+  /** True when `questions` are this chapter's own (getChapterSpecificQuestions().length > 0).
+   *  Optional: when the route does not pass it, the data is read instead. */
+  chapterSpecific?: boolean;
 };
 
 const SECS_PER_QUESTION = 90; // 1.5 minutes each
 
-export default function ChapterTestPage({ track, subject, chapter, questions }: Props) {
-  const duration = questions.length * SECS_PER_QUESTION;
+export default function ChapterTestPage({ track, subject, chapter, questions: pool, chapterSpecific }: Props) {
+  // Same rule as the chapter quiz: a subject-wide fallback pool is a revision
+  // test on a random sample, never a test of this chapter.
+  const fallback = isSubjectFallback(pool, chapterSpecific);
+  const plannedCount = fallback ? Math.min(QUIZ_SAMPLE_SIZE, pool.length) : pool.length;
+
   const [phase, setPhase] = useState<Phase>("setup");
   const [current, setCurrent] = useState(0);
-  const [answers, setAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
+  // Fixed when Start is pressed, never at render (server and browser must agree).
+  const [questions, setQuestions] = useState<DemoQuestion[]>(() => (fallback ? [] : pool));
+  const [answers, setAnswers] = useState<(number | null)[]>(() => Array(questions.length).fill(null));
   const [revealed, setRevealed] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(duration);
 
-  const submit = useCallback(() => setPhase("result"), []);
-
-  useEffect(() => {
-    if (phase !== "test") return;
-    // A countdown that expires MUST change state from an effect — the trigger is
-    // time passing, not a user action or a render. This is the legitimate case
-    // the rule cannot distinguish. It cannot double-submit: submit() flips phase,
-    // after which this effect early-returns above.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (timeLeft <= 0) { submit(); return; }
-    const t = setTimeout(() => setTimeLeft(p => p - 1), 1000);
-    return () => clearTimeout(t);
-  }, [phase, timeLeft, submit]);
+  const submit = useCallback(() => setPhase("result"), [setPhase]);
+  // Deadline-based: the end time is fixed at Start and the clock is re-read on
+  // every tick and on visibilitychange, so a locked phone cannot gain time.
+  const { timeLeft, start: startClock, reset: resetClock } =
+    useDeadlineCountdown(phase === "test", plannedCount * SECS_PER_QUESTION, submit);
 
   const fmt = (s: number) =>
     `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
@@ -48,15 +51,28 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
   const pct     = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
   const passed  = pct >= subject.passMark;
   const urgent  = timeLeft < 120;
+  // Only a full-size run of the chapter's own questions counts as a chapter result.
+  const counts  = countsTowardChapter({ questionCount: phase === "setup" ? plannedCount : questions.length, fallback });
 
   // Save the result once when the test finishes (best score is kept).
   const recorded = useRef(false);
   useEffect(() => {
     if (phase === "result" && !recorded.current && questions.length > 0) {
       recorded.current = true;
-      recordResult("test", track, subject.id, chapter.id, pct);
+      if (counts) recordResult("test", track, subject.id, chapter.id, pct);
     }
-  }, [phase, pct, track, subject.id, chapter.id, questions.length]);
+  }, [phase, pct, counts, track, subject.id, chapter.id, questions.length]);
+
+  function start() {
+    const run = questionsForRun(pool, fallback);
+    setQuestions(run);
+    setAnswers(Array(run.length).fill(null));
+    setCurrent(0);
+    setRevealed(false);
+    startClock(run.length * SECS_PER_QUESTION);
+    setPhase("test");
+    window.scrollTo(0, 0);
+  }
 
   function selectAnswer(oi: number) {
     if (answers[current] !== null) return;
@@ -75,7 +91,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
   function restart() {
     setPhase("setup");
     setCurrent(0);
-    setTimeLeft(duration);
+    resetClock(plannedCount * SECS_PER_QUESTION);
     setAnswers(Array(questions.length).fill(null));
     setRevealed(false);
     recorded.current = false;
@@ -83,7 +99,7 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
   }
 
   // Empty state
-  if (questions.length === 0) {
+  if (pool.length === 0) {
     return (
       <div style={{ background: "#0b1117" }} className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-md">
@@ -112,16 +128,16 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
         <div className="text-4xl mb-1">{subject.icon}</div>
         <div className="text-xs font-bold tracking-widest mb-2 mt-1"
              style={{ color: subject.color, letterSpacing: "0.18em" }}>
-          CH.{chapter.number} CHAPTER TEST
+          {fallback ? "SUBJECT REVISION TEST" : `CH.${chapter.number} CHAPTER TEST`}
         </div>
         <h1 className="text-2xl font-black text-white mb-1">{chapter.title}</h1>
         <p className="text-sm mb-7" style={{ color: "#64748b" }}>
           {subject.shortName} · Pass mark: {subject.passMark}%
         </p>
-        <div className="grid grid-cols-3 gap-3 mb-8">
+        <div className="grid grid-cols-3 gap-3 mb-4">
           {[
-            ["Questions", `${questions.length}`],
-            ["Duration",  `${Math.ceil(questions.length * SECS_PER_QUESTION / 60)} min`],
+            ["Questions", `${plannedCount}`],
+            ["Duration",  `${Math.ceil(plannedCount * SECS_PER_QUESTION / 60)} min`],
             ["Pass Mark", `${subject.passMark}%`],
           ].map(([l, v]) => (
             <div key={l} className="p-3 rounded-xl"
@@ -131,7 +147,19 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
             </div>
           ))}
         </div>
-        <button onClick={() => { setPhase("test"); window.scrollTo(0, 0); }}
+        {/* Say plainly what this run is, and that it will not be filed as chapter progress. */}
+        {fallback ? (
+          <p className="text-xs mb-8" style={{ color: "#94a3b8" }}>
+            This chapter has no questions of its own yet, so this is a revision test: {plannedCount} random
+            questions from across {subject.shortName}, a different set each time. It is not saved as chapter progress.
+          </p>
+        ) : !counts ? (
+          <p className="text-xs mb-8" style={{ color: "#94a3b8" }}>
+            This chapter has only {pool.length} {pool.length === 1 ? "question" : "questions"} so far. A test needs at
+            least {MIN_QUESTIONS_FOR_VERDICT} to count, so your score will not be saved as chapter progress.
+          </p>
+        ) : <div className="mb-4" />}
+        <button onClick={start}
                 className="w-full py-4 rounded-xl font-black text-lg"
                 style={{ background: `linear-gradient(135deg, ${subject.color}, #f0913a)`, color: "#fff" }}>
           Start Test →
@@ -149,18 +177,20 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
           <div className="text-5xl mb-4">{passed ? "🏆" : "📚"}</div>
           {/* Own early return, so this is the page's top-level heading. */}
           <h1 className="text-3xl font-black text-white mb-2">
-            {passed ? "Chapter Cleared!" : "Keep Practising"}
+            {!counts ? "Practice Test Complete" : passed ? "Chapter Cleared!" : "Keep Practising"}
           </h1>
           <p className="mb-8" style={{ color: "#64748b" }}>
-            {passed
-              ? `Passed Ch.${chapter.number} with ${pct}%. Move to the next chapter!`
-              : `Need ${subject.passMark}% to pass. You scored ${pct}%. Revise and try again.`}
+            {!counts
+              ? `You scored ${pct}% (${score}/${questions.length}). This was ${fallback ? "a subject revision test" : "a short test"}, so it is not saved as progress for Ch.${chapter.number}.`
+              : passed
+                ? `Passed Ch.${chapter.number} with ${pct}%. Move to the next chapter!`
+                : `Need ${subject.passMark}% to pass. You scored ${pct}%. Revise and try again.`}
           </p>
           <div className="grid grid-cols-3 gap-4 mb-8">
             {[
-              ["Score",  `${pct}%`,            passed ? "#22c55e" : "#ef4444"],
+              ["Score",  `${pct}%`,            !counts ? "#f0913a" : passed ? "#22c55e" : "#ef4444"],
               ["Correct", `${score}/${questions.length}`, "#f0913a"],
-              ["Status", passed ? "PASS" : "FAIL", passed ? "#22c55e" : "#ef4444"],
+              ["Status", !counts ? "PRACTICE" : passed ? "PASS" : "FAIL", !counts ? "#f0913a" : passed ? "#22c55e" : "#ef4444"],
             ].map(([l, v, c]) => (
               <div key={l} className="p-4 rounded-xl" style={{ background: `${c}10`, border: `1px solid ${c}25` }}>
                 <div className="text-2xl font-black" style={{ color: c }}>{v}</div>
@@ -271,8 +301,9 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
           </p>
 
           {/* Options */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+          <div role="group" aria-label="Answer options" style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
             {q.opts.map((opt, oi) => {
+              const isChosen = answers[current] === oi;
               let bg     = "rgba(255,255,255,0.03)";
               let border = "rgba(255,255,255,0.08)";
               let color  = "#94a3b8";
@@ -283,6 +314,10 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
               return (
                 <button key={oi}
                         onClick={() => selectAnswer(oi)}
+                        aria-pressed={isChosen}
+                        aria-label={revealed
+                          ? `${String.fromCharCode(65 + oi)}. ${opt}${oi === q.ans ? " (correct answer)" : isChosen ? " (your answer, incorrect)" : ""}`
+                          : undefined}
                         disabled={revealed}
                         style={{
                           textAlign: "left", padding: "0.75rem 1rem",
@@ -294,7 +329,9 @@ export default function ChapterTestPage({ track, subject, chapter, questions }: 
                   <span style={{ color: "#475569", fontWeight: 700, flexShrink: 0 }}>
                     {String.fromCharCode(65 + oi)}.
                   </span>
-                  {opt}
+                  <span>{opt}</span>
+                  {revealed && oi === q.ans && <CheckCircle aria-hidden className="w-4 h-4 flex-shrink-0 ml-auto" />}
+                  {revealed && oi !== q.ans && isChosen && <XCircle aria-hidden className="w-4 h-4 flex-shrink-0 ml-auto" />}
                 </button>
               );
             })}
