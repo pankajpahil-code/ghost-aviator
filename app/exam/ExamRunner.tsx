@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Link from "next/link";
-import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, BookOpen, Flag } from "lucide-react";
+import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, BookOpen, Flag, Check } from "lucide-react";
 import type { ExamPaper } from "@/lib/exam-papers";
 import { getPaperQuestionPool } from "@/lib/exam-papers";
 import { isRealExplanation } from "@/lib/explanation";
 import { recordExamAttempt, type ChapterBreakdown } from "@/lib/exam-history";
+import { useDeadlineCountdown } from "@/lib/progress";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
 type Phase = "setup" | "exam" | "result";
@@ -33,23 +34,14 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => Array(questions.length).fill(null));
   const [flagged, setFlagged] = useState<boolean[]>(() => Array(questions.length).fill(false));
-  const [timeLeft, setTimeLeft] = useState(durationSec);
   const startedAtRef = useRef<number | null>(null);
   const recorded = useRef(false);
 
   const submit = useCallback(() => setPhase("result"), []);
-
-  useEffect(() => {
-    if (phase !== "exam") return;
-    // A countdown that expires MUST change state from an effect — the trigger is
-    // time passing, not a user action or a render. This is the legitimate case
-    // the rule cannot distinguish. It cannot double-submit: submit() flips phase,
-    // after which this effect early-returns above.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (timeLeft <= 0) { submit(); return; }
-    const t = setTimeout(() => setTimeLeft(p => p - 1), 1000);
-    return () => clearTimeout(t);
-  }, [phase, timeLeft, submit]);
+  // Deadline-based: the end time is fixed at Start and the clock is re-read on
+  // every tick and on visibilitychange, so a locked phone cannot gain time and
+  // the paper auto-submits (once) as soon as the page wakes past the deadline.
+  const { timeLeft, start: startClock, reset: resetClock } = useDeadlineCountdown(phase === "exam", durationSec, submit);
 
   const answeredCount = answers.filter(a => a !== null).length;
   const score = answers.filter((a, i) => a === questions[i]?.ans).length;
@@ -78,7 +70,8 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
       scorePct: pct,
       correctCount: score,
       totalCount: questions.length,
-      durationTakenSec: startedAtRef.current ? Math.round((Date.now() - startedAtRef.current) / 1000) : durationSec - timeLeft,
+      // Capped at the paper's limit: a phone that wakes after the deadline submits late, but the sitting was never longer than the paper.
+      durationTakenSec: startedAtRef.current ? Math.min(durationSec, Math.round((Date.now() - startedAtRef.current) / 1000)) : durationSec - timeLeft,
       chapterBreakdown,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -104,7 +97,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
     setSeed(s => s + 1);
     setPhase("setup");
     setCurrent(0);
-    setTimeLeft(durationSec);
+    resetClock(durationSec);
     setAnswers(Array(questions.length).fill(null));
     setFlagged(Array(questions.length).fill(false));
     recorded.current = false;
@@ -159,7 +152,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
             </li>
           ))}
         </ul>
-        <button onClick={() => { startedAtRef.current = Date.now(); setPhase("exam"); window.scrollTo(0, 0); }}
+        <button onClick={() => { startedAtRef.current = Date.now(); startClock(durationSec); setPhase("exam"); window.scrollTo(0, 0); }}
                 className="w-full py-4 rounded-xl font-bold text-lg"
                 style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
           Start Exam
@@ -275,17 +268,24 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
         </div>
 
         {/* Question map */}
-        <div className="flex flex-wrap gap-1.5 mb-6">
+        <div role="group" aria-label="Question palette" className="flex flex-wrap gap-1.5 mb-6">
           {questions.map((_, i) => (
+            // Colour alone must not carry state: the accessible name says answered / flagged,
+            // aria-current marks the open question, and the visible cues are an underlined
+            // number (answered), a heavier border (current) and a flag glyph (flagged).
             <button key={i} onClick={() => goto(i)}
-                    className="w-7 h-7 rounded-md text-xs font-bold flex items-center justify-center"
+                    aria-label={`Question ${i + 1}, ${answers[i] !== null ? "answered" : "not answered"}${flagged[i] ? ", flagged" : ""}`}
+                    aria-current={i === current ? "step" : undefined}
+                    className="relative w-7 h-7 rounded-md text-xs font-bold flex items-center justify-center"
                     style={{
                       background: i === current ? "rgba(240,145,58,0.25)" : answers[i] !== null ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.04)",
-                      border: flagged[i] ? "1px solid #f59e0b" : i === current ? "1px solid #f0913a" : "1px solid rgba(255,255,255,0.08)",
+                      border: `${i === current ? 2 : 1}px solid ${flagged[i] ? "#f59e0b" : i === current ? "#f0913a" : "rgba(255,255,255,0.08)"}`,
                       color: i === current ? "#f0913a" : answers[i] !== null ? "#22c55e" : "#64748b",
+                      textDecoration: answers[i] !== null ? "underline" : "none",
                       cursor: "pointer",
                     }}>
               {i + 1}
+              {flagged[i] && <Flag aria-hidden className="absolute -top-1 -right-1 w-3 h-3" style={{ color: "#f59e0b", fill: "#f59e0b" }} />}
             </button>
           ))}
         </div>
@@ -293,11 +293,13 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
         {/* Question card */}
         <div className="glass-card p-8 mb-4">
           <p className="text-lg font-semibold mb-8 leading-relaxed">{q.q}</p>
-          <div className="flex flex-col gap-3">
+          <div role="group" aria-label="Answer options" className="flex flex-col gap-3">
             {q.opts.map((opt, oi) => (
-              <button key={oi} className={`option-btn ${chosen === oi ? "selected" : ""}`} onClick={() => selectAnswer(oi)}>
+              <button key={oi} className={`option-btn ${chosen === oi ? "selected" : ""}`} onClick={() => selectAnswer(oi)}
+                      aria-pressed={chosen === oi}>
                 <span className="font-bold mr-3" style={{ color: "#475569" }}>{String.fromCharCode(65 + oi)}.</span>
                 {opt}
+                {chosen === oi && <Check aria-hidden className="inline w-4 h-4 ml-2 align-text-bottom" style={{ color: "#f0913a" }} />}
               </button>
             ))}
           </div>
@@ -311,6 +313,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
             ← Previous
           </button>
           <button onClick={toggleFlag}
+                  aria-pressed={flagged[current]}
                   className="flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl text-sm font-medium"
                   style={{ border: `1px solid ${flagged[current] ? "#f59e0b" : "rgba(240,145,58,0.2)"}`, color: flagged[current] ? "#f59e0b" : "#64748b", background: "transparent" }}>
             <Flag className="w-4 h-4" /> {flagged[current] ? "Flagged" : "Flag"}
