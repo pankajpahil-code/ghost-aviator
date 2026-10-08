@@ -1,6 +1,4 @@
-import { ALL_QUESTIONS } from "@/lib/questions";
 import { SITE_URL } from "@/lib/site";
-import { isRealExplanation } from "@/lib/explanation";
 
 export const metadata = {
   title: "Free DGCA Question Bank — CPL & ATPL MCQs with Explanations",
@@ -13,24 +11,14 @@ export const metadata = {
 };
 
 export default function QuestionBankLayout({ children }: { children: React.ReactNode }) {
-  // Generate FAQPage schema for the first 25 questions
-  const first25 = ALL_QUESTIONS.slice(0, 25);
-  
+  // No FAQPage node here. It used to publish the correct option and the
+  // explanation of the first 25 questions as acceptedAnswer text, but the page
+  // only reveals those after a visitor clicks "Show Answer", so a crawler was
+  // handed answers no visitor could see. Structured data must match visible
+  // content. Do not re-add it unless the answers are rendered in the page.
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "FAQPage",
-        "@id": `${SITE_URL}/question-bank#faq`,
-        mainEntity: first25.map((q) => ({
-          "@type": "Question",
-          name: q.q,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `${q.opts[q.ans]}${isRealExplanation(q.exp) ? ` - ${q.exp}` : ''}`
-          }
-        }))
-      },
       {
         "@type": "BreadcrumbList",
         "@id": `${SITE_URL}/question-bank#breadcrumb`,

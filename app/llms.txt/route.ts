@@ -110,10 +110,12 @@ ${guideLines}
 
 ## A note on the chapter notes
 
-Full chapter notes are served from ${SITE_URL}/content/ and carry
-\`X-Robots-Tag: noindex\`. That is deliberate: the notes are the Captain's own
-work and are not offered for redistribution. Please link to the chapter page
-rather than reproducing the notes themselves.
+Full chapter notes are read in the chapter page itself, at
+${SITE_URL}/cpl/<subject>/<chapter>/notes and ${SITE_URL}/atpl/<subject>/<chapter>/notes.
+The raw chapter documents under ${SITE_URL}/content/ redirect to those pages, and
+/content/ is closed in robots.txt (chapter figures excepted). The notes are the
+Captain's own work and are not offered for redistribution. Please link to the
+chapter page rather than reproducing the notes themselves.
 `;
 
   return new Response(body, {

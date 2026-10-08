@@ -25,19 +25,24 @@ export const metadata: Metadata = {
     "DGCA exam preparation", "air navigation classes", "aviation meteorology classes",
     "air regulations classes", "how to become a pilot in India", "DGCA CPL syllabus",
   ],
+  // No title, description or url here, on purpose. A page that sets no openGraph
+  // of its own inherits this object WHOLE (Next: nested metadata fields are
+  // shallowly merged, so the last segment to define openGraph replaces it and a
+  // segment that does not define it inherits it). Hard-coding the homepage's
+  // title, description and url here made every chapter page share as the
+  // homepage. Left empty, Next fills og:title and og:description from the
+  // page's own title and description (postProcessMetadata -> inheritFromMetadata
+  // in next/dist/lib/metadata/resolve-metadata.js), and no og:url is emitted
+  // rather than a wrong one. Do not put them back.
   openGraph: {
     type: "website",
     siteName: "Ghost Aviator",
-    title: TITLE,
-    description: DESCRIPTION,
-    url: SITE_URL,
     // og image supplied by app/opengraph-image.tsx (file convention)
   },
   twitter: {
     card: "summary_large_image",
-    title: TITLE,
-    description: DESCRIPTION,
     // twitter image supplied by app/twitter-image.tsx (file convention)
+    // title/description are filled from the page's own metadata, as above.
   },
   // Google Search Console verification
   verification: { google: "TghR6KcOYeEDo1WjLWAVuTiutX4yynj00qyVfO3UJe4" },

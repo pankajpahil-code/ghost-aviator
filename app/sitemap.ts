@@ -138,7 +138,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const guidePages: MetadataRoute.Sitemap = GUIDES.map(g => ({
     url: url(`/guides/${g.slug}`),
-    lastModified: new Date(g.date),
+    // The guide's own dateModified (app/guides/[slug]/page.tsx), not the first-
+    // published date: three guides were revised 2026-10-07 and the sitemap was
+    // still reporting July. A stale lastmod teaches Google to ignore the field.
+    lastModified: new Date(g.updated || g.date),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
