@@ -533,7 +533,11 @@ export type InlineNotes = { css: string; html: string; stylesheets: string[] };
 // mid-label, and a run of pictures that do not show what their caption says.
 // Those are listed in notes-withheld-figures.json and the whole <figure> is
 // left out, caption included: a caption under no picture, or under the wrong
-// one, teaches nothing. A figure whose file is not on disk goes the same way.
+// one, teaches nothing. A figure whose file was never extracted is in the same
+// list ("no-file"): do NOT test for the file with fs here. A runtime path into
+// public/ makes the build trace all of public/ into the route's server function
+// (687 MB against a 250 MB limit; the deploy of 2026-10-09 failed on exactly that).
+// tools/audit/notes-inline-check.mts and function-size.mjs hold both ends.
 //
 // The captions also carried a page reference into the book the figure was
 // traced from ("source p.171"). That is attribution of the teaching to someone
@@ -552,7 +556,7 @@ function withholdFigures(html: string, basePath: string): string {
       const src = m[1] ?? m[2] ?? "";
       if (!isRelativeUrl(src)) continue;
       const served = decodeURIComponent(resolveAgainst(src, basePath).pathname);
-      if (WITHHELD.has(served) || !fs.existsSync(path.join(PUBLIC_DIR, served))) return "";
+      if (WITHHELD.has(served)) return "";
     }
     return figure.replace(/(<figcaption\b[^>]*>)([\s\S]*?)(<\/figcaption>)/gi,
       (_all, open: string, text: string, close: string) => open + text.replace(SOURCE_PAGE_RE, "").trim() + close);

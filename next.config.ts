@@ -64,6 +64,16 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Server code reads only HTML and CSS out of public/ (chapter notes, guides,
+  // linked stylesheets). lib/notes-inline.ts resolves a stylesheet path at run
+  // time, and the tracer, unable to tell which file that is, packs ALL of
+  // public/ into the route: 687 MB against Vercel's 250 MB limit, which failed
+  // the production deploy of 2026-10-09. Nothing on the server opens an image,
+  // font, PDF or media file, so none of them belongs in a function.
+  // `node tools/audit/function-size.mjs` after a build proves it stays that way.
+  outputFileTracingExcludes: {
+    "/*": ["./public/**/*.{png,jpg,jpeg,webp,avif,gif,svg,ico,mp4,webm,m4a,mp3,wav,pdf,woff,woff2,ttf,otf,eot,zip}"],
+  },
   turbopack: {
     root: __dirname,
   },
