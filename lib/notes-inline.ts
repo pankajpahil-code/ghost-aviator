@@ -3,6 +3,7 @@ import path from "node:path";
 // Pure data with no imports of its own (next.config.ts reads it for the same
 // reason), so this stays a server-only module with no path to the question bank.
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "./subjects";
+import WITHHELD_FIGURES from "./notes-withheld-figures.json";
 
 /**
  * Reads a chapter's notes.html and returns it as an in-page fragment: the body
@@ -523,6 +524,42 @@ function transformTags(html: string, basePath: string): string {
  */
 export type InlineNotes = { css: string; html: string; stylesheets: string[] };
 
+// ─── Figures that must not render ───────────────────────────────────────────
+//
+// Until relative URLs were resolved, a chapter's own figures were broken links
+// in the page, so nobody had to ask whether each picture was fit to publish.
+// Looked at one by one (2026-10-09), some are not: a book cover, an answer-key
+// grid, a picture carrying a signature or a "courtesy" line, a crop cut off
+// mid-label, and a run of pictures that do not show what their caption says.
+// Those are listed in notes-withheld-figures.json and the whole <figure> is
+// left out, caption included: a caption under no picture, or under the wrong
+// one, teaches nothing. A figure whose file is not on disk goes the same way.
+//
+// The captions also carried a page reference into the book the figure was
+// traced from ("source p.171"). That is attribution of the teaching to someone
+// else's book and says nothing a student can use; it is removed from every
+// caption. The "pending generation" placeholder some chapters keep beside an
+// image is production scaffolding and never belongs in the page.
+const WITHHELD = new Set(Object.keys(WITHHELD_FIGURES.withheld));
+const FIGURE_RE = /<figure\b[^>]*>[\s\S]*?<\/figure>/gi;
+const IMG_SRC_RE = /<img\b[^>]*?\bsrc\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
+const FIG_PENDING_RE = /<div\b[^>]*\bclass\s*=\s*["'][^"']*\bfig-pending\b[^"']*["'][^>]*>[\s\S]*?<\/div>/gi;
+const SOURCE_PAGE_RE = /\s*[([]?\s*\bsources?\s+pp?\.\s*\d+(?:\s*[–-]\s*\d+)?\s*[)\]]?\.?/gi;
+
+function withholdFigures(html: string, basePath: string): string {
+  const kept = html.replace(FIGURE_RE, figure => {
+    for (const m of figure.matchAll(IMG_SRC_RE)) {
+      const src = m[1] ?? m[2] ?? "";
+      if (!isRelativeUrl(src)) continue;
+      const served = decodeURIComponent(resolveAgainst(src, basePath).pathname);
+      if (WITHHELD.has(served) || !fs.existsSync(path.join(PUBLIC_DIR, served))) return "";
+    }
+    return figure.replace(/(<figcaption\b[^>]*>)([\s\S]*?)(<\/figcaption>)/gi,
+      (_all, open: string, text: string, close: string) => open + text.replace(SOURCE_PAGE_RE, "").trim() + close);
+  });
+  return kept.replace(FIG_PENDING_RE, "");
+}
+
 export function getInlineNotes(subjectId: string, chapterId: string): InlineNotes | null {
   try {
     const notesPath = path.join(process.cwd(), "public", "content", subjectId, chapterId, "notes.html");
@@ -552,6 +589,7 @@ export function getInlineNotes(subjectId: string, chapterId: string): InlineNote
     // already collected above.
     html = html.replace(/<link\b[^>]*>/gi, "");
     html = html.replace(CPP_WATERMARK_ELEMENT, "");
+    html = withholdFigures(html, basePath);
 
     // The chapter's cover block repeats the title/author the page header
     // already shows as its <h1>; leaving it in would give the page two

@@ -8,9 +8,9 @@ Meaning:       the chapter's source file references the image by a RELATIVE path
                not see before. Open every one. Nothing here has been looked at by the tool: it checks
                that the file exists and that its first bytes are an image, not that the picture is right.
 
-Total references: 347   distinct files: 347   not-an-image by file header: 0
-  human-performance       111 references,  111 distinct files
-  instrumentation         234 references,  234 distinct files
+Total references: 266   distinct files: 266   not-an-image by file header: 0
+  human-performance       109 references,  109 distinct files
+  instrumentation         155 references,  155 distinct files
   technical-specific        2 references,    2 distinct files
 
 chapter	kind	source value	now served at	bytes	file header
@@ -89,7 +89,6 @@ human-performance/hpl-14	img[src]	../_assets/images/hpl-14-spatial-disorientatio
 human-performance/hpl-15	img[src]	../_assets/images/hpl-15-g-cascade.webp	/content/human-performance/_assets/images/hpl-15-g-cascade.webp	68926	webp
 human-performance/hpl-15	img[src]	../_assets/images/hpl-15-g-force.webp	/content/human-performance/_assets/images/hpl-15-g-force.webp	124326	webp
 human-performance/hpl-15	img[src]	../_assets/images/hpl-15-load-factor.webp	/content/human-performance/_assets/images/hpl-15-load-factor.webp	48668	webp
-human-performance/hpl-15	img[src]	../_assets/images/hpl-15-negative-g.webp	/content/human-performance/_assets/images/hpl-15-negative-g.webp	102406	webp
 human-performance/hpl-16	img[src]	../_assets/images/hpl-16-bmi.webp	/content/human-performance/_assets/images/hpl-16-bmi.webp	55218	webp
 human-performance/hpl-16	img[src]	../_assets/images/hpl-16-fitness.webp	/content/human-performance/_assets/images/hpl-16-fitness.webp	57110	webp
 human-performance/hpl-16	img[src]	../_assets/images/hpl-16-hypoglycemia.webp	/content/human-performance/_assets/images/hpl-16-hypoglycemia.webp	62056	webp
@@ -99,7 +98,6 @@ human-performance/hpl-17	img[src]	../_assets/images/hpl-17-dehydration.webp	/con
 human-performance/hpl-17	img[src]	../_assets/images/hpl-17-fitness-to-fly.webp	/content/human-performance/_assets/images/hpl-17-fitness-to-fly.webp	35142	webp
 human-performance/hpl-17	img[src]	../_assets/images/hpl-17-sinus.webp	/content/human-performance/_assets/images/hpl-17-sinus.webp	47974	webp
 human-performance/hpl-18	img[src]	../_assets/images/hpl-18-caffeine.webp	/content/human-performance/_assets/images/hpl-18-caffeine.webp	71182	webp
-human-performance/hpl-18	img[src]	../_assets/images/hpl-18-drugs.webp	/content/human-performance/_assets/images/hpl-18-drugs.webp	64284	webp
 human-performance/hpl-18	img[src]	../_assets/images/hpl-18-hypothermia.webp	/content/human-performance/_assets/images/hpl-18-hypothermia.webp	62940	webp
 human-performance/hpl-18	img[src]	../_assets/images/hpl-18-self-medication.webp	/content/human-performance/_assets/images/hpl-18-self-medication.webp	44828	webp
 human-performance/hpl-19	img[src]	../_assets/images/hpl-19-error-origins.webp	/content/human-performance/_assets/images/hpl-19-error-origins.webp	41296	webp
@@ -126,16 +124,11 @@ human-performance/hpl-24	img[src]	../_assets/images/hpl-24-sleep-cycle.webp	/con
 human-performance/hpl-24	img[src]	../_assets/images/hpl-24-sleep.webp	/content/human-performance/_assets/images/hpl-24-sleep.webp	41598	webp
 human-performance/hpl-25	img[src]	../_assets/images/hpl-25-numbers.webp	/content/human-performance/_assets/images/hpl-25-numbers.webp	56368	webp
 instrumentation/inst-1	img[src]	figs/fig_p3_1.png	/content/instrumentation/inst-1/figs/fig_p3_1.png	89423	png
-instrumentation/inst-1	img[src]	figs/fig_p4_1.png	/content/instrumentation/inst-1/figs/fig_p4_1.png	30277	png
 instrumentation/inst-1	img[src]	figs/fig_p4_2.png	/content/instrumentation/inst-1/figs/fig_p4_2.png	27469	png
 instrumentation/inst-1	img[src]	figs/fig_p4_3.png	/content/instrumentation/inst-1/figs/fig_p4_3.png	27144	png
-instrumentation/inst-1	img[src]	figs/fig_p5_1.png	/content/instrumentation/inst-1/figs/fig_p5_1.png	33351	png
 instrumentation/inst-1	img[src]	figs/fig_p5_3.png	/content/instrumentation/inst-1/figs/fig_p5_3.png	75311	png
-instrumentation/inst-1	img[src]	figs/fig_p7_1.png	/content/instrumentation/inst-1/figs/fig_p7_1.png	70330	png
 instrumentation/inst-2	img[src]	figs/fig_p14_1.png	/content/instrumentation/inst-2/figs/fig_p14_1.png	80200	png
 instrumentation/inst-2	img[src]	figs/fig_p15_1.png	/content/instrumentation/inst-2/figs/fig_p15_1.png	248945	png
-instrumentation/inst-2	img[src]	figs/fig_p15_2.png	/content/instrumentation/inst-2/figs/fig_p15_2.png	44772	png
-instrumentation/inst-2	img[src]	figs/fig_p16_1.png	/content/instrumentation/inst-2/figs/fig_p16_1.png	47350	png
 instrumentation/inst-2	img[src]	figs/fig_p17_1.png	/content/instrumentation/inst-2/figs/fig_p17_1.png	69967	png
 instrumentation/inst-3	img[src]	figs/fig_p27_0.png	/content/instrumentation/inst-3/figs/fig_p27_0.png	87356	png
 instrumentation/inst-3	img[src]	figs/fig_p28_0.png	/content/instrumentation/inst-3/figs/fig_p28_0.png	197056	png
@@ -143,36 +136,27 @@ instrumentation/inst-3	img[src]	figs/fig_p28_1.png	/content/instrumentation/inst
 instrumentation/inst-3	img[src]	figs/fig_p29_0.png	/content/instrumentation/inst-3/figs/fig_p29_0.png	149683	png
 instrumentation/inst-3	img[src]	figs/fig_p30_0.png	/content/instrumentation/inst-3/figs/fig_p30_0.png	118938	png
 instrumentation/inst-3	img[src]	figs/fig_p31_0.png	/content/instrumentation/inst-3/figs/fig_p31_0.png	130792	png
-instrumentation/inst-3	img[src]	figs/fig_p33_0.png	/content/instrumentation/inst-3/figs/fig_p33_0.png	894597	png
 instrumentation/inst-3	img[src]	figs/fig_p35_0.png	/content/instrumentation/inst-3/figs/fig_p35_0.png	78395	png
 instrumentation/inst-3	img[src]	figs/fig_p36_0.png	/content/instrumentation/inst-3/figs/fig_p36_0.png	136860	png
 instrumentation/inst-4	img[src]	figs/fig_p42_0.png	/content/instrumentation/inst-4/figs/fig_p42_0.png	42576	png
-instrumentation/inst-4	img[src]	figs/fig_p42_1.png	/content/instrumentation/inst-4/figs/fig_p42_1.png	36569	png
 instrumentation/inst-4	img[src]	figs/fig_p46_0.png	/content/instrumentation/inst-4/figs/fig_p46_0.png	181068	png
 instrumentation/inst-5	img[src]	figs/fig_p55_0.png	/content/instrumentation/inst-5/figs/fig_p55_0.png	192543	png
 instrumentation/inst-5	img[src]	figs/fig_p56_0.png	/content/instrumentation/inst-5/figs/fig_p56_0.png	88442	png
 instrumentation/inst-5	img[src]	figs/fig_p57_0.png	/content/instrumentation/inst-5/figs/fig_p57_0.png	88267	png
 instrumentation/inst-5	img[src]	figs/fig_p58_0.png	/content/instrumentation/inst-5/figs/fig_p58_0.png	62014	png
 instrumentation/inst-5	img[src]	figs/fig_p58_2.png	/content/instrumentation/inst-5/figs/fig_p58_2.png	50518	png
-instrumentation/inst-5	img[src]	figs/fig_p59_0.png	/content/instrumentation/inst-5/figs/fig_p59_0.png	592369	png
-instrumentation/inst-5	img[src]	figs/fig_p59_1.png	/content/instrumentation/inst-5/figs/fig_p59_1.png	523885	png
 instrumentation/inst-5	img[src]	figs/fig_p60_0.png	/content/instrumentation/inst-5/figs/fig_p60_0.png	82556	png
-instrumentation/inst-5	img[src]	figs/fig_p60_1.png	/content/instrumentation/inst-5/figs/fig_p60_1.png	34989	png
 instrumentation/inst-5	img[src]	figs/fig_p63_0.png	/content/instrumentation/inst-5/figs/fig_p63_0.png	47066	png
 instrumentation/inst-5	img[src]	figs/fig_p66_0.png	/content/instrumentation/inst-5/figs/fig_p66_0.png	138311	png
 instrumentation/inst-5	img[src]	figs/fig_p66_1.png	/content/instrumentation/inst-5/figs/fig_p66_1.png	73569	png
 instrumentation/inst-6	img[src]	figs/fig_p73_0.png	/content/instrumentation/inst-6/figs/fig_p73_0.png	22639	png
 instrumentation/inst-6	img[src]	figs/fig_p73_1.png	/content/instrumentation/inst-6/figs/fig_p73_1.png	31687	png
 instrumentation/inst-6	img[src]	figs/fig_p73_2.png	/content/instrumentation/inst-6/figs/fig_p73_2.png	29238	png
-instrumentation/inst-6	img[src]	figs/fig_p74_0.png	/content/instrumentation/inst-6/figs/fig_p74_0.png	635184	png
 instrumentation/inst-6	img[src]	figs/fig_p75_0.png	/content/instrumentation/inst-6/figs/fig_p75_0.png	131190	png
-instrumentation/inst-6	img[src]	figs/fig_p76_0.png	/content/instrumentation/inst-6/figs/fig_p76_0.png	106242	png
 instrumentation/inst-7	img[src]	figs/fig_p84_0.png	/content/instrumentation/inst-7/figs/fig_p84_0.png	168629	png
-instrumentation/inst-7	img[src]	figs/fig_p87_0.png	/content/instrumentation/inst-7/figs/fig_p87_0.png	24183	png
 instrumentation/inst-7	img[src]	figs/fig_p87_1.png	/content/instrumentation/inst-7/figs/fig_p87_1.png	22650	png
 instrumentation/inst-7	img[src]	figs/fig_p88_0.png	/content/instrumentation/inst-7/figs/fig_p88_0.png	28225	png
 instrumentation/inst-7	img[src]	figs/fig_p88_1.png	/content/instrumentation/inst-7/figs/fig_p88_1.png	30368	png
-instrumentation/inst-7	img[src]	figs/fig_p91_0.png	/content/instrumentation/inst-7/figs/fig_p91_0.png	230324	png
 instrumentation/inst-8	img[src]	figs/fig_p101_0.png	/content/instrumentation/inst-8/figs/fig_p101_0.png	252421	png
 instrumentation/inst-8	img[src]	figs/fig_p97_0.png	/content/instrumentation/inst-8/figs/fig_p97_0.png	94099	png
 instrumentation/inst-8	img[src]	figs/fig_p98_0.png	/content/instrumentation/inst-8/figs/fig_p98_0.png	107654	png
@@ -185,7 +169,6 @@ instrumentation/inst-9	img[src]	figs/fig_p108_0.png	/content/instrumentation/ins
 instrumentation/inst-9	img[src]	figs/fig_p110_0.png	/content/instrumentation/inst-9/figs/fig_p110_0.png	63790	png
 instrumentation/inst-9	img[src]	figs/fig_p110_1.png	/content/instrumentation/inst-9/figs/fig_p110_1.png	32172	png
 instrumentation/inst-9	img[src]	figs/fig_p111_0.png	/content/instrumentation/inst-9/figs/fig_p111_0.png	81054	png
-instrumentation/inst-9	img[src]	figs/fig_p112_0.png	/content/instrumentation/inst-9/figs/fig_p112_0.png	113472	png
 instrumentation/inst-10	img[src]	figs/fig_p119_0.png	/content/instrumentation/inst-10/figs/fig_p119_0.png	99680	png
 instrumentation/inst-10	img[src]	figs/fig_p120_0.png	/content/instrumentation/inst-10/figs/fig_p120_0.png	30925	png
 instrumentation/inst-10	img[src]	figs/fig_p123_0.png	/content/instrumentation/inst-10/figs/fig_p123_0.png	42727	png
@@ -196,7 +179,6 @@ instrumentation/inst-10	img[src]	figs/fig_p125_1.png	/content/instrumentation/in
 instrumentation/inst-10	img[src]	figs/fig_p126_0.png	/content/instrumentation/inst-10/figs/fig_p126_0.png	22517	png
 instrumentation/inst-10	img[src]	figs/fig_p127_0.png	/content/instrumentation/inst-10/figs/fig_p127_0.png	41038	png
 instrumentation/inst-10	img[src]	figs/fig_p128_0.png	/content/instrumentation/inst-10/figs/fig_p128_0.png	32925	png
-instrumentation/inst-10	img[src]	figs/fig_p128_1.png	/content/instrumentation/inst-10/figs/fig_p128_1.png	7074	png
 instrumentation/inst-10	img[src]	figs/fig_p129_0.png	/content/instrumentation/inst-10/figs/fig_p129_0.png	32611	png
 instrumentation/inst-11	img[src]	figs/fig_p137_0.png	/content/instrumentation/inst-11/figs/fig_p137_0.png	364039	png
 instrumentation/inst-11	img[src]	figs/fig_p137_1.png	/content/instrumentation/inst-11/figs/fig_p137_1.png	217062	png
@@ -207,7 +189,6 @@ instrumentation/inst-11	img[src]	figs/fig_p139_1.png	/content/instrumentation/in
 instrumentation/inst-11	img[src]	figs/fig_p141_0.png	/content/instrumentation/inst-11/figs/fig_p141_0.png	197950	png
 instrumentation/inst-11	img[src]	figs/fig_p141_1.png	/content/instrumentation/inst-11/figs/fig_p141_1.png	179337	png
 instrumentation/inst-11	img[src]	figs/fig_p141_2.png	/content/instrumentation/inst-11/figs/fig_p141_2.png	45029	png
-instrumentation/inst-11	img[src]	figs/fig_p142_0.png	/content/instrumentation/inst-11/figs/fig_p142_0.png	285249	png
 instrumentation/inst-11	img[src]	figs/fig_p143_0.png	/content/instrumentation/inst-11/figs/fig_p143_0.png	323835	png
 instrumentation/inst-11	img[src]	figs/fig_p143_1.png	/content/instrumentation/inst-11/figs/fig_p143_1.png	330811	png
 instrumentation/inst-11	img[src]	figs/fig_p144_0.png	/content/instrumentation/inst-11/figs/fig_p144_0.png	294494	png
@@ -223,10 +204,6 @@ instrumentation/inst-12	img[src]	figs/fig_p160_1.png	/content/instrumentation/in
 instrumentation/inst-12	img[src]	figs/fig_p161_0.png	/content/instrumentation/inst-12/figs/fig_p161_0.png	60710	png
 instrumentation/inst-12	img[src]	figs/fig_p162_0.png	/content/instrumentation/inst-12/figs/fig_p162_0.png	135353	png
 instrumentation/inst-12	img[src]	figs/fig_p163_0.png	/content/instrumentation/inst-12/figs/fig_p163_0.png	48565	png
-instrumentation/inst-13	img[src]	figs/fig_p170_0.png	/content/instrumentation/inst-13/figs/fig_p170_0.png	81875	png
-instrumentation/inst-13	img[src]	figs/fig_p171_0.png	/content/instrumentation/inst-13/figs/fig_p171_0.png	85094	png
-instrumentation/inst-13	img[src]	figs/fig_p172_0.png	/content/instrumentation/inst-13/figs/fig_p172_0.png	85309	png
-instrumentation/inst-13	img[src]	figs/fig_p172_1.png	/content/instrumentation/inst-13/figs/fig_p172_1.png	144917	png
 instrumentation/inst-13	img[src]	figs/fig_p173_0.png	/content/instrumentation/inst-13/figs/fig_p173_0.png	90606	png
 instrumentation/inst-13	img[src]	figs/fig_p174_0.png	/content/instrumentation/inst-13/figs/fig_p174_0.png	22907	png
 instrumentation/inst-13	img[src]	figs/fig_p174_1.png	/content/instrumentation/inst-13/figs/fig_p174_1.png	32624	png
@@ -235,17 +212,13 @@ instrumentation/inst-13	img[src]	figs/fig_p176_0.png	/content/instrumentation/in
 instrumentation/inst-13	img[src]	figs/fig_p178_0.png	/content/instrumentation/inst-13/figs/fig_p178_0.png	95103	png
 instrumentation/inst-13	img[src]	figs/fig_p180_0.png	/content/instrumentation/inst-13/figs/fig_p180_0.png	72661	png
 instrumentation/inst-14	img[src]	figs/fig_p186_0.png	/content/instrumentation/inst-14/figs/fig_p186_0.png	93545	png
-instrumentation/inst-14	img[src]	figs/fig_p188_0.png	/content/instrumentation/inst-14/figs/fig_p188_0.png	32852	png
 instrumentation/inst-14	img[src]	figs/fig_p189_0.png	/content/instrumentation/inst-14/figs/fig_p189_0.png	58820	png
 instrumentation/inst-14	img[src]	figs/fig_p190_0.png	/content/instrumentation/inst-14/figs/fig_p190_0.png	64871	png
 instrumentation/inst-14	img[src]	figs/fig_p190_1.png	/content/instrumentation/inst-14/figs/fig_p190_1.png	109982	png
 instrumentation/inst-15	img[src]	figs/fig_p196_0.png	/content/instrumentation/inst-15/figs/fig_p196_0.png	444305	png
 instrumentation/inst-16	img[src]	figs/fig_p202_0.png	/content/instrumentation/inst-16/figs/fig_p202_0.png	52716	png
 instrumentation/inst-16	img[src]	figs/fig_p203_0.png	/content/instrumentation/inst-16/figs/fig_p203_0.png	84466	png
-instrumentation/inst-16	img[src]	figs/fig_p203_1.png	/content/instrumentation/inst-16/figs/fig_p203_1.png	95771	png
-instrumentation/inst-16	img[src]	figs/fig_p204_0.png	/content/instrumentation/inst-16/figs/fig_p204_0.png	46742	png
 instrumentation/inst-16	img[src]	figs/fig_p204_1.png	/content/instrumentation/inst-16/figs/fig_p204_1.png	58112	png
-instrumentation/inst-16	img[src]	figs/fig_p208_0.png	/content/instrumentation/inst-16/figs/fig_p208_0.png	19349	png
 instrumentation/inst-17	img[src]	figs/fig_p213_0.png	/content/instrumentation/inst-17/figs/fig_p213_0.png	115369	png
 instrumentation/inst-17	img[src]	figs/fig_p215_0.png	/content/instrumentation/inst-17/figs/fig_p215_0.png	644446	png
 instrumentation/inst-17	img[src]	figs/fig_p215_1.png	/content/instrumentation/inst-17/figs/fig_p215_1.png	443314	png
@@ -257,18 +230,12 @@ instrumentation/inst-17	img[src]	figs/fig_p217_2.png	/content/instrumentation/in
 instrumentation/inst-17	img[src]	figs/fig_p218_0.png	/content/instrumentation/inst-17/figs/fig_p218_0.png	35254	png
 instrumentation/inst-17	img[src]	figs/fig_p218_1.png	/content/instrumentation/inst-17/figs/fig_p218_1.png	50024	png
 instrumentation/inst-17	img[src]	figs/fig_p219_0.png	/content/instrumentation/inst-17/figs/fig_p219_0.png	253384	png
-instrumentation/inst-17	img[src]	figs/fig_p220_0.png	/content/instrumentation/inst-17/figs/fig_p220_0.png	38082	png
 instrumentation/inst-17	img[src]	figs/fig_p220_1.png	/content/instrumentation/inst-17/figs/fig_p220_1.png	55100	png
 instrumentation/inst-17	img[src]	figs/fig_p221_0.png	/content/instrumentation/inst-17/figs/fig_p221_0.png	72026	png
 instrumentation/inst-24	img[src]	figs/fig_p327_0.png	/content/instrumentation/inst-24/figs/fig_p327_0.png	121701	png
-instrumentation/inst-24	img[src]	figs/fig_p328_0.png	/content/instrumentation/inst-24/figs/fig_p328_0.png	155935	png
 instrumentation/inst-24	img[src]	figs/fig_p328_1.png	/content/instrumentation/inst-24/figs/fig_p328_1.png	102948	png
 instrumentation/inst-24	img[src]	figs/fig_p329_0.png	/content/instrumentation/inst-24/figs/fig_p329_0.png	185187	png
-instrumentation/inst-24	img[src]	figs/fig_p329_1.png	/content/instrumentation/inst-24/figs/fig_p329_1.png	157301	png
-instrumentation/inst-24	img[src]	figs/fig_p332_0.png	/content/instrumentation/inst-24/figs/fig_p332_0.png	28248	png
-instrumentation/inst-24	img[src]	figs/fig_p332_1.png	/content/instrumentation/inst-24/figs/fig_p332_1.png	126761	png
 instrumentation/inst-25	img[src]	figs/fig_p338_0.png	/content/instrumentation/inst-25/figs/fig_p338_0.png	56138	png
-instrumentation/inst-25	img[src]	figs/fig_p339_0.png	/content/instrumentation/inst-25/figs/fig_p339_0.png	132011	png
 instrumentation/inst-25	img[src]	figs/fig_p341_0.png	/content/instrumentation/inst-25/figs/fig_p341_0.png	91486	png
 instrumentation/inst-25	img[src]	figs/fig_p341_1.png	/content/instrumentation/inst-25/figs/fig_p341_1.png	126686	png
 instrumentation/inst-25	img[src]	figs/fig_p345_0.png	/content/instrumentation/inst-25/figs/fig_p345_0.png	172319	png
@@ -282,68 +249,25 @@ instrumentation/inst-26	img[src]	figs/fig_p359_0.png	/content/instrumentation/in
 instrumentation/inst-26	img[src]	figs/fig_p359_1.png	/content/instrumentation/inst-26/figs/fig_p359_1.png	33013	png
 instrumentation/inst-26	img[src]	figs/fig_p360_0.png	/content/instrumentation/inst-26/figs/fig_p360_0.png	43840	png
 instrumentation/inst-26	img[src]	figs/fig_p363_0.png	/content/instrumentation/inst-26/figs/fig_p363_0.png	69024	png
-instrumentation/inst-26	img[src]	figs/fig_p364_0.png	/content/instrumentation/inst-26/figs/fig_p364_0.png	43760	png
-instrumentation/inst-26	img[src]	figs/fig_p366_0.png	/content/instrumentation/inst-26/figs/fig_p366_0.png	67528	png
-instrumentation/inst-26	img[src]	figs/fig_p367_0.png	/content/instrumentation/inst-26/figs/fig_p367_0.png	170975	png
 instrumentation/inst-26	img[src]	figs/fig_p368_0.png	/content/instrumentation/inst-26/figs/fig_p368_0.png	106138	png
-instrumentation/inst-26	img[src]	figs/fig_p368_1.png	/content/instrumentation/inst-26/figs/fig_p368_1.png	51236	png
-instrumentation/inst-26	img[src]	figs/fig_p369_0.png	/content/instrumentation/inst-26/figs/fig_p369_0.png	73725	png
 instrumentation/inst-27	img[src]	figs/fig_p386_0.png	/content/instrumentation/inst-27/figs/fig_p386_0.png	167956	png
 instrumentation/inst-27	img[src]	figs/fig_p388_0.png	/content/instrumentation/inst-27/figs/fig_p388_0.png	147019	png
 instrumentation/inst-28	img[src]	figs/fig_p393_0.png	/content/instrumentation/inst-28/figs/fig_p393_0.png	195611	png
 instrumentation/inst-29	img[src]	figs/fig_p403_0.png	/content/instrumentation/inst-29/figs/fig_p403_0.png	84326	png
-instrumentation/inst-29	img[src]	figs/fig_p403_1.png	/content/instrumentation/inst-29/figs/fig_p403_1.png	21228	png
 instrumentation/inst-29	img[src]	figs/fig_p403_3.png	/content/instrumentation/inst-29/figs/fig_p403_3.png	149401	png
-instrumentation/inst-29	img[src]	figs/fig_p405_0.png	/content/instrumentation/inst-29/figs/fig_p405_0.png	309737	png
-instrumentation/inst-29	img[src]	figs/fig_p405_2.png	/content/instrumentation/inst-29/figs/fig_p405_2.png	126161	png
 instrumentation/inst-29	img[src]	figs/fig_p407_0.png	/content/instrumentation/inst-29/figs/fig_p407_0.png	100359	png
-instrumentation/inst-29	img[src]	figs/fig_p407_3.png	/content/instrumentation/inst-29/figs/fig_p407_3.png	27772	png
-instrumentation/inst-29	img[src]	figs/fig_p410_0.png	/content/instrumentation/inst-29/figs/fig_p410_0.png	150587	png
-instrumentation/inst-29	img[src]	figs/fig_p410_1.png	/content/instrumentation/inst-29/figs/fig_p410_1.png	58914	png
-instrumentation/inst-32	img[src]	figs/fig_p431_0.png	/content/instrumentation/inst-32/figs/fig_p431_0.png	37599	png
-instrumentation/inst-32	img[src]	figs/fig_p431_1.png	/content/instrumentation/inst-32/figs/fig_p431_1.png	14758	png
-instrumentation/inst-32	img[src]	figs/fig_p436_0.png	/content/instrumentation/inst-32/figs/fig_p436_0.png	119163	png
-instrumentation/inst-33	img[src]	figs/fig_p437_0.png	/content/instrumentation/inst-33/figs/fig_p437_0.png	124424	png
-instrumentation/inst-33	img[src]	figs/fig_p437_1.png	/content/instrumentation/inst-33/figs/fig_p437_1.png	1631	png
-instrumentation/inst-33	img[src]	figs/fig_p440_0.png	/content/instrumentation/inst-33/figs/fig_p440_0.png	84957	png
-instrumentation/inst-33	img[src]	figs/fig_p441_0.png	/content/instrumentation/inst-33/figs/fig_p441_0.png	87187	png
-instrumentation/inst-33	img[src]	figs/fig_p443_0.png	/content/instrumentation/inst-33/figs/fig_p443_0.png	176135	png
 instrumentation/inst-33	img[src]	figs/fig_p443_1.png	/content/instrumentation/inst-33/figs/fig_p443_1.png	55364	png
-instrumentation/inst-33	img[src]	figs/fig_p445_0.png	/content/instrumentation/inst-33/figs/fig_p445_0.png	98241	png
 instrumentation/inst-33	img[src]	figs/fig_p446_0.png	/content/instrumentation/inst-33/figs/fig_p446_0.png	250421	png
 instrumentation/inst-33	img[src]	figs/fig_p446_1.png	/content/instrumentation/inst-33/figs/fig_p446_1.png	154241	png
-instrumentation/inst-34	img[src]	figs/fig_p447_0.png	/content/instrumentation/inst-34/figs/fig_p447_0.png	138909	png
-instrumentation/inst-34	img[src]	figs/fig_p447_1.png	/content/instrumentation/inst-34/figs/fig_p447_1.png	7376	png
-instrumentation/inst-34	img[src]	figs/fig_p450_0.png	/content/instrumentation/inst-34/figs/fig_p450_0.png	82306	png
-instrumentation/inst-34	img[src]	figs/fig_p454_0.png	/content/instrumentation/inst-34/figs/fig_p454_0.png	105937	png
-instrumentation/inst-34	img[src]	figs/fig_p454_1.png	/content/instrumentation/inst-34/figs/fig_p454_1.png	27484	png
-instrumentation/inst-34	img[src]	figs/fig_p456_0.png	/content/instrumentation/inst-34/figs/fig_p456_0.png	231689	png
 instrumentation/inst-34	img[src]	figs/fig_p458_0.png	/content/instrumentation/inst-34/figs/fig_p458_0.png	85209	png
-instrumentation/inst-34	img[src]	figs/fig_p458_1.png	/content/instrumentation/inst-34/figs/fig_p458_1.png	20432	png
-instrumentation/inst-34	img[src]	figs/fig_p460_0.png	/content/instrumentation/inst-34/figs/fig_p460_0.png	184292	png
-instrumentation/inst-34	img[src]	figs/fig_p462_0.png	/content/instrumentation/inst-34/figs/fig_p462_0.png	99310	png
-instrumentation/inst-34	img[src]	figs/fig_p464_0.png	/content/instrumentation/inst-34/figs/fig_p464_0.png	259470	png
-instrumentation/inst-34	img[src]	figs/fig_p465_0.png	/content/instrumentation/inst-34/figs/fig_p465_0.png	103476	png
-instrumentation/inst-34	img[src]	figs/fig_p466_0.png	/content/instrumentation/inst-34/figs/fig_p466_0.png	220690	png
-instrumentation/inst-34	img[src]	figs/fig_p467_0.png	/content/instrumentation/inst-34/figs/fig_p467_0.png	217587	png
 instrumentation/inst-34	img[src]	figs/fig_p472_0.png	/content/instrumentation/inst-34/figs/fig_p472_0.png	496192	png
 instrumentation/inst-35	img[src]	figs/fig_p481_0.png	/content/instrumentation/inst-35/figs/fig_p481_0.png	47332	png
 instrumentation/inst-35	img[src]	figs/fig_p482_0.png	/content/instrumentation/inst-35/figs/fig_p482_0.png	26811	png
 instrumentation/inst-35	img[src]	figs/fig_p483_0.png	/content/instrumentation/inst-35/figs/fig_p483_0.png	153231	png
 instrumentation/inst-35	img[src]	figs/fig_p484_0.png	/content/instrumentation/inst-35/figs/fig_p484_0.png	111084	png
 instrumentation/inst-35	img[src]	figs/fig_p485_0.png	/content/instrumentation/inst-35/figs/fig_p485_0.png	76766	png
-instrumentation/inst-35	img[src]	figs/fig_p486_0.png	/content/instrumentation/inst-35/figs/fig_p486_0.png	1348	png
 instrumentation/inst-35	img[src]	figs/fig_p487_0.png	/content/instrumentation/inst-35/figs/fig_p487_0.png	65439	png
-instrumentation/inst-35	img[src]	figs/fig_p487_1.png	/content/instrumentation/inst-35/figs/fig_p487_1.png	94821	png
-instrumentation/inst-35	img[src]	figs/fig_p488_0.png	/content/instrumentation/inst-35/figs/fig_p488_0.png	94512	png
-instrumentation/inst-35	img[src]	figs/fig_p488_1.png	/content/instrumentation/inst-35/figs/fig_p488_1.png	89925	png
-instrumentation/inst-35	img[src]	figs/fig_p489_0.png	/content/instrumentation/inst-35/figs/fig_p489_0.png	108805	png
-instrumentation/inst-35	img[src]	figs/fig_p490_0.png	/content/instrumentation/inst-35/figs/fig_p490_0.png	109621	png
-instrumentation/inst-35	img[src]	figs/fig_p490_1.png	/content/instrumentation/inst-35/figs/fig_p490_1.png	62844	png
-instrumentation/inst-35	img[src]	figs/fig_p491_0.png	/content/instrumentation/inst-35/figs/fig_p491_0.png	68075	png
-instrumentation/inst-36	img[src]	figs/fig_p498_0.png	/content/instrumentation/inst-36/figs/fig_p498_0.png	707601	png
 instrumentation/inst-36	img[src]	figs/fig_p499_0.png	/content/instrumentation/inst-36/figs/fig_p499_0.png	67682	png
-instrumentation/inst-37	img[src]	figs/fig_p506_0.png	/content/instrumentation/inst-37/figs/fig_p506_0.png	665335	png
 instrumentation/inst-37	img[src]	figs/fig_p507_0.png	/content/instrumentation/inst-37/figs/fig_p507_0.png	73361	png
 instrumentation/inst-38	img[src]	figs/fig_p515_0.png	/content/instrumentation/inst-38/figs/fig_p515_0.png	154750	png
 instrumentation/inst-38	img[src]	figs/fig_p516_0.png	/content/instrumentation/inst-38/figs/fig_p516_0.png	94715	png
@@ -351,12 +275,7 @@ instrumentation/inst-39	img[src]	figs/fig_p540_0.png	/content/instrumentation/in
 instrumentation/inst-39	img[src]	figs/fig_p541_0.png	/content/instrumentation/inst-39/figs/fig_p541_0.png	426523	png
 instrumentation/inst-39	img[src]	figs/fig_p542_0.png	/content/instrumentation/inst-39/figs/fig_p542_0.png	60295	png
 instrumentation/inst-39	img[src]	figs/fig_p543_0.png	/content/instrumentation/inst-39/figs/fig_p543_0.png	34473	png
-instrumentation/inst-39	img[src]	figs/fig_p544_0.png	/content/instrumentation/inst-39/figs/fig_p544_0.png	50951	png
 instrumentation/inst-39	img[src]	figs/fig_p545_0.png	/content/instrumentation/inst-39/figs/fig_p545_0.png	67735	png
-instrumentation/inst-39	img[src]	figs/fig_p546_0.png	/content/instrumentation/inst-39/figs/fig_p546_0.png	48092	png
-instrumentation/inst-39	img[src]	figs/fig_p547_0.png	/content/instrumentation/inst-39/figs/fig_p547_0.png	16604	png
-instrumentation/inst-39	img[src]	figs/fig_p548_0.png	/content/instrumentation/inst-39/figs/fig_p548_0.png	72775	png
-instrumentation/inst-39	img[src]	figs/fig_p549_0.png	/content/instrumentation/inst-39/figs/fig_p549_0.png	56644	png
 instrumentation/inst-39	img[src]	figs/fig_p550_0.png	/content/instrumentation/inst-39/figs/fig_p550_0.png	38455	png
 instrumentation/inst-39	img[src]	figs/fig_p551_0.png	/content/instrumentation/inst-39/figs/fig_p551_0.png	134403	png
 technical-specific/da42-1	img[src]	da42_side_profile.png	/content/technical-specific/da42-1/da42_side_profile.png	186263	png
