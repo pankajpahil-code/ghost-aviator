@@ -145,7 +145,7 @@ export const LIVE_BATCH_META = {
   maxSeats: 10,
   durationLabel: "4–6 weeks",
   startDateIST: "2026-10-20",
-  startLabel: "Monday, 20 Oct 2026 (IST)",
+  startLabel: "Tuesday, 20 Oct 2026 (IST)",
   priceINR: 7999,
   enrollWhatsApp: `https://wa.me/${LIVE_WHATSAPP}`,
   telegramInvite: "https://t.me/+tgLMJithc1gzOWJl",

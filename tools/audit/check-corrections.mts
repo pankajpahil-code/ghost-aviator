@@ -66,6 +66,8 @@ const ACKNOWLEDGED: Record<string, string> = {
     "the hidden copy had a broken option; this copy is intact and keys a complete sentence",
   "air-regulations-sample-2|The sensations which lead to spatial disorientation during instrument flight conditions:":
     "same intact copy as the bank's",
+  "bank|Where ATIS is available the information which should be included on first contact with ATC is the":
+    "the bank copy already keys the identifier (spelt 'phonetic'); the entry corrects the paper copy, which spells it 'phonic'",
 };
 let unreached = 0;
 let keyRightNoExp = 0;

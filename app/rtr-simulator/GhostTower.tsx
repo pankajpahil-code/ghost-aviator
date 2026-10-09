@@ -973,7 +973,7 @@ export default function GhostTower() {
               ? (micAvailable ? "Tap the mic to speak — or type your transmission…" : "Type your transmission…")
               : "Stand by…"}
             className="w-full rounded-lg px-3 py-2.5 text-sm font-mono disabled:opacity-40"
-            style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(240,145,58,0.3)", color: "#e2e8f0", outline: "none" }}
+            style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(240,145,58,0.3)", color: "#e2e8f0" }}
           />
         )}
         <div className="flex items-center gap-2">

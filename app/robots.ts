@@ -37,7 +37,17 @@ export default function robots(): MetadataRoute.Robots {
   // under /content/ stay closed. Explicit AI user-agents restate the same rule
   // so a future edit to "*" cannot silently leave GPTBot / ClaudeBot / etc.
   // freer than Googlebot when the intent is the opposite.
-  const publicAllow = ["/", "/content/*/*/img/"] as const;
+  // Every folder an indexed notes page draws a figure or a stylesheet from must be
+  // fetchable, or the page is judged on a broken rendering of itself. Chapters
+  // keep figures in img/, figs/, a subject-level _assets/ folder, or (two DA42
+  // plates) beside the chapter file.
+  const publicAllow = [
+    "/",
+    "/content/*/*/img/",
+    "/content/*/*/figs/",
+    "/content/*/_assets/",
+    "/content/*/*/*.png",
+  ] as const;
   const contentClosed = "/content/";
   const aiAgents = [
     "GPTBot",

@@ -92,9 +92,11 @@ export default function ATPLPage() {
                         <span className="flex items-center gap-1 text-xs" style={{ color:"#475569" }}>
                           <Clock className="w-3 h-3"/> {subject.examDuration} min exam
                         </span>
+                        {subject.totalQuestions > 0 && (
                         <span className="flex items-center gap-1 text-xs" style={{ color:"#475569" }}>
                           <FileQuestion className="w-3 h-3"/> {subject.totalQuestions} Qs in paper
                         </span>
+                        )}
                         <span className="flex items-center gap-1 text-xs" style={{ color:"#475569" }}>
                           <CheckCircle className="w-3 h-3"/> Pass: {subject.passMark}%
                         </span>

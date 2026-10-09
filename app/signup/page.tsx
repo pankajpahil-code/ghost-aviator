@@ -49,13 +49,13 @@ export default function SignupPage() {
             </div>
           ) : (
             <form onSubmit={submit} className="flex flex-col gap-3">
-              <input value={name} onChange={e => setName(e.target.value)} placeholder="Full name" required
+              <input value={name} onChange={e => setName(e.target.value)} placeholder="Full name" aria-label="Full name" autoComplete="name" required
                      className="px-4 py-3 rounded-xl text-sm outline-none" style={inp} />
-              <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email address" type="email" required
+              <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email address" aria-label="Email address" autoComplete="email" type="email" required
                      className="px-4 py-3 rounded-xl text-sm outline-none" style={inp} />
-              <input value={password} onChange={e => setPassword(e.target.value)} placeholder="Password (min 6 characters)" type="password" required
+              <input value={password} onChange={e => setPassword(e.target.value)} placeholder="Password (min 6 characters)" aria-label="Password, minimum 6 characters" autoComplete="new-password" type="password" required
                      className="px-4 py-3 rounded-xl text-sm outline-none" style={inp} />
-              {state === "error" && <p className="text-xs" style={{ color: "#ef4444" }}>{msg}</p>}
+              {state === "error" && <p role="alert" className="text-xs" style={{ color: "#ef4444" }}>{msg}</p>}
               <button type="submit" disabled={state === "loading"}
                       className="py-3 rounded-xl text-sm font-black disabled:opacity-60"
                       style={{ background: "linear-gradient(135deg,#c25a1e,#c25a1e)", color: "#fff" }}>

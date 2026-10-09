@@ -585,7 +585,7 @@ export default function Gini() {
                 style={{
                   width: "100%", padding: "9px 11px", borderRadius: 11, fontSize: 13,
                   background: "rgba(10,15,20,0.95)", color: "#e6edf3",
-                  border: "1px solid rgba(240,145,58,0.4)", outline: "none",
+                  border: "1px solid rgba(240,145,58,0.4)",
                 }}
               />
             </form>
