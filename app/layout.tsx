@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import ContentProtection from "./components/ContentProtection";
 import ProgressSync from "./components/ProgressSync";
 import Gini from "./components/gini/Gini";
+import { LIVE_WHATSAPP } from "@/lib/live-classes";
 import { SITE_URL, CAPTAIN_PROFILES, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -63,6 +64,13 @@ const JSON_LD = {
       // reads as a different person from the one described on /about.
       founder: { "@id": PERSON_ID },
       areaServed: "IN",
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        telephone: `+${LIVE_WHATSAPP}`,
+        areaServed: "IN",
+        availableLanguage: ["English", "Hindi"],
+      },
       sameAs: CAPTAIN_PROFILES,
     },
     // The Captain travels with every page, so the entity behind the teaching is
@@ -70,8 +78,10 @@ const JSON_LD = {
     {
       "@type": "Person",
       "@id": PERSON_ID,
-      name: "Ghost Aviator",
+      name: "Capt. Pankaj Pahil",
+      alternateName: "Ghost Aviator",
       url: `${SITE_URL}/about`,
+      worksFor: { "@id": ORG_ID },
       jobTitle: "Pilot, DGCA Flight & Ground Instructor",
       sameAs: CAPTAIN_PROFILES,
       knowsAbout: CAPTAIN_KNOWS_ABOUT,

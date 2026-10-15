@@ -26,7 +26,7 @@ import {
 } from "@/lib/live-classes";
 
 export const metadata: Metadata = {
-  title: "Live DGCA Ground Classes Online — Meteorology, Air Regulations & Navigation | Ghost Aviator",
+  title: "DGCA CPL Online Ground Classes India — Met, Air Regs & Nav",
   description:
     `Live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each.`,
   keywords: [
@@ -114,7 +114,7 @@ const SUBJECTS = [
 const FAQ = [
   {
     q: "Who teaches the classes?",
-    a: "Every class is taught live by the Captain himself — pilot, DGCA flight & ground instructor with 20+ years in aviation, and author of two aviation books. No junior tutors, no recordings sold as classes.",
+    a: "Every class is taught live by the Captain himself — pilot, DGCA flight & ground instructor with 17+ years in aviation, and author of two aviation books. No junior tutors, no recordings sold as classes.",
   },
   {
     q: "How are the classes conducted?",
@@ -269,7 +269,7 @@ export default function LiveClassesPage() {
           {/* Trust strip */}
           <div className="flex flex-wrap justify-center lg:justify-start gap-6">
             {[
-              [Award, "20+ years in aviation"],
+              [Award, "17+ years in aviation"],
               [BookOpen, "Author of 2 aviation books"],
               [Users, "Flight & ground instructor"],
               [ShieldCheck, "Creator of Ghost Aviator"],
@@ -304,7 +304,7 @@ export default function LiveClassesPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">Choose Your <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Battle</span></h2>
-          <p style={{ color:"#64748b" }}>Five subjects. Five live batches. One instructor who has taught them for two decades.</p>
+          <p style={{ color:"#64748b" }}>Five subjects. Five live batches. One instructor, Capt. Pankaj Pahil, who teaches every batch himself.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

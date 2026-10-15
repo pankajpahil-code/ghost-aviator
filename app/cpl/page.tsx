@@ -23,7 +23,7 @@ const paperFor = (subjectId: string) =>
   EXAM_PAPERS.find(p => p.track === "cpl" && !p.id.startsWith("composite") && p.subjectIds.includes(subjectId));
 
 export const metadata: Metadata = {
-  title: "DGCA CPL Exam Preparation — Free Question Bank, Notes & Mock Tests | Ghost Aviator",
+  title: "DGCA CPL Ground Subjects: Free Chapter Notes, Question Bank & Mock Tests",
   description: "Free online DGCA CPL exam preparation for India — complete question bank, chapter-wise notes, video lectures and mock tests for every Commercial Pilot Licence paper.",
   alternates: { canonical: "/cpl" }
 };
@@ -61,7 +61,7 @@ export default function CPLPage() {
             DGCA INDIA
           </div>
           <h1 className="text-5xl sm:text-6xl font-black text-white mb-4">
-            DGCA CPL <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Written Exam Prep</span>
+            DGCA CPL <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Ground Subjects</span>
           </h1>
           <p className="text-xl font-semibold mb-2" style={{ color:"#f3c889" }}>Commercial Pilot Licence — India theory papers, notes & mocks</p>
           <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
