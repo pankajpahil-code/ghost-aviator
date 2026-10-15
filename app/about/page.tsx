@@ -34,9 +34,9 @@ const WA_CLASSES = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
 )}`;
 
 export const metadata: Metadata = {
-  title: "Meet the Captain — Pilot, Instructor & Creator of Ghost Aviator",
+  title: "Capt. Pankaj Pahil — DGCA Flight & Ground Instructor | Ghost Aviator",
   description:
-    "The Captain is a pilot, DGCA flight & ground instructor with 20+ years in aviation, author of two aviation books, and the creator of Ghost Aviator — free DGCA exam preparation for every student pilot in India.",
+    "The Captain is a pilot, DGCA flight & ground instructor with 17+ years in aviation, author of two aviation books, and the creator of Ghost Aviator — free DGCA exam preparation for every student pilot in India.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "Meet the Captain Behind Ghost Aviator",
@@ -55,12 +55,13 @@ const JSON_LD = {
     {
       "@type": "Person",
       "@id": PERSON_ID,
-      name: "Ghost Aviator",
+      name: "Capt. Pankaj Pahil",
+      alternateName: "Ghost Aviator",
       url: `${SITE_URL}/about`,
       image: `${SITE_URL}${PORTRAIT}`,
       jobTitle: "Pilot, DGCA Flight & Ground Instructor",
       description:
-        "Pilot and DGCA flight & ground instructor with 20+ years in aviation. Author of 'Technical General for Aviators' and 'Complete RTR(A) Examination Book'. Creator of Ghost Aviator, a free DGCA exam preparation platform.",
+        "Pilot and DGCA flight & ground instructor with 17+ years in aviation. Author of 'Technical General for Aviators' and 'Complete RTR(A) Examination Book'. Creator of Ghost Aviator, a free DGCA exam preparation platform.",
       sameAs: CAPTAIN_PROFILES,
       knowsAbout: CAPTAIN_KNOWS_ABOUT,
       worksFor: { "@id": ORG_ID },
@@ -77,7 +78,7 @@ const JSON_LD = {
 };
 
 const CREDENTIALS: [typeof Award, string, string][] = [
-  [Award,        "20+ years in aviation",          "Pilot with two decades of flying and instructing"],
+  [Award,        "17+ years in aviation",          "Pilot with 17+ years of flying and instructing"],
   [GraduationCap,"DGCA flight & ground instructor","Teaching the syllabus he has flown and examined"],
   [BookOpen,     "Author of 2 aviation books",     "Technical General for Aviators · Complete RTR(A) Examination Book"],
   [ShieldCheck,  "Creator of Ghost Aviator",       "Every note and verified question on this site"],
@@ -120,10 +121,10 @@ export default function AboutPage() {
               <div className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: "#f3c889", letterSpacing: "0.2em" }}>
                 The Captain Behind Ghost Aviator
               </div>
-              <h1 className="text-4xl sm:text-5xl font-black text-white mb-3">Ghost Aviator</h1>
+              <h1 className="text-4xl sm:text-5xl font-black text-white mb-3">Capt. Pankaj Pahil</h1>
               <p className="text-lg leading-relaxed max-w-xl" style={{ color: "#94a3b8" }}>
                 Pilot. DGCA flight &amp; ground instructor. Author.
-                For over two decades he has flown the theory that students struggle with —
+                For 17+ years he has flown the theory that students struggle with —
                 and now he teaches it, free, to every student pilot in India.
               </p>
             </div>

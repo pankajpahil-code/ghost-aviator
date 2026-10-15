@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Calculator, Dices, Gauge, ListChecks, Move, ShieldCheck, Timer } from "lucide-react";
 import AdaptRunner from "./AdaptRunner";
+import PageGuide from "@/app/components/PageGuide";
+import { ADAPT_GUIDE_TITLE, ADAPT_GUIDE_INTRO, ADAPT_GUIDE_SECTIONS } from "./guide";
 import { MODULES, MODULE_IDS } from "@/lib/adapt/session.mjs";
 
 // Derived, never hardcoded — adding a module to the registry updates this line,
@@ -13,7 +15,7 @@ const liveModules = `${COUNT_WORD[moduleNames.length] ?? moduleNames.length} mod
   .join(", ")} and ${moduleNames[moduleNames.length - 1]}.`;
 
 export const metadata: Metadata = {
-  title: "ADAPT Test Practice — Free Airline Screening Aptitude Simulator | Ghost Aviator",
+  title: "Free ADAPT Pilot Aptitude Test Practice Online — Airline Cadet Prep",
   // Keep this in step with the module registry. It named only maths and physics
   // for two releases after the spatial and tracking modules shipped — a search
   // snippet that undersells the page is a slow, invisible leak.
@@ -253,6 +255,8 @@ export default function AdaptTestPage() {
           </div>
         </section>
       </div>
+
+      <PageGuide id="adapt-guide" title={ADAPT_GUIDE_TITLE} intro={ADAPT_GUIDE_INTRO} sections={ADAPT_GUIDE_SECTIONS} />
     </div>
   );
 }

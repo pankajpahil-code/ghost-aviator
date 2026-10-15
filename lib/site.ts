@@ -26,7 +26,12 @@ export const WHATSAPP_GROUP = "https://chat.whatsapp.com/J3F9zaMJRQn5IYEiaYzP6t"
 export const INSTAGRAM = "https://www.instagram.com/capt.ghostaviator/";
 export const TELEGRAM_CHANNEL = "https://t.me/ghostaviator";
 
-export const CAPTAIN_PROFILES = [TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND, INSTAGRAM, TELEGRAM_CHANNEL];
+// Added 2026-10-15 on the Captain's instruction (public website pages may now name him; social posts may not).
+// Both verified HTTP 200 and the real pages (titles match) on 2026-10-15.
+export const YOUTUBE_PERSONAL = "https://www.youtube.com/@PankajPahil";
+export const TELEGRAMRADAR = "https://www.telegramradar.com/en/explore/ghost-aviator-dgca-cpl-atpl-exam-prep-all-subjects-muzcct45";
+
+export const CAPTAIN_PROFILES = [TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND, YOUTUBE_PERSONAL, INSTAGRAM, TELEGRAM_CHANNEL, TELEGRAMRADAR];
 
 // The Captain's public per-subject study groups on Telegram (created 2026-09-24; the
 // Ghost Aviator assistant answers /q doubts there from his notes). Keyed by subject id,
@@ -49,7 +54,7 @@ export const SUBJECT_TELEGRAM_GROUPS: Record<string, string> = {
 // matching @id across pages: every Course, Article and Organization node that
 // names the Captain should POINT at this id rather than repeating a bare name
 // string, so the graph describes one person 300 times instead of 300 people once.
-export const PERSON_ID = `${SITE_URL}/about#person`;
+export const PERSON_ID = `${SITE_URL}/#instructor`;
 export const ORG_ID = `${SITE_URL}/#org`;
 
 // What the Captain is demonstrably qualified to teach. Used for schema.org

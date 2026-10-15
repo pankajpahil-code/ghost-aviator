@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Radio, Mic, BookOpen, Award, Dices, Play, Volume2, Repeat, ClipboardCheck } from "lucide-react";
 import GhostTower, { LockedScenarios } from "./GhostTower";
+import PageGuide from "@/app/components/PageGuide";
+import { RTR_GUIDE_TITLE, RTR_GUIDE_INTRO, RTR_GUIDE_SECTIONS } from "./guide";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "RTR(A) Exam Radio Simulator — Free Online ATC Practice | Ghost Aviator",
+  title: "Free DGCA RTR(A) Radio Simulator Online — Part 2 Practice",
   description:
     "India's first free online RTR(A) radio simulator for the DGCA exam. Talk to ATC in real ICAO phraseology, read back clearances, handle emergencies, get graded like the real practical — free for every Indian student pilot.",
   alternates: { canonical: "/rtr-simulator" },
@@ -230,6 +232,8 @@ export default function RtrSimulatorPage() {
           </p>
         </section>
       </div>
+
+      <PageGuide id="rtr-guide" title={RTR_GUIDE_TITLE} intro={RTR_GUIDE_INTRO} sections={RTR_GUIDE_SECTIONS} />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import { servesRealNotes } from "@/lib/indexability";
 import MascotHero from "./components/MascotHero";
 
 export const metadata: Metadata = {
+  title: "Free DGCA CPL & ATPL Exam Prep: Notes, Question Bank & Mock Tests | Ghost Aviator",
   alternates: { canonical: "/" }
 };
 
@@ -100,7 +101,7 @@ export default function Home() {
                 </span>
               </div>
 
-              <h1 className="sr-only">Ghost Aviator — DGCA CPL &amp; ATPL Pilot Exam Preparation</h1>
+              <h1 className="sr-only">Free DGCA CPL &amp; ATPL Exam Prep: Notes, Question Bank &amp; Mock Tests</h1>
               <div aria-hidden="true">
                 <div className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-1"
                      style={{ color:"#ffffff", textShadow:"0 2px 30px rgba(0,0,0,0.85), 0 0 60px rgba(240,145,58,0.25)" }}>GHOST</div>
@@ -201,8 +202,8 @@ export default function Home() {
           <div className="flex items-center gap-3 text-sm" style={{ color:"#94a3b8" }}>
             <span className="text-xl">👨‍✈️</span>
             <span>
-              Built and taught by <strong style={{ color:"#f3c889" }}>the Captain</strong> — pilot,
-              DGCA flight &amp; ground instructor, 20+ years in aviation, author of two aviation books.
+              Built and taught by <strong style={{ color:"#f3c889" }}>Capt. Pankaj Pahil</strong> — pilot,
+              DGCA flight &amp; ground instructor, 17+ years in aviation, author of two aviation books.
             </span>
           </div>
           <span className="text-sm font-bold whitespace-nowrap" style={{ color:"#f3c889" }}>Meet the Captain →</span>
