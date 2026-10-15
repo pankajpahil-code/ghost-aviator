@@ -37,7 +37,7 @@ export const GUIDES: Guide[] = [
     description: "Everything you need to know about preparing for DGCA pilot exams. Learn how to use our free chapter-wise quizzes and full-length mock tests effectively.",
     author: "Ghost Aviator",
     date: "2026-07-25",
-    updated: "2026-07-25"
+    updated: "2026-10-15"
   },
   {
     slug: "rtr-exam-guide",

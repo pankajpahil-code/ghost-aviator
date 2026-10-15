@@ -167,6 +167,7 @@ export default function FreeMockTestPage() {
             <li><Link href="/guides/how-to-prepare-for-dgca-cpl-exam-2026" style={{ color: "#ab794d" }}>How to prepare for the DGCA CPL exam in 2026</Link></li>
             <li><Link href="/guides/dgca-cpl-exam-pattern" style={{ color: "#ab794d" }}>DGCA CPL exam pattern and syllabus</Link></li>
             <li><Link href="/guides/cpl-mock-tests" style={{ color: "#ab794d" }}>How to use mock tests well</Link></li>
+            <li><Link href="/metar-taf-practice" style={{ color: "#ab794d" }}>METAR and TAF practice questions</Link></li>
             <li><Link href="/past-papers" style={{ color: "#ab794d" }}>Previous-year papers</Link></li>
             <li><Link href="/question-bank" style={{ color: "#ab794d" }}>Full question bank</Link> Â· <Link href="/atpl" style={{ color: "#ab794d" }}>ATPL preparation</Link> Â· <Link href="/exam" style={{ color: "#ab794d" }}>Exam mode</Link></li>
           </ul>

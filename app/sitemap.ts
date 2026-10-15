@@ -86,6 +86,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/past-papers"),  changeFrequency: "weekly"  as const, priority: 0.8 },
     { url: url("/guides"),       changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/free-dgca-mock-test"), changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: url("/metar-taf-practice"), changeFrequency: "weekly" as const, priority: 0.8 },
     ...QB_LANDINGS.map(l => ({ url: url(`/question-bank/${l.subjectId}`), changeFrequency: "weekly" as const, priority: 0.8 })),
     { url: url("/how-answers-are-verified"), changeFrequency: "monthly" as const, priority: 0.7 },
     { url: url("/faq"),          changeFrequency: "monthly" as const, priority: 0.8 },
