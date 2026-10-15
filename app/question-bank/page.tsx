@@ -5,6 +5,8 @@ import { Search, BookOpen, CheckCircle, XCircle, ChevronDown } from "lucide-reac
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { isRealExplanation } from "@/lib/explanation";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import Link from "next/link";
+import { QB_LANDINGS } from "@/lib/landing-pages";
 
 const SUBJECT_INDEX: Record<string, string> = (() => {
   const map: Record<string, string> = {};
@@ -98,6 +100,23 @@ function QuestionBankView({ initialQuery }: { initialQuery: string }) {
             {ALL_QUESTIONS.length.toLocaleString()} questions with answers and explanations · growing weekly
           </p>
         </div>
+
+        {/* Per-subject landing pages: crawlable links, one per subject bank */}
+        <nav aria-label="Question banks by subject" className="mb-8">
+          <h2 className="text-sm font-bold mb-3" style={{ color: "#f0913a" }}>Browse by subject</h2>
+          <div className="flex flex-wrap gap-2">
+            {QB_LANDINGS.map(l => {
+              const n = ALL_QUESTIONS.filter(q => q.subjectIds.includes(l.subjectId)).length;
+              return (
+                <Link key={l.subjectId} href={`/question-bank/${l.subjectId}`}
+                      className="text-sm px-3 py-1.5 rounded-full no-underline"
+                      style={{ color: "#94a3b8", border: "1px solid rgba(240,145,58,0.25)" }}>
+                  {l.label} ({n.toLocaleString("en-IN")})
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
 
         {/* Filters */}
         <div className="glass-card p-4 mb-6 flex flex-col sm:flex-row gap-3">

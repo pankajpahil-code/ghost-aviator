@@ -53,6 +53,7 @@ export default function Footer() {
                 ["ADAPT Test Practice", "/adapt-test"],
                 ["DGCA Past Papers",    "/past-papers"],
                 ["Exam Mode",           "/exam"],
+                ["Free DGCA Mock Test", "/free-dgca-mock-test"],
                 ["CPL & ATPL Notes",    "/notes"],
                 ["DGCA Resources",      "/resources"],
                 ["Study Guides",        "/guides"],

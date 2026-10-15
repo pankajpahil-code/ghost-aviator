@@ -67,6 +67,21 @@ export default function ATPLPage() {
         </div>
       </div>
 
+      {/* Guides and related study tools: internal links into the ATPL content and its neighbours */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="rounded-2xl p-6" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(240,145,58,0.2)" }}>
+          <h2 className="text-lg font-black text-white mb-3">Start here for ATPL theory</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 list-none p-0 text-sm">
+            <li><Link href="/guides/dgca-atpl-study-guide" className="no-underline font-bold" style={{ color:"#f0913a" }}>DGCA ATPL study guide: subjects and where to start</Link></li>
+            <li><Link href="/guides/atpl-theory-before-1500-hours" className="no-underline font-bold" style={{ color:"#f0913a" }}>ATPL theory before 1,500 hours</Link></li>
+            <li><Link href="/question-bank/air-regulations" className="no-underline" style={{ color:"#94a3b8" }}>Air Regulations question bank</Link></li>
+            <li><Link href="/question-bank/meteorology" className="no-underline" style={{ color:"#94a3b8" }}>Meteorology question bank</Link></li>
+            <li><Link href="/free-dgca-mock-test" className="no-underline" style={{ color:"#94a3b8" }}>Free DGCA mock test</Link></li>
+            <li><Link href="/guides/computer-number" className="no-underline" style={{ color:"#94a3b8" }}>How to get your DGCA computer number</Link></li>
+          </ul>
+        </div>
+      </div>
+
       {/* Subjects */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-2xl font-black text-white mb-8">All {ATPL_SUBJECTS.length} ATPL Subjects</h2>
