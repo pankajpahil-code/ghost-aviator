@@ -1,3 +1,4 @@
+import { EXAM_PAPERS } from "./exam-papers-meta";
 export type ContentType = {
   // Slides and Audio Overview were retired 2026-08-13: neither added anything a
   // student could not get better from the notes or the lecture, and every empty
@@ -66,7 +67,7 @@ const da42Notes = (): ContentType[] => [
 // CPL SUBJECTS  (DGCA CAR Section 7 Series B Part IV — 7 Papers)
 // Chapters map directly to the official DGCA CPL syllabus appendices.
 // ─────────────────────────────────────────────────────────────────────────────
-export const CPL_SUBJECTS: Subject[] = [
+const CPL_SUBJECTS_STUDY: Subject[] = [
 
   // ── PAPER 1 ── Appendix A ────────────────────────────────────────────────
   {
@@ -1439,6 +1440,20 @@ export const CPL_SUBJECTS: Subject[] = [
     ],
   },
 ];
+
+// Exam facts come from the real DGCA paper definitions (lib/exam-papers-meta.ts),
+// not from the study-side placeholders above. Only subjects that are sat as their
+// OWN paper are overridden. Air Navigation, Radio Navigation and Instrumentation
+// are pooled into one Navigation paper, so a per-subject figure would be wrong
+// either way and they keep their values until the owner decides (see report).
+const SOLO_PAPER = new Map(
+  EXAM_PAPERS.filter(p => p.track === "cpl" && !p.id.startsWith("composite") && p.subjectIds.length === 1)
+    .map(p => [p.subjectIds[0], p] as const),
+);
+export const CPL_SUBJECTS: Subject[] = CPL_SUBJECTS_STUDY.map(s => {
+  const p = SOLO_PAPER.get(s.id);
+  return p ? { ...s, examDuration: p.durationMin, totalQuestions: p.questionCount, passMark: p.passMark } : s;
+});
 
 // ─────────────────────────────────────────────
 // ATPL SUBJECTS  (Advanced — DGCA Standard)

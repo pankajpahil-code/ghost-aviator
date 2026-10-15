@@ -160,6 +160,12 @@ export default async function SubjectQuestionBankPage({ params }: { params: Prom
           </p>
         </section>
 
+        {id === "meteorology" && (
+          <p className="mb-12" style={{ color: "#94a3b8" }}>
+            Working on weather reports? Go straight to the <Link href="/metar-taf-practice" style={{ color: "#ab794d" }}>METAR and TAF practice questions</Link>.
+          </p>
+        )}
+
         {samples.length > 0 && (
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-white mb-2">Sample {landing.label} questions</h2>
