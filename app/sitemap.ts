@@ -3,6 +3,7 @@ import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { isIndexableChapterRoute } from "@/lib/indexability";
 import { ALL_PAST_PAPERS } from "@/lib/past-papers";
 import { GUIDES } from "@/lib/guides";
+import { QB_LANDINGS } from "@/lib/landing-pages";
 import { SITE_URL } from "@/lib/site";
 import { LASTMOD } from "@/lib/generated/lastmod";
 import { getChapterVideos } from "@/lib/chapter-videos";
@@ -84,6 +85,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/books"),        changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/past-papers"),  changeFrequency: "weekly"  as const, priority: 0.8 },
     { url: url("/guides"),       changeFrequency: "weekly"  as const, priority: 0.9 },
+    { url: url("/free-dgca-mock-test"), changeFrequency: "weekly" as const, priority: 0.9 },
+    ...QB_LANDINGS.map(l => ({ url: url(`/question-bank/${l.subjectId}`), changeFrequency: "weekly" as const, priority: 0.8 })),
     { url: url("/how-answers-are-verified"), changeFrequency: "monthly" as const, priority: 0.7 },
     { url: url("/faq"),          changeFrequency: "monthly" as const, priority: 0.8 },
     { url: url("/cpl-cost-calculator"), changeFrequency: "monthly" as const, priority: 0.9 },

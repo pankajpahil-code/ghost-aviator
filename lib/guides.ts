@@ -94,5 +94,21 @@ export const GUIDES: Guide[] = [
     author: "Ghost Aviator",
     date: "2026-10-07",
     updated: "2026-10-07"
+  },
+  {
+    slug: "how-to-prepare-for-dgca-cpl-exam-2026",
+    title: "How to Prepare for the DGCA CPL Exam in 2026",
+    description: "A subject-by-subject roadmap for the DGCA CPL written exams: which paper to clear first, how to handle the three-in-one Navigation paper, the study routine for each subject, mock-test timing and exam-day rules.",
+    author: "Ghost Aviator",
+    date: "2026-10-15",
+    updated: "2026-10-15"
+  },
+  {
+    slug: "dgca-atpl-study-guide",
+    title: "DGCA ATPL Study Guide: Subjects, Question Banks & Where to Start",
+    description: "The hub for DGCA ATPL theory on Ghost Aviator: every ATPL subject with its chapter count, what notes and question banks exist today, how to use them, and the eligibility and timing guides to read first.",
+    author: "Ghost Aviator",
+    date: "2026-10-15",
+    updated: "2026-10-15"
   }
 ];
