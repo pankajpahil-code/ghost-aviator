@@ -20,7 +20,13 @@ export const TELEGRAM_GROUP = "https://t.me/+tgLMJithc1gzOWJl";
 // negative signal rather than a neutral one.
 export const WHATSAPP_GROUP = "https://chat.whatsapp.com/J3F9zaMJRQn5IYEiaYzP6t";
 
-export const CAPTAIN_PROFILES = [TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND];
+// Verified live 2026-10-15 (HTTP 200 and the page is the real profile: Instagram bio links
+// ghostaviator.com; t.me pages show the channel / group titles, not the "Contact @x" stub
+// Telegram serves for a username that does not exist).
+export const INSTAGRAM = "https://www.instagram.com/capt.ghostaviator/";
+export const TELEGRAM_CHANNEL = "https://t.me/ghostaviator";
+
+export const CAPTAIN_PROFILES = [TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND, INSTAGRAM, TELEGRAM_CHANNEL];
 
 // The Captain's public per-subject study groups on Telegram (created 2026-09-24; the
 // Ghost Aviator assistant answers /q doubts there from his notes). Keyed by subject id,

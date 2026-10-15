@@ -156,6 +156,15 @@ const nextConfig: NextConfig = {
         source: "/:track(cpl|atpl)/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=300" }],
       },
+      // Same five-minute client reuse for the other public, prerendered content routes
+      // (guides, question bank, exam and past-paper pages, notes index). They only change
+      // on deploy, and the ISR-read count on this site is driven by repeat fetches from
+      // automated crawlers, not by revalidation (no route sets revalidate). Auth and
+      // account pages (/dashboard, /login, /signup) and /api are deliberately not matched.
+      {
+        source: "/:section(guides|question-bank|exam|past-papers|notes)/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=300" }],
+      },
       // Sitemap + robots are force-static and change with deploys, not per request.
       // max-age=0 was forcing every miss to revalidate at the edge; give the CDN
       // a day so crawlers keep hitting a warm object while still refreshing after
