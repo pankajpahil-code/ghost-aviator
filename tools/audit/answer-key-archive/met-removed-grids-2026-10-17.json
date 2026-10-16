@@ -1,0 +1,279 @@
+{
+  "date": "2026-10-17",
+  "reason": "Capt. Pahil ruling: remove hardcoded answer-key tables; inline answers are the single visible source.",
+  "source": "tools/audit/remove-answer-key-grids.mjs",
+  "entries": [
+    {
+      "chapter": "met-1",
+      "kind": "remove",
+      "lines": [
+        1017,
+        1029
+      ],
+      "removedText": "<h3>4. Answer Key — Chapter 1 Questions (Q1–Q45)</h3>\n<table>\n  <tr><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th><th>Q</th><th>Ans</th></tr>\n  <tr><td>1</td><td>a</td><td>2</td><td>b</td><td>3</td><td>c</td><td>4</td><td>a</td><td>5</td><td>c</td></tr>\n  <tr><td>6</td><td>c</td><td>7</td><td>b</td><td>8</td><td>a</td><td>9</td><td>a</td><td>10</td><td>b</td></tr>\n  <tr><td>11</td><td>c</td><td>12</td><td>b</td><td>13</td><td>a</td><td>14</td><td>a</td><td>15</td><td>c</td></tr>\n  <tr><td>16</td><td>c</td><td>17</td><td>a</td><td>18</td><td>a</td><td>19</td><td>b</td><td>20</td><td>c</td></tr>\n  <tr><td>21</td><td>a</td><td>22</td><td>b</td><td>23</td><td>c</td><td>24</td><td>a</td><td>25</td><td>b</td></tr>\n  <tr><td>26</td><td>c</td><td>27</td><td>a</td><td>28</td><td>c</td><td>29</td><td>c</td><td>30</td><td>c</td></tr>\n  <tr><td>31</td><td>a</td><td>32</td><td>a</td><td>33</td><td>c</td><td>34</td><td>a</td><td>35</td><td>c</td></tr>\n  <tr><td>36</td><td>c</td><td>37</td><td>d</td><td>38</td><td>c</td><td>39</td><td>c</td><td>40</td><td>a</td></tr>\n  <tr><td>41</td><td>d</td><td>42</td><td>a</td><td>43</td><td>b</td><td>44</td><td>d</td><td>45</td><td>a</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-10",
+      "kind": "remove",
+      "lines": [
+        438,
+        442
+      ],
+      "removedText": "<h3>Answer Key — Textbook Q&amp;A</h3>\n<table>\n  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>\n  <tr><td><strong>A</strong></td><td>a</td><td>b</td><td>b</td><td>a</td><td>a</td><td>b</td><td>b</td><td>c</td><td>a</td><td>b</td><td>c</td><td>a</td><td>b</td><td>c</td><td>a</td><td>a</td><td>b</td><td>a</td><td>b</td><td>c</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-11",
+      "kind": "remove",
+      "lines": [
+        406,
+        410
+      ],
+      "removedText": "<h3>Answer Key — Textbook Q&amp;A</h3>\n<table>\n  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>\n  <tr><td><strong>A</strong></td><td>a</td><td>b</td><td>a</td><td>a</td><td>b</td><td>a</td><td>c</td><td>c</td><td>b</td><td>b</td><td>b</td><td>a</td><td>a</td><td>b</td><td>c</td><td>c</td><td>c</td><td>a</td><td>c</td><td>c</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-12",
+      "kind": "remove",
+      "lines": [
+        487,
+        495
+      ],
+      "removedText": "<h3>Answer Key</h3>\n<table>\n  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>\n  <tr><td>1</td><td>a</td><td>2</td><td>c</td><td>3</td><td>a</td><td>4</td><td>a</td></tr>\n  <tr><td>5</td><td>b</td><td>6</td><td>c</td><td>7</td><td>b</td><td>8</td><td>c</td></tr>\n  <tr><td>9</td><td>b</td><td>10</td><td>c</td><td>11</td><td>c</td><td>12</td><td>a</td></tr>\n  <tr><td>13</td><td>a</td><td>14</td><td>b</td><td>15</td><td>c</td><td>16</td><td>a</td></tr>\n  <tr><td>17</td><td>c</td><td>18</td><td>c</td><td>19</td><td>b</td><td>20</td><td>b</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-13",
+      "kind": "remove",
+      "lines": [
+        899,
+        909
+      ],
+      "removedText": "<h3>Answer Key — Chapter 13</h3>\n<table>\n  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>\n  <tr><td>1</td><td>c</td><td>2</td><td>c</td><td>3</td><td>b</td><td>4</td><td>c</td><td>5</td><td>c</td></tr>\n  <tr><td>6</td><td>b</td><td>7</td><td>c</td><td>8</td><td>c</td><td>9</td><td>b</td><td>10</td><td>c</td></tr>\n  <tr><td>11</td><td>c</td><td>12</td><td>b</td><td>13</td><td>b</td><td>14</td><td>b</td><td>15</td><td>b</td></tr>\n  <tr><td>16</td><td>a</td><td>17</td><td>b</td><td>18</td><td>b</td><td>19</td><td>b</td><td>20</td><td>a</td></tr>\n  <tr><td>21</td><td>b</td><td>22</td><td>b</td><td>23</td><td>b</td><td>24</td><td>b</td><td>25</td><td>b</td></tr>\n  <tr><td>26</td><td>b</td><td>27</td><td>b</td><td>28</td><td>b</td><td>29</td><td>b</td><td>30</td><td>a</td></tr>\n  <tr><td>31</td><td>b</td><td>32</td><td>b</td><td>33</td><td>a</td><td>34</td><td>a</td><td>35</td><td>d</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-14",
+      "kind": "remove",
+      "lines": [
+        713,
+        724
+      ],
+      "removedText": "<h3>Answer Key — Chapter 14</h3>\n<table>\n  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>\n  <tr><td>1</td><td>a</td><td>2</td><td>b</td><td>3</td><td>b</td><td>4</td><td>c</td></tr>\n  <tr><td>5</td><td>b</td><td>6</td><td>a</td><td>7</td><td>a</td><td>8</td><td>b</td></tr>\n  <tr><td>9</td><td>a</td><td>10</td><td>b</td><td>11</td><td>a</td><td>12</td><td>a</td></tr>\n  <tr><td>13</td><td>a</td><td>14</td><td>c</td><td>15</td><td>a</td><td>16</td><td>c</td></tr>\n  <tr><td>17</td><td>b</td><td>18</td><td>c</td><td>19</td><td>c</td><td>20</td><td>b</td></tr>\n  <tr><td>21</td><td>a</td><td>22</td><td>a</td><td>23</td><td>a</td><td>24</td><td>a</td></tr>\n  <tr><td>25</td><td>a</td><td>26</td><td>c (Occluded)</td><td>27</td><td>a</td><td>28</td><td>b</td></tr>\n  <tr><td>29</td><td>c</td><td>30</td><td>b</td><td></td><td></td><td></td><td></td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-15",
+      "kind": "remove",
+      "lines": [
+        558,
+        569
+      ],
+      "removedText": "<h3>Answer Key — Chapter 15</h3>\n<table>\n  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>\n  <tr><td>1</td><td>b*</td><td>2</td><td>a</td><td>3</td><td>b*</td><td>4</td><td>b</td></tr>\n  <tr><td>5</td><td>a</td><td>6</td><td>c</td><td>7</td><td>b</td><td>8</td><td>b*</td></tr>\n  <tr><td>9</td><td>b</td><td>10</td><td>c</td><td>11</td><td>a</td><td>12</td><td>b</td></tr>\n  <tr><td>13</td><td>a</td><td>14</td><td>c</td><td>15</td><td>a</td><td>16</td><td>c</td></tr>\n  <tr><td>17</td><td>b</td><td>18</td><td>a*</td><td>19</td><td>a</td><td>20</td><td>a</td></tr>\n  <tr><td>21</td><td>a</td><td>22</td><td>b</td><td>23</td><td>b</td><td>24</td><td>c</td><td></td></tr>\n  <tr><td>25</td><td>d</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>\n</table>\n<div class=\"red-box\">* Items marked with * have apparent discrepancies between the answer key and the textbook content. Rely on the textbook explanation in the Q&amp;A blocks above for conceptual understanding.</div>"
+    },
+    {
+      "chapter": "met-16",
+      "kind": "remove",
+      "lines": [
+        271,
+        275
+      ],
+      "removedText": "<h3>Answer Key</h3>\n<table>\n  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>\n  <tr><td>A</td><td>b</td><td>b</td><td>b</td><td>c</td><td>b</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-17",
+      "kind": "remove",
+      "lines": [
+        381,
+        385
+      ],
+      "removedText": "<h3>Textbook Answer Key</h3>\n<table>\n  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>\n  <tr><td>A</td><td>a</td><td>c</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>d</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-18",
+      "kind": "remove",
+      "lines": [
+        501,
+        509
+      ],
+      "removedText": "<h3>Textbook Answer Key</h3>\n<table>\n  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>\n  <tr><td>A</td><td>b</td><td>c</td><td>b</td><td>a</td><td>c</td><td>c</td><td>b</td><td>a</td><td>c</td><td>a</td><td>b</td><td>a</td><td>a</td><td>b</td><td>a</td><td>b</td><td>a</td><td>a</td><td>c</td><td>c</td></tr>\n</table>\n<table>\n  <tr><th>Q</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th>30</th><th>31</th><th>32</th><th>33</th><th>34</th><th>35</th><th>36</th><th>37</th><th>38</th><th>39</th><th>40</th></tr>\n  <tr><td>A</td><td>a</td><td>d</td><td>a</td><td>d</td><td>a</td><td>c</td><td>b</td><td>c</td><td>a</td><td>b</td><td>a</td><td>b</td><td>b</td><td>d</td><td>a</td><td>b</td><td>c</td><td>b</td><td>a</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-19",
+      "kind": "remove",
+      "lines": [
+        579,
+        591
+      ],
+      "removedText": "<h3>Textbook Answer Key</h3>\n<table>\n  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th></tr>\n  <tr><td>A</td><td>c</td><td>d</td><td>b</td><td>a</td><td>d</td><td>b</td><td>a</td><td>c</td><td>a</td><td>b</td><td>a</td><td>b</td><td>c</td></tr>\n</table>\n<table>\n  <tr><th>Q</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th></tr>\n  <tr><td>A</td><td>a</td><td>d</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>c</td><td>a</td><td>b</td><td>a</td><td>a</td><td>a</td></tr>\n</table>\n<table>\n  <tr><th>Q</th><th>27</th><th>28</th><th>29</th><th>30</th><th>31</th><th>32</th></tr>\n  <tr><td>A</td><td>a</td><td>c</td><td>d</td><td>a</td><td>d</td><td>a</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-2",
+      "kind": "remove",
+      "lines": [
+        749,
+        763
+      ],
+      "removedText": "  <h2>Q&amp;A Answer Key</h2>\n  <table>\n    <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>\n    <tr><td>1</td><td>a</td><td>2</td><td>b</td><td>3</td><td>a</td><td>4</td><td>c</td></tr>\n    <tr><td>5</td><td>c</td><td>6</td><td>b</td><td>7</td><td>c</td><td>8</td><td>a</td></tr>\n    <tr><td>9</td><td>c</td><td>10</td><td>c</td><td>11</td><td>b</td><td>12</td><td>b</td></tr>\n    <tr><td>13</td><td>d</td><td>14</td><td>a</td><td>15</td><td>b</td><td>16</td><td>c</td></tr>\n    <tr><td>17</td><td>c</td><td>18</td><td>b</td><td>19</td><td>b</td><td>20</td><td>b</td></tr>\n    <tr><td>21</td><td>c</td><td>22</td><td>b</td><td>23</td><td>c</td><td>24</td><td>b</td></tr>\n    <tr><td>25</td><td>c</td><td>26</td><td>b</td><td>27</td><td>a</td><td>28</td><td>b</td></tr>\n    <tr><td>29</td><td>b</td><td>30</td><td>b</td><td>31</td><td>c</td><td>32</td><td>b</td></tr>\n    <tr><td>33</td><td>b</td><td>34</td><td>c</td><td>35</td><td>b</td><td>36</td><td>c</td></tr>\n    <tr><td>37</td><td>d</td><td>38</td><td>a</td><td>39</td><td>a</td><td>40</td><td>b</td></tr>\n    <tr><td>41</td><td>a</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>\n  </table>"
+    },
+    {
+      "chapter": "met-20",
+      "kind": "remove",
+      "lines": [
+        358,
+        362
+      ],
+      "removedText": "<h3>Answer Key</h3>\n<table>\n  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>\n  <tr><td><strong>A</strong></td><td>a</td><td>c</td><td>c</td><td>a</td><td>a</td><td>c</td><td>b</td><td>b</td><td>b</td><td>a</td><td>a</td><td>b</td><td>b</td><td>a</td><td>b</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-21",
+      "kind": "remove",
+      "lines": [
+        646,
+        656
+      ],
+      "removedText": "<h3>Answer Key</h3>\n<table>\n  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th></tr>\n  <tr><td>A</td><td>c</td><td>b</td><td>b</td><td>b</td><td>c</td><td>a</td><td>c</td><td>c</td><td>b</td><td>b</td><td>b</td><td>a</td><td>b</td></tr>\n  <tr><th>Q</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th></tr>\n  <tr><td>A</td><td>c</td><td>b</td><td>c</td><td>b</td><td>c</td><td>b</td><td>c</td><td>a</td><td>a</td><td>b</td><td>b</td><td>b</td></tr>\n  <tr><th>Q</th><th>27</th><th>28</th><th>29</th><th>30</th><th>31</th><th>32</th><th>33</th><th>34</th><th>35</th><th>36</th><th>37</th><th>38</th><th>39</th></tr>\n  <tr><td>A</td><td>b</td><td>b</td><td>a</td><td>b</td><td>c</td><td>c</td><td>b</td><td>c</td><td>b</td><td>b</td><td>b</td><td>b</td></tr>\n  <tr><th>Q</th><th>40</th><th>41</th><th>42</th><th>43</th><th>44</th><th>45</th></tr>\n  <tr><td>A</td><td>a</td><td>a</td><td>b</td><td>c</td><td>b</td><td>c</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-24",
+      "kind": "remove",
+      "lines": [
+        571,
+        578
+      ],
+      "removedText": "<h3>Answer Key — Q1 to Q20</h3>\n<table>\n  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>\n  <tr><td>1</td><td>a</td><td>2</td><td>b</td><td>3</td><td>c</td><td>4</td><td>a</td><td>5</td><td>n</td></tr>\n  <tr><td>6</td><td>b</td><td>7</td><td>b</td><td>8</td><td>b</td><td>9</td><td>a</td><td>10</td><td>b</td></tr>\n  <tr><td>11</td><td>b</td><td>12</td><td>b</td><td>13</td><td>a</td><td>14</td><td>b</td><td>15</td><td>a</td></tr>\n  <tr><td>16</td><td>c</td><td>17</td><td>b</td><td>18</td><td>b</td><td>19</td><td>a</td><td>20</td><td>b</td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-25",
+      "kind": "remove",
+      "lines": [
+        709,
+        721
+      ],
+      "removedText": "<h3>Answer Key Q1–Q42</h3>\n<table>\n  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>\n  <tr><td>1</td><td>b</td><td>2</td><td>b</td><td>3</td><td>a</td><td>4</td><td>b</td><td>5</td><td>b</td></tr>\n  <tr><td>6</td><td>b</td><td>7</td><td>a</td><td>8</td><td>c</td><td>9</td><td>b</td><td>10</td><td>c</td></tr>\n  <tr><td>11</td><td>a</td><td>12</td><td>a</td><td>13</td><td>c</td><td>14</td><td>b</td><td>15</td><td>b</td></tr>\n  <tr><td>16</td><td>c</td><td>17</td><td>c</td><td>18</td><td>b</td><td>19</td><td>a</td><td>20</td><td>b</td></tr>\n  <tr><td>21</td><td>c</td><td>22</td><td>c</td><td>23</td><td>b</td><td>24</td><td>a</td><td>25</td><td>c</td></tr>\n  <tr><td>26</td><td>c</td><td>27</td><td>b</td><td>28</td><td>c</td><td>29</td><td>c</td><td>30</td><td>a</td></tr>\n  <tr><td>31</td><td>b</td><td>32</td><td>a</td><td>33</td><td>b</td><td>34</td><td>a</td><td>35</td><td>b</td></tr>\n  <tr><td>36</td><td>c</td><td>37</td><td>a</td><td>38</td><td>c</td><td>39</td><td>a</td><td>40</td><td>c</td></tr>\n  <tr><td>41</td><td>c</td><td>42</td><td>c</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-26",
+      "kind": "remove",
+      "lines": [
+        633,
+        651
+      ],
+      "removedText": "<h3>TAF Answer Key (Q1–Q17)</h3>\n<table>\n  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>\n  <tr><td>1</td><td>c</td><td>2</td><td>b</td><td>3</td><td>a</td><td>4</td><td>b</td><td>5</td><td>c</td></tr>\n  <tr><td>6</td><td>b</td><td>7</td><td>b</td><td>8</td><td>c</td><td>9</td><td>a</td><td>10</td><td>a</td></tr>\n  <tr><td>11</td><td>b</td><td>12</td><td>a</td><td>13</td><td>a</td><td>14</td><td>b</td><td>15</td><td>b</td></tr>\n  <tr><td>16</td><td>b</td><td>17</td><td>d</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>\n</table>\n\n<h3>ROFOR Answer Key (Q1–Q26)</h3>\n<table>\n  <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>\n  <tr><td>1</td><td>c</td><td>2</td><td>c</td><td>3</td><td>a</td><td>4</td><td>c</td><td>5</td><td>b</td></tr>\n  <tr><td>6</td><td>b</td><td>7</td><td>c</td><td>8</td><td>c</td><td>9</td><td>a</td><td>10</td><td>c</td></tr>\n  <tr><td>11</td><td>a</td><td>12</td><td>b</td><td>13</td><td>b</td><td>14</td><td>a</td><td>15</td><td>a</td></tr>\n  <tr><td>16</td><td>b</td><td>17</td><td>b</td><td>18</td><td>b</td><td>19</td><td>a</td><td>20</td><td>c</td></tr>\n  <tr><td>21</td><td>c</td><td>22</td><td>b</td><td>23</td><td>a</td><td>24</td><td>b</td><td>25</td><td>a</td></tr>\n  <tr><td>26</td><td>a</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>\n</table>"
+    },
+    {
+      "chapter": "met-28",
+      "kind": "remove",
+      "lines": [
+        508,
+        512
+      ],
+      "removedText": "  <h3>Answer Key</h3>\n  <table>\n    <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>\n    <tr><td><strong>A</strong></td><td>c</td><td>a</td><td>c</td><td>a</td><td>b</td><td>a</td><td>b</td><td>a</td><td>c</td><td>a</td></tr>\n  </table>"
+    },
+    {
+      "chapter": "met-28",
+      "kind": "strip",
+      "lines": [
+        371,
+        371
+      ],
+      "removedText": "  <p><em>Textbook practice questions. Answers: 1-c, 2-a, 3-c, 4-a, 5-b, 6-a, 7-b, 8-a, 9-c, 10-a</em></p>",
+      "replacedWith": "  <p><em>Textbook practice questions.</em></p>"
+    },
+    {
+      "chapter": "met-3",
+      "kind": "remove",
+      "lines": [
+        823,
+        836
+      ],
+      "removedText": "  <h2>Q&amp;A Answer Key</h2>\n  <table>\n    <tr><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th><th>Q</th><th>A</th></tr>\n    <tr><td>1</td><td>b</td><td>2</td><td>c</td><td>3</td><td>c</td><td>4</td><td>c</td></tr>\n    <tr><td>5</td><td>b</td><td>6</td><td>c</td><td>7</td><td>c</td><td>8</td><td>b</td></tr>\n    <tr><td>9</td><td>a</td><td>10</td><td>b</td><td>11</td><td>b</td><td>12</td><td>c</td></tr>\n    <tr><td>13</td><td>c</td><td>14</td><td>b</td><td>15</td><td>c</td><td>16</td><td>b</td></tr>\n    <tr><td>17</td><td>c</td><td>18</td><td>a</td><td>19</td><td>b</td><td>20</td><td>c</td></tr>\n    <tr><td>21</td><td>b</td><td>22</td><td>b</td><td>23</td><td>a</td><td>24</td><td>b</td></tr>\n    <tr><td>25</td><td>b</td><td>26</td><td>a</td><td>27</td><td>a</td><td>28</td><td>b</td></tr>\n    <tr><td>29</td><td>b</td><td>30</td><td>b</td><td>31</td><td>d</td><td>32</td><td>c</td></tr>\n    <tr><td>33</td><td>b</td><td>34</td><td>b</td><td>35</td><td>b</td><td>36</td><td>a</td></tr>\n    <tr><td>37</td><td>d</td><td>38</td><td>d</td><td>39</td><td>a</td><td></td><td></td></tr>\n  </table>"
+    },
+    {
+      "chapter": "met-4",
+      "kind": "remove",
+      "lines": [
+        688,
+        700
+      ],
+      "removedText": "<h3>11.3 Answer Key</h3>\n<div class=\"answer-grid\">\n  <div class=\"answer-cell\"><span class=\"q-n\">Q1</span>a</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q2</span>b</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q3</span>a</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q4</span>b</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q5</span>b</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q6</span>b</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q7</span>d</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q8</span>b</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q9</span>a</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q10</span>c</div>\n</div>"
+    },
+    {
+      "chapter": "met-4",
+      "kind": "strip",
+      "lines": [
+        481,
+        481
+      ],
+      "removedText": "  The following questions are from the textbook question bank. Cover the answer and attempt each question before revealing. Answers: Q1=a, Q2=b, Q3=a, Q4=b, Q5=b, Q6=b, Q7=d, Q8=b, Q9=a, Q10=c",
+      "replacedWith": "  The following questions are from the textbook question bank. Cover the answer and attempt each question before revealing."
+    },
+    {
+      "chapter": "met-4",
+      "kind": "css",
+      "lines": [
+        81,
+        84
+      ],
+      "removedText": "  /* Answer key */\n  .answer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 10px 0; }\n  .answer-cell { background: #e8f5e9; border: 1px solid #2e7d32; border-radius: 6px; padding: 8px; text-align: center; font-weight: bold; }\n  .answer-cell .q-n { font-size: 0.8em; color: #555; display: block; }"
+    },
+    {
+      "chapter": "met-5",
+      "kind": "remove",
+      "lines": [
+        757,
+        770
+      ],
+      "removedText": "<h3>11.4 Answer Key</h3>\n<div class=\"answer-grid\">\n  <div class=\"answer-cell\"><span class=\"q-n\">Q1</span>b</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q2</span>c</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q3</span>b</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q4</span>b</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q5</span>b</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q6</span>a</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q7</span>b</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q8</span>a*</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q9</span>c*</div>\n  <div class=\"answer-cell\"><span class=\"q-n\">Q10</span>a</div>\n</div>\n<p style=\"font-size:0.85em; color:#666; margin-top:8px;\">* Q8 and Q9 may contain textbook discrepancies — see detailed explanations above. Learn the standard meteorological definitions independently.</p>"
+    },
+    {
+      "chapter": "met-5",
+      "kind": "remove",
+      "lines": [
+        551,
+        554
+      ],
+      "removedText": "<div class=\"box-blue\">\n  <strong>📘 Answer Key</strong>\n  Q1=b, Q2=c, Q3=b, Q4=b, Q5=b, Q6=a, Q7=b, Q8=a, Q9=c, Q10=a\n</div>"
+    },
+    {
+      "chapter": "met-5",
+      "kind": "css",
+      "lines": [
+        72,
+        74
+      ],
+      "removedText": "  .answer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 10px 0; }\n  .answer-cell { background: #e8f5e9; border: 1px solid #2e7d32; border-radius: 6px; padding: 8px; text-align: center; font-weight: bold; }\n  .answer-cell .q-n { font-size: 0.8em; color: #555; display: block; }"
+    },
+    {
+      "chapter": "met-6",
+      "kind": "remove",
+      "lines": [
+        949,
+        966
+      ],
+      "removedText": "<h3>Q&amp;A Answer Key</h3>\n<table>\n  <tr>\n    <td>Q1=b</td><td>Q2=b</td><td>Q3=a</td><td>Q4=b</td><td>Q5=c</td><td>Q6=b</td><td>Q7=c</td><td>Q8=a</td><td>Q9=c</td><td>Q10=a</td>\n  </tr>\n  <tr>\n    <td>Q11=b</td><td>Q12=b</td><td>Q13=b</td><td>Q14=b</td><td>Q15=b</td><td>Q16=c</td><td>Q17=c</td><td>Q18=c</td><td>Q19=b</td><td>Q20=a</td>\n  </tr>\n  <tr>\n    <td>Q21=a</td><td>Q22=b</td><td>Q23=a</td><td>Q24=b</td><td>Q25=b</td><td>Q26=a</td><td>Q27=b</td><td>Q28=a</td><td>Q29=a</td><td>Q30=c</td>\n  </tr>\n  <tr>\n    <td>Q31=c</td><td>Q32=b</td><td>Q33=a</td><td>Q34=b</td><td>Q35=b</td><td>Q36=b</td><td>Q37=a</td><td>Q38=b</td><td>Q39=b</td><td>Q40=b</td>\n  </tr>\n  <tr>\n    <td>Q41=super-geo</td><td>Q42=c</td><td>Q43=b</td><td>Q44=b</td><td>Q45=c</td><td></td><td></td><td></td><td></td><td></td>\n  </tr>\n</table>"
+    },
+    {
+      "chapter": "met-7",
+      "kind": "remove",
+      "lines": [
+        561,
+        569
+      ],
+      "removedText": "<h3>Q&amp;A Answer Key</h3>\n<table>\n  <tr>\n    <td>Q1=a</td><td>Q2=c</td><td>Q3=a</td><td>Q4=a</td><td>Q5=b</td><td>Q6=b</td><td>Q7=a</td><td>Q8=b</td><td>Q9=a</td><td>Q10=b</td>\n  </tr>\n  <tr>\n    <td>Q11=b</td><td>Q12=b</td><td>Q13=c</td><td>Q14=b</td><td>Q15=b</td><td>Q16=c</td><td>Q17=a</td><td>Q18=c</td><td>Q19=c</td><td>Q20=c</td>\n  </tr>\n</table>"
+    },
+    {
+      "chapter": "met-8",
+      "kind": "remove",
+      "lines": [
+        522,
+        527
+      ],
+      "removedText": "<h3>Answer Key — Q&amp;A Section</h3>\n<table>\n  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>\n  <tr><td><strong>A</strong></td><td>b</td><td>b</td><td>b</td><td>d</td><td>a</td><td>b</td><td>c</td><td>a</td><td>b</td><td>c</td><td>a</td><td>b</td><td>b</td><td>a</td><td>b</td><td>c</td><td>c</td><td>b</td><td>a</td><td>a</td></tr>\n</table>\n<p><em>(Answers from textbook Q1–20: b b b d a b c a b c a b b a b c c b a a)</em></p>"
+    },
+    {
+      "chapter": "met-9",
+      "kind": "remove",
+      "lines": [
+        443,
+        448
+      ],
+      "removedText": "<h3>Answer Key — Textbook Q&amp;A</h3>\n<table>\n  <tr><th>Q</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>\n  <tr><td><strong>A</strong></td><td>a</td><td>b</td><td>a</td><td>b</td><td>b</td><td>c</td><td>a</td><td>b</td><td>a</td><td>c</td><td>b</td><td>b</td><td>b</td><td>b</td><td>a</td><td>b</td><td>a</td><td>a</td><td>a</td><td>b</td></tr>\n</table>\n<p><em>(Q14–20 answers from textbook: b b a a a b a)</em></p>"
+    }
+  ]
+}
