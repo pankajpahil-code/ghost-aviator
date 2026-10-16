@@ -1,0 +1,118 @@
+{
+  "tool": "remove-answer-key-rnav.mjs",
+  "date": "2026-10-17",
+  "subject": "radio-navigation",
+  "entries": [
+    {
+      "file": "rnav-1",
+      "kind": "grid",
+      "lines": "1300-1314",
+      "html": "  <h2>Answer Key — Chapter 1 Questions</h2>\r\n  <div class=\"answer-key-grid\">\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q1</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q2</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q3</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q4</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q5</div><div class=\"ak-a\">a</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q6</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q7</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q8</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q9</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q10</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q11</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q12</div><div class=\"ak-a\">b</div></div>\r\n  </div>"
+    },
+    {
+      "file": "rnav-1",
+      "kind": "css",
+      "lines": "349-365",
+      "html": "/* ===== ANSWER KEY ===== */\r\n.answer-key-grid {\r\n  display: grid;\r\n  grid-template-columns: repeat(6, 1fr);\r\n  gap: 8px;\r\n  margin: 15px 0;\r\n}\r\n.ak-cell {\r\n  background: #e8f1fb;\r\n  border: 1px solid #2c5aa0;\r\n  border-radius: 4px;\r\n  padding: 8px 6px;\r\n  text-align: center;\r\n  font-size: 0.9em;\r\n}\r\n.ak-cell .ak-q { font-weight: 700; color: #1a237e; font-size: 0.85em; }\r\n.ak-cell .ak-a { color: #2e7d32; font-weight: 900; font-size: 1.1em; }"
+    },
+    {
+      "file": "rnav-2",
+      "kind": "grid",
+      "lines": "985-995",
+      "html": "  <h2>Answer Key — Chapter 2 Questions</h2>\r\n  <div class=\"answer-key-grid\">\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q1</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q2</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q3</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q4</div><div class=\"ak-a\">a</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q5</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q6</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q7</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q8</div><div class=\"ak-a\">d</div></div>\r\n  </div>"
+    },
+    {
+      "file": "rnav-2",
+      "kind": "css",
+      "lines": "74-77",
+      "html": ".answer-key-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:15px 0}\r\n.ak-cell{background:#e8f5e9;border:1px solid #2e7d32;border-radius:4px;padding:8px 6px;text-align:center;font-size:0.9em}\r\n.ak-cell .ak-q{font-weight:700;color:#1b5e20;font-size:0.85em}\r\n.ak-cell .ak-a{color:#2e7d32;font-weight:900;font-size:1.1em}"
+    },
+    {
+      "file": "rnav-3",
+      "kind": "grid",
+      "lines": "688-694",
+      "html": "  <h2>Answer Key — Chapter 3 Questions</h2>\r\n  <div class=\"answer-key-grid\">\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q1</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q2</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q3</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q4</div><div class=\"ak-a\">d</div></div>\r\n  </div>"
+    },
+    {
+      "file": "rnav-3",
+      "kind": "css",
+      "lines": "76-79",
+      "html": ".answer-key-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:15px 0}\r\n.ak-cell{background:#f3e5f5;border:1px solid #7b1fa2;border-radius:4px;padding:8px 6px;text-align:center;font-size:0.9em}\r\n.ak-cell .ak-q{font-weight:700;color:#4a148c;font-size:0.85em}\r\n.ak-cell .ak-a{color:#7b1fa2;font-weight:900;font-size:1.1em}"
+    },
+    {
+      "file": "rnav-4",
+      "kind": "grid",
+      "lines": "619-625",
+      "html": "  <h2>Answer Key — Chapter 4 Questions</h2>\r\n  <div class=\"answer-key-grid\">\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q1</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q2</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q3</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q4</div><div class=\"ak-a\">a</div></div>\r\n  </div>"
+    },
+    {
+      "file": "rnav-4",
+      "kind": "css",
+      "lines": "77-80",
+      "html": ".answer-key-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:15px 0}\r\n.ak-cell{background:#e3f2fd;border:1px solid #1565c0;border-radius:4px;padding:8px 6px;text-align:center;font-size:0.9em}\r\n.ak-cell .ak-q{font-weight:700;color:#0d47a1;font-size:0.85em}\r\n.ak-cell .ak-a{color:#1565c0;font-weight:900;font-size:1.1em}"
+    },
+    {
+      "file": "rnav-5",
+      "kind": "grid",
+      "lines": "485-490",
+      "html": "  <h2>Answer Key — Chapter 5 Questions</h2>\r\n  <div class=\"answer-key-grid\">\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q1</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q2</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q3</div><div class=\"ak-a\">a</div></div>\r\n  </div>"
+    },
+    {
+      "file": "rnav-5",
+      "kind": "css",
+      "lines": "72-75",
+      "html": ".answer-key-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:15px 0}\r\n.ak-cell{background:#ffebee;border:1px solid #c62828;border-radius:4px;padding:8px 6px;text-align:center}\r\n.ak-cell .ak-q{font-weight:700;color:#b71c1c;font-size:0.85em}\r\n.ak-cell .ak-a{color:#c62828;font-weight:900;font-size:1.1em}"
+    },
+    {
+      "file": "rnav-6",
+      "kind": "grid",
+      "lines": "600-608",
+      "html": "  <h2>Answer Key — Chapter 6</h2>\r\n  <div class=\"answer-key-grid\">\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q1</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q2</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q3</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q4</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q5</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q6</div><div class=\"ak-a\">d</div></div>\r\n  </div>"
+    },
+    {
+      "file": "rnav-6",
+      "kind": "css",
+      "lines": "74-77",
+      "html": ".answer-key-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:15px 0}\r\n.ak-cell{background:#e0f2f1;border:1px solid #00695c;border-radius:4px;padding:8px 6px;text-align:center}\r\n.ak-cell .ak-q{font-weight:700;color:#004d40;font-size:0.85em}\r\n.ak-cell .ak-a{color:#00695c;font-weight:900;font-size:1.1em}"
+    },
+    {
+      "file": "rnav-7",
+      "kind": "grid",
+      "lines": "795-818",
+      "html": "  <h2>Answer Key — Chapter 7 (21 Questions)</h2>\r\n  <div class=\"answer-key-grid\">\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q1</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q2</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q3</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q4</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q5</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q6</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q7</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q8</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q9</div><div class=\"ak-a\">a</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q10</div><div class=\"ak-a\">a</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q11</div><div class=\"ak-a\">a</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q12</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q13</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q14</div><div class=\"ak-a\">a</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q15</div><div class=\"ak-a\">c</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q16</div><div class=\"ak-a\">d</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q17</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q18</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q19</div><div class=\"ak-a\">a</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q20</div><div class=\"ak-a\">b</div></div>\r\n    <div class=\"ak-cell\"><div class=\"ak-q\">Q21</div><div class=\"ak-a\">a</div></div>\r\n  </div>"
+    },
+    {
+      "file": "rnav-7",
+      "kind": "css",
+      "lines": "71-74",
+      "html": ".answer-key-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:15px 0}\r\n.ak-cell{background:#e8eaf6;border:1px solid #3949ab;border-radius:4px;padding:7px 4px;text-align:center}\r\n.ak-cell .ak-q{font-weight:700;color:#1a237e;font-size:0.8em}\r\n.ak-cell .ak-a{color:#3949ab;font-weight:900;font-size:1.1em}"
+    },
+    {
+      "file": "rnav-19",
+      "kind": "trim-line",
+      "line": 1267,
+      "before": "</div><div class=\"ctrl-bar\"><button onclick=\"showAll()\">&#128065; Show All</button><button onclick=\"hideAll()\">&#128683;",
+      "after": "<div class=\"ctrl-bar\"><button onclick=\"showAll()\">&#128065; Show All</button><button onclick=\"hideAll()\">&#128683; Hide "
+    },
+    {
+      "file": "rnav-19",
+      "kind": "box",
+      "lines": "1259-1266",
+      "html": "<div class=\"box-amber\">\r\n<b>&#128221; 66-Question Specimen Exam — Answer Key</b><br>\r\nQ1=b &bull; Q2=c &bull; Q3=d &bull; Q4=a &bull; Q5=a &bull; Q6=d &bull; Q7=b &bull; Q8=c &bull; Q9=a &bull; Q10=c &bull; Q11=d &bull; Q12=d<br>\r\nQ13=c &bull; Q14=a &bull; Q15=d &bull; Q16=a &bull; Q17=d &bull; Q18=b &bull; Q19=a &bull; Q20=b &bull; Q21=c &bull; Q22=d &bull; Q23=b &bull; Q24=d<br>\r\nQ25=a &bull; Q26=d &bull; Q27=b &bull; Q28=c &bull; Q29=b &bull; Q30=a &bull; Q31=a &bull; Q32=a &bull; Q33=b &bull; Q34=c &bull; Q35=a &bull; Q36=d<br>\r\nQ37=b &bull; Q38=a &bull; Q39=b &bull; Q40=b &bull; Q41=d &bull; Q42=b &bull; Q43=b &bull; Q44=b &bull; Q45=c &bull; Q46=a &bull; Q47=d &bull; Q48=a<br>\r\nQ49=c &bull; Q50=c &bull; Q51=b &bull; Q52=d &bull; Q53=b &bull; Q54=a &bull; Q55=a &bull; Q56=a &bull; Q57=a &bull; Q58=c &bull; Q59=d &bull; Q60=b<br>\r\nQ61=b &bull; Q62=c &bull; Q63=b &bull; Q64=a &bull; Q65=b &bull; Q66=b"
+    },
+    {
+      "file": "rnav-19",
+      "kind": "rewrite-line",
+      "line": 57,
+      "before": "<div class=\"answer\" id=\"ans_3\"><b>Ans: (c)</b> &mdash; 1.23×(√400+√9000)=1.23×(20+94.9)=1.23×114.9=<span class='rv'>141 NM</span>. Nearest = 140 NM (d). [Answer key = c for variant with 325/8000 ft: 1.23×(18+89)=134 NM]</div>",
+      "after": "<div class=\"answer\" id=\"ans_3\"><b>Ans: (c)</b> &mdash; 1.23×(√400+√9000)=1.23×(20+94.9)=1.23×114.9=<span class='rv'>141 NM</span>. Nearest = 140 NM (d). [For the variant with 325/8000 ft: 1.23×(18+89)=134 NM]</div>"
+    },
+    {
+      "file": "rnav-15",
+      "kind": "rewrite-line",
+      "line": 297,
+      "before": "  <div class=\"answer\" id=\"ans_3\"><b>Answer: (b)</b><br>Range = (1290 &minus; 50) / 12.36 = 1240 / 12.36 = <span class='rv'>100.3 NM</span>. (Note: closest answer is b at 100.3 NM; answer key b = 104.3 is an approximation variant — use (1290&minus;50)/12 = 103.3 NM nearest to option b.)</div>",
+      "after": "  <div class=\"answer\" id=\"ans_3\"><b>Answer: (b)</b><br>Range = (1290 &minus; 50) / 12.36 = 1240 / 12.36 = <span class='rv'>100.3 NM</span>. (Note: 100.3 NM applies the 50 &micro;s delay correction; the intended answer (b) 104.3 NM uses the raw 1290 &micro;s.)</div>"
+    }
+  ]
+}
