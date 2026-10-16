@@ -4,8 +4,9 @@
 single visible answer source. Hardcoded answer-key tables are removed from
 the notes; keys belong to the question dataset, never to a table on a page.
 
-**Status.** Done for CPL Meteorology on branch `ak-grid-removal-2026-10-17`,
-commit `c343c07` — **not pushed yet** (awaits the Captain's go).
+**Status.** Done for CPL Meteorology and merged to `main` on 17 Oct 2026
+(`110265d..dcf1f1b`). Live-verified the same hour: no answer-key heading on the
+met-1/2/4/5/13/26/28 pages; inline answers intact.
 
 ## What was removed (25 chapters, 30 blocks, 296 lines)
 
