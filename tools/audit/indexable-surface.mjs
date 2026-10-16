@@ -117,7 +117,10 @@ async function fetchPage(url, attempt = 0) {
       h1Count: (html.match(/<h1[^>]*>/gi) || []).length,
       words: text ? text.split(/\s+/).length : 0,
       links: [...new Set(
-        [...html.matchAll(/<a[^>]+href="(\/[^"#?]*)"/gi)].map(m => m[1].replace(/\/$/, "") || "/"),
+        [...html.matchAll(/<a[^>]+href="(\/[^"#?]*)"/gi)]
+          .map(m => m[1].replace(/\/$/, "") || "/")
+          // Downloads are checked as files, not parsed as HTML pages.
+          .filter(href => !/\.(?:pdf|png|jpe?g|webp|svg|mp3|mp4)$/i.test(href)),
       )],
     };
   } catch (err) {

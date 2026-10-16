@@ -60,6 +60,7 @@ export type Track = "cpl" | "atpl";
 /** Subjects whose chapters serve inline notes as soon as notes.html is published. */
 const AUTO_NOTES_SUBJECTS = new Set([
   "instrumentation",
+  "air-navigation",
   "radio-navigation",
   "technical-general",
   "radio-telephony",

@@ -636,6 +636,10 @@ export function getInlineNotes(subjectId: string, chapterId: string): InlineNote
       return `<img${attrs} loading="lazy" decoding="async">`;
     });
 
+    // Wide numeric tables scroll independently; the chapter itself must reflow.
+    html = html.replace(/<table\b/gi, '<div class="ga-table-scroll" tabindex="0" role="region" aria-label="Scrollable study table"><table')
+      .replace(/<\/table>/gi, '</table></div>');
+
     // Scoped first (scopeCss also drops comments), then the watermark tile.
     const scoped = scopeCss(css).replace(WATERMARK_TILE_DECL, "");
     return { css: scoped + HIDE_CHAPTER_WATERMARK, html: html.trim(), stylesheets: vendor };

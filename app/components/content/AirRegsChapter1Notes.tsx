@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NotesActions from "./NotesActions";
 import { ChevronRight, ChevronLeft, ListChecks, Clock } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { ReactNode } from "react";
@@ -221,6 +222,7 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
 
       {/* ── Content ─────────────────────────────────────────────────── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <NotesActions subjectId={subject.id} chapterId={chapter.id} />
 
         {videos && videos.length > 0 && (
           <div className="mb-8">

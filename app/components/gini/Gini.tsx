@@ -82,6 +82,7 @@ export default function Gini() {
   const [dismissed, setDismissed] = useState(true);   // assume gone until proven otherwise
   const [osReduced, setOsReduced] = useState(false);
   const [narrow, setNarrow] = useState(false);
+  const [notesGuideOpen, setNotesGuideOpen] = useState(false);
   const [motionPref, setMotionPref] = useState<"auto" | "on" | "off">("auto");
   const [mood, setMood] = useState<GiniMood>("idle");
   const [perch, setPerch] = useState(0);
@@ -501,12 +502,15 @@ export default function Gini() {
 
   if (!ready) return null;
 
-  if (dismissed) {
+  // On a phone the character and greeting can cover half a notes page.
+  // Keep help one tap away, and open it only when the reader requests it.
+  const quietNotes = narrow && /\/notes$/.test(pathname ?? "") && !notesGuideOpen;
+  if (dismissed || quietNotes) {
     return (
       <>
         <style dangerouslySetInnerHTML={{ __html: GINI_KEYFRAMES }} />
         <button
-          onClick={recall}
+          onClick={() => { setNotesGuideOpen(true); recall(); }}
           aria-label="Bring back Gini, the Ghost Aviator guide"
           title="Bring back Gini"
           style={{

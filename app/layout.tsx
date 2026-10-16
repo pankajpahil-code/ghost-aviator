@@ -4,6 +4,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import LiveClassInvitation from "./components/LiveClassInvitation";
 import ContentProtection from "./components/ContentProtection";
 import ProgressSync from "./components/ProgressSync";
 import Gini from "./components/gini/Gini";
@@ -110,6 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ProgressSync />
         <Navbar />
         <main className="flex-1">{children}</main>
+        <LiveClassInvitation />
         <Footer />
         {/* Gini — the Ghost Aviator guide. Client-only: the WebGL chunk loads
             after hydration via next/dynamic({ssr:false}), so nothing about him

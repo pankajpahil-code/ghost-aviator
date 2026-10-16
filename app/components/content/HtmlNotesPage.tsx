@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import NotesActions from "./NotesActions";
+import { NOTES_FIT_CSS } from "@/lib/notes-layout";
 import { useEffect, useRef, useState } from "react";
 import { ChevronRight, ChevronLeft, ListChecks, Volume2, Pause, Square } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
@@ -393,7 +395,8 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
       </div>
 
       {/* Notes iframe */}
-      <div className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-4">
+      <div className="flex-1 min-w-0 max-w-6xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 flex flex-col gap-4">
+        <NotesActions subjectId={subject.id} chapterId={chapter.id} />
         {videos && videos.length > 0 && (
           <VideoLectureCard videos={videos} title={chapter.title} color={subject.color} />
         )}
@@ -428,8 +431,7 @@ ${notes.css}
 .ga-notes img, .ga-notes svg { -webkit-user-drag: none !important; max-width: 100%; height: auto; }
 /* The chapter is authored as a standalone page; keep it from forcing the
    layout wider than the viewport on a phone. */
-.ga-notes { overflow-x: auto; }
-.ga-notes table { max-width: 100%; }
+${NOTES_FIT_CSS}
 @media print { .ga-notes { display: none !important; } }
 ` }} />
         <div
@@ -444,6 +446,8 @@ ${notes.css}
           onDragStart={block}
           dangerouslySetInnerHTML={{ __html: notes.html }}
         />
+
+        <NotesActions subjectId={subject.id} chapterId={chapter.id} />
 
         {/* Key facts — the only part of this chapter that is offered for
             quoting. Rendered VISIBLY and after the notes: a student who has

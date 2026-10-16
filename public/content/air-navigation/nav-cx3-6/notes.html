@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://ghostaviator.com/cpl/air-navigation/nav-cx3-6/notes">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 6 — TAS and Altitude Conversions | Ghost Aviator</title>
+<meta name="description" content="DGCA CPL/ATPL General Navigation: true airspeed, Mach number, true altitude and density altitude on the ASA CX-3 and by formula.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap">
+<style>
+/* ==========================================================================
+   GHOST AVIATOR — GenNav CX-3 chapter stylesheet
+   navy #1a2942 · gold #c9a227 · Playfair Display / Source Serif 4
+   ========================================================================== */
+
+:root {
+  --navy:      #1a2942;
+  --navy-soft: #24354f;
+  --gold:      #c9a227;
+  --gold-soft: #f3ead0;
+  --ink:       #22303f;
+  --ink-soft:  #5a6b7d;
+  --paper:     #ffffff;
+  --rule:      #d8d2c4;
+
+  --red:       #c0392b;
+  --red-bg:    #fdf1ef;
+  --amber:     #b9770e;
+  --amber-bg:  #fdf6e8;
+  --blue:      #2e86ab;
+  --blue-bg:   #eef6fa;
+  --green:     #1e8449;
+  --green-bg:  #eef8f1;
+
+  --serif:   'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --display: 'Playfair Display', Georgia, serif;
+  --mono:    'IBM Plex Mono', 'Consolas', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: transparent;          /* Layer 2 of the watermark sits on <html> */
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ga-content {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  background: rgba(255,255,255,0.86);   /* lets the tiled watermark show through */
+}
+
+/* ---------- audit banner ---------- */
+.audit-banner {
+  border: 2px solid var(--red);
+  background: var(--red-bg);
+  color: #8e2c21;
+  border-radius: 4px;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 2.5rem;
+}
+.audit-banner strong { display: block; letter-spacing: 0.06em; margin-bottom: 0.3rem; color: var(--red); }
+
+/* ---------- headings ---------- */
+.chapter-head { border-bottom: 3px solid var(--gold); padding-bottom: 1.6rem; margin-bottom: 2.4rem; }
+.eyebrow {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem;
+}
+h1 {
+  font-family: var(--display); font-weight: 900; color: var(--navy);
+  font-size: clamp(1.9rem, 5vw, 2.9rem); line-height: 1.1; margin: 0 0 0.8rem;
+  text-wrap: balance;
+}
+.h1-sub { font-size: 0.62em; font-weight: 700; color: var(--ink); display: block; margin-top: 0.35rem; }
+.standfirst { font-size: 1.08rem; font-style: italic; color: var(--ink-soft); margin: 0; }
+
+h2 {
+  font-family: var(--display); font-weight: 700; color: var(--navy);
+  font-size: 1.55rem; margin: 3rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--gold); text-wrap: balance;
+}
+h3 {
+  font-family: var(--serif); font-weight: 700; color: var(--navy);
+  font-size: 1.16rem; margin: 2rem 0 0.6rem;
+}
+p { margin: 0 0 1rem; }
+
+/* ---------- scenario ---------- */
+.scenario {
+  background: var(--navy); color: #e8eef5; border-radius: 5px;
+  padding: 1.5rem 1.6rem; margin: 2rem 0;
+  border-left: 5px solid var(--gold);
+}
+.scenario-label {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem;
+}
+.scenario p:last-child { margin-bottom: 0; }
+.scenario strong { color: #fff; }
+.scenario em { color: var(--gold-soft); }
+
+/* ---------- callouts ---------- */
+.callout { border-radius: 4px; padding: 1.05rem 1.25rem; margin: 1.5rem 0; border-left: 5px solid; }
+.callout p:last-child, .callout ul:last-child, .callout ol:last-child { margin-bottom: 0; }
+.callout-title { font-weight: 700; margin-bottom: 0.45rem; font-size: 1rem; }
+
+.callout.red   { border-color: var(--red);   background: var(--red-bg); }
+.callout.red   .callout-title { color: var(--red); }
+.callout.amber { border-color: var(--amber); background: var(--amber-bg); }
+.callout.amber .callout-title { color: var(--amber); }
+.callout.blue  { border-color: var(--blue);  background: var(--blue-bg); }
+.callout.blue  .callout-title { color: #1d6d8f; }
+.callout.green { border-color: var(--green); background: var(--green-bg); }
+.callout.green .callout-title { color: var(--green); }
+
+/* ---------- formula ---------- */
+.formula-block {
+  background: var(--gold-soft); border: 1px solid #e0cf9a; border-radius: 4px;
+  padding: 1.1rem 1.25rem; margin: 1.4rem 0; text-align: center;
+}
+.formula { font-family: var(--display); font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+.formula-units { font-family: var(--serif); font-size: 0.72em; font-weight: 400; font-style: italic; color: var(--ink-soft); }
+.formula-note { font-size: 0.88rem; color: var(--ink-soft); margin-top: 0.55rem; font-style: italic; }
+
+/* ---------- CX-3 keystroke panel ---------- */
+.keystroke {
+  background: var(--navy); color: #dde6f0; border-radius: 5px;
+  padding: 1.15rem 1.3rem; margin: 1.5rem 0; font-size: 0.95rem;
+}
+.keystroke-title {
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.65rem;
+}
+.keystroke-path { font-size: 1.05rem; margin-bottom: 0.85rem; color: #fff; }
+.keystroke p { margin: 0.5rem 0 0; }
+.keystroke code { background: rgba(255,255,255,0.12); color: var(--gold-soft); }
+
+.key {
+  display: inline-block; font-family: var(--mono); font-size: 0.8em; font-weight: 700;
+  background: #3c4f68; color: #fff; border: 1px solid #55688a; border-bottom-width: 2px;
+  border-radius: 3px; padding: 1px 6px; margin: 0 1px; white-space: nowrap;
+}
+.callout .key, .worked .key, .ref-table .key, .drill .key {
+  background: var(--navy); border-color: #0e1826; color: #fff;
+}
+
+.field-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.field-table th {
+  text-align: left; vertical-align: top; padding: 0.35rem 0.9rem 0.35rem 0;
+  color: var(--gold); font-weight: 700; white-space: nowrap; width: 1%;
+}
+.field-table td { padding: 0.35rem 0; vertical-align: top; }
+
+code {
+  font-family: var(--mono); font-size: 0.86em;
+  background: #eef0f3; padding: 1px 5px; border-radius: 3px;
+}
+
+/* ---------- worked examples ---------- */
+.worked {
+  border: 1px solid var(--rule); border-left: 5px solid var(--navy);
+  border-radius: 4px; padding: 1.1rem 1.25rem; margin: 1.5rem 0; background: #fbfaf7;
+}
+.worked.compact { margin: 1.1rem 0; padding: 0.95rem 1.1rem; }
+.worked .problem { margin-bottom: 0.7rem; }
+.steps { margin: 0 0 0.8rem; padding-left: 1.3rem; }
+.steps li { margin-bottom: 0.32rem; }
+.answer {
+  background: var(--green-bg); border-left: 4px solid var(--green);
+  padding: 0.55rem 0.85rem; border-radius: 3px; margin: 0.7rem 0 !important;
+  font-size: 1.02rem;
+}
+.answer strong { color: var(--green); }
+.sanity {
+  font-size: 0.9rem; color: var(--ink-soft); font-style: italic;
+  border-top: 1px dotted var(--rule); padding-top: 0.55rem; margin-bottom: 0 !important;
+}
+.sanity strong { color: var(--ink); font-style: normal; }
+
+.verified-note {
+  font-size: 0.85rem; color: var(--ink-soft); font-style: italic;
+  border-left: 3px solid var(--rule); padding-left: 0.8rem; margin: -0.5rem 0 1.4rem;
+}
+.same-method {
+  font-size: 0.93rem; color: var(--ink-soft); font-style: italic;
+  background: #f4f2ec; border-radius: 3px; padding: 0.55rem 0.85rem;
+}
+
+.method { margin: 0.4rem 0 0; padding-left: 1.3rem; }
+.method li { margin-bottom: 0.4rem; }
+.method-note { font-size: 0.9rem; font-style: italic; color: var(--ink-soft); margin-top: 0.6rem !important; }
+.numbers { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+.numbers li { margin-bottom: 0.3rem; }
+
+/* ---------- figures ---------- */
+figure { margin: 1.8rem 0; }
+figure img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--rule); border-radius: 4px; background: #f0eee9;
+}
+figcaption {
+  font-size: 0.88rem; color: var(--ink-soft); margin-top: 0.55rem;
+  padding-left: 0.6rem; border-left: 3px solid var(--gold);
+}
+figcaption strong { color: var(--navy); }
+
+/* ---------- tables ---------- */
+.q-table-wrap, .ref-table-wrap { overflow-x: auto; margin: 1.2rem 0; }
+.q-table, .ref-table {
+  width: 100%; border-collapse: collapse; font-size: 0.93rem;
+  font-variant-numeric: tabular-nums;
+}
+.q-table th, .ref-table th {
+  background: var(--navy); color: #fff; font-weight: 700;
+  text-align: left; padding: 0.55rem 0.7rem; font-size: 0.86rem;
+  letter-spacing: 0.03em;
+}
+.q-table td, .ref-table td {
+  border-bottom: 1px solid var(--rule); padding: 0.5rem 0.7rem; vertical-align: top;
+}
+.q-table tbody tr:nth-child(even) { background: #faf9f6; }
+.q-table td:first-child { color: var(--ink-soft); font-family: var(--mono); font-size: 0.85em; }
+.q-table.answers .calc { font-weight: 700; color: var(--green); }
+.note-cell { font-size: 0.83em; font-style: italic; color: var(--amber); }
+.ref-table.card td:last-child { font-size: 0.92em; }
+.gap-row { background: var(--amber-bg) !important; }
+.gap-row td { border-bottom-color: #e6cfa0; }
+.card-intro { font-style: italic; color: var(--ink-soft); }
+
+/* ---------- speed drill ---------- */
+.drill {
+  border: 2px solid var(--gold); border-radius: 5px;
+  padding: 1.3rem 1.4rem; margin: 1.5rem 0; background: #fffdf7;
+}
+.drill-intro { font-weight: 700; color: var(--navy); margin-bottom: 0.9rem; }
+.drill-list { margin: 0; padding-left: 1.4rem; }
+.drill-list li { margin-bottom: 0.45rem; }
+.drill-answers { margin-top: 1.2rem; border-top: 1px solid var(--rule); padding-top: 0.8rem; }
+.drill-answers summary {
+  cursor: pointer; font-weight: 700; color: var(--gold); font-family: var(--mono);
+  font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.drill-answers summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.drill-answers ol { margin: 0.8rem 0 0; padding-left: 1.4rem; }
+.drill-answers li { margin-bottom: 0.35rem; font-size: 0.94rem; }
+
+/* ---------- misc ---------- */
+.section-rule { border: 0; border-top: 2px solid var(--gold); margin: 3rem 0 0; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.4rem; }
+li { margin-bottom: 0.25rem; }
+
+.chapter-foot {
+  margin-top: 3.5rem; padding-top: 1.4rem; border-top: 3px solid var(--gold);
+  font-size: 0.9rem; color: var(--ink-soft); text-align: center;
+}
+.chapter-foot p { margin: 0.25rem 0; }
+.foot-next { margin-top: 1rem !important; font-style: italic; }
+
+/* ==========================================================================
+   PRINT — A4, 20mm margins
+   ========================================================================== */
+@page { size: A4; margin: 20mm; }
+
+@media print {
+  body { font-size: 10.5pt; line-height: 1.5; }
+  .ga-content { max-width: none; padding: 0; background: transparent; }
+
+  h2 { page-break-after: avoid; break-after: avoid; }
+  h3 { page-break-after: avoid; break-after: avoid; }
+
+  .callout, .worked, .keystroke, .formula-block, figure,
+  .drill, .audit-banner, .scenario,
+  table, tr, .q-table-wrap, .ref-table-wrap {
+    page-break-inside: avoid; break-inside: avoid;
+  }
+
+  .scenario, .keystroke, .audit-banner, .callout,
+  .formula-block, .answer, .drill, .q-table th, .ref-table th, .key {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .drill-answers[open] summary ~ * { display: block; }
+  .drill-answers { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { list-style: none; }
+
+  a { text-decoration: none; color: inherit; }
+}
+
+/* ==========================================================================
+   v2 additions — figure legends, dual-method blocks, decision flowchart
+   ========================================================================== */
+
+/* ---------- figure colour legends (never baked into the PNG) ---------- */
+.fig-legend {
+  display: flex; flex-wrap: wrap; gap: .45rem 1.1rem;
+  margin-top: .5rem; padding-left: .6rem;
+  font-size: .85rem; color: var(--ink-soft);
+}
+.fig-legend .lg { display: inline-flex; align-items: center; gap: .38rem; }
+.fig-legend .sw {
+  width: 15px; height: 10px; border-radius: 2px; display: inline-block;
+  border: 1px solid rgba(0,0,0,.18); flex: none;
+}
+.fig-legend .sw.gold  { background: var(--gold); }
+.fig-legend .sw.cyan  { background: var(--blue); }
+.fig-legend .sw.white { background: #f5f2e8; }
+.fig-legend .sw.plain { background: transparent; border-style: dashed; }
+
+/* ---------- dual-method blocks ---------- */
+.dual { margin: .7rem 0; }
+.dual-h {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: .28rem;
+}
+.dual-f {
+  background: var(--gold-soft); border-left: 4px solid var(--gold);
+  border-radius: 3px; padding: .5rem .85rem; margin: 0 !important;
+  font-size: .97rem;
+}
+.dual-f strong { color: var(--navy); }
+.dual .answer { margin: 0 !important; }
+
+/* ---------- decision flowchart ---------- */
+figure.flow { margin: 1.6rem 0; }
+figure.flow svg {
+  width: 100%; height: auto; display: block;
+  background: #fbfaf7; border: 1px solid var(--rule); border-radius: 4px;
+}
+
+@media print {
+  .fig-legend, .dual-f, figure.flow svg {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  figure.flow, .dual { page-break-inside: avoid; break-inside: avoid; }
+}
+
+/* ==========================================================================
+   CHAPTER 6 ADDITIONS
+   side-by-side dual method · concept diagrams · data charts
+   ========================================================================== */
+
+/* ---------- SIDE-BY-SIDE dual method ---------- */
+.dual-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+  margin: 1rem 0;
+  align-items: stretch;
+}
+@media (max-width: 720px) { .dual-pair { grid-template-columns: 1fr; } }
+
+.dual-col {
+  border-radius: 5px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.dual-col.m1 { background: var(--gold-soft); border: 1px solid #e0cf9a; }
+.dual-col.m2 { background: var(--navy);      border: 1px solid #0e1826; color: #dde6f0; }
+
+.dual-col .dc-h {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.13em;
+  text-transform: uppercase; font-weight: 700; margin-bottom: 0.1rem;
+}
+.dual-col.m1 .dc-h { color: #8a6d12; }
+.dual-col.m2 .dc-h { color: var(--gold); }
+
+.dual-col .dc-sub {
+  font-size: 0.83rem; font-style: italic; margin: -0.25rem 0 0.3rem;
+}
+.dual-col.m1 .dc-sub { color: #6b5a2a; }
+.dual-col.m2 .dc-sub { color: #93a7bd; }
+
+.dual-col ol, .dual-col ul { margin: 0; padding-left: 1.15rem; font-size: 0.93rem; }
+.dual-col li { margin-bottom: 0.3rem; }
+.dual-col p  { margin: 0 0 0.4rem; font-size: 0.94rem; }
+.dual-col code { font-size: 0.85em; }
+.dual-col.m2 code { background: rgba(255,255,255,0.13); color: var(--gold-soft); }
+.dual-col.m1 code { background: rgba(0,0,0,0.06); color: var(--navy); }
+
+.dc-line { font-size: 0.95rem; margin: 0 0 0.3rem !important; }
+.dc-res {
+  margin-top: auto !important; padding: 0.5rem 0.75rem; border-radius: 3px;
+  font-size: 1rem; font-weight: 700;
+}
+.dual-col.m1 .dc-res { background: rgba(201,162,39,0.22); color: #6d5510; }
+.dual-col.m2 .dc-res { background: rgba(39,174,96,0.22);  color: #7ee0a8; }
+
+.dual-verdict {
+  font-size: 0.9rem; font-style: italic; color: var(--ink-soft);
+  background: #f4f2ec; border-radius: 3px; padding: 0.5rem 0.8rem;
+  margin: 0.2rem 0 0.7rem;
+}
+.dual-verdict strong { color: var(--navy); font-style: normal; }
+
+/* ---------- concept diagrams & charts ---------- */
+figure.diagram { margin: 1.8rem 0; }
+figure.diagram svg {
+  width: 100%; height: auto; display: block;
+  background: #fbfaf7; border: 1px solid var(--rule); border-radius: 4px;
+}
+figure.chart svg {
+  width: 100%; height: auto; display: block;
+  background: var(--navy); border: 1px solid #0e1826; border-radius: 4px;
+}
+
+/* ---------- ISA reference strip ---------- */
+.isa-strip { overflow-x: auto; margin: 1.1rem 0; }
+.isa-strip table { min-width: 480px; }
+
+@media print {
+  .dual-pair { grid-template-columns: 1fr 1fr; }
+  .dual-col, figure.diagram, figure.chart, .dual-verdict {
+    page-break-inside: avoid; break-inside: avoid;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  figure.chart svg, figure.diagram svg {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* ===== watermark layers 1, 2 and 5 — GenNav_CX3_WATERMARK_TEMPLATE.html v2.0 ===== */
+
+/* ---------- LAYER 2: repeating tiled watermark (screen + print) ----------
+   A repeating SVG background on the html element. This tiles exactly and,
+   unlike a ::after text hack, repeats cleanly on every printed page.
+   Removing Layer 1 does not remove this. Removing this requires editing CSS. */
+html {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='260'><text x='210' y='130' font-family='Georgia,serif' font-size='15' font-weight='700' fill='rgba(0,0,0,0.045)' text-anchor='middle' transform='rotate(-30 210 130)'>Capt. Pankaj Pahil %C2%B7 www.GhostAviator.com</text></svg>");
+  background-repeat: repeat;
+  background-position: 0 0;
+}
+/* Body must stay transparent or it will cover Layer 2. If the chapter needs a
+   page colour, set it on .ga-content instead, at less than full opacity. */
+body {
+  background: transparent;
+}
+
+/* ---------- LAYER 1: visible diagonal watermark ----------
+   40px. MEASURED, not guessed:
+     A4 printable width at 20mm margins = 643px
+     46px -> rotated extent 648px  -> CLIPS (this was the v1.0 defect)
+     40px -> rotated extent 567px  -> fits, with headroom for a wider
+                                      substitute font if Playfair fails to load
+   Do not raise this value above 42px. */
+.ga-watermark-l1 {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.075);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  letter-spacing: 1px;
+}
+
+/* ---------- LAYER 5: print-only reinforcement ---------- */
+@media print {
+  /* Force all watermark layers to survive the print colour pass */
+  html {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .ga-watermark-l1 {
+    color: rgba(0, 0, 0, 0.13) !important;
+    font-size: 40px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  /* A second, offset print-only mark. Sits opposite Layer 1 so that removing
+     Layer 1 from the DOM still leaves a printed mark on every page. */
+  body::before {
+    content: "Capt. Pankaj Pahil \00B7 www.GhostAviator.com";
+    position: fixed;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.10) !important;
+    white-space: nowrap;
+    z-index: 99999;
+    pointer-events: none;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="ga-content">
+
+<div class="audit-banner">
+  <strong>STUDY AID — PENDING INDEPENDENT AUDIT</strong>
+  These notes are study aids for DGCA examination preparation. They are PENDING
+  INDEPENDENT AUDIT and must not be used for operational flight planning. Always
+  verify procedures against current AIPs, NOTAMs, and your operator's manuals.
+</div>
+
+<header class="chapter-head">
+  <div class="eyebrow">General Navigation &middot; The Navigation Computer</div>
+  <h1>Chapter 6<br><span class="h1-sub">TAS and Altitude Conversions</span></h1>
+  <p class="standfirst">Four numbers claim to tell you how fast you are going and
+  how high you are. Only two of them are true, and neither is the one on the
+  dial.</p>
+</header>
+
+<div class="scenario">
+  <div class="scenario-label">Sixty seconds in the cockpit</div>
+  <p>Winter night, non-precision approach into a valley aerodrome. Outside air
+  temperature <strong>&minus;25&nbsp;&deg;C</strong>. The step-down fix calls for
+  <strong>3,000&nbsp;feet</strong> and your altimeter reads exactly that, with the
+  correct QNH set. You are stable, configured, and legal.</p>
+  <p>You are also about <strong>400&nbsp;feet lower</strong> than the altimeter
+  says.</p>
+  <p>The instrument is not broken. It is calibrated for a standard day, and this
+  is not one. Cold air is dense air, pressure falls away faster with height, and
+  the altimeter counts pressure &mdash; so it hands you back a number that is too
+  big. <strong>On a cold day you are always lower than you think.</strong> This
+  chapter is where you learn to know by how much.</p>
+</div>
+
+<!-- ================= 1. THE CHAIN ================= -->
+<h2 id="s1">1 &middot; Four airspeeds, one chain</h2>
+
+<p>The airspeed indicator does not measure speed. It measures the pressure of air
+being rammed into a tube on the nose, and then <em>assumes</em> a great deal about
+the air in order to turn that pressure into a number of knots.</p>
+
+<p>Every one of those assumptions has to be corrected, in a fixed order. Learn the
+order once and the whole chapter follows from it.</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 820 470" width="820" height="470" role="img" aria-labelledby="chainT chainD">
+  <title id="chainT">The airspeed correction chain from indicated to true airspeed</title>
+  <desc id="chainD">Indicated airspeed is corrected for instrument error and pressure or position
+  error to give calibrated airspeed. From calibrated airspeed there are two paths. At low speed,
+  correcting density error alone gives true airspeed directly. At high speed, correcting
+  compressibility first gives equivalent airspeed, and then correcting density error gives true
+  airspeed. The dividing line is 300 knots true airspeed.</desc>
+
+  <defs>
+    <marker id="c6a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c9a227" stroke="none"/>
+    </marker>
+    <marker id="c6r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2e86ab" stroke="none"/>
+    </marker>
+  </defs>
+
+  <rect x="300" y="14" width="220" height="42" rx="6" fill="#1a2942" stroke="#c9a227" stroke-width="2"/>
+  <text x="410" y="34" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="15" font-weight="bold">IAS</text>
+  <text x="410" y="49" text-anchor="middle" fill="#c9c2ae" font-family="Georgia,serif" font-size="11.5">what the dial shows</text>
+
+  <path d="M410,56 L410,86" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <text x="424" y="76" fill="#8a6d12" font-family="Georgia,serif" font-size="12.5">instrument + pressure error &mdash; from the correction card</text>
+
+  <rect x="300" y="90" width="220" height="42" rx="6" fill="#eef6fa" stroke="#2e86ab" stroke-width="2"/>
+  <text x="410" y="110" text-anchor="middle" fill="#1d5f7d" font-family="Georgia,serif" font-size="15" font-weight="bold">CAS</text>
+  <text x="410" y="125" text-anchor="middle" fill="#41616f" font-family="Georgia,serif" font-size="11.5">older books call this RAS</text>
+
+  <path d="M410,132 L410,158 L214,158 L214,192" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <path d="M410,132 L410,158 L606,158 L606,192" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <text x="214" y="150" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="12.5" font-weight="bold">low speed</text>
+  <text x="606" y="150" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5" font-weight="bold">high speed</text>
+
+  <rect x="92" y="196" width="244" height="40" rx="5" fill="#eef8f1" stroke="#1e8449" stroke-width="1.8"/>
+  <text x="214" y="221" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="13.5">correct density error only</text>
+
+  <rect x="484" y="196" width="244" height="40" rx="5" fill="#fdf1ef" stroke="#c0392b" stroke-width="1.8"/>
+  <text x="606" y="221" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="13.5">correct compressibility first</text>
+
+  <path d="M606,236 L606,262" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <rect x="496" y="266" width="220" height="42" rx="6" fill="#1a2942" stroke="#c0392b" stroke-width="2"/>
+  <text x="606" y="286" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="15" font-weight="bold">EAS</text>
+  <text x="606" y="301" text-anchor="middle" fill="#c9c2ae" font-family="Georgia,serif" font-size="11.5">you will rarely meet this in the air</text>
+
+  <path d="M606,308 L606,338" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <text x="620" y="328" fill="#8a6d12" font-family="Georgia,serif" font-size="12.5">then density error</text>
+
+  <path d="M214,236 L214,352 L296,352" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <path d="M606,342 L606,352 L524,352" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+
+  <rect x="300" y="332" width="220" height="46" rx="6" fill="#1e8449" stroke="#0f5c33" stroke-width="2"/>
+  <text x="410" y="354" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-size="16" font-weight="bold">TAS</text>
+  <text x="410" y="370" text-anchor="middle" fill="#d8f3e3" font-family="Georgia,serif" font-size="11.5">your actual speed through the air</text>
+
+  <rect x="92" y="404" width="636" height="50" rx="5" fill="#fdf6e8" stroke="#b9770e" stroke-width="1.6"/>
+  <text x="410" y="424" text-anchor="middle" fill="#8a5a08" font-family="Georgia,serif" font-size="13.5" font-weight="bold">The rule that decides which path you are on</text>
+  <text x="410" y="443" text-anchor="middle" fill="#3a3020" font-family="Georgia,serif" font-size="13">Work out TAS the low-speed way first. If it comes out at 300 kt or less, you are finished.</text>
+</svg>
+<figcaption><strong>Figure 6.1</strong> &mdash; The correction chain. Two of these
+four are instrument readings dressed up as speeds; only TAS is the speed you are
+actually flying through the air.</figcaption>
+<div class="fig-legend">
+  <span class="lg"><i class="sw" style="background:#1a2942"></i>instrument values</span>
+  <span class="lg"><i class="sw" style="background:#1e8449"></i>the answer you want</span>
+  <span class="lg"><i class="sw" style="background:#c0392b"></i>the high-speed detour</span>
+</div>
+</figure>
+
+<div class="callout blue">
+  <div class="callout-title">The four, in plain words</div>
+  <p><strong>IAS &mdash; Indicated Airspeed.</strong> The number on the glass.
+  Honest about nothing except what the instrument itself sensed.</p>
+  <p><strong>CAS &mdash; Calibrated Airspeed.</strong> IAS after the aircraft's own
+  errors are removed: <em>instrument error</em> (the mechanism is imperfect) and
+  <em>pressure or position error</em> (the static port cannot find perfectly
+  undisturbed air anywhere on an aeroplane). Both come off one correction card
+  beside the instrument. <em>Older documents call this RAS &mdash; Rectified
+  Airspeed. Same thing.</em></p>
+  <p><strong>EAS &mdash; Equivalent Airspeed.</strong> CAS after allowing for the
+  fact that air is springy and gets compressed at the pitot at high speed. As a
+  line pilot you will almost never use it. It is examinable, so you must know what
+  it <em>is</em>.</p>
+  <p><strong>TAS &mdash; True Airspeed.</strong> Your genuine speed through the
+  air mass. This is what navigation runs on, and it is the only one of the four
+  that is a real speed.</p>
+</div>
+
+<div class="callout amber">
+  <div class="callout-title">What the examiner is really asking</div>
+  <p>The order is the answer to half the questions in this topic.
+  <strong>IAS &rarr; CAS &rarr; (EAS) &rarr; TAS</strong>, never any other
+  sequence. A question that offers you "correct for density, then instrument
+  error" is offering you a wrong order and seeing whether you notice.</p>
+  <p>And the number that decides whether EAS appears at all is
+  <strong>300 knots TAS</strong> &mdash; not 300 CAS, not 300 IAS. You have to
+  calculate before you know which path you were on.</p>
+</div>
+
+<!-- ================= 2. DENSITY ERROR ================= -->
+<h2 id="s2">2 &middot; Density error &mdash; why TAS beats CAS</h2>
+
+<p>The airspeed indicator is calibrated for one specific air density:
+<strong>1225 grams per cubic metre</strong>, which is the ISA value at mean sea
+level. At that density, and only at that density, CAS and TAS are the same number.</p>
+
+<p>Climb, and the air thins. To ram the same pressure into the pitot tube &mdash;
+to keep the same CAS on the dial &mdash; you must move <em>faster</em> through
+that thinner air. The dial does not know this. Your navigation does.</p>
+
+<div class="formula-block">
+  <div class="formula">CAS = TAS &times; &radic;(relative density)</div>
+  <div class="formula-note">rearranged: &nbsp; TAS = CAS &divide; &radic;(relative density)
+  &nbsp;&middot;&nbsp; relative density = actual density &divide; 1225 g/m&sup3;</div>
+</div>
+
+<figure class="chart">
+<svg viewBox="0 0 820 400" width="820" height="400" role="img" aria-labelledby="cAt cAd">
+  <title id="cAt">True airspeed against altitude at a constant calibrated airspeed of 200 knots</title>
+  <desc id="cAd">At sea level TAS equals CAS at 200 knots. TAS then climbs steadily with altitude: 232 knots at 10,000 feet, 271 at 20,000, 319 at 30,000 and 386 at 40,000 feet &mdash; roughly two per cent more true airspeed for every thousand feet climbed. The curve is the compressible relation, not CAS divided by the square root of the density ratio.</desc>
+  <rect width="820" height="400" fill="#1a2942"/>
+<line x1="78.0" y1="348.0" x2="792.0" y2="348.0" stroke="#2c3e57" stroke-width="1"/><text x="68" y="352.0" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">200</text>
+<line x1="78.0" y1="269.5" x2="792.0" y2="269.5" stroke="#2c3e57" stroke-width="1"/><text x="68" y="273.5" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">250</text>
+<line x1="78.0" y1="191.0" x2="792.0" y2="191.0" stroke="#2c3e57" stroke-width="1"/><text x="68" y="195.0" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">300</text>
+<line x1="78.0" y1="112.5" x2="792.0" y2="112.5" stroke="#2c3e57" stroke-width="1"/><text x="68" y="116.5" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">350</text>
+<line x1="78.0" y1="34.0" x2="792.0" y2="34.0" stroke="#2c3e57" stroke-width="1"/><text x="68" y="38.0" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">400</text>
+<line x1="78.0" y1="34" x2="78.0" y2="348" stroke="#2c3e57" stroke-width="1"/><text x="78.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">0</text>
+<line x1="256.5" y1="34" x2="256.5" y2="348" stroke="#2c3e57" stroke-width="1"/><text x="256.5" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">10</text>
+<line x1="435.0" y1="34" x2="435.0" y2="348" stroke="#2c3e57" stroke-width="1"/><text x="435.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">20</text>
+<line x1="613.5" y1="34" x2="613.5" y2="348" stroke="#2c3e57" stroke-width="1"/><text x="613.5" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">30</text>
+<line x1="792.0" y1="34" x2="792.0" y2="348" stroke="#2c3e57" stroke-width="1"/><text x="792.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">40</text>
+  <polyline points="78.0,348.0 792.0,348.0" fill="none" stroke="#2e86ab" stroke-width="2" stroke-dasharray="6 4"/>
+  <polyline points="78.0,348.0 122.6,336.5 167.2,324.5 211.9,311.8 256.5,298.4 301.1,284.3 345.8,269.5 390.4,253.8 435.0,237.3 479.6,219.8 524.2,201.4 568.9,181.9 613.5,161.3 658.1,139.5 702.8,116.6 747.4,88.7 792.0,56.6" fill="none" stroke="#c9a227" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="78.0" cy="348.0" r="4" fill="#c9a227" stroke="#1a2942" stroke-width="1.5"/><text x="78.0" y="337.0" text-anchor="middle" fill="#f0e6c8" font-family="monospace" font-size="11.5" font-weight="bold">200</text>
+<circle cx="256.5" cy="298.4" r="4" fill="#c9a227" stroke="#1a2942" stroke-width="1.5"/><text x="256.5" y="287.4" text-anchor="middle" fill="#f0e6c8" font-family="monospace" font-size="11.5" font-weight="bold">232</text>
+<circle cx="435.0" cy="237.3" r="4" fill="#c9a227" stroke="#1a2942" stroke-width="1.5"/><text x="435.0" y="226.3" text-anchor="middle" fill="#f0e6c8" font-family="monospace" font-size="11.5" font-weight="bold">271</text>
+<circle cx="613.5" cy="161.3" r="4" fill="#c9a227" stroke="#1a2942" stroke-width="1.5"/><text x="613.5" y="150.3" text-anchor="middle" fill="#f0e6c8" font-family="monospace" font-size="11.5" font-weight="bold">319</text>
+<circle cx="792.0" cy="56.6" r="4" fill="#c9a227" stroke="#1a2942" stroke-width="1.5"/><text x="792.0" y="45.6" text-anchor="middle" fill="#f0e6c8" font-family="monospace" font-size="11.5" font-weight="bold">386</text>
+  <text x="435" y="392" text-anchor="middle" fill="#8fa3ba" font-family="Georgia,serif" font-size="12">pressure altitude &mdash; thousands of feet</text>
+  <text x="16" y="191" fill="#8fa3ba" font-family="Georgia,serif" font-size="12" transform="rotate(-90 16 191)" text-anchor="middle">knots</text>
+</svg>
+<figcaption><strong>Figure 6.2</strong> &mdash; Hold CAS at 200 knots and climb.
+The dial never moves; your true speed through the air grows by roughly
+<strong>2% for every 1,000 feet</strong>. At FL400 it is <strong>386 knots</strong>
+&mdash; almost double what the instrument reads. The curve is the
+<em>compressible</em> relation: past about FL200 this aeroplane is above Mach 0.45,
+and <code>CAS &divide; &radic;&sigma;</code> would draw it too fast &mdash; 17 knots
+too fast at the top of the climb.</figcaption>
+</figure>
+
+<div class="callout green">
+  <div class="callout-title">The rule of thumb worth carrying</div>
+  <p><strong>Add about 2% to CAS for every 1,000 feet of altitude.</strong> At
+  10,000 ft that is +20% &mdash; 200 CAS becomes about 240 TAS, and the exact
+  answer is 232. At 20,000 ft, +40% predicts 280 against a true 271.</p>
+  <p><strong>Know where it turns on you.</strong> Through the low and middle levels
+  it reads a few knots high, which is the safe direction. Around FL300 it is very
+  nearly exact &mdash; 320 against a true 319. Above that it goes the other way and
+  runs <em>low</em>: at FL400 it predicts 360 against a true 386, and a rule of
+  thumb that under-reads your true airspeed is no longer a conservative one.</p>
+  <p>Use it to catch a keying error in the levels you actually fly a light aircraft
+  in. Never use it to file a flight plan, and do not carry it into the thirties.</p>
+</div>
+
+<h3>Where the numbers come from &mdash; the ISA table</h3>
+
+<p>You cannot measure density in flight. There is no density gauge. But you have a
+<strong>thermometer</strong> and you have an <strong>altimeter</strong>, and the
+gas laws tie pressure, temperature and density together &mdash; know any two and
+the third is fixed.</p>
+
+<div class="isa-strip">
+<table class="ref-table">
+  <thead><tr><th>Flight level</th><th>ISA temp (&deg;C)</th><th>Pressure (hPa)</th><th>ISA density (g/m&sup3;)</th><th>Feet per hPa</th></tr></thead>
+  <tbody>
+    <tr><td>FL000</td><td>+15</td><td>1013.25</td><td>1225</td><td>27</td></tr>
+    <tr><td>FL050</td><td>+5</td><td>843</td><td>1056</td><td>32</td></tr>
+    <tr><td>FL100</td><td>&minus;5</td><td>697</td><td>905</td><td>37</td></tr>
+    <tr><td>FL150</td><td>&minus;15</td><td>572</td><td>771</td><td>43</td></tr>
+    <tr><td>FL200</td><td>&minus;25</td><td>466</td><td>653</td><td>51</td></tr>
+    <tr><td>FL250</td><td>&minus;35</td><td>376</td><td>549</td><td>61</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout blue">
+  <div class="callout-title">Read the last column again &mdash; it explains the whole chapter</div>
+  <p>At sea level it takes <strong>27 feet</strong> of climb to lose one hectopascal.
+  At FL250 it takes <strong>61 feet</strong>. The higher you go, the more feet you
+  must climb to shed the same pressure, because the air up there is thin.</p>
+  <p>That single fact drives density error, true altitude and density altitude.
+  Everything else in this chapter is arithmetic hung off it.</p>
+</div>
+
+<h3>Worked example 6.1 &mdash; the classic, done both ways</h3>
+
+<div class="worked">
+  <p class="problem"><strong>Problem.</strong> You are at <strong>FL200</strong>
+  with a CAS of <strong>100 knots</strong>. The static air temperature is
+  <strong>&minus;25&nbsp;&deg;C</strong> &mdash; exactly ISA. What is your TAS?</p>
+
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the arithmetic</div>
+      <div class="dc-sub">why the answer is what it is</div>
+      <p class="dc-line"><strong>1.</strong> Read the density at FL200 from the ISA
+      table: <strong>653 g/m&sup3;</strong>.</p>
+      <p class="dc-line"><strong>2.</strong> Relative density is that, compared with
+      sea level:<br>653 &divide; 1225 = <strong>0.5331</strong></p>
+      <p class="dc-line"><strong>3.</strong> Take the square root:<br>&radic;0.5331 =
+      <strong>0.7301</strong></p>
+      <p class="dc-line"><strong>4.</strong> Divide CAS by it:<br>100 &divide; 0.7301</p>
+      <p class="dc-res">TAS = 137 knots</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the CX-3</div>
+      <div class="dc-sub">what you will actually do in the exam</div>
+      <ol>
+        <li>Press <span class="key">FLT</span>, scroll to <strong>Airspeed</strong>, tap enter.</li>
+        <li>Select <strong>Planned TAS</strong>.</li>
+        <li><code>CAS</code>: press <span class="key">1</span><span class="key">0</span><span class="key">0</span>, enter.</li>
+        <li><code>OAT</code>: set units to <code>&deg;C</code>, press <span class="key">2</span><span class="key">5</span><span class="key">+/&minus;</span>, enter.</li>
+        <li><code>PAlt</code>: press <span class="key">2</span><span class="key">0</span><span class="key">0</span><span class="key">0</span><span class="key">0</span>, enter.</li>
+      </ol>
+      <p class="dc-res">TAS reads 137 kt</p>
+    </div>
+  </div>
+
+  <p class="dual-verdict"><strong>Which do you use?</strong> The CX-3, every time.
+  The arithmetic is here so you understand what the box did &mdash; and so you can
+  spot an answer that is obviously wrong. You will never be asked to look up a
+  density in an exam.</p>
+
+  <p class="sanity"><strong>Sanity check.</strong> FL200 is 20,000 feet, so the
+  2%-per-1,000 rule predicts +40%: about 140 knots. The answer is 137. Close
+  enough to trust, far enough from 100 to prove the correction matters.</p>
+</div>
+
+<h3>Worked example 6.2 &mdash; a real cruise, not a textbook one</h3>
+
+<div class="worked">
+  <p class="problem"><strong>Problem.</strong> Pressure altitude
+  <strong>18,000 feet</strong>, corrected outside air temperature
+  <strong>&minus;30&nbsp;&deg;C</strong>, CAS <strong>170 knots</strong>. Find TAS.</p>
+
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the arithmetic</div>
+      <div class="dc-sub">the mental estimate, in three seconds</div>
+      <p class="dc-line"><strong>1.</strong> 18,000 feet &rarr; add roughly
+      18 &times; 2% = <strong>36%</strong>.</p>
+      <p class="dc-line"><strong>2.</strong> 170 &times; 1.36 = <strong>231</strong></p>
+      <p class="dc-line"><strong>3.</strong> The day is colder than ISA
+      (ISA at 18,000 is about &minus;21&nbsp;&deg;C, so this is ISA &minus;9).
+      Colder air is denser, so the true answer sits a little
+      <em>below</em> the estimate.</p>
+      <p class="dc-res">expect about 220&ndash;230 kt</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the CX-3</div>
+      <div class="dc-sub">three entries, one reading</div>
+      <ol>
+        <li><span class="key">FLT</span> &rarr; <strong>Airspeed</strong> &rarr; <strong>Planned TAS</strong>.</li>
+        <li><code>CAS</code>: <span class="key">1</span><span class="key">7</span><span class="key">0</span>, enter.</li>
+        <li><code>OAT</code>: <span class="key">3</span><span class="key">0</span><span class="key">+/&minus;</span>, enter.</li>
+        <li><code>PAlt</code>: <span class="key">1</span><span class="key">8</span><span class="key">0</span><span class="key">0</span><span class="key">0</span>, enter.</li>
+      </ol>
+      <p class="dc-res">TAS reads 220 kt</p>
+    </div>
+  </div>
+
+  <p class="dual-verdict"><strong>Notice what Method 1 bought you.</strong> It did
+  not give the answer. It gave you a <em>range</em>, and the confidence to reject
+  22.0 or 2,200 the instant the screen showed it. That is its whole job.</p>
+
+  <p class="sanity"><strong>Watch the temperature sign.</strong> &minus;30 is
+  entered as <span class="key">3</span><span class="key">0</span> then the
+  <span class="key">+/&minus;</span> key &mdash; digits first, sign afterwards.
+  Enter +30 by mistake and the CX-3 returns 247 knots with complete confidence.</p>
+</div>
+
+<!-- ================= 3. COMPRESSIBILITY ================= -->
+<h2 id="s3">3 &middot; Compressibility &mdash; the correction you will never make</h2>
+
+<div class="callout blue">
+  <div class="callout-title">The concept &mdash; and it is examinable in full</div>
+
+  <figure class="figure" style="position: relative;">
+    <img src="assets/ch06_fig02_pitot-compression.png" width="1600" height="900" alt="Cyan airflow streamlines compressing into a dense gold wedge at the mouth of a pitot tube on a wing leading edge at high speed.">
+    <div style="position: absolute; top: 45%; left: 5%; color: #f5f2e8; font-weight: bold; text-shadow: 1px 1px 2px #000;">calm air, evenly spaced</div>
+    <div style="position: absolute; top: 45%; right: 5%; width: 30%; color: #f5f2e8; font-weight: bold; text-shadow: 1px 1px 2px #000; text-align: right;">piled up &mdash; the tube senses more pressure than the speed justifies</div>
+  </figure>
+
+  <p>Air is springy. At low speed it flows politely around the pitot tube and the
+  instrument's assumptions hold. At high speed the air cannot get out of the way
+  fast enough: it <strong>piles up and compresses</strong> at the tube's mouth,
+  the pressure sensed is higher than the airflow really justifies, and the ASI
+  <strong>over-reads</strong>.</p>
+  <p>The instrument is calibrated to allow for compressibility at ISA sea level.
+  At any other density &mdash; which is to say, nearly always &mdash; that
+  allowance is wrong.</p>
+  <p>Correcting CAS for compressibility gives <strong>Equivalent Airspeed
+  (EAS)</strong>. Below about <strong>300 knots TAS</strong> the correction is
+  small enough to ignore entirely.</p>
+</div>
+
+<figure class="chart">
+<svg viewBox="0 0 820 400" width="820" height="400" role="img" aria-labelledby="cBt cBd">
+  <title id="cBt">Divergence between the compressible and simple airspeed calculations at flight level 350</title>
+  <desc id="cBd">Two curves of true airspeed against calibrated airspeed at FL350. Below 300 knots
+  true airspeed the two agree within a few knots. Above it they separate rapidly: at CAS 280 the
+  simple calculation over-reads by 30 knots, and at CAS 340 by 49 knots.</desc>
+  <rect width="820" height="400" fill="#1a2942"/>
+  <line x1="78" y1="314.6" x2="792" y2="314.6" stroke="#2c3e57" stroke-width="1"/><text x="68" y="318.6" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">200</text><line x1="78" y1="247.8" x2="792" y2="247.8" stroke="#2c3e57" stroke-width="1"/><text x="68" y="251.8" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">300</text><line x1="78" y1="181.0" x2="792" y2="181.0" stroke="#2c3e57" stroke-width="1"/><text x="68" y="185.0" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">400</text><line x1="78" y1="114.2" x2="792" y2="114.2" stroke="#2c3e57" stroke-width="1"/><text x="68" y="118.2" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">500</text><line x1="78" y1="47.4" x2="792" y2="47.4" stroke="#2c3e57" stroke-width="1"/><text x="68" y="51.4" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">600</text><text x="78.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">100</text><text x="197.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">140</text><text x="316.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">180</text><text x="435.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">220</text><text x="554.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">260</text><text x="673.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">300</text><text x="792.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">340</text><line x1="78" y1="247.8" x2="792" y2="247.8" stroke="#c0392b" stroke-width="2" stroke-dasharray="7 5"/><text x="86" y="239.8" fill="#e8776b" font-family="Georgia,serif" font-size="12.5" font-weight="bold">300 kt TAS — below this line the gap is noise</text>
+  <polygon points="78.0,329.3 137.5,306.0 197.0,283.1 256.5,260.4 316.0,238.0 375.5,216.1 435.0,194.5 494.5,173.2 554.0,152.4 613.5,131.9 673.0,111.8 732.5,92.1 792.0,72.7 792.0,40.1 732.5,64.1 673.0,88.1 613.5,112.2 554.0,136.2 494.5,160.1 435.0,184.1 375.5,208.2 316.0,232.2 256.5,256.1 197.0,280.2 137.5,304.2 78.0,328.2" fill="#c0392b" fill-opacity="0.18"/>
+  <polyline points="78.0,328.2 137.5,304.2 197.0,280.2 256.5,256.1 316.0,232.2 375.5,208.2 435.0,184.1 494.5,160.1 554.0,136.2 613.5,112.2 673.0,88.1 732.5,64.1 792.0,40.1" fill="none" stroke="#e8776b" stroke-width="2.5" stroke-dasharray="5 4"/>
+  <polyline points="78.0,329.3 137.5,306.0 197.0,283.1 256.5,260.4 316.0,238.0 375.5,216.1 435.0,194.5 494.5,173.2 554.0,152.4 613.5,131.9 673.0,111.8 732.5,92.1 792.0,72.7" fill="none" stroke="#c9a227" stroke-width="3"/>
+  <line x1="613.5" y1="131.9" x2="613.5" y2="112.2" stroke="#f5f2e8" stroke-width="1.5"/><text x="605.5" y="126.0" text-anchor="end" fill="#f5f2e8" font-family="monospace" font-size="12" font-weight="bold">30 kt</text><line x1="792.0" y1="72.7" x2="792.0" y2="40.1" stroke="#f5f2e8" stroke-width="1.5"/><text x="784.0" y="60.4" text-anchor="end" fill="#f5f2e8" font-family="monospace" font-size="12" font-weight="bold">49 kt</text>
+  <text x="78" y="20" fill="#f5f2e8" font-family="Georgia,serif" font-size="14" font-weight="bold">Why the cut-off is 300 knots</text>
+  <text x="786" y="74.1" text-anchor="end" fill="#e8776b" font-family="Georgia,serif" font-size="12">simple density calculation — over-reads</text>
+  <text x="786" y="160.9" text-anchor="end" fill="#c9a227" font-family="Georgia,serif" font-size="12">what the CX-3 actually computes</text>
+  <text x="410" y="390" text-anchor="middle" fill="#8fa3ba" font-family="Georgia,serif" font-size="12">calibrated airspeed at FL350 — knots</text>
+  <text x="16" y="191" fill="#8fa3ba" font-family="Georgia,serif" font-size="12" transform="rotate(-90 16 191)" text-anchor="middle">true airspeed — knots</text>
+</svg>
+<figcaption><strong>Figure 6.3</strong> &mdash; Why the cut-off sits at 300 knots.
+The gold curve is the honest, compressible answer. The dashed red is what you get
+if you ignore compressibility. Below 300 kt TAS they are within a few knots of
+each other. Above it, the error runs away &mdash; 30 knots at CAS 280, nearly 50
+at CAS 340.</figcaption>
+<div class="fig-legend">
+  <span class="lg"><i class="sw gold"></i>compressible &mdash; the true answer</span>
+  <span class="lg"><i class="sw" style="background:#e8776b"></i>simple density calculation &mdash; over-reads</span>
+  <span class="lg"><i class="sw" style="background:rgba(192,57,43,.45)"></i>the error you would carry</span>
+</div>
+</figure>
+
+<div class="callout green">
+  <div class="callout-title">And here is the good news &mdash; the CX-3 has already done it</div>
+  <p>The old disc needed two steps: read a TAS, then slide a separate
+  <em>compressibility</em> index and read a corrected TAS. The CX-3 needs
+  <strong>one</strong>.</p>
+  <p>Its Airspeed function does not use the simple density relationship. It solves
+  the full compressible equation internally, so <strong>the TAS it hands you is
+  already correct at any speed.</strong> There is no compressibility field, no
+  second step, and no menu to hunt for.</p>
+  <p><strong>You will never apply a compressibility correction on this machine.
+  If a question hands you one, it is testing whether you know that.</strong></p>
+</div>
+
+<div class="callout amber">
+  <div class="callout-title">The evidence, because this is a strong claim</div>
+  <p>The CX-3 User's Guide never uses the words "compressibility" or "EAS" &mdash;
+  a search of all 24 pages returns nothing. That alone would only prove the
+  <em>manual</em> is silent.</p>
+  <p>What settles it is the answer key to this chapter. Three of its ten
+  TAS problems come out above 300 knots, where the source applies a manual
+  compressibility correction on the disc. Running those same three through the
+  compressible equation reproduces the book's <strong>corrected</strong> answers
+  to within about 2 knots &mdash; while the simple density calculation misses them
+  by 23, 24 and 27 knots.</p>
+  <div class="isa-strip">
+  <table class="ref-table">
+    <thead><tr><th>Question</th><th>Simple density calc</th><th>Compressible calc</th><th>Book's corrected answer</th></tr></thead>
+    <tbody>
+      <tr><td>CAS 300 &middot; 30,000 ft &middot; &minus;40&nbsp;&deg;C</td><td>495</td><td><strong>470</strong></td><td>472</td></tr>
+      <tr><td>CAS 295 &middot; 31,000 ft &middot; &minus;53&nbsp;&deg;C</td><td>484</td><td><strong>459</strong></td><td>460</td></tr>
+      <tr><td>CAS 260 &middot; 35,000 ft &middot; &minus;45&nbsp;&deg;C</td><td>477</td><td><strong>452</strong></td><td>450</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>That is evidence about the <em>book</em>, though &mdash; it shows the
+  compressible answers are the right ones, not that this particular machine
+  produces them. <strong>So here is the evidence about the machine itself.</strong></p>
+
+  <p>The Guide prints its own worked examples to two decimal places. Take the one
+  it calls <strong>Required CAS</strong>: TAS 150 kt, OAT 41&nbsp;&deg;F, pressure
+  altitude 6,500 ft. The Guide states the machine answers <strong>135.58 KTS</strong>.
+  Work that backwards by both methods:</p>
+
+  <div class="isa-strip">
+  <table class="ref-table">
+    <thead><tr><th>Method</th><th>Gives</th><th>Against the Guide's 135.58</th></tr></thead>
+    <tbody>
+      <tr><td>Simple density &mdash; <code>CAS = TAS &times; &radic;&sigma;</code></td>
+          <td>135.39 kt</td><td>out by 0.19</td></tr>
+      <tr><td><strong>Compressible</strong> &mdash; TAS &rarr; Mach &rarr; q<sub>c</sub> &rarr; CAS</td>
+          <td><strong>135.58 kt</strong></td><td><strong>exact</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>The two methods are 0.19 knots apart at that speed and the Guide prints two
+  decimals, so the answer <em>can</em> tell them apart &mdash; and it lands on the
+  compressible one, to the last digit. The Guide's <strong>Actual TAS</strong>
+  example does the same thing in the opposite direction: CAS 150 MPH, TAT
+  +10&nbsp;&deg;C, 6,500 ft, answer <strong>166.64 MPH</strong>. Compressible gives
+  166.64; simple density gives 166.86.</p>
+
+  <p><strong>And one more tell.</strong> That second example also reports
+  OAT&nbsp;7&nbsp;&deg;C from a TAT of +10. Recovering the ram rise from those two
+  numbers gives the full compressible relation at a recovery factor of
+  <strong>1.0</strong> &mdash; the same physics, inside the same function. A machine
+  that ignored compressibility in the airspeed chain would not be using it for the
+  temperature.</p>
+
+  <p class="verified-note"><strong>Why this passage exists, and what it still does
+  not prove.</strong> Reviewers have challenged this claim more than once, and the
+  honest answer is that the first version of this chapter asserted it without showing
+  anything about the machine at all. The numbers above are from the CX-3 User's Guide
+  V1.3 and you can rerun them yourself. <strong>What remains unproved is the
+  behaviour at high Mach:</strong> every airspeed example the Guide prints sits near
+  Mach 0.23. So this is the compressible relation <em>confirmed</em> at low speed and
+  <em>assumed</em> to continue. One CAS-to-TAS run at Mach 0.8 on a physical unit
+  would close that gap for good.</p>
+
+  <p>The two-step disc procedure existed to patch the disc's own geometry. Teach
+  the theory in full &mdash; and teach that the procedure has gone.</p>
+</div>
+
+<!-- ================= 4. MACH ================= -->
+<h2 id="s4">4 &middot; TAS from Mach number &mdash; the easiest sum in the syllabus</h2>
+
+<p>Mach number is your speed compared with the speed of sound <em>in the air you
+are flying through right now</em>. And the speed of sound depends on exactly one
+thing: <strong>temperature</strong>.</p>
+
+<p>Not pressure. Not altitude. Not density. Temperature alone. Which is why this
+calculation has one input where the CAS route had three.</p>
+
+<div class="formula-block">
+  <div class="formula">TAS = Mach &times; 38.95 &times; &radic;(T in kelvin)</div>
+  <div class="formula-note">T in kelvin = SAT in &deg;C + 273 &nbsp;&middot;&nbsp;
+  no pressure altitude, no density, no compressibility step</div>
+</div>
+
+<div class="callout green">
+  <div class="callout-title">Where 38.95 comes from &mdash; so it is not a magic number</div>
+  <p>The speed of sound at ISA sea level is 661.5 knots, and ISA sea level is
+  288&nbsp;K. Divide one by the square root of the other:
+  661.5 &divide; &radic;288 = <strong>38.98</strong>. The constant is conventionally
+  written as <strong>38.95</strong>, which is the same relationship carried to the
+  precision the exam works to.</p>
+  <p>So the formula is really just: <em>the speed of sound today, times your
+  fraction of it.</em></p>
+</div>
+
+<h3>Worked example 6.3 &mdash; Mach 0.82 in the cruise</h3>
+
+<div class="worked">
+  <p class="problem"><strong>Problem.</strong> Corrected outside air temperature
+  <strong>&minus;47&nbsp;&deg;C</strong>, Mach number <strong>0.82</strong>.
+  What is the TAS?</p>
+
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the arithmetic</div>
+      <div class="dc-sub">genuinely faster than the box here</div>
+      <p class="dc-line"><strong>1.</strong> Convert to kelvin:<br>273 &minus; 47 = <strong>226 K</strong></p>
+      <p class="dc-line"><strong>2.</strong> Square root:<br>&radic;226 = <strong>15.03</strong></p>
+      <p class="dc-line"><strong>3.</strong> Multiply through:<br>0.82 &times; 38.95 &times; 15.03</p>
+      <p class="dc-res">TAS = 480 knots</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the CX-3</div>
+      <div class="dc-sub">two entries only</div>
+      <ol>
+        <li><span class="key">FLT</span> &rarr; <strong>Airspeed</strong> &rarr; <strong>Planned MACH#</strong>.</li>
+        <li><code>MACH</code>: press <span class="key">.</span><span class="key">8</span><span class="key">2</span>, enter.</li>
+        <li><code>OAT</code>: press <span class="key">4</span><span class="key">7</span><span class="key">+/&minus;</span>, enter.</li>
+        <li>Read <code>TAS</code>. <code>TAT</code> also appears &mdash; useful as a
+          cross-check against the probe.</li>
+      </ol>
+      <p class="dc-res">TAS reads 480 kt</p>
+    </div>
+  </div>
+
+  <p class="dual-verdict"><strong>This is the one place the formula genuinely
+  competes.</strong> Three keystrokes on a calculator against navigating two menu
+  levels. Under exam time pressure, either is fine &mdash; but you should be able
+  to do this one in your head to within ten knots.</p>
+
+  <p class="sanity"><strong>Sanity check.</strong> At around &minus;50&nbsp;&deg;C
+  the speed of sound is close to <strong>585 knots</strong>. Eight-tenths of 585 is
+  about 470. The answer is 480. Right neighbourhood.</p>
+</div>
+
+<div class="callout amber">
+  <div class="callout-title">Where students lose the mark</div>
+  <p>Two traps, both about temperature.</p>
+  <p><strong>First:</strong> the formula wants <strong>kelvin</strong>, and kelvin
+  is never negative. If you find yourself taking the square root of a negative
+  number you have skipped the +273.</p>
+  <p><strong>Second:</strong> it wants <strong>SAT</strong>, the real air
+  temperature &mdash; not TAT, which is what the probe reads. At Mach 0.82 the ram
+  rise is roughly 30&nbsp;&deg;C. Feed TAT into this formula and you will be about
+  30 knots fast, with a completely plausible-looking answer.</p>
+</div>
+
+<!-- ================= 5. TRUE ALTITUDE ================= -->
+<h2 id="s5">5 &middot; True altitude &mdash; the one that can hurt you</h2>
+
+
+  <figure class="figure" style="position: relative;">
+    <img src="assets/ch06_fig03_cold-approach-terrain.png" width="1600" height="900" alt="An airliner on approach at dusk over snow-covered ridgelines, the nearest crest close beneath its flight path in freezing winter air.">
+    <div style="position: absolute; top: 20%; left: 50%; color: #f5f2e8; font-weight: bold; text-shadow: 1px 1px 2px #000; transform: translateX(-50%);">the altimeter reads the cleared altitude</div>
+    <div style="position: absolute; bottom: 30%; left: 50%; color: #f5f2e8; font-weight: bold; text-shadow: 1px 1px 2px #000; transform: translateX(-50%);">you are lower than it says</div>
+  </figure>
+
+  <div class="callout red">
+  <div class="callout-title">This is a terrain-clearance calculation, not a bookkeeping one</div>
+  <p>Everything else in this chapter affects your flight plan. This one affects
+  whether you clear the ridge.</p>
+</div>
+
+<p>Your altimeter is a barometer with a scale printed in feet. It converts pressure
+to height using the <strong>ISA</strong> relationship &mdash; the standard day.
+When the real atmosphere is colder than standard, the air is denser, pressure falls
+away faster with height, and you reach the "3,000-foot pressure" sooner than you
+should.</p>
+
+<p>So the needle says 3,000 and you are lower. <strong>Cold means low.</strong></p>
+
+<figure class="diagram">
+<svg viewBox="0 0 820 400" width="820" height="400" role="img" aria-labelledby="taT taD">
+  <title id="taT">Indicated against true altitude on a cold day</title>
+  <desc id="taD">On a standard day an indicated 20,000 feet is a true 20,000 feet. On a day that is
+  10 degrees colder than standard, the same indicated 20,000 feet is a true 19,200 feet — the
+  aircraft sits 800 feet lower than the altimeter reports, and that margin is lost from terrain
+  clearance.</desc>
+
+  <rect width="820" height="400" fill="#fbfaf7"/>
+
+  <!-- ground -->
+  <path fill="none" d="M0,352 L820,352" stroke="#7a6a48" stroke-width="2"/>
+  <path d="M470,352 L560,232 L620,282 L700,196 L790,352 Z" fill="#8a7a58" stroke="#5f5335" stroke-width="1.5"/>
+  <text x="640" y="340" text-anchor="middle" fill="#4a4128" font-family="Georgia,serif" font-size="12">high ground</text>
+
+  <!-- scale -->
+  <line x1="86" y1="72" x2="86" y2="352" stroke="#22303f" stroke-width="1.5"/>
+  <text x="70" y="76" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">20 000</text>
+  <text x="70" y="128" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">19 200</text>
+  <text x="70" y="356" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">0</text>
+
+  <!-- standard day -->
+  <line x1="86" y1="72" x2="400" y2="72" stroke="#1e8449" stroke-width="2.5" stroke-dasharray="7 4"/>
+  <g transform="translate(228,72)">
+    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#1e8449"/>
+  </g>
+  <text x="228" y="52" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="13" font-weight="bold">STANDARD DAY</text>
+  <text x="228" y="98" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="12.5">altimeter 20 000 &middot; you are at 20 000</text>
+
+  <!-- cold day -->
+  <line x1="440" y1="72" x2="800" y2="72" stroke="#8fa3ba" stroke-width="1.5" stroke-dasharray="4 5"/>
+  <text x="620" y="64" text-anchor="middle" fill="#5a6b7d" font-family="Georgia,serif" font-size="12">what the altimeter claims &mdash; 20 000</text>
+
+  <line x1="440" y1="128" x2="800" y2="128" stroke="#c0392b" stroke-width="2.5"/>
+  <g transform="translate(600,128)">
+    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#c0392b"/>
+  </g>
+  <text x="620" y="44" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="13" font-weight="bold">ISA &minus;10 DAY</text>
+  <text x="620" y="152" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5">you are actually at 19 200</text>
+
+  <!-- the gap -->
+  <line x1="420" y1="72" x2="420" y2="128" stroke="#c0392b" stroke-width="2"/>
+  <path d="M415,77 L420,70 L425,77" fill="#c0392b"/>
+  <path d="M415,123 L420,130 L425,123" fill="#c0392b"/>
+  <rect x="330" y="88" width="80" height="24" rx="4" fill="#fdf1ef" stroke="#c0392b" stroke-width="1.4"/>
+  <text x="370" y="105" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="13" font-weight="bold">800 ft</text>
+
+  <text x="410" y="196" text-anchor="middle" fill="#22303f" font-family="Georgia,serif" font-size="13.5" font-weight="bold">800 feet you thought you had, and do not</text>
+</svg>
+<figcaption><strong>Figure 6.4</strong> &mdash; Same altimeter reading, same
+setting, two different days. The cold day puts you 800 feet lower than the
+instrument reports &mdash; and the instrument never indicates that anything is
+wrong.</figcaption>
+<div class="fig-legend">
+  <span class="lg"><i class="sw" style="background:#1e8449"></i>standard day &mdash; indicated equals true</span>
+  <span class="lg"><i class="sw" style="background:#c0392b"></i>cold day &mdash; true altitude is lower</span>
+</div>
+</figure>
+
+<div class="callout amber">
+  <div class="callout-title">The CX-3 stops here &mdash; one of the module&rsquo;s gaps</div>
+  <p>The CX-3's Altitude function outputs <strong>pressure altitude</strong> and
+  <strong>density altitude</strong>. <strong>True altitude is not among them</strong>,
+  and the words do not appear anywhere in its User's Guide.</p>
+  <p>This one is yours to calculate. It is also the one most worth being able to
+  do without any instrument at all.</p>
+</div>
+
+<div class="formula-block">
+  <div class="formula">True Alt = Indicated Alt + ( ISA Deviation &divide; 273 &times; Indicated Alt )</div>
+  <div class="formula-note">and the field version, near enough for a mental check:
+  &nbsp; <strong>4 feet per 1,000 feet, per degree of deviation</strong></div>
+</div>
+
+<div class="callout green">
+  <div class="callout-title">Getting ISA deviation right &mdash; do this first, every time</div>
+  <p><strong>ISA temperature = 15 &minus; 2 &times; (altitude in thousands of feet)</strong></p>
+  <p>At 20,000 feet: 15 &minus; 40 = <strong>&minus;25&nbsp;&deg;C</strong>.
+  If the actual SAT is &minus;35, the deviation is
+  &minus;35 &minus; (&minus;25) = <strong>ISA &minus;10</strong>.</p>
+  <p><em>The strict lapse rate is 1.98&nbsp;&deg;C per 1,000 ft. Using 2 costs you
+  a fraction of a degree and saves you an error under pressure.</em></p>
+</div>
+
+<h3>Worked example 6.4 &mdash; the cold cruise</h3>
+
+<div class="worked">
+  <p class="problem"><strong>Problem.</strong> Indicated altitude
+  <strong>20,000 feet</strong>. SAT <strong>&minus;35&nbsp;&deg;C</strong>.
+  What is your true altitude?</p>
+
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the formula</div>
+      <div class="dc-sub">the only route — there is no CX-3 function</div>
+      <p class="dc-line"><strong>1.</strong> ISA temp at 20,000 ft:<br>15 &minus; (2 &times; 20) = <strong>&minus;25&nbsp;&deg;C</strong></p>
+      <p class="dc-line"><strong>2.</strong> Deviation:<br>&minus;35 &minus; (&minus;25) = <strong>ISA &minus;10</strong></p>
+      <p class="dc-line"><strong>3.</strong> Apply 4 ft per 1,000 ft per degree:<br>&minus;10 &times; 4 &times; 20 = <strong>&minus;800 ft</strong></p>
+      <p class="dc-line"><strong>4.</strong> 20,000 &minus; 800</p>
+      <p class="dc-res">True altitude = 19 200 ft</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the CX-3</div>
+      <div class="dc-sub">supporting role only</div>
+      <p>There is <strong>no true-altitude function</strong>. The machine can still
+      help with two of the four steps:</p>
+      <ol>
+        <li><span class="key">FLT</span> &rarr; <strong>Standard Atmosphere</strong>:
+          enter <code>Alt</code> 20 000 to read the ISA <code>OAT</code> instead of
+          working it out &mdash; that is step 1 done.</li>
+        <li><span class="key">CALC</span> for the multiplication in step 3.</li>
+      </ol>
+      <p class="dc-res">the subtraction is yours</p>
+    </div>
+  </div>
+
+  <p class="dual-verdict"><strong>Why the sign is the whole question.</strong> Cold
+  is <em>minus</em>. Warm is <em>plus</em>. Get that backwards and you will report
+  19,200 as 20,800 &mdash; and on an approach you will believe you have 1,600 feet
+  of margin you do not have.</p>
+
+  <p class="sanity"><strong>Sanity check, and make it a reflex.</strong> The day is
+  colder than standard, so <strong>true altitude must be the smaller number</strong>.
+  19,200 &lt; 20,000. If your answer came out above the indicated altitude on a cold
+  day, you added when you should have subtracted &mdash; go back.</p>
+</div>
+
+<div class="callout red">
+  <div class="callout-title">What this looks like at 3,000 feet, which is where it matters</div>
+  <p>The scenario at the top of this chapter: 3,000 feet indicated, OAT
+  &minus;25&nbsp;&deg;C.</p>
+  <p>ISA at 3,000 ft is 15 &minus; 6 = <strong>+9&nbsp;&deg;C</strong>. So
+  &minus;25 is <strong>ISA &minus;34</strong>. Applying the rule:
+  &minus;34 &times; 4 &times; 3 = <strong>&minus;408 feet</strong>.</p>
+  <p>You are at roughly <strong>2,590 feet</strong> with 3,000 on the dial. On a
+  non-precision approach into terrain, that is most of your margin gone &mdash;
+  and every aircraft on the same approach in the same air has the same error, so
+  nobody is going to warn you.</p>
+  <p><strong>This is why cold-temperature altimeter corrections exist.</strong>
+  The arithmetic you just learned is the reason behind the table in the AIP.</p>
+</div>
+
+<!-- ================= 6. DENSITY ALTITUDE ================= -->
+<h2 id="s6">6 &middot; Density altitude &mdash; the one about performance</h2>
+
+<div class="callout blue">
+  <div class="callout-title">It is not a height. Say that to yourself twice.</div>
+
+  <figure class="figure" style="position: relative;">
+    <img src="assets/ch06_fig04_hot-and-high.png" width="1600" height="900" alt="A light twin still on the ground far down a long runway at a hot high-altitude aerodrome, heat shimmer distorting the surface and the mountains beyond.">
+    <div style="position: absolute; top: 60%; left: 35%; color: #f5f2e8; font-weight: bold; text-shadow: 1px 1px 2px #000;">same aerodrome, same weight</div>
+    <div style="position: absolute; top: 45%; left: 70%; color: #f5f2e8; font-weight: bold; text-shadow: 1px 1px 2px #000;">the air thinks it is 4,000 feet higher</div>
+  </figure>
+
+  <p>Density altitude has <strong>nothing to do with vertical distance</strong>.
+  You cannot fly to it and it will not appear on any altimeter.</p>
+  <p>It is this: <em>the altitude in the standard atmosphere at which the air
+  would be as thin as the air you are actually sitting in.</em> It is a way of
+  saying "my engine and my wing think they are at 9,000 feet today" when the
+  aerodrome is at 5,500.</p>
+  <p>It drives <strong>takeoff run, climb rate and engine power</strong>. Most
+  performance charts build it into their entering arguments; when yours does not,
+  you calculate it.</p>
+</div>
+
+<figure class="diagram">
+<svg viewBox="0 0 820 350" width="820" height="350" role="img" aria-labelledby="daT daD">
+  <title id="daT">Density altitude on a hot day at a high aerodrome</title>
+  <desc id="daD">An aerodrome sits at 5,500 feet pressure altitude. On a standard day the aircraft
+  performs as though at 5,500 feet. At 35 degrees Celsius — 31 degrees warmer than standard — the
+  air is as thin as it would be at 9,220 feet, so the aircraft performs as though nearly 4,000 feet
+  higher, with a longer takeoff run and a poorer climb.</desc>
+
+  <rect width="820" height="350" fill="#fbfaf7"/>
+
+  <!-- vertical scale -->
+  <line x1="96" y1="40" x2="96" y2="292" stroke="#22303f" stroke-width="1.5"/>
+  <text x="80" y="88" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">9 220</text>
+  <text x="80" y="212" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">5 500</text>
+  <text x="80" y="296" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">0</text>
+  <line x1="90" y1="84" x2="102" y2="84" stroke="#22303f" stroke-width="1.5"/>
+  <line x1="90" y1="208" x2="102" y2="208" stroke="#22303f" stroke-width="1.5"/>
+  <line x1="90" y1="292" x2="102" y2="292" stroke="#22303f" stroke-width="1.5"/>
+
+  <!-- ground / aerodrome -->
+  <rect x="130" y="208" width="290" height="84" fill="#c9bfa4"/>
+  <path fill="none" d="M130,208 L420,208" stroke="#7a6a48" stroke-width="2.5"/>
+  <text x="275" y="250" text-anchor="middle" fill="#4a4128" font-family="Georgia,serif" font-size="12.5">aerodrome &mdash; 5 500 ft pressure altitude</text>
+
+  <!-- standard day aircraft -->
+  <g transform="translate(210,208)">
+    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#1e8449"/>
+  </g>
+  <text x="210" y="192" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="12" font-weight="bold">standard day, +4&deg;C</text>
+  <path d="M240,196 L330,150" fill="none" stroke="#1e8449" stroke-width="2.5"/>
+  <path d="M330,150 L318,152 L325,161 Z" fill="#1e8449"/>
+  <text x="352" y="146" fill="#146034" font-family="Georgia,serif" font-size="12">healthy climb</text>
+
+  <!-- hot day: the air behaves like 9220 -->
+  <rect x="470" y="84" width="300" height="208" fill="#fdf1ef" opacity="0.75"/>
+  <line x1="470" y1="84" x2="770" y2="84" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="7 4"/>
+  <text x="620" y="74" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5" font-weight="bold">the air here is as thin as 9 220 ft</text>
+
+  <path fill="none" d="M470,208 L770,208" stroke="#7a6a48" stroke-width="2.5"/>
+  <rect x="470" y="208" width="300" height="84" fill="#c9bfa4"/>
+  <text x="620" y="250" text-anchor="middle" fill="#4a4128" font-family="Georgia,serif" font-size="12.5">same aerodrome, same 5 500 ft</text>
+
+  <g transform="translate(540,208)">
+    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#c0392b"/>
+  </g>
+  <text x="540" y="192" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12" font-weight="bold">hot day, +35&deg;C</text>
+  <path d="M570,196 L690,178" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+  <path d="M690,178 L678,174 L680,185 Z" fill="#c0392b"/>
+  <text x="700" y="172" fill="#8e2c21" font-family="Georgia,serif" font-size="12">flat</text>
+
+  <!-- the penalty bracket -->
+  <line x1="446" y1="84" x2="446" y2="208" stroke="#c0392b" stroke-width="2"/>
+  <path d="M441,89 L446,82 L451,89" fill="#c0392b"/>
+  <path d="M441,203 L446,210 L451,203" fill="#c0392b"/>
+  <rect x="386" y="132" width="120" height="26" rx="4" fill="#fdf1ef" stroke="#c0392b" stroke-width="1.4"/>
+  <text x="446" y="150" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5" font-weight="bold">3 720 ft penalty</text>
+
+  <text x="410" y="326" text-anchor="middle" fill="#22303f" font-family="Georgia,serif" font-size="13.5" font-weight="bold">The aeroplane never left 5 500 feet. Its performance did.</text>
+</svg>
+<figcaption><strong>Figure 6.5</strong> &mdash; Hot and high. The aerodrome does
+not move; the air does. At +35&nbsp;&deg;C this 5,500-foot aerodrome performs like
+a 9,220-foot one &mdash; longer roll, flatter climb, less power.</figcaption>
+<div class="fig-legend">
+  <span class="lg"><i class="sw" style="background:#1e8449"></i>standard day performance</span>
+  <span class="lg"><i class="sw" style="background:#c0392b"></i>hot day &mdash; density altitude penalty</span>
+</div>
+</figure>
+
+<div class="formula-block">
+  <div class="formula">Density Alt = Pressure Alt + ( ISA Deviation &times; 120 )</div>
+  <div class="formula-note">120 feet per degree. The strict factor is 118.8 &mdash;
+  120 is close enough and far easier under pressure.</div>
+</div>
+
+<h3>Worked example 6.5 &mdash; a hot afternoon at a high aerodrome</h3>
+
+<div class="worked">
+  <p class="problem"><strong>Problem.</strong> Pressure altitude
+  <strong>5,500 feet</strong>. SAT <strong>+35&nbsp;&deg;C</strong>.
+  What is the density altitude?</p>
+
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the arithmetic</div>
+      <div class="dc-sub">three steps, no instrument</div>
+      <p class="dc-line"><strong>1.</strong> ISA temp at 5,500 ft:<br>15 &minus; (2 &times; 5.5) = <strong>+4&nbsp;&deg;C</strong></p>
+      <p class="dc-line"><strong>2.</strong> Deviation:<br>+35 &minus; (+4) = <strong>ISA +31</strong></p>
+      <p class="dc-line"><strong>3.</strong> Apply 120 ft per degree:<br>31 &times; 120 = <strong>+3 720 ft</strong></p>
+      <p class="dc-line"><strong>4.</strong> 5 500 + 3 720</p>
+      <p class="dc-res">Density altitude = 9 220 ft</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the CX-3</div>
+      <div class="dc-sub">this one it does natively</div>
+      <ol>
+        <li><span class="key">FLT</span> &rarr; <strong>Altitude</strong> &rarr; <strong>Density Altitude</strong>.</li>
+        <li><code>IAlt</code>: <span class="key">5</span><span class="key">5</span><span class="key">0</span><span class="key">0</span>, enter.</li>
+        <li><code>Baro</code>: set <span class="key">1</span><span class="key">0</span><span class="key">1</span><span class="key">3</span> &mdash; with standard pressure set, indicated <em>is</em> pressure altitude.</li>
+        <li><code>OAT</code>: <span class="key">3</span><span class="key">5</span>, enter.</li>
+        <li>Read <code>DAlt</code> &mdash; and <code>PAlt</code> appears alongside it.</li>
+      </ol>
+      <p class="dc-res">DAlt reads about 9 200 ft</p>
+    </div>
+  </div>
+
+  <p class="dual-verdict"><strong>Expect the two to differ by a hundred feet or
+  so.</strong> The 120-foot rule is a straight-line approximation of a curve; the
+  machine solves it properly. Neither is "wrong" &mdash; and on a multiple-choice
+  paper the options are almost never spaced that finely. <strong>Use the CX-3, and
+  keep the formula as the check that you entered the right numbers.</strong></p>
+
+  <p class="sanity"><strong>Sanity check.</strong> The day is hot, so density
+  altitude must be <em>higher</em> than pressure altitude. 9,220 &gt; 5,500.
+  On a cold day it goes the other way &mdash; and a density altitude below the
+  aerodrome elevation is perfectly normal in winter.</p>
+</div>
+
+<div class="callout amber">
+  <div class="callout-title">The old instrument was genuinely bad at this one</div>
+  <p>The source text admits it plainly: the disc's density-altitude window has
+  divisions so small that it "can sometimes be difficult to separate closely spaced
+  examination answer options."</p>
+  <p>Look at the answer key on this chapter's fourth grid &mdash; the book prints
+  <em>two</em> columns, a nav-computer answer and a formula answer, and they
+  disagree by up to <strong>700 feet</strong>. That is not a teaching device. That
+  is an instrument failing to resolve the question.</p>
+  <p><strong>The CX-3 has no window and nothing to squint at.</strong> It returns a
+  number. This is the single clearest upgrade in the whole module.</p>
+</div>
+
+<!-- ================= 7. DECISION ================= -->
+<h2 id="s7">7 &middot; Which route do I take?</h2>
+
+<p class="card-intro">Four calculations, and they are easy to confuse under time
+pressure because three of them involve altitude and a temperature. This is how you
+tell them apart in one look.</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 820 520" width="820" height="520" role="img" aria-labelledby="dcT dcD">
+  <title id="dcT">Decision chart for the four Chapter 6 calculations</title>
+  <desc id="dcD">Start by asking what the question wants. If it wants a speed, and gives Mach, use
+  Airspeed Planned MACH. If it wants a speed from CAS, use Airspeed Planned TAS, which handles
+  compressibility itself. If it wants a height for terrain clearance, that is true altitude and
+  there is no CX-3 function — use the formula. If it wants a height for performance, that is
+  density altitude and the CX-3 Altitude function does it.</desc>
+
+  <defs>
+    <marker id="d6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c9a227" stroke="none"/>
+    </marker>
+  </defs>
+
+  <rect x="290" y="14" width="240" height="44" rx="6" fill="#1a2942" stroke="#c9a227" stroke-width="2"/>
+  <text x="410" y="42" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="15">What is the question asking for?</text>
+
+  <path d="M410,58 L410,80 L210,80 L210,104" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#d6)"/>
+  <path d="M410,58 L410,80 L610,80 L610,104" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#d6)"/>
+
+  <rect x="110" y="108" width="200" height="38" rx="5" fill="#eef6fa" stroke="#2e86ab" stroke-width="1.8"/>
+  <text x="210" y="132" text-anchor="middle" fill="#1d5f7d" font-family="Georgia,serif" font-size="14" font-weight="bold">a SPEED</text>
+
+  <rect x="510" y="108" width="200" height="38" rx="5" fill="#fdf6e8" stroke="#b9770e" stroke-width="1.8"/>
+  <text x="610" y="132" text-anchor="middle" fill="#8a5a08" font-family="Georgia,serif" font-size="14" font-weight="bold">a HEIGHT</text>
+
+  <!-- speed branch -->
+  <path d="M210,146 L210,168 L130,168 L130,196" fill="none" stroke="#2e86ab" stroke-width="1.8" marker-end="url(#d6)"/>
+  <path d="M210,146 L210,168 L290,168 L290,196" fill="none" stroke="#2e86ab" stroke-width="1.8" marker-end="url(#d6)"/>
+  <text x="130" y="188" text-anchor="middle" fill="#41616f" font-family="Georgia,serif" font-size="11.5">given Mach</text>
+  <text x="290" y="188" text-anchor="middle" fill="#41616f" font-family="Georgia,serif" font-size="11.5">given CAS</text>
+
+  <rect x="34" y="200" width="192" height="62" rx="5" fill="#1a2942" stroke="#2e86ab" stroke-width="1.6"/>
+  <text x="130" y="221" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="13">TAS from Mach</text>
+  <text x="130" y="240" text-anchor="middle" fill="#7fc4e4" font-family="monospace" font-size="11">Airspeed &#8594; Planned MACH#</text>
+  <text x="130" y="255" text-anchor="middle" fill="#9db4c6" font-family="Georgia,serif" font-size="11">needs temperature only</text>
+
+  <rect x="238" y="200" width="192" height="62" rx="5" fill="#1a2942" stroke="#2e86ab" stroke-width="1.6"/>
+  <text x="334" y="221" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="13">TAS from CAS</text>
+  <text x="334" y="240" text-anchor="middle" fill="#7fc4e4" font-family="monospace" font-size="11">Airspeed &#8594; Planned TAS</text>
+  <text x="334" y="255" text-anchor="middle" fill="#9db4c6" font-family="Georgia,serif" font-size="11">compressibility handled inside</text>
+
+  <!-- height branch -->
+  <path d="M610,146 L610,168 L530,168 L530,196" fill="none" stroke="#b9770e" stroke-width="1.8" marker-end="url(#d6)"/>
+  <path d="M610,146 L610,168 L700,168 L700,196" fill="none" stroke="#b9770e" stroke-width="1.8" marker-end="url(#d6)"/>
+  <text x="524" y="188" text-anchor="middle" fill="#7a5a10" font-family="Georgia,serif" font-size="11.5">for terrain</text>
+  <text x="706" y="188" text-anchor="middle" fill="#7a5a10" font-family="Georgia,serif" font-size="11.5">for performance</text>
+
+  <rect x="438" y="200" width="188" height="62" rx="5" fill="#fdf1ef" stroke="#c0392b" stroke-width="1.8"/>
+  <text x="532" y="221" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="13" font-weight="bold">TRUE ALTITUDE</text>
+  <text x="532" y="240" text-anchor="middle" fill="#3a3020" font-family="Georgia,serif" font-size="11.5">no CX-3 function</text>
+  <text x="532" y="255" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="11.5">formula &mdash; 4 ft / 1000 / degree</text>
+
+  <rect x="638" y="200" width="150" height="62" rx="5" fill="#1a2942" stroke="#2e86ab" stroke-width="1.6"/>
+  <text x="713" y="221" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="13">Density altitude</text>
+  <text x="713" y="240" text-anchor="middle" fill="#7fc4e4" font-family="monospace" font-size="11">Altitude &#8594; DAlt</text>
+  <text x="713" y="255" text-anchor="middle" fill="#9db4c6" font-family="Georgia,serif" font-size="11">check with &times;120</text>
+
+  <!-- the tell -->
+  <rect x="34" y="300" width="754" height="88" rx="6" fill="#eef8f1" stroke="#1e8449" stroke-width="1.8"/>
+  <text x="410" y="324" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="14" font-weight="bold">The tell, when two of them look alike</text>
+  <text x="410" y="348" text-anchor="middle" fill="#20301f" font-family="Georgia,serif" font-size="13">True altitude and density altitude both take an altitude and a temperature and give you a height.</text>
+  <text x="410" y="368" text-anchor="middle" fill="#20301f" font-family="Georgia,serif" font-size="13">Ask what the answer is <tspan font-style="italic">for</tspan>: clearing the ground, or predicting the climb.</text>
+
+  <rect x="34" y="404" width="754" height="96" rx="6" fill="#fdf6e8" stroke="#b9770e" stroke-width="1.8"/>
+  <text x="410" y="428" text-anchor="middle" fill="#8a5a08" font-family="Georgia,serif" font-size="14" font-weight="bold">Two sign checks that catch almost every error in this chapter</text>
+  <text x="410" y="452" text-anchor="middle" fill="#3a3020" font-family="Georgia,serif" font-size="13">COLD day &#8594; true altitude is LOWER than indicated. You have less clearance, not more.</text>
+  <text x="410" y="472" text-anchor="middle" fill="#3a3020" font-family="Georgia,serif" font-size="13">HOT day &#8594; density altitude is HIGHER than pressure altitude. You have less performance.</text>
+  <text x="410" y="492" text-anchor="middle" fill="#7a6a48" font-family="Georgia,serif" font-size="12" font-style="italic">Both bad conditions push the number the way that costs you something. That is how you remember them.</text>
+</svg>
+<figcaption><strong>Figure 6.6</strong> &mdash; Four calculations, two questions.
+What is being asked for, and what is it for? Everything else follows.</figcaption>
+</figure>
+
+<div class="callout green">
+  <div class="callout-title">The mnemonic that actually works</div>
+  <p><strong>Bad weather always takes something away from you.</strong></p>
+  <p>Cold takes away your <em>terrain clearance</em> &mdash; true altitude drops
+  below indicated. Heat takes away your <em>performance</em> &mdash; density
+  altitude climbs above pressure altitude.</p>
+  <p>If your answer gives you something extra on a bad day, you have a sign error.</p>
+</div>
+
+<hr class="section-rule">
+
+<h2 id="questions">Questions</h2>
+
+<p>Four grids. Work every row. Answers follow the last table &mdash; do not read ahead.</p>
+
+<h3>Q1 &middot; TAS from CAS</h3>
+<div class="q-table-wrap">
+<table class="q-table">
+  <thead><tr><th>#</th><th>CAS (kt)</th><th>Pressure altitude (ft)</th><th>SAT (&deg;C)</th><th>TAS (kt)</th></tr></thead>
+  <tbody><tr><td>1</td><td>140</td><td>10,000</td><td>-10</td><td></td></tr><tr><td>2</td><td>175</td><td>8,000</td><td>+5</td><td></td></tr><tr><td>3</td><td>220</td><td>15,000</td><td>-22</td><td></td></tr><tr><td>4</td><td>300</td><td>30,000</td><td>-40</td><td></td></tr><tr><td>5</td><td>180</td><td>12,500</td><td>-25</td><td></td></tr><tr><td>6</td><td>165</td><td>9,000</td><td>+7</td><td></td></tr><tr><td>7</td><td>163</td><td>11,000</td><td>+10</td><td></td></tr><tr><td>8</td><td>295</td><td>31,000</td><td>-53</td><td></td></tr><tr><td>9</td><td>160</td><td>12,000</td><td>-10</td><td></td></tr><tr><td>10</td><td>260</td><td>35,000</td><td>-45</td><td></td></tr></tbody>
+</table>
+</div>
+
+<h3>Q2 &middot; TAS from Mach number</h3>
+<div class="q-table-wrap">
+<table class="q-table">
+  <thead><tr><th>#</th><th>Mach No.</th><th>SAT (&deg;C)</th><th>TAS (kt)</th></tr></thead>
+  <tbody><tr><td>1</td><td>.82</td><td>&minus;50</td><td></td></tr><tr><td>2</td><td>.66</td><td></td><td>375</td></tr><tr><td>3</td><td></td><td>&minus;38</td><td>425</td></tr><tr><td>4</td><td>.77</td><td>&minus;60</td><td></td></tr><tr><td>5</td><td>.92</td><td></td><td>580</td></tr><tr><td>6</td><td></td><td>&minus;47</td><td>415</td></tr></tbody>
+</table>
+</div>
+
+<h3>Q3 &middot; True altitude</h3>
+<div class="q-table-wrap">
+<table class="q-table">
+  <thead><tr><th>#</th><th>Indicated altitude (ft)</th><th>SAT (&deg;C)</th><th>True altitude (ft)</th></tr></thead>
+  <tbody><tr><td>1</td><td>10,000</td><td>-20</td><td></td></tr><tr><td>2</td><td>18,000</td><td>-30</td><td></td></tr><tr><td>3</td><td>6,000</td><td>+10</td><td></td></tr><tr><td>4</td><td>27,000</td><td>-50</td><td></td></tr><tr><td>5</td><td>21,500</td><td>-35</td><td></td></tr><tr><td>6</td><td>8,000</td><td>+10</td><td></td></tr></tbody>
+</table>
+</div>
+
+<h3>Q4 &middot; Density altitude</h3>
+<div class="q-table-wrap">
+<table class="q-table">
+  <thead><tr><th>#</th><th>Pressure altitude (ft)</th><th>SAT (&deg;C)</th><th>Density altitude (ft)</th></tr></thead>
+  <tbody><tr><td>1</td><td>10,000</td><td>+15</td><td></td></tr><tr><td>2</td><td>6,000</td><td>+20</td><td></td></tr><tr><td>3</td><td>27,000</td><td>-40</td><td></td></tr><tr><td>4</td><td>23,000</td><td>-22</td><td></td></tr><tr><td>5</td><td>25,000</td><td>-45</td><td></td></tr><tr><td>6</td><td>29,000</td><td>-38</td><td></td></tr></tbody>
+</table>
+</div>
+
+<hr class="section-rule">
+
+<h2 id="answers">Answers</h2>
+
+<div class="callout blue">
+  <div class="callout-title">How these were produced</div>
+  <p>Every TAS below was computed from the full compressible relation &mdash; the
+  same one the CX-3 solves internally &mdash; not read off a disc. Every altitude
+  came from the stated formula. <strong>Every row differs from the older printed key
+  by one to three knots</strong>, because that key predates the compressible method
+  the CX-3 uses. The difference is explained underneath, once, rather than marked on
+  thirty separate rows.</p>
+</div>
+
+<h3>A1 &middot; TAS from CAS</h3>
+
+<p><strong>The method is the same for all ten rows.</strong> Full walkthrough for
+the first two; after that the entries never change, only the numbers.</p>
+
+<div class="worked compact">
+  <p class="problem"><strong>Row 1 in full.</strong> CAS 140, pressure altitude 10,000 ft, SAT &minus;10&nbsp;&deg;C.</p>
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the estimate</div>
+      <p class="dc-line">10,000 ft &rarr; roughly +20%</p>
+      <p class="dc-line">140 &times; 1.20 = 168</p>
+      <p class="dc-line">ISA at 10,000 is &minus;5, so &minus;10 is ISA&nbsp;&minus;5 &mdash; denser air, expect a shade less.</p>
+      <p class="dc-res">expect about 160&ndash;168</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the CX-3</div>
+      <ol>
+        <li><span class="key">FLT</span> &rarr; Airspeed &rarr; Planned TAS</li>
+        <li><code>CAS</code> <span class="key">1</span><span class="key">4</span><span class="key">0</span></li>
+        <li><code>OAT</code> <span class="key">1</span><span class="key">0</span><span class="key">+/&minus;</span></li>
+        <li><code>PAlt</code> <span class="key">1</span><span class="key">0</span><span class="key">0</span><span class="key">0</span><span class="key">0</span></li>
+      </ol>
+      <p class="dc-res">TAS 161 kt</p>
+    </div>
+  </div>
+</div>
+
+<div class="worked compact">
+  <p class="problem"><strong>Row 4 in full &mdash; and this one goes above 300 knots.</strong> CAS 300, 30,000 ft, SAT &minus;40&nbsp;&deg;C.</p>
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the estimate</div>
+      <p class="dc-line">30,000 ft &rarr; roughly +60%</p>
+      <p class="dc-line">300 &times; 1.60 = 480</p>
+      <p class="dc-line">Well above 300 kt, so on the old disc this is where you would stop and apply a second correction.</p>
+      <p class="dc-res">expect 460&ndash;480</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the CX-3</div>
+      <ol>
+        <li>Same three entries as row 1.</li>
+        <li>Read <code>TAS</code>. <strong>Stop there.</strong></li>
+        <li>No compressibility step. The machine has already done it.</li>
+      </ol>
+      <p class="dc-res">TAS 470 kt &middot; MACH 0.79</p>
+    </div>
+  </div>
+  <p class="sanity"><strong>This is the row that proves the point.</strong> Without
+  compressibility the answer would be 495. With it, 470. The CX-3 gives 470 in one
+  step; the disc needed two and landed on 472.</p>
+</div>
+
+<p class="same-method">Rows 2, 3 and 5&ndash;10 are the identical three entries. Enter CAS, OAT and PAlt; read TAS.</p>
+
+<div class="q-table-wrap">
+<table class="q-table answers">
+  <thead><tr><th>#</th><th>CAS (kt)</th><th>Pressure altitude (ft)</th><th>SAT (&deg;C)</th><th>TAS (kt)</th></tr></thead>
+  <tbody><tr><td>1</td><td>140</td><td>10,000</td><td>-10</td><td class="calc">161</td></tr><tr><td>2</td><td>175</td><td>8,000</td><td>+5</td><td class="calc">199</td></tr><tr><td>3</td><td>220</td><td>15,000</td><td>-22</td><td class="calc">271</td></tr><tr><td>4</td><td>300</td><td>30,000</td><td>-40</td><td class="calc">470 <span class="note-cell">(M&nbsp;0.79 &mdash; above 300&nbsp;kt)</span></td></tr><tr><td>5</td><td>180</td><td>12,500</td><td>-25</td><td class="calc">210</td></tr><tr><td>6</td><td>165</td><td>9,000</td><td>+7</td><td class="calc">192</td></tr><tr><td>7</td><td>163</td><td>11,000</td><td>+10</td><td class="calc">198</td></tr><tr><td>8</td><td>295</td><td>31,000</td><td>-53</td><td class="calc">459 <span class="note-cell">(M&nbsp;0.79 &mdash; above 300&nbsp;kt)</span></td></tr><tr><td>9</td><td>160</td><td>12,000</td><td>-10</td><td class="calc">191</td></tr><tr><td>10</td><td>260</td><td>35,000</td><td>-45</td><td class="calc">452 <span class="note-cell">(M&nbsp;0.77 &mdash; above 300&nbsp;kt)</span></td></tr></tbody>
+</table>
+</div>
+
+<div class="callout green">
+  <div class="callout-title">Three rows crossed 300 knots &mdash; and you did nothing differently</div>
+  <p>Rows 4, 8 and 10 all come out above 300&nbsp;kt TAS. On the old instrument each
+  would have needed a second, separate correction. On the CX-3 all ten rows are the
+  same three keystrokes. <strong>That is the entire practical content of the
+  compressibility topic.</strong></p>
+</div>
+
+<h3>A2 &middot; TAS from Mach number</h3>
+
+<div class="worked compact">
+  <p class="problem"><strong>Row 3 in full &mdash; working backwards.</strong> SAT &minus;38&nbsp;&deg;C, TAS 425 kt. Find the Mach number.</p>
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — rearrange the formula</div>
+      <p class="dc-line">273 &minus; 38 = <strong>235 K</strong></p>
+      <p class="dc-line">&radic;235 = 15.33</p>
+      <p class="dc-line">38.95 &times; 15.33 = 597 kt &mdash; <em>that is the speed of sound today</em></p>
+      <p class="dc-line">425 &divide; 597</p>
+      <p class="dc-res">Mach 0.71</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the CX-3</div>
+      <ol>
+        <li><span class="key">FLT</span> &rarr; Airspeed &rarr; Planned MACH#</li>
+        <li>Enter <code>OAT</code> <span class="key">3</span><span class="key">8</span><span class="key">+/&minus;</span></li>
+        <li>Enter <code>TAS</code> <span class="key">4</span><span class="key">2</span><span class="key">5</span></li>
+        <li>Read <code>MACH</code> &mdash; any two fields give the third.</li>
+      </ol>
+      <p class="dc-res">MACH 0.71</p>
+    </div>
+  </div>
+  <p class="sanity"><strong>Worth seeing once.</strong> The middle line of Method 1
+  is the local speed of sound. Every Mach problem is really just "what fraction of
+  597 knots am I doing today?"</p>
+</div>
+
+<div class="q-table-wrap">
+<table class="q-table answers">
+  <thead><tr><th>#</th><th>Mach No.</th><th>SAT (&deg;C)</th><th>TAS (kt)</th></tr></thead>
+  <tbody><tr><td>1</td><td>0.82</td><td>-50</td><td class="calc">477</td></tr><tr><td>2</td><td>0.66</td><td class="calc">-60</td><td>375</td></tr><tr><td>3</td><td class="calc">0.71</td><td>-38</td><td>425</td></tr><tr><td>4</td><td>0.77</td><td>-60</td><td class="calc">438</td></tr><tr><td>5</td><td>0.92</td><td class="calc">-11</td><td>580</td></tr><tr><td>6</td><td class="calc">0.71</td><td>-47</td><td>415</td></tr></tbody>
+</table>
+</div>
+
+<h3>A3 &middot; True altitude</h3>
+
+<p><strong>Four steps, every row, in this order:</strong> ISA temperature at that
+altitude &rarr; deviation &rarr; correction &rarr; apply it. The deviation column
+below is shown so you can check your working, not just your answer.</p>
+
+<div class="callout blue">
+  <div class="callout-title">Which of the two formulas this table uses &mdash; read this before you mark yourself wrong</div>
+  <p>Section 5 gave you two: the exact one,
+  <code>TA = IA + (dev &divide; 273 &times; IA)</code>, and the field version,
+  <strong>4 ft per 1,000 ft per degree</strong>.</p>
+  <p><strong>Every answer below is the exact formula</strong>, rounded to the nearest
+  ten feet. The field rule over-corrects slightly by design &mdash; 4&middot;0 ft per
+  1,000 per degree where the exact factor is 1,000 &divide; 273 = <strong>3&middot;66</strong>
+  &mdash; so it pushes the correction <em>further</em> in whichever direction the
+  day is going. On these six rows the two methods sit between <strong>18 and 98
+  feet</strong> apart: the field rule reads lower on the four cold rows and higher
+  on the two warm ones.</p>
+  <p>If your figures come out a few tens of feet either side of the table, you used
+  the field rule and you are not wrong. <strong>Note which way it errs, though: on a
+  cold day it is conservative, and on a hot day it is not.</strong></p>
+</div>
+
+<div class="worked compact">
+  <p class="problem"><strong>Row 1 in full.</strong> Indicated 10,000 ft, SAT &minus;20&nbsp;&deg;C.</p>
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the formula</div>
+      <p class="dc-line"><strong>1.</strong> ISA at 10,000: 15 &minus; 20 = <strong>&minus;5&nbsp;&deg;C</strong></p>
+      <p class="dc-line"><strong>2.</strong> Deviation: &minus;20 &minus; (&minus;5) = <strong>ISA &minus;15</strong></p>
+      <p class="dc-line"><strong>3.</strong> Correction, exact formula:<br>
+      &minus;15 &divide; 273 &times; 10,000 = <strong>&minus;549 ft</strong></p>
+      <p class="dc-line"><strong>4.</strong> 10,000 &minus; 549</p>
+      <p class="dc-res">9 450 ft</p>
+      <p class="dc-line"><strong>Field check.</strong> &minus;15 &times; 4 &times; 10
+      = &minus;600, giving <strong>9,400</strong>. Fifty feet apart, and the mental
+      version is the lower of the two. That is the whole difference between the
+      formulas, and on a cold day it errs the right way.</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the CX-3</div>
+      <p>No true-altitude function. Use it for step 1 only:</p>
+      <ol>
+        <li><span class="key">FLT</span> &rarr; <strong>Standard Atmosphere</strong></li>
+        <li><code>Alt</code> <span class="key">1</span><span class="key">0</span><span class="key">0</span><span class="key">0</span><span class="key">0</span></li>
+        <li>Read ISA <code>OAT</code> &mdash; saves the mental arithmetic</li>
+        <li><span class="key">CALC</span> for the rest</li>
+      </ol>
+      <p class="dc-res">the formula owns this one</p>
+    </div>
+  </div>
+  <p class="sanity">Cold day, so the answer must come out <em>below</em> 10,000. It does.</p>
+</div>
+
+<div class="q-table-wrap">
+<table class="q-table answers">
+  <thead><tr><th>#</th><th>Indicated (ft)</th><th>SAT (&deg;C)</th><th>ISA temp</th><th>Deviation</th><th>True altitude (ft)</th><th></th></tr></thead>
+  <tbody><tr><td>1</td><td>10,000</td><td>-20</td><td>-5</td><td>ISA&nbsp;-15</td><td class="calc">9,450</td><td></td></tr><tr><td>2</td><td>18,000</td><td>-30</td><td>-21</td><td>ISA&nbsp;-9</td><td class="calc">17,410</td><td></td></tr><tr><td>3</td><td>6,000</td><td>+10</td><td>+3</td><td>ISA&nbsp;+7</td><td class="calc">6,150</td><td></td></tr><tr><td>4</td><td>27,000</td><td>-50</td><td>-39</td><td>ISA&nbsp;-11</td><td class="calc">25,910</td><td class="note-cell">book prints 25,600</td></tr><tr><td>5</td><td>21,500</td><td>-35</td><td>-28</td><td>ISA&nbsp;-7</td><td class="calc">20,950</td><td class="note-cell">book prints 20,800</td></tr><tr><td>6</td><td>8,000</td><td>+10</td><td>-1</td><td>ISA&nbsp;+11</td><td class="calc">8,320</td><td></td></tr></tbody>
+</table>
+</div>
+
+<div class="callout amber">
+  <div class="callout-title">Two rows where an older answer key disagrees</div>
+  <p>Rows 4 and 5 are marked above. Working row 4: ISA at 27,000 is &minus;39, so
+  &minus;50 is ISA&nbsp;&minus;11. The exact formula gives
+  &minus;11 &divide; 273 &times; 27,000 = &minus;1,088 and a true altitude of
+  <strong>25,910 ft</strong>; the field rule gives &minus;11 &times; 4 &times; 27 =
+  &minus;1,188 and <strong>25,810 ft</strong>. <strong>Both are a long way from the
+  25,600 the older key prints</strong> &mdash; that figure would need a deviation of
+  about ISA&nbsp;&minus;14, and the day is not that cold.</p>
+  <p>Those keys were read off a sliding disc. <strong>Trust the four steps.</strong>
+  They are reproducible, they are exact, and they are the same four steps you will
+  use on an approach chart at three in the morning.</p>
+</div>
+
+<h3>A4 &middot; Density altitude</h3>
+
+<div class="worked compact">
+  <p class="problem"><strong>Row 3 in full &mdash; and it goes the other way.</strong> Pressure altitude 27,000 ft, SAT &minus;40&nbsp;&deg;C.</p>
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the formula</div>
+      <p class="dc-line"><strong>1.</strong> ISA at 27,000: 15 &minus; 54 = <strong>&minus;39&nbsp;&deg;C</strong></p>
+      <p class="dc-line"><strong>2.</strong> Deviation: &minus;40 &minus; (&minus;39) = <strong>ISA &minus;1</strong></p>
+      <p class="dc-line"><strong>3.</strong> &minus;1 &times; 120 = <strong>&minus;120 ft</strong></p>
+      <p class="dc-line"><strong>4.</strong> 27,000 &minus; 120</p>
+      <p class="dc-res">26 880 ft</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the CX-3</div>
+      <ol>
+        <li><span class="key">FLT</span> &rarr; Altitude &rarr; Density Altitude</li>
+        <li><code>IAlt</code> <span class="key">2</span><span class="key">7</span><span class="key">0</span><span class="key">0</span><span class="key">0</span></li>
+        <li><code>Baro</code> <span class="key">1</span><span class="key">0</span><span class="key">1</span><span class="key">3</span></li>
+        <li><code>OAT</code> <span class="key">4</span><span class="key">0</span><span class="key">+/&minus;</span></li>
+      </ol>
+      <p class="dc-res">DAlt just below 27 000</p>
+    </div>
+  </div>
+  <p class="sanity"><strong>Barely colder than standard, so barely any change.</strong>
+  A deviation of one degree moves density altitude by 120 feet and no more. If you
+  got thousands of feet here, you subtracted the temperatures the wrong way round.</p>
+</div>
+
+<div class="q-table-wrap">
+<table class="q-table answers">
+  <thead><tr><th>#</th><th>Pressure alt (ft)</th><th>SAT (&deg;C)</th><th>ISA temp</th><th>Deviation</th><th>Formula (ft)</th><th>Old disc printed</th></tr></thead>
+  <tbody><tr><td>1</td><td>10,000</td><td>+15</td><td>-5</td><td>ISA&nbsp;+20</td><td class="calc">12,400</td><td class="note-cell">12,500</td></tr><tr><td>2</td><td>6,000</td><td>+20</td><td>+3</td><td>ISA&nbsp;+17</td><td class="calc">8,040</td><td class="note-cell">8,200</td></tr><tr><td>3</td><td>27,000</td><td>-40</td><td>-39</td><td>ISA&nbsp;-1</td><td class="calc">26,880</td><td class="note-cell">26,300</td></tr><tr><td>4</td><td>23,000</td><td>-22</td><td>-31</td><td>ISA&nbsp;+9</td><td class="calc">24,080</td><td class="note-cell">23,600</td></tr><tr><td>5</td><td>25,000</td><td>-45</td><td>-35</td><td>ISA&nbsp;-10</td><td class="calc">23,800</td><td class="note-cell">23,100</td></tr><tr><td>6</td><td>29,000</td><td>-38</td><td>-43</td><td>ISA&nbsp;+5</td><td class="calc">29,600</td><td class="note-cell">28,900</td></tr></tbody>
+</table>
+</div>
+
+<div class="callout red">
+  <div class="callout-title">Look at that last column before you move on</div>
+  <p>The right-hand column is what the old answer key read off the disc's density
+  window. Compare it with the formula column: the two disagree by
+  <strong>100 to 700 feet</strong>, in the same book, for the same questions.</p>
+  <p>That is not a rounding argument. That is an instrument that could not resolve
+  the question being asked of it &mdash; and the source says so itself.</p>
+  <p><strong>Use the CX-3's reading, and check it with &times;120.</strong> If those
+  two agree to within a couple of hundred feet, you have entered the right numbers.</p>
+</div>
+
+<hr class="section-rule">
+
+<h2 id="drill">90-second speed drill</h2>
+
+<div class="drill">
+  <p class="drill-intro">CX-3 and calculator on the desk. 90 seconds. Ten answers. Go.</p>
+  <ol class="drill-list">
+    <li>CAS 150, pressure altitude 8,000 ft, SAT 0&nbsp;&deg;C. TAS?</li>
+    <li>What are the four airspeeds, in the order they are corrected?</li>
+    <li>Mach 0.78, SAT &minus;55&nbsp;&deg;C. TAS?</li>
+    <li>ISA temperature at 25,000 feet?</li>
+    <li>Indicated 5,000 ft, SAT &minus;10&nbsp;&deg;C. True altitude?</li>
+    <li>Pressure altitude 3,000 ft, SAT +30&nbsp;&deg;C. Density altitude?</li>
+    <li>Above what TAS does compressibility matter &mdash; and what do you do about it on a CX-3?</li>
+    <li>CAS 200 at 15,000 ft: roughly what TAS, using the 2%-per-1,000 rule?</li>
+    <li>Cold day. Is your true altitude above or below the indicated?</li>
+    <li>Which of the four calculations has no CX-3 function at all?</li>
+  </ol>
+
+  <details class="drill-answers">
+    <summary>Answers</summary>
+    <ol>
+      <li><code>FLT</code> &rarr; Airspeed &rarr; Planned TAS &mdash; <strong>169 kt</strong></li>
+      <li><strong>IAS &rarr; CAS &rarr; EAS &rarr; TAS</strong> (EAS only above 300 kt TAS)</li>
+      <li>0.78 &times; 38.95 &times; &radic;218 = <strong>449 kt</strong></li>
+      <li>15 &minus; 50 = <strong>&minus;35&nbsp;&deg;C</strong></li>
+      <li>ISA at 5,000 is +5, so ISA&nbsp;&minus;15. &minus;15&times;4&times;5 = &minus;300. <strong>4,700 ft</strong></li>
+      <li>ISA at 3,000 is +9, so ISA&nbsp;+21. 21&times;120 = +2,520. <strong>5,520 ft</strong></li>
+      <li><strong>300 kt TAS &mdash; and nothing.</strong> The CX-3 has already applied it.</li>
+      <li>+30% &rarr; about <strong>260 kt</strong> (the exact answer is 250)</li>
+      <li><strong>Below.</strong> Cold means low.</li>
+      <li><strong>True altitude.</strong> Formula only.</li>
+    </ol>
+  </details>
+</div>
+
+<h2 id="card">Quick reference &mdash; Chapter 6</h2>
+
+<p class="card-intro">Photograph this page.</p>
+
+<div class="ref-table-wrap">
+<table class="ref-table card">
+  <thead><tr><th>Problem</th><th>Formula</th><th>CX-3 route</th></tr></thead>
+  <tbody>
+    <tr><td>TAS from CAS</td><td>TAS = CAS &divide; &radic;(rel. density)</td><td><strong>CX-3</strong> &middot; <code>FLT</code> &rarr; Airspeed &rarr; Planned TAS</td></tr>
+    <tr><td>TAS from Mach</td><td>TAS = M &times; 38.95 &times; &radic;T&nbsp;K</td><td><strong>Either</strong> &middot; <code>FLT</code> &rarr; Airspeed &rarr; Planned MACH#</td></tr>
+    <tr><td>Compressibility above 300 kt</td><td>&mdash;</td><td><strong>Nothing to do.</strong> Already inside Planned TAS</td></tr>
+    <tr class="gap-row"><td><strong>True altitude</strong></td><td><strong>TA = IA + (dev &divide; 273 &times; IA)</strong><br>field rule: 4 ft / 1,000 ft / degree</td><td><strong>Formula.</strong> <em>No CX-3 function exists</em></td></tr>
+    <tr><td>Density altitude</td><td>DA = PA + (dev &times; 120)</td><td><strong>CX-3</strong> &middot; <code>FLT</code> &rarr; Altitude &rarr; DAlt</td></tr>
+    <tr><td>ISA temperature at a level</td><td>15 &minus; 2 &times; (alt &divide; 1,000)</td><td><strong>CX-3</strong> &middot; <code>FLT</code> &rarr; Standard Atmosphere</td></tr>
+    <tr><td>SAT from TAT</td><td>ram rise &asymp; SAT<sub>K</sub> &times; 0.2 &times; M&sup2;<br><span style="font-size:0.85em">(&asymp; 30&nbsp;&deg;C at M 0.82, SAT &minus;47)</span></td><td><strong>CX-3</strong> &middot; <code>FLT</code> &rarr; Airspeed &rarr; Actual TAS</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout green">
+  <div class="callout-title">The six things to carry out of this chapter</div>
+  <ul class="numbers">
+    <li><strong>IAS &rarr; CAS &rarr; EAS &rarr; TAS</strong> &mdash; always that order</li>
+    <li><strong>TAS gains about 2% per 1,000 feet</strong> at constant CAS</li>
+    <li><strong>300 knots TAS</strong> is the compressibility line &mdash; and the CX-3 crosses it for you</li>
+    <li><strong>ISA temp = 15 &minus; 2 per thousand feet</strong> &mdash; every altitude problem starts here</li>
+    <li><strong>Cold &rarr; true altitude LOWER.</strong> 4 ft per 1,000 ft per degree</li>
+    <li><strong>Hot &rarr; density altitude HIGHER.</strong> 120 ft per degree</li>
+  </ul>
+</div>
+
+<footer class="chapter-foot">
+  <p><strong>Chapter 6 &mdash; TAS and Altitude Conversions</strong></p>
+  <p>Ghost Aviator &middot; General Navigation &middot; The Navigation Computer series</p>
+  <p class="foot-next">Next: <strong>Chapter 7 &mdash; The Triangle of Velocities</strong>,
+  where the true airspeed you have just learned to find meets the wind, and becomes
+  a speed over the ground.</p>
+</footer>
+
+</div>
+
+
+<div class="ga-watermark-l1" data-ga-wm="l1">Capt. Pankaj Pahil &middot; www.GhostAviator.com</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var WM_TEXT  = 'Capt. Pankaj Pahil · www.GhostAviator.com';
+  var WM_CLASS = 'ga-watermark-l1';
+  var WM_FLAG  = 'l1';
+
+  /* ---------------- LAYER 3: sentinel ---------------- */
+
+  function buildWatermark() {
+    var div = document.createElement('div');
+    div.className = WM_CLASS;
+    div.setAttribute('data-ga-wm', WM_FLAG);
+    div.textContent = WM_TEXT;
+    document.body.appendChild(div);
+    return div;
+  }
+
+  var repairing = false;
+
+  function checkWatermark() {
+    if (repairing) return;
+    repairing = true;
+    try {
+      var wm = document.querySelector('[data-ga-wm="' + WM_FLAG + '"]');
+
+      if (!wm) {                                  // removed entirely
+        buildWatermark();
+        return;
+      }
+      if (wm.textContent.indexOf('GhostAviator') === -1) {   // text tampered
+        wm.textContent = WM_TEXT;
+      }
+      if (wm.className.indexOf(WM_CLASS) === -1) {           // class stripped
+        wm.className = WM_CLASS;
+      }
+      var cs = window.getComputedStyle(wm);                  // hidden
+      if (cs.display === 'none' ||
+          cs.visibility === 'hidden' ||
+          parseFloat(cs.opacity) < 0.01) {
+        wm.style.setProperty('display', 'block', 'important');
+        wm.style.setProperty('visibility', 'visible', 'important');
+        wm.style.setProperty('opacity', '1', 'important');
+      }
+    } finally {
+      repairing = false;
+    }
+  }
+
+  if (!document.querySelector('[data-ga-wm="' + WM_FLAG + '"]')) {
+    buildWatermark();
+  }
+
+  function isWatermark(node) {
+    return node && node.nodeType === 1 &&
+           ((node.getAttribute && node.getAttribute('data-ga-wm') === WM_FLAG) ||
+            (node.classList && node.classList.contains(WM_CLASS)));
+  }
+
+  function inWatermark(node) {
+    while (node) {
+      if (isWatermark(node)) return true;
+      node = node.parentNode;
+    }
+    return false;
+  }
+
+  var observer = new MutationObserver(function (mutations) {
+    if (repairing) return;
+    for (var i = 0; i < mutations.length; i++) {
+      var m = mutations[i];
+
+      // the watermark itself was removed from the page
+      if (m.type === 'childList') {
+        for (var j = 0; j < m.removedNodes.length; j++) {
+          if (isWatermark(m.removedNodes[j])) {
+            setTimeout(checkWatermark, 50);
+            return;
+          }
+        }
+      }
+      // anything changed ON or INSIDE the watermark
+      // (this is the case v1.0 missed — innerHTML edits survived)
+      if (inWatermark(m.target)) {
+        setTimeout(checkWatermark, 50);
+        return;
+      }
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    characterData: true,
+    attributeFilter: ['style', 'class', 'data-ga-wm']
+  });
+
+  // an injected stylesheet that tries to hide the mark
+  if (document.head) {
+    new MutationObserver(function () {
+      setTimeout(checkWatermark, 150);
+    }).observe(document.head, { childList: true, subtree: true });
+  }
+
+  // belt and braces
+  setInterval(checkWatermark, 3000);
+
+
+  /* ---------------- LAYER 4: steganographic markers ----------------
+     Encodes a key as zero-width characters inside body text, so that text
+     copied out of the page carries an invisible, checkable signature.
+     Built with fromCharCode so no invisible character sits in the source. */
+
+  var STEG_KEY = 'GhostAviator-CPP';
+  var ZW = [
+    String.fromCharCode(0x200B),   // zero width space
+    String.fromCharCode(0x200C),   // zero width non-joiner
+    String.fromCharCode(0x200D),   // zero width joiner
+    String.fromCharCode(0x2060)    // word joiner
+  ];
+
+  function encodeSteg(text) {
+    var out = '';
+    for (var i = 0; i < text.length; i++) {
+      var code = text.charCodeAt(i);
+      for (var b = 3; b >= 0; b--) {          // 8 bits, 2 bits per symbol
+        out += ZW[(code >> (b * 2)) & 3];
+      }
+    }
+    return out;
+  }
+
+  var MARKER = encodeSteg(STEG_KEY);
+
+  window.gaInsertStegMarkers = function () {
+    var els = document.querySelectorAll(
+      '.ga-content p, .ga-content li, .ga-content td, ' +
+      '.ga-content h2, .ga-content h3, p, li, td, h2, h3'
+    );
+    var seen = [];
+    for (var i = 0; i < els.length; i++) {
+      if (seen.indexOf(els[i]) === -1) seen.push(els[i]);
+    }
+    if (!seen.length) return 0;
+
+    /* Keep only elements long enough to hide a marker in, THEN space the
+       markers evenly through those. Sampling before filtering (v2.0) landed
+       only 3 markers in a long chapter, because most sampled slots were short
+       table cells. Target ~12, spread across the whole document. */
+    var eligible = [];
+    for (var e = 0; e < seen.length; e++) {
+      if (inWatermark(seen[e])) continue;
+      if (seen[e].getAttribute('data-ga-steg')) continue;
+      if (seen[e].textContent.length < 40) continue;
+      eligible.push(seen[e]);
+    }
+    if (!eligible.length) return 0;
+
+    var TARGET = 12;
+    var step = Math.max(1, Math.floor(eligible.length / TARGET));
+    var placed = 0;
+
+    for (var k = 0; k < eligible.length; k += step) {
+      var el = eligible[k];
+
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+      var tn;
+      while ((tn = walker.nextNode())) {
+        if (tn.textContent.length > 25) {
+          var mid = Math.floor(tn.textContent.length / 2);
+          var at  = tn.textContent.indexOf(' ', mid);
+          if (at === -1) at = mid;
+          tn.textContent = tn.textContent.slice(0, at) + MARKER + tn.textContent.slice(at);
+          el.setAttribute('data-ga-steg', '1');
+          placed++;
+          break;
+        }
+      }
+    }
+    return placed;
+  };
+
+  /* Verifier — paste suspect text into the console and call this:
+       gaCheckSteg(pastedString)   ->  true if the signature is present      */
+  window.gaCheckSteg = function (str) {
+    return typeof str === 'string' && str.indexOf(MARKER) !== -1;
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { window.gaInsertStegMarkers(); });
+  } else {
+    window.gaInsertStegMarkers();
+  }
+
+})();
+</script>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

@@ -82,6 +82,10 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        source: "/downloads/notes/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }],
+      },
+      {
         source: "/:path*",
         headers: securityHeaders,
       },
@@ -189,6 +193,18 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Captain's chapter reclassification, 16 Oct 2026. Preserve old bookmarks.
+      { source: "/cpl/air-navigation/nav-30/:type", destination: "/cpl/instrumentation/inst-10/:type", permanent: true },
+      { source: "/cpl/air-navigation/nav-31/:type", destination: "/cpl/instrumentation/inst-16/:type", permanent: true },
+      { source: "/cpl/air-navigation/nav-32/:type", destination: "/cpl/air-navigation", permanent: true },
+      { source: "/cpl/air-navigation/nav-1/:type", destination: "/cpl/air-navigation", permanent: true },
+      { source: "/cpl/air-navigation/nav-2/:type", destination: "/cpl/air-navigation", permanent: true },
+      { source: "/cpl/air-navigation/nav-4/:type", destination: "/cpl/air-navigation", permanent: true },
+      { source: "/cpl/air-navigation/nav-5/:type", destination: "/cpl/air-navigation", permanent: true },
+      { source: "/cpl/air-navigation/nav-10/:type", destination: "/cpl/air-navigation", permanent: true },
+      { source: "/cpl/air-navigation/nav-11/:type", destination: "/cpl/air-navigation", permanent: true },
+      { source: "/cpl/air-navigation/nav-12/:type", destination: "/cpl/air-navigation", permanent: true },
+
       // General Navigation was briefly a standalone subject before being
       // merged into Air Navigation (its chapters became nav-13..nav-20).
       {

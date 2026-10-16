@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NotesDownloadLink from "@/app/components/content/NotesDownloadLink";
 import { getChapterSpecificQuestions, getSubjectQuestionPool } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { servesRealNotes } from "@/lib/indexability";
@@ -178,11 +179,14 @@ export default async function ATPLSubjectPage({ params }: { params: Promise<{ su
                           : c.type === "notes"   ? servesRealNotes(subject.id, ch.id)
                           : c.available;
                         return available ? (
-                          <Link key={c.type} href={`/atpl/${subject.id}/${ch.id}/${c.type}`}
+                          <span key={c.type} className="inline-flex flex-wrap gap-2">
+                          <Link href={`/atpl/${subject.id}/${ch.id}/${c.type}`}
                                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold no-underline"
                                 style={{ background:`${color}18`, border:`1px solid ${color}40`, color }}>
                             <Icon className="w-3 h-3"/> {c.label}
                           </Link>
+                          {c.type === "notes" && <NotesDownloadLink subjectId={subject.id} chapterId={ch.id} />}
+                          </span>
                         ) : (
                           <div key={c.type}
                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold"

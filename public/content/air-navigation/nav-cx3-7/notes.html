@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://ghostaviator.com/cpl/air-navigation/nav-cx3-7/notes">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 7 — The Triangle of Velocities | Ghost Aviator</title>
+<meta name="description" content="DGCA CPL/ATPL General Navigation: heading, track, drift and the triangle of velocities — solving for track and ground speed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap">
+<style>
+/* ==========================================================================
+   GHOST AVIATOR — GenNav CX-3 chapter stylesheet
+   navy #1a2942 · gold #c9a227 · Playfair Display / Source Serif 4
+   ========================================================================== */
+
+:root {
+  --navy:      #1a2942;
+  --navy-soft: #24354f;
+  --gold:      #c9a227;
+  --gold-soft: #f3ead0;
+  --ink:       #22303f;
+  --ink-soft:  #5a6b7d;
+  --paper:     #ffffff;
+  --rule:      #d8d2c4;
+
+  --red:       #c0392b;
+  --red-bg:    #fdf1ef;
+  --amber:     #b9770e;
+  --amber-bg:  #fdf6e8;
+  --blue:      #2e86ab;
+  --blue-bg:   #eef6fa;
+  --green:     #1e8449;
+  --green-bg:  #eef8f1;
+
+  --serif:   'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --display: 'Playfair Display', Georgia, serif;
+  --mono:    'IBM Plex Mono', 'Consolas', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: transparent;          /* Layer 2 of the watermark sits on <html> */
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ga-content {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  background: rgba(255,255,255,0.86);   /* lets the tiled watermark show through */
+}
+
+/* ---------- audit banner ---------- */
+.audit-banner {
+  border: 2px solid var(--red);
+  background: var(--red-bg);
+  color: #8e2c21;
+  border-radius: 4px;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 2.5rem;
+}
+.audit-banner strong { display: block; letter-spacing: 0.06em; margin-bottom: 0.3rem; color: var(--red); }
+
+/* ---------- headings ---------- */
+.chapter-head { border-bottom: 3px solid var(--gold); padding-bottom: 1.6rem; margin-bottom: 2.4rem; }
+.eyebrow {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem;
+}
+h1 {
+  font-family: var(--display); font-weight: 900; color: var(--navy);
+  font-size: clamp(1.9rem, 5vw, 2.9rem); line-height: 1.1; margin: 0 0 0.8rem;
+  text-wrap: balance;
+}
+.h1-sub { font-size: 0.62em; font-weight: 700; color: var(--ink); display: block; margin-top: 0.35rem; }
+.standfirst { font-size: 1.08rem; font-style: italic; color: var(--ink-soft); margin: 0; }
+
+h2 {
+  font-family: var(--display); font-weight: 700; color: var(--navy);
+  font-size: 1.55rem; margin: 3rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--gold); text-wrap: balance;
+}
+h3 {
+  font-family: var(--serif); font-weight: 700; color: var(--navy);
+  font-size: 1.16rem; margin: 2rem 0 0.6rem;
+}
+p { margin: 0 0 1rem; }
+
+/* ---------- scenario ---------- */
+.scenario {
+  background: var(--navy); color: #e8eef5; border-radius: 5px;
+  padding: 1.5rem 1.6rem; margin: 2rem 0;
+  border-left: 5px solid var(--gold);
+}
+.scenario-label {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem;
+}
+.scenario p:last-child { margin-bottom: 0; }
+.scenario strong { color: #fff; }
+.scenario em { color: var(--gold-soft); }
+
+/* ---------- callouts ---------- */
+.callout { border-radius: 4px; padding: 1.05rem 1.25rem; margin: 1.5rem 0; border-left: 5px solid; }
+.callout p:last-child, .callout ul:last-child, .callout ol:last-child { margin-bottom: 0; }
+.callout-title { font-weight: 700; margin-bottom: 0.45rem; font-size: 1rem; }
+
+.callout.red   { border-color: var(--red);   background: var(--red-bg); }
+.callout.red   .callout-title { color: var(--red); }
+.callout.amber { border-color: var(--amber); background: var(--amber-bg); }
+.callout.amber .callout-title { color: var(--amber); }
+.callout.blue  { border-color: var(--blue);  background: var(--blue-bg); }
+.callout.blue  .callout-title { color: #1d6d8f; }
+.callout.green { border-color: var(--green); background: var(--green-bg); }
+.callout.green .callout-title { color: var(--green); }
+
+/* ---------- formula ---------- */
+.formula-block {
+  background: var(--gold-soft); border: 1px solid #e0cf9a; border-radius: 4px;
+  padding: 1.1rem 1.25rem; margin: 1.4rem 0; text-align: center;
+}
+.formula { font-family: var(--display); font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+.formula-units { font-family: var(--serif); font-size: 0.72em; font-weight: 400; font-style: italic; color: var(--ink-soft); }
+.formula-note { font-size: 0.88rem; color: var(--ink-soft); margin-top: 0.55rem; font-style: italic; }
+
+/* ---------- CX-3 keystroke panel ---------- */
+.keystroke {
+  background: var(--navy); color: #dde6f0; border-radius: 5px;
+  padding: 1.15rem 1.3rem; margin: 1.5rem 0; font-size: 0.95rem;
+}
+.keystroke-title {
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.65rem;
+}
+.keystroke-path { font-size: 1.05rem; margin-bottom: 0.85rem; color: #fff; }
+.keystroke p { margin: 0.5rem 0 0; }
+.keystroke code { background: rgba(255,255,255,0.12); color: var(--gold-soft); }
+
+.key {
+  display: inline-block; font-family: var(--mono); font-size: 0.8em; font-weight: 700;
+  background: #3c4f68; color: #fff; border: 1px solid #55688a; border-bottom-width: 2px;
+  border-radius: 3px; padding: 1px 6px; margin: 0 1px; white-space: nowrap;
+}
+.callout .key, .worked .key, .ref-table .key, .drill .key {
+  background: var(--navy); border-color: #0e1826; color: #fff;
+}
+
+.field-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.field-table th {
+  text-align: left; vertical-align: top; padding: 0.35rem 0.9rem 0.35rem 0;
+  color: var(--gold); font-weight: 700; white-space: nowrap; width: 1%;
+}
+.field-table td { padding: 0.35rem 0; vertical-align: top; }
+
+code {
+  font-family: var(--mono); font-size: 0.86em;
+  background: #eef0f3; padding: 1px 5px; border-radius: 3px;
+}
+
+/* ---------- worked examples ---------- */
+.worked {
+  border: 1px solid var(--rule); border-left: 5px solid var(--navy);
+  border-radius: 4px; padding: 1.1rem 1.25rem; margin: 1.5rem 0; background: #fbfaf7;
+}
+.worked.compact { margin: 1.1rem 0; padding: 0.95rem 1.1rem; }
+.worked .problem { margin-bottom: 0.7rem; }
+.steps { margin: 0 0 0.8rem; padding-left: 1.3rem; }
+.steps li { margin-bottom: 0.32rem; }
+.answer {
+  background: var(--green-bg); border-left: 4px solid var(--green);
+  padding: 0.55rem 0.85rem; border-radius: 3px; margin: 0.7rem 0 !important;
+  font-size: 1.02rem;
+}
+.answer strong { color: var(--green); }
+.sanity {
+  font-size: 0.9rem; color: var(--ink-soft); font-style: italic;
+  border-top: 1px dotted var(--rule); padding-top: 0.55rem; margin-bottom: 0 !important;
+}
+.sanity strong { color: var(--ink); font-style: normal; }
+
+.verified-note {
+  font-size: 0.85rem; color: var(--ink-soft); font-style: italic;
+  border-left: 3px solid var(--rule); padding-left: 0.8rem; margin: -0.5rem 0 1.4rem;
+}
+.same-method {
+  font-size: 0.93rem; color: var(--ink-soft); font-style: italic;
+  background: #f4f2ec; border-radius: 3px; padding: 0.55rem 0.85rem;
+}
+
+.method { margin: 0.4rem 0 0; padding-left: 1.3rem; }
+.method li { margin-bottom: 0.4rem; }
+.method-note { font-size: 0.9rem; font-style: italic; color: var(--ink-soft); margin-top: 0.6rem !important; }
+.numbers { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+.numbers li { margin-bottom: 0.3rem; }
+
+/* ---------- figures ---------- */
+figure { margin: 1.8rem 0; }
+figure img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--rule); border-radius: 4px; background: #f0eee9;
+}
+figcaption {
+  font-size: 0.88rem; color: var(--ink-soft); margin-top: 0.55rem;
+  padding-left: 0.6rem; border-left: 3px solid var(--gold);
+}
+figcaption strong { color: var(--navy); }
+
+/* ---------- tables ---------- */
+.q-table-wrap, .ref-table-wrap { overflow-x: auto; margin: 1.2rem 0; }
+.q-table, .ref-table {
+  width: 100%; border-collapse: collapse; font-size: 0.93rem;
+  font-variant-numeric: tabular-nums;
+}
+.q-table th, .ref-table th {
+  background: var(--navy); color: #fff; font-weight: 700;
+  text-align: left; padding: 0.55rem 0.7rem; font-size: 0.86rem;
+  letter-spacing: 0.03em;
+}
+.q-table td, .ref-table td {
+  border-bottom: 1px solid var(--rule); padding: 0.5rem 0.7rem; vertical-align: top;
+}
+.q-table tbody tr:nth-child(even) { background: #faf9f6; }
+.q-table td:first-child { color: var(--ink-soft); font-family: var(--mono); font-size: 0.85em; }
+.q-table.answers .calc { font-weight: 700; color: var(--green); }
+.note-cell { font-size: 0.83em; font-style: italic; color: var(--amber); }
+.ref-table.card td:last-child { font-size: 0.92em; }
+.gap-row { background: var(--amber-bg) !important; }
+.gap-row td { border-bottom-color: #e6cfa0; }
+.card-intro { font-style: italic; color: var(--ink-soft); }
+
+/* ---------- speed drill ---------- */
+.drill {
+  border: 2px solid var(--gold); border-radius: 5px;
+  padding: 1.3rem 1.4rem; margin: 1.5rem 0; background: #fffdf7;
+}
+.drill-intro { font-weight: 700; color: var(--navy); margin-bottom: 0.9rem; }
+.drill-list { margin: 0; padding-left: 1.4rem; }
+.drill-list li { margin-bottom: 0.45rem; }
+.drill-answers { margin-top: 1.2rem; border-top: 1px solid var(--rule); padding-top: 0.8rem; }
+.drill-answers summary {
+  cursor: pointer; font-weight: 700; color: var(--gold); font-family: var(--mono);
+  font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.drill-answers summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.drill-answers ol { margin: 0.8rem 0 0; padding-left: 1.4rem; }
+.drill-answers li { margin-bottom: 0.35rem; font-size: 0.94rem; }
+
+/* ---------- misc ---------- */
+.section-rule { border: 0; border-top: 2px solid var(--gold); margin: 3rem 0 0; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.4rem; }
+li { margin-bottom: 0.25rem; }
+
+.chapter-foot {
+  margin-top: 3.5rem; padding-top: 1.4rem; border-top: 3px solid var(--gold);
+  font-size: 0.9rem; color: var(--ink-soft); text-align: center;
+}
+.chapter-foot p { margin: 0.25rem 0; }
+.foot-next { margin-top: 1rem !important; font-style: italic; }
+
+/* ==========================================================================
+   PRINT — A4, 20mm margins
+   ========================================================================== */
+@page { size: A4; margin: 20mm; }
+
+@media print {
+  body { font-size: 10.5pt; line-height: 1.5; }
+  .ga-content { max-width: none; padding: 0; background: transparent; }
+
+  h2 { page-break-after: avoid; break-after: avoid; }
+  h3 { page-break-after: avoid; break-after: avoid; }
+
+  .callout, .worked, .keystroke, .formula-block, figure,
+  .drill, .audit-banner, .scenario,
+  table, tr, .q-table-wrap, .ref-table-wrap {
+    page-break-inside: avoid; break-inside: avoid;
+  }
+
+  .scenario, .keystroke, .audit-banner, .callout,
+  .formula-block, .answer, .drill, .q-table th, .ref-table th, .key {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .drill-answers[open] summary ~ * { display: block; }
+  .drill-answers { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { list-style: none; }
+
+  a { text-decoration: none; color: inherit; }
+}
+
+/* ==========================================================================
+   v2 additions — figure legends, dual-method blocks, decision flowchart
+   ========================================================================== */
+
+/* ---------- figure colour legends (never baked into the PNG) ---------- */
+.fig-legend {
+  display: flex; flex-wrap: wrap; gap: .45rem 1.1rem;
+  margin-top: .5rem; padding-left: .6rem;
+  font-size: .85rem; color: var(--ink-soft);
+}
+.fig-legend .lg { display: inline-flex; align-items: center; gap: .38rem; }
+.fig-legend .sw {
+  width: 15px; height: 10px; border-radius: 2px; display: inline-block;
+  border: 1px solid rgba(0,0,0,.18); flex: none;
+}
+.fig-legend .sw.gold  { background: var(--gold); }
+.fig-legend .sw.cyan  { background: var(--blue); }
+.fig-legend .sw.white { background: #f5f2e8; }
+.fig-legend .sw.plain { background: transparent; border-style: dashed; }
+
+/* ---------- dual-method blocks ---------- */
+.dual { margin: .7rem 0; }
+.dual-h {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: .28rem;
+}
+.dual-f {
+  background: var(--gold-soft); border-left: 4px solid var(--gold);
+  border-radius: 3px; padding: .5rem .85rem; margin: 0 !important;
+  font-size: .97rem;
+}
+.dual-f strong { color: var(--navy); }
+.dual .answer { margin: 0 !important; }
+
+/* ---------- decision flowchart ---------- */
+figure.flow { margin: 1.6rem 0; }
+figure.flow svg {
+  width: 100%; height: auto; display: block;
+  background: #fbfaf7; border: 1px solid var(--rule); border-radius: 4px;
+}
+
+@media print {
+  .fig-legend, .dual-f, figure.flow svg {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  figure.flow, .dual { page-break-inside: avoid; break-inside: avoid; }
+}
+
+/* ==========================================================================
+   CHAPTER 6 ADDITIONS
+   side-by-side dual method · concept diagrams · data charts
+   ========================================================================== */
+
+/* ---------- SIDE-BY-SIDE dual method ---------- */
+.dual-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+  margin: 1rem 0;
+  align-items: stretch;
+}
+@media (max-width: 720px) { .dual-pair { grid-template-columns: 1fr; } }
+
+.dual-col {
+  border-radius: 5px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.dual-col.m1 { background: var(--gold-soft); border: 1px solid #e0cf9a; }
+.dual-col.m2 { background: var(--navy);      border: 1px solid #0e1826; color: #dde6f0; }
+
+.dual-col .dc-h {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.13em;
+  text-transform: uppercase; font-weight: 700; margin-bottom: 0.1rem;
+}
+.dual-col.m1 .dc-h { color: #8a6d12; }
+.dual-col.m2 .dc-h { color: var(--gold); }
+
+.dual-col .dc-sub {
+  font-size: 0.83rem; font-style: italic; margin: -0.25rem 0 0.3rem;
+}
+.dual-col.m1 .dc-sub { color: #6b5a2a; }
+.dual-col.m2 .dc-sub { color: #93a7bd; }
+
+.dual-col ol, .dual-col ul { margin: 0; padding-left: 1.15rem; font-size: 0.93rem; }
+.dual-col li { margin-bottom: 0.3rem; }
+.dual-col p  { margin: 0 0 0.4rem; font-size: 0.94rem; }
+.dual-col code { font-size: 0.85em; }
+.dual-col.m2 code { background: rgba(255,255,255,0.13); color: var(--gold-soft); }
+.dual-col.m1 code { background: rgba(0,0,0,0.06); color: var(--navy); }
+
+.dc-line { font-size: 0.95rem; margin: 0 0 0.3rem !important; }
+.dc-res {
+  margin-top: auto !important; padding: 0.5rem 0.75rem; border-radius: 3px;
+  font-size: 1rem; font-weight: 700;
+}
+.dual-col.m1 .dc-res { background: rgba(201,162,39,0.22); color: #6d5510; }
+.dual-col.m2 .dc-res { background: rgba(39,174,96,0.22);  color: #7ee0a8; }
+
+.dual-verdict {
+  font-size: 0.9rem; font-style: italic; color: var(--ink-soft);
+  background: #f4f2ec; border-radius: 3px; padding: 0.5rem 0.8rem;
+  margin: 0.2rem 0 0.7rem;
+}
+.dual-verdict strong { color: var(--navy); font-style: normal; }
+
+/* ---------- concept diagrams & charts ---------- */
+figure.diagram { margin: 1.8rem 0; }
+figure.diagram svg {
+  width: 100%; height: auto; display: block;
+  background: #fbfaf7; border: 1px solid var(--rule); border-radius: 4px;
+}
+figure.chart svg {
+  width: 100%; height: auto; display: block;
+  background: var(--navy); border: 1px solid #0e1826; border-radius: 4px;
+}
+
+/* ---------- ISA reference strip ---------- */
+.isa-strip { overflow-x: auto; margin: 1.1rem 0; }
+.isa-strip table { min-width: 480px; }
+
+@media print {
+  .dual-pair { grid-template-columns: 1fr 1fr; }
+  .dual-col, figure.diagram, figure.chart, .dual-verdict {
+    page-break-inside: avoid; break-inside: avoid;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  figure.chart svg, figure.diagram svg {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* ---------- CHAPTER 7: figure build-up strip ---------- */
+.buildup { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1.6rem 0; }
+@media (max-width: 760px) { .buildup { grid-template-columns: 1fr; } }
+.buildup figure { margin: 0; }
+.buildup figcaption { font-size: 0.82rem; }
+.buildup .stage {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem;
+}
+.vector-key { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.7rem; margin: 1.3rem 0; }
+@media (max-width: 700px) { .vector-key { grid-template-columns: 1fr; } }
+.vk { border-radius: 5px; padding: 0.8rem 0.95rem; border-left: 5px solid; background: #fbfaf7; border: 1px solid var(--rule); }
+.vk.air    { border-left-color: var(--gold); }
+.vk.wind   { border-left-color: var(--blue); }
+.vk.ground { border-left-color: #b9a98a; }
+.vk .vk-h { font-weight: 700; font-size: 0.98rem; margin-bottom: 0.25rem; color: var(--navy); }
+.vk .vk-arrows { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.35rem; }
+.vk p { font-size: 0.9rem; margin: 0; }
+@media print { .buildup { grid-template-columns: repeat(3,1fr); } .vector-key { grid-template-columns: repeat(3,1fr); } .vk, .buildup figure { page-break-inside: avoid; } }
+
+/* ===== watermark layers 1, 2 and 5 — GenNav_CX3_WATERMARK_TEMPLATE.html v2.0 ===== */
+
+/* ---------- LAYER 2: repeating tiled watermark (screen + print) ----------
+   A repeating SVG background on the html element. This tiles exactly and,
+   unlike a ::after text hack, repeats cleanly on every printed page.
+   Removing Layer 1 does not remove this. Removing this requires editing CSS. */
+html {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='260'><text x='210' y='130' font-family='Georgia,serif' font-size='15' font-weight='700' fill='rgba(0,0,0,0.045)' text-anchor='middle' transform='rotate(-30 210 130)'>Capt. Pankaj Pahil %C2%B7 www.GhostAviator.com</text></svg>");
+  background-repeat: repeat;
+  background-position: 0 0;
+}
+/* Body must stay transparent or it will cover Layer 2. If the chapter needs a
+   page colour, set it on .ga-content instead, at less than full opacity. */
+body {
+  background: transparent;
+}
+
+/* ---------- LAYER 1: visible diagonal watermark ----------
+   40px. MEASURED, not guessed:
+     A4 printable width at 20mm margins = 643px
+     46px -> rotated extent 648px  -> CLIPS (this was the v1.0 defect)
+     40px -> rotated extent 567px  -> fits, with headroom for a wider
+                                      substitute font if Playfair fails to load
+   Do not raise this value above 42px. */
+.ga-watermark-l1 {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.075);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  letter-spacing: 1px;
+}
+
+/* ---------- LAYER 5: print-only reinforcement ---------- */
+@media print {
+  /* Force all watermark layers to survive the print colour pass */
+  html {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .ga-watermark-l1 {
+    color: rgba(0, 0, 0, 0.13) !important;
+    font-size: 40px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  /* A second, offset print-only mark. Sits opposite Layer 1 so that removing
+     Layer 1 from the DOM still leaves a printed mark on every page. */
+  body::before {
+    content: "Capt. Pankaj Pahil \00B7 www.GhostAviator.com";
+    position: fixed;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.10) !important;
+    white-space: nowrap;
+    z-index: 99999;
+    pointer-events: none;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="ga-content">
+
+<div class="audit-banner">
+  <strong>STUDY AID — PENDING INDEPENDENT AUDIT</strong>
+  These notes are study aids for DGCA examination preparation. They are PENDING
+  INDEPENDENT AUDIT and must not be used for operational flight planning. Always
+  verify procedures against current AIPs, NOTAMs, and your operator's manuals.
+</div>
+
+<header class="chapter-head">
+  <div class="eyebrow">General Navigation &middot; The Navigation Computer</div>
+  <h1>Chapter 7<br><span class="h1-sub">The Triangle of Velocities</span></h1>
+  <p class="standfirst">An aeroplane almost never goes where it is pointing. This
+  chapter is the geometry of the difference &mdash; and it is the one piece of this
+  module that the electronic computer lets you skip, and therefore never learn.</p>
+</header>
+
+<figure>
+  <img src="assets/ch07_fig11_opener-crab.png" width="1600" height="900"
+       alt="An airliner on short final in a strong crosswind, nose crabbed clearly off to one
+       side while tracking straight down the centreline, rain streaking sideways across the frame.">
+  <figcaption><strong>Figure 7.11</strong> &mdash; Short final, strong crosswind.
+  The nose is pointing well off the centreline and the aeroplane is tracking
+  straight down it. Nothing is wrong. This is what competence looks like.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw gold"></i>where the nose points &mdash; heading</span>
+    <span class="lg"><i class="sw white"></i>where the aeroplane goes &mdash; track</span>
+    <span class="lg"><i class="sw cyan"></i>what makes them differ &mdash; wind</span>
+  </div>
+</figure>
+
+<div class="scenario">
+  <div class="scenario-label">Sixty seconds in the cockpit</div>
+  <p>You are cruising at 100 knots true airspeed on a heading of
+  <strong>000&deg;</strong> &mdash; due north, dead steady, wings level. The compass
+  has not moved in twenty minutes.</p>
+  <p>You are travelling <strong>012&deg;</strong>, at <strong>118 knots</strong>.</p>
+  <p>Nothing has failed. The aircraft is doing exactly what you asked. But a
+  30-knot wind from the south-west has been quietly carrying the whole air mass
+  &mdash; and your aeroplane with it &mdash; sideways and forwards the entire time.
+  Fly that heading for an hour believing you are going north and you will be
+  <strong>12 nautical miles</strong> east of where you planned.</p>
+  <p><strong>The instruments are not lying to you. They are answering a different
+  question.</strong></p>
+</div>
+
+<!-- ============ 1. DEFINITIONS ============ -->
+<h2 id="s1">1 &middot; Six words, used precisely</h2>
+
+<p>This chapter is unusually strict about vocabulary, and the strictness is not
+pedantry. Every one of these words has been the wrong answer to an exam question
+because a student used it loosely.</p>
+
+<div class="callout blue">
+  <div class="callout-title">Heading</div>
+  <p>The direction the aircraft's <strong>fore-and-aft axis is pointing</strong>.
+  Where the nose is aimed. It can be measured from True, Magnetic or Compass north
+  &mdash; so it is always written with a qualifier: 000&deg;(T), 000&deg;(M).</p>
+  <p><strong>Heading is not where you are going.</strong> It is only where you are
+  pointing.</p>
+</div>
+
+<div class="callout blue">
+  <div class="callout-title">Track</div>
+  <p>The direction of the aircraft's <strong>path over the ground</strong>. Where
+  you are actually going. Measured from True or Magnetic north &mdash; but never
+  from Compass north, because the ground does not care about your compass.</p>
+</div>
+
+<div class="callout blue">
+  <div class="callout-title">Drift</div>
+  <p>The angular difference between heading and track. <strong>You always drift
+  <em>from</em> your heading <em>to</em> your track</strong> &mdash; that phrase is
+  the whole definition and it fixes the direction of the subtraction.</p>
+  <p>Heading 090&deg;, track 097&deg;: you have drifted from 090 to 097, so
+  <strong>7&deg; of starboard (right) drift</strong>.<br>
+  Heading 030&deg;, track 026&deg;: from 030 to 026, so
+  <strong>4&deg; of port (left) drift</strong>.</p>
+</div>
+
+<div class="callout amber">
+  <div class="callout-title">Wind Correction Angle &mdash; the same number, the opposite sign</div>
+  <p>WCA is drift's mirror. Same magnitude, applied the other way.</p>
+  <p><strong>Carry this forward carefully.</strong> Chapter 8A solves for the heading
+  with <code>sin&#8315;&sup1;(W&middot;sin&theta; &divide; TAS)</code>, and the number
+  that formula returns is the <em>drift</em>, not the WCA &mdash; so it is
+  <em>subtracted</em> from the track. Put a signed WCA into that subtraction instead
+  and you will aim twice the angle, on the wrong side. <strong>Compute with drift;
+  report WCA.</strong></p>
+  <p><strong>Drift</strong> is applied to <em>heading</em> to give <em>track</em>:
+  it tells you what the wind <em>did</em> to you.<br>
+  <strong>WCA</strong> is applied to <em>track</em> to give <em>heading</em>: it
+  tells you what to do <em>about</em> the wind.</p>
+  <p>Heading 090&deg;, track 097&deg; means drift is <strong>+7&deg;</strong> and
+  WCA is <strong>&minus;7&deg;</strong>. Same seven degrees, opposite sense, and an
+  exam will happily ask for either.</p>
+</div>
+
+<div class="callout green">
+  <div class="callout-title">Port and starboard</div>
+  <p><strong>Port is left. Starboard is right.</strong> British and DGCA
+  documents use them freely; American ones say left and right.</p>
+  <p>The memory aid that never fails: <strong>"port" and "left" both have four
+  letters.</strong></p>
+</div>
+
+<div class="callout red">
+  <div class="callout-title">"Course" — the word we will not use</div>
+  <p>British usage before about 1950 meant <em>heading</em>. Much current American
+  usage means <em>track</em>. Two respectable traditions, opposite meanings, same
+  word.</p>
+  <p><strong>This module never uses it.</strong> Everything is heading or track,
+  and there is no ambiguity. Be aware that an examination paper may still use
+  "course" &mdash; when it does, it almost always means <strong>desired
+  track</strong>.</p>
+</div>
+
+<!-- ============ 2. THE RIVER ============ -->
+<h2 id="s2">2 &middot; Why a boat explains this better than an aeroplane</h2>
+
+<p>Newcomers find it hard to believe that something as insubstantial as wind can
+shove a 400-tonne aircraft sideways. So we will start with something you can see.</p>
+
+<p>Imagine a river ten nautical miles wide, flowing at five knots.</p>
+
+<figure>
+  <img src="assets/ch07_fig01_river-current.png" width="1600" height="900"
+       alt="An aerial view of a wide river in golden light, with a small floating object and a
+       cyan trail showing how far the current has carried it.">
+  <figcaption><strong>Figure 7.1</strong> &mdash; Throw a stick in at the near
+  bank. An hour later it is five nautical miles downstream, and it never moved
+  under its own power at all. <strong>The medium itself is travelling.</strong></figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw cyan"></i>the current &mdash; where the water goes</span>
+  </div>
+</figure>
+
+<h3>First, dam the river</h3>
+
+<p>Now the river is a still lake. You have a boat that does ten knots through the
+water. You point it straight at the far bank and open the throttle.</p>
+
+<figure>
+  <img src="assets/ch07_fig02_still-water-crossing.png" width="1600" height="900"
+       alt="A boat crossing perfectly still water along a straight gold arrow, running square
+       across to the far bank.">
+  <figcaption><strong>Figure 7.2</strong> &mdash; Still water. One hour later you
+  are ten miles across, directly opposite where you started.
+  <strong>Track equals heading, because nothing moved the water.</strong>
+  This is the calm day &mdash; and we get about six of those a year.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw gold"></i>heading &mdash; where the boat points</span>
+  </div>
+</figure>
+
+<h3>Now let the river run again</h3>
+
+<p>Same boat, same heading, same throttle. But the current is back.</p>
+
+<figure>
+  <img src="assets/ch07_fig03_river-triangle.png" width="1600" height="900"
+       alt="A boat crossing a flowing river, with a gold arrow showing where it points, a cyan
+       arrow showing the current, and a white arrow showing the path it actually travels.">
+  <figcaption><strong>Figure 7.3</strong> &mdash; You still point straight across
+  and you still make ten miles across in the hour &mdash; but you also go five miles
+  downstream, because the water took you there. You arrive
+  <strong>five miles below</strong> the point you aimed at.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw gold"></i>heading &mdash; one arrowhead</span>
+    <span class="lg"><i class="sw cyan"></i>the current &mdash; three arrowheads</span>
+    <span class="lg"><i class="sw white"></i>track &mdash; two arrowheads</span>
+  </div>
+</figure>
+
+<div class="callout green">
+  <div class="callout-title">Two things worth noticing before we go further</div>
+  <p><strong>It is continuous, not sudden.</strong> After 12 minutes you are two
+  miles across and one mile down. After 24 minutes, four across and two down. The
+  boat is being carried the whole time, smoothly, along one straight resultant
+  path.</p>
+  <p><strong>You can fix it by aiming off.</strong> If you want to arrive directly
+  opposite, point the boat <em>upstream</em> of your destination. That is the
+  Wind Correction Angle, three hundred years before anyone put it on an aeroplane.
+  It is Chapter 8's whole subject.</p>
+</div>
+
+<h3>The step that matters: the air is the river</h3>
+
+<figure>
+  <img src="assets/ch07_fig04_air-mass.png" width="1600" height="900"
+       alt="An airliner in cruise above a single vast cloud layer, with parallel cyan
+       streamlines running across the whole frame showing the air mass in motion.">
+  <figcaption><strong>Figure 7.4</strong> &mdash; Wind is not gusts. Wind is an
+  <strong>air mass</strong> &mdash; a single coherent body of air, rarely smaller
+  than 60 by 60 nautical miles, travelling across the ground exactly as the river
+  travels past its banks.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw cyan"></i>the air mass in motion</span>
+  </div>
+</figure>
+
+<div class="callout blue">
+  <div class="callout-title">This is the sentence the whole chapter rests on</div>
+  <p>Your aircraft is <strong>supported by</strong> that air mass. It is not
+  fighting it, not pushing through it, not being buffeted by it. It is
+  <em>floating in it</em>, exactly as the stick floats in the river &mdash; and it
+  is carried with it, completely, whether it is a Cessna or a 747.</p>
+  <p>A 747 is no more able to resist a moving air mass than a stick is able to
+  resist a moving river. Mass has nothing to do with it.</p>
+</div>
+
+<!-- ============ 3. THE THREE VECTORS ============ -->
+<h2 id="s3">3 &middot; Three vectors, and how to tell them apart</h2>
+
+<p>A vector is just an arrow that carries two pieces of information at once:
+a <strong>direction</strong> and a <strong>magnitude</strong>. Every navigation
+problem in this module is three of them arranged into a triangle.</p>
+
+<div class="vector-key">
+  <div class="vk air">
+    <div class="vk-h">The Air Vector</div>
+    <div class="vk-arrows">one arrowhead &middot; gold</div>
+    <p><strong>Heading and TAS.</strong> Where the nose points, and how fast you
+    move through the air. This is the speed you would make over the ground if the
+    air were still.</p>
+  </div>
+  <div class="vk wind">
+    <div class="vk-h">The Wind Vector</div>
+    <div class="vk-arrows">three arrowheads &middot; cyan</div>
+    <p><strong>W/V &mdash; wind direction and speed.</strong> Where the air mass is
+    going, and how fast. Always named by where it comes <em>from</em>.</p>
+  </div>
+  <div class="vk ground">
+    <div class="vk-h">The Ground Vector</div>
+    <div class="vk-arrows">two arrowheads &middot; warm white</div>
+    <p><strong>Track and ground speed.</strong> The resultant &mdash; what you get
+    when you join the air vector to the wind vector. Where you actually go.</p>
+  </div>
+</div>
+
+<div class="callout amber">
+  <div class="callout-title">The arrowheads are not decoration &mdash; learn to count them</div>
+  <p><strong>Air = 1. Ground = 2. Wind = 3.</strong></p>
+  <p>An exam will hand you an unlabelled triangle and ask which side is which. The
+  arrowheads are the answer, and they are the only answer, because the colours will
+  not be there.</p>
+  <p>The order is easy to hold: they run <strong>1, 2, 3</strong> in the order the
+  words appear in "<strong>a</strong>ir, <strong>g</strong>round, <strong>w</strong>ind"
+  &mdash; alphabetical.</p>
+</div>
+
+<!-- ============ 4. WIND FROM ============ -->
+<h2 id="s4">4 &middot; The convention that costs the most marks</h2>
+
+<div class="callout red">
+  <div class="callout-title">Wind direction is where it comes FROM. Never where it goes TO.</div>
+  <p>A wind written <strong>330/30</strong> is a wind blowing <em>from</em>
+  330&deg; at 30 knots. On a diagram, its arrow <strong>points toward
+  150&deg;</strong> &mdash; the exact opposite of the number in its name.</p>
+</div>
+
+<figure>
+  <img src="assets/ch07_fig05_wind-from-not-to.png" width="1600" height="900"
+       alt="A compass rose with a three-arrowhead cyan arrow running from the upper-left rim
+       through the centre to the lower right, and a gold marker at the rim where the arrow begins.">
+  <figcaption><strong>Figure 7.5</strong> &mdash; The name of the wind is at the
+  <em>tail</em> of the arrow, not the head. A 330 wind starts at 330 and travels
+  away toward 150.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw gold"></i>where the wind comes FROM &mdash; its name</span>
+    <span class="lg"><i class="sw cyan"></i>where the air actually travels</span>
+  </div>
+</figure>
+
+<div class="callout green">
+  <div class="callout-title">And this matches how you already talk about weather</div>
+  <p>You already use this convention without thinking. A <em>southerly</em> is warm
+  because it has come up from the south. A <em>westerly</em> is wet because it has
+  crossed the Atlantic. Nobody has ever meant "a wind heading south".</p>
+  <p>The aviation convention is the everyday one. It only feels strange when you
+  start drawing arrows.</p>
+</div>
+
+<div class="callout amber">
+  <div class="callout-title">Where students lose the mark</div>
+  <p><strong>Add 180&deg; before you draw, never after.</strong> Convert the W/V
+  into a direction the arrow actually points, write that number down, and then draw.
+  Students who try to hold the reversal in their head while also managing heading
+  and drift are the ones who lose it.</p>
+  <p>Wind 240/30? The arrow points <strong>060</strong>. Write "060" on your scrap
+  paper and work with that.</p>
+</div>
+
+<!-- ============ 5. THE TRIANGLE ============ -->
+<h2 id="s5">5 &middot; The triangle of velocities</h2>
+
+<p>Three vectors. Two you know, one you want. Join them nose to tail and the
+answer is the side that closes the shape.</p>
+
+<figure>
+  <img src="assets/ch07_fig06_triangle-named.png" width="1600" height="900"
+       alt="A closed vector triangle with a vertical gold air vector, a shorter cyan wind
+       vector angling down to the right, and a warm white ground vector closing the shape.">
+  <figcaption><strong>Figure 7.6</strong> &mdash; The triangle of velocities. Come
+  back to this page whenever the next two chapters stop making sense; everything in
+  them is this shape wearing different numbers.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw gold"></i>air vector &mdash; heading &amp; TAS &mdash; 1 arrowhead</span>
+    <span class="lg"><i class="sw cyan"></i>wind vector &mdash; W/V &mdash; 3 arrowheads</span>
+    <span class="lg"><i class="sw white"></i>ground vector &mdash; track &amp; GS &mdash; 2 arrowheads</span>
+  </div>
+</figure>
+
+<div class="callout blue">
+  <div class="callout-title">What the flight computer is really doing</div>
+  <p>Pilots do not draw this on graph paper in the cruise. They solve it on a
+  computer &mdash; and the old slide-rule wind face was nothing more than
+  <strong>a machine for producing this scale drawing quickly</strong>. It was
+  literally drawing the triangle for you, on a rotating disc.</p>
+  <p>The CX-3 does the same job with trigonometry instead of geometry. <strong>The
+  triangle has not gone anywhere.</strong> It is still what is being solved &mdash;
+  you just no longer see it happen, which is exactly why you have to understand it
+  now.</p>
+</div>
+
+<!-- ============ 6. WORKED EXAMPLE ============ -->
+<h2 id="s6">6 &middot; Building the triangle, one vector at a time</h2>
+
+<div class="callout green">
+  <div class="callout-title">The problem we will solve three ways</div>
+  <p>You are in a Warrior PA-28. <strong>TAS 100 knots.</strong> Steady
+  <strong>heading 000&deg;(T)</strong>. Forecast <strong>W/V 240/30</strong>.</p>
+  <p><em>What will your track and ground speed be?</em></p>
+</div>
+
+<div class="buildup">
+  <figure>
+    <div class="stage">stage 1 — what you know</div>
+    <img src="assets/ch07_fig07_build1-air-vector.png" width="1600" height="900"
+         alt="A single vertical gold arrow with one arrowhead, alone on a dark field.">
+    <figcaption><strong>7.7</strong> &mdash; The <strong>air vector</strong>.
+    Direction 000&deg;, length 100 units. One arrowhead.</figcaption>
+  </figure>
+  <figure>
+    <div class="stage">stage 2 — add the wind</div>
+    <img src="assets/ch07_fig08_build2-plus-wind.png" width="1600" height="900"
+         alt="The vertical gold arrow with a shorter cyan arrow now running down and right from
+         its tip, the shape still open.">
+    <figcaption><strong>7.8</strong> &mdash; From its tip, the
+    <strong>wind vector</strong>: 30 units, pointing toward 060&deg;. Three
+    arrowheads. Still open.</figcaption>
+  </figure>
+  <figure>
+    <div class="stage">stage 3 — close it</div>
+    <img src="assets/ch07_fig09_build3-complete.png" width="1600" height="900"
+         alt="The completed triangle, with a warm white arrow closing from the base of the gold
+         vector to the tip of the cyan vector.">
+    <figcaption><strong>7.9</strong> &mdash; Join start to finish and read the
+    <strong>ground vector</strong>: track 012&deg;, ground speed 118 knots.</figcaption>
+  </figure>
+</div>
+
+<div class="callout amber">
+  <div class="callout-title">Read the three frames again, in order</div>
+  <p>Nothing moves between them. The gold vector you drew first is still exactly
+  where it was in the last frame. All that happens is that information gets
+  <em>added</em> &mdash; and on the third frame the shape closes and the answer
+  simply appears.</p>
+  <p>That is what "solving" a triangle of velocities means. There is no
+  calculation in the drawing. There is only the closing side.</p>
+</div>
+
+<h3>Worked example 7.1 &mdash; both methods, side by side</h3>
+
+<div class="worked">
+  <p class="problem"><strong>Problem.</strong> TAS 100 kt, heading 000&deg;(T),
+  W/V 240/30. Find track and ground speed.</p>
+
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the arithmetic</div>
+      <div class="dc-sub">resolve into components, then recombine</div>
+      <p class="dc-line"><strong>1.</strong> Turn the wind round. From 240 means it
+      points toward <strong>060&deg;</strong>.</p>
+      <p class="dc-line"><strong>2.</strong> Break both vectors into east and north parts:<br>
+      <code>E = 100&middot;sin0 + 30&middot;sin60 = 25.98</code><br>
+      <code>N = 100&middot;cos0 + 30&middot;cos60 = 115.0</code></p>
+      <p class="dc-line"><strong>3.</strong> Ground speed is the hypotenuse:<br>
+      <code>&radic;(25.98&sup2; + 115.0&sup2;)</code></p>
+      <p class="dc-line"><strong>4.</strong> Track is the angle:<br>
+      <code>tan&#8315;&sup1;(25.98 &divide; 115.0)</code></p>
+      <p class="dc-res">Track 013&deg; &middot; GS 118 kt</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the CX-3</div>
+      <div class="dc-sub">and there is a catch — read the note below</div>
+      <ol>
+        <li><span class="key">FLT</span> &rarr; <strong>Wind Correction</strong>.</li>
+        <li>This function takes <code>GS</code>, <code>TAS</code>, <code>TCrs</code>
+          and <code>THdg</code> &mdash; and solves for the <strong>wind</strong>.</li>
+        <li>It runs the <em>opposite</em> way to this question.</li>
+        <li><strong>And nothing else on the machine does either.</strong>
+          <span class="key">PLAN</span> takes <code>TCrs</code> &mdash; the track
+          &mdash; as an <em>input</em> and returns <code>CHdg</code>. It solves the
+          opposite problem: known track, find heading.</li>
+        <li>So <strong>this case is trigonometry</strong>, on the
+          <span class="key">CALC</span> keypad. Four lines, and it is exact.</li>
+      </ol>
+      <p class="dc-res">Track 012&deg; &middot; GS 118 kt</p>
+    </div>
+  </div>
+
+  <p class="dual-verdict"><strong>Which do you use?</strong> For a single triangle
+  in an exam, the trigonometry is fast and it always works. The <code>PLAN</code>
+  menu earns its keep on a multi-leg flight plan, which is Chapter 8B. <strong>Know
+  both, because the CX-3's Wind Correction function does not answer this
+  question</strong> &mdash; it answers the reverse one, and reaching for it here is
+  a genuine trap.</p>
+
+  <p class="sanity"><strong>Sanity check &mdash; do this one in your head first.</strong>
+  The wind is behind you and off to the left, so it must push you
+  <em>forward</em> and <em>right</em>. Ground speed should therefore be
+  <em>more</em> than 100, and track should be <em>east</em> of 000. Both are true:
+  118 knots, tracking 012. If you had got 89 knots and 343&deg;, you would have
+  applied the wind backwards.</p>
+</div>
+
+<div class="callout blue">
+  <div class="callout-title">Why the two methods differ by one degree</div>
+  <p>The trigonometry gives 12.7&deg;, which rounds to 013. The published answer is
+  012, read off a rotating disc to the nearest degree.</p>
+  <p>Neither is wrong to any degree that matters &mdash; a degree of track over 100
+  nautical miles is under two miles. <strong>But when exam options are one degree
+  apart, trust the arithmetic.</strong> It is exact, and it is reproducible.</p>
+</div>
+
+<!-- ============ 7. DRIFT ============ -->
+<h2 id="s7">7 &middot; Which way did it push you?</h2>
+
+<figure>
+  <img src="assets/ch07_fig10_drift-both-ways.png" width="1600" height="900"
+       alt="A split frame comparing port and starboard drift — on the left the track leans left
+       of the heading, on the right it leans right, with the wind arriving from the opposite
+       side in each case.">
+  <figcaption><strong>Figure 7.10</strong> &mdash; The wind always pushes you away
+  from where it comes from. Wind from the right pushes you left; wind from the left
+  pushes you right.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw gold"></i>heading</span>
+    <span class="lg"><i class="sw white"></i>track</span>
+    <span class="lg"><i class="sw cyan"></i>wind</span>
+  </div>
+</figure>
+
+<div class="callout green">
+  <div class="callout-title">The one-line rule that settles every drift question</div>
+  <p style="font-size:1.06rem"><strong>Track = Heading + Drift</strong>, with
+  starboard drift positive and port drift negative.</p>
+  <p>Heading 000 with 12&deg; starboard drift gives track 012.<br>
+  Heading 090 with 4&deg; port drift gives track 086.</p>
+  <p>And the reverse, for Chapter 8: <strong>Heading = Track &minus; Drift</strong>.</p>
+</div>
+
+<div class="callout red">
+  <div class="callout-title">Where students lose the mark — the 360/000 boundary</div>
+  <p>Heading 005&deg; with 8&deg; of port drift is <strong>not</strong> track
+  &minus;003&deg;. It is track <strong>357&deg;</strong>.</p>
+  <p>Anything at or below zero, add 360. Anything at or above 360, subtract 360.
+  Do it as a reflex, before you look at the answer options &mdash; because one of
+  those options will be the number you get if you forget.</p>
+</div>
+
+<hr class="section-rule">
+
+<h2 id="questions">Questions</h2>
+
+<div class="callout blue">
+  <div class="callout-title">What you are given, and what you are finding</div>
+  <p>Every row gives you a <strong>heading</strong>, a <strong>W/V</strong> and a
+  <strong>TAS</strong>. Find the <strong>track</strong> and the <strong>ground
+  speed</strong>.</p>
+  <p>That is the triangle with the air vector and wind vector known, solving for the
+  ground vector &mdash; exactly Figure 7.9. Thirty of them. Answers follow the second
+  table.</p>
+</div>
+
+<h3>Q1 &middot; Eleven rows</h3>
+<div class="q-table-wrap">
+<table class="q-table"><thead><tr><th>#</th><th>HDG&deg;(T)</th><th>W/V</th><th>Track&deg;(T)</th><th>TAS</th><th>GS</th></tr></thead><tbody><tr><td>1</td><td>273</td><td>230/40</td><td></td><td>150</td><td></td></tr><tr><td>2</td><td>181</td><td>150/30</td><td></td><td>90</td><td></td></tr><tr><td>3</td><td>054</td><td>350/28</td><td></td><td>88</td><td></td></tr><tr><td>4</td><td>084</td><td>255/55</td><td></td><td>210</td><td></td></tr><tr><td>5</td><td>141</td><td>280/35</td><td></td><td>190</td><td></td></tr><tr><td>6</td><td>274</td><td>030/40</td><td></td><td>150</td><td></td></tr><tr><td>7</td><td>213</td><td>060/35</td><td></td><td>150</td><td></td></tr><tr><td>8</td><td>029</td><td>090/40</td><td></td><td>170</td><td></td></tr><tr><td>9</td><td>305</td><td>350/16</td><td></td><td>100</td><td></td></tr><tr><td>10</td><td>187</td><td>270/60</td><td></td><td>110</td><td></td></tr><tr><td>11</td><td>310</td><td>045/45</td><td></td><td>320</td><td></td></tr></tbody></table>
+</div>
+
+<h3>Q2 &middot; Nineteen rows, and the speeds get serious</h3>
+<div class="q-table-wrap">
+<table class="q-table"><thead><tr><th>#</th><th>HDG&deg;(T)</th><th>W/V</th><th>Track&deg;(T)</th><th>TAS</th><th>GS</th></tr></thead><tbody><tr><td>1</td><td>138</td><td>125/50</td><td></td><td>390</td><td></td></tr><tr><td>2</td><td>253</td><td>180/70</td><td></td><td>415</td><td></td></tr><tr><td>3</td><td>131</td><td>210/40</td><td></td><td>485</td><td></td></tr><tr><td>4</td><td>100</td><td>315/55</td><td></td><td>480</td><td></td></tr><tr><td>5</td><td>270</td><td>315/55</td><td></td><td>110</td><td></td></tr><tr><td>6</td><td>200</td><td>125/50</td><td></td><td>210</td><td></td></tr><tr><td>7</td><td>180</td><td>210/40</td><td></td><td>135</td><td></td></tr><tr><td>8</td><td>140</td><td>180/70</td><td></td><td>170</td><td></td></tr><tr><td>9</td><td>093</td><td>045/45</td><td></td><td>210</td><td></td></tr><tr><td>10</td><td>103</td><td>060/35</td><td></td><td>240</td><td></td></tr><tr><td>11</td><td>237</td><td>270/60</td><td></td><td>205</td><td></td></tr><tr><td>12</td><td>343</td><td>030/40</td><td></td><td>350</td><td></td></tr><tr><td>13</td><td>030</td><td>350/16</td><td></td><td>390</td><td></td></tr><tr><td>14</td><td>315</td><td>280/35</td><td></td><td>375</td><td></td></tr><tr><td>15</td><td>145</td><td>090/40</td><td></td><td>420</td><td></td></tr><tr><td>16</td><td>290</td><td>255/55</td><td></td><td>490</td><td></td></tr><tr><td>17</td><td>191</td><td>150/30</td><td></td><td>480</td><td></td></tr><tr><td>18</td><td>257</td><td>350/28</td><td></td><td>475</td><td></td></tr><tr><td>19</td><td>157</td><td>230/140</td><td></td><td>460</td><td></td></tr></tbody></table>
+</div>
+
+<hr class="section-rule">
+
+<h2 id="answers">Answers</h2>
+
+<div class="callout blue">
+  <div class="callout-title">How these were produced</div>
+  <p>Every row was solved by resolving both vectors into east and north components
+  and recombining &mdash; the exact method in Worked Example 7.1. Tracks are rounded
+  to the nearest degree, ground speeds to the nearest knot.</p>
+  <p><strong>All thirty agree with the published key</strong> within one degree and
+  three knots. Unlike Chapters 5 and 6, there is nothing to flag here &mdash; this
+  chapter's answers are sound throughout.</p>
+  <p>The <strong>drift</strong> column is not in the original question. It is added
+  so you can check your <em>reasoning</em>, not just your answer.</p>
+</div>
+
+<h3>A1</h3>
+
+<div class="worked compact">
+  <p class="problem"><strong>Row 1 in full.</strong> HDG 273&deg;, W/V 230/40, TAS 150.</p>
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the arithmetic</div>
+      <p class="dc-line"><strong>1.</strong> Wind from 230 points toward <strong>050&deg;</strong>.</p>
+      <p class="dc-line"><strong>2.</strong> Components:<br>
+      <code>E = 150&middot;sin273 + 40&middot;sin050 = &minus;119.2</code><br>
+      <code>N = 150&middot;cos273 + 40&middot;cos050 = 33.6</code></p>
+      <p class="dc-line"><strong>3.</strong> <code>GS = &radic;(119.2&sup2;+33.6&sup2;)</code></p>
+      <p class="dc-line"><strong>4.</strong> <code>Track = atan2(&minus;119.2, 33.6)</code></p>
+      <p class="dc-res">Track 286&deg; &middot; GS 124 kt</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — the reasoning check</div>
+      <div class="dc-sub">do this before you trust any answer</div>
+      <p class="dc-line">Heading 273 is roughly west. The wind is from 230 &mdash;
+      the south-west &mdash; so it is coming over your <strong>left shoulder</strong>.</p>
+      <p class="dc-line">A wind from the left must push you <strong>right</strong>,
+      so track should be <em>more</em> than 273.</p>
+      <p class="dc-line">It is also partly behind you, so ground speed should be
+      <em>less</em> than TAS &mdash; no: partly behind means <em>more</em>. Check
+      the geometry: from 230 onto a 273 heading is close to abeam, slightly behind.</p>
+      <p class="dc-res">expect track just right of 273, GS near 150 or below</p>
+    </div>
+  </div>
+  <p class="sanity"><strong>286 and 124.</strong> Track moved right as predicted. The
+  ground speed came out well below TAS because the wind, resolved along the track, is
+  mostly a headwind component. The reasoning got the <em>direction</em> right and
+  that is all it has to do.</p>
+</div>
+
+<p class="same-method">Rows 2&ndash;11 are the identical four steps: reverse the wind, resolve, recombine, read.</p>
+
+<div class="q-table-wrap">
+<table class="q-table answers"><thead><tr><th>#</th><th>HDG&deg;(T)</th><th>W/V</th><th>Track&deg;(T)</th><th>TAS</th><th>GS</th><th>drift</th></tr></thead><tbody><tr><td>1</td><td>273</td><td>230/40</td><td class="calc">286</td><td>150</td><td class="calc">124</td><td class="note-cell">13&deg;S</td></tr><tr><td>2</td><td>181</td><td>150/30</td><td class="calc">195</td><td>90</td><td class="calc">66</td><td class="note-cell">14&deg;S</td></tr><tr><td>3</td><td>054</td><td>350/28</td><td class="calc">072</td><td>88</td><td class="calc">80</td><td class="note-cell">18&deg;S</td></tr><tr><td>4</td><td>084</td><td>255/55</td><td class="calc">082</td><td>210</td><td class="calc">264</td><td class="note-cell">2&deg;P</td></tr><tr><td>5</td><td>141</td><td>280/35</td><td class="calc">135</td><td>190</td><td class="calc">218</td><td class="note-cell">6&deg;P</td></tr><tr><td>6</td><td>274</td><td>030/40</td><td class="calc">262</td><td>150</td><td class="calc">171</td><td class="note-cell">12&deg;P</td></tr><tr><td>7</td><td>213</td><td>060/35</td><td class="calc">218</td><td>150</td><td class="calc">182</td><td class="note-cell">5&deg;S</td></tr><tr><td>8</td><td>029</td><td>090/40</td><td class="calc">016</td><td>170</td><td class="calc">155</td><td class="note-cell">13&deg;P</td></tr><tr><td>9</td><td>305</td><td>350/16</td><td class="calc">298</td><td>100</td><td class="calc">89</td><td class="note-cell">7&deg;P</td></tr><tr><td>10</td><td>187</td><td>270/60</td><td class="calc">157</td><td>110</td><td class="calc">119</td><td class="note-cell">30&deg;P</td></tr><tr><td>11</td><td>310</td><td>045/45</td><td class="calc">302</td><td>320</td><td class="calc">327</td><td class="note-cell">8&deg;P</td></tr></tbody></table>
+</div>
+
+<h3>A2</h3>
+
+<div class="worked compact">
+  <p class="problem"><strong>Row 19 in full &mdash; and read the wind speed twice.</strong> HDG 157&deg;, W/V 230/140, TAS 460.</p>
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 — the arithmetic</div>
+      <p class="dc-line"><strong>1.</strong> Wind from 230 points toward <strong>050&deg;</strong>. Speed <strong>140 knots</strong>.</p>
+      <p class="dc-line"><strong>2.</strong> Components:<br>
+      <code>E = 460&middot;sin157 + 140&middot;sin050 = 287.0</code><br>
+      <code>N = 460&middot;cos157 + 140&middot;cos050 = &minus;333.4</code></p>
+      <p class="dc-line"><strong>3.</strong> <code>GS = &radic;(287.0&sup2;+333.4&sup2;)</code></p>
+      <p class="dc-res">Track 139&deg; &middot; GS 440 kt</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 — is 140 knots even real?</div>
+      <div class="dc-sub">yes, and this is why the row is here</div>
+      <p class="dc-line">140 knots of wind looks like a misprint. It is not.</p>
+      <p class="dc-line">At the levels where a 460-knot TAS lives, the
+      <strong>jet stream</strong> routinely runs 100 to 200 knots.</p>
+      <p class="dc-line">Check it: at 40 knots this row would give track 152 and GS 450.
+      The published answer is 139 and 440 &mdash; which only works at 140.</p>
+      <p class="dc-res">the wind really is 140 kt</p>
+    </div>
+  </div>
+  <p class="sanity"><strong>Look at what that wind did.</strong> It bent the track
+  <strong>18 degrees</strong> and took 20 knots off the ground speed. Over a
+  three-hour sector, ignoring it puts you the better part of two hundred miles from
+  where you meant to be. This is why the jet stream is a flight-planning subject and
+  not a curiosity.</p>
+</div>
+
+<p class="same-method">Rows 1&ndash;18 use the same four steps. The only thing that changes is how hard the wind is working.</p>
+
+<div class="q-table-wrap">
+<table class="q-table answers"><thead><tr><th>#</th><th>HDG&deg;(T)</th><th>W/V</th><th>Track&deg;(T)</th><th>TAS</th><th>GS</th><th>drift</th></tr></thead><tbody><tr><td>1</td><td>138</td><td>125/50</td><td class="calc">140</td><td>390</td><td class="calc">341</td><td class="note-cell">2&deg;S</td></tr><tr><td>2</td><td>253</td><td>180/70</td><td class="calc">263</td><td>415</td><td class="calc">400</td><td class="note-cell">10&deg;S</td></tr><tr><td>3</td><td>131</td><td>210/40</td><td class="calc">126</td><td>485</td><td class="calc">479</td><td class="note-cell">5&deg;P</td></tr><tr><td>4</td><td>100</td><td>315/55</td><td class="calc">103</td><td>480</td><td class="calc">526</td><td class="note-cell">3&deg;S</td></tr><tr><td>5</td><td>270</td><td>315/55</td><td class="calc">241</td><td>110</td><td class="calc">81</td><td class="note-cell">29&deg;P</td></tr><tr><td>6</td><td>200</td><td>125/50</td><td class="calc">214</td><td>210</td><td class="calc">203</td><td class="note-cell">14&deg;S</td></tr><tr><td>7</td><td>180</td><td>210/40</td><td class="calc">169</td><td>135</td><td class="calc">102</td><td class="note-cell">11&deg;P</td></tr><tr><td>8</td><td>140</td><td>180/70</td><td class="calc">119</td><td>170</td><td class="calc">125</td><td class="note-cell">21&deg;P</td></tr><tr><td>9</td><td>093</td><td>045/45</td><td class="calc">104</td><td>210</td><td class="calc">183</td><td class="note-cell">11&deg;S</td></tr><tr><td>10</td><td>103</td><td>060/35</td><td class="calc">109</td><td>240</td><td class="calc">216</td><td class="note-cell">6&deg;S</td></tr><tr><td>11</td><td>237</td><td>270/60</td><td class="calc">225</td><td>205</td><td class="calc">158</td><td class="note-cell">12&deg;P</td></tr><tr><td>12</td><td>343</td><td>030/40</td><td class="calc">338</td><td>350</td><td class="calc">324</td><td class="note-cell">5&deg;P</td></tr><tr><td>13</td><td>030</td><td>350/16</td><td class="calc">032</td><td>390</td><td class="calc">378</td><td class="note-cell">2&deg;S</td></tr><tr><td>14</td><td>315</td><td>280/35</td><td class="calc">318</td><td>375</td><td class="calc">347</td><td class="note-cell">3&deg;S</td></tr><tr><td>15</td><td>145</td><td>090/40</td><td class="calc">150</td><td>420</td><td class="calc">398</td><td class="note-cell">5&deg;S</td></tr><tr><td>16</td><td>290</td><td>255/55</td><td class="calc">294</td><td>490</td><td class="calc">446</td><td class="note-cell">4&deg;S</td></tr><tr><td>17</td><td>191</td><td>150/30</td><td class="calc">193</td><td>480</td><td class="calc">458</td><td class="note-cell">2&deg;S</td></tr><tr><td>18</td><td>257</td><td>350/28</td><td class="calc">254</td><td>475</td><td class="calc">477</td><td class="note-cell">3&deg;P</td></tr><tr><td>19</td><td>157</td><td>230/140</td><td class="calc">139</td><td>460</td><td class="calc">440</td><td class="note-cell">18&deg;P</td></tr></tbody></table>
+</div>
+
+<div class="callout green">
+  <div class="callout-title">Two patterns worth spotting in that table</div>
+  <p><strong>Drift shrinks as TAS grows.</strong> Compare row 5 (TAS 110, drift 28&deg;)
+  with row 3 (TAS 485, drift 5&deg;) &mdash; similar winds, wildly different drift. The
+  faster you go, the less time the wind has to work on you.</p>
+  <p><strong>Ground speed can beat TAS by a long way.</strong> Row 4: TAS 480, ground
+  speed 525. That is 45 knots of free progress &mdash; and on the reciprocal it would
+  be 45 knots against you. The same air mass gives and takes.</p>
+</div>
+
+<hr class="section-rule">
+
+<h2 id="drill">90-second speed drill</h2>
+
+<div class="drill">
+  <p class="drill-intro">No computer needed for most of these. 90 seconds. Go.</p>
+  <ol class="drill-list">
+    <li>Heading 090&deg;, track 084&deg;. How much drift, and which way?</li>
+    <li>Same aircraft. What is the wind correction angle?</li>
+    <li>A wind is given as 270/25. Which way does its arrow point on a diagram?</li>
+    <li>How many arrowheads on the wind vector? On the ground vector?</li>
+    <li>Heading 355&deg; with 10&deg; of starboard drift. What is the track?</li>
+    <li>Heading 010&deg; with 15&deg; of port drift. What is the track?</li>
+    <li>Which vector is gold in every diagram in this module?</li>
+    <li>Wind from directly behind you. How much drift?</li>
+    <li>Wind from directly ahead. Is ground speed more or less than TAS?</li>
+    <li>Two aircraft, same wind. One at 120 kt TAS, one at 480. Which drifts more?</li>
+  </ol>
+
+  <details class="drill-answers">
+    <summary>Answers</summary>
+    <ol>
+      <li>From 090 to 084 &mdash; <strong>6&deg; port (left)</strong></li>
+      <li><strong>WCA +6&deg;</strong> &mdash; same size, opposite sense</li>
+      <li>Toward <strong>090&deg;</strong> &mdash; from 270 means it blows to 090</li>
+      <li>Wind <strong>three</strong>. Ground <strong>two</strong>. (Air is one.)</li>
+      <li>355 + 10 = 365, so <strong>005&deg;</strong> &mdash; subtract 360</li>
+      <li>010 &minus; 15 = &minus;5, so <strong>355&deg;</strong> &mdash; add 360</li>
+      <li>The <strong>air vector</strong> &mdash; heading and TAS</li>
+      <li><strong>None.</strong> A pure tailwind adds speed and bends nothing</li>
+      <li><strong>Less.</strong> Straight headwind subtracts from ground speed</li>
+      <li>The <strong>120-knot</strong> aircraft &mdash; less speed, more time for the wind to act</li>
+    </ol>
+  </details>
+</div>
+
+<h2 id="card">Quick reference &mdash; Chapter 7</h2>
+
+<p class="card-intro">Photograph this page.</p>
+
+<div class="ref-table-wrap">
+<table class="ref-table card">
+  <thead><tr><th>Thing</th><th>What it is</th><th>How to remember it</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Heading</strong></td><td>Where the nose points</td><td>Gold vector &middot; <strong>1</strong> arrowhead</td></tr>
+    <tr><td><strong>Track</strong></td><td>Where you actually go</td><td>Warm white vector &middot; <strong>2</strong> arrowheads</td></tr>
+    <tr><td><strong>W/V</strong></td><td>Where the air comes from, and how fast</td><td>Cyan vector &middot; <strong>3</strong> arrowheads</td></tr>
+    <tr><td><strong>Drift</strong></td><td>Heading to track</td><td>Track = Heading + Drift &nbsp;(starboard +)</td></tr>
+    <tr><td><strong>WCA</strong></td><td>Track to heading</td><td>Same number as drift, opposite sign.<br>The Ch 8A formula returns <em>drift</em> &mdash; subtract it.</td></tr>
+    <tr><td><strong>Port / starboard</strong></td><td>Left / right</td><td>"port" and "left" &mdash; four letters each</td></tr>
+    <tr class="gap-row"><td><strong>Wind direction</strong></td><td><strong>Where it comes FROM</strong></td><td>Arrow points to W/V <strong>+ 180&deg;</strong></td></tr>
+    <tr><td>Track &amp; GS from a known wind</td><td>The Chapter 7 problem</td><td>Trigonometry &mdash; no CX-3 function does this</td></tr>
+    <tr><td><code>FLT</code> &rarr; Wind Correction</td><td>Solves for the <em>wind</em></td><td><strong>Not</strong> this chapter's problem &mdash; it runs backwards</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout green">
+  <div class="callout-title">The five things to carry out of this chapter</div>
+  <ul class="numbers">
+    <li><strong>You float in the air mass.</strong> A 747 drifts exactly like a stick in a river</li>
+    <li><strong>Air 1, ground 2, wind 3</strong> &mdash; arrowheads, alphabetical</li>
+    <li><strong>Wind direction is where it comes FROM</strong> &mdash; add 180&deg; before you draw</li>
+    <li><strong>Track = Heading + Drift</strong>, starboard positive</li>
+    <li><strong>Faster aircraft drift less</strong> &mdash; the wind has less time to work</li>
+  </ul>
+</div>
+
+<footer class="chapter-foot">
+  <p><strong>Chapter 7 &mdash; The Triangle of Velocities</strong></p>
+  <p>Ghost Aviator &middot; General Navigation &middot; The Navigation Computer series</p>
+  <p class="foot-next">Next: <strong>Chapter 8A &mdash; Calculation of Heading and
+  Ground Speed</strong>, where the triangle runs the other way &mdash; you know the
+  track you <em>want</em>, and you solve for the heading that gets you there.</p>
+</footer>
+
+</div>
+
+
+<div class="ga-watermark-l1" data-ga-wm="l1">Capt. Pankaj Pahil &middot; www.GhostAviator.com</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var WM_TEXT  = 'Capt. Pankaj Pahil · www.GhostAviator.com';
+  var WM_CLASS = 'ga-watermark-l1';
+  var WM_FLAG  = 'l1';
+
+  /* ---------------- LAYER 3: sentinel ---------------- */
+
+  function buildWatermark() {
+    var div = document.createElement('div');
+    div.className = WM_CLASS;
+    div.setAttribute('data-ga-wm', WM_FLAG);
+    div.textContent = WM_TEXT;
+    document.body.appendChild(div);
+    return div;
+  }
+
+  var repairing = false;
+
+  function checkWatermark() {
+    if (repairing) return;
+    repairing = true;
+    try {
+      var wm = document.querySelector('[data-ga-wm="' + WM_FLAG + '"]');
+
+      if (!wm) {                                  // removed entirely
+        buildWatermark();
+        return;
+      }
+      if (wm.textContent.indexOf('GhostAviator') === -1) {   // text tampered
+        wm.textContent = WM_TEXT;
+      }
+      if (wm.className.indexOf(WM_CLASS) === -1) {           // class stripped
+        wm.className = WM_CLASS;
+      }
+      var cs = window.getComputedStyle(wm);                  // hidden
+      if (cs.display === 'none' ||
+          cs.visibility === 'hidden' ||
+          parseFloat(cs.opacity) < 0.01) {
+        wm.style.setProperty('display', 'block', 'important');
+        wm.style.setProperty('visibility', 'visible', 'important');
+        wm.style.setProperty('opacity', '1', 'important');
+      }
+    } finally {
+      repairing = false;
+    }
+  }
+
+  if (!document.querySelector('[data-ga-wm="' + WM_FLAG + '"]')) {
+    buildWatermark();
+  }
+
+  function isWatermark(node) {
+    return node && node.nodeType === 1 &&
+           ((node.getAttribute && node.getAttribute('data-ga-wm') === WM_FLAG) ||
+            (node.classList && node.classList.contains(WM_CLASS)));
+  }
+
+  function inWatermark(node) {
+    while (node) {
+      if (isWatermark(node)) return true;
+      node = node.parentNode;
+    }
+    return false;
+  }
+
+  var observer = new MutationObserver(function (mutations) {
+    if (repairing) return;
+    for (var i = 0; i < mutations.length; i++) {
+      var m = mutations[i];
+
+      // the watermark itself was removed from the page
+      if (m.type === 'childList') {
+        for (var j = 0; j < m.removedNodes.length; j++) {
+          if (isWatermark(m.removedNodes[j])) {
+            setTimeout(checkWatermark, 50);
+            return;
+          }
+        }
+      }
+      // anything changed ON or INSIDE the watermark
+      // (this is the case v1.0 missed — innerHTML edits survived)
+      if (inWatermark(m.target)) {
+        setTimeout(checkWatermark, 50);
+        return;
+      }
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    characterData: true,
+    attributeFilter: ['style', 'class', 'data-ga-wm']
+  });
+
+  // an injected stylesheet that tries to hide the mark
+  if (document.head) {
+    new MutationObserver(function () {
+      setTimeout(checkWatermark, 150);
+    }).observe(document.head, { childList: true, subtree: true });
+  }
+
+  // belt and braces
+  setInterval(checkWatermark, 3000);
+
+
+  /* ---------------- LAYER 4: steganographic markers ----------------
+     Encodes a key as zero-width characters inside body text, so that text
+     copied out of the page carries an invisible, checkable signature.
+     Built with fromCharCode so no invisible character sits in the source. */
+
+  var STEG_KEY = 'GhostAviator-CPP';
+  var ZW = [
+    String.fromCharCode(0x200B),   // zero width space
+    String.fromCharCode(0x200C),   // zero width non-joiner
+    String.fromCharCode(0x200D),   // zero width joiner
+    String.fromCharCode(0x2060)    // word joiner
+  ];
+
+  function encodeSteg(text) {
+    var out = '';
+    for (var i = 0; i < text.length; i++) {
+      var code = text.charCodeAt(i);
+      for (var b = 3; b >= 0; b--) {          // 8 bits, 2 bits per symbol
+        out += ZW[(code >> (b * 2)) & 3];
+      }
+    }
+    return out;
+  }
+
+  var MARKER = encodeSteg(STEG_KEY);
+
+  window.gaInsertStegMarkers = function () {
+    var els = document.querySelectorAll(
+      '.ga-content p, .ga-content li, .ga-content td, ' +
+      '.ga-content h2, .ga-content h3, p, li, td, h2, h3'
+    );
+    var seen = [];
+    for (var i = 0; i < els.length; i++) {
+      if (seen.indexOf(els[i]) === -1) seen.push(els[i]);
+    }
+    if (!seen.length) return 0;
+
+    /* Keep only elements long enough to hide a marker in, THEN space the
+       markers evenly through those. Sampling before filtering (v2.0) landed
+       only 3 markers in a long chapter, because most sampled slots were short
+       table cells. Target ~12, spread across the whole document. */
+    var eligible = [];
+    for (var e = 0; e < seen.length; e++) {
+      if (inWatermark(seen[e])) continue;
+      if (seen[e].getAttribute('data-ga-steg')) continue;
+      if (seen[e].textContent.length < 40) continue;
+      eligible.push(seen[e]);
+    }
+    if (!eligible.length) return 0;
+
+    var TARGET = 12;
+    var step = Math.max(1, Math.floor(eligible.length / TARGET));
+    var placed = 0;
+
+    for (var k = 0; k < eligible.length; k += step) {
+      var el = eligible[k];
+
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+      var tn;
+      while ((tn = walker.nextNode())) {
+        if (tn.textContent.length > 25) {
+          var mid = Math.floor(tn.textContent.length / 2);
+          var at  = tn.textContent.indexOf(' ', mid);
+          if (at === -1) at = mid;
+          tn.textContent = tn.textContent.slice(0, at) + MARKER + tn.textContent.slice(at);
+          el.setAttribute('data-ga-steg', '1');
+          placed++;
+          break;
+        }
+      }
+    }
+    return placed;
+  };
+
+  /* Verifier — paste suspect text into the console and call this:
+       gaCheckSteg(pastedString)   ->  true if the signature is present      */
+  window.gaCheckSteg = function (str) {
+    return typeof str === 'string' && str.indexOf(MARKER) !== -1;
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { window.gaInsertStegMarkers(); });
+  } else {
+    window.gaInsertStegMarkers();
+  }
+
+})();
+</script>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

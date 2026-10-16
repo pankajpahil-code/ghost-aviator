@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://ghostaviator.com/cpl/air-navigation/nav-cx3-9/notes">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 9 — Multi-drift Winds and Wind Components | Ghost Aviator</title>
+<meta name="description" content="DGCA CPL/ATPL General Navigation: multi-drift winds and runway wind components on the ASA CX-3 flight computer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap">
+<style>
+/* ==========================================================================
+   GHOST AVIATOR — GenNav CX-3 chapter stylesheet
+   navy #1a2942 · gold #c9a227 · Playfair Display / Source Serif 4
+   ========================================================================== */
+
+:root {
+  --navy:      #1a2942;
+  --navy-soft: #24354f;
+  --gold:      #c9a227;
+  --gold-soft: #f3ead0;
+  --ink:       #22303f;
+  --ink-soft:  #5a6b7d;
+  --paper:     #ffffff;
+  --rule:      #d8d2c4;
+
+  --red:       #c0392b;
+  --red-bg:    #fdf1ef;
+  --amber:     #b9770e;
+  --amber-bg:  #fdf6e8;
+  --blue:      #2e86ab;
+  --blue-bg:   #eef6fa;
+  --green:     #1e8449;
+  --green-bg:  #eef8f1;
+
+  --serif:   'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --display: 'Playfair Display', Georgia, serif;
+  --mono:    'IBM Plex Mono', 'Consolas', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: transparent;          /* Layer 2 of the watermark sits on <html> */
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ga-content {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  background: rgba(255,255,255,0.86);   /* lets the tiled watermark show through */
+}
+
+/* ---------- audit banner ---------- */
+.audit-banner {
+  border: 2px solid var(--red);
+  background: var(--red-bg);
+  color: #8e2c21;
+  border-radius: 4px;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 2.5rem;
+}
+.audit-banner strong { display: block; letter-spacing: 0.06em; margin-bottom: 0.3rem; color: var(--red); }
+
+/* ---------- headings ---------- */
+.chapter-head { border-bottom: 3px solid var(--gold); padding-bottom: 1.6rem; margin-bottom: 2.4rem; }
+.eyebrow {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem;
+}
+h1 {
+  font-family: var(--display); font-weight: 900; color: var(--navy);
+  font-size: clamp(1.9rem, 5vw, 2.9rem); line-height: 1.1; margin: 0 0 0.8rem;
+  text-wrap: balance;
+}
+.h1-sub { font-size: 0.62em; font-weight: 700; color: var(--ink); display: block; margin-top: 0.35rem; }
+.standfirst { font-size: 1.08rem; font-style: italic; color: var(--ink-soft); margin: 0; }
+
+h2 {
+  font-family: var(--display); font-weight: 700; color: var(--navy);
+  font-size: 1.55rem; margin: 3rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--gold); text-wrap: balance;
+}
+h3 {
+  font-family: var(--serif); font-weight: 700; color: var(--navy);
+  font-size: 1.16rem; margin: 2rem 0 0.6rem;
+}
+p { margin: 0 0 1rem; }
+
+/* ---------- scenario ---------- */
+.scenario {
+  background: var(--navy); color: #e8eef5; border-radius: 5px;
+  padding: 1.5rem 1.6rem; margin: 2rem 0;
+  border-left: 5px solid var(--gold);
+}
+.scenario-label {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem;
+}
+.scenario p:last-child { margin-bottom: 0; }
+.scenario strong { color: #fff; }
+.scenario em { color: var(--gold-soft); }
+
+/* ---------- callouts ---------- */
+.callout { border-radius: 4px; padding: 1.05rem 1.25rem; margin: 1.5rem 0; border-left: 5px solid; }
+.callout p:last-child, .callout ul:last-child, .callout ol:last-child { margin-bottom: 0; }
+.callout-title { font-weight: 700; margin-bottom: 0.45rem; font-size: 1rem; }
+
+.callout.red   { border-color: var(--red);   background: var(--red-bg); }
+.callout.red   .callout-title { color: var(--red); }
+.callout.amber { border-color: var(--amber); background: var(--amber-bg); }
+.callout.amber .callout-title { color: var(--amber); }
+.callout.blue  { border-color: var(--blue);  background: var(--blue-bg); }
+.callout.blue  .callout-title { color: #1d6d8f; }
+.callout.green { border-color: var(--green); background: var(--green-bg); }
+.callout.green .callout-title { color: var(--green); }
+
+/* ---------- formula ---------- */
+.formula-block {
+  background: var(--gold-soft); border: 1px solid #e0cf9a; border-radius: 4px;
+  padding: 1.1rem 1.25rem; margin: 1.4rem 0; text-align: center;
+}
+.formula { font-family: var(--display); font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+.formula-units { font-family: var(--serif); font-size: 0.72em; font-weight: 400; font-style: italic; color: var(--ink-soft); }
+.formula-note { font-size: 0.88rem; color: var(--ink-soft); margin-top: 0.55rem; font-style: italic; }
+
+/* ---------- CX-3 keystroke panel ---------- */
+.keystroke {
+  background: var(--navy); color: #dde6f0; border-radius: 5px;
+  padding: 1.15rem 1.3rem; margin: 1.5rem 0; font-size: 0.95rem;
+}
+.keystroke-title {
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.65rem;
+}
+.keystroke-path { font-size: 1.05rem; margin-bottom: 0.85rem; color: #fff; }
+.keystroke p { margin: 0.5rem 0 0; }
+.keystroke code { background: rgba(255,255,255,0.12); color: var(--gold-soft); }
+
+.key {
+  display: inline-block; font-family: var(--mono); font-size: 0.8em; font-weight: 700;
+  background: #3c4f68; color: #fff; border: 1px solid #55688a; border-bottom-width: 2px;
+  border-radius: 3px; padding: 1px 6px; margin: 0 1px; white-space: nowrap;
+}
+.callout .key, .worked .key, .ref-table .key, .drill .key {
+  background: var(--navy); border-color: #0e1826; color: #fff;
+}
+
+.field-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.field-table th {
+  text-align: left; vertical-align: top; padding: 0.35rem 0.9rem 0.35rem 0;
+  color: var(--gold); font-weight: 700; white-space: nowrap; width: 1%;
+}
+.field-table td { padding: 0.35rem 0; vertical-align: top; }
+
+code {
+  font-family: var(--mono); font-size: 0.86em;
+  background: #eef0f3; padding: 1px 5px; border-radius: 3px;
+}
+
+/* ---------- worked examples ---------- */
+.worked {
+  border: 1px solid var(--rule); border-left: 5px solid var(--navy);
+  border-radius: 4px; padding: 1.1rem 1.25rem; margin: 1.5rem 0; background: #fbfaf7;
+}
+.worked.compact { margin: 1.1rem 0; padding: 0.95rem 1.1rem; }
+.worked .problem { margin-bottom: 0.7rem; }
+.steps { margin: 0 0 0.8rem; padding-left: 1.3rem; }
+.steps li { margin-bottom: 0.32rem; }
+.answer {
+  background: var(--green-bg); border-left: 4px solid var(--green);
+  padding: 0.55rem 0.85rem; border-radius: 3px; margin: 0.7rem 0 !important;
+  font-size: 1.02rem;
+}
+.answer strong { color: var(--green); }
+.sanity {
+  font-size: 0.9rem; color: var(--ink-soft); font-style: italic;
+  border-top: 1px dotted var(--rule); padding-top: 0.55rem; margin-bottom: 0 !important;
+}
+.sanity strong { color: var(--ink); font-style: normal; }
+
+.verified-note {
+  font-size: 0.85rem; color: var(--ink-soft); font-style: italic;
+  border-left: 3px solid var(--rule); padding-left: 0.8rem; margin: -0.5rem 0 1.4rem;
+}
+.same-method {
+  font-size: 0.93rem; color: var(--ink-soft); font-style: italic;
+  background: #f4f2ec; border-radius: 3px; padding: 0.55rem 0.85rem;
+}
+
+.method { margin: 0.4rem 0 0; padding-left: 1.3rem; }
+.method li { margin-bottom: 0.4rem; }
+.method-note { font-size: 0.9rem; font-style: italic; color: var(--ink-soft); margin-top: 0.6rem !important; }
+.numbers { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+.numbers li { margin-bottom: 0.3rem; }
+
+/* ---------- figures ---------- */
+figure { margin: 1.8rem 0; }
+figure img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--rule); border-radius: 4px; background: #f0eee9;
+}
+figcaption {
+  font-size: 0.88rem; color: var(--ink-soft); margin-top: 0.55rem;
+  padding-left: 0.6rem; border-left: 3px solid var(--gold);
+}
+figcaption strong { color: var(--navy); }
+
+/* ---------- tables ---------- */
+.q-table-wrap, .ref-table-wrap { overflow-x: auto; margin: 1.2rem 0; }
+.q-table, .ref-table {
+  width: 100%; border-collapse: collapse; font-size: 0.93rem;
+  font-variant-numeric: tabular-nums;
+}
+.q-table th, .ref-table th {
+  background: var(--navy); color: #fff; font-weight: 700;
+  text-align: left; padding: 0.55rem 0.7rem; font-size: 0.86rem;
+  letter-spacing: 0.03em;
+}
+.q-table td, .ref-table td {
+  border-bottom: 1px solid var(--rule); padding: 0.5rem 0.7rem; vertical-align: top;
+}
+.q-table tbody tr:nth-child(even) { background: #faf9f6; }
+.q-table td:first-child { color: var(--ink-soft); font-family: var(--mono); font-size: 0.85em; }
+.q-table.answers .calc { font-weight: 700; color: var(--green); }
+.note-cell { font-size: 0.83em; font-style: italic; color: var(--amber); }
+.ref-table.card td:last-child { font-size: 0.92em; }
+.gap-row { background: var(--amber-bg) !important; }
+.gap-row td { border-bottom-color: #e6cfa0; }
+.card-intro { font-style: italic; color: var(--ink-soft); }
+
+/* ---------- speed drill ---------- */
+.drill {
+  border: 2px solid var(--gold); border-radius: 5px;
+  padding: 1.3rem 1.4rem; margin: 1.5rem 0; background: #fffdf7;
+}
+.drill-intro { font-weight: 700; color: var(--navy); margin-bottom: 0.9rem; }
+.drill-list { margin: 0; padding-left: 1.4rem; }
+.drill-list li { margin-bottom: 0.45rem; }
+.drill-answers { margin-top: 1.2rem; border-top: 1px solid var(--rule); padding-top: 0.8rem; }
+.drill-answers summary {
+  cursor: pointer; font-weight: 700; color: var(--gold); font-family: var(--mono);
+  font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.drill-answers summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.drill-answers ol { margin: 0.8rem 0 0; padding-left: 1.4rem; }
+.drill-answers li { margin-bottom: 0.35rem; font-size: 0.94rem; }
+
+/* ---------- misc ---------- */
+.section-rule { border: 0; border-top: 2px solid var(--gold); margin: 3rem 0 0; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.4rem; }
+li { margin-bottom: 0.25rem; }
+
+.chapter-foot {
+  margin-top: 3.5rem; padding-top: 1.4rem; border-top: 3px solid var(--gold);
+  font-size: 0.9rem; color: var(--ink-soft); text-align: center;
+}
+.chapter-foot p { margin: 0.25rem 0; }
+.foot-next { margin-top: 1rem !important; font-style: italic; }
+
+/* ==========================================================================
+   PRINT — A4, 20mm margins
+   ========================================================================== */
+@page { size: A4; margin: 20mm; }
+
+@media print {
+  body { font-size: 10.5pt; line-height: 1.5; }
+  .ga-content { max-width: none; padding: 0; background: transparent; }
+
+  h2 { page-break-after: avoid; break-after: avoid; }
+  h3 { page-break-after: avoid; break-after: avoid; }
+
+  .callout, .worked, .keystroke, .formula-block, figure,
+  .drill, .audit-banner, .scenario,
+  table, tr, .q-table-wrap, .ref-table-wrap {
+    page-break-inside: avoid; break-inside: avoid;
+  }
+
+  .scenario, .keystroke, .audit-banner, .callout,
+  .formula-block, .answer, .drill, .q-table th, .ref-table th, .key {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .drill-answers[open] summary ~ * { display: block; }
+  .drill-answers { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { list-style: none; }
+
+  a { text-decoration: none; color: inherit; }
+}
+
+/* ==========================================================================
+   v2 additions — figure legends, dual-method blocks, decision flowchart
+   ========================================================================== */
+
+/* ---------- figure colour legends (never baked into the PNG) ---------- */
+.fig-legend {
+  display: flex; flex-wrap: wrap; gap: .45rem 1.1rem;
+  margin-top: .5rem; padding-left: .6rem;
+  font-size: .85rem; color: var(--ink-soft);
+}
+.fig-legend .lg { display: inline-flex; align-items: center; gap: .38rem; }
+.fig-legend .sw {
+  width: 15px; height: 10px; border-radius: 2px; display: inline-block;
+  border: 1px solid rgba(0,0,0,.18); flex: none;
+}
+.fig-legend .sw.gold  { background: var(--gold); }
+.fig-legend .sw.cyan  { background: var(--blue); }
+.fig-legend .sw.white { background: #f5f2e8; }
+.fig-legend .sw.plain { background: transparent; border-style: dashed; }
+
+/* ---------- dual-method blocks ---------- */
+.dual { margin: .7rem 0; }
+.dual-h {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: .28rem;
+}
+.dual-f {
+  background: var(--gold-soft); border-left: 4px solid var(--gold);
+  border-radius: 3px; padding: .5rem .85rem; margin: 0 !important;
+  font-size: .97rem;
+}
+.dual-f strong { color: var(--navy); }
+.dual .answer { margin: 0 !important; }
+
+/* ---------- decision flowchart ---------- */
+figure.flow { margin: 1.6rem 0; }
+figure.flow svg {
+  width: 100%; height: auto; display: block;
+  background: #fbfaf7; border: 1px solid var(--rule); border-radius: 4px;
+}
+
+@media print {
+  .fig-legend, .dual-f, figure.flow svg {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  figure.flow, .dual { page-break-inside: avoid; break-inside: avoid; }
+}
+
+/* ==========================================================================
+   CHAPTER 6 ADDITIONS
+   side-by-side dual method · concept diagrams · data charts
+   ========================================================================== */
+
+/* ---------- SIDE-BY-SIDE dual method ---------- */
+.dual-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+  margin: 1rem 0;
+  align-items: stretch;
+}
+@media (max-width: 720px) { .dual-pair { grid-template-columns: 1fr; } }
+
+.dual-col {
+  border-radius: 5px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.dual-col.m1 { background: var(--gold-soft); border: 1px solid #e0cf9a; }
+.dual-col.m2 { background: var(--navy);      border: 1px solid #0e1826; color: #dde6f0; }
+
+.dual-col .dc-h {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.13em;
+  text-transform: uppercase; font-weight: 700; margin-bottom: 0.1rem;
+}
+.dual-col.m1 .dc-h { color: #8a6d12; }
+.dual-col.m2 .dc-h { color: var(--gold); }
+
+.dual-col .dc-sub {
+  font-size: 0.83rem; font-style: italic; margin: -0.25rem 0 0.3rem;
+}
+.dual-col.m1 .dc-sub { color: #6b5a2a; }
+.dual-col.m2 .dc-sub { color: #93a7bd; }
+
+.dual-col ol, .dual-col ul { margin: 0; padding-left: 1.15rem; font-size: 0.93rem; }
+.dual-col li { margin-bottom: 0.3rem; }
+.dual-col p  { margin: 0 0 0.4rem; font-size: 0.94rem; }
+.dual-col code { font-size: 0.85em; }
+.dual-col.m2 code { background: rgba(255,255,255,0.13); color: var(--gold-soft); }
+.dual-col.m1 code { background: rgba(0,0,0,0.06); color: var(--navy); }
+
+.dc-line { font-size: 0.95rem; margin: 0 0 0.3rem !important; }
+.dc-res {
+  margin-top: auto !important; padding: 0.5rem 0.75rem; border-radius: 3px;
+  font-size: 1rem; font-weight: 700;
+}
+.dual-col.m1 .dc-res { background: rgba(201,162,39,0.22); color: #6d5510; }
+.dual-col.m2 .dc-res { background: rgba(39,174,96,0.22);  color: #7ee0a8; }
+
+.dual-verdict {
+  font-size: 0.9rem; font-style: italic; color: var(--ink-soft);
+  background: #f4f2ec; border-radius: 3px; padding: 0.5rem 0.8rem;
+  margin: 0.2rem 0 0.7rem;
+}
+.dual-verdict strong { color: var(--navy); font-style: normal; }
+
+/* ---------- concept diagrams & charts ---------- */
+figure.diagram { margin: 1.8rem 0; }
+figure.diagram svg {
+  width: 100%; height: auto; display: block;
+  background: #fbfaf7; border: 1px solid var(--rule); border-radius: 4px;
+}
+figure.chart svg {
+  width: 100%; height: auto; display: block;
+  background: var(--navy); border: 1px solid #0e1826; border-radius: 4px;
+}
+
+/* ---------- ISA reference strip ---------- */
+.isa-strip { overflow-x: auto; margin: 1.1rem 0; }
+.isa-strip table { min-width: 480px; }
+
+@media print {
+  .dual-pair { grid-template-columns: 1fr 1fr; }
+  .dual-col, figure.diagram, figure.chart, .dual-verdict {
+    page-break-inside: avoid; break-inside: avoid;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  figure.chart svg, figure.diagram svg {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* ---------- CHAPTER 7: figure build-up strip ---------- */
+.buildup { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1.6rem 0; }
+@media (max-width: 760px) { .buildup { grid-template-columns: 1fr; } }
+.buildup figure { margin: 0; }
+.buildup figcaption { font-size: 0.82rem; }
+.buildup .stage {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem;
+}
+.vector-key { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.7rem; margin: 1.3rem 0; }
+@media (max-width: 700px) { .vector-key { grid-template-columns: 1fr; } }
+.vk { border-radius: 5px; padding: 0.8rem 0.95rem; border-left: 5px solid; background: #fbfaf7; border: 1px solid var(--rule); }
+.vk.air    { border-left-color: var(--gold); }
+.vk.wind   { border-left-color: var(--blue); }
+.vk.ground { border-left-color: #b9a98a; }
+.vk .vk-h { font-weight: 700; font-size: 0.98rem; margin-bottom: 0.25rem; color: var(--navy); }
+.vk .vk-arrows { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.35rem; }
+.vk p { font-size: 0.9rem; margin: 0; }
+@media print { .buildup { grid-template-columns: repeat(3,1fr); } .vector-key { grid-template-columns: repeat(3,1fr); } .vk, .buildup figure { page-break-inside: avoid; } }
+
+
+/* ---------- CHAPTER 8A: pagination correction ----------
+   Measured on the first render: pages 12 and 21 were ~40% blank because a .worked
+   block carrying page-break-inside:avoid deferred whole rather than flowing. Same
+   defect class as the DA-42 Ch.2 verbatim boxes (CLAUDE.md, 2026-07-23). A raster
+   figure cannot split and keeps `avoid`; multi-paragraph prose blocks flow. */
+@media print {
+  .worked, .dual-pair, .callout.long, .drill { page-break-inside: auto; break-inside: auto; }
+  .drill-list li, .drill-intro { page-break-inside: avoid; break-inside: avoid; }
+  .worked .dual-col, .worked .sanity, .worked .dual-verdict,
+  .worked p.problem { page-break-inside: avoid; break-inside: avoid; }
+  .worked p.problem { page-break-after: avoid; break-after: avoid; }
+}
+
+/* ---------- CHAPTER 8B: the flight-plan table ----------
+   Fifteen columns is more than the body measure will take at normal size, so the
+   flight-plan tables get their own compact treatment. Measured against A4 at the
+   print size below, not guessed. */
+.q-table.fp { font-size: 0.72rem; }
+.q-table.fp th, .q-table.fp td { padding: 0.28rem 0.22rem; white-space: nowrap; }
+.q-table.fp th { font-size: 0.62rem; line-height: 1.15; }
+.q-table.fp td:first-child, .q-table.fp th:first-child { padding-left: 0.3rem; }
+
+@media print {
+  .q-table.fp { font-size: 7.4pt; }
+  .q-table.fp th, .q-table.fp td { padding: 0.18rem 0.16rem; }
+  .q-table.fp th { font-size: 6.6pt; }
+  /* a 16-row flight plan cannot sit whole on one page — let it break between rows */
+  .q-table.fp, .q-table.fp tbody { page-break-inside: auto; break-inside: auto; }
+  .q-table.fp tr { page-break-inside: avoid; break-inside: avoid; }
+  .q-table.fp thead { display: table-header-group; }
+}
+
+/* ---------- long question and answer tables must flow across pages ----------
+   Measured: a 19-row answer table carrying page-break-inside:avoid deferred whole
+   and left two thirds of the preceding page empty. A table of rows is divisible in
+   a way a figure is not — break it between rows and repeat the header. */
+@media print {
+  .q-table, .q-table tbody, .q-table-wrap { page-break-inside: auto; break-inside: auto; }
+  .q-table tr { page-break-inside: avoid; break-inside: avoid; }
+  .q-table thead { display: table-header-group; }
+  .q-table thead th { border-bottom: 2px solid var(--navy); }
+}
+
+/* ---------- CHAPTER 9: the grouped multi-drift table ----------
+   The zebra stripe is applied per <tr>, which cuts across the rowspan cells and
+   breaks the visual grouping of the three headings that belong to one question.
+   Found by looking at page 9, not by any measurement. The horizontal rules between
+   groups already separate them, so the stripe is redundant here. */
+.q-table.grouped tbody tr { background: transparent !important; }
+.q-table.grouped tbody td { border-bottom: none; }
+.q-table.grouped tbody tr:nth-child(3n) td { border-bottom: 1px solid var(--rule); }
+
+/* ===== watermark layers 1, 2 and 5 — GenNav_CX3_WATERMARK_TEMPLATE.html v2.0 ===== */
+
+/* ---------- LAYER 2: repeating tiled watermark (screen + print) ----------
+   A repeating SVG background on the html element. This tiles exactly and,
+   unlike a ::after text hack, repeats cleanly on every printed page.
+   Removing Layer 1 does not remove this. Removing this requires editing CSS. */
+html {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='260'><text x='210' y='130' font-family='Georgia,serif' font-size='15' font-weight='700' fill='rgba(0,0,0,0.045)' text-anchor='middle' transform='rotate(-30 210 130)'>Capt. Pankaj Pahil %C2%B7 www.GhostAviator.com</text></svg>");
+  background-repeat: repeat;
+  background-position: 0 0;
+}
+/* Body must stay transparent or it will cover Layer 2. If the chapter needs a
+   page colour, set it on .ga-content instead, at less than full opacity. */
+body {
+  background: transparent;
+}
+
+/* ---------- LAYER 1: visible diagonal watermark ----------
+   40px. MEASURED, not guessed:
+     A4 printable width at 20mm margins = 643px
+     46px -> rotated extent 648px  -> CLIPS (this was the v1.0 defect)
+     40px -> rotated extent 567px  -> fits, with headroom for a wider
+                                      substitute font if Playfair fails to load
+   Do not raise this value above 42px. */
+.ga-watermark-l1 {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.075);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  letter-spacing: 1px;
+}
+
+/* ---------- LAYER 5: print-only reinforcement ---------- */
+@media print {
+  /* Force all watermark layers to survive the print colour pass */
+  html {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .ga-watermark-l1 {
+    color: rgba(0, 0, 0, 0.13) !important;
+    font-size: 40px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  /* A second, offset print-only mark. Sits opposite Layer 1 so that removing
+     Layer 1 from the DOM still leaves a printed mark on every page. */
+  body::before {
+    content: "Capt. Pankaj Pahil \00B7 www.GhostAviator.com";
+    position: fixed;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.10) !important;
+    white-space: nowrap;
+    z-index: 99999;
+    pointer-events: none;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="ga-content">
+
+<div class="audit-banner">
+  <strong>STUDY AID — PENDING INDEPENDENT AUDIT</strong>
+  These notes are study aids for DGCA examination preparation. They are PENDING
+  INDEPENDENT AUDIT and <strong>must not be used to decide whether a real landing
+  is within limits</strong>. Crosswind and headwind limits come from your
+  aircraft's approved flight manual and your operator's rules, and from nowhere
+  else. Always verify against current AIPs, NOTAMs and your operator's manuals.
+</div>
+
+<header class="chapter-head">
+  <div class="eyebrow">General Navigation &middot; The Navigation Computer</div>
+  <h1>Chapter 9<br><span class="h1-sub">Multi-drift Winds and Wind Components</span></h1>
+  <p class="standfirst">Two last jobs for the wind face. The first is a way of
+  finding the wind when you cannot measure your ground speed at all. The second is
+  the only calculation in this module that you will make with your hand on the
+  thrust levers, fifty feet above a runway, deciding whether to land.</p>
+</header>
+
+<figure>
+  <img src="assets/ch09_fig00_opener-crosswind-committal.png" width="1600" height="900"
+       alt="An airliner very low over a runway threshold in a strong crosswind at dusk, still
+       crabbed, wet surface reflecting the approach lights, the runway stretching away ahead.">
+  <figcaption><strong>Opening plate</strong> &mdash; Fifty feet, and one decision
+  left. This chapter is the arithmetic you do an hour earlier so that this moment
+  needs no arithmetic at all.</figcaption>
+</figure>
+
+<div class="scenario">
+  <div class="scenario-label">Sixty seconds on short final</div>
+  <p>The tower has just passed you a spot wind. You are below the height at which
+  you must commit to landing or going around. Your aircraft's crosswind limit is a
+  number you know.</p>
+  <p>What you do <strong>not</strong> have is time to resolve a wind velocity into
+  components. There is no version of this moment in which you take a hand off the
+  controls and work out a sine.</p>
+  <p><strong>So the work happens at top of descent.</strong> You calculate, once,
+  the wind strength from the forecast direction that would put you exactly on your
+  limit. Then at fifty feet you compare one number with one number, and you have
+  already decided.</p>
+  <p>That is what the second half of this chapter is for, and it is the most
+  directly operational thing in the whole module.</p>
+</div>
+
+<!-- ============ 1. TWO MORE JOBS ============ -->
+<h2 id="s1">1 &middot; Two more jobs for the wind face</h2>
+
+<p>Chapters 7 and 8 covered the three main operations &mdash; find track, find
+heading, find wind. Two more remain, and they are different in kind from each
+other.</p>
+
+<table class="ref-table">
+  <thead>
+    <tr><th></th><th>What it does</th><th>Who needs it</th><th>Does the CX-3 have it?</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Multi-drift winds</strong></td>
+      <td>Finds a W/V from <strong>drift alone</strong>, with no ground speed
+      measurement at all, by flying two or three headings.</td>
+      <td>Anyone flying without RNAV, GPS, INS or FMS. Bush and maritime patrol
+      pilots build a real skill at estimating drift by eye.</td>
+      <td><strong>No.</strong> There is no such function. Section 2 gives you the
+      mathematics instead.</td>
+    </tr>
+    <tr>
+      <td><strong>Wind components</strong></td>
+      <td>Resolves a wind into the part acting <strong>along</strong> the runway
+      and the part acting <strong>across</strong> it.</td>
+      <td>Every pilot, on every take-off and landing, for the rest of their
+      career.</td>
+      <td><strong>Yes</strong> &mdash; and it carries the most dangerous trap in
+      this module. See Section 5.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout blue">
+  <div class="callout-title">Rule-of-thumb crosswind methods are not good enough here</div>
+  <p>You will meet mental shortcuts for crosswind &mdash; the clock-face method,
+  the sixths rule, and others. They are useful airborne and they are worth knowing.</p>
+  <p><strong>They are not precise enough for the examination.</strong> General
+  Navigation questions are built so that a rule of thumb lands you between two
+  options. Resolve them properly, with the computer or with the trigonometry.</p>
+</div>
+
+<hr class="section-rule">
+
+<!-- ============ 2. MULTI-DRIFT ============ -->
+<h2 id="s2">2 &middot; Multi-drift winds &mdash; a wind from drift alone</h2>
+
+<p>An experienced pilot at low level can judge drift surprisingly well, simply by
+watching the angle at which a feature on the ground slides underneath the
+aircraft. It is a real skill and it improves with practice.</p>
+
+<p><strong>Ground speed is the hard one.</strong> You can time the change of a DME
+range, but only while tracking directly to or from the beacon. You can time a
+precalculated distance with a stopwatch, but that means preparation you may not
+have done. Neither is available on demand.</p>
+
+<div class="callout green">
+  <div class="callout-title">The idea, and it is a good one</div>
+  <p><strong>Each drift observation, on its own, does not tell you the wind. It
+  tells you one thing about the wind &mdash; and two or three of those things
+  together pin it down completely.</strong></p>
+  <p>Fly a heading and note the drift. Turn onto a second heading well away from
+  the first and note the drift again. Ideally take a third. Then combine them.</p>
+  <p>The best results come from <strong>three headings 60&deg; apart</strong>. For
+  two headings, they must be nearly at right angles &mdash; certainly more than
+  70&deg; apart &mdash; or the answer is worthless.</p>
+</div>
+
+<h3>The worked example</h3>
+
+<p>A pilot is flying <strong>030&deg;</strong> at a TAS of <strong>120
+knots</strong> and wants an updated wind. He assesses his drift, turns 60&deg;
+left, assesses again, turns 120&deg; right, assesses a third time, then returns to
+his original heading. He notes:</p>
+
+<table class="ref-table">
+  <thead><tr><th>Heading</th><th>Drift observed</th></tr></thead>
+  <tbody>
+    <tr><td>030&deg;</td><td>10&deg; port</td></tr>
+    <tr><td>330&deg;</td><td>5&deg; port</td></tr>
+    <tr><td>090&deg;</td><td>5&deg; port</td></tr>
+  </tbody>
+</table>
+
+<figure>
+  <img src="assets/ch09_fig01_first-drift-line.png" width="1600" height="900"
+       alt="A wind-face style diagram with the aircraft's air vector drawn and a single long
+       straight line ruled across the whole face, representing every wind that would produce ten
+       degrees of port drift on this heading.">
+  <figcaption><strong>Figure 9.1</strong> &mdash; The first drift line. Every point
+  on this line is a wind that would give exactly 10&deg; of port drift on a heading
+  of 030&deg; at 120 knots. <strong>One observation narrows the wind from
+  everywhere to somewhere on a line.</strong></figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw gold"></i>heading 030&deg;, TAS 120</span>
+    <span class="lg"><i class="sw cyan"></i>the line of every wind that fits this drift</span>
+  </div>
+</figure>
+
+<figure>
+  <img src="assets/ch09_fig02_second-drift-line.png" width="1600" height="900"
+       alt="The same diagram with a second short line crossing the first at a steep angle, cutting
+       it at a single point.">
+  <figcaption><strong>Figure 9.2</strong> &mdash; The second observation, on
+  330&deg;, gives a second line. It only needs to be a short cross-cut &mdash; a
+  centimetre either side is plenty. <strong>Two lines cross at one point, and that
+  point is the wind.</strong></figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw gold"></i>the two headings flown</span>
+    <span class="lg"><i class="sw cyan"></i>two drift lines, and their intersection</span>
+  </div>
+</figure>
+
+<figure>
+  <img src="assets/ch09_fig03_third-line.png" width="1600" height="900"
+       alt="A third short line added, passing through the same intersection as the other two, all
+       three meeting cleanly at one point.">
+  <figcaption><strong>Figure 9.3</strong> &mdash; The third observation, on
+  090&deg;. If the drifts were assessed correctly it lands on the same point. The
+  third line does not add information &mdash; <strong>it is a check on the first
+  two</strong>, and that is exactly why it is worth flying.</figcaption>
+</figure>
+
+<div class="callout amber">
+  <div class="callout-title">The cocked hat — the oldest quality check in navigation</div>
+  <p>If the three lines do not meet at a point they enclose a small triangle. It is
+  called the <strong>cocked hat</strong>, and its size is the error in your drift
+  assessments.</p>
+  <p><strong>No cocked hat</strong> &mdash; all three drifts were probably right.<br>
+  <strong>Small cocked hat</strong> &mdash; small probable error. Take the centre
+  and carry on.<br>
+  <strong>Large cocked hat</strong> &mdash; one or more of the drifts is wrong. The
+  answer you take from it is worth what the worst observation is worth.</p>
+  <p>This is worth internalising beyond this chapter. <strong>A measurement that
+  agrees with itself is not necessarily right, but a measurement that disagrees
+  with itself is definitely telling you something.</strong></p>
+</div>
+
+<figure>
+  <img src="assets/ch09_fig04_read-the-wind.png" width="1600" height="900"
+       alt="The intersection point of the three lines marked clearly, with the wind vector drawn
+       from the centre to that point and its direction and length being read off.">
+  <figcaption><strong>Figure 9.4</strong> &mdash; The intersection is the wind
+  point. Measure from the centre to it and you have the answer: in this example
+  <strong>115/21</strong>.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw cyan"></i>the wind &mdash; 115&deg; at 21 knots, from drift alone</span>
+  </div>
+</figure>
+<div class="callout red long">
+  <div class="callout-title">GAP — the CX-3 has no multi-drift function, so here is the arithmetic</div>
+  <p>A full-text search of all 24 pages of the CX-3 User's Guide returns
+  <strong>zero matches</strong> for "multi-drift". There is no menu path. Any
+  keystroke sequence you are offered for this has been invented.</p>
+
+  <p><strong>What one drift observation actually tells you.</strong> If you are
+  drifting, the wind must be pushing you sideways by exactly enough to cock your
+  nose off by the drift angle. So the sideways part of the wind, measured across
+  your track, is fixed:</p>
+
+  <div class="formula-block">
+    <p class="formula">W<sub>E</sub> &middot; cos(Track) &minus; W<sub>N</sub>
+    &middot; sin(Track) = TAS &middot; sin(Drift)</p>
+    <p class="formula-units">where W<sub>E</sub> and W<sub>N</sub> are the east and
+    north parts of the wind-<em>toward</em> vector, and
+    <strong>Track = Heading + Drift</strong></p>
+  </div>
+
+  <p>That is one equation in two unknowns &mdash; which is exactly what "a line of
+  possible winds" means algebraically. <strong>Two observations give two equations.
+  Solve the pair and you have the wind.</strong></p>
+
+  <p><strong>The method, in five steps:</strong></p>
+  <ol class="steps">
+    <li>For each leg, Track = Heading + Drift.
+      <strong>Port drift is negative.</strong></li>
+    <li>Write <code>a = cos(Track)</code>, <code>b = &minus;sin(Track)</code>,
+      <code>c = TAS &times; sin(Drift)</code> for each leg.</li>
+    <li>Solve the two simultaneously:<br>
+      <code>&Delta; = a&#8321;b&#8322; &minus; a&#8322;b&#8321;</code><br>
+      <code>W<sub>E</sub> = (c&#8321;b&#8322; &minus; c&#8322;b&#8321;) &divide; &Delta;</code><br>
+      <code>W<sub>N</sub> = (a&#8321;c&#8322; &minus; a&#8322;c&#8321;) &divide; &Delta;</code></li>
+    <li>Wind speed = <code>&radic;(W<sub>E</sub>&sup2; + W<sub>N</sub>&sup2;)</code>;
+      wind direction = <code>atan2(W<sub>E</sub>, W<sub>N</sub>) + 180</code>.</li>
+    <li><strong>With three legs, do it three times</strong> &mdash; pairs 1&amp;2,
+      1&amp;3, 2&amp;3 &mdash; and average the three W<sub>E</sub> values and the
+      three W<sub>N</sub> values. <strong>That average is the exact numerical
+      equivalent of taking the centre of the cocked hat</strong>, and the spread
+      between the three answers is the cocked hat's size.</li>
+  </ol>
+
+  <p><strong>The trap that will catch you, and it is the sign.</strong> Port drift
+  enters as a <strong>negative</strong> number. The worked example above is
+  10&deg;P, which goes in as <code>&minus;10</code>. Type <code>+10</code> and the
+  formula returns a confident, plausible, completely wrong wind &mdash; and nothing
+  about the answer will look odd.</p>
+
+  <p class="verified-note"><strong>Checked:</strong> run against the book's worked
+  example &mdash; TAS 120, headings 030/330/090, drifts 10P/5P/5P &mdash; the method
+  returns <strong>115.0&deg; / 20.9 kt</strong> against the published 115/21, with
+  a cocked hat of 0.00 knots. All three leg-pairs agree exactly, which matches the
+  book's own statement that its three lines coincided.</p>
+</div>
+
+<!-- ============ 3. TWO-DRIFT ============ -->
+<h2 id="s3">3 &middot; Two-drift winds &mdash; the airways version</h2>
+
+<p>Three headings is a manoeuvre. You are not going to fly one in controlled
+airspace. But two drifts fall out of ordinary airways flying for free, if you know
+to collect them.</p>
+
+<figure>
+  <img src="assets/ch09_fig05_airways-two-legs.png" width="1600" height="900"
+       alt="A chart showing two airway legs meeting at a turning point, the first running roughly
+       north and the second roughly east, with the angle between them clearly close to a right
+       angle.">
+  <figcaption><strong>Figure 9.5</strong> &mdash; Two airway legs meeting at a
+  turning point, with an angle of about 77&deg; between them. That angle is what
+  makes the method work. <strong>Two legs less than 70&deg; apart give an answer
+  you should not trust.</strong></figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw white"></i>leg one &mdash; 008&deg;(M)</span>
+    <span class="lg"><i class="sw gold"></i>leg two &mdash; 085&deg;(M)</span>
+  </div>
+</figure>
+
+<p>Here is how the drifts arrive without your asking for them. You fly the first
+leg homing on a VOR radial, applying your planned drift. <strong>If the planned
+drift is wrong, the radial moves</strong>. You correct back to the centre line and
+adjust. After a short series of corrections you have found the heading that holds
+the radial &mdash; and the difference between that heading and the track is your
+<em>actual</em> drift, measured rather than forecast.</p>
+
+<p>Turn at the beacon onto the second leg and the same thing happens again. Two
+legs, two headings, two measured drifts. Now cross-cut them.</p>
+
+<div class="callout amber">
+  <div class="callout-title">What two drifts cannot give you</div>
+  <p>There is no third line, so <strong>there is no cocked hat and no check</strong>.
+  Two lines always cross at exactly one point, whether or not either of them is
+  right. The answer arrives looking just as confident when it is wrong.</p>
+  <p>That is the whole cost of the two-drift method, and it is the reason the
+  three-heading version exists. Holding a VOR centre line does let you assess drift
+  reasonably well &mdash; but "reasonably well" is now the entire accuracy of your
+  wind, unchecked.</p>
+</div>
+
+<hr class="section-rule">
+
+<h2 id="md-questions">Questions &mdash; multi-drift winds</h2>
+
+<div class="callout blue">
+  <div class="callout-title">What you are given</div>
+  <p>A TAS, and three headings each with an observed drift. Find the
+  <strong>W/V</strong>.</p>
+  <p><strong>P is port and enters as negative. S is starboard and enters as
+  positive.</strong> More marks are lost in this question type on that one
+  convention than on the mathematics.</p>
+  <p>Use the three-pair average from Section 2. When your three pairs disagree,
+  the spread is telling you how good the observations were &mdash; and in one of
+  these four questions it is worth looking at.</p>
+</div>
+
+<table class="q-table grouped">
+  <thead><tr><th>#</th><th>TAS</th><th>Heading</th><th>Drift</th><th>W/V</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="3">1</td><td rowspan="3">180</td><td>130</td><td>6&deg;P</td><td rowspan="3"></td></tr>
+    <tr><td>070</td><td>4&deg;P</td></tr>
+    <tr><td>190</td><td>2&deg;P</td></tr>
+    <tr><td rowspan="3">2</td><td rowspan="3">150</td><td>045</td><td>3&deg;S</td><td rowspan="3"></td></tr>
+    <tr><td>345</td><td>6&deg;P</td></tr>
+    <tr><td>105</td><td>8&deg;S</td></tr>
+    <tr><td rowspan="3">3</td><td rowspan="3">120</td><td>270</td><td>2&deg;S</td><td rowspan="3"></td></tr>
+    <tr><td>210</td><td>12&deg;S</td></tr>
+    <tr><td>330</td><td>9&frac12;&deg;P</td></tr>
+    <tr><td rowspan="3">4</td><td rowspan="3">165</td><td>100</td><td>2&deg;P</td><td rowspan="3"></td></tr>
+    <tr><td>040</td><td>14&deg;P</td></tr>
+    <tr><td>160</td><td>12&deg;S</td></tr>
+  </tbody>
+</table>
+
+<h3>Answers</h3>
+
+<table class="q-table answers">
+  <thead><tr><th>#</th><th>TAS</th><th>Headings and drifts</th><th>W/V</th><th>Cocked hat</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>180</td><td>130/6P &middot; 070/4P &middot; 190/2P</td>
+      <td class="calc">206/19</td><td class="note-cell">0.3 kt &mdash; tight</td></tr>
+    <tr><td>2</td><td>150</td><td>045/3S &middot; 345/6P &middot; 105/8S</td>
+      <td class="calc">026/21</td><td class="note-cell">0.2 kt &mdash; tight</td></tr>
+    <tr><td>3</td><td>120</td><td>270/2S &middot; 210/12S &middot; 330/9&frac12;P</td>
+      <td class="calc">099/30</td><td class="note-cell">0.3 kt &mdash; tight</td></tr>
+    <tr><td>4</td><td>165</td><td>100/2P &middot; 040/14P &middot; 160/12S</td>
+      <td class="calc">107/39</td><td class="note-cell">1.1 kt &mdash; the loosest of the four</td></tr>
+  </tbody>
+</table>
+
+<div class="callout green">
+  <div class="callout-title">What the answer key does and does not tell you</div>
+  <p>The published answers are <strong>205/18 &middot; 026/22 &middot; 098/30
+  &middot; 107/40</strong>. Every one of them agrees with the arithmetic to within
+  <strong>1.5&deg; and 1.2 knots</strong>. This question set is sound.</p>
+  <p><strong>The cocked hat column is not in the source</strong> &mdash; it is added
+  here because it is free once you have solved the three pairs, and because it
+  teaches the thing the graphical method taught by accident: how much to trust the
+  answer you just got. Question 4's observations agree with each other less well
+  than the other three, and that is a fact about the data, not about you.</p>
+</div>
+
+<hr class="section-rule">
+<!-- ============ 4. WHY COMPONENTS MATTER ============ -->
+<h2 id="s4">4 &middot; Wind components &mdash; and why they decide things</h2>
+
+<p>The wind almost never blows exactly along a runway. There is nearly always an
+angle between the runway direction and the direction the wind is coming from, and
+that angle splits the wind into two parts that do completely different things to
+your aeroplane.</p>
+
+<figure>
+  <img src="assets/ch09_fig06_angle-off.png" width="1600" height="900"
+       alt="A runway seen from above with a wind arrow arriving at an angle from the right front
+       quarter, the angle between the wind and the runway centreline marked.">
+  <figcaption><strong>Figure 9.6</strong> &mdash; The wind at an angle-off. Only
+  part of its force acts along the runway; the rest acts across it. The angle
+  decides how the wind divides, and nothing else does.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw white"></i>the runway centreline</span>
+    <span class="lg"><i class="sw cyan"></i>the wind &mdash; 30&deg; off, from the right</span>
+  </div>
+</figure>
+
+<figure>
+  <img src="assets/ch09_fig07_resolved.png" width="1600" height="900"
+       alt="The same wind arrow resolved into two perpendicular components — a longer one running
+       back along the runway centreline and a shorter one running across it — drawn as the two
+       sides of a right angle."
+       >
+  <figcaption><strong>Figure 9.7</strong> &mdash; The same wind, resolved. A
+  30-knot wind 30&deg; off the nose is <strong>26 knots down the runway and 15
+  knots across it</strong>. Two numbers, two different problems.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw cyan"></i>the wind &mdash; 30 kt</span>
+    <span class="lg"><i class="sw gold"></i>headwind component &mdash; 26 kt</span>
+    <span class="lg"><i class="sw white"></i>crosswind component &mdash; 15 kt</span>
+  </div>
+</figure>
+
+<h3>What the headwind decides</h3>
+
+<p>You cross the threshold at a calibrated airspeed, which corresponds to a true
+airspeed. But stopping is not about airspeed. <strong>Stopping is about
+&frac12;mv&sup2;, and that <em>v</em> is ground speed.</strong></p>
+
+<p>A headwind lowers your ground speed at touchdown, so there is less energy for
+the brakes to absorb in the runway you have. On a heavy aircraft on a short runway
+this runs the other way too: there can be a <strong>minimum</strong> headwind below
+which the numbers do not close with an adequate margin.</p>
+
+<h3>What the crosswind decides, and it is usually the harder one</h3>
+
+<p>Crosswind is more often the limiting factor, for four reasons that stack:</p>
+
+<ol class="steps">
+  <li><strong>The approach.</strong> You line up on the extended centreline and
+    point the nose into wind to hold it. The stronger the crosswind, the larger
+    the correction you are holding all the way down.</li>
+  <li><strong>The moment of touchdown.</strong> As the wheels arrive you use rudder
+    to swing the nose back into line with the runway. It is called
+    <em>kicking off the drift</em>, though a kick is exactly what it should not be
+    &mdash; it is a measured application, and getting the amount right takes skill
+    and judgement.</li>
+  <li><strong>The tyres.</strong> Even flown perfectly, with the aircraft precisely
+    aligned as the tyres touch, there is still sideways velocity. Tyres are
+    stressed mainly for fore-and-aft loads. <strong>You can burst a tyre on a
+    crosswind landing.</strong></li>
+  <li><strong>The rollout.</strong> Once down, the fin is still catching the wind
+    while the rudder's authority falls away with speed. On an aircraft with a large
+    tail, the point comes where the rudder can no longer hold it &mdash; and the
+    aircraft leaves the runway.</li>
+</ol>
+
+<div class="callout amber">
+  <div class="callout-title">Two different limits, and they are not the same number</div>
+  <p>Every type has a <strong>maximum demonstrated crosswind component</strong>.
+  Your <strong>operator</strong> may impose a lower one, and may impose it
+  differently on different crew.</p>
+  <p>An aircraft cleared to 25 knots may sit under a company rule that a first
+  officer lands up to 15 knots and above that it is the captain's landing. Both
+  numbers are real, and the one that binds you is the lower.</p>
+  <p><strong>Neither number comes from this chapter.</strong> They come from the
+  approved flight manual and your operator's manuals. This chapter only tells you
+  how to work out which side of them you are on.</p>
+</div>
+
+<hr class="section-rule">
+
+<!-- ============ 5. TRUE OR MAGNETIC ============ -->
+<h2 id="s5">5 &middot; True or magnetic? &mdash; the question that decides everything</h2>
+
+<div class="callout red long">
+  <div class="callout-title">WARNING — get this wrong and every component you calculate is wrong</div>
+  <p>Runway directions are <strong>magnetic</strong>. Always. Runway 27 is a runway
+  whose QDM is about 270&deg; <em>magnetic</em>.</p>
+  <p>So a wind can only be resolved against a runway if the wind is also in
+  magnetic. And <strong>some of the winds you are given are not.</strong></p>
+
+  <table class="ref-table">
+    <thead><tr><th>Source</th><th>Direction is in</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td><strong>ATC</strong> (tower, spot winds)</td><td><strong>MAGNETIC</strong></td>
+        <td rowspan="2">It exists to help you line up on a runway, and runways are magnetic.</td></tr>
+      <tr><td><strong>ATIS</strong></td><td><strong>MAGNETIC</strong></td></tr>
+      <tr><td><strong>TAF</strong></td><td><strong>TRUE</strong></td>
+        <td rowspan="3">Written meteorological information. Met works in true, and navigation tracks are measured in true before variation is applied.</td></tr>
+      <tr><td><strong>METAR</strong></td><td><strong>TRUE</strong></td></tr>
+      <tr><td><strong>VOLMET</strong></td><td><strong>TRUE</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:1.06rem"><strong>MAGNETIC &mdash; spoken to you by a
+  controller.<br>TRUE &mdash; written down in a met message.</strong></p>
+
+  <p>A 20&deg; variation applied the wrong way, or not applied at all, moves the
+  angle-off by 20&deg; or 40&deg;. On a 30-knot wind that is the difference between
+  a 10-knot crosswind and a 25-knot one.</p>
+
+  <p><strong>And the reverse trap, which the examination uses more often than the
+  first:</strong> a question gives you a variation <em>and</em> an ATIS wind. The
+  ATIS is already magnetic. <strong>The variation is not needed and putting it in
+  is the error the question is hunting for.</strong> Question 4 at the end of this
+  chapter does exactly this.</p>
+
+  <p><strong>Before every component calculation, ask one question:</strong>
+  <em>who told me this wind?</em> A controller's voice, or a written met message.
+  That answers it, every time.</p>
+</div>
+
+<hr class="section-rule">
+
+<!-- ============ 6. CALCULATING COMPONENTS ============ -->
+<h2 id="s6">6 &middot; Calculating the components</h2>
+
+<ul class="numbers">
+  <li><strong>Runway</strong> &mdash; 27, so a QDM of 270&deg;(M)</li>
+  <li><strong>ATIS W/V</strong> &mdash; 310/30, and ATIS is already magnetic</li>
+</ul>
+
+<figure>
+  <img src="assets/ch09_fig08_plot-the-wind.png" width="1600" height="900"
+       alt="A grid with a wind vector plotted from the centre, its direction and length marked
+       against the grid squares.">
+  <figcaption><strong>Figure 9.8</strong> &mdash; Plot the wind on the squared part
+  of the slide, exactly as in Chapter 7. Nothing new has happened yet.</figcaption>
+</figure>
+
+<figure>
+  <img src="assets/ch09_fig09_rotate-to-qdm.png" width="1600" height="900"
+       alt="The same grid with the plotted wind point now rotated so that the runway direction is
+       aligned with the vertical axis of the grid.">
+  <figcaption><strong>Figure 9.9</strong> &mdash; Now rotate until the
+  <strong>runway QDM</strong> sits at the top. The grid is now aligned with the
+  runway rather than with north, and that single move is what turns a wind into
+  components.</figcaption>
+</figure>
+
+<figure>
+  <img src="assets/ch09_fig10_read-components.png" width="1600" height="900"
+       alt="The rotated grid with two dashed lines dropped from the wind point — one vertically to
+       the horizontal axis and one horizontally to the vertical axis — showing the two component
+       lengths.">
+  <figcaption><strong>Figure 9.10</strong> &mdash; Read down the vertical axis for
+  the <strong>headwind</strong>, across the horizontal for the
+  <strong>crosswind</strong>. Here: 23 knots headwind, 19 knots crosswind from
+  right to left.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw gold"></i>headwind &mdash; 23 kt</span>
+    <span class="lg"><i class="sw white"></i>crosswind &mdash; 19 kt from the right</span>
+  </div>
+</figure>
+
+<div class="worked">
+  <p class="problem"><strong>Worked example 9.1.</strong> Runway 27, ATIS W/V
+  310/30. Find the headwind and crosswind components.</p>
+
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 &mdash; the arithmetic</div>
+      <div class="dc-sub">two lines, and it is exact</div>
+      <p class="dc-line"><strong>1.</strong> Angle off:<br>
+      <code>&theta; = 310 &minus; 270 = 40&deg;</code><br>
+      Positive, so the wind is from the <em>right</em>.</p>
+      <p class="dc-line"><strong>2.</strong> Headwind:<br>
+      <code>30 &times; cos40 = 22.98</code></p>
+      <p class="dc-line"><strong>3.</strong> Crosswind:<br>
+      <code>30 &times; sin40 = 19.28</code></p>
+      <p class="dc-line"><strong>Sign rule:</strong> a <code>cos</code> that comes
+      out <em>negative</em> means a <strong>tailwind</strong>. That is the only
+      thing you have to watch.</p>
+      <p class="dc-res">23 kt headwind &middot; 19 kt crosswind from the right</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 &mdash; the CX-3</div>
+      <div class="dc-sub">and read the red box below before you touch it</div>
+      <ol>
+        <li><span class="key">FLT</span> &rarr; <strong>Wind Component</strong>.</li>
+        <li><code>WSpd</code> <strong>30</strong>.</li>
+        <li><code>WDir</code> <strong>310</strong> &mdash; and it
+          <strong>must be magnetic</strong>.</li>
+        <li><code>Runway</code> <strong>27</strong> &mdash; the runway
+          <em>number</em>. Not 270.</li>
+        <li>Read <code>X Wnd</code> and <code>H Wnd</code>.</li>
+      </ol>
+      <p class="dc-res">H Wnd +23 &middot; X Wnd +19 (from the right)</p>
+    </div>
+  </div>
+
+  <p class="dual-verdict"><strong>Which do you use?</strong> The CX-3, every time,
+  for the forward problem &mdash; it is two fields and it applies the sign
+  conventions for you. Know the trigonometry anyway, because Section 7 is full of
+  problems the machine cannot do at all.</p>
+
+  <p class="sanity"><strong>Sanity check &mdash; three anchors worth memorising.</strong>
+  At <strong>30&deg;</strong> off, you get about <strong>87% headwind and 50%
+  crosswind</strong>. At <strong>45&deg;</strong>, about <strong>70% of
+  each</strong>. At <strong>60&deg;</strong>, about <strong>50% headwind and 87%
+  crosswind</strong>.<br>
+  Here the angle is 40&deg;, so expect a bit under 80% headwind and a bit over 60%
+  crosswind of 30 knots &mdash; roughly 23 and 19. Those three anchors will catch
+  almost any keying error you can make.</p>
+</div>
+
+<div class="callout red long">
+  <div class="callout-title">The two traps inside the CX-3's Wind Component function</div>
+
+  <p><strong>1. It wants the runway NUMBER, not the runway direction.</strong> The
+  Guide is explicit, and it repeats itself because people get it wrong:</p>
+  <p class="verified-note"><em>"The runway number must be entered&mdash;not the
+  course. Remember: it must be the runway number, not the heading. For example,
+  runway 27 (not 270), and runway 9 (not 90)."</em></p>
+  <p>Type 270 into a field expecting 27 and you have not made a small mistake. You
+  have asked the machine about a runway direction of 2700&deg;, and what comes back
+  is nonsense that looks like an answer.</p>
+
+  <p><strong>2. It wants a MAGNETIC wind.</strong> The Guide says so, in the same
+  breath, and gives the reason:</p>
+  <p class="verified-note"><em>"Since runways are numbered by their magnetic
+  course, the wind direction must be magnetic as well (predicted winds aloft are
+  given in true, rather than magnetic orientation, while airport wind advisories
+  and runway headings are both magnetic)."</em></p>
+  <p><strong>Feed it a TAF or METAR wind without converting and it will answer
+  you.</strong> It has no way to know. The number it returns will be wrong by the
+  variation, it will look entirely normal, and nothing will warn you.</p>
+
+  <p><strong>The output signs, and they are worth learning rather than
+  re-deriving:</strong></p>
+  <table class="ref-table">
+    <thead><tr><th>Field</th><th>Positive means</th><th>Negative means</th></tr></thead>
+    <tbody>
+      <tr><td><code>X Wnd</code></td><td>crosswind from the <strong>RIGHT</strong></td>
+        <td>crosswind from the <strong>LEFT</strong></td></tr>
+      <tr><td><code>H Wnd</code></td><td><strong>HEADWIND</strong></td>
+        <td><strong>TAILWIND</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="verified-note">The Guide's own worked example: wind 350&deg; at 10
+  knots, runway 03 &rarr; <strong>&minus;6.43 X Wnd</strong> (a left crosswind) and
+  <strong>7.66 H Wnd</strong> (a headwind). Checked against the trigonometry:
+  &theta; = 350 &minus; 030 = &minus;40&deg;, and 10&nbsp;&times;&nbsp;sin(&minus;40)
+  = &minus;6.43, 10&nbsp;&times;&nbsp;cos(&minus;40) = +7.66. Exact to two decimal
+  places, which is what confirms both the convention and the formula.</p>
+</div>
+
+<hr class="section-rule">
+<!-- ============ 7. THE INVERSE PROBLEMS ============ -->
+<h2 id="s7">7 &middot; Running it backwards &mdash; the questions that actually matter</h2>
+
+<p>Everything so far has gone one way: here is a wind, what are the components?
+The operationally useful questions run the other way. <em>How strong can the wind
+get before I am out of limits? Between which directions may it blow?</em></p>
+
+<div class="callout red long">
+  <div class="callout-title">GAP — the CX-3 solves this direction only, so the rest of this section is arithmetic</div>
+  <p>The Wind Component function takes <code>WSpd</code>, <code>WDir</code> and
+  <code>Runway</code> and returns <code>X Wnd</code> and <code>H Wnd</code>. There
+  is no field for a limit and no way to run it backwards.</p>
+  <p><strong>You can brute-force it</strong> &mdash; enter a wind speed, read the
+  crosswind, adjust, repeat &mdash; and on the ground with time to spare that
+  works. It is the balancing-the-drift loop all over again, and it is not what you
+  want at top of descent.</p>
+  <p><strong>The three formulas below are one line each and they are exact.</strong></p>
+  <div class="formula-block">
+    <p class="formula">Max wind for a crosswind limit:
+      &nbsp;&nbsp;<strong>W = Crosswind limit &divide; sin&theta;</strong></p>
+    <p class="formula">Max wind for a head/tailwind limit:
+      &nbsp;&nbsp;<strong>W = Limit &divide; |cos&theta;|</strong></p>
+    <p class="formula">Allowable wind directions at a given speed:
+      &nbsp;&nbsp;<strong>&theta; = sin&#8315;&sup1;(Crosswind limit &divide; W)</strong>,
+      then Runway &plusmn; &theta;</p>
+    <p class="formula-units">&theta; is the angle between the wind direction and
+    the runway direction, <strong>both magnetic</strong></p>
+  </div>
+  <p><strong>Gusts.</strong> There is no gust field and no trick to it.
+  <strong>Run the formula twice</strong> &mdash; once on the steady wind, once on
+  the gust. Crosswind limits are normally quoted against the gust value, so the
+  gust is usually the one that binds.</p>
+</div>
+
+<h3>Case A &mdash; the maximum wind for a crosswind limit</h3>
+
+<p>This is the calculation you make at top of descent so that the decision at fifty
+feet is a comparison and not a calculation.</p>
+
+<ul class="numbers">
+  <li><strong>TAF W/V</strong> &mdash; 180/10G50</li>
+  <li><strong>Variation</strong> &mdash; 15&deg;W</li>
+  <li><strong>Runway</strong> &mdash; 23</li>
+  <li><strong>Crosswind limit</strong> &mdash; 25 kt</li>
+</ul>
+
+<figure>
+  <img src="assets/ch09_fig11_crosswind-limit-lines.png" width="1600" height="900"
+       alt="A grid with the runway direction set at the top and two vertical lines drawn parallel
+       to and equidistant from the centre line, marking the crosswind limit either side.">
+  <figcaption><strong>Figure 9.11</strong> &mdash; Set the runway at the top and
+  draw the crosswind limit as two lines, one either side of the centreline. Anything
+  falling <em>between</em> them is inside limits.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw white"></i>runway 230&deg;(M) at the top</span>
+    <span class="lg"><i class="sw gold"></i>&plusmn;25 kt crosswind limit lines</span>
+  </div>
+</figure>
+
+<figure>
+  <img src="assets/ch09_fig12_rotate-to-wind.png" width="1600" height="900"
+       alt="The same grid rotated so the wind direction is at the top, with the crosswind limit
+       line now crossing the vertical centre line at a marked point.">
+  <figcaption><strong>Figure 9.12</strong> &mdash; Rotate to the wind's direction.
+  Where the limit line crosses the centreline is the wind speed at which you reach
+  your limit.</figcaption>
+</figure>
+
+<div class="worked">
+  <p class="problem"><strong>Worked example 9.2.</strong> At what wind strength
+  from this direction do you reach your 25-knot crosswind limit on runway 23?</p>
+
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 &mdash; the arithmetic</div>
+      <div class="dc-sub">and step 1 is the one that catches people</div>
+      <p class="dc-line"><strong>1. Convert the wind.</strong> A TAF is
+      <strong>true</strong>. Variation 15&deg;<em>West</em>, so magnetic is
+      <em>best</em>:<br>
+      <code>180 + 15 = 195&deg;(M)</code></p>
+      <p class="dc-line"><strong>2. Angle off the runway:</strong><br>
+      <code>&theta; = 230 &minus; 195 = 35&deg;</code></p>
+      <p class="dc-line"><strong>3. Apply the formula:</strong><br>
+      <code>W = 25 &divide; sin35</code><br>
+      <code>&nbsp;&nbsp;&nbsp;= 25 &divide; 0.5736 = 43.6</code></p>
+      <p class="dc-res">43.6 kt &mdash; but see the flag below</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 &mdash; the CX-3</div>
+      <div class="dc-sub">not directly available</div>
+      <ol>
+        <li>There is no inverse function.</li>
+        <li>You can search for it: set <code>Runway</code> 23 and
+          <code>WDir</code> 195, then try wind speeds until <code>X Wnd</code>
+          reads 25.</li>
+        <li>Try 40 &rarr; 22.9. Try 44 &rarr; 25.2. Try 43.5 &rarr; 24.9.</li>
+        <li>Three or four goes will find it, and the formula found it in one.</li>
+      </ol>
+      <p class="dc-res">converges on 43.6</p>
+    </div>
+  </div>
+
+  <p class="dual-verdict"><strong>What the answer means, and it is worth saying in
+  plain words.</strong> Below that wind speed from 195&deg;(M) you are inside your
+  crosswind limit on runway 23, and above it you are not. That single number is
+  what you carry down the approach.</p>
+</div>
+
+<div class="callout amber long">
+  <div class="callout-title">FLAGGED — the source says 41 knots, the arithmetic says 43.6. Captain's ruling needed.</div>
+  <p>The published worked answer is <strong>41 knots</strong>, read off the wind
+  slide. The trigonometry gives <strong>43.6</strong>.</p>
+  <p><strong>The check:</strong> a wind of 41 knots from 195&deg;(M) on runway 230
+  gives a crosswind component of <code>41 &times; sin35 = 23.5 knots</code> &mdash;
+  not the 25 the example is solving for. To reach exactly 25 the wind has to be
+  43.6.</p>
+  <p><strong>It errs on the safe side</strong>, which is worth noting: a pilot using
+  41 goes around slightly earlier than they had to. That is the right direction for
+  an error to lie in, and it is still an error.</p>
+  <p><strong>I have not corrected it in the answer, and I will not.</strong> Unlike
+  the two errata at the end of this chapter, there is no independent evidence here
+  &mdash; nothing else in the book cross-checks this figure. Changing a published
+  number on my arithmetic alone is the Captain's call, not mine.</p>
+  <p><strong>What to do in the meantime:</strong> learn the method, use the formula,
+  and if an examination option sits at 41 rather than 43 or 44, take the graphical
+  value &mdash; the paper was written from the same construction. Then tell your
+  instructor why.</p>
+</div>
+
+<h3>Case B &mdash; when you are limited at both ends</h3>
+
+<p>A heavy aircraft, a single short runway, and a crosswind. You need a
+<strong>minimum</strong> headwind to stop in the distance available, and you have a
+<strong>maximum</strong> crosswind. The acceptable wind is now a band, not a
+ceiling.</p>
+
+<ul class="numbers">
+  <li><strong>Runway</strong> &mdash; 35</li>
+  <li><strong>ATC W/V</strong> &mdash; 030/10G40 &mdash; ATC, so already magnetic</li>
+  <li><strong>Minimum headwind</strong> &mdash; 10 kt</li>
+  <li><strong>Crosswind limit</strong> &mdash; 20 kt</li>
+</ul>
+
+<figure>
+  <img src="assets/ch09_fig13_two-limit-lines.png" width="1600" height="900"
+       alt="A grid with the runway at the top carrying both a pair of vertical crosswind limit
+       lines and a single horizontal headwind limit line, forming a bounded region."
+       >
+  <figcaption><strong>Figure 9.13</strong> &mdash; Two limits drawn at once: the
+  crosswind pair running vertically, and a horizontal line for the minimum
+  headwind. The acceptable winds live in the region bounded by both.</figcaption>
+  <div class="fig-legend">
+    <span class="lg"><i class="sw gold"></i>&plusmn;20 kt crosswind limit</span>
+    <span class="lg"><i class="sw cyan"></i>10 kt minimum headwind</span>
+  </div>
+</figure>
+
+<figure>
+  <img src="assets/ch09_fig14_read-the-band.png" width="1600" height="900"
+       alt="The same grid rotated to the wind direction, with the two limit lines now crossing the
+       centre line at two different points, marking the lower and upper ends of an acceptable
+       band of wind speeds.">
+  <figcaption><strong>Figure 9.14</strong> &mdash; Rotated to the wind. The two
+  limits now cross the centreline at two different speeds, and the wind must fall
+  <em>between</em> them. Too light and you have no braking margin; too strong and
+  you are out of crosswind.</figcaption>
+</figure>
+
+<div class="worked">
+  <p class="problem"><strong>Worked example 9.3.</strong> Between which wind
+  strengths from 030&deg;(M) can you land on runway 35?</p>
+
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 &mdash; the arithmetic</div>
+      <div class="dc-sub">one angle, two formulas</div>
+      <p class="dc-line"><strong>1.</strong> ATC wind, so no conversion.<br>
+      <code>&theta; = 030 &minus; 350 = 40&deg;</code></p>
+      <p class="dc-line"><strong>2. The lower bound</strong> &mdash; the lightest
+      wind giving 10 kt of headwind:<br>
+      <code>W = 10 &divide; cos40</code><br>
+      <code>&nbsp;&nbsp;= 10 &divide; 0.7660 = 13.05</code></p>
+      <p class="dc-line"><strong>3. The upper bound</strong> &mdash; the strongest
+      wind inside 20 kt of crosswind:<br>
+      <code>W = 20 &divide; sin40</code><br>
+      <code>&nbsp;&nbsp;= 20 &divide; 0.6428 = 31.11</code></p>
+      <p class="dc-res">land between 13 and 31 knots from 030&deg;(M)</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 &mdash; the CX-3</div>
+      <div class="dc-sub">two searches, same as Case A</div>
+      <ol>
+        <li><code>Runway</code> 35, <code>WDir</code> 030.</li>
+        <li>Search <code>WSpd</code> until <code>H Wnd</code> reads 10 &mdash; that
+          is your lower bound.</li>
+        <li>Search again until <code>X Wnd</code> reads 20 &mdash; the upper.</li>
+        <li>Two searches against two one-line formulas. The formulas win.</li>
+      </ol>
+      <p class="dc-res">13 and 31</p>
+    </div>
+  </div>
+
+  <p class="dual-verdict"><strong>Read the band, not the numbers.</strong> Below 13
+  knots you do not have the headwind the runway length demands. Above 31 you are
+  outside the crosswind limit. <strong>Between them, and only between them, you can
+  land.</strong> It is the only case in this chapter where a wind can be too
+  light.</p>
+</div>
+
+<h3>Case C &mdash; tailwinds</h3>
+
+<div class="callout amber">
+  <div class="callout-title">First, the airmanship</div>
+  <p>Avoid landing with a tailwind. If you are offered a runway with one, ask for
+  the other end.</p>
+  <p>Accepting a tailwind you did not have to accept is poor airmanship, and if you
+  run off the end afterwards you will have nothing to say for yourself &mdash; even
+  if the brakes failed. <strong>The examination will still ask you about them, so
+  know how they work.</strong></p>
+</div>
+
+<ul class="numbers">
+  <li><strong>Runway</strong> &mdash; 09</li>
+  <li><strong>Variation</strong> &mdash; 10&deg;E</li>
+  <li><strong>ATIS W/V</strong> &mdash; 320/10G30</li>
+  <li><strong>Maximum tailwind</strong> &mdash; 10 kt</li>
+</ul>
+
+<figure>
+  <img src="assets/ch09_fig15_tailwind-limit-line.png" width="1600" height="900"
+       alt="A grid on which the horizontal limit line has been drawn above the centre point rather
+       than below it, in the curved upper part of the scale.">
+  <figcaption><strong>Figure 9.15</strong> &mdash; A tailwind line cannot be drawn
+  in the usual place. It sits <em>above</em> the horizontal scale line, in the
+  curved part of the slide, which is why this case gets its own procedure on a
+  mechanical computer.</figcaption>
+</figure>
+
+<figure>
+  <img src="assets/ch09_fig16_slide-back-to-zero.png" width="1600" height="900"
+       alt="The same grid with the sliding scale returned so that zero sits under the centre dot,
+       the drawn tailwind line now correctly positioned above it.">
+  <figcaption><strong>Figure 9.16</strong> &mdash; And then the step everybody
+  forgets: <strong>slide the scale back so zero is under the centre dot.</strong>
+  Leave it where it was and every reading afterwards is offset by ten knots.</figcaption>
+</figure>
+
+<figure>
+  <img src="assets/ch09_fig17_rotate-and-read.png" width="1600" height="900"
+       alt="The grid rotated to the wind direction with the tailwind limit line crossing the centre
+       line at a marked value."
+       >
+  <figcaption><strong>Figure 9.17</strong> &mdash; Rotate to the wind direction and
+  read the intersection: <strong>16 knots</strong>.</figcaption>
+</figure>
+
+<div class="worked">
+  <p class="problem"><strong>Worked example 9.4.</strong> What is the strongest
+  wind from 320 you can accept on runway 09 with a 10-knot tailwind limit?</p>
+
+  <div class="dual-pair">
+    <div class="dual-col m1">
+      <div class="dc-h">Method 1 &mdash; the arithmetic</div>
+      <div class="dc-sub">identical to Case B, one absolute sign</div>
+      <p class="dc-line"><strong>1.</strong> ATIS, so 320 is already magnetic.
+      <strong>The 10&deg;E variation is not needed.</strong></p>
+      <p class="dc-line"><strong>2.</strong>
+      <code>&theta; = 320 &minus; 090 = 230&deg;</code>, i.e. 130&deg; off.<br>
+      Over 90&deg;, so it is a tailwind.</p>
+      <p class="dc-line"><strong>3.</strong>
+      <code>cos130 = &minus;0.6428</code><br>
+      <code>W = 10 &divide; 0.6428 = 15.6</code></p>
+      <p class="dc-res">16 knots</p>
+    </div>
+    <div class="dual-col m2">
+      <div class="dc-h">Method 2 &mdash; the shortcut worth keeping</div>
+      <div class="dc-sub">and it needs no instrument at all</div>
+      <ol>
+        <li>A tailwind on runway 09 is a <strong>headwind on runway 27</strong>.
+          It is the same wind and the same aeroplane.</li>
+        <li>So run it as a headwind problem on the reciprocal:<br>
+          <code>&theta; = 320 &minus; 270 = 50&deg;</code></li>
+        <li><code>W = 10 &divide; cos50 = 15.6</code></li>
+        <li><strong>Same answer, no curved scale, no sliding the zero back.</strong></li>
+      </ol>
+      <p class="dc-res">16 knots</p>
+    </div>
+  </div>
+
+  <p class="dual-verdict"><strong>Use the reciprocal shortcut.</strong> It is the
+  source's own suggestion, it is instrument-independent, and it turns the one case
+  with a fiddly procedure into the case you already know. There is no tailwind
+  problem &mdash; there is only a headwind problem on the other runway.</p>
+
+  <p class="sanity"><strong>And notice the trap you just walked past.</strong> The
+  question handed you a variation of 10&deg;E. The wind came from the ATIS, so it
+  was already magnetic and the variation was never needed. <strong>It was there to
+  see whether you would use it.</strong></p>
+</div>
+
+<h3>Case D &mdash; between which directions may the wind blow?</h3>
+
+<p>The last shape of the question: the wind speed is fixed and you want to know the
+arc of directions that keeps you inside your crosswind limit.</p>
+
+<div class="worked">
+  <p class="problem"><strong>Worked example 9.5.</strong> Between which directions
+  may a 50-knot wind blow without giving more than 30 knots of crosswind on runway
+  250&deg;(M)?</p>
+  <ol class="steps">
+    <li><code>&theta; = sin&#8315;&sup1;(30 &divide; 50) = sin&#8315;&sup1;(0.6) = 36.9&deg;</code></li>
+    <li>The limits sit that far either side of the runway:<br>
+      <code>250 &minus; 36.9 = 213&deg;(M)</code> and
+      <code>250 + 36.9 = 287&deg;(M)</code></li>
+    <li>So a 50-knot wind between <strong>213&deg;(M) and 287&deg;(M)</strong> gives
+      30 knots of crosswind or less, with a headwind component.</li>
+    <li><strong>And their reciprocals, 033&deg;(M) to 107&deg;(M), give exactly the
+      same crosswind</strong> &mdash; but with a <em>tailwind</em>. The crosswind
+      arithmetic does not care which way along the runway the wind is going, and
+      that is precisely why you must check the headwind sign separately.</li>
+  </ol>
+  <p class="formula-note">The published answers are 214&deg; and 286&deg;, from
+  reading 36&deg; off the disc where the arcsine is 36.87&deg;. One degree either
+  way, and the arithmetic values are 213 and 287.</p>
+</div>
+
+<hr class="section-rule">
+<!-- ============ QUESTIONS ============ -->
+<h2 id="questions">Questions &mdash; wind components</h2>
+
+<div class="callout blue">
+  <div class="callout-title">Before you start, ask the one question</div>
+  <p><em>Who told me this wind?</em> A controller's voice is magnetic. A written
+  met message is true. Every one of these four questions turns on that, and one of
+  them punishes you for applying a variation you did not need.</p>
+</div>
+
+<div class="drill">
+  <div class="drill-intro">Four questions</div>
+  <ol class="drill-list">
+    <li><strong>An airfield has runways 18/36 and 07/25, all of equal length. The
+      TAF W/V is 310/25. Variation is 20&deg;E. Which is the best runway for
+      take-off and landing?</strong><br>
+      (a) 18 &nbsp;&middot;&nbsp; (b) 36 &nbsp;&middot;&nbsp; (c) 07
+      &nbsp;&middot;&nbsp; (d) 25</li>
+    <li><strong>In the Question 1 situation, what are the head and crosswind
+      components on that runway?</strong><br>
+      (a) 24 / 17 &nbsp;&middot;&nbsp; (b) 13 / 19 &nbsp;&middot;&nbsp;
+      (c) 19 / 16 &nbsp;&middot;&nbsp; (d) 17 / 12</li>
+    <li><strong>An aircraft requires a 10-knot headwind component for take-off. Its
+      crosswind limit is 20 knots. The only runway available is 25. The ATIS W/V is
+      290/10G40. What are the minimum and maximum wind speeds for take-off?</strong><br>
+      (a) 17 / 31 &nbsp;&middot;&nbsp; (b) 13 / 17 &nbsp;&middot;&nbsp;
+      (c) 13 / 31 &nbsp;&middot;&nbsp; (d) 17 / 26</li>
+    <li><strong>On a particular take-off you can accept up to 10 knots of tailwind.
+      The runway QDM is 047, the variation is 17&deg;E, and the ATIS gives the wind
+      direction as 210. What is the maximum wind strength you can accept?</strong><br>
+      (a) 18 kt &nbsp;&middot;&nbsp; (b) 11 kt &nbsp;&middot;&nbsp;
+      (c) 8 kt &nbsp;&middot;&nbsp; (d) 4 kt</li>
+  </ol>
+</div>
+
+<h2 id="answers">Answers</h2>
+
+<table class="q-table answers">
+  <thead><tr><th>Question</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead>
+  <tbody><tr><td><strong>Answer</strong></td><td class="calc">d</td>
+    <td class="calc">c</td><td class="calc">c</td><td class="calc">b</td></tr></tbody>
+</table>
+
+<div class="worked compact">
+  <p class="problem"><strong>Question 1 &amp; 2 &mdash; worked.</strong> TAF
+  310/25, variation 20&deg;E, runways 18/36 and 07/25.</p>
+  <p class="dc-line"><strong>Step one, and it decides the whole question.</strong>
+  A TAF is <strong>true</strong>. Variation 20&deg;<em>East</em>, so magnetic is
+  <em>least</em>: <code>310 &minus; 20 = 290&deg;(M)</code>.<br>
+  Work it in true against magnetic runways and every component below is wrong.</p>
+  <table class="q-table answers">
+    <thead><tr><th>Runway</th><th>QDM</th><th>Angle off</th><th>Headwind</th><th>Crosswind</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>18</td><td>180</td><td>110&deg;</td><td class="calc">&minus;8.6</td><td class="calc">23.5</td><td class="note-cell">tailwind</td></tr>
+      <tr><td>36</td><td>360</td><td>70&deg;</td><td class="calc">+8.6</td><td class="calc">23.5</td><td class="note-cell">little headwind, big crosswind</td></tr>
+      <tr><td>07</td><td>070</td><td>140&deg;</td><td class="calc">&minus;19.2</td><td class="calc">16.1</td><td class="note-cell">tailwind</td></tr>
+      <tr><td><strong>25</strong></td><td>250</td><td>40&deg;</td><td class="calc"><strong>+19.2</strong></td><td class="calc"><strong>16.1</strong></td><td class="note-cell"><strong>most headwind, least crosswind</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="dc-res">Q1 &rarr; (d) runway 25 &nbsp;&middot;&nbsp; Q2 &rarr; (c) 19 head / 16 cross</p>
+  <p class="sanity"><strong>Note the shape of it.</strong> 18 and 36 share a
+  crosswind, and so do 07 and 25 &mdash; reciprocal runways always do. What
+  separates them is the <em>sign of the headwind</em>. So the question is really
+  two questions: which pair has the smaller crosswind, and then which end of that
+  pair faces the wind.</p>
+</div>
+
+<div class="worked compact">
+  <p class="problem"><strong>Question 3 &mdash; worked.</strong> Runway 25, ATIS
+  290/10G40, minimum headwind 10 kt, crosswind limit 20 kt.</p>
+  <p class="dc-line"><strong>ATIS, so 290 is already magnetic.</strong> No variation
+  is given and none is needed.<br>
+  <code>&theta; = 290 &minus; 250 = 40&deg;</code></p>
+  <p class="dc-line"><strong>Minimum:</strong>
+    <code>10 &divide; cos40 = 13.05</code> &rarr; <strong>13 kt</strong><br>
+  <strong>Maximum:</strong>
+    <code>20 &divide; sin40 = 31.11</code> &rarr; <strong>31 kt</strong></p>
+  <p class="dc-res">(c) 13 and 31</p>
+  <p class="sanity"><strong>And this question settles an error in the chapter's own
+  worked example</strong> &mdash; see the errata below. The geometry here is
+  identical to Case B: the same 40&deg;, the same 10-knot minimum headwind, the same
+  20-knot crosswind limit. The answer key says 13. The worked example said 11. The
+  answer key is right.</p>
+</div>
+
+<div class="worked compact">
+  <p class="problem"><strong>Question 4 &mdash; worked.</strong> Maximum tailwind 10
+  kt, runway QDM 047, variation 17&deg;E, ATIS wind direction 210.</p>
+  <p class="dc-line"><strong>The trap first.</strong> The wind came from the
+  <strong>ATIS</strong>, so it is already magnetic. <strong>The 17&deg;E variation
+  is not needed.</strong> Apply it and you get 193&deg;(M), an angle of 146&deg;, a
+  tailwind factor of 0.829 and an answer of 12 &mdash; which is not an option, and
+  that is your warning.</p>
+  <p class="dc-line"><code>&theta; = 210 &minus; 047 = 163&deg;</code> &mdash; well
+  over 90&deg;, so a tailwind, and almost straight down the runway.<br>
+  <code>cos163 = &minus;0.9563</code><br>
+  <code>W = 10 &divide; 0.9563 = 10.5</code></p>
+  <p class="dc-res">(b) 11 knots</p>
+  <p class="sanity"><strong>Sanity check.</strong> At 163&deg; the wind is only
+  17&deg; off the runway's reciprocal &mdash; almost a pure tailwind. So nearly all
+  of it acts down the runway, and the wind you can accept must be only slightly more
+  than your 10-knot limit. 10.5 knots. If you had produced 18, you resolved it as
+  though the wind were nearly across the runway.</p>
+</div>
+
+<hr class="section-rule">
+
+<!-- ============ ERRATA ============ -->
+<h2 id="errata">Errata in the source</h2>
+
+<div class="callout red long">
+  <div class="callout-title">CORRECTED — Case B says 11 knots. It is 13, and the book's own answer key proves it.</div>
+  <p>The worked example for the combined-limits case (Figures 9.13 and 9.14) states
+  that landing on runway 35 with the wind from 030&deg;(M), the acceptable band runs
+  from <strong>11</strong> knots to <strong>31</strong> knots.</p>
+
+  <p><strong>The upper bound is right and the lower one is not.</strong></p>
+
+  <table class="ref-table">
+    <thead><tr><th></th><th>Published</th><th>Correct</th><th>Check</th></tr></thead>
+    <tbody>
+      <tr><td>Lower bound (10 kt headwind)</td><td>11</td><td><strong>13</strong></td>
+        <td>11 kt from 030&deg;(M) gives <code>11&times;cos40 = 8.4</code> kt of headwind &mdash; <strong>below the 10 kt minimum it claims to meet</strong></td></tr>
+      <tr><td>Upper bound (20 kt crosswind)</td><td>31</td><td>31</td>
+        <td><code>20 &divide; sin40 = 31.11</code> &mdash; correct</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Why this one is CORRECTED and not merely flagged.</strong> Ordinarily
+  I would not overrule a published figure on my own arithmetic. Here I do not have
+  to: <strong>the book contradicts itself, and its own answer key is the half that
+  is right.</strong></p>
+  <p>Question 3 above is the same geometry &mdash; a 40&deg; angle-off, a 10-knot
+  minimum headwind, a 20-knot crosswind limit. Its published answer is
+  <strong>(c) 13 and 31</strong>. The worked example on the same subject says 11 and
+  31. <strong>The same 40&deg; that produces the book's own correct upper bound of
+  31 cannot also produce a lower bound of 11.</strong></p>
+  <p><strong>And this error runs in the dangerous direction.</strong> A pilot using
+  11 knots believes they have their 10 knots of headwind when they have 8.4 &mdash;
+  on a runway chosen precisely because the margin was tight. The other errors in
+  this chapter err safe. This one does not.</p>
+
+  <p><strong>A second, plain defect in the same paragraph.</strong> The prose
+  concludes that between the two bounds <em>"you have 10 knots or more of headwind
+  component AND you have 25 knots or less of crosswind component."</em> The
+  crosswind limit stated four lines earlier is <strong>20 knots</strong>. There is
+  only one reading: 25 is a typo for 20.</p>
+</div>
+
+<div class="callout amber">
+  <div class="callout-title">FLAGGED and NOT corrected — Case A, 41 versus 43.6 knots</div>
+  <p>Covered in full in Section 7. The published 41 knots gives 23.5 knots of
+  crosswind, not the 25 the example solves for; the arithmetic gives 43.6.</p>
+  <p><strong>No independent evidence exists either way</strong> &mdash; nothing else
+  in the book cross-checks this figure, unlike the case above. It errs on the safe
+  side. <strong>It stays flagged for the Captain's ruling and neither number is
+  published here as the answer.</strong></p>
+</div>
+
+<div class="callout blue">
+  <div class="callout-title">What I checked in this chapter, and what I could not</div>
+  <p><strong>Multi-drift: 5 of 5 clean.</strong> The worked example and all four
+  questions were resolved by simultaneous equations and every published answer
+  agrees to within 1.5&deg; and 1.2 knots. The cocked-hat residuals run from 0.00 to
+  1.13 knots, which confirms the drift sets are internally consistent.</p>
+  <p><strong>Forward components: 2 of 2 exact.</strong> Both worked examples, and
+  the CX-3 Guide's own published example, reproduce to two decimal places.</p>
+  <p><strong>Exam questions: 4 of 4 correct.</strong> Every option checked, not just
+  the marked one.</p>
+  <p><strong>Inverse components: 2 defects and 1 minor rounding</strong>, all set out
+  above. The allowable-wind-angle example reads 214&deg;/286&deg; where the arcsine
+  gives 213&deg;/287&deg; &mdash; a degree, from reading 36&deg; off a disc where the
+  true value is 36.87&deg;.</p>
+  <p><strong>What I could not settle:</strong> whether the 41-knot figure is a
+  reading error or a working error. Both produce the same symptom and the source
+  does not show its intermediate steps.</p>
+</div>
+
+<hr class="section-rule">
+
+<!-- ============ CLOSING ============ -->
+<h2 id="summary">The chapter in eight lines</h2>
+
+<div class="drill">
+  <div class="drill-intro">Take these into the exam, and into the aeroplane</div>
+  <ol class="drill-list">
+    <li><strong>Who told me this wind?</strong> A controller's voice &mdash; ATC or
+      ATIS &mdash; is <strong>magnetic</strong>. A written met message &mdash; TAF,
+      METAR, VOLMET &mdash; is <strong>true</strong>. Runways are always magnetic.</li>
+    <li><strong>If the question gives you a variation and an ATIS wind, the
+      variation is a decoy.</strong> Using it is the error the question was built
+      to catch.</li>
+    <li><strong>Headwind = W&middot;cos&theta;. Crosswind = W&middot;sin&theta;.</strong>
+      A negative cosine is a tailwind. That is the whole of the forward case.</li>
+    <li><strong>Anchors:</strong> 30&deg; off gives 87% head and 50% cross; 45&deg;
+      gives 70% of each; 60&deg; gives 50% head and 87% cross. These catch almost
+      any keying error.</li>
+    <li><strong>Running it backwards:</strong> max wind for a crosswind limit is
+      <code>X &divide; sin&theta;</code>; for a head or tailwind limit,
+      <code>H &divide; |cos&theta;|</code>; the allowable arc is
+      <code>sin&#8315;&sup1;(X &divide; W)</code> either side of the runway.
+      <strong>The CX-3 cannot do any of these.</strong></li>
+    <li><strong>A tailwind problem is a headwind problem on the reciprocal
+      runway.</strong> Same wind, same aeroplane, no curved scale.</li>
+    <li><strong>On the CX-3: the runway NUMBER, not the course</strong> &mdash; 27,
+      never 270 &mdash; and the wind must be <strong>magnetic</strong>. It will
+      answer a wrong input without complaint.</li>
+    <li><strong>Multi-drift: each drift is one equation, two drifts are a
+      solution, three are a check.</strong> Port drift is negative. The size of the
+      cocked hat is the honesty of your observations.</li>
+  </ol>
+</div>
+
+<div class="chapter-foot">
+  <p class="foot-next"><strong>That is the module.</strong> Chapter 5 gave you
+  distance, speed, time and the conversions. Chapter 6 turned an indicated airspeed
+  into a true one. Chapter 7 built the triangle of velocities and Chapter 8 solved
+  it in both directions, then assembled a whole flight plan out of it. This chapter
+  closed the last two jobs the wind face ever did.</p>
+  <p class="foot-next"><strong>What the machine changed, and what it did not.</strong>
+  The CX-3 removes the iterations, the guessing and most of the arithmetic. It does
+  not remove the triangle, the sign of a variation, or the question of who told you
+  the wind. Those were never the computer's job. They were always yours.</p>
+</div>
+
+</div>
+
+
+<div class="ga-watermark-l1" data-ga-wm="l1">Capt. Pankaj Pahil &middot; www.GhostAviator.com</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var WM_TEXT  = 'Capt. Pankaj Pahil · www.GhostAviator.com';
+  var WM_CLASS = 'ga-watermark-l1';
+  var WM_FLAG  = 'l1';
+
+  /* ---------------- LAYER 3: sentinel ---------------- */
+
+  function buildWatermark() {
+    var div = document.createElement('div');
+    div.className = WM_CLASS;
+    div.setAttribute('data-ga-wm', WM_FLAG);
+    div.textContent = WM_TEXT;
+    document.body.appendChild(div);
+    return div;
+  }
+
+  var repairing = false;
+
+  function checkWatermark() {
+    if (repairing) return;
+    repairing = true;
+    try {
+      var wm = document.querySelector('[data-ga-wm="' + WM_FLAG + '"]');
+
+      if (!wm) {                                  // removed entirely
+        buildWatermark();
+        return;
+      }
+      if (wm.textContent.indexOf('GhostAviator') === -1) {   // text tampered
+        wm.textContent = WM_TEXT;
+      }
+      if (wm.className.indexOf(WM_CLASS) === -1) {           // class stripped
+        wm.className = WM_CLASS;
+      }
+      var cs = window.getComputedStyle(wm);                  // hidden
+      if (cs.display === 'none' ||
+          cs.visibility === 'hidden' ||
+          parseFloat(cs.opacity) < 0.01) {
+        wm.style.setProperty('display', 'block', 'important');
+        wm.style.setProperty('visibility', 'visible', 'important');
+        wm.style.setProperty('opacity', '1', 'important');
+      }
+    } finally {
+      repairing = false;
+    }
+  }
+
+  if (!document.querySelector('[data-ga-wm="' + WM_FLAG + '"]')) {
+    buildWatermark();
+  }
+
+  function isWatermark(node) {
+    return node && node.nodeType === 1 &&
+           ((node.getAttribute && node.getAttribute('data-ga-wm') === WM_FLAG) ||
+            (node.classList && node.classList.contains(WM_CLASS)));
+  }
+
+  function inWatermark(node) {
+    while (node) {
+      if (isWatermark(node)) return true;
+      node = node.parentNode;
+    }
+    return false;
+  }
+
+  var observer = new MutationObserver(function (mutations) {
+    if (repairing) return;
+    for (var i = 0; i < mutations.length; i++) {
+      var m = mutations[i];
+
+      // the watermark itself was removed from the page
+      if (m.type === 'childList') {
+        for (var j = 0; j < m.removedNodes.length; j++) {
+          if (isWatermark(m.removedNodes[j])) {
+            setTimeout(checkWatermark, 50);
+            return;
+          }
+        }
+      }
+      // anything changed ON or INSIDE the watermark
+      // (this is the case v1.0 missed — innerHTML edits survived)
+      if (inWatermark(m.target)) {
+        setTimeout(checkWatermark, 50);
+        return;
+      }
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    characterData: true,
+    attributeFilter: ['style', 'class', 'data-ga-wm']
+  });
+
+  // an injected stylesheet that tries to hide the mark
+  if (document.head) {
+    new MutationObserver(function () {
+      setTimeout(checkWatermark, 150);
+    }).observe(document.head, { childList: true, subtree: true });
+  }
+
+  // belt and braces
+  setInterval(checkWatermark, 3000);
+
+
+  /* ---------------- LAYER 4: steganographic markers ----------------
+     Encodes a key as zero-width characters inside body text, so that text
+     copied out of the page carries an invisible, checkable signature.
+     Built with fromCharCode so no invisible character sits in the source. */
+
+  var STEG_KEY = 'GhostAviator-CPP';
+  var ZW = [
+    String.fromCharCode(0x200B),   // zero width space
+    String.fromCharCode(0x200C),   // zero width non-joiner
+    String.fromCharCode(0x200D),   // zero width joiner
+    String.fromCharCode(0x2060)    // word joiner
+  ];
+
+  function encodeSteg(text) {
+    var out = '';
+    for (var i = 0; i < text.length; i++) {
+      var code = text.charCodeAt(i);
+      for (var b = 3; b >= 0; b--) {          // 8 bits, 2 bits per symbol
+        out += ZW[(code >> (b * 2)) & 3];
+      }
+    }
+    return out;
+  }
+
+  var MARKER = encodeSteg(STEG_KEY);
+
+  window.gaInsertStegMarkers = function () {
+    var els = document.querySelectorAll(
+      '.ga-content p, .ga-content li, .ga-content td, ' +
+      '.ga-content h2, .ga-content h3, p, li, td, h2, h3'
+    );
+    var seen = [];
+    for (var i = 0; i < els.length; i++) {
+      if (seen.indexOf(els[i]) === -1) seen.push(els[i]);
+    }
+    if (!seen.length) return 0;
+
+    /* Keep only elements long enough to hide a marker in, THEN space the
+       markers evenly through those. Sampling before filtering (v2.0) landed
+       only 3 markers in a long chapter, because most sampled slots were short
+       table cells. Target ~12, spread across the whole document. */
+    var eligible = [];
+    for (var e = 0; e < seen.length; e++) {
+      if (inWatermark(seen[e])) continue;
+      if (seen[e].getAttribute('data-ga-steg')) continue;
+      if (seen[e].textContent.length < 40) continue;
+      eligible.push(seen[e]);
+    }
+    if (!eligible.length) return 0;
+
+    var TARGET = 12;
+    var step = Math.max(1, Math.floor(eligible.length / TARGET));
+    var placed = 0;
+
+    for (var k = 0; k < eligible.length; k += step) {
+      var el = eligible[k];
+
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+      var tn;
+      while ((tn = walker.nextNode())) {
+        if (tn.textContent.length > 25) {
+          var mid = Math.floor(tn.textContent.length / 2);
+          var at  = tn.textContent.indexOf(' ', mid);
+          if (at === -1) at = mid;
+          tn.textContent = tn.textContent.slice(0, at) + MARKER + tn.textContent.slice(at);
+          el.setAttribute('data-ga-steg', '1');
+          placed++;
+          break;
+        }
+      }
+    }
+    return placed;
+  };
+
+  /* Verifier — paste suspect text into the console and call this:
+       gaCheckSteg(pastedString)   ->  true if the signature is present      */
+  window.gaCheckSteg = function (str) {
+    return typeof str === 'string' && str.indexOf(MARKER) !== -1;
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { window.gaInsertStegMarkers(); });
+  } else {
+    window.gaInsertStegMarkers();
+  }
+
+})();
+</script>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

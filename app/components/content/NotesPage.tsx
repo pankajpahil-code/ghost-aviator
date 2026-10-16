@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NotesActions from "./NotesActions";
 import { ChevronRight, ChevronLeft, Clock, BookOpen, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import Watermark from "@/app/components/Watermark";
@@ -104,6 +105,7 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <NotesActions subjectId={subject.id} chapterId={chapter.id} />
 
         {/* Lecture first, then the chapter — watch it, then read it. */}
         {videos && videos.length > 0 && (

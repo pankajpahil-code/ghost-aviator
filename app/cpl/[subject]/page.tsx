@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NotesDownloadLink from "@/app/components/content/NotesDownloadLink";
 import { getChapterSpecificQuestions, getSubjectQuestionPool } from "@/lib/questions";
 import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { getChapterVideos } from "@/lib/chapter-videos";
@@ -252,12 +253,15 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
                           : c.type === "notes"   ? servesRealNotes(subject.id, ch.id)
                           : c.available;
                         return available ? (
-                          <Link key={c.type}
+                          <span key={c.type} className="inline-flex flex-wrap gap-2">
+                          <Link
                                 href={`/cpl/${subject.id}/${ch.id}/${c.type}`}
                                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold no-underline transition-all"
                                 style={{ background:`${color}18`, border:`1px solid ${color}40`, color }}>
                             <Icon className="w-3 h-3"/> {c.label}
                           </Link>
+                          {c.type === "notes" && <NotesDownloadLink subjectId={subject.id} chapterId={ch.id} />}
+                          </span>
                         ) : (
                           <div key={c.type}
                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold"

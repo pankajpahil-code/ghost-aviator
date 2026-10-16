@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://ghostaviator.com/cpl/air-navigation/nav-6/notes">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Mass and Balance &#8212; Aeroplanes &#183; DGCA CPL/ATPL Study Notes</title>
+<style>
+  :root {
+    --cream: #FEF9E7;
+    --navy: #1E3A8A;
+    --green: #065F46;
+    --blue-bg: #DBEAFE; --blue-bd: #3B82F6;
+    --red-bg: #FEE2E2;  --red-bd: #EF4444;
+    --yellow-bg: #FEF9C3; --yellow-bd: #D97706;
+    --purple-bg: #F3E8FF; --purple-bd: #A855F7;
+    --green-bg: #D1FAE5;  --green-bd: #10B981;
+    --line-color: #B0C4DE;
+  }
+
+  @font-face { font-family:'GA Hand'; src:url('assets/bradhitc.ttf') format('truetype'); }
+  @font-face { font-family:'GA Flight'; src:url('assets/bahnschrift.ttf') format('truetype'); }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #7C8EA0;
+    font-family: 'GA Flight', 'Bahnschrift', 'Arial Narrow', sans-serif;
+    font-size: 1.13rem;
+    line-height: 1.48;
+    color: #1E293B;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .notebook {
+    width: 100%;
+    max-width: 1000px;
+    background-color: #fffaf0;
+    background-image: repeating-linear-gradient(
+      to bottom, transparent, transparent 34px,
+      var(--line-color) 34px, var(--line-color) 35px);
+    border-radius: 8px;
+    border-left:10px solid #173b8f; border-right:4px solid #173b8f;
+    border-top:7px solid transparent;
+    border-image:linear-gradient(90deg,#173b8f 0 20%,#10b981 20% 40%,#f59e0b 40% 60%,#ef4444 60% 80%,#a855f7 80%) 1;
+    padding: 50px 46px 80px 46px;
+    box-shadow: 8px 12px 40px rgba(0,0,0,0.45);
+  }
+
+  /* Typography */
+  .page-title {
+    font-family: 'GA Flight', 'Bahnschrift', sans-serif; font-size: 3.8rem; font-weight:800; letter-spacing:.04em; color: var(--navy);
+    text-align: center; line-height: 1.02; margin-bottom: 4px;
+  }
+  .page-subtitle {
+    font-family: 'GA Flight', 'Bahnschrift', sans-serif; font-size: 1.72rem; font-weight:700; color: var(--green);
+    text-align: center; margin-bottom: 6px;
+  }
+  .byline { text-align:center; font-size:1.35rem; color:var(--navy); margin-bottom: 26px; }
+
+  h2 {
+    font-family: 'GA Flight', 'Bahnschrift', sans-serif; font-size: 2.05rem; font-weight:800; letter-spacing:.015em; color: white;
+    margin: 50px 0 20px 0; padding: 9px 18px; background: linear-gradient(105deg,#173b8f,#2859c4);
+    display: inline-block; border-radius: 9px; border-bottom: 4px solid #f9c846;
+    box-shadow: 5px 6px 0 rgba(23,59,143,.16); transform:rotate(-.25deg);
+  }
+  h3 { font-family:'GA Flight','Bahnschrift',sans-serif; font-size: 1.48rem; color: var(--green); margin: 24px 0 10px 0; font-weight: 800; }
+  p { margin-bottom: 9px; }
+  ul { margin: 0 0 12px 24px; }
+  li { margin-bottom: 5px; }
+  strong, b { color: var(--navy); }
+  sup, sub { font-size: 0.7em; }
+  .tiny { font-size: 0.82em; color:#475569; }
+
+  /* Layout */
+  .row { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 18px; align-items: flex-start; }
+  .col-half { flex: 1 1 45%; min-width: 300px; }
+  .col-full { flex: 1 1 100%; }
+
+  /* Tables */
+  table {
+    width: 100%; border-collapse: collapse; background: white;
+    border: 2px dashed var(--navy); border-radius: 8px; overflow: hidden;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.08); margin-bottom: 18px;
+  }
+  th {
+    background: var(--blue-bg); color: var(--navy); font-size: 1.28rem;
+    padding: 9px 11px; text-align: left; border-bottom: 2px solid var(--blue-bd);
+    vertical-align: top;
+  }
+  td { padding: 8px 11px; border-bottom: 1px solid #E2E8F0; font-size: 1.18rem; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .yes { color: var(--green-bd); font-weight: bold; }
+  .no  { color: var(--red-bd); font-weight: bold; }
+
+  /* Boxes */
+  .box {
+    border: 2px solid; border-radius: 10px; padding: 24px 16px 15px 16px;
+    position: relative; margin: 26px 0 18px 0; background: white;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.08);
+  }
+
+  .cover-card { width:82%; border:3px solid #173b8f; border-radius:16px; padding:10px;
+    background:rgba(255,255,255,.92); box-shadow:7px 8px 0 rgba(23,59,143,.18);
+    margin:12px auto 20px; transform:rotate(-.15deg); }
+  .hero-img { width:100%; border-radius:12px; display:block; border:2px solid #f3bd2e; }
+  .eyebrow { display:inline-block; background:#173b8f; color:white; padding:8px 18px;
+    border-radius:18px; font-weight:bold; letter-spacing:1px; margin-bottom:12px; }
+  .index-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px 18px; }
+  .index-item { background:white; border-left:5px solid #ec4899; padding:8px 10px;
+    border-radius:7px; box-shadow:2px 2px 0 #dbeafe; }
+  .q-quality { margin-top:10px; padding:9px 11px; background:#fff4c7;
+    border-left:5px solid #e09b16; border-radius:7px; }
+  .q-flag { background:#fff1c7 !important; border-color:#e09b16 !important; color:#7a4700 !important; }
+  .atpl-badge { display:inline-block; padding:2px 9px; border:2px solid #8b5cf6;
+    background:#f3e8ff; color:#5b21b6; border-radius:12px; font-weight:bold; }
+  .box-label {
+    position: absolute; top: -14px; left: 14px; padding: 0 8px;
+    font-family:'GA Flight','Bahnschrift',sans-serif; font-size: 1.22rem; font-weight: 700; border-radius: 4px;
+  }
+  .box-blue   { border-color: var(--blue-bd);   background: var(--blue-bg); }
+  .box-blue   .box-label { color: var(--blue-bd);   background: var(--blue-bg); }
+  .box-red    { border-color: var(--red-bd);    background: var(--red-bg); }
+  .box-red    .box-label { color: var(--red-bd);    background: var(--red-bg); }
+  .box-yellow { border-color: var(--yellow-bd); background: var(--yellow-bg); }
+  .box-yellow .box-label { color: var(--yellow-bd); background: var(--yellow-bg); }
+  .box-purple { border-color: var(--purple-bd); background: var(--purple-bg); }
+  .box-purple .box-label { color: var(--purple-bd); background: var(--purple-bg); }
+  .box-green  { border-color: var(--green-bd);  background: var(--green-bg); }
+  .box-green  .box-label { color: var(--green-bd);  background: var(--green-bg); }
+  .box table { background:#fff; margin-top:10px; }
+
+  .hl { background: rgba(253,224,71,0.65); padding: 0 5px; border-radius: 3px; }
+
+  /* Figures */
+  .fig {
+    background:#fff; border:8px solid #fff; border-radius:12px; margin:28px 0 8px 0;
+    box-shadow: 4px 6px 16px rgba(0,0,0,0.18); overflow:hidden; transform:rotate(-.12deg);
+  }
+  .figcap { text-align:center; font-size:1.08rem; color:#475569; margin-bottom:22px; font-style:italic; }
+  .fig-img img { display:block; width:100%; height:auto; border-radius:8px; }
+
+  /* Question cards */
+  .q-grid { display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-top:18px; }
+  .q-card {
+    background:#fff; border:1px solid #CBD5E1; border-left:6px solid var(--green-bd);
+    padding:15px; border-radius:8px; box-shadow:2px 2px 4px rgba(0,0,0,0.06);
+  }
+  .q-card.q-bad { border-left-color: var(--red-bd); }
+  .q-card.q-worked { border-left-color: var(--purple-bd); }
+  .q-num { color:var(--navy); font-weight:bold; font-size:1.35rem; }
+  .q-stem { font-size:1.08rem; margin-top:2px; }
+  .q-opts { margin-top:8px; font-size:1.02rem; color:#334155; }
+  .q-ans {
+    margin-top:11px; padding:9px 11px; background:var(--green-bg);
+    border:1px solid var(--green-bd); border-radius:6px; font-size:1.14rem;
+  }
+  .q-ans-bad { background:var(--red-bg); border-color:var(--red-bd); }
+  .q-ans-worked { background:var(--purple-bg); border-color:var(--purple-bd); }
+  .q-explain { margin-top:9px; font-size:1.02rem; color:#1F2937; line-height:1.48; }
+  .q-correction {
+    margin-top:10px; padding:9px 11px; background:#FFF1F2; border:2px solid var(--red-bd);
+    border-radius:6px; font-size:1.05rem; line-height:1.45;
+  }
+  .q-note {
+    margin-top:9px; padding:8px 10px; background:var(--yellow-bg);
+    border-radius:5px; font-size:1.03rem; line-height:1.45;
+  }
+  .ans-big { color: var(--green); font-size:1.15em; }
+
+  /* Answer key grid */
+  .keytable { border:2px solid var(--navy); }
+  .keytable th, .keytable td {
+    text-align:center; padding:6px 3px; font-size:1.1rem; border:1px solid #CBD5E1;
+  }
+  .krow-q th { background: var(--navy); color:#fff; }
+  .krow-a td { background:#fff; font-weight:bold; color:var(--green); }
+  .keyfix { color: var(--red-bd); }
+
+  /* Watermark.
+     The opacity is baked into the SVG as fill-opacity rather than applied with the
+     CSS opacity property. CSS opacity forces Chrome to promote this full-bleed
+     overlay to its own composited layer, which the PDF exporter then rasterises
+     once per page - that produced a 44 MB file for 110 pages. With fill-opacity
+     it stays a vector pattern. */
+  body::before {
+    content: ""; position: fixed; top:0; left:0; right:0; bottom:0;
+    pointer-events: none; z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg width='760' height='430' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='60' y='215' fill='%231E3A8A' fill-opacity='0.07' font-size='20' font-family='sans-serif' font-weight='bold' transform='rotate(-24 210 215)'%3Ewww.GhostAviator.com %E2%80%A2 Capt. Pankaj Pahil%3C/text%3E%3C/svg%3E");
+    background-repeat: repeat;
+    -webkit-user-select: none; user-select: none;
+  }
+
+  @page { size: A4; margin: 11mm 10mm 12mm 10mm; }
+
+  @media print {
+    body { background:#fff; padding:0; }
+    .notebook { box-shadow:none; max-width:100%; padding:16px; border-radius:0; }
+    .q-card, .box, .fig { page-break-inside: avoid; break-inside: avoid; }
+    table { page-break-inside: auto; }
+    tr { page-break-inside: avoid; }
+    h2 { page-break-after: avoid; }
+    .revision-start { page-break-before: always; break-before: page; }
+    .page-break { page-break-before: always; break-before: page; }
+    .revision-start + h2 + .box { page-break-inside: auto; break-inside: auto; }
+    /* Print engines cannot reliably fragment CSS Grid across A4 pages. */
+    .q-grid { display:block; }
+    .q-card { margin:0 0 14px 0; }
+  }
+
+  @media (max-width: 820px) {
+    .q-grid { grid-template-columns: 1fr; }
+    body { padding: 10px; }
+    .notebook { padding: 22px 18px 40px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="notebook">
+<div style="text-align:center"><span class="eyebrow">DGCA CPL CORE &#183; ATPL EXTENSIONS</span></div><div class="page-title">&#9878;&#65039; MASS AND BALANCE</div><div class="page-title" style="font-size:2.6rem;margin-bottom:10px;">AEROPLANES</div><div class="page-subtitle">DGCA CPL / ATPL Study Notes &#8212; General Navigation</div><div class="byline">Prepared for professional pilot students by <b>Capt. Pankaj Pahil</b> &#183; www.GhostAviator.com</div><div class="cover-card"><img class="hero-img" src="assets/v3_cover_crop.png" alt="Original hand-painted Mass and Balance master board showing a transport aeroplane cutaway, loading stations, fuel tanks, CG and envelope"><div class="figcap"><b>The complete loading picture:</b> crew, passengers, cargo and fuel each add mass at a particular arm; together their moments locate the centre of gravity.</div></div><div class="page-break"></div><h2 style="margin-top:12px;">Flight Plan for This Chapter</h2><div class="index-grid"><div class="index-item"><b>1. Why mass and balance matters</b></div><div class="index-item"><b>2. Datum, arm, moment and station</b></div><div class="index-item"><b>3. Conversions and fuel density</b></div><div class="index-item"><b>4. The complete mass ladder</b></div><div class="index-item"><b>5. Fuel categories and landing mass</b></div><div class="index-item"><b>6. Structural and performance limits</b></div><div class="index-item"><b>7. The three-column method</b></div><div class="index-item"><b>8. Out-and-return fuel problems</b></div><div class="index-item"><b>9. Additional reserve headroom</b></div><div class="index-item"><b>10. Weighing and records</b></div><div class="index-item"><b>11. Moving, adding and removing load</b></div><div class="index-item"><b>12. CG, stability and control</b></div><div class="index-item"><b>13. Performance effects of mass</b></div><div class="index-item"><b>14. Loading-error scenarios</b></div><div class="index-item"><b>15. DGCA regulatory items</b></div><div class="index-item"><b>16. Thrust-specific fuel calculation</b></div><div class="index-item"><b>A. Formula sheet and mnemonics</b></div><div class="index-item"><b>C. 75 worked exam questions</b></div></div><div class="box box-purple">
+  <div class="box-label">&#128218; Essential language before the first calculation</div>
+<p><b>Mass</b> is the quantity of matter, stated in kg or lb. <b>Weight</b> is the force produced by gravity. Aviation questions often use the everyday word “weight”, but the calculation tables normally handle mass.</p><p><b>Centre of gravity (CG)</b> is the point through which the resultant weight is considered to act. <b>Datum</b> is the fixed reference plane. <b>Arm</b> is the signed distance from datum. <b>Moment</b> is mass multiplied by arm.</p><p><b>ICAO-style terms used here:</b> dry operating mass, traffic load, take-off mass, landing mass and zero fuel mass. Where general-aviation manuals use a different empty-mass definition, the definition is stated before the calculation.</p>
+</div>
+<div class="box box-blue">
+  <div class="box-label">&#128214; How this chapter is laid out</div>
+<p><b>Sections 1 to 16</b> &#8212; the theory, in the order you need it, with worked examples.<br><b>Part A</b> &#8212; the one-page DGCA must-know sheet: every formula and every number.<br><b>Part B</b> &#8212; eight mnemonics.<br><b>Part C</b> &#8212; all 75 practice questions, each one worked line by line, with the distractors explained.<br><b>Part D</b> &#8212; the answer key grid.<br><b>Part E</b> &#8212; final revision.</p><p>Work the theory first and the questions second. Then come back to Part E the night before the paper.</p>
+</div>
+
+<h2>1. Why This Chapter Decides Whether You Get Airborne</h2>
+<p>Every other subject you study tells you what the aeroplane <em>can</em> do. This one tells you what you are allowed to put in it before it does. Get it wrong and nothing warns you. The aeroplane does not refuse to start. There is no caption, no bell, no red light. You simply run out of runway sooner than the chart said you would, or you reach the flare and discover the elevator has nothing left to give.</p><p>Good airmanship requires that the loading, the mass and the centre of gravity of the aeroplane all comply with the limits in the approved Flight Manual. The Pilot-in-Command carries that responsibility personally. Somebody else may prepare the load and trim sheet; the commander signs for it, and the commander is the one in the seat when it is wrong.</p><div class="box box-red">
+  <div class="box-label">&#9888;&#65039; The two questions this chapter answers</div>
+<p><strong>1. HOW MUCH can I carry?</strong> That is <strong>MASS</strong> &#8212; total mass against structural and performance limits.</p><p><strong>2. WHERE do I put it?</strong> That is <strong>BALANCE</strong> &#8212; the centre of gravity against its forward and aft limits.</p><p>An aeroplane can be under every mass limit and still be lethal because the load is in the wrong place. Both questions must be answered, every flight.</p>
+</div>
+<div class="fig fig-img"><img src="assets/mb_fig01_mass_ladder.png" alt="The mass ladder from basic empty mass up to ramp mass"></div>
+<div class="figcap">Figure 1 &#8212; The mass ladder. Learn it in both directions: build up to find a mass you are given, climb back down to find a mass you are missing.</div>
+
+<h2>2. The Vocabulary of Position</h2>
+<p>Before any arithmetic, four words. Every balance calculation you will ever do is these four words arranged in a table.</p><div class="box box-blue">
+  <div class="box-label">&#128218; Definitions &#8212; standard terms</div>
+<p><strong>Datum (reference datum).</strong> An imaginary vertical plane, chosen by the manufacturer, from which every horizontal distance is measured. It is fixed for the type and stated in the Flight Manual. There is no rule about where it sits &#8212; it may be at the nose, at the firewall, at the leading edge, or in empty space some distance <em>ahead</em> of the aeroplane. Manufacturers often place it ahead of the nose deliberately, so that every arm on the aeroplane comes out positive and nobody loses a minus sign.</p><p><strong>Balance arm (arm).</strong> The horizontal, fore-and-aft distance from the datum to the centre of gravity of a mass. Aft of the datum is <strong>positive</strong>; forward of the datum is <strong>negative</strong>.</p><p><strong>Moment.</strong> Mass &#215; arm. A measure of the turning effect that mass has about the datum. Units are kg&#183;m, lb&#183;in, and so on. The further out an object sits, the greater its moment for the same mass.</p><p><strong>Station.</strong> A location along the fuselage, quoted as its arm. "Station 150" simply means 150 units aft of the datum.</p>
+</div>
+<div class="fig fig-img"><img src="assets/mb_fig02_datum_arm.png" alt="Datum, balance arm and moment on an aeroplane side view"></div>
+<div class="figcap">Figure 2 &#8212; Datum, arm, moment. Note the sign convention: aft is positive, forward is negative.</div>
+<div class="box box-yellow">
+  <div class="box-label">&#127919; The single most common arithmetic error</div>
+<p>CG = <strong>total moment &#247; total mass</strong>.</p><p>Moment divided by mass. Not mass divided by moment, and never a subtraction. The DGCA paper offers you all three and one of them is right.</p>
+</div>
+<h3>Mean Aerodynamic Chord (MAC)</h3>
+<p>On a light aeroplane the CG is quoted as an arm &#8212; "23 inches aft of datum". On a transport aeroplane it is quoted as a <strong>percentage of MAC</strong>, because a percentage means the same thing on every aeroplane in the fleet while an arm in inches does not.</p><p>The <strong>mean aerodynamic chord</strong> is the chord of the imaginary rectangular wing that would produce the same lift and the same pitching moment as the real, tapered wing. You do not have to derive it. You have to know two positions from the Flight Manual: <strong>LEMAC</strong> (the arm of the leading edge of the MAC) and the MAC length. Some manuals give <strong>TEMAC</strong> (trailing edge) instead, in which case the MAC length is the difference between the two.</p><div class="fig fig-img"><img src="assets/mb_fig03_mac.png" alt="Mean aerodynamic chord, LEMAC and centre of gravity as a percentage of MAC"></div>
+<div class="figcap">Figure 3 &#8212; MAC, LEMAC and CG expressed as a percentage.</div>
+<div class="box box-purple">
+  <div class="box-label">&#128290; Formula &#8212; CG as a percentage of MAC</div>
+<p style="text-align:center;font-size:1.5rem;"><strong>%% MAC = [ (CG arm &#8722; LEMAC arm) &#247; MAC length ] &#215; 100</strong></p><p><em>Worked example.</em> Datum at the nose. LEMAC at station 500 in, MAC length 120 in, CG computed at station 530 in.</p><p>%% MAC = (530 &#8722; 500) &#247; 120 &#215; 100 = <span class='hl'><strong>25%% MAC</strong></span>. Comfortably in the normal range for a transport aeroplane.</p>
+</div>
+<div class="box box-blue">
+  <div class="box-label">&#128218; Two more terms you will meet on a loadsheet</div>
+<p><strong>Dry Operating Index (DOI).</strong> An index number representing the CG position at the Dry Operating Mass. An <strong>index</strong> is just a moment that has been scaled down &#8212; divided by a constant and offset &#8212; so the numbers on a loadsheet stay small and never go negative. It carries exactly the same information as a moment.</p><p><strong>Ballast.</strong> Mass carried purely to bring the CG inside limits, not to earn revenue. It may be permanent (bolted in) or removable. If you are carrying ballast you are carrying dead weight, so it is always a last resort after re-distributing the real load.</p>
+</div>
+
+<h2>3. Conversions You Must Know Cold</h2>
+<p>The DGCA paper mixes units on purpose. A question will hand you masses in pounds and fuel in kilogrammes in the same table and wait to see whether you notice. Learn these six lines and read every question twice.</p><div class="row"><div class="col-half"><table>
+<tr><th>Convert</th><th>Multiply by</th></tr>
+<tr><td>Pounds (lb) &#8594; kilogrammes (kg)</td><td><strong>0.454</strong></td></tr>
+<tr><td>Kilogrammes (kg) &#8594; pounds (lb)</td><td><strong>2.205</strong></td></tr>
+<tr><td>Imperial gallons &#8594; litres</td><td><strong>4.546</strong></td></tr>
+<tr><td>US gallons &#8594; litres</td><td><strong>3.785</strong></td></tr>
+<tr><td>Feet (ft) &#8594; metres (m)</td><td><strong>0.305</strong></td></tr>
+<tr><td>Nautical miles (NM) &#8594; metres</td><td><strong>1852.0</strong></td></tr>
+</table>
+</div><div class="col-half"><div class="box box-yellow">
+  <div class="box-label">&#9970; Fuel: volume is not mass</div>
+<p>Tanks are filled by <strong>volume</strong>. Aeroplanes are loaded by <strong>mass</strong>. The bridge between them is <strong>density</strong>.</p><p style="text-align:center;font-size:1.35rem;"><strong>MASS = VOLUME &#215; DENSITY</strong></p><p>A specific gravity of 0.79 means <strong>0.79 kg per litre</strong>. Density given as 780 kg/m<sup>3</sup> is the same as <strong>0.78 kg per litre</strong> &#8212; 1 m<sup>3</sup> = 1000 litres, so just divide by 1000.</p>
+</div>
+</div></div><div class="box box-red">
+  <div class="box-label">&#9888;&#65039; The density trap that has killed the calculation for many candidates</div>
+<p>3800 US gallons of fuel at a specific gravity of 0.79 is <strong>not</strong> 3800 kg, and it is not 14 383 kg either.</p><p>3800 US gal &#215; 3.785 = <strong>14 383 litres</strong>. That is a <em>volume</em>. Now bring in density: 14 383 &#215; 0.79 = <span class='hl'><strong>11 364 kg</strong></span>.</p><p>The examiner puts 14 383 in the options precisely to catch the candidate who stops one step early. Volume, then mass. Never skip the middle line.</p>
+</div>
+
+<h2>4. The Mass Ladder &#8212; Every Definition, In Order</h2>
+<p>Read these in order, not alphabetically. Each one is the one above it plus something. That is why the ladder works.</p><table>
+<tr><th>Term</th><th>What it is</th><th>Built from</th></tr>
+<tr><td><strong>Basic Empty Mass (BEM)</strong> <br><span class='tiny'>also Basic Mass, BEM</span></td><td>The aeroplane structure complete with power plants, systems, furnishings and all equipment that is an integral part of that particular configuration.</td><td>Airframe + engines + fixed equipment + <strong>unusable fuel</strong> + <strong>trapped fluids</strong> + full oil and operating fluids</td></tr>
+<tr><td><strong>Standard Empty Mass</strong></td><td>The airframe as it leaves the factory with standard equipment only, no optional extras.</td><td>Basic structure + standard equipment + unusable fuel + operating fluids</td></tr>
+<tr><td><strong>Operational items</strong></td><td>The people and consumables that make the aeroplane ready for service but are not part of the structure.</td><td>Crew + crew baggage + catering + removable passenger service equipment + potable water + lavatory chemicals + food and beverages + emergency oxygen</td></tr>
+<tr><td><strong>Dry Operating Mass (DOM)</strong><br><span class='tiny'>= BOM = APS mass</span></td><td>The total mass of the aeroplane ready for a specific type of operation, <strong>excluding usable fuel and traffic load</strong>.</td><td>BEM + operational items</td></tr>
+<tr><td><strong>Traffic Load</strong> <span class='tiny'>(payload)</span></td><td>Everything you are being paid to carry.</td><td>Passengers + baggage + cargo + mail, including any non-revenue load</td></tr>
+<tr><td><strong>Zero Fuel Mass (ZFM)</strong></td><td>The mass of the aeroplane with no usable fuel on board.</td><td>DOM + traffic load</td></tr>
+<tr><td><strong>Take-Off Mass (TOM)</strong></td><td>Everything and everyone on board at the start of the take-off run.</td><td>ZFM + take-off fuel</td></tr>
+<tr><td><strong>Taxi / Ramp / Block Mass</strong></td><td>The mass at the start of taxi, at the loading gate.</td><td>TOM + taxi fuel</td></tr>
+<tr><td><strong>Landing Mass</strong></td><td>The mass on arrival.</td><td>TOM &#8722; trip fuel (the fuel actually burnt)</td></tr>
+<tr><td><strong>Operating Mass (OM)</strong></td><td>DOM plus the fuel, but without any traffic load. A useful shortcut in some questions.</td><td>DOM + take-off fuel</td></tr>
+<tr><td><strong>Useful Load</strong></td><td>Everything above the Dry Operating Mass &#8212; the load you have discretion over.</td><td>Traffic load + usable fuel = <strong>TOM &#8722; DOM</strong></td></tr>
+</table>
+<div class="box box-red">
+  <div class="box-label">&#9888;&#65039; Traffic load is NOT useful load</div>
+<p>This is the single most-missed definition in the paper, and it appears in a calculation question, not a theory one.</p><p><strong>Traffic load</strong> = ZFM &#8722; DOM. Passengers, bags and freight only.</p><p><strong>Useful load</strong> = TOM &#8722; DOM. Traffic load <strong>plus the usable fuel</strong>.</p><p>If a question says "useful load" and you hand back the traffic load, you have left the whole fuel load out of your answer. Q51 and Q56 in the practice set both turn on exactly this.</p>
+</div>
+<div class="box box-green">
+  <div class="box-label">&#129504; Mnemonic &#8212; climbing the ladder</div>
+<p style="text-align:center;font-size:1.4rem;"><strong><u>B</u>ig <u>D</u>ogs <u>Z</u>oom <u>T</u>owards <u>R</u>unways</strong></p><p style="text-align:center;"><strong>B</strong>EM &#8594; <strong>D</strong>OM &#8594; <strong>Z</strong>FM &#8594; <strong>T</strong>OM &#8594; <strong>R</strong>amp mass</p><p style="text-align:center;font-size:1.2rem;">And what you add at each rung: <strong>O</strong>perational items, <strong>T</strong>raffic load, <strong>T</strong>ake-off fuel, <strong>T</strong>axi fuel &#8212; "<strong>O-T-T-T</strong>".</p>
+</div>
+
+<h2>5. Fuel &#8212; Which Slice Counts, And When</h2>
+<p>More marks are lost here than anywhere else in the chapter, because most candidates treat "fuel" as one number. It is five numbers, and they behave differently.</p><div class="fig fig-img"><img src="assets/mb_fig04_fuel_anatomy.png" alt="Fuel load broken into taxi, trip, contingency, alternate and final reserve"></div>
+<div class="figcap">Figure 4 &#8212; The anatomy of a fuel load. The brackets are the whole subject.</div>
+<table>
+<tr><th>Fuel</th><th>What it is</th><th>Does it fly?</th><th>Is it burnt?</th></tr>
+<tr><td><strong>Taxi fuel</strong></td><td>APU, engine start, taxi to the holding point</td><td><span class='no'>No</span></td><td>Yes, before take-off</td></tr>
+<tr><td><strong>Trip fuel</strong></td><td>Take-off, climb, cruise, descent, approach and landing at destination</td><td><span class='yes'>Yes</span></td><td><span class='yes'>Yes</span></td></tr>
+<tr><td><strong>Contingency fuel</strong></td><td>Allowance for the unforeseen &#8212; usually a percentage of trip fuel</td><td><span class='yes'>Yes</span></td><td>Normally no</td></tr>
+<tr><td><strong>Alternate fuel</strong></td><td>Missed approach at destination, then fly to the alternate and land</td><td><span class='yes'>Yes</span></td><td>Normally no</td></tr>
+<tr><td><strong>Final reserve fuel</strong></td><td>Holding at 1500 ft above the alternate &#8212; the fuel you must not touch</td><td><span class='yes'>Yes</span></td><td><span class='no'>No</span></td></tr>
+<tr><td><strong>Additional / extra fuel</strong></td><td>Anything the commander chooses to carry beyond the above</td><td><span class='yes'>Yes</span></td><td>Normally no</td></tr>
+</table>
+<div class="box box-blue">
+  <div class="box-label">&#128218; The three fuel words that appear in the formulae</div>
+<p><strong>Block fuel / Ramp fuel</strong> = everything in the tanks at the gate = taxi + trip + contingency + alternate + final reserve (+ any extra).</p><p><strong>Take-off fuel</strong> = block fuel &#8722; taxi fuel. This is the fuel that actually gets airborne, so this is the fuel in the <strong>take-off mass</strong>.</p><p><strong>Fuel on board (FOB)</strong> = the total fuel in the tanks including flight, reserve, alternate and contingency. Used loosely; read the question.</p><p><strong>Fuel consumption (FC)</strong> = the burn rate, per hour.</p>
+</div>
+<div class="box box-yellow">
+  <div class="box-label">&#127919; The line that decides half the calculation questions</div>
+<p style="text-align:center;font-size:1.4rem;"><strong>LANDING MASS = TAKE-OFF MASS &#8722; TRIP FUEL</strong></p><p>Only the fuel actually <em>burnt</em> comes off. Contingency, alternate and reserve fuel are still in the tanks when the wheels touch, so they are still part of the landing mass. Subtract the whole fuel load by mistake and every answer after that is wrong.</p>
+</div>
+
+<h2>6. The Limits &#8212; Structural, Performance, Regulated</h2>
+<p>Three families of limit. The first comes from the metal, the second from the day, and the third is simply whichever of the first two bites harder.</p><h3>6.1 Structural limits &#8212; set by the designer, never change</h3>
+<table>
+<tr><th>Limit</th><th>Meaning</th></tr>
+<tr><td><strong>MSTM</strong> &#8212; Maximum Structural Taxi Mass</td><td>The greatest mass at which the aeroplane may move under its own power. The highest number on the list, because taxi fuel is still aboard.</td></tr>
+<tr><td><strong>MSTOM</strong> &#8212; Maximum Structural Take-Off Mass</td><td>The structural and aerodynamic limit at the start of the take-off run. Cannot be exceeded in any circumstances.</td></tr>
+<tr><td><strong>MSLM</strong> &#8212; Maximum Structural Landing Mass</td><td>The greatest mass at which the landing gear and structure may absorb a normal landing.</td></tr>
+<tr><td><strong>MZFM</strong> &#8212; Maximum Zero Fuel Mass</td><td>The greatest permissible mass with <strong>no usable fuel</strong>. Everything above this figure must be fuel.</td></tr>
+</table>
+<div class="box box-purple">
+  <div class="box-label">&#129513; Why MZFM exists at all &#8212; understand this and you will never forget it</div>
+<p>In flight the wings carry the whole aeroplane. Lift acts up on the wings; the fuselage and its load hang down in the middle. The wing root is where those two forces meet, and it is trying to bend the wings upward like a pair of arms carrying a heavy suitcase.</p><p>Fuel carried <strong>in the wings</strong> sits out along the arms, pushing down where the lift is pushing up. It <strong>relieves</strong> the bending moment at the wing root. Fuselage load does the opposite &#8212; it all hangs from the middle.</p><p>So the limit is not on total mass, it is on the mass that is <em>not</em> providing that relief. That is exactly what zero fuel mass measures. <span class='hl'><strong>MZFM protects the wing root against bending</strong></span>, and on an aeroplane without a centre fuel tank that is the whole of its purpose.</p><p>The same reasoning explains a rule that looks strange at first: when you are at MZFM, you may keep loading &#8212; but only fuel, and only into the wings.</p>
+</div>
+<h3>6.2 Performance limits &#8212; set by today</h3>
+<p>These change with the runway, the wind, the temperature, the pressure altitude, the slope, the surface and the obstacles. Two aeroplanes of the same type at the same airport on the same day can have different performance-limited masses if one is going somewhere higher and hotter.</p><table>
+<tr><th>Limit</th><th>Meaning</th></tr>
+<tr><td><strong>PLTOM</strong> &#8212; Performance Limited Take-Off Mass</td><td>The greatest mass allowed by the conditions at the <strong>departure</strong> airfield: runway available, obstacles, gradient, wind, temperature, pressure, precipitation, engine-out climb requirement.</td></tr>
+<tr><td><strong>PLLM</strong> &#8212; Performance Limited Landing Mass</td><td>The greatest mass allowed by the conditions at the <strong>arrival</strong> airfield: landing distance available, wind, surface, temperature, go-around climb requirement.</td></tr>
+</table>
+<h3>6.3 Regulated limits &#8212; the ones you actually work with</h3>
+<div class="box box-green">
+  <div class="box-label">&#9989; The two regulated masses</div>
+<p><strong>Regulated Take-Off Mass (RTOM)</strong> = the <strong>lowest</strong> of the structural limited TOM and the performance limited TOM &#8212; and, once you bring landing and zero-fuel into it, the lowest of all three columns in Section 7.</p><p><strong>Regulated Landing Mass (RLM)</strong> = the <strong>lower</strong> of MSLM and PLLM.</p><p>MSTOM, MSLM and MZFM are published by the manufacturer and never change. PLTOM and PLLM are worked out by the crew from the conditions on the day.</p>
+</div>
+<h3>6.4 Floor and compartment limits &#8212; the limit that is not about total mass</h3>
+<p>Each hold has a <strong>maximum floor loading</strong> in mass per unit area, and often a <strong>running load</strong> limit in mass per unit length. A pallet is legal only if its total mass divided by its base area is at or below the floor limit. You can be well under every mass limit in the book and still punch a dense crate through the floor.</p><div class="box box-yellow">
+  <div class="box-label">&#127919; Exam point</div>
+<p>The mass of a loaded pallet includes the mass of the <strong>empty pallet and its tie-down devices</strong>, not just the freight. Divide that total by the base area in square feet (or square metres) and compare with the published floor limit.</p>
+</div>
+
+<h2>7. THE MASTER METHOD &#8212; Three Columns, Every Time</h2>
+<p>Almost every mass calculation in the DGCA paper is the same question wearing a different hat: <em>how much can I carry?</em> Answer it the same way every time and you will never have to think about which limit applies &#8212; you will simply test all of them.</p><div class="fig fig-img"><img src="assets/mb_fig05_three_column.png" alt="The three-column method for finding regulated take-off mass"></div>
+<div class="figcap">Figure 5 &#8212; Build all three columns. Take the lowest. Then subtract.</div>
+<div class="box box-green">
+  <div class="box-label">&#128221; The routine &#8212; write this out before you start any load question</div>
+<p><strong>Step 0.</strong> Work out the take-off fuel. Take-off fuel = trip + contingency + alternate + final reserve. (If you are given a block or ramp fuel, subtract the taxi fuel instead.)</p><p><strong>Step 1 &#8212; Column 1, the take-off limit.</strong> The lowest of MSTOM, PLTOM, and (max ramp mass &#8722; taxi fuel).</p><p><strong>Step 2 &#8212; Column 2, the landing limit.</strong> RLM + <strong>trip fuel</strong>. RLM is the lower of MSLM and PLLM. <em>Trip fuel only</em> &#8212; that is the only fuel that will have gone.</p><p><strong>Step 3 &#8212; Column 3, the zero fuel limit.</strong> MZFM + <strong>take-off fuel</strong>.</p><p><strong>Step 4.</strong> <strong>RTOM = the lowest of the three.</strong></p><p><strong>Step 5.</strong> Maximum traffic load = RTOM &#8722; DOM &#8722; take-off fuel.</p><p><strong>Step 6, if asked.</strong> Underload = maximum traffic load &#8722; actual traffic load. A positive answer means you can take more.</p>
+</div>
+<h3>Worked example &#8212; follow every line</h3>
+<p>Maximum structural take-off mass 48 000 kg. Maximum structural landing mass 44 000 kg. Maximum zero fuel mass 36 000 kg. Taxi fuel 600 kg, trip fuel 9 000 kg, contingency 900 kg, alternate 800 kg, final reserve 1 100 kg. Find the take-off mass.</p><table>
+<tr><th>Step</th><th>Working</th><th>Result</th></tr>
+<tr><td>Take-off fuel</td><td>9 000 + 900 + 800 + 1 100</td><td><strong>11 800 kg</strong></td></tr>
+<tr><td>Column 1 &#8212; structure</td><td>MSTOM as given</td><td>48 000 kg</td></tr>
+<tr><td>Column 2 &#8212; landing</td><td>44 000 + 9 000 (trip only)</td><td>53 000 kg</td></tr>
+<tr><td>Column 3 &#8212; zero fuel</td><td>36 000 + 11 800 (take-off fuel)</td><td><strong>47 800 kg</strong> &#8804; lowest</td></tr>
+<tr><td><strong>RTOM</strong></td><td>lowest of 48 000 / 53 000 / 47 800</td><td><strong>47 800 kg</strong></td></tr>
+</table>
+<div class="box box-blue">
+  <div class="box-label">&#128161; Read the answer, do not just write it</div>
+<p>Column 3 won, which tells you something useful: this aeroplane is <strong>zero-fuel-mass limited</strong>. It is not short of runway and it is not short of brakes &#8212; it is short of somewhere to put non-fuel load.</p><p>If you now wanted to lift more, adding fuel would not help you at all. Only offloading freight would. Knowing <em>which</em> column bit is worth as much as the number itself, and the paper asks it directly.</p>
+</div>
+<div class="box box-red">
+  <div class="box-label">&#9888;&#65039; Three traps in this calculation, every one of them deliberate</div>
+<p><strong>1. Taxi fuel in the take-off mass.</strong> It is not there. It has already been burnt.</p><p><strong>2. All the fuel taken off for the landing mass.</strong> Only trip fuel burns. The rest lands with you.</p><p><strong>3. Stopping at the first limit you find.</strong> Build all three columns even when one looks obviously lowest. The paper is written by people who know which one you will skip.</p>
+</div>
+
+<h2>8. The Round Trip &#8212; When There Is No Fuel At The Far End</h2>
+<p>A favourite DGCA question type. You fly out to a place where fuel is not available, and you have to come back. That means you must lift the fuel for <em>both</em> legs at the departure airfield, and it eats your traffic load on the outbound sector.</p><div class="box box-green">
+  <div class="box-label">&#128221; How to run it</div>
+<p><strong>1.</strong> Work out the time for each leg. Time = distance &#247; ground speed. Watch the wind &#8212; a headwind out is a tailwind back, so the two legs take different times and burn different fuel.</p><p><strong>2.</strong> Fuel for each leg = time &#215; fuel flow.</p><p><strong>3.</strong> Fuel to lift at departure = leg 1 fuel + leg 2 fuel + reserve (+ any per-flight allowance).</p><p><strong>4.</strong> Run the three-column method for the <strong>outbound</strong> leg. The landing column uses the landing mass limit at the <em>destination</em> and <strong>only the outbound trip fuel</strong>.</p><p><strong>5.</strong> For the return leg, first find the fuel remaining on arrival: fuel lifted &#8722; fuel burnt outbound. Then run the three columns again, this time using the take-off limit at the far field and the landing limit back home.</p>
+</div>
+<div class="box box-yellow">
+  <div class="box-label">&#127919; What makes it feel hard, and why it is not</div>
+<p>Students freeze on these because they look long. They are not hard, they are just <strong>the same routine run twice</strong>. Lay out two three-column tables side by side before you touch a number and the question collapses.</p><p>One thing genuinely does change between the legs: the aeroplane arrives at the far field with fuel already aboard and cannot take any more. So on the return sector the fuel figure is <em>given to you by leg one</em>, not chosen.</p>
+</div>
+<div class="box box-blue">
+  <div class="box-label">&#128218; A convention to watch for &#8212; know it before the exam</div>
+<p>Where a question gives an "<strong>additional fuel for each flight (take-off, circuit, landing etc.)</strong>" figure separately from the mean consumption, that allowance is treated as still on board when the landing mass is calculated &#8212; it is handled like a reserve, not like trip fuel.</p><p>It matters. In Q63 of the practice set, treating that 500 kg as burnt instead of carried changes two of the three parts by exactly 500 kg and moves you onto a wrong option. <strong>Before you calculate, decide which fuel figures actually burn</strong> &#8212; only those come off for the landing mass.</p>
+</div>
+
+<h2>9. "Can I Carry Extra Reserve Fuel?" &#8212; A Question Type Of Its Own</h2>
+<p>You have finished a load calculation and the question asks whether extra reserve fuel could be carried <strong>without reducing the traffic load</strong>. This trips up almost everybody, and the reasoning is three lines long.</p><div class="box box-green">
+  <div class="box-label">&#128221; The reasoning</div>
+<p>Extra reserve fuel is fuel that is <strong>carried but not burnt</strong>. So it adds to the take-off mass <em>and</em> it is still there at landing, so it adds to the landing mass too.</p><p><strong>Go back and look at which column produced your RTOM.</strong></p><p>&#8226; If the <strong>take-off</strong> limit bound (Column 1), the spare capacity is the gap between your RTOM and the take-off limit &#8212; but check landing as well.</p><p>&#8226; If the <strong>landing</strong> limit bound (Column 2), you have <strong>zero</strong> spare. Your landing mass is already sitting on its limit, and unburnt fuel goes straight onto it. The answer is <strong>no</strong>.</p><p>&#8226; The amount you may add is the <strong>smaller</strong> of the two gaps &#8212; the take-off headroom and the landing headroom.</p>
+</div>
+<div class="box box-red">
+  <div class="box-label">&#9888;&#65039; The mistake almost everybody makes here</div>
+<p>Candidates look at the take-off limit, see spare capacity, and answer with that figure. It is only half the check.</p><p>Q62 and Q66 in the practice set are the same question with the limits reversed. In Q66 the <em>take-off</em> limit binds, so the take-off headroom is zero and no extra fuel can be carried. In Q62 the <em>landing</em> limit binds &#8212; the landing mass is already sitting exactly on the performance limited landing mass, so a single extra pound of unburnt fuel puts you over it, and again the answer is no.</p><p><strong>In both cases the answer is the smaller of the two headrooms.</strong> Check take-off AND landing, every time, and neither version can catch you.</p>
+</div>
+
+<h2>10. Finding The Centre Of Gravity</h2>
+<p>Two ways: by weighing the aeroplane, and by arithmetic from a known starting point. Both are the same sum &#8212; total moment divided by total mass.</p><div class="fig fig-img"><img src="assets/mb_fig06_weighing.png" alt="Aeroplane on three weighing scales with the moment working"></div>
+<div class="figcap">Figure 6 &#8212; Weighing on three scales. Note the nose arm is negative because the nose wheel is forward of the datum.</div>
+<div class="box box-green">
+  <div class="box-label">&#128221; The moment table &#8212; use it for every balance question</div>
+<p>Draw four columns: <strong>ITEM &#183; MASS &#183; ARM &#183; MOMENT</strong>. Fill in mass and arm, multiply across for every row, then total the mass column and the moment column. Divide.</p><p>Keep the signs. An item forward of the datum has a negative arm and therefore a negative moment, and it must be <em>subtracted</em> when you total the column. In the figure above the nose wheel contributes &#8722;25 000 lb&#183;in, which is why the total moment is 115 000 and not 165 000.</p><p>Then check the answer against the CG limits <strong>for that mass</strong>. The envelope narrows as mass increases, so a CG that is legal light may not be legal heavy.</p>
+</div>
+<h3>What must be on board when you weigh</h3>
+<table>
+<tr><th>Drain it</th><th>Leave it in</th></tr>
+<tr><td><strong>All usable fuel</strong></td><td><strong>All engine and system oil</strong> &#8212; oil is part of the basic empty mass</td></tr>
+<tr><td><strong>Chemical toilet fluid</strong></td><td>Unusable fuel and trapped fluids</td></tr>
+<tr><td>Potable water (per the manual)</td><td>All fixed equipment and ballast</td></tr>
+</table>
+<div class="box box-blue">
+  <div class="box-label">&#128218; Where and how the weighing is done</div>
+<p>The aeroplane must be weighed in an <strong>enclosed building</strong> &#8212; a hangar &#8212; so that wind cannot put a load on the wings and corrupt the readings. Air conditioning and any other air movement should be off for the same reason.</p><p>The aeroplane must be clean, level in the attitude specified by the manufacturer, and the scales must be calibrated. The result goes into the weighing schedule.</p><p><em>Exam trap:</em> "in a quiet parking area on the airfield" is offered as an option and is wrong. Outdoors is outdoors, however quiet it is.</p>
+</div>
+<h3>Weighed mass to Dry Operating Mass</h3>
+<p>Weighing gives you a number. What you do with it decides which mass you have.</p><div class="box box-yellow">
+  <div class="box-label">&#127919; The 5330 / 12370 / 12480 question &#8212; know this shape</div>
+<p>Scales read nose 5 330 kg, left main 12 370 kg, right main 12 480 kg. Total as weighed = <strong>30 180 kg</strong>. Operational items amount to 1 780 kg, which <em>includes</em> a crew mass of 545 kg.</p><p>The aeroplane was weighed with those operational items aboard. So:</p><p><strong>Empty mass = 30 180 &#8722; 1 780 = <span class='hl'><strong>28 400 kg</strong></span></strong></p><p>The 545 kg is <strong>not</strong> subtracted again. It is already inside the 1 780. It is printed in the question only to see whether you will subtract it twice, which gives 27 855 &#8212; and that number is not among the options, which is your clue.</p><p>Going the other way: DOM = empty mass + operational items = 28 400 + 1 780 = 30 180 kg. And deriving that DOM from the weighed mass is the <strong>operator's</strong> responsibility, not the manufacturer's and not the commander's.</p>
+</div>
+
+<h2>11. Moving, Adding And Removing Load</h2>
+<figure class="fig fig-img"><img src="assets/mb_fig07_load_shift.png" alt="Shifting cargo forward to move the centre of gravity to the aft limit"><figcaption>Figure 7 &#8212; Shifting a load. Total mass is unchanged, so only the moment has to be rebalanced.</figcaption></figure>
+<div class="box box-purple">
+  <div class="box-label">&#128290; Formula 1 &#8212; SHIFTING a load (total mass unchanged)</div>
+<p style="text-align:center;font-size:1.45rem;"><strong>mass to shift = total mass &#215; ( CG movement required &#247; distance the load is shifted )</strong></p><p>Rearranged when you need the other unknown:</p><p style="text-align:center;font-size:1.3rem;">CG movement = ( mass shifted &#215; distance shifted ) &#247; total mass</p><p><em>Worked example.</em> Total mass 7 500 kg. CG is at station 80.5 and the aft limit is station 79.5, so the CG must move <strong>1.0 forward</strong>. Cargo is moved from the aft hold at station 150 to the forward hold at station 30, a shift of <strong>120</strong>.</p><p>mass to shift = 7 500 &#215; (1.0 &#247; 120) = <span class='hl'><strong>62.5 kg</strong></span></p>
+</div>
+<div class="box box-purple">
+  <div class="box-label">&#128290; Formula 2 &#8212; ADDING or REMOVING load (total mass changes)</div>
+<p>Do <strong>not</strong> use the shift formula. The total mass is no longer the same, so go back to the moment table:</p><p style="text-align:center;font-size:1.3rem;">new CG = ( old total moment &#177; added or removed moment ) &#247; ( old total mass &#177; mass changed )</p><p>Add the mass and its moment to the table; or subtract both. Then divide as usual. It is the same four columns you always use.</p>
+</div>
+<div class="box box-blue">
+  <div class="box-label">&#128161; A sanity check that takes two seconds</div>
+<p>Move mass <strong>aft</strong> and the CG moves <strong>aft</strong>. Move it <strong>forward</strong> and the CG moves <strong>forward</strong>. Always, without exception.</p><p>Before you write the answer down, ask which way you moved the load and which way the CG went. If they disagree, you have dropped a sign.</p>
+</div>
+
+<h2>12. What The CG Position Actually Does To The Aeroplane</h2>
+<p>A conventional aeroplane is designed with a <strong>positive static margin</strong>: its CG lies ahead of the whole-aircraft neutral point. After a small pitch disturbance, the change in aerodynamic pitching moment tends to restore the trimmed condition.</p><p>In the usual trimmed-flight picture, the CG is ahead of the wing lift resultant and the tail supplies a downward aerodynamic force. The exact force balance depends on the wing, fuselage, tail, thrust line, configuration and speed. Moving the CG forward generally requires more nose-up balancing moment and more tail download; moving it aft generally requires less. Remember the governing relation: <strong>moment = force &#215; arm</strong>. A shorter arm never creates a larger moment from the same force.</p><div class="fig fig-img"><img src="assets/mb_fig08_cg_forces.png" alt="Forward and aft centre of gravity compared, showing tailplane download"></div>
+<div class="figcap">Figure 8 &#8212; A simplified conventional-aeroplane trim model. Forward CG normally demands more balancing tail download, so the wing must provide more lift.</div>
+<div class="box box-blue">
+  <div class="box-label">&#128218; Stability and the neutral point</div>
+<p>The <strong>neutral point</strong> is the CG position at which the aeroplane is neutrally stable &#8212; disturbed, it neither returns to nor departs from its original attitude. It simply stays where you put it and needs constant attention.</p><p>Longitudinal static stability is decided by the position of the CG <strong>with respect to the neutral point</strong>. Ahead of it, stable. On it, neutral. Behind it, unstable. The neutral point is the aerodynamic centre of the <strong>complete aircraft</strong> for the specified configuration and control condition. Do not replace it casually with the wing aerodynamic centre.</p><p>The aft CG limit is always <strong>well forward</strong> of the neutral point. The manufacturer leaves that margin so that an average pilot can control the aeroplane through every phase of flight without undue concern or fatigue.</p>
+</div>
+<div class="fig fig-img"><img src="assets/mb_fig09_cg_envelope.png" alt="Centre of gravity envelope with forward and aft limits"></div>
+<div class="figcap">Figure 9 &#8212; The CG envelope, and what waits for you outside it on either side.</div>
+<h3>12.1 CG too far FORWARD</h3>
+<table>
+<tr><th>Effect</th><th>Why</th></tr>
+<tr><td><strong>Very stable, heavy in pitch</strong></td><td>Greater positive static margin generally gives a stronger restoring tendency. The exact control force depends on the complete control system and trim condition.</td></tr>
+<tr><td><strong>Higher stalling speed</strong></td><td>The wing must produce lift equal to weight <em>plus</em> the tail download, so it reaches the stalling angle at a higher speed.</td></tr>
+<tr><td><strong>More drag, more fuel</strong></td><td>More lift means more induced drag, and the tail is generating its own drag holding the nose up. Elevator trim adds to it.</td></tr>
+<tr><td><strong>Range and endurance reduced</strong></td><td>Directly, from the extra drag.</td></tr>
+<tr><td><strong>Slow to respond in pitch</strong></td><td>Large elevator deflections are needed to change attitude.</td></tr>
+<tr><td><strong>May run out of elevator</strong></td><td>The genuine danger. At the flare, at low speed, with the CG right forward, there may not be enough elevator authority left to raise the nose.</td></tr>
+</table>
+<h3>12.2 CG too far AFT</h3>
+<table>
+<tr><th>Effect</th><th>Why</th></tr>
+<tr><td><strong>Unstable, light and twitchy in pitch</strong></td><td>Reduced static margin weakens the restoring tendency. The aeroplane may feel more responsive, but response also depends on trim, speed, controls and gear geometry.</td></tr>
+<tr><td><strong>Lower stalling speed</strong></td><td>Little or no tail download, so the wing lifts less. This sounds like a benefit and is not.</td></tr>
+<tr><td><strong>Stall and spin recovery difficult or impossible</strong></td><td>The real hazard. A grossly aft CG can make a spin go <strong>flat</strong>, and a flat spin may be unrecoverable.</td></tr>
+<tr><td><strong>Less drag, better range and endurance</strong></td><td>Which is why operators load slightly aft of centre when they can, but never near the limit.</td></tr>
+<tr><td><strong>Rotates early and rapidly on take-off</strong></td><td>A classic exam clue. An unexpectedly rapid rotation for a given input is consistent with aft CG, but trim, speed and landing-gear geometry must also be considered.</td></tr>
+<tr><td><strong>Requires large balancing upload from the tailplane</strong></td><td>Depending on the aircraft and CG position, the balancing tail force may reduce, vanish or reverse. Outside the approved envelope, adequate control and stability are not assured.</td></tr>
+</table>
+<div class="box box-green">
+  <div class="box-label">&#129504; Mnemonic &#8212; which way is which</div>
+<p style="text-align:center;font-size:1.5rem;"><strong>FORWARD = FIRM &#160;&#160;&#183;&#160;&#160; AFT = AGILE</strong></p><p style="text-align:center;font-size:1.25rem;"><strong>F</strong>orward: <strong>F</strong>irm, <strong>F</strong>uel-hungry, <strong>F</strong>ast stall speed<br><strong>A</strong>ft: <strong>A</strong>gile, <strong>A</strong>economical, <strong>A</strong>wful in a spin</p><p style="text-align:center;">And for the one that decides the stall question: <span class='hl'><strong>stall speed is HIGHEST at HIGH mass with a FORWARD CG</strong></span>.</p>
+</div>
+<div class="box box-red">
+  <div class="box-label">&#9888;&#65039; The CG moves while you fly &#8212; it is not a number you set once</div>
+<p>On an aeroplane the CG is <strong>not fixed</strong>. It moves in flight because of:</p><p>&#8226; <strong>Fuel burn.</strong> As tanks empty the CG shifts, and which way depends on where those tanks are.<br>&#8226; <strong>Flap and landing gear selection.</strong><br>&#8226; <strong>Crew and passengers moving about the cabin.</strong></p><p>So the requirement is not that the CG is inside limits at the loading gate. It is that the CG remains inside limits <strong>at take-off, throughout the flight, and at landing</strong>. Checking the fuel burn does not push you outside the envelope is part of the calculation, not an afterthought.</p>
+</div>
+
+<h2>13. What Extra Mass Costs You</h2>
+<div class="fig fig-img"><img src="assets/mb_fig10_mass_effects.png" alt="Effects of increased mass on aeroplane performance"></div>
+<div class="figcap">Figure 10 &#8212; Common effects of increased mass, with configuration and operating condition held comparable. Always use the approved performance data for the flight.</div>
+<div class="box box-yellow">
+  <div class="box-label">&#127919; Say it as one sentence and you will never lose the mark</div>
+<p><strong>At the same configuration and load factor, higher mass raises stall speed. It usually increases take-off and landing distance and reduces climb performance.</strong></p><p>Operational speeds such as V<sub>1</sub>, V<sub>R</sub> and V<sub>2</sub> are determined with the approved performance method; their variation is not captured by one universal sentence. Drag, fuel flow, range and endurance depend on speed, altitude and how the comparison is made. Use the qualitative exam trend only where those conditions are stated or clearly held constant.</p><p>One caution on wording: an increase in mass <em>reduces</em> the excess thrust available, so the gradient of climb for a given power setting is <strong>lower</strong>, not higher. The paper offers you the opposite and it is wrong.</p>
+</div>
+<p>Structurally, extra mass increases the stresses at the <strong>wing root</strong> &#8212; the joint that carries material strength, aerodynamic loads, torsion and bending moments, plus the engine and landing gear loads. It also increases the loads on the undercarriage, the tyres and the brakes. Exceeding the maximum authorised mass, fuel included, is what adversely affects the structural integrity of the wing root.</p>
+<h2>14. Loading Errors &#8212; What Each One Feels Like From The Seat</h2>
+<p>The paper asks these as scenarios rather than definitions, so learn them as scenarios. In every case the pattern is the same: <strong>work out whether the aeroplane is heavier or lighter than the loadsheet believes, then work out what that does to the speeds.</strong></p><table>
+<tr><th>The error</th><th>The aeroplane is</th><th>The calculated speeds are</th><th>What you notice</th></tr>
+<tr><td>Load put aboard and never entered on the loadsheet</td><td><strong>Heavier</strong> than believed</td><td>Too <strong>low</strong> &#8212; they will be achieved, but with <strong>reduced safety margins</strong></td><td>Sluggish acceleration; longer than expected to unstick</td></tr>
+<tr><td>Fuel loaded 15 400 kg, entered as 14 500 kg</td><td><strong>Heavier</strong> by 900 kg</td><td>Too <strong>low</strong></td><td><strong>Speed at unstick is higher than expected</strong> &#8212; the aeroplane will not fly at the planned V<sub>R</sub>. V<sub>1</sub> is reached <em>later</em>, not sooner.</td></tr>
+<tr><td>16 500 litres at 0.78 entered as 16 500 kg</td><td><strong>Lighter</strong> by about 3 600 kg</td><td>Too <strong>high</strong></td><td>Rotates early; unstick sooner than planned. Safer than the reverse, but still an error.</td></tr>
+<tr><td>Unforecast tailwind, straight-in approach, immediate clearance</td><td><strong>Heavier</strong> at landing than planned (fuel not burnt)</td><td>Approach speed higher</td><td><strong>Landing distance required is longer.</strong> The approach path is not steeper &#8212; the glideslope is fixed.</td></tr>
+</table>
+<div class="box box-red">
+  <div class="box-label">&#9888;&#65039; Get the direction right and the question answers itself</div>
+<p><strong>Heavier than the loadsheet thinks</strong> &#8594; the speeds you calculated are too LOW &#8594; margins are eroded, the aeroplane feels reluctant, unstick happens at a higher speed than planned.</p><p><strong>Lighter than the loadsheet thinks</strong> &#8594; the speeds you calculated are too HIGH &#8594; it rotates and flies early.</p><p>Fuel entered in litres as though it were kilogrammes always makes the aeroplane <em>lighter</em> than the paperwork says, because a litre of jet fuel weighs less than a kilogramme.</p>
+</div>
+
+<h2>15. The Indian Regulatory Framework</h2>
+<p>This part of the syllabus is examined as fact, so the numbers matter. It also has a genuinely important safety point behind it: the mass and balance <em>system</em> has three equally important parts, and a failure in any one destroys the value of the other two.</p><div class="box box-red">
+  <div class="box-label">&#9888;&#65039; Current DGCA text required before memorising the numbers</div>
+<p>The system principles below remain useful. The five-year re-weighing interval, four-month retention period and standard-mass figures in this section came from the earlier teaching set. This review did not establish their currently operative status from an official current DGCA text. They are therefore <b>PENDING</b>, not confirmed revision facts. Your instructor should check the current applicable CAR before using them as scored recall items.</p>
+</div>
+<div class="box box-blue">
+  <div class="box-label">&#128218; The three parts of the system</div>
+<p><strong>1.</strong> The weighing of the aircraft.<br><strong>2.</strong> The maintaining of the weight and balance records.<br><strong>3.</strong> The proper loading of the aircraft.</p><p>A perfectly weighed aeroplane with a stale record is as dangerous as one that was never weighed. So is a perfect record loaded badly on the day.</p>
+</div>
+<h3>15.1 Weighing and re-weighing</h3>
+<table>
+<tr><th>Requirement</th><th>Position taught in the source material</th></tr>
+<tr><td>Initial determination of basic empty mass and CG</td><td>By the <strong>manufacturer</strong>, for a new aeroplane. Every aeroplane is weighed before the Certificate of Airworthiness is issued.</td></tr>
+<tr><td>Imported aircraft</td><td>The manufacturer's or previous operator's weight schedule may be acceptable, provided the supporting weight and balance documents are available.</td></tr>
+<tr><td>Aircraft with AUW <strong>more than 2 000 kg</strong></td><td>Re-weighed <strong>every five years</strong>, unless a re-weigh is required sooner after major repair or alteration.</td></tr>
+<tr><td>Aircraft with AUW <strong>less than 2 000 kg</strong></td><td><strong>No routine re-weigh required</strong> &#8212; re-weighed whenever a major repair or alteration affects the weight and balance data.</td></tr>
+<tr><td>After major repair or alteration</td><td>Re-weigh required if the aeroplane has undergone major repair, or a major change in the interior arrangement affecting weight and balance data that cannot be accurately computed.</td></tr>
+<tr><td>Any time</td><td>The Director General of Civil Aviation may require an aircraft to be re-weighed at any time considered necessary.</td></tr>
+</table>
+<div class="box box-red">
+  <div class="box-label">&#9888;&#65039; Do not mix this up with the European figures</div>
+<p>Many question banks in circulation are written from European material and quote <strong>4 years</strong> for individual aircraft masses and <strong>9 years</strong> for fleet masses. Those are the European numbers.</p><p>The figure taught here, and keyed in this question set, is <span class='hl'><strong>5 years for aircraft above 2 000 kg</strong></span>. If you see 4 and 9 in a practice paper you are looking at a European question. Know both, and answer with the Indian figure in a DGCA paper.</p><p>Learn both numbers and answer with the Indian one. The distractor in this question exists because so many circulating practice papers are written from European material.</p>
+</div>
+<h3>15.2 The Weight Schedule</h3>
+<div class="box box-green">
+  <div class="box-label">&#128203; The paperwork chain &#8212; four steps, in order</div>
+<p><strong>1. Prepared.</strong> After weighing, the weight schedule is prepared by an appropriately licensed aircraft maintenance engineer in Category "B", or a person approved for the purpose.</p><p><strong>2. Approved.</strong> The schedule, duly signed, is submitted to the Regional Airworthiness Office, which approves it.</p><p><strong>3. Displayed.</strong> A copy of the approved weight schedule must be <strong>displayed in the aircraft at a suitable and prominent place</strong>, so that everyone concerned with loading has the figures in front of them.</p><p><strong>4. Preserved.</strong> A copy is retained with the other aircraft documents, or in the aircraft logbook, until it is replaced by a fresh schedule.</p>
+</div>
+<h3>15.3 Computation of centre of gravity, and who is responsible</h3>
+<p>For <strong>all</strong> flights it is the responsibility of the <strong>Pilot-in-Command</strong> to ensure that the aircraft is satisfactorily loaded with respect to the total load, the distribution of the load, and the proper securing (lashing) of the load &#8212; and that the CG will remain within limits at take-off, throughout the flight, and at landing.</p><p>For a <strong>scheduled operator</strong>, the responsibility for computing the CG for take-off and landing may be <strong>delegated</strong> to a person nominated by the operator, who is specifically trained and authorised for the purpose. That person signs and dates the computed CG position and submits it to the Pilot-in-Command for scrutiny and acceptance &#8212; and the commander's dated signature <em>is</em> the acceptance. Delegation of the work is not delegation of the responsibility.</p><table>
+<tr><th>Task</th><th>Whose job</th></tr>
+<tr><td>Deriving the Dry Operating Mass from the weighed mass by adding the operational items</td><td><strong>The operator</strong></td></tr>
+<tr><td>Determining the mass of operational items and crew members within the DOM</td><td><strong>The operator</strong></td></tr>
+<tr><td>Preparing the weight schedule after weighing</td><td>Licensed AME (Category B) or approved person</td></tr>
+<tr><td>Approving the weight schedule</td><td>Regional Airworthiness Office</td></tr>
+<tr><td>Ensuring the aircraft is correctly loaded and within limits for the flight</td><td><strong>The Pilot-in-Command</strong></td></tr>
+<tr><td>Preparing and signing the load and trim sheet</td><td>The PIC, or a person duly trained and authorised in accordance with the applicable requirement, who submits it to the PIC for signature</td></tr>
+</table>
+<h3>15.4 The load and trim sheet</h3>
+<div class="box box-blue">
+  <div class="box-label">&#128218; What the load and trim sheet does</div>
+<p>Every operator &#8212; scheduled, non-scheduled, State Government and private &#8212; must prepare a load and trim sheet for aircraft for which the manufacturer has provided the necessary documentation.</p><p>It indicates the <strong>composition and the distribution</strong> of the total load carried on board, and the calculated CG position for both the <strong>take-off</strong> and the <strong>landing</strong> configurations, before the flight commences.</p><p>It is prepared and signed <strong>before</strong> departure. One copy is carried on board; one copy is retained by the operator for record purposes for a period of at least <strong>four months</strong> from the date of issue.</p><p>The trim may be computed manually or by a computer, using a procedure approved by the DGCA. Where any method other than the direct calculating method is used, it must be submitted to the Regional Airworthiness Office for approval before adoption.</p>
+</div>
+<h3>15.5 Standard masses for load sheet preparation</h3>
+<table>
+<tr><th>Category</th><th>Standard mass</th></tr>
+<tr><td><strong>Crew</strong> (including baggage)</td><td><strong>85 kg</strong> &#8212; that is 75 kg person + 10 kg baggage</td></tr>
+<tr><td><strong>Adult passenger</strong> (male and female)</td><td><strong>75 kg</strong></td></tr>
+<tr><td><strong>Child</strong>, 2 years to 12 years</td><td><strong>35 kg</strong></td></tr>
+<tr><td><strong>Infant</strong>, less than 2 years</td><td><strong>10 kg</strong></td></tr>
+</table>
+<div class="box box-yellow">
+  <div class="box-label">&#127919; Two points the examiner likes</div>
+<p><strong>1.</strong> These are the <em>minimum</em> standard masses, applicable in all civil registered aircraft. Where a question hands you its own standard passenger mass &#8212; 84 kg with 14 kg of baggage, for instance &#8212; <strong>use the figure in the question</strong>. The examiner is testing arithmetic, not recall.</p><p><strong>2.</strong> For <strong>training flights</strong>, the <em>actual</em> weight of the crew may be taken for the computation of load.</p></p>
+</div>
+<h3>15.6 Instructions for safe loading</h3>
+<div class="box box-green">
+  <div class="box-label">&#9989; The rules that stop a good calculation being ruined on the ramp</div>
+<p>&#8226; Specific seats are allotted to passengers boarding at originating stations so that the CG can be calculated accurately and kept within the permissible limits.</p><p>&#8226; Aircraft cabin <strong>floor loading limitations</strong> must not be exceeded during loading.</p><p>&#8226; The load must be <strong>securely tied</strong> so that there is no possibility of it shifting in flight and disturbing the calculated CG. It must be tied at the specified places, and the tying ropes must be strong enough to withstand the loads imposed in flight.</p><p>&#8226; In a <strong>mixed (passenger-cum-freight) version</strong>, the load must be placed <strong>ahead of the passengers</strong> in the cabin, and it must not block an <strong>emergency exit</strong> that the passengers are to use in an emergency.</p><p>&#8226; The weighing scales used for weighing passengers, baggage and goods must be <strong>calibrated at specified intervals</strong> to the satisfaction of the QCM / DGCA.</p>
+</div>
+<p>A cargo lashing that lets go in the climb is a CG problem, not a housekeeping problem. It turns a legally loaded aeroplane into an illegally loaded one at the worst possible moment, and nothing in the cockpit will tell you it has happened until the aeroplane starts behaving strangely in pitch.</p>
+<h2>16. Turbojet Fuel &#8212; <span class='atpl-badge'>ATPL extension</span></h2>
+<div class="box box-purple">
+  <div class="box-label">&#128290; Thrust, specific fuel consumption and time</div>
+<p><strong>Thrust (F)</strong> &#8212; the thrust required, in newtons, kilonewtons or pounds.</p><p><strong>Specific Fuel Consumption (SFC)</strong> &#8212; the fuel consumed per unit of thrust per unit of time. Usually kg per hour per kN, or lb per hour per lb of thrust.</p><p><strong>Time of operation (t)</strong> &#8212; how long the engine runs at that thrust.</p><p style="text-align:center;font-size:1.35rem;margin-top:10px;"><strong>Fuel consumption rate = SFC &#215; F</strong></p><p style="text-align:center;font-size:1.45rem;"><strong>Total fuel required = SFC &#215; F &#215; t</strong></p>
+</div>
+<div class="box box-red">
+  <div class="box-label">&#9888;&#65039; The only thing that can go wrong here is the TIME UNIT</div>
+<p>Read the units on the SFC and make the time match them. If SFC is quoted <strong>per second</strong>, the time must be in <strong>seconds</strong>.</p><p>Thrust 80 kN, SFC 0.6 kg/(s&#183;kN), flight time 30 minutes:</p><p style="text-align:center;">30 min = <strong>1800 s</strong><br>Fuel = 0.6 &#215; 80 &#215; 1800 = <span class='hl'><strong>86 400 kg</strong></span></p><p>Put 30 or 0.5 into that sum instead of 1800 and you land on one of the wrong options, which is exactly why they are there.</p><p><em>Instructor's note:</em> 86 400 kg of fuel in half an hour is not a real aeroplane &#8212; that is a whole 747 fuel load burnt in thirty minutes. This question is a units drill, not an operational figure. Do the arithmetic the paper asks for, and keep your sense of scale for the real aircraft.</p>
+</div>
+
+<h2>A. DGCA Exam Must-Knows &#8212; The One-Page Sheet</h2>
+<p>If you learn nothing else from this chapter, learn this table. Every line has appeared in the paper.</p><h3>A.1 The formulae</h3>
+<table>
+<tr><th>What you want</th><th>Formula</th></tr>
+<tr><td>Centre of gravity</td><td><b>total moment &#247; total mass</b></td></tr>
+<tr><td>Moment</td><td>mass &#215; arm</td></tr>
+<tr><td>CG as % MAC</td><td>[(CG arm &#8722; LEMAC) &#247; MAC] &#215; 100</td></tr>
+<tr><td>Mass to shift</td><td>total mass &#215; (CG movement &#247; distance shifted)</td></tr>
+<tr><td>CG movement from a shift</td><td>(mass shifted &#215; distance) &#247; total mass</td></tr>
+<tr><td>Take-off fuel</td><td>trip + contingency + alternate + final reserve = block &#8722; taxi</td></tr>
+<tr><td>Take-off mass</td><td>ZFM + take-off fuel = DOM + traffic load + take-off fuel</td></tr>
+<tr><td>Landing mass</td><td>TOM &#8722; <b>trip fuel only</b></td></tr>
+<tr><td>Traffic load</td><td>ZFM &#8722; DOM</td></tr>
+<tr><td><b>Useful load</b></td><td><b>TOM &#8722; DOM</b> = traffic load + usable fuel</td></tr>
+<tr><td>RTOM</td><td><b>lowest</b> of: take-off limit / (RLM + trip fuel) / (MZFM + take-off fuel)</td></tr>
+<tr><td>Max traffic load</td><td>RTOM &#8722; DOM &#8722; take-off fuel</td></tr>
+<tr><td>Underload</td><td>max traffic load &#8722; actual traffic load</td></tr>
+<tr><td>Turbojet fuel</td><td>SFC &#215; thrust &#215; time <span class='tiny'>(match the time unit to the SFC)</span></td></tr>
+<tr><td>Fuel mass</td><td>volume &#215; density &nbsp; <span class='tiny'>(SG 0.79 = 0.79 kg/litre; 780 kg/m<sup>3</sup> = 0.78 kg/litre)</span></td></tr>
+</table>
+<h3>A.2 The numbers</h3>
+<table>
+<tr><th>Item</th><th>Value</th></tr>
+<tr><td>Pounds &#8594; kilogrammes</td><td><span class='hl'><strong>&#215; 0.454</strong></span></td></tr>
+<tr><td>Kilogrammes &#8594; pounds</td><td><span class='hl'><strong>&#215; 2.205</strong></span></td></tr>
+<tr><td>US gallons &#8594; litres</td><td><span class='hl'><strong>&#215; 3.785</strong></span></td></tr>
+<tr><td>Imperial gallons &#8594; litres</td><td><span class='hl'><strong>&#215; 4.546</strong></span></td></tr>
+<tr><td>Feet &#8594; metres</td><td>&#215; 0.305</td></tr>
+<tr><td>Nautical miles &#8594; metres</td><td>&#215; 1852.0</td></tr>
+<tr><td>Standard mass &#8212; crew (with baggage)</td><td><span class='hl'><strong>85 kg</strong></span> <span class='tiny'>(75 + 10)</span></td></tr>
+<tr><td>Standard mass &#8212; adult passenger</td><td><span class='hl'><strong>75 kg</strong></span></td></tr>
+<tr><td>Standard mass &#8212; child, 2 to 12 years</td><td><span class='hl'><strong>35 kg</strong></span></td></tr>
+<tr><td>Standard mass &#8212; infant, under 2 years</td><td><span class='hl'><strong>10 kg</strong></span></td></tr>
+<tr><td>Training flights</td><td><b>actual</b> crew weight may be used</td></tr>
+<tr><td>Re-weigh interval, aircraft above 2 000 kg</td><td><span class='hl'><strong>5 years</strong></span> <span class='tiny'>(unless a major repair or alteration requires it sooner)</span></td></tr>
+<tr><td>Re-weigh interval, aircraft below 2 000 kg</td><td><b>no routine interval</b> &#8212; on major repair or alteration</td></tr>
+<tr><td>Load sheet retention by the operator</td><td><span class='hl'><strong>at least 4 months</strong></span> from date of issue</td></tr>
+<tr><td>Weight schedule prepared by</td><td>licensed AME Category "B", or approved person</td></tr>
+<tr><td>Weight schedule approved by</td><td>Regional Airworthiness Office</td></tr>
+<tr><td>Weight schedule displayed</td><td>in the aircraft, at a suitable and prominent place</td></tr>
+</table>
+<h3>A.3 The concepts the paper keeps coming back to</h3>
+<table>
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Weight acts in which direction?</td><td>Vertically down through the CG, parallel to the gravity vector &#8212; <b>always</b></td></tr>
+<tr><td>Longitudinal stability is set by?</td><td>CG position <b>relative to the neutral point</b></td></tr>
+<tr><td>Neutrally stable means the CG is?</td><td>At or very near the <b>aerodynamic centre</b></td></tr>
+<tr><td>Stall speed is highest with?</td><td><span class='hl'><strong>High mass + forward CG</strong></span></td></tr>
+<tr><td>Aeroplane rotates too easily on take-off?</td><td>CG towards the <b>aft</b> limit</td></tr>
+<tr><td>Aeroplane sluggish, slow to unstick?</td><td><b>Overloaded</b></td></tr>
+<tr><td>Forward CG costs you?</td><td>Range, endurance, fuel, elevator authority in the flare</td></tr>
+<tr><td>Aft CG costs you?</td><td>Stability, and stall / spin recovery &#8212; a spin may go flat</td></tr>
+<tr><td>MZFM protects?</td><td>The <b>wing root bending moment</b></td></tr>
+<tr><td>At MZFM you may still load?</td><td><b>Fuel, in the wings</b> &#8212; it relieves wing bending</td></tr>
+<tr><td>Who derives DOM from the weighed mass?</td><td>The <b>operator</b></td></tr>
+<tr><td>Who is responsible for the loading of the flight?</td><td>The <b>Pilot-in-Command</b></td></tr>
+<tr><td>Basic empty mass is found where?</td><td>Latest <b>weighing schedule</b>, corrected for modifications</td></tr>
+<tr><td>Weighing: what is drained?</td><td>Usable fuel, toilet fluid. <b>Oil stays in.</b></td></tr>
+<tr><td>Weighing: where?</td><td><b>Enclosed hangar</b>, no air movement</td></tr>
+<tr><td>Heavier than the loadsheet says &#8594;?</td><td>Calculated speeds too <b>low</b> &#8594; reduced margins, unstick at a higher speed</td></tr>
+<tr><td>Lighter than the loadsheet says &#8594;?</td><td>Calculated speeds too <b>high</b> &#8594; rotates and flies early</td></tr>
+<tr><td>Mixed-version cabin: where does freight go?</td><td><b>Ahead</b> of the passengers, never blocking an emergency exit</td></tr>
+</table>
+
+<h2>B. Mnemonics &#8212; Eight Things You Will Not Forget</h2>
+<div class="row"><div class="col-half"><div class="box box-green">
+  <div class="box-label">1&#65039;&#8419; The ladder</div>
+<p style="font-size:1.35rem;text-align:center;"><b>Big Dogs Zoom Towards Runways</b></p><p style="text-align:center;">BEM &#8594; DOM &#8594; ZFM &#8594; TOM &#8594; Ramp</p>
+</div>
+<div class="box box-green">
+  <div class="box-label">2&#65039;&#8419; What you add at each rung</div>
+<p style="font-size:1.3rem;text-align:center;"><b>O &#8211; T &#8211; T &#8211; T</b></p><p style="text-align:center;"><b>O</b>perational items, <b>T</b>raffic load, <b>T</b>ake-off fuel, <b>T</b>axi fuel</p>
+</div>
+<div class="box box-green">
+  <div class="box-label">3&#65039;&#8419; The three columns</div>
+<p style="font-size:1.3rem;text-align:center;"><b>Take off, Land, Zero &#8212; take the LOWEST</b></p><p style="text-align:center;">Column 2 uses <b>trip</b> fuel. Column 3 uses <b>take-off</b> fuel. Never swap them.</p>
+</div>
+<div class="box box-green">
+  <div class="box-label">4&#65039;&#8419; Which fuel goes where</div>
+<p style="text-align:center;"><b>TAXI never flies. TRIP burns. The REST lands with you.</b></p>
+</div>
+</div><div class="col-half"><div class="box box-purple">
+  <div class="box-label">5&#65039;&#8419; The CG effects</div>
+<p style="font-size:1.3rem;text-align:center;"><b>FORWARD = FIRM<br>AFT = AGILE</b></p><p style="text-align:center;">Firm: stable, heavy, thirsty, high stall speed.<br>Agile: light, twitchy, economical, awful in a spin.</p>
+</div>
+<div class="box box-purple">
+  <div class="box-label">6&#65039;&#8419; Highest stall speed</div>
+<p style="font-size:1.35rem;text-align:center;"><b>Heavy + Forward = Highest</b></p><p style="text-align:center;">Three H/F words, one answer.</p>
+</div>
+<div class="box box-purple">
+  <div class="box-label">7&#65039;&#8419; The loading error direction</div>
+<p style="text-align:center;"><b>HEAVIER than the paper &#8594; speeds too LOW.<br>LIGHTER than the paper &#8594; speeds too HIGH.</b></p><p style="text-align:center;">Litres entered as kilogrammes always makes you <b>lighter</b>.</p>
+</div>
+<div class="box box-purple">
+  <div class="box-label">8&#65039;&#8419; Extra unburnt fuel</div>
+<p style="text-align:center;"><b>Burn more &#8594; leave heavier.<br>Carry more &#8594; land heavier.</b></p><p style="text-align:center;">So check the <b>landing</b> column before you answer "how much extra reserve fuel?"</p>
+</div>
+</div></div>
+<h2>C. Practice Questions &#8212; All 75, Every Answer Explained</h2>
+<div class="box box-yellow">
+  <div class="box-label">&#128269; How corrections are shown</div>
+<p>A normal answer has one defensible option. <b>AMBIGUOUS</b>, <b>FLAGGED</b> or <b>PENDING</b> means the question itself needs repair or a current official source before it is suitable for scored practice. The explanation tells you exactly why. No uncertainty is hidden behind an answer letter.</p>
+</div>
+<p>Every answer below is worked out in full, from the data in the question. Worked examples are edged in <b style="color:#A855F7">purple</b>.</p><p>Cover the answer, work the question, then read the explanation &#8212; including the part that tells you where each wrong option came from. Knowing why a distractor exists is worth as much as knowing the answer.</p><div class="q-grid">
+  <div class="q-card q-worked">
+    <div class="q-num">Q1.</div>
+    <div class="q-stem">MZFM 47 000 kg, MTOM 62 800 kg, MLM 54 900 kg. No performance limits, so the regulated masses equal the structural masses. DOM 34 000 kg, actual traffic load 12 400 kg, take-off fuel 16 000 kg, and 8 000 kg of fuel used in flight. <strong>Can extra load be carried? If so, how much?</strong></div>
+    <div class="q-ans q-ans-worked"><b>&#128221; Worked example &#8212; no options in the source</b></div>
+    <div class="q-explain"><b>Three columns.</b><br>Column 1 &#8212; take-off limit: <b>62 800 kg</b><br>Column 2 &#8212; landing limit: 54 900 + 8 000 (trip fuel only) = 62 900 kg<br>Column 3 &#8212; zero fuel limit: 47 000 + 16 000 (take-off fuel) = 63 000 kg<br><b>RTOM = lowest = 62 800 kg</b> &#8212; the aeroplane is take-off-mass limited.<br><br>Maximum traffic load = RTOM &#8722; DOM &#8722; take-off fuel<br>= 62 800 &#8722; (34 000 + 16 000) = <b>12 800 kg</b><br><br>Underload = 12 800 &#8722; 12 400 = <b class='ans-big'>400 kg</b><br><b>Yes &#8212; a further 400 kg can be carried.</b></div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> This is the template for every load question in the paper. Learn the shape of the three columns here and the rest are the same sum with different numbers.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q2.</div>
+    <div class="q-stem">MSTOM 42 100 kg, MSLM 35 000 kg, PLLM 33 000 kg, MZFM 31 000 kg, DOM 19 000 kg, total fuel capacity 12 500 kg, maximum trip fuel 9 000 kg, contingency 1 000 kg, alternate 500 kg, final reserve 400 kg. <strong>Maximum take-off mass and maximum traffic load?</strong></div>
+    <div class="q-opts"><b>(a)</b> 42 100 kg / 12 200 kg &nbsp;&nbsp; <b>(b)</b> 42 000 kg / 12 100 kg &nbsp;&nbsp; <b>(c)</b> 41 900 kg / 12 000 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> 41 900 kg / 12 000 kg</div>
+    <div class="q-explain">Take-off fuel = 9 000 + 1 000 + 500 + 400 = <b>10 900 kg</b>.<br>RLM = lower of MSLM 35 000 and PLLM 33 000 = <b>33 000 kg</b>.<br><br>Column 1: 42 100<br>Column 2: 33 000 + 9 000 = 42 000<br>Column 3: 31 000 + 10 900 = <b>41 900</b> &#8804; lowest<br><br><b>RTOM = 41 900 kg</b><br>MTL = 41 900 &#8722; (19 000 + 10 900) = <b class='ans-big'>12 000 kg</b><br><br>Note the total fuel capacity of 12 500 kg is never used. It is there to check you are not grabbing the biggest fuel number on the page.</div>
+  </div>
+
+  <div class="q-card q-worked">
+    <div class="q-num">Q3.</div>
+    <div class="q-stem">Aircraft prepared for service (APS) mass 90 t. RTOW 167 t, RLW 139.55 t, MZFW 132 t. Reserve fuel 3 t, flight time 3 h 33 min, diversion time 51 min, fuel flow 2.5 t/hr throughout. <strong>Maximum permissible TOW and payload?</strong></div>
+    <div class="q-ans q-ans-worked"><b>&#128221; Worked example &#8212; no options in the source</b></div>
+    <div class="q-explain">Convert the times first &#8212; this is where marks are lost.<br>3 h 33 min = <b>3.55 h</b> &#8594; trip fuel = 3.55 &#215; 2.5 = <b>8.875 t</b><br>51 min = <b>0.85 h</b> &#8594; diversion fuel = 0.85 &#215; 2.5 = <b>2.125 t</b><br>Total fuel on board = 3 + 8.875 + 2.125 = <b>14 t</b><br><br>Column 1: 167<br>Column 2: 139.55 + 8.875 = 148.425<br>Column 3: 132 + 14 = <b>146</b> &#8804; lowest<br><br><b>RTOM = 146 t</b><br>MTL = 146 &#8722; (90 + 14) = <b class='ans-big'>42 t</b></div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> 33 minutes is 0.55 h, not 0.33 h. Minutes &#247; 60. Every single time.</div>
+  </div>
+
+  <div class="q-card q-worked">
+    <div class="q-num">Q4.</div>
+    <div class="q-stem">APS mass 40.00 t, RLW 49.55 t, RTOW 65.00 t, MZFW 48.00 t, burn-off 12.89 t, reserve 1.65 t. <strong>Maximum permissible TOM and payload?</strong></div>
+    <div class="q-ans q-ans-worked"><b>&#128221; Worked example &#8212; no options in the source</b></div>
+    <div class="q-explain">Take-off fuel = burn-off + reserve = 12.89 + 1.65 = <b>14.54 t</b><br><br>Column 1: 65.00<br>Column 2: 49.55 + 12.89 = <b>62.44</b> &#8804; lowest<br>Column 3: 48.00 + 14.54 = 62.54<br><br><b>RTOM = 62.44 t</b> &#8212; landing limited, by only 0.10 t.<br>Payload = 62.44 &#8722; (40 + 14.54) = <b class='ans-big'>7.90 t</b><br><br>Two columns within 100 kg of each other. That is exactly why you build all three.</div>
+  </div>
+
+  <div class="q-card q-worked">
+    <div class="q-num">Q5.</div>
+    <div class="q-stem">Load sheet reads: aircraft mass with no fuel and no payload 63 200 kg, max TOW 99 000 kg, route fuel excluding reserve 18 200 kg, reserve (assume unused) 3 000 kg, max landing mass 76 500 kg, MZFW 74 000 kg. <strong>Find (a) TOW with maximum payload, (b) maximum payload.</strong></div>
+    <div class="q-ans q-ans-worked"><b>&#128221; Worked example &#8212; no options in the source</b></div>
+    <div class="q-explain">Total fuel = 18 200 + 3 000 = <b>21 200 kg</b>. Trip fuel = <b>18 200 kg</b>.<br><br>Column 1: 99 000<br>Column 2: 76 500 + 18 200 = <b>94 700</b> &#8804; lowest<br>Column 3: 74 000 + 21 200 = 95 200<br><br><b>(a) RTOM = 94 700 kg</b><br><b>(b)</b> Max payload = 94 700 &#8722; (63 200 + 21 200) = <b class='ans-big'>10 300 kg</b><br><br>Watch the two different fuel figures: <b>18 200</b> goes into column 2 (it burns), <b>21 200</b> goes into column 3 and into the payload sum (it all flies).</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q6.</div>
+    <div class="q-stem">The centre of gravity of an aeroplane is that point through which the total mass of the aeroplane is said to act. The weight acts in a direction</div>
+    <div class="q-opts"><b>(a)</b> governed by the distribution of the mass within the aeroplane &nbsp;&nbsp; <b>(b)</b> always parallel to the aeroplane's vertical axis &nbsp;&nbsp; <b>(c)</b> parallel to the gravity vector</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> parallel to the gravity vector</div>
+    <div class="q-explain">Weight acts through the centre of gravity in the direction of the local gravity vector. Mass is measured in kilograms; weight is a force. The aircraft vertical axis tilts with attitude, but gravity does not follow that axis.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q7.</div>
+    <div class="q-stem">When an aeroplane is stationary on the ground, its total weight will act vertically</div>
+    <div class="q-opts"><b>(a)</b> through its centre of pressure &nbsp;&nbsp; <b>(b)</b> through a point defined as the datum point &nbsp;&nbsp; <b>(c)</b> through its centre of gravity</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> through its centre of gravity</div>
+    <div class="q-explain">The resultant weight acts vertically through the centre of gravity. The datum is a reference for measurement; it need not coincide with the CG. The centre of pressure refers to the point of application of the resultant aerodynamic force.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q8.</div>
+    <div class="q-stem">The weight of an aeroplane, which is in level non-accelerated flight, is said to act</div>
+    <div class="q-opts"><b>(a)</b> vertically through the centre of gravity &nbsp;&nbsp; <b>(b)</b> always along the vertical axis of the aeroplane &nbsp;&nbsp; <b>(c)</b> vertically through the datum point</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> vertically through the centre of gravity</div>
+    <div class="q-explain">Same principle as Q7, now airborne. Weight always acts vertically down through the CG, on the ground or in the air.<br><br>Q6, Q7 and Q8 are the same fact asked three ways, so treat them as one thing to learn: <b>weight, vertical, through the CG, always.</b></div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q9.</div>
+    <div class="q-stem">The centre of gravity of an aeroplane</div>
+    <div class="q-opts"><b>(a)</b> may only be moved if permitted by the regulating authority and endorsed in the aeroplane's certificate of airworthiness &nbsp;&nbsp; <b>(b)</b> must be maintained in a fixed position by careful distribution of the load &nbsp;&nbsp; <b>(c)</b> can be allowed to move between defined limits</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> can be allowed to move between defined limits</div>
+    <div class="q-explain">The CG is a point whose position may change as loads move or fuel is consumed. Its permitted positions form a range or envelope. Use the approved limits for the relevant mass and configuration throughout the flight.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q10.</div>
+    <div class="q-stem">The centre of gravity is the</div>
+    <div class="q-opts"><b>(a)</b> centre of thrust along the longitudinal axis, in relation to a datum line &nbsp;&nbsp; <b>(b)</b> neutral point along the longitudinal axis, in relation to a datum line &nbsp;&nbsp; <b>(c)</b> point where all the aircraft mass is considered to be concentrated</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> point where all the aircraft mass is considered to be concentrated</div>
+    <div class="q-explain">The CG is the point at which the aircraft mass may be considered concentrated for balance calculations. It is different from the neutral point, which describes longitudinal static stability.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q11.</div>
+    <div class="q-stem">The centre of gravity of a body is that point</div>
+    <div class="q-opts"><b>(a)</b> where the sum of the external forces is equal to zero &nbsp;&nbsp; <b>(b)</b> which is always used as datum when computing moments &nbsp;&nbsp; <b>(c)</b> through which the sum of the forces of all masses of the body is considered to act</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> through which the sum of the forces of all masses of the body is considered to act</div>
+    <div class="q-explain">The CG is the point through which the resultant weight is considered to act. Balance calculations normally use the fixed datum specified by the aircraft documentation, so changes in loading can be compared on a common reference.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q12.</div>
+    <div class="q-stem">An aeroplane is loaded with its centre of gravity towards the rear limit. This will result in:</div>
+    <div class="q-opts"><b>(a)</b> a reduction in power required for a given speed &nbsp;&nbsp; <b>(b)</b> an increased risk of stalling due to a decrease in tailplane moment &nbsp;&nbsp; <b>(c)</b> a reduced fuel consumption as a result of reduced drag</div>
+    <div class="q-ans q-flag"><b>&#9888;&#65039; AMBIGUOUS: a and c</b></div>
+    <div class="q-explain"><b>Ambiguous single-answer question: both (a) and (c) are defensible</b> for the conventional aeroplane assumed here, at the same mass, speed and configuration. Moving the CG aft generally reduces the tail download needed for trim, reducing the lift and induced drag required of the wing. Required power and fuel flow may consequently decrease. The reason is the change in the overall pitching-moment balance, not that a shorter arm creates a larger moment. Aft CG also reduces stability and can seriously impair stall/spin recovery. A lower stalling speed does not make an aft-CG loading safe.</div>
+    <div class="q-quality"><b>Question quality:</b> The previous key change to a does not repair the duplicate correct option. Retain as a discussion item or rewrite before scored use.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q13.</div>
+    <div class="q-stem">When the centre of gravity is at the forward limit, an aeroplane will be:</div>
+    <div class="q-opts"><b>(a)</b> extremely stable and will require excessive elevator control to change pitch &nbsp;&nbsp; <b>(b)</b> extremely unstable and require excessive elevator control to change pitch &nbsp;&nbsp; <b>(c)</b> extremely stable and require small elevator control to change pitch</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> extremely stable and will require excessive elevator control to change pitch</div>
+    <div class="q-explain">Option (a) is the best of those offered for a conventional aeroplane: moving the CG forward generally increases longitudinal static stability and the control force required to change pitch. The words "extremely" and "excessive" overstate normal operation at an approved limit. Increased stability and trim demand, rather than a longer lever arm making the elevator weaker, explain the trend.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q14.</div>
+    <div class="q-stem">What determines the longitudinal stability of an aeroplane?</div>
+    <div class="q-opts"><b>(a)</b> The relationship of thrust and lift to weight and drag &nbsp;&nbsp; <b>(b)</b> The location of the centre of gravity with respect to the neutral point &nbsp;&nbsp; <b>(c)</b> The effectiveness of the horizontal stabilizer, rudder and rudder trim tab</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> The location of the centre of gravity with respect to the neutral point</div>
+    <div class="q-explain">Longitudinal static stability depends on the CG position relative to the whole-aircraft neutral point for the configuration and control condition considered. CG forward of that point gives a positive static margin; at it, the static margin is zero; behind it, the static margin is negative. The rudder is principally a directional control.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q15.</div>
+    <div class="q-stem">An aeroplane is said to be "neutrally stable". This is likely to:</div>
+    <div class="q-opts"><b>(a)</b> cause the centre of gravity to move forwards &nbsp;&nbsp; <b>(b)</b> be caused by a centre of gravity which is towards the forward limit &nbsp;&nbsp; <b>(c)</b> be caused by a centre of gravity which is towards the rearward limit</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> be caused by a centre of gravity which is towards the rearward limit</div>
+    <div class="q-explain">Option (c) describes the direction of movement associated with reduced longitudinal static stability. Exact neutral static stability occurs when the CG coincides with the appropriate neutral point. Merely being near the approved rearward CG limit does not establish neutral stability.</div>
+    <div class="q-quality"><b>Question quality:</b> Directional best answer; distinguish an aft limit from the neutral point.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q16.</div>
+    <div class="q-stem">If the centre of gravity is near the forward limit the aeroplane will:</div>
+    <div class="q-opts"><b>(a)</b> require elevator trim which will result in an increase in fuel consumption &nbsp;&nbsp; <b>(b)</b> benefit from reduced drag due to the decrease in angle of attack &nbsp;&nbsp; <b>(c)</b> require less power for a given airspeed</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> require elevator trim which will result in an increase in fuel consumption</div>
+    <div class="q-explain">The forward CG has to be trimmed against, and that nose-up trim adds drag &#8212; both from the trimmed tail surface itself and from the extra induced drag of a wing that is lifting weight <b>plus</b> tail download. More drag needs more thrust, which burns more fuel.<br><br>(b) and (c) are the <b>aft</b>-CG benefits offered under a forward-CG stem. Read the stem twice.<br><br><b>Read this one beside Q12.</b> A forward CG increases fuel consumption; an aft CG reduces it. The two questions are mirror images, and knowing one gives you the other.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q17.</div>
+    <div class="q-stem">During take-off you notice that, for a given elevator input, the aeroplane rotates much more rapidly than expected. This is an indication that:</div>
+    <div class="q-opts"><b>(a)</b> the centre of pressure is aft of the centre of gravity &nbsp;&nbsp; <b>(b)</b> the aeroplane is overloaded &nbsp;&nbsp; <b>(c)</b> the centre of gravity may be towards the aft limit</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> the centre of gravity may be towards the aft limit</div>
+    <div class="q-explain">An unexpectedly rapid rotation for a given control input is consistent with an aft CG and reduced longitudinal stability. Therefore (c) is the best answer. Do not infer that shortening the tail arm increases its pitching moment: for the same tail force, moment equals force multiplied by arm and a shorter arm reduces that moment. Rotation response also depends on trim, speed, landing-gear geometry and aircraft characteristics.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q18.</div>
+    <div class="q-stem">If the centre of gravity of an aeroplane moves forward during flight the elevator control will:</div>
+    <div class="q-opts"><b>(a)</b> become heavier making the aeroplane more difficult to manoeuvre in pitch &nbsp;&nbsp; <b>(b)</b> become lighter making the aeroplane more difficult to manoeuvre in pitch &nbsp;&nbsp; <b>(c)</b> become heavier making the aeroplane more easy to manoeuvre in pitch</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> become heavier making the aeroplane more difficult to manoeuvre in pitch</div>
+    <div class="q-explain">Forward CG = more stable = the aeroplane resists being pitched. Stick forces rise and larger deflections are needed, so it is <b>heavier and harder</b> to manoeuvre.<br><br>Options (b) and (c) each get one half right and one half wrong &#8212; a deliberate design. Both halves must be correct or the option is dead.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q19.</div>
+    <div class="q-stem">The position of the centre of gravity can always be determined by:</div>
+    <div class="q-opts"><b>(a)</b> subtracting the total moment from the total mass &nbsp;&nbsp; <b>(b)</b> dividing the total moment by the total mass &nbsp;&nbsp; <b>(c)</b> dividing the total mass by the total moment</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> dividing the total moment by the total mass</div>
+    <div class="q-explain"><b>CG = total moment &#247; total mass.</b><br><br>A quick unit check kills the other two instantly. Moment is in kg&#183;m, mass is in kg. Divide kg&#183;m by kg and you get <b>m</b> &#8212; a distance, which is what an arm is. Do it the other way and you get 1/m, which is meaningless. And you cannot subtract kg&#183;m from kg at all.<br><br>Whenever three options offer the same two quantities combined three ways, check the units. It takes five seconds and it is never wrong.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q20.</div>
+    <div class="q-stem">The stalling speed of an aeroplane will be highest when it is loaded with a:</div>
+    <div class="q-opts"><b>(a)</b> high gross mass and aft centre of gravity &nbsp;&nbsp; <b>(b)</b> high gross mass and forward centre of gravity &nbsp;&nbsp; <b>(c)</b> low gross mass and aft centre of gravity</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> high gross mass and forward centre of gravity</div>
+    <div class="q-explain">Two separate effects, both pushing the same way:<br>&#8226; <b>High mass</b> &#8594; more lift needed &#8594; the stalling angle is reached at a higher speed.<br>&#8226; <b>Forward CG</b> &#8594; more tail download &#8594; the wing must lift weight <em>plus</em> that download &#8594; higher speed again.<br><br>So the worst case is heavy and forward. Option (c) &#8212; light and aft &#8212; is the <b>lowest</b> stalling speed.</div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> <b>Heavy + Forward = Highest stall speed.</b> Three F/H words. If you remember one line from the CG section, make it this one.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q21.</div>
+    <div class="q-stem">With the centre of gravity on the forward limit which of the following is to be expected?</div>
+    <div class="q-opts"><b>(a)</b> A decrease in range &nbsp;&nbsp; <b>(b)</b> A tendency to yaw to the right on take-off &nbsp;&nbsp; <b>(c)</b> A decrease of the stalling speed</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> A decrease in range</div>
+    <div class="q-explain">For the conventional aeroplane and otherwise comparable conditions, a forward CG generally requires more tail download and wing lift, increasing trim/induced drag and reducing range. The relevant effect in this question is longitudinal balance; it is not a basis for a general claim that all CG components are unrelated to yaw.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q22.</div>
+    <div class="q-stem">The Dry Operating Mass of an aeroplane includes:</div>
+    <div class="q-opts"><b>(a)</b> Crew and crew baggage, catering, removable passenger service equipment, potable water and lavatory chemicals &nbsp;&nbsp; <b>(b)</b> Passengers, baggage and cargo &nbsp;&nbsp; <b>(c)</b> Fuel and passengers baggage and cargo</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> Crew and crew baggage, catering, removable passenger service equipment, potable water and lavatory chemicals</div>
+    <div class="q-explain">DOM = Basic Empty Mass + <b>operational items</b>, and option (a) is a list of exactly those operational items.<br><br>The definition to hold on to: DOM is the total mass of the aeroplane ready for a specific type of operation, <b>excluding usable fuel and traffic load</b>.<br><br>(b) is the traffic load. (c) is traffic load plus fuel &#8212; which is the useful load, and a different thing again.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q23.</div>
+    <div class="q-stem">At the flight preparation stage the following are available for determining the mass of the aircraft: 1. Dry operating mass, 2. Operating mass. Which statement is correct:</div>
+    <div class="q-opts"><b>(a)</b> The dry operating mass includes fixed equipment needed to carry out a specific flight &nbsp;&nbsp; <b>(b)</b> The dry operating mass includes take-off fuel &nbsp;&nbsp; <b>(c)</b> The operating mass is the mass of the aeroplane without take-off fuel</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> The dry operating mass includes fixed equipment needed to carry out a specific flight</div>
+    <div class="q-explain">DOM is the aeroplane ready for a particular kind of operation &#8212; structure, fixed equipment and the operational items that specific flight needs &#8212; but <b>no usable fuel and no traffic load</b>. (a) says that.<br><br>(b) is wrong on the word <b>Dry</b>: dry means no usable fuel.<br>(c) inverts the definition. <b>Operating Mass = DOM + take-off fuel.</b> It is the mass <em>with</em> the fuel and without the payload. The mass <em>without</em> take-off fuel is the DOM itself.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q24.</div>
+    <div class="q-stem">"Basic Empty Mass" includes the mass of the aeroplane structure complete with power plants, systems, furnishings and other items of equipment considered an integral part of that configuration. Its value is</div>
+    <div class="q-opts"><b>(a)</b> found in the latest version of the weighing schedule as corrected to allow for modifications &nbsp;&nbsp; <b>(b)</b> printed in the loading manual and includes unusable fuel &nbsp;&nbsp; <b>(c)</b> found in the flight manual and is inclusive of unusable fuel plus fluids contained in closed systems</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> found in the latest version of the weighing schedule as corrected to allow for modifications</div>
+    <div class="q-explain">Use the latest aircraft-specific weighing schedule, with subsequent weight-and-balance amendments: (a). A generic type-manual value or example is not a substitute. Aircraft-specific weight-and-balance records may be carried within an AFM/POH document set, so the statement that an empty-mass value can never appear in a manual is too absolute.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q25.</div>
+    <div class="q-stem">When establishing the mass breakdown of an aeroplane, the empty mass is defined as the sum of the:</div>
+    <div class="q-opts"><b>(a)</b> basic mass plus special equipment mass &nbsp;&nbsp; <b>(b)</b> standard empty mass plus specific equipment mass plus trapped fluids plus unusable fuel mass &nbsp;&nbsp; <b>(c)</b> basic mass plus variable equipment mass</div>
+    <div class="q-ans q-flag"><b>&#9888;&#65039; FLAGGED: terminology</b></div>
+    <div class="q-explain"><b>Terminology defect.</b> Under the standard empty/basic empty terminology used in many aircraft manuals, standard empty mass already includes unusable fuel and specified operating fluids; basic empty mass adds installed optional/special equipment. Option (b) would then count fluids twice. It is the apparent intended option only if the stem uses a different definition of "standard empty mass". The definition must be stated before this can be a reliable scored question.</div>
+    <div class="q-quality"><b>Question quality:</b> Do not teach a universal formula which adds unusable fuel twice.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q26.</div>
+    <div class="q-stem">An aeroplane is weighed: nose wheel scale 5330 kg, left main 12370 kg, right main 12480 kg. If the "operational items" amount to 1780 kg with a crew mass of 545 kg, the empty mass entered in the weight schedule is:</div>
+    <div class="q-opts"><b>(a)</b> 31960 kg &nbsp;&nbsp; <b>(b)</b> 30180 kg &nbsp;&nbsp; <b>(c)</b> 28400 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> 28400 kg</div>
+    <div class="q-explain">Total scale reading = 5 330 + 12 370 + 12 480 = 30 180 kg. If the quoted 1 780 kg is the total operational-items mass, including crew, and those items were aboard during weighing, empty mass = 30 180 - 1 780 = <b>28 400 kg</b>, option (c). The 545 kg crew mass must not then be subtracted again. The stated weighing configuration and whether the crew is included must be clear; agreement with an option is not proof of an assumption.</div>
+    <div class="q-quality"><b>Question quality:</b> Conditional on operational items including crew and being aboard during weighing.</div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> When a question hands you a sub-total (545) inside a total (1780), it is almost always there to be subtracted twice. Ask what contains what before you touch the calculator.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q27.</div>
+    <div class="q-stem">The take-off mass of an aeroplane is 117 000 kg, comprising a traffic load of 18 000 kg and fuel of 46 000 kg. What is the dry operating mass?</div>
+    <div class="q-opts"><b>(a)</b> 99000 kg &nbsp;&nbsp; <b>(b)</b> 64000 kg &nbsp;&nbsp; <b>(c)</b> 53000 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> 53000 kg</div>
+    <div class="q-explain">DOM = TOM - traffic load - take-off fuel = 117 000 - 18 000 - 46 000 = <b>53 000 kg</b>, option (c). The 99 000 kg option is TOM minus traffic load, so it includes DOM plus fuel. It is not zero fuel mass; ZFM would be 117 000 - 46 000 = 71 000 kg.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q28.</div>
+    <div class="q-stem">When preparing to carry out the weighing procedure on an aeroplane, which of the following is <b>not</b> required?</div>
+    <div class="q-opts"><b>(a)</b> drain all engine tank oil &nbsp;&nbsp; <b>(b)</b> drain all usable fuel &nbsp;&nbsp; <b>(c)</b> drain all chemical toilet fluid tanks</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> drain all engine tank oil</div>
+    <div class="q-explain">For the empty-mass convention assumed by this question, full engine oil is included, so draining it is not required: (a). Actual weighing preparation must follow the applicable manufacturer procedure. Fuel and fluid quantities can sometimes be corrected mathematically from a known weighing condition; this multiple-choice answer is not a universal maintenance instruction.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q29.</div>
+    <div class="q-stem">An aeroplane may be weighed</div>
+    <div class="q-opts"><b>(a)</b> in an enclosed, non-air conditioned hangar &nbsp;&nbsp; <b>(b)</b> at a specified "weighing location" on the airfield &nbsp;&nbsp; <b>(c)</b> in a quiet parking area clear of the normal manoeuvring area</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> in an enclosed, non-air conditioned hangar</div>
+    <div class="q-explain">The best answer is (a): weigh in a suitable enclosed building with still air and in the specified aircraft attitude. Air movement can affect scale readings. A named location on an airfield does not by itself establish suitable weighing conditions; it is not necessarily outdoors.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q30.</div>
+    <div class="q-stem">The mass of an aeroplane weighing more than 2000 kg must be determined prior to initial entry into service and thereafter</div>
+    <div class="q-opts"><b>(a)</b> at intervals of 5 years if no modifications have taken place &nbsp;&nbsp; <b>(b)</b> at intervals of 9 years &nbsp;&nbsp; <b>(c)</b> at regular annual intervals</div>
+    <div class="q-ans q-flag"><b>&#9888;&#65039; PENDING: DGCA</b></div>
+    <div class="q-explain"><b>Current regulatory verification pending.</b> The earlier notes key (a), five years for aircraft above 2 000 kg. This review has not established the currently operative DGCA provision from a current official text. Retain that number only as the legacy answer under review, not as a confirmed current requirement. Do not substitute another jurisdiction's interval.</div>
+    <div class="q-quality"><b>Question quality:</b> Official current provision and applicability must be checked before scored/revision use.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q31.</div>
+    <div class="q-stem">An aeroplane must be re-weighed at certain intervals. Where an operator uses an aircraft weighing less than 2000 kg, this interval is</div>
+    <div class="q-opts"><b>(a)</b> 4 years for each aeroplane &nbsp;&nbsp; <b>(b)</b> whenever a major repair/modification is carried out, which affects weight and balance data &nbsp;&nbsp; <b>(c)</b> whenever the Certificate of Airworthiness is renewed</div>
+    <div class="q-ans q-flag"><b>&#9888;&#65039; PENDING: DGCA</b></div>
+    <div class="q-explain"><b>Current regulatory verification pending.</b> The earlier notes key (b), an event-triggered reweigh after a relevant major repair/modification. The exact current DGCA threshold, exceptions and provision permitting accurate calculation instead of physical reweighing must be checked. The earlier explanation that light aircraft accumulate little unrecorded mass is unsupported and should be removed.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q32.</div>
+    <div class="q-stem">An aeroplane is weighed prior to entry into service. Who is responsible for deriving the Dry Operating Mass from the weighed mass by the addition of the "operational items"?</div>
+    <div class="q-opts"><b>(a)</b> The aeroplane manufacturer or supplier &nbsp;&nbsp; <b>(b)</b> The commander of the aeroplane &nbsp;&nbsp; <b>(c)</b> The Operator</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> The Operator</div>
+    <div class="q-explain">The <b>operator</b>. Operational items are catering, crew, water, service equipment &#8212; and what those weigh depends entirely on how <em>this</em> operator runs <em>this</em> aeroplane on <em>this</em> route. The manufacturer cannot know it and the commander does not set it.<br><br>The manufacturer supplies the aeroplane and its empty mass. The operator turns that into a Dry Operating Mass. The commander uses the DOM and is responsible for the loading of the actual flight.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q33.</div>
+    <div class="q-stem">The responsibility for determination of the mass of "operating items" and "crew members" included within the Dry Operating Mass lies with</div>
+    <div class="q-opts"><b>(a)</b> the person compiling the weighing schedule &nbsp;&nbsp; <b>(b)</b> the operator &nbsp;&nbsp; <b>(c)</b> the commander</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> the operator</div>
+    <div class="q-explain">The <b>operator</b> again &#8212; the same reasoning as Q32.<br><br>(a) is a good distractor because that person really does exist and really does sign the weighing schedule. But their job stops at the <b>weighed</b> mass of the airframe. Adding the operational items on top is an operational decision, and it belongs to the operator.<br><br>Q32 and Q33 are the same question. If you see "operational items" and "responsibility" in one stem, the answer is the operator.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q34.</div>
+    <div class="q-stem">Take-off mass is not airfield limited. DOM 34930 kg, performance limited landing mass 55000 kg. Fuel on board at ramp: taxi 350 kg, trip 9730 kg, contingency and final reserve 1200 kg, alternate 1600 kg. 130 passengers, standard mass 84 kg each, baggage 14 kg per passenger. Traffic load: maximum possible. <b>Determine the maximum cargo load without exceeding the limiting landing mass.</b></div>
+    <div class="q-opts"><b>(a)</b> 4530 kg &nbsp;&nbsp; <b>(b)</b> 5400 kg &nbsp;&nbsp; <b>(c)</b> 6350 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> 4530 kg</div>
+    <div class="q-explain">Fuel remaining at destination = 1 200 + 1 600 = 2 800 kg. Maximum traffic load under the stated landing constraint = 55 000 - 34 930 - 2 800 = 17 270 kg. Passengers and baggage = 130 x (84 + 14) = 12 740 kg. Cargo = 17 270 - 12 740 = <b>4 530 kg</b>, option (a). Use the masses explicitly provided in this calculation; they do not establish current regulatory standard masses.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q35.</div>
+    <div class="q-stem">The empty mass of an aeroplane is 44800 kg. Operational items (including crew standard mass of 1060 kg) are 2300 kg. If the maximum zero fuel mass is 65500 kg, the maximum traffic load which could be carried is:</div>
+    <div class="q-opts"><b>(a)</b> 20700 kg &nbsp;&nbsp; <b>(b)</b> 23000 kg &nbsp;&nbsp; <b>(c)</b> 18400 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> 18400 kg</div>
+    <div class="q-explain">DOM = empty mass + operational items = 44 800 + 2 300 = <b>47 100 kg</b><br><br>Traffic load is the gap between DOM and ZFM, so the maximum of it is the gap up to the <em>maximum</em> zero fuel mass:<br>MTL = MZFM &#8722; DOM = 65 500 &#8722; 47 100 = <b class='ans-big'>18 400 kg</b><br><br><b>The 1 060 kg crew mass is a decoy</b>, exactly as in Q26 &#8212; it is already inside the 2 300 kg. Subtract it again and you get 19 460, which is not on offer. Option (a) 20 700 is what you get if you forget the operational items completely (65 500 &#8722; 44 800).</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q36.</div>
+    <div class="q-stem">DOM 85000 kg, performance limited take-off mass 127000 kg, performance limited landing mass 98500 kg, maximum zero fuel mass 89800 kg. Trip fuel 29300 kg, contingency and final reserve 3600 kg, alternate 2800 kg. <b>The maximum traffic load is:</b></div>
+    <div class="q-opts"><b>(a)</b> 4800 kg &nbsp;&nbsp; <b>(b)</b> 7100 kg &nbsp;&nbsp; <b>(c)</b> 6300 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> 4800 kg</div>
+    <div class="q-explain">Take-off fuel = 29 300 + 3 600 + 2 800 = 35 700 kg. Take-off-equivalent limits: 127 000; 98 500 + 29 300 = 127 800; 89 800 + 35 700 = 125 500 kg. The lowest is 125 500 kg. Maximum traffic load = 125 500 - 85 000 - 35 700 = <b>4 800 kg</b>, option (a). Using only the take-off limit would give 6 300 kg, which is option (c), not (b).</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q37.</div>
+    <div class="q-stem">An additional baggage container is loaded into the aft cargo compartment but is not entered into the load and trim sheet. The aeroplane will be heavier than expected and calculated take-off safety speeds</div>
+    <div class="q-opts"><b>(a)</b> will not be achieved &nbsp;&nbsp; <b>(b)</b> are unaffected but will be increased &nbsp;&nbsp; <b>(c)</b> will give reduced safety margins</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> will give reduced safety margins</div>
+    <div class="q-explain">The unrecorded load makes the aeroplane heavier and alters its CG. Performance calculations based on the incorrect mass and balance can give reduced take-off safety margins: (c). Use the approved performance method to determine the actual V-speeds. V1 is constrained by several factors and must not be taught as invariably increasing with mass. Reaching a selected speed does not establish safe performance.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q38.</div>
+    <div class="q-stem">Fuel loaded onto an aeroplane is 15400 kg but is erroneously entered into the load and trim sheet as 14500 kg. This error is not detected by the flight crew but they will notice that</div>
+    <div class="q-opts"><b>(a)</b> speed at un-stick will be higher than expected &nbsp;&nbsp; <b>(b)</b> V1 will be reached sooner than expected &nbsp;&nbsp; <b>(c)</b> the aeroplane will rotate much earlier than expected</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> speed at un-stick will be higher than expected</div>
+    <div class="q-explain">The actual fuel mass is 900 kg greater than recorded. In the simplified exam scenario, the lift-off speed required is higher than expected: (a). The load-and-trim/performance calculation is unreliable. Do not state categorically that the aircraft cannot fly at a selected VR: VR is the speed at which rotation begins, not the lift-off speed, and actual response depends on the configuration and rotation manoeuvre.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q39.</div>
+    <div class="q-stem">When considering the effects of increased mass on an aeroplane, which of the following is true?</div>
+    <div class="q-opts"><b>(a)</b> Stalling speeds will be higher &nbsp;&nbsp; <b>(b)</b> Flight endurance will be increased &nbsp;&nbsp; <b>(c)</b> Gradient of climb for a given power setting will be higher</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> Stalling speeds will be higher</div>
+    <div class="q-explain">More mass needs more lift, and more lift at a given angle of attack needs more speed. So every stalling speed rises. As a rule of thumb, stall speed increases with the <b>square root</b> of the mass ratio &#8212; a 21% increase in mass gives roughly a 10% increase in stall speed.<br><br>(b) is wrong: heavier means more drag, more thrust required, more fuel per hour, so <b>endurance falls</b>.<br>(c) is wrong: climb gradient depends on <em>excess</em> thrust over drag. Extra mass increases drag and eats that excess, so the gradient <b>falls</b>.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q40.</div>
+    <div class="q-stem">Prior to departure an aeroplane is loaded with 16500 litres of fuel at a density of 780 kg/m<sup>3</sup>. This is entered into the load sheet as 16500 kg and calculations are carried out accordingly. As a result of this error, the aeroplane is</div>
+    <div class="q-opts"><b>(a)</b> lighter than anticipated and the calculated safety speeds will be too high &nbsp;&nbsp; <b>(b)</b> heavier than anticipated and the calculated safety speeds will be too high &nbsp;&nbsp; <b>(c)</b> lighter than anticipated and the calculated safety speeds will be too low</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> lighter than anticipated and the calculated safety speeds will be too high</div>
+    <div class="q-explain">Fuel mass = 16 500 L x 0.780 kg/L = 12 870 kg. Recording 16 500 kg overstates fuel mass by 3 630 kg, so the aircraft is lighter than assumed and the calculated weight-related safety speeds are too high: (a). This does not justify the earlier claim that the take-off run must be shorter or the error is safer; excessive selected speeds can reduce runway margins.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q41.</div>
+    <div class="q-stem">A flight benefits from a strong tail wind which was not forecast. On arrival at destination a straight-in approach and immediate landing clearance is given. The landing mass will be higher than planned and</div>
+    <div class="q-opts"><b>(a)</b> the approach path will be steeper &nbsp;&nbsp; <b>(b)</b> the landing distance required will be longer &nbsp;&nbsp; <b>(c)</b> the approach path will be steeper and threshold speed higher</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> the landing distance required will be longer</div>
+    <div class="q-explain">Less time en route and less holding can leave more fuel aboard at landing. With other conditions comparable, greater landing mass increases the landing distance required: (b). It does not itself require a steeper approach path. The applicable approach speed and performance must be recalculated; the wind in cruise does not establish the wind at the landing runway.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q42.</div>
+    <div class="q-stem">Determine the landing mass. Standard empty mass 1764 lbs, optional equipment 35 lbs, pilot + front seat passenger 300 lbs, cargo 350 lbs, ramp fuel = block fuel 60 gal, trip fuel 35 gal, fuel density 6 lbs/gal.</div>
+    <div class="q-opts"><b>(a)</b> 2659 lbs &nbsp;&nbsp; <b>(b)</b> 2449 lbs &nbsp;&nbsp; <b>(c)</b> 2599 lbs</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> 2599 lbs</div>
+    <div class="q-explain">Basic empty mass = 1 764 + 35 = 1 799 lb. Occupants plus cargo = 300 + 350 = 650 lb. Fuel remaining = (60 - 35) x 6 = 150 lb, assuming no separate taxi burn. Landing mass = 1 799 + 650 + 150 = <b>2 599 lb</b>, option (c). Subtracting 35 gallons as though it were 35 lb would give 2 774 lb, not the 2 659 lb distractor.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q43.</div>
+    <div class="q-stem">MSTOM 48 000 kg, MSLM 44 000 kg, MZFM 36 000 kg. Taxi fuel 600 kg, contingency 900 kg, alternate 800 kg, final reserve 1 100 kg, trip fuel 9 000 kg. <b>Determine the actual take-off mass:</b></div>
+    <div class="q-opts"><b>(a)</b> 47 800 kg &nbsp;&nbsp; <b>(b)</b> 48 000 kg &nbsp;&nbsp; <b>(c)</b> 48 400 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> 47 800 kg</div>
+    <div class="q-explain">Take-off fuel = 9 000 + 900 + 800 + 1 100 = 11 800 kg. The permitted take-off mass from the stated limits is the lowest of 48 000, 44 000 + 9 000, and 36 000 + 11 800: <b>47 800 kg</b>, option (a). This is the maximum permitted TOM. The actual TOM cannot be found without actual loading information or the explicit assumption that the aircraft is loaded to that maximum.</div>
+    <div class="q-quality"><b>Question quality:</b> Stem says actual; amend to maximum permitted or state maximum loading assumption.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q44.</div>
+    <div class="q-stem">If an aeroplane is at a higher mass than anticipated, for a given airspeed the angle of attack will</div>
+    <div class="q-opts"><b>(a)</b> remain constant, drag will decrease and endurance will decrease &nbsp;&nbsp; <b>(b)</b> remain constant, drag will increase and endurance will increase &nbsp;&nbsp; <b>(c)</b> be greater, drag will increase and endurance will decrease</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> be greater, drag will increase and endurance will decrease</div>
+    <div class="q-explain">Follow the chain. At a <b>given airspeed</b>, lift must still equal weight. Weight has gone up and speed is fixed, so the only way to make more lift is a <b>greater angle of attack</b>.<br><br>A greater angle of attack means more induced <b>drag</b>. More drag needs more thrust, which burns more fuel per hour, so <b>endurance falls</b>.<br><br>All three parts of option (c) follow from one another. In (a) and (b) the angle of attack is said to stay constant, which is only true if the speed is allowed to change &#8212; and the stem has fixed it.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q45.</div>
+    <div class="q-stem">DOM 90 000 kg, block fuel 30 000 kg, taxi fuel 800 kg, maximum take-off mass 145 000 kg. <b>The traffic load available is:</b></div>
+    <div class="q-opts"><b>(a)</b> 55 000 kg &nbsp;&nbsp; <b>(b)</b> 55 800 kg &nbsp;&nbsp; <b>(c)</b> 25 800 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> 25 800 kg</div>
+    <div class="q-explain">Block fuel is what is in the tanks at the gate. The fuel that flies is block minus taxi:<br>Take-off fuel = 30 000 &#8722; 800 = <b>29 200 kg</b><br><br>Only one limit is given, so RTOM = <b>145 000 kg</b>.<br>Traffic load = 145 000 &#8722; 90 000 &#8722; 29 200 = <b class='ans-big'>25 800 kg</b><br><br>Both wrong options come from forgetting the fuel. (a) 55 000 = 145 000 &#8722; 90 000, which is the <b>useful load</b>, not the traffic load. (b) 55 800 adds the taxi fuel back on as well. When you see a nice round answer like 55 000 in a load question, check whether you have actually subtracted the fuel.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q46.</div>
+    <div class="q-stem">The Dry Operating Mass of an aircraft is 2 000 kg. The maximum take-off, landing and zero fuel masses are identical at 3 500 kg. Block fuel 550 kg, taxi fuel 50 kg. <b>The available mass of payload is:</b></div>
+    <div class="q-opts"><b>(a)</b> 1 000 kg &nbsp;&nbsp; <b>(b)</b> 950 kg &nbsp;&nbsp; <b>(c)</b> 1 500 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> 1 000 kg</div>
+    <div class="q-explain">Take-off fuel = 550 &#8722; 50 = <b>500 kg</b><br><br>Test both limits that can bite:<br>&#8226; <b>Zero fuel limit:</b> payload &#8804; 3 500 &#8722; 2 000 = 1 500 kg<br>&#8226; <b>Take-off limit:</b> 2 000 + payload + 500 &#8804; 3 500 &#8594; payload &#8804; <b>1 000 kg</b><br><br>The take-off limit is the tighter of the two, so the answer is <b class='ans-big'>1 000 kg</b>.<br><br>This is a beautifully built question. Option (c) 1 500 is the zero fuel answer &#8212; correct arithmetic, wrong limit. Option (b) 950 comes from using the full block fuel of 550 instead of the take-off fuel. Setting all three maxima equal is precisely what forces you to think about <em>which</em> limit binds rather than reaching for a formula.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q47.</div>
+    <div class="q-stem">The maximum quantity of fuel that can be loaded into an aeroplane's tanks is 3800 US gallons. If the fuel density (specific gravity) is 0.79, the mass of fuel which may be loaded is</div>
+    <div class="q-opts"><b>(a)</b> 13647 kg &nbsp;&nbsp; <b>(b)</b> 11364 kg &nbsp;&nbsp; <b>(c)</b> 14383 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> 11364 kg</div>
+    <div class="q-explain">Two steps, and you must do both.<br><br><b>Step 1 &#8212; gallons to litres.</b> 3 800 &#215; 3.785 = <b>14 383 litres</b><br><b>Step 2 &#8212; litres to kilogrammes.</b> 14 383 &#215; 0.79 = <b class='ans-big'>11 364 kg</b><br><br><b>Option (c) 14 383 is the litres.</b> It is sitting there for the candidate who converts the volume and then forgets that a volume is not a mass. A specific gravity of 0.79 means 0.79 kg in every litre.<br><br>Option (a) 13 647 comes from using the Imperial gallon factor of 4.546 in one step and losing track. Note which gallon the question says &#8212; <b>US 3.785, Imperial 4.546</b> &#8212; they differ by 20%.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q48.</div>
+    <div class="q-stem">DOM 38 000 kg, MSTOM 72 000 kg, maximum landing mass 65 000 kg, maximum zero fuel mass 61 000 kg, fuel burn 8 000 kg, take-off fuel 10 300 kg. <b>The maximum allowed take-off mass and payload are respectively:</b></div>
+    <div class="q-opts"><b>(a)</b> 73 000 kg and 27 000 kg &nbsp;&nbsp; <b>(b)</b> 71 300 kg and 23 000 kg &nbsp;&nbsp; <b>(c)</b> 71 300 kg and 25 300 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> 71 300 kg and 23 000 kg</div>
+    <div class="q-explain">"Fuel burn" is the trip fuel. Take-off fuel is given directly as 10 300 kg.<br><br>Column 1: <b>72 000</b><br>Column 2: 65 000 + 8 000 = <b>73 000</b><br>Column 3: 61 000 + 10 300 = <b>71 300</b> &#8804; lowest<br><br><b>RTOM = 71 300 kg</b><br>Payload = 71 300 &#8722; 38 000 &#8722; 10 300 = <b class='ans-big'>23 000 kg</b><br><br>Every distractor is a real number computed wrongly. (a) 73 000 is column 2 taken as the answer &#8212; the highest column instead of the lowest. (c) pairs the correct RTOM with a payload of 25 300, which is 71 300 &#8722; 38 000 &#8722; 8 000: the trip fuel subtracted instead of the take-off fuel. <b>Payload always comes out after subtracting the fuel that flies, not the fuel that burns.</b></div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q49.</div>
+    <div class="q-stem">Structural limits: maximum ramp mass 69 900 kg, MTOM 69 300 kg, maximum landing mass 58 900 kg, MZFM 52 740 kg. Performance limited take-off mass 67 450 kg, performance limited landing mass 55 470 kg. DOM 34 900 kg, trip fuel 6 200 kg, taxi fuel 250 kg, contingency and final reserve 1 300 kg, alternate 1 100 kg. <b>The maximum traffic load is:</b></div>
+    <div class="q-opts"><b>(a)</b> 25 800 kg &nbsp;&nbsp; <b>(b)</b> 17 840 kg &nbsp;&nbsp; <b>(c)</b> 18 170 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> 17 840 kg</div>
+    <div class="q-explain">The longest data list in the paper, and it is still just three columns. Take it in order.<br><br>Take-off fuel = 6 200 + 1 300 + 1 100 = <b>8 600 kg</b><br><br><b>Column 1 &#8212; take-off.</b> Three candidates: MTOM 69 300; ramp 69 900 &#8722; taxi 250 = 69 650; PLTOM 67 450. Lowest = <b>67 450</b><br><b>Column 2 &#8212; landing.</b> RLM = lower of 58 900 and 55 470 = 55 470. 55 470 + 6 200 = <b>61 670</b><br><b>Column 3 &#8212; zero fuel.</b> 52 740 + 8 600 = <b>61 340</b> &#8804; lowest<br><br><b>RTOM = 61 340 kg</b><br>MTL = 61 340 &#8722; 34 900 &#8722; 8 600 = <b class='ans-big'>17 840 kg</b><br><br>Distractor (c) 18 170 is the answer from column 2 (61 670) &#8212; the second-lowest. The gap between the two columns is only 330 kg, which is exactly why you must build both instead of guessing which is smaller.</div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> When a question gives you six or seven limits, resist the urge to start calculating. Write the three column headings first, then post each number into the column it belongs to. Nothing gets used twice and nothing gets forgotten.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q50.</div>
+    <div class="q-stem">Performance limited take-off mass 93500 kg, expected landing mass at destination 81700 kg, maximum certificated landing mass 86300 kg, fuel on board 16500 kg. During the flight a diversion is made to an en-route alternate which is not performance limited for landing. Fuel remaining at landing is 10300 kg. <b>The landing mass:</b></div>
+    <div class="q-opts"><b>(a)</b> is 87300 kg and excess structural stress could result &nbsp;&nbsp; <b>(b)</b> is 83200 kg which is in excess of the regulated landing mass and could result in overrunning the runway &nbsp;&nbsp; <b>(c)</b> must be reduced to 81700 kg in order to avoid a high speed approach</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> is 87300 kg and excess structural stress could result</div>
+    <div class="q-explain">Assuming departure actually occurs at the stated 93 500 kg limit, ZFM = 93 500 - 16 500 = 77 000 kg. Landing at the alternate with 10 300 kg fuel gives 87 300 kg, 1 000 kg above the 86 300 kg structural landing limit: (a). A performance limit alone does not establish actual take-off mass; that assumption must be explicit.</div>
+    <div class="q-quality"><b>Question quality:</b> Assumes actual TOM equals the supplied performance-limited maximum.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q51.</div>
+    <div class="q-stem">An aeroplane is to depart at a take-off mass of 302550 kg. Fuel on board at take-off (including contingency and alternate of 19450 kg) is 121450 kg. The Dry Operating Mass is 161450 kg. <b>The useful load will be:</b></div>
+    <div class="q-opts"><b>(a)</b> 19650 kg &nbsp;&nbsp; <b>(b)</b> 121450 kg &nbsp;&nbsp; <b>(c)</b> 141100 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> 141100 kg</div>
+    <div class="q-explain"><b>Useful load = TOM &#8722; DOM.</b> That is the definition, and it is a one-line question once you know it.<br><br>302 550 &#8722; 161 450 = <b class='ans-big'>141 100 kg</b><br><br>Useful load is everything above the DOM: <b>traffic load plus usable fuel</b>. Check it: traffic load = 141 100 &#8722; 121 450 = 19 650 kg, and 19 650 + 121 450 = 141 100. It closes.<br><br>Option (a) 19 650 is that <b>traffic load</b> &#8212; the answer to a different question. Option (b) 121 450 is just the fuel. The 19 450 kg of contingency and alternate is not used at all; it is there to make the fuel line look complicated.<br><br><b>Q56 asks for the same quantity from a longer set of data.</b> If you can do this one, do that one the same way: take-off mass minus dry operating mass, and nothing else.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q52.</div>
+    <div class="q-stem">Total mass 7500 kg. Centre of gravity location station 80.5, aft cg limit station 79.5. <b>How much cargo must be shifted from the aft cargo compartment at station 150 to the forward cargo compartment at station 30 in order to move the cg to the aft limit?</b></div>
+    <div class="q-opts"><b>(a)</b> 62.5 kg &nbsp;&nbsp; <b>(b)</b> 68.9 kg &nbsp;&nbsp; <b>(c)</b> 73.5 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> 62.5 kg</div>
+    <div class="q-explain">The CG is at 80.5 and the aft limit is 79.5, so the aeroplane is <b>out of limits</b> and the CG must move <b>1.0 forward</b>.<br><br>Distance shifted = 150 &#8722; 30 = <b>120</b><br><br>mass to shift = total mass &#215; (CG movement &#247; distance shifted)<br>= 7 500 &#215; (1.0 &#247; 120) = <b class='ans-big'>62.5 kg</b><br><br>Two checks before you move on. First, the load moved <b>forward</b> and the CG moved <b>forward</b> &#8212; they must always agree. Second, note that the <b>total mass does not change</b>: nothing was added or removed, only relocated. That is what allows this one-line formula. If mass had been added or taken off, you would have to go back to the moment table.</div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> Learn the formula as a sentence: <b>mass to shift equals total mass times the fraction of the shift distance you need the CG to move.</b> Here you needed 1 unit out of 120, so you shift 1/120th of the aeroplane.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q53.</div>
+    <div class="q-stem">An aeroplane's weighing schedule indicates that the empty mass is 57320 kg. The nominal Dry Operating Mass is 60120 kg and the Maximum Zero Fuel Mass is 72100 kg. Which of the following is a correct statement?</div>
+    <div class="q-opts"><b>(a)</b> operational items have a mass of 2800 kg and the maximum useful load is 14780 kg &nbsp;&nbsp; <b>(b)</b> operational items have a mass of 2800 kg and the maximum traffic load for this aeroplane is 11980 kg &nbsp;&nbsp; <b>(c)</b> operational items have a mass of 2800 kg and the maximum traffic load for this aeroplane is 14780 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> operational items have a mass of 2800 kg and the maximum traffic load for this aeroplane is 11980 kg</div>
+    <div class="q-explain">All three options agree on the operational items, so that part is a free gift &#8212; check it and move on:<br>Operational items = DOM &#8722; empty mass = 60 120 &#8722; 57 320 = <b>2 800 kg</b> &#8212; correct in all three.<br><br>The question is decided on the second half. Traffic load lives between DOM and ZFM, so:<br>MTL = MZFM &#8722; DOM = 72 100 &#8722; 60 120 = <b class='ans-big'>11 980 kg</b><br><br><b>Where 14 780 comes from:</b> 72 100 &#8722; 57 320, that is MZFM minus the <em>empty</em> mass. It leaves the operational items inside the traffic load, which is wrong &#8212; the crew and the catering are not payload.<br><br>Option (a) also misuses "useful load": useful load includes the fuel, and no fuel figure appears anywhere in this question, so a useful load cannot be calculated from these data at all.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q54.</div>
+    <div class="q-stem">Block fuel 40 000 kg, trip fuel 29 000 kg, taxi fuel 800 kg, maximum take-off mass 170 000 kg, maximum landing mass 148 500 kg, maximum zero fuel mass 112 500 kg, dry operating mass 80 400 kg. <b>The maximum traffic load for this flight is:</b></div>
+    <div class="q-opts"><b>(a)</b> 32 100 kg &nbsp;&nbsp; <b>(b)</b> 32 900 kg &nbsp;&nbsp; <b>(c)</b> 18 900 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> 32 100 kg</div>
+    <div class="q-explain">Take-off fuel = block &#8722; taxi = 40 000 &#8722; 800 = <b>39 200 kg</b><br><br>Column 1: <b>170 000</b><br>Column 2: 148 500 + 29 000 = <b>177 500</b><br>Column 3: 112 500 + 39 200 = <b>151 700</b> &#8804; lowest<br><br><b>RTOM = 151 700 kg</b><br>MTL = 151 700 &#8722; 80 400 &#8722; 39 200 = <b class='ans-big'>32 100 kg</b><br><br>Option (b) 32 900 is exactly 800 kg higher &#8212; the answer you get by using the block fuel of 40 000 in column 3 and the take-off fuel of 39 200 in the traffic load sum, or by simply forgetting the taxi fuel. An answer that is out by precisely the taxi fuel is a signature error; when you see one, that is where to look.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q55.</div>
+    <div class="q-stem">The Zero Fuel Mass and the Dry Operating Mass:</div>
+    <div class="q-opts"><b>(a)</b> differ by the mass of usable fuel &nbsp;&nbsp; <b>(b)</b> differ by the value of the traffic load mass &nbsp;&nbsp; <b>(c)</b> are the same value</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> differ by the value of the traffic load mass</div>
+    <div class="q-explain">Straight from the ladder: <b>ZFM = DOM + traffic load</b>, so the gap between them <em>is</em> the traffic load.<br><br>(a) is the trap, and it catches people who read "zero fuel" and think about fuel. But both of these masses are already fuel-free &#8212; DOM excludes usable fuel and ZFM is by definition the mass with no usable fuel. Fuel cannot be the difference between two dry quantities. The thing that separates them is the payload.<br><br>(c) is only true in the trivial case of an aeroplane carrying nothing at all.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q56.</div>
+    <div class="q-stem">Certified maximum take-off mass 141500 kg, performance limited take-off mass 137300 kg, Dry Operating Mass 58400 kg excluding crew and crew hand baggage mass 640 kg, crew baggage in hold 110 kg, fuel on board 60700 kg. <b>Calculate the mass of the useful load.</b></div>
+    <div class="q-opts"><b>(a)</b> 17450 kg &nbsp;&nbsp; <b>(b)</b> 18200 kg &nbsp;&nbsp; <b>(c)</b> 78150 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> 78150 kg</div>
+    <div class="q-explain">For the transport-exam definition used here, useful load = traffic load + usable fuel. First include the omitted crew items: DOM = 58 400 + 640 + 110 = 59 150 kg. At the permitted maximum TOM of 137 300 kg, maximum useful load = 137 300 - 59 150 = <b>78 150 kg</b>, option (c). Traffic load would instead be 78 150 - 60 700 = 17 450 kg. This corrects the earlier payload answer. Terminology differs in some general-aviation manuals, so state the definition and the maximum-loading assumption.</div>
+    <div class="q-quality"><b>Question quality:</b> Answer is maximum useful load under the stated transport-exam definition, not actual load without a loading statement.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q57.</div>
+    <div class="q-stem">"Basic Empty Mass" includes the mass of the aeroplane structure complete with power plants, systems, furnishings and other items of equipment considered to be an integral part of the particular aeroplane configuration. Its value is</div>
+    <div class="q-opts"><b>(a)</b> printed in the loading manual and includes unusable fuel &nbsp;&nbsp; <b>(b)</b> found in the latest version of the weighing schedule as corrected to allow for modifications &nbsp;&nbsp; <b>(c)</b> inclusive of an allowance for crew, crew baggage and other operating items, it is entered in the loading manifest</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> found in the latest version of the weighing schedule as corrected to allow for modifications</div>
+    <div class="q-explain">Use the latest aircraft-specific weighing schedule, amended for modifications: (b). Crew and other operational items are then used to derive DOM. A generic loading-manual example cannot establish the empty mass of the individual aircraft.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q58.</div>
+    <div class="q-stem">An aircraft basic empty mass is 3000 kg. The maximum take-off, landing and zero-fuel mass are identical, at 5200 kg. Ramp fuel is 650 kg, the taxi fuel is 50 kg. <b>The payload available is:</b></div>
+    <div class="q-opts"><b>(a)</b> 1 600 kg &nbsp;&nbsp; <b>(b)</b> 1 550 kg &nbsp;&nbsp; <b>(c)</b> 2 200 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> 1 600 kg</div>
+    <div class="q-explain">Take-off fuel = 650 - 50 = 600 kg. The total allowance above basic empty mass at take-off is 5 200 - 3 000 - 600 = <b>1 600 kg</b>, option (a). Because the input is BEM rather than DOM, that allowance includes any crew/operational items not already included. It can be called available traffic load only if such items are zero, included elsewhere, or included in the question's payload definition.</div>
+    <div class="q-quality"><b>Question quality:</b> BEM/DOM ambiguity: 1 600 kg is total non-fuel load above BEM.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q59.</div>
+    <div class="q-stem">In relation to an aeroplane the Dry Operating Mass is the total mass of the aeroplane ready for a specific type of operation but excluding:</div>
+    <div class="q-opts"><b>(a)</b> usable fuel and crew &nbsp;&nbsp; <b>(b)</b> potable water and lavatory chemicals &nbsp;&nbsp; <b>(c)</b> usable fuel and traffic load</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> usable fuel and traffic load</div>
+    <div class="q-explain">The standard definition word for word: DOM excludes <b>usable fuel and traffic load</b>.<br><br>(a) is wrong on one word. <b>Crew are included</b> in the DOM &#8212; they are operational items. That is the difference between the Basic Empty Mass (no crew) and the Dry Operating Mass (crew aboard).<br><br>(b) is wrong for the same reason: potable water and lavatory chemicals are operational items and are <b>in</b> the DOM.<br><br><b>Dry</b> means no usable fuel. <b>Operating</b> means ready to work &#8212; crew and consumables aboard. Only the payload is missing.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q60.</div>
+    <div class="q-stem">On an aeroplane without central fuel tank, the maximum Zero Fuel Mass is related to:</div>
+    <div class="q-opts"><b>(a)</b> maximum structural take-off mass &nbsp;&nbsp; <b>(b)</b> wing loaded trip fuel &nbsp;&nbsp; <b>(c)</b> the bending moment at the wing root</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> the bending moment at the wing root</div>
+    <div class="q-explain">In flight the wings lift the aeroplane, and the load in the fuselage hangs from the middle, bending the wings upward about the <b>wing root</b>.<br><br>Fuel carried <b>in the wings</b> sits out along the span, pushing down where lift pushes up, and <b>relieves</b> that bending moment. Fuselage load does the opposite.<br><br>So the limit is not on total mass but on the mass that is <em>not</em> giving that relief &#8212; which is exactly what the zero fuel mass measures. <b>MZFM protects the wing root.</b><br><br>The phrase "without central fuel tank" matters: with a fuselage centre tank, some fuel would sit in the middle and provide no bending relief, which complicates the picture. Take it away and the wing-bending explanation is the whole story.</div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> This is also why an aeroplane sitting at MZFM may still load <b>more fuel</b> into the wings. It looks like a contradiction until you understand what the limit is protecting.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q61.</div>
+    <div class="q-stem">Distance M to N 750 nm, average TAS 380 kt, wind component M to N 30 kt headwind, average fuel flow 5700 kg/hr, fuel reserve (assume unused) 500 kg, aircraft mass less fuel and traffic load 52000 kg, max T/O mass at M 91000 kg, max T/O mass at N 88000 kg, max landing mass at N 77500 kg, max landing mass at M 75000 kg. <b>No fuel is available at N.</b> Find (i) max traffic load M to N, (ii) max traffic load N to M.</div>
+    <div class="q-opts"><b>(a)</b> (i) 14,573 kg (ii) 22,500 kg &nbsp;&nbsp; <b>(b)</b> (i) 14,503 kg (ii) 22,500 kg &nbsp;&nbsp; <b>(c)</b> (i) 14,573 kg (ii) 22,000 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> (i) 14,573 kg (ii) 22,500 kg</div>
+    <div class="q-explain"><b>No fuel at N</b> means the round-trip fuel must be lifted at M.<br><br><b>Fuel for each leg.</b> Out: GS = 380 &#8722; 30 = 350 kt, time = 750 &#247; 350 = 2.1429 h, fuel = <b>12 214 kg</b>. Back: the headwind becomes a tailwind, GS = 380 + 30 = 410 kt, time = 750 &#247; 410 = 1.8293 h, fuel = <b>10 427 kg</b>.<br>Total fuel lifted at M = 12 214 + 10 427 + 500 = <b>23 141 kg</b><br><br><b>(i) Outbound.</b> Column 1: 91 000. Column 2: 77 500 + 12 214 = <b>89 714</b> &#8804; lowest.<br>MTL = 89 714 &#8722; 52 000 &#8722; 23 141 = <b class='ans-big'>14 573 kg</b><br><br><b>(ii) Return.</b> Fuel remaining at N = 23 141 &#8722; 12 214 = <b>10 927 kg</b> &#8212; you cannot uplift any more.<br>Column 1: 88 000. Column 2: 75 000 + 10 427 = <b>85 427</b> &#8804; lowest.<br>MTL = 85 427 &#8722; 52 000 &#8722; 10 927 = <b class='ans-big'>22 500 kg</b><br><br>The return sector carries far more, because most of the fuel has gone. That is the whole point of the question: <b>fuel you must carry for a later leg is traffic load you cannot sell today.</b></div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> Set it out as two three-column tables before you calculate anything. And remember the wind reverses: a headwind out is a tailwind home, so the two legs never burn the same fuel.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q62.</div>
+    <div class="q-stem">PLTOM 45000 lbs, PLLM 40000 lbs, flight fuel 4000 lbs, reserve fuel 800 lbs, DOM 25000 lbs. Find (i) traffic load, (ii) can you carry additional reserve fuel without affecting traffic load, if so how much?</div>
+    <div class="q-opts"><b>(a)</b> (i) 14200 lbs (ii) 1000 lbs &nbsp;&nbsp; <b>(b)</b> (i) 14200 lbs (ii) no &nbsp;&nbsp; <b>(c)</b> (i) 15200 lbs (ii) 1000 lbs</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> (i) 14200 lbs (ii) no</div>
+    <div class="q-explain">Take-off fuel = 4 000 + 800 = 4 800 lb. Maximum TOM is min(45 000, 40 000 + 4 000) = 44 000 lb. Traffic load = 44 000 - 25 000 - 4 800 = <b>14 200 lb</b>. Arrival mass is already 40 000 lb. Additional reserve assumed unburnt remains aboard at landing, so no extra reserve can be added without reducing traffic load: <b>(b)</b>. The 1 000 lb take-off margin is unusable because landing margin is zero. Option (c) does not agree with the calculated traffic load.</div>
+    <div class="q-quality"><b>Question quality:</b> <b>PRINTED KEY: (a), allowing 1000 lb of extra reserve fuel. That cannot be right.</b> The RTOM was produced by the <em>landing</em> column, so the landing mass is already sitting exactly on the PLLM of 40 000 lb. Unburnt fuel lands with you, so any extra reserve fuel puts the aeroplane over its landing limit. The 1 000 lb of take-off headroom is unusable.<br><br><b>The paper itself proves the point in Q66.</b> That question has the identical wording with the numbers arranged so that the <em>take-off</em> limit binds instead, and its key correctly answers "cannot carry". The two questions are worked on opposite principles and only one of them can be right.<br><br>Correct answer: <b>(b) (i) 14 200 lbs (ii) no</b>.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q63.</div>
+    <div class="q-stem">From P to Q (where fuel is not available) and return to P. Distance P to Q 610 nm, mass with no fuel and no traffic load 36500 kg, max landing mass 52400 kg, max take-off mass 63000 kg, reserve fuel unused 4000 kg, additional fuel for each flight (T/O, circuit, landing etc.) 500 kg, mean fuel consumption 1350 kg/hr, mean ground speed P to Q 240 kt, Q to P 280 kt. Find (i) fuel to be lifted at P, (ii) max traffic load P to Q, (iii) max traffic load Q to P.</div>
+    <div class="q-opts"><b>(a)</b> (i) 10372 kg (ii) 7059 kg (iii) 11900 kg &nbsp;&nbsp; <b>(b)</b> (i) 11872 kg (ii) 7459 kg (iii) 10400 kg &nbsp;&nbsp; <b>(c)</b> (i) 11372 kg (ii) 7959 kg (iii) 10900 kg</div>
+    <div class="q-ans q-flag"><b>&#9888;&#65039; FLAGGED: no valid option</b></div>
+    <div class="q-explain"><b>No offered option matches the natural reading of the stated burn.</b> En-route fuel P-Q = (610/240) x 1 350 = 3 431.25 kg; Q-P = (610/280) x 1 350 = 2 941.071 kg. If the additional 500 kg per flight is consumed during the stated take-off/circuit/landing phases, fuel uplift = 3 431.25 + 500 + 2 941.071 + 500 + 4 000 = <b>11 372.321 kg</b>. Fuel at Q landing = 7 441.071 kg; outbound traffic load = 52 400 - 36 500 - 7 441.071 = <b>8 458.929 kg</b>. Final fuel at P = 4 000 kg; return traffic load = 52 400 - 36 500 - 4 000 = <b>11 900 kg</b>. Both take-off limits are respected. The former result (c) treats both phase-fuel allowances as unburnt reserve, which the wording does not justify. Specify exactly which allowance is consumed and when, and replace the options before scored use.</div>
+    <div class="q-quality"><b>Question quality:</b> Retain full precision to final rounding: 11 372 / 8 459 / 11 900 kg under the explicit burn assumption.</div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> Treat the 500 kg as burnt instead of carried and parts (ii) and (iii) each shift by exactly 500 kg, onto options (a) and (b). Those options exist to catch that single assumption. When a paper separates a fuel allowance from the en-route consumption, find out how it treats that allowance before you calculate.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q64.</div>
+    <div class="q-stem">Maximum structural take off mass 80000 lbs, maximum structural landing mass 64500 lbs, dry operating mass 50000 lbs, flight fuel <b>6000 kgs</b>, reserve fuel <b>1500 kgs</b>. <b>Find the traffic load that can be carried.</b></div>
+    <div class="q-opts"><b>(a)</b> 13000 lbs &nbsp;&nbsp; <b>(b)</b> 11193 lbs &nbsp;&nbsp; <b>(c)</b> 22500 lbs</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> 11193 lbs</div>
+    <div class="q-explain">This flight is landing limited. With reserve assumed unused, payload = landing limit - DOM - reserve = 64 500 - 50 000 - (1 500 x 2.205) = 11 192.5 lb, approximately <b>11 193 lb</b>, option (b). Check take-off: trip fuel = 13 230 lb; take-off-equivalent landing limit = 77 730 lb, below 80 000 lb. Keep intermediate values unrounded.</div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> Before you write a single number down in any load question, run your eye down the data and circle the units. Mixed units appear in this paper on purpose, and a conversion missed at the start cannot be recovered later.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q65.</div>
+    <div class="q-stem">Max T/O mass structure limited 82,000 lbs, max mass without fuel and traffic load 50,000 lbs, PLLM 64,000 lbs, fuel for flight A to B 16,000 lbs, reserve fuel 8,000 lbs. <b>If the aircraft lands at B after having consumed 500 lbs of reserve fuel, what is the maximum traffic load that can be carried?</b></div>
+    <div class="q-opts"><b>(a)</b> 6000 lbs &nbsp;&nbsp; <b>(b)</b> 8000 lbs &nbsp;&nbsp; <b>(c)</b> 6500 lbs</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> 6500 lbs</div>
+    <div class="q-explain">Take-off fuel = 16 000 + 8 000 = 24 000 lb. The hypothetical stem says 500 lb of reserve is used, so total burn before landing = 16 500 lb. Maximum TOM = min(82 000, 64 000 + 16 500) = 80 500 lb. Traffic load = 80 500 - 50 000 - 24 000 = <b>6 500 lb</b>, option (c). This is a mass-accounting exercise under the stated burn assumption, not permission to plan consumption of required final reserve.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q66.</div>
+    <div class="q-stem">Max permissible take off mass 82,000 lbs, max mass without fuel and traffic load 50,000 lbs, max permissible landing mass 69,000 lbs, fuel for flight A to B 16,000 lbs, reserve 3,000 lbs. (i) Max traffic load? (ii) Is it possible to carry additional reserve fuel without affecting the traffic load?</div>
+    <div class="q-opts"><b>(a)</b> (i) 16000, (ii) cannot carry &nbsp;&nbsp; <b>(b)</b> (i) 13000, (ii) cannot carry &nbsp;&nbsp; <b>(c)</b> (i) 13000, (ii) 3000 lbs</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> (i) 13000, (ii) cannot carry</div>
+    <div class="q-explain">Take-off fuel = 16 000 + 3 000 = <b>19 000 lb</b><br><br><b>(i)</b> Column 1: <b>82 000</b> &#8804; lowest. Column 2: 69 000 + 16 000 = <b>85 000</b>.<br><b>RTOM = 82 000 lb</b> &#8212; <b>take-off limited this time</b><br>MTL = 82 000 &#8722; 50 000 &#8722; 19 000 = <b class='ans-big'>13 000 lb</b><br><br><b>(ii)</b> Check both headrooms:<br>&#8226; Take-off: RTOM is <em>on</em> the 82 000 limit. Spare = <b>0</b><br>&#8226; Landing: 82 000 &#8722; 16 000 = 66 000, against a limit of 69 000. Spare = 3 000 lb<br><br>You may add the <b>smaller</b> of the two, and that is zero. So: <b>cannot carry</b>.<br><br>Option (c) offers the 3 000 lb of landing headroom, which you cannot use because the take-off limit stops you first.<br><br><b>Q62 is this question with the limits reversed</b> &#8212; there the landing limit binds, so the landing headroom is the zero and the answer is again no. Work both the same way: find which column produced your RTOM, then check the headroom on BOTH limits and take the smaller.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q67.</div>
+    <div class="q-stem">Distance M to N 80 nm, mean GS M to N 70 kt, N to M 110 kt, mean fuel consumption 410 kg/hr, max take off mass at M 6180 kg, max landing mass at N 5740 kg, max take off mass at N 5800 kg, max landing mass at M 5460 kg, max zero fuel mass 5180 kg, aircraft mass less fuel and traffic load 4400 kg, reserve fuel (not used) 250 kg. <b>Fuel is not available at N.</b> Find (i) max traffic load M to N, (ii) max traffic load N to M.</div>
+    <div class="q-opts"><b>(a)</b> (i) 763 kg (ii) 780 kg &nbsp;&nbsp; <b>(b)</b> (i) 763 kg (ii) 530 kg &nbsp;&nbsp; <b>(c)</b> (i) 513 kg (ii) 530 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> (i) 763 kg (ii) 780 kg</div>
+    <div class="q-explain"><b>Leg fuel.</b> Out: 80 &#247; 70 = 1.1429 h &#215; 410 = <b>469 kg</b>. Back: 80 &#247; 110 = 0.7273 h &#215; 410 = <b>298 kg</b>.<br>Fuel lifted at M = 469 + 298 + 250 = <b>1 017 kg</b><br><br><b>(i) M to N.</b> All three columns:<br>Column 1: <b>6 180</b> &#8804; lowest &#160;&#183;&#160; Column 2: 5 740 + 469 = 6 209 &#160;&#183;&#160; Column 3: 5 180 + 1 017 = 6 197<br>MTL = 6 180 &#8722; 4 400 &#8722; 1 017 = <b class='ans-big'>763 kg</b><br><br><b>(ii) N to M.</b> Fuel remaining at N = 1 017 &#8722; 469 = <b>548 kg</b>.<br>Column 1: 5 800 &#160;&#183;&#160; Column 2: 5 460 + 298 = 5 758 &#160;&#183;&#160; Column 3: 5 180 + 548 = <b>5 728</b> &#8804; lowest<br>MTL = 5 728 &#8722; 4 400 &#8722; 548 = <b class='ans-big'>780 kg</b><br><br><b>This question is why you build all three columns.</b> A different limit wins on each leg &#8212; the take-off mass outbound, the zero fuel mass on the way home &#8212; and the three candidates are within 30 kg of each other on the outbound sector. There is no way to guess which one bites.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q68.</div>
+    <div class="q-stem">Max T/O mass 51.00 t, RTOM 50.00 t, max landing mass 44.20 t, RLM 43.20 t, max zero fuel mass 45.10 t, APS mass 27.50 t, trip fuel 4.2 t, reserve fuel 1.00 t. <b>Find the traffic load that can be carried.</b></div>
+    <div class="q-opts"><b>(a)</b> 17.6 tons &nbsp;&nbsp; <b>(b)</b> 17.3 tons &nbsp;&nbsp; <b>(c)</b> 14.7 tons</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> 14.7 tons</div>
+    <div class="q-explain">Take-off fuel = 4.2 + 1.0 = 5.2 t. The limiting candidates are 50.00 t, 43.20 + 4.2 = 47.40 t, and 45.10 + 5.2 = 50.30 t. Therefore traffic load = 47.40 - 27.50 - 5.2 = <b>14.7 t</b>, option (c). The 17.6 t distractor is MZFM minus APS mass, 45.1 - 27.5. Using 44.20 t landing mass would give 15.7 t, not 17.6 t.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q69.</div>
+    <div class="q-stem">Max take off mass 80000 lbs, maximum landing mass 60000 lbs, dry operating mass 48000 lbs, TAS 200 kt, track 350, W/V 350/20, distance 1350 nm, fuel consumption 2500 lbs/hr, reserve fuel 3500 lbs. <b>Find the traffic load that can be carried.</b></div>
+    <div class="q-opts"><b>(a)</b> 9750 lbs &nbsp;&nbsp; <b>(b)</b> 8500 lbs &nbsp;&nbsp; <b>(c)</b> 15409 lbs</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> 8500 lbs</div>
+    <div class="q-explain">Wind from 350 degrees along track 350 degrees is a direct 20 kt headwind. GS = 200 - 20 = 180 kt; time = 1 350/180 = 7.5 h; trip fuel = 18 750 lb; take-off fuel = 22 250 lb. Maximum TOM = min(80 000, 60 000 + 18 750) = 78 750 lb. Traffic load = 78 750 - 48 000 - 22 250 = <b>8 500 lb</b>, option (b). Here the binding landing constraint makes payload equal to 60 000 - 48 000 - 3 500; ignoring wind would still give 8 500 lb if both mass limits were checked. The earlier explanation of distractor (c) was incorrect.</div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> Wind direction is always the direction the wind is coming FROM. Track 350 with a wind from 350 is a pure headwind; a wind from 170 on the same track would be a pure tailwind.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q70.</div>
+    <div class="q-stem">Max structural T/O mass 55000 kg, max structural landing mass 52000 kg, max zero fuel mass 38000 kg, DOM 29000 kg, fuel consumption 1600 kg/hr, distance 1500 nm, reserve fuel 2750 kg, TAS 260 kt. Winds: headwind 20 kt till halfway, thereafter 60 kt tailwind. (i) Max traffic load in still air. (ii) Max traffic load with winds.</div>
+    <div class="q-opts"><b>(a)</b> (i) 9000 kg (ii) 9000 kg &nbsp;&nbsp; <b>(b)</b> (i) 9000 kg (ii) 8000 kg &nbsp;&nbsp; <b>(c)</b> (i) 9000 kg (ii) 10000 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> (i) 9000 kg (ii) 9000 kg</div>
+    <div class="q-explain"><b>(i) Still air.</b> GS = TAS = 260 kt. Time = 1 500 &#247; 260 = 5.769 h, trip fuel = <b>9 231 kg</b>. Take-off fuel = 9 231 + 2 750 = <b>11 981 kg</b>.<br>Column 1: 55 000 &#160;&#183;&#160; Column 2: 52 000 + 9 231 = 61 231 &#160;&#183;&#160; Column 3: 38 000 + 11 981 = <b>49 981</b> &#8804; lowest<br>MTL = 49 981 &#8722; 29 000 &#8722; 11 981 = <b class='ans-big'>9 000 kg</b><br><br><b>(ii) With winds.</b> Two halves of 750 nm each. First half GS = 260 &#8722; 20 = 240 kt &#8594; 3.125 h. Second half GS = 260 + 60 = 320 kt &#8594; 2.344 h. Total 5.469 h, trip fuel = <b>8 750 kg</b>. Take-off fuel = <b>11 500 kg</b>.<br>Column 3: 38 000 + 11 500 = <b>49 500</b> &#8804; still the lowest<br>MTL = 49 500 &#8722; 29 000 &#8722; 11 500 = <b class='ans-big'>9 000 kg</b><br><br><b>Identical. And that is the lesson, not a coincidence.</b> Whenever the <b>zero fuel mass</b> is the binding limit, the traffic load is simply MZFM &#8722; DOM = 38 000 &#8722; 29 000 = 9 000 kg, and <b>no fuel figure appears in it at all</b>. Saving fuel with a tailwind buys you nothing, because you had already run out of somewhere to put non-fuel load.<br><br>You could have answered part (ii) in five seconds by checking that column 3 was still lowest.</div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> If a question asks the same thing twice with different fuel and offers an identical pair as one of the options, suspect a zero-fuel-limited aeroplane. Test it: is MZFM &#8722; DOM smaller than what the other columns allow?</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q71.</div>
+    <div class="q-stem">Flying time 3 hrs 30 mins, fuel consumption 1500 kg/hr, reserve fuel 45 mins, restricted take off mass 45000 kg, DOM 37525 kg. <b>Find maximum traffic load.</b></div>
+    <div class="q-opts"><b>(a)</b> 1100 kg &nbsp;&nbsp; <b>(b)</b> 1200 kg &nbsp;&nbsp; <b>(c)</b> 1025 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (a)</b> 1100 kg</div>
+    <div class="q-explain">Trip fuel = 3.5 x 1 500 = 5 250 kg. Reserve fuel = 0.75 x 1 500 = 1 125 kg. Maximum traffic load = 45 000 - 37 525 - 5 250 - 1 125 = <b>1 100 kg</b>, option (a). The 45-minute reserve is given data for this exercise, not a universal reserve requirement. Use hours consistently and do not infer a specific distractor mechanism without calculating it.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q72.</div>
+    <div class="q-stem">Maximum structural take off mass 82000 lbs, maximum structural landing mass 64500 lbs, dry operating mass 50000 lbs, flight fuel 16000 lbs, reserve fuel 1500 lbs. <b>Calculate the payload if the aircraft is to use 700 lbs of reserve fuel after reaching destination.</b></div>
+    <div class="q-opts"><b>(a)</b> 13000 lbs &nbsp;&nbsp; <b>(b)</b> 13200 lbs &nbsp;&nbsp; <b>(c)</b> 13700 lbs</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> 13700 lbs</div>
+    <div class="q-explain">Take-off fuel = 16 000 + 1 500 = 17 500 lb. Under the hypothetical stated consumption, 16 700 lb is burnt before landing and 800 lb remains. The landing constraint gives maximum TOM 64 500 + 16 700 = 81 200 lb, below 82 000 lb. Payload = 81 200 - 50 000 - 17 500 = <b>13 700 lb</b>, option (c). This does not authorise planned consumption of a required final reserve.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q73.</div>
+    <div class="q-stem">In a neutrally stable aircraft the centre of gravity of the aircraft is located:</div>
+    <div class="q-opts"><b>(a)</b> at or very near the aerodynamic centre &nbsp;&nbsp; <b>(b)</b> too far aft of the aerodynamic centre &nbsp;&nbsp; <b>(c)</b> too far forward of the aerodynamic centre</div>
+    <div class="q-ans q-flag"><b>&#9888;&#65039; FLAGGED: a only if whole-aircraft AC</b></div>
+    <div class="q-explain"><b>The precise answer is the whole-aircraft neutral point.</b> For a specified configuration and control condition, longitudinal static stability is neutral when CG coincides with that point. Option (a) is defensible only if "aerodynamic centre" means the aerodynamic centre of the complete aircraft, not the wing alone. A wing aerodynamic centre and the complete-aircraft neutral point are not interchangeable.</div>
+    <div class="q-quality"><b>Question quality:</b> Rewrite the option as whole-aircraft neutral point before scored use.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q74.</div>
+    <div class="q-stem">Structural integrity of the wing root will be adversely affected by:</div>
+    <div class="q-opts"><b>(a)</b> adding fuel to MZFM &nbsp;&nbsp; <b>(b)</b> increasing the number of fasteners at the wing root &nbsp;&nbsp; <b>(c)</b> exceeding maximum authorized mass including fuel</div>
+    <div class="q-ans"><b>&#9989; Answer: (c)</b> exceeding maximum authorized mass including fuel</div>
+    <div class="q-explain">Exceeding the authorised total mass can compromise structural integrity, so (c) is the best answer. Wing fuel can relieve positive-flight wing-root bending, but adding fuel is permitted only within all applicable mass, tank, distribution and loading limits. It is not automatically beneficial for every ground and flight load case. Adding fasteners without an approved design is not a valid structural remedy.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Q75.</div>
+    <div class="q-stem">Calculate the total fuel required for a turbojet aircraft. Thrust (F) = 80 kN, specific fuel consumption (SFC) = 0.6 kg/(s&#183;kN), flight time = 30 minutes.</div>
+    <div class="q-opts"><b>(a)</b> 43200 kg &nbsp;&nbsp; <b>(b)</b> 86,400 kg &nbsp;&nbsp; <b>(c)</b> 172800 kg</div>
+    <div class="q-ans"><b>&#9989; Answer: (b)</b> 86,400 kg</div>
+    <div class="q-explain">For constant thrust and TSFC, fuel mass = TSFC x thrust x time. Convert 30 min to 1 800 s: 0.6 kg/(s kN) x 80 kN x 1 800 s = <b>86 400 kg</b>, option (b). This is the result of the stated artificial data. Equivalent hourly TSFC is 0.6 x 3 600 = 2 160 kg/(h kN), giving the same result with 0.5 h. Replacing the unit s by h without converting the value changes the input; it is not a conversion. Real performance needs engine-specific TSFC/flow and the applicable fuel-planning method.</div>
+    <div class="q-note"><b>&#127919; Exam technique:</b> Whenever a formula mixes rates and times, write the units next to every number before you multiply. If the units do not cancel to kilogrammes, you have the wrong time.</div>
+  </div>
+
+</div>
+
+<h2>D. Answer Key</h2>
+<p>Q1 to Q5 are worked examples and have no lettered answer.</p><table class="keytable">
+<tr class="krow-q"><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+<tr class="krow-a"><td>&#9888;</td><td>C</td><td>&#9888;</td><td>&#9888;</td><td>&#9888;</td><td>C</td><td>C</td><td>A</td><td>C</td><td>C</td><td>C</td><td>&#9888;</td><td>A</td><td>B</td><td>C</td></tr>
+<tr class="krow-q"><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th>30</th></tr>
+<tr class="krow-a"><td>A</td><td>C</td><td>A</td><td>B</td><td>B</td><td>A</td><td>A</td><td>A</td><td>A</td><td>&#9888;</td><td>C</td><td>C</td><td>A</td><td>A</td><td>&#9888;</td></tr>
+<tr class="krow-q"><th>31</th><th>32</th><th>33</th><th>34</th><th>35</th><th>36</th><th>37</th><th>38</th><th>39</th><th>40</th><th>41</th><th>42</th><th>43</th><th>44</th><th>45</th></tr>
+<tr class="krow-a"><td>&#9888;</td><td>C</td><td>B</td><td>A</td><td>C</td><td>A</td><td>C</td><td>A</td><td>A</td><td>A</td><td>B</td><td>C</td><td>A</td><td>C</td><td>C</td></tr>
+<tr class="krow-q"><th>46</th><th>47</th><th>48</th><th>49</th><th>50</th><th>51</th><th>52</th><th>53</th><th>54</th><th>55</th><th>56</th><th>57</th><th>58</th><th>59</th><th>60</th></tr>
+<tr class="krow-a"><td>A</td><td>B</td><td>B</td><td>B</td><td>A</td><td>C</td><td>A</td><td>B</td><td>A</td><td>B</td><td>C</td><td>B</td><td>A</td><td>C</td><td>C</td></tr>
+<tr class="krow-q"><th>61</th><th>62</th><th>63</th><th>64</th><th>65</th><th>66</th><th>67</th><th>68</th><th>69</th><th>70</th><th>71</th><th>72</th><th>73</th><th>74</th><th>75</th></tr>
+<tr class="krow-a"><td>A</td><td>B</td><td>&#9888;</td><td>B</td><td>C</td><td>B</td><td>A</td><td>C</td><td>B</td><td>A</td><td>A</td><td>C</td><td>&#9888;</td><td>C</td><td>B</td></tr>
+</table><div class="revision-start"></div>
+<h2>E. Final Revision &#8212; Read This The Night Before</h2>
+<div class="box box-green">
+  <div class="box-label">&#128640; The 90-second version</div>
+<ul><li><b>CG = total moment &#247; total mass.</b> Moment = mass &#215; arm. Aft of datum positive, forward negative.</li><li><b>The ladder:</b> BEM &#8594; +operational items &#8594; DOM &#8594; +traffic load &#8594; ZFM &#8594; +take-off fuel &#8594; TOM &#8594; +taxi fuel &#8594; ramp mass.</li><li><b>Traffic load = ZFM &#8722; DOM. Useful load = TOM &#8722; DOM</b> (traffic load <em>plus fuel</em>). They are not the same thing and the paper tests it.</li><li><b>Take-off fuel</b> = trip + contingency + alternate + final reserve = block &#8722; taxi. <b>Landing mass = TOM &#8722; trip fuel only.</b></li><li><b>Three columns, take the lowest:</b> take-off limit &#160;&#183;&#160; RLM + trip fuel &#160;&#183;&#160; MZFM + take-off fuel.<br>Then <b>max traffic load = RTOM &#8722; DOM &#8722; take-off fuel</b>.</li><li><b>Forward CG:</b> greater longitudinal static stability, greater tail download and trim drag, and less nose-up control margin in the flare.</li><li><b>Aft CG:</b> reduced longitudinal static stability and lighter pitch forces. Beyond the aft limit, stability and stall/spin recovery may become unacceptable.</li><li><b>High mass raises stall speed.</b> CG position can also alter effective wing loading through the tail force required for trim.</li><li><b>Longitudinal stability</b> = CG position relative to the <b>neutral point</b>. Neutral static stability occurs when the CG is at the <b>neutral point</b>; a forward CG gives a positive static margin.</li><li><b>MZFM protects the wing root</b> against bending. Wing fuel relieves it, so at MZFM you may still add fuel.</li><li><b>Mass to shift = total mass &#215; (CG movement &#247; distance shifted).</b> Load moves forward, CG moves forward.</li><li><b>More mass, under comparable conditions:</b> stall speed, take-off run, landing distance and required lift rise; climb rate and climb gradient fall. Use the AFM/performance data for V-speeds, fuel, range and endurance.</li><li><b>Weighing:</b> enclosed hangar, no air movement, usable fuel and toilet fluid drained, <b>oil left in</b>.</li><li><b>Regulatory memory items:</b> use the values in the current applicable DGCA CAR and operator documentation. Source-question values reproduced here remain visibly marked <b>PENDING</b> until primary text is confirmed.</li><li><b>The operator</b> derives DOM and fixes the operational items. <b>The Pilot-in-Command</b> is responsible for the loading of the flight.</li><li><b>Standard masses:</b> use the figures specified by the current applicable regulation or approved operator programme. In a numerical question, use the figures expressly supplied unless the stem directs otherwise.</li><li><b>Volume is not mass.</b> Gallons &#8594; litres &#8594; kilogrammes. Never stop after the first step.</li></ul>
+</div>
+<div class="box box-yellow">
+  <div class="box-label">&#127919; Five exam habits worth more than any single fact</div>
+<p><b>1. Circle the units before you calculate.</b> This paper mixes pounds and kilogrammes in the same table on purpose (Q64).</p><p><b>2. Build all three columns even when one looks obviously lowest.</b> In Q49 the two lowest are 330 kg apart, and in Q67 a different column wins on each leg.</p><p><b>3. Convert every time to decimal hours first.</b> 3 h 30 min is 3.5, not 3.3. 45 min is 0.75, not 0.45. 51 min is 0.85.</p><p><b>4. Read both halves of every option.</b> Many distractors are half right &#8212; Q13, Q18 and Q41 all turn on the second clause.</p><p><b>5. Learn facts, not letters.</b> Q24 and Q57 are the same question with the options shuffled, and the correct letter changes.</p><p><b>Read the current marking instructions before starting.</b> If they state that there is no negative marking, answer every question; otherwise apply the published penalty rule.</p>
+</div>
+<div class="box box-blue">
+  <div class="box-label">&#9992;&#65039; The last word, from the flight deck</div>
+<p>All of this arithmetic exists for one reason. The aeroplane does not know what is written on the loadsheet. It only knows what is actually on board, and where.</p><p>You will not feel a mass error on the walk-round and you will not see it on any instrument. The first hint comes somewhere past the point where you can do anything about it &#8212; a runway that is running out faster than it should, or a nose that will not come up in the flare.</p><p>Which is why the load sheet is signed, why the schedule is displayed in the aircraft where the loaders can see it, and why the cargo is lashed. Do the sum properly on the ground and you will never have to find out what the other way feels like.</p><p style="text-align:right;margin-top:12px;"><b>&#8212; Capt. Pankaj Pahil</b></p>
+</div>
+
+<div style="text-align:center;margin-top:40px;font-size:1.1rem;color:#475569;">Ghost Aviator &#183; free DGCA CPL / ATPL preparation &#183; <b>www.GhostAviator.com</b></div>
+</div>
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

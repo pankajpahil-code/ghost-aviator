@@ -214,7 +214,10 @@ function sourceImageRefs(raw: string, subject: string, chapter: string): ImageRe
   const chapterBase = `/content/${subject}/${chapter}/notes.html`;
   const body = ((raw.match(/<body[^>]*>([\s\S]*?)<\/body>/i) ?? [])[1] ?? "").replace(/<script\b[\s\S]*?<\/script>/gi, "");
   const cssUrls = (css: string, base: string, kind: string) => {
-    for (const m of css.matchAll(/url\(\s*(?:"([^"]*)"|'([^']*)'|([^)\s]*))\s*\)/gi)) {
+    // Font-face URLs are assets too, but they are not newly visible figures.
+    // Their existence is still checked by the separate referenced-assets pass.
+    const imageCss = css.replace(/@font-face\s*\{[^}]*\}/gi, "");
+    for (const m of imageCss.matchAll(/url\(\s*(?:"([^"]*)"|'([^']*)'|([^)\s]*))\s*\)/gi)) {
       const v = (m[1] ?? m[2] ?? m[3] ?? "").trim();
       if (v && !v.startsWith("data:")) out.push({ value: v, base, kind });
     }

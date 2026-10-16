@@ -76,7 +76,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
     shortName: "Navigation",
     icon: "🗺️",
     color: "#10b981",
-    description: "Navigation basics, DR, charts, radio aids, instruments, mass & balance, performance, and flight planning. Covers Appendix A of the DGCA CPL syllabus.",
+    description: "General navigation, charts, time, CX-3 calculations, mass & balance, performance, and flight planning. Study radio aids and instruments in their dedicated subjects.",
     examDuration: 60,
     totalQuestions: 50,
     passMark: 70,
@@ -167,52 +167,24 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
         description: "Sunrise, sunset and twilight — definitions, almanac tables, and how they vary with latitude and season.",
         duration: "1.5 hrs", questionCount: 0, content: makeContent(),
       },
-      {
-        id: "nav-30", number: 18, title: "The Direct Indicating Compass",
-        description: "Direct indicating compass — construction, horizontality, sensitivity and aperiodicity, serviceability checks, turning and acceleration errors.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
-      },
-      {
-        id: "nav-31", number: 19, title: "Aircraft Magnetism",
-        description: "Hard iron and soft iron magnetism, deviation and its correction, and compass swing fundamentals.",
-        duration: "1.5 hrs", questionCount: 0, content: makeContent(),
-      },
-      {
-        id: "nav-32", number: 20, title: "General Navigation Problems",
-        description: "Mixed general navigation problems bringing together departure, charts, time and compass topics — exam-style practice with solutions.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
-      },
+
+
+
       {
         id: "nav-33", number: 21, title: "Revision Questions",
         description: "Full revision question set for General Navigation — test yourself chapter by chapter before the exam.",
         duration: "2 hrs", questionCount: 140, content: makeContent(true),
       },
       // ── Additional DGCA Appendix-A topics not in the GN book (kept as extra chapters) ──
-      {
-        id: "nav-1", number: 22, title: "Basics of Navigation",
-        description: "Solar system, seasonal/apparent sun movements, the earth, great circles, rhumb lines, convergency, conversion angle, latitude, longitude, time conversions (UTC/LMT/standard), international dateline, directions, terrestrial magnetism, units of distance.",
-        duration: "4 hrs", questionCount: 87, content: makeContent(true),
-      },
-      {
-        id: "nav-2", number: 23, title: "Magnetism & Compasses",
-        description: "Terrestrial magnetism, earth's total magnetic force (vertical/horizontal components), directive force, magnetic dip, variation, aircraft magnetism (hard iron/vertical soft iron), turning & acceleration errors, direct reading & remote reading compasses, serviceability tests, compass adjustment.",
-        duration: "3 hrs", questionCount: 80, content: makeContent(),
-      },
+
+
       {
         id: "nav-3", number: 24, title: "Aeronautical Charts",
         description: "Mercator, Lambert conformal conic, polar stereographic, transverse Mercator, oblique Mercator — properties, representation of meridians/parallels/great circles/rhumb lines. Use of aeronautical charts: plotting positions, scale, conventional signs, measuring tracks & distances, plotting bearings.",
         duration: "3 hrs", questionCount: 80, content: makeContent(),
       },
-      {
-        id: "nav-4", number: 25, title: "Dead Reckoning Navigation",
-        description: "Track, heading (compass/magnetic/true/grid), wind velocity, airspeed (IAS/CAS/TAS/Mach), groundspeed, ETA, drift, wind correction angle, DR position, navigational computer (speed/time/distance/fuel/conversions), triangle of velocities, DR position determination, max range, radius of action, PSR, PET.",
-        duration: "4 hrs", questionCount: 100, content: makeContent(),
-      },
-      {
-        id: "nav-5", number: 26, title: "In-Flight Navigation",
-        description: "Use of visual observations, navigation in climb & descent (average airspeed, average wind velocity, ground speed during climb/descent), navigation in cruising flight (groundspeed revision, off-track corrections, wind calculation, ETA revisions), flight log.",
-        duration: "3 hrs", questionCount: 75, content: makeContent(),
-      },
+
+
       {
         id: "nav-6", number: 27, title: "Mass & Balance — Aeroplanes",
         description: "Centre of gravity definition, importance for aircraft stability, mass and balance terminology (empty mass, dry operating mass, zero fuel mass, standard masses, useful load), effects of overloading, datum, moment arm, moment, CG calculation, expression in % MAC, effect of load-shift.",
@@ -229,24 +201,37 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
         duration: "3 hrs", questionCount: 80, content: makeContent(),
       },
       {
-        id: "nav-9", number: 30, title: "Flight Planning & Monitoring",
+        id: "nav-9", number: 30, title: "CX-3: Wind Finding and Flight Planning",
         description: "Navigation plan (route, terrain/obstacle clearance, wind forecast, heading/groundspeed/ETA computation), fuel plan (fuel log, holding/diversion/reserve fuel), in-flight re-planning, ICAO ATC flight plan (format, completing, filing, adherence), practical chart preparation and flight plan completion.",
         duration: "4 hrs", questionCount: 90, content: makeContent(),
       },
+
+
+
       {
-        id: "nav-10", number: 31, title: "Radio Navigation Aids",
-        description: "Ground D/F, ADF navigation & NDB navigation (principles, presentation, range, errors), VOR & Doppler VOR (principles, coverage, errors), DME, ILS (principles, presentation, coverage, errors), SSR & transponder (modes/codes including Mode S), GPS/GLONASS (principle, advantages, disadvantages).",
-        duration: "4 hrs", questionCount: 90, content: makeContent(),
+        id: "nav-cx3-5", number: 34, title: "CX-3: Distance, Speed and Time",
+        description: "CX-3 distance, speed and time calculations, unit conversions and worked navigation examples.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-11", number: 32, title: "Flight Instruments",
-        description: "Air data instruments: pitot-static system, altimeter, ASI (IAS, coloured sectors, VMO/MMO), Vertical Speed Indicator diagram (aneroid & IVSI). Gyroscopic instruments: gyro fundamentals (stability, precession, types, ring laser gyro), directional gyro, slaved gyro compass, attitude indicator, turn & bank indicator, turn coordinator. Magnetic compass: construction, errors.",
-        duration: "4 hrs", questionCount: 90, content: makeContent(),
+        id: "nav-cx3-6", number: 35, title: "CX-3: True Airspeed and Altitude",
+        description: "CX-3 true airspeed and altitude calculations with worked examples and concept diagrams.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
       {
-        id: "nav-12", number: 33, title: "Power Plant Instruments & Avionics",
-        description: "Pressure gauge, temperature gauge (ram rise, recovery factor), RPM indicator, fuel flowmeter, fuel gauge (volume/mass, measuring sensors), torque meter. EFIS, EICAS, ECAM, FMS basics. Radio propagation: EM waves, wavelength/amplitude/phase/frequency, frequency bands, carrier/modulation/demodulation, antennas, ground/space wave, MUF, fading.",
-        duration: "3 hrs", questionCount: 75, content: makeContent(),
+        id: "nav-cx3-7", number: 36, title: "CX-3: Triangle of Velocities",
+        description: "The wind triangle and triangle of velocities, explained with CX-3 methods, diagrams and worked examples.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-cx3-8a", number: 37, title: "CX-3: Heading and Groundspeed",
+        description: "Find heading and groundspeed using the CX-3, with wind corrections and worked flight examples.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-cx3-9", number: 38, title: "CX-3: Multi-Drift and Wind Components",
+        description: "Multi-drift wind finding and wind components using the CX-3, with prepared diagrams and worked problems.",
+        duration: "2 hrs", questionCount: 0, content: makeContent(),
       },
     ],
   },
