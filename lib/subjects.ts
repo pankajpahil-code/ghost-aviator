@@ -202,7 +202,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       },
       {
         id: "nav-9", number: 30, title: "CX-3: Wind Finding and Flight Planning",
-        description: "Navigation plan (route, terrain/obstacle clearance, wind forecast, heading/groundspeed/ETA computation), fuel plan (fuel log, holding/diversion/reserve fuel), in-flight re-planning, ICAO ATC flight plan (format, completing, filing, adherence), practical chart preparation and flight plan completion.",
+        description: "Prepared CX-3 notes on wind finding and flight-plan calculations, with worked examples and diagrams.",
         duration: "4 hrs", questionCount: 90, content: makeContent(),
       },
 
