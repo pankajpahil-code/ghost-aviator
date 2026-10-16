@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import LiveClassInvitation from "./components/LiveClassInvitation";
 import ContentProtection from "./components/ContentProtection";
 import ProgressSync from "./components/ProgressSync";
+import Pwa from "./components/Pwa";
 import Gini from "./components/gini/Gini";
 import { LIVE_WHATSAPP } from "@/lib/live-classes";
 import { SITE_URL, CAPTAIN_PROFILES, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
@@ -109,6 +110,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
         <ContentProtection />
         <ProgressSync />
+        {/* PWA layer: registers the service worker (offline notes) and offers
+            install/update quietly. Renders nothing visible most of the time. */}
+        <Pwa />
         <Navbar />
         <main className="flex-1">{children}</main>
         <LiveClassInvitation />

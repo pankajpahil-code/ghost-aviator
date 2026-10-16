@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ghost Aviator — PWA icon lab</title>
+<style>
+  body { background:#111820; color:#e2e8f0; font-family: system-ui, sans-serif; margin:24px; }
+  h1 { font-size:18px; }
+  p.note { font-size:13px; color:#94a3b8; max-width:70ch; }
+  .row { display:flex; gap:32px; flex-wrap:wrap; align-items:flex-start; margin-top:16px; }
+  figure { margin:0; text-align:center; }
+  figcaption { font-size:12px; color:#94a3b8; margin-top:8px; max-width:512px; }
+  .tile { width:512px; height:512px; position:relative; overflow:hidden; display:none; }
+  .tile svg { width:100%; height:100%; display:block; }
+  .tile img { position:absolute; }
+  .round { border-radius:116px; }
+  .ring::after {
+    content:""; position:absolute; inset:36px; border-radius:50%;
+    border:20px solid rgba(240,145,58,.92); pointer-events:none;
+  }
+  .bg-dark { background:#0a0f14; }
+  /* Maskable preview: the sprite's bottom edge fades into the plate — the
+     capture script bakes the same fade — so the maskable icon never shows a
+     hard cut of the artwork. */
+  #tile-gm img {
+    -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 68%, transparent 100%);
+  }
+  /* Capture mode: one tile, edge to edge, nothing else on the page. */
+  html.capture body { margin:0; }
+  html.capture h1, html.capture p.note, html.capture #sheet { display:none; }
+</style>
+</head>
+<body>
+<h1>Icon lab — Ghost Aviator PWA</h1>
+<p class="note">Tiles G/GM composite <strong>Gini</strong> — the site's own character
+(<code>public/gini/sprites/happy.webp</code>, served same-origin here via the
+<code>/gini/</code> route so the canvas stays untainted). This is what ships
+(Captain's call, 17 Oct 2026). Tiles A/B/C keep the earlier ghost-mark variants for
+the record. Capture mode: <code>?tile=g|gm|a|b|c</code> renders one tile at exactly
+512×512. Icons must be looked at, not assumed.</p>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ghost" viewBox="0 0 64 64">
+    <path d="M14 32 C14 18 22 12 32 12 C42 12 50 18 50 32 L50 46 Q47 52 43 47 Q39 53 32 48 Q25 53 21 47 Q17 52 14 46 Z" fill="#bdefff"/>
+    <ellipse cx="26" cy="33" rx="2.6" ry="4.2" fill="#0d2c46"/>
+    <ellipse cx="38" cy="33" rx="2.6" ry="4.2" fill="#0d2c46"/>
+    <path d="M28 41 Q32 44.5 36 41" fill="none" stroke="#0d2c46" stroke-width="2" stroke-linecap="round"/>
+    <path d="M18 20 C20 8 44 8 46 20 Q32 26 18 20 Z" fill="#16294a"/>
+    <path d="M16 20 Q32 28 48 20 L51 25 Q32 33 13 25 Z" fill="#0a1830"/>
+    <circle cx="32" cy="15" r="2.5" fill="#ffd97a"/>
+  </symbol>
+</svg>
+
+<div id="tiles">
+  <!-- Gini (shipped). The capture script mirrors these numbers exactly:
+       any-purpose = 106% width, centred (slight up-shift);
+       maskable = 72% width, centred low, art inside the middle 80%,
+       bottom edge faded into the plate. -->
+  <div id="tile-g" class="tile round bg-dark">
+    <img src="/gini/sprites/happy.webp" alt="" width="543" height="559"
+         style="width:106%;left:50%;top:50%;transform:translate(-50%,calc(-50% - 6px))">
+  </div>
+  <div id="tile-gm" class="tile bg-dark">
+    <img src="/gini/sprites/happy.webp" alt="" width="369" height="380"
+         style="width:72%;left:50%;top:50%;transform:translate(-50%,calc(-50% + 4px))">
+  </div>
+  <!-- Earlier ghost-mark variants, kept for the record. -->
+  <div id="tile-a" class="tile round bg-dark">
+    <svg viewBox="0 0 84 84"><use href="#ghost" x="10" y="10" width="64" height="64"/></svg>
+  </div>
+  <div id="tile-b" class="tile bg-dark">
+    <svg viewBox="0 0 106 106"><use href="#ghost" x="23" y="23" width="60" height="60"/></svg>
+  </div>
+  <div id="tile-c" class="tile round ring bg-dark">
+    <svg viewBox="0 0 92 92"><use href="#ghost" x="14" y="14" width="64" height="64"/></svg>
+  </div>
+</div>
+
+<div id="sheet"></div>
+
+<script>
+  const CAPTIONS = {
+    g:  "Gini — any-purpose icon (shipped 17 Oct 2026)",
+    gm: "Gini — maskable (art inside the safe zone)",
+    a:  "Variant A — earlier ghost mark (for the record)",
+    b:  "Variant B — earlier maskable (for the record)",
+    c:  "Variant C — earlier alternate with amber ring (for the record)",
+  };
+  const ORDER = ["g", "gm", "a", "b", "c"];
+  const only = new URLSearchParams(location.search).get("tile");
+  if (only && document.getElementById("tile-" + only)) {
+    document.documentElement.classList.add("capture");
+    const tile = document.getElementById("tile-" + only);
+    tile.style.display = "block";
+    tile.style.borderRadius = "0";
+    document.body.appendChild(tile);
+  } else {
+    const row = document.createElement("div");
+    row.className = "row";
+    for (const id of ORDER) {
+      const figure = document.createElement("figure");
+      const tile = document.getElementById("tile-" + id).cloneNode(true);
+      tile.style.display = "block";
+      const cap = document.createElement("figcaption");
+      cap.textContent = CAPTIONS[id];
+      figure.append(tile, cap);
+      row.append(figure);
+    }
+    document.getElementById("sheet").append(row);
+  }
+</script>
+</body>
+</html>

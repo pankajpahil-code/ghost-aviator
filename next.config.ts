@@ -89,6 +89,14 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      // The service worker script must never be served stale from any cache:
+      // a stale sw.js delays every future update (offline fixes, corrected
+      // answers in the cached-page pipeline) by up to a day. Revalidate it on
+      // every load; it is 9 KB and mostly a 304.
+      {
+        source: "/sw.js",
+        headers: [{ key: "Cache-Control", value: "no-cache" }],
+      },
       // THE ONE EXCEPTION TO frame-ancestors 'self': the "DGCA Question of the Day" widget
       // (app/embed/question/route.ts), which flight schools and clubs paste into their own sites.
       // It must come AFTER the catch-all: "if two headers match the same path and set the same
