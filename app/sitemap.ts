@@ -9,6 +9,7 @@ import { LASTMOD } from "@/lib/generated/lastmod";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { videoSitemapEntriesFor, isWatchPage } from "@/lib/video-schema";
 import { PUBLISHED_CORRECTIONS } from "@/lib/corrections";
+import { pqRoutes } from "@/lib/previous-questions";
 
 export const dynamic = "force-static";
 
@@ -150,8 +151,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // DGCA previous-year questions (lib/previous-questions.ts).
+  const pqPages: MetadataRoute.Sitemap = pqRoutes().map(p => ({ url: url(p), ...mod(p), changeFrequency: "monthly" as const, priority: 0.7 }));
+
   return [
     ...staticPages,
+    ...pqPages,
     ...subjectPages("cpl", CPL_SUBJECTS),
     ...subjectPages("atpl", ATPL_SUBJECTS),
     ...paperPages,
