@@ -17,6 +17,11 @@ export default function OfflinePage() {
         Chapters you have already opened are saved on this device for a month and stay readable
         offline. Everything else will load as soon as you are back online.
       </p>
+      {/* Hard navigation on purpose, not next/link: the worker answers
+          navigations (live page if online, offline card if not), while a
+          client-side route change would fire an RSC fetch its fetch handler
+          never sees — offline that fails with no feedback at all. */}
+      {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
       <a
         href="/"
         className="mt-8 rounded-lg bg-amber-300 px-6 py-3 text-sm font-bold text-slate-950 no-underline"

@@ -1,0 +1,141 @@
+
+> ghost-aviator@0.1.0 build
+> node tools/audit/ownership-files.mjs && node tools/seo-fix-notes.mjs && node tools/audit/answer-key-guard.mjs --check && npx tsx tools/audit/sitemap-xml.mts && next build
+
+Ownership files OK (2).
+  public/google03c67855fee92810.html
+    sha256 0670c1b0c983ce3599306df409788a5f1c820112f264abe9d9b2c257c1cedb99
+  public/8afb1d23a7b77f9b01617efd23f13598.txt
+    sha256 91ce88ed1b717173dca08c94083c77783aa2b2002585e91f603c16e1fec2bfe7
+Added SEO tags to 0/242 notes.html files
+STRICT (meteorology, radio-navigation): clean - no answer-key text or grid classes.
+
+PENDING (report-only, other subjects - each awaits its own pass):
+  air-regulations: 99 occurrence(s) in 18 file(s)
+  instrumentation: 67 occurrence(s) in 26 file(s)
+  air-navigation: 35 occurrence(s) in 17 file(s)
+  human-performance: 1 occurrence(s) in 1 file(s)
+
+Guard OK.
+entries        672
+  with lastmod 503 across 18 distinct dates
+  with video   108
+serialised     296KB
+parsed         672 urls, 297 video nodes
+PROBLEMS: 0
+▲ Next.js 16.3.4 (Turbopack)
+✓ Running next.config.ts took 101ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.8s
+  Running TypeScript ...
+  Finished TypeScript in 6.7s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/1657) ...
+  Generating static pages using 3 workers (414/1657) 
+  Generating static pages using 3 workers (828/1657) 
+  Generating static pages using 3 workers (1242/1657) 
+✓ Generating static pages using 3 workers (1657/1657) in 61s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /adapt-test
+├ ƒ /api/gini
+├ ƒ /api/telegram
+├ ○ /atpl
+├   /atpl/[subject]
+│ ├ ● /atpl/atpl-air-regulations
+│ ├ ● /atpl/atpl-meteorology
+│ ├ ● /atpl/atpl-navigation
+│ └ ● [+5 more paths]
+├   /atpl/[subject]/[chapter]/[type]
+│ ├ ● /atpl/atpl-air-regulations/aar-1/notes
+│ ├ ● /atpl/atpl-air-regulations/aar-1/video
+│ ├ ● /atpl/atpl-air-regulations/aar-1/questions
+│ └ ● [+337 more paths]
+├ ƒ /atpl/[subject]/[chapter]/[type]/opengraph-image
+├ ○ /books
+├ ○ /corrections
+├ ○ /cpl
+├ ○ /cpl-cost-calculator
+├   /cpl/[subject]
+│ ├ ● /cpl/air-navigation
+│ ├ ● /cpl/meteorology
+│ ├ ● /cpl/air-regulations
+│ └ ● [+6 more paths]
+├   /cpl/[subject]/[chapter]/[type]
+│ ├ ● /cpl/air-navigation/nav-13/notes
+│ ├ ● /cpl/air-navigation/nav-13/video
+│ ├ ● /cpl/air-navigation/nav-13/questions
+│ └ ● [+1142 more paths]
+├ ƒ /cpl/[subject]/[chapter]/[type]/opengraph-image
+├ ○ /dashboard
+├ ƒ /dashboard/review/[attemptId]
+├ ○ /dgca-exam-questions
+├   /dgca-exam-questions/[subject]
+│ ├ ● /dgca-exam-questions/cpl-meteorology
+│ ├ ● /dgca-exam-questions/cpl-air-regulations
+│ └ ● /dgca-exam-questions/cpl-navigation
+├   /dgca-exam-questions/[subject]/[topic]
+│ ├ ● /dgca-exam-questions/cpl-meteorology/clouds-and-precipitation
+│ ├ ● /dgca-exam-questions/cpl-meteorology/the-atmosphere-and-isa
+│ ├ ● /dgca-exam-questions/cpl-meteorology/pressure-and-altimetry
+│ └ ● [+45 more paths]
+├ ƒ /embed/question
+├ ○ /exam
+├   /exam/[paperId]
+│ ├ ● /exam/navigation
+│ ├ ● /exam/meteorology
+│ ├ ● /exam/air-regulations
+│ └ ● [+4 more paths]
+├ ○ /faq
+├ ○ /free-dgca-mock-test
+├ ○ /guides
+├   /guides/[slug]
+│ ├ ● /guides/computer-number
+│ ├ ● /guides/cpl-mock-tests
+│ ├ ● /guides/rtr-exam-guide
+│ └ ● [+8 more paths]
+├ ○ /how-answers-are-verified
+├ ○ /icon.svg
+├ ○ /live-classes
+├ ○ /llms-full.txt
+├ ○ /llms.txt
+├ ○ /login
+├ ○ /manifest.webmanifest
+├ ○ /metar-taf-practice
+├ ○ /mock-test
+├ ○ /notes
+├ ○ /offline
+├ ○ /opengraph-image.jpg
+├ ○ /past-papers
+├   /past-papers/[paperId]
+│ ├ ● /past-papers/air-regulations-paper-1
+│ ├ ● /past-papers/air-regulations-paper-2
+│ ├ ● /past-papers/air-regulations-paper-3
+│ └ ● [+34 more paths]
+├ ○ /privacy
+├ ○ /question-bank
+├   /question-bank/[subject]
+│ ├ ● /question-bank/meteorology
+│ ├ ● /question-bank/air-regulations
+│ ├ ● /question-bank/air-navigation
+│ └ ● [+5 more paths]
+├ ○ /resources
+├ ○ /robots.txt
+├ ○ /rtr-simulator
+├ ○ /signup
+├ ○ /sitemap.xml
+├ ○ /subjects
+├ ○ /twitter-image.jpg
+├ ○ /video-lectures
+└ ○ /widget
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

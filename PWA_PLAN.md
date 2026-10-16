@@ -10,6 +10,10 @@ local evidence recorded (below). Install chip kept as designed; pushing the
 branch for a Vercel preview now (Captain's approval, 17 Oct). Nothing in
 production.**
 
+**Phase 2 (persistent review + weak-area links) is built on this same branch —
+plan + evidence: `PWA_PLAN_PHASE2.md` and
+`tools/pwa/_captures/evidence-phase2-local.md`.**
+
 ## What Phase 1 adds (all new files + 2 small edits)
 
 | File | What it is |
@@ -41,7 +45,8 @@ checkout has an in-flight edit by another agent.
 
 1. **Installable app + offline core** ← this branch.
 2. Review mode + weak-area analytics on `/dashboard` (and repair the known
-   exam-history sync defect from the Oct 8 audit).
+   exam-history sync defect from the Oct 8 audit) — **built on this branch**;
+   the sync defect was verified already fixed on main. See `PWA_PLAN_PHASE2.md`.
 3. Exam-mode CBT UI (palette, flag, timer, submit flow).
 4. Push notifications — needs the Captain's call on topics (new chapters?
    weekly questions?) and VAPID key setup.

@@ -4,8 +4,9 @@ import Link from "next/link";
 import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, BookOpen, Flag, Check } from "lucide-react";
 import type { ExamPaper } from "@/lib/exam-papers";
 import { getPaperQuestionPool } from "@/lib/exam-papers";
+import { stemKey } from "@/lib/questions";
 import { isRealExplanation } from "@/lib/explanation";
-import { recordExamAttempt, type ChapterBreakdown } from "@/lib/exam-history";
+import { recordExamAttempt, type ChapterBreakdown, type ReviewEntry } from "@/lib/exam-history";
 import { useDeadlineCountdown } from "@/lib/progress";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 
@@ -36,6 +37,9 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
   const [flagged, setFlagged] = useState<boolean[]>(() => Array(questions.length).fill(false));
   const startedAtRef = useRef<number | null>(null);
   const recorded = useRef(false);
+  // The id of the attempt just recorded, for the "review this sitting" link on
+  // the result screen. State (not a ref) because the link needs a re-render.
+  const [savedReviewId, setSavedReviewId] = useState<string | null>(null);
 
   const submit = useCallback(() => setPhase("result"), []);
   // Deadline-based: the end time is fixed at Start and the clock is re-read on
@@ -64,7 +68,16 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
       if (answers[i] === q.ans) cur.correct += 1;
       chapterBreakdown[q.chapterId] = cur;
     });
-    recordExamAttempt({
+    // The answer trace that powers the dashboard's review page. Options are
+    // never shuffled, so the chosen index is stable; the question itself is
+    // identified by its stem key (lib/exam-review.mjs) and re-resolved against
+    // the live bank at review time, so a corrected answer key shows corrected.
+    const review: ReviewEntry[] = questions.map((q, i) => {
+      const entry: ReviewEntry = { k: stemKey(q), a: answers[i] };
+      if (flagged[i]) entry.f = true;
+      return entry;
+    });
+    const saved = recordExamAttempt({
       paperId: paper.id,
       track: paper.track,
       scorePct: pct,
@@ -73,7 +86,9 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
       // Capped at the paper's limit: a phone that wakes after the deadline submits late, but the sitting was never longer than the paper.
       durationTakenSec: startedAtRef.current ? Math.min(durationSec, Math.round((Date.now() - startedAtRef.current) / 1000)) : durationSec - timeLeft,
       chapterBreakdown,
+      review,
     });
+    setSavedReviewId(saved.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);
 
@@ -102,6 +117,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
     setFlagged(Array(questions.length).fill(false));
     recorded.current = false;
     startedAtRef.current = null;
+    setSavedReviewId(null);
     window.scrollTo(0, 0);
   }
 
@@ -146,7 +162,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
           ))}
         </div>
         <ul className="text-left mb-8 flex flex-col gap-2">
-          {["Each question has one correct answer", "No negative marking — attempt every question", "You can move between questions and flag ones to revisit", "Answers are shown only after you submit the whole paper", "Timer starts immediately and auto-submits at zero"].map(item => (
+          {["Each question has one correct answer", "No negative marking — attempt every question", "You can move between questions and flag ones to revisit", "Answers are shown only after you submit the whole paper", "Every sitting is saved — review it question by question later", "Timer starts immediately and auto-submits at zero"].map(item => (
             <li key={item} className="flex items-start gap-2 text-sm" style={{ color: "#94a3b8" }}>
               <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#f59e0b" }} /> {item}
             </li>
@@ -196,6 +212,15 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
               <BookOpen className="w-4 h-4" /> All Papers
             </Link>
           </div>
+          {savedReviewId && (
+            <p className="text-xs mt-6" style={{ color: "#64748b" }}>
+              Saved to your dashboard —{" "}
+              <Link href={`/dashboard/review/${savedReviewId}`} className="underline" style={{ color: "#f0913a" }}>
+                review this sitting
+              </Link>{" "}
+              any time.
+            </p>
+          )}
         </div>
 
         <div className="mb-8">

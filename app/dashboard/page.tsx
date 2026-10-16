@@ -3,20 +3,12 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useUser } from "@/lib/supabase";
 import AdaptPanel from "./AdaptPanel";
-import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import WeakChapterBars from "./WeakChapterBars";
 // Metadata module, NOT lib/exam-papers: that one imports the whole question bank.
 import { EXAM_PAPERS, getExamPaper } from "@/lib/exam-papers-meta";
 import { readExamHistory, weakChapters, useExamHistoryVersion, type ExamAttempt } from "@/lib/exam-history";
-import { TrendingUp, AlertTriangle, FileCheck, Trophy, XCircle, CheckCircle } from "lucide-react";
-
-// chapterId -> "Subject Name · Ch.N Title" for the weak-chapters list.
-const CHAPTER_LABEL = (() => {
-  const m: Record<string, string> = {};
-  for (const s of [...CPL_SUBJECTS, ...ATPL_SUBJECTS]) {
-    for (const c of s.chapters) m[c.id] = `${s.shortName} · Ch.${c.number} ${c.title}`;
-  }
-  return m;
-})();
+import { useStoredChapterResolution, looksLikeAirRegsBankId } from "@/lib/chapter-links";
+import { TrendingUp, AlertTriangle, FileCheck, Trophy, XCircle, CheckCircle, RotateCcw } from "lucide-react";
 
 // Stable empty list for the pre-mount render, so memos downstream keep a steady input.
 const NO_HISTORY: ExamAttempt[] = [];
@@ -58,46 +50,9 @@ function ScoreTrend({ attempts, passMark }: { attempts: ExamAttempt[]; passMark:
   );
 }
 
-// Horizontal bar list of weakest chapters — bars capped at 24px, rounded data-end,
-// severity colour by accuracy band (this list is already filtered to the weak tail).
-// Air Regulations attempts store the BANK chapter id, which is not the site chapter
-// of the same spelling (bank ar-6 is site Ch.4). The map lives beside the question
-// bank, so it is loaded on demand: a static import would put the bank back in this page.
-const isAirRegsBankId = (id: string) => /^ar-\d+$/.test(id) || id === "sar";
-type StoredLabel = (id: string, labelOf: (siteId: string) => string | undefined) => string | undefined;
-
-function WeakChapterBars({ items }: { items: { chapterId: string; accuracy: number; total: number }[] }) {
-  const needsMap = items.some(it => isAirRegsBankId(it.chapterId));
-  const [storedLabel, setStoredLabel] = useState<StoredLabel | null>(null);
-  useEffect(() => {
-    if (!needsMap) return;
-    let live = true;
-    import("@/lib/air-regs-chapter-label")
-      .then(m => { if (live) setStoredLabel(() => m.siteChapterLabelForStoredId); })
-      .catch(() => {});
-    return () => { live = false; };
-  }, [needsMap]);
-  const labelFor = (id: string) => {
-    if (!isAirRegsBankId(id)) return CHAPTER_LABEL[id] ?? id;
-    return (storedLabel && storedLabel(id, s => CHAPTER_LABEL[s])) ?? "Air Regulations";
-  };
-  const color = (acc: number) => (acc < 50 ? "#ef4444" : acc < 70 ? "#f59e0b" : "#64748b");
-  return (
-    <div className="flex flex-col gap-3">
-      {items.map(it => (
-        <div key={it.chapterId}>
-          <div className="flex items-center justify-between text-xs mb-1">
-            <span style={{ color: "#94a3b8" }}>{labelFor(it.chapterId)}</span>
-            <span style={{ color: color(it.accuracy) }} className="font-bold">{it.accuracy}%</span>
-          </div>
-          <div className="w-full rounded-full" style={{ height: 8, background: "rgba(255,255,255,0.06)" }}>
-            <div className="rounded-full" style={{ height: 8, width: `${it.accuracy}%`, background: color(it.accuracy) }} />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+// Horizontal bar list of weakest chapters — extracted to WeakChapterBars.tsx
+// in Phase 2 (2026-10-17) so the per-attempt review page can use the same
+// renderer, and because each row now links to the chapter's notes.
 
 export default function DashboardPage() {
   const { user } = useUser();
@@ -130,6 +85,12 @@ export default function DashboardPage() {
 
   const weak = useMemo(() => weakChapters(history, 6), [history]);
   const recent = useMemo(() => history.slice(0, 10), [history]);
+
+  // Stored chapter ids -> notes routes. The Air Regulations bank-id translation
+  // is a bank-coupled module, so it is only requested when the weak list
+  // actually holds such an id (lib/chapter-links.ts).
+  const needsBank = useMemo(() => weak.some(it => looksLikeAirRegsBankId(it.chapterId)), [weak]);
+  const { hrefFor, labelsFor } = useStoredChapterResolution(needsBank);
 
   return (
     <div className="grid-bg min-h-screen">
@@ -196,9 +157,23 @@ export default function DashboardPage() {
                   <AlertTriangle className="w-5 h-5" style={{ color: "#f59e0b" }} /> Weakest Chapters
                 </h2>
                 <div className="glass-card p-6">
-                  <WeakChapterBars items={weak} />
+                  <WeakChapterBars
+                    items={weak}
+                    // CPL first, then the ATPL map — an aggregate list mixes both
+                    // tracks, and ATPL-only chapter ids (aar-N, amet-N…) only
+                    // resolve in the ATPL map. Bank ids keep their existing
+                    // CPL-terms labels (pre-2026-10-17 behaviour) so the label
+                    // shown and the link opened always agree.
+                    labelFor={id => {
+                      const cpl = labelsFor(id, "cpl");
+                      if (cpl && cpl.length) return cpl.join(" / ");
+                      const atpl = labelsFor(id, "atpl");
+                      return atpl && atpl.length ? atpl.join(" / ") : undefined;
+                    }}
+                    hrefFor={id => hrefFor(id, "cpl") ?? hrefFor(id, "atpl")}
+                  />
                   <p className="text-xs mt-4" style={{ color: "#475569" }}>
-                    Based on your answers within Exam Mode attempts, chapters seen 3+ times.
+                    Based on your answers within Exam Mode attempts, chapters seen 3+ times. Rows marked revise → open the chapter notes.
                   </p>
                 </div>
               </section>
@@ -213,21 +188,40 @@ export default function DashboardPage() {
                 {recent.map((a, i) => {
                   const paper = getExamPaper(a.paperId);
                   const passed = a.scorePct >= (paper?.passMark ?? 70);
+                  // Sittings from Phase 2 (2026-10-17) carry the answer trace and
+                  // open the question-by-question review; older ones fall back to
+                  // the paper page, exactly as they did before review mode existed.
+                  const reviewable = Array.isArray(a.review) && a.review.length > 0;
                   return (
-                    <Link key={a.id} href={`/exam/${a.paperId}`}
-                          className="flex items-center justify-between px-5 py-4 no-underline"
-                          style={{ borderBottom: i < recent.length - 1 ? "1px solid rgba(255,255,255,0.06)" : undefined }}>
-                      <div className="flex items-center gap-3">
+                    <div key={a.id} className="flex items-center gap-3 px-5 py-4"
+                         style={{ borderBottom: i < recent.length - 1 ? "1px solid rgba(255,255,255,0.06)" : undefined }}>
+                      <Link href={reviewable ? `/dashboard/review/${a.id}` : `/exam/${a.paperId}`}
+                            className="flex items-center gap-3 no-underline min-w-0 flex-1">
                         {passed
                           ? <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: "#22c55e" }} />
                           : <XCircle className="w-4 h-4 flex-shrink-0" style={{ color: "#ef4444" }} />}
-                        <div>
-                          <div className="text-sm font-bold text-white">{paper?.shortTitle ?? a.paperId}</div>
+                        <div className="min-w-0">
+                          <div className="text-sm font-bold text-white truncate">{paper?.shortTitle ?? a.paperId}</div>
                           <div className="text-xs" style={{ color: "#64748b" }}>{fmtDate(a.createdAt)} · {a.correctCount}/{a.totalCount} correct</div>
                         </div>
-                      </div>
-                      <div className="text-lg font-black" style={{ color: passed ? "#22c55e" : "#ef4444" }}>{a.scorePct}%</div>
-                    </Link>
+                      </Link>
+                      {reviewable && (
+                        <Link href={`/dashboard/review/${a.id}`}
+                              className="text-xs font-bold px-2.5 py-1 rounded-full no-underline flex-shrink-0"
+                              style={{ color: "#f0913a", border: "1px solid rgba(240,145,58,0.35)", background: "rgba(240,145,58,0.06)" }}>
+                          Review
+                        </Link>
+                      )}
+                      {reviewable && (
+                        <Link href={`/exam/${a.paperId}`} title="Retake this paper"
+                              aria-label={`Retake ${paper?.title ?? a.paperId}`}
+                              className="p-1.5 rounded-lg no-underline flex-shrink-0 hidden sm:inline-flex"
+                              style={{ color: "#64748b", border: "1px solid rgba(255,255,255,0.1)" }}>
+                          <RotateCcw className="w-3.5 h-3.5" />
+                        </Link>
+                      )}
+                      <div className="text-lg font-black flex-shrink-0" style={{ color: passed ? "#22c55e" : "#ef4444" }}>{a.scorePct}%</div>
+                    </div>
                   );
                 })}
               </div>

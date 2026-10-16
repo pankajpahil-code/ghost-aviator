@@ -6,6 +6,9 @@
 // and find weak chapters. No account needed — attempts live in localStorage
 // and are mirrored to Supabase only when signed in (see exam-history-sync.ts).
 import { useEffect, useState } from "react";
+import type { ReviewEntry } from "./exam-review.mjs";
+
+export type { ReviewEntry };
 
 export type ChapterBreakdown = Record<string, { correct: number; total: number }>;
 
@@ -19,6 +22,13 @@ export type ExamAttempt = {
   durationTakenSec: number;
   chapterBreakdown: ChapterBreakdown;
   createdAt: string;
+  // The answer trace that powers /dashboard/review/[attemptId] — one entry per
+  // question in sitting order (see lib/exam-review.mjs for matching). Optional
+  // on purpose: sittings recorded before Phase 2 (2026-10-17) have none, and it
+  // is never sent to the server — exam-history-sync.ts maps rows field by field
+  // and deliberately ignores this, so the working sync cannot be broken by a
+  // column the database does not have.
+  review?: ReviewEntry[];
 };
 
 const KEY = "ga-exam-history-v1";
@@ -109,6 +119,8 @@ export function recordExamAttempt(input: {
   totalCount: number;
   durationTakenSec: number;
   chapterBreakdown: ChapterBreakdown;
+  /** The saved answer trace (see ExamAttempt.review). */
+  review?: ReviewEntry[];
 }): ExamAttempt {
   const attempt: ExamAttempt = {
     id: typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : randomId(),

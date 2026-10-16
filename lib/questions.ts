@@ -84,7 +84,12 @@ export const needsMissingFigure = (q: Pick<DemoQuestion, "q">) =>
 // under 10 thrown away. That deleted 18 valid short questions ("A gale is:", "UTC means"),
 // and merged different questions that share a long opening (two point-of-safe-return questions
 // vanished behind the point-of-equal-time ones).
-const stemKey = (q: Pick<DemoQuestion, "q">) => q.q.toLowerCase().replace(/[^a-z0-9]/g, "");
+// Exported because it is also the bank's identity key off the bank: Exam Mode
+// saves its answer review as stemKey + chosen option (lib/exam-review.mjs,
+// recorded in app/exam/ExamRunner.tsx), and collapseWithReport below
+// guarantees at most one live question per key, so a saved key can never be
+// ambiguous among live questions.
+export const stemKey = (q: Pick<DemoQuestion, "q">) => q.q.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 // The keyed option, compared after removing the spelling differences between sources:
 // "90°" / "90 deg" / "90 degrees", "8 min" / "8 mins", "5000 meters" / "5000 metres",

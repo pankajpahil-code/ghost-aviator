@@ -1,0 +1,23 @@
+1. stemKey identity over 4326 live questions
+  ok   all 4326 non-empty stem keys are unique
+  ok   no punctuation-only stems (every question is matchable)
+2. every Exam paper question resolves through the trace matcher
+  ok   navigation: 1668 questions, all resolve, all score correct
+  ok   meteorology: 653 questions, all resolve, all score correct
+  ok   air-regulations: 899 questions, all resolve, all score correct
+  ok   technical-general: 184 questions, all resolve, all score correct
+  ok   technical-specific: 145 questions, all resolve, all score correct
+  ok   rtr-part1: 774 questions, all resolve, all score correct
+  ok   composite-met-nav: 2321 questions, all resolve, all score correct
+3. dropped question degrades, neighbours unaffected
+  ok   the dropped question reads missing; the next still resolves
+4. Air Regs bank ids invert back to their site chapters (both tracks)
+  ok   CPL air-regulations: all 26 site chapters round-trip
+  ok   ATPL air-regulations: all 8 site chapters round-trip
+5. chapter routes and labels (lib/chapter-links.ts)
+  ok   every CPL and ATPL chapter resolves to a /cpl|/atpl route and a label
+6. trace survives JSON round-trip
+  ok   stats identical after JSON round-trip
+  ok   counts as expected (1 correct / 1 unanswered / 1 wrong / 1 flagged)
+
+review-selftest: PROBLEMS: 0  (builder's self-check — not an independent audit)

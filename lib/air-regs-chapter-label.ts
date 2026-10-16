@@ -18,7 +18,7 @@
 // already carries the bank through lib/exam-papers; do not import it from the
 // quiz/test components (lib/progress.ts is the bank-free home for those).
 import { getChapterSpecificQuestions } from "./questions";
-import { CPL_SUBJECTS } from "./subjects";
+import { CPL_SUBJECTS, ATPL_SUBJECTS } from "./subjects";
 
 export const AIR_REGS_SUBJECT_ID = "air-regulations";
 
@@ -64,6 +64,37 @@ export function airRegsSiteToBank(): SiteToBank {
   }
   cached = pairs;
   return pairs;
+}
+
+let cachedAtpl: SiteToBank | null = null;
+
+// The ATPL Air Regulations chapters (aar-1…aar-8) draw on the same bank ids,
+// but the site chapters and titles are different, so the inverse map is a
+// second, separate derivation — never the CPL one relabelled.
+export function atplAirRegsSiteToBank(): SiteToBank {
+  if (cachedAtpl) return cachedAtpl;
+  const subject = ATPL_SUBJECTS.find(s => s.id === "atpl-air-regulations");
+  const pairs: [string, string][] = [];
+  for (const ch of subject?.chapters ?? []) {
+    const bankId = getChapterSpecificQuestions("atpl-air-regulations", ch.id)[0]?.chapterId;
+    if (bankId) pairs.push([ch.id, bankId]);
+  }
+  cachedAtpl = pairs;
+  return pairs;
+}
+
+/**
+ * The site chapters (that track's syllabus order) whose question set carries
+ * `bankChapterId`. The review surfaces use this to turn a stored BANK id into
+ * chapter links IN THE TRACK THE SITTING WAS TAKEN IN — an ATPL attempt must
+ * not be sent to CPL chapter pages (and vice versa), because the same bank
+ * chapter serves different-named site chapters on each track.
+ */
+export function siteChaptersServedByBankId(bankChapterId: string, track: "cpl" | "atpl"): string[] {
+  return siteChaptersServedBy(
+    bankChapterId,
+    track === "atpl" ? atplAirRegsSiteToBank() : airRegsSiteToBank(),
+  );
 }
 
 /**
