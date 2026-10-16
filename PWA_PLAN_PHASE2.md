@@ -135,6 +135,13 @@ audit — the builder cannot certify its own work.*
       pre-Phase-2 attempt without trace, a question gone from the bank
       (labelled placeholder), revised answer keys (drift note), unknown attempt
       id. Full record: `tools/pwa/_captures/evidence-phase2-local.md`.
+- [x] Preview deploy — `ef44387` pushed to `origin/pwa-20261017`; the Vercel
+      preview was Ready in ~3 min. The branch alias
+      (`https://ghost-aviator-git-pwa-20261017-pankajpahil-codes-projects.vercel.app`)
+      was verified serving Phase 2: the exam page carries the "Every sitting is
+      saved" bullet, and the review route answers with its SSR shell + title.
+      Previews sit behind Vercel Deployment Protection for anonymous visitors;
+      the Captain's signed-in session passes it.
 - [ ] Captain's checks.
 
 ## Open for the Captain (nothing blocks Phase 2)
