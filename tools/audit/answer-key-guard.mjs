@@ -10,6 +10,9 @@
 //     (commit c343c07). Only allowed text there: the two descriptive lead-ins
 //     written by the source scrub ("Practice questions with verified answer
 //     key."). They carry no answers.
+//   STRICT (build-failing): public/content/radio-navigation - cleaned 2026-10-17
+//     (7 "Answer Key" grids + 1 specimen box removed; inline answers verified
+//     per question before removal).
 //   REPORT-ONLY: every other subject. They await their own per-subject passes
 //     (scope: tools/audit/answer-key-inventory-2026-10-17.tsv). When a subject
 //     finishes its pass, move it into the STRICT list below.
@@ -19,14 +22,18 @@
 //   node tools/audit/answer-key-guard.mjs --check   exit 1 if STRICT scope dirty
 //
 // The --check form runs in `npm run build`, so a key grid cannot silently
-// return to the meteorology notes.
+// return to a cleaned notes scope (meteorology, radio-navigation).
 
 import fs from "node:fs";
 import path from "node:path";
 
 const CHECK = process.argv.includes("--check");
 const CONTENT = path.join("public", "content");
-const STRICT_DIRS = [path.join(CONTENT, "meteorology")];
+const STRICT_DIRS = [
+  path.join(CONTENT, "meteorology"),
+  path.join(CONTENT, "radio-navigation"),
+];
+const STRICT_NAMES = STRICT_DIRS.map((d) => path.basename(d)).join(", ");
 const ALLOWED_TEXT = [/Practice questions with verified answer key\./];
 
 const KEY_TEXT = /answer[-\s_]*key/i;
@@ -94,10 +101,10 @@ for (const file of walk(CONTENT)) {
 }
 
 if (strictHits.length) {
-  console.log(`STRICT (meteorology): ${strictHits.length} violation(s)`);
+  console.log(`STRICT (${STRICT_NAMES}): ${strictHits.length} violation(s)`);
   for (const r of strictHits) console.log(`  ${r.file}:${r.line}  ${r.text}`);
 } else {
-  console.log("STRICT (meteorology): clean - no answer-key text or grid classes.");
+  console.log(`STRICT (${STRICT_NAMES}): clean - no answer-key text or grid classes.`);
 }
 
 if (pending.size) {
@@ -110,7 +117,7 @@ if (pending.size) {
 }
 
 if (CHECK && strictHits.length) {
-  console.error("\nBuild blocked: hardcoded answer-key content reappeared in the meteorology notes.");
+  console.error(`\nBuild blocked: hardcoded answer-key content reappeared in a STRICT notes scope (${STRICT_NAMES}).`);
   process.exit(1);
 }
 console.log(CHECK ? "\nGuard OK." : "\nReport only (pass --check to fail the build on strict violations).");
