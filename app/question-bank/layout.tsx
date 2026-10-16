@@ -1,4 +1,4 @@
-import { SITE_URL } from "@/lib/site";
+import IndexBreadcrumb from "./IndexBreadcrumb";
 
 export const metadata = {
   title: "Free DGCA Question Bank — CPL & ATPL MCQs with Explanations",
@@ -16,26 +16,9 @@ export default function QuestionBankLayout({ children }: { children: React.React
   // only reveals those after a visitor clicks "Show Answer", so a crawler was
   // handed answers no visitor could see. Structured data must match visible
   // content. Do not re-add it unless the answers are rendered in the page.
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        "@id": `${SITE_URL}/question-bank#breadcrumb`,
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-          { "@type": "ListItem", position: 2, name: "Question Bank" },
-        ],
-      },
-    ],
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <IndexBreadcrumb />
       {children}
     </>
   );
