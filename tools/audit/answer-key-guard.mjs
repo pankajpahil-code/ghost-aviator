@@ -13,6 +13,14 @@
 //   STRICT (build-failing): public/content/radio-navigation - cleaned 2026-10-17
 //     (7 "Answer Key" grids + 1 specimen box removed; inline answers verified
 //     per question before removal).
+//   STRICT (build-failing): public/content/air-navigation - cleaned 2026-10-17
+//     (12 answer-key tables/grids + 5 dead key-CSS blocks removed; 25 prose
+//     mentions reworded; every grid entry verified present inline before
+//     removal - including nav-21, whose "Quick Answer Summary" grid carried no
+//     phrase text and was found by structure alone). No allowed-text exceptions.
+//     This pass also widened GRID_CLASS: earlier passes matched legacy grid
+//     class names only, so the .ans-key/.key-grid/.key-cell family went
+//     undetected - which is exactly how nav-21 had slipped through.
 //   REPORT-ONLY: every other subject. They await their own per-subject passes
 //     (scope: tools/audit/answer-key-inventory-2026-10-17.tsv). When a subject
 //     finishes its pass, move it into the STRICT list below.
@@ -22,7 +30,8 @@
 //   node tools/audit/answer-key-guard.mjs --check   exit 1 if STRICT scope dirty
 //
 // The --check form runs in `npm run build`, so a key grid cannot silently
-// return to a cleaned notes scope (meteorology, radio-navigation).
+// return to a cleaned notes scope (meteorology, radio-navigation,
+// air-navigation).
 
 import fs from "node:fs";
 import path from "node:path";
@@ -32,12 +41,13 @@ const CONTENT = path.join("public", "content");
 const STRICT_DIRS = [
   path.join(CONTENT, "meteorology"),
   path.join(CONTENT, "radio-navigation"),
+  path.join(CONTENT, "air-navigation"),
 ];
 const STRICT_NAMES = STRICT_DIRS.map((d) => path.basename(d)).join(", ");
 const ALLOWED_TEXT = [/Practice questions with verified answer key\./];
 
 const KEY_TEXT = /answer[-\s_]*key/i;
-const GRID_CLASS = /answer-key-grid|answer-grid|answer-cell|ak-cell/i;
+const GRID_CLASS = /answer-key-grid|answer-grid|answer-cell|ak-cell|ans-key|key-grid|key-cell|keytable|krow-[qa]|keyfix/i;
 
 function* walk(dir) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
