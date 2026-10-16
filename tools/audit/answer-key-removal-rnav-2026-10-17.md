@@ -4,9 +4,11 @@
 single visible answer source. Hardcoded answer-key tables are removed from
 the notes; keys belong to the question dataset, never to a table on a page.
 
-**Status.** Removed on branch `ak-grid-rnav-2026-10-17`, commit `8eea441`
-(17 Oct 2026); awaiting the go for `main`. Guard is STRICT for
-radio-navigation from this pass on (build-enforced).
+**Status.** Done and merged to `main` on 17 Oct 2026 (`abacbeb..4da462f`).
+Live-verified the same hour: rnav-7's grid gone on the live page (deploy poll
+10 clean — key text 0, grid classes 0, all 21 inline answers intact); rnav-1
+clean (12 inline answers); rnav-19 box gone (243 inline answers); met-13
+re-checked, still clean. Guard is STRICT for radio-navigation (build-enforced).
 
 **Correction to the stage-1 note about rnav-7.** The met report warned that
 "rnav-7's page shows no inline answers at all". That was a marker-format miss,
@@ -55,6 +57,10 @@ Post-apply audits:
 
 Reproduce: `node tools/audit/remove-answer-key-rnav.mjs` (dry run, fails fast
 if anything moved) and `node tools/audit/answer-key-guard.mjs --check`.
+
+Live verification log (workspace, not repo):
+`_pk-docs/live-verify-rnav-2026-10-17.txt`; rendered-DOM before/after extracts:
+`_pk-docs/rnav-visual-evidence-2026-10-17.txt`.
 
 ## Findings for the Captain (content notes — conservative edits only)
 
