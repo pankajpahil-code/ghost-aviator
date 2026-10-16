@@ -129,3 +129,33 @@ instrumentation 67/26, human-performance 1/1.
 Instrumentation, then air-regulations, then human-performance; each gets its
 own recon → coverage check → removal → audits → guard flip, and its own go
 for the live push.
+
+## Independent team audits (added post-commit 23d17fd)
+
+Two fresh-context audit agents (house rule: the builder never audits its own
+work) reviewed this branch. Full reports committed beside this one:
+`answer-key-nav-audit-A-2026-10-17.md` (repo/scope) and
+`answer-key-nav-audit-B-2026-10-17.md` (content fidelity).
+
+- **Audit A (repo/scope): 8/9 claims fully verified** — exact 22-path diff,
+  clean tree, guard `--check` exit 0 with STRICT clean and the expected
+  PENDING counts, STRICT_DIRS/GRID_CLASS source lines, 0/0 phrase+class
+  matches across all 30 chapters, 18/18 files BOM-less/CRLF-consistent,
+  archive 18 blocks / 25 rewords / 14,570 bytes. One **descriptive
+  contradiction** (nil substantive): the delta script diffs HEAD↔worktree, so
+  a post-commit re-run shows no deltas; the auditor re-ran the same logic with
+  the true `f39a61a` base and reproduced all-balanced deltas (sole anomaly
+  nav-cx3-9 `tr` 45/44 unchanged, exactly as claimed).
+- **Audit B (content fidelity): zero contradictions.** 18/18 blocks
+  byte-exact (string + sha1 + length); HEAD-BASE + cuts + rewords
+  reconstructs every current file **byte-for-byte (18/18)**; 25/25 rewords
+  exact and unique; independent coverage parsing (no builder tooling):
+  nav-16 12/12, nav-21 15/15, nav-6 65/65 letters with symbol set exactly
+  {1,3,4,5,12,25,30,31,63,73} (marked inline: 6 literal ⚠ flags + 4
+  worked-example notes), nav-13 all three required answers, and 24/24
+  seeded-random entries across the other 8 files; every archived block matches
+  a current guard regex (re-insertion fails the build); `git diff --numstat`
+  accounting reconciles exactly (241 deleted / 26 inserted).
+
+Sign-off: the removal set is a faithful, fully-accounted change and the
+removed answers are provably present inline. Awaiting the Captain's push go.
