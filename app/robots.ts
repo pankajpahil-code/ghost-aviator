@@ -49,6 +49,9 @@ export default function robots(): MetadataRoute.Robots {
     "/content/*/*/*.png",
   ] as const;
   const contentClosed = "/content/";
+  // SEO-tool / bulk scrapers that send no traffic to students but crawl all ~674 sitemap URLs
+  // (ISR Reads are metered on Hobby). Googlebot, Bingbot and the AI agents above are NOT listed.
+  const bulkScrapers = ["AhrefsBot", "SemrushBot", "MJ12bot", "DotBot", "PetalBot", "DataForSeoBot", "BLEXBot", "serpstatbot"];
   const aiAgents = [
     "GPTBot",
     "ChatGPT-User",
@@ -77,6 +80,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: [...publicAllow],
         disallow: contentClosed,
       },
+      { userAgent: bulkScrapers, disallow: "/" },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,
