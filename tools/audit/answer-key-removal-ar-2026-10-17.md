@@ -11,7 +11,7 @@ Archive (nothing deleted): `tools/audit/answer-key-archive/ar-removed-blocks-202
 - ar-19 inclusion (beyond the recon's 11 removal-safe files): its only flagged conflict (Q1 highlight vs grid) was resolved in the 17 Oct fix pass (`8a2ca03`, highlight corrected to A per grid + explanation + source key); fresh gate then read 10/10 — removal-safe.
 - Blockers kept untouched: **ar-3** (89 unmatched), **ar-12** (88 unmatched), **ar-16** (0 inline — questions not printed; grids are the only answer source).
 
-## Removed blocks (13, 15,851 bytes, 271 lines)
+## Removed blocks (13, 15,851 bytes; 260 block lines + 11 reword swaps = 271 deleted diff lines)
 
 | File | Range (orig. lines) | Lines | Bytes | Content |
 |---|---|---|---|---|
