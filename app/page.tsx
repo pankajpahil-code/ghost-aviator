@@ -1,3 +1,4 @@
+import TestimonialCard from "./components/TestimonialCard";
 import Link from "next/link";
 import { LIVE_PRICE, LIVE_LIST_PRICE, LIVE_BATCH_META, liveWaLink } from "@/lib/live-classes";
 import { TESTIMONIALS } from "@/lib/testimonials";
@@ -377,24 +378,17 @@ export default function Home() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-2">What Students <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Say</span></h2>
-            <p style={{ color:"#64748b" }}>From students who cleared papers with these notes — their words, not ours.</p>
+            <p style={{ color:"#64748b" }}>Student messages and reported results. Provisional scores are labelled.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {TESTIMONIALS.slice(0, 3).map(t => (
-              <div key={`${t.name}-${t.quote.slice(0, 24)}`} className="p-6 rounded-2xl flex flex-col"
-                   style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(34,197,94,0.2)" }}>
-                <p className="text-sm leading-relaxed flex-1 mb-4" style={{ color:"#94a3b8" }}>&ldquo;{t.quote}&rdquo;</p>
-                <div>
-                  <div className="font-bold text-white text-sm">{t.name}</div>
-                  {t.detail && <div className="text-xs" style={{ color:"#22c55e" }}>{t.detail}</div>}
-                </div>
-              </div>
+            {TESTIMONIALS.filter(t => t.featured).slice(0, 3).map(t => (
+              <TestimonialCard key={`${t.name}-${t.quote.slice(0, 24)}`} testimonial={t} />
             ))}
           </div>
           {TESTIMONIALS.length > 3 && (
             <div className="text-center mt-5">
-              <Link href="/about" className="text-sm font-bold no-underline" style={{ color:"#f3c889" }}>
-                More on About →
+              <Link href="/about#student-feedback" className="text-sm font-bold no-underline" style={{ color:"#f3c889" }}>
+                Read all student feedback →
               </Link>
             </div>
           )}

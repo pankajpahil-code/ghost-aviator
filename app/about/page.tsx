@@ -1,3 +1,4 @@
+import TestimonialCard from "../components/TestimonialCard";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -133,7 +134,7 @@ export default function AboutPage() {
       </section>
 
       {/* ══ CREDENTIALS ══ */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
+      <section id="student-feedback" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 scroll-mt-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {CREDENTIALS.map(([Icon, title, desc]) => (
             <div key={title} className="p-6 rounded-2xl"
@@ -212,19 +213,12 @@ export default function AboutPage() {
 
       {/* ══ TESTIMONIALS ══ */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
-        <h2 className="text-2xl font-black text-white mb-6 text-center">What Students Say</h2>
+        <h2 className="text-2xl font-black text-white mb-3 text-center">What Students Say</h2>
+        <p className="text-sm text-center mb-6" style={{ color: "#94a3b8" }}>Student messages and reported results. Provisional scores are labelled.</p>
         {TESTIMONIALS.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {TESTIMONIALS.map(t => (
-              <div key={`${t.name}-${t.quote.slice(0, 20)}`} className="p-6 rounded-2xl flex flex-col"
-                   style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(34,197,94,0.2)" }}>
-                {t.context && <p className="text-xs mb-2" style={{ color: "#94a3b8" }}>{t.context}</p>}
-                <p className="text-sm leading-relaxed flex-1 mb-4" style={{ color: "#94a3b8" }}>&ldquo;{t.quote}&rdquo;</p>
-                <div>
-                  <div className="font-bold text-white text-sm">{t.name}</div>
-                  {t.detail && <div className="text-xs" style={{ color: "#22c55e" }}>{t.detail}</div>}
-                </div>
-              </div>
+              <TestimonialCard key={`${t.name}-${t.quote.slice(0, 24)}`} testimonial={t} />
             ))}
           </div>
         ) : (
