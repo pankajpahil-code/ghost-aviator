@@ -1,0 +1,112 @@
+{
+  "generatedAt": "2026-10-17T04:24:13.677Z",
+  "purpose": "Content fixes for the answer-key program's flagged conflicts + structural hygiene items (2026-10-17).",
+  "report": "tools/audit/content-fixes-2026-10-17.md",
+  "edits": [
+    {
+      "id": "inst40-D-Q10-grid",
+      "file": "public/content/instrumentation/inst-40/notes.html",
+      "note": "Engine Instruments source key, Q10 (EPR during take-off run): grid said c; the page's own explained answer is (b) and the dataset (lib/generated/oxford-instrumentation.ts, 'During the take-off run, the effect of increasing airspeed...' ans: 1 = b) keys b. Grid corrected c -> b.",
+      "before": "<td>9</td><td>c</td><td>10</td><td>c</td><td>11</td><td>d</td>",
+      "after": "<td>9</td><td>c</td><td>10</td><td>b</td><td>11</td><td>d</td>"
+    },
+    {
+      "id": "inst40-F-Q11-grid",
+      "file": "public/content/instrumentation/inst-40/notes.html",
+      "note": "Specimen Examination Paper source key, Q11 ('What correction is given by TCAS?'): grid said c; the inline explained answer is (b) 'Climb or descend' and the dataset (oxford-instrumentation.ts, same stem, ans: 1) keys b. Grid corrected c -> b.",
+      "before": "<td>11</td><td>c</td><td>w1</td>",
+      "after": "<td>11</td><td>b</td><td>w1</td>"
+    },
+    {
+      "id": "ar3-Q3-highlight-to-A",
+      "file": "public/content/air-regulations/ar-3/notes.html",
+      "note": "Q3 (white dumb-bell WITH black perpendicular bar): ICAO Annex 2 App 1 4.2.3.2 = 'land and take off on runways only, but other manoeuvres need not be confined' -> option A, matching the source key (grid 3-A) and the rk-bali bank ('black bar placed perpendicular to the shaft', ans = runways for landing & take off family). The old highlight (C) described the PLAIN dumb-bell. Highlight moved C -> A (part 1).",
+      "before": "<li class=\"correct-ans\">✓ C) Landing, take-off and taxiing is allowed on runway and/or taxiway only</li>",
+      "after": "<li>C) Landing, take-off and taxiing is allowed on runway and/or taxiway only</li>"
+    },
+    {
+      "id": "ar3-Q3-highlight-to-A-2",
+      "file": "public/content/air-regulations/ar-3/notes.html",
+      "note": "Q3 highlight moved C -> A (part 2).",
+      "before": "<li>A) Taxiing need not be confined to the taxiways</li>",
+      "after": "<li class=\"correct-ans\">✓ A) Taxiing need not be confined to the taxiways</li>"
+    },
+    {
+      "id": "ar3-Q6-highlight-to-C",
+      "file": "public/content/air-regulations/ar-3/notes.html",
+      "note": "Q6 (series of red flashes to an aircraft in the circuit): the ICAO light-signal table = 'Aerodrome unsafe, do not land' -> option C; the source key (grid 6-C) and all four rk-bali printings of this question key the 'aerodrome unsafe' option over the 'notwithstanding any previous instructions' (red-pyrotechnic) wording. The old highlight (A) was the pyrotechnic answer. Highlight moved A -> C (part 1).",
+      "before": "<li class=\"correct-ans\">✓ A) Not land for the moment regardless of previous instructions</li>",
+      "after": "<li>A) Not land for the moment regardless of previous instructions</li>"
+    },
+    {
+      "id": "ar3-Q6-highlight-to-C-2",
+      "file": "public/content/air-regulations/ar-3/notes.html",
+      "note": "Q6 highlight moved A -> C (part 2).",
+      "before": "<li>C) Not land because the airport is not available for landing</li>",
+      "after": "<li class=\"correct-ans\">✓ C) Not land because the airport is not available for landing</li>"
+    },
+    {
+      "id": "ar16-tip-Q7-letter",
+      "file": "public/content/air-regulations/ar-16/notes.html",
+      "note": "Tip mini-key: Q7 ('The maximum duty time limit per day extension for a scheduled flight is' - 1.5/2/3 hrs) is keyed B (2 hrs) by the grid above and by the corrections registry (FDP extension = 2 hrs, lib/answer-corrections.ts). The tip wrongly printed (C). Fixed to Q7 (B) / Q16 (C); Q16 = C remains correct (FT +1 hr, FDP +2 hrs).",
+      "before": "<strong>Q7 / Q16 (C):</strong>",
+      "after": "<strong>Q7 (B) / Q16 (C):</strong>"
+    },
+    {
+      "id": "ar19-Q1-highlight-to-A",
+      "file": "public/content/air-regulations/ar-19/notes.html",
+      "note": "Q1 (objective of the investigation): the source key grid says A and the explanation text says 'Textbook Answer: A' - the highlight (B) was the outlier. Highlight moved B -> A (part 1: B unmarked).",
+      "before": "<div class=\"correct\">✓ B) Prevention of accidents or incidents and to help the manufacturers in design <span style=\"font-size:11px; font-weight: normal;\">— <i>per textbook answer key</i></span></div>",
+      "after": "<div>B) Prevention of accidents or incidents and to help the manufacturers in design</div>"
+    },
+    {
+      "id": "ar19-Q1-highlight-to-A-2",
+      "file": "public/content/air-regulations/ar-19/notes.html",
+      "note": "Q1 highlight moved B -> A (part 2: A marked, 'per textbook answer key' tag moved with it).",
+      "before": "<div>A) Prevention of accidents or incidents and to help the judges</div>",
+      "after": "<div class=\"correct\">✓ A) Prevention of accidents or incidents and to help the judges <span style=\"font-size:11px; font-weight: normal;\">— <i>per textbook answer key</i></span></div>"
+    },
+    {
+      "id": "ar18-heading-reword",
+      "file": "public/content/air-regulations/ar-18/notes.html",
+      "note": "Orphan heading: no grid exists anywhere in ar-18; 'Answer Key' in the heading was misleading (recon: 'orphan heading - reword').",
+      "before": "32. Exam-Prep Quick Cards — Answer Key Highlights",
+      "after": "32. Exam-Prep Quick Cards"
+    },
+    {
+      "id": "rnav15-Q3-note",
+      "file": "public/content/radio-navigation/rnav-15/notes.html",
+      "note": "Q3 note rewrite: the old text showed 'Answer: (b)' above a computation that yields 100.3 NM (option a) - the muddle. Keyed answer (b) preserved (dataset ans: 1); both derivations now stated cleanly. KEY-FLIP RULING still open for the Captain (page + dataset exp).",
+      "before": "<b>Answer: (b)</b><br>Range = (1290 &minus; 50) / 12.36 = 1240 / 12.36 = <span class='rv'>100.3 NM</span>. (Note: 100.3 NM applies the 50 &micro;s delay correction; the intended answer (b) 104.3 NM uses the raw 1290 &micro;s.)",
+      "after": "<b>Answer: (b)</b> &mdash; as per the source key. Raw echo time: 1290 / 12.36 = <span class='rv'>104.3 NM</span> &rarr; option (b). With the standard 50 &micro;s transponder-delay correction: (1290 &minus; 50) / 12.36 = 100.3 NM &rarr; option (a). Answer in the exam: (b)."
+    },
+    {
+      "id": "rnav19-Q3-note",
+      "file": "public/content/radio-navigation/rnav-19/notes.html",
+      "note": "Q3 note rewrite: 'Ans: (c)' above a computation yielding 141 NM (option d) - the muddle. Keyed answer (c) preserved (dataset ans: 2); both derivations now stated cleanly. KEY-FLIP RULING still open for the Captain (page + dataset exp).",
+      "before": "<b>Ans: (c)</b> &mdash; 1.23×(√400+√9000)=1.23×(20+94.9)=1.23×114.9=<span class='rv'>141 NM</span>. Nearest = 140 NM (d). [For the variant with 325/8000 ft: 1.23×(18+89)=134 NM]",
+      "after": "<b>Ans: (c)</b> &mdash; as per the source key. 1.23×(√400+√9000)=1.23×(20+94.9)=1.23×114.9=<span class='rv'>141 NM</span> &rarr; nearest option (d) 140 NM. The source key's (c) 134 NM matches the 325 ft / 8000 ft variant: 1.23×(18+89)=134 NM. Answer in the exam: (c)."
+    },
+    {
+      "id": "rnav3-stray-div",
+      "file": "public/content/radio-navigation/rnav-3/notes.html",
+      "note": "Source hygiene: one surplus </div> before the watermark block (open 117 / close 118; stack says line 705 closes nothing). Browser already ignores it, so the DOM is unchanged; counts now balance 117/117.",
+      "before": "</div>\r\n</div>\r\n\r\n<div class=\"watermark\"",
+      "after": "</div>\r\n\r\n<div class=\"watermark\""
+    },
+    {
+      "id": "navcx39-css-comment",
+      "file": "public/content/air-navigation/nav-cx3-9/notes.html",
+      "note": "Source hygiene: the tag-balance 'imbalance' (tr 45/44) was a false positive - the literal <tr> sat inside a CSS comment (L505). Comment reworded so counts read clean (44/44); zero render impact.",
+      "before": "applied per <tr>, which",
+      "after": "applied per table row, which"
+    },
+    {
+      "id": "ar25-final-newline",
+      "file": "public/content/air-regulations/ar-25/notes.html",
+      "note": "Encoding hygiene: file did not end with a newline; a final CRLF is appended (ar-25 cosmetic finding).",
+      "before": "</html>",
+      "after": "</html>\r\n"
+    }
+  ]
+}
