@@ -21,6 +21,11 @@
 //     This pass also widened GRID_CLASS: earlier passes matched legacy grid
 //     class names only, so the .ans-key/.key-grid/.key-cell family went
 //     undetected - which is exactly how nav-21 had slipped through.
+//   2026-10-17 follow-up: the guard now also detects bare answer grids by
+//     STRUCTURE - a table whose header row is 3+ Q-numbered (or sequential
+//     1..N) cells followed by a same-count row of single letters A-D. Added
+//     after the air-regulations recon found ar-15 L986-991, a grid with no key
+//     phrase and no grid class anywhere near it, invisible to phrase/class.
 //   REPORT-ONLY: every other subject. They await their own per-subject passes
 //     (scope: tools/audit/answer-key-inventory-2026-10-17.tsv). When a subject
 //     finishes its pass, move it into the STRICT list below.
@@ -84,6 +89,88 @@ function stripComments(line, state) {
   return out.replace(/\/\*.*?\*\//g, "");
 }
 
+/** Plain text of every <th>/<td> cell in one <tr> fragment (tags stripped). */
+function cellTexts(fragment) {
+  const cells = [];
+  const re = /<t[hd]\b[^>]*>([\s\S]*?)<\/t[hd]>/gi;
+  let m;
+  while ((m = re.exec(fragment))) {
+    cells.push(m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim());
+  }
+  return cells;
+}
+
+/**
+ * Structural detector: bare answer grids that carry no key phrase and no grid
+ * class - a table whose header row is 3+ cells of `Q<n>` (or sequential `1..N`)
+ * followed by a row with the SAME number of single letters A-D. Shape alone,
+ * found after ar-15 L986-991 escaped the phrase/class scan.
+ */
+function structuralGridHits(strippedLines, hitLines) {
+  const hits = [];
+  const nearHit = (from, to) => {
+    // A phrase/class hit within 15 lines above the table means this block is
+    // already counted (e.g. ar-23: heading L1669, tables L1670-1689).
+    for (let l = Math.max(1, from - 15); l <= to; l++) if (hitLines.has(l)) return true;
+    return false;
+  };
+  for (let i = 0; i < strippedLines.length; i++) {
+    if (!/<table\b/i.test(strippedLines[i])) continue;
+    let end = i;
+    while (end < strippedLines.length && !/<\/table>/i.test(strippedLines[end])) end++;
+    if (end >= strippedLines.length) continue; // unterminated table: skip
+    const blockLines = strippedLines.slice(i, end + 1);
+    const blockText = blockLines.join("\n");
+    const lineStarts = [];
+    {
+      let acc = 0;
+      for (const bl of blockLines) {
+        lineStarts.push(acc);
+        acc += bl.length + 1;
+      }
+    }
+    const lineOf = (offset) => {
+      let lo = 0;
+      let hi = lineStarts.length - 1;
+      while (lo < hi) {
+        const mid = (lo + hi + 1) >> 1;
+        if (lineStarts[mid] <= offset) lo = mid;
+        else hi = mid - 1;
+      }
+      return i + lo + 1;
+    };
+    const rows = [];
+    const trRe = /<tr\b/gi;
+    let trm;
+    while ((trm = trRe.exec(blockText))) {
+      const rest = blockText.slice(trm.index + trm[0].length);
+      const stop = rest.search(/<\/tr>|<tr\b/i);
+      const frag = stop === -1 ? rest : rest.slice(0, stop);
+      rows.push({ line: lineOf(trm.index), cells: cellTexts(frag) });
+    }
+    let header = -1;
+    for (let r = 0; r < rows.length; r++) {
+      const c = rows[r].cells;
+      if (c.length < 3 || !c.every((x) => /^Q?\d{1,3}$/.test(x))) continue;
+      const qAll = c.every((x) => /^Q\d+$/.test(x));
+      const seq = c.every((x, k) => k === 0 || Number(x) === Number(c[k - 1]) + 1);
+      if (qAll || seq) { header = r; break; }
+    }
+    if (header === -1) continue;
+    const h = rows[header].cells;
+    const letterRow = rows.find(
+      (r, idx) => idx > header && r.cells.length === h.length && r.cells.every((x) => /^[A-Da-d]$/.test(x)),
+    );
+    if (!letterRow) continue;
+    if (nearHit(i + 1, end + 1)) continue; // already counted by phrase/class
+    hits.push({
+      line: rows[header].line,
+      text: `[structural] bare answer grid: header ${h.join(",")} + letters ${letterRow.cells.join(",")}`,
+    });
+  }
+  return hits;
+}
+
 const strictHits = [];
 const pending = new Map(); // subject -> [{file, line, text}]
 
@@ -93,14 +180,18 @@ for (const file of walk(CONTENT)) {
   const isStrict = STRICT_DIRS.some((d) => abs.startsWith(path.resolve(d) + path.sep));
   const subject = rel.split("/")[2] || "?";
   const state = { inHtml: false };
+  const strippedLines = [];
+  const hitLines = new Set();
   fs.readFileSync(file, "utf8")
     .split(/\r?\n/)
     .forEach((rawLine, i) => {
       const line = stripComments(rawLine, state);
+      strippedLines.push(line);
       const hasText = KEY_TEXT.test(line);
       const hasGridClass = GRID_CLASS.test(line);
       if (!hasText && !hasGridClass) return;
       if (hasText && ALLOWED_TEXT.some((a) => a.test(rawLine))) return;
+      hitLines.add(i + 1);
       const rec = { file: rel, line: i + 1, text: rawLine.trim().slice(0, 110) };
       if (isStrict) strictHits.push(rec);
       else {
@@ -108,6 +199,14 @@ for (const file of walk(CONTENT)) {
         pending.get(subject).push(rec);
       }
     });
+  for (const rec of structuralGridHits(strippedLines, hitLines)) {
+    const full = { file: rel, line: rec.line, text: rec.text };
+    if (isStrict) strictHits.push(full);
+    else {
+      if (!pending.has(subject)) pending.set(subject, []);
+      pending.get(subject).push(full);
+    }
+  }
 }
 
 if (strictHits.length) {
@@ -124,6 +223,13 @@ if (pending.size) {
   }
 } else {
   console.log("\nPENDING: none anywhere.");
+}
+
+if (process.argv.includes("--list")) {
+  for (const [s, rows] of [...pending.entries()].sort((a, b) => b[1].length - a[1].length)) {
+    console.log(`\n-- ${s} (${rows.length}) --`);
+    for (const r of rows) console.log(`  ${r.file}:${r.line}  ${r.text}`);
+  }
 }
 
 if (CHECK && strictHits.length) {
