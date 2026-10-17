@@ -37,3 +37,18 @@ All 15 edits in the 10 content files are content-correct, internally consistent,
 - **Re-run safety verified:** guard and apply scripts were inspected before execution and run only in read-only modes; the apply dry-run re-ran byte-clean (all SKIP, 0 failures).
 - **Disclosure:** an earlier failed PowerShell pipe of mine accidentally created an empty untracked file named `-Context` in the worktree; I removed it immediately. `git status` is clean; no repository file was modified. HEAD `8a2932a`.
 - **Bottom line for the Captain:** the 15 fixes are faithful to their sources and safe to keep as-is. The single content defect that should not ship unqualified is the rnav-19 Q3 variant line (`1.23×(18+89)=134 NM` — arithmetically false, though it does not change the keyed (c)); the report should not describe that derivation as "clean" until it is corrected in the key-flip ruling.
+
+---
+
+## Audit B addendum — commit f2decc8
+
+**Verdict: PASS** — both Audit B concerns (rnav-19 variant arithmetic, rnav-15 precision) are correctly resolved; the keyed answers are preserved; no collateral changes.
+
+| # | Item | Evidence | Verdict |
+|---|------|----------|---------|
+| 1 | rnav-19 Q3 (L57) variant line | Now reads: *"The source key's (c) 134 NM corresponds to the 325 ft / 8000 ft variant: 1.23×(18+89) ≈ 132 NM → nearest option (c) 134 NM. Answer in the exam: (c)."* Re-derived: 1.23×107 = **131.61**; precise roots **132.19** → "≈ 132" true. Nearest of 117/124/134/140 to ~132.2 is **134 (c)**. No `=134` equality remains in the line; key "(c)" preserved. | **PASS** |
+| 2 | rnav-15 Q3 (L297) precision | Now reads: *"Raw echo time: 1290 / 12.36 ≈ 104.4 NM → nearest option (b) 104.3 NM. With the standard 50 µs transponder-delay correction: (1290 − 50) / 12.36 = 100.3 NM → option (a). Answer in the exam: (b)."* Re-derived: 104.3689 → rounds to **104.4**; nearest option to 104.37 is **104.3** (Δ0.069 vs Δ0.369 for 104). Delay-corrected line retained; key "(b)" preserved. | **PASS** |
+| 3 | Diff scope `8a2932a..f2decc8` | Per-file diff: exactly **one changed line per file** (the Q3 answer div). `--name-status`: only `rnav-15/notes.html` and `rnav-19/notes.html` under `public/content` (remaining files are `tools/audit/*`). No other question, option, answer, or highlight in either file changed; no other content file in the commit. | **PASS** |
+| 4 | Dataset still open (deliberate) | `lib/generated/oxford-radio-nav.ts` has **no diff** in this commit. L1405 still muddled ("closest answer is b at 100.3 NM; answer key b = 104.3 is an approximation variant…"); L2085 still carries the old false variant line "[Answer key = c for variant with 325/8000 ft: 1.23×(18+89)=134 NM]". | **CONFIRMED OPEN** |
+
+**Residual notes:** The apply script was updated in sync — now 17 edits (added `rnav15-Q3-approx`, `rnav19-Q3-variant`); dry-run re-runs clean (17/17 SKIP, 0 failures), and the archive records before/after for all 17 edits including the follow-up. No new concerns; the two previous concerns are resolved. Dataset-side cleanup (L1405/L2085) remains pending the key-flip ruling, as intended. Working tree clean; audit performed read-only.

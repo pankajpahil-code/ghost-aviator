@@ -62,3 +62,20 @@ The concerns are non-defect: (1) a transient zero-byte untracked file `-Context`
 - **Encoding:** all ten content files and the archive are valid UTF-8 with no BOM and no replacement characters; the `✓`, `—`, `×`, `√` characters are intact.
 - **Verification limits:** no browser rendering or visual checks were performed (byte/DOM-independent checks only); no `--apply` run; no commit or push.
 - **Final state:** branch `ak-fix-issues-2026-10-17`, HEAD `8a2932a`, `git status --porcelain` empty, range contains exactly the two audited commits.
+
+---
+
+## Audit A addendum — commit f2decc8
+
+**Verdict: PASS** — all six checks clean; no discrepancies found. Read-only verification (git + dry-run node only), 2026-10-17, branch `ak-fix-issues-2026-10-17`, range `8a2932a..f2decc8`.
+
+| # | Check | Command | Result | Verdict |
+|---|-------|---------|--------|---------|
+| 1 | Scope | `git diff --stat 8a2932a..f2decc8`; `git diff --name-status 8a2932a..f2decc8` | Exactly the 7 mandated files: M rnav-15, M rnav-19, M archive JSON, M apply tool, M fix report, A `answer-key-fix-audit-A-2026-10-17.md`, A `answer-key-fix-audit-B-2026-10-17.md` (165 ins / 10 del). Nothing else. | PASS |
+| 2 | Byte-exactness (content) | `git diff 8a2932a..f2decc8 -- <both rnav files>`; `git diff --check 8a2932a..f2decc8`; `--numstat` vs `--ignore-cr-at-eol --numstat` | Exactly one changed line per file — the Q3 answer div, matching the intended final text (rnav-15: `…12.36 &asymp; 104.4 NM &rarr; nearest option (b) 104.3 NM…`; rnav-19: `…corresponds to the 325 ft / 8000 ft variant: 1.23×(18+89) &asymp; 132 NM &rarr; nearest option (c) 134 NM…`). No other hunks; numstat 1/1 each; ignore-cr identical (no EOL churn); `--check` exit 0; valid UTF-8, no BOM/U+FFFD. | PASS |
+| 3 | Re-run safety | `node tools\audit\apply-content-fixes-2026-10-17.mjs` (dry-run) | `DRY-RUN - 17 edit(s), 0 failure(s)`; 16× `[SKIP: already applied]` + 1× `[SKIP: already ends with newline]` (ar25); exit 0; no writes. | PASS |
+| 4 | Archive | node JSON.parse + per-record presence checks | 17 records, ids unique; `rnav15-Q3-note`/`rnav19-Q3-note` carry their final text as `after` (incl. `&asymp; 104.4 NM` / `&asymp; 132 NM`, and no false `=134 NM` equality); `rnav15-Q3-approx`/`rnav19-Q3-variant` present; all 4 rnav records `after` present / `before` absent in current files; all 17 records independently verified (17/17). | PASS |
+| 5 | Guard | `node tools\audit\answer-key-guard.mjs --check`; `--list \| Select-String "structural"` | `--check` exit 0 + `Guard OK.` (STRICT clean; PENDING unchanged 99/18, 67/26, 1/1). Structural list still exactly **one** hit: `ar-15/notes.html:987` (C,B,B,C,B). | PASS |
+| 6 | State | `git status --porcelain`; `git log --oneline -2` | Porcelain empty; log `f2decc8` on `8a2932a`. | PASS |
+
+**Discrepancies:** none. Supporting review: the apply-tool diff updates records 11–12 `replace` to the final text and adds records 16–17 (coherent with the archive and dry-run), and the fix-report update documents the follow-up; both added audit reports are valid UTF-8 (no BOM/replacement chars) and end with a newline.
