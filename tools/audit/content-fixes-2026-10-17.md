@@ -66,7 +66,29 @@ A `--list` flag prints every pending hit with file:line.
 5. **Push go** for the nav branch + this fix branch (linear chain `f39a61a → 318f09d → 23d17fd →
    26c6627 → this branch`).
 
-## Independent audits
+## Independent audits (commits 831eb94 / 8a2932a)
 
-Pending — team rule: the builder never audits their own work. Audit A (repo/scope/byte-exactness)
-and Audit B (content fidelity) run after the commits; their reports are committed alongside.
+- **Audit A — repo/scope/byte-exactness: PASS WITH CONCERNS (non-defect).** All 8 checks pass:
+  scope exactly the mandated files; all 15 edits byte-exact and surgical; apply script re-run-safe
+  (15/15 SKIP, 0 failures); guard STRICT clean + `--check` exit 0; exactly one structural hit
+  (ar-15 L987); archive valid with 15 before/after records; worktree clean; guard diff pure
+  additions. Concerns were cosmetic (report labeling; a transient untracked file created and
+  removed by the auditors themselves). Full report: `answer-key-fix-audit-A-2026-10-17.md`.
+- **Audit B — content fidelity: PASS WITH CONCERNS (one real defect, fixed).** All 15 fixes
+  verified against sources with no collateral damage; the one real finding: the rnav-19 Q3
+  variant line carried the false equality `1.23×(18+89)=134 NM` (recomputes to ≈132 NM; the
+  keyed (c) is unaffected since 132 is nearest to 134). Corrected in the post-audit follow-up
+  below. Full report: `answer-key-fix-audit-B-2026-10-17.md`.
+
+## Post-audit follow-up (commit 3)
+
+Two precision edits driven by Audit B, applied by the same re-run-safe tool (records 16–17 in
+the archive):
+
+- `rnav-15` Q3: `1290 / 12.36 ≈ 104.4 NM → nearest option (b) 104.3 NM` (the quotient is
+  104.37; 104.3 is the option label).
+- `rnav-19` Q3: variant line corrected to `1.23×(18+89) ≈ 132 NM → nearest option (c) 134 NM`
+  (removes the false `=134` equality; the keyed answer stays (c)).
+
+Both pages keep the source keys; the dataset-side explanation cleanup and the key-flip rulings
+remain open for the Captain (items 1–2 above).

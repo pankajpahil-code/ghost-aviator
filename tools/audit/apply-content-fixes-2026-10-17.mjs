@@ -120,7 +120,7 @@ const EDITS = [
       "<b>Answer: (b)</b><br>Range = (1290 &minus; 50) / 12.36 = 1240 / 12.36 = <span class='rv'>100.3 NM</span>. " +
       "(Note: 100.3 NM applies the 50 &micro;s delay correction; the intended answer (b) 104.3 NM uses the raw 1290 &micro;s.)",
     replace:
-      "<b>Answer: (b)</b> &mdash; as per the source key. Raw echo time: 1290 / 12.36 = <span class='rv'>104.3 NM</span> &rarr; option (b). " +
+      "<b>Answer: (b)</b> &mdash; as per the source key. Raw echo time: 1290 / 12.36 &asymp; 104.4 NM &rarr; nearest option (b) 104.3 NM. " +
       "With the standard 50 &micro;s transponder-delay correction: (1290 &minus; 50) / 12.36 = 100.3 NM &rarr; option (a). " +
       "Answer in the exam: (b).",
     note:
@@ -135,7 +135,7 @@ const EDITS = [
       "Nearest = 140 NM (d). [For the variant with 325/8000 ft: 1.23\u00d7(18+89)=134 NM]",
     replace:
       "<b>Ans: (c)</b> &mdash; as per the source key. 1.23\u00d7(\u221a400+\u221a9000)=1.23\u00d7(20+94.9)=1.23\u00d7114.9=<span class='rv'>141 NM</span> " +
-      "&rarr; nearest option (d) 140 NM. The source key's (c) 134 NM matches the 325 ft / 8000 ft variant: 1.23\u00d7(18+89)=134 NM. " +
+      "&rarr; nearest option (d) 140 NM. The source key's (c) 134 NM corresponds to the 325 ft / 8000 ft variant: 1.23\u00d7(18+89) &asymp; 132 NM &rarr; nearest option (c) 134 NM. " +
       "Answer in the exam: (c).",
     note:
       "Q3 note rewrite: 'Ans: (c)' above a computation yielding 141 NM (option d) - the muddle. Keyed answer (c) preserved (dataset ans: 2); both " +
@@ -166,6 +166,22 @@ const EDITS = [
     replace: null,
     kind: "append-eol",
     note: "Encoding hygiene: file did not end with a newline; a final CRLF is appended (ar-25 cosmetic finding).",
+  },
+  {
+    id: "rnav15-Q3-approx",
+    file: "public/content/radio-navigation/rnav-15/notes.html",
+    find: "Raw echo time: 1290 / 12.36 = <span class='rv'>104.3 NM</span> &rarr; option (b).",
+    replace: "Raw echo time: 1290 / 12.36 &asymp; 104.4 NM &rarr; nearest option (b) 104.3 NM.",
+    note:
+      "Post-audit precision fix (Audit B): the quotient is 104.37 (rounds to 104.4); 104.3 is the option label. 'Nearest option (b) 104.3 NM' removes the implied exactness.",
+  },
+  {
+    id: "rnav19-Q3-variant",
+    file: "public/content/radio-navigation/rnav-19/notes.html",
+    find: "The source key's (c) 134 NM matches the 325 ft / 8000 ft variant: 1.23\u00d7(18+89)=134 NM.",
+    replace: "The source key's (c) 134 NM corresponds to the 325 ft / 8000 ft variant: 1.23\u00d7(18+89) &asymp; 132 NM &rarr; nearest option (c) 134 NM.",
+    note:
+      "Post-audit correctness fix (Audit B): 1.23×(18+89) = 131.6 (132.2 with precise roots), NOT 134 - the old equality was false (carried verbatim from the pre-fix text and the dataset). The keyed (c) is unaffected (132 is nearest to 134).",
   },
 ];
 
