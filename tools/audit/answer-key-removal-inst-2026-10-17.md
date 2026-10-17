@@ -51,7 +51,12 @@ All slices tag-balanced; per-file token balance drift = 0; seams verified single
 
 ## Independent audits
 
-See `tools/audit/answer-key-inst-audit-A-2026-10-17.md` (repo/scope) and `tools/audit/answer-key-inst-audit-B-2026-10-17.md` (content fidelity) — to be appended/committed when the audit agents return.
+Both independent audits returned **PASS** (builder never audits own work); full reports committed under `tools/audit/`:
+
+- **Audit A — repo/scope** (`answer-key-inst-audit-A-2026-10-17.md`): commit shape exact (24 notes files + 2 tool files; numstat arithmetic reconciles against cut/reword counts); inst-34 and inst-40 blob-hash identical to parent; archive byte-exact (25 blocks / 10,528 bytes; all 19 reword old/new lines exact; ranges non-overlapping); guard 67/26 → 21/2 reproduced (inst-34 ×3 + inst-40 ×18); residual scan: all 12 letter-sequence hits classified innocuous; byte hygiene clean (UTF-8, BOM-less, CRLF; per-file line deltas exact); coverage 223/223 independently reproduced. MINOR: inst-6..11 watermark seam (fixed in the post-audit seam-fix commit). INFO: archive stores the CRLF checkout representation while parent blobs are LF (`autocrlf=true`).
+- **Audit B — content fidelity** (`answer-key-inst-audit-B-2026-10-17.md`): whole-diff byte-identical reconstruction from parent + archive (the diff is exactly the claimed edits, nothing more); all 223 removed key entries match the inline answers 1:1 (167 via Format A `Correct Answer:` + 56 via inst-31's `class="correct"` sequence, 1–40 / 1–16 sequential); rewords 19/19 truthful with box counts verified; seams clean; zero dangling refs; survivors (inst-34, inst-40) blob-identical. INFO: inst-35's removed block covered 5 of 6 questions (Q6 never had a key entry — nothing was lost).
+
+Post-audit follow-up: the inst-6..11 seam fix (in a shared seam-fix commit — see the team log for the commit chain).
 
 ## Open items after this pass
 

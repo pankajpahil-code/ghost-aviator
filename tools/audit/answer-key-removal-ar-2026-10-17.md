@@ -62,7 +62,12 @@ All slices tag-balanced (div/table/section/style net 0); per-file token balance 
 
 ## Independent audits
 
-See `tools/audit/answer-key-ar-audit-A-2026-10-17.md` (repo/scope) and `tools/audit/answer-key-ar-audit-B-2026-10-17.md` (content fidelity) — to be appended/committed when the audit agents return.
+Both independent audits returned **PASS** (builder never audits own work); full reports committed under `tools/audit/`:
+
+- **Audit A — repo/scope** (`answer-key-ar-audit-A-2026-10-17.md`): commit scope exact (13 air-regulations files + 2 tool files, no other content); worktree == audited commit; archive reconstructs every file byte-exactly (13 blocks / 260 lines / 15,851 bytes; sha1s and byte counts exact); guard 99/18 → 22/9 reproduced per-file; residual scans classify every hit; byte hygiene clean (UTF-8, BOM-less, CRLF); coverage 289/289 independently reproduced. MINOR: ar-11 double blank at the CSS cut seam (fixed in the post-audit seam-fix commit). INFO: the archive stores the CRLF checkout representation while parent git blobs are LF (`autocrlf=true`) — content exact modulo EOL.
+- **Audit B — content fidelity** (`answer-key-ar-audit-B-2026-10-17.md`): all 289 removed (Q → letter) pairs match the inline answers 1:1 in POST and PRE (0 mismatches / 0 missing across all 13 blocks); the full diff contains only the archived deletions + reword swaps; ar-19's Q1 history verified (single historical divergence at `4c21ef1`, resolved by `8a2ca03`); zero dangling refs; rewords 11/11 byte-exact and truthful; blockers ar-3/12/16 byte-identical to parent.
+
+Post-audit follow-up: the ar-11 seam fix (in a shared seam-fix commit — see the team log for the commit chain).
 
 ## Open items after this pass
 
