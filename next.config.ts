@@ -63,6 +63,14 @@ const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
 ];
 
+// Cache-Control for prerendered public content routes.
+// max-age=300: browsers reuse a page for 5 min (Iron Rule 1: corrections reach students fast).
+// s-maxage=31536000: pin the Vercel CDN copy for a year. A bare max-age=300 can let the CDN
+// treat the page as stale after 5 minutes and go back to the ISR cache - an ISR Read, the
+// metered quantity on Hobby (1M/month). These pages only change on deploy, and every deploy
+// starts with a fresh CDN cache, so a long s-maxage cannot serve stale answers after a publish.
+const STATIC_CACHE = "public, max-age=300, s-maxage=31536000";
+
 const nextConfig: NextConfig = {
   // Server code reads only HTML and CSS out of public/ (chapter notes, guides,
   // linked stylesheets). lib/notes-inline.ts resolves a stylesheet path at run
@@ -158,7 +166,7 @@ const nextConfig: NextConfig = {
       // fresh HTML on every crawl.
       {
         source: "/:track(cpl|atpl)/:path*",
-        headers: [{ key: "Cache-Control", value: "public, max-age=300" }],
+        headers: [{ key: "Cache-Control", value: STATIC_CACHE }],
       },
       // Same five-minute client reuse for the other public, prerendered content routes
       // (guides, question bank, exam and past-paper pages, notes index). They only change
@@ -167,7 +175,7 @@ const nextConfig: NextConfig = {
       // account pages (/dashboard, /login, /signup) and /api are deliberately not matched.
       {
         source: "/:section(guides|question-bank|exam|past-papers|notes)/:path*",
-        headers: [{ key: "Cache-Control", value: "public, max-age=300" }],
+        headers: [{ key: "Cache-Control", value: STATIC_CACHE }],
       },
       // Sitemap + robots are force-static and change with deploys, not per request.
       // max-age=0 was forcing every miss to revalidate at the edge; give the CDN
