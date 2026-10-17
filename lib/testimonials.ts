@@ -38,6 +38,7 @@ export type Testimonial = {
   name: string;      // "Rahul S." — first name + initial is fine
   detail?: string;   // e.g. "CPL student, Jaipur" or "Cleared Met — 81%"
   subject?: string;  // site subject id if the quote is subject-specific
+  context?: string; // Context for a short reply; never presented as student wording.
   quote: string;
 };
 
@@ -51,7 +52,45 @@ export type Testimonial = {
 // specific one is published; a generic "thank you so much" card beside it would
 // pad the count and imply a third person.
 // The card count is itself a claim. Keep it equal to what the screenshots show.
+// UPDATE.ZIP 2026-10-17: five screenshots supplied for publication by the Captain.
+// Cards below follow archive files 25124, 25105, 25131, 25127, 25106 respectively.
+// Excerpts omit unrelated chat, third-party source names, contact details and images.
+// 25131 joins two consecutive messages with a full stop. 25124/25106 omit trailing emoji.
+// Scores are screenshot claims, not independently authenticated DGCA results.
+// 25127 retains the question as editorial context; 53/100 is never called a pass.
+// New cards do not establish that these students are distinct from earlier entries.
 export const TESTIMONIALS: Testimonial[] = [
+  {
+    "name": "DGCA CPL student",
+    "detail": "Reported Meteorology score: 86 marks",
+    "subject": "meteorology",
+    "quote": "Your QB was extremely helpful and made a huge difference. Thank you so much for providing such useful material, Sir!"
+  },
+  {
+    "name": "DGCA CPL student",
+    "detail": "Cleared Air Regulations",
+    "subject": "air-regulations",
+    "quote": "The important points, mnemonics and precise explanations made self-study so much easier and more effective for me!!!!!"
+  },
+  {
+    "name": "DGCA CPL student",
+    "detail": "Cleared Meteorology without coaching",
+    "subject": "meteorology",
+    "quote": "Bcoz of your notes i have cleared my met exam. Without Coaching"
+  },
+  {
+    "name": "DGCA CPL student",
+    "detail": "Shared provisional scores: Meteorology 90/100; Air Navigation 53/100. CPL Regular Session 03 of 2026; subject to final result.",
+    "subject": "meteorology",
+    "context": "Asked whether any questions appeared from the questionnaire:",
+    "quote": "There were multiple"
+  },
+  {
+    "name": "DGCA CPL student",
+    "detail": "Air Regulations: provisional score 80/100. CPL Regular Session 03 of 2026; subject to final result.",
+    "subject": "air-regulations",
+    "quote": "Good afternoon sir\nI got the regs result Today\n80/100 I’m grateful for your guidance , your notes & ques helped me a lot\nThank youu"
+  },
   {
     name: "DGCA CPL student",
     detail: "Cleared Technical Specific (PA-28)",

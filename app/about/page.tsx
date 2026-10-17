@@ -218,6 +218,7 @@ export default function AboutPage() {
             {TESTIMONIALS.map(t => (
               <div key={`${t.name}-${t.quote.slice(0, 20)}`} className="p-6 rounded-2xl flex flex-col"
                    style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(34,197,94,0.2)" }}>
+                {t.context && <p className="text-xs mb-2" style={{ color: "#94a3b8" }}>{t.context}</p>}
                 <p className="text-sm leading-relaxed flex-1 mb-4" style={{ color: "#94a3b8" }}>&ldquo;{t.quote}&rdquo;</p>
                 <div>
                   <div className="font-bold text-white text-sm">{t.name}</div>
