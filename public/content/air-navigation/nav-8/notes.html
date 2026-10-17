@@ -1,0 +1,114 @@
+<!doctype html><html lang="en"><head>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://ghostaviator.com/cpl/air-navigation/nav-8/notes"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Multi-Engine Aeroplane Performance | Ghost Aviator</title><style>@page{size:A4;margin:15mm 13mm 23mm}*{box-sizing:border-box}body{font:16px/1.65 Georgia,serif;color:#172535;background:#fffdf4;max-width:900px;margin:auto;padding:28px}h1,h2,h3{font-family:Arial,sans-serif;line-height:1.2}h1{font-size:34px;color:#163f70}h2{font-size:24px;border-bottom:3px solid #d7ab35;padding-bottom:8px;margin-top:35px;break-after:avoid}h3{font-size:18px;color:#205f71;break-after:avoid}p{margin:10px 0}table{border-collapse:collapse;width:100%;font-size:14px;margin:18px 0}td,th{padding:9px;border:1px solid #cfd6dd;vertical-align:top}th{background:#e3edf5;text-align:left}.note,.trap,.worked,.revision{padding:15px 18px;border-left:5px solid;margin:18px 0;break-inside:avoid}.note{background:#e6f1fa;border-color:#2981a5}.trap{background:#fff0e8;border-color:#c8603d}.worked{background:#ecf5df;border-color:#678a32}.revision{background:#f2ebfb;border-color:#8863b2}.formula{font-family:Arial,sans-serif;font-weight:bold;color:#15536a;padding:10px;background:#edf5f8}.draft{font-family:Arial,sans-serif;border:2px solid #b83c32;color:#8c2b23;padding:12px;background:#fff3f0}.strap{font:12px Arial,sans-serif;letter-spacing:2px;color:#8d6718}li{margin:5px 0}.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:650px){body{padding:14px;font-size:17px}.columns{grid-template-columns:1fr}table{display:block;overflow:auto}h1{font-size:28px}}@media print{body{max-width:none;padding:0;background:white;font-size:11pt}.draft{font-size:9pt}h2{font-size:17pt}.columns{display:block}a{color:#15536a;text-decoration:none}}</style></head><body><div class="note"><b>Worked examples:</b> The figures are illustrative calculation models, not aircraft performance data. Use the current aircraft flight manual for operational planning.</div>
+<p class="strap">GHOST AVIATOR · AIR NAVIGATION · PERFORMANCE</p>
+<h1>Multi-Engine Aeroplane Performance</h1>
+<p>The second engine changes the planning problem. It gives another source of power, but it also creates an asymmetric aeroplane when one engine stops producing useful thrust. The important question is not simply whether an engine is still running. It is whether the remaining performance will keep the planned path clear of the ground.</p>
+<div class="trap"><b>Controllable does not mean climbing.</b> Directional control, rate of climb, obstacle clearance and runway distance are separate checks. Passing one does not prove the others.</div>
+
+<h2>1 · Start with the engine state</h2>
+<table><tr><th>Term</th><th>Meaning to carry into the calculation</th></tr>
+<tr><td>AEO</td><td>All engines operating under the conditions stated by the chart.</td></tr>
+<tr><td>OEI</td><td>One engine inoperative. Performance also depends on the propeller condition, configuration and power used on the operating engine.</td></tr>
+<tr><td>Critical engine</td><td>The engine whose loss most adversely affects performance or handling qualities.</td></tr>
+<tr><td>Gross performance</td><td>The underlying performance on which the planning calculation is based.</td></tr>
+<tr><td>Net performance</td><td>Gross performance reduced by the applicable planning allowance.</td></tr>
+<tr><td>Maximum continuous power</td><td>The published power rating permitted for continuous use under its stated limitations.</td></tr></table>
+<p>Do not assume the left engine is always critical. Propeller rotation and the aircraft's design matter. Similarly, do not assume that every light twin has the same certified take-off planning method as a transport aeroplane.</p>
+<p>A performance category determines which requirements apply. The fact that an aircraft has one or two engines does not, by itself, supply every classification, factor or minimum gradient needed for an operational calculation.</p>
+
+<h2>2 · Losing half the power can remove nearly all the surplus</h2>
+<p>Level flight already consumes part of the available power. Only the surplus is available for climb. If an engine fails, compare the power that remains with the power now required; do not compare only the engine count.</p>
+<p class="formula">Power available − power required = excess power</p>
+<div class="worked"><b>A deliberately simple power model.</b> Suppose two identical engines together provide 200 arbitrary power units and level flight requires 150. The climb surplus is 50 units. Losing one engine leaves 100 available against the same assumed 150 required: a deficit of 50. Real OEI drag and efficiency also change, so this is a reasoning model, not an aircraft prediction.</div>
+<p>The resulting loss of climb performance can be much greater than the fraction of total power lost. At some combinations of mass, temperature and altitude, no positive OEI climb is available.</p>
+<p>An unfeathered windmilling propeller can create substantial drag. Sideslip, landing gear, flap and a configuration different from that assumed by the chart may consume more of the remaining margin. Read the propeller and configuration assumptions before using an OEI performance figure.</p>
+
+<h2>3 · Separate minimum control speed from best climb speed</h2>
+<table><tr><th>Speed</th><th>Question it answers</th><th>What it does not guarantee</th></tr>
+<tr><td>V<sub>MC</sub></td><td>What minimum control capability was demonstrated for the defined engine-out test conditions?</td><td>A positive climb or clearance of terrain.</td></tr>
+<tr><td>V<sub>YSE</sub></td><td>What published speed gives the best OEI rate of climb for the stated data?</td><td>That the rate is positive at every mass, temperature or altitude.</td></tr>
+<tr><td>V<sub>XSE</sub>, where published</td><td>What speed gives the best OEI climb angle for the stated conditions?</td><td>That a particular obstacle can be cleared.</td></tr>
+<tr><td>V<sub>1</sub>, where applicable</td><td>What decision speed belongs to the aircraft's approved take-off performance method?</td><td>A universal decision rule for every light twin.</td></tr></table>
+<p>V<sub>MC</sub> is established with defined test conditions. It is not a single description of every possible combination of mass, centre of gravity, engine power, bank, altitude and configuration. Use the aircraft's limitations and approved procedures rather than treating a marking as a complete engine-out plan.</p>
+<p>The asymmetric thrust produces a yawing tendency and creates additional control demands. The aircraft-specific technique for managing those demands belongs to the approved operating procedure and training for that aircraft; it must not be reconstructed from a general performance sketch.</p>
+
+<h2>4 · Runway planning: run, go and stop</h2>
+<p>A normal take-off calculation assumes the stated operating engines and technique. An accelerate-stop calculation addresses acceleration followed by a rejected take-off under defined assumptions. An accelerate-go calculation, where published, addresses a continued take-off after the assumed engine failure. These are different cases.</p>
+<table><tr><th>Calculation</th><th>Compare with</th><th>Keep in view</th></tr>
+<tr><td>Take-off ground run</td><td>The applicable TORA limitation</td><td>A clearway cannot be used as extra ground-run pavement.</td></tr>
+<tr><td>Take-off distance</td><td>The applicable TODA limitation</td><td>The reference height, engine-failure assumptions and climb path must match the data.</td></tr>
+<tr><td>Accelerate-stop distance</td><td>ASDA</td><td>A declared stopway may form part of ASDA; a clearway does not.</td></tr>
+<tr><td>Landing distance</td><td>LDA</td><td>Do not add a stopway or clearway to the landing distance available.</td></tr></table>
+<p>Balanced field length is associated with an approved performance calculation in which the relevant accelerate-stop and continued-take-off distances balance at the selected decision speed. It is not a property to assume for a light twin that has no such approved data.</p>
+<div class="worked"><b>Illustrative reject case.</b> Assume a required accelerate-stop distance of 1040 m, TORA of 1000 m and a declared 100 m stopway. ASDA is 1100 m, so 1040 ≤ 1100. If the extra 100 m were a clearway instead, it would not solve this accelerate-stop comparison. Neither version proves the separate take-off, obstacle or climb requirements.</div>
+<p>Surface, slope, wind, temperature, pressure altitude, mass and braking assumptions must match the chart. A pilot cannot repair a missing OEI take-off margin by quietly substituting an AEO result.</p>
+
+<h2>5 · Positive rate is not the same as obstacle clearance</h2>
+<p>A small positive rate of climb may still produce an inadequate gradient over the ground. The aeroplane can be climbing and still meet rising terrain.</p>
+<p class="formula">Ground gradient (%) = ROC (ft/min) ÷ [GS (kt) × 6076.12 ÷ 60] × 100</p>
+<div class="worked"><b>Gradient example.</b> An assumed OEI climb rate of 240 ft/min at 120 kt groundspeed produces approximately <b>1.97%</b>. If the stated planning case requires a 3% ground gradient, the corresponding rate at that groundspeed is about <b>365 ft/min</b>. A positive 240 ft/min is not enough for that particular model.</div>
+<p>A headwind and tailwind change the ground distance travelled during a given height gain. State whether a result is an air-mass climb angle or a ground-referenced gradient. For actual obstacle assessment, use the approved method and applicable wind treatment.</p>
+<p>The planned flight path must use the required gross or net performance basis. Net performance contains the applicable reduction from gross performance; it is not an extra benefit to be added. There is no single universal reduction that can be attached to every multi-engine aeroplane.</p>
+<div class="revision"><b>Obstacle planning asks four separate things:</b> What path is being flown? At what mass and conditions? With what engine and configuration state? Against which obstacle and clearance requirement?</div>
+
+<h2>6 · Power, speed and configuration form one set</h2>
+<p>A chart headed OEI climb may assume a feathered propeller, landing gear retracted, a specified flap position, a defined bank or sideslip condition, and a particular operating-engine power. The number is valid for that set of assumptions.</p>
+<p>Take-off power may have a time limit. Maximum continuous power is a separate rating. A climb result based on a short-duration power setting must not silently be extended to a long en-route segment.</p>
+<p>Increasing speed above the best-rate point does not necessarily produce a better climb. Reducing speed below the appropriate target can increase induced drag and reduce control margins. The useful response is the aircraft's published speed and configuration schedule, not an improvised compromise between two coloured marks.</p>
+<p>Temperature, altitude, mass, engine condition and drag all affect the surplus available. The engine may still be producing its permitted power while the aeroplane has little height-gaining capability left.</p>
+
+<h2>7 · En-route OEI capability and drift-down</h2>
+<p>At an altitude where the operating engine cannot supply the power required for level flight in the stated OEI condition, the aeroplane must descend unless a change of conditions restores the balance. Drift-down describes the planned descent toward an altitude at which the available performance permits the relevant steady-flight condition.</p>
+<p>The OEI service ceiling corresponds to the small climb rate specified for that ceiling definition. The OEI absolute ceiling corresponds to no remaining steady climb capability. Use the definition printed with the chart; do not import a ceiling threshold from another category or engine state.</p>
+<p>Terrain makes this a route-planning problem rather than just an engine problem. The relevant questions include whether the planned route can be flown at the predicted OEI level, whether an escape route is available, and whether fuel, weather and diversion conditions support it.</p>
+<div class="trap"><b>Do this reasoning before departure.</b> A twin that can maintain an altitude over the sea may still have an unacceptable OEI route across high ground. The number of engines aboard does not change the height of the terrain.</div>
+
+<h2>8 · Cruise altitude, payload and range trade against each other</h2>
+<p>Payload, fuel and structural limits must fit together. Adding fuel can require reducing payload when take-off mass is limiting. Filling all seats and filling all tanks are not automatically compatible choices.</p>
+<p>Separate maximum take-off mass, maximum landing mass and any applicable maximum zero-fuel mass. Fuel burned en route can reduce landing mass, but it does not make an excessive departure mass acceptable. Centre-of-gravity limits remain a separate check.</p>
+<p>A higher cruise altitude may improve a particular cruise schedule while reducing OEI capability or changing the terrain escape problem. The best dispatch choice must satisfy the complete flight, including an engine-out case where applicable.</p>
+<p>Endurance depends on fuel and fuel flow. Ground range also depends on groundspeed. Specify the fuel available for the segment after the stated allowances; do not count a reserve simultaneously as both protected fuel and usable trip fuel.</p>
+<div class="worked"><b>Simple mass check.</b> An assumed take-off mass is 2400 kg and the relevant landing limit is 2300 kg. A planned 150 kg burn gives a predicted 2250 kg landing mass. That arithmetic satisfies the stated landing-mass comparison. It says nothing about take-off mass approval, fuel reserves, balance, runway length or OEI climb.</div>
+
+<h2>9 · Landing and go-around need their own answers</h2>
+<p>Arriving with one engine inoperative changes more than the number of throttles in use. The published approach and landing configuration, reference speeds and operating assumptions may differ from the normal case. Any reduction in flap that is called for by the approved method can change both landing distance and climb capability.</p>
+<p>Do not assume that a controllable OEI approach guarantees an OEI go-around. The capability depends on mass, conditions, configuration and the particular aircraft's approved performance.</p>
+<p>Documents can distinguish approach-climb and landing-climb requirements, with different engine and configuration assumptions. Identify the exact case before reading a gradient or mass limit. An all-engine landing-climb result is not proof of an OEI result.</p>
+<p>Keep the predicted landing mass, LDA, runway condition and required operating factors attached to the landing calculation. An adequate departure runway does not settle the destination or alternate landing case.</p>
+
+<h2>10 · Work through the graphs without changing the question</h2>
+<ol><li>Choose the exact aircraft and current performance data.</li><li>Identify AEO or OEI, the power rating, propeller condition and configuration.</li><li>Enter mass, pressure altitude, temperature, wind and runway data in the stated units.</li><li>Follow the graph's prescribed path and permitted interpolation method.</li><li>Apply corrections once and in the correct sequence.</li><li>Distinguish gross from net performance and distance from gradient.</li><li>Compare the correct runway, climb, obstacle, en-route and landing limits.</li><li>Use the most restrictive applicable mass and confirm balance and fuel separately.</li></ol>
+<p>A smooth line on a graph is not authority to continue beyond its published boundary. If a required engine state or surface condition has no approved data, do not manufacture it by extending another curve.</p>
+
+<h2>11 · The final limiting-mass picture</h2>
+<table><tr><th>Candidate limit</th><th>Question to ask</th></tr>
+<tr><td>Structural</td><td>Is the mass within the relevant certified limit?</td></tr>
+<tr><td>Runway</td><td>Can the required take-off and, where applicable, stop distances fit?</td></tr>
+<tr><td>Climb and obstacles</td><td>Does the stated engine-out flight path achieve the applicable requirement?</td></tr>
+<tr><td>En-route</td><td>Can the planned OEI route or escape case satisfy the required clearance?</td></tr>
+<tr><td>Landing</td><td>Will the arrival mass, runway distance and applicable climb case be acceptable?</td></tr></table>
+<p>The allowable departure mass is constrained by every applicable limit. A generous structural limit cannot cancel a smaller climb-limited mass.</p>
+<div class="revision"><b>Explain these to another student:</b><ul><li>Why can an engine failure remove much more than half the climb capability?</li><li>Why does V<sub>MC</sub> not promise a climb?</li><li>Why does a clearway not help an accelerate-stop calculation?</li><li>Why can a positive climb rate still fail obstacle planning?</li><li>Why must gross and net performance remain separate?</li><li>Why can an OEI landing be possible while an OEI go-around is not?</li></ul></div>
+<div class="note">Continue learning at <a href="https://ghostaviator.com">ghostaviator.com</a> · <a href="https://t.me/ghostaviator_nav">Telegram study group</a> · <a href="https://www.instagram.com/capt.ghostaviator/">Instagram</a> · <a href="https://www.youtube.com/@Capt.GhostAviator">YouTube</a> · <a href="https://ghostaviator.com/live-classes">Live classes</a></div>
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body></html>

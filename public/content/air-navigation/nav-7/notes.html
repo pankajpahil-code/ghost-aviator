@@ -1,0 +1,119 @@
+<!doctype html><html lang="en"><head>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://ghostaviator.com/cpl/air-navigation/nav-7/notes"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Single-Engine Aeroplane Performance | Ghost Aviator</title><style>@page{size:A4;margin:15mm 13mm 23mm}*{box-sizing:border-box}body{font:16px/1.65 Georgia,serif;color:#172535;background:#fffdf4;max-width:900px;margin:auto;padding:28px}h1,h2,h3{font-family:Arial,sans-serif;line-height:1.2}h1{font-size:34px;color:#163f70}h2{font-size:24px;border-bottom:3px solid #d7ab35;padding-bottom:8px;margin-top:35px;break-after:avoid}h3{font-size:18px;color:#205f71;break-after:avoid}p{margin:10px 0}table{border-collapse:collapse;width:100%;font-size:14px;margin:18px 0}td,th{padding:9px;border:1px solid #cfd6dd;vertical-align:top}th{background:#e3edf5;text-align:left}.note,.trap,.worked,.revision{padding:15px 18px;border-left:5px solid;margin:18px 0;break-inside:avoid}.note{background:#e6f1fa;border-color:#2981a5}.trap{background:#fff0e8;border-color:#c8603d}.worked{background:#ecf5df;border-color:#678a32}.revision{background:#f2ebfb;border-color:#8863b2}.formula{font-family:Arial,sans-serif;font-weight:bold;color:#15536a;padding:10px;background:#edf5f8}.draft{font-family:Arial,sans-serif;border:2px solid #b83c32;color:#8c2b23;padding:12px;background:#fff3f0}.strap{font:12px Arial,sans-serif;letter-spacing:2px;color:#8d6718}li{margin:5px 0}.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:650px){body{padding:14px;font-size:17px}.columns{grid-template-columns:1fr}table{display:block;overflow:auto}h1{font-size:28px}}@media print{body{max-width:none;padding:0;background:white;font-size:11pt}.draft{font-size:9pt}h2{font-size:17pt}.columns{display:block}a{color:#15536a;text-decoration:none}}</style></head><body><div class="note"><b>Worked examples:</b> The figures are illustrative calculation models, not aircraft performance data. Use the current aircraft flight manual for operational planning.</div>
+<p class="strap">GHOST AVIATOR · AIR NAVIGATION · PERFORMANCE</p>
+<h1>Single-Engine Aeroplane Performance</h1>
+<p>Performance is the answer to a practical question: what can this aeroplane actually do, at this mass, in this air, from this runway? A runway that looks generous on a cool morning can become a very different runway on a hot afternoon. The concrete has not moved. The aeroplane's available margin has.</p>
+<div class="note"><b>Read the result, then read its conditions.</b> A performance figure belongs to a particular mass, temperature, altitude, configuration and technique. Change the conditions and the figure may no longer describe your aeroplane.</div>
+
+<h2>1 · Build the language before doing the sums</h2>
+<table><tr><th>Term</th><th>What it means in a performance problem</th></tr>
+<tr><td>Pressure altitude</td><td>Altitude referenced to the standard pressure datum. It is an input to many aircraft performance charts.</td></tr>
+<tr><td>Density altitude</td><td>The standard-atmosphere altitude that has the same density as the air around the aeroplane. Higher density altitude means less dense air.</td></tr>
+<tr><td>IAS → CAS</td><td>Correct indicated airspeed for instrument and position errors.</td></tr>
+<tr><td>CAS → EAS</td><td>Apply the compressibility correction when it matters.</td></tr>
+<tr><td>EAS → TAS</td><td>Account for air density. TAS describes motion through the air mass.</td></tr>
+<tr><td>Groundspeed</td><td>Motion over the ground after the wind vector is combined with the air-velocity vector.</td></tr>
+<tr><td>Mach number</td><td>TAS divided by the local speed of sound.</td></tr></table>
+<p>Keep these two chains separate. Airspeed corrections describe how an instrument indication relates to motion through the air. Wind changes motion over the ground. A headwind is not another instrument correction.</p>
+<p>Read the airspeed label on each chart. A value given as calibrated airspeed must not silently become indicated airspeed in the next line of the calculation.</p>
+<table><tr><th>Speed</th><th>Keep this meaning attached to it</th></tr>
+<tr><td>V<sub>S0</sub></td><td>Stalling speed, or minimum steady flight speed, in the landing configuration.</td></tr>
+<tr><td>V<sub>S1</sub></td><td>Stalling speed, or minimum steady flight speed, in a specified configuration.</td></tr>
+<tr><td>V<sub>R</sub></td><td>The published rotation speed for the stated conditions.</td></tr>
+<tr><td>V<sub>X</sub></td><td>Best angle of climb: height gained per horizontal distance through the air.</td></tr>
+<tr><td>V<sub>Y</sub></td><td>Best rate of climb: height gained per unit time.</td></tr>
+<tr><td>V<sub>REF</sub></td><td>The reference landing speed associated with the stated landing configuration and reference point.</td></tr></table>
+<p>These are definitions, not interchangeable targets. Their actual values, mass corrections and operating use come from the aircraft's current documentation.</p>
+
+<h2>2 · Lift, drag and the price of carrying mass</h2>
+<p>In straight, steady, level flight, lift balances weight and thrust balances drag. That statement needs every word. During acceleration or a climb, the force balance changes.</p>
+<p class="formula">Dynamic pressure q = ½ρV² &nbsp; · &nbsp; Lift L = qSC<sub>L</sub></p>
+<p>Here ρ is air density, V is true airspeed, S is wing area and C<sub>L</sub> is lift coefficient. If density falls, the wing needs a higher true airspeed to produce the same lift at the same lift coefficient. This explains why a familiar indicated take-off or landing speed can be associated with a higher true speed at a high-density-altitude aerodrome.</p>
+<p>Parasite drag grows approximately with the square of speed for a fixed configuration in the normal low-speed regime. Induced drag, the drag associated with producing lift, becomes particularly important at low speed. The total-drag curve therefore has a low point between a high-drag slow end and a high-drag fast end.</p>
+<div class="columns"><div class="note"><b>Slow end:</b> a larger lift coefficient is needed to support the weight. Induced drag becomes expensive.</div><div class="note"><b>Fast end:</b> parasite drag rises. Going faster requires a growing supply of thrust and power.</div></div>
+<p>At a given density, wing area, configuration and maximum lift coefficient, stall speed varies with the square root of weight. More mass does not merely add load to the undercarriage; it changes the speeds and energy involved in getting airborne and landing.</p>
+<p class="formula">V<sub>S,new</sub> / V<sub>S,old</sub> = √(W<sub>new</sub> / W<sub>old</sub>)</p>
+<p>The assumptions matter. This relationship is not permission to invent a speed correction where the manual already gives the required value.</p>
+
+<h2>3 · Thrust moves the aeroplane; power pays for the climb</h2>
+<p>Thrust is a force. Power is the rate of doing work. At a particular true airspeed, the power associated with a thrust force is thrust multiplied by that airspeed. A piston engine supplies shaft power; the propeller converts part of it into useful thrust power. Propeller efficiency is one reason the two numbers are different.</p>
+<p>In a steady climb, some available thrust balances drag and the remaining component supports the climb. For a small steady climb angle, the climb angle is closely related to excess thrust divided by weight. Rate of climb is related to excess power divided by weight.</p>
+<div class="revision"><b>Angle asks: how steep?</b> Think excess thrust.<br><b>Rate asks: how quickly?</b> Think excess power.</div>
+<p>A high pitch attitude is not, by itself, evidence of a strong climb. If the chosen speed creates too much drag, the aeroplane may have little excess power left. Select and maintain the published climb schedule rather than judging performance from the nose attitude alone.</p>
+
+<h2>4 · Why a hot, high, heavy departure is demanding</h2>
+<table><tr><th>Change</th><th>Reason the margin reduces</th></tr>
+<tr><td>Higher temperature or altitude</td><td>Reduced density raises the true speed associated with a given equivalent airspeed. A normally aspirated piston engine also loses available power as density falls.</td></tr>
+<tr><td>Higher mass</td><td>More lift is needed, take-off speeds generally rise, more energy must be acquired, and climb capability reduces.</td></tr>
+<tr><td>Tailwind</td><td>Groundspeed is higher for a given airspeed, so more runway is needed to accelerate or decelerate over the ground.</td></tr>
+<tr><td>Soft or uneven surface</td><td>Rolling resistance and the actual surface condition can differ greatly from the chart's assumed runway.</td></tr>
+<tr><td>Uphill take-off slope</td><td>Part of the accelerating effort is spent working against gravity.</td></tr>
+<tr><td>Airframe contamination</td><td>The lift and drag characteristics no longer match those of the clean aeroplane assumed by the normal charts.</td></tr></table>
+<p>A turbocharged engine may retain rated power over part of the altitude range. That does not make the rest of the aeroplane immune to density altitude. The wing, propeller, true speeds and aircraft-specific limitations still matter.</p>
+<p>A centre-of-gravity position outside the approved envelope cannot be rescued by a good runway calculation. Mass, balance and performance are separate checks that must agree.</p>
+
+<h2>5 · Take-off is more than the ground roll</h2>
+<p>Ground roll ends when the aeroplane leaves the surface. Take-off distance normally continues to the reference height stated for that data set. The two results answer different questions. A runway long enough for the ground roll may still fail the obstacle-distance requirement.</p>
+<p>Flap can improve lift at low speed, but it also changes drag. A setting that helps the aeroplane leave the ground sooner may reduce the climb margin beyond it. Use the approved take-off configuration and its matching chart; do not choose a setting from a general rule about flap.</p>
+<table><tr><th>Declared distance</th><th>What it supplies</th></tr>
+<tr><td>TORA</td><td>The declared runway length available for the take-off ground run.</td></tr>
+<tr><td>TODA</td><td>TORA plus a declared clearway, where one is provided.</td></tr>
+<tr><td>ASDA</td><td>TORA plus a declared stopway, where one is provided.</td></tr>
+<tr><td>LDA</td><td>The declared runway distance available for landing.</td></tr></table>
+<div class="trap"><b>Do not spend the same strip of ground twice.</b> A clearway is not extra pavement for the take-off run. A stopway is not extra landing distance. Read the declared distances for the actual direction and departure point.</div>
+<div class="worked"><b>Worked comparison — illustrative figures.</b> A calculation gives 420 m ground roll and 760 m take-off distance to its stated reference height. The declared TORA is 600 m and TODA is 800 m. The two arithmetic comparisons are 420 ≤ 600 and 760 ≤ 800. They address different requirements. This example has not supplied obstacle, climb, surface, operating-factor or aircraft-limit data, so it is not a complete dispatch calculation.</div>
+
+<h2>6 · Climb rate and ground climb gradient</h2>
+<p>Rate of climb is vertical distance per time. A ground-referenced gradient compares vertical height gained with horizontal distance over the ground. Put the two distances in matching units before forming the ratio.</p>
+<p class="formula">Ground gradient (%) = ROC (ft/min) ÷ [GS (kt) × 6076.12 ÷ 60] × 100</p>
+<p>The conversion uses approximately 6076.12 ft per nautical mile. The aerodynamic climb angle through the air and the gradient over the ground are not identical in wind.</p>
+<div class="worked"><b>Worked gradient.</b> At 300 ft/min and 100 kt groundspeed, horizontal travel is about 10,126.9 ft/min. Gradient = 300 ÷ 10,126.9 × 100 = <b>2.96%</b>. At the same climb rate but 120 kt groundspeed, the gradient is <b>2.47%</b>. The aeroplane is gaining the same height each minute but travelling farther across the ground.</div>
+<p>Use V<sub>X</sub> and V<sub>Y</sub> for their respective published purposes. Neither label guarantees obstacle clearance under every combination of mass, temperature, elevation and wind. Service ceiling refers to a stated small rate-of-climb capability; absolute ceiling corresponds to no remaining steady climb capability. Keep the definition supplied with the data rather than borrowing a ceiling criterion from another aircraft category.</p>
+
+<h2>7 · Glide range and time airborne are different targets</h2>
+<p>In a steady power-off glide, height is being exchanged for the energy needed to overcome drag. A better lift-to-drag ratio produces more air distance for the height available. Best glide for distance and minimum sink for time solve different problems.</p>
+<p class="formula">Ideal still-air horizontal distance ≈ height available × glide ratio</p>
+<div class="worked"><b>Worked model.</b> With 3000 ft available above a level landing area and an assumed 10:1 glide ratio, ideal still-air distance is 30,000 ft, or approximately <b>4.94 NM</b>. Those are model inputs, not aircraft performance data. Turns, configuration changes, wind and the height needed to establish an approach reduce the usefulness of a simple straight-line answer.</div>
+<p>Measure available height above the landing area, not above mean sea level. Account for wind over the ground. Gear, flap and propeller condition can change drag substantially. Use the aircraft's published glide configuration and speed; an assumed glide ratio from another aeroplane is not a substitute.</p>
+
+<h2>8 · Range, endurance and economical cruise</h2>
+<p>Endurance asks how long the available fuel can keep the engine running. Range asks how far that fuel can carry the aeroplane. A lower fuel flow can improve endurance while a different speed gives a better distance per unit fuel.</p>
+<p>For the idealised propeller-aeroplane model, maximum endurance is associated with minimum power required, while maximum still-air range is associated with maximum lift-to-drag ratio when propeller efficiency and specific fuel consumption are treated as constant. Real engine and propeller characteristics modify the useful answer, so the flight manual's range and endurance schedules take priority.</p>
+<p class="formula">Endurance = fuel available for the calculation ÷ fuel flow<br>Ground specific range = groundspeed ÷ fuel flow</p>
+<div class="worked"><b>Fuel arithmetic.</b> Suppose 36 litres are usable, but 6 litres have already been set aside for the stated reserve. The flight segment has 30 litres available. At an assumed constant 10 L/h it lasts <b>3 hours</b>. At 90 kt groundspeed that gives <b>270 NM</b>. The 6-litre figure is an example input, not a prescribed reserve.</div>
+<p>A headwind reduces ground distance for the same time and airspeed. It does not directly change the quantity of fuel aboard. Avoid mixing still-air range, ground range and endurance in one unlabeled result.</p>
+
+<h2>9 · Landing: speed, energy, surface and distance</h2>
+<p>Landing distance contains an airborne portion and a ground portion under the conditions stated for the chart. Crossing the reference point too fast or too high adds distance before the brakes can do useful work.</p>
+<p class="formula">Ground kinetic energy = ½mV<sub>ground</sub>²</p>
+<div class="worked"><b>The speed-squared lesson.</b> At unchanged mass, a 10% increase in touchdown groundspeed gives 1.10² = 1.21, or <b>21% more kinetic energy</b>. This is an energy result. It does not mean every aircraft's total landing distance increases by exactly 21%.</div>
+<p>A tailwind raises touchdown groundspeed for a given airspeed. High density altitude can raise true airspeed at the same indicated speed. Greater mass increases the energy to be dissipated and generally raises the required reference speed. A wet or contaminated surface changes braking assumptions. Each effect must be handled using the approved method, not a home-made percentage.</p>
+<p>Use LDA, not the runway's apparent overall length. Keep the published landing configuration, speed corrections and braking assumptions attached to the result. A good calculated distance does not excuse an unstable approach.</p>
+
+<h2>10 · Read the chart as a set of instructions</h2>
+<ol><li>Identify the aircraft, document revision and exact performance chart.</li><li>Read all assumptions: mass, pressure altitude, temperature, engine setting, flap, surface, slope, wind and technique.</li><li>Check that the inputs are within the published envelope.</li><li>Follow the chart's stated order and units. Interpolate only where the method permits it.</li><li>Apply the published corrections and operating factors in their stated sequence.</li><li>Compare each required distance with its corresponding declared distance.</li><li>Check climb, obstacles, structural limits and the landing case separately.</li><li>Record the limiting result and the assumptions that produced it.</li></ol>
+<p>Do not extrapolate beyond a chart and call the answer approved performance. Do not apply a correction twice because it appears both in a graph and in a note. If an operating factor is required, establish its current applicability from the aircraft category, current rules and the operation concerned.</p>
+<div class="revision"><b>Before leaving the chapter, explain these without looking:</b><ul><li>Why can a high-density-altitude landing need more ground distance at the same indicated speed?</li><li>Why are V<sub>X</sub> and V<sub>Y</sub> different targets?</li><li>Which declared distance includes a clearway, and which includes a stopway?</li><li>Why is 21% more energy not automatically 21% more total landing distance?</li><li>Why can the most economical endurance condition differ from the best range condition?</li></ul></div>
+<div class="note">Continue learning at <a href="https://ghostaviator.com">ghostaviator.com</a> · <a href="https://t.me/ghostaviator_nav">Telegram study group</a> · <a href="https://www.instagram.com/capt.ghostaviator/">Instagram</a> · <a href="https://www.youtube.com/@Capt.GhostAviator">YouTube</a> · <a href="https://ghostaviator.com/live-classes">Live classes</a></div>
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body></html>

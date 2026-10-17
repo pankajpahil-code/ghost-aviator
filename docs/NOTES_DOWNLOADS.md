@@ -19,4 +19,4 @@ The Python renderer uses PyMuPDF, Playwright and a local Chrome installation. In
 
 For a selective re-render, pass chapter keys to the Python renderer, for example `python tools/render-notes-downloads.py air-navigation/nav-cx3-7`. This preserves the other manifest entries. Re-run the chart combiner only after re-rendering its `nav-3` cover; combining an already combined file would append the chapters twice.
 
-The two newly written Performance drafts are held outside `public/` for the Captain's review. They are not part of this published library and have not received independent academic sign-off.
+The two original Performance chapters were approved for publication by the Captain on 17 October 2026 and are included as `nav-7` and `nav-8`. Their illustrative examples remain labelled as calculation models rather than aircraft data. Captain review is not represented as an independent academic audit.
