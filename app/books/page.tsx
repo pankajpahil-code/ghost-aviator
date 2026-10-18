@@ -1,14 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
+import FreeBookDownloads from "./FreeBookDownloads";
+import downloads from "@/lib/generated/book-downloads.json";
 import type { Metadata } from "next";
 import { ArrowRight, BookOpen, Sparkles, Clock, HelpCircle, Layers, ChevronRight, Download, ShoppingBag, ShieldCheck, MessageCircle } from "lucide-react";
 import { AUTHORED_BOOKS, getBookPdfCheckoutUrl, getBookPaperbackUrl } from "@/lib/books";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Digital Books | Ghost Aviator — Interactive DGCA Study Library",
+  title: "Free PDF Books | Ghost Aviator — DGCA Study Library",
   description:
-    "Interactive digital books for DGCA CPL & ATPL exam preparation. Animated, chapter-indexed study material by Ghost Aviator.",
+    "Download free DGCA study PDFs with chapter bookmarks, or read the interactive online books. Meteorology, Air Regulations, RTR(A), Human Performance and Radio Navigation.",
   alternates: { canonical: "/books" },
 };
 
@@ -51,7 +53,7 @@ const BOOKS: Book[] = [
     href: "/atpl/human-performance",
     firstChapterId: "hpl-1",
     status: "live",
-    badge: "PREMIUM",
+    badge: "FREE",
   },
   {
     slug: "rtra-mastery",
@@ -174,7 +176,8 @@ const BOOKS: Book[] = [
 export default function BooksPage() {
   const featured = BOOKS[0];
   const otherLive = BOOKS.slice(1).filter(b => b.status === "live");
-  const upcoming = BOOKS.filter(b => b.status === "coming-soon");
+  const downloadableSlugs = new Set(downloads.map(b => b.slug));
+  const upcoming = BOOKS.filter(b => b.status === "coming-soon" && !downloadableSlugs.has(b.slug));
   // Structured data describes what exists. A "coming-soon" title is not a
   // published Book, and its href is only a subject hub.
   const liveBooks = BOOKS.filter(b => b.status === "live");
@@ -212,6 +215,14 @@ export default function BooksPage() {
           },
         })),
       },
+      ...downloads.map(book => ({
+        "@type": "Book", "@id": `${SITE_URL}/books#free-book-${book.slug}`,
+        name: book.title, author: { "@id": PERSON_ID }, publisher: { "@id": ORG_ID },
+        url: `${SITE_URL}/books#free-book-${book.slug}`, bookFormat: "https://schema.org/EBook",
+        numberOfPages: book.pages, inLanguage: "en-IN", isAccessibleForFree: true,
+        offers: { "@type": "Offer", price: "0", priceCurrency: "INR", availability: "https://schema.org/InStock", url: `${SITE_URL}${book.url}` },
+        encoding: { "@type": "MediaObject", contentUrl: `${SITE_URL}${book.url}`, encodingFormat: "application/pdf", contentSize: String(book.bytes) },
+      })),
       {
         "@type": "BreadcrumbList",
         "@id": `${SITE_URL}/books#breadcrumb`,
@@ -257,12 +268,13 @@ export default function BooksPage() {
             Digital <span className="bk-hero-accent">Books</span>
           </h1>
           <p className="bk-hero-sub">
-            Interactive, chapter-indexed digital study books — written by a pilot, for pilots.
-            Each book compiles the full subject into one seamless reading experience with
-            animated diagrams, embedded self-tests, and exam-weighted question banks.
+            Free study books — written by a pilot, for pilots. Download a PDF for offline
+            study, or explore the interactive online chapters and practice questions.
           </p>
         </div>
       </header>
+
+      <FreeBookDownloads />
 
       {/* ── Featured book ────────────────────────────────────────── */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
@@ -350,14 +362,14 @@ export default function BooksPage() {
                style={{ background: "rgba(251,191,36,0.12)", border: "1px solid rgba(251,191,36,0.35)", color: "#fbbf24" }}>
             <Sparkles className="w-3.5 h-3.5"/> Author Editions · Ghost Aviator
           </div>
-          <h2 className="bk-shelf-title">Master Study Books & Offline Editions</h2>
+          <h2 className="bk-shelf-title">Editions under revision</h2>
           <p className="bk-shelf-sub">
-            All online chapters on Ghost Aviator remain 100% free forever. Offline PDF and paperback editions will be offered here when available; until then, read the online editions free.
+            Download the available study PDFs free above, or read the online chapters. Editions still undergoing revision are listed below.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
-          {Object.values(AUTHORED_BOOKS).map((ab) => (
+          {Object.values(AUTHORED_BOOKS).filter(book => !downloads.some(pdf => pdf.slug === book.slug)).map((ab) => (
             <div key={ab.slug} className="relative rounded-3xl overflow-hidden p-8 flex flex-col justify-between"
                  style={{
                    background: "linear-gradient(160deg, rgba(23,16,42,0.98), rgba(12,8,24,0.98))",

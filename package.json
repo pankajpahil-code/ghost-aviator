@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node tools/audit/ownership-files.mjs && node tools/seo-fix-notes.mjs && node tools/audit/answer-key-guard.mjs --check && npx tsx tools/audit/sitemap-xml.mts && next build",
+    "build": "node tools/books/check-downloads.mjs && node tools/audit/ownership-files.mjs && node tools/seo-fix-notes.mjs && node tools/audit/answer-key-guard.mjs --check && npx tsx tools/audit/sitemap-xml.mts && next build",
     "start": "next start",
     "lint": "eslint",
     "test:rtr-sim": "node --test \"lib/rtr-sim/**/*.test.mjs\"",

@@ -25,7 +25,8 @@ export type AuthoredBook = {
  * Single source of truth for Capt. Pankaj Pahil's authored books.
  * The free web notes on ghostaviator.com remain 100% free and open for every student (Boon 5).
  * Purchase controls render only when the Captain explicitly marks an edition ready for sale.
- * All authored offline editions are currently unavailable; their free web chapters remain open.
+ * Available free offline PDFs are listed in lib/generated/book-downloads.json.
+ * Sale readiness here applies only to paid editions; free web chapters remain open.
  */
 export const AUTHORED_BOOKS: Record<string, AuthoredBook> = {
   "rtra-mastery": {
@@ -36,7 +37,7 @@ export const AUTHORED_BOOKS: Record<string, AuthoredBook> = {
     edition: "2026 Master Edition",
     coverImage: "/content/radio-telephony/_assets/images/pdf_front_cover.jpg",
     isReadyForSale: false,
-    revisionNote: "Not currently for sale. The complete online edition remains free on Ghost Aviator.",
+    revisionNote: "The study PDF is available free in the Books library. The online edition also remains free.",
     pdfPrice: "₹999",
     pdfListPrice: "₹1,999",
     pdfPriceValue: "999",
