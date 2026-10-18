@@ -102,7 +102,10 @@ export function captureReadingSelection(): string {
   if (text && text !== snapshot.selection) update({ selection: text });
   return text;
 }
-export function clearReadingSelection() { if (snapshot.selection) update({ selection: "" }); }
+export function clearReadingSelection() {
+  if (typeof window !== "undefined") window.getSelection()?.removeAllRanges();
+  if (snapshot.selection) update({ selection: "" });
+}
 
 export function speechChunks(text: string): string[] {
   const chunks: string[] = [];
