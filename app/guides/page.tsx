@@ -66,10 +66,10 @@ export default function GuidesIndexPage() {
                     <h2 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                       {guide.title}
                     </h2>
-                    <p className="text-sm mb-4" style={{ color: "#64748b" }}>
+                    <p className="text-sm mb-4 leading-relaxed" style={{ color: "#94a3b8" }}>
                       {guide.description}
                     </p>
-                    <div className="flex items-center gap-4 text-xs font-medium" style={{ color: "#475569" }}>
+                    <div className="flex flex-wrap items-center gap-4 text-xs font-medium" style={{ color: "#94a3b8" }}>
                       <div className="flex items-center gap-1.5">
                         <User className="w-3.5 h-3.5" /> {guide.author}
                       </div>

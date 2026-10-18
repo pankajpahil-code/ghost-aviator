@@ -10,6 +10,7 @@ import { howToForGuide, howToJsonLd } from "@/lib/howto";
 
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 import { botLink } from "@/lib/live-classes";
+import styles from "../GuideContent.module.css";
 
 export function generateStaticParams() {
   return GUIDES.map(g => ({ slug: g.slug }));
@@ -51,6 +52,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     // If not written yet, show a placeholder
     contentHtml = `<p>This guide is currently being written by the Captain and will be available soon.</p>`;
   }
+
+  // Preserve the authored text; distinguish procedural headings visually.
+  contentHtml = contentHtml.replace(/<h2([^>]*)>(\s*Step\s+(\d+)\b[\s\S]*?)<\/h2>/gi,
+    (_heading, attributes: string, title: string, step: string) => `<h2${attributes} data-guide-step="${step}">${title}</h2>`);
+  contentHtml = contentHtml.replace(/<table\b[\s\S]*?<\/table>/gi,
+    table => `<div data-guide-table tabindex="0" role="region" aria-label="Scrollable guide table">${table}</div>`);
 
   // Calculate estimated read time (roughly 200 words per minute)
   const wordCount = contentHtml.replace(/<[^>]*>?/gm, '').split(/\s+/).length;
@@ -109,7 +116,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         
         <header className="mb-10">
           <h1 className="text-3xl sm:text-4xl font-black text-white mb-4 leading-tight">{guide.title}</h1>
-          <div className="flex flex-wrap items-center gap-4 text-sm" style={{ color: "#64748b" }}>
+          <div className="flex flex-wrap items-center gap-4 text-sm" style={{ color: "#94a3b8" }}>
             {/* The byline links to the instructor's page. A student — and an
                 answer engine — can follow it to the credentials behind the guide. */}
             <Link href="/about" className="flex items-center gap-1.5 no-underline hover:text-white transition-colors" style={{ color: "#94a3b8" }}>
@@ -128,7 +135,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
         {/* The Guide Content */}
         <div 
-          className="prose prose-invert prose-purple max-w-none mb-12"
+          className={`${styles.content} mb-12`}
+          data-guide-content
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
 

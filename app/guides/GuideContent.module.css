@@ -1,0 +1,52 @@
+.content {
+  color: #cbd5e1;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+.content :where(p) { margin: 0 0 1.25rem; }
+.content :where(h2, h3, h4) { font-weight: 800; line-height: 1.4; text-wrap: pretty; }
+.content :where(h2:not([class]), h3:not([class]), h4:not([class])) { color: #f8fafc; }
+.content :where(h2) { font-size: 1.5rem; margin: 2.75rem 0 1rem; }
+.content > h2:first-child { margin-top: 0; }
+.content :where(h3) { font-size: 1.2rem; margin: 2rem 0 .8rem; }
+.content :where(h4) { font-size: 1.1rem; margin: 1.5rem 0 .75rem; }
+.content :where(div) > :where(h2, h3):first-child { margin-top: 0; }
+.content :where(h2[data-guide-step]) {
+  padding: 1rem 1.2rem;
+  border-left: 4px solid #f3c889;
+  border-radius: 0 .75rem .75rem 0;
+  background: #15212b;
+  color: #f3c889;
+}
+
+.content :where(ul, ol) { margin: 1.25rem 0 1.75rem; padding-left: 1.75rem; }
+.content :where(ul) { list-style: disc outside; }
+.content :where(ol) { list-style: decimal outside; padding-left: 2.25rem; }
+.content :where(li) { padding-left: .4rem; margin: .75rem 0; }
+.content :where(li)::marker { color: #f3c889; font-weight: 800; }
+.content :where(ol) > li { padding: .6rem .75rem .6rem .4rem; border-bottom: 1px solid #ffffff12; }
+.content :where(li) > :where(ul, ol) { margin: .6rem 0; }
+.content :where(li) > p:last-child { margin-bottom: 0; }
+.content :where(strong) { color: #f1f5f9; font-weight: 750; }
+.content :where(a:not([class])) { color: #7dd3fc; text-decoration: underline; text-underline-offset: .2em; }
+.content :where(a:not([class])):hover { color: #bae6fd; }
+.content :where(a):focus-visible { outline: 2px solid #f3c889; outline-offset: 4px; border-radius: 2px; }
+.content :where(code) { font-size: .92em; padding: .15em .35em; border-radius: .25rem; background: #ffffff0d; color: #fde68a; }
+.content :where(blockquote) { margin: 1.75rem 0; padding: 1rem 1.25rem; border-left: 4px solid #7dd3fc; background: #15212b; }
+.content :where(blockquote) > p:last-child { margin-bottom: 0; }
+.content :where(hr) { margin: 2.5rem 0; border-color: #ffffff26; }
+.content :where([data-guide-table]) { max-width: 100%; overflow-x: auto; margin: 1.5rem 0 2rem; border-radius: .5rem; }
+.content :where([data-guide-table]):focus-visible { outline: 2px solid #f3c889; outline-offset: 3px; }
+.content :where(table) { width: 100%; border-collapse: collapse; line-height: 1.65; }
+.content :where(th, td) { padding: .8rem 1rem; min-width: 9rem; text-align: left; vertical-align: top; border: 1px solid #ffffff26; }
+.content :where(th) { color: #f3c889; font-weight: 750; background: #15212b; }
+.content :where(img, video, iframe) { max-width: 100%; }
+.content :where(pre) { overflow-x: auto; padding: 1rem; margin: 1.5rem 0; background: #15212b; }
+
+@media (max-width: 480px) {
+  .content { font-size: 1rem; line-height: 1.85; }
+  .content :where(h2) { font-size: 1.3rem; margin-top: 2.25rem; }
+  .content :where(h2[data-guide-step]) { padding: .9rem 1rem; }
+}
