@@ -3,8 +3,9 @@
 import Link from "next/link";
 import NotesActions from "./NotesActions";
 import { NOTES_FIT_CSS } from "@/lib/notes-layout";
-import { useEffect, useRef, useState } from "react";
-import { ChevronRight, ChevronLeft, ListChecks, Volume2, Pause, Square } from "lucide-react";
+import { useEffect, useRef } from "react";
+import ReadAloudControls from "@/app/components/ReadAloudControls";
+import { ChevronRight, ChevronLeft, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import Watermark from "@/app/components/Watermark";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
@@ -30,117 +31,6 @@ type Props = {
    *  enters a client bundle. */
   openerFacts?: ChapterKeyFacts;
 };
-
-type SpeechState = "idle" | "playing" | "paused" | "unsupported";
-
-// Voice quality is entirely the OS/browser's — this only picks the BEST of
-// whatever is actually installed. Cloud-backed "Online"/"Natural"/"Neural"
-// voices (Edge, and Android Chrome's Google voices) sound genuinely human;
-// offline SAPI-style voices (the Windows/Chrome default) sound robotic no
-// matter how this is tuned. localService === false is the closest signal
-// the Web Speech API exposes for "this is cloud-backed, not the flat local one".
-function scoreVoice(v: SpeechSynthesisVoice): number {
-  let score = 0;
-  if (v.lang === "en-IN") score += 100;
-  else if (v.lang?.startsWith("en-IN")) score += 70;
-  else if (v.lang?.startsWith("en")) score += 20;
-  if (/online|natural|neural/i.test(v.name)) score += 50;
-  if (/google/i.test(v.name)) score += 25;
-  if (v.localService === false) score += 20;
-  return score;
-}
-
-function rankedVoices(): SpeechSynthesisVoice[] {
-  return [...window.speechSynthesis.getVoices()]
-    .filter(v => v.lang?.startsWith("en"))
-    .sort((a, b) => scoreVoice(b) - scoreVoice(a));
-}
-
-// Splits into sentence-sized chunks and speaks them as a queue rather than
-// one giant utterance — most engines keep pitch/pacing more natural across
-// shorter utterances than they do droning through one huge block.
-function splitIntoChunks(text: string): string[] {
-  return text
-    .split(/(?<=[.!?])\s+/)
-    .map(s => s.trim())
-    .filter(Boolean);
-}
-
-// Reads the notes aloud with browser speechSynthesis. The chapter now renders
-// in the page itself, so the text is read from the container element rather
-// than an iframe's contentDocument — spoken only, never rendered as a
-// selectable transcript, so this adds no new copy/export surface.
-function useReadAloud(notesRef: React.RefObject<HTMLDivElement | null>) {
-  const [state, setState] = useState<SpeechState>("idle");
-  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
-  const [voiceURI, setVoiceURI] = useState<string>("");
-  const queueRef = useRef<string[]>([]);
-  const queueIndexRef = useRef(0);
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
-      // speechSynthesis support is a browser fact unknowable during SSR, so it
-      // can only be detected after mount — computing it during render would
-      // desync the server HTML from the client's first render.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setState("unsupported");
-      return;
-    }
-    const refresh = () => {
-      const ranked = rankedVoices();
-      setVoices(ranked);
-      setVoiceURI(v => v || ranked[0]?.voiceURI || "");
-    };
-    refresh();
-    window.speechSynthesis.addEventListener("voiceschanged", refresh);
-    return () => {
-      window.speechSynthesis.removeEventListener("voiceschanged", refresh);
-      window.speechSynthesis.cancel();
-    };
-  }, []);
-
-  function extractText(): string {
-    const el = notesRef.current;
-    if (!el) return "";
-    return (el.innerText || "").replace(/\s+/g, " ").trim();
-  }
-
-  function speakNext() {
-    const synth = window.speechSynthesis;
-    const i = queueIndexRef.current;
-    if (i >= queueRef.current.length) { setState("idle"); return; }
-    const utter = new SpeechSynthesisUtterance(queueRef.current[i]);
-    const voice = voices.find(v => v.voiceURI === voiceURI) ?? voices[0];
-    if (voice) { utter.voice = voice; utter.lang = voice.lang; } else { utter.lang = "en-IN"; }
-    utter.rate = 0.93;
-    utter.pitch = 1.0;
-    utter.onend = () => { queueIndexRef.current += 1; speakNext(); };
-    utter.onerror = () => setState("idle");
-    synth.speak(utter);
-  }
-
-  function toggle() {
-    if (state === "unsupported") return;
-    const synth = window.speechSynthesis;
-    if (state === "playing") { synth.pause(); setState("paused"); return; }
-    if (state === "paused") { synth.resume(); setState("playing"); return; }
-    const text = extractText();
-    if (!text) return;
-    synth.cancel();
-    queueRef.current = splitIntoChunks(text);
-    queueIndexRef.current = 0;
-    setState("playing");
-    speakNext();
-  }
-
-  function stop() {
-    window.speechSynthesis?.cancel();
-    queueRef.current = [];
-    setState("idle");
-  }
-
-  return { state, toggle, stop, voices, voiceURI, setVoiceURI };
-}
 
 // ─── The chapters' own buttons ──────────────────────────────────────────────
 //
@@ -279,7 +169,6 @@ function runInputAction(root: HTMLElement, act: string, value: string) {
 export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, notes, videos, openerFacts }: Props) {
   const notesRef = useRef<HTMLDivElement>(null);
   const keyFacts = keyFactsFor(subject.id, chapter.id) ?? openerFacts;
-  const { state: speechState, toggle: toggleListen, stop: stopListen, voices, voiceURI, setVoiceURI } = useReadAloud(notesRef);
 
   // Nav-1's two sliders used to run calcRecip(60) / showLat(28) when the page
   // loaded; the markup carries a static fallback line, this makes it live.
@@ -307,9 +196,10 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
 
   // Content protection, previously injected into the iframe document by
   // tools/_protect-snippet.mjs. The chapter renders in this page now, so the
-  // same deterrents have to live here: no selection, no copy/cut, no
+  // same deterrents have to live here: no copy/cut, no
   // right-click, no drag-saving a figure, and nothing at all on print.
-  // Iron Rule 3 — protection stays on; only the delivery mechanism changed.
+  // The Captain explicitly enabled highlighting for read aloud (2026-10-17).
+  // Copy/cut, context-menu, drag-save and print protections remain active.
   const block = (e: React.SyntheticEvent) => { e.preventDefault(); e.stopPropagation(); };
 
   return (
@@ -350,38 +240,7 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
             </div>
 
             <div className="flex items-center gap-2 flex-wrap">
-              {speechState !== "unsupported" && (
-                <>
-                  <button onClick={toggleListen}
-                          className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg cursor-pointer border-0"
-                          style={{ background: "rgba(240,145,58,0.1)", border: "1px solid rgba(240,145,58,0.3)", color: "#f0913a" }}>
-                    {speechState === "playing"
-                      ? <><Pause className="w-3.5 h-3.5" /> Pause</>
-                      : speechState === "paused"
-                        ? <><Volume2 className="w-3.5 h-3.5" /> Resume</>
-                        : <><Volume2 className="w-3.5 h-3.5" /> Listen</>}
-                  </button>
-                  {speechState !== "idle" && (
-                    <button onClick={stopListen}
-                            className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg cursor-pointer border-0"
-                            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#94a3b8" }}>
-                      <Square className="w-3.5 h-3.5" /> Stop
-                    </button>
-                  )}
-                  {voices.length > 1 && (
-                    <select value={voiceURI} onChange={e => setVoiceURI(e.target.value)}
-                            title="Voice quality depends on what's installed on your device — pick the best-sounding one"
-                            className="text-xs font-medium px-2 py-2 rounded-lg cursor-pointer"
-                            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#64748b", maxWidth: "9rem" }}>
-                      {voices.map(v => (
-                        <option key={v.voiceURI} value={v.voiceURI} style={{ background: "#111a22", color: "#fff" }}>
-                          {v.name}
-                        </option>
-                      ))}
-                    </select>
-                  )}
-                </>
-              )}
+              <ReadAloudControls key={`${subject.id}/${chapter.id}`} />
               {chapter.content.find(c => c.type === "chapter-quiz")?.available && (
                 <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
                       className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg no-underline"
@@ -424,8 +283,8 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
 ${notes.css}
 /* Protection + fit. Kept after the chapter's own rules so it always wins. */
 .ga-notes, .ga-notes * {
-  -webkit-user-select: none !important; -moz-user-select: none !important;
-  -ms-user-select: none !important; user-select: none !important;
+  -webkit-user-select: text !important; -moz-user-select: text !important;
+  -ms-user-select: text !important; user-select: text !important;
   -webkit-touch-callout: none !important;
 }
 .ga-notes img, .ga-notes svg { -webkit-user-drag: none !important; max-width: 100%; height: auto; }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import GhostMark from "@/app/components/GhostMark";
+import GiniLauncher from "@/app/components/GiniLauncher";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { useUser, getSupabase } from "@/lib/supabase";
 
@@ -141,10 +142,13 @@ export default function Navbar() {
             )}
           </div>
 
-          <button className="md:hidden" style={{ color:"#f3c889" }} onClick={() => setOpen(!open)}
+          <div className="flex items-center gap-2 md:hidden">
+          <GiniLauncher />
+          <button style={{ color:"#f3c889", minWidth: 40, minHeight: 40 }} onClick={() => setOpen(!open)}
                   aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls={open ? "mobile-menu" : undefined}>
             {open ? <X className="w-6 h-6" aria-hidden="true"/> : <Menu className="w-6 h-6" aria-hidden="true"/>}
           </button>
+          </div>
         </div>
       </div>
 
@@ -158,7 +162,7 @@ export default function Navbar() {
           Desktop only: the mobile menu already lists every link. */}
       <div className="hidden md:block" style={{ borderTop:"1px solid rgba(243,200,137,0.08)", background:"rgba(255,255,255,0.015)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-1 h-11">
+          <div className="flex flex-wrap items-center gap-1 min-h-11 py-1">
             <Link href="/exam" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Exam Mode</Link>
             <Link href="/past-papers" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Past Papers</Link>
             <Link href="/video-lectures" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#f87171" }}>Video Lectures</Link>
@@ -168,6 +172,7 @@ export default function Navbar() {
             <Link href="/resources" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Resources</Link>
             <Link href="/dashboard" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Dashboard</Link>
             <Link href="/cpl-cost-calculator" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#38bdf8" }}>Cost Calculator</Link>
+            <GiniLauncher />
           </div>
         </div>
       </div>

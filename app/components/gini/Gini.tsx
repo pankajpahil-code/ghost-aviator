@@ -26,7 +26,7 @@
  *      The rules live in lib/gini/marketing.ts, not in this file.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import {
   askDeep, readContext, greeting, choosePitch, suggestionsFor, followUpsFor,
@@ -39,6 +39,8 @@ import {
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { askSmart } from "@/lib/gini/smart";
 import { sections, speakSection, stop as stopReading, hasNotes, supported as speechSupported } from "@/lib/gini/reader";
+import ReadAloudControls from "../ReadAloudControls";
+import { connectReader, subscribe, getSnapshot, getServerSnapshot, captureReadingSelection, clearReadingSelection, speakText, readRequested } from "@/lib/read-aloud";
 import GiniSprite, { GINI_KEYFRAMES, type GiniMood } from "./GiniSprite";
 
 /**
@@ -63,29 +65,14 @@ const DISMISS_KEY = "ga:gini:dismissed";
  */
 const MOTION_KEY = "ga:gini:motion";
 
-/**
- * Where he can perch. Edges only — never the middle, because covering the page
- * is the single thing that made Clippy hated. Six stops means he actually
- * travels rather than ping-ponging between two corners.
- */
-const PERCHES = [
-  { right: "1rem",  bottom: "1.25rem" },
-  { left:  "1rem",  bottom: "1.25rem" },
-  { right: "1rem",  bottom: "42vh"    },
-  { left:  "1rem",  bottom: "42vh"    },
-  { right: "18vw",  bottom: "1.25rem" },
-  { left:  "18vw",  bottom: "1.25rem" },
-] as const;
-
 export default function Gini() {
   const [ready, setReady] = useState(false);
   const [dismissed, setDismissed] = useState(true);   // assume gone until proven otherwise
   const [osReduced, setOsReduced] = useState(false);
   const [narrow, setNarrow] = useState(false);
-  const [notesGuideOpen, setNotesGuideOpen] = useState(false);
+  const [guidePath, setGuidePath] = useState<string | null>(null);
   const [motionPref, setMotionPref] = useState<"auto" | "on" | "off">("auto");
   const [mood, setMood] = useState<GiniMood>("idle");
-  const [perch, setPerch] = useState(0);
   const [bubble, setBubble] = useState<string | null>(null);
   const [bubbleHref, setBubbleHref] = useState<string | null>(null);
   /** How much of the current bubble has been "spoken" so far. */
@@ -98,7 +85,10 @@ export default function Gini() {
   const timers = useRef<number[]>([]);
   const pathname = usePathname();
   const [onNotes, setOnNotes] = useState(false);
-  const [reading, setReading] = useState(false);
+  const reader = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const reading = reader.state === "playing" || reader.state === "paused";
+  const guideOpen = guidePath === pathname;
+  useEffect(() => connectReader(), []);
   const sectionIdx = useRef(0);
 
   /**
@@ -228,12 +218,9 @@ export default function Gini() {
     try { localStorage.setItem(MOTION_KEY, next === "on" ? "1" : "0"); } catch { /* ignore */ }
   }, [reduced]);
 
-  // On a phone only the two bottom corners are safe; the mid-screen and inset
-  // perches would cover the page.
-  const perches = useMemo(() => (narrow ? PERCHES.slice(0, 2) : PERCHES), [narrow]);
-  const perchCss = useMemo(() => perches[perch % perches.length], [perch, perches]);
-  const figureH = narrow ? 116 : 200;
-  const panelW = narrow ? 150 : 230;
+  // On phones the user-requested panel omits the sprite to leave room for reading controls.
+  const figureH = 120;
+  const panelW = narrow ? "calc(100vw - 2rem)" : 360;
 
   // Whether a chapter is rendered is a DOM fact, unknowable during render.
   // Checked shortly after paint so the Read button never appears where there
@@ -253,11 +240,9 @@ export default function Gini() {
     }
     if (sectionIdx.current >= all.length) sectionIdx.current = 0;
     const s = all[sectionIdx.current];
-    setReading(true);
     setMood("talk");
     show(`Reading ${sectionIdx.current + 1} of ${all.length}: ${s.title}`);
     speakSection(s, () => {
-      setReading(false);
       setMood("idle");
       sectionIdx.current += 1;
       if (sectionIdx.current >= all.length) {
@@ -271,13 +256,23 @@ export default function Gini() {
 
   const haltReading = useCallback(() => {
     stopReading();
-    setReading(false);
     setMood("idle");
     show(null);
   }, [show]);
 
   // Never keep talking after he is dismissed or the student navigates away.
-  useEffect(() => () => stopReading(), []);
+  useEffect(() => () => { stopReading(); clearReadingSelection(); sectionIdx.current = 0; }, [pathname]);
+  useEffect(() => {
+    if (!guideOpen) return;
+    const close = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setGuidePath(null);
+        window.requestAnimationFrame(() => [...document.querySelectorAll<HTMLButtonElement>(".ga-gini-launch")].find(el => el.getClientRects().length > 0)?.focus());
+      }
+    };
+    document.addEventListener("keydown", close);
+    return () => document.removeEventListener("keydown", close);
+  }, [guideOpen]);
   // Silence him the moment he is dismissed. Deliberately calls the DOM-only
   // stopReading() rather than haltReading(): an effect must not set React
   // state synchronously. The `reading` flag is cleared in recall() instead.
@@ -297,7 +292,7 @@ export default function Gini() {
    * where greeting someone would be interrupting them.
    */
   useEffect(() => {
-    if (dismissed || !ready || asking || bubble) return;
+    if (!guideOpen || dismissed || !ready || asking || bubble) return;
     /**
      * The quiet-zone check has to come BEFORE the greeting is marked as used,
      * and it is not obvious why. Landing straight on /signup or an exam is
@@ -329,14 +324,14 @@ export default function Gini() {
     }, 900);
     later(() => setMood("idle"), 4100);
     later(() => show(null), 13900);
-  }, [ctx, pathname, dismissed, ready, asking, bubble, later, show]);
+  }, [ctx, pathname, dismissed, ready, asking, bubble, later, show, guideOpen]);
 
   /**
    * ARRIVING ON A CHAPTER, having already been greeted. One short line per
    * chapter, offering the thing he can uniquely do here — read it aloud.
    */
   useEffect(() => {
-    if (dismissed || !pathname || asking || bubble) return;
+    if (!guideOpen || dismissed || !pathname || asking || bubble) return;
     if (!/\/notes$/.test(pathname)) return;
     if (roomed.current === pathname) return;
     roomed.current = pathname;
@@ -348,11 +343,11 @@ export default function Gini() {
     );
     later(() => setMood("idle"), 3000);
     later(() => show(null), 7000);
-  }, [pathname, ctx.chapterTitle, dismissed, asking, bubble, later, show]);
+  }, [pathname, ctx.chapterTitle, dismissed, asking, bubble, later, show, guideOpen]);
 
   /**
-   * IDLE LIFE. Every 30 seconds he does ONE small thing — either drifts to a
-   * new perch, or just pulls a face and settles again. Not both, and not often.
+   * IDLE LIFE. Only inside the requested help panel: a brief pose or suggestion.
+   * The panel stays put; no character wanders across reading content.
    *
    * The first version fired every 11s and always flew, which read as twitchy
    * and restless rather than alive. A receptionist stands still and occasionally
@@ -360,12 +355,11 @@ export default function Gini() {
    * or being asked something, and off under reduced motion.
    */
   useEffect(() => {
-    if (dismissed || reduced || asking || bubble) return;
+    if (!guideOpen || dismissed || reduced || asking || bubble) return;
     const id = window.setInterval(() => {
       if (Math.random() < 0.5) {
-        // Drift somewhere new.
+        // A short flying pose, inside the panel.
         setMood("fly");
-        setPerch(p => (p + 1 + Math.floor(Math.random() * 3)) % perches.length);
         window.setTimeout(() => setMood("idle"), 2200);
       } else if (Math.random() < 0.45) {
         // Mention what the Captain actually offers. The free school stays free,
@@ -391,7 +385,7 @@ export default function Gini() {
       }
     }, 30000);
     return () => window.clearInterval(id);
-  }, [ctx, dismissed, reduced, asking, bubble, perches.length, show]);
+  }, [ctx, dismissed, reduced, asking, bubble, show, guideOpen]);
 
   /** Say something, wearing the right face, then settle back to idle. */
   const say = useCallback((text: string, face: GiniMood, href?: string) => {
@@ -400,9 +394,8 @@ export default function Gini() {
     later(() => setMood("talk"), 1400);
   }, [later, show]);
 
-  const flyTo = useCallback((next: number) => {
+  const flyTo = useCallback(() => {
     setMood("fly");
-    setPerch(next);
     later(() => setMood("idle"), 2200);
   }, [later]);
 
@@ -420,12 +413,17 @@ export default function Gini() {
   const recall = useCallback(() => {
     try { localStorage.removeItem(DISMISS_KEY); } catch { /* ignore */ }
     setDismissed(false);
-    setReading(false);
     setEntering(true);
     setMood("happy");
     show("Back. What do you need?");
     later(() => { setEntering(false); setMood("idle"); }, 900);
   }, [later, show]);
+
+  useEffect(() => {
+    const open = () => { captureReadingSelection(); setGuidePath(pathname); recall(); setAsking(true); };
+    window.addEventListener("ga:open-gini", open);
+    return () => window.removeEventListener("ga:open-gini", open);
+  }, [pathname, recall]);
 
   /**
    * ANSWERING. askDeep() answers instantly from the light layer where it can
@@ -441,6 +439,18 @@ export default function Gini() {
   const answerQuery = useCallback(async (raw: string) => {
     const q = raw.trim();
     if (!q) return;
+    captureReadingSelection();
+    if (/^(?:please\s+)?read (?:your|the|last) (?:answer|response|reply)(?: aloud)?[.!]?$/i.test(q) && bubble) {
+      speakText(bubble, "Gini answer");
+      setQuery("");
+      return;
+    }
+    const request = readRequested(q);
+    if (request !== "unmatched") {
+      setQuery("");
+      show(request === "started" ? "Reading the requested text. Open Read aloud for voice, pause and stop controls." : "Highlight a passage, choose a notes section, or ask me to read the notes. I won't read unrelated page content.");
+      return;
+    }
     setQuery("");
     setThinking(true);
     setMood("surprised");
@@ -484,7 +494,7 @@ export default function Gini() {
     } else {
       say(reply.text, "angry");
     }
-  }, [ctx, say, later, show]);
+  }, [ctx, say, later, show, bubble]);
 
   const submit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -502,43 +512,26 @@ export default function Gini() {
 
   if (!ready) return null;
 
-  // On a phone the character and greeting can cover half a notes page.
-  // Keep help one tap away, and open it only when the reader requests it.
-  const quietNotes = narrow && /\/notes$/.test(pathname ?? "") && !notesGuideOpen;
-  if (dismissed || quietNotes) {
-    return (
-      <>
-        <style dangerouslySetInnerHTML={{ __html: GINI_KEYFRAMES }} />
-        <button
-          onClick={() => { setNotesGuideOpen(true); recall(); }}
-          aria-label="Bring back Gini, the Ghost Aviator guide"
-          title="Bring back Gini"
-          style={{
-            position: "fixed", right: "1rem", bottom: "1.25rem", zIndex: 60,
-            width: 46, height: 46, borderRadius: "50%",
-            border: "1px solid rgba(240,145,58,0.5)",
-            background: "rgba(10,15,20,0.88)", color: "#f0913a",
-            fontSize: 21, lineHeight: "1", cursor: "pointer",
-            backdropFilter: "blur(6px)",
-          }}
-        >
-          👻
-        </button>
-      </>
-    );
-  }
+  // Help opens from navigation, never over content on arrival.
+  if (dismissed || !guideOpen) return null;
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: GINI_KEYFRAMES }} />
       <div
+        className="ga-gini-guide ga-gini-panel" role="dialog" aria-modal="false" aria-label="Gini study assistant"
         style={{
-          position: "fixed", zIndex: 60, ...perchCss,
-          width: panelW, pointerEvents: "none",
+          position: "fixed", zIndex: 60, right: "1rem", bottom: "calc(1rem + env(safe-area-inset-bottom))",
+          maxHeight: "calc(100dvh - 2rem - env(safe-area-inset-bottom))", overflowY: "auto", padding: 12, borderRadius: 16, background: "#0b1620", border: "1px solid #6d492d", boxShadow: "0 12px 40px #0009",
+          width: panelW, pointerEvents: "auto",
           display: "flex", flexDirection: "column", alignItems: "center",
           transition: reduced ? "none" : "left 1.9s cubic-bezier(.45,0,.25,1), right 1.9s cubic-bezier(.45,0,.25,1), bottom 1.9s cubic-bezier(.45,0,.25,1)",
         }}
       >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", pointerEvents: "auto", marginBottom: 10 }}>
+          <strong style={{ color: "#f3c889", fontSize: 14 }}>Gini · study assistant</strong>
+          <button type="button" onClick={() => { setGuidePath(null); setAsking(false); show(null); window.requestAnimationFrame(() => [...document.querySelectorAll<HTMLButtonElement>(".ga-gini-launch")].find(el => el.getClientRects().length > 0)?.focus()); }} aria-label="Close Gini" style={{ padding: "8px 12px", color: "#fff", background: "#20303e", border: 0, borderRadius: 8, cursor: "pointer" }}>Close</button>
+        </div>
         {bubble && (
           <div
             role="status"
@@ -615,7 +608,7 @@ export default function Gini() {
           </div>
         )}
 
-        <GiniSprite mood={mood} reduced={reduced} vanishing={vanishing} entering={entering} speaking={speaking} height={figureH} />
+        {!narrow && <GiniSprite mood={mood} reduced={reduced} vanishing={vanishing} entering={entering} speaking={speaking} height={figureH} />}
 
         <div style={{
           pointerEvents: "auto", display: "flex", flexWrap: "wrap",
@@ -623,13 +616,14 @@ export default function Gini() {
         }}>
           <GiniBtn onClick={() => setAsking(a => !a)} label={asking ? "Close" : "Ask"} />
           {onNotes && (
-            <GiniBtn onClick={reading ? haltReading : readNext} label={reading ? "Stop" : "Read"} />
+            <GiniBtn onClick={reading ? haltReading : reader.selection ? () => { speakText(reader.selection, "Selected text"); } : readNext} label={reading ? "Stop reading" : reader.selection ? "Read selection" : "Read next notes section"} />
           )}
-          <GiniBtn onClick={() => flyTo(perch + 1)} label="Fly" />
+          {!narrow && <GiniBtn onClick={flyTo} label="Fly" />}
           <GiniBtn onClick={() => { setMood("thunder"); later(() => setMood("idle"), 2600); }} label="⚡" />
           <GiniBtn onClick={toggleMotion} label={reduced ? "Motion on" : "Still"} />
           <GiniBtn onClick={vanish} label="Vanish" />
         </div>
+        {(onNotes || reader.selection || reading) && <div style={{ pointerEvents: "auto", width: "100%", marginTop: 12 }}><ReadAloudControls /></div>}
       </div>
     </>
   );
@@ -640,7 +634,7 @@ function GiniBtn({ onClick, label }: { onClick: () => void; label: string }) {
     <button
       onClick={onClick}
       style={{
-        padding: "4px 10px", fontSize: 11, borderRadius: 8, cursor: "pointer",
+        padding: "8px 10px", minHeight: 40, fontSize: 12, borderRadius: 8, cursor: "pointer",
         background: "rgba(10,15,20,0.88)", color: "#cbd5e1",
         border: "1px solid rgba(203,213,225,0.3)",
       }}

@@ -111,6 +111,14 @@ body {
   -webkit-touch-callout: none;
 }
 /* keep form fields usable */
+/* Highlighting for requested read-aloud is allowed. Clipboard/save/print
+   deterrents remain in ContentProtection and the protected chapter component. */
+main { -webkit-user-select: text; user-select: text; }
+/* Gini opens from existing navigation, so no collapsed widget covers content. */
+.ga-gini-launch { display:inline-flex; align-items:center; justify-content:center;
+  flex-shrink:0; width:40px; height:40px; border:1px solid #77502e;
+  border-radius:12px; background:#17222c; color:#f3c889; font-size:20px; cursor:pointer; }
+.ga-gini-launch:focus-visible { outline:2px solid #f0913a; outline-offset:3px; }
 input, textarea, [contenteditable="true"] {
   -webkit-user-select: text;
   -moz-user-select: text;
