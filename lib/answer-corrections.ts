@@ -23,6 +23,10 @@ export type AnswerCorrection = {
   // Optional rewrites for questions whose options no longer contain a right
   // answer (rule changed) or whose stem was ambiguous/damaged.
   edit?: { q?: string; opts?: Record<string, string> };  // opts: old text -> new text
+  // Optional chapter re-filing when a question was extracted into the wrong
+  // chapter (the answer and wording are right; only the link is wrong).
+  chapterId?: string;
+  subtopic?: string;
   hide?: boolean;  // unanswerable / unsupported: removed from every page
   // Other printings of the SAME keyed option that differ by more than spacing or
   // punctuation (a paper that prints "5700 kg." for "5700 kgs", or the full sentence
@@ -378,9 +382,38 @@ export const ANSWER_CORRECTIONS: AnswerCorrection[] = [
   // The correct option is printed twice (THREE / TREE / TREE), so the first TREE is marked wrong.
   // The lost distractor has to come from the source; hidden until then.
   {"q": "What is the standard ICAO phonetic word for the number 3?", "was": "TREE", "now": "TREE", "hide": true, "exp": ""},
+  // --- 2026-10-20: Met bank corrections from the site audit ---
+  {
+    q: "A jet stream can be recognised by",
+    was: "Streaks of Ci Lenticular clouds",
+    now: "Streaks of Cirrus (Ci) clouds",
+    edit: { opts: { "Streaks of Ci Lenticular clouds": "Streaks of Cirrus (Ci) clouds" } },
+    exp: "Jet streams are indicated by streaks of high-level cirrus cloud, often near the tropopause. Lenticular clouds are a mountain-wave sign, not a jet-stream sign.",
+  },
+  {
+    q: "Airfield warning is issued for expected wind speed",
+    was: "30 kt",
+    now: "30 kt",
+    chapterId: "met-21",
+    subtopic: "Meteorological Services",
+    exp: "An aerodrome (airfield) warning is issued for expected surface wind of 30 kt or more, or a 20 kt wind whose direction changes by 45 degrees. At aerodromes used by light aircraft the threshold is 17 kt. It is a warning for aircraft on the ground, not a SIGMET.",
+  },
+  {
+    q: "AIRMET is SIGMET issued by a MWO for the safety of",
+    was: "low-level aircraft",
+    now: "low-level aircraft",
+    exp: "AIRMET is issued for low-level aircraft operations. Under ICAO Annex 3, AIRMET and SIGMET are separate advisories: SIGMET warns of significant weather hazardous to all aircraft, while AIRMET covers lower-level phenomena below FL100/FL150 as specified by the MWO. The DGCA bank sometimes phrases AIRMET as a low-level SIGMET; answer low-level aircraft.",
+  },
+  {
+    q: "Areas to the ......... of Western Ghats of India are rain shadow areas",
+    was: "E",
+    now: "East (E)",
+    edit: { opts: { "W": "West (W)", "S": "South (S)", "E": "East (E)" } },
+    exp: "The leeward (eastern) side of the Western Ghats is the rain-shadow region. The moist southwest monsoon rises over the western slopes; the descending air on the eastern side is dry.",
+  },
 ];
 
-type Keyed = { q: string; opts: string[]; ans: number; exp?: string };
+type Keyed = { q: string; opts: string[]; ans: number; exp?: string; chapterId?: string; subtopic?: string };
 
 // Option text compared without trailing full stops / whitespace, because the
 // same option is printed "2 mins" in one paper and "2 mins." in another.
@@ -419,6 +452,14 @@ export function applyAnswerCorrections<T extends Keyed>(qs: T[]): T[] {
     });
     const idx = opts.findIndex((o) => sameOption(o, c.now));
     if (idx < 0) return [x];
-    return [{ ...x, q: c.edit?.q ?? x.q, opts, ans: idx, exp: c.exp }];
+    return [{
+      ...x,
+      q: c.edit?.q ?? x.q,
+      opts,
+      ans: idx,
+      exp: c.exp,
+      chapterId: c.chapterId ?? x.chapterId,
+      subtopic: c.subtopic ?? x.subtopic,
+    } as T];
   });
 }
