@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Ghost, Send, Phone } from "lucide-react";
 import EmailCapture from "./EmailCapture";
-import { CPL_SUBJECTS } from "@/lib/subjects";
+import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 
 export default function Footer() {
   return (
@@ -16,7 +16,7 @@ export default function Footer() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-3">
@@ -68,17 +68,21 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* CPL Subjects */}
-          <div>
-            <h4 className="text-sm font-semibold mb-4" style={{ color: "#f0913a" }}>CPL Subjects</h4>
-            <ul className="flex flex-col gap-2">
-              {CPL_SUBJECTS.map(s => [s.shortName, `/cpl/${s.id}`] as const).map(([item, href]) => (
-                <li key={item}>
-                  <Link href={href} className="text-sm no-underline" style={{ color: "#64748b" }}>{item}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {([
+            ["cpl", CPL_SUBJECTS],
+            ["atpl", ATPL_SUBJECTS],
+          ] as const).map(([track, subjects]) => (
+            <nav key={track} aria-label={`${track.toUpperCase()} subjects`}>
+              <h4 className="text-sm font-semibold mb-4" style={{ color: "#f0913a" }}>{track.toUpperCase()} Subjects</h4>
+              <ul className="flex flex-col gap-2">
+                {subjects.map(subject => (
+                  <li key={subject.id}>
+                    <Link href={`/${track}/${subject.id}`} className="text-sm no-underline hover:text-white transition-colors" style={{ color: "#64748b" }}>{subject.shortName}</Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
         </div>
 
         <div className="mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
