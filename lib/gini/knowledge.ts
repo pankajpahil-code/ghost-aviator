@@ -51,7 +51,7 @@ import { answer, refuse, REFUSALS, type GiniReply, type GiniSource, type Refusal
 import { Index, mentions } from "./match";
 import { readContext, type GiniContext } from "./context";
 import { smallTalk, wisdomFor, isOffTopic, declineOffTopic } from "./persona";
-import { isLiveClassPriceQuery, offerFor } from "./marketing";
+import { isAiSelfStudyPriceQuery, isLiveClassPriceQuery, offerFor } from "./marketing";
 import { CORPUS, corpusFor } from "./generated/corpus-stats";
 
 export type { GiniReply, GiniSource, RefusalReason };
@@ -333,19 +333,28 @@ export function ask(query: string, ctx: GiniContext = readContext("/")): GiniRep
   const scoped = structureAnswer(q, ctx, true);
   if (scoped) return scoped;
 
+  // AI Self-Study prices are a product fact, not an FAQ entry. Resolve the
+  // price question before the "what is AI Self-Study?" answer can swallow it.
+  if (isAiSelfStudyPriceQuery(q)) {
+    const aiOffer = offerFor(q, ctx);
+    if (aiOffer) return aiOffer;
+  }
+
+  // "What do the classes cost?" is about the Captain's live batches, not the
+  // guide to the total cost of pilot training. Resolve that intent before the
+  // FAQ, because "Does Ghost Aviator sell recordings of live classes?" also
+  // contains "live classes" and would otherwise answer a price question with
+  // a recordings policy.
+  if (isLiveClassPriceQuery(q)) {
+    const liveClassOffer = offerFor(q, ctx);
+    if (liveClassOffer) return liveClassOffer;
+  }
+
   const faq = answerFromFaq(q);
   if (faq.kind === "answer") return faq;
 
   const wise = wisdomFor(q);
   if (wise) return wise;
-
-  // "What do the classes cost?" is about the Captain's live batches, not the
-  // guide to the total cost of pilot training. Resolve that intent before the
-  // broader guide matcher gets a chance to claim the word "cost".
-  if (isLiveClassPriceQuery(q)) {
-    const liveClassOffer = offerFor(q, ctx);
-    if (liveClassOffer) return liveClassOffer;
-  }
 
   /**
    * The paperwork questions — computer number, exam pattern, what it costs.

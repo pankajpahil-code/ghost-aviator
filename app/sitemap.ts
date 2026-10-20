@@ -66,6 +66,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: url("/"),             changeFrequency: "weekly"  as const, priority: 1.0 },
     { url: url("/live-classes"), changeFrequency: "weekly"  as const, priority: 0.9 },
+    { url: url("/ai-self-study"),changeFrequency: "weekly"  as const, priority: 0.9 },
+    { url: url("/official"),     changeFrequency: "monthly" as const, priority: 0.7 },
     { url: url("/about"),        changeFrequency: "monthly" as const, priority: 0.8 },
     { url: url("/cpl"),          changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/atpl"),         changeFrequency: "weekly"  as const, priority: 0.9 },

@@ -172,6 +172,7 @@ export default function Navbar() {
             <Link href="/resources" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Resources</Link>
             <Link href="/dashboard" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Dashboard</Link>
             <Link href="/cpl-cost-calculator" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#38bdf8" }}>Cost Calculator</Link>
+            <Link href="/ai-self-study" className="px-3 py-1.5 rounded-lg text-sm font-black no-underline transition-colors hover:text-white" style={{ color:"#38bdf8" }}>AI Self-Study</Link>
             <GiniLauncher />
           </div>
         </div>
@@ -182,6 +183,8 @@ export default function Navbar() {
           <Link href="/cpl"           onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#f3c889" }}>✈ CPL Prep</Link>
           <Link href="/atpl"          onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#f0913a" }}>✈ ATPL Prep</Link>
           <Link href="/live-classes"  onClick={() => setOpen(false)} className="py-2.5 text-sm font-black no-underline" style={{ color:"#ff5a5a" }}>🔴 Live Classes</Link>
+          <Link href="/ai-self-study" onClick={() => setOpen(false)} className="py-2.5 text-sm font-black no-underline" style={{ color:"#38bdf8" }}>🤖 AI Self-Study</Link>
+          <Link href="/official"      onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#f3c889" }}>✅ Official Channels</Link>
           <Link href="/books"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#fbbf24" }}>📚 Books</Link>
           <Link href="/about"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#f3c889" }}>👨‍✈️ The Captain</Link>
           <Link href="/rtr-simulator" onClick={() => setOpen(false)} className="py-2.5 text-sm font-black no-underline" style={{ color:"#f0913a" }}>📻 Radio Simulator</Link>

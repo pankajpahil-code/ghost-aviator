@@ -136,7 +136,7 @@ export const FAQS: FaqEntry[] = [
   // ---------------- site ----------------
   {
     q: "Is Ghost Aviator free?",
-    a: "Yes. All the self-study material — notes, question banks, past papers, mock tests and the RTR(A) radio simulator — is free for every student pilot, and stays free. Live online ground classes with the Captain are the only paid part of the site.",
+    a: "Yes. All the self-study material — notes, question banks, past papers, mock tests and the RTR(A) radio simulator — is free for every student pilot, and stays free. The paid parts are separate: AI Self-Study adds the study system around the free library, and live online ground classes with the Captain remain the premium room. Neither is required to use the free library.",
     topic: "site",
     source: "Site policy",
     href: "/cpl",
@@ -145,11 +145,38 @@ export const FAQS: FaqEntry[] = [
   },
   {
     q: "Should I pay for a DGCA question bank or use a free one?",
-    a: "Pay only if you need something free self-study cannot give you — usually a live instructor for a weak subject. Notes, question banks, past papers, mock exams and the RTR(A) simulator on Ghost Aviator are free permanently; live online classes with the Captain are the optional paid part.",
+    a: "Use the free Ghost Aviator bank first. Pay only when you need something free self-study cannot give you: a structured AI study partner for a full exam cycle, or a live instructor for a weak subject. The notes, question bank, past papers, mocks and RTR(A) simulator stay free; AI Self-Study and live classes are the optional paid products.",
     topic: "site",
     source: "Site policy; the Captain's framing 2026-10-07",
     href: "/guides/free-vs-paid-dgca-question-banks",
     hrefLabel: "Free vs paid guide",
+    guides: ["free-vs-paid-dgca-question-banks"],
+  },
+  {
+    q: "What is Ghost Aviator AI Self-Study?",
+    a: "It is a paid study system built on top of the free Ghost Aviator CPL/ATPL library. It adds weekly planning, a mock-review routine, Gini as a daily study partner, and on the six-month and annual plans, a monthly group Q&A with the Captain. Gini answers from the Captain's published notes, links back to the chapter, and refuses when it has no verified answer. It does not include live classes or recordings.",
+    topic: "site",
+    source: "Site policy; product definition 2026-10-20",
+    href: "/ai-self-study",
+    hrefLabel: "AI Self-Study",
+    guides: ["free-vs-paid-dgca-question-banks"],
+  },
+  {
+    q: "Does Ghost Aviator sell recordings of live classes?",
+    a: "No. Ghost Aviator does not sell recordings. The live cohorts are live, and students receive written class notes and summaries after each session. A recording becomes a file that is forwarded and resold, so anyone offering Ghost Aviator recordings is not us.",
+    topic: "site",
+    source: "Site policy; no-recordings decision 2026-10-20",
+    href: "/live-classes",
+    hrefLabel: "Live classes",
+    guides: ["free-vs-paid-dgca-question-banks"],
+  },
+  {
+    q: "How do I verify an official Ghost Aviator account?",
+    a: "Check the /official page on ghostaviator.com. It lists the only official website, social channels, the current monthly verification code and the only payment route we publish. If an account cannot point back to that page, do not pay it.",
+    topic: "site",
+    source: "Site policy; official-channels page 2026-10-20",
+    href: "/official",
+    hrefLabel: "Official channels",
     guides: ["free-vs-paid-dgca-question-banks"],
   },
   {

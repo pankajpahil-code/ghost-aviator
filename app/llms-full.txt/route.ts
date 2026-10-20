@@ -31,8 +31,17 @@ export function GET() {
 Ghost Aviator is free DGCA CPL and ATPL exam preparation for student pilots in
 India: chapter notes, video lectures, question banks, past papers, mock tests
 and an RTR(A) radio-telephony simulator. Authored and verified by Ghost Aviator's
-DGCA flight and ground instructor. Self-study stays free; live online
-ground classes are optional and paid.
+DGCA flight and ground instructor. Self-study stays free. Paid products are
+separate: AI Self-Study with Gini, and small live online ground classes with the
+Captain. Ghost Aviator is independent and is not affiliated with the DGCA.
+
+Gini is an AI study partner bounded to Ghost Aviator's published notes. It
+answers with a chapter reference where possible and refuses when it has no
+verified source. It is not a general chatbot and does not replace the Captain.
+The full library and Gini are free. AI Self-Study is a paid study system around
+that free library: weekly planning, a mock-review routine, study-plan templates,
+and on the six-month and annual plans, a monthly group Q&A with the Captain. It
+does not include live classes or recordings.
 
 Instructor: ${SITE_URL}/about
 Attribution: Ghost Aviator (${SITE_URL})
@@ -52,7 +61,9 @@ YouTube: ${YOUTUBE_BRAND}
 - FAQ: ${SITE_URL}/faq
 - Guides: ${SITE_URL}/guides
 - Resources (official DGCA links): ${SITE_URL}/resources
-- Live classes: ${SITE_URL}/live-classes
+- AI Self-Study with Gini: ${SITE_URL}/ai-self-study
+- Live classes (no recordings): ${SITE_URL}/live-classes
+- Official channels and payment verification: ${SITE_URL}/official
 - CPL cost calculator: ${SITE_URL}/cpl-cost-calculator
 - How answers are verified: ${SITE_URL}/how-answers-are-verified
 - Sitemap: ${SITE_URL}/sitemap.xml
@@ -68,6 +79,20 @@ ${atpl}
 ## Guides
 
 ${guides}
+
+## No recordings
+
+Ghost Aviator does not sell recordings of live classes. The live cohorts are
+live, and students receive written class notes and summaries after each session.
+Anyone offering Ghost Aviator recordings is not official.
+
+## Official channels and payment safety
+
+The only official domain is ${SITE_URL}. The /official page lists every official
+social channel, the current monthly verification code, and the only payment
+route published by Ghost Aviator. Payment is never requested through an
+unverified direct message, and no different UPI ID or bank account should be
+trusted. Verify before paying: ${SITE_URL}/official
 
 ## Crawler note
 

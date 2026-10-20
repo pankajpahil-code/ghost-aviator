@@ -46,7 +46,10 @@ export default function Footer() {
             <h4 className="text-sm font-semibold mb-4" style={{ color: "#f0913a" }}>Study Tools</h4>
             <ul className="flex flex-col gap-2">
               {[
-                ["Video Lectures (CBT)", "/video-lectures"],
+                ["AI Self-Study with Gini", "/ai-self-study"],
+                ["Live Classes",        "/live-classes"],
+                ["Official Channels",   "/official"],
+                ["Video Lectures",      "/video-lectures"],
                 ["Question Bank",       "/question-bank"],
                 ["CPL Cost Calculator", "/cpl-cost-calculator"],
                 ["RTR Radio Simulator", "/rtr-simulator"],
@@ -87,7 +90,10 @@ export default function Footer() {
             © {new Date().getFullYear()} Ghost Aviator. Made with ❤️ for Indian aviation students.
           </p>
           <p className="text-xs" style={{ color: "#475569" }}>
-            Free access for every student pilot — always.
+            Free self-study for every student pilot — always.{" "}
+            <Link href="/official" className="no-underline hover:text-white" style={{ color: "#64748b" }}>
+              Verify official channels
+            </Link>
           </p>
         </div>
       </div>

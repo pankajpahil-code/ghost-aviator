@@ -3,7 +3,7 @@ import Link from "next/link";
 import { LIVE_PRICE, LIVE_LIST_PRICE, LIVE_BATCH_META, liveWaLink } from "@/lib/live-classes";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import type { Metadata } from "next";
-import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap, MessageCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap, MessageCircle, Sparkles } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { servesRealNotes } from "@/lib/indexability";
@@ -194,6 +194,37 @@ export default function Home() {
           Founding batches: <strong style={{ color:"#f3c889" }}>10 seats per subject</strong>.
           Message on WhatsApp to reserve; pay by UPI only after your slot is confirmed.
         </p>
+      </section>
+
+      {/* ══════════════════ AI SELF-STUDY BANNER ══════════════════
+          A separate paid product, not a cheaper live class. No price here until
+          the Captain approves the founding price list. */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <Link href="/ai-self-study"
+              className="group flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 rounded-2xl px-6 py-5 no-underline"
+              style={{ background:"linear-gradient(120deg, rgba(56,189,248,0.10), rgba(17,24,32,0.96))", border:"1px solid rgba(56,189,248,0.28)" }}>
+          <div className="flex items-start gap-4">
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                 style={{ background:"rgba(56,189,248,0.14)", color:"#38bdf8", border:"1px solid rgba(56,189,248,0.3)" }}>
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-xs font-black tracking-widest uppercase mb-1" style={{ color:"#38bdf8" }}>
+                New · AI Self-Study
+              </div>
+              <div className="text-lg font-black text-white leading-snug">
+                Gini answers from the Captain&apos;s notes — with the chapter cited.
+              </div>
+              <div className="text-sm mt-1" style={{ color:"#94a3b8" }}>
+                A study system around the free library, with Gini at 2 a.m. No live classes, no recordings. Founding list open.
+              </div>
+            </div>
+          </div>
+          <span className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-black whitespace-nowrap"
+                style={{ background:"rgba(56,189,248,0.12)", color:"#bae6fd", border:"1px solid rgba(56,189,248,0.35)" }}>
+            Explore AI Self-Study <ArrowRight className="w-4 h-4" />
+          </span>
+        </Link>
       </section>
 
       {/* ══════════════════ INSTRUCTOR TEASER ══════════════════ */}

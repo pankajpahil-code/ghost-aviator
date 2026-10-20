@@ -28,6 +28,7 @@
 import {
   LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE,
 } from "@/lib/live-classes";
+import { AI_SELF_STUDY_PLANS } from "@/lib/ai-self-study";
 
 /**
  * Iron Rule 2 — nothing student-facing may attribute teaching to a third party.
@@ -67,6 +68,7 @@ export const FREE_THREAT =
  */
 export const ALLOWED_PRICES = new Set<string>([
   LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE,
+  ...AI_SELF_STUDY_PLANS.map(plan => plan.price),
 ]);
 
 /**
@@ -84,7 +86,8 @@ export const ALLOWED_PRICES = new Set<string>([
  * it (₹ / Rs / INR) or after it (rupees / Rs / INR / "/-"), and what is
  * compared is the NUMBER, not the spelling: digits only, commas and a ".00"
  * dropped. The allowed numbers are still derived from ALLOWED_PRICES above,
- * which is still imported from lib/live-classes.ts. Nothing is typed here.
+ * which comes from the product price sources (live classes and AI Self-Study).
+ * Nothing is typed here.
  *
  * A multiplier ("8k", "8 thousand", "60 lakh") is never how this site states
  * a price, so a rupee figure carrying one is rejected outright, as is a
@@ -217,7 +220,7 @@ export function guardModelProse(text: string, opts: { allowTeaching?: boolean } 
     const amount = m[1] ?? m[3];
     const multiplier = m[2] ?? m[4];
     if (!amount || multiplier || !isAllowedAmount(amount)) {
-      return { ok: false, why: `price not from lib/live-classes.ts: ${m[0].trim()}` };
+      return { ok: false, why: `price not from a product source: ${m[0].trim()}` };
     }
   }
 

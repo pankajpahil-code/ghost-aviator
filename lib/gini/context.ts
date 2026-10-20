@@ -21,6 +21,8 @@ export type SiteArea =
   | "guide"
   | "guides-index"
   | "live-classes"
+  | "ai-self-study"
+  | "official"
   | "simulator"
   | "books"
   | "question-bank"
@@ -57,7 +59,7 @@ const findChapterIn = (s: Subject | undefined, id: string): Chapter | undefined 
   s?.chapters.find(c => c.id === id);
 
 /** Areas where Gini says nothing unprompted. He is a guide, not an interruption. */
-const QUIET: SiteArea[] = ["account", "exam", "simulator", "live-classes"];
+const QUIET: SiteArea[] = ["account", "exam", "simulator", "live-classes", "official"];
 
 /**
  * Drop trailing slashes with a loop, not with /\/+$/.
@@ -114,6 +116,8 @@ export function readContext(pathname: string | null | undefined): GiniContext {
   switch (head) {
     case "guides":       return base(rest.length ? "guide" : "guides-index");
     case "live-classes": return base("live-classes");
+    case "ai-self-study":return base("ai-self-study");
+    case "official":     return base("official");
     case "rtr-simulator":return base("simulator");
     case "books":        return base("books");
     case "question-bank":return base("question-bank");

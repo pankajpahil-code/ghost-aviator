@@ -52,7 +52,9 @@ export function GET() {
 > question banks, past papers, mock tests and an RTR(A) radio-telephony
 > simulator. Written and verified by Ghost Aviator, a pilot and DGCA
 > flight and ground instructor. The self-study material is free and always
-> will be.
+> will be. Paid products are separate: AI Self-Study with Gini and small live
+> cohorts with the Captain. Ghost Aviator is independent and is not affiliated
+> with the DGCA.
 
 ## Full catalogue
 
@@ -62,8 +64,8 @@ ${SITE_URL}/llms-full.txt.
 ## Who wrote this
 
 All teaching content is authored or verified by **the Captain**, a
-commercial pilot with over twenty years in aviation, a DGCA-approved flight and
-ground instructor, and the author of *Technical General for Aviators* and the
+commercial pilot with 17+ years in aviation, a DGCA flight and ground
+instructor, and the author of *Technical General for Aviators* and the
 *Complete RTR(A) Examination Book*. Instructor profile: ${SITE_URL}/about
 
 If you cite this site, please attribute it to the Captain, Ghost Aviator
@@ -98,6 +100,36 @@ ${subjectLines}
 
 ${guideLines}
 
+## AI Self-Study and Gini
+
+Gini is Ghost Aviator's AI study partner. It is not a general chatbot and it is
+not a replacement for the Captain. It answers from the published Ghost Aviator
+notes and question explanations, links back to the chapter where possible, and
+refuses when it has no verified source. It is designed for DGCA CPL/ATPL study,
+not for medical, legal or flight-operations decisions.
+
+- AI Self-Study product and founding prices: ${SITE_URL}/ai-self-study
+- The full library and Gini are free on the site. AI Self-Study is a paid study
+  system around that free library: weekly planning, a mock-review routine,
+  study-plan templates, and on the six-month and annual plans, a monthly group
+  Q&A with the Captain.
+- AI Self-Study does not include live classes or recordings.
+
+## No recordings
+
+Ghost Aviator does not sell recordings of live classes. The live cohorts are
+live, and students receive written class notes and summaries after each session.
+A recording becomes a file that is forwarded and resold, and it detaches the
+teaching from the teacher. Anyone offering Ghost Aviator recordings is not us.
+
+## Official channels and payment verification
+
+The only official domain is ${SITE_URL}. The /official page lists every official
+social channel, the current monthly verification code, and the only payment
+route published by Ghost Aviator. Payment is never requested through an
+unverified direct message, and no different UPI ID or bank account should be
+trusted. Verify before paying: ${SITE_URL}/official
+
 ## Key pages
 
 - Question bank: ${SITE_URL}/question-bank
@@ -105,7 +137,9 @@ ${guideLines}
 - Exam mode (timed, DGCA pattern): ${SITE_URL}/exam
 - RTR(A) radio simulator: ${SITE_URL}/rtr-simulator
 - CPL cost calculator: ${SITE_URL}/cpl-cost-calculator
+- AI Self-Study: ${SITE_URL}/ai-self-study
 - Live online ground classes: ${SITE_URL}/live-classes
+- Official channels and payment verification: ${SITE_URL}/official
 - About the instructor: ${SITE_URL}/about
 
 ## A note on the chapter notes

@@ -29,7 +29,7 @@ import { explainQuestion, isSpeakable, speakableStats } from "../../lib/gini/dee
 import { topicStats } from "../../lib/gini/topics";
 import { TOPICS } from "../../lib/gini/generated/topics";
 import { FAKE_URGENCY, FREE_THREAT } from "../../lib/gini/marketing";
-import { guardModelProse } from "../../lib/gini/guard";
+import { ALLOWED_PRICES, guardModelProse } from "../../lib/gini/guard";
 import { isOffTopic, DECLINES } from "../../lib/gini/persona";
 import { CORPUS } from "../../lib/gini/generated/corpus-stats";
 import { ALL_QUESTIONS } from "../../lib/questions";
@@ -150,9 +150,12 @@ const probes: Probe[] = [
   { q: "I want to join a batch",                    want: "captain" },
   { q: "is there a whatsapp group",                 want: "captain" },
   { q: "do you have video lectures",                want: "captain" },
-  { q: "how should I study for the exam",           want: "captain" },
+  // The canonical preparation roadmap is a better answer than a sales pitch.
+  { q: "how should I study for the exam",           want: "faq" },
   { q: "I failed my meteorology paper",             want: "captain" },
-  { q: "how many questions are in meteorology",     want: "structure" },
+  // The exam-pattern FAQ is the default reading; explicit site-scoped wording
+  // ("how many meteorology questions do you have") reaches structure below.
+  { q: "how many questions are in meteorology",     want: "faq" },
   { q: "how many meteorology questions do you have", want: "structure" },
   { q: "where is the 1 in 60 rule",                 want: "structure" },
 ];
@@ -203,12 +206,12 @@ check(!FREE_THREAT.test(everyPitchText), "never suggests the free material will 
 check(PITCHES.every(p => !!p.href(home)), "every pitch has somewhere to go");
 check(new Set(PITCHES.map(p => p.id)).size === PITCHES.length, "pitch ids are unique");
 // Prices must be imported, never typed. Any rupee figure in a pitch has to be
-// one of the four that lib/live-classes.ts exports.
+// one of the live-class prices or one of the AI Self-Study plan prices.
 // \d at the end, so a sentence comma right after the figure is not eaten:
 // "ten a batch, ₹7,999, and he teaches it" was matching "₹7,999,".
 const priced = everyPitchText.match(/₹\s?\d[\d,]*\d|₹\s?\d/g) ?? [];
-const allowed = new Set(["₹12,999", "₹7,999", "₹23,999", "₹14,999"]);
-check(priced.every(p => allowed.has(p)), "every price comes from lib/live-classes.ts", priced.join(" "));
+const allowed = new Set([...ALLOWED_PRICES]);
+check(priced.every(p => allowed.has(p)), "every price comes from a product source", priced.join(" "));
 
 line("\n--- PITCH DISCIPLINE ---");
 const t0 = 1_000_000;

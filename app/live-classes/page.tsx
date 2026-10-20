@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle, MessageCircle, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers, CreditCard, QrCode } from "lucide-react";
+import { ArrowRight, CheckCircle, MessageCircle, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers, CreditCard, QrCode, VideoOff, FileText, Sparkles, Lock } from "lucide-react";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 import {
@@ -11,6 +11,9 @@ import {
   LIVE_COMBO_LIST_PRICE as COMBO_LIST_PRICE,
   LIVE_PRICE_VALUE,
   LIVE_COMBO_PRICE_VALUE,
+  LIVE_INSTALMENT_FIRST,
+  LIVE_INSTALMENT_SECOND,
+  LIVE_INSTALMENT_NOTE,
   LIVE_UPI_VPA,
   LIVE_UPI_PAYEE,
   LIVE_UPI_QR,
@@ -28,7 +31,7 @@ import {
 export const metadata: Metadata = {
   title: "DGCA CPL Online Ground Classes India — Met, Air Regs & Nav",
   description:
-    `Live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each.`,
+    `Live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each. No recordings — written class notes and summaries instead. Two instalments available.`,
   keywords: [
     "DGCA ground classes online", "DGCA pilot course", "CPL coaching online", "DGCA Air Regulations classes",
     "DGCA Meteorology classes", "DGCA Navigation classes", "DGCA Radio Navigation classes",
@@ -37,7 +40,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/live-classes" },
   openGraph: {
     title: "Live DGCA Ground Classes with the Captain",
-    description: `5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. Learn from the captain himself.`,
+    description: `5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. Learn from the captain himself. No recordings. Two instalments available.`,
     url: `${SITE_URL}/live-classes`,
     type: "website",
   },
@@ -114,7 +117,7 @@ const SUBJECTS = [
 const FAQ = [
   {
     q: "Who teaches the classes?",
-    a: "Every class is taught live by the Captain himself — pilot, DGCA flight & ground instructor with 17+ years in aviation, and author of two aviation books. No junior tutors, no recordings sold as classes.",
+    a: "Every class is taught live by the Captain himself — pilot, DGCA flight & ground instructor with 17+ years in aviation, and author of two aviation books. No junior tutors, and no recordings at all.",
   },
   {
     q: "How are the classes conducted?",
@@ -132,6 +135,18 @@ const FAQ = [
     q: "Who can join?",
     a: "CPL/ATPL aspirants preparing for DGCA written exams, students at flying schools, and anyone retaking a subject. The free study material on this site remains free for everyone, always.",
   },
+  {
+    q: "Do I get recordings of the classes?",
+    a: "No. Ghost Aviator does not sell recordings. A recording becomes a file that is forwarded and resold, and it detaches the teaching from the teacher. You get written class notes and summaries after each session. If anyone offers you a Ghost Aviator recording, it is not official.",
+  },
+  {
+    q: "Can I pay in instalments?",
+    a: `Yes. ${LIVE_INSTALMENT_NOTE} The total is the same ${PRICE}; it is a payment plan, not a discount. Message the Captain on WhatsApp to arrange it before the batch starts.`,
+  },
+  {
+    q: "What if I miss a live class?",
+    a: "Attend live — there is no recording to fall back on. If you miss a session, you receive the written summary and can bring the questions to the next doubt-clearing slot. Missed classes are not refundable, so check the schedule before you reserve.",
+  },
 ];
 
 const JSON_LD = {
@@ -140,13 +155,14 @@ const JSON_LD = {
     ...SUBJECTS.map(s => ({
       "@type": "Course",
       name: `DGCA CPL ${s.name} — Live Online Ground Classes`,
-      description: `Live online DGCA ${s.name} classes taught by the Captain. Small batch of 10, 4–6 weeks.`,
+      description: `Live online DGCA ${s.name} classes taught by the Captain. Small batch of 10, 4–6 weeks. No recordings — written class notes and summaries after each session.`,
       provider: { "@id": ORG_ID },
       offers: { "@type": "Offer", price: LIVE_PRICE_VALUE, priceCurrency: "INR", availability: "https://schema.org/InStock" },
       hasCourseInstance: {
         "@type": "CourseInstance",
         courseMode: "Online",
         courseWorkload: "PT6H",
+        maximumAttendeeCapacity: 10,
         instructor: { "@id": PERSON_ID },
       },
     })),
@@ -216,8 +232,11 @@ export default function LiveClassesPage() {
             {" "}· Navigation combo <span style={{ color:"#22c55e" }}>{COMBO_PRICE}</span>
             {" "}· <span style={{ color:"#f3c889" }}>Only 10 seats</span>
           </p>
-          <p className="text-sm font-semibold mb-6" style={{ color:"#94a3b8" }}>
-            Message to reserve · UPI after confirmation
+          <p className="text-sm font-semibold mb-2" style={{ color:"#94a3b8" }}>
+            Message to reserve · No recordings · UPI after confirmation
+          </p>
+          <p className="text-xs mb-6" style={{ color:"#64748b" }}>
+            Two instalments: {LIVE_INSTALMENT_FIRST} + {LIVE_INSTALMENT_SECOND}. Same {PRICE} total — not a discount.
           </p>
 
           {/* Next published cohort — sourced from LIVE_BATCH_META */}
@@ -273,6 +292,7 @@ export default function LiveClassesPage() {
               [BookOpen, "Author of 2 aviation books"],
               [Users, "Flight & ground instructor"],
               [ShieldCheck, "Creator of Ghost Aviator"],
+              [VideoOff, "No recordings — ever"],
             ].map(([Icon, label]) => {
               const I = Icon as typeof Award;
               return (
@@ -297,6 +317,54 @@ export default function LiveClassesPage() {
                    }} />
           </div>
          </div>
+        </div>
+      </section>
+
+      {/* ══════════ NO RECORDINGS ══════════ */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="rounded-3xl p-6 sm:p-8" style={{ background:"linear-gradient(135deg, rgba(240,145,58,0.1), rgba(17,24,32,0.97))", border:"1px solid rgba(240,145,58,0.28)" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-start">
+            <div>
+              <div className="inline-flex items-center gap-2 text-xs font-black tracking-widest uppercase mb-3" style={{ color:"#f0913a" }}>
+                <VideoOff className="w-4 h-4" /> No recordings. Ever.
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">
+                A recording is a file. A live room is a commitment.
+              </h2>
+              <p className="text-base leading-relaxed mb-5 max-w-3xl" style={{ color:"#94a3b8" }}>
+                A recording gets forwarded, resold and detached from the teaching. It also lets a student pay for a
+                room and never enter it. This batch is deliberately different: you show up, you ask, and the Captain
+                sees whether you understood. After every session you get the written notes and summary — the essence,
+                not a video to share.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {[
+                  [Radio, "Live only", "Google Meet, maximum 10 students, taught by the Captain."],
+                  [FileText, "Written notes", "Class notes and summaries after every session."],
+                  [Lock, "No downloads", "No recording, no download, no resale. Sharing ends access."],
+                ].map(([Icon, title, body]) => {
+                  const I = Icon as typeof Radio;
+                  return (
+                    <div key={title as string} className="rounded-xl px-4 py-3" style={{ background:"rgba(11,17,23,0.7)", border:"1px solid rgba(240,145,58,0.16)" }}>
+                      <I className="w-4 h-4 mb-2" style={{ color:"#f3c889" }} />
+                      <div className="text-sm font-black text-white">{title as string}</div>
+                      <div className="text-xs mt-1 leading-relaxed" style={{ color:"#64748b" }}>{body as string}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="rounded-2xl p-5 max-w-xs" style={{ background:"rgba(11,17,23,0.8)", border:"1px solid rgba(240,145,58,0.22)" }}>
+              <div className="text-xs font-black uppercase tracking-wider mb-2" style={{ color:"#f3c889" }}>Why this matters</div>
+              <p className="text-sm leading-relaxed" style={{ color:"#94a3b8" }}>
+                Scammers impersonate instructors and sell fake recordings. Ghost Aviator removes the product they
+                would fake. If someone offers you a Ghost Aviator recording, it is not from us.
+              </p>
+              <Link href="/official" className="inline-flex items-center gap-1.5 text-sm font-bold no-underline mt-4" style={{ color:"#f0913a" }}>
+                Verify official channels <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -433,8 +501,16 @@ export default function LiveClassesPage() {
 
           <div className="mt-8 text-center text-sm" style={{ color:"#94a3b8" }}>
             <div>UPI ID: <strong className="text-white">{LIVE_UPI_VPA}</strong></div>
-            <div className="mt-1">Your UPI app will show the account name <strong className="text-white">{LIVE_UPI_PAYEE}</strong> — that is our registered payment account.</div>
+            <div className="mt-1">Your UPI app will show the account name <strong className="text-white">{LIVE_UPI_PAYEE}</strong> — that is the payment account shown on this page.</div>
             <div className="mt-1">Not sure which batch fits? Message first — pay only once you&apos;re sure.</div>
+            <div className="mt-3 text-xs" style={{ color:"#64748b" }}>
+              This is the only UPI route we publish. We never send a different UPI ID in a DM.{" "}
+              <Link href="/official" style={{ color:"#f0913a" }}>Verify official channels</Link>.
+            </div>
+            <div className="mt-2 text-xs" style={{ color:"#64748b" }}>
+              This manual UPI collection is temporary. We are migrating to a business checkout with receipts; the
+              page will change when the gateway is live.
+            </div>
           </div>
         </div>
       </section>
@@ -457,6 +533,28 @@ export default function LiveClassesPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ══════════ AI SELF-STUDY CROSS-SELL ══════════ */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between"
+             style={{ background:"linear-gradient(135deg, rgba(56,189,248,0.1), rgba(17,24,32,0.97))", border:"1px solid rgba(56,189,248,0.3)" }}>
+          <div>
+            <div className="inline-flex items-center gap-2 text-xs font-black tracking-widest uppercase mb-2" style={{ color:"#38bdf8" }}>
+              <Sparkles className="w-4 h-4" /> Not ready for a live batch?
+            </div>
+            <h2 className="text-2xl font-black text-white mb-2">Start with Gini, the AI study partner.</h2>
+            <p className="text-sm leading-relaxed max-w-2xl" style={{ color:"#94a3b8" }}>
+              A study system around the free library, with a partner who answers from the Captain&apos;s notes and
+              cites the chapter. No live classes, no recordings. For the student who needs a plan at 2 a.m.
+            </p>
+          </div>
+          <Link href="/ai-self-study"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline shrink-0"
+                style={{ background:"linear-gradient(135deg,#0ea5e9,#2563eb)", color:"#fff" }}>
+            Explore AI Self-Study <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 

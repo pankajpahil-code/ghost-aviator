@@ -38,6 +38,9 @@ import {
   LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE,
   LIVE_CLASS_SUBJECTS, LIVE_COMBO_SUBJECTS,
 } from "@/lib/live-classes";
+import {
+  AI_SELF_STUDY_PLANS, AI_SELF_STUDY_CHECKOUT_LIVE,
+} from "@/lib/ai-self-study";
 import { TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND } from "@/lib/site";
 
 export type PitchKind = "paid" | "free" | "community" | "trust";
@@ -103,6 +106,34 @@ export const PITCHES: Pitch[] = [
       `If a subject is fighting you, the Captain runs live batches of ten — ${LIVE_PRICE} a subject, or ` +
       `${LIVE_COMBO_PRICE} for the whole Navigation combo. The free material here doesn't change either way.`,
     href: () => "/live-classes",
+  },
+
+  {
+    /**
+     * THE AI PATH. Deliberately below the live cohort in weight: the Captain's
+     * time is the premium product, and Gini must not talk a student out of the
+     * room where a human can see whether he is actually ready. This is for the
+     * student who wants the library and a study partner, not a live batch.
+     *
+     * The price comes from lib/ai-self-study.ts. If checkout is not live, the
+     * sentence says so; it never implies a payment page exists.
+     */
+    id: "ai-self-study",
+    kind: "paid",
+    ask: "ai tutor self study subscription gini study partner monthly plan without live classes",
+    fits: ctx => ctx.area !== "ai-self-study",
+    weight: 5,
+    mood: "present_book",
+    say: () => {
+      const monthly = AI_SELF_STUDY_PLANS[0];
+      return AI_SELF_STUDY_CHECKOUT_LIVE
+        ? `If you want a study system around the free library, with Gini built into your week, AI Self-Study is ${monthly.price} a month. ` +
+          `Gini answers from the Captain's notes and cites the chapter. It explains and quizzes; it does not replace the live class.`
+        : `If you want a study system around the free library, with Gini built into your week, the AI Self-Study founding list is open at ` +
+          `${monthly.price} a month. Gini answers from the Captain's notes and cites the chapter. Checkout is opening; ` +
+          `the page explains exactly what is included.`;
+    },
+    href: () => "/ai-self-study",
   },
 
   {
@@ -228,6 +259,19 @@ export const PITCHES: Pitch[] = [
     href: () => "/how-answers-are-verified",
   },
   {
+    id: "official-channels",
+    kind: "trust",
+    ask: "official website scam fake account verify payment impersonator real ghost aviator",
+    fits: ctx => ctx.area !== "official",
+    weight: 8,
+    mood: "point",
+    say: () =>
+      "The only official domain is ghostaviator.com. The /official page lists every official channel, the current " +
+      "verification code and the only payment route we publish. If an account you cannot verify asks you for money, " +
+      "it is not us — stop and check that page first.",
+    href: () => "/official",
+  },
+  {
     id: "guides",
     kind: "free",
     ask: "guide computer number how to become pilot paperwork process",
@@ -263,6 +307,11 @@ export const isLiveClassPriceQuery = (query: string): boolean =>
   (LIVE_CLASS_TERMS.test(query) || LIVE_SUBJECT_CLASS_TERMS.test(query)) &&
   PRICE_TERMS.test(query);
 
+/** The AI plan has its own price ladder; keep its price questions away from the FAQ. */
+const AI_SELF_STUDY_TERMS = /\b(ai|self[- ]?study|gini|study partner|subscription)\b/i;
+export const isAiSelfStudyPriceQuery = (query: string): boolean =>
+  AI_SELF_STUDY_TERMS.test(query) && PRICE_TERMS.test(query);
+
 /**
  * When a student ASKS about classes, groups, videos or the bank, that is not a
  * pitch — it is the answer to their question, and none of the frequency rules
@@ -278,6 +327,11 @@ export function offerFor(query: string, ctx: GiniContext): GiniReply | null {
   // "Class" also appears in aviation medicals and passenger travel. Those
   // questions must never fall through to a fuzzy sales pitch.
   if (NON_TEACHING_CLASS_TERMS.test(query)) return null;
+
+  if (isAiSelfStudyPriceQuery(query)) {
+    const direct = PITCHES.find(p => p.id === "ai-self-study");
+    if (direct) return answer(direct.say(ctx), { type: "captain" }, direct.href(ctx));
+  }
 
   if (isLiveClassPriceQuery(query)) {
     const id = liveSubject(ctx) ? "live-subject" : "live-general";

@@ -421,9 +421,30 @@ export default function Gini() {
 
   useEffect(() => {
     const open = () => { captureReadingSelection(); setGuidePath(pathname); recall(); setAsking(true); };
+    /**
+     * "Ask Gini" buttons on product pages use this event. They may pass a
+     * question in the detail, but they never submit it: the student sees the
+     * words in the input and decides whether to send them. That keeps a
+     * marketing page from putting an answer in Gini's mouth.
+     */
+    const ask = (event: Event) => {
+      const detail = (event as CustomEvent<{ query?: string }>).detail;
+      captureReadingSelection();
+      setGuidePath(pathname);
+      recall();
+      // The prefilled question is the prompt; don't stack "Back. What do you
+      // need?" above it. The student still chooses whether to send it.
+      show(null);
+      setAsking(true);
+      if (detail?.query) setQuery(detail.query);
+    };
     window.addEventListener("ga:open-gini", open);
-    return () => window.removeEventListener("ga:open-gini", open);
-  }, [pathname, recall]);
+    window.addEventListener("ga:ask-gini", ask);
+    return () => {
+      window.removeEventListener("ga:open-gini", open);
+      window.removeEventListener("ga:ask-gini", ask);
+    };
+  }, [pathname, recall, show]);
 
   /**
    * ANSWERING. askDeep() answers instantly from the light layer where it can
