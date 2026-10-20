@@ -89,8 +89,8 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     "name": "Monika",
     featured: true,
+    // Text-only: the student's result screenshot is intentionally not published.
     result: { score: "90/100", subject: "Meteorology", status: "Provisional" },
-    resultImage: { src: "/testimonials/monika-result.png", alt: "Student-supplied chat screenshot showing Monika's provisional CPL Session 03 of 2026 results: Air Navigation 53/100 and Aviation Meteorology 90/100, subject to final DGCA results.", width: 1065, height: 1944 },
     "detail": "Shared provisional scores: Meteorology 90/100; Air Navigation 53/100. CPL Regular Session 03 of 2026; subject to final result.",
     "subject": "meteorology",
     "context": "Asked whether any questions appeared from the questionnaire:",
