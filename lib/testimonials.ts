@@ -63,7 +63,7 @@ export type Testimonial = {
 // Excerpts omit unrelated chat, third-party source names, contact details and images.
 // 25131 joins two consecutive messages with a full stop. 25124/25106 omit trailing emoji.
 // Scores are screenshot claims, not independently authenticated DGCA results.
-// 25127 retains the question as editorial context; 53/100 is never called a pass.
+// 25127 retains the question as editorial context; only the Meteorology score is published.
 // New cards do not establish that these students are distinct from earlier entries.
 export const TESTIMONIALS: Testimonial[] = [
   {
@@ -91,7 +91,7 @@ export const TESTIMONIALS: Testimonial[] = [
     featured: true,
     // Text-only: the student's result screenshot is intentionally not published.
     result: { score: "90/100", subject: "Meteorology", status: "Provisional" },
-    "detail": "Shared provisional scores: Meteorology 90/100; Air Navigation 53/100. CPL Regular Session 03 of 2026; subject to final result.",
+    "detail": "Shared provisional score: Meteorology 90/100. CPL Regular Session 03 of 2026; subject to final result.",
     "subject": "meteorology",
     "context": "Asked whether any questions appeared from the questionnaire:",
     "quote": "There were multiple"
