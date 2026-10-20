@@ -171,7 +171,7 @@ export default function Home() {
                 {" "}· list <span className="line-through" style={{ color:"#64748b" }}>{LIVE_LIST_PRICE}</span>
               </div>
               <div className="text-sm font-bold mt-2" style={{ color:"#f3c889" }}>
-                Next batch: {LIVE_BATCH_META.subjectTitle} · {LIVE_BATCH_META.startLabel} · max {LIVE_BATCH_META.maxSeats} seats
+                Next batch: {LIVE_BATCH_META.subjectTitle} · {LIVE_BATCH_META.statusLabel} · max {LIVE_BATCH_META.maxSeats} seats
               </div>
             </div>
 

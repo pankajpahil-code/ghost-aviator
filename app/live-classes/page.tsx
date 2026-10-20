@@ -237,16 +237,16 @@ export default function LiveClassesPage() {
           <div className="mb-10 mx-auto lg:mx-0 max-w-xl rounded-2xl px-5 py-4 text-left"
                style={{ background:"rgba(255,40,40,0.08)", border:"1px solid rgba(255,60,60,0.35)" }}>
             <div className="text-xs font-black tracking-widest uppercase mb-1" style={{ color:"#ff5a5a" }}>
-              Next batch
+              Founding batch
             </div>
             <div className="text-lg font-black text-white leading-snug">
               {LIVE_BATCH_META.subjectTitle}
             </div>
             <div className="text-sm font-semibold mt-1" style={{ color:"#94a3b8" }}>
-              Starts {LIVE_BATCH_META.startLabel} · {LIVE_BATCH_META.mode} · max {LIVE_BATCH_META.maxSeats} seats · {LIVE_BATCH_META.durationLabel}
+              {LIVE_BATCH_META.statusLabel} · {LIVE_BATCH_META.mode} · max {LIVE_BATCH_META.maxSeats} seats · {LIVE_BATCH_META.durationLabel}
             </div>
             <div className="text-xs font-bold mt-2" style={{ color:"#f3c889" }}>
-              {LIVE_BATCH_META.maxSeats} seats only — founding price shown above
+              {LIVE_BATCH_META.startLabel} · {LIVE_BATCH_META.maxSeats} seats — founding price shown above
             </div>
           </div>
 
@@ -580,7 +580,7 @@ export default function LiveClassesPage() {
           <div className="text-4xl mb-3">🛫</div>
           <h2 className="text-3xl font-black text-white mb-3">Seats Are Limited. Doubts Are Not.</h2>
           <p className="mb-3 max-w-xl mx-auto font-bold" style={{ color:"#f3c889" }}>
-            Seats left this batch — 10 seats per batch; when full, next batch announced on WhatsApp/Telegram.
+            Founding batch of 10 — when it fills, the next batch is announced on WhatsApp/Telegram.
           </p>
           <p className="mb-8 max-w-xl mx-auto" style={{ color:"#94a3b8" }}>
             {PRICE} per subject (list {LIST_PRICE}), or {COMBO_PRICE} for the full Navigation combo.

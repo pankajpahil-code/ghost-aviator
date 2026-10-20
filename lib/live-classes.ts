@@ -144,8 +144,11 @@ export const LIVE_BATCH_META = {
   mode: "Google Meet",
   maxSeats: 10,
   durationLabel: "4–6 weeks",
-  startDateIST: "2026-10-20",
-  startLabel: "Tuesday, 20 Oct 2026 (IST)",
+  statusLabel: "Now forming",
+  // No public start date until the first seats are confirmed. A date published
+  // before enrolment is a factual claim the site cannot stand behind.
+  startDateIST: "",
+  startLabel: "Date announced on WhatsApp",
   priceINR: 7999,
   enrollWhatsApp: `https://wa.me/${LIVE_WHATSAPP}`,
   telegramInvite: "https://t.me/+tgLMJithc1gzOWJl",
