@@ -19,16 +19,6 @@ export const LIVE_WHATSAPP = "919990226607";
 export const LIVE_LIST_PRICE = "₹12,999";
 export const LIVE_PRICE = "₹7,999";
 
-/**
- * A payment plan, NOT a discount. The total is exactly the same ₹7,999; the
- * student pays in two parts so a single month's cash flow is not the barrier.
- * The live-class page must always show the total alongside the instalments.
- */
-export const LIVE_INSTALMENT_FIRST = "₹4,000";
-export const LIVE_INSTALMENT_SECOND = "₹3,999";
-export const LIVE_INSTALMENT_NOTE =
-  `Two instalments: ${LIVE_INSTALMENT_FIRST} to reserve, ${LIVE_INSTALMENT_SECOND} before class 3. Same ${LIVE_PRICE} total — not a discount.`;
-
 /** Gen Nav + Radio Nav + Instrumentation — the composite DGCA Navigation paper. */
 export const LIVE_COMBO_LIST_PRICE = "₹23,999";
 export const LIVE_COMBO_PRICE = "₹14,999";

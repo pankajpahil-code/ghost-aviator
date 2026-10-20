@@ -11,9 +11,6 @@ import {
   LIVE_COMBO_LIST_PRICE as COMBO_LIST_PRICE,
   LIVE_PRICE_VALUE,
   LIVE_COMBO_PRICE_VALUE,
-  LIVE_INSTALMENT_FIRST,
-  LIVE_INSTALMENT_SECOND,
-  LIVE_INSTALMENT_NOTE,
   LIVE_UPI_VPA,
   LIVE_UPI_PAYEE,
   LIVE_UPI_QR,
@@ -31,7 +28,7 @@ import {
 export const metadata: Metadata = {
   title: "DGCA CPL Online Ground Classes India — Met, Air Regs & Nav",
   description:
-    `Live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each. No recordings — written class notes and summaries instead. Two instalments available.`,
+    `Live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each. No recordings — written class notes and summaries instead. One-time payment.`,
   keywords: [
     "DGCA ground classes online", "DGCA pilot course", "CPL coaching online", "DGCA Air Regulations classes",
     "DGCA Meteorology classes", "DGCA Navigation classes", "DGCA Radio Navigation classes",
@@ -40,7 +37,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/live-classes" },
   openGraph: {
     title: "Live DGCA Ground Classes with the Captain",
-    description: `5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. Learn from the captain himself. No recordings. Two instalments available.`,
+    description: `5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. Learn from the captain himself. No recordings. One-time payment.`,
     url: `${SITE_URL}/live-classes`,
     type: "website",
   },
@@ -140,8 +137,8 @@ const FAQ = [
     a: "No. Ghost Aviator does not sell recordings. A recording becomes a file that is forwarded and resold, and it detaches the teaching from the teacher. You get written class notes and summaries after each session. If anyone offers you a Ghost Aviator recording, it is not official.",
   },
   {
-    q: "Can I pay in instalments?",
-    a: `Yes. ${LIVE_INSTALMENT_NOTE} The total is the same ${PRICE}; it is a payment plan, not a discount. Message the Captain on WhatsApp to arrange it before the batch starts.`,
+    q: "How do I pay?",
+    a: `The full amount is paid once, by UPI, after the Captain confirms your seat: ${PRICE} per subject or ${COMBO_PRICE} for the Navigation combo. Your seat is confirmed when the payment reaches the official UPI account shown on this page.`,
   },
   {
     q: "What if I miss a live class?",
@@ -232,11 +229,8 @@ export default function LiveClassesPage() {
             {" "}· Navigation combo <span style={{ color:"#22c55e" }}>{COMBO_PRICE}</span>
             {" "}· <span style={{ color:"#f3c889" }}>Only 10 seats</span>
           </p>
-          <p className="text-sm font-semibold mb-2" style={{ color:"#94a3b8" }}>
-            Message to reserve · No recordings · UPI after confirmation
-          </p>
-          <p className="text-xs mb-6" style={{ color:"#64748b" }}>
-            Two instalments: {LIVE_INSTALMENT_FIRST} + {LIVE_INSTALMENT_SECOND}. Same {PRICE} total — not a discount.
+          <p className="text-sm font-semibold mb-6" style={{ color:"#94a3b8" }}>
+            One-time payment · No recordings · UPI after confirmation
           </p>
 
           {/* Next published cohort — sourced from LIVE_BATCH_META */}
