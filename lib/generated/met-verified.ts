@@ -10136,7 +10136,24 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "15 kt"
     ],
     "ans": 0,
-    "exp": "An aerodrome warning for strong surface wind is issued at a threshold of about 30 kt."
+    "exp": "30 kt. IMD issues an aerodrome warning for strong surface wind when the speed is expected to reach 30 kt or more, even in gusts. The lower 17 kt threshold is the separate warning for light aircraft. Reference: IMD Standard Operational Procedure for Aviation Meteorology, section 6.2.8 and 6.3."
+  },
+  {
+    "subjectIds": [
+      "meteorology",
+      "atpl-meteorology"
+    ],
+    "chapterId": "met-21",
+    "subtopic": "Meteorological Services",
+    "source": "Ghost Aviator — verified",
+    "q": "Airfield warning is issued for wind direction of 20 kt changes by",
+    "opts": [
+      "45°",
+      "30°",
+      "60°"
+    ],
+    "ans": 0,
+    "exp": "45 degrees. An aerodrome warning is issued when the wind direction is expected to change rapidly by 45 degrees or more with the speed before and after the change at 20 kt or more. Reference: IMD Standard Operational Procedure for Aviation Meteorology, section 6.2.8."
   },
   {
     "subjectIds": [

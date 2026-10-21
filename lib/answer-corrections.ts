@@ -385,7 +385,7 @@ export const ANSWER_CORRECTIONS: AnswerCorrection[] = [
   {
     q: "AIRMET is SIGMET issued by a MWO for the safety of",
     was: "low-level aircraft", now: "low-level aircraft",
-    exp: "Low-level aircraft. AIRMET information is issued by a meteorological watch office for en-route weather that may affect the safety of low-level aircraft operations and that was not already in the forecast issued for low-level flights. Strictly it is its own message, separate from a SIGMET (which covers all aircraft operations), even though exam questions often call it \"a SIGMET for low-level flights\".\n\nReference: DGCA CAR Section 9, Series E, Part I (Issue IV, 19 Jan 2026), definitions: AIRMET information and SIGMET information.",
+    exp: "Low-level aircraft. AIRMET information is issued by a meteorological watch office for en-route weather that may affect the safety of low-level aircraft operations and that was not already in the forecast issued for low-level flights. Strictly it is its own message, separate from a SIGMET (which covers all aircraft operations), even though exam questions often call it \"a SIGMET for low-level flights\".\n\nReference: DGCA CAR Section 9, Series E, Part I (Issue IV, 19 Jan 2026), definitions: AIRMET information and SIGMET information; IMD Standard Operational Procedure for Aviation Meteorology, definitions.",
   },
   {
     q: "Areas to the ......... of Western Ghats of India are rain shadow areas",

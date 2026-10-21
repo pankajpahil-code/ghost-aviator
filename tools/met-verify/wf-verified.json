@@ -3284,17 +3284,6 @@
     "cite": "Low/medium-level significant weather charts cover flight levels below the high-level band; exact FL boundary depends on the chart series, so flagged for review."
    },
    {
-    "q": "Airfield warning is issued for wind direction of 20 kt changes by",
-    "opts": [
-     "45°",
-     "30°",
-     "60°"
-    ],
-    "ans": 0,
-    "status": "DROP",
-    "cite": "Warning criterion for a marked wind-direction change (with wind ~20 kt) is commonly quoted around 45 deg but the exact figure is source-dependent; flagged."
-   },
-   {
     "q": "Airfield Warning for gliders, light aircraft and helicopters is issued for expected wind speed",
     "opts": [
      "15 kt",
@@ -3662,7 +3651,18 @@
     ],
     "ans": 0,
     "status": "VERIFIED",
-    "cite": "An aerodrome (airfield) warning for strong surface wind is issued at a threshold of about 30 kt."
+    "cite": "30 kt. IMD issues an aerodrome warning for strong surface wind when the speed is expected to reach 30 kt or more, even in gusts. The lower 17 kt threshold is the separate warning for light aircraft. Reference: IMD Standard Operational Procedure for Aviation Meteorology, section 6.2.8 and 6.3."
+   },
+   {
+    "q": "Airfield warning is issued for wind direction of 20 kt changes by",
+    "opts": [
+     "45°",
+     "30°",
+     "60°"
+    ],
+    "ans": 0,
+    "status": "VERIFIED",
+    "cite": "45 degrees. An aerodrome warning is issued when the wind direction is expected to change rapidly by 45 degrees or more with the speed before and after the change at 20 kt or more. Reference: IMD Standard Operational Procedure for Aviation Meteorology, section 6.2.8."
    }
   ],
   "disputeCount": 2
