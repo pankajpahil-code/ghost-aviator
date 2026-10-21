@@ -9687,23 +9687,6 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-20",
     "subtopic": "General Circulation",
     "source": "Ghost Aviator — verified",
-    "q": "Airfield warning is issued for expected wind speed",
-    "opts": [
-      "30 kt",
-      "24 kt",
-      "15 kt"
-    ],
-    "ans": 0,
-    "exp": "An aerodrome warning for strong surface wind is issued at a threshold of about 30 kt."
-  },
-  {
-    "subjectIds": [
-      "meteorology",
-      "atpl-meteorology"
-    ],
-    "chapterId": "met-20",
-    "subtopic": "General Circulation",
-    "source": "Ghost Aviator — verified",
     "q": "Wind Shear Warning is issued for the observed or expected wind shear above runway",
     "opts": [
       "up to 500 m",
@@ -10137,6 +10120,23 @@ export const MET_VERIFIED: DemoQuestion[] = [
     ],
     "ans": 0,
     "exp": "Frequent means thunderstorms with little/no separation covering more than 75% of the area."
+  },
+  {
+    "subjectIds": [
+      "meteorology",
+      "atpl-meteorology"
+    ],
+    "chapterId": "met-21",
+    "subtopic": "Meteorological Services",
+    "source": "Ghost Aviator — verified",
+    "q": "Airfield warning is issued for expected wind speed",
+    "opts": [
+      "30 kt",
+      "24 kt",
+      "15 kt"
+    ],
+    "ans": 0,
+    "exp": "An aerodrome warning for strong surface wind is issued at a threshold of about 30 kt."
   },
   {
     "subjectIds": [

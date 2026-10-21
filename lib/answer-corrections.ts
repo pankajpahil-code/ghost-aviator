@@ -378,6 +378,21 @@ export const ANSWER_CORRECTIONS: AnswerCorrection[] = [
   // The correct option is printed twice (THREE / TREE / TREE), so the first TREE is marked wrong.
   // The lost distractor has to come from the source; hidden until then.
   {"q": "What is the standard ICAO phonetic word for the number 3?", "was": "TREE", "now": "TREE", "hide": true, "exp": ""},
+  // --- 2026-10-21: Meteorology bank, items raised in an outside review and checked against sources ---
+  // Damaged copy: options C and D ("Streaks of CI" / "Lenticular clouds") merged into one, and
+  // "dust" read as "dart". The undamaged copy, "A jet Stream can be recognized by", stays live in met-15.
+  {"q": "A jet stream can be recognised by", "was": "Streaks of Ci Lenticular clouds", "now": "Streaks of Ci Lenticular clouds", "hide": true, "exp": ""},
+  {
+    q: "AIRMET is SIGMET issued by a MWO for the safety of",
+    was: "low-level aircraft", now: "low-level aircraft",
+    exp: "Low-level aircraft. AIRMET information is issued by a meteorological watch office for en-route weather that may affect the safety of low-level aircraft operations and that was not already in the forecast issued for low-level flights. Strictly it is its own message, separate from a SIGMET (which covers all aircraft operations), even though exam questions often call it \"a SIGMET for low-level flights\".\n\nReference: DGCA CAR Section 9, Series E, Part I (Issue IV, 19 Jan 2026), definitions: AIRMET information and SIGMET information.",
+  },
+  {
+    q: "Areas to the ......... of Western Ghats of India are rain shadow areas",
+    was: "E", now: "East (E)",
+    edit: { opts: { "W": "West (W)", "S": "South (S)", "E": "East (E)" } },
+    exp: "East (E). The leeward side of the Western Ghats is the rain-shadow region.",
+  },
 ];
 
 type Keyed = { q: string; opts: string[]; ans: number; exp?: string };
