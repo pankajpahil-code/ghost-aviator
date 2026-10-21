@@ -8,11 +8,11 @@ export default function LiveClassInvitation() {
         <p className="m-0 text-lg font-bold text-white">Turn your study time into exam confidence.</p>
         <p className="mb-0 mt-1 max-w-2xl text-sm leading-relaxed text-slate-300">
           Join Ghost Aviator live classes for guided lessons, worked problems and doubt clearing with the Captain.
-          Build understanding, practise with direction, and prepare with a clear plan.
+          Start with a free live demo; pay the full fee once by UPI only if you want to enroll after it. No instalments.
         </p>
       </div>
       <Link href="/live-classes" className="shrink-0 self-start rounded-lg bg-amber-300 px-5 py-3 text-center text-sm font-bold text-slate-950 no-underline sm:self-auto">
-        Explore live classes
+        See free demo options
       </Link>
     </div>
   </aside>;

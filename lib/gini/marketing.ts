@@ -79,7 +79,8 @@ export const PITCHES: Pitch[] = [
     mood: "present_book",
     say: ctx =>
       `The Captain teaches ${liveSubject(ctx)} live himself — ten students in a batch, so every question gets ` +
-      `answered. ${LIVE_PRICE} for the subject, down from ${LIVE_LIST_PRICE}. Everything you're reading here stays free either way.`,
+      `answered. ${LIVE_PRICE} for the subject, down from ${LIVE_LIST_PRICE}. Start with a free demo; if you want ` +
+      `to enroll after it, the full fee is paid once by UPI. No instalments. Everything you're reading here stays free either way.`,
     href: () => "/live-classes",
   },
   {
@@ -92,7 +93,7 @@ export const PITCHES: Pitch[] = [
     say: () =>
       `The DGCA Navigation paper is really three subjects — General Navigation, Radio Navigation and ` +
       `Instrumentation. The Captain teaches all three live as one course, ${LIVE_COMBO_PRICE} instead of ` +
-      `${LIVE_COMBO_LIST_PRICE}.`,
+      `${LIVE_COMBO_LIST_PRICE}. Start with a free combo demo; after it, the full fee is paid once by UPI if you enroll. No instalments.`,
     href: () => "/live-classes",
   },
   {
@@ -104,8 +105,21 @@ export const PITCHES: Pitch[] = [
     mood: "present_book",
     say: () =>
       `If a subject is fighting you, the Captain runs live batches of ten — ${LIVE_PRICE} a subject, or ` +
-      `${LIVE_COMBO_PRICE} for the whole Navigation combo. The free material here doesn't change either way.`,
+      `${LIVE_COMBO_PRICE} for the whole Navigation combo. A free demo comes first; after it, the full fee is paid ` +
+      `once by UPI if you enroll. No instalments. The free material here doesn't change either way.`,
     href: () => "/live-classes",
+  },
+  {
+    id: "live-demo",
+    kind: "paid",
+    ask: "free demo trial class before paying sample live class",
+    fits: anywhere,
+    weight: 8,
+    mood: "present_book",
+    say: () =>
+      "Yes — the live batch starts with a free live demo. There is no fee, no recording and no obligation. " +
+      "If you want to enroll after the demo, the full fee is paid once by UPI. No instalments.",
+    href: () => "/live-classes#demo",
   },
 
   {
@@ -153,8 +167,8 @@ export const PITCHES: Pitch[] = [
     say: ctx => {
       const s = liveSubject(ctx);
       return s
-        ? `If ${s} is the one fighting you, talk to the Captain himself — this opens a message straight to him. Ten students a batch, ${LIVE_PRICE}, and he teaches it personally. Send it while it's in front of you.`
-        : `You can speak to the Captain directly about a batch — this opens a message straight to him. He teaches every batch himself, ten students only, ${LIVE_PRICE} a subject.`;
+        ? `If ${s} is the one fighting you, talk to the Captain himself — this opens a message straight to him. Ten students a batch, ${LIVE_PRICE}, and he teaches it personally. Ask for the free demo first; pay only if you enroll. Send it while it's in front of you.`
+        : `You can speak to the Captain directly about a batch — this opens a message straight to him. He teaches every batch himself, ten students only, ${LIVE_PRICE} a subject. Ask for the free demo first; pay only if you enroll.`;
     },
     href: ctx => captainWhatsApp(liveSubject(ctx) ?? undefined),
   },

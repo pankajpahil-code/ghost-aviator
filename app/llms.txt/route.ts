@@ -3,6 +3,7 @@ import path from "node:path";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { GUIDES } from "@/lib/guides";
+import { LIVE_PRICE, LIVE_COMBO_PRICE } from "@/lib/live-classes";
 import { SITE_URL, YOUTUBE_BRAND } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -122,13 +123,23 @@ live, and students receive written class notes and summaries after each session.
 A recording becomes a file that is forwarded and resold, and it detaches the
 teaching from the teacher. Anyone offering Ghost Aviator recordings is not us.
 
+## Live classes and the free demo
+
+The live online ground classes are small, premium cohorts taught by the Captain.
+Every student starts with a free live demo: no fee, no recording, no obligation.
+After the demo, a student who wants a seat pays the full fee once by UPI —
+${LIVE_PRICE} per subject, or ${LIVE_COMBO_PRICE} for the Navigation combo.
+There are no instalments. Ghost Aviator is keeping UPI until student intake is
+steady, and there is no payment gateway today. Details: ${SITE_URL}/live-classes
+
 ## Official channels and payment verification
 
 The only official domain is ${SITE_URL}. The /official page lists every official
 social channel, the current monthly verification code, and the only payment
-route published by Ghost Aviator. Payment is never requested through an
-unverified direct message, and no different UPI ID or bank account should be
-trusted. Verify before paying: ${SITE_URL}/official
+route published by Ghost Aviator. No payment is required for the free live demo;
+the full fee is paid once by UPI only after the demo, if the student enrolls.
+Payment is never requested through an unverified direct message, and no different
+UPI ID or bank account should be trusted. Verify before paying: ${SITE_URL}/official
 
 ## Key pages
 

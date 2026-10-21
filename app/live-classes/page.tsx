@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle, MessageCircle, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers, CreditCard, QrCode, VideoOff, FileText, Sparkles, Lock } from "lucide-react";
+import { ArrowRight, CheckCircle, MessageCircle, Radio, Users, Award, BookOpen, Target, ShieldCheck, Layers, QrCode, VideoOff, FileText, Sparkles, Lock } from "lucide-react";
 import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 
 import {
@@ -16,28 +16,25 @@ import {
   LIVE_UPI_QR,
   liveUpiLink,
   livePaidLink,
-  liveWaLink as waLink,
-  hasLivePaymentLink,
-  hasLiveComboPaymentLink,
-  liveEnrollLink,
-  liveComboEnrollLink,
+  liveDemoLink,
+  liveComboDemoLink,
   botLink,
   LIVE_BATCH_META,
 } from "@/lib/live-classes";
 
 export const metadata: Metadata = {
-  title: "DGCA CPL Online Ground Classes India — Met, Air Regs & Nav",
+  title: "DGCA CPL Online Ground Classes India — Free Demo, Met, Air Regs & Nav",
   description:
-    `Live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each. No recordings — written class notes and summaries instead. One-time payment.`,
+    `Free live demo first. Then live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each. No recordings — written class notes and summaries instead. Full one-time fee by UPI after the demo, only if you enroll. No instalments.`,
   keywords: [
-    "DGCA ground classes online", "DGCA pilot course", "CPL coaching online", "DGCA Air Regulations classes",
+    "DGCA ground classes online", "DGCA free demo class", "DGCA pilot course", "CPL coaching online", "DGCA Air Regulations classes",
     "DGCA Meteorology classes", "DGCA Navigation classes", "DGCA Radio Navigation classes",
     "DGCA Instrumentation classes", "pilot training India", "CPL exam coaching", "aviation ground school India",
   ],
   alternates: { canonical: "/live-classes" },
   openGraph: {
-    title: "Live DGCA Ground Classes with the Captain",
-    description: `5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. Learn from the captain himself. No recordings. One-time payment.`,
+    title: "Live DGCA Ground Classes with the Captain — Free Demo First",
+    description: `Free live demo first. 5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. Full one-time fee by UPI after the demo, only if you enroll. No instalments. No recordings.`,
     url: `${SITE_URL}/live-classes`,
     type: "website",
   },
@@ -122,11 +119,19 @@ const FAQ = [
   },
   {
     q: "What is the founding-batch price?",
-    a: `${PRICE} per subject, down from ${LIST_PRICE} — far below typical institute fees, and taught by the Captain himself rather than a hired faculty member. The Navigation combo (Gen Nav + Radio Nav + Instrumentation) is ${COMBO_PRICE} instead of ${COMBO_LIST_PRICE} for all three. Ten seats per batch, so every question gets answered.`,
+    a: `${PRICE} per subject, down from ${LIST_PRICE} — far below typical institute fees, and taught by the Captain himself rather than a hired faculty member. The Navigation combo (Gen Nav + Radio Nav + Instrumentation) is ${COMBO_PRICE} instead of ${COMBO_LIST_PRICE} for all three. Ten seats per batch, so every question gets answered. The free demo comes first; you pay only if you want to enroll after it.`,
+  },
+  {
+    q: "Is there a free demo?",
+    a: "Yes. Message the Captain on WhatsApp to book a free live demo. There is no fee, no recording and no obligation. You can see how he teaches and ask questions before you decide whether to enroll.",
+  },
+  {
+    q: "Can I pay in instalments?",
+    a: "No. The full fee is paid once, in advance, by UPI after the free demo, only if you decide to enroll. We do not offer instalments, part payments or a pay-later option.",
   },
   {
     q: "Is there a Navigation combo?",
-    a: `Yes — General Navigation + Radio Navigation + Instrumentation together cover the composite DGCA Navigation paper. The combo is ${COMBO_PRICE} for all three.`,
+    a: `Yes — General Navigation + Radio Navigation + Instrumentation together cover the composite DGCA Navigation paper. The combo is ${COMBO_PRICE} for all three. You can book a free combo demo first.`,
   },
   {
     q: "Who can join?",
@@ -138,11 +143,11 @@ const FAQ = [
   },
   {
     q: "How do I pay?",
-    a: `The full amount is paid once, by UPI, after the Captain confirms your seat: ${PRICE} per subject or ${COMBO_PRICE} for the Navigation combo. Your seat is confirmed when the payment reaches the official UPI account shown on this page.`,
+    a: `Book a free demo first. After the demo, if you want to enroll, pay the full amount once by UPI: ${PRICE} per subject or ${COMBO_PRICE} for the Navigation combo. There are no instalments. Your seat is confirmed when the payment reaches the official UPI account shown on this page.`,
   },
   {
     q: "What if I miss a live class?",
-    a: "Attend live — there is no recording to fall back on. If you miss a session, you receive the written summary and can bring the questions to the next doubt-clearing slot. Missed classes are not refundable, so check the schedule before you reserve.",
+    a: "Attend live — there is no recording to fall back on. If you miss a session, you receive the written summary and can bring the questions to the next doubt-clearing slot. Missed classes are not refundable, so check the schedule before you pay.",
   },
 ];
 
@@ -152,7 +157,7 @@ const JSON_LD = {
     ...SUBJECTS.map(s => ({
       "@type": "Course",
       name: `DGCA CPL ${s.name} — Live Online Ground Classes`,
-      description: `Live online DGCA ${s.name} classes taught by the Captain. Small batch of 10, 4–6 weeks. No recordings — written class notes and summaries after each session.`,
+      description: `Free live demo first. Live online DGCA ${s.name} classes taught by the Captain. Small batch of 10, 4–6 weeks. Full one-time fee by UPI after the demo only if you enroll. No instalments. No recordings — written class notes and summaries after each session.`,
       provider: { "@id": ORG_ID },
       offers: { "@type": "Offer", price: LIVE_PRICE_VALUE, priceCurrency: "INR", availability: "https://schema.org/InStock" },
       hasCourseInstance: {
@@ -214,7 +219,7 @@ export default function LiveClassesPage() {
           <div className="flex-1 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-black mb-6"
                style={{ background:"rgba(255,40,40,0.12)", border:"1px solid rgba(255,60,60,0.45)", color:"#ff5a5a" }}>
-            <Radio className="w-4 h-4 animate-pulse" /> LIVE ONLINE BATCHES · ADMISSIONS OPEN
+            <Radio className="w-4 h-4 animate-pulse" /> LIVE ONLINE BATCHES · FREE DEMO OPEN
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black text-white leading-tight mb-4">
@@ -230,7 +235,7 @@ export default function LiveClassesPage() {
             {" "}· <span style={{ color:"#f3c889" }}>Only 10 seats</span>
           </p>
           <p className="text-sm font-semibold mb-6" style={{ color:"#94a3b8" }}>
-            One-time payment · No recordings · UPI after confirmation
+            Free demo first · Full fee by UPI after demo · No instalments · No recordings
           </p>
 
           {/* Next published cohort — sourced from LIVE_BATCH_META */}
@@ -246,24 +251,16 @@ export default function LiveClassesPage() {
               {LIVE_BATCH_META.statusLabel} · {LIVE_BATCH_META.mode} · max {LIVE_BATCH_META.maxSeats} seats · {LIVE_BATCH_META.durationLabel}
             </div>
             <div className="text-xs font-bold mt-2" style={{ color:"#f3c889" }}>
-              {LIVE_BATCH_META.startLabel} · {LIVE_BATCH_META.maxSeats} seats — founding price shown above
+              Free demo first · {LIVE_BATCH_META.startLabel} · {LIVE_BATCH_META.maxSeats} seats — founding price shown above
             </div>
           </div>
 
           <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
-            <a href={liveEnrollLink("general", "DGCA Ground Classes", PRICE)} target="_blank" rel="noopener noreferrer"
+            <a href={liveDemoLink("DGCA Ground Classes")} target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
-              {hasLivePaymentLink("general") ? <CreditCard className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
-              {hasLivePaymentLink("general") ? "Enroll & Pay Online" : "Enquire on WhatsApp"}
+              <MessageCircle className="w-5 h-5" /> Book a free demo
             </a>
-            {hasLivePaymentLink("general") ? (
-              <a href={waLink("DGCA ground classes", PRICE)} target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
-                 style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
-                <MessageCircle className="w-5 h-5" /> Message on WhatsApp
-              </a>
-            ) : null}
             {/* Instant answers from the assistant: hidden until LIVE_TELEGRAM_BOT is set (lib/live-classes.ts). */}
             {botLink("web") && (
               <a href={botLink("web_live")} target="_blank" rel="noopener noreferrer"
@@ -275,7 +272,7 @@ export default function LiveClassesPage() {
             <a href="#pay"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
-              <QrCode className="w-5 h-5" /> Pay by UPI
+              <QrCode className="w-5 h-5" /> See UPI details
             </a>
           </div>
 
@@ -311,6 +308,47 @@ export default function LiveClassesPage() {
                    }} />
           </div>
          </div>
+        </div>
+      </section>
+
+      {/* ══════════ FREE DEMO ══════════ */}
+      <section id="demo" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 scroll-mt-24">
+        <div className="rounded-3xl p-6 sm:p-8"
+             style={{ background:"linear-gradient(135deg, rgba(34,197,94,0.12), rgba(17,24,32,0.97))", border:"1px solid rgba(34,197,94,0.35)" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 text-xs font-black tracking-widest uppercase mb-3" style={{ color:"#22c55e" }}>
+                <MessageCircle className="w-4 h-4" /> Free live demo
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">
+                See the teaching before you pay.
+              </h2>
+              <p className="text-base leading-relaxed mb-4 max-w-3xl" style={{ color:"#94a3b8" }}>
+                Book a free live demo with the Captain. It is a real live session, not a recording, and there is
+                no fee and no obligation. If you want to enroll after the demo, you pay the full fee once by UPI.
+                We do not offer instalments.
+              </p>
+              <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm" style={{ color:"#cbd5e1" }}>
+                {["No fee for the demo", "No recording", "Full fee only after demo", "No instalments"].map(item => (
+                  <span key={item} className="inline-flex items-center gap-1.5">
+                    <CheckCircle className="w-4 h-4" style={{ color:"#22c55e" }} /> {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col gap-3 shrink-0">
+              <a href={liveDemoLink("DGCA Ground Classes")} target="_blank" rel="noopener noreferrer"
+                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-sm font-black no-underline"
+                 style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 25px rgba(34,197,94,0.35)" }}>
+                <MessageCircle className="w-5 h-5" /> Book a free demo
+              </a>
+              <a href="#pay"
+                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold no-underline"
+                 style={{ border:"1px solid rgba(34,197,94,0.4)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
+                See UPI details <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -388,19 +426,14 @@ export default function LiveClassesPage() {
                 <PriceTag color={s.color} />
               </div>
               <div className="flex flex-col gap-2 mt-auto">
-                <a href={liveEnrollLink(s.key, s.name, PRICE)} target="_blank" rel="noopener noreferrer"
+                <a href={liveDemoLink(s.name)} target="_blank" rel="noopener noreferrer"
                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline transition-transform hover:-translate-y-0.5"
                    style={{ background:`linear-gradient(135deg, ${s.color}, ${s.color}dd)`, color:"#fff", boxShadow:`0 4px 16px ${s.color}35` }}>
-                  {hasLivePaymentLink(s.key) ? <CreditCard className="w-4 h-4"/> : <MessageCircle className="w-4 h-4"/>}
-                  {hasLivePaymentLink(s.key) ? `Enroll & Pay Online (${PRICE})` : `Enquire on WhatsApp (${PRICE})`}
+                  <MessageCircle className="w-4 h-4"/> Book a free demo
                 </a>
-                {hasLivePaymentLink(s.key) ? (
-                  <a href={waLink(s.name, PRICE)} target="_blank" rel="noopener noreferrer"
-                     className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline"
-                     style={{ background:"rgba(255,255,255,0.04)", border:`1px solid ${s.color}40`, color:"#94a3b8" }}>
-                    <MessageCircle className="w-3.5 h-3.5" style={{ color:"#22c55e" }}/> Chat on WhatsApp
-                  </a>
-                ) : null}
+                <p className="text-[11px] text-center m-0" style={{ color:"#64748b" }}>
+                  Free demo first · full fee by UPI after demo · no instalments
+                </p>
               </div>
             </div>
           ))}
@@ -438,19 +471,14 @@ export default function LiveClassesPage() {
               <div className="text-xs font-bold" style={{ color:"#22c55e" }}>Navigation combo · 3 subjects · 10 seats</div>
             </div>
             <div className="flex flex-col gap-2 mt-auto">
-              <a href={liveComboEnrollLink()} target="_blank" rel="noopener noreferrer"
+              <a href={liveComboDemoLink()} target="_blank" rel="noopener noreferrer"
                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline transition-transform hover:-translate-y-0.5"
                  style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 25px rgba(34,197,94,0.4)" }}>
-                {hasLiveComboPaymentLink() ? <CreditCard className="w-4 h-4"/> : <MessageCircle className="w-4 h-4"/>}
-                {hasLiveComboPaymentLink() ? `Enroll in Combo Online (${COMBO_PRICE})` : `Enquire on WhatsApp (${COMBO_PRICE})`}
+                <MessageCircle className="w-4 h-4"/> Book a free combo demo
               </a>
-              {hasLiveComboPaymentLink() ? (
-                <a href={waLink("Navigation Combo (Gen Nav + Radio Nav + Instrumentation)", COMBO_PRICE)} target="_blank" rel="noopener noreferrer"
-                   className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline"
-                   style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(34,197,94,0.4)", color:"#94a3b8" }}>
-                  <MessageCircle className="w-3.5 h-3.5" style={{ color:"#22c55e" }}/> WhatsApp Inquiry
-                </a>
-              ) : null}
+              <p className="text-[11px] text-center m-0" style={{ color:"#64748b" }}>
+                Free demo first · {COMBO_PRICE} by UPI after demo · no instalments
+              </p>
             </div>
           </div>
         </div>
@@ -462,10 +490,13 @@ export default function LiveClassesPage() {
           link is a best-effort shortcut some apps refuse for P2P amounts. */}
       <section id="pay" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-mt-24">
         <div className="rounded-3xl p-6 sm:p-10" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(34,197,94,0.35)" }}>
-          <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 text-center">Pay by UPI — any time</h2>
-          <p className="text-center text-sm mb-8 max-w-2xl mx-auto" style={{ color:"#94a3b8" }}>
-            Scan with GPay, PhonePe, Paytm or any UPI app. The amount is already filled in.
-            Then send the payment screenshot on WhatsApp and your seat is confirmed.
+          <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 text-center">Pay by UPI — after your free demo</h2>
+          <p className="text-center text-sm mb-4 max-w-2xl mx-auto" style={{ color:"#94a3b8" }}>
+            Attend a free live demo first. If you want to enroll after the demo, pay the full amount once by UPI.
+            There are no instalments. Then send the payment screenshot on WhatsApp and your seat is confirmed.
+          </p>
+          <p className="text-center text-xs font-bold mb-8 max-w-2xl mx-auto" style={{ color:"#f3c889" }}>
+            Please do not pay before the demo. Pay only after the demo, if you want to enroll.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -496,14 +527,14 @@ export default function LiveClassesPage() {
           <div className="mt-8 text-center text-sm" style={{ color:"#94a3b8" }}>
             <div>UPI ID: <strong className="text-white">{LIVE_UPI_VPA}</strong></div>
             <div className="mt-1">Your UPI app will show the account name <strong className="text-white">{LIVE_UPI_PAYEE}</strong> — that is the payment account shown on this page.</div>
-            <div className="mt-1">Not sure which batch fits? Message first — pay only once you&apos;re sure.</div>
+            <div className="mt-1">Not sure which batch fits? Book the free demo first — pay only once you&apos;re sure.</div>
             <div className="mt-3 text-xs" style={{ color:"#64748b" }}>
               This is the only UPI route we publish. We never send a different UPI ID in a DM.{" "}
               <Link href="/official" style={{ color:"#f0913a" }}>Verify official channels</Link>.
             </div>
             <div className="mt-2 text-xs" style={{ color:"#64748b" }}>
-              This manual UPI collection is temporary. We are migrating to a business checkout with receipts; the
-              page will change when the gateway is live.
+              We are keeping UPI until the student intake is steady. There is no payment gateway, no card checkout
+              and no instalment option.
             </div>
             <div className="mt-2 text-xs" style={{ color:"#64748b" }}>
               By paying, you agree to our <Link href="/terms" style={{ color:"#f0913a" }}>Terms</Link> and{" "}
@@ -517,11 +548,12 @@ export default function LiveClassesPage() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="rounded-3xl p-10" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(243,200,137,0.2)" }}>
           <h2 className="text-2xl font-black text-white mb-8 text-center">How Joining Works</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             {[
-              ["1", "Message on WhatsApp", "Tell the Captain which subject you want — he replies personally."],
-              ["2", "Reserve your seat", "Confirm your slot in the founding batch of 10. Pay by UPI only after you're sure."],
-              ["3", "Fly the syllabus live", "Join on Google Meet, ask anything, practise real exam questions together."],
+              ["1", "Book a free demo", "Message the Captain on WhatsApp with your subject and exam month."],
+              ["2", "Attend the demo live", "See how he teaches. No fee, no recording, no obligation."],
+              ["3", "Pay the full fee once", "If you want to enroll, pay by UPI after the demo. No instalments."],
+              ["4", "Join the batch live", "Your seat is confirmed when payment is received. Join on Google Meet."],
             ].map(([n, title, desc]) => (
               <div key={n}>
                 <div className="w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center text-lg font-black"
@@ -584,30 +616,23 @@ export default function LiveClassesPage() {
           <div className="text-4xl mb-3">🛫</div>
           <h2 className="text-3xl font-black text-white mb-3">Seats Are Limited. Doubts Are Not.</h2>
           <p className="mb-3 max-w-xl mx-auto font-bold" style={{ color:"#f3c889" }}>
-            Founding batch of 10 — when it fills, the next batch is announced on WhatsApp/Telegram.
+            Founding batch of 10 — free demo first. When it fills, the next batch is announced on WhatsApp/Telegram.
           </p>
           <p className="mb-8 max-w-xl mx-auto" style={{ color:"#94a3b8" }}>
             {PRICE} per subject (list {LIST_PRICE}), or {COMBO_PRICE} for the full Navigation combo.
-            Message now and the Captain will personally tell you when your subject&apos;s batch begins.
+            Book a free demo with the Captain; if you want to enroll after it, pay the full fee once by UPI.
+            No instalments.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href={liveEnrollLink("general", "DGCA Ground Classes", PRICE)} target="_blank" rel="noopener noreferrer"
+            <a href={liveDemoLink("DGCA Ground Classes")} target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline transition-transform hover:-translate-y-0.5"
                style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
-              {hasLivePaymentLink("general") ? <CreditCard className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
-              {hasLivePaymentLink("general") ? `Enroll & Pay Online (${PRICE})` : `Enquire on WhatsApp (${PRICE})`}
+              <MessageCircle className="w-5 h-5" /> Book a free demo
             </a>
-            {hasLivePaymentLink("general") ? (
-              <a href={waLink("DGCA ground classes", PRICE)} target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
-                 style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
-                <MessageCircle className="w-5 h-5" /> WhatsApp: +91 99902 26607
-              </a>
-            ) : null}
             <a href="#pay"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
-              <QrCode className="w-5 h-5" /> Pay by UPI
+              <QrCode className="w-5 h-5" /> See UPI details
             </a>
             <Link href="/cpl" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                   style={{ border:"1px solid rgba(243,200,137,0.4)", color:"#f3c889", background:"rgba(243,200,137,0.06)" }}>

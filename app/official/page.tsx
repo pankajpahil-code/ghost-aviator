@@ -39,7 +39,7 @@ const HAIRLINE = "1px solid rgba(240,145,58,0.18)";
  * worse than no code: it teaches students to trust the wrong thing.
  */
 const VERIFICATION_CODE = "GA-OCT-2026";
-const LAST_VERIFIED = "20 October 2026";
+const LAST_VERIFIED = "21 October 2026";
 
 const OFFICIAL_WA = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
   "Hello Captain, I am checking whether this is the official Ghost Aviator account. Please confirm.",
@@ -154,7 +154,7 @@ const FAQ = [
   },
   {
     q: "What payment route does Ghost Aviator use?",
-    a: "Pay only from the payment route published on https://ghostaviator.com/live-classes. Today that is a UPI QR shown on the page plus a WhatsApp confirmation. We are migrating to a business payment checkout with receipts. We never send a different UPI ID or account number in a direct message.",
+    a: "First book a free live demo from https://ghostaviator.com/live-classes. After the demo, if you want to enroll, pay the full fee once by UPI using the QR shown on that page, then confirm on WhatsApp. There are no instalments. We are keeping UPI until the student intake is steady; there is no payment gateway today. We never send a different UPI ID or account number in a direct message.",
   },
 ] as const;
 
@@ -172,7 +172,7 @@ export default function OfficialPage() {
         author: { "@id": PERSON_ID },
         publisher: { "@id": ORG_ID },
         about: { "@id": ORG_ID },
-        dateModified: "2026-10-20",
+        dateModified: "2026-10-21",
       },
       {
         "@type": "FAQPage",
@@ -353,9 +353,10 @@ export default function OfficialPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <p className="text-sm leading-relaxed mb-4" style={{ color: "#94a3b8" }}>
-                The live-class page is the only place we publish a payment route. Today that route is the UPI QR
-                shown on <Link href="/live-classes#pay" style={{ color: ACCENT }}>/live-classes</Link>, followed by a
-                WhatsApp confirmation. We are migrating to a business checkout with receipts.
+                The live-class page is the only place we publish a payment route. Book a free live demo first.
+                After the demo, if you want to enroll, pay the full fee once by UPI using the QR shown on{" "}
+                <Link href="/live-classes#pay" style={{ color: ACCENT }}>/live-classes</Link>, then confirm on
+                WhatsApp. There are no instalments.
               </p>
               <div
                 className="rounded-xl px-4 py-3 mt-3 text-sm"
@@ -372,8 +373,8 @@ export default function OfficialPage() {
                 uses. If the UPI ID you were sent does not match the one on the live-class page, it is not from us.
               </p>
               <p className="text-xs mt-3" style={{ color: "#64748b" }}>
-                The current manual UPI collection is temporary. We are migrating to a business checkout with
-                receipts; this page and the live-class page will say when that is live.
+                We are keeping UPI until the student intake is steady. We may add a business checkout with receipts
+                later; this page and the live-class page will say when that changes.
               </p>
             </div>
             <div
@@ -386,7 +387,7 @@ export default function OfficialPage() {
               <p className="text-sm leading-relaxed" style={{ color: "#fca5a5" }}>
                 Anyone who messages you first, calls you &quot;beta&quot;, creates urgency, or asks you to pay
                 quickly to &quot;hold a seat&quot; is using a sales script, not a classroom. Stop. Open this page.
-                Pay only after you have verified the channel and the batch.
+                Pay only after the free demo, after you have verified the channel and the batch.
               </p>
             </div>
           </div>
@@ -475,16 +476,17 @@ export default function OfficialPage() {
                  style={{ background: `linear-gradient(135deg, ${ACCENT}18, rgba(17,24,32,0.96))`, border: `1px solid ${ACCENT}40` }}>
           <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">Verify the channel. Then choose the room.</h2>
           <p className="max-w-2xl mx-auto mb-6 text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
-            Free self-study stays free. The live cohort is the Captain&apos;s time. AI Self-Study is the library plus
-            Gini. None of them requires you to trust an account that is not on this page.
+            Free self-study stays free. The live cohort starts with a free demo; pay the full fee once by UPI only
+            if you want to enroll after it. AI Self-Study is the library plus Gini. None of them requires you to
+            trust an account that is not on this page.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
-              href="/live-classes"
+              href="/live-classes#demo"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-black no-underline"
               style={{ background: "linear-gradient(135deg,#16a34a,#22c55e)", color: "#fff" }}
             >
-              Live classes <ArrowRight className="w-4 h-4" />
+              Book a free demo <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/ai-self-study"

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MessageCircle, Radio, ArrowRight } from "lucide-react";
-import { LIVE_CLASS_SUBJECTS, LIVE_PRICE, LIVE_LIST_PRICE, liveWaLink, botLink } from "@/lib/live-classes";
+import { LIVE_CLASS_SUBJECTS, LIVE_PRICE, LIVE_LIST_PRICE, liveDemoLink, botLink } from "@/lib/live-classes";
 
 type Props = {
   subjectId: string;
@@ -28,16 +28,16 @@ export default function LiveClassUpsell({ subjectId, subjectColor }: Props) {
             Study {liveName} <span style={{ color: subjectColor }}>live</span> with the Captain
           </div>
           <div className="text-xs mt-1" style={{ color: "#64748b" }}>
-            Small batch of 10 · live doubt-clearing · 4–6 weeks ·{" "}
+            Free demo first · small batch of 10 · live doubt-clearing · 4–6 weeks ·{" "}
             <span className="line-through">{LIVE_LIST_PRICE}</span>{" "}
             <strong style={{ color: "#22c55e" }}>{LIVE_PRICE}</strong>
           </div>
         </div>
         <div className="flex items-center gap-3 flex-wrap">
-          <a href={liveWaLink(liveName, LIVE_PRICE)} target="_blank" rel="noopener noreferrer"
+          <a href={liveDemoLink(liveName)} target="_blank" rel="noopener noreferrer"
              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-black no-underline"
              style={{ background: "linear-gradient(135deg,#16a34a,#22c55e)", color: "#fff" }}>
-            <MessageCircle className="w-4 h-4" /> Reserve a Seat
+            <MessageCircle className="w-4 h-4" /> Book a Free Demo
           </a>
           {/* Instant answers from the assistant; hidden until LIVE_TELEGRAM_BOT is set. Meteorology
               chapters open straight into the readiness check (its bank is the fully verified one). */}

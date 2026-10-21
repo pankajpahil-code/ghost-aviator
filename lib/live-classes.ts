@@ -27,15 +27,31 @@ export const LIVE_COMBO_PRICE = "₹14,999";
 export const LIVE_PRICE_VALUE = "7999";
 export const LIVE_COMBO_PRICE_VALUE = "14999";
 
+/**
+ * 2026-10-21 — the launch policy, set by the Captain:
+ *   free live demo first → full one-time fee by UPI only if the student wants
+ *   to enroll after the demo. No instalments. No payment gateway until the
+ *   student intake is steady. Keep this message as the default CTA everywhere.
+ */
 export const liveWaLink = (subject: string, price: string) =>
   `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
-    `Hello Captain, I want to join the ${subject} batch (${price}). Please share the details.`
+    `Hello Captain, I want to book a free demo for the ${subject} batch (${price}). Please share the next demo time.`
   )}`;
 
+/** The free-demo route. Payment is discussed only after the demo. */
+export const liveDemoLink = (subject: string) =>
+  `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+    `Hello Captain, I want to book a free demo for ${subject}. Please share the next demo time.`
+  )}`;
+
+export const liveComboDemoLink = () =>
+  liveDemoLink("the Navigation Combo (Gen Nav + Radio Nav + Instrumentation)");
+
 /**
- * Direct payment links (Instamojo / Razorpay payment pages) for automated enrollment.
- * When a URL is configured here, students can pay directly online without waiting for manual WhatsApp replies.
- * If empty/undefined, liveEnrollLink gracefully falls back to the pre-filled WhatsApp link.
+ * Direct payment links (Instamojo / Razorpay payment pages) are intentionally
+ * empty while the first cohorts are filled by hand. Keep UPI on /live-classes.
+ * Do not add a gateway or a public payment link without the Captain's explicit
+ * instruction. When empty, liveEnrollLink falls back to the free-demo message.
  */
 export const LIVE_PAYMENT_LINKS: Record<string, string> = {
   "general": "",
@@ -100,7 +116,9 @@ export const hasLiveComboPaymentLink = (): boolean =>
   Boolean(LIVE_COMBO_PAYMENT_LINK.trim());
 
 /**
- * Returns the direct payment/enrollment URL if configured; otherwise falls back to smart WhatsApp checkout.
+ * Legacy enrollment helper. With no direct link it returns the free-demo
+ * message, which is the current policy. Do not use a direct payment URL in a
+ * CTA until the after-demo checkout exists.
  */
 export const liveEnrollLink = (subjectKey: string, subjectDisplayName: string, price: string): string => {
   const directUrl = LIVE_PAYMENT_LINKS[subjectKey];
@@ -108,7 +126,7 @@ export const liveEnrollLink = (subjectKey: string, subjectDisplayName: string, p
     return directUrl;
   }
   return `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
-    `Hello Captain, I want to enroll & pay for the ${subjectDisplayName} live batch (${price}). Please share the payment link / UPI QR.`
+    `Hello Captain, I want to book a free demo for the ${subjectDisplayName} live batch (${price}). Please share the next demo time.`
   )}`;
 };
 
@@ -121,7 +139,7 @@ export const liveComboEnrollLink = (): string => {
     return directComboUrl;
   }
   return `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
-    `Hello Captain, I want to enroll & pay for the Navigation Combo live batch (3 subjects — ${LIVE_COMBO_PRICE}). Please share the payment link / UPI QR.`
+    `Hello Captain, I want to book a free demo for the Navigation Combo live batch (3 subjects — ${LIVE_COMBO_PRICE}). Please share the next demo time.`
   )}`;
 };
 

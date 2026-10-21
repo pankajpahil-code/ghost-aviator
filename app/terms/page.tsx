@@ -70,9 +70,9 @@ export default function TermsPage() {
       <LegalSection title="2. What we provide">
         <p>
           Ghost Aviator provides free chapter notes, a verified question bank, mock tests, study tools and
-          reference material. Paid live online classes are offered separately in small batches. AI Self-Study is
-          currently a waitlist and does not take payment. Books and PDFs are offered only where the relevant page
-          says they are available.
+          reference material. Paid live online classes are offered separately in small batches. A free live demo
+          is available before you enroll in a live batch. AI Self-Study is currently a waitlist and does not take
+          payment. Books and PDFs are offered only where the relevant page says they are available.
         </p>
         <p>
           The price, schedule and inclusions shown on the relevant page at the time of purchase form part of these
@@ -96,9 +96,14 @@ export default function TermsPage() {
 
       <LegalSection title="4. Live classes">
         <p>
+          Before you pay, you may attend a free live demo with the Captain. The demo is free, live and not
+          recorded. It is not a seat in the batch and creates no obligation to enroll. If you want to enroll after
+          the demo, you pay the full fee in advance by UPI, as explained in section 5.
+        </p>
+        <p>
           A live-class seat is confirmed only when the full one-time payment has been received and we have
           acknowledged it. The batch size is capped on the live-class page. The schedule is shared before the
-          first session.
+          first paid session.
         </p>
         <p>
           Classes are taught live on Google Meet or another platform we name. <strong>There are no recordings.</strong>{" "}
@@ -122,7 +127,8 @@ export default function TermsPage() {
           Pay only through the payment route published on{" "}
           <Link href="/live-classes" style={{ color: LEGAL_ACCENT }}>ghostaviator.com/live-classes</Link>.
           We do not accept payment to a different UPI ID, bank account, personal handle or DM. The full amount is
-          paid once; we do not offer instalments. A payment is not a confirmed seat until we acknowledge it.
+          paid once, in advance, after the free demo, only if you decide to enroll. We do not offer instalments,
+          part payments or a pay-later option. A payment is not a confirmed seat until we acknowledge it.
         </p>
         <p>
           If you pay twice, pay the wrong amount, or are debited without a confirmed seat, contact us with the

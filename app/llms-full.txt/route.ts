@@ -1,6 +1,7 @@
 import { SITE_URL, YOUTUBE_BRAND } from "@/lib/site";
 import { GUIDES } from "@/lib/guides";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import { LIVE_PRICE, LIVE_COMBO_PRICE } from "@/lib/live-classes";
 
 export const dynamic = "force-static";
 
@@ -33,7 +34,8 @@ India: chapter notes, video lectures, question banks, past papers, mock tests
 and an RTR(A) radio-telephony simulator. Authored and verified by Ghost Aviator's
 DGCA flight and ground instructor. Self-study stays free. Paid products are
 separate: AI Self-Study with Gini, and small live online ground classes with the
-Captain. Ghost Aviator is independent and is not affiliated with the DGCA.
+Captain that start with a free demo. Ghost Aviator is independent and is not
+affiliated with the DGCA.
 
 Gini is an AI study partner bounded to Ghost Aviator's published notes. It
 answers with a chapter reference where possible and refuses when it has no
@@ -89,13 +91,24 @@ Ghost Aviator does not sell recordings of live classes. The live cohorts are
 live, and students receive written class notes and summaries after each session.
 Anyone offering Ghost Aviator recordings is not official.
 
+## Live classes and the free demo
+
+The live online ground classes are small, premium cohorts taught by the Captain.
+Every student starts with a free live demo: no fee, no recording, no obligation.
+After the demo, a student who wants a seat pays the full fee once by UPI —
+${LIVE_PRICE} per subject, or ${LIVE_COMBO_PRICE} for the Navigation combo.
+There are no instalments. Ghost Aviator is keeping UPI until student intake is
+steady, and there is no payment gateway today. The demo is not a paid session;
+the paid batch is also not recorded. Details: ${SITE_URL}/live-classes
+
 ## Official channels and payment safety
 
 The only official domain is ${SITE_URL}. The /official page lists every official
 social channel, the current monthly verification code, and the only payment
-route published by Ghost Aviator. Payment is never requested through an
-unverified direct message, and no different UPI ID or bank account should be
-trusted. Verify before paying: ${SITE_URL}/official
+route published by Ghost Aviator. No payment is required for the free live demo;
+the full fee is paid once by UPI only after the demo, if the student enrolls.
+Payment is never requested through an unverified direct message, and no different
+UPI ID or bank account should be trusted. Verify before paying: ${SITE_URL}/official
 
 ## Crawler note
 

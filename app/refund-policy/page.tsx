@@ -59,8 +59,10 @@ export default function RefundPolicyPage() {
     >
       <LegalSection title="The short version">
         <ul className="list-disc pl-5 flex flex-col gap-2">
-          <li><strong>Before the first live session:</strong> full refund if you cancel.</li>
-          <li><strong>After the first live session has started:</strong> no refund.</li>
+          <li><strong>Payment:</strong> the full fee is paid once, after the free demo; no instalments.</li>
+          <li><strong>The free demo:</strong> no payment, so there is nothing to refund.</li>
+          <li><strong>Before the first paid live session:</strong> full refund if you cancel.</li>
+          <li><strong>After the first paid live session has started:</strong> no refund.</li>
           <li><strong>If we cancel the batch:</strong> full refund, or a credit if you prefer.</li>
           <li><strong>If we move the dates and you cannot attend:</strong> full refund, or a credit if you prefer.</li>
           <li><strong>If you miss a session:</strong> no refund; you receive the written summary.</li>
@@ -70,13 +72,17 @@ export default function RefundPolicyPage() {
 
       <LegalSection title="1. Live classes">
         <p>
-          You may cancel a live-class seat for a full refund any time before the first live session begins. Tell us
-          on the official WhatsApp number or Telegram, and include the payment reference.
+          The free live demo is not a paid session. No payment is required for it, and no refund arises. The rules
+          below apply only after you have paid for a seat in a batch.
         </p>
         <p>
-          Once the first live session has started, the seat is treated as consumed and the fee is non-refundable.
-          This is because the batch is capped, the schedule is built around the students in it, and your seat can
-          no longer be offered to someone else.
+          You may cancel a paid live-class seat for a full refund any time before the first paid live session
+          begins. Tell us on the official WhatsApp number or Telegram, and include the payment reference.
+        </p>
+        <p>
+          Once the first paid live session has started, the seat is treated as consumed and the fee is
+          non-refundable. This is because the batch is capped, the schedule is built around the students in it, and
+          your seat can no longer be offered to someone else.
         </p>
         <p>
           If you miss a session, the fee is not refundable. You will receive the written summary and may bring your

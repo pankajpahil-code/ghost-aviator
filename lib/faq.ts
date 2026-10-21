@@ -171,6 +171,15 @@ export const FAQS: FaqEntry[] = [
     guides: ["free-vs-paid-dgca-question-banks"],
   },
   {
+    q: "Is there a free demo before paying for live classes?",
+    a: "Yes. Message the Captain on WhatsApp to book a free live demo. There is no fee, no recording and no obligation to enroll. If you want a seat after the demo, the full fee is paid once by UPI. There are no instalments.",
+    topic: "site",
+    source: "Site policy; free-demo decision 2026-10-21",
+    href: "/live-classes#demo",
+    hrefLabel: "Book a free demo",
+    guides: ["free-vs-paid-dgca-question-banks"],
+  },
+  {
     q: "How do I verify an official Ghost Aviator account?",
     a: "Check the /official page on ghostaviator.com. It lists the only official website, social channels, the current monthly verification code and the only payment route we publish. If an account cannot point back to that page, do not pay it.",
     topic: "site",

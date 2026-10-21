@@ -11,6 +11,10 @@ const WHATSAPP = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
   "Hello Captain, I have a question about Ghost Aviator.",
 )}`;
 
+const WHATSAPP_DEMO = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+  "Hello Captain, I want to book a free demo for a live class. My subject is ____, my exam is in ____, and my city is ____.",
+)}`;
+
 const WHATSAPP_CLASS = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
   "Hello Captain, I want to ask about a live class. My subject is ____ and my exam is in ____.",
 )}`;
@@ -22,12 +26,12 @@ const WHATSAPP_PAYMENT = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURICompone
 export const metadata: Metadata = {
   title: "Contact Ghost Aviator — Official WhatsApp & Telegram",
   description:
-    "Contact Ghost Aviator through the official WhatsApp number or Telegram. Ask about live classes, payments, refunds or verification. We never ask for OTPs or passwords.",
+    "Contact Ghost Aviator through the official WhatsApp number or Telegram. Book a free live demo, or ask about live classes, payments, refunds or verification. We never ask for OTPs or passwords.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact Ghost Aviator — Official WhatsApp & Telegram",
     description:
-      "Official contact routes for live-class questions, payments, refunds and impersonation reports.",
+      "Book a free live demo or ask about live classes, payments, refunds and impersonation reports through the official channels.",
     url: `${SITE_URL}/contact`,
     type: "website",
   },
@@ -115,21 +119,28 @@ export default function ContactPage() {
         </ContactCard>
       </div>
 
-      <LegalSection title="Live-class questions">
+      <LegalSection title="Free demo and live-class questions">
         <p>
-          Tell us the subject, your exam month and your city. If you are asking about a specific batch, say which
-          one. The current batch status is always shown on the{" "}
+          Start with a free live demo. Tell us the subject, your exam month and your city. There is no fee for the
+          demo and no obligation to enroll. If you want a seat after the demo, the full fee is paid once by UPI;
+          there are no instalments. The current batch status is always shown on the{" "}
           <Link href="/live-classes" style={{ color: LEGAL_ACCENT }}>live-classes page</Link>.
         </p>
-        <a href={WHATSAPP_CLASS} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold no-underline" style={{ color: LEGAL_ACCENT }}>
-          <MessageCircle className="w-4 h-4" /> Ask about a live class
-        </a>
+        <div className="flex flex-wrap gap-4">
+          <a href={WHATSAPP_DEMO} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold no-underline" style={{ color: LEGAL_ACCENT }}>
+            <MessageCircle className="w-4 h-4" /> Book a free demo
+          </a>
+          <a href={WHATSAPP_CLASS} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold no-underline" style={{ color: "#94a3b8" }}>
+            Ask about a live class
+          </a>
+        </div>
       </LegalSection>
 
       <LegalSection title="Payments and refunds">
         <p>
-          Include your full name, the subject or product, the payment date, the amount, and the UTR or transaction
-          ID. Do not send your UPI PIN, card number, CVV or OTP.
+          The free demo costs nothing. Do not pay before the demo. If you decide to enroll after it, pay the full
+          fee once by UPI. Include your full name, the subject or product, the payment date, the amount, and the UTR
+          or transaction ID in your message. Do not send your UPI PIN, card number, CVV or OTP.
         </p>
         <p>
           Read the <Link href="/refund-policy" style={{ color: LEGAL_ACCENT }}>Refund &amp; Cancellation Policy</Link>{" "}

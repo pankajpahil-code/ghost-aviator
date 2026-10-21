@@ -167,7 +167,7 @@ export default function Home() {
                 <span style={{ background:"linear-gradient(135deg,#ff6000,#c25a1e,#f0913a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Ghost Aviator</span>
               </div>
               <div className="text-sm font-semibold" style={{ color:"#94a3b8" }}>
-                Small batch of 10 seats. Self-study stays free.
+                Free demo first · Small batch of 10 seats · Self-study stays free.
                 {" "}· list <span className="line-through" style={{ color:"#64748b" }}>{LIVE_LIST_PRICE}</span>
               </div>
               <div className="text-sm font-bold mt-2" style={{ color:"#f3c889" }}>
@@ -183,7 +183,7 @@ export default function Home() {
               <a href={liveWaLink("DGCA live classes", LIVE_PRICE)} target="_blank" rel="noopener noreferrer"
                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold no-underline"
                  style={{ border:"1px solid rgba(34,197,94,0.55)", color:"#22c55e", background:"rgba(34,197,94,0.10)" }}>
-                <MessageCircle className="w-4 h-4" /> WhatsApp +91 99902 26607
+                <MessageCircle className="w-4 h-4" /> Book a free demo
               </a>
             </div>
           </div>
@@ -192,7 +192,8 @@ export default function Home() {
         {/* Seats / waitlist — honest founding-batch line */}
         <p className="mt-4 text-center text-sm font-semibold" style={{ color:"#94a3b8" }}>
           Founding batches: <strong style={{ color:"#f3c889" }}>10 seats per subject</strong>.
-          Message on WhatsApp to reserve; pay by UPI only after your slot is confirmed.
+          Book a free demo first. Pay the full fee once by UPI only after the demo, if you want to enroll.
+          No instalments.
         </p>
       </section>
 
