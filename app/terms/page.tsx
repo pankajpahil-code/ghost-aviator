@@ -101,7 +101,7 @@ export default function TermsPage() {
           the demo, you pay the full fee in advance by UPI, as explained in section 5.
         </p>
         <p>
-          A live-class seat is confirmed only when the full one-time payment has been received and we have
+          A live-class seat is confirmed only when the full payment has been received and we have
           acknowledged it. The batch size is capped on the live-class page. The schedule is shared before the
           first paid session.
         </p>
@@ -126,9 +126,9 @@ export default function TermsPage() {
         <p>
           Pay only through the payment route published on{" "}
           <Link href="/live-classes" style={{ color: LEGAL_ACCENT }}>ghostaviator.com/live-classes</Link>.
-          We do not accept payment to a different UPI ID, bank account, personal handle or DM. The full amount is
-          paid once, in advance, after the free demo, only if you decide to enroll. We do not offer instalments,
-          part payments or a pay-later option. A payment is not a confirmed seat until we acknowledge it.
+          We do not accept payment to a different UPI ID, bank account, personal handle or DM. The fee is paid in
+          full, in advance, after the free demo, only if you decide to enroll. A payment is not a confirmed seat
+          until we acknowledge it.
         </p>
         <p>
           If you pay twice, pay the wrong amount, or are debited without a confirmed seat, contact us with the

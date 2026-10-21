@@ -126,18 +126,16 @@ teaching from the teacher. Anyone offering Ghost Aviator recordings is not us.
 ## Live classes and the free demo
 
 The live online ground classes are small, premium cohorts taught by the Captain.
-Every student starts with a free live demo: no fee, no recording, no obligation.
-After the demo, a student who wants a seat pays the full fee once by UPI —
-${LIVE_PRICE} per subject, or ${LIVE_COMBO_PRICE} for the Navigation combo.
-There are no instalments. Ghost Aviator is keeping UPI until student intake is
-steady, and there is no payment gateway today. Details: ${SITE_URL}/live-classes
+Every student starts with a free live demo. After the demo, a student who wants
+a seat pays the fee by UPI — ${LIVE_PRICE} per subject, or ${LIVE_COMBO_PRICE}
+for the Navigation combo. Details: ${SITE_URL}/live-classes
 
 ## Official channels and payment verification
 
 The only official domain is ${SITE_URL}. The /official page lists every official
 social channel, the current monthly verification code, and the only payment
-route published by Ghost Aviator. No payment is required for the free live demo;
-the full fee is paid once by UPI only after the demo, if the student enrolls.
+route published by Ghost Aviator. The free live demo costs nothing. The fee is
+paid by UPI after the demo, if the student enrolls.
 Payment is never requested through an unverified direct message, and no different
 UPI ID or bank account should be trusted. Verify before paying: ${SITE_URL}/official
 

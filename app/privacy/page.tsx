@@ -80,11 +80,8 @@ export default function PrivacyPage() {
         </Section>
 
         <Section title="Payments">
-          <p>You pay for live classes in your own UPI app after attending a free demo. We never see your bank, card or
-            UPI PIN details. If you send us a payment screenshot, the Captain uses it only to confirm your seat.</p>
-          <p>We are keeping UPI until student intake is steady. If a payment gateway is added later, the gateway will
-            process your payment details under its own privacy policy. We will receive the payment status and
-            settlement report, not your card number, CVV or UPI PIN.</p>
+          <p>Live-class fees are paid by UPI after your free demo. We never see your bank, card or UPI PIN details.
+            If you send us a payment screenshot, the Captain uses it only to confirm your seat.</p>
           <p>Payments and refunds are governed by our <Link href="/terms" style={{ color: ACCENT }}>Terms</Link> and{" "}
             <Link href="/refund-policy" style={{ color: ACCENT }}>Refund &amp; Cancellation Policy</Link>.</p>
         </Section>

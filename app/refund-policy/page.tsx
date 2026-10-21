@@ -59,7 +59,7 @@ export default function RefundPolicyPage() {
     >
       <LegalSection title="The short version">
         <ul className="list-disc pl-5 flex flex-col gap-2">
-          <li><strong>Payment:</strong> the full fee is paid once, after the free demo; no instalments.</li>
+          <li><strong>Payment:</strong> the full fee is paid after the free demo.</li>
           <li><strong>The free demo:</strong> no payment, so there is nothing to refund.</li>
           <li><strong>Before the first paid live session:</strong> full refund if you cancel.</li>
           <li><strong>After the first paid live session has started:</strong> no refund.</li>
@@ -72,8 +72,7 @@ export default function RefundPolicyPage() {
 
       <LegalSection title="1. Live classes">
         <p>
-          The free live demo is not a paid session. No payment is required for it, and no refund arises. The rules
-          below apply only after you have paid for a seat in a batch.
+          The free live demo is free. The rules below apply only after you have paid for a seat in a batch.
         </p>
         <p>
           You may cancel a paid live-class seat for a full refund any time before the first paid live session

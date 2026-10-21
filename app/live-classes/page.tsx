@@ -25,7 +25,7 @@ import {
 export const metadata: Metadata = {
   title: "DGCA CPL Online Ground Classes India — Free Demo, Met, Air Regs & Nav",
   description:
-    `Free live demo first. Then live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each. No recordings — written class notes and summaries instead. Full one-time fee by UPI after the demo, only if you enroll. No instalments.`,
+    `Free live demo first. Then live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each. No recordings — written class notes and summaries instead. Fee by UPI after the demo, only if you enroll.`,
   keywords: [
     "DGCA ground classes online", "DGCA free demo class", "DGCA pilot course", "CPL coaching online", "DGCA Air Regulations classes",
     "DGCA Meteorology classes", "DGCA Navigation classes", "DGCA Radio Navigation classes",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/live-classes" },
   openGraph: {
     title: "Live DGCA Ground Classes with the Captain — Free Demo First",
-    description: `Free live demo first. 5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. Full one-time fee by UPI after the demo, only if you enroll. No instalments. No recordings.`,
+    description: `Free live demo first. 5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. Fee by UPI after the demo, only if you enroll. No recordings.`,
     url: `${SITE_URL}/live-classes`,
     type: "website",
   },
@@ -126,10 +126,6 @@ const FAQ = [
     a: "Yes. Message the Captain on WhatsApp to book a free live demo. There is no fee, no recording and no obligation. You can see how he teaches and ask questions before you decide whether to enroll.",
   },
   {
-    q: "Can I pay in instalments?",
-    a: "No. The full fee is paid once, in advance, by UPI after the free demo, only if you decide to enroll. We do not offer instalments, part payments or a pay-later option.",
-  },
-  {
     q: "Is there a Navigation combo?",
     a: `Yes — General Navigation + Radio Navigation + Instrumentation together cover the composite DGCA Navigation paper. The combo is ${COMBO_PRICE} for all three. You can book a free combo demo first.`,
   },
@@ -143,7 +139,7 @@ const FAQ = [
   },
   {
     q: "How do I pay?",
-    a: `Book a free demo first. After the demo, if you want to enroll, pay the full amount once by UPI: ${PRICE} per subject or ${COMBO_PRICE} for the Navigation combo. There are no instalments. Your seat is confirmed when the payment reaches the official UPI account shown on this page.`,
+    a: `Book a free demo first. After the demo, if you want to enroll, pay the fee by UPI: ${PRICE} per subject or ${COMBO_PRICE} for the Navigation combo. Your seat is confirmed when the payment reaches the official UPI account shown on this page.`,
   },
   {
     q: "What if I miss a live class?",
@@ -157,7 +153,7 @@ const JSON_LD = {
     ...SUBJECTS.map(s => ({
       "@type": "Course",
       name: `DGCA CPL ${s.name} — Live Online Ground Classes`,
-      description: `Free live demo first. Live online DGCA ${s.name} classes taught by the Captain. Small batch of 10, 4–6 weeks. Full one-time fee by UPI after the demo only if you enroll. No instalments. No recordings — written class notes and summaries after each session.`,
+      description: `Free live demo first. Live online DGCA ${s.name} classes taught by the Captain. Small batch of 10, 4–6 weeks. Fee by UPI after the demo only if you enroll. No recordings — written class notes and summaries after each session.`,
       provider: { "@id": ORG_ID },
       offers: { "@type": "Offer", price: LIVE_PRICE_VALUE, priceCurrency: "INR", availability: "https://schema.org/InStock" },
       hasCourseInstance: {
@@ -235,7 +231,7 @@ export default function LiveClassesPage() {
             {" "}· <span style={{ color:"#f3c889" }}>Only 10 seats</span>
           </p>
           <p className="text-sm font-semibold mb-6" style={{ color:"#94a3b8" }}>
-            Free demo first · Full fee by UPI after demo · No instalments · No recordings
+            Free demo first · Fee by UPI after demo · No recordings
           </p>
 
           {/* Next published cohort — sourced from LIVE_BATCH_META */}
@@ -324,12 +320,11 @@ export default function LiveClassesPage() {
                 See the teaching before you pay.
               </h2>
               <p className="text-base leading-relaxed mb-4 max-w-3xl" style={{ color:"#94a3b8" }}>
-                Book a free live demo with the Captain. It is a real live session, not a recording, and there is
-                no fee and no obligation. If you want to enroll after the demo, you pay the full fee once by UPI.
-                We do not offer instalments.
+                Book a free live demo with the Captain. See how he teaches and ask your questions.
+                If you want to enroll afterwards, pay the fee by UPI.
               </p>
               <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm" style={{ color:"#cbd5e1" }}>
-                {["No fee for the demo", "No recording", "Full fee only after demo", "No instalments"].map(item => (
+                {["No fee for the demo", "Live, not recorded", "Pay after the demo"].map(item => (
                   <span key={item} className="inline-flex items-center gap-1.5">
                     <CheckCircle className="w-4 h-4" style={{ color:"#22c55e" }} /> {item}
                   </span>
@@ -432,7 +427,7 @@ export default function LiveClassesPage() {
                   <MessageCircle className="w-4 h-4"/> Book a free demo
                 </a>
                 <p className="text-[11px] text-center m-0" style={{ color:"#64748b" }}>
-                  Free demo first · full fee by UPI after demo · no instalments
+                  Free demo first · fee by UPI after demo
                 </p>
               </div>
             </div>
@@ -477,7 +472,7 @@ export default function LiveClassesPage() {
                 <MessageCircle className="w-4 h-4"/> Book a free combo demo
               </a>
               <p className="text-[11px] text-center m-0" style={{ color:"#64748b" }}>
-                Free demo first · {COMBO_PRICE} by UPI after demo · no instalments
+                Free demo first · {COMBO_PRICE} by UPI after demo
               </p>
             </div>
           </div>
@@ -492,11 +487,11 @@ export default function LiveClassesPage() {
         <div className="rounded-3xl p-6 sm:p-10" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(34,197,94,0.35)" }}>
           <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 text-center">Pay by UPI — after your free demo</h2>
           <p className="text-center text-sm mb-4 max-w-2xl mx-auto" style={{ color:"#94a3b8" }}>
-            Attend a free live demo first. If you want to enroll after the demo, pay the full amount once by UPI.
-            There are no instalments. Then send the payment screenshot on WhatsApp and your seat is confirmed.
+            Attend a free live demo first. If you want to enroll afterwards, pay the fee by UPI.
+            Then send the payment screenshot on WhatsApp and your seat is confirmed.
           </p>
           <p className="text-center text-xs font-bold mb-8 max-w-2xl mx-auto" style={{ color:"#f3c889" }}>
-            Please do not pay before the demo. Pay only after the demo, if you want to enroll.
+            Pay after the demo, once you have decided to enroll.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -533,10 +528,6 @@ export default function LiveClassesPage() {
               <Link href="/official" style={{ color:"#f0913a" }}>Verify official channels</Link>.
             </div>
             <div className="mt-2 text-xs" style={{ color:"#64748b" }}>
-              We are keeping UPI until the student intake is steady. There is no payment gateway, no card checkout
-              and no instalment option.
-            </div>
-            <div className="mt-2 text-xs" style={{ color:"#64748b" }}>
               By paying, you agree to our <Link href="/terms" style={{ color:"#f0913a" }}>Terms</Link> and{" "}
               <Link href="/refund-policy" style={{ color:"#f0913a" }}>Refund &amp; Cancellation Policy</Link>.
             </div>
@@ -552,7 +543,7 @@ export default function LiveClassesPage() {
             {[
               ["1", "Book a free demo", "Message the Captain on WhatsApp with your subject and exam month."],
               ["2", "Attend the demo live", "See how he teaches. No fee, no recording, no obligation."],
-              ["3", "Pay the full fee once", "If you want to enroll, pay by UPI after the demo. No instalments."],
+              ["3", "Pay the fee", "If you want to enroll, pay by UPI after the demo."],
               ["4", "Join the batch live", "Your seat is confirmed when payment is received. Join on Google Meet."],
             ].map(([n, title, desc]) => (
               <div key={n}>
@@ -620,8 +611,7 @@ export default function LiveClassesPage() {
           </p>
           <p className="mb-8 max-w-xl mx-auto" style={{ color:"#94a3b8" }}>
             {PRICE} per subject (list {LIST_PRICE}), or {COMBO_PRICE} for the full Navigation combo.
-            Book a free demo with the Captain; if you want to enroll after it, pay the full fee once by UPI.
-            No instalments.
+            Book a free demo with the Captain. If you want to enroll afterwards, pay the fee by UPI.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href={liveDemoLink("DGCA Ground Classes")} target="_blank" rel="noopener noreferrer"

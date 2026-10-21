@@ -192,8 +192,7 @@ export default function Home() {
         {/* Seats / waitlist — honest founding-batch line */}
         <p className="mt-4 text-center text-sm font-semibold" style={{ color:"#94a3b8" }}>
           Founding batches: <strong style={{ color:"#f3c889" }}>10 seats per subject</strong>.
-          Book a free demo first. Pay the full fee once by UPI only after the demo, if you want to enroll.
-          No instalments.
+          Book a free demo first. If you want to enroll afterwards, pay the fee by UPI.
         </p>
       </section>
 

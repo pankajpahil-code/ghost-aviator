@@ -154,7 +154,7 @@ const FAQ = [
   },
   {
     q: "What payment route does Ghost Aviator use?",
-    a: "First book a free live demo from https://ghostaviator.com/live-classes. After the demo, if you want to enroll, pay the full fee once by UPI using the QR shown on that page, then confirm on WhatsApp. There are no instalments. We are keeping UPI until the student intake is steady; there is no payment gateway today. We never send a different UPI ID or account number in a direct message.",
+    a: "First book a free live demo from https://ghostaviator.com/live-classes. After the demo, if you want to enroll, pay the fee by UPI using the QR shown on that page, then confirm on WhatsApp. We never send a different UPI ID or account number in a direct message.",
   },
 ] as const;
 
@@ -354,9 +354,9 @@ export default function OfficialPage() {
             <div>
               <p className="text-sm leading-relaxed mb-4" style={{ color: "#94a3b8" }}>
                 The live-class page is the only place we publish a payment route. Book a free live demo first.
-                After the demo, if you want to enroll, pay the full fee once by UPI using the QR shown on{" "}
+                After the demo, if you want to enroll, pay the fee by UPI using the QR shown on{" "}
                 <Link href="/live-classes#pay" style={{ color: ACCENT }}>/live-classes</Link>, then confirm on
-                WhatsApp. There are no instalments.
+                WhatsApp.
               </p>
               <div
                 className="rounded-xl px-4 py-3 mt-3 text-sm"
@@ -371,10 +371,6 @@ export default function OfficialPage() {
               <p className="text-xs mt-3" style={{ color: "#64748b" }}>
                 We do not repeat the UPI ID on this page. A copied payment detail is exactly what an impersonator
                 uses. If the UPI ID you were sent does not match the one on the live-class page, it is not from us.
-              </p>
-              <p className="text-xs mt-3" style={{ color: "#64748b" }}>
-                We are keeping UPI until the student intake is steady. We may add a business checkout with receipts
-                later; this page and the live-class page will say when that changes.
               </p>
             </div>
             <div
@@ -476,9 +472,9 @@ export default function OfficialPage() {
                  style={{ background: `linear-gradient(135deg, ${ACCENT}18, rgba(17,24,32,0.96))`, border: `1px solid ${ACCENT}40` }}>
           <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">Verify the channel. Then choose the room.</h2>
           <p className="max-w-2xl mx-auto mb-6 text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
-            Free self-study stays free. The live cohort starts with a free demo; pay the full fee once by UPI only
-            if you want to enroll after it. AI Self-Study is the library plus Gini. None of them requires you to
-            trust an account that is not on this page.
+            Free self-study stays free. The live cohort starts with a free demo. If you want to enroll afterwards,
+            pay the fee by UPI. AI Self-Study is the library plus Gini. None of them requires you to trust an
+            account that is not on this page.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link

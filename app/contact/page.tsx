@@ -122,8 +122,8 @@ export default function ContactPage() {
       <LegalSection title="Free demo and live-class questions">
         <p>
           Start with a free live demo. Tell us the subject, your exam month and your city. There is no fee for the
-          demo and no obligation to enroll. If you want a seat after the demo, the full fee is paid once by UPI;
-          there are no instalments. The current batch status is always shown on the{" "}
+          demo and no obligation to enroll. If you want a seat after the demo, pay the fee by UPI. The current batch
+          status is always shown on the{" "}
           <Link href="/live-classes" style={{ color: LEGAL_ACCENT }}>live-classes page</Link>.
         </p>
         <div className="flex flex-wrap gap-4">
@@ -138,13 +138,13 @@ export default function ContactPage() {
 
       <LegalSection title="Payments and refunds">
         <p>
-          The free demo costs nothing. Do not pay before the demo. If you decide to enroll after it, pay the full
-          fee once by UPI. Include your full name, the subject or product, the payment date, the amount, and the UTR
-          or transaction ID in your message. Do not send your UPI PIN, card number, CVV or OTP.
+          The demo is free. If you decide to enroll afterwards, pay the fee by UPI. Include your full name, the
+          subject or product, the payment date, the amount, and the UTR or transaction ID in your message. Do not
+          send your UPI PIN, card number, CVV or OTP.
         </p>
         <p>
           Read the <Link href="/refund-policy" style={{ color: LEGAL_ACCENT }}>Refund &amp; Cancellation Policy</Link>{" "}
-          before you pay. The full amount is paid once; there are no instalments.
+          before you pay.
         </p>
         <a href={WHATSAPP_PAYMENT} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold no-underline" style={{ color: LEGAL_ACCENT }}>
           <CreditCard className="w-4 h-4" /> Ask a payment question

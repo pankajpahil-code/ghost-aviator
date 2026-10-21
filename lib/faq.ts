@@ -172,7 +172,7 @@ export const FAQS: FaqEntry[] = [
   },
   {
     q: "Is there a free demo before paying for live classes?",
-    a: "Yes. Message the Captain on WhatsApp to book a free live demo. There is no fee, no recording and no obligation to enroll. If you want a seat after the demo, the full fee is paid once by UPI. There are no instalments.",
+    a: "Yes. Message the Captain on WhatsApp to book a free live demo. There is no fee, no recording and no obligation to enroll. If you want a seat after the demo, the fee is paid by UPI.",
     topic: "site",
     source: "Site policy; free-demo decision 2026-10-21",
     href: "/live-classes#demo",

@@ -553,7 +553,7 @@ export default function AiSelfStudyPage() {
             <h2 className="text-2xl font-black text-white mb-2">The live cohort is still the premium room.</h2>
             <p className="text-sm leading-relaxed max-w-2xl" style={{ color: "#94a3b8" }}>
               Ten seats, taught live by the Captain. No recordings. Study with Gini before class, then bring the
-              questions that need a human. {LIVE_PRICE} per subject, one-time payment.
+              questions that need a human. Free demo first. {LIVE_PRICE} per subject, fee by UPI after the demo.
             </p>
           </div>
           <Link
