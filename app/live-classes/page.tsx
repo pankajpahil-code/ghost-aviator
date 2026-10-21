@@ -505,6 +505,10 @@ export default function LiveClassesPage() {
               This manual UPI collection is temporary. We are migrating to a business checkout with receipts; the
               page will change when the gateway is live.
             </div>
+            <div className="mt-2 text-xs" style={{ color:"#64748b" }}>
+              By paying, you agree to our <Link href="/terms" style={{ color:"#f0913a" }}>Terms</Link> and{" "}
+              <Link href="/refund-policy" style={{ color:"#f0913a" }}>Refund &amp; Cancellation Policy</Link>.
+            </div>
           </div>
         </div>
       </section>

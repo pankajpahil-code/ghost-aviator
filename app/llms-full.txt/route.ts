@@ -64,6 +64,9 @@ YouTube: ${YOUTUBE_BRAND}
 - AI Self-Study with Gini: ${SITE_URL}/ai-self-study
 - Live classes (no recordings): ${SITE_URL}/live-classes
 - Official channels and payment verification: ${SITE_URL}/official
+- Terms of service: ${SITE_URL}/terms
+- Refund and cancellation policy: ${SITE_URL}/refund-policy
+- Contact: ${SITE_URL}/contact
 - CPL cost calculator: ${SITE_URL}/cpl-cost-calculator
 - How answers are verified: ${SITE_URL}/how-answers-are-verified
 - Sitemap: ${SITE_URL}/sitemap.xml

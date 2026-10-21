@@ -6,7 +6,7 @@ import { enquiryLink } from "@/lib/live-classes";
 // accounts (Supabase) are NOT switched on in production; progress lives in localStorage; Gini's route keeps
 // the IP only in an in-memory rate limiter; the sales assistant stores chats on the Captain's own computer
 // (D:\pk\ghost-sales-desk) and deletes a person on "delete my data" (engine.forget). Change the code, change this.
-const UPDATED = "8 October 2026";
+const UPDATED = "21 October 2026";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — Ghost Aviator",
@@ -82,6 +82,10 @@ export default function PrivacyPage() {
         <Section title="Payments">
           <p>You pay for live classes in your own UPI app. We never see your bank, card or UPI PIN details. If you send us a
             payment screenshot, the Captain uses it only to confirm your seat.</p>
+          <p>When a payment gateway is added, the gateway will process your payment details under its own privacy policy.
+            We will receive the payment status and settlement report, not your card number, CVV or UPI PIN.</p>
+          <p>Payments and refunds are governed by our <Link href="/terms" style={{ color: ACCENT }}>Terms</Link> and{" "}
+            <Link href="/refund-policy" style={{ color: ACCENT }}>Refund &amp; Cancellation Policy</Link>.</p>
         </Section>
 
         <Section id="delete-your-data" title="Delete your data">

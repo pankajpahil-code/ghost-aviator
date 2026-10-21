@@ -140,6 +140,9 @@ trusted. Verify before paying: ${SITE_URL}/official
 - AI Self-Study: ${SITE_URL}/ai-self-study
 - Live online ground classes: ${SITE_URL}/live-classes
 - Official channels and payment verification: ${SITE_URL}/official
+- Terms of service: ${SITE_URL}/terms
+- Refund and cancellation policy: ${SITE_URL}/refund-policy
+- Contact: ${SITE_URL}/contact
 - About the instructor: ${SITE_URL}/about
 
 ## A note on the chapter notes

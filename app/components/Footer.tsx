@@ -62,7 +62,6 @@ export default function Footer() {
                 ["Study Guides",        "/guides"],
                 ["DGCA Exam FAQ",       "/faq"],
                 ["How Answers Are Verified", "/how-answers-are-verified"],
-                ["Privacy",             "/privacy"],
               ].map(([item, href]) => (
                 <li key={item}>
                   <Link href={href} className="text-sm no-underline hover:text-white transition-colors" style={{ color: "#64748b" }}>{item}</Link>
@@ -92,7 +91,21 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
+        <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs">
+          {[
+            ["Terms", "/terms"],
+            ["Refund & Cancellation", "/refund-policy"],
+            ["Privacy", "/privacy"],
+            ["Contact", "/contact"],
+            ["Official channels", "/official"],
+          ].map(([label, href]) => (
+            <Link key={href} href={href} className="no-underline hover:text-white transition-colors" style={{ color: "#64748b" }}>
+              {label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
              style={{ borderTop: "1px solid rgba(240,145,58,0.1)" }}>
           <p className="text-xs" style={{ color: "#475569" }}>
             © {new Date().getFullYear()} Ghost Aviator. Made with ❤️ for Indian aviation students.
