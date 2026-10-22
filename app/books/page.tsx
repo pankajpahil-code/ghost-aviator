@@ -50,7 +50,7 @@ const BOOKS: Book[] = [
     studyHours: 40,
     description:
       "The Ghost Aviator flagship: 26 chapters covering the complete Human Performance & Limitations syllabus — the atmosphere, hypoxia and decompression, the senses, illusions and spatial disorientation, fitness to fly, and aviation psychology (workload, memory, decision-making, CRM and automation). Includes a full mock-exam question bank and quick-reference mnemonics.",
-    href: "/atpl/human-performance",
+    href: "/cpl/human-performance",
     firstChapterId: "hpl-1",
     status: "live",
     badge: "FREE",
