@@ -40,7 +40,8 @@ import { CPL_SUBJECTS } from "@/lib/subjects";
 import { askSmart, type ChatTurn } from "@/lib/gini/smart";
 import { sections, speakSection, stop as stopReading, hasNotes, supported as speechSupported } from "@/lib/gini/reader";
 import ReadAloudControls from "../ReadAloudControls";
-import { connectReader, subscribe, getSnapshot, getServerSnapshot, captureReadingSelection, clearReadingSelection, speakText, readRequested } from "@/lib/read-aloud";
+import { connectReader, subscribe, getSnapshot, getServerSnapshot, captureReadingSelection, clearReadingSelection, speakText, readRequested, langForText } from "@/lib/read-aloud";
+import { screenAwareness, watchSelection, speakable, listen, listeningSupported } from "@/lib/gini/voice";
 import GiniSprite, { GINI_KEYFRAMES, type GiniMood } from "./GiniSprite";
 
 /**
@@ -64,6 +65,8 @@ const DISMISS_KEY = "ga:gini:dismissed";
  * person who wants the animation must be able to say so.
  */
 const MOTION_KEY = "ga:gini:motion";
+/** Voice Mode: speak every reply aloud. Off unless the student turns it on — he never speaks first with sound. */
+const VOICE_KEY = "ga:gini:voice";
 
 export default function Gini() {
   const [ready, setReady] = useState(false);
@@ -87,12 +90,36 @@ export default function Gini() {
   const history = useRef<ChatTurn[]>([]);
   /** True while the bubble holds the MODEL's own teaching rather than stored, verified text. */
   const [bubbleTutor, setBubbleTutor] = useState(false);
+  /** Voice Mode, the microphone, and the language Gini last answered in (so he is heard and listens in it). */
+  const [voiceMode, setVoiceMode] = useState(false);
+  const [canListen, setCanListen] = useState(false);
+  const [listening, setListening] = useState(false);
+  const stopListening = useRef<(() => void) | null>(null);
+  const lastLang = useRef("en-IN");
   const pathname = usePathname();
   const [onNotes, setOnNotes] = useState(false);
   const reader = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const reading = reader.state === "playing" || reader.state === "paused";
   const guideOpen = guidePath === pathname;
   useEffect(() => connectReader(), []);
+  useEffect(() => watchSelection(), []);
+  // Leaving the page must not leave the microphone open.
+  useEffect(() => () => stopListening.current?.(), []);
+
+  /** Speak one of HIS replies, in its own language's voice. The label marks it as Gini's for the Stop button. */
+  const speakReply = useCallback((text: string) => {
+    const words = speakable(text);
+    if (words) speakText(words, "Gini answer", undefined, langForText(words));
+  }, []);
+  const speakingReply = reader.state === "playing" && reader.label === "Gini answer";
+
+  const toggleVoice = useCallback(() => {
+    setVoiceMode(v => {
+      try { localStorage.setItem(VOICE_KEY, v ? "0" : "1"); } catch { /* private mode */ }
+      if (v) stopReading();
+      return !v;
+    });
+  }, []);
   const sectionIdx = useRef(0);
 
   /**
@@ -169,6 +196,8 @@ export default function Gini() {
       if (m === "1") setMotionPref("on");
       else if (m === "0") setMotionPref("off");
     } catch { /* private mode */ }
+    try { setVoiceMode(localStorage.getItem(VOICE_KEY) === "1"); } catch { /* private mode */ }
+    setCanListen(listeningSupported());
     // Phones. Gini is a fixed-position character ~230px wide; on a 375px screen
     // that is 61% of the viewport, and the mid-screen perches would sit right
     // on top of the content. Both are the exact sin the design exists to avoid.
@@ -405,6 +434,7 @@ export default function Gini() {
   }, [later]);
 
   const vanish = useCallback(() => {
+    stopListening.current?.();
     stopReading();
     show(null);
     setVanishing(true);
@@ -441,12 +471,16 @@ export default function Gini() {
    * time. A character who freezes for a second looks broken; one who says he
    * is looking does not.
    */
-  const answerQuery = useCallback(async (raw: string) => {
+  const answerQuery = useCallback(async (raw: string, opts: { spoken?: boolean } = {}) => {
     const q = raw.trim();
     if (!q) return;
+    // A new question silences the last answer: two voices at once is noise.
+    if (getSnapshot().label === "Gini answer") stopReading();
     captureReadingSelection();
+    // What is on screen, read now: once the answer arrives the student may have scrolled.
+    const awareness = screenAwareness();
     if (/^(?:please\s+)?read (?:your|the|last) (?:answer|response|reply)(?: aloud)?[.!]?$/i.test(q) && bubble) {
-      speakText(bubble, "Gini answer");
+      speakReply(bubble);
       setQuery("");
       return;
     }
@@ -477,7 +511,7 @@ export default function Gini() {
       // already exist here, and returns that stored text verbatim. It returns
       // null for every imperfect outcome — no key, quota gone, timeout, a guard
       // rejection — and then the local layer answers exactly as it always has.
-      reply = (await askSmart(q, asked, history.current)) ?? (await askDeep(q, asked));
+      reply = (await askSmart(q, asked, history.current, awareness)) ?? (await askDeep(q, asked));
     } catch {
       // A failed lookup must never become a guess.
       reply = { kind: "refusal", text: "Something went wrong looking that up. Try again?", reason: "not-verified" };
@@ -501,7 +535,26 @@ export default function Gini() {
     } else {
       say(reply.text, "angry");
     }
-  }, [ctx, say, later, show, bubble]);
+    // He talks back when asked out loud, or whenever Voice Mode is on. The
+    // "AI explanation" label is not part of reply.text, so it is never spoken.
+    lastLang.current = langForText(reply.text);
+    if (opts.spoken || voiceMode) speakReply(reply.text);
+  }, [ctx, say, later, show, bubble, voiceMode, speakReply]);
+
+  /** One spoken question: listen in the language he last answered in, then ask it. */
+  const toggleMic = useCallback(() => {
+    if (listening) { stopListening.current?.(); return; }
+    if (getSnapshot().label === "Gini answer") stopReading();
+    setListening(true);
+    stopListening.current = listen(lastLang.current, text => {
+      setQuery(text);
+      void answerQuery(text, { spoken: true });
+    }, err => {
+      setListening(false);
+      stopListening.current = null;
+      if (err === "not-allowed" || err === "service-not-allowed") show("I can't hear you yet. Allow the microphone for this site, then tap the mic again.");
+    });
+  }, [listening, answerQuery, show]);
 
   const submit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -537,7 +590,12 @@ export default function Gini() {
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", pointerEvents: "auto", marginBottom: 10 }}>
           <strong style={{ color: "#f3c889", fontSize: 14 }}>Gini · study assistant</strong>
-          <button type="button" onClick={() => { setGuidePath(null); setAsking(false); show(null); window.requestAnimationFrame(() => [...document.querySelectorAll<HTMLButtonElement>(".ga-gini-launch")].find(el => el.getClientRects().length > 0)?.focus()); }} aria-label="Close Gini" style={{ padding: "8px 12px", color: "#fff", background: "#20303e", border: 0, borderRadius: 8, cursor: "pointer" }}>Close</button>
+          {/* Voice Mode: every reply is spoken. Off by default; he never speaks first with sound. */}
+          <button type="button" onClick={toggleVoice} aria-pressed={voiceMode} title="Speak every reply aloud"
+            style={{ padding: "6px 10px", marginLeft: "auto", marginRight: 6, fontSize: 12, color: voiceMode ? "#0b1620" : "#e6edf3", background: voiceMode ? "#f3c889" : "#20303e", border: 0, borderRadius: 8, cursor: "pointer" }}>
+            {voiceMode ? "🔊 Voice on" : "🔈 Voice off"}
+          </button>
+          <button type="button" onClick={() => { stopListening.current?.(); stopReading(); setGuidePath(null); setAsking(false); show(null); window.requestAnimationFrame(() => [...document.querySelectorAll<HTMLButtonElement>(".ga-gini-launch")].find(el => el.getClientRects().length > 0)?.focus()); }} aria-label="Close Gini" style={{ padding: "8px 12px", color: "#fff", background: "#20303e", border: 0, borderRadius: 8, cursor: "pointer" }}>Close</button>
         </div>
         {bubble && (
           <div
@@ -561,6 +619,14 @@ export default function Gini() {
             {/* The model wrote this one, from the chapter notes. Say so: the
                 site's promise is that verified text and paraphrase are never
                 passed off as each other. */}
+            {!speaking && bubble !== "Let me look…" && (
+              <button type="button"
+                onClick={e => { e.stopPropagation(); if (speakingReply) stopReading(); else speakReply(bubble); }}
+                aria-label={speakingReply ? "Stop speaking" : "Listen to this answer"}
+                style={{ display: "inline-block", marginTop: 8, marginRight: 8, padding: "3px 9px", fontSize: 11, borderRadius: 999, cursor: "pointer", color: "#f0b070", background: "rgba(240,145,58,0.12)", border: "1px solid rgba(240,145,58,0.35)" }}>
+                {speakingReply ? "■ Stop" : "🔊 Listen"}
+              </button>
+            )}
             {bubbleTutor && !speaking && (
               <span style={{ display: "block", marginTop: 8, fontSize: 10.5, color: "#9fb0c0" }}>
                 AI explanation based on the Captain&apos;s notes. If it differs from the notes, the notes are right.
@@ -586,20 +652,29 @@ export default function Gini() {
 
         {asking && (
           <div style={{ pointerEvents: "auto", alignSelf: "stretch", marginBottom: 10 }}>
-            <form onSubmit={submit}>
+            <form onSubmit={submit} style={{ display: "flex", gap: 6 }}>
               <input
                 autoFocus
                 value={query}
                 onChange={e => setQuery(e.target.value)}
                 disabled={thinking}
-                placeholder="Ask about a chapter, a question, the exam…"
+                placeholder={listening ? "Listening…" : "Ask about a chapter, a question, the exam…"}
                 aria-label="Ask Gini a question"
                 style={{
-                  width: "100%", padding: "9px 11px", borderRadius: 11, fontSize: 13,
+                  flex: 1, minWidth: 0, padding: "9px 11px", borderRadius: 11, fontSize: 13,
                   background: "rgba(10,15,20,0.95)", color: "#e6edf3",
                   border: "1px solid rgba(240,145,58,0.4)",
                 }}
               />
+              {/* Only where the browser can actually hear: no dead button on the rest. */}
+              {canListen && (
+                <button type="button" onClick={toggleMic} disabled={thinking} aria-pressed={listening}
+                  aria-label={listening ? "Stop listening" : "Ask by voice"} title={listening ? "Stop listening" : "Ask by voice"}
+                  style={{ padding: "0 12px", borderRadius: 11, fontSize: 16, cursor: "pointer", color: "#fff",
+                    background: listening ? "#c25a1e" : "#20303e", border: "1px solid rgba(240,145,58,0.4)" }}>
+                  {listening ? "■" : "🎙️"}
+                </button>
+              )}
             </form>
             {/* One-tap questions he can definitely answer, chosen for this page.
                 An assistant that advertises none of what it does gets used for

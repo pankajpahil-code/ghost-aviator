@@ -39,10 +39,8 @@ import { buildCandidates, type Candidate } from "@/lib/gini/candidates";
 import { buildPrompt } from "@/lib/gini/prompt";
 import { systemBrief, ALLOWED_HREFS } from "@/lib/gini/brief";
 import { geminiConfigured, routeWithGemini, type RouterDecision } from "@/lib/gini/gemini";
-import { guardModelProse, guardTutorProse, isAllowedHref } from "@/lib/gini/guard";
-import {
-  groundingFor, cleanHistory, tutorBrief, buildTutorPrompt, TUTOR_TIMEOUT_MS, TUTOR_TEMPERATURE,
-} from "@/lib/gini/tutor";
+import { guardModelProse, isAllowedHref } from "@/lib/gini/guard";
+import { groundingFor, cleanHistory, cleanAwareness, runTutorTurn } from "@/lib/gini/tutor";
 
 /** Never prerendered, never cached — every request is a different question. */
 export const dynamic = "force-dynamic";
@@ -131,7 +129,7 @@ export async function POST(req: Request) {
   // Nothing configured: answer instantly and cheaply so the client stops asking.
   if (!geminiConfigured()) return Response.json({ ok: false, why: "not-configured" });
 
-  let body: { q?: unknown; path?: unknown; history?: unknown };
+  let body: { q?: unknown; path?: unknown; history?: unknown; awareness?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -152,39 +150,33 @@ export async function POST(req: Request) {
   const byId = new Map(candidates.map(c => [c.id, c]));
 
   /* ── the tutor path: a chapter can ground this, so the model may teach ── */
-  const grounding = groundingFor(q, ctx);
+  const awareness = cleanAwareness(body.awareness);
+  const grounding = groundingFor(q, ctx, [awareness.visibleSection, awareness.selectedText].filter(Boolean).join(" "));
   if (grounding) {
     const history = cleanHistory(body.history);
-    const { decision, error } = await routeWithGemini(
-      tutorBrief(),
-      buildTutorPrompt(q, ctx, grounding, history, candidates),
-      { temperature: TUTOR_TEMPERATURE, timeoutMs: TUTOR_TIMEOUT_MS },
-    );
-    if (!decision) return Response.json({ ok: false, why: error });
+    // Ask, repair wrong-block vowel signs, guard, and retry once only for a
+    // script-mixing drop — one definition shared with the live probe (tutor.ts).
+    const turn = await runTutorTurn({ q, ctx, grounding, history, candidates, awareness });
+    if (turn.kind === "error") return Response.json({ ok: false, why: turn.error });
+    if (turn.kind === "dropped") return Response.json({ ok: false, why: `tutor-guard:${turn.why}` });
 
-    if (decision.mode === "teach") {
-      // Markdown emphasis is a formatting habit, not a defect — the bubble shows
-      // plain text, so it is removed rather than treated as a reason to reject.
-      const reply = (decision.reply ?? "").replace(/\*\*|__/g, "").trim();
-      const student = [...history.filter(t => t.role === "student").map(t => t.text), q].join("\n");
-      const verdict = guardTutorProse(reply, { source: grounding.text, student });
-      if (!verdict.ok) return Response.json({ ok: false, why: `tutor-guard:${verdict.why}` });
+    if (turn.kind === "taught") {
       const onIt = ctx.area === "chapter" && ctx.chapterId === grounding.chapterId;
       return Response.json({
         ok: true,
         kind: "answer",
-        text: reply,
+        text: turn.reply,
         // Point at the notes it was taught from, unless the student is already reading them.
         href: onIt ? null : grounding.href,
         via: "teach",
         source: { type: "tutor", subjectId: grounding.subjectId, chapterId: grounding.chapterId },
       });
     }
-    if (decision.mode !== "pick" && decision.mode !== "talk") {
+    if (turn.decision.mode !== "pick" && turn.decision.mode !== "talk") {
       return Response.json({ ok: false, why: "none" });
     }
     // pick and talk are handled exactly as on the routing path, below.
-    return finish(decision, byId);
+    return finish(turn.decision, byId);
   }
 
   const prompt = buildPrompt(q, ctx, candidates);

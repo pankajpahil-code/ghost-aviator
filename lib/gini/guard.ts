@@ -272,10 +272,14 @@ const SCRIPTS: Record<string, RegExp> = {
   arabic: /[؀-ۿ]/,
 };
 
-/** A language named in English letters maps to the script it is written in. */
+/**
+ * A language named in English letters maps to the script it is written in.
+ * Widened 2026-10-22 to the Captain's list of Indian languages. Sindhi is
+ * written in both Perso-Arabic and Devanagari in India, so it opens both.
+ */
 const LANGUAGE_SCRIPT: [RegExp, string][] = [
-  [/\b(hindi|marathi|nepali|sanskrit|konkani|maithili|bhojpuri)\b/i, "devanagari"],
-  [/\b(bengali|bangla|assamese)\b/i, "bengali"],
+  [/\b(hindi|marathi|nepali|sanskrit|konkani|maithili|bhojpuri|dogri|bodo)\b/i, "devanagari"],
+  [/\b(bengali|bangla|assamese|manipuri|meitei)\b/i, "bengali"],
   [/\b(punjabi|panjabi|gurmukhi)\b/i, "gurmukhi"],
   [/\bgujarati\b/i, "gujarati"],
   [/\b(odia|oriya)\b/i, "odia"],
@@ -283,8 +287,48 @@ const LANGUAGE_SCRIPT: [RegExp, string][] = [
   [/\btelugu\b/i, "telugu"],
   [/\b(kannada|kanarese)\b/i, "kannada"],
   [/\bmalayalam\b/i, "malayalam"],
-  [/\burdu\b/i, "arabic"],
+  [/\b(urdu|kashmiri|sindhi)\b/i, "arabic"],
+  [/\bsindhi\b/i, "devanagari"],
 ];
+
+/**
+ * INDIC VOWEL SIGNS FROM THE WRONG BLOCK (2026-10-22).
+ *
+ * Unicode lays the nine Indian scripts out in parallel 128-character blocks, the
+ * same sound at the same offset in each. Gemini sometimes writes a Gurmukhi
+ * letter followed by the matching vowel sign from a NEIGHBOURING block — seen
+ * live twice in one day: "ਦൂਜਾ" (Malayalam U+0D42 where Gurmukhi U+0A42
+ * belongs) and "ਯਾਨी" (Devanagari U+0940 for Gurmukhi U+0A40). A student sees a
+ * broken glyph; the mixed-script guard dropped the whole reply.
+ *
+ * This is the one repair the guards make, and it is deliberately narrow: only a
+ * combining sign (vowel sign, virama, nukta, candrabindu/anusvara/visarga, length
+ * marks, vocalic vowel signs), only directly after a character of another Indic
+ * block, moved to the SAME offset in that preceding block, and only when the
+ * result is a real combining mark there. It changes which block a sign is drawn
+ * from, never which sound it is, so it cannot alter a fact. Anything it cannot
+ * map is left alone, and the mixed-script check below still rejects it.
+ */
+const INDIC_LO = 0x0900, INDIC_HI = 0x0d7f;
+const isIndic = (cp: number) => cp >= INDIC_LO && cp <= INDIC_HI;
+const isCombiningOffset = (o: number) =>
+  (o >= 0x01 && o <= 0x03) || o === 0x3c || (o >= 0x3e && o <= 0x4d) || (o >= 0x55 && o <= 0x57) || (o >= 0x62 && o <= 0x63);
+const COMBINING = /^\p{M}$/u;
+
+export function normalizeIndicMarks(text: string): string {
+  const out: string[] = [];
+  let prev = -1;
+  for (const ch of text) {
+    let cp = ch.codePointAt(0)!;
+    if (isIndic(cp) && isIndic(prev) && (cp & 0xff80) !== (prev & 0xff80) && isCombiningOffset(cp & 0x7f)) {
+      const moved = (prev & 0xff80) | (cp & 0x7f);
+      if (COMBINING.test(String.fromCodePoint(moved))) cp = moved;
+    }
+    out.push(String.fromCodePoint(cp));
+    prev = cp;
+  }
+  return out.join("");
+}
 
 /** Never legitimate in an answer to an Indian student pilot. Greek stays allowed: θ, Δ, σ are formula letters. */
 const NEVER_SCRIPT = /[Ѐ-ӿ֐-׿඀-෿฀-๿぀-ヿ一-鿿가-힯]/;
@@ -439,7 +483,9 @@ export type TutorGrounding = {
  * rather than repairs: one untraceable number discredits the whole reply.
  */
 export function guardTutorProse(text: string, g: TutorGrounding): GuardVerdict {
-  const t = (text ?? "").trim();
+  // Callers show the normalized text (see normalizeIndicMarks); checking it
+  // here too keeps the verdict true of what the student actually reads.
+  const t = normalizeIndicMarks(text ?? "").trim();
   if (!t) return { ok: false, why: "empty" };
   if (t.length > MAX_TUTOR_CHARS) return { ok: false, why: `too long (${t.length})` };
 

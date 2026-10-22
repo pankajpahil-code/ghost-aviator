@@ -28,9 +28,10 @@ export const smartDisabled = () => disabled;
 /**
  * Longer than the server's own deadline, so the server always gives up first.
  * Was 12s against the router's 9s; the tutor path (2026-10-22) waits up to 14s
- * on Google, so this is now 18s.
+ * on Google, and up to 22s in all when it retries a script-mixed reply, so this
+ * is now 24s — still under the route's 25s maxDuration.
  */
-const TIMEOUT_MS = 18000;
+const TIMEOUT_MS = 24000;
 
 /**
  * The last few turns, so a taught numerical can go one step at a time and a
@@ -40,7 +41,15 @@ const TIMEOUT_MS = 18000;
  */
 export type ChatTurn = { role: "student" | "gini"; text: string };
 
-export async function askSmart(query: string, ctx: GiniContext, history: ChatTurn[] = []): Promise<GiniReply | null> {
+/** What the student is looking at: the notes heading on screen and any highlighted text. */
+export type ScreenAwareness = { visibleSection?: string; selectedText?: string };
+
+export async function askSmart(
+  query: string,
+  ctx: GiniContext,
+  history: ChatTurn[] = [],
+  awareness: ScreenAwareness = {},
+): Promise<GiniReply | null> {
   if (disabled) return null;
 
   const ctl = new AbortController();
@@ -50,7 +59,13 @@ export async function askSmart(query: string, ctx: GiniContext, history: ChatTur
       method: "POST",
       signal: ctl.signal,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ q: query, path: ctx.pathname, history: history.slice(-8) }),
+      body: JSON.stringify({
+        q: query, path: ctx.pathname, history: history.slice(-8),
+        awareness: {
+          visibleSection: awareness.visibleSection?.slice(0, 160),
+          selectedText: awareness.selectedText?.slice(0, 300),
+        },
+      }),
     });
     if (!res.ok && res.status !== 429) {
       if (res.status >= 500) disabled = true;   // the route is broken, stop trying

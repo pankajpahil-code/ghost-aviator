@@ -109,7 +109,8 @@ export function clearReadingSelection() {
 
 export function speechChunks(text: string): string[] {
   const chunks: string[] = [];
-  for (const sentence of text.replace(/\s+/g, " ").trim().split(/(?<=[.!?])\s+/)) {
+  // The danda (। ॥) is the full stop of most Indian scripts, and the Urdu full stop is ۔.
+  for (const sentence of text.replace(/\s+/g, " ").trim().split(/(?<=[.!?।॥۔])\s+/)) {
     let rest = sentence;
     while (rest.length > 240) {
       const space = rest.lastIndexOf(" ", 240);
@@ -135,7 +136,39 @@ export function pauseReading() {
   if (snapshot.state === "playing") { window.speechSynthesis.pause(); update({ state: "paused" }); }
   else if (snapshot.state === "paused") { window.speechSynthesis.resume(); update({ state: "playing" }); }
 }
-export function speakText(text: string, label = "Selected text", onDone?: () => void): boolean {
+/**
+ * WHICH LANGUAGE A REPLY IS IN, by its script (2026-10-22). Gini now teaches in
+ * any Indian language, and an English voice reading Tamil script says nothing
+ * useful. Devanagari is read as Hindi: Marathi shares the script, and a Hindi
+ * voice reads Marathi far better than an English one does.
+ */
+const SCRIPT_LANG: [RegExp, string][] = [
+  [/[ऀ-ॿ]/, "hi-IN"], [/[ঀ-৿]/, "bn-IN"], [/[਀-੿]/, "pa-IN"],
+  [/[઀-૿]/, "gu-IN"], [/[଀-୿]/, "or-IN"], [/[஀-௿]/, "ta-IN"],
+  [/[ఀ-౿]/, "te-IN"], [/[ಀ-೿]/, "kn-IN"], [/[ഀ-ൿ]/, "ml-IN"],
+  [/[؀-ۿ]/, "ur-IN"],
+];
+export function langForText(text: string): string {
+  return SCRIPT_LANG.find(([re]) => re.test(text))?.[1] ?? "en-IN";
+}
+
+/**
+ * The best installed voice for a language: the exact locale first (hi-IN), then
+ * the language anywhere (hi), best-scored first. English keeps the student's
+ * own chosen voice. Null when the device has none, and the caller then only sets
+ * `lang`, leaving the browser to choose — never an English voice for Tamil.
+ */
+export function voiceForLang(lang: string): SpeechSynthesisVoice | null {
+  if (!speechSupported()) return null;
+  if (/^en/i.test(lang)) return chosenVoice();
+  const norm = (l: string) => l.replace("_", "-").toLowerCase();
+  const all = [...window.speechSynthesis.getVoices()].sort((a, b) => voiceScore(b) - voiceScore(a));
+  return all.find(v => norm(v.lang) === norm(lang))
+    ?? all.find(v => norm(v.lang).split("-")[0] === norm(lang).split("-")[0])
+    ?? null;
+}
+
+export function speakText(text: string, label = "Selected text", onDone?: () => void, lang?: string): boolean {
   if (!speechSupported()) { update({ state: "unsupported", message: "Read aloud is not available in this browser." }); return false; }
   const chunks = speechChunks(text);
   if (!chunks.length) { update({ message: "Choose some text or a notes section first." }); return false; }
@@ -149,8 +182,8 @@ export function speakText(text: string, label = "Selected text", onDone?: () => 
     if (index === chunks.length) { generation++; utterance = null; update({ state: "idle", progress: chunks.length }); onDone?.(); return; }
     const u = new SpeechSynthesisUtterance(chunks[index++]);
     utterance = u;
-    const voice = chosenVoice();
-    if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = "en-IN"; }
+    const voice = lang ? voiceForLang(lang) : chosenVoice();
+    if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = lang ?? "en-IN"; }
     u.rate = snapshot.rate;
     u.pitch = 1;
     u.onend = next;
