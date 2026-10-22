@@ -59,12 +59,13 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 no-underline">
             <span style={{ filter:"drop-shadow(0 0 8px rgba(240,145,58,0.45))" }}><GhostMark size={40} /></span>
+            {/* The second line was the Captain's name until his 2026-10-08 no-name order
+                swapped it for "Ghost Aviator", which then printed the brand twice. */}
             <div>
               <div className="text-lg font-black leading-none"
                    style={{ background:"linear-gradient(135deg,#7ad9ff,#f3c889)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
                 Ghost Aviator
               </div>
-              <div className="text-xs leading-none" style={{ color:"rgba(243,200,137,0.55)" }}>Ghost Aviator</div>
             </div>
           </Link>
 

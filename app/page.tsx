@@ -310,6 +310,9 @@ export default function Home() {
                       style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(243,200,137,0.18)" }}>
                   <span>
                     <span className="block text-xs font-bold tracking-wider uppercase mb-1" style={{ color:"#ab794d" }}>{c.subject}</span>
+                    {/* A real space between the two blocks: invisible in the layout, but without it
+                        text extraction and some screen readers read "Air RegsSeparation…". */}
+                    {" "}
                     <span className="block font-bold text-white leading-snug">{c.title}</span>
                   </span>
                   <ArrowRight className="w-4 h-4 shrink-0" style={{ color:"#f3c889" }}/>
