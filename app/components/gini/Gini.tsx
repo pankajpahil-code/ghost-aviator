@@ -37,7 +37,7 @@ import {
   rememberSubject, rememberedSubject,
 } from "@/lib/gini/session";
 import { CPL_SUBJECTS } from "@/lib/subjects";
-import { askSmart } from "@/lib/gini/smart";
+import { askSmart, type ChatTurn } from "@/lib/gini/smart";
 import { sections, speakSection, stop as stopReading, hasNotes, supported as speechSupported } from "@/lib/gini/reader";
 import ReadAloudControls from "../ReadAloudControls";
 import { connectReader, subscribe, getSnapshot, getServerSnapshot, captureReadingSelection, clearReadingSelection, speakText, readRequested } from "@/lib/read-aloud";
@@ -83,6 +83,10 @@ export default function Gini() {
   const [vanishing, setVanishing] = useState(false);
   const [entering, setEntering] = useState(false);
   const timers = useRef<number[]>([]);
+  /** What was said, so a taught numerical can continue a step at a time. Dies with the page. */
+  const history = useRef<ChatTurn[]>([]);
+  /** True while the bubble holds the MODEL's own teaching rather than stored, verified text. */
+  const [bubbleTutor, setBubbleTutor] = useState(false);
   const pathname = usePathname();
   const [onNotes, setOnNotes] = useState(false);
   const reader = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
@@ -134,6 +138,7 @@ export default function Gini() {
   const show = useCallback((text: string | null, href?: string | null) => {
     setTyped(0);
     setBubbleHref(href ?? null);
+    setBubbleTutor(false);
     setBubble(text);
   }, []);
 
@@ -472,13 +477,14 @@ export default function Gini() {
       // already exist here, and returns that stored text verbatim. It returns
       // null for every imperfect outcome — no key, quota gone, timeout, a guard
       // rejection — and then the local layer answers exactly as it always has.
-      reply = (await askSmart(q, asked)) ?? (await askDeep(q, asked));
+      reply = (await askSmart(q, asked, history.current)) ?? (await askDeep(q, asked));
     } catch {
       // A failed lookup must never become a guess.
       reply = { kind: "refusal", text: "Something went wrong looking that up. Try again?", reason: "not-verified" };
     }
 
     setThinking(false);
+    history.current = [...history.current, { role: "student" as const, text: q }, { role: "gini" as const, text: reply.text }].slice(-8);
 
     // Remember the subject, and offer what is worth asking next.
     const src = reply.kind === "answer" ? reply.source : null;
@@ -489,6 +495,7 @@ export default function Gini() {
       // He knows this one — trident up, lightning, then settle into laughing.
       setMood("thunder");
       show(reply.text, reply.href);
+      if (reply.source.type === "tutor") setBubbleTutor(true);
       later(() => setMood("laugh"), 1500);
       later(() => setMood("talk"), 3200);
     } else {
@@ -551,6 +558,14 @@ export default function Gini() {
             title={speaking ? "Tap to show it all" : undefined}
           >
             {visibleText}
+            {/* The model wrote this one, from the chapter notes. Say so: the
+                site's promise is that verified text and paraphrase are never
+                passed off as each other. */}
+            {bubbleTutor && !speaking && (
+              <span style={{ display: "block", marginTop: 8, fontSize: 10.5, color: "#9fb0c0" }}>
+                AI explanation based on the Captain&apos;s notes. If it differs from the notes, the notes are right.
+              </span>
+            )}
             {/* The link waits until he has finished the sentence — a call to
                 action that appears mid-word reads as a glitch. */}
             {bubbleHref && !speaking && (

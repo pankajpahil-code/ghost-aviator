@@ -19,6 +19,10 @@
  * The model's own prose is allowed only for greetings, small talk, and talking
  * about the site and the courses — and every word of that passes through here.
  *
+ * OVERRULED BY THE CAPTAIN ON 2026-10-22: on a chapter the model may now teach,
+ * in its own words, from that chapter's text. Those replies go through
+ * guardTutorProse() at the bottom of this file, not through guardModelProse().
+ *
  * If a check fails we do NOT repair the sentence. We throw it away and fall
  * back to the deterministic Gini, because a model that produced one bad
  * sentence has no credibility for the repaired one either.
@@ -223,6 +227,189 @@ export function guardModelProse(text: string, opts: { allowTeaching?: boolean } 
 
   if (!opts.allowTeaching && SOUNDS_LIKE_TEACHING.test(t)) {
     return { ok: false, why: "reads as aviation teaching, which the model may not author" };
+  }
+
+  return { ok: true };
+}
+
+/* ─────────────────────── the tutor's guard (2026-10-22) ─────────────────── */
+
+/**
+ * WHEN THE MODEL TEACHES. The Captain overruled the route-only contract on
+ * 2026-10-22: the model may now explain aviation in its own words, in any
+ * language, from the chapter text it is handed (lib/gini/tutor.ts). Two of the
+ * checks above were written for a model that must NOT teach and are wrong here:
+ * SOUNDS_LIKE_TEACHING (teaching is the job now) and FOREIGN_SCRIPT (a student
+ * who asks in Tamil must be answered in Tamil). Everything else still applies.
+ *
+ * What replaces them:
+ *
+ *   SCRIPT DISCIPLINE. The Bengali fragment welded onto an English greeting
+ *   (2026-08-21) is still garbage, so a non-Latin script is allowed only if the
+ *   STUDENT wrote in it or named its language, and only one per reply.
+ *
+ *   NUMBER GROUNDING. Every number in the reply must appear in the chapter text
+ *   the model was given, or in what the student typed. This is the check that
+ *   stops an invented limit, frequency, validity period or CAR number — the
+ *   wrong answers that cost a student a paper. It cannot see a wrong fact with
+ *   no digit in it; tutor.ts says so plainly.
+ *
+ *   FAA ONLY IF THE NOTES SAY IT. He asked for Indian rules first. A reply that
+ *   brings in the FAA when the chapter does not is answering from memory.
+ */
+
+/** Indian scripts, and the one Arabic-script language a student may ask for. */
+const SCRIPTS: Record<string, RegExp> = {
+  devanagari: /[ऀ-ॿ]/,
+  bengali: /[ঀ-৿]/,
+  gurmukhi: /[਀-੿]/,
+  gujarati: /[઀-૿]/,
+  odia: /[଀-୿]/,
+  tamil: /[஀-௿]/,
+  telugu: /[ఀ-౿]/,
+  kannada: /[ಀ-೿]/,
+  malayalam: /[ഀ-ൿ]/,
+  arabic: /[؀-ۿ]/,
+};
+
+/** A language named in English letters maps to the script it is written in. */
+const LANGUAGE_SCRIPT: [RegExp, string][] = [
+  [/\b(hindi|marathi|nepali|sanskrit|konkani|maithili|bhojpuri)\b/i, "devanagari"],
+  [/\b(bengali|bangla|assamese)\b/i, "bengali"],
+  [/\b(punjabi|panjabi|gurmukhi)\b/i, "gurmukhi"],
+  [/\bgujarati\b/i, "gujarati"],
+  [/\b(odia|oriya)\b/i, "odia"],
+  [/\btamil\b/i, "tamil"],
+  [/\btelugu\b/i, "telugu"],
+  [/\b(kannada|kanarese)\b/i, "kannada"],
+  [/\bmalayalam\b/i, "malayalam"],
+  [/\burdu\b/i, "arabic"],
+];
+
+/** Never legitimate in an answer to an Indian student pilot. Greek stays allowed: θ, Δ, σ are formula letters. */
+const NEVER_SCRIPT = /[Ѐ-ӿ֐-׿඀-෿฀-๿぀-ヿ一-鿿가-힯]/;
+
+/**
+ * The danda (। ॥) sits in the Devanagari block but is the full stop of Gurmukhi,
+ * Bengali and Odia too. Counting it as Devanagari dropped a clean Punjabi reply
+ * as "mixes scripts" on the live probe, 2026-10-22, so it is set aside first.
+ */
+const scriptsIn = (s: string) => {
+  const letters = s.replace(/[।॥]/g, "");
+  return Object.keys(SCRIPTS).filter(k => SCRIPTS[k].test(letters));
+};
+
+/** Scripts the student has opened the door to, by writing in one or by naming its language. */
+export function scriptsAllowedBy(studentText: string): Set<string> {
+  const out = new Set(scriptsIn(studentText));
+  for (const [re, script] of LANGUAGE_SCRIPT) if (re.test(studentText)) out.add(script);
+  return out;
+}
+
+/** Native digits (०१२, ௦௧௨ …) read as 0-9, so a number cannot hide from the check by changing script. */
+export function asciiDigits(s: string): string {
+  return s.replace(/[٠-٩۰-۹०-९০-৯੦-੯૦-૯୦-୯௦-௯౦-౯೦-೯൦-൯]/g, ch => {
+    const cp = ch.codePointAt(0)!;
+    if (cp >= 0x660 && cp <= 0x669) return String(cp - 0x660);
+    if (cp >= 0x6f0 && cp <= 0x6f9) return String(cp - 0x6f0);
+    return String((cp & 0x7f) - 0x66);
+  });
+}
+
+/** Every number in a text, as values: "1,013.25" and "1013.25" are one number, "045" and "45" are one. */
+export function numbersIn(s: string): number[] {
+  const out: number[] = [];
+  for (const m of asciiDigits(s).matchAll(/\d+(?:,\d{3})+(?:\.\d+)?|\d*\.\d+|\d+/g)) {
+    const v = Number(m[0].replace(/,/g, ""));
+    if (Number.isFinite(v)) out.push(v);
+  }
+  return out;
+}
+
+/**
+ * NUMBERS WRITTEN AS WORDS. Found on the first live probe, 2026-10-22: asked in
+ * Hindi, the model wrote "साठ knots यानी तीस m/sec" — 60 and 30 as words — in
+ * spite of the instruction to use digits, and a digit-only check never saw them.
+ * They were right that time. "Ten years" written wrong would not be.
+ *
+ * So English and Hindi number words are read as their values and must be
+ * grounded too. Deliberately not covered: Hinglish spellings ("saath" is also
+ * "together", "das" is a name), compounds like "twenty-five" (each part is read
+ * alone), and the other Indian languages. The brief's digits rule is the only
+ * defence there.
+ */
+const NUMBER_WORDS: Record<string, number> = {
+  three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12,
+  thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19,
+  twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90,
+  "तीन": 3, "चार": 4, "पाँच": 5, "पांच": 5, "छह": 6, "छः": 6, "सात": 7, "आठ": 8, "नौ": 9, "दस": 10,
+  "बारह": 12, "पंद्रह": 15, "बीस": 20, "पच्चीस": 25, "तीस": 30, "चालीस": 40, "पचास": 50,
+  "साठ": 60, "सत्तर": 70, "अस्सी": 80, "नब्बे": 90, "सौ": 100, "हज़ार": 1000, "हजार": 1000,
+};
+const NUMBER_WORD = new RegExp(
+  `(?:^|[^\\p{L}\\p{M}])(${Object.keys(NUMBER_WORDS).sort((a, b) => b.length - a.length).join("|")})(?![\\p{L}\\p{M}])`,
+  "giu",
+);
+export function numberWordsIn(s: string): number[] {
+  return [...s.matchAll(NUMBER_WORD)].map(m => NUMBER_WORDS[m[1].toLowerCase()] ?? NUMBER_WORDS[m[1]]);
+}
+
+/** Small counting words a teacher uses with no fact behind them ("1 in 60", "2 sentences"). */
+const FREE_NUMBERS = new Set([0, 1, 2]);
+
+const FAA = /\b(FAA|FARs?|CFR)\b/;
+
+const MAX_TUTOR_CHARS = 1400;
+
+export type TutorGrounding = {
+  /** The chapter text the model was given. */
+  source: string;
+  /** Everything the student typed in this conversation, current question included. */
+  student: string;
+};
+
+/**
+ * Validate a teaching turn the MODEL wrote. Like guardModelProse, it rejects
+ * rather than repairs: one untraceable number discredits the whole reply.
+ */
+export function guardTutorProse(text: string, g: TutorGrounding): GuardVerdict {
+  const t = (text ?? "").trim();
+  if (!t) return { ok: false, why: "empty" };
+  if (t.length > MAX_TUTOR_CHARS) return { ok: false, why: `too long (${t.length})` };
+
+  if (NEVER_SCRIPT.test(t)) return { ok: false, why: "contains a script no student asked for (token garbage)" };
+  const used = scriptsIn(t);
+  if (used.length > 1) return { ok: false, why: `mixes scripts: ${used.join(", ")}` };
+  if (used.length === 1 && !scriptsAllowedBy(g.student).has(used[0])) {
+    return { ok: false, why: `${used[0]} script, but the student did not write in it or ask for it` };
+  }
+
+  if (CODE_FRAGMENT.test(t)) return { ok: false, why: "contains code or markup (token garbage)" };
+  if (ATTRIBUTION.test(t)) return { ok: false, why: "names a third-party source (Iron Rule 2)" };
+  if (FAKE_URGENCY.test(t)) return { ok: false, why: "manufactured urgency" };
+  if (FREE_THREAT.test(t)) return { ok: false, why: "implies the free material will end" };
+  if (OVERCLAIM.test(t)) return { ok: false, why: "unverifiable claim about outcomes" };
+
+  for (const m of t.matchAll(PRICE_MENTION)) {
+    const amount = m[1] ?? m[3];
+    const multiplier = m[2] ?? m[4];
+    if (!amount || multiplier || !isAllowedAmount(amount)) {
+      return { ok: false, why: `price not from lib/live-classes.ts: ${m[0].trim()}` };
+    }
+  }
+
+  if (FAA.test(t) && !FAA.test(g.source)) {
+    return { ok: false, why: "brings in the FAA, which these notes do not" };
+  }
+
+  const known = new Set([
+    ...numbersIn(g.source), ...numbersIn(g.student),
+    ...numberWordsIn(g.source), ...numberWordsIn(g.student),
+  ]);
+  for (const n of [...numbersIn(t), ...numberWordsIn(t)]) {
+    if (!FREE_NUMBERS.has(n) && !known.has(n)) {
+      return { ok: false, why: `number not in the chapter notes or the student's words: ${n}` };
+    }
   }
 
   return { ok: true };

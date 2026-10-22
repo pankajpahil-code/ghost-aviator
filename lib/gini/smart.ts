@@ -25,10 +25,22 @@ let disabled = false;
 /** Reset by a full page load; exported for tests and for a manual retry. */
 export const smartDisabled = () => disabled;
 
-/** Longer than the server's own 9s deadline, so the server always gives up first. */
-const TIMEOUT_MS = 12000;
+/**
+ * Longer than the server's own deadline, so the server always gives up first.
+ * Was 12s against the router's 9s; the tutor path (2026-10-22) waits up to 14s
+ * on Google, so this is now 18s.
+ */
+const TIMEOUT_MS = 18000;
 
-export async function askSmart(query: string, ctx: GiniContext): Promise<GiniReply | null> {
+/**
+ * The last few turns, so a taught numerical can go one step at a time and a
+ * student who asked for Tamil keeps getting Tamil. The server re-validates all
+ * of it (lib/gini/tutor.ts cleanHistory) and never treats Gini's own past turns
+ * as a source of facts.
+ */
+export type ChatTurn = { role: "student" | "gini"; text: string };
+
+export async function askSmart(query: string, ctx: GiniContext, history: ChatTurn[] = []): Promise<GiniReply | null> {
   if (disabled) return null;
 
   const ctl = new AbortController();
@@ -38,7 +50,7 @@ export async function askSmart(query: string, ctx: GiniContext): Promise<GiniRep
       method: "POST",
       signal: ctl.signal,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ q: query, path: ctx.pathname }),
+      body: JSON.stringify({ q: query, path: ctx.pathname, history: history.slice(-8) }),
     });
     if (!res.ok && res.status !== 429) {
       if (res.status >= 500) disabled = true;   // the route is broken, stop trying

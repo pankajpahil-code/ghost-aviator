@@ -30,6 +30,12 @@ export type GiniSource =
    * always shown with a link back to the chapter it came from.
    */
   | { type: "chapter-topic"; subjectId: string; chapterId: string; heading: string }
+  /**
+   * The MODEL's own teaching, written from one chapter of the Captain's notes
+   * (lib/gini/tutor.ts, his ruling of 2026-10-22). Not verified text — it is
+   * shown with a label saying so and a link back to the chapter it came from.
+   */
+  | { type: "tutor"; subjectId: string; chapterId: string }
   | { type: "structure" }
   /** The Captain's own words about his own school — greetings, method, offers. */
   | { type: "captain" };

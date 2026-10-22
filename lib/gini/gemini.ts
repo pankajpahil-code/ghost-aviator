@@ -56,8 +56,12 @@ export const geminiConfigured = (): boolean => !!process.env.GEMINI_API_KEY;
 
 /** What the router is allowed to decide. Anything else is treated as "none". */
 export type RouterDecision = {
-  /** "pick" = use stored answer `id`. "talk" = the model's own words. "none" = fall back. */
-  mode: "pick" | "talk" | "none";
+  /**
+   * "pick" = use stored answer `id`. "talk" = the model's own words about the
+   * site. "teach" = the model's own teaching from the chapter text it was given
+   * (lib/gini/tutor.ts, the Captain's ruling of 2026-10-22). "none" = fall back.
+   */
+  mode: "pick" | "talk" | "teach" | "none";
   id?: string | null;
   reply?: string | null;
   href?: string | null;
@@ -66,9 +70,9 @@ export type RouterDecision = {
 const SCHEMA = {
   type: "object",
   properties: {
-    mode: { type: "string", enum: ["pick", "talk", "none"] },
+    mode: { type: "string", enum: ["pick", "talk", "teach", "none"] },
     id: { type: "string", description: "The number of the chosen menu entry, when mode is pick." },
-    reply: { type: "string", description: "Your own words, ONLY when mode is talk." },
+    reply: { type: "string", description: "Your own words, ONLY when mode is talk or teach." },
     href: { type: "string", description: "Optional site path from the allowed list." },
   },
   required: ["mode"],
@@ -120,7 +124,7 @@ function parseDecision(text: string): RouterDecision | null {
   try {
     const o = JSON.parse(raw.slice(start, end + 1)) as Record<string, unknown>;
     const mode = o.mode;
-    if (mode !== "pick" && mode !== "talk" && mode !== "none") return null;
+    if (mode !== "pick" && mode !== "talk" && mode !== "teach" && mode !== "none") return null;
     return {
       mode,
       id: typeof o.id === "string" ? o.id : null,
@@ -142,12 +146,13 @@ export type RouteOutcome =
 export async function routeWithGemini(
   systemInstruction: string,
   userPrompt: string,
+  opts: { temperature?: number; timeoutMs?: number } = {},
 ): Promise<RouteOutcome> {
   const key = process.env.GEMINI_API_KEY;
   if (!key) return { decision: null, error: "no-key" };
 
   const ctl = new AbortController();
-  const timer = setTimeout(() => ctl.abort(), TIMEOUT_MS);
+  const timer = setTimeout(() => ctl.abort(), opts.timeoutMs ?? TIMEOUT_MS);
 
   try {
     const res = await fetch(ENDPOINT, {
@@ -166,7 +171,7 @@ export async function routeWithGemini(
           mime_type: "application/json",
           schema: SCHEMA,
         },
-        generation_config: { temperature: 0.3 },
+        generation_config: { temperature: opts.temperature ?? 0.3 },
       }),
     });
 

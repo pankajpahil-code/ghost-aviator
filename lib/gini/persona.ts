@@ -174,9 +174,12 @@ export function smallTalk(query: string, ctx: GiniContext): GiniReply | null {
 
   if (WHO.test(q))
     return answer(
+      // Rewritten 2026-10-22: it used to say "I'm not a chatbot and I don't
+      // generate answers", which stopped being true when the Captain let the
+      // model teach from his chapter notes. A mascot must not lie about itself.
       "I'm Gini, the Ghost Aviator who keeps this library — the Captain's site. " +
-      "I'm not a chatbot and I don't generate answers: every sentence I say is written down here " +
-      "and checked before it ships. When there's nothing checked to say, I tell you that instead of guessing.",
+      "When I teach a topic I use AI, but only from the Captain's own chapter notes, and I mark those answers so you know. " +
+      "Practice-question explanations are read word for word as a human wrote them. When the notes don't cover something, I say so instead of guessing.",
       { type: "captain" },
       "/how-answers-are-verified",
     );
@@ -248,10 +251,11 @@ export function declineOffTopic(seed: number): GiniReply {
 }
 
 export const HELP_TEXT =
-  "Four things, and I do them without guessing. One: find anything — ask which chapter covers a topic. " +
-  "Two: explain a practice question, by reading you the worked explanation a human wrote for it. " +
-  "Three: answer the exam questions students actually ask — pattern, pass mark, computer number, what it costs. " +
-  "Four: read a chapter aloud while you rest your eyes. If it isn't written down and checked, I'll tell you so.";
+  "Five things. One: teach a topic from the Captain's chapter notes, a step at a time, in English, Hinglish, Hindi, Tamil or whichever language you ask for. " +
+  "Two: find anything — ask which chapter covers a topic. " +
+  "Three: explain a practice question, by reading you the worked explanation a human wrote for it. " +
+  "Four: answer the exam questions students actually ask — pattern, pass mark, computer number, what it costs. " +
+  "Five: read a chapter aloud while you rest your eyes. If the notes don't cover it, I'll tell you so.";
 
 /* ───────────────────────────────── wisdom ───────────────────────────────── */
 
@@ -466,7 +470,7 @@ export function followUpsFor(
   const subject = subjectName ?? ctx.subjectName;
 
   // What he just talked about comes first — that is what "following up" means.
-  if (source?.type === "chapter-topic" || source?.type === "explanation" || source?.type === "key-fact") {
+  if (source?.type === "chapter-topic" || source?.type === "explanation" || source?.type === "key-fact" || source?.type === "tutor") {
     if (subject) out.push(`How many questions in ${subject}?`);
     out.push("How should I study?");
   }

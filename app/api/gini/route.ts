@@ -24,15 +24,25 @@
  * EVERY FAILURE RETURNS ok:false, and the browser answers locally instead. No
  * key, no quota, timeout, garbled reply, guard rejection — the student simply
  * gets the deterministic Gini and never sees an error.
+ *
+ * THE CONTRACT ABOVE WAS OVERRULED BY THE CAPTAIN ON 2026-10-22. When a chapter
+ * can ground the question (the one the student is reading, or the one whose
+ * headings match it), the request goes to the TUTOR path instead: the model is
+ * handed that chapter's text and may teach in its own words, in any language,
+ * through guardTutorProse(). Everything else keeps the routing path below.
+ * See lib/gini/tutor.ts for what the tutor's guards can and cannot catch.
  * ────────────────────────────────────────────────────────────────────────────
  */
 
 import { readContext } from "@/lib/gini/context";
-import { buildCandidates } from "@/lib/gini/candidates";
+import { buildCandidates, type Candidate } from "@/lib/gini/candidates";
 import { buildPrompt } from "@/lib/gini/prompt";
 import { systemBrief, ALLOWED_HREFS } from "@/lib/gini/brief";
-import { geminiConfigured, routeWithGemini } from "@/lib/gini/gemini";
-import { guardModelProse, isAllowedHref } from "@/lib/gini/guard";
+import { geminiConfigured, routeWithGemini, type RouterDecision } from "@/lib/gini/gemini";
+import { guardModelProse, guardTutorProse, isAllowedHref } from "@/lib/gini/guard";
+import {
+  groundingFor, cleanHistory, tutorBrief, buildTutorPrompt, TUTOR_TIMEOUT_MS, TUTOR_TEMPERATURE,
+} from "@/lib/gini/tutor";
 
 /** Never prerendered, never cached — every request is a different question. */
 export const dynamic = "force-dynamic";
@@ -45,8 +55,11 @@ export const dynamic = "force-dynamic";
  * the function must outlive its own deadline — otherwise a slow call becomes a
  * platform kill and a 5xx instead of a tidy fallback. Measured on production:
  * warm calls run 1.4-2.6s, so this headroom is for the outliers, not the norm.
+ *
+ * Raised from 15 to 25 on 2026-10-22: the tutor path waits up to 14s for a
+ * call carrying a whole chapter (lib/gini/tutor.ts, TUTOR_TIMEOUT_MS).
  */
-export const maxDuration = 15;
+export const maxDuration = 25;
 
 /* ──────────────────────────── protecting the quota ──────────────────────── */
 
@@ -118,7 +131,7 @@ export async function POST(req: Request) {
   // Nothing configured: answer instantly and cheaply so the client stops asking.
   if (!geminiConfigured()) return Response.json({ ok: false, why: "not-configured" });
 
-  let body: { q?: unknown; path?: unknown };
+  let body: { q?: unknown; path?: unknown; history?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -138,6 +151,42 @@ export async function POST(req: Request) {
   const candidates = buildCandidates(q, ctx);
   const byId = new Map(candidates.map(c => [c.id, c]));
 
+  /* ── the tutor path: a chapter can ground this, so the model may teach ── */
+  const grounding = groundingFor(q, ctx);
+  if (grounding) {
+    const history = cleanHistory(body.history);
+    const { decision, error } = await routeWithGemini(
+      tutorBrief(),
+      buildTutorPrompt(q, ctx, grounding, history, candidates),
+      { temperature: TUTOR_TEMPERATURE, timeoutMs: TUTOR_TIMEOUT_MS },
+    );
+    if (!decision) return Response.json({ ok: false, why: error });
+
+    if (decision.mode === "teach") {
+      // Markdown emphasis is a formatting habit, not a defect — the bubble shows
+      // plain text, so it is removed rather than treated as a reason to reject.
+      const reply = (decision.reply ?? "").replace(/\*\*|__/g, "").trim();
+      const student = [...history.filter(t => t.role === "student").map(t => t.text), q].join("\n");
+      const verdict = guardTutorProse(reply, { source: grounding.text, student });
+      if (!verdict.ok) return Response.json({ ok: false, why: `tutor-guard:${verdict.why}` });
+      const onIt = ctx.area === "chapter" && ctx.chapterId === grounding.chapterId;
+      return Response.json({
+        ok: true,
+        kind: "answer",
+        text: reply,
+        // Point at the notes it was taught from, unless the student is already reading them.
+        href: onIt ? null : grounding.href,
+        via: "teach",
+        source: { type: "tutor", subjectId: grounding.subjectId, chapterId: grounding.chapterId },
+      });
+    }
+    if (decision.mode !== "pick" && decision.mode !== "talk") {
+      return Response.json({ ok: false, why: "none" });
+    }
+    // pick and talk are handled exactly as on the routing path, below.
+    return finish(decision, byId);
+  }
+
   const prompt = buildPrompt(q, ctx, candidates);
 
   const { decision, error } = await routeWithGemini(systemBrief(), prompt);
@@ -148,6 +197,14 @@ export async function POST(req: Request) {
     return Response.json({ ok: false, why: error });
   }
 
+  return finish(decision, byId);
+}
+
+/**
+ * A pick or a talk, from either path. One definition, so the tutor path cannot
+ * quietly loosen the checks the routing path has always applied.
+ */
+function finish(decision: RouterDecision, byId: Map<string, Candidate>): Response {
   if (decision.mode === "pick") {
     const chosen = decision.id ? byId.get(String(decision.id).trim()) : undefined;
     // A hallucinated id is a fallback, never a guess at what it meant.

@@ -29,7 +29,7 @@ import { explainQuestion, isSpeakable, speakableStats } from "../../lib/gini/dee
 import { topicStats } from "../../lib/gini/topics";
 import { TOPICS } from "../../lib/gini/generated/topics";
 import { FAKE_URGENCY, FREE_THREAT } from "../../lib/gini/marketing";
-import { guardModelProse } from "../../lib/gini/guard";
+import { guardModelProse, guardTutorProse } from "../../lib/gini/guard";
 import { isOffTopic, DECLINES } from "../../lib/gini/persona";
 import { CORPUS } from "../../lib/gini/generated/corpus-stats";
 import { ALL_QUESTIONS } from "../../lib/questions";
@@ -313,6 +313,41 @@ for (const g of GUARD_CASES) {
   check(rightReason, g.label, v.ok ? "allowed" : `blocked: ${why}`);
 }
 
+/**
+ * THE TUTOR'S GUARD (2026-10-22). The model now teaches from one chapter's text,
+ * so each case below is graded against a fixed excerpt. Every rejection names
+ * the guard it is meant to exercise, for the reason given above GUARD_CASES.
+ */
+line("\n--- TUTOR GUARD ---");
+const NOTES = "QNH is the pressure set so the altimeter reads aerodrome elevation on the ground. " +
+  "The standard pressure is 1013.25 hPa. One hectopascal is about 27 ft near sea level. " +
+  "Transition altitude in India is never less than 4000 ft. The 1 in 60 rule: 1 NM off track in 60 NM is 1 degree.";
+const TUTOR_CASES: { text: string; student?: string; ok: boolean; why?: RegExp; label: string }[] = [
+  { text: "Don't worry, this trips up many students. Think of QNH like zeroing a scale before you weigh. Set it and the altimeter reads elevation on the ground. What would it read on the runway?", ok: true, label: "a grounded teaching turn" },
+  { text: "Standard pressure is 1013.25 hPa, and each hPa is about 27 ft. Which way does it read if you forget to reset it?", ok: true, label: "numbers that are in the notes" },
+  { text: "Transition altitude in India is 3000 ft at most aerodromes.", ok: false, why: /number not in/, label: "an invented number is rejected" },
+  { text: "CPL validity is 5 years under CAR 7.", ok: false, why: /number not in/, label: "an invented validity is rejected" },
+  { text: "Your heading is 090 and wind is 30 kt, so first find the angle between them.", student: "heading 090 wind 30 kt from 120", ok: true, label: "numbers the student gave are allowed" },
+  { text: "Under FAA rules the transition altitude is 18000 ft.", ok: false, why: /FAA|number not in/, label: "FAA when the notes do not mention it" },
+  { text: "चिंता मत करो। QNH सेट करने पर altimeter ground पर elevation दिखाता है। क्या आप बता सकते हैं क्यों?", student: "explain QNH in Hindi", ok: true, label: "Hindi when the student asked for Hindi" },
+  { text: "QNH sets the altimeter to elevation on the ground.ান্তরিত", student: "what is QNH", ok: false, why: /did not write in it|script/, label: "the stray Bengali fragment, still rejected" },
+  { text: "QNH பற்றி சொல்கிறேன். चिंता मत करो।", student: "explain in tamil and hindi", ok: false, why: /mixes scripts/, label: "two scripts in one reply" },
+  { text: "ਇਹ ਸਵਾਲ ਸੋਹਣਾ ਹੈ। QNH ਸੈੱਟ ਕਰੋ।", student: "Punjabi vich samjhao", ok: true, label: "Gurmukhi with a danda full stop is one script (seen live 2026-10-22)" },
+  { text: "Standard pressure is १०१३.२५ hPa.", student: "हिंदी में बताओ", ok: true, label: "native digits are read as the same number" },
+  { text: "मानक दबाव ९९९ hPa है।", student: "हिंदी में बताओ", ok: false, why: /number not in/, label: "a wrong number cannot hide in native digits" },
+  { text: "CPL validity is ten years.", ok: false, why: /number not in/, label: "an invented number written as an English word" },
+  { text: "इसकी सीमा साठ knots है।", student: "हिंदी में बताओ", ok: true, label: "a Hindi number word that is in the notes (60)" },
+  { text: "इसकी सीमा पचास knots है।", student: "हिंदी में बताओ", ok: false, why: /number not in/, label: "a Hindi number word that is not (50) — seen live 2026-10-22" },
+  { text: "Think of it as one small step at a time, then three checks.", ok: false, why: /number not in/, label: "counting words above two are checked too" },
+  { text: "This is straight from the Oxford manual.", ok: false, why: /Iron Rule 2/, label: "names a source" },
+  { text: "The batch is ₹8,000, and QNH is set on the ground.", ok: false, why: /price/, label: "a price nobody charges" },
+];
+for (const c of TUTOR_CASES) {
+  const v = guardTutorProse(c.text, { source: NOTES, student: c.student ?? "what is QNH" });
+  const why = v.ok ? "" : (v as { ok: false; why: string }).why;
+  check(v.ok === c.ok && (!c.why || c.why.test(why)), c.label, v.ok ? "allowed" : `blocked: ${why}`);
+}
+
 line("\n--- WISDOM PROVENANCE ---");
 const unsourced = WISDOM.filter(w => w.kind === "fact" && (!w.source || w.source === "method"));
 check(unsourced.length === 0, "every factual line names its source", unsourced.map(w => w.id).join(", "));
@@ -509,7 +544,8 @@ for (const q of ["explain the semi circular rule", "what is the semicircular rul
  */
 line("\n--- BUNDLE BOUNDARY (megabytes must stay lazy) ---");
 {
-  const SERVER_ONLY = new Set(["candidates.ts"]);
+  // tutor.ts (2026-10-22) is server-only for the same reason and throws the same way.
+  const SERVER_ONLY = new Set(["candidates.ts", "tutor.ts"]);
   const roots = ["lib", "app"];
   const offenders: string[] = [];
   const walk = (dir: string) => {
