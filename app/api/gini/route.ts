@@ -41,6 +41,8 @@ import { systemBrief, ALLOWED_HREFS } from "@/lib/gini/brief";
 import { geminiConfigured, routeWithGemini, type RouterDecision } from "@/lib/gini/gemini";
 import { guardModelProse, isAllowedHref } from "@/lib/gini/guard";
 import { groundingFor, cleanHistory, cleanAwareness, runTutorTurn } from "@/lib/gini/tutor";
+/** Each reply carries a token so /api/gini/tts will speak it, and nothing else. */
+import { speakToken } from "@/lib/gini/tts";
 
 /** Never prerendered, never cached — every request is a different question. */
 export const dynamic = "force-dynamic";
@@ -166,6 +168,7 @@ export async function POST(req: Request) {
         ok: true,
         kind: "answer",
         text: turn.reply,
+        speak: speakToken(turn.reply),
         // Point at the notes it was taught from, unless the student is already reading them.
         href: onIt ? null : grounding.href,
         via: "teach",
@@ -207,6 +210,7 @@ function finish(decision: RouterDecision, byId: Map<string, Candidate>): Respons
       ok: true,
       kind: "answer",
       text: chosen.reply.text,          // STORED text, verbatim. Not the model's.
+      speak: speakToken(chosen.reply.text),
       href: chosen.reply.href ?? null,
       via: chosen.kind,
       /**
@@ -243,6 +247,7 @@ function finish(decision: RouterDecision, byId: Map<string, Candidate>): Respons
       ok: true,
       kind: "answer",
       text: (decision.reply ?? "").trim(),
+      speak: speakToken((decision.reply ?? "").trim()),
       href,
       via: "talk",
     });

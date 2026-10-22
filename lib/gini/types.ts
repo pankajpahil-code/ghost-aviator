@@ -41,7 +41,12 @@ export type GiniSource =
   | { type: "captain" };
 
 export type GiniReply =
-  | { kind: "answer"; text: string; source: GiniSource; href?: string }
+  /**
+   * `speakToken` comes only from the server (/api/gini), and is what lets
+   * /api/gini/tts speak this exact text. Offline answers have none, and are
+   * spoken by the device's own English voice instead.
+   */
+  | { kind: "answer"; text: string; source: GiniSource; href?: string; speakToken?: string }
   | { kind: "refusal"; text: string; reason: RefusalReason };
 
 export type RefusalReason =

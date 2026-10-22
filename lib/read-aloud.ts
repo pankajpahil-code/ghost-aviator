@@ -148,8 +148,22 @@ const SCRIPT_LANG: [RegExp, string][] = [
   [/[ఀ-౿]/, "te-IN"], [/[ಀ-೿]/, "kn-IN"], [/[ഀ-ൿ]/, "ml-IN"],
   [/[؀-ۿ]/, "ur-IN"],
 ];
+/**
+ * By the script MOST of the letters are in, not the first one found: an English
+ * chapter that quotes one Hindi word is still English, and a Tamil reply full of
+ * English aviation terms (QNH, VOR) is still Tamil.
+ */
 export function langForText(text: string): string {
-  return SCRIPT_LANG.find(([re]) => re.test(text))?.[1] ?? "en-IN";
+  const counts = new Map<string, number>();
+  let latin = 0;
+  for (const ch of text) {
+    if (/[A-Za-z]/.test(ch)) { latin++; continue; }
+    const hit = SCRIPT_LANG.find(([re]) => re.test(ch));
+    if (hit) counts.set(hit[1], (counts.get(hit[1]) ?? 0) + 1);
+  }
+  let best = "en-IN", most = 0;
+  for (const [lang, n] of counts) if (n > most) { best = lang; most = n; }
+  return most > latin * 0.5 ? best : "en-IN";
 }
 
 /**
@@ -172,6 +186,14 @@ export function speakText(text: string, label = "Selected text", onDone?: () => 
   if (!speechSupported()) { update({ state: "unsupported", message: "Read aloud is not available in this browser." }); return false; }
   const chunks = speechChunks(text);
   if (!chunks.length) { update({ message: "Choose some text or a notes section first." }); return false; }
+  // NEVER read Indian script with a voice made for another language. On a device
+  // with only English voices that came out as gibberish (2026-10-22); silence
+  // and a message are better than noise that sounds like the language.
+  const needs = lang ?? langForText(text);
+  if (!/^en/i.test(needs) && !voiceForLang(needs)) {
+    update({ state: "idle", message: "This device has no voice for that language. Gini's own Listen button speaks it from the server." });
+    return false;
+  }
   stopReading();
   const token = generation;
   window.speechSynthesis.resume();

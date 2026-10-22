@@ -74,6 +74,7 @@ export async function askSmart(
     const data = await res.json() as {
       ok?: boolean; kind?: string; text?: string; href?: string | null; why?: string;
       source?: GiniSource;
+      speak?: string;
     };
 
     if (data?.why === "not-configured") { disabled = true; return null; }
@@ -102,6 +103,7 @@ export async function askSmart(
       text: data.text,
       source,
       href: data.href ?? undefined,
+      speakToken: typeof data.speak === "string" ? data.speak : undefined,
     } satisfies GiniReply;
   } catch {
     return null;

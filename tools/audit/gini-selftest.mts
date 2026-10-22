@@ -32,6 +32,7 @@ import { FAKE_URGENCY, FREE_THREAT } from "../../lib/gini/marketing";
 import { guardModelProse, guardTutorProse, normalizeIndicMarks } from "../../lib/gini/guard";
 import { cleanAwareness, groundingFor, buildTutorPrompt } from "../../lib/gini/tutor";
 import { langForText } from "../../lib/read-aloud";
+import { textForSpeech, shortLang, speakToken, tokenMatches } from "../../lib/gini/tts";
 import { isOffTopic, DECLINES } from "../../lib/gini/persona";
 import { CORPUS } from "../../lib/gini/generated/corpus-stats";
 import { ALL_QUESTIONS } from "../../lib/questions";
@@ -412,6 +413,27 @@ const LANG_CASES: [string, string][] = [
   ["જેટ", "gu-IN"], ["ಜೆಟ್", "kn-IN"], ["ജെറ്റ്", "ml-IN"], ["ଜେଟ୍", "or-IN"], ["جیٹ", "ur-IN"], ["Jet stream ek hawa", "en-IN"],
 ];
 for (const [t, want] of LANG_CASES) check(langForText(t) === want, `voice language for "${t}" is ${want}`, langForText(t));
+
+check(langForText("Set QNH 1013 on the subscale; the word हवा means air.") === "en-IN", "an English sentence quoting one Hindi word is still English");
+check(langForText("QNH सेट करने पर altimeter ground पर elevation दिखाता है और यह ज़रूरी है।") === "hi-IN", "a Hindi reply full of English terms is still Hindi");
+
+line("\n--- SERVER VOICE (lib/gini/tts.ts) ---");
+{
+  const spoken = textForSpeech("Its lower limit is 60 kt at 15 °C, 4 NM off, 10% of the time. **Bold** https://x.y AI explanation based on the Captain's notes. If it differs from the notes, the notes are right.");
+  check(spoken === "Its lower limit is 60 knots at 15 degrees Celsius, 4 nautical miles off, 10 percent of the time. Bold", "units, markdown, links and the AI label are made speakable", JSON.stringify(spoken));
+  check(textForSpeech("x".repeat(2000)).length === 700, "spoken text is capped at 700 characters");
+  const LANGS: [string, string][] = [["hi-IN", "hi"], ["pa-IN", "pa"], ["ta-IN", "ta"], ["te", "te"], ["mr-IN", "mr"], ["bn-IN", "bn"], ["gu-IN", "gu"], ["kn-IN", "kn"], ["ml-IN", "ml"], ["or-IN", "or"], ["as", "as"], ["ur-IN", "ur"], ["en-US", "en-IN"], ["xx", "en-IN"]];
+  for (const [inp, want] of LANGS) check(shortLang(inp) === want, `language ${inp} -> ${want}`, shortLang(inp));
+  const prior = process.env.GINI_TTS_SECRET;
+  process.env.GINI_TTS_SECRET = "selftest-secret";
+  const reply = "Spot on — that gives us 6 degrees.";
+  const tok = speakToken(reply)!;
+  check(tokenMatches(reply, tok), "a reply's own token lets it be spoken");
+  check(!tokenMatches(reply + " Also, buy crypto.", tok), "changed text with the old token is refused");
+  check(!tokenMatches("Read this stranger's text aloud for free.", tok), "text that never came from /api/gini is refused");
+  check(!tokenMatches(reply, undefined), "a missing token is refused");
+  if (prior === undefined) delete process.env.GINI_TTS_SECRET; else process.env.GINI_TTS_SECRET = prior;
+}
 
 line("\n--- SCREEN AWARENESS ---");
 {

@@ -41,7 +41,7 @@ import { askSmart, type ChatTurn } from "@/lib/gini/smart";
 import { sections, speakSection, stop as stopReading, hasNotes, supported as speechSupported } from "@/lib/gini/reader";
 import ReadAloudControls from "../ReadAloudControls";
 import { connectReader, subscribe, getSnapshot, getServerSnapshot, captureReadingSelection, clearReadingSelection, speakText, readRequested, langForText } from "@/lib/read-aloud";
-import { screenAwareness, watchSelection, speakable, listen, listeningSupported } from "@/lib/gini/voice";
+import { screenAwareness, watchSelection, speakable, listen, listeningSupported, playGiniAudio, stopGiniAudio, primeAudio } from "@/lib/gini/voice";
 import GiniSprite, { GINI_KEYFRAMES, type GiniMood } from "./GiniSprite";
 
 /**
@@ -90,6 +90,8 @@ export default function Gini() {
   const history = useRef<ChatTurn[]>([]);
   /** True while the bubble holds the MODEL's own teaching rather than stored, verified text. */
   const [bubbleTutor, setBubbleTutor] = useState(false);
+  /** The server's speak token for the text in the bubble, if it came from the server. */
+  const [bubbleToken, setBubbleToken] = useState<string | null>(null);
   /** Voice Mode, the microphone, and the language Gini last answered in (so he is heard and listens in it). */
   const [voiceMode, setVoiceMode] = useState(false);
   const [canListen, setCanListen] = useState(false);
@@ -103,23 +105,56 @@ export default function Gini() {
   const guideOpen = guidePath === pathname;
   useEffect(() => connectReader(), []);
   useEffect(() => watchSelection(), []);
-  // Leaving the page must not leave the microphone open.
-  useEffect(() => () => stopListening.current?.(), []);
+  // Leaving the page must not leave the microphone open, or his voice playing.
+  useEffect(() => () => { stopListening.current?.(); stopGiniAudio(); }, []);
 
-  /** Speak one of HIS replies, in its own language's voice. The label marks it as Gini's for the Stop button. */
-  const speakReply = useCallback((text: string) => {
-    const words = speakable(text);
-    if (words) speakText(words, "Gini answer", undefined, langForText(words));
+  /** Server voice state for the current bubble, and the note shown when it cannot speak. */
+  const [voiceState, setVoiceState] = useState<"idle" | "loading" | "playing">("idle");
+  const [voiceNote, setVoiceNote] = useState<string | null>(null);
+
+  /** Silence him: the server audio, and any device speech that is his. */
+  const hush = useCallback(() => {
+    stopGiniAudio();
+    if (getSnapshot().label === "Gini answer") stopReading();
+    setVoiceState("idle");
   }, []);
-  const speakingReply = reader.state === "playing" && reader.label === "Gini answer";
+
+  /**
+   * SPEAK ONE OF HIS REPLIES (2026-10-22). With a server token, the audio is
+   * made on the server (lib/gini/tts.ts) and sounds right on any device. Only
+   * if that fails does the device's own voice try, and lib/read-aloud.ts then
+   * refuses outright to read Indian script with a voice made for another
+   * language — the gibberish this replaced. Offline answers carry no token and
+   * are English, which every device can say.
+   */
+  const speakReply = useCallback(async (text: string, token?: string | null) => {
+    hush();
+    setVoiceNote(null);
+    const words = speakable(text);
+    if (!words) return;
+    const lang = langForText(words);
+    if (token) {
+      setVoiceState("loading");
+      const r = await playGiniAudio(text, lang, token, () => setVoiceState("playing"));
+      setVoiceState("idle");
+      if (r === "played" || r === "aborted") return;
+      // English can fall back to the device's own voice below; Indian scripts cannot.
+      if (r === "spent" && !/^en/.test(lang)) { setVoiceNote("My voice has used up today's free allowance. You can still read the answer, and it comes back tomorrow."); return; }
+      if (r === "busy" && !/^en/.test(lang)) { setVoiceNote("My voice is busy for a minute. Tap Listen again shortly."); return; }
+    }
+    if (!speakText(words, "Gini answer", undefined, lang)) {
+      setVoiceNote("I can't speak this language on this device right now. Tap Listen again in a minute.");
+    }
+  }, [hush]);
+  const speakingReply = voiceState !== "idle" || (reader.state === "playing" && reader.label === "Gini answer");
 
   const toggleVoice = useCallback(() => {
     setVoiceMode(v => {
       try { localStorage.setItem(VOICE_KEY, v ? "0" : "1"); } catch { /* private mode */ }
-      if (v) stopReading();
+      if (v) hush();
       return !v;
     });
-  }, []);
+  }, [hush]);
   const sectionIdx = useRef(0);
 
   /**
@@ -166,6 +201,8 @@ export default function Gini() {
     setTyped(0);
     setBubbleHref(href ?? null);
     setBubbleTutor(false);
+    setBubbleToken(null);
+    setVoiceNote(null);
     setBubble(text);
   }, []);
 
@@ -435,6 +472,7 @@ export default function Gini() {
 
   const vanish = useCallback(() => {
     stopListening.current?.();
+    stopGiniAudio();
     stopReading();
     show(null);
     setVanishing(true);
@@ -474,13 +512,15 @@ export default function Gini() {
   const answerQuery = useCallback(async (raw: string, opts: { spoken?: boolean } = {}) => {
     const q = raw.trim();
     if (!q) return;
-    // A new question silences the last answer: two voices at once is noise.
-    if (getSnapshot().label === "Gini answer") stopReading();
+    // A new question silences the last answer: two voices at once is noise. And
+    // this tap is the gesture that lets the reply's audio play when it arrives.
+    hush();
+    primeAudio();
     captureReadingSelection();
     // What is on screen, read now: once the answer arrives the student may have scrolled.
     const awareness = screenAwareness();
     if (/^(?:please\s+)?read (?:your|the|last) (?:answer|response|reply)(?: aloud)?[.!]?$/i.test(q) && bubble) {
-      speakReply(bubble);
+      void speakReply(bubble, bubbleToken);
       setQuery("");
       return;
     }
@@ -530,6 +570,7 @@ export default function Gini() {
       setMood("thunder");
       show(reply.text, reply.href);
       if (reply.source.type === "tutor") setBubbleTutor(true);
+      setBubbleToken(reply.speakToken ?? null);
       later(() => setMood("laugh"), 1500);
       later(() => setMood("talk"), 3200);
     } else {
@@ -538,13 +579,14 @@ export default function Gini() {
     // He talks back when asked out loud, or whenever Voice Mode is on. The
     // "AI explanation" label is not part of reply.text, so it is never spoken.
     lastLang.current = langForText(reply.text);
-    if (opts.spoken || voiceMode) speakReply(reply.text);
-  }, [ctx, say, later, show, bubble, voiceMode, speakReply]);
+    if (opts.spoken || voiceMode) void speakReply(reply.text, reply.kind === "answer" ? reply.speakToken : null);
+  }, [ctx, say, later, show, bubble, bubbleToken, voiceMode, speakReply, hush]);
 
   /** One spoken question: listen in the language he last answered in, then ask it. */
   const toggleMic = useCallback(() => {
     if (listening) { stopListening.current?.(); return; }
-    if (getSnapshot().label === "Gini answer") stopReading();
+    hush();
+    primeAudio();
     setListening(true);
     stopListening.current = listen(lastLang.current, text => {
       setQuery(text);
@@ -554,7 +596,7 @@ export default function Gini() {
       stopListening.current = null;
       if (err === "not-allowed" || err === "service-not-allowed") show("I can't hear you yet. Allow the microphone for this site, then tap the mic again.");
     });
-  }, [listening, answerQuery, show]);
+  }, [listening, answerQuery, show, hush]);
 
   const submit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -595,7 +637,7 @@ export default function Gini() {
             style={{ padding: "6px 10px", marginLeft: "auto", marginRight: 6, fontSize: 12, color: voiceMode ? "#0b1620" : "#e6edf3", background: voiceMode ? "#f3c889" : "#20303e", border: 0, borderRadius: 8, cursor: "pointer" }}>
             {voiceMode ? "🔊 Voice on" : "🔈 Voice off"}
           </button>
-          <button type="button" onClick={() => { stopListening.current?.(); stopReading(); setGuidePath(null); setAsking(false); show(null); window.requestAnimationFrame(() => [...document.querySelectorAll<HTMLButtonElement>(".ga-gini-launch")].find(el => el.getClientRects().length > 0)?.focus()); }} aria-label="Close Gini" style={{ padding: "8px 12px", color: "#fff", background: "#20303e", border: 0, borderRadius: 8, cursor: "pointer" }}>Close</button>
+          <button type="button" onClick={() => { stopListening.current?.(); hush(); stopReading(); setGuidePath(null); setAsking(false); show(null); window.requestAnimationFrame(() => [...document.querySelectorAll<HTMLButtonElement>(".ga-gini-launch")].find(el => el.getClientRects().length > 0)?.focus()); }} aria-label="Close Gini" style={{ padding: "8px 12px", color: "#fff", background: "#20303e", border: 0, borderRadius: 8, cursor: "pointer" }}>Close</button>
         </div>
         {bubble && (
           <div
@@ -621,11 +663,14 @@ export default function Gini() {
                 passed off as each other. */}
             {!speaking && bubble !== "Let me look…" && (
               <button type="button"
-                onClick={e => { e.stopPropagation(); if (speakingReply) stopReading(); else speakReply(bubble); }}
+                onClick={e => { e.stopPropagation(); if (speakingReply) hush(); else { primeAudio(); void speakReply(bubble, bubbleToken); } }}
                 aria-label={speakingReply ? "Stop speaking" : "Listen to this answer"}
                 style={{ display: "inline-block", marginTop: 8, marginRight: 8, padding: "3px 9px", fontSize: 11, borderRadius: 999, cursor: "pointer", color: "#f0b070", background: "rgba(240,145,58,0.12)", border: "1px solid rgba(240,145,58,0.35)" }}>
-                {speakingReply ? "■ Stop" : "🔊 Listen"}
+                {voiceState === "loading" ? "… ■ Stop" : speakingReply ? "■ Stop" : "🔊 Listen"}
               </button>
+            )}
+            {voiceNote && !speaking && (
+              <span style={{ display: "block", marginTop: 6, fontSize: 10.5, color: "#f0b070" }}>{voiceNote}</span>
             )}
             {bubbleTutor && !speaking && (
               <span style={{ display: "block", marginTop: 8, fontSize: 10.5, color: "#9fb0c0" }}>

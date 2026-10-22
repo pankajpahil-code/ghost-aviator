@@ -85,6 +85,78 @@ export function speakable(text: string): string {
     .trim();
 }
 
+/* ───────────────────────── Gini's server-made voice ──────────────────────── */
+
+/**
+ * ONE shared <audio> element. Created and "unlocked" inside a tap (Ask, the
+ * mic, Listen) because mobile Safari only lets media start from a user gesture,
+ * and Gini's reply arrives seconds later, after a network call. Playing a tiny
+ * silent clip during the tap marks the element as allowed; the real audio then
+ * reuses it.
+ */
+const SILENT_WAV = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=";
+let player: HTMLAudioElement | null = null;
+let current: { url: string | null; ctl: AbortController } | null = null;
+
+export function primeAudio() {
+  if (typeof window === "undefined") return;
+  if (!player) player = new Audio();
+  if (!player.src || player.src === SILENT_WAV) {
+    player.src = SILENT_WAV;
+    void player.play().catch(() => { /* not a gesture yet; the real play will try again */ });
+  }
+}
+
+export function stopGiniAudio() {
+  if (current) {
+    current.ctl.abort();
+    if (current.url) URL.revokeObjectURL(current.url);
+    current = null;
+  }
+  if (player) { player.pause(); player.onended = null; player.onerror = null; }
+}
+
+/** "spent" = the day's free voice allowance is used up (lib/gini/tts.ts); "busy" = try again in a minute. */
+export type VoiceResult = "played" | "busy" | "spent" | "failed" | "aborted";
+
+/**
+ * Fetch Gini's reply as audio from /api/gini/tts and play it. Resolves when it
+ * ends, is stopped, or cannot be made. `token` is the one /api/gini returned
+ * with the reply; the server speaks nothing else.
+ */
+export async function playGiniAudio(text: string, lang: string, token: string, onStart?: () => void): Promise<VoiceResult> {
+  stopGiniAudio();
+  if (!player) player = new Audio();
+  const ctl = new AbortController();
+  current = { url: null, ctl };
+  try {
+    const res = await fetch("/api/gini/tts", {
+      method: "POST", signal: ctl.signal,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, lang, token }),
+    });
+    if (!res.ok || !/^audio\//.test(res.headers.get("content-type") || "")) {
+      if (res.status !== 429) return "failed";
+      const why = await res.json().then((j: { why?: string }) => j.why).catch(() => "");
+      return why === "daily-quota" ? "spent" : "busy";
+    }
+    const blob = await res.blob();
+    if (ctl.signal.aborted) return "aborted";
+    const url = URL.createObjectURL(blob);
+    current.url = url;
+    const p = player;
+    return await new Promise<VoiceResult>(resolve => {
+      p.onended = () => { resolve("played"); stopGiniAudio(); };
+      p.onerror = () => { resolve("failed"); stopGiniAudio(); };
+      ctl.signal.addEventListener("abort", () => resolve("aborted"), { once: true });
+      p.src = url;
+      p.play().then(() => onStart?.()).catch(() => { resolve("failed"); stopGiniAudio(); });
+    });
+  } catch {
+    return ctl.signal.aborted ? "aborted" : "failed";
+  }
+}
+
 /* ─────────────────────────────── listening ──────────────────────────────── */
 
 type Recognition = {
