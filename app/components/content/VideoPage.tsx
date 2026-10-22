@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ATPL_TO_CPL } from "@/lib/atpl-syllabus";
 import { ChevronRight, ChevronLeft, BookOpen, ListChecks, HelpCircle } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { ChapterVideo } from "@/lib/chapter-videos";
@@ -150,10 +151,10 @@ export default function VideoPage({
               <HelpCircle className="w-4 h-4" /> Practice Questions
             </Link>
           )}
-          <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
+          <Link href={track === "atpl" ? `/cpl/${ATPL_TO_CPL[subject.id]}` : `/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl no-underline text-sm font-bold"
                 style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)", color: "#f97316" }}>
-            <ListChecks className="w-4 h-4" /> Chapter Quiz
+            <ListChecks className="w-4 h-4" /> {track === "atpl" ? "Question practice in CPL" : "Chapter Quiz"}
           </Link>
         </div>
 
