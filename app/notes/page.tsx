@@ -1,10 +1,10 @@
-import { servesRealNotes } from "@/lib/indexability";
+import { servesRealNotes, publishedNoteCount } from "@/lib/indexability";
 import Link from "next/link";
 import { ArrowRight, FileText } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 
 const CPL_CHAPTER_COUNT  = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length, 0);
-const ATPL_CHAPTER_COUNT = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length, 0);
+const ATPL_CHAPTER_COUNT = publishedNoteCount(ATPL_SUBJECTS);
 
 export default function NotesPage() {
   return (

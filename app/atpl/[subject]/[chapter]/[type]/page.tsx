@@ -11,6 +11,7 @@ import { openerFactsFor } from "@/lib/opener-key-facts";
 import { videoObjectsFor, lecturePartsFor, isWatchPage } from "@/lib/video-schema";
 import NotesPage       from "@/app/components/content/NotesPage";
 import HtmlNotesPage   from "@/app/components/content/HtmlNotesPage";
+import AirRegsChapter1Notes from "@/app/components/content/AirRegsChapter1Notes";
 import QuestionsPage   from "@/app/components/content/QuestionsPage";
 import ChapterTestPage from "@/app/components/content/ChapterTestPage";
 import ChapterQuizPage from "@/app/components/content/ChapterQuizPage";
@@ -43,10 +44,7 @@ export async function generateMetadata({
       "atpl", subject, chapter, type, getQuestionsForChapter(subject.id, chapter.id).length,
     ),
     alternates: { canonical: type === "notes" ? `/cpl/${getNotesSource(subject.id, chapter.id).subjectId}/${getNotesSource(subject.id, chapter.id).chapterId}/notes` : `/atpl/${subject.id}/${chapter.id}/${type}` },
-    // See the CPL route and lib/indexability.ts: a stub or a drill asks not to
-    // be indexed. On the ATPL side this covers most of the track — 40 of its 68
-    // chapters have no notes published yet, and every one of them was an
-    // indexable page saying so.
+    // Shared notes retain their source canonical; drills and stubs stay noindex.
     ...(isIndexableChapterRoute(subject.id, chapter.id, type) ? {} : NOINDEX),
   };
 }
@@ -71,10 +69,7 @@ export default async function Page({
 
   const chapter = subject.chapters[chapterIdx];
 
-  // Skip to the nearest chapter that has this route's content — see the CPL
-  // route and adjacentWithContent. This matters more here: 40 of the ATPL
-  // track's 68 chapters have no notes yet, so plain adjacency sent a reader
-  // straight into a stub most of the time.
+  // Walk the topic order, skipping legacy chapters without this content type.
   const skips = type === "notes" || type === "video" || type === "questions";
   const { prev, next } = skips
     ? adjacentWithContent(subject.chapters, subject.id, chapterIdx, type as "notes")
@@ -102,9 +97,12 @@ export default async function Page({
   ) : null;
 
   if (type === "notes") {
-    // Same predicate as the sitemap and this route's robots tag — see
-    // lib/indexability.ts. Human Performance chapters serve inline notes as soon
-    // as notes.html is published; the other ATPL subjects have none yet.
+    const source = getNotesSource(subject.id, chapter.id);
+    if (source.subjectId === "air-regulations" && source.chapterId === "ar-1") {
+      return <AirRegsChapter1Notes track="atpl" subject={subject} chapter={chapter}
+        prevChapter={prevChapter} nextChapter={nextChapter} videos={chapterVideos} />;
+    }
+    // Reuse the same authored teaching and renderer in either study track.
     const inlineNotes = servesRealNotes(subject.id, chapter.id)
       ? getInlineNotes(subject.id, chapter.id)
       : null;

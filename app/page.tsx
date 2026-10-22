@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap, MessageCircle } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
-import { servesRealNotes } from "@/lib/indexability";
+import { servesRealNotes, publishedNoteCount } from "@/lib/indexability";
 import MascotHero from "./components/MascotHero";
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const CPL_CHAPTERS  = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
-const ATPL_CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length, 0);
+const ATPL_CHAPTERS = publishedNoteCount(ATPL_SUBJECTS);
 
 // Honest marketing counts, derived from the actual question bank (rounded down
 // to the nearest 100 so the figure is always defensible).

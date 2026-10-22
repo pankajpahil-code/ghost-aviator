@@ -1,5 +1,5 @@
-import { servesRealNotes } from "@/lib/indexability";
-import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
+import { publishedNoteCount } from "@/lib/indexability";
+import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { GUIDES } from "@/lib/guides";
 import { SITE_URL, YOUTUBE_BRAND } from "@/lib/site";
@@ -18,13 +18,9 @@ export const dynamic = "force-static";
  * lie the day after the next bank lands, and this file exists to be quoted.
  */
 
-const countRealNotes = (subjects: Subject[]): number => subjects.reduce(
-  (n,s) => n+s.chapters.filter(ch=>servesRealNotes(s.id,ch.id)).length, 0
-);
-
 export function GET() {
-  const cplNotes = countRealNotes(CPL_SUBJECTS);
-  const atplNotes = countRealNotes(ATPL_SUBJECTS);
+  const cplNotes = publishedNoteCount(CPL_SUBJECTS);
+  const atplNotes = publishedNoteCount(ATPL_SUBJECTS);
 
   const subjectLines = CPL_SUBJECTS.map(
     s => `- **${s.name}** — ${s.chapters.length} chapters. ${SITE_URL}/cpl/${s.id}`

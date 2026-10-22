@@ -171,6 +171,7 @@ function TdRed({ children }: { children: ReactNode }) {
 // ─── main component ───────────────────────────────────────────────────────────
 
 export default function AirRegsChapter1Notes({ track, subject, chapter, prevChapter, nextChapter, videos }: Props) {
+  const practiceHref = track === "atpl" ? "/cpl/air-regulations/ar-1/chapter-quiz" : `/${track}/${subject.id}/${chapter.id}/chapter-quiz`;
   return (
     <div style={{ background: "#0b1117" }} className="min-h-screen">
 
@@ -209,12 +210,12 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
             </span>
             <span className="text-xs px-3 py-1 rounded-full"
               style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "#64748b" }}>
-              9 sections · 19 annexes · {chapter.questionCount} questions
+              9 sections · 19 annexes{track === "cpl" ? ` · ${chapter.questionCount} questions` : ""}
             </span>
-            <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
+            <Link href={practiceHref}
               className="text-xs px-3 py-1 rounded-full no-underline flex items-center gap-1"
               style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)", color: "#f97316" }}>
-              <ListChecks className="w-3 h-3" /> Chapter Quiz
+              <ListChecks className="w-3 h-3" /> {track === "atpl" ? "Question practice in CPL" : "Chapter Quiz"}
             </Link>
           </div>
         </div>
@@ -1021,12 +1022,12 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
           <div className="text-4xl mb-3">✅</div>
           <h3 className="text-lg font-black text-white mb-2">Ready to Test Yourself?</h3>
           <p className="text-sm max-w-md mx-auto mb-6" style={{ color: "#64748b" }}>
-            {chapter.questionCount} questions covering all 9 sections of Chapter 1 — International Agreements &amp; ICAO.
+            {track === "atpl" ? "Continue to CPL for question practice on International Agreements & ICAO." : `${chapter.questionCount} questions covering all 9 sections of Chapter 1 — International Agreements & ICAO.`}
           </p>
-          <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
+          <Link href={practiceHref}
             className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl text-sm font-black no-underline"
             style={{ background: "linear-gradient(135deg, #ab794d, #f0913a)", color: "#fff" }}>
-            <ListChecks className="w-4 h-4" /> Start Chapter Quiz →
+            <ListChecks className="w-4 h-4" /> {track === "atpl" ? "Question practice in CPL →" : "Start Chapter Quiz →"}
           </Link>
         </div>
 

@@ -1,4 +1,5 @@
 import { ATPL_AREAS } from "./atpl-syllabus";
+import { ATPL_STUDY_TOPICS } from "./atpl-study-topics";
 import { EXAM_PAPERS } from "./exam-papers-meta";
 export type ContentType = {
   // Slides and Audio Overview were retired 2026-08-13: neither added anything a
@@ -1694,19 +1695,26 @@ export const CPL_REFERENCE_SUBJECTS = LEGACY_ATPL_SUBJECTS.filter(s =>
 export const CPL_SUBJECTS: Subject[] = [...CPL_CORE_SUBJECTS, ...CPL_REFERENCE_SUBJECTS];
 
 // Reuse the established notes pipeline and authored chapter files. Availability
-// still comes from the filesystem; these are shared references, not full ATPL coverage.
+// still comes from the actual renderer. The notes were prepared for CPL and ATPL;
+// organise the same chapters by topic without copying their source files.
 export const ATPL_SUBJECTS: Subject[] = ATPL_AREAS.map(area => {
   const sources = CPL_SUBJECTS.filter(s => (area.sources as readonly string[]).includes(s.id));
   const base = sources[0];
+  const sharedChapters = (ATPL_STUDY_TOPICS[area.id] ?? []).flatMap(topic => topic.sources.flatMap(ref => {
+    const source = CPL_SUBJECTS.find(s => s.id === ref.subjectId);
+    return ref.chapterIds.flatMap(chapterId => {
+      const ch = source?.chapters.find(c => c.id === chapterId);
+      return ch ? [{ ...ch, questionCount: 0,
+        notesSource: { subjectId: ref.subjectId, chapterId },
+        content: ch.content.filter(c => c.type === "notes").map(c => ({ ...c })),
+      }] : [];
+    });
+  }));
   return {
     id: area.id, name: area.name, shortName: area.name,
     icon: base?.icon ?? "", color: "#8ebacb", description: area.focus,
     examDuration: 0, totalQuestions: 0, passMark: 0,
-    chapters: [...sources.flatMap(source => source.chapters.map(ch => ({
-      ...ch, questionCount: 0,
-      notesSource: { subjectId: source.id, chapterId: ch.id },
-      content: ch.content.filter(c => c.type === "notes").map(c => ({ ...c })),
-    }))), ...(LEGACY_ATPL_SUBJECTS.find(s => s.id === area.id)?.chapters ?? []).map(ch => ({ ...ch, questionCount: 0, content: [] }))],
+    chapters: [...sharedChapters, ...(LEGACY_ATPL_SUBJECTS.find(s => s.id === area.id)?.chapters ?? []).map(ch => ({ ...ch, questionCount: 0, content: [] }))],
   };
 });
 

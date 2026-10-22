@@ -218,7 +218,7 @@ export const FAQS: FaqEntry[] = [
   },
   {
     q: "Which DGCA ATPL subjects can I study on Ghost Aviator?",
-    a: `The ATPL Aeroplanes library follows the CAR syllabus areas: ${ATPL_AREAS.map(a => a.name).join("; ")}. These are syllabus areas, not eight separate examinations for every applicant. Shared reference notes are identified. Human Performance and Flight Planning remain supporting references in CPL.`,
+    a: `The ATPL Aeroplanes library follows the CAR syllabus areas: ${ATPL_AREAS.map(a => a.name).join("; ")}. These are syllabus areas, not eight separate examinations for every applicant. The notes were prepared for CPL and ATPL study and appear under matching ATPL topics. Human Performance chapters are included under Air Regulation; mass-and-balance and performance chapters also appear under Technical Performance. Question banks remain in CPL.`,
     topic: "exams",
     source: "DGCA CAR Section 7 Series B Part VI, paragraph 2.1; checked 2026-10-19",
     href: "/atpl",

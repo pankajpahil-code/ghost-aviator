@@ -96,7 +96,7 @@ const notesFileExists = (subjectId: string, chapterId: string): boolean =>
 export function servesRealNotes(subjectId: string, chapterId: string): boolean {
   if (subjectId.startsWith("atpl-")) {
     const source = getNotesSource(subjectId, chapterId);
-    return source.subjectId !== subjectId && notesFileExists(source.subjectId, source.chapterId) && servesRealNotes(source.subjectId, source.chapterId);
+    return source.subjectId !== subjectId && servesRealNotes(source.subjectId, source.chapterId);
   }
   // Air Regs chapter 1 renders from a React component, not a published file.
   if (subjectId === "air-regulations" && chapterId === "ar-1") return true;
@@ -108,6 +108,16 @@ export function servesRealNotes(subjectId: string, chapterId: string): boolean {
 }
 
 // ─── One URL per distinct question set ───────────────────────────────────────
+/** Count authored chapters once when the same note appears in two topic areas. */
+export function publishedNoteCount(subjects: readonly Subject[]): number {
+  return new Set(subjects.flatMap(subject => subject.chapters
+    .filter(chapter => servesRealNotes(subject.id, chapter.id))
+    .map(chapter => {
+      const source = getNotesSource(subject.id, chapter.id);
+      return `${source.subjectId}/${source.chapterId}`;
+    }))).size;
+}
+
 //
 // getQuestionsForChapter falls back to the whole subject pool for a chapter with
 // no bank of its own. That is right for a student — there is always something to
