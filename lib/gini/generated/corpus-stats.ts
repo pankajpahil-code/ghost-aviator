@@ -49,8 +49,16 @@ export const CORPUS = {
           "speakable": 262
       },
       "radio-navigation": {
-          "total": 446,
-          "speakable": 397
+          "total": 448,
+          "speakable": 399
+      },
+      "human-performance": {
+          "total": 1,
+          "speakable": 1
+      },
+      "flight-planning": {
+          "total": 1,
+          "speakable": 1
       }
   } as Record<string, CorpusCount>,
 } as const;

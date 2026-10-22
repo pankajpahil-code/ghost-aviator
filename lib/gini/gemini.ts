@@ -71,11 +71,24 @@ const SCHEMA = {
   type: "object",
   properties: {
     mode: { type: "string", enum: ["pick", "talk", "teach", "none"] },
-    id: { type: "string", description: "The number of the chosen menu entry, when mode is pick." },
-    reply: { type: "string", description: "Your own words, ONLY when mode is talk or teach." },
+    /**
+     * SCRATCH WORK, never shown to anyone and never sent to the browser. Placed
+     * before `reply` because the model writes fields in order: a numerical's
+     * arithmetic done here first is arithmetic the reply can rely on. Added
+     * 2026-10-22 after the live probe saw a correct "4 ÷ 40 × 60 = 6°" answered
+     * with "Not quite".
+     */
+    working: { type: "string", description: "Private, at most 40 words, when mode is teach: what the notes say on the question; in a numerical, your own arithmetic of the student's last step and whether it is right. Never shown. Empty string otherwise." },
+    id: { type: "string", description: "The number of the chosen menu entry when mode is pick. Empty string otherwise." },
+    reply: { type: "string", description: "Your own words when mode is talk or teach. Empty string otherwise." },
     href: { type: "string", description: "Optional site path from the allowed list." },
   },
-  required: ["mode"],
+  // `reply` is required, as an empty string where it does not apply. With only
+  // `mode` required, the probe of 2026-10-22 saw the model write its working
+  // and then end the object with no reply at all, 6 times in 6. `id` is required
+  // for the same reason: with `reply` required and `id` not, the next probe saw
+  // {"mode":"pick"} with no id on the routing path.
+  required: ["mode", "working", "id", "reply"],
 } as const;
 
 /**
@@ -127,8 +140,8 @@ function parseDecision(text: string): RouterDecision | null {
     if (mode !== "pick" && mode !== "talk" && mode !== "teach" && mode !== "none") return null;
     return {
       mode,
-      id: typeof o.id === "string" ? o.id : null,
-      reply: typeof o.reply === "string" ? o.reply : null,
+      id: typeof o.id === "string" && o.id.trim() ? o.id : null,
+      reply: typeof o.reply === "string" && o.reply.trim() ? o.reply : null,
       href: typeof o.href === "string" ? o.href : null,
     };
   } catch {
@@ -146,7 +159,7 @@ export type RouteOutcome =
 export async function routeWithGemini(
   systemInstruction: string,
   userPrompt: string,
-  opts: { temperature?: number; timeoutMs?: number } = {},
+  opts: { temperature?: number; timeoutMs?: number; model?: string } = {},
 ): Promise<RouteOutcome> {
   const key = process.env.GEMINI_API_KEY;
   if (!key) return { decision: null, error: "no-key" };
@@ -163,7 +176,7 @@ export async function routeWithGemini(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: MODEL,
+        model: opts.model ?? MODEL,
         input: userPrompt,
         system_instruction: systemInstruction,
         response_format: {

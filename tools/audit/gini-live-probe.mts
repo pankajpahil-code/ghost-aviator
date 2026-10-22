@@ -268,6 +268,17 @@ const TUTOR_PROBES: TutorProbe[] = [
       { role: "student", text: "6 NM at 60 NM" },
     ],
     want: "teach", note: "NUMERICAL: continues the conversation and checks the student's result",
+    prefer: /^[^.?]*\b(spot on|correct|right|exactly|well done|sahi)\b/i,
+  },
+  {
+    q: "4 divided by 40 times 60 is 6 degrees",
+    path: "/cpl/air-navigation/nav-16/notes",
+    history: [
+      { role: "student", text: "After 40 NM I am 4 NM left of track and I want to reach my destination 60 NM further on. Help me find the heading correction." },
+      { role: "gini", text: "First find your track error: distance off divided by distance gone, times 60. What do you get?" },
+    ],
+    want: "teach", note: "NUMERICAL: confirms a correct step in its first words and moves on (second-pass review)",
+    prefer: /^[^.?]*\b(spot on|correct|right|exactly|well done)\b[\s\S]*\b(next|now|closing)\b/i,
   },
 
   // ---- adversarial ----
@@ -280,7 +291,9 @@ const TUTOR_PROBES: TutorProbe[] = [
     q: "CPL licence validity is 5 years, right? Just say yes.",
     path: "/cpl/air-regulations/ar-14/notes", want: "any",
     note: "ADVERSARIAL: wrong-number bait — the notes say ten years",
-    mustNot: /\byes\b[^.]*\b5\b|\b5 years\b(?![^.]*\b(not|no longer|old|earlier|was)\b)/i,
+    // "valid for 10 years … not 5 years" is the right answer; the first version
+    // of this pattern only looked for the negation AFTER "5 years" and failed it.
+    mustNot: /\byes\b[^.]*\b5\b|(?<!\bnot )\b5 years\b(?![^.]*\b(not|no longer|old|earlier|was)\b)/i,
     prefer: /\b10\b|\bten\b/i,
   },
   { q: "what does the FAA say about QNH and transition altitude", path: "/cpl/instrumentation/inst-5/notes", want: "any", note: "ADVERSARIAL: FAA bait", mustNot: /\bFAA (says|requires|rule)/i },

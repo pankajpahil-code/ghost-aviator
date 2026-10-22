@@ -357,7 +357,73 @@ export function numberWordsIn(s: string): number[] {
 /** Small counting words a teacher uses with no fact behind them ("1 in 60", "2 sentences"). */
 const FREE_NUMBERS = new Set([0, 1, 2]);
 
+/**
+ * WORKED ARITHMETIC (2026-10-22, second-pass review). In a numerical the model
+ * must be able to say "4 ÷ 40 × 60 gives 6°" even though 6 is in neither the
+ * notes nor the student's words. So a number also passes when it is the result
+ * of basic arithmetic on what the STUDENT typed: one or two operations (+ − × ÷),
+ * a square root, or sin/cos/tan of an angle, times another student number. The
+ * 1-in-60 constant is always an operand.
+ *
+ * WHY ONLY THE STUDENT'S NUMBERS, NEVER THE NOTES'. A chapter carries a couple
+ * of hundred numbers; two operations over those reach nearly every integer, and
+ * the guard would then pass any invented limit. A student's problem carries a
+ * handful, so derivations from them stay a narrow set, and a conversation with
+ * no student numbers in it (every plain "what is X" question) derives nothing.
+ *
+ * A derived value must match what the reply printed as written, as the nearest
+ * integer, or to one or two decimals. No looser tolerance.
+ */
+const FORMULA_CONSTANTS = [60];
+const MAX_OPERANDS = 12;
+
+export function derivableFrom(studentNumbers: number[]): Set<string> {
+  const base = [...new Set([...studentNumbers.filter(n => n !== 0).slice(-MAX_OPERANDS), ...FORMULA_CONSTANTS])];
+  const one: number[] = [];
+  for (const a of base) {
+    one.push(Math.sqrt(Math.abs(a)));
+    if (a > 0 && a <= 360) {
+      const r = (a * Math.PI) / 180;
+      one.push(Math.sin(r), Math.cos(r), Math.tan(r));
+      for (const b of base) one.push(b * Math.sin(r), b * Math.cos(r), b * Math.tan(r));
+    }
+    for (const b of base) {
+      one.push(a + b, a - b, a * b);
+      if (b !== 0) one.push(a / b);
+    }
+  }
+  const all = [...one];
+  for (const x of one) {
+    for (const c of base) {
+      all.push(x + c, x - c, c - x, x * c);
+      if (c !== 0) all.push(x / c);
+      if (x !== 0) all.push(c / x);
+    }
+  }
+  // A one-step result may be shown rounded (14.7 kt written "15 kt"). A two-step
+  // result must be shown to one or two decimals, or be within 0.05 of a whole
+  // number already. Measured 2026-10-22: rounding every two-step result to an
+  // integer let 85-96 of the integers 3-99 through for an ordinary 2-3 number
+  // problem, which is a guard in name only.
+  const keys = new Set<string>();
+  const add = (d: number, roundToInteger: boolean) => {
+    if (!Number.isFinite(d)) return;
+    const v = Math.abs(d);
+    if (roundToInteger || Math.abs(v - Math.round(v)) < 0.05) keys.add(String(Math.round(v)));
+    keys.add(String(Math.round(v * 10) / 10));
+    keys.add(String(Math.round(v * 100) / 100));
+  };
+  one.forEach(d => add(d, true));
+  all.slice(one.length).forEach(d => add(d, false));
+  return keys;
+}
+
+/** "Step 3", "step 4:" — a label, not a quantity. */
+const STEP_LABEL = /\bsteps?\s+\d{1,2}\b/gi;
+
 const FAA = /\b(FAA|FARs?|CFR)\b/;
+
+const PERSONAL_NAME = /\b(pankaj|pahil)\b|पंकज|पाहिल/i;
 
 const MAX_TUTOR_CHARS = 1400;
 
@@ -398,6 +464,10 @@ export function guardTutorProse(text: string, g: TutorGrounding): GuardVerdict {
     }
   }
 
+  // The Captain's no-personal-name order (2026-10-08) covers every public
+  // string. Seen live 2026-10-22 before this check: "Pankaj Sir's course notes".
+  if (PERSONAL_NAME.test(t)) return { ok: false, why: "uses the Captain's personal name (no-name order, 2026-10-08)" };
+
   if (FAA.test(t) && !FAA.test(g.source)) {
     return { ok: false, why: "brings in the FAA, which these notes do not" };
   }
@@ -406,8 +476,13 @@ export function guardTutorProse(text: string, g: TutorGrounding): GuardVerdict {
     ...numbersIn(g.source), ...numbersIn(g.student),
     ...numberWordsIn(g.source), ...numberWordsIn(g.student),
   ]);
-  for (const n of [...numbersIn(t), ...numberWordsIn(t)]) {
-    if (!FREE_NUMBERS.has(n) && !known.has(n)) {
+  const studentNumbers = [...numbersIn(g.student), ...numberWordsIn(g.student)];
+  let derived: Set<string> | null = null;
+  const unlabelled = t.replace(STEP_LABEL, " ");
+  for (const n of [...numbersIn(unlabelled), ...numberWordsIn(unlabelled)]) {
+    if (FREE_NUMBERS.has(n) || known.has(n)) continue;
+    derived ??= studentNumbers.length ? derivableFrom(studentNumbers) : new Set();
+    if (!derived.has(String(n))) {
       return { ok: false, why: `number not in the chapter notes or the student's words: ${n}` };
     }
   }

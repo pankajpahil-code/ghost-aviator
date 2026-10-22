@@ -27,6 +27,7 @@
 
 import { XMLParser, XMLValidator } from "fast-xml-parser";
 import * as SM from "../../app/sitemap";
+import { isIndexableChapterRoute } from "../../lib/indexability";
 
 type Entry = {
   url: string;
@@ -128,7 +129,31 @@ if (stamps.length > 50 && distinct.size < 3) {
   problems.push(`lastmod has only ${distinct.size} distinct date(s) across ${stamps.length} URLs — is it the build clock again?`);
 }
 
+// ─── 5. Only pages that ask to be indexed (2026-10-22) ───────────────────────
+//
+// A URL submitted here while its own page sends `noindex` is a contradiction
+// Google reports as an error, and a drill page in the sitemap spends crawl on a
+// test screen with 28 words. app/sitemap.ts already reads lib/indexability.ts;
+// this makes that a checked property rather than a habit. The chapter routes'
+// generateMetadata read the same predicate, so passing here means the page
+// itself does not say noindex.
+const DRILLS = new Set(["chapter-quiz", "mock-test"]);
+const CHAPTER_URL = /^https?:\/\/[^/]+\/(cpl|atpl)\/([^/]+)\/([^/]+)\/([^/?#]+)$/;
+const ALWAYS_NOINDEX = /^https?:\/\/[^/]+\/(login|signup|dashboard|mock-test|exam\/[^/]+)(\/|$)/;
+let chapterUrls = 0;
+for (const e of entries) {
+  if (ALWAYS_NOINDEX.test(e.url)) problems.push(`NOINDEX PAGE SUBMITTED — ${e.url}`);
+  const m = e.url.match(CHAPTER_URL);
+  if (!m) continue;
+  chapterUrls++;
+  const [, , subjectId, chapterId, type] = m;
+  if (DRILLS.has(type)) problems.push(`DRILL SUBMITTED — ${e.url}`);
+  else if (!isIndexableChapterRoute(subjectId, chapterId, type)) problems.push(`NOT INDEXABLE BUT SUBMITTED — ${e.url}`);
+}
+if (new Set(entries.map(e => e.url)).size !== entries.length) problems.push("duplicate URLs in the sitemap");
+
 console.log(`entries        ${entries.length}`);
+console.log(`  chapter URLs ${chapterUrls}, every one indexable and none a drill unless listed below`);
 console.log(`  with lastmod ${stamps.length} across ${distinct.size} distinct dates`);
 console.log(`  with video   ${entries.filter(e => e.videos?.length).length}`);
 console.log(`serialised     ${(xmlDoc.length / 1024).toFixed(0)}KB`);

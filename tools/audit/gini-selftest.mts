@@ -150,7 +150,10 @@ const probes: Probe[] = [
   { q: "I want to join a batch",                    want: "captain" },
   { q: "is there a whatsapp group",                 want: "captain" },
   { q: "do you have video lectures",                want: "captain" },
-  { q: "how should I study for the exam",           want: "captain" },
+  // Was "captain" (the stored study wisdom). Commit 6afbc66 added a verified FAQ
+  // entry for the CPL study order, which answers this question directly and more
+  // concretely, so the FAQ winning is the right outcome, not a regression.
+  { q: "how should I study for the exam",           want: "faq" },
   { q: "I failed my meteorology paper",             want: "captain" },
   { q: "how many questions are in meteorology",     want: "structure" },
   { q: "how many meteorology questions do you have", want: "structure" },
@@ -339,6 +342,14 @@ const TUTOR_CASES: { text: string; student?: string; ok: boolean; why?: RegExp; 
   { text: "इसकी सीमा साठ knots है।", student: "हिंदी में बताओ", ok: true, label: "a Hindi number word that is in the notes (60)" },
   { text: "इसकी सीमा पचास knots है।", student: "हिंदी में बताओ", ok: false, why: /number not in/, label: "a Hindi number word that is not (50) — seen live 2026-10-22" },
   { text: "Think of it as one small step at a time, then three checks.", ok: false, why: /number not in/, label: "counting words above two are checked too" },
+  // Worked arithmetic on the student's own numbers (second-pass review, 2026-10-22).
+  { text: "Spot on. 4 divided by 40, times 60, gives 6 degrees of track error.", student: "After 40 NM I am 4 NM left of track", ok: true, label: "a 1-in-60 result worked from the student's numbers" },
+  { text: "Crosswind is 30 kt times sin 30, which is 15 kt.", student: "wind 30 kt, 30 degrees off the runway", ok: true, label: "a trig result worked from the student's numbers" },
+  { text: "Step 3: now apply the closing angle.", ok: true, label: "a step label is not a quantity" },
+  { text: "Good. Transition altitude here is 3000 ft.", student: "After 40 NM I am 4 NM left of track", ok: false, why: /number not in/, label: "an invented limit is still blocked inside a numerical" },
+  { text: "That gives 6.37 degrees.", student: "After 40 NM I am 4 NM left of track", ok: false, why: /number not in/, label: "a decimal no arithmetic on the student's numbers produces" },
+  { text: "Pankaj Sir's course notes are best learned one piece at a time.", ok: false, why: /personal name/, label: "the Captain's personal name (seen live 2026-10-22)" },
+  { text: "The Captain's notes are best learned one piece at a time.", ok: true, label: "'the Captain' is how he is named" },
   { text: "This is straight from the Oxford manual.", ok: false, why: /Iron Rule 2/, label: "names a source" },
   { text: "The batch is ₹8,000, and QNH is set on the ground.", ok: false, why: /price/, label: "a price nobody charges" },
 ];
