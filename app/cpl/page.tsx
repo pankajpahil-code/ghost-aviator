@@ -65,7 +65,7 @@ export default function CPLPage() {
           </h1>
           <p className="text-xl font-semibold mb-2" style={{ color:"#f3c889" }}>Commercial Pilot Licence — India theory papers, notes & mocks</p>
           <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
-            Every chapter is mapped directly to the official DGCA CPL syllabus (CAR Section 7 Series B Part IV) — video lecture, study notes, practice questions and a chapter quiz.
+            Study the CPL ground subjects and supporting reference library. Existing question banks, including those previously under ATPL, are collected here. Human Performance and Flight Planning are supporting references, not additional standalone CPL papers.
           </p>
           <div className="flex flex-wrap gap-4">
             {[[`${CPL_SUBJECTS.length}`,"Subjects"],[`${CHAPTERS}`,"Chapters"],[QUESTIONS,"Questions"],["70%","Pass Mark"]].map(([v,l]) => (
@@ -80,7 +80,7 @@ export default function CPLPage() {
 
       {/* Subjects */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-2xl font-black text-white mb-2">All {CPL_SUBJECTS.length} CPL Subjects</h2>
+        <h2 className="text-2xl font-black text-white mb-2">CPL subjects & supporting references</h2>
         <p className="text-sm mb-8 max-w-3xl" style={{ color:"#64748b" }}>
           Air Navigation, Radio Navigation and Instrumentation are examined together in the single DGCA Navigation paper, so the exam details on those cards are for that combined paper.
         </p>

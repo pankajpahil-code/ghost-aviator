@@ -1,3 +1,4 @@
+import { ATPL_AREAS } from "./atpl-syllabus";
 import { EXAM_PAPERS } from "./exam-papers-meta";
 export type ContentType = {
   // Slides and Audio Overview were retired 2026-08-13: neither added anything a
@@ -17,6 +18,7 @@ export type Chapter = {
   description: string;
   duration: string;      // estimated study time
   questionCount: number;
+  notesSource?: { subjectId: string; chapterId: string };
   content: ContentType[];
 };
 
@@ -1435,7 +1437,7 @@ const SOLO_PAPER = new Map(
   EXAM_PAPERS.filter(p => p.track === "cpl" && !p.id.startsWith("composite") && p.subjectIds.length === 1)
     .map(p => [p.subjectIds[0], p] as const),
 );
-export const CPL_SUBJECTS: Subject[] = CPL_SUBJECTS_STUDY.map(s => {
+const CPL_CORE_SUBJECTS: Subject[] = CPL_SUBJECTS_STUDY.map(s => {
   const p = SOLO_PAPER.get(s.id);
   return p ? { ...s, examDuration: p.durationMin, totalQuestions: p.questionCount, passMark: p.passMark } : s;
 });
@@ -1443,7 +1445,7 @@ export const CPL_SUBJECTS: Subject[] = CPL_SUBJECTS_STUDY.map(s => {
 // ─────────────────────────────────────────────
 // ATPL SUBJECTS  (Advanced — DGCA Standard)
 // ─────────────────────────────────────────────
-export const ATPL_SUBJECTS: Subject[] = [
+const LEGACY_ATPL_SUBJECTS: Subject[] = [
   {
     id: "atpl-air-regulations",
     name: "Air Regulations (Advanced)",
@@ -1684,3 +1686,31 @@ export const ATPL_SUBJECTS: Subject[] = [
     ],
   },
 ];
+
+
+// Supporting references retain their content and get a permanent CPL home.
+export const CPL_REFERENCE_SUBJECTS = LEGACY_ATPL_SUBJECTS.filter(s =>
+  s.id === "human-performance" || s.id === "flight-planning");
+export const CPL_SUBJECTS: Subject[] = [...CPL_CORE_SUBJECTS, ...CPL_REFERENCE_SUBJECTS];
+
+// Reuse the established notes pipeline and authored chapter files. Availability
+// still comes from the filesystem; these are shared references, not full ATPL coverage.
+export const ATPL_SUBJECTS: Subject[] = ATPL_AREAS.map(area => {
+  const sources = CPL_SUBJECTS.filter(s => (area.sources as readonly string[]).includes(s.id));
+  const base = sources[0];
+  return {
+    id: area.id, name: area.name, shortName: area.name,
+    icon: base?.icon ?? "", color: "#8ebacb", description: area.focus,
+    examDuration: 0, totalQuestions: 0, passMark: 0,
+    chapters: [...sources.flatMap(source => source.chapters.map(ch => ({
+      ...ch, questionCount: 0,
+      notesSource: { subjectId: source.id, chapterId: ch.id },
+      content: ch.content.filter(c => c.type === "notes").map(c => ({ ...c })),
+    }))), ...(LEGACY_ATPL_SUBJECTS.find(s => s.id === area.id)?.chapters ?? []).map(ch => ({ ...ch, questionCount: 0, content: [] }))],
+  };
+});
+
+export function getNotesSource(subjectId: string, chapterId: string) {
+  return ATPL_SUBJECTS.find(s => s.id === subjectId)?.chapters
+    .find(ch => ch.id === chapterId)?.notesSource ?? { subjectId, chapterId };
+}

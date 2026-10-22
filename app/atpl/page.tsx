@@ -1,143 +1,38 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
-import { ALL_QUESTIONS } from "@/lib/questions";
-import { ArrowRight, Clock, FileQuestion, CheckCircle } from "lucide-react";
-
-import { SITE_URL, ORG_ID } from "@/lib/site";
-
-const CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
-const atplIds = new Set(ATPL_SUBJECTS.map(s => s.id));
-const QUESTIONS = `${(Math.floor(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => atplIds.has(id))).length / 100) * 100).toLocaleString("en-IN")}+`;
-
+import { servesRealNotes } from "@/lib/indexability";
+import { ATPL_AREAS, ATPL_SYLLABUS_URL, ATPL_MANUAL_URL } from "@/lib/atpl-syllabus";
+import styles from "./Atpl.module.css";
 export const metadata: Metadata = {
-  title: "DGCA ATPL Exam Preparation: Advanced Notes, MCQs & Viva Prep",
-  description: "Free online DGCA ATPL exam preparation for India — question bank, chapter-wise notes, video lectures and mock tests for every Airline Transport Pilot Licence paper.",
+  title: "DGCA ATPL (Aeroplanes) | Syllabus & Pilot Study Library",
+  description: "DGCA ATPL Aeroplanes syllabus, organised reference notes and official examination resources for professional pilots. Browse by syllabus area.",
   alternates: { canonical: "/atpl" },
 };
-
 export default function ATPLPage() {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": ATPL_SUBJECTS.map((subject, idx) => ({
-      "@type": "ListItem",
-      "position": idx + 1,
-      "item": {
-        "@type": "Course",
-        "url": `${SITE_URL}/atpl/${subject.id}`,
-        "name": `${subject.name} (ATPL) Syllabus, Question Bank & Notes`,
-        "description": subject.description,
-        "provider": { "@id": ORG_ID }
-      }
-    }))
-  };
-
-  return (
-    <div style={{ background:"#0b1117" }} className="min-h-screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-
-      {/* Header */}
-      <div className="relative overflow-hidden" style={{ borderBottom:"1px solid rgba(240,145,58,0.2)" }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ background:"radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240,145,58,0.18) 0%, transparent 70%)" }}/>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
-          <Link href="/" className="inline-flex items-center gap-1 text-sm mb-6 no-underline" style={{ color:"#64748b" }}>
-            ← Back to Home
-          </Link>
-          <div className="inline-block text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-5"
-               style={{ color:"#f0913a", border:"1px solid rgba(240,145,58,0.35)", background:"rgba(240,145,58,0.08)", letterSpacing:"0.18em" }}>
-            DGCA INDIA
-          </div>
-          <h1 className="text-5xl sm:text-6xl font-black text-white mb-4">
-            DGCA ATPL <span style={{ background:"linear-gradient(135deg,#f0913a,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Written Exam Prep</span>
-          </h1>
-          <p className="text-xl font-semibold mb-2" style={{ color:"#f0913a" }}>Airline Transport Pilot Licence — India theory papers, notes & mocks</p>
-          <p className="max-w-2xl mb-10" style={{ color:"#64748b" }}>
-            {ATPL_SUBJECTS.length} advanced DGCA subjects. Structured chapter by chapter — video lecture, study notes, practice questions and a chapter quiz.
-            Follows the official DGCA ATPL syllabus.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            {[[`${ATPL_SUBJECTS.length}`,"Subjects"],[`${CHAPTERS}`,"Chapters"],[QUESTIONS,"Questions"],["75%","Pass Mark"]].map(([v,l]) => (
-              <div key={l} className="px-5 py-3 rounded-xl text-center" style={{ background:"rgba(240,145,58,0.1)", border:"1px solid rgba(240,145,58,0.25)" }}>
-                <div className="text-2xl font-black text-white">{v}</div>
-                <div className="text-xs" style={{ color:"#f0913a" }}>{l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Guides and related study tools: internal links into the ATPL content and its neighbours */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-        <div className="rounded-2xl p-6" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(240,145,58,0.2)" }}>
-          <h2 className="text-lg font-black text-white mb-3">Start here for ATPL theory</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 list-none p-0 text-sm">
-            <li><Link href="/guides/dgca-atpl-study-guide" className="no-underline font-bold" style={{ color:"#f0913a" }}>DGCA ATPL study guide: subjects and where to start</Link></li>
-            <li><Link href="/guides/atpl-theory-before-1500-hours" className="no-underline font-bold" style={{ color:"#f0913a" }}>ATPL theory before 1,500 hours</Link></li>
-            <li><Link href="/question-bank/air-regulations" className="no-underline" style={{ color:"#94a3b8" }}>Air Regulations question bank</Link></li>
-            <li><Link href="/question-bank/meteorology" className="no-underline" style={{ color:"#94a3b8" }}>Meteorology question bank</Link></li>
-            <li><Link href="/free-dgca-mock-test" className="no-underline" style={{ color:"#94a3b8" }}>Free DGCA mock test</Link></li>
-            <li><Link href="/guides/computer-number" className="no-underline" style={{ color:"#94a3b8" }}>How to get your DGCA computer number</Link></li>
-          </ul>
-        </div>
-      </div>
-
-      {/* Subjects */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-2xl font-black text-white mb-8">All {ATPL_SUBJECTS.length} ATPL Subjects</h2>
-        <div className="flex flex-col gap-5">
-          {ATPL_SUBJECTS.map((subject, idx) => (
-            <Link key={subject.id} href={`/atpl/${subject.id}`}
-                  className="group rounded-2xl overflow-hidden no-underline block transition-all duration-300"
-                  style={{ background:"rgba(17,24,32,0.95)", border:`1px solid ${subject.color}30` }}>
-              <div className="p-6">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="flex items-start gap-5 flex-1">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center font-black text-xl"
-                         style={{ background:`${subject.color}20`, border:`1px solid ${subject.color}40`, color: subject.color }}>
-                      {String(idx + 1).padStart(2,"0")}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-2xl">{subject.icon}</span>
-                        <h3 className="text-lg font-black text-white">{subject.name}</h3>
-                      </div>
-                      <p className="text-sm mb-3" style={{ color:"#64748b" }}>{subject.description}</p>
-                      <div className="flex flex-wrap gap-4">
-                        <span className="flex items-center gap-1 text-xs" style={{ color:"#475569" }}>
-                          <Clock className="w-3 h-3"/> {subject.examDuration} min exam
-                        </span>
-                        {subject.totalQuestions > 0 && (
-                        <span className="flex items-center gap-1 text-xs" style={{ color:"#475569" }}>
-                          <FileQuestion className="w-3 h-3"/> {subject.totalQuestions} Qs in paper
-                        </span>
-                        )}
-                        <span className="flex items-center gap-1 text-xs" style={{ color:"#475569" }}>
-                          <CheckCircle className="w-3 h-3"/> Pass: {subject.passMark}%
-                        </span>
-                        <span className="text-xs px-2 py-0.5 rounded-full font-bold"
-                              style={{ background:`${subject.color}18`, color: subject.color }}>
-                          {subject.chapters.length} Chapters
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 font-bold text-sm flex-shrink-0" style={{ color: subject.color }}>
-                    Study Now <ArrowRight className="w-4 h-4"/>
-                  </div>
-                </div>
-                <div className="mt-4 pt-4 flex flex-wrap gap-2" style={{ borderTop:"1px solid rgba(255,255,255,0.04)" }}>
-                  {subject.chapters.map(ch => (
-                    <span key={ch.id} className="text-xs px-3 py-1 rounded-full" style={{ background:"rgba(255,255,255,0.04)", color:"#475569" }}>
-                      Ch.{ch.number} {ch.title}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+  const notesCount = ATPL_SUBJECTS.reduce((n,s) => n+s.chapters.filter(ch => servesRealNotes(s.id,ch.id)).length,0);
+  return <div className={styles.page}><div className={styles.wrap}>
+    <Link href="/">Home</Link>
+    <header className={styles.hero}><div className={styles.eyebrow}>Professional pilot study library · Aeroplanes</div>
+      <h1>ATPL knowledge.<br />Organised for the flight deck.</h1>
+      <p>Return to a subject, find a reference, or plan your next study session. A focused library for pilots preparing for DGCA ATPL examinations and revisiting the underlying theory.</p>
+      <nav className={styles.nav} aria-label="ATPL study navigation"><a href="#syllabus">Browse syllabus areas</a><a href="#study">Plan your study</a><Link href="/cpl">Question practice in CPL</Link></nav>
+    </header>
+    <section className={styles.section} id="syllabus"><div className={styles.eyebrow}>DGCA CAR · Section 7 · Series B · Part VI</div><h2>The ATPL (Aeroplanes) syllabus</h2>
+      <p>{ATPL_AREAS.length} syllabus areas, using DGCA’s subject names. These describe the scope of the CAR; they do not mean every applicant sits eight separate examinations. Confirm your applicable papers, credits and aircraft requirements with DGCA.</p>
+      <div className={styles.grid}>{ATPL_SUBJECTS.map(subject => {
+        const area = ATPL_AREAS.find(a => a.id === subject.id)!;
+        const available = subject.chapters.filter(ch => servesRealNotes(subject.id,ch.id)).length;
+        return <article className={styles.card} key={subject.id}><span className={styles.tag}>{area.reference}</span><h3>{subject.name}</h3><p>{subject.description}</p><span className={styles.tag}>{available ? `${available} shared reference chapters available` : "Reference coverage being prepared"}</span><Link className={styles.link} href={`/atpl/${subject.id}`}>Open study area →</Link></article>;
+      })}</div>
+      <div className={styles.note}><p><strong>{notesCount} reference chapters available.</strong> Published Ghost Aviator notes support the syllabus. Shared CPL foundations and aircraft-specific examples are identified; they do not establish complete ATPL coverage. Question banks and quizzes are now in CPL.</p></div>
+    </section>
+    <section className={styles.section} id="study"><h2>A practical study sequence</h2><ol className={styles.list}>
+      <li className={styles.row}><div className={styles.rowTitle}><span className={styles.number}>01</span><div><strong>Set your examination scope</strong><small>Use the CAR and your PARIKSHA profile to identify the papers and oral examinations relevant to your application.</small></div></div></li>
+      <li className={styles.row}><div className={styles.rowTitle}><span className={styles.number}>02</span><div><strong>Read against the syllabus</strong><small>Refresh concepts with the reference notes, then check remaining topics against the official appendix.</small></div></div></li>
+      <li className={styles.row}><div className={styles.rowTitle}><span className={styles.number}>03</span><div><strong>Practise and explain your reasoning</strong><small>Existing question practice is in CPL. A practice score does not establish ATPL readiness. Check aircraft limitations and procedures against your current approved documentation.</small></div></div></li>
+    </ol></section>
+    <section className={styles.section}><h2>References within reach</h2><nav className={styles.nav} aria-label="Pilot references"><Link href="/cpl/human-performance">Human Performance</Link><Link href="/books">Free Ghost Aviator books</Link><Link href="/guides/dgca-atpl-study-guide">ATPL study guide</Link></nav></section>
+    <footer className={styles.sources}><strong>Official source documents</strong><p><a href={ATPL_SYLLABUS_URL} target="_blank" rel="noopener noreferrer">ATPL Aeroplanes syllabus — CAR Section 7, Series B, Part VI</a> (Issue III, 16 June 2011, §2.1 and Appendices A–E).<br /><a href={ATPL_MANUAL_URL} target="_blank" rel="noopener noreferrer">Flight Crew User Manual — Issue IV, Revision 0, September 2026</a> (Chapter 7: examinations). Sources checked 19 October 2026. For session notices and subsequent changes, use <a href="https://pariksha.dgca.gov.in/home" target="_blank" rel="noopener noreferrer">DGCA PARIKSHA</a>.</p></footer>
+  </div></div>;
 }

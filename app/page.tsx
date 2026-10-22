@@ -15,17 +15,17 @@ export const metadata: Metadata = {
 };
 
 const CPL_CHAPTERS  = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
-const ATPL_CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
+const ATPL_CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length, 0);
 
 // Honest marketing counts, derived from the actual question bank (rounded down
 // to the nearest 100 so the figure is always defensible).
 const SUBJECT_COUNT = CPL_SUBJECTS.length + ATPL_SUBJECTS.length;
 const cplIds  = new Set(CPL_SUBJECTS.map(s => s.id));
-const atplIds = new Set(ATPL_SUBJECTS.map(s => s.id));
+
 const fmt = (n: number) => `${(Math.floor(n / 100) * 100).toLocaleString("en-IN")}+`;
 const TOTAL_Q = fmt(ALL_QUESTIONS.length);
 const CPL_Q   = fmt(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => cplIds.has(id))).length);
-const ATPL_Q  = fmt(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => atplIds.has(id))).length);
+
 
 // Four surfaces, in the order a student actually uses them: watch the lecture,
 // read the chapter, drill the questions, then test yourself under the clock.
@@ -133,7 +133,7 @@ export default function Home() {
               </div>
 
               <div className="grid grid-cols-4 gap-3 max-w-xl">
-                {[[TOTAL_Q,"Questions"],[`${SUBJECT_COUNT}`,"Subjects"],["70%","Pass Mark"],["FREE","Self-study"]].map(([v,l]) => (
+                {[[TOTAL_Q,"Questions"],[`${SUBJECT_COUNT}`,"Study areas"],["70%","Pass Mark"],["FREE","Self-study"]].map(([v,l]) => (
                   <div key={l} className="text-center p-3 rounded-xl"
                        style={{ background:"rgba(11,17,23,0.72)", border:"1px solid rgba(240,145,58,0.22)", backdropFilter:"blur(6px)" }}>
                     <div className="text-xl font-black" style={{ color:"var(--ember-soft)" }}>{v}</div>
@@ -274,7 +274,7 @@ export default function Home() {
                 <div className="text-6xl opacity-80">✈️</div>
               </div>
               <div className="grid grid-cols-3 gap-3 mb-8">
-                {[[`${ATPL_SUBJECTS.length}`,"Subjects"],[`${ATPL_CHAPTERS}`,"Chapters"],[ATPL_Q,"Questions"]].map(([v,l]) => (
+                {[[`${ATPL_SUBJECTS.length}`,"Subjects"],[`${ATPL_CHAPTERS}`,"Chapters"],["Notes","Reference library"]].map(([v,l]) => (
                   <div key={l} className="p-3 rounded-xl text-center" style={{ background:"rgba(240,145,58,0.1)", border:"1px solid rgba(240,145,58,0.2)" }}>
                     <div className="text-xl font-black text-white">{v}</div>
                     <div className="text-xs" style={{ color:"#f0913a" }}>{l}</div>

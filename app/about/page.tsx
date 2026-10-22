@@ -1,3 +1,4 @@
+import { servesRealNotes } from "@/lib/indexability";
 import TestimonialCard from "../components/TestimonialCard";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -23,7 +24,7 @@ const BANNER = "/captain-banner.webp";
 const PORTRAIT = "/captain-real.webp";
 
 const SUBJECT_COUNT = CPL_SUBJECTS.length + ATPL_SUBJECTS.length;
-const CHAPTER_COUNT = [...CPL_SUBJECTS, ...ATPL_SUBJECTS].reduce((n, s) => n + s.chapters.length, 0);
+const CHAPTER_COUNT = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.filter(ch=>servesRealNotes(s.id,ch.id)).length, 0);
 const QUESTION_COUNT = `${Math.floor(ALL_QUESTIONS.length / 100) * 100}+`;
 
 const TELEGRAM = TELEGRAM_GROUP;
@@ -174,8 +175,8 @@ export default function AboutPage() {
           {/* Site stats — derived from data */}
           <div className="grid grid-cols-3 gap-4 mt-8">
             {[
-              [`${SUBJECT_COUNT}`, "Subjects"],
-              [`${CHAPTER_COUNT}`, "Chapters"],
+              [`${SUBJECT_COUNT}`, "Study areas"],
+              [`${CHAPTER_COUNT}`, "Published chapters"],
               [QUESTION_COUNT, "Practice Questions"],
             ].map(([v, l]) => (
               <div key={l} className="p-4 rounded-xl text-center"

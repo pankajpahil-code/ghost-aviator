@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import {ATPL_SUBJECTS,CPL_SUBJECTS,getNotesSource} from '../../lib/subjects';
+import {ALL_QUESTIONS,BANK_ELIGIBLE,collapseDuplicates,getSubjectQuestionPool} from '../../lib/questions';
+import {CHAPTER_VIDEOS,getChapterVideos} from '../../lib/chapter-videos';
+import {servesRealNotes,hasRouteContent} from '../../lib/indexability';
+const before=collapseDuplicates(BANK_ELIGIBLE);
+const fingerprint=(q:typeof before[number])=>JSON.stringify([q.q,q.opts,q.ans,q.exp]);
+const same=before.length===ALL_QUESTIONS.length && before.every((q,i)=>fingerprint(q)===fingerprint(ALL_QUESTIONS[i]));
+const cpl=new Set(CPL_SUBJECTS.map(s=>s.id));
+const moved=before.map((q,i)=>({q,i})).filter(({q})=>q.subjectIds.some(s=>s.startsWith('atpl-')));
+const mappedAtplLectures = Object.keys(CHAPTER_VIDEOS).filter(k=>k.startsWith('atpl-'));
+const allMappedAtplLecturesReachable = mappedAtplLectures.every(k=>{
+ const [subject,chapter]=k.split('/'); return ATPL_SUBJECTS.some(s=>s.id===subject && s.chapters.some(ch=>ch.id===chapter && hasRouteContent(subject,chapter,'video')));
+});
+const allAvailableNotesReachable = ATPL_SUBJECTS.every(s=>s.chapters.every(ch=>!servesRealNotes(s.id,ch.id)||hasRouteContent(s.id,ch.id,'notes')));
+const report={allAvailableNotesReachable,allMappedAtplLecturesReachable,lectureRoutes:ATPL_SUBJECTS.flatMap(s=>s.chapters.filter(ch=>getChapterVideos(s.id,ch.id).length).map(ch=>`/atpl/${s.id}/${ch.id}/video`)),before:before.length,after:ALL_QUESTIONS.length,questionTextChoicesKeysExplanationsUnchanged:same,previouslyTaggedAtpl:moved.length,remainingAtplMemberships:ALL_QUESTIONS.filter(q=>q.subjectIds.some(s=>s.startsWith('atpl-'))).length,allMovedReachableInCpl:moved.every(({i})=>ALL_QUESTIONS[i].subjectIds.some(s=>cpl.has(s))),subjects:ATPL_SUBJECTS.map(s=>({id:s.id,name:s.name,notes:s.chapters.filter(ch=>servesRealNotes(s.id,ch.id)).length,questions:getSubjectQuestionPool(s.id).length})),noteRoutes:ATPL_SUBJECTS.flatMap(s=>s.chapters.filter(ch=>servesRealNotes(s.id,ch.id)).map(ch=>({path:`/atpl/${s.id}/${ch.id}/notes`,canonical:`/cpl/${getNotesSource(s.id,ch.id).subjectId}/${getNotesSource(s.id,ch.id).chapterId}/notes`}))),supportingReferences:CPL_SUBJECTS.filter(s=>['human-performance','flight-planning'].includes(s.id)).map(s=>({id:s.id,notes:s.chapters.filter(ch=>servesRealNotes(s.id,ch.id)).length}))};
+fs.writeFileSync(process.argv[2] ?? 'atpl-migration-checks.json',JSON.stringify(report,null,2));
+console.log(JSON.stringify({...report,noteRoutes:report.noteRoutes.length},null,2));
+if(!same||report.remainingAtplMemberships||!report.allMovedReachableInCpl||!allAvailableNotesReachable||!allMappedAtplLecturesReachable)process.exit(1);
+console.log("Duplicate chapter IDs", ATPL_SUBJECTS.flatMap(s => s.chapters.filter((c,i) => s.chapters.findIndex(x => x.id === c.id) !== i).map(c => `${s.id}/${c.id}`)));

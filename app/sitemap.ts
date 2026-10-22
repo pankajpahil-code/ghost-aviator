@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
-import { isIndexableChapterRoute } from "@/lib/indexability";
+import { isIndexableChapterRoute, isIndexableSubject } from "@/lib/indexability";
 import { ALL_PAST_PAPERS } from "@/lib/past-papers";
 import { GUIDES } from "@/lib/guides";
 import { QB_LANDINGS } from "@/lib/landing-pages";
@@ -115,7 +115,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const subjectPages = (track: "cpl" | "atpl", subjects: Subject[]): MetadataRoute.Sitemap =>
     subjects.flatMap(s => [
-      { url: url(`/${track}/${s.id}`), ...mod(`/${track}/${s.id}`), changeFrequency: "weekly" as const, priority: 0.8 },
+      ...(isIndexableSubject(s) ? [{ url: url(`/${track}/${s.id}`), ...mod(`/${track}/${s.id}`), changeFrequency: "weekly" as const, priority: 0.8 }] : []),
       ...s.chapters.flatMap(ch =>
         CHAPTER_TYPES.filter(type => isIndexableChapterRoute(s.id, ch.id, type)).map(type => ({
           url: url(`/${track}/${s.id}/${ch.id}/${type}`),

@@ -3,7 +3,7 @@ import NotesDownloadLink from "@/app/components/content/NotesDownloadLink";
 import { getChapterSpecificQuestions, getSubjectQuestionPool } from "@/lib/questions";
 import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { getChapterVideos } from "@/lib/chapter-videos";
-import { servesRealNotes } from "@/lib/indexability";
+import { servesRealNotes, isIndexableSubject, NOINDEX } from "@/lib/indexability";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { CPL_SUBJECTS } from "@/lib/subjects";
@@ -66,6 +66,7 @@ export async function generateMetadata({ params }: { params: Promise<{ subject: 
   return {
     title: `${subject.name} (CPL) Syllabus, Question Bank & Notes | Ghost Aviator`,
     description: subject.description,
+    ...(isIndexableSubject(subject) ? {} : NOINDEX),
     alternates: { canonical: `/cpl/${subject.id}` },
   };
 }
@@ -130,7 +131,7 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
           <div className="flex items-start gap-5 mb-6">
             <span className="text-5xl">{subject.icon}</span>
             <div>
-              <div className="text-xs font-bold tracking-widest mb-2" style={{ color: subject.color, letterSpacing:"0.18em" }}>CPL PAPER</div>
+              <div className="text-xs font-bold tracking-widest mb-2" style={{ color: subject.color, letterSpacing:"0.18em" }}>{["human-performance", "flight-planning"].includes(subject.id) ? "SUPPORTING REFERENCE" : "CPL PAPER"}</div>
               <h1 className="text-4xl sm:text-5xl font-black text-white mb-2">{subject.name}</h1>
               <p className="text-base" style={{ color:"#64748b" }}>{subject.description}</p>
             </div>
@@ -143,7 +144,7 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
                 [`${paper.durationMin} min Exam`, "#475569"],
                 [`${paper.questionCount} Qs in ${paper.subjectIds.length > 1 ? `the combined ${paper.shortTitle} paper` : "Paper"}`, "#475569"],
               ] : []),
-              [`${passMark}% to Pass`, "#22c55e"],
+              ...(["human-performance", "flight-planning"].includes(subject.id) ? [] : [[`${passMark}% to Pass`, "#22c55e"]]),
             ].map(([v, c]) => (
               <span key={v} className="text-sm px-3 py-1 rounded-full font-medium"
                     style={{ background:`${c}15`, border:`1px solid ${c}35`, color: c }}>
@@ -170,7 +171,9 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
         </div>
 
         {/* SEO Prose Block */}
-        <article className="prose prose-invert max-w-none mb-10">
+        {["human-performance", "flight-planning"].includes(subject.id)
+          ? <article className="mb-10 text-slate-300 leading-relaxed"><h2 className="text-2xl font-bold text-white mb-4">Supporting study reference</h2><p>This library supports your ground study and professional revision. It is not an additional standalone DGCA CPL or ATPL paper. Published notes are listed below; question practice is available where a bank exists.</p></article>
+          : <article className="prose prose-invert max-w-none mb-10">
           <h2 className="text-2xl font-bold text-white mb-4">How to study DGCA {subject.name}</h2>
           <p className="text-slate-300 leading-relaxed">
             The DGCA {subject.name} (CPL) exam requires a solid conceptual foundation rather than rote memorization. 
@@ -184,7 +187,7 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
             {subject.id === "technical-general" && "Technical General blends aerodynamics with aircraft systems. Pay special attention to the engine mechanics and flight instruments, ensuring you understand the practical implications of system failures."}
             {(!["meteorology", "air-navigation", "air-regulations", "technical-general"].includes(subject.id)) && `Ghost Aviator provides comprehensive, free, and interactive study material mapped precisely to the DGCA ${subject.shortName} syllabus.`}
           </p>
-        </article>
+        </article>}
 
         {/* Progress */}
         <SubjectProgressBar

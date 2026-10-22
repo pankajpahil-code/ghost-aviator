@@ -1,3 +1,4 @@
+import { ATPL_TO_CPL } from "./atpl-syllabus";
 import type { DemoQuestion } from "./demo-questions";
 import { DEMO_QUESTIONS } from "./demo-questions";
 import { NAV_QUESTIONS } from "./nav-questions";
@@ -177,7 +178,11 @@ export const BANK_ELIGIBLE: DemoQuestion[] = (() => {
   return shown.filter((q) => !contradictsRuling(q, ruledCopies));
 })();
 
-export const ALL_QUESTIONS: DemoQuestion[] = collapseDuplicates(BANK_ELIGIBLE);
+// Preserve stems, choices, keys and explanations while relocating all ATPL banks.
+export const ALL_QUESTIONS: DemoQuestion[] = collapseDuplicates(BANK_ELIGIBLE).map(q => ({
+  ...q,
+  subjectIds: [...new Set(q.subjectIds.map(id => ATPL_TO_CPL[id] ?? id))],
+}));
 
 // CPL air-regulations chapters were restructured from 13 → 26 chapters.
 // The RK Bali question bank uses the old ar-1…ar-13 IDs. This map routes
@@ -233,6 +238,7 @@ export function getQuestionsForChapter(
   subjectId: string,
   chapterId: string,
 ): DemoQuestion[] {
+  if (subjectId.startsWith("atpl-")) return [];
   // CPL air-regulations: route new chapter IDs to the matching RK Bali bank IDs
   if (subjectId === "air-regulations") {
     // Chapters ar-14+ may carry their own per-chapter banks extracted from the
@@ -294,6 +300,7 @@ export function getChapterSpecificQuestions(
   subjectId: string,
   chapterId: string,
 ): DemoQuestion[] {
+  if (subjectId.startsWith("atpl-")) return [];
   if (subjectId === "air-regulations") {
     if (Number(chapterId.replace("ar-", "")) > 13) {
       const own = ALL_QUESTIONS.filter(

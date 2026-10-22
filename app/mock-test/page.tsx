@@ -6,6 +6,7 @@ import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, Book
 import { getSubjectQuestionPool } from "@/lib/questions";
 import { isRealExplanation } from "@/lib/explanation";
 import { useDeadlineCountdown, MIN_QUESTIONS_FOR_VERDICT } from "@/lib/progress";
+import { ATPL_TO_CPL } from "@/lib/atpl-syllabus";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 
 // Unified shape used by the exam UI.
@@ -50,7 +51,8 @@ type TestConfig = {
 };
 
 function buildConfig(subjectId: string | null, type: string | null): TestConfig {
-  const subject = subjectId ? SUBJECT_MAP[subjectId] : undefined;
+  const relocated = subjectId ? (ATPL_TO_CPL[subjectId] ?? subjectId) : null;
+  const subject = relocated ? SUBJECT_MAP[relocated] : undefined;
 
   // No subject (or unknown) → return 404 since generic mock-test page is removed.
   if (!subject) {

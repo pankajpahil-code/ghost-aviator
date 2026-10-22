@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
+import { CPL_SUBJECTS, CPL_REFERENCE_SUBJECTS, ATPL_SUBJECTS, getNotesSource, type Subject } from "@/lib/subjects";
 import { getChapterSpecificQuestions, getQuestionsForChapter } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
 
@@ -94,6 +94,10 @@ const notesFileExists = (subjectId: string, chapterId: string): boolean =>
  * nothing behind them. Iron Rule 5 — derive it from the data.
  */
 export function servesRealNotes(subjectId: string, chapterId: string): boolean {
+  if (subjectId.startsWith("atpl-")) {
+    const source = getNotesSource(subjectId, chapterId);
+    return source.subjectId !== subjectId && notesFileExists(source.subjectId, source.chapterId) && servesRealNotes(source.subjectId, source.chapterId);
+  }
   // Air Regs chapter 1 renders from a React component, not a published file.
   if (subjectId === "air-regulations" && chapterId === "ar-1") return true;
   if (AUTO_NOTES_SUBJECTS.has(subjectId)) return notesFileExists(subjectId, chapterId);
@@ -157,6 +161,8 @@ export function isIndexableChapterRoute(
   chapterId: string,
   type: string,
 ): boolean {
+  // Shared ATPL reference notes canonicalise to their existing CPL document.
+  if (subjectId.startsWith("atpl-") && type !== "video") return false;
   switch (type) {
     case "notes":
       return servesRealNotes(subjectId, chapterId);
@@ -254,4 +260,10 @@ export function adjacentWithContent(
   let next = -1;
   for (let i = index + 1; i < chapters.length; i++) if (has(i)) { next = i; break; }
   return { prev, next };
+}
+
+/** Empty study areas remain accessible without being submitted as finished pages. */
+export function isIndexableSubject(subject: Subject): boolean {
+  if (!subject.id.startsWith("atpl-") && !CPL_REFERENCE_SUBJECTS.some(s=>s.id===subject.id)) return true;
+  return subject.chapters.some(ch=>servesRealNotes(subject.id,ch.id) || getChapterVideos(subject.id,ch.id).length>0);
 }

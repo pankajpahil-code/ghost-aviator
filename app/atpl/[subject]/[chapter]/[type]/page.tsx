@@ -1,6 +1,7 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
-import { ATPL_SUBJECTS } from "@/lib/subjects";
+import { ATPL_TO_CPL } from "@/lib/atpl-syllabus";
+import { ATPL_SUBJECTS, getNotesSource } from "@/lib/subjects";
 import { getQuestionsForChapter, getChapterSpecificQuestions } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { chapterMetaDescription, chapterTitle } from "@/lib/chapter-meta";
@@ -22,7 +23,7 @@ const VALID_TYPES = ["notes", "video", "questions", "mock-test", "chapter-quiz"]
 export function generateStaticParams() {
   return ATPL_SUBJECTS.flatMap(s =>
     s.chapters.flatMap(ch =>
-      VALID_TYPES.map(type => ({ subject: s.id, chapter: ch.id, type })),
+      ["notes", "video"].filter(type => type === "notes" ? servesRealNotes(s.id, ch.id) : getChapterVideos(s.id,ch.id).length > 0).map(type => ({ subject: s.id, chapter: ch.id, type })),
     ),
   );
 }
@@ -41,7 +42,7 @@ export async function generateMetadata({
     description: chapterMetaDescription(
       "atpl", subject, chapter, type, getQuestionsForChapter(subject.id, chapter.id).length,
     ),
-    alternates: { canonical: `/atpl/${subject.id}/${chapter.id}/${type}` },
+    alternates: { canonical: type === "notes" ? `/cpl/${getNotesSource(subject.id, chapter.id).subjectId}/${getNotesSource(subject.id, chapter.id).chapterId}/notes` : `/atpl/${subject.id}/${chapter.id}/${type}` },
     // See the CPL route and lib/indexability.ts: a stub or a drill asks not to
     // be indexed. On the ATPL side this covers most of the track — 40 of its 68
     // chapters have no notes published yet, and every one of them was an
@@ -57,6 +58,9 @@ export default async function Page({
 }) {
   const { subject: subjectId, chapter: chapterId, type } = await params;
 
+  if (["questions", "chapter-quiz", "mock-test"].includes(type) && ATPL_TO_CPL[subjectId]) {
+    redirect(`/cpl/${ATPL_TO_CPL[subjectId]}`);
+  }
   if (!VALID_TYPES.includes(type as typeof VALID_TYPES[number])) notFound();
 
   const subject = ATPL_SUBJECTS.find(s => s.id === subjectId);

@@ -1,3 +1,4 @@
+import { ATPL_AREAS } from "./atpl-syllabus";
 /**
  * The answer layer.
  *
@@ -217,18 +218,18 @@ export const FAQS: FaqEntry[] = [
   },
   {
     q: "Which DGCA ATPL subjects can I study on Ghost Aviator?",
-    a: "Eight: Air Regulations, Meteorology, Air Navigation, Technical General, Radio Aids & Instruments and Performance (all Advanced), plus Human Performance & Limitations and Flight Planning & Monitoring. Each is split into chapters, and self-study is free.",
+    a: `The ATPL Aeroplanes library follows the CAR syllabus areas: ${ATPL_AREAS.map(a => a.name).join("; ")}. These are syllabus areas, not eight separate examinations for every applicant. Shared reference notes are identified. Human Performance and Flight Planning remain supporting references in CPL.`,
     topic: "exams",
-    source: "lib/subjects.ts ATPL_SUBJECTS (2026-10-15)",
+    source: "DGCA CAR Section 7 Series B Part VI, paragraph 2.1; checked 2026-10-19",
     href: "/atpl",
     hrefLabel: "ATPL hub",
     guides: ["dgca-atpl-study-guide"],
   },
   {
     q: "How complete is the ATPL material on Ghost Aviator?",
-    a: "It varies by subject. As of October 2026, question practice is deepest for Air Regulations, Meteorology and Navigation, and Human Performance & Limitations has full chapter notes. The other ATPL subjects are structured by chapter but their question banks are still small.",
+    a: "Coverage varies by study area. The ATPL library identifies shared reference notes and existing lectures; it does not claim complete ATPL coverage. Each study area shows its current availability and aircraft-type limitations. All existing question banks previously shown under ATPL are now in CPL.",
     topic: "site",
-    source: "Counts from lib/questions.ts and lib/indexability.ts, checked 2026-10-15; update when banks grow",
+    source: "Subject availability from lib/indexability.ts; question relocation checked 2026-10-19",
     href: "/guides/dgca-atpl-study-guide",
     hrefLabel: "ATPL study guide",
     guides: ["dgca-atpl-study-guide"],

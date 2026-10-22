@@ -5,6 +5,7 @@ import type { NextConfig } from "next";
 // would be the worst place for it, because a subject added to subjects.ts and
 // missed here would silently reopen the hole closed below.
 import { ATPL_SUBJECTS } from "./lib/subjects";
+import { ATPL_TO_CPL, ATPL_SUPPORTING_TO_CPL } from "./lib/atpl-syllabus";
 
 // ── Content Security Policy ────────────────────────────────────────────────
 // Pragmatic policy tuned to this app's real dependencies:
@@ -201,6 +202,18 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Preserve bookmarks while moving every existing ATPL bank to CPL.
+      ...Object.entries(ATPL_TO_CPL).map(([from,to]) => ({
+        source: `/atpl/${from}/:chapter/:type(questions|chapter-quiz|mock-test)`,
+        destination: `/cpl/${to}`, permanent: true,
+      })),
+      ...Object.entries(ATPL_SUPPORTING_TO_CPL).map(([from,to]) => ({
+        source: `/atpl/${from}/:path*`, destination: `/cpl/${to}/:path*`, permanent: true,
+      })),
+      ...Object.keys(ATPL_TO_CPL).map(from => ({
+        source: `/atpl/${from}/:chapter(aar-\\d+|amet-\\d+|anav-\\d+|atg-\\d+|ari-\\d+|aperf-\\d+)/:type(notes|slides|audio)`,
+        destination: `/atpl/${from}`, permanent: true,
+      })),
       // Captain's chapter reclassification, 16 Oct 2026. Preserve old bookmarks.
       { source: "/cpl/air-navigation/nav-30/:type", destination: "/cpl/instrumentation/inst-10/:type", permanent: true },
       { source: "/cpl/air-navigation/nav-31/:type", destination: "/cpl/instrumentation/inst-16/:type", permanent: true },

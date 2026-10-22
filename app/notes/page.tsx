@@ -1,9 +1,10 @@
+import { servesRealNotes } from "@/lib/indexability";
 import Link from "next/link";
 import { ArrowRight, FileText } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 
-const CPL_CHAPTER_COUNT  = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
-const ATPL_CHAPTER_COUNT = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
+const CPL_CHAPTER_COUNT  = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length, 0);
+const ATPL_CHAPTER_COUNT = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length, 0);
 
 export default function NotesPage() {
   return (
@@ -36,7 +37,7 @@ export default function NotesPage() {
             <h2 className="text-2xl font-black text-white">CPL Subjects</h2>
             <span className="text-xs px-3 py-1 rounded-full font-bold"
                   style={{ background: "rgba(171,121,77,0.12)", border: "1px solid rgba(171,121,77,0.3)", color: "#f3c889" }}>
-              {CPL_SUBJECTS.length} Subjects · {CPL_CHAPTER_COUNT} Chapters
+              {CPL_SUBJECTS.length} Subjects · {CPL_CHAPTER_COUNT} Published notes
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -48,7 +49,7 @@ export default function NotesPage() {
                   <span className="text-3xl">{s.icon}</span>
                   <span className="text-xs px-2 py-1 rounded-full font-medium"
                         style={{ background: `${s.color}15`, color: s.color, border: `1px solid ${s.color}30` }}>
-                    {s.chapters.length} chapters
+                    {s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length} published notes
                   </span>
                 </div>
                 <div>
@@ -71,7 +72,7 @@ export default function NotesPage() {
             <h2 className="text-2xl font-black text-white">ATPL Subjects</h2>
             <span className="text-xs px-3 py-1 rounded-full font-bold"
                   style={{ background: "rgba(240,145,58,0.1)", border: "1px solid rgba(240,145,58,0.25)", color: "#f0913a" }}>
-              {ATPL_SUBJECTS.length} Subjects · {ATPL_CHAPTER_COUNT} Chapters
+              {ATPL_SUBJECTS.length} Subjects · {ATPL_CHAPTER_COUNT} Shared references
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -83,7 +84,7 @@ export default function NotesPage() {
                   <span className="text-3xl">{s.icon}</span>
                   <span className="text-xs px-2 py-1 rounded-full font-medium"
                         style={{ background: `${s.color}15`, color: s.color, border: `1px solid ${s.color}30` }}>
-                    {s.chapters.length} chapters
+                    {s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length} published notes
                   </span>
                 </div>
                 <div>

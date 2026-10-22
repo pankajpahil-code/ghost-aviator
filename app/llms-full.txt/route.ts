@@ -1,3 +1,4 @@
+import { servesRealNotes } from "@/lib/indexability";
 import { SITE_URL, YOUTUBE_BRAND } from "@/lib/site";
 import { GUIDES } from "@/lib/guides";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
@@ -14,7 +15,7 @@ export function GET() {
     s => `- ${s.name} (${s.chapters.length} chapters): ${SITE_URL}/cpl/${s.id}`
   ).join("\n");
   const atpl = ATPL_SUBJECTS.map(
-    s => `- ${s.name} (${s.chapters.length} chapters): ${SITE_URL}/atpl/${s.id}`
+    s => `- ${s.name} (${s.chapters.filter(ch => servesRealNotes(s.id,ch.id)).length} shared reference chapters): ${SITE_URL}/atpl/${s.id}`
   ).join("\n");
   const guides = GUIDES.map(
     g => `- [${g.title}](${SITE_URL}/guides/${g.slug}) — ${g.description}`

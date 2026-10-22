@@ -390,8 +390,9 @@ ${NOTES_FIT_CSS}
           ) : <div />}
         </div>
 
+        {track === "atpl" && <div className="mt-8 rounded-xl border border-slate-600 p-5 text-slate-300"><p>Shared Ghost Aviator reference notes. Read alongside the official ATPL syllabus and current approved aircraft documentation.</p><Link href="/cpl" className="text-sky-300 underline">Question practice is in CPL →</Link></div>}
         {/* Related Topics & Interlinking Hub */}
-        <div className="mt-8 pt-8 border-t border-white/10 space-y-6 mb-12">
+        {track !== "atpl" && <div className="mt-8 pt-8 border-t border-white/10 space-y-6 mb-12">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h3 className="text-lg font-bold text-white mb-1">Reinforce Chapter {chapter.number}: {chapter.title}</h3>
@@ -422,7 +423,7 @@ ${NOTES_FIT_CSS}
               CPL Cost Calculator →
             </Link>
           </div>
-        </div>
+        </div>}
       </div>
 
     </div>

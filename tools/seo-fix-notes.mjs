@@ -22,13 +22,13 @@ let changed = 0, total = 0;
  * sit at four-space indentation; chapter ids are nested deeper inside
  * `chapters: [ { id: ... } ]`, so an anchored match cannot confuse the two.
  */
+// Read the literal syllabus registry: subjects.ts now derives its ATPL list
+// from this registry and shared study sources. Supporting references live in CPL.
 const ATPL_SUBJECT_IDS = (() => {
-  const src = readFileSync(join(__dirname, "..", "lib", "subjects.ts"), "utf8");
-  const start = src.indexOf("export const ATPL_SUBJECTS");
-  if (start === -1) throw new Error("seo-fix-notes: ATPL_SUBJECTS not found in lib/subjects.ts");
-  const ids = [...src.slice(start).matchAll(/^ {4}id: "([^"]+)"/gm)].map(m => m[1]);
-  // Fail loudly: silently finding none would quietly restore the /cpl/ bug.
-  if (ids.length === 0) throw new Error("seo-fix-notes: parsed zero ATPL subject ids — has subjects.ts been reformatted?");
+  const src = readFileSync(join(__dirname, "..", "lib", "atpl-syllabus.ts"), "utf8");
+  const areas = src.slice(src.indexOf("export const ATPL_AREAS"), src.indexOf("] as const"));
+  const ids = [...areas.matchAll(/\bid: "([^"]+)"/g)].map(m => m[1]);
+  if (ids.length === 0) throw new Error("seo-fix-notes: empty ATPL syllabus registry");
   return new Set(ids);
 })();
 

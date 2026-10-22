@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 // Pure data with no imports of its own (next.config.ts reads it for the same
 // reason), so this stays a server-only module with no path to the question bank.
-import { CPL_SUBJECTS, ATPL_SUBJECTS } from "./subjects";
+import { CPL_SUBJECTS, ATPL_SUBJECTS, getNotesSource } from "./subjects";
 import WITHHELD_FIGURES from "./notes-withheld-figures.json";
 
 /**
@@ -566,6 +566,7 @@ function withholdFigures(html: string, basePath: string): string {
 
 export function getInlineNotes(subjectId: string, chapterId: string): InlineNotes | null {
   try {
+    ({ subjectId, chapterId } = getNotesSource(subjectId, chapterId));
     const notesPath = path.join(process.cwd(), "public", "content", subjectId, chapterId, "notes.html");
     if (!fs.existsSync(notesPath)) return null;
 

@@ -105,10 +105,10 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: "dgca-atpl-study-guide",
-    title: "DGCA ATPL Study Guide: Subjects, Question Banks & Where to Start",
-    description: "The hub for DGCA ATPL theory on Ghost Aviator: every ATPL subject with its chapter count, what notes and question banks exist today, how to use them, and the eligibility and timing guides to read first.",
+    title: "DGCA ATPL Study Guide: Syllabus & Reference Notes",
+    description: "The DGCA ATPL Aeroplanes syllabus, shared study references, current coverage and official documents for planning your preparation.",
     author: "Ghost Aviator",
     date: "2026-10-15",
-    updated: "2026-10-15"
+    updated: "2026-10-19"
   }
 ];

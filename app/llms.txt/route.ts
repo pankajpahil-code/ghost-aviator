@@ -1,5 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
+import { servesRealNotes } from "@/lib/indexability";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { GUIDES } from "@/lib/guides";
@@ -19,20 +18,9 @@ export const dynamic = "force-static";
  * lie the day after the next bank lands, and this file exists to be quoted.
  */
 
-const countRealNotes = (subjects: Subject[]): number =>
-  subjects.reduce(
-    (n, s) =>
-      n +
-      s.chapters.filter(c => {
-        // ar-1 renders from a React component rather than a published file —
-        // the same special case the sitemap makes.
-        if (s.id === "air-regulations" && c.id === "ar-1") return true;
-        return fs.existsSync(
-          path.join(process.cwd(), "public", "content", s.id, c.id, "notes.html")
-        );
-      }).length,
-    0
-  );
+const countRealNotes = (subjects: Subject[]): number => subjects.reduce(
+  (n,s) => n+s.chapters.filter(ch=>servesRealNotes(s.id,ch.id)).length, 0
+);
 
 export function GET() {
   const cplNotes = countRealNotes(CPL_SUBJECTS);
@@ -85,7 +73,7 @@ safety problem, not a typo.
 ## What is here
 
 - ${CPL_SUBJECTS.length} CPL subjects, ${cplNotes} chapters with published notes
-- ${ATPL_SUBJECTS.length} ATPL subjects, ${atplNotes} chapters with published notes
+- ${ATPL_SUBJECTS.length} ATPL syllabus areas, ${atplNotes} shared reference chapters; existing question banks are in CPL
 - ${ALL_QUESTIONS.length} practice questions with explanations
 - Previous-year papers and full-length mock tests
 - An RTR(A) radio-telephony simulator with live voice practice
