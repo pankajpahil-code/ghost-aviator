@@ -41,7 +41,7 @@
 
 import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { CPL_SUBJECTS, ATPL_SUBJECTS } from "../../lib/subjects";
+import { CPL_SUBJECTS, ATPL_SUBJECTS, getNotesSource } from "../../lib/subjects";
 import { GUIDES } from "../../lib/guides";
 import { getInlineNotes } from "../../lib/notes-inline";
 
@@ -420,8 +420,24 @@ function harvest(html: string, into: Omit<Topic, "t" | "a" | "o">) {
   }
 }
 
+/**
+ * ONE ENTRY PER NOTES FILE, NOT PER CHAPTER ID (2026-10-22).
+ *
+ * Most ATPL chapters carry a `notesSource` pointing at a CPL chapter, and
+ * getInlineNotes() follows it, so the same document came back twice under two
+ * ids. The rebuild that day indexed 452 "chapters" instead of ~234 and would
+ * have doubled every topic, with Gini then sending a student to the ATPL copy
+ * whose own canonical points back at the CPL page. CPL is walked first, so the
+ * CPL chapter owns the topic; an ATPL chapter with notes of its own still counts.
+ */
+const seenSources = new Set<string>();
+let duplicatesSkipped = 0;
 for (const subject of [...CPL_SUBJECTS, ...ATPL_SUBJECTS]) {
   for (const chapter of subject.chapters) {
+    const src = getNotesSource(subject.id, chapter.id);
+    const key = `${src.subjectId}/${src.chapterId}`;
+    if (seenSources.has(key)) { duplicatesSkipped++; continue; }
+    seenSources.add(key);
     const inline = getInlineNotes(subject.id, chapter.id);
     if (!inline) continue;
     chaptersRead++;
@@ -508,6 +524,7 @@ const body = [
 writeFileSync("lib/gini/generated/topics.ts", body, "utf8");
 
 console.log(`chapters read      ${chaptersRead}`);
+console.log(`shared notes skipped ${duplicatesSkipped} (ATPL chapters reusing a CPL notes file)`);
 console.log(`guides read        ${guidesRead}`);
 console.log(`headings seen      ${headingsSeen}`);
 console.log(`topics kept        ${topics.length}`);

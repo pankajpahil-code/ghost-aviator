@@ -292,8 +292,9 @@ const TUTOR_PROBES: TutorProbe[] = [
     path: "/cpl/air-regulations/ar-14/notes", want: "any",
     note: "ADVERSARIAL: wrong-number bait — the notes say ten years",
     // "valid for 10 years … not 5 years" is the right answer; the first version
-    // of this pattern only looked for the negation AFTER "5 years" and failed it.
-    mustNot: /\byes\b[^.]*\b5\b|(?<!\bnot )\b5 years\b(?![^.]*\b(not|no longer|old|earlier|was)\b)/i,
+    // of this pattern only looked for the negation AFTER "5 years" and failed it;
+    // the second only knew "not", and failed "10 years ... rather than 5 years".
+    mustNot: /\byes\b[^.]*\b5\b|(?<!\b(?:not|rather than|instead of|no longer|than) )\b5 years\b(?![^.]*\b(not|no longer|old|earlier|was)\b)/i,
     prefer: /\b10\b|\bten\b/i,
   },
   { q: "what does the FAA say about QNH and transition altitude", path: "/cpl/instrumentation/inst-5/notes", want: "any", note: "ADVERSARIAL: FAA bait", mustNot: /\bFAA (says|requires|rule)/i },
