@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://ghostaviator.com/cpl/air-navigation/nav-cp-pnr/notes">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GN Chapter 18 — Critical Point (CP) and Point of No Return (PNR) | Ghost Aviator</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Serif 4',Georgia,serif;font-size:17px;line-height:1.75;color:#222;
+  background:#f9f7f2;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='520' height='420'><g fill='rgba(26,41,66,0.055)' font-family='Arial' font-weight='700' transform='rotate(-30 260 210)'><text x='30' y='150' font-size='30'>Ghost Aviator</text><text x='10' y='300' font-size='26'>www.ghostaviator.com</text></g></svg>");background-repeat:repeat;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+.watermark{position:fixed;left:50%;transform-origin:center;font-weight:900;z-index:9999;pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif}
+.wm-name{top:42%;transform:translate(-50%,-50%) rotate(-45deg);font-size:72px;color:rgba(0,0,0,0.11)}
+.wm-site{top:72%;transform:translate(-50%,-50%) rotate(-45deg);font-size:40px;color:rgba(26,41,66,0.10);letter-spacing:2px}
+.page-wrap{max-width:960px;margin:0 auto;padding:0 20px 60px}
+.ch-header{background:linear-gradient(135deg,#1a2942 0%,#243654 100%);color:#fff;padding:52px 40px 44px;border-radius:0 0 12px 12px;margin-bottom:36px;position:relative;overflow:hidden}
+.ch-header::after{content:'';position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(201,162,39,0.12)}
+.ch-number{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#c9a227;margin-bottom:8px}
+.ch-title{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;line-height:1.15;margin-bottom:12px}
+.ch-sub{color:rgba(255,255,255,0.7);font-size:15px}
+.nav-card{background:#1a2942;color:#fff;border-radius:10px;padding:20px 28px;margin-bottom:36px}
+.nav-card h3{font-family:'Playfair Display',serif;color:#c9a227;font-size:14px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.nav-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px}
+.nav-list li a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:14px;padding-left:14px;position:relative}
+.nav-list li a::before{content:'›';position:absolute;left:0;color:#c9a227}
+.section{background:#fff;border-radius:10px;padding:36px 40px;margin-bottom:28px;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.section h2{font-family:'Playfair Display',serif;font-size:1.65rem;color:#1a2942;border-left:4px solid #c9a227;padding-left:16px;margin-bottom:22px}
+.section h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:#1a2942;margin:24px 0 10px}
+.section h4{font-size:1rem;color:#1a2942;font-weight:600;margin:18px 0 8px}
+.section p{margin-bottom:14px}
+.section ul,.section ol{padding-left:24px;margin-bottom:14px}
+.section li{margin-bottom:7px}
+.section strong{color:#1a2942}
+.fig-wrap{text-align:center;margin:24px 0}
+.fig-wrap img{max-width:100%;border-radius:6px;box-shadow:0 3px 14px rgba(0,0,0,0.12)}
+.fig-cap{font-size:13px;color:#555;margin-top:8px;font-style:italic}
+.fig-num{font-weight:700;color:#1a2942;font-style:normal}
+.fig-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:24px 0}
+.fig-row .fig-wrap{flex:0 0 auto;max-width:47%}
+.callout{border-radius:8px;padding:18px 22px;margin:20px 0}
+.callout-gold{background:#fdf8ec;border-left:4px solid #c9a227}
+.callout-navy{background:#eef1f6;border-left:4px solid #1a2942}
+.callout-red{background:#fff2f2;border-left:4px solid #c0392b}
+.callout h4{margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:1px}
+.callout-gold h4{color:#a07c10}.callout-navy h4{color:#1a2942}.callout-red h4{color:#c0392b}
+.formula{background:#1a2942;color:#fff;border-radius:8px;padding:20px 28px;margin:22px 0;text-align:center}
+.formula .f-main{font-size:1.25rem;font-weight:700;color:#c9a227;margin-bottom:6px}
+.formula .f-sub{font-size:14px;color:rgba(255,255,255,0.7)}
+.tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.tbl th{background:#1a2942;color:#fff;padding:10px 14px;text-align:left;font-weight:600;font-family:'Playfair Display',serif}
+.tbl td{padding:9px 14px;border-bottom:1px solid #e8e4dc}
+.tbl tr:nth-child(even) td{background:#faf9f6}
+.worked{background:#f0f4fa;border-radius:8px;padding:22px 28px;margin:22px 0;border:1px solid #c8d4e8}
+.worked h4{color:#1a2942;font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #c8d4e8}
+.worked p,.worked ul{margin-bottom:10px}
+.wstep{background:#fff;border-radius:6px;padding:12px 16px;margin:8px 0;font-size:15.5px}
+.wresult{background:#1a2942;color:#c9a227;border-radius:6px;padding:12px 16px;font-weight:700;text-align:center;font-size:1.05rem}
+.qa-block{border:1px solid #e0dbd0;border-radius:8px;margin-bottom:14px;overflow:hidden}
+.qa-details summary{list-style:none}
+.qa-details summary::-webkit-details-marker{display:none}
+.qa-toggle{display:flex;align-items:baseline;gap:14px;padding:14px 20px;cursor:pointer;background:#faf9f6;transition:background .15s}
+.qa-toggle:hover{background:#f2ede4}
+.qa-num{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#c9a227;min-width:28px}
+.qa-stem{flex:1;font-size:15px;color:#222;line-height:1.5}
+.qa-opts{padding:2px 20px 6px;background:#faf9f6}
+.qa-opt{display:block;padding:5px 0;font-size:14.5px;color:#444;border-bottom:1px solid #ede8df}
+.qa-opt:last-child{border-bottom:none}
+.qa-answer{padding:14px 20px;background:#eef6ee;border-top:1px solid #c3e0c3}
+.ans-label{font-weight:700;color:#1a6b2b;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.qa-answer p{margin:0 0 8px;font-size:15px;line-height:1.6}
+.qstep{background:#fff;border-radius:6px;padding:10px 14px;margin:6px 0;font-size:15px;line-height:1.6}
+.ch-footer{text-align:center;padding:24px;font-size:13px;color:rgba(0,0,0,0.4);margin-top:16px}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="ch-header">
+  <div class="ch-number">Chapter 18 · General Navigation</div>
+  <div class="ch-title">Critical Point (CP) and Point of No Return (PNR)</div>
+  <div class="ch-sub">Point of Equal Time · Point of Safe Return · The two formulas · Effect of wind · Engine failure · Fuel-flow method · Exam traps</div>
+</div>
+
+<div class="nav-card">
+  <h3>In This Chapter</h3>
+  <ul class="nav-list">
+    <li><a href="#why">Why We Need Two Points</a></li>
+    <li><a href="#names">One Idea, Many Names</a></li>
+    <li><a href="#cp">The Critical Point (CP)</a></li>
+    <li><a href="#cpwind">Wind and the CP</a></li>
+    <li><a href="#cpef">Engine-Failure CP</a></li>
+    <li><a href="#pnr">The Point of No Return (PNR)</a></li>
+    <li><a href="#pnrwind">Wind and the PNR</a></li>
+    <li><a href="#fuel">PNR from Fuel Instead of Time</a></li>
+    <li><a href="#traps">Exam Traps</a></li>
+    <li><a href="#summary">One-Page Summary</a></li>
+    <li><a href="#qa">Practice Questions (8)</a></li>
+  </ul>
+</div>
+
+<!-- ══ SECTION 1 ══ -->
+<div class="section" id="why">
+  <h2>Why We Need Two Points</h2>
+  <p>Picture a long sea crossing. Halfway across, something goes wrong: an engine runs rough, a
+  passenger collapses, smoke appears in the cabin. You have two questions, and you need the
+  answers before the emergency, not during it:</p>
+  <ul>
+    <li><strong>"Which way is quicker — go on, or turn back?"</strong> The <strong>Critical
+    Point (CP)</strong> answers this. Before the CP, home is quicker. After it, the destination
+    is quicker.</li>
+    <li><strong>"How far can I go and still be able to come home?"</strong> The <strong>Point of
+    No Return (PNR)</strong> answers this. Up to the PNR you still have the fuel to return to
+    base. Beyond it you are committed to the destination, whatever its weather does.</li>
+  </ul>
+  <p>Keep the two apart in your head from day one. <strong>The CP is about time. The PNR is
+  about fuel.</strong> One tells you the quicker way out of trouble; the other tells you the last
+  place you can still change your mind.</p>
+  <div class="callout callout-gold">
+    <h4>When are they used?</h4>
+    <p>A CP is worked out for any long leg with few diversions, such as over water or remote
+    terrain, and for twin-engine operations a long way from an adequate aerodrome. A PNR is
+    worked out when the destination is isolated, for example an island with no alternate within
+    reach, so the only fall-back is the airfield you left.</p>
+  </div>
+</div>
+
+<!-- ══ SECTION 2 ══ -->
+<div class="section" id="names">
+  <h2>One Idea, Many Names</h2>
+  <p>The examiners use every one of these names. Learn them as pairs so a change of wording never
+  throws you.</p>
+  <table class="tbl">
+    <tr><th>Concept</th><th>Names you will meet in the paper</th></tr>
+    <tr><td>Critical Point</td><td>CP · Point of Equal Time (PET) · Equal Time Point (ETP)</td></tr>
+    <tr><td>Point of No Return</td><td>PNR · Point of Safe Return (PSR) · Radius of Action (when the aircraft must come back to base) · occasionally "point of safe endurance"</td></tr>
+  </table>
+</div>
+
+<!-- ══ SECTION 3 ══ -->
+<div class="section" id="cp">
+  <h2>The Critical Point (CP)</h2>
+  <p>The CP is the point on track from which it takes <strong>the same time</strong> to fly on to
+  the destination as to fly back to the departure point (or to either of two chosen
+  airfields).</p>
+
+  <h3>Building the formula: three letters</h3>
+  <table class="tbl">
+    <tr><th>Symbol</th><th>Meaning</th></tr>
+    <tr><td><strong>D</strong></td><td>Total distance between the two airfields (NM)</td></tr>
+    <tr><td><strong>O</strong></td><td>Groundspeed <em>on</em> (continuing towards the destination)</td></tr>
+    <tr><td><strong>H</strong></td><td>Groundspeed <em>home</em> (returning towards departure)</td></tr>
+    <tr><td><strong>X</strong></td><td>Distance from departure to the CP</td></tr>
+  </table>
+  <p>At the CP the time on equals the time home:</p>
+  <p style="text-align:center"><em>(D − X) ÷ O = X ÷ H</em></p>
+  <p>Cross-multiply: H(D − X) = OX, so HD = X(O + H), which gives:</p>
+  <div class="formula">
+    <div class="f-main">X = D × H ÷ (O + H)</div>
+    <div class="f-sub">Distance from departure to the CP. Time to the CP = X ÷ groundspeed out.</div>
+  </div>
+
+  <div class="callout callout-navy">
+    <h4>Memory hook</h4>
+    <p>The distance to the CP is the whole distance multiplied by the <strong>Home</strong>
+    groundspeed, divided by the sum of the two. Home goes on top. A fast way home lets you push
+    further out before turning back is no longer the quicker option.</p>
+  </div>
+
+  <div class="worked">
+    <h4>Worked Example 1: CP with a headwind out</h4>
+    <p>A to B is 1200 NM. TAS 400 kt. Wind component on the way out is 50 kt head. Find the
+    distance and time from A to the CP.</p>
+    <div class="wstep">O = 400 − 50 = 350 kt. H = 400 + 50 = 450 kt (the headwind becomes a tailwind going home).</div>
+    <div class="wstep">X = 1200 × 450 ÷ (350 + 450) = 540 000 ÷ 800 = 675 NM.</div>
+    <div class="wstep">Time to CP = 675 ÷ 350 = 1.929 h = 1 h 56 min.</div>
+    <div class="wstep">Check: on to B = 525 NM at 350 kt = 1.5 h. Back to A = 675 NM at 450 kt = 1.5 h. Equal, so the answer is right.</div>
+    <div class="wresult">CP is 675 NM from A, reached after about 1 h 56 min.</div>
+  </div>
+</div>
+
+<!-- ══ SECTION 4 ══ -->
+<div class="section" id="cpwind">
+  <h2>Wind and the CP</h2>
+  <ul>
+    <li><strong>Still air:</strong> O = H, so X = D ÷ 2. The CP is exactly halfway.</li>
+    <li><strong>Headwind out:</strong> the CP moves past halfway, towards the destination. In the example above it is 675 NM of a 1200 NM leg.</li>
+    <li><strong>Tailwind out:</strong> the CP comes back before halfway, towards departure.</li>
+  </ul>
+  <div class="callout callout-gold">
+    <h4>The one-line rule</h4>
+    <p><strong>The CP moves INTO the wind.</strong> The stronger the wind, the further it moves.
+    If an answer puts a headwind CP short of halfway, it is wrong before you calculate
+    anything.</p>
+  </div>
+  <p>Why? Into a headwind, going on is slow and coming home is fast. To make both times equal,
+  you have to be further along, closer to the slow side.</p>
+</div>
+
+<!-- ══ SECTION 5 ══ -->
+<div class="section" id="cpef">
+  <h2>Engine-Failure CP</h2>
+  <p>A CP drawn for an emergency is normally worked out for the worst case, which is one engine
+  out. After a failure the aircraft drifts down and flies at a lower TAS, both on and home.
+  Two rules decide which speed goes where:</p>
+  <ul>
+    <li><strong>Where is the CP?</strong> Use the <strong>engine-failure TAS</strong> to find O
+    and H, because that is the speed you will fly after the failure, whichever way you
+    go.</li>
+    <li><strong>When do I reach it?</strong> Use the <strong>normal (all-engine) groundspeed
+    out</strong>, because until the failure happens you are flying normally.</li>
+  </ul>
+  <div class="worked">
+    <h4>Worked Example 2: Engine-failure CP</h4>
+    <p>A to B is 2000 NM. Normal TAS 450 kt, engine-failure TAS 330 kt. Wind component out is
+    40 kt head throughout. Find the distance and time to the engine-failure CP.</p>
+    <div class="wstep">Engine-failure groundspeeds: O = 330 − 40 = 290 kt, H = 330 + 40 = 370 kt.</div>
+    <div class="wstep">X = 2000 × 370 ÷ (290 + 370) = 740 000 ÷ 660 = 1121 NM.</div>
+    <div class="wstep">Normal groundspeed out = 450 − 40 = 410 kt. Time = 1121 ÷ 410 = 2.735 h = 2 h 44 min.</div>
+    <div class="wstep">Check: 879 NM on at 290 kt = 3.03 h; 1121 NM home at 370 kt = 3.03 h.</div>
+    <div class="wresult">Engine-failure CP: 1121 NM from A, reached after 2 h 44 min.</div>
+  </div>
+  <div class="callout callout-red">
+    <h4>Classic mistake</h4>
+    <p>Using the engine-failure groundspeed for the <em>time</em> to the CP. You only fly that
+    slowly after the failure. The clock to the CP runs at normal cruise speed.</p>
+  </div>
+</div>
+
+<!-- ══ SECTION 6 ══ -->
+<div class="section" id="pnr">
+  <h2>The Point of No Return (PNR)</h2>
+  <p>The PNR is the furthest point along track from which the aircraft can still return to its
+  departure airfield using its <strong>safe endurance</strong>. Safe endurance is the time the
+  aircraft can fly without touching the reserve fuel it must still have on arrival.</p>
+
+  <h3>Building the formula</h3>
+  <p>Let <strong>E</strong> = safe endurance, <strong>T</strong> = time out to the PNR. The time
+  home is then (E − T). The distance out equals the distance home:</p>
+  <p style="text-align:center"><em>T × O = (E − T) × H</em></p>
+  <p>So TO + TH = EH, which gives:</p>
+  <div class="formula">
+    <div class="f-main">T = E × H ÷ (O + H)</div>
+    <div class="f-sub">Time out to the PNR. Distance to the PNR = T × O.</div>
+  </div>
+  <div class="callout callout-navy">
+    <h4>Notice what is missing</h4>
+    <p>The distance to the destination does not appear in the PNR formula at all. The PNR depends
+    only on endurance and the two groundspeeds. If a question gives you the A-to-B distance for a
+    PNR, it is there to tempt you. You need D for the CP, never for the PNR.</p>
+  </div>
+
+  <div class="worked">
+    <h4>Worked Example 3: PNR with a tailwind out</h4>
+    <p>Safe endurance 6 h, TAS 240 kt, wind component out 30 kt tail. Find the time and distance
+    to the PNR.</p>
+    <div class="wstep">O = 240 + 30 = 270 kt. H = 240 − 30 = 210 kt.</div>
+    <div class="wstep">T = 6 × 210 ÷ (270 + 210) = 1260 ÷ 480 = 2.625 h = 2 h 37.5 min.</div>
+    <div class="wstep">Distance = 2.625 × 270 = 708.75 ≈ 709 NM.</div>
+    <div class="wstep">Check: home 708.75 NM at 210 kt = 3.375 h. Out + home = 2.625 + 3.375 = 6.0 h, the whole safe endurance.</div>
+    <div class="wresult">PNR: 709 NM from base, after 2 h 37.5 min.</div>
+  </div>
+</div>
+
+<!-- ══ SECTION 7 ══ -->
+<div class="section" id="pnrwind">
+  <h2>Wind and the PNR</h2>
+  <p>Work Example 3 again in still air: T = 6 × 240 ÷ 480 = 3 h, distance = 720 NM. Now with a
+  30 kt <em>head</em>wind out: O = 210, H = 270, T = 6 × 270 ÷ 480 = 3.375 h, distance =
+  3.375 × 210 = 708.75 NM, exactly the same distance as with the tailwind.</p>
+  <ul>
+    <li><strong>Still air gives the greatest PNR distance.</strong></li>
+    <li><strong>Any wind reduces it</strong>, head or tail, because you lose more on the slow leg
+    than you gain on the fast one.</li>
+    <li><strong>A headwind and a tailwind of the same strength give the same PNR
+    distance</strong>, but not the same <em>time</em>. Into wind it takes longer to get
+    there.</li>
+    <li>The stronger the wind, the bigger the reduction.</li>
+  </ul>
+  <div class="callout callout-gold">
+    <h4>Contrast with the CP</h4>
+    <p>Wind <em>moves</em> the CP (into the wind). Wind <em>shrinks</em> the PNR distance, whichever
+    way it blows. An exam option saying "a tailwind out increases the distance to the PNR" is
+    wrong.</p>
+  </div>
+</div>
+
+<!-- ══ SECTION 8 ══ -->
+<div class="section" id="fuel">
+  <h2>PNR from Fuel Instead of Time</h2>
+  <p>Larger aircraft plan in kilograms, not hours, and burn fuel at different rates going out
+  (heavier, perhaps a different level) and coming back. Turn each fuel flow into fuel per
+  nautical mile:</p>
+  <div class="formula">
+    <div class="f-main">Fuel per NM = fuel flow (kg/h) ÷ groundspeed (kt)</div>
+    <div class="f-sub">Then: distance to PNR = usable fuel ÷ (fuel per NM out + fuel per NM home)</div>
+  </div>
+  <p>The logic is the same as before. The fuel used going out to the PNR plus the fuel used
+  coming home must add up to the fuel you are allowed to use (total fuel minus reserves).</p>
+  <div class="worked">
+    <h4>Worked Example 4: PNR from fuel</h4>
+    <p>Usable fuel (reserves already removed) 24 000 kg. TAS 420 kt, wind component out 30 kt
+    head. Fuel flow out 5200 kg/h, fuel flow home 4800 kg/h.</p>
+    <div class="wstep">O = 390 kt, H = 450 kt.</div>
+    <div class="wstep">Fuel per NM out = 5200 ÷ 390 = 13.33 kg/NM. Fuel per NM home = 4800 ÷ 450 = 10.67 kg/NM.</div>
+    <div class="wstep">Distance = 24 000 ÷ (13.33 + 10.67) = 24 000 ÷ 24.00 = 1000 NM.</div>
+    <div class="wstep">Time = 1000 ÷ 390 = 2.564 h = 2 h 34 min.</div>
+    <div class="wstep">Check: 1000 × 13.33 = 13 333 kg out, plus 1000 × 10.67 = 10 667 kg home, total 24 000 kg.</div>
+    <div class="wresult">PNR: 1000 NM, 2 h 34 min from base.</div>
+  </div>
+</div>
+
+<!-- ══ SECTION 9 ══ -->
+<div class="section" id="traps">
+  <h2>Exam Traps</h2>
+  <ol>
+    <li><strong>Wind sign.</strong> "Wind component −50" or "50 kt head" on the outbound leg means
+    O = TAS − 50 and H = TAS + 50. Reverse the sign for the way home and the whole answer
+    flips.</li>
+    <li><strong>Distance or time?</strong> Read the last words of the stem. Many options are
+    built from the right working stopped at the wrong step: the time when the distance was asked,
+    or the distance from the wrong end. "Distance to B from the CP" is D − X, not X.</li>
+    <li><strong>Hours and minutes.</strong> 8 h 30 min is 8.5 h, not 8.3 h. Convert first, or
+    work in minutes throughout.</li>
+    <li><strong>Safe endurance vs total endurance.</strong> Only the safe endurance goes into the
+    PNR formula. If you are given total endurance and a reserve, subtract the reserve
+    first.</li>
+    <li><strong>The PNR ignores the destination distance.</strong> See section 6.</li>
+    <li><strong>Engine-failure CP.</strong> Engine-failure TAS for the position, normal
+    groundspeed for the time.</li>
+    <li><strong>Sanity check.</strong> CP with a headwind out is past halfway. PNR with any wind is
+    shorter than the still-air figure. Use this to strike out options before you
+    calculate.</li>
+  </ol>
+</div>
+
+<!-- ══ SECTION 10 ══ -->
+<div class="section" id="summary">
+  <h2>One-Page Summary</h2>
+  <table class="tbl">
+    <tr><th></th><th>Critical Point (CP / PET / ETP)</th><th>Point of No Return (PNR / PSR)</th></tr>
+    <tr><td>Question it answers</td><td>Which way is quicker?</td><td>How far can I go and still come back?</td></tr>
+    <tr><td>Formula</td><td>X = D × H ÷ (O + H)</td><td>T = E × H ÷ (O + H); distance = T × O</td></tr>
+    <tr><td>Needs the A-to-B distance?</td><td>Yes</td><td>No</td></tr>
+    <tr><td>Needs endurance or fuel?</td><td>No</td><td>Yes (safe endurance or usable fuel)</td></tr>
+    <tr><td>Still air</td><td>Exactly halfway</td><td>Greatest distance</td></tr>
+    <tr><td>Effect of wind</td><td>Moves into the wind</td><td>Distance reduced, head or tail alike</td></tr>
+  </table>
+</div>
+
+<!-- ══ SECTION 11 ══ -->
+<div class="section" id="qa">
+  <h2>Practice Questions</h2>
+  <p>Work each one before you open the answer. Every answer is checked by plugging it back into
+  the definition.</p>
+
+  <div class="qa-block"><details class="qa-details">
+<summary class="qa-toggle"><span class="qa-num">Q1</span><span class="qa-stem">A to B is 900 NM, TAS 300 kt, still air. Where is the CP?</span></summary>
+<div class="qa-answer"><div class="ans-label">Answer: 450 NM from A</div><div class="qstep">O = H = 300 kt, so X = 900 × 300 ÷ 600 = <strong>450 NM</strong>, exactly halfway.</div></div>
+</details></div>
+
+  <div class="qa-block"><details class="qa-details">
+<summary class="qa-toggle"><span class="qa-num">Q2</span><span class="qa-stem">A to B is 800 NM, TAS 250 kt, wind component out 50 kt tail. Find the distance from A to the CP, and the distance from the CP to B.</span></summary>
+<div class="qa-answer"><div class="ans-label">Answer: 320 NM from A; 480 NM to B</div><div class="qstep">O = 300 kt, H = 200 kt.<br>X = 800 × 200 ÷ 500 = <strong>320 NM</strong> from A (short of halfway: tailwind out, so the CP moves back into wind).<br>CP to B = 800 − 320 = <strong>480 NM</strong>.<br>Check: 480 ÷ 300 = 1.6 h on; 320 ÷ 200 = 1.6 h home.</div></div>
+</details></div>
+
+  <div class="qa-block"><details class="qa-details">
+<summary class="qa-toggle"><span class="qa-num">Q3</span><span class="qa-stem">Using Q2, how long after leaving A is the CP reached?</span></summary>
+<div class="qa-answer"><div class="ans-label">Answer: 1 h 04 min</div><div class="qstep">320 NM at groundspeed out 300 kt = 1.067 h = <strong>1 h 04 min</strong>.</div></div>
+</details></div>
+
+  <div class="qa-block"><details class="qa-details">
+<summary class="qa-toggle"><span class="qa-num">Q4</span><span class="qa-stem">Safe endurance 5 h, TAS 200 kt, still air. Find the distance to the PNR.</span></summary>
+<div class="qa-answer"><div class="ans-label">Answer: 500 NM</div><div class="qstep">T = 5 × 200 ÷ 400 = 2.5 h. Distance = 2.5 × 200 = <strong>500 NM</strong>. In still air you go out for half the safe endurance.</div></div>
+</details></div>
+
+  <div class="qa-block"><details class="qa-details">
+<summary class="qa-toggle"><span class="qa-num">Q5</span><span class="qa-stem">Same aircraft as Q4 with a 40 kt headwind out. Find the time and distance to the PNR.</span></summary>
+<div class="qa-answer"><div class="ans-label">Answer: 3 h 00 min, 480 NM</div><div class="qstep">O = 160 kt, H = 240 kt.<br>T = 5 × 240 ÷ 400 = <strong>3.0 h</strong>.<br>Distance = 3.0 × 160 = <strong>480 NM</strong>, less than the still-air 500 NM.<br>Check: 480 ÷ 240 = 2.0 h home; 3.0 + 2.0 = 5.0 h.</div></div>
+</details></div>
+
+  <div class="qa-block"><details class="qa-details">
+<summary class="qa-toggle"><span class="qa-num">Q6</span><span class="qa-stem">Same aircraft again with a 40 kt tailwind out. What is the PNR distance, and why does it match Q5?</span></summary>
+<div class="qa-answer"><div class="ans-label">Answer: 480 NM</div><div class="qstep">O = 240 kt, H = 160 kt. T = 5 × 160 ÷ 400 = 2.0 h. Distance = 2.0 × 240 = <strong>480 NM</strong>.<br>The distance equals Q5's because swapping O and H leaves O × H ÷ (O + H) unchanged. Only the time differs (2 h here, 3 h into wind).</div></div>
+</details></div>
+
+  <div class="qa-block"><details class="qa-details">
+<summary class="qa-toggle"><span class="qa-num">Q7</span><span class="qa-stem">Total endurance 7 h 30 min, of which 1 h 30 min is reserve. TAS 300 kt, wind component out 60 kt head. Find the time to the PNR.</span></summary>
+<div class="qa-answer"><div class="ans-label">Answer: 3 h 36 min</div><div class="qstep">Safe endurance = 7.5 − 1.5 = 6 h.<br>O = 240 kt, H = 360 kt.<br>T = 6 × 360 ÷ 600 = <strong>3.6 h = 3 h 36 min</strong> (distance 3.6 × 240 = 864 NM).<br>Using the total 7.5 h by mistake gives 4.5 h, a typical wrong option.</div></div>
+</details></div>
+
+  <div class="qa-block"><details class="qa-details">
+<summary class="qa-toggle"><span class="qa-num">Q8</span><span class="qa-stem">Usable fuel 18 000 kg. Groundspeed out 400 kt at 6000 kg/h; groundspeed home 480 kt at 4800 kg/h. Find the distance to the PNR.</span></summary>
+<div class="qa-answer"><div class="ans-label">Answer: 720 NM</div><div class="qstep">Fuel per NM out = 6000 ÷ 400 = 15 kg/NM. Fuel per NM home = 4800 ÷ 480 = 10 kg/NM.<br>Distance = 18 000 ÷ (15 + 10) = <strong>720 NM</strong>.<br>Check: 720 × 15 = 10 800 kg out, plus 720 × 10 = 7 200 kg home, total 18 000 kg.</div></div>
+</details></div>
+
+</div>
+
+<div class="ch-footer">
+  Ghost Aviator Study Notes · General Navigation Chapter 18 ·
+  For DGCA CPL/ATPL Examination Preparation
+</div>
+</div>
+<div class="watermark wm-name">Ghost Aviator</div>
+<div class="watermark wm-site">www.ghostaviator.com</div>
+
+
+<style id="ga-protect-css">
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
+</style>
+<script id="ga-protect-js">
+(function(){
+  var blk = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(t){ document.addEventListener(t, blk, true); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if (e.key === 'F12') { return blk(e); }
+    if (e.ctrlKey || e.metaKey) {
+      if (['s','u','p','c','x','a'].indexOf(k) > -1) return blk(e);
+      if (e.shiftKey && ['i','j','c'].indexOf(k) > -1) return blk(e);
+    }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

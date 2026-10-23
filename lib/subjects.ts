@@ -88,17 +88,17 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "nav-13", number: 1, title: "Direction, Latitude and Longitude",
         description: "Shape of the Earth, poles and equator, latitude/longitude, d-lat and d-long, true/magnetic/compass direction and position expression. Study notes with practice Q&A.",
-        duration: "2 hrs", questionCount: 3, content: makeContent(true),
+        duration: "2 hrs", questionCount: 23, content: makeContent(true),
       },
       {
         id: "nav-14", number: 2, title: "Great Circles, Rhumb Lines & Directions on the Earth",
         description: "Great circle and rhumb line properties, vertices, track direction changes and when each is used for navigation. Study notes.",
-        duration: "2 hrs", questionCount: 2, content: makeContent(true),
+        duration: "2 hrs", questionCount: 10, content: makeContent(true),
       },
       {
         id: "nav-15", number: 3, title: "Earth Magnetism",
         description: "The Earth's magnetic field, variation and isogonals, dip, deviation, and compass-to-true conversions. Study notes with practice Q&A.",
-        duration: "2 hrs", questionCount: 14, content: makeContent(true),
+        duration: "2 hrs", questionCount: 13, content: makeContent(true),
       },
       {
         id: "nav-16", number: 4, title: "The 1 in 60 Rule",
@@ -113,7 +113,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "nav-18", number: 6, title: "Other Applications of the 1 in 60 Rule",
         description: "Glide-path heights, rates of descent, base-of-cloud calculations and other practical 1 in 60 applications. Study notes.",
-        duration: "1 hr", questionCount: 0, content: makeContent(),
+        duration: "1 hr", questionCount: 68, content: makeContent(true),
       },
       {
         id: "nav-19", number: 7, title: "Topographical Maps and Map Reading",
@@ -128,32 +128,32 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "nav-21", number: 9, title: "Departure",
         description: "East-west distance along a parallel: the departure formula and all its rearrangements, dual-latitude ratio problems, the box pattern trap — with fully solved DGCA-style questions.",
-        duration: "2 hrs", questionCount: 5, content: makeContent(true),
+        duration: "2 hrs", questionCount: 20, content: makeContent(true),
       },
       {
         id: "nav-22", number: 10, title: "Scale",
         description: "Chart scale — representative fraction, statement in words and graduated scale line; scale conversions and typical DGCA scale calculations.",
-        duration: "1.5 hrs", questionCount: 0, content: makeContent(),
+        duration: "1.5 hrs", questionCount: 58, content: makeContent(true),
       },
       {
         id: "nav-23", number: 11, title: "General Chart Properties",
         description: "Perspective and mathematical projections, orthomorphism and conformality conditions, and how charts are classified by projection surface.",
-        duration: "1.5 hrs", questionCount: 0, content: makeContent(),
+        duration: "1.5 hrs", questionCount: 1, content: makeContent(true),
       },
       {
         id: "nav-24", number: 12, title: "Mercator Charts",
         description: "Mercator projection properties — meridians and parallels, scale expansion with latitude, rhumb lines and great circles, plotting and measurement.",
-        duration: "2 hrs", questionCount: 10, content: makeContent(true),
+        duration: "2 hrs", questionCount: 12, content: makeContent(true),
       },
       {
         id: "nav-25", number: 13, title: "Lambert's Conformal Chart",
         description: "Lambert conformal conic chart — standard parallels, parallel of origin, constant of the cone, chart convergence, great circles and rhumb lines.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 3, content: makeContent(true),
       },
       {
         id: "nav-26", number: 14, title: "The Polar Stereographic Chart",
         description: "Polar stereographic projection — properties, scale variation, grid navigation and plotting in polar regions.",
-        duration: "1.5 hrs", questionCount: 0, content: makeContent(),
+        duration: "1.5 hrs", questionCount: 5, content: makeContent(true),
       },
       {
         id: "nav-27", number: 15, title: "Time (1)",
@@ -163,12 +163,17 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "nav-28", number: 16, title: "Time (2)",
         description: "Time conversions — LMT, UTC, standard and zone time; arc-to-time; and the international date line.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 7, content: makeContent(true),
       },
       {
         id: "nav-29", number: 17, title: "Time (3)",
         description: "Sunrise, sunset and twilight — definitions, almanac tables, and how they vary with latitude and season.",
         duration: "1.5 hrs", questionCount: 0, content: makeContent(),
+      },
+      {
+        id: "nav-cp-pnr", number: 18, title: "Critical Point (CP) and Point of No Return (PNR)",
+        description: "Point of equal time and point of safe return: both formulas, the effect of wind, the engine-failure CP, PNR from fuel flow, exam traps and 100+ worked practice questions.",
+        duration: "3 hrs", questionCount: 102, content: makeContent(true),
       },
 
 
@@ -206,7 +211,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "nav-9", number: 30, title: "CX-3: Wind Finding and Flight Planning",
         description: "Prepared CX-3 notes on wind finding and flight-plan calculations, with worked examples and diagrams.",
-        duration: "4 hrs", questionCount: 90, content: makeContent(),
+        duration: "4 hrs", questionCount: 13, content: makeContent(true),
       },
 
 
@@ -214,22 +219,22 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "nav-cx3-5", number: 34, title: "CX-3: Distance, Speed and Time",
         description: "CX-3 distance, speed and time calculations, unit conversions and worked navigation examples.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 6, content: makeContent(true),
       },
       {
         id: "nav-cx3-6", number: 35, title: "CX-3: True Airspeed and Altitude",
         description: "CX-3 true airspeed and altitude calculations with worked examples and concept diagrams.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 9, content: makeContent(true),
       },
       {
         id: "nav-cx3-7", number: 36, title: "CX-3: Triangle of Velocities",
         description: "The wind triangle and triangle of velocities, explained with CX-3 methods, diagrams and worked examples.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 5, content: makeContent(true),
       },
       {
         id: "nav-cx3-8a", number: 37, title: "CX-3: Heading and Groundspeed",
         description: "Find heading and groundspeed using the CX-3, with wind corrections and worked flight examples.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 2, content: makeContent(true),
       },
       {
         id: "nav-cx3-9", number: 38, title: "CX-3: Multi-Drift and Wind Components",
@@ -1160,12 +1165,12 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-10", number: 10, title: "The Direct Indicating Compass",
         description: "Instrumentation Chapter 10: The Direct Indicating Compass. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 9, content: makeContent(true),
+        duration: "2 hrs", questionCount: 16, content: makeContent(true),
       },
       {
         id: "inst-11", number: 11, title: "Gyroscopes",
         description: "Instrumentation Chapter 11: Gyroscopes. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 9, content: makeContent(true),
+        duration: "2 hrs", questionCount: 10, content: makeContent(true),
       },
       {
         id: "inst-12", number: 12, title: "Directional Gyro Indicator (DGI)",
@@ -1190,22 +1195,22 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-16", number: 16, title: "Aircraft Magnetism",
         description: "Instrumentation Chapter 16: Aircraft Magnetism. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 7, content: makeContent(true),
+        duration: "2 hrs", questionCount: 5, content: makeContent(true),
       },
       {
         id: "inst-17", number: 17, title: "Remote Indicating Magnetic Compass",
         description: "Instrumentation Chapter 17: Remote Indicating Magnetic Compass. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 6, content: makeContent(true),
+        duration: "2 hrs", questionCount: 8, content: makeContent(true),
       },
       {
         id: "inst-18", number: 18, title: "Inertial Navigation Systems",
         description: "Instrumentation Chapter 18: Inertial Navigation Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 8, content: makeContent(true),
+        duration: "2 hrs", questionCount: 13, content: makeContent(true),
       },
       {
         id: "inst-19", number: 19, title: "Inertial Reference System",
         description: "Instrumentation Chapter 19: Inertial Reference System. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 1, content: makeContent(true),
+        duration: "2 hrs", questionCount: 13, content: makeContent(true),
       },
       {
         id: "inst-20", number: 20, title: "Radio Altimeter",
@@ -1215,12 +1220,12 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-21", number: 21, title: "Flight Management System",
         description: "Instrumentation Chapter 21: Flight Management System. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 0, content: makeContent(),
+        duration: "2 hrs", questionCount: 8, content: makeContent(true),
       },
       {
         id: "inst-22", number: 22, title: "Electronic Flight Information Systems",
         description: "Instrumentation Chapter 22: Electronic Flight Information Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 16, content: makeContent(true),
+        duration: "2 hrs", questionCount: 12, content: makeContent(true),
       },
       {
         id: "inst-23", number: 23, title: "Basic Computers",

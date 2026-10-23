@@ -1,0 +1,28 @@
+CH = {27: 'inst-17', 80: 'inst-17', 28: 'nav-15', 74: 'nav-15', 22: 'inst-16'}
+SWIRL = ("Liquid swirl drags the magnet assembly round in the direction of the turn, so it adds to an under-reading (lagging) error and reduces an over-reading (leading) error.")
+D = {
+ 3: dict(ans='a', exp="Turning errors reverse in the southern hemisphere. Turning through north there, the magnet assembly runs ahead of the aircraft, so the compass over-indicates the turn. " + SWIRL + " Here it therefore decreases the error."),
+ 4: dict(ans='c', exp="In the northern hemisphere a turn through north makes the compass lag: it under-reads. " + SWIRL + " Here it therefore increases the error."),
+ 5: dict(ans='a', exp="Variation is the angle between true north and magnetic north at a place, measured in the horizontal plane."),
+ 8: dict(drop="Two options are correct as printed: 130T, 2E, 128M, -1, 129C (option b) and 130T, 2W, 132M, -1, 133C (option d) are both valid conversions."),
+ 10: dict(ans='c', exp="Dip is the angle between the earth's total magnetic field and the horizontal. At the magnetic poles the field is vertical, so dip reaches its maximum of 90 deg."),
+ 11: dict(ans='a', exp="West variation means magnetic north lies west of true north, which is the same as true north lying east of magnetic north."),
+ 15: dict(ans='b', exp="The magnetic poles wander slowly, so the angle between true and magnetic north at any place changes year by year. Depending on where you are it may grow or shrink, which is why charts quote an annual change."),
+ 18: dict(ans='d', exp="A magnetic compass is directed by the horizontal component of the earth's field. That component is strongest near the magnetic equator, roughly midway between the magnetic poles, and fades to nothing at the poles."),
+ 21: dict(ans='b', exp="In the northern hemisphere, on east or west headings, acceleration gives an apparent turn toward north and deceleration toward south (ANDS). Only option b matches: acceleration on an easterly heading, apparent turn to the north."),
+ 22: dict(ans='d', exp="Permanent (hard iron) magnetism is set into the aircraft's steel parts while it is being built: hammering, riveting and machining in the earth's field magnetise them along the heading of the construction jig."),
+ 25: dict(drop="Isogonals converge at both the geographic poles and the magnetic poles, so options a and b are each only half right; the question cannot be marked fairly."),
+ 27: dict(ans='d', exp="The detector (flux valve) of a slaved gyro compass is put in the wingtip or tail, as far as possible from engines, electrical equipment and steel structure, so that aircraft deviation affecting it is as small as possible."),
+ 28: dict(ans='c', exp="The pole in northern Canada attracts the red (north-seeking) end of a compass needle, so it behaves like a blue pole. Option a describes aircraft magnetism, b is false (aircraft magnetism is induced by the earth's field) and d is wrong because dip is measured from the horizontal."),
+ 31: dict(ans='b', exp="A rate 1 turn for 30 s turns 90 deg, so the true compass heading is 235. In the northern hemisphere a turn through south makes the compass lead the aircraft, so at roll-out it reads more than 235."),
+ 40: dict(ans='a', exp="Accelerating on a westerly heading in the northern hemisphere gives an apparent turn toward north (ANDS). From 270 a turn toward north means a higher number, so the compass over-reads."),
+ 73: dict(ans='b', exp="Variation is measured east or west and can take any value up to 180 deg; it is 180 deg at places between the geographic and magnetic poles, where magnetic north points to true south."),
+ 74: dict(ans='d', exp="Dip is the angle between the earth's total magnetic field and the horizontal. The pole in northern Canada acts as a blue pole, not red; a describes aircraft magnetism; and the earth's field does cause induced aircraft deviation."),
+ 77: dict(drop="Repeats question 18 of this section word for word in substance."),
+ 79: dict(ans='b', exp="Accelerating on a westerly heading in the northern hemisphere gives an apparent turn toward north; from 270 that is an increase in the reading, so the compass over-reads."),
+ 80: dict(ans='d', exp="A direct reading compass must physically swing to seek the field and suffers turning and acceleration errors. The flux valve of a remote indicating compass simply senses the field and feeds a gyro, which makes it more sensitive and steadier. It is still subject to deviation and needs electrical power."),
+ 82: dict(ans='a', exp="Grivation is grid north relative to magnetic north (variation combined with grid convergence). An isogriv joins places of equal grivation."),
+ 88: dict(drop="Repeats question 27 of this section with the options reordered."),
+ 94: dict(drop="Repeats question 11 of this section with the options reordered."),
+ 96: dict(ans='a', exp="Acceleration errors come from the dip of the field acting on the pendulous magnet. On the magnetic equator the field is horizontal, there is no dip, so acceleration produces no apparent turn."),
+}
