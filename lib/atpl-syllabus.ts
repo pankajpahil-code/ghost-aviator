@@ -3,6 +3,13 @@
 // This is syllabus scope, not a claim that every applicant must sit eight papers.
 export const ATPL_SYLLABUS_URL = "https://www.dgca.gov.in/digigov-portal/Upload?attachId=J%2FZGd3DOlXdtF%2FreyJMhhg%3D%3D&flag=iframeAttachView";
 export const ATPL_MANUAL_URL = "https://pariksha.dgca.gov.in/PDFViewer.jsp?pdf=95FB462516F636EF3FF3BAE7AA4DB33C";
+// Aircraft Rules, Schedule II, Section M, 1(d), note. Opened 23 October 2026.
+export const ATPL_RULES_URL = "https://cdnbbsr.s3waas.gov.in/s35f6371c9126149517d9ba475def53139/uploads/2023/02/2023020827.pdf#page=144";
+export const ATPL_CORE_PAPER_IDS: readonly string[] = ["atpl-navigation", "atpl-radio-aids", "atpl-meteorology"];
+export const ATPL_REGULATIONS_EXEMPTION = "Holders of a current Indian CPL are exempt from the Air Regulations examination for ATPL (Aeroplanes). These notes are retained as regulatory reference material. Applicants without that exemption must check the examination requirements for their application.";
+export const isAtplCorePaper = (id: string): boolean => ATPL_CORE_PAPER_IDS.includes(id);
+export const atplStudyLabel = (id: string, name: string): string => isAtplCorePaper(id)
+  ? name : `${name} — ${id === "atpl-technical-specific" || id === "atpl-performance" ? "aircraft preparation" : "reference"}`;
 export const ATPL_AREAS = [
   { id: "atpl-navigation", name: "Air Navigation", reference: "Appendix A", sources: ["air-navigation"], focus: "Navigation principles, charts, flight planning, mass and balance, and performance." },
   { id: "atpl-meteorology", name: "Aviation Meteorology", reference: "Appendix B", sources: ["meteorology"], focus: "Atmospheric processes, weather systems, aviation hazards, reports and forecasts." },

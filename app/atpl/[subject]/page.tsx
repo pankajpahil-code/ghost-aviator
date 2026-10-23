@@ -4,13 +4,13 @@ import type { Metadata } from "next";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { servesRealNotes, isIndexableSubject, NOINDEX } from "@/lib/indexability";
-import { ATPL_AREAS, ATPL_SYLLABUS_URL } from "@/lib/atpl-syllabus";
+import { ATPL_AREAS, ATPL_SYLLABUS_URL, ATPL_RULES_URL, ATPL_REGULATIONS_EXEMPTION } from "@/lib/atpl-syllabus";
 import { ATPL_STUDY_TOPICS } from "@/lib/atpl-study-topics";
 import styles from "../Atpl.module.css";
 export function generateStaticParams() { return ATPL_SUBJECTS.map(s => ({ subject:s.id })); }
 export async function generateMetadata({params}:{params:Promise<{subject:string}>}):Promise<Metadata> {
   const {subject:id}=await params; const subject=ATPL_SUBJECTS.find(s=>s.id===id);
-  return subject ? {title:`${subject.name} | DGCA ATPL Study References`,description:subject.description,...(isIndexableSubject(subject) ? {} : NOINDEX),alternates:{canonical:`/atpl/${id}`}} : {};
+  return subject ? {title:`${subject.name} | DGCA ATPL Study References`,description:id === "atpl-air-regulations" ? "Air Regulation reference notes. Current Indian CPL holders are exempt from the ATPL Air Regulations examination; check requirements for other applications." : subject.description,...(isIndexableSubject(subject) ? {} : NOINDEX),alternates:{canonical:`/atpl/${id}`}} : {};
 }
 export default async function ATPLSubjectPage({params}:{params:Promise<{subject:string}>}) {
   const {subject:id}=await params; const subject=ATPL_SUBJECTS.find(s=>s.id===id); const area=ATPL_AREAS.find(a=>a.id===id);
@@ -21,7 +21,9 @@ export default async function ATPLSubjectPage({params}:{params:Promise<{subject:
   })).filter(topic => topic.chapters.length > 0);
   const lectures=subject.chapters.filter(ch=>getChapterVideos(id,ch.id).length>0);
   return <div className={styles.page}><div className={styles.wrap}><Link href="/atpl">← ATPL study library</Link>
-    <header className={styles.hero}><div className={styles.eyebrow}>ATPL Aeroplanes · {area.reference}</div><h1>{subject.name}</h1><p>{subject.description}</p><a href={ATPL_SYLLABUS_URL} target="_blank" rel="noopener noreferrer">Read the official syllabus</a></header>
+    <header className={styles.hero}><div className={styles.eyebrow}>{id === "atpl-air-regulations" ? "Regulatory reference" : "ATPL Aeroplanes"} · {area.reference}</div><h1>{subject.name}{id === "atpl-air-regulations" ? " — Reference" : ""}</h1><p>{subject.description}</p><a href={ATPL_SYLLABUS_URL} target="_blank" rel="noopener noreferrer">Read the official syllabus</a>
+      {id === "atpl-air-regulations" && <div className={styles.note}><p><strong>Current Indian CPL holders: no separate ATPL Air Regulations paper.</strong> {ATPL_REGULATIONS_EXEMPTION} <a href={ATPL_RULES_URL} target="_blank" rel="noopener noreferrer">Read the exemption in Schedule II, Section M, 1(d)</a>.</p></div>}
+    </header>
     <section className={styles.section}><h2>Study notes by topic</h2><p>Ghost Aviator notes prepared for CPL and ATPL study. Choose a topic below and read the same chapters here in ATPL.</p>
     {id==="atpl-technical-specific" && <div className={styles.note}><p>The current notes cover DA-42 NG. They do not cover an airline aircraft type. Use the approved documentation for your aircraft.</p></div>}
     {id==="atpl-performance" && <div className={styles.note}><p>Start with the shared mass-and-balance and aeroplane-performance notes below. For aircraft-specific performance calculations, limitations and operating data, use your current approved aircraft documentation.</p></div>}

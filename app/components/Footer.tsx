@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Ghost, Send, Phone } from "lucide-react";
 import EmailCapture from "./EmailCapture";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import { atplStudyLabel } from "@/lib/atpl-syllabus";
 
 export default function Footer() {
   return (
@@ -73,11 +74,11 @@ export default function Footer() {
             ["atpl", ATPL_SUBJECTS],
           ] as const).map(([track, subjects]) => (
             <nav key={track} aria-label={`${track.toUpperCase()} subjects`}>
-              <h4 className="text-sm font-semibold mb-4" style={{ color: "#f0913a" }}>{track.toUpperCase()} Subjects</h4>
+              <h4 className="text-sm font-semibold mb-4" style={{ color: "#f0913a" }}>{track === "atpl" ? "ATPL Study & References" : "CPL Subjects"}</h4>
               <ul className="flex flex-col gap-2">
                 {subjects.map(subject => (
                   <li key={subject.id}>
-                    <Link href={`/${track}/${subject.id}`} className="text-sm no-underline hover:text-white transition-colors" style={{ color: "#64748b" }}>{subject.shortName}</Link>
+                    <Link href={`/${track}/${subject.id}`} className="text-sm no-underline hover:text-white transition-colors" style={{ color: "#64748b" }}>{track === "atpl" ? atplStudyLabel(subject.id, subject.shortName) : subject.shortName}</Link>
                   </li>
                 ))}
               </ul>

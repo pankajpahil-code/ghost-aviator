@@ -109,6 +109,6 @@ export const GUIDES: Guide[] = [
     description: "The DGCA ATPL Aeroplanes syllabus, shared study references, current coverage and official documents for planning your preparation.",
     author: "Ghost Aviator",
     date: "2026-10-15",
-    updated: "2026-10-22"
+    updated: "2026-10-23"
   }
 ];

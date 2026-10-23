@@ -2,6 +2,7 @@ import { servesRealNotes, publishedNoteCount } from "@/lib/indexability";
 import Link from "next/link";
 import { ArrowRight, FileText } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import { ATPL_CORE_PAPER_IDS, atplStudyLabel } from "@/lib/atpl-syllabus";
 
 const CPL_CHAPTER_COUNT  = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length, 0);
 const ATPL_CHAPTER_COUNT = publishedNoteCount(ATPL_SUBJECTS);
@@ -69,10 +70,10 @@ export default function NotesPage() {
         <div>
           <div className="flex items-center gap-3 mb-6">
             <span className="text-2xl">✈️</span>
-            <h2 className="text-2xl font-black text-white">ATPL Subjects</h2>
+            <h2 className="text-2xl font-black text-white">ATPL Papers &amp; Study References</h2>
             <span className="text-xs px-3 py-1 rounded-full font-bold"
                   style={{ background: "rgba(240,145,58,0.1)", border: "1px solid rgba(240,145,58,0.25)", color: "#f0913a" }}>
-              {ATPL_SUBJECTS.length} Subjects · {ATPL_CHAPTER_COUNT} Shared references
+              {ATPL_CORE_PAPER_IDS.length} General papers · {ATPL_CHAPTER_COUNT} Shared chapters
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -88,7 +89,7 @@ export default function NotesPage() {
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-black text-white mb-1 text-sm">{s.name}</h3>
+                  <h3 className="font-black text-white mb-1 text-sm">{atplStudyLabel(s.id, s.name)}</h3>
                   <p className="text-xs leading-relaxed line-clamp-2" style={{ color: "#475569" }}>{s.description}</p>
                 </div>
                 <div className="flex items-center gap-1 text-xs font-bold mt-auto"

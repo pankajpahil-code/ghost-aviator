@@ -5,6 +5,7 @@ import { TESTIMONIALS } from "@/lib/testimonials";
 import type { Metadata } from "next";
 import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap, MessageCircle } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import { ATPL_CORE_PAPER_IDS, isAtplCorePaper } from "@/lib/atpl-syllabus";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { servesRealNotes, publishedNoteCount } from "@/lib/indexability";
 import MascotHero from "./components/MascotHero";
@@ -274,7 +275,7 @@ export default function Home() {
                 <div className="text-6xl opacity-80">✈️</div>
               </div>
               <div className="grid grid-cols-3 gap-3 mb-8">
-                {[[`${ATPL_SUBJECTS.length}`,"Subjects"],[`${ATPL_CHAPTERS}`,"Chapters"],["Notes","Reference library"]].map(([v,l]) => (
+                {[[`${ATPL_CORE_PAPER_IDS.length}`,"General papers"],[`${ATPL_CHAPTERS}`,"Chapters"],["Notes","Study & references"]].map(([v,l]) => (
                   <div key={l} className="p-3 rounded-xl text-center" style={{ background:"rgba(240,145,58,0.1)", border:"1px solid rgba(240,145,58,0.2)" }}>
                     <div className="text-xl font-black text-white">{v}</div>
                     <div className="text-xs" style={{ color:"#f0913a" }}>{l}</div>
@@ -282,12 +283,13 @@ export default function Home() {
                 ))}
               </div>
               <ul className="flex flex-col gap-2 mb-8">
-                {ATPL_SUBJECTS.map(s => s.name).map(s => (
+                {ATPL_SUBJECTS.filter(s => isAtplCorePaper(s.id)).map(s => s.name).map(s => (
                   <li key={s} className="flex items-center gap-2 text-sm" style={{ color:"#94a3b8" }}>
                     <CheckCircle className="w-4 h-4" style={{ color:"#f0913a" }}/> {s}
                   </li>
                 ))}
               </ul>
+              <p className="text-sm mb-6" style={{ color:"#94a3b8" }}>Regulatory references and aircraft-specific study are available separately.</p>
               <div className="flex items-center gap-2 font-black text-lg" style={{ color:"#f0913a" }}>
                 Enter ATPL Section <ArrowRight className="w-5 h-5"/>
               </div>

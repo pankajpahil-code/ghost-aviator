@@ -1,5 +1,6 @@
 import { publishedNoteCount } from "@/lib/indexability";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import { ATPL_CORE_PAPER_IDS } from "@/lib/atpl-syllabus";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { GUIDES } from "@/lib/guides";
 import { SITE_URL, YOUTUBE_BRAND } from "@/lib/site";
@@ -69,7 +70,7 @@ safety problem, not a typo.
 ## What is here
 
 - ${CPL_SUBJECTS.length} CPL subjects, ${cplNotes} chapters with published notes
-- ${ATPL_SUBJECTS.length} ATPL syllabus areas, ${atplNotes} shared reference chapters; existing question banks are in CPL
+- ${ATPL_CORE_PAPER_IDS.length} ATPL general papers prioritised for Indian CPL progression: Air Navigation, Radio Aids and Instruments, and Aviation Meteorology. Additional regulatory references and aircraft-specific study are separate. Current Indian CPL holders are exempt from the ATPL Air Regulations examination. ${atplNotes} shared study chapters; existing question banks are in CPL
 - ${ALL_QUESTIONS.length} practice questions with explanations
 - Previous-year papers and full-length mock tests
 - An RTR(A) radio-telephony simulator with live voice practice

@@ -1,4 +1,4 @@
-import { ATPL_AREAS } from "./atpl-syllabus";
+import { ATPL_REGULATIONS_EXEMPTION } from "./atpl-syllabus";
 /**
  * The answer layer.
  *
@@ -218,11 +218,20 @@ export const FAQS: FaqEntry[] = [
   },
   {
     q: "Which DGCA ATPL subjects can I study on Ghost Aviator?",
-    a: `The ATPL Aeroplanes library follows the CAR syllabus areas: ${ATPL_AREAS.map(a => a.name).join("; ")}. These are syllabus areas, not eight separate examinations for every applicant. The notes were prepared for CPL and ATPL study and appear under matching ATPL topics. Human Performance chapters are included under Air Regulation; mass-and-balance and performance chapters also appear under Technical Performance. Question banks remain in CPL.`,
+    a: "For pilots progressing from an Indian CPL, the ATPL library prioritises Air Navigation, Radio Aids and Instruments, and Aviation Meteorology. Regulatory references and aircraft-specific study appear separately. The shared CPL / ATPL notes remain organised by topic, and question banks remain in CPL.",
     topic: "exams",
     source: "DGCA CAR Section 7 Series B Part VI, paragraph 2.1; checked 2026-10-19",
     href: "/atpl",
     hrefLabel: "ATPL hub",
+    guides: ["dgca-atpl-study-guide"],
+  },
+  {
+    q: "Does a current Indian CPL holder need an Air Regulations exam for ATPL?",
+    a: ATPL_REGULATIONS_EXEMPTION,
+    topic: "exams",
+    source: "Aircraft Rules, Schedule II, Section M, 1(d), note; checked 2026-10-23",
+    href: "/atpl/atpl-air-regulations",
+    hrefLabel: "Air Regulation references and CPL-holder exemption",
     guides: ["dgca-atpl-study-guide"],
   },
   {

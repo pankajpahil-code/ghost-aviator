@@ -5,11 +5,12 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import GhostMark from "@/app/components/GhostMark";
 import GiniLauncher from "@/app/components/GiniLauncher";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import { atplStudyLabel } from "@/lib/atpl-syllabus";
 import { useUser, getSupabase } from "@/lib/supabase";
 
 // Derived once — dropdowns always reflect the real subject list.
 const CPL_LINKS  = CPL_SUBJECTS.map(s => [s.name, s.id] as const);
-const ATPL_LINKS = ATPL_SUBJECTS.map(s => [s.name, s.id] as const);
+const ATPL_LINKS = ATPL_SUBJECTS.map(s => [atplStudyLabel(s.id, s.name), s.id] as const);
 
 export default function Navbar() {
   const [open, setOpen]   = useState(false);
