@@ -123,6 +123,8 @@ for k in kw:
     q = re.sub(r'\s+', ' ', q)
     kind, val, exp = solve(q)
     rec = {'sec': 'SCALE', 'n': n, 'ch': k['ch'], 'subj': k['subj'], 'notes': [NOTES[n]] if n in NOTES else []}
+    if n == 36:
+        rec.update(status='DROPPED', reason='Same data as question 23 of this section; one copy kept.'); out.append(rec); continue
     if kind is None:
         rec.update(status='UNSOLVED', q=q, opts=opts); out.append(rec); continue
     best = None
@@ -134,7 +136,7 @@ for k in kw:
         if best is None or d < best[1]:
             best = (c, d)
     rec.update(q=q, opts=[opts[c].strip() for c in 'abcd'], ans='abcd'.index(best[0]), gap=round(best[1], 4),
-               exp=exp + f" Answer: {opts[best[0]].strip().rstrip('.')}.", status='CORRECTED' if n in (33, 38, 27, 32) else 'VERIFIED')
+               exp=exp + (f" Answer: {opts[best[0]].strip().rstrip('.')}." if best[1] <= 0.004 else f" The nearest option is {opts[best[0]].strip().rstrip('.')}."), status='CORRECTED' if n in (33, 38, 27, 32) else 'VERIFIED')
     out.append(rec)
 json.dump(out, open(os.path.join(W, 'final', 'scale.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print(len(out), 'unsolved', [r['n'] for r in out if r['status'] == 'UNSOLVED'],

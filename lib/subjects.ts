@@ -93,7 +93,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "nav-14", number: 2, title: "Great Circles, Rhumb Lines & Directions on the Earth",
         description: "Great circle and rhumb line properties, vertices, track direction changes and when each is used for navigation. Study notes.",
-        duration: "2 hrs", questionCount: 10, content: makeContent(true),
+        duration: "2 hrs", questionCount: 9, content: makeContent(true),
       },
       {
         id: "nav-15", number: 3, title: "Earth Magnetism",
@@ -113,7 +113,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "nav-18", number: 6, title: "Other Applications of the 1 in 60 Rule",
         description: "Glide-path heights, rates of descent, base-of-cloud calculations and other practical 1 in 60 applications. Study notes.",
-        duration: "1 hr", questionCount: 68, content: makeContent(true),
+        duration: "1 hr", questionCount: 67, content: makeContent(true),
       },
       {
         id: "nav-19", number: 7, title: "Topographical Maps and Map Reading",
@@ -133,12 +133,12 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "nav-22", number: 10, title: "Scale",
         description: "Chart scale — representative fraction, statement in words and graduated scale line; scale conversions and typical DGCA scale calculations.",
-        duration: "1.5 hrs", questionCount: 58, content: makeContent(true),
+        duration: "1.5 hrs", questionCount: 57, content: makeContent(true),
       },
       {
         id: "nav-23", number: 11, title: "General Chart Properties",
         description: "Perspective and mathematical projections, orthomorphism and conformality conditions, and how charts are classified by projection surface.",
-        duration: "1.5 hrs", questionCount: 1, content: makeContent(true),
+        duration: "1.5 hrs", questionCount: 0, content: makeContent(),
       },
       {
         id: "nav-24", number: 12, title: "Mercator Charts",
@@ -1225,7 +1225,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-22", number: 22, title: "Electronic Flight Information Systems",
         description: "Instrumentation Chapter 22: Electronic Flight Information Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 12, content: makeContent(true),
+        duration: "2 hrs", questionCount: 11, content: makeContent(true),
       },
       {
         id: "inst-23", number: 23, title: "Basic Computers",

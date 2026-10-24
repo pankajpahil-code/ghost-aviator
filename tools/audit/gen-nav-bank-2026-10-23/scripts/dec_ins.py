@@ -31,7 +31,7 @@ D = {
  87: dict(drop=REP), 89: dict(drop=REP), 90: dict(drop=REP), 94: dict(drop=FIG), 95: dict(drop=REP),
  99: dict(drop=REP),
  103: dict(drop=REP), 104: dict(drop=REP), 105: dict(drop=REP),
- 106: dict(ans='b', exp="CDU messages are graded: warnings are the highest priority and advisory messages the lowest."),
+ 106: dict(drop="Independent audit: the reference keys 'Alerting and Advisory', which is not offered; for the Captain's ruling."),
  107: dict(ans='d', exp="Before flight the crew use the MCDU to initialise the IRSs (present position) and the FMC (route, performance data). Nothing in this is automatic, and the autothrottle is not initialised from it."),
  108: dict(drop=REP), 110: dict(drop=REP), 111: dict(drop="Same issue as the other position-entry question in this section: references differ on what the 737 IRS rejects."),
  112: dict(ans='c', exp="Navigation databases follow the AIRAC cycle and are valid for 28 days."),

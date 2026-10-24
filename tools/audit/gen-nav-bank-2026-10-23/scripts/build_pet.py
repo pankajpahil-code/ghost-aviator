@@ -40,6 +40,14 @@ OV = {
     114: dict(status='CORRECTED', note='Book keyed a (4.32 h). 7 x 365 / (235 + 365) = 4.26 h, option b.'),
     99: dict(kind='psr_time_h', O=280, H=320, E=4),
 }
+WINDSIGN = ('On the flight between A and B the equivalent headwind is -20 kt. On the return leg between B and A, the equivalent headwind is +40 kt.',
+            'From A to B the headwind component is 20 kt. On the return leg from B to A there is a tailwind component of 40 kt.')
+for n in (33, 83):
+    OV[n]['q_sub'] = [WINDSIGN]
+    OV[n]['note'] += ' Stem reworded: the source signs (-20 headwind, +40 headwind) only fit the key if read as 20 kt head out and 40 kt tail back.'
+for n in (30, 55, 80):
+    OV.setdefault(n, {})['q_sub'] = [('if the wind component is 60 knots head?', 'if the wind component on the leg from the first airfield to the second is 60 knots head?')]
+    OV[n]['note'] = 'Stem now states which leg has the headwind; read the other way round, one option (350 NM in Q80) would also fit.'
 for n, (o, h, e) in {106: (270, 330, 5), 110: (155, 245, 10), 114: (235, 365, 7), 118: (80, 120, 5),
                      121: (280, 320, 10), 122: (280, 320, 6)}.items():
     OV.setdefault(n, {}).update(kind='psr_time_h', O=o, H=h, E=e)
@@ -79,7 +87,7 @@ for k in kw:
         TAS = float(re.search(r'True airspeed (\d+)', q).group(1)); O = TAS + 55; H = TAS - 75
         D = float(re.search(r'(\d{4}) NM', q).group(1))
     if kind == 'radius':
-        TAS = ov['TAS']; comp = 50 * math.cos(math.radians(45)); O = TAS - comp; H = TAS + comp; E = 1
+        TAS = ov['TAS']; comp = 50 * math.cos(math.radians(45)); xw = 50 * math.sin(math.radians(45)); along = math.sqrt(TAS ** 2 - xw ** 2); O = along - comp; H = along + comp; E = 1
     if kind.startswith('pet'):
         X = D * H / (O + H)
         if kind == 'pet_dist':
@@ -108,8 +116,8 @@ for k in kw:
             work = f"O = {O:g} kt, H = {H:g} kt. Time to PSR = {E:g} x {H:g} / ({O:g} + {H:g}) = {T:.2f} h."
         else:
             val, unit = T * O, 'NM'
-            work = (f"Wind 045/50 on a track of 090 is 45 deg off the nose, so the headwind component out = 50 cos 45 = {comp:.1f} kt. "
-                    f"O = {TAS} - {comp:.1f} = {O:.1f} kt, H = {TAS} + {comp:.1f} = {H:.1f} kt. With 1 h available: time out = {H:.1f} / ({O:.1f} + {H:.1f}) = {T:.3f} h, "
+            work = (f"Wind 045/50 on a track of 090 is 45 deg off the track: headwind component out = 50 cos 45 = {comp:.1f} kt and crosswind = 50 sin 45 = {xw:.1f} kt. "
+                    f"Heading into the crosswind leaves sqrt({TAS}^2 - {xw:.1f}^2) = {along:.1f} kt along track, so O = {along:.1f} - {comp:.1f} = {O:.1f} kt and H = {along:.1f} + {comp:.1f} = {H:.1f} kt. With 1 h available: time out = {H:.1f} / ({O:.1f} + {H:.1f}) = {T:.3f} h, "
                     f"distance = {T:.3f} x {O:.1f} = {T * O:.0f} NM.")
     for c in list(opts):
         v = opts[c].strip().rstrip('.').strip()
@@ -135,8 +143,8 @@ for k in kw:
             best = (c, d)
     rel = best[1] / max(val, 1)
     rec.update(q=q, opts=[opts[c] for c in 'abcd'], ans='abcd'.index(best[0]),
-               exp=work + f" Answer: {opts[best[0]]}.", computed=round(val, 2), gap=round(rel, 4),
-               status=ov.get('status', 'VERIFIED'), notes=[ov['note']] if ov.get('note') else [])
+               exp=work + (f" Answer: {opts[best[0]]}." if rel <= 0.004 else f" The nearest option is {opts[best[0]]}."), computed=round(val, 2), gap=round(rel, 4),
+               status=ov.get('status', 'CORRECTED' if ov.get('q_sub') or ov.get('q') else 'VERIFIED'), notes=[ov['note']] if ov.get('note') else [])
     out.append(rec)
 json.dump(out, open(os.path.join(W, 'final', 'pet.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 bad = [(r['n'], r['gap'], r['computed']) for r in out if r.get('gap', 0) > 0.02]

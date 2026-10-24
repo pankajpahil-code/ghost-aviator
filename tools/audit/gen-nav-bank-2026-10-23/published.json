@@ -725,26 +725,6 @@
   ],
   "chapterId": "inst-22",
   "subtopic": "INS, IRS, FMS and EFIS",
-  "q": "What is the highest priority and lowest priority, message produced by the CDU of the B737-400 EFIS?",
-  "opts": [
-   "Caution and Advisory",
-   "Warning and Advisory",
-   "Urgent and Routine",
-   "Warning and Caution"
-  ],
-  "ans": 1,
-  "exp": "CDU messages are graded: warnings are the highest priority and advisory messages the lowest.",
-  "_sec": "INS IRS FMS EFIS",
-  "_n": 106,
-  "_status": "VERIFIED",
-  "_notes": []
- },
- {
-  "subjectIds": [
-   "instrumentation"
-  ],
-  "chapterId": "inst-22",
-  "subtopic": "INS, IRS, FMS and EFIS",
   "q": "Weather Radar Display are available on the Boeing 737-400 EFIS EHSI, when the system is set to?",
   "opts": [
    "MAP, PLAN, FULL VOR/ILS",
@@ -1297,16 +1277,16 @@
   "opts": [
    "30° S and 25° S",
    "30° S and 30° N",
-   "60° S and 55° N",
+   "60° N and 55° N",
    "60° N and 60° S"
   ],
-  "ans": 0,
-  "exp": "Conversion angle = 1/2 x change of longitude x sin(mean latitude), so it is greatest where the mean latitude is highest. Mean latitudes: a) 27.5S, b) 0, c) 2.5S (60S and 55N lie either side of the equator), d) 0. Option a gives the largest.",
+  "ans": 2,
+  "exp": "Conversion angle = 1/2 x change of longitude x sin(mean latitude), so it is greatest where the mean latitude is highest. Mean latitudes: a) 27.5S, b) 0, c) 57.5N, d) 0. Option c gives the largest.",
   "_sec": "CIRCLES",
   "_n": 68,
   "_status": "CORRECTED",
   "_notes": [
-   "Book keyed c by taking the mean of 60S and 55N as 57.5 deg; points either side of the equator have a mean of 2.5S."
+   "The Word copy mistyped option c as 60S and 55N; the source prints 60N and 55N (independent audit, 2026-10-24)."
   ]
  },
  {
@@ -1369,27 +1349,6 @@
   "exp": "Rhumb line 270. Conversion angle = 1/2 x 10 x sin 65 = 4.5 deg. Northern hemisphere westbound, the great circle starts toward the pole: 270 + 4.5 = 274.5, about 275.",
   "_sec": "CIRCLES",
   "_n": 81,
-  "_status": "VERIFIED",
-  "_notes": []
- },
- {
-  "subjectIds": [
-   "air-navigation",
-   "atpl-navigation"
-  ],
-  "chapterId": "nav-14",
-  "subtopic": "Great Circles, Rhumb Lines and Departure",
-  "q": "Position A is 58° N 030° W and position B is 51°N 020°W. What is the rhumb line bearing from A to B, if the great circle track from A to B, measured at A, is 100°T?",
-  "opts": [
-   "110°T",
-   "284° T",
-   "104°T",
-   "090°T"
-  ],
-  "ans": 2,
-  "exp": "Conversion angle = 1/2 x 10 x sin 54.5 = 4.1 deg. In the northern hemisphere an eastbound great circle starts poleward of the rhumb line, so rhumb line = 100 + 4 = 104 deg T.",
-  "_sec": "CIRCLES",
-  "_n": 84,
   "_status": "VERIFIED",
   "_notes": []
  },
@@ -1681,7 +1640,7 @@
    "8740 ft/ min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 540 kt x 101.3 ft/min per kt x 12/100 = 6562 ft/min. Answer: 6550 ft/ min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 540 kt x 101.3 ft/min per kt x 12/100 = 6562 ft/min (converting 12% to 6.84 deg and using the 1 in 60 rule gives 6237 ft/min). Answer: 6550 ft/ min.",
   "_sec": "DESCENTS",
   "_n": 4,
   "_status": "VERIFIED",
@@ -1725,7 +1684,7 @@
    "It must be decreased by 35 ft/ min"
   ],
   "ans": 0,
-  "exp": "On a 3 deg glideslope ROD is about 5 x groundspeed (exactly 5.3 x GS). A 15 kt increase in headwind reduces groundspeed by 15 kt, so ROD must be decreased by about 5 x 15 = 75 ft/min (5.3 x 15 = 80 ft/min exactly). The nearest option in the right direction is the answer. Answer: It must be decreased by 79 ft/ min.",
+  "exp": "On a 3 deg glideslope ROD is about 5 x groundspeed (exactly 5.3 x GS). A 15 kt increase in headwind reduces groundspeed by 15 kt, so ROD must be decreased by about 5 x 15 = 75 ft/min (5.3 x 15 = 80 ft/min exactly). The nearest option in the right direction is the answer. The nearest option is It must be decreased by 79 ft/ min.",
   "_sec": "DESCENTS",
   "_n": 7,
   "_status": "VERIFIED",
@@ -1767,7 +1726,7 @@
    "2124 ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 450 kt x 101.3 ft/min per kt x 5/100 = 2279 ft/min. Answer: 2175 ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 450 kt x 101.3 ft/min per kt x 5/100 = 2279 ft/min (converting 5% to 2.86 deg and using the 1 in 60 rule gives 2174 ft/min). The nearest option is 2175 ft/min.",
   "_sec": "DESCENTS",
   "_n": 12,
   "_status": "VERIFIED",
@@ -1809,7 +1768,7 @@
    "3420 ft/min"
   ],
   "ans": 0,
-  "exp": "ROD = groundspeed in ft/min x gradient = 400 kt x 101.3 ft/min per kt x 8/100 = 3241 ft/min. Answer: 3242 ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 400 kt x 101.3 ft/min per kt x 8/100 = 3241 ft/min (converting 8% to 4.57 deg and using the 1 in 60 rule gives 3088 ft/min). Answer: 3242 ft/min.",
   "_sec": "DESCENTS",
   "_n": 16,
   "_status": "VERIFIED",
@@ -1853,7 +1812,7 @@
    "3455 ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 350 kt x 101.3 ft/min per kt x 10/100 = 3544 ft/min. Answer: 3545 ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 350 kt x 101.3 ft/min per kt x 10/100 = 3544 ft/min (converting 10% to 5.71 deg and using the 1 in 60 rule gives 3373 ft/min). Answer: 3545 ft/min.",
   "_sec": "DESCENTS",
   "_n": 21,
   "_status": "VERIFIED",
@@ -1895,7 +1854,7 @@
    "1377 ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 250 kt x 101.3 ft/min per kt x 7/100 = 1772 ft/min. Answer: 1773 ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 250 kt x 101.3 ft/min per kt x 7/100 = 1772 ft/min (converting 7% to 4.00 deg and using the 1 in 60 rule gives 1690 ft/min). Answer: 1773 ft/min.",
   "_sec": "DESCENTS",
   "_n": 25,
   "_status": "VERIFIED",
@@ -1939,7 +1898,7 @@
    "2918 ft/ min"
   ],
   "ans": 3,
-  "exp": "ROD = groundspeed in ft/min x gradient = 240 kt x 101.3 ft/min per kt x 12/100 = 2917 ft/min. Answer: 2918 ft/ min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 240 kt x 101.3 ft/min per kt x 12/100 = 2917 ft/min (converting 12% to 6.84 deg and using the 1 in 60 rule gives 2772 ft/min). Answer: 2918 ft/ min.",
   "_sec": "DESCENTS",
   "_n": 29,
   "_status": "VERIFIED",
@@ -1975,27 +1934,6 @@
   ],
   "chapterId": "nav-18",
   "subtopic": "Climb, Descent and Glidepath",
-  "q": "By what amount must you change the rate of descent to maintain a 3° glideslope if you meet an increase in headwind of 10 knots?",
-  "opts": [
-   "30 feet per minute increase",
-   "30 feet per minute decrease",
-   "50 feet per minute increase",
-   "50 feet per minute decrease"
-  ],
-  "ans": 3,
-  "exp": "On a 3 deg glideslope ROD is about 5 x groundspeed (exactly 5.3 x GS). A 10 kt increase in headwind reduces groundspeed by 10 kt, so ROD must be decreased by about 5 x 10 = 50 ft/min (5.3 x 10 = 53 ft/min exactly). The nearest option in the right direction is the answer. Answer: 50 feet per minute decrease.",
-  "_sec": "DESCENTS",
-  "_n": 37,
-  "_status": "VERIFIED",
-  "_notes": []
- },
- {
-  "subjectIds": [
-   "air-navigation",
-   "atpl-navigation"
-  ],
-  "chapterId": "nav-18",
-  "subtopic": "Climb, Descent and Glidepath",
   "q": "What will be the rate of descent when flying down a 12% glide slope, at a groundspeed of 150 knots?",
   "opts": [
    "1823 ft/min",
@@ -2004,7 +1942,7 @@
    "1832 ft/min"
   ],
   "ans": 0,
-  "exp": "ROD = groundspeed in ft/min x gradient = 150 kt x 101.3 ft/min per kt x 12/100 = 1823 ft/min. Answer: 1823 ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 150 kt x 101.3 ft/min per kt x 12/100 = 1823 ft/min (converting 12% to 6.84 deg and using the 1 in 60 rule gives 1732 ft/min). Answer: 1823 ft/min.",
   "_sec": "DESCENTS",
   "_n": 38,
   "_status": "VERIFIED",
@@ -2025,7 +1963,7 @@
    "7122 ft/min"
   ],
   "ans": 0,
-  "exp": "ROD = groundspeed in ft/min x gradient = 175 kt x 101.3 ft/min per kt x 12/100 = 2127 ft/min. Answer: 2127 ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 175 kt x 101.3 ft/min per kt x 12/100 = 2127 ft/min (converting 12% to 6.84 deg and using the 1 in 60 rule gives 2021 ft/min). Answer: 2127 ft/min.",
   "_sec": "DESCENTS",
   "_n": 41,
   "_status": "VERIFIED",
@@ -2046,7 +1984,7 @@
    "2573 ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 540 kt x 101.3 ft/min per kt x 5/100 = 2734 ft/min. Answer: 2735 ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 540 kt x 101.3 ft/min per kt x 5/100 = 2734 ft/min (converting 5% to 2.86 deg and using the 1 in 60 rule gives 2609 ft/min). Answer: 2735 ft/min.",
   "_sec": "DESCENTS",
   "_n": 44,
   "_status": "VERIFIED",
@@ -2067,7 +2005,7 @@
    "14.5 nm from the threshold"
   ],
   "ans": 1,
-  "exp": "By the 1 in 60 rule, range = height x 60 / angle = 2500 x 60 / 3 = 50000 ft = 8.2 NM. Answer: 8.0 nm from the threshold.",
+  "exp": "By the 1 in 60 rule, range = height x 60 / angle = 2500 x 60 / 3 = 50000 ft = 8.2 NM. The nearest option is 8.0 nm from the threshold.",
   "_sec": "DESCENTS",
   "_n": 45,
   "_status": "VERIFIED",
@@ -2088,7 +2026,7 @@
    "9303 ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 500 kt x 101.3 ft/min per kt x 6/100 = 3038 ft/min. Answer: 3039 ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 500 kt x 101.3 ft/min per kt x 6/100 = 3038 ft/min (converting 6% to 3.43 deg and using the 1 in 60 rule gives 2898 ft/min). Answer: 3039 ft/min.",
   "_sec": "DESCENTS",
   "_n": 46,
   "_status": "VERIFIED",
@@ -2195,7 +2133,7 @@
    "It must be increased by 61 ft/ min"
   ],
   "ans": 2,
-  "exp": "On a 3 deg glideslope ROD is about 5 x groundspeed (exactly 5.3 x GS). A 12 kt increase in headwind reduces groundspeed by 12 kt, so ROD must be decreased by about 5 x 12 = 60 ft/min (5.3 x 12 = 64 ft/min exactly). The nearest option in the right direction is the answer. Answer: It must be decreased by 61 ft/ min.",
+  "exp": "On a 3 deg glideslope ROD is about 5 x groundspeed (exactly 5.3 x GS). A 12 kt increase in headwind reduces groundspeed by 12 kt, so ROD must be decreased by about 5 x 12 = 60 ft/min (5.3 x 12 = 64 ft/min exactly). The nearest option in the right direction is the answer. The nearest option is It must be decreased by 61 ft/ min.",
   "_sec": "DESCENTS",
   "_n": 53,
   "_status": "VERIFIED",
@@ -2216,7 +2154,7 @@
    "3740 ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 540 kt x 101.3 ft/min per kt x 7/100 = 3828 ft/min. Answer: 3830 ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 540 kt x 101.3 ft/min per kt x 7/100 = 3828 ft/min (converting 7% to 4.00 deg and using the 1 in 60 rule gives 3649 ft/min). Answer: 3830 ft/min.",
   "_sec": "DESCENTS",
   "_n": 54,
   "_status": "VERIFIED",
@@ -2258,7 +2196,7 @@
    "4.3 m/sec"
   ],
   "ans": 3,
-  "exp": "850 ft/min x 0.3048 m/ft / 60 s = 4.32 m/s. Answer: 4.3 m/sec.",
+  "exp": "850 ft/min x 0.3048 m/ft / 60 s = 4.32 m/s. The nearest option is 4.3 m/sec.",
   "_sec": "DESCENTS",
   "_n": 56,
   "_status": "VERIFIED",
@@ -2279,7 +2217,7 @@
    "It must be decreased by 235 ft/min"
   ],
   "ans": 0,
-  "exp": "On a 3 deg glideslope ROD is about 5 x groundspeed (exactly 5.3 x GS). A 35 kt increase in headwind reduces groundspeed by 35 kt, so ROD must be decreased by about 5 x 35 = 175 ft/min (5.3 x 35 = 186 ft/min exactly). The nearest option in the right direction is the answer. Answer: It must be decreased by 186 ft/min.",
+  "exp": "On a 3 deg glideslope ROD is about 5 x groundspeed (exactly 5.3 x GS). A 35 kt increase in headwind reduces groundspeed by 35 kt, so ROD must be decreased by about 5 x 35 = 175 ft/min (5.3 x 35 = 186 ft/min exactly). The nearest option in the right direction is the answer. The nearest option is It must be decreased by 186 ft/min.",
   "_sec": "DESCENTS",
   "_n": 57,
   "_status": "VERIFIED",
@@ -2321,7 +2259,7 @@
    "5650 FT/MIN"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 540 kt x 101.3 ft/min per kt x 10/100 = 5469 ft/min. Answer: 5470 FT/MIN.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 540 kt x 101.3 ft/min per kt x 10/100 = 5469 ft/min (converting 10% to 5.71 deg and using the 1 in 60 rule gives 5205 ft/min). Answer: 5470 FT/MIN.",
   "_sec": "DESCENTS",
   "_n": 60,
   "_status": "VERIFIED",
@@ -2405,7 +2343,7 @@
    "3020 ft/min"
   ],
   "ans": 0,
-  "exp": "ROD = groundspeed in ft/min x gradient = 400 kt x 101.3 ft/min per kt x 7.5/100 = 3038 ft/min. Answer: 3040 ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 400 kt x 101.3 ft/min per kt x 7.5/100 = 3038 ft/min (converting 7.5% to 4.29 deg and using the 1 in 60 rule gives 2896 ft/min). Answer: 3040 ft/min.",
   "_sec": "DESCENTS",
   "_n": 66,
   "_status": "CORRECTED",
@@ -2514,7 +2452,7 @@
    "4455ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 450 kt x 101.3 ft/min per kt x 10/100 = 4557 ft/min. Answer: 4560ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 450 kt x 101.3 ft/min per kt x 10/100 = 4557 ft/min (converting 10% to 5.71 deg and using the 1 in 60 rule gives 4337 ft/min). Answer: 4560ft/min.",
   "_sec": "DESCENTS",
   "_n": 71,
   "_status": "VERIFIED",
@@ -2577,7 +2515,7 @@
    "2377ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 375 kt x 101.3 ft/min per kt x 7/100 = 2658 ft/min. Answer: 2660ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 375 kt x 101.3 ft/min per kt x 7/100 = 2658 ft/min (converting 7% to 4.00 deg and using the 1 in 60 rule gives 2534 ft/min). Answer: 2660ft/min.",
   "_sec": "DESCENTS",
   "_n": 75,
   "_status": "VERIFIED",
@@ -2611,7 +2549,7 @@
   ],
   "chapterId": "nav-18",
   "subtopic": "Climb, Descent and Glidepath",
-  "q": "Given: Aircraft height 3000 FT, ILS GP angle 3°. At what approximate distance from THR can you expect to capture the GP?",
+  "q": "Given: Aircraft height 3000 FT, ILS GP angle 3°. Using the 1 in 60 rule, at what approximate distance from THR can you expect to capture the GP?",
   "opts": [
    "9.9 NM",
    "9.0 NM",
@@ -2622,8 +2560,10 @@
   "exp": "By the 1 in 60 rule, range = height x 60 / angle = 3000 x 60 / 3 = 60000 ft = 9.9 NM. Answer: 9.9 NM.",
   "_sec": "DESCENTS",
   "_n": 78,
-  "_status": "VERIFIED",
-  "_notes": []
+  "_status": "CORRECTED",
+  "_notes": [
+   "Exact trigonometry (9.4 NM) and the 1 in 60 rule (9.9 NM) point to different options; stem now names the 1 in 60 rule, which the source uses."
+  ]
  },
  {
   "subjectIds": [
@@ -2640,7 +2580,7 @@
    "4135ft/min"
   ],
   "ans": 3,
-  "exp": "ROD = groundspeed in ft/min x gradient = 340 kt x 101.3 ft/min per kt x 12/100 = 4132 ft/min. Answer: 4135ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 340 kt x 101.3 ft/min per kt x 12/100 = 4132 ft/min (converting 12% to 6.84 deg and using the 1 in 60 rule gives 3927 ft/min). Answer: 4135ft/min.",
   "_sec": "DESCENTS",
   "_n": 79,
   "_status": "VERIFIED",
@@ -2745,7 +2685,7 @@
    "1975ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 240 kt x 101.3 ft/min per kt x 8/100 = 1944 ft/min. Answer: 1945ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 240 kt x 101.3 ft/min per kt x 8/100 = 1944 ft/min (converting 8% to 4.57 deg and using the 1 in 60 rule gives 1853 ft/min). Answer: 1945ft/min.",
   "_sec": "DESCENTS",
   "_n": 84,
   "_status": "VERIFIED",
@@ -2808,7 +2748,7 @@
    "4832ft/min"
   ],
   "ans": 0,
-  "exp": "ROD = groundspeed in ft/min x gradient = 350 kt x 101.3 ft/min per kt x 12/100 = 4253 ft/min. Answer: 4255ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 350 kt x 101.3 ft/min per kt x 12/100 = 4253 ft/min (converting 12% to 6.84 deg and using the 1 in 60 rule gives 4042 ft/min). Answer: 4255ft/min.",
   "_sec": "DESCENTS",
   "_n": 88,
   "_status": "VERIFIED",
@@ -2850,7 +2790,7 @@
    "3640ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 320 kt x 101.3 ft/min per kt x 12/100 = 3889 ft/min. Answer: 3890ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 320 kt x 101.3 ft/min per kt x 12/100 = 3889 ft/min (converting 12% to 6.84 deg and using the 1 in 60 rule gives 3696 ft/min). Answer: 3890ft/min.",
   "_sec": "DESCENTS",
   "_n": 90,
   "_status": "VERIFIED",
@@ -2871,7 +2811,7 @@
    "4422ft/min"
   ],
   "ans": 0,
-  "exp": "ROD = groundspeed in ft/min x gradient = 375 kt x 101.3 ft/min per kt x 12/100 = 4557 ft/min. Answer: 4560ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 375 kt x 101.3 ft/min per kt x 12/100 = 4557 ft/min (converting 12% to 6.84 deg and using the 1 in 60 rule gives 4331 ft/min). Answer: 4560ft/min.",
   "_sec": "DESCENTS",
   "_n": 91,
   "_status": "VERIFIED",
@@ -2934,7 +2874,7 @@
    "973ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 175 kt x 101.3 ft/min per kt x 5/100 = 886 ft/min. Answer: 886ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 175 kt x 101.3 ft/min per kt x 5/100 = 886 ft/min (converting 5% to 2.86 deg and using the 1 in 60 rule gives 845 ft/min). Answer: 886ft/min.",
   "_sec": "DESCENTS",
   "_n": 94,
   "_status": "VERIFIED",
@@ -2947,7 +2887,7 @@
   ],
   "chapterId": "nav-18",
   "subtopic": "Climb, Descent and Glidepath",
-  "q": "For an aircraft at a height of 1500 feet, interception of a 3° ILS glide path will occur at approximately?",
+  "q": "For an aircraft at a height of 1500 feet, interception of a 3° ILS glide path will occur at approximately (use the 1 in 60 rule)?",
   "opts": [
    "7.0 nm from the threshold",
    "5.0 nm from the threshold",
@@ -2955,11 +2895,13 @@
    "4.5 nm from the threshold"
   ],
   "ans": 1,
-  "exp": "By the 1 in 60 rule, range = height x 60 / angle = 1500 x 60 / 3 = 30000 ft = 4.9 NM. Answer: 5.0 nm from the threshold.",
+  "exp": "By the 1 in 60 rule, range = height x 60 / angle = 1500 x 60 / 3 = 30000 ft = 4.9 NM. The nearest option is 5.0 nm from the threshold.",
   "_sec": "DESCENTS",
   "_n": 95,
-  "_status": "VERIFIED",
-  "_notes": []
+  "_status": "CORRECTED",
+  "_notes": [
+   "Exact trigonometry (4.7 NM) and the 1 in 60 rule (4.9 NM) point to different options; stem now names the 1 in 60 rule, which the source uses."
+  ]
  },
  {
   "subjectIds": [
@@ -2976,7 +2918,7 @@
    "1303ft/min"
   ],
   "ans": 2,
-  "exp": "ROD = groundspeed in ft/min x gradient = 250 kt x 101.3 ft/min per kt x 6/100 = 1519 ft/min. Answer: 1520ft/min.",
+  "exp": "ROD = groundspeed in ft/min x gradient = 250 kt x 101.3 ft/min per kt x 6/100 = 1519 ft/min (converting 6% to 3.43 deg and using the 1 in 60 rule gives 1449 ft/min). Answer: 1520ft/min.",
   "_sec": "DESCENTS",
   "_n": 96,
   "_status": "VERIFIED",
@@ -3528,7 +3470,7 @@
    "1 : 6 000 000"
   ],
   "ans": 0,
-  "exp": "On a Mercator chart every parallel is drawn the same length, so the 75N parallel and the 30S parallel are both 140 cm long. Earth length of the 30S parallel = 21 600 x cos 30 = 18706 NM = 3 464 378 743 cm. Scale = 140 : 3 464 378 743, about 1 : 24 745 562. Answer: 1 : 25 000 000.",
+  "exp": "On a Mercator chart every parallel is drawn the same length, so the 75N parallel and the 30S parallel are both 140 cm long. Earth length of the 30S parallel = 21 600 x cos 30 = 18706 NM = 3 464 378 743 cm. Scale = 140 : 3 464 378 743, about 1 : 24 745 562. The nearest option is 1 : 25 000 000.",
   "_sec": "SCALE",
   "_n": 25,
   "_status": "VERIFIED",
@@ -3595,7 +3537,7 @@
    "25 mm"
   ],
   "ans": 0,
-  "exp": "The two meridians are 6 deg apart across the 180 deg meridian = 360 min of longitude = 360 NM along the equator. Chart distance = 360 x 185 200 cm / 15 000 000 = 4.4 cm = 44 mm. Answer: 44 mm.",
+  "exp": "The two meridians are 6 deg apart across the 180 deg meridian = 360 min of longitude = 360 NM along the equator. Chart distance = 360 x 185 200 cm / 15 000 000 = 4.4 cm = 44 mm. The nearest option is 44 mm.",
   "_sec": "SCALE",
   "_n": 28,
   "_status": "VERIFIED",
@@ -3725,7 +3667,7 @@
    "50 nm"
   ],
   "ans": 1,
-  "exp": "Earth distance = chart distance x scale denominator = 4 cm x 2 000 000 = 8 000 000 cm. Divide by 185 200 cm per NM: 43.2 NM. Answer: 43 nm.",
+  "exp": "Earth distance = chart distance x scale denominator = 4 cm x 2 000 000 = 8 000 000 cm. Divide by 185 200 cm per NM: 43.2 NM. The nearest option is 43 nm.",
   "_sec": "SCALE",
   "_n": 34,
   "_status": "VERIFIED",
@@ -3749,27 +3691,6 @@
   "exp": "Earth distance = chart distance x scale denominator = 24 cm x 3 000 000 = 72 000 000 cm. Divide by 185 200 cm per NM: 388.8 NM. Answer: 389 nm.",
   "_sec": "SCALE",
   "_n": 35,
-  "_status": "VERIFIED",
-  "_notes": []
- },
- {
-  "subjectIds": [
-   "air-navigation",
-   "atpl-navigation"
-  ],
-  "chapterId": "nav-22",
-  "subtopic": "Scale",
-  "q": "Given: Chart scale is 1: 5 000 000. The chart distance between two points is 10 centimetres. Earth distance is approximately?",
-  "opts": [
-   "230 nm",
-   "243 nm",
-   "255 nm",
-   "270 nm"
-  ],
-  "ans": 3,
-  "exp": "Earth distance = chart distance x scale denominator = 10 cm x 5 000 000 = 50 000 000 cm. Divide by 185 200 cm per NM: 270.0 NM. Answer: 270 nm.",
-  "_sec": "SCALE",
-  "_n": 36,
   "_status": "VERIFIED",
   "_notes": []
  },
@@ -3895,7 +3816,7 @@
    "68 nm"
   ],
   "ans": 1,
-  "exp": "On a Mercator chart scale varies with sec(latitude), so the same chart length covers ground in proportion to cos(latitude). Distance at 60N = 90 x cos 60 / cos 45 = 63.6 NM. Answer: 65 nm.",
+  "exp": "On a Mercator chart scale varies with sec(latitude), so the same chart length covers ground in proportion to cos(latitude). Distance at 60N = 90 x cos 60 / cos 45 = 63.6 NM. The nearest option is 65 nm.",
   "_sec": "SCALE",
   "_n": 42,
   "_status": "VERIFIED",
@@ -3916,7 +3837,7 @@
    "25 nm"
   ],
   "ans": 1,
-  "exp": "On a Mercator chart scale varies with sec(latitude), so the same chart length covers ground in proportion to cos(latitude). Distance at 30N = 25 x cos 30 / cos 45 = 30.6 NM. Answer: 31 nm.",
+  "exp": "On a Mercator chart scale varies with sec(latitude), so the same chart length covers ground in proportion to cos(latitude). Distance at 30N = 25 x cos 30 / cos 45 = 30.6 NM. The nearest option is 31 nm.",
   "_sec": "SCALE",
   "_n": 43,
   "_status": "VERIFIED",
@@ -4021,7 +3942,7 @@
    "1 : 5 000 000"
   ],
   "ans": 3,
-  "exp": "Departure = 600 x cos 47 = 409.2 NM = 29 836 086 inches. Scale = 6 / 29 836 086 = 1 : 4 972 681. Answer: 1 : 5 000 000.",
+  "exp": "Departure = 600 x cos 47 = 409.2 NM = 29 836 086 inches. Scale = 6 / 29 836 086 = 1 : 4 972 681. The nearest option is 1 : 5 000 000.",
   "_sec": "SCALE",
   "_n": 51,
   "_status": "VERIFIED",
@@ -4084,7 +4005,7 @@
    "1 : 4 000 000"
   ],
   "ans": 3,
-  "exp": "Scale = chart distance / earth distance = 4.89 cm / (100 x 185 200 cm) = 1 : 3 787 321. Answer: 1 : 4 000 000.",
+  "exp": "Scale = chart distance / earth distance = 4.89 cm / (100 x 185 200 cm) = 1 : 3 787 321. The nearest option is 1 : 4 000 000.",
   "_sec": "SCALE",
   "_n": 54,
   "_status": "VERIFIED",
@@ -4126,7 +4047,7 @@
    "22 nm"
   ],
   "ans": 0,
-  "exp": "Earth distance = chart distance x scale denominator = 27 cm x 200 000 = 5 400 000 cm. Divide by 185 200 cm per NM: 29.2 NM. Answer: 29 nm.",
+  "exp": "Earth distance = chart distance x scale denominator = 27 cm x 200 000 = 5 400 000 cm. Divide by 185 200 cm per NM: 29.2 NM. The nearest option is 29 nm.",
   "_sec": "SCALE",
   "_n": 56,
   "_status": "VERIFIED",
@@ -4212,7 +4133,7 @@
    "22 nm"
   ],
   "ans": 0,
-  "exp": "Earth distance = chart distance x scale denominator = 7 cm x 500 000 = 3 500 000 cm. Divide by 185 200 cm per NM: 18.9 NM. Answer: 19 nm.",
+  "exp": "Earth distance = chart distance x scale denominator = 7 cm x 500 000 = 3 500 000 cm. Divide by 185 200 cm per NM: 18.9 NM. The nearest option is 19 nm.",
   "_sec": "SCALE",
   "_n": 60,
   "_status": "VERIFIED",
@@ -4233,7 +4154,7 @@
    "1 : 6 000 000"
   ],
   "ans": 0,
-  "exp": "On a Mercator chart every parallel is drawn the same length, so the 75N parallel and the 30S parallel are both 115 cm long. Earth length of the 30S parallel = 21 600 x cos 30 = 18706 NM = 3 464 378 743 cm. Scale = 115 : 3 464 378 743, about 1 : 30 125 033. Answer: 1 : 30 000 000.",
+  "exp": "On a Mercator chart every parallel is drawn the same length, so the 75N parallel and the 30S parallel are both 115 cm long. Earth length of the 30S parallel = 21 600 x cos 30 = 18706 NM = 3 464 378 743 cm. Scale = 115 : 3 464 378 743, about 1 : 30 125 033. The nearest option is 1 : 30 000 000.",
   "_sec": "SCALE",
   "_n": 61,
   "_status": "VERIFIED",
@@ -4296,7 +4217,7 @@
    "1 : 1 500 000"
   ],
   "ans": 0,
-  "exp": "Earth distance = departure = 300 min x cos 60 = 150.0 NM = 27 780 000 cm. Scale = 12 / 27 780 000 = 1 : 2 315 000. Answer: 1 : 2 300 000.",
+  "exp": "Earth distance = departure = 300 min x cos 60 = 150.0 NM = 27 780 000 cm. Scale = 12 / 27 780 000 = 1 : 2 315 000. The nearest option is 1 : 2 300 000.",
   "_sec": "SCALE",
   "_n": 64,
   "_status": "VERIFIED",
@@ -4317,7 +4238,7 @@
    "1 : 4 500 000"
   ],
   "ans": 1,
-  "exp": "Earth distance = departure = 300 min x cos 37 = 239.6 NM = 44 372 189 cm. Scale = 11 / 44 372 189 = 1 : 4 033 835. Answer: 1 : 4 000 000.",
+  "exp": "Earth distance = departure = 300 min x cos 37 = 239.6 NM = 44 372 189 cm. Scale = 11 / 44 372 189 = 1 : 4 033 835. The nearest option is 1 : 4 000 000.",
   "_sec": "SCALE",
   "_n": 65,
   "_status": "VERIFIED",
@@ -4359,7 +4280,7 @@
    "1 : 1 500 000"
   ],
   "ans": 3,
-  "exp": "Scale = 7 cm / (55 x 185 200 cm) = 1 : 1 455 143. Answer: 1 : 1 500 000.",
+  "exp": "Scale = 7 cm / (55 x 185 200 cm) = 1 : 1 455 143. The nearest option is 1 : 1 500 000.",
   "_sec": "SCALE",
   "_n": 68,
   "_status": "VERIFIED",
@@ -4443,7 +4364,7 @@
    "1 : 3 800 000"
   ],
   "ans": 0,
-  "exp": "Scale = chart distance / earth distance = 4.5 cm / (125 x 185 200 cm) = 1 : 5 144 444. Answer: 1 : 5 100 000.",
+  "exp": "Scale = chart distance / earth distance = 4.5 cm / (125 x 185 200 cm) = 1 : 5 144 444. The nearest option is 1 : 5 100 000.",
   "_sec": "SCALE",
   "_n": 72,
   "_status": "VERIFIED",
@@ -4592,7 +4513,7 @@
    "37 nm"
   ],
   "ans": 1,
-  "exp": "On a Mercator chart scale varies with sec(latitude), so the same chart length covers ground in proportion to cos(latitude). Distance at 30N = 39 x cos 30 / cos 45 = 47.8 NM. Answer: 48 nm.",
+  "exp": "On a Mercator chart scale varies with sec(latitude), so the same chart length covers ground in proportion to cos(latitude). Distance at 30N = 39 x cos 30 / cos 45 = 47.8 NM. The nearest option is 48 nm.",
   "_sec": "SCALE",
   "_n": 79,
   "_status": "VERIFIED",
@@ -4616,27 +4537,6 @@
   "exp": "On a Mercator chart scale varies with sec(latitude), so the same chart length covers ground in proportion to cos(latitude). Distance at 30N = 55 x cos 30 / cos 75 = 184.0 NM. Answer: 184 nm.",
   "_sec": "SCALE",
   "_n": 80,
-  "_status": "VERIFIED",
-  "_notes": []
- },
- {
-  "subjectIds": [
-   "air-navigation",
-   "atpl-navigation"
-  ],
-  "chapterId": "nav-23",
-  "subtopic": "Chart Properties",
-  "q": "Where is the convergency correct on a Transverse Mercator chart?",
-  "opts": [
-   "At the datum meridian and the Equator",
-   "Only at the Equator and Poles",
-   "Only at the datum meridian",
-   "At the Parallel of Origin"
-  ],
-  "ans": 0,
-  "exp": "A transverse Mercator touches the earth along its datum meridian, where the chart is correct. Chart convergency matches earth convergency along that datum meridian and at the equator, where earth convergency is zero.",
-  "_sec": "CHART THEORY",
-  "_n": 25,
   "_status": "VERIFIED",
   "_notes": []
  },
@@ -4781,12 +4681,12 @@
    "320°"
   ],
   "ans": 0,
-  "exp": "On a polar stereographic chart at high latitude a straight line approximates a great circle. Rhumb line A to B (westbound, 90 deg of longitude) = 270. Conversion angle = 1/2 x 90 x sin 75 = 43.5 deg. Southern hemisphere, the great circle starts toward the pole: 270 - 43.5 = 226.5, about 225.",
+  "exp": "On a polar stereographic chart a straight line changes direction by exactly the change of longitude between its ends (the chart's convergency is 1 at the pole). Rhumb line A to B along 75S, westbound, is 270; the 90 deg change of longitude splits equally either side, so the line leaves A 45 deg toward the pole: 270 - 45 = 225.",
   "_sec": "CIRCLES",
   "_n": 56,
   "_status": "VERIFIED",
   "_notes": [
-   "Option b printed as 450 deg (not a bearing); replaced with 045 deg as a distractor."
+   "Option b printed as 450 deg (not a bearing); replaced with 045 deg as a distractor. Explanation method corrected after independent audit."
   ]
  },
  {
@@ -4825,7 +4725,7 @@
    "210° (T)"
   ],
   "ans": 0,
-  "exp": "Rhumb line 090. Conversion angle = 1/2 x 120 x sin 75 = 58. Northern hemisphere eastbound, the straight line (great circle) starts toward the pole: 090 - 58 = 032 deg T.",
+  "exp": "On a polar stereographic chart a straight line changes direction by exactly the change of longitude between its ends. Rhumb line along 75N eastbound is 090; the 120 deg change of longitude splits equally either side, so the line leaves A 60 deg toward the pole: 090 - 60 = 030, nearest option 032 deg T.",
   "_sec": "CIRCLES",
   "_n": 111,
   "_status": "VERIFIED",
@@ -4846,7 +4746,7 @@
    "225°"
   ],
   "ans": 0,
-  "exp": "Rhumb line 270. Conversion angle = 1/2 x 70 x sin 75 = 33.8. Southern hemisphere westbound, the line starts toward the pole: 270 - 33.8 = 236, about 235.",
+  "exp": "On a polar stereographic chart a straight line changes direction by exactly the change of longitude between its ends. Rhumb line along 75S westbound is 270; the 70 deg change of longitude splits equally either side, so the line leaves A 35 deg toward the pole: 270 - 35 = 235.",
   "_sec": "CIRCLES",
   "_n": 116,
   "_status": "VERIFIED",
@@ -5289,7 +5189,7 @@
   ],
   "chapterId": "nav-cp-pnr",
   "subtopic": "Critical Point and Point of No Return",
-  "q": "An aircraft is flying at a TAS of 500 knots over a stretch of water between 2 airfields 700 nm apart. What is the distance from the first airfield to the equal time point (ETP) if the wind component is 60 knots head?",
+  "q": "An aircraft is flying at a TAS of 500 knots over a stretch of water between 2 airfields 700 nm apart. What is the distance from the first airfield to the equal time point (ETP) if the wind component on the leg from the first airfield to the second is 60 knots head?",
   "opts": [
    "300 NM",
    "350 NM",
@@ -5300,8 +5200,10 @@
   "exp": "PET distance from departure = D x H / (O + H) = 700 x 560 / (440 + 560) = 392 NM. Answer: 392 NM.",
   "_sec": "PSR & PET",
   "_n": 30,
-  "_status": "VERIFIED",
-  "_notes": []
+  "_status": "CORRECTED",
+  "_notes": [
+   "Stem now states which leg has the headwind; read the other way round, one option (350 NM in Q80) would also fit."
+  ]
  },
  {
   "subjectIds": [
@@ -5318,7 +5220,7 @@
    "175 NM"
   ],
   "ans": 1,
-  "exp": "Wind 045/50 on a track of 090 is 45 deg off the nose, so the headwind component out = 50 cos 45 = 35.4 kt. O = 260 - 35.4 = 224.6 kt, H = 260 + 35.4 = 295.4 kt. With 1 h available: time out = 295.4 / (224.6 + 295.4) = 0.568 h, distance = 0.568 x 224.6 = 128 NM. Answer: 128 NM.",
+  "exp": "Wind 045/50 on a track of 090 is 45 deg off the track: headwind component out = 50 cos 45 = 35.4 kt and crosswind = 50 sin 45 = 35.4 kt. Heading into the crosswind leaves sqrt(260^2 - 35.4^2) = 257.6 kt along track, so O = 257.6 - 35.4 = 222.2 kt and H = 257.6 + 35.4 = 292.9 kt. With 1 h available: time out = 292.9 / (222.2 + 292.9) = 0.569 h, distance = 0.569 x 222.2 = 126 NM. The nearest option is 128 NM.",
   "_sec": "PSR & PET",
   "_n": 31,
   "_status": "VERIFIED",
@@ -5352,7 +5254,7 @@
   ],
   "chapterId": "nav-cp-pnr",
   "subtopic": "Critical Point and Point of No Return",
-  "q": "Two points A and B are 1200 NM apart. TAS= 480 kt. On the flight between A and B the equivalent headwind is -20 kt. On the return leg between B and A, the equivalent headwind is +40 kt. What distance from A, along the route A to B, is the point of Equal Time (PET)?",
+  "q": "Two points A and B are 1200 NM apart. TAS= 480 kt. From A to B the headwind component is 20 kt. On the return leg from B to A there is a tailwind component of 40 kt. What distance from A, along the route A to B, is the point of Equal Time (PET)?",
   "opts": [
    "670 NM",
    "655 NM",
@@ -5365,7 +5267,7 @@
   "_n": 33,
   "_status": "CORRECTED",
   "_notes": [
-   "Book keyed 624 NM, which divides by TAS (480) instead of the outbound groundspeed (460). Correct PET = 1200 x 520 / 980 = 637 NM; option d rewritten to 637 NM."
+   "Book keyed 624 NM, which divides by TAS (480) instead of the outbound groundspeed (460). Correct PET = 1200 x 520 / 980 = 637 NM; option d rewritten to 637 NM. Stem reworded: the source signs (-20 headwind, +40 headwind) only fit the key if read as 20 kt head out and 40 kt tail back."
   ]
  },
  {
@@ -5383,7 +5285,7 @@
    "176 NM"
   ],
   "ans": 0,
-  "exp": "Wind 045/50 on a track of 090 is 45 deg off the nose, so the headwind component out = 50 cos 45 = 35.4 kt. O = 380 - 35.4 = 344.6 kt, H = 380 + 35.4 = 415.4 kt. With 1 h available: time out = 415.4 / (344.6 + 415.4) = 0.547 h, distance = 0.547 x 344.6 = 188 NM. Answer: 188 NM.",
+  "exp": "Wind 045/50 on a track of 090 is 45 deg off the track: headwind component out = 50 cos 45 = 35.4 kt and crosswind = 50 sin 45 = 35.4 kt. Heading into the crosswind leaves sqrt(380^2 - 35.4^2) = 378.4 kt along track, so O = 378.4 - 35.4 = 343.0 kt and H = 378.4 + 35.4 = 413.7 kt. With 1 h available: time out = 413.7 / (343.0 + 413.7) = 0.547 h, distance = 0.547 x 343.0 = 188 NM. Answer: 188 NM.",
   "_sec": "PSR & PET",
   "_n": 34,
   "_status": "VERIFIED",
@@ -5512,7 +5414,7 @@
   "exp": "Time to PSR = E x H / (O + H) = 8.5 x 500 / (480 + 500) = 4.337 h. Distance = 4.337 x 480 = 2082 NM. Answer: 2081 NM.",
   "_sec": "PSR & PET",
   "_n": 40,
-  "_status": "VERIFIED",
+  "_status": "CORRECTED",
   "_notes": [
    "Word copy had 420 kt; the book works it with 480 kt, the only value consistent with its options."
   ]
@@ -5726,7 +5628,7 @@
   "exp": "Time to PSR = E x H / (O + H) = 9.5 x 450 / (500 + 450) = 4.500 h. Distance = 4.500 x 500 = 2250 NM. Answer: 2250 NM.",
   "_sec": "PSR & PET",
   "_n": 50,
-  "_status": "VERIFIED",
+  "_status": "CORRECTED",
   "_notes": [
    "Word copy had groundspeed back 500 kt; the book works it with 450 kt, the only value consistent with its options."
   ]
@@ -5801,7 +5703,7 @@
   ],
   "chapterId": "nav-cp-pnr",
   "subtopic": "Critical Point and Point of No Return",
-  "q": "An aircraft is flying at a TAS of 375 knots over a stretch of water between 2 airfields 500 nm apart. What is the distance from the first airfield to the equal time point (ETP) if the wind component is 60 knots head?",
+  "q": "An aircraft is flying at a TAS of 375 knots over a stretch of water between 2 airfields 500 nm apart. What is the distance from the first airfield to the equal time point (ETP) if the wind component on the leg from the first airfield to the second is 60 knots head?",
   "opts": [
    "300 NM",
    "350 NM",
@@ -5812,8 +5714,10 @@
   "exp": "PET distance from departure = D x H / (O + H) = 500 x 435 / (315 + 435) = 290 NM. Answer: 290 NM.",
   "_sec": "PSR & PET",
   "_n": 55,
-  "_status": "VERIFIED",
-  "_notes": []
+  "_status": "CORRECTED",
+  "_notes": [
+   "Stem now states which leg has the headwind; read the other way round, one option (350 NM in Q80) would also fit."
+  ]
  },
  {
   "subjectIds": [
@@ -5830,7 +5734,7 @@
    "175 NM"
   ],
   "ans": 1,
-  "exp": "Wind 045/50 on a track of 090 is 45 deg off the nose, so the headwind component out = 50 cos 45 = 35.4 kt. O = 280 - 35.4 = 244.6 kt, H = 280 + 35.4 = 315.4 kt. With 1 h available: time out = 315.4 / (244.6 + 315.4) = 0.563 h, distance = 0.563 x 244.6 = 138 NM. Answer: 135 NM.",
+  "exp": "Wind 045/50 on a track of 090 is 45 deg off the track: headwind component out = 50 cos 45 = 35.4 kt and crosswind = 50 sin 45 = 35.4 kt. Heading into the crosswind leaves sqrt(280^2 - 35.4^2) = 277.8 kt along track, so O = 277.8 - 35.4 = 242.4 kt and H = 277.8 + 35.4 = 313.1 kt. With 1 h available: time out = 313.1 / (242.4 + 313.1) = 0.564 h, distance = 0.564 x 242.4 = 137 NM. The nearest option is 135 NM.",
   "_sec": "PSR & PET",
   "_n": 56,
   "_status": "VERIFIED",
@@ -5872,7 +5776,7 @@
    "116 NM"
   ],
   "ans": 0,
-  "exp": "Wind 045/50 on a track of 090 is 45 deg off the nose, so the headwind component out = 50 cos 45 = 35.4 kt. O = 250 - 35.4 = 214.6 kt, H = 250 + 35.4 = 285.4 kt. With 1 h available: time out = 285.4 / (214.6 + 285.4) = 0.571 h, distance = 0.571 x 214.6 = 122 NM. Answer: 123 NM.",
+  "exp": "Wind 045/50 on a track of 090 is 45 deg off the track: headwind component out = 50 cos 45 = 35.4 kt and crosswind = 50 sin 45 = 35.4 kt. Heading into the crosswind leaves sqrt(250^2 - 35.4^2) = 247.5 kt along track, so O = 247.5 - 35.4 = 212.1 kt and H = 247.5 + 35.4 = 282.8 kt. With 1 h available: time out = 282.8 / (212.1 + 282.8) = 0.571 h, distance = 0.571 x 212.1 = 121 NM. The nearest option is 123 NM.",
   "_sec": "PSR & PET",
   "_n": 59,
   "_status": "VERIFIED",
@@ -6103,7 +6007,7 @@
    "97 min"
   ],
   "ans": 3,
-  "exp": "PET distance = 1760 x 365 / (475 + 365) = 765 NM. Time = 765 / 475 = 1.61 h = 97 min. Answer: 97 min.",
+  "exp": "PET distance = 1760 x 365 / (475 + 365) = 765 NM. Time = 765 / 475 = 1.61 h = 97 min. The nearest option is 97 min.",
   "_sec": "PSR & PET",
   "_n": 70,
   "_status": "VERIFIED",
@@ -6305,7 +6209,7 @@
   ],
   "chapterId": "nav-cp-pnr",
   "subtopic": "Critical Point and Point of No Return",
-  "q": "An aircraft is flying at a TAS of 475 knots over a stretch of water between 2 airfields 800 nm apart. What is the distance from the first airfield to the equal time point (ETP) if the wind component is 60 knots head?",
+  "q": "An aircraft is flying at a TAS of 475 knots over a stretch of water between 2 airfields 800 nm apart. What is the distance from the first airfield to the equal time point (ETP) if the wind component on the leg from the first airfield to the second is 60 knots head?",
   "opts": [
    "398 NM",
    "350 NM",
@@ -6316,8 +6220,10 @@
   "exp": "PET distance from departure = D x H / (O + H) = 800 x 535 / (415 + 535) = 451 NM. Answer: 451 NM.",
   "_sec": "PSR & PET",
   "_n": 80,
-  "_status": "VERIFIED",
-  "_notes": []
+  "_status": "CORRECTED",
+  "_notes": [
+   "Stem now states which leg has the headwind; read the other way round, one option (350 NM in Q80) would also fit."
+  ]
  },
  {
   "subjectIds": [
@@ -6334,7 +6240,7 @@
    "157 NM"
   ],
   "ans": 1,
-  "exp": "Wind 045/50 on a track of 090 is 45 deg off the nose, so the headwind component out = 50 cos 45 = 35.4 kt. O = 350 - 35.4 = 314.6 kt, H = 350 + 35.4 = 385.4 kt. With 1 h available: time out = 385.4 / (314.6 + 385.4) = 0.551 h, distance = 0.551 x 314.6 = 173 NM. Answer: 173 NM.",
+  "exp": "Wind 045/50 on a track of 090 is 45 deg off the track: headwind component out = 50 cos 45 = 35.4 kt and crosswind = 50 sin 45 = 35.4 kt. Heading into the crosswind leaves sqrt(350^2 - 35.4^2) = 348.2 kt along track, so O = 348.2 - 35.4 = 312.9 kt and H = 348.2 + 35.4 = 383.6 kt. With 1 h available: time out = 383.6 / (312.9 + 383.6) = 0.551 h, distance = 0.551 x 312.9 = 172 NM. The nearest option is 173 NM.",
   "_sec": "PSR & PET",
   "_n": 81,
   "_status": "CORRECTED",
@@ -6370,7 +6276,7 @@
   ],
   "chapterId": "nav-cp-pnr",
   "subtopic": "Critical Point and Point of No Return",
-  "q": "Two points A and B are 1300 NM apart. TAS= 485 kt. On the flight between A and B the equivalent headwind is -20 kt. On the return leg between B and A, the equivalent headwind is +40 kt. What distance from A, along the route A to B, is the point of Equal Time (PET)?",
+  "q": "Two points A and B are 1300 NM apart. TAS= 485 kt. From A to B the headwind component is 20 kt. On the return leg from B to A there is a tailwind component of 40 kt. What distance from A, along the route A to B, is the point of Equal Time (PET)?",
   "opts": [
    "647 NM",
    "655 NM",
@@ -6383,7 +6289,7 @@
   "_n": 83,
   "_status": "CORRECTED",
   "_notes": [
-   "Book keyed 676 NM by dividing by TAS (485) instead of groundspeed out (465). Correct PET = 1300 x 525 / 990 = 689 NM, option c (690 NM)."
+   "Book keyed 676 NM by dividing by TAS (485) instead of groundspeed out (465). Correct PET = 1300 x 525 / 990 = 689 NM, option c (690 NM). Stem reworded: the source signs (-20 headwind, +40 headwind) only fit the key if read as 20 kt head out and 40 kt tail back."
   ]
  },
  {
@@ -6401,7 +6307,7 @@
    "163 NM"
   ],
   "ans": 0,
-  "exp": "Wind 045/50 on a track of 090 is 45 deg off the nose, so the headwind component out = 50 cos 45 = 35.4 kt. O = 345 - 35.4 = 309.6 kt, H = 345 + 35.4 = 380.4 kt. With 1 h available: time out = 380.4 / (309.6 + 380.4) = 0.551 h, distance = 0.551 x 309.6 = 171 NM. Answer: 171 NM.",
+  "exp": "Wind 045/50 on a track of 090 is 45 deg off the track: headwind component out = 50 cos 45 = 35.4 kt and crosswind = 50 sin 45 = 35.4 kt. Heading into the crosswind leaves sqrt(345^2 - 35.4^2) = 343.2 kt along track, so O = 343.2 - 35.4 = 307.8 kt and H = 343.2 + 35.4 = 378.5 kt. With 1 h available: time out = 378.5 / (307.8 + 378.5) = 0.552 h, distance = 0.552 x 307.8 = 170 NM. The nearest option is 171 NM.",
   "_sec": "PSR & PET",
   "_n": 84,
   "_status": "VERIFIED",
@@ -6716,7 +6622,7 @@
    "2.4 h"
   ],
   "ans": 0,
-  "exp": "O = 280 kt, H = 320 kt. Time to PSR = 4 x 320 / (280 + 320) = 2.13 h. Answer: 2.1 h.",
+  "exp": "O = 280 kt, H = 320 kt. Time to PSR = 4 x 320 / (280 + 320) = 2.13 h. The nearest option is 2.1 h.",
   "_sec": "PSR & PET",
   "_n": 99,
   "_status": "VERIFIED",
@@ -6758,10 +6664,10 @@
    "1.1 h"
   ],
   "ans": 1,
-  "exp": "O = 250 kt, H = 350 kt. Time to PSR = 4 x 350 / (250 + 350) = 2.33 h. Answer: 2.3 h.",
+  "exp": "O = 250 kt, H = 350 kt. Time to PSR = 4 x 350 / (250 + 350) = 2.33 h. The nearest option is 2.3 h.",
   "_sec": "PSR & PET",
   "_n": 102,
-  "_status": "VERIFIED",
+  "_status": "CORRECTED",
   "_notes": [
    "Word copy said 40 hours; the book works it with 4 hours."
   ]
@@ -6928,7 +6834,7 @@
    "5.8 h"
   ],
   "ans": 0,
-  "exp": "O = 155 kt, H = 245 kt. Time to PSR = 10 x 245 / (155 + 245) = 6.12 h. Answer: 6.1 h.",
+  "exp": "O = 155 kt, H = 245 kt. Time to PSR = 10 x 245 / (155 + 245) = 6.12 h. The nearest option is 6.1 h.",
   "_sec": "PSR & PET",
   "_n": 110,
   "_status": "VERIFIED",
@@ -7080,7 +6986,7 @@
   "exp": "O = 80 kt, H = 120 kt. Time to PSR = 5 x 120 / (80 + 120) = 3.00 h. Answer: 3.0 h.",
   "_sec": "PSR & PET",
   "_n": 118,
-  "_status": "VERIFIED",
+  "_status": "CORRECTED",
   "_notes": [
    "Word copy said 65 kt; the book works it with 20 kt, the only value consistent with its options."
   ]
@@ -7142,7 +7048,7 @@
    "5.1 h"
   ],
   "ans": 0,
-  "exp": "O = 280 kt, H = 320 kt. Time to PSR = 10 x 320 / (280 + 320) = 5.33 h. Answer: 5.3 h.",
+  "exp": "O = 280 kt, H = 320 kt. Time to PSR = 10 x 320 / (280 + 320) = 5.33 h. The nearest option is 5.3 h.",
   "_sec": "PSR & PET",
   "_n": 121,
   "_status": "VERIFIED",

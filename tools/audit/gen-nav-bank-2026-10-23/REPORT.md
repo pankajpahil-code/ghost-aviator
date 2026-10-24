@@ -70,3 +70,28 @@ Instrumentation questions (INS, IRS, FMS, EFIS, compass errors, aircraft magneti
 went to the Instrumentation chapters, following the 16 Oct reclassification that moved those topics
 there. PSR/PET went to the new chapter `nav-cp-pnr` (Ch. 18), whose notes were written fresh for this
 change and checked against the flight-planning reference's PET and PSR chapters.
+
+## Independent audit, 2026-10-24
+
+Three auditor agents that did not build the bank re-checked all 365 published questions and the
+CP/PNR notes, recomputing every numerical item and reading the book scan and the reference books
+themselves (full tables: `audit_table_B.md`, `audit_table_C.md`).
+
+- PSR/PET (102) and CP/PNR notes: 0 wrong keys, no wrong formula or number. All 5 CORRECTED items upheld.
+- Scale and Descents (126): 0 wrong keys. All 9 CORRECTED items upheld. 2 ambiguous (rule of thumb
+  against exact geometry).
+- Theory and flight computer (137): **1 wrong key, CIRCLES#68**. The builder kept the Word copy's
+  mistyped option c (60S and 55N) and re-keyed a; the book prints 60N and 55N, keyed c. 2 ambiguous,
+  1 impossible stem, 1 wrong explanation method. 2 not found in the reference books (INS#7, INS#32).
+
+Fixed after the audit: CIRCLES#68 restored and keyed c. Dropped CIRCLES#84 (impossible stem),
+CHART THEORY#25 (the reference book and the source disagree), INS#106 (the reference answer is not
+offered), DESCENTS#37 and SCALE#36 (repeats). Stems now name the method or leg in DESCENTS#78/#95
+and PSR&PET#30/#33/#55/#80/#83. Explanations rewritten for the polar stereographic items (exact
+convergency of 1), PSR radius-of-action items (full wind triangle), DESCENTS#12 and the "nearest
+option" wording. Four stem-changed items relabelled CORRECTED. Notes: removed the unsupported
+"Radius of Action" name and the dangling cross-reference, and added a crosswind warning.
+
+Published after the audit: **360**. For the Captain's ruling: CHART THEORY#25 (transverse Mercator
+convergency) and INS#106 (737 CDU message priorities). Not reference-checked: INS#7 and INS#32
+(published; the key matches the source and the physics).

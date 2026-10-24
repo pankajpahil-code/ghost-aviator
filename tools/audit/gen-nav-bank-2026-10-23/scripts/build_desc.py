@@ -11,6 +11,7 @@ DROP = {
     58: 'At 10 deg the 1 in 60 rule gives 6753 ft/min (option d) and exact trigonometry 7143 ft/min (nearer option b); two answers are defensible.',
     62: 'Exact ROD on a 5.5% slope at 450 kt is 2506 ft/min; the book keys 2390 using a double approximation, and no option matches the exact value.',
     34: 'Options b (2757) and c (2755) differ by 2 ft/min; the question cannot discriminate between them.',
+    37: 'Same data as question 3 of this section (10 kt increase in headwind); one copy kept.',
     64: 'Exact height on a 5.5% gradient at 9 NM is about 3008 ft; no option is near it (the book reaches 2870 by an approximation).',
 }
 QSUB = {
@@ -18,6 +19,8 @@ QSUB = {
     100: [('the approximation 6000 feet = 1 nautical mile', 'the approximation 6080 feet = 1 nautical mile')],
     49: [('At 75 nm from a VOR', 'At 65 nm from a VOR')],
     67: [('when 105 NM from a VOR', 'when 85 NM from a VOR')],
+    78: [('At what approximate distance from THR', 'Using the 1 in 60 rule, at what approximate distance from THR')],
+    95: [('interception of a 3o ILS glide path will occur at approximately?', 'interception of a 3o ILS glide path will occur at approximately (use the 1 in 60 rule)?')],
 }
 OPTFIX = {66: {'c': '4170 ft/min.', 'd': '3020 ft/min'}}
 NOTES = {
@@ -25,6 +28,8 @@ NOTES = {
     100: 'The stem said 6000 ft = 1 NM, but the options are built on 6080 ft (5522 ft); stem aligned to 6080 ft.',
     49: 'The Word copy said 75 NM; the book works it with 65 NM, the only value consistent with its options.',
     67: 'The Word copy said 105 NM; the book works it with 85 NM, the only value consistent with its options.',
+    78: 'Exact trigonometry (9.4 NM) and the 1 in 60 rule (9.9 NM) point to different options; stem now names the 1 in 60 rule, which the source uses.',
+    95: 'Exact trigonometry (4.7 NM) and the 1 in 60 rule (4.9 NM) point to different options; stem now names the 1 in 60 rule, which the source uses.',
     66: 'Option d was printed as a second "b" in the source; relabelled.',
     18: 'The book header reads d, but its own working (increase by 75 ft/min) is option c.',
     98: 'The book header reads c, but its own working (1533 ft/min) is option d.',
@@ -64,7 +69,8 @@ def solve(q):
     m = re.search(r'(\d+(?:\.\d+)?)\s*%', t)
     if m and gs:
         p = float(m.group(1)); r = gs * p * FPM_PER_KT / 100
-        return 'num', r, f"ROD = groundspeed in ft/min x gradient = {gs:g} kt x 101.3 ft/min per kt x {p:g}/100 = {r:.0f} ft/min."
+        r60 = gs * math.degrees(math.atan(p / 100)) / 60 * FPM_PER_KT
+        return 'num', r, f"ROD = groundspeed in ft/min x gradient = {gs:g} kt x 101.3 ft/min per kt x {p:g}/100 = {r:.0f} ft/min (converting {p:g}% to {math.degrees(math.atan(p / 100)):.2f} deg and using the 1 in 60 rule gives {r60:.0f} ft/min)."
     m = re.search(r'(\d+(?:\.\d+)?)\s*o\s*glide', t) or re.search(r'angle\s*=\s*(\d+(?:\.\d+)?)', t)
     if m and gs and 'height' not in t:
         a = float(m.group(1)); r = gs * a / 60 * FPM_PER_KT; ex = gs * FPM_PER_KT * math.tan(math.radians(a))
@@ -145,7 +151,7 @@ for k in kw:
         if best is None or d < best[1]:
             best = (c, d)
     rec.update(q=q, opts=[opts[c].strip() for c in 'abcd'], ans='abcd'.index(best[0]), gap=round(best[1], 4),
-               exp=exp + f" Answer: {opts[best[0]].strip().rstrip('.')}.",
+               exp=exp + (f" Answer: {opts[best[0]].strip().rstrip('.')}." if best[1] <= 0.004 else f" The nearest option is {opts[best[0]].strip().rstrip('.')}."),
                status='CORRECTED' if n in QSUB or n in OPTFIX else 'VERIFIED')
     out.append(rec)
 json.dump(out, open(os.path.join(W, 'final', 'desc.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
