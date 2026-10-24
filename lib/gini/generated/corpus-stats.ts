@@ -13,11 +13,11 @@
 export type CorpusCount = { total: number; speakable: number };
 
 export const CORPUS = {
-  total: 4679,
-  speakable: 2827,
+  total: 4681,
+  speakable: 2828,
   bySubject: {
       "air-navigation": {
-          "total": 1275,
+          "total": 1276,
           "speakable": 533
       },
       "meteorology": {
@@ -45,8 +45,8 @@ export const CORPUS = {
           "speakable": 355
       },
       "instrumentation": {
-          "total": 302,
-          "speakable": 299
+          "total": 303,
+          "speakable": 300
       },
       "radio-navigation": {
           "total": 448,

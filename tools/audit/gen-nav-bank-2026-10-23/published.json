@@ -725,6 +725,28 @@
   ],
   "chapterId": "inst-22",
   "subtopic": "INS, IRS, FMS and EFIS",
+  "q": "What is the highest priority and lowest priority, message produced by the CDU of the B737-400 EFIS?",
+  "opts": [
+   "Caution and Advisory",
+   "Alerting and Advisory",
+   "Urgent and Routine",
+   "Warning and Caution"
+  ],
+  "ans": 1,
+  "exp": "FMS CDU messages come in two classes: alerting messages, which need the crew's attention and are the highest priority, and advisory messages, the lowest. The MSG light on the CDU shows that an alerting or advisory message is waiting.",
+  "_sec": "INS IRS FMS EFIS",
+  "_n": 106,
+  "_status": "CORRECTED",
+  "_notes": [
+   "Captain's ruling 2026-10-24: follow the reference book (CDU messages are alerting and advisory). Option b rewritten from Warning and Advisory."
+  ]
+ },
+ {
+  "subjectIds": [
+   "instrumentation"
+  ],
+  "chapterId": "inst-22",
+  "subtopic": "INS, IRS, FMS and EFIS",
   "q": "Weather Radar Display are available on the Boeing 737-400 EFIS EHSI, when the system is set to?",
   "opts": [
    "MAP, PLAN, FULL VOR/ILS",
@@ -4539,6 +4561,29 @@
   "_n": 80,
   "_status": "VERIFIED",
   "_notes": []
+ },
+ {
+  "subjectIds": [
+   "air-navigation",
+   "atpl-navigation"
+  ],
+  "chapterId": "nav-23",
+  "subtopic": "Chart Properties",
+  "q": "Where is the convergency correct on a Transverse Mercator chart?",
+  "opts": [
+   "At the datum meridian and the Equator",
+   "Only at the Equator and Poles",
+   "Only at the datum meridian",
+   "At the Parallel of Origin"
+  ],
+  "ans": 1,
+  "exp": "A transverse Mercator touches the earth along its datum meridian. Its chart convergency matches earth convergency only at the poles and at the equator, not elsewhere, so the answer is the Equator and Poles.",
+  "_sec": "CHART THEORY",
+  "_n": 25,
+  "_status": "CORRECTED",
+  "_notes": [
+   "Captain's ruling 2026-10-24: follow the reference book (convergency correct at the Poles and the Equator). The source book keyed a."
+  ]
  },
  {
   "subjectIds": [

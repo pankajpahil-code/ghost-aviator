@@ -138,7 +138,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "nav-23", number: 11, title: "General Chart Properties",
         description: "Perspective and mathematical projections, orthomorphism and conformality conditions, and how charts are classified by projection surface.",
-        duration: "1.5 hrs", questionCount: 0, content: makeContent(),
+        duration: "1.5 hrs", questionCount: 1, content: makeContent(true),
       },
       {
         id: "nav-24", number: 12, title: "Mercator Charts",
@@ -1225,7 +1225,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-22", number: 22, title: "Electronic Flight Information Systems",
         description: "Instrumentation Chapter 22: Electronic Flight Information Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 11, content: makeContent(true),
+        duration: "2 hrs", questionCount: 12, content: makeContent(true),
       },
       {
         id: "inst-23", number: 23, title: "Basic Computers",

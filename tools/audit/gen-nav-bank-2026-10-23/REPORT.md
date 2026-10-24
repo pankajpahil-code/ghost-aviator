@@ -95,3 +95,14 @@ option" wording. Four stem-changed items relabelled CORRECTED. Notes: removed th
 Published after the audit: **360**. For the Captain's ruling: CHART THEORY#25 (transverse Mercator
 convergency) and INS#106 (737 CDU message priorities). Not reference-checked: INS#7 and INS#32
 (published; the key matches the source and the physics).
+
+## Captain's ruling, 2026-10-24: "go with Oxford book"
+
+- CHART THEORY#25 restored, keyed b (Equator and Poles). The General Navigation reference (Transverse
+  Mercator properties) says chart convergence matches earth convergency at the Poles and the Equator,
+  "but not elsewhere". The source book had keyed a.
+- INS#106 restored with option b rewritten to "Alerting and Advisory" and keyed b. The instrumentation
+  reference describes the CDU MSG light as showing "an alerting or advisory message", and the CLR key
+  as clearing "advisory and alerting messages".
+
+Published: **362**.

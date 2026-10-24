@@ -5207,9 +5207,20 @@
   "n": 25,
   "ch": "nav-23",
   "subj": "air-navigation",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "Independent audit: the reference book gives chart convergency correct at the equator and poles, the source book says datum meridian and equator; for the Captain's ruling."
+  "notes": [
+   "Captain's ruling 2026-10-24: follow the reference book (convergency correct at the Poles and the Equator). The source book keyed a."
+  ],
+  "q": "Where is the convergency correct on a Transverse Mercator chart?",
+  "opts": [
+   "At the datum meridian and the Equator.",
+   "Only at the Equator and Poles.",
+   "Only at the datum meridian.",
+   "At the Parallel of Origin."
+  ],
+  "ans": 1,
+  "exp": "A transverse Mercator touches the earth along its datum meridian. Its chart convergency matches earth convergency only at the poles and at the equator, not elsewhere, so the answer is the Equator and Poles.",
+  "status": "CORRECTED",
+  "book": "a"
  },
  {
   "sec": "CHART THEORY",
@@ -6323,9 +6334,20 @@
   "n": 106,
   "ch": "inst-22",
   "subj": "instrumentation",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "Independent audit: the reference keys 'Alerting and Advisory', which is not offered; for the Captain's ruling."
+  "notes": [
+   "Captain's ruling 2026-10-24: follow the reference book (CDU messages are alerting and advisory). Option b rewritten from Warning and Advisory."
+  ],
+  "q": "What is the highest priority and lowest priority, message produced by the CDU of the B737-400 EFIS?",
+  "opts": [
+   "Caution and Advisory.",
+   "Alerting and Advisory.",
+   "Urgent and Routine.",
+   "Warning and Caution."
+  ],
+  "ans": 1,
+  "exp": "FMS CDU messages come in two classes: alerting messages, which need the crew's attention and are the highest priority, and advisory messages, the lowest. The MSG light on the CDU shows that an alerting or advisory message is waiting.",
+  "status": "CORRECTED",
+  "book": "b"
  },
  {
   "sec": "INS IRS FMS EFIS",
