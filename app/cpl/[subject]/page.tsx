@@ -12,6 +12,7 @@ import SubjectProgressBar from "@/app/components/SubjectProgressBar";
 import ChapterProgressBadge from "@/app/components/ChapterProgressBadge";
 import RtrBookExperience from "@/app/components/RtrBookExperience";
 import { SITE_URL, ORG_ID } from "@/lib/site";
+import { fitTitle, padSnippet, subjectLabel } from "@/lib/chapter-meta";
 
 const CONTENT_ICONS: Record<string, React.ElementType> = {
   notes: FileText, video: Video,
@@ -63,9 +64,14 @@ export async function generateMetadata({ params }: { params: Promise<{ subject: 
   const subject = CPL_SUBJECTS.find(s => s.id === subjectId);
   if (!subject) return {};
   
+  // Ticket #7/#9: titles within 60 characters (brand dropped first), descriptions
+  // 120–160. The subject's own description is kept and only cut cleanly.
+  const name = subjectLabel(subject);
   return {
-    title: `${subject.name} (CPL) Syllabus, Question Bank & Notes | Ghost Aviator`,
-    description: subject.description,
+    title: subject.id === "radio-telephony"
+      ? fitTitle(name, ["DGCA CPL RTR(A) Notes & Questions | Ghost Aviator", "DGCA CPL RTR(A) Notes & Questions", "DGCA CPL RTR(A) Notes"])
+      : fitTitle(name, ["DGCA CPL Notes & Question Bank | Ghost Aviator", "DGCA CPL Notes & Questions | Ghost Aviator", "DGCA CPL Notes & Question Bank", "DGCA CPL Notes & Questions", "DGCA CPL Notes"]),
+    description: padSnippet(subject.description, [`DGCA CPL ${name} notes and practice by chapter.`, "Free on Ghost Aviator, no sign-up."]),
     ...(isIndexableSubject(subject) ? {} : NOINDEX),
     alternates: { canonical: `/cpl/${subject.id}` },
   };
@@ -75,21 +81,6 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
   const { subject: subjectId } = await params;
   const subject = CPL_SUBJECTS.find(s => s.id === subjectId);
   if (!subject) notFound();
-
-  // The Radio Telephony paper is Capt. Pankaj Pahil's full RTR(A) book — it gets
-  // its own cinematic "grimoire" landing instead of the generic chapter list.
-  if (subject.id === "radio-telephony") {
-    return <RtrBookExperience subject={subject} />;
-  }
-
-  // Real figures, read from the question bank (Iron Rule 5), never hand-typed.
-  const pool = getSubjectQuestionPool(subject.id).length;
-  const testsOpen = pool >= MIN_TEST_POOL;
-  const midQs = Math.min(MID_TEST_QUESTIONS, pool);
-  const fullQs = Math.min(subject.totalQuestions, pool);
-  const paper = paperFor(subject.id);
-  const passMark = paper?.passMark ?? subject.passMark;
-  const studyHours = Math.round(subject.chapters.reduce((s, c) => s + durationHours(c.duration), 0) * 10) / 10;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -111,6 +102,27 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
       },
     ],
   };
+
+  // The Radio Telephony paper is Capt. Pankaj Pahil's full RTR(A) book — it gets
+  // its own cinematic "grimoire" landing instead of the generic chapter list.
+  // It carries the same Course + BreadcrumbList data as every other hub (#9).
+  if (subject.id === "radio-telephony") {
+    return (
+      <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <RtrBookExperience subject={subject} />
+      </>
+    );
+  }
+
+  // Real figures, read from the question bank (Iron Rule 5), never hand-typed.
+  const pool = getSubjectQuestionPool(subject.id).length;
+  const testsOpen = pool >= MIN_TEST_POOL;
+  const midQs = Math.min(MID_TEST_QUESTIONS, pool);
+  const fullQs = Math.min(subject.totalQuestions, pool);
+  const paper = paperFor(subject.id);
+  const passMark = paper?.passMark ?? subject.passMark;
+  const studyHours = Math.round(subject.chapters.reduce((s, c) => s + durationHours(c.duration), 0) * 10) / 10;
 
   return (
     <div style={{ background:"#0b1117" }} className="min-h-screen">

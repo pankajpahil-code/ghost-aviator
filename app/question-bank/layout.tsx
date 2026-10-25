@@ -1,4 +1,5 @@
 import IndexBreadcrumb from "./IndexBreadcrumb";
+import { DEFAULT_OG_IMAGES } from "@/lib/og";
 
 export const metadata = {
   title: "Free DGCA Question Bank — CPL & ATPL MCQs with Explanations",
@@ -6,6 +7,8 @@ export const metadata = {
   openGraph: {
     title: "DGCA Question Bank | Ghost Aviator",
     description: "Thousands of latest chapter-wise MCQs with detailed explanations for Air Regulations, Navigation, and Meteorology.",
+    url: "./",
+    images: DEFAULT_OG_IMAGES,
   },
   alternates: { canonical: "/question-bank" },
 };

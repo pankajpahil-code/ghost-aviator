@@ -45,7 +45,17 @@ export async function generateMetadata({
     ),
     alternates: { canonical: type === "notes" ? `/cpl/${getNotesSource(subject.id, chapter.id).subjectId}/${getNotesSource(subject.id, chapter.id).chapterId}/notes` : `/atpl/${subject.id}/${chapter.id}/${type}` },
     // Shared notes retain their source canonical; drills and stubs stay noindex.
-    ...(isIndexableChapterRoute(subject.id, chapter.id, type) ? {} : NOINDEX),
+    //
+    // Ticket #9 (2026-10-25): a published ATPL notes page used to send BOTH
+    // rel=canonical -> the CPL document AND noindex. Those conflict: noindex
+    // says "drop this URL", canonical says "fold its signals into that one",
+    // and Google documents that it may apply the noindex to the canonical
+    // target or ignore the canonical. lib/indexability.ts only says these pages
+    // "canonicalise to their existing CPL document", so the canonical is the
+    // intended signal and the noindex is dropped for them. They stay out of the
+    // sitemap (isIndexableChapterRoute is unchanged), as a non-canonical URL should.
+    ...(isIndexableChapterRoute(subject.id, chapter.id, type) ||
+        (type === "notes" && servesRealNotes(subject.id, chapter.id)) ? {} : NOINDEX),
   };
 }
 

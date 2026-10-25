@@ -122,7 +122,16 @@ export default async function Page({
           { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
           { "@type": "ListItem", position: 2, name: "CPL", item: `${SITE_URL}/cpl` },
           { "@type": "ListItem", position: 3, name: subject.name, item: `${SITE_URL}/cpl/${subject.id}` },
-          { "@type": "ListItem", position: 4, name: `Ch.${chapter.number} ${chapter.title}` },
+          // Questions pages (ticket #10) get a fifth crumb; the chapter crumb
+          // then needs an item URL, so it points at the notes when they exist.
+          ...(type === "questions" && isIndexableChapterRoute(subject.id, chapter.id, "notes")
+            ? [
+                { "@type": "ListItem", position: 4, name: `Ch.${chapter.number} ${chapter.title}`, item: `${SITE_URL}/cpl/${subject.id}/${chapter.id}/notes` },
+                { "@type": "ListItem", position: 5, name: "Practice Questions" },
+              ]
+            : type === "questions"
+              ? [{ "@type": "ListItem", position: 4, name: `Ch.${chapter.number} ${chapter.title} – Practice Questions` }]
+              : [{ "@type": "ListItem", position: 4, name: `Ch.${chapter.number} ${chapter.title}` }]),
         ],
       },
     ],
@@ -256,6 +265,8 @@ export default async function Page({
 
   if (type === "questions") {
     return (
+      <>
+      {jsonLdScript}
       <QuestionsPage
         track="cpl"
         subject={subject}
@@ -265,6 +276,7 @@ export default async function Page({
         hasNotes={servesRealNotes(subject.id, chapter.id)}
         related={related}
       />
+      </>
     );
   }
 

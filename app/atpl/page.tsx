@@ -4,8 +4,18 @@ import { ATPL_SUBJECTS } from "@/lib/subjects";
 import { servesRealNotes, publishedNoteCount } from "@/lib/indexability";
 import { ATPL_AREAS, ATPL_SYLLABUS_URL, ATPL_MANUAL_URL, ATPL_RULES_URL, ATPL_CORE_PAPER_IDS, ATPL_REGULATIONS_EXEMPTION, isAtplCorePaper } from "@/lib/atpl-syllabus";
 import styles from "./Atpl.module.css";
+import { SITE_URL } from "@/lib/site";
+const BREADCRUMB_LD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": `${SITE_URL}/atpl#breadcrumb`,
+  "itemListElement": [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "ATPL", item: `${SITE_URL}/atpl` },
+  ],
+};
 export const metadata: Metadata = {
-  title: "DGCA ATPL (Aeroplanes) | Syllabus & Pilot Study Library",
+  title: "DGCA ATPL Syllabus & Study Notes | Ghost Aviator",
   description: "DGCA ATPL Aeroplanes syllabus, organised reference notes and official examination resources for professional pilots. Browse by syllabus area.",
   alternates: { canonical: "/atpl" },
 };
@@ -16,9 +26,10 @@ export default function ATPLPage() {
     { id: "references", title: "Reference and aircraft-specific study", intro: "The broader CAR also covers regulatory and technical knowledge. These additional study areas are separate from the three general papers above. Aircraft-specific examinations and requirements depend on your application and aircraft type.", subjects: ATPL_SUBJECTS.filter(s => !isAtplCorePaper(s.id)) },
   ];
   return <div className={styles.page}><div className={styles.wrap}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
     <Link href="/">Home</Link>
     <header className={styles.hero}><div className={styles.eyebrow}>Professional pilot study library · Aeroplanes</div>
-      <h1>ATPL knowledge.<br />Organised for the flight deck.</h1>
+      <h1>DGCA ATPL study library.<br />Organised for the flight deck.</h1>
       <p>Return to a subject, find a reference, or plan your next study session. A focused library for pilots preparing for DGCA ATPL examinations and revisiting the underlying theory.</p>
       <nav className={styles.nav} aria-label="ATPL study navigation"><a href="#syllabus">ATPL general papers</a><a href="#references">Further study references</a><a href="#study">Plan your study</a><Link href="/cpl">Question practice in CPL</Link></nav>
     </header>

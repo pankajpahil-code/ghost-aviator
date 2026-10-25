@@ -7,10 +7,25 @@ import { servesRealNotes, isIndexableSubject, NOINDEX } from "@/lib/indexability
 import { ATPL_AREAS, ATPL_SYLLABUS_URL, ATPL_RULES_URL, ATPL_REGULATIONS_EXEMPTION } from "@/lib/atpl-syllabus";
 import { ATPL_STUDY_TOPICS } from "@/lib/atpl-study-topics";
 import styles from "../Atpl.module.css";
+import { SITE_URL } from "@/lib/site";
+import { fitTitle, padSnippet, subjectLabel } from "@/lib/chapter-meta";
 export function generateStaticParams() { return ATPL_SUBJECTS.map(s => ({ subject:s.id })); }
 export async function generateMetadata({params}:{params:Promise<{subject:string}>}):Promise<Metadata> {
   const {subject:id}=await params; const subject=ATPL_SUBJECTS.find(s=>s.id===id);
-  return subject ? {title:`${subject.name} | DGCA ATPL Study References`,description:id === "atpl-air-regulations" ? "Air Regulation reference notes. Current Indian CPL holders are exempt from the ATPL Air Regulations examination; check requirements for other applications." : subject.description,...(isIndexableSubject(subject) ? {} : NOINDEX),alternates:{canonical:`/atpl/${id}`}} : {};
+  if (!subject) return {};
+  // Ticket #9: keyword-first title within 60 characters, description 120–160.
+  const name = subjectLabel(subject);
+  const published = subject.chapters.filter(ch => servesRealNotes(id, ch.id)).length;
+  const base = id === "atpl-air-regulations" ? "Air Regulation reference notes. Current Indian CPL holders are exempt from the ATPL Air Regulations examination; check requirements for other applications." : subject.description;
+  return {
+    title: fitTitle(name, ["DGCA ATPL Study Notes | Ghost Aviator", "DGCA ATPL Notes | Ghost Aviator", "DGCA ATPL Study Notes", "DGCA ATPL Notes"]),
+    description: padSnippet(base, [
+      ...(published > 0 ? [`DGCA ATPL ${name} study notes: ${published} chapters grouped by topic.`] : []),
+      "Free on Ghost Aviator, no sign-up.",
+    ]),
+    ...(isIndexableSubject(subject) ? {} : NOINDEX),
+    alternates: { canonical: `/atpl/${id}` },
+  };
 }
 export default async function ATPLSubjectPage({params}:{params:Promise<{subject:string}>}) {
   const {subject:id}=await params; const subject=ATPL_SUBJECTS.find(s=>s.id===id); const area=ATPL_AREAS.find(a=>a.id===id);
@@ -20,8 +35,18 @@ export default async function ATPLSubjectPage({params}:{params:Promise<{subject:
     chapters: chapters.filter(ch => topic.sources.some(ref => ref.subjectId === ch.notesSource?.subjectId && ref.chapterIds.includes(ch.notesSource.chapterId))),
   })).filter(topic => topic.chapters.length > 0);
   const lectures=subject.chapters.filter(ch=>getChapterVideos(id,ch.id).length>0);
-  return <div className={styles.page}><div className={styles.wrap}><Link href="/atpl">← ATPL study library</Link>
-    <header className={styles.hero}><div className={styles.eyebrow}>{id === "atpl-air-regulations" ? "Regulatory reference" : "ATPL Aeroplanes"} · {area.reference}</div><h1>{subject.name}{id === "atpl-air-regulations" ? " — Reference" : ""}</h1><p>{subject.description}</p><a href={ATPL_SYLLABUS_URL} target="_blank" rel="noopener noreferrer">Read the official syllabus</a>
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${SITE_URL}/atpl/${id}#breadcrumb`,
+    "itemListElement": [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "ATPL", item: `${SITE_URL}/atpl` },
+      { "@type": "ListItem", position: 3, name: subject.name, item: `${SITE_URL}/atpl/${id}` },
+    ],
+  };
+  return <div className={styles.page}><div className={styles.wrap}><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} /><Link href="/atpl">← ATPL study library</Link>
+    <header className={styles.hero}><div className={styles.eyebrow}>{id === "atpl-air-regulations" ? "Regulatory reference" : "ATPL Aeroplanes"} · {area.reference}</div><h1>{subject.name} – DGCA ATPL {id === "atpl-air-regulations" ? "Reference Notes" : "Study Notes"}</h1><p>{subject.description}</p><a href={ATPL_SYLLABUS_URL} target="_blank" rel="noopener noreferrer">Read the official syllabus</a>
       {id === "atpl-air-regulations" && <div className={styles.note}><p><strong>Current Indian CPL holders: no separate ATPL Air Regulations paper.</strong> {ATPL_REGULATIONS_EXEMPTION} <a href={ATPL_RULES_URL} target="_blank" rel="noopener noreferrer">Read the exemption in Schedule II, Section M, 1(d)</a>.</p></div>}
     </header>
     <section className={styles.section}><h2>Study notes by topic</h2><p>Ghost Aviator notes prepared for CPL and ATPL study. Choose a topic below and read the same chapters here in ATPL.</p>

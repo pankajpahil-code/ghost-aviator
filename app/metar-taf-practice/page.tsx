@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { fitSnippet } from "@/lib/chapter-meta";
 import type { Metadata } from "next";
 import { getChapterSpecificQuestions } from "@/lib/questions";
 import { getExamPaper } from "@/lib/exam-papers-meta";
 import { SITE_URL, ORG_ID } from "@/lib/site";
 import { faqPageJsonLd, formatDuration, type Faq } from "@/lib/landing-pages";
+import { DEFAULT_OG_IMAGES } from "@/lib/og";
 
 const SUBJECT = "meteorology";
 const CHAPTERS = [
@@ -19,13 +21,13 @@ function load() {
 
 export function generateMetadata(): Metadata {
   const { total } = load();
-  const title = `METAR and TAF Practice Questions for DGCA Meteorology | Ghost Aviator`;
-  const description = `${total} free DGCA CPL METAR, SPECI, TREND and TAF practice questions with the correct answer and explanation, plus notes and lectures for decoding aerodrome weather reports and forecasts. No sign-up needed.`;
+  const title = `METAR & TAF Practice Questions (DGCA) | Ghost Aviator`;
+  const description = fitSnippet(`${total} free DGCA CPL METAR, SPECI, TREND and TAF practice questions with answers and explanations, plus notes and lectures. No sign-up needed.`);
   return {
     title,
     description,
     alternates: { canonical: "/metar-taf-practice" },
-    openGraph: { type: "website", title, description, url: `${SITE_URL}/metar-taf-practice` },
+    openGraph: { type: "website", title, description, url: `${SITE_URL}/metar-taf-practice`, images: DEFAULT_OG_IMAGES },
   };
 }
 

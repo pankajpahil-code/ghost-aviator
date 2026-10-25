@@ -5,6 +5,7 @@ import { ChevronRight, ChevronLeft, BookOpen, CheckCircle, XCircle, RotateCcw, H
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { DemoQuestion } from "@/lib/demo-questions";
 import { isRealExplanation } from "@/lib/explanation";
+import { subjectLabel } from "@/lib/chapter-meta";
 
 type Props = {
   track: "cpl" | "atpl";
@@ -170,11 +171,9 @@ export default function QuestionsPage({ track, subject, chapter, questions, chap
               first to decide what a page is about. The subject line below it
               is visible, not sr-only: it names the exam and the subject, which
               is the query a student actually types. */}
+          {/* Ticket #7: "<Topic> - DGCA CPL <Subject> Practice Questions" as one heading. */}
           <h1 className="text-xl font-black text-white">
-            {chapter.title}
-            <span className="block text-xs font-bold mt-1" style={{ color: "#64748b" }}>
-              {subject.name} — DGCA {track.toUpperCase()} practice questions
-            </span>
+            {chapter.title} - DGCA {track.toUpperCase()} {subjectLabel(subject)} Practice Questions
           </h1>
           <p className="text-xs mt-1" style={{ color: "#475569" }}>Question {current + 1} of {questions.length}</p>
         </div>

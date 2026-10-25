@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { fitTitle, fitSnippet } from "@/lib/chapter-meta";
 import type { Metadata } from "next";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { getSubjectQuestionPool, getChapterSpecificQuestions } from "@/lib/questions";
@@ -8,6 +9,7 @@ import { isRealExplanation } from "@/lib/explanation";
 import { getExamPaper } from "@/lib/exam-papers-meta";
 import { SITE_URL, ORG_ID } from "@/lib/site";
 import { QB_LANDINGS, qbLandingFor, faqPageJsonLd, formatDuration, type Faq } from "@/lib/landing-pages";
+import { DEFAULT_OG_IMAGES } from "@/lib/og";
 
 export function generateStaticParams() {
   return QB_LANDINGS.map(l => ({ subject: l.subjectId }));
@@ -35,13 +37,13 @@ export async function generateMetadata({ params }: { params: Promise<{ subject: 
   const d = load(id);
   if (!d) return { title: "Not Found" };
   const n = d.pool.length.toLocaleString("en-IN");
-  const title = `DGCA ${d.landing.label} Question Bank: ${n} Free Questions | Ghost Aviator`;
-  const description = `${n} free DGCA CPL ${d.landing.label} practice questions with the correct answer marked and explanations where written, split across ${d.chapters.length} chapter question pages. No sign-up needed.`;
+  const title = fitTitle(`DGCA ${d.landing.label} Question Bank`, [`${n} Free Questions | Ghost Aviator`, `${n} Free Questions`, "Ghost Aviator"]);
+  const description = fitSnippet(`${n} free DGCA CPL ${d.landing.label} practice questions with answers marked and explanations where written, across ${d.chapters.length} chapter pages. No sign-up needed.`);
   return {
     title,
     description,
     alternates: { canonical: `/question-bank/${id}` },
-    openGraph: { type: "website", title, description, url: `${SITE_URL}/question-bank/${id}` },
+    openGraph: { type: "website", title, description, url: `${SITE_URL}/question-bank/${id}`, images: DEFAULT_OG_IMAGES },
   };
 }
 
