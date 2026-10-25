@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ChevronRight, ArrowRight, BookOpen, Sparkles, HelpCircle, ListChecks } from "lucide-react";
+import { ChevronRight, ArrowRight, BookOpen, Sparkles, HelpCircle, ListChecks, Video } from "lucide-react";
 import type { Subject } from "@/lib/subjects";
 import ChapterProgressBadge from "@/app/components/ChapterProgressBadge";
+import { getChapterVideos } from "@/lib/chapter-videos";
 import SubjectProgressBar from "@/app/components/SubjectProgressBar";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -120,6 +121,9 @@ export default function RtrBookExperience({ subject }: { subject: Subject }) {
                 if (!ch) return null;
                 const delay = `${(mi * 3 + ci) * 55}ms`;
                 const hasQs = ch.questionCount > 0;
+                // A mapped lecture IS the video page (lib/chapter-videos.ts) —
+                // rtf-1/video was live and in the sitemap but linked from nowhere.
+                const hasVideo = getChapterVideos(subject.id, ch.id).length > 0;
                 return (
                   <div
                     key={ch.id}
@@ -143,14 +147,21 @@ export default function RtrBookExperience({ subject }: { subject: Subject }) {
                     </Link>
                     <p className="rtrx-card-desc">{ch.description}</p>
 
-                    {hasQs && (
+                    {(hasQs || hasVideo) && (
                       <div className="rtrx-card-actions">
+                        {hasQs && (<>
                         <Link href={`/cpl/${subject.id}/${ch.id}/questions`} className="rtrx-pill rtrx-pill-green">
                           <HelpCircle className="w-3 h-3" /> {ch.questionCount} Practice Qs
                         </Link>
                         <Link href={`/cpl/${subject.id}/${ch.id}/chapter-quiz`} className="rtrx-pill rtrx-pill-orange">
                           <ListChecks className="w-3 h-3" /> Chapter Quiz
                         </Link>
+                        </>)}
+                        {hasVideo && (
+                          <Link href={`/cpl/${subject.id}/${ch.id}/video`} className="rtrx-pill rtrx-pill-red">
+                            <Video className="w-3 h-3" /> Video Lecture
+                          </Link>
+                        )}
                       </div>
                     )}
 
@@ -328,6 +339,8 @@ const RTRX_CSS = `
 .rtrx-pill-green:hover { box-shadow: 0 4px 16px rgba(16,185,129,0.25); }
 .rtrx-pill-orange { color: #fdba74; background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.35); }
 .rtrx-pill-orange:hover { box-shadow: 0 4px 16px rgba(249,115,22,0.25); }
+.rtrx-pill-red { color: #fca5a5; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.35); }
+.rtrx-pill-red:hover { box-shadow: 0 4px 16px rgba(239,68,68,0.25); }
 .rtrx-card-read { display: inline-flex; align-items: center; gap: 5px; font-size: .78rem; font-weight: 800; color: #fcd34d; text-decoration: none; }
 .rtrx-card-read svg { transition: transform .25s; }
 .rtrx-card-read:hover svg { transform: translateX(4px); }

@@ -6,7 +6,7 @@ import { getQuestionsForChapter, getChapterSpecificQuestions } from "@/lib/quest
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { chapterMetaDescription, chapterTitle } from "@/lib/chapter-meta";
 import { isIndexableChapterRoute, servesRealNotes, adjacentWithContent, NOINDEX } from "@/lib/indexability";
-import { getInlineNotes } from "@/lib/notes-inline";
+import { getInlineNotes, notesSectionHeadings } from "@/lib/notes-inline";
 import { openerFactsFor } from "@/lib/opener-key-facts";
 import { videoObjectsFor, lecturePartsFor, isWatchPage } from "@/lib/video-schema";
 import NotesPage       from "@/app/components/content/NotesPage";
@@ -191,6 +191,7 @@ export default async function Page({
             parts={lecturePartsFor(videos)}
             hasNotes={servesRealNotes(subject.id, chapter.id)}
             hasQuestions={getChapterSpecificQuestions(subject.id, chapter.id).length > 0}
+            notesHeadings={servesRealNotes(subject.id, chapter.id) ? notesSectionHeadings(subject.id, chapter.id, chapter.title) : []}
           />
         </>
       );

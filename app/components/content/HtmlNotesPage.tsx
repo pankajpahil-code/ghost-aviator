@@ -3,7 +3,7 @@
 import Link from "next/link";
 import NotesActions from "./NotesActions";
 import { NOTES_FIT_CSS } from "@/lib/notes-layout";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import ReadAloudControls from "@/app/components/ReadAloudControls";
 import { ChevronRight, ChevronLeft, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
@@ -30,6 +30,8 @@ type Props = {
    *  lib/chapter-key-facts.ts has no hand-written entry. Passed as a prop so the full set never
    *  enters a client bundle. */
   openerFacts?: ChapterKeyFacts;
+  /** Server-rendered links to this chapter's indexable video / questions pages (ChapterStudyLinks). */
+  related?: ReactNode;
 };
 
 // ─── The chapters' own buttons ──────────────────────────────────────────────
@@ -166,7 +168,7 @@ function runInputAction(root: HTMLElement, act: string, value: string) {
   }
 }
 
-export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, notes, videos, openerFacts }: Props) {
+export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, notes, videos, openerFacts, related }: Props) {
   const notesRef = useRef<HTMLDivElement>(null);
   const keyFacts = keyFactsFor(subject.id, chapter.id) ?? openerFacts;
 
@@ -356,6 +358,8 @@ ${NOTES_FIT_CSS}
         )}
 
         <LiveClassUpsell subjectId={subject.id} subjectColor={subject.color} />
+
+        {related}
 
         {/* Chapter navigation */}
         <div className="flex items-center justify-between gap-4 mt-2 mb-6">

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { ChevronRight, ChevronLeft, BookOpen, CheckCircle, XCircle, RotateCcw, HelpCircle } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
@@ -21,9 +21,12 @@ type Props = {
    *  unconditional and led into a "being prepared" stub on chapters that have
    *  none — a dead end for the student and an empty URL for a crawler. */
   hasNotes?: boolean;
+  /** Server-rendered links to this chapter's indexable notes / video pages and
+   *  the neighbouring chapters' question sets (ChapterStudyLinks). */
+  related?: ReactNode;
 };
 
-export default function QuestionsPage({ track, subject, chapter, questions, chapterSpecific = true, hasNotes = true }: Props) {
+export default function QuestionsPage({ track, subject, chapter, questions, chapterSpecific = true, hasNotes = true, related }: Props) {
   // Content protection for the full question list below — same deterrents the
   // notes carry. Iron Rule 3: the answers are the most valuable thing on the
   // site and the easiest to lift.
@@ -341,6 +344,8 @@ export default function QuestionsPage({ track, subject, chapter, questions, chap
           </ol>
         </section>
         )}
+
+        {related}
       </div>
     </div>
   );

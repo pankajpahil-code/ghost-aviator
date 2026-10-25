@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { CPL_SUBJECTS } from "@/lib/subjects";
 import { getQuestionsForChapter, getChapterSpecificQuestions } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
-import { getInlineNotes } from "@/lib/notes-inline";
+import { getInlineNotes, notesSectionHeadings } from "@/lib/notes-inline";
+import { chapterStudyLinks } from "@/lib/chapter-links";
 import { openerFactsFor } from "@/lib/opener-key-facts";
 import { isIndexableChapterRoute, servesRealNotes, adjacentWithContent, NOINDEX } from "@/lib/indexability";
 import { chapterMetaDescription, chapterTitle } from "@/lib/chapter-meta";
@@ -17,6 +18,7 @@ import ChapterQuizPage        from "@/app/components/content/ChapterQuizPage";
 import HtmlNotesPage          from "@/app/components/content/HtmlNotesPage";
 import VideoPage              from "@/app/components/content/VideoPage";
 import ComingSoonPage         from "@/app/components/content/ComingSoonPage";
+import ChapterStudyLinks      from "@/app/components/content/ChapterStudyLinks";
 
 // "slides" and "audio" were retired 2026-08-13. Old URLs are 308-redirected to
 // the chapter's notes in next.config.ts rather than 404'd, so any link a student
@@ -82,6 +84,14 @@ export default async function Page({
   const nextChapter = next >= 0 && next < subject.chapters.length ? subject.chapters[next] : null;
 
   const questions = getQuestionsForChapter(subject.id, chapter.id);
+
+  // Links to this chapter's other indexable routes (and, on /questions, the
+  // neighbouring question sets). Built here because the predicate reads the
+  // filesystem; the client page components just place the element.
+  const related = (
+    <ChapterStudyLinks chapter={chapter} color={subject.color}
+                       data={chapterStudyLinks("cpl", subject, chapterIdx, type)} />
+  );
 
   // Course + BreadcrumbList. The breadcrumb is what turns a bare URL in the
   // search result into "Home › CPL › Meteorology › Ch.3", which measurably
@@ -188,6 +198,7 @@ export default async function Page({
             notes={inlineNotes}
             videos={getChapterVideos(subject.id, chapter.id)}
             openerFacts={openerFactsFor(subject.id, chapter.id)}
+            related={related}
           />
         </>
       );
@@ -232,8 +243,11 @@ export default async function Page({
             nextChapter={nextChapter}
             videos={videos}
             parts={lecturePartsFor(videos)}
-            hasNotes={servesRealNotes(subject.id, chapter.id)}
-            hasQuestions={getChapterSpecificQuestions(subject.id, chapter.id).length > 0}
+            // Same predicate as the sibling route's robots tag: link only to
+            // pages that are indexable content (ticket #6).
+            hasNotes={isIndexableChapterRoute(subject.id, chapter.id, "notes")}
+            hasQuestions={isIndexableChapterRoute(subject.id, chapter.id, "questions")}
+            notesHeadings={notesSectionHeadings(subject.id, chapter.id, chapter.title)}
           />
         </>
       );
@@ -249,6 +263,7 @@ export default async function Page({
         questions={questions}
         chapterSpecific={getChapterSpecificQuestions(subject.id, chapter.id).length > 0}
         hasNotes={servesRealNotes(subject.id, chapter.id)}
+        related={related}
       />
     );
   }
