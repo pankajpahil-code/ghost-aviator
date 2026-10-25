@@ -35,10 +35,16 @@ export const metadata: Metadata = {
   // title, description and url here made every chapter page share as the
   // homepage. Left empty, Next fills og:title and og:description from the
   // page's own title and description (postProcessMetadata -> inheritFromMetadata
-  // in next/dist/lib/metadata/resolve-metadata.js), and no og:url is emitted
-  // rather than a wrong one. Do not put them back.
+  // in next/dist/lib/metadata/resolve-metadata.js). Do not put a fixed title,
+  // description or url back.
+  //
+  // url "./" is NOT the homepage: Next resolves a relative og:url against the
+  // pathname of the page being rendered (resolveAbsoluteUrlWithPathname in
+  // next/dist/lib/metadata/resolvers/resolve-url.js), so every page that
+  // inherits this object gets its own og:url (ticket #10, 2026-10-25).
   openGraph: {
     type: "website",
+    url: "./",
     siteName: "Ghost Aviator",
     // og image supplied by app/opengraph-image.tsx (file convention)
   },

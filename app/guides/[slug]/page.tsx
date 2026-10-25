@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { TITLE_MAX, fitSnippet } from "@/lib/chapter-meta";
 import Link from "next/link";
 import fs from "fs";
 import path from "path";
@@ -11,6 +12,7 @@ import { howToForGuide, howToJsonLd } from "@/lib/howto";
 import LiveClassUpsell from "@/app/components/LiveClassUpsell";
 import { botLink } from "@/lib/live-classes";
 import styles from "../GuideContent.module.css";
+import { DEFAULT_OG_IMAGES } from "@/lib/og";
 
 export function generateStaticParams() {
   return GUIDES.map(g => ({ slug: g.slug }));
@@ -21,18 +23,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const guide = GUIDES.find(g => g.slug === slug);
   if (!guide) return { title: "Not Found" };
   
+  // Ticket #7: titles <= 60 and meta descriptions <= 160 characters. The full
+  // guide.description still goes into the JSON-LD below.
+  const title = [`${guide.title} | Ghost Aviator Guides`, `${guide.title} | Ghost Aviator`]
+    .find(t => t.length <= TITLE_MAX) ?? guide.title;
+  const description = fitSnippet(guide.description);
   return {
-    title: `${guide.title} | Ghost Aviator Guides`,
-    description: guide.description,
+    title,
+    description,
     alternates: { canonical: `/guides/${guide.slug}` },
     openGraph: {
       type: "article",
       title: guide.title,
-      description: guide.description,
+      description,
       url: `${SITE_URL}/guides/${guide.slug}`,
       publishedTime: guide.date,
       modifiedTime: guide.updated,
       authors: [`${SITE_URL}/about`],
+      images: DEFAULT_OG_IMAGES,
     },
   };
 }

@@ -9,6 +9,7 @@ import { ALL_QUESTIONS } from "@/lib/questions";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import { LIVE_WHATSAPP, LIVE_PRICE } from "@/lib/live-classes";
 import { SITE_URL, CAPTAIN_PROFILES, TELEGRAM_GROUP, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
+import { DEFAULT_OG_IMAGES } from "@/lib/og";
 
 // Real photographs of the Captain, prepared by tools/prepare-captain-photo.mjs
 // and committed alongside this file.
@@ -45,6 +46,7 @@ export const metadata: Metadata = {
     description: "Pilot, DGCA flight & ground instructor, author of two aviation books. Free DGCA prep for every student pilot.",
     url: `${SITE_URL}/about`,
     type: "profile",
+    images: DEFAULT_OG_IMAGES,
   },
 };
 

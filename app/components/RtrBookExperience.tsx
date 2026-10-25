@@ -61,8 +61,10 @@ export default function RtrBookExperience({ subject }: { subject: Subject }) {
           </div>
 
           <h1 className="rtrx-title">
-            <span className="rtrx-title-shimmer">RTR(A)</span>
-            <span className="rtrx-title-sub">MASTERY</span>
+            <span className="rtrx-title-shimmer">RTR(A)</span>{" "}
+            <span className="rtrx-title-sub">MASTERY</span>{" "}
+            {/* The words a searcher types, inside the h1 (ticket #9). */}
+            <span className="rtrx-title-kw">Radio Telephony – DGCA CPL Notes &amp; Practice Questions</span>
           </h1>
 
           <p className="rtrx-tagline">
@@ -244,6 +246,10 @@ const RTRX_CSS = `
 .rtrx-title-sub {
   font-size: clamp(1.4rem, 5vw, 2.8rem); font-weight: 900; letter-spacing: .35em;
   color: #e2e8f0; padding-left: 4px; margin-top: 2px;
+}
+.rtrx-title-kw {
+  font-size: clamp(.95rem, 2.4vw, 1.15rem); font-weight: 700; letter-spacing: .06em;
+  color: #93c5fd; line-height: 1.35; margin-top: 14px; padding-left: 4px;
 }
 .rtrx-tagline { max-width: 620px; font-size: clamp(1rem, 2.4vw, 1.28rem); font-weight: 300;
   color: #cbd5e1; line-height: 1.5; margin: 0 0 26px; }

@@ -47,6 +47,8 @@ import { pathToFileURL } from "node:url";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "../lib/subjects";
 import { isIndexableChapterRoute } from "../lib/indexability";
 import { ALL_PAST_PAPERS } from "../lib/past-papers";
+import { QB_LANDINGS } from "../lib/landing-pages";
+import { pqRoutes } from "../lib/previous-questions";
 
 const ROOT = process.cwd();
 
@@ -87,6 +89,78 @@ function newestOf(...paths: (string | null | undefined)[]): string | null {
 }
 
 const exists = (p: string) => fs.existsSync(path.join(ROOT, p));
+
+/** The later of two ISO dates (either may carry Z or an offset), or null. */
+function later(a: string | null, b: string | null): string | null {
+  if (!a) return b;
+  if (!b) return a;
+  return Date.parse(b) > Date.parse(a) ? b : a;
+}
+
+// ─── Line-level dates for files that hold many pages' data ───────────────────
+//
+// Ticket #8 (2026-10-25): every /video route was dated by the newest commit to
+// lib/chapter-videos.ts, and every subject hub by the newest commit to
+// lib/subjects.ts — so adding one lecture re-dated ~150 video pages and editing
+// one chapter blurb re-dated every hub. `git blame` gives each line the commit
+// that last changed it, so a page can be dated by the lines that describe it.
+
+function blameDates(rel: string): string[] {
+  if (!exists(rel)) return [];
+  const out = cp.execSync(`git blame --line-porcelain -- "${rel}"`,
+    { cwd: ROOT, maxBuffer: 256 * 1024 * 1024 }).toString();
+  const lines: string[] = [];
+  let time = 0;
+  for (const raw of out.split("\n")) {
+    const l = raw.replace(/\r$/, "");
+    if (l.startsWith("committer-time ")) time = Number(l.slice(15));
+    else if (l.startsWith("\t")) lines.push(new Date(time * 1000).toISOString());
+  }
+  return lines;
+}
+
+function newestInRange(dates: string[], from: number, to: number): string | null {
+  let best: string | null = null;
+  for (let i = from; i <= to && i < dates.length; i++) best = later(best, dates[i]);
+  return best;
+}
+
+/** "<subject>/<chapter>" -> newest blame date of that key's entry in chapter-videos.ts. */
+function videoBlockDates(): Map<string, string> {
+  const rel = "lib/chapter-videos.ts";
+  const text = fs.readFileSync(path.join(ROOT, rel), "utf8").split(/\r?\n/);
+  const dates = blameDates(rel);
+  const out = new Map<string, string>();
+  for (let i = 0; i < text.length; i++) {
+    const m = text[i].match(/^\s*"([a-z0-9-]+\/[a-z0-9-]+)":\s*\[/);
+    if (!m) continue;
+    let end = i;
+    // A one-line entry closes on its own line; otherwise run to the closing "],".
+    if (!/\]\s*,?\s*(\/\/.*)?$/.test(text[i])) {
+      while (end + 1 < text.length && !/^\s*\]\s*,?\s*(\/\/.*)?$/.test(text[end])) end++;
+      end++;
+    }
+    const d = newestInRange(dates, i, end);
+    if (d) out.set(m[1], d);
+  }
+  return out;
+}
+
+/** Subject id -> newest blame date of its block in lib/subjects.ts. */
+function subjectBlockDates(): Map<string, string> {
+  const rel = "lib/subjects.ts";
+  const text = fs.readFileSync(path.join(ROOT, rel), "utf8").split(/\r?\n/);
+  const dates = blameDates(rel);
+  const starts: { id: string; line: number }[] = [];
+  text.forEach((l, i) => { const m = l.match(/^    id: "([a-z0-9-]+)"/); if (m) starts.push({ id: m[1], line: i }); });
+  const out = new Map<string, string>();
+  starts.forEach((st, k) => {
+    const end = k + 1 < starts.length ? starts[k + 1].line - 1 : text.length - 1;
+    const d = newestInRange(dates, Math.max(0, st.line - 2), end);
+    if (d) out.set(st.id, d);
+  });
+  return out;
+}
 
 // ─── Which source file actually decides each kind of page ────────────────────
 
@@ -181,6 +255,9 @@ const STATIC_SOURCES: Record<string, string[]> = {
   "/how-answers-are-verified":["app/how-answers-are-verified/page.tsx", "lib/verification-status.ts"],
   "/faq":                     ["app/faq/page.tsx", "lib/faq.ts"],
   "/cpl-cost-calculator":     ["app/cpl-cost-calculator/page.tsx", "app/components/Calculator.tsx"],
+  // Ticket #8: submitted by the sitemap but never dated.
+  "/free-dgca-mock-test":     ["app/free-dgca-mock-test/page.tsx", "lib/exam-papers-meta.ts", "lib/landing-pages.ts"],
+  "/corrections":             ["app/corrections/page.tsx", "lib/corrections.ts"],
 };
 
 for (const [route, sources] of Object.entries(STATIC_SOURCES)) {
@@ -192,21 +269,63 @@ for (const [route, sources] of Object.entries(STATIC_SOURCES)) {
   put(route, newestOf(...present));
 }
 
+// /metar-taf-practice renders the met-25 and met-26 question sets.
+put("/metar-taf-practice", newestOf("app/metar-taf-practice/page.tsx",
+  ...(BANKS.get("meteorology/met-25") ?? []), ...(BANKS.get("meteorology/met-26") ?? [])));
+
+// /question-bank/<subject>: the landing page plus the banks behind the subject.
+for (const l of QB_LANDINGS) {
+  const subject = CPL_SUBJECTS.find(s => s.id === l.subjectId);
+  const banks = (subject?.chapters ?? []).flatMap(ch => BANKS.get(`${l.subjectId}/${ch.id}`) ?? []);
+  put(`/question-bank/${l.subjectId}`,
+      newestOf("app/question-bank/[subject]/page.tsx", "lib/landing-pages.ts", ...banks));
+}
+
+// /dgca-exam-questions/*: one generated data module feeds every page.
+const PQ_PAGE: Record<number, string> = {
+  1: "app/dgca-exam-questions/page.tsx",
+  2: "app/dgca-exam-questions/[subject]/page.tsx",
+  3: "app/dgca-exam-questions/[subject]/[topic]/page.tsx",
+};
+for (const route of pqRoutes()) {
+  const depth = route.split("/").filter(Boolean).length;
+  put(route, newestOf(PQ_PAGE[depth], "lib/previous-questions.ts", "lib/generated/previous-questions.ts"));
+}
+
+const VIDEO_DATES = videoBlockDates();
+const SUBJECT_DATES = subjectBlockDates();
+
 function chapterRoutes(track: "cpl" | "atpl", subjects: Subject[]) {
   for (const s of subjects) {
-    put(`/${track}/${s.id}`, newestOf("lib/subjects.ts"));
+    put(`/${track}/${s.id}`, track === "cpl"
+      ? later(SUBJECT_DATES.get(s.id) ?? newestOf("lib/subjects.ts"), newestOf("app/cpl/[subject]/page.tsx"))
+      : newestOf("app/atpl/[subject]/page.tsx", "lib/atpl-syllabus.ts", "lib/atpl-study-topics.ts"));
     for (const ch of s.chapters) {
       if (isIndexableChapterRoute(s.id, ch.id, "notes")) {
-        put(`/${track}/${s.id}/${ch.id}/notes`,
-            newestOf(`public/content/${s.id}/${ch.id}/notes.html`));
+        // Air Regs ch.1 renders from a React component, not a published file.
+        const notesFile = s.id === "air-regulations" && ch.id === "ar-1"
+          ? "app/components/content/AirRegsChapter1Notes.tsx"
+          : `public/content/${s.id}/${ch.id}/notes.html`;
+        put(`/${track}/${s.id}/${ch.id}/notes`, newestOf(notesFile));
       }
       if (isIndexableChapterRoute(s.id, ch.id, "questions")) {
-        put(`/${track}/${s.id}/${ch.id}/questions`,
-            newestOf(...(BANKS.get(`${s.id}/${ch.id}`) ?? [])));
+        // CPL Air Regs chapters (26) are mapped onto the older bank chapter IDs in
+        // lib/questions.ts, so a chapter with no directly tagged bank is dated by
+        // that mapping plus every Air Regs bank it can draw from.
+        const direct = BANKS.get(`${s.id}/${ch.id}`) ?? [];
+        const banks = direct.length || s.id !== "air-regulations" ? direct : [
+          "lib/questions.ts",
+          ...new Set([...BANKS].filter(([k]) => k.startsWith("air-regulations/")).flatMap(([, v]) => v)),
+        ];
+        put(`/${track}/${s.id}/${ch.id}/questions`, newestOf(...banks));
       }
       if (isIndexableChapterRoute(s.id, ch.id, "video")) {
+        // This chapter's own entry in chapter-videos.ts, and the notes whose
+        // headings the video page lists (ticket #4) — not the whole file.
+        const src = ch.notesSource ?? { subjectId: s.id, chapterId: ch.id };
+        const entry = VIDEO_DATES.get(`${s.id}/${ch.id}`) ?? VIDEO_DATES.get(`${src.subjectId}/${src.chapterId}`) ?? null;
         put(`/${track}/${s.id}/${ch.id}/video`,
-            newestOf("lib/chapter-videos.ts", "lib/generated/video-metadata.ts"));
+            later(entry, newestOf(`public/content/${src.subjectId}/${src.chapterId}/notes.html`)));
       }
     }
   }

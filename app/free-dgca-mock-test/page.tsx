@@ -3,16 +3,17 @@ import type { Metadata } from "next";
 import { EXAM_PAPERS } from "@/lib/exam-papers-meta";
 import { SITE_URL, ORG_ID } from "@/lib/site";
 import { QB_LANDINGS, faqPageJsonLd, formatDuration, type Faq } from "@/lib/landing-pages";
+import { DEFAULT_OG_IMAGES } from "@/lib/og";
 
-const TITLE = "Free DGCA Mock Test Online: Timed CPL Papers, No Sign-up | Ghost Aviator";
+const TITLE = "Free DGCA Mock Test Online: Timed CPL Papers | Ghost Aviator";
 const DESCRIPTION =
-  "Free DGCA mock tests online. Sit a timed CPL paper with the real question count, duration and 70% pass mark, no sign-up needed. Answers and explanations appear after you submit.";
+  "Free DGCA mock tests online: timed CPL papers with the real question count, duration and 70% pass mark. No sign-up; answers and explanations after you submit.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/free-dgca-mock-test" },
-  openGraph: { type: "website", title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/free-dgca-mock-test` },
+  openGraph: { type: "website", title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/free-dgca-mock-test`, images: DEFAULT_OG_IMAGES },
 };
 
 const FAQS: Faq[] = [

@@ -24,6 +24,7 @@ import {
   botLink,
   LIVE_BATCH_META,
 } from "@/lib/live-classes";
+import { DEFAULT_OG_IMAGES } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "DGCA CPL Online Ground Classes India — Met, Air Regs & Nav",
@@ -40,6 +41,7 @@ export const metadata: Metadata = {
     description: `5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. Learn from the captain himself.`,
     url: `${SITE_URL}/live-classes`,
     type: "website",
+    images: DEFAULT_OG_IMAGES,
   },
 };
 

@@ -43,6 +43,38 @@ import type { Subject, Chapter } from "@/lib/subjects";
  * a title, so every title stays unique. The number is still in the h1, the
  * breadcrumb and the URL.
  */
+/**
+ * The subject's full name as it reads in a title or heading: "Aviation
+ * Meteorology", "Air Regulations". Ticket #7 (2026-10-25) asked for full names
+ * instead of the short labels ("Tech Perf", "HPL"). Parentheticals such as
+ * "(Advanced)" are dropped, and "Navigation — Instrumentation" reads as
+ * "Instrumentation" (the part after the dash names the paper).
+ */
+export function subjectLabel(subject: Subject): string {
+  const name = subject.name.replace(/\s*\([^)]*\)\s*/g, " ").trim();
+  const parts = name.split(/\s+[—–]\s+/);
+  return parts[parts.length - 1] || subject.shortName;
+}
+
+/** Google shows roughly 60 characters of a title. */
+export const TITLE_MAX = 60;
+
+/**
+ * Pick the most complete title that fits in TITLE_MAX: the topic always leads,
+ * then the exam and the full subject, then the page kind, then the brand —
+ * which is the first thing dropped when space runs out (ticket #7). Only if no
+ * variant fits is the topic itself shortened.
+ */
+export function fitTitle(topic: string, variants: string[]): string {
+  for (const v of variants) {
+    const t = `${topic} – ${v}`;
+    if (t.length <= TITLE_MAX) return t;
+  }
+  if (topic.length <= TITLE_MAX) return topic;
+  const cut = topic.slice(0, TITLE_MAX - 1);
+  return cut.slice(0, cut.lastIndexOf(" ")).replace(/[\s,;:—–-]+$/, "") + "…";
+}
+
 export function chapterTitle(
   track: "cpl" | "atpl",
   subject: Subject,
@@ -50,25 +82,34 @@ export function chapterTitle(
   type: string,
 ): string {
   const exam = `DGCA ${track.toUpperCase()}`;
-  const subj = subject.shortName;
+  const full = subjectLabel(subject);
+  const short = subject.shortName;
   const brand = "Ghost Aviator";
+  const kinds: Record<string, string[]> = {
+    notes: ["Notes"],
+    questions: ["Practice Questions", "Questions"],
+    video: ["Video Lecture", "Lecture"],
+    "chapter-quiz": ["Chapter Quiz", "Quiz"],
+    "mock-test": ["Chapter Test", "Test"],
+  };
+  const kind = kinds[type] ?? kinds.notes;
+  const subjects = full === short ? [full] : [full, short];
 
-  switch (type) {
-    // "Practice Questions" and "Video Lecture" were trimmed to one word each:
-    // at ~60 visible characters, the second word was being cut off mid-way on
-    // most chapters and bought no relevance the first one did not.
-    case "questions":
-      return `${chapter.title} — ${exam} ${subj} Questions | ${brand}`;
-    case "video":
-      return `${chapter.title} — ${exam} ${subj} Lecture | ${brand}`;
-    case "chapter-quiz":
-      return `${chapter.title} Quiz — ${exam} ${subj} | ${brand}`;
-    case "mock-test":
-      return `${chapter.title} Chapter Test — ${exam} ${subj} | ${brand}`;
-    case "notes":
-    default:
-      return `${chapter.title} — ${exam} ${subj} Notes | ${brand}`;
+  const variants: string[] = [];
+  // Most complete first: full subject + kind + brand, then without the brand,
+  // then the short subject label, then the shorter page kind.
+  for (const k of kind) {
+    for (const subj of subjects) variants.push(`${exam} ${subj} ${k} | ${brand}`);
   }
+  for (const k of kind) {
+    for (const subj of subjects) variants.push(`${exam} ${subj} ${k}`);
+  }
+  for (const k of kind) variants.push(`${exam} ${k}`);
+  // Long chapter names: keep at least the exam (and the page kind if it fits).
+  const trackOnly = track.toUpperCase();
+  for (const k of kind) variants.push(`${trackOnly} ${k}`);
+  variants.push(exam, trackOnly);
+  return fitTitle(chapter.title, variants);
 }
 
 /**
@@ -111,6 +152,28 @@ export function fitSnippet(text: string, max = SNIPPET_MAX): string {
   return cut.replace(/[\s,;:—–-]+$/, "") + "…";
 }
 
+/** Ticket #7: descriptions run 120–160 characters. */
+export const DESCRIPTION_MIN = 120;
+
+/** Append true, generic tails to a short description until it reaches the minimum. */
+export function padSnippet(text: string, tails: string[]): string {
+  let out = fitSnippet(text);
+  for (const tail of tails) {
+    if (out.length >= DESCRIPTION_MIN) break;
+    const next = `${out} ${tail}`;
+    if (next.length <= SNIPPET_MAX) out = next;
+  }
+  return out;
+}
+
+/** The first candidate already inside 120–155 characters, else the last one padded. */
+function firstFitting(candidates: string[], tails: string[]): string {
+  for (const c of candidates) {
+    if (c.length >= DESCRIPTION_MIN && c.length <= SNIPPET_MAX) return c;
+  }
+  return padSnippet(candidates[candidates.length - 1], tails);
+}
+
 export function chapterMetaDescription(
   track: "cpl" | "atpl",
   subject: Subject,
@@ -120,30 +183,39 @@ export function chapterMetaDescription(
 ): string {
   const exam = `DGCA ${track.toUpperCase()}`;
   const topic = chapter.title;
-  const subj = subject.shortName;
+  const subj = subjectLabel(subject);
   const qty = questionCount > 0 ? `${questionCount} ` : "";
   // Three chapters own exactly one question (ar-24, inst-19, rnav-10), and the
   // snippet Google showed for them read "1 exam-style practice questions".
   // Small, and on a site whose entire claim is precision it is the wrong kind
   // of small. Both callers below need the noun, so it is computed once.
   const qWord = questionCount === 1 ? "question" : "questions";
+  const tails = [
+    `Chapter ${chapter.number} of the ${exam} ${subj} syllabus.`,
+    "Free on Ghost Aviator, no sign-up.",
+    "Free, no sign-up.",
+  ];
 
   switch (type) {
     case "questions":
-      return fitSnippet(`${qty}exam-style practice ${qWord} on ${topic}, with the correct answer and reasoning shown for each. Free ${exam} ${subj} preparation.`);
+      return padSnippet(`${qty}exam-style practice ${qWord} on ${topic}, with the correct answer and reasoning shown for each. Free ${exam} ${subj} preparation.`, tails);
     case "chapter-quiz":
-      return fitSnippet(`Timed self-test on ${topic} — ${qty}${qWord} scored instantly, so you know what you actually know before the ${exam} ${subj} paper.`);
+      return padSnippet(`Timed self-test on ${topic} — ${qty}${qWord} scored instantly, so you know what you actually know before the ${exam} ${subj} paper.`, tails);
     case "video":
-      return fitSnippet(`Video lecture on ${topic} for the ${exam} ${subj} paper, taught by the Captain. Free to watch, no sign-up.`);
+      return firstFitting([
+        `Video lecture on ${topic} for the ${exam} ${subj} paper, taught by Capt. Pankaj Pahil. Free to watch on Ghost Aviator, no sign-up.`,
+        `Video lecture on ${topic} for the ${exam} ${subj} paper, taught by Capt. Pankaj Pahil. Free to watch, no sign-up.`,
+      ], tails.slice(0, 2));
     case "mock-test":
-      return fitSnippet(`Chapter test on ${topic}, marked against the ${exam} ${subj} syllabus. ${qty}${qWord}, instant result.`);
+      return padSnippet(`Chapter test on ${topic}, marked against the ${exam} ${subj} syllabus. ${qty}${qWord}, instant result.`, tails);
     case "notes":
     default:
       // The notes page is the real article; its own description is the best one
       // we have. Fall back to a built line only when a chapter has none.
-      return fitSnippet(
+      return padSnippet(
         chapter.description ||
         `Study notes on ${topic} for the ${exam} ${subj} paper, written for Indian student pilots and free to read.`,
+        [`${exam} ${subj} notes, chapter ${chapter.number}.`, ...tails.slice(1)],
       );
   }
 }
