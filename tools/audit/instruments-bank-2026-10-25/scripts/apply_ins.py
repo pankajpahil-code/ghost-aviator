@@ -6,9 +6,12 @@ bk = json.load(open(os.path.join(W, 'book_keys.json'), encoding='utf-8'))
 
 DEC = {}   # sec -> (CH overrides, D)
 POST = {}  # (sec, n) -> drop reason, applied last
+PATCH = {}  # (sec, n) -> audit fixes merged over the decision
 for f in sorted(glob.glob(os.path.join(W, 'dec', 'd*.py'))):
     spec = importlib.util.spec_from_file_location(os.path.basename(f)[:-3], f)
     m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+    if hasattr(m, 'PATCH'):
+        PATCH.update(m.PATCH); continue
     if hasattr(m, 'POST_DROP'):
         POST.update(m.POST_DROP); continue
     if hasattr(m, 'SECS'):
@@ -37,6 +40,22 @@ for k in kw:
     if d is None:
         missing.append((sec, n)); continue
     rec = dict(base, ch=CH.get(n, k['ch']), notes=[d['note']] if d.get('note') else [])
+    if (sec, n) in PATCH:
+        pt = PATCH.pop((sec, n)); d = dict(d)
+        for kk, vv in pt.items():
+            if kk == 'opt':
+                d['opt'] = dict(d.get('opt', {}), **vv)
+            elif kk == 'q_sub':
+                d['q_sub'] = list(d.get('q_sub', [])) + vv
+            elif kk == 'exp_sub':
+                for a, b in vv:
+                    assert a in d['exp'], (sec, n, a)
+                    d['exp'] = d['exp'].replace(a, b)
+            elif kk == 'note':
+                rec['notes'].append(vv)
+            else:
+                d[kk] = vv
+        rec['notes'].append('Revised after the independent audit of 2026-10-25.')
     if (sec, n) in POST:
         d = dict(drop=POST[(sec, n)])
     if d.get('drop'):
@@ -64,6 +83,7 @@ for k in kw:
         rec['notes'].append(f'Scan key read as {bt} (single reading); keyed on the worked explanation in the source.')
     out.append(dict(rec, q=re.sub(r'\s+', ' ', q), opts=[re.sub(r'\s+', ' ', opts[x]).strip() for x in 'abcd'],
                     ans='abcd'.index(ans), exp=d['exp'], status=status, book=bt))
+assert not PATCH, ('patch entries not applied', list(PATCH))
 if bad:
     for x in bad: print('BAD OPTIONS', x)
     raise SystemExit(len(bad))

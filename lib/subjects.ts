@@ -1160,7 +1160,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-9", number: 9, title: "Terrestrial Magnetism",
         description: "Instrumentation Chapter 9: Terrestrial Magnetism. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 17, content: makeContent(true),
+        duration: "2 hrs", questionCount: 16, content: makeContent(true),
       },
       {
         id: "inst-10", number: 10, title: "The Direct Indicating Compass",
@@ -1170,7 +1170,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-11", number: 11, title: "Gyroscopes",
         description: "Instrumentation Chapter 11: Gyroscopes. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 23, content: makeContent(true),
+        duration: "2 hrs", questionCount: 19, content: makeContent(true),
       },
       {
         id: "inst-12", number: 12, title: "Directional Gyro Indicator (DGI)",
@@ -1215,7 +1215,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-20", number: 20, title: "Radio Altimeter",
         description: "Instrumentation Chapter 20: Radio Altimeter. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 16, content: makeContent(),
+        duration: "2 hrs", questionCount: 15, content: makeContent(),
       },
       {
         id: "inst-21", number: 21, title: "Flight Management System",
@@ -1225,7 +1225,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-22", number: 22, title: "Electronic Flight Information Systems",
         description: "Instrumentation Chapter 22: Electronic Flight Information Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 39, content: makeContent(true),
+        duration: "2 hrs", questionCount: 38, content: makeContent(true),
       },
       {
         id: "inst-23", number: 23, title: "Basic Computers",
@@ -1245,7 +1245,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-26", number: 26, title: "Autopilot",
         description: "Instrumentation Chapter 26: Autopilot. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 36, content: makeContent(true),
+        duration: "2 hrs", questionCount: 35, content: makeContent(true),
       },
       {
         id: "inst-27", number: 27, title: "Autoland",
@@ -1310,7 +1310,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-39", number: 39, title: "Electronic Instrumentation",
         description: "Instrumentation Chapter 39: Electronic Instrumentation. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 34, content: makeContent(true),
+        duration: "2 hrs", questionCount: 33, content: makeContent(true),
       },
       {
         id: "inst-40", number: 40, title: "Revision Questions",

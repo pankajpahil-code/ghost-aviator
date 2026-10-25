@@ -91,13 +91,15 @@
   "sec": "PITOT STATICS",
   "n": 6,
   "ch": "inst-2",
-  "notes": [],
-  "q": "The altimeter consists of one or several aneroid capsules located in a sealed casing. The pressures in the aneroid capsule (!) and casing (ii) are respectively?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "The altimeter consists of one or several aneroid capsules located in a sealed casing. The pressures in the aneroid capsule (i) and casing (ii) are respectively?",
   "opts": [
    "(i) Static pressure (ii) Total pressure.",
    "(i) Vacuum (or very low pressure) (ii) Static pressure.",
-   "(i) Static pressure at time t (ii) Static pressure at time t -t.",
-   "(!) Total pressure (ii) Static pressure."
+   "(i) Static pressure at time t (ii) Static pressure at an earlier time.",
+   "(i) Total pressure (ii) Static pressure."
   ],
   "ans": 1,
   "exp": "The altimeter capsule is evacuated (vacuum or very low pressure) and static pressure is fed into the sealed case around it. As altitude increases the case pressure falls and the capsule expands.",
@@ -109,13 +111,14 @@
   "n": 7,
   "ch": "inst-2",
   "notes": [
-   "Stem referred to an ISA table on a page of the source; reworded so it stands alone."
+   "Stem referred to an ISA table on a page of the source; reworded so it stands alone.",
+   "Revised after the independent audit of 2026-10-25."
   ],
   "q": "Using the ISA, the atmospheric pressure at FL 70 in a \"standard +10\" atmosphere is?",
   "opts": [
    "781.85hPa.",
    "942.13 hPa.",
-   "1 013.25 hPa.",
+   "1013.25 hPa.",
    "644.41 hPa."
   ],
   "ans": 0,
@@ -229,8 +232,10 @@
   "sec": "PITOT STATICS",
   "n": 14,
   "ch": "inst-6",
-  "notes": [],
-  "q": "The response time of a vertical speed detector may be increased by adding a?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "The response of a vertical speed indicator may be speeded up (its lag reduced) by adding a?",
   "opts": [
    "Correction based on an accelerometer sensor.",
    "Bi-metallic strip.",
@@ -447,8 +452,10 @@
   "sec": "PITOT STATICS",
   "n": 29,
   "ch": "inst-6",
-  "notes": [],
-  "q": "The vertical speed indicator (VS!) is fed by?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "The vertical speed indicator (VSI) is fed by?",
   "opts": [
    "Differential pressure.",
    "Static pressure.",
@@ -514,11 +521,14 @@
   "sec": "PITOT STATICS",
   "n": 34,
   "ch": "inst-2",
-  "notes": [],
+  "notes": [
+   "Options a and b were the same list in the text copy; b replaced with a distinct wrong set.",
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "What inputs are fed to the ADC? 1. AOA. 2. TAT. 3. OAT. 4. Dynamic pressure. 5. Static pressure. 6. Total pressure. 7. AC electrical power. 8. Autopilot commands.",
   "opts": [
    "(1), (2), (4), (5), (7).",
-   "(I), (2), (4), (5), (7).",
+   "(1), (3), (5), (6), (7).",
    "(1),(2),(5),(6),(7).",
    "(2), (4), (5), (7), (8)."
   ],
@@ -821,7 +831,9 @@
   "sec": "ALTEMETER",
   "n": 6,
   "ch": "inst-6",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "The vertical speed indicator of an aircraft flying at a true airspeed of 100 kt, in a descent with a slope of 3 degrees, indicates?",
   "opts": [
    "-300 ft/min.",
@@ -830,7 +842,7 @@
    "-500 ft/min."
   ],
   "ans": 3,
-  "exp": "By the 1 in 60 rule ROD = groundspeed x angle / 60 x 101.3 = 100 x 3 / 60 x 101.3 = about 506 ft/min, so the VSI shows about -500 ft/min.",
+  "exp": "By the 1 in 60 rule ROD = TAS x angle / 60 x 101.3 = 100 x 3 / 60 x 101.3 = about 506 ft/min, so the VSI shows about -500 ft/min.",
   "status": "VERIFIED",
   "book": "d"
  },
@@ -1030,8 +1042,10 @@
   "sec": "ALTEMETER",
   "n": 21,
   "ch": "inst-5",
-  "notes": [],
-  "q": "If ON H is 999 hPa, what is the pressure altitude at an elevation of 25000 ft?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "If QNH is 999 hPa, what is the pressure altitude at an elevation of 25000 ft?",
   "opts": [
    "25100ft.",
    "25200 ft.",
@@ -1156,8 +1170,10 @@
   "sec": "ALTEMETER",
   "n": 29,
   "ch": "inst-5",
-  "notes": [],
-  "q": "If QFE is 1022 hPa what is the pressure altitude of the Held?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "If QFE is 1022 hPa what is the pressure altitude of the field?",
   "opts": [
    "270 ft amsl.",
    "-270 ft amsl.",
@@ -1289,8 +1305,10 @@
   "sec": "ALTEMETER",
   "n": 38,
   "ch": "inst-5",
-  "notes": [],
-  "q": "What will a cabin altimeter read with QFE set.",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "What will an altimeter read with QFE set?",
   "opts": [
    "The same as with QNH set.",
    "Height AGL.",
@@ -1701,12 +1719,14 @@
   "sec": "RADIO ALTIMETERS",
   "n": 3,
   "ch": "inst-20",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "A radio altimeter can be defined as a?",
   "opts": [
    "Ground radio aid used to measure the true height of the aircraft.",
    "Ground radio aid used to measure the true altitude of the aircraft.",
-   "Self-contained nn-board aid used to measure the true height of the aircraft.",
+   "Self-contained on-board aid used to measure the true height of the aircraft.",
    "Self-contained on-board aid used to measure the true altitude of the aircraft."
   ],
   "ans": 2,
@@ -1780,11 +1800,13 @@
   "sec": "RADIO ALTIMETERS",
   "n": 8,
   "ch": "inst-20",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "Modern low altitude radio altimeters emit waves in the following frequency band?",
   "opts": [
    "HF (High Frequency).",
-   "I HI (Ultra High Frequency).",
+   "UHF (Ultra High Frequency).",
    "SHF (Super High Frequency).",
    "VLF (Very Low Frequency)."
   ],
@@ -1955,18 +1977,11 @@
   "sec": "RADIO ALTIMETERS",
   "n": 22,
   "ch": "inst-20",
-  "notes": [],
-  "q": "A radio altimeter has a maximum effective height because?",
-  "opts": [
-   "At greater heights the signal will be too weak.",
-   "At greater heights the signal will be undetectable.",
-   "At greater heights the signal will be absorbed by moisture in the air.",
-   "At greater heights signal from different modulation cycles will overlap."
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "ans": 3,
-  "exp": "The system compares transmitted and received frequency over a repeating sweep. Beyond a certain height the echo returns from an earlier sweep cycle, the cycles overlap and the measurement becomes ambiguous, which sets the maximum usable height.",
-  "status": "VERIFIED",
-  "book": "d"
+  "status": "DROPPED",
+  "reason": "Source key (overlapping sweep cycles) is contradicted by the sweep timing in the references; held for the Captain's ruling."
  },
  {
   "sec": "RADIO ALTIMETERS",
@@ -2924,13 +2939,15 @@
   "sec": "ASI",
   "n": 57,
   "ch": "inst-4",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "Where on an ASI is VFO indicated?",
   "opts": [
    "The upper end of the white arc.",
    "The lower end of the white arc.",
-   "It is not specifically marked but will be more than VFE-",
-   "It is not specifically marked but will be less than VFE-"
+   "It is not specifically marked but will be more than VFE.",
+   "It is not specifically marked but will be less than VFE."
   ],
   "ans": 3,
   "exp": "VFO, the maximum speed for operating (moving) the flaps, is not marked on a standard ASI; because the flaps are most vulnerable while moving, it is lower than VFE.",
@@ -3002,13 +3019,15 @@
   "sec": "ASI",
   "n": 62,
   "ch": "inst-4",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "Where on an ASI is VLO indicated?",
   "opts": [
    "The upper end of the white arc.",
    "The lower end of the white arc.",
-   "It is not specifically marked but will be less than VLE-",
-   "It is not specifically marked but will be more than VLE-"
+   "It is not specifically marked but will be less than VLE.",
+   "It is not specifically marked but will be more than VLE."
   ],
   "ans": 2,
   "exp": "VLO is not specifically marked on the ASI. It is normally lower than (or equal to) VLE, because the gear is more vulnerable while it is moving than when locked down.",
@@ -3068,7 +3087,9 @@
   "sec": "AIRSPEEDS",
   "n": 3,
   "ch": "inst-4",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "With a constant weight, irrespective of the airfield altitude, an aircraft always takes off at the same?",
   "opts": [
    "Calibrated airspeed.",
@@ -3077,7 +3098,7 @@
    "Equivalent airspeed."
   ],
   "ans": 0,
-  "exp": "Lift-off happens when lift equals weight. For a given weight that needs the same dynamic pressure, which the ASI shows as the same calibrated airspeed whatever the airfield altitude; the TAS and groundspeed change with density and wind.",
+  "exp": "At a given weight the aircraft lifts off at the same dynamic pressure, i.e. the same EAS. At take-off speeds EAS and CAS are practically equal, so it lifts off at the same CAS whatever the airfield altitude; the TAS is higher at a high airfield.",
   "status": "VERIFIED",
   "book": "a"
  },
@@ -3657,7 +3678,9 @@
   "sec": "MACH",
   "n": 25,
   "ch": "inst-7",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "The speed of sound at 25000 ft ISA is?",
   "opts": [
    "600 Kts.",
@@ -3666,7 +3689,7 @@
    "606 Kts."
   ],
   "ans": 1,
-  "exp": "Local speed of sound in knots = 38.94 x square root of the absolute temperature (kelvin). ISA at 25 000 ft = 15 - 2 x 25 = -34.5 C (238.65 K): 38.94 x 15.45 = 602 kt.",
+  "exp": "Local speed of sound in knots = 38.94 x square root of the absolute temperature (kelvin). ISA at 25 000 ft = 15 - 1.98 x 25 = -34.5 C (238.65 K): 38.94 x 15.45 = 602 kt.",
   "status": "VERIFIED",
   "book": "b"
  },
@@ -3749,13 +3772,15 @@
   "sec": "MACH",
   "n": 32,
   "ch": "inst-7",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "Mach meter indications are derived from?",
   "opts": [
    "(PT-PS)/PT.",
    "(PS-PT)/Ps.",
    "(PT - Ps)/Ps.",
-   "(Ps-PT)/Pi."
+   "(PS - PT)/PT."
   ],
   "ans": 2,
   "exp": "A Mach meter measures (pitot - static) / static, i.e. dynamic pressure divided by static pressure, which depends only on Mach number. With PT for total (pitot) and PS for static pressure: (PT - PS) / PS.",
@@ -4448,7 +4473,7 @@
    "lQ.5°/hour to the right."
   ],
   "ans": 3,
-  "exp": "Earth rate drift (deg/h) = 15 x sin(latitude), positive in the northern hemisphere. At 45 N: 15 x 0.707 = 10.6 deg/h, an apparent drift to the right in the northern hemisphere.",
+  "exp": "Earth rate drift (deg/h) = 15 x sin(latitude). In the northern hemisphere the spin axis appears to drift clockwise and the heading reading decreases; in the southern hemisphere the reading increases. At 45 N: 15 x 0.707 = 10.6 deg/h, an apparent drift to the right in the northern hemisphere.",
   "status": "VERIFIED",
   "book": "d"
  },
@@ -4498,7 +4523,7 @@
    "90° /hour."
   ],
   "ans": 2,
-  "exp": "Earth rate drift (deg/h) = 15 x sin(latitude), positive in the northern hemisphere. Its maximum, at the poles, is 15 deg/h.",
+  "exp": "Earth rate drift (deg/h) = 15 x sin(latitude). In the northern hemisphere the spin axis appears to drift clockwise and the heading reading decreases; in the southern hemisphere the reading increases. Its maximum, at the poles, is 15 deg/h.",
   "status": "VERIFIED",
   "book": "c"
  },
@@ -4836,7 +4861,7 @@
    "8.67° per hour."
   ],
   "ans": 1,
-  "exp": "Transport wander (deg/h) = east-west groundspeed (kt, east positive) x tan(latitude, north positive) / 60. 400 x tan 45 / 60 = 6.67 deg/h.",
+  "exp": "Transport wander (deg/h) = east-west groundspeed (kt) x tan(latitude) / 60. In the northern hemisphere flying east makes the heading reading decrease and flying west makes it increase; the reverse in the southern hemisphere. 400 x tan 45 / 60 = 6.67 deg/h.",
   "status": "VERIFIED",
   "book": "b"
  },
@@ -4853,7 +4878,7 @@
    "7.2°per hour."
   ],
   "ans": 0,
-  "exp": "Transport wander (deg/h) = east-west groundspeed (kt, east positive) x tan(latitude, north positive) / 60. 300 x tan(-40) / 60 = -4.2 deg/h.",
+  "exp": "Transport wander (deg/h) = east-west groundspeed (kt) x tan(latitude) / 60. In the northern hemisphere flying east makes the heading reading decrease and flying west makes it increase; the reverse in the southern hemisphere. 300 x tan 40 / 60 = 4.2 deg/h; the only option of that size is -4.2.",
   "status": "VERIFIED",
   "book": "a"
  },
@@ -4861,69 +4886,41 @@
   "sec": "GYRO",
   "n": 85,
   "ch": "inst-11",
-  "notes": [],
-  "q": "Transport wander when flying west at 300 Kts at 25 degrees south is?",
-  "opts": [
-   "-233° per hour.",
-   "-3.34° per hour.",
-   "2.33° per hour.",
-   "3.34° per hour."
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "ans": 2,
-  "exp": "Transport wander (deg/h) = east-west groundspeed (kt, east positive) x tan(latitude, north positive) / 60. Westbound -300 x tan(-25) / 60 = +2.33 deg/h.",
-  "status": "VERIFIED",
-  "book": "c"
+  "status": "DROPPED",
+  "reason": "Two sign conventions for gyro drift are in use and both signs are offered; the stem does not say which applies."
  },
  {
   "sec": "GYRO",
   "n": 86,
   "ch": "inst-11",
-  "notes": [],
-  "q": "Transport wander when flying west at 300 Kts at 25 degrees north is?",
-  "opts": [
-   "2.33° per hour.",
-   "3.34° per hour.",
-   "-2.33° per hour.",
-   "-3.34° per hour."
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "ans": 2,
-  "exp": "Transport wander (deg/h) = east-west groundspeed (kt, east positive) x tan(latitude, north positive) / 60. Westbound -300 x tan 25 / 60 = -2.33 deg/h.",
-  "status": "VERIFIED",
-  "book": "c"
+  "status": "DROPPED",
+  "reason": "Two sign conventions for gyro drift are in use and both signs are offered; the stem does not say which applies."
  },
  {
   "sec": "GYRO",
   "n": 87,
   "ch": "inst-11",
-  "notes": [],
-  "q": "Earth rate at 25 degrees south is?",
-  "opts": [
-   "13.59° per hour.",
-   "6.34° per hour.",
-   "-13.59° per hour.",
-   "-6.34° per hour."
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "ans": 3,
-  "exp": "Earth rate drift (deg/h) = 15 x sin(latitude), positive in the northern hemisphere. At 25 S: 15 x sin(-25) = -6.34 deg/h.",
-  "status": "VERIFIED",
-  "book": "d"
+  "status": "DROPPED",
+  "reason": "Two sign conventions for gyro drift are in use and both signs are offered; the stem does not say which applies."
  },
  {
   "sec": "GYRO",
   "n": 88,
   "ch": "inst-11",
-  "notes": [],
-  "q": "Earth rate at 45 degrees north is?",
-  "opts": [
-   "-13.59° per hour.",
-   "-10.61° per hour.",
-   "13.59° per hour.",
-   "10.61° per hour."
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "ans": 3,
-  "exp": "Earth rate drift (deg/h) = 15 x sin(latitude), positive in the northern hemisphere. At 45 N: 15 x sin 45 = 10.61 deg/h.",
-  "status": "VERIFIED",
-  "book": "d"
+  "status": "DROPPED",
+  "reason": "Two sign conventions for gyro drift are in use and both signs are offered; the stem does not say which applies."
  },
  {
   "sec": "GYRO",
@@ -4940,7 +4937,7 @@
    "6.34° per hour"
   ],
   "ans": 0,
-  "exp": "Earth rate drift (deg/h) = 15 x sin(latitude), positive in the northern hemisphere. At the equator sin 0 = 0, so there is no earth rate drift.",
+  "exp": "Earth rate drift (deg/h) = 15 x sin(latitude). In the northern hemisphere the spin axis appears to drift clockwise and the heading reading decreases; in the southern hemisphere the reading increases. At the equator sin 0 = 0, so there is no earth rate drift.",
   "status": "VERIFIED",
   "book": "a"
  },
@@ -5921,8 +5918,10 @@
   "sec": "1NS/IRS/FMS",
   "n": 28,
   "ch": "inst-19",
-  "notes": [],
-  "q": "In an INS the gyros should be strap down. In an IRS the gyros should .... be strapped down?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "In an INS the gyros should ...... be strapped down. In an IRS the gyros should ...... be strapped down?",
   "opts": [
    "always never.",
    "always always.",
@@ -6185,13 +6184,15 @@
   "sec": "1NS/IRS/FMS",
   "n": 50,
   "ch": "inst-21",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "The inputs to an FMS include? 1. Operating data. 2. Terminal data. 3. Air data. 4. Route data. 5. Engine data. 6. Radio aids data.",
   "opts": [
    "1, 2, 3, 4.",
    "2, 3,4, 5.",
    "3,4, 5, 6.",
-   "AH of the above."
+   "All of the above."
   ],
   "ans": 3,
   "exp": "The FMS uses operating data, terminal (airport) data, air data, route data, engine data and radio aid data: all of them.",
@@ -6226,8 +6227,10 @@
   "sec": "1NS/IRS/FMS",
   "n": 54,
   "ch": "inst-21",
-  "notes": [],
-  "q": "With reference to an I- Ms. what does the term managed guidance mean?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "With reference to an FMS, what does the term managed guidance mean?",
   "opts": [
    "The INS gives commands to the autopilot.",
    "The FMC gives commands to the autopilot.",
@@ -6277,11 +6280,13 @@
   "sec": "1NS/IRS/FMS",
   "n": 67,
   "ch": "inst-21",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "A cost index is?",
   "opts": [
-   "An IMS output code.",
-   "An IMS input code telling the FMS the required balance between optimizing fuel costs and sector time.",
+   "An FMS output code.",
+   "An FMS input code telling the FMS the required balance between optimizing fuel costs and sector time.",
    "A fixed code giving the best fuel efficiency for each aircraft type.",
    "A fixed code giving best fuel efficiency for each route."
   ],
@@ -6370,12 +6375,14 @@
   "sec": "EFIS",
   "n": 3,
   "ch": "inst-22",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "Decision height is?",
   "opts": [
    "Calculated by the Flight management Computer.",
    "Displayed on the EADI, and set by the pilot using the EFIS control panel.",
-   "Displayed on the EADI using the I M( inputs.",
+   "Displayed on the EADI using the FMC inputs.",
    "Pre-set automatically by the autopilt system."
   ],
   "ans": 1,
@@ -6437,13 +6444,15 @@
   "sec": "EFIS",
   "n": 8,
   "ch": "inst-22",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "Which of the following statements is true?",
   "opts": [
    "The Weather Radar display data is available on all modes of the EFSI.",
    "In PLAN mode, the Weather Radar data is inhibited on the EHSI.",
    "The weather radar data is inhibited on the full and expanded NAV modes of the EHSI.",
-   "The Weather Radar data is only available on the PLAN mode of the"
+   "The Weather Radar data is only available on the PLAN mode of the EHSI."
   ],
   "ans": 1,
   "exp": "Weather radar returns are shown only in the forward-looking sector modes (MAP, expanded VOR/ILS, expanded NAV); they are inhibited in PLAN and the full-rose modes.",
@@ -6471,7 +6480,9 @@
   "sec": "EFIS",
   "n": 10,
   "ch": "inst-22",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "Weather Radar returns show as areas of precipitation in the following colours?",
   "opts": [
    "Green Magenta, Yellow and Red.",
@@ -6480,7 +6491,7 @@
    "Green, Yellow, Magenta and Red."
   ],
   "ans": 2,
-  "exp": "Weather radar returns are shown, in increasing intensity, as green, yellow, red and magenta.",
+  "exp": "Weather radar shows precipitation in green, yellow and red (heaviest); where a turbulence mode is fitted, turbulence is shown in magenta.",
   "status": "VERIFIED",
   "book": "c"
  },
@@ -6504,11 +6515,13 @@
   "sec": "EFIS",
   "n": 13,
   "ch": "inst-22",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "On an EHSI display, wind velocity can be displayed in which of the following modes?",
   "opts": [
    "Plan, Full ILS, Expanded VOR and Full VOR.",
-   "Map, Expanded ILS, Full ILS am Full VOR.",
+   "Map, Expanded ILS, Full ILS and Full VOR.",
    "Map, Plan, Full ILS and Full VOR.",
    "Expanded ILS, Expanded VOR, Plan and Full ILS."
   ],
@@ -7116,18 +7129,11 @@
   "sec": "EFIS",
   "n": 71,
   "ch": "inst-22",
-  "notes": [],
-  "q": "With APP selected on the MCP below 500 ft AGL, if more than one dot for one second in glideslope deviation or more than l/5th dot for one second in localiser deviation occurs?",
-  "opts": [
-   "The respective localiser or glideslope scales change colour from white to magenta and the pointer flashes.",
-   "The respective localiser or glideslope scales change colour from white to red and the pointer flashes.",
-   "The respective localiser or glideslope scales change colour from steady white to flashing white.",
-   "The respective localiser or glideslope scales change colour from white to amber and the pointer flashes."
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "ans": 3,
-  "exp": "Below 500 ft with APP selected, an excessive localiser or glideslope deviation turns the respective scale from white to amber and makes the pointer flash.",
-  "status": "VERIFIED",
-  "book": "d"
+  "status": "DROPPED",
+  "reason": "The deviation threshold in the stem does not match the reference figure."
  },
  {
   "sec": "EFIS",
@@ -7402,12 +7408,14 @@
   "sec": "AUTOFLIGHT",
   "n": 18,
   "ch": "inst-26",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "Among the following functions of an autopilot, those related to the airplane stabilization are? 1. Pitch attitude holding. 2. Horizontal wing holding. 3. Displayed heading or inertial track holding. 4. Indicated airspeed or Mach number holding. 5. Yaw damping. 6. VOR axis holding. The combination regrouping all the correct statements is?",
   "opts": [
    "2, 4, and 5.",
    "1, 2 and 5.",
-   "l, 2, 3 and 6.",
+   "1, 2, 3 and 6.",
    "3,4, 5 and 6."
   ],
   "ans": 1,
@@ -7419,7 +7427,9 @@
   "sec": "AUTOFLIGHT",
   "n": 19,
   "ch": "inst-26",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "The interception of a localizer beam by the autopiJot takes place?",
   "opts": [
    "According to an interception versus radio deviation law.",
@@ -7428,7 +7438,7 @@
    "At a constant magnetic course."
   ],
   "ans": 2,
-  "exp": "The autopilot intercepts the localiser on a constant heading until the beam is captured, then turns onto it.",
+  "exp": "The autopilot flies a constant heading to intercept the localiser; once the beam is reached it captures and follows it using the radio deviation signal. The interception itself is at constant heading.",
   "status": "VERIFIED",
   "book": "c"
  },
@@ -7487,9 +7497,10 @@
   "n": 24,
   "ch": "inst-28",
   "notes": [
-   "Source key read as c (statements 2 and 3); statement 3 has the pitch channel holding speed while it is holding altitude or the glide path, which it cannot do at the same time."
+   "Source key read as c (statements 2 and 3); statement 3 has the pitch channel holding speed while it is holding altitude or the glide path, which it cannot do at the same time.",
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "q": "The calibrated airspeed (CAS) or Mach holding mode is carried out by: 1. The autopilot pitch channel in the climb mode at a constant calibrated airspeed (CAS) or Mach number. 2. The auto-throttles in the climb mode a( a constant calibrated airspeed (CAS) or Mach number. 3. The autopilot pitch channel in the altitude or glide path holding mode. 4. The auto-throttles in the altitude or glide path holding mode. The combination regrouping all the correct statements is?",
+  "q": "The calibrated airspeed (CAS) or Mach holding mode is carried out by: 1. The autopilot pitch channel in the climb mode at a constant calibrated airspeed (CAS) or Mach number. 2. The auto-throttles in the climb mode at a constant calibrated airspeed (CAS) or Mach number. 3. The autopilot pitch channel in the altitude or glide path holding mode. 4. The auto-throttles in the altitude or glide path holding mode. The combination regrouping all the correct statements is?",
   "opts": [
    "2 and 4.",
    "1 and 3.",
@@ -7940,18 +7951,11 @@
   "sec": "AUTOFLIGHT",
   "n": 58,
   "ch": "inst-26",
-  "notes": [],
-  "q": "An autopilot is selected \"ON\" in mode \"altitude hold,\" the pilot alters the barometric pressure set on the sub-scale of his altimeter the?",
-  "opts": [
-   "Aircraft will remain at the same altitude, the autopilot takes its pressure information from the altimeter corrected to standard pressure, 1013.25 hPa.",
-   "Aircraft will climb or descend in the sense of the change, the autopilot takes its pressure information from the altimeter.",
-   "Mode altitude hold will disengage.",
-   "Aircraft will remain at the same altitude, the autopilot takes its pressure information from the static source."
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "ans": 3,
-  "exp": "Altitude hold uses the air data computer's static pressure information, not the pilot's altimeter subscale, so changing the altimeter setting does not move the aircraft.",
-  "status": "VERIFIED",
-  "book": "d"
+  "status": "DROPPED",
+  "reason": "The source itself says none of the options is exactly right."
  },
  {
   "sec": "AUTOFLIGHT",
@@ -8873,8 +8877,10 @@
   "sec": "FLIGHT DIRECTOR",
   "n": 20,
   "ch": "inst-25",
-  "notes": [],
-  "q": "When will the ADI vertical bar become centralised with 180 degrees is selected when flying on a heading of 160 degrees?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "When will the ADI vertical bar become centralised when 180 degrees is selected while flying on a heading of 160 degrees?",
   "opts": [
    "When at the correct attitude to intercept 180 degrees.",
    "When on a heading of 180 degrees.",
@@ -9130,12 +9136,14 @@
   "sec": "EICAS/ECAM",
   "n": 18,
   "ch": "inst-39",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "If both displays fail on a basic EICAS system?",
   "opts": [
    "Limited engine primary data (NI, N2, EGT) are displayed on an EFIS screen.",
-   "Limited engine primary data (M, \\2, EGT) are displayed on analogue gauges.",
-   "Limited engine primary data (M, N2, EGT) are displayed on the standby engine LED indicator.",
+   "Limited engine primary data (N1, N2, EGT) are displayed on analogue gauges.",
+   "Limited engine primary data (N1, N2, EGT) are displayed on the standby engine LED indicator.",
    "All data becomes unavailable."
   ],
   "ans": 2,
@@ -9199,18 +9207,11 @@
   "sec": "EICAS/ECAM",
   "n": 23,
   "ch": "inst-39",
-  "notes": [],
-  "q": "What is the purpose of the cancel and recall buttons on an EICAS or ECAM system?",
-  "opts": [
-   "To delete unwanted messages and recover them if the situation suddenly deteriorates.",
-   "To scroll down and up the list of warnings, cautions and advisories, when they fill more than one page.",
-   "To delete warnings if they cannot be rectified, and to recover them if it is decided to make a further attempt.",
-   "To delete low priority messages to concentrate on the high priority ones. Then to recall the low priority messages when the more important ones have been dealt with."
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "ans": 1,
-  "exp": "When the messages fill more than one page, the cancel and recall buttons page down and back up through the list of warnings, cautions and advisories.",
-  "status": "VERIFIED",
-  "book": "b"
+  "status": "DROPPED",
+  "reason": "The two reference manuals disagree with the source on the intended answer. (Reference: CANCEL removes caution and advisory messages, RECALL brings them back.)"
  },
  {
   "sec": "EICAS/ECAM",
@@ -9523,8 +9524,10 @@
   "sec": "ENGINE",
   "n": 5,
   "ch": "inst-38",
-  "notes": [],
-  "q": "The transmitter of RPM indicator may consist of: 1. A magnetic sensor supplying an induced AC voltage. 2. A DC generator supplying a DC voltage. 3. A single-phase AC generator supplying an AC voltage. 4. A three-phase AC generator supplying a three-phase voltage. 5. The combination of correct statements is?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "The transmitter of an RPM indicator may consist of: 1. A magnetic sensor supplying an induced AC voltage. 2. A DC generator supplying a DC voltage. 3. A single-phase AC generator supplying an AC voltage. 4. A three-phase AC generator supplying a three-phase voltage. The combination of correct statements is?",
   "opts": [
    "1, 2, 3.",
    "1, 2, 3, 4.",
@@ -9631,12 +9634,14 @@
   "sec": "ENGINE",
   "n": 14,
   "ch": "inst-38",
-  "notes": [],
-  "q": "The RPM indicator (or tachometer) of a piston engine can include a small red are within the arc normally used (green arc). In the RPM range corresponding to this small red arc the?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "The RPM indicator (or tachometer) of a piston engine can include a small red arc within the arc normally used (green arc). In the RPM range corresponding to this small red arc the?",
   "opts": [
-   "Rating is the minimum usable in cruise propeller efficiency.",
-   "Is minimum at this rating.",
-   "Propeller generates vibration, contiguous rating is forbidden.",
+   "Rating is the minimum usable in cruise.",
+   "Propeller efficiency is minimum at this rating.",
+   "Propeller generates vibration; continuous operation in this range is forbidden.",
    "Rating is the maximum possible in continuous mode."
   ],
   "ans": 2,
@@ -9813,8 +9818,10 @@
   "sec": "ENGINE",
   "n": 30,
   "ch": "inst-38",
-  "notes": [],
-  "q": "A Full Authority Digital Engine Control (FADEC) has the following functions: Flow regulation (fuel, decelerations and accelerations monitoring). 1. Automatic starting sequence. 2. Transmissions of engine data to the pilot's instruments. 3. Thrust management and protection of operation limits. 4. Monitoring of the thrust reversers. 5. The combination regrouping all the correct statements is?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "A Full Authority Digital Engine Control (FADEC) has the following functions: 1. Flow regulation (fuel, decelerations and accelerations monitoring). 2. Automatic starting sequence. 3. Transmission of engine data to the pilot's instruments. 4. Thrust management and protection of operation limits. 5. Monitoring of the thrust reversers. The combination regrouping all the correct statements is?",
   "opts": [
    "1, 3, 4, 5.",
    "1, 2, 3, 4, 5.",
@@ -10129,7 +10136,9 @@
   "sec": "ENGINE",
   "n": 56,
   "ch": "inst-38",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "What type of sensors are typically used to measure carburettor inlet temperatures?",
   "opts": [
    "Thermocouples.",
@@ -10138,7 +10147,7 @@
    "Capacitive probes."
   ],
   "ans": 1,
-  "exp": "Carburettor inlet temperatures are low and need accuracy, so resistive probes are used.",
+  "exp": "Carburettor inlet temperatures are in a low range where great accuracy is not needed, which suits a resistive probe; thermocouples are used for high temperatures such as EGT.",
   "status": "VERIFIED",
   "book": "b"
  },
@@ -10146,7 +10155,9 @@
   "sec": "ENGINE",
   "n": 57,
   "ch": "inst-38",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "What type of sensors are typically used to measure engine oil temperature?",
   "opts": [
    "Thermocouples.",
@@ -10155,7 +10166,7 @@
    "Capacitive probes."
   ],
   "ans": 1,
-  "exp": "Engine oil temperatures are in a low range and need accuracy, so resistive probes are used.",
+  "exp": "Engine oil temperatures are in a low range where great accuracy is not needed, which suits a resistive probe; thermocouples are used for high temperatures such as EGT.",
   "status": "VERIFIED",
   "book": "b"
  },
@@ -10488,7 +10499,9 @@
   "sec": "ENGINE",
   "n": 84,
   "ch": "inst-38",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "If the EPR gauge compressor inlet air tapping becomes blocked?",
   "opts": [
    "The gauge will over read during the take-off run.",
@@ -10497,7 +10510,7 @@
    "The gauge will under read."
   ],
   "ans": 0,
-  "exp": "EPR is the ratio of turbine outlet pressure to compressor inlet pressure. If the inlet tapping is blocked, the trapped inlet pressure stays at its static value while the real inlet pressure falls during the take-off run, so the gauge over-reads.",
+  "exp": "EPR is turbine outlet pressure divided by compressor inlet pressure. At run-up the intake pressure is low; during the take-off run ram effect raises it. A blocked inlet tapping keeps sensing the low trapped pressure, so the divisor is too small and the gauge over-reads.",
   "status": "VERIFIED",
   "book": "a"
  },
@@ -10650,13 +10663,15 @@
   "sec": "TEMP",
   "n": 4,
   "ch": "inst-3",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "The formula for TAT is?",
   "opts": [
-   "TAT = SAT(1 + (0.2 x K x M2).",
-   "TAT = SAT/(1+ 0.2 x K x M2).",
-   "TAT = SAT/0-0.2 M2).",
-   "TAT = SAT(1-KM2)."
+   "TAT = SAT x (1 + 0.2 x K x M²).",
+   "TAT = SAT / (1 + 0.2 x K x M²).",
+   "TAT = SAT / (1 - 0.2 x M²).",
+   "TAT = SAT x (1 - K x M²)."
   ],
   "ans": 0,
   "exp": "TAT = SAT x (1 + 0.2 x K x M^2), temperatures in kelvin, where K is the ram recovery factor (about 1.0 for a Rosemount probe).",
@@ -10865,10 +10880,12 @@
   "sec": "FUEL",
   "n": 1,
   "ch": "inst-38",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "The disadvantages of a float type fuel gauging system include inaccuracies due to? 1. Changes in aircraft attitude. 2. Acceleration. 3. Ambient pressure changes. 4. Ambient temperature changes.",
   "opts": [
-   "1.2,3.",
+   "1, 2, 3.",
    "1,2,4.",
    "2, 3,4.",
    "1,3,4."
@@ -11022,8 +11039,10 @@
   "sec": "FUEL",
   "n": 14,
   "ch": "inst-38",
-  "notes": [],
-  "q": "If the tanks of an aircraft employing a capacitive fuel gauging system contain only water, the gauge will?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "If the tanks of an aircraft employing a capacitive fuel gauging system contain only water, the gauge will indicate?",
   "opts": [
    "A mass equal to the same mass of water.",
    "Read the exact mass of water contained in the tank.",
@@ -11031,7 +11050,7 @@
    "A mass of water different from zero but inaccurate."
   ],
   "ans": 3,
-  "exp": "Water has a far higher dielectric constant than fuel, so a capacitive system with water in the tanks reads a mass that is not zero but is not accurate.",
+  "exp": "Water conducts, so it effectively shorts the tank capacitors and the gauge is driven to a wrong reading (often beyond full scale): a mass that is not zero but is not accurate.",
   "status": "VERIFIED",
   "book": "d"
  },
@@ -11165,7 +11184,9 @@
   "sec": "COMPASS",
   "n": 8,
   "ch": "inst-9",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "Permanent magnetism in aircraft is caused by?",
   "opts": [
    "The hammering of rivets during construction.",
@@ -11174,7 +11195,7 @@
    "Strong electrical fields and lightening strikes."
   ],
   "ans": 0,
-  "exp": "Permanent (hard iron) magnetism in an aircraft is created during construction, for example by hammering and riveting in the earth's field.",
+  "exp": "Permanent (hard iron) magnetism in an aircraft is created during construction, for example by hammering and riveting in the earth's field. A lightning strike can alter it, which is why the compass is swung afterwards.",
   "status": "VERIFIED",
   "book": null
  },
@@ -11207,18 +11228,11 @@
   "sec": "COMPASS",
   "n": 11,
   "ch": "inst-9",
-  "notes": [],
-  "q": "The sensitivity of a magnetic compass can be affected by?",
-  "opts": [
-   "The H component of the earth's magnetic field.",
-   "The Z component of the earth's magnetic field.",
-   "Both of the above.",
-   "None of the above."
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "ans": 2,
-  "exp": "Compass sensitivity depends on both components: the H component gives the directive force, and the Z component causes dip and the related errors.",
-  "status": "VERIFIED",
-  "book": "c"
+  "status": "DROPPED",
+  "reason": "References differ on whether the Z component affects sensitivity; not safe to key."
  },
  {
   "sec": "COMPASS",
@@ -11241,8 +11255,10 @@
   "sec": "COMPASS",
   "n": 13,
   "ch": "inst-9",
-  "notes": [],
-  "q": "When taking-off on a calm day on heading of 45° in the northern hemisphere, the compass will indicate.......If the Held is on an agonic line?",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "When taking-off on a calm day on heading of 45° in the northern hemisphere, the compass will indicate.......if the field is on an agonic line?",
   "opts": [
    "45°.",
    "More than 45°.",
@@ -12483,13 +12499,15 @@
   "sec": "TCAS",
   "n": 8,
   "ch": "inst-35",
-  "notes": [],
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "q": "The TCAS II data display devices can be in the form of: 1. A specific dedicated screen. 2. A screen combined with the weather radar. 3. A variometer represented on a liquid crystal screen which allows the display of Traffic Advisory (TA) and Resolution Advisory (RA). 4. An EFIS (Electronic Flight Instrument System) screen. The combination regrouping all the correct statements is?",
   "opts": [
    "1, 2 and 3.",
    "3 and 4.",
    "1 and 3.",
-   "I, 2,3 and 4."
+   "1, 2, 3 and 4."
   ],
   "ans": 3,
   "exp": "TCAS II information can be shown on a dedicated display, the weather radar screen, a VSI-type liquid crystal display (with TA and RA) or an EFIS screen: all four.",
@@ -12833,8 +12851,10 @@
   "sec": "TCAS",
   "n": 36,
   "ch": "inst-35",
-  "notes": [],
-  "q": "Corrective actions given by TCAS includes? 1. Turn right or left. 2. Descend or climb 3. Increase rate of descent or climb 4. stop climb or descent 5. monitor vertical speed 6. Contact ATC.",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "Resolution advisory commands given by TCAS include? 1. Turn right or left. 2. Descend or climb. 3. Increase rate of descent or climb. 4. Stop climb or descent. 5. Monitor vertical speed. 6. Contact ATC.",
   "opts": [
    "1,2,3,5",
    "2,3,4,5",
@@ -12842,7 +12862,7 @@
    "1,2,3,6"
   ],
   "ans": 1,
-  "exp": "TCAS II gives resolution advisories in the vertical plane only. A corrective RA asks for a change of vertical speed (climb, descend, increase or reduce rate); a preventive RA asks the pilot to avoid certain vertical speeds without changing the present one (e.g. monitor vertical speed). Corrective and preventive commands are all vertical: climb or descend (2), increase rate (3), stop climb or descent (4) and monitor vertical speed (5).",
+  "exp": "TCAS II gives resolution advisories in the vertical plane only: climb or descend (2), increase rate (3) and stop climb or descent (4) are corrective; monitor vertical speed (5) is preventive. It never commands a turn or tells the pilot to contact ATC.",
   "status": "VERIFIED",
   "book": "b"
  },
@@ -12928,8 +12948,10 @@
   "sec": "TCAS",
   "n": 48,
   "ch": "inst-35",
-  "notes": [],
-  "q": "When TCAS indications are provided on the VSI the> will include? 1. Symbols to indicate the vertical positions of intruder and proximate traffic. 2. Arrows to indicate the vertical motion of intruder and proximate traffic. 3. The rates of climb or descent to be avoided to resolve conflicts. 4. The recommended rate of climb or decent to resolve conflicts. 5. The track and CAS of intruder and proximate traffic.",
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "When TCAS indications are provided on the VSI they will include? 1. Symbols to indicate the vertical positions of intruder and proximate traffic. 2. Arrows to indicate the vertical motion of intruder and proximate traffic. 3. The rates of climb or descent to be avoided to resolve conflicts. 4. The recommended rate of climb or descent to resolve conflicts. 5. The track and CAS of intruder and proximate traffic.",
   "opts": [
    "1,2,3,4.",
    "2, 3, 4, 5.",

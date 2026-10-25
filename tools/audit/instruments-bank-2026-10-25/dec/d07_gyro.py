@@ -1,7 +1,7 @@
 REP = "Repeats another question in this section in substance; one copy kept."
 FIG = "Needs a diagram the site does not show."
-TW = "Transport wander (deg/h) = east-west groundspeed (kt, east positive) x tan(latitude, north positive) / 60."
-ER = "Earth rate drift (deg/h) = 15 x sin(latitude), positive in the northern hemisphere."
+TW = "Transport wander (deg/h) = east-west groundspeed (kt) x tan(latitude) / 60. In the northern hemisphere flying east makes the heading reading decrease and flying west makes it increase; the reverse in the southern hemisphere."
+ER = "Earth rate drift (deg/h) = 15 x sin(latitude). In the northern hemisphere the spin axis appears to drift clockwise and the heading reading decreases; in the southern hemisphere the reading increases."
 SECS = {'GYRO': ({59: 'inst-29', 67: 'inst-19', 73: 'inst-17', 2: 'inst-13'}, {
  2: dict(ans='b', exp="A standby attitude indicator is a small self-contained instrument with its own gyro (usually electrically driven from the essential or battery bus), so it keeps working when the main attitude source fails."),
  3: dict(ans='b', exp="Every mass has weight and inertia; what makes a gyroscope useful is rigidity in space and precession, which come from its spin."),
@@ -65,7 +65,7 @@ SECS = {'GYRO': ({59: 'inst-29', 67: 'inst-19', 73: 'inst-17', 2: 'inst-13'}, {
  78: dict(ans='a', exp="Apparent movement of the gyro caused by carrying it over the curved earth is transport wander."),
  79: dict(drop=REP), 80: dict(drop=REP), 81: dict(drop=REP), 82: dict(drop=REP),
  83: dict(ans='b', exp=TW + " 400 x tan 45 / 60 = 6.67 deg/h."),
- 84: dict(ans='a', exp=TW + " 300 x tan(-40) / 60 = -4.2 deg/h."),
+ 84: dict(ans='a', exp=TW + " 300 x tan 40 / 60 = 4.2 deg/h; the only option of that size is -4.2."),
  85: dict(ans='c', exp=TW + " Westbound -300 x tan(-25) / 60 = +2.33 deg/h."),
  86: dict(ans='c', exp=TW + " Westbound -300 x tan 25 / 60 = -2.33 deg/h."),
  87: dict(ans='d', exp=ER + " At 25 S: 15 x sin(-25) = -6.34 deg/h."),

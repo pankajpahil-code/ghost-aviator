@@ -52,6 +52,29 @@ overrides in the decision files.
 - `published.json` — the 521 published items as generated.
 - `scripts/` — parse, dedupe, classify, key reading, apply (`apply_ins.py`) and generate (`gen_ins.py`).
 
+## Independent audit, 2026-10-25 (same day)
+
+Three auditors, none of whom saw the builder's reasoning, checked all 521 against the two instrumentation
+manuals and re-worked every calculation (73 numerical items). Their tables are in `audit/result_A..C.md`;
+every finding was checked against the reference before anything changed. Fixes are in `dec/d98_audit.py`.
+
+- **No answer key confirmed wrong.** All 73 calculations held.
+- **9 taken off the site:**
+  - **Gyro drift signs (GYRO 85–88).** The book and the manuals use opposite sign conventions, and both
+    signs are offered as options.
+  - **Radio altimeter height limit (RADIO ALTIMETERS 22).** The book keys "overlapping sweep cycles", but
+    the manuals' sweep timing rules that out. Held for the Captain's ruling.
+  - **EICAS cancel/recall (EICAS/ECAM 23).** The manual's wording matches a different option.
+  - **AUTOFLIGHT 58.** The source says no option is exact.
+  - **COMPASS 11.** H against H+Z sensitivity.
+  - **EFIS 71.** The stem's deviation threshold is wrong.
+- **10 explanations corrected.** These include: EPR inlet pressure (ram effect raises it), resistive probes,
+  water in capacitive tanks, weather-radar magenta, EAS at lift-off, and the earth-rate/transport-wander
+  wording (no longer states a sign the manuals contradict).
+- **About 30 text defects repaired.** Examples: duplicate options, "INS gyros strapped down" missing its
+  blank, OCR garbles.
+- **Published after the audit: 512.** Site total 5,193.
+
 ## Suggestions
 
 1. **Independent audit** of the 521 before the label comes off — the theory sections (autoflight, EICAS/ECAM,
