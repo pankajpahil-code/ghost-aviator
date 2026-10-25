@@ -13,10 +13,10 @@ export const dynamic = "force-static";
  */
 export function GET() {
   const cpl = CPL_SUBJECTS.map(
-    s => `- ${s.name} (${s.chapters.length} chapters): ${SITE_URL}/cpl/${s.id}`
+    s => `- ${s.name} (${s.chapters.length} syllabus chapters, ${s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length} with published notes): ${SITE_URL}/cpl/${s.id}`
   ).join("\n");
   const atpl = ATPL_SUBJECTS.map(
-    s => `- ${atplStudyLabel(s.id, s.name)} (${s.chapters.filter(ch => servesRealNotes(s.id,ch.id)).length} shared reference chapters): ${SITE_URL}/atpl/${s.id}`
+    s => `- ${atplStudyLabel(s.id, s.name)} (${s.chapters.filter(ch => servesRealNotes(s.id,ch.id)).length} shared reference chapters with published notes): ${SITE_URL}/atpl/${s.id}`
   ).join("\n");
   const guides = GUIDES.map(
     g => `- [${g.title}](${SITE_URL}/guides/${g.slug}) — ${g.description}`
@@ -32,12 +32,12 @@ export function GET() {
 
 Ghost Aviator is free DGCA CPL and ATPL exam preparation for student pilots in
 India: chapter notes, video lectures, question banks, past papers, mock tests
-and an RTR(A) radio-telephony simulator. Authored and verified by Ghost Aviator's
-DGCA flight and ground instructor. Self-study stays free; live online
+and an RTR(A) radio-telephony simulator. Authored and verified by Capt. Pankaj Pahil, a
+pilot and DGCA flight and ground instructor with 17+ years in aviation. Self-study stays free; live online
 ground classes are optional and paid.
 
 Instructor: ${SITE_URL}/about
-Attribution: Ghost Aviator (${SITE_URL})
+Attribution: Capt. Pankaj Pahil, Ghost Aviator (${SITE_URL})
 YouTube: ${YOUTUBE_BRAND}
 
 ## Primary landings

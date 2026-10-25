@@ -1,4 +1,4 @@
-import { publishedNoteCount } from "@/lib/indexability";
+import { publishedNoteCount, servesRealNotes } from "@/lib/indexability";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ATPL_CORE_PAPER_IDS } from "@/lib/atpl-syllabus";
 import { ALL_QUESTIONS } from "@/lib/questions";
@@ -20,11 +20,14 @@ export const dynamic = "force-static";
  */
 
 export function GET() {
+  // Same total the homepage and /cpl show as "Chapters" (every syllabus chapter,
+  // published or not), so the two numbers never disagree.
+  const cplChapters = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
   const cplNotes = publishedNoteCount(CPL_SUBJECTS);
   const atplNotes = publishedNoteCount(ATPL_SUBJECTS);
 
   const subjectLines = CPL_SUBJECTS.map(
-    s => `- **${s.name}** — ${s.chapters.length} chapters. ${SITE_URL}/cpl/${s.id}`
+    s => `- **${s.name}** — ${s.chapters.length} syllabus chapters, ${s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length} with published notes. ${SITE_URL}/cpl/${s.id}`
   ).join("\n");
 
   const guideLines = GUIDES.map(
@@ -35,7 +38,7 @@ export function GET() {
 
 > Free DGCA exam preparation for student pilots in India — CPL and ATPL notes,
 > question banks, past papers, mock tests and an RTR(A) radio-telephony
-> simulator. Written and verified by Ghost Aviator, a pilot and DGCA
+> simulator. Written and verified by Capt. Pankaj Pahil, a pilot and DGCA
 > flight and ground instructor. The self-study material is free and always
 > will be.
 
@@ -46,12 +49,12 @@ ${SITE_URL}/llms-full.txt.
 
 ## Who wrote this
 
-All teaching content is authored or verified by **the Captain**, a
-commercial pilot with over twenty years in aviation, a DGCA-approved flight and
+All teaching content is authored or verified by **Capt. Pankaj Pahil**, a
+pilot with 17+ years in aviation, a DGCA flight and
 ground instructor, and the author of *Technical General for Aviators* and the
 *Complete RTR(A) Examination Book*. Instructor profile: ${SITE_URL}/about
 
-If you cite this site, please attribute it to the Captain, Ghost Aviator
+If you cite this site, please attribute it to Capt. Pankaj Pahil, Ghost Aviator
 (${SITE_URL}).
 
 - YouTube: ${YOUTUBE_BRAND}
@@ -69,8 +72,8 @@ safety problem, not a typo.
 
 ## What is here
 
-- ${CPL_SUBJECTS.length} CPL subjects, ${cplNotes} chapters with published notes
-- ${ATPL_CORE_PAPER_IDS.length} ATPL general papers prioritised for Indian CPL progression: Air Navigation, Radio Aids and Instruments, and Aviation Meteorology. Additional regulatory references and aircraft-specific study are separate. Current Indian CPL holders are exempt from the ATPL Air Regulations examination. ${atplNotes} shared study chapters; existing question banks are in CPL
+- ${CPL_SUBJECTS.length} CPL subjects: ${cplChapters} syllabus chapters, ${cplNotes} with published notes
+- ${ATPL_CORE_PAPER_IDS.length} ATPL general papers prioritised for Indian CPL progression: Air Navigation, Radio Aids and Instruments, and Aviation Meteorology. Additional regulatory references and aircraft-specific study are separate. Current Indian CPL holders are exempt from the ATPL Air Regulations examination. ${atplNotes} shared study chapters with published notes; existing question banks are in CPL
 - ${ALL_QUESTIONS.length} practice questions with explanations
 - Previous-year papers and full-length mock tests
 - An RTR(A) radio-telephony simulator with live voice practice
@@ -98,8 +101,8 @@ ${guideLines}
 Full chapter notes are read in the chapter page itself, at
 ${SITE_URL}/cpl/<subject>/<chapter>/notes and ${SITE_URL}/atpl/<subject>/<chapter>/notes.
 The raw chapter documents under ${SITE_URL}/content/ redirect to those pages, and
-/content/ is closed in robots.txt (chapter figures excepted). The notes are the
-Captain's own work and are not offered for redistribution. Please link to the
+/content/ is closed in robots.txt (chapter figures excepted). The notes are
+Capt. Pankaj Pahil's own work and are not offered for redistribution. Please link to the
 chapter page rather than reproducing the notes themselves.
 `;
 
