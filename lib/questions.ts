@@ -15,6 +15,7 @@ import { OXFORD_INSTRUMENTATION } from "./generated/oxford-instrumentation";
 import { OXFORD_RADIO_NAV } from "./generated/oxford-radio-nav";
 import { OXFORD_GEN_NAV } from "./generated/oxford-gen-nav";
 import { GEN_NAV_PRACTICE } from "./generated/gen-nav-practice";
+import { INS_PRACTICE } from "./generated/ins-practice";
 import { REGS_NOTES } from "./generated/regs-notes";
 import { AR25_PHYSIOLOGY_QUESTIONS } from "./generated/ar25-physiology-questions";
 import { RTF_QUESTIONS } from "./generated/rtf-questions";
@@ -57,6 +58,7 @@ export const BANK_BEFORE_DEDUPE: DemoQuestion[] = applyAnswerCorrections([
   ...AR25_PHYSIOLOGY_QUESTIONS, // Aviation Physiology Q&A (ar-25)
   ...RTF_QUESTIONS,              // Radio Telephony Q&A (rtf-1..24, 779 questions)
   ...GEN_NAV_PRACTICE,        // General Navigation practice bank, keys re-worked 2026-10-23 (nav + inst chapters)
+  ...INS_PRACTICE,            // Instruments practice bank, keys checked 2026-10-25 (inst chapters + nav-cx3-6)
   ...ECQB_061_NAVIGATION,
   ...ICJOSHI_MET.filter(dropVerifiedMet), // font-extracted met bank (unverified met chapters only)
 ]);
