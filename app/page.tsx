@@ -11,7 +11,9 @@ import { servesRealNotes, publishedNoteCount } from "@/lib/indexability";
 import MascotHero from "./components/MascotHero";
 
 export const metadata: Metadata = {
-  title: "Free DGCA CPL & ATPL Exam Prep: Notes, Question Bank & Mock Tests | Ghost Aviator",
+  title: "Free DGCA CPL & ATPL Exam Prep & Notes | Ghost Aviator",
+  description:
+    "Free DGCA CPL and ATPL exam prep for India: chapter notes, question banks, mock tests and video lectures. Self-study is free; live classes are optional.",
   alternates: { canonical: "/" }
 };
 
