@@ -37,9 +37,9 @@ const WA_CLASSES = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
 )}`;
 
 export const metadata: Metadata = {
-  title: "Capt. Pankaj Pahil — DGCA Flight & Ground Instructor | Ghost Aviator",
+  title: "Capt. Pankaj Pahil — DGCA Instructor | Ghost Aviator",
   description:
-    "The Captain is a pilot, DGCA flight & ground instructor with 17+ years in aviation, author of two aviation books, and the creator of Ghost Aviator — free DGCA exam preparation for every student pilot in India.",
+    "Pilot and DGCA flight & ground instructor with 17+ years in aviation, author of two aviation books and creator of Ghost Aviator: free DGCA exam prep.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "Meet the Captain Behind Ghost Aviator",
