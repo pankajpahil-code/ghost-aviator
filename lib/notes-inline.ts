@@ -649,3 +649,62 @@ export function getInlineNotes(subjectId: string, chapterId: string): InlineNote
     return null;
   }
 }
+
+// ─── Section headings (ticket #4: the /video watch page) ─────────────────────
+
+function decodeEntities(s: string): string {
+  return s
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&#(\d+);/g, (_m, n: string) => String.fromCodePoint(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi, (_m, n: string) => String.fromCodePoint(parseInt(n, 16)))
+    .replace(/&quot;/gi, "\"")
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&amp;/gi, "&");
+}
+
+/**
+ * The top-level section headings (<h2>) of a chapter's published notes, in
+ * order, verbatim. The video page lists them as "what the chapter notes cover"
+ * so the watch page carries the chapter's real structure instead of invented
+ * summary text — nothing here is written for the page, it is read off the
+ * Captain's own document. Table-of-contents headings, the cover block and a
+ * heading that only repeats the chapter title are skipped. Fewer than two
+ * usable headings returns [] (a one-item list says nothing).
+ */
+export function notesSectionHeadings(
+  subjectId: string,
+  chapterId: string,
+  chapterTitle: string,
+  max = 12,
+): string[] {
+  try {
+    ({ subjectId, chapterId } = getNotesSource(subjectId, chapterId));
+    const notesPath = path.join(process.cwd(), "public", "content", subjectId, chapterId, "notes.html");
+    if (!fs.existsSync(notesPath)) return [];
+    const raw = fs.readFileSync(notesPath, "utf-8");
+    const bodyMatch = raw.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+    if (!bodyMatch) return [];
+    const html = removeCoverBlock(bodyMatch[1]
+      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+      .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, ""));
+    const title = chapterTitle.trim().toLowerCase();
+    const seen = new Set<string>();
+    const out: string[] = [];
+    for (const m of html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/gi)) {
+      const text = decodeEntities(m[1].replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim();
+      if (text.length < 3 || text.length > 120 || !/[a-z]/i.test(text)) continue;
+      if (/\bcontents\b/i.test(text)) continue;
+      if (text.toLowerCase() === title) continue;
+      const key = text.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(text);
+      if (out.length >= max) break;
+    }
+    return out.length >= 2 ? out : [];
+  } catch {
+    return [];
+  }
+}

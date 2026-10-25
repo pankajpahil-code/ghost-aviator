@@ -22,11 +22,14 @@ type Props = {
   /** Whether this chapter's notes and question bank actually exist. */
   hasNotes?: boolean;
   hasQuestions?: boolean;
+  /** Section headings of this chapter's published notes, verbatim
+   *  (lib/notes-inline.ts notesSectionHeadings). Empty when there are none. */
+  notesHeadings?: string[];
 };
 
 export default function VideoPage({
   track, subject, chapter, prevChapter, nextChapter, videos,
-  parts = [], hasNotes = true, hasQuestions = true,
+  parts = [], hasNotes = true, hasQuestions = true, notesHeadings = [],
 }: Props) {
   const totalMinutes = parts.reduce((sum, p) => sum + (p.minutes ?? 0), 0);
   return (
@@ -111,6 +114,30 @@ export default function VideoPage({
             {" · free, no sign-up."}
           </p>
         </div>
+
+        {/* The chapter notes' own section headings (ticket #4). Read off the
+            published notes.html, never written for this page — so the watch
+            page shows what the chapter actually covers, and hands the student
+            to the notes for the detail. */}
+        {hasNotes && notesHeadings.length > 0 && (
+          <div className="rounded-2xl p-5 mb-6"
+               style={{ background: "rgba(17,24,32,0.7)", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <h2 className="text-sm font-black mb-3" style={{ color: subject.color, letterSpacing: "0.06em" }}>
+              WHAT THE CHAPTER NOTES COVER
+            </h2>
+            <ul className="m-0 pl-5 space-y-1.5">
+              {notesHeadings.map(h => (
+                <li key={h} className="text-sm" style={{ color: "#94a3b8" }}>{h}</li>
+              ))}
+            </ul>
+            <p className="text-xs mt-3 mb-0">
+              <Link href={`/${track}/${subject.id}/${chapter.id}/notes`} className="font-bold no-underline hover:underline"
+                    style={{ color: subject.color }}>
+                Read the full Chapter {chapter.number} notes →
+              </Link>
+            </p>
+          </div>
+        )}
 
         {/* Lecture parts. Only worth listing when the chapter is taught across
             more than one video — with a single part the player above says it. */}
