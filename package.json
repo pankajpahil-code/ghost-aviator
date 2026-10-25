@@ -15,7 +15,8 @@
     "verify:adapt-rls": "node tools/adapt/verify-rls.mjs",
     "verify:adapt-notready": "node tools/adapt/verify-not-ready.mjs",
     "verify:sitemap": "npx tsx tools/audit/sitemap-xml.mts",
-    "build:lastmod": "npx tsx tools/build-lastmod.mts"
+    "build:lastmod": "npx tsx tools/build-lastmod.mts",
+    "indexnow": "node tools/seo/indexnow.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.1",

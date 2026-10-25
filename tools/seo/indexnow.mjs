@@ -7,6 +7,12 @@
  *   node tools/seo/indexnow.mjs            # submit URLs whose sitemap <lastmod> changed since the last run
  *   node tools/seo/indexnow.mjs --all      # first run: submit every URL in the live sitemap
  *   node tools/seo/indexnow.mjs --dry      # show what would be submitted, send nothing
+ *   node tools/seo/indexnow.mjs --skip-live-check   # don't fetch the key file from the live site
+ *   npm run indexnow                       # same as the first line
+ *
+ * It also runs on its own: .github/workflows/indexnow.yml calls it after every successful
+ * Vercel Production deployment (deployment_status event). That job needs no secrets - the key
+ * is public by design (it is served at the site root).
  *
  * Run it AFTER a deploy has gone live (the key file and the new pages must be reachable).
  * Protocol: https://www.indexnow.org/documentation - POST {host,key,keyLocation,urlList},
@@ -32,13 +38,36 @@ async function main() {
   if (`${key}.txt` !== keyFile) throw new Error("Key file content must equal its name");
 
   const UA = { "User-Agent": "Mozilla/5.0 (compatible; GhostAviator-IndexNow/1.0)" };
-  const live = await fetch(`${SITE}/${keyFile}`, { headers: UA });
-  if (!live.ok || (await live.text()).trim() !== key) {
-    console.error(`The key file is not live at ${SITE}/${keyFile} yet - deploy first, then run this.`);
-    return 2;
+  // The live check guards against submitting before a deploy has put the key file up. Vercel
+  // Bot Protection can answer an unknown user agent with 429 (or 403) even when the file is live,
+  // so a challenge status is a WARNING, not proof the key is missing. A 200 with the wrong body,
+  // or a 404, still aborts: that is a real "key not live".
+  if (args.has("--skip-live-check")) {
+    console.warn(`Skipping the live key check (--skip-live-check).`);
+  } else {
+    let status = 0;
+    let body = "";
+    try {
+      const live = await fetch(`${SITE}/${keyFile}`, { headers: UA });
+      status = live.status;
+      body = (await live.text()).trim();
+    } catch (err) {
+      console.warn(`Warning: could not fetch ${SITE}/${keyFile} (${err.message}); continuing.`);
+    }
+    if (status === 429 || status === 403) {
+      console.warn(`Warning: ${SITE}/${keyFile} answered HTTP ${status} (bot protection challenge?); continuing.`);
+    } else if (status && (status !== 200 || body !== key)) {
+      console.error(`The key file is not live at ${SITE}/${keyFile} (HTTP ${status}) - deploy first, then run this.`);
+      return 2;
+    }
   }
 
-  const xml = await (await fetch(`${SITE}/sitemap.xml`, { headers: UA })).text();
+  const sm = await fetch(`${SITE}/sitemap.xml`, { headers: UA });
+  if (!sm.ok) {
+    console.error(`Could not read ${SITE}/sitemap.xml (HTTP ${sm.status}); nothing submitted.`);
+    return 1;
+  }
+  const xml = await sm.text();
   const entries = [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => ({
     loc: (m[1].match(/<loc>(.*?)<\/loc>/) || [])[1],
     lastmod: (m[1].match(/<lastmod>(.*?)<\/lastmod>/) || [])[1] || "",

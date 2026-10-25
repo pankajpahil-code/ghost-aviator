@@ -1,0 +1,57 @@
+# IndexNow after every production deploy (ticket #2).
+#
+# Vercel's GitHub integration reports each deployment back as a GitHub
+# deployment_status. When a Production deployment reaches "success", the new
+# pages and sitemap are live, so this tells IndexNow (Bing, Yandex, Seznam...)
+# which sitemap URLs changed since the last submission.
+#
+# No secrets are used or needed: the IndexNow key is public by design (it is
+# served at https://ghostaviator.com/<key>.txt). The previous run's sitemap
+# snapshot is kept in the Actions cache so each run submits only what changed.
+name: IndexNow
+
+on:
+  deployment_status:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            tools/seo
+            public/8afb1d23a7b77f9b01617efd23f13598.txt
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Restore last submitted sitemap snapshot
+        uses: actions/cache/restore@v4
+        with:
+          path: tools/seo/.indexnow-state.json
+          key: indexnow-state-${{ github.run_id }}
+          restore-keys: indexnow-state-
+
+      - name: Submit changed URLs to IndexNow
+        run: node tools/seo/indexnow.mjs
+
+      - name: Save sitemap snapshot
+        if: success() && hashFiles('tools/seo/.indexnow-state.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: tools/seo/.indexnow-state.json
+          key: indexnow-state-${{ github.run_id }}
