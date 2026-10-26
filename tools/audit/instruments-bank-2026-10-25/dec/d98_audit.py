@@ -2,13 +2,38 @@
 # Applied after the section files: each entry updates that item's decision (or drops it).
 SIGN = "Two sign conventions for gyro drift are in use and both signs are offered; the stem does not say which applies."
 REFS = "The two reference manuals disagree with the source on the intended answer."
+CONV = "Sign stated in the stem and keyed to the Oxford book convention on the Captain's ruling (the source used the opposite sign)."
+ERO = "Earth rate (apparent wander) = 15 x sin(latitude) deg/h. In the northern hemisphere the DGI reading decreases (minus); in the southern hemisphere it increases (plus)."
+TWO = "Transport wander = east-west groundspeed x tan(latitude) / 60 deg/h. Flying east acts like extra earth rotation: in the northern hemisphere the reading decreases (minus), in the southern it increases (plus); flying west reverses it."
 PATCH = {
- ('GYRO', 85): dict(drop=SIGN), ('GYRO', 86): dict(drop=SIGN), ('GYRO', 87): dict(drop=SIGN), ('GYRO', 88): dict(drop=SIGN),
- ('RADIO ALTIMETERS', 22): dict(drop="Source key (overlapping sweep cycles) is contradicted by the sweep timing in the references; held for the Captain's ruling."),
- ('EICAS/ECAM', 23): dict(drop=REFS + " (Reference: CANCEL removes caution and advisory messages, RECALL brings them back.)"),
- ('AUTOFLIGHT', 58): dict(drop="The source itself says none of the options is exactly right."),
- ('COMPASS', 11): dict(drop="References differ on whether the Z component affects sensitivity; not safe to key."),
- ('EFIS', 71): dict(drop="The deviation threshold in the stem does not match the reference figure."),
+ # Captain's ruling 2026-10-26: "check oxford book source for answers". The Oxford convention for gyro drift:
+ # a decreasing DGI reading is minus, an increasing one plus (NH earth rate -15 sin lat, SH +15 sin lat).
+ ('GYRO', 83): dict(q="Transport wander when flying east at 400 kt at 45 degrees north is? (+ = DGI reading increasing, - = decreasing)",
+                    opt={'b': '-6.67° per hour.'}, status='CORRECTED', note=CONV,
+                    exp=TWO + " East at 45 N: 400 x tan 45 / 60 = 6.67 deg/h, reading decreasing: -6.67 deg/h."),
+ ('GYRO', 84): dict(q="Transport wander when flying east at 300 kt at 40 degrees south is? (+ = DGI reading increasing, - = decreasing)",
+                    opt={'a': '+4.2° per hour.'}, status='CORRECTED', note=CONV,
+                    exp=TWO + " East at 40 S: 300 x tan 40 / 60 = 4.2 deg/h, reading increasing: +4.2 deg/h."),
+ ('GYRO', 85): dict(q="Transport wander when flying west at 300 kt at 25 degrees south is? (+ = DGI reading increasing, - = decreasing)",
+                    ans='a', opt={'a': '-2.33° per hour.'}, status='CORRECTED', note=CONV,
+                    exp=TWO + " West at 25 S: 300 x tan 25 / 60 = 2.33 deg/h, reading decreasing: -2.33 deg/h."),
+ ('GYRO', 86): dict(q="Transport wander when flying west at 300 kt at 25 degrees north is? (+ = DGI reading increasing, - = decreasing)",
+                    ans='a', status='CORRECTED', note=CONV,
+                    exp=TWO + " West at 25 N: 300 x tan 25 / 60 = 2.33 deg/h, reading increasing: +2.33 deg/h."),
+ ('GYRO', 87): dict(q="Earth rate (apparent wander of an uncorrected DGI) at 25 degrees south is? (+ = DGI reading increasing, - = decreasing)",
+                    ans='b', status='CORRECTED', note=CONV,
+                    exp=ERO + " At 25 S: 15 x sin 25 = 6.34 deg/h, reading increasing: +6.34 deg/h."),
+ ('GYRO', 88): dict(q="Earth rate (apparent wander of an uncorrected DGI) at 45 degrees north is? (+ = DGI reading increasing, - = decreasing)",
+                    ans='b', status='CORRECTED', note=CONV,
+                    exp=ERO + " At 45 N: 15 x sin 45 = 10.61 deg/h, reading decreasing: -10.61 deg/h."),
+ ('RADIO ALTIMETERS', 22): dict(drop="Source key (overlapping sweep cycles) is contradicted by the sweep timing in the references, and the Oxford book does not state the reason; held for the Captain's ruling."),
+ ('EICAS/ECAM', 23): dict(ans='d', status='CORRECTED', note="Keyed to the Oxford book on the Captain's ruling (source key was b).",
+                          exp="Pushing CANCEL removes the caution and advisory messages from the display (warnings cannot be cancelled), so the crew can concentrate on the warnings; RECALL brings the caution and advisory messages back."),
+ ('AUTOFLIGHT', 58): dict(drop="The Oxford book says only that changing the subscale does not move the aircraft in ALT HOLD; it does not decide between options a and d."),
+ ('COMPASS', 11): dict(ans='a', status='CORRECTED', note="Keyed to the Oxford book on the Captain's ruling (source key was c).",
+                       exp="A compass magnet's ability to align with the earth's field (its sensitivity) depends on the strength of the horizontal component H and on the magnet's magnetic moment. The Z component causes dip and the acceleration and turning errors, not sensitivity."),
+ ('EFIS', 71): dict(q="With APP selected below 500 ft AGL, if the localiser or glideslope deviation exceeds its normal limits?",
+                    exp="Deviation beyond the normal localiser or glideslope limits turns the respective scale from white to amber and makes the pointer flash; it stops when the aircraft returns within limits."),
  ('AUTOFLIGHT', 19): dict(exp="The autopilot flies a constant heading to intercept the localiser; once the beam is reached it captures and follows it using the radio deviation signal. The interception itself is at constant heading."),
  ('TCAS', 36): dict(q="Resolution advisory commands given by TCAS include? 1. Turn right or left. 2. Descend or climb. 3. Increase rate of descent or climb. 4. Stop climb or descent. 5. Monitor vertical speed. 6. Contact ATC.",
                     exp="TCAS II gives resolution advisories in the vertical plane only: climb or descend (2), increase rate (3) and stop climb or descent (4) are corrective; monitor vertical speed (5) is preventive. It never commands a turn or tells the pilot to contact ATC."),

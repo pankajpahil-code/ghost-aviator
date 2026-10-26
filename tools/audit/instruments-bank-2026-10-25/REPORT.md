@@ -75,6 +75,30 @@ every finding was checked against the reference before anything changed. Fixes a
   blank, OCR garbles.
 - **Published after the audit: 512.** Site total 5,193.
 
+## The Captain's ruling, 2026-10-26: "check oxford book source for answers"
+
+Six of the nine held questions were settled from the Oxford instrumentation book (both text-extracted
+editions in `D:/03 Instruments/Books`) and restored, keyed to it:
+
+- **Gyro drift signs (GYRO 83–88).** Oxford convention: a decreasing DGI reading is minus, an increasing one
+  plus. Its worked examples give "−15 × sin 60° (decreasing)" and "+15 × sin 25° (increasing) = +6.34°/hr".
+  The convention is now stated in each stem; 83 and 84 had their correct option re-signed to match.
+- **EICAS/ECAM 23 → d.** Oxford: "Pushing the CANCEL switch removes only the caution and advisory messages…
+  the warning messages cannot be cancelled. The RECALL switch is used to bring back the caution and advisory
+  messages."
+- **COMPASS 11 → a.** Oxford: sensitivity "depends on the strength of the external field (H) and on the
+  magnetic moment of the magnet".
+- **EFIS 71 → d.** Oxford: "Deviation beyond normal localizer and glide slope limits cause the scales to change
+  colour to amber and the pointer to flash". The stem's unsupported "1/5 dot" figure was removed.
+
+Still off the site:
+- **RADIO ALTIMETERS 22.** Oxford gives the 0–2,500 ft range and "of the order of one watt" but never states
+  the reason for the limit.
+- **AUTOFLIGHT 58.** Oxford says only that the subscale does not change the ALT HOLD reference, which does not
+  decide between a and d.
+
+Live after the ruling: 519, site total 5,200.
+
 ## Suggestions
 
 1. **Independent audit** of the 521 before the label comes off — the theory sections (autoflight, EICAS/ECAM,

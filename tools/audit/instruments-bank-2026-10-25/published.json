@@ -3542,6 +3542,30 @@
   ],
   "chapterId": "inst-9",
   "subtopic": "Compasses and Directional Gyros",
+  "q": "The sensitivity of a magnetic compass can be affected by?",
+  "opts": [
+   "The H component of the earth's magnetic field",
+   "The Z component of the earth's magnetic field",
+   "Both of the above",
+   "None of the above"
+  ],
+  "ans": 0,
+  "exp": "A compass magnet's ability to align with the earth's field (its sensitivity) depends on the strength of the horizontal component H and on the magnet's magnetic moment. The Z component causes dip and the acceleration and turning errors, not sensitivity.",
+  "_sec": "COMPASS",
+  "_n": 11,
+  "_status": "CORRECTED",
+  "_notes": [
+   "Keyed to the Oxford book on the Captain's ruling (source key was c).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "_book": "c"
+ },
+ {
+  "subjectIds": [
+   "instrumentation"
+  ],
+  "chapterId": "inst-9",
+  "subtopic": "Compasses and Directional Gyros",
   "q": "When taking-off on a calm day on heading of 45° in the northern hemisphere, the compass will indicate.......if the field is on an agonic line?",
   "opts": [
    "45°",
@@ -4090,19 +4114,22 @@
   ],
   "chapterId": "inst-11",
   "subtopic": "Gyroscopes",
-  "q": "Transport wander when flying east at 400 kt at 45 degrees north is?",
+  "q": "Transport wander when flying east at 400 kt at 45 degrees north is? (+ = DGI reading increasing, - = decreasing)",
   "opts": [
    "5.67° per hour",
-   "6.67° per hour",
+   "-6.67° per hour",
    "7.67°per hour",
    "8.67° per hour"
   ],
   "ans": 1,
-  "exp": "Transport wander (deg/h) = east-west groundspeed (kt) x tan(latitude) / 60. In the northern hemisphere flying east makes the heading reading decrease and flying west makes it increase; the reverse in the southern hemisphere. 400 x tan 45 / 60 = 6.67 deg/h.",
+  "exp": "Transport wander = east-west groundspeed x tan(latitude) / 60 deg/h. Flying east acts like extra earth rotation: in the northern hemisphere the reading decreases (minus), in the southern it increases (plus); flying west reverses it. East at 45 N: 400 x tan 45 / 60 = 6.67 deg/h, reading decreasing: -6.67 deg/h.",
   "_sec": "GYRO",
   "_n": 83,
-  "_status": "VERIFIED",
-  "_notes": [],
+  "_status": "CORRECTED",
+  "_notes": [
+   "Sign stated in the stem and keyed to the Oxford book convention on the Captain's ruling (the source used the opposite sign).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "_book": "b"
  },
  {
@@ -4111,20 +4138,119 @@
   ],
   "chapterId": "inst-11",
   "subtopic": "Gyroscopes",
-  "q": "Transport wander when flying east at 300 kt at 40 degrees south is?",
+  "q": "Transport wander when flying east at 300 kt at 40 degrees south is? (+ = DGI reading increasing, - = decreasing)",
   "opts": [
-   "-4.2° per hour",
+   "+4.2° per hour",
    "-5.2°per hour",
    "6.2°per hour",
    "7.2°per hour"
   ],
   "ans": 0,
-  "exp": "Transport wander (deg/h) = east-west groundspeed (kt) x tan(latitude) / 60. In the northern hemisphere flying east makes the heading reading decrease and flying west makes it increase; the reverse in the southern hemisphere. 300 x tan 40 / 60 = 4.2 deg/h; the only option of that size is -4.2.",
+  "exp": "Transport wander = east-west groundspeed x tan(latitude) / 60 deg/h. Flying east acts like extra earth rotation: in the northern hemisphere the reading decreases (minus), in the southern it increases (plus); flying west reverses it. East at 40 S: 300 x tan 40 / 60 = 4.2 deg/h, reading increasing: +4.2 deg/h.",
   "_sec": "GYRO",
   "_n": 84,
-  "_status": "VERIFIED",
-  "_notes": [],
+  "_status": "CORRECTED",
+  "_notes": [
+   "Sign stated in the stem and keyed to the Oxford book convention on the Captain's ruling (the source used the opposite sign).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
   "_book": "a"
+ },
+ {
+  "subjectIds": [
+   "instrumentation"
+  ],
+  "chapterId": "inst-11",
+  "subtopic": "Gyroscopes",
+  "q": "Transport wander when flying west at 300 kt at 25 degrees south is? (+ = DGI reading increasing, - = decreasing)",
+  "opts": [
+   "-2.33° per hour",
+   "-3.34° per hour",
+   "2.33° per hour",
+   "3.34° per hour"
+  ],
+  "ans": 0,
+  "exp": "Transport wander = east-west groundspeed x tan(latitude) / 60 deg/h. Flying east acts like extra earth rotation: in the northern hemisphere the reading decreases (minus), in the southern it increases (plus); flying west reverses it. West at 25 S: 300 x tan 25 / 60 = 2.33 deg/h, reading decreasing: -2.33 deg/h.",
+  "_sec": "GYRO",
+  "_n": 85,
+  "_status": "CORRECTED",
+  "_notes": [
+   "Sign stated in the stem and keyed to the Oxford book convention on the Captain's ruling (the source used the opposite sign).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "_book": "c"
+ },
+ {
+  "subjectIds": [
+   "instrumentation"
+  ],
+  "chapterId": "inst-11",
+  "subtopic": "Gyroscopes",
+  "q": "Transport wander when flying west at 300 kt at 25 degrees north is? (+ = DGI reading increasing, - = decreasing)",
+  "opts": [
+   "2.33° per hour",
+   "3.34° per hour",
+   "-2.33° per hour",
+   "-3.34° per hour"
+  ],
+  "ans": 0,
+  "exp": "Transport wander = east-west groundspeed x tan(latitude) / 60 deg/h. Flying east acts like extra earth rotation: in the northern hemisphere the reading decreases (minus), in the southern it increases (plus); flying west reverses it. West at 25 N: 300 x tan 25 / 60 = 2.33 deg/h, reading increasing: +2.33 deg/h.",
+  "_sec": "GYRO",
+  "_n": 86,
+  "_status": "CORRECTED",
+  "_notes": [
+   "Sign stated in the stem and keyed to the Oxford book convention on the Captain's ruling (the source used the opposite sign).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "_book": "c"
+ },
+ {
+  "subjectIds": [
+   "instrumentation"
+  ],
+  "chapterId": "inst-11",
+  "subtopic": "Gyroscopes",
+  "q": "Earth rate (apparent wander of an uncorrected DGI) at 25 degrees south is? (+ = DGI reading increasing, - = decreasing)",
+  "opts": [
+   "13.59° per hour",
+   "6.34° per hour",
+   "-13.59° per hour",
+   "-6.34° per hour"
+  ],
+  "ans": 1,
+  "exp": "Earth rate (apparent wander) = 15 x sin(latitude) deg/h. In the northern hemisphere the DGI reading decreases (minus); in the southern hemisphere it increases (plus). At 25 S: 15 x sin 25 = 6.34 deg/h, reading increasing: +6.34 deg/h.",
+  "_sec": "GYRO",
+  "_n": 87,
+  "_status": "CORRECTED",
+  "_notes": [
+   "Sign stated in the stem and keyed to the Oxford book convention on the Captain's ruling (the source used the opposite sign).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "_book": "d"
+ },
+ {
+  "subjectIds": [
+   "instrumentation"
+  ],
+  "chapterId": "inst-11",
+  "subtopic": "Gyroscopes",
+  "q": "Earth rate (apparent wander of an uncorrected DGI) at 45 degrees north is? (+ = DGI reading increasing, - = decreasing)",
+  "opts": [
+   "-13.59° per hour",
+   "-10.61° per hour",
+   "13.59° per hour",
+   "10.61° per hour"
+  ],
+  "ans": 1,
+  "exp": "Earth rate (apparent wander) = 15 x sin(latitude) deg/h. In the northern hemisphere the DGI reading decreases (minus); in the southern hemisphere it increases (plus). At 45 N: 15 x sin 45 = 10.61 deg/h, reading decreasing: -10.61 deg/h.",
+  "_sec": "GYRO",
+  "_n": 88,
+  "_status": "CORRECTED",
+  "_notes": [
+   "Sign stated in the stem and keyed to the Oxford book convention on the Captain's ruling (the source used the opposite sign).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "_book": "d"
  },
  {
   "subjectIds": [
@@ -6885,6 +7011,29 @@
   "_status": "VERIFIED",
   "_notes": [],
   "_book": "a"
+ },
+ {
+  "subjectIds": [
+   "instrumentation"
+  ],
+  "chapterId": "inst-22",
+  "subtopic": "EFIS",
+  "q": "With APP selected below 500 ft AGL, if the localiser or glideslope deviation exceeds its normal limits?",
+  "opts": [
+   "The respective localiser or glideslope scales change colour from white to magenta and the pointer flashes",
+   "The respective localiser or glideslope scales change colour from white to red and the pointer flashes",
+   "The respective localiser or glideslope scales change colour from steady white to flashing white",
+   "The respective localiser or glideslope scales change colour from white to amber and the pointer flashes"
+  ],
+  "ans": 3,
+  "exp": "Deviation beyond the normal localiser or glideslope limits turns the respective scale from white to amber and makes the pointer flash; it stops when the aircraft returns within limits.",
+  "_sec": "EFIS",
+  "_n": 71,
+  "_status": "VERIFIED",
+  "_notes": [
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "_book": "d"
  },
  {
   "subjectIds": [
@@ -10395,6 +10544,30 @@
   "_status": "VERIFIED",
   "_notes": [],
   "_book": "c"
+ },
+ {
+  "subjectIds": [
+   "instrumentation"
+  ],
+  "chapterId": "inst-39",
+  "subtopic": "EICAS and ECAM",
+  "q": "What is the purpose of the cancel and recall buttons on an EICAS or ECAM system?",
+  "opts": [
+   "To delete unwanted messages and recover them if the situation suddenly deteriorates",
+   "To scroll down and up the list of warnings, cautions and advisories, when they fill more than one page",
+   "To delete warnings if they cannot be rectified, and to recover them if it is decided to make a further attempt",
+   "To delete low priority messages to concentrate on the high priority ones. Then to recall the low priority messages when the more important ones have been dealt with"
+  ],
+  "ans": 3,
+  "exp": "Pushing CANCEL removes the caution and advisory messages from the display (warnings cannot be cancelled), so the crew can concentrate on the warnings; RECALL brings the caution and advisory messages back.",
+  "_sec": "EICAS/ECAM",
+  "_n": 23,
+  "_status": "CORRECTED",
+  "_notes": [
+   "Keyed to the Oxford book on the Captain's ruling (source key was b).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "_book": "b"
  },
  {
   "subjectIds": [
