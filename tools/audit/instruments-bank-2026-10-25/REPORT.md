@@ -99,6 +99,31 @@ Still off the site:
 
 Live after the ruling: 519, site total 5,200.
 
+## The held "two defensible answers" questions, checked against the Oxford book (2026-10-26)
+
+The Captain asked for these to go through the Oxford book too. Earlier reports said "168"; that figure
+wrongly included 56 repeats. The real number held for having two defensible answers was **114**.
+
+Two checkers searched both Oxford editions for each one. **48 were settled**: almost all by an Oxford
+revision question with a printed answer key, a few by the chapter text. Every quote was traced to the Oxford
+file, and the keys were spot-checked against its answer tables (Flight Instruments Q74 and Q97, Autoflight
+Q39 and Q51). Results and quotes are in `oxford-check/`.
+
+**27 restored** (`dec/d97_oxford.py`), with the needed text fixes. The other 21 settled questions stay out:
+- 19 repeat a question already live, for example the classic artificial-horizon turning errors and the
+  rate-integrating gyro uses.
+- 2 would contradict one already live. MACH 18 (VMO "based on EAS") clashes with a live "VMO is expressed in
+  CAS". ENGINE 10 (thermocouple "joined at one point") clashes with the live "joined at both ends".
+
+The Oxford answer key for Flight Instruments Q74 (the turn needle shows "angular velocity about the vertical
+axis", not "rate of yaw") exposed two live questions that keyed yaw rate. GYRO 14 and GYRO 35 were taken
+off, and TURN/SLIP 9's explanation was corrected.
+
+**66 remain unsettled.** Oxford is silent on them, leaves two options open, or the question is defective.
+Each has its reason in `oxford-check/oxford_*.json`.
+
+Live: 544 Instruments practice questions; site total 5,225.
+
 ## Suggestions
 
 1. **Independent audit** of the 521 before the label comes off — the theory sections (autoflight, EICAS/ECAM,

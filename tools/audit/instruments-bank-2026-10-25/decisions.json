@@ -920,9 +920,22 @@
   "sec": "ALTEMETER",
   "n": 11,
   "ch": "inst-5",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "Options b and c both describe QNH (pressure at the aerodrome reduced to mean sea level); the scan key is a single unclear reading."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25.",
+   "Scan key read as c (single reading); keyed on the worked explanation in the source."
+  ],
+  "q": "What is QNH?",
+  "opts": [
+   "Ambient pressure at the airfield.",
+   "Sea level pressure based on ambient pressure at the airfield.",
+   "The actual pressure measured at mean sea level.",
+   "Sea level pressure in the ISA."
+  ],
+  "ans": 1,
+  "exp": "QNH is not the pressure measured at sea level; it is the airfield's own pressure reduced to mean sea level using the standard atmosphere. With QNH set, the altimeter on the ground reads the aerodrome elevation.",
+  "status": "VERIFIED",
+  "book": "c"
  },
  {
   "sec": "ALTEMETER",
@@ -975,9 +988,22 @@
   "sec": "ALTEMETER",
   "n": 16,
   "ch": "inst-5",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "The key read from the scan (under-reads close to the ground) conflicts with the high-speed position-error behaviour keyed elsewhere; cannot be pinned to one source."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25.",
+   "Scan key read as c (single reading); keyed on the worked explanation in the source."
+  ],
+  "q": "What will happen if an aircraft has two altimeters, one of which is compensated for position error, whilst the other is not?",
+  "opts": [
+   "One will over read at high airspeeds.",
+   "One will under read at high airspeeds.",
+   "One will under read close to the ground.",
+   "The ADC will compensate automatically, so both will read correctly."
+  ],
+  "ans": 0,
+  "exp": "Position error grows with airspeed. At high speed the altimeter without position-error correction will over-read (show a higher altitude) compared with the corrected one.",
+  "status": "VERIFIED",
+  "book": "c"
  },
  {
   "sec": "ALTEMETER",
@@ -2807,9 +2833,21 @@
   "sec": "ASI",
   "n": 47,
   "ch": "inst-4",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "See question 1: the barber's pole options overlap (VMO, and VMO with temperature)."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "The barber's pole on an ASI indicates?",
+  "opts": [
+   "VNE.",
+   "VMO.",
+   "VMO and temperature.",
+   "VNO."
+  ],
+  "ans": 1,
+  "exp": "The red-and-white barber's pole marks the maximum operating speed, VMO, and moves back as altitude rises and MMO becomes the limit. It does not depend on temperature and is not VNE or VNO.",
+  "status": "VERIFIED",
+  "book": null
  },
  {
   "sec": "ASI",
@@ -3791,9 +3829,22 @@
   "sec": "MACH",
   "n": 33,
   "ch": "inst-7",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "The source itself notes the stem is ambiguous (temperature change at constant altitude or due to descent)."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25.",
+   "Scan key read as a (single reading); keyed on the worked explanation in the source."
+  ],
+  "q": "If total air temperature increases by 5 degrees C during a constant Mach number descent, what will happen to CAS?",
+  "opts": [
+   "Increase by 5 Kts.",
+   "Increase by 10 Kts.",
+   "Remain constant.",
+   "Increase or decrease depending on whether conditions are above or below ISA."
+  ],
+  "ans": 1,
+  "exp": "In a constant-Mach descent the air gets warmer and denser, so the CAS rises. As a rule of thumb, a 5 °C rise in total air temperature goes with about 10 kt more CAS.",
+  "status": "VERIFIED",
+  "book": "a"
  },
  {
   "sec": "MACH",
@@ -4060,18 +4111,11 @@
   "sec": "GYRO",
   "n": 14,
   "ch": "inst-11",
-  "notes": [],
-  "q": "At a low bank angle, the measurement of rate-of-turn actually consists in measuring the?",
-  "opts": [
-   "Angular velocity of the aircraft.",
-   "Yaw rate of the aircraft.",
-   "Pitch rate of the aircraft.",
-   "Roll rate of the aircraft."
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "ans": 1,
-  "exp": "At small bank angles almost all the turning motion is about the yaw axis, so measuring yaw rate gives the rate of turn.",
-  "status": "VERIFIED",
-  "book": "b"
+  "status": "DROPPED",
+  "reason": "Keyed 'yaw rate'; the Oxford book keys the turn needle as angular velocity about the vertical axis, not yaw rate, and option a is too vague to rekey."
  },
  {
   "sec": "GYRO",
@@ -4329,18 +4373,11 @@
   "sec": "GYRO",
   "n": 35,
   "ch": "inst-13",
-  "notes": [],
-  "q": "Under normal operating conditions, when an aircraft is in a banked turn, the rate-of-turn indicator is a valuable gyroscopic flight control instrument; when it is associated with an attitude indicator it indicates? 1. The angular velocity of the aircraft about the yaw axis. 2. The bank of the aircraft. 3. The direction of the aircraft turn. 4. The angular velocity of the aircraft about the real vertical. The combination of correct statements is?",
-  "opts": [
-   "3, 4.",
-   "2,4.",
-   "1,3.",
-   "1, 2."
+  "notes": [
+   "Revised after the independent audit of 2026-10-25."
   ],
-  "ans": 2,
-  "exp": "The turn indicator shows the angular velocity about the yaw axis (1) and the direction of turn (3). The attitude indicator shows the bank.",
-  "status": "VERIFIED",
-  "book": "c"
+  "status": "DROPPED",
+  "reason": "Keyed to 'angular velocity about the yaw axis'; the Oxford book says the turn needle shows angular velocity about the vertical axis, so the key would contradict it."
  },
  {
   "sec": "GYRO",
@@ -5239,6 +5276,7 @@
   "ch": "inst-14",
   "notes": [
    "Scan key read as c (single reading); keyed on the physics, as in the gyroscope section.",
+   "Revised after the independent audit of 2026-10-25.",
    "Scan key read as c (single reading); keyed on the worked explanation in the source."
   ],
   "q": "The turn needle indicates……..in a slightly banked turn?",
@@ -5249,7 +5287,7 @@
    "Yaw displacement"
   ],
   "ans": 0,
-  "exp": "In a gently banked turn the turn needle senses the yaw rate, i.e. the angular velocity about the aircraft's vertical axis.",
+  "exp": "In a slightly banked turn the turn needle shows the rate of turn, which is the angular velocity about the vertical axis (not the yaw rate about the aircraft's own yaw axis).",
   "status": "VERIFIED",
   "book": "c"
  },
@@ -5439,9 +5477,21 @@
   "sec": "TURN/SLIP",
   "n": 26,
   "ch": "inst-14",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "A skid in a left turn can be corrected either with more right rudder or more left bank; options a and d are both defensible."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "What corrective action is required if the ball is out to the right in a left turn?",
+  "opts": [
+   "More right rudder.",
+   "More left rudder.",
+   "More right bank.",
+   "More left bank."
+  ],
+  "ans": 3,
+  "exp": "With the ball out to the right in a left turn the aircraft is skidding: there is not enough bank for the rate of turn. Increase the left bank.",
+  "status": "VERIFIED",
+  "book": "d"
  },
  {
   "sec": "TURN/SLIP",
@@ -8212,9 +8262,21 @@
   "sec": "AUTOFLIGHT",
   "n": 79,
   "ch": "inst-27",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "'Semi-automatic landing' has no official definition and the source's own answers to these items disagree (about 100 ft against decision height)."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "During a semi-automatic landing the autopilot?",
+  "opts": [
+   "Controls speed down to 30 ft agl before automatically disengaging.",
+   "Controls the aircraft throughout the approach and until at least the decision height.",
+   "Controls the aircraft throughout the approach and until the end of the roll out.",
+   "Is not employed below 400 ft agl."
+  ],
+  "ans": 1,
+  "exp": "In a semi-automatic landing the autopilot flies the ILS approach down to decision height, where it is disengaged and the pilot lands manually.",
+  "status": "VERIFIED",
+  "book": "b"
  },
  {
   "sec": "AUTOFLIGHT",
@@ -8303,9 +8365,21 @@
   "sec": "AUTOFLIGHT",
   "n": 87,
   "ch": "inst-27",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "Conflicts with other items in the source on when the autoland ends (start of the ground roll or the roll-out)."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "An autoland procedure is complete when?",
+  "opts": [
+   "At the flare.",
+   "At the end of the ground roll.",
+   "At the start of the ground roll.",
+   "At decision height."
+  ],
+  "ans": 2,
+  "exp": "The autoland procedure is complete at the start of the ground roll, once the aircraft has touched down.",
+  "status": "VERIFIED",
+  "book": "c"
  },
  {
   "sec": "AUTOFLIGHT",
@@ -8375,9 +8449,21 @@
   "sec": "AUTOFLIGHT",
   "n": 96,
   "ch": "inst-27",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "If only one autopilot is employed to control climb, cruise and approach, it must be?",
+  "opts": [
+   "Fail safe and automatically disconnected in the event of its failure.",
+   "Fail soft and manually disconnected in the event of its failure.",
+   "Redundant and fail safe.",
+   "Fail operational."
+  ],
+  "ans": 0,
+  "exp": "A single autopilot must be fail-safe: its authority is limited so a failure cannot endanger the aircraft, and it disconnects so the pilot takes over.",
+  "status": "VERIFIED",
+  "book": null
  },
  {
   "sec": "AUTOFLIGHT",
@@ -8416,9 +8502,21 @@
   "sec": "AUTOFLIGHT",
   "n": 100,
   "ch": "inst-26",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "'Semi-automatic landing' has no official definition and the source's own answers to these items disagree (about 100 ft against decision height)."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "At what height will the autopilot be disengaged during a semi-automatic landing?",
+  "opts": [
+   "400 ft.",
+   "100 ft.",
+   "50 ft.",
+   "Decision height."
+  ],
+  "ans": 3,
+  "exp": "In a semi-automatic landing the autopilot is disengaged at decision height and the pilot completes the landing by hand.",
+  "status": "VERIFIED",
+  "book": "d"
  },
  {
   "sec": "AUTOFLIGHT",
@@ -8498,9 +8596,22 @@
   "sec": "AUTOFLIGHT",
   "n": 108,
   "ch": "inst-26",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25.",
+   "Scan key read as b (single reading); keyed on the worked explanation in the source."
+  ],
+  "q": "The purpose of the automatic trim facility is to?",
+  "opts": [
+   "To relieve the forces on the control column prior to hand over.",
+   "To reduce control hinge moments to zero.",
+   "To relieve forces on the autopilot servos prior to hand over.",
+   "To prevent sudden altitude changes in alt hold."
+  ],
+  "ans": 2,
+  "exp": "Auto-trim keeps re-trimming the aircraft so the autopilot servo is not left holding a standing load. When the autopilot hands back to the pilot, no hidden out-of-trim force is waiting to jerk the controls.",
+  "status": "VERIFIED",
+  "book": "b"
  },
  {
   "sec": "AUTOFLIGHT",
@@ -8514,17 +8625,41 @@
   "sec": "AUTOFLIGHT",
   "n": 110,
   "ch": "inst-26",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "The most basic autopilot function is to?",
+  "opts": [
+   "Level the wings.",
+   "Heading hold.",
+   "Altitude hold.",
+   "Pitch hold."
+  ],
+  "ans": 0,
+  "exp": "The simplest autopilot works in one axis, roll, and only keeps the wings level. Heading, altitude and pitch hold come with more advanced systems.",
+  "status": "VERIFIED",
+  "book": null
  },
  {
   "sec": "AUTOFLIGHT",
   "n": 111,
   "ch": "inst-26",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "The effects of an automatic trim function in an autopilot system are to? 1. Cancel rudder control inputs to prevent runaway. 2. Prevent snatching on engagement. 3. Prevent snatching on disengagement. 4. To prevent system engagement if auto trim is not available.",
+  "opts": [
+   "1, 2.",
+   "1, 3.",
+   "2, 4.",
+   "3, 4."
+  ],
+  "ans": 3,
+  "exp": "Auto-trim works in pitch only, so it has nothing to do with rudder inputs. It stops the controls snatching when the autopilot is disengaged, and if auto-trim is not available the autopilot may not engage at all.",
+  "status": "VERIFIED",
+  "book": "d"
  },
  {
   "sec": "AUTOFLIGHT",
@@ -8594,9 +8729,21 @@
   "sec": "AUTOFLIGHT",
   "n": 120,
   "ch": "inst-28",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "What is controlled by an auto flight system?",
+  "opts": [
+   "Elevators to control IAS.",
+   "Elevators to control heading.",
+   "Auto-throttle to control altitude.",
+   "Auto-throttle to control vertical speed."
+  ],
+  "ans": 0,
+  "exp": "In a speed-on-pitch mode such as Level Change, the autopilot holds the selected IAS by moving the elevators while the autothrottle sets thrust. Heading is a roll-channel job, and altitude or vertical speed is held through pitch, not by the autothrottle.",
+  "status": "VERIFIED",
+  "book": null
  },
  {
   "sec": "AUTOFLIGHT",
@@ -9026,9 +9173,22 @@
   "sec": "EICAS/ECAM",
   "n": 3,
   "ch": "inst-39",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25.",
+   "Scan key read as c (single reading); keyed on the worked explanation in the source."
+  ],
+  "q": "A message enclosed within a box?",
+  "opts": [
+   "Is used in EICAS to show a system which is unserviceable.",
+   "Is used in ECAM to show a system which is unserviceable.",
+   "Is used in EICAS to show a system which although serviceable, is rendered non-operational due to the failure of a different system.",
+   "Is used in ECAM to show a system which although serviceable, is rendered non-operational due to the failure of a different system."
+  ],
+  "ans": 3,
+  "exp": "ECAM draws a box round a system that is serviceable in itself but has been made unavailable by a failure somewhere else. EICAS does not use this boxed convention.",
+  "status": "VERIFIED",
+  "book": "c"
  },
  {
   "sec": "EICAS/ECAM",
@@ -9210,9 +9370,22 @@
   "sec": "EICAS/ECAM",
   "n": 19,
   "ch": "inst-39",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25.",
+   "Scan key read as d (single reading); keyed on the worked explanation in the source."
+  ],
+  "q": "An EICAS advisory message?",
+  "opts": [
+   "Appears in amber on the upper display, indented one digit to the left.",
+   "Appears in amber on the upper display, indented one digit to the right.",
+   "Appears in green on the lower display, indented one digit to the right.",
+   "Appears in amber on the lower screen, indented one digit to the right."
+  ],
+  "ans": 1,
+  "exp": "An EICAS advisory appears in amber on the upper display, like a caution. To tell the two apart, the advisory is indented one space to the right.",
+  "status": "VERIFIED",
+  "book": "d"
  },
  {
   "sec": "EICAS/ECAM",
@@ -9675,9 +9848,21 @@
   "sec": "ENGINE",
   "n": 11,
   "ch": "inst-38",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "The yellow sector of the temperature gauge corresponds to?",
+  "opts": [
+   "A frequent operating range.",
+   "A forbidden operating range.",
+   "An exceptional operating range.",
+   "A normal operating range."
+  ],
+  "ans": 2,
+  "exp": "The yellow (amber) band is a caution range: you may operate there only in exceptional circumstances, usually for a limited time. Green is the normal range and red is the limit.",
+  "status": "VERIFIED",
+  "book": "c"
  },
  {
   "sec": "ENGINE",
@@ -9777,9 +9962,22 @@
   "sec": "ENGINE",
   "n": 19,
   "ch": "inst-38",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25.",
+   "Scan key read as d (single reading); keyed on the worked explanation in the source."
+  ],
+  "q": "The main advantage of a ratio meter-type temperature indicator is that it?",
+  "opts": [
+   "Is simple.",
+   "Can operate without an electrical power supply.",
+   "Is very accurate.",
+   "Carries out an independent measurement of the supply voltage."
+  ],
+  "ans": 2,
+  "exp": "A ratiometer compares the currents in two circuits fed from the same supply, so changes in supply voltage cancel out. That is why it is used where an accurate temperature reading is needed.",
+  "status": "VERIFIED",
+  "book": "d"
  },
  {
   "sec": "ENGINE",
@@ -9986,9 +10184,22 @@
   "sec": "ENGINE",
   "n": 37,
   "ch": "inst-38",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25.",
+   "Scan key read as b (single reading); keyed on the worked explanation in the source."
+  ],
+  "q": "Torque can be determined by measuring the?",
+  "opts": [
+   "Oil pressure at the fixed crown of an epicyclic reduction gear of the main engine gearbox.",
+   "Phase difference between 2 impulse tachometers attached to a transmission shaft.",
+   "Frequency of an impulse tachometer attached to a transmission shaft.",
+   "Quantity of light passing through a rack-wheel attached to a transmission shaft."
+  ],
+  "ans": 0,
+  "exp": "A common torquemeter measures the oil pressure needed to stop the fixed ring (crown) gear of the epicyclic reduction gearbox from turning. That oil pressure is proportional to the torque being transmitted.",
+  "status": "VERIFIED",
+  "book": "b"
  },
  {
   "sec": "ENGINE",
@@ -10753,9 +10964,21 @@
   "sec": "TEMP",
   "n": 6,
   "ch": "inst-38",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "The source itself calls this question badly worded."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "What types of thermometer are used in modern aircraft? 1. Resistive. 2. Mercury. 3. Capacitive. 4. Inductive. 5. Thermocouples.",
+  "opts": [
+   "1, 2, 4.",
+   "1, 3, 4.",
+   "2, 4, 5.",
+   "1, 2, 5."
+  ],
+  "ans": 3,
+  "exp": "Resistance thermometers, mercury (expansion) thermometers and thermocouples are all used to measure temperature in aircraft. Capacitive and inductive sensors are not used as thermometers.",
+  "status": "VERIFIED",
+  "book": "d"
  },
  {
   "sec": "TEMP",
@@ -10964,9 +11187,22 @@
   "sec": "FUEL",
   "n": 2,
   "ch": "inst-38",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25.",
+   "Scan key read as a (single reading); keyed on the worked explanation in the source."
+  ],
+  "q": "A capacitive fuel gauging system measures?",
+  "opts": [
+   "Changes in capacitance of the fuel.",
+   "Changes in capacitance due to variations in the proportion of sensors immersed in fuel.",
+   "Changes in capacitance of fuel due to density changes.",
+   "Changes in dielectric constant of fuel."
+  ],
+  "ans": 1,
+  "exp": "Each tank probe is a capacitor whose gap is filled partly by fuel and partly by air. As the fuel level rises more of the probe is immersed, the capacitance rises, and that change is what the gauge measures.",
+  "status": "VERIFIED",
+  "book": "a"
  },
  {
   "sec": "FUEL",
@@ -10979,9 +11215,21 @@
   "sec": "FUEL",
   "n": 4,
   "ch": "inst-38",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "Not stated in the source text; cannot be confirmed."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "A capacitive fuel gauging system can calculate the mass of fuel by using the fact that?",
+  "opts": [
+   "Fuel dielectric constant is proportional to density and twice that of air.",
+   "Fuel dielectric constant is equal to 1/density and proportional to that of air.",
+   "Fuel dielectric constant is equal to density and proportional to that of air.",
+   "Fuel dielectric constant is proportional to 1/density and equal to that of air."
+  ],
+  "ans": 0,
+  "exp": "Fuel has a dielectric constant about twice that of air, and that constant rises with fuel density. Because of this link the capacitance reading can be calibrated to show fuel mass rather than just volume.",
+  "status": "VERIFIED",
+  "book": null
  },
  {
   "sec": "FUEL",
@@ -11096,9 +11344,21 @@
   "sec": "FUEL",
   "n": 13,
   "ch": "inst-38",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "Modern turbojet and turboprop aircraft are likely to employ?",
+  "opts": [
+   "Capacitive mass fuel flow meters.",
+   "Venturi type fuel flow meters.",
+   "Variable orifice fuel flow meters.",
+   "Turbine impeller type fuel flow meters."
+  ],
+  "ans": 3,
+  "exp": "Modern turbine-engine fuel flowmeters use an impeller turned by the fuel, with a pick-off coil whose signal frequency follows the impeller speed. The signal is then corrected so the gauge can show mass flow.",
+  "status": "VERIFIED",
+  "book": "d"
  },
  {
   "sec": "FUEL",
@@ -11613,9 +11873,22 @@
   "sec": "COMPASS",
   "n": 36,
   "ch": "inst-17",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25.",
+   "Scan key read as d (single reading); keyed on the worked explanation in the source."
+  ],
+  "q": "From what does a gyro magnetic compass torque motor obtain its information?",
+  "opts": [
+   "Error detector.",
+   "Flux valve.",
+   "Amplifier",
+   "Rotor gimbals tilt unit."
+  ],
+  "ans": 2,
+  "exp": "The flux valve signal is compared with the gyro in the error detector, and the error signal goes to the precession amplifier. The amplified signal is what drives the torque (precession) motor that slaves the gyro.",
+  "status": "VERIFIED",
+  "book": "d"
  },
  {
   "sec": "COMPASS",
@@ -11902,9 +12175,21 @@
   "sec": "COMPASS",
   "n": 61,
   "ch": "inst-10",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "The roll out must be performed at........when turning from NW to NE in the southern hemisphere?",
+  "opts": [
+   "025 degrees.",
+   "045 degrees.",
+   "055 degrees.",
+   "035 degrees."
+  ],
+  "ans": 2,
+  "exp": "In the southern hemisphere north is the further pole, so a turn through north makes the compass lively. You roll out late, past the wanted 045, which leaves 055 as the only correct choice.",
+  "status": "VERIFIED",
+  "book": null
  },
  {
   "sec": "COMPASS",
@@ -12041,9 +12326,21 @@
   "sec": "WARN/REC",
   "n": 8,
   "ch": "inst-33",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "A stall warning system in a large JAR certificated aircraft must include?",
+  "opts": [
+   "Stick shaker and stick pusher.",
+   "Monitoring of speed brake position and angle of attack, a warning module, and visual or aural warning system.",
+   "Monitoring of landing gear squat switch and A of A, a warning module and an aural warning.",
+   "Monitoring of A of A and IAS. plus aural and visual warnings."
+  ],
+  "ans": 2,
+  "exp": "A large-aircraft stall warning system takes several inputs, including angle of attack and the landing-gear squat switch, processes them in a warning module, and gives an aural warning.",
+  "status": "VERIFIED",
+  "book": "c"
  },
  {
   "sec": "WARN/REC",
@@ -12065,9 +12362,21 @@
   "sec": "WARN/REC",
   "n": 11,
   "ch": "inst-32",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25."
+  ],
+  "q": "An altitude alert system?",
+  "opts": [
+   "Alerts the pilot if the aircraft deviates from selected altitude.",
+   "Alerts the pilot when decision height is reached.",
+   "Alerts the pilot when the selected height is reached.",
+   "Alerts the pilot when the actual altitude is equal to the reference altitude."
+  ],
+  "ans": 0,
+  "exp": "The altitude alert system warns the crew as they approach the selected altitude and again if they deviate from it after levelling. It is not a decision-height or reference-altitude alert.",
+  "status": "VERIFIED",
+  "book": null
  },
  {
   "sec": "WARN/REC",
@@ -12695,9 +13004,22 @@
   "sec": "TCAS",
   "n": 15,
   "ch": "inst-35",
-  "notes": [],
-  "status": "DROPPED",
-  "reason": "References differ on the intended answer; not safe to key."
+  "notes": [
+   "Settled from the Oxford instrumentation book on the Captain's ruling (2026-10-26).",
+   "Revised after the independent audit of 2026-10-25.",
+   "Scan key read as c (single reading); keyed on the worked explanation in the source."
+  ],
+  "q": "The TCAS (Traffic Collision Avoidance System) computer receives information: 1. About the pressure altitude through the mode S transponder. 2. From the radio altimeter. 3. Specific to the airplane configuration. 4. From the inertial units. The combination regrouping all the correct statements is?",
+  "opts": [
+   "1,2,4.",
+   "1,2.",
+   "1,2,3.",
+   "1,2,3,4."
+  ],
+  "ans": 3,
+  "exp": "TCAS II uses Mode S pressure-altitude data, the radio altimeter (to limit RAs near the ground), aircraft configuration and performance data, and the inertial reference system for vertical acceleration. All four are inputs.",
+  "status": "VERIFIED",
+  "book": "c"
  },
  {
   "sec": "TCAS",

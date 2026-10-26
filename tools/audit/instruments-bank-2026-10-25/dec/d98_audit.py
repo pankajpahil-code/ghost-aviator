@@ -79,6 +79,11 @@ PATCH = {
  ('COMPASS', 13): dict(q_sub=[('If the Held is', 'if the field is')]),
  ('EFIS', 13): dict(opt={'b': 'Map, Expanded ILS, Full ILS and Full VOR.'}),
  ('FLIGHT DIRECTOR', 20): dict(q="When will the ADI vertical bar become centralised when 180 degrees is selected while flying on a heading of 160 degrees?"),
+ # Consistency with the Oxford book's keyed answer that the turn needle shows angular velocity about the
+ # vertical axis, NOT rate of yaw (found while restoring the held questions, 2026-10-26).
+ ('GYRO', 14): dict(drop="Keyed 'yaw rate'; the Oxford book keys the turn needle as angular velocity about the vertical axis, not yaw rate, and option a is too vague to rekey."),
+ ('GYRO', 35): dict(drop="Keyed to 'angular velocity about the yaw axis'; the Oxford book says the turn needle shows angular velocity about the vertical axis, so the key would contradict it."),
+ ('TURN/SLIP', 9): dict(exp="In a slightly banked turn the turn needle shows the rate of turn, which is the angular velocity about the vertical axis (not the yaw rate about the aircraft's own yaw axis)."),
  ('MACH', 25): dict(exp_sub=[('15 - 2 x 25', '15 - 1.98 x 25')]),
  ('ALTEMETER', 6): dict(exp_sub=[('ROD = groundspeed x angle', 'ROD = TAS x angle')]),
 }

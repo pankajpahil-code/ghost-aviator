@@ -1135,12 +1135,12 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-4", number: 4, title: "The Airspeed Indicator (ASI)",
         description: "Instrumentation Chapter 4: The Airspeed Indicator (ASI). DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 55, content: makeContent(true),
+        duration: "2 hrs", questionCount: 56, content: makeContent(true),
       },
       {
         id: "inst-5", number: 5, title: "The Pressure Altimeter",
         description: "Instrumentation Chapter 5: The Pressure Altimeter. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 45, content: makeContent(true),
+        duration: "2 hrs", questionCount: 47, content: makeContent(true),
       },
       {
         id: "inst-6", number: 6, title: "The Vertical Speed Indicator",
@@ -1150,7 +1150,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-7", number: 7, title: "The Machmeter",
         description: "Instrumentation Chapter 7: The Machmeter. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 32, content: makeContent(true),
+        duration: "2 hrs", questionCount: 33, content: makeContent(true),
       },
       {
         id: "inst-8", number: 8, title: "Air Data Computer",
@@ -1165,12 +1165,12 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-10", number: 10, title: "The Direct Indicating Compass",
         description: "Instrumentation Chapter 10: The Direct Indicating Compass. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 28, content: makeContent(true),
+        duration: "2 hrs", questionCount: 29, content: makeContent(true),
       },
       {
         id: "inst-11", number: 11, title: "Gyroscopes",
         description: "Instrumentation Chapter 11: Gyroscopes. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 23, content: makeContent(true),
+        duration: "2 hrs", questionCount: 22, content: makeContent(true),
       },
       {
         id: "inst-12", number: 12, title: "Directional Gyro Indicator (DGI)",
@@ -1180,12 +1180,12 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-13", number: 13, title: "The Artificial Horizon",
         description: "Instrumentation Chapter 13: The Artificial Horizon. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 22, content: makeContent(true),
+        duration: "2 hrs", questionCount: 21, content: makeContent(true),
       },
       {
         id: "inst-14", number: 14, title: "The Turn and Slip Indicator",
         description: "Instrumentation Chapter 14: The Turn and Slip Indicator. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 30, content: makeContent(true),
+        duration: "2 hrs", questionCount: 31, content: makeContent(true),
       },
       {
         id: "inst-15", number: 15, title: "The Turn Co-ordinator",
@@ -1200,7 +1200,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-17", number: 17, title: "Remote Indicating Magnetic Compass",
         description: "Instrumentation Chapter 17: Remote Indicating Magnetic Compass. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 12, content: makeContent(true),
+        duration: "2 hrs", questionCount: 13, content: makeContent(true),
       },
       {
         id: "inst-18", number: 18, title: "Inertial Navigation Systems",
@@ -1245,17 +1245,17 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-26", number: 26, title: "Autopilot",
         description: "Instrumentation Chapter 26: Autopilot. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 35, content: makeContent(true),
+        duration: "2 hrs", questionCount: 39, content: makeContent(true),
       },
       {
         id: "inst-27", number: 27, title: "Autoland",
         description: "Instrumentation Chapter 27: Autoland. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 15, content: makeContent(true),
+        duration: "2 hrs", questionCount: 18, content: makeContent(true),
       },
       {
         id: "inst-28", number: 28, title: "Autothrottle",
         description: "Instrumentation Chapter 28: Autothrottle. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 14, content: makeContent(true),
+        duration: "2 hrs", questionCount: 15, content: makeContent(true),
       },
       {
         id: "inst-29", number: 29, title: "Yaw Dampers",
@@ -1275,12 +1275,12 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-32", number: 32, title: "Flight Warning Systems",
         description: "Instrumentation Chapter 32: Flight Warning Systems. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 8, content: makeContent(true),
+        duration: "2 hrs", questionCount: 9, content: makeContent(true),
       },
       {
         id: "inst-33", number: 33, title: "Aerodynamic Warnings",
         description: "Instrumentation Chapter 33: Aerodynamic Warnings. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 9, content: makeContent(true),
+        duration: "2 hrs", questionCount: 10, content: makeContent(true),
       },
       {
         id: "inst-34", number: 34, title: "Ground Proximity Warning System",
@@ -1290,7 +1290,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-35", number: 35, title: "Airborne Collision and Avoidance System",
         description: "Instrumentation Chapter 35: Airborne Collision and Avoidance System. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 28, content: makeContent(true),
+        duration: "2 hrs", questionCount: 29, content: makeContent(true),
       },
       {
         id: "inst-36", number: 36, title: "Flight Data Recorder",
@@ -1305,12 +1305,12 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
       {
         id: "inst-38", number: 38, title: "Engine Instrumentation",
         description: "Instrumentation Chapter 38: Engine Instrumentation. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 65, content: makeContent(true),
+        duration: "2 hrs", questionCount: 72, content: makeContent(true),
       },
       {
         id: "inst-39", number: 39, title: "Electronic Instrumentation",
         description: "Instrumentation Chapter 39: Electronic Instrumentation. DGCA CPL/ATPL exam-ready study notes with diagrams, worked examples, and practice Q&A.",
-        duration: "2 hrs", questionCount: 34, content: makeContent(true),
+        duration: "2 hrs", questionCount: 36, content: makeContent(true),
       },
       {
         id: "inst-40", number: 40, title: "Revision Questions",
