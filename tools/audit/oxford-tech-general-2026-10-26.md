@@ -19,7 +19,7 @@ The PDF contains the Oxford ATPL **Principles of Flight** question bank (chapter
 - Removed one ambiguous valve-overlap question where two answer options were defensible.
 - Every selected answer was taken from the Oxford answer grid.
 - Every explanation was authored locally. The Oxford source supplies answer letters only; it does not supply explanations.
-- Every selected stem was normalised and compared against the existing bank and against the other Oxford batch.
+- Every selected stem was normalised and compared against the existing bank and against the other Oxford batches.
 - Every selected question was checked for a valid answer index, four distinct options, a non-stub explanation, a chapter mapping, and no figure dependency.
 
 ## Imported batch 1
@@ -75,11 +75,32 @@ By source:
 | tg-38 Propellers | 6 |
 | tg-39 Windshear and Microbursts | 6 |
 
-Batch 2 focuses on the thin areas of the bank: wing-tip vortices and wake turbulence, ground effect, aspect ratio, stall patterns and warning devices, tailplane icing, control balancing and trim, climb/glide/turn mechanics, windshear, and propellers.
+Batch 2 focuses on wing-tip vortices and wake turbulence, ground effect, aspect ratio, stall patterns and warning devices, tailplane icing, control balancing and trim, climb/glide/turn mechanics, windshear, and propellers.
+
+## Imported batch 3
+
+**70 questions** selected from the remaining clean Oxford candidates:
+
+| Chapter | Questions |
+|---|---:|
+| tg-1 The Atmosphere and Its Properties | 4 |
+| tg-2 Fundamental Aerodynamic Principles | 9 |
+| tg-3 The Aerofoil and Subsonic Airflow | 6 |
+| tg-4 Lift, Drag, and the Angle of Attack | 5 |
+| tg-6 A Deeper Dive into Drag | 4 |
+| tg-7 Stalling, Spinning, and Recovery | 8 |
+| tg-8 High-Lift Devices | 2 |
+| tg-10 Aircraft Controls | 10 |
+| tg-32 Ice and Rain Protection | 1 |
+| tg-37 Flight Mechanics: Climb, Glide and Turns | 11 |
+| tg-38 Propellers | 5 |
+| tg-39 Windshear and Microbursts | 5 |
+
+Batch 3 fills the foundational and applied gaps: work, power, inertia and kinetic energy; ISA and airspeed measurement; Bernoulli and continuity; aerofoil terminology and pressure distribution; lift, drag and aspect-ratio relationships; stall warning and stall speed; control balancing, irreversible controls and artificial feel; load factor, turns and glide performance; microburst recognition and recovery; propeller slip, blade angle and constant-speed operation.
 
 Rejected before import:
 
-- Near-duplicates of batch 1 or the live bank, including the ground-effect lift item, the wake-vortex circulation item, the aspect-ratio definition, and the lift/drag perpendicular-to-flight-path item.
+- Near-duplicates of batch 1, batch 2 or the live bank, including the ground-effect lift item, the wake-vortex circulation item, the aspect-ratio definition, the lift/drag perpendicular-to-flight-path item, the dynamic-pressure definition, and the wake-turbulence wind-condition item.
 - Questions with OCR page-grid text embedded in an option.
 - Figure-dependent items.
 - Items with an ambiguous or clearly wrong printed answer, including:
@@ -90,30 +111,30 @@ Rejected before import:
 
 ## Dedicated chapter structure
 
-The first pass had grouped three Oxford topics under the nearest existing chapter. That made the chapter titles misleading: propeller questions sat under the piston-engine chapter, flight mechanics under fundamental aerodynamics, and windshear under stalling. Both batches have now been remapped:
+The first pass had grouped three Oxford topics under the nearest existing chapter. That made the chapter titles misleading: propeller questions sat under the piston-engine chapter, flight mechanics under fundamental aerodynamics, and windshear under stalling. All three batches are now mapped as follows:
 
-- **tg-37 Flight Mechanics: Climb, Glide and Turns** — 14 questions
-- **tg-38 Propellers** — 9 questions
-- **tg-39 Windshear and Microbursts** — 9 questions
+- **tg-37 Flight Mechanics: Climb, Glide and Turns** — 25 questions
+- **tg-38 Propellers** — 14 questions
+- **tg-39 Windshear and Microbursts** — 14 questions
 
 The three new chapters are practice-question chapters. Their notes tiles are marked unavailable until dedicated notes are published, so the subject page does not advertise a notes page that would open a stub. The old chapters no longer carry the moved questions.
 
 ## Combined Oxford total
 
-**187 questions** in the live bank:
+**257 questions** in the live bank:
 
 | Chapter | Questions |
 |---|---:|
-| tg-1 The Atmosphere and Its Properties | 10 |
-| tg-2 Fundamental Aerodynamic Principles | 12 |
-| tg-3 The Aerofoil and Subsonic Airflow | 8 |
-| tg-4 Lift, Drag, and the Angle of Attack | 9 |
+| tg-1 The Atmosphere and Its Properties | 14 |
+| tg-2 Fundamental Aerodynamic Principles | 21 |
+| tg-3 The Aerofoil and Subsonic Airflow | 14 |
+| tg-4 Lift, Drag, and the Angle of Attack | 14 |
 | tg-5 Three-Dimensional Airflow and Wing Design | 5 |
-| tg-6 A Deeper Dive into Drag | 11 |
-| tg-7 Stalling, Spinning, and Recovery | 17 |
-| tg-8 High-Lift Devices | 9 |
+| tg-6 A Deeper Dive into Drag | 15 |
+| tg-7 Stalling, Spinning, and Recovery | 25 |
+| tg-8 High-Lift Devices | 11 |
 | tg-9 Aircraft Stability | 1 |
-| tg-10 Aircraft Controls | 14 |
+| tg-10 Aircraft Controls | 24 |
 | tg-11 Introduction to the Piston Engine and the Otto Cycle | 27 |
 | tg-12 Engine Components and Construction | 16 |
 | tg-13 Carburetion and Mixture Control | 1 |
@@ -122,24 +143,24 @@ The three new chapters are practice-question chapters. Their notes tiles are mar
 | tg-16 Engine Lubrication Systems | 1 |
 | tg-17 Induction Icing and Ignition Systems | 1 |
 | tg-18 Supercharging and Turbocharging | 2 |
-| tg-32 Ice and Rain Protection | 6 |
-| tg-37 Flight Mechanics: Climb, Glide and Turns | 14 |
-| tg-38 Propellers | 9 |
-| tg-39 Windshear and Microbursts | 9 |
+| tg-32 Ice and Rain Protection | 7 |
+| tg-37 Flight Mechanics: Climb, Glide and Turns | 25 |
+| tg-38 Propellers | 14 |
+| tg-39 Windshear and Microbursts | 14 |
 
 By source:
 
-- Oxford ATPL Principles of Flight question bank — 134
+- Oxford ATPL Principles of Flight question bank — 204
 - Oxford ATPL Powerplant question bank — 53
 
 ## Result
 
-- Live bank: **4,326 → 4,513 questions**
-- Technical General pool: **184 → 371 questions**
-- Every imported question survives the live de-dupe: **187/187**
+- Live bank: **4,326 → 4,583 questions**
+- Technical General pool: **184 → 441 questions**
+- Every imported question survives the live de-dupe: **257/257**
 - Dedicated TG chapters added for the three previously misplaced topics.
 - No duplicate stem against the pre-import bank.
-- No duplicate stem between batch 1 and batch 2.
+- No duplicate stem between batch 1, batch 2 and batch 3.
 - No missing or short explanation.
 - No invalid answer index.
 - No repeated option.
@@ -147,18 +168,19 @@ By source:
 
 ## Verification run
 
-- `npx tsx tools/audit/oxford-tech-general.mts` — PASS (187/187 live)
-- `npx tsx tools/audit/question-artifacts.mts` — clean (4,513 questions)
+- `npx tsx tools/audit/oxford-tech-general.mts` — PASS (257/257 live)
+- `npx tsx tools/audit/question-artifacts.mts` — clean (4,583 questions)
 - `npx tsc --noEmit` — PASS
 - `npm run lint` — 0 errors; 4 pre-existing warnings in unrelated audit scripts
 - `npm run build` — PASS; 1,678 static pages; 682 sitemap entries; 609 with lastmod; 108 video nodes
 - Production smoke test:
-  - `GET /cpl/technical-general` returned 200 and listed Flight Mechanics, Propellers, and Windshear and Microbursts.
-  - `GET /cpl/technical-general/tg-37/questions` returned 200 and served the new flight-mechanics questions with explanations.
-  - `GET /cpl/technical-general/tg-38/questions` returned 200 and served the new propeller questions with explanations.
-  - `GET /cpl/technical-general/tg-39/questions` returned 200 and served the new windshear questions with explanations.
-  - The moved questions were confirmed absent from `/tg-2/questions`, `/tg-7/questions`, and `/tg-11/questions`.
-- `npm run build:lastmod` — regenerated 598 dated routes from git history; the sitemap audit now reports 609 routes with lastmod and 0 problems.
+  - `GET /cpl/technical-general/tg-2/questions` returned 200 and served the new work, inertia and rotation questions with explanations.
+  - `GET /cpl/technical-general/tg-6/questions` returned 200 and served the new parasite-drag and aspect-ratio questions with explanations.
+  - `GET /cpl/technical-general/tg-10/questions` returned 200 and served the new control-balance and artificial-feel questions with explanations.
+  - `GET /cpl/technical-general/tg-37/questions` returned 200 and served the new load-factor and turn questions with explanations.
+  - `GET /cpl/technical-general/tg-38/questions` returned 200 and served the new propeller-slip and counter-rotating questions with explanations.
+  - `GET /cpl/technical-general/tg-39/questions` returned 200 and served the new microburst and windshear-recovery questions with explanations.
+- `npm run build:lastmod` — regenerated the sitemap dates from git history; the sitemap audit reports 0 problems.
 
 ## Commit and push
 

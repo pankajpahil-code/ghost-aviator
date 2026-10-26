@@ -9,6 +9,7 @@ import { TECHBOOK_QUESTIONS_1 } from "./techbook-questions-1";
 import { TECHBOOK_QUESTIONS_2 } from "./techbook-questions-2";
 import { OXFORD_TECH_GENERAL_QUESTIONS } from "./generated/oxford-tech-general";
 import { OXFORD_TECH_GENERAL_QUESTIONS_2 } from "./generated/oxford-tech-general-2";
+import { OXFORD_TECH_GENERAL_QUESTIONS_3 } from "./generated/oxford-tech-general-3";
 import { ECQB_061_NAVIGATION } from "./generated/ecqb-061-navigation";
 import { ICJOSHI_MET } from "./generated/icjoshi-met";
 import { ICJOSHI_NOTES_MET } from "./generated/icjoshi-notes-met";
@@ -50,6 +51,7 @@ export const BANK_BEFORE_DEDUPE: DemoQuestion[] = applyAnswerCorrections([
   ...TECHBOOK_QUESTIONS_2, // Technical General — own book Q&A (tg-19..36)
   ...OXFORD_TECH_GENERAL_QUESTIONS, // Oxford ATPL PoF + Powerplant (tg-1..18, tg-32)
   ...OXFORD_TECH_GENERAL_QUESTIONS_2, // Oxford ATPL PoF second batch (tg-1..18, tg-32)
+  ...OXFORD_TECH_GENERAL_QUESTIONS_3, // Oxford ATPL PoF third batch (tg-1..18, tg-32)
   ...DA42_QUESTIONS,       // Technical Specific — DA-42 NG (Austro) type bank (da42-1..10)
   ...ICJOSHI_NOTES_MET.filter(dropVerifiedMet),   // rich HTML-notes Q&A (unverified met chapters only)
   ...OXFORD_INSTRUMENTATION, // Instrumentation HTML-notes Q&A (inst-1..23)
