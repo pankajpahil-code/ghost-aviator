@@ -943,7 +943,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "To cover the greatest distance when gliding the gliding speed must be:",
@@ -958,7 +958,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "The reason a light general aviation aircraft tends to nose-down during power reduction is that the:",
@@ -973,7 +973,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "Skidding outward in a turn is caused by:",
@@ -988,7 +988,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "The horizontal stabilizer usually provides a down load in level flight because:",
@@ -1003,7 +1003,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "Assume that after take-off a turn is made to a downwind heading. In regard to the ground, the aeroplane will climb at:",
@@ -1018,7 +1018,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "During a turn the lift force may be resolved into two forces; these are:",
@@ -1033,7 +1033,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "In a climb at a steady speed, the thrust is:",
@@ -1048,7 +1048,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "During a ‘power-on’ descent the forces acting on an aircraft are:",
@@ -1063,7 +1063,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "During a steady climb the lift force is:",
@@ -1078,7 +1078,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "If the weight of an aircraft is increased, the maximum gliding range:",
@@ -1093,7 +1093,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-7",
+    chapterId: "tg-39",
     subtopic: "Windshear",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "Which performance characteristics should be recognized during take-off when encountering a tailwind shear that increases in intensity?",
@@ -1108,7 +1108,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-7",
+    chapterId: "tg-39",
     subtopic: "Windshear",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "What is the expected duration of an individual micro burst?",
@@ -1123,7 +1123,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-7",
+    chapterId: "tg-39",
     subtopic: "Windshear",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "Which INITIAL cockpit indications should a pilot be aware of when a constant tailwind shears to a calm wind?",
@@ -1138,7 +1138,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-7",
+    chapterId: "tg-39",
     subtopic: "Windshear",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "Which of the following statements are correct? 1. A rapid increase in headwind is an ‘energy gain’. 2. A rapid loss of tailwind is an ‘energy gain’. 3. A shear from a tailwind to calm is an ‘energy gain’. 4. A shear from calm to a headwind is an ‘energy gain’. 5. A shear from headwind to calm is an ‘energy loss’.",
@@ -1153,7 +1153,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-7",
+    chapterId: "tg-39",
     subtopic: "Windshear",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "A microburst is one of the most dangerous sources of windshear associated with thunderstorms. They are:",
@@ -1168,7 +1168,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-7",
+    chapterId: "tg-39",
     subtopic: "Windshear",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "Which of the following statements about windshear is true? 1. Windshear can subject your aircraft to sudden updraughts, downdraughts, or extreme horizontal wind components. 2. Windshear will cause abrupt displacement from the flight path and require substantial control action to counteract it. 3. Windshear only affects small single and twin engine aircraft. Large, modern, powerful, fast gas turbine engine powered aircraft will not suffer from the worst effects of a microburst. 4. Microbursts are associated with cumulonimbus clouds. 5. Windshear can strike suddenly and with devastating effect which has been beyond the recovery powers of experienced pilots flying modern and powerful aircraft.",
@@ -1183,7 +1183,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-11",
+    chapterId: "tg-38",
     subtopic: "Propellers",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "The left turning tendency of an aeroplane caused by asymmetric blade effect is the result of the:",
@@ -1198,7 +1198,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-11",
+    chapterId: "tg-38",
     subtopic: "Propellers",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "When does asymmetric blade effect cause the aeroplane to yaw to the left?",
@@ -1213,7 +1213,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-11",
+    chapterId: "tg-38",
     subtopic: "Propellers",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "A propeller rotating clockwise as seen from the rear, creates a spiralling slipstream that tends to rotate the aeroplane to the:",
@@ -1228,7 +1228,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-11",
+    chapterId: "tg-38",
     subtopic: "Propellers",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "Which statement is true regarding propeller efficiency? Propeller efficiency is the:",
@@ -1243,7 +1243,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-11",
+    chapterId: "tg-38",
     subtopic: "Propellers",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "The distance a propeller actually advances in one revolution is:",
@@ -1258,7 +1258,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS_2: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-11",
+    chapterId: "tg-38",
     subtopic: "Propellers",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "Which statement best describes the operating principle of a constant speed propeller?",

@@ -612,7 +612,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "In straight and level powered flight the following principal forces act on an aircraft:",
@@ -627,7 +627,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "For an aircraft in level flight, if the wing CP is aft of the CG and there is no thrust/ drag couple, the tailplane load must be:",
@@ -642,7 +642,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "To give the best obstacle clearance on take-off, take-off should be made with:",
@@ -657,7 +657,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-2",
+    chapterId: "tg-37",
     subtopic: "Flight Mechanics",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "For a glider having a maximum L/D ratio of 20:1, the flattest glide angle that could be achieved in still air would be:",
@@ -672,7 +672,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-7",
+    chapterId: "tg-39",
     subtopic: "Windshear",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "Take-off EPR is being delivered by all engines and the take-off is proceeding normally, the undercarriage has just retracted. Which initial indications may be observed when a headwind shears to a downdraught?",
@@ -687,7 +687,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-7",
+    chapterId: "tg-39",
     subtopic: "Windshear",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "An aircraft that encounters a headwind of 45 knots, within a microburst, may expect a total shear across the microburst of:",
@@ -702,7 +702,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-7",
+    chapterId: "tg-39",
     subtopic: "Windshear",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "What is the recommended technique to counter the loss of airspeed and resultant lift from windshear?",
@@ -717,7 +717,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-11",
+    chapterId: "tg-38",
     subtopic: "Propellers",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "As a result of gyroscopic precession, it can be said that:",
@@ -732,7 +732,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-11",
+    chapterId: "tg-38",
     subtopic: "Propellers",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "The reason for variations in geometric pitch (twisting) along a propeller blade is that it:",
@@ -747,7 +747,7 @@ export const OXFORD_TECH_GENERAL_QUESTIONS: DemoQuestion[] = [
   },
   {
     subjectIds: ["technical-general"],
-    chapterId: "tg-11",
+    chapterId: "tg-38",
     subtopic: "Propellers",
     source: "Oxford ATPL Principles of Flight question bank",
     q: "The geometric pitch of a propeller is:",

@@ -46,6 +46,15 @@ const makeContent = (hasQuestions = false): ContentType[] => [
   { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true         },
 ];
 
+// Chapters added for question-bank coverage that do not yet have their own
+// published notes PDF. Do not advertise a notes tile that would open a stub.
+const questionsOnly = (): ContentType[] => [
+  { type: "notes",        label: "Notes",          icon: "📄", available: false        },
+  { type: "questions",    label: "Practice Qs",    icon: "❓", available: true         },
+  { type: "video",        label: "Video Lecture",  icon: "🎥", available: false        },
+  { type: "chapter-quiz", label: "Chapter Quiz",   icon: "✅", available: true         },
+];
+
 // RTR(A) book chapters: notes + extracted question bank + chapter quiz.
 const notesOnly = (): ContentType[] => [
   { type: "notes",        label: "Notes",          icon: "📄", available: true  },
@@ -792,6 +801,21 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
         id: "tg-36", number: 36, title: "AC Generation and Distribution",
         description: "Electrical Systems — AC Generation and Distribution. Chapter notes from Technical General for Aviators by Ghost Aviator.",
         duration: "1 hr", questionCount: 5, content: makeContent(true),
+      },
+      {
+        id: "tg-37", number: 37, title: "Flight Mechanics: Climb, Glide and Turns",
+        description: "Applied flight mechanics — forces in level flight, climb and descent, glide performance, turns, load factor, and the balance of the flight path. Practice questions mapped from the Oxford ATPL Principles of Flight bank.",
+        duration: "2 hrs", questionCount: 14, content: questionsOnly(),
+      },
+      {
+        id: "tg-38", number: 38, title: "Propellers",
+        description: "Propeller geometry, pitch, slip, efficiency, asymmetric blade effect, spiralling slipstream, gyroscopic precession, and constant-speed operation. Practice questions mapped from the Oxford ATPL Principles of Flight bank.",
+        duration: "2 hrs", questionCount: 9, content: questionsOnly(),
+      },
+      {
+        id: "tg-39", number: 39, title: "Windshear and Microbursts",
+        description: "Windshear and microburst recognition, performance loss, energy changes, and recovery technique. Practice questions mapped from the Oxford ATPL Principles of Flight bank.",
+        duration: "2 hrs", questionCount: 9, content: questionsOnly(),
       },
     ],
   },
