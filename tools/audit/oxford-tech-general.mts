@@ -1,9 +1,10 @@
 // tools/audit/oxford-tech-general.mts
 //
-// Guard for the Oxford Technical General import. The source PDF supplies
-// answer letters but no explanations, so this bank was assembled locally:
+// Guard for the Oxford Technical General imports. The source PDF supplies
+// answer letters but no explanations, so these banks were assembled locally:
 // every answer was checked against the Oxford grid, every explanation was
 // written for Ghost Aviator, and every stem was checked against the live bank.
+// Batch 1 and batch 2 are checked together, including cross-batch duplicates.
 //
 // This script fails if a later edit reintroduces a duplicate, a broken answer
 // index, a missing explanation, a figure-dependent question, or an OCR/page
@@ -13,9 +14,12 @@
 
 import { ALL_QUESTIONS, BANK_BEFORE_DEDUPE, needsMissingFigure } from "../../lib/questions";
 import { OXFORD_TECH_GENERAL_QUESTIONS } from "../../lib/generated/oxford-tech-general";
+import { OXFORD_TECH_GENERAL_QUESTIONS_2 } from "../../lib/generated/oxford-tech-general-2";
 import type { DemoQuestion } from "../../lib/demo-questions";
 
-const NEW = OXFORD_TECH_GENERAL_QUESTIONS;
+// Both Oxford batches are guarded together so a later edit cannot reintroduce a
+// duplicate between batch 1 and batch 2, or a question that the live de-dupe drops.
+const NEW = [...OXFORD_TECH_GENERAL_QUESTIONS, ...OXFORD_TECH_GENERAL_QUESTIONS_2];
 const NEW_SET = new Set<DemoQuestion>(NEW);
 
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
