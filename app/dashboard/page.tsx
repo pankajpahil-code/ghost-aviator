@@ -7,7 +7,8 @@ import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 // Metadata module, NOT lib/exam-papers: that one imports the whole question bank.
 import { EXAM_PAPERS, getExamPaper } from "@/lib/exam-papers-meta";
 import { readExamHistory, weakChapters, useExamHistoryVersion, type ExamAttempt } from "@/lib/exam-history";
-import { TrendingUp, AlertTriangle, FileCheck, Trophy, XCircle, CheckCircle } from "lucide-react";
+import { useMistakes } from "@/lib/mistakes";
+import { TrendingUp, AlertTriangle, FileCheck, Trophy, XCircle, CheckCircle, Target, ArrowRight } from "lucide-react";
 
 // chapterId -> "Subject Name · Ch.N Title" for the weak-chapters list.
 const CHAPTER_LABEL = (() => {
@@ -102,6 +103,7 @@ function WeakChapterBars({ items }: { items: { chapterId: string; accuracy: numb
 export default function DashboardPage() {
   const { user } = useUser();
   const version = useExamHistoryVersion(); // bumps on attempt/sync changes
+  const { mistakes, ready: mistakesReady } = useMistakes();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     // History lives in localStorage, which the server cannot see. Reading it
@@ -155,6 +157,33 @@ export default function DashboardPage() {
             and hiding their results behind an "no attempts yet" card would be
             wrong, and would break the promise made when they signed up. */}
         <AdaptPanel userId={user?.id ?? null} />
+
+        <section className="glass-card p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="flex items-start gap-3 flex-1 min-w-0">
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                 style={{ background: "rgba(240,145,58,0.1)", border: "1px solid rgba(240,145,58,0.25)" }}>
+              <Target className="w-5 h-5" style={{ color: "#f0913a" }} />
+            </div>
+            <div className="min-w-0">
+              <h2 className="text-lg font-black text-white">Mistakes Bank</h2>
+              <p className="text-sm mt-1" style={{ color: "#94a3b8" }}>
+                {mistakesReady
+                  ? mistakes.length > 0
+                    ? `${mistakes.length} wrong or skipped mock-test question${mistakes.length === 1 ? "" : "s"} saved on this device.`
+                    : "Wrong and skipped mock-test questions are saved here automatically."
+                  : "Checking this device for saved mistakes…"}
+              </p>
+              <p className="text-xs mt-1" style={{ color: "#475569" }}>
+                Local only — it never leaves this device.
+              </p>
+            </div>
+          </div>
+          <Link href="/mistakes"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold no-underline flex-shrink-0"
+                style={{ border: "1px solid rgba(240,145,58,0.3)", color: "#f0913a", background: "rgba(240,145,58,0.06)" }}>
+            Open Mistakes Bank <ArrowRight className="w-4 h-4" />
+          </Link>
+        </section>
 
         {history.length === 0 ? (
           <div className="glass-card p-10 text-center">

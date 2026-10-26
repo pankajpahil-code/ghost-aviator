@@ -3,11 +3,11 @@ import Link from "next/link";
 import { LIVE_PRICE, LIVE_LIST_PRICE, LIVE_BATCH_META, liveWaLink } from "@/lib/live-classes";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import type { Metadata } from "next";
-import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, MessageCircle, Sparkles } from "lucide-react";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { servesRealNotes } from "@/lib/indexability";
-import MascotHero from "./components/MascotHero";
+import CaptainHero from "./components/CaptainHero";
 
 export const metadata: Metadata = {
   title: "Free DGCA CPL & ATPL Exam Prep: Notes, Question Bank & Mock Tests | Ghost Aviator",
@@ -19,13 +19,21 @@ const ATPL_CHAPTERS = ATPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
 
 // Honest marketing counts, derived from the actual question bank (rounded down
 // to the nearest 100 so the figure is always defensible).
-const SUBJECT_COUNT = CPL_SUBJECTS.length + ATPL_SUBJECTS.length;
 const cplIds  = new Set(CPL_SUBJECTS.map(s => s.id));
 const atplIds = new Set(ATPL_SUBJECTS.map(s => s.id));
 const fmt = (n: number) => `${(Math.floor(n / 100) * 100).toLocaleString("en-IN")}+`;
 const TOTAL_Q = fmt(ALL_QUESTIONS.length);
 const CPL_Q   = fmt(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => cplIds.has(id))).length);
 const ATPL_Q  = fmt(ALL_QUESTIONS.filter(q => q.subjectIds.some(id => atplIds.has(id))).length);
+
+// Count only chapters that actually serve real notes, using the same predicate
+// as the route and sitemap. This keeps the homepage from advertising a chapter
+// that would open the stub page.
+const FREE_CHAPTERS = [...CPL_SUBJECTS, ...ATPL_SUBJECTS].reduce(
+  (n, subject) => n + subject.chapters.filter(chapter => servesRealNotes(subject.id, chapter.id)).length,
+  0,
+);
+const FREE_CHAPTERS_LABEL = `${Math.floor(FREE_CHAPTERS / 10) * 10}+`;
 
 // Four surfaces, in the order a student actually uses them: watch the lecture,
 // read the chapter, drill the questions, then test yourself under the clock.
@@ -80,71 +88,10 @@ export default function Home() {
     <div style={{ background: "#0b1117" }}>
 
       {/* ══════════════════ HERO ══════════════════
-          The mascot plate carries the whole frame now, so the old two-column
-          layout (copy left, illustration right) is gone: the artwork IS the
-          right-hand side. Copy sits low and left over the darkest part of the
-          grade, where the figure and the trident are not competing with it. */}
-      <MascotHero>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          {/* Copy sits BELOW the footage now, not over it. Overlaid text fought
-              the camera moves — the mascot walks through frame, so any fixed
-              headline ends up on top of his face at some point in the loop. */}
-          <div className="pb-16 pt-10 sm:pt-12">
-            <div className="max-w-2xl">
-              <div className="flex flex-wrap items-center gap-3 mb-6">
-                <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold"
-                      style={{ background:"rgba(240,145,58,0.12)", border:"1px solid rgba(240,145,58,0.45)", color:"var(--ember-soft)" }}>
-                  ✈️ GHOST AVIATOR
-                </span>
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold"
-                      style={{ background:"rgba(207,216,238,0.10)", border:"1px solid rgba(207,216,238,0.30)", color:"var(--bolt)" }}>
-                  <Zap className="w-3 h-3" /> FREE DGCA SELF-STUDY
-                </span>
-              </div>
-
-              <h1 className="sr-only">Free DGCA CPL &amp; ATPL Exam Prep: Notes, Question Bank &amp; Mock Tests</h1>
-              <div aria-hidden="true">
-                <div className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-1"
-                     style={{ color:"#ffffff", textShadow:"0 2px 30px rgba(0,0,0,0.85), 0 0 60px rgba(240,145,58,0.25)" }}>GHOST</div>
-                <div className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-4"
-                     style={{ background:"linear-gradient(135deg,#f3c889,#f0913a,#ab794d)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text", filter:"drop-shadow(0 2px 18px rgba(0,0,0,0.8))" }}>
-                  AVIATOR
-                </div>
-              </div>
-              <p className="text-xs font-bold tracking-widest mb-6 uppercase"
-                 style={{ color:"rgba(243,200,137,0.75)", letterSpacing:"0.22em", textShadow:"0 1px 12px rgba(0,0,0,0.9)" }}>
-                Legacy of the Skies · The Spirit Beyond the Clouds
-              </p>
-              <p className="text-base mb-9 max-w-lg leading-relaxed"
-                 style={{ color:"#c8d2dc", textShadow:"0 1px 14px rgba(0,0,0,0.9)" }}>
-                Study for DGCA CPL and ATPL exams with chapter notes, practice questions and mock tests.
-                <strong style={{ color:"var(--ember-soft)" }}> Self-study stays free. Live classes are optional.</strong>
-              </p>
-
-              <div className="flex flex-wrap gap-4 mb-10">
-                <Link href="/cpl" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline"
-                      style={{ background:"linear-gradient(135deg,#f0913a,#c25a1e)", color:"#1a1206", boxShadow:"0 0 34px rgba(240,145,58,0.45)" }}>
-                  Start CPL Prep <ArrowRight className="w-5 h-5" />
-                </Link>
-                <Link href="/atpl" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
-                      style={{ border:"1px solid rgba(243,200,137,0.55)", color:"var(--ember-soft)", background:"rgba(11,17,23,0.55)", backdropFilter:"blur(4px)" }}>
-                  Start ATPL Prep
-                </Link>
-              </div>
-
-              <div className="grid grid-cols-4 gap-3 max-w-xl">
-                {[[TOTAL_Q,"Questions"],[`${SUBJECT_COUNT}`,"Subjects"],["70%","Pass Mark"],["FREE","Self-study"]].map(([v,l]) => (
-                  <div key={l} className="text-center p-3 rounded-xl"
-                       style={{ background:"rgba(11,17,23,0.72)", border:"1px solid rgba(240,145,58,0.22)", backdropFilter:"blur(6px)" }}>
-                    <div className="text-xl font-black" style={{ color:"var(--ember-soft)" }}>{v}</div>
-                    <div className="text-xs" style={{ color:"#7c8a99" }}>{l}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </MascotHero>
+          The front door is the Captain, not the mascot. A visible, keyword-rich
+          H1 replaces the old sr-only heading; the real photographs replace the
+          fantasy video; and the stats are derived from the actual bank and notes. */}
+      <CaptainHero questionsLabel={TOTAL_Q} chaptersLabel={FREE_CHAPTERS_LABEL} />
 
       {/* ══════════════════ LIVE CLASSES BANNER ══════════════════
           Approved CTA copy (Site Watch) — honest paid strip under free hero. */}
@@ -154,11 +101,10 @@ export default function Home() {
           <div className="absolute inset-0" style={{ background:"linear-gradient(120deg, rgba(255,30,30,0.14), rgba(194,90,30,0.14) 45%, rgba(240,145,58,0.1))" }}/>
           <div className="relative z-10 px-6 sm:px-10 py-8 flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
             <div className="flex items-center gap-3 shrink-0">
-              <span className="relative flex h-4 w-4">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background:"#ff3030" }}/>
-                <span className="relative inline-flex rounded-full h-4 w-4" style={{ background:"#ff3030", boxShadow:"0 0 12px rgba(255,48,48,0.9)" }}/>
+              <span className="relative flex h-3 w-3">
+                <span className="relative inline-flex rounded-full h-3 w-3" style={{ background:"#f0913a", boxShadow:"0 0 12px rgba(240,145,58,0.8)" }}/>
               </span>
-              <span className="text-2xl sm:text-3xl font-black tracking-tight" style={{ color:"#ff5a5a" }}>LIVE</span>
+              <span className="text-sm sm:text-base font-black tracking-widest uppercase" style={{ color:"#f3c889" }}>Live classes</span>
             </div>
 
             <div className="flex-1 text-center lg:text-left">
@@ -192,7 +138,7 @@ export default function Home() {
         {/* Seats / waitlist — honest founding-batch line */}
         <p className="mt-4 text-center text-sm font-semibold" style={{ color:"#94a3b8" }}>
           Founding batches: <strong style={{ color:"#f3c889" }}>10 seats per subject</strong>.
-          Book a free demo first. If you want to enroll afterwards, pay the fee by UPI.
+          Book a free demo first. If you want to enroll afterwards, the Captain shares the official payment details.
         </p>
       </section>
 

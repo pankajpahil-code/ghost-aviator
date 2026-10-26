@@ -26,8 +26,6 @@ import {
   LIVE_COMBO_PRICE,
   LIVE_COMBO_LIST_PRICE,
   LIVE_WHATSAPP,
-  LIVE_UPI_VPA,
-  LIVE_UPI_PAYEE,
 } from "@/lib/live-classes";
 
 export type BotButton = { text: string; url: string };
@@ -74,8 +72,8 @@ const CLASSES =
   `• Per subject: ${LIVE_PRICE} (list ${LIVE_LIST_PRICE})\n` +
   `• Navigation combo — Gen Nav + Radio Nav + Instruments: ${LIVE_COMBO_PRICE} (list ${LIVE_COMBO_LIST_PRICE})\n\n` +
   "Subjects: Meteorology, Air Regulations, General Navigation, Radio Navigation, Instrumentation.\n\n" +
-  `Pay any time by UPI: ${LIVE_UPI_VPA} (your app will show the name ${LIVE_UPI_PAYEE}). ` +
-  "Scan the QR on the page below — the amount is already filled in — then send the screenshot to our instructor to confirm your seat.\n\n" +
+  "Book a free demo first. If you want to enroll afterwards, the instructor shares the official payment details and the batch schedule privately. " +
+  "No recordings — you get written notes and summaries after each session.\n\n" +
   "The free material stays free whether you join or not.";
 
 const RTR =
@@ -131,7 +129,7 @@ function commandReply(cmd: string): BotReply | null {
       return {
         text: CLASSES,
         buttons: [
-          [{ text: `💳 Pay by UPI — ${LIVE_PRICE} / ${LIVE_COMBO_PRICE}`, url: abs("/live-classes#pay") }],
+          [{ text: `🎓 Book a free demo — ${LIVE_PRICE} / ${LIVE_COMBO_PRICE}`, url: abs("/live-classes#demo") }],
           [B.live],
           [B.talk("live classes")],
         ],
@@ -154,7 +152,7 @@ function commandReply(cmd: string): BotReply | null {
  *  "Read the full chapter" is a small lie a student notices. */
 function labelFor(href: string): string {
   if (/wa\.me|whatsapp/i.test(href)) return "💬 Message on WhatsApp";
-  if (/\/live-classes/.test(href)) return "🎓 See batches & enrol";
+  if (/\/live-classes/.test(href)) return "🎓 See batches & book a demo";
   if (/\/rtr-simulator/.test(href)) return "🎙️ Open the RTR simulator";
   if (/\/adapt-test/.test(href)) return "🧠 Open the ADAPT test";
   if (/\/guides\//.test(href)) return "📖 Read the guide";

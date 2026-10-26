@@ -18,10 +18,43 @@ export function getSupabase(): SupabaseClient | null {
   if (!SUPABASE_ENABLED) return null;
   if (!client) {
     client = createClient(url as string, anon as string, {
-      auth: { persistSession: true, autoRefreshToken: true },
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        // Supabase puts the confirmation / recovery token in the URL hash. The
+        // client reads it on creation, so /login and /reset-password must call
+        // getSupabase() on mount — not only when the student presses a button.
+        detectSessionInUrl: true,
+      },
     });
   }
   return client;
+}
+
+/**
+ * A full URL for Supabase's emailRedirectTo. Supabase only accepts redirect
+ * targets on the project's allow-list; the production entry for
+ * https://ghostaviator.com/reset-password must exist in Auth → URL Configuration.
+ */
+export function authRedirect(path: string): string {
+  if (typeof window === "undefined") return path;
+  return `${window.location.origin}${path}`;
+}
+
+/**
+ * Supabase's messages are accurate but written for developers. Translate the
+ * handful a student can actually hit; leave anything unexpected alone rather
+ * than hiding a real error behind "something went wrong".
+ */
+export function authErrorMessage(message: string): string {
+  const m = message.toLowerCase();
+  if (m.includes("invalid login credentials")) return "Email or password is incorrect.";
+  if (m.includes("email not confirmed")) return "Your email is not confirmed. Check your inbox, or resend the confirmation email below.";
+  if (m.includes("user already registered")) return "An account with this email already exists. Log in, or use Forgot password.";
+  if (m.includes("password should be at least")) return "Password must be at least 6 characters.";
+  if (m.includes("rate limit") || m.includes("too many")) return "Too many attempts. Please wait a minute and try again.";
+  if (m.includes("failed to fetch") || m.includes("network")) return "Could not reach the sign-in service. Check your connection and try again.";
+  return message;
 }
 
 // Capture a marketing lead (name + email). Stored in the `leads` table.

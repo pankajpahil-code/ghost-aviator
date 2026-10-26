@@ -33,7 +33,16 @@ function toExp(cite) {
     .replace(/\s*—[^.]*$/g, "")                   // drop trailing "— WRONG …"
     .replace(/\s*(Live site|The live site|Live notes-bank)[^.]*\.?/gi, "")
     .replace(/\b(Applied|Logged for your override|Confirm[^.]*|please confirm[^.]*)\.?/gi, "")
+    // Editing provenance is for the review sheet, never for a student. Strip the
+    // phrases that used to leak into explanations ("Options de-garbled", "Fixed
+    // 'tropopau se'", "repaired duplicated option text", and similar).
+    .replace(/\b(?:rewritten|reworded|adapted) from (?:a )?garbled (?:item|question):\s*/gi, "")
+    .replace(/\b(?:fixed|corrected|repaired)\s+(?:garbled|duplicated|missing|the)\b[^.]*\.?/gi, "")
+    .replace(/\bFixed\s+['"][^'"]+['"][^.]*\.?/gi, "")
+    .replace(/\b(?:options?|stems?|text|wording)\s+(?:were\s+)?(?:de-?garbled|garbled|tidied|corrected|repaired|fixed)\b[^.]*\.?/gi, "")
+    .replace(/\b(?:de-?garbled|garbled|tidied|repaired)\b[^.]*\.?/gi, "")
     .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,;.])/g, "$1")
     .trim();
   if (!/[.!?]$/.test(e) && e) e += ".";
   return e;

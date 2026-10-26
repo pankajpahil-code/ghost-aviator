@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { Send, CheckCircle } from "lucide-react";
 import { captureLead } from "@/lib/supabase";
 
@@ -65,7 +66,10 @@ export default function EmailCapture({ compact = false, heading, sub, source = "
         </button>
       </form>
       <p role="alert" aria-atomic="true" className={errText ? "text-xs mt-2" : "text-xs"} style={{ color: "#ef4444" }}>{errText}</p>
-      <p className="text-xs mt-2" style={{ color: "#475569" }}>Free updates &amp; new chapters. No spam, unsubscribe anytime.</p>
+      <p className="text-xs mt-2 leading-relaxed" style={{ color: "#475569" }}>
+        Free exam updates and new chapters. No spam; unsubscribe anytime. We store your name and email to send these updates. By joining you agree to our{" "}
+        <Link href="/privacy" className="no-underline" style={{ color: "#64748b" }}>Privacy Policy</Link>.
+      </p>
     </div>
   );
 }

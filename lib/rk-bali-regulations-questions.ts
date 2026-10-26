@@ -4141,7 +4141,7 @@ Reference: Annex 2, Table 3-1`,
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],
     chapterId: "ar-6",
-    q: `DME separation between A/C on same track, same level and in some direction is`,
+    q: `DME separation between A/C on same track, same level and in the same direction is:`,
     opts: [
       `10 NM`,
       `20 NM`,
@@ -4149,7 +4149,7 @@ Reference: Annex 2, Table 3-1`,
       `5 NM`,
     ],
     ans: 1,
-    exp: `The same rule as the previous question, with a typo in the stem — read it as "same direction". 20 NM (37 km) on the same track, both aircraft referenced to the same on-track DME station, checked by simultaneous readings. The reduced 10 NM minimum applies only when the leading aircraft is 20 kt or more faster in true airspeed than the following one.
+    exp: `20 NM (37 km) on the same track, both aircraft referenced to the same on-track DME station, checked by simultaneous readings. The reduced 10 NM minimum applies only when the leading aircraft is 20 kt or more faster in true airspeed than the following one.
 
 Reference: PANS-ATM 5.4.2.3.3.1 a)`,
   },

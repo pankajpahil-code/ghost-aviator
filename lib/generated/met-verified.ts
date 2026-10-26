@@ -40,7 +40,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "12–14 km"
     ],
     "ans": 1,
-    "exp": "Equatorial tropopause ≈16 km. Options de-garbled."
+    "exp": "Equatorial tropopause ≈16 km."
   },
   {
     "subjectIds": [
@@ -57,7 +57,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "8–10 km"
     ],
     "ans": 2,
-    "exp": "Polar tropopause ≈8 km. Options de-garbled."
+    "exp": "Polar tropopause ≈8 km."
   },
   {
     "subjectIds": [
@@ -74,7 +74,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Same"
     ],
     "ans": 0,
-    "exp": "Warm surface → deeper troposphere → higher tropopause. Fixed 'tropopau se'."
+    "exp": "Warm surface → deeper troposphere → higher tropopause."
   },
   {
     "subjectIds": [
@@ -244,7 +244,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "−35.5°C"
     ],
     "ans": 0,
-    "exp": "ISA isothermal −56.5°C from 11–20 km. Fixed missing minus signs."
+    "exp": "ISA isothermal −56.5°C from 11–20 km."
   },
   {
     "subjectIds": [
@@ -329,7 +329,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "30–35 km"
     ],
     "ans": 1,
-    "exp": "Ozone maximum ≈20–25 km. Options de-garbled."
+    "exp": "Ozone maximum ≈20–25 km."
   },
   {
     "subjectIds": [
@@ -533,7 +533,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "16–16.5 km"
     ],
     "ans": 2,
-    "exp": "Tropical tropopause ≈16–17 km. Options de-garbled."
+    "exp": "Tropical tropopause ≈16–17 km."
   },
   {
     "subjectIds": [
@@ -569,7 +569,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Adiabatic layer"
     ],
     "ans": 2,
-    "exp": "Inversion = temperature increasing with height. Options tidied."
+    "exp": "Inversion = temperature increasing with height."
   },
   {
     "subjectIds": [
@@ -639,7 +639,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "16–18 km"
     ],
     "ans": 1,
-    "exp": "ISA tropopause = 11 km. Options de-garbled."
+    "exp": "ISA tropopause = 11 km."
   },
   {
     "subjectIds": [
@@ -1603,7 +1603,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "It brings strong winds"
     ],
     "ans": 0,
-    "exp": "Reworded from a garbled item: a low/col region often pairs unsettled weather with relatively good visibility."
+    "exp": "a low/col region often pairs unsettled weather with relatively good visibility."
   },
   {
     "subjectIds": [
@@ -2435,7 +2435,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "T"
     ],
     "ans": 2,
-    "exp": "Stefan–Boltzmann law: E ∝ T⁴. Original options were garbled; corrected."
+    "exp": "Stefan–Boltzmann law: E ∝ T⁴. Original."
   },
   {
     "subjectIds": [
@@ -4311,7 +4311,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Potentially stable"
     ],
     "ans": 0,
-    "exp": "SALR < ELR < DALR is 'conditional instability'. Corrected the term from 'conditionally stable'."
+    "exp": "SALR < ELR < DALR is 'conditional instability'."
   },
   {
     "subjectIds": [
@@ -5616,7 +5616,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Both types of Clouds"
     ],
     "ans": 0,
-    "exp": "Coalescence produces rain in warm clouds; repaired split word 'th e'."
+    "exp": "Coalescence produces rain in warm clouds;."
   },
   {
     "subjectIds": [
@@ -5633,7 +5633,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Both types of Clouds"
     ],
     "ans": 1,
-    "exp": "Ice-crystal mechanism produces rain in cold clouds; repaired split word 'th e'."
+    "exp": "Ice-crystal mechanism produces rain in cold clouds;."
   },
   {
     "subjectIds": [
@@ -6732,7 +6732,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
     "chapterId": "met-13",
     "subtopic": "Thunderstorm",
     "source": "Ghost Aviator — verified",
-    "q": "The diameter of and Macroburst",
+    "q": "The diameter of a macroburst is:",
     "opts": [
       "< 4 km",
       "4 km or more",
@@ -6773,7 +6773,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "Severe TS"
     ],
     "ans": 1,
-    "exp": "Winds 15–40 kt define a moderate TS; '1540 kt' OCR garble repaired to 15–40 kt."
+    "exp": "Winds 15–40 kt define a moderate TS; '1540 kt' OCR garble."
   },
   {
     "subjectIds": [
@@ -7859,7 +7859,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "11-12 km"
     ],
     "ans": 0,
-    "exp": "TEJ height ~15-16 km; option spacing repaired to standard ranges."
+    "exp": "TEJ height ~15-16 km; option spacing."
   },
   {
     "subjectIds": [
@@ -9609,7 +9609,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "6 hr"
     ],
     "ans": 0,
-    "exp": "Advance notice to an Aerodrome Met Office for a non-scheduled national flight is 3 hours; fixed garbled '1824 hr' to '18-24 hr'."
+    "exp": "Advance notice to an Aerodrome Met Office for a non-scheduled national flight is 3 hours;."
   },
   {
     "subjectIds": [
@@ -9626,7 +9626,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "6 hr"
     ],
     "ans": 2,
-    "exp": "Advance notice to an Aeronautical Met Station for a non-scheduled national flight is 6 hours; fixed garbled '1824 hr' to '18-24 hr'."
+    "exp": "Advance notice to an Aeronautical Met Station for a non-scheduled national flight is 6 hours;."
   },
   {
     "subjectIds": [
@@ -9643,7 +9643,7 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "TREND"
     ],
     "ans": 0,
-    "exp": "WAFS supplies gridded en-route upper winds and temperature forecasts; repaired duplicated/garbled option-1 text."
+    "exp": "WAFS supplies gridded en-route upper winds and temperature forecasts;."
   },
   {
     "subjectIds": [

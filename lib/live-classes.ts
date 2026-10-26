@@ -29,9 +29,15 @@ export const LIVE_COMBO_PRICE_VALUE = "14999";
 
 /**
  * 2026-10-21 — the launch policy, set by the Captain:
- *   free live demo first → full one-time fee by UPI only if the student wants
- *   to enroll after the demo. No instalments. No payment gateway until the
- *   student intake is steady. Keep this message as the default CTA everywhere.
+ *   free live demo first → full one-time fee only if the student wants to
+ *   enroll after the demo. No instalments. No payment gateway until the
+ *   student intake is steady.
+ *
+ * 2026-10-25 — public personal-UPI details removed from /live-classes and the
+ * Telegram desk. They contradicted the demo-first promise and exposed a
+ * personal account. Payment details are now shared privately after the demo;
+ * a formal checkout replaces this when the Captain supplies the business
+ * account, gateway keys and invoice details.
  */
 export const liveWaLink = (subject: string, price: string) =>
   `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
@@ -49,8 +55,8 @@ export const liveComboDemoLink = () =>
 
 /**
  * Direct payment links (Instamojo / Razorpay payment pages) are intentionally
- * empty while the first cohorts are filled by hand. Keep UPI on /live-classes.
- * Do not add a gateway or a public payment link without the Captain's explicit
+ * empty while the first cohorts are filled by hand. Do not re-publish a personal
+ * UPI ID or add a gateway/public payment link without the Captain's explicit
  * instruction. When empty, liveEnrollLink falls back to the free-demo message.
  */
 export const LIVE_PAYMENT_LINKS: Record<string, string> = {
@@ -63,17 +69,6 @@ export const LIVE_PAYMENT_LINKS: Record<string, string> = {
   "radio-telephony": "",
 };
 
-/**
- * UPI — added 2026-09-21 on the Captain's instruction. Lets a student pay at
- * 2 AM without anyone awake. Fields DECODED from his PhonePe QR, not retyped:
- *   upi://pay?pa=9643961464@axl&pn=PRISHA%20&mc=0000&mode=02&purpose=00
- * mc=0000 is a personal (P2P) account: scanning the QR is the reliable path;
- * the upi:// link is a best-effort shortcut some apps refuse for P2P amounts.
- *
- * The QR images in public/pay/ are generated from these by
- * tools/pay/build-upi-qr.py, which decodes each image back and fails unless it
- * pays exactly this address. Change the VPA here AND re-run that script.
- */
 /**
  * Telegram enquiry route: the privacy-page contact, and the route the sales desk uses in its no-number
  * marketing replies (sync_knowledge.py -> enquiry_route). 8 Oct 2026: the website keeps the WhatsApp
@@ -91,20 +86,6 @@ export const enquiryLink = (tag = "enquiry"): string => {
   const safe = tag.replace(/[^A-Za-z0-9_-]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 64) || "enquiry";
   return LIVE_ENQUIRY_URL.replace(/([?&]start=)[^&]*/, `$1${safe}`);
 };
-
-export const LIVE_UPI_VPA = "9643961464@axl";
-export const LIVE_UPI_PAYEE = "PRISHA";
-export const LIVE_UPI_QR = { single: "/pay/upi-7999.png", combo: "/pay/upi-14999.png" };
-
-export const liveUpiLink = (amountValue: string, note: string): string =>
-  `upi://pay?pa=${LIVE_UPI_VPA}&pn=${encodeURIComponent(LIVE_UPI_PAYEE)}&mc=0000&mode=02&purpose=00` +
-  `&am=${amountValue}.00&cu=INR&tn=${encodeURIComponent(note)}`;
-
-/** After paying by UPI there is no automatic receipt — the student sends the screenshot. */
-export const livePaidLink = (what: string, price: string): string =>
-  `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
-    `Hello, I have paid ${price} by UPI to ${LIVE_UPI_VPA} for the ${what}. Sending the payment screenshot to confirm my seat.`
-  )}`;
 
 /** Direct payment link for the full 3-subject Navigation Combo. */
 export const LIVE_COMBO_PAYMENT_LINK: string = "";

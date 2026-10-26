@@ -301,6 +301,70 @@ are 17 or 18. The lawyer's questions in that document still need a lawyer.
 - Auth → turn on **rate limiting / CAPTCHA** to stop signup/login brute-force + spam.
 - Never put the **service_role** key in any `NEXT_PUBLIC_*` var or client code.
 
+### 3f. Auth configuration checklist — verified 2026-10-25
+
+The production project is live with these public settings:
+
+| Check | Observed | Where it matters |
+|---|---|---|
+| `disable_signup` | `false` | `/signup` can create accounts |
+| `mailer_autoconfirm` | `false` | A new account must confirm its email before login |
+| Invalid password | `400 invalid_credentials` | `/login` shows a friendly error |
+| Anonymous read of `leads`, `progress`, `exam_attempts`, `adapt_attempts`, `adapt_results` | `401 permission denied` | RLS is on and anon has no SELECT |
+| Anonymous insert into `leads` | `400 not-null` (not `401`) | The updates form's INSERT policy exists |
+| Anonymous insert into `adapt_attempts` | `400 not-null` (not `401`) | The anonymous ADAPT telemetry policy exists |
+
+**URL Configuration → Redirect URLs.** Password recovery and signup confirmation are
+client-side (implicit flow); there is no `/auth/callback` route or middleware. Add these
+exact entries in Supabase → Authentication → URL Configuration:
+
+```text
+https://ghostaviator.com/login
+https://ghostaviator.com/reset-password
+```
+
+For local testing, also add `http://localhost:3000/login` and
+`http://localhost:3000/reset-password`. If the site is also served from
+`https://www.ghostaviator.com`, add the `www` equivalents as well. If the reset URL is
+missing from the allow-list, Supabase falls back to the Site URL; `/login` detects a
+`type=recovery` hash and forwards it to `/reset-password`, but adding the entry is the
+supported path.
+
+**Email templates.** The confirmation and recovery templates must include the standard
+Supabase `{{ .ConfirmationURL }}` / `{{ .RecoveryURL }}` link. The app does not send these
+emails itself.
+
+**Signup and marketing are separate.** Creating an account does **not** insert the person
+into `leads`. The optional “Email me new chapters…” checkbox calls `captureLead(...,
+"signup-opt-in")`; the footer/login updates form calls `captureLead(...)` directly. Do not
+change signup to insert a lead unconditionally — the privacy policy says marketing is opt-in.
+
+**Password reset.** `/forgot-password` calls `resetPasswordForEmail`; `/reset-password`
+waits for the `PASSWORD_RECOVERY` session, calls `updateUser({ password })`, then
+`signOut({ scope: "others" })` so other devices are revoked while the current one stays
+signed in. Changing to PKCE would require a real `/auth/callback` route that calls
+`exchangeCodeForSession`; do not switch `flowType` without adding it.
+
+**Cannot be checked with the public key.** The `uri_allow_list`, CAPTCHA setting and email
+rate limits are not exposed by `/auth/v1/settings`. Confirm them in the dashboard.
+
+**End-to-end reset test (needs a real mailbox).** Create a test account, confirm it,
+request a reset, open the emailed link in a different browser, set a new password, then
+verify the old password fails and the new one logs in. Delete the test account afterwards.
+The request endpoint and the UI are already verified; this is the remaining live check.
+
+### 3g. Payment details — private only
+
+The site is free-demo-first. There is **no public UPI ID, payee name, QR code or payment
+link** in the repository or in `public/`. The old `public/pay/` QR images and the
+`build-upi-qr.py` helper were removed on 2026-10-25, and the unused `LIVE_UPI_*`,
+`liveUpiLink` and `livePaidLink` exports were deleted.
+
+`LIVE_PAYMENT_LINKS` and `LIVE_COMBO_PAYMENT_LINK` stay empty, so `liveEnrollLink()` falls
+back to the free-demo WhatsApp message. The Captain shares payment details privately after
+the demo. Do not add a gateway, public payment link or personal VPA without his explicit
+instruction and the business account / invoice details.
+
 ---
 
 ## 4. Content-theft protection — in place (deterrence)

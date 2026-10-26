@@ -18,9 +18,10 @@
 // already carries the bank through lib/exam-papers; do not import it from the
 // quiz/test components (lib/progress.ts is the bank-free home for those).
 import { getChapterSpecificQuestions } from "./questions";
-import { CPL_SUBJECTS } from "./subjects";
+import { ATPL_SUBJECTS, CPL_SUBJECTS } from "./subjects";
 
 export const AIR_REGS_SUBJECT_ID = "air-regulations";
+export const AIR_REGS_ATPL_SUBJECT_ID = "atpl-air-regulations";
 
 /** Pure: site chapter id -> bank chapter id, in the order given. */
 export type SiteToBank = ReadonlyArray<readonly [siteChapterId: string, bankChapterId: string]>;
@@ -51,19 +52,54 @@ export function labelForStoredChapter(
   return labels.length > 0 ? labels.join(" / ") : undefined;
 }
 
-let cached: SiteToBank | null = null;
+const cached = new Map<string, SiteToBank>();
+
+/** The live site -> bank pairs for one Air Regulations subject, derived from the bank. */
+export function airRegsSiteToBankFor(subjectId: string): SiteToBank {
+  const hit = cached.get(subjectId);
+  if (hit) return hit;
+  const subject = [...CPL_SUBJECTS, ...ATPL_SUBJECTS].find(s => s.id === subjectId);
+  const pairs: [string, string][] = [];
+  for (const ch of subject?.chapters ?? []) {
+    const bankId = getChapterSpecificQuestions(subjectId, ch.id)[0]?.chapterId;
+    if (bankId) pairs.push([ch.id, bankId]);
+  }
+  cached.set(subjectId, pairs);
+  return pairs;
+}
 
 /** The live site -> bank pairs for CPL Air Regulations, derived from the bank. */
 export function airRegsSiteToBank(): SiteToBank {
-  if (cached) return cached;
-  const subject = CPL_SUBJECTS.find(s => s.id === AIR_REGS_SUBJECT_ID);
-  const pairs: [string, string][] = [];
-  for (const ch of subject?.chapters ?? []) {
-    const bankId = getChapterSpecificQuestions(AIR_REGS_SUBJECT_ID, ch.id)[0]?.chapterId;
-    if (bankId) pairs.push([ch.id, bankId]);
-  }
-  cached = pairs;
-  return pairs;
+  return airRegsSiteToBankFor(AIR_REGS_SUBJECT_ID);
+}
+
+export function isAirRegsSubject(subjectId: string): boolean {
+  return subjectId === AIR_REGS_SUBJECT_ID || subjectId === AIR_REGS_ATPL_SUBJECT_ID;
+}
+
+/** The site chapters whose question set carries a stored bank chapter id. */
+export function siteChaptersForAirRegsBank(
+  subjectId: string,
+  bankChapterId: string,
+): string[] {
+  if (!isAirRegsSubject(subjectId)) return [];
+  return siteChaptersServedBy(bankChapterId, airRegsSiteToBankFor(subjectId));
+}
+
+/**
+ * Correct label for a stored Air Regulations bank chapter id, for either the
+ * CPL or ATPL chapter list. Returns undefined when no site chapter draws on it.
+ */
+export function siteChapterLabelForAirRegsSubject(
+  subjectId: string,
+  storedChapterId: string,
+  labelOf: (siteChapterId: string) => string | undefined,
+): string | undefined {
+  if (!isAirRegsSubject(subjectId)) return labelOf(storedChapterId);
+  const labels = siteChaptersForAirRegsBank(subjectId, storedChapterId)
+    .map(labelOf)
+    .filter((l): l is string => !!l);
+  return labels.length > 0 ? labels.join(" / ") : undefined;
 }
 
 /**

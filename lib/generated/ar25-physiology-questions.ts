@@ -168,10 +168,10 @@ export const AR25_PHYSIOLOGY_QUESTIONS: DemoQuestion[] = [
     chapterId: "ar-25",
     subtopic: `Aviation Physiology & Human Factors`,
     source: `Air Regulations — chapter study notes`,
-    q: `Oxygen in blood is carried by, which is found in:`,
+    q: `Oxygen in blood is carried by haemoglobin, which is found in:`,
     opts: [`Hemoglobin, white blood cells.`, `Hemoglobin, red blood cells.`, `Red blood cells, platelets.`],
     ans: 1,
-    exp: `Oxygen binds to haemoglobin, which is contained inside red blood cells. (A) Hb is NOT in WBCs — WBCs are immune cells. (C) Garbled — platelets are for clotting, not gas transport.`,
+    exp: `Oxygen binds to haemoglobin, which is contained inside red blood cells. White blood cells are immune cells, and platelets are for clotting, not gas transport.`,
   },
   {
     subjectIds: ["air-regulations"],

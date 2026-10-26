@@ -2,16 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { enquiryLink } from "@/lib/live-classes";
 
-// Every sentence on this page is a claim about what the code does. Checked against the code on 24 Sep 2026:
-// accounts (Supabase) are NOT switched on in production; progress lives in localStorage; Gini's route keeps
-// the IP only in an in-memory rate limiter; the sales assistant stores chats on the Captain's own computer
-// (D:\pk\ghost-sales-desk) and deletes a person on "delete my data" (engine.forget). Change the code, change this.
-const UPDATED = "21 October 2026";
+// Every sentence on this page is a claim about what the code does. Checked
+// against the code on 26 October 2026: accounts are live through Supabase;
+// signed-in progress, exam attempts and ADAPT results are mirrored to the
+// student's own rows; the updates list is opt-in; ADAPT telemetry is anonymous
+// and can be switched off; Gini's route keeps the IP only in an in-memory rate
+// limiter. Change the code, change this page.
+const UPDATED = "26 October 2026";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — Ghost Aviator",
   description:
-    "What Ghost Aviator stores about you, why, and how to have it deleted. Short version: almost nothing on the website, and your conversation with us only if you message or comment first.",
+    "What Ghost Aviator stores, why, and how to delete it: optional accounts, synced study progress, the email updates list, anonymous ADAPT practice counts, and no selling of your data.",
   alternates: { canonical: "/privacy" },
   robots: { index: false, follow: true },
 };
@@ -30,7 +32,7 @@ function Section({ id, title, children }: { id?: string; title: string; children
 }
 
 export default function PrivacyPage() {
-  const tg = enquiryLink("privacy");   // 8 Oct 2026: no personal phone number or personal email in public
+  const tg = enquiryLink("privacy");   // no personal phone number or personal email in public
   return (
     <div style={{ background: "#0b1117" }} className="min-h-screen pb-20">
       <div className="max-w-3xl mx-auto px-4 pt-24">
@@ -50,19 +52,105 @@ export default function PrivacyPage() {
         </Section>
 
         <Section title="The short version">
-          <p>You can use every chapter, question and tool on this website without an account and without telling us who you are.</p>
-          <p>We keep a record of you only if you message us or comment on our videos and posts yourself. We never sell it, and we
-            delete it when you ask.</p>
+          <p>You can use every chapter, question, mock test and tool on this website without an account and without telling us who you are.</p>
+          <p>If you create a free account, we store your name, email and password hash so you can log in, and we sync your
+            progress, mock-exam history and ADAPT results to that account. You can use the site without doing this.</p>
+          <p>We add you to the email updates list only if you submit the updates form or tick the optional box when creating an account.
+            We never sell your data. You can ask us to delete it.</p>
         </Section>
 
-        <Section title="On this website">
-          <p><strong>Your study progress</strong> (chapters read, quiz and exam scores) is saved in your own browser on your own
-            device. It does not reach us. Clearing your browser data removes it.</p>
-          <p><strong>Visit statistics.</strong> We count page visits with Vercel Web Analytics, which uses no third-party cookies and
-            collects no personal identifiers. We see totals such as &ldquo;how many people opened this chapter&rdquo;, not who they were.</p>
-          <p><strong>Gini, the on-site assistant.</strong> What you type to Gini is sent to our server, and may be sent to
-            Google&rsquo;s Gemini service to choose the best stored answer. We do not save it. Your internet address is held
-            briefly in memory only to stop one person flooding the service. Please do not type personal details to Gini.</p>
+        <Section title="What we do not collect">
+          <p>The website does not ask for your address, date of birth, Aadhaar number, bank or card details, UPI PIN, location,
+            contacts, camera or microphone. Live-class fees are paid by UPI after your free demo; we never see your UPI PIN.</p>
+        </Section>
+
+        <Section title="Accounts and sign-in">
+          <p><strong>What we store:</strong> your email address, the name you give us, a password hash handled by Supabase
+            (we never see your password), your account ID, whether your email is confirmed, and the session token your browser
+            keeps so you stay signed in.</p>
+          <p><strong>Why:</strong> to create and run your account, sign you in, send confirmation and password-reset emails,
+            and sync your study data across devices.</p>
+          <p><strong>Who processes it:</strong> Supabase hosts our authentication and database and processes this data on our
+            instructions. We do not run our own password store.</p>
+          <p><strong>Service emails:</strong> Supabase sends the confirmation and password-reset emails. These are not marketing.
+            Treat a reset link like a password: anyone who has it can set a new password for that account.</p>
+          <p><strong>Deleting your account:</strong> message us on Telegram and ask us to delete your account. We delete the
+            account and its linked progress, mock-exam and ADAPT rows within 30 days. If you also joined the updates list, ask
+            us to remove that separately.</p>
+        </Section>
+
+        <Section title="Study data on your device">
+          <p>Signed out, the study tools keep their data in your own browser on your own device. It does not reach us. Clearing
+            your browser data removes it.</p>
+          <ul className="list-disc pl-5 flex flex-col gap-1.5">
+            <li><strong>Progress</strong> — the best quiz and chapter-test score you have reached for each chapter.</li>
+            <li><strong>Mock-exam history</strong> — the paper, your score, the time taken and the chapter breakdown for each attempt.</li>
+            <li><strong>Mistakes Bank</strong> — the mock-test questions you answered wrong or skipped, the answer you chose, the
+              correct answer and explanation, and when you last missed them. It stays on this device and is not mirrored.</li>
+            <li><strong>Flagged questions</strong> — the questions you marked for later.</li>
+            <li><strong>ADAPT history</strong> — a summary of each practice session on this device.</li>
+            <li><strong>ADAPT telemetry choice</strong> - a random device ID and your on/off choice for the anonymous score line described below.</li>
+            <li><strong>Read-aloud preference</strong> - the voice and speed you chose for spoken answers.</li>
+            <li><strong>Gini</strong> - a visit count, a per-tab greeting/offer state and the last subject you asked about.
+              Gini does not keep your chat transcript.</li>
+          </ul>
+        </Section>
+
+        <Section title="Study data in your account">
+          <p>When you are signed in, some of that data is mirrored to Supabase so it follows you to another device. The browser
+            is restricted by row-level security to your own rows. Ghost Aviator (the Captain) and Supabase, as host, can access
+            the database to run and support the service.</p>
+          <ul className="list-disc pl-5 flex flex-col gap-1.5">
+            <li><strong>Progress</strong> — the chapter key, best quiz score, best test score and the time it was last updated.</li>
+            <li><strong>Exam attempts</strong> — the paper, CPL/ATPL track, score, correct and total counts, time taken, chapter
+              breakdown and date. It does not store which answer you chose.</li>
+            <li><strong>ADAPT results</strong> — the module, stanine/sten/band, headline percentage, the score breakdown, the
+              input device for tracking, duration, a random session seed, and the date. It does not store questions, answer
+              choices, tracking samples, per-event reaction times, or anything from the attitudes questionnaire beyond whether
+              it was completed. The score breakdown does include aggregate figures such as per-family counts and median response
+              times for the divided-attention task.</li>
+          </ul>
+          <p>Flagged questions, the Mistakes Bank and ADAPT history stay on the device; they are not mirrored. Gini&rsquo;s state
+            stays in your browser or tab.</p>
+          <p>Your email is also used in a faint watermark over study pages while you are signed in, so a leaked screenshot can
+            be traced to the account. It is rendered from your session and is not a separate stored field.</p>
+          <p>We use ADAPT score patterns to improve the practice tests. We do not sell or publish your individual results.</p>
+        </Section>
+
+        <Section title="The email updates list">
+          <p>We add you to the updates list only if you submit the &ldquo;Notify Me&rdquo; form or tick the optional
+            &ldquo;Email me new chapters and DGCA exam updates&rdquo; box when creating an account. We store your name, email
+            address and which form you used in our <strong>leads</strong> table. We use it to send occasional updates about new
+            notes, questions, mock tests and exam dates. We do not add account holders automatically.</p>
+          <p>Reply to any update or message us on Telegram to be removed. We delete the row when you ask. We do not sell or rent
+            the list.</p>
+        </Section>
+
+        <Section title="ADAPT anonymous practice counts">
+          <p>When you finish an ADAPT module, the site sends one anonymous score line for that module unless you turn this off.
+            It contains a random device ID stored in your browser, a session seed, the module, its stanine, one headline
+            percentage, the input device for tracking, and whether the module was completed.</p>
+          <p>It does not contain your account ID, email, questions, answers, tracking samples, per-event reaction times, or
+            anything from the attitudes questionnaire. We use these rows to see how many students use ADAPT and how the modules
+            score, so provisional grade bands can be replaced with real ones.</p>
+          <p>The switch is on the ADAPT results screen. &ldquo;Turn it off&rdquo; stops new rows. Turning it off does not delete
+            rows already sent. Because the device ID is random and is not linked to your account, we cannot usually identify a
+            row as yours; if you can send us the random device ID from your browser, we can delete the rows for that ID.</p>
+        </Section>
+
+        <Section title="Gini, the on-site assistant">
+          <p>What you type to Gini is sent to our server and may be sent to Google&rsquo;s Gemini service to choose the best
+            stored answer. Our application does not write the conversation to a database. Google processes the question under
+            its own terms. Your internet address is held briefly in memory only to stop one person flooding the service; it is
+            not written to a database.</p>
+          <p>Gini keeps only a visit count, a per-tab greeting/offer state and the last subject you asked about. Please do not
+            type personal details to Gini.</p>
+        </Section>
+
+        <Section title="Visit statistics">
+          <p>We count page visits with Vercel Web Analytics, which uses no advertising cookies and does not identify you by
+            account. We see aggregate totals such as &ldquo;how many people opened this chapter&rdquo;, not who they were.
+            Vercel processes this data on our behalf.</p>
         </Section>
 
         <Section title="When you message or comment (Telegram, Instagram, Facebook, WhatsApp, YouTube)">
@@ -86,15 +174,27 @@ export default function PrivacyPage() {
             <Link href="/refund-policy" style={{ color: ACCENT }}>Refund &amp; Cancellation Policy</Link>.</p>
         </Section>
 
-        <Section id="delete-your-data" title="Delete your data">
-          <p>Send <strong>delete my data</strong> to our assistant in the same chat you used. It deletes your record, your
-            messages and anything waiting to be sent to you, straight away, and confirms in one last message.</p>
-          <p>Or ask us on <a href={tg} style={{ color: ACCENT }}>Telegram</a>{" "}
-            and we will delete it within 30 days.</p>
+        <Section title="Cookies and local storage">
+          <p>We do not use advertising or cross-site tracking cookies. Supabase keeps your session in browser storage so you
+            stay signed in. The study tools use localStorage for the on-device data listed above. Vercel Web Analytics does not
+            set advertising cookies.</p>
+          <p>Clearing your browser data signs you out and deletes local-only data such as flags, the Mistakes Bank and ADAPT
+            history. It does not delete rows already synced to your account; ask us to delete those.</p>
+        </Section>
+
+        <Section id="delete-your-data" title="Your choices and deleting your data">
+          <p>You can use the site without an account, turn off ADAPT anonymous counts, unsubscribe from updates, and ask us to
+            access, correct or delete your data. Message us on <a href={tg} style={{ color: ACCENT }}>Telegram</a> and we will
+            reply in the same chat.</p>
+          <p>To delete your account, send <strong>delete my data</strong> to our assistant in the same chat you used, or ask us
+            on Telegram. We delete the account and its linked progress, exam-attempt and ADAPT rows within 30 days. If you also
+            joined the updates list, ask us to remove that separately.</p>
+          <p>If you are not satisfied with our answer, you can complain to the appropriate Indian data-protection authority.</p>
         </Section>
 
         <Section title="Students under 18">
-          <p>If you are under 18, please involve a parent or guardian before you join a paid class.</p>
+          <p>If you are under 18, please involve a parent or guardian before you create an account, join the updates list or
+            join a paid class.</p>
         </Section>
 
         <p className="text-sm mt-8" style={{ color: "#64748b" }}>
