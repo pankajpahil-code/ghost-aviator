@@ -3,7 +3,9 @@
 import Link from "next/link";
 import NotesActions from "./NotesActions";
 import { NOTES_FIT_CSS } from "@/lib/notes-layout";
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode, type ComponentType } from "react";
+import { createPortal } from "react-dom";
+import { interactivesFor, type InteractiveId } from "@/lib/notes-interactives";
 import ReadAloudControls from "@/app/components/ReadAloudControls";
 import { ChevronRight, ChevronLeft, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
@@ -168,9 +170,46 @@ function runInputAction(root: HTMLElement, act: string, value: string) {
   }
 }
 
+// ─── Interactive figures ────────────────────────────────────────────────────
+//
+// Fetched with a plain import() only when a chapter has one, so no other notes
+// page downloads them (next/dynamic was measured preloading the chunk on nav-16,
+// which has none). lib/notes-interactives.ts says which figure each sits before.
+const LOADERS: Record<InteractiveId, () => Promise<{ default: ComponentType }>> = {
+  "one-in-sixty": () => import("@/app/components/interactives/OneInSixtyLab"),
+};
+type Mount = { id: InteractiveId; el: HTMLElement; Comp: ComponentType };
+
 export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, notes, videos, openerFacts, related }: Props) {
   const notesRef = useRef<HTMLDivElement>(null);
   const keyFacts = keyFactsFor(subject.id, chapter.id) ?? openerFacts;
+  const [mounts, setMounts] = useState<Mount[]>([]);
+
+  // The mount points can only be made once the chapter's HTML is in the DOM,
+  // which is after commit, so this is an effect by necessity. React never
+  // rewrites the notes' innerHTML while notes.html is unchanged, so the nodes
+  // stay put between renders. Each is marked so read-aloud skips the controls.
+  useEffect(() => {
+    const root = notesRef.current;
+    const wanted = interactivesFor(subject.id, chapter.id);
+    if (!root || wanted.length === 0) return;
+    let live = true;
+    const made: HTMLElement[] = [];
+    Promise.all(wanted.map(async (it): Promise<Mount | null> => {
+      const img = Array.from(root.querySelectorAll("img")).find(i => (i.getAttribute("src") ?? "").endsWith(`/${it.beforeFigure}`));
+      if (!img) return null;
+      const { default: Comp } = await LOADERS[it.id]();
+      if (!live) return null;
+      const anchor = img.closest("figure") ?? img;
+      const el = document.createElement("div");
+      el.dataset.gaReadSkip = "";
+      el.dataset.gaInteractive = it.id;
+      anchor.parentNode?.insertBefore(el, anchor);
+      made.push(el);
+      return { id: it.id, el, Comp };
+    })).then(list => { if (live) setMounts(list.filter((m): m is Mount => m !== null)); });
+    return () => { live = false; made.forEach(el => el.remove()); setMounts([]); };
+  }, [notes.html, subject.id, chapter.id]);
 
   // Nav-1's two sliders used to run calcRecip(60) / showLat(28) when the page
   // loaded; the markup carries a static fallback line, this makes it live.
@@ -307,6 +346,7 @@ ${NOTES_FIT_CSS}
           onDragStart={block}
           dangerouslySetInnerHTML={{ __html: notes.html }}
         />
+        {mounts.map(({ id, el, Comp }) => createPortal(<Comp />, el, id))}
 
         <NotesActions subjectId={subject.id} chapterId={chapter.id} />
 
