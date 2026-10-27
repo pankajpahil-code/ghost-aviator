@@ -1,6 +1,6 @@
 import TestimonialCard from "./components/TestimonialCard";
 import Link from "next/link";
-import { LIVE_PRICE, LIVE_LIST_PRICE, LIVE_BATCH_META, liveWaLink } from "@/lib/live-classes";
+import { LIVE_PRICE, LIVE_LIST_PRICE, LIVE_BATCH_META, LIVE_DEMO_CTA, liveDemoLink } from "@/lib/live-classes";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import type { Metadata } from "next";
 import { ArrowRight, CheckCircle, BookOpen, ClipboardList, FileText, Video, Zap, MessageCircle } from "lucide-react";
@@ -170,11 +170,11 @@ export default function Home() {
                 <span style={{ background:"linear-gradient(135deg,#ff6000,#c25a1e,#f0913a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Ghost Aviator</span>
               </div>
               <div className="text-sm font-semibold" style={{ color:"#94a3b8" }}>
-                Small batch of 10 seats. Self-study stays free.
+                Small live batches. First class free. Self-study stays free.
                 {" "}· list <span className="line-through" style={{ color:"#64748b" }}>{LIVE_LIST_PRICE}</span>
               </div>
               <div className="text-sm font-bold mt-2" style={{ color:"#f3c889" }}>
-                Next batch: {LIVE_BATCH_META.subjectTitle} · {LIVE_BATCH_META.startLabel} · max {LIVE_BATCH_META.maxSeats} seats
+                {LIVE_BATCH_META.statusLabel} · {LIVE_BATCH_META.subjectTitle}
               </div>
             </div>
 
@@ -183,19 +183,19 @@ export default function Home() {
                     style={{ background:"linear-gradient(135deg,#ff3030,#f0913a)", color:"#fff", boxShadow:"0 0 25px rgba(255,40,40,0.4)" }}>
                 See Live Classes <ArrowRight className="w-4 h-4"/>
               </Link>
-              <a href={liveWaLink("DGCA live classes", LIVE_PRICE)} target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold no-underline"
-                 style={{ border:"1px solid rgba(34,197,94,0.55)", color:"#22c55e", background:"rgba(34,197,94,0.10)" }}>
-                <MessageCircle className="w-4 h-4" /> WhatsApp +91 99902 26607
+              <a href={liveDemoLink("live classes")} target="_blank" rel="noopener noreferrer"
+                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline"
+                 style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 25px rgba(34,197,94,0.35)" }}>
+                <MessageCircle className="w-4 h-4" /> {LIVE_DEMO_CTA}
               </a>
             </div>
           </div>
         </div>
 
-        {/* Seats / waitlist — honest founding-batch line */}
+        {/* The offer — no dates, no seat counts (Captain's decision, 27 Oct 2026) */}
         <p className="mt-4 text-center text-sm font-semibold" style={{ color:"#94a3b8" }}>
-          Founding batches: <strong style={{ color:"#f3c889" }}>10 seats per subject</strong>.
-          Message on WhatsApp to reserve; pay by UPI only after your slot is confirmed.
+          <strong style={{ color:"#f3c889" }}>{LIVE_BATCH_META.statusLabel}.</strong>{" "}
+          Attend one free demo class first. Pay only if you like it.
         </p>
       </section>
 
