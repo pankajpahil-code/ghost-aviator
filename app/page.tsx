@@ -170,11 +170,11 @@ export default function Home() {
                 <span style={{ background:"linear-gradient(135deg,#ff6000,#c25a1e,#f0913a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Ghost Aviator</span>
               </div>
               <div className="text-sm font-semibold" style={{ color:"#94a3b8" }}>
-                Small live batches. First class free. Self-study stays free.
+                Small batch of 10 seats. First class free. Self-study stays free.
                 {" "}· list <span className="line-through" style={{ color:"#64748b" }}>{LIVE_LIST_PRICE}</span>
               </div>
               <div className="text-sm font-bold mt-2" style={{ color:"#f3c889" }}>
-                {LIVE_BATCH_META.statusLabel} · {LIVE_BATCH_META.subjectTitle}
+                {LIVE_BATCH_META.statusLabel} · {LIVE_BATCH_META.subjectTitle} · max {LIVE_BATCH_META.maxSeats} seats
               </div>
             </div>
 
@@ -192,9 +192,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* The offer — no dates, no seat counts (Captain's decision, 27 Oct 2026) */}
+        {/* The offer — no fixed dates, no "seats left" (Captain's decision, 27 Oct 2026) */}
         <p className="mt-4 text-center text-sm font-semibold" style={{ color:"#94a3b8" }}>
           <strong style={{ color:"#f3c889" }}>{LIVE_BATCH_META.statusLabel}.</strong>{" "}
+          Founding batches: <strong style={{ color:"#f3c889" }}>10 seats per subject</strong>.
           Attend one free demo class first. Pay only if you like it.
         </p>
       </section>

@@ -140,7 +140,8 @@ export const LIVE_CLASS_SUBJECTS: Record<string, string> = {
 
 /**
  * The next live cohort. 27 Oct 2026, the Captain's decision: NEVER publish a
- * fixed start date, countdown or seat count. A passed date ("starts Tue 20 Oct")
+ * fixed start date or a "seats left" countdown. Batch size (max 10 seats) and
+ * prices stay on the website (social posts and ads carry neither). A passed date ("starts Tue 20 Oct")
  * made students think the batch had already begun, and they never joined.
  * Public wording is rolling: statusLabel below. The start date is told to each
  * student personally on WhatsApp.
@@ -150,6 +151,7 @@ export const LIVE_BATCH_META = {
   subjectTitle: "Aviation Meteorology",
   instructor: "Ghost Aviator",
   mode: "Google Meet",
+  maxSeats: 10,
   durationLabel: "4–6 weeks",
   statusLabel: "Next batch forming now",
   priceINR: 7999,

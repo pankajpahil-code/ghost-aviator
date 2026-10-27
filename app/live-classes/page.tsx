@@ -33,7 +33,7 @@ import { DEFAULT_OG_IMAGES } from "@/lib/og";
 export const metadata: Metadata = {
   title: "DGCA CPL Online Ground Classes India — Met, Air Regs & Nav",
   description:
-    `Live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. ${LIVE_BATCH_META.statusLabel}. Book your free demo class first.`,
+    `Live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each. ${LIVE_BATCH_META.statusLabel}. Book your free demo class first.`,
   keywords: [
     "DGCA ground classes online", "DGCA pilot course", "CPL coaching online", "DGCA Air Regulations classes",
     "DGCA Meteorology classes", "DGCA Navigation classes", "DGCA Radio Navigation classes",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/live-classes" },
   openGraph: {
     title: "Live DGCA Ground Classes with the Captain",
-    description: `5 subjects, live online, small batches. ${PRICE} per subject, down from ${LIST_PRICE}. ${LIVE_BATCH_META.statusLabel}. Attend one free demo class first.`,
+    description: `5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. ${LIVE_BATCH_META.statusLabel}. Attend one free demo class first.`,
     url: `${SITE_URL}/live-classes`,
     type: "website",
     images: DEFAULT_OG_IMAGES,
@@ -128,7 +128,7 @@ const FAQ = [
   },
   {
     q: "What is the founding-batch price?",
-    a: `${PRICE} per subject, down from ${LIST_PRICE} — far below typical institute fees, and taught by the Captain himself rather than a hired faculty member. The Navigation combo (Gen Nav + Radio Nav + Instrumentation) is ${COMBO_PRICE} instead of ${COMBO_LIST_PRICE} for all three. Batches are kept small, so every question gets answered.`,
+    a: `${PRICE} per subject, down from ${LIST_PRICE} — far below typical institute fees, and taught by the Captain himself rather than a hired faculty member. The Navigation combo (Gen Nav + Radio Nav + Instrumentation) is ${COMBO_PRICE} instead of ${COMBO_LIST_PRICE} for all three. Ten seats per batch, so every question gets answered.`,
   },
   {
     q: "Is there a free demo class?",
@@ -186,7 +186,7 @@ function PriceTag({ color }: { color: string }) {
         <span className="text-sm line-through" style={{ color:"#475569" }}>{LIST_PRICE}</span>
         <span className="text-2xl font-black text-white">{PRICE}</span>
       </div>
-      <div className="text-xs font-bold" style={{ color }}>Live batch · small group</div>
+      <div className="text-xs font-bold" style={{ color }}>Live batch · 10 seats</div>
     </div>
   );
 }
@@ -224,13 +224,14 @@ export default function LiveClassesPage() {
             From <span style={{ color:"#22c55e" }}>{PRICE}</span> / subject{" "}
             <span className="font-semibold" style={{ color:"#94a3b8" }}>(list <span className="line-through">{LIST_PRICE}</span>)</span>
             {" "}· Navigation combo <span style={{ color:"#22c55e" }}>{COMBO_PRICE}</span>
-            {" "}· <span style={{ color:"#f3c889" }}>First class free</span>
+            {" "}· <span style={{ color:"#f3c889" }}>Only 10 seats</span>
+            {" "}· <span style={{ color:"#22c55e" }}>First class free</span>
           </p>
           <p className="text-sm font-semibold mb-6" style={{ color:"#94a3b8" }}>
             Free demo class first · pay only if you like it
           </p>
 
-          {/* Next cohort — rolling wording only, never a fixed date or seat count (LIVE_BATCH_META) */}
+          {/* Next cohort — rolling wording only, never a fixed date or "seats left" (LIVE_BATCH_META) */}
           <div className="mb-10 mx-auto lg:mx-0 max-w-xl rounded-2xl px-5 py-4 text-left"
                style={{ background:"rgba(255,40,40,0.08)", border:"1px solid rgba(255,60,60,0.35)" }}>
             <div className="text-xs font-black tracking-widest uppercase mb-1" style={{ color:"#ff5a5a" }}>
@@ -240,9 +241,12 @@ export default function LiveClassesPage() {
               {LIVE_BATCH_META.subjectTitle}
             </div>
             <div className="text-sm font-semibold mt-1" style={{ color:"#94a3b8" }}>
-              {LIVE_BATCH_META.mode} · {LIVE_BATCH_META.durationLabel} · the Captain tells you the start date on WhatsApp
+              {LIVE_BATCH_META.statusLabel} · {LIVE_BATCH_META.mode} · max {LIVE_BATCH_META.maxSeats} seats · {LIVE_BATCH_META.durationLabel} · start date confirmed on WhatsApp
             </div>
             <div className="text-xs font-bold mt-2" style={{ color:"#f3c889" }}>
+              {LIVE_BATCH_META.maxSeats} seats only — founding price shown above
+            </div>
+            <div className="text-xs font-bold mt-1" style={{ color:"#22c55e" }}>
               Attend one free demo class first. Pay only if you like it.
             </div>
           </div>
@@ -393,7 +397,7 @@ export default function LiveClassesPage() {
                 <span className="text-sm line-through" style={{ color:"#475569" }}>{COMBO_LIST_PRICE}</span>
                 <span className="text-2xl font-black text-white">{COMBO_PRICE}</span>
               </div>
-              <div className="text-xs font-bold" style={{ color:"#22c55e" }}>Navigation combo · 3 subjects · small group</div>
+              <div className="text-xs font-bold" style={{ color:"#22c55e" }}>Navigation combo · 3 subjects · 10 seats</div>
             </div>
             <div className="flex flex-col gap-2 mt-auto">
               <a href={liveDemoLink("Navigation (Gen Nav + Radio Nav + Instrumentation)")} target="_blank" rel="noopener noreferrer"
