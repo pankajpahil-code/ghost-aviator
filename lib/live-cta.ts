@@ -8,7 +8,7 @@
 
 import { LIVE_WHATSAPP } from "@/lib/live-classes";
 
-export type CtaPlacement = "notes_end" | "score" | "questions_end" | "hub_banner" | "live_hero" | "home_banner";
+export type CtaPlacement = "notes_end" | "score" | "questions_end" | "hub_banner" | "live_hero" | "home_banner" | "demo_class";
 
 /** wa.me link with the enquiry already written, naming where the student came from. */
 export const waEnquiryLink = (message: string): string =>

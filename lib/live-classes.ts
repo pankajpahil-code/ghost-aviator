@@ -78,6 +78,8 @@ export const enquiryLink = (tag = "enquiry"): string => {
 
 export const LIVE_UPI_VPA = "9643961464@axl";
 export const LIVE_UPI_PAYEE = "PRISHA";
+/** Shown beside the payee name so students know whose account it is. Do not rename the account. */
+export const LIVE_UPI_OWNER_NOTE = "This is Capt. Pankaj Pahil's personal UPI account.";
 export const LIVE_UPI_QR = { single: "/pay/upi-7999.png", combo: "/pay/upi-14999.png" };
 
 export const liveUpiLink = (amountValue: string, note: string): string =>
@@ -136,7 +138,14 @@ export const LIVE_CLASS_SUBJECTS: Record<string, string> = {
   "radio-telephony": "Radio Telephony (RTR-A)",
 };
 
-/** Next published live cohort. Confirm with Captain before treating as live. */
+/**
+ * The next live cohort. 27 Oct 2026, the Captain's decision: NEVER publish a
+ * fixed start date or a "seats left" countdown. Batch size (max 10 seats) and
+ * prices stay on the website (social posts and ads carry neither). A passed date ("starts Tue 20 Oct")
+ * made students think the batch had already begun, and they never joined.
+ * Public wording is rolling: statusLabel below. The start date is told to each
+ * student personally on WhatsApp.
+ */
 export const LIVE_BATCH_META = {
   subjectSlug: "meteorology" as const,
   subjectTitle: "Aviation Meteorology",
@@ -144,12 +153,25 @@ export const LIVE_BATCH_META = {
   mode: "Google Meet",
   maxSeats: 10,
   durationLabel: "4–6 weeks",
-  startDateIST: "2026-10-20",
-  startLabel: "Tuesday, 20 Oct 2026 (IST)",
+  statusLabel: "Next batch forming now",
   priceINR: 7999,
   enrollWhatsApp: `https://wa.me/${LIVE_WHATSAPP}`,
   telegramInvite: "https://t.me/+tgLMJithc1gzOWJl",
 } as const;
+
+/**
+ * The offer (27 Oct 2026, the Captain's decision): one free live demo class
+ * first, then the full fee only if the student likes it.
+ */
+export const LIVE_DEMO_CTA = "Book your free demo class";
+export const LIVE_DEMO_TRUST =
+  "Attend one free demo class first. Pay only if you like it. You get a payment confirmation on WhatsApp.";
+
+/** WhatsApp enquiry link, prefilled to book the free demo class for a subject. */
+export const liveDemoLink = (subject = "ground classes"): string =>
+  `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+    `Hi, I'd like to book the free demo class for DGCA ${subject}.`
+  )}`;
 
 /**
  * The Ghost Aviator assistant on Telegram (username, no "@"). ONE switch for every "ask the
