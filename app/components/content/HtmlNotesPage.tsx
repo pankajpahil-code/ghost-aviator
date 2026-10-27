@@ -8,7 +8,7 @@ import ReadAloudControls from "@/app/components/ReadAloudControls";
 import { ChevronRight, ChevronLeft, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import Watermark from "@/app/components/Watermark";
-import LiveClassUpsell from "@/app/components/LiveClassUpsell";
+import { NotesEndCta } from "@/app/components/LiveCta";
 import VideoLectureCard from "@/app/components/content/VideoLectureCard";
 import type { ChapterVideo } from "@/lib/chapter-videos";
 import { keyFactsFor, type ChapterKeyFacts } from "@/lib/chapter-key-facts";
@@ -357,7 +357,7 @@ ${NOTES_FIT_CSS}
           </div>
         )}
 
-        <LiveClassUpsell subjectId={subject.id} subjectColor={subject.color} />
+        <NotesEndCta subjectId={subject.id} subject={subject.shortName} chapter={chapter.title} accent={subject.color} />
 
         {related}
 

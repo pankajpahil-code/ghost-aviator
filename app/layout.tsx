@@ -9,6 +9,7 @@ import LiveClassInvitation from "./components/LiveClassInvitation";
 import ContentProtection from "./components/ContentProtection";
 import ProgressSync from "./components/ProgressSync";
 import Gini from "./components/gini/Gini";
+import WhatsAppClickTracker from "./components/WhatsAppClickTracker";
 import { LIVE_WHATSAPP } from "@/lib/live-classes";
 import { SITE_URL, CAPTAIN_PROFILES, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
 
@@ -127,6 +128,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             navigation — he survives page changes instead of remounting. */}
         <Gini />
         <Analytics />
+        <WhatsAppClickTracker />
       </body>
     </html>
   );

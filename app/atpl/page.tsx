@@ -5,6 +5,7 @@ import { servesRealNotes, publishedNoteCount } from "@/lib/indexability";
 import { ATPL_AREAS, ATPL_SYLLABUS_URL, ATPL_MANUAL_URL, ATPL_RULES_URL, ATPL_CORE_PAPER_IDS, ATPL_REGULATIONS_EXEMPTION, isAtplCorePaper } from "@/lib/atpl-syllabus";
 import styles from "./Atpl.module.css";
 import { SITE_URL } from "@/lib/site";
+import { HubBannerCta } from "@/app/components/LiveCta";
 const BREADCRUMB_LD = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -33,6 +34,7 @@ export default function ATPLPage() {
       <p>Return to a subject, find a reference, or plan your next study session. A focused library for pilots preparing for DGCA ATPL examinations and revisiting the underlying theory.</p>
       <nav className={styles.nav} aria-label="ATPL study navigation"><a href="#syllabus">ATPL general papers</a><a href="#references">Further study references</a><a href="#study">Plan your study</a><Link href="/cpl">Question practice in CPL</Link></nav>
     </header>
+    <HubBannerCta where="ATPL" className="my-6" />
     {groups.map(group => <section className={styles.section} id={group.id} key={group.id}><div className={styles.eyebrow}>DGCA ATPL · Aeroplanes</div><h2>{group.title}</h2>
       <p>{group.intro}</p>
       {group.id === "references" && <div className={styles.note}><p><strong>Air Regulations: CPL-holder exemption.</strong> {ATPL_REGULATIONS_EXEMPTION} <a href={ATPL_RULES_URL} target="_blank" rel="noopener noreferrer">Aircraft Rules: Schedule II, Section M, 1(d)</a>.</p></div>}

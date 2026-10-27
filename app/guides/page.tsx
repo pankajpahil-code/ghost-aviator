@@ -2,6 +2,7 @@ import Link from "next/link";
 import { GUIDES } from "@/lib/guides";
 import { BookOpen, Calendar, User, ChevronRight } from "lucide-react";
 import { SITE_URL, ORG_ID } from "@/lib/site";
+import { HubBannerCta } from "@/app/components/LiveCta";
 
 export const metadata = {
   title: "DGCA Exam Guides — CPL, RTR(A) & Pilot Training in India | Ghost Aviator",
@@ -56,6 +57,7 @@ export default function GuidesIndexPage() {
 
       {/* Guide List */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <HubBannerCta where="study guides" className="mb-8" />
         <div className="grid gap-6">
           {GUIDES.map(guide => (
             <Link key={guide.slug} href={`/guides/${guide.slug}`} className="block group no-underline">

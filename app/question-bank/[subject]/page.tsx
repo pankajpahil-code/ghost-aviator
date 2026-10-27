@@ -10,6 +10,7 @@ import { getExamPaper } from "@/lib/exam-papers-meta";
 import { SITE_URL, ORG_ID } from "@/lib/site";
 import { QB_LANDINGS, qbLandingFor, faqPageJsonLd, formatDuration, type Faq } from "@/lib/landing-pages";
 import { DEFAULT_OG_IMAGES } from "@/lib/og";
+import { ScoreCta } from "@/app/components/LiveCta";
 
 export function generateStaticParams() {
   return QB_LANDINGS.map(l => ({ subject: l.subjectId }));
@@ -204,6 +205,8 @@ export default async function SubjectQuestionBankPage({ params }: { params: Prom
           </div>
           <p className="text-sm mt-4"><Link href="/how-answers-are-verified" style={{ color: "#ab794d" }}>How answers are verified</Link> · <Link href="/faq" style={{ color: "#ab794d" }}>All DGCA exam questions</Link></p>
         </section>
+
+        <div className="mb-12"><ScoreCta subject={subject.shortName} placement="questions_end" accent={subject.color} /></div>
 
         <section>
           <h2 className="text-lg font-bold text-white mb-3">Other subject question banks</h2>

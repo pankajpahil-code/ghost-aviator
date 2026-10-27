@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NotesActions from "./NotesActions";
+import { NotesEndCta } from "@/app/components/LiveCta";
 import { ChevronRight, ChevronLeft, ListChecks, Clock } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { ReactNode } from "react";
@@ -1030,6 +1031,8 @@ export default function AirRegsChapter1Notes({ track, subject, chapter, prevChap
             <ListChecks className="w-4 h-4" /> {track === "atpl" ? "Question practice in CPL →" : "Start Chapter Quiz →"}
           </Link>
         </div>
+
+        <div className="mb-6"><NotesEndCta subjectId={subject.id} subject={subject.shortName} chapter={chapter.title} accent={subject.color} /></div>
 
         {/* ── Prev / All / Next navigation ────────────────────────── */}
         <div className="flex items-center justify-between gap-4">

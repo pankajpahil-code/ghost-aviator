@@ -183,7 +183,7 @@ export default function Home() {
                     style={{ background:"linear-gradient(135deg,#ff3030,#f0913a)", color:"#fff", boxShadow:"0 0 25px rgba(255,40,40,0.4)" }}>
                 See Live Classes <ArrowRight className="w-4 h-4"/>
               </Link>
-              <a href={liveWaLink("DGCA live classes", LIVE_PRICE)} target="_blank" rel="noopener noreferrer"
+              <a href={liveWaLink("DGCA live classes", LIVE_PRICE)} target="_blank" rel="noopener noreferrer" data-wa-placement="home_live_banner"
                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold no-underline"
                  style={{ border:"1px solid rgba(34,197,94,0.55)", color:"#22c55e", background:"rgba(34,197,94,0.10)" }}>
                 <MessageCircle className="w-4 h-4" /> WhatsApp +91 99902 26607

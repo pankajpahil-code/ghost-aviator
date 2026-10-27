@@ -7,6 +7,7 @@ import { isRealExplanation } from "@/lib/explanation";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import Link from "next/link";
 import { QB_LANDINGS } from "@/lib/landing-pages";
+import { HubBannerCta } from "@/app/components/LiveCta";
 
 const SUBJECT_INDEX: Record<string, string> = (() => {
   const map: Record<string, string> = {};
@@ -100,6 +101,8 @@ function QuestionBankView({ initialQuery }: { initialQuery: string }) {
             {ALL_QUESTIONS.length.toLocaleString()} questions with answers and explanations · growing weekly
           </p>
         </div>
+
+        <HubBannerCta where="question bank" className="mb-8" />
 
         {/* Per-subject landing pages: crawlable links, one per subject bank */}
         <nav aria-label="Question banks by subject" className="mb-8">

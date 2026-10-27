@@ -9,7 +9,7 @@ import {
   recordResult, isSubjectFallback, questionsForRun, countsTowardChapter,
   QUIZ_SAMPLE_SIZE, MIN_QUESTIONS_FOR_VERDICT, canStartRun,
 } from "@/lib/progress";
-import LiveClassUpsell from "@/app/components/LiveClassUpsell";
+import { ScoreCta } from "@/app/components/LiveCta";
 
 type Phase = "setup" | "quiz" | "result";
 
@@ -231,7 +231,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions: po
         </div>
 
         <div className="mb-8">
-          <LiveClassUpsell subjectId={subject.id} subjectColor={subject.color} />
+          <ScoreCta subject={subject.shortName} accent={subject.color} />
         </div>
 
         {/* Answer review */}

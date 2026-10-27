@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NotesActions from "./NotesActions";
+import { NotesEndCta } from "@/app/components/LiveCta";
 import { ChevronRight, ChevronLeft, Clock, BookOpen, ListChecks } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import Watermark from "@/app/components/Watermark";
@@ -161,6 +162,8 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
             </Link>
           </div>
         </div>
+
+        <div className="mb-6"><NotesEndCta subjectId={subject.id} subject={subject.shortName} chapter={chapter.title} accent={subject.color} /></div>
 
         {/* Prev / Subject / Next navigation */}
         <div className="flex items-center justify-between gap-4">

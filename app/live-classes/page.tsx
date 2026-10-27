@@ -1,3 +1,5 @@
+import { WhatsAppCtaLink } from "@/app/components/LiveCta";
+import { CTA_COPY, waEnquiryLink, pageMessage } from "@/lib/live-cta";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -212,6 +214,14 @@ export default function LiveClassesPage() {
           <p className="text-lg max-w-3xl mx-auto lg:mx-0 mb-3 leading-relaxed" style={{ color:"#94a3b8" }}>
             Live DGCA CPL ground classes — taught by <strong style={{ color:"#f3c889" }}>the Captain</strong>.
           </p>
+
+          {/* One primary WhatsApp button, above the fold on mobile and desktop. */}
+          <div className="flex flex-col items-center lg:items-start gap-2 mb-6">
+            <WhatsAppCtaLink big placement="live_hero"
+              href={waEnquiryLink(pageMessage("live classes"))}
+              label={CTA_COPY.action} />
+            <span className="text-xs" style={{ color:"#94a3b8" }}>Free doubt classes every week. Full live batches open.</span>
+          </div>
           <p className="text-base font-black mb-2">
             From <span style={{ color:"#22c55e" }}>{PRICE}</span> / subject{" "}
             <span className="font-semibold" style={{ color:"#94a3b8" }}>(list <span className="line-through">{LIST_PRICE}</span>)</span>
@@ -240,17 +250,11 @@ export default function LiveClassesPage() {
           </div>
 
           <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
-            <a href={liveEnrollLink("general", "DGCA Ground Classes", PRICE)} target="_blank" rel="noopener noreferrer"
-               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
-               style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
-              {hasLivePaymentLink("general") ? <CreditCard className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
-              {hasLivePaymentLink("general") ? "Enroll & Pay Online" : "Enquire on WhatsApp"}
-            </a>
             {hasLivePaymentLink("general") ? (
-              <a href={waLink("DGCA ground classes", PRICE)} target="_blank" rel="noopener noreferrer"
+              <a href={liveEnrollLink("general", "DGCA Ground Classes", PRICE)} target="_blank" rel="noopener noreferrer"
                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
-                 style={{ border:"1px solid rgba(34,197,94,0.5)", color:"#22c55e", background:"rgba(34,197,94,0.08)" }}>
-                <MessageCircle className="w-5 h-5" /> Message on WhatsApp
+                 style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 30px rgba(34,197,94,0.4)" }}>
+                <CreditCard className="w-5 h-5" /> Enroll &amp; Pay Online
               </a>
             ) : null}
             {/* Instant answers from the assistant: hidden until LIVE_TELEGRAM_BOT is set (lib/live-classes.ts). */}
