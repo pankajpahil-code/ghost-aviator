@@ -26,6 +26,15 @@
 //     1..N) cells followed by a same-count row of single letters A-D. Added
 //     after the air-regulations recon found ar-15 L986-991, a grid with no key
 //     phrase and no grid class anywhere near it, invisible to phrase/class.
+//   STRICT (build-failing): public/content/air-regulations - cleaned 2026-10-26
+//     (3 blocker key tables removed; 22 previously unanswered practice
+//     questions given inline answers; source-key prose reworded).
+//   STRICT (build-failing): public/content/instrumentation - cleaned 2026-10-26
+//     (6 full source-key tables + dead key CSS removed; selected key questions
+//     keep their inline worked answers; source-key prose reworded).
+//   STRICT (build-failing): public/content/human-performance - cleaned 2026-10-26
+//     (inline source-key prose reworded; the inline answer and explanation
+//     are retained).
 //   REPORT-ONLY: every other subject. They await their own per-subject passes
 //     (scope: tools/audit/answer-key-inventory-2026-10-17.tsv). When a subject
 //     finishes its pass, move it into the STRICT list below.
@@ -36,7 +45,7 @@
 //
 // The --check form runs in `npm run build`, so a key grid cannot silently
 // return to a cleaned notes scope (meteorology, radio-navigation,
-// air-navigation).
+// air-navigation, air-regulations, instrumentation, human-performance).
 
 import fs from "node:fs";
 import path from "node:path";
@@ -47,6 +56,9 @@ const STRICT_DIRS = [
   path.join(CONTENT, "meteorology"),
   path.join(CONTENT, "radio-navigation"),
   path.join(CONTENT, "air-navigation"),
+  path.join(CONTENT, "air-regulations"),
+  path.join(CONTENT, "instrumentation"),
+  path.join(CONTENT, "human-performance"),
 ];
 const STRICT_NAMES = STRICT_DIRS.map((d) => path.basename(d)).join(", ");
 const ALLOWED_TEXT = [/Practice questions with verified answer key\./];
