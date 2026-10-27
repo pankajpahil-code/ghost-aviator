@@ -7,6 +7,7 @@ import { PQ_BASE, getPQSubject, publishedPQSubjects, pqTopics, pqTopicQuestions 
 import PQShell from "@/app/components/pq/PQShell";
 import PQCard from "@/app/components/pq/PQCard";
 import { ArrowLeft } from "lucide-react";
+import { ScoreCta } from "@/app/components/LiveCta";
 
 type Params = { subject: string; topic: string };
 
@@ -87,6 +88,7 @@ export default async function PQTopicPage({ params }: { params: Promise<Params> 
           Every answer was checked against the DGCA CARs, AIP India, ICAO documents or worked calculation
           {s.checked ? ` (independent check completed ${s.checked})` : ""}. Spotted a mistake? Tell us and we will check it against the source.
         </p>
+        <div className="mt-8"><ScoreCta subject={s.short} placement="questions_end" accent={accent} /></div>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { getPaperQuestionPool } from "@/lib/exam-papers";
 import { isRealExplanation } from "@/lib/explanation";
 import { recordExamAttempt, type ChapterBreakdown } from "@/lib/exam-history";
 import { useDeadlineCountdown } from "@/lib/progress";
-import LiveClassUpsell from "@/app/components/LiveClassUpsell";
+import { ScoreCta } from "@/app/components/LiveCta";
 
 type Phase = "setup" | "exam" | "result";
 
@@ -199,7 +199,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
         </div>
 
         <div className="mb-8">
-          <LiveClassUpsell subjectId={paper.subjectIds[0]} subjectColor="#f0913a" />
+          <ScoreCta subject={paper.title} />
         </div>
 
         <h3 className="text-xl font-bold mb-4">Answer Review</h3>
