@@ -183,7 +183,7 @@ export default function Home() {
                     style={{ background:"linear-gradient(135deg,#ff3030,#f0913a)", color:"#fff", boxShadow:"0 0 25px rgba(255,40,40,0.4)" }}>
                 See Live Classes <ArrowRight className="w-4 h-4"/>
               </Link>
-              <a href={liveDemoLink("live classes")} target="_blank" rel="noopener noreferrer"
+              <a href={liveDemoLink("live classes")} target="_blank" rel="noopener noreferrer" data-wa-placement="demo_class" data-wa-subject="live classes"
                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-black no-underline"
                  style={{ background:"linear-gradient(135deg,#16a34a,#22c55e)", color:"#fff", boxShadow:"0 0 25px rgba(34,197,94,0.35)" }}>
                 <MessageCircle className="w-4 h-4" /> {LIVE_DEMO_CTA}

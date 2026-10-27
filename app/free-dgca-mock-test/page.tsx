@@ -4,6 +4,7 @@ import { EXAM_PAPERS } from "@/lib/exam-papers-meta";
 import { SITE_URL, ORG_ID } from "@/lib/site";
 import { QB_LANDINGS, faqPageJsonLd, formatDuration, type Faq } from "@/lib/landing-pages";
 import { DEFAULT_OG_IMAGES } from "@/lib/og";
+import { HubBannerCta } from "@/app/components/LiveCta";
 
 const TITLE = "Free DGCA Mock Test Online: Timed CPL Papers | Ghost Aviator";
 const DESCRIPTION =
@@ -88,6 +89,8 @@ export default function FreeMockTestPage() {
         <p className="mb-10" style={{ color: "#94a3b8" }}>
           Pick a paper below. Each sitting draws its questions at random from the Ghost Aviator question bank, so you can retake a paper and get a different set.
         </p>
+
+        <HubBannerCta where="free DGCA mock test" className="mb-10 -mt-4" />
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-5">DGCA mock test papers</h2>

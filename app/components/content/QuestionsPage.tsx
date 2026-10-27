@@ -1,5 +1,6 @@
 "use client";
 import { useState, type ReactNode } from "react";
+import { ScoreCta } from "@/app/components/LiveCta";
 import Link from "next/link";
 import { ChevronRight, ChevronLeft, BookOpen, CheckCircle, XCircle, RotateCcw, HelpCircle } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
@@ -343,6 +344,8 @@ export default function QuestionsPage({ track, subject, chapter, questions, chap
           </ol>
         </section>
         )}
+
+        <div className="mt-8"><ScoreCta subject={subject.shortName} placement="questions_end" accent={subject.color} /></div>
 
         {related}
       </div>

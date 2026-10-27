@@ -6,6 +6,7 @@ import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { ArrowRight, Clock, FileQuestion, CheckCircle } from "lucide-react";
 
 import { SITE_URL, ORG_ID } from "@/lib/site";
+import { HubBannerCta } from "@/app/components/LiveCta";
 
 const CHAPTERS = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
 const cplIds = new Set(CPL_SUBJECTS.map(s => s.id));
@@ -76,6 +77,10 @@ export default function CPLPage() {
             ))}
           </div>
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <HubBannerCta where="CPL" />
       </div>
 
       {/* Subjects */}
