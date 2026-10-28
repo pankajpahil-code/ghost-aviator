@@ -138,13 +138,14 @@
 
 
   <table>
-    <tr><th>Height Range</th><th>Rate of Decrease per 100 m</th></tr>
-    <tr><td>Sea level to <span class="reg-value">600 m</span></td><td><span class="reg-value">4%</span></td></tr>
-    <tr><td>Up to <span class="reg-value">1.5 km</span></td><td><span class="reg-value">3%</span></td></tr>
-    <tr><td>Up to <span class="reg-value">3 km</span></td><td><span class="reg-value">2.5%</span></td></tr>
-    <tr><td>At <span class="reg-value">6 km</span></td><td>Reduces to <span class="reg-value">half</span> the sea level value</td></tr>
-    <tr><td>At <span class="reg-value">100 km</span></td><td>Negligible — regarded as <strong>vacuum</strong></td></tr>
+    <tr><th>Height (ISA)</th><th>Pressure</th><th>Height for 1 hPa</th></tr>
+    <tr><td>Sea level</td><td><span class="reg-value">1013.25 hPa</span></td><td><span class="reg-value">27 ft</span></td></tr>
+    <tr><td><span class="reg-value">4,781 ft</span> (1.46 km)</td><td><span class="reg-value">850 hPa</span></td><td><span class="reg-value">31 ft</span></td></tr>
+    <tr><td><span class="reg-value">10,000 ft</span> (3.05 km)</td><td><span class="reg-value">696.8 hPa</span></td><td><span class="reg-value">37 ft</span></td></tr>
+    <tr><td><span class="reg-value">18,289 ft</span> (5.51 km)</td><td><span class="reg-value">500 hPa</span>, <strong>half</strong> the sea-level value</td><td><span class="reg-value">48 ft</span></td></tr>
+    <tr><td><span class="reg-value">30,065 ft</span> (9.16 km)</td><td><span class="reg-value">300 hPa</span></td><td><span class="reg-value">73 ft</span></td></tr>
   </table>
+  <p>Near sea level that is about <strong>12 hPa for every 100 m</strong> of climb (1 hPa &asymp; 27 ft &asymp; 8 m), a little over 1 % of the sea-level pressure. Higher up, each hPa spans more height, so the fall slows.</p>
 
   <div class="svg-wrap">
     <svg viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg" width="340" height="260">
@@ -161,10 +162,8 @@
       <path d="M60,220 Q80,180 100,150 Q130,100 160,70 Q190,45 230,35 Q260,30 290,30" fill="none" stroke="#c0392b" stroke-width="3"/>
       <!-- Labels -->
       <text x="65" y="218" font-size="10" fill="#1565c0">MSL</text>
-      <text x="62" y="155" font-size="10" fill="#555">6 km</text>
+      <text x="62" y="155" font-size="10" fill="#555">5.5 km</text>
       <line x1="56" y1="150" x2="65" y2="150" stroke="#555" stroke-width="1" stroke-dasharray="4,2"/>
-      <text x="62" y="75" font-size="10" fill="#555">100 km</text>
-      <line x1="56" y1="68" x2="65" y2="68" stroke="#555" stroke-width="1" stroke-dasharray="4,2"/>
       <!-- Half-pressure annotation -->
       <line x1="60" y1="150" x2="180" y2="150" stroke="#2e7d32" stroke-width="1" stroke-dasharray="4,3"/>
       <line x1="180" y1="220" x2="180" y2="150" stroke="#2e7d32" stroke-width="1" stroke-dasharray="4,3"/>
@@ -180,7 +179,7 @@
     Height difference = <span class="reg-value">96 × T / p</span> feet<br>
     (where T = temperature in Kelvin, p = pressure in hPa)<br>
     <div class="worked">
-      <strong>Worked Example (ISA conditions):</strong><br>
+      <strong>Worked Example (a warm day, 27 &deg;C = 300 K):</strong><br>
       At 1000 hPa, T = 300 K:<br>
       Height = 96 × 300 / 1000 = <strong>28.8 ft</strong>
     </div>
@@ -714,8 +713,7 @@ flowchart LR
     <tr><td>1 hPa at 2,000 ft</td><td><span class="reg-value">30 ft</span></td></tr>
     <tr><td>1 hPa at 20,000 ft</td><td><span class="reg-value">50 ft</span></td></tr>
     <tr><td>1 hPa at 40,000 ft</td><td><span class="reg-value">100 ft</span></td></tr>
-    <tr><td>Pressure halves at altitude</td><td><span class="reg-value">6 km</span></td></tr>
-    <tr><td>Vacuum (negligible pressure)</td><td><span class="reg-value">100 km</span></td></tr>
+    <tr><td>Pressure halves at altitude</td><td><span class="reg-value">about 5.5 km</span> (500 hPa &asymp; 18,000 ft)</td></tr>
     <tr><td>Semi-diurnal maxima</td><td><span class="reg-value">1000 hr &amp; 2200 hr</span></td></tr>
     <tr><td>Semi-diurnal minima</td><td><span class="reg-value">0400 hr &amp; 1600 hr</span></td></tr>
     <tr><td>Equatorial diurnal pressure variation</td><td><span class="reg-value">3–5 hPa</span></td></tr>
@@ -751,7 +749,7 @@ flowchart LR
     <strong>Top 10 Exam Points — Atmospheric Pressure:</strong><br>
     1. Standard sea level pressure = <span class="reg-value">1013.25 hPa = 760 mm = 29.92 in</span><br>
     2. 1 hPa = 1000 dyn/cm²; 1 Bar = 1000 hPa = 100,000 N/m²<br>
-    3. Pressure halves at 6 km; vacuum at 100 km<br>
+    3. Pressure halves at about 5.5 km (500 hPa &asymp; 18,000 ft); near sea level 1 hPa &asymp; 27 ft &asymp; 8 m<br>
     4. Height per 1 hPa = 96T/p feet (28.8 ft at 1000 hPa, 300K)<br>
     5. Semi-diurnal maxima: 1000 &amp; 2200 hr; minima: 0400 &amp; 1600 hr<br>
     6. D Value = True Alt − Indicated Alt; decreases flying High → Low<br>
