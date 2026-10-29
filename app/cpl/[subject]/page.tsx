@@ -3,7 +3,9 @@ import NotesDownloadLink from "@/app/components/content/NotesDownloadLink";
 import { getChapterSpecificQuestions, getSubjectQuestionPool } from "@/lib/questions";
 import { EXAM_PAPERS } from "@/lib/exam-papers";
 import { getChapterVideos } from "@/lib/chapter-videos";
-import { servesRealNotes, isIndexableSubject, NOINDEX } from "@/lib/indexability";
+import { servesRealNotes, isIndexableSubject, isIndexableChapterRoute, NOINDEX } from "@/lib/indexability";
+import { pqPaperFor, pqTopicLinksForSubject } from "@/lib/pq-links";
+import { PQ_BASE } from "@/lib/previous-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { CPL_SUBJECTS } from "@/lib/subjects";
@@ -117,6 +119,9 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
 
   // Real figures, read from the question bank (Iron Rule 5), never hand-typed.
   const pool = getSubjectQuestionPool(subject.id).length;
+  // Links into /dgca-exam-questions for the paper that examines this subject (lib/pq-links.ts).
+  const examPaper = pqPaperFor(subject.id);
+  const examTopics = pqTopicLinksForSubject(subject.id, subject.chapters.map(ch => ch.id));
   const testsOpen = pool >= MIN_TEST_POOL;
   const midQs = Math.min(MID_TEST_QUESTIONS, pool);
   const fullQs = Math.min(subject.totalQuestions, pool);
@@ -241,6 +246,12 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
                     {/* Content type buttons */}
                     <div className="flex flex-wrap gap-2">
                       {ch.content.map(c => {
+                        // The chapter quiz is a noindex drill over the same questions the
+                        // indexable /questions page publishes. Where that page exists the
+                        // hub links it alone; the quiz stays one click away from it and
+                        // from the notes. Chapters without their own question set keep
+                        // the quiz pill (2026-10-29).
+                        if (c.type === "chapter-quiz" && isIndexableChapterRoute(subject.id, ch.id, "questions")) return null;
                         const Icon = CONTENT_ICONS[c.type];
                         const color = CONTENT_COLORS[c.type];
                         // The `available` flag for questions is hand-maintained in
@@ -370,6 +381,30 @@ export default async function CPLSubjectPage({ params }: { params: Promise<{ sub
 
         {/* Related Subjects & Interlinking Hub */}
         <div className="pt-10 border-t border-white/10 space-y-8">
+          {examPaper && (
+            <div>
+              <h3 className="text-xl font-black text-white mb-2">Real DGCA Exam Questions</h3>
+              <p className="text-sm text-slate-400 mb-4">
+                Questions recalled from past DGCA sittings for this paper, by topic.{" "}
+                <Link href={`${PQ_BASE}/${examPaper.slug}`} className="font-bold text-amber-300 no-underline hover:underline">
+                  Practice exam questions for {examPaper.title} →
+                </Link>
+              </p>
+              {examTopics.length > 0 && (
+                <ul className="list-none p-0 m-0 flex flex-wrap gap-2">
+                  {examTopics.map(t => (
+                    <li key={t.href}>
+                      <Link href={t.href}
+                            className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold no-underline border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] text-slate-300">
+                        {t.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+
           <div>
             <h3 className="text-xl font-black text-white mb-2">Explore Other CPL Subjects</h3>
             <p className="text-sm text-slate-400 mb-6">Complete your DGCA ground school prep across all required Commercial Pilot License subjects.</p>

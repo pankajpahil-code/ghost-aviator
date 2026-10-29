@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
-import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
+import { CPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { isIndexableChapterRoute, isIndexableSubject } from "@/lib/indexability";
-import { ALL_PAST_PAPERS } from "@/lib/past-papers";
 import { GUIDES } from "@/lib/guides";
 import { QB_LANDINGS } from "@/lib/landing-pages";
 import { SITE_URL } from "@/lib/site";
@@ -10,6 +9,7 @@ import { getChapterVideos } from "@/lib/chapter-videos";
 import { videoSitemapEntriesFor, isWatchPage } from "@/lib/video-schema";
 import { PUBLISHED_CORRECTIONS } from "@/lib/corrections";
 import { pqRoutes } from "@/lib/previous-questions";
+import { isSitemapNotes } from "@/lib/sitemap-focus";
 
 export const dynamic = "force-static";
 
@@ -99,41 +99,53 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // they are marked noindex. Submitting them only spends crawl budget.
   ].map(p => ({ ...p, ...mod(p.url.replace(SITE_URL, "") || "/") }));
 
-  // Per-subject index + only those chapter routes that have real content behind
-  // them. What counts as "real" is decided in ONE place — lib/indexability.ts —
-  // which the routes' own generateMetadata also reads to emit robots noindex.
+  // Per-subject index + the chapter routes we submit.
   //
-  // Keeping the two in one predicate is the point. This file previously made the
-  // call itself, from a filesystem check that merely happened to agree with the
-  // route's render condition, and the drift that pattern invites has already
-  // produced orphaned pages and duplicate submissions twice in this codebase.
+  // WHAT IS SUBMITTED (2026-10-29): the sitemap is a short list of our best
+  // URLs, not every indexable one. On 2026-10-27 Search Console showed 1 page
+  // indexed and 848 not, mostly "Discovered – currently not indexed": a new
+  // domain asking Google about 690 URLs at once. See lib/sitemap-focus.ts.
   //
-  // The same module carries the evidence for why the excluded routes are
-  // excluded: a Googlebot crawl on 2026-08-14 found 1,038 reachable URLs, of
-  // which roughly half carry under 150 words of unique content.
+  //   - CPL subject hubs that serve real content.
+  //   - A curated set of CPL chapter notes (lib/sitemap-focus.ts).
+  //   - NOT the /questions drills, NOT the /video pages (now noindex, see
+  //     lib/indexability.ts), NOT any ATPL chapter route (ATPL notes are
+  //     canonicalised to the CPL chapter they mirror), NOT the ATPL subject hubs.
+  //
+  // Leaving a route out of the sitemap does NOT noindex it. Every route that
+  // lib/indexability.ts calls indexable still says so in its own robots meta
+  // and stays linked from its hub, so Google can still find it by crawling.
+  //
+  // A curated route is still checked against isIndexableChapterRoute, the ONE
+  // predicate the routes' own generateMetadata reads, so the sitemap can never
+  // submit a page that tells Google noindex. (This file previously made that
+  // call itself and drifted; see the git history.)
   const CHAPTER_TYPES = ["notes", "questions", "video"] as const;
+  const submitChapterRoute = (track: "cpl" | "atpl", subjectId: string, chapterId: string, type: string) =>
+    track === "cpl" && type === "notes" && isSitemapNotes(subjectId, chapterId);
 
   const subjectPages = (track: "cpl" | "atpl", subjects: Subject[]): MetadataRoute.Sitemap =>
     subjects.flatMap(s => [
       ...(isIndexableSubject(s) ? [{ url: url(`/${track}/${s.id}`), ...mod(`/${track}/${s.id}`), changeFrequency: "weekly" as const, priority: 0.8 }] : []),
       ...s.chapters.flatMap(ch =>
-        CHAPTER_TYPES.filter(type => isIndexableChapterRoute(s.id, ch.id, type)).map(type => ({
-          url: url(`/${track}/${s.id}/${ch.id}/${type}`),
-          ...mod(`/${track}/${s.id}/${ch.id}/${type}`),
-          ...videosFor(track, s.id, ch.id, ch.title, type),
-          changeFrequency: "monthly" as const,
-          // Notes are the substantive page; drills are secondary.
-          priority: type === "notes" ? 0.7 : 0.5,
-        })),
+        CHAPTER_TYPES
+          .filter(type => submitChapterRoute(track, s.id, ch.id, type) && isIndexableChapterRoute(s.id, ch.id, type))
+          .map(type => ({
+            url: url(`/${track}/${s.id}/${ch.id}/${type}`),
+            ...mod(`/${track}/${s.id}/${ch.id}/${type}`),
+            // Only attaches on a watch page (lib/video-schema.ts). No /video route
+            // is submitted while those pages are noindex, so this adds nothing
+            // today; it stays so the guarded video enrichment is ready if they return.
+            ...videosFor(track, s.id, ch.id, ch.title, type),
+            changeFrequency: "monthly" as const,
+            priority: 0.7,
+          })),
       ),
     ]);
 
-  const paperPages: MetadataRoute.Sitemap = ALL_PAST_PAPERS.map(p => ({
-    url: url(`/past-papers/${p.id}`),
-    ...mod(`/past-papers/${p.id}`),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  // The 37 individual /past-papers/<id> pages are not submitted (2026-10-29):
+  // the /past-papers hub is, and links every paper, which stays indexable.
+  // Re-add them here once the core set is indexed.
 
   // /exam/<paper> is deliberately absent. Each is the exam runner — a client
   // component behind 22-90 words of server-rendered shell — so it is the same
@@ -158,8 +170,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticPages,
     ...pqPages,
     ...subjectPages("cpl", CPL_SUBJECTS),
-    ...subjectPages("atpl", ATPL_SUBJECTS),
-    ...paperPages,
     ...guidePages,
   ];
 }

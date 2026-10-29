@@ -9,6 +9,7 @@ import { ATPL_CORE_PAPER_IDS, isAtplCorePaper } from "@/lib/atpl-syllabus";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { servesRealNotes, publishedNoteCount } from "@/lib/indexability";
 import MascotHero from "./components/MascotHero";
+import { PQ_BASE, publishedPQSubjects, pqTopics } from "@/lib/previous-questions";
 
 export const metadata: Metadata = {
   title: "Free DGCA CPL & ATPL Exam Prep & Notes | Ghost Aviator",
@@ -70,6 +71,13 @@ const startHere = START_HERE.flatMap(([subjectId, chapterId]) => {
   if (!subject || !chapter || !servesRealNotes(subjectId, chapterId)) return [];
   return [{ href: `/cpl/${subjectId}/${chapterId}/notes`, subject: subject.shortName, title: chapter.title }];
 });
+
+// Previous DGCA exam questions: each published paper and its five most-asked topics.
+const examPapers = publishedPQSubjects().map(p => ({
+  href: `${PQ_BASE}/${p.slug}`,
+  title: p.title,
+  topics: pqTopics(p).slice(0, 5).map(t => ({ href: `${PQ_BASE}/${p.slug}/${t.slug}`, name: t.name })),
+}));
 
 const services = [
   { icon: Video,         label: "Video Lectures",  desc: "The chapter taught, above every set of notes" },
@@ -325,6 +333,40 @@ export default function Home() {
               </li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {/* ══════════════════ REAL DGCA EXAM QUESTIONS ══════════════════ */}
+      {/* Plain links into /dgca-exam-questions (2026-10-29): those pages had no
+          internal links at all. Each paper shows its most-asked topics. */}
+      {examPapers.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">Real DGCA <span style={{ background:"linear-gradient(135deg,#f3c889,#c25a1e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Exam Questions</span></h2>
+            <p style={{ color:"#64748b" }}>Questions recalled from past DGCA sittings, sorted by topic and how often they were asked.</p>
+          </div>
+          <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {examPapers.map(p => (
+              <li key={p.href} className="rounded-xl px-5 py-4" style={{ background:"rgba(17,24,32,0.95)", border:"1px solid rgba(243,200,137,0.18)" }}>
+                <Link href={p.href} className="flex items-center justify-between gap-3 no-underline mb-3">
+                  <span className="font-bold text-white leading-snug">{p.title} exam questions</span>
+                  <ArrowRight className="w-4 h-4 shrink-0" style={{ color:"#f3c889" }}/>
+                </Link>
+                <ul className="list-none p-0 m-0 space-y-1 text-sm">
+                  {p.topics.map(t => (
+                    <li key={t.href}>
+                      <Link href={t.href} className="no-underline hover:underline" style={{ color:"#94a3b8" }}>{t.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+          <p className="text-center mt-6">
+            <Link href={PQ_BASE} className="inline-flex items-center gap-2 font-bold no-underline" style={{ color:"#f3c889" }}>
+              All DGCA exam questions <ArrowRight className="w-4 h-4"/>
+            </Link>
+          </p>
         </section>
       )}
 

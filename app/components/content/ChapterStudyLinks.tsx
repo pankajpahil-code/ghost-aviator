@@ -15,8 +15,8 @@ export default function ChapterStudyLinks({
   color: string;
   data: ChapterStudyLinkData;
 }) {
-  const { links, prev, next } = data;
-  if (links.length === 0 && !prev && !next) return null;
+  const { links, prev, next, examQuestions } = data;
+  if (links.length === 0 && !prev && !next && examQuestions.length === 0) return null;
   return (
     <nav aria-label={`More on Chapter ${chapter.number}`}
          className="rounded-2xl p-5 my-6"
@@ -36,6 +36,24 @@ export default function ChapterStudyLinks({
             </li>
           ))}
         </ul>
+      )}
+      {examQuestions.length > 0 && (
+        <div className="mt-4">
+          <h3 className="text-xs font-black mb-2" style={{ color: "#94a3b8", letterSpacing: "0.06em" }}>
+            REAL DGCA EXAM QUESTIONS
+          </h3>
+          <ul className="list-none p-0 m-0 flex flex-wrap gap-2">
+            {examQuestions.map(l => (
+              <li key={l.href}>
+                <Link href={l.href}
+                      className="inline-flex items-center px-3 py-2 rounded-lg text-xs font-bold no-underline"
+                      style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#e2e8f0" }}>
+                  {l.label} →
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
       {(prev || next) && (
         <div className="flex flex-wrap justify-between gap-3 mt-4 text-sm">
