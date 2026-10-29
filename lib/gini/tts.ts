@@ -190,10 +190,17 @@ async function bhashini(text: string, lang: string): Promise<Audio | null> {
       inputData: { input: [{ source: text }], audio: [{ audioContent: null }] },
     }),
   }));
-  if (!res.ok) return null;
+  // Bhashini's own reply text goes to the server log so a refusal can be diagnosed; it never echoes the key.
+  if (!res.ok) {
+    console.warn(`[gini-tts] bhashini ${code} ${serviceId} -> HTTP ${res.status}: ${(await res.text().catch(() => "")).slice(0, 300)}`);
+    return null;
+  }
   const j = await res.json() as { pipelineResponse?: { taskType?: string; audio?: { audioContent?: string }[] }[] };
   const b64 = j.pipelineResponse?.find(p => p.taskType === "tts")?.audio?.[0]?.audioContent;
-  if (!b64) return null;
+  if (!b64) {
+    console.warn(`[gini-tts] bhashini ${code} ${serviceId} -> no audio: ${JSON.stringify(j).slice(0, 300)}`);
+    return null;
+  }
   const bytes = Buffer.from(b64, "base64");
   return bytes.length > 100 ? { bytes, type: "audio/wav", provider: "bhashini" } : null;
 }
@@ -295,7 +302,7 @@ export async function synthesize(text: string, lang: string): Promise<Audio | nu
   if (hit) return hit;
   let audio: Audio | null = null;
   if (bhashiniConfigured()) {
-    try { audio = await bhashini(text, lang); } catch { audio = null; }
+    try { audio = await bhashini(text, lang); } catch (e) { console.warn(`[gini-tts] bhashini ${lang} threw: ${String(e).slice(0, 200)}`); audio = null; }
   }
   if (!audio) {
     try { audio = await gemini(text, lang); } catch { audio = null; }
