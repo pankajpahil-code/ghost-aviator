@@ -35,7 +35,8 @@ const csp = [
   "worker-src 'self' blob:",
   "img-src 'self' data: https:",
   "font-src 'self' data:",
-  "media-src 'self'",
+  // blob: because Gini's voice is fetched, then played from an object URL (lib/gini/voice.ts).
+  "media-src 'self' blob:",
   "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com",
   "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://va.vercel-scripts.com https://vitals.vercel-insights.com",
   "frame-ancestors 'self'",

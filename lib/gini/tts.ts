@@ -202,8 +202,39 @@ async function bhashini(text: string, lang: string): Promise<Audio | null> {
     console.warn(`[gini-tts] bhashini ${code} ${serviceId} -> no audio: ${JSON.stringify(j).slice(0, 300)}`);
     return null;
   }
-  const bytes = Buffer.from(b64, "base64");
+  const bytes = toPcm16Wav(Buffer.from(b64, "base64"));
   return bytes.length > 100 ? { bytes, type: "audio/wav", provider: "bhashini" } : null;
+}
+
+/**
+ * Bhashini returns 32-bit float WAV (format 3, measured 2026-10-29): 2.5 MB for 30 s, and not every
+ * phone browser plays float WAV. Rewrite it as ordinary 16-bit PCM, which every browser plays, at half
+ * the size. Anything that is not float WAV is returned untouched.
+ */
+export function toPcm16Wav(src: Buffer): Buffer {
+  if (src.length < 44 || src.toString("ascii", 0, 4) !== "RIFF" || src.toString("ascii", 8, 12) !== "WAVE") return src;
+  let fmt = -1, data = -1, dataLen = 0;
+  for (let o = 12; o + 8 <= src.length;) {
+    const id = src.toString("ascii", o, o + 4), len = src.readUInt32LE(o + 4);
+    if (id === "fmt ") fmt = o + 8;
+    if (id === "data") { data = o + 8; dataLen = Math.min(len, src.length - data); break; }
+    o += 8 + len + (len & 1);
+  }
+  if (fmt < 0 || data < 0) return src;
+  let tag = src.readUInt16LE(fmt);
+  if (tag === 0xfffe) tag = src.readUInt16LE(fmt + 24);        // WAVE_FORMAT_EXTENSIBLE: real format is in the sub-format GUID
+  const channels = src.readUInt16LE(fmt + 2), rate = src.readUInt32LE(fmt + 4), bits = src.readUInt16LE(fmt + 14);
+  if (tag !== 3 || bits !== 32) return src;
+  const n = Math.floor(dataLen / 4), out = Buffer.alloc(44 + n * 2);
+  out.write("RIFF", 0, "ascii"); out.writeUInt32LE(36 + n * 2, 4); out.write("WAVE", 8, "ascii");
+  out.write("fmt ", 12, "ascii"); out.writeUInt32LE(16, 16); out.writeUInt16LE(1, 20); out.writeUInt16LE(channels, 22);
+  out.writeUInt32LE(rate, 24); out.writeUInt32LE(rate * channels * 2, 28); out.writeUInt16LE(channels * 2, 32); out.writeUInt16LE(16, 34);
+  out.write("data", 36, "ascii"); out.writeUInt32LE(n * 2, 40);
+  for (let i = 0; i < n; i++) {
+    const v = Math.max(-1, Math.min(1, src.readFloatLE(data + i * 4)));
+    out.writeInt16LE(Math.round(v < 0 ? v * 0x8000 : v * 0x7fff), 44 + i * 2);
+  }
+  return out;
 }
 
 /** Why the last synthesis failed, for the route's error reply. Never shown with any detail of a key. */
