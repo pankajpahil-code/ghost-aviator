@@ -365,7 +365,8 @@ function remember(k: string, a: Audio) {
 }
 
 /** What a reply sounds like unless the request asks otherwise (the tuning samples ask). */
-export const DEFAULT_VOICE: Required<VoiceOpts> = { gender: "female", filter: false };
+// The Captain chose sample 2, female + smoothed, on 2026-10-29 after hearing all four on his own speaker.
+export const DEFAULT_VOICE: Required<VoiceOpts> = { gender: "female", filter: true };
 
 /** Speak `text` in `lang`. Null only when every provider failed. */
 export async function synthesize(text: string, lang: string, opts: VoiceOpts = {}): Promise<Audio | null> {
