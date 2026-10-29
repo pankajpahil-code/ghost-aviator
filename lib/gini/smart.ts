@@ -111,3 +111,25 @@ export async function askSmart(
     clearTimeout(timer);
   }
 }
+
+/**
+ * Voice permission for one of Gini's own local answers (askDeep), used when the
+ * smart route failed. The server re-derives the answer and signs it only if it
+ * matches word for word (app/api/gini/sign). Undefined on any failure, and the
+ * device's own voice then reads it as before.
+ */
+export async function signLocalAnswer(q: string, ctx: GiniContext, text: string): Promise<string | undefined> {
+  try {
+    const res = await fetch("/api/gini/sign", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ q, path: ctx.pathname, subjectId: ctx.subjectId, text }),
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return undefined;
+    const data = await res.json() as { speak?: unknown };
+    return typeof data.speak === "string" ? data.speak : undefined;
+  } catch {
+    return undefined;
+  }
+}

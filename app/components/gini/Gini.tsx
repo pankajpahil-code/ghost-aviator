@@ -37,7 +37,7 @@ import {
   rememberSubject, rememberedSubject,
 } from "@/lib/gini/session";
 import { CPL_SUBJECTS } from "@/lib/subjects";
-import { askSmart, type ChatTurn } from "@/lib/gini/smart";
+import { askSmart, signLocalAnswer, type ChatTurn } from "@/lib/gini/smart";
 import { sections, speakSection, stop as stopReading, hasNotes, supported as speechSupported } from "@/lib/gini/reader";
 import ReadAloudControls from "../ReadAloudControls";
 import { connectReader, subscribe, getSnapshot, getServerSnapshot, captureReadingSelection, clearReadingSelection, speakText, readRequested, langForText } from "@/lib/read-aloud";
@@ -557,7 +557,14 @@ export default function Gini() {
       // already exist here, and returns that stored text verbatim. It returns
       // null for every imperfect outcome — no key, quota gone, timeout, a guard
       // rejection — and then the local layer answers exactly as it always has.
-      reply = (await askSmart(q, asked, history.current, awareness)) ?? (await askDeep(q, asked));
+      const smart = await askSmart(q, asked, history.current, awareness);
+      reply = smart ?? (await askDeep(q, asked));
+      // A local answer has no voice permission of its own; ask the server for one
+      // so it is spoken by Gini's server voice, not the device's (2026-10-29).
+      if (!smart && reply.kind === "answer" && !reply.speakToken) {
+        const speakToken = await signLocalAnswer(q, asked, reply.text);
+        if (speakToken) reply = { ...reply, speakToken };
+      }
     } catch {
       // A failed lookup must never become a guess.
       reply = { kind: "refusal", text: "Something went wrong looking that up. Try again?", reason: "not-verified" };
