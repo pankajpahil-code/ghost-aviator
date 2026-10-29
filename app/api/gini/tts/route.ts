@@ -43,7 +43,7 @@ const clientIp = (req: Request) =>
   req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
 
 export async function POST(req: Request) {
-  let body: { text?: unknown; lang?: unknown; token?: unknown };
+  let body: { text?: unknown; lang?: unknown; token?: unknown; gender?: unknown; filter?: unknown };
   try { body = await req.json(); } catch { return Response.json({ ok: false, why: "bad-body" }, { status: 400 }); }
 
   const original = typeof body.text === "string" ? body.text.trim() : "";
@@ -55,7 +55,10 @@ export async function POST(req: Request) {
   if (!text) return Response.json({ ok: false, why: "nothing-to-say" }, { status: 400 });
   const lang = shortLang(typeof body.lang === "string" ? body.lang : "en-IN");
 
-  const audio = await synthesize(text, lang);
+  // Optional tuning choices; anything else falls back to DEFAULT_VOICE.
+  const gender = body.gender === "male" || body.gender === "female" ? body.gender : undefined;
+  const filter = typeof body.filter === "boolean" ? body.filter : undefined;
+  const audio = await synthesize(text, lang, { gender, filter });
   if (!audio) {
     const why = providerError();
     return Response.json({ ok: false, why }, { status: why === "quota" || why === "daily-quota" ? 429 : 503 });

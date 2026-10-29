@@ -176,7 +176,7 @@ async function bhashiniTarget(lang: string): Promise<BhashiniTarget | null> {
   return bhashiniConfig!.byLang.get(lang) ?? null;
 }
 
-async function bhashini(text: string, lang: string): Promise<Audio | null> {
+async function bhashini(text: string, lang: string, gender: VoiceGender): Promise<Audio | null> {
   const code = lang === "en-IN" ? "en" : lang;
   const target = await bhashiniTarget(code);
   if (!target) return null;
@@ -186,7 +186,7 @@ async function bhashini(text: string, lang: string): Promise<Audio | null> {
     method: "POST", signal,
     headers: { "Content-Type": "application/json", [target.header]: target.key },
     body: JSON.stringify({
-      pipelineTasks: [{ taskType: "tts", config: { language: { sourceLanguage: code }, serviceId, gender: "female" } }],
+      pipelineTasks: [{ taskType: "tts", config: { language: { sourceLanguage: code }, serviceId, gender } }],
       inputData: { input: [{ source: text }], audio: [{ audioContent: null }] },
     }),
   }));
@@ -211,6 +211,43 @@ async function bhashini(text: string, lang: string): Promise<Audio | null> {
  * phone browser plays float WAV. Rewrite it as ordinary 16-bit PCM, which every browser plays, at half
  * the size. Anything that is not float WAV is returned untouched.
  */
+export type VoiceGender = "female" | "male";
+export type VoiceOpts = { gender?: VoiceGender; filter?: boolean };
+
+/**
+ * Smooth a 16-bit mono WAV for small speakers (tuning pass, 2026-10-29). Bhashini's voices carry bursts
+ * of energy near the top of the band (Punjabi measured 597 sample-to-sample jumps in 8 s) that laptop
+ * and phone speakers can turn into a rattle. A 4th-order low-pass at 7 kHz keeps every speech sound,
+ * then the level is set to -1 dBFS and 10 ms fades remove start/end clicks.
+ */
+export function polishWav(src: Buffer, cutoffHz = 7000): Buffer {
+  if (src.length < 44 || src.toString("ascii", 0, 4) !== "RIFF" || src.readUInt16LE(20) !== 1 || src.readUInt16LE(34) !== 16 || src.readUInt16LE(22) !== 1) return src;
+  const rate = src.readUInt32LE(24);
+  if (cutoffHz >= rate / 2 - 500) return src;
+  const n = Math.floor((src.length - 44) / 2);
+  const x = new Float64Array(n);
+  for (let i = 0; i < n; i++) x[i] = src.readInt16LE(44 + i * 2) / 32768;
+  const w0 = 2 * Math.PI * cutoffHz / rate, cos = Math.cos(w0), alpha = Math.sin(w0) / (2 * Math.SQRT1_2);
+  const a0 = 1 + alpha, b0 = (1 - cos) / 2 / a0, b1 = (1 - cos) / a0, b2 = b0, a1 = -2 * cos / a0, a2 = (1 - alpha) / a0;
+  for (let pass = 0; pass < 2; pass++) {
+    let x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+    for (let i = 0; i < n; i++) {
+      const y = b0 * x[i] + b1 * x1 + b2 * x2 - a1 * y1 - a2 * y2;
+      x2 = x1; x1 = x[i]; y2 = y1; y1 = y; x[i] = y;
+    }
+  }
+  let peak = 0;
+  for (let i = 0; i < n; i++) peak = Math.max(peak, Math.abs(x[i]));
+  const gain = peak > 0 ? 0.89 / peak : 1;
+  const fade = Math.min(Math.floor(rate * 0.01), Math.floor(n / 4));
+  const out = Buffer.from(src.subarray(0, 44 + n * 2));
+  for (let i = 0; i < n; i++) {
+    const env = i < fade ? i / fade : i >= n - fade ? (n - 1 - i) / fade : 1;
+    out.writeInt16LE(Math.round(Math.max(-1, Math.min(1, x[i] * gain * env)) * 32767), 44 + i * 2);
+  }
+  return out;
+}
+
 export function toPcm16Wav(src: Buffer): Buffer {
   if (src.length < 44 || src.toString("ascii", 0, 4) !== "RIFF" || src.toString("ascii", 8, 12) !== "WAVE") return src;
   let fmt = -1, data = -1, dataLen = 0;
@@ -327,14 +364,21 @@ function remember(k: string, a: Audio) {
   }
 }
 
+/** What a reply sounds like unless the request asks otherwise (the tuning samples ask). */
+export const DEFAULT_VOICE: Required<VoiceOpts> = { gender: "female", filter: false };
+
 /** Speak `text` in `lang`. Null only when every provider failed. */
-export async function synthesize(text: string, lang: string): Promise<Audio | null> {
-  const k = createHash("sha1").update(`${lang}\u0000${text}`).digest("hex");
+export async function synthesize(text: string, lang: string, opts: VoiceOpts = {}): Promise<Audio | null> {
+  const gender = opts.gender ?? DEFAULT_VOICE.gender, filter = opts.filter ?? DEFAULT_VOICE.filter;
+  const k = createHash("sha1").update(`${lang}\u0000${gender}\u0000${filter}\u0000${text}`).digest("hex");
   const hit = cache.get(k);
   if (hit) return hit;
   let audio: Audio | null = null;
   if (bhashiniConfigured()) {
-    try { audio = await bhashini(text, lang); } catch (e) { console.warn(`[gini-tts] bhashini ${lang} threw: ${String(e).slice(0, 200)}`); audio = null; }
+    try {
+      audio = await bhashini(text, lang, gender);
+      if (audio && filter) audio = { ...audio, bytes: polishWav(audio.bytes) };
+    } catch (e) { console.warn(`[gini-tts] bhashini ${lang} threw: ${String(e).slice(0, 200)}`); audio = null; }
   }
   if (!audio) {
     try { audio = await gemini(text, lang); } catch { audio = null; }
