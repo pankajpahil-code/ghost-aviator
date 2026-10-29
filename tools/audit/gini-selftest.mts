@@ -28,7 +28,7 @@ import {
 import { explainQuestion, isSpeakable, speakableStats } from "../../lib/gini/deep";
 import { topicStats } from "../../lib/gini/topics";
 import { TOPICS } from "../../lib/gini/generated/topics";
-import { FAKE_URGENCY, FREE_THREAT } from "../../lib/gini/marketing";
+import { FAKE_URGENCY, FREE_THREAT, FIXED_BATCH_DATE } from "../../lib/gini/marketing";
 import { guardModelProse, guardTutorProse, normalizeIndicMarks } from "../../lib/gini/guard";
 import { cleanAwareness, groundingFor, buildTutorPrompt } from "../../lib/gini/tutor";
 import { langForText } from "../../lib/read-aloud";
@@ -206,6 +206,12 @@ const everyPitchText = PITCHES.map(p => p.say(readContext("/cpl/meteorology/met-
   + PITCHES.map(p => p.say(home)).join(" \n ");
 check(!FAKE_URGENCY.test(everyPitchText), "no manufactured urgency or scarcity");
 check(!FREE_THREAT.test(everyPitchText), "never suggests the free material will end");
+check(!FIXED_BATCH_DATE.test(everyPitchText), "never states a fixed batch start date");
+check(!/\bten (students|to a batch|a batch|only)\b|batches of ten/i.test(everyPitchText), "no stale 'ten to a batch' wording");
+check(
+  PITCHES.filter(p => ["live-subject", "live-general", "live-combo", "talk-to-captain"].includes(p.id))
+    .every(p => /free demo class|first class is a free demo/i.test(p.say(readContext("/cpl/meteorology/met-1/notes"))) && /free demo/i.test(p.say(home))),
+  "every paid pitch offers the free demo class first");
 check(PITCHES.every(p => !!p.href(home)), "every pitch has somewhere to go");
 check(new Set(PITCHES.map(p => p.id)).size === PITCHES.length, "pitch ids are unique");
 // Prices must be imported, never typed. Any rupee figure in a pitch has to be
@@ -297,7 +303,12 @@ const GUARD_CASES: { text: string; ok: boolean; label: string; why?: RegExp }[] 
   { text: "It costs ₹  8,000 a subject.", ok: false, label: "wrong price, marker set off by two spaces" },
   { text: "That is 8000 in rupees.", ok: false, label: "wrong price, 'in rupees'" },
   { text: "The fee is Rs 7,999 a subject.", ok: true, label: "a real price written as Rs" },
-  { text: "There are 4,350 questions and the next batch starts on 20 Oct 2026.", ok: true, label: "numbers that are not prices" },
+  { text: "There are 4,350 questions and the mock paper is dated 20 Oct 2026.", ok: true, label: "numbers that are not prices" },
+  // 27 Oct 2026 (#33): never a fixed batch start date; the date is told on WhatsApp.
+  { text: "The next batch starts on 20 Oct 2026.", ok: false, why: /fixed batch start date/, label: "a fixed batch start date" },
+  { text: "The Meteorology batch begins Monday, so message the Captain.", ok: false, why: /fixed batch start date/, label: "a batch start weekday" },
+  { text: "Next batch forming now. The Captain confirms your start date on WhatsApp.", ok: true, label: "rolling batch wording is allowed" },
+  { text: "Attend one free demo class first and pay only if you like it.", ok: true, label: "the free demo class offer is allowed" },
   { text: "We guarantee you will pass the DGCA exam.", ok: false, label: "promises an outcome" },
   // The Latin-alphabet twin of the Bengali case above. Seen live on a plain
   // "hello", 2026-08-21: every other guard passed it because it states no
