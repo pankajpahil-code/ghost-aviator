@@ -111,6 +111,8 @@ export default function Gini() {
   /** Server voice state for the current bubble, and the note shown when it cannot speak. */
   const [voiceState, setVoiceState] = useState<"idle" | "loading" | "playing">("idle");
   const [voiceNote, setVoiceNote] = useState<string | null>(null);
+  /** Which voice actually spoke the last reply, shown under it so a bad sound can be traced to its source. */
+  const [voiceUsed, setVoiceUsed] = useState<string | null>(null);
 
   /** Silence him: the server audio, and any device speech that is his. */
   const hush = useCallback(() => {
@@ -130,19 +132,23 @@ export default function Gini() {
   const speakReply = useCallback(async (text: string, token?: string | null) => {
     hush();
     setVoiceNote(null);
+    setVoiceUsed(null);
     const words = speakable(text);
     if (!words) return;
     const lang = langForText(words);
     if (token) {
       setVoiceState("loading");
-      const r = await playGiniAudio(text, lang, token, () => setVoiceState("playing"));
+      const r = await playGiniAudio(text, lang, token, () => { setVoiceState("playing"); setVoiceUsed("Voice: Gini's server voice"); });
       setVoiceState("idle");
       if (r === "played" || r === "aborted") return;
+      setVoiceUsed(`Voice: this device's own voice (server voice ${r === "busy" ? "busy" : r === "spent" ? "used up for today" : "could not play here"})`);
       // English can fall back to the device's own voice below; Indian scripts cannot.
       if (r === "spent" && !/^en/.test(lang)) { setVoiceNote("My voice has used up today's free allowance. You can still read the answer, and it comes back tomorrow."); return; }
       if (r === "busy" && !/^en/.test(lang)) { setVoiceNote("My voice is busy for a minute. Tap Listen again shortly."); return; }
     }
+    if (!token) setVoiceUsed("Voice: this device's own voice");
     if (!speakText(words, "Gini answer", undefined, lang)) {
+      setVoiceUsed(null);
       setVoiceNote("I can't speak this language on this device right now. Tap Listen again in a minute.");
     }
   }, [hush]);
@@ -668,6 +674,9 @@ export default function Gini() {
                 style={{ display: "inline-block", marginTop: 8, marginRight: 8, padding: "3px 9px", fontSize: 11, borderRadius: 999, cursor: "pointer", color: "#f0b070", background: "rgba(240,145,58,0.12)", border: "1px solid rgba(240,145,58,0.35)" }}>
                 {voiceState === "loading" ? "… ■ Stop" : speakingReply ? "■ Stop" : "🔊 Listen"}
               </button>
+            )}
+            {voiceUsed && !speaking && (
+              <span style={{ display: "block", marginTop: 6, fontSize: 10.5, color: "#9fb0c0" }}>{voiceUsed}</span>
             )}
             {voiceNote && !speaking && (
               <span style={{ display: "block", marginTop: 6, fontSize: 10.5, color: "#f0b070" }}>{voiceNote}</span>

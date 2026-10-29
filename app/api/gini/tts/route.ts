@@ -20,7 +20,7 @@ export const maxDuration = 30;
 /* Per-instance limits, the same reasoning as /api/gini: they stop a casual
    flood from one address, and the token already stops strangers' text. */
 const WINDOW_MS = 60_000;
-const PER_IP_PER_MIN = 6;
+const PER_IP_PER_MIN = 12;
 const DAY_MS = 86_400_000;
 const SOFT_DAILY_CAP = 600;
 type Bucket = { count: number; resetAt: number };
