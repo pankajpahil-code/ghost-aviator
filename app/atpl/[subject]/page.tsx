@@ -35,6 +35,18 @@ export default async function ATPLSubjectPage({params}:{params:Promise<{subject:
     chapters: chapters.filter(ch => topic.sources.some(ref => ref.subjectId === ch.notesSource?.subjectId && ref.chapterIds.includes(ch.notesSource.chapterId))),
   })).filter(topic => topic.chapters.length > 0);
   const lectures=subject.chapters.filter(ch=>getChapterVideos(id,ch.id).length>0);
+  // Link the CPL chapter the notes come from, not the /atpl/.../notes copy
+  // (2026-10-29). The ATPL copy is 95-97% the same text and declares the CPL
+  // URL canonical, so linking the copy sent crawlers to a duplicate first. The
+  // ATPL route is not removed or noindexed; it is still reachable by URL and by
+  // the chapter's own Previous/Next. If the source is not a CPL chapter that
+  // serves notes, the ATPL route is kept.
+  const notesHref = (ch: (typeof chapters)[number]) => {
+    const src = ch.notesSource;
+    return src && !src.subjectId.startsWith("atpl-") && servesRealNotes(src.subjectId, src.chapterId)
+      ? `/cpl/${src.subjectId}/${src.chapterId}/notes`
+      : `/atpl/${id}/${ch.id}/notes`;
+  };
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -57,7 +69,7 @@ export default async function ATPLSubjectPage({params}:{params:Promise<{subject:
       {topics.map((topic, topicIndex) => <section className={styles.topic} id={topic.id} key={topic.id} aria-labelledby={`${topic.id}-heading`}>
         <div className={styles.eyebrow}>Topic {String(topicIndex+1).padStart(2,"0")}</div>
         <h3 id={`${topic.id}-heading`}>{topic.title}</h3>
-        <ol className={styles.list}>{topic.chapters.map((ch,i)=><li className={styles.row} key={`${ch.notesSource?.subjectId}/${ch.id}`}><div className={styles.rowTitle}><span className={styles.number}>{String(i+1).padStart(2,"0")}</span><div><Link prefetch={false} href={`/atpl/${id}/${ch.id}/notes`}>{ch.title}</Link><small>{ch.description}</small></div></div><span aria-hidden="true">→</span></li>)}</ol>
+        <ol className={styles.list}>{topic.chapters.map((ch,i)=><li className={styles.row} key={`${ch.notesSource?.subjectId}/${ch.id}`}><div className={styles.rowTitle}><span className={styles.number}>{String(i+1).padStart(2,"0")}</span><div><Link prefetch={false} href={notesHref(ch)}>{ch.title}</Link><small>{ch.description}</small></div></div><span aria-hidden="true">→</span></li>)}</ol>
       </section>)}
     </> : <div className={styles.note}><p>No chapter notes are published for this area yet. Consult the official syllabus and the relevant approved aircraft documentation.</p></div>}
     </section>{lectures.length > 0 && <section className={styles.section}><h2>Lecture references</h2><p>Existing Ghost Aviator lectures relevant to this study area.</p><ul className={styles.list}>{lectures.map(ch=><li className={styles.row} key={ch.id}><Link href={`/atpl/${id}/${ch.id}/video`}>{ch.title} →</Link></li>)}</ul></section>}<nav className={styles.nav} aria-label="Related study"><Link href="/cpl">Question practice in CPL</Link><Link href="/books">Free book downloads</Link><Link href="/atpl">All ATPL areas</Link></nav>

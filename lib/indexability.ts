@@ -172,7 +172,7 @@ export function isIndexableChapterRoute(
   type: string,
 ): boolean {
   // Shared ATPL reference notes canonicalise to their existing CPL document.
-  if (subjectId.startsWith("atpl-") && type !== "video") return false;
+  if (subjectId.startsWith("atpl-")) return false;
   switch (type) {
     case "notes":
       return servesRealNotes(subjectId, chapterId);
@@ -181,20 +181,27 @@ export function isIndexableChapterRoute(
       return ownsQuestionSet(subjectId, chapterId);
 
     case "video":
-      // A mapped lecture IS availability (lib/chapter-videos.ts is the source of
-      // truth). Without one the route renders Coming Soon.
+      // NOINDEX since 2026-10-29 (robots noindex,follow; route still renders).
       //
-      // /video is the lecture's watch page (see lib/video-schema.ts). Google will
-      // not index a video whose watch URL is noindex, and it also rejected the
-      // earlier attempt to claim the notes page as the watch page. So every
-      // chapter that has a lecture must keep /video indexable and in the
-      // sitemap — even when notes exist beside it. The two URLs serve different
-      // intents (watch vs read); titles and descriptions already diverge.
+      // Before, every chapter with a mapped lecture kept /video indexable as the
+      // lecture's watch page. The index diagnosis of 2026-10-27 measured those
+      // pages at 55-248 main words: a YouTube facade, the syllabus line and a
+      // part list. On a new domain with 1 page indexed and 848 "not indexed",
+      // ~100 thin pages competing with the notes chapter beside them was the
+      // wrong use of crawl budget, and Search Console had reported "Video
+      // indexed: 0" for 90 days anyway (the click-to-load facade never puts a
+      // <video> in the rendered DOM). The notes page carries the same lecture.
       //
-      // Thin-shell drills (chapter-quiz / mock-test) stay noindex below. Do not
-      // invent filler on /video to "fatten" it — VideoPage already renders the
-      // Captain's syllabus line and part list from existing data.
-      return getChapterVideos(subjectId, chapterId).length > 0;
+      // The trade-off, stated plainly: Google will not index a video whose watch
+      // page is noindex, so this gives up video rich results for these lectures
+      // until /video pages earn indexing on their own merit. The page keeps its
+      // self-canonical (pointing a noindex page's canonical at the notes page is
+      // a conflicting signal; see the ATPL route's ticket #9 note) and stays
+      // linked for students (subject hub, /video-lectures, the chapter's
+      // "More on this chapter" box via hasRouteContent).
+      //
+      // To revert: return getChapterVideos(subjectId, chapterId).length > 0.
+      return false;
 
     // Client-rendered drills over questions the sibling /questions page already
     // publishes in full. 28 main words of server-rendered HTML, and the same 28

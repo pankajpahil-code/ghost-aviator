@@ -1,5 +1,6 @@
 import type { Chapter, Subject } from "./subjects";
-import { isIndexableChapterRoute } from "./indexability";
+import { hasRouteContent, isIndexableChapterRoute } from "./indexability";
+import { pqLinksForChapter, type PQLink } from "./pq-links";
 
 /**
  * Cross-links between one chapter's notes, video lecture and practice questions
@@ -9,6 +10,10 @@ import { isIndexableChapterRoute } from "./indexability";
  * sitemap use, so a chapter page only ever points at a sibling that is real,
  * indexable content — never at a stub, a noindex drill, or a question set that
  * canonically lives under another chapter.
+ *
+ * One exception (2026-10-29): /video is noindex,follow now (lib/indexability.ts)
+ * but stays linked here, gated on hasRouteContent, so a student reading the
+ * notes can still reach the lecture page.
  */
 export type StudyRoute = "notes" | "video" | "questions";
 
@@ -20,6 +25,8 @@ export type ChapterStudyLinkData = {
   /** Only filled for the questions route: the nearest indexable question set either side. */
   prev: StudyNeighbour;
   next: StudyNeighbour;
+  /** CPL only: links into /dgca-exam-questions for this chapter's paper (lib/pq-links.ts). */
+  examQuestions: PQLink[];
 };
 
 const LABELS: Record<StudyRoute, string> = {
@@ -37,7 +44,9 @@ export function chapterStudyLinks(
   const chapter = subject.chapters[chapterIdx];
   const base = `/${track}/${subject.id}`;
   const links: StudyLink[] = (["notes", "video", "questions"] as const)
-    .filter(type => type !== current && isIndexableChapterRoute(subject.id, chapter.id, type))
+    .filter(type => type !== current && (type === "video"
+      ? hasRouteContent(subject.id, chapter.id, "video")
+      : isIndexableChapterRoute(subject.id, chapter.id, type)))
     .map(type => ({ type, href: `${base}/${chapter.id}/${type}`, label: LABELS[type] }));
 
   let prev: StudyNeighbour = null;
@@ -52,5 +61,6 @@ export function chapterStudyLinks(
       if (isIndexableChapterRoute(subject.id, ch.id, "questions")) { next = { href: `${base}/${ch.id}/questions`, chapter: ch }; break; }
     }
   }
-  return { links, prev, next };
+  const examQuestions = track === "cpl" ? pqLinksForChapter(subject.id, chapter.id) : [];
+  return { links, prev, next, examQuestions };
 }
