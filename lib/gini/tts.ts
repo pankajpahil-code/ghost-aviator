@@ -145,7 +145,7 @@ async function bhashiniTarget(lang: string): Promise<BhashiniTarget | null> {
   if (process.env.BHASHINI_INFERENCE_KEY) {
     return {
       url: process.env.BHASHINI_INFERENCE_URL || "https://dhruva-api.bhashini.gov.in/services/inference/pipeline",
-      header: "Authorization", key: process.env.BHASHINI_INFERENCE_KEY,
+      header: "Authorization", key: process.env.BHASHINI_INFERENCE_KEY.trim(),
     };
   }
   // The pipeline id comes from the Captain's own Bhashini profile; there is no
@@ -192,7 +192,8 @@ async function bhashini(text: string, lang: string): Promise<Audio | null> {
   }));
   // Bhashini's own reply text goes to the server log so a refusal can be diagnosed; it never echoes the key.
   if (!res.ok) {
-    console.warn(`[gini-tts] bhashini ${code} ${serviceId} -> HTTP ${res.status}: ${(await res.text().catch(() => "")).slice(0, 300)}`);
+    // Length and the five characters the Bhashini dashboard itself shows unmasked: enough to tell which key was pasted.
+    console.warn(`[gini-tts] bhashini ${code} ${serviceId} -> HTTP ${res.status} (key ${target.key.length} chars, starts ${target.key.slice(0, 5)}): ${(await res.text().catch(() => "")).slice(0, 300)}`);
     return null;
   }
   const j = await res.json() as { pipelineResponse?: { taskType?: string; audio?: { audioContent?: string }[] }[] };
