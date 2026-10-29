@@ -46,6 +46,23 @@ export const FAKE_URGENCY =
   /\b(only \d+ (seats?|spots?|places?) (left|remaining)|hurry|limited time|last chance|offer ends|act now|don'?t miss out|book now before|selling fast|few seats|filling fast|enroll today)\b/i;
 
 /**
+ * A fixed start date for a batch. 27 Oct 2026, the Captain's decision (#33):
+ * the next batch is "forming now" and its start date is told to each student
+ * personally on WhatsApp. A dated promise ("the batch starts on 20 Oct") goes
+ * stale, and a passed date made students think they had missed it. Narrow on
+ * purpose: only a batch/class word, a start verb and a concrete date or day
+ * together, so "4,414 questions" or "the start date is confirmed on WhatsApp"
+ * still pass.
+ */
+const MONTH = /(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)/.source;
+const WEEKDAY = /(?:mon|tues?|wed(?:nes)?|thu(?:rs)?|fri|sat(?:ur)?|sun)(?:day)?/.source;
+export const FIXED_BATCH_DATE = new RegExp(
+  `\\b(?:batch(?:es)?|cohort|class(?:es)?|course)\\b[^.?!]{0,40}?\\b(?:start(?:s|ing)?|begin(?:s|ning)?|commenc(?:e|es|ing)|kicks? off|opens?)\\b[^.?!]{0,25}?` +
+  `(?:\\b\\d{1,2}(?:st|nd|rd|th)?\\s+${MONTH}\\b|\\b${MONTH}\\.?\\s+\\d{1,2}\\b|\\b${WEEKDAY}\\b|\\btomorrow\\b|\\bnext week\\b|\\b\\d{1,2}[/.-]\\d{1,2}\\b)`,
+  "i",
+);
+
+/**
  * Never suggest the free material will stop being free.
  *
  * WIDENED 2026-08-21 after finding this guard had never actually fired in a
@@ -213,6 +230,7 @@ export function guardModelProse(text: string, opts: { allowTeaching?: boolean } 
   if (CODE_FRAGMENT.test(t)) return { ok: false, why: "contains code or markup (token garbage)" };
   if (ATTRIBUTION.test(t)) return { ok: false, why: "names a third-party source (Iron Rule 2)" };
   if (FAKE_URGENCY.test(t)) return { ok: false, why: "manufactured urgency" };
+  if (FIXED_BATCH_DATE.test(t)) return { ok: false, why: "states a fixed batch start date" };
   if (FREE_THREAT.test(t)) return { ok: false, why: "implies the free material will end" };
   if (OVERCLAIM.test(t)) return { ok: false, why: "unverifiable claim about outcomes" };
 
@@ -499,6 +517,7 @@ export function guardTutorProse(text: string, g: TutorGrounding): GuardVerdict {
   if (CODE_FRAGMENT.test(t)) return { ok: false, why: "contains code or markup (token garbage)" };
   if (ATTRIBUTION.test(t)) return { ok: false, why: "names a third-party source (Iron Rule 2)" };
   if (FAKE_URGENCY.test(t)) return { ok: false, why: "manufactured urgency" };
+  if (FIXED_BATCH_DATE.test(t)) return { ok: false, why: "states a fixed batch start date" };
   if (FREE_THREAT.test(t)) return { ok: false, why: "implies the free material will end" };
   if (OVERCLAIM.test(t)) return { ok: false, why: "unverifiable claim about outcomes" };
 

@@ -11,8 +11,10 @@
  * are not style preferences:
  *
  *   1. NO FABRICATED URGENCY. No "only 2 seats left", no countdown, no "offer
- *      ends". The batch size of ten is a real fact from lib/live-classes.ts;
- *      invented scarcity is a lie told to a student about money.
+ *      ends", no fixed batch start date. The batch size (max 10 seats), the
+ *      rolling "Next batch forming now" status and the free demo class are real
+ *      facts from lib/live-classes.ts; invented scarcity is a lie told to a
+ *      student about money.
  *   2. NO PRICE TYPED BY HAND. Every figure is imported from lib/live-classes.ts,
  *      so what Gini quotes and what the page charges cannot drift apart.
  *   3. NEVER IMPLY THE FREE THINGS WILL STOP BEING FREE. That is the oldest
@@ -36,7 +38,7 @@ import { CORPUS } from "./generated/corpus-stats";
 import { captainWhatsApp } from "./brief";
 import {
   LIVE_PRICE, LIVE_LIST_PRICE, LIVE_COMBO_PRICE, LIVE_COMBO_LIST_PRICE,
-  LIVE_CLASS_SUBJECTS, LIVE_COMBO_SUBJECTS,
+  LIVE_CLASS_SUBJECTS, LIVE_COMBO_SUBJECTS, LIVE_BATCH_META,
 } from "@/lib/live-classes";
 import { TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND } from "@/lib/site";
 
@@ -75,8 +77,9 @@ export const PITCHES: Pitch[] = [
     weight: 10,
     mood: "present_book",
     say: ctx =>
-      `The Captain teaches ${liveSubject(ctx)} live himself — ten students in a batch, so every question gets ` +
-      `answered. ${LIVE_PRICE} for the subject, down from ${LIVE_LIST_PRICE}. Everything you're reading here stays free either way.`,
+      `The Captain teaches ${liveSubject(ctx)} live himself, in a small batch of max ${LIVE_BATCH_META.maxSeats} seats, so every ` +
+      `question gets answered. ${LIVE_BATCH_META.statusLabel}: attend one free demo class first, and pay ${LIVE_PRICE} ` +
+      `(down from ${LIVE_LIST_PRICE}) only if you like it. Everything you're reading here stays free either way.`,
     href: () => "/live-classes",
   },
   {
@@ -89,7 +92,7 @@ export const PITCHES: Pitch[] = [
     say: () =>
       `The DGCA Navigation paper is really three subjects — General Navigation, Radio Navigation and ` +
       `Instrumentation. The Captain teaches all three live as one course, ${LIVE_COMBO_PRICE} instead of ` +
-      `${LIVE_COMBO_LIST_PRICE}.`,
+      `${LIVE_COMBO_LIST_PRICE}, and you attend one free demo class before you pay anything.`,
     href: () => "/live-classes",
   },
   {
@@ -100,8 +103,9 @@ export const PITCHES: Pitch[] = [
     weight: 4,
     mood: "present_book",
     say: () =>
-      `If a subject is fighting you, the Captain runs live batches of ten — ${LIVE_PRICE} a subject, or ` +
-      `${LIVE_COMBO_PRICE} for the whole Navigation combo. The free material here doesn't change either way.`,
+      `If a subject is fighting you, the Captain runs small live batches, max ${LIVE_BATCH_META.maxSeats} seats — ${LIVE_PRICE} a subject, or ` +
+      `${LIVE_COMBO_PRICE} for the whole Navigation combo. ${LIVE_BATCH_META.statusLabel}, and the first class is a free demo: ` +
+      `pay only if you like it. The free material here doesn't change either way.`,
     href: () => "/live-classes",
   },
 
@@ -122,8 +126,8 @@ export const PITCHES: Pitch[] = [
     say: ctx => {
       const s = liveSubject(ctx);
       return s
-        ? `If ${s} is the one fighting you, talk to the Captain himself — this opens a message straight to him. Ten students a batch, ${LIVE_PRICE}, and he teaches it personally. Send it while it's in front of you.`
-        : `You can speak to the Captain directly about a batch — this opens a message straight to him. He teaches every batch himself, ten students only, ${LIVE_PRICE} a subject.`;
+        ? `If ${s} is the one fighting you, talk to the Captain himself — this opens a message straight to him to book your free demo class. He teaches it personally, max ${LIVE_BATCH_META.maxSeats} seats, and you pay ${LIVE_PRICE} only if you like it.`
+        : `You can speak to the Captain directly — this opens a message straight to him to book a free demo class. ${LIVE_BATCH_META.statusLabel}, max ${LIVE_BATCH_META.maxSeats} seats, ${LIVE_PRICE} a subject, paid only if you like the demo.`;
     },
     href: ctx => captainWhatsApp(liveSubject(ctx) ?? undefined),
   },
@@ -367,4 +371,4 @@ export function choosePitch(
  * condition — and the fix is the one lib/indexability.ts and lib/gini/prompt.ts
  * already use: state the rule once, import it everywhere.
  */
-export { FAKE_URGENCY, FREE_THREAT } from "./guard";
+export { FAKE_URGENCY, FREE_THREAT, FIXED_BATCH_DATE } from "./guard";

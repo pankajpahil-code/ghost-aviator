@@ -28,6 +28,10 @@ import {
   LIVE_WHATSAPP,
   LIVE_UPI_VPA,
   LIVE_UPI_PAYEE,
+  LIVE_UPI_OWNER_NOTE,
+  LIVE_BATCH_META,
+  LIVE_DEMO_CTA,
+  liveDemoLink,
 } from "@/lib/live-classes";
 
 export type BotButton = { text: string; url: string };
@@ -70,12 +74,14 @@ const FREE =
   "• ADAPT airline-screening aptitude simulator";
 
 const CLASSES =
-  "Live online DGCA ground classes — small batches of 10, taught live, 4–6 weeks per subject.\n\n" +
+  `Live online DGCA ground classes — small batches of max ${LIVE_BATCH_META.maxSeats} seats, taught live, ${LIVE_BATCH_META.durationLabel} per subject.\n\n` +
+  `${LIVE_BATCH_META.statusLabel}. The start date is confirmed personally on WhatsApp.\n\n` +
+  "Attend one free demo class first. Pay the full fee only if you like it.\n\n" +
   `• Per subject: ${LIVE_PRICE} (list ${LIVE_LIST_PRICE})\n` +
   `• Navigation combo — Gen Nav + Radio Nav + Instruments: ${LIVE_COMBO_PRICE} (list ${LIVE_COMBO_LIST_PRICE})\n\n` +
   "Subjects: Meteorology, Air Regulations, General Navigation, Radio Navigation, Instrumentation.\n\n" +
-  `Pay any time by UPI: ${LIVE_UPI_VPA} (your app will show the name ${LIVE_UPI_PAYEE}). ` +
-  "Scan the QR on the page below — the amount is already filled in — then send the screenshot to our instructor to confirm your seat.\n\n" +
+  `Pay by UPI: ${LIVE_UPI_VPA} (your app will show the name ${LIVE_UPI_PAYEE}). ${LIVE_UPI_OWNER_NOTE} ` +
+  "Scan the QR on the page below — the amount is already filled in — then send the screenshot on WhatsApp and you get a payment confirmation there.\n\n" +
   "The free material stays free whether you join or not.";
 
 const RTR =
@@ -131,6 +137,7 @@ function commandReply(cmd: string): BotReply | null {
       return {
         text: CLASSES,
         buttons: [
+          [{ text: `🎓 ${LIVE_DEMO_CTA}`, url: liveDemoLink("ground classes") }],
           [{ text: `💳 Pay by UPI — ${LIVE_PRICE} / ${LIVE_COMBO_PRICE}`, url: abs("/live-classes#pay") }],
           [B.live],
           [B.talk("live classes")],
