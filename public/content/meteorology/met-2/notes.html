@@ -92,10 +92,10 @@
   <h2>1. Static and Dynamic Pressure</h2>
   <div class="box-blue">
     <strong>Definition:</strong> Pressure is the force per unit area exerted by molecules of air in random motion, acting uniformly in all directions. This is called <em>Static Pressure</em> or <em>Barometric Pressure</em>.<br><br>
-    When air is in motion, an additional pressure is exerted in the direction opposite to the flow. This additional component is called <strong>Dynamic Pressure</strong> or <strong>Wind Pressure</strong>.
+    When air is in motion it also carries an additional pressure, &frac12;&rho;V&sup2;, which it exerts on any surface facing into the flow (this is what a pitot tube senses). This is called <strong>Dynamic Pressure</strong> or <strong>Wind Pressure</strong>. Static pressure is still present in moving air.
   </div>
   <div class="box-amber">
-    <strong>🎯 Exam Tip:</strong> "Static = air at rest. Dynamic = air in motion (opposes flow)." Think: <em>Static Stops, Dynamic Does move.</em>
+    <strong>🎯 Exam Tip:</strong> "Static = always present, acts equally in all directions. Dynamic = the extra pressure due to motion (&frac12;&rho;V&sup2;), felt on surfaces facing the flow." A pitot tube senses static + dynamic.
   </div>
 </div>
 
@@ -114,9 +114,9 @@
     Unit of force is Newton (N).<br><br>
     <strong>Standard Sea Level Pressure:</strong><br>
     &nbsp;&nbsp;<span class="reg-value">1013.25 hPa = 760 mm = 29.92 in</span><br>
-    &nbsp;&nbsp;Also called <strong>1 Bar</strong> = <span class="reg-value">100,000 N/m²</span><br>
-    &nbsp;&nbsp;1 Bar = <span class="reg-value">1000 mb (millibars)</span> = <span class="reg-value">1000 hPa</span><br>
-    &nbsp;&nbsp;Heecto = 100; so 1 hPa = 100 Pa
+    &nbsp;&nbsp;= <span class="reg-value">101,325 N/m²</span>, one standard atmosphere, slightly more than 1 bar<br>
+    &nbsp;&nbsp;1 bar = <span class="reg-value">100,000 N/m²</span> = <span class="reg-value">1000 mb (millibars)</span> = <span class="reg-value">1000 hPa</span><br>
+    &nbsp;&nbsp;Hecto = 100; so 1 hPa = 100 Pa
   </div>
   <div class="formula-box">
     <strong>Conversion: hPa → Inches</strong><br>
@@ -142,7 +142,7 @@
     <tr><td>Sea level</td><td><span class="reg-value">1013.25 hPa</span></td><td><span class="reg-value">27 ft</span></td></tr>
     <tr><td><span class="reg-value">4,781 ft</span> (1.46 km)</td><td><span class="reg-value">850 hPa</span></td><td><span class="reg-value">31 ft</span></td></tr>
     <tr><td><span class="reg-value">10,000 ft</span> (3.05 km)</td><td><span class="reg-value">696.8 hPa</span></td><td><span class="reg-value">37 ft</span></td></tr>
-    <tr><td><span class="reg-value">18,289 ft</span> (5.51 km)</td><td><span class="reg-value">500 hPa</span>, <strong>half</strong> the sea-level value</td><td><span class="reg-value">48 ft</span></td></tr>
+    <tr><td><span class="reg-value">18,289 ft</span> (5.57 km)</td><td><span class="reg-value">500 hPa</span>, <strong>half</strong> the sea-level value</td><td><span class="reg-value">48 ft</span></td></tr>
     <tr><td><span class="reg-value">30,065 ft</span> (9.16 km)</td><td><span class="reg-value">300 hPa</span></td><td><span class="reg-value">73 ft</span></td></tr>
   </table>
   <p>Near sea level that is about <strong>12 hPa for every 100 m</strong> of climb (1 hPa &asymp; 27 ft &asymp; 8 m), a little over 1 % of the sea-level pressure. Higher up, each hPa spans more height, so the fall slows.</p>
@@ -157,18 +157,20 @@
       <!-- Y-axis label -->
       <text x="20" y="130" text-anchor="middle" font-size="11" fill="#555" transform="rotate(-90,20,130)">Height</text>
       <!-- X-axis label -->
-      <text x="180" y="245" text-anchor="middle" font-size="11" fill="#555">Pressure →</text>
+      <text x="180" y="250" text-anchor="middle" font-size="11" fill="#555">Pressure →</text>
       <!-- Curve (exponential decay shape) -->
-      <path d="M60,220 Q80,180 100,150 Q130,100 160,70 Q190,45 230,35 Q260,30 290,30" fill="none" stroke="#c0392b" stroke-width="3"/>
+      <path d="M300,220 L248,195 L206,169 L180,150 L144,118 L114,80 L99,55 L89,30" fill="none" stroke="#c0392b" stroke-width="3" stroke-linejoin="round"/>
       <!-- Labels -->
-      <text x="65" y="218" font-size="10" fill="#1565c0">MSL</text>
-      <text x="62" y="155" font-size="10" fill="#555">5.5 km</text>
+      <text x="56" y="224" text-anchor="end" font-size="10" fill="#1565c0">MSL</text>
+      <text x="300" y="234" text-anchor="middle" font-size="9" fill="#1565c0">1013 hPa</text>
+      <text x="60" y="234" text-anchor="middle" font-size="9" fill="#555">0</text>
+      <text x="54" y="153" text-anchor="end" font-size="10" fill="#555">5.5 km</text>
       <line x1="56" y1="150" x2="65" y2="150" stroke="#555" stroke-width="1" stroke-dasharray="4,2"/>
       <!-- Half-pressure annotation -->
       <line x1="60" y1="150" x2="180" y2="150" stroke="#2e7d32" stroke-width="1" stroke-dasharray="4,3"/>
       <line x1="180" y1="220" x2="180" y2="150" stroke="#2e7d32" stroke-width="1" stroke-dasharray="4,3"/>
-      <text x="185" y="145" font-size="9" fill="#2e7d32">½ sea-level</text>
-      <text x="185" y="155" font-size="9" fill="#2e7d32">pressure</text>
+      <text x="186" y="145" font-size="9" fill="#2e7d32">½ sea-level pressure</text>
+      <text x="186" y="156" font-size="9" fill="#2e7d32">(500 hPa)</text>
     </svg>
     <div style="font-size:0.85em;color:#555;font-style:italic;">Fig 2.1: Variation of Pressure with Height</div>
   </div>
@@ -201,7 +203,7 @@
   <h2>4. Variation of Pressure – Warm vs Cold Air</h2>
   <p>Cold air is denser than warm air. Pressure falls at a faster pace over a cold column of air than over a warm column.</p>
   <div class="box-blue">
-    At any given height, pressure at <span class="reg-value">850 hPa</span> will be at a <strong>higher height over warm air</strong> than over cold air.<br><br>
+    A pressure level such as <span class="reg-value">850 hPa</span> lies at a <strong>greater height over warm air</strong> than over cold air.<br><br>
     <strong>Key Rule:</strong> <em>Pressure at any given height will be higher over warm air than over cold air.</em><br><br>
     • <strong>Isobars Dip</strong> going from High to Low pressure<br>
     • <strong>Isobars Rise</strong> going from Low to High pressure<br>
@@ -220,19 +222,19 @@
       <!-- Cold column 2 -->
       <rect x="270" y="35" width="100" height="140" fill="#dbeeff" stroke="#2c5aa0" stroke-width="1.5" rx="4"/>
       <text x="320" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">COLD</text>
-      <!-- 5000 ft line: lower in cold, higher in warm -->
-      <text x="380" y="80" font-size="10" fill="#555">5000 ft</text>
-      <path d="M30,78 L130,65 L250,65 L370,78" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3"/>
+      <!-- 5000 ft: a fixed height, so a level line -->
+      <text x="380" y="88" font-size="10" fill="#c0392b">5000 ft</text>
+      <line x1="30" y1="85" x2="370" y2="85" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3"/>
       <!-- 850 hPa line -->
-      <text x="380" y="110" font-size="10" fill="#555">850 hPa</text>
-      <path d="M30,108 L130,95 L250,95 L370,108" fill="none" stroke="#7b1fa2" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="380" y="106" font-size="10" fill="#7b1fa2">850 hPa</text>
+      <path d="M30,102 L125,102 C140,102 140,70 155,70 L245,70 C260,70 260,102 275,102 L370,102" fill="none" stroke="#7b1fa2" stroke-width="2" stroke-dasharray="5,3"/>
       <!-- 1000 hPa line at base -->
       <text x="380" y="165" font-size="10" fill="#555">1000 hPa</text>
       <line x1="30" y1="162" x2="370" y2="162" stroke="#1a237e" stroke-width="2"/>
       <!-- ISA label -->
-      <text x="210" y="188" text-anchor="middle" font-size="10" fill="#555">ISA (surface)</text>
+      <text x="210" y="188" text-anchor="middle" font-size="10" fill="#555">Surface: the same pressure under every column</text>
     </svg>
-    <div style="font-size:0.85em;color:#555;font-style:italic;">Isobaric levels are at lower height over cold column — higher over warm column</div>
+    <div style="font-size:0.85em;color:#555;font-style:italic;">The 850 hPa level sits lower over the cold columns and higher over the warm column, so at 5000 ft the pressure is higher over warm air</div>
   </div>
 </div>
 
@@ -244,7 +246,7 @@
     • <strong>Maxima:</strong> <span class="reg-value">1000 hr</span> and <span class="reg-value">2200 hr</span> (local time)<br>
     • <strong>Minima:</strong> <span class="reg-value">0400 hr</span> and <span class="reg-value">1600 hr</span> (local time)<br><br>
     This semi-diurnal variation is due to <strong>solar influence</strong>.<br>
-    Variations are: very small at the Poles and about <span class="reg-value">3–5 hPa</span> at the Equator.<br><br>
+    Variations are very small at the Poles, about <span class="reg-value">1 hPa</span> in temperate latitudes and about <span class="reg-value">3 hPa</span> in the tropics (some Indian texts quote up to 3–5 hPa at the Equator).<br><br>
     This is probably a natural oscillation of the atmosphere with a period of almost <span class="reg-value">12 hours</span>.
   </div>
 <figure class="ga-fig" style="margin:18px auto;text-align:center;page-break-inside:avoid;"><img src="/content/meteorology/met-2/img/fig-57fe7d6f4190e491.png" alt="Pressure curve over 24 hours with peaks at 10:00 and 22:00 and troughs at 04:00 and 16:00; the swing is typically 3 hPa in the tropics and 1 hPa in temperate latitudes." loading="lazy" style="max-width:min(100%,680px);max-height:520px;width:auto;height:auto;display:block;margin:0 auto;border-radius:6px;"><figcaption style="font-size:0.9em;color:#555;margin-top:6px;">Semi-diurnal pressure variation</figcaption></figure>
@@ -351,10 +353,10 @@
     <tr><td><strong>Altitude</strong></td><td>Vertical distance from <strong>MSL</strong>.</td></tr>
     <tr><td><strong>Height</strong></td><td>Vertical distance from a specific datum (e.g., from the ground).</td></tr>
     <tr><td><strong>Elevation</strong></td><td>Vertical distance of a point or level on the surface of the earth from MSL.</td></tr>
-    <tr><td><strong>Transition Altitude (TA)</strong></td><td>Highest altitude below which aircraft always fly on local QNH. Vertical position controlled with reference to height above aerodrome.</td></tr>
-    <tr><td><strong>Transition Level (TL)</strong></td><td>Lowest Flight Level above which aircraft always fly on standard QNH <span class="reg-value">1013.25 hPa</span>. Above TL, vertical position expressed in hundreds of feet.</td></tr>
+    <tr><td><strong>Transition Altitude (TA)</strong></td><td>The altitude at or below which the vertical position of an aircraft is controlled by reference to altitude (local QNH).</td></tr>
+    <tr><td><strong>Transition Level (TL)</strong></td><td>The lowest flight level available for use above the transition altitude. At and above it the altimeter is set to the Standard Pressure Setting, <span class="reg-value">1013.25 hPa</span>, and vertical position is expressed as a flight level.</td></tr>
     <tr><td><strong>Transition Layer</strong></td><td>The airspace between Transition Altitude (TA) and Transition Level (TL).</td></tr>
-    <tr><td><strong>Flight Level (FL)</strong></td><td>Levels of constant pressure at or above TL, separated by pressure intervals corresponding to MSL pressure. E.g., <span class="reg-value">FL50 = 5,000 ft</span>, <span class="reg-value">FL300 = 30,000 ft</span>, <span class="reg-value">FL200 = 20,000 ft</span>.</td></tr>
+    <tr><td><strong>Flight Level (FL)</strong></td><td>Surfaces of constant pressure related to the standard pressure datum of 1013.25 hPa, separated by specified pressure intervals (usually 500 or 1,000 ft), expressed in hundreds of feet. E.g., <span class="reg-value">FL50 = 5,000 ft</span>, <span class="reg-value">FL300 = 30,000 ft</span>, <span class="reg-value">FL200 = 20,000 ft</span>.</td></tr>
     <tr><td><strong>Pressure Altitude</strong></td><td>When the altimeter sub-scale is set to <span class="reg-value">1013.2 hPa</span>, the altimeter indicates Pressure Altitude. Expressed as FL35, FL190, FL400 (avoid last two zeros).</td></tr>
   </table>
 <figure class="ga-fig" style="margin:18px auto;text-align:center;page-break-inside:avoid;"><img src="/content/meteorology/met-2/img/fig-fafbdf3551b47382.png" alt="Aircraft above sloping ground: altitude above mean sea level, flight level above the standard pressure setting 1013 hPa, and elevation and height above an aerodrome." loading="lazy" style="max-width:min(100%,680px);max-height:520px;width:auto;height:auto;display:block;margin:0 auto;border-radius:6px;"><figcaption style="font-size:0.9em;color:#555;margin-top:6px;">Altitude, height, elevation and flight level</figcaption></figure>
@@ -408,38 +410,63 @@
 <div class="section" id="s12">
   <h2>12. Relation between QNH, QFE and QNE</h2>
   <div class="formula-box">
-    <strong>Station Elevation = (QNH − QFE) × 30 ft</strong><br><br>
+    <strong>Station Elevation ≈ (QNH − QFE) × 30 ft</strong> (a common round figure; in ISA near MSL 1 hPa ≈ 27 ft. Always use the factor the question gives.)<br><br>
     <div class="worked">
-      <strong>Example (i): QNE &gt; QNH → Sea level lower than MSL</strong><br>
+      <strong>Example (i): elevation from QNH and QFE</strong><br>
       QFE = 950 hPa, QNH = 1000 hPa, 1 hPa = 30 ft<br>
       Elevation = (QNH − QFE) × 30 = (1000 − 950) × 30 = 50 × 30 = <strong>1500 ft</strong>
     </div>
     <div class="worked" style="margin-top:8px;">
-      <strong>Example (ii): Altimeter set to QNE = 1013 hPa</strong><br>
-      Station level would be = (QNE − QFE) × 30 ft = (63 hPa) × 30 = <strong>1890 ft</strong>
+      <strong>Example (ii): the same aerodrome (QFE 950) with 1013 hPa set</strong><br>
+      The altimeter reads the aerodrome's <strong>pressure altitude</strong> ≈ (1013 − 950) × 30 = 63 × 30 = <strong>1890 ft</strong> (≈ 1700 ft at 27 ft per hPa). This is not its elevation, which is 1500 ft (Example i); pressure altitude is higher because QNH (1000) is below 1013.
     </div>
     <div class="worked" style="margin-top:8px;">
       <strong>Example (iii): QFE 970 hPa, QNH 1020 hPa</strong><br>
       Station elevation = (QNH − QFE) × 30 = (50 hPa) × 30 = <strong>1500 ft</strong>
     </div>
     <div class="worked" style="margin-top:8px;">
-      <strong>Example (iv): QNE = 1013 hPa, Station elevation = 270 ft</strong><br>
-      270 / 27 = 10 hPa → QNH = 1000 + 10 = <strong>1010 hPa</strong>
+      <strong>Example (iv): QFE = 1000 hPa, station elevation = 270 ft</strong><br>
+      Using 27 ft per hPa: 270 / 27 = 10 hPa → QNH = QFE + 10 = <strong>1010 hPa</strong>
     </div>
     <div class="worked" style="margin-top:8px;">
       <strong>Example (v): Airfield elevation 400 ft, QNH 1010 hPa, lands at elevation 600 ft without resetting, altimeter reads 700 ft. Correct QNH at B?</strong><br>
-      Height difference = 700 − 400 = 300 ft = 300/27 = 11 hPa<br>
-      QNH at B = 1010 − 11 = <strong>999 hPa</strong>
+      At B the true elevation is 600 ft but the altimeter (1010 set) reads 700 ft, so it over-reads by 700 − 600 = 100 ft = 100/27 ≈ 4 hPa.<br>
+      The setting is too high, so QNH at B = 1010 − 4 ≈ <strong>1006 hPa</strong> (the departure elevation of 400 ft plays no part)
     </div>
   </div>
 <figure class="ga-fig" style="margin:18px auto;text-align:center;page-break-inside:avoid;"><img src="/content/meteorology/met-2/img/fig-968275268d360597.png" alt="Aerodrome with QFE 965 hPa and 1500 ft above sea level, equal to 56 hPa, so QNH is 1021 hPa." loading="lazy" style="max-width:min(100%,680px);max-height:520px;width:auto;height:auto;display:block;margin:0 auto;border-radius:6px;"><figcaption style="font-size:0.9em;color:#555;margin-top:6px;">Finding QNH from QFE</figcaption></figure>
-<figure class="ga-fig" style="margin:18px auto;text-align:center;page-break-inside:avoid;"><img src="/content/meteorology/met-2/img/fig-a40fd911c9a6043d.png" alt="Three columns above a sea level line showing QFF greater than QNH, equal to QNH and greater than QNH for different temperatures relative to ISA, with QFE 1035 at the aerodrome." loading="lazy" style="max-width:min(100%,680px);max-height:520px;width:auto;height:auto;display:block;margin:0 auto;border-radius:6px;"><figcaption style="font-size:0.9em;color:#555;margin-top:6px;">QFF and QNH at different temperatures</figcaption></figure>
+<div class="svg-wrap">
+    <svg viewBox="0 0 440 230" xmlns="http://www.w3.org/2000/svg" width="440" height="230" role="img" aria-label="Aerodrome 810 ft below sea level with QFE 1035 hPa. A warmer-than-ISA column gives less than 30 hPa change and QFF above QNH 1005; an ISA column gives 30 hPa change and QFF equal to QNH 1005; a colder-than-ISA column gives more than 30 hPa change and QFF below QNH 1005.">
+      <rect width="440" height="230" fill="#f9f9f9" rx="8"/>
+      <line x1="20" y1="50" x2="420" y2="50" stroke="#1565c0" stroke-width="3"/>
+      <text x="420" y="44" text-anchor="end" font-size="10" fill="#1565c0">Sea level</text>
+      <line x1="20" y1="195" x2="420" y2="195" stroke="#555" stroke-width="2"/>
+      <text x="420" y="210" text-anchor="end" font-size="10" fill="#333">Aerodrome: QFE 1035 hPa</text>
+      <line x1="40" y1="54" x2="40" y2="191" stroke="#333" stroke-width="1.2"/>
+      <text x="46" y="126" font-size="10" fill="#333">810 ft</text>
+      <text x="46" y="139" font-size="9" fill="#555">(30 hPa in ISA)</text>
+      <rect x="130" y="52" width="60" height="141" fill="#ffe0b2" stroke="#e65100"/>
+      <rect x="230" y="52" width="60" height="141" fill="#eeeeee" stroke="#777"/>
+      <rect x="330" y="52" width="60" height="141" fill="#dbeeff" stroke="#2c5aa0"/>
+      <text x="160" y="118" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">&gt; ISA</text>
+      <text x="260" y="118" text-anchor="middle" font-size="12" font-weight="bold" fill="#555">ISA</text>
+      <text x="360" y="118" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">&lt; ISA</text>
+      <text x="160" y="140" text-anchor="middle" font-size="9" fill="#333">&lt; 30 hPa</text>
+      <text x="260" y="140" text-anchor="middle" font-size="9" fill="#333">30 hPa</text>
+      <text x="360" y="140" text-anchor="middle" font-size="9" fill="#333">&gt; 30 hPa</text>
+      <text x="160" y="30" text-anchor="middle" font-size="10" font-weight="bold" fill="#333">QFF &gt; 1005</text>
+      <text x="260" y="30" text-anchor="middle" font-size="10" font-weight="bold" fill="#333">QFF = QNH 1005</text>
+      <text x="360" y="30" text-anchor="middle" font-size="10" font-weight="bold" fill="#333">QFF &lt; 1005</text>
+    </svg>
+    <div style="font-size:0.85em;color:#555;font-style:italic;">QFF and QNH at an aerodrome below sea level: warm air changes pressure less over the 810 ft, cold air more</div>
+  </div>
 
 
-  <h3>L-H-L Rule for QNH/QFE Relationship</h3>
+  <h3>QFF vs QNH and Temperature</h3>
   <div class="box-green">
-    <strong>Hotter than ISA:</strong> QFF &lt; QNH<br>
-    <strong>At MSL:</strong> QFF = QNH<br>
+    <strong>Aerodrome ABOVE MSL:</strong> warmer than ISA → QFF &lt; QNH; colder than ISA → QFF &gt; QNH<br>
+    <strong>Aerodrome BELOW MSL:</strong> reversed (warmer → QFF &gt; QNH; colder → QFF &lt; QNH)<br>
+    <strong>At MSL:</strong> QFF = QNH whatever the temperature<br>
     <strong>Pressure set on altimeter &lt; QNH</strong> → Indicated Altitude &lt; True Altitude<br>
     <strong>Pressure set on altimeter &gt; QNH</strong> → Indicated Altitude &gt; True Altitude
   </div>
@@ -448,8 +475,8 @@
   <p>Corresponding to ISA pressure, the Pressure Altitude (Ft) and Flight Levels are:</p>
   <table>
     <tr><th>Level (hPa)</th><th>850</th><th>700</th><th>500</th><th>400</th><th>300</th><th>200</th><th>100</th></tr>
-    <tr><td><strong>Pressure Altitude (ft)</strong></td><td><span class="reg-value">5,000</span></td><td><span class="reg-value">10,000</span></td><td><span class="reg-value">18,000</span></td><td><span class="reg-value">24,000</span></td><td><span class="reg-value">30,000</span></td><td><span class="reg-value">38,000</span></td><td><span class="reg-value">53,000</span></td></tr>
-    <tr><td><strong>Flight Level</strong></td><td>FL50</td><td>FL100</td><td>FL180</td><td>FL240</td><td>FL300</td><td>FL380</td><td>FL530</td></tr>
+    <tr><td><strong>Pressure Altitude (ft)</strong></td><td><span class="reg-value">5,000</span></td><td><span class="reg-value">10,000</span></td><td><span class="reg-value">18,000</span></td><td><span class="reg-value">24,000</span></td><td><span class="reg-value">30,000</span></td><td><span class="reg-value">38,700</span></td><td><span class="reg-value">53,000</span></td></tr>
+    <tr><td><strong>Flight Level</strong></td><td>FL50</td><td>FL100</td><td>FL180</td><td>FL240</td><td>FL300</td><td>FL390</td><td>FL530</td></tr>
   </table>
 </div>
 
@@ -525,15 +552,21 @@
     </tr>
     <tr>
       <td><strong>Col</strong></td>
-      <td>Between two highs and two lows; 2 hPa higher than lows, towards highs.</td>
+      <td>Region of almost level pressure between two highs and two lows: pressure is higher than in the lows and lower than in the highs.</td>
       <td>Mixed — light variable winds</td>
       <td>Winds light variable; pressure uniform</td>
     </tr>
     <tr>
-      <td><strong>Cold Anticyclone</strong></td>
-      <td>Forms in cold region behind a cyclone, compresses air as it moves away.</td>
-      <td>Warms up after sometimes</td>
-      <td>Blocks movement of migratory cyclones = <strong>Blocking Anticyclone</strong></td>
+      <td><strong>Cold Anticyclone</strong> (temporary)</td>
+      <td>Forms in the cold air behind a depression, before the next one arrives.</td>
+      <td>Short-lived, up to about 24 h; descending air warms by compression, so it may warm up</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td><strong>Blocking Anticyclone</strong></td>
+      <td>Any high that is near-stationary or slow-moving and blocks or diverts migratory depressions; usually an extension of the warm subtropical high.</td>
+      <td>Settled weather; can persist for weeks</td>
+      <td>Depressions are steered around it</td>
     </tr>
   </table>
   <div class="box-amber">
@@ -590,7 +623,7 @@ flowchart LR
   <div class="qa-block">
     <div class="qa-question">Q5. Isallobars are lines of equal<br>(a) Pressure &nbsp;&nbsp;(b) Temperature Tendency &nbsp;&nbsp;(c) Pressure Tendency</div>
     <div class="qa-answer">✅ <strong>Answer: (c) Pressure Tendency</strong></div>
-    <div class="qa-distractor">❌ (a) Pressure — that's an Isobar. (b) Temperature Tendency — that would be Isalloterms.</div>
+    <div class="qa-distractor">❌ (a) Pressure — that's an Isobar. (b) Temperature Tendency — that would be Isallotherms (lines of equal temperature change).</div>
     <div class="qa-tip">💡 <strong>Mnemonic:</strong> Is-ALLO-bar = Isobar that ALTERS (changes) = Isallobar = equal pressure CHANGE.</div>
   </div>
 
@@ -663,7 +696,7 @@ flowchart LR
   <div class="qa-block">
   <div class="qa-question">Q36. QNH of an aerodrome 160 m AMSL is 1005 hPa. QFE? Assuming 1 hPa = 8m<br>(a) 1010 hPa &nbsp;&nbsp;(b) 985 hPa &nbsp;&nbsp;(c) 1005 hPa &nbsp;&nbsp;(d) 990 hPa</div>
   <div class="qa-answer">✅ Answer: (b) 985 hPa — Height difference 160 m ÷ 8 m per hPa = 20 hPa. QFE = QNH − 20 = 1005 − 20 = 985 hPa. The aerodrome is above sea level, so the pressure at the aerodrome is lower than QNH.</div>
-  <div class="qa-distractor">❌ (c) 1005 hPa is the QNH itself; QFE equals QNH only at sea level. (d) 990 hPa would be correct for an elevation of 200 m. (a) 1010 hPa is above QNH, which cannot be right for an elevated aerodrome.</div>
+  <div class="qa-distractor">❌ (c) 1005 hPa is the QNH itself; QFE equals QNH only at sea level. (d) 990 hPa would be correct for an elevation of 120 m (15 hPa × 8 m). (a) 1010 hPa is above QNH, which cannot be right for an elevated aerodrome.</div>
   <div class="qa-tip">💡 QFE = QNH − (elevation ÷ 8 m per hPa), using the 1 hPa = 8 m the question gives.</div>
 </div>
 
@@ -716,20 +749,20 @@ flowchart LR
     <tr><td>Pressure halves at altitude</td><td><span class="reg-value">about 5.5 km</span> (500 hPa &asymp; 18,000 ft)</td></tr>
     <tr><td>Semi-diurnal maxima</td><td><span class="reg-value">1000 hr &amp; 2200 hr</span></td></tr>
     <tr><td>Semi-diurnal minima</td><td><span class="reg-value">0400 hr &amp; 1600 hr</span></td></tr>
-    <tr><td>Equatorial diurnal pressure variation</td><td><span class="reg-value">3–5 hPa</span></td></tr>
+    <tr><td>Tropical semi-diurnal pressure variation</td><td><span class="reg-value">about 3 hPa</span> (temperate about 1 hPa)</td></tr>
     <tr><td>Alticor pressure correction</td><td><span class="reg-value">30 ft per hPa</span></td></tr>
     <tr><td>Alticor temperature correction</td><td><span class="reg-value">1% per 3°C</span></td></tr>
     <tr><td>Contour interval (700 &amp; 500 hPa charts)</td><td><span class="reg-value">40 gpm</span></td></tr>
     <tr><td>Contour interval (300 &amp; 200 hPa charts)</td><td><span class="reg-value">80 gpm</span></td></tr>
     <tr><td>1 gpm</td><td><span class="reg-value">9.8 J/kg</span></td></tr>
     <tr><td>Isobar drawing interval</td><td><span class="reg-value">2 hPa</span> (surface charts)</td></tr>
-    <tr><td>Station elevation formula</td><td><span class="reg-value">(QNH − QFE) × 30 ft</span></td></tr>
+    <tr><td>Station elevation formula</td><td><span class="reg-value">(QNH − QFE) × 27 ft</span> (≈ 30 ft as a round figure)</td></tr>
     <tr><td>850 hPa level</td><td><span class="reg-value">5,000 ft = FL50</span></td></tr>
     <tr><td>700 hPa level</td><td><span class="reg-value">10,000 ft = FL100</span></td></tr>
     <tr><td>500 hPa level</td><td><span class="reg-value">18,000 ft = FL180</span></td></tr>
     <tr><td>400 hPa level</td><td><span class="reg-value">24,000 ft = FL240</span></td></tr>
     <tr><td>300 hPa level</td><td><span class="reg-value">30,000 ft = FL300</span></td></tr>
-    <tr><td>200 hPa level</td><td><span class="reg-value">38,000 ft = FL380</span></td></tr>
+    <tr><td>200 hPa level</td><td><span class="reg-value">~38,700 ft = FL390</span></td></tr>
     <tr><td>100 hPa level</td><td><span class="reg-value">53,000 ft = FL530</span></td></tr>
   </table>
 
@@ -754,7 +787,7 @@ flowchart LR
     5. Semi-diurnal maxima: 1000 &amp; 2200 hr; minima: 0400 &amp; 1600 hr<br>
     6. D Value = True Alt − Indicated Alt; decreases flying High → Low<br>
     7. QFE = zero on runway; QNH = ISA corrected to MSL; QFF = actual temp correction<br>
-    8. Station elevation = (QNH − QFE) × 30 ft<br>
+    8. Station elevation ≈ (QNH − QFE) × 27 ft (≈ 30 ft as a round figure; use the factor the question gives)<br>
     9. 300 hPa = 30,000 ft; 500 hPa = 18,000 ft; 700 hPa = 10,000 ft; 850 hPa = 5,000 ft<br>
     10. Isobars close = strong wind; H-L-H = over-read; Low = bad weather; High = fair wx
   </div>

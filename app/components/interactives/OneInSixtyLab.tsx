@@ -21,10 +21,14 @@ type Mode = "double" | "direct" | "drill";
 
 const C = {
   ink: "#0f172a", muted: "#475569", line: "#cbd5e1", card: "#ffffff", soft: "#f1f5f9",
-  track: "#64748b", tmg: "#dc2626", fix: "#2563eb", good: "#16a34a", accent: "#7c3aed",
+  track: "#64748b", tmg: "#dc2626", fix: "#2563eb", good: "#15803d", accent: "#7c3aed",
 };
 
 const H = 230, YMID = 115;
+
+/** Angle beyond which the 1 in 60 rule is no longer taught as usable (Ch.10). */
+const RULE_LIMIT = 20;
+const r1 = (n: number) => Math.round(n * 10) / 10;
 
 // On a phone the 640-wide drawing shrank to half size and its labels to ~6 px.
 // A narrower drawing area with larger type keeps them readable at 375 px.
@@ -139,19 +143,48 @@ export default function OneInSixtyLab() {
   while (prev > 0 && path[prev - 1][0] === px && path[prev - 1][1] === py) prev--;
   const rot = prev > 0 ? (Math.atan2(py - path[prev - 1][1], px - path[prev - 1][0]) * 180) / Math.PI : 0;
 
+  // The rule is only honest up to about 20° (Ch.10, Validity Limit). Past that the
+  // lab names the exact angle and gives no turn, rather than teach a 600° heading change.
+  const teaOver = tea > RULE_LIMIT;
+  const caOver = ca > RULE_LIMIT;
+  const over = teaOver || (mode === "direct" && caOver);
+  const useComputer = "Angles this large are outside the 1 in 60 rule: work the heading out with the nav computer or trigonometry.";
+
+  // Printed working must add up as printed: "=" only when the shown terms give the shown result.
+  const direct = directTurn(off, gone, total);
+  const sumSep = fmt(r1(tea) + r1(ca)) === fmt(direct) ? "=" : "≈";
+  const dblSep = fmt(2 * r1(tea)) === fmt(dbl.turn) ? "=" : "≈";
+  const caWork = ca < 10 && !Number.isInteger(r1(ca)) ? String(Number(ca.toFixed(2))) : fmt(ca);
+  const oneStep = combinedTurn(off, gone, total);
+  const oneSep = fmt((Number(caWork) * total) / gone) === fmt(oneStep) ? "=" : "≈";
+
   const caption: Record<Mode, string[]> = {
     double: [
       `Planned track from A to B, ${total} NM. Press Next or Play.`,
-      `Fix after ${gone} NM: ${off} NM ${side} of track. TEA = ${off} ÷ ${gone} × 60 = ${fmt(tea)}°.`,
-      `Do nothing and the error keeps growing. Turning only ${fmt(tea)}° ${dir} would just parallel the track, still ${off} NM off.`,
-      `Turn double the TEA: 2 × ${fmt(tea)}° = ${fmt(dbl.turn)}° ${dir}. You close at ${fmt(tea)}° and meet the track after another ${gone} NM, at ${dbl.regainAt} NM: the same time it took to go off.`,
-      `Back on track: turn ${fmt(tea)}° ${back}. You now hold a heading ${fmt(tea)}° ${dir} of the original, which is right for the actual wind.`,
+      teaOver
+        ? `Fix after ${gone} NM: ${off} NM ${side} of track. That track error is beyond about ${RULE_LIMIT}°, where the 1 in 60 rule stops working.`
+        : `Fix after ${gone} NM: ${off} NM ${side} of track. TEA = ${off} ÷ ${gone} × 60 = ${fmt(tea)}°.`,
+      teaOver
+        ? `Do nothing and the error keeps growing.`
+        : `Do nothing and the error keeps growing. Turning only ${fmt(tea)}° ${dir} would just parallel the track, still ${off} NM off.`,
+      teaOver
+        ? useComputer
+        : `Turn double the TEA: 2 × ${fmt(tea)}° ${dblSep} ${fmt(dbl.turn)}° ${dir}. You close at ${fmt(tea)}° and meet the track after another ${gone} NM, at ${dbl.regainAt} NM: the same time it took to go off.`,
+      teaOver
+        ? useComputer
+        : `Back on track: turn ${fmt(tea)}° ${back}. You now hold a heading ${fmt(tea)}° ${dir} of the original, which is right for the actual wind.`,
     ],
     direct: [
       `Planned track from A to B, ${total} NM. Press Next or Play.`,
-      `Fix after ${gone} NM: ${off} NM ${side} of track. TEA = ${off} ÷ ${gone} × 60 = ${fmt(tea)}°.`,
-      `${toGo} NM to go. Closing angle = ${off} ÷ ${toGo} × 60 = ${fmt(ca)}°.`,
-      `Turn ${dir} by TEA + CA = ${fmt(tea)}° + ${fmt(ca)}° = ${fmt(directTurn(off, gone, total))}°. One step: CA × total ÷ gone = ${fmt(ca)}° × ${total} ÷ ${gone} = ${fmt(combinedTurn(off, gone, total))}°.`,
+      teaOver
+        ? `Fix after ${gone} NM: ${off} NM ${side} of track. That track error is beyond about ${RULE_LIMIT}°, where the 1 in 60 rule stops working.`
+        : `Fix after ${gone} NM: ${off} NM ${side} of track. TEA = ${off} ÷ ${gone} × 60 = ${fmt(tea)}°.`,
+      caOver
+        ? `${toGo} NM to go. The closing angle is beyond about ${RULE_LIMIT}°, where the 1 in 60 rule stops working.`
+        : `${toGo} NM to go. Closing angle = ${off} ÷ ${toGo} × 60 = ${fmt(ca)}°.`,
+      over
+        ? useComputer
+        : `Turn ${dir} by TEA + CA = ${fmt(tea)}° + ${fmt(ca)}° ${sumSep} ${fmt(direct)}°. One step: CA × total ÷ gone = ${caWork}° × ${total} ÷ ${gone} ${oneSep} ${fmt(oneStep)}°.`,
     ],
     drill: [""],
   };
@@ -185,7 +218,7 @@ export default function OneInSixtyLab() {
             {step >= 1 && <>
               <circle cx={xC} cy={yC} r={4.5} fill={C.tmg} />
               <Label x={xC} y={yC + sgn * 20} text={`${off} NM ${side}`} color={C.tmg} />
-              <Label x={X0 + 54} y={YMID + sgn * 18} text={`TEA ${fmt(tea)}°`} color={C.tmg} anchor="start" />
+              <Label x={X0 + 54} y={YMID + sgn * 18} text={teaOver ? "TEA > 20°" : `TEA ${fmt(tea)}°`} color={C.tmg} anchor="start" />
             </>}
 
             {mode === "double" && <>
@@ -193,7 +226,7 @@ export default function OneInSixtyLab() {
               <Segment x1={xC} y1={yC} x2={x(dbl.regainAt)} y2={YMID + sgn * 2 * off * ky} color={C.track} dashed shown={step >= 2} />
               {step >= 2 && <Label x={x(dbl.regainAt)} y={YMID + sgn * (2 * off * ky + 16)} text="no correction" color={C.track} anchor="end" />}
               <Segment x1={xC} y1={yC} x2={x(dbl.regainAt)} y2={YMID} color={C.fix} shown={step >= 3} />
-              {step >= 3 && <Label x={(xC + x(dbl.regainAt)) / 2} y={(yC + YMID) / 2 + sgn * 18}
+              {step >= 3 && !teaOver && <Label x={(xC + x(dbl.regainAt)) / 2} y={(yC + YMID) / 2 + sgn * 18}
                                    text={`turn ${fmt(dbl.turn)}° ${dir}`} color={C.fix} />}
               <Segment x1={x(dbl.regainAt)} y1={YMID} x2={x(Math.min(span, dbl.regainAt + span * 0.12))} y2={YMID} color={C.good} shown={step >= 4} />
               {step >= 3 && <>
@@ -205,8 +238,8 @@ export default function OneInSixtyLab() {
             {mode === "direct" && <>
               <Segment x1={xC} y1={yC} x2={x(total)} y2={YMID} color={C.fix} shown={step >= 2} />
               {step >= 2 && <Label x={(xC + x(total)) / 2} y={(yC + YMID) / 2 + sgn * 18}
-                                   text={`CA ${fmt(ca)}°`} color={C.fix} />}
-              {step >= 3 && <Label x={xC} y={yC + sgn * 42} text={`turn ${fmt(directTurn(off, gone, total))}° ${dir}`} color={C.accent} />}
+                                   text={caOver ? "CA > 20°" : `CA ${fmt(ca)}°`} color={C.fix} />}
+              {step >= 3 && !over && <Label x={xC} y={yC + sgn * 42} text={`turn ${fmt(directTurn(off, gone, total))}° ${dir}`} color={C.accent} />}
             </>}
 
             {/* aircraft */}
@@ -216,7 +249,15 @@ export default function OneInSixtyLab() {
           </svg>
 
           <p aria-live="polite" style={S.caption}>{caption[mode][Math.min(step, lastStep)]}</p>
-          {mode === "double" && pastHalf && step >= 3 && (
+          {over && step >= 1 && (
+            <p style={S.warn}>
+              Beyond about {RULE_LIMIT}° the 1 in 60 rule no longer holds. The exact angles here are{" "}
+              {fmt(exactAngle(off, gone))}° for the track error
+              {mode === "direct" ? <> and {fmt(exactAngle(off, toGo))}° for the closing angle</> : null}, against{" "}
+              {fmt(tea)}°{mode === "direct" ? <> and {fmt(ca)}°</> : null} by the rule. Use the nav computer or trigonometry.
+            </p>
+          )}
+          {mode === "double" && pastHalf && !teaOver && step >= 3 && (
             <p style={S.warn}>
               You are more than half-way along the leg, so double the TEA meets the track only after B.
               Use the TEA + Closing angle tab instead.
@@ -330,8 +371,9 @@ function Drill() {
   const dirOk = a.dir === null || dir === a.dir;
   const ok = numOk && dirOk;
 
+  const needDir = a.dir !== null && dir === "";
   const check = () => {
-    if (checked || val.trim() === "") return;
+    if (checked || val.trim() === "" || needDir) return;
     setChecked(true);
     setScore(s => ({ right: s.right + (ok ? 1 : 0), tried: s.tried + 1 }));
   };
@@ -348,17 +390,18 @@ function Drill() {
           <button key={d} type="button" aria-pressed={dir === d} onClick={() => setDir(d)}
                   style={{ ...S.btn, ...(dir === d ? S.tabOn : null) }}>{d}</button>
         ))}
-        <button type="button" style={{ ...S.btn, ...S.btnMain }} onClick={check} disabled={checked || val.trim() === ""}>Check</button>
+        <button type="button" style={{ ...S.btn, ...S.btnMain }} onClick={check} disabled={checked || val.trim() === "" || needDir}>Check</button>
         <button type="button" style={S.btn} onClick={next}>New question</button>
       </div>
-      {checked && (
+      {needDir && val.trim() !== "" && !checked && <p style={S.small}>Choose left or right.</p>}
+      <div role="status" aria-live="polite">{checked && (
         <div style={{ ...S.result, borderColor: ok ? C.good : C.tmg }}>
           <b style={{ color: ok ? C.good : C.tmg }}>
             {ok ? "Correct." : !numOk ? `Not quite: ${fmt(a.value)}°${a.dir ? ` ${a.dir}` : ""}.` : `Right number, wrong way: turn ${a.dir}.`}
           </b>{" "}
           <span style={{ color: C.muted }}>{a.working}</span>
         </div>
-      )}
+      )}</div>
       <p style={S.small}>Score this visit: {score.right} of {score.tried}. Answers within half a degree count.</p>
     </div>
   );

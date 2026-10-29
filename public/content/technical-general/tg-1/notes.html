@@ -28,52 +28,31 @@
 <h2 id="sec-1-1">1.1 Physical Properties of Air</h2>
 <ul>
 <li>Air possesses several key physical properties that are fundamental to understanding flight:</li>
-<li> Mass: Air has mass, meaning it has substance and is affected by gravity.</li>
-<li> Compressibility: Air is a compressible fluid, able to flow or change its shape when subjected</li>
-<li>to even a minute pressure difference.</li>
-<li> Viscosity: Air's viscosity is its internal friction or resistance to flow. It is very low, meaning</li>
-<li>small forces can move air molecules relative to each other. For example, water flows more</li>
-<li>easily than honey because honey has a much higher viscosity.</li>
+<li><strong>Mass:</strong> Air has mass, meaning it has substance and is affected by gravity.</li>
+<li><strong>Fluidity:</strong> Air is a fluid. It flows or changes its shape under even a minute pressure difference, always towards the lower pressure.</li>
+<li><strong>Compressibility:</strong> Air is compressible. Its volume and density change when the pressure on it changes, which is why the lower layers of the atmosphere hold most of its mass (and why the ASI suffers compressibility error at high speed).</li>
+<li><strong>Viscosity:</strong> Air's viscosity is its internal friction or resistance to flow. It is very low, meaning small forces can move air molecules relative to each other. For example, water flows more easily than honey because honey has a much higher viscosity.</li>
 </ul>
 <h2 id="sec-1-2">1.2 Static Pressure (SP)</h2>
 <ul>
-<li>Static pressure is the pressure exerted by the air when it is stationary or not moving.</li>
-<li> Definition and Unit: Static pressure is the result of the weight of the atmosphere pressing</li>
-<li>down on the air beneath it. Its unit is the</li>
-</ul>
-<ul>
-<li>Newton per meter square (N/m²), also known as a Pascal (Pa). 100 Pascals equal</li>
-<li>Hectopascal.</li>
-<li> Formula: Static Pressure = Force / Area.</li>
-<li> Effect of Altitude: Static pressure exerts the same force per square meter on all surfaces of</li>
-<li>an aeroplane at a given altitude. The lower the altitude, the greater the force per square</li>
-<li>meter, as there is more atmosphere pressing down. Pressure falls steadily with increasing</li>
-<li>altitude.</li>
+<li>Static pressure is the pressure the air exerts on every surface because of the weight of the atmosphere above it. It is always present, in still air and in moving air alike: the name refers to the air's static presence, not to a condition that the air must be still. Moving air adds dynamic pressure on top of it.</li>
+<li><strong>Unit:</strong> Newton per square metre (N/m²), also known as a Pascal (Pa). 100 Pascals equal 1 Hectopascal (hPa).</li>
+<li><strong>Formula:</strong> Static Pressure = Force / Area.</li>
+<li><strong>Effect of Altitude:</strong> Static pressure exerts the same force per square metre on all surfaces of an aeroplane at a given altitude. The lower the altitude, the greater the force per square metre, as there is more atmosphere pressing down. Pressure falls continuously with increasing altitude, but not at a constant rate: it falls fastest near the surface and more slowly higher up. In ISA, 1 hPa is about 27 ft at MSL, 50 ft at 20,000 ft and 100 ft at 40,000 ft. Pressure falls faster with height in cold air and more slowly in warm air.</li>
 </ul>
 <h2 id="sec-1-3">1.3 Temperature</h2>
 <ul>
 <li>Temperature is a measure of the kinetic energy of the molecules in the air.</li>
-<li> Units: The primary units are degrees Celsius (°C), measured relative to the freezing point of</li>
-<li>water, and Kelvin (K), measured relative to absolute zero.</li>
-<li>0∘C=273∘K.</li>
-<li> Absolute Zero: This is the lowest possible temperature where no heat energy remains in a</li>
-<li>substance. As seen in the comparison diagram, absolute zero is</li>
-<li>0∘K, −273∘C, and −459∘F.</li>
-<li> Lapse Rate: In the ICAO Standard Atmosphere (ISA), temperature falls steadily with</li>
-<li>increasing altitude up to about 36,000 ft, after which it remains constant through the lower</li>
-<li>stratosphere.</li>
+<li><strong>Units:</strong> The primary units are degrees Celsius (°C), measured relative to the freezing point of water, and Kelvin (K), measured relative to absolute zero. 0 °C = 273 K.</li>
+<li><strong>Absolute Zero:</strong> This is the lowest possible temperature, where no heat energy remains in a substance: 0 K (−273 °C, −459 °F).</li>
+<li><strong>Lapse Rate:</strong> In the ICAO Standard Atmosphere (ISA), temperature falls steadily with increasing altitude up to about 36,000 ft, after which it remains constant through the lower stratosphere.</li>
 </ul>
-<h2 id="sec-1-4">1.4 Density (ρ)</h2>
+<h2 id="sec-1-4">1.4 Density (&rho;)</h2>
 <ul>
 <li>Density is the mass of air per unit of volume.</li>
-<li> Unit and Symbol: The unit is kilogram per cubic meter (kg/m³). The symbol for density</li>
-<li>is the Greek letter</li>
-<li>ρ (rho).</li>
-<li> Relationship with Other Properties: Density varies with static pressure, temperature, and</li>
-<li>humidity. It is directly proportional to static pressure and inversely proportional to</li>
-<li>temperature and humidity.</li>
-<li> Effect of Altitude: Density decreases with increasing altitude primarily because of the</li>
-<li>decreasing static pressure.</li>
+<li><strong>Unit and Symbol:</strong> The unit is kilogram per cubic metre (kg/m³). The symbol for density is the Greek letter &rho; (rho).</li>
+<li><strong>Relationship with Other Properties:</strong> Density is directly proportional to static pressure and inversely proportional to absolute temperature (&rho; &prop; P/T). Increasing humidity also reduces density, because water vapour is lighter than dry air (about 5/8 of its density), but density is not inversely proportional to humidity.</li>
+<li><strong>Effect of Altitude:</strong> Density decreases with increasing altitude primarily because of the decreasing static pressure.</li>
 </ul>
 <h2 id="sec-1-5">1.5 Dynamic Pressure (q)</h2>
 <ul>
@@ -106,11 +85,11 @@
 <li>The speed displayed on the ASI is not the true speed through the air. Several corrections must</li>
 <li>be applied.</li>
 <li>1. Indicated Air Speed (IAS): The speed read directly from the ASI.</li>
-<li>2. Calibrated Air Speed (CAS): IAS corrected for position and pressure error.</li>
+<li>2. Calibrated Air Speed (CAS): IAS corrected for instrument error and position error (position error is also called pressure error; it is one error with two names).</li>
 <li>3. Equivalent Air Speed (EAS): CAS corrected for compressibility error, which becomes</li>
 <li>significant at higher speeds and altitudes.</li>
 <li>4. True Air Speed (TAS): EAS corrected for density error. This is the actual speed of the</li>
-<li>aircraft through the air. 39TAS is the true measure of velocity; all the other "speeds" are</li>
+<li>aircraft through the air. TAS is the true measure of velocity; all the other "speeds" are</li>
 <li>actually pressure measurements.</li>
 <li>5. Ground Speed (GS): TAS corrected for the effect of wind.</li>
 </ul>

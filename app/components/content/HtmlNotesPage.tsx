@@ -198,7 +198,10 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
     Promise.all(wanted.map(async (it): Promise<Mount | null> => {
       const img = Array.from(root.querySelectorAll("img")).find(i => (i.getAttribute("src") ?? "").endsWith(`/${it.beforeFigure}`));
       if (!img) return null;
-      const { default: Comp } = await LOADERS[it.id]();
+      // A chunk that fails to load leaves the static figure in place, alone.
+      let Comp: Mount["Comp"];
+      try { ({ default: Comp } = await LOADERS[it.id]()); }
+      catch (e) { console.warn("interactive failed to load", it.id, e); return null; }
       if (!live) return null;
       const anchor = img.closest("figure") ?? img;
       const el = document.createElement("div");

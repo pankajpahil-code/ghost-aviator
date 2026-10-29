@@ -19,6 +19,21 @@ const NOTES_DIR = join(ROOT, "..", "IC Joshi met  notes claude", "DGCA Notes");
 const PUBLIC_DIR = join(ROOT, "public", "content", "meteorology");
 const OUT = join(ROOT, "lib", "generated", "icjoshi-notes-met.ts");
 
+// DO NOT RE-RUN without reading this. The live public/content/meteorology/*/notes.html
+// have been corrected and post-processed (source names removed, noindex/canonical,
+// figure paths, fact corrections of 2026-10-28/29) since the sources in NOTES_DIR were
+// last synced, so a rebuild would put old text and source attributions back on the site.
+// From a worktree NOTES_DIR also does not exist, and the script used to write an
+// EMPTY question bank over lib/generated/icjoshi-notes-met.ts.
+if (!process.argv.includes("--i-know-this-overwrites-live-notes")) {
+  console.error("build-notes-met.mjs: refusing to run. The sources are older than the live notes; see the comment at the top.");
+  process.exit(1);
+}
+if (!existsSync(NOTES_DIR)) {
+  console.error("build-notes-met.mjs: source folder not found: " + NOTES_DIR);
+  process.exit(1);
+}
+
 // Ch file → { chapterId, subtopic }
 const CHAPTERS = [
   ["Ch01_Atmosphere.html",                               "met-1",  "Atmosphere"],
@@ -200,6 +215,10 @@ for (const q of all) {
   lines.push(`  },`);
 }
 lines.push(`];`, ``);
+if (all.length === 0) {
+  console.error("No questions parsed; refusing to overwrite " + OUT);
+  process.exit(1);
+}
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, lines.join("\n"), "utf8");
 console.log(`\n✓ ${all.length} questions → lib/generated/icjoshi-notes-met.ts`);
