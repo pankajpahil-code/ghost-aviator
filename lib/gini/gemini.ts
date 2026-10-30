@@ -156,10 +156,32 @@ export type RouteOutcome =
 /**
  * One call. Never throws. `error` is for the server log, never for the student.
  */
+/**
+ * BREAKER (2026-10-29, the Captain's "speed it up"). When Google is overloaded
+ * (503), out of quota or slow, every student question waited the full deadline
+ * before the local answer came. After one such failure, skip Google for COOL_MS
+ * on this server instance and let the browser answer locally at once. One
+ * question per COOL_MS pays the wait to find out whether Google is back.
+ */
+const COOL_MS = 60_000;
+let coolUntil = 0;
+const TROUBLE = /^(quota|timeout|network|http-5\d\d)$/;
+
 export async function routeWithGemini(
   systemInstruction: string,
   userPrompt: string,
   opts: { temperature?: number; timeoutMs?: number; model?: string } = {},
+): Promise<RouteOutcome> {
+  if (Date.now() < coolUntil) return { decision: null, error: "cooling" };
+  const result = await callGemini(systemInstruction, userPrompt, opts);
+  if (result.error && TROUBLE.test(result.error)) coolUntil = Date.now() + COOL_MS;
+  return result;
+}
+
+async function callGemini(
+  systemInstruction: string,
+  userPrompt: string,
+  opts: { temperature?: number; timeoutMs?: number; model?: string },
 ): Promise<RouteOutcome> {
   const key = process.env.GEMINI_API_KEY;
   if (!key) return { decision: null, error: "no-key" };

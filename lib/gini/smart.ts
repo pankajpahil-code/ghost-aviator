@@ -31,7 +31,17 @@ export const smartDisabled = () => disabled;
  * on Google, and up to 22s in all when it retries a script-mixed reply, so this
  * is now 24s — still under the route's 25s maxDuration.
  */
-const TIMEOUT_MS = 24000;
+const TIMEOUT_MS = 17000;
+
+/**
+ * After Google fails (overloaded, quota, timeout, or the server's own breaker
+ * says "cooling"), answer locally for COOL_MS without asking again: the student
+ * gets Gini's verified local answer at once instead of waiting 17 s per question.
+ * Set 2026-10-29 at the Captain's "speed it up".
+ */
+const COOL_MS = 120_000;
+let coolUntil = 0;
+const TROUBLE = /^(quota|timeout|network|cooling|http-5\d\d)$/;
 
 /**
  * The last few turns, so a taught numerical can go one step at a time and a
@@ -50,7 +60,7 @@ export async function askSmart(
   history: ChatTurn[] = [],
   awareness: ScreenAwareness = {},
 ): Promise<GiniReply | null> {
-  if (disabled) return null;
+  if (disabled || Date.now() < coolUntil) return null;
 
   const ctl = new AbortController();
   const timer = setTimeout(() => ctl.abort(), TIMEOUT_MS);
@@ -78,6 +88,7 @@ export async function askSmart(
     };
 
     if (data?.why === "not-configured") { disabled = true; return null; }
+    if (!data?.ok && typeof data?.why === "string" && TROUBLE.test(data.why)) { coolUntil = Date.now() + COOL_MS; return null; }
     if (!data?.ok || data.kind !== "answer" || typeof data.text !== "string" || !data.text.trim()) {
       return null;
     }
@@ -106,6 +117,7 @@ export async function askSmart(
       speakToken: typeof data.speak === "string" ? data.speak : undefined,
     } satisfies GiniReply;
   } catch {
+    if (ctl.signal.aborted) coolUntil = Date.now() + COOL_MS;
     return null;
   } finally {
     clearTimeout(timer);
