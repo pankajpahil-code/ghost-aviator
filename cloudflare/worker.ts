@@ -40,6 +40,10 @@ const ROUTES: Record<string, () => Promise<RouteModule>> = {
   "/embed/question": () => import("../app/embed/question/route") as Promise<RouteModule>,
 };
 
+// The Google Search Console ownership file (CLAUDE.md: never delete, never
+// edit). Must match assets.run_worker_first in wrangler.jsonc.
+const VERBATIM_HTML = new Set(["/google03c67855fee92810.html"]);
+
 // Rules are data; compile them once per isolate.
 type CompiledRedirect = { test: ReturnType<typeof match>; to: ReturnType<typeof compile>; status: number };
 let redirectsP: Promise<CompiledRedirect[]> | null = null;
@@ -136,6 +140,15 @@ const worker = {
   async fetch(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(req.url);
     const path = url.pathname;
+
+    // 0. Files that must answer 200 at their exact .html URL. Static Assets'
+    // html_handling 307s /x.html to /x, and Google's HTML-file verification
+    // wants the file itself. wrangler.jsonc sends these paths here first
+    // (assets.run_worker_first); the bytes still come from public/.
+    if (VERBATIM_HTML.has(path) && (req.method === "GET" || req.method === "HEAD")) {
+      const file = await env.ASSETS.fetch(new URL(path.slice(0, -".html".length), url));
+      if (file.ok) return withHeaders(path, new Response(req.method === "HEAD" ? null : file.body, file));
+    }
 
     // 1. Redirects (before anything else, as in Next).
     for (const r of await redirects()) {

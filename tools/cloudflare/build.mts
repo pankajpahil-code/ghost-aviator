@@ -69,8 +69,12 @@ let status = 1;
 try {
   const r = spawnSync("npm", ["run", "build"], {
     cwd: ROOT, stdio: "inherit",
+    // npm is npm.cmd on Windows, which Node only starts through a shell; without
+    // this spawnSync fails with no output and the build exits 1 silently.
+    shell: process.platform === "win32",
     env: { ...process.env, CF_STATIC_EXPORT: "1", NEXT_TELEMETRY_DISABLED: "1" },
   });
+  if (r.error) console.error("cf:build could not start `npm run build`:", r.error);
   status = r.status ?? 1;
 } finally {
   restore();
