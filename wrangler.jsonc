@@ -16,7 +16,10 @@
     // /about -> about.html, /about/ -> 307 /about, as `next export` expects.
     "html_handling": "auto-trailing-slash",
     // Unmatched paths go to the Worker (redirects, API, big files, 404).
-    "not_found_handling": "none"
+    "not_found_handling": "none",
+    // The Google verification file must answer 200 at its .html URL, which
+    // html_handling would 307 away. The Worker serves it (VERBATIM_HTML).
+    "run_worker_first": ["/google03c67855fee92810.html"]
   },
   "define": {
     "process.env.NODE_ENV": "\"production\""
@@ -24,11 +27,12 @@
   "vars": {
     "NEXT_PUBLIC_SITE_URL": "https://ghostaviator.com"
   },
-  // ghostaviator.com and www as Workers Custom Domains (Cloudflare creates the
-  // DNS records and certificates). The workers.dev URL stays on as a fallback.
+  // ghostaviator.com as a Workers Custom Domain (Cloudflare creates the DNS
+  // record and certificate). The workers.dev URL stays on as a fallback.
+  // www.ghostaviator.com belongs to the tiny redirect Worker in cloudflare/www/
+  // (`npm run cf:deploy-www`), so www is a 301 and not a second copy of the site.
   "routes": [
-    { "pattern": "ghostaviator.com", "custom_domain": true },
-    { "pattern": "www.ghostaviator.com", "custom_domain": true }
+    { "pattern": "ghostaviator.com", "custom_domain": true }
   ],
   "workers_dev": true,
   "preview_urls": false,

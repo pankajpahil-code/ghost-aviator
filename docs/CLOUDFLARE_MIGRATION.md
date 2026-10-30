@@ -111,3 +111,22 @@ below are from `/workspace/hostinger/dns_backup_20261030.json` (live public DNS,
 
 Switch the nameservers at Hostinger back to `ns1.vercel-dns.com` /
 `ns2.vercel-dns.com`. Nothing on Vercel was changed.
+
+## www and the Google verification file (2026-10-30, after go-live)
+
+Two defects found by checking the live site after the move:
+
+- **www served a second full copy of the site.** It was a Custom Domain on the main
+  Worker, and Static Assets answer before the Worker, so no redirect could run. Now
+  `www.ghostaviator.com` belongs to `cloudflare/www/worker.ts` (Worker
+  `ghost-aviator-www`), which 301s every request to the apex, keeping the path and
+  query. Deploy it with `npm run cf:deploy-www`. Deploy the main Worker FIRST
+  (it no longer lists www), so the domain is free when the www Worker claims it.
+- **`/google03c67855fee92810.html` answered 307 to `/google03c67855fee92810`**, because
+  `html_handling` strips `.html`. That file is the Search Console ownership token and
+  must answer 200 at its exact URL. `assets.run_worker_first` sends that one path to
+  the Worker, which serves the same bytes from public/ with a 200 (`VERBATIM_HTML`).
+  If another ownership file is ever added, add it to both places.
+
+`npm run cf:build` uses POSIX env syntax, so on Windows run it from Git Bash:
+`NODE_ENV=production npx tsx tools/cloudflare/build.mts`.
