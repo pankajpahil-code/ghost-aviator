@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 
+// Static so it can be written into the Cloudflare static export (output: "export").
+export const dynamic = "force-static";
+
 /**
  * Crawler policy, set deliberately on 2026-08-06.
  *

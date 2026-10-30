@@ -127,7 +127,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             root layout, because the root layout is cached across client
             navigation — he survives page changes instead of remounting. */}
         <Gini />
-        <Analytics />
+        {/* Vercel Web Analytics only exists on Vercel; the Cloudflare build
+            (CF_STATIC_EXPORT=1) leaves it out instead of 404ing its script. */}
+        {process.env.CF_STATIC_EXPORT !== "1" && <Analytics />}
         <WhatsAppClickTracker />
       </body>
     </html>
