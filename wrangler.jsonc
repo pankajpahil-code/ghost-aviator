@@ -24,12 +24,13 @@
   "vars": {
     "NEXT_PUBLIC_SITE_URL": "https://ghostaviator.com"
   },
-  // Custom domains are attached once the zone is on Cloudflare (see
-  // docs/CLOUDFLARE_MIGRATION.md). Until then the site answers on
-  // https://ghost-aviator.<account>.workers.dev.
-  // "routes": [
-  //   { "pattern": "ghostaviator.com", "custom_domain": true },
-  //   { "pattern": "www.ghostaviator.com", "custom_domain": true }
-  // ],
+  // ghostaviator.com and www as Workers Custom Domains (Cloudflare creates the
+  // DNS records and certificates). The workers.dev URL stays on as a fallback.
+  "routes": [
+    { "pattern": "ghostaviator.com", "custom_domain": true },
+    { "pattern": "www.ghostaviator.com", "custom_domain": true }
+  ],
+  "workers_dev": true,
+  "preview_urls": false,
   "observability": { "enabled": true }
 }

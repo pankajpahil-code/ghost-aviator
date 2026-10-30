@@ -17,11 +17,6 @@ import { match, compile } from "path-to-regexp";
 import { headerRules, redirectRules, type HeaderRule } from "../lib/site-routing";
 import bigFiles from "./generated/big-files.json";
 
-import * as gini from "../app/api/gini/route";
-import * as giniSign from "../app/api/gini/sign/route";
-import * as giniTts from "../app/api/gini/tts/route";
-import * as telegram from "../app/api/telegram/route";
-import * as embedQuestion from "../app/embed/question/route";
 
 // Workers runtime globals (kept local so the repo needs no extra type package;
 // this folder is excluded from the Next build's type check).
@@ -34,12 +29,15 @@ interface Env {
 type Handler = (req: Request) => Response | Promise<Response>;
 type RouteModule = Partial<Record<"GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "OPTIONS" | "HEAD", Handler>>;
 
-const ROUTES: Record<string, RouteModule> = {
-  "/api/gini": gini as RouteModule,
-  "/api/gini/sign": giniSign as RouteModule,
-  "/api/gini/tts": giniTts as RouteModule,
-  "/api/telegram": telegram as RouteModule,
-  "/embed/question": embedQuestion as RouteModule,
+// Imported lazily: the Gini route pulls in the question banks, which do real
+// work at module load and would blow the Worker's startup CPU budget if they
+// ran for every cold start (including requests that never touch Gini).
+const ROUTES: Record<string, () => Promise<RouteModule>> = {
+  "/api/gini": () => import("../app/api/gini/route") as Promise<RouteModule>,
+  "/api/gini/sign": () => import("../app/api/gini/sign/route") as Promise<RouteModule>,
+  "/api/gini/tts": () => import("../app/api/gini/tts/route") as Promise<RouteModule>,
+  "/api/telegram": () => import("../app/api/telegram/route") as Promise<RouteModule>,
+  "/embed/question": () => import("../app/embed/question/route") as Promise<RouteModule>,
 };
 
 // Rules are data; compile them once per isolate.
@@ -149,8 +147,9 @@ const worker = {
     }
 
     // 2. Dynamic routes.
-    const mod = ROUTES[path.length > 1 ? path.replace(/\/$/, "") : path];
-    if (mod) {
+    const load = ROUTES[path.length > 1 ? path.replace(/\/$/, "") : path];
+    if (load) {
+      const mod = await load();
       const method = req.method.toUpperCase() as keyof RouteModule;
       const handler = mod[method] ?? (method === "HEAD" ? mod.GET : undefined);
       let res: Response;
