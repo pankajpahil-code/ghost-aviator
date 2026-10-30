@@ -1,0 +1,35 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // ghostaviator.com on Cloudflare Workers (free plan): a static export in
+  // ./out served as Static Assets, plus a small Worker for redirects, the API
+  // routes and the embed widget. Build with `npm run cf:build`; preview with
+  // `npm run cf:preview`; deploy with `npm run cf:deploy`.
+  "name": "ghost-aviator",
+  "main": "cloudflare/worker.ts",
+  "compatibility_date": "2026-10-01",
+  // nodejs_compat: node:crypto (Telegram webhook check) and process.env, which
+  // the route handlers read their secrets from.
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    // /about -> about.html, /about/ -> 307 /about, as `next export` expects.
+    "html_handling": "auto-trailing-slash",
+    // Unmatched paths go to the Worker (redirects, API, big files, 404).
+    "not_found_handling": "none"
+  },
+  "define": {
+    "process.env.NODE_ENV": "\"production\""
+  },
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://ghostaviator.com"
+  },
+  // Custom domains are attached once the zone is on Cloudflare (see
+  // docs/CLOUDFLARE_MIGRATION.md). Until then the site answers on
+  // https://ghost-aviator.<account>.workers.dev.
+  // "routes": [
+  //   { "pattern": "ghostaviator.com", "custom_domain": true },
+  //   { "pattern": "www.ghostaviator.com", "custom_domain": true }
+  // ],
+  "observability": { "enabled": true }
+}

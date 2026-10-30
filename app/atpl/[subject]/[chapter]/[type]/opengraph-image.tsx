@@ -1,8 +1,15 @@
-﻿import { ImageResponse } from "next/og";
+import { ImageResponse } from "next/og";
 import { ATPL_SUBJECTS } from "@/lib/subjects";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+// Rendered once per chapter page at build time, for the same set of pages the
+// route's page.tsx prerenders. Needed by the Cloudflare static export
+// (tools/cloudflare/build.mts), which cannot render images on request; on
+// Vercel it simply moves the same work from first request to build.
+export const dynamic = "force-static";
+export { generateStaticParams } from "./page";
 
 export default async function Image({
   params,
