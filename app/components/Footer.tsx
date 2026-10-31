@@ -58,6 +58,7 @@ export default function Footer() {
                 ["CPL & ATPL Notes",    "/notes"],
                 ["DGCA Resources",      "/resources"],
                 ["Study Guides",        "/guides"],
+                ["Pilot Training in India", "/pilot-training-india"],
                 ["DGCA Exam FAQ",       "/faq"],
                 ["How Answers Are Verified", "/how-answers-are-verified"],
                 ["Privacy",             "/privacy"],

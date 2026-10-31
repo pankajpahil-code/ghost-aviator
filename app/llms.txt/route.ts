@@ -86,6 +86,12 @@ ${subjectLines}
 
 ${guideLines}
 
+## Training and study scope
+
+Ghost Aviator supports aviation theory studies and DGCA written-exam preparation.
+Optional live classes are ground classes. Practical flying hours and licence issue
+are separate. Student starting point: ${SITE_URL}/pilot-training-india
+
 ## Key pages
 
 - Question bank: ${SITE_URL}/question-bank

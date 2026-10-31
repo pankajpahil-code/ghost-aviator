@@ -64,6 +64,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   };
 
   const staticPages: MetadataRoute.Sitemap = [
+    { url: url("/pilot-training-india"), lastModified: new Date("2026-10-31"), changeFrequency: "monthly" as const, priority: 0.9 },
     { url: url("/"),             changeFrequency: "weekly"  as const, priority: 1.0 },
     { url: url("/live-classes"), changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/about"),        changeFrequency: "monthly" as const, priority: 0.8 },

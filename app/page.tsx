@@ -90,6 +90,10 @@ export default function Home() {
   return (
     <div style={{ background: "#0b1117" }}>
 
+      <nav aria-label="Pilot study starting point" className="max-w-7xl mx-auto px-4 py-3 text-sm text-slate-300">
+        New to aviation studies? <Link className="text-orange-300 underline" href="/pilot-training-india">Explore pilot training in India and plan your DGCA studies</Link>.
+      </nav>
+
       {/* ══════════════════ HERO ══════════════════
           The mascot plate carries the whole frame now, so the old two-column
           layout (copy left, illustration right) is gone: the artwork IS the
