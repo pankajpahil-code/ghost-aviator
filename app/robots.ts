@@ -55,12 +55,21 @@ export default function robots(): MetadataRoute.Robots {
   // SEO-tool / bulk scrapers that send no traffic to students but crawl all ~674 sitemap URLs
   // (ISR Reads are metered on Hobby). Googlebot, Bingbot and the AI agents above are NOT listed.
   const bulkScrapers = ["AhrefsBot", "SemrushBot", "MJ12bot", "DotBot", "PetalBot", "DataForSeoBot", "BLEXBot", "serpstatbot"];
+  // 2026-10-31: Anthropic documents three crawlers. ClaudeBot (training),
+  // Claude-SearchBot (Claude's search index) and Claude-User (fetches a page
+  // when a student asks Claude about it). The last two decide whether Claude
+  // can cite us at all. Anthropic-AI is the retired name, kept as harmless.
   const aiAgents = [
     "GPTBot",
     "ChatGPT-User",
     "OAI-SearchBot",
     "ClaudeBot",
+    "Claude-SearchBot",
+    "Claude-User",
     "Anthropic-AI",
+    "Perplexity-User",
+    "DuckAssistBot",
+    "MistralAI-User",
     "Google-Extended",
     "PerplexityBot",
     "Applebot-Extended",
