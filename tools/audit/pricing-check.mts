@@ -18,7 +18,7 @@ import {
   LIVE_PRICE_VALUE, LIVE_COMBO_PRICE_VALUE,
 } from "../../lib/live-classes";
 import { ask } from "../../lib/gini/knowledge";
-import { CAPTAIN_PROFILES } from "../../lib/site";
+import { ORG_SAME_AS, PERSON_SAME_AS } from "../../lib/site";
 
 const ROOT = path.resolve(import.meta.dirname, "..", "..");
 const SOURCE = "lib/live-classes.ts";
@@ -105,8 +105,8 @@ for (const q of ["how much are the live classes", "whatsapp group", "telegram", 
 const priceAnswer = ask("what do the classes cost");
 const quotesPrice = priceAnswer.kind === "answer" && priceAnswer.text.includes(LIVE_PRICE);
 console.log(`\n  Gini quotes ${LIVE_PRICE} : ${quotesPrice ? "yes" : "*** NO — DRIFT ***"}`);
-console.log(`  profiles in sameAs   : ${CAPTAIN_PROFILES.length}`);
-for (const p of CAPTAIN_PROFILES) console.log(`     ${p}`);
+console.log(`  profiles in sameAs   : ${ORG_SAME_AS.length} org + ${PERSON_SAME_AS.length} person`);
+for (const p of [...ORG_SAME_AS, ...PERSON_SAME_AS]) console.log(`     ${p}`);
 console.log("");
 
 if (hardcoded || stale || !quotesPrice) process.exitCode = 1;

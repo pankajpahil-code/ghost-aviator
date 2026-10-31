@@ -93,6 +93,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/how-answers-are-verified"), changeFrequency: "monthly" as const, priority: 0.7 },
     { url: url("/faq"),          changeFrequency: "monthly" as const, priority: 0.8 },
     { url: url("/cpl-cost-calculator"), changeFrequency: "monthly" as const, priority: 0.9 },
+    // Restored 2026-10-31: Google still lists all three; they had been 404.
+    { url: url("/official"),     lastModified: new Date("2026-10-31"), changeFrequency: "monthly" as const, priority: 0.7 },
+    { url: url("/contact"),      lastModified: new Date("2026-10-31"), changeFrequency: "yearly"  as const, priority: 0.5 },
+    { url: url("/terms"),        lastModified: new Date("2026-10-31"), changeFrequency: "yearly"  as const, priority: 0.3 },
     // Same condition the page renders on (lib/corrections.ts): submitted only once the Captain
     // has approved at least one correction; until then the route is a 404.
     ...(PUBLISHED_CORRECTIONS.length ? [{ url: url("/corrections"), changeFrequency: "monthly" as const, priority: 0.8 }] : []),

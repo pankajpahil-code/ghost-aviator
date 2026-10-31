@@ -202,6 +202,9 @@ export async function headerRules(): Promise<HeaderRule[]> {
 
 export async function redirectRules(): Promise<RedirectRule[]> {
   return [
+    // Link-in-bio URL for every social profile -> the official-channels hub.
+    // Temporary (307) on purpose: /links is a short alias we may point elsewhere.
+    { source: "/links", destination: "/official", permanent: false },
     // Preserve bookmarks while moving every existing ATPL bank to CPL.
     ...Object.entries(ATPL_TO_CPL).map(([from,to]) => ({
       source: `/atpl/${from}/:chapter/:type(questions|chapter-quiz|mock-test)`,

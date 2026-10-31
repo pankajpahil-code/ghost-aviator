@@ -8,7 +8,7 @@ import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import { LIVE_WHATSAPP, LIVE_PRICE, LIVE_PHONE_DISPLAY } from "@/lib/live-classes";
-import { SITE_URL, CAPTAIN_PROFILES, TELEGRAM_GROUP, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
+import { SITE_URL, PERSON_SAME_AS, TELEGRAM_GROUP, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
 import { DEFAULT_OG_IMAGES } from "@/lib/og";
 
 // Real photographs of the Captain, prepared by tools/prepare-captain-photo.mjs
@@ -66,7 +66,7 @@ const JSON_LD = {
       jobTitle: "Pilot, DGCA Flight & Ground Instructor",
       description:
         "Pilot and DGCA flight & ground instructor with 17+ years in aviation. Author of 'Technical General for Aviators' and 'Complete RTR(A) Examination Book'. Creator of Ghost Aviator, a free DGCA exam preparation platform.",
-      sameAs: CAPTAIN_PROFILES,
+      sameAs: PERSON_SAME_AS,
       knowsAbout: CAPTAIN_KNOWS_ABOUT,
       worksFor: { "@id": ORG_ID },
     },
