@@ -49,6 +49,19 @@ const STOP = new Set([
    * The router still reads the raw query for question shape ("where", "how
    * many"), so nothing is lost by removing them from the MATCHING vocabulary.
    */
+  /**
+   * ROMANISED HINDI FILLER (2026-10-31). "QNH kya hota hai? Hindi mein samjhao"
+   * returned NO candidates while "what is QNH" returned seven: every one of
+   * kya / hota / hai / mein / samjhao was scored as a concept the answer had to
+   * contain, and no stored answer contains them. Only function words and
+   * request words go here, never a word that is also English or aviation
+   * vocabulary. "kitna" is deliberately absent: it is a variant of "cost".
+   */
+  "kya", "hai", "hain", "hota", "hoti", "hote", "mein", "mai", "kaise", "kaisa",
+  "kaisi", "kyun", "kyon", "kyu", "kab", "kahan", "kaha", "kaun", "samjhao",
+  "samjhaiye", "samjha", "samjhe", "samjhna", "batao", "bataiye", "bata",
+  "matlab", "yeh", "woh", "mujhe", "karo", "kariye", "karte", "karta", "nahi",
+  "nahin", "aur", "bhi", "toh", "hindi", "hinglish", "bhai",
   "what", "which", "how", "why", "who", "whom", "whose", "when", "where",
 ]);
 

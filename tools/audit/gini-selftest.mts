@@ -606,6 +606,9 @@ const LANDINGS: { q: string; want: RegExp }[] = [
   { q: "what is a great circle",  want: /navigation/i },
   { q: "what is aquaplaning",     want: /regulation|technical/i },
   { q: "what does an altimeter measure", want: /instrumentation/i },
+  // 2026-10-31: Hindi filler words scored as concepts and sank every match.
+  { q: "QNH kya hota hai? Hindi mein samjhao", want: /meteorology|instrumentation|radio telephony/i },
+  { q: "VOR kaise kaam karta hai", want: /radio navigation/i },
 ];
 for (const l of LANDINGS) {
   const r = await askDeep(l.q, home);
