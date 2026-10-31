@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MessageCircle, Send, ShieldCheck, Clock, Phone } from "lucide-react";
+import { MessageCircle, Send, ShieldCheck, Clock, Phone, CreditCard } from "lucide-react";
 import { LIVE_WHATSAPP, LIVE_PHONE_DISPLAY } from "@/lib/live-classes";
 import { SITE_URL, ORG_ID, PERSON_ID, TELEGRAM_CHANNEL, TELEGRAM_COMMUNITY } from "@/lib/site";
 import { LegalPageShell, LegalSection, LEGAL_ACCENT } from "@/app/components/LegalPage";
 
 // Restored 2026-10-31 from feat/ai-first-trust-pages (Google still lists /contact).
-// Price, fee, payment and refund wording removed on the way in.
+// Refunds are explained inline and in /terms#payments (there is no /refund-policy page).
 const UPDATED = "31 October 2026";
 
 const WHATSAPP = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
@@ -15,9 +15,15 @@ const WHATSAPP = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
 const WHATSAPP_DEMO = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
   "Hello Captain, I want to book a free demo for a live class. My subject is ____, my exam is in ____, and my city is ____.",
 )}`;
+const WHATSAPP_CLASS = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+  "Hello Captain, I want to ask about a live class. My subject is ____ and my exam is in ____.",
+)}`;
+const WHATSAPP_PAYMENT = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
+  "Hello Captain, I have a payment or refund question. My name is ____, subject ____, payment date ____, amount ____, UTR ____.",
+)}`;
 
 const DESCRIPTION =
-  "Contact Ghost Aviator and Capt. Pankaj Pahil on the official WhatsApp number or Telegram. Book a free live demo, ask about live classes, or report an impersonator.";
+  "Contact Ghost Aviator and Capt. Pankaj Pahil on the official WhatsApp number or Telegram. Book a free live demo, or ask about live classes, payments, refunds or verification. We never ask for OTPs or passwords.";
 
 export const metadata: Metadata = {
   title: "Contact Ghost Aviator — Official WhatsApp & Telegram",
@@ -25,7 +31,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact Ghost Aviator — Official WhatsApp & Telegram",
-    description: "Reach Capt. Pankaj Pahil on the official WhatsApp number or Telegram.",
+    description: "Book a free live demo or ask about live classes, payments, refunds and impersonation reports through the official channels.",
     url: `${SITE_URL}/contact`,
     type: "website",
   },
@@ -76,8 +82,8 @@ export default function ContactPage() {
       updated={UPDATED}
       intro={
         <>
-          Use the official channels below. We never ask for your OTP, password or remote access. If someone does,
-          stop and check the <Link href="/official" style={{ color: LEGAL_ACCENT }}>official channels page</Link>.
+          Use the official channels below. We never ask for your OTP, password, remote access or a payment to a
+          different account. If someone does, stop and check the <Link href="/official" style={{ color: LEGAL_ACCENT }}>official channels page</Link>.
         </>
       }
       jsonLd={jsonLd}
@@ -106,27 +112,49 @@ export default function ContactPage() {
 
       <LegalSection title="Free demo and live-class questions">
         <p>
-          Start with a free live demo. Tell us the subject, your exam month and your city. The next batch is
-          forming now; details are on the{" "}
+          Start with a free live demo. Tell us the subject, your exam month and your city. There is no fee for the
+          demo and no obligation to enroll. If you want a seat after the demo, pay the fee by UPI. The next batch is
+          forming now; fees and batch status are always shown on the{" "}
           <Link href="/live-classes" style={{ color: LEGAL_ACCENT }}>live-classes page</Link>.
         </p>
-        <a href={WHATSAPP_DEMO} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold no-underline" style={{ color: LEGAL_ACCENT }}>
-          <MessageCircle className="w-4 h-4" /> Book a free demo
+        <div className="flex flex-wrap gap-4">
+          <a href={WHATSAPP_DEMO} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold no-underline" style={{ color: LEGAL_ACCENT }}>
+            <MessageCircle className="w-4 h-4" /> Book a free demo
+          </a>
+          <a href={WHATSAPP_CLASS} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold no-underline" style={{ color: "#94a3b8" }}>
+            Ask about a live class
+          </a>
+        </div>
+      </LegalSection>
+
+      <LegalSection id="payments" title="Payments and refunds">
+        <p>
+          The demo is free. If you decide to enroll afterwards, pay the fee by UPI using the QR on the{" "}
+          <Link href="/live-classes#pay" style={{ color: LEGAL_ACCENT }}>live-classes page</Link>. Include your full
+          name, the subject, the payment date, the amount, and the UTR or transaction ID in your message. Do not send
+          your UPI PIN, card number, CVV or OTP.
+        </p>
+        <p>
+          Refunds are covered in the{" "}
+          <Link href="/terms#payments" style={{ color: LEGAL_ACCENT }}>Payments and refunds section of our Terms</Link>.
+          Read it before you pay.
+        </p>
+        <a href={WHATSAPP_PAYMENT} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold no-underline" style={{ color: LEGAL_ACCENT }}>
+          <CreditCard className="w-4 h-4" /> Ask a payment question
         </a>
       </LegalSection>
 
       <LegalSection title="Verify or report an impersonator">
         <p>
-          Scammers copy the Captain&apos;s photographs and make accounts in his name. Check the{" "}
-          <Link href="/official" style={{ color: LEGAL_ACCENT }}>official channels page</Link> before you trust an
-          account. If one is impersonating Ghost Aviator, send screenshots to the official WhatsApp number and report
+          Scammers copy the Captain&apos;s photographs and ask students to pay a different UPI ID. Check the{" "}
+          <Link href="/official" style={{ color: LEGAL_ACCENT }}>official channels page</Link> before you pay anyone. If one is impersonating Ghost Aviator, send screenshots to the official WhatsApp number and report
           it on the platform where it contacted you.
         </p>
         <div className="flex items-start gap-2 rounded-xl p-4" style={{ background: "rgba(240,145,58,0.08)", border: "1px solid rgba(240,145,58,0.25)" }}>
           <ShieldCheck className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "#f0913a" }} />
           <p className="text-sm m-0">
-            Ghost Aviator never asks you to keep anything secret from your family, and never asks for your password
-            or OTP.
+            Ghost Aviator will never ask you to keep a payment secret from your family, and never asks for your
+            password or OTP.
           </p>
         </div>
       </LegalSection>

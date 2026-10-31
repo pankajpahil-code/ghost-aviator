@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, ExternalLink, Flag, Globe, MessageCircle, Phone, ShieldCheck } from "lucide-react";
+import { AlertTriangle, ArrowRight, BadgeCheck, CreditCard, ExternalLink, Flag, Globe, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 import { LIVE_WHATSAPP, LIVE_PHONE_DISPLAY } from "@/lib/live-classes";
 import { OFFICIAL_CHANNELS, ORG_ID, PERSON_ID, SITE_URL } from "@/lib/site";
 
 // Restored 2026-10-31 from the unmerged feat/ai-first-trust-pages branch, which
 // Google still lists. This is the hub every profile's "link in bio" points at
 // (/links redirects here). Adapted for current main: every channel comes from
-// OFFICIAL_CHANNELS in lib/site.ts, and the price / fee / payment wording and
-// the monthly verification code (which goes stale every month) were taken out.
+// OFFICIAL_CHANNELS in lib/site.ts. The payment-verification parts are kept;
+// the monthly verification code was dropped (a stale code is worse than none),
+// and the /ai-self-study and /refund-policy links were dropped (no such routes).
 
 const ACCENT = "#f0913a";
 const CARD = "rgba(17,24,32,0.95)";
@@ -23,15 +24,15 @@ const REPORT_WA = `https://wa.me/${LIVE_WHATSAPP}?text=${encodeURIComponent(
 )}`;
 
 const DESCRIPTION =
-  "Every official Ghost Aviator and Capt. Pankaj Pahil account in one place: website, YouTube, Instagram, Telegram, Facebook, Reddit, Quora, Threads and more. If an account is not listed here, it is not us.";
+  "Every official Ghost Aviator and Capt. Pankaj Pahil account in one place, and the only payment route. Verify before you pay. If an account is not listed here, it is not us.";
 
 export const metadata: Metadata = {
-  title: "Official Ghost Aviator Channels — YouTube, Instagram, Telegram & More",
+  title: "Official Ghost Aviator Channels & Payment Verification",
   description: DESCRIPTION,
   alternates: { canonical: "/official" },
   openGraph: {
-    title: "Official Ghost Aviator Channels",
-    description: "The single list of Ghost Aviator's official website and social accounts.",
+    title: "Official Ghost Aviator Channels — Verify Before You Pay",
+    description: "The single list of Ghost Aviator's official website, social accounts and payment route.",
     url: `${SITE_URL}/official`,
     type: "website",
   },
@@ -43,12 +44,13 @@ const NEVER = [
   "Guarantee a pass, a licence, a job or a salary.",
   "Take a commission from a flying school to send you there.",
   "Contact you from an account that is not listed on this page.",
-  "Ask you to keep anything secret from your family.",
+  "Ask you to pay an account that is not published on this site.",
+  "Ask you to keep a payment secret from your family.",
 ] as const;
 
 const REPORT_STEPS = [
-  "Stop. Do not send documents, OTPs or passwords.",
-  "Screenshot the profile, the number and the messages.",
+  "Stop. Do not pay, and do not send documents, OTPs or passwords.",
+  "Screenshot the profile, the number, the messages and the payment request.",
   "Report the account on the platform where it contacted you.",
   "Report it to cybercrime.gov.in, the Indian government's cybercrime portal.",
   "Send the screenshots to Capt. Pankaj Pahil on the official WhatsApp number on this page.",
@@ -57,7 +59,7 @@ const REPORT_STEPS = [
 const FAQ = [
   {
     q: "What is the official Ghost Aviator website?",
-    a: "The only official website is https://ghostaviator.com. The www version redirects to it. We do not use a .in, .co, .net or lookalike domain.",
+    a: "The only official website is https://ghostaviator.com. The www version redirects to it. We do not use a .in, .co, .net or lookalike domain for payments or classes.",
   },
   {
     q: "Which social accounts are official?",
@@ -71,6 +73,10 @@ const FAQ = [
     q: "How can I check that someone is really Capt. Pankaj Pahil?",
     a: `Message the official WhatsApp number on this page (${LIVE_PHONE_DISPLAY}). A real Ghost Aviator account can always point you back to this page. If it cannot, stop and report it.`,
   },
+  {
+    q: "What payment route does Ghost Aviator use?",
+    a: "First book a free live demo from https://ghostaviator.com/live-classes. After the demo, if you want to enroll, pay the fee by UPI using the QR shown on that page, then confirm on WhatsApp. We never send a different UPI ID or account number in a direct message.",
+  },
 ] as const;
 
 export default function OfficialPage() {
@@ -80,7 +86,7 @@ export default function OfficialPage() {
       {
         "@type": ["WebPage", "ProfilePage"],
         "@id": `${SITE_URL}/official`,
-        name: "Official Ghost Aviator Channels",
+        name: "Official Ghost Aviator Channels & Payment Verification",
         description: DESCRIPTION,
         url: `${SITE_URL}/official`,
         inLanguage: "en-IN",
@@ -143,11 +149,12 @@ export default function OfficialPage() {
             <BadgeCheck className="w-3.5 h-3.5" /> LAST VERIFIED {LAST_VERIFIED.toUpperCase()}
           </div>
           <h1 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-tight">
-            Official Ghost Aviator <span style={{ color: ACCENT }}>channels</span>
+            Official Ghost Aviator channels — <span style={{ color: ACCENT }}>verify before you pay.</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "#94a3b8" }}>
             Every account run by Ghost Aviator and Capt. Pankaj Pahil, in one place. Scammers copy a teacher&apos;s
-            photographs and make accounts with his name. If a channel is not on this page, it is not us.
+            photographs, make accounts with his name, and ask students for money on Instagram, WhatsApp or Telegram.
+            If a channel is not on this page, it is not us.
           </p>
         </div>
       </section>
@@ -164,7 +171,7 @@ export default function OfficialPage() {
               </div>
               <p className="text-sm mt-2 max-w-2xl" style={{ color: "#94a3b8" }}>
                 One domain. The <strong className="text-white">www</strong> version redirects here. We do not use a
-                lookalike domain or a &quot;backup&quot; site. A page can copy our design; it cannot copy the
+                lookalike domain, a shortened link or a &quot;backup&quot; site for payments. A page can copy our design; it cannot copy the
                 address bar.
               </p>
             </div>
@@ -217,7 +224,47 @@ export default function OfficialPage() {
           </ul>
           <p className="text-sm mt-4" style={{ color: "#64748b" }}>
             Support is handled on WhatsApp and Telegram. See the <Link href="/contact" style={{ color: ACCENT }}>contact page</Link>.
+            We have not published a separate official email address. If an email claiming to be Ghost Aviator asks
+            you for money, verify it with us on the official WhatsApp number before you reply.
           </p>
+        </section>
+
+        <section className="rounded-3xl p-6 sm:p-8" style={{ background: CARD, border: HAIRLINE }}>
+          <div className="flex items-center gap-3 mb-4">
+            <CreditCard className="w-6 h-6" style={{ color: ACCENT }} />
+            <h2 className="text-2xl font-black text-white">Pay only from this site</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p className="text-sm leading-relaxed mb-4" style={{ color: "#94a3b8" }}>
+                The live-class page is the only place we publish a payment route. Book a free live demo first.
+                After the demo, if you want to enroll, pay the fee by UPI using the QR shown on{" "}
+                <Link href="/live-classes#pay" style={{ color: ACCENT }}>/live-classes</Link>, then confirm on
+                WhatsApp.
+              </p>
+              <div className="rounded-xl px-4 py-3 mt-3 text-sm" style={{ background: "#0b1117", border: "1px solid rgba(255,255,255,0.08)" }}>
+                <div className="font-black text-white">Open the payment page from the address bar</div>
+                <div className="mt-1" style={{ color: "#94a3b8" }}>
+                  Go to <Link href="/live-classes#pay" style={{ color: ACCENT }}>ghostaviator.com/live-classes</Link>.
+                  The payment details shown there are the only ones we publish.
+                </div>
+              </div>
+              <p className="text-xs mt-3" style={{ color: "#64748b" }}>
+                We do not repeat the UPI ID on this page. A copied payment detail is exactly what an impersonator
+                uses. If the UPI ID you were sent does not match the one on the live-class page, it is not from us.
+              </p>
+            </div>
+            <div className="rounded-2xl p-5" style={{ background: "rgba(255,40,40,0.06)", border: "1px solid rgba(255,60,60,0.28)" }}>
+              <div className="flex items-center gap-2 font-black text-white mb-3">
+                <AlertTriangle className="w-5 h-5" style={{ color: "#f87171" }} /> The red flag
+              </div>
+              <p className="text-sm leading-relaxed" style={{ color: "#fca5a5" }}>
+                Anyone who messages you first, calls you &quot;beta&quot;, creates urgency, or asks you to pay
+                quickly to &quot;hold a seat&quot; is using a sales script, not a classroom. Stop. Open this page.
+                Pay only after the free demo, after you have verified the channel and the batch.
+              </p>
+            </div>
+          </div>
         </section>
 
         <section>
@@ -240,6 +287,10 @@ export default function OfficialPage() {
             <Flag className="w-6 h-6" style={{ color: "#f87171" }} />
             <h2 className="text-2xl font-black text-white">If a fake account contacts you</h2>
           </div>
+          <p className="mb-5 text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
+            Do not argue with the account and do not pay to &quot;prove&quot; it is real. Save the evidence and
+            report it.
+          </p>
           <ol className="space-y-3 mb-6">
             {REPORT_STEPS.map((step, index) => (
               <li key={step} className="flex items-start gap-3 text-sm" style={{ color: "#cbd5e1" }}>
@@ -261,7 +312,7 @@ export default function OfficialPage() {
         </section>
 
         <section>
-          <h2 className="text-3xl font-black text-white mb-6">Common questions</h2>
+          <h2 className="text-3xl font-black text-white mb-6">Questions students ask before paying</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {FAQ.map(item => (
               <div key={item.q} className="rounded-2xl p-5" style={{ background: CARD, border: HAIRLINE }}>
@@ -276,7 +327,8 @@ export default function OfficialPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">Start studying</h2>
           <p className="max-w-2xl mx-auto mb-6 text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
             Chapter notes, question banks and mock tests are free on ghostaviator.com. Live classes with Capt. Pankaj
-            Pahil are optional, and the next batch is forming now.
+            Pahil are optional and start with a free demo; if you want to enroll afterwards, pay the fee by UPI
+            on the live-class page. The next batch is forming now.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/cpl" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-black no-underline" style={{ background: ACCENT, color: "#0b1117" }}>
