@@ -32,7 +32,8 @@
  * the price of the Captain's ruling, and it is his to have accepted, not ours
  * to hide.
  *
- * SERVER ONLY. It reads the notes from disk and builds on candidates.ts.
+ * SERVER ONLY. It reads the notes (from disk, or on Cloudflare through the
+ * loader below) and builds on candidates.ts.
  * ────────────────────────────────────────────────────────────────────────────
  */
 
@@ -148,11 +149,28 @@ export function excerptFor(text: string, query: string): string {
 
 const plainCache = new Map<string, string | null>();
 
-function chapterText(subjectId: string, chapterId: string): string | null {
+/**
+ * WHERE THE CHAPTER TEXT COMES FROM. By default, from disk via getInlineNotes().
+ * On Cloudflare (since 2026-10-30) there is no disk: node:fs in a Worker sees
+ * none of public/, so every chapter read as null and NO question could be taught
+ * — every one fell through to the routing path. cloudflare/worker.ts installs a
+ * loader that reads the plain text tools/cloudflare/build.mts wrote for each
+ * chapter (out/_gini/notes/<subject>/<chapter>.txt, never served publicly).
+ */
+export type ChapterTextLoader = (subjectId: string, chapterId: string) => Promise<string | null>;
+let textLoader: ChapterTextLoader | null = null;
+export function setChapterTextLoader(fn: ChapterTextLoader | null) { textLoader = fn; }
+
+async function chapterText(subjectId: string, chapterId: string): Promise<string | null> {
   const key = `${subjectId}/${chapterId}`;
   if (!plainCache.has(key)) {
-    const notes = getInlineNotes(subjectId, chapterId);
-    const text = notes ? chapterPlainText(notes.html) : null;
+    let text: string | null;
+    if (textLoader) {
+      text = await textLoader(subjectId, chapterId).catch(() => null);
+    } else {
+      const notes = getInlineNotes(subjectId, chapterId);
+      text = notes ? chapterPlainText(notes.html) : null;
+    }
     plainCache.set(key, text && text.length > 400 ? text : null);
     if (plainCache.size > 60) plainCache.delete(plainCache.keys().next().value as string);
   }
@@ -174,14 +192,14 @@ function describeChapter(subjectId: string, chapterId: string) {
  * QNH" on the home page is taught from the altimetry notes, not from nothing.
  * No match, no grounding, and the route falls back to picking.
  */
-export function groundingFor(query: string, ctx: GiniContext, focus = ""): Grounding | null {
+export async function groundingFor(query: string, ctx: GiniContext, focus = ""): Promise<Grounding | null> {
   // What the student is looking at steers which sections of a long chapter are
   // kept, so "explain this" is taught from the part actually on screen.
   const steer = focus ? `${query} ${focus}` : query;
-  const tryChapter = (subjectId?: string, chapterId?: string): Grounding | null => {
+  const tryChapter = async (subjectId?: string, chapterId?: string): Promise<Grounding | null> => {
     if (!subjectId || !chapterId) return null;
     const d = describeChapter(subjectId, chapterId);
-    const text = d ? chapterText(subjectId, chapterId) : null;
+    const text = d ? await chapterText(subjectId, chapterId) : null;
     if (!d || !text) return null;
     return {
       subjectId, chapterId,
@@ -191,14 +209,14 @@ export function groundingFor(query: string, ctx: GiniContext, focus = ""): Groun
     };
   };
 
-  const here = ctx.area === "chapter" ? tryChapter(ctx.subjectId, ctx.chapterId) : null;
+  const here = ctx.area === "chapter" ? await tryChapter(ctx.subjectId, ctx.chapterId) : null;
   // Stay on the open chapter unless the question names a topic it never
   // mentions. 2026-10-31: "what is QNH" on Met Ch.1 was grounded in Ch.1, which
   // has no QNH, so the model rightly answered "none" and the altimetry chapter
   // was never tried. A question with no topic words ("explain this") stays here.
   if (here) {
     const asked = [...wordsOf(query)].filter(w => w.length > 2);
-    const chapterWords = wordsOf(chapterText(here.subjectId, here.chapterId) ?? "");
+    const chapterWords = wordsOf((await chapterText(here.subjectId, here.chapterId)) ?? "");
     if (asked.length === 0 || asked.some(w => chapterWords.has(w))) return here;
   }
 
@@ -207,13 +225,13 @@ export function groundingFor(query: string, ctx: GiniContext, focus = ""): Groun
   // the Lambert's chart chapter on the first run. Same order the router uses.
   for (const c of topChapters(query, 3)) {
     const m = c.href.match(/^\/(?:cpl|atpl)\/([^/]+)\/([^/]+)\/notes$/);
-    const g = m ? tryChapter(m[1], m[2]) : null;
+    const g = m ? await tryChapter(m[1], m[2]) : null;
     if (g) return g;
   }
 
   for (const t of topTopics(query, ctx.subjectId, 4)) {
     if (t.g) continue;                       // a guide is paperwork, not a chapter
-    const g = tryChapter(t.s, t.c);
+    const g = await tryChapter(t.s, t.c);
     if (g) return g;
   }
   return here;
