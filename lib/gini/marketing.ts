@@ -75,7 +75,7 @@ export const PITCHES: Pitch[] = [
     weight: 10,
     mood: "present_book",
     say: ctx =>
-      `The Captain teaches ${liveSubject(ctx)} live himself — ten students in a batch, so every question gets ` +
+      `Capt. Pahil teaches ${liveSubject(ctx)} live himself — ten students in a batch, so every question gets ` +
       `answered. ${LIVE_PRICE} for the subject, down from ${LIVE_LIST_PRICE}. Everything you're reading here stays free either way.`,
     href: () => "/live-classes",
   },

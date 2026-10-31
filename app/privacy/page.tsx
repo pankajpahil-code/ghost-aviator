@@ -81,7 +81,7 @@ export default function PrivacyPage() {
 
         <Section title="Payments">
           <p>You pay for live classes in your own UPI app. We never see your bank, card or UPI PIN details. If you send us a
-            payment screenshot, the Captain uses it only to confirm your seat.</p>
+            payment screenshot, Capt. Pahil uses it only to confirm your seat.</p>
         </Section>
 
         <Section id="delete-your-data" title="Delete your data">

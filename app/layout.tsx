@@ -17,7 +17,7 @@ const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 const TITLE = "Free DGCA CPL & ATPL Exam Prep | Ghost Aviator";
 const DESCRIPTION =
-  "Free DGCA CPL and ATPL exam preparation for India - chapter notes, question banks, mock tests and video lectures. Self-study stays free. Live classes with the Captain are optional.";
+  "Free DGCA CPL and ATPL exam preparation for India - chapter notes, question banks, mock tests and video lectures. Self-study stays free. Live classes with Capt. Pankaj Pahil are optional.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -89,6 +89,7 @@ const JSON_LD = {
       "@id": PERSON_ID,
       name: "Capt. Pankaj Pahil",
       alternateName: "Ghost Aviator",
+      telephone: `+${LIVE_WHATSAPP}`,
       url: `${SITE_URL}/about`,
       worksFor: { "@id": ORG_ID },
       jobTitle: "Pilot, DGCA Flight & Ground Instructor",

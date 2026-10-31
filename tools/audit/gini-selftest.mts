@@ -352,6 +352,7 @@ const TUTOR_CASES: { text: string; student?: string; ok: boolean; why?: RegExp; 
   { text: "Good. Transition altitude here is 3000 ft.", student: "After 40 NM I am 4 NM left of track", ok: false, why: /number not in/, label: "an invented limit is still blocked inside a numerical" },
   { text: "That gives 6.37 degrees.", student: "After 40 NM I am 4 NM left of track", ok: false, why: /number not in/, label: "a decimal no arithmetic on the student's numbers produces" },
   { text: "Pankaj Sir's course notes are best learned one piece at a time.", ok: false, why: /personal name/, label: "the Captain's personal name (seen live 2026-10-22)" },
+  { text: "These are Capt. Pankaj Pahil's notes, so take them one piece at a time.", ok: true, label: "his name in its proper form (2026-10-31)" },
   { text: "The Captain's notes are best learned one piece at a time.", ok: true, label: "'the Captain' is how he is named" },
   { text: "This is straight from the Oxford manual.", ok: false, why: /Iron Rule 2/, label: "names a source" },
   { text: "The batch is ₹8,000, and QNH is set on the ground.", ok: false, why: /price/, label: "a price nobody charges" },

@@ -468,6 +468,8 @@ const STEP_LABEL = /\bsteps?\s+\d{1,2}\b/gi;
 const FAA = /\b(FAA|FARs?|CFR)\b/;
 
 const PERSONAL_NAME = /\b(pankaj|pahil)\b|पंकज|पाहिल/i;
+/** The forms of his name he uses himself; stripped before PERSONAL_NAME is tested. */
+const PROPER_NAME = /\b(?:Capt\.?|Captain)\s+(?:Pankaj\s+)?Pahil\b/g;
 
 const MAX_TUTOR_CHARS = 1400;
 
@@ -510,9 +512,12 @@ export function guardTutorProse(text: string, g: TutorGrounding): GuardVerdict {
     }
   }
 
-  // The Captain's no-personal-name order (2026-10-08) covers every public
-  // string. Seen live 2026-10-22 before this check: "Pankaj Sir's course notes".
-  if (PERSONAL_NAME.test(t)) return { ok: false, why: "uses the Captain's personal name (no-name order, 2026-10-08)" };
+  // His name in its proper form is welcome: on 2026-10-31 he reversed the
+  // 2026-10-08 no-name order ("use my name ... where ever you need it"), and
+  // the brief names him. What stays out is any OTHER use of it — informal
+  // forms like "Pankaj Sir's course notes" (seen live 2026-10-22).
+  const informal = t.replace(PROPER_NAME, "");
+  if (PERSONAL_NAME.test(informal)) return { ok: false, why: "uses the Captain's personal name informally (only \"Capt. Pankaj Pahil\" / \"Capt. Pahil\")" };
 
   if (FAA.test(t) && !FAA.test(g.source)) {
     return { ok: false, why: "brings in the FAA, which these notes do not" };

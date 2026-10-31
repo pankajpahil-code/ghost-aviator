@@ -35,7 +35,7 @@ import { DEFAULT_OG_IMAGES } from "@/lib/og";
 export const metadata: Metadata = {
   title: "DGCA CPL Online Ground Classes India — Met, Air Regs & Nav",
   description:
-    `Live online DGCA CPL ground classes taught personally by the Captain — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each. ${LIVE_BATCH_META.statusLabel}. Book your free demo class first.`,
+    `Live online DGCA CPL ground classes taught personally by Capt. Pankaj Pahil — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each. ${LIVE_BATCH_META.statusLabel}. Book your free demo class first.`,
   keywords: [
     "DGCA ground classes online", "DGCA pilot course", "CPL coaching online", "DGCA Air Regulations classes",
     "DGCA Meteorology classes", "DGCA Navigation classes", "DGCA Radio Navigation classes",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/live-classes" },
   openGraph: {
-    title: "Live DGCA Ground Classes with the Captain",
+    title: "Live DGCA Ground Classes with Capt. Pankaj Pahil",
     description: `5 subjects, live online, batches of 10. ${PRICE} per subject, down from ${LIST_PRICE}. ${LIVE_BATCH_META.statusLabel}. Attend one free demo class first.`,
     url: `${SITE_URL}/live-classes`,
     type: "website",
@@ -122,7 +122,7 @@ const SUBJECTS = [
 const FAQ = [
   {
     q: "Who teaches the classes?",
-    a: "Every class is taught live by the Captain himself — pilot, DGCA flight & ground instructor with 17+ years in aviation, and author of two aviation books. No junior tutors, no recordings sold as classes.",
+    a: "Every class is taught live by Capt. Pankaj Pahil himself — pilot, DGCA flight & ground instructor with 17+ years in aviation, and author of two aviation books. No junior tutors, no recordings sold as classes.",
   },
   {
     q: "How are the classes conducted?",
@@ -152,7 +152,7 @@ const JSON_LD = {
     ...SUBJECTS.map(s => ({
       "@type": "Course",
       name: `DGCA CPL ${s.name} — Live Online Ground Classes`,
-      description: `Live online DGCA ${s.name} classes taught by the Captain. Small batch of 10, 4–6 weeks.`,
+      description: `Live online DGCA ${s.name} classes taught by Capt. Pankaj Pahil. Small batch of 10, 4–6 weeks.`,
       provider: { "@id": ORG_ID },
       offers: { "@type": "Offer", price: LIVE_PRICE_VALUE, priceCurrency: "INR", availability: "https://schema.org/InStock" },
       hasCourseInstance: {
@@ -220,7 +220,7 @@ export default function LiveClassesPage() {
             Learn From <span style={{ background:"linear-gradient(135deg,#ff6000,#c25a1e,#f0913a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>The Captain</span> Himself
           </h1>
           <p className="text-lg max-w-3xl mx-auto lg:mx-0 mb-3 leading-relaxed" style={{ color:"#94a3b8" }}>
-            Live DGCA CPL ground classes — taught by <strong style={{ color:"#f3c889" }}>the Captain</strong>.
+            Live DGCA CPL ground classes — taught by <strong style={{ color:"#f3c889" }}>Capt. Pankaj Pahil</strong>.
           </p>
 
           {/* One primary WhatsApp button (free demo class), above the fold on mobile and desktop. */}
@@ -310,7 +310,7 @@ export default function LiveClassesPage() {
                style={{ width: "min(460px, 90vw)", aspectRatio: "785 / 718",
                         maskImage: "linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)",
                         WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)" }}>
-            <Image src="/captain-teaching.webp" alt="The Captain teaching navigation at a constellation chalkboard" fill priority sizes="460px"
+            <Image src="/captain-teaching.webp" alt="Capt. Pahil teaching navigation at a constellation chalkboard" fill priority sizes="460px"
                    className="object-cover"
                    style={{
                      maskImage: "radial-gradient(ellipse 66% 60% at 51% 50%, black 40%, transparent 83%)",

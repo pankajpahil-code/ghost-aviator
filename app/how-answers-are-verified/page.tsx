@@ -201,7 +201,7 @@ export default function HowAnswersAreVerifiedPage() {
           <p className="text-base" style={{ color: "#94a3b8" }}>
             The checking is done by{" "}
             <Link href="/about" className="font-bold no-underline" style={{ color: ACCENT }}>
-              Ghost Aviator
+              Capt. Pankaj Pahil
             </Link>
             {" "}— a pilot, a DGCA flight and ground instructor, and the author of two aviation books.
           </p>

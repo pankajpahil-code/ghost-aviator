@@ -7,7 +7,7 @@ import { Award, BookOpen, Users, ShieldCheck, MessageCircle, ArrowRight, Radio, 
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { TESTIMONIALS } from "@/lib/testimonials";
-import { LIVE_WHATSAPP, LIVE_PRICE } from "@/lib/live-classes";
+import { LIVE_WHATSAPP, LIVE_PRICE, LIVE_PHONE_DISPLAY } from "@/lib/live-classes";
 import { SITE_URL, CAPTAIN_PROFILES, TELEGRAM_GROUP, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
 import { DEFAULT_OG_IMAGES } from "@/lib/og";
 
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "Pilot and DGCA flight & ground instructor with 17+ years in aviation, author of two aviation books and creator of Ghost Aviator: free DGCA exam prep.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "Meet the Captain Behind Ghost Aviator",
+    title: "Meet Capt. Pankaj Pahil — The Captain Behind Ghost Aviator",
     description: "Pilot, DGCA flight & ground instructor, author of two aviation books. Free DGCA prep for every student pilot.",
     url: `${SITE_URL}/about`,
     type: "profile",
@@ -75,7 +75,7 @@ const JSON_LD = {
       "@id": `${SITE_URL}/about#breadcrumb`,
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-        { "@type": "ListItem", position: 2, name: "About the Captain" },
+        { "@type": "ListItem", position: 2, name: "About Capt. Pankaj Pahil" },
       ],
     },
   ],
@@ -101,7 +101,7 @@ export default function AboutPage() {
           fades into the page. objectPosition 50% 66% is measured, not guessed —
           it is the window that holds the aircraft AND his full head. */}
       <div className="relative w-full h-[320px] sm:h-[440px] lg:h-[600px]">
-        <Image src={BANNER} alt="The Captain on the apron" fill priority sizes="100vw"
+        <Image src={BANNER} alt="Capt. Pankaj Pahil on the apron" fill priority sizes="100vw"
                className="object-cover" style={{ objectPosition: "50% 66%" }} />
         <div className="absolute inset-0" style={{
           background:
@@ -118,7 +118,7 @@ export default function AboutPage() {
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className="relative w-44 h-44 rounded-full overflow-hidden flex-shrink-0"
                  style={{ border: "2px solid rgba(240,145,58,0.4)", boxShadow: "0 0 40px rgba(240,145,58,0.22)" }}>
-              <Image src={PORTRAIT} alt="Ghost Aviator" fill priority sizes="176px"
+              <Image src={PORTRAIT} alt="Capt. Pankaj Pahil" fill priority sizes="176px"
                      className="object-cover" style={{ objectPosition: "50% 50%" }} />
             </div>
             <div className="text-center md:text-left">
@@ -160,7 +160,7 @@ export default function AboutPage() {
           <div className="flex flex-col gap-4 text-[15px] leading-relaxed" style={{ color: "#94a3b8" }}>
             <p>
               Quality DGCA ground training in India can cost lakhs of rupees — and a wrong answer
-              memorised from an unverified question bank can cost a student an attempt. The Captain
+              memorised from an unverified question bank can cost a student an attempt. Capt. Pahil
               built Ghost Aviator to fix both: <strong className="text-white">exam-grade study material,
               verified against authoritative references, free for every student pilot.</strong>
             </p>
@@ -267,6 +267,10 @@ export default function AboutPage() {
               <Users className="w-5 h-5" /> Join the Community
             </a>
           </div>
+          <p className="mt-6 text-sm" style={{ color: "#94a3b8" }}>
+            Call or WhatsApp Capt. Pankaj Pahil:{" "}
+            <a href={`tel:+${LIVE_WHATSAPP}`} className="font-bold no-underline" style={{ color: "#f3c889" }}>{LIVE_PHONE_DISPLAY}</a>
+          </p>
         </div>
       </section>
     </div>
