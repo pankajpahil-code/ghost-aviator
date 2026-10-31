@@ -93,6 +93,15 @@ export const FAQS: FaqEntry[] = [
     hrefLabel: "The full path to a CPL",
     guides: ["how-to-become-a-pilot-in-india"],
   },
+  {
+    q: "How long is a CPL valid in India?",
+    a: "Ten years. The Aircraft (First Amendment) Rules, 2023 (G.S.R. 733(E), October 2023) changed Rule 39C of the Aircraft Rules, 1937 so that both the CPL and the ATPL are valid for ten years instead of five. Many older notes still teach five years, which is the pre-2023 rule. A Student Pilot's Licence is still valid for five years.",
+    topic: "licence",
+    source: "Aircraft Rules 1937 r.39C table, as amended by G.S.R. 733(E) dated 10 Oct 2023 — Gazette read page by page 2026-09-05 (CLAUDE.md domain fact 5); re-corroborated 2026-10-31",
+    href: "/guides/how-to-become-a-pilot-in-india",
+    hrefLabel: "The full path to a CPL",
+    guides: ["how-to-become-a-pilot-in-india"],
+  },
 
   // ---------------- cost ----------------
   {
