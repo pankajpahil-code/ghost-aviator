@@ -181,7 +181,8 @@ export function isIndexableChapterRoute(
       return ownsQuestionSet(subjectId, chapterId);
 
     case "video":
-      // NOINDEX since 2026-10-29 (robots noindex,follow; route still renders).
+      // INDEXED again since 2026-10-31 (see the revert note at the end of this
+      // arm). History: noindex 2026-10-29 to 2026-10-31, for the reasons below.
       //
       // Before, every chapter with a mapped lecture kept /video indexable as the
       // lecture's watch page. The index diagnosis of 2026-10-27 measured those
@@ -200,8 +201,13 @@ export function isIndexableChapterRoute(
       // linked for students (subject hub, /video-lectures, the chapter's
       // "More on this chapter" box via hasRouteContent).
       //
-      // To revert: return getChapterVideos(subjectId, chapterId).length > 0.
-      return false;
+      // REVERTED 2026-10-31 on the Captain's order ("index videos also, index
+      // everything"), restating his 22 Oct ruling: "Keep the /video watch pages
+      // indexable so the lectures stay in Google video results." With /video
+      // noindex AND isWatchPage() limited to /video, no indexable page announced
+      // any of his 272 lectures. ATPL /video stays out by the rule above: all 23
+      // ATPL lectures are also on a CPL chapter, and one video gets one watch page.
+      return getChapterVideos(subjectId, chapterId).length > 0;
 
     // Client-rendered drills over questions the sibling /questions page already
     // publishes in full. 28 main words of server-rendered HTML, and the same 28
