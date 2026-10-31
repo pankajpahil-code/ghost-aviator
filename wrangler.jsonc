@@ -19,7 +19,7 @@
     "not_found_handling": "none",
     // The Google verification file must answer 200 at its .html URL, which
     // html_handling would 307 away. The Worker serves it (VERBATIM_HTML).
-    "run_worker_first": ["/google03c67855fee92810.html"]
+    "run_worker_first": ["/google03c67855fee92810.html", "/_gini/*"]
   },
   "define": {
     "process.env.NODE_ENV": "\"production\""

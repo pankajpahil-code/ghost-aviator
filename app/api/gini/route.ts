@@ -153,7 +153,7 @@ export async function POST(req: Request) {
 
   /* ── the tutor path: a chapter can ground this, so the model may teach ── */
   const awareness = cleanAwareness(body.awareness);
-  const grounding = groundingFor(q, ctx, [awareness.visibleSection, awareness.selectedText].filter(Boolean).join(" "));
+  const grounding = await groundingFor(q, ctx, [awareness.visibleSection, awareness.selectedText].filter(Boolean).join(" "));
   if (grounding) {
     const history = cleanHistory(body.history);
     // Ask, repair wrong-block vowel signs, guard, and retry once only for a

@@ -155,6 +155,30 @@ fs.writeFileSync(path.join(OUT, ".assetsignore"), [
   "",
 ].join("\n"));
 
+// ── Gini's chapter text ────────────────────────────────────────────────────
+// The tutor needs each chapter as plain text, and a Worker cannot read public/
+// from disk. Written here, read through the ASSETS binding by cloudflare/worker.ts;
+// /_gini/* is routed to the Worker first (wrangler.jsonc), which 404s it publicly.
+{
+  const { CPL_SUBJECTS, ATPL_SUBJECTS } = await import("../../lib/subjects");
+  const { getInlineNotes } = await import("../../lib/notes-inline");
+  const { chapterPlainText } = await import("../../lib/gini/tutor");
+  let written = 0;
+  for (const s of [...CPL_SUBJECTS, ...ATPL_SUBJECTS]) {
+    for (const c of s.chapters) {
+      const notes = getInlineNotes(s.id, c.id);
+      const text = notes ? chapterPlainText(notes.html) : "";
+      if (text.length <= 400) continue;
+      const file = path.join(OUT, "_gini", "notes", s.id, `${c.id}.txt`);
+      fs.mkdirSync(path.dirname(file), { recursive: true });
+      fs.writeFileSync(file, text);
+      written++;
+    }
+  }
+  console.log(`Gini chapter text: ${written} chapters`);
+  if (written < 200) { console.error("Gini chapter text: too few chapters written"); process.exit(1); }
+}
+
 // ── Files over the 25 MiB per-asset limit ──────────────────────────────────
 const ignored = (rel: string) => /^content\/.+\/(notes\.html|slides\.pdf|audio\.m4a)$/.test(rel) || shadowed.includes(rel);
 type Big = { path: string; size: number; parts: string[]; contentType: string };

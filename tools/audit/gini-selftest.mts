@@ -442,7 +442,7 @@ line("\n--- SCREEN AWARENESS ---");
   check(a.selectedText?.length === 300, "selectedText is capped at 300 characters", String(a.selectedText?.length));
   check(Object.keys(cleanAwareness({ visibleSection: 42, selectedText: null })).length === 0, "non-string awareness is dropped");
   check(Object.keys(cleanAwareness("not an object")).length === 0, "a malformed awareness field is ignored");
-  const g = groundingFor("explain this", readContext("/cpl/meteorology/met-15/notes"));
+  const g = await groundingFor("explain this", readContext("/cpl/meteorology/met-15/notes"));
   if (g) {
     const p = buildTutorPrompt("explain this", readContext("/cpl/meteorology/met-15/notes"), g, [], [],
       { visibleSection: "Jet Stream Characteristics", selectedText: "core velocity of 60 kt" });

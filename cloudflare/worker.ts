@@ -40,6 +40,24 @@ const ROUTES: Record<string, () => Promise<RouteModule>> = {
   "/embed/question": () => import("../app/embed/question/route") as Promise<RouteModule>,
 };
 
+// Gini's tutor reads each chapter's plain text. lib/notes-inline.ts reads it
+// from disk, and a Worker has no disk holding public/, so since the move every
+// chapter came back null and nothing could be taught (found 2026-10-31).
+// tools/cloudflare/build.mts writes /_gini/notes/<subject>/<chapter>.txt;
+// wrangler.jsonc routes /_gini/* to this Worker first, which has no route for
+// it, so the public URL 404s while the ASSETS binding still reads the file.
+let chapterTextInstalled = false;
+async function installChapterText(env: Env, url: URL) {
+  if (chapterTextInstalled) return;
+  const { setChapterTextLoader } = await import("../lib/gini/tutor");
+  setChapterTextLoader(async (subjectId, chapterId) => {
+    if (!/^[a-z0-9-]+$/.test(subjectId) || !/^[a-z0-9-]+$/.test(chapterId)) return null;
+    const res = await env.ASSETS.fetch(new URL(`/_gini/notes/${subjectId}/${chapterId}.txt`, url.origin));
+    return res.ok ? res.text() : null;
+  });
+  chapterTextInstalled = true;
+}
+
 // The Google Search Console ownership file (CLAUDE.md: never delete, never
 // edit). Must match assets.run_worker_first in wrangler.jsonc.
 const VERBATIM_HTML = new Set(["/google03c67855fee92810.html"]);
@@ -162,6 +180,7 @@ const worker = {
     // 2. Dynamic routes.
     const load = ROUTES[path.length > 1 ? path.replace(/\/$/, "") : path];
     if (load) {
+      if (path.startsWith("/api/gini")) await installChapterText(env, url);
       const mod = await load();
       const method = req.method.toUpperCase() as keyof RouteModule;
       const handler = mod[method] ?? (method === "HEAD" ? mod.GET : undefined);

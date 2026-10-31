@@ -146,7 +146,9 @@ line("=".repeat(72));
 
 // The routing probes run where no chapter can ground the question, which is
 // the only place the routing path still runs since 2026-10-22.
-for (const p of TUTOR_ONLY ? [] : PROBES.filter(x => !groundingFor(x.q, readContext(x.path ?? "/")))) {
+const ROUTING: typeof PROBES = [];
+if (!TUTOR_ONLY) for (const x of PROBES) if (!(await groundingFor(x.q, readContext(x.path ?? "/")))) ROUTING.push(x);
+for (const p of ROUTING) {
   const ctx = readContext(p.path ?? "/");
   const candidates = buildCandidates(p.q, ctx);
   const byId = new Map(candidates.map(c => [c.id, c]));
@@ -351,7 +353,7 @@ const latencies: number[] = [];
 for (const p of TUTOR_PROBES) {
   const ctx = readContext(p.path);
   const aw = p.awareness ?? {};
-  const g = groundingFor(p.q, ctx, [aw.visibleSection, aw.selectedText].filter(Boolean).join(" "));
+  const g = await groundingFor(p.q, ctx, [aw.visibleSection, aw.selectedText].filter(Boolean).join(" "));
   line(`\n"${p.q.slice(0, 68)}${p.q.length > 68 ? "…" : ""}"  @ ${p.path}`);
   line(`   want=${p.want}  (${p.note})`);
   if (!g) {
