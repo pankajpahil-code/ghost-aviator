@@ -11,7 +11,7 @@ import ProgressSync from "./components/ProgressSync";
 import Gini from "./components/gini/Gini";
 import WhatsAppClickTracker from "./components/WhatsAppClickTracker";
 import { LIVE_WHATSAPP } from "@/lib/live-classes";
-import { SITE_URL, CAPTAIN_PROFILES, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT } from "@/lib/site";
+import { SITE_URL, ORG_SAME_AS, PERSON_SAME_AS, PERSON_ID, ORG_ID, CAPTAIN_KNOWS_ABOUT} from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -79,8 +79,10 @@ const JSON_LD = {
         telephone: `+${LIVE_WHATSAPP}`,
         areaServed: "IN",
         availableLanguage: ["English", "Hindi"],
+        url: `${SITE_URL}/contact`,
       },
-      sameAs: CAPTAIN_PROFILES,
+      // Brand accounts only; the Captain's personal profiles are on the Person.
+      sameAs: ORG_SAME_AS,
     },
     // The Captain travels with every page, so the entity behind the teaching is
     // asserted site-wide. /about carries the full description under the same @id.
@@ -91,9 +93,10 @@ const JSON_LD = {
       alternateName: "Ghost Aviator",
       telephone: `+${LIVE_WHATSAPP}`,
       url: `${SITE_URL}/about`,
+      image: `${SITE_URL}/captain-real.webp`,
       worksFor: { "@id": ORG_ID },
       jobTitle: "Pilot, DGCA Flight & Ground Instructor",
-      sameAs: CAPTAIN_PROFILES,
+      sameAs: PERSON_SAME_AS,
       knowsAbout: CAPTAIN_KNOWS_ABOUT,
     },
     {

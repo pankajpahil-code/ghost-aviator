@@ -31,7 +31,56 @@ export const TELEGRAM_CHANNEL = "https://t.me/ghostaviator";
 export const YOUTUBE_PERSONAL = "https://www.youtube.com/@PankajPahil";
 export const TELEGRAMRADAR = "https://www.telegramradar.com/en/explore/ghost-aviator-dgca-cpl-atpl-exam-prep-all-subjects-muzcct45";
 
-export const CAPTAIN_PROFILES = [TELEGRAM_GROUP, WHATSAPP_GROUP, YOUTUBE_BRAND, YOUTUBE_PERSONAL, INSTAGRAM, TELEGRAM_CHANNEL, TELEGRAMRADAR];
+// Added 2026-10-31 (brand-chain audit). Each one checked as a real Ghost Aviator /
+// Capt. Pankaj Pahil profile on 31 Oct 2026. The Facebook Page is the one Buffer
+// publishes to; other Facebook IDs seen in search are NOT confirmed and stay out.
+export const TELEGRAM_COMMUNITY = "https://t.me/CaptGhostAviator"; // public URL of TELEGRAM_GROUP
+export const FACEBOOK_PAGE = "https://www.facebook.com/1258974680628637";
+export const THREADS = "https://www.threads.com/@capt.ghostaviator";
+export const REDDIT = "https://www.reddit.com/user/GhostAviatorDGCA/";
+export const QUORA = "https://www.quora.com/profile/Pankaj-Pahil";
+export const BLUESKY = "https://bsky.app/profile/ghostaviator.bsky.social";
+export const ABOUT_ME = "https://about.me/ghostaviator";
+export const GRAVATAR = "https://gravatar.com/affable6a06dd6657";
+export const PEERLIST = "https://peerlist.io/pankajpahil";
+export const INDIEHACKERS = "https://www.indiehackers.com/product/ghost-aviator";
+export const GITHUB = "https://github.com/pankajpahil-code";
+
+/** The hub page that lists every official account. Link-in-bio target. */
+export const OFFICIAL_PATH = "/official";
+
+// schema.org sameAs, split by entity. sameAs says "this URL is the same entity",
+// so it lists PROFILES only: no invite links (t.me/+..., chat.whatsapp.com), no
+// directory listings (TelegramRadar). Those stay as ordinary UI links.
+export const ORG_SAME_AS = [
+  YOUTUBE_BRAND, INSTAGRAM, FACEBOOK_PAGE, THREADS, TELEGRAM_CHANNEL, TELEGRAM_COMMUNITY,
+  BLUESKY, INDIEHACKERS,
+];
+export const PERSON_SAME_AS = [
+  YOUTUBE_PERSONAL, QUORA, REDDIT, ABOUT_ME, GRAVATAR, PEERLIST, GITHUB,
+];
+
+/**
+ * Every official account, for the /official hub, the footer row and llms.txt.
+ * `footer` (a short label) = shown in the footer's "Follow Ghost Aviator" row.
+ */
+export const OFFICIAL_CHANNELS: { label: string; handle: string; href: string; note: string; footer?: string }[] = [
+  { label: "YouTube (Ghost Aviator)", handle: "@Capt.GhostAviator", href: YOUTUBE_BRAND, note: "The brand channel: lectures, shorts and announcements.", footer: "YouTube" },
+  { label: "YouTube (Capt. Pankaj Pahil)", handle: "@PankajPahil", href: YOUTUBE_PERSONAL, note: "The full DGCA CPL and ATPL lecture series." },
+  { label: "Instagram", handle: "@capt.ghostaviator", href: INSTAGRAM, note: "Short lessons and updates.", footer: "Instagram" },
+  { label: "Telegram community", handle: "@CaptGhostAviator", href: TELEGRAM_COMMUNITY, note: "The moderated student community.", footer: "Telegram" },
+  { label: "Telegram channel", handle: "@ghostaviator", href: TELEGRAM_CHANNEL, note: "Announcements and new material." },
+  { label: "Facebook", handle: "Ghost Aviator", href: FACEBOOK_PAGE, note: "The official Ghost Aviator Page.", footer: "Facebook" },
+  { label: "Reddit", handle: "u/GhostAviatorDGCA", href: REDDIT, note: "Answers to DGCA exam questions.", footer: "Reddit" },
+  { label: "Quora", handle: "Pankaj Pahil", href: QUORA, note: "Capt. Pankaj Pahil answers aviation questions.", footer: "Quora" },
+  { label: "Threads", handle: "@capt.ghostaviator", href: THREADS, note: "Short posts and updates.", footer: "Threads" },
+  { label: "Bluesky", handle: "@ghostaviator.bsky.social", href: BLUESKY, note: "Ghost Aviator on Bluesky." },
+  { label: "about.me", handle: "ghostaviator", href: ABOUT_ME, note: "Profile page." },
+  { label: "Gravatar", handle: "Capt. Pankaj Pahil", href: GRAVATAR, note: "Profile page." },
+  { label: "Peerlist", handle: "pankajpahil", href: PEERLIST, note: "Capt. Pankaj Pahil's builder profile." },
+  { label: "Indie Hackers", handle: "Ghost Aviator", href: INDIEHACKERS, note: "The Ghost Aviator product page." },
+  { label: "GitHub", handle: "pankajpahil-code", href: GITHUB, note: "Capt. Pankaj Pahil's code profile." },
+];
 
 // The Captain's public per-subject study groups on Telegram (created 2026-09-24; the
 // Ghost Aviator assistant answers /q doubts there from his notes). Keyed by subject id,

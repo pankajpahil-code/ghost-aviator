@@ -3,6 +3,11 @@ import { Ghost, Send, Phone } from "lucide-react";
 import EmailCapture from "./EmailCapture";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { atplStudyLabel } from "@/lib/atpl-syllabus";
+import { OFFICIAL_CHANNELS } from "@/lib/site";
+
+// The footer's "Follow Ghost Aviator" row: the channels flagged `footer` in
+// lib/site.ts, in that order, plus the /official hub that lists every account.
+const FOOTER_SOCIALS = OFFICIAL_CHANNELS.filter(c => c.footer);
 
 export default function Footer() {
   return (
@@ -61,6 +66,9 @@ export default function Footer() {
                 ["Pilot Training in India", "/pilot-training-india"],
                 ["DGCA Exam FAQ",       "/faq"],
                 ["How Answers Are Verified", "/how-answers-are-verified"],
+                ["Official Channels",   "/official"],
+                ["Contact",             "/contact"],
+                ["Terms",               "/terms"],
                 ["Privacy",             "/privacy"],
               ].map(([item, href]) => (
                 <li key={item}>
@@ -87,7 +95,31 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
+        {/* Follow Ghost Aviator — official social accounts */}
+        <nav aria-label="Follow Ghost Aviator" className="mt-10 pt-6" style={{ borderTop: "1px solid rgba(240,145,58,0.1)" }}>
+          <h4 className="text-sm font-semibold mb-3" style={{ color: "#f0913a" }}>Follow Ghost Aviator</h4>
+          <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
+            {FOOTER_SOCIALS.map(c => (
+              <li key={c.href}>
+                <a href={c.href} target="_blank" rel="me noopener noreferrer"
+                   aria-label={`Ghost Aviator on ${c.footer}`}
+                   className="inline-flex items-center px-3 py-1.5 rounded-lg text-sm no-underline hover:text-white transition-colors"
+                   style={{ background: "rgba(240,145,58,0.06)", color: "#94a3b8", border: "1px solid rgba(240,145,58,0.15)" }}>
+                  {c.footer}
+                </a>
+              </li>
+            ))}
+            <li>
+              <Link href="/official"
+                    className="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium no-underline"
+                    style={{ background: "rgba(240,145,58,0.1)", color: "#f0913a", border: "1px solid rgba(240,145,58,0.2)" }}>
+                All official channels →
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <div className="mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
              style={{ borderTop: "1px solid rgba(240,145,58,0.1)" }}>
           <p className="text-xs" style={{ color: "#475569" }}>
             © {new Date().getFullYear()} Ghost Aviator. Made with ❤️ for Indian aviation students.

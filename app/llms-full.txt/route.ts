@@ -1,5 +1,5 @@
 import { servesRealNotes } from "@/lib/indexability";
-import { SITE_URL, YOUTUBE_BRAND } from "@/lib/site";
+import { SITE_URL, YOUTUBE_BRAND, OFFICIAL_CHANNELS } from "@/lib/site";
 import { GUIDES } from "@/lib/guides";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { atplStudyLabel, ATPL_REGULATIONS_EXEMPTION } from "@/lib/atpl-syllabus";
@@ -40,6 +40,14 @@ Instructor: ${SITE_URL}/about
 Attribution: Capt. Pankaj Pahil, Ghost Aviator (${SITE_URL})
 YouTube: ${YOUTUBE_BRAND}
 
+## Official channels
+
+Every official Ghost Aviator / Capt. Pankaj Pahil account is listed at
+${SITE_URL}/official. Accounts not listed there are not ours.
+
+- Website: ${SITE_URL}
+${OFFICIAL_CHANNELS.map(c => `- ${c.label} (${c.handle}): ${c.href}`).join("\n")}
+
 ## Primary landings
 
 - Home: ${SITE_URL}/
@@ -57,6 +65,9 @@ YouTube: ${YOUTUBE_BRAND}
 - Live classes: ${SITE_URL}/live-classes
 - CPL cost calculator: ${SITE_URL}/cpl-cost-calculator
 - How answers are verified: ${SITE_URL}/how-answers-are-verified
+- Official channels: ${SITE_URL}/official
+- Contact: ${SITE_URL}/contact
+- Terms: ${SITE_URL}/terms
 - Sitemap: ${SITE_URL}/sitemap.xml
 
 ## CPL subjects

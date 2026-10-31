@@ -3,7 +3,7 @@ import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ATPL_CORE_PAPER_IDS } from "@/lib/atpl-syllabus";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { GUIDES } from "@/lib/guides";
-import { SITE_URL, YOUTUBE_BRAND } from "@/lib/site";
+import { SITE_URL, YOUTUBE_BRAND, OFFICIAL_CHANNELS } from "@/lib/site";
 import { LIVE_PHONE_DISPLAY } from "@/lib/live-classes";
 
 export const dynamic = "force-static";
@@ -61,6 +61,14 @@ If you cite this site, please attribute it to Capt. Pankaj Pahil, Ghost Aviator
 - YouTube: ${YOUTUBE_BRAND}
 - Phone / WhatsApp: ${LIVE_PHONE_DISPLAY} (Capt. Pankaj Pahil, for live classes and enquiries)
 
+## Official channels
+
+Every official Ghost Aviator / Capt. Pankaj Pahil account is listed at
+${SITE_URL}/official. Accounts not listed there are not ours.
+
+- Website: ${SITE_URL}
+${OFFICIAL_CHANNELS.map(c => `- ${c.label} (${c.handle}): ${c.href}`).join("\n")}
+
 ## How answers are verified
 
 Every question and answer published here is checked against an authoritative
@@ -103,6 +111,8 @@ are separate. Student starting point: ${SITE_URL}/pilot-training-india
 - CPL cost calculator: ${SITE_URL}/cpl-cost-calculator
 - Live online ground classes: ${SITE_URL}/live-classes
 - About the instructor: ${SITE_URL}/about
+- Official channels: ${SITE_URL}/official
+- Contact: ${SITE_URL}/contact
 
 ## A note on the chapter notes
 
