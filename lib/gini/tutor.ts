@@ -112,7 +112,9 @@ export function chapterPlainText(html: string): string {
 }
 
 const STOP = new Set(
-  "the a an of to in on at for and or is are was be by with what how why when which who this that it its as from do does i me my you your can explain tell about please".split(" "),
+  ("the a an of to in on at for and or is are was be by with what how why when which who this that it its as from do does i me my you your can explain tell about please" +
+  // Romanised Hindi filler, same reason as STOP in match.ts.
+  " kya hai hain hota hoti hote mein mai kaise kyun kyon kab kahan kaun samjhao samjhaiye samjha batao bataiye bata matlab yeh woh mujhe karo aur bhi toh hindi hinglish").split(" "),
 );
 const wordsOf = (s: string) =>
   new Set((s.toLowerCase().match(/[a-z0-9]+/g) ?? []).filter(w => w.length > 1 && !STOP.has(w)));
@@ -190,7 +192,15 @@ export function groundingFor(query: string, ctx: GiniContext, focus = ""): Groun
   };
 
   const here = ctx.area === "chapter" ? tryChapter(ctx.subjectId, ctx.chapterId) : null;
-  if (here) return here;
+  // Stay on the open chapter unless the question names a topic it never
+  // mentions. 2026-10-31: "what is QNH" on Met Ch.1 was grounded in Ch.1, which
+  // has no QNH, so the model rightly answered "none" and the altimetry chapter
+  // was never tried. A question with no topic words ("explain this") stays here.
+  if (here) {
+    const asked = [...wordsOf(query)].filter(w => w.length > 2);
+    const chapterWords = wordsOf(chapterText(here.subjectId, here.chapterId) ?? "");
+    if (asked.length === 0 || asked.some(w => chapterWords.has(w))) return here;
+  }
 
   // Chapter TITLES first, then section headings: 234 titles against thousands
   // of headings, and a heading match alone sent "explain the 1 in 60 rule" to
@@ -206,7 +216,7 @@ export function groundingFor(query: string, ctx: GiniContext, focus = ""): Groun
     const g = tryChapter(t.s, t.c);
     if (g) return g;
   }
-  return null;
+  return here;
 }
 
 /**
