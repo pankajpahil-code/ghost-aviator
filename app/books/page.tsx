@@ -40,7 +40,7 @@ const BOOKS: Book[] = [
     title: "Human Performance & Limitations",
     subtitle: "The Complete ATPL Human Performance & Limitations Book",
     edition: "1st Edition · 2026",
-    author: "Ghost Aviator",
+    author: "Capt. Pankaj Pahil",
     coverImage: "/content/human-performance/_assets/images/cover-front.webp",
     accentFrom: "#fbbf24",
     accentTo: "#e0a058",
@@ -60,7 +60,7 @@ const BOOKS: Book[] = [
     title: "RTR(A) Mastery",
     subtitle: "The Complete Guide to the DGCA Radio Telephone Operator Examination",
     edition: "1st Edition · 2026",
-    author: "Ghost Aviator",
+    author: "Capt. Pankaj Pahil",
     coverImage: "/content/radio-telephony/_assets/images/pdf_front_cover.jpg",
     accentFrom: "#fbbf24",
     accentTo: "#ef4444",
@@ -80,7 +80,7 @@ const BOOKS: Book[] = [
     title: "Radio Navigation",
     subtitle: "The Complete DGCA Radio Navigation Study Book — From Radio Waves to GNSS",
     edition: "1st Edition · 2026",
-    author: "Ghost Aviator",
+    author: "Capt. Pankaj Pahil",
     coverImage: "",
     accentFrom: "#06b6d4",
     accentTo: "#0891b2",
@@ -100,7 +100,7 @@ const BOOKS: Book[] = [
     title: "Air Regulations",
     subtitle: "DGCA CPL Air Regulations — All 26 Chapters",
     edition: "Coming 2026",
-    author: "Ghost Aviator",
+    author: "Capt. Pankaj Pahil",
     coverImage: "",
     accentFrom: "#818cf8",
     accentTo: "#6366f1",
@@ -119,7 +119,7 @@ const BOOKS: Book[] = [
     title: "Aviation Meteorology",
     subtitle: "DGCA CPL Meteorology — Weather for Pilots",
     edition: "Coming 2026",
-    author: "Ghost Aviator",
+    author: "Capt. Pankaj Pahil",
     coverImage: "",
     accentFrom: "#38bdf8",
     accentTo: "#0ea5e9",
@@ -138,7 +138,7 @@ const BOOKS: Book[] = [
     title: "Air Navigation",
     subtitle: "DGCA CPL Navigation — Charts, Plotting & Flight Planning",
     edition: "Coming 2026",
-    author: "Ghost Aviator",
+    author: "Capt. Pankaj Pahil",
     coverImage: "",
     accentFrom: "#34d399",
     accentTo: "#10b981",
@@ -157,7 +157,7 @@ const BOOKS: Book[] = [
     title: "Technical General",
     subtitle: "DGCA CPL Aircraft & Engines — Systems, Aerodynamics & Performance",
     edition: "Coming 2026",
-    author: "Ghost Aviator",
+    author: "Capt. Pankaj Pahil",
     coverImage: "",
     accentFrom: "#f97316",
     accentTo: "#ea580c",
@@ -190,7 +190,7 @@ export default function BooksPage() {
         "@id": `${SITE_URL}/books#webpage`,
         name: "Digital Books — Interactive DGCA Study Library",
         description:
-          "Interactive digital books for DGCA CPL & ATPL exam preparation. Animated, chapter-indexed study material by Ghost Aviator.",
+          "Interactive digital books for DGCA CPL & ATPL exam preparation. Animated, chapter-indexed study material by Capt. Pankaj Pahil.",
         url: `${SITE_URL}/books`,
         inLanguage: "en-IN",
         publisher: { "@id": ORG_ID },
@@ -360,7 +360,7 @@ export default function BooksPage() {
         <div className="bk-shelf-head">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider mb-3"
                style={{ background: "rgba(251,191,36,0.12)", border: "1px solid rgba(251,191,36,0.35)", color: "#fbbf24" }}>
-            <Sparkles className="w-3.5 h-3.5"/> Author Editions · Ghost Aviator
+            <Sparkles className="w-3.5 h-3.5"/> Author Editions · Capt. Pankaj Pahil
           </div>
           <h2 className="bk-shelf-title">Editions under revision</h2>
           <p className="bk-shelf-sub">
@@ -558,7 +558,7 @@ export default function BooksPage() {
         <p className="bk-bottom-text">
           Online study chapters are 100% <strong>free for every student pilot</strong>. Paid live teaching helps sustain the academy while self-study remains free.
         </p>
-        <p className="bk-bottom-author">— Ghost Aviator</p>
+        <p className="bk-bottom-author">— Capt. Pankaj Pahil · Ghost Aviator</p>
       </section>
     </div>
   );

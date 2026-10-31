@@ -14,6 +14,8 @@
 // advertising a struck-through figure as the offer is a false price claim.
 
 export const LIVE_WHATSAPP = "919990226607";
+/** The same number as people read it: "+91 99902 26607". */
+export const LIVE_PHONE_DISPLAY = `+${LIVE_WHATSAPP.slice(0, 2)} ${LIVE_WHATSAPP.slice(2, 7)} ${LIVE_WHATSAPP.slice(7)}`;
 
 /** One subject, live, batch of 10. */
 export const LIVE_LIST_PRICE = "₹12,999";

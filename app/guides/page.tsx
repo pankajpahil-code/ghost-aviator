@@ -6,7 +6,7 @@ import { HubBannerCta } from "@/app/components/LiveCta";
 
 export const metadata = {
   title: "DGCA Exam Guides — CPL, RTR(A) & Pilot Training in India | Ghost Aviator",
-  description: "DGCA exam guides by Ghost Aviator — computer number, RTR(A) after the DGCA takeover, free vs paid question banks, ATPL theory timing, CPL pattern and pilot training cost.",
+  description: "DGCA exam guides by Capt. Pankaj Pahil — computer number, RTR(A) after the DGCA takeover, free vs paid question banks, ATPL theory timing, CPL pattern and pilot training cost.",
   alternates: { canonical: "/guides" },
 };
 
@@ -18,7 +18,7 @@ export default function GuidesIndexPage() {
         "@type": "CollectionPage",
         "@id": `${SITE_URL}/guides#webpage`,
         "name": "DGCA Aviation Study Guides",
-        "description": "DGCA exam guides by Ghost Aviator — computer number, RTR(A) after the DGCA takeover, free vs paid question banks, ATPL theory timing, CPL pattern and pilot training cost.",
+        "description": "DGCA exam guides by Capt. Pankaj Pahil — computer number, RTR(A) after the DGCA takeover, free vs paid question banks, ATPL theory timing, CPL pattern and pilot training cost.",
         "url": `${SITE_URL}/guides`,
         "inLanguage": "en-IN",
         "publisher": { "@id": ORG_ID },

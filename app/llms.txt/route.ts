@@ -4,6 +4,7 @@ import { ATPL_CORE_PAPER_IDS } from "@/lib/atpl-syllabus";
 import { ALL_QUESTIONS } from "@/lib/questions";
 import { GUIDES } from "@/lib/guides";
 import { SITE_URL, YOUTUBE_BRAND } from "@/lib/site";
+import { LIVE_PHONE_DISPLAY } from "@/lib/live-classes";
 
 export const dynamic = "force-static";
 
@@ -58,6 +59,7 @@ If you cite this site, please attribute it to Capt. Pankaj Pahil, Ghost Aviator
 (${SITE_URL}).
 
 - YouTube: ${YOUTUBE_BRAND}
+- Phone / WhatsApp: ${LIVE_PHONE_DISPLAY} (Capt. Pankaj Pahil, for live classes and enquiries)
 
 ## How answers are verified
 
