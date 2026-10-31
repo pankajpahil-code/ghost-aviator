@@ -65,10 +65,20 @@ export const TITLE_MAX = 60;
  * which is the first thing dropped when space runs out (ticket #7). Only if no
  * variant fits is the topic itself shortened.
  */
-export function fitTitle(topic: string, variants: string[]): string {
+export function fitTitle(topic: string, variants: string[], keep?: string): string {
   for (const v of variants) {
     const t = `${topic} – ${v}`;
     if (t.length <= TITLE_MAX) return t;
+  }
+  // `keep` must survive: shorten the topic at a word boundary to make room.
+  if (keep) {
+    const room = TITLE_MAX - ` – ${keep}`.length;
+    let head = topic;
+    if (head.length > room) {
+      const cut = topic.slice(0, room - 1);
+      head = cut.slice(0, Math.max(cut.lastIndexOf(" "), 1)).replace(/[\s,;:&—–-]+$/, "") + "…";
+    }
+    return `${head} – ${keep}`;
   }
   if (topic.length <= TITLE_MAX) return topic;
   const cut = topic.slice(0, TITLE_MAX - 1);
@@ -108,8 +118,12 @@ export function chapterTitle(
   // Long chapter names: keep at least the exam (and the page kind if it fits).
   const trackOnly = track.toUpperCase();
   for (const k of kind) variants.push(`${trackOnly} ${k}`);
-  variants.push(exam, trackOnly);
-  return fitTitle(chapter.title, variants);
+  // The page kind is NEVER dropped (2026-10-31). The old last resorts here were
+  // the bare exam ("DGCA CPL", "CPL") and then the topic alone, so on a long
+  // chapter name the notes, questions and video pages of one chapter all fell
+  // back to the same title: 10 duplicate-title groups, 21 URLs on the live site.
+  // Now the topic is shortened instead and the shortest kind stays.
+  return fitTitle(chapter.title, variants, kind[kind.length - 1]);
 }
 
 /**
