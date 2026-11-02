@@ -117,7 +117,6 @@ export default function Home() {
                 </span>
               </div>
 
-              <h1 className="sr-only">Free DGCA CPL &amp; ATPL Exam Prep: Notes, Question Bank &amp; Mock Tests</h1>
               <div aria-hidden="true">
                 <div className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-1"
                      style={{ color:"#ffffff", textShadow:"0 2px 30px rgba(0,0,0,0.85), 0 0 60px rgba(240,145,58,0.25)" }}>GHOST</div>
@@ -126,20 +125,20 @@ export default function Home() {
                   AVIATOR
                 </div>
               </div>
-              <p className="text-xs font-bold tracking-widest mb-6 uppercase"
-                 style={{ color:"rgba(243,200,137,0.75)", letterSpacing:"0.22em", textShadow:"0 1px 12px rgba(0,0,0,0.9)" }}>
-                Legacy of the Skies · The Spirit Beyond the Clouds
-              </p>
+              <h1 className="text-2xl sm:text-3xl font-bold mb-4"
+                 style={{ color:"rgba(243,200,137,0.75)", textShadow:"0 1px 12px rgba(0,0,0,0.9)" }}>
+                Free DGCA CPL and ATPL exam preparation
+              </h1>
               <p className="text-base mb-9 max-w-lg leading-relaxed"
                  style={{ color:"#c8d2dc", textShadow:"0 1px 14px rgba(0,0,0,0.9)" }}>
-                Study for DGCA CPL and ATPL exams with chapter notes, practice questions and mock tests.
+                Study with Capt. Pankaj Pahil through illustrated lessons, practice questions and mock tests.
                 <strong style={{ color:"var(--ember-soft)" }}> Self-study stays free. Live classes are optional.</strong>
               </p>
 
               <div className="flex flex-wrap gap-4 mb-10">
-                <Link href="/cpl" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline"
+                <Link href="/cpl/meteorology/met-1/notes" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-black no-underline"
                       style={{ background:"linear-gradient(135deg,#f0913a,#c25a1e)", color:"#1a1206", boxShadow:"0 0 34px rgba(240,145,58,0.45)" }}>
-                  Start CPL Prep <ArrowRight className="w-5 h-5" />
+                  Study a free lesson <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link href="/atpl" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold no-underline"
                       style={{ border:"1px solid rgba(243,200,137,0.55)", color:"var(--ember-soft)", background:"rgba(11,17,23,0.55)", backdropFilter:"blur(4px)" }}>
@@ -147,6 +146,11 @@ export default function Home() {
                 </Link>
               </div>
 
+              <div className="flex flex-wrap gap-x-5 gap-y-2 mb-6 text-sm underline">
+                <Link href="/cpl">Browse CPL subjects</Link>
+                <Link href="/free-dgca-mock-test">Try a free mock test</Link>
+                <a href="/study-notebook.html" download="Ghost-Aviator-study-notebook.html">Download the study notebook</a>
+              </div>
               <div className="grid grid-cols-4 gap-3 max-w-xl">
                 {[[TOTAL_Q,"Questions"],[`${SUBJECT_COUNT}`,"Study areas"],["70%","Pass Mark"],["FREE","Self-study"]].map(([v,l]) => (
                   <div key={l} className="text-center p-3 rounded-xl"

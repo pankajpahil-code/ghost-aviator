@@ -133,7 +133,7 @@ export function clearSubjectProgress(track: Track, subjectId: string) {
 // this file and must not drag the bank into their bundle.
 export const QUIZ_SAMPLE_SIZE = 25;
 /** Below this many questions a score says nothing: no verdict, no progress. */
-export const MIN_QUESTIONS_FOR_VERDICT = 10;
+export { MIN_QUESTIONS_FOR_VERDICT, canStartRun } from "./quiz-availability";
 
 type HasChapterId = { chapterId?: string };
 
@@ -173,16 +173,6 @@ export function questionsForRun<T>(
   rand: () => number = Math.random,
 ): T[] {
   return fallback ? sampleQuestions(questions, QUIZ_SAMPLE_SIZE, rand) : [...questions];
-}
-
-/**
- * A subject-wide fallback pool smaller than the verdict minimum cannot make an
- * honest revision quiz (a "random 25 from the subject" of 2 questions is not a
- * quiz), so no run is started. A chapter's OWN short bank still runs, but is
- * labelled and never stored (see countsTowardChapter).
- */
-export function canStartRun(run: { poolSize: number; fallback: boolean }): boolean {
-  return run.poolSize > 0 && !(run.fallback && run.poolSize < MIN_QUESTIONS_FOR_VERDICT);
 }
 
 /** Only a full-size run of the chapter's OWN questions may be stored as a chapter result. */

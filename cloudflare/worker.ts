@@ -13,6 +13,7 @@
  * Headers from lib/site-routing.ts are applied to every response made here;
  * files served straight from assets get the same headers from out/_headers.
  */
+import { studyEvent } from "./study-events";
 import { match, compile } from "path-to-regexp";
 import { headerRules, redirectRules, type HeaderRule } from "../lib/site-routing";
 import bigFiles from "./generated/big-files.json";
@@ -158,6 +159,7 @@ const worker = {
   async fetch(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(req.url);
     const path = url.pathname;
+    if (path.startsWith("/api/study-events/")) return studyEvent(req, url);
 
     // 0. Files that must answer 200 at their exact .html URL. Static Assets'
     // html_handling 307s /x.html to /x, and Google's HTML-file verification
@@ -188,14 +190,25 @@ const worker = {
       if (!handler) {
         res = new Response(null, { status: 405, headers: { Allow: Object.keys(mod).filter(k => /^[A-Z]+$/.test(k)).join(", ") } });
       } else {
-        try { res = await handler(req); }
+        try {
+          if (path.startsWith("/api/gini")) {
+            // Only trust the client identity set by the Cloudflare edge.
+            const headers = new Headers(req.headers);
+            headers.set("x-forwarded-for", headers.get("cf-connecting-ip") || "unknown");
+            req = new Request(req, { headers });
+          }
+          res = await handler(req);
+        }
         catch (e) { console.error(path, e); res = Response.json({ error: "Internal error" }, { status: 500 }); }
       }
       return withHeaders(path, res);
     }
 
     // 3. Files too big for a single static asset.
-    const big = BIG.get(decodeURIComponent(path));
+    let decodedPath: string;
+    try { decodedPath = decodeURIComponent(path); }
+    catch { return withHeaders(path, new Response(null, { status: 400 })); }
+    const big = BIG.get(decodedPath);
     if (big && (req.method === "GET" || req.method === "HEAD")) return withHeaders(path, serveBig(req, env, big, ctx));
 
     // 4. Not a file, not a route: the site's own 404 page.

@@ -6,7 +6,6 @@ import { Analytics } from "@vercel/analytics/next";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LiveClassInvitation from "./components/LiveClassInvitation";
-import ContentProtection from "./components/ContentProtection";
 import ProgressSync from "./components/ProgressSync";
 import Gini from "./components/gini/Gini";
 import WhatsAppClickTracker from "./components/WhatsAppClickTracker";
@@ -119,7 +118,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`h-full ${inter.className}`}>
       <body className="min-h-full flex flex-col" style={{ background: "#0a0f14" }}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
-        <ContentProtection />
         <ProgressSync />
         <Navbar />
         <main className="flex-1">{children}</main>
@@ -134,7 +132,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Vercel Web Analytics only exists on Vercel; the Cloudflare build
             (CF_STATIC_EXPORT=1) leaves it out instead of 404ing its script. */}
         {process.env.CF_STATIC_EXPORT !== "1" && <Analytics />}
-        <WhatsAppClickTracker />
+        <WhatsAppClickTracker cloudflare={process.env.CF_STATIC_EXPORT === "1"} />
       </body>
     </html>
   );

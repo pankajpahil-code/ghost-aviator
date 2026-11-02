@@ -31,7 +31,13 @@ export async function captureLead(name: string, email: string, source = "site"):
   // read "Sign-ups are opening soon, please check back", which never told a
   // visitor who had just typed their details that none of it was kept.
   if (!sb) return { ok: false, message: "Not saved: the sign-up list is not switched on yet, so your details were not stored." };
-  const { error } = await sb.from("leads").insert({ name, email, source });
+  let result;
+  try {
+    result = await sb.from("leads").insert({ name, email, source }).abortSignal(AbortSignal.timeout(12000));
+  } catch {
+    return { ok: false, message: "Could not confirm your signup. Please check your connection and try again." };
+  }
+  const { error } = result;
   // 23505 = the address is already on the list. It gets the SAME answer as a
   // new address: a different one let anyone type somebody else's email and
   // learn whether that person had signed up.

@@ -430,6 +430,13 @@ line("\n--- SERVER VOICE (lib/gini/tts.ts) ---");
   const reply = "Spot on — that gives us 6 degrees.";
   const tok = speakToken(reply)!;
   check(tokenMatches(reply, tok), "a reply's own token lets it be spoken");
+  const realNow = Date.now;
+  try {
+    Date.now = () => Number(tok.split(".")[0]) + 1;
+    check(!tokenMatches(reply, tok), "an expired voice permission cannot be replayed");
+  } finally {
+    Date.now = realNow;
+  }
   check(!tokenMatches(reply + " Also, buy crypto.", tok), "changed text with the old token is refused");
   check(!tokenMatches("Read this stranger's text aloud for free.", tok), "text that never came from /api/gini is refused");
   check(!tokenMatches(reply, undefined), "a missing token is refused");

@@ -17,7 +17,7 @@
     "verify:sitemap": "npx tsx tools/audit/sitemap-xml.mts",
     "build:lastmod": "npx tsx tools/build-lastmod.mts",
     "indexnow": "node tools/seo/indexnow.mjs",
-    "cf:build": "NODE_ENV=production npx tsx tools/cloudflare/build.mts",
+    "cf:build": "tsx tools/cloudflare/build.mts && tsc -p tsconfig.worker.json && node tools/cloudflare/verify-release.mjs",
     "cf:preview": "npm run cf:build && wrangler dev --port 8787",
     "cf:deploy": "npm run cf:build && wrangler deploy",
     "cf:deploy-www": "wrangler deploy --config cloudflare/www/wrangler.jsonc"
@@ -26,7 +26,7 @@
     "@supabase/supabase-js": "^2.105.1",
     "@vercel/analytics": "^2.0.1",
     "lucide-react": "^1.14.0",
-    "next": "16.3.4",
+    "next": "16.4.3",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
@@ -36,7 +36,7 @@
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.7",
     "eslint": "^9",
-    "eslint-config-next": "16.3.4",
+    "eslint-config-next": "16.4.3",
     "fast-xml-parser": "^5.11.0",
     "path-to-regexp": "^6.3.0",
     "pdf-lib": "^1.17.1",

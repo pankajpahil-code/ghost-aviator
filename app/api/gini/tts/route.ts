@@ -1,3 +1,4 @@
+import { tutorBody } from "@/lib/gini/request";
 /**
  * GINI'S VOICE — POST { text, lang, token } -> audio/wav.
  *
@@ -43,8 +44,8 @@ const clientIp = (req: Request) =>
   req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
 
 export async function POST(req: Request) {
-  let body: { text?: unknown; lang?: unknown; token?: unknown; gender?: unknown; filter?: unknown };
-  try { body = await req.json(); } catch { return Response.json({ ok: false, why: "bad-body" }, { status: 400 }); }
+  const body = await tutorBody(req);
+  if (body instanceof Response) return body;
 
   const original = typeof body.text === "string" ? body.text.trim() : "";
   if (!original || original.length > 2000) return Response.json({ ok: false, why: "bad-text" }, { status: 400 });

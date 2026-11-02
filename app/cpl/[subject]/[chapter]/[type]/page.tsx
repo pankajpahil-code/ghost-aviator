@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { CPL_SUBJECTS } from "@/lib/subjects";
+import { quizLinkLabel } from "@/lib/quiz-availability";
 import { getQuestionsForChapter, getChapterSpecificQuestions } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { getInlineNotes, notesSectionHeadings } from "@/lib/notes-inline";
@@ -204,6 +205,7 @@ export default async function Page({
             chapter={chapter}
             prevChapter={prevChapter}
             nextChapter={nextChapter}
+            quizLabel={quizLinkLabel(questions.length, getChapterSpecificQuestions(subject.id, chapter.id).length > 0)}
             notes={inlineNotes}
             videos={getChapterVideos(subject.id, chapter.id)}
             openerFacts={openerFactsFor(subject.id, chapter.id)}
@@ -223,6 +225,7 @@ export default async function Page({
     }
     return (
       <NotesPage
+        quizLabel={quizLinkLabel(questions.length, getChapterSpecificQuestions(subject.id, chapter.id).length > 0)}
         track="cpl"
         subject={subject}
         chapter={chapter}

@@ -1,4 +1,5 @@
 "use client";
+import { recordStudyEvent } from "@/lib/study-events";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen, Check } from "lucide-react";
@@ -60,6 +61,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions: po
     setQuestions(run);
     setAnswers(Array(run.length).fill(null));
     setCurrent(0);
+    recordStudyEvent(fallback ? "subject_revision_start" : "chapter_quiz_start");
     setPhase("quiz");
     window.scrollTo(0, 0);
   }
@@ -75,6 +77,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions: po
     if (current < questions.length - 1) {
       setCurrent(c => c + 1);
     } else {
+      recordStudyEvent(fallback ? "subject_revision_complete" : "chapter_quiz_complete");
       setPhase("result");
       window.scrollTo(0, 0);
     }
