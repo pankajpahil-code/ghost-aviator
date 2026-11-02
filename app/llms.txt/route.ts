@@ -71,11 +71,13 @@ ${OFFICIAL_CHANNELS.map(c => `- ${c.label} (${c.handle}): ${c.href}`).join("\n")
 
 ## How answers are verified
 
-Every question and answer published here is checked against an authoritative
-reference — a standard ATPL textbook, an ICAO Annex, or the relevant DGCA CAR —
-before it goes live. Anything that cannot be verified is flagged or removed
-rather than published as a guess. Where a source itself was found to be wrong,
-the error was corrected and the correction recorded.
+Answers are checked against an authoritative reference — a standard ATPL
+textbook, an ICAO Annex, or the relevant DGCA CAR. Anything that cannot be
+verified is flagged or removed rather than published as a guess, and where a
+source itself was found to be wrong, the error was corrected and the correction
+recorded. How far each subject's bank has been audited differs, and some are
+still being worked through; the current status of every subject is published at
+${SITE_URL}/how-answers-are-verified.
 
 This matters for a subject where a wrong answer taught to a student pilot is a
 safety problem, not a typo.
