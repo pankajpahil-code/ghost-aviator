@@ -9,7 +9,7 @@ import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Free DGCA RTR(A) Radio Simulator Online — Part 2 Practice",
   description:
-    "India's first free online RTR(A) radio simulator for the DGCA exam. Talk to ATC in real ICAO phraseology, read back clearances, handle emergencies, get graded like the real practical — free for every Indian student pilot.",
+    "A free online RTR(A) radio simulator for the DGCA exam. Talk to ATC in real ICAO phraseology, read back clearances, handle emergencies, get graded like the real practical — free for every Indian student pilot.",
   alternates: { canonical: "/rtr-simulator" },
 };
 
@@ -153,7 +153,7 @@ export default function RtrSimulatorPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 relative z-10">
           <div className="inline-block text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-5"
                style={{ color: cyan, border: "1px solid rgba(240,145,58,0.35)", background: "rgba(240,145,58,0.08)", letterSpacing: "0.18em" }}>
-            INDIA&apos;S FIRST FREE RTR(A) R/T PRACTICE SIMULATOR
+            FREE RTR(A) R/T PRACTICE SIMULATOR
           </div>
           <h1 className="text-5xl sm:text-6xl font-black text-white mb-4">
             Radio <span className="gradient-text">Simulator</span>
