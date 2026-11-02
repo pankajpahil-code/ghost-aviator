@@ -1,4 +1,5 @@
 "use client";
+import { recordStudyEvent } from "@/lib/study-events";
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Link from "next/link";
 import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, BookOpen, Flag, Check } from "lucide-react";
@@ -37,7 +38,13 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
   const startedAtRef = useRef<number | null>(null);
   const recorded = useRef(false);
 
-  const submit = useCallback(() => setPhase("result"), []);
+  const finished = useRef(false);
+  const submit = useCallback(() => {
+    if (finished.current) return;
+    finished.current = true;
+    recordStudyEvent("exam_complete");
+    setPhase("result");
+  }, []);
   // Deadline-based: the end time is fixed at Start and the clock is re-read on
   // every tick and on visibilitychange, so a locked phone cannot gain time and
   // the paper auto-submits (once) as soon as the page wakes past the deadline.
@@ -152,7 +159,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
             </li>
           ))}
         </ul>
-        <button onClick={() => { startedAtRef.current = Date.now(); startClock(durationSec); setPhase("exam"); window.scrollTo(0, 0); }}
+        <button onClick={() => { finished.current = false; recordStudyEvent("exam_start"); startedAtRef.current = Date.now(); startClock(durationSec); setPhase("exam"); window.scrollTo(0, 0); }}
                 className="w-full py-4 rounded-xl font-bold text-lg"
                 style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
           Start Exam

@@ -97,16 +97,27 @@ function secret(): string | null {
   return null;
 }
 
+const SPEAK_TOKEN_LIFETIME_MS = 30 * 60 * 1000;
+
+function signature(key: string, expires: number, text: string): string {
+  return createHmac("sha256", key).update(`${expires}\n${text.trim()}`).digest("base64url");
+}
+
 export function speakToken(text: string): string | undefined {
   const s = secret();
   if (!s || !text) return undefined;
-  return createHmac("sha256", s).update(text.trim()).digest("base64url");
+  const expires = Date.now() + SPEAK_TOKEN_LIFETIME_MS;
+  return `${expires}.${signature(s, expires, text)}`;
 }
 
 export function tokenMatches(text: string, token: unknown): boolean {
-  const want = speakToken(text);
-  if (!want || typeof token !== "string") return false;
-  const a = Buffer.from(want), b = Buffer.from(token);
+  const key = secret();
+  if (!key || !text || typeof token !== "string") return false;
+  const match = /^(\d{13})\.([\w-]{43})$/.exec(token);
+  if (!match) return false;
+  const expires = Number(match[1]);
+  if (expires <= Date.now()) return false;
+  const a = Buffer.from(signature(key, expires, text)), b = Buffer.from(match[2]);
   return a.length === b.length && timingSafeEqual(a, b);
 }
 

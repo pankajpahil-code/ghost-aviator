@@ -1,3 +1,4 @@
+import { tutorBody } from "@/lib/gini/request";
 /**
  * VOICE PERMISSION FOR GINI'S OWN LOCAL ANSWERS (2026-10-29).
  *
@@ -21,8 +22,8 @@ const PATH_SHAPE = /^\/[A-Za-z0-9/._~-]{0,199}$/;
 const SUBJECT_SHAPE = /^[a-z0-9-]{1,40}$/;
 
 export async function POST(req: Request) {
-  let body: { q?: unknown; path?: unknown; subjectId?: unknown; text?: unknown };
-  try { body = await req.json(); } catch { return Response.json({ ok: false, why: "bad-body" }, { status: 400 }); }
+  const body = await tutorBody(req);
+  if (body instanceof Response) return body;
 
   const q = typeof body.q === "string" ? body.q.trim() : "";
   const text = typeof body.text === "string" ? body.text : "";

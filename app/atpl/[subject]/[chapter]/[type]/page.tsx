@@ -2,6 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { ATPL_TO_CPL } from "@/lib/atpl-syllabus";
 import { ATPL_SUBJECTS, getNotesSource } from "@/lib/subjects";
+import { quizLinkLabel } from "@/lib/quiz-availability";
 import { getQuestionsForChapter, getChapterSpecificQuestions } from "@/lib/questions";
 import { getChapterVideos } from "@/lib/chapter-videos";
 import { chapterMetaDescription, chapterTitle } from "@/lib/chapter-meta";
@@ -126,6 +127,7 @@ export default async function Page({
             chapter={chapter}
             prevChapter={prevChapter}
             nextChapter={nextChapter}
+            quizLabel={quizLinkLabel(questions.length, getChapterSpecificQuestions(subject.id, chapter.id).length > 0)}
             notes={inlineNotes}
             videos={chapterVideos}
             openerFacts={openerFactsFor(subject.id, chapter.id)}
@@ -135,6 +137,7 @@ export default async function Page({
     }
     return (
       <NotesPage
+        quizLabel={quizLinkLabel(questions.length, getChapterSpecificQuestions(subject.id, chapter.id).length > 0)}
         track="atpl"
         subject={subject}
         chapter={chapter}

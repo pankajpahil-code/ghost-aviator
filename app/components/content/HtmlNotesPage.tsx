@@ -25,6 +25,7 @@ type Props = {
   /** The chapter rendered in-page: its own stylesheet, scoped to `.ga-notes`,
    *  plus the body markup. See lib/notes-inline.ts for why this replaced the
    *  iframe + sr-only pair. */
+  quizLabel: "Chapter Quiz" | "Subject Revision" | null;
   notes: { css: string; html: string; stylesheets: string[] };
   /** The Captain's lecture(s) for this chapter — card renders above the notes when non-empty. */
   videos?: ChapterVideo[];
@@ -180,7 +181,7 @@ const LOADERS: Record<InteractiveId, () => Promise<{ default: ComponentType }>> 
 };
 type Mount = { id: InteractiveId; el: HTMLElement; Comp: ComponentType };
 
-export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, notes, videos, openerFacts, related }: Props) {
+export default function HtmlNotesPage({ track, subject, chapter, prevChapter, nextChapter, notes, videos, openerFacts, related, quizLabel }: Props) {
   const notesRef = useRef<HTMLDivElement>(null);
   const keyFacts = keyFactsFor(subject.id, chapter.id) ?? openerFacts;
   const [mounts, setMounts] = useState<Mount[]>([]);
@@ -285,11 +286,11 @@ export default function HtmlNotesPage({ track, subject, chapter, prevChapter, ne
 
             <div className="flex items-center gap-2 flex-wrap">
               <ReadAloudControls key={`${subject.id}/${chapter.id}`} />
-              {chapter.content.find(c => c.type === "chapter-quiz")?.available && (
+              {quizLabel && chapter.content.find(c => c.type === "chapter-quiz")?.available && (
                 <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
                       className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg no-underline"
                       style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)", color: "#f97316" }}>
-                  <ListChecks className="w-3.5 h-3.5" /> Chapter Quiz
+                  <ListChecks className="w-3.5 h-3.5" /> {quizLabel}
                 </Link>
               )}
             </div>
@@ -443,13 +444,13 @@ ${NOTES_FIT_CSS}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h3 className="text-lg font-bold text-white mb-1">Reinforce Chapter {chapter.number}: {chapter.title}</h3>
-              <p className="text-xs text-slate-400">Test your knowledge and practice actual exam questions for {subject.name}.</p>
+              <p className="text-xs text-slate-400">{quizLabel === "Subject Revision" ? "Practise across the subject. This quiz does not count toward chapter progress." : "Practise what you have learned in " + subject.name + "."}</p>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
+              {quizLabel && <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
                     className="px-3 py-2 rounded-lg text-xs font-bold no-underline bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 transition-all">
-                Chapter Quiz
-              </Link>
+                {quizLabel}
+              </Link>}
               <Link href={`/question-bank`}
                     className="px-3 py-2 rounded-lg text-xs font-bold no-underline bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 transition-all">
                 Question Bank

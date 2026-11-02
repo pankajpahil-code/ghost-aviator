@@ -33,6 +33,7 @@ function parseDescription(desc: string): Array<{ heading: string; topics: string
 
 type Props = {
   track: "cpl" | "atpl";
+  quizLabel: "Chapter Quiz" | "Subject Revision" | null;
   subject: Subject;
   chapter: Chapter;
   prevChapter: Chapter | null;
@@ -43,7 +44,7 @@ type Props = {
   videos?: ChapterVideo[];
 };
 
-export default function NotesPage({ track, subject, chapter, prevChapter, nextChapter, videos }: Props) {
+export default function NotesPage({ track, subject, chapter, prevChapter, nextChapter, videos, quizLabel }: Props) {
   const sections = parseDescription(chapter.description);
   const topicCount = sections.reduce((n, s) => n + s.topics.length, 0);
 
@@ -96,11 +97,11 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
                   style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "#64748b" }}>
               {topicCount} topics
             </span>
-            <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
+            {quizLabel && <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
                   className="text-xs px-3 py-1 rounded-full no-underline flex items-center gap-1"
                   style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)", color: "#f97316" }}>
-              <ListChecks className="w-3 h-3" /> Chapter Quiz
-            </Link>
+              <ListChecks className="w-3 h-3" /> {quizLabel}
+            </Link>}
           </div>
         </div>
       </div>
@@ -155,11 +156,11 @@ export default function NotesPage({ track, subject, chapter, prevChapter, nextCh
             Full chapter notes with diagrams, mnemonics, and exam-focused explanations are being written by Capt. Pankaj Pahil.
           </p>
           <div className="flex justify-center gap-3 flex-wrap">
-            <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
+            {quizLabel && <Link href={`/${track}/${subject.id}/${chapter.id}/chapter-quiz`}
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold no-underline"
                   style={{ background: "rgba(249,115,22,0.15)", border: "1px solid rgba(249,115,22,0.35)", color: "#f97316" }}>
-              <ListChecks className="w-4 h-4" /> Take Chapter Quiz
-            </Link>
+              <ListChecks className="w-4 h-4" /> {quizLabel}
+            </Link>}
           </div>
         </div>
 

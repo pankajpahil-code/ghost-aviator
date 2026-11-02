@@ -1,3 +1,4 @@
+import { tutorBody } from "@/lib/gini/request";
 /**
  * GINI'S SMART ROUTE — where Gemini is allowed to help, and where it is not.
  *
@@ -131,12 +132,8 @@ export async function POST(req: Request) {
   // Nothing configured: answer instantly and cheaply so the client stops asking.
   if (!geminiConfigured()) return Response.json({ ok: false, why: "not-configured" });
 
-  let body: { q?: unknown; path?: unknown; history?: unknown; awareness?: unknown };
-  try {
-    body = await req.json();
-  } catch {
-    return Response.json({ ok: false, why: "bad-body" }, { status: 400 });
-  }
+  const body = await tutorBody(req);
+  if (body instanceof Response) return body;
 
   const q = typeof body.q === "string" ? body.q.trim() : "";
   const rawPath = typeof body.path === "string" ? body.path : "/";
