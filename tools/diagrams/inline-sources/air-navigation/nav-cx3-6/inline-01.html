@@ -1,0 +1,58 @@
+<svg viewBox="0 0 820 470" width="820" height="470" role="img" aria-labelledby="chainT chainD">
+  <title id="chainT">The airspeed correction chain from indicated to true airspeed</title>
+  <desc id="chainD">Indicated airspeed is corrected for instrument error and pressure or position
+  error to give calibrated airspeed. From calibrated airspeed there are two paths. At low speed,
+  correcting density error alone gives true airspeed directly. At high speed, correcting
+  compressibility first gives equivalent airspeed, and then correcting density error gives true
+  airspeed. The dividing line is 300 knots true airspeed.</desc>
+
+  <defs>
+    <marker id="c6a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c9a227" stroke="none"/>
+    </marker>
+    <marker id="c6r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2e86ab" stroke="none"/>
+    </marker>
+  </defs>
+
+  <rect x="300" y="14" width="220" height="42" rx="6" fill="#1a2942" stroke="#c9a227" stroke-width="2"/>
+  <text x="410" y="34" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="15" font-weight="bold">IAS</text>
+  <text x="410" y="49" text-anchor="middle" fill="#c9c2ae" font-family="Georgia,serif" font-size="11.5">what the dial shows</text>
+
+  <path d="M410,56 L410,86" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <text x="424" y="76" fill="#8a6d12" font-family="Georgia,serif" font-size="12.5">instrument + pressure error &mdash; from the correction card</text>
+
+  <rect x="300" y="90" width="220" height="42" rx="6" fill="#eef6fa" stroke="#2e86ab" stroke-width="2"/>
+  <text x="410" y="110" text-anchor="middle" fill="#1d5f7d" font-family="Georgia,serif" font-size="15" font-weight="bold">CAS</text>
+  <text x="410" y="125" text-anchor="middle" fill="#41616f" font-family="Georgia,serif" font-size="11.5">older books call this RAS</text>
+
+  <path d="M410,132 L410,158 L214,158 L214,192" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <path d="M410,132 L410,158 L606,158 L606,192" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <text x="214" y="150" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="12.5" font-weight="bold">low speed</text>
+  <text x="606" y="150" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5" font-weight="bold">high speed</text>
+
+  <rect x="92" y="196" width="244" height="40" rx="5" fill="#eef8f1" stroke="#1e8449" stroke-width="1.8"/>
+  <text x="214" y="221" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="13.5">correct density error only</text>
+
+  <rect x="484" y="196" width="244" height="40" rx="5" fill="#fdf1ef" stroke="#c0392b" stroke-width="1.8"/>
+  <text x="606" y="221" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="13.5">correct compressibility first</text>
+
+  <path d="M606,236 L606,262" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <rect x="496" y="266" width="220" height="42" rx="6" fill="#1a2942" stroke="#c0392b" stroke-width="2"/>
+  <text x="606" y="286" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="15" font-weight="bold">EAS</text>
+  <text x="606" y="301" text-anchor="middle" fill="#c9c2ae" font-family="Georgia,serif" font-size="11.5">you will rarely meet this in the air</text>
+
+  <path d="M606,308 L606,338" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <text x="620" y="328" fill="#8a6d12" font-family="Georgia,serif" font-size="12.5">then density error</text>
+
+  <path d="M214,236 L214,352 L296,352" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+  <path d="M606,342 L606,352 L524,352" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
+
+  <rect x="300" y="332" width="220" height="46" rx="6" fill="#1e8449" stroke="#0f5c33" stroke-width="2"/>
+  <text x="410" y="354" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-size="16" font-weight="bold">TAS</text>
+  <text x="410" y="370" text-anchor="middle" fill="#d8f3e3" font-family="Georgia,serif" font-size="11.5">your actual speed through the air</text>
+
+  <rect x="92" y="404" width="636" height="50" rx="5" fill="#fdf6e8" stroke="#b9770e" stroke-width="1.6"/>
+  <text x="410" y="424" text-anchor="middle" fill="#8a5a08" font-family="Georgia,serif" font-size="13.5" font-weight="bold">The rule that decides which path you are on</text>
+  <text x="410" y="443" text-anchor="middle" fill="#3a3020" font-family="Georgia,serif" font-size="13">Work out TAS the low-speed way first. If it comes out at 300 kt or less, you are finished.</text>
+</svg>

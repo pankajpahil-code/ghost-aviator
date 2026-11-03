@@ -1,0 +1,32 @@
+<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:600px;">
+      <!-- ground -->
+      <rect x="0" y="160" width="600" height="40" fill="#c8b97a"/>
+      <!-- obstacle A -->
+      <polygon points="130,160 140,100 150,160" fill="#555"/>
+      <text x="140" y="90" text-anchor="middle" font-size="11" fill="#333" font-weight="700">Obs A</text>
+      <!-- obstacle B (higher) -->
+      <polygon points="320,160 340,60 360,160" fill="#555"/>
+      <text x="340" y="50" text-anchor="middle" font-size="11" fill="#333" font-weight="700">Obs B</text>
+      <!-- OIS line 2.5% -->
+      <line x1="60" y1="160" x2="580" y2="55" stroke="#e67e22" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="500" y="50" font-size="11" fill="#e67e22" font-weight="700">2.5% OIS</text>
+      <!-- MOC gradient 0.8% -->
+      <line x1="60" y1="162" x2="580" y2="120" stroke="#c0392b" stroke-width="2"/>
+      <text x="490" y="132" font-size="11" fill="#c0392b" font-weight="700">0.8% MOC</text>
+      <!-- PDG 3.3% -->
+      <line x1="60" y1="162" x2="580" y2="30" stroke="#27ae60" stroke-width="2.5"/>
+      <text x="495" y="28" font-size="11" fill="#27ae60" font-weight="700">3.3% PDG</text>
+      <!-- DER label -->
+      <line x1="60" y1="130" x2="60" y2="170" stroke="#1a3a6b" stroke-width="2"/>
+      <text x="60" y="125" text-anchor="middle" font-size="11" fill="#1a3a6b" font-weight="700">DER</text>
+      <!-- 5m label -->
+      <text x="62" y="158" font-size="10" fill="#555">5m (16ft)</text>
+      <!-- horizontal distance label -->
+      <line x1="60" y1="180" x2="340" y2="180" stroke="#555" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr2)"/>
+      <text x="200" y="196" text-anchor="middle" font-size="11" fill="#555">Horizontal distance (d)</text>
+      <defs>
+        <marker id="arr2" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#555"/>
+        </marker>
+      </defs>
+    </svg>

@@ -1,0 +1,26 @@
+<svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" width="620">
+      <!-- Level lines -->
+      <line x1="20" y1="50"  x2="660" y2="50"  stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,6"/>
+      <line x1="20" y1="100" x2="660" y2="100" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,6"/>
+      <line x1="20" y1="150" x2="660" y2="150" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,6"/>
+      <!-- Level labels -->
+      <text x="16" y="47" font-family="JetBrains Mono" font-size="9" fill="#94a3b8">FL80</text>
+      <text x="16" y="97" font-family="JetBrains Mono" font-size="9" fill="#94a3b8">FL70</text>
+      <text x="16" y="147" font-family="JetBrains Mono" font-size="9" fill="#94a3b8">FL60</text>
+      <!-- Aircraft A (preceding) – climbs steeply to FL80 -->
+      <polyline points="100,195 200,150 350,100 500,50" fill="none" stroke="#1560a8" stroke-width="2.5"/>
+      <polygon points="500,50 488,58 496,63" fill="#1560a8"/>
+      <text x="510" y="47" font-family="Source Sans 3" font-size="9" fill="#1560a8" font-weight="700">AC-A (preceding)</text>
+      <!-- Aircraft B (following) – climbs through A's level -->
+      <polyline points="100,195 250,150 420,100 580,50" fill="none" stroke="#b91c1c" stroke-width="2" stroke-dasharray="6,3"/>
+      <polygon points="580,50 568,58 576,63" fill="#b91c1c"/>
+      <text x="510" y="67" font-family="Source Sans 3" font-size="9" fill="#b91c1c" font-weight="700">AC-B (following)</text>
+      <!-- Conflict zone -->
+      <rect x="340" y="85" width="100" height="30" rx="5" fill="rgba(185,28,28,0.12)" stroke="#b91c1c" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="390" y="105" text-anchor="middle" font-family="Source Sans 3" font-size="8.5" fill="#b91c1c" font-weight="700">⚠ Level conflict</text>
+      <!-- 5-min bracket at bottom -->
+      <line x1="100" y1="205" x2="380" y2="205" stroke="#b91c1c" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="100" y1="202" x2="100" y2="208" stroke="#b91c1c" stroke-width="1.5"/>
+      <line x1="380" y1="202" x2="380" y2="208" stroke="#b91c1c" stroke-width="1.5"/>
+      <text x="240" y="218" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#b91c1c">5 min (maintain or increase)</text>
+    </svg>

@@ -1,0 +1,44 @@
+<svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b2545"/>
+      <stop offset="50%" stop-color="#1a4480"/>
+      <stop offset="100%" stop-color="#a8d0f5"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5a8c3f"/>
+      <stop offset="100%" stop-color="#3a5e26"/>
+    </linearGradient>
+  </defs>
+  <!-- Sky -->
+  <rect x="0" y="0" width="720" height="320" fill="url(#g1)"/>
+  <!-- Ground -->
+  <rect x="0" y="320" width="720" height="40" fill="url(#ground)"/>
+  <!-- Stratosphere band -->
+  <rect x="0" y="20" width="720" height="100" fill="rgba(255,255,255,0.07)"/>
+  <text x="20" y="50" fill="#ffd166" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="16" font-weight="700">STRATOSPHERE</text>
+  <text x="20" y="70" fill="#fff" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11">Up to 100,000 ft &nbsp;|&nbsp; Lower density of molecules</text>
+  <!-- Troposphere band -->
+  <rect x="0" y="180" width="720" height="140" fill="rgba(255,255,255,0.12)"/>
+  <text x="20" y="210" fill="#fff" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="16" font-weight="700">TROPOSPHERE</text>
+  <text x="20" y="230" fill="#fff" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11">Surface → ~43,000 ft &nbsp;|&nbsp; Contains 75% of atmospheric mass &amp; almost all weather</text>
+  <!-- Composition badges -->
+  <g font-family="'Cascadia Code', 'Consolas', 'Courier New', monospace" font-size="13" font-weight="700">
+    <rect x="500" y="240" width="120" height="28" rx="4" fill="#ffd166"/>
+    <text x="510" y="259" fill="#0b2545">N₂ &nbsp;78%</text>
+    <rect x="500" y="275" width="120" height="28" rx="4" fill="#fff4cc"/>
+    <text x="510" y="294" fill="#0b2545">O₂ &nbsp;21%</text>
+    <rect x="500" y="195" width="120" height="28" rx="4" fill="#a8d0f5"/>
+    <text x="510" y="214" fill="#0b2545">Ar + Others 1%</text>
+  </g>
+  <!-- Altitude markers -->
+  <line x1="430" y1="120" x2="460" y2="120" stroke="#ffd166" stroke-width="2"/>
+  <text x="465" y="124" fill="#ffd166" font-family="'Cascadia Code', 'Consolas', 'Courier New', monospace" font-size="11">60,000 ft</text>
+  <line x1="430" y1="180" x2="460" y2="180" stroke="#ffd166" stroke-width="2"/>
+  <text x="465" y="184" fill="#ffd166" font-family="'Cascadia Code', 'Consolas', 'Courier New', monospace" font-size="11">30,000 ft</text>
+  <line x1="430" y1="320" x2="460" y2="320" stroke="#ffd166" stroke-width="2"/>
+  <text x="465" y="335" fill="#ffd166" font-family="'Cascadia Code', 'Consolas', 'Courier New', monospace" font-size="11">Sea Level (0 ft)</text>
+  <!-- Aircraft icon -->
+  <text x="120" y="160" font-size="40">✈</text>
+  <text x="100" y="350" fill="#fff" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" font-style="italic">Lower altitude — High density of molecules</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;display:block;margin:auto;">
+      <!-- Pyramid tiers -->
+      <polygon points="300,30 560,270 40,270" fill="#f2f5fb" stroke="#1a3a7a" stroke-width="2"/>
+      <!-- Tier labels -->
+      <!-- Tier 1 - Balloon (top, highest priority, smallest) -->
+      <polygon points="300,40 350,120 250,120" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="300" y="90" text-anchor="middle" font-size="12" font-weight="800" fill="#c0392b">BALLOON</text>
+      <text x="300" y="108" text-anchor="middle" font-size="9" fill="#c0392b">HIGHEST PRIORITY</text>
+
+      <!-- Tier 2 - Glider -->
+      <polygon points="250,120 350,120 390,190 210,190" fill="#fff3cd" stroke="#b7770d" stroke-width="1.5"/>
+      <text x="300" y="162" text-anchor="middle" font-size="12" font-weight="800" fill="#b7770d">GLIDER</text>
+
+      <!-- Tier 3 - Airship -->
+      <polygon points="210,190 390,190 430,260 170,260" fill="#d5f5e3" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="300" y="232" text-anchor="middle" font-size="12" font-weight="800" fill="#1e8449">AIRSHIP</text>
+
+      <!-- Tier 4 - Power-driven at base (give way to all) -->
+      <polygon points="170,260 430,260 560,270 40,270" fill="#d6eaf8" stroke="#2980b9" stroke-width="1.5"/>
+      <text x="300" y="270" text-anchor="middle" font-size="11" font-weight="800" fill="#1a5276">POWER-DRIVEN AIRCRAFT (gives way to above)</text>
+
+      <!-- Special note -->
+      <text x="300" y="295" text-anchor="middle" font-size="9" fill="#555" font-style="italic">Aircraft towing objects also have priority over power-driven aircraft</text>
+    </svg>

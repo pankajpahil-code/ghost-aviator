@@ -776,30 +776,7 @@
 
   <div class="diagram-container">
     <div class="diagram-title">🔄 RIGHT-OF-WAY PRIORITY PYRAMID (Give Way ↓ Has Priority ↑)</div>
-    <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;display:block;margin:auto;">
-      <!-- Pyramid tiers -->
-      <polygon points="300,30 560,270 40,270" fill="#f2f5fb" stroke="#1a3a7a" stroke-width="2"/>
-      <!-- Tier labels -->
-      <!-- Tier 1 - Balloon (top, highest priority, smallest) -->
-      <polygon points="300,40 350,120 250,120" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
-      <text x="300" y="90" text-anchor="middle" font-size="12" font-weight="800" fill="#c0392b">BALLOON</text>
-      <text x="300" y="108" text-anchor="middle" font-size="9" fill="#c0392b">HIGHEST PRIORITY</text>
-
-      <!-- Tier 2 - Glider -->
-      <polygon points="250,120 350,120 390,190 210,190" fill="#fff3cd" stroke="#b7770d" stroke-width="1.5"/>
-      <text x="300" y="162" text-anchor="middle" font-size="12" font-weight="800" fill="#b7770d">GLIDER</text>
-
-      <!-- Tier 3 - Airship -->
-      <polygon points="210,190 390,190 430,260 170,260" fill="#d5f5e3" stroke="#27ae60" stroke-width="1.5"/>
-      <text x="300" y="232" text-anchor="middle" font-size="12" font-weight="800" fill="#1e8449">AIRSHIP</text>
-
-      <!-- Tier 4 - Power-driven at base (give way to all) -->
-      <polygon points="170,260 430,260 560,270 40,270" fill="#d6eaf8" stroke="#2980b9" stroke-width="1.5"/>
-      <text x="300" y="270" text-anchor="middle" font-size="11" font-weight="800" fill="#1a5276">POWER-DRIVEN AIRCRAFT (gives way to above)</text>
-
-      <!-- Special note -->
-      <text x="300" y="295" text-anchor="middle" font-size="9" fill="#555" font-style="italic">Aircraft towing objects also have priority over power-driven aircraft</text>
-    </svg>
+    <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-3/figs/inline-01.svg" alt="HIGHEST PRIORITY" width="624" height="324" loading="lazy" decoding="async" style="display:block;width:971px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-3/figs/inline-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>BALLOON; HIGHEST PRIORITY; GLIDER; AIRSHIP; POWER-DRIVEN AIRCRAFT (gives way to above); Aircraft towing objects also have priority over power-driven aircraft</p></details></figure>
     <p style="text-align:center; font-size:9pt; color:#555; margin-top:8px;">At top = highest priority; power-driven heavier-than-air aircraft gives way to airships, gliders &amp; balloons</p>
   </div>
 
@@ -1143,62 +1120,7 @@
 
   <div class="diagram-container">
     <div class="diagram-title">📵 RCF DECISION FLOWCHART</div>
-    <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:auto;">
-      <!-- Start -->
-      <rect x="250" y="10" width="200" height="40" rx="20" fill="#c0392b" stroke="#922b21" stroke-width="2"/>
-      <text x="350" y="35" text-anchor="middle" font-size="12" font-weight="800" fill="white">COMMS FAILURE</text>
-
-      <!-- Arrow down -->
-      <line x1="350" y1="50" x2="350" y2="80" stroke="#2c3e50" stroke-width="2" marker-end="url(#arr)"/>
-
-      <!-- VMC or IMC decision diamond -->
-      <polygon points="350,80 480,120 350,160 220,120" fill="#f9ebea" stroke="#c0392b" stroke-width="2"/>
-      <text x="350" y="115" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">VMC or IMC</text>
-      <text x="350" y="130" text-anchor="middle" font-size="10" fill="#c0392b">conditions?</text>
-
-      <!-- VMC branch -->
-      <line x1="220" y1="120" x2="80" y2="120" stroke="#27ae60" stroke-width="2" marker-end="url(#arr2)"/>
-      <text x="150" y="113" text-anchor="middle" font-size="10" font-weight="700" fill="#27ae60">VMC</text>
-      <rect x="10" y="130" width="140" height="60" rx="8" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
-      <text x="80" y="153" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e8449">Continue VMC</text>
-      <text x="80" y="168" text-anchor="middle" font-size="9" fill="#1e8449">Land at nearest</text>
-      <text x="80" y="181" text-anchor="middle" font-size="9" fill="#1e8449">suitable aerodrome</text>
-
-      <!-- IMC branch -->
-      <line x1="480" y1="120" x2="620" y2="120" stroke="#c0392b" stroke-width="2" marker-end="url(#arr3)"/>
-      <text x="550" y="113" text-anchor="middle" font-size="10" font-weight="700" fill="#c0392b">IMC / IFR</text>
-      <rect x="555" y="130" width="135" height="100" rx="8" fill="#fde8e8" stroke="#c0392b" stroke-width="2"/>
-      <text x="622" y="152" text-anchor="middle" font-size="9" font-weight="700" fill="#c0392b">SSR → 7600</text>
-      <text x="622" y="167" text-anchor="middle" font-size="9" fill="#c0392b">Maintain last</text>
-      <text x="622" y="180" text-anchor="middle" font-size="9" fill="#c0392b">assigned level</text>
-      <text x="622" y="193" text-anchor="middle" font-size="9" fill="#c0392b">(see table below)</text>
-      <text x="622" y="208" text-anchor="middle" font-size="9" fill="#c0392b">Proceed per</text>
-      <text x="622" y="222" text-anchor="middle" font-size="9" fill="#c0392b">flight plan</text>
-
-      <!-- Arrow from VMC box -->
-      <line x1="80" y1="190" x2="80" y2="240" stroke="#27ae60" stroke-width="2" marker-end="url(#arr2)"/>
-      <rect x="25" y="240" width="110" height="40" rx="8" fill="#1e8449" stroke="#155724" stroke-width="1.5"/>
-      <text x="80" y="257" text-anchor="middle" font-size="9" font-weight="700" fill="white">Report arrival</text>
-      <text x="80" y="271" text-anchor="middle" font-size="9" fill="white">to ATS unit</text>
-
-      <!-- Squawk note -->
-      <rect x="240" y="250" width="230" height="50" rx="8" fill="#fff3cd" stroke="#f39c12" stroke-width="2"/>
-      <text x="355" y="272" text-anchor="middle" font-size="10" font-weight="700" fill="#b7770d">SSR Transponder Code</text>
-      <text x="355" y="290" text-anchor="middle" font-size="11" font-weight="800" fill="#c0392b">7600 = Radio Failure</text>
-
-      <!-- Markers -->
-      <defs>
-        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L6,3 z" fill="#2c3e50"/>
-        </marker>
-        <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L6,3 z" fill="#27ae60"/>
-        </marker>
-        <marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L6,3 z" fill="#c0392b"/>
-        </marker>
-      </defs>
-    </svg>
+    <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-3/figs/inline-02.svg" alt="COMMS FAILURE" width="724" height="444" loading="lazy" decoding="async" style="display:block;width:1127px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-3/figs/inline-02.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>COMMS FAILURE; VMC or IMC; conditions?; VMC; Continue VMC; Land at nearest; suitable aerodrome; IMC / IFR; SSR → 7600; Maintain last; assigned level; (see table below); Proceed per; flight plan; Report arrival; to ATS unit; SSR Transponder Code; 7600 = Radio Failure</p></details></figure>
   </div>
 
   <div class="sop-box">
@@ -1915,62 +1837,7 @@
 
   <div class="diagram-container">
     <div class="diagram-title">📐 SEMI-CIRCULAR RULE — CRUISING LEVELS (MNEMONIC DIAGRAM)</div>
-    <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:auto;">
-      <!-- Background -->
-      <rect x="0" y="0" width="680" height="320" fill="#f8f9fc" rx="10"/>
-
-      <!-- Title row -->
-      <text x="340" y="25" text-anchor="middle" font-size="13" font-weight="800" fill="#0d1b4b">BELOW FL290 — CVSM (Non-RVSM Airspace)</text>
-
-      <!-- Compass circle left half (000–179 = Odd/Even IFR) -->
-      <circle cx="170" cy="175" r="120" fill="white" stroke="#1a3a7a" stroke-width="2"/>
-      <!-- Left semi -->
-      <path d="M170,55 A120,120 0 0,0 170,295" fill="#d6eaf8" stroke="none"/>
-      <!-- Right semi -->
-      <path d="M170,55 A120,120 0 0,1 170,295" fill="#d5f5e3" stroke="none"/>
-      <!-- Dividing line -->
-      <line x1="170" y1="55" x2="170" y2="295" stroke="#0d1b4b" stroke-width="2" stroke-dasharray="6,3"/>
-
-      <!-- Labels inside circle -->
-      <text x="100" y="160" text-anchor="middle" font-size="10" font-weight="700" fill="#1a5276">000°–179°</text>
-      <text x="100" y="173" text-anchor="middle" font-size="9" fill="#1a5276">IFR: ODD</text>
-      <text x="100" y="186" text-anchor="middle" font-size="9" fill="#1a5276">(010,030...)</text>
-      <text x="100" y="202" text-anchor="middle" font-size="9" fill="#c0392b">VFR: ODD+500'</text>
-
-      <text x="240" y="160" text-anchor="middle" font-size="10" font-weight="700" fill="#1e8449">180°–359°</text>
-      <text x="240" y="173" text-anchor="middle" font-size="9" fill="#1e8449">IFR: EVEN</text>
-      <text x="240" y="186" text-anchor="middle" font-size="9" fill="#1e8449">(020,040...)</text>
-      <text x="240" y="202" text-anchor="middle" font-size="9" fill="#c0392b">VFR: EVEN+500'</text>
-
-      <!-- North/South labels -->
-      <text x="170" y="48" text-anchor="middle" font-size="11" font-weight="800" fill="#0d1b4b">000° / 359°</text>
-      <text x="170" y="310" text-anchor="middle" font-size="11" font-weight="800" fill="#0d1b4b">180° / 179°</text>
-
-      <!-- RVSM explanation right side -->
-      <rect x="360" y="50" width="300" height="240" rx="10" fill="white" stroke="#c0392b" stroke-width="2"/>
-      <text x="510" y="72" text-anchor="middle" font-size="12" font-weight="800" fill="#c0392b">AT &amp; ABOVE FL290 — RVSM</text>
-      <text x="510" y="88" text-anchor="middle" font-size="10" fill="#555">(FL290 to FL410 — India)</text>
-
-      <!-- RVSM table inside -->
-      <text x="375" y="112" font-size="10" font-weight="700" fill="#0d1b4b">Track 000°–179°</text>
-      <text x="375" y="128" font-size="9" fill="#1a5276">IFR: ODD (up to FL400)</text>
-      <text x="375" y="143" font-size="9" fill="#1a5276">Then: 430, 470 etc.</text>
-      <text x="375" y="158" font-size="9" fill="#c0392b">VFR: NOT ALLOWED</text>
-
-      <text x="510" y="112" font-size="10" font-weight="700" fill="#0d1b4b">Track 180°–359°</text>
-      <text x="510" y="128" font-size="9" fill="#1e8449">IFR: EVEN (up to FL410)</text>
-      <text x="510" y="143" font-size="9" fill="#1e8449">Then: 450, 490 etc.</text>
-      <text x="510" y="158" font-size="9" fill="#c0392b">VFR: NOT ALLOWED</text>
-
-      <line x1="375" y1="170" x2="645" y2="170" stroke="#ccc" stroke-width="1"/>
-
-      <text x="510" y="190" text-anchor="middle" font-size="10" font-weight="700" fill="#6c3483">SEPARATION RULES</text>
-      <text x="375" y="208" font-size="9.5" fill="#0d1b4b">Below FL290: Same direction = 2000'</text>
-      <text x="375" y="224" font-size="9.5" fill="#0d1b4b">Below FL290: Reciprocal = 1000'</text>
-      <text x="375" y="240" font-size="9.5" fill="#0d1b4b">IFR–VFR (both ways) = 500'</text>
-      <text x="375" y="258" font-size="9" fill="#c0392b">RVSM: Same dir = 2000' | Recip = 1000'</text>
-      <text x="375" y="274" font-size="9" fill="#c0392b">Above RVSM: doubles</text>
-    </svg>
+    <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-3/figs/inline-03.svg" alt="BELOW FL290 — CVSM (Non-RVSM Airspace)" width="704" height="344" loading="lazy" decoding="async" style="display:block;width:1096px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-3/figs/inline-03.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>BELOW FL290 — CVSM (Non-RVSM Airspace); 000°–179°; IFR: ODD; (010,030...); VFR: ODD+500&#x27;; 180°–359°; IFR: EVEN; (020,040...); VFR: EVEN+500&#x27;; 000° / 359°; 180° / 179°; AT &amp; ABOVE FL290 — RVSM; (FL290 to FL410 — India); Track 000°–179°; IFR: ODD (up to FL400); Then: 430, 470 etc.; VFR: NOT ALLOWED; Track 180°–359°; IFR: EVEN (up to FL410); Then: 450, 490 etc.; VFR: NOT ALLOWED; SEPARATION RULES; Below FL290: Same direction = 2000&#x27;; Below FL290: Reciprocal = 1000&#x27;; IFR–VFR (both ways) = 500&#x27;; RVSM: Same dir = 2000&#x27; | Recip = 1000&#x27;; Above RVSM: doubles</p></details></figure>
   </div>
 
   <div class="formula-box">
@@ -1999,51 +1866,7 @@
 
   <div class="diagram-container">
     <div class="diagram-title">💡 AEROPLANE NAVIGATION LIGHT GEOMETRY</div>
-    <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;display:block;margin:auto;">
-      <!-- Aircraft body -->
-      <ellipse cx="300" cy="200" rx="18" ry="60" fill="#2c3e50" />
-      <!-- Wings -->
-      <polygon points="300,210 100,240 100,250 300,235" fill="#7f8c8d" />
-      <polygon points="300,210 500,240 500,250 300,235" fill="#7f8c8d" />
-      <!-- Tail -->
-      <polygon points="290,140 310,140 305,175 295,175" fill="#7f8c8d" />
-
-      <!-- Red light arc - PORT (left wing) -->
-      <path d="M300,200 L100,60 A220,220 0 0,1 100,340 Z" fill="rgba(220,50,50,0.15)" stroke="none"/>
-      <!-- Green light arc - STARBOARD (right wing) -->
-      <path d="M300,200 L500,60 A220,220 0 0,0 500,340 Z" fill="rgba(40,180,50,0.15)" stroke="none"/>
-      <!-- White light arc - REAR -->
-      <path d="M300,140 L100,200 A150,150 0 1,0 500,200 Z" fill="rgba(255,255,255,0.12)" stroke="none"/>
-
-      <!-- Light indicators -->
-      <circle cx="105" cy="235" r="15" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
-      <text x="105" y="240" text-anchor="middle" font-size="9" font-weight="700" fill="white">RED</text>
-
-      <circle cx="495" cy="235" r="15" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
-      <text x="495" y="240" text-anchor="middle" font-size="9" font-weight="700" fill="white">GRN</text>
-
-      <circle cx="300" cy="130" r="15" fill="white" stroke="#bdc3c7" stroke-width="2"/>
-      <text x="300" y="135" text-anchor="middle" font-size="8" font-weight="700" fill="#555">WHT</text>
-
-      <!-- Angle labels -->
-      <text x="55" y="100" font-size="10" font-weight="700" fill="#c0392b">PORT (Left)</text>
-      <text x="55" y="114" font-size="10" fill="#c0392b">110° coverage</text>
-
-      <text x="450" y="100" font-size="10" font-weight="700" fill="#27ae60">STBD (Right)</text>
-      <text x="450" y="114" font-size="10" fill="#27ae60">110° coverage</text>
-
-      <text x="260" y="55" font-size="10" font-weight="700" fill="#555">WHITE (Rear)</text>
-      <text x="255" y="69" font-size="10" fill="#555">140° coverage</text>
-
-      <!-- Memory aid boxes -->
-      <rect x="30" y="275" width="180" height="38" rx="6" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
-      <text x="120" y="292" text-anchor="middle" font-size="9.5" font-weight="700" fill="#c0392b">See RED → Give way</text>
-      <text x="120" y="306" text-anchor="middle" font-size="9" fill="#555">(other's starboard side)</text>
-
-      <rect x="395" y="275" width="180" height="38" rx="6" fill="#d5f5e3" stroke="#27ae60" stroke-width="1.5"/>
-      <text x="485" y="292" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e8449">See GREEN → Safe</text>
-      <text x="485" y="306" text-anchor="middle" font-size="9" fill="#555">(other's port side)</text>
-    </svg>
+    <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-3/figs/inline-04.svg" alt="PORT (Left)" width="624" height="424" loading="lazy" decoding="async" style="display:block;width:1092px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-3/figs/inline-04.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>RED; GRN; WHT; PORT (Left); 110° coverage; STBD (Right); 110° coverage; WHITE (Rear); 140° coverage; See RED → Give way; (other&#x27;s starboard side); See GREEN → Safe; (other&#x27;s port side)</p></details></figure>
   </div>
 
   <div class="table-container" style="margin-top:14px;">

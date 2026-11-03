@@ -285,44 +285,7 @@
 
 <!-- Atmospheric Layers SVG -->
 <h3>Thermal Structure — Visual Diagram</h3>
-<svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #ccc; border-radius:8px; background:#f9fbff;">
-  <!-- Background gradient layers -->
-  <rect x="60" y="20" width="480" height="460" fill="#f0f4ff" rx="4"/>
-  <!-- Troposphere -->
-  <rect x="60" y="380" width="480" height="100" fill="#cce5ff" rx="2"/>
-  <text x="70" y="440" font-size="13" fill="#1565c0" font-weight="bold">TROPOSPHERE (0–18 km)</text>
-  <text x="70" y="458" font-size="11" fill="#1565c0">Temp ↓ with height; lapse rate ~6.5°C/km</text>
-  <!-- Stratosphere -->
-  <rect x="60" y="260" width="480" height="120" fill="#d4edda" rx="2"/>
-  <text x="70" y="310" font-size="13" fill="#2e7d32" font-weight="bold">STRATOSPHERE (18–50 km)</text>
-  <text x="70" y="328" font-size="11" fill="#2e7d32">Isothermal lower zone; temp ↑ upper zone</text>
-  <text x="70" y="346" font-size="11" fill="#2e7d32">Ozone layer ~25 km | Nacreous Clouds</text>
-  <!-- Mesosphere -->
-  <rect x="60" y="160" width="480" height="100" fill="#fff3cd" rx="2"/>
-  <text x="70" y="200" font-size="13" fill="#e65100" font-weight="bold">MESOSPHERE (50–80 km)</text>
-  <text x="70" y="218" font-size="11" fill="#e65100">Temp ↓ with height; Noctilucent Clouds</text>
-  <text x="70" y="236" font-size="11" fill="#e65100">Coldest point: –100°C at 80 km (173.15 K)</text>
-  <!-- Thermosphere -->
-  <rect x="60" y="60" width="480" height="100" fill="#f8d7da" rx="2"/>
-  <text x="70" y="100" font-size="13" fill="#c62828" font-weight="bold">THERMOSPHERE / IONOSPHERE (80 km+)</text>
-  <text x="70" y="118" font-size="11" fill="#c62828">Temp ↑ with height; Radio wave propagation</text>
-  <!-- Temperature curve -->
-  <polyline points="300,390 270,340 310,300 270,260 320,180 270,110 330,65"
-            stroke="#7b1fa2" stroke-width="3" fill="none" stroke-dasharray="6,3"/>
-  <!-- Boundary lines -->
-  <line x1="60" y1="380" x2="540" y2="380" stroke="#1565c0" stroke-width="2" stroke-dasharray="5,3"/>
-  <line x1="60" y1="260" x2="540" y2="260" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5,3"/>
-  <line x1="60" y1="160" x2="540" y2="160" stroke="#e65100" stroke-width="2" stroke-dasharray="5,3"/>
-  <!-- Pause labels -->
-  <text x="430" y="377" font-size="10" fill="#333" font-weight="bold">TROPOPAUSE</text>
-  <text x="430" y="257" font-size="10" fill="#333" font-weight="bold">STRATOPAUSE</text>
-  <text x="430" y="157" font-size="10" fill="#333" font-weight="bold">MESOPAUSE</text>
-  <!-- Title -->
-  <text x="300" y="35" font-size="16" fill="#1a237e" font-weight="bold" text-anchor="middle">Thermal Structure of Atmosphere</text>
-  <!-- Ozone band -->
-  <rect x="400" y="285" width="12" height="60" fill="#66bb6a" opacity="0.7" rx="2"/>
-  <text x="415" y="320" font-size="9" fill="#2e7d32">O₃</text>
-</svg>
+<figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/meteorology/met-1/figs/inline-01.svg" alt="Atmospheric layers and general temperature trend" width="1024" height="824" loading="lazy" decoding="async" style="display:block;width:1024px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/meteorology/met-1/figs/inline-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Atmospheric layers and temperature trend; THERMOSPHERE; MESOSPHERE; STRATOSPHERE; TROPOSPHERE; Temperature generally rises; Temperature generally falls; Temperature rises in the upper part; Ozone absorbs ultraviolet radiation; Temperature usually falls; Most clouds and weather; MESOPAUSE · about 80–85 km; STRATOPAUSE · about 50 km; TROPOPAUSE · roughly 8–18 km; Increasing height; Colder; Warmer; Qualitative schematic, not to scale. Layer heights vary.; The ionosphere overlaps several upper layers; it is not a separate thermal layer.</p></details></figure>
 
 <!-- SECTION 7 -->
 <h2 id="layers">7. Atmospheric Layers in Detail</h2>
@@ -399,7 +362,7 @@
     <li>Temperature then increases slowly and towards the top sharply</li>
     <li><strong>Inversion produced by absorption of UV radiation from sun by ozone</strong></li>
     <li>Ozone layer found at height of <span class="reg-value">~25 km</span></li>
-    <li>Very <strong>dry and stable</strong> region — low humidity, no weather</li>
+    <li>Very <strong>dry and stable</strong> region — low humidity and much less ordinary weather than the troposphere</li>
     <li>Above stormy weather; steady, strong, horizontal winds</li>
     <li><strong>Nacreous Clouds</strong> (Mother of Pearl Clouds) sometimes seen in higher latitudes in winters</li>
   </ul>
@@ -421,11 +384,11 @@
 
 <h3>E. Thermosphere</h3>
 <div class="box-blue">
-  <h4>📘 Thermosphere / Ionosphere (80 km+)</h4>
+  <h4>📘 Thermosphere (above about 80-85 km)</h4>
   <ul>
-    <li>From Mesopause to end of atmosphere</li>
+    <li>From the mesopause to the transition into the exosphere</li>
     <li>Temperatures <strong>increase with height</strong></li>
-    <li>Above <span class="reg-value">60 km</span> also called <strong>Ionosphere</strong></li>
+    <li>The <strong>ionosphere</strong> is an overlapping ionised region that extends across parts of the mesosphere, thermosphere and higher atmosphere; it is not a synonym for the thermosphere</li>
     <li>Important for <strong>radio wave propagation</strong></li>
     <li>Serious interference in radio propagation during solar disturbances</li>
   </ul>
@@ -436,14 +399,14 @@
   <h4>📘 Exosphere (outermost layer)</h4>
   <ul>
     <li>Outermost layer extending up to <span class="reg-value">10,000 km</span> from top of Thermosphere</li>
-    <li>Molecules, ozone and atoms escape into space</li>
+    <li>Some atoms and molecules can escape into space</li>
     <li>Air is very thin — few particles; very active with very high temperature but far apart → very little heat present in this layer</li>
   </ul>
 </div>
 
 <!-- Mermaid flowchart of atmosphere layers -->
 <h3>Atmospheric Layers — Process Flowchart</h3>
-<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/meteorology/met-1/figs/diagram-01.svg" alt="Atmospheric Layers — Process Flowchart" loading="lazy" style="display:block;width:312px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Atmospheric Layers — Process Flowchart · <a href="/content/meteorology/met-1/figs/diagram-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>🌍 Earth&#x27;s Surface(0 km); TROPOSPHERE0–18 km (equator), 8–10 km (poles)Temp ↓ at 6.5°C/kmAll weather here | 75% mass | 99% WV; TROPOPAUSETemp stops fallingJet streams &amp; CAT below it; STRATOSPHERE~18–50 kmOzone at 25 km absorbs UVTemp ↑ (inversion)Stable, dry, no weather; STRATOPAUSE; MESOSPHERE~50–80 kmTemp ↓ with heightNoctilucent clouds (polar)Meteors burn here; MESOPAUSE–100°C / 173 KColdest point; THERMOSPHERE / IONOSPHERE80 km+Temp ↑ with heightRadio wave propagation; EXOSPHERETo 10,000 kmMolecules escape to space</p></details></figure>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img width="355" height="1005" decoding="async" decoding="async" src="/content/meteorology/met-1/figs/diagram-01.svg" alt="Atmospheric layers — increasing height" loading="lazy" style="display:block;width:355px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Atmospheric layers — increasing height · Scroll sideways if needed · <a href="/content/meteorology/met-1/figs/diagram-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>; ; ; ; ; ; ; ; Earth&#x27;s surface (0 km); TROPOSPHERE Surface to a variable tropopause Roughly 8-18 km Temperature usually falls Most clouds and weather; TROPOPAUSE Boundary with the stratosphere; STRATOSPHERE Up to about 50 km Ozone absorbs ultraviolet radiation Temperature generally rises in the upper part; STRATOPAUSE; MESOSPHERE About 50-80/85 km Temperature generally falls; MESOPAUSE Coldest atmospheric region; THERMOSPHERE Above about 80-85 km Temperature generally rises Ionosphere overlaps upper layers; EXOSPHERE Outermost transition toward space</p></details></figure>
 
 <!-- SECTION 8 -->
 <h2 id="isa">8. International Standard Atmosphere (ISA)</h2>
@@ -531,7 +494,7 @@
     <tr><td>Ozone layer height</td><td>~25 km</td></tr>
     <tr><td>Mesosphere range</td><td>50–80 km</td></tr>
     <tr><td>Mesopause temperature</td><td>–100°C (173.15 K)</td></tr>
-    <tr><td>Ionosphere above</td><td>60 km</td></tr>
+    <tr><td>Ionospheric region</td><td>Overlaps upper layers; its boundaries vary</td></tr>
     <tr><td>Exosphere up to</td><td>10,000 km</td></tr>
     <tr><td>ISA MSL Temp</td><td>15°C (288.15 K)</td></tr>
     <tr><td>ISA MSL Pressure</td><td>1013.25 hPa</td></tr>
@@ -549,7 +512,7 @@
 <div class="qa-block">
   <div class="qa-q"><span class="label">Q1</span>Lowest layer of atmosphere is ……… (a) Troposphere (b) Tropopause (c) Stratosphere</div>
   <div class="qa-a"><span class="label">✅ Correct Answer: (a) Troposphere</span></div>
-  <div class="qa-explain">The Troposphere is the lowest layer, starting at earth's surface and extending to the tropopause. All weather occurs here.</div>
+  <div class="qa-explain">The Troposphere is the lowest layer, starting at earth's surface and extending to the tropopause. Most clouds and weather occur in the troposphere.</div>
   <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) Tropopause is a boundary, not a layer. (c) Stratosphere is above the Troposphere.</div>
   <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Remember the order: <strong>T-S-M-T-E</strong> = Troposphere, Stratosphere, Mesosphere, Thermosphere, Exosphere from bottom to top.</div>
 </div>
@@ -621,7 +584,7 @@
 <div class="qa-block">
   <div class="qa-q"><span class="label">Q10</span>Troposphere is generally ……… (a) Stable (b) Unstable (c) Neutral</div>
   <div class="qa-a"><span class="label">✅ Correct Answer: (b) Unstable</span></div>
-  <div class="qa-explain">The Troposphere has a lapse rate of ~6.5°C/km. With turbulent mixing, convective activity and all weather occurring here, it is generally unstable.</div>
+  <div class="qa-explain">The Troposphere has a lapse rate of ~6.5°C/km. With turbulent mixing, convective activity and most weather occurring here, it is generally unstable.</div>
   <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Stable — that's the Stratosphere. (c) Neutral — not the defining characteristic.</div>
   <div class="qa-tip"><span class="label">📌 Instructor's Note</span><strong>Troposphere = Unstable; Stratosphere = Stable</strong>. Easy contrast for exams.</div>
 </div>
@@ -629,9 +592,9 @@
 <div class="qa-block">
   <div class="qa-q"><span class="label">Q11</span>Stratosphere is ……… (a) Unstable (b) Neutral (c) Stable</div>
   <div class="qa-a"><span class="label">✅ Correct Answer: (c) Stable</span></div>
-  <div class="qa-explain">The Stratosphere has a temperature inversion (temperature increases with height due to ozone absorbing UV), making it very stable with no convective weather.</div>
+  <div class="qa-explain">The Stratosphere has a temperature inversion (temperature increases with height due to ozone absorbing UV), making it generally stable and suppressing ordinary convection.</div>
   <div class="qa-distract"><span class="label">Distractor Analysis</span>(a) Unstable — that's the Troposphere. (b) Neutral — not the dominant characteristic.</div>
-  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Stratosphere = "Stratified" = Layered = Stable. Also: no weather, steady winds.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Stratosphere = "Stratified" = Layered = Stable. Ordinary weather is much less common; this does not guarantee a cloud-free or turbulence-free layer.</div>
 </div>
 
 <div class="qa-block">
@@ -877,9 +840,9 @@
 <div class="qa-block">
   <div class="qa-q"><span class="label">Q42</span>The knowledge of the height of tropopause is important for a pilot because ……… (a) weather is mainly confined up to this level (b) clouds rarely reach up to this height due to jetstream (c) stratosphere starts at this height where all solar radiation is absorbed</div>
   <div class="qa-a"><span class="label">✅ Correct Answer: (a) weather is mainly confined up to this level</span></div>
-  <div class="qa-explain">The tropopause is the maximum height clouds can reach. All weather, turbulence, cloud formations are below it. Knowing its height helps pilots plan for weather-free cruising altitudes.</div>
+  <div class="qa-explain">The tropopause marks the upper boundary of the troposphere, where most weather occurs. It is not an absolute ceiling for clouds: strong thunderstorm updrafts can penetrate into the lower stratosphere. Its height alone does not guarantee weather-free flight.</div>
   <div class="qa-distract"><span class="label">Distractor Analysis</span>(b) Clouds do grow to just below tropopause — not because of jet streams. (c) Solar radiation is absorbed by ozone in the stratosphere, not at the tropopause itself.</div>
-  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>Tropopause = weather ceiling. Above it = stable, clear, steady stratospheric winds. CAT and Jet streams just BELOW it.</div>
+  <div class="qa-tip"><span class="label">📌 Instructor's Note</span>The key phrase in this question is mainly confined. The tropopause is a transition, not a guarantee of clear skies or smooth air.</div>
 </div>
 
 <div class="qa-block">
@@ -946,7 +909,7 @@
   <tr><td>Stratosphere extent</td><td>~18–50 km</td><td>Layers</td></tr>
   <tr><td>Mesosphere extent</td><td>50–80 km</td><td>Layers</td></tr>
   <tr><td>Mesopause temperature</td><td>–100°C (173.15 K)</td><td>Layers</td></tr>
-  <tr><td>Ionosphere above</td><td>60 km</td><td>Layers</td></tr>
+  <tr><td>Ionospheric region</td><td>Overlaps upper layers; its boundaries vary</td><td>Layers</td></tr>
   <tr><td>Exosphere extent</td><td>Up to 10,000 km</td><td>Layers</td></tr>
   <tr><td>ISA MSL Temperature</td><td>15°C (288.15 K)</td><td>ISA</td></tr>
   <tr><td>ISA MSL Pressure</td><td>1013.25 hPa</td><td>ISA</td></tr>

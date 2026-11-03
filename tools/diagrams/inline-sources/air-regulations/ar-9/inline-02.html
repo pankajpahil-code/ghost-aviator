@@ -1,0 +1,61 @@
+<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" style="max-width:720px;width:100%;background:#f8f9fa;border-radius:8px;padding:4px">
+      <!-- Title -->
+      <text x="360" y="28" text-anchor="middle" font-family="Oswald,sans-serif" font-size="14" font-weight="700" fill="#0d2b4e">AERONAUTICAL INFORMATION PRODUCTS — SELECTION FLOWCHART</text>
+      <!-- AIS Source box -->
+      <rect x="280" y="45" width="160" height="40" rx="6" fill="#0d2b4e"/>
+      <text x="360" y="61" text-anchor="middle" fill="white" font-size="10" font-family="Oswald,sans-serif" font-weight="700">IS THE INFORMATION</text>
+      <text x="360" y="78" text-anchor="middle" fill="white" font-size="10" font-family="Oswald,sans-serif">PERMANENT OR TEMPORARY?</text>
+      <!-- Arrow down -->
+      <line x1="360" y1="85" x2="360" y2="105" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Decision diamond -->
+      <polygon points="360,105 430,140 360,175 290,140" fill="#1a6fa8"/>
+      <text x="360" y="135" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">PERMANENT</text>
+      <text x="360" y="150" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">CHANGE?</text>
+      <!-- Yes to right — AIP Amendment -->
+      <line x1="430" y1="140" x2="530" y2="140" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="480" y="133" text-anchor="middle" fill="#155724" font-size="9" font-family="JetBrains Mono,monospace" font-weight="700">YES</text>
+      <rect x="530" y="120" width="120" height="40" rx="5" fill="#155724"/>
+      <text x="590" y="138" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">AIP AMENDMENT</text>
+      <text x="590" y="152" text-anchor="middle" fill="#a8e6cf" font-size="8" font-family="Source Serif 4,serif">Via AIRAC (AMDT)</text>
+      <!-- No down — temporary -->
+      <line x1="360" y1="175" x2="360" y2="205" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="367" y="193" fill="#9b1c1c" font-size="9" font-family="JetBrains Mono,monospace" font-weight="700">NO (TEMP)</text>
+      <!-- Duration decision -->
+      <polygon points="360,205 440,245 360,285 280,245" fill="#0e7c7b"/>
+      <text x="360" y="238" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">DURATION ≥ 3 MONTHS</text>
+      <text x="360" y="253" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">OR EXTENSIVE TEXT?</text>
+      <!-- Yes to right — AIP Supplement -->
+      <line x1="440" y1="245" x2="530" y2="245" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="483" y="238" text-anchor="middle" fill="#155724" font-size="9" font-family="JetBrains Mono,monospace" font-weight="700">YES</text>
+      <rect x="530" y="225" width="120" height="40" rx="5" fill="#c8952a"/>
+      <text x="590" y="243" text-anchor="middle" fill="white" font-size="9" font-family="Oswald,sans-serif" font-weight="700">AIP SUPPLEMENT</text>
+      <text x="590" y="257" text-anchor="middle" fill="#fff3cd" font-size="8" font-family="Source Serif 4,serif">Yellow pages</text>
+      <!-- No down — Short temp change -->
+      <line x1="360" y1="285" x2="360" y2="315" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="367" y="303" fill="#9b1c1c" font-size="9" font-family="JetBrains Mono,monospace" font-weight="700">NO</text>
+      <!-- NOTAM -->
+      <rect x="280" y="315" width="160" height="40" rx="5" fill="#9b1c1c"/>
+      <text x="360" y="333" text-anchor="middle" fill="white" font-size="10" font-family="Oswald,sans-serif" font-weight="700">NOTAM</text>
+      <text x="360" y="348" text-anchor="middle" fill="#f5c6cb" font-size="8" font-family="Source Serif 4,serif">Short-duration temporary info</text>
+      <!-- Does not qualify for AIP/NOTAM? -->
+      <line x1="360" y1="355" x2="360" y2="380" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="390" y="370" fill="#555" font-size="8" font-family="JetBrains Mono,monospace">Advisory/Admin?</text>
+      <rect x="280" y="380" width="160" height="40" rx="5" fill="#4a235a"/>
+      <text x="360" y="398" text-anchor="middle" fill="white" font-size="10" font-family="Oswald,sans-serif" font-weight="700">AIC</text>
+      <text x="360" y="412" text-anchor="middle" fill="#dab8f0" font-size="8" font-family="Source Serif 4,serif">Advisory / Explanatory</text>
+      <!-- Legend -->
+      <rect x="10" y="400" width="12" height="12" fill="#0d2b4e"/>
+      <text x="26" y="411" font-size="8" font-family="JetBrains Mono,monospace" fill="#333">Decision Point</text>
+      <rect x="10" y="420" width="12" height="12" fill="#155724"/>
+      <text x="26" y="431" font-size="8" font-family="JetBrains Mono,monospace" fill="#333">Permanent Change</text>
+      <rect x="10" y="440" width="12" height="12" fill="#9b1c1c"/>
+      <text x="26" y="451" font-size="8" font-family="JetBrains Mono,monospace" fill="#333">Temporary Notice</text>
+      <rect x="10" y="460" width="12" height="12" fill="#4a235a"/>
+      <text x="26" y="471" font-size="8" font-family="JetBrains Mono,monospace" fill="#333">Advisory / Admin</text>
+      <!-- Arrow marker definition -->
+      <defs>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#555"/>
+        </marker>
+      </defs>
+    </svg>

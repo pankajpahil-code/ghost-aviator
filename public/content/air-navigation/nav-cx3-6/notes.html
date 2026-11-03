@@ -558,64 +558,7 @@ the air in order to turn that pressure into a number of knots.</p>
 order once and the whole chapter follows from it.</p>
 
 <figure class="diagram">
-<svg viewBox="0 0 820 470" width="820" height="470" role="img" aria-labelledby="chainT chainD">
-  <title id="chainT">The airspeed correction chain from indicated to true airspeed</title>
-  <desc id="chainD">Indicated airspeed is corrected for instrument error and pressure or position
-  error to give calibrated airspeed. From calibrated airspeed there are two paths. At low speed,
-  correcting density error alone gives true airspeed directly. At high speed, correcting
-  compressibility first gives equivalent airspeed, and then correcting density error gives true
-  airspeed. The dividing line is 300 knots true airspeed.</desc>
-
-  <defs>
-    <marker id="c6a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#c9a227" stroke="none"/>
-    </marker>
-    <marker id="c6r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#2e86ab" stroke="none"/>
-    </marker>
-  </defs>
-
-  <rect x="300" y="14" width="220" height="42" rx="6" fill="#1a2942" stroke="#c9a227" stroke-width="2"/>
-  <text x="410" y="34" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="15" font-weight="bold">IAS</text>
-  <text x="410" y="49" text-anchor="middle" fill="#c9c2ae" font-family="Georgia,serif" font-size="11.5">what the dial shows</text>
-
-  <path d="M410,56 L410,86" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
-  <text x="424" y="76" fill="#8a6d12" font-family="Georgia,serif" font-size="12.5">instrument + pressure error &mdash; from the correction card</text>
-
-  <rect x="300" y="90" width="220" height="42" rx="6" fill="#eef6fa" stroke="#2e86ab" stroke-width="2"/>
-  <text x="410" y="110" text-anchor="middle" fill="#1d5f7d" font-family="Georgia,serif" font-size="15" font-weight="bold">CAS</text>
-  <text x="410" y="125" text-anchor="middle" fill="#41616f" font-family="Georgia,serif" font-size="11.5">older books call this RAS</text>
-
-  <path d="M410,132 L410,158 L214,158 L214,192" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
-  <path d="M410,132 L410,158 L606,158 L606,192" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
-  <text x="214" y="150" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="12.5" font-weight="bold">low speed</text>
-  <text x="606" y="150" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5" font-weight="bold">high speed</text>
-
-  <rect x="92" y="196" width="244" height="40" rx="5" fill="#eef8f1" stroke="#1e8449" stroke-width="1.8"/>
-  <text x="214" y="221" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="13.5">correct density error only</text>
-
-  <rect x="484" y="196" width="244" height="40" rx="5" fill="#fdf1ef" stroke="#c0392b" stroke-width="1.8"/>
-  <text x="606" y="221" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="13.5">correct compressibility first</text>
-
-  <path d="M606,236 L606,262" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
-  <rect x="496" y="266" width="220" height="42" rx="6" fill="#1a2942" stroke="#c0392b" stroke-width="2"/>
-  <text x="606" y="286" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="15" font-weight="bold">EAS</text>
-  <text x="606" y="301" text-anchor="middle" fill="#c9c2ae" font-family="Georgia,serif" font-size="11.5">you will rarely meet this in the air</text>
-
-  <path d="M606,308 L606,338" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
-  <text x="620" y="328" fill="#8a6d12" font-family="Georgia,serif" font-size="12.5">then density error</text>
-
-  <path d="M214,236 L214,352 L296,352" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
-  <path d="M606,342 L606,352 L524,352" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#c6a)"/>
-
-  <rect x="300" y="332" width="220" height="46" rx="6" fill="#1e8449" stroke="#0f5c33" stroke-width="2"/>
-  <text x="410" y="354" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-size="16" font-weight="bold">TAS</text>
-  <text x="410" y="370" text-anchor="middle" fill="#d8f3e3" font-family="Georgia,serif" font-size="11.5">your actual speed through the air</text>
-
-  <rect x="92" y="404" width="636" height="50" rx="5" fill="#fdf6e8" stroke="#b9770e" stroke-width="1.6"/>
-  <text x="410" y="424" text-anchor="middle" fill="#8a5a08" font-family="Georgia,serif" font-size="13.5" font-weight="bold">The rule that decides which path you are on</text>
-  <text x="410" y="443" text-anchor="middle" fill="#3a3020" font-family="Georgia,serif" font-size="13">Work out TAS the low-speed way first. If it comes out at 300 kt or less, you are finished.</text>
-</svg>
+<figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-navigation/nav-cx3-6/figs/inline-01.svg" alt="1 · Four airspeeds, one chain" width="844" height="494" loading="lazy" decoding="async" style="display:block;width:1028px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-navigation/nav-cx3-6/figs/inline-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>IAS; what the dial shows; instrument + pressure error — from the correction card; CAS; older books call this RAS; low speed; high speed; correct density error only; correct compressibility first; EAS; you will rarely meet this in the air; then density error; TAS; your actual speed through the air; The rule that decides which path you are on; Work out TAS the low-speed way first. If it comes out at 300 kt or less, you are finished.</p></details></figure>
 <figcaption><strong>Figure 6.1</strong> &mdash; The correction chain. Two of these
 four are instrument readings dressed up as speeds; only TAS is the speed you are
 actually flying through the air.</figcaption>
@@ -674,30 +617,7 @@ that thinner air. The dial does not know this. Your navigation does.</p>
 </div>
 
 <figure class="chart">
-<svg viewBox="0 0 820 400" width="820" height="400" role="img" aria-labelledby="cAt cAd">
-  <title id="cAt">True airspeed against altitude at a constant calibrated airspeed of 200 knots</title>
-  <desc id="cAd">At sea level TAS equals CAS at 200 knots. TAS then climbs steadily with altitude: 232 knots at 10,000 feet, 271 at 20,000, 319 at 30,000 and 386 at 40,000 feet &mdash; roughly two per cent more true airspeed for every thousand feet climbed. The curve is the compressible relation, not CAS divided by the square root of the density ratio.</desc>
-  <rect width="820" height="400" fill="#1a2942"/>
-<line x1="78.0" y1="348.0" x2="792.0" y2="348.0" stroke="#2c3e57" stroke-width="1"/><text x="68" y="352.0" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">200</text>
-<line x1="78.0" y1="269.5" x2="792.0" y2="269.5" stroke="#2c3e57" stroke-width="1"/><text x="68" y="273.5" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">250</text>
-<line x1="78.0" y1="191.0" x2="792.0" y2="191.0" stroke="#2c3e57" stroke-width="1"/><text x="68" y="195.0" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">300</text>
-<line x1="78.0" y1="112.5" x2="792.0" y2="112.5" stroke="#2c3e57" stroke-width="1"/><text x="68" y="116.5" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">350</text>
-<line x1="78.0" y1="34.0" x2="792.0" y2="34.0" stroke="#2c3e57" stroke-width="1"/><text x="68" y="38.0" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">400</text>
-<line x1="78.0" y1="34" x2="78.0" y2="348" stroke="#2c3e57" stroke-width="1"/><text x="78.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">0</text>
-<line x1="256.5" y1="34" x2="256.5" y2="348" stroke="#2c3e57" stroke-width="1"/><text x="256.5" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">10</text>
-<line x1="435.0" y1="34" x2="435.0" y2="348" stroke="#2c3e57" stroke-width="1"/><text x="435.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">20</text>
-<line x1="613.5" y1="34" x2="613.5" y2="348" stroke="#2c3e57" stroke-width="1"/><text x="613.5" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">30</text>
-<line x1="792.0" y1="34" x2="792.0" y2="348" stroke="#2c3e57" stroke-width="1"/><text x="792.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">40</text>
-  <polyline points="78.0,348.0 792.0,348.0" fill="none" stroke="#2e86ab" stroke-width="2" stroke-dasharray="6 4"/>
-  <polyline points="78.0,348.0 122.6,336.5 167.2,324.5 211.9,311.8 256.5,298.4 301.1,284.3 345.8,269.5 390.4,253.8 435.0,237.3 479.6,219.8 524.2,201.4 568.9,181.9 613.5,161.3 658.1,139.5 702.8,116.6 747.4,88.7 792.0,56.6" fill="none" stroke="#c9a227" stroke-width="3" stroke-linejoin="round"/>
-<circle cx="78.0" cy="348.0" r="4" fill="#c9a227" stroke="#1a2942" stroke-width="1.5"/><text x="78.0" y="337.0" text-anchor="middle" fill="#f0e6c8" font-family="monospace" font-size="11.5" font-weight="bold">200</text>
-<circle cx="256.5" cy="298.4" r="4" fill="#c9a227" stroke="#1a2942" stroke-width="1.5"/><text x="256.5" y="287.4" text-anchor="middle" fill="#f0e6c8" font-family="monospace" font-size="11.5" font-weight="bold">232</text>
-<circle cx="435.0" cy="237.3" r="4" fill="#c9a227" stroke="#1a2942" stroke-width="1.5"/><text x="435.0" y="226.3" text-anchor="middle" fill="#f0e6c8" font-family="monospace" font-size="11.5" font-weight="bold">271</text>
-<circle cx="613.5" cy="161.3" r="4" fill="#c9a227" stroke="#1a2942" stroke-width="1.5"/><text x="613.5" y="150.3" text-anchor="middle" fill="#f0e6c8" font-family="monospace" font-size="11.5" font-weight="bold">319</text>
-<circle cx="792.0" cy="56.6" r="4" fill="#c9a227" stroke="#1a2942" stroke-width="1.5"/><text x="792.0" y="45.6" text-anchor="middle" fill="#f0e6c8" font-family="monospace" font-size="11.5" font-weight="bold">386</text>
-  <text x="435" y="392" text-anchor="middle" fill="#8fa3ba" font-family="Georgia,serif" font-size="12">pressure altitude &mdash; thousands of feet</text>
-  <text x="16" y="191" fill="#8fa3ba" font-family="Georgia,serif" font-size="12" transform="rotate(-90 16 191)" text-anchor="middle">knots</text>
-</svg>
+<figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-navigation/nav-cx3-6/figs/inline-02.svg" alt="2 · Density error — why TAS beats CAS" width="844" height="424" loading="lazy" decoding="async" style="display:block;width:1075px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-navigation/nav-cx3-6/figs/inline-02.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>200; 250; 300; 350; 400; 0; 10; 20; 30; 40; 200; 232; 271; 319; 386; pressure altitude — thousands of feet; knots</p></details></figure>
 <figcaption><strong>Figure 6.2</strong> &mdash; Hold CAS at 200 knots and climb.
 The dial never moves; your true speed through the air grows by roughly
 <strong>2% for every 1,000 feet</strong>. At FL400 it is <strong>386 knots</strong>
@@ -864,23 +784,7 @@ the third is fixed.</p>
 </div>
 
 <figure class="chart">
-<svg viewBox="0 0 820 400" width="820" height="400" role="img" aria-labelledby="cBt cBd">
-  <title id="cBt">Divergence between the compressible and simple airspeed calculations at flight level 350</title>
-  <desc id="cBd">Two curves of true airspeed against calibrated airspeed at FL350. Below 300 knots
-  true airspeed the two agree within a few knots. Above it they separate rapidly: at CAS 280 the
-  simple calculation over-reads by 30 knots, and at CAS 340 by 49 knots.</desc>
-  <rect width="820" height="400" fill="#1a2942"/>
-  <line x1="78" y1="314.6" x2="792" y2="314.6" stroke="#2c3e57" stroke-width="1"/><text x="68" y="318.6" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">200</text><line x1="78" y1="247.8" x2="792" y2="247.8" stroke="#2c3e57" stroke-width="1"/><text x="68" y="251.8" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">300</text><line x1="78" y1="181.0" x2="792" y2="181.0" stroke="#2c3e57" stroke-width="1"/><text x="68" y="185.0" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">400</text><line x1="78" y1="114.2" x2="792" y2="114.2" stroke="#2c3e57" stroke-width="1"/><text x="68" y="118.2" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">500</text><line x1="78" y1="47.4" x2="792" y2="47.4" stroke="#2c3e57" stroke-width="1"/><text x="68" y="51.4" text-anchor="end" fill="#8fa3ba" font-family="monospace" font-size="11">600</text><text x="78.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">100</text><text x="197.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">140</text><text x="316.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">180</text><text x="435.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">220</text><text x="554.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">260</text><text x="673.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">300</text><text x="792.0" y="368" text-anchor="middle" fill="#8fa3ba" font-family="monospace" font-size="11">340</text><line x1="78" y1="247.8" x2="792" y2="247.8" stroke="#c0392b" stroke-width="2" stroke-dasharray="7 5"/><text x="86" y="239.8" fill="#e8776b" font-family="Georgia,serif" font-size="12.5" font-weight="bold">300 kt TAS — below this line the gap is noise</text>
-  <polygon points="78.0,329.3 137.5,306.0 197.0,283.1 256.5,260.4 316.0,238.0 375.5,216.1 435.0,194.5 494.5,173.2 554.0,152.4 613.5,131.9 673.0,111.8 732.5,92.1 792.0,72.7 792.0,40.1 732.5,64.1 673.0,88.1 613.5,112.2 554.0,136.2 494.5,160.1 435.0,184.1 375.5,208.2 316.0,232.2 256.5,256.1 197.0,280.2 137.5,304.2 78.0,328.2" fill="#c0392b" fill-opacity="0.18"/>
-  <polyline points="78.0,328.2 137.5,304.2 197.0,280.2 256.5,256.1 316.0,232.2 375.5,208.2 435.0,184.1 494.5,160.1 554.0,136.2 613.5,112.2 673.0,88.1 732.5,64.1 792.0,40.1" fill="none" stroke="#e8776b" stroke-width="2.5" stroke-dasharray="5 4"/>
-  <polyline points="78.0,329.3 137.5,306.0 197.0,283.1 256.5,260.4 316.0,238.0 375.5,216.1 435.0,194.5 494.5,173.2 554.0,152.4 613.5,131.9 673.0,111.8 732.5,92.1 792.0,72.7" fill="none" stroke="#c9a227" stroke-width="3"/>
-  <line x1="613.5" y1="131.9" x2="613.5" y2="112.2" stroke="#f5f2e8" stroke-width="1.5"/><text x="605.5" y="126.0" text-anchor="end" fill="#f5f2e8" font-family="monospace" font-size="12" font-weight="bold">30 kt</text><line x1="792.0" y1="72.7" x2="792.0" y2="40.1" stroke="#f5f2e8" stroke-width="1.5"/><text x="784.0" y="60.4" text-anchor="end" fill="#f5f2e8" font-family="monospace" font-size="12" font-weight="bold">49 kt</text>
-  <text x="78" y="20" fill="#f5f2e8" font-family="Georgia,serif" font-size="14" font-weight="bold">Why the cut-off is 300 knots</text>
-  <text x="786" y="74.1" text-anchor="end" fill="#e8776b" font-family="Georgia,serif" font-size="12">simple density calculation — over-reads</text>
-  <text x="786" y="160.9" text-anchor="end" fill="#c9a227" font-family="Georgia,serif" font-size="12">what the CX-3 actually computes</text>
-  <text x="410" y="390" text-anchor="middle" fill="#8fa3ba" font-family="Georgia,serif" font-size="12">calibrated airspeed at FL350 — knots</text>
-  <text x="16" y="191" fill="#8fa3ba" font-family="Georgia,serif" font-size="12" transform="rotate(-90 16 191)" text-anchor="middle">true airspeed — knots</text>
-</svg>
+<figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-navigation/nav-cx3-6/figs/inline-03.svg" alt="3 · Compressibility — the correction you will never make" width="844" height="424" loading="lazy" decoding="async" style="display:block;width:1075px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-navigation/nav-cx3-6/figs/inline-03.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>200; 300; 400; 500; 600; 100; 140; 180; 220; 260; 300; 340; 300 kt TAS — below this line the gap is noise; 30 kt; 49 kt; Why the cut-off is 300 knots; simple density calculation — over-reads; what the CX-3 actually computes; calibrated airspeed at FL350 — knots; true airspeed — knots</p></details></figure>
 <figcaption><strong>Figure 6.3</strong> &mdash; Why the cut-off sits at 300 knots.
 The gold curve is the honest, compressible answer. The dashed red is what you get
 if you ignore compressibility. Below 300 kt TAS they are within a few knots of
@@ -1080,54 +984,7 @@ should.</p>
 <p>So the needle says 3,000 and you are lower. <strong>Cold means low.</strong></p>
 
 <figure class="diagram">
-<svg viewBox="0 0 820 400" width="820" height="400" role="img" aria-labelledby="taT taD">
-  <title id="taT">Indicated against true altitude on a cold day</title>
-  <desc id="taD">On a standard day an indicated 20,000 feet is a true 20,000 feet. On a day that is
-  10 degrees colder than standard, the same indicated 20,000 feet is a true 19,200 feet — the
-  aircraft sits 800 feet lower than the altimeter reports, and that margin is lost from terrain
-  clearance.</desc>
-
-  <rect width="820" height="400" fill="#fbfaf7"/>
-
-  <!-- ground -->
-  <path fill="none" d="M0,352 L820,352" stroke="#7a6a48" stroke-width="2"/>
-  <path d="M470,352 L560,232 L620,282 L700,196 L790,352 Z" fill="#8a7a58" stroke="#5f5335" stroke-width="1.5"/>
-  <text x="640" y="340" text-anchor="middle" fill="#4a4128" font-family="Georgia,serif" font-size="12">high ground</text>
-
-  <!-- scale -->
-  <line x1="86" y1="72" x2="86" y2="352" stroke="#22303f" stroke-width="1.5"/>
-  <text x="70" y="76" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">20 000</text>
-  <text x="70" y="128" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">19 200</text>
-  <text x="70" y="356" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">0</text>
-
-  <!-- standard day -->
-  <line x1="86" y1="72" x2="400" y2="72" stroke="#1e8449" stroke-width="2.5" stroke-dasharray="7 4"/>
-  <g transform="translate(228,72)">
-    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#1e8449"/>
-  </g>
-  <text x="228" y="52" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="13" font-weight="bold">STANDARD DAY</text>
-  <text x="228" y="98" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="12.5">altimeter 20 000 &middot; you are at 20 000</text>
-
-  <!-- cold day -->
-  <line x1="440" y1="72" x2="800" y2="72" stroke="#8fa3ba" stroke-width="1.5" stroke-dasharray="4 5"/>
-  <text x="620" y="64" text-anchor="middle" fill="#5a6b7d" font-family="Georgia,serif" font-size="12">what the altimeter claims &mdash; 20 000</text>
-
-  <line x1="440" y1="128" x2="800" y2="128" stroke="#c0392b" stroke-width="2.5"/>
-  <g transform="translate(600,128)">
-    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#c0392b"/>
-  </g>
-  <text x="620" y="44" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="13" font-weight="bold">ISA &minus;10 DAY</text>
-  <text x="620" y="152" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5">you are actually at 19 200</text>
-
-  <!-- the gap -->
-  <line x1="420" y1="72" x2="420" y2="128" stroke="#c0392b" stroke-width="2"/>
-  <path d="M415,77 L420,70 L425,77" fill="#c0392b"/>
-  <path d="M415,123 L420,130 L425,123" fill="#c0392b"/>
-  <rect x="330" y="88" width="80" height="24" rx="4" fill="#fdf1ef" stroke="#c0392b" stroke-width="1.4"/>
-  <text x="370" y="105" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="13" font-weight="bold">800 ft</text>
-
-  <text x="410" y="196" text-anchor="middle" fill="#22303f" font-family="Georgia,serif" font-size="13.5" font-weight="bold">800 feet you thought you had, and do not</text>
-</svg>
+<figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-navigation/nav-cx3-6/figs/inline-04.svg" alt="5 · True altitude — the one that can hurt you" width="844" height="424" loading="lazy" decoding="async" style="display:block;width:1075px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-navigation/nav-cx3-6/figs/inline-04.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>high ground; 20 000; 19 200; 0; STANDARD DAY; altimeter 20 000 · you are at 20 000; what the altimeter claims — 20 000; ISA −10 DAY; you are actually at 19 200; 800 ft; 800 feet you thought you had, and do not</p></details></figure>
 <figcaption><strong>Figure 6.4</strong> &mdash; Same altimeter reading, same
 setting, two different days. The cold day puts you 800 feet lower than the
 instrument reports &mdash; and the instrument never indicates that anything is
@@ -1245,64 +1102,7 @@ wrong.</figcaption>
 </div>
 
 <figure class="diagram">
-<svg viewBox="0 0 820 350" width="820" height="350" role="img" aria-labelledby="daT daD">
-  <title id="daT">Density altitude on a hot day at a high aerodrome</title>
-  <desc id="daD">An aerodrome sits at 5,500 feet pressure altitude. On a standard day the aircraft
-  performs as though at 5,500 feet. At 35 degrees Celsius — 31 degrees warmer than standard — the
-  air is as thin as it would be at 9,220 feet, so the aircraft performs as though nearly 4,000 feet
-  higher, with a longer takeoff run and a poorer climb.</desc>
-
-  <rect width="820" height="350" fill="#fbfaf7"/>
-
-  <!-- vertical scale -->
-  <line x1="96" y1="40" x2="96" y2="292" stroke="#22303f" stroke-width="1.5"/>
-  <text x="80" y="88" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">9 220</text>
-  <text x="80" y="212" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">5 500</text>
-  <text x="80" y="296" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">0</text>
-  <line x1="90" y1="84" x2="102" y2="84" stroke="#22303f" stroke-width="1.5"/>
-  <line x1="90" y1="208" x2="102" y2="208" stroke="#22303f" stroke-width="1.5"/>
-  <line x1="90" y1="292" x2="102" y2="292" stroke="#22303f" stroke-width="1.5"/>
-
-  <!-- ground / aerodrome -->
-  <rect x="130" y="208" width="290" height="84" fill="#c9bfa4"/>
-  <path fill="none" d="M130,208 L420,208" stroke="#7a6a48" stroke-width="2.5"/>
-  <text x="275" y="250" text-anchor="middle" fill="#4a4128" font-family="Georgia,serif" font-size="12.5">aerodrome &mdash; 5 500 ft pressure altitude</text>
-
-  <!-- standard day aircraft -->
-  <g transform="translate(210,208)">
-    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#1e8449"/>
-  </g>
-  <text x="210" y="192" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="12" font-weight="bold">standard day, +4&deg;C</text>
-  <path d="M240,196 L330,150" fill="none" stroke="#1e8449" stroke-width="2.5"/>
-  <path d="M330,150 L318,152 L325,161 Z" fill="#1e8449"/>
-  <text x="352" y="146" fill="#146034" font-family="Georgia,serif" font-size="12">healthy climb</text>
-
-  <!-- hot day: the air behaves like 9220 -->
-  <rect x="470" y="84" width="300" height="208" fill="#fdf1ef" opacity="0.75"/>
-  <line x1="470" y1="84" x2="770" y2="84" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="7 4"/>
-  <text x="620" y="74" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5" font-weight="bold">the air here is as thin as 9 220 ft</text>
-
-  <path fill="none" d="M470,208 L770,208" stroke="#7a6a48" stroke-width="2.5"/>
-  <rect x="470" y="208" width="300" height="84" fill="#c9bfa4"/>
-  <text x="620" y="250" text-anchor="middle" fill="#4a4128" font-family="Georgia,serif" font-size="12.5">same aerodrome, same 5 500 ft</text>
-
-  <g transform="translate(540,208)">
-    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#c0392b"/>
-  </g>
-  <text x="540" y="192" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12" font-weight="bold">hot day, +35&deg;C</text>
-  <path d="M570,196 L690,178" fill="none" stroke="#c0392b" stroke-width="2.5"/>
-  <path d="M690,178 L678,174 L680,185 Z" fill="#c0392b"/>
-  <text x="700" y="172" fill="#8e2c21" font-family="Georgia,serif" font-size="12">flat</text>
-
-  <!-- the penalty bracket -->
-  <line x1="446" y1="84" x2="446" y2="208" stroke="#c0392b" stroke-width="2"/>
-  <path d="M441,89 L446,82 L451,89" fill="#c0392b"/>
-  <path d="M441,203 L446,210 L451,203" fill="#c0392b"/>
-  <rect x="386" y="132" width="120" height="26" rx="4" fill="#fdf1ef" stroke="#c0392b" stroke-width="1.4"/>
-  <text x="446" y="150" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5" font-weight="bold">3 720 ft penalty</text>
-
-  <text x="410" y="326" text-anchor="middle" fill="#22303f" font-family="Georgia,serif" font-size="13.5" font-weight="bold">The aeroplane never left 5 500 feet. Its performance did.</text>
-</svg>
+<figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-navigation/nav-cx3-6/figs/inline-05.svg" alt="6 · Density altitude — the one about performance" width="844" height="374" loading="lazy" decoding="async" style="display:block;width:1075px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-navigation/nav-cx3-6/figs/inline-05.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>9 220; 5 500; 0; aerodrome — 5 500 ft pressure altitude; standard day, +4°C; healthy climb; the air here is as thin as 9 220 ft; same aerodrome, same 5 500 ft; hot day, +35°C; flat; 3 720 ft penalty; The aeroplane never left 5 500 feet. Its performance did.</p></details></figure>
 <figcaption><strong>Figure 6.5</strong> &mdash; Hot and high. The aerodrome does
 not move; the air does. At +35&nbsp;&deg;C this 5,500-foot aerodrome performs like
 a 9,220-foot one &mdash; longer roll, flatter climb, less power.</figcaption>
@@ -1382,76 +1182,7 @@ pressure because three of them involve altitude and a temperature. This is how y
 tell them apart in one look.</p>
 
 <figure class="diagram">
-<svg viewBox="0 0 820 520" width="820" height="520" role="img" aria-labelledby="dcT dcD">
-  <title id="dcT">Decision chart for the four Chapter 6 calculations</title>
-  <desc id="dcD">Start by asking what the question wants. If it wants a speed, and gives Mach, use
-  Airspeed Planned MACH. If it wants a speed from CAS, use Airspeed Planned TAS, which handles
-  compressibility itself. If it wants a height for terrain clearance, that is true altitude and
-  there is no CX-3 function — use the formula. If it wants a height for performance, that is
-  density altitude and the CX-3 Altitude function does it.</desc>
-
-  <defs>
-    <marker id="d6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#c9a227" stroke="none"/>
-    </marker>
-  </defs>
-
-  <rect x="290" y="14" width="240" height="44" rx="6" fill="#1a2942" stroke="#c9a227" stroke-width="2"/>
-  <text x="410" y="42" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="15">What is the question asking for?</text>
-
-  <path d="M410,58 L410,80 L210,80 L210,104" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#d6)"/>
-  <path d="M410,58 L410,80 L610,80 L610,104" fill="none" stroke="#c9a227" stroke-width="2" marker-end="url(#d6)"/>
-
-  <rect x="110" y="108" width="200" height="38" rx="5" fill="#eef6fa" stroke="#2e86ab" stroke-width="1.8"/>
-  <text x="210" y="132" text-anchor="middle" fill="#1d5f7d" font-family="Georgia,serif" font-size="14" font-weight="bold">a SPEED</text>
-
-  <rect x="510" y="108" width="200" height="38" rx="5" fill="#fdf6e8" stroke="#b9770e" stroke-width="1.8"/>
-  <text x="610" y="132" text-anchor="middle" fill="#8a5a08" font-family="Georgia,serif" font-size="14" font-weight="bold">a HEIGHT</text>
-
-  <!-- speed branch -->
-  <path d="M210,146 L210,168 L130,168 L130,196" fill="none" stroke="#2e86ab" stroke-width="1.8" marker-end="url(#d6)"/>
-  <path d="M210,146 L210,168 L290,168 L290,196" fill="none" stroke="#2e86ab" stroke-width="1.8" marker-end="url(#d6)"/>
-  <text x="130" y="188" text-anchor="middle" fill="#41616f" font-family="Georgia,serif" font-size="11.5">given Mach</text>
-  <text x="290" y="188" text-anchor="middle" fill="#41616f" font-family="Georgia,serif" font-size="11.5">given CAS</text>
-
-  <rect x="34" y="200" width="192" height="62" rx="5" fill="#1a2942" stroke="#2e86ab" stroke-width="1.6"/>
-  <text x="130" y="221" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="13">TAS from Mach</text>
-  <text x="130" y="240" text-anchor="middle" fill="#7fc4e4" font-family="monospace" font-size="11">Airspeed &#8594; Planned MACH#</text>
-  <text x="130" y="255" text-anchor="middle" fill="#9db4c6" font-family="Georgia,serif" font-size="11">needs temperature only</text>
-
-  <rect x="238" y="200" width="192" height="62" rx="5" fill="#1a2942" stroke="#2e86ab" stroke-width="1.6"/>
-  <text x="334" y="221" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="13">TAS from CAS</text>
-  <text x="334" y="240" text-anchor="middle" fill="#7fc4e4" font-family="monospace" font-size="11">Airspeed &#8594; Planned TAS</text>
-  <text x="334" y="255" text-anchor="middle" fill="#9db4c6" font-family="Georgia,serif" font-size="11">compressibility handled inside</text>
-
-  <!-- height branch -->
-  <path d="M610,146 L610,168 L530,168 L530,196" fill="none" stroke="#b9770e" stroke-width="1.8" marker-end="url(#d6)"/>
-  <path d="M610,146 L610,168 L700,168 L700,196" fill="none" stroke="#b9770e" stroke-width="1.8" marker-end="url(#d6)"/>
-  <text x="524" y="188" text-anchor="middle" fill="#7a5a10" font-family="Georgia,serif" font-size="11.5">for terrain</text>
-  <text x="706" y="188" text-anchor="middle" fill="#7a5a10" font-family="Georgia,serif" font-size="11.5">for performance</text>
-
-  <rect x="438" y="200" width="188" height="62" rx="5" fill="#fdf1ef" stroke="#c0392b" stroke-width="1.8"/>
-  <text x="532" y="221" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="13" font-weight="bold">TRUE ALTITUDE</text>
-  <text x="532" y="240" text-anchor="middle" fill="#3a3020" font-family="Georgia,serif" font-size="11.5">no CX-3 function</text>
-  <text x="532" y="255" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="11.5">formula &mdash; 4 ft / 1000 / degree</text>
-
-  <rect x="638" y="200" width="150" height="62" rx="5" fill="#1a2942" stroke="#2e86ab" stroke-width="1.6"/>
-  <text x="713" y="221" text-anchor="middle" fill="#f5f2e8" font-family="Georgia,serif" font-size="13">Density altitude</text>
-  <text x="713" y="240" text-anchor="middle" fill="#7fc4e4" font-family="monospace" font-size="11">Altitude &#8594; DAlt</text>
-  <text x="713" y="255" text-anchor="middle" fill="#9db4c6" font-family="Georgia,serif" font-size="11">check with &times;120</text>
-
-  <!-- the tell -->
-  <rect x="34" y="300" width="754" height="88" rx="6" fill="#eef8f1" stroke="#1e8449" stroke-width="1.8"/>
-  <text x="410" y="324" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="14" font-weight="bold">The tell, when two of them look alike</text>
-  <text x="410" y="348" text-anchor="middle" fill="#20301f" font-family="Georgia,serif" font-size="13">True altitude and density altitude both take an altitude and a temperature and give you a height.</text>
-  <text x="410" y="368" text-anchor="middle" fill="#20301f" font-family="Georgia,serif" font-size="13">Ask what the answer is <tspan font-style="italic">for</tspan>: clearing the ground, or predicting the climb.</text>
-
-  <rect x="34" y="404" width="754" height="96" rx="6" fill="#fdf6e8" stroke="#b9770e" stroke-width="1.8"/>
-  <text x="410" y="428" text-anchor="middle" fill="#8a5a08" font-family="Georgia,serif" font-size="14" font-weight="bold">Two sign checks that catch almost every error in this chapter</text>
-  <text x="410" y="452" text-anchor="middle" fill="#3a3020" font-family="Georgia,serif" font-size="13">COLD day &#8594; true altitude is LOWER than indicated. You have less clearance, not more.</text>
-  <text x="410" y="472" text-anchor="middle" fill="#3a3020" font-family="Georgia,serif" font-size="13">HOT day &#8594; density altitude is HIGHER than pressure altitude. You have less performance.</text>
-  <text x="410" y="492" text-anchor="middle" fill="#7a6a48" font-family="Georgia,serif" font-size="12" font-style="italic">Both bad conditions push the number the way that costs you something. That is how you remember them.</text>
-</svg>
+<figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-navigation/nav-cx3-6/figs/inline-06.svg" alt="7 · Which route do I take?" width="844" height="544" loading="lazy" decoding="async" style="display:block;width:1075px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-navigation/nav-cx3-6/figs/inline-06.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>What is the question asking for?; a SPEED; a HEIGHT; given Mach; given CAS; TAS from Mach; Airspeed → Planned MACH#; needs temperature only; TAS from CAS; Airspeed → Planned TAS; compressibility handled inside; for terrain; for performance; TRUE ALTITUDE; no CX-3 function; formula — 4 ft / 1000 / degree; Density altitude; Altitude → DAlt; check with ×120; The tell, when two of them look alike; True altitude and density altitude both take an altitude and a temperature and give you a height.; Ask what the answer is for: clearing the ground, or predicting the climb.; Two sign checks that catch almost every error in this chapter; COLD day → true altitude is LOWER than indicated. You have less clearance, not more.; HOT day → density altitude is HIGHER than pressure altitude. You have less performance.; Both bad conditions push the number the way that costs you something. That is how you remember them.</p></details></figure>
 <figcaption><strong>Figure 6.6</strong> &mdash; Four calculations, two questions.
 What is being asked for, and what is it for? Everything else follows.</figcaption>
 </figure>

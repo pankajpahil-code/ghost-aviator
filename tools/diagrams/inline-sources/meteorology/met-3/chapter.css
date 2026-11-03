@@ -1,0 +1,45 @@
+
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #222; background: #fff; margin: 0; padding: 0 20px 40px 20px; }
+  h1 { font-size: 2.2em; color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 10px; margin-top: 30px; }
+  h2 { font-size: 1.6em; color: #1565c0; border-left: 5px solid #1565c0; padding-left: 12px; margin-top: 30px; page-break-after: avoid; }
+  h3 { font-size: 1.2em; color: #0d47a1; margin-top: 20px; page-break-after: avoid; }
+  h4 { font-size: 1.05em; color: #333; margin-top: 16px; }
+  p { margin: 8px 0; }
+  .reg-value { font-weight: bold; color: #b71c1c; background: #fff3e0; padding: 1px 4px; border-radius: 3px; font-family: monospace; }
+  .cover { text-align: center; padding: 80px 20px 60px 20px; border: 3px double #1a237e; margin: 20px 0; page-break-after: always; }
+  .cover h1 { border: none; font-size: 2.8em; }
+  .cover h2 { border: none; font-size: 1.6em; color: #555; margin-top: 10px; }
+  .cover .subtitle { font-size: 1.1em; color: #888; margin-top: 20px; }
+  .toc { page-break-after: always; }
+  .toc h2 { font-size: 1.8em; }
+  .toc ol { line-height: 2.2; }
+  .toc a { color: #1565c0; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; padding: 15px; border-radius: 6px; margin: 15px 0; page-break-inside: avoid; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; page-break-inside: avoid; }
+  th { background: #1565c0; color: #fff; padding: 8px 12px; text-align: left; font-size: 0.95em; }
+  td { border: 1px solid #ccc; padding: 8px 12px; font-size: 0.93em; }
+  tr:nth-child(even) td { background: #f5f9ff; }
+  .formula-box { background: #f3f0ff; border: 2px solid #7c4dff; border-radius: 8px; padding: 16px 20px; margin: 15px 0; font-family: monospace; font-size: 1.1em; page-break-inside: avoid; }
+  .formula-box .worked { background: #ede7f6; padding: 10px; border-radius: 5px; margin-top: 10px; font-family: 'Segoe UI', Arial, sans-serif; font-size: 0.95em; }
+  .qa-block { border: 1px solid #ddd; border-radius: 8px; margin: 18px 0; overflow: hidden; page-break-inside: avoid; }
+  .qa-question { background: #e8f1fb; border-left: 5px solid #2c5aa0; padding: 12px 15px; font-weight: bold; }
+  .qa-answer { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 12px 15px; }
+  .qa-distractor { background: #fdecea; border-left: 5px solid #c0392b; padding: 12px 15px; }
+  .qa-tip { background: #fff8e1; border-left: 5px solid #f57c00; padding: 12px 15px; }
+  pre.mermaid { background: #fff; page-break-inside: avoid; }
+  .svg-wrap { text-align: center; margin: 15px 0; page-break-inside: avoid; }
+  .section { margin-bottom: 30px; }
+  strong { color: #1a237e; }
+  .col2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .col3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }
