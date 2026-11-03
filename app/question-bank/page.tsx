@@ -21,6 +21,9 @@ function displaySubjects(ids: string[]): string {
   return Array.from(new Set(names)).join(" · ");
 }
 
+// Not every question has a written explanation yet; the headline says how many do.
+const EXPLAINED_COUNT = ALL_QUESTIONS.filter(q => isRealExplanation(q.exp)).length;
+
 // Built from the subject lists and the bank itself (Iron Rule 5), never typed by
 // hand: the hand-written list had no Instrumentation or Radio Navigation (719
 // questions between them) and offered "Performance" with 2 questions. A subject
@@ -98,7 +101,7 @@ function QuestionBankView({ initialQuery }: { initialQuery: string }) {
           </div>
           <h1 className="text-4xl font-extrabold mb-4">DGCA <span className="gradient-text">Question Bank</span></h1>
           <p style={{ color: "#94a3b8" }}>
-            {ALL_QUESTIONS.length.toLocaleString()} questions with answers and explanations · growing weekly
+            {ALL_QUESTIONS.length.toLocaleString()} questions with answers, {EXPLAINED_COUNT.toLocaleString()} with written explanations · growing weekly
           </p>
         </div>
 

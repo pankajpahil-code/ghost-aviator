@@ -42,10 +42,10 @@ export const GUIDES: Guide[] = [
   {
     slug: "rtr-exam-guide",
     title: "RTR(A) Exam Pattern & Syllabus Explained",
-    description: "DGCA CAR Section 7 Series G Part VI breakdown of the RTR(A) examination syllabus, 48-hour curriculum, Transmission (Part 1) and Viva (Part 2) — updated for the DGCA takeover of the exam from the WPC in November 2025.",
+    description: "DGCA CAR Section 7 Series G Part VI breakdown of the RTR(A) exam: the 50-question written paper (70% to pass), the practical (50%), the syllabus and the 48 recommended training hours — updated for the DGCA takeover of the exam from the WPC in November 2025.",
     author: "Capt. Pankaj Pahil",
     date: "2026-07-25",
-    updated: "2026-10-07"
+    updated: "2026-11-03"
   },
   {
     slug: "how-to-become-a-pilot-in-india",
