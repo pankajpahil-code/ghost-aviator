@@ -99,9 +99,10 @@ A further navigation computer injects and stores <strong>waypoints</strong>, the
 
 <p>The modern INS was the <strong>first self-contained single source</strong> of all navigation data. The INS has now been joined by the similar IRS laser-gyro system (Chapter 19).</p>
 
-<figure>
-  <img src="figs/fig_p228_0.png" alt="Data available from INS">
-  <figcaption>Fig 18.1 — Data available from INS. Source p.228</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-1.svg" alt="Information available from an INS" width="900" height="410" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.1 — Information available from an INS. Teaching schematic · <a href="figs/lesson-18-1.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Accelerometers; Gyroscopes; Initial position; INS; computing; Position / velocity; Track / heading; Distance / time; Wind information</p></details>
 </figure>
 
 <!-- SECTION 2 -->
@@ -138,32 +139,42 @@ A further navigation computer injects and stores <strong>waypoints</strong>, the
 </ol>
 </div>
 
-<figure>
-  <img src="figs/fig_p229_0.png" alt="Accelerometer">
-  <figcaption>Fig 18.3 — Accelerometer schematic. Source p.229</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-3.svg" alt="Accelerometer principle" width="900" height="410" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.3 — Accelerometer principle. Teaching schematic · <a href="figs/lesson-18-3.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Mass; Spring / restoring force; Displacement sensing; Aircraft acceleration; Measured specific force → electrical signal</p></details>
 </figure>
 
 <h3>Double Integration Process</h3>
 
 <figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/instrumentation/inst-18/figs/diagram-01.svg" alt="Double Integration Process" loading="lazy" style="display:block;width:595px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Double Integration Process · <a href="/content/instrumentation/inst-18/figs/diagram-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>× time1st integrator; × time2nd integrator; Acceleration(ft/s²); Velocity(ft/s); Distance(ft or NM)</p></details></figure>
 
-<figure>
-  <img src="figs/fig_p230_0.png" alt="Accelerometers and integrators">
-  <figcaption>Fig 18.5 — Accelerometers and integrators. Source p.230</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-5.svg" alt="First integration: acceleration to velocity" width="900" height="350" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.5 — First integration: acceleration to velocity. Teaching schematic · <a href="figs/lesson-18-5.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Acceleration; N/S and E/W; Integrate; over time; Velocity; N/S and E/W; The velocity components give ground speed and track.</p></details>
 </figure>
 
-<figure>
-  <img src="figs/fig_p231_0.png" alt="N/S and E/W accelerometer channels">
-  <figcaption>Fig 18.7 — N/S and E/W accelerometer channels. Source p.231</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-6.svg" alt="Second integration: velocity to position" width="900" height="420" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.6 — Second integration: velocity to position. Teaching schematic · <a href="figs/lesson-18-6.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Velocity; components; Integrate; over time; Distance; components; North/south distance → change of latitude; East/west departure + latitude → change of longitude; Add the changes to the initial position.</p></details>
+</figure>
+
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-7.svg" alt="Stabilised INS platform and sensors" width="900" height="460" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.7 — Stabilised INS platform and sensors. Teaching schematic · <a href="figs/lesson-18-7.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Mechanically stabilised; platform; N/S accelerometer; E/W accelerometer; Pitch gyro; Roll gyro; Azimuth gyro</p></details>
 </figure>
 
 <div class="box-green">
 <strong>Position computation:</strong> The computer knows the take-off lat/long. It continuously adds N/S distance and E/W distance to compute <strong>present position to the nearest tenth of a minute of arc</strong>.
 </div>
 
-<figure>
-  <img src="figs/fig_p232_0.png" alt="POS present position display">
-  <figcaption>Fig 18.8 — POS (present position) display. Source p.232</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-8.svg" alt="INS present-position information" width="900" height="350" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.8 — INS present-position information. Teaching schematic · <a href="figs/lesson-18-8.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Latitude; N / S; Longitude; E / W; Present position combines an initial fix with measured motion.</p></details>
 </figure>
 
 <!-- SECTION 4 -->
@@ -175,9 +186,10 @@ A further navigation computer injects and stores <strong>waypoints</strong>, the
 <strong>Solution:</strong> The accelerometer must always be kept <strong>earth-horizontal</strong>. This is achieved by mounting it on a gyro-stabilised platform (gimbal assembly).
 </div>
 
-<figure>
-  <img src="figs/fig_p233_0.png" alt="Gravity effects on accelerometer">
-  <figcaption>Fig 18.9 — Gravity effects on the accelerometer. Source p.233</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-9.svg" alt="Gravity contamination when a platform is tilted" width="900" height="530" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.9 — Gravity contamination when a platform is tilted. Teaching schematic · <a href="figs/lesson-18-9.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Gravity; Tilted accelerometer axis; A gravity component along the axis creates a false acceleration signal.; Levelling and feedback keep the platform horizontal.</p></details>
 </figure>
 
 <!-- SECTION 5 -->
@@ -187,9 +199,10 @@ A further navigation computer injects and stores <strong>waypoints</strong>, the
 
 <p>Construction: a can-within-a-can; the outer frame is filled with viscous fluid that supports the inner gimbal, reducing bearing torques. The inner gimbal is pivoted about its vertical axis.</p>
 
-<figure>
-  <img src="figs/fig_p234_0.png" alt="Rate-integrating gyroscope">
-  <figcaption>Fig 18.10 — Rate-integrating gyroscope. Source p.234</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-10.svg" alt="Rate-integrating gyroscope: sensing rotation" width="900" height="530" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.10 — Rate-integrating gyroscope: sensing rotation. Teaching schematic · <a href="figs/lesson-18-10.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Gyroscope; Input angular rate; Integrating response; Output angular displacement</p></details>
 </figure>
 
 <!-- SECTION 6 -->
@@ -207,9 +220,10 @@ A further navigation computer injects and stores <strong>waypoints</strong>, the
 Three integrating gyros are mounted with <strong>mutually perpendicular input axes</strong>. Three gimbal motors drive the platform about pitch, roll, and vertical axes respectively.
 </div>
 
-<figure>
-  <img src="figs/fig_p235_0.png" alt="The platform">
-  <figcaption>Fig 18.11 — The INS platform. Source p.235</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-11.svg" alt="INS platform: sensors and stabilisation loop" width="900" height="410" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.11 — INS platform: sensors and stabilisation loop. Teaching schematic · <a href="figs/lesson-18-11.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Gyroscopes; sense rotation; Servo; correction; Stabilised; platform; Accelerometers on the platform measure horizontal motion.</p></details>
 </figure>
 
 <!-- SECTION 7 -->
@@ -235,9 +249,10 @@ Three integrating gyros are mounted with <strong>mutually perpendicular input ax
 
 <p>Additional compensations for <strong>Coriolis and centrifugal effects</strong> are also applied.</p>
 
-<figure>
-  <img src="figs/fig_p236_0.png" alt="Earth orientation">
-  <figcaption>Fig 18.12 — Earth orientation. Source p.236</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-12.svg" alt="Earth orientation: latitude and changing local vertical" width="900" height="475" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.12 — Earth orientation: latitude and changing local vertical. Teaching schematic · <a href="figs/lesson-18-12.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Local vertical; Earth; Earth rotation; and aircraft motion; require compensation</p></details>
 </figure>
 
 <!-- SECTION 8 -->
@@ -278,9 +293,10 @@ Three integrating gyros are mounted with <strong>mutually perpendicular input ax
 </ul>
 </div>
 
-<figure>
-  <img src="figs/fig_p239_0.png" alt="The Schuler Period">
-  <figcaption>Fig 18.15 — The Schuler Period (oscillation cycle 84.4 min). Source p.239</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-15.svg" alt="Schuler tuning: the approximately 84.4-minute period" width="900" height="510" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.15 — Schuler tuning: the approximately 84.4-minute period. Teaching schematic · <a href="figs/lesson-18-15.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Earth-radius pendulum model; Ideal Schuler period ≈ 84.4 minutes; INS levelling loop; tuned to this period</p></details>
 </figure>
 
 <!-- SECTION 10 -->
@@ -330,14 +346,16 @@ Due to the <strong>irregular shape and composition of the Earth</strong>, moveme
   <tr><td>ATT REF</td><td>Computing disconnected; alignment lost. Accelerometers act as gravity switches; gyros become gravity-tied (earth gyros). Gives attitude and limited heading (DGI mode). Heading must be reset periodically to magnetic source.</td></tr>
 </table>
 
-<figure>
-  <img src="figs/fig_p240_0.png" alt="Mode Selector Unit">
-  <figcaption>Fig 18.16 — Mode Selector Unit. Source p.240</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-16.svg" alt="INS mode selector: functions" width="900" height="555" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.16 — INS mode selector: functions. Teaching schematic · <a href="figs/lesson-18-16.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>OFF • power off; STBY • initial position entry; ALIGN • level and align; NAV • navigation computation; ATT REF • attitude reference; Annunciators include READY NAV and battery warning.</p></details>
 </figure>
 
-<figure>
-  <img src="figs/fig_p241_0.png" alt="Control and Display Unit">
-  <figcaption>Fig 18.17 — Control and Display Unit (CDU). Source p.241</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-17.svg" alt="INS control and display unit: controls" width="900" height="520" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.17 — INS control and display unit: controls. Teaching schematic · <a href="figs/lesson-18-17.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Numerical displays; Position / navigation data; Display; selector; Waypoint; selector; Data-entry; keyboard; INSERT / HOLD; Track-change control</p></details>
 </figure>
 
 <div class="box-amber">
@@ -385,41 +403,50 @@ Due to the <strong>irregular shape and composition of the Earth</strong>, moveme
 <strong>Waypoint 0:</strong> Represents the aircraft's position at the last time a track change from present position to a specified waypoint was selected. Used to fly direct to any waypoint from current position. Waypoint 0 will NOT accept operator-entered coordinates — it is reserved for the computer.
 </div>
 
-<figure>
-  <img src="figs/fig_p243_0.png" alt="TK/GS display">
-  <figcaption>Fig 18.18 — TK/GS (Track and Ground Speed). Source p.243</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-18.svg" alt="TK/GS display: track and ground speed" width="900" height="350" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.18 — TK/GS display: track and ground speed. Teaching schematic · <a href="figs/lesson-18-18.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>TK; Track in degrees true; GS; Ground speed in knots; Track is the direction of motion over the ground.</p></details>
 </figure>
-<figure>
-  <img src="figs/fig_p244_0.png" alt="HDG/DA display">
-  <figcaption>Fig 18.19 — HDG/DA (Heading and Drift Angle). Source p.244</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-19.svg" alt="HDG/DA display: heading and drift angle" width="900" height="350" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.19 — HDG/DA display: heading and drift angle. Teaching schematic · <a href="figs/lesson-18-19.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>HDG; Aircraft heading; DA; Left / right drift angle; Heading describes the nose direction; drift relates heading to track.</p></details>
 </figure>
-<figure>
-  <img src="figs/fig_p244_2.png" alt="XTK/TKE display">
-  <figcaption>Fig 18.20 — XTK/TKE (Cross Track and Track Error). Source p.244</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-20.svg" alt="XTK/TKE: displacement versus angular error" width="900" height="465" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.20 — XTK/TKE: displacement versus angular error. Teaching schematic · <a href="figs/lesson-18-20.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Desired track; XTK; Distance from the track; Desired direction; Actual track direction; TKE; Angle between directions</p></details>
 </figure>
-<figure>
-  <img src="figs/fig_p245_0.png" alt="POS display">
-  <figcaption>Fig 18.21 — POS (Present Position). Source p.245</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-21.svg" alt="POS display: present latitude and longitude" width="900" height="350" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.21 — POS display: present latitude and longitude. Teaching schematic · <a href="figs/lesson-18-21.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Present latitude; N / S; Present longitude; E / W; POS refers to the aircraft’s computed present position.</p></details>
 </figure>
-<figure>
-  <img src="figs/fig_p245_2.png" alt="WPT display">
-  <figcaption>Fig 18.22 — WPT (Waypoint Position). Source p.245</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-22.svg" alt="WPT display: stored waypoint coordinates" width="900" height="350" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.22 — WPT display: stored waypoint coordinates. Teaching schematic · <a href="figs/lesson-18-22.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Waypoint latitude; N / S; Waypoint longitude; E / W; WPT refers to the selected stored waypoint, not present position.</p></details>
 </figure>
-<figure>
-  <img src="figs/fig_p246_0.png" alt="DIS/TIME display">
-  <figcaption>Fig 18.24 — DIS/TIME (Distance and Time). Source p.246</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-24.svg" alt="DIS/TIME display: distance and time" width="900" height="350" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.24 — DIS/TIME display: distance and time. Teaching schematic · <a href="figs/lesson-18-24.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>DIS; Distance to waypoint; TIME; Time to waypoint; The selected leg / waypoint determines the displayed destination.</p></details>
 </figure>
-<figure>
-  <img src="figs/fig_p246_2.png" alt="WIND display">
-  <figcaption>Fig 18.25 — WIND (Wind Velocity). Source p.246</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-25.svg" alt="WIND display: wind direction and speed" width="900" height="350" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.25 — WIND display: wind direction and speed. Teaching schematic · <a href="figs/lesson-18-25.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>Wind direction; Degrees true; Wind speed; Knots; Computed from the aircraft’s air and ground motion.</p></details>
 </figure>
-<figure>
-  <img src="figs/fig_p246_4.png" alt="DSR TK/STS display">
-  <figcaption>Fig 18.26 — DSR TK/STS (Desired Track and Status). Source p.246</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-26.svg" alt="DSR TK/STS display: desired track and status" width="900" height="350" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.26 — DSR TK/STS display: desired track and status. Teaching schematic · <a href="figs/lesson-18-26.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>DSR TK; Desired track; STS; System status code; Read the desired track and system status in this selector position.</p></details>
 </figure>
-<figure>
-  <img src="figs/fig_p247_0.png" alt="TEST display">
-  <figcaption>Fig 18.27 — TEST (LED test pattern). Source p.247</figcaption>
+<figure class="ga-reviewed-figure">
+  <img src="figs/lesson-18-27.svg" alt="TEST display: checking illuminated segments" width="900" height="410" loading="lazy" decoding="async" style="height:auto;max-width:100%">
+  <figcaption>Fig 18.27 — TEST display: checking illuminated segments. Teaching schematic · <a href="figs/lesson-18-27.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
+  <details><summary>Read figure labels</summary><p>888888   888888; The test illuminates display segments to reveal failed elements.; A segment test does not establish navigation accuracy.</p></details>
 </figure>
 
 <!-- SECTION 14 -->
