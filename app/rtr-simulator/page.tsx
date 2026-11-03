@@ -9,7 +9,7 @@ import { SITE_URL, PERSON_ID, ORG_ID } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Free DGCA RTR(A) Radio Simulator Online — Part 2 Practice",
   description:
-    "A free online RTR(A) radio simulator for the DGCA exam. Talk to ATC in real ICAO phraseology, read back clearances, handle emergencies, get graded like the real practical — free for every Indian student pilot.",
+    "A free online RTR(A) radio simulator for the DGCA exam. Talk to ATC in real ICAO phraseology, read back clearances and get graded like the real practical.",
   alternates: { canonical: "/rtr-simulator" },
 };
 

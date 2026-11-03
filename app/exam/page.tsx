@@ -64,7 +64,7 @@ export default function ExamModePage() {
           RTR(A) Part 2 (the practical voice/ATC test) isn&apos;t a written paper — practise it in{" "}
           <Link href="/rtr-simulator" className="underline font-bold" style={{ color: "#f0913a" }}>
             the Radio Simulator
-          </Link>, India&apos;s first R/T practice sim.
+          </Link>, where you talk to ATC by voice and get graded, free.
         </p>
       </div>
     </div>
