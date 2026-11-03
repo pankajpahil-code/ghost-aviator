@@ -11,6 +11,7 @@ const hash=file=>crypto.createHash('sha256').update(fs.readFileSync(file,'utf8')
 const escape=text=>text.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#x27;');
 const notes=new Map();
 for(const item of [...native,...flows]){
+ assert.ok(item.labels.length>0&&item.labels.every(label=>label.trim()),'Review empty diagram transcript: '+item.image);
  const image=path.join('public',item.image);
  const svg=fs.readFileSync(image,'utf8');
  assert.equal(XMLValidator.validate(svg),true,'Invalid SVG: '+item.image);
@@ -30,6 +31,8 @@ for(const item of [...native,...flows]){
  const pairs=figures.filter(m=>m[0].includes(`src="/${item.image}"`));
  assert.equal(pairs.length,1,'Missing or duplicate diagram reference: '+item.image);
  const pair=pairs[0][0];
+ const img=[...pair.matchAll(/<img\b[^>]*>/g)].find(m=>m[0].includes(`src="/${item.image}"`))?.[0]||'';
+ assert.equal((img.match(/\bdecoding=/g)||[]).length,1,'Use one decoding attribute: '+item.image);
  assert.ok(pair.includes(`width="${item.width}"`)&&pair.includes(`height="${item.height}"`),'Reserve diagram dimensions: '+item.image);
  assert.ok(pair.includes(`href="/${item.image}"`),'Missing full-size view: '+item.image);
  assert.ok(pair.includes('Scroll sideways if needed'),'Missing wide-diagram affordance: '+item.image);

@@ -1,6 +1,6 @@
 # Notes diagram repair — 3 November 2026
 
-This batch repairs 249 diagrams on 86 notes pages: 110 native inline SVGs on 28 pages and 139 Mermaid flowcharts on 69 pages, with 11 pages in both sets. The inventory covers all 245 source notes documents. It does not certify every aviation statement, question or raster image in that library.
+This batch repairs 249 diagrams in 86 source notes documents: 110 native inline SVGs in 28 documents and 139 Mermaid flowcharts in 69 documents, with 11 documents in both sets. Of these, 85 are currently served lesson pages; Navigation 1 is a retired document whose route redirects to the subject hub. Its source artwork was repaired but its retirement remains in place. The inventory covers all 245 source notes documents. It does not certify every aviation statement, question or raster image in that library.
 
 ## What changed
 
