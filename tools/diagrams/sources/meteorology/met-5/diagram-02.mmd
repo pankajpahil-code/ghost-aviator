@@ -1,0 +1,8 @@
+flowchart TD
+    A[Air Sample] --> B{Change made?}
+    B -->|Temperature changes\nwater content same| C[RH changes\nDP unchanged]
+    B -->|Water content changes\ntemperature same| D[Both RH and DP change]
+    B -->|Air lifted adiabatically\nno water added/removed| E[HMR unchanged\nRH increases as T drops]
+    style C fill:#fff8e1,stroke:#f57c00
+    style D fill:#fdecea,stroke:#c0392b
+    style E fill:#e8f1fb,stroke:#2c5aa0

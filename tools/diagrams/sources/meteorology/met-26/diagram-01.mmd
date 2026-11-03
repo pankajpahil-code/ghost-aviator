@@ -1,0 +1,6 @@
+flowchart LR
+    A[TAF Issued] --> B{Validity?}
+    B -->|9 hr| C[Issued every 3hr\nDomestic/VOLMET only\nNOT disseminated internationally]
+    B -->|12-30 hr| D[Issued every 6hr\nCommencing 0000 UTC\nInternational dissemination]
+    C --> E[TAF AMD = Amended TAF]
+    D --> E

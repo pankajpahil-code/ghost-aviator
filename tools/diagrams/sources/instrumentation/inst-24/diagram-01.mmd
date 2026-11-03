@@ -1,0 +1,6 @@
+flowchart LR
+  A["Pilot inputs 4-digit ICAO\nATSU address into FMS"] --> B["FMS sends Logon Message\n(aircraft address + capabilities)"]
+  B --> C["ATSU acknowledges\nlogon message"]
+  C --> D["ATSU sends Connection\nRequest to aircraft"]
+  D --> E["Aircraft sends Connection\nConfirm message"]
+  E --> F["AFN Complete\n(ATS Facilities Notification)"]

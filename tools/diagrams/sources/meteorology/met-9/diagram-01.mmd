@@ -1,0 +1,8 @@
+flowchart TD
+    A[ELR value?] --> B{Compare with SALR and DALR}
+    B -->|ELR < SALR| C[ABSOLUTELY STABLE<br/>Both dry and sat air stable]
+    B -->|SALR < ELR < DALR| D[CONDITIONALLY UNSTABLE<br/>Stable for dry, unstable for saturated]
+    B -->|ELR > DALR| E[ABSOLUTELY UNSTABLE<br/>Both dry and sat air unstable]
+    C --> F[Fine wx, stratiform clouds]
+    D --> G[Thunderstorm if forced uplift + moisture]
+    E --> H[Severe convection, CB, TS]

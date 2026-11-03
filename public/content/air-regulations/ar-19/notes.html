@@ -507,28 +507,7 @@
   </div>
 
   <h3>4.2 · Visual: Accident Classification Flow</h3>
-  <pre class="mermaid">
-flowchart TD
-    A[Occurrence with Aircraft Operation] --> B{Manned or Unmanned?}
-    B -->|Manned| C[Between boarding & disembarking?]
-    B -->|Unmanned| D[Between ready-to-move & engine shutdown?]
-    C -->|No| X[Not an Accident]
-    D -->|No| X
-    C -->|Yes| E{Any condition met?}
-    D -->|Yes| E
-    E --> F[a Person fatally/seriously injured]
-    E --> G[b Aircraft damaged/structural failure]
-    E --> H[c Aircraft missing or inaccessible]
-    F --> Y{Excluded cause? natural/self/other/stowaway}
-    Y -->|Yes| X
-    Y -->|No| Z[ACCIDENT]
-    G --> W{Damage limited to listed exceptions?}
-    W -->|Yes| X
-    W -->|No| Z
-    H --> Z
-    style Z fill:#fdecec,stroke:#d93025,stroke-width:3px,color:#a3160c
-    style X fill:#e6f6ec,stroke:#1b8a3a,color:#0f5f27
-  </pre>
+  <figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-19/figs/diagram-01.svg" alt="4.2 · Visual: Accident Classification Flow" loading="lazy" style="display:block;width:1417px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">4.2 · Visual: Accident Classification Flow · <a href="/content/air-regulations/ar-19/figs/diagram-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Manned; Unmanned; No; Yes; Occurrence with Aircraft Operation; Manned or Unmanned?; Between boarding &amp; disembarking?; Between ready-to-move &amp; engine shutdown?; Not an Accident; Any condition met?; a Person fatally/seriously injured; b Aircraft damaged/structural failure; c Aircraft missing or inaccessible; Excluded cause? natural/self/other/stowaway; ACCIDENT; Damage limited to listed exceptions?</p></details></figure>
   <div class="diagram-caption">Decision flow — Is the occurrence an "Accident"?</div>
 </section>
 
@@ -697,16 +676,7 @@ flowchart TD
   </div>
 
   <h3>8.1 · Hierarchy of Occurrences (Severity Scale)</h3>
-  <pre class="mermaid">
-flowchart LR
-    A[Incident<br/>Lowest severity] --> B[Significant Incident<br/>Could have escalated]
-    B --> C[Serious Incident<br/>High probability of accident]
-    C --> D[Accident<br/>Highest severity]
-    style A fill:#e7f0ff,stroke:#1f6feb,color:#0b3d91
-    style B fill:#fff6e0,stroke:#d98e00,color:#7a4d00
-    style C fill:#ffe1de,stroke:#d93025,color:#a3160c
-    style D fill:#fdecec,stroke:#8b0000,color:#5a0000,stroke-width:3px
-  </pre>
+  <figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-19/figs/diagram-02.svg" alt="8.1 · Hierarchy of Occurrences (Severity Scale)" loading="lazy" style="display:block;width:826px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">8.1 · Hierarchy of Occurrences (Severity Scale) · <a href="/content/air-regulations/ar-19/figs/diagram-02.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>IncidentLowest severity; Significant IncidentCould have escalated; Serious IncidentHigh probability of accident; AccidentHighest severity</p></details></figure>
   <div class="diagram-caption">Occurrence severity ladder — increasing left to right</div>
 </section>
 
@@ -862,27 +832,7 @@ flowchart LR
   </div>
 
   <h3>12.3 · Visual: Notification Flow</h3>
-  <pre class="mermaid">
-flowchart TD
-    A[Accident/Incident Occurs] --> B{PIC alive & able?}
-    B -->|Yes| C[PIC notifies]
-    B -->|No - killed/incapacitated| D[Owner / Operator / Hirer / Relevant Person notifies]
-    C --> E[Within 24 hrs of becoming aware]
-    D --> E
-    E --> F[By quickest means available]
-    F --> G[AAIB]
-    F --> H[DGCA]
-    F --> I[In India only:<br/>District Magistrate]
-    F --> J[In India only:<br/>O-i-C Nearest Police Station]
-    K[ALSO submitted to AAIB by:] --> L[Aerodrome Operator]
-    K --> M[ATS in-charge]
-    K --> N[DG CA where applicable]
-    style E fill:#fdecec,stroke:#d93025,color:#a3160c,stroke-width:2px
-    style G fill:#e6f6ec,stroke:#1b8a3a
-    style H fill:#e6f6ec,stroke:#1b8a3a
-    style I fill:#e6f6ec,stroke:#1b8a3a
-    style J fill:#e6f6ec,stroke:#1b8a3a
-  </pre>
+  <figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-19/figs/diagram-03.svg" alt="12.3 · Visual: Notification Flow" loading="lazy" style="display:block;width:984px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">12.3 · Visual: Notification Flow · <a href="/content/air-regulations/ar-19/figs/diagram-03.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Yes; No - killed/incapacitated; Accident/Incident Occurs; PIC alive &amp; able?; PIC notifies; Owner / Operator / Hirer / Relevant Person notifies; Within 24 hrs of becoming aware; By quickest means available; AAIB; DGCA; In India only:District Magistrate; In India only:O-i-C Nearest Police Station; ALSO submitted to AAIB by:; Aerodrome Operator; ATS in-charge; DG CA where applicable</p></details></figure>
   <div class="diagram-caption">Mandatory 24-hour notification chain following an accident/incident</div>
 </section>
 

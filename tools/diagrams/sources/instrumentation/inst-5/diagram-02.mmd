@@ -1,0 +1,9 @@
+flowchart TD
+    A["Altimeter\nDatum Setting"] --> B["QFE\n1013→local aerodrome pressure\nReads: Height above aerodrome\n(zero on ground)"]
+    A --> C["QNH\nLocal MSL pressure\nReads: Altitude AMSL\n(reads elevation on ground)"]
+    A --> D["QNE / 1013.25 hPa\nStandard pressure\nReads: Pressure Altitude = Flight Level"]
+    A --> E["Regional QNH\nLowest forecast QNH\nReads: Conservative (under-reads)\nSafe for terrain clearance"]
+    style E fill:#e8f5e9
+    style B fill:#e8f1fb
+    style C fill:#e8f1fb
+    style D fill:#e8f1fb

@@ -1,0 +1,11 @@
+flowchart TD
+    T["Turning Error"] --> NH["Northern Hemisphere"]
+    T --> SH["Southern Hemisphere"]
+    NH --> NHP["Turning through North (nearer pole)"]
+    NH --> NHS["Turning through South (further pole)"]
+    NHP --> NHP1["Sluggish, Undershoot, Swirl INCREASES error"]
+    NHS --> NHS1["Lively, Overshoot, Swirl REDUCES error"]
+    SH --> SHP["Turning through South (nearer pole)"]
+    SH --> SHN["Turning through North (further pole)"]
+    SHP --> SHP1["Sluggish, Undershoot, Swirl INCREASES error"]
+    SHN --> SHN1["Lively, Overshoot, Swirl REDUCES error"]

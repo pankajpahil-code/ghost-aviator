@@ -1,0 +1,19 @@
+flowchart TD
+    A[Accident/Incident Occurs] --> B{PIC alive & able?}
+    B -->|Yes| C[PIC notifies]
+    B -->|No - killed/incapacitated| D[Owner / Operator / Hirer / Relevant Person notifies]
+    C --> E[Within 24 hrs of becoming aware]
+    D --> E
+    E --> F[By quickest means available]
+    F --> G[AAIB]
+    F --> H[DGCA]
+    F --> I[In India only:<br/>District Magistrate]
+    F --> J[In India only:<br/>O-i-C Nearest Police Station]
+    K[ALSO submitted to AAIB by:] --> L[Aerodrome Operator]
+    K --> M[ATS in-charge]
+    K --> N[DG CA where applicable]
+    style E fill:#fdecec,stroke:#d93025,color:#a3160c,stroke-width:2px
+    style G fill:#e6f6ec,stroke:#1b8a3a
+    style H fill:#e6f6ec,stroke:#1b8a3a
+    style I fill:#e6f6ec,stroke:#1b8a3a
+    style J fill:#e6f6ec,stroke:#1b8a3a

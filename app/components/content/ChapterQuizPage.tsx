@@ -1,8 +1,9 @@
 "use client";
 import { recordStudyEvent } from "@/lib/study-events";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen, Check } from "lucide-react";
+import QuestionNavigation from "./QuestionNavigation";
+import { CheckCircle, XCircle, RotateCcw, BookOpen, Check } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { DemoQuestion } from "@/lib/demo-questions";
 import { isRealExplanation } from "@/lib/explanation";
@@ -13,6 +14,9 @@ import {
 import { ScoreCta } from "@/app/components/LiveCta";
 
 type Phase = "setup" | "quiz" | "result";
+const subscribeReady = () => () => {};
+const clientReady = () => true;
+const serverReady = () => false;
 
 type Props = {
   track: "cpl" | "atpl";
@@ -25,6 +29,7 @@ type Props = {
 };
 
 export default function ChapterQuizPage({ track, subject, chapter, questions: pool, chapterSpecific }: Props) {
+  const ready = useSyncExternalStore(subscribeReady, clientReady, serverReady);
   // A chapter with no bank of its own receives the whole subject pool. That is a
   // revision quiz on a random sample of it, not a quiz of this chapter.
   const fallback = isSubjectFallback(pool, chapterSpecific);
@@ -67,20 +72,17 @@ export default function ChapterQuizPage({ track, subject, chapter, questions: po
   }
 
   function selectAnswer(oi: number) {
-    if (answers[current] !== null) return;
+    if (phase !== "quiz") return;
     const next = [...answers];
     next[current] = oi;
     setAnswers(next);
   }
 
-  function advance() {
-    if (current < questions.length - 1) {
-      setCurrent(c => c + 1);
-    } else {
-      recordStudyEvent(fallback ? "subject_revision_complete" : "chapter_quiz_complete");
-      setPhase("result");
-      window.scrollTo(0, 0);
-    }
+  function submit() {
+    if (phase !== "quiz") return;
+    recordStudyEvent(fallback ? "subject_revision_complete" : "chapter_quiz_complete");
+    setPhase("result");
+    window.scrollTo(0, 0);
   }
 
   function restart() {
@@ -179,7 +181,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions: po
             least {MIN_QUESTIONS_FOR_VERDICT} to count, so your score will not be saved as chapter progress.
           </p>
         ) : <div className="mb-4" />}
-        <button onClick={start}
+        <button onClick={start} disabled={!ready} aria-busy={!ready}
                 className="w-full py-4 rounded-xl font-black text-lg"
                 style={{ background: `linear-gradient(135deg, ${subject.color}, #f0913a)`, color: "#fff" }}>
           Start Quiz →
@@ -332,14 +334,13 @@ export default function ChapterQuizPage({ track, subject, chapter, questions: po
                 <button key={oi}
                         onClick={() => selectAnswer(oi)}
                         aria-pressed={isSelected}
-                        disabled={selected !== null}
                         style={{
                           textAlign: "left", padding: "0.75rem 1rem",
                           borderRadius: "0.75rem", fontSize: "0.875rem",
                           background: isSelected ? `${subject.color}20` : "rgba(255,255,255,0.03)",
                           border: `1px solid ${isSelected ? subject.color : "rgba(255,255,255,0.08)"}`,
                           color: isSelected ? subject.color : "#94a3b8",
-                          cursor: selected !== null ? "default" : "pointer",
+                          cursor: "pointer",
                           display: "flex", alignItems: "flex-start", gap: "0.5rem",
                           transition: "all 0.15s",
                         }}>
@@ -354,20 +355,7 @@ export default function ChapterQuizPage({ track, subject, chapter, questions: po
           </div>
         </div>
 
-        {/* Next / Skip */}
-        {selected !== null ? (
-          <button onClick={advance}
-                  style={{ width: "100%", padding: "1rem", borderRadius: "0.75rem", fontWeight: 900, fontSize: "1rem", background: `linear-gradient(135deg, ${subject.color}, #f0913a)`, color: "#fff", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
-            {current < questions.length - 1
-              ? <><ArrowRight className="w-5 h-5" /> Next Question</>
-              : "Submit & See Results"}
-          </button>
-        ) : (
-          <button onClick={advance}
-                  style={{ width: "100%", padding: "0.75rem", borderRadius: "0.75rem", fontSize: "0.875rem", fontWeight: 500, border: "1px solid rgba(255,255,255,0.1)", color: "#64748b", background: "transparent", cursor: "pointer" }}>
-            Skip →
-          </button>
-        )}
+        <QuestionNavigation current={current} answers={answers} onSelect={setCurrent} onSubmit={submit} />
       </div>
     </div>
   );

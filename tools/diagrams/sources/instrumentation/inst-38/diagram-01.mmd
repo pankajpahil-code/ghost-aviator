@@ -1,0 +1,9 @@
+flowchart LR
+    A[Temperature<br/>Measurement] --> B[Expansion Type<br/>e.g. mercury thermometer<br/>bimetallic strip]
+    A --> C[Vapour Pressure Type<br/>liquid-to-vapour state change<br/>pressure ∝ temp]
+    A --> D[Electrical Type<br/>Resistance bulb RTD<br/>Thermocouple Seebeck Effect]
+    A --> E[Radiation Type<br/>Pyrometry<br/>emissivity-based optical]
+    B --> F[Low temp<br/>Direct reading]
+    C --> F
+    D --> G[High temp<br/>Remote sensing]
+    E --> G

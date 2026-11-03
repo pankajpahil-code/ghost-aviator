@@ -1,0 +1,20 @@
+flowchart TD
+    A[Occurrence with Aircraft Operation] --> B{Manned or Unmanned?}
+    B -->|Manned| C[Between boarding & disembarking?]
+    B -->|Unmanned| D[Between ready-to-move & engine shutdown?]
+    C -->|No| X[Not an Accident]
+    D -->|No| X
+    C -->|Yes| E{Any condition met?}
+    D -->|Yes| E
+    E --> F[a Person fatally/seriously injured]
+    E --> G[b Aircraft damaged/structural failure]
+    E --> H[c Aircraft missing or inaccessible]
+    F --> Y{Excluded cause? natural/self/other/stowaway}
+    Y -->|Yes| X
+    Y -->|No| Z[ACCIDENT]
+    G --> W{Damage limited to listed exceptions?}
+    W -->|Yes| X
+    W -->|No| Z
+    H --> Z
+    style Z fill:#fdecec,stroke:#d93025,stroke-width:3px,color:#a3160c
+    style X fill:#e6f6ec,stroke:#1b8a3a,color:#0f5f27

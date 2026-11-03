@@ -1,0 +1,10 @@
+flowchart TD
+    E[Emergency Situation] --> T{Type?}
+    T -- "Threatened by grave / imminent danger - immediate assistance" --> D[DISTRESS<br>MAYDAY x3<br>Squawk 7700]
+    T -- "Safety of aircraft/person concerned - no immediate assistance" --> U[URGENCY<br>PAN PAN x3]
+    T -- "Radio Comm Failure" --> R[Squawk 7600]
+    T -- "Hijack / Unlawful interference" --> H[Squawk 7500]
+    style D fill:#fecaca,stroke:#b91c1c,stroke-width:3px
+    style U fill:#fed7aa,stroke:#c2410c,stroke-width:2px
+    style R fill:#fef08a,stroke:#854d0e,stroke-width:2px
+    style H fill:#fecaca,stroke:#7f1d1d,stroke-width:3px

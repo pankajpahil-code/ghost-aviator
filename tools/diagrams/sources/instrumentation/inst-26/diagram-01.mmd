@@ -1,0 +1,6 @@
+flowchart LR
+  A["Input\n(Desired attitude)"] --> B["Error Detector\n/ Signal Processor"]
+  B --> C["Control Element\n(Servomotor)"]
+  C --> D["Output\n(Control surface)"]
+  D --> E["Feedback\n(Gyro senses result)"]
+  E --> B

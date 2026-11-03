@@ -2,9 +2,10 @@
 import { useState, useCallback, useMemo, Suspense } from "react";
 import { useSearchParams, notFound } from "next/navigation";
 import Link from "next/link";
-import { Clock, CheckCircle, XCircle, AlertTriangle, ArrowRight, RotateCcw, BookOpen } from "lucide-react";
+import { Clock, CheckCircle, XCircle, AlertTriangle, RotateCcw, BookOpen } from "lucide-react";
 import { getSubjectQuestionPool } from "@/lib/questions";
 import { isRealExplanation } from "@/lib/explanation";
+import QuestionNavigation from "@/app/components/content/QuestionNavigation";
 import { useDeadlineCountdown, MIN_QUESTIONS_FOR_VERDICT } from "@/lib/progress";
 import { ATPL_TO_CPL } from "@/lib/atpl-syllabus";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
@@ -97,7 +98,6 @@ function MockTestInner() {
   const [phase, setPhase]       = useState<Phase>("setup");
   const [current, setCurrent]   = useState(0);
   const [answers, setAnswers]   = useState<(number | null)[]>(Array(questions.length).fill(null));
-  const [revealed, setRevealed] = useState(false);
   const [flagged, setFlagged]   = useState<boolean[]>(Array(questions.length).fill(false));
 
   const submit = useCallback(() => setPhase("result"), []);
@@ -114,23 +114,16 @@ function MockTestInner() {
   const fmt = (s: number) => `${String(Math.floor(s / 60)).padStart(2,"0")}:${String(s % 60).padStart(2,"0")}`;
 
   function selectAnswer(idx: number) {
-    if (answers[current] !== null) return;
+    if (phase !== "exam") return;
     const next = [...answers];
     next[current] = idx;
     setAnswers(next);
-    setRevealed(true);
   }
 
-  function next() {
-    setRevealed(false);
-    if (current < questions.length - 1) setCurrent(c => c + 1);
-    else submit();
-  }
 
   function restart() {
     setPhase("setup"); setCurrent(0); resetClock(durationSec);
     setAnswers(Array(questions.length).fill(null));
-    setRevealed(false);
     setFlagged(Array(questions.length).fill(false));
   }
 
@@ -171,7 +164,7 @@ function MockTestInner() {
           ))}
         </div>
         <ul className="text-left mb-8 flex flex-col gap-2">
-          {["Each question has one correct answer","You cannot go back after answering","Unanswered questions count as wrong","Timer starts immediately"].map(item => (
+          {["Each question has one correct answer","Change answers and revisit questions until final submission","Unanswered questions count as wrong","Timer starts immediately"].map(item => (
             <li key={item} className="flex items-start gap-2 text-sm" style={{ color: "#94a3b8" }}>
               <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#f59e0b" }} /> {item}
             </li>
@@ -266,12 +259,7 @@ function MockTestInner() {
   );
 
   /* ── EXAM ── */
-  const optClass = (oi: number) => {
-    if (!revealed) return "option-btn";
-    if (oi === q.ans) return "option-btn correct";
-    if (oi === answers[current]) return "option-btn wrong";
-    return "option-btn";
-  };
+  const optClass = (oi: number) => answers[current] === oi ? "option-btn selected" : "option-btn";
 
   return (
     <div className="grid-bg min-h-screen py-8 px-4">
@@ -305,53 +293,22 @@ function MockTestInner() {
           <p className="text-lg font-semibold mb-8 leading-relaxed">{q.q}</p>
           <div className="flex flex-col gap-3">
             {q.opts.map((opt, oi) => (
-              <button key={oi} className={optClass(oi)} onClick={() => selectAnswer(oi)} disabled={revealed}
-                      aria-pressed={answers[current] === oi}
-                      aria-label={revealed
-                        ? `${String.fromCharCode(65 + oi)}. ${opt}${oi === q.ans ? " (correct answer)" : oi === answers[current] ? " (your answer, incorrect)" : ""}`
-                        : undefined}>
+              <button key={oi} className={optClass(oi)} onClick={() => selectAnswer(oi)}
+                      aria-pressed={answers[current] === oi}>
                 <span className="font-bold mr-3" style={{ color: "#475569" }}>{String.fromCharCode(65 + oi)}.</span>
                 {opt}
-                {revealed && oi === q.ans && <CheckCircle aria-hidden className="inline w-4 h-4 ml-2 align-text-bottom" />}
-                {revealed && oi !== q.ans && oi === answers[current] && <XCircle aria-hidden className="inline w-4 h-4 ml-2 align-text-bottom" />}
               </button>
             ))}
           </div>
 
-          {/* Explanation */}
-          {revealed && isRealExplanation(q.exp) && (
-            <div className="mt-6 p-4 rounded-xl text-sm" style={{ background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.2)", color: "#94a3b8" }}>
-              <span className="font-semibold" style={{ color: "#f0913a" }}>💡 Explanation: </span>
-              {q.exp}
-            </div>
-          )}
+
         </div>
 
-        {/* Next button */}
-        {revealed && (
-          <button onClick={next}
-                  className="w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2"
-                  style={{ background: "linear-gradient(135deg,#f0913a,#0099cc)", color: "#000" }}>
-            {current < questions.length - 1 ? <><ArrowRight className="w-5 h-5" /> Next Question</> : "Submit & See Results"}
-          </button>
-        )}
-
-        {/* Flag / Skip */}
-        {!revealed && (
-          <div className="flex gap-3 mt-4">
-            <button onClick={() => { const f = [...flagged]; f[current] = !f[current]; setFlagged(f); }}
-                    aria-pressed={flagged[current]}
-                    className="flex-1 py-3 rounded-xl text-sm font-medium"
-                    style={{ border: `1px solid ${flagged[current] ? "#f59e0b" : "rgba(240,145,58,0.2)"}`, color: flagged[current] ? "#f59e0b" : "#64748b", background: "transparent" }}>
-              {flagged[current] ? "🚩 Flagged" : "🏳️ Flag Question"}
-            </button>
-            <button onClick={next}
-                    className="flex-1 py-3 rounded-xl text-sm font-medium"
-                    style={{ border: "1px solid rgba(240,145,58,0.2)", color: "#64748b", background: "transparent" }}>
-              Skip →
-            </button>
-          </div>
-        )}
+        <button onClick={() => { const f = [...flagged]; f[current] = !f[current]; setFlagged(f); }}
+                aria-pressed={flagged[current]} className="rounded-lg border border-slate-500 px-4 py-3">
+          {flagged[current] ? "Unflag Question" : "Flag Question"}
+        </button>
+        <QuestionNavigation current={current} answers={answers} onSelect={setCurrent} onSubmit={submit} />
       </div>
     </div>
   );

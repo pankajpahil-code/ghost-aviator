@@ -58,9 +58,20 @@ export function useUser(): { user: User | null; loading: boolean } {
   useEffect(() => {
     const sb = getSupabase();
     if (!sb) return;
-    sb.auth.getUser().then(({ data }) => { setUser(data.user ?? null); setLoading(false); });
-    const { data: sub } = sb.auth.onAuthStateChange((_e, session) => setUser(session?.user ?? null));
-    return () => sub.subscription.unsubscribe();
+    let active = true;
+    let authChanged = false;
+    const { data: sub } = sb.auth.onAuthStateChange((event, session) => {
+      if (!active) return;
+      if (event !== "INITIAL_SESSION") authChanged = true;
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
+    void sb.auth.getUser().then(({ data }) => {
+      if (active && !authChanged) setUser(data.user ?? null);
+    }).catch(() => {
+      // Keep the most recent session if the network check failed.
+    }).finally(() => { if (active) setLoading(false); });
+    return () => { active = false; sub.subscription.unsubscribe(); };
   }, []);
   return { user, loading };
 }

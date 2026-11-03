@@ -1,0 +1,9 @@
+flowchart TD
+  YR["Rate Gyro\n(detects yaw rate)"] --> YDC["Yaw Damper\nComputer"]
+  CADC["CADC / ADC\n(gain scheduling input)"] --> YDC
+  RA["Radio Altimeter\n(optional altitude input)"] --> YDC
+  YDC --> PA["Phase Advance\nCircuit"]
+  PA --> DF["Dutch Roll\nFilter\n(band-pass)"]
+  DF --> SER["Rudder Servo\nActuator"]
+  SER --> RUD["Rudder\nDeflection"]
+  LVDT["LVDT Feedback\n(rudder position)"] --> YDC

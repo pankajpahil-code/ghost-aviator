@@ -1,0 +1,14 @@
+graph TD
+    A["Reported RVR/Vis<br/>BELOW minimum?"] -->|"Yes — before<br/>commencing"| B["DO NOT commence<br/>the approach"]
+    A -->|"No"| C["Commence approach"]
+    C --> D{"RVR/Vis drops below<br/>minimum during approach"}
+    D -->|"Before 1000 ft AGL<br/>OR before FAS"| E["Approach must<br/>NOT be continued"]
+    D -->|"After entering FAS or<br/>below 1000 ft AGL"| F["May continue to<br/>DA/H or MDA/H"]
+    F --> G{"Required visual<br/>reference at DA/H-MDA/H?"}
+    G -->|"Established & maintained"| H["May continue below<br/>minima & LAND"]
+    G -->|"Not established"| I["Go-around /<br/>Missed approach"]
+    style B fill:#fdecec,stroke:#c0392b,color:#0d2a4a
+    style E fill:#fdecec,stroke:#c0392b,color:#0d2a4a
+    style I fill:#fdecec,stroke:#c0392b,color:#0d2a4a
+    style H fill:#1e7d34,color:#fff,stroke:#1e7d34
+    style F fill:#e9f6ec,stroke:#1e7d34,color:#0d2a4a

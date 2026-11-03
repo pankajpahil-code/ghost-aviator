@@ -1,0 +1,7 @@
+flowchart LR
+    FV["Flux Valve\n(Detector Unit)"] --"AC Error Signal"--> AMP["Precession Amplifier\n(Amplify, Phase-detect,\nRectify to DC)"]
+    AMP --"DC Signal"--> PM["Precession Motor"]
+    PM --"Corrects"--> GY["Horizontal Gyro"]
+    GY --"Direct Drive\nShaft (bevel gear)"--> HI["Heading Indicator\n(Compass Card)"]
+    HI --"Rotor-Stator\nComparison"--> FV
+    HI --"Heading Output\n(Selsyn)"--> OTH["Other Instruments\n(ADI, RMI, FMS...)"]

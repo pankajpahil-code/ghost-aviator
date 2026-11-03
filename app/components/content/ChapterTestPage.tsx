@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
-import { Clock, CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen } from "lucide-react";
+import QuestionNavigation from "./QuestionNavigation";
+import { Clock, CheckCircle, XCircle, RotateCcw, BookOpen } from "lucide-react";
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { DemoQuestion } from "@/lib/demo-questions";
 import { isRealExplanation } from "@/lib/explanation";
@@ -36,7 +37,6 @@ export default function ChapterTestPage({ track, subject, chapter, questions: po
   // Fixed when Start is pressed, never at render (server and browser must agree).
   const [questions, setQuestions] = useState<DemoQuestion[]>(() => (fallback ? [] : pool));
   const [answers, setAnswers] = useState<(number | null)[]>(() => Array(questions.length).fill(null));
-  const [revealed, setRevealed] = useState(false);
 
   const submit = useCallback(() => setPhase("result"), [setPhase]);
   // Deadline-based: the end time is fixed at Start and the clock is re-read on
@@ -69,32 +69,24 @@ export default function ChapterTestPage({ track, subject, chapter, questions: po
     setQuestions(run);
     setAnswers(Array(run.length).fill(null));
     setCurrent(0);
-    setRevealed(false);
     startClock(run.length * SECS_PER_QUESTION);
     setPhase("test");
     window.scrollTo(0, 0);
   }
 
   function selectAnswer(oi: number) {
-    if (answers[current] !== null) return;
+    if (phase !== "test") return;
     const next = [...answers];
     next[current] = oi;
     setAnswers(next);
-    setRevealed(true);
   }
 
-  function next() {
-    setRevealed(false);
-    if (current < questions.length - 1) setCurrent(c => c + 1);
-    else submit();
-  }
 
   function restart() {
     setPhase("setup");
     setCurrent(0);
     resetClock(plannedCount * SECS_PER_QUESTION);
     setAnswers(Array(questions.length).fill(null));
-    setRevealed(false);
     recorded.current = false;
     window.scrollTo(0, 0);
   }
@@ -332,58 +324,31 @@ export default function ChapterTestPage({ track, subject, chapter, questions: po
               let bg     = "rgba(255,255,255,0.03)";
               let border = "rgba(255,255,255,0.08)";
               let color  = "#94a3b8";
-              if (revealed) {
-                if (oi === q.ans)                  { bg = "rgba(34,197,94,0.15)";  border = "#22c55e"; color = "#22c55e"; }
-                else if (oi === answers[current])  { bg = "rgba(239,68,68,0.15)";  border = "#ef4444"; color = "#ef4444"; }
-              }
+              if (isChosen) { bg = "rgba(240,145,58,0.15)"; border = "#f0913a"; color = "#f3c889"; }
               return (
                 <button key={oi}
                         onClick={() => selectAnswer(oi)}
                         aria-pressed={isChosen}
-                        aria-label={revealed
-                          ? `${String.fromCharCode(65 + oi)}. ${opt}${oi === q.ans ? " (correct answer)" : isChosen ? " (your answer, incorrect)" : ""}`
-                          : undefined}
-                        disabled={revealed}
                         style={{
                           textAlign: "left", padding: "0.75rem 1rem",
                           borderRadius: "0.75rem", fontSize: "0.875rem",
                           background: bg, border: `1px solid ${border}`, color,
-                          cursor: revealed ? "default" : "pointer",
+                          cursor: "pointer",
                           display: "flex", alignItems: "flex-start", gap: "0.5rem",
                         }}>
                   <span style={{ color: "#475569", fontWeight: 700, flexShrink: 0 }}>
                     {String.fromCharCode(65 + oi)}.
                   </span>
                   <span>{opt}</span>
-                  {revealed && oi === q.ans && <CheckCircle aria-hidden className="w-4 h-4 flex-shrink-0 ml-auto" />}
-                  {revealed && oi !== q.ans && isChosen && <XCircle aria-hidden className="w-4 h-4 flex-shrink-0 ml-auto" />}
                 </button>
               );
             })}
           </div>
 
-          {/* Explanation */}
-          {revealed && isRealExplanation(q.exp) && (
-            <div style={{ marginTop: "1.25rem", padding: "1rem", borderRadius: "0.75rem", background: "rgba(240,145,58,0.05)", border: "1px solid rgba(240,145,58,0.15)", color: "#94a3b8", fontSize: "0.875rem" }}>
-              <span style={{ color: "#f0913a", fontWeight: 700 }}>💡 </span>{q.exp}
-            </div>
-          )}
+
         </div>
 
-        {/* Next / Skip button */}
-        {revealed ? (
-          <button onClick={next}
-                  style={{ width: "100%", padding: "1rem", borderRadius: "0.75rem", fontWeight: 900, fontSize: "1rem", background: `linear-gradient(135deg, ${subject.color}, #f0913a)`, color: "#fff", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
-            {current < questions.length - 1
-              ? <><ArrowRight className="w-5 h-5" /> Next Question</>
-              : "Submit & See Results"}
-          </button>
-        ) : (
-          <button onClick={next}
-                  style={{ width: "100%", padding: "0.75rem", borderRadius: "0.75rem", fontSize: "0.875rem", fontWeight: 500, border: "1px solid rgba(255,255,255,0.1)", color: "#64748b", background: "transparent", cursor: "pointer" }}>
-            Skip →
-          </button>
-        )}
+        <QuestionNavigation current={current} answers={answers} onSelect={setCurrent} onSubmit={submit} />
       </div>
     </div>
   );

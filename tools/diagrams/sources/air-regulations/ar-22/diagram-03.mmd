@@ -1,0 +1,14 @@
+flowchart TB
+    A[Reduced Oxygen Supply<br/>Acute or Chronic] --> B[Body Compensation]
+    B --> C[1. Increased<br/>Respiratory Rate]
+    B --> D[2. Chemical Changes<br/>in Blood]
+    B --> E[3. Increased<br/>Red Blood Cell Production]
+    C --> F([Restored O₂ Delivery])
+    D --> F
+    E --> F
+    F -. Failure / Total Absence .-> G[Death in<br/>5–8 minutes]
+
+    style A fill:#fff8e1,stroke:#f57c00
+    style B fill:#e8f1fb,stroke:#2c5aa0
+    style F fill:#e8f5e9,stroke:#2e7d32
+    style G fill:#fdecea,stroke:#c0392b,stroke-width:3px

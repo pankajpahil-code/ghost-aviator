@@ -1,0 +1,10 @@
+flowchart TD
+    A[ERASE button pressed] --> B{Aircraft on ground?}
+    B -- No --> C[❌ Erase inhibited]
+    B -- Yes --> D{All engines stopped?}
+    D -- No --> C
+    D -- Yes --> E{Parking brake SET?}
+    E -- No --> C
+    E -- Yes --> F{Button held ≥ 2 seconds?}
+    F -- No --> C
+    F -- Yes --> G[✅ Erasure permitted]

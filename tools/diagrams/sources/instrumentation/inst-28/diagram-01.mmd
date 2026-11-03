@@ -1,0 +1,8 @@
+flowchart LR
+  TO["Take-off\nTO/GA → N1\nAdvances to T/O thrust"] --> THR_HLD["THR HLD at 84 kt\n(A/T cannot change thrust\nbut manual OK)"]
+  THR_HLD --> ARM_LIFT["ARM after 400 ft RA\n+ 18 sec post-liftoff\nReduction to climb thrust\nby pressing N1 switch"]
+  ARM_LIFT --> N1["N1 Mode\nMaintains FMC N1 limit"]
+  ARM_LIFT --> SPD["Speed Mode (MCP SPD)\nMaintains target IAS/Mach"]
+  N1 --> RETARD["RETARD\n(LVL CHG / VNAV descent)"]
+  SPD --> FLARE_RETARD["RETARD\n2.5 sec after FLARE\nOR at 27 ft RA"]
+  FLARE_RETARD --> DISENG["Auto-disengage\n~2 sec after TD"]

@@ -1,0 +1,8 @@
+flowchart TD
+    RT["Read Met T-3"] --> SP["1. Check Special Features\n(Synoptic situation, WD, etc.)"]
+    SP --> UW["2. Read Upper Winds at each waypoint\n(Direction/Speed at each altitude level)"]
+    UW --> CL["3. Note Cloud Types, Base & Top\n(SKC/FEW/SCT/BKN/OVC + CB/EMBD)"]
+    CL --> VIS["4. Surface Visibility\nGeneral + In Significant Wx"]
+    VIS --> SX["5. Significant Weather\n(ISOL/OCNL TS, Icing, CAT etc.)"]
+    SX --> FZ["6. Height of 0° Isotherm\n(Freezing level — icing risk above this)"]
+    FZ --> QN["7. QNH — for altimeter setting\nat destination/en-route"]

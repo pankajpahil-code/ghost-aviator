@@ -1,0 +1,9 @@
+flowchart LR
+  S[Sensory Input<br/>Sight / Hearing / Touch /<br/>Smell / Taste] --> D[1. Detection]
+  D --> P[2. Perception]
+  P --> DM[3. Decision Making<br/><i>Working Memory</i>]
+  DM --> A[4. Action<br/>Response Executed]
+  A --> F[5. Feedback]
+  F -.alters action.-> DM
+  LTM[(Long-Term Memory)] <--> DM
+  STM[(Short-Term Memory)] <--> DM

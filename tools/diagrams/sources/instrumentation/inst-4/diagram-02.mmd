@@ -1,0 +1,7 @@
+flowchart TD
+    A["Blockage\nDetected?"] -->|Pitot| B["During Climb?\nASI over-reads\n(IAS rises)"]
+    A -->|Pitot| C["During Descent?\nASI under-reads\n(IAS falls) ⚠"]
+    A -->|Static| D["During Climb?\nASI under-reads\n(IAS falls)"]
+    A -->|Static| E["During Descent?\nASI over-reads\n(IAS rises) ⚠ DANGER"]
+    style E fill:#fdecea
+    style C fill:#fff8e1

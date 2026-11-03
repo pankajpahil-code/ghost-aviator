@@ -1,0 +1,10 @@
+flowchart LR
+    A[Accident/Incident<br/>Reports] --> S[LOFT Scenario<br/>Design]
+    S --> F[Full Mission<br/>Simulation]
+    F --> T[Crew Training<br/>Non-jeopardy]
+    T --> E{Additional<br/>Training Needed?}
+    E -- Yes --> P[Provide Immediately<br/>No stigma]
+    E -- No --> V[Validates<br/>Training & SOPs]
+    P --> V
+    style F fill:#e8f1fb,stroke:#2c5aa0
+    style V fill:#e8f5e9,stroke:#2e7d32,stroke-width:3px

@@ -172,16 +172,7 @@ li{margin:3px 0;}
 <h2 id="sec-5">5. Airspeed Correction Sequence &mdash; IAS to TAS</h2>
 <div class="blue-box"><strong>What this section covers:</strong> The step-by-step correction chain from raw instrument reading to True Airspeed.</div>
 
-<pre class="mermaid">
-flowchart LR
-    A["IAS\n(Indicated Airspeed)\nRaw instrument reading"] -->|"+ Instrument Error\n+ Position Error"| B["CAS\n(Calibrated Airspeed)"]
-    B -->|"+ Compressibility\nCorrection"| C["EAS\n(Equivalent Airspeed)"]
-    C -->|"+ Density\nCorrection"| D["TAS\n(True Airspeed)"]
-    style A fill:#e8f1fb
-    style B fill:#e8f1fb
-    style C fill:#e8f5e9
-    style D fill:#e8f5e9
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/instrumentation/inst-4/figs/diagram-01.svg" alt="5. Airspeed Correction Sequence — IAS to TAS" loading="lazy" style="display:block;width:1162px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">5. Airspeed Correction Sequence — IAS to TAS · <a href="/content/instrumentation/inst-4/figs/diagram-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>+ Instrument Error+ Position Error; + CompressibilityCorrection; + DensityCorrection; IAS(Indicated Airspeed)Raw instrument reading; CAS(Calibrated Airspeed); EAS(Equivalent Airspeed); TAS(True Airspeed)</p></details></figure>
 
 <div class="amber-box">
   <strong>Practical Sequence (Exam Rule):</strong>
@@ -255,15 +246,7 @@ flowchart LR
   <strong>S</strong>tatic blocked: <strong>O</strong>ver-reads in <strong>D</strong>escent
 </div>
 
-<pre class="mermaid">
-flowchart TD
-    A["Blockage\nDetected?"] -->|Pitot| B["During Climb?\nASI over-reads\n(IAS rises)"]
-    A -->|Pitot| C["During Descent?\nASI under-reads\n(IAS falls) &#x26A0;"]
-    A -->|Static| D["During Climb?\nASI under-reads\n(IAS falls)"]
-    A -->|Static| E["During Descent?\nASI over-reads\n(IAS rises) &#x26A0; DANGER"]
-    style E fill:#fdecea
-    style C fill:#fff8e1
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/instrumentation/inst-4/figs/diagram-02.svg" alt="7.2 Static Head/Vent Blockage" loading="lazy" style="display:block;width:727px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">7.2 Static Head/Vent Blockage · <a href="/content/instrumentation/inst-4/figs/diagram-02.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Pitot; Static; BlockageDetected?; During Climb?ASI over-reads(IAS rises); During Descent?ASI under-reads(IAS falls) ⚠; During Climb?ASI under-reads(IAS falls); During Descent?ASI over-reads(IAS rises) ⚠ DANGER</p></details></figure>
 
 <h2 id="sec-8">8. Pitot and Static Leaks</h2>
 <div class="blue-box"><strong>What this section covers:</strong> The effect of leaks (as distinct from blockages) in the pitot and static lines.</div>

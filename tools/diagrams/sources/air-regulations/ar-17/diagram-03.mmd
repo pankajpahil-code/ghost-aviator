@@ -1,0 +1,10 @@
+flowchart TD
+    A["Explosive decompression detected<br/>(e.g. at 31,000 ft)"]:::ev
+    B["1. Don oxygen masks<br/>(crew oxygen FIRST)"]:::act
+    C["2. Initiate immediate<br/>EMERGENCY DESCENT"]:::act
+    D["Descend to an altitude where<br/>breathing without supplemental O2<br/>is possible — approx 10,000 ft"]:::act
+    E["Pilots remain on O2 while cabin<br/>pressure altitude exceeds 13,000 ft"]:::note
+    A --> B --> C --> D --> E
+    classDef ev fill:#fdecea,stroke:#d9534f,color:#7d211d;
+    classDef act fill:#eaf6ee,stroke:#3c9a5a,color:#1f5232;
+    classDef note fill:#e8f0fb,stroke:#2f6db0,color:#16365c;

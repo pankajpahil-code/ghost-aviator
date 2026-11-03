@@ -1,0 +1,12 @@
+flowchart LR
+    A[Accident Trigger] --> B{Aircraft<br/>Airworthy?}
+    B -- No --> X[Technical Failure<br/>Mechanical Accident]
+    B -- Yes --> C{Crew Aware<br/>of Threat?}
+    C -- Yes --> D[Recoverable<br/>or Avoidable]
+    C -- No --> E[CFIT<br/>Controlled Flight<br/>Into Terrain]
+    E --> F[Human Factors<br/>Dominant Cause]
+
+    style E fill:#fdecea,stroke:#c0392b,stroke-width:3px
+    style F fill:#fdecea,stroke:#c0392b,stroke-width:2px
+    style X fill:#fff8e1,stroke:#f57c00
+    style D fill:#e8f5e9,stroke:#2e7d32

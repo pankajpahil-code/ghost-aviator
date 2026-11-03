@@ -187,16 +187,7 @@
 <h2 id="sec-6">6. A/T Operating Modes</h2>
 <div class="blue-box"><strong>What this section covers:</strong> All A/T modes from take-off through go-around.</div>
 
-<pre class="mermaid">
-flowchart LR
-  TO["Take-off\nTO/GA → N1\nAdvances to T/O thrust"] --> THR_HLD["THR HLD at 84 kt\n(A/T cannot change thrust\nbut manual OK)"]
-  THR_HLD --> ARM_LIFT["ARM after 400 ft RA\n+ 18 sec post-liftoff\nReduction to climb thrust\nby pressing N1 switch"]
-  ARM_LIFT --> N1["N1 Mode\nMaintains FMC N1 limit"]
-  ARM_LIFT --> SPD["Speed Mode (MCP SPD)\nMaintains target IAS/Mach"]
-  N1 --> RETARD["RETARD\n(LVL CHG / VNAV descent)"]
-  SPD --> FLARE_RETARD["RETARD\n2.5 sec after FLARE\nOR at 27 ft RA"]
-  FLARE_RETARD --> DISENG["Auto-disengage\n~2 sec after TD"]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/instrumentation/inst-28/figs/diagram-01.svg" alt="6. A/T Operating Modes" loading="lazy" style="display:block;width:1408px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">6. A/T Operating Modes · <a href="/content/instrumentation/inst-28/figs/diagram-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Take-offTO/GA → N1Advances to T/O thrust; THR HLD at 84 kt(A/T cannot change thrustbut manual OK); ARM after 400 ft RA+ 18 sec post-liftoffReduction to climb thrustby pressing N1 switch; N1 ModeMaintains FMC N1 limit; Speed Mode (MCP SPD)Maintains target IAS/Mach; RETARD(LVL CHG / VNAV descent); RETARD2.5 sec after FLAREOR at 27 ft RA; Auto-disengage~2 sec after TD</p></details></figure>
 
 <h3>Take-off Mode</h3>
 <p>Engaged by pressing TOGA switch on the ground with A/T armed and desired T/O N1 selected from FMC CDU. A/T annunciation changes from ARM to N1; thrust levers advance toward T/O thrust.</p>

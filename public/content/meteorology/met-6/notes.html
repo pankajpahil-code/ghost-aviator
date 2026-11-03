@@ -155,15 +155,7 @@
   <strong>Definition:</strong> Persistent mean wind speed of <span class="reg-value">34 kt or more</span>. Associated with depressions and cyclonic storms.
 </div>
 
-<pre class="mermaid">
-flowchart LR
-    A["Wind Fluctuation"] --> B{Duration?}
-    B -->|"Few seconds"| C["GUST\n(Positive fluctuation)"]
-    B -->|"Negative fluctuation"| D["LULL"]
-    B -->|"≥1 min, ↑32kmh→44kmh"| E["SQUALL\n(CB associated)"]
-    A --> F{Speed ≥34kt persistent?}
-    F -->|Yes| G["GALE\n(Depressions/Cyclones)"]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/meteorology/met-6/figs/diagram-01.svg" alt="Gale" loading="lazy" style="display:block;width:850px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Gale · <a href="/content/meteorology/met-6/figs/diagram-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Few seconds; Negative fluctuation; ≥1 min, ↑32kmh→44kmh; Yes; Wind Fluctuation; Duration?; GUST(Positive fluctuation); LULL; SQUALL(CB associated); Speed ≥34kt persistent?; GALE(Depressions/Cyclones)</p></details></figure>
 
 <!-- ==================== SECTION 3 ==================== -->
 <h2 id="s3">3. Backing &amp; Veering — Buys Ballot's Law</h2>
@@ -233,18 +225,7 @@ flowchart LR
 <!-- ==================== SECTION 5 ==================== -->
 <h2 id="s5">5. Types of Calculated/Balanced Winds</h2>
 
-<pre class="mermaid">
-flowchart TD
-    A["FORCES ON WIND"] --> B["Pressure Gradient (P)"]
-    A --> C["Coriolis (f)"]
-    A --> D["Centripetal (C)"]
-    A --> E["Friction (F)"]
-    A --> F["Isallobaric Force"]
-    B & C --> G["GEOSTROPHIC WIND\n(P = f)\nStraight isobars only"]
-    B & C & D --> H["GRADIENT WIND\n(P + f + C)\nCurved isobars"]
-    B & C & D & E --> I["ACTUAL SURFACE WIND\n(Friction layer)"]
-    C & D --> J["INERTIAL WIND\n(f + Centrifugal)\nVi = fR"]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/meteorology/met-6/figs/diagram-02.svg" alt="5. Types of Calculated/Balanced Winds" loading="lazy" style="display:block;width:895px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">5. Types of Calculated/Balanced Winds · <a href="/content/meteorology/met-6/figs/diagram-02.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>FORCES ON WIND; Pressure Gradient (P); Coriolis (f); Centripetal (C); Friction (F); Isallobaric Force; GEOSTROPHIC WIND(P = f)Straight isobars only; GRADIENT WIND(P + f + C)Curved isobars; ACTUAL SURFACE WIND(Friction layer); INERTIAL WIND(f + Centrifugal)Vi = fR</p></details></figure>
 <figure class="ga-fig" style="margin:18px auto;text-align:center;page-break-inside:avoid;"><img src="/content/meteorology/met-6/img/fig-7b1c065e4d1b12f6.png" alt="Pressure gradient force and Coriolis force balancing as the wind turns until it blows along the isobars." loading="lazy" style="max-width:min(100%,680px);max-height:520px;width:auto;height:auto;display:block;margin:0 auto;border-radius:6px;"><figcaption style="font-size:0.9em;color:#555;margin-top:6px;">Geostrophic wind</figcaption></figure>
 <figure class="ga-fig" style="margin:18px auto;text-align:center;page-break-inside:avoid;"><img src="/content/meteorology/met-6/img/fig-b67bc2e481471acc.png" alt="Forces on air curving round a low: pressure gradient force, Coriolis force and centrifugal force marked along the radius, with the wind velocity V at right angles." loading="lazy" style="max-width:min(100%,680px);max-height:520px;width:auto;height:auto;display:block;margin:0 auto;border-radius:6px;"><figcaption style="font-size:0.9em;color:#555;margin-top:6px;">Gradient wind around a low</figcaption></figure>
 <figure class="ga-fig" style="margin:18px auto;text-align:center;page-break-inside:avoid;"><img src="/content/meteorology/met-6/img/fig-8133ca5d19f863b6.png" alt="Forces on air curving round a high: pressure gradient force, Coriolis force and centrifugal force marked along the radius, with the wind velocity V at right angles." loading="lazy" style="max-width:min(100%,680px);max-height:520px;width:auto;height:auto;display:block;margin:0 auto;border-radius:6px;"><figcaption style="font-size:0.9em;color:#555;margin-top:6px;">Gradient wind around a high</figcaption></figure>
@@ -433,18 +414,7 @@ flowchart TD
   <strong>⚠ Critical: Effects of WS on Approach</strong> — These effects are critical during landing and take-offs. Decreasing headwind and increasing tailwind both initially reduce airspeed; the opposite changes initially increase it.
 </div>
 
-<pre class="mermaid">
-flowchart TD
-    WS["WIND SHEAR HAZARD"] --> A["Thunderstorm"]
-    WS --> B["Low Level Inversion\n(Night)"]
-    WS --> C["Fronts"]
-    WS --> D["Topography"]
-    WS --> E["Jetstream"]
-    A --> A1["Gust Front\n(30km, 6000ft)"]
-    A --> A2["Microburst\n(4km, 1-5min, 90kt)"]
-    A2 --> A2a["Dry\n(Virga/Anvil)"]
-    A2 --> A2b["Wet\n(Heavy Rain)"]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/meteorology/met-6/figs/diagram-03.svg" alt="Effects of WS on Aircraft" loading="lazy" style="display:block;width:856px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Effects of WS on Aircraft · <a href="/content/meteorology/met-6/figs/diagram-03.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>WIND SHEAR HAZARD; Thunderstorm; Low Level Inversion(Night); Fronts; Topography; Jetstream; Gust Front(30km, 6000ft); Microburst(4km, 1-5min, 90kt); Dry(Virga/Anvil); Wet(Heavy Rain)</p></details></figure>
 
 <!-- ==================== SECTION 8 ==================== -->
 <h2 id="s8">8. Local Winds Due to Topography</h2>

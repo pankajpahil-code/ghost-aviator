@@ -1,0 +1,10 @@
+flowchart TD
+    A["Mixed-phase Cloud\n(Water drops + Ice crystals\nat same sub-zero temperature)"] --> B{"SVP over Water\nvs SVP over Ice"}
+    B -->|"SVP(water) > SVP(ice)"| C[Water drops evaporate]
+    C --> D[Water vapour condenses\non ice crystals]
+    D --> E[Ice crystals grow\nwater drops shrink]
+    E --> F[Ice crystals become heavy\nand fall as precipitation]
+    F --> G["Melts below 0°C level\n→ RAIN at surface"]
+    style A fill:#e3f2fd,stroke:#1565c0
+    style B fill:#fff8e1,stroke:#f57c00
+    style G fill:#e8f5e9,stroke:#2e7d32

@@ -1,0 +1,8 @@
+flowchart TD
+    A[Aircraft Systems<br/>Air Cond / Autoflight / Engines / Fuel etc.] --> B[Data Management Unit<br/>DMU]
+    B --> C[Flight Data Interface Unit<br/>FDIU]
+    B --> D[Separate Flight<br/>Maintenance Recorder]
+    C --> E[FDR<br/>Mandatory Parameters]
+    B --> F[Aircraft Printer<br/>In-flight & Ground]
+    B --> G[ACARS / VHF Data Link<br/>Ground Transmission]
+    D --> H[Printout for<br/>Maintenance]

@@ -180,18 +180,7 @@
   "Suitable safety interlocks are installed to prevent inadvertent or airborne tape erasure."
 </div>
 
-<pre class="mermaid">
-flowchart TD
-    A[ERASE button pressed] --> B{Aircraft on ground?}
-    B -- No --> C[❌ Erase inhibited]
-    B -- Yes --> D{All engines stopped?}
-    D -- No --> C
-    D -- Yes --> E{Parking brake SET?}
-    E -- No --> C
-    E -- Yes --> F{Button held ≥ 2 seconds?}
-    F -- No --> C
-    F -- Yes --> G[✅ Erasure permitted]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img src="/content/instrumentation/inst-37/figs/diagram-01.svg" alt="Control Functions" loading="lazy" style="display:block;width:505px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Control Functions · <a href="/content/instrumentation/inst-37/figs/diagram-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>No; Yes; ERASE button pressed; Aircraft on ground?; ❌ Erase inhibited; All engines stopped?; Parking brake SET?; Button held ≥ 2 seconds?; ✅ Erasure permitted</p></details></figure>
 
 <div class="box-amber">
   <strong>Quick Revision Summary — Section 4:</strong>

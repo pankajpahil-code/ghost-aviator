@@ -1,0 +1,9 @@
+flowchart TD
+    A["Linear Acceleration"] --> B{"Heading?"}
+    B -->|N or S| C["No Error<br/>(CG stays in meridian plane)"]
+    B -->|E or W| D["Maximum Error"]
+    D --> E{"Hemisphere?"}
+    E -->|NH, accel| F["Apparent turn NORTH<br/>(towards nearer pole)"]
+    E -->|NH, decel| G["Apparent turn SOUTH<br/>(towards further pole)"]
+    E -->|SH, accel| H["Apparent turn SOUTH<br/>(towards nearer pole)"]
+    E -->|SH, decel| I["Apparent turn NORTH<br/>(towards further pole)"]

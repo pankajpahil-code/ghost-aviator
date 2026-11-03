@@ -1,0 +1,10 @@
+flowchart TD
+    A["FORCES ON WIND"] --> B["Pressure Gradient (P)"]
+    A --> C["Coriolis (f)"]
+    A --> D["Centripetal (C)"]
+    A --> E["Friction (F)"]
+    A --> F["Isallobaric Force"]
+    B & C --> G["GEOSTROPHIC WIND\n(P = f)\nStraight isobars only"]
+    B & C & D --> H["GRADIENT WIND\n(P + f + C)\nCurved isobars"]
+    B & C & D & E --> I["ACTUAL SURFACE WIND\n(Friction layer)"]
+    C & D --> J["INERTIAL WIND\n(f + Centrifugal)\nVi = fR"]

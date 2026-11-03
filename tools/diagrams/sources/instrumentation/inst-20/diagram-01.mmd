@@ -1,0 +1,6 @@
+graph LR
+  A["Tx frequency<br>continuously swept<br>±50 MHz / 300 Hz"] --> B["Wave travels to<br>ground and back"]
+  B --> C["Rx frequency<br>(older, reflected signal)"]
+  A --> D["Beat frequency<br>= Tx − Rx"]
+  C --> D
+  D --> E["= Time of flight<br>= Height AGL"]

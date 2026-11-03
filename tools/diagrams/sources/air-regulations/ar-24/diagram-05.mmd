@@ -1,0 +1,8 @@
+flowchart TD
+  A[Identify Risk] --> B{Probability<br/>of Occurrence}
+  A --> C{Impact<br/>if it Occurs}
+  B --> D[Combine Probability × Impact]
+  C --> D
+  D --> E{Acceptable?}
+  E -- Yes --> F[Proceed with Mitigation]
+  E -- No --> G[Modify Plan / Don't Fly]

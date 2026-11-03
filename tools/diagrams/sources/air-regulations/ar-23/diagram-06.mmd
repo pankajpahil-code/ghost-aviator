@@ -1,0 +1,12 @@
+flowchart LR
+    T[THREAT<br/>External]:::red --> M{Crew Manages<br/>Threat?}
+    M -- Yes --> S[Safe Flight]:::green
+    M -- No --> E[ERROR]:::red
+    E --> EM{Crew Manages<br/>Error?<br/>avoid/trap/mitigate}
+    EM -- Yes --> S
+    EM -- No --> UAS[UNDESIRED<br/>AIRCRAFT STATE]:::red
+    UAS --> R{Recovery?}
+    R -- Yes --> S
+    R -- No --> ACC[Incident /<br/>Accident]:::red
+    classDef red fill:#fdecea,stroke:#c0392b,stroke-width:2px
+    classDef green fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
