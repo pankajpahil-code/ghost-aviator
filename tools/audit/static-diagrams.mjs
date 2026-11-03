@@ -5,6 +5,7 @@ import assert from "node:assert/strict";
 
 const root = process.cwd();
 const publicRoot = path.join(root, "public");
+const withheld = new Set(Object.keys(JSON.parse(fs.readFileSync(path.join(root, "lib/notes-withheld-figures.json"), "utf8")).withheld));
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "tools/diagrams/manifest.json"), "utf8"));
 const hash = file => {
   const data = fs.readFileSync(file, "utf8").replaceAll("\r\n", "\n");
@@ -30,6 +31,7 @@ function scan(dir) {
         if (!src || /^(?:https?:|data:|\/\/)/i.test(src)) continue;
         const url = new URL(src, "https://ghostaviator.com/content/" + path.relative(path.join(publicRoot, "content"), file).replaceAll("\\", "/"));
         const image = path.join(publicRoot, decodeURIComponent(url.pathname).slice(1));
+        if (withheld.has(decodeURIComponent(url.pathname))) continue;
         assert.ok(fs.existsSync(image), "Missing image " + src + " in " + file);
       }
     }
