@@ -85,6 +85,7 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
   }, [phase]);
 
   function selectAnswer(oi: number) {
+    if (phase !== "exam" || finished.current) return;
     const next = [...answers];
     next[current] = oi;
     setAnswers(next);
@@ -332,7 +333,12 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
               Next <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
-            <button onClick={submit}
+            <button onClick={() => {
+                      const unanswered = answers.filter(answer => answer === null).length;
+                      if (window.confirm(unanswered
+                        ? `${unanswered} unanswered questions will score zero. Submit your final answers?`
+                        : "Submit your final answers?")) submit();
+                    }}
                     className="flex-1 py-3 rounded-xl text-sm font-bold"
                     style={{ background: "linear-gradient(135deg,#22c55e,#16a34a)", color: "#000" }}>
               Submit Paper
