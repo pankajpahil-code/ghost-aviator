@@ -108,11 +108,7 @@
     <tr><td>QNH</td><td>✅ Forecast QNH (hPa)</td><td>✅ MSL pressure</td></tr>
   </table>
 
-  <pre class="mermaid">
-flowchart LR
-    dist{"Flight Distance"} -- "≤ 500 nm" --> T3["MET T-3\nTabular Form\n(Heights in FEET)"]
-    dist -- "&gt; 500 nm" --> T4["MET T-4\nCross Section Form\n(Heights in FLIGHT LEVELS)"]
-  </pre>
+  <figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/meteorology/met-29/figs/diagram-01.svg" alt="1. Overview — Met T-3 vs Met T-4" loading="lazy" style="display:block;width:100%;height:auto;max-width:511px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">1. Overview — Met T-3 vs Met T-4</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>≤ 500 nm; &gt; 500 nm; Flight Distance; MET T-3Tabular Form(Heights in FEET); MET T-4Cross Section Form(Heights in FLIGHT LEVELS)</p></details></figure>
 </div>
 
 <!-- SECTION 2 -->
@@ -173,16 +169,7 @@ flowchart LR
     <code>ISOL EMBD CB 2000/35000</code> = Isolated Embedded CB, base 2000 ft, top 35000 ft
   </div>
 
-  <pre class="mermaid">
-flowchart TD
-    RT["Read Met T-3"] --> SP["1. Check Special Features\n(Synoptic situation, WD, etc.)"]
-    SP --> UW["2. Read Upper Winds at each waypoint\n(Direction/Speed at each altitude level)"]
-    UW --> CL["3. Note Cloud Types, Base & Top\n(SKC/FEW/SCT/BKN/OVC + CB/EMBD)"]
-    CL --> VIS["4. Surface Visibility\nGeneral + In Significant Wx"]
-    VIS --> SX["5. Significant Weather\n(ISOL/OCNL TS, Icing, CAT etc.)"]
-    SX --> FZ["6. Height of 0° Isotherm\n(Freezing level — icing risk above this)"]
-    FZ --> QN["7. QNH — for altimeter setting\nat destination/en-route"]
-  </pre>
+  <figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/meteorology/met-29/figs/diagram-02.svg" alt="3. How to Read a Met T-3" loading="lazy" style="display:block;width:100%;height:auto;max-width:324px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">3. How to Read a Met T-3</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Read Met T-3; 1. Check Special Features(Synoptic situation, WD, etc.); 2. Read Upper Winds at each waypoint(Direction/Speed at each altitude level); 3. Note Cloud Types, Base &amp; Top(SKC/FEW/SCT/BKN/OVC + CB/EMBD); 4. Surface VisibilityGeneral + In Significant Wx; 5. Significant Weather(ISOL/OCNL TS, Icing, CAT etc.); 6. Height of 0° Isotherm(Freezing level — icing risk above this); 7. QNH — for altimeter settingat destination/en-route</p></details></figure>
 
   <div class="box-green">
     <strong>✅ Decision-Making from Met T-3:</strong>
@@ -251,15 +238,7 @@ flowchart TD
     <strong>Cross Section Format:</strong> Vertical slice of the atmosphere along the route. X-axis = route (departure to destination). Y-axis = Flight Levels (30 to 400+). Cloud symbols drawn at their actual position and level.
   </div>
 
-  <pre class="mermaid">
-flowchart TD
-    T4["Read Met T-4"] --> DIAG["1. Study the cross-section diagram\nIdentify cloud positions by FL and route position"]
-    DIAG --> REM["2. Read Remarks\n(Visibility + TS visibility)"]
-    REM --> MSL["3. Note Lowest MSL Pressure\n(for altimeter planning)"]
-    MSL --> WT["4. Read wind/temp table by FL\nNote VEERING / BCKING / WEAKENING"]
-    WT --> TMP["5. Track temperature at each FL\n(M = negative; find 0°C isotherm)"]
-    TMP --> CB["6. Identify CB locations on diagram\n(avoid ±20nm laterally from CB)"]
-  </pre>
+  <figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/meteorology/met-29/figs/diagram-03.svg" alt="5. How to Read a Met T-4" loading="lazy" style="display:block;width:100%;height:auto;max-width:382px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">5. How to Read a Met T-4</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Read Met T-4; 1. Study the cross-section diagramIdentify cloud positions by FL and route position; 2. Read Remarks(Visibility + TS visibility); 3. Note Lowest MSL Pressure(for altimeter planning); 4. Read wind/temp table by FLNote VEERING / BCKING / WEAKENING; 5. Track temperature at each FL(M = negative; find 0°C isotherm); 6. Identify CB locations on diagram(avoid ±20nm laterally from CB)</p></details></figure>
 
   <div class="box-green">
     <strong>✅ Key Operational Tips from T-4:</strong>

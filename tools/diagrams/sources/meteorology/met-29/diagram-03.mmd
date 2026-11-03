@@ -1,0 +1,7 @@
+flowchart TD
+    T4["Read Met T-4"] --> DIAG["1. Study the cross-section diagram\nIdentify cloud positions by FL and route position"]
+    DIAG --> REM["2. Read Remarks\n(Visibility + TS visibility)"]
+    REM --> MSL["3. Note Lowest MSL Pressure\n(for altimeter planning)"]
+    MSL --> WT["4. Read wind/temp table by FL\nNote VEERING / BCKING / WEAKENING"]
+    WT --> TMP["5. Track temperature at each FL\n(M = negative; find 0°C isotherm)"]
+    TMP --> CB["6. Identify CB locations on diagram\n(avoid ±20nm laterally from CB)"]

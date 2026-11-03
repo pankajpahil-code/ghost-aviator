@@ -1,0 +1,19 @@
+flowchart TB
+    L((LIVEWARE<br/>HUB)):::hub
+    LH[L-H<br/>Hardware]:::lh
+    LS[L-S<br/>Software]:::ls
+    LL[L-L<br/>Other Humans]:::ll
+    LE[L-E<br/>Environment]:::le
+    L --- LH
+    L --- LS
+    L --- LL
+    L --- LE
+    LH -.-> EX1[Congested cockpit<br/>Cockpit design]
+    LS -.-> EX2[Checklist error<br/>Warning logic]
+    LL -.-> EX3[High noise<br/>disrupting comm]
+    LE -.-> EX4[Circadian dysrhythmia<br/>Weather]
+    classDef hub fill:#2e7d32,color:#fff,stroke:#1b5e20,stroke-width:3px
+    classDef lh fill:#fdecea,stroke:#c0392b,stroke-width:2px
+    classDef ls fill:#fff8e1,stroke:#f57c00,stroke-width:2px
+    classDef ll fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef le fill:#e8f1fb,stroke:#2c5aa0,stroke-width:2px

@@ -1,0 +1,10 @@
+flowchart TD
+    SPL["SPL (16 yrs)<br/>Class 10 · Class 2 medical<br/>VFR · supervised · no pax"]
+    PPL["PPL Aeroplanes (17 yrs)<br/>40 hrs total · carry pax, no remuneration"]
+    CPL["CPL Aeroplanes (18 yrs)<br/>200 hrs total · PIC up to 5700 kg"]
+    CPLIR["CPL + Instrument Rating<br/>IR privileges built in"]
+    ATPL["ATPL Aeroplanes (21 yrs)<br/>1500 hrs total · PIC above 5700 kg"]
+    SPL --> PPL --> CPL --> CPLIR --> ATPL
+    IR["Instrument Rating (Aeroplanes)<br/>Valid 12 months · fly under IFR"]
+    PPL -.add-on.-> IR
+    CPL -.add-on.-> IR

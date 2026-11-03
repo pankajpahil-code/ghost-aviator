@@ -469,13 +469,7 @@
 </div>
 
 <h4>Visual Reference — QDM vs QDR vs QTE</h4>
-<pre class="mermaid">
-flowchart LR
-    A((Aircraft)) -- "QDM: Mag HDG TO stn" --> S((Ground Station))
-    S -- "QDR: Mag BRG FROM stn" --> A
-    S -. "QTE: TRUE bearing FROM stn" .-> A
-    A -. "QUJ: TRUE track TO stn" .-> S
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/air-regulations/ar-18/figs/diagram-01.svg" alt="2. Q-Code Groups Used in RTF Air-Ground Communications" loading="lazy" style="display:block;width:100%;height:auto;max-width:475px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">2. Q-Code Groups Used in RTF Air-Ground Communications</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>QDM: Mag HDG TO stn; QDR: Mag BRG FROM stn; QTE: TRUE bearing FROM stn; QUJ: TRUE track TO stn; Aircraft; Ground Station</p></details></figure>
 
 <hr class="divider">
 
@@ -503,20 +497,7 @@ flowchart LR
   </tbody>
 </table>
 
-<pre class="mermaid">
-flowchart TD
-    A[1. DISTRESS - MAYDAY] --> B[2. URGENCY - PAN PAN / SECURITE]
-    B --> C[3. Direction Finding]
-    C --> D[4. Flight Safety]
-    D --> E[5. Meteorological]
-    E --> F[6. Flight Regularity]
-    style A fill:#fecaca,stroke:#b91c1c,stroke-width:3px
-    style B fill:#fed7aa,stroke:#c2410c,stroke-width:2px
-    style C fill:#fef08a,stroke:#854d0e
-    style D fill:#bbf7d0,stroke:#15803d
-    style E fill:#bae6fd,stroke:#0369a1
-    style F fill:#e9d5ff,stroke:#6b21a8
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/air-regulations/ar-18/figs/diagram-02.svg" alt="3. Categories of Messages (Priority Order)" loading="lazy" style="display:block;width:100%;height:auto;max-width:283px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">3. Categories of Messages (Priority Order)</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>1. DISTRESS - MAYDAY; 2. URGENCY - PAN PAN / SECURITE; 3. Direction Finding; 4. Flight Safety; 5. Meteorological; 6. Flight Regularity</p></details></figure>
 
 <hr class="divider">
 
@@ -924,15 +905,7 @@ flowchart TD
   </ol>
 </div>
 
-<pre class="mermaid">
-flowchart TD
-    Q[ATC Instruction Received] --> R{Is it a safety-critical item?}
-    R -- "Route clearance / Runway entry / TO / Land / Cross / Hold Short / Back-track" --> M[FULL READ-BACK Mandatory]
-    R -- "RWY in use / QNH / SSR / Level / Heading / Speed / Transition Level" --> M
-    R -- "Other info" --> A[Acknowledge by callsign or abbreviated read-back]
-    style M fill:#fecaca,stroke:#b91c1c,stroke-width:3px
-    style A fill:#bbf7d0,stroke:#15803d,stroke-width:2px
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/air-regulations/ar-18/figs/diagram-03.svg" alt="9. Read-Back &amp; Acknowledgement Requirements" loading="lazy" style="display:block;width:100%;height:auto;max-width:1363px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">9. Read-Back &amp; Acknowledgement Requirements</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Route clearance / Runway entry / TO / Land / Cross / Hold Short / Back-track; RWY in use / QNH / SSR / Level / Heading / Speed / Transition Level; Other info; ATC Instruction Received; Is it a safety-critical item?; FULL READ-BACK Mandatory; Acknowledge by callsign or abbreviated read-back</p></details></figure>
 
 <hr class="divider">
 
@@ -1314,18 +1287,7 @@ flowchart TD
   </ul>
 </div>
 
-<pre class="mermaid">
-flowchart TD
-    E[Emergency Situation] --> T{Type?}
-    T -- "Threatened by grave / imminent danger - immediate assistance" --> D[DISTRESS<br>MAYDAY x3<br>Squawk 7700]
-    T -- "Safety of aircraft/person concerned - no immediate assistance" --> U[URGENCY<br>PAN PAN x3]
-    T -- "Radio Comm Failure" --> R[Squawk 7600]
-    T -- "Hijack / Unlawful interference" --> H[Squawk 7500]
-    style D fill:#fecaca,stroke:#b91c1c,stroke-width:3px
-    style U fill:#fed7aa,stroke:#c2410c,stroke-width:2px
-    style R fill:#fef08a,stroke:#854d0e,stroke-width:2px
-    style H fill:#fecaca,stroke:#7f1d1d,stroke-width:3px
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/air-regulations/ar-18/figs/diagram-04.svg" alt="ELT Transmission Frequencies" loading="lazy" style="display:block;width:100%;height:auto;max-width:1350px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">ELT Transmission Frequencies</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Threatened by grave / imminent danger - immediate assistance; Safety of aircraft/person concerned - no immediate assistance; Radio Comm Failure; Hijack / Unlawful interference; Emergency Situation; Type?; DISTRESSMAYDAY x3Squawk 7700; URGENCYPAN PAN x3; Squawk 7600; Squawk 7500</p></details></figure>
 
 <hr class="divider">
 
@@ -1611,18 +1573,7 @@ flowchart TD
   </ul>
 </div>
 
-<pre class="mermaid">
-flowchart LR
-    A[VLF / LF] --> G[Ground Wave - long range]
-    B[MF / HF] --> S[Sky Wave - ionospheric reflection]
-    C[VHF / UHF / SHF / EHF] --> L[Line of Sight]
-    style A fill:#bae6fd
-    style B fill:#fef08a
-    style C fill:#bbf7d0
-    style G fill:#bae6fd,stroke:#0369a1,stroke-width:2px
-    style S fill:#fef08a,stroke:#854d0e,stroke-width:2px
-    style L fill:#bbf7d0,stroke:#15803d,stroke-width:2px
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/air-regulations/ar-18/figs/diagram-05.svg" alt="Propagation by Band" loading="lazy" style="display:block;width:100%;height:auto;max-width:511px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Propagation by Band</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>VLF / LF; Ground Wave - long range; MF / HF; Sky Wave - ionospheric reflection; VHF / UHF / SHF / EHF; Line of Sight</p></details></figure>
 
 <hr class="divider">
 
@@ -1775,19 +1726,7 @@ flowchart LR
   </ul>
 </div>
 
-<pre class="mermaid">
-flowchart TD
-    A[Flight Deck FMS] -- "Position / Intent / Met data" --> ADS[ADS via VHF + SATCOM Data Link]
-    ADS --> FDPS[FDPS - Chennai / Mumbai / Delhi / Kolkata]
-    FDPS --> ATC[ATC Controller]
-    ATC -- "Non-time-critical msgs" --> CPDLC[CPDLC Data Link]
-    CPDLC --> A
-    style A fill:#bae6fd
-    style ADS fill:#fef08a
-    style FDPS fill:#bbf7d0
-    style ATC fill:#fecaca
-    style CPDLC fill:#e9d5ff
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/air-regulations/ar-18/figs/diagram-06.svg" alt="Automatic Dependent Surveillance (ADS)" loading="lazy" style="display:block;width:100%;height:auto;max-width:378px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Automatic Dependent Surveillance (ADS)</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Position / Intent / Met data; Non-time-critical msgs; Flight Deck FMS; ADS via VHF + SATCOM Data Link; FDPS - Chennai / Mumbai / Delhi / Kolkata; ATC Controller; CPDLC Data Link</p></details></figure>
 
 <hr class="divider">
 

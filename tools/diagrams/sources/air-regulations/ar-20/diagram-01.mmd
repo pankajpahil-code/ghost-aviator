@@ -1,0 +1,12 @@
+flowchart TD
+    A[Aircraft Arrival or Departure] --> B{Carrying Pax / Cargo / Stores / Mail?}
+    B -->|No| C[Make notation in General Declaration<br/>NO other documents required]
+    B -->|Yes| D[Submit required documents]
+    D --> E[General Declaration]
+    D --> F[Cargo Manifest if required]
+    D --> G[Mail – UPU Forms only]
+    E --> H{Form?}
+    F --> H
+    G --> H
+    H -->|Electronic| I[Paper NOT required]
+    H -->|Paper| J[Max 3 copies allowed]

@@ -1,0 +1,11 @@
+flowchart LR
+    subgraph T[Turn Indicator - Needle]
+        NL["Needle Left\n= Left Turn"]
+        NC["Needle Centre\n= Straight Ahead"]
+        NR["Needle Right\n= Right Turn"]
+    end
+    subgraph S[Slip Indicator - Ball]
+        BL["Ball Left\n= Slipping In\n(left turn - too much bank)"]
+        BC["Ball Centre\n= Balanced"]
+        BR["Ball Right\n= Skidding Out\n(left turn - too little bank)"]
+    end

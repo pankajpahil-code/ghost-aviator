@@ -1,0 +1,7 @@
+flowchart LR
+    A["Wind Fluctuation"] --> B{Duration?}
+    B -->|"Few seconds"| C["GUST\n(Positive fluctuation)"]
+    B -->|"Negative fluctuation"| D["LULL"]
+    B -->|"≥1 min, ↑32kmh→44kmh"| E["SQUALL\n(CB associated)"]
+    A --> F{Speed ≥34kt persistent?}
+    F -->|Yes| G["GALE\n(Depressions/Cyclones)"]

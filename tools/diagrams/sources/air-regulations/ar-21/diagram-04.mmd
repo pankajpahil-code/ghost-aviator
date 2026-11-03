@@ -1,0 +1,14 @@
+flowchart TD
+    A[Foreign State agents<br>wish to carry weapons<br>on aircraft in flight] --> B{Two conditions must be met}
+    B --> C[Condition 1<br>PRIOR NOTIFICATION<br>by State of EMBARKATION<br>to State of ARRIVAL]
+    B --> D[Condition 2<br>Notification of<br>PILOT-IN-COMMAND<br>of the decision]
+    C --> E[Both satisfied?]
+    D --> E
+    E -->|YES| F[Carriage of weapon<br>PERMITTED]
+    E -->|NO| G[Carriage NOT permitted]
+    style A fill:#e8f1fb,stroke:#1d4e89,stroke-width:2px
+    style B fill:#fbf6e4,stroke:#c9a227,stroke-width:2px
+    style C fill:#fdecea,stroke:#b1322f,stroke-width:2px
+    style D fill:#fdecea,stroke:#b1322f,stroke-width:2px
+    style F fill:#eaf6ec,stroke:#1f6b3a,stroke-width:2px
+    style G fill:#fdecea,stroke:#b1322f,stroke-width:2px

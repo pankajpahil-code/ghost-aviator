@@ -1,0 +1,11 @@
+graph TD
+    A["TAXI FUEL<br/>before take-off + APU"] --> B["TRIP FUEL<br/>take-off to destination"]
+    B --> C["CONTINGENCY FUEL<br/>5% of trip fuel — min 5 min<br/>holding at 1500 ft"]
+    C --> D["DESTINATION ALTERNATE FUEL<br/>missed approach + climb + cruise<br/>+ descent + approach & land"]
+    D --> E["FINAL RESERVE FUEL<br/>Turbine: 30 min holding at 1500 ft<br/>Recip: 45 min"]
+    E --> F["ADDITIONAL FUEL<br/>engine-out / depressurisation<br/>+ EDTO critical scenario"]
+    F --> G["DISCRETIONARY FUEL<br/>extra — PIC's discretion"]
+    style A fill:#e8f1fb,stroke:#1f5fa8,color:#0d2a4a
+    style C fill:#fdecec,stroke:#c0392b,color:#0d2a4a
+    style E fill:#fdecec,stroke:#c0392b,color:#0d2a4a
+    style G fill:#1e7d34,color:#fff,stroke:#1e7d34

@@ -1,0 +1,5 @@
+flowchart TD
+  A["APP mode selected\nAnnunciator shows LOC armed"] --> B["Localizer captured\nAnnunciator shows LOC (green)"]
+  B --> C["Approaching GS\nAnnunciator shows GS armed (amber)"]
+  C --> D["GS captured\nAnnunciator shows GS (green)\nFDS commands nose-down pitch"]
+  D --> E["Continue ILS approach\nGain scheduling applied as\naircraft nears threshold"]

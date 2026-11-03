@@ -1,0 +1,11 @@
+flowchart LR
+    A[Passenger at ABC Gate] --> B[Present eMRTD]
+    B --> C[Read Contactless Chip<br/>per Doc 9303]
+    C --> D{Validate with ICAO PKD}
+    D -->|Valid| E[Biometric Capture<br/>Face / Fingerprint]
+    D -->|Invalid| X[Refer to Manual Counter]
+    E --> F[Match with Chip Data]
+    F -->|Match| G{Check INTERPOL SLTD<br/>and other records}
+    F -->|No Match| X
+    G -->|Clear| H[Border Crossing Approved]
+    G -->|Flag| X

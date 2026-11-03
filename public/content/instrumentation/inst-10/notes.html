@@ -216,17 +216,7 @@
   <strong>Size of error depends on:</strong> heading, magnitude of acceleration, design of magnet system, magnetic latitude (H vs Z ratio). Errors maximum near magnetic poles, zero at magnetic equator.
 </div>
 
-<pre class="mermaid">
-flowchart TD
-    A["Linear Acceleration"] --> B{"Heading?"}
-    B -->|N or S| C["No Error<br/>(CG stays in meridian plane)"]
-    B -->|E or W| D["Maximum Error"]
-    D --> E{"Hemisphere?"}
-    E -->|NH, accel| F["Apparent turn NORTH<br/>(towards nearer pole)"]
-    E -->|NH, decel| G["Apparent turn SOUTH<br/>(towards further pole)"]
-    E -->|SH, accel| H["Apparent turn SOUTH<br/>(towards nearer pole)"]
-    E -->|SH, decel| I["Apparent turn NORTH<br/>(towards further pole)"]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-10/figs/diagram-01.svg" alt="8. Summary of Acceleration Errors" loading="lazy" style="display:block;width:100%;height:auto;max-width:879px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">8. Summary of Acceleration Errors</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>N or S; E or W; NH, accel; NH, decel; SH, accel; SH, decel; Linear Acceleration; Heading?; No Error(CG stays in meridian plane); Maximum Error; Hemisphere?; Apparent turn NORTH(towards nearer pole); Apparent turn SOUTH(towards further pole); Apparent turn SOUTH(towards nearer pole); Apparent turn NORTH(towards further pole)</p></details></figure>
 
 <h2 id="sec-9">9. Turning Errors</h2>
 <div class="blue-box"><strong>What this section covers:</strong> The largest compass errors — caused by turns through north and south.</div>
@@ -321,19 +311,7 @@ flowchart TD
   </ol>
 </div>
 
-<pre class="mermaid">
-flowchart TD
-    T["Turning Error"] --> NH["Northern Hemisphere"]
-    T --> SH["Southern Hemisphere"]
-    NH --> NHP["Turning through North (nearer pole)"]
-    NH --> NHS["Turning through South (further pole)"]
-    NHP --> NHP1["Sluggish, Undershoot, Swirl INCREASES error"]
-    NHS --> NHS1["Lively, Overshoot, Swirl REDUCES error"]
-    SH --> SHP["Turning through South (nearer pole)"]
-    SH --> SHN["Turning through North (further pole)"]
-    SHP --> SHP1["Sluggish, Undershoot, Swirl INCREASES error"]
-    SHN --> SHN1["Lively, Overshoot, Swirl REDUCES error"]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-10/figs/diagram-02.svg" alt="11. Summary of Turning Errors" loading="lazy" style="display:block;width:100%;height:auto;max-width:1435px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">11. Summary of Turning Errors</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Turning Error; Northern Hemisphere; Southern Hemisphere; Turning through North (nearer pole); Turning through South (further pole); Sluggish, Undershoot, Swirl INCREASES error; Lively, Overshoot, Swirl REDUCES error; Turning through South (nearer pole); Turning through North (further pole)</p></details></figure>
 
 <div class="amber-box"><strong>Quick Revision – Chapter 10:</strong>
   <ul>

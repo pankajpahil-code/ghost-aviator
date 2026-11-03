@@ -1,0 +1,11 @@
+flowchart TD
+    A[Flight Deck FMS] -- "Position / Intent / Met data" --> ADS[ADS via VHF + SATCOM Data Link]
+    ADS --> FDPS[FDPS - Chennai / Mumbai / Delhi / Kolkata]
+    FDPS --> ATC[ATC Controller]
+    ATC -- "Non-time-critical msgs" --> CPDLC[CPDLC Data Link]
+    CPDLC --> A
+    style A fill:#bae6fd
+    style ADS fill:#fef08a
+    style FDPS fill:#bbf7d0
+    style ATC fill:#fecaca
+    style CPDLC fill:#e9d5ff

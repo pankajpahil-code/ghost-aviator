@@ -176,16 +176,7 @@
 
 <p>AIDS processes data from various aircraft systems to ease maintenance tasks. Key components:</p>
 
-<pre class="mermaid">
-flowchart TD
-    A[Aircraft Systems<br/>Air Cond / Autoflight / Engines / Fuel etc.] --> B[Data Management Unit<br/>DMU]
-    B --> C[Flight Data Interface Unit<br/>FDIU]
-    B --> D[Separate Flight<br/>Maintenance Recorder]
-    C --> E[FDR<br/>Mandatory Parameters]
-    B --> F[Aircraft Printer<br/>In-flight & Ground]
-    B --> G[ACARS / VHF Data Link<br/>Ground Transmission]
-    D --> H[Printout for<br/>Maintenance]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-36/figs/diagram-01.svg" alt="4. Aircraft Integrated Data Systems (AIDS)" loading="lazy" style="display:block;width:100%;height:auto;max-width:883px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">4. Aircraft Integrated Data Systems (AIDS)</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Aircraft SystemsAir Cond / Autoflight / Engines / Fuel etc.; Data Management UnitDMU; Flight Data Interface UnitFDIU; Separate FlightMaintenance Recorder; FDRMandatory Parameters; Aircraft PrinterIn-flight &amp; Ground; ACARS / VHF Data LinkGround Transmission; Printout forMaintenance</p></details></figure>
 
 <p>The <strong>Data Management Unit (DMU)</strong> collects and processes system data to compile reports for storage and printing. Some mandatory flight parameters are sent via the <strong>Flight Data Interface Unit (FDIU)</strong> to the FDR. The remainder is recorded on a separate flight maintenance recorder.</p>
 
@@ -286,19 +277,7 @@ flowchart TD
   </ol>
 </div>
 
-<pre class="mermaid">
-flowchart TD
-    A[FDR Unserviceable] --> B{Practicable to repair<br/>before flight?}
-    B -- Yes --> C[Repair/Replace FDR<br/>before departure]
-    B -- No --> D{Check all 3 conditions}
-    D --> E[≤ 8 consecutive flights<br/>since u/s?]
-    D --> F[≤ 72 hours since<br/>u/s discovered?]
-    D --> G[CVR serviceable?<br/>unless combined]
-    E -- All YES --> H[MAY dispatch<br/>with u/s FDR]
-    F -- All YES --> H
-    G -- All YES --> H
-    E -- Any NO --> I[CANNOT dispatch<br/>Must repair first]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-36/figs/diagram-02.svg" alt="Dispatch with Inoperative FDR" loading="lazy" style="display:block;width:100%;height:auto;max-width:608px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Dispatch with Inoperative FDR</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Yes; No; All YES; Any NO; FDR Unserviceable; Practicable to repairbefore flight?; Repair/Replace FDRbefore departure; Check all 3 conditions; ≤ 8 consecutive flightssince u/s?; ≤ 72 hours sinceu/s discovered?; CVR serviceable?unless combined; MAY dispatchwith u/s FDR; CANNOT dispatchMust repair first</p></details></figure>
 
 <div class="box-amber">
   <strong>Quick Revision Summary — Ch. 36:</strong>

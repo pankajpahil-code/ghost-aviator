@@ -1,0 +1,7 @@
+flowchart TD
+    A["Age < 60"] -->|"Full PIC / Co-pilot privileges"| OK1["Commercial ops permitted"]
+    B["Age 60 to under 65"] --> C{"Multi-crew & other pilot < 60 ?"}
+    C -->|"Yes"| OK2["Commercial ops permitted"]
+    C -->|"No"| STOP1["Not permitted"]
+    B --> EXC["Exception: single-pilot-certified aircraft ≤ 5700 kg, in India, multi-crew env"]
+    D["Age 65 and above"] --> STOP2["NO commercial PIC / Co-pilot — absolute ceiling"]

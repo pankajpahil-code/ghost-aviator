@@ -1,0 +1,11 @@
+flowchart TD
+  A[Steep Lapse Rate\n≥ SALR over 5-6 km depth] --> D{All 3 conditions met?}
+  B[High Humidity\nMoisture from below + aloft] --> D
+  C[Trigger Action\nLifting mechanism] --> D
+  D -->|Yes| E[THUNDERSTORM DEVELOPS]
+  D -->|No| F[No TS]
+  C1[Insolation] --> C
+  C2[Frontal Lifting] --> C
+  C3[Convergence] --> C
+  C4[Orographic] --> C
+  C5[Katabatic Cooling] --> C

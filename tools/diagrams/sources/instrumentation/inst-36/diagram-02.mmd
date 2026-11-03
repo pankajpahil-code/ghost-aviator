@@ -1,0 +1,11 @@
+flowchart TD
+    A[FDR Unserviceable] --> B{Practicable to repair<br/>before flight?}
+    B -- Yes --> C[Repair/Replace FDR<br/>before departure]
+    B -- No --> D{Check all 3 conditions}
+    D --> E[≤ 8 consecutive flights<br/>since u/s?]
+    D --> F[≤ 72 hours since<br/>u/s discovered?]
+    D --> G[CVR serviceable?<br/>unless combined]
+    E -- All YES --> H[MAY dispatch<br/>with u/s FDR]
+    F -- All YES --> H
+    G -- All YES --> H
+    E -- Any NO --> I[CANNOT dispatch<br/>Must repair first]

@@ -1,0 +1,7 @@
+flowchart LR
+    A[EICAS Display Modes] --> B[Operational Mode<br/>Selected by flight crew<br/>In-flight engine data + alerts]
+    A --> C[Status Mode<br/>Selected by flight crew<br/>Dispatch readiness / MEL check]
+    A --> D[Maintenance Mode<br/>Selected on maintenance panel<br/>Ground use only — 5 formats]
+    B --> E[Upper DU active<br/>Lower DU blank unless<br/>selected]
+    C --> F[Lower DU shows:<br/>control surface positions<br/>sub-system data<br/>equipment status messages]
+    D --> G[Lower DU only<br/>NOT available in flight]

@@ -84,13 +84,7 @@
   <li><strong>Climb:</strong> Capsule pressure falls quickly; choke delays the fall in the case — capsule compresses — pointer indicates climb rate.</li>
   <li><strong>Descent:</strong> The reverse — capsule expands relative to case — pointer indicates descent rate.</li>
 </ul>
-<pre class="mermaid">
-flowchart LR
-    A["Static Port (current pressure)"] -->|direct feed| B["Capsule (responds instantly)"]
-    A -->|via choke / metering unit| C["Instrument Case (responds slowly)"]
-    B -- pressure difference --> D["Linkage & Pointer"]
-    D --> E["Rate of Climb/Descent Indication"]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-6/figs/diagram-01.svg" alt="2. Principle of Operation" loading="lazy" style="display:block;width:100%;height:auto;max-width:1390px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">2. Principle of Operation</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>direct feed; via choke / metering unit; pressure difference; Static Port (current pressure); Capsule (responds instantly); Instrument Case (responds slowly); Linkage &amp; Pointer; Rate of Climb/Descent Indication</p></details></figure>
 
 <h2 id="sec-3">3. Construction</h2>
 <div class="blue-box"><strong>What this section covers:</strong> The physical components that implement the VSI principle.</div>
@@ -144,13 +138,7 @@ flowchart LR
 
 <div class="red-box"><strong>Static Blockage:</strong> Any blockage of the static line or vent causes the needle to <strong>return to zero</strong>. If static is blocked, the ASI, Altimeter, Machmeter, and VSI are all simultaneously affected.</div>
 
-<pre class="mermaid">
-flowchart TD
-    E[VSI Errors] --> IE[Instrument Error<br/>Manufacturing imperfections]
-    E --> PE[Position Error<br/>Worst during take-off acceleration]
-    E --> ME[Manoeuvre-Induced Error<br/>Vent fluctuations + linkage inertia]
-    E --> TL[Time Lag<br/>Worst after prolonged high-rate climb/descent]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-6/figs/diagram-02.svg" alt="6.4 Time Lag" loading="lazy" style="display:block;width:100%;height:auto;max-width:1280px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">6.4 Time Lag</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>VSI Errors; Instrument ErrorManufacturing imperfections; Position ErrorWorst during take-off acceleration; Manoeuvre-Induced ErrorVent fluctuations + linkage inertia; Time LagWorst after prolonged high-rate climb/descent</p></details></figure>
 
 <div class="amber-box"><strong>Quick Revision – Section 6:</strong> Four errors: Instrument, Position (take-off), Manoeuvre-induced, Time lag (prolonged high-rate). Static blockage → needle to zero, all static instruments affected.</div>
 

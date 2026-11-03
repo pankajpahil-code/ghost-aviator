@@ -88,14 +88,7 @@
   <li>These two tendencies alternate in a coupled yaw-roll oscillation</li>
 </ul>
 
-<pre class="mermaid">
-flowchart LR
-  A["Gust causes yaw\n(nose left)"] --> B["Swept right wing\nadvances, generates\nmore lift → rolls right"]
-  B --> C["Strong dihedral effect\nrolls aircraft back left"]
-  C --> D["Overswing: nose\nnow swings right"]
-  D --> E["Left wing advances\n→ rolls left"]
-  E --> F["Cycle repeats\n(Dutch Roll)"]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-29/figs/diagram-01.svg" alt="1. Dutch Roll — The Problem the Yaw Damper Solves" loading="lazy" style="display:block;width:100%;height:auto;max-width:1173px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">1. Dutch Roll — The Problem the Yaw Damper Solves</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Gust causes yaw(nose left); Swept right wingadvances, generatesmore lift → rolls right; Strong dihedral effectrolls aircraft back left; Overswing: nosenow swings right; Left wing advances→ rolls left; Cycle repeats(Dutch Roll)</p></details></figure>
 
 <h3>Why Swept Wings Exacerbate Dutch Roll</h3>
 <p>Swept-wing aircraft have high dihedral effect (rolling tendency from a yaw disturbance) but relatively low keel surface area for directional damping. This <strong>imbalance</strong> — strong lateral vs weak directional stability — is the root cause of Dutch Roll susceptibility in jets.</p>
@@ -138,17 +131,7 @@ flowchart LR
 <h2 id="sec-4">4. Yaw Damper System Architecture</h2>
 <div class="blue-box"><strong>What this section covers:</strong> System components and signal flow.</div>
 
-<pre class="mermaid">
-flowchart TD
-  YR["Rate Gyro\n(detects yaw rate)"] --> YDC["Yaw Damper\nComputer"]
-  CADC["CADC / ADC\n(gain scheduling input)"] --> YDC
-  RA["Radio Altimeter\n(optional altitude input)"] --> YDC
-  YDC --> PA["Phase Advance\nCircuit"]
-  PA --> DF["Dutch Roll\nFilter\n(band-pass)"]
-  DF --> SER["Rudder Servo\nActuator"]
-  SER --> RUD["Rudder\nDeflection"]
-  LVDT["LVDT Feedback\n(rudder position)"] --> YDC
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-29/figs/diagram-02.svg" alt="4. Yaw Damper System Architecture" loading="lazy" style="display:block;width:100%;height:auto;max-width:838px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">4. Yaw Damper System Architecture</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Rate Gyro(detects yaw rate); Yaw DamperComputer; CADC / ADC(gain scheduling input); Radio Altimeter(optional altitude input); Phase AdvanceCircuit; Dutch RollFilter(band-pass); Rudder ServoActuator; RudderDeflection; LVDT Feedback(rudder position)</p></details></figure>
 
 <figure>
   <img src="figs/fig_p405_0.png" alt="Yaw damper system block diagram">

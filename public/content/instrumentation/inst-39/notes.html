@@ -194,15 +194,7 @@
 
 <p>EICAS has <strong>three modes</strong>:</p>
 
-<pre class="mermaid">
-flowchart LR
-    A[EICAS Display Modes] --> B[Operational Mode<br/>Selected by flight crew<br/>In-flight engine data + alerts]
-    A --> C[Status Mode<br/>Selected by flight crew<br/>Dispatch readiness / MEL check]
-    A --> D[Maintenance Mode<br/>Selected on maintenance panel<br/>Ground use only — 5 formats]
-    B --> E[Upper DU active<br/>Lower DU blank unless<br/>selected]
-    C --> F[Lower DU shows:<br/>control surface positions<br/>sub-system data<br/>equipment status messages]
-    D --> G[Lower DU only<br/>NOT available in flight]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-39/figs/diagram-01.svg" alt="4. EICAS — Display Modes" loading="lazy" style="display:block;width:100%;height:auto;max-width:742px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">4. EICAS — Display Modes</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>EICAS Display Modes; Operational ModeSelected by flight crewIn-flight engine data + alerts; Status ModeSelected by flight crewDispatch readiness / MEL check; Maintenance ModeSelected on maintenance panelGround use only — 5 formats; Upper DU activeLower DU blank unlessselected; Lower DU shows:control surface positionssub-system dataequipment status messages; Lower DU onlyNOT available in flight</p></details></figure>
 
 <table>
   <tr><th>Mode</th><th>Selected By</th><th>Purpose</th><th>Display Unit</th></tr>
@@ -352,15 +344,7 @@ flowchart LR
 
 <p>ECAM has <strong>four display modes</strong> — three automatic and one manual:</p>
 
-<pre class="mermaid">
-flowchart TD
-    A[ECAM Display Modes] --> B[1. Flight Phase-related<br/>AUTOMATIC<br/>Normal operations]
-    A --> C[2. Advisory — Mode and Status<br/>AUTOMATIC<br/>Status summaries]
-    A --> D[3. Failure-related<br/>AUTOMATIC — highest priority<br/>Takes precedence over all other modes]
-    A --> E[4. Aircraft System Display<br/>MANUAL<br/>Crew-selected via illuminated push-buttons]
-    D --> F[Left DU: corrective action<br/>Right DU: system diagram<br/>+ Aural warning + Warning light]
-    E --> G[Selects any of 12 systems<br/>for routine checking]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-39/figs/diagram-02.svg" alt="10. ECAM — Display Modes" loading="lazy" style="display:block;width:100%;height:auto;max-width:1219px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">10. ECAM — Display Modes</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>ECAM Display Modes; 1. Flight Phase-relatedAUTOMATICNormal operations; 2. Advisory — Mode and StatusAUTOMATICStatus summaries; 3. Failure-relatedAUTOMATIC — highest priorityTakes precedence over all other modes; 4. Aircraft System DisplayMANUALCrew-selected via illuminated push-buttons; Left DU: corrective actionRight DU: system diagram+ Aural warning + Warning light; Selects any of 12 systemsfor routine checking</p></details></figure>
 
 <h3>Mode 1 — Flight Phase-related</h3>
 <p>Automatically selects displays appropriate to the current phase of aircraft operation: <strong>preflight, take-off, climb, cruise, descent, approach, after landing</strong>.</p>

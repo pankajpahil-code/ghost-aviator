@@ -1,0 +1,7 @@
+flowchart TD
+    Q[ATC Instruction Received] --> R{Is it a safety-critical item?}
+    R -- "Route clearance / Runway entry / TO / Land / Cross / Hold Short / Back-track" --> M[FULL READ-BACK Mandatory]
+    R -- "RWY in use / QNH / SSR / Level / Heading / Speed / Transition Level" --> M
+    R -- "Other info" --> A[Acknowledge by callsign or abbreviated read-back]
+    style M fill:#fecaca,stroke:#b91c1c,stroke-width:3px
+    style A fill:#bbf7d0,stroke:#15803d,stroke-width:2px

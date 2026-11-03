@@ -1,0 +1,7 @@
+flowchart TD
+    A[Arriving Passenger at Indian Airport] --> B{Carrying Dutiable Goods?}
+    B -->|No| C[GREEN CHANNEL<br/>No duty payable<br/>Within duty-free allowance]
+    B -->|Yes| D[RED CHANNEL<br/>Declare goods<br/>Pay applicable customs duty]
+    C --> E[Exit Customs Area]
+    D --> F[Customs Inspection & Duty Assessment]
+    F --> E

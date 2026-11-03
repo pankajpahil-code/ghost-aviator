@@ -1,0 +1,4 @@
+flowchart TD
+    TBI["Standard TBI\nRate Gyro (horizontal axis)\nSensitive to YAW only\n→ measures rate of turn"]
+    TC["Turn Co-ordinator\nRate Gyro (30° inclined)\nSensitive to ROLL + YAW\n→ anticipates turn from bank"]
+    TBI -->|"Key Difference"| TC

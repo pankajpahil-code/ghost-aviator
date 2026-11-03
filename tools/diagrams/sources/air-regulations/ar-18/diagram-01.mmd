@@ -1,0 +1,5 @@
+flowchart LR
+    A((Aircraft)) -- "QDM: Mag HDG TO stn" --> S((Ground Station))
+    S -- "QDR: Mag BRG FROM stn" --> A
+    S -. "QTE: TRUE bearing FROM stn" .-> A
+    A -. "QUJ: TRUE track TO stn" .-> S

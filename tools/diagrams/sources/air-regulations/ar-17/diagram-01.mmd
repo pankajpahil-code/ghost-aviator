@@ -1,0 +1,11 @@
+flowchart TD
+    A["MANUFACTURER<br/>drafts the MMEL<br/>(Master Minimum Equipment List)"]:::mfr
+    B{"DGCA<br/>approves MMEL"}:::reg
+    C["OPERATOR<br/>creates its own MEL<br/>(placed in the Operations Manual)"]:::op
+    D{"DGCA<br/>approves the MEL"}:::reg
+    E["PILOT-IN-COMMAND<br/>uses MEL to decide:<br/>may the flight be commenced<br/>or continued?"]:::crew
+    A --> B --> C --> D --> E
+    classDef mfr fill:#e8f0fb,stroke:#2f6db0,color:#16365c;
+    classDef reg fill:#fdf3e0,stroke:#c8961e,color:#7a5708;
+    classDef op fill:#eaf6ee,stroke:#3c9a5a,color:#1f5232;
+    classDef crew fill:#fdecea,stroke:#d9534f,color:#7d211d;

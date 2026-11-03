@@ -126,15 +126,7 @@
   <tr><td>Precession Motor</td><td>Slaving/synchronizing motor</td><td>Driven by DC error signal to turn the gyro</td></tr>
   <tr><td>Horizontal Gyro</td><td>—</td><td>Provides short-term stability; directly connected to compass card via direct drive shaft and bevel gear</td></tr>
 </table>
-<pre class="mermaid">
-flowchart LR
-    FV["Flux Valve\n(Detector Unit)"] --"AC Error Signal"--> AMP["Precession Amplifier\n(Amplify, Phase-detect,\nRectify to DC)"]
-    AMP --"DC Signal"--> PM["Precession Motor"]
-    PM --"Corrects"--> GY["Horizontal Gyro"]
-    GY --"Direct Drive\nShaft (bevel gear)"--> HI["Heading Indicator\n(Compass Card)"]
-    HI --"Rotor-Stator\nComparison"--> FV
-    HI --"Heading Output\n(Selsyn)"--> OTH["Other Instruments\n(ADI, RMI, FMS...)"]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-17/figs/diagram-01.svg" alt="3. Basic System Description and Components" loading="lazy" style="display:block;width:100%;height:auto;max-width:1628px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">3. Basic System Description and Components</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>AC Error Signal; DC Signal; Corrects; Direct DriveShaft (bevel gear); Rotor-StatorComparison; Heading Output(Selsyn); Flux Valve(Detector Unit); Precession Amplifier(Amplify, Phase-detect,Rectify to DC); Precession Motor; Horizontal Gyro; Heading Indicator(Compass Card); Other Instruments(ADI, RMI, FMS...)</p></details></figure>
 <figure>
   <img src="figs/fig_p213_0.png" alt="RIMC simple signal routing diagram">
   <figcaption>Fig 17.1 — Simple signal routing in the gyro-magnetic compass system. Source p.213</figcaption>

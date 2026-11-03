@@ -1,0 +1,11 @@
+flowchart TD
+    A[SIGMET Message Contains] --> B[Identification of MWO\neg. VECC]
+    A --> C[Message ID and Sequence No.\neg. SIGMET 2 = 2nd SIGMET]
+    A --> D[Date-Time Group\nValidity Period in UTC\neg. VALID 221215/221600]
+    A --> E[Description of Phenomenon\neg. SEV FRQ]
+    A --> F[Phenomenon for which issued\neg. TURB, TS]
+    A --> G[Observed or Forecast + expected\ncontinue time\neg. OBS AT 1150 UTC, FCST AT 1000 UTC]
+    A --> H[Location\nLat/Lon or geographic feature\neg. FCST TOPS FL390 S OF 54 DEG N\nor OVER KOLKATA AT FL250]
+    A --> I[Movement\neg. MOVE E 25 KT]
+    A --> J[Change in intensity\neg. INTSF, WKN or NC]
+    A --> K[Volcanic ash outlook\nbeyond validity period\neg. VABB SIGMET 3 VALID 221600/222000]

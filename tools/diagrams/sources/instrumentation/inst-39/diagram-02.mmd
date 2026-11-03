@@ -1,0 +1,7 @@
+flowchart TD
+    A[ECAM Display Modes] --> B[1. Flight Phase-related<br/>AUTOMATIC<br/>Normal operations]
+    A --> C[2. Advisory — Mode and Status<br/>AUTOMATIC<br/>Status summaries]
+    A --> D[3. Failure-related<br/>AUTOMATIC — highest priority<br/>Takes precedence over all other modes]
+    A --> E[4. Aircraft System Display<br/>MANUAL<br/>Crew-selected via illuminated push-buttons]
+    D --> F[Left DU: corrective action<br/>Right DU: system diagram<br/>+ Aural warning + Warning light]
+    E --> G[Selects any of 12 systems<br/>for routine checking]

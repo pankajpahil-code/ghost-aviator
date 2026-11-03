@@ -1,0 +1,8 @@
+flowchart LR
+    A["Design & build per<br/>airworthiness requirements"] --> B["Type Certificate<br/>(State of Design)"]
+    B --> C["Owner/Operator applies<br/>to the Director-General"]
+    C --> D["C of A ISSUED —<br/>aircraft 'fit to fly'"]
+    D --> E{"Aircraft stays<br/>in compliance?"}
+    E -- "Yes" --> F["C of A remains valid<br/>(continuing airworthiness)"]
+    E -- "No / damage / defect / doubt" --> G["C of A suspended,<br/>deemed suspended<br/>or cancelled"]
+    G --> H["Aircraft must not fly —<br/>DG may issue a<br/>Special Flight Permit"]

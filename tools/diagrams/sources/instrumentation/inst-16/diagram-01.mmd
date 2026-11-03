@@ -1,0 +1,19 @@
+flowchart TD
+    SW[Compass Swing Required?] --> A[New/replaced\ncompass components?]
+    SW --> B[Accuracy\nin doubt?]
+    SW --> C[Maintenance\ninspection\nschedule?]
+    SW --> D[Magnetic material\nmodification/repair?]
+    SW --> E[Ferromagnetic\npayload?]
+    SW --> F[Significant\nshock or\nlightning strike?]
+    SW --> G[Radio/electrical\nsystem mods?]
+    SW --> H[New theatre:\nlarge latitude\nchange?]
+    SW --> I[Long-term storage\non one heading?]
+    A --> YES[YES → SWING]
+    B --> YES
+    C --> YES
+    D --> YES
+    E --> YES
+    F --> YES
+    G --> YES
+    H --> YES
+    I --> YES

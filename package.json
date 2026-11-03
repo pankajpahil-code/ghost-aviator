@@ -17,7 +17,7 @@
     "verify:sitemap": "npx tsx tools/audit/sitemap-xml.mts",
     "build:lastmod": "npx tsx tools/build-lastmod.mts",
     "indexnow": "node tools/seo/indexnow.mjs",
-    "cf:build": "tsx tools/cloudflare/build.mts && tsc -p tsconfig.worker.json && node tools/cloudflare/verify-release.mjs",
+    "cf:build": "node tools/audit/static-diagrams.mjs && tsx tools/cloudflare/build.mts && tsc -p tsconfig.worker.json && node tools/cloudflare/verify-release.mjs",
     "cf:preview": "npm run cf:build && wrangler dev --port 8787",
     "cf:deploy": "npm run cf:build && wrangler deploy",
     "cf:deploy-www": "wrangler deploy --config cloudflare/www/wrangler.jsonc"

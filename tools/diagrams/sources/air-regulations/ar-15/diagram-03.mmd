@@ -1,0 +1,9 @@
+flowchart TD
+    A["Owner / Operator of the aircraft"] -->|"Applies"| B["Director-General (DGCA)"]
+    B --> C{"Both conditions checked"}
+    C --> D["Condition (a)<br/>Applicant furnishes documents /<br/>evidence of airworthiness<br/>as specified by the DG"]
+    C --> E["Condition (b)<br/>DG satisfied the aircraft is<br/>airworthy OR in a condition<br/>for safe operation"]
+    D --> F{"Conditions (a) AND (b)<br/>both satisfied?"}
+    E --> F
+    F -- "Yes" --> G["C of A / Special C of A<br/>ISSUED"]
+    F -- "No" --> H["Certificate NOT issued"]

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="390" viewBox="0 0 1000 390" role="img" aria-labelledby="title description">
+  <title id="title">Moving a load forward moves the centre of gravity forward</title>
+  <desc id="description">The worked example moves 62.5 kilograms from station 150 to station 30, a distance of 120 station units. With total mass 7500 kilograms unchanged, the centre of gravity moves forward by one unit from station 80.5 to station 79.5.</desc>
+  <rect width="1000" height="390" rx="14" fill="#fff"/>
+  <style>text{font-family:Arial,sans-serif;fill:#172e43} .label{font-size:20px} .small{font-size:18px}</style>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="bold">Shift the load · keep the total mass unchanged</text>
+  <text x="80" y="83" class="label">FORWARD</text>
+  <text x="920" y="83" text-anchor="end" class="label">AFT</text>
+  <path d="M80 160H920" stroke="#64748b" stroke-width="3"/>
+  <path d="M850 133H160M160 133l18-10m-18 10l18 10" fill="none" stroke="#087f73" stroke-width="5"/>
+  <text x="500" y="116" text-anchor="middle" class="label" fill="#087f73">Move 62.5 kg forward through 120 station units</text>
+  <path d="M160 150v20M850 150v20" stroke="#172e43" stroke-width="3"/>
+  <text x="160" y="202" text-anchor="middle" class="label">Forward hold</text>
+  <text x="160" y="229" text-anchor="middle" class="small">Station 30</text>
+  <text x="850" y="202" text-anchor="middle" class="label">Aft hold</text>
+  <text x="850" y="229" text-anchor="middle" class="small">Station 150</text>
+  <rect x="70" y="260" width="860" height="103" rx="10" fill="#edf6f5" stroke="#83b5b0"/>
+  <text x="500" y="290" text-anchor="middle" class="label">CG moves from station 80.5 to station 79.5</text>
+  <text x="500" y="319" text-anchor="middle" class="small">CG movement = (62.5 × 120) ÷ 7500 = 1.0 unit forward</text>
+  <text x="500" y="346" text-anchor="middle" class="small">Station units follow the worked example. Sketch is schematic.</text>
+</svg>

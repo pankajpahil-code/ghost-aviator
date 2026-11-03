@@ -112,12 +112,7 @@ Where:
 
 <div class="amber-box"><strong>Key Rule:</strong> Higher temperature → higher LSS. Temperature normally falls with altitude → LSS normally falls with altitude. Above the tropopause (ISA) temperature is constant → LSS is constant at ~573 kt.</div>
 
-<pre class="mermaid">
-graph LR
-    A["Temperature Increases"] --> B["LSS Increases"]
-    C["Altitude Increases (below tropopause)"] --> D["Temperature Decreases"] --> E["LSS Decreases"]
-    F["Above Tropopause (ISA)"] --> G["Temperature Constant −56.5°C"] --> H["LSS Constant ~573 kt"]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-7/figs/diagram-01.svg" alt="2. Speed of Sound" loading="lazy" style="display:block;width:100%;height:auto;max-width:820px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">2. Speed of Sound</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Temperature Increases; LSS Increases; Altitude Increases (below tropopause); Temperature Decreases; LSS Decreases; Above Tropopause (ISA); Temperature Constant −56.5°C; LSS Constant ~573 kt</p></details></figure>
 
 <h2 id="sec-3">3. Machmeter Principle of Operation</h2>
 <div class="blue-box"><strong>What this section covers:</strong> How the Machmeter derives Mach number from pitot and static pressures.</div>
@@ -263,13 +258,7 @@ where Dp = dynamic pressure, Ps = static pressure</div>
   </ul>
   <em>Reason: Pressure effect on air density dominates over temperature variation in LSS.</em>
 </div>
-<pre class="mermaid">
-flowchart TD
-    A["Climb"] --> B{"What is constant?"}
-    B -->|CAS| C["TAS increases<br/>Mach number increases"]
-    B -->|TAS| D["CAS decreases<br/>Mach number: depends on temp"]
-    B -->|Mach number| E["TAS depends on LSS<br/>CAS always decreases"]
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-7/figs/diagram-02.svg" alt="11. Climb/Descent Summary" loading="lazy" style="display:block;width:100%;height:auto;max-width:728px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">11. Climb/Descent Summary</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>CAS; TAS; Mach number; Climb; What is constant?; TAS increasesMach number increases; CAS decreasesMach number: depends on temp; TAS depends on LSSCAS always decreases</p></details></figure>
 <div class="amber-box"><strong>Quick Revision – Sections 8–11:</strong> Constant CAS climb → TAS↑ Mach↑. Constant Mach climb → CAS↓ TAS depends on temp. The climb/descent diagrams (Fig 7.2 &amp; 7.3) are mirror images. In isothermal: constant Mach = constant TAS. In inversion: constant Mach = increasing TAS (climb).</div>
 
 <h2 id="sec-12">12. Worked Example Problems</h2>

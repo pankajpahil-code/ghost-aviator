@@ -171,13 +171,7 @@ mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'b
 <h2 id="sec-7">7. Electronic (Glass) Displays</h2>
 <div class="box blue"><strong>What this section covers:</strong> the architecture of modern electronic flight decks and where the computing hardware physically lives.</div>
 <p>Traditionally instruments lived on the instrument panel. With modern electronic displays, the displays remain on the flight deck where the crew can see and operate them, but the computing and power units are located remotely — usually in a separate compartment called the <strong>Avionics Bay</strong> or the <strong>Electrics and Electronics (E&amp;E) Bay</strong>.</p>
-<pre class="mermaid">
-flowchart LR
-  S[Sensors / Probes] --> C[Computing units<br/>in Avionics / E&E Bay]
-  P[Power units] --> C
-  C --> D[Flight-deck displays<br/>CRT / LCD glass screens]
-  D --> Crew([Flight Crew])
-</pre>
+<figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><img src="/content/instrumentation/inst-1/figs/diagram-01.svg" alt="7. Electronic (Glass) Displays" loading="lazy" style="display:block;width:100%;height:auto;max-width:777px;margin:auto"><figcaption style="margin-top:.75rem;color:#334155;text-align:center">7. Electronic (Glass) Displays</figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Sensors / Probes; Computing unitsin Avionics / E&amp;E Bay; Power units; Flight-deck displaysCRT / LCD glass screens; Flight Crew</p></details></figure>
 
 <h2 id="sec-8">8. Readability &amp; Parallax</h2>
 <div class="box blue"><strong>What this section covers:</strong> the eye reference point and the parallax error that arises when it is not respected.</div>

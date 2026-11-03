@@ -1,0 +1,11 @@
+flowchart TD
+    A[ww Code] --> B{Range?}
+    B -->|00-19| C[No precip at station\nSimple weather states]
+    B -->|20-29| D[Precip last hour\nNOT now]
+    B -->|30-39| E[Dust/Sand/Blowing Snow\nNOW]
+    B -->|40-49| F[FOG now]
+    B -->|50-59| G[DRIZZLE now]
+    B -->|60-69| H[RAIN now]
+    B -->|70-79| I[SOLID precip\nSnow/Ice now]
+    B -->|80-89| J[SHOWER now]
+    B -->|90-99| K[THUNDERSTORM\nwith precip now]

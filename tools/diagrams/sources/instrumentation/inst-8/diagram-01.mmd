@@ -1,0 +1,12 @@
+flowchart LR
+    A["Pitot Pressure"] --> C["ADC"]
+    B["Static Pressure"] --> C
+    T["TAT Probe"] --> C
+    AOA["AOA (some types)"] --> C
+    C --> D["Altitude"]
+    C --> E["Airspeed (CAS)"]
+    C --> F["Mach Number"]
+    C --> G["TAS"]
+    C --> H["Vertical Speed"]
+    C --> I["TAT / SAT"]
+    C --> J["AFCS / FDR / XPDR / Nav Computer"]

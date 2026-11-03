@@ -1,0 +1,5 @@
+flowchart LR
+    A["Static Port (current pressure)"] -->|direct feed| B["Capsule (responds instantly)"]
+    A -->|via choke / metering unit| C["Instrument Case (responds slowly)"]
+    B -- pressure difference --> D["Linkage & Pointer"]
+    D --> E["Rate of Climb/Descent Indication"]
