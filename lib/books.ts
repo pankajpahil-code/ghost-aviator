@@ -31,8 +31,8 @@ export type AuthoredBook = {
 export const AUTHORED_BOOKS: Record<string, AuthoredBook> = {
   "rtra-mastery": {
     slug: "rtra-mastery",
-    title: "Complete RTR(A) Examination Book",
-    subtitle: "Illuminated Guide to the DGCA Radio Telephone Operator Examination",
+    title: "RTR(A) Mastery",
+    subtitle: "The Complete Guide to the DGCA Radio Telephone Operator (Restricted) Examination",
     author: "Capt. Pankaj Pahil",
     edition: "2026 Master Edition",
     coverImage: "/content/radio-telephony/_assets/images/pdf_front_cover.jpg",

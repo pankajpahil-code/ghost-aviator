@@ -973,7 +973,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
     shortName: "RTR(A)",
     icon: "📻",
     color: "#ef4444",
-    description: "The Complete RTR(A) Examination Book by Capt. Pankaj Pahil — the full DGCA Radio Telephone Operator (Restricted) course in 24 chapters: regulations & aviation bodies, radio & electrical theory, navigation aids, RTF phraseology, distress & urgency, met broadcasts, master number tables, and full mock papers with answer keys.",
+    description: "RTR(A) Mastery by Capt. Pankaj Pahil — the full DGCA Radio Telephone Operator (Restricted) course in 24 chapters: regulations & aviation bodies, radio & electrical theory, navigation aids, RTF phraseology, distress & urgency, met broadcasts, master number tables, and full mock papers with answer keys.",
     examDuration: 45,
     totalQuestions: 30,
     passMark: 70,

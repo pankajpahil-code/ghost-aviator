@@ -65,7 +65,7 @@ const JSON_LD = {
       image: `${SITE_URL}${PORTRAIT}`,
       jobTitle: "Pilot, DGCA Flight & Ground Instructor",
       description:
-        "Pilot and DGCA flight & ground instructor with 17+ years in aviation. Author of 'Technical General for Aviators' and 'Complete RTR(A) Examination Book'. Creator of Ghost Aviator, a free DGCA exam preparation platform.",
+        "Pilot and DGCA flight & ground instructor with 17+ years in aviation. Author of 'Technical General for Aviators' and 'RTR(A) Mastery'. Creator of Ghost Aviator, a free DGCA exam preparation platform.",
       sameAs: PERSON_SAME_AS,
       knowsAbout: CAPTAIN_KNOWS_ABOUT,
       worksFor: { "@id": ORG_ID },
@@ -84,7 +84,7 @@ const JSON_LD = {
 const CREDENTIALS: [typeof Award, string, string][] = [
   [Award,        "17+ years in aviation",          "Pilot with 17+ years of flying and instructing"],
   [GraduationCap,"DGCA flight & ground instructor","Teaching the syllabus he has flown and examined"],
-  [BookOpen,     "Author of 2 aviation books",     "Technical General for Aviators · Complete RTR(A) Examination Book"],
+  [BookOpen,     "Author of 2 aviation books",     "Technical General for Aviators · RTR(A) Mastery"],
   [ShieldCheck,  "Creator of Ghost Aviator",       "Every note and verified question on this site"],
 ];
 
@@ -197,7 +197,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
             ["📘", "Technical General for Aviators", "The complete DGCA Technical General syllabus in one book — now published chapter-by-chapter on this site."],
-            ["📡", "Complete RTR(A) Examination Book", "24 chapters covering the full RTR(A) syllabus — radio telephony from rule-makers to exam arsenal."],
+            ["📡", "RTR(A) Mastery", "24 chapters covering the full RTR(A) syllabus — radio telephony from rule-makers to exam arsenal."],
           ].map(([icon, title, desc]) => (
             <Link key={title} href="/books" className="p-6 rounded-2xl no-underline flex gap-4 items-start"
                   style={{ background: "rgba(17,24,32,0.95)", border: "1px solid rgba(251,191,36,0.25)" }}>
