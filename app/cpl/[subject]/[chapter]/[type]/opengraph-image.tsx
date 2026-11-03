@@ -143,7 +143,7 @@ export default async function Image({
             fontWeight: 500,
           }}
         >
-          <span>India&apos;s Most Complete DGCA Exam Prep</span>
+          <span>Free DGCA CPL &amp; ATPL Exam Prep</span>
           <span>ghostaviator.com</span>
         </div>
       </div>

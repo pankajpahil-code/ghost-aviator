@@ -3,10 +3,10 @@ import { DEFAULT_OG_IMAGES } from "@/lib/og";
 
 export const metadata = {
   title: "Free DGCA Question Bank — CPL & ATPL MCQs with Explanations",
-  description: "India's most comprehensive DGCA question bank for CPL and ATPL. Thousands of latest chapter-wise MCQs with detailed explanations for Air Regulations, Navigation, and Meteorology.",
+  description: "Free DGCA question bank for CPL and ATPL: chapter-wise MCQs with explanations for Meteorology, Air Regulations, Navigation and the other CPL subjects.",
   openGraph: {
     title: "DGCA Question Bank | Ghost Aviator",
-    description: "Thousands of latest chapter-wise MCQs with detailed explanations for Air Regulations, Navigation, and Meteorology.",
+    description: "Chapter-wise DGCA CPL and ATPL MCQs with explanations. Free, no sign-up.",
     url: "./",
     images: DEFAULT_OG_IMAGES,
   },

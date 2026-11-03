@@ -11,7 +11,7 @@ const HAIRLINE = "1px solid rgba(255,255,255,0.06)";
 export const metadata: Metadata = {
   title: "DGCA Exam FAQ — Pass Marks, Negative Marking, Cost & RTR(A)",
   description:
-    "Straight answers to the questions Indian student pilots ask most: negative marking, the 70% pass mark, how many questions in each DGCA CPL paper, what a CPL really costs, and who conducts the RTR(A) exam.",
+    "Straight answers to what Indian student pilots ask most: negative marking, the 70% pass mark, questions per DGCA CPL paper, CPL cost and who runs RTR(A).",
   alternates: { canonical: "/faq" },
 };
 
